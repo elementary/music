@@ -331,7 +331,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// add to the already played list
 		lm.add_already_played(i);
 		
-		stdout.printf("blah\n");
 		//set the title
 		var title = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " - BeatBox";
 		this.set_title(title);
@@ -343,17 +342,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		queriedlastfm = false;
 		added_to_play_count = false;
 		
-		stdout.printf("blah\n");
 		//update songs last played metadata
 		lm.song_info.song.last_played = (int)time_t();
 		lm.update_song(lm.song_from_id(i));
 		
-		stdout.printf("blah\n");
 		//update the notifier
 		notification.close();
 		notification.summary = lm.song_from_id(i).title;
 		notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
-		stdout.printf("blah\n");
 		
 		//look for album art
 		string file = "";
@@ -364,7 +360,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg"));
 		
-		stdout.printf("blah\n");
 		//show the notifier
 		notification.show();
 		

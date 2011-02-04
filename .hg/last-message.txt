@@ -1,1 +1,1 @@
-added notifications (libnotify). all playlist, smart playlist, queue, etc. treeviews are automatically updated when a song is updated
+removed debug messages
