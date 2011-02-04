@@ -126,11 +126,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		buildSideTree();
 		
 		previousButton.relief = Gtk.ReliefStyle.NONE;
-		previousButton.image = new Gtk.Image.from_stock(Gtk.STOCK_MEDIA_PREVIOUS, Gtk.IconSize.SMALL_TOOLBAR);
+		previousButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PREVIOUS, Gtk.IconSize.SMALL_TOOLBAR);
 		playButton.relief = Gtk.ReliefStyle.NONE;
-		playButton.image = new Gtk.Image.from_stock(Gtk.STOCK_MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
+		playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
 		nextButton.relief = Gtk.ReliefStyle.NONE;
-		nextButton.image = new Gtk.Image.from_stock(Gtk.STOCK_MEDIA_NEXT, Gtk.IconSize.SMALL_TOOLBAR);
+		nextButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_NEXT, Gtk.IconSize.SMALL_TOOLBAR);
 		loveButton.relief = Gtk.ReliefStyle.NONE;
 		banButton.relief = Gtk.ReliefStyle.NONE;
 		
@@ -370,7 +370,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(force_play) {
 			playing = true;
 			player.play_stream();
-			playButton.image = new Gtk.Image.from_stock(Gtk.STOCK_MEDIA_PAUSE, Gtk.IconSize.SMALL_TOOLBAR);
+			playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.SMALL_TOOLBAR);
 		}
 		
 		sideTree.updatePlayQueue();
@@ -481,10 +481,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		playing = (playing) ? false : true;
 		
 		if(playing) {
-			playButton.image = new Gtk.Image.from_stock(Gtk.STOCK_MEDIA_PAUSE, Gtk.IconSize.SMALL_TOOLBAR);
+			playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.SMALL_TOOLBAR);
 		}
 		else {
-			playButton.image = new Gtk.Image.from_stock(Gtk.STOCK_MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
+			playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
 		}
 		
 		player.pause_stream(false);
@@ -560,8 +560,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		string folder = "";
 		var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
                                       FileChooserAction.SELECT_FOLDER,
-                                      STOCK_CANCEL, ResponseType.CANCEL,
-                                      STOCK_OPEN, ResponseType.ACCEPT);
+                                      Gtk.Stock.CANCEL, ResponseType.CANCEL,
+                                      Gtk.Stock.OPEN, ResponseType.ACCEPT);
         if (file_chooser.run () == ResponseType.ACCEPT) {
             folder = file_chooser.get_filename();
         }

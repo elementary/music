@@ -51,7 +51,7 @@ public class BeatBox.StreamPlayer : GLib.Object {
     }
 	
     public void play_song (Song s) {
-		if(s.file.size() > 2) {// play a new file
+		if(s.file.length > 2) {// play a new file
 			current = s;
 			play.uri = "file://" + s.file;
 			play.set_state(State.READY);

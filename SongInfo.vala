@@ -160,7 +160,7 @@ public class BeatBox.SongInfo : Object {
 		foreach(LastFM.Tag tag in track.tags()) {
 			tags += " <a href=\"" + tag.url +"\">" + tag.tag + "</a>,";
 		}
-		rv += tags.substring(0, (long)(tags.size() - 1));
+		rv += tags.substring(0, (long)(tags.length - 1));
 		
 		rv += "<br/><br/>";
 		rv += "Similar Bands: ";
@@ -169,7 +169,7 @@ public class BeatBox.SongInfo : Object {
 			sim += " <a href=\"" + similar.url +"\">" + similar.name + "</a>,";
 		}
 		
-		rv += sim.substring(0, (long)(sim.size() - 1));
+		rv += sim.substring(0, (long)(sim.length - 1));
 		
 		rv += "</div>";
 		rv += "</div>";
