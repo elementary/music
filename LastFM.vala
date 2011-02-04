@@ -79,6 +79,16 @@ public class LastFM.Core : Object {
 		return null;
 	}
 	
+	public bool loveTrack(string title, string artist) {
+		
+		return false;
+	}
+	
+	public bool banTrack(string title, string artist) {
+		
+		return false;
+	}
+	
 	/** Gets similar songs
 	 * @param artist The artist of song to get similar to
 	 * @param title The title of song to get similar to

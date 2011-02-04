@@ -20,7 +20,7 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	private bool is_valid_file_type(string type) {
-		return (type.has_suffix(".mp3") || type.has_suffix(".m4a") || type.has_suffix(".wma"));
+		return (type.has_suffix(".mp3") || type.has_suffix(".m4a") || type.has_suffix(".wma") || type.has_suffix(".flac") || type.has_suffix();
 	}
 	
 	public int count_music_files(GLib.File music_folder) {

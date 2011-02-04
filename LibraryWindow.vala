@@ -32,6 +32,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Button previousButton;
 	Button playButton;
 	Button nextButton;
+	Button loveButton;
+	Button banButton;
 	EventBox songPositionEvent;
 	ProgressBar songPosition;
 	Entry searchField;
@@ -100,6 +102,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton = new Button();
 		playButton = new Button();
 		nextButton = new Button();
+		loveButton = new Button.with_label("Love");
+		banButton = new Button.with_label("Ban");
 		songPositionEvent = new EventBox();
 		songPosition = new ProgressBar();
 		searchField = new Entry();
@@ -127,6 +131,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		playButton.image = new Gtk.Image.from_stock(Gtk.STOCK_MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
 		nextButton.relief = Gtk.ReliefStyle.NONE;
 		nextButton.image = new Gtk.Image.from_stock(Gtk.STOCK_MEDIA_NEXT, Gtk.IconSize.SMALL_TOOLBAR);
+		loveButton.relief = Gtk.ReliefStyle.NONE;
+		banButton.relief = Gtk.ReliefStyle.NONE;
 		
 		songPositionEvent.add(songPosition);
 		songPositionEvent.child = songPosition;
@@ -183,6 +189,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton.clicked.connect(previousClicked);
 		playButton.clicked.connect(playClicked);
 		nextButton.clicked.connect(nextClicked);
+		loveButton.clicked.connect(loveButtonClicked);
+		banButton.clicked.connect(banButtonClicked);
 		songPositionEvent.button_press_event.connect(onSongPositionButtonPress);
 		searchField.activate.connect(searchFieldActivated);
 		volumeButton.value_changed.connect(volumeButtonVolumeChanged);
@@ -323,6 +331,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// add to the already played list
 		lm.add_already_played(i);
 		
+		stdout.printf("blah\n");
 		//set the title
 		var title = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " - BeatBox";
 		this.set_title(title);
@@ -334,14 +343,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		queriedlastfm = false;
 		added_to_play_count = false;
 		
+		stdout.printf("blah\n");
 		//update songs last played metadata
 		lm.song_info.song.last_played = (int)time_t();
 		lm.update_song(lm.song_from_id(i));
 		
+		stdout.printf("blah\n");
 		//update the notifier
 		notification.close();
 		notification.summary = lm.song_from_id(i).title;
 		notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
+		stdout.printf("blah\n");
 		
 		//look for album art
 		string file = "";
@@ -350,8 +362,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(file));
 		}
 		else
-			notification.set_image_from_pixbuf(null);
+			notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg"));
 		
+		stdout.printf("blah\n");
 		//show the notifier
 		notification.show();
 		
@@ -484,6 +497,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void nextClicked () {
 		change_song(lm.getNext(), false);
+	}
+	
+	public virtual void loveButtonClicked() {
+		lm.lfm.loveTrack(lm.song_info.song.title, lm.song_info.song.artist);
+	}
+	
+	public virtual void banButtonClicked() {
+		lm.lfm.banTrack(lm.song_info.song.title, lm.song_info.song.artist);
 	}
 	
 	/** implement search in librarymanager?????? **/
