@@ -93,7 +93,7 @@ public class BeatBox.PreferencesWindow : Window {
 			if(lastfm_token == null)
 				stdout.printf("could not get a token. check internet connection\n");
 			else {
-				var auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.Core.api + "&token=" + lastfm_token;
+				string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.Core.api + "&token=" + lastfm_token;
 				GLib.AppInfo.launch_default_for_uri (auth_uri, null);
 				
 				//set button text. we are done this time around. next time we get session key

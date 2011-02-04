@@ -36,7 +36,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Button banButton;
 	EventBox songPositionEvent;
 	ProgressBar songPosition;
-	Entry searchField;
+	ElementaryWidgets.ElementarySearchEntry searchField;
 	VolumeButton volumeButton;
 	Statusbar statusBar;
 	ProgressBar statusBarProgress;
@@ -52,7 +52,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	MenuItem editMenuItem;
 	MenuItem editPreferences;
 	
-	Notify.Notification notification;
+	//Notify.Notification notification;
 	
 	public LibraryWindow(BeatBox.DataBaseManager dbm, BeatBox.StreamPlayer player) {
 		settings = new BeatBox.Settings();
@@ -106,7 +106,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		banButton = new Button.with_label("Ban");
 		songPositionEvent = new EventBox();
 		songPosition = new ProgressBar();
-		searchField = new Entry();
+		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
 		volumeButton = new VolumeButton();
 		songInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
@@ -118,7 +118,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		coverArt = new Image.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg");
 		statusBar = new Statusbar();
 		statusBarProgress = new ProgressBar();
-		notification = new Notification("Title", "Artist\nAlbum", null, null);
+		//notification = new Notification("Title", "Artist\nAlbum", "", null);
 		
 		/* Set properties of various controls */
 		sourcesToSongs.child1_resize = 1;
@@ -347,21 +347,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		lm.update_song(lm.song_from_id(i));
 		
 		//update the notifier
-		notification.close();
-		notification.summary = lm.song_from_id(i).title;
-		notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
+		//notification.close();
+		//notification.summary = lm.song_from_id(i).title;
+		//notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
 		
 		//look for album art
 		string file = "";
 		if((file = lm.get_album_location(lm.song_info.song.rowid)) != null) {
 			coverArt.set_from_file(file);
-			notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(file));
+			//notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(file));
 		}
-		else
-			notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg"));
+		//else
+			//notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg"));
 		
 		//show the notifier
-		notification.show();
+		//notification.show();
 		
 		//do some funky playing/not playing stuff
 		if(!playing)
@@ -639,7 +639,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(position > 5000000000 && !queriedlastfm) {
 				queriedlastfm = true;
 				try {
-					Thread.create(lastfm_thread_function, false);
+					Thread.create<void*>(lastfm_thread_function, false);
 				}
 				catch(GLib.ThreadError err) {
 					stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);

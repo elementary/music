@@ -5,9 +5,10 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	SmartPlaylist _sp;
 	
 	VBox vert;
-	Entry _name;
+	ElementaryWidgets.ElementaryEntry _name;
 	ComboBox _and_or;
 	VBox vertQueries;
+	Button cancel;
 	Button save;
 	Button addButton;
 	Gee.ArrayList<SmartPlaylistEditorQuery> spQueries;
@@ -19,14 +20,22 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		
 		vert = new VBox(false, 10);
 		
-		_name = new Entry();
+		HBox nameBox = new HBox(false, 1);
+		_name = new ElementaryWidgets.ElementaryEntry("Playlist Title");
+		nameBox.pack_start(_name, true, true, 0);
 		
 		if(_sp.name != "")
 			_name.text = _sp.name;
 		
+		HBox andorBox = new HBox(false, 2);
+		Label andorLabel1 = new Label("Match");
 		_and_or = new ComboBox.text();
 		_and_or.insert_text(0, "OR");
 		_and_or.insert_text(0, "AND");
+		Label andorLabel2 = new Label("of the queries:");
+		andorBox.pack_start(andorLabel1, false, false, 0);
+		andorBox.pack_start(_and_or, false, false, 0);
+		andorBox.pack_start(andorLabel2, false, false, 0);
 		
 		if(_sp.conditional == "OR")
 			_and_or.set_active(1);
@@ -35,16 +44,11 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		
 		spQueries = new Gee.ArrayList<SmartPlaylistEditorQuery>();
 		vertQueries = new VBox(true, 2);
+		
 		foreach(SmartQuery q in _sp.queries()) {
 			SmartPlaylistEditorQuery speq = new SmartPlaylistEditorQuery(q);
-			HBox box = new HBox(false, 2);
 			
-			box.pack_start(speq._field, false, true, 2);
-			box.pack_start(speq._comparator, false ,true, 2);
-			box.pack_start(speq._value, false, true, 2);
-			box.pack_start(speq._remove, false, true, 2);
-			
-			vertQueries.pack_end(box, false, true, 1);
+			vertQueries.pack_start(speq._box, false, true, 1);
 			spQueries.add(speq);
 		}
 		
@@ -56,13 +60,20 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		vertQueries.pack_end(addButton, false, true, 1);
 		addButton.clicked.connect(addButtonClick);
 		
+		HBox saveBox = new HBox(false, 1);
+		cancel = new Button.with_label("Cancel");
+		Label filler = new Label("");
 		save = new Button.with_label("Save");
+		saveBox.pack_start(cancel, false, false, 0);
+		saveBox.pack_start(filler, false, false, 0);
+		saveBox.pack_start(save, false, false, 0);
+		
 		save.clicked.connect(saveClick);
 		
-		vert.pack_start(_name, false, true, 1);
-		vert.pack_start(_and_or, false, true, 1);
+		vert.pack_start(nameBox, false, true, 1);
+		vert.pack_start(andorBox, false, true, 1);
 		vert.pack_start(vertQueries, false, true, 1);
-		vert.pack_start(save, false, false, 1);
+		vert.pack_start(saveBox, false, false, 1);
 		
 		add(vert);
 		
@@ -73,15 +84,8 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	
 	public void addRow() {
 		SmartPlaylistEditorQuery speq = new SmartPlaylistEditorQuery(new SmartQuery());
-		HBox box = new HBox(false, 2);
-			
-		box.pack_start(speq._field, false, true, 2);
-		box.pack_start(speq._comparator, false ,true, 2);
-		box.pack_start(speq._value, false, true, 2);
-		box.pack_start(speq._remove, false, true, 2);
 		
-		box.show_all();
-		vertQueries.pack_start(box, false, true, 1);
+		vertQueries.pack_start(speq._box, false, true, 1);
 		spQueries.add(speq);
 	}
 	
@@ -92,8 +96,8 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	public virtual void saveClick() {
 		_sp.clearQueries();
 		foreach(SmartPlaylistEditorQuery speq in spQueries) {
-			_sp.addQuery(speq.getQuery());
-			
+			if(speq._box.visible)
+				_sp.addQuery(speq.getQuery());
 		}
 		
 		_sp.name = _name.text;
@@ -107,10 +111,11 @@ public class BeatBox.SmartPlaylistEditor : Window {
 }
 
 public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
-	public ComboBox _field;
-	public ComboBox _comparator;
-	public Entry _value;
-	public Button _remove;
+	public HBox _box;
+	private ComboBox _field;
+	private ComboBox _comparator;
+	private Entry _value;
+	private Button _remove;
 	
 	public HashMap<string, int> fields;
 	public HashMap<string, int> comparators;
@@ -139,6 +144,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		comparators.set(">", 2);
 		comparators.set("LIKE", 3);
 		
+		_box = new HBox(false, 2);
 		_field = new ComboBox.text();
 		_comparator = new ComboBox.text();
 		_value = new Entry();
@@ -166,6 +172,15 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.set_active(fields.get(q.field));
 		_comparator.set_active(comparators.get(q.comparator));
 		_value.text = q.value;
+		
+		_box.pack_start(_field, false, true, 2);
+		_box.pack_start(_comparator, false ,true, 2);
+		_box.pack_start(_value, false, true, 2);
+		_box.pack_start(_remove, false, true, 2);
+		
+		_box.show_all();
+		
+		_remove.clicked.connect(removeClicked);
 	}
 	
 	public SmartQuery getQuery() {
@@ -177,5 +192,9 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		
 		
 		return rv;
+	}
+	
+	public virtual void removeClicked() {
+		this._box.hide();
 	}
 }

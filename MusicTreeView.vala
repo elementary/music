@@ -772,7 +772,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			psychicworking = true;
 			
 			try {
-				Thread.create(psychic_thread_function, false);
+				Thread.create<void*>(psychic_thread_function, false);
 			}
 			catch(GLib.ThreadError err) {
 				stdout.printf("ERROR: Could not create similar artist thread: %s \n", err.message);

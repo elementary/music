@@ -5,8 +5,8 @@ using Xml;
 
 public class LastFM.Core : Object {
 	BeatBox.LibraryManager _lm;
-	static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
-	static const string secret = "92ba5023f6868e680a3352c71e21243d";
+	public static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
+	public static const string secret = "92ba5023f6868e680a3352c71e21243d";
 	public string token;
 	public string session_key;
 	

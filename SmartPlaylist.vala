@@ -106,7 +106,7 @@ public class BeatBox.SmartPlaylist : Object {
 			else if(q.field == "comment")
 				return s.comment == q.value;
 			else if(q.field == "dateadded")
-				s.date_added == q.value.to_int();
+				return s.date_added == q.value.to_int();
 			else if(q.field == "genre")
 				return s.genre == q.value;
 			else if(q.field == "length")

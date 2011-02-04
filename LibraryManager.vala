@@ -116,7 +116,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void set_music_folder(string folder) {
 		settings.setMusicFolder(folder);
 		try {
-			Thread.create (set_music_thread_function, false);
+			Thread.create<void*>(set_music_thread_function, false);
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to set music folder: %s\n", err.message);
@@ -155,7 +155,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void rescan_music_folder() {
 		try {
-			Thread.create (rescan_music_thread_function, false);
+			Thread.create<void*>(rescan_music_thread_function, false);
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);

@@ -1,4 +1,4 @@
-using Thread;
+//using Thread;
 using Gtk;
 /** Runs the program
  * 
