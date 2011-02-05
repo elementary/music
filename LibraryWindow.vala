@@ -169,7 +169,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topControls.pack_start(appMenu, false, false, 1);
 		
 		//set the name for elementary theming
-		sourcesToSongs.set_name("SidebarHandleLeft");
+		sourcesToSongs.name = "SidebarHandleLeft";
+		sideTree.name = "SidebarContent";
 		
 		sourcesToSongs.add1(sideBar);
 		sourcesToSongs.add2(mainViews);

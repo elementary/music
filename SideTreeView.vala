@@ -112,8 +112,8 @@ public class BeatBox.SideTreeView : TreeView {
 		//sideTreeModel.append(out internet_iter, null);
 		//sideTreeModel.set(internet_iter, 0, null, 1, null, 2, "Internet");
 		
-		sideTreeModel.append(out smart_playlist_iter, null);
-		sideTreeModel.set(smart_playlist_iter, 0, null, 1, null, 2, "Smart Playlists");
+		//sideTreeModel.append(out smart_playlist_iter, null);
+		//sideTreeModel.set(smart_playlist_iter, 0, null, 1, null, 2, "Smart Playlists");
 		
 		sideTreeModel.append(out playlist_iter, null);
 		sideTreeModel.set(playlist_iter, 0, null, 1, null, 2, "Playlists");

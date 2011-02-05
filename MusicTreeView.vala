@@ -129,9 +129,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public void buildUI() {
 		view = new TreeView();
 		
-		//set the name for elementary theming
-		view.set_name("SidebarContent");
-		
 		/* id is always first and is stored as an int. Then the rest are (1)
 		 * strings (for simplicity), and include:
 		 * #, track, title, artist, album, genre, comment, year, rating, (9)
