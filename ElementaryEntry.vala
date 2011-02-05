@@ -94,6 +94,16 @@ public class ElementaryEntry : Gtk.Entry {
         }
     
     }
+    
+    public new void set_text(string text) {
+        if (text == "") {
+            hint();
+        } else {
+            unhint();
+        }
+        
+        this.text = text;
+    }
 }
 
 public class ElementarySearchEntry : ElementaryEntry {

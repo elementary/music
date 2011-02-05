@@ -82,8 +82,4 @@ public class BeatBox.StreamPlayer : GLib.Object {
 		else
 			play.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, position);
 	}
-	
-	public void set_volume(double value) {
-		play.volume = value;
-	}
 }

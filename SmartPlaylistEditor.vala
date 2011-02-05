@@ -24,8 +24,9 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		_name = new ElementaryWidgets.ElementaryEntry("Playlist Title");
 		nameBox.pack_start(_name, true, true, 0);
 		
-		if(_sp.name != "")
-			_name.text = _sp.name;
+		if(_sp.name != "") {
+			_name.set_text(_sp.name);
+		}
 		
 		HBox andorBox = new HBox(false, 2);
 		Label andorLabel1 = new Label("Match");

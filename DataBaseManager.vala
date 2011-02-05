@@ -47,6 +47,8 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * 
 	 */
 	public void load_db() {
+		/** CHECK THAT .BEATBOX EXISTS! **/
+		stdout.printf("i should check that .beatbox exists\n");
 		var db_file = GLib.File.new_for_path(Environment.get_home_dir () + "/.beatbox/data.db");
 		
 		bool need_create = false;

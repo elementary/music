@@ -32,7 +32,7 @@ public class BeatBox.PreferencesWindow : Window {
 		set_title("Preferences");
 		
 		// set the size
-		set_size_request(250, 150);
+		set_size_request(400, 300);
 		allow_shrink = true;
 		
 		notebook = new Notebook();
@@ -86,12 +86,14 @@ public class BeatBox.PreferencesWindow : Window {
 	
 	public virtual void lastfmLoginClick() {
 		if(_lm.settings.getLastFMSessionKey() != "")
-			stdout.printf("we already have a key this is pointless...\n");
+			stdout.printf("We already have a key this is pointless...\n");
 		
-		if(lastfmLogin.get_label() == "Enable Scrobbling") {
+		if(lastfmLogin.get_label() == "Enable Scrobbling" || lastfmLogin.get_label() == "Unsuccessful. Click to try again.") {
 			lastfm_token = _lm.lfm.getToken();
-			if(lastfm_token == null)
-				stdout.printf("could not get a token. check internet connection\n");
+			if(lastfm_token == null) {
+				lastfmLogin.set_label("Unsuccessful. Click to try again.");
+				stdout.printf("Could not get a token. check internet connection\n");
+			}
 			else {
 				string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.Core.api + "&token=" + lastfm_token;
 				GLib.AppInfo.launch_default_for_uri (auth_uri, null);
@@ -101,11 +103,14 @@ public class BeatBox.PreferencesWindow : Window {
 			}
 		}
 		else {
-			if(lastfm_token == null)
+			if(lastfm_token == null) {
+				lastfmLogin.set_label("Unsuccessful. Click to try again.");
 				stdout.printf("Invalid token. Cannot continue\n");
+			}
 			else {
 				var sk = _lm.lfm.getSessionKey(lastfm_token);
 				if(sk == null) {
+					lastfmLogin.set_label("Unsuccessful. Click to try again.");
 					stdout.printf("Could not get Last FM session key\n");
 				}
 				else {

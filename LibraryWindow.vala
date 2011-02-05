@@ -10,6 +10,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	string current_view_path;
 	bool queriedlastfm; // whether or not we have queried last fm for the current song info
+	bool song_considered_played; //whether or not we have updated last played and added to already played list
 	bool added_to_play_count; // whether or not we have added one to play count on playing song
 	bool loaded_pandora;
 	bool loaded_groove_shark;
@@ -37,7 +38,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	EventBox songPositionEvent;
 	ProgressBar songPosition;
 	ElementaryWidgets.ElementarySearchEntry searchField;
-	VolumeButton volumeButton;
+	ElementaryWidgets.AppMenu appMenu;
 	Statusbar statusBar;
 	ProgressBar statusBarProgress;
 	
@@ -51,6 +52,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Menu editMenu;
 	MenuItem editMenuItem;
 	MenuItem editPreferences;
+	
+	Menu settingsMenu;
 	
 	//Notify.Notification notification;
 	
@@ -98,6 +101,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		editMenu = new Menu();
 		editMenuItem = new MenuItem.with_label("Edit");
 		editPreferences = new MenuItem.with_label("Preferences");
+		settingsMenu = new Menu();
 		topControls = new HBox(false, 5);
 		previousButton = new Button();
 		playButton = new Button();
@@ -107,7 +111,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		songPositionEvent = new EventBox();
 		songPosition = new ProgressBar();
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
-		volumeButton = new VolumeButton();
+		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
 		grooveSharkScroll = new ScrolledWindow(null, null);
@@ -136,21 +140,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		songPositionEvent.add(songPosition);
 		songPositionEvent.child = songPosition;
-		volumeButton.relief = Gtk.ReliefStyle.NONE;
-		volumeButton.adjustment = new Adjustment(0.5, 0, 1, 0.01, 0.1, 0.0);
-		volumeButton.set_value(settings.getVolumeLevel());
-		player.set_volume(settings.getVolumeLevel());
 		
-		topMenu.append(fileMenuItem);
-		fileMenu.append(fileSetMusicFolder);
-		fileMenu.append(fileRescanMusicFolder);
+		settingsMenu.append(fileSetMusicFolder);
+		settingsMenu.append(fileRescanMusicFolder);
+		settingsMenu.append(editPreferences);
+		
 		fileSetMusicFolder.activate.connect(fileSetMusicFolderClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
-		fileMenuItem.set_submenu((Widget)fileMenu);
-		topMenu.append(editMenuItem);
-		editMenu.append(editPreferences);
 		editPreferences.activate.connect(editPreferencesClick);
-		editMenuItem.set_submenu((Widget)editMenu);
 		
 		songInfo.open("file://"+Environment.get_home_dir () + "/.beatbox/song_info.html");
 		
@@ -169,7 +166,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topControls.pack_start(nextButton, false, false, 1);
 		topControls.pack_start(songPositionEvent, true, true, 1);
 		topControls.pack_start(searchField, false, false, 1);
-		topControls.pack_start(volumeButton, false, false, 1);
+		topControls.pack_start(appMenu, false, false, 1);
+		
+		//set the name for elementary theming
+		sourcesToSongs.set_name("SidebarHandleLeft");
 		
 		sourcesToSongs.add1(sideBar);
 		sourcesToSongs.add2(mainViews);
@@ -193,9 +193,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		banButton.clicked.connect(banButtonClicked);
 		songPositionEvent.button_press_event.connect(onSongPositionButtonPress);
 		searchField.activate.connect(searchFieldActivated);
-		volumeButton.value_changed.connect(volumeButtonVolumeChanged);
 		
 		show_all();
+		topMenu.hide();
 		sideTree.resetView();
 	}
 	
@@ -255,7 +255,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.expand_all();
 		
 		sideTreeScroll = new ScrolledWindow(null, null);
-		sideTreeScroll.set_policy (PolicyType.ALWAYS, PolicyType.ALWAYS);
+		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		sideTreeScroll.add(sideTree);
 	}
 	
@@ -281,7 +281,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			mtv.set_hint("smart playlist");
 			mtv.set_id(p.rowid);
 			mtv.populateView(lm.songs_from_smart_playlist(p.rowid), false);
-			item = sideTree.addItem(sideTree.get_smart_playlist_iter(), p, mtv, p.name);
+			item = sideTree.addItem(sideTree.get_playlist_iter(), p, mtv, p.name);
 			mainViews.pack_start(mtv, true, true, 0);
 		}
 		
@@ -328,9 +328,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// set the current song
 		lm.song_info.song = lm.song_from_id(i);
 		
-		// add to the already played list
-		lm.add_already_played(i);
-		
 		//set the title
 		var title = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " - BeatBox";
 		this.set_title(title);
@@ -340,11 +337,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		//reset some booleans
 		queriedlastfm = false;
+		song_considered_played = false;
 		added_to_play_count = false;
 		
-		//update songs last played metadata
-		lm.song_info.song.last_played = (int)time_t();
-		lm.update_song(lm.song_from_id(i));
 		
 		//update the notifier
 		//notification.close();
@@ -374,7 +369,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		sideTree.updatePlayQueue();
-		sideTree.updateAlreadyPlayed();
 	}
 	
 	public void* lastfm_thread_function () {
@@ -539,8 +533,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("Stopping playback\n");
 		player.pause_stream(true);
 		
-		settings.setVolumeLevel(volumeButton.value);
-		
 		stdout.printf("Saving songs\n");
 		lm.save_songs();
 		
@@ -647,6 +639,18 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				
 			}
 			
+			//at 30 seconds in, we consider the song as played
+			if(position > 30000000000 && !song_considered_played) {
+				song_considered_played = true;
+				
+				lm.song_info.song.last_played = (int)time_t();
+				lm.update_song(lm.song_info.song);
+				
+				// add to the already played list
+				lm.add_already_played(lm.song_info.song.rowid);
+				sideTree.updateAlreadyPlayed();
+			}
+			
 			// at 90% done with song, add 1 to play count
 			if(newpos > 0.90 && !added_to_play_count) {
 				added_to_play_count = true;
@@ -682,8 +686,4 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.player.current_position_update.connect(current_position_update);
 		return true;
     }
-	
-	public virtual void volumeButtonVolumeChanged(double value) {
-		player.set_volume(value);
-	}
 }

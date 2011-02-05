@@ -7,7 +7,6 @@ public class BeatBox.Settings : Object {
 	public static const string LASTFM_SESSION_KEY = "/apps/beatbox/preferences/lastfm/lastfm_session_key";
 	
 	public static const string MUSIC_FOLDER = "/apps/beatbox/preferences/music/music_location";
-	public static const string VOLUME_LEVEL = "/apps/beatbox/preferences/music/volume_level";
 	public static const string WRITE_TO_METADATA = "/apps/beatbox/preferences/music/write_to_metadata";
 	public static const string UPDATE_FOLDER_HIERARCHY = "/apps/beatbox/preferences/music/update_folder_hierarchy";
 	public static const string COPY_IMPORTED_MUSIC = "/apps/beatbox/preferences/music/copy_imported_music";
@@ -117,11 +116,7 @@ public class BeatBox.Settings : Object {
 	}
 	
 	public int getSidebarWidth() {
-		return getInt(SIDEBAR_WIDTH, 100);
-	}
-	
-	public double getVolumeLevel() {
-		return (double)((double)getInt(VOLUME_LEVEL, 50)/100.0);
+		return getInt(SIDEBAR_WIDTH, 200);
 	}
 	
 	public bool getWriteToMetadata() {
@@ -171,10 +166,6 @@ public class BeatBox.Settings : Object {
 	
 	public void setSidebarWidth(int val) {
 		setInt(SIDEBAR_WIDTH, val);
-	}
-	
-	public void setVolumeLevel(double val) {
-		setInt(VOLUME_LEVEL, (int)(val * 100));
 	}
 	
 	public void setWriteToMetadata(bool val) {

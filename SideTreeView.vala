@@ -46,7 +46,7 @@ public class BeatBox.SideTreeView : TreeView {
 		 * 1: the widget to show in relation
 		 * 2: name to display
 		 */
-		sideTreeModel = new TreeStore(3, typeof(GLib.Object), typeof(Widget), typeof(string));
+		sideTreeModel = new TreeStore(4, typeof(GLib.Object), typeof(Widget), typeof(string), typeof(Gdk.Pixbuf));
 		this.set_model(sideTreeModel);
 		
 		TreeViewColumn col = new TreeViewColumn();
@@ -58,6 +58,7 @@ public class BeatBox.SideTreeView : TreeView {
 		this.insert_column(col, 1);
 		
 		this.insert_column_with_attributes(-1, "Side Panel", new CellRendererText(), "text", 2, null);
+		this.insert_column_with_attributes(-1, "", new CellRendererPixbuf(), "text", 3, null);
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in this.get_columns()) {
@@ -138,6 +139,12 @@ public class BeatBox.SideTreeView : TreeView {
 			TreeIter item;
 			sideTreeModel.append(out item, parent);
 			sideTreeModel.set(item, 0, o, 1, w, 2, name);
+			
+			if(o is SmartPlaylist)
+				sideTreeModel.set(item, 3, new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/smart_playlist_icon.png"));
+			else if(o is Playlist)
+				sideTreeModel.set(item, 3, new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/playlist_icon.png"));
+			
 			return item;
 		}
 	}
