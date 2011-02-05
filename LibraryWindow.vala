@@ -71,6 +71,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.lm.music_added.connect(musicAdded);
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
+		this.lm.song_removed.connect(songRemovedFromManager);
 		destroy.connect (on_quit);
 		check_resize.connect(on_resize);
 		this.destroy.connect (Gtk.main_quit);
@@ -140,6 +141,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		songPositionEvent.add(songPosition);
 		songPositionEvent.child = songPosition;
+		songPosition.set_sensitive(false);
+		
+		if(lm.song_count() != 0)
+			searchField.set_sensitive(true);
+		else
+			searchField.set_sensitive(false);
 		
 		settingsMenu.append(fileSetMusicFolder);
 		settingsMenu.append(fileRescanMusicFolder);
@@ -151,7 +158,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		songInfo.open("file://"+Environment.get_home_dir () + "/.beatbox/song_info.html");
 		
-		statusBar.push(0, "BeatBox is ready");
 		statusBar.has_resize_grip = true;
 		
 		/* Add controls to the GUI */
@@ -197,6 +203,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		show_all();
 		topMenu.hide();
+		statusBarProgress.hide();
 		sideTree.resetView();
 	}
 	
@@ -335,6 +342,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		//reset the song position
 		songPosition.set_fraction(0.0);
+		if(!songPosition.get_sensitive())
+			songPosition.set_sensitive(true);
 		
 		//reset some booleans
 		queriedlastfm = false;
@@ -524,12 +533,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void on_quit() {
 		// save the columns
 		var columns = new ArrayList<TreeViewColumn>();
+		Widget w = sideTree.get_widget(sideTree.get_collection_iter());
 		
-		/*foreach(TreeViewColumn tvc in ((MusicTreeView)mainViewItems.get("0")).get_columns()) {
+		foreach(TreeViewColumn tvc in ((MusicTreeView)w).get_columns()) {
 			columns.add(tvc);
 		}
 		
-		lm.save_song_list_columns(columns);*/
+		lm.save_song_list_columns(columns);
 		
 		stdout.printf("Stopping playback\n");
 		player.pause_stream(true);
@@ -562,6 +572,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         
         if(folder != "") {
 			statusBar.push(0, "Importing music from " + folder + ". This may take a while");
+			statusBarProgress.show();
 			lm.set_music_folder(folder);
 		}
 		
@@ -570,6 +581,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void fileRescanMusicFolderClick() {
 		statusBar.push(0, "Rescanning music. This may take a while");
 		lm.rescan_music_folder();
+		statusBarProgress.show();
 	}
 	
 	public virtual void musicAdded() {
@@ -579,13 +591,34 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		statusBarProgress.set_fraction(0.0);
 		statusBar.pop(0);
+		statusBarProgress.hide();
+		
+		//repopulate collection and playlists and reset queue and already played
+		
+		if(lm.song_count() != 0)
+			searchField.set_sensitive(true);
+		else
+			searchField.set_sensitive(false);
 	}
 	
 	public virtual void musicRescanned() {
 		statusBarProgress.set_fraction(0.0);
 		statusBar.pop(0);
+		statusBarProgress.hide();
 		
 		sideTree.resetView();
+		
+		if(lm.song_count() != 0)
+			searchField.set_sensitive(true);
+		else
+			searchField.set_sensitive(false);
+	}
+	
+	public virtual void songRemovedFromManager(int id) {
+		if(lm.song_count() != 0)
+			searchField.set_sensitive(true);
+		else
+			searchField.set_sensitive(false);
 	}
 	
 	public virtual void editPreferencesClick() {

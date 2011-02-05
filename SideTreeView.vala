@@ -157,6 +157,12 @@ public class BeatBox.SideTreeView : TreeView {
 		}
 	}
 	
+	public Widget get_widget(TreeIter iter) {
+		Widget w;
+		sideTreeModel.get(iter, 1, out w);
+		return w;
+	}
+	
 	public TreeIter get_collection_iter() {
 		return collection_iter;
 	}

@@ -185,7 +185,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			//length
 			query.set_string(":title", "Length");
 			query.set_int(":visible", 1);
-			query.set_int(":width", 65);
+			query.set_int(":width", 75);
 			query.execute();
 			
 			//artist
