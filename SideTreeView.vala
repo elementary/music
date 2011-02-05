@@ -46,8 +46,11 @@ public class BeatBox.SideTreeView : TreeView {
 		 * 1: the widget to show in relation
 		 * 2: name to display
 		 */
-		sideTreeModel = new TreeStore(4, typeof(GLib.Object), typeof(Widget), typeof(string), typeof(Gdk.Pixbuf));
+		sideTreeModel = new TreeStore(4, typeof(GLib.Object), typeof(Widget), typeof(Gdk.Pixbuf), typeof(string));
 		this.set_model(sideTreeModel);
+		this.set_headers_visible(false);
+		this.set_grid_lines(TreeViewGridLines.NONE);
+		this.set_level_indentation(-10);
 		
 		TreeViewColumn col = new TreeViewColumn();
 		col.title = "object";
@@ -57,9 +60,13 @@ public class BeatBox.SideTreeView : TreeView {
 		col.title = "widget";
 		this.insert_column(col, 1);
 		
-		this.insert_column_with_attributes(-1, "Side Panel", new CellRendererText(), "text", 2, null);
-		this.insert_column_with_attributes(-1, "", new CellRendererPixbuf(), "text", 3, null);
+		this.insert_column_with_attributes(-1, "pixbuf", new CellRendererPixbuf(), "pixbuf", 2, null);
+		//this.get_column(2).set_expand(false);
+		this.get_column(2).set_max_width(40);
+		stdout.printf("%s\n", this.get_column(2).get_title());
+		this.insert_column_with_attributes(-1, "title", new CellRendererText(), "text", 3, null);
 		
+		//this.set_expander_column(this.get_column(2));
 		int index = 0;
 		foreach(TreeViewColumn tvc in this.get_columns()) {
 			if(index == 0 || index == 1)
@@ -116,34 +123,35 @@ public class BeatBox.SideTreeView : TreeView {
 		//sideTreeModel.set(smart_playlist_iter, 0, null, 1, null, 2, "Smart Playlists");
 		
 		sideTreeModel.append(out playlist_iter, null);
-		sideTreeModel.set(playlist_iter, 0, null, 1, null, 2, "Playlists");
+		sideTreeModel.set(playlist_iter, 0, null, 1, null, 3, "Playlists");
 	}
 	
 	public TreeIter addItem(TreeIter? parent, GLib.Object o, Widget w, string name) {
 		if(name == "Collection") {
 			sideTreeModel.append(out collection_iter, parent);
-			sideTreeModel.set(collection_iter, 0, o, 1, w, 2, name);
+			sideTreeModel.set(collection_iter, 0, o, 1, w, 3, name);
+			sideTreeModel.set(collection_iter, 2, new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/smart_playlist_icon.png"));
 			return collection_iter;
 		}
 		else if(name == "Queue") {
 			sideTreeModel.append(out play_queue_iter, parent);
-			sideTreeModel.set(play_queue_iter, 0, o, 1, w, 2, name);
+			sideTreeModel.set(play_queue_iter, 0, o, 1, w, 3, name);
 			return play_queue_iter;
 		}
 		else if(name == "Already Played") {
 			sideTreeModel.append(out already_played_iter, parent);
-			sideTreeModel.set(already_played_iter, 0, o, 1, w, 2, name);
+			sideTreeModel.set(already_played_iter, 0, o, 1, w, 3, name);
 			return already_played_iter;
 		}
 		else {
 			TreeIter item;
 			sideTreeModel.append(out item, parent);
-			sideTreeModel.set(item, 0, o, 1, w, 2, name);
+			sideTreeModel.set(item, 0, o, 1, w, 3, name);
 			
 			if(o is SmartPlaylist)
-				sideTreeModel.set(item, 3, new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/smart_playlist_icon.png"));
+				sideTreeModel.set(item, 2, new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/smart_playlist_icon.png"));
 			else if(o is Playlist)
-				sideTreeModel.set(item, 3, new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/playlist_icon.png"));
+				sideTreeModel.set(item, 2, new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/playlist_icon.png"));
 			
 			return item;
 		}
@@ -212,13 +220,13 @@ public class BeatBox.SideTreeView : TreeView {
 			int id;
 			sideTreeModel.get(iter, 0, out id);
 			string name;
-			sideTreeModel.get(iter, 2, out name);
+			sideTreeModel.get(iter, 3, out name);
 			
 			TreeIter parent;
 			sideTreeModel.iter_parent(out parent, iter);
 			if(sideTreeModel.iter_is_valid(parent)) {
 				string parent_name;
-				sideTreeModel.get(parent, 2, out parent_name);
+				sideTreeModel.get(parent, 3, out parent_name);
 				
 				if(parent_name == "Playlists" && id > 0) {
 					playlistActionMenu.popup (null, null, null, 3, get_current_event_time());
@@ -263,7 +271,7 @@ public class BeatBox.SideTreeView : TreeView {
 			Widget w;
 			sideTreeModel.get(item, 1, out w);
 			string name;
-			sideTreeModel.get(item, 2, out name);
+			sideTreeModel.get(item, 3, out name);
 			
 			//searchField.text = (search != null) ? search : "";
 			
@@ -272,7 +280,7 @@ public class BeatBox.SideTreeView : TreeView {
 			
 			if(sideTreeModel.iter_is_valid(parent)) {
 				string parent_name;
-				sideTreeModel.get(parent, 2, out parent_name);
+				sideTreeModel.get(parent, 3, out parent_name);
 				
 				if(parent_name == "Information") {
 					
@@ -344,7 +352,7 @@ public class BeatBox.SideTreeView : TreeView {
 			TreeIter edit;
 			// TODO: loop through children to find where id = old
 			sideTreeModel.get_iter_from_string(out edit, "4:" + (sp.rowid - 1).to_string());
-			sideTreeModel.set(edit, 0, sp, 2, sp.name);
+			sideTreeModel.set(edit, 0, sp, 3, sp.name);
 		}
 		else {
 			//add playlist to list
@@ -400,8 +408,8 @@ public class BeatBox.SideTreeView : TreeView {
 			TreeIter edit;
 			
 			// TODO: loop through children to find where id = old
-			sideTreeModel.get_iter_from_string(out edit, "5:" + (p.rowid - 1).to_string());
-			sideTreeModel.set(edit, 0, p, 2, p.name);
+			sideTreeModel.get_iter_from_string(out edit, "4:" + (p.rowid - 1).to_string());
+			sideTreeModel.set(edit, 0, p, 3, p.name);
 		}
 		else {
 			//add playlist to list
