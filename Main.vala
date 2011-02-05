@@ -15,7 +15,7 @@ public class BeatBox.Main : GLib.Object {
 		_player = new BeatBox.StreamPlayer(args);
 		
 		stdout.printf("Creating database manager\n");
-		dbm = new DataBaseManager(_player, true, true);
+		dbm = new DataBaseManager(true, true);
 		
 		stdout.printf("Loading database\n");
 		dbm.load_db();

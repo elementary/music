@@ -4,7 +4,7 @@ using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
 	SQLHeavy.Database _db;
-	BeatBox.StreamPlayer _player;
+	
 	Transaction transaction;// the current sql transaction
 	Query query; //current query to do while doing mass transactions
 	bool write;
@@ -18,10 +18,9 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * @param write True if has write access
 	 * @param create True to have create access
 	 */
-	public DataBaseManager(StreamPlayer player, bool write, bool create) {
+	public DataBaseManager(bool write, bool create) {
 		this.write = write;
 		this.create = create;
-		this._player = player;
 	}
 	
 	/** Used on the first run. Creates all the tables and initializes them

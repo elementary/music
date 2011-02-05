@@ -594,7 +594,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		return true;
 	}
 	
-	public virtual void viewDoubleClick (TreePath path, TreeViewColumn column) {
+	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
 		TreeIter item;
 		
 		// get db's rowid of row clicked
@@ -603,10 +603,23 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		model.get(item, 0, out id);
 		
 		// play the song
-		lw.change_song(id, true);
+		lm.playSong(id);
+		lm.player.play_stream();
+		
+		if(!lm.playing) {
+			stdout.printf("blah\n");
+			lw.playClicked();
+		}
 		
 		current_path = path;
 		lm.current_index = current_path.to_string().to_int();
+		lm.clearCurrent();
+		model.foreach(buildCurrentList);
+	}
+	
+	public void setAsCurrentList(string current_song_path) {
+		current_path = new TreePath.from_string(current_song_path);
+		lm.current_index = current_song_path.to_int();
 		lm.clearCurrent();
 		model.foreach(buildCurrentList);
 	}

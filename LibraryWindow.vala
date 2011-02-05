@@ -14,7 +14,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	bool added_to_play_count; // whether or not we have added one to play count on playing song
 	bool loaded_pandora;
 	bool loaded_groove_shark;
-	bool playing;
 	
 	VBox verticalBox;
 	VBox mainViews;
@@ -33,6 +32,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Button previousButton;
 	Button playButton;
 	Button nextButton;
+	Button shuffleButton;
 	Button loveButton;
 	Button banButton;
 	EventBox songPositionEvent;
@@ -62,7 +62,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.player = player;
 		
 		//this is used by many objects, is the media backend
-		lm = new BeatBox.LibraryManager(dbm, settings);
+		lm = new BeatBox.LibraryManager(player, dbm, settings);
 		
 		build_ui();
 		
@@ -72,6 +72,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
 		this.lm.song_removed.connect(songRemovedFromManager);
+		this.lm.song_played.connect(song_played);
 		destroy.connect (on_quit);
 		check_resize.connect(on_resize);
 		this.destroy.connect (Gtk.main_quit);
@@ -107,6 +108,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton = new Button();
 		playButton = new Button();
 		nextButton = new Button();
+		shuffleButton = new Button.with_label("shuffle");
 		loveButton = new Button.with_label("Love");
 		banButton = new Button.with_label("Ban");
 		songPositionEvent = new EventBox();
@@ -136,6 +138,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
 		nextButton.relief = Gtk.ReliefStyle.NONE;
 		nextButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_NEXT, Gtk.IconSize.SMALL_TOOLBAR);
+		shuffleButton.relief = Gtk.ReliefStyle.NONE;
+		//shuffleButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_SHUFFLE, Gtk.IconSize.SMALL_TOOLBAR);
 		loveButton.relief = Gtk.ReliefStyle.NONE;
 		banButton.relief = Gtk.ReliefStyle.NONE;
 		
@@ -170,6 +174,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topControls.pack_start(previousButton, false, false, 1);
 		topControls.pack_start(playButton, false, false, 1);
 		topControls.pack_start(nextButton, false, false, 1);
+		topControls.pack_start(shuffleButton, false, false, 1);
 		topControls.pack_start(songPositionEvent, true, true, 1);
 		topControls.pack_start(searchField, false, false, 1);
 		topControls.pack_start(appMenu, false, false, 1);
@@ -196,6 +201,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton.clicked.connect(previousClicked);
 		playButton.clicked.connect(playClicked);
 		nextButton.clicked.connect(nextClicked);
+		shuffleButton.clicked.connect(shuffleClicked);
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
 		songPositionEvent.button_press_event.connect(onSongPositionButtonPress);
@@ -204,6 +210,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		show_all();
 		topMenu.hide();
 		statusBarProgress.hide();
+		coverArt.hide();
 		sideTree.resetView();
 	}
 	
@@ -318,10 +325,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//loop through all musictreeviews and call updatecurrentsong
 		
 		string file = "";
-		if((file = lm.get_album_location(lm.song_info.song.rowid)) != null)
+		if((file = lm.get_album_location(lm.song_info.song.rowid)) != null) {
+			coverArt.show();
 			coverArt.set_from_file(file);
-		else
+		}
+		else if(lm.song_info.album.url_image.image != null) {
+			coverArt.show();
 			coverArt.set_from_pixbuf(lm.song_info.album.url_image.image);
+		}
+		else
+			coverArt.hide();
 		
 		return false;
 	}
@@ -329,19 +342,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	/** This should be used whenever a call to play a new song is made
 	 * @param s The song that is now playing
 	 */
-	public void change_song(int i, bool force_play) {
-		// actually play the song asap
-		player.play_song(lm.song_from_id(i));
-		
-		// set the current song
-		lm.song_info.song = lm.song_from_id(i);
-		
+	public virtual void song_played(int i) {
 		//set the title
 		var title = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " - BeatBox";
 		this.set_title(title);
 		
 		//reset the song position
 		songPosition.set_fraction(0.0);
+		
 		if(!songPosition.get_sensitive())
 			songPosition.set_sensitive(true);
 		
@@ -359,24 +367,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//look for album art
 		string file = "";
 		if((file = lm.get_album_location(lm.song_info.song.rowid)) != null) {
-			coverArt.set_from_file(file);
+			coverArt.show();
+			coverArt.set_from_pixbuf(new LastFM.Image.with_url("file://" + file, true).image);
 			//notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(file));
 		}
-		//else
+		else {
 			//notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg"));
+			coverArt.hide();
+		}
 		
 		//show the notifier
 		//notification.show();
-		
-		//do some funky playing/not playing stuff
-		if(!playing)
-			player.pause_stream(true);
-		
-		if(force_play) {
-			playing = true;
-			player.play_stream();
-			playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.SMALL_TOOLBAR);
-		}
 		
 		sideTree.updatePlayQueue();
 	}
@@ -473,29 +474,47 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void previousClicked () {
-		change_song(lm.getPrevious(), false);
+		lm.getPrevious(true);
 	}
 	
 	public virtual void playClicked () {
 		if(lm.song_info.song == null) {
-			change_song(lm.getNext(), false); // if we do't play it now, the pause_stream call will play it.
-			player.pause_stream(false); // hack fix
-		}
-		
-		playing = (playing) ? false : true;
-		
-		if(playing) {
+			//set current songs by current view
+			Widget w = sideTree.getSelectedWidget();
+			if(w is MusicTreeView) {
+				((MusicTreeView)w).setAsCurrentList("0");
+			}
+			else {
+				w = sideTree.getWidget(sideTree.get_collection_iter());
+				((MusicTreeView)w).setAsCurrentList("0");
+			}
+			
+			lm.playing = true;
 			playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.SMALL_TOOLBAR);
+			player.play_stream();
+			
+			lm.getNext(true);
 		}
 		else {
-			playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
+			if(lm.playing) {
+				lm.playing = false;
+				player.pause_stream();
+				playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
+			}
+			else {
+				lm.playing = true;
+				player.play_stream();
+				playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.SMALL_TOOLBAR);
+			}
 		}
-		
-		player.pause_stream(false);
 	}
 	
-	public virtual void nextClicked () {
-		change_song(lm.getNext(), false);
+	public virtual void nextClicked() {
+		lm.getNext(true);
+	}
+	
+	public virtual void shuffleClicked() {
+		lm.shuffleMusic();
 	}
 	
 	public virtual void loveButtonClicked() {
@@ -533,7 +552,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void on_quit() {
 		// save the columns
 		var columns = new ArrayList<TreeViewColumn>();
-		Widget w = sideTree.get_widget(sideTree.get_collection_iter());
+		Widget w = sideTree.getWidget(sideTree.get_collection_iter());
 		
 		foreach(TreeViewColumn tvc in ((MusicTreeView)w).get_columns()) {
 			columns.add(tvc);
@@ -542,7 +561,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		lm.save_song_list_columns(columns);
 		
 		stdout.printf("Stopping playback\n");
-		player.pause_stream(true);
+		player.pause_stream();
 		
 		stdout.printf("Saving songs\n");
 		lm.save_songs();

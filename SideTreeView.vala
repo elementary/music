@@ -157,7 +157,20 @@ public class BeatBox.SideTreeView : TreeView {
 		}
 	}
 	
-	public Widget get_widget(TreeIter iter) {
+	public Widget getSelectedWidget() {
+		TreeSelection selected = this.get_selection();
+		selected.set_mode(SelectionMode.SINGLE);
+		TreeModel model;
+		TreeIter iter;
+		selected.get_selected (out model, out iter);
+		selected.set_mode(SelectionMode.MULTIPLE);
+		
+		Widget w;
+		sideTreeModel.get(iter, 1, out w);
+		return w;
+	}
+	
+	public Widget getWidget(TreeIter iter) {
 		Widget w;
 		sideTreeModel.get(iter, 1, out w);
 		return w;

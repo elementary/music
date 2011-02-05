@@ -65,15 +65,8 @@ public class BeatBox.StreamPlayer : GLib.Object {
 		play.set_state(State.PLAYING);
 	}
     
-    public void pause_stream(bool strong) {
-		if(strong)
-			play.set_state(State.PAUSED);
-		else {
-			if(play.current_state == State.PLAYING)
-				play.set_state(State.PAUSED);
-			else if(play.current_state == State.PAUSED)
-				play.set_state(State.PLAYING);
-		}
+    public void pause_stream() {
+		play.set_state(State.PAUSED);
 	}
 	
 	public void seek_position(int64 position) {

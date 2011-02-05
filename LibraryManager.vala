@@ -9,6 +9,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.Settings settings;
 	public BeatBox.DataBaseManager dbm;
 	public BeatBox.FileOperator fo;
+	public BeatBox.StreamPlayer player;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	private HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
@@ -29,6 +30,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public int _current_index;
 	public BeatBox.SongInfo song_info;
 	
+	public bool playing;
 	public bool repeat;
 	public bool shuffle;
 	
@@ -39,11 +41,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void song_updated(int id);
 	public signal void song_removed(int id);
 	public signal void song_queued(int id);
+	public signal void song_played(int id);
 	
-	public LibraryManager(BeatBox.DataBaseManager dbmn, BeatBox.Settings sett) {
-		settings = sett;
-		dbm = dbmn;
-		fo = new BeatBox.FileOperator(this, settings);
+	public LibraryManager(StreamPlayer player, BeatBox.DataBaseManager dbmn, BeatBox.Settings sett) {
+		this.player = player;
+		this.settings = sett;
+		this.dbm = dbmn;
+		this.fo = new BeatBox.FileOperator(this, settings);
 		
 		fo.fo_progress.connect(dbProgress);
 		dbm.db_progress.connect(dbProgress);
@@ -405,9 +409,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/************ Current songlist stuff ***************/
-	public void updateCurrentView(HashMap<int, int> currentView) {
-		_current_view = currentView;
-	}
 	
 	public int current_index {
 		get { return _current_index; }
@@ -422,7 +423,17 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_current.set(_current.size, i);
 	}
 	
-	public int getNext() {
+	public void shuffleMusic() {
+		for(int i = 1; i < _current.size; ++i) {
+			int other = GLib.Random.int_range(1, i);
+			int other_val = _current.get(i);
+			
+			_current.set(other, _current.get(i));
+			_current.set(i, other_val);
+		}
+	}
+	
+	public int getNext(bool play) {
 		int rv;
 		
 		// next check if user has queued songs
@@ -454,10 +465,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		
+		if(play)
+			playSong(rv);
+		
 		return rv;
 	}
 	
-	public int getPrevious() {
+	public int getPrevious(bool play) {
 		int rv;
 		
 		if(_current_index > 0) {
@@ -473,7 +487,24 @@ public class BeatBox.LibraryManager : GLib.Object {
 			rv = _current.get(_current_index);
 		}
 		
+		if(play)
+			playSong(rv);
+		
 		return rv;
+	}
+	
+	public void playSong(int id) {
+		// actually play the song asap
+		player.play_song(song_from_id(id));
+			
+		// set the current song
+		song_info.song = song_from_id(id);
+		
+		//do some funky playing/not playing stuff
+		if(!playing)
+			player.pause_stream();
+		
+		song_played(id);
 	}
 	
 	/************* Last FM Artist Stuff ************/
