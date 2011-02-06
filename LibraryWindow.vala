@@ -20,6 +20,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	HPaned sourcesToSongs; //allows for draggable
 	ScrolledWindow sideTreeScroll;
 	VBox sideBar;
+	VBox contentBox;
 	SideTreeView sideTree;
 	ScrolledWindow songInfoScroll;
 	ScrolledWindow pandoraScroll;
@@ -89,9 +90,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		set_title("BeatBox");
 		
 		/* Initialize all components */
-		verticalBox = new VBox(false, 4);
+		verticalBox = new VBox(false, 0);
 		sourcesToSongs = new HPaned();
-		mainViews = new VBox(false, 4);
+		contentBox = new VBox(false, 0);
+		mainViews = new VBox(false, 0);
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);	
 		topMenu = new MenuBar();
@@ -119,7 +121,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		songInfo = new WebView();
 		pandora = new WebView();
 		grooveShark = new WebView();
-		sideBar = new VBox(false, 2);
+		sideBar = new VBox(false, 0);
 		coverArt = new Image.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg");
 		statusBar = new Statusbar();
 		statusBarProgress = new ProgressBar();
@@ -161,31 +163,34 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		/* Add controls to the GUI */
 		add(verticalBox);
 		verticalBox.pack_start(topMenu, false, true, 0);
-		verticalBox.pack_start(topControls, false, true, 1);
-        verticalBox.pack_start(sourcesToSongs, true, true, 1);
-        verticalBox.pack_start(statusBar, false, true, 0);
+		verticalBox.pack_start(topControls, false, true, 0);
+        verticalBox.pack_start(sourcesToSongs, true, true, 0);
+        //verticalBox.pack_start(statusBar, false, true, 0);
         		
-		topControls.pack_start(previousButton, false, false, 1);
-		topControls.pack_start(playButton, false, false, 1);
-		topControls.pack_start(nextButton, false, false, 1);
+		topControls.pack_start(previousButton, false, false, 0);
+		topControls.pack_start(playButton, false, false, 0);
+		topControls.pack_start(nextButton, false, false, 0);
 		//topControls.pack_start(shuffleButton, false, false, 1);
-		topControls.pack_start(topDisplay, true, true, 1);
-		topControls.pack_start(searchField, false, false, 1);
-		topControls.pack_start(appMenu, false, false, 1);
+		topControls.pack_start(topDisplay, true, true, 0);
+		topControls.pack_start(searchField, false, false, 0);
+		topControls.pack_start(appMenu, false, false, 0);
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
 		sideTree.name = "SidebarContent";
 		
+		contentBox.pack_start(mainViews, true, true, 0);
+		contentBox.pack_start(statusBar, false, true, 0);
+		
 		sourcesToSongs.add1(sideBar);
-		sourcesToSongs.add2(mainViews);
+		sourcesToSongs.add2(contentBox);
 		
 		songInfoScroll.add(songInfo);
 		pandoraScroll.add(pandora);
 		grooveSharkScroll.add(grooveShark);
 		
-		sideBar.pack_start(sideTreeScroll, true, true, 1);
-		sideBar.pack_end(coverArt, false, true, 1);
+		sideBar.pack_start(sideTreeScroll, true, true, 0);
+		sideBar.pack_end(coverArt, false, true, 0);
 		
 		statusBar.pack_start(statusBarProgress);
 		
@@ -204,6 +209,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		show_all();
 		topMenu.hide();
 		topDisplay.show_scale();
+		topDisplay.set_label_showing(false);
 		statusBarProgress.hide();
 		coverArt.hide();
 		sideTree.resetView();
@@ -301,15 +307,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.get_selection().select_iter(item);
 	}
 	
-	public virtual void progressNotification(string message, double progress) {
-		if(message != "") {
-			statusBar.pop(0);
-			statusBar.push(0, message);
-		}
+	public virtual void progressNotification(string? message, double progress) {
+		/*if(message != null)
+			topDisplay.set_label_text(message);
 		
-		if(progress != 0.0) {
-			statusBarProgress.set_fraction(progress);
-		}
+		topDisplay.set_progress_value(progress);*/
 	}
 	
 	public virtual void sideListDoubleClick (TreePath path, TreeViewColumn column) {
@@ -339,9 +341,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 */
 	public virtual void song_played(int i) {
 		//set the title
-		var title = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " on " + lm.song_from_id(i).album;// + " - BeatBox";
-		//this.set_title(title);
-		topDisplay.set_label_text(title);
+		var title = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " on " + lm.song_from_id(i).album + " - BeatBox";
+		this.set_title(title);
 		
 		//reset the song position
 		topDisplay.set_scale_range(0.0, lm.song_info.song.length);
@@ -587,29 +588,31 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         file_chooser.destroy ();
         
         if(folder != "") {
-			statusBar.push(0, "Importing music from " + folder + ". This may take a while");
-			statusBarProgress.show();
+			//topDisplay.set_label_showing(true);
+			//topDisplay.set_label_text("Importing music from " + folder);
+			//topDisplay.show_progressbar();
 			lm.set_music_folder(folder);
 		}
 		
 	}
 	
 	public virtual void fileRescanMusicFolderClick() {
-		statusBar.push(0, "Rescanning music. This may take a while");
+		//topDisplay.set_label_showing(true);
+		//topDisplay.set_label_text("Rescanning music folder for changes. This may take a while");
+		//topDisplay.show_progressbar();
 		lm.rescan_music_folder();
-		statusBarProgress.show();
 	}
 	
 	public virtual void musicAdded() {
 		int index = 0;
 		
 		sideTree.resetView();
-		
-		statusBarProgress.set_fraction(0.0);
-		statusBar.pop(0);
-		statusBarProgress.hide();
+		//topDisplay.set_label_showing(false);
+		//topDisplay.show_scale();
 		
 		//repopulate collection and playlists and reset queue and already played
+		Widget w = sideTree.getWidget(sideTree.get_collection_iter());
+		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
 		if(lm.song_count() != 0)
 			searchField.set_sensitive(true);
@@ -618,10 +621,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void musicRescanned() {
-		statusBarProgress.set_fraction(0.0);
-		statusBar.pop(0);
-		statusBarProgress.hide();
-		
+		//topDisplay.show_scale();
+		//topDisplay.set_label_showing(false);
 		sideTree.resetView();
 		
 		if(lm.song_count() != 0)

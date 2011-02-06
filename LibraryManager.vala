@@ -36,7 +36,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public signal void music_added();
 	public signal void music_rescanned();
-	public signal void progress_notification(string message, double progress);
+	public signal void progress_notification(string? message, double progress);
 	
 	public signal void song_updated(int id);
 	public signal void song_removed(int id);
@@ -113,7 +113,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/************ Library/Collection management stuff ************/
-	public virtual void dbProgress(string message, double progress) {
+	public virtual void dbProgress(string? message, double progress) {
 		progress_notification(message, progress);
 	}
 	

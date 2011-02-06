@@ -12,7 +12,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	
 	int index;
 	int item_count;
-	public signal void db_progress(string message, double progress);
+	public signal void db_progress(string? message, double progress);
 	
 	/** Creates a new DatabaseManager
 	 * @param write True if has write access
@@ -284,7 +284,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			index = 0;
 			item_count = columns.size;
 			foreach(Gtk.TreeViewColumn tvc in columns) {
-				db_progress("", ((double)index++)/((double)item_count));
+				db_progress(null, ((double)index++)/((double)item_count));
 				
 				query.set_string(":title", tvc.title);
 				query.set_int(":visible", tvc.visible ? 1 : 0);
@@ -352,7 +352,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			index = 0;
 			item_count = songs.size;
 			foreach(Song s in songs) {
-				db_progress("", ((double)index++)/((double)item_count));
+				db_progress(null, ((double)index++)/((double)item_count));
 				
 				query.set_string(":file", s.file);
 				query.set_string(":title", s.title);
@@ -421,7 +421,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			index = 0;
 			item_count = songs.size;
 			foreach(string s in songs) {
-				db_progress("", ((double)index++)/((double)item_count));
+				db_progress(null, ((double)index++)/((double)item_count));
 				
 				query.set_string(":file", s);
 				query.execute();
@@ -471,7 +471,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			index = 0;
 			item_count = playlists.size;
 			foreach(Playlist p in playlists) {
-				db_progress("", ((double)index++)/((double)item_count));
+				db_progress(null, ((double)index++)/((double)item_count));
 				
 				query.set_string(":name", p.name);
 				query.set_string(":songs", p.songs_to_string());
@@ -526,7 +526,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			index = 0;
 			item_count = smarts.size;
 			foreach(SmartPlaylist s in smarts) {
-				db_progress("", ((double)index++)/((double)item_count));
+				db_progress(null, ((double)index++)/((double)item_count));
 				
 				query.set_string(":name", s.name);
 				query.set_string(":and_or", s.conditional);
