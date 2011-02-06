@@ -35,8 +35,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Button shuffleButton;
 	Button loveButton;
 	Button banButton;
-	EventBox songPositionEvent;
-	ProgressBar songPosition;
+	ElementaryWidgets.TopDisplay topDisplay;
 	ElementaryWidgets.ElementarySearchEntry searchField;
 	ElementaryWidgets.AppMenu appMenu;
 	Statusbar statusBar;
@@ -111,8 +110,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleButton = new Button.with_label("shuffle");
 		loveButton = new Button.with_label("Love");
 		banButton = new Button.with_label("Ban");
-		songPositionEvent = new EventBox();
-		songPosition = new ProgressBar();
+		topDisplay = new ElementaryWidgets.TopDisplay();
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
 		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
@@ -143,10 +141,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		loveButton.relief = Gtk.ReliefStyle.NONE;
 		banButton.relief = Gtk.ReliefStyle.NONE;
 		
-		songPositionEvent.add(songPosition);
-		songPositionEvent.child = songPosition;
-		songPosition.set_sensitive(false);
-		
 		if(lm.song_count() != 0)
 			searchField.set_sensitive(true);
 		else
@@ -174,8 +168,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topControls.pack_start(previousButton, false, false, 1);
 		topControls.pack_start(playButton, false, false, 1);
 		topControls.pack_start(nextButton, false, false, 1);
-		topControls.pack_start(shuffleButton, false, false, 1);
-		topControls.pack_start(songPositionEvent, true, true, 1);
+		//topControls.pack_start(shuffleButton, false, false, 1);
+		topControls.pack_start(topDisplay, true, true, 1);
 		topControls.pack_start(searchField, false, false, 1);
 		topControls.pack_start(appMenu, false, false, 1);
 		
@@ -204,11 +198,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleButton.clicked.connect(shuffleClicked);
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
-		songPositionEvent.button_press_event.connect(onSongPositionButtonPress);
+		topDisplay.scale_value_changed.connect(topDisplaySliderMoved);
 		searchField.activate.connect(searchFieldActivated);
 		
 		show_all();
 		topMenu.hide();
+		topDisplay.show_scale();
 		statusBarProgress.hide();
 		coverArt.hide();
 		sideTree.resetView();
@@ -344,14 +339,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 */
 	public virtual void song_played(int i) {
 		//set the title
-		var title = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " - BeatBox";
-		this.set_title(title);
+		var title = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " on " + lm.song_from_id(i).album;// + " - BeatBox";
+		//this.set_title(title);
+		topDisplay.set_label_text(title);
 		
 		//reset the song position
-		songPosition.set_fraction(0.0);
+		topDisplay.set_scale_range(0.0, lm.song_info.song.length);
+		topDisplay.set_scale_value(0.0);
 		
-		if(!songPosition.get_sensitive())
-			songPosition.set_sensitive(true);
+		//if(!songPosition.get_sensitive())
+		//	songPosition.set_sensitive(true);
 		
 		//reset some booleans
 		queriedlastfm = false;
@@ -650,35 +647,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void current_position_update(int64 position) {
-		double newpos = 0.0;
+		double sec = 0.0;
 		if(lm.song_info.song != null) {
-			newpos = ((double)position/1000000000)/lm.song_info.song.length;
-			
-			if(newpos >= 0.0 && newpos <= 1.0)
-				songPosition.set_fraction(newpos);
-			
-			//make pretty current position
-			string current, total;
-			int minute = 0;
-			int seconds = (int)((double)position/1000000000);
-			
-			while(seconds >= 60) {
-				++minute;
-				seconds -= 60;
-			}
-			current = minute.to_string() + ":" + ((seconds < 10 ) ? "0" + seconds.to_string() : seconds.to_string());
-			
-			//make pretty total time
-			minute = 0;
-			seconds = lm.song_info.song.length;
-			
-			while(seconds >= 60) {
-				++minute;
-				seconds -= 60;
-			}
-			total = minute.to_string() + ":" + ((seconds < 10 ) ? "0" + seconds.to_string() : seconds.to_string());
-			
-			songPosition.set_text(current + "/" + total);
+			sec = ((double)position/1000000000);
+			topDisplay.set_scale_value(sec);
 			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {
@@ -689,7 +661,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				catch(GLib.ThreadError err) {
 					stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
 				}
-				
 			}
 			
 			//at 30 seconds in, we consider the song as played
@@ -705,7 +676,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 			
 			// at 90% done with song, add 1 to play count
-			if(newpos > 0.90 && !added_to_play_count) {
+			if((sec/(double)lm.song_info.song.length) > 0.90 && !added_to_play_count) {
 				added_to_play_count = true;
 				lm.song_info.song.play_count++;
 				updateCurrentSong();
@@ -717,26 +688,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	public virtual bool onSongPositionButtonPress(Gdk.EventButton event) {
+	public virtual void topDisplaySliderMoved(ScrollType scroll, double val) {
+		//temporarily disable updates
 		player.current_position_update.disconnect(current_position_update);
-		if(event.type == Gdk.EventType.BUTTON_PRESS) { //mouse click
-			//seek to right position
-			//calculate percentage to go to based on location
-			Gtk.Allocation extents;
-			int point_x = 0;
-			int point_y = 0;
-			
-			songPositionEvent.get_pointer(out point_x, out point_y);
-			songPositionEvent.get_allocation(out extents);
-			
-			// get seconds of song
-			double songtime = (double)((double)point_x/(double)extents.width) * (double)lm.song_info.song.length;
-			int64 nanoseconds = (int64)songtime * (int64)1000000000;
-			
-			player.seek_position(nanoseconds);
-			songPosition.fraction = (double)point_x / (double)extents.width;
-		}
+		
+		player.seek_position((int64)(val * 1000000000));
+		
+		//re-enable streamplayer's updates
 		this.player.current_position_update.connect(current_position_update);
-		return true;
-    }
+	}
 }
