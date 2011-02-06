@@ -2,6 +2,7 @@ namespace ElementaryWidgets {
 	using Gtk;
 	
 	public class TopDisplay : VBox {
+		BeatBox.LibraryManager lm;
 		Label label;
 		HBox scaleBox;
 		Label leftTime;
@@ -11,7 +12,9 @@ namespace ElementaryWidgets {
 		
 		public signal void scale_value_changed(ScrollType scroll, double val);
 		
-		public TopDisplay() {
+		public TopDisplay(BeatBox.LibraryManager lmm) {
+			this.lm = lmm;
+			
 			label = new Label("");
 			scale = new HScale.with_range(0, 1, 1);
 			leftTime = new Label("0:00");
@@ -33,6 +36,8 @@ namespace ElementaryWidgets {
 			this.pack_start(progressbar, false, true, 0);
 			this.pack_start(scaleBox, false, true, 0);
 			
+			this.lm.player.current_position_update.connect(player_position_update);
+			this.scale.button_press_event.connect(scale_button_press);
 			this.scale.value_changed.connect(value_changed);
 			this.scale.change_value.connect(change_value);
 			
@@ -68,6 +73,31 @@ namespace ElementaryWidgets {
 			scale.set_value(val);
 		}
 		
+		public virtual bool scale_button_press(Gdk.EventButton event) {
+			if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
+				//seek to right position
+				//calculate percentage to go to based on location
+				Gtk.Allocation extents;
+				int point_x = 0;
+				int point_y = 0;
+				
+				scale.get_pointer(out point_x, out point_y);
+				scale.get_allocation(out extents);
+				
+				// get seconds of song
+				double songtime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
+				
+				change_value(ScrollType.NONE, songtime);
+			}
+			
+			return false;
+		}
+		
+		public virtual bool scale_button_release(Gdk.EventButton event) {
+			
+			return false;
+		}
+		
 		public virtual void value_changed() {
 			//make pretty current time
 			int minute = 0;
@@ -93,9 +123,12 @@ namespace ElementaryWidgets {
 		}
 		
 		public virtual bool change_value(ScrollType scroll, double val) {
+			this.lm.player.current_position_update.disconnect(player_position_update);
 			scale_value_changed(scroll, scale.get_value());
 			scale.set_value(val);
-			return true;
+			this.lm.player.current_position_update.connect(player_position_update);
+			
+			return false;
 		}
 		
 		/** other functions **/
@@ -109,6 +142,12 @@ namespace ElementaryWidgets {
 			scaleBox.hide();
 		}
 		
-		
+		public virtual void player_position_update(int64 position) {
+			double sec = 0.0;
+			if(lm.song_info.song != null) {
+				sec = ((double)position/1000000000);
+				set_scale_value(sec);
+			}
+		}
 	}
 }

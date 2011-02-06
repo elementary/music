@@ -85,7 +85,7 @@ public class BeatBox.FileOperator : Object {
 	 * are not re-added.
 	 * @return file paths of songs no longer available. TODO: should out that
 	 */
-	public void rescan_music(GLib.File music_folder, ref ArrayList<string> current_song_paths, ref ArrayList<string> not_imported) {
+	public void rescan_music(GLib.File music_folder, ref ArrayList<string> current_song_paths, ref LinkedList<string> not_imported) {
 		GLib.FileInfo file_info = null;
 		TagLib.File tag_file;
 		

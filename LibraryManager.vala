@@ -34,8 +34,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public bool repeat;
 	public bool shuffle;
 	
-	public signal void music_added();
-	public signal void music_rescanned();
+	public signal void music_added(LinkedList<string> not_imported);
+	public signal void music_rescanned(LinkedList<string> not_imported);
 	public signal void progress_notification(string? message, double progress);
 	
 	public signal void song_updated(int id);
@@ -152,7 +152,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			stdout.printf("File %s was not imported\n", s);
 		}
 		
-		Idle.add( () => { music_added(); return false; });
+		Idle.add( () => { music_added(not_imported); return false; });
 		
 		return null;
 	}
@@ -175,7 +175,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		fo.resetProgress(paths.size);
 		
-		var not_imported = new ArrayList<string>();
+		var not_imported = new LinkedList<string>();
 		fo.rescan_music(GLib.File.new_for_path(settings.getMusicFolder()), ref paths, ref not_imported);
 		
 		// all songs remaining are no longer in folder hierarchy
@@ -186,7 +186,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			stdout.printf("File %s was not imported\n", s);
 		}
 		
-		Idle.add( () => { music_rescanned(); return false; });
+		Idle.add( () => { music_rescanned(not_imported); return false; });
 		
 		return null;
 	}

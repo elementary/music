@@ -112,7 +112,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleButton = new Button.with_label("shuffle");
 		loveButton = new Button.with_label("Love");
 		banButton = new Button.with_label("Ban");
-		topDisplay = new ElementaryWidgets.TopDisplay();
+		topDisplay = new ElementaryWidgets.TopDisplay(lm);
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
 		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
@@ -603,7 +603,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		lm.rescan_music_folder();
 	}
 	
-	public virtual void musicAdded() {
+	public virtual void musicAdded(LinkedList<string> not_imported) {
 		int index = 0;
 		
 		sideTree.resetView();
@@ -614,16 +614,24 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Widget w = sideTree.getWidget(sideTree.get_collection_iter());
 		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
+		NotImportedWindow nim = new NotImportedWindow(not_imported);
+		nim.show();
+		
 		if(lm.song_count() != 0)
 			searchField.set_sensitive(true);
 		else
 			searchField.set_sensitive(false);
 	}
 	
-	public virtual void musicRescanned() {
-		//topDisplay.show_scale();
-		//topDisplay.set_label_showing(false);
+	public virtual void musicRescanned(LinkedList<string> not_imported) {
 		sideTree.resetView();
+		
+		//repopulate collection and playlists and reset queue and already played
+		Widget w = sideTree.getWidget(sideTree.get_collection_iter());
+		((MusicTreeView)w).populateView(lm.song_ids(), false);
+		
+		NotImportedWindow nim = new NotImportedWindow(not_imported);
+		nim.show();
 		
 		if(lm.song_count() != 0)
 			searchField.set_sensitive(true);
@@ -651,7 +659,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		double sec = 0.0;
 		if(lm.song_info.song != null) {
 			sec = ((double)position/1000000000);
-			topDisplay.set_scale_value(sec);
 			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {
