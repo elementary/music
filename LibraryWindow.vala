@@ -601,7 +601,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			//topDisplay.set_label_showing(true);
 			topDisplay.set_label_text("Importing music from " + folder);
 			//topDisplay.show_progressbar();
-			lm.set_music_folder(folder);
+			//lm.set_music_folder(folder);
 		}
 		
 	}
@@ -611,7 +611,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_label_text("Rescanning music folder for changes. This may take a while");
 		//topDisplay.show_progressbar();
 		
-		lm.rescan_music_folder();
+		lm.rescan_music_folders();
 	}
 	
 	public virtual void musicAdded(LinkedList<string> not_imported) {

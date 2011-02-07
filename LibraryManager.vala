@@ -120,25 +120,23 @@ public class BeatBox.LibraryManager : GLib.Object {
 		progress_notification(message, progress);
 	}
 	
-	public void set_music_folder(string folder) {
-		settings.setMusicFolder(folder);
+	public void get_music_folders() {
 		try {
-			Thread.create<void*>(set_music_thread_function, false);
+			Thread.create<weak void*>(set_music_thread_function, false);
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to set music folder: %s\n", err.message);
 		}
 	}
 	
-	// i should do the actual file browsing here
 	public void* set_music_thread_function () {
-		var file = GLib.File.new_for_path(settings.getMusicFolder());
+		var folders = GLib.File.new_for_path(settings.getMusicFolders());
 		
-		var items = fo.count_music_files(file);
-		fo.resetProgress(items);
+		//var items = fo.count_music_files(file);
+		//fo.resetProgress(items);
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
-		fo.get_music_files(file, ref new_songs, ref not_imported);
+		//fo.get_music_files(file, ref new_songs, ref not_imported);
 		
 		_songs.clear();
 		_queue.clear();
@@ -160,7 +158,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return null;
 	}
 	
-	public void rescan_music_folder() {
+	public void rescan_music_folders() {
 		try {
 			Thread.create<void*>(rescan_music_thread_function, false);
 		}
@@ -171,18 +169,17 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void* rescan_music_thread_function () {
 		ArrayList<string> paths = new ArrayList<string>();
+		var not_imported = new LinkedList<string>();
 		
 		foreach(Song s in _songs.values) {
+			stdout.printf("%s\n", s.album);
 			paths.add(s.file);
 		}
 		
-		fo.resetProgress(paths.size);
-		
-		var not_imported = new LinkedList<string>();
-		fo.rescan_music(GLib.File.new_for_path(settings.getMusicFolder()), ref paths, ref not_imported);
-		
-		// all songs remaining are no longer in folder hierarchy
-		dbm.remove_songs(paths);
+		foreach(string folder in settings.getMusicFoldersList()) {
+			fo.resetProgress(paths.size);
+			fo.rescan_music(GLib.File.new_for_path(folder), ref paths, ref not_imported);
+		}
 		
 		//tell user what songs were not imported.
 		foreach(string s in not_imported) {
@@ -284,6 +281,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/******************** Song stuff ******************/
+	public void clear_songs() {
+		_songs.clear();
+	}
+	
 	public int song_count() {
 		return _songs.size;
 	}
@@ -360,7 +361,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _smart_playlists.get(id).analyze(this);
 	}
 	
+	/** make this smarter **/
 	public void add_song(Song s) {
+		//fill in rowid's
 		if(s.rowid == 0)
 			s.rowid = _songs.size + 1;
 		

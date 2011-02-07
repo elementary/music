@@ -162,10 +162,10 @@ public class BeatBox.FileOperator : Object {
 		return (type.has_suffix(".jpg") || type.has_suffix(".png"));
 	}
 	
-	public string get_folder(string file) {
+	public static string get_folder(string file) {
 		string[] paths = file.split("/", 0);
 		
-		//this makes it work correctly for artist folder as well
+		//this makes it work correctly for all cases
 		if(!file.has_suffix("/"))
 			paths += " ";
 		
