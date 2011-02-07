@@ -129,8 +129,12 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			
 			index = 0;
 			for (var results = query.execute () ; !results.finished ; results.next ()) {
-				var tvc = new Gtk.TreeViewColumn.with_attributes(results.fetch_string(0), new Gtk.CellRendererText(), "text", index, null);
-					
+				Gtk.TreeViewColumn tvc;
+				if(results.fetch_string(0) != " ")
+					tvc = new Gtk.TreeViewColumn.with_attributes(results.fetch_string(0), new Gtk.CellRendererText(), "text", index, null);
+				else
+					tvc = new Gtk.TreeViewColumn.with_attributes(results.fetch_string(0), new Gtk.CellRendererPixbuf(), "pixbuf", index, null);
+				
 				tvc.resizable = true;
 				tvc.reorderable = true;
 				tvc.clickable = true;
@@ -161,6 +165,12 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_string(":title", "id");
 			query.set_int(":visible", 0);
 			query.set_int(":width", 10);
+			query.execute();
+			
+			//currently playing
+			query.set_string(":title", " ");
+			query.set_int(":visible", 1);
+			query.set_int(":width", 30);
 			query.execute();
 			
 			//#

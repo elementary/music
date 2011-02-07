@@ -209,7 +209,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		show_all();
 		topMenu.hide();
 		topDisplay.show_scale();
-		topDisplay.set_label_showing(false);
 		statusBarProgress.hide();
 		coverArt.hide();
 		sideTree.resetView();
@@ -597,13 +596,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void fileRescanMusicFolderClick() {
-		//topDisplay.set_label_showing(true);
-		//topDisplay.set_label_text("Rescanning music folder for changes. This may take a while");
-		//topDisplay.show_progressbar();
+		topDisplay.set_label_showing(true);
+		topDisplay.set_label_text("Rescanning music folder for changes. This may take a while");
+		topDisplay.show_progressbar();
+		
+		Gdk.threads_enter();
 		lm.rescan_music_folder();
 	}
 	
 	public virtual void musicAdded(LinkedList<string> not_imported) {
+		Gdk.threads_leave();
 		int index = 0;
 		
 		sideTree.resetView();

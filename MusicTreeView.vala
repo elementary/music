@@ -2,6 +2,9 @@ using Gee;
 using Gtk;
 
 public class BeatBox.MusicTreeView : ScrolledWindow {
+	private string NOW_PLAYING_IMAGE;
+	private string EMPTY_IMAGE;
+	
 	private BeatBox.LibraryManager lm;
 	private BeatBox.LibraryWindow lw;
 	private TreeView view;
@@ -74,6 +77,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
 	 */
 	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, int sort) {
+		NOW_PLAYING_IMAGE = GLib.Environment.get_home_dir() + "/.beatbox/now_playing.png";
+		EMPTY_IMAGE = GLib.Environment.get_home_dir() + "/.beatbox/empty.png";
+		
 		lm = lmm;
 		lw = lww;
 		this.songs = new LinkedList<int>();
@@ -82,6 +88,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		
 		lm.song_updated.connect(song_updated);
+		lm.song_played.connect(song_played);
 		buildUI();
 	}
 	
@@ -316,12 +323,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public Type[] getColumnTypes() {
-		Type[] types = new Type[18];
+		Type[] types = new Type[19];
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
 			if(tvc.title == "id")
 				types[index] = typeof(int);
+			else if(tvc.title == " ")
+				types[index] = typeof(Gdk.Pixbuf);
 			else if(tvc.title == "#")
 				types[index] = typeof(int);
 			else if(tvc.title == "Track")
@@ -569,6 +578,30 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		
 		return false;
+	}
+	
+	public bool updatePlayingIcon(TreeModel model, TreePath path, TreeIter iter) {
+		int id;
+		model.get(iter, 0, out id);
+		
+		
+		int index = 0;
+		foreach(TreeViewColumn tvc in view.get_columns()) {
+			if(tvc.title == " ") {
+				if(id == lm.song_info.song.rowid)
+					this.model.set_value(iter, index, new Gdk.Pixbuf.from_file(NOW_PLAYING_IMAGE));
+				else
+					this.model.set_value(iter, index, new Gdk.Pixbuf.from_file(EMPTY_IMAGE));
+			}
+				
+			++index;
+		}
+		
+		return false;
+	}
+	
+	public virtual void song_played(int id) {
+		model.foreach(updatePlayingIcon);
 	}
 	
 	public virtual void song_updated(int id) {

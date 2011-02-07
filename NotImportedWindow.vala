@@ -13,6 +13,9 @@ public class BeatBox.NotImportedWindow : Window{
 	Button ignore;
 	
 	public NotImportedWindow(LinkedList<string> files) {
+		if(files.size == 0)
+			return;
+		
 		_files = files;
 		
 		this.set_title("Not Imported Files");
