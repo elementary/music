@@ -588,7 +588,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         
         if(folder != "") {
 			//topDisplay.set_label_showing(true);
-			//topDisplay.set_label_text("Importing music from " + folder);
+			topDisplay.set_label_text("Importing music from " + folder);
 			//topDisplay.show_progressbar();
 			lm.set_music_folder(folder);
 		}
@@ -596,28 +596,29 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void fileRescanMusicFolderClick() {
-		topDisplay.set_label_showing(true);
+		//topDisplay.set_label_showing(true);
 		topDisplay.set_label_text("Rescanning music folder for changes. This may take a while");
-		topDisplay.show_progressbar();
+		//topDisplay.show_progressbar();
 		
-		Gdk.threads_enter();
 		lm.rescan_music_folder();
 	}
 	
 	public virtual void musicAdded(LinkedList<string> not_imported) {
-		Gdk.threads_leave();
 		int index = 0;
 		
 		sideTree.resetView();
 		//topDisplay.set_label_showing(false);
 		//topDisplay.show_scale();
+		topDisplay.set_label_text("");
 		
 		//repopulate collection and playlists and reset queue and already played
 		Widget w = sideTree.getWidget(sideTree.get_collection_iter());
 		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
-		NotImportedWindow nim = new NotImportedWindow(not_imported);
-		nim.show();
+		if(not_imported.size > 0) {
+			NotImportedWindow nim = new NotImportedWindow(not_imported);
+			nim.show();
+		}
 		
 		if(lm.song_count() != 0)
 			searchField.set_sensitive(true);
@@ -627,13 +628,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void musicRescanned(LinkedList<string> not_imported) {
 		sideTree.resetView();
+		topDisplay.set_label_text("");
 		
 		//repopulate collection and playlists and reset queue and already played
 		Widget w = sideTree.getWidget(sideTree.get_collection_iter());
 		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
-		NotImportedWindow nim = new NotImportedWindow(not_imported);
-		nim.show();
+		if(not_imported.size > 0) {
+			NotImportedWindow nim = new NotImportedWindow(not_imported);
+			nim.show();
+		}
 		
 		if(lm.song_count() != 0)
 			searchField.set_sensitive(true);
