@@ -15,6 +15,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
 	private HashMap<int, Song> _songs; // rowid, song of all songs
 	private HashMap<int, int> _current; // id, song of current songs.
+	private HashMap<int, int> _current_shuffled;//list of id's yet to be played while on shuffle
 	private HashMap<int, int> _current_view; // id, song of currently showing songs
 	private LinkedList<int> _queue; // rowid, Song of queue
 	private LinkedList<int> _already_played; // Song of already played
@@ -28,6 +29,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new songs play, this goes with it
 	public int _current_index;
+	public int _current_shuffled_index;
 	public BeatBox.SongInfo song_info;
 	
 	public bool playing;
@@ -56,6 +58,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_playlists = new HashMap<int, Playlist>();
 		_songs = new HashMap<int, Song>();
 		_current = new HashMap<int, int>();
+		_current_shuffled = new HashMap<int, int>();
 		_current_view = new HashMap<int, int>();
 		_queue = new LinkedList<int>();
 		_already_played = new LinkedList<int>();
@@ -409,6 +412,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/************ Current songlist stuff ***************/
+	public bool is_shuffled() {
+		return _current_shuffled.size > 0;
+	}
 	
 	public int current_index {
 		get { return _current_index; }
@@ -424,12 +430,35 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void shuffleMusic() {
-		for(int i = 1; i < _current.size; ++i) {
-			int other = GLib.Random.int_range(1, i);
-			int other_val = _current.get(i);
+		_current_shuffled.clear();
+		_current_shuffled_index = 0;
+		
+		//create temp list of all of current's song id's
+		LinkedList<int> temp = new LinkedList<int>();
+		foreach(int i in _current.values) {
+			temp.add(i);
+		}
+		
+		//loop through all current song id's and pick a random one remaining
+		//and set that int i as one of those this is confusing just a sort
+		for(int i = 0;i < _current.size; ++i) {
+			int random = GLib.Random.int_range(0, temp.size);
 			
-			_current.set(other, _current.get(i));
-			_current.set(i, other_val);
+			_current_shuffled.set(i, temp.get(random));
+			temp.remove(temp.get(random));
+		}
+	}
+	
+	public void unShuffleMusic() {
+		_current_shuffled.clear();
+		_current_shuffled_index = 0;
+		
+		//make sure we continue playing where we left off
+		for(int i = 0; i < _current.size; ++i) {
+			if(_current.get(i) == song_info.song.rowid) {
+				_current_index = i;
+				return;
+			}
 		}
 	}
 	
@@ -439,6 +468,34 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// next check if user has queued songs
 		if(!queue_empty()) {
 			rv = poll_queue();
+		}
+		else if(_current_shuffled.size > 0) {
+			if(song_info.song == null) {
+				foreach(Song s in _songs.values)
+					addToCurrent(s.rowid);
+				
+				shuffleMusic();	
+				
+				_current_shuffled_index = 0;
+				rv = _current_shuffled.get(0);
+			}
+			else if(_current_shuffled_index == (_current_shuffled.size - 1)) {// consider repeat options
+				_current_shuffled_index = 0;
+				rv = _current_shuffled.get(0);
+			}
+			else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
+				++_current_shuffled_index;
+				rv = _current_shuffled.get(_current_shuffled_index);
+			}
+			else {
+				foreach(Song s in _songs.values)
+					addToCurrent(s.rowid);
+				
+				shuffleMusic();
+				
+				_current_shuffled_index = 0;
+				rv = _current_shuffled.get(0);
+			}
 		}
 		else {
 			if(song_info.song == null) {
@@ -474,17 +531,35 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public int getPrevious(bool play) {
 		int rv;
 		
-		if(_current_index > 0) {
-			--_current_index;
-			rv = _current.get(_current_index);
+		if(_current_shuffled.size > 0) {
+			if(_current_shuffled_index > 0) {
+				--_current_shuffled_index;
+				rv = _current_shuffled.get(_current_shuffled_index);
+			}
+			else {
+				// i should actually pause the music / stop the music instead of playing first song
+				foreach(Song s in _songs.values)
+					addToCurrent(s.rowid);
+				
+				shuffleMusic();
+				
+				_current_shuffled_index = _current_shuffled.size - 1;
+				rv = _current_shuffled.get(_current_shuffled_index);
+			}
 		}
 		else {
-			// i should actually pause the music / stop the music instead of playing first song
-			foreach(Song s in _songs.values)
-				addToCurrent(s.rowid);
-			
-			_current_index = _current.size - 1;
-			rv = _current.get(_current_index);
+			if(_current_index > 0) {
+				--_current_index;
+				rv = _current.get(_current_index);
+			}
+			else {
+				// i should actually pause the music / stop the music instead of playing first song
+				foreach(Song s in _songs.values)
+					addToCurrent(s.rowid);
+				
+				_current_index = _current.size - 1;
+				rv = _current.get(_current_index);
+			}
 		}
 		
 		if(play)

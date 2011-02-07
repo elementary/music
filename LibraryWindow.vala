@@ -40,7 +40,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ElementaryWidgets.ElementarySearchEntry searchField;
 	ElementaryWidgets.AppMenu appMenu;
 	Statusbar statusBar;
-	ProgressBar statusBarProgress;
 	
 	MenuBar topMenu;
 	
@@ -109,7 +108,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton = new Button();
 		playButton = new Button();
 		nextButton = new Button();
-		shuffleButton = new Button.with_label("shuffle");
+		shuffleButton = new Button.with_label("Shuffle");
 		loveButton = new Button.with_label("Love");
 		banButton = new Button.with_label("Ban");
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
@@ -124,7 +123,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideBar = new VBox(false, 0);
 		coverArt = new Image.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg");
 		statusBar = new Statusbar();
-		statusBarProgress = new ProgressBar();
 		//notification = new Notification("Title", "Artist\nAlbum", "", null);
 		
 		/* Set properties of various controls */
@@ -192,7 +190,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
 		sideBar.pack_end(coverArt, false, true, 0);
 		
-		statusBar.pack_start(statusBarProgress);
+		statusBar.pack_start(shuffleButton);
 		
 		/* Connect events to functions */
 		sourcesToSongs.child1.size_allocate.connect(sourcesToSongsHandleSet);
@@ -209,7 +207,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		show_all();
 		topMenu.hide();
 		topDisplay.show_scale();
-		statusBarProgress.hide();
 		coverArt.hide();
 		sideTree.resetView();
 	}
@@ -511,7 +508,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void shuffleClicked() {
-		lm.shuffleMusic();
+		if(shuffleButton.get_label() == "Shuffle") {
+			shuffleButton.set_label("Unshuffle");
+			lm.shuffleMusic();
+		}
+		else {
+			shuffleButton.set_label("Shuffle");
+			lm.unShuffleMusic();
+		}
 	}
 	
 	public virtual void loveButtonClicked() {
@@ -549,9 +553,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void on_quit() {
 		// save the columns
 		var columns = new ArrayList<TreeViewColumn>();
-		Widget w = sideTree.getWidget(sideTree.get_collection_iter());
 		
-		foreach(TreeViewColumn tvc in ((MusicTreeView)w).get_columns()) {
+		Widget w = sideTree.getWidget(sideTree.get_collection_iter());
+		MusicTreeView view = null;
+		if(w is MusicTreeView) {
+			view = (MusicTreeView)w;
+			stdout.printf("it's true!\n");
+		}
+		
+		foreach(TreeViewColumn tvc in view.get_columns()) {
+			stdout.printf("hi\n");
 			columns.add(tvc);
 		}
 		
@@ -608,7 +619,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		sideTree.resetView();
 		//topDisplay.set_label_showing(false);
-		//topDisplay.show_scale();
+		topDisplay.show_scale();
 		topDisplay.set_label_text("");
 		
 		//repopulate collection and playlists and reset queue and already played
@@ -628,6 +639,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void musicRescanned(LinkedList<string> not_imported) {
 		sideTree.resetView();
+		topDisplay.show_scale();
 		topDisplay.set_label_text("");
 		
 		//repopulate collection and playlists and reset queue and already played

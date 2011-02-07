@@ -294,6 +294,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			index = 0;
 			item_count = columns.size;
 			foreach(Gtk.TreeViewColumn tvc in columns) {
+				stdout.printf("saving column %s\n", tvc.title);
 				db_progress(null, ((double)index++)/((double)item_count));
 				
 				query.set_string(":title", tvc.title);

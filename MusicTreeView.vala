@@ -614,19 +614,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 	}
 	
-	/** Mouse clicks **/
-	public virtual bool view_header_click(Gdk.EventButton event) {
-		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
-			columnChooserMenu.popup (null, null, null, 3, get_current_event_time());
-		}
-		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) { //right click
-			//sort stuff
-			//columnChooser.popup (null, null, null, null, get_current_event_time());
-		}
-		
-		return true;
-	}
-	
 	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
 		TreeIter item;
 		
@@ -648,6 +635,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		lm.current_index = current_path.to_string().to_int();
 		lm.clearCurrent();
 		model.foreach(buildCurrentList);
+		if(lm.is_shuffled())
+			lm.shuffleMusic();
 	}
 	
 	public void setAsCurrentList(string current_song_path) {
@@ -691,7 +680,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			return true;
 		}
 		else if(e.button == 1) {
-			//sort the songs
 			
 			return false;
 		}
