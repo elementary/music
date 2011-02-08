@@ -29,10 +29,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	WebView pandora;
 	WebView grooveShark;
 	Image coverArt;
-	HBox topControls;
-	Button previousButton;
-	Button playButton;
-	Button nextButton;
+	Toolbar topControls;
+	ToolButton previousButton;
+	ToolButton playButton;
+	ToolButton nextButton;
 	Button shuffleButton;
 	Button loveButton;
 	Button banButton;
@@ -44,12 +44,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	MenuBar topMenu;
 	
 	// basic file stuff
-	Menu fileMenu;
-	MenuItem fileMenuItem;
-	MenuItem fileSetMusicFolder;
 	MenuItem fileRescanMusicFolder;
-	Menu editMenu;
-	MenuItem editMenuItem;
 	MenuItem editPreferences;
 	
 	Menu settingsMenu;
@@ -96,18 +91,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);	
 		topMenu = new MenuBar();
-		fileMenu = new Menu();
-		fileMenuItem = new MenuItem.with_label("File");
-		fileSetMusicFolder = new MenuItem.with_label("Set Music Folder");
 		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
-		editMenu = new Menu();
-		editMenuItem = new MenuItem.with_label("Edit");
 		editPreferences = new MenuItem.with_label("Preferences");
 		settingsMenu = new Menu();
-		topControls = new HBox(false, 5);
-		previousButton = new Button();
-		playButton = new Button();
-		nextButton = new Button();
+		topControls = new Toolbar();
+		previousButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PREVIOUS);
+		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
+		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
 		shuffleButton = new Button.with_label("Shuffle");
 		loveButton = new Button.with_label("Love");
 		banButton = new Button.with_label("Ban");
@@ -130,12 +120,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideBar.set_size_request(settings.getSidebarWidth(), -1);
 		buildSideTree();
 		
-		previousButton.relief = Gtk.ReliefStyle.NONE;
-		previousButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PREVIOUS, Gtk.IconSize.SMALL_TOOLBAR);
-		playButton.relief = Gtk.ReliefStyle.NONE;
-		playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
-		nextButton.relief = Gtk.ReliefStyle.NONE;
-		nextButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_NEXT, Gtk.IconSize.SMALL_TOOLBAR);
 		shuffleButton.relief = Gtk.ReliefStyle.NONE;
 		//shuffleButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_SHUFFLE, Gtk.IconSize.SMALL_TOOLBAR);
 		loveButton.relief = Gtk.ReliefStyle.NONE;
@@ -146,11 +130,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			searchField.set_sensitive(false);
 		
-		settingsMenu.append(fileSetMusicFolder);
 		settingsMenu.append(fileRescanMusicFolder);
 		settingsMenu.append(editPreferences);
 		
-		fileSetMusicFolder.activate.connect(fileSetMusicFolderClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 		editPreferences.activate.connect(editPreferencesClick);
 		
@@ -164,14 +146,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		verticalBox.pack_start(topControls, false, true, 0);
         verticalBox.pack_start(sourcesToSongs, true, true, 0);
         //verticalBox.pack_start(statusBar, false, true, 0);
-        		
-		topControls.pack_start(previousButton, false, false, 0);
-		topControls.pack_start(playButton, false, false, 0);
-		topControls.pack_start(nextButton, false, false, 0);
-		//topControls.pack_start(shuffleButton, false, false, 1);
-		topControls.pack_start(topDisplay, true, true, 0);
-		topControls.pack_start(searchField, false, false, 0);
-		topControls.pack_start(appMenu, false, false, 0);
+        
+        ToolItem topDisplayBin = new ToolItem();
+        ToolItem searchFieldBin = new ToolItem();
+        ToolItem appMenuBin = new ToolItem();
+        topDisplayBin.add(topDisplay);
+        searchFieldBin.add(searchField);
+        appMenuBin.add(appMenu);
+        
+        topDisplayBin.set_expand(true);
+        
+        topControls.insert(previousButton, 0);
+        topControls.insert(playButton, 1);
+        topControls.insert(nextButton, 2);
+        topControls.insert(topDisplayBin, 3);
+        topControls.insert(searchFieldBin, 4);
+        topControls.insert(appMenuBin, 5);
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
@@ -186,6 +176,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		songInfoScroll.add(songInfo);
 		pandoraScroll.add(pandora);
 		grooveSharkScroll.add(grooveShark);
+		
+		songInfo.window_features.scrollbar_visible = false;
 		
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
 		sideBar.pack_end(coverArt, false, true, 0);
@@ -484,7 +476,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 			
 			lm.playing = true;
-			playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.SMALL_TOOLBAR);
+			playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			player.play_stream();
 			
 			lm.getNext(true);
@@ -493,12 +485,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(lm.playing) {
 				lm.playing = false;
 				player.pause_stream();
-				playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PLAY, Gtk.IconSize.SMALL_TOOLBAR);
+				playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 			}
 			else {
 				lm.playing = true;
 				player.play_stream();
-				playButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_PAUSE, Gtk.IconSize.SMALL_TOOLBAR);
+				playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			}
 		}
 	}

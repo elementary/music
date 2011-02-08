@@ -234,7 +234,9 @@ public class BeatBox.SideTreeView : TreeView {
 			int cell_y;
 			
 			this.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
-			sideTreeModel.get_iter(out iter, path);
+			
+			if(!sideTreeModel.get_iter(out iter, path))
+				return false;
 			
 			int id;
 			sideTreeModel.get(iter, 0, out id);
@@ -283,7 +285,9 @@ public class BeatBox.SideTreeView : TreeView {
 			int cell_y;
 			
 			this.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
-			sideTreeModel.get_iter(out item, path);
+			
+			if(!sideTreeModel.get_iter(out item, path))
+				return false;
 			
 			GLib.Object o;
 			sideTreeModel.get(item, 0, out o);

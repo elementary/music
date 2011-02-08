@@ -223,13 +223,6 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		_lm.settings.setMusicFoldersFromList(newLocations);
 		
-		//if no folders, simply remove all files
-		if(newLocations.size == 0) {
-			foreach(int id in _lm.song_ids()) {
-				_lm.remove_song_from_id(id);
-			}
-		}
-		
 		/* remove songs belonging to the folders that were removed */
 		var removed_songs = new Gee.LinkedList<int>();
 		foreach(Song s in _lm.songs()) {
