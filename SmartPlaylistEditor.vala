@@ -16,6 +16,10 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	public signal void playlist_saved(SmartPlaylist sp);
 	
 	public SmartPlaylistEditor(SmartPlaylist sp) {
+		this.title = "Smart Playlist Editor";
+		
+		this.window_position = WindowPosition.CENTER;
+		
 		_sp = sp;
 		
 		vert = new VBox(false, 10);

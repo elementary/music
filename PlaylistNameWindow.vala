@@ -11,6 +11,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 	
 	public PlaylistNameWindow(Playlist original) {
 		title = "New Playlist Name";
+		this.window_position = WindowPosition.CENTER;
 		
 		_original = original;
 		VBox vert = new VBox(false, 3);

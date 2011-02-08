@@ -14,16 +14,10 @@ public class BeatBox.SideTreeView : TreeView {
 	TreeIter playlist_iter;
 	TreeIter smart_playlist_iter;
 	
-	//for smart playlist right click
-	Menu smartPlaylistActionMenu;
-	MenuItem smartPlaylistAction;
-	MenuItem smartPlaylistNew;
-	MenuItem smartPlaylistEdit;
-	MenuItem smartPlaylistRemove;
 	//for playlist right click
-	Menu playlistActionMenu;
-	MenuItem playlistAction;
+	Menu playlistMenu;
 	MenuItem playlistNew;
+	MenuItem smartPlaylistNew;
 	MenuItem playlistEdit;
 	MenuItem playlistRemove;
 	
@@ -79,35 +73,21 @@ public class BeatBox.SideTreeView : TreeView {
 		this.get_selection().changed.connect(sideListSelectionChange);
 		this.expand_all();
 		
-		//smart playlist right click menu
-		smartPlaylistActionMenu = new Menu();
-		smartPlaylistAction = new MenuItem.with_label("Smart Playlist Action");
-		smartPlaylistNew = new MenuItem.with_label("New Smart Playlist");
-		smartPlaylistEdit = new MenuItem.with_label("Edit Smart Playlist");
-		smartPlaylistRemove = new MenuItem.with_label("Remove Smart Playlist");
-		smartPlaylistActionMenu.append(smartPlaylistNew);
-		smartPlaylistActionMenu.append(smartPlaylistEdit);
-		smartPlaylistActionMenu.append(smartPlaylistRemove);
-		smartPlaylistAction.set_submenu((Widget)smartPlaylistActionMenu);
-		smartPlaylistNew.activate.connect(smartPlaylistMenuNewClicked);
-		smartPlaylistEdit.activate.connect(smartPlaylistMenuEditClicked);
-		smartPlaylistRemove.activate.connect(smartPlaylistMenuRemoveClicked);
-		smartPlaylistActionMenu.show_all();
-		
 		//playlist right click menu
-		playlistActionMenu = new Menu();
-		playlistAction = new MenuItem.with_label("Smart Playlist Action");
+		playlistMenu = new Menu();
 		playlistNew = new MenuItem.with_label("New Playlist");
-		playlistEdit = new MenuItem.with_label("Rename Playlist");
-		playlistRemove = new MenuItem.with_label("Remove Playlist");
-		playlistActionMenu.append(playlistNew);
-		playlistActionMenu.append(playlistEdit);
-		playlistActionMenu.append(playlistRemove);
-		playlistAction.set_submenu((Widget)playlistActionMenu);
+		smartPlaylistNew = new MenuItem.with_label("New Smart Playlist");
+		playlistEdit = new MenuItem.with_label("Edit");
+		playlistRemove = new MenuItem.with_label("Remove");
+		playlistMenu.append(playlistNew);
+		playlistMenu.append(smartPlaylistNew);
+		playlistMenu.append(playlistEdit);
+		playlistMenu.append(playlistRemove);
 		playlistNew.activate.connect(playlistMenuNewClicked);
+		smartPlaylistNew.activate.connect(smartPlaylistMenuNewClicked);
 		playlistEdit.activate.connect(playlistMenuEditClicked);
 		playlistRemove.activate.connect(playlistMenuRemoveClicked);
-		playlistActionMenu.show_all();
+		playlistMenu.show_all();
 		
 		this.show_all();
 	}
@@ -250,11 +230,7 @@ public class BeatBox.SideTreeView : TreeView {
 				sideTreeModel.get(parent, 3, out parent_name);
 				
 				if(parent_name == "Playlists" && id > 0) {
-					playlistActionMenu.popup (null, null, null, 3, get_current_event_time());
-					return false;
-				}
-				else if(parent_name == "Smart Playlists" && id > 0) {
-					smartPlaylistActionMenu.popup (null, null, null, 3, get_current_event_time());
+					playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					return false;
 				}
 			}
@@ -265,8 +241,8 @@ public class BeatBox.SideTreeView : TreeView {
 				else if(name == "Play Queue") {
 					//show play queue right click menu
 				}
-				else if(name == "Smart Playlists") {
-					smartPlaylistActionMenu.popup (null, null, null, 3, get_current_event_time());
+				else if(name == "Playlists") {
+					playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					return false;
 				}
 			}
@@ -384,41 +360,6 @@ public class BeatBox.SideTreeView : TreeView {
 		}
 	}
 	
-	public virtual void smartPlaylistMenuEditClicked() {
-		TreeSelection selected = this.get_selection();
-		selected.set_mode(SelectionMode.SINGLE);
-		TreeModel model;
-		TreeIter iter;
-		selected.get_selected (out model, out iter);
-		selected.set_mode(SelectionMode.MULTIPLE);
-		
-		GLib.Object o;
-		sideTreeModel.get(iter, 0, out o);
-		
-		SmartPlaylistEditor spe = new SmartPlaylistEditor((SmartPlaylist)o);
-		spe.playlist_saved.connect(smartPlaylistEditorSaved);
-	}
-	
-	public virtual void smartPlaylistMenuRemoveClicked() {
-		TreeSelection selected = this.get_selection();
-		selected.set_mode(SelectionMode.SINGLE);
-		TreeModel model;
-		TreeIter iter;
-		selected.get_selected(out model, out iter);
-		selected.set_mode(SelectionMode.MULTIPLE);
-		
-		GLib.Object o;
-		sideTreeModel.get(iter, 0, out o);
-		Widget w;
-		sideTreeModel.get(iter, 1, out w);
-		
-		lm.remove_smart_playlist(((SmartPlaylist)o).rowid);
-		
-		w.destroy();
-		sideTreeModel.remove(iter);
-		sideTreeModel.foreach(updateView);
-	}
-	
 	//playlist context menu
 	public virtual void playlistMenuNewClicked() {
 		PlaylistNameWindow pnw = new PlaylistNameWindow(new Playlist());
@@ -452,8 +393,14 @@ public class BeatBox.SideTreeView : TreeView {
 		GLib.Object o;
 		sideTreeModel.get(iter, 0, out o);
 		
-		PlaylistNameWindow pnw = new PlaylistNameWindow(((Playlist)o));
-		pnw.playlist_saved.connect(playlistNameWindowSaved);
+		if(o is Playlist) {
+			PlaylistNameWindow pnw = new PlaylistNameWindow(((Playlist)o));
+			pnw.playlist_saved.connect(playlistNameWindowSaved);
+		}
+		else if(o is SmartPlaylist) {
+			SmartPlaylistEditor spe = new SmartPlaylistEditor((SmartPlaylist)o);
+			spe.playlist_saved.connect(smartPlaylistEditorSaved);
+		}
 	}
 	
 	public virtual void playlistMenuRemoveClicked() {
@@ -468,7 +415,11 @@ public class BeatBox.SideTreeView : TreeView {
 		sideTreeModel.get(iter, 0, out o);
 		Widget w;
 		sideTreeModel.get(iter, 1, out w);
-		lm.remove_playlist(((Playlist)o).rowid);
+		
+		if(o is Playlist)
+			lm.remove_playlist(((Playlist)o).rowid);
+		else if(o is SmartPlaylist)
+			lm.remove_smart_playlist(((SmartPlaylist)o).rowid);
 		
 		w.destroy();
 		sideTreeModel.remove(iter);

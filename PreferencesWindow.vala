@@ -40,9 +40,10 @@ public class BeatBox.PreferencesWindow : Window {
 	}
 	
 	public void buildUI() {
-		
 		// set the title
 		set_title("Preferences");
+		
+		this.window_position = WindowPosition.CENTER;
 		
 		// set the size
 		set_size_request(400, 300);

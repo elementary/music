@@ -46,7 +46,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * 
 	 */
 	public void load_db() {
-		var beatbox_folder = GLib.File.new_for_path(Environment.get_home_dir () + "/.beatbox");
+		var beatbox_folder = GLib.File.new_for_path(Environment.get_home_dir () + "/.beatbox/");
 		var db_file = GLib.File.new_for_path(Environment.get_home_dir () + "/.beatbox/data.db");
 		
 		if(!beatbox_folder.query_exists())

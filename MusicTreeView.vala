@@ -4,6 +4,8 @@ using Gtk;
 public class BeatBox.MusicTreeView : ScrolledWindow {
 	private string NOW_PLAYING_IMAGE;
 	private string EMPTY_IMAGE;
+	private Gdk.Pixbuf now_playing_pixbuf;
+	private Gdk.Pixbuf empty_pixbuf;
 	
 	private BeatBox.LibraryManager lm;
 	private BeatBox.LibraryWindow lw;
@@ -79,6 +81,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, int sort) {
 		NOW_PLAYING_IMAGE = GLib.Environment.get_home_dir() + "/.beatbox/now_playing.png";
 		EMPTY_IMAGE = GLib.Environment.get_home_dir() + "/.beatbox/empty.png";
+		now_playing_pixbuf = new Gdk.Pixbuf.from_file(NOW_PLAYING_IMAGE);
+		empty_pixbuf = new Gdk.Pixbuf.from_file(EMPTY_IMAGE);
+		
 		
 		lm = lmm;
 		lw = lww;
@@ -171,8 +176,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.button_press_event.connect(viewClick);
 		
 		// allow selecting multiple rows
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
+		view.get_selection().set_mode(SelectionMode.MULTIPLE);
 		
 		// column chooser menu
 		columnChooserMenu = new Menu();
@@ -483,8 +487,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public bool updateCurrentSong() {
 		int index = 0;
 		TreeIter item;
+		if(!model.get_iter_from_string(out item, current_path.to_string()))
+			return false;
 		
-		model.get_iter_from_string(out item, current_path.to_string());
 		foreach(TreeViewColumn tvc in view.get_columns()) {
 			if(tvc.title == "id")
 				model.set_value(item, index, current_song.rowid);
@@ -583,15 +588,16 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public bool updatePlayingIcon(TreeModel model, TreePath path, TreeIter iter) {
 		int id;
 		model.get(iter, 0, out id);
-		
+		Gdk.Pixbuf? old_pix;
+		model.get(iter, 1, out old_pix);
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
 			if(tvc.title == " ") {
 				if(id == lm.song_info.song.rowid)
-					this.model.set_value(iter, index, new Gdk.Pixbuf.from_file(NOW_PLAYING_IMAGE));
-				else
-					this.model.set_value(iter, index, new Gdk.Pixbuf.from_file(EMPTY_IMAGE));
+					this.model.set_value(iter, index, now_playing_pixbuf);
+				else if(!(id == lm.song_info.song.rowid) && old_pix == now_playing_pixbuf)
+					this.model.set_value(iter, index, empty_pixbuf);
 			}
 				
 			++index;
@@ -635,6 +641,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		lm.current_index = current_path.to_string().to_int();
 		lm.clearCurrent();
 		model.foreach(buildCurrentList);
+		
 		if(lm.is_shuffled())
 			lm.shuffleMusic();
 	}
@@ -662,6 +669,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			songMenuActionMenu.popup (null, null, null, 3, get_current_event_time());
 			
 			TreeSelection selected = view.get_selection();
+			selected.set_mode(SelectionMode.MULTIPLE);
 			if(selected.count_selected_rows() > 1)
 				return true;
 			else
@@ -786,6 +794,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual void songMenuQueueClicked() {
 		TreeSelection selected = view.get_selection();
+		selected.set_mode(SelectionMode.MULTIPLE);
 		
 		TreeModel model;
 		
@@ -900,11 +909,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			//must somehow update all other views if removed from collection
 		}
-		
-		/*if(hint == "queue")
-			populateView(lm.queue(), false);
-		else if(hint == "playlist")
-			populateView(lm.songs_from_playlist(relative_id), false);*/
 	}
 	
 	public virtual void songRateSong0Clicked() {

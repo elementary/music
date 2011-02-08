@@ -45,6 +45,9 @@ public class BeatBox.SongEditor : Window {
 	public signal void song_saved(Song s);
 	
 	public SongEditor(Song s) {
+		this.title = "Properties";
+		this.window_position = WindowPosition.CENTER;
+		
 		_original = s;
 		
 		vert = new VBox(false, 0);
