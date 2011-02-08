@@ -172,7 +172,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var not_imported = new LinkedList<string>();
 		
 		foreach(Song s in _songs.values) {
-			stdout.printf("%s\n", s.album);
 			paths.add(s.file);
 		}
 		
@@ -181,9 +180,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 			fo.rescan_music(GLib.File.new_for_path(folder), ref paths, ref not_imported);
 		}
 		
-		//tell user what songs were not imported.
-		foreach(string s in not_imported) {
-			stdout.printf("File %s was not imported\n", s);
+		//remove songs that were not touched in scan
+		var songs_to_remove = new LinkedList<int>();
+		foreach(Song s in _songs.values) {
+			if(paths.contains(s.file))
+				songs_to_remove.add(s.rowid);
+		}
+		
+		foreach(int id in songs_to_remove) {
+			remove_song_from_id(id);
 		}
 		
 		Idle.add( () => { music_rescanned(not_imported); return false; });

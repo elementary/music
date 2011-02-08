@@ -10,7 +10,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 	public signal void playlist_saved(Playlist p);
 	
 	public PlaylistNameWindow(Playlist original) {
-		title = "New Playlist Name";
+		title = "PlaylistEditor";
 		this.window_position = WindowPosition.CENTER;
 		
 		_original = original;

@@ -110,7 +110,6 @@ public class BeatBox.SideTreeView : TreeView {
 		if(name == "Collection") {
 			sideTreeModel.append(out collection_iter, parent);
 			sideTreeModel.set(collection_iter, 0, o, 1, w, 3, name);
-			sideTreeModel.set(collection_iter, 2, new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/smart_playlist_icon.png"));
 			return collection_iter;
 		}
 		else if(name == "Queue") {
