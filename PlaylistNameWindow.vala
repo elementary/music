@@ -16,7 +16,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 		_original = original;
 		VBox vert = new VBox(false, 3);
 		HBox nameSep = new HBox(false, 3);
-		HBox buttonSep = new HBox(false, 3);
+		HButtonBox buttonSep = new HButtonBox();
 		//Label directions = new Label("Please enter the new playlist name");
 		_name = new Entry();
 		_name.text = original.name;

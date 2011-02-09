@@ -132,6 +132,8 @@ public class BeatBox.SideTreeView : TreeView {
 			else if(o is Playlist)
 				sideTreeModel.set(item, 2, new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/playlist_icon.png"));
 			
+			this.expand_to_path(sideTreeModel.get_path(item));
+			
 			return item;
 		}
 	}

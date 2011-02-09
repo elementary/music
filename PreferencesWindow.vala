@@ -112,7 +112,7 @@ public class BeatBox.PreferencesWindow : Window {
 		lastfmLogin.clicked.connect(lastfmLoginClick);
 		
 		/** Add save and cancel buttons **/
-		HBox bottomButtons = new HBox(false, 10);
+		HButtonBox bottomButtons = new HButtonBox();
 		bottomButtons.pack_start(cancelChanges, false, false, 0);
 		bottomButtons.pack_end(saveChanges, false, false, 0);
 		

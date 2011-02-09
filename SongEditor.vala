@@ -87,7 +87,7 @@ public class BeatBox.SongEditor : Window {
 		horiz.pack_start(numerVert, false, true, 0);
 		vert.pack_start(horiz, true, true, 0);
 		
-		HBox buttonSep = new HBox(false, 2);
+		HButtonBox buttonSep = new HButtonBox();
 		_cancel = new Button.with_label("Cancel");
 		Label fillerLabel = new Label("");
 		_save = new Button.with_label("Save");

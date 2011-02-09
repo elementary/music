@@ -65,7 +65,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		vertQueries.pack_end(addButton, false, true, 1);
 		addButton.clicked.connect(addButtonClick);
 		
-		HBox saveBox = new HBox(false, 1);
+		HButtonBox saveBox = new HButtonBox();
 		cancel = new Button.with_label("Cancel");
 		save = new Button.with_label("Save");
 		saveBox.pack_start(cancel, false, false, 0);

@@ -83,7 +83,7 @@ public class ElementaryEntry : Gtk.Entry {
     
     }
     
-    protected new string get_text () {
+    public new string get_text () {
     
         text = this.text;
         if (text == this.hint_string) {

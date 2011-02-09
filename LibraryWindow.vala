@@ -14,6 +14,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	bool added_to_play_count; // whether or not we have added one to play count on playing song
 	bool loaded_pandora;
 	bool loaded_groove_shark;
+	string timeout_search;
 	
 	VBox verticalBox;
 	VBox mainViews;
@@ -221,7 +222,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
 		topDisplay.scale_value_changed.connect(topDisplaySliderMoved);
-		searchField.activate.connect(searchFieldActivated);
+		searchField.changed.connect(searchFieldChanged);
 		
 		show_all();
 		topMenu.hide();
@@ -243,18 +244,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mtv = new MusicTreeView(lm, this, -1);
 		mtv.set_hint("collection");
 		mtv.populateView(lm.song_ids(), false);
+		mtv.view_being_searched.connect(musicTreeViewSearched);
 		sideTree.addItem(null, new GLib.Object(), mtv, "Collection");
 		mainViews.pack_start(mtv, true, true, 0);
 		
 		mtv = new MusicTreeView(lm, this, -1);
 		mtv.set_hint("queue");
 		mtv.populateView(lm.queue(), false);
+		mtv.view_being_searched.connect(musicTreeViewSearched);
 		sideTree.addItem(null, new GLib.Object(), mtv, "Queue");
 		mainViews.pack_start(mtv, true, true, 0);
 		
 		mtv = new MusicTreeView(lm, this, -1);
 		mtv.set_hint("already played");
 		mtv.populateView(lm.already_played(), false);
+		mtv.view_being_searched.connect(musicTreeViewSearched);
 		sideTree.addItem(null, new GLib.Object(), mtv, "Already Played");
 		mainViews.pack_start(mtv, true, true, 0);
 		
@@ -316,8 +320,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			mainViews.pack_start(mtv, true, true, 0);
 		}
 		
-		mtv.show();
-		show_all();
+		mtv.show_all();
+		mtv.view_being_searched.connect(musicTreeViewSearched);
 		sideTree.get_selection().unselect_all();
 		sideTree.get_selection().select_iter(item);
 	}
@@ -356,8 +360,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 */
 	public virtual void song_played(int i) {
 		//set the title
-		var title = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " on " + lm.song_from_id(i).album + " - BeatBox";
-		this.set_title(title);
+		var song_label = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " on " + lm.song_from_id(i).album;
+		topDisplay.set_label_text(song_label);
 		
 		//reset the song position
 		topDisplay.set_scale_range(0.0, lm.song_info.song.length);
@@ -546,15 +550,30 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	/** implement search in librarymanager?????? **/
-	public virtual void searchFieldActivated () {
-			Collection<int> songs;
-			
-			if(sideTree.get_current_widget() is MusicTreeView) {
+	public virtual void searchFieldChanged() {
+		if(searchField.text == searchField.hint_string)
+			return;
+		
+		timeout_search = searchField.get_text();
+		
+		Timeout.add(350, () => {
+			//make sure we still want to search
+			if(searchField.get_text() == timeout_search) {
+				Collection<int> songs;
 				MusicTreeView mtv = (MusicTreeView)sideTree.get_current_widget();
-				
-				songs = lm.songs_from_search(searchField.text, mtv.get_songs());
+					
+				songs = lm.songs_from_search(searchField.get_text(), mtv.get_songs());
 				mtv.populateView(songs, true);
 			}
+			
+			return false;
+		});
+	}
+	
+	public virtual void musicTreeViewSearched(string search) {
+		searchField.focus(DirectionType.UP);
+		searchField.set_text(search);
+		searchField.move_cursor(MovementStep.VISUAL_POSITIONS, 1, false);
 	}
 	
 	public virtual void sourcesToSongsHandleSet(Gdk.Rectangle rectangle) {

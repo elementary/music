@@ -67,6 +67,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	MenuItem songRateSong5;
 	MenuItem songRemove;
 	
+	public signal void view_being_searched(string key);
+	
 	public LinkedList<int> get_songs() {
 		return songs;
 	}
@@ -176,9 +178,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.set_model(model);
 		view.set_reorderable(true);
 		view.set_headers_clickable(true);
+		view.set_enable_search(true);
 		
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);
+		view.key_press_event.connect( (type) => {
+			view_being_searched(type.str);
+			return false;
+		});
 		
 		// allow selecting multiple rows
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
@@ -442,7 +449,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.thaw_child_notify();
 	}
 	
-	public void addSong(Song s) {
+	public TreeIter? addSong(Song s) {
 		TreeIter item;
 		model.append(out item);
 		
@@ -452,7 +459,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.set_value(item, index, s.rowid);
 			else if(tvc.title == "#")
 				model.set_value(item, index, (model.get_path(item).to_string().to_int() + 1));
-			else if(tvc.title == "Track")
+			else if(tvc.title == "Track" && s.track != 0)
 				model.set_value(item, index, s.track);
 			else if(tvc.title == "Title")
 				model.set_value(item, index, s.title);
@@ -466,19 +473,19 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.set_value(item, index, s.genre);
 			else if(tvc.title == "Comment")
 				model.set_value(item, index, s.comment);
-			else if(tvc.title == "Year")
+			else if(tvc.title == "Year" && s.year != 0)
 				model.set_value(item, index, ((s.year != 0) ? s.year.to_string() : ""));
-			else if(tvc.title == "Bitrate")
+			else if(tvc.title == "Bitrate" && s.bitrate != 0)
 				model.set_value(item, index, s.bitrate);
 			else if(tvc.title == "Rating")
 				model.set_value(item, index, s.rating);
-			else if(tvc.title == "Playcount")
+			else if(tvc.title == "Playcount" && s.play_count != 0)
 				model.set_value(item, index, s.play_count);
 			else if(tvc.title == "Date Added")
 				model.set_value(item, index, s.pretty_date_added());
 			else if(tvc.title == "Last Played")
 				model.set_value(item, index, ((s.last_played != 0) ? s.pretty_last_played() : ""));
-			else if(tvc.title == "BPM")
+			else if(tvc.title == "BPM" && s.bpm != 0)
 				model.set_value(item, index, s.bpm);
 			else if(tvc.title == "File Name")
 				model.set_value(item, index, s.file_name);
@@ -487,6 +494,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			++index;
 		}
+		
+		return item;
 	}
 	
 	public bool updateCurrentSong() {
@@ -879,19 +888,17 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			}
 			
 			// make sure it is of decent size
-			if(playlist_time < (25 * 60)) {
-				psychicworking = false;
-				return null;
+			if(playlist_time > (25 * 60))  {
+				lm.add_playlist(p);
+				
+				Idle.add( () => {
+					lw.addSideListItem(p);
+					return false;
+				});
+				
 			}
 			
-			lm.add_playlist(p);
-			
-			Idle.add( () => {
-				lw.addSideListItem(p);
-				return false;
-			});
-			
-			return null;
+			psychicworking = false;
 		}
 		
 		return null;	

@@ -147,7 +147,8 @@ public class BeatBox.FileOperator : Object {
 				s.date_added = (int)time_t();
 			}
 			finally {
-				
+				if(s.title == null || s.title == "") s.title = "Unkown";
+				if(s.artist == null || s.artist == "") s.artist = "Unkown";
 			}
 		}
 		else {

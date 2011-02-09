@@ -30,6 +30,7 @@ namespace ElementaryWidgets {
 			
 			label.set_justify(Justification.CENTER);
 			label.set_single_line_mode(true);
+			label.ellipsize = Pango.EllipsizeMode.END;
 			//label.set_markup("<b></b>");
 			
 			this.pack_start(label, false, true, 0);

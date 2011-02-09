@@ -56,7 +56,7 @@ public class BeatBox.NotImportedWindow : Window{
 			filesModel.set(item, 0, false, 1, file);
 		}
 		
-		HBox buttons = new HBox(false, 10);
+		HButtonBox buttons = new HButtonBox();
 		Label filler = new Label("");
 		
 		filesScroll.add(filesView);
