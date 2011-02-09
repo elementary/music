@@ -7,7 +7,6 @@ public class BeatBox.Settings : Object {
 	public static const string LASTFM_SESSION_KEY = "/apps/beatbox/preferences/lastfm/lastfm_session_key";
 	
 	public static const string MUSIC_FOLDERS = "/apps/beatbox/preferences/music/music_locations";
-	public static const string WRITE_TO_METADATA = "/apps/beatbox/preferences/music/write_to_metadata";
 	public static const string UPDATE_FOLDER_HIERARCHY = "/apps/beatbox/preferences/music/update_folder_hierarchy";
 	public static const string COPY_IMPORTED_MUSIC = "/apps/beatbox/preferences/music/copy_imported_music";
 	
@@ -132,10 +131,6 @@ public class BeatBox.Settings : Object {
 		return getInt(SIDEBAR_WIDTH, 200);
 	}
 	
-	public bool getWriteToMetadata() {
-		return getBool(WRITE_TO_METADATA, false);
-	}
-	
 	public bool getUpdateFolderHierarchy() {
 		return getBool(UPDATE_FOLDER_HIERARCHY, false);
 	}
@@ -189,10 +184,6 @@ public class BeatBox.Settings : Object {
 	
 	public void setSidebarWidth(int val) {
 		setInt(SIDEBAR_WIDTH, val);
-	}
-	
-	public void setWriteToMetadata(bool val) {
-		setBool(WRITE_TO_METADATA, val);
 	}
 	
 	public void setUpdateFolderHierarchy(bool val) {

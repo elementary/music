@@ -2,7 +2,7 @@ using Gtk;
 /** Runs the program
  * 
  */
-public class BeatBox.Main : GLib.Object {
+public class BeatBox.Beatbox : GLib.Object {
 	private static LibraryWindow _program;
 	private static DataBaseManager dbm;
 	private static StreamPlayer _player;

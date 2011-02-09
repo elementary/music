@@ -309,8 +309,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void update_song(Song s) {
 		_songs.set(s.rowid, s);
 		
-		if(settings.getWriteToMetadata())
-			fo.save_song(s);
+		fo.save_song(s);
 		
 		if(settings.getUpdateFolderHierarchy())
 			fo.update_file_hierarchy(s);

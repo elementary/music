@@ -81,9 +81,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, int sort) {
 		NOW_PLAYING_IMAGE = GLib.Environment.get_home_dir() + "/.beatbox/now_playing.png";
 		EMPTY_IMAGE = GLib.Environment.get_home_dir() + "/.beatbox/empty.png";
-		now_playing_pixbuf = new Gdk.Pixbuf.from_file(NOW_PLAYING_IMAGE);
-		empty_pixbuf = new Gdk.Pixbuf.from_file(EMPTY_IMAGE);
 		
+		try {
+			now_playing_pixbuf = new Gdk.Pixbuf.from_file(NOW_PLAYING_IMAGE);
+			empty_pixbuf = new Gdk.Pixbuf.from_file(EMPTY_IMAGE);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("WARNING: Necessary images must be added to ~/.beatbox/\n");
+		}
 		
 		lm = lmm;
 		lw = lww;
@@ -767,7 +772,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel model;
 		
-		// this actually only goes through once
+		tempSongs.clear();
+		var to_edit = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out model)) {
 			TreeIter item;
 			model.get_iter(out item, path);
@@ -776,20 +782,19 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
-			SongEditor se = new SongEditor(s);
-			se.song_saved.connect(songEditorSaved);
+			stdout.printf("added song %s by %s\n", s.title, s.artist);
 			
-			tempSongs.clear();
+			to_edit.add(s);
 			tempSongs.add(id);
-			
-			return;
 		}
+		
+		SongEditor se = new SongEditor(to_edit);
+		se.songs_saved.connect(songEditorSaved);
 	}
 	
-	public virtual void songEditorSaved(Song s) {
-		lm.update_song(s);
-		
-		//model.foreach(updateTempSongs);
+	public virtual void songEditorSaved(LinkedList<Song> songs) {
+		foreach(Song s in songs)
+			lm.update_song(s);
 	}
 	
 	public virtual void songMenuQueueClicked() {

@@ -20,7 +20,6 @@ public class BeatBox.PreferencesWindow : Window {
 	private ListStore musicLocationsModel;
 	private Button musicLocationsAdd;
 	private Button musicLocationsRemove;
-	private CheckButton writeToMetaData;
 	private CheckButton updateFolderNames;
 	private CheckButton copyImportedMusic;
 	
@@ -36,7 +35,6 @@ public class BeatBox.PreferencesWindow : Window {
 		origLocations = _lm.settings.getMusicFoldersList();
 		
 		buildUI();
-		destroy.connect(on_quit);
 	}
 	
 	public void buildUI() {
@@ -60,7 +58,6 @@ public class BeatBox.PreferencesWindow : Window {
 		musicLocationsModel = new ListStore(1, typeof(string));
 		musicLocationsAdd = new Button.with_label("Add");
 		musicLocationsRemove = new Button.with_label("Remove");
-		writeToMetaData = new CheckButton.with_label("Write to Metadata");
 		updateFolderNames = new CheckButton.with_label("Update folder names based on Metadata");
 		copyImportedMusic = new CheckButton.with_label("Copy imported music to music folder");
 		
@@ -95,12 +92,10 @@ public class BeatBox.PreferencesWindow : Window {
 		musicFolderBox.pack_start(musicLocationsScroll, true, true, 5);
 		musicFolderBox.pack_start(musicFolderButtonsBox, false, false, 0);
 		
-		writeToMetaData.set_active(_lm.settings.getWriteToMetadata());
 		updateFolderNames.set_active(_lm.settings.getUpdateFolderHierarchy());
 		copyImportedMusic.set_active(_lm.settings.getCopyImportedMusic());
 		
 		genVert.pack_start(musicFolderBox, true, true, 0);
-		genVert.pack_start(writeToMetaData, false, true, 0);
 		genVert.pack_start(updateFolderNames, false, true, 0);
 		genVert.pack_start(copyImportedMusic, false, true, 0);
 		
@@ -118,8 +113,8 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		/** Add save and cancel buttons **/
 		HBox bottomButtons = new HBox(false, 10);
-		bottomButtons.pack_start(saveChanges, false, false, 0);
-		bottomButtons.pack_end(cancelChanges, false, false, 0);
+		bottomButtons.pack_start(cancelChanges, false, false, 0);
+		bottomButtons.pack_end(saveChanges, false, false, 0);
 		
 		/** put it all together **/
 		vert.pack_start(notebook, true, true, 0);
@@ -131,6 +126,7 @@ public class BeatBox.PreferencesWindow : Window {
 		show_all();
 		
 		saveChanges.clicked.connect(saveClicked);
+		cancelChanges.clicked.connect(cancelClicked);
 		musicLocationsAdd.clicked.connect(musicLocationsAddClicked);
 		musicLocationsRemove.clicked.connect(musicLocationsRemoveClicked);
 	}
@@ -255,13 +251,12 @@ public class BeatBox.PreferencesWindow : Window {
 		//now rescan the folders
 		_lm.rescan_music_folders();
 		
-		_lm.settings.setWriteToMetadata(writeToMetaData.get_active());
 		_lm.settings.setUpdateFolderHierarchy(updateFolderNames.get_active());
 		stdout.printf("no setting for copying imported music\n");
 		this.destroy();
 	}
 	
-	public virtual void on_quit() {
-		
+	public virtual void cancelClicked() {
+		this.destroy();
 	}
 }

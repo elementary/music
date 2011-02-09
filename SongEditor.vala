@@ -1,155 +1,86 @@
 using Gtk;
+using Gee;
 
 public class BeatBox.SongEditor : Window {
-	private BeatBox.Song _original;
+	LinkedList<Song> _songs;
+	Song sum; // a song filled with all values that each song has in common
 	
 	private VBox vert; // seperates editors with buttons and other stuff
 	private HBox horiz; // seperates text with numerical editors
 	private VBox textVert; // seperates text editors
 	private VBox numerVert; // seperates numerical editors
 	
-	
-	private Entry _title;
-	private Label _titleLabel;
-	private HBox _titleBox;
-	
-	private Entry _artist;
-	private Label _artistLabel;
-	private HBox _artistBox;
-	
-	private Entry _album;
-	private Label _albumLabel;
-	private HBox _albumBox;
-	
-	private Entry _genre;
-	private Label _genreLabel;
-	private HBox _genreBox;
-	
-	private ScrolledWindow _commentScroll;
-	private TextView _comment;
-	private Label _commentLabel;
-	private HBox _commentBox;
-	
-	private SpinButton _track;
-	private Label _trackLabel;
-	private HBox _trackBox;
-	
-	private SpinButton _year;
-	private Label _yearLabel;
-	private HBox _yearBox;
+	private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
 	
 	private Button _save;
 	private Button _cancel;
 	
 	
-	public signal void song_saved(Song s);
+	public signal void songs_saved(LinkedList<Song> songs);
 	
-	public SongEditor(Song s) {
+	public SongEditor(LinkedList<Song> songs) {
 		this.title = "Properties";
 		this.window_position = WindowPosition.CENTER;
+		fields = new HashMap<string, FieldEditor>();
 		
-		_original = s;
+		_songs = songs;
+		Song sum = songs.get(0).copy();
+		
+		/** find what these songs have what common, and keep those values **/
+		foreach(Song s in songs) {
+			if(s.track != sum.track)
+				sum.track = -1;
+			if(s.title != sum.title)
+				sum.title = "";
+			if(s.artist != sum.artist)
+				sum.artist = "";
+			if(s.album != sum.album)
+				sum.album = "";
+			if(s.genre != sum.genre)
+				sum.genre = "";
+			if(s.comment != sum.comment)
+				sum.comment = "";
+			if(s.year != sum.year)
+				sum.year = -1;
+			if(s.bitrate != sum.bitrate)
+				sum.bitrate = -1;
+			//length = 0;
+			//samplerate = 0;
+			if(s.bpm != sum.bpm)
+				sum.bpm = -1;
+			if(s.rating != sum.rating)
+				sum.rating = -1;
+			//score = 0;
+			//play_count = 0;
+			//skip_count = 0;
+			//date_added = 0;
+			//last_played = 0;
+		}
+		
+		fields.set("Title", new FieldEditor("Title", sum.title, new Entry()));
+		fields.set("Artist", new FieldEditor("Artist", sum.artist, new Entry()));
+		fields.set("Album", new FieldEditor("Album", sum.album, new Entry()));
+		fields.set("Genre", new FieldEditor("Genre", sum.genre, new Entry()));
+		fields.set("Comment", new FieldEditor("Comment", sum.comment, new TextView()));
+		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 100, 1)));
+		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(1000, 9999, 1)));
 		
 		vert = new VBox(false, 0);
 		horiz = new HBox(false, 0);
-		
 		textVert = new VBox(false, 0);
 		numerVert = new VBox(false, 0);
 		
-		_title = new Entry();
-		_title.set_size_request(300, 25);
+		textVert.pack_start(fields.get("Title"), false, true, 0);
+		textVert.pack_start(fields.get("Artist"), false, true, 0);
+		textVert.pack_start(fields.get("Album"), false, true, 0);
+		textVert.pack_start(fields.get("Genre"), false, true, 0);
+		textVert.pack_start(fields.get("Comment"), false, true, 0);
 		
-		_artist = new Entry();
-		_artist.set_size_request(300, 25);
+		numerVert.pack_start(fields.get("Track"), false, true, 0);
+		numerVert.pack_start(fields.get("Year"), false, true, 0);
 		
-		_album = new Entry();
-		_album.set_size_request(300, 25);
-		
-		_genre = new Entry();
-		_genre.set_size_request(300, 25);
-		
-		_commentScroll = new ScrolledWindow(null, null);
-        _commentScroll.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
-		_comment = new TextView();
-		_comment.set_size_request(300, 100);
-		_comment.set_wrap_mode(WrapMode.WORD);
-		_commentScroll.add(_comment);
-		
-		_track = new SpinButton.with_range(0, 100, 1);
-		_track.set_size_request(100, 25);
-		
-		_year = new SpinButton.with_range(0, 2999, 1);
-		_year.set_size_request(100, 25);
-		
-		_titleLabel = new Label("Title");
-		_titleLabel.set_size_request(60, 20);
-		
-		_artistLabel = new Label("Artist");
-		_artistLabel.set_size_request(60, 20);
-		
-		_albumLabel = new Label("Album");
-		_albumLabel.set_size_request(60, 20);
-		
-		_genreLabel = new Label("Genre");
-		_genreLabel.set_size_request(60, 20);
-		
-		_commentLabel = new Label("Comment");
-		_commentLabel.set_size_request(60, 20);
-		
-		_trackLabel = new Label("Track");
-		_trackLabel.set_size_request(60, 20);
-		
-		_yearLabel = new Label("Year");
-		_yearLabel.set_size_request(60, 20);
-		
-		_title.text = s.title;
-		_artist.text = s.artist;
-		_album.text = s.album;
-		_genre.text = s.genre;
-		_comment.get_buffer().text = s.comment;
-		_track.value = (double)s.track;
-		_year.value = (double)s.year;
-		
-		_titleBox = new HBox(false, 0);
-		_titleBox.pack_start(_titleLabel);
-		_titleBox.pack_start(_title);
-		
-		_artistBox = new HBox(false, 0);
-		_artistBox.pack_start(_artistLabel);
-		_artistBox.pack_start(_artist);
-		
-		_albumBox = new HBox(false, 0);
-		_albumBox.pack_start(_albumLabel);
-		_albumBox.pack_start(_album);
-		
-		_genreBox = new HBox(false, 0);
-		_genreBox.pack_start(_genreLabel);
-		_genreBox.pack_start(_genre);
-		
-		_commentBox = new HBox(false, 0);
-		_commentBox.pack_start(_commentLabel);
-		_commentBox.pack_start(_commentScroll);
-		
-		textVert.pack_start(_titleBox, false, true, 5);
-		textVert.pack_start(_artistBox, false, true, 5);
-		textVert.pack_start(_albumBox, false, true, 5);
-		textVert.pack_start(_genreBox, false, true, 5);
-		textVert.pack_start(_commentBox, false, true, 5);
-		
-		_trackBox = new HBox(false, 0);
-		_trackBox.pack_start(_trackLabel);
-		_trackBox.pack_start(_track);
-		
-		_yearBox = new HBox(false, 0);
-		_yearBox.pack_start(_yearLabel);
-		_yearBox.pack_start(_year);
-		
-		numerVert.pack_start(_trackBox, false, true, 5);
-		numerVert.pack_start(_yearBox, false, true, 5);
-		
-		horiz.pack_start(textVert, false, true, 10);
-		horiz.pack_start(numerVert, false, true, 5);
-		
+		horiz.pack_start(textVert, false, true, 0);
+		horiz.pack_start(numerVert, false, true, 0);
 		vert.pack_start(horiz, true, true, 0);
 		
 		HBox buttonSep = new HBox(false, 2);
@@ -172,15 +103,153 @@ public class BeatBox.SongEditor : Window {
 	}
 	
 	public virtual void saveClicked() {
-		_original.title = _title.text;
-		_original.artist = _artist.text;
-		_original.album = _album.text;
-		_original.genre = _genre.text;
-		_original.comment = _comment.get_buffer().text;
-		_original.track = (int)_track.value;
-		_original.year = (int)_year.value;
+		foreach(Song s in _songs) {
+			if(fields.get("Title").checked())
+				s.title = fields.get("Title").get_value();
+			if(fields.get("Artist").checked())
+				s.artist = fields.get("Artist").get_value();
+			if(fields.get("Album").checked())
+				s.album = fields.get("Album").get_value();
+			if(fields.get("Genre").checked())
+				s.genre = fields.get("Genre").get_value();
+			if(fields.get("Comment").checked())
+				s.comment = fields.get("Comment").get_value();
+				
+			if(fields.get("Track").checked())
+				s.track = fields.get("Track").get_value().to_int();
+			if(fields.get("Year").checked())
+				s.year = fields.get("Year").get_value().to_int();
+		}
 		
-		song_saved(_original);
+		songs_saved(_songs);
 		this.destroy();
+	}
+}
+
+public class BeatBox.FieldEditor : HBox {
+	private string _name;
+	private string _original;
+	
+	private CheckButton check;
+	private Entry entry;
+	private TextView textView;
+	private SpinButton spinButton;
+	private Image image;
+	private Button reset;
+
+	public FieldEditor(string name, string original, Widget w) {
+		_name = name;
+		_original = original;
+		
+		this.spacing = 5;
+		
+		check = new CheckButton.with_label(_name);
+		check.set_size_request(70, -1);
+		
+		this.pack_start(check, false, false, 0);
+		
+		if(w is Entry && !(w is SpinButton)) {
+			check.set_active(original != "");
+			
+			entry = (Entry)w;
+			entry.set_size_request(250, -1);
+			entry.set_text(original);
+			entry.changed.connect(entryChanged);
+			this.pack_start(entry, true, true, 0);
+		}
+		else if(w is TextView) {
+			check.set_active(original != "");
+			
+			textView = (TextView)w;
+			textView.set_size_request(200, 100);
+			textView.set_wrap_mode(WrapMode.WORD);
+			textView.get_buffer().text = original;
+			
+			ScrolledWindow scroll = new ScrolledWindow(null, null);
+			scroll.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
+			scroll.add(textView);
+			
+			textView.buffer.changed.connect(textViewChanged);
+			this.pack_start(scroll, true, true, 0);
+		}
+		else if(w is SpinButton) {
+			check.set_active(original != "-1");
+			
+			spinButton = (SpinButton)w;
+			spinButton.set_size_request(50, -1);
+			spinButton.value = original.to_double();
+			spinButton.adjustment.value_changed.connect(spinButtonChanged);
+			this.pack_start(spinButton, true, true, 0);
+		}
+		else if(w is Image) {
+			check.set_active(original != "");
+			
+			image = (Image)w;
+			image.set_size_request(200, 200);
+			image.set_from_file(original);
+			//callback on file dialogue saved. setup here
+			this.pack_start(image, true, true, 0);
+		}
+		
+		reset = new Button.from_stock(Gtk.Stock.CLEAR);
+		reset.clicked.connect(resetClicked);
+		this.pack_end(reset, false, false, 0);
+	}
+	
+	public virtual void entryChanged() {
+		if(entry.text != _original)
+			check.set_active(true);
+		else
+			check.set_active(false);
+	}
+	
+	public virtual void textViewChanged() {
+		if(textView.get_buffer().text != _original)
+			check.set_active(true);
+		else
+			check.set_active(false);
+	}
+	
+	public virtual void spinButtonChanged() {
+		if(spinButton.value != _original.to_double())
+			check.set_active(true);
+		else
+			check.set_active(false);
+	}
+	
+	public bool checked() {
+		return check.get_active();
+	}
+	
+	public virtual void resetClicked() {
+		if(entry != null) {
+			entry.text = _original;
+		}
+		else if(textView != null) {
+			textView.get_buffer().text = _original;
+		}
+		else if(spinButton != null) {
+			spinButton.value = _original.to_double();
+		}
+		else if(image != null) {
+			image.set_from_file(_original);
+		}
+	}
+	
+	public string get_value() {
+		if(entry != null) {
+			return entry.text;
+		}
+		else if(textView != null) {
+			return textView.get_buffer().text;
+		}
+		else if(spinButton != null) {
+			return spinButton.value.to_string();
+		}
+		else if(image != null) {
+			return image.file;
+		}
+		
+		return "";
 	}
 }

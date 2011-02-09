@@ -67,13 +67,9 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		
 		HBox saveBox = new HBox(false, 1);
 		cancel = new Button.with_label("Cancel");
-		Label filler = new Label("");
 		save = new Button.with_label("Save");
 		saveBox.pack_start(cancel, false, false, 0);
-		saveBox.pack_start(filler, false, false, 0);
-		saveBox.pack_start(save, false, false, 0);
-		
-		save.clicked.connect(saveClick);
+		saveBox.pack_end(save, false, false, 0);
 		
 		vert.pack_start(nameBox, false, true, 1);
 		vert.pack_start(andorBox, false, true, 1);
@@ -81,9 +77,10 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		vert.pack_start(saveBox, false, false, 1);
 		
 		add(vert);
-		
 		show_all();
 		
+		save.clicked.connect(saveClick);
+		cancel.clicked.connect(cancelClick);
 		//this.destroy.connect (Gtk.main_quit);
 	}
 	
@@ -113,6 +110,9 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		this.destroy();
 	}
 	
+	public virtual void cancelClick() {
+		this.destroy();
+	}
 }
 
 public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {

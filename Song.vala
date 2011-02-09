@@ -40,6 +40,7 @@ public class BeatBox.Song : GLib.Object{
 		file_directory = "";
 		file_size = 0;
 		rowid = 0;
+		track = 0;
 		title = "Unkown Title";
 		artist = "Unkown Artist";
 		album = "Unknown Album";
@@ -87,32 +88,17 @@ public class BeatBox.Song : GLib.Object{
 	//tags
     public string title {
         get { return _title; }
-        set { 
-			if(value != "")
-				_title = value;
-			else
-				_title = "Unkown";
-		}
+        set { _title = value; }
     }
     
     public string artist {
         get { return _artist; }
-        set { 
-			if(value != "")
-				_artist = value;
-			else
-				_artist = "Unkown";
-		}
+        set { _artist = value; }
     }
     
     public string album {
 		get { return _album; }
-		set { 
-			if(value != "")
-				_album = value;
-			else
-				_album = "Unkown";
-		}
+		set { _album = value; }
 	}
 	
 	public string genre {
@@ -216,6 +202,33 @@ public class BeatBox.Song : GLib.Object{
 	public string pretty_date_added() {
 		var t = Time.local(date_added);
 		string rv = t.format("%m/%e/%Y %l:%M %p");
+		return rv;
+	}
+	
+	public Song copy() {
+		Song rv = new Song(_file);
+		rv.file_name = file_name;
+		rv.file_directory = file_directory;
+		rv.file_size = file_size;
+		rv.rowid = rowid;
+		rv.track = track;
+		rv.title = title;
+		rv.artist = artist;
+		rv.album = album;
+		rv.genre = genre;
+		rv.comment = comment;
+		rv.year = year;
+		rv.bitrate = bitrate;
+		rv.length = length;
+		rv.samplerate = samplerate;
+		rv.bpm = bpm;
+		rv.rating = rating;
+		rv.score = score;
+		rv.play_count = play_count;
+		rv.skip_count = skip_count;
+		rv.date_added = date_added;
+		rv.last_played = last_played;
+		
 		return rv;
 	}
 }
