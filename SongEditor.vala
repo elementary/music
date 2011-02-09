@@ -5,6 +5,8 @@ public class BeatBox.SongEditor : Window {
 	LinkedList<Song> _songs;
 	Song sum; // a song filled with all values that each song has in common
 	
+	private Notebook notebook;
+	private Viewport editView;
 	private VBox vert; // seperates editors with buttons and other stuff
 	private HBox horiz; // seperates text with numerical editors
 	private VBox textVert; // seperates text editors
@@ -18,7 +20,7 @@ public class BeatBox.SongEditor : Window {
 	
 	public signal void songs_saved(LinkedList<Song> songs);
 	
-	public SongEditor(LinkedList<Song> songs) {
+	public SongEditor(LinkedList<Song> songs, LastFM.TrackInfo? track, LastFM.ArtistInfo? artist, LastFM.AlbumInfo? album) {
 		this.title = "Properties";
 		this.window_position = WindowPosition.CENTER;
 		fields = new HashMap<string, FieldEditor>();
@@ -65,6 +67,8 @@ public class BeatBox.SongEditor : Window {
 		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 100, 1)));
 		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(1000, 9999, 1)));
 		
+		notebook = new Notebook();
+		editView = new Viewport(null, null);
 		vert = new VBox(false, 0);
 		horiz = new HBox(false, 0);
 		textVert = new VBox(false, 0);
@@ -96,10 +100,47 @@ public class BeatBox.SongEditor : Window {
 		_save.clicked.connect(saveClicked);
 		
 		vert.pack_start(buttonSep, false, true, 0);
+		editView.add(vert);
 		
-		add(vert);
+		notebook.append_page(editView, new Label("Properties"));
+		
+		if(track != null)
+			notebook.append_page(generate_track_page(track), new Label("Track Info"));
+		if(artist != null)
+			notebook.append_page(generate_artist_page(artist), new Label("Artist Info"));
+		if(album != null)
+			notebook.append_page(generate_album_page(album), new Label("Album Info"));
+		
+		add(notebook);
 		
 		show_all();
+	}
+	
+	public Viewport generate_track_page(LastFM.TrackInfo track) {
+		Viewport rv = new Viewport(null, null);
+		
+		Label l = new Label(track.name + "," + track.url + "," + track.artist);
+		rv.add(l);
+		
+		return rv;
+	}
+	
+	public Viewport generate_artist_page(LastFM.ArtistInfo artist) {
+		Viewport rv = new Viewport(null, null);
+		
+		Label l = new Label(artist.name + "," + artist.url);
+		rv.add(l);
+		
+		return rv;
+	}
+	
+	public Viewport generate_album_page(LastFM.AlbumInfo album) {
+		Viewport rv = new Viewport(null, null);
+		
+		Label l = new Label(album.name);
+		rv.add(l);
+		
+		return rv;
 	}
 	
 	public virtual void saveClicked() {
@@ -176,7 +217,7 @@ public class BeatBox.FieldEditor : HBox {
 			check.set_active(original != "-1");
 			
 			spinButton = (SpinButton)w;
-			spinButton.set_size_request(50, -1);
+			spinButton.set_size_request(80, -1);
 			spinButton.value = original.to_double();
 			spinButton.adjustment.value_changed.connect(spinButtonChanged);
 			this.pack_start(spinButton, true, true, 0);
