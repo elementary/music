@@ -45,6 +45,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	// basic file stuff
 	MenuItem fileRescanMusicFolder;
+	MenuItem helpOnline;
+	MenuItem helpTranslate;
+	MenuItem helpReport;
+	MenuItem helpAbout;
 	MenuItem editPreferences;
 	
 	Menu settingsMenu;
@@ -92,6 +96,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTreeScroll = new ScrolledWindow(null, null);	
 		topMenu = new MenuBar();
 		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
+		helpOnline = new MenuItem.with_label("Get Help Online...");
+		helpTranslate = new MenuItem.with_label("Translate This Application...");
+		helpReport = new MenuItem.with_label("Report a Problem...");
+		helpAbout = new MenuItem.with_label("About");
 		editPreferences = new MenuItem.with_label("Preferences");
 		settingsMenu = new Menu();
 		topControls = new Toolbar();
@@ -131,9 +139,28 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			searchField.set_sensitive(false);
 		
 		settingsMenu.append(fileRescanMusicFolder);
+		settingsMenu.append(new SeparatorMenuItem());
+		settingsMenu.append(helpOnline);
+		settingsMenu.append(helpTranslate);
+		settingsMenu.append(helpReport);
+		settingsMenu.append(new SeparatorMenuItem());
+		settingsMenu.append(helpAbout);
 		settingsMenu.append(editPreferences);
 		
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
+		helpOnline.activate.connect( () => {
+			string auth_uri = "https://answers.launchpad.net/beat-box";
+			GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+		});
+		helpTranslate.activate.connect( () => {
+			string auth_uri = "https://translations.launchpad.net/beat-box";
+			GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+		});
+		helpReport.activate.connect( () => {
+			string auth_uri = "https://bugs.launchpad.net/beat-box";
+			GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+		});
+		helpAbout.activate.connect(helpAboutClick);
 		editPreferences.activate.connect(editPreferencesClick);
 		
 		songInfo.open("file://"+Environment.get_home_dir () + "/.beatbox/song_info.html");
@@ -654,6 +681,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			searchField.set_sensitive(true);
 		else
 			searchField.set_sensitive(false);
+	}
+	
+	public virtual void helpAboutClick() {
+		AboutDialog ad = new AboutDialog();
+		
+		ad.set_program_name("BeatBox");
+		ad.set_version("0.1");
+		ad.set_website("https://launchpad.net/beat-box");
+		ad.set_website_label("Launchpad");
+		ad.set_authors({"Scott Ringwelski"});
+		
+		ad.response.connect( (response_id) => { 
+			ad.destroy(); 
+		});
+		
+		ad.show();
 	}
 	
 	public virtual void editPreferencesClick() {

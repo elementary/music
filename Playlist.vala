@@ -26,6 +26,10 @@ public class BeatBox.Playlist : Object {
 		set {_name = value; }
 	}
 	
+	public Gee.LinkedList<Song> songs() {
+		return _songs;
+	}
+	
 	public void addSong(Song s) {
 		_songs.add(s);
 	}

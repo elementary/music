@@ -248,7 +248,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		//song list right click menu
 		songMenuActionMenu = new Menu();
-		songEditSong = new MenuItem.with_label("Edit Song");
+		songEditSong = new MenuItem.with_label("Edit Song Info");
 		songMenuQueue = new MenuItem.with_label("Queue");
 		songMenuPsychic = new MenuItem.with_label("Use Psychic");
 		songRemove = new MenuItem.with_label("Remove song");
@@ -873,14 +873,23 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					p.addSong(sim);
 			}
 			
+			int playlist_time = 0;
+			foreach(Song sim in p.songs()) {
+				playlist_time += s.length;
+			}
+			
+			// make sure it is of decent size
+			if(playlist_time < (25 * 60)) {
+				psychicworking = false;
+				return null;
+			}
+			
 			lm.add_playlist(p);
 			
 			Idle.add( () => {
 				lw.addSideListItem(p);
 				return false;
 			});
-			
-			psychicworking = false;
 			
 			return null;
 		}
