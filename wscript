@@ -18,9 +18,8 @@ VALAC_VERSION = '0.11.5'
 top = '.'
 out = 'build'
 
-PACKAGES = '--pkg gtk+-2.0 --pkg gee-1.0 --pkg gstreamer-0.10 --pkg taglib_c --pkg gio-2.0 --pkg sqlheavy-0.1 --pkg webkit-1.0 --pkg libxml-2.0 --pkg gconf-2.0 --pkg gnet-2.0'
-SOURCE_EASY = '../BeatBox.vala ../src/*.vala ../src/LastFM/*.vala ../src/Widgets/*.vala ../src/Dialogs/*.vala ../src/Objects/*.vala'
-SOURCES = '../BeatBox.vala ../src/DataBaseManager.vala ../src/FileOperator.vala ../src/LibraryManager.vala ../src/LibraryWindow.vala ../src/Settings.vala ../src/StreamPlayer.vala ../src/Dialogs/NotImportedWindow.vala ../src/Dialogs/PlaylistNameWindow.vala ../src/Dialogs/PreferencesWindow.vala ../src/Dialogs/SmartPlaylistEditor.vala ../src/Dialogs/SongEditor.vala ../src/LastFM/LastFM.vala ../src/LastFM/LastFMAlbumInfo.vala ../src/LastFM/LastFMArtistInfo.vala ../src/LastFM/LastFMImage.vala ../src/LastFM/LastFMTag.vala ../src/LastFM/LastFMTrackInfo.vala ../src/Objects/Playlist.vala ../src/Objects/SmartPlaylist.vala ../src/Objects/SmartQuery.vala ../src/Objects/Song.vala'
+PACKAGES = '--pkg gtk+-2.0 --pkg gee-1.0 --pkg gstreamer-0.10 --pkg taglib_c --pkg gio-2.0 --pkg sqlheavy-0.1 --pkg webkit-1.0 --pkg libxml-2.0 --pkg gconf-2.0'# --pkg gnet-2.0'
+SOURCE = '../BeatBox.vala ../src/*.vala ../src/LastFM/*.vala ../src/Widgets/*.vala ../src/Dialogs/*.vala ../src/Objects/*.vala'
  
 
 def check_pkg (ctx, name, version=''):
@@ -35,12 +34,12 @@ def configure(ctx):
 	check_pkg(ctx, 'taglib_c', '1.6.3')
 	check_pkg(ctx, 'gio-2.0', '2.26.0')
 	check_pkg(ctx, 'sqlheavy-0.1', '0.0')
-	check_pkg(ctx, 'webkit-1.0', '1.2.6')
+	check_pkg(ctx, 'webkit-1.0', '1.2.5')
 	check_pkg(ctx, 'libxml-2.0', '2.7.7')
 	check_pkg(ctx, 'gconf-2.0', '2.31.91')
-	check_pkg(ctx, 'gnet-2.0', '2.0.8')
 	#check_pkg(ctx, 'libnotify', '0.5.0')
 
 def build(bld):
-	bld(rule = 'valac ' + PACKAGES + ' --thread ' + SOURCE_EASY)
+	bld(rule = 'valac ' + PACKAGES + ' --thread ' + SOURCE)
+	bld(rule='mv ../' + out + '/' + APPNAME + ' ../' + APPNAME)
 

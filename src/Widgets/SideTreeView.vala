@@ -266,21 +266,17 @@ public class BeatBox.SideTreeView : TreeView {
 				string parent_name;
 				sideTreeModel.get(parent, 2, out parent_name);
 				
-				if(parent_name == "Library" && id > 0) {
+				if(parent_name == "Library") {
 					playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					return false;
 				}
 			}
 			else {
 				if(name == "Library") {
-					//show library right click menu
+					playlistMenu.popup (null, null, null, 2, get_current_event_time());
 				}
 				else if(name == "Play Queue") {
 					//show play queue right click menu
-				}
-				else if(name == "Playlists") {
-					playlistMenu.popup (null, null, null, 2, get_current_event_time());
-					return false;
 				}
 			}
 			

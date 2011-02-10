@@ -1,4 +1,4 @@
-# project BeatBox (0.1) configured on Thu Feb 10 16:29:43 2011 by
+# project BeatBox (0.1) configured on Thu Feb 10 16:49:57 2011 by
 # waf 1.6.2 (abi 98, python 20606f0 on linux2)
 # using ./waf configure build
 #
@@ -55,8 +55,8 @@ out: -pthread -I/usr/local/include/sqlheavy/sqlheavy-0.1 -I/usr/include/glib-2.0
 
 yes
 ----------------------------------------
-Checking for 'webkit-1.0' >= 1.2.6
-['/usr/bin/pkg-config', '--atleast-version=1.2.6', 'webkit-1.0']
+Checking for 'webkit-1.0' >= 1.2.5
+['/usr/bin/pkg-config', '--atleast-version=1.2.5', 'webkit-1.0']
 ['/usr/bin/pkg-config', 'webkit-1.0', '--cflags', '--libs']
 out: -pthread -I/usr/include/webkit-1.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/gtk-2.0 -I/usr/include/libsoup-2.4 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/libxml2  -pthread -lwebkit-1.0 -lgtk-x11-2.0 -lsoup-2.4 -lgdk-x11-2.0 -latk-1.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lm -lcairo -lpng12 -lpango-1.0 -lfreetype -lfontconfig -lgio-2.0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
 
@@ -73,12 +73,5 @@ Checking for 'gconf-2.0' >= 2.31.91
 ['/usr/bin/pkg-config', '--atleast-version=2.31.91', 'gconf-2.0']
 ['/usr/bin/pkg-config', 'gconf-2.0', '--cflags', '--libs']
 out: -DORBIT2=1 -pthread -I/usr/include/gconf/2 -I/usr/include/orbit-2.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -lgconf-2 -lglib-2.0  
-
-yes
-----------------------------------------
-Checking for 'gnet-2.0' >= 2.0.8
-['/usr/bin/pkg-config', '--atleast-version=2.0.8', 'gnet-2.0']
-['/usr/bin/pkg-config', 'gnet-2.0', '--cflags', '--libs']
-out: -pthread -I/usr/include/gnet-2.0 -I/usr/lib/gnet-2.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -lgnet-2.0 -lgthread-2.0 -lrt -lglib-2.0  
 
 yes
