@@ -108,7 +108,7 @@ public class ElementaryEntry : Gtk.Entry {
 
 public class ElementarySearchEntry : ElementaryEntry {
 
-    bool is_searching;
+    public bool is_searching;
 
     public ElementarySearchEntry (string hint_string) {
     

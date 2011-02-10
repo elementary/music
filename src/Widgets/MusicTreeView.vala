@@ -427,7 +427,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				else if(tvc.title == "Album")
 					album_id = index;
 				
-				if(hint == "collection" && sort_id == -1 && tvc.title == "Artist")
+				if(hint == "library" && sort_id == -1 && tvc.title == "Artist")
 					main_sort = index;
 				else if(hint == "queue" && sort_id == -1 && tvc.title == "#")
 					main_sort = index;
@@ -457,6 +457,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		foreach(TreeViewColumn tvc in view.get_columns()) {
 			if(tvc.title == "id")
 				model.set_value(item, index, s.rowid);
+			if(tvc.title == " " && lm.song_info.song != null && s.rowid == lm.song_info.song.rowid)
+				this.model.set_value(item, index, view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null));
 			else if(tvc.title == "#")
 				model.set_value(item, index, (model.get_path(item).to_string().to_int() + 1));
 			else if(tvc.title == "Track" && s.track != 0)
@@ -559,6 +561,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			foreach(TreeViewColumn tvc in view.get_columns()) {
 				if(tvc.title == "id")
 					this.model.set_value(item, index, s.rowid);
+				if(tvc.title == " " && lm.song_info.song != null && id == lm.song_info.song.rowid)
+					this.model.set_value(item, index, view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null));
 				else if(tvc.title == "Track")
 					this.model.set_value(item, index, s.track);
 				else if(tvc.title == "Title")
@@ -609,9 +613,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		foreach(TreeViewColumn tvc in view.get_columns()) {
 			if(tvc.title == " ") {
 				if(id == lm.song_info.song.rowid)
-					this.model.set_value(iter, index, now_playing_pixbuf);
-				else if(!(id == lm.song_info.song.rowid) && old_pix == now_playing_pixbuf)
-					this.model.set_value(iter, index, empty_pixbuf);
+					this.model.set_value(iter, index, view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null));
+				else
+					this.model.set(iter, index, null);
 			}
 				
 			++index;

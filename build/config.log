@@ -1,0 +1,84 @@
+# project BeatBox (0.1) configured on Thu Feb 10 16:29:43 2011 by
+# waf 1.6.2 (abi 98, python 20606f0 on linux2)
+# using ./waf configure build
+#
+----------------------------------------
+Setting top to
+/home/scott/beatbox
+----------------------------------------
+Setting out to
+/home/scott/beatbox/build
+----------------------------------------
+Checking for program pkg-config
+/usr/bin/pkg-config
+find program=['pkg-config'] paths=['/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games'] var='PKGCONFIG' -> '/usr/bin/pkg-config'
+----------------------------------------
+Checking for 'gtk+-2.0' >= 2.16.0
+['/usr/bin/pkg-config', '--atleast-version=2.16.0', 'gtk+-2.0']
+['/usr/bin/pkg-config', 'gtk+-2.0', '--cflags', '--libs']
+out: -pthread -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  -pthread -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lm -lcairo -lpng12 -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for 'gee-1.0' >= 0.5.3
+['/usr/bin/pkg-config', '--atleast-version=0.5.3', 'gee-1.0']
+['/usr/bin/pkg-config', 'gee-1.0', '--cflags', '--libs']
+out: -pthread -I/usr/include/gee-1.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -lgee -lgobject-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for 'gstreamer-0.10' >= 0.10
+['/usr/bin/pkg-config', '--atleast-version=0.10', 'gstreamer-0.10']
+['/usr/bin/pkg-config', 'gstreamer-0.10', '--cflags', '--libs']
+out: -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libxml2  -pthread -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lxml2 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for 'taglib_c' >= 1.6.3
+['/usr/bin/pkg-config', '--atleast-version=1.6.3', 'taglib_c']
+['/usr/bin/pkg-config', 'taglib_c', '--cflags', '--libs']
+out: -I/usr/include/taglib  -ltag_c -ltag  
+
+yes
+----------------------------------------
+Checking for 'gio-2.0' >= 2.26.0
+['/usr/bin/pkg-config', '--atleast-version=2.26.0', 'gio-2.0']
+['/usr/bin/pkg-config', 'gio-2.0', '--cflags', '--libs']
+out: -pthread -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -lgio-2.0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for 'sqlheavy-0.1' >= 0.0
+['/usr/bin/pkg-config', '--atleast-version=0.0', 'sqlheavy-0.1']
+['/usr/bin/pkg-config', 'sqlheavy-0.1', '--cflags', '--libs']
+out: -pthread -I/usr/local/include/sqlheavy/sqlheavy-0.1 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -L/usr/local/lib -lsqlheavy0.1 -lgio-2.0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for 'webkit-1.0' >= 1.2.6
+['/usr/bin/pkg-config', '--atleast-version=1.2.6', 'webkit-1.0']
+['/usr/bin/pkg-config', 'webkit-1.0', '--cflags', '--libs']
+out: -pthread -I/usr/include/webkit-1.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/gtk-2.0 -I/usr/include/libsoup-2.4 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/libxml2  -pthread -lwebkit-1.0 -lgtk-x11-2.0 -lsoup-2.4 -lgdk-x11-2.0 -latk-1.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lm -lcairo -lpng12 -lpango-1.0 -lfreetype -lfontconfig -lgio-2.0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for 'libxml-2.0' >= 2.7.7
+['/usr/bin/pkg-config', '--atleast-version=2.7.7', 'libxml-2.0']
+['/usr/bin/pkg-config', 'libxml-2.0', '--cflags', '--libs']
+out: -I/usr/include/libxml2  -lxml2  
+
+yes
+----------------------------------------
+Checking for 'gconf-2.0' >= 2.31.91
+['/usr/bin/pkg-config', '--atleast-version=2.31.91', 'gconf-2.0']
+['/usr/bin/pkg-config', 'gconf-2.0', '--cflags', '--libs']
+out: -DORBIT2=1 -pthread -I/usr/include/gconf/2 -I/usr/include/orbit-2.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -lgconf-2 -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for 'gnet-2.0' >= 2.0.8
+['/usr/bin/pkg-config', '--atleast-version=2.0.8', 'gnet-2.0']
+['/usr/bin/pkg-config', 'gnet-2.0', '--cflags', '--libs']
+out: -pthread -I/usr/include/gnet-2.0 -I/usr/lib/gnet-2.0/include/ -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -lgnet-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
