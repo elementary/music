@@ -120,7 +120,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		pandora = new WebView();
 		grooveShark = new WebView();
 		sideBar = new VBox(false, 0);
-		coverArt = new Image.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg");
 		statusBar = new Statusbar();
 		//notification = new Notification("Title", "Artist\nAlbum", "", null);
 		
@@ -237,29 +236,31 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	private void buildSideTree() {
 		MusicTreeView mtv;
 		
+		sideTree.addBasicItems();
+		
 		// put song info first so it is on top when using multiple views
-		sideTree.addItem(null, new GLib.Object(), songInfoScroll, "Song Info");
-		mainViews.pack_start(songInfoScroll, true, true, 0);
+		//sideTree.addItem(null, new GLib.Object(), songInfoScroll, "Song Info");
+		//mainViews.pack_start(songInfoScroll, true, true, 0);
 		
 		mtv = new MusicTreeView(lm, this, -1);
 		mtv.set_hint("queue");
 		mtv.populateView(lm.queue(), false);
 		mtv.view_being_searched.connect(musicTreeViewSearched);
-		sideTree.addItem(null, null, mtv, "Queue");
+		sideTree.addItem(sideTree.playlists_iter, null, mtv, "Queue");
 		mainViews.pack_start(mtv, true, true, 0);
 		
 		mtv = new MusicTreeView(lm, this, -1);
-		mtv.set_hint("already played");
+		mtv.set_hint("history");
 		mtv.populateView(lm.already_played(), false);
 		mtv.view_being_searched.connect(musicTreeViewSearched);
-		sideTree.addItem(null, null, mtv, "Already Played");
+		sideTree.addItem(sideTree.playlists_iter, null, mtv, "History");
 		mainViews.pack_start(mtv, true, true, 0);
 		
 		mtv = new MusicTreeView(lm, this, -1);
-		mtv.set_hint("library");
+		mtv.set_hint("music");
 		mtv.populateView(lm.song_ids(), false);
 		mtv.view_being_searched.connect(musicTreeViewSearched);
-		sideTree.addItem(null, null, mtv, "Library");
+		sideTree.addItem(sideTree.library_iter, null, mtv, "Music");
 		mainViews.pack_start(mtv, true, true, 0);
 		
 		//why should i have internet sources on a music player???
@@ -283,8 +284,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		
-		sideTree.get_selection().select_iter(sideTree.get_library_iter());
-		sideTree.sideListSelectionChange();
+		sideTree.resetView();
 		sideTree.expand_all();
 		
 		sideTreeScroll = new ScrolledWindow(null, null);
@@ -293,7 +293,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void addSideListItem(GLib.Object o) {
-		TreeIter item = sideTree.get_library_iter();
+		TreeIter item = sideTree.library_music_iter;
 		int index = 0;
 		MusicTreeView mtv = null;
 		
@@ -304,7 +304,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			mtv.set_hint("playlist");
 			mtv.set_id(p.rowid);
 			mtv.populateView(lm.songs_from_playlist(p.rowid), false);
-			item = sideTree.addItem(sideTree.get_library_iter(), p, mtv, p.name);
+			item = sideTree.addItem(sideTree.playlists_iter, p, mtv, p.name);
 			mainViews.pack_start(mtv, true, true, 0);
 		}
 		else if(o is SmartPlaylist) {
@@ -314,7 +314,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			mtv.set_hint("smart playlist");
 			mtv.set_id(p.rowid);
 			mtv.populateView(lm.songs_from_smart_playlist(p.rowid), false);
-			item = sideTree.addItem(sideTree.get_library_iter(), p, mtv, p.name);
+			item = sideTree.addItem(sideTree.playlists_iter, p, mtv, p.name);
 			mainViews.pack_start(mtv, true, true, 0);
 		}
 		
@@ -500,7 +500,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				((MusicTreeView)w).setAsCurrentList("0");
 			}
 			else {
-				w = sideTree.getWidget(sideTree.get_library_iter());
+				w = sideTree.getWidget(sideTree.library_music_iter);
 				((MusicTreeView)w).setAsCurrentList("0");
 			}
 			
@@ -585,7 +585,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// save the columns
 		var columns = new ArrayList<TreeViewColumn>();
 		
-		Widget w = sideTree.getWidget(sideTree.get_library_iter());
+		Widget w = sideTree.getWidget(sideTree.library_music_iter);
 		if(w is MusicTreeView) {
 			MusicTreeView view = (MusicTreeView)w;
 			
@@ -651,7 +651,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_label_text("");
 		
 		//repopulate collection and playlists and reset queue and already played
-		Widget w = sideTree.getWidget(sideTree.get_library_iter());
+		Widget w = sideTree.getWidget(sideTree.library_music_iter);
 		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
 		if(not_imported.size > 0) {
@@ -671,7 +671,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_label_text("");
 		
 		//repopulate collection and playlists and reset queue and already played
-		Widget w = sideTree.getWidget(sideTree.get_library_iter());
+		Widget w = sideTree.getWidget(sideTree.library_music_iter);
 		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
 		if(not_imported.size > 0) {

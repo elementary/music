@@ -1,4 +1,4 @@
-# project BeatBox (0.1) configured on Thu Feb 10 16:49:57 2011 by
+# project BeatBox (0.1) configured on Thu Feb 10 23:11:13 2011 by
 # waf 1.6.2 (abi 98, python 20606f0 on linux2)
 # using ./waf configure build
 #
@@ -9,9 +9,42 @@ Setting top to
 Setting out to
 /home/scott/beatbox/build
 ----------------------------------------
+Checking for 'gcc' (c compiler)
+find program=['gcc', 'cc'] paths=['/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games'] var='CC' -> '/usr/bin/gcc'
+find program=['ar'] paths=['/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games'] var='AR' -> '/usr/bin/ar'
+ok
+----------------------------------------
 Checking for program pkg-config
 /usr/bin/pkg-config
 find program=['pkg-config'] paths=['/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games'] var='PKGCONFIG' -> '/usr/bin/pkg-config'
+----------------------------------------
+Checking for 'gobject-2.0'
+['/usr/bin/pkg-config', 'gobject-2.0', '--cflags', '--libs']
+out: -pthread -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -lgobject-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for 'gthread-2.0'
+['/usr/bin/pkg-config', 'gthread-2.0', '--cflags', '--libs']
+out: -pthread -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for program valac-0.8
+not found
+find program=['valac-0.8'] paths=['/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games'] var='VALAC' -> ''
+from /home/scott/beatbox: Could not find the program valac-0.8
+----------------------------------------
+Checking for program valac
+/usr/bin/valac
+find program=['valac'] paths=['/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games'] var='VALAC' -> '/usr/bin/valac'
+/usr/bin/valac --version
+out: Vala 0.11.5
+
+----------------------------------------
+Checking for valac version >= (0, 8, 0)
+(0, 11, 5)
+(tool gnu_dirs is already loaded, skipping)
 ----------------------------------------
 Checking for 'gtk+-2.0' >= 2.16.0
 ['/usr/bin/pkg-config', '--atleast-version=2.16.0', 'gtk+-2.0']

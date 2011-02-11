@@ -1,0 +1,12 @@
+This application currently uses waf ONLY to check for dependencies.
+
+You will first have to install sqlheavy using the .deb package supplied.
+
+To check for dependencies/configure:
+./waf configure
+
+To build BeatBox and run:
+./build_run
+
+To just run beatbox:
+./BeatBox

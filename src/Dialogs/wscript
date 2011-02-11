@@ -1,0 +1,21 @@
+#! /usr/bin/env python
+
+PACKAGES = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0'
+SOURCE='''
+NotImportedWindow.vala \
+PlaylistNameWindow.vala \
+PreferencesWindow.vala \
+SmartPlaylistEditor.vala \
+SongEditor.vala \
+'''
+def build(bld):
+	prog = bld(features='c cprogram')
+	prog.name = 'BeatBox'
+	prog.target = 'BeatBox'
+	prog.source = SOURCE
+	prog.includes = 'src .'
+	prog.uselib = 'GIO GTHREAD GTK LIBNOTIFY INDICATE WEBKIT GSTREAMER TAGLIB'
+	prog.packages = PACKAGES
+	prog.vapi_dirs = '.'
+	#prog.vapi_dirs = '../my_lib'
+	prog.threading = True

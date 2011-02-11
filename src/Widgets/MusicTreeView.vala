@@ -2,11 +2,6 @@ using Gee;
 using Gtk;
 
 public class BeatBox.MusicTreeView : ScrolledWindow {
-	private string NOW_PLAYING_IMAGE;
-	private string EMPTY_IMAGE;
-	private Gdk.Pixbuf now_playing_pixbuf;
-	private Gdk.Pixbuf empty_pixbuf;
-	
 	private BeatBox.LibraryManager lm;
 	private BeatBox.LibraryWindow lw;
 	private TreeView view;
@@ -81,17 +76,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
 	 */
 	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, int sort) {
-		NOW_PLAYING_IMAGE = GLib.Environment.get_home_dir() + "/.beatbox/now_playing.png";
-		EMPTY_IMAGE = GLib.Environment.get_home_dir() + "/.beatbox/empty.png";
-		
-		try {
-			now_playing_pixbuf = new Gdk.Pixbuf.from_file(NOW_PLAYING_IMAGE);
-			empty_pixbuf = new Gdk.Pixbuf.from_file(EMPTY_IMAGE);
-		}
-		catch(GLib.Error err) {
-			stdout.printf("WARNING: Necessary images must be added to ~/.beatbox/\n");
-		}
-		
 		lm = lmm;
 		lw = lww;
 		this.songs = new LinkedList<int>();
