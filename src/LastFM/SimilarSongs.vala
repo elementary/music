@@ -45,11 +45,9 @@ public class LastFM.SimilarSongs : Object {
 		foreach(BeatBox.Song sim in similarAll) {
 			BeatBox.Song s = _lm.song_from_name(sim.title, sim.artist);
 			if(s.rowid != 0) {
-				stdout.printf("similar:%s by %s\n", s.title, s.artist);
 				similarDo.add(s);
 			}
 			else {
-				stdout.printf("NOT:%s by %s\n", sim.title, sim.artist);
 				similarDont.add(sim);
 			}
 		}
@@ -64,7 +62,6 @@ public class LastFM.SimilarSongs : Object {
 			//lm.add_playlist(p);
 			
 		Idle.add( () => {
-			stdout.printf("setting similar\n");
 			//lw.setSimilar(p);
 			//lw.addSideListItem(p);
 			similar_retrieved(similarDo, similarDont);

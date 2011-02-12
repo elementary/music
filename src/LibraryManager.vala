@@ -430,6 +430,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		set { _current_index = value; }
 	}
 	
+	public Collection<int> current_songs() {
+		return _current.values;
+	}
+	
 	public void clearCurrent() {
 		_current.clear();
 	}

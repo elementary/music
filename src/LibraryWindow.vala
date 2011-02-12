@@ -248,11 +248,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//sideTree.addItem(null, new GLib.Object(), songInfoScroll, "Song Info");
 		//mainViews.pack_start(songInfoScroll, true, true, 0);
 		
-		mtv = new MusicTreeView(lm, this, -1);
-		mtv.set_hint("similar");
-		mtv.view_being_searched.connect(musicTreeViewSearched);
-		sideTree.addItem(sideTree.playlists_iter, null, mtv, "Similar");
-		mainViews.pack_start(mtv, true, true, 0);
+		SimilarPane sp = new SimilarPane(lm, this);
+		sideTree.addItem(sideTree.playlists_iter, null, sp, "Similar");
+		mainViews.pack_start(sp, true, true, 0);
 		
 		mtv = new MusicTreeView(lm, this, -1);
 		mtv.set_hint("queue");
@@ -324,14 +322,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mtv.view_being_searched.connect(musicTreeViewSearched);
 		sideTree.get_selection().unselect_all();
 		sideTree.get_selection().select_iter(item);
-	}
-	
-	public void setSimilar(LinkedList<int> sims) {
-		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
-		
-		if(w != null) {
-			((MusicTreeView)w).populateView(sims, false);
-		}
 	}
 	
 	public virtual void progressNotification(string? message, double progress) {
@@ -781,21 +771,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void similarRetrieved(LinkedList<Song> similarDo, LinkedList<Song> similarDont) {
-		stdout.printf("similarRetrieved\n");
-		
-		foreach(Song s in similarDo) {
-			stdout.printf("similar:%s %s\n", s.title, s.artist);
-		}
-		foreach(Song s in similarDont) {
-			stdout.printf("similar NOT:%s %s\n", s.title, s.artist);
-		}
-		
 		LinkedList<int> similarIDs = new LinkedList<int>();
 		
 		foreach(Song s in similarDo) {
 			similarIDs.add(s.rowid);
 		}
 		
-		setSimilar(similarIDs);
+		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
+		((SimilarPane)w).updateSongs(lm.song_info.song, similarIDs, similarDont);
 	}
 }
