@@ -40,9 +40,10 @@ public class BeatBox.SideTreeView : TreeView {
 		 * 1: the widget to show in relation
 		 * 2: name to display
 		 */
-		sideTreeModel = new TreeStore(3, typeof(GLib.Object), typeof(Widget), typeof(string));
+		sideTreeModel = new TreeStore(4, typeof(GLib.Object), typeof(Widget), typeof(string), typeof(string));
 		this.set_model(sideTreeModel);
 		this.set_headers_visible(false);
+		this.set_grid_lines(TreeViewGridLines.NONE);
 		//this.show_expanders = false;
 		
 		TreeViewColumn col = new TreeViewColumn();
@@ -57,6 +58,15 @@ public class BeatBox.SideTreeView : TreeView {
 		var cell_renderer_text = new Gtk.CellRendererText();
 		this.get_column(2).pack_end(cell_renderer_text, true);
 		this.get_column(2).set_attributes(cell_renderer_text, "text", 2, null);
+		//this.get_column(2).expand = false;
+		
+		col = new TreeViewColumn();
+		col.title = "expander";
+		col.alignment = (float)1.0;
+		insert_column(col, 3);
+		//col.visible = false;
+		col.expand = true;
+		this.set_expander_column(get_column(2));
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in this.get_columns()) {
@@ -102,7 +112,6 @@ public class BeatBox.SideTreeView : TreeView {
 		//if not a parent make bold, move more left if possible, etc.
 		
 		if(cell is CellRendererText) {
-			((CellRendererText)cell).alignment = Pango.Alignment.LEFT;
 			string text;
 			tree_model.get(iter, 2, out text);
 			((CellRendererText)cell).text = text;
@@ -130,12 +139,14 @@ public class BeatBox.SideTreeView : TreeView {
 		
 		//align pixbuf to right, text to left
 		if(cell is CellRendererPixbuf) {
-			cell.is_expanded = false;
-			cell.width = 16;
+			cell.set_fixed_size(26, 0);
+			cell.set_alignment((float)1.0, (float)1.0);
 			//((CellRendererPixbuf)cell).alignment = Alignment.RIGHT;
+			((CellRendererPixbuf)cell).stock_size = 16;
 		}
-		else
-			cell.is_expanded = false;
+		else {
+			cell.set_alignment((float)0.0, (float)0.0);
+		}
 			
 		if(!sideTreeModel.iter_parent(out parent, iter)) {
 			if(cell is CellRendererPixbuf) {

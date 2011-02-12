@@ -46,25 +46,25 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * 
 	 */
 	public void load_db() {
-		var beatbox_folder = GLib.File.new_for_path(Environment.get_home_dir () + "/.beatbox/");
-		var db_file = GLib.File.new_for_path(Environment.get_home_dir () + "/.beatbox/data.db");
-		
-		if(!beatbox_folder.query_exists())
-			beatbox_folder.create(FileCreateFlags.NONE);
-		
 		bool need_create = false;
+		
+		var beatbox_folder = GLib.File.new_for_path(Environment.get_user_data_dir() + "/beatbox");
+		if(!beatbox_folder.query_exists())
+			beatbox_folder.make_directory(null);
+		
+		var db_file = GLib.File.new_for_path(beatbox_folder.get_path() + "/beatbox_db.db");
 		if(!db_file.query_exists())
 			need_create = true;
 		
 		try {
 			if(write && !create)
-				_db = new SQLHeavy.Database (Environment.get_home_dir () + "/.beatbox/data.db", SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE);
+				_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE);
 			else if(!write && create)
-				_db = new SQLHeavy.Database (Environment.get_home_dir () + "/.beatbox/data.db", SQLHeavy.FileMode.READ | SQLHeavy.FileMode.CREATE);
+				_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.CREATE);
 			else if(write && create)
-				_db = new SQLHeavy.Database (Environment.get_home_dir () + "/.beatbox/data.db", SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
+				_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
 			else
-				_db = new SQLHeavy.Database (Environment.get_home_dir () + "/.beatbox/data.db", SQLHeavy.FileMode.READ);
+				_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ);
 			
 			/*_db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); });*/
 		}

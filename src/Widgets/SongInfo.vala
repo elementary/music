@@ -8,7 +8,11 @@ public class BeatBox.SongInfo : Object {
 	public LastFM.AlbumInfo album;
 	
     public SongInfo() {
-		file  = GLib.File.new_for_path(Environment.get_home_dir () + "/.beatbox/song_info.html");
+		var beatbox_folder = GLib.File.new_for_path(Environment.get_user_cache_dir() + "/beatbox");
+		if(!beatbox_folder.query_exists())
+			beatbox_folder.make_directory(null);
+		
+		file  = GLib.File.new_for_path(beatbox_folder.get_path() + "/beatbox_song_info.html");
 		
 		if(!file.query_exists()) {
 			stdout.printf("Creating song info file \n");
@@ -36,7 +40,7 @@ public class BeatBox.SongInfo : Object {
 		
 		try {
 			file.delete();
-			file = File.new_for_path(Environment.get_home_dir () + "/.beatbox/song_info.html");
+			file = File.new_for_path(Environment.get_user_cache_dir() + "/beatbox_song_info.html");
 			var file_stream = file.create (FileCreateFlags.NONE);
 			var data_stream = new DataOutputStream (file_stream);
 			data_stream.put_string (html);
@@ -49,7 +53,7 @@ public class BeatBox.SongInfo : Object {
          * to ~/.beatbox/albums/ folder and name it by the album name. 
          */
         
-        return Environment.get_home_dir () + "/.beatbox/song_info.html";
+        return Environment.get_user_cache_dir() + "/beatbox_song_info.html";
 	}
 	
 	public string generate_html() {

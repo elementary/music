@@ -21,7 +21,6 @@ public class LastFM.SimilarSongs : Object {
 	public virtual void queryForSimilar(BeatBox.Song s) {
 		_base = s;
 		
-		// possible segfaults from accessing db at same time as here... should pass dbm to lastfm
 		if(!working) {
 			working = true;
 			
@@ -52,23 +51,10 @@ public class LastFM.SimilarSongs : Object {
 			}
 		}
 		
-		/*int playlist_time = 0;
-		foreach(Song sim in p.songs()) {
-			playlist_time += s.length;
-		}
-		*/
-		// make sure it is of decent size
-		//if(playlist_time > (25 * 60))  {
-			//lm.add_playlist(p);
-			
 		Idle.add( () => {
-			//lw.setSimilar(p);
-			//lw.addSideListItem(p);
 			similar_retrieved(similarDo, similarDont);
 			return false;
 		});
-			
-		//}
 		
 		working = false;
 		
@@ -91,7 +77,7 @@ public class LastFM.SimilarSongs : Object {
 		else if(doc->get_root_element() == null)
 			stdout.printf("Oddly, similar artist information was invalid");
 		else {
-			stdout.printf("Getting similar tracks with %s... \n", url);
+			//stdout.printf("Getting similar tracks with %s... \n", url);
 			similarToAdd = null;
 			parse_similar_nodes(doc->get_root_element(), "");
 		}
