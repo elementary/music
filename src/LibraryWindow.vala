@@ -7,6 +7,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	BeatBox.LibraryManager lm;
 	BeatBox.Settings settings;
 	BeatBox.StreamPlayer player;
+	LastFM.SimilarSongs similarSongs;
 	
 	string current_view_path;
 	bool queriedlastfm; // whether or not we have queried last fm for the current song info
@@ -62,16 +63,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		//this is used by many objects, is the media backend
 		lm = new BeatBox.LibraryManager(player, dbm, settings);
+		similarSongs = new LastFM.SimilarSongs(lm);
 		
 		build_ui();
 		
 		this.player.end_of_stream.connect(end_of_stream);
 		this.player.current_position_update.connect(current_position_update);
+		
 		this.lm.music_added.connect(musicAdded);
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
 		this.lm.song_removed.connect(songRemovedFromManager);
 		this.lm.song_played.connect(song_played);
+		
+		this.similarSongs.similar_retrieved.connect(similarRetrieved);
+		
 		destroy.connect (on_quit);
 		check_resize.connect(on_resize);
 		this.destroy.connect (Gtk.main_quit);
@@ -243,6 +249,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//mainViews.pack_start(songInfoScroll, true, true, 0);
 		
 		mtv = new MusicTreeView(lm, this, -1);
+		mtv.set_hint("similar");
+		mtv.view_being_searched.connect(musicTreeViewSearched);
+		sideTree.addItem(sideTree.playlists_iter, null, mtv, "Similar");
+		mainViews.pack_start(mtv, true, true, 0);
+		
+		mtv = new MusicTreeView(lm, this, -1);
 		mtv.set_hint("queue");
 		mtv.populateView(lm.queue(), false);
 		mtv.view_being_searched.connect(musicTreeViewSearched);
@@ -262,16 +274,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mtv.view_being_searched.connect(musicTreeViewSearched);
 		sideTree.addItem(sideTree.library_iter, null, mtv, "Music");
 		mainViews.pack_start(mtv, true, true, 0);
-		
-		//why should i have internet sources on a music player???
-		//I should just concentrate on playing local music files
-		/*pandora
-		sideTree.addItem(sideTree.get_internet_iter(), new GLib.Object(), pandoraScroll, "Pandora");
-		mainViews.pack_start(pandoraScroll, true, true, 0);
-		
-		//groooveshark
-		sideTree.addItem(sideTree.get_internet_iter(), new GLib.Object(), grooveSharkScroll, "Groove Shark");
-		mainViews.pack_start(grooveSharkScroll, true, true, 0);*/
 		
 		// load smart playlists
 		foreach(SmartPlaylist p in lm.smart_playlists()) {
@@ -322,6 +324,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mtv.view_being_searched.connect(musicTreeViewSearched);
 		sideTree.get_selection().unselect_all();
 		sideTree.get_selection().select_iter(item);
+	}
+	
+	public void setSimilar(LinkedList<int> sims) {
+		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
+		
+		if(w != null) {
+			((MusicTreeView)w).populateView(sims, false);
+		}
 	}
 	
 	public virtual void progressNotification(string? message, double progress) {
@@ -731,6 +741,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				catch(GLib.ThreadError err) {
 					stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
 				}
+				
+				similarSongs.queryForSimilar(lm.song_info.song);
 			}
 			
 			//at 30 seconds in, we consider the song as played
@@ -766,5 +778,24 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		//re-enable streamplayer's updates
 		this.player.current_position_update.connect(current_position_update);
+	}
+	
+	public virtual void similarRetrieved(LinkedList<Song> similarDo, LinkedList<Song> similarDont) {
+		stdout.printf("similarRetrieved\n");
+		
+		foreach(Song s in similarDo) {
+			stdout.printf("similar:%s %s\n", s.title, s.artist);
+		}
+		foreach(Song s in similarDont) {
+			stdout.printf("similar NOT:%s %s\n", s.title, s.artist);
+		}
+		
+		LinkedList<int> similarIDs = new LinkedList<int>();
+		
+		foreach(Song s in similarDo) {
+			similarIDs.add(s.rowid);
+		}
+		
+		setSimilar(similarIDs);
 	}
 }

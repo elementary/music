@@ -17,6 +17,7 @@ public class BeatBox.SideTreeView : TreeView {
 	public TreeIter playlists_iter;
 	public TreeIter playlists_queue_iter;
 	public TreeIter playlists_history_iter;
+	public TreeIter playlists_similar_iter;
 	
 	//for playlist right click
 	Menu playlistMenu;
@@ -42,7 +43,6 @@ public class BeatBox.SideTreeView : TreeView {
 		sideTreeModel = new TreeStore(3, typeof(GLib.Object), typeof(Widget), typeof(string));
 		this.set_model(sideTreeModel);
 		this.set_headers_visible(false);
-		this.set_level_indentation(0);
 		//this.show_expanders = false;
 		
 		TreeViewColumn col = new TreeViewColumn();
@@ -110,6 +110,9 @@ public class BeatBox.SideTreeView : TreeView {
 		else if(cell is CellRendererPixbuf && iter == library_music_iter) {
 			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("folder-music", IconSize.MENU);
 		}
+		else if(cell is CellRendererPixbuf && iter == playlists_similar_iter) {
+			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("playlist-automatic", IconSize.MENU);
+		}
 		else if(cell is CellRendererPixbuf && iter == playlists_queue_iter) {
 			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("media-audio", IconSize.MENU);
 		}
@@ -128,6 +131,7 @@ public class BeatBox.SideTreeView : TreeView {
 		//align pixbuf to right, text to left
 		if(cell is CellRendererPixbuf) {
 			cell.is_expanded = false;
+			cell.width = 16;
 			//((CellRendererPixbuf)cell).alignment = Alignment.RIGHT;
 		}
 		else
@@ -192,6 +196,11 @@ public class BeatBox.SideTreeView : TreeView {
 			sideTreeModel.append(out library_audiobooks_iter, parent);
 			sideTreeModel.set(library_audiobooks_iter, 0, o, 1, w, 2, name);
 			return library_audiobooks_iter;
+		}
+		else if(name == "Similar" && parent == playlists_iter) {
+			sideTreeModel.append(out playlists_similar_iter, parent);
+			sideTreeModel.set(playlists_similar_iter, 0, o, 1, w, 2, name);
+			return playlists_similar_iter;
 		}
 		else if(name == "Queue" && parent == playlists_iter) {
 			sideTreeModel.append(out playlists_queue_iter, parent);
@@ -387,7 +396,7 @@ public class BeatBox.SideTreeView : TreeView {
 	
 	public void resetView() {
 		this.get_selection().unselect_all();
-		this.get_selection().select_iter(library_iter);
+		this.get_selection().select_iter(library_music_iter);
 		model.foreach(updateView);
 	}
 	

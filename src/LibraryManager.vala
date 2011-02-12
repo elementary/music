@@ -331,6 +331,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public Song song_from_name(string title, string artist) {
 		Song rv = new Song("");
+		rv.title = title;
+		rv.artist = artist;
 		
 		foreach(Song s in _songs.values) {
 			if(s.title == title && s.artist == artist)

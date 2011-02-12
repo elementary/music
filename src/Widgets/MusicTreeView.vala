@@ -265,7 +265,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		songRateSong.submenu = songRateSongMenu;
 		songEditSong.activate.connect(songMenuEditClicked);
 		songMenuQueue.activate.connect(songMenuQueueClicked);
-		songMenuPsychic.activate.connect(songMenuPsychicClicked);
+		//songMenuPsychic.activate.connect(songMenuPsychicClicked);
 		songRemove.activate.connect(songRemoveClicked);
 		songRateSong0.activate.connect(songRateSong0Clicked);
 		songRateSong1.activate.connect(songRateSong1Clicked);
@@ -411,11 +411,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				else if(tvc.title == "Album")
 					album_id = index;
 				
-				if(hint == "library" && sort_id == -1 && tvc.title == "Artist")
+				if(hint == "music" && sort_id == -1 && tvc.title == "Artist")
+					main_sort = index;
+				else if(hint == "similar" && sort_id == -1 && tvc.title == "#")
 					main_sort = index;
 				else if(hint == "queue" && sort_id == -1 && tvc.title == "#")
 					main_sort = index;
-				else if(hint == "already played" && sort_id == -1 && tvc.title == "#")
+				else if(hint == "history" && sort_id == -1 && tvc.title == "#")
 					main_sort = index;
 				else if(hint == "playlist" && sort_id == -1 && tvc.title == "#")
 					main_sort = index;
@@ -828,7 +830,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
-	public virtual void songMenuPsychicClicked() {
+	/*public virtual void songMenuPsychicClicked() {
 		// possible segfaults from accessing db at same time as here... should pass dbm to lastfm
 		if(!psychicworking) {
 			psychicworking = true;
@@ -861,6 +863,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			ArrayList<Song> similar = lfm.getSimilarTracks(s.title, s.artist);
 			
 			Playlist p = new Playlist();
+			Playlist w = new Playlist();
 			p.name = "Similar to " + s.title;
 			
 			p.addSong(s);
@@ -880,7 +883,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				lm.add_playlist(p);
 				
 				Idle.add( () => {
-					lw.addSideListItem(p);
+					stdout.printf("setting similar\n");
+					lw.setSimilar(p);
+					//lw.addSideListItem(p);
 					return false;
 				});
 				
@@ -890,7 +895,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		
 		return null;	
-    }
+    }*/
 	
 	
 	public virtual void songRemoveClicked() {
