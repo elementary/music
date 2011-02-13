@@ -120,80 +120,81 @@ public class BeatBox.LibraryManager : GLib.Object {
 		progress_notification(message, progress);
 	}
 	
-	 public void set_music_folder(string folder) {
-                settings.setMusicFolder(folder);
-                try {
-                        Thread.create<void*>(set_music_thread_function, false);
-                }
-                catch(GLib.Error err) {
-                        stdout.printf("Could not create thread to set music folder: %s\n", err.message);
-                }
-        }
-        
-        // i should do the actual file browsing here
-        public void* set_music_thread_function () {
-                var file = GLib.File.new_for_path(settings.getMusicFolder());
-                
-                var items = fo.count_music_files(file);
-                fo.resetProgress(items);
-                
-                var new_songs = new LinkedList<Song>();
-                var not_imported = new LinkedList<string>();
-                fo.get_music_files(file, ref new_songs, ref not_imported);
-                
-                _songs.clear();
-                _queue.clear();
-                //_current.clear();
-                
-                int index = 1;
-                foreach(Song s in new_songs) {
-					s.rowid = index++;
-					_songs.set(s.rowid, s);
-                }
-                
-                //tell user what songs were not imported.
-                foreach(string s in not_imported) {
-					stdout.printf("File %s was not imported\n", s);
-                }
-                
-                Idle.add( () => { music_added(not_imported); return false; });
-                
-                return null;
-        }
-        
-        public void rescan_music_folder() {
-                try {
-                        Thread.create<void*>(rescan_music_thread_function, false);
-                }
-                catch(GLib.Error err) {
-                        stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
-                }
-        }
-        
-        public void* rescan_music_thread_function () {
-                LinkedList<string> paths = new LinkedList<string>();
-                
-                foreach(Song s in _songs.values) {
-                        paths.add(s.file);
-                }
-                
-                fo.resetProgress(paths.size);
-                
-                var not_imported = new LinkedList<string>();
-                fo.rescan_music(GLib.File.new_for_path(settings.getMusicFolder()), ref paths, ref not_imported);
-                
-                // all songs remaining are no longer in folder hierarchy
-                dbm.remove_songs(paths);
-                
-                //tell user what songs were not imported.
-                foreach(string s in not_imported) {
-                        stdout.printf("File %s was not imported\n", s);
-                }
-                
-                Idle.add( () => { music_rescanned(not_imported); return false; });
-                
-                return null;
-        }
+	public void get_music_folders() {
+		try {
+			Thread.create<weak void*>(set_music_thread_function, false);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not create thread to set music folder: %s\n", err.message);
+		}
+	}
+	
+	public void* set_music_thread_function () {
+		var folders = GLib.File.new_for_path(settings.getMusicFolders());
+		
+		//var items = fo.count_music_files(file);
+		//fo.resetProgress(items);
+		var new_songs = new LinkedList<Song>();
+		var not_imported = new LinkedList<string>();
+		//fo.get_music_files(file, ref new_songs, ref not_imported);
+		
+		_songs.clear();
+		_queue.clear();
+		//_current.clear();
+		
+		int index = 1;
+		foreach(Song s in new_songs) {
+			s.rowid = index++;
+			_songs.set(s.rowid, s);
+		}
+		
+		//tell user what songs were not imported.
+		foreach(string s in not_imported) {
+			stdout.printf("File %s was not imported\n", s);
+		}
+		
+		Idle.add( () => { music_added(not_imported); return false; });
+		
+		return null;
+	}
+	
+	public void rescan_music_folders() {
+		try {
+			Thread.create<void*>(rescan_music_thread_function, false);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+		}
+	}
+	
+	public void* rescan_music_thread_function () {
+		ArrayList<string> paths = new ArrayList<string>();
+		var not_imported = new LinkedList<string>();
+		
+		foreach(Song s in _songs.values) {
+			paths.add(s.file);
+		}
+		
+		foreach(string folder in settings.getMusicFoldersList()) {
+			fo.resetProgress(paths.size);
+			fo.rescan_music(GLib.File.new_for_path(folder), ref paths, ref not_imported);
+		}
+		
+		//remove songs that were not touched in scan
+		var songs_to_remove = new LinkedList<int>();
+		foreach(Song s in _songs.values) {
+			if(paths.contains(s.file))
+				songs_to_remove.add(s.rowid);
+		}
+		
+		foreach(int id in songs_to_remove) {
+			remove_song_from_id(id);
+		}
+		
+		Idle.add( () => { music_rescanned(not_imported); return false; });
+		
+		return null;
+	}
 	
 	/******************** Song list columns *******************/
 	public ArrayList<Gtk.TreeViewColumn> columns() {
@@ -587,12 +588,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// set the current song
 		song_info.song = song_from_id(id);
 		
-		//pause if paused
+		//do some funky playing/not playing stuff
 		if(!playing)
 			player.pause_stream();
-		
-		//update settings
-		settings.setLastSongPlaying(song_from_id(id));
 		
 		song_played(id);
 	}

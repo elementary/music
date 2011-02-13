@@ -3,36 +3,30 @@ using Gtk;
 public class BeatBox.PreferencesWindow : Window {
 	private BeatBox.LibraryManager _lm;
 	
-	private Gee.LinkedList<string> origLocations;
-	private Gee.LinkedList<string> newLocations;
-	Gee.LinkedList<string> removed; //as we find folders from before, remove them from removed.
-	
 	//for padding around notebook mostly
-	private VBox vert;
-	private HBox horiz;
+	private VBox content;
+	private HBox padding;
 	
-	private Notebook notebook;
-	private Viewport generalPage;
-	private Viewport lastfmPage;
+	//category labels
+	private Label musicLabel;
+	private Label managementLabel;
+	private Label lastfmLabel;
 	
-	private ScrolledWindow musicLocationsScroll;
-	private TreeView musicLocationsView;
-	private ListStore musicLocationsModel;
-	private Button musicLocationsAdd;
-	private Button musicLocationsRemove;
-	private CheckButton updateFolderNames;
+	private ListStore musicFolderList;
+	private ComboBox musicFolderCombo;
+	
+	private CheckButton organizeFolders;
 	private CheckButton copyImportedMusic;
 	
 	private Button lastfmLogin;
+	private Label lastfmInfo;
 	
 	private Button saveChanges;
-	private Button cancelChanges;
 	
 	private string lastfm_token;
 	
 	public PreferencesWindow(LibraryManager lm) {
 		this._lm = lm;
-		origLocations = _lm.settings.getMusicFoldersList();
 		
 		buildUI();
 	}
@@ -47,88 +41,78 @@ public class BeatBox.PreferencesWindow : Window {
 		set_size_request(400, 300);
 		allow_shrink = true;
 		
-		vert = new VBox(false, 10);
-		horiz = new HBox(false, 10);
-		notebook = new Notebook();
-		generalPage = new Viewport(null, null);
-		lastfmPage = new Viewport(null, null);
+		content = new VBox(false, 10);
+		padding = new HBox(false, 10);
 		
-		musicLocationsScroll = new ScrolledWindow(null, null);
-		musicLocationsView = new TreeView();
-		musicLocationsModel = new ListStore(1, typeof(string));
-		musicLocationsAdd = new Button.with_label("Add");
-		musicLocationsRemove = new Button.with_label("Remove");
-		updateFolderNames = new CheckButton.with_label("Update folder names based on Metadata");
-		copyImportedMusic = new CheckButton.with_label("Copy imported music to music folder");
+		musicLabel = new Label("Music Folder Location");
+		musicFolderList = new ListStore(2, typeof(Gdk.Pixbuf), typeof(string));
+		musicFolderCombo = new ComboBox.with_model(musicFolderList);
 		
-		Label lastfmInfo = new Label("To allow for scrobbling, love, bans, etc. in Last FM, you must give permission to BeatBox. You only need to do this once. It is a two-step process.");
+		managementLabel = new Label("Library Management");
+		organizeFolders = new CheckButton.with_label("Keep Music folder organized");
+		copyImportedMusic = new CheckButton.with_label("Copy files to Music folder when added to Library");
+		
+		lastfmLabel = new Label("Last FM Integration");
+		lastfmInfo = new Label("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
 		lastfmLogin = new Button.with_label("Enable Scrobbling");
 		
 		saveChanges = new Button.with_label("Save");
-		cancelChanges = new Button.with_label("Cancel");
 		
-		/** build general page **/
-		VBox genVert = new VBox(false, 3);
-		notebook.append_page(generalPage, new Label("General"));
-		generalPage.add(genVert);
+		/* fancy up the category labels */
+		musicLabel.xalign = 0.0f;
+		managementLabel.xalign = 0.0f;
+		lastfmLabel.xalign = 0.0f;
+		musicLabel.set_markup("<b>Music Folder Location</b>");
+		managementLabel.set_markup("<b>Library Management</b>");
+		lastfmLabel.set_markup("<b>Last FM Integration</b>");
 		
-		musicLocationsView.insert_column_with_attributes(-1, "Music Folder", new CellRendererText(), "text", 0, null);
-		musicLocationsView.set_model(musicLocationsModel);
+		/* Generate music folder combobox items */
+		TreeIter iter;
+		musicFolderList.append(out iter);
+		musicFolderList.set(iter, 0, this.render_icon("media-audio", Gtk.IconSize.MENU, null), 1, "Music");
+		musicFolderList.append(out iter);
+		musicFolderList.set(iter, 0, null, 1, "Other");
 		
-		foreach(string s in _lm.settings.getMusicFoldersList()) {
-			TreeIter added;
-			musicLocationsModel.append(out added);
-			musicLocationsModel.set(added, 0, s);
-		}
-		
-		musicLocationsScroll.add(musicLocationsView);
-		musicLocationsScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-		
-		VBox musicFolderButtonsBox = new VBox(false, 0);
-		musicFolderButtonsBox.pack_start(musicLocationsAdd, false, false, 0);
-		musicFolderButtonsBox.pack_start(musicLocationsRemove, false, false, 0);
-		
-		HBox musicFolderBox = new HBox(false, 0);
-		musicFolderBox.pack_start(musicLocationsScroll, true, true, 5);
-		musicFolderBox.pack_start(musicFolderButtonsBox, false, false, 0);
-		
-		updateFolderNames.set_active(_lm.settings.getUpdateFolderHierarchy());
+		/* initialize library management settings */
+		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
 		copyImportedMusic.set_active(_lm.settings.getCopyImportedMusic());
-		
-		genVert.pack_start(musicFolderBox, true, true, 0);
-		genVert.pack_start(updateFolderNames, false, true, 0);
-		genVert.pack_start(copyImportedMusic, false, true, 0);
-		
-		/** build lastfm page **/
-		VBox lastfmVert = new VBox(false, 3);
-		notebook.append_page(lastfmPage, new Label("Last FM"));
-		lastfmPage.add(lastfmVert);
 		
 		lastfmInfo.set_line_wrap(true);
 		
-		lastfmVert.pack_start(lastfmInfo, false, true, 0);
-		lastfmVert.pack_start(lastfmLogin, false, true, 0);
-		
-		lastfmLogin.clicked.connect(lastfmLoginClick);
-		
 		/** Add save and cancel buttons **/
 		HButtonBox bottomButtons = new HButtonBox();
-		bottomButtons.pack_start(cancelChanges, false, false, 0);
+		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(saveChanges, false, false, 0);
 		
 		/** put it all together **/
-		vert.pack_start(notebook, true, true, 0);
-		vert.pack_start(bottomButtons, false, true, 0);
+		content.pack_start(wrap_alignment(musicLabel, 10, 0, 0, 0), false, true, 0);
+		content.pack_start(wrap_alignment(musicFolderCombo, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(managementLabel, false, true, 0);
+		content.pack_start(wrap_alignment(organizeFolders, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(wrap_alignment(copyImportedMusic, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(lastfmLabel, false, true, 0);
+		content.pack_start(wrap_alignment(lastfmInfo, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(wrap_alignment(lastfmLogin, 0, 0, 0, 10), false, true, 0);
+		content.pack_end(bottomButtons, false, true, 10);
 		
-		horiz.pack_start(vert, true, true, 10);
+		padding.pack_start(content, true, true, 10);
 		
-		this.add(horiz);
+		this.add(padding);
 		show_all();
 		
+		lastfmLogin.clicked.connect(lastfmLoginClick);
 		saveChanges.clicked.connect(saveClicked);
-		cancelChanges.clicked.connect(cancelClicked);
-		musicLocationsAdd.clicked.connect(musicLocationsAddClicked);
-		musicLocationsRemove.clicked.connect(musicLocationsRemoveClicked);
+	}
+	
+	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+		alignment.top_padding = top;
+		alignment.right_padding = right;
+		alignment.bottom_padding = bottom;
+		alignment.left_padding = left;
+		
+		alignment.add(widget);
+		return alignment;
 	}
 	
 	public virtual void lastfmLoginClick() {
@@ -169,89 +153,11 @@ public class BeatBox.PreferencesWindow : Window {
 			}
 		}
 	}
-	
-	public virtual void musicLocationsAddClicked() {
-		string folder = "";
-		var file_chooser = new FileChooserDialog ("Add Music Folder", this,
-                                      FileChooserAction.SELECT_FOLDER,
-                                      Gtk.Stock.CANCEL, ResponseType.CANCEL,
-                                      Gtk.Stock.OPEN, ResponseType.ACCEPT);
-        if (file_chooser.run () == ResponseType.ACCEPT) {
-            folder = file_chooser.get_filename();
-        }
-        file_chooser.destroy ();
-        
-        if(folder != "") {
-			TreeIter added;
-			musicLocationsModel.append(out added);
-			musicLocationsModel.set(added, 0, folder);
-		}
-	}
-	
-	public virtual void musicLocationsRemoveClicked() {
-		TreeModel model;
-		TreeIter iter;
-		musicLocationsView.get_selection().get_selected(out model, out iter);
-		
-		musicLocationsModel.remove(iter);
-	}
-		
-	public bool buildFoldersChanges(TreeModel model, TreePath path, TreeIter iter) {
-		string loc;
-		model.get(iter, 0, out loc);
-		
-		newLocations.add(loc);
-		
-		if(loc in origLocations)
-			removed.remove(loc);
-			
-		return false;
-	}
 		
 	public virtual void saveClicked() {
-		/** loop through all strings in locations view. if a folder was
-		 * removed, remove all those songs first. then go through all the new
-		 * folders that were added and add the files from there
-		 */
 		
-		removed = origLocations; //as we find folders from before, remove them from removed.
-		newLocations = new Gee.LinkedList<string>();
-		musicLocationsModel.foreach(buildFoldersChanges);
 		
-		_lm.settings.setMusicFoldersFromList(newLocations);
-		
-		/* remove songs belonging to the folders that were removed */
-		var removed_songs = new Gee.LinkedList<int>();
-		foreach(Song s in _lm.songs()) {
-			bool remove = false;
-			foreach(string removeLoc in removed) {
-				if(removeLoc in s.file) {
-					remove = true;
-					stdout.printf("removed:%s in %s\n", s.file, removeLoc);
-					break;
-				}
-			}
-			
-			if(remove)
-				removed_songs.add(s.rowid);
-		}
-		
-		foreach(int id in removed_songs) {
-			_lm.remove_song_from_id(id);
-		}
-		
-		//consolidate files lazily
-		//save new songs to db and reload
-		_lm.save_songs();
-		_lm.clear_songs();
-		foreach(Song s in _lm.dbm.load_songs()) {
-			_lm.add_song(s);
-		}
-		
-		//now rescan the folders
-		_lm.rescan_music_folders();
-		
-		_lm.settings.setUpdateFolderHierarchy(updateFolderNames.get_active());
+		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
 		stdout.printf("no setting for copying imported music\n");
 		this.destroy();
 	}

@@ -46,83 +46,83 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	public void get_music_files(GLib.File music_folder, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
-			GLib.FileInfo file_info = null;
-			TagLib.File tag_file;
-			
-			try {
-					var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-					while ((file_info = enumerator.next_file ()) != null) {
-							var file_path = music_folder.get_path() + "/" + file_info.get_name();
-							
-							if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
-									++index;
-									fo_progress("", (double)((double)index)/((double)item_count));
-									
-									Song s = import_song(file_path);
-									
-									if(s != null)
-											songs.add(s);
-									else
-											not_imported.add(file_path);
-							}
-							else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-									get_music_files(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
-							}
+		GLib.FileInfo file_info = null;
+		TagLib.File tag_file;
+		
+		try {
+			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				var file_path = music_folder.get_path() + "/" + file_info.get_name();
+				
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
+					++index;
+					fo_progress("", (double)((double)index)/((double)item_count));
+					
+					Song s = import_song(file_path);
+					
+					if(s != null)
+						songs.add(s);
+					else
+						not_imported.add(file_path);
+				}
+				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
+					get_music_files(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
+				}
+			}
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not get music: %s\n", err.message);
+		}
+	}
+	
+	/** rescans the music folder to update the db to the folder situation.
+	 * If song is in folder, and in db, re-add
+	 * If song is not in folder and in db,remove
+	 * If song is in both, do nothing.
+	 * @param music_folder The folder to rescan
+	 * @param current_song_paths Paths of files already in db. once file
+	 * is re-added, set string to "ADDED". at end, remove all songs that
+	 * are not re-added.
+	 * @return file paths of songs no longer available. TODO: should out that
+	 */
+	public void rescan_music(GLib.File music_folder, ref ArrayList<string> current_song_paths, ref LinkedList<string> not_imported) {
+		GLib.FileInfo file_info = null;
+		TagLib.File tag_file;
+		
+		int songs_added = 0;
+		try {
+			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				var file_path = music_folder.get_path() + "/" + file_info.get_name();
+				
+				fo_progress("", (double)((double)index)/((double)item_count));
+				
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
+					if(current_song_paths.contains(file_path)) {
+						current_song_paths.remove(file_path);
+						
+						++index;
 					}
-			}
-			catch(GLib.Error err) {
-					stdout.printf("Could not get music: %s\n", err.message);
-			}
-        }
-        
-        /** rescans the music folder to update the db to the folder situation.
-         * If song is in folder, and in db, re-add
-         * If song is not in folder and in db,remove
-         * If song is in both, do nothing.
-         * @param music_folder The folder to rescan
-         * @param current_song_paths Paths of files already in db. once file
-         * is re-added, set string to "ADDED". at end, remove all songs that
-         * are not re-added.
-         * @return file paths of songs no longer available. TODO: should out that
-         */
-        public void rescan_music(GLib.File music_folder, ref LinkedList<string> current_song_paths, ref LinkedList<string> not_imported) {
-			GLib.FileInfo file_info = null;
-			TagLib.File tag_file;
-			
-			int songs_added = 0;
-			try {
-					var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-					while ((file_info = enumerator.next_file ()) != null) {
-							var file_path = music_folder.get_path() + "/" + file_info.get_name();
-							
-							fo_progress("", (double)((double)index)/((double)item_count));
-							
-							if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
-									if(current_song_paths.contains(file_path)) {
-											current_song_paths.remove(file_path);
-											
-											++index;
-									}
-									else if(!current_song_paths.contains(file_path)) {
-											Song s = import_song(file_path);
-											
-											if(s != null)
-													lm.add_song(s);
-											else
-													not_imported.add(file_path);
-											
-											++songs_added;
-									}
-							}
-							else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-									rescan_music(GLib.File.new_for_path(file_path), ref current_song_paths, ref not_imported);
-							}
+					else if(!current_song_paths.contains(file_path)) {
+						Song s = import_song(file_path);
+						
+						if(s != null)
+							lm.add_song(s);
+						else
+							not_imported.add(file_path);
+						
+						++songs_added;
 					}
+				}
+				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
+					rescan_music(GLib.File.new_for_path(file_path), ref current_song_paths, ref not_imported);
+				}
 			}
-			catch(GLib.Error err) {
-					stdout.printf("Could not rescan music folder: %s\n", err.message);
-			}
-        }
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not rescan music folder: %s\n", err.message);
+		}
+	}
 	
 	public Song? import_song(string file_path) {
 		Song s = new Song(file_path);

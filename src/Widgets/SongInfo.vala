@@ -1,4 +1,3 @@
- 
 public class BeatBox.SongInfo : Object {
 	private GLib.File file;
 	

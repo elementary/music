@@ -6,9 +6,11 @@ public class BeatBox.Settings : Object {
 	public static const string LASTFM_AUTO_LOGIN = "/apps/beatbox/preferences/lastfm/auto_login";
 	public static const string LASTFM_SESSION_KEY = "/apps/beatbox/preferences/lastfm/lastfm_session_key";
 	
-	public static const string MUSIC_FOLDERS = "/apps/beatbox/preferences/music/music_locations";
+	public static const string MUSIC_FOLDER = "/apps/beatbox/preferences/music/music_folder";
 	public static const string UPDATE_FOLDER_HIERARCHY = "/apps/beatbox/preferences/music/update_folder_hierarchy";
 	public static const string COPY_IMPORTED_MUSIC = "/apps/beatbox/preferences/music/copy_imported_music";
+	public static const string LAST_SONG_PLAYING = "/apps/beatbox/preferences/music/last_song_playing";
+	public static const string LAST_SONG_POSITION = "/apps/beatbox/preferences/music/last_song_position";
 	
 	public static const string WINDOW_MAXIMIZED = "/apps/beatbox/preferences/ui/window_maximized";
 	public static const string WINDOW_WIDTH = "/apps/beatbox/preferences/ui/window_width";
@@ -98,21 +100,8 @@ public class BeatBox.Settings : Object {
 	}
 	
 	/** Get values **/
-	public string getMusicFolders() {
-		return getString(MUSIC_FOLDERS, "");
-	}
-	
-	public Gee.LinkedList<string> getMusicFoldersList() {
-		Gee.LinkedList<string> rv = new Gee.LinkedList<string>();
-		string[] locations = getMusicFolders().split("<location_seperator>", 0);
-		
-		int index;
-		for(index = 0; index < locations.length - 1; ++index) {
-			if("/" in locations[index]) //make sure it is not empty
-				rv.add(locations[index]);
-		}
-		
-		return rv;
+	public string getMusicFolder() {
+		return getString(MUSIC_FOLDER, Environment.get_home_dir() + "/Music/");
 	}
 	
 	public bool getWindowMaximized() {
@@ -139,12 +128,22 @@ public class BeatBox.Settings : Object {
 		return getBool(COPY_IMPORTED_MUSIC, false);
 	}
 	
-	public string getLastFMUsername() {
-		return getString(LASTFM_USERNAME, "");
+	public Song getLastSongPlaying() {
+		string[] song_parts = getString(LAST_SONG_PLAYING, "").split("<seperator>", 0);
+		
+		Song rv = new Song("");
+		
+		if(song_parts.length < 2)
+			return rv;
+		
+		rv.title = song_parts[0];
+		rv.artist = song_parts[1];
+		
+		return rv;
 	}
 	
-	public string getLastFMPassword() {
-		return getString(LASTFM_PASSWORD, "");
+	public int getLastSongPosition() {
+		return getInt(LAST_SONG_POSITION, 0);
 	}
 	
 	public bool getLastFMAutoLogin() {
@@ -156,18 +155,8 @@ public class BeatBox.Settings : Object {
 	}
 	
 	/** Set Values **/
-	public void setMusicFolders(string path) {
-		setString(MUSIC_FOLDERS, path);
-	}
-	
-	public void setMusicFoldersFromList(Gee.LinkedList<string> locations) {
-		string rv = "";
-		
-		foreach(string location in locations) {
-			rv += location + "<location_seperator>";
-		}
-		
-		setMusicFolders(rv);
+	public void setMusicFolder(string path) {
+		setString(MUSIC_FOLDER, path);
 	}
 	
 	public void setWindowMaximized(bool val) {
@@ -194,12 +183,12 @@ public class BeatBox.Settings : Object {
 		setBool(COPY_IMPORTED_MUSIC, val);
 	}
 	
-	public void setLastFMUsername(string val) {
-		setString(LASTFM_USERNAME, val);
+	public void setLastSongPlaying(Song s) {
+		setString(LAST_SONG_PLAYING, s.title + "<seperator>" + s.artist);
 	}
 	
-	public void setLastFMPassword(string val) {
-		setString(LASTFM_PASSWORD, val);
+	public void setLastSongPosition(int val) {
+		setInt(LAST_SONG_POSITION, val);
 	}
 	
 	public void setLastFMAutoLogin(bool val) {

@@ -81,6 +81,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		destroy.connect (on_quit);
 		check_resize.connect(on_resize);
 		this.destroy.connect (Gtk.main_quit);
+		
+		//resume playback
+		Song s = settings.getLastSongPlaying();
+		s = lm.song_from_name(s.title, s.artist);
+		if(s.rowid != 0) {
+			lm.addToCurrent(s.rowid);
+			lm.playSong(s.rowid);
+			topDisplay.change_value(ScrollType.NONE, (int)settings.getLastSongPosition());
+			topDisplaySliderMoved(ScrollType.NONE, (int)settings.getLastSongPosition());
+		}
 	}
 	
 	public void build_ui() {
@@ -100,7 +110,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		contentBox = new VBox(false, 0);
 		mainViews = new VBox(false, 0);
 		sideTree = new SideTreeView(lm, this);	
-		sideTreeScroll = new ScrolledWindow(null, null);	
+		sideTreeScroll = new ScrolledWindow(null, null);
+		coverArt = new Image();	
 		topMenu = new MenuBar();
 		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
 		helpOnline = new MenuItem.with_label("Get Help Online...");
@@ -132,6 +143,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		/* Set properties of various controls */
 		sourcesToSongs.child1_resize = 1;
 		sideBar.set_size_request(settings.getSidebarWidth(), -1);
+		
+		//for setting maximum size for setting hpane position max size
+		//sideBar.set_geometry_hints(
+		
 		buildSideTree();
 		
 		shuffleButton.relief = Gtk.ReliefStyle.NONE;
@@ -169,8 +184,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		helpAbout.activate.connect(helpAboutClick);
 		editPreferences.activate.connect(editPreferencesClick);
 		
-		songInfo.open("file://"+Environment.get_home_dir () + "/.beatbox/song_info.html");
-		
 		statusBar.has_resize_grip = true;
 		
 		/* Add controls to the GUI */
@@ -184,6 +197,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         ToolItem searchFieldBin = new ToolItem();
         ToolItem appMenuBin = new ToolItem();
         topDisplayBin.add(topDisplay);
+        topDisplayBin.set_border_width(5);
         searchFieldBin.add(searchField);
         appMenuBin.add(appMenu);
         
@@ -234,6 +248,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.show_scale();
 		coverArt.hide();
 		sideTree.resetView();
+		songInfoScroll.hide();
 	}
 	
 	/** Builds the side tree on TreeView view
@@ -246,7 +261,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// put song info first so it is on top when using multiple views
 		//sideTree.addItem(null, new GLib.Object(), songInfoScroll, "Song Info");
-		//mainViews.pack_start(songInfoScroll, true, true, 0);
+		mainViews.pack_start(songInfoScroll, true, true, 0);
 		
 		SimilarPane sp = new SimilarPane(lm, this);
 		sideTree.addItem(sideTree.playlists_iter, null, sp, "Similar");
@@ -338,17 +353,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public bool updateCurrentSong() {
 		//loop through all musictreeviews and call updatecurrentsong
 		
-		string file = "";
-		if((file = lm.get_album_location(lm.song_info.song.rowid)) != null) {
-			coverArt.show();
-			coverArt.set_from_file(file);
+		if(lm.song_info.song != null) {
+			string file = "";
+			if((file = lm.get_album_location(lm.song_info.song.rowid)) != null) {
+				coverArt.show();
+				coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(file, sourcesToSongs.position, sourcesToSongs.position));
+			}
+			else
+				coverArt.hide();
 		}
-		else if(lm.song_info.album.url_image.image != null) {
-			coverArt.show();
-			coverArt.set_from_pixbuf(lm.song_info.album.url_image.image);
-		}
-		else
-			coverArt.hide();
 		
 		return false;
 	}
@@ -379,17 +392,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//notification.summary = lm.song_from_id(i).title;
 		//notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
 		
-		//look for album art
-		string file = "";
-		if((file = lm.get_album_location(lm.song_info.song.rowid)) != null) {
-			coverArt.show();
-			coverArt.set_from_pixbuf(new LastFM.Image.with_url("file://" + file, true).image);
-			//notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(file));
-		}
-		else {
-			//notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(Environment.get_home_dir () + "/.beatbox/default_cover.jpg"));
-			coverArt.hide();
-		}
+		updateCurrentSong();
 		
 		//show the notifier
 		//notification.show();
@@ -570,6 +573,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void sourcesToSongsHandleSet(Gdk.Rectangle rectangle) {
+		if(settings.getSidebarWidth() != rectangle.width)
+			updateCurrentSong();
+		
 		settings.setSidebarWidth(rectangle.width);
 	}
 	
@@ -582,6 +588,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void on_quit() {
+		lm.settings.setLastSongPosition((int)topDisplay.get_scale_value());
+		
 		// save the columns
 		var columns = new ArrayList<TreeViewColumn>();
 		
@@ -639,7 +647,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_label_text("Rescanning music folder for changes. This may take a while");
 		//topDisplay.show_progressbar();
 		
-		lm.rescan_music_folders();
+		lm.rescan_music_folder();
 	}
 	
 	public virtual void musicAdded(LinkedList<string> not_imported) {
@@ -763,7 +771,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void topDisplaySliderMoved(ScrollType scroll, double val) {
 		//temporarily disable updates
 		player.current_position_update.disconnect(current_position_update);
-		
+		stdout.printf("blah blah\n");
 		player.seek_position((int64)(val * 1000000000));
 		
 		//re-enable streamplayer's updates

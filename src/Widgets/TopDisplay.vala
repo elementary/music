@@ -74,6 +74,10 @@ namespace ElementaryWidgets {
 			scale.set_value(val);
 		}
 		
+		public double get_scale_value() {
+			return scale.get_value();
+		}
+		
 		public virtual bool scale_button_press(Gdk.EventButton event) {
 			if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
 				//seek to right position
@@ -148,6 +152,7 @@ namespace ElementaryWidgets {
 			if(lm.song_info.song != null) {
 				sec = ((double)position/1000000000);
 				set_scale_value(sec);
+				stdout.printf("blah %d\n", (int)sec);
 			}
 		}
 	}
