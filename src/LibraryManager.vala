@@ -40,6 +40,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void music_rescanned(LinkedList<string> not_imported);
 	public signal void progress_notification(string? message, double progress);
 	
+	public signal void current_cleared();
+	
 	public signal void song_updated(int id);
 	public signal void song_removed(int id);
 	public signal void song_queued(int id);
@@ -305,12 +307,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _songs;
 	}
 	
-	public void update_song(Song s) {
+	public void update_song(Song s, bool updateMeta) {
 		_songs.set(s.rowid, s);
 		
-		fo.save_song(s);
+		if(updateMeta)
+			fo.save_song(s);
 		
-		if(settings.getUpdateFolderHierarchy())
+		if(settings.getUpdateFolderHierarchy() && updateMeta)
 			fo.update_file_hierarchy(s);
 			
 		song_updated(s.rowid);
@@ -434,6 +437,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void clearCurrent() {
+		current_cleared();
+		
 		_current.clear();
 	}
 	

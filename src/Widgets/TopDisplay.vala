@@ -49,6 +49,10 @@ namespace ElementaryWidgets {
 			label.set_text(text);
 		}
 		
+		public void set_label_markup(string markup) {
+			label.set_markup(markup);
+		}
+		
 		public string get_label_text() {
 			return label.get_text();
 		}
@@ -152,7 +156,6 @@ namespace ElementaryWidgets {
 			if(lm.song_info.song != null) {
 				sec = ((double)position/1000000000);
 				set_scale_value(sec);
-				stdout.printf("blah %d\n", (int)sec);
 			}
 		}
 	}

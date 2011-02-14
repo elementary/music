@@ -12,13 +12,15 @@ public class BeatBox.Beatbox : GLib.Object {
 	private const string STOCK_MEDIA_ALREADY_PLAYED = "emblem-urgent";
 	private const string STOCK_PLAYLIST = "playlist";
 	private const string STOCK_PLAYLIST_AUTOMATIC = "playlist-automatic";
+	private const string STOCK_SONG_STAR = "gnome-app-install-star";
 	
 	const Gtk.StockItem[] stock_items = {
 		{ STOCK_MUSIC_LIBRARY, null, 0, 0 },
 		{ STOCK_MEDIA_QUEUE, null, 0, 0 },
 		{ STOCK_MEDIA_ALREADY_PLAYED, null, 0, 0 },
 		{ STOCK_PLAYLIST, N_("_Playlist"), 0, 0 },
-		{ STOCK_PLAYLIST_AUTOMATIC, N_("_Smart Playlist"), 0, 0 }
+		{ STOCK_PLAYLIST_AUTOMATIC, N_("_Smart Playlist"), 0, 0 },
+		{ STOCK_SONG_STAR, null, 0, 0 }
     };
 	
 	public static int main(string[] args) {

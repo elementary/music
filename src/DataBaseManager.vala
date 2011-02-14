@@ -137,13 +137,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				else
 					tvc = new Gtk.TreeViewColumn.with_attributes(results.fetch_string(0), new Gtk.CellRendererPixbuf(), "pixbuf", index, null);
 				
-				tvc.resizable = true;
-				tvc.reorderable = true;
-				tvc.clickable = true;
-				tvc.sort_column_id = index;
-				tvc.set_sort_indicator(false);
 				tvc.visible = (results.fetch_int(1) == 1);
-				tvc.sizing = Gtk.TreeViewColumnSizing.FIXED;
 				tvc.fixed_width = results.fetch_int(2);
 					
 				rv.add(tvc);

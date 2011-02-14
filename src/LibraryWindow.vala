@@ -371,8 +371,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 */
 	public virtual void song_played(int i) {
 		//set the title
-		var song_label = lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " on " + lm.song_from_id(i).album;
-		topDisplay.set_label_text(song_label);
+		var song_label = "<b>" + lm.song_from_id(i).title + "</b>" + " by " + "<b>" + lm.song_from_id(i).artist + "</b>" + " on " + "<b>" +lm.song_from_id(i).album + "</b>";
+		topDisplay.set_label_markup(song_label);
 		
 		//reset the song position
 		topDisplay.set_scale_range(0.0, lm.song_info.song.length);
@@ -748,7 +748,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				song_considered_played = true;
 				
 				lm.song_info.song.last_played = (int)time_t();
-				lm.update_song(lm.song_info.song);
+				lm.update_song(lm.song_info.song, false);
 				
 				// add to the already played list
 				lm.add_already_played(lm.song_info.song.rowid);
@@ -756,10 +756,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 			
 			// at 90% done with song, add 1 to play count
-			if((sec/(double)lm.song_info.song.length) > 0.90 && !added_to_play_count) {
+			if((double)(sec/(double)lm.song_info.song.length) > 0.90 && !added_to_play_count) {
 				added_to_play_count = true;
 				lm.song_info.song.play_count++;
-				updateCurrentSong();
+				lm.update_song(lm.song_info.song, false);
 			}
 			
 		}
@@ -771,7 +771,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void topDisplaySliderMoved(ScrollType scroll, double val) {
 		//temporarily disable updates
 		player.current_position_update.disconnect(current_position_update);
-		stdout.printf("blah blah\n");
+		
 		player.seek_position((int64)(val * 1000000000));
 		
 		//re-enable streamplayer's updates

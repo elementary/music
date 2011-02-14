@@ -115,12 +115,19 @@ public class BeatBox.SideTreeView : TreeView {
 			string text;
 			tree_model.get(iter, 2, out text);
 			((CellRendererText)cell).text = text;
+			
+			if(iter == devices_iter && !tree_model.iter_has_child(iter))
+				cell.visible = false;
+			else if(iter == network_iter && !tree_model.iter_has_child(iter))
+				cell.visible = false;
 		}
 		else if(cell is CellRendererPixbuf && iter == library_music_iter) {
 			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("folder-music", IconSize.MENU);
 		}
 		else if(cell is CellRendererPixbuf && iter == playlists_similar_iter) {
 			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("playlist-automatic", IconSize.MENU);
+			
+			//make it insensitive if no similar songs/not enough
 		}
 		else if(cell is CellRendererPixbuf && iter == playlists_queue_iter) {
 			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("media-audio", IconSize.MENU);

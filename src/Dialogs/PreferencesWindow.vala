@@ -2,6 +2,7 @@ using Gtk;
 
 public class BeatBox.PreferencesWindow : Window {
 	private BeatBox.LibraryManager _lm;
+	string music_folder_choice;
 	
 	//for padding around notebook mostly
 	private VBox content;
@@ -29,6 +30,13 @@ public class BeatBox.PreferencesWindow : Window {
 		this._lm = lm;
 		
 		buildUI();
+		
+		/* Generate music folder combobox items */
+		TreeIter iter;
+		musicFolderList.append(out iter);
+		musicFolderList.set(iter, 0, this.render_icon("music-library", Gtk.IconSize.MENU, null), 1, "Music");
+		musicFolderList.append(out iter);
+		musicFolderList.set(iter, 0, null, 1, "Other");
 	}
 	
 	public void buildUI() {
@@ -58,6 +66,17 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		saveChanges = new Button.with_label("Save");
 		
+		/* have to put in cell renderers ourselves */
+		CellRenderer cell;
+
+        cell = new CellRendererPixbuf();
+        musicFolderCombo.pack_start(cell, false);
+        musicFolderCombo.set_attributes(cell, "pixbuf", 0);
+		
+		cell = new CellRendererText();
+        musicFolderCombo.pack_end(cell, true);
+        musicFolderCombo.set_attributes(cell, "text", 1);
+		
 		/* fancy up the category labels */
 		musicLabel.xalign = 0.0f;
 		managementLabel.xalign = 0.0f;
@@ -65,13 +84,6 @@ public class BeatBox.PreferencesWindow : Window {
 		musicLabel.set_markup("<b>Music Folder Location</b>");
 		managementLabel.set_markup("<b>Library Management</b>");
 		lastfmLabel.set_markup("<b>Last FM Integration</b>");
-		
-		/* Generate music folder combobox items */
-		TreeIter iter;
-		musicFolderList.append(out iter);
-		musicFolderList.set(iter, 0, this.render_icon("media-audio", Gtk.IconSize.MENU, null), 1, "Music");
-		musicFolderList.append(out iter);
-		musicFolderList.set(iter, 0, null, 1, "Other");
 		
 		/* initialize library management settings */
 		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
@@ -100,6 +112,7 @@ public class BeatBox.PreferencesWindow : Window {
 		this.add(padding);
 		show_all();
 		
+		musicFolderCombo.changed.connect(comboItemChanged);
 		lastfmLogin.clicked.connect(lastfmLoginClick);
 		saveChanges.clicked.connect(saveClicked);
 	}
@@ -113,6 +126,27 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		alignment.add(widget);
 		return alignment;
+	}
+	
+	public virtual void comboItemChanged() {
+		TreeIter active;
+		string title;
+		musicFolderCombo.get_active_iter(out active);
+		musicFolderList.get(active, 1, out title);
+		
+		if(title == "Other") {
+			var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+										  FileChooserAction.SELECT_FOLDER,
+										  Gtk.Stock.CANCEL, ResponseType.CANCEL,
+										  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+			if (file_chooser.run () == ResponseType.ACCEPT) {
+				music_folder_choice = file_chooser.get_filename();
+			}
+			file_chooser.destroy ();
+		}
+		else if(title == "Music") {
+			stdout.printf("TODO: Set to xdg (or w/e it is) music folder\n");
+		}
 	}
 	
 	public virtual void lastfmLoginClick() {
@@ -155,7 +189,9 @@ public class BeatBox.PreferencesWindow : Window {
 	}
 		
 	public virtual void saveClicked() {
-		
+		if(music_folder_choice != _lm.settings.getMusicFolder()) {
+			_lm.set_music_folder(music_folder_choice);
+		}
 		
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
 		stdout.printf("no setting for copying imported music\n");

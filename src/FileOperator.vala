@@ -5,6 +5,8 @@ public class BeatBox.FileOperator : Object {
 	private BeatBox.LibraryManager lm;
 	private BeatBox.Settings settings;
 	
+	Song temp_song;
+	
 	int index;
 	int item_count;
 	public signal void fo_progress(string message, double progress);
@@ -267,20 +269,31 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	public void save_song(Song s) {
+		temp_song = s;
+		
+		try {
+				Thread.create<void*>(save_song_thread, false);
+		}
+		catch(GLib.Error err) {
+				stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+		}
+	}
+        
+	public void* save_song_thread () {
 		TagLib.File tag_file;
 		
-		stdout.printf("Saving file %s \n", s.file);
-		tag_file = new TagLib.File(s.file);
+		stdout.printf("Saving file %s \n", temp_song.file);
+		tag_file = new TagLib.File(temp_song.file);
 		
 		if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
 			try {
-				tag_file.tag.title = s.title;
-				tag_file.tag.artist = s.artist;
-				tag_file.tag.album = s.album;
-				tag_file.tag.genre = s.genre;
-				tag_file.tag.comment = s.comment;
-				tag_file.tag.year = s.year;
-				tag_file.tag.track  = s.track;
+				tag_file.tag.title = temp_song.title;
+				tag_file.tag.artist = temp_song.artist;
+				tag_file.tag.album = temp_song.album;
+				tag_file.tag.genre = temp_song.genre;
+				tag_file.tag.comment = temp_song.comment;
+				tag_file.tag.year = temp_song.year;
+				tag_file.tag.track  = temp_song.track;
 				
 				tag_file.save();
 			}
@@ -289,8 +302,10 @@ public class BeatBox.FileOperator : Object {
 			}
 		}
 		else {
-			stdout.printf("Could not save %s.\n", s.file);
+			stdout.printf("Could not save %s.\n", temp_song.file);
 		}
+		
+		return null;
 	}
 	
 	public void update_file_hierarchy(Song s) {
