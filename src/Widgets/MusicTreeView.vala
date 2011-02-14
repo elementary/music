@@ -54,8 +54,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	MenuItem songRateSong5;
 	MenuItem songRemove;
 	
-	Gdk.Pixbuf star;
-	CellRendererPixbuf[] ratingCells;
+	Gdk.Pixbuf starred;
+	Gdk.Pixbuf not_starred;
 	
 	public signal void view_being_searched(string key);
 	
@@ -78,7 +78,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		this.sort_id = sort;
 		
 		//generate star pixbuf
-		star = this.render_icon("gnome-app-install-star", IconSize.MENU, null);
+		starred = this.render_icon("starred", IconSize.MENU, null);
+		not_starred = this.render_icon("not-starred", IconSize.MENU, null);
 		
 		lm.song_updated.connect(song_updated);
 		lm.song_played.connect(song_played);
@@ -143,13 +144,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				view.insert_column_with_data_func(-1, tvc.title, new CellRendererPixbuf(), intelligentTreeViewFiller);
 				
 			if(view.get_column(index).title == "Rating") {
-				ratingCells = new CellRendererPixbuf[4];
 				view.get_column(index).clear();
 				
 				for(int i = 0; i <=4; ++i) {
-					ratingCells[i] = new CellRendererPixbuf();
-					view.get_column(index).pack_start(ratingCells[i], false);
-					view.get_column(index).set_cell_data_func(ratingCells[i], ratingsCellDataFunction);
+					var cell = new CellRendererPixbuf();
+					view.get_column(index).pack_start(cell, false);
+					view.get_column(index).set_cell_data_func(cell, ratingsCellDataFunction);
 				}
 			}
 			
@@ -370,9 +370,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		tree_model.get(iter, 0, out id);
 		
 		if(cell_layout.get_cells().index(cell) < lm.song_from_id(id).rating)
-			((CellRendererPixbuf)cell).pixbuf = star;
+			((CellRendererPixbuf)cell).pixbuf = starred;
 		else
-			((CellRendererPixbuf)cell).pixbuf = null;
+			((CellRendererPixbuf)cell).pixbuf = not_starred;
 	}
 	
 	public void updateColumnVisibilities() {
@@ -778,7 +778,28 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				return false;
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
+			TreeIter iter;
+			TreePath path;
+			TreeViewColumn column;
+			int cell_x;
+			int cell_y;
 			
+			view.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
+			
+			if(!model.get_iter(out iter, path) || column.title != "Rating")
+				return false;
+			
+			int id = 0;	
+			int new_rating = 0;
+			
+			if(cell_x > 5)
+				new_rating = (cell_x + 18) / 18;
+			
+			model.get(iter, 0, out id);
+			Song s = lm.song_from_id(id);
+			s.rating = new_rating;
+			
+			lm.update_song(s, false);
 		}
 		
 		return false;
@@ -1085,6 +1106,4 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			lm.update_song(s, false);
 		}
 	}
-	
-	
 }

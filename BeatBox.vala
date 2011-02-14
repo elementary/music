@@ -12,7 +12,8 @@ public class BeatBox.Beatbox : GLib.Object {
 	private const string STOCK_MEDIA_ALREADY_PLAYED = "emblem-urgent";
 	private const string STOCK_PLAYLIST = "playlist";
 	private const string STOCK_PLAYLIST_AUTOMATIC = "playlist-automatic";
-	private const string STOCK_SONG_STAR = "gnome-app-install-star";
+	private const string STOCK_SONG_STARRED = "starred";
+	private const string STOCK_SONG_NOT_STARRED = "not-starred";
 	
 	const Gtk.StockItem[] stock_items = {
 		{ STOCK_MUSIC_LIBRARY, null, 0, 0 },
@@ -20,7 +21,8 @@ public class BeatBox.Beatbox : GLib.Object {
 		{ STOCK_MEDIA_ALREADY_PLAYED, null, 0, 0 },
 		{ STOCK_PLAYLIST, N_("_Playlist"), 0, 0 },
 		{ STOCK_PLAYLIST_AUTOMATIC, N_("_Smart Playlist"), 0, 0 },
-		{ STOCK_SONG_STAR, null, 0, 0 }
+		{ STOCK_SONG_STARRED, null, 0, 0 },
+		{ STOCK_SONG_NOT_STARRED, null, 0, 0 }
     };
 	
 	public static int main(string[] args) {

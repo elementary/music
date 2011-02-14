@@ -316,6 +316,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(settings.getUpdateFolderHierarchy() && updateMeta)
 			fo.update_file_hierarchy(s);
 			
+		stdout.printf(""); //otherwise it goes to fast????
 		song_updated(s.rowid);
 	}
 	
