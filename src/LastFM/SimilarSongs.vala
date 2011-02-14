@@ -102,6 +102,9 @@ public class LastFM.SimilarSongs : Object {
 					similarToAdd = new BeatBox.Song("");
 					similarToAdd.title = node_content;
 				}
+				else if(node_name == "url") {
+					similarToAdd.lastfm_url = node_content;
+				}
 			}
 			else if(parent == "similartrackstrackartist") {
 				if(node_name == "name") {

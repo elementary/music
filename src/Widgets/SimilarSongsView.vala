@@ -35,6 +35,8 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 		
 		this.add(view);
 		this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		
+		view.row_activated.connect(viewDoubleClick);
 	}
 	
 	public void populateView(Collection<Song> nSongs) {
@@ -48,5 +50,17 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 			model.append(out iter);
 			model.set(iter, 0, s, 1, "<b>" + s.title + "</b>" + " by\n" + "<b>" + s.artist + "</b>");
 		}
+	}
+	
+	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
+		TreeIter item;
+		
+		// get db's rowid of row clicked
+		model.get_iter(out item, path);
+		Song s;
+		model.get(item, 0, out s);
+		
+		if(s != null && s.lastfm_url != null && s.lastfm_url != "")
+			GLib.AppInfo.launch_default_for_uri (s.lastfm_url, null);
 	}
 }

@@ -31,6 +31,7 @@ public class BeatBox.Song : GLib.Object{
 	private int _skip_count;
 	private int _date_added;
 	private int _last_played;
+	private string _lastfm_url;
 	
 	
 	//core stuff
@@ -203,6 +204,11 @@ public class BeatBox.Song : GLib.Object{
 		var t = Time.local(date_added);
 		string rv = t.format("%m/%e/%Y %l:%M %p");
 		return rv;
+	}
+	
+	public string lastfm_url {
+		get { return _lastfm_url; }
+		set { _lastfm_url = value; }
 	}
 	
 	public Song copy() {
