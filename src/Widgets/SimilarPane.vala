@@ -12,6 +12,8 @@ public class BeatBox.SimilarPane : HPaned {
 	VBox left;
 	Toolbar toolbar;
 	ToolButton refresh;
+	Label toolInfo;
+	ToolButton transferPlayback;
 	ToolButton save;
 	MusicTreeView similars;
 	SimilarSongsView ssv;
@@ -25,17 +27,29 @@ public class BeatBox.SimilarPane : HPaned {
 		left = new VBox(false, 0);
 		toolbar = new Toolbar();
 		refresh = new ToolButton.from_stock(Gtk.Stock.REFRESH);
+		transferPlayback = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
+		toolInfo = new Label("");
 		save = new ToolButton.from_stock(Gtk.Stock.SAVE);
 		similars = new MusicTreeView(lm, lw, -1);
 		ssv = new SimilarSongsView(_lm, _lw);
 		
 		similars.set_hint("similar");
 		
-		toolbar.insert(refresh, 0);
-		toolbar.insert(save, 1);
+		ToolItem toolInfoBin = new ToolItem();
+		toolInfoBin.add(toolInfo);
+		toolInfoBin.set_expand(true);
 		
-		left.pack_start(toolbar, false, false, 0);
-		left.pack_end(similars, true, true, 0);
+		refresh.set_tooltip_text("Refresh to show the most current song's similar songs");
+		transferPlayback.set_tooltip_text("Transfer playback to continue playing these songs");
+		save.set_tooltip_text("Save as a playlist");
+		
+		toolbar.insert(refresh, 0);
+		toolbar.insert(transferPlayback, 1);
+		toolbar.insert(toolInfoBin, 2);
+		toolbar.insert(save, 3);
+		
+		left.pack_start(similars, true, true, 0);
+		left.pack_end(toolbar, false, false, 0);
 		
 		add1(left);
 		add2(ssv);
@@ -48,6 +62,7 @@ public class BeatBox.SimilarPane : HPaned {
 		show_all();
 		
 		refresh.clicked.connect(refreshClicked);
+		transferPlayback.clicked.connect(transferPlaybackClicked);
 		save.clicked.connect(saveClicked);
 	}
 	
@@ -57,14 +72,40 @@ public class BeatBox.SimilarPane : HPaned {
 		_shouldHave = shouldHave;
 		
 		if(!(_lm.current_songs().size == similars.get_songs().size && _lm.current_songs().contains_all(similars.get_songs()))) {
-			similars.populateView(_have, false);
-			ssv.populateView(shouldHave);
+			updateDisplay();
+		}
+		else {
+			refresh.show();
+			transferPlayback.hide();
 		}
 	}
 	
-	public virtual void refreshClicked() {
+	public void updateDisplay() {
+		bool do_transfer = false;
+		if((_lm.current_songs().size == similars.get_songs().size && _lm.current_songs().contains_all(similars.get_songs())))
+			do_transfer = true;
+		
 		similars.populateView(_have, false);
 		ssv.populateView(_shouldHave);
+		
+		toolInfo.set_markup("Songs similar to <b>" + _base.title + "</b> by <b>" + _base.artist + "</b>");
+		refresh.hide();
+		transferPlayback.show();
+		save.show();
+		
+		if(do_transfer)
+			transferPlaybackClicked();
+	}
+	
+	public virtual void refreshClicked() {
+		updateDisplay();
+	}
+	
+	public virtual void transferPlaybackClicked() {
+		//set the similar songs to current, hide button, set current_index
+		similars.setAsCurrentList("0");
+		
+		transferPlayback.hide();
 	}
 	
 	public virtual void saveClicked() {
@@ -77,5 +118,7 @@ public class BeatBox.SimilarPane : HPaned {
 		
 		_lm.add_playlist(p);
 		_lw.addSideListItem(p);
+		
+		save.hide();
 	}
 }

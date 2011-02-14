@@ -334,9 +334,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		mtv.show_all();
+		mtv.hide();
 		mtv.view_being_searched.connect(musicTreeViewSearched);
-		sideTree.get_selection().unselect_all();
-		sideTree.get_selection().select_iter(item);
+		//sideTree.get_selection().unselect_all();
+		//sideTree.get_selection().select_iter(item);
 	}
 	
 	public virtual void progressNotification(string? message, double progress) {
