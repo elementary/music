@@ -31,7 +31,7 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 		//view.get_column(1).set_alignment((float)0.5);
 		
 		view.set_model(model);
-		view.set_grid_lines(TreeViewGridLines.HORIZONTAL);
+		view.set_grid_lines(TreeViewGridLines.NONE);
 		
 		this.add(view);
 		this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -48,7 +48,11 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 			
 			TreeIter iter;
 			model.append(out iter);
-			model.set(iter, 0, s, 1, "<b>" + s.title + "</b>" + " by\n" + "<b>" + s.artist + "</b>");
+			
+			var title_fixed = s.title.replace("&", "&amp;");
+			var artist_fixed = s.artist.replace("&", "&amp;");
+			
+			model.set(iter, 0, s, 1, "<b>" + title_fixed + "</b>" + " by\n" + "<b>" + artist_fixed + "</b>");
 		}
 	}
 	

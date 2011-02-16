@@ -12,6 +12,8 @@ public class BeatBox.PlaylistNameWindow : Window {
 	public PlaylistNameWindow(Playlist original) {
 		title = "PlaylistEditor";
 		this.window_position = WindowPosition.CENTER;
+		this.destroy_with_parent = true;
+		//this.type = WindowType.POPUP;
 		
 		_original = original;
 		VBox vert = new VBox(false, 3);

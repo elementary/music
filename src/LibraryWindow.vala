@@ -82,11 +82,26 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		check_resize.connect(on_resize);
 		this.destroy.connect (Gtk.main_quit);
 		
+		//make all songs current list
+		lm.clearCurrent();
+		foreach(int id in ((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).get_songs()) {
+			lm.addToCurrent(id);
+		}
+		
 		//resume playback
 		Song s = settings.getLastSongPlaying();
 		s = lm.song_from_name(s.title, s.artist);
 		if(s.rowid != 0) {
-			lm.addToCurrent(s.rowid);
+			int new_i = 1;
+			foreach(int i in lm.current_songs()) {
+				if(lm.song_from_id(i).rowid == s.rowid) {
+					lm.current_index = new_i;
+					break;
+				}
+				
+				++new_i;
+			}
+			
 			lm.playSong(s.rowid);
 			topDisplay.change_value(ScrollType.NONE, (int)settings.getLastSongPosition());
 			topDisplaySliderMoved(ScrollType.NONE, (int)settings.getLastSongPosition());
@@ -154,10 +169,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		loveButton.relief = Gtk.ReliefStyle.NONE;
 		banButton.relief = Gtk.ReliefStyle.NONE;
 		
-		if(lm.song_count() != 0)
-			searchField.set_sensitive(true);
-		else
-			searchField.set_sensitive(false);
+		updateSensitivities();
 		
 		settingsMenu.append(fileRescanMusicFolder);
 		settingsMenu.append(new SeparatorMenuItem());
@@ -242,10 +254,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		banButton.clicked.connect(banButtonClicked);
 		topDisplay.scale_value_changed.connect(topDisplaySliderMoved);
 		searchField.changed.connect(searchFieldChanged);
+		searchField.icon_press.connect(searchFieldIconPressed);
 		
 		show_all();
 		topMenu.hide();
 		topDisplay.show_scale();
+		topDisplay.set_scale_sensitivity(false);
 		coverArt.hide();
 		sideTree.resetView();
 		songInfoScroll.hide();
@@ -340,11 +354,29 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//sideTree.get_selection().select_iter(item);
 	}
 	
+	public void updateSensitivities() {
+		if(lm.song_count() == 0) {
+			topDisplay.set_scale_sensitivity(false);
+			previousButton.set_sensitive(false);
+			playButton.set_sensitive(false);
+			nextButton.set_sensitive(false);
+			searchField.set_sensitive(false);
+		}
+		else {
+			topDisplay.set_scale_sensitivity(true);
+			previousButton.set_sensitive(true);
+			playButton.set_sensitive(true);
+			nextButton.set_sensitive(true);
+			searchField.set_sensitive(true);
+		}
+	}
+	
 	public virtual void progressNotification(string? message, double progress) {
-		/*if(message != null)
+		if(message != null)
 			topDisplay.set_label_text(message);
 		
-		topDisplay.set_progress_value(progress);*/
+		if(progress != 0.0)
+			topDisplay.set_progress_value(progress);
 	}
 	
 	public virtual void sideListDoubleClick (TreePath path, TreeViewColumn column) {
@@ -376,6 +408,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_label_markup(song_label);
 		
 		//reset the song position
+		topDisplay.set_scale_sensitivity(true);
 		topDisplay.set_scale_range(0.0, lm.song_info.song.length);
 		topDisplay.set_scale_value(0.0);
 		
@@ -555,7 +588,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void searchFieldChanged() {
 		Timeout.add(350, () => {
 			//make sure we still want to search
-			if(searchField.get_text() == timeout_search && searchField.is_searching) {
+			if(searchField.get_text() == timeout_search && !searchField.is_searching) {
 				Collection<int> songs;
 				MusicTreeView mtv = (MusicTreeView)sideTree.get_current_widget();
 					
@@ -567,10 +600,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		});
 	}
 	
+	public virtual void searchFieldIconPressed(EntryIconPosition p0, Gdk.Event p1) {
+		Widget w = sideTree.getSelectedWidget();
+		w.focus(DirectionType.UP);
+	}
+	
 	public virtual void musicTreeViewSearched(string search) {
-		searchField.focus(DirectionType.UP);
-		searchField.set_text(search);
-		searchField.move_cursor(MovementStep.VISUAL_POSITIONS, 1, false);
+		//searchField.focus(DirectionType.UP);
+		//searchField.set_text(search);
+		//searchField.move_cursor(MovementStep.VISUAL_POSITIONS, 1, false);
 	}
 	
 	public virtual void sourcesToSongsHandleSet(Gdk.Rectangle rectangle) {
@@ -668,16 +706,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			nim.show();
 		}
 		
-		if(lm.song_count() != 0)
-			searchField.set_sensitive(true);
-		else
-			searchField.set_sensitive(false);
+		updateSensitivities();
 	}
 	
 	public virtual void musicRescanned(LinkedList<string> not_imported) {
 		sideTree.resetView();
 		topDisplay.show_scale();
-		topDisplay.set_label_text("");
+		
+		if(lm.song_info.song != null) {
+			var song_label = "<b>" + lm.song_info.song.title + "</b>" + " by " + "<b>" + lm.song_info.song.artist + "</b>" + " on " + "<b>" +lm.song_info.song.album + "</b>";
+			topDisplay.set_label_markup(song_label);
+		}
+		else
+			topDisplay.set_label_text("");
 		
 		//repopulate collection and playlists and reset queue and already played
 		Widget w = sideTree.getWidget(sideTree.library_music_iter);
@@ -688,17 +729,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			nim.show();
 		}
 		
-		if(lm.song_count() != 0)
-			searchField.set_sensitive(true);
-		else
-			searchField.set_sensitive(false);
+		updateSensitivities();
 	}
 	
 	public virtual void songRemovedFromManager(int id) {
-		if(lm.song_count() != 0)
-			searchField.set_sensitive(true);
-		else
-			searchField.set_sensitive(false);
+		updateSensitivities();
 	}
 	
 	public virtual void helpAboutClick() {

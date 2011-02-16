@@ -64,7 +64,7 @@ public class BeatBox.PreferencesWindow : Window {
 		lastfmInfo = new Label("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
 		lastfmLogin = new Button.with_label("Enable Scrobbling");
 		
-		saveChanges = new Button.with_label("Save");
+		saveChanges = new Button.with_label("Close");
 		
 		/* have to put in cell renderers ourselves */
 		CellRenderer cell;

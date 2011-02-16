@@ -53,17 +53,19 @@ public class BeatBox.SimilarPane : HPaned {
 		
 		add1(left);
 		add2(ssv);
-		child2_resize = 1;
+		child1_resize = 1;
 		
 		Allocation all;
 		get_allocation(out all);
-		set_position(700);
+		set_position(all.width - 200);
 		
 		show_all();
 		
 		refresh.clicked.connect(refreshClicked);
 		transferPlayback.clicked.connect(transferPlaybackClicked);
 		save.clicked.connect(saveClicked);
+		
+		transferPlayback.hide();
 	}
 	
 	public void updateSongs(Song bas, Collection<int> have, Collection<Song> shouldHave) {
@@ -76,6 +78,7 @@ public class BeatBox.SimilarPane : HPaned {
 		}
 		else {
 			refresh.show();
+			refresh.set_tooltip_text("Refresh to show songs similar to: " + _base.title + " by " + _base.artist);
 			transferPlayback.hide();
 		}
 	}

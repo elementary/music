@@ -166,7 +166,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			//currently playing
 			query.set_string(":title", " ");
 			query.set_int(":visible", 1);
-			query.set_int(":width", 30);
+			query.set_int(":width", 24);
 			query.execute();
 			
 			//#
@@ -211,18 +211,11 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_int(":width", 70);
 			query.execute();
 			
-			//comment
-			query.set_string(":title", "Comment");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 70);
-			query.execute();
-			
 			//year
 			query.set_string(":title", "Year");
 			query.set_int(":visible", 0);
 			query.set_int(":width", 30);
 			query.execute();
-			
 			
 			//bitrate
 			query.set_string(":title", "Bitrate");
@@ -233,7 +226,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			//rating
 			query.set_string(":title", "Rating");
 			query.set_int(":visible", 0);
-			query.set_int(":width", 30);
+			query.set_int(":width", 90);
 			query.execute();
 			
 			//playcount
@@ -290,8 +283,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			index = 0;
 			item_count = columns.size;
 			foreach(Gtk.TreeViewColumn tvc in columns) {
-				stdout.printf("saving column %s\n", tvc.title);
-				db_progress(null, ((double)index++)/((double)item_count));
+				//db_progress(null, ((double)index++)/((double)item_count));
 				
 				query.set_string(":title", tvc.title);
 				query.set_int(":visible", tvc.visible ? 1 : 0);

@@ -7,13 +7,14 @@ public class BeatBox.Beatbox : GLib.Object {
 	private static DataBaseManager dbm;
 	private static StreamPlayer _player;
 	
-	private const string STOCK_MUSIC_LIBRARY = "folder-music";
-	private const string STOCK_MEDIA_QUEUE = "media-audio";
-	private const string STOCK_MEDIA_ALREADY_PLAYED = "emblem-urgent";
-	private const string STOCK_PLAYLIST = "playlist";
-	private const string STOCK_PLAYLIST_AUTOMATIC = "playlist-automatic";
-	private const string STOCK_SONG_STARRED = "starred";
-	private const string STOCK_SONG_NOT_STARRED = "not-starred";
+	public const string STOCK_MUSIC_LIBRARY = "folder-music";
+	public const string STOCK_MEDIA_QUEUE = "media-audio";
+	public const string STOCK_MEDIA_ALREADY_PLAYED = "emblem-urgent";
+	public const string STOCK_PLAYLIST = "playlist";
+	public const string STOCK_PLAYLIST_AUTOMATIC = "playlist-automatic";
+	public const string STOCK_SONG_STARRED = "starred";
+	public const string STOCK_SONG_NOT_STARRED = "not-starred";
+	public const string STOCK_NOW_PLAYING = "audio-volume-high";
 	
 	const Gtk.StockItem[] stock_items = {
 		{ STOCK_MUSIC_LIBRARY, null, 0, 0 },
@@ -22,7 +23,8 @@ public class BeatBox.Beatbox : GLib.Object {
 		{ STOCK_PLAYLIST, N_("_Playlist"), 0, 0 },
 		{ STOCK_PLAYLIST_AUTOMATIC, N_("_Smart Playlist"), 0, 0 },
 		{ STOCK_SONG_STARRED, null, 0, 0 },
-		{ STOCK_SONG_NOT_STARRED, null, 0, 0 }
+		{ STOCK_SONG_NOT_STARRED, null, 0, 0 },
+		{ STOCK_NOW_PLAYING, null, 0, 0 }
     };
 	
 	public static int main(string[] args) {

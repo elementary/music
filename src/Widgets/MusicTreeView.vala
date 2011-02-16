@@ -29,7 +29,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	CheckMenuItem columnArtist;
 	CheckMenuItem columnAlbum;
 	CheckMenuItem columnGenre;
-	CheckMenuItem columnComment;// new
 	CheckMenuItem columnYear;
 	CheckMenuItem columnBitRate;
 	CheckMenuItem columnRating;
@@ -138,20 +137,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		 * bpm, length, file size, (3) */
 		int index = 0;
 		foreach(TreeViewColumn tvc in lm.fresh_columns()) {
-			if(tvc.title != "Rating" && tvc.title != " ")
-				view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), intelligentTreeViewFiller);
+			if(tvc.title != "Rating" && tvc.title != " ") {
+				var cell = new CellRendererText();
+				cell.ellipsize = Pango.EllipsizeMode.END;
+				view.insert_column_with_data_func(-1, tvc.title, cell, intelligentTreeViewFiller);
+			}
 			else
 				view.insert_column_with_data_func(-1, tvc.title, new CellRendererPixbuf(), intelligentTreeViewFiller);
-				
-			if(view.get_column(index).title == "Rating") {
-				view.get_column(index).clear();
-				
-				for(int i = 0; i <=4; ++i) {
-					var cell = new CellRendererPixbuf();
-					view.get_column(index).pack_start(cell, false);
-					view.get_column(index).set_cell_data_func(cell, ratingsCellDataFunction);
-				}
-			}
 			
 			view.get_column(index).resizable = true;
 			view.get_column(index).reorderable = true;
@@ -161,6 +153,25 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			view.get_column(index).visible = tvc.visible;
 			view.get_column(index).sizing = Gtk.TreeViewColumnSizing.FIXED;
 			view.get_column(index).fixed_width = tvc.fixed_width;
+			
+			if(view.get_column(index).title == "Rating") {
+				view.get_column(index).resizable = false;
+				view.get_column(index).fixed_width = 92;
+				
+				view.get_column(index).clear();
+				for(int i = 0; i <=4; ++i) {
+					var cell = new CellRendererPixbuf();
+					view.get_column(index).pack_start(cell, false);
+					view.get_column(index).set_cell_data_func(cell, ratingsCellDataFunction);
+				}
+			}
+			else if(view.get_column(index).title == " ") {
+				view.get_column(index).fixed_width = 24;
+				view.get_column(index).clickable = false;
+				view.get_column(index).sort_column_id = -1;
+				view.get_column(index).resizable = false;
+				view.get_column(index).reorderable = false;
+			}
 			
 			// add this widget crap so we can get right clicks
 			//tvc.visible = column_visibilities.get(index);
@@ -187,10 +198,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);
-		view.key_press_event.connect( (type) => {
-			view_being_searched(type.str);
-			return false;
-		});
 		
 		// allow selecting multiple rows
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
@@ -206,7 +213,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnArtist = new CheckMenuItem.with_label("Artist");
 		columnAlbum = new CheckMenuItem.with_label("Album");
 		columnGenre = new CheckMenuItem.with_label("Genre");
-		columnComment = new CheckMenuItem.with_label("Comment");
 		columnYear = new CheckMenuItem.with_label("Year");
 		columnBitRate = new CheckMenuItem.with_label("Bitrate");
 		columnRating = new CheckMenuItem.with_label("Rating");
@@ -226,7 +232,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnChooserMenu.append(columnArtist);
 		columnChooserMenu.append(columnAlbum);
 		columnChooserMenu.append(columnGenre);
-		columnChooserMenu.append(columnComment);
 		columnChooserMenu.append(columnYear);
 		columnChooserMenu.append(columnBitRate);
 		columnChooserMenu.append(columnRating);
@@ -245,7 +250,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnArtist.toggled.connect(columnMenuToggled);
 		columnAlbum.toggled.connect(columnMenuToggled);
 		columnGenre.toggled.connect(columnMenuToggled);
-		columnComment.toggled.connect(columnMenuToggled);
 		columnYear.toggled.connect(columnMenuToggled);
 		columnBitRate.toggled.connect(columnMenuToggled);
 		columnRating.toggled.connect(columnMenuToggled);
@@ -353,7 +357,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			tree_model.get(iter, 0, out id);
 			
 			if(lm.song_info.song != null && lm.song_info.song.rowid == id && is_current)
-				((CellRendererPixbuf)cell).pixbuf = this.render_icon("folder-music", IconSize.MENU, null);
+				((CellRendererPixbuf)cell).pixbuf = this.render_icon("audio-volume-high", IconSize.MENU, null);
 			else
 				((CellRendererPixbuf)cell).pixbuf = null;
 		}
@@ -369,10 +373,29 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		int id = 0;
 		tree_model.get(iter, 0, out id);
 		
-		if(cell_layout.get_cells().index(cell) < lm.song_from_id(id).rating)
+		/*bool cursor_over = false;
+		int x = 0;
+		int y = 0;
+		view.get_pointer(out x, out y);
+		
+		TreePath cPath;
+		TreeViewColumn cColumn;
+		int cell_x;
+		int cell_y;
+		if(view.get_path_at_pos (x,  y, out cPath, out cColumn, out cell_x, out cell_y)) {
+			//stdout.printf("valid path\n");
+			if(cPath.to_string() == tree_model.get_path(iter).to_string() && cColumn.title == "Rating") {
+				//stdout.printf("OVER RATING------------\n");
+				cursor_over = true;
+			}
+		}
+		*/
+		if(cell_layout.get_cells().index(cell) < lm.song_from_id(id).rating/* || (cursor_over && cell_layout.get_cells().index(cell) * 18 <= cell_x)*/)
 			((CellRendererPixbuf)cell).pixbuf = starred;
-		else
+		else if(view.get_selection().iter_is_selected(iter))
 			((CellRendererPixbuf)cell).pixbuf = not_starred;
+		else
+			((CellRendererPixbuf)cell).pixbuf = null;
 	}
 	
 	public void updateColumnVisibilities() {
@@ -392,8 +415,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				columnAlbum.active = view.get_column(index).visible;
 			else if(tvc.title == "Genre")
 				columnGenre.active = view.get_column(index).visible;
-			else if(tvc.title == "Comment")
-				columnComment.active = view.get_column(index).visible;
 			else if(tvc.title == "Year")
 				columnYear.active = view.get_column(index).visible;
 			else if(tvc.title == "Bitrate")
@@ -418,7 +439,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public Type[] getColumnTypes() {
-		Type[] types = new Type[19];
+		Type[] types = new Type[18];
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
@@ -439,8 +460,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			else if(tvc.title == "Album")
 				types[index] = typeof(string);
 			else if(tvc.title == "Genre")
-				types[index] = typeof(string);
-			else if(tvc.title == "Comment")
 				types[index] = typeof(string);
 			else if(tvc.title == "Year")
 				types[index] = typeof(string);
@@ -554,8 +573,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.set_value(item, index, s.album);
 			else if(tvc.title == "Genre")
 				model.set_value(item, index, s.genre);
-			else if(tvc.title == "Comment")
-				model.set_value(item, index, s.comment);
 			else if(tvc.title == "Year" && s.year != 0)
 				model.set_value(item, index, ((s.year != 0) ? s.year.to_string() : ""));
 			else if(tvc.title == "Bitrate" && s.bitrate != 0)
@@ -604,8 +621,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.set_value(item, index, current_song.album);
 			else if(tvc.title == "Genre")
 				model.set_value(item, index, current_song.genre);
-			else if(tvc.title == "Comment")
-				model.set_value(item, index, current_song.comment);
 			else if(tvc.title == "Year")
 				model.set_value(item, index, ((current_song.year != 0) ? current_song.year.to_string() : ""));
 			else if(tvc.title == "Bitrate")
@@ -656,8 +671,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					this.model.set_value(item, index, s.album);
 				else if(tvc.title == "Genre")
 					this.model.set_value(item, index, s.genre);
-				else if(tvc.title == "Comment")
-					this.model.set_value(item, index, s.comment);
 				else if(tvc.title == "Year")
 					this.model.set_value(item, index, ((s.year != 0) ? s.year.to_string() : ""));
 				else if(tvc.title == "Bitrate")
@@ -688,7 +701,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		this.is_current = false;
 	}
 	
-	public bool updatePlayingIcon(TreeModel model, TreePath path, TreeIter iter) {
+	/*public bool updatePlayingIcon(TreeModel model, TreePath path, TreeIter iter) {
 		int id;
 		model.get(iter, 0, out id);
 		Gdk.Pixbuf? old_pix;
@@ -708,14 +721,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		return false;
 	}
-	
+	*/
 	public virtual void song_played(int id) {
-		model.foreach(updatePlayingIcon);
+		//model.foreach(updatePlayingIcon);
 	}
 	
 	public virtual void song_updated(int id) {
-		tempSongs.clear();
-		tempSongs.add(id);
+		
 	}
 	
 	public virtual void song_removed(int id) {
@@ -753,6 +765,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		lm.current_index = current_song_path.to_int();
 		lm.clearCurrent();
 		model.foreach(buildCurrentList);
+		
+		is_current = true;
 	}
 	
 	public bool buildCurrentList(TreeModel model, TreePath path, TreeIter iter) {
@@ -798,6 +812,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			model.get(iter, 0, out id);
 			Song s = lm.song_from_id(id);
 			s.rating = new_rating;
+			
+			model.set(iter, column.sort_column_id, new_rating);
 			
 			lm.update_song(s, false);
 		}
@@ -859,8 +875,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				view.get_column(index).visible = columnAlbum.active;
 			else if(tvc.title == "Genre")
 				view.get_column(index).visible = columnGenre.active;
-			else if(tvc.title == "Comment")
-				view.get_column(index).visible = columnComment.active;
 			else if(tvc.title == "Year")
 				view.get_column(index).visible = columnYear.active;
 			else if(tvc.title == "Bitrate")

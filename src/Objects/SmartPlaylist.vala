@@ -4,16 +4,21 @@ public class BeatBox.SmartPlaylist : Object {
 	private int _rowid;
 	private string sort_column; // Artist, Rating, etc.
 	private string _name;
-	private string _conditional; //AND or OR
+	private string _conditional; //any or all
 	private Gee.ArrayList<SmartQuery> _queries;
 	public int query_count;
 	
+	private bool _limit;
+	private int _limit_amount;
+	
 	public SmartPlaylist() {
 		_name = "";
-		_conditional = "AND";
+		_conditional = "all";
 		query_count = 0;
 		sort_column = "";
 		_queries = new Gee.ArrayList<SmartQuery>();
+		_limit = false;
+		_limit_amount = 50;
 	}
 	
 	public int rowid {
@@ -29,11 +34,21 @@ public class BeatBox.SmartPlaylist : Object {
 	public string conditional {
 		get { return _conditional; }
 		set {
-			if(value == "AND" || value == "OR")
+			if(value == "all" || value == "any")
 				_conditional = value;
 			else
-				stderr.printf("Invalid conditional for smart playlist. Must be AND or OR. Supplied: %s \n", value);
+				stderr.printf("Invalid conditional for smart playlist. Must be \"all\" or \"any\". Supplied: %s \n", value);
 		}
+	}
+	
+	public bool limit {
+		get { return _limit; }
+		set { _limit = value; }
+	}
+	
+	public int limit_amount {
+		get { return _limit_amount; }
+		set { _limit_amount = value; }
 	}
 	
 	public void clearQueries() {
@@ -88,7 +103,7 @@ public class BeatBox.SmartPlaylist : Object {
 					match_count++;
 			}
 			
-			if((conditional == "AND" && match_count == _queries.size) || (conditional == "OR" && match_count >= 1))
+			if((conditional == "all" && match_count == _queries.size) || (conditional == "any" && match_count >= 1))
 				rv.add(s.rowid);
 		}
 		
@@ -96,6 +111,43 @@ public class BeatBox.SmartPlaylist : Object {
 	}
 	
 	public bool song_matches_query(SmartQuery q, Song s) {
+		if(q.field == "Album") { //strings
+			
+		}
+		else if(q.field == "Artist") {
+			
+		}
+		else if(q.field == "Comment") {
+			
+		}
+		else if(q.field == "Genre") {
+			
+		}
+		else if(q.field == "Title") {
+			
+		}
+		else if(q.field == "Bitrate") {//numbers
+			
+		}
+		else if(q.field == "Playcount") {
+			
+		}
+		else if(q.field == "Year") {
+			
+		}
+		else if(q.field == "Date Added") {//time
+			
+		}
+		else if(q.field == "Last Played") {
+			
+		}
+		else if(q.field == "Length") {//length
+			
+		}
+		else if(q.field == "Rating") {//rating
+			
+		}
+		
 		if(q.comparator == "=") {
 			if(q.field == "album")
 				return s.album == q.value;

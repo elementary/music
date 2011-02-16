@@ -199,7 +199,7 @@ public class BeatBox.SideTreeView : TreeView {
 		sideTreeModel.set(playlists_iter, 0, null, 1, null, 2, "Playlists");
 	}
 	
-	public TreeIter addItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
+	public TreeIter? addItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
 		if(name == "Music" && parent == library_iter) {
 			sideTreeModel.append(out library_music_iter, parent);
 			sideTreeModel.set(library_music_iter, 0, o, 1, w, 2, name);
@@ -230,14 +230,61 @@ public class BeatBox.SideTreeView : TreeView {
 			sideTreeModel.set(playlists_history_iter, 0, o, 1, w, 2, name);
 			return playlists_history_iter;
 		}
-		else {
+		else if(o is SmartPlaylist) {
 			TreeIter item;
-			sideTreeModel.append(out item, parent);
-			sideTreeModel.set(item, 0, o, 1, w, 2, name);
+			TreeIter pivot;
+			sideTreeModel.iter_children(out pivot, playlists_iter);
 			
+			do {
+				string tempName;
+				GLib.Object tempO;
+				sideTreeModel.get(pivot, 0, out tempO, 2, out tempName);
+				
+				if(tempO != null && ((tempO is Playlist) || tempName > name)) {
+					sideTreeModel.insert_before(out item, playlists_iter, pivot);
+					break;
+				}
+				else if(!sideTreeModel.iter_next(ref pivot)) {
+					sideTreeModel.append(out item, parent);
+					break;
+				}
+			} while(true);
+			
+			sideTreeModel.set(item, 0, o, 1, w, 2, name);
 			this.expand_to_path(sideTreeModel.get_path(item));
 			
 			return item;
+		}
+		else if(o is Playlist) {
+			TreeIter item;
+			TreeIter pivot;
+			sideTreeModel.iter_children(out pivot, playlists_iter);
+			
+			do {
+				string tempName;
+				GLib.Object tempO;
+				sideTreeModel.get(pivot, 0, out tempO, 2, out tempName);
+				
+				if(tempO != null && tempO is Playlist && tempName > name) {
+					sideTreeModel.insert_before(out item, playlists_iter, pivot);
+					break;
+				}
+				else if(!sideTreeModel.iter_next(ref pivot)) {
+					sideTreeModel.append(out item, parent);
+					break;
+				}
+			} while(true);
+			
+			sideTreeModel.set(item, 0, o, 1, w, 2, name);
+			this.expand_to_path(sideTreeModel.get_path(item));
+			
+			return item;
+		}
+		else {
+			TreeIter iter;
+			sideTreeModel.append(out iter, parent);
+			sideTreeModel.set(iter, 0, o, 1, w, 2, name);
+			return iter;
 		}
 	}
 	
@@ -426,14 +473,23 @@ public class BeatBox.SideTreeView : TreeView {
 	
 	public virtual void smartPlaylistEditorSaved(SmartPlaylist sp) {
 		if(sp.rowid > 0) {
-			//edit name
-			TreeIter edit;
-			// TODO: loop through children to find where id = old
-			sideTreeModel.get_iter_from_string(out edit, "3:" + (sp.rowid - 1).to_string());
-			sideTreeModel.set(edit, 0, sp, 2, sp.name);
+			TreeIter pivot = playlists_history_iter;
+				
+			do {
+				GLib.Object o;
+				sideTreeModel.get(pivot, 0, out o);
+				if(((SmartPlaylist)o).rowid == sp.rowid) {
+					string name;
+					Widget w;
+					sideTreeModel.get(pivot, 1, out w, 2, out name);
+					
+					sideTreeModel.remove(pivot);
+					addItem(playlists_iter, sp, w, sp.name);
+					break;
+				}
+			} while(sideTreeModel.iter_next(ref pivot));
 		}
-		else {
-			//add playlist to list
+		else {	
 			lm.add_smart_playlist(sp);
 			lw.addSideListItem(sp);
 		}
@@ -447,15 +503,23 @@ public class BeatBox.SideTreeView : TreeView {
 	
 	public virtual void playlistNameWindowSaved(Playlist p) {
 		if(p.rowid > 0) {
-			//edit name
-			TreeIter edit;
-			
-			// TODO: loop through children to find where id = old
-			sideTreeModel.get_iter_from_string(out edit, "3:" + (p.rowid - 1).to_string());
-			sideTreeModel.set(edit, 0, p, 2, p.name);
+			TreeIter pivot = playlists_history_iter;
+				
+			do {
+				GLib.Object o;
+				sideTreeModel.get(pivot, 0, out o);
+				if(((Playlist)o).rowid == p.rowid) {
+					string name;
+					Widget w;
+					sideTreeModel.get(pivot, 1, out w, 2, out name);
+					
+					sideTreeModel.remove(pivot);
+					addItem(playlists_iter, p, w, p.name);
+					break;
+				}
+			} while(sideTreeModel.iter_next(ref pivot));
 		}
 		else {
-			//add playlist to list
 			lm.add_playlist(p);
 			lw.addSideListItem(p);
 		}

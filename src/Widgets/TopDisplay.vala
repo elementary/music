@@ -65,6 +65,10 @@ namespace ElementaryWidgets {
 		}
 		
 		/** progressbar functions **/
+		public void set_scale_sensitivity(bool val) {
+			scale.set_sensitive(val);
+		}
+		
 		public void set_progress_value(double progress) {
 			progressbar.set_fraction(progress);
 		}
