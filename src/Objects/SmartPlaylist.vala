@@ -112,111 +112,112 @@ public class BeatBox.SmartPlaylist : Object {
 	
 	public bool song_matches_query(SmartQuery q, Song s) {
 		if(q.field == "Album") { //strings
-			
+			if(q.comparator == "is")
+				return q.value == s.album;
+			else if(q.comparator == "contains")
+				return (q.value.down() in s.album.down());
+			else if(q.comparator == "does not contain")
+				return !(q.value.down() in s.album.down());
 		}
 		else if(q.field == "Artist") {
-			
+			if(q.comparator == "is")
+				return q.value == s.artist;
+			else if(q.comparator == "contains")
+				return (q.value.down() in s.artist.down());
+			else if(q.comparator == "does not contain")
+				return !(q.value.down() in s.artist.down());
 		}
 		else if(q.field == "Comment") {
-			
+			if(q.comparator == "is")
+				return q.value == s.comment;
+			else if(q.comparator == "contains")
+				return (q.value.down() in s.comment.down());
+			else if(q.comparator == "does not contain")
+				return !(q.value.down() in s.comment.down());
 		}
 		else if(q.field == "Genre") {
-			
+			if(q.comparator == "is")
+				return q.value == s.genre;
+			else if(q.comparator == "contains")
+				return (q.value.down() in s.genre.down());
+			else if(q.comparator == "does not contain")
+				return !(q.value.down() in s.genre.down());
 		}
 		else if(q.field == "Title") {
-			
+			if(q.comparator == "is")
+				return q.value == s.title;
+			else if(q.comparator == "contains")
+				return (q.value.down() in s.title.down());
+			else if(q.comparator == "does not contain")
+				return !(q.value.down() in s.title.down());
 		}
 		else if(q.field == "Bitrate") {//numbers
-			
+			if(q.comparator == "is exactly")
+				return q.value.to_int() == s.bitrate;
+			else if(q.comparator == "is at most")
+				return (s.bitrate <= q.value.to_int());
+			else if(q.comparator == "is at least")
+				return (s.bitrate >= q.value.to_int());
 		}
 		else if(q.field == "Playcount") {
-			
+			if(q.comparator == "is exactly")
+				return q.value.to_int() == s.play_count;
+			else if(q.comparator == "is at most")
+				return (s.play_count <= q.value.to_int());
+			else if(q.comparator == "is at least")
+				return (s.play_count >= q.value.to_int());
 		}
 		else if(q.field == "Year") {
-			
+			if(q.comparator == "is exactly")
+				return q.value.to_int() == s.year;
+			else if(q.comparator == "is at most")
+				return (s.year <= q.value.to_int());
+			else if(q.comparator == "is at least")
+				return (s.year >= q.value.to_int());
+		}
+		else if(q.field == "Length") {
+			if(q.comparator == "is exactly")
+				return q.value.to_int() == s.length;
+			else if(q.comparator == "is at most")
+				return (s.length <= q.value.to_int());
+			else if(q.comparator == "is at least")
+				return (s.length >= q.value.to_int());
+		}
+		else if(q.field == "Rating") {
+			if(q.comparator == "is exactly")
+				return q.value.to_int() == s.rating;
+			else if(q.comparator == "is at most")
+				return (s.rating <= q.value.to_int());
+			else if(q.comparator == "is at least")
+				return (s.rating >= q.value.to_int());
 		}
 		else if(q.field == "Date Added") {//time
+			var now = new DateTime.now_local();
+			var played = new DateTime.from_unix_local(s.date_added);
+			played.add_days(q.value.to_int());
 			
+			if(q.comparator == "is exactly")
+				return (now.get_day_of_year() == played.get_day_of_year() && now.get_year() == played.get_year());
+			else if(q.comparator == "is within") {
+				return played.compare(now) > 0;
+			}
+			else if(q.comparator == "is before") {
+				return now.compare(played) > 0;
+			}
 		}
 		else if(q.field == "Last Played") {
+			var now = new DateTime.now_local();
+			var played = new DateTime.from_unix_local(s.last_played);
+			played.add_days(q.value.to_int());
 			
-		}
-		else if(q.field == "Length") {//length
-			
-		}
-		else if(q.field == "Rating") {//rating
-			
-		}
-		
-		if(q.comparator == "=") {
-			if(q.field == "album")
-				return s.album == q.value;
-			else if(q.field == "artist")
-				return s.artist == q.value;
-			else if(q.field == "bitrate")
-				return s.bitrate == q.value.to_int();
-			else if(q.field == "comment")
-				return s.comment == q.value;
-			else if(q.field == "dateadded")
-				return s.date_added == q.value.to_int();
-			else if(q.field == "genre")
-				return s.genre == q.value;
-			else if(q.field == "length")
-				return s.length == q.value.to_int();
-			else if(q.field == "playcount")
-				return s.play_count == q.value.to_int();
-			else if(q.field == "rating")
-				return s.rating == q.value.to_int();
-			else if(q.field == "title")
-				return s.title == q.value;
-			else if(q.field == "track")
-				return s.track == q.value.to_int();
-			else if(q.field == "year")
-				return s.year == q.value.to_int();
-		}
-		else if(q.comparator == ">") { //only numerical
-			if(q.field == "bitrate")
-				return s.bitrate > q.value.to_int();
-			else if(q.field == "dateadded")
-				return s.date_added > q.value.to_int();
-			else if(q.field == "length")
-				return s.length > q.value.to_int();
-			else if(q.field == "playcount")
-				return s.play_count > q.value.to_int();
-			else if(q.field == "rating")
-				return s.rating > q.value.to_int();
-			else if(q.field == "track")
-				return s.track > q.value.to_int();
-			else if(q.field == "year")
-				return s.year > q.value.to_int();
-		}
-		else if(q.comparator == "<") { // only numerical
-			if(q.field == "bitrate")
-				return s.bitrate < q.value.to_int();
-			else if(q.field == "dateadded")
-				return s.date_added < q.value.to_int();
-			else if(q.field == "length")
-				return s.length < q.value.to_int();
-			else if(q.field == "playcount")
-				return s.play_count < q.value.to_int();
-			else if(q.field == "rating")
-				return s.rating < q.value.to_int();
-			else if(q.field == "track")
-				return s.track < q.value.to_int();
-			else if(q.field == "year")
-				return s.year < q.value.to_int();
-		}
-		else if(q.comparator == "LIKE") { // only strings
-			if(q.field == "album")
-				return (q.value.down() in s.album.down());
-			if(q.field == "artist")
-				return (q.value.down() in s.artist.down());
-			if(q.field == "comment")
-				return (q.value.down() in s.comment.down());
-			if(q.field == "genre")
-				return (q.value.down() in s.genre.down());
-			if(q.field == "title")
-				return (q.value.down() in s.title.down());
+			if(q.comparator == "is exactly")
+				return (now.get_day_of_year() == played.get_day_of_year() && now.get_year() == played.get_year());
+			else if(q.comparator == "is within") {
+				return played.compare(now) > 0;
+			}
+			else if(q.comparator == "is before") {
+				return now.compare(played) > 0;
+			}
 		}
 		
 		return false;

@@ -252,6 +252,7 @@ public class BeatBox.SideTreeView : TreeView {
 			
 			sideTreeModel.set(item, 0, o, 1, w, 2, name);
 			this.expand_to_path(sideTreeModel.get_path(item));
+			this.get_selection().select_iter(item);
 			
 			return item;
 		}
@@ -277,6 +278,7 @@ public class BeatBox.SideTreeView : TreeView {
 			
 			sideTreeModel.set(item, 0, o, 1, w, 2, name);
 			this.expand_to_path(sideTreeModel.get_path(item));
+			this.get_selection().select_iter(item);
 			
 			return item;
 		}
@@ -478,18 +480,21 @@ public class BeatBox.SideTreeView : TreeView {
 			do {
 				GLib.Object o;
 				sideTreeModel.get(pivot, 0, out o);
-				if(((SmartPlaylist)o).rowid == sp.rowid) {
+				if(o is SmartPlaylist && ((SmartPlaylist)o).rowid == sp.rowid) {
 					string name;
 					Widget w;
 					sideTreeModel.get(pivot, 1, out w, 2, out name);
 					
 					sideTreeModel.remove(pivot);
 					addItem(playlists_iter, sp, w, sp.name);
+					
+					((MusicTreeView)w).populateView(lm.songs_from_smart_playlist(sp.rowid), false);
+					
 					break;
 				}
 			} while(sideTreeModel.iter_next(ref pivot));
 		}
-		else {	
+		else {
 			lm.add_smart_playlist(sp);
 			lw.addSideListItem(sp);
 		}
@@ -508,13 +513,15 @@ public class BeatBox.SideTreeView : TreeView {
 			do {
 				GLib.Object o;
 				sideTreeModel.get(pivot, 0, out o);
-				if(((Playlist)o).rowid == p.rowid) {
+				if(o is Playlist && ((Playlist)o).rowid == p.rowid) {
 					string name;
 					Widget w;
 					sideTreeModel.get(pivot, 1, out w, 2, out name);
 					
 					sideTreeModel.remove(pivot);
 					addItem(playlists_iter, p, w, p.name);
+					((MusicTreeView)w).populateView(lm.songs_from_playlist(p.rowid), false);
+					
 					break;
 				}
 			} while(sideTreeModel.iter_next(ref pivot));

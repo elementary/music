@@ -115,6 +115,10 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		add(padding);
 		show_all();
 		
+		foreach(SmartPlaylistEditorQuery speq in spQueries) {
+			speq.fieldChanged();
+		}
+		
 		save.clicked.connect(saveClick);
 	}
 	
@@ -158,10 +162,14 @@ public class BeatBox.SmartPlaylistEditor : Window {
 }
 
 public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
+	private SmartQuery _q;
+	
 	public HBox _box;
 	private ComboBox _field;
 	private ComboBox _comparator;
 	private Entry _value;
+	private SpinButton _valueNumerical;
+	private Label _units;
 	private Button _remove;
 	
 	public HashMap<string, int> fields;
@@ -170,6 +178,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 	public signal void removed();
 	
 	public SmartPlaylistEditorQuery(SmartQuery q) {
+		_q = q;
 		fields = new HashMap<string, int>();
 		comparators = new HashMap<string, int>();
 		
@@ -186,14 +195,11 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		fields.set("Title", 10);
 		fields.set("Year", 11);
 		
-		comparators.set("is", 0);
-		comparators.set("contains", 1);
-		comparators.set("does not contain", 2);
-		
 		_box = new HBox(false, 2);
 		_field = new ComboBox.text();
 		_comparator = new ComboBox.text();
 		_value = new Entry();
+		_valueNumerical = new SpinButton.with_range(0, 1000, 1);
 		_remove = new Button.with_label("Remove");
 		
 		_field.append_text("Album");
@@ -209,22 +215,30 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.append_text("Title");
 		_field.append_text("Year");
 		
-		_comparator.append_text("is");
-		_comparator.append_text("contains");
-		_comparator.append_text("does not contain");
-		
 		_field.set_active(fields.get(q.field));
 		_comparator.set_active(comparators.get(q.comparator));
-		_value.text = q.value;
+		
+		if(q.field == "Album" || q.field == "Artist" || q.field == "Comment" || q.field == "Genre" || q.field == "Title") {
+			_value.text = q.value;
+		}
+		else {
+			_valueNumerical.set_value((double)q.value.to_int());
+		}
+			
+		_units = new Label("");
 		
 		_box.pack_start(_field, false, true, 0);
 		_box.pack_start(_comparator, false ,true, 1);
-		_box.pack_start(_value, false, true, 1);
+		_box.pack_start(_value, true, true, 1);
+		_box.pack_start(_valueNumerical, true, true, 1);
+		_box.pack_start(_units, false, true, 1);
 		_box.pack_start(_remove, false, true, 0);
 		
 		_box.show_all();
 		
+		fieldChanged();
 		_remove.clicked.connect(removeClicked);
+		_field.changed.connect(fieldChanged);
 	}
 	
 	public SmartQuery getQuery() {
@@ -232,10 +246,75 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		
 		rv.field = _field.get_active_text();
 		rv.comparator = _comparator.get_active_text();
-		rv.value = _value.text;
 		
+		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Title")
+			rv.value = _value.text;
+		else
+			rv.value = _valueNumerical.value.to_string();
 		
 		return rv;
+	}
+	
+	public virtual void fieldChanged() {
+		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Title") {
+			_value.show();
+			_valueNumerical.hide();
+			
+			for(int i = 0;i < 3; ++i) _comparator.remove_text(0);
+			_comparator.append_text("is");
+			_comparator.append_text("contains");
+			_comparator.append_text("does not contain");
+			comparators.set("is", 0);
+			comparators.set("contains", 1);
+			comparators.set("does not contain", 2);
+			
+			_comparator.set_active( (comparators.has_key(_q.comparator)) ? comparators.get(_q.comparator) : 0);
+		}
+		else {
+			_valueNumerical.show();
+			_value.hide();
+			
+			if(_field.get_active_text() == "Bitrate" || _field.get_active_text() == "Year" || _field.get_active_text() == "Rating" || _field.get_active_text() == "Playcount" || _field.get_active_text() == "Length") {
+				for(int i = 0;i < 3; ++i) _comparator.remove_text(0);
+				_comparator.append_text("is exactly");
+				_comparator.append_text("is at most");
+				_comparator.append_text("is at least");
+				comparators.set("is exactly", 0);
+				comparators.set("is at most", 1);
+				comparators.set("is at least", 2);
+				
+				_comparator.set_active( (comparators.has_key(_q.comparator)) ? comparators.get(_q.comparator) : 0);
+			}
+			else if(_field.get_active_text() == "Date Added" || _field.get_active_text() == "Last Played") {
+				for(int i = 0;i < 3; ++i) _comparator.remove_text(0);
+				_comparator.append_text("is exactly");
+				_comparator.append_text("is within");
+				_comparator.append_text("is before");
+				comparators.set("is exactly", 0);
+				comparators.set("is within", 1);
+				comparators.set("is before", 2);
+				
+				_comparator.set_active( (comparators.has_key(_q.comparator)) ? comparators.get(_q.comparator) : 0);
+			}
+		}
+		
+		_comparator.show();
+		
+		//helper for units
+		if(_field.get_active_text() == "Length") {
+			_units.set_text("seconds");
+			_units.show();
+		}
+		else if(_field.get_active_text() == "Last Played" || _field.get_active_text() == "Date Added") {
+			_units.set_text("days ago");
+			_units.show();
+		}
+		else if(_field.get_active_text() == "Bitrate") {
+			_units.set_text("kbps");
+			_units.show();
+		}
+		else
+			_units.hide();
 	}
 	
 	public virtual void removeClicked() {

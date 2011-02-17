@@ -4,7 +4,7 @@ public class BeatBox.SmartQuery : Object {
 	private int _rowid;
 	private string _field; 
 	private string _comparator;
-	private string _value;
+	private string _value; //internally this often holds numbers, but that's ok.
 	
 	public SmartQuery() {
 		_field = "album";

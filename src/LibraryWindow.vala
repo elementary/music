@@ -627,6 +627,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void on_quit() {
+		//the user will never know that we don't actually close in the speed of light :p
+		this.hide();
+		
 		lm.settings.setLastSongPosition((int)topDisplay.get_scale_value());
 		
 		// save the columns
