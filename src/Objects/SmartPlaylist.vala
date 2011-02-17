@@ -194,7 +194,7 @@ public class BeatBox.SmartPlaylist : Object {
 		else if(q.field == "Date Added") {//time
 			var now = new DateTime.now_local();
 			var played = new DateTime.from_unix_local(s.date_added);
-			played.add_days(q.value.to_int());
+			played = played.add_days(q.value.to_int());
 			
 			if(q.comparator == "is exactly")
 				return (now.get_day_of_year() == played.get_day_of_year() && now.get_year() == played.get_year());
@@ -206,9 +206,12 @@ public class BeatBox.SmartPlaylist : Object {
 			}
 		}
 		else if(q.field == "Last Played") {
+			if(s.last_played == 0)
+				return false;
+			
 			var now = new DateTime.now_local();
 			var played = new DateTime.from_unix_local(s.last_played);
-			played.add_days(q.value.to_int());
+			played = played.add_days(q.value.to_int());
 			
 			if(q.comparator == "is exactly")
 				return (now.get_day_of_year() == played.get_day_of_year() && now.get_year() == played.get_year());

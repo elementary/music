@@ -361,7 +361,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			else
 				((CellRendererPixbuf)cell).pixbuf = null;
 		}
-		else if(tree_model.get_column_type(tvc.sort_column_id) == typeof(string)) { // all other columns
+		else if(tree_model.get_column_type(tvc.sort_column_id) == typeof(string)) { // DOESN'T WORK!! WHY?
 			string val;
 			tree_model.get(iter, tvc.sort_column_id, out val);
 			
