@@ -75,6 +75,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.lm.progress_notification.connect(progressNotification);
 		this.lm.song_removed.connect(songRemovedFromManager);
 		this.lm.song_played.connect(song_played);
+		this.lm.songs_updated.connect(songs_updated);
 		
 		this.similarSongs.similar_retrieved.connect(similarRetrieved);
 		
@@ -432,6 +433,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//notification.show();
 		
 		sideTree.updatePlayQueue();
+	}
+	
+	public virtual void songs_updated(Collection<int> ids) {
+		if(ids.contains(lm.song_info.song.rowid)) {
+			var song_label = "<b>" + lm.song_info.song.title + "</b>" + " by " + "<b>" + lm.song_info.song.artist + "</b>" + " on " + "<b>" +lm.song_info.song.album + "</b>";
+			topDisplay.set_label_markup(song_label);
+		}
 	}
 	
 	public void* lastfm_thread_function () {

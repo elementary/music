@@ -41,11 +41,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void progress_notification(string? message, double progress);
 	
 	public signal void current_cleared();
-	
-	public signal void song_updated(int id);
+	public signal void songs_updated(Collection<int> ids);
 	public signal void song_removed(int id);
 	public signal void song_queued(int id);
-	public signal void song_played(int id);
+	public signal void song_played(int id, int old_id);
 	
 	public LibraryManager(StreamPlayer player, BeatBox.DataBaseManager dbmn, BeatBox.Settings sett) {
 		this.player = player;
@@ -327,7 +326,31 @@ public class BeatBox.LibraryManager : GLib.Object {
 			fo.update_file_hierarchy(s);
 			
 		stdout.printf(""); //otherwise it goes to fast????
-		song_updated(s.rowid);
+		
+		LinkedList<int> one = new LinkedList<int>();
+		one.add(s.rowid);
+		
+		songs_updated(one);
+	}
+	
+	public void update_songs(Collection<Song> updates, bool updateMeta) {
+		LinkedList<int> rv = new LinkedList<int>();
+		
+		foreach(Song s in updates) {
+			_songs.set(s.rowid, s);
+			
+			if(updateMeta)
+				fo.save_song(s);
+			
+			if(settings.getUpdateFolderHierarchy() && updateMeta)
+				fo.update_file_hierarchy(s);
+				
+			stdout.printf(""); //otherwise it goes to fast????
+			
+			rv.add(s.rowid);
+		}
+		
+		songs_updated(rv);
 	}
 	
 	public void save_songs() {
@@ -597,6 +620,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void playSong(int id) {
+		int old_id = song_info.song.rowid;
+		
 		// actually play the song asap
 		player.play_song(song_from_id(id));
 			
@@ -610,7 +635,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		//update settings
 		settings.setLastSongPlaying(song_from_id(id));
 		
-		song_played(id);
+		song_played(id, old_id);
 	}
 	
 	/************* Last FM Artist Stuff ************/

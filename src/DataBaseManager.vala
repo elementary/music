@@ -132,13 +132,19 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			index = 0;
 			for (var results = query.execute () ; !results.finished ; results.next ()) {
 				Gtk.TreeViewColumn tvc;
-				if(results.fetch_string(0) != " ")
+				if(results.fetch_string(0) != " " && results.fetch_string(0) != "Rating")
 					tvc = new Gtk.TreeViewColumn.with_attributes(results.fetch_string(0), new Gtk.CellRendererText(), "text", index, null);
 				else
 					tvc = new Gtk.TreeViewColumn.with_attributes(results.fetch_string(0), new Gtk.CellRendererPixbuf(), "pixbuf", index, null);
 				
 				tvc.visible = (results.fetch_int(1) == 1);
 				tvc.fixed_width = results.fetch_int(2);
+				tvc.resizable = true;
+				tvc.reorderable = true;
+				tvc.clickable = true;
+				tvc.sort_column_id = index;
+				tvc.set_sort_indicator(false);
+				tvc.sizing = Gtk.TreeViewColumnSizing.FIXED;
 					
 				rv.add(tvc);
 				++index;
