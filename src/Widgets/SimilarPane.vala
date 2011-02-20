@@ -98,6 +98,9 @@ public class BeatBox.SimilarPane : HPaned {
 		
 		if(do_transfer)
 			transferPlaybackClicked();
+		
+		if(_lm.song_info.song != null)
+			similars.updateSong(_lm.song_info.song.rowid);
 	}
 	
 	public virtual void refreshClicked() {

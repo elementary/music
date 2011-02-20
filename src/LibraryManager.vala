@@ -154,11 +154,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_songs.set(s.rowid, s);
 		}
 		
-		//tell user what songs were not imported.
-		foreach(string s in not_imported) {
-			stdout.printf("File %s was not imported\n", s);
-		}
-		
 		Idle.add( () => { 
 			music_added(not_imported); 
 			return false; 
@@ -192,11 +187,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// all songs remaining are no longer in folder hierarchy
 		dbm.remove_songs(paths);
-		
-		//tell user what songs were not imported.
-		foreach(string s in not_imported) {
-				stdout.printf("File %s was not imported\n", s);
-		}
 		
 		Idle.add( () => { 
 			music_rescanned(not_imported); 

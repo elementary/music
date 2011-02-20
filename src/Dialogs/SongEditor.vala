@@ -5,6 +5,7 @@ public class BeatBox.SongEditor : Window {
 	LinkedList<Song> _songs;
 	Song sum; // a song filled with all values that each song has in common
 	
+	private Label fileLabel;
 	private Notebook notebook;
 	private Viewport editView;
 	private VBox vert; // seperates editors with buttons and other stuff
@@ -67,6 +68,7 @@ public class BeatBox.SongEditor : Window {
 		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 100, 1)));
 		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(1000, 9999, 1)));
 		
+		fileLabel = new Label("");
 		notebook = new Notebook();
 		editView = new Viewport(null, null);
 		vert = new VBox(false, 0);
@@ -85,8 +87,10 @@ public class BeatBox.SongEditor : Window {
 		
 		horiz.pack_start(textVert, false, true, 0);
 		horiz.pack_start(numerVert, false, true, 0);
+		vert.pack_start(fileLabel);
 		vert.pack_start(horiz, true, true, 0);
 		
+		fileLabel.set_label(songs.get(0).file);
 		HButtonBox buttonSep = new HButtonBox();
 		_cancel = new Button.with_label("Cancel");
 		Label fillerLabel = new Label("");

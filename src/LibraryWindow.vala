@@ -83,29 +83,40 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		check_resize.connect(on_resize);
 		this.destroy.connect (Gtk.main_quit);
 		
-		//make all songs current list
-		lm.clearCurrent();
-		foreach(int id in ((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).get_songs()) {
-			lm.addToCurrent(id);
+		if(lm.song_count() == 0 && settings.getMusicFolder() == "") {
+			stdout.printf("First run, setting music folder and importing.\n");
+			lm.set_music_folder(GLib.Environment.get_user_special_dir(UserDirectory.MUSIC));
 		}
+		else if(lm.song_count() == 0 && settings.getMusicFolder() != "") {
+			stdout.printf("No songs but music folder is set, showing welcome screen.\n");
+			//show welcome screen
+		}
+		else {
+			lm.clearCurrent();
+			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList("0");
 		
-		//resume playback
-		Song s = settings.getLastSongPlaying();
-		s = lm.song_from_name(s.title, s.artist);
-		if(s.rowid != 0) {
-			int new_i = 1;
-			foreach(int i in lm.current_songs()) {
-				if(lm.song_from_id(i).rowid == s.rowid) {
-					lm.current_index = new_i;
-					break;
+			Song s = settings.getLastSongPlaying();
+			s = lm.song_from_name(s.title, s.artist);
+			if(s.rowid != 0) {
+				int new_i = 0;
+				foreach(int i in lm.current_songs()) {
+					if(lm.song_from_id(i).rowid == s.rowid) {
+						lm.current_index = new_i;
+						break;
+					}
+					
+					++new_i;
 				}
 				
-				++new_i;
+				((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(new_i.to_string());
+				
+				lm.playSong(s.rowid);
+				topDisplay.change_value(ScrollType.NONE, (int)settings.getLastSongPosition());
+				topDisplaySliderMoved(ScrollType.NONE, (int)settings.getLastSongPosition());
 			}
 			
-			lm.playSong(s.rowid);
-			topDisplay.change_value(ScrollType.NONE, (int)settings.getLastSongPosition());
-			topDisplaySliderMoved(ScrollType.NONE, (int)settings.getLastSongPosition());
+			//always rescan on startup
+			fileRescanMusicFolderClick();
 		}
 	}
 	
@@ -373,10 +384,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void progressNotification(string? message, double progress) {
-		if(message != null)
-			topDisplay.set_label_text(message);
+		//THIS IS WHAT CAUSES IT TO CRASH... WTF. SOMETHING WITH PANGO
+		//if(message != null)
+			//topDisplay.set_label_text(message);
 		
-		if(progress != 0.0)
+		if(progress != 0.0 && progress > 0.0 && progress < 1.0)
 			topDisplay.set_progress_value(progress);
 	}
 	
@@ -436,7 +448,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {
-		if(ids.contains(lm.song_info.song.rowid)) {
+		if(lm.song_info.song != null && ids.contains(lm.song_info.song.rowid)) {
 			var song_label = "<b>" + lm.song_info.song.title + "</b>" + " by " + "<b>" + lm.song_info.song.artist + "</b>" + " on " + "<b>" +lm.song_info.song.album + "</b>";
 			topDisplay.set_label_markup(song_label);
 		}
@@ -694,19 +706,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void fileRescanMusicFolderClick() {
 		//topDisplay.set_label_showing(true);
-		topDisplay.set_label_text("Rescanning music folder for changes. This may take a while");
-		//topDisplay.show_progressbar();
+		topDisplay.set_label_markup("<b>Rescanning music folder for changes</b>");
+		topDisplay.show_progressbar();
 		
 		lm.rescan_music_folder();
 	}
 	
 	public virtual void musicAdded(LinkedList<string> not_imported) {
-		int index = 0;
-		
 		sideTree.resetView();
-		//topDisplay.set_label_showing(false);
 		topDisplay.show_scale();
-		topDisplay.set_label_text("");
+		
+		if(lm.song_info.song != null) {
+			var song_label = "<b>" + lm.song_info.song.title + "</b>" + " by " + "<b>" + lm.song_info.song.artist + "</b>" + " on " + "<b>" +lm.song_info.song.album + "</b>";
+			topDisplay.set_label_markup(song_label);
+		}
+		else
+			topDisplay.set_label_text("");
 		
 		//repopulate collection and playlists and reset queue and already played
 		Widget w = sideTree.getWidget(sideTree.library_music_iter);
@@ -766,6 +781,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void editPreferencesClick() {
 		PreferencesWindow pw = new PreferencesWindow(lm);
 		
+		pw.changed.connect( (folder) => {
+			topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b>");
+			topDisplay.show_progressbar();
+		});
 	}
 	
 	public virtual void end_of_stream(Song s) {

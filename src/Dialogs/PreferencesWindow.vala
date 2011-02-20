@@ -26,6 +26,8 @@ public class BeatBox.PreferencesWindow : Window {
 	
 	private string lastfm_token;
 	
+	public signal void changed(string folder);
+	
 	public PreferencesWindow(LibraryManager lm) {
 		this._lm = lm;
 		
@@ -190,11 +192,13 @@ public class BeatBox.PreferencesWindow : Window {
 		
 	public virtual void saveClicked() {
 		if(music_folder_choice != _lm.settings.getMusicFolder()) {
+			changed(music_folder_choice);
 			_lm.set_music_folder(music_folder_choice);
 		}
 		
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
 		stdout.printf("no setting for copying imported music\n");
+		
 		this.destroy();
 	}
 	

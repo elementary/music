@@ -362,21 +362,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			else
 				((CellRendererText)cell).text = val.to_string() + " kbps";
 		}
-		/*else if(tvc.title == " ") {
-			int id;
-			tree_model.get(iter, 0, out id);
-			
-			if(lm.song_info.song != null && lm.song_info.song.rowid == id && is_current)
-				((CellRendererPixbuf)cell).pixbuf = this.render_icon("audio-volume-high", IconSize.MENU, null);
-			else
-				((CellRendererPixbuf)cell).pixbuf = null;
-		}
-		else if(tree_model.get_column_type(tvc.sort_column_id) == typeof(string)) { // DOESN'T WORK!! WHY?
-			string val;
-			tree_model.get(iter, tvc.sort_column_id, out val);
-			
-			((CellRendererText)cell).text = val;
-		}*/
 	}
 	
 	public void ratingsCellDataFunction(CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
@@ -472,7 +457,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			else if(tvc.title == "Genre")
 				types[index] = typeof(string);
 			else if(tvc.title == "Year")
-				types[index] = typeof(string);
+				types[index] = typeof(int);
 			else if(tvc.title == "Bitrate")
 				types[index] = typeof(int);
 			else if(tvc.title == "Rating")
@@ -584,8 +569,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.set_value(item, index, s.album);
 			else if(tvc.title == "Genre")
 				model.set_value(item, index, s.genre);
-			else if(tvc.title == "Year" && s.year != 0)
-				model.set_value(item, index, ((s.year != 0) ? s.year.to_string() : ""));
+			else if(tvc.title == "Year")
+				model.set_value(item, index, s.year);
 			else if(tvc.title == "Bitrate" && s.bitrate != 0)
 				model.set_value(item, index, s.bitrate);
 			else if(tvc.title == "Rating")
@@ -625,7 +610,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		Song s = lm.song_from_id(i);
 		
 		model.set(item, _columns.index_of("id"), s.rowid,
-								_columns.index_of(" "), (i == lm.song_info.song.rowid && is_current) ? view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null) : null,
+								_columns.index_of(" "), (lm.song_info.song != null && i == lm.song_info.song.rowid && is_current) ? view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null) : null,
 								_columns.index_of("#"), (path.to_string().to_int() + 1),
 								_columns.index_of("Track"), s.track,
 								_columns.index_of("Title"), s.title,
@@ -633,7 +618,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 								_columns.index_of("Artist"), s.artist,
 								_columns.index_of("Album"), s.album,
 								_columns.index_of("Genre"), s.genre,
-								_columns.index_of("Year"), s.year.to_string(),
+								_columns.index_of("Year"), s.year,
 								_columns.index_of("Bitrate"), s.bitrate,
 								_columns.index_of("Rating"), s.rating,
 								_columns.index_of("Playcount"), s.play_count,
@@ -649,87 +634,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public virtual void current_cleared() {
 		this.is_current = false;
 		
-		updateSong(lm.song_info.song.rowid);
+		if(lm.song_info.song != null)
+			updateSong(lm.song_info.song.rowid);
 	}
-	
-	/*
-	public bool updateTempSongs(TreeModel model, TreePath path, TreeIter item) {
-		int id;
-		this.model.get(item, 0, out id);
-		
-		if(tempSongs.contains(id)) {
-			Song s = lm.song_from_id(id);
-			stdout.printf("updating %s \n", s.title);
-			
-			int index = 0;
-			foreach(TreeViewColumn tvc in view.get_columns()) {
-				if(tvc.title == "id")
-					this.model.set_value(item, index, s.rowid);
-				if(tvc.title == " " && lm.song_info.song != null && id == lm.song_info.song.rowid)
-					this.model.set_value(item, index, view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null));
-				else if(tvc.title == "Track")
-					this.model.set_value(item, index, s.track);
-				else if(tvc.title == "Title")
-					this.model.set_value(item, index, s.title);
-				else if(tvc.title == "Length")
-					this.model.set_value(item, index, s.pretty_length());
-				else if(tvc.title == "Artist")
-					this.model.set_value(item, index, s.artist);
-				else if(tvc.title == "Album")
-					this.model.set_value(item, index, s.album);
-				else if(tvc.title == "Genre")
-					this.model.set_value(item, index, s.genre);
-				else if(tvc.title == "Year")
-					this.model.set_value(item, index, ((s.year != 0) ? s.year.to_string() : ""));
-				else if(tvc.title == "Bitrate")
-					this.model.set_value(item, index, s.bitrate);
-				else if(tvc.title == "Rating")
-					this.model.set_value(item, index, s.rating);
-				else if(tvc.title == "Playcount")
-					this.model.set_value(item, index, s.play_count);
-				else if(tvc.title == "Date Added")
-					this.model.set_value(item, index, s.pretty_date_added());
-				else if(tvc.title == "Last Played")
-					this.model.set_value(item, index, ((s.last_played != 0) ? s.pretty_last_played() : ""));
-				else if(tvc.title == "BPM")
-					this.model.set_value(item, index, s.bpm);
-				else if(tvc.title == "File Name")
-					this.model.set_value(item, index, s.file_name);
-				else if(tvc.title == "File Size")
-					this.model.set_value(item, index, s.file_size);
-				
-				++index;
-			}
-			
-			//tempSongs.remove(id);
-		}
-		
-		//if(tempSongs.size == 0)
-			//return true;
-		
-		return false;
-	}
-	
-	public bool updatePlayingIcon(TreeModel model, TreePath path, TreeIter iter) {
-		int id;
-		model.get(iter, 0, out id);
-		Gdk.Pixbuf? old_pix;
-		model.get(iter, 1, out old_pix);
-		
-		int index = 0;
-		foreach(TreeViewColumn tvc in view.get_columns()) {
-			if(tvc.title == " ") {
-				if(id == lm.song_info.song.rowid && is_current)
-					this.model.set_value(iter, index, view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null));
-				else
-					this.model.set(iter, index, null);
-			}
-				
-			++index;
-		}
-		
-		return false;
-	}*/
 	
 	public virtual void song_played(int id, int old) {
 		updateSong(old);
@@ -743,16 +650,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void song_removed(int id) {
-		
+		//this is when song is removed from entire library. search and remove
+		//if in our treeview
 	}
 	
 	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
 		TreeIter item;
 		
-		lm.current_index = path.to_string().to_int();
-		lm.clearCurrent();
-		is_current = true;
-		model.foreach(buildCurrentList);
+		setAsCurrentList(path.to_string());
 		
 		if(lm.is_shuffled())
 			lm.shuffleMusic();
@@ -774,20 +679,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public void setAsCurrentList(string current_song_path) {
 		lm.current_index = current_song_path.to_int();
 		lm.clearCurrent();
-		model.foreach(buildCurrentList);
+		foreach(int i in _rows.keys)
+			lm.addToCurrent(i);
 		
 		is_current = true;
-	}
-	
-	public bool buildCurrentList(TreeModel model, TreePath path, TreeIter iter) {
-		TreeIter item;
-		model.get_iter(out item, path);
 		
-		int id;
-		model.get(item, 0, out id);
-		
-		lm.addToCurrent(id);
-		return false;
+		if(lm.song_info.song != null)
+			updateSong(lm.song_info.song.rowid);
 	}
 	
 	public virtual bool viewClick(Gdk.EventButton event) {
@@ -942,7 +840,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				lastfmStuff.set("album", "");
 			
 			to_edit.add(s);
-			//tempSongs.add(id);
 		}
 		
 		SongEditor se = new SongEditor(to_edit, lm.get_track(lastfmStuff.get("track")), 
@@ -996,20 +893,26 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			if(hint == "queue") {
 				lm.unqueue_song_by_id(s.rowid);
 				model.remove(item);
-				//this.songs.remove(id);
+				_rows.unset(id);
 			}
 			else if(hint == "playlist") {
 				lm.playlist_from_id(relative_id).removeSong(s);
 				model.remove(item);
-				//this.songs.remove(id);
+				_rows.unset(id);
 			}
 			else if(hint == "collection") {
 				lm.remove_song_from_id(s.rowid);
 				model.remove(item);
-				//this.songs.remove(id);
+				_rows.unset(id);
 				
 				//should prompt user about being sure about this and annoy them
-				
+				try {
+					var file = File.new_for_path(s.file);
+					file.trash();
+				}
+				catch(GLib.Error err) {
+					stdout.printf("Could not move file %s to trash: %s\n", s.file, err.message);
+				}
 			}
 			
 			//must somehow update all other views if removed from collection
@@ -1021,7 +924,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel l_model;
 		
-		// this actually only goes through once
+		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
 			model.get_iter(out item, path);
@@ -1031,8 +934,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 0;
-			lm.update_song(s, false);
+			los.add(s);
 		}
+		
+		lm.update_songs(los, false);
 	}
 	
 	public virtual void songRateSong1Clicked() {
@@ -1040,7 +945,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel l_model;
 		
-		// this actually only goes through once
+		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
 			model.get_iter(out item, path);
@@ -1050,8 +955,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 1;
-			lm.update_song(s, false);
+			los.add(s);
 		}
+		
+		lm.update_songs(los, false);
 	}
 	
 	public virtual void songRateSong2Clicked() {
@@ -1059,7 +966,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel l_model;
 		
-		// this actually only goes through once
+		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
 			model.get_iter(out item, path);
@@ -1069,8 +976,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 2;
-			lm.update_song(s, false);
+			los.add(s);
 		}
+		
+		lm.update_songs(los, false);
 	}
 	
 	public virtual void songRateSong3Clicked() {
@@ -1078,8 +987,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel l_model;
 		
-		// this actually only goes through once
-		//var los = new LinkedList<Song>();
+		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
 			model.get_iter(out item, path);
@@ -1089,10 +997,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 3;
-			//los.add(s);
+			los.add(s);
 		}
 		
-		//lm.update_songs(los, false);
+		lm.update_songs(los, false);
 	}
 	
 	public virtual void songRateSong4Clicked() {
@@ -1100,7 +1008,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel l_model;
 		
-		// this actually only goes through once
+		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
 			model.get_iter(out item, path);
@@ -1110,8 +1018,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 4;
-			lm.update_song(s, false);
+			los.add(s);
 		}
+		
+		lm.update_songs(los, false);
 	}
 	
 	public virtual void songRateSong5Clicked() {
@@ -1119,7 +1029,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel l_model;
 		
-		// this actually only goes through once
+		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
 			model.get_iter(out item, path);
@@ -1129,7 +1039,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 5;
-			lm.update_song(s, false);
+			los.add(s);
 		}
+		
+		lm.update_songs(los, false);
 	}
 }

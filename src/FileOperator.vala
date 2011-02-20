@@ -58,7 +58,7 @@ public class BeatBox.FileOperator : Object {
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					++index;
-					//fo_progress("", (double)((double)index)/((double)item_count));
+					fo_progress(null, (double)((double)index)/((double)item_count));
 					
 					Song s = import_song(file_path);
 					
@@ -97,7 +97,7 @@ public class BeatBox.FileOperator : Object {
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
-				//fo_progress("", (double)((double)index)/((double)item_count));
+				fo_progress(null, (double)((double)index)/((double)item_count));
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					if(current_song_paths.contains(file_path)) {
@@ -153,7 +153,6 @@ public class BeatBox.FileOperator : Object {
 			}
 		}
 		else {
-			stdout.printf("Did not import %s.\n", file_path);
 			return null;
 		}
 		

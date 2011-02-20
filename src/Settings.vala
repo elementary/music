@@ -101,7 +101,7 @@ public class BeatBox.Settings : Object {
 	
 	/** Get values **/
 	public string getMusicFolder() {
-		return getString(MUSIC_FOLDER, Environment.get_home_dir() + "/Music/");
+		return getString(MUSIC_FOLDER, "");
 	}
 	
 	public bool getWindowMaximized() {

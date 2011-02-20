@@ -31,6 +31,21 @@ public class BeatBox.Beatbox : GLib.Object {
 		Gtk.init(ref args);
 		Gdk.threads_init();
 		
+		//check for .desktop file
+		/*var desktop_file = File.new_for_path("/usr/share/applications/beatbox.desktop");
+		
+		if(!desktop_file.query_exists()) {
+			stdout.printf("Creating .desktop file\n");
+			try {
+				var file_stream = desktop_file.create (FileCreateFlags.NONE);
+				var data_stream = new DataOutputStream (file_stream);
+				data_stream.put_string (desktopString());
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not create .desktop file: %s\n", err.message);
+			}
+		}*/
+		
 		add_stock_images();
 		
 		stdout.printf("Creating streamplayer\n");
@@ -72,5 +87,19 @@ public class BeatBox.Beatbox : GLib.Object {
 		iFactory.add_default();
 	}
 	
-	
+	private static string desktopString() {
+		string rv = "[Desktop Entry]";
+		rv += "Type=Application";
+		rv += "Version=0.1";
+		rv += "Name=BeatBox";
+		rv += "GenericName=Music Player";
+		rv += "Exec=beatbox";
+		rv += "Icon=beatbox";
+		rv += "Terminal=false";
+		rv += "Categories=GNOME;Audio;Music;Player;AudioVideo;";
+		rv += "MimeType=x-content/audio-player;";
+		rv += "StartupNotify=true";
+		
+		return rv;
+	}
 }
