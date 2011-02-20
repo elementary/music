@@ -193,7 +193,6 @@ public class BeatBox.PreferencesWindow : Window {
 	public virtual void saveClicked() {
 		if(music_folder_choice != _lm.settings.getMusicFolder()) {
 			changed(music_folder_choice);
-			_lm.set_music_folder(music_folder_choice);
 		}
 		
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());

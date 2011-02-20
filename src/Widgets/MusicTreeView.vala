@@ -100,8 +100,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void updateSensitivities() {
-		if(hint == "collection") {
-			songRemove.set_sensitive(false);
+		if(hint == "music") {
+			songRemove.set_sensitive(true);
+			songRemove.set_label("Move to Trash");
+			columnNumber.active = false;
+			columnTrack.active = true;
 		}
 		else if(hint == "queue") {
 			songRemove.set_sensitive(true);
@@ -306,12 +309,28 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		
 		this.add(view);
+		
+		this.model.rows_reordered.connect(modelRowsReordered);
+	}
+	
+	public virtual void modelRowsReordered(TreePath path, TreeIter iter, void* new_order) {
+		if(is_current)
+			setAsCurrentList( (lm.song_info.song != null) ? _rows.get(lm.song_info.song.rowid).get_path().to_string() : "0");
 	}
 	
 	public virtual void viewColumnsChanged() {
 		_columns.clear();
 		foreach(TreeViewColumn tvc in view.get_columns()) {
 			_columns.add(tvc.title);
+		}
+		
+		if(hint == "music" && (int)view.get_columns().length == lm.dbm.COLUMN_COUNT) { //make size check so no saving on destroy
+			var cols = new ArrayList<TreeViewColumn>();
+			
+			foreach(TreeViewColumn tvc in view.get_columns())
+				cols.add(tvc);
+			
+			lm.save_song_list_columns(cols);
 		}
 	}
 	
@@ -659,9 +678,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		setAsCurrentList(path.to_string());
 		
-		if(lm.is_shuffled())
-			lm.shuffleMusic();
-		
 		// get db's rowid of row clicked
 		model.get_iter(out item, path);
 		int id;
@@ -676,16 +692,31 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
-	public void setAsCurrentList(string current_song_path) {
-		lm.current_index = current_song_path.to_int();
+	public void setAsCurrentList(string? current_song_path) {
+		if(current_song_path != null)
+			lm.current_index = current_song_path.to_int();
+		else if(lm.song_info.song != null)
+			lm.current_index = _rows.get(lm.song_info.song.rowid).get_path().to_string().to_int();
+		else
+			lm.current_index = _rows.get(0).get_path().to_string().to_int();
+		
 		lm.clearCurrent();
-		foreach(int i in _rows.keys)
-			lm.addToCurrent(i);
+		
+		TreeIter iter;
+		for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
+			int id;
+			model.get(iter, 0, out id);
+			
+			lm.addToCurrent(id);
+		}
 		
 		is_current = true;
 		
 		if(lm.song_info.song != null)
 			updateSong(lm.song_info.song.rowid);
+			
+		if(lm.is_shuffled())
+			lm.shuffleMusic();
 	}
 	
 	public virtual bool viewClick(Gdk.EventButton event) {
@@ -742,6 +773,17 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		return false;
 	}
 	
+	public virtual void viewHeadersResized() {
+		if(hint == "music") { //make size check so no saving on destroy
+			var cols = new ArrayList<TreeViewColumn>();
+			
+			foreach(TreeViewColumn tvc in view.get_columns())
+				cols.add(tvc);
+			
+			lm.save_song_list_columns(cols);
+		}
+	}
+	
 	public virtual void columnTurnOffSortingClick() {
 		model.set_sort_column_id(-2, Gtk.SortType.ASCENDING);
 		sort_id = -2;
@@ -752,6 +794,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		
 		populateView(the_songs, false);
+		
+		if(is_current)
+			setAsCurrentList( (lm.song_info.song != null) ? _rows.get(lm.song_info.song.rowid).get_path().to_string() : "0");
 	}
 	
 	public virtual void columnSmartSortingClick() {
@@ -763,6 +808,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		
 		populateView(the_songs, false);
+		
+		if(is_current)
+			setAsCurrentList( (lm.song_info.song != null) ? _rows.get(lm.song_info.song.rowid).get_path().to_string() : "0");
 	}
 	
 	/** When the column chooser popup menu has a change/toggle **/
@@ -803,6 +851,15 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				view.get_column(index).visible = columnFileSize.active;
 			
 			++index;
+		}
+		
+		if(hint == "music") { //make size check so no saving on destroy
+			var cols = new ArrayList<TreeViewColumn>();
+			
+			foreach(TreeViewColumn tvc in view.get_columns())
+				cols.add(tvc);
+			
+			lm.save_song_list_columns(cols);
 		}
 	}
 	
@@ -900,7 +957,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.remove(item);
 				_rows.unset(id);
 			}
-			else if(hint == "collection") {
+			else if(hint == "music") {
+				// this should go into try after file.trash()
 				lm.remove_song_from_id(s.rowid);
 				model.remove(item);
 				_rows.unset(id);
@@ -912,6 +970,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not move file %s to trash: %s\n", s.file, err.message);
+					
+					//tell the user the file could not be moved and ask if they'd like to delete permanently instead.
 				}
 			}
 			

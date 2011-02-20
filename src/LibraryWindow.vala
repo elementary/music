@@ -85,39 +85,30 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		if(lm.song_count() == 0 && settings.getMusicFolder() == "") {
 			stdout.printf("First run, setting music folder and importing.\n");
-			lm.set_music_folder(GLib.Environment.get_user_special_dir(UserDirectory.MUSIC));
+			setMusicFolder(GLib.Environment.get_user_special_dir(UserDirectory.MUSIC));
 		}
 		else if(lm.song_count() == 0 && settings.getMusicFolder() != "") {
 			stdout.printf("No songs but music folder is set, showing welcome screen.\n");
 			//show welcome screen
 		}
-		else {
+		/*else {
 			lm.clearCurrent();
-			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList("0");
+			//((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList("0");
 		
 			Song s = settings.getLastSongPlaying();
 			s = lm.song_from_name(s.title, s.artist);
 			if(s.rowid != 0) {
-				int new_i = 0;
-				foreach(int i in lm.current_songs()) {
-					if(lm.song_from_id(i).rowid == s.rowid) {
-						lm.current_index = new_i;
-						break;
-					}
-					
-					++new_i;
-				}
-				
-				((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(new_i.to_string());
-				
 				lm.playSong(s.rowid);
 				topDisplay.change_value(ScrollType.NONE, (int)settings.getLastSongPosition());
 				topDisplaySliderMoved(ScrollType.NONE, (int)settings.getLastSongPosition());
 			}
 			
+			//this gives gee.hashmap error... not sure why
+			//((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
+			
 			//always rescan on startup
 			fileRescanMusicFolderClick();
-		}
+		}*/
 	}
 	
 	public void build_ui() {
@@ -647,27 +638,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void on_quit() {
-		//the user will never know that we don't actually close in the speed of light :p
+		//first: the user will never know that we don't actually close in the speed of light :p
 		this.hide();
 		
-		lm.settings.setLastSongPosition((int)topDisplay.get_scale_value());
-		
-		// save the columns
-		var columns = new ArrayList<TreeViewColumn>();
-		
-		Widget w = sideTree.getWidget(sideTree.library_music_iter);
-		if(w is MusicTreeView) {
-			MusicTreeView view = (MusicTreeView)w;
-			
-			foreach(TreeViewColumn tvc in view.get_columns()) {
-				columns.add(tvc);
-			}
-			
-			lm.save_song_list_columns(columns);
-		}
-		
+		//second: stop music
 		stdout.printf("Stopping playback\n");
 		player.pause_stream();
+		
+		lm.settings.setLastSongPosition((int)topDisplay.get_scale_value());
 		
 		stdout.printf("Saving songs\n");
 		lm.save_songs();
@@ -682,26 +660,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		lm.save_tracks();
 		
 		stdout.printf("Bye\n");
-	}
-	
-	public virtual void fileSetMusicFolderClick() {
-		string folder = "";
-		var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
-                                      FileChooserAction.SELECT_FOLDER,
-                                      Gtk.Stock.CANCEL, ResponseType.CANCEL,
-                                      Gtk.Stock.OPEN, ResponseType.ACCEPT);
-        if (file_chooser.run () == ResponseType.ACCEPT) {
-            folder = file_chooser.get_filename();
-        }
-        file_chooser.destroy ();
-        
-        if(folder != "") {
-			//topDisplay.set_label_showing(true);
-			topDisplay.set_label_text("Importing music from " + folder);
-			//topDisplay.show_progressbar();
-			//lm.set_music_folder(folder);
-		}
-		
 	}
 	
 	public virtual void fileRescanMusicFolderClick() {
@@ -782,9 +740,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		PreferencesWindow pw = new PreferencesWindow(lm);
 		
 		pw.changed.connect( (folder) => {
-			topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b>");
-			topDisplay.show_progressbar();
+			setMusicFolder(folder);
 		});
+	}
+	
+	public void setMusicFolder(string folder) {
+		topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b>");
+		topDisplay.show_progressbar();
+		lm.set_music_folder(folder);
 	}
 	
 	public virtual void end_of_stream(Song s) {

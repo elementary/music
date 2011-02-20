@@ -114,6 +114,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		_columns = dbm.load_song_list_columns();
+		
+		if(_columns.size != dbm.COLUMN_COUNT) {
+			dbm.initialize_columns();
+			
+			_columns.clear();
+			_columns = dbm.load_song_list_columns();
+		}
 	}
 	
 	/************ Library/Collection management stuff ************/
@@ -138,6 +145,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
 		
 		var items = fo.count_music_files(file);
+		stdout.printf("found %d items\n", items);
 		fo.resetProgress(items);
 		
 		var new_songs = new LinkedList<Song>();

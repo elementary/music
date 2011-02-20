@@ -3,6 +3,8 @@ using TagLib;
 using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
+	public const int COLUMN_COUNT = 18;
+	
 	SQLHeavy.Database _db;
 	
 	Transaction transaction;// the current sql transaction
@@ -289,6 +291,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			index = 0;
 			item_count = columns.size;
 			foreach(Gtk.TreeViewColumn tvc in columns) {
+				stdout.printf("saving column %s\n", tvc.title);
 				//db_progress(null, ((double)index++)/((double)item_count));
 				
 				query.set_string(":title", tvc.title);
