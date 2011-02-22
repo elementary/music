@@ -8,10 +8,13 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 	private ListStore model;
 	private LinkedList<Song> songs;
 	
+	private LinkedList<string> urlsToOpen;//queue for opening urls
+	
 	public SimilarSongsView(BeatBox.LibraryManager lm, BeatBox.LibraryWindow lw) {
 		_lm = lm;
 		_lw = lw;
 		songs = new LinkedList<Song>();
+		urlsToOpen = new LinkedList<string>();
 		
 		view = new TreeView();
 		
@@ -65,6 +68,21 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 		model.get(item, 0, out s);
 		
 		if(s != null && s.lastfm_url != null && s.lastfm_url != "")
-			GLib.AppInfo.launch_default_for_uri (s.lastfm_url, null);
+			urlsToOpen.offer(s.lastfm_url);
+		
+		try {
+			Thread.create<void*>(openurl_thread_function, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to open %s: %s \n", s.lastfm_url, err.message);
+		}
+	}
+	
+	public void* openurl_thread_function () {	
+		if(urlsToOpen.peek() != null) {
+			GLib.AppInfo.launch_default_for_uri (urlsToOpen.poll(), null);
+		}
+		
+		return null;
 	}
 }

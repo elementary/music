@@ -14,8 +14,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public string hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	int sort_id;
 	
-	bool is_current_view;
-	bool is_current;
+	public bool is_current_view;
+	public bool is_current;
 	
 	//for header column chooser
 	Menu columnChooserMenu;
@@ -629,7 +629,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		Song s = lm.song_from_id(i);
 		
 		model.set(item, _columns.index_of("id"), s.rowid,
-								_columns.index_of(" "), (lm.song_info.song != null && i == lm.song_info.song.rowid && is_current) ? view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null) : null,
+								_columns.index_of(" "), (lm.song_info.song != null && i == lm.song_info.song.rowid && is_current) ? view.render_icon("audio-volume-high", IconSize.MENU, null) : null,
 								_columns.index_of("#"), (path.to_string().to_int() + 1),
 								_columns.index_of("Track"), s.track,
 								_columns.index_of("Title"), s.title,

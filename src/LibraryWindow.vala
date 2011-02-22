@@ -257,6 +257,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		banButton.clicked.connect(banButtonClicked);
 		topDisplay.scale_value_changed.connect(topDisplaySliderMoved);
 		searchField.changed.connect(searchFieldChanged);
+		searchField.activate.connect(searchFieldActivated);
 		searchField.icon_press.connect(searchFieldIconPressed);
 		
 		show_all();
@@ -351,7 +352,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		mtv.show_all();
-		mtv.hide();
 		mtv.view_being_searched.connect(musicTreeViewSearched);
 		//sideTree.get_selection().unselect_all();
 		//sideTree.get_selection().select_iter(item);
@@ -408,7 +408,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 */
 	public virtual void song_played(int i) {
 		//set the title
-		var song_label = "<b>" + lm.song_from_id(i).title + "</b>" + " by " + "<b>" + lm.song_from_id(i).artist + "</b>" + " on " + "<b>" +lm.song_from_id(i).album + "</b>";
+		var song_label = "<b>" + lm.song_from_id(i).title.replace("&", "&amp;") + "</b>" + " by " + "<b>" + lm.song_from_id(i).artist.replace("&", "&amp;") + "</b>" + " on " + "<b>" +lm.song_from_id(i).album.replace("&", "&amp;") + "</b>";
 		topDisplay.set_label_markup(song_label);
 		
 		//reset the song position
@@ -440,7 +440,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void songs_updated(Collection<int> ids) {
 		if(lm.song_info.song != null && ids.contains(lm.song_info.song.rowid)) {
-			var song_label = "<b>" + lm.song_info.song.title + "</b>" + " by " + "<b>" + lm.song_info.song.artist + "</b>" + " on " + "<b>" +lm.song_info.song.album + "</b>";
+			var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + " by " + "<b>" + lm.song_info.song.artist.replace("&", "&amp;")  + "</b>" + " on " + "<b>" +lm.song_info.song.album.replace("&", "&amp;")  + "</b>";
 			topDisplay.set_label_markup(song_label);
 		}
 	}
@@ -595,7 +595,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		lm.lfm.banTrack(lm.song_info.song.title, lm.song_info.song.artist);
 	}
 	
-	/** implement search in librarymanager?????? **/
 	public virtual void searchFieldChanged() {
 		Timeout.add(350, () => {
 			//make sure we still want to search
@@ -609,6 +608,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			return false;
 		});
+	}
+	
+	public virtual void searchFieldActivated () {
+		Collection<int> songs;
+		
+		if(sideTree.get_current_widget() is MusicTreeView) {
+			MusicTreeView mtv = (MusicTreeView)sideTree.get_current_widget();
+			
+			songs = lm.songs_from_search(searchField.get_text(), mtv.get_songs());
+			mtv.populateView(songs, true);
+		}
 	}
 	
 	public virtual void searchFieldIconPressed(EntryIconPosition p0, Gdk.Event p1) {
@@ -663,7 +673,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void fileRescanMusicFolderClick() {
-		//topDisplay.set_label_showing(true);
 		topDisplay.set_label_markup("<b>Rescanning music folder for changes</b>");
 		topDisplay.show_progressbar();
 		
@@ -708,10 +717,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Widget w = sideTree.getWidget(sideTree.library_music_iter);
 		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
-		if(not_imported.size > 0) {
+		/*if(not_imported.size > 0) {
 			NotImportedWindow nim = new NotImportedWindow(not_imported);
 			nim.show();
-		}
+		}*/
 		
 		updateSensitivities();
 	}
@@ -816,5 +825,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 		((SimilarPane)w).updateSongs(lm.song_info.song, similarIDs, similarDont);
+	}
+	
+	public void setStatusBarText(string text) {
+		stdout.printf("View changed, set text to %s\n", text);
 	}
 }
