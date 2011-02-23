@@ -1,7 +1,7 @@
 using Gtk;
 using Gee;
 using WebKit;
-//using Notify;
+using Notify;
 
 public class BeatBox.LibraryWindow : Gtk.Window {
 	BeatBox.LibraryManager lm;
@@ -55,7 +55,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	Menu settingsMenu;
 	
-	//Notify.Notification notification;
+	Notify.Notification notification;
 	
 	public LibraryWindow(BeatBox.DataBaseManager dbm, BeatBox.StreamPlayer player) {
 		settings = new BeatBox.Settings();
@@ -156,7 +156,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		grooveShark = new WebView();
 		sideBar = new VBox(false, 0);
 		statusBar = new Statusbar();
-		//notification = new Notification("Title", "Artist\nAlbum", "", null);
+		notification = (Notify.Notification)GLib.Object.new (
+						typeof (Notify.Notification),
+						"summary", "Title",
+						"body", "Artist\nAlbum");
 		
 		/* Set properties of various controls */
 		sourcesToSongs.child1_resize = 1;
@@ -426,15 +429,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		
 		//update the notifier
-		//notification.close();
-		//notification.summary = lm.song_from_id(i).title;
-		//notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
+		notification.close();
+		
+		if(!has_toplevel_focus) {
+			notification.summary = lm.song_from_id(i).title;
+			notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
+			
+			if(lm.get_album_location(i) != null) {
+				notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(lm.get_album_location(i)));
+			}
+			
+			notification.show();
+		}
 		
 		updateCurrentSong();
-		
-		//show the notifier
-		//notification.show();
-		
 		sideTree.updatePlayQueue();
 	}
 	
@@ -459,16 +467,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				album = new LastFM.AlbumInfo.with_info(lm.song_info.song.artist, lm.song_info.song.album);
 				
 				//try to save album image locally
-				if(lm.get_album_location(lm.song_info.song.rowid) == null)
+				if(lm.get_album_location(lm.song_info.song.rowid) == null && album != null)
 					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
 				
-				lm.save_album(album);
+				if(album != null)
+					lm.save_album(album);
 			}
 			else {
 				album = lm.get_album(lm.song_info.song.album + " by " + lm.song_info.song.artist);
 				
 				//if no local image saved, save it now
-				if(lm.get_album_location(lm.song_info.song.rowid) == null)
+				if(lm.get_album_location(lm.song_info.song.rowid) == null && album != null)
 					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
 			}
 		}
@@ -480,10 +489,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				artist = new LastFM.ArtistInfo.with_artist(lm.song_info.song.artist);
 				
 				//try to save artist art locally
-				if(lm.get_album_location(lm.song_info.song.rowid) == null)
+				if(lm.get_album_location(lm.song_info.song.rowid) == null && artist != null)
 					lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
 				
-				lm.save_artist(artist);
+				if(artist != null)
+					lm.save_artist(artist);
 			}
 			else {
 				artist = lm.get_artist(lm.song_info.song.artist);
@@ -499,7 +509,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(!lm.track_info_exists(lm.song_info.song.title + " by " + lm.song_info.song.artist)) {
 				//stdout.printf("Downloading new Track Info from Last FM\n");
 				track = new LastFM.TrackInfo.with_info(lm.song_info.song.artist, lm.song_info.song.title);
-				lm.save_track(track);
+				
+				if(track != null)
+					lm.save_track(track);
 			}
 			else
 				track = lm.get_track(lm.song_info.song.title + " by " + lm.song_info.song.artist);
