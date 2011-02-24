@@ -109,9 +109,10 @@ public class ElementaryEntry : Gtk.Entry {
 public class ElementarySearchEntry : ElementaryEntry {
 
     public bool is_searching;
+    public string hint_string;
 
     public ElementarySearchEntry (string hint_string) {
-    
+	
         base(hint_string);
         this.set_icon_from_stock(Gtk.EntryIconPosition.PRIMARY, "gtk-find");
         this.changed.connect (manage_icon);
@@ -120,6 +121,7 @@ public class ElementarySearchEntry : ElementaryEntry {
         this.icon_press.connect (icon_pressed);
         setup_clear_icon ();
         this.is_searching = true;
+        this.hint_string = hint_string;
         
     }
 

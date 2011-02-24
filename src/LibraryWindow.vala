@@ -608,20 +608,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void searchFieldChanged() {
-		/*Collection<int> songs;
-		MusicTreeView mtv = (MusicTreeView)sideTree.get_current_widget();
-			
-		songs = lm.songs_from_search(searchField.get_text(), mtv.get_songs());
-		mtv.populateView(songs, true);*/
-		
 		timeout_search = searchField.get_text();
+		
 		Timeout.add(350, () => {
 			//make sure we still want to search
-			if(searchField.get_text() == timeout_search && searchField.is_searching) {
+			if(searchField.get_text() == timeout_search && !(searchField.get_text() == "" || searchField.get_text() == searchField.hint_string)) {
 				Collection<int> songs;
 				MusicTreeView mtv = (MusicTreeView)sideTree.get_current_widget();
 					
 				songs = lm.songs_from_search(searchField.get_text(), mtv.get_songs());
+				mtv.populateView(songs, true);
+			}
+			else {
+				Collection<int> songs;
+				MusicTreeView mtv = (MusicTreeView)sideTree.get_current_widget();
+							
+				songs = lm.songs_from_search("", mtv.get_songs());
 				mtv.populateView(songs, true);
 			}
 			
