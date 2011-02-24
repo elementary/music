@@ -208,7 +208,7 @@ public class BeatBox.FileOperator : Object {
 		
 		try {
 			filestream = file.read(null);
-			rv = new Gdk.Pixbuf.from_stream_at_scale(filestream, 200, 200, true, null);
+			rv = new Gdk.Pixbuf.from_stream_at_scale(filestream, 300, 300, true, null);
 			
 			string option_keys;
 			string option_values;

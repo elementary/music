@@ -13,8 +13,7 @@ public class BeatBox.PreferencesWindow : Window {
 	private Label managementLabel;
 	private Label lastfmLabel;
 	
-	private ListStore musicFolderList;
-	private ComboBox musicFolderCombo;
+	private FileChooserButton fileChooser;
 	
 	private CheckButton organizeFolders;
 	private CheckButton copyImportedMusic;
@@ -32,13 +31,6 @@ public class BeatBox.PreferencesWindow : Window {
 		this._lm = lm;
 		
 		buildUI();
-		
-		/* Generate music folder combobox items */
-		TreeIter iter;
-		musicFolderList.append(out iter);
-		musicFolderList.set(iter, 0, this.render_icon("music-library", Gtk.IconSize.MENU, null), 1, "Music");
-		musicFolderList.append(out iter);
-		musicFolderList.set(iter, 0, null, 1, "Other");
 	}
 	
 	public void buildUI() {
@@ -55,8 +47,7 @@ public class BeatBox.PreferencesWindow : Window {
 		padding = new HBox(false, 10);
 		
 		musicLabel = new Label("Music Folder Location");
-		musicFolderList = new ListStore(2, typeof(Gdk.Pixbuf), typeof(string));
-		musicFolderCombo = new ComboBox.with_model(musicFolderList);
+		fileChooser = new FileChooserButton("Music Folder", FileChooserAction.SELECT_FOLDER);
 		
 		managementLabel = new Label("Library Management");
 		organizeFolders = new CheckButton.with_label("Keep Music folder organized");
@@ -68,17 +59,6 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		saveChanges = new Button.with_label("Close");
 		
-		/* have to put in cell renderers ourselves */
-		CellRenderer cell;
-
-        cell = new CellRendererPixbuf();
-        musicFolderCombo.pack_start(cell, false);
-        musicFolderCombo.set_attributes(cell, "pixbuf", 0);
-		
-		cell = new CellRendererText();
-        musicFolderCombo.pack_end(cell, true);
-        musicFolderCombo.set_attributes(cell, "text", 1);
-		
 		/* fancy up the category labels */
 		musicLabel.xalign = 0.0f;
 		managementLabel.xalign = 0.0f;
@@ -86,6 +66,8 @@ public class BeatBox.PreferencesWindow : Window {
 		musicLabel.set_markup("<b>Music Folder Location</b>");
 		managementLabel.set_markup("<b>Library Management</b>");
 		lastfmLabel.set_markup("<b>Last FM Integration</b>");
+		
+		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
 		
 		/* initialize library management settings */
 		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
@@ -100,7 +82,7 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		/** put it all together **/
 		content.pack_start(wrap_alignment(musicLabel, 10, 0, 0, 0), false, true, 0);
-		content.pack_start(wrap_alignment(musicFolderCombo, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(wrap_alignment(fileChooser, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(managementLabel, false, true, 0);
 		content.pack_start(wrap_alignment(organizeFolders, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(wrap_alignment(copyImportedMusic, 0, 0, 0, 10), false, true, 0);
@@ -114,7 +96,6 @@ public class BeatBox.PreferencesWindow : Window {
 		this.add(padding);
 		show_all();
 		
-		musicFolderCombo.changed.connect(comboItemChanged);
 		lastfmLogin.clicked.connect(lastfmLoginClick);
 		saveChanges.clicked.connect(saveClicked);
 	}
@@ -130,31 +111,7 @@ public class BeatBox.PreferencesWindow : Window {
 		return alignment;
 	}
 	
-	public virtual void comboItemChanged() {
-		TreeIter active;
-		string title;
-		musicFolderCombo.get_active_iter(out active);
-		musicFolderList.get(active, 1, out title);
-		
-		if(title == "Other") {
-			var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
-										  FileChooserAction.SELECT_FOLDER,
-										  Gtk.Stock.CANCEL, ResponseType.CANCEL,
-										  Gtk.Stock.OPEN, ResponseType.ACCEPT);
-			if (file_chooser.run () == ResponseType.ACCEPT) {
-				music_folder_choice = file_chooser.get_filename();
-			}
-			file_chooser.destroy ();
-		}
-		else if(title == "Music") {
-			stdout.printf("TODO: Set to xdg (or w/e it is) music folder\n");
-		}
-	}
-	
 	public virtual void lastfmLoginClick() {
-		if(_lm.settings.getLastFMSessionKey() != "")
-			stdout.printf("We already have a key this is pointless...\n");
-		
 		if(lastfmLogin.get_label() == "Enable Scrobbling" || lastfmLogin.get_label() == "Unsuccessful. Click to try again.") {
 			lastfm_token = _lm.lfm.getToken();
 			if(lastfm_token == null) {
@@ -191,8 +148,8 @@ public class BeatBox.PreferencesWindow : Window {
 	}
 		
 	public virtual void saveClicked() {
-		if(music_folder_choice != _lm.settings.getMusicFolder()) {
-			changed(music_folder_choice);
+		if(fileChooser.get_current_folder() != _lm.settings.getMusicFolder()) {
+			changed(fileChooser.get_current_folder());
 		}
 		
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());

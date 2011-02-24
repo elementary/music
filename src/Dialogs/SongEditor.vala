@@ -5,7 +5,10 @@ public class BeatBox.SongEditor : Window {
 	LinkedList<Song> _songs;
 	Song sum; // a song filled with all values that each song has in common
 	
-	private Label fileLabel;
+	//for padding around notebook mostly
+	private VBox content;
+	private HBox padding;
+	
 	private Notebook notebook;
 	private Viewport editView;
 	private VBox vert; // seperates editors with buttons and other stuff
@@ -16,7 +19,6 @@ public class BeatBox.SongEditor : Window {
 	private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
 	
 	private Button _save;
-	private Button _cancel;
 	
 	
 	public signal void songs_saved(LinkedList<Song> songs);
@@ -68,7 +70,8 @@ public class BeatBox.SongEditor : Window {
 		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 100, 1)));
 		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(1000, 9999, 1)));
 		
-		fileLabel = new Label("");
+		content = new VBox(false, 10);
+		padding = new HBox(false, 10);
 		notebook = new Notebook();
 		editView = new Viewport(null, null);
 		vert = new VBox(false, 0);
@@ -86,24 +89,15 @@ public class BeatBox.SongEditor : Window {
 		numerVert.pack_start(fields.get("Year"), false, true, 0);
 		
 		horiz.pack_start(textVert, false, true, 0);
-		horiz.pack_start(numerVert, false, true, 0);
-		vert.pack_start(fileLabel);
+		horiz.pack_end(numerVert, false, true, 0);
 		vert.pack_start(horiz, true, true, 0);
 		
-		fileLabel.set_label(songs.get(0).file);
 		HButtonBox buttonSep = new HButtonBox();
-		_cancel = new Button.with_label("Cancel");
-		Label fillerLabel = new Label("");
-		_save = new Button.with_label("Save");
+		buttonSep.set_layout(ButtonBoxStyle.END);
+		_save = new Button.with_label("Done");
 		
-		buttonSep.pack_start(_cancel, false, false, 0);
-		buttonSep.pack_start(fillerLabel, true, true, 0);
-		buttonSep.pack_start(_save, false, false, 0);
+		buttonSep.pack_end(_save, false, false, 0);
 		
-		_cancel.clicked.connect( () => { this.destroy(); } );
-		_save.clicked.connect(saveClicked);
-		
-		vert.pack_start(buttonSep, false, true, 0);
 		editView.add(vert);
 		
 		notebook.append_page(editView, new Label("Properties"));
@@ -115,9 +109,31 @@ public class BeatBox.SongEditor : Window {
 		if(album != null)
 			notebook.append_page(generate_album_page(album), new Label("Album Info"));
 		
-		add(notebook);
+		content.pack_start(wrap_alignment(notebook, 10, 0, 0, 0), true, true, 0);
+		content.pack_start(wrap_alignment(buttonSep, 0, 0, 10, 0), false, true, 0);
+		
+		padding.pack_start(content, true, true, 10);
+		add(padding);
 		
 		show_all();
+		
+		if(_songs.size == 1) {
+			foreach(FieldEditor fe in fields.values)
+				fe.set_check_visible(false);
+		}
+		
+		_save.clicked.connect(saveClicked);
+	}
+	
+	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+		alignment.top_padding = top;
+		alignment.right_padding = right;
+		alignment.bottom_padding = bottom;
+		alignment.left_padding = left;
+		
+		alignment.add(widget);
+		return alignment;
 	}
 	
 	public Viewport generate_track_page(LastFM.TrackInfo track) {
@@ -176,6 +192,7 @@ public class BeatBox.FieldEditor : HBox {
 	private string _original;
 	
 	private CheckButton check;
+	private Label label;
 	private Entry entry;
 	private TextView textView;
 	private SpinButton spinButton;
@@ -188,16 +205,19 @@ public class BeatBox.FieldEditor : HBox {
 		
 		this.spacing = 5;
 		
-		check = new CheckButton.with_label(_name);
-		check.set_size_request(70, -1);
+		check = new CheckButton();
+		label = new Label(_name);
+		label.set_size_request(40, -1);
+		label.justify = Justification.LEFT;
 		
 		this.pack_start(check, false, false, 0);
+		this.pack_start(label, false, false, 0);
 		
 		if(w is Entry && !(w is SpinButton)) {
 			check.set_active(original != "");
 			
 			entry = (Entry)w;
-			entry.set_size_request(250, -1);
+			entry.set_size_request(200, -1);
 			entry.set_text(original);
 			entry.changed.connect(entryChanged);
 			this.pack_start(entry, true, true, 0);
@@ -230,7 +250,7 @@ public class BeatBox.FieldEditor : HBox {
 			check.set_active(original != "");
 			
 			image = (Image)w;
-			image.set_size_request(200, 200);
+			image.set_size_request(100, 100);
 			image.set_from_file(original);
 			//callback on file dialogue saved. setup here
 			this.pack_start(image, true, true, 0);
@@ -239,6 +259,10 @@ public class BeatBox.FieldEditor : HBox {
 		reset = new Button.from_stock(Gtk.Stock.CLEAR);
 		reset.clicked.connect(resetClicked);
 		this.pack_end(reset, false, false, 0);
+	}
+	
+	public void set_check_visible(bool val) {
+		check.set_visible(false);
 	}
 	
 	public virtual void entryChanged() {

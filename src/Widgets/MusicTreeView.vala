@@ -6,6 +6,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	private BeatBox.LibraryWindow lw;
 	private TreeView view;
 	private ListStore model;
+	private TreeModelFilter filter;
 	
 	private HashMap<int, TreeRowReference> _rows;
 	private LinkedList<string> _columns;
@@ -194,13 +195,16 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			++index;
 		}
+		viewColumnsChanged();
 		
 		model = new ListStore.newv(getColumnTypes());
+		filter = new TreeModelFilter(model, null);
 		
-		//if(sort_id >= 0)
-			//model.set_sort_column_id(sort_id, Gtk.SortType.ASCENDING);
+		filter.set_visible_column(_columns.index_of("visible"));
+		if(sort_id >= 0)
+			model.set_sort_column_id(sort_id, Gtk.SortType.ASCENDING);
 		
-		view.set_model(model);
+		view.set_model(filter);
 		view.set_reorderable(true);
 		view.set_headers_clickable(true);
 		
@@ -313,6 +317,15 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		this.model.rows_reordered.connect(modelRowsReordered);
 	}
 	
+	public bool TreeModelFilterVisibleFunc(TreeModel model, TreeIter iter) {
+		stdout.printf("sort func\n");
+		
+		bool val = false;
+		model.get(iter, _columns.index_of("visible"), out val);
+		
+		return val;
+	}
+	
 	public virtual void modelRowsReordered(TreePath path, TreeIter iter, void* new_order) {
 		if(is_current)
 			setAsCurrentList( (lm.song_info.song != null) ? _rows.get(lm.song_info.song.rowid).get_path().to_string() : "0");
@@ -330,7 +343,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			foreach(TreeViewColumn tvc in view.get_columns())
 				cols.add(tvc);
 			
-			lm.save_song_list_columns(cols);
+			//lm.save_song_list_columns(cols);
 		}
 	}
 	
@@ -453,12 +466,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public Type[] getColumnTypes() {
-		Type[] types = new Type[18];
+		Type[] types = new Type[19];
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
 			if(tvc.title == "id")
 				types[index] = typeof(int);
+			else if(tvc.title == "visible")
+				types[index] = typeof(bool);
 			else if(tvc.title == " ")
 				types[index] = typeof(Gdk.Pixbuf);
 			else if(tvc.title == "#")
@@ -504,36 +519,51 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public void populateView(Collection<int> songs, bool is_search) {
 		view.freeze_child_notify();
-		Gtk.SortType sort_type;
-		int temp_sort_id;
-		model.get_sort_column_id(out temp_sort_id, out sort_type);
-		model.set_sort_column_id(-2, Gtk.SortType.ASCENDING);
 		
+		Gtk.SortType sort_type = Gtk.SortType.ASCENDING;
+		int temp_sort_id = 0;
 		if(!is_search) {
-			this._rows.clear();
+			model.get_sort_column_id(out temp_sort_id, out sort_type);
+			model.set_sort_column_id(-2, Gtk.SortType.ASCENDING);
 		}
 		
 		//get selected songs and put in temp array
 		
-		model.clear();
-		int index = 0;
-		foreach(int i in songs) {
-			TreeIter iter = addSong(lm.song_from_id(i));
+		if(!is_search) {
+			model.clear();
+			this._rows.clear();
 			
-			if(!is_search)
+			int index = 0;
+			foreach(int i in songs) {
+				TreeIter iter = addSong(lm.song_from_id(i));
+				
 				_rows.set(i, new TreeRowReference(model, model.get_path(iter)));
-			
-			++index;
+				++index;
+			}
+		}
+		else {
+			foreach(int i in _rows.keys) {
+				TreeIter iter;
+				model.get_iter(out iter, _rows.get(i).get_path());
+				
+				if(i in songs) {
+					model.set(iter, _columns.index_of("visible"), true);
+				}
+				else {
+					model.set(iter, _columns.index_of("visible"), false);
+				}
+					
+			}
 		}
 		
 		//reselect songs that were selected before populateview update
 		
-		if(temp_sort_id >= 0 || sort_id == -1) {
+		if((temp_sort_id >= 0 || sort_id == -1) && !is_search) {
 			int track_id = 0;
 			int album_id = 0;
 			int main_sort = 0;
 			
-			index = 0;
+			int index = 0;
 			foreach(TreeViewColumn tvc in view.get_columns()) {
 				if(tvc.title == "Track")
 					track_id = index;
@@ -556,6 +586,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				++index;
 			}
 			
+			stdout.printf("lame\n");
 			model.set_sort_column_id(track_id, sort_type);
 			model.set_sort_column_id(album_id, sort_type);
 			model.set_sort_column_id(main_sort, sort_type);
@@ -572,7 +603,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		foreach(TreeViewColumn tvc in view.get_columns()) {
 			if(tvc.title == "id")
 				model.set_value(item, index, s.rowid);
-			if(tvc.title == " " && lm.song_info.song != null && s.rowid == lm.song_info.song.rowid)
+			else if(tvc.title == "visible")
+				model.set_value(item, index, true);
+			else if(tvc.title == " " && lm.song_info.song != null && s.rowid == lm.song_info.song.rowid)
 				this.model.set_value(item, index, view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null));
 			else if(tvc.title == "#")
 				model.set_value(item, index, (model.get_path(item).to_string().to_int() + 1));
