@@ -15,7 +15,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	bool added_to_play_count; // whether or not we have added one to play count on playing song
 	bool loaded_pandora;
 	bool loaded_groove_shark;
-	string timeout_search;
+	LinkedList<string> timeout_search;//stops from doing useless search
+	string last_search;//stops from searching same thing multiple times
 	
 	VBox verticalBox;
 	VBox mainViews;
@@ -39,7 +40,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Button loveButton;
 	Button banButton;
 	ElementaryWidgets.TopDisplay topDisplay;
-	ElementaryWidgets.ElementarySearchEntry searchField;
+	public ElementaryWidgets.ElementarySearchEntry searchField;
 	ElementaryWidgets.AppMenu appMenu;
 	Statusbar statusBar;
 	
@@ -64,6 +65,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//this is used by many objects, is the media backend
 		lm = new BeatBox.LibraryManager(player, dbm, settings);
 		similarSongs = new LastFM.SimilarSongs(lm);
+		timeout_search = new LinkedList<string>();
+		last_search = "";
 		
 		build_ui();
 		
@@ -259,9 +262,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
 		topDisplay.scale_value_changed.connect(topDisplaySliderMoved);
-		searchField.changed.connect(searchFieldChanged);
-		searchField.activate.connect(searchFieldActivated);
-		searchField.icon_press.connect(searchFieldIconPressed);
+		//searchField.changed.connect(searchFieldChanged);
+		//searchField.activate.connect(searchFieldActivated);
+		//searchField.icon_press.connect(searchFieldIconPressed);
 		
 		show_all();
 		topMenu.hide();
@@ -608,22 +611,26 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void searchFieldChanged() {
-		timeout_search = searchField.get_text();
+		timeout_search.offer_head(searchField.get_text());
 		
 		Timeout.add(350, () => {
 			//make sure we still want to search
-			if(searchField.get_text() == timeout_search && !(searchField.get_text() == "" || searchField.get_text() == searchField.hint_string)) {
+			if(searchField.get_text() == timeout_search.poll_tail() && searchField.get_text() != last_search && !(searchField.get_text() == "" || searchField.get_text() == searchField.hint_string)) {
+				stdout.printf("searching for %s\n", searchField.get_text());
 				Collection<int> songs;
 				MusicTreeView mtv = (MusicTreeView)sideTree.get_current_widget();
 					
 				songs = lm.songs_from_search(searchField.get_text(), mtv.get_songs());
+				last_search = searchField.get_text();
 				mtv.populateView(songs, true);
 			}
-			else {
+			else if(searchField.get_text() != last_search && (searchField.get_text() == "" || searchField.get_text() == searchField.hint_string)) {
+				stdout.printf("completeley repopulating\n");
 				Collection<int> songs;
 				MusicTreeView mtv = (MusicTreeView)sideTree.get_current_widget();
 							
 				songs = lm.songs_from_search("", mtv.get_songs());
+				last_search = searchField.get_text();
 				mtv.populateView(songs, true);
 			}
 			

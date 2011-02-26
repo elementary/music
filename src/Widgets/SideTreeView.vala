@@ -444,6 +444,8 @@ public class BeatBox.SideTreeView : TreeView {
 			TreeIter parent;
 			sideTreeModel.iter_parent(out parent, iter);
 			if(sideTreeModel.iter_is_valid(parent)) {
+				this.get_selection().select_iter(iter);
+				
 				/*if(w != null) {
 					w.show();
 					this.current_widget = w;
@@ -484,8 +486,10 @@ public class BeatBox.SideTreeView : TreeView {
 			if(this.get_selection().iter_is_selected(item)) {
 				w.show();
 				this.current_widget = w;
-				if(w is MusicTreeView)
+				if(w is MusicTreeView) {
+					stdout.printf("currentview is %s\n", path.to_string());
 					((MusicTreeView)w).is_current_view = true;
+				}
 			}
 			else {
 				w.hide();

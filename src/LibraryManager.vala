@@ -618,7 +618,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void playSong(int id) {
-		int old_id = song_info.song.rowid;
+		int old_id = -1;
+		
+		if(song_info.song != null)
+			old_id = song_info.song.rowid;
 		
 		// actually play the song asap
 		player.play_song(song_from_id(id));

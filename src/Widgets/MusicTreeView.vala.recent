@@ -20,9 +20,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public bool is_current_view;
 	public bool is_current;
 	
-	LinkedList<string> timeout_search;//stops from doing useless search
-	string last_search;//stops from searching same thing multiple times
-	
 	//for header column chooser
 	Menu columnChooserMenu;
 	MenuItem columnTurnOffSorting;
@@ -82,8 +79,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		_columns = new LinkedList<string>();
 		
 		sort_id = sort;
-		last_search = "";
-		timeout_search = new LinkedList<string>();
 		
 		//generate star pixbuf
 		starred = this.render_icon("starred", IconSize.MENU, null);
@@ -94,6 +89,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		lm.current_cleared.connect(current_cleared);
 		
 		buildUI();
+		
+		//initialize rows
+		viewColumnsChanged();
 	}
 	
 	public void set_hint(string the_hint) {
@@ -208,18 +206,15 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		filter.set_visible_column(_columns.index_of("visible"));
 		if(sort_id >= 0)
-			sort.set_sort_column_id(sort_id, Gtk.SortType.ASCENDING);
+			model.set_sort_column_id(sort_id, Gtk.SortType.ASCENDING);
 		
 		view.set_model(sort);
 		view.set_reorderable(true);
 		view.set_headers_clickable(true);
-		view.set_fixed_height_mode(true);
 		
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);
 		view.columns_changed.connect(viewColumnsChanged);
-		
-		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
 		
 		// allow selecting multiple rows
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
@@ -323,68 +318,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		this.add(view);
 		
-		this.sort.rows_reordered.connect(modelRowsReordered);
-		lw.searchField.changed.connect(searchFieldChanged);
-	}
-	
-	public int artistCompareFunc (TreeModel model, TreeIter a, TreeIter b) {
-		int a_id, b_id;
-		Song a_song, b_song;
-		
-		model.get(a, 0, out a_id);
-		model.get(b, 0, out b_id);
-		
-		a_song = lm.song_from_id(a_id);
-		b_song = lm.song_from_id(b_id);
-		
-		if(a_song.artist.down() == b_song.artist.down() && a_song.album.down() == b_song.album.down() && a_song.track == b_song.track)
-			return (a_song.file.down() > b_song.file.down()) ? 1 : -1;
-		else if(a_song.artist.down() == b_song.artist.down() && a_song.album.down() == b_song.album.down())
-			return a_song.track - b_song.track;
-		else if(a_song.artist.down() == b_song.artist.down())
-			return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
-		else
-			return (a_song.artist.down() > b_song.artist.down()) ? 1 : -1;
-	}
-	
-	public virtual void searchFieldChanged() {
-		//stdout.printf("searchField changed\n");
-		if(is_current_view) {
-			timeout_search.offer_head(lw.searchField.get_text());
-			//stdout.printf("is current view\n");
-			Timeout.add(200, () => {
-				view.set_model(null);
-				
-				//make sure we still want to search
-				if(lw.searchField.get_text() == timeout_search.poll_tail() && lw.searchField.get_text() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
-					TreeIter iter;
-					for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
-						int id;
-						Song s;
-						
-						model.get(iter, 0, out id);
-						s = lm.song_from_id(id);
-						
-						bool show = false;
-						if(lw.searchField.get_text() in s.title.down() || lw.searchField.get_text() in s.artist.down() || lw.searchField.get_text() in s.album.down() || lw.searchField.get_text() in s.genre.down())
-							show = true;
-						
-						model.set(iter, 1, show);
-					}
-					
-					last_search = lw.searchField.get_text();
-				}
-				else if(lw.searchField.get_text() != last_search && (lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
-					TreeIter iter;
-					for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
-						model.set(iter, 1, true);
-					}
-					last_search = lw.searchField.get_text();
-				}
-				view.set_model(sort);
-				return false;
-			});
-		}
+		this.model.rows_reordered.connect(modelRowsReordered);
 	}
 	
 	public virtual void modelRowsReordered(TreePath path, TreeIter iter, void* new_order) {
@@ -395,11 +329,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void viewColumnsChanged() {
-		if(_columns.size == 0) {
-			_columns.clear();
-			foreach(TreeViewColumn tvc in view.get_columns()) {
-				_columns.add(tvc.title);
-			}
+		_columns.clear();
+		foreach(TreeViewColumn tvc in view.get_columns()) {
+			_columns.add(tvc.title);
 		}
 		
 		if(hint == "music" && (int)view.get_columns().length == lm.dbm.COLUMN_COUNT) { //make size check so no saving on destroy
@@ -487,7 +419,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		else if(view.get_selection().iter_is_selected(iter))
 			((CellRendererPixbuf)cell).pixbuf = not_starred;
 		else
-			((CellRendererPixbuf)cell).pixbuf = not_starred;
+			((CellRendererPixbuf)cell).pixbuf = null;
 	}
 	
 	public void updateColumnVisibilities() {
@@ -587,10 +519,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		//sort = null;
 		Gtk.SortType sort_type = Gtk.SortType.ASCENDING;
 		int temp_sort_id = 0;
-		if(!is_search) {
+		//if(!is_search) {
 			model.get_sort_column_id(out temp_sort_id, out sort_type);
 			model.set_sort_column_id(-2, Gtk.SortType.ASCENDING);
-		}
+		//}
 		
 		//get selected songs and put in temp array
 		
@@ -606,23 +538,58 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				++index;
 			}
 		}
-		
+		else {
+			stdout.printf("1\n");
+			foreach(int i in _rows.keys) {
+				TreeIter iter;
+				model.get_iter(out iter, _rows.get(i).get_path());
+				
+				if(i in songs) {
+					model.set(iter, _columns.index_of("visible"), true);
+				}
+				else {
+					model.set(iter, _columns.index_of("visible"), false);
+				}
+			}
+		}
+		stdout.printf("2\n");
 		//reselect songs that were selected before populateview update
 		
-		if((temp_sort_id >= 0 || sort_id == -1) && !is_search) {
+		if((temp_sort_id >= 0 || sort_id == -1)/* && !is_search*/) {
 			int track_id = 0;
 			int album_id = 0;
 			int main_sort = 0;
 			
-			if((hint == "music" || hint == "smart playlist") && sort_id == -1)
-				main_sort = _columns.index_of("Artist");
-			else if((hint == "similar" || hint == "queue" || hint == "history" || hint == "playlist") && sort_id == -1)
-				main_sort = _columns.index_of("#");
+			int index = 0;
+			foreach(TreeViewColumn tvc in view.get_columns()) {
+				if(tvc.title == "Track")
+					track_id = index;
+				else if(tvc.title == "Album")
+					album_id = index;
+				
+				if(hint == "music" && sort_id == -1 && tvc.title == "Artist")
+					main_sort = index;
+				else if(hint == "similar" && sort_id == -1 && tvc.title == "#")
+					main_sort = index;
+				else if(hint == "queue" && sort_id == -1 && tvc.title == "#")
+					main_sort = index;
+				else if(hint == "history" && sort_id == -1 && tvc.title == "#")
+					main_sort = index;
+				else if(hint == "playlist" && sort_id == -1 && tvc.title == "#")
+					main_sort = index;
+				else if(hint == "smart playlist" && sort_id == -1 && tvc.title == "Artist")
+					main_sort = index; // in future, observe smart playlist values to make decision
+				
+				++index;
+			}
 			
-			sort.set_sort_column_id(main_sort, sort_type);
+			model.set_sort_column_id(track_id, sort_type);
+			model.set_sort_column_id(album_id, sort_type);
+			model.set_sort_column_id(main_sort, sort_type);
 		}
-		
+		//sort = new TreeModelSort.with_model(filter);
 		view.thaw_child_notify();
+		stdout.printf("populated\n\n");
 	}
 	
 	public TreeIter? addSong(Song s) {
@@ -721,9 +688,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void song_played(int id, int old) {
-		if(old != -1)
-			updateSong(old);
-		
+		updateSong(old);
 		updateSong(id);
 	}
 	
@@ -744,9 +709,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		setAsCurrentList(path.to_string());
 		
 		// get db's rowid of row clicked
-		sort.get_iter(out item, path);
+		filter.get_iter(out item, path);
 		int id;
-		sort.get(item, 0, out id);
+		filter.get(item, 0, out id);
 		
 		// play the song
 		lm.playSong(id);
@@ -765,14 +730,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		else
 			lm.current_index = _rows.get(0).get_path().to_string().to_int();
 		
-		
-		
 		lm.clearCurrent();
 		
 		TreeIter iter;
-		for(int i = 0; sort.get_iter_from_string(out iter, i.to_string()); ++i) {
+		for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
 			int id;
-			sort.get(iter, 0, out id);
+			model.get(iter, 0, out id);
 			
 			lm.addToCurrent(id);
 		}
@@ -934,18 +897,18 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public virtual void songMenuEditClicked() {
 		TreeSelection selected = view.get_selection();
 		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel temp;
+		TreeModel model;
 		
 		HashMap<string, string> lastfmStuff = new HashMap<string, string>();
 		
 		//tempSongs.clear();
 		var to_edit = new LinkedList<Song>();
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
+		foreach(TreePath path in selected.get_selected_rows(out model)) {
 			TreeIter item;
-			temp.get_iter(out item, path);
+			model.get_iter(out item, path);
 			
 			int id;
-			temp.get(item, 0, out id);
+			model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
 			if(!lastfmStuff.has_key("track"))
@@ -997,7 +960,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		TreeSelection selected = view.get_selection();
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel l_model;
-		ListStore temp;
 		
 		/* reverse list of selected rows so when we remove multiple rows
 		 * our treepaths aren't messed up
@@ -1007,33 +969,34 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			paths.prepend(path);
 		}
 		
-		temp = (ListStore)l_model;
 		foreach(TreePath path in paths) {
 			TreeIter item;
-			temp.get_iter(out item, path);
+			model.get_iter(out item, path);
 			
 			int id;
-			temp.get(item, 0, out id);
+			model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
 			if(hint == "queue") {
 				lm.unqueue_song_by_id(s.rowid);
-				temp.remove(item);
+				model.remove(item);
 				_rows.unset(id);
 			}
 			else if(hint == "playlist") {
 				lm.playlist_from_id(relative_id).removeSong(s);
-				temp.remove(item);
+				model.remove(item);
 				_rows.unset(id);
 			}
 			else if(hint == "music") {
+				// this should go into try after file.trash()
+				lm.remove_song_from_id(s.rowid);
+				model.remove(item);
+				_rows.unset(id);
+				
 				//should prompt user about being sure about this and annoy them
 				try {
 					var file = File.new_for_path(s.file);
 					file.trash();
-					lm.remove_song_from_id(s.rowid);
-					temp.remove(item);
-					_rows.unset(id);
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not move file %s to trash: %s\n", s.file, err.message);
@@ -1054,10 +1017,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
-			l_model.get_iter(out item, path);
+			model.get_iter(out item, path);
 			
 			int id;
-			l_model.get(item, 0, out id);
+			model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 0;
@@ -1075,10 +1038,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
-			l_model.get_iter(out item, path);
+			model.get_iter(out item, path);
 			
 			int id;
-			l_model.get(item, 0, out id);
+			model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 1;
@@ -1096,10 +1059,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
-			l_model.get_iter(out item, path);
+			model.get_iter(out item, path);
 			
 			int id;
-			l_model.get(item, 0, out id);
+			model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 2;
@@ -1117,10 +1080,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
-			l_model.get_iter(out item, path);
+			model.get_iter(out item, path);
 			
 			int id;
-			l_model.get(item, 0, out id);
+			model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 3;
@@ -1138,10 +1101,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
-			l_model.get_iter(out item, path);
+			model.get_iter(out item, path);
 			
 			int id;
-			l_model.get(item, 0, out id);
+			model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 4;
@@ -1159,10 +1122,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		var los = new LinkedList<Song>();
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
-			l_model.get_iter(out item, path);
+			model.get_iter(out item, path);
 			
 			int id;
-			l_model.get(item, 0, out id);
+			model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
 			s.rating = 5;
