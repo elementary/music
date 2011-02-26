@@ -728,6 +728,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		updateSensitivities();
+		
+		lm.save_songs();
 	}
 	
 	public virtual void musicRescanned(LinkedList<string> not_imported) {
@@ -741,16 +743,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		//repopulate collection and playlists and reset queue and already played
 		Widget w = sideTree.getWidget(sideTree.library_music_iter);
 		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
-		/*if(not_imported.size > 0) {
-			NotImportedWindow nim = new NotImportedWindow(not_imported);
-			nim.show();
-		}*/
-		
 		updateSensitivities();
+		
+		lm.save_songs();
 	}
 	
 	public virtual void songRemovedFromManager(int id) {
