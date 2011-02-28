@@ -39,6 +39,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	CheckMenuItem columnBitRate;
 	CheckMenuItem columnRating;
 	CheckMenuItem columnPlayCount;
+	CheckMenuItem columnSkipCount;
 	CheckMenuItem columnDateAdded;
 	CheckMenuItem columnLastPlayed;
 	CheckMenuItem columnBPM;
@@ -150,9 +151,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		 * #, track, title, artist, album, genre, comment, year, rating, (9)
 		 * bitrate, play count, last played, date added, file name, (5)
 		 * bpm, length, file size, (3) */
+		if(lm.fresh_columns().size != lm.dbm.COLUMN_COUNT) {
+			stdout.printf("Change in column schema. Re-initializing.\n");
+			lm.dbm.initialize_columns();
+		}
+		 
 		int index = 0;
 		foreach(TreeViewColumn tvc in lm.fresh_columns()) {
-			if(tvc.title == "Bitrate" || tvc.title == "#" || tvc.title == "Year" || tvc.title == "Track" || tvc.title == "Playcount") {
+			if(tvc.title == "Bitrate" || tvc.title == "#" || tvc.title == "Year" || tvc.title == "Track" || tvc.title == "Plays" || tvc.title == "Skips") {
 				view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), intelligentTreeViewFiller);
 				
 				view.get_column(index).resizable = true;
@@ -240,7 +246,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnYear = new CheckMenuItem.with_label("Year");
 		columnBitRate = new CheckMenuItem.with_label("Bitrate");
 		columnRating = new CheckMenuItem.with_label("Rating");
-		columnPlayCount = new CheckMenuItem.with_label("Playcount");
+		columnPlayCount = new CheckMenuItem.with_label("Plays");
+		columnSkipCount = new CheckMenuItem.with_label("Skips");
 		columnDateAdded = new CheckMenuItem.with_label("Date Added");
 		columnLastPlayed = new CheckMenuItem.with_label("Last Played");
 		columnBPM = new CheckMenuItem.with_label("BPM");
@@ -249,6 +256,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		updateColumnVisibilities();
 		columnChooserMenu.append(columnTurnOffSorting);
 		columnChooserMenu.append(columnSmartSorting);
+		columnChooserMenu.append(new SeparatorMenuItem());
 		columnChooserMenu.append(columnNumber);
 		columnChooserMenu.append(columnTrack);
 		columnChooserMenu.append(columnTitle);
@@ -260,6 +268,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnChooserMenu.append(columnBitRate);
 		columnChooserMenu.append(columnRating);
 		columnChooserMenu.append(columnPlayCount);
+		columnChooserMenu.append(columnSkipCount);
 		columnChooserMenu.append(columnDateAdded);
 		columnChooserMenu.append(columnLastPlayed);
 		columnChooserMenu.append(columnBPM);
@@ -278,6 +287,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnBitRate.toggled.connect(columnMenuToggled);
 		columnRating.toggled.connect(columnMenuToggled);
 		columnPlayCount.toggled.connect(columnMenuToggled);
+		columnSkipCount.toggled.connect(columnMenuToggled);
 		columnDateAdded.toggled.connect(columnMenuToggled);
 		columnLastPlayed.toggled.connect(columnMenuToggled);
 		columnBPM.toggled.connect(columnMenuToggled);
@@ -410,7 +420,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			foreach(TreeViewColumn tvc in view.get_columns())
 				cols.add(tvc);
 			
-			//lm.save_song_list_columns(cols);
+			lm.save_song_list_columns(cols);
 		}
 	}
 	
@@ -443,7 +453,16 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			else
 				((CellRendererText)cell).text = val.to_string();
 		}
-		else if(tvc.title == "Playcount") {
+		else if(tvc.title == "Plays") {
+			int val;
+			tree_model.get(iter, tvc.sort_column_id, out val);
+			
+			if(val <= 0)
+				((CellRendererText)cell).text = "";
+			else
+				((CellRendererText)cell).text = val.to_string();
+		}
+		else if(tvc.title == "Skips") {
 			int val;
 			tree_model.get(iter, tvc.sort_column_id, out val);
 			
@@ -515,8 +534,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				columnBitRate.active = view.get_column(index).visible;
 			else if(tvc.title == "Rating")
 				columnRating.active = view.get_column(index).visible;
-			else if(tvc.title == "Playcount")
+			else if(tvc.title == "Plays")
 				columnPlayCount.active = view.get_column(index).visible;
+			else if(tvc.title == "Skips")
+				columnSkipCount.active = view.get_column(index).visible;
 			else if(tvc.title == "Date Added")
 				columnDateAdded.active = view.get_column(index).visible;
 			else if(tvc.title == "Last Played")
@@ -533,7 +554,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public Type[] getColumnTypes() {
-		Type[] types = new Type[19];
+		Type[] types = new Type[lm.dbm.COLUMN_COUNT];
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
@@ -563,7 +584,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				types[index] = typeof(int);
 			else if(tvc.title == "Rating")
 				types[index] = typeof(int);
-			else if(tvc.title == "Playcount")
+			else if(tvc.title == "Plays")
+				types[index] = typeof(int);
+			else if(tvc.title == "Skips")
 				types[index] = typeof(int);
 			else if(tvc.title == "Date Added")
 				types[index] = typeof(string);
@@ -637,8 +660,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.set_value(item, index, s.rowid);
 			else if(tvc.title == "visible")
 				model.set_value(item, index, true);
-			else if(tvc.title == " " && lm.song_info.song != null && s.rowid == lm.song_info.song.rowid)
-				this.model.set_value(item, index, view.render_icon(Gtk.Stock.MEDIA_PLAY, IconSize.MENU, null));
+			else if(tvc.title == " " && lm.song_info.song != null && s.rowid == lm.song_info.song.rowid && is_current)
+				this.model.set_value(item, index, view.render_icon("audio-volume-high", IconSize.MENU, null));
 			else if(tvc.title == "#")
 				model.set_value(item, index, (model.get_path(item).to_string().to_int() + 1));
 			else if(tvc.title == "Track" && s.track != 0)
@@ -659,8 +682,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.set_value(item, index, s.bitrate);
 			else if(tvc.title == "Rating")
 				model.set_value(item, index, s.rating);
-			else if(tvc.title == "Playcount" && s.play_count != 0)
+			else if(tvc.title == "Plays" && s.play_count != 0)
 				model.set_value(item, index, s.play_count);
+			else if(tvc.title == "Skips" && s.skip_count != 0)
+				model.set_value(item, index, s.skip_count);
 			else if(tvc.title == "Date Added")
 				model.set_value(item, index, s.pretty_date_added());
 			else if(tvc.title == "Last Played")
@@ -705,7 +730,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 								_columns.index_of("Year"), s.year,
 								_columns.index_of("Bitrate"), s.bitrate,
 								_columns.index_of("Rating"), s.rating,
-								_columns.index_of("Playcount"), s.play_count,
+								_columns.index_of("Plays"), s.play_count,
+								_columns.index_of("Skips"), s.skip_count,
 								_columns.index_of("Date Added"), s.pretty_date_added(),
 								_columns.index_of("Last Played"), s.pretty_last_played(),
 								_columns.index_of("BPM"), s.bpm,
@@ -734,6 +760,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		foreach(int id in ids) {
 			updateSong(id);
 		}
+		
+		//since a song may have changed location, reset current
+		if(is_current)
+			setAsCurrentList(null);
 	}
 	
 	public virtual void song_removed(int id) {
@@ -902,8 +932,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				view.get_column(index).visible = columnBitRate.active;
 			else if(tvc.title == "Rating")
 				view.get_column(index).visible = columnRating.active;
-			else if(tvc.title == "Playcount")
+			else if(tvc.title == "Plays")
 				view.get_column(index).visible = columnPlayCount.active;
+			else if(tvc.title == "Skips")
+				view.get_column(index).visible = columnSkipCount.active;
 			else if(tvc.title == "Date Added")
 				view.get_column(index).visible = columnDateAdded.active;
 			else if(tvc.title == "Last Played")
@@ -916,15 +948,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				view.get_column(index).visible = columnFileSize.active;
 			
 			++index;
-		}
-		
-		if(hint == "music") { //make size check so no saving on destroy
-			var cols = new ArrayList<TreeViewColumn>();
-			
-			foreach(TreeViewColumn tvc in view.get_columns())
-				cols.add(tvc);
-			
-			lm.save_song_list_columns(cols);
 		}
 	}
 	

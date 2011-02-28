@@ -3,7 +3,7 @@ using TagLib;
 using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
-	public const int COLUMN_COUNT = 19;
+	public const int COLUMN_COUNT = 20;
 	
 	SQLHeavy.Database _db;
 	
@@ -33,7 +33,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			initialize_columns();
 			_db.execute("CREATE TABLE playlists (`name` TEXT, `songs` TEXT)");
 			_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT)");
-			_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, `dateadded` INT, `lastplayed` INT)");
+			_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT)");
 			_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
 			_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
 			_db.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'url' TEXT, 'duration' INT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT)");
@@ -161,6 +161,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	
 	public void initialize_columns() {
 		try {
+			_db.execute("DELETE FROM `song_list_columns`");
 			transaction = _db.begin_transaction();
 			query = transaction.prepare ("INSERT INTO `song_list_columns` (`title`, `visible`, `width`) VALUES (:title, :visible, :width);");
 			
@@ -244,23 +245,28 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.execute();
 			
 			//playcount
-			query.set_string(":title", "Playcount");
+			query.set_string(":title", "Plays");
 			query.set_int(":visible", 0);
-			query.set_int(":width", 15);
+			query.set_int(":width", 20);
 			query.execute();
 			
+			//skipcount
+			query.set_string(":title", "Skips");
+			query.set_int(":visible", 0);
+			query.set_int(":width", 20);
+			query.execute();
 			
 			//date added
 			query.set_string(":title", "Date Added");
 			query.set_int(":visible", 0);
-			query.set_int(":width", 40);
+			query.set_int(":width", 70);
 			query.execute();
 			
 			
 			//last played
 			query.set_string(":title", "Last Played");
 			query.set_int(":visible", 0);
-			query.set_int(":width", 40);
+			query.set_int(":width", 70);
 			query.execute();
 			
 			//bpm
@@ -344,8 +350,9 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				s.samplerate = results.fetch_int(11);
 				s.rating = results.fetch_int(12);
 				s.play_count = results.fetch_int(13);
-				s.date_added = results.fetch_int(14);
-				s.last_played = results.fetch_int(15);
+				s.skip_count = results.fetch_int(14);
+				s.date_added = results.fetch_int(15);
+				s.last_played = results.fetch_int(16);
 				
 				rv.add(s);
 			}
@@ -361,7 +368,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `songs`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, `dateadded`, `lastplayed`) VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :dateadded, :lastplayed);");
+			query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`) VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed);");
 			
 			index = 0;
 			item_count = songs.size;
@@ -381,6 +388,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				query.set_int(":samplerate", s.samplerate);
 				query.set_int(":rating", s.rating);
 				query.set_int(":playcount", s.play_count);
+				query.set_int(":skipcount", s.skip_count);
 				query.set_int(":dateadded", s.date_added);
 				query.set_int(":lastplayed", s.last_played);
 				
@@ -414,6 +422,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_int(":samplerate", s.samplerate);
 			query.set_int(":rating", s.rating);
 			query.set_int(":playcount", s.play_count);
+			query.set_int(":skipcount", s.skip_count);
 			query.set_int(":dateadded", s.date_added);
 			query.set_int(":lastplayed", s.last_played);
 			

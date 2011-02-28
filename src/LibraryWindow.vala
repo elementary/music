@@ -615,6 +615,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void nextClicked() {
+		// if not 90% done, skip it
+		if(!added_to_play_count) {
+			lm.song_info.song.skip_count++;
+			lm.update_song(lm.song_info.song, false);
+		}
+		
 		lm.getNext(true);
 	}
 	
@@ -766,6 +772,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 		
 		lm.save_songs();
+		
+		//now notify user
+		notification.close();
+		
+		if(!has_toplevel_focus) {
+			notification.summary = "Import Complete";
+			notification.body = "BeatBox has imported your library";
+			//notification.set_image_from_pixbuf(this.render_icon("music-folder", IconSize.SMALL_TOOLBAR, null));
+			
+			notification.show();
+		}
 	}
 	
 	public virtual void musicRescanned(LinkedList<string> not_imported) {
@@ -885,7 +902,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void welcomeScreenActivated(int index) {
-		if(index == 0) {
+		if(!lm.setting_folder && index == 0) {
 			string folder = "";
             var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
                                       FileChooserAction.SELECT_FOLDER,
@@ -899,9 +916,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(folder != "" && folder != settings.getMusicFolder()) {
 				setMusicFolder(folder);
 			}
-		}
-		else {
-			stdout.printf("You just clicked a button that does not exist! Wow!\n");
 		}
 	}
 }

@@ -36,13 +36,13 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 			return;
 		
 		if(key == "Previous") {
-			lm.getPrevious(true);
+			lw.previousClicked();
 		}
 		else if(key == "Play") {
 			lw.playClicked();
 		}
 		else if(key == "Next") {
-			lm.getNext(true);
+			lw.nextClicked();
 		}
 		else {
 			stdout.printf("Unused key pressed: %s\n", key);
