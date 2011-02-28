@@ -111,6 +111,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			songRemove.set_sensitive(true);
 			songRemove.set_label("Move to Trash");
 			columnNumber.active = false;
+			columnNumber.visible = false;
 			columnTrack.active = true;
 		}
 		else if(hint == "queue") {

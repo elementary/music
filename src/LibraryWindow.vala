@@ -74,6 +74,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		this.lm.player.end_of_stream.connect(end_of_stream);
 		this.lm.player.current_position_update.connect(current_position_update);
+		this.lm.music_counted.connect(musicCounted);
 		this.lm.music_added.connect(musicAdded);
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
@@ -92,8 +93,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			setMusicFolder(GLib.Environment.get_user_special_dir(UserDirectory.MUSIC));
 		}
 		else if(lm.song_count() == 0 && settings.getMusicFolder() != "") {
-			stdout.printf("No songs but music folder is set, showing welcome screen.\n");
-			//show welcome screen
+			setMusicFolder(GLib.Environment.get_user_special_dir(UserDirectory.MUSIC));
 		}
 		else {
 			lm.clearCurrent();
@@ -385,6 +385,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			playButton.set_sensitive(false);
 			nextButton.set_sensitive(false);
 			searchField.set_sensitive(false);
+			statusBar.hide();
 			
 			if(settings.getMusicFolder() != "") {
 				mainViews.hide();
@@ -399,6 +400,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			playButton.set_sensitive(true);
 			nextButton.set_sensitive(true);
 			searchField.set_sensitive(true);
+			statusBar.show();
 			
 			welcomeScreen.hide();
 			mainViews.show();
@@ -730,6 +732,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.show_progressbar();
 		
 		lm.rescan_music_folder();
+	}
+	
+	public virtual void musicCounted(int count) {
+		stdout.printf("taha!\n");
+		if(count > 0) {
+			//hide welcome view if showing
+			welcomeScreen.hide();
+			mainViews.show();
+		}
 	}
 	
 	public virtual void musicAdded(LinkedList<string> not_imported) {

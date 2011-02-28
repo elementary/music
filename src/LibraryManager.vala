@@ -36,6 +36,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public bool repeat;
 	public bool shuffle;
 	
+	public bool setting_folder;
+	public bool rescanning_folder;
+	
+	public signal void music_counted(int count);
 	public signal void music_added(LinkedList<string> not_imported);
 	public signal void music_rescanned(LinkedList<string> not_imported);
 	public signal void progress_notification(string? message, double progress);
@@ -78,6 +82,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		repeat = true;
 		shuffle = false;
+		setting_folder = false;
+		rescanning_folder = false;
 		
 		//load all songs from db
 		foreach(Song s in dbm.load_songs()) {
@@ -129,14 +135,17 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void set_music_folder(string folder) {
-		progress_notification("Importing music from " + folder + ". This may take a while", 0.0);
-		
-		settings.setMusicFolder(folder);
-		try {
-			Thread.create<void*>(set_music_thread_function, false);
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not create thread to set music folder: %s\n", err.message);
+		if(!setting_folder) {
+			setting_folder = true;
+			progress_notification("Importing music from " + folder + ". This may take a while", 0.0);
+			
+			settings.setMusicFolder(folder);
+			try {
+				Thread.create<void*>(set_music_thread_function, false);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not create thread to set music folder: %s\n", err.message);
+			}
 		}
 	}
         
@@ -145,7 +154,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
 		
 		var items = fo.count_music_files(file);
-		stdout.printf("found %d items\n", items);
+		music_counted(items);
 		fo.resetProgress(items);
 		
 		var new_songs = new LinkedList<Song>();
@@ -167,17 +176,21 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return false; 
 		});
 		
+		setting_folder = false;
 		return null;
 	}
         
 	public void rescan_music_folder() {
-		progress_notification("Rescanning music for changes. This may take a while", 0.0);
-		
-		try {
-				Thread.create<void*>(rescan_music_thread_function, false);
-		}
-		catch(GLib.Error err) {
-				stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+		if(!rescanning_folder) {
+			rescanning_folder = true;
+			progress_notification("Rescanning music for changes. This may take a while", 0.0);
+			
+			try {
+					Thread.create<void*>(rescan_music_thread_function, false);
+			}
+			catch(GLib.Error err) {
+					stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+			}
 		}
 	}
         
@@ -201,6 +214,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return false; 
 		});
 		
+		rescanning_folder = false;
 		return null;
 	}
 	
