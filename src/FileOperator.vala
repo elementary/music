@@ -188,7 +188,7 @@ public class BeatBox.FileOperator : Object {
 		while ((file_info = enumerator.next_file ()) != null) {
 			var file_path = album_folder.get_path() + "/" + file_info.get_name();
 			
-			if(file_info.get_file_type() == GLib.FileType.REGULAR && is_image_file_type(file_info.get_name())) {
+			if(file_info.get_file_type() == GLib.FileType.REGULAR && is_image_file_type(file_info.get_name()) && s.album in file_info.get_name()) {
 				return file_path;
 			}
 		}

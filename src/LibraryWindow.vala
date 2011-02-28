@@ -618,7 +618,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// if not 90% done, skip it
 		if(!added_to_play_count) {
 			lm.song_info.song.skip_count++;
-			lm.update_song(lm.song_info.song, false);
+			//don't need to update song because it will be updated when the new song is played
 		}
 		
 		lm.getNext(true);
