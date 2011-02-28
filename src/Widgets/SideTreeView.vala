@@ -180,7 +180,7 @@ public class BeatBox.SideTreeView : TreeView {
 	  pixbuf = this.render_icon(stock_id, size, null);
 	  
 	  if(pixbuf == null)
-		stdout.printf("null\n");
+		stdout.printf("Could not render icon %s\n", stock_id);
 	  
 	  return pixbuf;
 	}
@@ -487,7 +487,6 @@ public class BeatBox.SideTreeView : TreeView {
 				w.show();
 				this.current_widget = w;
 				if(w is MusicTreeView) {
-					stdout.printf("currentview is %s\n", path.to_string());
 					((MusicTreeView)w).is_current_view = true;
 				}
 			}

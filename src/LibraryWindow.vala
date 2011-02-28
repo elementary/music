@@ -6,8 +6,8 @@ using Notify;
 public class BeatBox.LibraryWindow : Gtk.Window {
 	BeatBox.LibraryManager lm;
 	BeatBox.Settings settings;
-	BeatBox.StreamPlayer player;
 	LastFM.SimilarSongs similarSongs;
+	BeatBox.MediaKeyListener mkl;
 	
 	string current_view_path;
 	bool queriedlastfm; // whether or not we have queried last fm for the current song info
@@ -60,19 +60,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public LibraryWindow(BeatBox.DataBaseManager dbm, BeatBox.StreamPlayer player) {
 		settings = new BeatBox.Settings();
-		this.player = player;
+		//this.player = player;
 		
 		//this is used by many objects, is the media backend
 		lm = new BeatBox.LibraryManager(player, dbm, settings);
 		similarSongs = new LastFM.SimilarSongs(lm);
 		timeout_search = new LinkedList<string>();
+		mkl = new MediaKeyListener(lm, this);
 		last_search = "";
 		
 		build_ui();
 		
-		this.player.end_of_stream.connect(end_of_stream);
-		this.player.current_position_update.connect(current_position_update);
-		
+		this.lm.player.end_of_stream.connect(end_of_stream);
+		this.lm.player.current_position_update.connect(current_position_update);
 		this.lm.music_added.connect(musicAdded);
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
@@ -94,7 +94,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			stdout.printf("No songs but music folder is set, showing welcome screen.\n");
 			//show welcome screen
 		}
-		/*else {
+		else {
 			lm.clearCurrent();
 			//((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList("0");
 		
@@ -102,16 +102,27 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			s = lm.song_from_name(s.title, s.artist);
 			if(s.rowid != 0) {
 				lm.playSong(s.rowid);
-				topDisplay.change_value(ScrollType.NONE, (int)settings.getLastSongPosition());
-				topDisplaySliderMoved(ScrollType.NONE, (int)settings.getLastSongPosition());
+				
+				/* time out works because... monkeys eat bananas */
+				int position = (int)settings.getLastSongPosition();
+				Timeout.add(500, () => {
+					topDisplay.change_value(ScrollType.NONE, position);
+					return false;
+				});
 			}
 			
-			//this gives gee.hashmap error... not sure why
-			//((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
+			// make sure we don't re-count stats
+			if((int)settings.getLastSongPosition() > 30)
+				song_considered_played = true;
+			if((double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
+				added_to_play_count = true;
 			
-			//always rescan on startup
-			fileRescanMusicFolderClick();
-		}*/
+			//this gives gee.hashmap error... not sure why
+			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
+			
+			// rescan on startup
+			lm.rescan_music_folder();
+		}
 	}
 	
 	public void build_ui() {
@@ -261,10 +272,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleButton.clicked.connect(shuffleClicked);
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
-		topDisplay.scale_value_changed.connect(topDisplaySliderMoved);
-		//searchField.changed.connect(searchFieldChanged);
-		//searchField.activate.connect(searchFieldActivated);
-		//searchField.icon_press.connect(searchFieldIconPressed);
 		
 		show_all();
 		topMenu.hide();
@@ -569,19 +576,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			lm.playing = true;
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
-			player.play_stream();
+			lm.player.play_stream();
 			
 			lm.getNext(true);
 		}
 		else {
 			if(lm.playing) {
 				lm.playing = false;
-				player.pause_stream();
+				lm.player.pause_stream();
 				playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 			}
 			else {
 				lm.playing = true;
-				player.play_stream();
+				lm.player.play_stream();
 				playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			}
 		}
@@ -681,7 +688,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		//second: stop music
 		stdout.printf("Stopping playback\n");
-		player.pause_stream();
+		lm.player.pause_stream();
 		
 		lm.settings.setLastSongPosition((int)topDisplay.get_scale_value());
 		
@@ -743,8 +750,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		Widget w = sideTree.getWidget(sideTree.library_music_iter);
-		((MusicTreeView)w).populateView(lm.song_ids(), false);
+		stdout.printf("TODO: re-populate view without freezing view\n");
+		//Widget w = sideTree.getWidget(sideTree.library_music_iter);
+		//((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
 		updateSensitivities();
 		
@@ -830,16 +838,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else {
 			
 		}
-	}
-	
-	public virtual void topDisplaySliderMoved(ScrollType scroll, double val) {
-		//temporarily disable updates
-		player.current_position_update.disconnect(current_position_update);
-		
-		player.seek_position((int64)(val * 1000000000));
-		
-		//re-enable streamplayer's updates
-		this.player.current_position_update.connect(current_position_update);
 	}
 	
 	public virtual void similarRetrieved(LinkedList<Song> similarDo, LinkedList<Song> similarDont) {

@@ -37,11 +37,10 @@ namespace ElementaryWidgets {
 			this.pack_start(progressbar, false, true, 2);
 			this.pack_start(scaleBox, false, true, 0);
 			
-			this.lm.player.current_position_update.connect(player_position_update);
 			this.scale.button_press_event.connect(scale_button_press);
 			this.scale.value_changed.connect(value_changed);
 			this.scale.change_value.connect(change_value);
-			
+			this.lm.player.current_position_update.connect(player_position_update);
 			show_all();
 		}
 		/** label functions **/
@@ -67,6 +66,9 @@ namespace ElementaryWidgets {
 		/** progressbar functions **/
 		public void set_scale_sensitivity(bool val) {
 			scale.set_sensitive(val);
+			scale.set_visible(val);
+			leftTime.set_visible(val);
+			rightTime.set_visible(val);
 		}
 		
 		public void set_progress_value(double progress) {
@@ -137,9 +139,10 @@ namespace ElementaryWidgets {
 		
 		public virtual bool change_value(ScrollType scroll, double val) {
 			this.lm.player.current_position_update.disconnect(player_position_update);
-			scale_value_changed(scroll, scale.get_value());
 			scale.set_value(val);
+			scale_value_changed(scroll, val);
 			this.lm.player.current_position_update.connect(player_position_update);
+			lm.player.seek_position((int64)(val * 1000000000));
 			
 			return false;
 		}

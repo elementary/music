@@ -39,7 +39,7 @@ public class BeatBox.SongInfo : Object {
 		
 		try {
 			file.delete();
-			file = File.new_for_path(Environment.get_user_cache_dir() + "/beatbox_song_info.html");
+			file = File.new_for_path(Environment.get_user_cache_dir() + "/beatbox/beatbox_song_info.html");
 			var file_stream = file.create (FileCreateFlags.NONE);
 			var data_stream = new DataOutputStream (file_stream);
 			data_stream.put_string (html);
