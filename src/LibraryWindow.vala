@@ -20,6 +20,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	VBox verticalBox;
 	VBox mainViews;
+	ElementaryWidgets.Welcome welcomeScreen;
 	HPaned sourcesToSongs; //allows for draggable
 	ScrolledWindow sideTreeScroll;
 	VBox sideBar;
@@ -141,6 +142,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToSongs = new HPaned();
 		contentBox = new VBox(false, 0);
 		mainViews = new VBox(false, 0);
+		welcomeScreen = new ElementaryWidgets.Welcome("Get some tunes.", "BeatBox can't seem to find your music");
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);
 		coverArt = new Image();	
@@ -246,6 +248,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToSongs.name = "SidebarHandleLeft";
 		sideTree.name = "SidebarContent";
 		
+		contentBox.pack_start(welcomeScreen, true, true, 0);
+		welcomeScreen.append("folder-music", "Import", "Select your music folder to import from.");
+		
 		contentBox.pack_start(mainViews, true, true, 0);
 		contentBox.pack_start(statusBar, false, true, 0);
 		
@@ -265,6 +270,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		/* Connect events to functions */
 		sourcesToSongs.child1.size_allocate.connect(sourcesToSongsHandleSet);
+		welcomeScreen.activated.connect(welcomeScreenActivated);
 		sideTree.row_activated.connect(sideListDoubleClick);
 		previousButton.clicked.connect(previousClicked);
 		playButton.clicked.connect(playClicked);
@@ -280,6 +286,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		coverArt.hide();
 		sideTree.resetView();
 		songInfoScroll.hide();
+		welcomeScreen.hide();
+		updateSensitivities();
 	}
 	
 	/** Builds the side tree on TreeView view
@@ -377,13 +385,23 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			playButton.set_sensitive(false);
 			nextButton.set_sensitive(false);
 			searchField.set_sensitive(false);
+			
+			if(settings.getMusicFolder() != "") {
+				mainViews.hide();
+				welcomeScreen.show();
+			}
 		}
 		else {
-			topDisplay.set_scale_sensitivity(true);
+			if(lm.song_info.song != null)
+				topDisplay.set_scale_sensitivity(true);
+			
 			previousButton.set_sensitive(true);
 			playButton.set_sensitive(true);
 			nextButton.set_sensitive(true);
 			searchField.set_sensitive(true);
+			
+			welcomeScreen.hide();
+			mainViews.show();
 		}
 	}
 	
@@ -853,5 +871,26 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public void setStatusBarText(string text) {
 		stdout.printf("View changed, set text to %s\n", text);
+	}
+	
+	public void welcomeScreenActivated(int index) {
+		if(index == 0) {
+			string folder = "";
+            var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+                                      FileChooserAction.SELECT_FOLDER,
+                                      STOCK_CANCEL, ResponseType.CANCEL,
+                                      STOCK_OPEN, ResponseType.ACCEPT);
+			if (file_chooser.run () == ResponseType.ACCEPT) {
+				folder = file_chooser.get_filename();
+			}
+			file_chooser.destroy ();
+			
+			if(folder != "" && folder != settings.getMusicFolder()) {
+				setMusicFolder(folder);
+			}
+		}
+		else {
+			stdout.printf("You just clicked a button that does not exist! Wow!\n");
+		}
 	}
 }
