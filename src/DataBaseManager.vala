@@ -3,7 +3,7 @@ using TagLib;
 using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
-	public const int COLUMN_COUNT = 20;
+	public const int COLUMN_COUNT = 18;
 	
 	SQLHeavy.Database _db;
 	
@@ -273,18 +273,6 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_string(":title", "BPM");
 			query.set_int(":visible", 0);
 			query.set_int(":width", 30);
-			query.execute();
-			
-			//file path
-			query.set_string(":title", "File Path");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 120);
-			query.execute();
-			
-			//file size
-			query.set_string(":title", "File Size");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 70);
 			query.execute();
 			
 			transaction.commit();

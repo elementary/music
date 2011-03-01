@@ -43,8 +43,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	CheckMenuItem columnDateAdded;
 	CheckMenuItem columnLastPlayed;
 	CheckMenuItem columnBPM;
-	CheckMenuItem columnFilePath;
-	CheckMenuItem columnFileSize;
 	//for song list right click
 	Menu songMenuActionMenu;
 	MenuItem songEditSong;
@@ -251,8 +249,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnDateAdded = new CheckMenuItem.with_label("Date Added");
 		columnLastPlayed = new CheckMenuItem.with_label("Last Played");
 		columnBPM = new CheckMenuItem.with_label("BPM");
-		columnFilePath= new CheckMenuItem.with_label("File Path");
-		columnFileSize = new CheckMenuItem.with_label("File Size");
 		updateColumnVisibilities();
 		columnChooserMenu.append(columnTurnOffSorting);
 		columnChooserMenu.append(columnSmartSorting);
@@ -272,8 +268,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnChooserMenu.append(columnDateAdded);
 		columnChooserMenu.append(columnLastPlayed);
 		columnChooserMenu.append(columnBPM);
-		columnChooserMenu.append(columnFilePath);
-		columnChooserMenu.append(columnFileSize);
 		columnTurnOffSorting.activate.connect(columnTurnOffSortingClick);
 		columnSmartSorting.activate.connect(columnSmartSortingClick);
 		columnNumber.toggled.connect(columnMenuToggled);
@@ -291,8 +285,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnDateAdded.toggled.connect(columnMenuToggled);
 		columnLastPlayed.toggled.connect(columnMenuToggled);
 		columnBPM.toggled.connect(columnMenuToggled);
-		columnFilePath.toggled.connect(columnMenuToggled);
-		columnFileSize.toggled.connect(columnMenuToggled);
 		columnChooserMenu.show_all();
 		
 		
@@ -544,10 +536,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				columnLastPlayed.active = view.get_column(index).visible;
 			else if(tvc.title == "BPM")
 				columnBPM.active = view.get_column(index).visible;
-			else if(tvc.title == "File Path")
-				columnFilePath.active = view.get_column(index).visible;
-			else if(tvc.title == "File Size")
-				columnFileSize.active = view.get_column(index).visible;
 			
 			++index;
 		}
@@ -593,10 +581,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			else if(tvc.title == "Last Played")
 				types[index] = typeof(string);
 			else if(tvc.title == "BPM")
-				types[index] = typeof(int);
-			else if(tvc.title == "File Path")
-				types[index] = typeof(string);
-			else if(tvc.title == "File Size")
 				types[index] = typeof(int);
 			
 			++index;
@@ -692,10 +676,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.set_value(item, index, ((s.last_played != 0) ? s.pretty_last_played() : ""));
 			else if(tvc.title == "BPM" && s.bpm != 0)
 				model.set_value(item, index, s.bpm);
-			else if(tvc.title == "File Name")
-				model.set_value(item, index, s.file_name);
-			else if(tvc.title == "File Size")
-				model.set_value(item, index, s.file_size);
 			
 			++index;
 		}
@@ -734,9 +714,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 								_columns.index_of("Skips"), s.skip_count,
 								_columns.index_of("Date Added"), s.pretty_date_added(),
 								_columns.index_of("Last Played"), s.pretty_last_played(),
-								_columns.index_of("BPM"), s.bpm,
-								_columns.index_of("File Name"), s.file_name,
-								_columns.index_of("File Size"), s.file_size);
+								_columns.index_of("BPM"), s.bpm);
 		
 		return true;
 	}
@@ -942,10 +920,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				view.get_column(index).visible = columnLastPlayed.active;//add bpm, file size, file path
 			else if(tvc.title == "BPM")
 				view.get_column(index).visible = columnBPM.active;
-			else if(tvc.title == "File Path")
-				view.get_column(index).visible = columnFilePath.active;
-			else if(tvc.title == "File Size")
-				view.get_column(index).visible = columnFileSize.active;
 			
 			++index;
 		}
