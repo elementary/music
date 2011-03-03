@@ -5,6 +5,7 @@ public class BeatBox.SimilarPane : HPaned {
 	BeatBox.LibraryManager _lm;
 	BeatBox.LibraryWindow _lw;
 	Song _base;
+	Song _next;
 	
 	Collection<int> _have; // this is updated EVERY song play. does not necessarily represent what is showing
 	Collection<Song> _shouldHave; //^
@@ -68,8 +69,8 @@ public class BeatBox.SimilarPane : HPaned {
 		transferPlayback.hide();
 	}
 	
-	public void updateSongs(Song bas, Collection<int> have, Collection<Song> shouldHave) {
-		_base = bas;
+	public void updateSongs(Song la, Collection<int> have, Collection<Song> shouldHave) {
+		_next = la;
 		_have = have;
 		_shouldHave = shouldHave;
 		
@@ -78,7 +79,7 @@ public class BeatBox.SimilarPane : HPaned {
 		}
 		else {
 			refresh.show();
-			refresh.set_tooltip_text("Refresh to show songs similar to: " + _base.title + " by " + _base.artist);
+			refresh.set_tooltip_text("Refresh to show songs similar to: " + _next.title + " by " + _next.artist);
 			transferPlayback.hide();
 		}
 	}
@@ -91,6 +92,7 @@ public class BeatBox.SimilarPane : HPaned {
 		similars.populateView(_have, false);
 		ssv.populateView(_shouldHave);
 		
+		_base = _next;
 		toolInfo.set_markup("Songs similar to <b>" + _base.title + "</b> by <b>" + _base.artist + "</b>");
 		refresh.hide();
 		transferPlayback.show();
@@ -116,6 +118,7 @@ public class BeatBox.SimilarPane : HPaned {
 	
 	public virtual void saveClicked() {
 		Playlist p = new Playlist();
+		
 		p.name = "Similar to " + _base.title;
 		
 		foreach(int id in similars.get_songs()) {

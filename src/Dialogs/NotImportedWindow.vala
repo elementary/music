@@ -4,13 +4,15 @@ using Gtk;
 public class BeatBox.NotImportedWindow : Window{
 	LinkedList<string> _files;
 	
+	//for padding around notebook mostly
+	private VBox content;
+	private HBox padding;
+	
+	CheckButton trashAll;
 	ScrolledWindow filesScroll;
 	TreeView filesView;
 	ListStore filesModel;
-	CheckButton moveToRecycle;
-	Button deleteAll;
-	Button deleteSelected;
-	Button ignore;
+	Button moveToTrash;
 	
 	public NotImportedWindow(LinkedList<string> files) {
 		_files = files;
@@ -18,21 +20,32 @@ public class BeatBox.NotImportedWindow : Window{
 		this.set_title("Not Imported Files");
 		
 		// set the size based on saved gconf settings
-		set_size_request(600, 400);
-		allow_shrink = true;
+		set_size_request(475, 350);
+		this.window_position = WindowPosition.CENTER;
+		//allow_shrink = true;
 		
-		Label info = new Label("The following files could not be imported because they are corrupt.");
+		content = new VBox(false, 10);
+		padding = new HBox(false, 20);
+		
+		// initialize controls
+		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
+		Label title = new Label("Unable to import " + files.size.to_string() + "songs");
+		Label info = new Label("BeatBox was unable to import " + files.size.to_string() + " songs. The files may be damaged.");
+		trashAll = new CheckButton.with_label("Move all files to trash");
 		filesScroll = new ScrolledWindow(null, null);
 		filesView = new TreeView();
 		filesModel = new ListStore(2, typeof(bool), typeof(string));
 		filesView.set_model(filesModel);
-		moveToRecycle = new CheckButton.with_label("Recycle");
-		deleteAll = new Button.with_label("Delete all");
-		deleteSelected = new Button.with_label("Delete checked");
-		ignore = new Button.with_label("Ignore files");
+		moveToTrash = new Button.with_label("Move to Trash");
+		Button okButton = new Button.with_label("Ignore");
 		
+		// pretty up labels
+		title.xalign = 0.0f;
+		title.set_markup("<span weight=\"bold\" size=\"larger\">Unable to import " + files.size.to_string() + " songs</span>");
+		info.xalign = 0.0f;
 		info.set_line_wrap(false);
 		
+		/* add cellrenderers to columns and columns to treeview */
 		var toggle = new CellRendererToggle ();
         toggle.toggled.connect ((toggle, path) => {
             var tree_path = new TreePath.from_string (path);
@@ -42,13 +55,15 @@ public class BeatBox.NotImportedWindow : Window{
         });
 
         var column = new TreeViewColumn ();
-        column.title = "Delete";
+        column.title = "del";
         column.pack_start (toggle, false);
         column.add_attribute (toggle, "active", 0);
         filesView.append_column (column);
 		
 		filesView.insert_column_with_attributes(-1, "File Location", new CellRendererText(), "text", 1, null);
+		filesView.headers_visible = false;
 		
+		/* fill the treeview */
 		foreach(string file in files) {
 			TreeIter item;
 			filesModel.append(out item);
@@ -56,36 +71,74 @@ public class BeatBox.NotImportedWindow : Window{
 			filesModel.set(item, 0, false, 1, file);
 		}
 		
-		HButtonBox buttons = new HButtonBox();
-		Label filler = new Label("");
-		
 		filesScroll.add(filesView);
 		filesScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		
-		buttons.pack_start(moveToRecycle, false, false, 5);
-		buttons.pack_start(deleteAll, false, false, 0);
-		buttons.pack_start(deleteSelected, false, false, 0);
-		buttons.pack_start(filler, false, true, 0);
-		buttons.pack_end(ignore, false, false, 5);
+		/* set up controls layout */
+		HBox information = new HBox(false, 0);
+		VBox information_text = new VBox(false, 0);
+		information.pack_start(warning, false, false, 10);
+		information_text.pack_start(title, false, true, 10);
+		information_text.pack_start(info, false, true, 0);
+		information.pack_start(information_text, true, true, 10);
 		
-		VBox vbox = new VBox(false, 0);
-		vbox.pack_start(info, false, true, 0);
-		vbox.pack_start(filesScroll, true, true, 0);
-		vbox.pack_start(buttons, false, true, 5);
+		VBox listBox = new VBox(false, 0);
+		listBox.pack_start(trashAll, false, true, 5);
+		listBox.pack_start(filesScroll, true, true, 5);
 		
-		moveToRecycle.toggled.connect(moveToRecycleToggle);
-		deleteAll.clicked.connect(deleteAllClick);
-		deleteSelected.clicked.connect(deleteSelectedClick);
-		ignore.clicked.connect(ignoreClick);
+		HButtonBox bottomButtons = new HButtonBox();
+		bottomButtons.set_layout(ButtonBoxStyle.END);
+		bottomButtons.pack_end(moveToTrash, false, false, 0);
+		bottomButtons.pack_end(okButton, false, false, 10);
+		bottomButtons.set_spacing(10);
+		bottomButtons.child_ipad_x = 10;
 		
-		add(vbox);
+		content.pack_start(information, false, true, 0);
+		content.pack_start(listBox, true, true, 0);
+		content.pack_start(bottomButtons, false, true, 10);
+		
+		padding.pack_start(content, true, true, 10);
+		
+		moveToTrash.clicked.connect(moveToTrashClick);
+		trashAll.toggled.connect(trashAllToggled);
+		okButton.clicked.connect( () => { this.destroy(); });
+		
+		add(padding);
 		show_all();
+	}
+	
+	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+		alignment.top_padding = top;
+		alignment.right_padding = right;
+		alignment.bottom_padding = bottom;
+		alignment.left_padding = left;
+		
+		alignment.add(widget);
+		return alignment;
 	}
 	
 	public bool selectAll(TreeModel model, TreePath path, TreeIter iter) {
 		filesModel.set(iter, 0, true);
 		
 		return false;
+	}
+	
+	public bool unselectAll(TreeModel model, TreePath path, TreeIter iter) {
+		filesModel.set(iter, 0, false);
+		
+		return false;
+	}
+	
+	public virtual void trashAllToggled() {
+		if(trashAll.active) {
+			filesModel.foreach(selectAll);
+			filesView.set_sensitive(false);
+		}
+		else {
+			filesModel.foreach(unselectAll);
+			filesView.set_sensitive(true);
+		}
 	}
 	
 	public bool deleteSelectedItems(TreeModel model, TreePath path, TreeIter iter) {
@@ -95,16 +148,14 @@ public class BeatBox.NotImportedWindow : Window{
 		filesModel.get(iter, 1, out location);
 		
 		if(selected) {
-			if(moveToRecycle.get_active()) {
-				try {
-					var file = File.new_for_path(location);
-					file.trash();
-				}
-				catch(GLib.Error err) {
-					stdout.printf("Could not move file %s to recycle: %s\n", location, err.message);
-				}
+			try {
+				var file = File.new_for_path(location);
+				file.trash();
 			}
-			else {
+			catch(GLib.Error err) {
+				stdout.printf("Could not move file %s to recycle: %s\n", location, err.message);
+			}
+			/*else {
 				try {
 					var file = File.new_for_path (location);
 					file.delete();
@@ -112,30 +163,13 @@ public class BeatBox.NotImportedWindow : Window{
 				catch(GLib.Error err) {
 					stdout.printf("Could not delete file %s: %s\n", location, err.message);
 				}
-			}
+			}*/
 		}
 		
 		return false;
 	}
 	
-	public virtual void moveToRecycleToggle() {
-		if(moveToRecycle.active) {
-			deleteAll.set_label("Recycle all");
-			deleteSelected.set_label("Recycle selected");
-		}
-		else {
-			deleteAll.set_label("Delete all");
-			deleteSelected.set_label("Delete selected");
-		}
-	}
-	
-	public virtual void deleteAllClick() {
-		//select every item and then call deleteSelectedClick()
-		filesModel.foreach(selectAll);
-		deleteSelectedClick();
-	}
-	
-	public virtual void deleteSelectedClick() {
+	public virtual void moveToTrashClick() {
 		filesModel.foreach(deleteSelectedItems);
 		this.destroy();
 	}

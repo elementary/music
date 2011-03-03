@@ -124,6 +124,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			// rescan on startup
 			lm.rescan_music_folder();
 		}
+		
+		LinkedList<string> blah = new LinkedList<string>();
+		blah.add("hi!");
+		blah.add("/name/blah/bljdf/s;ldjf.mp3");
+		
+		NotImportedWindow nim = new NotImportedWindow(blah);
+		nim.show();
 	}
 	
 	public void build_ui() {
@@ -467,6 +474,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			if(lm.get_album_location(i) != null) {
 				notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(lm.get_album_location(i)));
+			}
+			else {
+				//set to beatbox icon
 			}
 			
 			notification.show();
