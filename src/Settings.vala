@@ -16,6 +16,7 @@ public class BeatBox.Settings : Object {
 	public static const string WINDOW_WIDTH = "/apps/beatbox/preferences/ui/window_width";
 	public static const string WINDOW_HEIGHT = "/apps/beatbox/preferences/ui/window_height";
 	public static const string SIDEBAR_WIDTH = "/apps/beatbox/preferences/ui/sidebar_width";
+	public static const string MORE_WIDTH = "/apps/beatbox/preferences/ui/more_width";
 	
 	public Settings() {
 		client = GConf.Client.get_default();
@@ -109,7 +110,7 @@ public class BeatBox.Settings : Object {
 	}
 	
 	public int getWindowWidth() {
-		return getInt(WINDOW_WIDTH, 900);
+		return getInt(WINDOW_WIDTH, 1100);
 	}
 	
 	public int getWindowHeight() {
@@ -118,6 +119,10 @@ public class BeatBox.Settings : Object {
 	
 	public int getSidebarWidth() {
 		return getInt(SIDEBAR_WIDTH, 200);
+	}
+	
+	public int getMoreWidth() {
+		return getInt(MORE_WIDTH, 725);
 	}
 	
 	public bool getUpdateFolderHierarchy() {
@@ -173,6 +178,10 @@ public class BeatBox.Settings : Object {
 	
 	public void setSidebarWidth(int val) {
 		setInt(SIDEBAR_WIDTH, val);
+	}
+	
+	public void setMoreWidth(int val) {
+		setInt(MORE_WIDTH, val);
 	}
 	
 	public void setUpdateFolderHierarchy(bool val) {

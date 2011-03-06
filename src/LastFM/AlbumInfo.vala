@@ -2,7 +2,6 @@ using Xml;
 
 public class LastFM.AlbumInfo : Object {
 	static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
-	BeatBox.FileOperator fo;
 	
 	private string _name;
 	private string _artist;
@@ -89,13 +88,13 @@ public class LastFM.AlbumInfo : Object {
 				else if(node_name == "releasedate")
 					_releasedate = node_content;
 				else if(node_name == "playcount")
-					_playcount = node_content.to_int();
+					_playcount = int.parse(node_content);
 				else if(node_name == "listeners")
-					_listeners = node_content.to_int();
+					_listeners = int.parse(node_content);
 				else if(node_name == "image") {
 					if(iter->get_prop("size") == "large") {
 						url_image = new LastFM.Image.with_url(node_content, true);
-						url_image.set_size(200, 200);
+						url_image.set_size(500, 500);
 					}
 				}
 			}

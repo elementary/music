@@ -95,7 +95,7 @@ public class LastFM.ArtistInfo : Object {
 				else if(node_name == "url")
 					_url = node_content;
 				else if(node_name == "streamable")
-					_streamable = node_content.to_int();
+					_streamable = int.parse(node_content);
 				else if(node_name == "image") {
 					if(iter->get_prop("size") == "extralarge") {
 						url_image = new LastFM.Image.with_url(node_content, true);
@@ -105,9 +105,9 @@ public class LastFM.ArtistInfo : Object {
 			}
 			else if(parent == "artiststats") {
 				if(node_name == "playcount")
-					_playcount = node_content.to_int();
+					_playcount = int.parse(node_content);
 				else if(node_name == "listeners")
-					_listeners = node_content.to_int();
+					_listeners = int.parse(node_content);
 			}
 			else if(parent == "artistsimilarartist") {
 				if(node_name == "name") {

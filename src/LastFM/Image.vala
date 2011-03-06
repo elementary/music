@@ -4,6 +4,7 @@ public class LastFM.Image : Object {
 	private string _url;
 	private Gdk.Pixbuf _image;
 	private int[] _size;
+	private static int default_size = 500;
 	
 	public string url {
 		get { return _url; }
@@ -24,13 +25,13 @@ public class LastFM.Image : Object {
 	public Image.basic() {
 		_url = null;
 		_image = null;
-		_size = {200, 200};
+		_size = {default_size, default_size};
 	}
 	
 	public Image.with_url(string url, bool generate) {
 		_url = url;
 		_image = null;
-		_size = {200, 200};
+		_size = {default_size, default_size};
 		
 		if(generate)
 			generate_pixbuf();
@@ -38,7 +39,7 @@ public class LastFM.Image : Object {
 	
 	public Image.with_image(Gdk.Pixbuf image) {
 		_image = image;
-		_size = {200, 200};
+		_size = {default_size, default_size};
 	}
 	
 	public Image.with_import_string(string s) {
@@ -47,8 +48,8 @@ public class LastFM.Image : Object {
 		_url = values[0];
 		_image = null;
 		_size = new int[2];
-		_size[0] = values[1].to_int();
-		_size[1] = values[2].to_int();
+		_size[0] = int.parse(values[1]);
+		_size[1] = int.parse(values[2]);
 	}
 	
 	public void set_size(int width, int height) {

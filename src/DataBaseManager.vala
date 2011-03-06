@@ -3,7 +3,7 @@ using TagLib;
 using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
-	public const int COLUMN_COUNT = 18;
+	public const int COLUMN_COUNT = 17;
 	
 	SQLHeavy.Database _db;
 	
@@ -51,8 +51,14 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		bool need_create = false;
 		
 		var beatbox_folder = GLib.File.new_for_path(Environment.get_user_data_dir() + "/beatbox");
-		if(!beatbox_folder.query_exists())
-			beatbox_folder.make_directory(null);
+		if(!beatbox_folder.query_exists()) {
+			try {
+				beatbox_folder.make_directory(null);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("CRITICAL: Could not create beatbox folder in data directory: %s\n", err.message);
+			}
+		}
 		
 		var db_file = GLib.File.new_for_path(beatbox_folder.get_path() + "/beatbox_db.db");
 		if(!db_file.query_exists())
@@ -68,7 +74,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			else
 				_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ);
 			
-			/*_db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); });*/
+			/* _db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); }); */
 		}
 		catch (SQLHeavy.Error err) {
 			stdout.printf("This is terrible. Could not even make db file. Please report this. Message: %s", err.message);
@@ -182,12 +188,6 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_string(":title", " ");
 			query.set_int(":visible", 1);
 			query.set_int(":width", 24);
-			query.execute();
-			
-			//#
-			query.set_string(":title", "#");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 60);
 			query.execute();
 			
 			//track
@@ -441,7 +441,44 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction.commit();
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not load song from db: %s\n", err.message);
+			stdout.printf("Could not remove song from db: %s\n", err.message);
+		}
+	}
+	
+	public void update_songs(Gee.Collection<Song> songs) {
+		try {
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare("UPDATE `songs` SET file=:file, title=:title, artist=:artist, album=:album, genre=:genre, comment=:comment, year=:year, track=:track, bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed WHERE rowid=:rowid");
+			
+			foreach(Song s in songs) {
+				if(s.rowid != 0)
+					query.set_string(":rowid", s.rowid.to_string());
+				
+				
+				query.set_string(":file", s.file);
+				query.set_string(":title", s.title);
+				query.set_string(":artist", s.artist);
+				query.set_string(":album", s.album);
+				query.set_string(":genre", s.genre);
+				query.set_string(":comment", s.comment);
+				query.set_int(":year", s.year);
+				query.set_int(":track", s.track);
+				query.set_int(":bitrate", s.bitrate);
+				query.set_int(":length", s.length);
+				query.set_int(":samplerate", s.samplerate);
+				query.set_int(":rating", s.rating);
+				query.set_int(":playcount", s.play_count);
+				query.set_int(":skipcount", s.skip_count);
+				query.set_int(":dateadded", s.date_added);
+				query.set_int(":lastplayed", s.last_played);
+				
+				query.execute();
+			}
+			
+			transaction.commit();
+		}
+		catch(SQLHeavy.Error err) {
+			stdout.printf("Could not save songs: %s \n", err.message);
 		}
 	}
 	
@@ -594,7 +631,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				LastFM.AlbumInfo a = new LastFM.AlbumInfo.basic();
 				
-				int rowid = results.fetch_int(0);
+				//int rowid = results.fetch_int(0);
 				a.name = results.fetch_string(1);
 				a.artist = results.fetch_string(2);
 				a.mbid = results.fetch_string(3);
@@ -642,7 +679,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				LastFM.ArtistInfo a = new LastFM.ArtistInfo.basic();
 				
-				int rowid = results.fetch_int(0);
+				//int rowid = results.fetch_int(0);
 				a.name = results.fetch_string(1);
 				a.mbid = results.fetch_string(2);
 				a.url = results.fetch_string(3);
@@ -741,7 +778,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				LastFM.TrackInfo t = new LastFM.TrackInfo.basic();
 				
-				int rowid = results.fetch_int(0);
+				//int rowid = results.fetch_int(0);
 				t.id = results.fetch_int(1);
 				t.name = results.fetch_string(2);
 				t.artist = results.fetch_string(3);

@@ -4,10 +4,10 @@ using Gee;
 public class BeatBox.SimilarPane : HPaned {
 	BeatBox.LibraryManager _lm;
 	BeatBox.LibraryWindow _lw;
-	Song _base;
+	public Song _base;
 	Song _next;
 	
-	Collection<int> _have; // this is updated EVERY song play. does not necessarily represent what is showing
+	public Collection<int> _have; // this is updated EVERY song play. does not necessarily represent what is showing
 	Collection<Song> _shouldHave; //^
 	
 	VBox left;
@@ -54,17 +54,16 @@ public class BeatBox.SimilarPane : HPaned {
 		
 		add1(left);
 		add2(ssv);
-		child1_resize = 1;
+		child2_resize = 1;
 		
-		Allocation all;
-		get_allocation(out all);
-		set_position(all.width - 200);
+		position = _lm.settings.getMoreWidth();
 		
 		show_all();
 		
 		refresh.clicked.connect(refreshClicked);
 		transferPlayback.clicked.connect(transferPlaybackClicked);
 		save.clicked.connect(saveClicked);
+		this.child2.size_allocate.connect(paneHandleSet);
 		
 		transferPlayback.hide();
 	}
@@ -129,5 +128,11 @@ public class BeatBox.SimilarPane : HPaned {
 		_lw.addSideListItem(p);
 		
 		save.hide();
+	}
+	
+	public virtual void paneHandleSet(Gdk.Rectangle rectangle) {
+		if(_lm.settings.getMoreWidth() != position) {
+			_lm.settings.setMoreWidth(position);
+		}
 	}
 }

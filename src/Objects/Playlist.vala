@@ -76,6 +76,7 @@ public class BeatBox.Playlist : Object {
 	public Gee.LinkedList<int> analyze(LibraryManager lm) {
 		Gee.LinkedList<int> rv = new Gee.LinkedList<int>();
 		
+		// TODO: prevent adding duplicates multiple times
 		foreach(Song s in lm.songs()) {
 			foreach(Song l in this._songs) {
 				if(s.title == l.title && s.artist == l.artist && s.album == l.album) {

@@ -43,7 +43,7 @@ public class BeatBox.SideTreeView : TreeView {
 		sideTreeModel = new TreeStore(4, typeof(GLib.Object), typeof(Widget), typeof(string), typeof(string));
 		this.set_model(sideTreeModel);
 		this.set_headers_visible(false);
-		this.set_grid_lines(TreeViewGridLines.NONE);
+		//this.set_grid_lines(TreeViewGridLines.NONE);
 		//this.show_expanders = false;
 		
 		TreeViewColumn col = new TreeViewColumn();
@@ -54,19 +54,23 @@ public class BeatBox.SideTreeView : TreeView {
 		col.title = "widget";
 		this.insert_column(col, 1);
 		
-		this.insert_column_with_data_func(-1, "title", new CellRendererPixbuf(), smartPixTextColumnData);
 		var cell_renderer_text = new Gtk.CellRendererText();
+		var cell_renderer_pixbuf = new Gtk.CellRendererPixbuf();
+		this.insert_column_with_data_func(-1, "title", cell_renderer_pixbuf, smartPixTextColumnData);
 		this.get_column(2).pack_end(cell_renderer_text, true);
-		this.get_column(2).set_attributes(cell_renderer_text, "text", 2, null);
+		this.get_column(2).set_attributes(cell_renderer_text, "markup", 2, null);
+		this.get_column(2).alignment = 0.0f;
+		//this.get_column(2).max_width = 150;
+		//this.get_column(2).fixed_width = 150;
+		cell_renderer_text.xalign = 0.0f;
 		//this.get_column(2).expand = false;
 		
 		col = new TreeViewColumn();
 		col.title = "expander";
-		col.alignment = (float)1.0;
-		insert_column(col, 3);
-		//col.visible = false;
 		col.expand = true;
-		this.set_expander_column(get_column(2));
+		this.insert_column(col, 3);
+		//this.set_expander_column(get_column(2));
+		this.set_show_expanders(false);
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in this.get_columns()) {
@@ -102,26 +106,14 @@ public class BeatBox.SideTreeView : TreeView {
 	public void smartPixTextColumnData(TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		GLib.Object o = null;
 		string title = "";
-		string parent_string = "";
 		tree_model.get(iter, 0, out o, 2, out title);
 		
 		TreeIter parent;
 		//if(sideTreeModel.iter_is_valid(parent))
 		//	sideTreeModel.get(parent, out parent_string);
 		
-		//if not a parent make bold, move more left if possible, etc.
-		
-		if(cell is CellRendererText) {
-			string text;
-			tree_model.get(iter, 2, out text);
-			((CellRendererText)cell).text = text;
-			
-			if(iter == devices_iter && !tree_model.iter_has_child(iter))
-				cell.visible = false;
-			else if(iter == network_iter && !tree_model.iter_has_child(iter))
-				cell.visible = false;
-		}
-		else if(cell is CellRendererPixbuf && iter == library_music_iter) {
+		/* NOTE: This is only called for the pixbuf cellrenderer!!!!!!! */
+		if(cell is CellRendererPixbuf && iter == library_music_iter) {
 			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("folder-music", IconSize.MENU);
 		}
 		else if(cell is CellRendererPixbuf && iter == playlists_similar_iter) {
@@ -146,57 +138,43 @@ public class BeatBox.SideTreeView : TreeView {
 		
 		//align pixbuf to right, text to left
 		if(cell is CellRendererPixbuf) {
-			cell.set_fixed_size(26, 0);
+			cell.set_fixed_size(40, 0);
 			cell.set_alignment((float)1.0, (float)1.0);
 			//((CellRendererPixbuf)cell).alignment = Alignment.RIGHT;
 			((CellRendererPixbuf)cell).stock_size = 16;
 		}
-		else {
-			cell.set_alignment((float)0.0, (float)0.0);
-		}
 			
 		if(!sideTreeModel.iter_parent(out parent, iter)) {
-			if(cell is CellRendererPixbuf) {
-				cell.visible = false;
-			}
-			else if(cell is CellRendererText) {
-				cell.visible = true;
-			}
+			cell.visible = false;
 		}
 		else {
-			if(cell is CellRendererPixbuf) {
-				cell.visible = true;
-			}
-			else if(cell is CellRendererText) {
-				cell.visible = true;
-			}
+			cell.visible = true;
 		}
 	}
 	
-	Gdk.Pixbuf get_pixbuf_from_stock (string stock_id, Gtk.IconSize size)
-	{
-	  Gdk.Pixbuf pixbuf;
-	 
-	  pixbuf = this.render_icon(stock_id, size, null);
-	  
-	  if(pixbuf == null)
+	private Gdk.Pixbuf get_pixbuf_from_stock (string stock_id, Gtk.IconSize size) {
+		Gdk.Pixbuf pixbuf;
+		
+		pixbuf = this.render_icon(stock_id, size, null);
+		
+		if(pixbuf == null)
 		stdout.printf("Could not render icon %s\n", stock_id);
-	  
-	  return pixbuf;
+		
+		return pixbuf;
 	}
 	
 	public void addBasicItems() {
 		sideTreeModel.append(out library_iter, null);
-		sideTreeModel.set(library_iter, 0, null, 1, null, 2, "Library");
+		sideTreeModel.set(library_iter, 0, null, 1, null, 2, "<b>Library</b>");
 		
 		sideTreeModel.append(out devices_iter, null);
-		sideTreeModel.set(devices_iter, 0, null, 1, null, 2, "Devices");
+		sideTreeModel.set(devices_iter, 0, null, 1, null, 2, "<b>Devices</b>");
 		
 		sideTreeModel.append(out network_iter, null);
-		sideTreeModel.set(network_iter, 0, null, 1, null, 2, "Network");
+		sideTreeModel.set(network_iter, 0, null, 1, null, 2, "<b>Network</b>");
 		
 		sideTreeModel.append(out playlists_iter, null);
-		sideTreeModel.set(playlists_iter, 0, null, 1, null, 2, "Playlists");
+		sideTreeModel.set(playlists_iter, 0, null, 1, null, 2, "<b>Playlists</b>");
 	}
 	
 	public TreeIter? addItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
@@ -420,7 +398,7 @@ public class BeatBox.SideTreeView : TreeView {
 				}
 			}
 			
-			return false;
+			return true;
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
 			TreeIter iter;
@@ -446,15 +424,14 @@ public class BeatBox.SideTreeView : TreeView {
 			if(sideTreeModel.iter_is_valid(parent)) {
 				this.get_selection().select_iter(iter);
 				
-				/*if(w != null) {
-					w.show();
-					this.current_widget = w;
-				}*/
-				
 				string parent_name;
 				sideTreeModel.get(parent, 2, out parent_name);
 				
-				if(iter == playlists_queue_iter) {
+				if(iter == playlists_similar_iter) {
+					if(((SimilarPane)w)._base == null || ((SimilarPane)w)._have.size == 0)
+						return true;
+				}
+				else if(iter == playlists_queue_iter) {
 					MusicTreeView mtv = (MusicTreeView)w;
 					mtv.populateView(lm.queue(), false);
 				}

@@ -80,7 +80,12 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 	
 	public void* openurl_thread_function () {	
 		if(urlsToOpen.peek() != null) {
-			GLib.AppInfo.launch_default_for_uri (urlsToOpen.poll(), null);
+			try {
+				GLib.AppInfo.launch_default_for_uri (urlsToOpen.poll(), null);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not open url in Last FM: %s\n", err.message);
+			}
 		}
 		
 		return null;

@@ -9,12 +9,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	LastFM.SimilarSongs similarSongs;
 	BeatBox.MediaKeyListener mkl;
 	
-	string current_view_path;
 	bool queriedlastfm; // whether or not we have queried last fm for the current song info
 	bool song_considered_played; //whether or not we have updated last played and added to already played list
 	bool added_to_play_count; // whether or not we have added one to play count on playing song
-	bool loaded_pandora;
-	bool loaded_groove_shark;
 	LinkedList<string> timeout_search;//stops from doing useless search
 	string last_search;//stops from searching same thing multiple times
 	
@@ -124,13 +121,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			// rescan on startup
 			lm.rescan_music_folder();
 		}
-		
-		LinkedList<string> blah = new LinkedList<string>();
-		blah.add("hi!");
-		blah.add("/name/blah/bljdf/s;ldjf.mp3");
-		
-		NotImportedWindow nim = new NotImportedWindow(blah);
-		nim.show();
 	}
 	
 	public void build_ui() {
@@ -138,6 +128,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("Building user interface\n");
 		
 		// set the size based on saved gconf settings
+		set_size_request(900, 600);
 		set_size_request(settings.getWindowWidth(), settings.getWindowHeight());
 		allow_shrink = true;
 		
@@ -212,15 +203,30 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 		helpOnline.activate.connect( () => {
 			string auth_uri = "https://answers.launchpad.net/beat-box";
-			GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+			try {
+				GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not load webpage %s: %s\n", auth_uri, err.message);
+			}
 		});
 		helpTranslate.activate.connect( () => {
 			string auth_uri = "https://translations.launchpad.net/beat-box";
-			GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+			try {
+				GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not load webpage %s: %s\n", auth_uri, err.message);
+			}
 		});
 		helpReport.activate.connect( () => {
 			string auth_uri = "https://bugs.launchpad.net/beat-box";
-			GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+			try {
+				GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not load webpage %s: %s\n", auth_uri, err.message);
+			}
 		});
 		helpAbout.activate.connect(helpAboutClick);
 		editPreferences.activate.connect(editPreferencesClick);
@@ -355,7 +361,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public void addSideListItem(GLib.Object o) {
 		TreeIter item = sideTree.library_music_iter;
-		int index = 0;
 		MusicTreeView mtv = null;
 		
 		if(o is Playlist) {
@@ -434,7 +439,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			string file = "";
 			if((file = lm.get_album_location(lm.song_info.song.rowid)) != null) {
 				coverArt.show();
-				coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(file, sourcesToSongs.position, sourcesToSongs.position));
+				try {
+					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(file, sourcesToSongs.position, sourcesToSongs.position));
+				}
+				catch(GLib.Error err) {
+					stdout.printf("Could not set image art: %s\n", err.message);
+				}
 			}
 			else
 				coverArt.hide();
@@ -466,20 +476,24 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		
 		//update the notifier
-		notification.close();
-		
 		if(!has_toplevel_focus) {
-			notification.summary = lm.song_from_id(i).title;
-			notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
-			
-			if(lm.get_album_location(i) != null) {
-				notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(lm.get_album_location(i)));
+			try {
+				notification.close();
+				notification.summary = lm.song_from_id(i).title;
+				notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
+				
+				if(lm.get_album_location(i) != null) {
+					notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(lm.get_album_location(i)));
+				}
+				else {
+					//set to beatbox icon
+				}
+				
+				notification.show();
 			}
-			else {
-				//set to beatbox icon
+			catch(GLib.Error err) {
+				stderr.printf("Could not show notification: %s\n", err.message);
 			}
-			
-			notification.show();
 		}
 		
 		updateCurrentSong();
@@ -704,10 +718,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void sourcesToSongsHandleSet(Gdk.Rectangle rectangle) {
-		if(settings.getSidebarWidth() != rectangle.width)
+		if(settings.getSidebarWidth() != rectangle.width) {
 			updateCurrentSong();
-		
-		settings.setSidebarWidth(rectangle.width);
+			settings.setSidebarWidth(rectangle.width);
+		}
 	}
 	
 	public virtual void on_resize() {
@@ -784,19 +798,23 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		lm.save_songs();
 		
 		//now notify user
-		notification.close();
-		
-		if(!has_toplevel_focus) {
-			notification.summary = "Import Complete";
-			notification.body = "BeatBox has imported your library";
-			//notification.set_image_from_pixbuf(this.render_icon("music-folder", IconSize.SMALL_TOOLBAR, null));
-			
-			notification.show();
+		try {
+			notification.close();
+			if(!has_toplevel_focus) {
+				notification.summary = "Import Complete";
+				notification.body = "BeatBox has imported your library";
+				//notification.set_image_from_pixbuf(this.render_icon("music-folder", IconSize.SMALL_TOOLBAR, null));
+				
+				notification.show();
+			}
+		}
+		catch(GLib.Error err) {
+			stderr.printf("Could not show notification: %s\n", err.message);
 		}
 	}
 	
 	public virtual void musicRescanned(LinkedList<string> not_imported) {
-		sideTree.resetView();
+		//sideTree.resetView();
 		topDisplay.show_scale();
 		
 		if(lm.song_info.song != null) {
@@ -826,7 +844,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		ad.set_version("0.1");
 		ad.set_website("https://launchpad.net/beat-box");
 		ad.set_website_label("Launchpad");
-		ad.set_authors({"Scott Ringwelski"});
+		
+		string[] authors = new string[1];
+		authors[0] = "Scott Ringwelski";
+		ad.set_authors(authors);
 		
 		ad.response.connect( (response_id) => { 
 			ad.destroy(); 
@@ -916,8 +937,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			string folder = "";
             var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
                                       FileChooserAction.SELECT_FOLDER,
-                                      STOCK_CANCEL, ResponseType.CANCEL,
-                                      STOCK_OPEN, ResponseType.ACCEPT);
+                                      Gtk.Stock.CANCEL, ResponseType.CANCEL,
+                                      Gtk.Stock.OPEN, ResponseType.ACCEPT);
 			if (file_chooser.run () == ResponseType.ACCEPT) {
 				folder = file_chooser.get_filename();
 			}

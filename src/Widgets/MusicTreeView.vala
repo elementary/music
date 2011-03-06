@@ -13,7 +13,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	private HashMap<int, TreeRowReference> _rows;
 	private LinkedList<string> _columns;
 	
-	private string current_path; // based on sort, always up to date.
+	//private string current_path; // based on sort, always up to date.
 	public int relative_id;// if playlist, playlist id, etc.
 	public string hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	int sort_id;
@@ -23,12 +23,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	LinkedList<string> timeout_search;//stops from doing useless search
 	string last_search;//stops from searching same thing multiple times
+	bool scrolled_recently;
 	
 	//for header column chooser
 	Menu columnChooserMenu;
 	MenuItem columnTurnOffSorting;
 	MenuItem columnSmartSorting;
-	CheckMenuItem columnNumber;// new
 	CheckMenuItem columnTrack;
 	CheckMenuItem columnTitle;
 	CheckMenuItem columnLength;
@@ -47,6 +47,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	Menu songMenuActionMenu;
 	MenuItem songEditSong;
 	MenuItem songMenuQueue;
+	MenuItem songMenuNewPlaylist;
+	MenuItem songMenuAddToPlaylist; // make menu on fly
 	MenuItem songRateSong;
 	Menu songRateSongMenu;
 	MenuItem songRateSong0;
@@ -109,29 +111,23 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(hint == "music") {
 			songRemove.set_sensitive(true);
 			songRemove.set_label("Move to Trash");
-			columnNumber.active = false;
-			columnNumber.visible = false;
 			columnTrack.active = true;
 		}
 		else if(hint == "queue") {
 			songRemove.set_sensitive(true);
 			songRemove.set_label("Remove from Queue");
-			columnNumber.active = true;
 			columnTrack.active = false;
 		}
 		else if(hint == "already played") {
 			songRemove.set_sensitive(false);
-			columnNumber.active = true;
 			columnTrack.active = false;
 		}
 		else if(hint == "playlist") {
 			songRemove.set_sensitive(true);
-			columnNumber.active = true;
 			columnTrack.active = false;
 		}
 		else if(hint == "smart playlist") {
 			songRemove.set_sensitive(false);
-			columnNumber.active = false;
 			columnTrack.active = true;
 		}
 		else {
@@ -156,7 +152,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		 
 		int index = 0;
 		foreach(TreeViewColumn tvc in lm.fresh_columns()) {
-			if(tvc.title == "Bitrate" || tvc.title == "#" || tvc.title == "Year" || tvc.title == "Track" || tvc.title == "Plays" || tvc.title == "Skips") {
+			if(tvc.title == "Bitrate" || tvc.title == "Year" || tvc.title == "Track" || tvc.title == "Plays" || tvc.title == "Skips") {
 				view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), intelligentTreeViewFiller);
 				
 				view.get_column(index).resizable = true;
@@ -234,7 +230,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnChooserMenu = new Menu();
 		columnTurnOffSorting = new MenuItem.with_label("Turn off sorting");
 		columnSmartSorting = new MenuItem.with_label("Smart sorting");
-        columnNumber = new CheckMenuItem.with_label("#");
 		columnTrack = new CheckMenuItem.with_label("Track");
 		columnTitle = new CheckMenuItem.with_label("Title");
 		columnLength = new CheckMenuItem.with_label("Length");
@@ -253,7 +248,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnChooserMenu.append(columnTurnOffSorting);
 		columnChooserMenu.append(columnSmartSorting);
 		columnChooserMenu.append(new SeparatorMenuItem());
-		columnChooserMenu.append(columnNumber);
 		columnChooserMenu.append(columnTrack);
 		columnChooserMenu.append(columnTitle);
 		columnChooserMenu.append(columnLength);
@@ -270,7 +264,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnChooserMenu.append(columnBPM);
 		columnTurnOffSorting.activate.connect(columnTurnOffSortingClick);
 		columnSmartSorting.activate.connect(columnSmartSortingClick);
-		columnNumber.toggled.connect(columnMenuToggled);
 		columnTrack.toggled.connect(columnMenuToggled);
 		columnTitle.toggled.connect(columnMenuToggled);
 		columnLength.toggled.connect(columnMenuToggled);
@@ -292,6 +285,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		songMenuActionMenu = new Menu();
 		songEditSong = new MenuItem.with_label("Edit Song Info");
 		songMenuQueue = new MenuItem.with_label("Queue");
+		songMenuNewPlaylist = new MenuItem.with_label("New Playlist");
+		songMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
 		songRemove = new MenuItem.with_label("Remove song");
 		songRateSongMenu = new Menu();
 		songRateSong = new MenuItem.with_label("Rate Song");
@@ -302,8 +297,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		songRateSong4 = new MenuItem.with_label("4 Stars");
 		songRateSong5 = new MenuItem.with_label("5 Stars");
 		songMenuActionMenu.append(songEditSong);
-		songMenuActionMenu.append(songMenuQueue);
-		songMenuActionMenu.append(songRemove);
+		
 		songRateSongMenu.append(songRateSong0);
 		songRateSongMenu.append(songRateSong1);
 		songRateSongMenu.append(songRateSong2);
@@ -312,8 +306,16 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		songRateSongMenu.append(songRateSong5);
 		songMenuActionMenu.append(songRateSong);
 		songRateSong.submenu = songRateSongMenu;
+		
+		songMenuActionMenu.append(new SeparatorMenuItem());
+		songMenuActionMenu.append(songMenuQueue);
+		songMenuActionMenu.append(songMenuNewPlaylist);
+		songMenuActionMenu.append(songMenuAddToPlaylist);
+		songMenuActionMenu.append(new SeparatorMenuItem());
+		songMenuActionMenu.append(songRemove);
 		songEditSong.activate.connect(songMenuEditClicked);
 		songMenuQueue.activate.connect(songMenuQueueClicked);
+		songMenuNewPlaylist.activate.connect(songMenuNewPlaylistClicked);
 		songRemove.activate.connect(songRemoveClicked);
 		songRateSong0.activate.connect(songRateSong0Clicked);
 		songRateSong1.activate.connect(songRateSong1Clicked);
@@ -328,9 +330,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		this.add(view);
 		
 		this.sort.rows_reordered.connect(modelRowsReordered);
+		this.vadjustment.value_changed.connect(viewScroll);
 		lw.searchField.changed.connect(searchFieldChanged);
 	}
 	
+	/* A custom sort function for the artist column. Considers album name and track */
 	public int artistCompareFunc (TreeModel model, TreeIter a, TreeIter b) {
 		int a_id, b_id;
 		Song a_song, b_song;
@@ -352,14 +356,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void searchFieldChanged() {
-		//stdout.printf("searchField changed\n");
 		if(is_current_view) {
 			timeout_search.offer_head(lw.searchField.get_text());
-			//stdout.printf("is current view\n");
 			Timeout.add(200, () => {
 				view.set_model(null);
 				
-				//make sure we still want to search
 				if(lw.searchField.get_text() == timeout_search.poll_tail() && lw.searchField.get_text() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
 					TreeIter iter;
 					for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
@@ -393,7 +394,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual void modelRowsReordered(TreePath path, TreeIter iter, void* new_order) {
 		if(is_current) {
-			stdout.printf("%s\n", _rows.get(lm.song_info.song.rowid).get_path().to_string());
 			setAsCurrentList( (lm.song_info.song != null) ? _rows.get(lm.song_info.song.rowid).get_path().to_string() : "0");
 		}
 	}
@@ -418,16 +418,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public void intelligentTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		/** all of the # based columns. only show # if not 0 **/
-		if(tvc.title == "#") {
-			int val;
-			tree_model.get(iter, tvc.sort_column_id, out val);
-			
-			if(val <= 0)
-				((CellRendererText)cell).text = "";
-			else
-				((CellRendererText)cell).text = val.to_string();
-		}
-		else if(tvc.title == "Track") {
+		if(tvc.title == "Track") {
 			int val;
 			tree_model.get(iter, tvc.sort_column_id, out val);
 			
@@ -506,9 +497,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public void updateColumnVisibilities() {
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
-			if(tvc.title == "#")
-				columnNumber.active = view.get_column(index).visible;
-			else if(tvc.title == "Track")
+			if(tvc.title == "Track")
 				columnTrack.active = view.get_column(index).visible;
 			else if(tvc.title == "Title")
 				columnTitle.active = view.get_column(index).visible;
@@ -552,8 +541,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				types[index] = typeof(bool);
 			else if(tvc.title == " ")
 				types[index] = typeof(Gdk.Pixbuf);
-			else if(tvc.title == "#")
-				types[index] = typeof(int);
 			else if(tvc.title == "Track")
 				types[index] = typeof(int);
 			else if(tvc.title == "Title")
@@ -619,14 +606,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		//reselect songs that were selected before populateview update
 		
 		if((temp_sort_id >= 0 || sort_id == -1) && !is_search) {
-			int track_id = 0;
-			int album_id = 0;
 			int main_sort = 0;
 			
 			if((hint == "music" || hint == "smart playlist") && sort_id == -1)
 				main_sort = _columns.index_of("Artist");
 			else if((hint == "similar" || hint == "queue" || hint == "history" || hint == "playlist") && sort_id == -1)
-				main_sort = _columns.index_of("#");
+				main_sort = 0;
 			
 			sort.set_sort_column_id(main_sort, sort_type);
 		}
@@ -646,8 +631,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				model.set_value(item, index, true);
 			else if(tvc.title == " " && lm.song_info.song != null && s.rowid == lm.song_info.song.rowid && is_current)
 				this.model.set_value(item, index, view.render_icon("audio-volume-high", IconSize.MENU, null));
-			else if(tvc.title == "#")
-				model.set_value(item, index, (model.get_path(item).to_string().to_int() + 1));
 			else if(tvc.title == "Track" && s.track != 0)
 				model.set_value(item, index, s.track);
 			else if(tvc.title == "Title")
@@ -700,8 +683,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		model.set(item, _columns.index_of("id"), s.rowid,
 								_columns.index_of(" "), (lm.song_info.song != null && i == lm.song_info.song.rowid && is_current) ? view.render_icon("audio-volume-high", IconSize.MENU, null) : null,
-								_columns.index_of("#"), (path.to_string().to_int() + 1),
-								_columns.index_of("Track"), s.track,
 								_columns.index_of("Title"), s.title,
 								_columns.index_of("Length"), s.pretty_length(),
 								_columns.index_of("Artist"), s.artist,
@@ -730,8 +711,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(old != -1)
 			updateSong(old);
 		
-		updateSong(id);
+		if(!scrolled_recently)
+			scrollToCurrent();
 		
+		updateSong(id);
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {
@@ -770,10 +753,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public void setAsCurrentList(string? current_song_path) {
 		if(current_song_path != null) {
-			lm.current_index = current_song_path.to_int();
+			lm.current_index = int.parse(current_song_path);
 		}
 		else if(_rows.get(0) != null) {
-			lm.current_index = _rows.get(0).get_path().to_string().to_int();
+			lm.current_index = int.parse(_rows.get(0).get_path().to_string());
 		}
 		
 		//we will update the path to the current song in the loop if 
@@ -803,6 +786,28 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual bool viewClick(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
+			/* create add to playlist menu */
+			Menu addToPlaylistMenu = new Menu();
+			foreach(Playlist p in lm.playlists()) {
+				MenuItem playlist = new MenuItem.with_label(p.name);
+				addToPlaylistMenu.append(playlist);
+				
+				playlist.activate.connect( () => {
+					TreeModel temp;
+					foreach(TreePath path in view.get_selection().get_selected_rows(out temp)) {
+						TreeIter item;
+						temp.get_iter(out item, path);
+						
+						int id;
+						temp.get(item, 0, out id);
+						p.addSong(lm.song_from_id(id));
+					}
+				});
+			}
+			
+			addToPlaylistMenu.show_all();
+			songMenuAddToPlaylist.submenu = addToPlaylistMenu;
+			
 			songMenuActionMenu.popup (null, null, null, 3, get_current_event_time());
 			
 			TreeSelection selected = view.get_selection();
@@ -890,9 +895,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public virtual void columnMenuToggled() {
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
-			if(tvc.title == "#")
-				view.get_column(index).visible = columnNumber.active;
-			else if(tvc.title == "Track")
+			if(tvc.title == "Track")
 				view.get_column(index).visible = columnTrack.active;
 			else if(tvc.title == "Title")
 				view.get_column(index).visible = columnTitle.active;
@@ -988,21 +991,42 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
+	public virtual void songMenuNewPlaylistClicked() {
+		Playlist p = new Playlist();
+		TreeSelection selected = view.get_selection();
+		selected.set_mode(SelectionMode.MULTIPLE);
+		
+		TreeModel temp;
+		foreach(TreePath path in selected.get_selected_rows(out temp)) {
+			TreeIter item;
+			sort.get_iter(out item, path);
+			
+			int id;
+			sort.get(item, 0, out id);
+			
+			p.addSong(lm.song_from_id(id));
+		}
+		
+		PlaylistNameWindow pnw = new PlaylistNameWindow(p);
+		pnw.playlist_saved.connect( (newP) => { 
+			lm.add_playlist(p);
+			lw.addSideListItem(p); 
+		});
+	}
+	
 	public virtual void songRemoveClicked() {
 		TreeSelection selected = view.get_selection();
 		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel l_model;
-		ListStore temp;
+		TreeModel temp;
 		
 		/* reverse list of selected rows so when we remove multiple rows
 		 * our treepaths aren't messed up
 		 */
 		GLib.List<TreePath> paths = new GLib.List<TreePath>();
-		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
+		foreach(TreePath path in selected.get_selected_rows(out temp)) {
 			paths.prepend(path);
 		}
 		
-		temp = (ListStore)l_model;
 		foreach(TreePath path in paths) {
 			TreeIter item;
 			temp.get_iter(out item, path);
@@ -1013,12 +1037,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			if(hint == "queue") {
 				lm.unqueue_song_by_id(s.rowid);
-				temp.remove(item);
+				model.remove(item);
 				_rows.unset(id);
 			}
 			else if(hint == "playlist") {
 				lm.playlist_from_id(relative_id).removeSong(s);
-				temp.remove(item);
+				model.remove(item);
 				_rows.unset(id);
 			}
 			else if(hint == "music") {
@@ -1027,7 +1051,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					var file = File.new_for_path(s.file);
 					file.trash();
 					lm.remove_song_from_id(s.rowid);
-					temp.remove(item);
+					model.remove(item);
 					_rows.unset(id);
 				}
 				catch(GLib.Error err) {
@@ -1166,4 +1190,26 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		lm.update_songs(los, false);
 	}
+	
+	public void scrollToCurrent() {
+		if(is_current && lm.song_info.song != null && _rows.has_key(lm.current_index)) {
+			view.scroll_to_cell(new TreePath.from_string(lm.current_index.to_string()), null, false, 0.0f, 0.0f);
+			stdout.printf("scrolled to %s\n", _rows.get(lm.current_index).get_path().to_string());
+		}
+	}
+	
+	public virtual void viewScroll() {
+		if(!scrolled_recently && is_current) {
+			Timeout.add(30000, () => {
+				scrolled_recently = false;
+				scrollToCurrent();
+				
+				return false;
+			});
+			
+			stdout.printf("not horizontal, setting as true\n");
+			scrolled_recently = true;
+		}
+	}
+	
 }

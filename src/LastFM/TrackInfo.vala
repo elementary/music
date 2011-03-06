@@ -80,17 +80,17 @@ public class LastFM.TrackInfo : Object {
 				if(node_name == "name")
 					_name = node_content;
 				else if(node_name == "id")
-					_id = node_content.to_int();
+					_id = int.parse(node_content);
 				else if(node_name == "url")
 					_url = node_content;
 				else if(node_name == "duration")
-					_duration = node_content.to_int();
+					_duration = int.parse(node_content);
 				else if(node_name == "streamable")
-					_streamable = node_content.to_int();
+					_streamable = int.parse(node_content);
 				else if(node_name == "playcount")
-					_playcount = node_content.to_int();
+					_playcount = int.parse(node_content);
 				else if(node_name == "listeners")
-					_listeners = node_content.to_int();
+					_listeners = int.parse(node_content);
 			}
 			else if(parent == "trackartist") {
 				if(node_name == "name")

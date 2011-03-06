@@ -73,9 +73,9 @@ public class LastFM.SimilarSongs : Object {
 		Xml.Doc* doc = Parser.parse_file (url);
 		
 		if(doc == null)
-			stdout.printf("Could not load similar artist information for %s by %s", title, artist);
+			stdout.printf("Could not load similar artist information for %s by %s\n", title, artist);
 		else if(doc->get_root_element() == null)
-			stdout.printf("Oddly, similar artist information was invalid");
+			stdout.printf("Oddly, similar artist information was invalid\n");
 		else {
 			//stdout.printf("Getting similar tracks with %s... \n", url);
 			similarToAdd = null;

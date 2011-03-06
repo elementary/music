@@ -2,7 +2,6 @@ using Gtk;
 
 public class BeatBox.PreferencesWindow : Window {
 	private BeatBox.LibraryManager _lm;
-	string music_folder_choice;
 	
 	//for padding around notebook mostly
 	private VBox content;
@@ -120,7 +119,12 @@ public class BeatBox.PreferencesWindow : Window {
 			}
 			else {
 				string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.Core.api + "&token=" + lastfm_token;
-				GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+				try {
+					GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+				}
+				catch(GLib.Error err) {
+					stdout.printf("Could not open Last FM website to authorize: %s\n", err.message);
+				}
 				
 				//set button text. we are done this time around. next time we get session key
 				lastfmLogin.set_label("Complete login");

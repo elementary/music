@@ -153,48 +153,56 @@ public class BeatBox.SmartPlaylist : Object {
 		}
 		else if(q.field == "Bitrate") {//numbers
 			if(q.comparator == "is exactly")
-				return q.value.to_int() == s.bitrate;
+				return int.parse(q.value) == s.bitrate;
 			else if(q.comparator == "is at most")
-				return (s.bitrate <= q.value.to_int());
+				return (s.bitrate <= int.parse(q.value));
 			else if(q.comparator == "is at least")
-				return (s.bitrate >= q.value.to_int());
+				return (s.bitrate >= int.parse(q.value));
 		}
 		else if(q.field == "Playcount") {
 			if(q.comparator == "is exactly")
-				return q.value.to_int() == s.play_count;
+				return int.parse(q.value) == s.play_count;
 			else if(q.comparator == "is at most")
-				return (s.play_count <= q.value.to_int());
+				return (s.play_count <= int.parse(q.value));
 			else if(q.comparator == "is at least")
-				return (s.play_count >= q.value.to_int());
+				return (s.play_count >= int.parse(q.value));
+		}
+		else if(q.field == "Skipcount") {
+			if(q.comparator == "is exactly")
+				return int.parse(q.value) == s.skip_count;
+			else if(q.comparator == "is at most")
+				return (s.skip_count <= int.parse(q.value));
+			else if(q.comparator == "is at least")
+				return (s.skip_count >= int.parse(q.value));
 		}
 		else if(q.field == "Year") {
 			if(q.comparator == "is exactly")
-				return q.value.to_int() == s.year;
+				return int.parse(q.value) == s.year;
 			else if(q.comparator == "is at most")
-				return (s.year <= q.value.to_int());
+				return (s.year <= int.parse(q.value));
 			else if(q.comparator == "is at least")
-				return (s.year >= q.value.to_int());
+				return (s.year >= int.parse(q.value));
 		}
 		else if(q.field == "Length") {
 			if(q.comparator == "is exactly")
-				return q.value.to_int() == s.length;
+				return int.parse(q.value) == s.length;
 			else if(q.comparator == "is at most")
-				return (s.length <= q.value.to_int());
+				return (s.length <= int.parse(q.value));
 			else if(q.comparator == "is at least")
-				return (s.length >= q.value.to_int());
+				return (s.length >= int.parse(q.value));
 		}
 		else if(q.field == "Rating") {
 			if(q.comparator == "is exactly")
-				return q.value.to_int() == s.rating;
+				return int.parse(q.value) == s.rating;
 			else if(q.comparator == "is at most")
-				return (s.rating <= q.value.to_int());
+				return (s.rating <= int.parse(q.value));
 			else if(q.comparator == "is at least")
-				return (s.rating >= q.value.to_int());
+				return (s.rating >= int.parse(q.value));
 		}
 		else if(q.field == "Date Added") {//time
 			var now = new DateTime.now_local();
 			var played = new DateTime.from_unix_local(s.date_added);
-			played = played.add_days(q.value.to_int());
+			played = played.add_days(int.parse(q.value));
 			
 			if(q.comparator == "is exactly")
 				return (now.get_day_of_year() == played.get_day_of_year() && now.get_year() == played.get_year());
@@ -211,7 +219,7 @@ public class BeatBox.SmartPlaylist : Object {
 			
 			var now = new DateTime.now_local();
 			var played = new DateTime.from_unix_local(s.last_played);
-			played = played.add_days(q.value.to_int());
+			played = played.add_days(int.parse(q.value));
 			
 			if(q.comparator == "is exactly")
 				return (now.get_day_of_year() == played.get_day_of_year() && now.get_year() == played.get_year());

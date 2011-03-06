@@ -8,8 +8,14 @@ public class BeatBox.SongInfo : Object {
 	
     public SongInfo() {
 		var beatbox_folder = GLib.File.new_for_path(Environment.get_user_cache_dir() + "/beatbox");
-		if(!beatbox_folder.query_exists())
-			beatbox_folder.make_directory(null);
+		if(!beatbox_folder.query_exists()) {
+			try {
+				beatbox_folder.make_directory(null);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("CRITICAL: Could not make song info directory in cache: %s\n", err.message);
+			}
+		}
 		
 		file  = GLib.File.new_for_path(beatbox_folder.get_path() + "/beatbox_song_info.html");
 		

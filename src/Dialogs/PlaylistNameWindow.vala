@@ -3,54 +3,74 @@ using Gtk;
 public class BeatBox.PlaylistNameWindow : Window {
 	public Playlist _original;
 	
+	VBox content;
+	HBox padding;
+	
 	public Entry _name;
 	public Button _save;
-	public Button _cancel;
 	
 	public signal void playlist_saved(Playlist p);
 	
 	public PlaylistNameWindow(Playlist original) {
-		title = "PlaylistEditor";
+		title = "Playlist Editor";
 		this.window_position = WindowPosition.CENTER;
 		this.destroy_with_parent = true;
 		//this.type = WindowType.POPUP;
 		
 		_original = original;
-		VBox vert = new VBox(false, 3);
-		HBox nameSep = new HBox(false, 3);
-		HButtonBox buttonSep = new HButtonBox();
-		//Label directions = new Label("Please enter the new playlist name");
+		
+		content = new VBox(false, 10);
+		padding = new HBox(false, 10);
+		
+		/* start out by creating all category labels */
+		Label nameLabel = new Label("Name of Playlist");
 		_name = new Entry();
+		_save = new Button.with_label("Done");
+		
+		/* set up controls */
+		nameLabel.xalign = 0.0f;
+		nameLabel.set_markup("<b>Name of Playlist</b>");
+		
 		_name.text = original.name;
-		Label nameLabel = new Label("Playlist Name:");
-		_cancel = new Button.with_label("Cancel");
-		Label fillerLabel = new Label("");
-		_save = new Button.with_label("Save");
 		
-		_cancel.clicked.connect( () => { this.destroy(); } );
-		_save.clicked.connect(saveClicked);
+		/* add controls to form */
+		HButtonBox bottomButtons = new HButtonBox();
+		bottomButtons.set_layout(ButtonBoxStyle.END);
+		bottomButtons.pack_end(_save, false, false, 0);
 		
-		nameSep.pack_start(nameLabel, false, false, 5);
-		nameSep.pack_start(_name, false, true, 2);
+		content.pack_start(wrap_alignment(nameLabel, 10, 0, 0, 0), false, true, 0);
+		content.pack_start(wrap_alignment(_name, 0, 10, 0, 10), false, true, 0);
+		content.pack_start(bottomButtons, false, false, 10);
 		
-		buttonSep.pack_start(_cancel, false, false, 0);
-		buttonSep.pack_start(fillerLabel, true, true, 0);
-		buttonSep.pack_start(_save, false, false, 0);
+		padding.pack_start(content, true, true, 10);
 		
-		//vert.pack_start(directions, false, true, 5);
-		vert.pack_start(nameSep, false, true, 5);
-		vert.pack_start(buttonSep, false, true, 5);
-		
-		add(vert);
+		add(padding);
 		
 		show_all();
+		
+		_save.clicked.connect(saveClicked);
+		_name.activate.connect(nameActivate);
+	}
+	
+	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+		alignment.top_padding = top;
+		alignment.right_padding = right;
+		alignment.bottom_padding = bottom;
+		alignment.left_padding = left;
+		
+		alignment.add(widget);
+		return alignment;
 	}
 	
 	public virtual void saveClicked() {
 		_original.name = _name.text;
-		
 		playlist_saved(_original);
 		
 		this.destroy();
+	}
+	
+	public virtual void nameActivate() {
+		saveClicked();
 	}
 }

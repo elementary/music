@@ -53,6 +53,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public LibraryManager(StreamPlayer player, BeatBox.DataBaseManager dbmn, BeatBox.Settings sett) {
 		this.player = player;
 		this.settings = sett;
+		
 		this.dbm = dbmn;
 		this.fo = new BeatBox.FileOperator(this, settings);
 		
@@ -172,6 +173,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		Idle.add( () => { 
+			save_songs();
 			music_added(not_imported); 
 			return false; 
 		});
@@ -210,6 +212,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		dbm.remove_songs(paths);
 		
 		Idle.add( () => { 
+			save_songs();
+			
+			//maybe pass in songs_added, which appends those songs to the treeview?
 			music_rescanned(not_imported); 
 			return false; 
 		});
@@ -329,20 +334,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void update_song(Song s, bool updateMeta) {
-		_songs.set(s.rowid, s);
+		LinkedList<Song> one = new LinkedList<Song>();
+		one.add(s);
 		
-		if(updateMeta)
-			fo.save_song(s);
-		
-		if(settings.getUpdateFolderHierarchy() && updateMeta)
-			fo.update_file_hierarchy(s);
-			
-		stdout.printf(""); //otherwise it goes to fast????
-		
-		LinkedList<int> one = new LinkedList<int>();
-		one.add(s.rowid);
-		
-		songs_updated(one);
+		update_songs(one, updateMeta);
 	}
 	
 	public void update_songs(Collection<Song> updates, bool updateMeta) {
@@ -362,11 +357,23 @@ public class BeatBox.LibraryManager : GLib.Object {
 			rv.add(s.rowid);
 		}
 		
+		try {
+			Thread.create<void*>( () => { dbm.update_songs(updates); return null; }, false);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+		}
+		
 		songs_updated(rv);
 	}
 	
 	public void save_songs() {
-		dbm.save_songs(_songs.values);
+		try {
+			Thread.create<void*>( () => { dbm.save_songs(_songs.values); return null; }, false);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+		}
 	}
 	
 	/** Used extensively. All other song data stores a song rowid, and then
@@ -425,9 +432,23 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void remove_song_from_id(int id) {
+		string file_path = song_from_id(id).file;
 		_songs.unset(id);
 		
 		song_removed(id);
+		
+		try {
+			Thread.create<void*>( () => { 
+				LinkedList<string> one = new LinkedList<string>();
+				one.add(file_path);
+				dbm.remove_songs(one);
+				
+				return null; 
+			}, false);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+		}
 	}
 	
 	/**************** Queue Stuff **************************/

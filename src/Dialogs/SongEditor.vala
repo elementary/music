@@ -3,7 +3,6 @@ using Gee;
 
 public class BeatBox.SongEditor : Window {
 	LinkedList<Song> _songs;
-	Song sum; // a song filled with all values that each song has in common
 	
 	//for padding around notebook mostly
 	private VBox content;
@@ -177,9 +176,9 @@ public class BeatBox.SongEditor : Window {
 				s.comment = fields.get("Comment").get_value();
 				
 			if(fields.get("Track").checked())
-				s.track = fields.get("Track").get_value().to_int();
+				s.track = int.parse(fields.get("Track").get_value());
 			if(fields.get("Year").checked())
-				s.year = fields.get("Year").get_value().to_int();
+				s.year = int.parse(fields.get("Year").get_value());
 		}
 		
 		songs_saved(_songs);
@@ -242,7 +241,7 @@ public class BeatBox.FieldEditor : HBox {
 			
 			spinButton = (SpinButton)w;
 			spinButton.set_size_request(80, -1);
-			spinButton.value = original.to_double();
+			spinButton.value = double.parse(original);
 			spinButton.adjustment.value_changed.connect(spinButtonChanged);
 			this.pack_start(spinButton, true, true, 0);
 		}
@@ -280,7 +279,7 @@ public class BeatBox.FieldEditor : HBox {
 	}
 	
 	public virtual void spinButtonChanged() {
-		if(spinButton.value != _original.to_double())
+		if(spinButton.value != double.parse(_original))
 			check.set_active(true);
 		else
 			check.set_active(false);
@@ -298,7 +297,7 @@ public class BeatBox.FieldEditor : HBox {
 			textView.get_buffer().text = _original;
 		}
 		else if(spinButton != null) {
-			spinButton.value = _original.to_double();
+			spinButton.value = double.parse(_original);
 		}
 		else if(image != null) {
 			image.set_from_file(_original);

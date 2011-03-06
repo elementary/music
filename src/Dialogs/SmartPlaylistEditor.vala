@@ -192,8 +192,9 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		fields.set("Length", 7);
 		fields.set("Playcount", 8);
 		fields.set("Rating", 9);
-		fields.set("Title", 10);
-		fields.set("Year", 11);
+		fields.set("Skipcount", 10);
+		fields.set("Title", 11);
+		fields.set("Year", 12);
 		
 		_box = new HBox(false, 2);
 		_field = new ComboBox.text();
@@ -212,6 +213,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.append_text("Length");
 		_field.append_text("Playcount");
 		_field.append_text("Rating");
+		_field.append_text("Skipcount");
 		_field.append_text("Title");
 		_field.append_text("Year");
 		
@@ -222,7 +224,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			_value.text = q.value;
 		}
 		else {
-			_valueNumerical.set_value((double)q.value.to_int());
+			_valueNumerical.set_value(int.parse(q.value));
 		}
 			
 		_units = new Label("");
@@ -274,7 +276,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			_valueNumerical.show();
 			_value.hide();
 			
-			if(_field.get_active_text() == "Bitrate" || _field.get_active_text() == "Year" || _field.get_active_text() == "Rating" || _field.get_active_text() == "Playcount" || _field.get_active_text() == "Length") {
+			if(_field.get_active_text() == "Bitrate" || _field.get_active_text() == "Year" || _field.get_active_text() == "Rating" || _field.get_active_text() == "Playcount" || _field.get_active_text() == "Skipcount" || _field.get_active_text() == "Length") {
 				for(int i = 0;i < 3; ++i) _comparator.remove_text(0);
 				_comparator.append_text("is exactly");
 				_comparator.append_text("is at most");

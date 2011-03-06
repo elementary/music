@@ -87,7 +87,7 @@ public class BeatBox.Beatbox : GLib.Object {
 		iFactory.add_default();
 	}
 	
-	private static string desktopString() {
+	/*private static string desktopString() {
 		string rv = "[Desktop Entry]";
 		rv += "Type=Application";
 		rv += "Version=0.1";
@@ -101,5 +101,5 @@ public class BeatBox.Beatbox : GLib.Object {
 		rv += "StartupNotify=true";
 		
 		return rv;
-	}
+	}*/
 }
