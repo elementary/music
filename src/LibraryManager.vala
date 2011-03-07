@@ -41,6 +41,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public signal void music_counted(int count);
 	public signal void music_added(LinkedList<string> not_imported);
+	public signal void music_imported(LinkedList<Song> new_songs, LinkedList<string> not_imported);
 	public signal void music_rescanned(LinkedList<Song> new_songs, LinkedList<string> not_imported);
 	public signal void progress_notification(string? message, double progress);
 	
@@ -185,7 +186,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void add_folder_to_library(string folder) {
 		if(!doing_file_operations) {
 			doing_file_operations = true;
-			progress_notification("Add music from " + folder + " to library. This may take a while", 0.0);
+			progress_notification("Adding music from " + folder + " to library. This may take a while", 0.0);
 			
 			temp_add_folder = folder;
 			try {
@@ -220,11 +221,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Song s in new_songs) {
 			s.rowid = index++;
 			add_song(s);
+			fo.update_file_hierarchy(s, false);
 		}
 		
 		Idle.add( () => { 
 			save_songs();
-			music_added(not_imported); 
+			music_imported(new_songs, not_imported); 
 			return false; 
 		});
 		
@@ -401,19 +403,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 				fo.save_song(s);
 			
 			if(settings.getUpdateFolderHierarchy() && updateMeta)
-				fo.update_file_hierarchy(s);
+				fo.update_file_hierarchy(s, true);
 				
 			stdout.printf(""); //otherwise it goes to fast????
 			
 			rv.add(s.rowid);
 		}
 		
-		try {
+		/*try {
 			Thread.create<void*>( () => { dbm.update_songs(updates); return null; }, false);
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
-		}
+			stdout.printf("Could not create thread to update songs: %s\n", err.message);
+		}*/
 		
 		songs_updated(rv);
 	}
@@ -482,7 +484,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 				if(i > index)
 					index = i + 1;
 			}
-			s.rowid = index;
+			stdout.printf("Song %s by %s new rowid: %d\n", s.title, s.artist, index);
+			s.rowid = index + 1;
 		}
 		
 		_songs.set(s.rowid, s);
@@ -491,12 +494,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void remove_song_from_id(int id) {
-		string file_path = song_from_id(id).file;
+		//string file_path = song_from_id(id).file;
 		_songs.unset(id);
 		
 		song_removed(id);
 		
-		try {
+		/*try {
 			Thread.create<void*>( () => { 
 				LinkedList<string> one = new LinkedList<string>();
 				one.add(file_path);
@@ -506,8 +509,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}, false);
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
-		}
+			stdout.printf("Could not create thread to remove song: %s\n", err.message);
+		}*/
 	}
 	
 	/**************** Queue Stuff **************************/

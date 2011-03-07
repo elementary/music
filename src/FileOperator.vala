@@ -44,7 +44,7 @@ public class BeatBox.FileOperator : Object {
 			stdout.printf("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
 		}
         
-        return (index != 0) ? index : 1000;
+        return index;
 	}
 	
 	public void get_music_files(GLib.File music_folder, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
@@ -68,7 +68,7 @@ public class BeatBox.FileOperator : Object {
 						not_imported.add(file_path);
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-						get_music_files(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
+					get_music_files(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
 				}
 			}
 		}
@@ -318,12 +318,60 @@ public class BeatBox.FileOperator : Object {
 		return null;
 	}
 	
-	public void update_file_hierarchy(Song s) {
-		stdout.printf("TODO: Actually update file hierarchy based on artist and album\n");
-		/** If there is a change, first make new folders and save to their. Then count number of files in
-		 * old folder. if only the one we just moved, delete folders. Otherwise
-		 * just delete the old file. Don't forget to move album and image artwork
-		 */
-		
+	public void update_file_hierarchy(Song s, bool delete_old) {
+		try {
+			/* initialize file objects */
+			var original = GLib.File.new_for_path(s.file);
+			var file_info = original.query_info ("*", FileQueryInfoFlags.NONE, null);
+			var dest = GLib.File.new_for_path(settings.getMusicFolder() + "/" + s.artist.replace("/", "_") + "/" + s.album.replace("/", "_") + "/" + file_info.get_name());
+			
+			if(original.get_path() == dest.get_path())
+				return;
+			
+			/* make sure that the parent folders exist */
+			if(!dest.get_parent().query_exists()) {
+				try {
+					dest.get_parent().make_directory(null);
+					
+					if(!dest.get_parent().get_parent().query_exists())
+						dest.get_parent().get_parent().make_directory(null);
+				}
+				catch(GLib.Error err) {
+					stdout.printf("Could not create folder to copy to: %s\n", err.message);
+				}
+			}
+			
+			/* copy the file over */
+			stdout.printf("Copying %s to %s\n", s.file, dest.get_path());
+			bool success = original.copy(dest, FileCopyFlags.NONE, null, null);
+			
+			if(success)
+				s.file = dest.get_path();
+			else
+				stdout.printf("Failure: Could not copy imported song %s to media folder %s\n", s.file, dest.get_path());
+			
+			/* if we are supposed to delete the old, make sure there are no items left if we do */
+			if(delete_old) {
+				original.delete();
+				
+				var old_folder_items = count_music_files(original.get_parent());
+				
+				//TODO: COPY ALBUM AND IMAGE ARTWORK
+				
+				if(old_folder_items == 0) {
+					stdout.printf("going to delete %s because no files are in it\n", original.get_parent().get_path());
+					//original.get_parent().delete();
+					
+					var old_folder_parent_items = count_music_files(original.get_parent().get_parent());
+					
+					if(old_folder_parent_items == 0) {
+						stdout.printf("going to delete %s because no files are in it\n", original.get_parent().get_parent().get_path());
+					}
+				}
+			}
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not copy imported song %s to media folder: %s\n", s.file, err.message);
+		}
 	}
 }

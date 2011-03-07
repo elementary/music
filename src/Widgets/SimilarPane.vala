@@ -7,8 +7,8 @@ public class BeatBox.SimilarPane : HPaned {
 	public Song _base;
 	Song _next;
 	
-	public Collection<int> _have; // this is updated EVERY song play. does not necessarily represent what is showing
-	Collection<Song> _shouldHave; //^
+	public LinkedList<int> _have; // this is updated EVERY song play. does not necessarily represent what is showing
+	LinkedList<Song> _shouldHave; //^
 	
 	VBox left;
 	Toolbar toolbar;
@@ -24,6 +24,9 @@ public class BeatBox.SimilarPane : HPaned {
 	public SimilarPane(BeatBox.LibraryManager lm, BeatBox.LibraryWindow lw) {
 		_lm = lm;
 		_lw = lw;
+		
+		_have = new LinkedList<int>();
+		_shouldHave = new LinkedList<Song>();
 		
 		left = new VBox(false, 0);
 		toolbar = new Toolbar();
@@ -70,8 +73,14 @@ public class BeatBox.SimilarPane : HPaned {
 	
 	public void updateSongs(Song la, Collection<int> have, Collection<Song> shouldHave) {
 		_next = la;
-		_have = have;
-		_shouldHave = shouldHave;
+		_have.clear();
+		_shouldHave.clear();
+		
+		foreach(int i in have)
+			_have.add(i);
+		
+		foreach(Song s in shouldHave)
+			_shouldHave.add(s);
 		
 		if(!(_lm.current_songs().size == similars.get_songs().size && _lm.current_songs().contains_all(similars.get_songs()))) {
 			updateDisplay();
@@ -110,7 +119,7 @@ public class BeatBox.SimilarPane : HPaned {
 	
 	public virtual void transferPlaybackClicked() {
 		//set the similar songs to current, hide button, set current_index
-		similars.setAsCurrentList("0");
+		similars.setAsCurrentList(null);
 		
 		transferPlayback.hide();
 	}

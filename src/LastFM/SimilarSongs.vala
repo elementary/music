@@ -5,13 +5,11 @@ public class LastFM.SimilarSongs : Object {
 	BeatBox.Song _base;
 	bool working;
 	
-	Gee.LinkedList<BeatBox.Song> similarAll;
-	Gee.LinkedList<BeatBox.Song> similarDo;
-	Gee.LinkedList<BeatBox.Song> similarDont;
+	Gee.LinkedList<BeatBox.Song> similar;
 	
 	BeatBox.Song similarToAdd;
 	
-	public signal void similar_retrieved(Gee.LinkedList<BeatBox.Song> similarDo, Gee.LinkedList<BeatBox.Song> similarDont);
+	public signal void similar_retrieved(Gee.LinkedList<BeatBox.Song> similarSongs);
 	
 	public class SimilarSongs(BeatBox.LibraryManager lm) {
 		_lm = lm;
@@ -34,25 +32,14 @@ public class LastFM.SimilarSongs : Object {
 	}
 	
 	public void* similar_thread_function () {	
-		similarAll = new Gee.LinkedList<BeatBox.Song>();
-		similarDo = new Gee.LinkedList<BeatBox.Song>();
-		similarDont = new Gee.LinkedList<BeatBox.Song>();
+		similar = new Gee.LinkedList<BeatBox.Song>();
 		
 		getSimilarTracks(_base.title, _base.artist);
 		
-		similarDo.add(_base);
-		foreach(BeatBox.Song sim in similarAll) {
-			BeatBox.Song s = _lm.song_from_name(sim.title, sim.artist);
-			if(s.rowid != 0) {
-				similarDo.add(s);
-			}
-			else {
-				similarDont.add(sim);
-			}
-		}
+		similar.add(_base);
 		
 		Idle.add( () => {
-			similar_retrieved(similarDo, similarDont);
+			similar_retrieved(similar);
 			return false;
 		});
 		
@@ -81,10 +68,13 @@ public class LastFM.SimilarSongs : Object {
 			similarToAdd = null;
 			parse_similar_nodes(doc->get_root_element(), "");
 		}
+		
+		delete doc;
 	}
 	
 	public void parse_similar_nodes(Xml.Node* node, string parent) {
-		for (Xml.Node* iter = node->children; iter != null; iter = iter->next) {
+		Xml.Node* iter;
+		for (iter = node->children; iter != null; iter = iter->next) {
 			
             if (iter->type != ElementType.ELEMENT_NODE) {
                 continue;
@@ -96,7 +86,7 @@ public class LastFM.SimilarSongs : Object {
             if(parent == "similartrackstrack") {
 				if(node_name == "name") {
 					if(similarToAdd != null) {
-						similarAll.add(similarToAdd);
+						similar.add(similarToAdd);
 					}
 					
 					similarToAdd = new BeatBox.Song("");
@@ -115,5 +105,6 @@ public class LastFM.SimilarSongs : Object {
 			parse_similar_nodes(iter, parent+node_name);
 		}
 		
+		delete iter;
 	}
 }
