@@ -87,8 +87,8 @@ const gchar* beat_box_song_get_title (BeatBoxSong* self);
 const gchar* beat_box_song_get_artist (BeatBoxSong* self);
 BeatBoxSong* beat_box_library_manager_song_from_name (BeatBoxLibraryManager* self, const gchar* title, const gchar* artist);
 gint beat_box_song_get_rowid (BeatBoxSong* self);
-static gboolean _lambda6_ (LastFMSimilarSongs* self);
-static gboolean __lambda6__gsource_func (gpointer self);
+static gboolean _lambda7_ (LastFMSimilarSongs* self);
+static gboolean __lambda7__gsource_func (gpointer self);
 gchar* last_fm_core_fix_for_url (const gchar* fix);
 #define LAST_FM_CORE_api "a40ea1720028bd40c66b17d7146b3f3b"
 void last_fm_similar_songs_parse_similar_nodes (LastFMSimilarSongs* self, xmlNode* node, const gchar* parent);
@@ -148,14 +148,14 @@ static void last_fm_similar_songs_real_queryForSimilar (LastFMSimilarSongs* self
 		g_thread_create (_last_fm_similar_songs_similar_thread_function_gthread_func, self, FALSE, &_inner_error_);
 		if (_inner_error_ != NULL) {
 			if (_inner_error_->domain == G_THREAD_ERROR) {
-				goto __catch58_g_thread_error;
+				goto __catch59_g_thread_error;
 			}
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
 			return;
 		}
-		goto __finally58;
-		__catch58_g_thread_error:
+		goto __finally59;
+		__catch59_g_thread_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -163,7 +163,7 @@ static void last_fm_similar_songs_real_queryForSimilar (LastFMSimilarSongs* self
 			fprintf (stdout, "ERROR: Could not create similar thread: %s \n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally58:
+		__finally59:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
@@ -178,7 +178,7 @@ void last_fm_similar_songs_queryForSimilar (LastFMSimilarSongs* self, BeatBoxSon
 }
 
 
-static gboolean _lambda6_ (LastFMSimilarSongs* self) {
+static gboolean _lambda7_ (LastFMSimilarSongs* self) {
 	gboolean result = FALSE;
 	g_signal_emit_by_name (self, "similar-retrieved", self->priv->similarDo, self->priv->similarDont);
 	result = FALSE;
@@ -186,9 +186,9 @@ static gboolean _lambda6_ (LastFMSimilarSongs* self) {
 }
 
 
-static gboolean __lambda6__gsource_func (gpointer self) {
+static gboolean __lambda7__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda6_ (self);
+	result = _lambda7_ (self);
 	return result;
 }
 
@@ -260,7 +260,7 @@ void* last_fm_similar_songs_similar_thread_function (LastFMSimilarSongs* self) {
 		}
 		_g_object_unref0 (_sim_list);
 	}
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda6__gsource_func, g_object_ref (self), g_object_unref);
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda7__gsource_func, g_object_ref (self), g_object_unref);
 	self->priv->working = FALSE;
 	result = NULL;
 	return result;

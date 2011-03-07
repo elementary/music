@@ -385,20 +385,21 @@ public class BeatBox.SideTreeView : TreeView {
 			}
 			else {
 				if(iter == library_iter) {
-					
+					return true;
 				}
 				else if(iter == devices_iter) {
-					
+					return true;
 				}
 				else if(iter == network_iter) {
-					
+					return true;
 				}
 				else if(iter == playlists_iter) {
 					playlistMenu.popup (null, null, null, 3, get_current_event_time());
+					return true;
 				}
 			}
 			
-			return true;
+			return false;
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
 			TreeIter iter;
@@ -442,6 +443,10 @@ public class BeatBox.SideTreeView : TreeView {
 				else if(parent == playlists_iter && o is SmartPlaylist) {
 					MusicTreeView mtv = (MusicTreeView)w;
 					mtv.populateView(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
+				}
+				else if(parent == playlists_iter && o is Playlist) {
+					MusicTreeView mtv = (MusicTreeView)w;
+					mtv.populateView(lm.songs_from_playlist(((Playlist)o).rowid), false);
 				}
 				
 				return false;

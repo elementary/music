@@ -92,7 +92,7 @@ public class BeatBox.SimilarPane : HPaned {
 		ssv.populateView(_shouldHave);
 		
 		_base = _next;
-		toolInfo.set_markup("Songs similar to <b>" + _base.title + "</b> by <b>" + _base.artist + "</b>");
+		toolInfo.set_markup("Songs similar to <b>" + _base.title.replace("&", "&amp;") + "</b> by <b>" + _base.artist.replace("&", "&amp;") + "</b>");
 		refresh.hide();
 		transferPlayback.show();
 		save.show();

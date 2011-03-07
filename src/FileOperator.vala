@@ -61,10 +61,11 @@ public class BeatBox.FileOperator : Object {
 					
 					Song s = import_song(file_path);
 					
-					if(s != null)
-							songs.add(s);
+					if(s != null) {
+						songs.add(s);
+					}
 					else
-							not_imported.add(file_path);
+						not_imported.add(file_path);
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
 						get_music_files(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
@@ -86,7 +87,7 @@ public class BeatBox.FileOperator : Object {
 	 * are not re-added.
 	 * @return file paths of songs no longer available. TODO: should out that
 	 */
-	public void rescan_music(GLib.File music_folder, ref LinkedList<string> current_song_paths, ref LinkedList<string> not_imported) {
+	public void rescan_music(GLib.File music_folder, ref LinkedList<string> current_song_paths, ref LinkedList<string> not_imported, ref LinkedList<Song> new_songs) {
 		GLib.FileInfo file_info = null;
 		
 		int songs_added = 0;
@@ -106,8 +107,10 @@ public class BeatBox.FileOperator : Object {
 					else if(!current_song_paths.contains(file_path)) {
 						Song s = import_song(file_path);
 						
-						if(s != null)
+						if(s != null) {
 							lm.add_song(s);
+							new_songs.add(s);
+						}
 						else
 							not_imported.add(file_path);
 						
@@ -115,7 +118,7 @@ public class BeatBox.FileOperator : Object {
 					}
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					rescan_music(GLib.File.new_for_path(file_path), ref current_song_paths, ref not_imported);
+					rescan_music(GLib.File.new_for_path(file_path), ref current_song_paths, ref not_imported, ref new_songs);
 				}
 			}
 		}

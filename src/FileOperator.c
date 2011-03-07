@@ -97,7 +97,7 @@ static gboolean beat_box_file_operator_is_valid_file_type (BeatBoxFileOperator* 
 gint beat_box_file_operator_count_music_files (BeatBoxFileOperator* self, GFile* music_folder);
 void beat_box_file_operator_get_music_files (BeatBoxFileOperator* self, GFile* music_folder, GeeLinkedList** songs, GeeLinkedList** not_imported);
 BeatBoxSong* beat_box_file_operator_import_song (BeatBoxFileOperator* self, const gchar* file_path);
-void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* music_folder, GeeLinkedList** current_song_paths, GeeLinkedList** not_imported);
+void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* music_folder, GeeLinkedList** current_song_paths, GeeLinkedList** not_imported, GeeLinkedList** new_songs);
 void beat_box_library_manager_add_song (BeatBoxLibraryManager* self, BeatBoxSong* s);
 BeatBoxSong* beat_box_song_new (const gchar* file);
 BeatBoxSong* beat_box_song_construct (GType object_type, const gchar* file);
@@ -467,7 +467,7 @@ void beat_box_file_operator_get_music_files (BeatBoxFileOperator* self, GFile* m
  * are not re-added.
  * @return file paths of songs no longer available. TODO: should out that
  */
-void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* music_folder, GeeLinkedList** current_song_paths, GeeLinkedList** not_imported) {
+void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* music_folder, GeeLinkedList** current_song_paths, GeeLinkedList** not_imported, GeeLinkedList** new_songs) {
 	GFileInfo* file_info;
 	gint songs_added;
 	GFileEnumerator* _tmp0_ = NULL;
@@ -477,6 +477,7 @@ void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* musi
 	g_return_if_fail (music_folder != NULL);
 	g_return_if_fail (current_song_paths != NULL);
 	g_return_if_fail (not_imported != NULL);
+	g_return_if_fail (new_songs != NULL);
 	file_info = NULL;
 	songs_added = 0;
 	_tmp0_ = g_file_enumerate_children (music_folder, G_FILE_ATTRIBUTE_STANDARD_NAME "," G_FILE_ATTRIBUTE_STANDARD_TYPE, 0, NULL, &_inner_error_);
@@ -540,6 +541,7 @@ void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* musi
 					s = _tmp15_;
 					if (s != NULL) {
 						beat_box_library_manager_add_song (self->priv->lm, s);
+						gee_abstract_collection_add ((GeeAbstractCollection*) (*new_songs), s);
 					} else {
 						gee_abstract_collection_add ((GeeAbstractCollection*) (*not_imported), file_path);
 					}
@@ -555,7 +557,7 @@ void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* musi
 				GFile* _tmp18_;
 				_tmp17_ = g_file_new_for_path (file_path);
 				_tmp18_ = _tmp17_;
-				beat_box_file_operator_rescan_music (self, _tmp18_, current_song_paths, not_imported);
+				beat_box_file_operator_rescan_music (self, _tmp18_, current_song_paths, not_imported, new_songs);
 				_g_object_unref0 (_tmp18_);
 			}
 		}

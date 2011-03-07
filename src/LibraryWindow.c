@@ -202,7 +202,7 @@ typedef struct _LastFMCoreClass LastFMCoreClass;
 
 typedef struct _BeatBoxSongInfo BeatBoxSongInfo;
 typedef struct _BeatBoxSongInfoClass BeatBoxSongInfoClass;
-typedef struct _Block5Data Block5Data;
+typedef struct _Block6Data Block6Data;
 typedef struct _BeatBoxSongInfoPrivate BeatBoxSongInfoPrivate;
 
 #define LAST_FM_TYPE_ARTIST_INFO (last_fm_artist_info_get_type ())
@@ -298,7 +298,7 @@ typedef struct _ElementaryWidgetsElementaryEntryPrivate ElementaryWidgetsElement
 
 typedef struct _BeatBoxNotImportedWindow BeatBoxNotImportedWindow;
 typedef struct _BeatBoxNotImportedWindowClass BeatBoxNotImportedWindowClass;
-typedef struct _Block6Data Block6Data;
+typedef struct _Block7Data Block7Data;
 
 #define BEAT_BOX_TYPE_PREFERENCES_WINDOW (beat_box_preferences_window_get_type ())
 #define BEAT_BOX_PREFERENCES_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_PREFERENCES_WINDOW, BeatBoxPreferencesWindow))
@@ -338,8 +338,9 @@ struct _BeatBoxLibraryWindowClass {
 	void (*fileRescanMusicFolderClick) (BeatBoxLibraryWindow* self);
 	void (*musicCounted) (BeatBoxLibraryWindow* self, gint count);
 	void (*musicAdded) (BeatBoxLibraryWindow* self, GeeLinkedList* not_imported);
-	void (*musicRescanned) (BeatBoxLibraryWindow* self, GeeLinkedList* not_imported);
-	void (*songRemovedFromManager) (BeatBoxLibraryWindow* self, gint id);
+	void (*musicRescanned) (BeatBoxLibraryWindow* self, GeeLinkedList* new_songs, GeeLinkedList* not_imported);
+	void (*song_added) (BeatBoxLibraryWindow* self, gint id);
+	void (*song_removed) (BeatBoxLibraryWindow* self, gint id);
 	void (*helpAboutClick) (BeatBoxLibraryWindow* self);
 	void (*editPreferencesClick) (BeatBoxLibraryWindow* self);
 	void (*end_of_stream) (BeatBoxLibraryWindow* self, BeatBoxSong* s);
@@ -408,8 +409,7 @@ struct _BeatBoxLibraryManager {
 	gboolean playing;
 	gboolean repeat;
 	gboolean shuffle;
-	gboolean setting_folder;
-	gboolean rescanning_folder;
+	gboolean doing_file_operations;
 };
 
 struct _BeatBoxLibraryManagerClass {
@@ -417,7 +417,7 @@ struct _BeatBoxLibraryManagerClass {
 	void (*dbProgress) (BeatBoxLibraryManager* self, const gchar* message, gdouble progress);
 };
 
-struct _Block5Data {
+struct _Block6Data {
 	int _ref_count_;
 	BeatBoxLibraryWindow * self;
 	gint position;
@@ -473,7 +473,7 @@ struct _ElementaryWidgetsElementaryEntryClass {
 	GtkEntryClass parent_class;
 };
 
-struct _Block6Data {
+struct _Block7Data {
 	int _ref_count_;
 	BeatBoxLibraryWindow * self;
 	GtkAboutDialog* ad;
@@ -523,12 +523,14 @@ void beat_box_library_window_musicCounted (BeatBoxLibraryWindow* self, gint coun
 static void _beat_box_library_window_musicCounted_beat_box_library_manager_music_counted (BeatBoxLibraryManager* _sender, gint count, gpointer self);
 void beat_box_library_window_musicAdded (BeatBoxLibraryWindow* self, GeeLinkedList* not_imported);
 static void _beat_box_library_window_musicAdded_beat_box_library_manager_music_added (BeatBoxLibraryManager* _sender, GeeLinkedList* not_imported, gpointer self);
-void beat_box_library_window_musicRescanned (BeatBoxLibraryWindow* self, GeeLinkedList* not_imported);
-static void _beat_box_library_window_musicRescanned_beat_box_library_manager_music_rescanned (BeatBoxLibraryManager* _sender, GeeLinkedList* not_imported, gpointer self);
+void beat_box_library_window_musicRescanned (BeatBoxLibraryWindow* self, GeeLinkedList* new_songs, GeeLinkedList* not_imported);
+static void _beat_box_library_window_musicRescanned_beat_box_library_manager_music_rescanned (BeatBoxLibraryManager* _sender, GeeLinkedList* new_songs, GeeLinkedList* not_imported, gpointer self);
 void beat_box_library_window_progressNotification (BeatBoxLibraryWindow* self, const gchar* message, gdouble progress);
 static void _beat_box_library_window_progressNotification_beat_box_library_manager_progress_notification (BeatBoxLibraryManager* _sender, const gchar* message, gdouble progress, gpointer self);
-void beat_box_library_window_songRemovedFromManager (BeatBoxLibraryWindow* self, gint id);
-static void _beat_box_library_window_songRemovedFromManager_beat_box_library_manager_song_removed (BeatBoxLibraryManager* _sender, gint id, gpointer self);
+void beat_box_library_window_song_added (BeatBoxLibraryWindow* self, gint id);
+static void _beat_box_library_window_song_added_beat_box_library_manager_song_added (BeatBoxLibraryManager* _sender, gint id, gpointer self);
+void beat_box_library_window_song_removed (BeatBoxLibraryWindow* self, gint id);
+static void _beat_box_library_window_song_removed_beat_box_library_manager_song_removed (BeatBoxLibraryManager* _sender, gint id, gpointer self);
 void beat_box_library_window_song_played (BeatBoxLibraryWindow* self, gint i);
 static void _beat_box_library_window_song_played_beat_box_library_manager_song_played (BeatBoxLibraryManager* _sender, gint id, gint old_id, gpointer self);
 void beat_box_library_window_songs_updated (BeatBoxLibraryWindow* self, GeeCollection* ids);
@@ -549,13 +551,13 @@ BeatBoxSong* beat_box_library_manager_song_from_name (BeatBoxLibraryManager* sel
 const gchar* beat_box_song_get_title (BeatBoxSong* self);
 const gchar* beat_box_song_get_artist (BeatBoxSong* self);
 gint beat_box_song_get_rowid (BeatBoxSong* self);
-static Block5Data* block5_data_ref (Block5Data* _data5_);
-static void block5_data_unref (Block5Data* _data5_);
+static Block6Data* block6_data_ref (Block6Data* _data6_);
+static void block6_data_unref (Block6Data* _data6_);
 void beat_box_library_manager_playSong (BeatBoxLibraryManager* self, gint id);
 gint beat_box_settings_getLastSongPosition (BeatBoxSettings* self);
-static gboolean _lambda18_ (Block5Data* _data5_);
+static gboolean _lambda21_ (Block6Data* _data6_);
 gboolean elementary_widgets_top_display_change_value (ElementaryWidgetsTopDisplay* self, GtkScrollType scroll, gdouble val);
-static gboolean __lambda18__gsource_func (gpointer self);
+static gboolean __lambda21__gsource_func (gpointer self);
 GType last_fm_artist_info_get_type (void) G_GNUC_CONST;
 GType last_fm_track_info_get_type (void) G_GNUC_CONST;
 GType last_fm_album_info_get_type (void) G_GNUC_CONST;
@@ -583,12 +585,12 @@ static void beat_box_library_window_buildSideTree (BeatBoxLibraryWindow* self);
 void beat_box_library_window_updateSensitivities (BeatBoxLibraryWindow* self);
 void beat_box_library_window_fileRescanMusicFolderClick (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_fileRescanMusicFolderClick_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
-static void _lambda11_ (BeatBoxLibraryWindow* self);
-static void __lambda11__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
-static void _lambda12_ (BeatBoxLibraryWindow* self);
-static void __lambda12__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
-static void _lambda13_ (BeatBoxLibraryWindow* self);
-static void __lambda13__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _lambda14_ (BeatBoxLibraryWindow* self);
+static void __lambda14__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _lambda15_ (BeatBoxLibraryWindow* self);
+static void __lambda15__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _lambda16_ (BeatBoxLibraryWindow* self);
+static void __lambda16__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 void beat_box_library_window_helpAboutClick (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_helpAboutClick_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 void beat_box_library_window_editPreferencesClick (BeatBoxLibraryWindow* self);
@@ -710,11 +712,11 @@ gboolean last_fm_core_banTrack (LastFMCore* self, const gchar* title, const gcha
 void beat_box_library_window_searchFieldChanged (BeatBoxLibraryWindow* self);
 static void beat_box_library_window_real_searchFieldChanged (BeatBoxLibraryWindow* self);
 gchar* elementary_widgets_elementary_entry_get_text (ElementaryWidgetsElementaryEntry* self);
-static gboolean _lambda19_ (BeatBoxLibraryWindow* self);
+static gboolean _lambda22_ (BeatBoxLibraryWindow* self);
 GtkWidget* beat_box_side_tree_view_get_current_widget (BeatBoxSideTreeView* self);
 GeeCollection* beat_box_library_manager_songs_from_search (BeatBoxLibraryManager* self, const gchar* search, GeeCollection* songs_to_search);
 GeeSet* beat_box_music_tree_view_get_songs (BeatBoxMusicTreeView* self);
-static gboolean __lambda19__gsource_func (gpointer self);
+static gboolean __lambda22__gsource_func (gpointer self);
 void beat_box_library_window_searchFieldActivated (BeatBoxLibraryWindow* self);
 static void beat_box_library_window_real_searchFieldActivated (BeatBoxLibraryWindow* self);
 void beat_box_library_window_searchFieldIconPressed (BeatBoxLibraryWindow* self, GtkEntryIconPosition p0, GdkEvent* p1);
@@ -742,19 +744,21 @@ void elementary_widgets_top_display_set_label_text (ElementaryWidgetsTopDisplay*
 BeatBoxNotImportedWindow* beat_box_not_imported_window_new (GeeLinkedList* files);
 BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_type, GeeLinkedList* files);
 GType beat_box_not_imported_window_get_type (void) G_GNUC_CONST;
-static void beat_box_library_window_real_musicRescanned (BeatBoxLibraryWindow* self, GeeLinkedList* not_imported);
-static void beat_box_library_window_real_songRemovedFromManager (BeatBoxLibraryWindow* self, gint id);
+static void beat_box_library_window_real_musicRescanned (BeatBoxLibraryWindow* self, GeeLinkedList* new_songs, GeeLinkedList* not_imported);
+GtkTreeIter* beat_box_music_tree_view_addSong (BeatBoxMusicTreeView* self, BeatBoxSong* s);
+static void beat_box_library_window_real_song_added (BeatBoxLibraryWindow* self, gint id);
+static void beat_box_library_window_real_song_removed (BeatBoxLibraryWindow* self, gint id);
 static void beat_box_library_window_real_helpAboutClick (BeatBoxLibraryWindow* self);
-static Block6Data* block6_data_ref (Block6Data* _data6_);
-static void block6_data_unref (Block6Data* _data6_);
-static void _lambda14_ (gint response_id, Block6Data* _data6_);
-static void __lambda14__gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self);
+static Block7Data* block7_data_ref (Block7Data* _data7_);
+static void block7_data_unref (Block7Data* _data7_);
+static void _lambda17_ (gint response_id, Block7Data* _data7_);
+static void __lambda17__gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self);
 static void beat_box_library_window_real_editPreferencesClick (BeatBoxLibraryWindow* self);
 BeatBoxPreferencesWindow* beat_box_preferences_window_new (BeatBoxLibraryManager* lm);
 BeatBoxPreferencesWindow* beat_box_preferences_window_construct (GType object_type, BeatBoxLibraryManager* lm);
 GType beat_box_preferences_window_get_type (void) G_GNUC_CONST;
-static void _lambda15_ (const gchar* folder, BeatBoxLibraryWindow* self);
-static void __lambda15__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self);
+static void _lambda18_ (const gchar* folder, BeatBoxLibraryWindow* self);
+static void __lambda18__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self);
 void beat_box_library_manager_set_music_folder (BeatBoxLibraryManager* self, const gchar* folder);
 static void beat_box_library_window_real_end_of_stream (BeatBoxLibraryWindow* self, BeatBoxSong* s);
 static void beat_box_library_window_real_current_position_update (BeatBoxLibraryWindow* self, gint64 position);
@@ -794,8 +798,8 @@ static void _beat_box_library_window_musicAdded_beat_box_library_manager_music_a
 }
 
 
-static void _beat_box_library_window_musicRescanned_beat_box_library_manager_music_rescanned (BeatBoxLibraryManager* _sender, GeeLinkedList* not_imported, gpointer self) {
-	beat_box_library_window_musicRescanned (self, not_imported);
+static void _beat_box_library_window_musicRescanned_beat_box_library_manager_music_rescanned (BeatBoxLibraryManager* _sender, GeeLinkedList* new_songs, GeeLinkedList* not_imported, gpointer self) {
+	beat_box_library_window_musicRescanned (self, new_songs, not_imported);
 }
 
 
@@ -804,8 +808,13 @@ static void _beat_box_library_window_progressNotification_beat_box_library_manag
 }
 
 
-static void _beat_box_library_window_songRemovedFromManager_beat_box_library_manager_song_removed (BeatBoxLibraryManager* _sender, gint id, gpointer self) {
-	beat_box_library_window_songRemovedFromManager (self, id);
+static void _beat_box_library_window_song_added_beat_box_library_manager_song_added (BeatBoxLibraryManager* _sender, gint id, gpointer self) {
+	beat_box_library_window_song_added (self, id);
+}
+
+
+static void _beat_box_library_window_song_removed_beat_box_library_manager_song_removed (BeatBoxLibraryManager* _sender, gint id, gpointer self) {
+	beat_box_library_window_song_removed (self, id);
 }
 
 
@@ -839,33 +848,33 @@ static void _gtk_main_quit_gtk_object_destroy (GtkObject* _sender, gpointer self
 }
 
 
-static Block5Data* block5_data_ref (Block5Data* _data5_) {
-	g_atomic_int_inc (&_data5_->_ref_count_);
-	return _data5_;
+static Block6Data* block6_data_ref (Block6Data* _data6_) {
+	g_atomic_int_inc (&_data6_->_ref_count_);
+	return _data6_;
 }
 
 
-static void block5_data_unref (Block5Data* _data5_) {
-	if (g_atomic_int_dec_and_test (&_data5_->_ref_count_)) {
-		_g_object_unref0 (_data5_->self);
-		g_slice_free (Block5Data, _data5_);
+static void block6_data_unref (Block6Data* _data6_) {
+	if (g_atomic_int_dec_and_test (&_data6_->_ref_count_)) {
+		_g_object_unref0 (_data6_->self);
+		g_slice_free (Block6Data, _data6_);
 	}
 }
 
 
-static gboolean _lambda18_ (Block5Data* _data5_) {
+static gboolean _lambda21_ (Block6Data* _data6_) {
 	BeatBoxLibraryWindow * self;
 	gboolean result = FALSE;
-	self = _data5_->self;
-	elementary_widgets_top_display_change_value (self->priv->topDisplay, GTK_SCROLL_NONE, (gdouble) _data5_->position);
+	self = _data6_->self;
+	elementary_widgets_top_display_change_value (self->priv->topDisplay, GTK_SCROLL_NONE, (gdouble) _data6_->position);
 	result = FALSE;
 	return result;
 }
 
 
-static gboolean __lambda18__gsource_func (gpointer self) {
+static gboolean __lambda21__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda18_ (self);
+	result = _lambda21_ (self);
 	return result;
 }
 
@@ -920,7 +929,8 @@ BeatBoxLibraryWindow* beat_box_library_window_construct (GType object_type, Beat
 	g_signal_connect_object (self->priv->lm, "music-added", (GCallback) _beat_box_library_window_musicAdded_beat_box_library_manager_music_added, self, 0);
 	g_signal_connect_object (self->priv->lm, "music-rescanned", (GCallback) _beat_box_library_window_musicRescanned_beat_box_library_manager_music_rescanned, self, 0);
 	g_signal_connect_object (self->priv->lm, "progress-notification", (GCallback) _beat_box_library_window_progressNotification_beat_box_library_manager_progress_notification, self, 0);
-	g_signal_connect_object (self->priv->lm, "song-removed", (GCallback) _beat_box_library_window_songRemovedFromManager_beat_box_library_manager_song_removed, self, 0);
+	g_signal_connect_object (self->priv->lm, "song-added", (GCallback) _beat_box_library_window_song_added_beat_box_library_manager_song_added, self, 0);
+	g_signal_connect_object (self->priv->lm, "song-removed", (GCallback) _beat_box_library_window_song_removed_beat_box_library_manager_song_removed, self, 0);
 	g_signal_connect_object (self->priv->lm, "song-played", (GCallback) _beat_box_library_window_song_played_beat_box_library_manager_song_played, self, 0);
 	g_signal_connect_object (self->priv->lm, "songs-updated", (GCallback) _beat_box_library_window_songs_updated_beat_box_library_manager_songs_updated, self, 0);
 	g_signal_connect_object (self->priv->similarSongs, "similar-retrieved", (GCallback) _beat_box_library_window_similarRetrieved_last_fm_similar_songs_similar_retrieved, self, 0);
@@ -985,19 +995,19 @@ BeatBoxLibraryWindow* beat_box_library_window_construct (GType object_type, Beat
 			s = _tmp26_;
 			_tmp27_ = beat_box_song_get_rowid (s);
 			if (_tmp27_ != 0) {
-				Block5Data* _data5_;
+				Block6Data* _data6_;
 				gint _tmp28_;
 				gint _tmp29_;
-				_data5_ = g_slice_new0 (Block5Data);
-				_data5_->_ref_count_ = 1;
-				_data5_->self = g_object_ref (self);
+				_data6_ = g_slice_new0 (Block6Data);
+				_data6_->_ref_count_ = 1;
+				_data6_->self = g_object_ref (self);
 				_tmp28_ = beat_box_song_get_rowid (s);
 				beat_box_library_manager_playSong (self->priv->lm, _tmp28_);
 				_tmp29_ = beat_box_settings_getLastSongPosition (self->priv->settings);
-				_data5_->position = (gint) _tmp29_;
-				g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, __lambda18__gsource_func, block5_data_ref (_data5_), block5_data_unref);
-				block5_data_unref (_data5_);
-				_data5_ = NULL;
+				_data6_->position = (gint) _tmp29_;
+				g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, __lambda21__gsource_func, block6_data_ref (_data6_), block6_data_unref);
+				block6_data_unref (_data6_);
+				_data6_ = NULL;
 			}
 			_tmp30_ = beat_box_settings_getLastSongPosition (self->priv->settings);
 			if (((gint) _tmp30_) > 30) {
@@ -1030,46 +1040,11 @@ static void _beat_box_library_window_fileRescanMusicFolderClick_gtk_menu_item_ac
 }
 
 
-static void _lambda11_ (BeatBoxLibraryWindow* self) {
+static void _lambda14_ (BeatBoxLibraryWindow* self) {
 	gchar* _tmp0_;
 	gchar* auth_uri;
 	GError * _inner_error_ = NULL;
 	_tmp0_ = g_strdup ("https://answers.launchpad.net/beat-box");
-	auth_uri = _tmp0_;
-	g_app_info_launch_default_for_uri (auth_uri, NULL, &_inner_error_);
-	if (_inner_error_ != NULL) {
-		goto __catch40_g_error;
-	}
-	goto __finally40;
-	__catch40_g_error:
-	{
-		GError * err;
-		err = _inner_error_;
-		_inner_error_ = NULL;
-		fprintf (stdout, "Could not load webpage %s: %s\n", auth_uri, err->message);
-		_g_error_free0 (err);
-	}
-	__finally40:
-	if (_inner_error_ != NULL) {
-		_g_free0 (auth_uri);
-		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-		g_clear_error (&_inner_error_);
-		return;
-	}
-	_g_free0 (auth_uri);
-}
-
-
-static void __lambda11__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-	_lambda11_ (self);
-}
-
-
-static void _lambda12_ (BeatBoxLibraryWindow* self) {
-	gchar* _tmp0_;
-	gchar* auth_uri;
-	GError * _inner_error_ = NULL;
-	_tmp0_ = g_strdup ("https://translations.launchpad.net/beat-box");
 	auth_uri = _tmp0_;
 	g_app_info_launch_default_for_uri (auth_uri, NULL, &_inner_error_);
 	if (_inner_error_ != NULL) {
@@ -1095,16 +1070,16 @@ static void _lambda12_ (BeatBoxLibraryWindow* self) {
 }
 
 
-static void __lambda12__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-	_lambda12_ (self);
+static void __lambda14__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+	_lambda14_ (self);
 }
 
 
-static void _lambda13_ (BeatBoxLibraryWindow* self) {
+static void _lambda15_ (BeatBoxLibraryWindow* self) {
 	gchar* _tmp0_;
 	gchar* auth_uri;
 	GError * _inner_error_ = NULL;
-	_tmp0_ = g_strdup ("https://bugs.launchpad.net/beat-box");
+	_tmp0_ = g_strdup ("https://translations.launchpad.net/beat-box");
 	auth_uri = _tmp0_;
 	g_app_info_launch_default_for_uri (auth_uri, NULL, &_inner_error_);
 	if (_inner_error_ != NULL) {
@@ -1130,8 +1105,43 @@ static void _lambda13_ (BeatBoxLibraryWindow* self) {
 }
 
 
-static void __lambda13__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-	_lambda13_ (self);
+static void __lambda15__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+	_lambda15_ (self);
+}
+
+
+static void _lambda16_ (BeatBoxLibraryWindow* self) {
+	gchar* _tmp0_;
+	gchar* auth_uri;
+	GError * _inner_error_ = NULL;
+	_tmp0_ = g_strdup ("https://bugs.launchpad.net/beat-box");
+	auth_uri = _tmp0_;
+	g_app_info_launch_default_for_uri (auth_uri, NULL, &_inner_error_);
+	if (_inner_error_ != NULL) {
+		goto __catch43_g_error;
+	}
+	goto __finally43;
+	__catch43_g_error:
+	{
+		GError * err;
+		err = _inner_error_;
+		_inner_error_ = NULL;
+		fprintf (stdout, "Could not load webpage %s: %s\n", auth_uri, err->message);
+		_g_error_free0 (err);
+	}
+	__finally43:
+	if (_inner_error_ != NULL) {
+		_g_free0 (auth_uri);
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_g_free0 (auth_uri);
+}
+
+
+static void __lambda16__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+	_lambda16_ (self);
 }
 
 
@@ -1448,9 +1458,9 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) self->priv->helpAbout);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) self->priv->editPreferences);
 	g_signal_connect_object (self->priv->fileRescanMusicFolder, "activate", (GCallback) _beat_box_library_window_fileRescanMusicFolderClick_gtk_menu_item_activate, self, 0);
-	g_signal_connect_object (self->priv->helpOnline, "activate", (GCallback) __lambda11__gtk_menu_item_activate, self, 0);
-	g_signal_connect_object (self->priv->helpTranslate, "activate", (GCallback) __lambda12__gtk_menu_item_activate, self, 0);
-	g_signal_connect_object (self->priv->helpReport, "activate", (GCallback) __lambda13__gtk_menu_item_activate, self, 0);
+	g_signal_connect_object (self->priv->helpOnline, "activate", (GCallback) __lambda14__gtk_menu_item_activate, self, 0);
+	g_signal_connect_object (self->priv->helpTranslate, "activate", (GCallback) __lambda15__gtk_menu_item_activate, self, 0);
+	g_signal_connect_object (self->priv->helpReport, "activate", (GCallback) __lambda16__gtk_menu_item_activate, self, 0);
 	g_signal_connect_object (self->priv->helpAbout, "activate", (GCallback) _beat_box_library_window_helpAboutClick_gtk_menu_item_activate, self, 0);
 	g_signal_connect_object (self->priv->editPreferences, "activate", (GCallback) _beat_box_library_window_editPreferencesClick_gtk_menu_item_activate, self, 0);
 	gtk_statusbar_set_has_resize_grip (self->priv->statusBar, TRUE);
@@ -1852,13 +1862,13 @@ gboolean beat_box_library_window_updateCurrentSong (BeatBoxLibraryWindow* self) 
 			_tmp6_ = gdk_pixbuf_new_from_file_at_size (file, _tmp4_, _tmp5_, &_inner_error_);
 			_tmp7_ = _tmp6_;
 			if (_inner_error_ != NULL) {
-				goto __catch43_g_error;
+				goto __catch44_g_error;
 			}
 			_tmp8_ = _tmp7_;
 			gtk_image_set_from_pixbuf (self->priv->coverArt, _tmp8_);
 			_g_object_unref0 (_tmp8_);
-			goto __finally43;
-			__catch43_g_error:
+			goto __finally44;
+			__catch44_g_error:
 			{
 				GError * err;
 				err = _inner_error_;
@@ -1866,7 +1876,7 @@ gboolean beat_box_library_window_updateCurrentSong (BeatBoxLibraryWindow* self) 
 				fprintf (stdout, "Could not set image art: %s\n", err->message);
 				_g_error_free0 (err);
 			}
-			__finally43:
+			__finally44:
 			if (_inner_error_ != NULL) {
 				_g_free0 (file);
 				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -1905,7 +1915,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	regex = (_tmp3_ = _tmp2_, _g_free0 (_tmp1_), _tmp3_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch44_g_regex_error;
+			goto __catch45_g_regex_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -1916,7 +1926,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	if (_inner_error_ != NULL) {
 		_g_regex_unref0 (regex);
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch44_g_regex_error;
+			goto __catch45_g_regex_error;
 		}
 		_g_regex_unref0 (regex);
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -1927,8 +1937,8 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	_g_regex_unref0 (regex);
 	return result;
 	_g_regex_unref0 (regex);
-	goto __finally44;
-	__catch44_g_regex_error:
+	goto __finally45;
+	__catch45_g_regex_error:
 	{
 		GError * e;
 		e = _inner_error_;
@@ -1936,7 +1946,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_assert_not_reached ();
 		_g_error_free0 (e);
 	}
-	__finally44:
+	__finally45:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -2026,7 +2036,7 @@ static void beat_box_library_window_real_song_played (BeatBoxLibraryWindow* self
 		gboolean _tmp40_;
 		notify_notification_close (self->priv->notification, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch45_g_error;
+			goto __catch46_g_error;
 		}
 		_tmp27_ = beat_box_library_manager_song_from_id (self->priv->lm, i);
 		_tmp28_ = _tmp27_;
@@ -2060,7 +2070,7 @@ static void beat_box_library_window_real_song_played (BeatBoxLibraryWindow* self
 			_tmp43_ = gdk_pixbuf_new_from_file (_tmp42_, &_inner_error_);
 			_tmp45_ = (_tmp44_ = _tmp43_, _g_free0 (_tmp42_), _tmp44_);
 			if (_inner_error_ != NULL) {
-				goto __catch45_g_error;
+				goto __catch46_g_error;
 			}
 			_tmp46_ = _tmp45_;
 			notify_notification_set_image_from_pixbuf (self->priv->notification, _tmp46_);
@@ -2069,10 +2079,10 @@ static void beat_box_library_window_real_song_played (BeatBoxLibraryWindow* self
 		}
 		notify_notification_show (self->priv->notification, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch45_g_error;
+			goto __catch46_g_error;
 		}
-		goto __finally45;
-		__catch45_g_error:
+		goto __finally46;
+		__catch46_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -2080,7 +2090,7 @@ static void beat_box_library_window_real_song_played (BeatBoxLibraryWindow* self
 			fprintf (stderr, "Could not show notification: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally45:
+		__finally46:
 		if (_inner_error_ != NULL) {
 			_g_free0 (song_label);
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -2654,7 +2664,7 @@ void beat_box_library_window_banButtonClicked (BeatBoxLibraryWindow* self) {
 }
 
 
-static gboolean _lambda19_ (BeatBoxLibraryWindow* self) {
+static gboolean _lambda22_ (BeatBoxLibraryWindow* self) {
 	gboolean result = FALSE;
 	gboolean _tmp0_ = FALSE;
 	gboolean _tmp1_ = FALSE;
@@ -2797,9 +2807,9 @@ static gboolean _lambda19_ (BeatBoxLibraryWindow* self) {
 }
 
 
-static gboolean __lambda19__gsource_func (gpointer self) {
+static gboolean __lambda22__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda19_ (self);
+	result = _lambda22_ (self);
 	return result;
 }
 
@@ -2812,7 +2822,7 @@ static void beat_box_library_window_real_searchFieldChanged (BeatBoxLibraryWindo
 	_tmp1_ = _tmp0_;
 	gee_deque_offer_head ((GeeDeque*) self->priv->timeout_search, _tmp1_);
 	_g_free0 (_tmp1_);
-	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 350, __lambda19__gsource_func, g_object_ref (self), g_object_unref);
+	g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 350, __lambda22__gsource_func, g_object_ref (self), g_object_unref);
 }
 
 
@@ -3045,18 +3055,18 @@ static void beat_box_library_window_real_musicAdded (BeatBoxLibraryWindow* self,
 	beat_box_library_manager_save_songs (self->priv->lm);
 	notify_notification_close (self->priv->notification, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch46_g_error;
+		goto __catch47_g_error;
 	}
 	if (!(g_object_get ((GtkWindow*) self, "has-toplevel-focus", &_tmp18_, NULL), _tmp18_)) {
 		g_object_set (self->priv->notification, "summary", "Import Complete", NULL);
 		g_object_set (self->priv->notification, "body", "BeatBox has imported your library", NULL);
 		notify_notification_show (self->priv->notification, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch46_g_error;
+			goto __catch47_g_error;
 		}
 	}
-	goto __finally46;
-	__catch46_g_error:
+	goto __finally47;
+	__catch47_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -3064,7 +3074,7 @@ static void beat_box_library_window_real_musicAdded (BeatBoxLibraryWindow* self,
 		fprintf (stderr, "Could not show notification: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally46:
+	__finally47:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (w);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -3080,8 +3090,9 @@ void beat_box_library_window_musicAdded (BeatBoxLibraryWindow* self, GeeLinkedLi
 }
 
 
-static void beat_box_library_window_real_musicRescanned (BeatBoxLibraryWindow* self, GeeLinkedList* not_imported) {
+static void beat_box_library_window_real_musicRescanned (BeatBoxLibraryWindow* self, GeeLinkedList* new_songs, GeeLinkedList* not_imported) {
 	g_return_if_fail (self != NULL);
+	g_return_if_fail (new_songs != NULL);
 	g_return_if_fail (not_imported != NULL);
 	elementary_widgets_top_display_show_scale (self->priv->topDisplay);
 	if (self->priv->lm->song_info->song != NULL) {
@@ -3118,56 +3129,104 @@ static void beat_box_library_window_real_musicRescanned (BeatBoxLibraryWindow* s
 		elementary_widgets_top_display_set_label_text (self->priv->topDisplay, "");
 	}
 	fprintf (stdout, "TODO: re-populate view without freezing view\n");
+	{
+		GeeLinkedList* _tmp13_;
+		GeeLinkedList* _s_list;
+		gint _tmp14_;
+		gint _s_size;
+		gint _s_index;
+		_tmp13_ = _g_object_ref0 (new_songs);
+		_s_list = _tmp13_;
+		_tmp14_ = gee_collection_get_size ((GeeCollection*) _s_list);
+		_s_size = _tmp14_;
+		_s_index = -1;
+		while (TRUE) {
+			gpointer _tmp15_ = NULL;
+			BeatBoxSong* s;
+			const gchar* _tmp16_ = NULL;
+			const gchar* _tmp17_ = NULL;
+			GtkWidget* _tmp18_ = NULL;
+			BeatBoxMusicTreeView* _tmp19_;
+			GtkTreeIter* _tmp20_ = NULL;
+			GtkTreeIter* _tmp21_;
+			_s_index = _s_index + 1;
+			if (!(_s_index < _s_size)) {
+				break;
+			}
+			_tmp15_ = gee_abstract_list_get ((GeeAbstractList*) _s_list, _s_index);
+			s = (BeatBoxSong*) _tmp15_;
+			_tmp16_ = beat_box_song_get_title (s);
+			_tmp17_ = beat_box_song_get_artist (s);
+			fprintf (stdout, "NEW SONG %s by %s\n", _tmp16_, _tmp17_);
+			_tmp18_ = beat_box_side_tree_view_getWidget (self->priv->sideTree, &self->priv->sideTree->library_music_iter);
+			_tmp19_ = BEAT_BOX_MUSIC_TREE_VIEW (_tmp18_);
+			_tmp20_ = beat_box_music_tree_view_addSong (_tmp19_, s);
+			_tmp21_ = _tmp20_;
+			_g_free0 (_tmp21_);
+			_g_object_unref0 (_tmp19_);
+			_g_object_unref0 (s);
+		}
+		_g_object_unref0 (_s_list);
+	}
 	beat_box_library_window_updateSensitivities (self);
-	beat_box_library_manager_save_songs (self->priv->lm);
 }
 
 
-void beat_box_library_window_musicRescanned (BeatBoxLibraryWindow* self, GeeLinkedList* not_imported) {
-	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->musicRescanned (self, not_imported);
+void beat_box_library_window_musicRescanned (BeatBoxLibraryWindow* self, GeeLinkedList* new_songs, GeeLinkedList* not_imported) {
+	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->musicRescanned (self, new_songs, not_imported);
 }
 
 
-static void beat_box_library_window_real_songRemovedFromManager (BeatBoxLibraryWindow* self, gint id) {
+static void beat_box_library_window_real_song_added (BeatBoxLibraryWindow* self, gint id) {
+	g_return_if_fail (self != NULL);
+}
+
+
+void beat_box_library_window_song_added (BeatBoxLibraryWindow* self, gint id) {
+	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->song_added (self, id);
+}
+
+
+static void beat_box_library_window_real_song_removed (BeatBoxLibraryWindow* self, gint id) {
 	g_return_if_fail (self != NULL);
 	beat_box_library_window_updateSensitivities (self);
 }
 
 
-void beat_box_library_window_songRemovedFromManager (BeatBoxLibraryWindow* self, gint id) {
-	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->songRemovedFromManager (self, id);
+void beat_box_library_window_song_removed (BeatBoxLibraryWindow* self, gint id) {
+	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->song_removed (self, id);
 }
 
 
-static Block6Data* block6_data_ref (Block6Data* _data6_) {
-	g_atomic_int_inc (&_data6_->_ref_count_);
-	return _data6_;
+static Block7Data* block7_data_ref (Block7Data* _data7_) {
+	g_atomic_int_inc (&_data7_->_ref_count_);
+	return _data7_;
 }
 
 
-static void block6_data_unref (Block6Data* _data6_) {
-	if (g_atomic_int_dec_and_test (&_data6_->_ref_count_)) {
-		_g_object_unref0 (_data6_->self);
-		_g_object_unref0 (_data6_->ad);
-		g_slice_free (Block6Data, _data6_);
+static void block7_data_unref (Block7Data* _data7_) {
+	if (g_atomic_int_dec_and_test (&_data7_->_ref_count_)) {
+		_g_object_unref0 (_data7_->self);
+		_g_object_unref0 (_data7_->ad);
+		g_slice_free (Block7Data, _data7_);
 	}
 }
 
 
-static void _lambda14_ (gint response_id, Block6Data* _data6_) {
+static void _lambda17_ (gint response_id, Block7Data* _data7_) {
 	BeatBoxLibraryWindow * self;
-	self = _data6_->self;
-	gtk_object_destroy ((GtkObject*) _data6_->ad);
+	self = _data7_->self;
+	gtk_object_destroy ((GtkObject*) _data7_->ad);
 }
 
 
-static void __lambda14__gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self) {
-	_lambda14_ (response_id, self);
+static void __lambda17__gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self) {
+	_lambda17_ (response_id, self);
 }
 
 
 static void beat_box_library_window_real_helpAboutClick (BeatBoxLibraryWindow* self) {
-	Block6Data* _data6_;
+	Block7Data* _data7_;
 	GtkAboutDialog* _tmp0_ = NULL;
 	gchar** _tmp1_ = NULL;
 	gchar** authors;
@@ -3176,15 +3235,15 @@ static void beat_box_library_window_real_helpAboutClick (BeatBoxLibraryWindow* s
 	gchar* _tmp2_;
 	gchar* _tmp3_;
 	g_return_if_fail (self != NULL);
-	_data6_ = g_slice_new0 (Block6Data);
-	_data6_->_ref_count_ = 1;
-	_data6_->self = g_object_ref (self);
+	_data7_ = g_slice_new0 (Block7Data);
+	_data7_->_ref_count_ = 1;
+	_data7_->self = g_object_ref (self);
 	_tmp0_ = (GtkAboutDialog*) gtk_about_dialog_new ();
-	_data6_->ad = g_object_ref_sink (_tmp0_);
-	gtk_about_dialog_set_program_name (_data6_->ad, "BeatBox");
-	gtk_about_dialog_set_version (_data6_->ad, "0.1");
-	gtk_about_dialog_set_website (_data6_->ad, "https://launchpad.net/beat-box");
-	gtk_about_dialog_set_website_label (_data6_->ad, "Launchpad");
+	_data7_->ad = g_object_ref_sink (_tmp0_);
+	gtk_about_dialog_set_program_name (_data7_->ad, "BeatBox");
+	gtk_about_dialog_set_version (_data7_->ad, "0.1");
+	gtk_about_dialog_set_website (_data7_->ad, "https://launchpad.net/beat-box");
+	gtk_about_dialog_set_website_label (_data7_->ad, "Launchpad");
 	_tmp1_ = g_new0 (gchar*, 1 + 1);
 	authors = _tmp1_;
 	authors_length1 = 1;
@@ -3193,12 +3252,12 @@ static void beat_box_library_window_real_helpAboutClick (BeatBoxLibraryWindow* s
 	_tmp3_ = _tmp2_;
 	_g_free0 (authors[0]);
 	authors[0] = _tmp3_;
-	gtk_about_dialog_set_authors (_data6_->ad, authors);
-	g_signal_connect_data ((GtkDialog*) _data6_->ad, "response", (GCallback) __lambda14__gtk_dialog_response, block6_data_ref (_data6_), (GClosureNotify) block6_data_unref, 0);
-	gtk_widget_show ((GtkWidget*) _data6_->ad);
+	gtk_about_dialog_set_authors (_data7_->ad, authors);
+	g_signal_connect_data ((GtkDialog*) _data7_->ad, "response", (GCallback) __lambda17__gtk_dialog_response, block7_data_ref (_data7_), (GClosureNotify) block7_data_unref, 0);
+	gtk_widget_show ((GtkWidget*) _data7_->ad);
 	authors = (_vala_array_free (authors, authors_length1, (GDestroyNotify) g_free), NULL);
-	block6_data_unref (_data6_);
-	_data6_ = NULL;
+	block7_data_unref (_data7_);
+	_data7_ = NULL;
 }
 
 
@@ -3207,14 +3266,14 @@ void beat_box_library_window_helpAboutClick (BeatBoxLibraryWindow* self) {
 }
 
 
-static void _lambda15_ (const gchar* folder, BeatBoxLibraryWindow* self) {
+static void _lambda18_ (const gchar* folder, BeatBoxLibraryWindow* self) {
 	g_return_if_fail (folder != NULL);
 	beat_box_library_window_setMusicFolder (self, folder);
 }
 
 
-static void __lambda15__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self) {
-	_lambda15_ (folder, self);
+static void __lambda18__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self) {
+	_lambda18_ (folder, self);
 }
 
 
@@ -3224,7 +3283,7 @@ static void beat_box_library_window_real_editPreferencesClick (BeatBoxLibraryWin
 	g_return_if_fail (self != NULL);
 	_tmp0_ = beat_box_preferences_window_new (self->priv->lm);
 	pw = g_object_ref_sink (_tmp0_);
-	g_signal_connect_object (pw, "changed", (GCallback) __lambda15__beat_box_preferences_window_changed, self, 0);
+	g_signal_connect_object (pw, "changed", (GCallback) __lambda18__beat_box_preferences_window_changed, self, 0);
 	_g_object_unref0 (pw);
 }
 
@@ -3289,14 +3348,14 @@ static void beat_box_library_window_real_current_position_update (BeatBoxLibrary
 			g_thread_create (_beat_box_library_window_lastfm_thread_function_gthread_func, self, FALSE, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				if (_inner_error_->domain == G_THREAD_ERROR) {
-					goto __catch47_g_thread_error;
+					goto __catch48_g_thread_error;
 				}
 				g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			goto __finally47;
-			__catch47_g_thread_error:
+			goto __finally48;
+			__catch48_g_thread_error:
 			{
 				GError * err;
 				err = _inner_error_;
@@ -3304,7 +3363,7 @@ static void beat_box_library_window_real_current_position_update (BeatBoxLibrary
 				fprintf (stdout, "ERROR: Could not create last fm thread: %s \n", err->message);
 				_g_error_free0 (err);
 			}
-			__finally47:
+			__finally48:
 			if (_inner_error_ != NULL) {
 				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 				g_clear_error (&_inner_error_);
@@ -3413,7 +3472,7 @@ void beat_box_library_window_setStatusBarText (BeatBoxLibraryWindow* self, const
 void beat_box_library_window_welcomeScreenActivated (BeatBoxLibraryWindow* self, gint index) {
 	gboolean _tmp0_ = FALSE;
 	g_return_if_fail (self != NULL);
-	if (!self->priv->lm->setting_folder) {
+	if (!self->priv->lm->doing_file_operations) {
 		_tmp0_ = index == 0;
 	} else {
 		_tmp0_ = FALSE;
@@ -3482,7 +3541,8 @@ static void beat_box_library_window_class_init (BeatBoxLibraryWindowClass * klas
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->musicCounted = beat_box_library_window_real_musicCounted;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->musicAdded = beat_box_library_window_real_musicAdded;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->musicRescanned = beat_box_library_window_real_musicRescanned;
-	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->songRemovedFromManager = beat_box_library_window_real_songRemovedFromManager;
+	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->song_added = beat_box_library_window_real_song_added;
+	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->song_removed = beat_box_library_window_real_song_removed;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->helpAboutClick = beat_box_library_window_real_helpAboutClick;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->editPreferencesClick = beat_box_library_window_real_editPreferencesClick;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->end_of_stream = beat_box_library_window_real_end_of_stream;

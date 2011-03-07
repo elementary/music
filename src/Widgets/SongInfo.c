@@ -174,10 +174,10 @@ BeatBoxSongInfo* beat_box_song_info_construct (GType object_type) {
 	if (!_tmp4_) {
 		g_file_make_directory (beatbox_folder, NULL, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch64_g_error;
+			goto __catch65_g_error;
 		}
-		goto __finally64;
-		__catch64_g_error:
+		goto __finally65;
+		__catch65_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -185,7 +185,7 @@ BeatBoxSongInfo* beat_box_song_info_construct (GType object_type) {
 			fprintf (stdout, "CRITICAL: Could not make song info directory in cache: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally64:
+		__finally65:
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (beatbox_folder);
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -211,10 +211,10 @@ BeatBoxSongInfo* beat_box_song_info_construct (GType object_type) {
 		_tmp12_ = _tmp11_;
 		_g_object_unref0 (_tmp12_);
 		if (_inner_error_ != NULL) {
-			goto __catch65_g_error;
+			goto __catch66_g_error;
 		}
-		goto __finally65;
-		__catch65_g_error:
+		goto __finally66;
+		__catch66_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -222,7 +222,7 @@ BeatBoxSongInfo* beat_box_song_info_construct (GType object_type) {
 			fprintf (stdout, "Could not create song info file: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally65:
+		__finally66:
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (beatbox_folder);
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -304,7 +304,7 @@ gchar* beat_box_song_info_update_file (BeatBoxSongInfo* self, LastFMArtistInfo* 
 	html = _tmp8_;
 	g_file_delete (self->priv->file, NULL, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch66_g_error;
+		goto __catch67_g_error;
 	}
 	_tmp9_ = g_get_user_cache_dir ();
 	_tmp10_ = g_strconcat (_tmp9_, "/beatbox/beatbox_song_info.html", NULL);
@@ -316,7 +316,7 @@ gchar* beat_box_song_info_update_file (BeatBoxSongInfo* self, LastFMArtistInfo* 
 	_tmp13_ = g_file_create (self->priv->file, G_FILE_CREATE_NONE, NULL, &_inner_error_);
 	file_stream = _tmp13_;
 	if (_inner_error_ != NULL) {
-		goto __catch66_g_error;
+		goto __catch67_g_error;
 	}
 	_tmp14_ = g_data_output_stream_new ((GOutputStream*) file_stream);
 	data_stream = _tmp14_;
@@ -324,12 +324,12 @@ gchar* beat_box_song_info_update_file (BeatBoxSongInfo* self, LastFMArtistInfo* 
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (data_stream);
 		_g_object_unref0 (file_stream);
-		goto __catch66_g_error;
+		goto __catch67_g_error;
 	}
 	_g_object_unref0 (data_stream);
 	_g_object_unref0 (file_stream);
-	goto __finally66;
-	__catch66_g_error:
+	goto __finally67;
+	__catch67_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -337,7 +337,7 @@ gchar* beat_box_song_info_update_file (BeatBoxSongInfo* self, LastFMArtistInfo* 
 		fprintf (stdout, "Could not refresh song info view with new song: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally66:
+	__finally67:
 	if (_inner_error_ != NULL) {
 		_g_free0 (html);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);

@@ -141,8 +141,7 @@ struct _BeatBoxLibraryManager {
 	gboolean playing;
 	gboolean repeat;
 	gboolean shuffle;
-	gboolean setting_folder;
-	gboolean rescanning_folder;
+	gboolean doing_file_operations;
 };
 
 struct _BeatBoxLibraryManagerClass {
@@ -414,10 +413,10 @@ static void beat_box_preferences_window_real_lastfmLoginClick (BeatBoxPreference
 			auth_uri = g_strconcat ("http://www.last.fm/api/auth/?api_key=" LAST_FM_CORE_api "&token=", self->priv->lastfm_token, NULL);
 			g_app_info_launch_default_for_uri (auth_uri, NULL, &_inner_error_);
 			if (_inner_error_ != NULL) {
-				goto __catch55_g_error;
+				goto __catch56_g_error;
 			}
-			goto __finally55;
-			__catch55_g_error:
+			goto __finally56;
+			__catch56_g_error:
 			{
 				GError * err;
 				err = _inner_error_;
@@ -425,7 +424,7 @@ static void beat_box_preferences_window_real_lastfmLoginClick (BeatBoxPreference
 				fprintf (stdout, "Could not open Last FM website to authorize: %s\n", err->message);
 				_g_error_free0 (err);
 			}
-			__finally55:
+			__finally56:
 			if (_inner_error_ != NULL) {
 				_g_free0 (auth_uri);
 				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);

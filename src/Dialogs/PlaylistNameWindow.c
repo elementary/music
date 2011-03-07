@@ -42,6 +42,7 @@ struct _BeatBoxPlaylistNameWindow {
 struct _BeatBoxPlaylistNameWindowClass {
 	GtkWindowClass parent_class;
 	void (*saveClicked) (BeatBoxPlaylistNameWindow* self);
+	void (*nameActivate) (BeatBoxPlaylistNameWindow* self);
 };
 
 struct _BeatBoxPlaylistNameWindowPrivate {
@@ -64,8 +65,11 @@ const gchar* beat_box_playlist_get_name (BeatBoxPlaylist* self);
 GtkAlignment* beat_box_playlist_name_window_wrap_alignment (GtkWidget* widget, gint top, gint right, gint bottom, gint left);
 void beat_box_playlist_name_window_saveClicked (BeatBoxPlaylistNameWindow* self);
 static void _beat_box_playlist_name_window_saveClicked_gtk_button_clicked (GtkButton* _sender, gpointer self);
+void beat_box_playlist_name_window_nameActivate (BeatBoxPlaylistNameWindow* self);
+static void _beat_box_playlist_name_window_nameActivate_gtk_entry_activate (GtkEntry* _sender, gpointer self);
 static void beat_box_playlist_name_window_real_saveClicked (BeatBoxPlaylistNameWindow* self);
 void beat_box_playlist_set_name (BeatBoxPlaylist* self, const gchar* value);
+static void beat_box_playlist_name_window_real_nameActivate (BeatBoxPlaylistNameWindow* self);
 static void beat_box_playlist_name_window_finalize (GObject* obj);
 
 
@@ -76,6 +80,11 @@ static gpointer _g_object_ref0 (gpointer self) {
 
 static void _beat_box_playlist_name_window_saveClicked_gtk_button_clicked (GtkButton* _sender, gpointer self) {
 	beat_box_playlist_name_window_saveClicked (self);
+}
+
+
+static void _beat_box_playlist_name_window_nameActivate_gtk_entry_activate (GtkEntry* _sender, gpointer self) {
+	beat_box_playlist_name_window_nameActivate (self);
 }
 
 
@@ -148,6 +157,7 @@ BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object
 	gtk_container_add ((GtkContainer*) self, (GtkWidget*) self->priv->padding);
 	gtk_widget_show_all ((GtkWidget*) self);
 	g_signal_connect_object (self->_save, "clicked", (GCallback) _beat_box_playlist_name_window_saveClicked_gtk_button_clicked, self, 0);
+	g_signal_connect_object (self->_name, "activate", (GCallback) _beat_box_playlist_name_window_nameActivate_gtk_entry_activate, self, 0);
 	_g_object_unref0 (bottomButtons);
 	_g_object_unref0 (nameLabel);
 	return self;
@@ -179,10 +189,10 @@ GtkAlignment* beat_box_playlist_name_window_wrap_alignment (GtkWidget* widget, g
 static void beat_box_playlist_name_window_real_saveClicked (BeatBoxPlaylistNameWindow* self) {
 	const gchar* _tmp0_ = NULL;
 	g_return_if_fail (self != NULL);
-	gtk_object_destroy ((GtkObject*) self);
 	_tmp0_ = gtk_entry_get_text (self->_name);
 	beat_box_playlist_set_name (self->_original, _tmp0_);
 	g_signal_emit_by_name (self, "playlist-saved", self->_original);
+	gtk_object_destroy ((GtkObject*) self);
 }
 
 
@@ -191,10 +201,22 @@ void beat_box_playlist_name_window_saveClicked (BeatBoxPlaylistNameWindow* self)
 }
 
 
+static void beat_box_playlist_name_window_real_nameActivate (BeatBoxPlaylistNameWindow* self) {
+	g_return_if_fail (self != NULL);
+	beat_box_playlist_name_window_saveClicked (self);
+}
+
+
+void beat_box_playlist_name_window_nameActivate (BeatBoxPlaylistNameWindow* self) {
+	BEAT_BOX_PLAYLIST_NAME_WINDOW_GET_CLASS (self)->nameActivate (self);
+}
+
+
 static void beat_box_playlist_name_window_class_init (BeatBoxPlaylistNameWindowClass * klass) {
 	beat_box_playlist_name_window_parent_class = g_type_class_peek_parent (klass);
 	g_type_class_add_private (klass, sizeof (BeatBoxPlaylistNameWindowPrivate));
 	BEAT_BOX_PLAYLIST_NAME_WINDOW_CLASS (klass)->saveClicked = beat_box_playlist_name_window_real_saveClicked;
+	BEAT_BOX_PLAYLIST_NAME_WINDOW_CLASS (klass)->nameActivate = beat_box_playlist_name_window_real_nameActivate;
 	G_OBJECT_CLASS (klass)->finalize = beat_box_playlist_name_window_finalize;
 	g_signal_new ("playlist_saved", BEAT_BOX_TYPE_PLAYLIST_NAME_WINDOW, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__OBJECT, G_TYPE_NONE, 1, BEAT_BOX_TYPE_PLAYLIST);
 }

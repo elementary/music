@@ -36,15 +36,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public bool repeat;
 	public bool shuffle;
 	
-	public bool setting_folder;
-	public bool rescanning_folder;
+	private string temp_add_folder;
+	public bool doing_file_operations;
 	
 	public signal void music_counted(int count);
 	public signal void music_added(LinkedList<string> not_imported);
-	public signal void music_rescanned(LinkedList<string> not_imported);
+	public signal void music_rescanned(LinkedList<Song> new_songs, LinkedList<string> not_imported);
 	public signal void progress_notification(string? message, double progress);
 	
 	public signal void current_cleared();
+	public signal void song_added(int id);
 	public signal void songs_updated(Collection<int> ids);
 	public signal void song_removed(int id);
 	public signal void song_queued(int id);
@@ -83,8 +84,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		repeat = true;
 		shuffle = false;
-		setting_folder = false;
-		rescanning_folder = false;
+		doing_file_operations = false;
 		
 		//load all songs from db
 		foreach(Song s in dbm.load_songs()) {
@@ -136,8 +136,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void set_music_folder(string folder) {
-		if(!setting_folder) {
-			setting_folder = true;
+		if(!doing_file_operations) {
+			doing_file_operations = true;
 			progress_notification("Importing music from " + folder + ". This may take a while", 0.0);
 			
 			settings.setMusicFolder(folder);
@@ -169,7 +169,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		int index = 1;
 		foreach(Song s in new_songs) {
 			s.rowid = index++;
-			_songs.set(s.rowid, s);
+			add_song(s);
 		}
 		
 		Idle.add( () => { 
@@ -178,13 +178,63 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return false; 
 		});
 		
-		setting_folder = false;
+		doing_file_operations = false;
+		return null;
+	}
+	
+	public void add_folder_to_library(string folder) {
+		if(!doing_file_operations) {
+			doing_file_operations = true;
+			progress_notification("Add music from " + folder + " to library. This may take a while", 0.0);
+			
+			temp_add_folder = folder;
+			try {
+				Thread.create<void*>(add_folder_to_library_thread, false);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not create thread to add music folder: %s\n", err.message);
+			}
+		}
+	}
+	
+	     // i should do the actual file browsing here
+	public void* add_folder_to_library_thread () {
+		var file = GLib.File.new_for_path(temp_add_folder);
+		
+		var items = fo.count_music_files(file);
+		music_counted(items);
+		fo.resetProgress(items);
+		
+		var new_songs = new LinkedList<Song>();
+		var not_imported = new LinkedList<string>();
+		fo.get_music_files(file, ref new_songs, ref not_imported);
+		
+		int index = 1;
+		
+		// start at biggest value
+		foreach(int i in _songs.keys) {
+			if(i > index)
+				index = i + 1;
+		}
+		
+		foreach(Song s in new_songs) {
+			s.rowid = index++;
+			add_song(s);
+		}
+		
+		Idle.add( () => { 
+			save_songs();
+			music_added(not_imported); 
+			return false; 
+		});
+		
+		doing_file_operations = false;
 		return null;
 	}
         
 	public void rescan_music_folder() {
-		if(!rescanning_folder) {
-			rescanning_folder = true;
+		if(!doing_file_operations) {
+			doing_file_operations = true;
 			progress_notification("Rescanning music for changes. This may take a while", 0.0);
 			
 			try {
@@ -206,7 +256,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		fo.resetProgress(paths.size);
 		
 		var not_imported = new LinkedList<string>();
-		fo.rescan_music(GLib.File.new_for_path(settings.getMusicFolder()), ref paths, ref not_imported);
+		var new_songs = new LinkedList<Song>();
+		fo.rescan_music(GLib.File.new_for_path(settings.getMusicFolder()), ref paths, ref not_imported, ref new_songs);
 		
 		// all songs remaining are no longer in folder hierarchy
 		dbm.remove_songs(paths);
@@ -215,11 +266,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 			save_songs();
 			
 			//maybe pass in songs_added, which appends those songs to the treeview?
-			music_rescanned(not_imported); 
+			music_rescanned(new_songs, not_imported); 
 			return false; 
 		});
 		
-		rescanning_folder = false;
+		doing_file_operations = false;
 		return null;
 	}
 	
@@ -425,10 +476,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 	/** make this smarter **/
 	public void add_song(Song s) {
 		//fill in rowid's
-		if(s.rowid == 0)
-			s.rowid = _songs.size + 1;
+		if(s.rowid == 0) {
+			int index = 1;
+			foreach(int i in _songs.keys) {
+				if(i > index)
+					index = i + 1;
+			}
+			s.rowid = index;
+		}
 		
 		_songs.set(s.rowid, s);
+		
+		song_added(s.rowid);
 	}
 	
 	public void remove_song_from_id(int id) {

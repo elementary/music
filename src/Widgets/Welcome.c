@@ -23,7 +23,7 @@ typedef struct _ElementaryWidgetsWelcomePrivate ElementaryWidgetsWelcomePrivate;
 #define __g_list_free__g_object_unref0_0(var) ((var == NULL) ? NULL : (var = (_g_list_free__g_object_unref0_ (var), NULL)))
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 #define _g_free0(var) (var = (g_free (var), NULL))
-typedef struct _Block7Data Block7Data;
+typedef struct _Block10Data Block10Data;
 
 struct _ElementaryWidgetsWelcome {
 	GtkVBox parent_instance;
@@ -36,7 +36,7 @@ struct _ElementaryWidgetsWelcomeClass {
 	GtkVBoxClass parent_class;
 };
 
-struct _Block7Data {
+struct _Block10Data {
 	int _ref_count_;
 	ElementaryWidgetsWelcome * self;
 	GtkButton* button;
@@ -54,10 +54,10 @@ static void _g_list_free__g_object_unref0_ (GList* self);
 ElementaryWidgetsWelcome* elementary_widgets_welcome_new (const gchar* title_text, const gchar* subtitle_text);
 ElementaryWidgetsWelcome* elementary_widgets_welcome_construct (GType object_type, const gchar* title_text, const gchar* subtitle_text);
 void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gchar* icon_name, const gchar* label_text, const gchar* description_text);
-static Block7Data* block7_data_ref (Block7Data* _data7_);
-static void block7_data_unref (Block7Data* _data7_);
-static gboolean _lambda9_ (Block7Data* _data7_);
-static gboolean __lambda9__gtk_widget_button_release_event (GtkWidget* _sender, GdkEventButton* event, gpointer self);
+static Block10Data* block10_data_ref (Block10Data* _data10_);
+static void block10_data_unref (Block10Data* _data10_);
+static gboolean _lambda12_ (Block10Data* _data10_);
+static gboolean __lambda12__gtk_widget_button_release_event (GtkWidget* _sender, GdkEventButton* event, gpointer self);
 static void elementary_widgets_welcome_finalize (GObject* obj);
 
 
@@ -146,17 +146,17 @@ ElementaryWidgetsWelcome* elementary_widgets_welcome_new (const gchar* title_tex
 }
 
 
-static Block7Data* block7_data_ref (Block7Data* _data7_) {
-	g_atomic_int_inc (&_data7_->_ref_count_);
-	return _data7_;
+static Block10Data* block10_data_ref (Block10Data* _data10_) {
+	g_atomic_int_inc (&_data10_->_ref_count_);
+	return _data10_;
 }
 
 
-static void block7_data_unref (Block7Data* _data7_) {
-	if (g_atomic_int_dec_and_test (&_data7_->_ref_count_)) {
-		_g_object_unref0 (_data7_->self);
-		_g_object_unref0 (_data7_->button);
-		g_slice_free (Block7Data, _data7_);
+static void block10_data_unref (Block10Data* _data10_) {
+	if (g_atomic_int_dec_and_test (&_data10_->_ref_count_)) {
+		_g_object_unref0 (_data10_->self);
+		_g_object_unref0 (_data10_->button);
+		g_slice_free (Block10Data, _data10_);
 	}
 }
 
@@ -166,13 +166,13 @@ static gpointer _g_object_ref0 (gpointer self) {
 }
 
 
-static gboolean _lambda9_ (Block7Data* _data7_) {
+static gboolean _lambda12_ (Block10Data* _data10_) {
 	ElementaryWidgetsWelcome * self;
 	gboolean result = FALSE;
 	gint _tmp0_;
 	gint index;
-	self = _data7_->self;
-	_tmp0_ = g_list_index (self->children, _data7_->button);
+	self = _data10_->self;
+	_tmp0_ = g_list_index (self->children, _data10_->button);
 	index = _tmp0_;
 	g_signal_emit_by_name (self, "activated", index);
 	result = FALSE;
@@ -180,15 +180,15 @@ static gboolean _lambda9_ (Block7Data* _data7_) {
 }
 
 
-static gboolean __lambda9__gtk_widget_button_release_event (GtkWidget* _sender, GdkEventButton* event, gpointer self) {
+static gboolean __lambda12__gtk_widget_button_release_event (GtkWidget* _sender, GdkEventButton* event, gpointer self) {
 	gboolean result;
-	result = _lambda9_ (self);
+	result = _lambda12_ (self);
 	return result;
 }
 
 
 void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gchar* icon_name, const gchar* label_text, const gchar* description_text) {
-	Block7Data* _data7_;
+	Block10Data* _data10_;
 	GtkButton* _tmp0_ = NULL;
 	GtkHBox* _tmp1_ = NULL;
 	GtkHBox* hbox;
@@ -212,12 +212,12 @@ void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gc
 	g_return_if_fail (icon_name != NULL);
 	g_return_if_fail (label_text != NULL);
 	g_return_if_fail (description_text != NULL);
-	_data7_ = g_slice_new0 (Block7Data);
-	_data7_->_ref_count_ = 1;
-	_data7_->self = g_object_ref (self);
+	_data10_ = g_slice_new0 (Block10Data);
+	_data10_->_ref_count_ = 1;
+	_data10_->self = g_object_ref (self);
 	_tmp0_ = (GtkButton*) gtk_button_new ();
-	_data7_->button = g_object_ref_sink (_tmp0_);
-	gtk_button_set_relief (_data7_->button, GTK_RELIEF_NONE);
+	_data10_->button = g_object_ref_sink (_tmp0_);
+	gtk_button_set_relief (_data10_->button, GTK_RELIEF_NONE);
 	_tmp1_ = (GtkHBox*) gtk_hbox_new (FALSE, 6);
 	hbox = g_object_ref_sink (_tmp1_);
 	_tmp2_ = (GtkImage*) gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_DIALOG);
@@ -246,18 +246,18 @@ void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gc
 	gtk_box_pack_end ((GtkBox*) vbox, (GtkWidget*) _tmp12_, TRUE, TRUE, (guint) 0);
 	_g_object_unref0 (_tmp12_);
 	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) vbox, FALSE, TRUE, (guint) 6);
-	gtk_container_add ((GtkContainer*) _data7_->button, (GtkWidget*) hbox);
-	_tmp13_ = _g_object_ref0 (_data7_->button);
+	gtk_container_add ((GtkContainer*) _data10_->button, (GtkWidget*) hbox);
+	_tmp13_ = _g_object_ref0 (_data10_->button);
 	self->children = g_list_append (self->children, _tmp13_);
-	gtk_box_pack_start ((GtkBox*) self->options, (GtkWidget*) _data7_->button, FALSE, FALSE, (guint) 0);
-	g_signal_connect_data ((GtkWidget*) _data7_->button, "button-release-event", (GCallback) __lambda9__gtk_widget_button_release_event, block7_data_ref (_data7_), (GClosureNotify) block7_data_unref, 0);
+	gtk_box_pack_start ((GtkBox*) self->options, (GtkWidget*) _data10_->button, FALSE, FALSE, (guint) 0);
+	g_signal_connect_data ((GtkWidget*) _data10_->button, "button-release-event", (GCallback) __lambda12__gtk_widget_button_release_event, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 	_g_object_unref0 (description);
 	_g_object_unref0 (label);
 	_g_object_unref0 (vbox);
 	_g_object_unref0 (icon);
 	_g_object_unref0 (hbox);
-	block7_data_unref (_data7_);
-	_data7_ = NULL;
+	block10_data_unref (_data10_);
+	_data10_ = NULL;
 }
 
 

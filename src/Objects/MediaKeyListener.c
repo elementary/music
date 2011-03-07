@@ -153,7 +153,7 @@ BeatBoxMediaKeyListener* beat_box_media_key_listener_construct (GType object_typ
 	_tmp4_ = dbus_g_bus_get (DBUS_BUS_SESSION, &_inner_error_);
 	connection = _tmp4_;
 	if (_inner_error_ != NULL) {
-		goto __catch59_g_error;
+		goto __catch60_g_error;
 	}
 	if (connection != NULL) {
 		DBusGProxy* _tmp5_ = NULL;
@@ -167,13 +167,13 @@ BeatBoxMediaKeyListener* beat_box_media_key_listener_construct (GType object_typ
 			_dynamic_GrabMediaPlayerKeys0 (self->priv->media_object, "beatbox", (guint32) 0, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_dbus_g_connection_unref0 (connection);
-				goto __catch59_g_error;
+				goto __catch60_g_error;
 			}
 		}
 	}
 	_dbus_g_connection_unref0 (connection);
-	goto __finally59;
-	__catch59_g_error:
+	goto __finally60;
+	__catch60_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -181,7 +181,7 @@ BeatBoxMediaKeyListener* beat_box_media_key_listener_construct (GType object_typ
 		fprintf (stdout, "Could not initialize media key listener: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally59:
+	__finally60:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);

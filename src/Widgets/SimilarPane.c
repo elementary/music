@@ -24,6 +24,16 @@ typedef struct _BeatBoxSimilarPane BeatBoxSimilarPane;
 typedef struct _BeatBoxSimilarPaneClass BeatBoxSimilarPaneClass;
 typedef struct _BeatBoxSimilarPanePrivate BeatBoxSimilarPanePrivate;
 
+#define BEAT_BOX_TYPE_SONG (beat_box_song_get_type ())
+#define BEAT_BOX_SONG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SONG, BeatBoxSong))
+#define BEAT_BOX_SONG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_SONG, BeatBoxSongClass))
+#define BEAT_BOX_IS_SONG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_SONG))
+#define BEAT_BOX_IS_SONG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_SONG))
+#define BEAT_BOX_SONG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_SONG, BeatBoxSongClass))
+
+typedef struct _BeatBoxSong BeatBoxSong;
+typedef struct _BeatBoxSongClass BeatBoxSongClass;
+
 #define BEAT_BOX_TYPE_LIBRARY_MANAGER (beat_box_library_manager_get_type ())
 #define BEAT_BOX_LIBRARY_MANAGER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_LIBRARY_MANAGER, BeatBoxLibraryManager))
 #define BEAT_BOX_LIBRARY_MANAGER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_LIBRARY_MANAGER, BeatBoxLibraryManagerClass))
@@ -43,16 +53,6 @@ typedef struct _BeatBoxLibraryManagerClass BeatBoxLibraryManagerClass;
 
 typedef struct _BeatBoxLibraryWindow BeatBoxLibraryWindow;
 typedef struct _BeatBoxLibraryWindowClass BeatBoxLibraryWindowClass;
-
-#define BEAT_BOX_TYPE_SONG (beat_box_song_get_type ())
-#define BEAT_BOX_SONG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SONG, BeatBoxSong))
-#define BEAT_BOX_SONG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_SONG, BeatBoxSongClass))
-#define BEAT_BOX_IS_SONG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_SONG))
-#define BEAT_BOX_IS_SONG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_SONG))
-#define BEAT_BOX_SONG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_SONG, BeatBoxSongClass))
-
-typedef struct _BeatBoxSong BeatBoxSong;
-typedef struct _BeatBoxSongClass BeatBoxSongClass;
 
 #define BEAT_BOX_TYPE_MUSIC_TREE_VIEW (beat_box_music_tree_view_get_type ())
 #define BEAT_BOX_MUSIC_TREE_VIEW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_MUSIC_TREE_VIEW, BeatBoxMusicTreeView))
@@ -181,6 +181,8 @@ typedef struct _BeatBoxPlaylistClass BeatBoxPlaylistClass;
 struct _BeatBoxSimilarPane {
 	GtkHPaned parent_instance;
 	BeatBoxSimilarPanePrivate * priv;
+	BeatBoxSong* _base;
+	GeeCollection* _have;
 };
 
 struct _BeatBoxSimilarPaneClass {
@@ -194,9 +196,7 @@ struct _BeatBoxSimilarPaneClass {
 struct _BeatBoxSimilarPanePrivate {
 	BeatBoxLibraryManager* _lm;
 	BeatBoxLibraryWindow* _lw;
-	BeatBoxSong* _base;
 	BeatBoxSong* _next;
-	GeeCollection* _have;
 	GeeCollection* _shouldHave;
 	GtkVBox* left;
 	GtkToolbar* toolbar;
@@ -223,8 +223,7 @@ struct _BeatBoxLibraryManager {
 	gboolean playing;
 	gboolean repeat;
 	gboolean shuffle;
-	gboolean setting_folder;
-	gboolean rescanning_folder;
+	gboolean doing_file_operations;
 };
 
 struct _BeatBoxLibraryManagerClass {
@@ -249,9 +248,9 @@ struct _BeatBoxSongInfoClass {
 static gpointer beat_box_similar_pane_parent_class = NULL;
 
 GType beat_box_similar_pane_get_type (void) G_GNUC_CONST;
+GType beat_box_song_get_type (void) G_GNUC_CONST;
 GType beat_box_library_manager_get_type (void) G_GNUC_CONST;
 GType beat_box_library_window_get_type (void) G_GNUC_CONST;
-GType beat_box_song_get_type (void) G_GNUC_CONST;
 GType beat_box_music_tree_view_get_type (void) G_GNUC_CONST;
 GType beat_box_similar_songs_view_get_type (void) G_GNUC_CONST;
 #define BEAT_BOX_SIMILAR_PANE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), BEAT_BOX_TYPE_SIMILAR_PANE, BeatBoxSimilarPanePrivate))
@@ -463,8 +462,8 @@ void beat_box_similar_pane_updateSongs (BeatBoxSimilarPane* self, BeatBoxSong* l
 	self->priv->_next = _tmp1_;
 	_tmp2_ = _g_object_ref0 (have);
 	_tmp3_ = _tmp2_;
-	_g_object_unref0 (self->priv->_have);
-	self->priv->_have = _tmp3_;
+	_g_object_unref0 (self->_have);
+	self->_have = _tmp3_;
 	_tmp4_ = _g_object_ref0 (shouldHave);
 	_tmp5_ = _tmp4_;
 	_g_object_unref0 (self->priv->_shouldHave);
@@ -561,16 +560,16 @@ void beat_box_similar_pane_updateDisplay (BeatBoxSimilarPane* self) {
 	if (_tmp0_) {
 		do_transfer = TRUE;
 	}
-	beat_box_music_tree_view_populateView (self->priv->similars, self->priv->_have, FALSE);
+	beat_box_music_tree_view_populateView (self->priv->similars, self->_have, FALSE);
 	beat_box_similar_songs_view_populateView (self->priv->ssv, self->priv->_shouldHave);
 	_tmp13_ = _g_object_ref0 (self->priv->_next);
 	_tmp14_ = _tmp13_;
-	_g_object_unref0 (self->priv->_base);
-	self->priv->_base = _tmp14_;
-	_tmp15_ = beat_box_song_get_title (self->priv->_base);
+	_g_object_unref0 (self->_base);
+	self->_base = _tmp14_;
+	_tmp15_ = beat_box_song_get_title (self->_base);
 	_tmp16_ = g_strconcat ("Songs similar to <b>", _tmp15_, NULL);
 	_tmp17_ = g_strconcat (_tmp16_, "</b> by <b>", NULL);
-	_tmp18_ = beat_box_song_get_artist (self->priv->_base);
+	_tmp18_ = beat_box_song_get_artist (self->_base);
 	_tmp19_ = g_strconcat (_tmp17_, _tmp18_, NULL);
 	_tmp20_ = g_strconcat (_tmp19_, "</b>", NULL);
 	gtk_label_set_markup (self->priv->toolInfo, _tmp20_);
@@ -623,7 +622,7 @@ static void beat_box_similar_pane_real_saveClicked (BeatBoxSimilarPane* self) {
 	g_return_if_fail (self != NULL);
 	_tmp0_ = beat_box_playlist_new ();
 	p = _tmp0_;
-	_tmp1_ = beat_box_song_get_title (self->priv->_base);
+	_tmp1_ = beat_box_song_get_title (self->_base);
 	_tmp2_ = g_strconcat ("Similar to ", _tmp1_, NULL);
 	beat_box_playlist_set_name (p, _tmp2_);
 	_g_free0 (_tmp2_);
@@ -709,9 +708,9 @@ static void beat_box_similar_pane_finalize (GObject* obj) {
 	self = BEAT_BOX_SIMILAR_PANE (obj);
 	_g_object_unref0 (self->priv->_lm);
 	_g_object_unref0 (self->priv->_lw);
-	_g_object_unref0 (self->priv->_base);
+	_g_object_unref0 (self->_base);
 	_g_object_unref0 (self->priv->_next);
-	_g_object_unref0 (self->priv->_have);
+	_g_object_unref0 (self->_have);
 	_g_object_unref0 (self->priv->_shouldHave);
 	_g_object_unref0 (self->priv->left);
 	_g_object_unref0 (self->priv->toolbar);

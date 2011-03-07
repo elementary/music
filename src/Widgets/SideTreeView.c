@@ -89,6 +89,17 @@ typedef struct _BeatBoxMusicTreeViewClass BeatBoxMusicTreeViewClass;
 
 typedef struct _BeatBoxSong BeatBoxSong;
 typedef struct _BeatBoxSongClass BeatBoxSongClass;
+
+#define BEAT_BOX_TYPE_SIMILAR_PANE (beat_box_similar_pane_get_type ())
+#define BEAT_BOX_SIMILAR_PANE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SIMILAR_PANE, BeatBoxSimilarPane))
+#define BEAT_BOX_SIMILAR_PANE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_SIMILAR_PANE, BeatBoxSimilarPaneClass))
+#define BEAT_BOX_IS_SIMILAR_PANE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_SIMILAR_PANE))
+#define BEAT_BOX_IS_SIMILAR_PANE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_SIMILAR_PANE))
+#define BEAT_BOX_SIMILAR_PANE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_SIMILAR_PANE, BeatBoxSimilarPaneClass))
+
+typedef struct _BeatBoxSimilarPane BeatBoxSimilarPane;
+typedef struct _BeatBoxSimilarPaneClass BeatBoxSimilarPaneClass;
+typedef struct _BeatBoxSimilarPanePrivate BeatBoxSimilarPanePrivate;
 typedef struct _BeatBoxMusicTreeViewPrivate BeatBoxMusicTreeViewPrivate;
 
 #define BEAT_BOX_TYPE_SMART_PLAYLIST_EDITOR (beat_box_smart_playlist_editor_get_type ())
@@ -150,6 +161,21 @@ struct _BeatBoxSideTreeViewPrivate {
 	GtkWidget* current_widget;
 };
 
+struct _BeatBoxSimilarPane {
+	GtkHPaned parent_instance;
+	BeatBoxSimilarPanePrivate * priv;
+	BeatBoxSong* _base;
+	GeeCollection* _have;
+};
+
+struct _BeatBoxSimilarPaneClass {
+	GtkHPanedClass parent_class;
+	void (*refreshClicked) (BeatBoxSimilarPane* self);
+	void (*transferPlaybackClicked) (BeatBoxSimilarPane* self);
+	void (*saveClicked) (BeatBoxSimilarPane* self);
+	void (*paneHandleSet) (BeatBoxSimilarPane* self, GdkRectangle* rectangle);
+};
+
 struct _BeatBoxMusicTreeView {
 	GtkScrolledWindow parent_instance;
 	BeatBoxMusicTreeViewPrivate * priv;
@@ -177,6 +203,7 @@ struct _BeatBoxMusicTreeViewClass {
 	void (*songMenuEditClicked) (BeatBoxMusicTreeView* self);
 	void (*songEditorSaved) (BeatBoxMusicTreeView* self, GeeLinkedList* songs);
 	void (*songMenuQueueClicked) (BeatBoxMusicTreeView* self);
+	void (*songMenuNewPlaylistClicked) (BeatBoxMusicTreeView* self);
 	void (*songRemoveClicked) (BeatBoxMusicTreeView* self);
 	void (*songRateSong0Clicked) (BeatBoxMusicTreeView* self);
 	void (*songRateSong1Clicked) (BeatBoxMusicTreeView* self);
@@ -184,8 +211,7 @@ struct _BeatBoxMusicTreeViewClass {
 	void (*songRateSong3Clicked) (BeatBoxMusicTreeView* self);
 	void (*songRateSong4Clicked) (BeatBoxMusicTreeView* self);
 	void (*songRateSong5Clicked) (BeatBoxMusicTreeView* self);
-	gboolean (*viewScroll) (BeatBoxMusicTreeView* self, GtkScrollType scroll, gboolean horizontal);
-	void (*viewAdjusted) (BeatBoxMusicTreeView* self, GtkAdjustment* hadjustment, GtkAdjustment* vadjustment);
+	void (*viewScroll) (BeatBoxMusicTreeView* self);
 };
 
 
@@ -241,8 +267,11 @@ gint beat_box_song_get_length (BeatBoxSong* self);
 gint beat_box_song_get_file_size (BeatBoxSong* self);
 void beat_box_library_window_setStatusBarText (BeatBoxLibraryWindow* self, const gchar* text);
 static gboolean beat_box_side_tree_view_real_sideListClick (BeatBoxSideTreeView* self, GdkEventButton* event);
+GType beat_box_similar_pane_get_type (void) G_GNUC_CONST;
 GeeLinkedList* beat_box_library_manager_songs_from_smart_playlist (BeatBoxLibraryManager* self, gint id);
 gint beat_box_smart_playlist_get_rowid (BeatBoxSmartPlaylist* self);
+GeeLinkedList* beat_box_library_manager_songs_from_playlist (BeatBoxLibraryManager* self, gint id);
+gint beat_box_playlist_get_rowid (BeatBoxPlaylist* self);
 void beat_box_side_tree_view_resetView (BeatBoxSideTreeView* self);
 static void beat_box_side_tree_view_real_smartPlaylistMenuNewClicked (BeatBoxSideTreeView* self);
 BeatBoxSmartPlaylist* beat_box_smart_playlist_new (void);
@@ -265,9 +294,7 @@ GType beat_box_playlist_name_window_get_type (void) G_GNUC_CONST;
 void beat_box_side_tree_view_playlistNameWindowSaved (BeatBoxSideTreeView* self, BeatBoxPlaylist* p);
 static void _beat_box_side_tree_view_playlistNameWindowSaved_beat_box_playlist_name_window_playlist_saved (BeatBoxPlaylistNameWindow* _sender, BeatBoxPlaylist* p, gpointer self);
 static void beat_box_side_tree_view_real_playlistNameWindowSaved (BeatBoxSideTreeView* self, BeatBoxPlaylist* p);
-gint beat_box_playlist_get_rowid (BeatBoxPlaylist* self);
 const gchar* beat_box_playlist_get_name (BeatBoxPlaylist* self);
-GeeLinkedList* beat_box_library_manager_songs_from_playlist (BeatBoxLibraryManager* self, gint id);
 gint beat_box_library_manager_add_playlist (BeatBoxLibraryManager* self, BeatBoxPlaylist* p);
 static void beat_box_side_tree_view_real_playlistMenuEditClicked (BeatBoxSideTreeView* self);
 static void beat_box_side_tree_view_real_playlistMenuRemoveClicked (BeatBoxSideTreeView* self);
@@ -1218,15 +1245,35 @@ static gboolean beat_box_side_tree_view_real_sideListClick (BeatBoxSideTreeView*
 			_g_free0 (parent_name);
 		} else {
 			if (_gtk_tree_iter_equal (&iter, &self->library_iter) == TRUE) {
+				result = TRUE;
+				_g_free0 (name);
+				_g_object_unref0 (column);
+				_gtk_tree_path_free0 (path);
+				return result;
 			} else {
 				if (_gtk_tree_iter_equal (&iter, &self->devices_iter) == TRUE) {
+					result = TRUE;
+					_g_free0 (name);
+					_g_object_unref0 (column);
+					_gtk_tree_path_free0 (path);
+					return result;
 				} else {
 					if (_gtk_tree_iter_equal (&iter, &self->network_iter) == TRUE) {
+						result = TRUE;
+						_g_free0 (name);
+						_g_object_unref0 (column);
+						_gtk_tree_path_free0 (path);
+						return result;
 					} else {
 						if (_gtk_tree_iter_equal (&iter, &self->playlists_iter) == TRUE) {
 							guint32 _tmp11_;
 							_tmp11_ = gtk_get_current_event_time ();
 							gtk_menu_popup (self->priv->playlistMenu, NULL, NULL, NULL, NULL, (guint) 3, _tmp11_);
+							result = TRUE;
+							_g_free0 (name);
+							_g_object_unref0 (column);
+							_gtk_tree_path_free0 (path);
+							return result;
 						}
 					}
 				}
@@ -1291,52 +1338,95 @@ static gboolean beat_box_side_tree_view_real_sideListClick (BeatBoxSideTreeView*
 				_tmp22_ = gtk_tree_view_get_selection ((GtkTreeView*) self);
 				gtk_tree_selection_select_iter (_tmp22_, &iter);
 				gtk_tree_model_get ((GtkTreeModel*) self->priv->sideTreeModel, &parent, 2, &parent_name, -1);
-				if (_gtk_tree_iter_equal (&iter, &self->playlists_queue_iter) == TRUE) {
-					BeatBoxMusicTreeView* _tmp23_;
-					BeatBoxMusicTreeView* mtv;
-					GeeCollection* _tmp24_ = NULL;
-					GeeCollection* _tmp25_;
-					_tmp23_ = _g_object_ref0 (BEAT_BOX_MUSIC_TREE_VIEW (w));
-					mtv = _tmp23_;
-					_tmp24_ = beat_box_library_manager_queue (self->priv->lm);
-					_tmp25_ = _tmp24_;
-					beat_box_music_tree_view_populateView (mtv, _tmp25_, FALSE);
-					_g_object_unref0 (_tmp25_);
-					_g_object_unref0 (mtv);
+				if (_gtk_tree_iter_equal (&iter, &self->playlists_similar_iter) == TRUE) {
+					gboolean _tmp23_ = FALSE;
+					if (BEAT_BOX_SIMILAR_PANE (w)->_base == NULL) {
+						_tmp23_ = TRUE;
+					} else {
+						gint _tmp24_;
+						_tmp24_ = gee_collection_get_size (BEAT_BOX_SIMILAR_PANE (w)->_have);
+						_tmp23_ = _tmp24_ == 0;
+					}
+					if (_tmp23_) {
+						result = TRUE;
+						_g_free0 (parent_name);
+						_g_free0 (name);
+						_g_object_unref0 (w);
+						_g_object_unref0 (o);
+						_g_object_unref0 (column);
+						_gtk_tree_path_free0 (path);
+						return result;
+					}
 				} else {
-					if (_gtk_tree_iter_equal (&iter, &self->playlists_history_iter) == TRUE) {
-						BeatBoxMusicTreeView* _tmp26_;
+					if (_gtk_tree_iter_equal (&iter, &self->playlists_queue_iter) == TRUE) {
+						BeatBoxMusicTreeView* _tmp25_;
 						BeatBoxMusicTreeView* mtv;
-						GeeLinkedList* _tmp27_ = NULL;
-						GeeLinkedList* _tmp28_;
-						_tmp26_ = _g_object_ref0 (BEAT_BOX_MUSIC_TREE_VIEW (w));
-						mtv = _tmp26_;
-						_tmp27_ = beat_box_library_manager_already_played (self->priv->lm);
-						_tmp28_ = _tmp27_;
-						beat_box_music_tree_view_populateView (mtv, (GeeCollection*) _tmp28_, FALSE);
-						_g_object_unref0 (_tmp28_);
+						GeeCollection* _tmp26_ = NULL;
+						GeeCollection* _tmp27_;
+						_tmp25_ = _g_object_ref0 (BEAT_BOX_MUSIC_TREE_VIEW (w));
+						mtv = _tmp25_;
+						_tmp26_ = beat_box_library_manager_queue (self->priv->lm);
+						_tmp27_ = _tmp26_;
+						beat_box_music_tree_view_populateView (mtv, _tmp27_, FALSE);
+						_g_object_unref0 (_tmp27_);
 						_g_object_unref0 (mtv);
 					} else {
-						gboolean _tmp29_ = FALSE;
-						if (_gtk_tree_iter_equal (&parent, &self->playlists_iter) == TRUE) {
-							_tmp29_ = BEAT_BOX_IS_SMART_PLAYLIST (o);
-						} else {
-							_tmp29_ = FALSE;
-						}
-						if (_tmp29_) {
-							BeatBoxMusicTreeView* _tmp30_;
+						if (_gtk_tree_iter_equal (&iter, &self->playlists_history_iter) == TRUE) {
+							BeatBoxMusicTreeView* _tmp28_;
 							BeatBoxMusicTreeView* mtv;
-							gint _tmp31_;
-							GeeLinkedList* _tmp32_ = NULL;
-							GeeLinkedList* _tmp33_;
-							_tmp30_ = _g_object_ref0 (BEAT_BOX_MUSIC_TREE_VIEW (w));
-							mtv = _tmp30_;
-							_tmp31_ = beat_box_smart_playlist_get_rowid (BEAT_BOX_SMART_PLAYLIST (o));
-							_tmp32_ = beat_box_library_manager_songs_from_smart_playlist (self->priv->lm, _tmp31_);
-							_tmp33_ = _tmp32_;
-							beat_box_music_tree_view_populateView (mtv, (GeeCollection*) _tmp33_, FALSE);
-							_g_object_unref0 (_tmp33_);
+							GeeLinkedList* _tmp29_ = NULL;
+							GeeLinkedList* _tmp30_;
+							_tmp28_ = _g_object_ref0 (BEAT_BOX_MUSIC_TREE_VIEW (w));
+							mtv = _tmp28_;
+							_tmp29_ = beat_box_library_manager_already_played (self->priv->lm);
+							_tmp30_ = _tmp29_;
+							beat_box_music_tree_view_populateView (mtv, (GeeCollection*) _tmp30_, FALSE);
+							_g_object_unref0 (_tmp30_);
 							_g_object_unref0 (mtv);
+						} else {
+							gboolean _tmp31_ = FALSE;
+							if (_gtk_tree_iter_equal (&parent, &self->playlists_iter) == TRUE) {
+								_tmp31_ = BEAT_BOX_IS_SMART_PLAYLIST (o);
+							} else {
+								_tmp31_ = FALSE;
+							}
+							if (_tmp31_) {
+								BeatBoxMusicTreeView* _tmp32_;
+								BeatBoxMusicTreeView* mtv;
+								gint _tmp33_;
+								GeeLinkedList* _tmp34_ = NULL;
+								GeeLinkedList* _tmp35_;
+								_tmp32_ = _g_object_ref0 (BEAT_BOX_MUSIC_TREE_VIEW (w));
+								mtv = _tmp32_;
+								_tmp33_ = beat_box_smart_playlist_get_rowid (BEAT_BOX_SMART_PLAYLIST (o));
+								_tmp34_ = beat_box_library_manager_songs_from_smart_playlist (self->priv->lm, _tmp33_);
+								_tmp35_ = _tmp34_;
+								beat_box_music_tree_view_populateView (mtv, (GeeCollection*) _tmp35_, FALSE);
+								_g_object_unref0 (_tmp35_);
+								_g_object_unref0 (mtv);
+							} else {
+								gboolean _tmp36_ = FALSE;
+								if (_gtk_tree_iter_equal (&parent, &self->playlists_iter) == TRUE) {
+									_tmp36_ = BEAT_BOX_IS_PLAYLIST (o);
+								} else {
+									_tmp36_ = FALSE;
+								}
+								if (_tmp36_) {
+									BeatBoxMusicTreeView* _tmp37_;
+									BeatBoxMusicTreeView* mtv;
+									gint _tmp38_;
+									GeeLinkedList* _tmp39_ = NULL;
+									GeeLinkedList* _tmp40_;
+									_tmp37_ = _g_object_ref0 (BEAT_BOX_MUSIC_TREE_VIEW (w));
+									mtv = _tmp37_;
+									_tmp38_ = beat_box_playlist_get_rowid (BEAT_BOX_PLAYLIST (o));
+									_tmp39_ = beat_box_library_manager_songs_from_playlist (self->priv->lm, _tmp38_);
+									_tmp40_ = _tmp39_;
+									beat_box_music_tree_view_populateView (mtv, (GeeCollection*) _tmp40_, FALSE);
+									_g_object_unref0 (_tmp40_);
+									_g_object_unref0 (mtv);
+								}
+							}
 						}
 					}
 				}

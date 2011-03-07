@@ -75,7 +75,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.lm.music_added.connect(musicAdded);
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
-		this.lm.song_removed.connect(songRemovedFromManager);
+		this.lm.song_added.connect(song_added);
+		this.lm.song_removed.connect(song_removed);
 		this.lm.song_played.connect(song_played);
 		this.lm.songs_updated.connect(songs_updated);
 		
@@ -813,7 +814,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	public virtual void musicRescanned(LinkedList<string> not_imported) {
+	public virtual void musicRescanned(LinkedList<Song> new_songs, LinkedList<string> not_imported) {
 		//sideTree.resetView();
 		topDisplay.show_scale();
 		
@@ -828,12 +829,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//Widget w = sideTree.getWidget(sideTree.library_music_iter);
 		//((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
-		updateSensitivities();
+		foreach(Song s in new_songs) {
+			stdout.printf("NEW SONG %s by %s\n", s.title, s.artist);
+			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
+		}
 		
-		lm.save_songs();
+		updateSensitivities();
 	}
 	
-	public virtual void songRemovedFromManager(int id) {
+	public virtual void song_added(int id) {
+		
+	}
+	
+	public virtual void song_removed(int id) {
 		updateSensitivities();
 	}
 	
@@ -933,7 +941,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void welcomeScreenActivated(int index) {
-		if(!lm.setting_folder && index == 0) {
+		if(!lm.doing_file_operations && index == 0) {
 			string folder = "";
             var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
                                       FileChooserAction.SELECT_FOLDER,

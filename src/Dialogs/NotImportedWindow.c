@@ -60,14 +60,14 @@ enum  {
 };
 BeatBoxNotImportedWindow* beat_box_not_imported_window_new (GeeLinkedList* files);
 BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_type, GeeLinkedList* files);
-static void _lambda16_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBoxNotImportedWindow* self);
-static void __lambda16__gtk_cell_renderer_toggle_toggled (GtkCellRendererToggle* _sender, const gchar* path, gpointer self);
+static void _lambda19_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBoxNotImportedWindow* self);
+static void __lambda19__gtk_cell_renderer_toggle_toggled (GtkCellRendererToggle* _sender, const gchar* path, gpointer self);
 void beat_box_not_imported_window_moveToTrashClick (BeatBoxNotImportedWindow* self);
 static void _beat_box_not_imported_window_moveToTrashClick_gtk_button_clicked (GtkButton* _sender, gpointer self);
 void beat_box_not_imported_window_trashAllToggled (BeatBoxNotImportedWindow* self);
 static void _beat_box_not_imported_window_trashAllToggled_gtk_toggle_button_toggled (GtkToggleButton* _sender, gpointer self);
-static void _lambda17_ (BeatBoxNotImportedWindow* self);
-static void __lambda17__gtk_button_clicked (GtkButton* _sender, gpointer self);
+static void _lambda20_ (BeatBoxNotImportedWindow* self);
+static void __lambda20__gtk_button_clicked (GtkButton* _sender, gpointer self);
 GtkAlignment* beat_box_not_imported_window_wrap_alignment (GtkWidget* widget, gint top, gint right, gint bottom, gint left);
 gboolean beat_box_not_imported_window_selectAll (BeatBoxNotImportedWindow* self, GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter);
 gboolean beat_box_not_imported_window_unselectAll (BeatBoxNotImportedWindow* self, GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter);
@@ -87,7 +87,7 @@ static gpointer _g_object_ref0 (gpointer self) {
 }
 
 
-static void _lambda16_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBoxNotImportedWindow* self) {
+static void _lambda19_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBoxNotImportedWindow* self) {
 	GtkTreePath* _tmp0_ = NULL;
 	GtkTreePath* tree_path;
 	GtkTreeIter iter = {0};
@@ -105,8 +105,8 @@ static void _lambda16_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBo
 }
 
 
-static void __lambda16__gtk_cell_renderer_toggle_toggled (GtkCellRendererToggle* _sender, const gchar* path, gpointer self) {
-	_lambda16_ (_sender, path, self);
+static void __lambda19__gtk_cell_renderer_toggle_toggled (GtkCellRendererToggle* _sender, const gchar* path, gpointer self) {
+	_lambda19_ (_sender, path, self);
 }
 
 
@@ -120,13 +120,13 @@ static void _beat_box_not_imported_window_trashAllToggled_gtk_toggle_button_togg
 }
 
 
-static void _lambda17_ (BeatBoxNotImportedWindow* self) {
+static void _lambda20_ (BeatBoxNotImportedWindow* self) {
 	gtk_object_destroy ((GtkObject*) self);
 }
 
 
-static void __lambda17__gtk_button_clicked (GtkButton* _sender, gpointer self) {
-	_lambda17_ (self);
+static void __lambda20__gtk_button_clicked (GtkButton* _sender, gpointer self) {
+	_lambda20_ (self);
 }
 
 
@@ -257,7 +257,7 @@ BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_t
 	gtk_label_set_line_wrap (info, FALSE);
 	_tmp37_ = (GtkCellRendererToggle*) gtk_cell_renderer_toggle_new ();
 	toggle = g_object_ref_sink (_tmp37_);
-	g_signal_connect_object (toggle, "toggled", (GCallback) __lambda16__gtk_cell_renderer_toggle_toggled, self, 0);
+	g_signal_connect_object (toggle, "toggled", (GCallback) __lambda19__gtk_cell_renderer_toggle_toggled, self, 0);
 	_tmp38_ = gtk_tree_view_column_new ();
 	column = g_object_ref_sink (_tmp38_);
 	gtk_tree_view_column_set_title (column, "del");
@@ -325,7 +325,7 @@ BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_t
 	gtk_box_pack_start ((GtkBox*) self->priv->padding, (GtkWidget*) self->priv->content, TRUE, TRUE, (guint) 10);
 	g_signal_connect_object (self->priv->moveToTrash, "clicked", (GCallback) _beat_box_not_imported_window_moveToTrashClick_gtk_button_clicked, self, 0);
 	g_signal_connect_object ((GtkToggleButton*) self->priv->trashAll, "toggled", (GCallback) _beat_box_not_imported_window_trashAllToggled_gtk_toggle_button_toggled, self, 0);
-	g_signal_connect_object (okButton, "clicked", (GCallback) __lambda17__gtk_button_clicked, self, 0);
+	g_signal_connect_object (okButton, "clicked", (GCallback) __lambda20__gtk_button_clicked, self, 0);
 	gtk_container_add ((GtkContainer*) self, (GtkWidget*) self->priv->padding);
 	gtk_widget_show_all ((GtkWidget*) self);
 	_g_object_unref0 (bottomButtons);
@@ -437,11 +437,11 @@ gboolean beat_box_not_imported_window_deleteSelectedItems (BeatBoxNotImportedWin
 		g_file_trash (file, NULL, &_inner_error_);
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (file);
-			goto __catch54_g_error;
+			goto __catch55_g_error;
 		}
 		_g_object_unref0 (file);
-		goto __finally54;
-		__catch54_g_error:
+		goto __finally55;
+		__catch55_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -449,7 +449,7 @@ gboolean beat_box_not_imported_window_deleteSelectedItems (BeatBoxNotImportedWin
 			fprintf (stdout, "Could not move file %s to recycle: %s\n", location, err->message);
 			_g_error_free0 (err);
 		}
-		__finally54:
+		__finally55:
 		if (_inner_error_ != NULL) {
 			_g_free0 (location);
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
