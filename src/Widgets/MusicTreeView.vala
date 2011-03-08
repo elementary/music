@@ -92,6 +92,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		not_starred = this.render_icon("not-starred", IconSize.MENU, null);
 		
 		lm.songs_updated.connect(songs_updated);
+		lm.songs_removed.connect(songs_removed);
 		lm.song_played.connect(song_played);
 		lm.current_cleared.connect(current_cleared);
 		
@@ -722,9 +723,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			setAsCurrentList(null);
 	}
 	
-	public virtual void song_removed(int id) {
-		//this is when song is removed from entire library. search and remove
-		//if in any treeviews
+	public virtual void songs_removed(LinkedList<int> ids) {
+		foreach(int id in ids) {
+			stdout.printf("removing id %d\n", id);
+			removeSong(id);
+		}
 	}
 	
 	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
@@ -1017,6 +1020,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public virtual void songRemoveClicked() {
 		TreeSelection selected = view.get_selection();
 		selected.set_mode(SelectionMode.MULTIPLE);
+		
+		LinkedList<Song> toRemove = new LinkedList<Song>();
 		TreeModel temp;
 		
 		/* reverse list of selected rows so when we remove multiple rows
@@ -1045,22 +1050,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				removeSong(id);
 			}
 			else if(hint == "music") {
-				//should prompt user about being sure about this and annoy them
-				try {
-					lm.remove_song_from_id(s.rowid);
-					removeSong(id);
-					var file = File.new_for_path(s.file);
-					file.trash();
-				}
-				catch(GLib.Error err) {
-					stdout.printf("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s.file, err.message);
-					
-					//tell the user the file could not be moved and ask if they'd like to delete permanently instead.
-				}
+				toRemove.add(s);
 			}
-			
-			//must somehow update all other views if removed from collection
 		}
+		
+		lm.remove_songs(toRemove);
 	}
 	
 	public virtual void songRateSong0Clicked() {
@@ -1192,7 +1186,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public void scrollToCurrent() {
 		if(is_current && lm.song_info.song != null && _rows.has_key(lm.current_index)) {
 			view.scroll_to_cell(new TreePath.from_string(lm.current_index.to_string()), null, false, 0.0f, 0.0f);
-			stdout.printf("scrolled to %s\n", _rows.get(lm.current_index).get_path().to_string());
 		}
 	}
 	
@@ -1205,7 +1198,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				return false;
 			});
 			
-			stdout.printf("not horizontal, setting as true\n");
 			scrolled_recently = true;
 		}
 	}

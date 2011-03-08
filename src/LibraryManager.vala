@@ -8,6 +8,7 @@ using Gtk;
 public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.Settings settings;
 	public BeatBox.DataBaseManager dbm;
+	public BeatBox.DataBaseUpdater dbu;
 	public BeatBox.FileOperator fo;
 	public BeatBox.StreamPlayer player;
 	
@@ -47,8 +48,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public signal void current_cleared();
 	public signal void song_added(int id);
-	public signal void songs_updated(Collection<int> ids);
-	public signal void song_removed(int id);
+	public signal void songs_updated(LinkedList<int> ids);
+	public signal void songs_removed(LinkedList<int> ids);
 	public signal void song_queued(int id);
 	public signal void song_played(int id, int old_id);
 	
@@ -57,6 +58,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		this.settings = sett;
 		
 		this.dbm = dbmn;
+		this.dbu = new DataBaseUpdater(dbm);
 		this.fo = new BeatBox.FileOperator(this, settings);
 		
 		fo.fo_progress.connect(dbProgress);
@@ -250,6 +252,7 @@ public class BeatBox.LibraryManager : GLib.Object {
         
 	public void* rescan_music_thread_function () {
 		LinkedList<string> paths = new LinkedList<string>();
+		LinkedList<int> removed = new LinkedList<int>();
 		
 		foreach(Song s in _songs.values) {
 				paths.add(s.file);
@@ -262,6 +265,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		fo.rescan_music(GLib.File.new_for_path(settings.getMusicFolder()), ref paths, ref not_imported, ref new_songs);
 		
 		// all songs remaining are no longer in folder hierarchy
+		foreach(Song s in _songs.values) {
+			foreach(string path in paths) {
+				if(s.file == path)
+					removed.add(s.rowid);
+			}
+		}
+		
 		dbm.remove_songs(paths);
 		
 		Idle.add( () => { 
@@ -399,25 +409,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Song s in updates) {
 			_songs.set(s.rowid, s);
 			
-			if(updateMeta)
-				fo.save_song(s);
-			
-			if(settings.getUpdateFolderHierarchy() && updateMeta)
-				fo.update_file_hierarchy(s, true);
-				
-			stdout.printf(""); //otherwise it goes to fast????
-			
 			rv.add(s.rowid);
 		}
 		
-		/*try {
-			Thread.create<void*>( () => { dbm.update_songs(updates); return null; }, false);
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not create thread to update songs: %s\n", err.message);
-		}*/
-		
 		songs_updated(rv);
+		
+		/* now do background work */
+		if(updateMeta)
+			fo.save_songs(updates);
+		
+		dbu.updateItem(updates);
 	}
 	
 	public void save_songs() {
@@ -493,24 +494,22 @@ public class BeatBox.LibraryManager : GLib.Object {
 		song_added(s.rowid);
 	}
 	
-	public void remove_song_from_id(int id) {
+	public void remove_songs(LinkedList<Song> toRemove) {
+		LinkedList<int> removedIds = new LinkedList<int>();
+		LinkedList<string> removePaths = new LinkedList<string>();
+		
 		//string file_path = song_from_id(id).file;
-		_songs.unset(id);
-		
-		song_removed(id);
-		
-		/*try {
-			Thread.create<void*>( () => { 
-				LinkedList<string> one = new LinkedList<string>();
-				one.add(file_path);
-				dbm.remove_songs(one);
-				
-				return null; 
-			}, false);
+		foreach(Song s in toRemove) {
+			_songs.unset(s.rowid);
+			
+			removedIds.add(s.rowid);
+			removePaths.add(s.file);
 		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not create thread to remove song: %s\n", err.message);
-		}*/
+		
+		songs_removed(removedIds);
+		
+		dbu.removeItem(removePaths);
+		fo.remove_songs(removePaths);
 	}
 	
 	/**************** Queue Stuff **************************/

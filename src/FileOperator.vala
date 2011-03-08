@@ -5,7 +5,8 @@ public class BeatBox.FileOperator : Object {
 	private BeatBox.LibraryManager lm;
 	private BeatBox.Settings settings;
 	
-	Song temp_song;
+	bool inThread;
+	LinkedList<Song> toSave;
 	
 	int index;
 	int item_count;
@@ -14,6 +15,8 @@ public class BeatBox.FileOperator : Object {
 	public FileOperator(BeatBox.LibraryManager lmm, BeatBox.Settings sett) {
 		lm = lmm;
 		settings = sett;
+		inThread = false;
+		toSave = new LinkedList<Song>();
 	}
 	
 	public void resetProgress(int items) {
@@ -278,44 +281,60 @@ public class BeatBox.FileOperator : Object {
 		return rv;
 	}
 	
-	public void save_song(Song s) {
-		temp_song = s;
-		
-		try {
-				Thread.create<void*>(save_song_thread, false);
+	public void save_songs(Collection<Song> to_save) {
+		foreach(Song s in to_save) {
+			if(!(toSave.contains(s)))
+				toSave.offer(s);
 		}
-		catch(GLib.Error err) {
+		
+		if(!inThread) {
+			try {
+				inThread = true;
+				Thread.create<void*>(save_song_thread, false);
+			}
+			catch(GLib.Error err) {
 				stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+			}
 		}
 	}
         
 	public void* save_song_thread () {
-		TagLib.File tag_file;
-		
-		stdout.printf("Saving file %s \n", temp_song.file);
-		tag_file = new TagLib.File(temp_song.file);
-		
-		if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
-			try {
-				tag_file.tag.title = temp_song.title;
-				tag_file.tag.artist = temp_song.artist;
-				tag_file.tag.album = temp_song.album;
-				tag_file.tag.genre = temp_song.genre;
-				tag_file.tag.comment = temp_song.comment;
-				tag_file.tag.year = temp_song.year;
-				tag_file.tag.track  = temp_song.track;
-				
-				tag_file.save();
+		while(true) {
+			Song s = toSave.poll();
+			
+			if(s == null) {
+				inThread = false;
+				return null;
 			}
-			finally {
-				
+			
+			TagLib.File tag_file;
+			
+			stdout.printf("Saving file %s \n", s.file);
+			tag_file = new TagLib.File(s.file);
+			
+			if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
+				try {
+					tag_file.tag.title = s.title;
+					tag_file.tag.artist = s.artist;
+					tag_file.tag.album = s.album;
+					tag_file.tag.genre = s.genre;
+					tag_file.tag.comment = s.comment;
+					tag_file.tag.year = s.year;
+					tag_file.tag.track  = s.track;
+					
+					tag_file.save();
+				}
+				finally {
+					
+				}
 			}
+			else {
+				stdout.printf("Could not save %s.\n", s.file);
+			}
+			
+			if(settings.getUpdateFolderHierarchy())
+				update_file_hierarchy(s, true);
 		}
-		else {
-			stdout.printf("Could not save %s.\n", temp_song.file);
-		}
-		
-		return null;
 	}
 	
 	public void update_file_hierarchy(Song s, bool delete_old) {
@@ -330,11 +349,15 @@ public class BeatBox.FileOperator : Object {
 			
 			/* make sure that the parent folders exist */
 			if(!dest.get_parent().query_exists()) {
+				stdout.printf("album folder %s does not exist\n", dest.get_parent().get_path());
 				try {
 					dest.get_parent().make_directory(null);
 					
-					if(!dest.get_parent().get_parent().query_exists())
+					if(!dest.get_parent().get_parent().query_exists()) {
+						stdout.printf("artist folder %s does not exist\n", dest.get_parent().get_parent().get_path());
 						dest.get_parent().get_parent().make_directory(null);
+						
+					}
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not create folder to copy to: %s\n", err.message);
@@ -372,6 +395,34 @@ public class BeatBox.FileOperator : Object {
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not copy imported song %s to media folder: %s\n", s.file, err.message);
+		}
+	}
+	
+	public void remove_songs(Collection<string> toRemove) {
+		foreach(string s in toRemove) {
+			try {
+				var file = GLib.File.new_for_path(s);
+				file.trash();
+				
+				var old_folder_items = count_music_files(file.get_parent());
+					
+				//TODO: COPY ALBUM AND IMAGE ARTWORK
+				if(old_folder_items == 0) {
+					stdout.printf("going to delete %s because no files are in it\n", file.get_parent().get_path());
+					//original.get_parent().delete();
+					
+					var old_folder_parent_items = count_music_files(file.get_parent().get_parent());
+					
+					if(old_folder_parent_items == 0) {
+						stdout.printf("going to delete %s because no files are in it\n", file.get_parent().get_parent().get_path());
+					}
+				}
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s, err.message);
+				
+				//tell the user the file could not be moved and ask if they'd like to delete permanently instead.
+			}
 		}
 	}
 }

@@ -80,7 +80,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
 		this.lm.song_added.connect(song_added);
-		this.lm.song_removed.connect(song_removed);
+		this.lm.songs_removed.connect(songs_removed);
 		this.lm.song_played.connect(song_played);
 		this.lm.songs_updated.connect(songs_updated);
 		
@@ -756,6 +756,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
+	/* this is after setting the music library */
 	public virtual void musicAdded(LinkedList<string> not_imported) {
 		sideTree.resetView();
 		topDisplay.show_scale();
@@ -796,6 +797,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
+	/* this is when you import music from a foreign location into the library */
 	public virtual void musicImported(LinkedList<Song> new_songs, LinkedList<string> not_imported) {
 		topDisplay.show_scale();
 		
@@ -847,7 +849,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 	}
 	
-	public virtual void song_removed(int id) {
+	public virtual void songs_removed(LinkedList<int> removed) {
 		updateSensitivities();
 	}
 	

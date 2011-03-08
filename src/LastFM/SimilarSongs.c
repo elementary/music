@@ -60,9 +60,7 @@ struct _LastFMSimilarSongsPrivate {
 	BeatBoxLibraryManager* _lm;
 	BeatBoxSong* _base;
 	gboolean working;
-	GeeLinkedList* similarAll;
-	GeeLinkedList* similarDo;
-	GeeLinkedList* similarDont;
+	GeeLinkedList* similar;
 	BeatBoxSong* similarToAdd;
 };
 
@@ -85,10 +83,8 @@ static gpointer _last_fm_similar_songs_similar_thread_function_gthread_func (gpo
 void last_fm_similar_songs_getSimilarTracks (LastFMSimilarSongs* self, const gchar* title, const gchar* artist);
 const gchar* beat_box_song_get_title (BeatBoxSong* self);
 const gchar* beat_box_song_get_artist (BeatBoxSong* self);
-BeatBoxSong* beat_box_library_manager_song_from_name (BeatBoxLibraryManager* self, const gchar* title, const gchar* artist);
-gint beat_box_song_get_rowid (BeatBoxSong* self);
-static gboolean _lambda7_ (LastFMSimilarSongs* self);
-static gboolean __lambda7__gsource_func (gpointer self);
+static gboolean _lambda5_ (LastFMSimilarSongs* self);
+static gboolean __lambda5__gsource_func (gpointer self);
 gchar* last_fm_core_fix_for_url (const gchar* fix);
 #define LAST_FM_CORE_api "a40ea1720028bd40c66b17d7146b3f3b"
 void last_fm_similar_songs_parse_similar_nodes (LastFMSimilarSongs* self, xmlNode* node, const gchar* parent);
@@ -97,7 +93,6 @@ BeatBoxSong* beat_box_song_construct (GType object_type, const gchar* file);
 void beat_box_song_set_title (BeatBoxSong* self, const gchar* value);
 void beat_box_song_set_lastfm_url (BeatBoxSong* self, const gchar* value);
 void beat_box_song_set_artist (BeatBoxSong* self, const gchar* value);
-static void g_cclosure_user_marshal_VOID__OBJECT_OBJECT (GClosure * closure, GValue * return_value, guint n_param_values, const GValue * param_values, gpointer invocation_hint, gpointer marshal_data);
 static void last_fm_similar_songs_finalize (GObject* obj);
 
 
@@ -178,17 +173,17 @@ void last_fm_similar_songs_queryForSimilar (LastFMSimilarSongs* self, BeatBoxSon
 }
 
 
-static gboolean _lambda7_ (LastFMSimilarSongs* self) {
+static gboolean _lambda5_ (LastFMSimilarSongs* self) {
 	gboolean result = FALSE;
-	g_signal_emit_by_name (self, "similar-retrieved", self->priv->similarDo, self->priv->similarDont);
+	g_signal_emit_by_name (self, "similar-retrieved", self->priv->similar);
 	result = FALSE;
 	return result;
 }
 
 
-static gboolean __lambda7__gsource_func (gpointer self) {
+static gboolean __lambda5__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda7_ (self);
+	result = _lambda5_ (self);
 	return result;
 }
 
@@ -197,70 +192,18 @@ void* last_fm_similar_songs_similar_thread_function (LastFMSimilarSongs* self) {
 	void* result = NULL;
 	GeeLinkedList* _tmp0_ = NULL;
 	GeeLinkedList* _tmp1_;
-	GeeLinkedList* _tmp2_ = NULL;
-	GeeLinkedList* _tmp3_;
-	GeeLinkedList* _tmp4_ = NULL;
-	GeeLinkedList* _tmp5_;
-	const gchar* _tmp6_ = NULL;
-	const gchar* _tmp7_ = NULL;
+	const gchar* _tmp2_ = NULL;
+	const gchar* _tmp3_ = NULL;
 	g_return_val_if_fail (self != NULL, NULL);
 	_tmp0_ = gee_linked_list_new (BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL);
 	_tmp1_ = _tmp0_;
-	_g_object_unref0 (self->priv->similarAll);
-	self->priv->similarAll = _tmp1_;
-	_tmp2_ = gee_linked_list_new (BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL);
-	_tmp3_ = _tmp2_;
-	_g_object_unref0 (self->priv->similarDo);
-	self->priv->similarDo = _tmp3_;
-	_tmp4_ = gee_linked_list_new (BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL);
-	_tmp5_ = _tmp4_;
-	_g_object_unref0 (self->priv->similarDont);
-	self->priv->similarDont = _tmp5_;
-	_tmp6_ = beat_box_song_get_title (self->priv->_base);
-	_tmp7_ = beat_box_song_get_artist (self->priv->_base);
-	last_fm_similar_songs_getSimilarTracks (self, _tmp6_, _tmp7_);
-	gee_abstract_collection_add ((GeeAbstractCollection*) self->priv->similarDo, self->priv->_base);
-	{
-		GeeLinkedList* _tmp8_;
-		GeeLinkedList* _sim_list;
-		gint _tmp9_;
-		gint _sim_size;
-		gint _sim_index;
-		_tmp8_ = _g_object_ref0 (self->priv->similarAll);
-		_sim_list = _tmp8_;
-		_tmp9_ = gee_collection_get_size ((GeeCollection*) _sim_list);
-		_sim_size = _tmp9_;
-		_sim_index = -1;
-		while (TRUE) {
-			gpointer _tmp10_ = NULL;
-			BeatBoxSong* sim;
-			const gchar* _tmp11_ = NULL;
-			const gchar* _tmp12_ = NULL;
-			BeatBoxSong* _tmp13_ = NULL;
-			BeatBoxSong* s;
-			gint _tmp14_;
-			_sim_index = _sim_index + 1;
-			if (!(_sim_index < _sim_size)) {
-				break;
-			}
-			_tmp10_ = gee_abstract_list_get ((GeeAbstractList*) _sim_list, _sim_index);
-			sim = (BeatBoxSong*) _tmp10_;
-			_tmp11_ = beat_box_song_get_title (sim);
-			_tmp12_ = beat_box_song_get_artist (sim);
-			_tmp13_ = beat_box_library_manager_song_from_name (self->priv->_lm, _tmp11_, _tmp12_);
-			s = _tmp13_;
-			_tmp14_ = beat_box_song_get_rowid (s);
-			if (_tmp14_ != 0) {
-				gee_abstract_collection_add ((GeeAbstractCollection*) self->priv->similarDo, s);
-			} else {
-				gee_abstract_collection_add ((GeeAbstractCollection*) self->priv->similarDont, sim);
-			}
-			_g_object_unref0 (s);
-			_g_object_unref0 (sim);
-		}
-		_g_object_unref0 (_sim_list);
-	}
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda7__gsource_func, g_object_ref (self), g_object_unref);
+	_g_object_unref0 (self->priv->similar);
+	self->priv->similar = _tmp1_;
+	_tmp2_ = beat_box_song_get_title (self->priv->_base);
+	_tmp3_ = beat_box_song_get_artist (self->priv->_base);
+	last_fm_similar_songs_getSimilarTracks (self, _tmp2_, _tmp3_);
+	gee_abstract_collection_add ((GeeAbstractCollection*) self->priv->similar, self->priv->_base);
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda5__gsource_func, g_object_ref (self), g_object_unref);
 	self->priv->working = FALSE;
 	result = NULL;
 	return result;
@@ -316,6 +259,7 @@ void last_fm_similar_songs_getSimilarTracks (LastFMSimilarSongs* self, const gch
 			last_fm_similar_songs_parse_similar_nodes (self, _tmp10_, "");
 		}
 	}
+	xmlFreeDoc (doc);
 	_g_free0 (url);
 	_g_free0 (title_fixed);
 	_g_free0 (artist_fixed);
@@ -323,85 +267,65 @@ void last_fm_similar_songs_getSimilarTracks (LastFMSimilarSongs* self, const gch
 
 
 void last_fm_similar_songs_parse_similar_nodes (LastFMSimilarSongs* self, xmlNode* node, const gchar* parent) {
+	xmlNode* iter = NULL;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (parent != NULL);
 	{
-		xmlNode* iter;
+		gboolean _tmp0_;
 		iter = node->children;
-		{
-			gboolean _tmp0_;
-			_tmp0_ = TRUE;
-			while (TRUE) {
-				gchar* _tmp1_;
-				gchar* node_name;
-				gchar* _tmp2_ = NULL;
-				gchar* node_content;
-				gchar* _tmp5_;
-				if (!_tmp0_) {
-					iter = iter->next;
-				}
-				_tmp0_ = FALSE;
-				if (!(iter != NULL)) {
-					break;
-				}
-				if (iter->type != XML_ELEMENT_NODE) {
-					continue;
-				}
-				_tmp1_ = g_strdup (iter->name);
-				node_name = _tmp1_;
-				_tmp2_ = xmlNodeGetContent (iter);
-				node_content = _tmp2_;
-				if (g_strcmp0 (parent, "similartrackstrack") == 0) {
-					if (g_strcmp0 (node_name, "name") == 0) {
-						BeatBoxSong* _tmp3_ = NULL;
-						BeatBoxSong* _tmp4_;
-						if (self->priv->similarToAdd != NULL) {
-							gee_abstract_collection_add ((GeeAbstractCollection*) self->priv->similarAll, self->priv->similarToAdd);
-						}
-						_tmp3_ = beat_box_song_new ("");
-						_tmp4_ = _tmp3_;
-						_g_object_unref0 (self->priv->similarToAdd);
-						self->priv->similarToAdd = _tmp4_;
-						beat_box_song_set_title (self->priv->similarToAdd, node_content);
-					} else {
-						if (g_strcmp0 (node_name, "url") == 0) {
-							beat_box_song_set_lastfm_url (self->priv->similarToAdd, node_content);
-						}
-					}
-				} else {
-					if (g_strcmp0 (parent, "similartrackstrackartist") == 0) {
-						if (g_strcmp0 (node_name, "name") == 0) {
-							beat_box_song_set_artist (self->priv->similarToAdd, node_content);
-						}
-					}
-				}
-				_tmp5_ = g_strconcat (parent, node_name, NULL);
-				last_fm_similar_songs_parse_similar_nodes (self, iter, _tmp5_);
-				_g_free0 (_tmp5_);
-				_g_free0 (node_content);
-				_g_free0 (node_name);
+		_tmp0_ = TRUE;
+		while (TRUE) {
+			gchar* _tmp1_;
+			gchar* node_name;
+			gchar* _tmp2_ = NULL;
+			gchar* node_content;
+			gchar* _tmp5_;
+			if (!_tmp0_) {
+				iter = iter->next;
 			}
+			_tmp0_ = FALSE;
+			if (!(iter != NULL)) {
+				break;
+			}
+			if (iter->type != XML_ELEMENT_NODE) {
+				continue;
+			}
+			_tmp1_ = g_strdup (iter->name);
+			node_name = _tmp1_;
+			_tmp2_ = xmlNodeGetContent (iter);
+			node_content = _tmp2_;
+			if (g_strcmp0 (parent, "similartrackstrack") == 0) {
+				if (g_strcmp0 (node_name, "name") == 0) {
+					BeatBoxSong* _tmp3_ = NULL;
+					BeatBoxSong* _tmp4_;
+					if (self->priv->similarToAdd != NULL) {
+						gee_abstract_collection_add ((GeeAbstractCollection*) self->priv->similar, self->priv->similarToAdd);
+					}
+					_tmp3_ = beat_box_song_new ("");
+					_tmp4_ = _tmp3_;
+					_g_object_unref0 (self->priv->similarToAdd);
+					self->priv->similarToAdd = _tmp4_;
+					beat_box_song_set_title (self->priv->similarToAdd, node_content);
+				} else {
+					if (g_strcmp0 (node_name, "url") == 0) {
+						beat_box_song_set_lastfm_url (self->priv->similarToAdd, node_content);
+					}
+				}
+			} else {
+				if (g_strcmp0 (parent, "similartrackstrackartist") == 0) {
+					if (g_strcmp0 (node_name, "name") == 0) {
+						beat_box_song_set_artist (self->priv->similarToAdd, node_content);
+					}
+				}
+			}
+			_tmp5_ = g_strconcat (parent, node_name, NULL);
+			last_fm_similar_songs_parse_similar_nodes (self, iter, _tmp5_);
+			_g_free0 (_tmp5_);
+			_g_free0 (node_content);
+			_g_free0 (node_name);
 		}
 	}
-}
-
-
-static void g_cclosure_user_marshal_VOID__OBJECT_OBJECT (GClosure * closure, GValue * return_value, guint n_param_values, const GValue * param_values, gpointer invocation_hint, gpointer marshal_data) {
-	typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (gpointer data1, gpointer arg_1, gpointer arg_2, gpointer data2);
-	register GMarshalFunc_VOID__OBJECT_OBJECT callback;
-	register GCClosure * cc;
-	register gpointer data1, data2;
-	cc = (GCClosure *) closure;
-	g_return_if_fail (n_param_values == 3);
-	if (G_CCLOSURE_SWAP_DATA (closure)) {
-		data1 = closure->data;
-		data2 = param_values->data[0].v_pointer;
-	} else {
-		data1 = param_values->data[0].v_pointer;
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__OBJECT_OBJECT) (marshal_data ? marshal_data : cc->callback);
-	callback (data1, g_value_get_object (param_values + 1), g_value_get_object (param_values + 2), data2);
+	xmlFreeNode (iter);
 }
 
 
@@ -410,7 +334,7 @@ static void last_fm_similar_songs_class_init (LastFMSimilarSongsClass * klass) {
 	g_type_class_add_private (klass, sizeof (LastFMSimilarSongsPrivate));
 	LAST_FM_SIMILAR_SONGS_CLASS (klass)->queryForSimilar = last_fm_similar_songs_real_queryForSimilar;
 	G_OBJECT_CLASS (klass)->finalize = last_fm_similar_songs_finalize;
-	g_signal_new ("similar_retrieved", LAST_FM_TYPE_SIMILAR_SONGS, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_user_marshal_VOID__OBJECT_OBJECT, G_TYPE_NONE, 2, GEE_TYPE_LINKED_LIST, GEE_TYPE_LINKED_LIST);
+	g_signal_new ("similar_retrieved", LAST_FM_TYPE_SIMILAR_SONGS, G_SIGNAL_RUN_LAST, 0, NULL, NULL, g_cclosure_marshal_VOID__OBJECT, G_TYPE_NONE, 1, GEE_TYPE_LINKED_LIST);
 }
 
 
@@ -424,9 +348,7 @@ static void last_fm_similar_songs_finalize (GObject* obj) {
 	self = LAST_FM_SIMILAR_SONGS (obj);
 	_g_object_unref0 (self->priv->_lm);
 	_g_object_unref0 (self->priv->_base);
-	_g_object_unref0 (self->priv->similarAll);
-	_g_object_unref0 (self->priv->similarDo);
-	_g_object_unref0 (self->priv->similarDont);
+	_g_object_unref0 (self->priv->similar);
 	_g_object_unref0 (self->priv->similarToAdd);
 	G_OBJECT_CLASS (last_fm_similar_songs_parent_class)->finalize (obj);
 }

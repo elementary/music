@@ -130,7 +130,9 @@ const gchar* beat_box_song_get_genre (BeatBoxSong* self);
 const gchar* beat_box_song_get_comment (BeatBoxSong* self);
 gint beat_box_song_get_year (BeatBoxSong* self);
 gint beat_box_song_get_track (BeatBoxSong* self);
-void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, BeatBoxSong* s);
+void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, BeatBoxSong* s, gboolean delete_old);
+gchar* beat_box_settings_getMusicFolder (BeatBoxSettings* self);
+void beat_box_song_set_file (BeatBoxSong* self, const gchar* value);
 static void g_cclosure_user_marshal_VOID__STRING_DOUBLE (GClosure * closure, GValue * return_value, guint n_param_values, const GValue * param_values, gpointer invocation_hint, gpointer marshal_data);
 static void beat_box_file_operator_finalize (GObject* obj);
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func);
@@ -262,7 +264,6 @@ gint beat_box_file_operator_count_music_files (BeatBoxFileOperator* self, GFile*
 	GFileInfo* file_info;
 	GFileEnumerator* _tmp0_ = NULL;
 	GFileEnumerator* enumerator;
-	gint _tmp16_ = 0;
 	GError * _inner_error_ = NULL;
 	g_return_val_if_fail (self != NULL, 0);
 	g_return_val_if_fail (music_folder != NULL, 0);
@@ -344,12 +345,7 @@ gint beat_box_file_operator_count_music_files (BeatBoxFileOperator* self, GFile*
 		g_clear_error (&_inner_error_);
 		return 0;
 	}
-	if (self->priv->index != 0) {
-		_tmp16_ = self->priv->index;
-	} else {
-		_tmp16_ = 1000;
-	}
-	result = _tmp16_;
+	result = self->priv->index;
 	_g_object_unref0 (file_info);
 	return result;
 }
@@ -1422,10 +1418,252 @@ void* beat_box_file_operator_save_song_thread (BeatBoxFileOperator* self) {
 }
 
 
-void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, BeatBoxSong* s) {
+void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, BeatBoxSong* s, gboolean delete_old) {
+	const gchar* _tmp0_ = NULL;
+	GFile* _tmp1_ = NULL;
+	GFile* original;
+	GFileInfo* _tmp2_ = NULL;
+	GFileInfo* file_info;
+	gchar* _tmp3_ = NULL;
+	gchar* _tmp4_;
+	gchar* _tmp5_;
+	const gchar* _tmp6_ = NULL;
+	gchar* _tmp7_ = NULL;
+	gchar* _tmp8_;
+	gchar* _tmp9_;
+	gchar* _tmp10_;
+	const gchar* _tmp11_ = NULL;
+	gchar* _tmp12_ = NULL;
+	gchar* _tmp13_;
+	gchar* _tmp14_;
+	gchar* _tmp15_;
+	const gchar* _tmp16_ = NULL;
+	gchar* _tmp17_;
+	GFile* _tmp18_ = NULL;
+	GFile* _tmp19_;
+	GFile* dest;
+	gchar* _tmp20_ = NULL;
+	gchar* _tmp21_;
+	gchar* _tmp22_ = NULL;
+	gchar* _tmp23_;
+	gboolean _tmp24_;
+	GFile* _tmp25_ = NULL;
+	GFile* _tmp26_;
+	gboolean _tmp27_;
+	gboolean _tmp28_;
+	const gchar* _tmp41_ = NULL;
+	gchar* _tmp42_ = NULL;
+	gchar* _tmp43_;
+	gboolean _tmp44_;
+	gboolean success;
+	GError * _inner_error_ = NULL;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (s != NULL);
-	fprintf (stdout, "TODO: Actually update file hierarchy based on artist and album\n");
+	_tmp0_ = beat_box_song_get_file (s);
+	_tmp1_ = g_file_new_for_path (_tmp0_);
+	original = _tmp1_;
+	_tmp2_ = g_file_query_info (original, "*", G_FILE_QUERY_INFO_NONE, NULL, &_inner_error_);
+	file_info = _tmp2_;
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (original);
+		goto __catch35_g_error;
+	}
+	_tmp3_ = beat_box_settings_getMusicFolder (self->priv->settings);
+	_tmp4_ = _tmp3_;
+	_tmp5_ = g_strconcat (_tmp4_, "/", NULL);
+	_tmp6_ = beat_box_song_get_artist (s);
+	_tmp7_ = string_replace (_tmp6_, "/", "_");
+	_tmp8_ = _tmp7_;
+	_tmp9_ = g_strconcat (_tmp5_, _tmp8_, NULL);
+	_tmp10_ = g_strconcat (_tmp9_, "/", NULL);
+	_tmp11_ = beat_box_song_get_album (s);
+	_tmp12_ = string_replace (_tmp11_, "/", "_");
+	_tmp13_ = _tmp12_;
+	_tmp14_ = g_strconcat (_tmp10_, _tmp13_, NULL);
+	_tmp15_ = g_strconcat (_tmp14_, "/", NULL);
+	_tmp16_ = g_file_info_get_name (file_info);
+	_tmp17_ = g_strconcat (_tmp15_, _tmp16_, NULL);
+	_tmp18_ = g_file_new_for_path (_tmp17_);
+	dest = (_tmp19_ = _tmp18_, _g_free0 (_tmp17_), _g_free0 (_tmp15_), _g_free0 (_tmp14_), _g_free0 (_tmp13_), _g_free0 (_tmp10_), _g_free0 (_tmp9_), _g_free0 (_tmp8_), _g_free0 (_tmp5_), _g_free0 (_tmp4_), _tmp19_);
+	_tmp20_ = g_file_get_path (original);
+	_tmp21_ = _tmp20_;
+	_tmp22_ = g_file_get_path (dest);
+	_tmp23_ = _tmp22_;
+	if ((_tmp24_ = g_strcmp0 (_tmp21_, _tmp23_) == 0, _g_free0 (_tmp23_), _g_free0 (_tmp21_), _tmp24_)) {
+		_g_object_unref0 (dest);
+		_g_object_unref0 (file_info);
+		_g_object_unref0 (original);
+		return;
+	}
+	_tmp25_ = g_file_get_parent (dest);
+	_tmp26_ = _tmp25_;
+	_tmp27_ = g_file_query_exists (_tmp26_, NULL);
+	if ((_tmp28_ = !_tmp27_, _g_object_unref0 (_tmp26_), _tmp28_)) {
+		GFile* _tmp29_ = NULL;
+		GFile* _tmp30_;
+		GFile* _tmp31_ = NULL;
+		GFile* _tmp32_;
+		GFile* _tmp33_ = NULL;
+		GFile* _tmp34_;
+		gboolean _tmp35_;
+		gboolean _tmp36_;
+		_tmp29_ = g_file_get_parent (dest);
+		_tmp30_ = _tmp29_;
+		g_file_make_directory (_tmp30_, NULL, &_inner_error_);
+		_g_object_unref0 (_tmp30_);
+		if (_inner_error_ != NULL) {
+			goto __catch36_g_error;
+		}
+		_tmp31_ = g_file_get_parent (dest);
+		_tmp32_ = _tmp31_;
+		_tmp33_ = g_file_get_parent (_tmp32_);
+		_tmp34_ = _tmp33_;
+		_tmp35_ = g_file_query_exists (_tmp34_, NULL);
+		if ((_tmp36_ = !_tmp35_, _g_object_unref0 (_tmp34_), _g_object_unref0 (_tmp32_), _tmp36_)) {
+			GFile* _tmp37_ = NULL;
+			GFile* _tmp38_;
+			GFile* _tmp39_ = NULL;
+			GFile* _tmp40_;
+			_tmp37_ = g_file_get_parent (dest);
+			_tmp38_ = _tmp37_;
+			_tmp39_ = g_file_get_parent (_tmp38_);
+			_tmp40_ = _tmp39_;
+			g_file_make_directory (_tmp40_, NULL, &_inner_error_);
+			_g_object_unref0 (_tmp40_);
+			_g_object_unref0 (_tmp38_);
+			if (_inner_error_ != NULL) {
+				goto __catch36_g_error;
+			}
+		}
+		goto __finally36;
+		__catch36_g_error:
+		{
+			GError * err;
+			err = _inner_error_;
+			_inner_error_ = NULL;
+			fprintf (stdout, "Could not create folder to copy to: %s\n", err->message);
+			_g_error_free0 (err);
+		}
+		__finally36:
+		if (_inner_error_ != NULL) {
+			_g_object_unref0 (dest);
+			_g_object_unref0 (file_info);
+			_g_object_unref0 (original);
+			goto __catch35_g_error;
+		}
+	}
+	_tmp41_ = beat_box_song_get_file (s);
+	_tmp42_ = g_file_get_path (dest);
+	_tmp43_ = _tmp42_;
+	fprintf (stdout, "Copying %s to %s\n", _tmp41_, _tmp43_);
+	_g_free0 (_tmp43_);
+	_tmp44_ = g_file_copy (original, dest, G_FILE_COPY_NONE, NULL, NULL, NULL, &_inner_error_);
+	success = _tmp44_;
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (dest);
+		_g_object_unref0 (file_info);
+		_g_object_unref0 (original);
+		goto __catch35_g_error;
+	}
+	if (success) {
+		gchar* _tmp45_ = NULL;
+		gchar* _tmp46_;
+		_tmp45_ = g_file_get_path (dest);
+		_tmp46_ = _tmp45_;
+		beat_box_song_set_file (s, _tmp46_);
+		_g_free0 (_tmp46_);
+	} else {
+		const gchar* _tmp47_ = NULL;
+		gchar* _tmp48_ = NULL;
+		gchar* _tmp49_;
+		_tmp47_ = beat_box_song_get_file (s);
+		_tmp48_ = g_file_get_path (dest);
+		_tmp49_ = _tmp48_;
+		fprintf (stdout, "Failure: Could not copy imported song %s to media folder %s\n", _tmp47_, _tmp49_);
+		_g_free0 (_tmp49_);
+	}
+	if (delete_old) {
+		GFile* _tmp50_ = NULL;
+		GFile* _tmp51_;
+		gint _tmp52_;
+		gint _tmp53_;
+		gint old_folder_items;
+		g_file_delete (original, NULL, &_inner_error_);
+		if (_inner_error_ != NULL) {
+			_g_object_unref0 (dest);
+			_g_object_unref0 (file_info);
+			_g_object_unref0 (original);
+			goto __catch35_g_error;
+		}
+		_tmp50_ = g_file_get_parent (original);
+		_tmp51_ = _tmp50_;
+		_tmp52_ = beat_box_file_operator_count_music_files (self, _tmp51_);
+		old_folder_items = (_tmp53_ = _tmp52_, _g_object_unref0 (_tmp51_), _tmp53_);
+		if (old_folder_items == 0) {
+			GFile* _tmp54_ = NULL;
+			GFile* _tmp55_;
+			gchar* _tmp56_ = NULL;
+			gchar* _tmp57_;
+			GFile* _tmp58_ = NULL;
+			GFile* _tmp59_;
+			GFile* _tmp60_ = NULL;
+			GFile* _tmp61_;
+			gint _tmp62_;
+			gint _tmp63_;
+			gint old_folder_parent_items;
+			_tmp54_ = g_file_get_parent (original);
+			_tmp55_ = _tmp54_;
+			_tmp56_ = g_file_get_path (_tmp55_);
+			_tmp57_ = _tmp56_;
+			fprintf (stdout, "going to delete %s because no files are in it\n", _tmp57_);
+			_g_free0 (_tmp57_);
+			_g_object_unref0 (_tmp55_);
+			_tmp58_ = g_file_get_parent (original);
+			_tmp59_ = _tmp58_;
+			_tmp60_ = g_file_get_parent (_tmp59_);
+			_tmp61_ = _tmp60_;
+			_tmp62_ = beat_box_file_operator_count_music_files (self, _tmp61_);
+			old_folder_parent_items = (_tmp63_ = _tmp62_, _g_object_unref0 (_tmp61_), _g_object_unref0 (_tmp59_), _tmp63_);
+			if (old_folder_parent_items == 0) {
+				GFile* _tmp64_ = NULL;
+				GFile* _tmp65_;
+				GFile* _tmp66_ = NULL;
+				GFile* _tmp67_;
+				gchar* _tmp68_ = NULL;
+				gchar* _tmp69_;
+				_tmp64_ = g_file_get_parent (original);
+				_tmp65_ = _tmp64_;
+				_tmp66_ = g_file_get_parent (_tmp65_);
+				_tmp67_ = _tmp66_;
+				_tmp68_ = g_file_get_path (_tmp67_);
+				_tmp69_ = _tmp68_;
+				fprintf (stdout, "going to delete %s because no files are in it\n", _tmp69_);
+				_g_free0 (_tmp69_);
+				_g_object_unref0 (_tmp67_);
+				_g_object_unref0 (_tmp65_);
+			}
+		}
+	}
+	_g_object_unref0 (dest);
+	_g_object_unref0 (file_info);
+	_g_object_unref0 (original);
+	goto __finally35;
+	__catch35_g_error:
+	{
+		GError * err;
+		const gchar* _tmp70_ = NULL;
+		err = _inner_error_;
+		_inner_error_ = NULL;
+		_tmp70_ = beat_box_song_get_file (s);
+		fprintf (stdout, "Could not copy imported song %s to media folder: %s\n", _tmp70_, err->message);
+		_g_error_free0 (err);
+	}
+	__finally35:
+	if (_inner_error_ != NULL) {
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
 }
 
 

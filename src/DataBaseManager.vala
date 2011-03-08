@@ -288,12 +288,8 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction = _db.begin_transaction();
 			query = transaction.prepare ("INSERT INTO `song_list_columns` (`title`, `visible`, `width`) VALUES (:title, :visible, :width);");
 			
-			index = 0;
-			item_count = columns.size;
 			foreach(Gtk.TreeViewColumn tvc in columns) {
 				stdout.printf("saving column %s\n", tvc.title);
-				//db_progress(null, ((double)index++)/((double)item_count));
-				
 				query.set_string(":title", tvc.title);
 				query.set_int(":visible", tvc.visible ? 1 : 0);
 				query.set_int(":width", tvc.width == 0 ? 50 : tvc.width);
@@ -358,11 +354,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction = _db.begin_transaction();
 			query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`) VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed);");
 			
-			index = 0;
-			item_count = songs.size;
 			foreach(Song s in songs) {
-				db_progress(null, ((double)index++)/((double)item_count));
-				
 				query.set_string(":file", s.file);
 				query.set_string(":title", s.title);
 				query.set_string(":artist", s.artist);
@@ -429,11 +421,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare("DELETE FROM `songs` WHERE file=:file");
 			
-			index = 0;
-			item_count = songs.size;
 			foreach(string s in songs) {
-				db_progress(null, ((double)index++)/((double)item_count));
-				
 				query.set_string(":file", s);
 				query.execute();
 			}
@@ -516,10 +504,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction = _db.begin_transaction();
 			query = transaction.prepare ("INSERT INTO `playlists` (`name`, `songs`) VALUES (:name, :songs);");
 			
-			index = 0;
-			item_count = playlists.size;
 			foreach(Playlist p in playlists) {
-				db_progress(null, ((double)index++)/((double)item_count));
 				
 				query.set_string(":name", p.name);
 				query.set_string(":songs", p.songs_to_string());
@@ -530,6 +515,22 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		}
 		catch(SQLHeavy.Error err) {
 			stdout.printf("Could not save playlists: %s \n", err.message);
+		}
+	}
+	
+	public void update_playlist(Playlist p) {
+		try {
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare("UPDATE `playlists` SET name=:name, songs=:songs WHERE name=:name");
+			
+			query.set_string(":name", p.name);
+			query.set_string(":songs", p.songs_to_string());
+				
+			query.execute();
+			transaction.commit();
+		}
+		catch(SQLHeavy.Error err) {
+			stdout.printf("Could not save playlist: %s \n", err.message);
 		}
 	}
 	
@@ -589,6 +590,24 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		}
 	}
 	
+	public void update_smart_playlist(SmartPlaylist p) {
+		try {
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare("UPDATE `smart_playlists` SET name=:name, and_or=:and_or, queries=:queries WHERE name=:name");
+			
+			query.set_string(":name", p.name);
+			query.set_string(":and_or", p.conditional);
+			query.set_string(":queries", p.queries_to_string());
+				
+			query.execute();
+			transaction.commit();
+		}
+		catch(SQLHeavy.Error err) {
+			stdout.printf("Could not save smart playlist: %s \n", err.message);
+		}
+	}
+	
+	/** Last FM objects **/
 	public void save_albums(Collection<LastFM.AlbumInfo> albums) {
 		try {
 			_db.execute("DELETE FROM `albums`");

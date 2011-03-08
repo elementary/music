@@ -165,7 +165,7 @@ struct _BeatBoxSimilarPane {
 	GtkHPaned parent_instance;
 	BeatBoxSimilarPanePrivate * priv;
 	BeatBoxSong* _base;
-	GeeCollection* _have;
+	GeeLinkedList* _have;
 };
 
 struct _BeatBoxSimilarPaneClass {
@@ -1344,7 +1344,7 @@ static gboolean beat_box_side_tree_view_real_sideListClick (BeatBoxSideTreeView*
 						_tmp23_ = TRUE;
 					} else {
 						gint _tmp24_;
-						_tmp24_ = gee_collection_get_size (BEAT_BOX_SIMILAR_PANE (w)->_have);
+						_tmp24_ = gee_collection_get_size ((GeeCollection*) BEAT_BOX_SIMILAR_PANE (w)->_have);
 						_tmp23_ = _tmp24_ == 0;
 					}
 					if (_tmp23_) {

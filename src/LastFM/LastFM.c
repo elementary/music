@@ -70,6 +70,7 @@ gchar* last_fm_core_getToken (LastFMCore* self);
 gchar* last_fm_core_getSessionKey (LastFMCore* self, const gchar* token);
 gboolean last_fm_core_loveTrack (LastFMCore* self, const gchar* title, const gchar* artist);
 gboolean last_fm_core_banTrack (LastFMCore* self, const gchar* title, const gchar* artist);
+void* last_fm_core_lastfm_thread_function (LastFMCore* self);
 static void last_fm_core_finalize (GObject* obj);
 
 
@@ -401,6 +402,14 @@ gboolean last_fm_core_banTrack (LastFMCore* self, const gchar* title, const gcha
 	g_return_val_if_fail (title != NULL, FALSE);
 	g_return_val_if_fail (artist != NULL, FALSE);
 	result = FALSE;
+	return result;
+}
+
+
+void* last_fm_core_lastfm_thread_function (LastFMCore* self) {
+	void* result = NULL;
+	g_return_val_if_fail (self != NULL, NULL);
+	result = NULL;
 	return result;
 }
 
