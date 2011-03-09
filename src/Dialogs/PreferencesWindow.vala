@@ -157,7 +157,7 @@ public class BeatBox.PreferencesWindow : Window {
 		}
 		
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
-		stdout.printf("no setting for copying imported music\n");
+		_lm.settings.setCopyImportedMusic(copyImportedMusic.get_active());
 		
 		this.destroy();
 	}

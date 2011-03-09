@@ -348,35 +348,48 @@ public class BeatBox.FileOperator : Object {
 				return;
 			
 			/* make sure that the parent folders exist */
-			if(!dest.get_parent().query_exists()) {
-				stdout.printf("album folder %s does not exist\n", dest.get_parent().get_path());
+			if(!dest.get_parent().get_parent().query_exists()) {
+				stdout.printf("artist folder %s does not exist\n", dest.get_parent().get_parent().get_path());
+				
 				try {
+					dest.get_parent().get_parent().make_directory(null);
 					dest.get_parent().make_directory(null);
-					
-					if(!dest.get_parent().get_parent().query_exists()) {
-						stdout.printf("artist folder %s does not exist\n", dest.get_parent().get_parent().get_path());
-						dest.get_parent().get_parent().make_directory(null);
-						
-					}
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not create folder to copy to: %s\n", err.message);
+					// does it make sense to return here?
+				}
+			}
+			else if(!dest.get_parent().query_exists()) {
+				stdout.printf("album folder %s does not exist\n", dest.get_parent().get_path());
+				
+				try {
+					dest.get_parent().make_directory(null);
+				}
+				catch(GLib.Error err) {
+					stdout.printf("Could not create folder to copy to: %s\n", err.message);
+					// does it make sense to return here?
 				}
 			}
 			
 			/* copy the file over */
-			stdout.printf("Copying %s to %s\n", s.file, dest.get_path());
-			bool success = original.copy(dest, FileCopyFlags.NONE, null, null);
+			bool success = false;
+			if(!delete_old) {
+				stdout.printf("Copying %s to %s\n", s.file, dest.get_path());
+				success = original.copy(dest, FileCopyFlags.NONE, null, null);
+			}
+			else {
+				stdout.printf("Moving %s to %s\n", s.file, dest.get_path());
+				success = original.move(dest, FileCopyFlags.NONE, null, null);
+			}
 			
 			if(success)
 				s.file = dest.get_path();
 			else
 				stdout.printf("Failure: Could not copy imported song %s to media folder %s\n", s.file, dest.get_path());
 			
-			/* if we are supposed to delete the old, make sure there are no items left if we do */
+			/* if we are supposed to delete the old, make sure there are no items left in folder if we do */
 			if(delete_old) {
-				original.delete();
-				
 				var old_folder_items = count_music_files(original.get_parent());
 				
 				//TODO: COPY ALBUM AND IMAGE ARTWORK

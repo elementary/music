@@ -221,9 +221,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		foreach(Song s in new_songs) {
+			stdout.printf("new song in import %s\n", s.title);
 			s.rowid = index++;
 			add_song(s);
-			fo.update_file_hierarchy(s, false);
+			
+			if(settings.getCopyImportedMusic())
+				fo.update_file_hierarchy(s, false);
 		}
 		
 		Idle.add( () => { 

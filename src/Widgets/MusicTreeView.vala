@@ -1195,8 +1195,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			int id;
 			sort.get(iter, 0, out id);
 			
-			if(id == lm.song_info.song.rowid)
+			if(id == lm.song_info.song.rowid) {
+				stdout.printf("scrolling\n");
 				view.scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
+			}
 		}
 		
 		scrolled_recently = false;
