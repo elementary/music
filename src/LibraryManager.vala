@@ -555,9 +555,20 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _current_shuffled.size > 0;
 	}
 	
+	/* value returned depends on whether shuffle is on or not */
 	public int current_index {
-		get { return _current_index; }
-		set { _current_index = value; }
+		get {
+			if(_current_shuffled.size == 0)
+				return _current_index;
+			else
+				return _current_shuffled_index;
+		}
+		set {
+			if(_current_shuffled.size == 0)
+				_current_index = value;
+			else
+				_current_shuffled_index = value;
+		}
 	}
 	
 	public Collection<int> current_songs() {

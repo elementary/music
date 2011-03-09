@@ -594,6 +594,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		TreeIter item;
 		model.append(out item);
 		
+		/* allows for easy updating, removing of songs */
+		_rows.set(s.rowid, new TreeRowReference(model, model.get_path(item)));
+		
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
 			if(tvc.title == "id")
@@ -633,8 +636,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			++index;
 		}
-		
-		_rows.set(s.rowid, new TreeRowReference(model, model.get_path(item)));
 		
 		view.thaw_child_notify();
 		return item;
@@ -707,8 +708,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(old != -1)
 			updateSong(old);
 		
-		if(!scrolled_recently)
+		if(!scrolled_recently) {
 			scrollToCurrent();
+		}
 		
 		updateSong(id);
 	}
@@ -1054,7 +1056,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			}
 		}
 		
-		lm.remove_songs(toRemove);
+		if(hint == "music")
+			lm.remove_songs(toRemove);
 	}
 	
 	public virtual void songRateSong0Clicked() {
@@ -1184,9 +1187,19 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void scrollToCurrent() {
-		if(is_current && lm.song_info.song != null && _rows.has_key(lm.current_index)) {
-			view.scroll_to_cell(new TreePath.from_string(lm.current_index.to_string()), null, false, 0.0f, 0.0f);
+		if(!is_current || lm.song_info.song == null)
+			return;
+		
+		TreeIter iter;
+		for(int i = 0; sort.get_iter_from_string(out iter, i.to_string()); ++i) {
+			int id;
+			sort.get(iter, 0, out id);
+			
+			if(id == lm.song_info.song.rowid)
+				view.scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
 		}
+		
+		scrolled_recently = false;
 	}
 	
 	public virtual void viewScroll() {
