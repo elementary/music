@@ -90,6 +90,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		check_resize.connect(on_resize);
 		this.destroy.connect (Gtk.main_quit);
 		
+		this.present();
 		if(lm.song_count() == 0 && settings.getMusicFolder() == "") {
 			stdout.printf("First run, setting music folder and importing.\n");
 			setMusicFolder(GLib.Environment.get_user_special_dir(UserDirectory.MUSIC));
@@ -104,11 +105,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Song s = settings.getLastSongPlaying();
 			s = lm.song_from_name(s.title, s.artist);
 			if(s.rowid != 0) {
-				lm.playSong(s.rowid);
-				notification.set_timeout(1);
 				/* time out works because... monkeys eat bananas */
 				int position = (int)settings.getLastSongPosition();
 				Timeout.add(500, () => {
+					lm.playSong(s.rowid);
+					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
+					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).scrollToCurrent();
+					
 					topDisplay.change_value(ScrollType.NONE, position);
 					return false;
 				});
@@ -119,9 +122,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				song_considered_played = true;
 			if((double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
 				added_to_play_count = true;
-			
-			//this gives gee.hashmap error... not sure why
-			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
 			
 			// rescan on startup
 			lm.rescan_music_folder();

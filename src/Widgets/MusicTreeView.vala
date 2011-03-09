@@ -443,23 +443,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		int rating = 0;
 		tree_model.get(iter, _columns.index_of("Rating"), out rating);
 		
-		/*bool cursor_over = false;
-		int x = 0;
-		int y = 0;
-		view.get_pointer(out x, out y);
-		
-		TreePath cPath;
-		TreeViewColumn cColumn;
-		int cell_x;
-		int cell_y;
-		if(view.get_path_at_pos (x,  y, out cPath, out cColumn, out cell_x, out cell_y)) {
-			//stdout.printf("valid path\n");
-			if(cPath.to_string() == tree_model.get_path(iter).to_string() && cColumn.title == "Rating") {
-				//stdout.printf("OVER RATING------------\n");
-				cursor_over = true;
-			}
-		}
-		*/
 		if(cell_layout.get_cells().index(cell) < rating/* || (cursor_over && cell_layout.get_cells().index(cell) * 18 <= cell_x)*/)
 			((CellRendererPixbuf)cell).pixbuf = starred;
 		else if(view.get_selection().iter_is_selected(iter))
@@ -1198,6 +1181,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			if(id == lm.song_info.song.rowid) {
 				stdout.printf("scrolling\n");
 				view.scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
+				scrolled_recently = false;
+				
+				return;
 			}
 		}
 		
