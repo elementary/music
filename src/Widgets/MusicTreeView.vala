@@ -1208,7 +1208,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(!scrolled_recently && is_current) {
 			Timeout.add(30000, () => {
 				scrolled_recently = false;
-				scrollToCurrent();
 				
 				return false;
 			});

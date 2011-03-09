@@ -105,7 +105,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			s = lm.song_from_name(s.title, s.artist);
 			if(s.rowid != 0) {
 				lm.playSong(s.rowid);
-				
+				notification.set_timeout(1);
 				/* time out works because... monkeys eat bananas */
 				int position = (int)settings.getLastSongPosition();
 				Timeout.add(500, () => {
@@ -304,6 +304,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleButton.clicked.connect(shuffleClicked);
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
+		//notification.closed.connect(notificationClosed);
 		
 		show_all();
 		topMenu.hide();
@@ -487,9 +488,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//update the notifier
 		if(!has_toplevel_focus) {
 			try {
-				notification.close();
-				notification.summary = lm.song_from_id(i).title;
-				notification.body = lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album;
+				notification.set_timeout(1);
+				notification.update(lm.song_from_id(i).title, lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album, "");
 				
 				if(lm.get_album_location(i) != null) {
 					notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(lm.get_album_location(i)));
@@ -499,6 +499,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 				
 				notification.show();
+				notification.set_timeout(5000);
 			}
 			catch(GLib.Error err) {
 				stderr.printf("Could not show notification: %s\n", err.message);
@@ -517,7 +518,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void* lastfm_thread_function () {
-		/*bool update_track = false, update_artist = false, update_album = false;
+		bool update_track = false, update_artist = false, update_album = false;
 		LastFM.ArtistInfo artist = new LastFM.ArtistInfo.basic();
 		LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
 		LastFM.AlbumInfo album = new LastFM.AlbumInfo.basic();
@@ -600,7 +601,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Idle.add(updateSongInfo);
 			Idle.add(updateCurrentSong);
 		}
-		*/
+		
 		return null;
     }
     
@@ -612,7 +613,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void previousClicked () {
-		lm.getPrevious(true);
+		if(queriedlastfm)
+			lm.getPrevious(true);
+		else
+			topDisplay.change_value(ScrollType.NONE, 0);
 	}
 	
 	public virtual void playClicked () {
@@ -785,9 +789,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		try {
 			notification.close();
 			if(!has_toplevel_focus) {
-				notification.summary = "Import Complete";
-				notification.body = "BeatBox has imported your library";
-				//notification.set_image_from_pixbuf(this.render_icon("music-folder", IconSize.SMALL_TOOLBAR, null));
+				notification.update("Import Complete", "BeatBox has imported your library", "music-folder");
 				
 				notification.show();
 			}
@@ -840,7 +842,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
 		}
 		
-		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+		if(searchField.text != "" && searchField.text != searchField.hint_string)
+			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
 		
 		updateSensitivities();
 	}

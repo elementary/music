@@ -392,17 +392,9 @@ public class BeatBox.FileOperator : Object {
 			if(delete_old) {
 				var old_folder_items = count_music_files(original.get_parent());
 				
-				//TODO: COPY ALBUM AND IMAGE ARTWORK
-				
 				if(old_folder_items == 0) {
 					stdout.printf("going to delete %s because no files are in it\n", original.get_parent().get_path());
-					//original.get_parent().delete();
-					
-					var old_folder_parent_items = count_music_files(original.get_parent().get_parent());
-					
-					if(old_folder_parent_items == 0) {
-						stdout.printf("going to delete %s because no files are in it\n", original.get_parent().get_parent().get_path());
-					}
+					original.get_parent().delete();
 				}
 			}
 		}
