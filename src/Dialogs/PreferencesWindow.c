@@ -57,6 +57,16 @@ typedef struct _BeatBoxSettingsClass BeatBoxSettingsClass;
 typedef struct _BeatBoxDataBaseManager BeatBoxDataBaseManager;
 typedef struct _BeatBoxDataBaseManagerClass BeatBoxDataBaseManagerClass;
 
+#define BEAT_BOX_TYPE_DATA_BASE_UPDATER (beat_box_data_base_updater_get_type ())
+#define BEAT_BOX_DATA_BASE_UPDATER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_DATA_BASE_UPDATER, BeatBoxDataBaseUpdater))
+#define BEAT_BOX_DATA_BASE_UPDATER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_DATA_BASE_UPDATER, BeatBoxDataBaseUpdaterClass))
+#define BEAT_BOX_IS_DATA_BASE_UPDATER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_DATA_BASE_UPDATER))
+#define BEAT_BOX_IS_DATA_BASE_UPDATER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_DATA_BASE_UPDATER))
+#define BEAT_BOX_DATA_BASE_UPDATER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_DATA_BASE_UPDATER, BeatBoxDataBaseUpdaterClass))
+
+typedef struct _BeatBoxDataBaseUpdater BeatBoxDataBaseUpdater;
+typedef struct _BeatBoxDataBaseUpdaterClass BeatBoxDataBaseUpdaterClass;
+
 #define BEAT_BOX_TYPE_FILE_OPERATOR (beat_box_file_operator_get_type ())
 #define BEAT_BOX_FILE_OPERATOR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_FILE_OPERATOR, BeatBoxFileOperator))
 #define BEAT_BOX_FILE_OPERATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_FILE_OPERATOR, BeatBoxFileOperatorClass))
@@ -131,6 +141,7 @@ struct _BeatBoxLibraryManager {
 	BeatBoxLibraryManagerPrivate * priv;
 	BeatBoxSettings* settings;
 	BeatBoxDataBaseManager* dbm;
+	BeatBoxDataBaseUpdater* dbu;
 	BeatBoxFileOperator* fo;
 	BeatBoxStreamPlayer* player;
 	LastFMCore* lfm;
@@ -163,6 +174,7 @@ BeatBoxPreferencesWindow* beat_box_preferences_window_construct (GType object_ty
 void beat_box_preferences_window_buildUI (BeatBoxPreferencesWindow* self);
 GType beat_box_settings_get_type (void) G_GNUC_CONST;
 GType beat_box_data_base_manager_get_type (void) G_GNUC_CONST;
+GType beat_box_data_base_updater_get_type (void) G_GNUC_CONST;
 GType beat_box_file_operator_get_type (void) G_GNUC_CONST;
 GType beat_box_stream_player_get_type (void) G_GNUC_CONST;
 GType last_fm_core_get_type (void) G_GNUC_CONST;
@@ -182,6 +194,7 @@ gchar* last_fm_core_getSessionKey (LastFMCore* self, const gchar* token);
 void beat_box_settings_setLastFMSessionKey (BeatBoxSettings* self, const gchar* val);
 static void beat_box_preferences_window_real_saveClicked (BeatBoxPreferencesWindow* self);
 void beat_box_settings_setUpdateFolderHierarchy (BeatBoxSettings* self, gboolean val);
+void beat_box_settings_setCopyImportedMusic (BeatBoxSettings* self, gboolean val);
 void beat_box_preferences_window_cancelClicked (BeatBoxPreferencesWindow* self);
 static void beat_box_preferences_window_real_cancelClicked (BeatBoxPreferencesWindow* self);
 static void beat_box_preferences_window_finalize (GObject* obj);
@@ -413,10 +426,10 @@ static void beat_box_preferences_window_real_lastfmLoginClick (BeatBoxPreference
 			auth_uri = g_strconcat ("http://www.last.fm/api/auth/?api_key=" LAST_FM_CORE_api "&token=", self->priv->lastfm_token, NULL);
 			g_app_info_launch_default_for_uri (auth_uri, NULL, &_inner_error_);
 			if (_inner_error_ != NULL) {
-				goto __catch56_g_error;
+				goto __catch62_g_error;
 			}
-			goto __finally56;
-			__catch56_g_error:
+			goto __finally62;
+			__catch62_g_error:
 			{
 				GError * err;
 				err = _inner_error_;
@@ -424,7 +437,7 @@ static void beat_box_preferences_window_real_lastfmLoginClick (BeatBoxPreference
 				fprintf (stdout, "Could not open Last FM website to authorize: %s\n", err->message);
 				_g_error_free0 (err);
 			}
-			__finally56:
+			__finally62:
 			if (_inner_error_ != NULL) {
 				_g_free0 (auth_uri);
 				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -470,6 +483,7 @@ static void beat_box_preferences_window_real_saveClicked (BeatBoxPreferencesWind
 	gchar* _tmp3_;
 	gboolean _tmp4_;
 	gboolean _tmp7_;
+	gboolean _tmp8_;
 	g_return_if_fail (self != NULL);
 	_tmp0_ = gtk_file_chooser_get_current_folder ((GtkFileChooser*) self->priv->fileChooser);
 	_tmp1_ = _tmp0_;
@@ -485,7 +499,8 @@ static void beat_box_preferences_window_real_saveClicked (BeatBoxPreferencesWind
 	}
 	_tmp7_ = gtk_toggle_button_get_active ((GtkToggleButton*) self->priv->organizeFolders);
 	beat_box_settings_setUpdateFolderHierarchy (self->priv->_lm->settings, _tmp7_);
-	fprintf (stdout, "no setting for copying imported music\n");
+	_tmp8_ = gtk_toggle_button_get_active ((GtkToggleButton*) self->priv->copyImportedMusic);
+	beat_box_settings_setCopyImportedMusic (self->priv->_lm->settings, _tmp8_);
 	gtk_object_destroy ((GtkObject*) self);
 }
 

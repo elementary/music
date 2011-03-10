@@ -155,7 +155,7 @@ static gboolean beat_box_settings_getBool (BeatBoxSettings* self, const gchar* p
 	_tmp0_ = gconf_client_get (self->priv->client, path, &_inner_error_);
 	_tmp1_ = _tmp0_;
 	if (_inner_error_ != NULL) {
-		goto __catch49_g_error;
+		goto __catch55_g_error;
 	}
 	_tmp2_ = _tmp1_;
 	if ((_tmp3_ = _tmp2_ != NULL, _gconf_value_free0 (_tmp2_), _tmp3_)) {
@@ -164,14 +164,14 @@ static gboolean beat_box_settings_getBool (BeatBoxSettings* self, const gchar* p
 		_tmp4_ = gconf_client_get_bool (self->priv->client, path, &_inner_error_);
 		_tmp5_ = _tmp4_;
 		if (_inner_error_ != NULL) {
-			goto __catch49_g_error;
+			goto __catch55_g_error;
 		}
 		rv = _tmp5_;
 	} else {
 		rv = def;
 	}
-	goto __finally49;
-	__catch49_g_error:
+	goto __finally55;
+	__catch55_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -179,7 +179,7 @@ static gboolean beat_box_settings_getBool (BeatBoxSettings* self, const gchar* p
 		fprintf (stdout, "Could not get bool value %s from gconf: %s\n", path, err->message);
 		_g_error_free0 (err);
 	}
-	__finally49:
+	__finally55:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -207,7 +207,7 @@ static gchar* beat_box_settings_getString (BeatBoxSettings* self, const gchar* p
 	_tmp1_ = gconf_client_get (self->priv->client, path, &_inner_error_);
 	_tmp2_ = _tmp1_;
 	if (_inner_error_ != NULL) {
-		goto __catch50_g_error;
+		goto __catch56_g_error;
 	}
 	_tmp3_ = _tmp2_;
 	if ((_tmp4_ = _tmp3_ != NULL, _gconf_value_free0 (_tmp3_), _tmp4_)) {
@@ -217,7 +217,7 @@ static gchar* beat_box_settings_getString (BeatBoxSettings* self, const gchar* p
 		_tmp5_ = gconf_client_get_string (self->priv->client, path, &_inner_error_);
 		_tmp6_ = _tmp5_;
 		if (_inner_error_ != NULL) {
-			goto __catch50_g_error;
+			goto __catch56_g_error;
 		}
 		_tmp7_ = _tmp6_;
 		_g_free0 (rv);
@@ -230,8 +230,8 @@ static gchar* beat_box_settings_getString (BeatBoxSettings* self, const gchar* p
 		_g_free0 (rv);
 		rv = _tmp9_;
 	}
-	goto __finally50;
-	__catch50_g_error:
+	goto __finally56;
+	__catch56_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -239,7 +239,7 @@ static gchar* beat_box_settings_getString (BeatBoxSettings* self, const gchar* p
 		fprintf (stdout, "Could not get string value %s from gconf: %s\n", path, err->message);
 		_g_error_free0 (err);
 	}
-	__finally50:
+	__finally56:
 	if (_inner_error_ != NULL) {
 		_g_free0 (rv);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -265,7 +265,7 @@ static gint beat_box_settings_getInt (BeatBoxSettings* self, const gchar* path, 
 	_tmp0_ = gconf_client_get (self->priv->client, path, &_inner_error_);
 	_tmp1_ = _tmp0_;
 	if (_inner_error_ != NULL) {
-		goto __catch51_g_error;
+		goto __catch57_g_error;
 	}
 	_tmp2_ = _tmp1_;
 	if ((_tmp3_ = _tmp2_ != NULL, _gconf_value_free0 (_tmp2_), _tmp3_)) {
@@ -274,14 +274,14 @@ static gint beat_box_settings_getInt (BeatBoxSettings* self, const gchar* path, 
 		_tmp4_ = gconf_client_get_int (self->priv->client, path, &_inner_error_);
 		_tmp5_ = _tmp4_;
 		if (_inner_error_ != NULL) {
-			goto __catch51_g_error;
+			goto __catch57_g_error;
 		}
 		rv = _tmp5_;
 	} else {
 		rv = def;
 	}
-	goto __finally51;
-	__catch51_g_error:
+	goto __finally57;
+	__catch57_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -289,7 +289,7 @@ static gint beat_box_settings_getInt (BeatBoxSettings* self, const gchar* path, 
 		fprintf (stdout, "Could not get int value %s from gconf: %s\n", path, err->message);
 		_g_error_free0 (err);
 	}
-	__finally51:
+	__finally57:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -306,10 +306,10 @@ static void beat_box_settings_setBool (BeatBoxSettings* self, const gchar* path,
 	g_return_if_fail (path != NULL);
 	gconf_client_set_bool (self->priv->client, path, val, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch52_g_error;
+		goto __catch58_g_error;
 	}
-	goto __finally52;
-	__catch52_g_error:
+	goto __finally58;
+	__catch58_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -317,7 +317,7 @@ static void beat_box_settings_setBool (BeatBoxSettings* self, const gchar* path,
 		fprintf (stdout, "Could not set bool value %s from gconf: %s\n", path, err->message);
 		_g_error_free0 (err);
 	}
-	__finally52:
+	__finally58:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -333,10 +333,10 @@ static void beat_box_settings_setString (BeatBoxSettings* self, const gchar* pat
 	g_return_if_fail (val != NULL);
 	gconf_client_set_string (self->priv->client, path, val, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch53_g_error;
+		goto __catch59_g_error;
 	}
-	goto __finally53;
-	__catch53_g_error:
+	goto __finally59;
+	__catch59_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -344,7 +344,7 @@ static void beat_box_settings_setString (BeatBoxSettings* self, const gchar* pat
 		fprintf (stdout, "Could not set string value %s from gconf: %s\n", path, err->message);
 		_g_error_free0 (err);
 	}
-	__finally53:
+	__finally59:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -359,10 +359,10 @@ static void beat_box_settings_setInt (BeatBoxSettings* self, const gchar* path, 
 	g_return_if_fail (path != NULL);
 	gconf_client_set_int (self->priv->client, path, val, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch54_g_error;
+		goto __catch60_g_error;
 	}
-	goto __finally54;
-	__catch54_g_error:
+	goto __finally60;
+	__catch60_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -370,7 +370,7 @@ static void beat_box_settings_setInt (BeatBoxSettings* self, const gchar* path, 
 		fprintf (stdout, "Could not set int value %s from gconf: %s\n", path, err->message);
 		_g_error_free0 (err);
 	}
-	__finally54:
+	__finally60:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);

@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gdk/gdk.h>
+#include <unique/unique.h>
 #include <stdio.h>
 
 
@@ -51,6 +52,7 @@ typedef struct _BeatBoxDataBaseManagerClass BeatBoxDataBaseManagerClass;
 
 typedef struct _BeatBoxStreamPlayer BeatBoxStreamPlayer;
 typedef struct _BeatBoxStreamPlayerClass BeatBoxStreamPlayerClass;
+#define _unique_message_data_free0(var) ((var == NULL) ? NULL : (var = (unique_message_data_free (var), NULL)))
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 #define _gtk_icon_source_free0(var) ((var == NULL) ? NULL : (var = (gtk_icon_source_free (var), NULL)))
 #define _gtk_icon_set_unref0(var) ((var == NULL) ? NULL : (var = (gtk_icon_set_unref (var), NULL)))
@@ -105,34 +107,51 @@ static const GtkStockItem BEAT_BOX_BEATBOX_stock_items[8] = {{BEAT_BOX_BEATBOX_S
 
 gint beat_box_beatbox_main (gchar** args, int args_length1) {
 	gint result = 0;
-	BeatBoxStreamPlayer* _tmp0_ = NULL;
-	BeatBoxStreamPlayer* _tmp1_;
-	BeatBoxDataBaseManager* _tmp2_ = NULL;
-	BeatBoxDataBaseManager* _tmp3_;
-	BeatBoxLibraryWindow* _tmp4_ = NULL;
-	BeatBoxLibraryWindow* _tmp5_;
+	UniqueApp* _tmp0_ = NULL;
+	UniqueApp* app;
+	gboolean _tmp1_;
 	gtk_init (&args_length1, &args);
-	gdk_threads_init ();
-	beat_box_beatbox_add_stock_images ();
-	fprintf (stdout, "Creating streamplayer\n");
-	_tmp0_ = beat_box_stream_player_new (args, args_length1);
-	_tmp1_ = _tmp0_;
-	_g_object_unref0 (beat_box_beatbox__player);
-	beat_box_beatbox__player = _tmp1_;
-	fprintf (stdout, "Creating database manager\n");
-	_tmp2_ = beat_box_data_base_manager_new (TRUE, TRUE);
-	_tmp3_ = _tmp2_;
-	_g_object_unref0 (beat_box_beatbox_dbm);
-	beat_box_beatbox_dbm = _tmp3_;
-	fprintf (stdout, "Loading database\n");
-	beat_box_data_base_manager_load_db (beat_box_beatbox_dbm);
-	fprintf (stdout, "Creating User Interface\n");
-	_tmp4_ = beat_box_library_window_new (beat_box_beatbox_dbm, beat_box_beatbox__player);
-	_tmp5_ = g_object_ref_sink (_tmp4_);
-	_g_object_unref0 (beat_box_beatbox__program);
-	beat_box_beatbox__program = _tmp5_;
-	gtk_main ();
-	result = 0;
+	_tmp0_ = unique_app_new ("org.elementary.beatbox", NULL);
+	app = _tmp0_;
+	if ((g_object_get (app, "is-running", &_tmp1_, NULL), _tmp1_)) {
+		UniqueCommand command;
+		UniqueMessageData* _tmp2_ = NULL;
+		UniqueMessageData* message;
+		command = UNIQUE_ACTIVATE;
+		_tmp2_ = unique_message_data_new ();
+		message = _tmp2_;
+		unique_app_send_message (app, (gint) command, message);
+		_unique_message_data_free0 (message);
+	} else {
+		BeatBoxStreamPlayer* _tmp3_ = NULL;
+		BeatBoxStreamPlayer* _tmp4_;
+		BeatBoxDataBaseManager* _tmp5_ = NULL;
+		BeatBoxDataBaseManager* _tmp6_;
+		BeatBoxLibraryWindow* _tmp7_ = NULL;
+		BeatBoxLibraryWindow* _tmp8_;
+		gdk_threads_init ();
+		beat_box_beatbox_add_stock_images ();
+		fprintf (stdout, "Creating streamplayer\n");
+		_tmp3_ = beat_box_stream_player_new (args, args_length1);
+		_tmp4_ = _tmp3_;
+		_g_object_unref0 (beat_box_beatbox__player);
+		beat_box_beatbox__player = _tmp4_;
+		fprintf (stdout, "Creating database manager\n");
+		_tmp5_ = beat_box_data_base_manager_new (TRUE, TRUE);
+		_tmp6_ = _tmp5_;
+		_g_object_unref0 (beat_box_beatbox_dbm);
+		beat_box_beatbox_dbm = _tmp6_;
+		fprintf (stdout, "Loading database\n");
+		beat_box_data_base_manager_load_db (beat_box_beatbox_dbm);
+		_tmp7_ = beat_box_library_window_new (beat_box_beatbox_dbm, beat_box_beatbox__player);
+		_tmp8_ = g_object_ref_sink (_tmp7_);
+		_g_object_unref0 (beat_box_beatbox__program);
+		beat_box_beatbox__program = _tmp8_;
+		unique_app_watch_window (app, (GtkWindow*) beat_box_beatbox__program);
+		gtk_main ();
+	}
+	result = 1;
+	_g_object_unref0 (app);
 	return result;
 }
 

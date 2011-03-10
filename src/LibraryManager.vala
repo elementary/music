@@ -278,8 +278,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		dbm.remove_songs(paths);
 		
 		Idle.add( () => { 
-			save_songs();
-			
 			//maybe pass in songs_added, which appends those songs to the treeview?
 			music_rescanned(new_songs, not_imported); 
 			return false; 

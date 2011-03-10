@@ -193,7 +193,7 @@ struct _BeatBoxMusicTreeViewClass {
 	void (*current_cleared) (BeatBoxMusicTreeView* self);
 	void (*song_played) (BeatBoxMusicTreeView* self, gint id, gint old);
 	void (*songs_updated) (BeatBoxMusicTreeView* self, GeeCollection* ids);
-	void (*song_removed) (BeatBoxMusicTreeView* self, gint id);
+	void (*songs_removed) (BeatBoxMusicTreeView* self, GeeLinkedList* ids);
 	void (*viewDoubleClick) (BeatBoxMusicTreeView* self, GtkTreePath* path, GtkTreeViewColumn* column);
 	gboolean (*viewClick) (BeatBoxMusicTreeView* self, GdkEventButton* event);
 	void (*viewHeadersResized) (BeatBoxMusicTreeView* self);

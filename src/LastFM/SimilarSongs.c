@@ -143,14 +143,14 @@ static void last_fm_similar_songs_real_queryForSimilar (LastFMSimilarSongs* self
 		g_thread_create (_last_fm_similar_songs_similar_thread_function_gthread_func, self, FALSE, &_inner_error_);
 		if (_inner_error_ != NULL) {
 			if (_inner_error_->domain == G_THREAD_ERROR) {
-				goto __catch59_g_thread_error;
+				goto __catch65_g_thread_error;
 			}
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
 			return;
 		}
-		goto __finally59;
-		__catch59_g_thread_error:
+		goto __finally65;
+		__catch65_g_thread_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -158,7 +158,7 @@ static void last_fm_similar_songs_real_queryForSimilar (LastFMSimilarSongs* self
 			fprintf (stdout, "ERROR: Could not create similar thread: %s \n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally59:
+		__finally65:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);

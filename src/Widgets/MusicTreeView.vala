@@ -537,7 +537,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public void populateView(Collection<int> songs, bool is_search) {
 		view.freeze_child_notify();
-		//sort = null;
+		view.set_model(null);
+		
 		Gtk.SortType sort_type = Gtk.SortType.ASCENDING;
 		int temp_sort_id = 0;
 		if(!is_search) {
@@ -569,6 +570,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			sort.set_sort_column_id(main_sort, sort_type);
 		}
 		
+		view.set_model(sort);
 		view.thaw_child_notify();
 	}
 	

@@ -4,11 +4,11 @@
 
 #include <glib.h>
 #include <glib-object.h>
+#include <gee.h>
 #include <stdlib.h>
 #include <string.h>
 #include <gio/gio.h>
 #include <stdio.h>
-#include <gee.h>
 #include <float.h>
 #include <math.h>
 #include <tag_c.h>
@@ -74,7 +74,8 @@ struct _BeatBoxFileOperatorClass {
 struct _BeatBoxFileOperatorPrivate {
 	BeatBoxLibraryManager* lm;
 	BeatBoxSettings* settings;
-	BeatBoxSong* temp_song;
+	gboolean inThread;
+	GeeLinkedList* toSave;
 	gint index;
 	gint item_count;
 };
@@ -123,16 +124,18 @@ const gchar* beat_box_song_get_album (BeatBoxSong* self);
 GdkPixbuf* beat_box_file_operator_save_album (BeatBoxFileOperator* self, BeatBoxSong* s, const gchar* uri);
 gchar* beat_box_file_operator_find_artist_image (BeatBoxFileOperator* self, BeatBoxSong* s);
 GdkPixbuf* beat_box_file_operator_save_artist_image (BeatBoxFileOperator* self, BeatBoxSong* s, const gchar* uri);
-void beat_box_file_operator_save_song (BeatBoxFileOperator* self, BeatBoxSong* s);
+void beat_box_file_operator_save_songs (BeatBoxFileOperator* self, GeeCollection* to_save);
 void* beat_box_file_operator_save_song_thread (BeatBoxFileOperator* self);
 static gpointer _beat_box_file_operator_save_song_thread_gthread_func (gpointer self);
 const gchar* beat_box_song_get_genre (BeatBoxSong* self);
 const gchar* beat_box_song_get_comment (BeatBoxSong* self);
 gint beat_box_song_get_year (BeatBoxSong* self);
 gint beat_box_song_get_track (BeatBoxSong* self);
+gboolean beat_box_settings_getUpdateFolderHierarchy (BeatBoxSettings* self);
 void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, BeatBoxSong* s, gboolean delete_old);
 gchar* beat_box_settings_getMusicFolder (BeatBoxSettings* self);
 void beat_box_song_set_file (BeatBoxSong* self, const gchar* value);
+void beat_box_file_operator_remove_songs (BeatBoxFileOperator* self, GeeCollection* toRemove);
 static void g_cclosure_user_marshal_VOID__STRING_DOUBLE (GClosure * closure, GValue * return_value, guint n_param_values, const GValue * param_values, gpointer invocation_hint, gpointer marshal_data);
 static void beat_box_file_operator_finalize (GObject* obj);
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func);
@@ -151,6 +154,8 @@ BeatBoxFileOperator* beat_box_file_operator_construct (GType object_type, BeatBo
 	BeatBoxLibraryManager* _tmp1_;
 	BeatBoxSettings* _tmp2_;
 	BeatBoxSettings* _tmp3_;
+	GeeLinkedList* _tmp4_ = NULL;
+	GeeLinkedList* _tmp5_;
 	g_return_val_if_fail (lmm != NULL, NULL);
 	g_return_val_if_fail (sett != NULL, NULL);
 	self = (BeatBoxFileOperator*) g_object_new (object_type, NULL);
@@ -162,6 +167,11 @@ BeatBoxFileOperator* beat_box_file_operator_construct (GType object_type, BeatBo
 	_tmp3_ = _tmp2_;
 	_g_object_unref0 (self->priv->settings);
 	self->priv->settings = _tmp3_;
+	self->priv->inThread = FALSE;
+	_tmp4_ = gee_linked_list_new (BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL);
+	_tmp5_ = _tmp4_;
+	_g_object_unref0 (self->priv->toSave);
+	self->priv->toSave = _tmp5_;
 	return self;
 }
 
@@ -271,7 +281,7 @@ gint beat_box_file_operator_count_music_files (BeatBoxFileOperator* self, GFile*
 	_tmp0_ = g_file_enumerate_children (music_folder, G_FILE_ATTRIBUTE_STANDARD_NAME "," G_FILE_ATTRIBUTE_STANDARD_TYPE, 0, NULL, &_inner_error_);
 	enumerator = _tmp0_;
 	if (_inner_error_ != NULL) {
-		goto __catch24_g_error;
+		goto __catch28_g_error;
 	}
 	while (TRUE) {
 		GFileInfo* _tmp1_ = NULL;
@@ -289,7 +299,7 @@ gint beat_box_file_operator_count_music_files (BeatBoxFileOperator* self, GFile*
 		_tmp2_ = _tmp1_;
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (enumerator);
-			goto __catch24_g_error;
+			goto __catch28_g_error;
 		}
 		_tmp3_ = _tmp2_;
 		_g_object_unref0 (file_info);
@@ -329,8 +339,8 @@ gint beat_box_file_operator_count_music_files (BeatBoxFileOperator* self, GFile*
 		_g_free0 (file_path);
 	}
 	_g_object_unref0 (enumerator);
-	goto __finally24;
-	__catch24_g_error:
+	goto __finally28;
+	__catch28_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -338,7 +348,7 @@ gint beat_box_file_operator_count_music_files (BeatBoxFileOperator* self, GFile*
 		fprintf (stdout, "Could not pre-scan music folder. Progress percentage may be off: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally24:
+	__finally28:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (file_info);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -364,7 +374,7 @@ void beat_box_file_operator_get_music_files (BeatBoxFileOperator* self, GFile* m
 	_tmp0_ = g_file_enumerate_children (music_folder, G_FILE_ATTRIBUTE_STANDARD_NAME "," G_FILE_ATTRIBUTE_STANDARD_TYPE, 0, NULL, &_inner_error_);
 	enumerator = _tmp0_;
 	if (_inner_error_ != NULL) {
-		goto __catch25_g_error;
+		goto __catch29_g_error;
 	}
 	while (TRUE) {
 		GFileInfo* _tmp1_ = NULL;
@@ -382,7 +392,7 @@ void beat_box_file_operator_get_music_files (BeatBoxFileOperator* self, GFile* m
 		_tmp2_ = _tmp1_;
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (enumerator);
-			goto __catch25_g_error;
+			goto __catch29_g_error;
 		}
 		_tmp3_ = _tmp2_;
 		_g_object_unref0 (file_info);
@@ -433,8 +443,8 @@ void beat_box_file_operator_get_music_files (BeatBoxFileOperator* self, GFile* m
 		_g_free0 (file_path);
 	}
 	_g_object_unref0 (enumerator);
-	goto __finally25;
-	__catch25_g_error:
+	goto __finally29;
+	__catch29_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -442,7 +452,7 @@ void beat_box_file_operator_get_music_files (BeatBoxFileOperator* self, GFile* m
 		fprintf (stdout, "Could not get music: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally25:
+	__finally29:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (file_info);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -479,7 +489,7 @@ void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* musi
 	_tmp0_ = g_file_enumerate_children (music_folder, G_FILE_ATTRIBUTE_STANDARD_NAME "," G_FILE_ATTRIBUTE_STANDARD_TYPE, 0, NULL, &_inner_error_);
 	enumerator = _tmp0_;
 	if (_inner_error_ != NULL) {
-		goto __catch26_g_error;
+		goto __catch30_g_error;
 	}
 	while (TRUE) {
 		GFileInfo* _tmp1_ = NULL;
@@ -497,7 +507,7 @@ void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* musi
 		_tmp2_ = _tmp1_;
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (enumerator);
-			goto __catch26_g_error;
+			goto __catch30_g_error;
 		}
 		_tmp3_ = _tmp2_;
 		_g_object_unref0 (file_info);
@@ -560,8 +570,8 @@ void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* musi
 		_g_free0 (file_path);
 	}
 	_g_object_unref0 (enumerator);
-	goto __finally26;
-	__catch26_g_error:
+	goto __finally30;
+	__catch30_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -569,7 +579,7 @@ void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* musi
 		fprintf (stdout, "Could not rescan music folder: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally26:
+	__finally30:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (file_info);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -670,7 +680,7 @@ BeatBoxSong* beat_box_file_operator_import_song (BeatBoxFileOperator* self, cons
 		beat_box_song_set_samplerate (s, _tmp26_);
 		_tmp27_ = time (NULL);
 		beat_box_song_set_date_added (s, (gint) _tmp27_);
-		__finally27:
+		__finally31:
 		_tmp29_ = beat_box_song_get_title (s);
 		if (_tmp29_ == NULL) {
 			_tmp28_ = TRUE;
@@ -827,7 +837,7 @@ gchar* beat_box_file_operator_find_album (BeatBoxFileOperator* self, BeatBoxSong
 	_tmp3_ = g_file_enumerate_children (album_folder, G_FILE_ATTRIBUTE_STANDARD_NAME "," G_FILE_ATTRIBUTE_STANDARD_TYPE, 0, NULL, &_inner_error_);
 	enumerator = _tmp3_;
 	if (_inner_error_ != NULL) {
-		goto __catch28_g_error;
+		goto __catch32_g_error;
 	}
 	while (TRUE) {
 		GFileInfo* _tmp4_ = NULL;
@@ -846,7 +856,7 @@ gchar* beat_box_file_operator_find_album (BeatBoxFileOperator* self, BeatBoxSong
 		_tmp5_ = _tmp4_;
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (enumerator);
-			goto __catch28_g_error;
+			goto __catch32_g_error;
 		}
 		_tmp6_ = _tmp5_;
 		_g_object_unref0 (file_info);
@@ -891,8 +901,8 @@ gchar* beat_box_file_operator_find_album (BeatBoxFileOperator* self, BeatBoxSong
 		_g_free0 (file_path);
 	}
 	_g_object_unref0 (enumerator);
-	goto __finally28;
-	__catch28_g_error:
+	goto __finally32;
+	__catch32_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -900,7 +910,7 @@ gchar* beat_box_file_operator_find_album (BeatBoxFileOperator* self, BeatBoxSong
 		fprintf (stdout, "Could not find album artwork: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally28:
+	__finally32:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (file_info);
 		_g_object_unref0 (album_folder);
@@ -936,7 +946,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	regex = (_tmp3_ = _tmp2_, _g_free0 (_tmp1_), _tmp3_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch30_g_regex_error;
+			goto __catch34_g_regex_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -947,7 +957,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	if (_inner_error_ != NULL) {
 		_g_regex_unref0 (regex);
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch30_g_regex_error;
+			goto __catch34_g_regex_error;
 		}
 		_g_regex_unref0 (regex);
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -958,8 +968,8 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	_g_regex_unref0 (regex);
 	return result;
 	_g_regex_unref0 (regex);
-	goto __finally30;
-	__catch30_g_regex_error:
+	goto __finally34;
+	__catch34_g_regex_error:
 	{
 		GError * e;
 		e = _inner_error_;
@@ -967,7 +977,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_assert_not_reached ();
 		_g_error_free0 (e);
 	}
-	__finally30:
+	__finally34:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -1026,7 +1036,7 @@ GdkPixbuf* beat_box_file_operator_save_album (BeatBoxFileOperator* self, BeatBox
 	_tmp2_ = g_file_read (file, NULL, &_inner_error_);
 	_tmp3_ = _tmp2_;
 	if (_inner_error_ != NULL) {
-		goto __catch29_g_error;
+		goto __catch33_g_error;
 	}
 	_tmp4_ = _tmp3_;
 	_g_object_unref0 (filestream);
@@ -1034,7 +1044,7 @@ GdkPixbuf* beat_box_file_operator_save_album (BeatBoxFileOperator* self, BeatBox
 	_tmp5_ = gdk_pixbuf_new_from_stream ((GInputStream*) filestream, NULL, &_inner_error_);
 	_tmp6_ = _tmp5_;
 	if (_inner_error_ != NULL) {
-		goto __catch29_g_error;
+		goto __catch33_g_error;
 	}
 	_tmp7_ = _tmp6_;
 	_g_object_unref0 (rv);
@@ -1058,10 +1068,10 @@ GdkPixbuf* beat_box_file_operator_save_album (BeatBoxFileOperator* self, BeatBox
 	_g_free0 (_tmp16_);
 	_g_free0 (_tmp13_);
 	if (_inner_error_ != NULL) {
-		goto __catch29_g_error;
+		goto __catch33_g_error;
 	}
-	goto __finally29;
-	__catch29_g_error:
+	goto __finally33;
+	__catch33_g_error:
 	{
 		GError * err;
 		GdkPixbuf* _tmp19_;
@@ -1073,7 +1083,7 @@ GdkPixbuf* beat_box_file_operator_save_album (BeatBoxFileOperator* self, BeatBox
 		rv = _tmp19_;
 		_g_error_free0 (err);
 	}
-	__finally29:
+	__finally33:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (filestream);
 		_g_object_unref0 (file);
@@ -1116,7 +1126,7 @@ gchar* beat_box_file_operator_find_artist_image (BeatBoxFileOperator* self, Beat
 	_tmp6_ = g_file_enumerate_children (artist_folder, G_FILE_ATTRIBUTE_STANDARD_NAME "," G_FILE_ATTRIBUTE_STANDARD_TYPE, 0, NULL, &_inner_error_);
 	enumerator = _tmp6_;
 	if (_inner_error_ != NULL) {
-		goto __catch31_g_error;
+		goto __catch35_g_error;
 	}
 	while (TRUE) {
 		GFileInfo* _tmp7_ = NULL;
@@ -1134,7 +1144,7 @@ gchar* beat_box_file_operator_find_artist_image (BeatBoxFileOperator* self, Beat
 		_tmp8_ = _tmp7_;
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (enumerator);
-			goto __catch31_g_error;
+			goto __catch35_g_error;
 		}
 		_tmp9_ = _tmp8_;
 		_g_object_unref0 (file_info);
@@ -1168,8 +1178,8 @@ gchar* beat_box_file_operator_find_artist_image (BeatBoxFileOperator* self, Beat
 		_g_free0 (file_path);
 	}
 	_g_object_unref0 (enumerator);
-	goto __finally31;
-	__catch31_g_error:
+	goto __finally35;
+	__catch35_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -1177,7 +1187,7 @@ gchar* beat_box_file_operator_find_artist_image (BeatBoxFileOperator* self, Beat
 		fprintf (stdout, "Could not find artist image: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally31:
+	__finally35:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (file_info);
 		_g_object_unref0 (artist_folder);
@@ -1234,7 +1244,7 @@ GdkPixbuf* beat_box_file_operator_save_artist_image (BeatBoxFileOperator* self, 
 	_tmp2_ = g_file_read (file, NULL, &_inner_error_);
 	_tmp3_ = _tmp2_;
 	if (_inner_error_ != NULL) {
-		goto __catch32_g_error;
+		goto __catch36_g_error;
 	}
 	_tmp4_ = _tmp3_;
 	_g_object_unref0 (filestream);
@@ -1242,7 +1252,7 @@ GdkPixbuf* beat_box_file_operator_save_artist_image (BeatBoxFileOperator* self, 
 	_tmp5_ = gdk_pixbuf_new_from_stream ((GInputStream*) filestream, NULL, &_inner_error_);
 	_tmp6_ = _tmp5_;
 	if (_inner_error_ != NULL) {
-		goto __catch32_g_error;
+		goto __catch36_g_error;
 	}
 	_tmp7_ = _tmp6_;
 	_g_object_unref0 (rv);
@@ -1261,10 +1271,10 @@ GdkPixbuf* beat_box_file_operator_save_artist_image (BeatBoxFileOperator* self, 
 	_g_free0 (_tmp12_);
 	_g_free0 (_tmp10_);
 	if (_inner_error_ != NULL) {
-		goto __catch32_g_error;
+		goto __catch36_g_error;
 	}
-	goto __finally32;
-	__catch32_g_error:
+	goto __finally36;
+	__catch36_g_error:
 	{
 		GError * err;
 		GdkPixbuf* _tmp16_;
@@ -1276,7 +1286,7 @@ GdkPixbuf* beat_box_file_operator_save_artist_image (BeatBoxFileOperator* self, 
 		rv = _tmp16_;
 		_g_error_free0 (err);
 	}
-	__finally32:
+	__finally36:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (filestream);
 		_g_object_unref0 (file);
@@ -1299,122 +1309,160 @@ static gpointer _beat_box_file_operator_save_song_thread_gthread_func (gpointer 
 }
 
 
-void beat_box_file_operator_save_song (BeatBoxFileOperator* self, BeatBoxSong* s) {
-	BeatBoxSong* _tmp0_;
-	BeatBoxSong* _tmp1_;
+void beat_box_file_operator_save_songs (BeatBoxFileOperator* self, GeeCollection* to_save) {
 	GError * _inner_error_ = NULL;
 	g_return_if_fail (self != NULL);
-	g_return_if_fail (s != NULL);
-	_tmp0_ = _g_object_ref0 (s);
-	_tmp1_ = _tmp0_;
-	_g_object_unref0 (self->priv->temp_song);
-	self->priv->temp_song = _tmp1_;
-	g_thread_create (_beat_box_file_operator_save_song_thread_gthread_func, self, FALSE, &_inner_error_);
-	if (_inner_error_ != NULL) {
-		goto __catch33_g_error;
-	}
-	goto __finally33;
-	__catch33_g_error:
+	g_return_if_fail (to_save != NULL);
 	{
-		GError * err;
-		err = _inner_error_;
-		_inner_error_ = NULL;
-		fprintf (stdout, "Could not create thread to rescan music folder: %s\n", err->message);
-		_g_error_free0 (err);
+		GeeIterator* _tmp0_ = NULL;
+		GeeIterator* _s_it;
+		_tmp0_ = gee_iterable_iterator ((GeeIterable*) to_save);
+		_s_it = _tmp0_;
+		while (TRUE) {
+			gboolean _tmp1_;
+			gpointer _tmp2_ = NULL;
+			BeatBoxSong* s;
+			gboolean _tmp3_;
+			_tmp1_ = gee_iterator_next (_s_it);
+			if (!_tmp1_) {
+				break;
+			}
+			_tmp2_ = gee_iterator_get (_s_it);
+			s = (BeatBoxSong*) _tmp2_;
+			_tmp3_ = gee_abstract_collection_contains ((GeeAbstractCollection*) self->priv->toSave, s);
+			if (!_tmp3_) {
+				gee_queue_offer ((GeeQueue*) self->priv->toSave, s);
+			}
+			_g_object_unref0 (s);
+		}
+		_g_object_unref0 (_s_it);
 	}
-	__finally33:
-	if (_inner_error_ != NULL) {
-		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-		g_clear_error (&_inner_error_);
-		return;
+	if (!self->priv->inThread) {
+		self->priv->inThread = TRUE;
+		g_thread_create (_beat_box_file_operator_save_song_thread_gthread_func, self, FALSE, &_inner_error_);
+		if (_inner_error_ != NULL) {
+			goto __catch37_g_error;
+		}
+		goto __finally37;
+		__catch37_g_error:
+		{
+			GError * err;
+			err = _inner_error_;
+			_inner_error_ = NULL;
+			fprintf (stdout, "Could not create thread to rescan music folder: %s\n", err->message);
+			_g_error_free0 (err);
+		}
+		__finally37:
+		if (_inner_error_ != NULL) {
+			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+			g_clear_error (&_inner_error_);
+			return;
+		}
 	}
 }
 
 
 void* beat_box_file_operator_save_song_thread (BeatBoxFileOperator* self) {
 	void* result = NULL;
-	TagLib_File* tag_file = NULL;
-	const gchar* _tmp0_ = NULL;
-	const gchar* _tmp1_ = NULL;
-	TagLib_File* _tmp2_ = NULL;
-	TagLib_File* _tmp3_;
-	gboolean _tmp4_ = FALSE;
-	gboolean _tmp5_ = FALSE;
 	GError * _inner_error_ = NULL;
 	g_return_val_if_fail (self != NULL, NULL);
-	_tmp0_ = beat_box_song_get_file (self->priv->temp_song);
-	fprintf (stdout, "Saving file %s \n", _tmp0_);
-	_tmp1_ = beat_box_song_get_file (self->priv->temp_song);
-	_tmp2_ = taglib_file_new (_tmp1_);
-	_tmp3_ = _tmp2_;
-	_taglib_file_free0 (tag_file);
-	tag_file = _tmp3_;
-	if (tag_file != NULL) {
-		TagLib_Tag* _tmp6_ = NULL;
-		_tmp6_ = taglib_file_tag (tag_file);
-		_tmp5_ = _tmp6_ != NULL;
-	} else {
-		_tmp5_ = FALSE;
-	}
-	if (_tmp5_) {
-		const TagLib_AudioProperties* _tmp7_ = NULL;
-		_tmp7_ = taglib_file_audioproperties (tag_file);
-		_tmp4_ = _tmp7_ != NULL;
-	} else {
-		_tmp4_ = FALSE;
-	}
-	if (_tmp4_) {
-		TagLib_Tag* _tmp8_ = NULL;
-		const gchar* _tmp9_ = NULL;
-		TagLib_Tag* _tmp10_ = NULL;
-		const gchar* _tmp11_ = NULL;
-		TagLib_Tag* _tmp12_ = NULL;
-		const gchar* _tmp13_ = NULL;
-		TagLib_Tag* _tmp14_ = NULL;
-		const gchar* _tmp15_ = NULL;
-		TagLib_Tag* _tmp16_ = NULL;
-		const gchar* _tmp17_ = NULL;
-		TagLib_Tag* _tmp18_ = NULL;
-		gint _tmp19_;
-		TagLib_Tag* _tmp20_ = NULL;
-		gint _tmp21_;
-		_tmp8_ = taglib_file_tag (tag_file);
-		_tmp9_ = beat_box_song_get_title (self->priv->temp_song);
-		taglib_tag_set_title (_tmp8_, _tmp9_);
-		_tmp10_ = taglib_file_tag (tag_file);
-		_tmp11_ = beat_box_song_get_artist (self->priv->temp_song);
-		taglib_tag_set_artist (_tmp10_, _tmp11_);
-		_tmp12_ = taglib_file_tag (tag_file);
-		_tmp13_ = beat_box_song_get_album (self->priv->temp_song);
-		taglib_tag_set_album (_tmp12_, _tmp13_);
-		_tmp14_ = taglib_file_tag (tag_file);
-		_tmp15_ = beat_box_song_get_genre (self->priv->temp_song);
-		taglib_tag_set_genre (_tmp14_, _tmp15_);
-		_tmp16_ = taglib_file_tag (tag_file);
-		_tmp17_ = beat_box_song_get_comment (self->priv->temp_song);
-		taglib_tag_set_comment (_tmp16_, _tmp17_);
-		_tmp18_ = taglib_file_tag (tag_file);
-		_tmp19_ = beat_box_song_get_year (self->priv->temp_song);
-		taglib_tag_set_year (_tmp18_, (guint) _tmp19_);
-		_tmp20_ = taglib_file_tag (tag_file);
-		_tmp21_ = beat_box_song_get_track (self->priv->temp_song);
-		taglib_tag_set_track (_tmp20_, (guint) _tmp21_);
-		taglib_file_save (tag_file);
-		__finally34:
-		if (_inner_error_ != NULL) {
-			_taglib_file_free0 (tag_file);
-			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-			g_clear_error (&_inner_error_);
-			return NULL;
+	while (TRUE) {
+		gpointer _tmp0_ = NULL;
+		BeatBoxSong* s;
+		TagLib_File* tag_file = NULL;
+		const gchar* _tmp1_ = NULL;
+		const gchar* _tmp2_ = NULL;
+		TagLib_File* _tmp3_ = NULL;
+		TagLib_File* _tmp4_;
+		gboolean _tmp5_ = FALSE;
+		gboolean _tmp6_ = FALSE;
+		gboolean _tmp24_;
+		_tmp0_ = gee_queue_poll ((GeeQueue*) self->priv->toSave);
+		s = (BeatBoxSong*) _tmp0_;
+		if (s == NULL) {
+			self->priv->inThread = FALSE;
+			result = NULL;
+			_g_object_unref0 (s);
+			return result;
 		}
-	} else {
-		const gchar* _tmp22_ = NULL;
-		_tmp22_ = beat_box_song_get_file (self->priv->temp_song);
-		fprintf (stdout, "Could not save %s.\n", _tmp22_);
+		_tmp1_ = beat_box_song_get_file (s);
+		fprintf (stdout, "Saving file %s \n", _tmp1_);
+		_tmp2_ = beat_box_song_get_file (s);
+		_tmp3_ = taglib_file_new (_tmp2_);
+		_tmp4_ = _tmp3_;
+		_taglib_file_free0 (tag_file);
+		tag_file = _tmp4_;
+		if (tag_file != NULL) {
+			TagLib_Tag* _tmp7_ = NULL;
+			_tmp7_ = taglib_file_tag (tag_file);
+			_tmp6_ = _tmp7_ != NULL;
+		} else {
+			_tmp6_ = FALSE;
+		}
+		if (_tmp6_) {
+			const TagLib_AudioProperties* _tmp8_ = NULL;
+			_tmp8_ = taglib_file_audioproperties (tag_file);
+			_tmp5_ = _tmp8_ != NULL;
+		} else {
+			_tmp5_ = FALSE;
+		}
+		if (_tmp5_) {
+			TagLib_Tag* _tmp9_ = NULL;
+			const gchar* _tmp10_ = NULL;
+			TagLib_Tag* _tmp11_ = NULL;
+			const gchar* _tmp12_ = NULL;
+			TagLib_Tag* _tmp13_ = NULL;
+			const gchar* _tmp14_ = NULL;
+			TagLib_Tag* _tmp15_ = NULL;
+			const gchar* _tmp16_ = NULL;
+			TagLib_Tag* _tmp17_ = NULL;
+			const gchar* _tmp18_ = NULL;
+			TagLib_Tag* _tmp19_ = NULL;
+			gint _tmp20_;
+			TagLib_Tag* _tmp21_ = NULL;
+			gint _tmp22_;
+			_tmp9_ = taglib_file_tag (tag_file);
+			_tmp10_ = beat_box_song_get_title (s);
+			taglib_tag_set_title (_tmp9_, _tmp10_);
+			_tmp11_ = taglib_file_tag (tag_file);
+			_tmp12_ = beat_box_song_get_artist (s);
+			taglib_tag_set_artist (_tmp11_, _tmp12_);
+			_tmp13_ = taglib_file_tag (tag_file);
+			_tmp14_ = beat_box_song_get_album (s);
+			taglib_tag_set_album (_tmp13_, _tmp14_);
+			_tmp15_ = taglib_file_tag (tag_file);
+			_tmp16_ = beat_box_song_get_genre (s);
+			taglib_tag_set_genre (_tmp15_, _tmp16_);
+			_tmp17_ = taglib_file_tag (tag_file);
+			_tmp18_ = beat_box_song_get_comment (s);
+			taglib_tag_set_comment (_tmp17_, _tmp18_);
+			_tmp19_ = taglib_file_tag (tag_file);
+			_tmp20_ = beat_box_song_get_year (s);
+			taglib_tag_set_year (_tmp19_, (guint) _tmp20_);
+			_tmp21_ = taglib_file_tag (tag_file);
+			_tmp22_ = beat_box_song_get_track (s);
+			taglib_tag_set_track (_tmp21_, (guint) _tmp22_);
+			taglib_file_save (tag_file);
+			__finally38:
+			if (_inner_error_ != NULL) {
+				_taglib_file_free0 (tag_file);
+				_g_object_unref0 (s);
+				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+				g_clear_error (&_inner_error_);
+				return NULL;
+			}
+		} else {
+			const gchar* _tmp23_ = NULL;
+			_tmp23_ = beat_box_song_get_file (s);
+			fprintf (stdout, "Could not save %s.\n", _tmp23_);
+		}
+		_tmp24_ = beat_box_settings_getUpdateFolderHierarchy (self->priv->settings);
+		if (_tmp24_) {
+			beat_box_file_operator_update_file_hierarchy (self, s, TRUE);
+		}
+		_taglib_file_free0 (tag_file);
+		_g_object_unref0 (s);
 	}
-	result = NULL;
-	_taglib_file_free0 (tag_file);
-	return result;
 }
 
 
@@ -1449,12 +1497,10 @@ void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, Be
 	gboolean _tmp24_;
 	GFile* _tmp25_ = NULL;
 	GFile* _tmp26_;
-	gboolean _tmp27_;
-	gboolean _tmp28_;
-	const gchar* _tmp41_ = NULL;
-	gchar* _tmp42_ = NULL;
-	gchar* _tmp43_;
-	gboolean _tmp44_;
+	GFile* _tmp27_ = NULL;
+	GFile* _tmp28_;
+	gboolean _tmp29_;
+	gboolean _tmp30_;
 	gboolean success;
 	GError * _inner_error_ = NULL;
 	g_return_if_fail (self != NULL);
@@ -1466,7 +1512,7 @@ void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, Be
 	file_info = _tmp2_;
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (original);
-		goto __catch35_g_error;
+		goto __catch39_g_error;
 	}
 	_tmp3_ = beat_box_settings_getMusicFolder (self->priv->settings);
 	_tmp4_ = _tmp3_;
@@ -1497,46 +1543,51 @@ void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, Be
 	}
 	_tmp25_ = g_file_get_parent (dest);
 	_tmp26_ = _tmp25_;
-	_tmp27_ = g_file_query_exists (_tmp26_, NULL);
-	if ((_tmp28_ = !_tmp27_, _g_object_unref0 (_tmp26_), _tmp28_)) {
-		GFile* _tmp29_ = NULL;
-		GFile* _tmp30_;
+	_tmp27_ = g_file_get_parent (_tmp26_);
+	_tmp28_ = _tmp27_;
+	_tmp29_ = g_file_query_exists (_tmp28_, NULL);
+	if ((_tmp30_ = !_tmp29_, _g_object_unref0 (_tmp28_), _g_object_unref0 (_tmp26_), _tmp30_)) {
 		GFile* _tmp31_ = NULL;
 		GFile* _tmp32_;
 		GFile* _tmp33_ = NULL;
 		GFile* _tmp34_;
-		gboolean _tmp35_;
-		gboolean _tmp36_;
-		_tmp29_ = g_file_get_parent (dest);
-		_tmp30_ = _tmp29_;
-		g_file_make_directory (_tmp30_, NULL, &_inner_error_);
-		_g_object_unref0 (_tmp30_);
-		if (_inner_error_ != NULL) {
-			goto __catch36_g_error;
-		}
+		gchar* _tmp35_ = NULL;
+		gchar* _tmp36_;
+		GFile* _tmp37_ = NULL;
+		GFile* _tmp38_;
+		GFile* _tmp39_ = NULL;
+		GFile* _tmp40_;
+		GFile* _tmp41_ = NULL;
+		GFile* _tmp42_;
 		_tmp31_ = g_file_get_parent (dest);
 		_tmp32_ = _tmp31_;
 		_tmp33_ = g_file_get_parent (_tmp32_);
 		_tmp34_ = _tmp33_;
-		_tmp35_ = g_file_query_exists (_tmp34_, NULL);
-		if ((_tmp36_ = !_tmp35_, _g_object_unref0 (_tmp34_), _g_object_unref0 (_tmp32_), _tmp36_)) {
-			GFile* _tmp37_ = NULL;
-			GFile* _tmp38_;
-			GFile* _tmp39_ = NULL;
-			GFile* _tmp40_;
-			_tmp37_ = g_file_get_parent (dest);
-			_tmp38_ = _tmp37_;
-			_tmp39_ = g_file_get_parent (_tmp38_);
-			_tmp40_ = _tmp39_;
-			g_file_make_directory (_tmp40_, NULL, &_inner_error_);
-			_g_object_unref0 (_tmp40_);
-			_g_object_unref0 (_tmp38_);
-			if (_inner_error_ != NULL) {
-				goto __catch36_g_error;
-			}
+		_tmp35_ = g_file_get_path (_tmp34_);
+		_tmp36_ = _tmp35_;
+		fprintf (stdout, "artist folder %s does not exist\n", _tmp36_);
+		_g_free0 (_tmp36_);
+		_g_object_unref0 (_tmp34_);
+		_g_object_unref0 (_tmp32_);
+		_tmp37_ = g_file_get_parent (dest);
+		_tmp38_ = _tmp37_;
+		_tmp39_ = g_file_get_parent (_tmp38_);
+		_tmp40_ = _tmp39_;
+		g_file_make_directory (_tmp40_, NULL, &_inner_error_);
+		_g_object_unref0 (_tmp40_);
+		_g_object_unref0 (_tmp38_);
+		if (_inner_error_ != NULL) {
+			goto __catch40_g_error;
 		}
-		goto __finally36;
-		__catch36_g_error:
+		_tmp41_ = g_file_get_parent (dest);
+		_tmp42_ = _tmp41_;
+		g_file_make_directory (_tmp42_, NULL, &_inner_error_);
+		_g_object_unref0 (_tmp42_);
+		if (_inner_error_ != NULL) {
+			goto __catch40_g_error;
+		}
+		goto __finally40;
+		__catch40_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -1544,125 +1595,281 @@ void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, Be
 			fprintf (stdout, "Could not create folder to copy to: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally36:
+		__finally40:
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (dest);
 			_g_object_unref0 (file_info);
 			_g_object_unref0 (original);
-			goto __catch35_g_error;
+			goto __catch39_g_error;
+		}
+	} else {
+		GFile* _tmp43_ = NULL;
+		GFile* _tmp44_;
+		gboolean _tmp45_;
+		gboolean _tmp46_;
+		_tmp43_ = g_file_get_parent (dest);
+		_tmp44_ = _tmp43_;
+		_tmp45_ = g_file_query_exists (_tmp44_, NULL);
+		if ((_tmp46_ = !_tmp45_, _g_object_unref0 (_tmp44_), _tmp46_)) {
+			GFile* _tmp47_ = NULL;
+			GFile* _tmp48_;
+			gchar* _tmp49_ = NULL;
+			gchar* _tmp50_;
+			GFile* _tmp51_ = NULL;
+			GFile* _tmp52_;
+			_tmp47_ = g_file_get_parent (dest);
+			_tmp48_ = _tmp47_;
+			_tmp49_ = g_file_get_path (_tmp48_);
+			_tmp50_ = _tmp49_;
+			fprintf (stdout, "album folder %s does not exist\n", _tmp50_);
+			_g_free0 (_tmp50_);
+			_g_object_unref0 (_tmp48_);
+			_tmp51_ = g_file_get_parent (dest);
+			_tmp52_ = _tmp51_;
+			g_file_make_directory (_tmp52_, NULL, &_inner_error_);
+			_g_object_unref0 (_tmp52_);
+			if (_inner_error_ != NULL) {
+				goto __catch41_g_error;
+			}
+			goto __finally41;
+			__catch41_g_error:
+			{
+				GError * err;
+				err = _inner_error_;
+				_inner_error_ = NULL;
+				fprintf (stdout, "Could not create folder to copy to: %s\n", err->message);
+				_g_error_free0 (err);
+			}
+			__finally41:
+			if (_inner_error_ != NULL) {
+				_g_object_unref0 (dest);
+				_g_object_unref0 (file_info);
+				_g_object_unref0 (original);
+				goto __catch39_g_error;
+			}
 		}
 	}
-	_tmp41_ = beat_box_song_get_file (s);
-	_tmp42_ = g_file_get_path (dest);
-	_tmp43_ = _tmp42_;
-	fprintf (stdout, "Copying %s to %s\n", _tmp41_, _tmp43_);
-	_g_free0 (_tmp43_);
-	_tmp44_ = g_file_copy (original, dest, G_FILE_COPY_NONE, NULL, NULL, NULL, &_inner_error_);
-	success = _tmp44_;
-	if (_inner_error_ != NULL) {
-		_g_object_unref0 (dest);
-		_g_object_unref0 (file_info);
-		_g_object_unref0 (original);
-		goto __catch35_g_error;
+	success = FALSE;
+	if (!delete_old) {
+		const gchar* _tmp53_ = NULL;
+		gchar* _tmp54_ = NULL;
+		gchar* _tmp55_;
+		gboolean _tmp56_;
+		gboolean _tmp57_;
+		_tmp53_ = beat_box_song_get_file (s);
+		_tmp54_ = g_file_get_path (dest);
+		_tmp55_ = _tmp54_;
+		fprintf (stdout, "Copying %s to %s\n", _tmp53_, _tmp55_);
+		_g_free0 (_tmp55_);
+		_tmp56_ = g_file_copy (original, dest, G_FILE_COPY_NONE, NULL, NULL, NULL, &_inner_error_);
+		_tmp57_ = _tmp56_;
+		if (_inner_error_ != NULL) {
+			_g_object_unref0 (dest);
+			_g_object_unref0 (file_info);
+			_g_object_unref0 (original);
+			goto __catch39_g_error;
+		}
+		success = _tmp57_;
+	} else {
+		const gchar* _tmp58_ = NULL;
+		gchar* _tmp59_ = NULL;
+		gchar* _tmp60_;
+		gboolean _tmp61_;
+		gboolean _tmp62_;
+		_tmp58_ = beat_box_song_get_file (s);
+		_tmp59_ = g_file_get_path (dest);
+		_tmp60_ = _tmp59_;
+		fprintf (stdout, "Moving %s to %s\n", _tmp58_, _tmp60_);
+		_g_free0 (_tmp60_);
+		_tmp61_ = g_file_move (original, dest, G_FILE_COPY_NONE, NULL, NULL, NULL, &_inner_error_);
+		_tmp62_ = _tmp61_;
+		if (_inner_error_ != NULL) {
+			_g_object_unref0 (dest);
+			_g_object_unref0 (file_info);
+			_g_object_unref0 (original);
+			goto __catch39_g_error;
+		}
+		success = _tmp62_;
 	}
 	if (success) {
-		gchar* _tmp45_ = NULL;
-		gchar* _tmp46_;
-		_tmp45_ = g_file_get_path (dest);
-		_tmp46_ = _tmp45_;
-		beat_box_song_set_file (s, _tmp46_);
-		_g_free0 (_tmp46_);
+		gchar* _tmp63_ = NULL;
+		gchar* _tmp64_;
+		_tmp63_ = g_file_get_path (dest);
+		_tmp64_ = _tmp63_;
+		beat_box_song_set_file (s, _tmp64_);
+		_g_free0 (_tmp64_);
 	} else {
-		const gchar* _tmp47_ = NULL;
-		gchar* _tmp48_ = NULL;
-		gchar* _tmp49_;
-		_tmp47_ = beat_box_song_get_file (s);
-		_tmp48_ = g_file_get_path (dest);
-		_tmp49_ = _tmp48_;
-		fprintf (stdout, "Failure: Could not copy imported song %s to media folder %s\n", _tmp47_, _tmp49_);
-		_g_free0 (_tmp49_);
+		const gchar* _tmp65_ = NULL;
+		gchar* _tmp66_ = NULL;
+		gchar* _tmp67_;
+		_tmp65_ = beat_box_song_get_file (s);
+		_tmp66_ = g_file_get_path (dest);
+		_tmp67_ = _tmp66_;
+		fprintf (stdout, "Failure: Could not copy imported song %s to media folder %s\n", _tmp65_, _tmp67_);
+		_g_free0 (_tmp67_);
 	}
 	if (delete_old) {
-		GFile* _tmp50_ = NULL;
-		GFile* _tmp51_;
-		gint _tmp52_;
-		gint _tmp53_;
+		GFile* _tmp68_ = NULL;
+		GFile* _tmp69_;
+		gint _tmp70_;
+		gint _tmp71_;
 		gint old_folder_items;
-		g_file_delete (original, NULL, &_inner_error_);
-		if (_inner_error_ != NULL) {
-			_g_object_unref0 (dest);
-			_g_object_unref0 (file_info);
-			_g_object_unref0 (original);
-			goto __catch35_g_error;
-		}
-		_tmp50_ = g_file_get_parent (original);
-		_tmp51_ = _tmp50_;
-		_tmp52_ = beat_box_file_operator_count_music_files (self, _tmp51_);
-		old_folder_items = (_tmp53_ = _tmp52_, _g_object_unref0 (_tmp51_), _tmp53_);
+		_tmp68_ = g_file_get_parent (original);
+		_tmp69_ = _tmp68_;
+		_tmp70_ = beat_box_file_operator_count_music_files (self, _tmp69_);
+		old_folder_items = (_tmp71_ = _tmp70_, _g_object_unref0 (_tmp69_), _tmp71_);
 		if (old_folder_items == 0) {
-			GFile* _tmp54_ = NULL;
-			GFile* _tmp55_;
-			gchar* _tmp56_ = NULL;
-			gchar* _tmp57_;
-			GFile* _tmp58_ = NULL;
-			GFile* _tmp59_;
-			GFile* _tmp60_ = NULL;
-			GFile* _tmp61_;
-			gint _tmp62_;
-			gint _tmp63_;
-			gint old_folder_parent_items;
-			_tmp54_ = g_file_get_parent (original);
-			_tmp55_ = _tmp54_;
-			_tmp56_ = g_file_get_path (_tmp55_);
-			_tmp57_ = _tmp56_;
-			fprintf (stdout, "going to delete %s because no files are in it\n", _tmp57_);
-			_g_free0 (_tmp57_);
-			_g_object_unref0 (_tmp55_);
-			_tmp58_ = g_file_get_parent (original);
-			_tmp59_ = _tmp58_;
-			_tmp60_ = g_file_get_parent (_tmp59_);
-			_tmp61_ = _tmp60_;
-			_tmp62_ = beat_box_file_operator_count_music_files (self, _tmp61_);
-			old_folder_parent_items = (_tmp63_ = _tmp62_, _g_object_unref0 (_tmp61_), _g_object_unref0 (_tmp59_), _tmp63_);
-			if (old_folder_parent_items == 0) {
-				GFile* _tmp64_ = NULL;
-				GFile* _tmp65_;
-				GFile* _tmp66_ = NULL;
-				GFile* _tmp67_;
-				gchar* _tmp68_ = NULL;
-				gchar* _tmp69_;
-				_tmp64_ = g_file_get_parent (original);
-				_tmp65_ = _tmp64_;
-				_tmp66_ = g_file_get_parent (_tmp65_);
-				_tmp67_ = _tmp66_;
-				_tmp68_ = g_file_get_path (_tmp67_);
-				_tmp69_ = _tmp68_;
-				fprintf (stdout, "going to delete %s because no files are in it\n", _tmp69_);
-				_g_free0 (_tmp69_);
-				_g_object_unref0 (_tmp67_);
-				_g_object_unref0 (_tmp65_);
+			GFile* _tmp72_ = NULL;
+			GFile* _tmp73_;
+			gchar* _tmp74_ = NULL;
+			gchar* _tmp75_;
+			GFile* _tmp76_ = NULL;
+			GFile* _tmp77_;
+			_tmp72_ = g_file_get_parent (original);
+			_tmp73_ = _tmp72_;
+			_tmp74_ = g_file_get_path (_tmp73_);
+			_tmp75_ = _tmp74_;
+			fprintf (stdout, "going to delete %s because no files are in it\n", _tmp75_);
+			_g_free0 (_tmp75_);
+			_g_object_unref0 (_tmp73_);
+			_tmp76_ = g_file_get_parent (original);
+			_tmp77_ = _tmp76_;
+			g_file_delete (_tmp77_, NULL, &_inner_error_);
+			_g_object_unref0 (_tmp77_);
+			if (_inner_error_ != NULL) {
+				_g_object_unref0 (dest);
+				_g_object_unref0 (file_info);
+				_g_object_unref0 (original);
+				goto __catch39_g_error;
 			}
 		}
 	}
 	_g_object_unref0 (dest);
 	_g_object_unref0 (file_info);
 	_g_object_unref0 (original);
-	goto __finally35;
-	__catch35_g_error:
+	goto __finally39;
+	__catch39_g_error:
 	{
 		GError * err;
-		const gchar* _tmp70_ = NULL;
+		const gchar* _tmp78_ = NULL;
 		err = _inner_error_;
 		_inner_error_ = NULL;
-		_tmp70_ = beat_box_song_get_file (s);
-		fprintf (stdout, "Could not copy imported song %s to media folder: %s\n", _tmp70_, err->message);
+		_tmp78_ = beat_box_song_get_file (s);
+		fprintf (stdout, "Could not copy imported song %s to media folder: %s\n", _tmp78_, err->message);
 		_g_error_free0 (err);
 	}
-	__finally35:
+	__finally39:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
 		return;
+	}
+}
+
+
+void beat_box_file_operator_remove_songs (BeatBoxFileOperator* self, GeeCollection* toRemove) {
+	GError * _inner_error_ = NULL;
+	g_return_if_fail (self != NULL);
+	g_return_if_fail (toRemove != NULL);
+	{
+		GeeIterator* _tmp0_ = NULL;
+		GeeIterator* _s_it;
+		_tmp0_ = gee_iterable_iterator ((GeeIterable*) toRemove);
+		_s_it = _tmp0_;
+		while (TRUE) {
+			gboolean _tmp1_;
+			gpointer _tmp2_ = NULL;
+			gchar* s;
+			GFile* _tmp3_ = NULL;
+			GFile* file;
+			GFile* _tmp4_ = NULL;
+			GFile* _tmp5_;
+			gint _tmp6_;
+			gint _tmp7_;
+			gint old_folder_items;
+			_tmp1_ = gee_iterator_next (_s_it);
+			if (!_tmp1_) {
+				break;
+			}
+			_tmp2_ = gee_iterator_get (_s_it);
+			s = (gchar*) _tmp2_;
+			_tmp3_ = g_file_new_for_path (s);
+			file = _tmp3_;
+			g_file_trash (file, NULL, &_inner_error_);
+			if (_inner_error_ != NULL) {
+				_g_object_unref0 (file);
+				goto __catch42_g_error;
+			}
+			_tmp4_ = g_file_get_parent (file);
+			_tmp5_ = _tmp4_;
+			_tmp6_ = beat_box_file_operator_count_music_files (self, _tmp5_);
+			old_folder_items = (_tmp7_ = _tmp6_, _g_object_unref0 (_tmp5_), _tmp7_);
+			if (old_folder_items == 0) {
+				GFile* _tmp8_ = NULL;
+				GFile* _tmp9_;
+				gchar* _tmp10_ = NULL;
+				gchar* _tmp11_;
+				GFile* _tmp12_ = NULL;
+				GFile* _tmp13_;
+				GFile* _tmp14_ = NULL;
+				GFile* _tmp15_;
+				gint _tmp16_;
+				gint _tmp17_;
+				gint old_folder_parent_items;
+				_tmp8_ = g_file_get_parent (file);
+				_tmp9_ = _tmp8_;
+				_tmp10_ = g_file_get_path (_tmp9_);
+				_tmp11_ = _tmp10_;
+				fprintf (stdout, "going to delete %s because no files are in it\n", _tmp11_);
+				_g_free0 (_tmp11_);
+				_g_object_unref0 (_tmp9_);
+				_tmp12_ = g_file_get_parent (file);
+				_tmp13_ = _tmp12_;
+				_tmp14_ = g_file_get_parent (_tmp13_);
+				_tmp15_ = _tmp14_;
+				_tmp16_ = beat_box_file_operator_count_music_files (self, _tmp15_);
+				old_folder_parent_items = (_tmp17_ = _tmp16_, _g_object_unref0 (_tmp15_), _g_object_unref0 (_tmp13_), _tmp17_);
+				if (old_folder_parent_items == 0) {
+					GFile* _tmp18_ = NULL;
+					GFile* _tmp19_;
+					GFile* _tmp20_ = NULL;
+					GFile* _tmp21_;
+					gchar* _tmp22_ = NULL;
+					gchar* _tmp23_;
+					_tmp18_ = g_file_get_parent (file);
+					_tmp19_ = _tmp18_;
+					_tmp20_ = g_file_get_parent (_tmp19_);
+					_tmp21_ = _tmp20_;
+					_tmp22_ = g_file_get_path (_tmp21_);
+					_tmp23_ = _tmp22_;
+					fprintf (stdout, "going to delete %s because no files are in it\n", _tmp23_);
+					_g_free0 (_tmp23_);
+					_g_object_unref0 (_tmp21_);
+					_g_object_unref0 (_tmp19_);
+				}
+			}
+			_g_object_unref0 (file);
+			goto __finally42;
+			__catch42_g_error:
+			{
+				GError * err;
+				err = _inner_error_;
+				_inner_error_ = NULL;
+				fprintf (stdout, "Could not move file %s to trash: %s (you could be using a file system " \
+"which is not supported)\n", s, err->message);
+				_g_error_free0 (err);
+			}
+			__finally42:
+			if (_inner_error_ != NULL) {
+				_g_free0 (s);
+				_g_object_unref0 (_s_it);
+				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+				g_clear_error (&_inner_error_);
+				return;
+			}
+			_g_free0 (s);
+		}
+		_g_object_unref0 (_s_it);
 	}
 }
 
@@ -1704,7 +1911,7 @@ static void beat_box_file_operator_finalize (GObject* obj) {
 	self = BEAT_BOX_FILE_OPERATOR (obj);
 	_g_object_unref0 (self->priv->lm);
 	_g_object_unref0 (self->priv->settings);
-	_g_object_unref0 (self->priv->temp_song);
+	_g_object_unref0 (self->priv->toSave);
 	G_OBJECT_CLASS (beat_box_file_operator_parent_class)->finalize (obj);
 }
 

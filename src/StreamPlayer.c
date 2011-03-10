@@ -120,7 +120,7 @@ BeatBoxStreamPlayer* beat_box_stream_player_construct (GType object_type, gchar*
 	GMainContext* _tmp7_ = NULL;
 	self = (BeatBoxStreamPlayer*) g_object_new (object_type, NULL);
 	gst_init (&args_length1, &args);
-	_tmp0_ = gst_element_factory_make ("playbin", "play");
+	_tmp0_ = gst_element_factory_make ("playbin2", "playbin");
 	_tmp1_ = _tmp0_;
 	_gst_object_unref0 (self->priv->play);
 	self->priv->play = _tmp1_;

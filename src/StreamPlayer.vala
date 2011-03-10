@@ -1,6 +1,4 @@
 using Gst;
-using Gtk;
-using Gee;
  
 public class BeatBox.StreamPlayer : GLib.Object {
 	MainLoop loop;

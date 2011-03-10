@@ -198,6 +198,7 @@ void beat_box_playlist_songs_from_string (BeatBoxPlaylist* self, const gchar* so
 void beat_box_data_base_manager_save_playlists (BeatBoxDataBaseManager* self, GeeCollection* playlists);
 const gchar* beat_box_playlist_get_name (BeatBoxPlaylist* self);
 gchar* beat_box_playlist_songs_to_string (BeatBoxPlaylist* self);
+void beat_box_data_base_manager_update_playlist (BeatBoxDataBaseManager* self, BeatBoxPlaylist* p);
 GType beat_box_smart_playlist_get_type (void) G_GNUC_CONST;
 GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseManager* self);
 BeatBoxSmartPlaylist* beat_box_smart_playlist_new (void);
@@ -210,6 +211,7 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 const gchar* beat_box_smart_playlist_get_name (BeatBoxSmartPlaylist* self);
 const gchar* beat_box_smart_playlist_get_conditional (BeatBoxSmartPlaylist* self);
 gchar* beat_box_smart_playlist_queries_to_string (BeatBoxSmartPlaylist* self);
+void beat_box_data_base_manager_update_smart_playlist (BeatBoxDataBaseManager* self, BeatBoxSmartPlaylist* p);
 GType last_fm_album_info_get_type (void) G_GNUC_CONST;
 void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCollection* albums);
 const gchar* last_fm_album_info_get_name (LastFMAlbumInfo* self);
@@ -1800,7 +1802,6 @@ void beat_box_data_base_manager_save_song_list_columns (BeatBoxDataBaseManager* 
 	SQLHeavyQuery* _tmp3_ = NULL;
 	SQLHeavyQuery* _tmp4_;
 	SQLHeavyQuery* _tmp5_;
-	gint _tmp6_;
 	GError * _inner_error_ = NULL;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (columns != NULL);
@@ -1840,41 +1841,38 @@ void beat_box_data_base_manager_save_song_list_columns (BeatBoxDataBaseManager* 
 	_tmp5_ = _tmp4_;
 	_g_object_unref0 (self->priv->query);
 	self->priv->query = _tmp5_;
-	self->priv->index = 0;
-	_tmp6_ = gee_collection_get_size ((GeeCollection*) columns);
-	self->priv->item_count = _tmp6_;
 	{
-		GeeArrayList* _tmp7_;
+		GeeArrayList* _tmp6_;
 		GeeArrayList* _tvc_list;
-		gint _tmp8_;
+		gint _tmp7_;
 		gint _tvc_size;
 		gint _tvc_index;
-		_tmp7_ = _g_object_ref0 (columns);
-		_tvc_list = _tmp7_;
-		_tmp8_ = gee_collection_get_size ((GeeCollection*) _tvc_list);
-		_tvc_size = _tmp8_;
+		_tmp6_ = _g_object_ref0 (columns);
+		_tvc_list = _tmp6_;
+		_tmp7_ = gee_collection_get_size ((GeeCollection*) _tvc_list);
+		_tvc_size = _tmp7_;
 		_tvc_index = -1;
 		while (TRUE) {
-			gpointer _tmp9_ = NULL;
+			gpointer _tmp8_ = NULL;
 			GtkTreeViewColumn* tvc;
+			const gchar* _tmp9_ = NULL;
 			const gchar* _tmp10_ = NULL;
-			const gchar* _tmp11_ = NULL;
-			gint _tmp12_ = 0;
-			gboolean _tmp13_;
-			gint _tmp14_ = 0;
-			gint _tmp15_;
-			SQLHeavyQueryResult* _tmp17_ = NULL;
-			SQLHeavyQueryResult* _tmp18_;
+			gint _tmp11_ = 0;
+			gboolean _tmp12_;
+			gint _tmp13_ = 0;
+			gint _tmp14_;
+			SQLHeavyQueryResult* _tmp16_ = NULL;
+			SQLHeavyQueryResult* _tmp17_;
 			_tvc_index = _tvc_index + 1;
 			if (!(_tvc_index < _tvc_size)) {
 				break;
 			}
-			_tmp9_ = gee_abstract_list_get ((GeeAbstractList*) _tvc_list, _tvc_index);
-			tvc = (GtkTreeViewColumn*) _tmp9_;
+			_tmp8_ = gee_abstract_list_get ((GeeAbstractList*) _tvc_list, _tvc_index);
+			tvc = (GtkTreeViewColumn*) _tmp8_;
+			_tmp9_ = gtk_tree_view_column_get_title (tvc);
+			fprintf (stdout, "saving column %s\n", _tmp9_);
 			_tmp10_ = gtk_tree_view_column_get_title (tvc);
-			fprintf (stdout, "saving column %s\n", _tmp10_);
-			_tmp11_ = gtk_tree_view_column_get_title (tvc);
-			sql_heavy_query_set_string (self->priv->query, ":title", _tmp11_, &_inner_error_);
+			sql_heavy_query_set_string (self->priv->query, ":title", _tmp10_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (tvc);
 				_g_object_unref0 (_tvc_list);
@@ -1887,13 +1885,13 @@ void beat_box_data_base_manager_save_song_list_columns (BeatBoxDataBaseManager* 
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp13_ = gtk_tree_view_column_get_visible (tvc);
-			if (_tmp13_) {
-				_tmp12_ = 1;
+			_tmp12_ = gtk_tree_view_column_get_visible (tvc);
+			if (_tmp12_) {
+				_tmp11_ = 1;
 			} else {
-				_tmp12_ = 0;
+				_tmp11_ = 0;
 			}
-			sql_heavy_query_set_int (self->priv->query, ":visible", _tmp12_, &_inner_error_);
+			sql_heavy_query_set_int (self->priv->query, ":visible", _tmp11_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (tvc);
 				_g_object_unref0 (_tvc_list);
@@ -1906,15 +1904,15 @@ void beat_box_data_base_manager_save_song_list_columns (BeatBoxDataBaseManager* 
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp15_ = gtk_tree_view_column_get_width (tvc);
-			if (_tmp15_ == 0) {
-				_tmp14_ = 50;
+			_tmp14_ = gtk_tree_view_column_get_width (tvc);
+			if (_tmp14_ == 0) {
+				_tmp13_ = 50;
 			} else {
-				gint _tmp16_;
-				_tmp16_ = gtk_tree_view_column_get_width (tvc);
-				_tmp14_ = _tmp16_;
+				gint _tmp15_;
+				_tmp15_ = gtk_tree_view_column_get_width (tvc);
+				_tmp13_ = _tmp15_;
 			}
-			sql_heavy_query_set_int (self->priv->query, ":width", _tmp14_, &_inner_error_);
+			sql_heavy_query_set_int (self->priv->query, ":width", _tmp13_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (tvc);
 				_g_object_unref0 (_tvc_list);
@@ -1927,9 +1925,9 @@ void beat_box_data_base_manager_save_song_list_columns (BeatBoxDataBaseManager* 
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp17_ = sql_heavy_query_execute (self->priv->query, NULL, &_inner_error_, NULL);
-			_tmp18_ = _tmp17_;
-			_g_object_unref0 (_tmp18_);
+			_tmp16_ = sql_heavy_query_execute (self->priv->query, NULL, &_inner_error_, NULL);
+			_tmp17_ = _tmp16_;
+			_g_object_unref0 (_tmp17_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (tvc);
 				_g_object_unref0 (_tvc_list);
@@ -2484,7 +2482,6 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 	SQLHeavyQuery* _tmp3_ = NULL;
 	SQLHeavyQuery* _tmp4_;
 	SQLHeavyQuery* _tmp5_;
-	gint _tmp6_;
 	GError * _inner_error_ = NULL;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (songs != NULL);
@@ -2528,25 +2525,23 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 	_tmp5_ = _tmp4_;
 	_g_object_unref0 (self->priv->query);
 	self->priv->query = _tmp5_;
-	self->priv->index = 0;
-	_tmp6_ = gee_collection_get_size (songs);
-	self->priv->item_count = _tmp6_;
 	{
-		GeeIterator* _tmp7_ = NULL;
+		GeeIterator* _tmp6_ = NULL;
 		GeeIterator* _s_it;
-		_tmp7_ = gee_iterable_iterator ((GeeIterable*) songs);
-		_s_it = _tmp7_;
+		_tmp6_ = gee_iterable_iterator ((GeeIterable*) songs);
+		_s_it = _tmp6_;
 		while (TRUE) {
-			gboolean _tmp8_;
-			gpointer _tmp9_ = NULL;
+			gboolean _tmp7_;
+			gpointer _tmp8_ = NULL;
 			BeatBoxSong* s;
-			gint _tmp10_;
+			const gchar* _tmp9_ = NULL;
+			const gchar* _tmp10_ = NULL;
 			const gchar* _tmp11_ = NULL;
 			const gchar* _tmp12_ = NULL;
 			const gchar* _tmp13_ = NULL;
 			const gchar* _tmp14_ = NULL;
-			const gchar* _tmp15_ = NULL;
-			const gchar* _tmp16_ = NULL;
+			gint _tmp15_;
+			gint _tmp16_;
 			gint _tmp17_;
 			gint _tmp18_;
 			gint _tmp19_;
@@ -2555,21 +2550,16 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 			gint _tmp22_;
 			gint _tmp23_;
 			gint _tmp24_;
-			gint _tmp25_;
-			gint _tmp26_;
-			SQLHeavyQueryResult* _tmp27_ = NULL;
-			SQLHeavyQueryResult* _tmp28_;
-			_tmp8_ = gee_iterator_next (_s_it);
-			if (!_tmp8_) {
+			SQLHeavyQueryResult* _tmp25_ = NULL;
+			SQLHeavyQueryResult* _tmp26_;
+			_tmp7_ = gee_iterator_next (_s_it);
+			if (!_tmp7_) {
 				break;
 			}
-			_tmp9_ = gee_iterator_get (_s_it);
-			s = (BeatBoxSong*) _tmp9_;
-			_tmp10_ = self->priv->index;
-			self->priv->index = _tmp10_ + 1;
-			g_signal_emit_by_name (self, "db-progress", NULL, ((gdouble) _tmp10_) / ((gdouble) self->priv->item_count));
-			_tmp11_ = beat_box_song_get_file (s);
-			sql_heavy_query_set_string (self->priv->query, ":file", _tmp11_, &_inner_error_);
+			_tmp8_ = gee_iterator_get (_s_it);
+			s = (BeatBoxSong*) _tmp8_;
+			_tmp9_ = beat_box_song_get_file (s);
+			sql_heavy_query_set_string (self->priv->query, ":file", _tmp9_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2582,8 +2572,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp12_ = beat_box_song_get_title (s);
-			sql_heavy_query_set_string (self->priv->query, ":title", _tmp12_, &_inner_error_);
+			_tmp10_ = beat_box_song_get_title (s);
+			sql_heavy_query_set_string (self->priv->query, ":title", _tmp10_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2596,8 +2586,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp13_ = beat_box_song_get_artist (s);
-			sql_heavy_query_set_string (self->priv->query, ":artist", _tmp13_, &_inner_error_);
+			_tmp11_ = beat_box_song_get_artist (s);
+			sql_heavy_query_set_string (self->priv->query, ":artist", _tmp11_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2610,8 +2600,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp14_ = beat_box_song_get_album (s);
-			sql_heavy_query_set_string (self->priv->query, ":album", _tmp14_, &_inner_error_);
+			_tmp12_ = beat_box_song_get_album (s);
+			sql_heavy_query_set_string (self->priv->query, ":album", _tmp12_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2624,8 +2614,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp15_ = beat_box_song_get_genre (s);
-			sql_heavy_query_set_string (self->priv->query, ":genre", _tmp15_, &_inner_error_);
+			_tmp13_ = beat_box_song_get_genre (s);
+			sql_heavy_query_set_string (self->priv->query, ":genre", _tmp13_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2638,8 +2628,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp16_ = beat_box_song_get_comment (s);
-			sql_heavy_query_set_string (self->priv->query, ":comment", _tmp16_, &_inner_error_);
+			_tmp14_ = beat_box_song_get_comment (s);
+			sql_heavy_query_set_string (self->priv->query, ":comment", _tmp14_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2652,8 +2642,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp17_ = beat_box_song_get_year (s);
-			sql_heavy_query_set_int (self->priv->query, ":year", _tmp17_, &_inner_error_);
+			_tmp15_ = beat_box_song_get_year (s);
+			sql_heavy_query_set_int (self->priv->query, ":year", _tmp15_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2666,8 +2656,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp18_ = beat_box_song_get_track (s);
-			sql_heavy_query_set_int (self->priv->query, ":track", _tmp18_, &_inner_error_);
+			_tmp16_ = beat_box_song_get_track (s);
+			sql_heavy_query_set_int (self->priv->query, ":track", _tmp16_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2680,8 +2670,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp19_ = beat_box_song_get_bitrate (s);
-			sql_heavy_query_set_int (self->priv->query, ":bitrate", _tmp19_, &_inner_error_);
+			_tmp17_ = beat_box_song_get_bitrate (s);
+			sql_heavy_query_set_int (self->priv->query, ":bitrate", _tmp17_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2694,8 +2684,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp20_ = beat_box_song_get_length (s);
-			sql_heavy_query_set_int (self->priv->query, ":length", _tmp20_, &_inner_error_);
+			_tmp18_ = beat_box_song_get_length (s);
+			sql_heavy_query_set_int (self->priv->query, ":length", _tmp18_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2708,8 +2698,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp21_ = beat_box_song_get_samplerate (s);
-			sql_heavy_query_set_int (self->priv->query, ":samplerate", _tmp21_, &_inner_error_);
+			_tmp19_ = beat_box_song_get_samplerate (s);
+			sql_heavy_query_set_int (self->priv->query, ":samplerate", _tmp19_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2722,8 +2712,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp22_ = beat_box_song_get_rating (s);
-			sql_heavy_query_set_int (self->priv->query, ":rating", _tmp22_, &_inner_error_);
+			_tmp20_ = beat_box_song_get_rating (s);
+			sql_heavy_query_set_int (self->priv->query, ":rating", _tmp20_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2736,8 +2726,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp23_ = beat_box_song_get_play_count (s);
-			sql_heavy_query_set_int (self->priv->query, ":playcount", _tmp23_, &_inner_error_);
+			_tmp21_ = beat_box_song_get_play_count (s);
+			sql_heavy_query_set_int (self->priv->query, ":playcount", _tmp21_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2750,8 +2740,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp24_ = beat_box_song_get_skip_count (s);
-			sql_heavy_query_set_int (self->priv->query, ":skipcount", _tmp24_, &_inner_error_);
+			_tmp22_ = beat_box_song_get_skip_count (s);
+			sql_heavy_query_set_int (self->priv->query, ":skipcount", _tmp22_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2764,8 +2754,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp25_ = beat_box_song_get_date_added (s);
-			sql_heavy_query_set_int (self->priv->query, ":dateadded", _tmp25_, &_inner_error_);
+			_tmp23_ = beat_box_song_get_date_added (s);
+			sql_heavy_query_set_int (self->priv->query, ":dateadded", _tmp23_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2778,8 +2768,8 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp26_ = beat_box_song_get_last_played (s);
-			sql_heavy_query_set_int (self->priv->query, ":lastplayed", _tmp26_, &_inner_error_);
+			_tmp24_ = beat_box_song_get_last_played (s);
+			sql_heavy_query_set_int (self->priv->query, ":lastplayed", _tmp24_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -2792,9 +2782,9 @@ void beat_box_data_base_manager_save_songs (BeatBoxDataBaseManager* self, GeeCol
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp27_ = sql_heavy_query_execute (self->priv->query, NULL, &_inner_error_, NULL);
-			_tmp28_ = _tmp27_;
-			_g_object_unref0 (_tmp28_);
+			_tmp25_ = sql_heavy_query_execute (self->priv->query, NULL, &_inner_error_, NULL);
+			_tmp26_ = _tmp25_;
+			_g_object_unref0 (_tmp26_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -3075,7 +3065,6 @@ void beat_box_data_base_manager_remove_songs (BeatBoxDataBaseManager* self, GeeC
 	SQLHeavyTransaction* _tmp2_;
 	SQLHeavyQuery* _tmp3_ = NULL;
 	SQLHeavyQuery* query;
-	gint _tmp4_;
 	GError * _inner_error_ = NULL;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (songs != NULL);
@@ -3102,30 +3091,23 @@ void beat_box_data_base_manager_remove_songs (BeatBoxDataBaseManager* self, GeeC
 		g_clear_error (&_inner_error_);
 		return;
 	}
-	self->priv->index = 0;
-	_tmp4_ = gee_collection_get_size (songs);
-	self->priv->item_count = _tmp4_;
 	{
-		GeeIterator* _tmp5_ = NULL;
+		GeeIterator* _tmp4_ = NULL;
 		GeeIterator* _s_it;
-		_tmp5_ = gee_iterable_iterator ((GeeIterable*) songs);
-		_s_it = _tmp5_;
+		_tmp4_ = gee_iterable_iterator ((GeeIterable*) songs);
+		_s_it = _tmp4_;
 		while (TRUE) {
-			gboolean _tmp6_;
-			gpointer _tmp7_ = NULL;
+			gboolean _tmp5_;
+			gpointer _tmp6_ = NULL;
 			gchar* s;
-			gint _tmp8_;
-			SQLHeavyQueryResult* _tmp9_ = NULL;
-			SQLHeavyQueryResult* _tmp10_;
-			_tmp6_ = gee_iterator_next (_s_it);
-			if (!_tmp6_) {
+			SQLHeavyQueryResult* _tmp7_ = NULL;
+			SQLHeavyQueryResult* _tmp8_;
+			_tmp5_ = gee_iterator_next (_s_it);
+			if (!_tmp5_) {
 				break;
 			}
-			_tmp7_ = gee_iterator_get (_s_it);
-			s = (gchar*) _tmp7_;
-			_tmp8_ = self->priv->index;
-			self->priv->index = _tmp8_ + 1;
-			g_signal_emit_by_name (self, "db-progress", NULL, ((gdouble) _tmp8_) / ((gdouble) self->priv->item_count));
+			_tmp6_ = gee_iterator_get (_s_it);
+			s = (gchar*) _tmp6_;
 			sql_heavy_query_set_string (query, ":file", s, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_free0 (s);
@@ -3141,9 +3123,9 @@ void beat_box_data_base_manager_remove_songs (BeatBoxDataBaseManager* self, GeeC
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp9_ = sql_heavy_query_execute (query, NULL, &_inner_error_, NULL);
-			_tmp10_ = _tmp9_;
-			_g_object_unref0 (_tmp10_);
+			_tmp7_ = sql_heavy_query_execute (query, NULL, &_inner_error_, NULL);
+			_tmp8_ = _tmp7_;
+			_g_object_unref0 (_tmp8_);
 			if (_inner_error_ != NULL) {
 				_g_free0 (s);
 				_g_object_unref0 (_s_it);
@@ -3780,7 +3762,6 @@ void beat_box_data_base_manager_save_playlists (BeatBoxDataBaseManager* self, Ge
 	SQLHeavyQuery* _tmp3_ = NULL;
 	SQLHeavyQuery* _tmp4_;
 	SQLHeavyQuery* _tmp5_;
-	gint _tmp6_;
 	GError * _inner_error_ = NULL;
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (playlists != NULL);
@@ -3819,35 +3800,28 @@ void beat_box_data_base_manager_save_playlists (BeatBoxDataBaseManager* self, Ge
 	_tmp5_ = _tmp4_;
 	_g_object_unref0 (self->priv->query);
 	self->priv->query = _tmp5_;
-	self->priv->index = 0;
-	_tmp6_ = gee_collection_get_size (playlists);
-	self->priv->item_count = _tmp6_;
 	{
-		GeeIterator* _tmp7_ = NULL;
+		GeeIterator* _tmp6_ = NULL;
 		GeeIterator* _p_it;
-		_tmp7_ = gee_iterable_iterator ((GeeIterable*) playlists);
-		_p_it = _tmp7_;
+		_tmp6_ = gee_iterable_iterator ((GeeIterable*) playlists);
+		_p_it = _tmp6_;
 		while (TRUE) {
-			gboolean _tmp8_;
-			gpointer _tmp9_ = NULL;
+			gboolean _tmp7_;
+			gpointer _tmp8_ = NULL;
 			BeatBoxPlaylist* p;
-			gint _tmp10_;
-			const gchar* _tmp11_ = NULL;
-			gchar* _tmp12_ = NULL;
-			gchar* _tmp13_;
-			SQLHeavyQueryResult* _tmp14_ = NULL;
-			SQLHeavyQueryResult* _tmp15_;
-			_tmp8_ = gee_iterator_next (_p_it);
-			if (!_tmp8_) {
+			const gchar* _tmp9_ = NULL;
+			gchar* _tmp10_ = NULL;
+			gchar* _tmp11_;
+			SQLHeavyQueryResult* _tmp12_ = NULL;
+			SQLHeavyQueryResult* _tmp13_;
+			_tmp7_ = gee_iterator_next (_p_it);
+			if (!_tmp7_) {
 				break;
 			}
-			_tmp9_ = gee_iterator_get (_p_it);
-			p = (BeatBoxPlaylist*) _tmp9_;
-			_tmp10_ = self->priv->index;
-			self->priv->index = _tmp10_ + 1;
-			g_signal_emit_by_name (self, "db-progress", NULL, ((gdouble) _tmp10_) / ((gdouble) self->priv->item_count));
-			_tmp11_ = beat_box_playlist_get_name (p);
-			sql_heavy_query_set_string (self->priv->query, ":name", _tmp11_, &_inner_error_);
+			_tmp8_ = gee_iterator_get (_p_it);
+			p = (BeatBoxPlaylist*) _tmp8_;
+			_tmp9_ = beat_box_playlist_get_name (p);
+			sql_heavy_query_set_string (self->priv->query, ":name", _tmp9_, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (p);
 				_g_object_unref0 (_p_it);
@@ -3860,25 +3834,25 @@ void beat_box_data_base_manager_save_playlists (BeatBoxDataBaseManager* self, Ge
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			_tmp12_ = beat_box_playlist_songs_to_string (p);
+			_tmp10_ = beat_box_playlist_songs_to_string (p);
+			_tmp11_ = _tmp10_;
+			sql_heavy_query_set_string (self->priv->query, ":songs", _tmp11_, &_inner_error_);
+			_g_free0 (_tmp11_);
+			if (_inner_error_ != NULL) {
+				_g_object_unref0 (p);
+				_g_object_unref0 (_p_it);
+				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+					goto __catch15_sql_heavy_error;
+				}
+				_g_object_unref0 (p);
+				_g_object_unref0 (_p_it);
+				g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+				g_clear_error (&_inner_error_);
+				return;
+			}
+			_tmp12_ = sql_heavy_query_execute (self->priv->query, NULL, &_inner_error_, NULL);
 			_tmp13_ = _tmp12_;
-			sql_heavy_query_set_string (self->priv->query, ":songs", _tmp13_, &_inner_error_);
-			_g_free0 (_tmp13_);
-			if (_inner_error_ != NULL) {
-				_g_object_unref0 (p);
-				_g_object_unref0 (_p_it);
-				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch15_sql_heavy_error;
-				}
-				_g_object_unref0 (p);
-				_g_object_unref0 (_p_it);
-				g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
-				g_clear_error (&_inner_error_);
-				return;
-			}
-			_tmp14_ = sql_heavy_query_execute (self->priv->query, NULL, &_inner_error_, NULL);
-			_tmp15_ = _tmp14_;
-			_g_object_unref0 (_tmp15_);
+			_g_object_unref0 (_tmp13_);
 			if (_inner_error_ != NULL) {
 				_g_object_unref0 (p);
 				_g_object_unref0 (_p_it);
@@ -3922,6 +3896,112 @@ void beat_box_data_base_manager_save_playlists (BeatBoxDataBaseManager* self, Ge
 }
 
 
+void beat_box_data_base_manager_update_playlist (BeatBoxDataBaseManager* self, BeatBoxPlaylist* p) {
+	SQLHeavyTransaction* _tmp0_ = NULL;
+	SQLHeavyTransaction* _tmp1_;
+	SQLHeavyTransaction* _tmp2_;
+	SQLHeavyQuery* _tmp3_ = NULL;
+	SQLHeavyQuery* query;
+	const gchar* _tmp4_ = NULL;
+	gchar* _tmp5_ = NULL;
+	gchar* _tmp6_;
+	SQLHeavyQueryResult* _tmp7_ = NULL;
+	SQLHeavyQueryResult* _tmp8_;
+	GError * _inner_error_ = NULL;
+	g_return_if_fail (self != NULL);
+	g_return_if_fail (p != NULL);
+	_tmp0_ = sql_heavy_queryable_begin_transaction ((SQLHeavyQueryable*) self->priv->_db, &_inner_error_);
+	_tmp1_ = _tmp0_;
+	if (_inner_error_ != NULL) {
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch16_sql_heavy_error;
+		}
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_tmp2_ = _tmp1_;
+	_g_object_unref0 (self->priv->transaction);
+	self->priv->transaction = _tmp2_;
+	_tmp3_ = sql_heavy_queryable_prepare ((SQLHeavyQueryable*) self->priv->transaction, "UPDATE `playlists` SET name=:name, songs=:songs WHERE name=:name", &_inner_error_);
+	query = _tmp3_;
+	if (_inner_error_ != NULL) {
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch16_sql_heavy_error;
+		}
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_tmp4_ = beat_box_playlist_get_name (p);
+	sql_heavy_query_set_string (query, ":name", _tmp4_, &_inner_error_);
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (query);
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch16_sql_heavy_error;
+		}
+		_g_object_unref0 (query);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_tmp5_ = beat_box_playlist_songs_to_string (p);
+	_tmp6_ = _tmp5_;
+	sql_heavy_query_set_string (query, ":songs", _tmp6_, &_inner_error_);
+	_g_free0 (_tmp6_);
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (query);
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch16_sql_heavy_error;
+		}
+		_g_object_unref0 (query);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_tmp7_ = sql_heavy_query_execute (query, NULL, &_inner_error_, NULL);
+	_tmp8_ = _tmp7_;
+	_g_object_unref0 (_tmp8_);
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (query);
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch16_sql_heavy_error;
+		}
+		_g_object_unref0 (query);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	sql_heavy_transaction_commit (self->priv->transaction, &_inner_error_);
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (query);
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch16_sql_heavy_error;
+		}
+		_g_object_unref0 (query);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_g_object_unref0 (query);
+	goto __finally16;
+	__catch16_sql_heavy_error:
+	{
+		GError * err;
+		err = _inner_error_;
+		_inner_error_ = NULL;
+		fprintf (stdout, "Could not save playlist: %s \n", err->message);
+		_g_error_free0 (err);
+	}
+	__finally16:
+	if (_inner_error_ != NULL) {
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+}
+
+
 /** SMART PLAYLISTS **
  * load_smart_playlists() loads smart playlists from db
  * 
@@ -3948,7 +4028,7 @@ GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseMa
 	if (_inner_error_ != NULL) {
 		_g_free0 (script);
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch16_sql_heavy_error;
+			goto __catch17_sql_heavy_error;
 		}
 		_g_free0 (script);
 		_g_object_unref0 (rv);
@@ -3965,7 +4045,7 @@ GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseMa
 			_g_object_unref0 (query);
 			_g_free0 (script);
 			if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-				goto __catch16_sql_heavy_error;
+				goto __catch17_sql_heavy_error;
 			}
 			_g_object_unref0 (query);
 			_g_free0 (script);
@@ -3999,7 +4079,7 @@ GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseMa
 						_g_object_unref0 (query);
 						_g_free0 (script);
 						if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-							goto __catch16_sql_heavy_error;
+							goto __catch17_sql_heavy_error;
 						}
 						_g_object_unref0 (results);
 						_g_object_unref0 (query);
@@ -4025,7 +4105,7 @@ GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseMa
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch16_sql_heavy_error;
+						goto __catch17_sql_heavy_error;
 					}
 					_g_object_unref0 (p);
 					_g_object_unref0 (results);
@@ -4045,7 +4125,7 @@ GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseMa
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch16_sql_heavy_error;
+						goto __catch17_sql_heavy_error;
 					}
 					_g_object_unref0 (p);
 					_g_object_unref0 (results);
@@ -4067,7 +4147,7 @@ GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseMa
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch16_sql_heavy_error;
+						goto __catch17_sql_heavy_error;
 					}
 					_g_object_unref0 (p);
 					_g_object_unref0 (results);
@@ -4089,7 +4169,7 @@ GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseMa
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch16_sql_heavy_error;
+						goto __catch17_sql_heavy_error;
 					}
 					_g_object_unref0 (p);
 					_g_object_unref0 (results);
@@ -4111,8 +4191,8 @@ GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseMa
 	}
 	_g_object_unref0 (query);
 	_g_free0 (script);
-	goto __finally16;
-	__catch16_sql_heavy_error:
+	goto __finally17;
+	__catch17_sql_heavy_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -4120,7 +4200,7 @@ GeeArrayList* beat_box_data_base_manager_load_smart_playlists (BeatBoxDataBaseMa
 		fprintf (stdout, "Could not load song from db: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally16:
+	__finally17:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (rv);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -4146,7 +4226,7 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 	sql_heavy_queryable_execute ((SQLHeavyQueryable*) self->priv->_db, "DELETE FROM `smart_playlists`", (gssize) (-1), &_inner_error_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch17_sql_heavy_error;
+			goto __catch18_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -4156,7 +4236,7 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 	_tmp1_ = _tmp0_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch17_sql_heavy_error;
+			goto __catch18_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -4170,7 +4250,7 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 	_tmp4_ = _tmp3_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch17_sql_heavy_error;
+			goto __catch18_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -4213,7 +4293,7 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch17_sql_heavy_error;
+					goto __catch18_sql_heavy_error;
 				}
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -4227,7 +4307,7 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch17_sql_heavy_error;
+					goto __catch18_sql_heavy_error;
 				}
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -4243,7 +4323,7 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch17_sql_heavy_error;
+					goto __catch18_sql_heavy_error;
 				}
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -4258,7 +4338,7 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch17_sql_heavy_error;
+					goto __catch18_sql_heavy_error;
 				}
 				_g_object_unref0 (s);
 				_g_object_unref0 (_s_it);
@@ -4273,14 +4353,14 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 	sql_heavy_transaction_commit (self->priv->transaction, &_inner_error_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch17_sql_heavy_error;
+			goto __catch18_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
 		return;
 	}
-	goto __finally17;
-	__catch17_sql_heavy_error:
+	goto __finally18;
+	__catch18_sql_heavy_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -4288,7 +4368,7 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 		fprintf (stdout, "Could not save smart playlists: %s \n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally17:
+	__finally18:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -4297,6 +4377,127 @@ void beat_box_data_base_manager_save_smart_playlists (BeatBoxDataBaseManager* se
 }
 
 
+void beat_box_data_base_manager_update_smart_playlist (BeatBoxDataBaseManager* self, BeatBoxSmartPlaylist* p) {
+	SQLHeavyTransaction* _tmp0_ = NULL;
+	SQLHeavyTransaction* _tmp1_;
+	SQLHeavyTransaction* _tmp2_;
+	SQLHeavyQuery* _tmp3_ = NULL;
+	SQLHeavyQuery* query;
+	const gchar* _tmp4_ = NULL;
+	const gchar* _tmp5_ = NULL;
+	gchar* _tmp6_ = NULL;
+	gchar* _tmp7_;
+	SQLHeavyQueryResult* _tmp8_ = NULL;
+	SQLHeavyQueryResult* _tmp9_;
+	GError * _inner_error_ = NULL;
+	g_return_if_fail (self != NULL);
+	g_return_if_fail (p != NULL);
+	_tmp0_ = sql_heavy_queryable_begin_transaction ((SQLHeavyQueryable*) self->priv->_db, &_inner_error_);
+	_tmp1_ = _tmp0_;
+	if (_inner_error_ != NULL) {
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch19_sql_heavy_error;
+		}
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_tmp2_ = _tmp1_;
+	_g_object_unref0 (self->priv->transaction);
+	self->priv->transaction = _tmp2_;
+	_tmp3_ = sql_heavy_queryable_prepare ((SQLHeavyQueryable*) self->priv->transaction, "UPDATE `smart_playlists` SET name=:name, and_or=:and_or, queries=:quer" \
+"ies WHERE name=:name", &_inner_error_);
+	query = _tmp3_;
+	if (_inner_error_ != NULL) {
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch19_sql_heavy_error;
+		}
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_tmp4_ = beat_box_smart_playlist_get_name (p);
+	sql_heavy_query_set_string (query, ":name", _tmp4_, &_inner_error_);
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (query);
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch19_sql_heavy_error;
+		}
+		_g_object_unref0 (query);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_tmp5_ = beat_box_smart_playlist_get_conditional (p);
+	sql_heavy_query_set_string (query, ":and_or", _tmp5_, &_inner_error_);
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (query);
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch19_sql_heavy_error;
+		}
+		_g_object_unref0 (query);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_tmp6_ = beat_box_smart_playlist_queries_to_string (p);
+	_tmp7_ = _tmp6_;
+	sql_heavy_query_set_string (query, ":queries", _tmp7_, &_inner_error_);
+	_g_free0 (_tmp7_);
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (query);
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch19_sql_heavy_error;
+		}
+		_g_object_unref0 (query);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_tmp8_ = sql_heavy_query_execute (query, NULL, &_inner_error_, NULL);
+	_tmp9_ = _tmp8_;
+	_g_object_unref0 (_tmp9_);
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (query);
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch19_sql_heavy_error;
+		}
+		_g_object_unref0 (query);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	sql_heavy_transaction_commit (self->priv->transaction, &_inner_error_);
+	if (_inner_error_ != NULL) {
+		_g_object_unref0 (query);
+		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
+			goto __catch19_sql_heavy_error;
+		}
+		_g_object_unref0 (query);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+	_g_object_unref0 (query);
+	goto __finally19;
+	__catch19_sql_heavy_error:
+	{
+		GError * err;
+		err = _inner_error_;
+		_inner_error_ = NULL;
+		fprintf (stdout, "Could not save smart playlist: %s \n", err->message);
+		_g_error_free0 (err);
+	}
+	__finally19:
+	if (_inner_error_ != NULL) {
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return;
+	}
+}
+
+
+/** Last FM objects **/
 void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCollection* albums) {
 	SQLHeavyTransaction* _tmp0_ = NULL;
 	SQLHeavyTransaction* _tmp1_;
@@ -4310,7 +4511,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 	sql_heavy_queryable_execute ((SQLHeavyQueryable*) self->priv->_db, "DELETE FROM `albums`", (gssize) (-1), &_inner_error_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch18_sql_heavy_error;
+			goto __catch20_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -4320,7 +4521,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 	_tmp1_ = _tmp0_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch18_sql_heavy_error;
+			goto __catch20_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -4336,7 +4537,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 	_tmp4_ = _tmp3_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch18_sql_heavy_error;
+			goto __catch20_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -4380,7 +4581,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -4394,7 +4595,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -4408,7 +4609,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -4422,7 +4623,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -4436,7 +4637,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -4450,7 +4651,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -4464,7 +4665,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -4521,7 +4722,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_free0 (tags);
 				_g_object_unref0 (a);
@@ -4540,7 +4741,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_free0 (tags);
 				_g_object_unref0 (a);
@@ -4557,7 +4758,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch18_sql_heavy_error;
+					goto __catch20_sql_heavy_error;
 				}
 				_g_free0 (tags);
 				_g_object_unref0 (a);
@@ -4574,14 +4775,14 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 	sql_heavy_transaction_commit (self->priv->transaction, &_inner_error_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch18_sql_heavy_error;
+			goto __catch20_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
 		return;
 	}
-	goto __finally18;
-	__catch18_sql_heavy_error:
+	goto __finally20;
+	__catch20_sql_heavy_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -4589,7 +4790,7 @@ void beat_box_data_base_manager_save_albums (BeatBoxDataBaseManager* self, GeeCo
 		fprintf (stdout, "Could not save albums: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally18:
+	__finally20:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -4617,7 +4818,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 	if (_inner_error_ != NULL) {
 		_g_free0 (script);
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch19_sql_heavy_error;
+			goto __catch21_sql_heavy_error;
 		}
 		_g_free0 (script);
 		_g_object_unref0 (rv);
@@ -4634,7 +4835,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 			_g_object_unref0 (query);
 			_g_free0 (script);
 			if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-				goto __catch19_sql_heavy_error;
+				goto __catch21_sql_heavy_error;
 			}
 			_g_object_unref0 (query);
 			_g_free0 (script);
@@ -4687,7 +4888,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 						_g_object_unref0 (query);
 						_g_free0 (script);
 						if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-							goto __catch19_sql_heavy_error;
+							goto __catch21_sql_heavy_error;
 						}
 						_g_object_unref0 (results);
 						_g_object_unref0 (query);
@@ -4713,7 +4914,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch19_sql_heavy_error;
+						goto __catch21_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -4735,7 +4936,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch19_sql_heavy_error;
+						goto __catch21_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -4757,7 +4958,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch19_sql_heavy_error;
+						goto __catch21_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -4779,7 +4980,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch19_sql_heavy_error;
+						goto __catch21_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -4801,7 +5002,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch19_sql_heavy_error;
+						goto __catch21_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -4823,7 +5024,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch19_sql_heavy_error;
+						goto __catch21_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -4843,7 +5044,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch19_sql_heavy_error;
+						goto __catch21_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -4863,7 +5064,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch19_sql_heavy_error;
+						goto __catch21_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -4918,7 +5119,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch19_sql_heavy_error;
+						goto __catch21_sql_heavy_error;
 					}
 					tag_strings = (_vala_array_free (tag_strings, tag_strings_length1, (GDestroyNotify) g_free), NULL);
 					_g_free0 (tag_string);
@@ -4962,8 +5163,8 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 	}
 	_g_object_unref0 (query);
 	_g_free0 (script);
-	goto __finally19;
-	__catch19_sql_heavy_error:
+	goto __finally21;
+	__catch21_sql_heavy_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -4971,7 +5172,7 @@ GeeCollection* beat_box_data_base_manager_load_albums (BeatBoxDataBaseManager* s
 		fprintf (stdout, "Could not load albums from db: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally19:
+	__finally21:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (rv);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -5002,7 +5203,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 	if (_inner_error_ != NULL) {
 		_g_free0 (script);
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch20_sql_heavy_error;
+			goto __catch22_sql_heavy_error;
 		}
 		_g_free0 (script);
 		_g_object_unref0 (rv);
@@ -5019,7 +5220,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 			_g_object_unref0 (query);
 			_g_free0 (script);
 			if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-				goto __catch20_sql_heavy_error;
+				goto __catch22_sql_heavy_error;
 			}
 			_g_object_unref0 (query);
 			_g_free0 (script);
@@ -5084,7 +5285,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 						_g_object_unref0 (query);
 						_g_free0 (script);
 						if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-							goto __catch20_sql_heavy_error;
+							goto __catch22_sql_heavy_error;
 						}
 						_g_object_unref0 (results);
 						_g_object_unref0 (query);
@@ -5110,7 +5311,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5132,7 +5333,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5154,7 +5355,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5176,7 +5377,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5196,7 +5397,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5216,7 +5417,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5236,7 +5437,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5258,7 +5459,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5280,7 +5481,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5302,7 +5503,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					_g_object_unref0 (a);
 					_g_object_unref0 (results);
@@ -5357,7 +5558,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					tag_strings = (_vala_array_free (tag_strings, tag_strings_length1, (GDestroyNotify) g_free), NULL);
 					_g_free0 (tag_string);
@@ -5416,7 +5617,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch20_sql_heavy_error;
+						goto __catch22_sql_heavy_error;
 					}
 					sim_strings = (_vala_array_free (sim_strings, sim_strings_length1, (GDestroyNotify) g_free), NULL);
 					_g_free0 (sim_string);
@@ -5464,8 +5665,8 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 	}
 	_g_object_unref0 (query);
 	_g_free0 (script);
-	goto __finally20;
-	__catch20_sql_heavy_error:
+	goto __finally22;
+	__catch22_sql_heavy_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -5473,7 +5674,7 @@ GeeCollection* beat_box_data_base_manager_load_artists (BeatBoxDataBaseManager* 
 		fprintf (stdout, "Could not load artist from db: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally20:
+	__finally22:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (rv);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -5498,7 +5699,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 	sql_heavy_queryable_execute ((SQLHeavyQueryable*) self->priv->_db, "DELETE FROM `artists`", (gssize) (-1), &_inner_error_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch21_sql_heavy_error;
+			goto __catch23_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -5508,7 +5709,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 	_tmp1_ = _tmp0_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch21_sql_heavy_error;
+			goto __catch23_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -5524,7 +5725,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 	_tmp4_ = _tmp3_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch21_sql_heavy_error;
+			goto __catch23_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -5572,7 +5773,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -5586,7 +5787,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -5600,7 +5801,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -5614,7 +5815,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -5628,7 +5829,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -5642,7 +5843,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -5656,7 +5857,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -5670,7 +5871,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -5684,7 +5885,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
@@ -5785,7 +5986,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_free0 (similar);
 				_g_free0 (tags);
@@ -5802,7 +6003,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_free0 (similar);
 				_g_free0 (tags);
@@ -5823,7 +6024,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_free0 (similar);
 				_g_free0 (tags);
@@ -5842,7 +6043,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 				_g_object_unref0 (a);
 				_g_object_unref0 (_a_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch21_sql_heavy_error;
+					goto __catch23_sql_heavy_error;
 				}
 				_g_free0 (similar);
 				_g_free0 (tags);
@@ -5861,14 +6062,14 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 	sql_heavy_transaction_commit (self->priv->transaction, &_inner_error_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch21_sql_heavy_error;
+			goto __catch23_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
 		return;
 	}
-	goto __finally21;
-	__catch21_sql_heavy_error:
+	goto __finally23;
+	__catch23_sql_heavy_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -5876,7 +6077,7 @@ void beat_box_data_base_manager_save_artists (BeatBoxDataBaseManager* self, GeeC
 		fprintf (stdout, "Could not save artists: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally21:
+	__finally23:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -5904,7 +6105,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 	if (_inner_error_ != NULL) {
 		_g_free0 (script);
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch22_sql_heavy_error;
+			goto __catch24_sql_heavy_error;
 		}
 		_g_free0 (script);
 		_g_object_unref0 (rv);
@@ -5921,7 +6122,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 			_g_object_unref0 (query);
 			_g_free0 (script);
 			if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-				goto __catch22_sql_heavy_error;
+				goto __catch24_sql_heavy_error;
 			}
 			_g_object_unref0 (query);
 			_g_free0 (script);
@@ -5977,7 +6178,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 						_g_object_unref0 (query);
 						_g_free0 (script);
 						if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-							goto __catch22_sql_heavy_error;
+							goto __catch24_sql_heavy_error;
 						}
 						_g_object_unref0 (results);
 						_g_object_unref0 (query);
@@ -6003,7 +6204,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6023,7 +6224,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6045,7 +6246,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6067,7 +6268,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6089,7 +6290,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6109,7 +6310,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6129,7 +6330,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6149,7 +6350,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6169,7 +6370,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6191,7 +6392,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6213,7 +6414,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 					_g_object_unref0 (query);
 					_g_free0 (script);
 					if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-						goto __catch22_sql_heavy_error;
+						goto __catch24_sql_heavy_error;
 					}
 					_g_object_unref0 (t);
 					_g_object_unref0 (results);
@@ -6268,8 +6469,8 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 	}
 	_g_object_unref0 (query);
 	_g_free0 (script);
-	goto __finally22;
-	__catch22_sql_heavy_error:
+	goto __finally24;
+	__catch24_sql_heavy_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -6277,7 +6478,7 @@ GeeCollection* beat_box_data_base_manager_load_tracks (BeatBoxDataBaseManager* s
 		fprintf (stdout, "Could not load tracks from db: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally22:
+	__finally24:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (rv);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -6302,7 +6503,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 	sql_heavy_queryable_execute ((SQLHeavyQueryable*) self->priv->_db, "DELETE FROM `tracks`", (gssize) (-1), &_inner_error_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch23_sql_heavy_error;
+			goto __catch25_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -6312,7 +6513,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 	_tmp1_ = _tmp0_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch23_sql_heavy_error;
+			goto __catch25_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -6328,7 +6529,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 	_tmp4_ = _tmp3_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch23_sql_heavy_error;
+			goto __catch25_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -6372,7 +6573,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6386,7 +6587,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6400,7 +6601,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6414,7 +6615,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6428,7 +6629,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6442,7 +6643,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6456,7 +6657,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6470,7 +6671,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6484,7 +6685,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6498,7 +6699,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
@@ -6555,7 +6756,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_free0 (tags);
 				_g_object_unref0 (t);
@@ -6572,7 +6773,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 				_g_object_unref0 (t);
 				_g_object_unref0 (_t_it);
 				if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-					goto __catch23_sql_heavy_error;
+					goto __catch25_sql_heavy_error;
 				}
 				_g_free0 (tags);
 				_g_object_unref0 (t);
@@ -6589,14 +6790,14 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 	sql_heavy_transaction_commit (self->priv->transaction, &_inner_error_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == SQL_HEAVY_ERROR) {
-			goto __catch23_sql_heavy_error;
+			goto __catch25_sql_heavy_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
 		return;
 	}
-	goto __finally23;
-	__catch23_sql_heavy_error:
+	goto __finally25;
+	__catch25_sql_heavy_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -6604,7 +6805,7 @@ void beat_box_data_base_manager_save_tracks (BeatBoxDataBaseManager* self, GeeCo
 		fprintf (stdout, "Could not save tracks: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally23:
+	__finally25:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);

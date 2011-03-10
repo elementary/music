@@ -29,40 +29,49 @@ public class BeatBox.Beatbox : GLib.Object {
 	
 	public static int main(string[] args) {
 		Gtk.init(ref args);
-		Gdk.threads_init();
 		
-		//check for .desktop file
-		/*var desktop_file = File.new_for_path("/usr/share/applications/beatbox.desktop");
+		Unique.App app = new Unique.App ("org.elementary.beatbox", null);
+	
+		if (app.is_running) { //not starting if already running
+			Unique.Command command = Unique.Command.ACTIVATE;
+			Unique.MessageData message = new Unique.MessageData();
+			app.send_message (command, message);
+		} else {
+			Gdk.threads_init();
+			
+			//check for .desktop file
+			/*var desktop_file = File.new_for_path("/usr/share/applications/beatbox.desktop");
+			
+			if(!desktop_file.query_exists()) {
+				stdout.printf("Creating .desktop file\n");
+				try {
+					var file_stream = desktop_file.create (FileCreateFlags.NONE);
+					var data_stream = new DataOutputStream (file_stream);
+					data_stream.put_string (desktopString());
+				}
+				catch(GLib.Error err) {
+					stdout.printf("Could not create .desktop file: %s\n", err.message);
+				}
+			}*/
+			
+			add_stock_images();
+			
+			stdout.printf("Creating streamplayer\n");
+			_player = new BeatBox.StreamPlayer(args);
+			
+			stdout.printf("Creating database manager\n");
+			dbm = new DataBaseManager(true, true);
+			
+			stdout.printf("Loading database\n");
+			dbm.load_db();
+			
+			_program = new BeatBox.LibraryWindow(dbm, _player);
+			app.watch_window(_program);
+			
+			Gtk.main();
+		}
 		
-		if(!desktop_file.query_exists()) {
-			stdout.printf("Creating .desktop file\n");
-			try {
-				var file_stream = desktop_file.create (FileCreateFlags.NONE);
-				var data_stream = new DataOutputStream (file_stream);
-				data_stream.put_string (desktopString());
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not create .desktop file: %s\n", err.message);
-			}
-		}*/
-		
-		add_stock_images();
-		
-		stdout.printf("Creating streamplayer\n");
-		_player = new BeatBox.StreamPlayer(args);
-		
-		stdout.printf("Creating database manager\n");
-		dbm = new DataBaseManager(true, true);
-		
-		stdout.printf("Loading database\n");
-		dbm.load_db();
-		
-		stdout.printf("Creating User Interface\n");
-		_program = new BeatBox.LibraryWindow(dbm, _player);
-        
-        Gtk.main ();
-		
-        return 0;
+        return 1;
 	}
 	
 	public static void add_stock_images() {

@@ -23,7 +23,7 @@ typedef struct _ElementaryWidgetsWelcomePrivate ElementaryWidgetsWelcomePrivate;
 #define __g_list_free__g_object_unref0_0(var) ((var == NULL) ? NULL : (var = (_g_list_free__g_object_unref0_ (var), NULL)))
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 #define _g_free0(var) (var = (g_free (var), NULL))
-typedef struct _Block8Data Block8Data;
+typedef struct _Block9Data Block9Data;
 
 struct _ElementaryWidgetsWelcome {
 	GtkVBox parent_instance;
@@ -36,7 +36,7 @@ struct _ElementaryWidgetsWelcomeClass {
 	GtkVBoxClass parent_class;
 };
 
-struct _Block8Data {
+struct _Block9Data {
 	int _ref_count_;
 	ElementaryWidgetsWelcome * self;
 	GtkButton* button;
@@ -54,9 +54,9 @@ static void _g_list_free__g_object_unref0_ (GList* self);
 ElementaryWidgetsWelcome* elementary_widgets_welcome_new (const gchar* title_text, const gchar* subtitle_text);
 ElementaryWidgetsWelcome* elementary_widgets_welcome_construct (GType object_type, const gchar* title_text, const gchar* subtitle_text);
 void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gchar* icon_name, const gchar* label_text, const gchar* description_text);
-static Block8Data* block8_data_ref (Block8Data* _data8_);
-static void block8_data_unref (Block8Data* _data8_);
-static gboolean _lambda10_ (Block8Data* _data8_);
+static Block9Data* block9_data_ref (Block9Data* _data9_);
+static void block9_data_unref (Block9Data* _data9_);
+static gboolean _lambda10_ (Block9Data* _data9_);
 static gboolean __lambda10__gtk_widget_button_release_event (GtkWidget* _sender, GdkEventButton* event, gpointer self);
 static void elementary_widgets_welcome_finalize (GObject* obj);
 
@@ -146,17 +146,17 @@ ElementaryWidgetsWelcome* elementary_widgets_welcome_new (const gchar* title_tex
 }
 
 
-static Block8Data* block8_data_ref (Block8Data* _data8_) {
-	g_atomic_int_inc (&_data8_->_ref_count_);
-	return _data8_;
+static Block9Data* block9_data_ref (Block9Data* _data9_) {
+	g_atomic_int_inc (&_data9_->_ref_count_);
+	return _data9_;
 }
 
 
-static void block8_data_unref (Block8Data* _data8_) {
-	if (g_atomic_int_dec_and_test (&_data8_->_ref_count_)) {
-		_g_object_unref0 (_data8_->self);
-		_g_object_unref0 (_data8_->button);
-		g_slice_free (Block8Data, _data8_);
+static void block9_data_unref (Block9Data* _data9_) {
+	if (g_atomic_int_dec_and_test (&_data9_->_ref_count_)) {
+		_g_object_unref0 (_data9_->self);
+		_g_object_unref0 (_data9_->button);
+		g_slice_free (Block9Data, _data9_);
 	}
 }
 
@@ -166,13 +166,13 @@ static gpointer _g_object_ref0 (gpointer self) {
 }
 
 
-static gboolean _lambda10_ (Block8Data* _data8_) {
+static gboolean _lambda10_ (Block9Data* _data9_) {
 	ElementaryWidgetsWelcome * self;
 	gboolean result = FALSE;
 	gint _tmp0_;
 	gint index;
-	self = _data8_->self;
-	_tmp0_ = g_list_index (self->children, _data8_->button);
+	self = _data9_->self;
+	_tmp0_ = g_list_index (self->children, _data9_->button);
 	index = _tmp0_;
 	g_signal_emit_by_name (self, "activated", index);
 	result = FALSE;
@@ -188,7 +188,7 @@ static gboolean __lambda10__gtk_widget_button_release_event (GtkWidget* _sender,
 
 
 void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gchar* icon_name, const gchar* label_text, const gchar* description_text) {
-	Block8Data* _data8_;
+	Block9Data* _data9_;
 	GtkButton* _tmp0_ = NULL;
 	GtkHBox* _tmp1_ = NULL;
 	GtkHBox* hbox;
@@ -212,12 +212,12 @@ void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gc
 	g_return_if_fail (icon_name != NULL);
 	g_return_if_fail (label_text != NULL);
 	g_return_if_fail (description_text != NULL);
-	_data8_ = g_slice_new0 (Block8Data);
-	_data8_->_ref_count_ = 1;
-	_data8_->self = g_object_ref (self);
+	_data9_ = g_slice_new0 (Block9Data);
+	_data9_->_ref_count_ = 1;
+	_data9_->self = g_object_ref (self);
 	_tmp0_ = (GtkButton*) gtk_button_new ();
-	_data8_->button = g_object_ref_sink (_tmp0_);
-	gtk_button_set_relief (_data8_->button, GTK_RELIEF_NONE);
+	_data9_->button = g_object_ref_sink (_tmp0_);
+	gtk_button_set_relief (_data9_->button, GTK_RELIEF_NONE);
 	_tmp1_ = (GtkHBox*) gtk_hbox_new (FALSE, 6);
 	hbox = g_object_ref_sink (_tmp1_);
 	_tmp2_ = (GtkImage*) gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_DIALOG);
@@ -246,18 +246,18 @@ void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gc
 	gtk_box_pack_end ((GtkBox*) vbox, (GtkWidget*) _tmp12_, TRUE, TRUE, (guint) 0);
 	_g_object_unref0 (_tmp12_);
 	gtk_box_pack_start ((GtkBox*) hbox, (GtkWidget*) vbox, FALSE, TRUE, (guint) 6);
-	gtk_container_add ((GtkContainer*) _data8_->button, (GtkWidget*) hbox);
-	_tmp13_ = _g_object_ref0 (_data8_->button);
+	gtk_container_add ((GtkContainer*) _data9_->button, (GtkWidget*) hbox);
+	_tmp13_ = _g_object_ref0 (_data9_->button);
 	self->children = g_list_append (self->children, _tmp13_);
-	gtk_box_pack_start ((GtkBox*) self->options, (GtkWidget*) _data8_->button, FALSE, FALSE, (guint) 0);
-	g_signal_connect_data ((GtkWidget*) _data8_->button, "button-release-event", (GCallback) __lambda10__gtk_widget_button_release_event, block8_data_ref (_data8_), (GClosureNotify) block8_data_unref, 0);
+	gtk_box_pack_start ((GtkBox*) self->options, (GtkWidget*) _data9_->button, FALSE, FALSE, (guint) 0);
+	g_signal_connect_data ((GtkWidget*) _data9_->button, "button-release-event", (GCallback) __lambda10__gtk_widget_button_release_event, block9_data_ref (_data9_), (GClosureNotify) block9_data_unref, 0);
 	_g_object_unref0 (description);
 	_g_object_unref0 (label);
 	_g_object_unref0 (vbox);
 	_g_object_unref0 (icon);
 	_g_object_unref0 (hbox);
-	block8_data_unref (_data8_);
-	_data8_ = NULL;
+	block9_data_unref (_data9_);
+	_data9_ = NULL;
 }
 
 

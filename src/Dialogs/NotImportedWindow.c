@@ -437,11 +437,11 @@ gboolean beat_box_not_imported_window_deleteSelectedItems (BeatBoxNotImportedWin
 		g_file_trash (file, NULL, &_inner_error_);
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (file);
-			goto __catch55_g_error;
+			goto __catch61_g_error;
 		}
 		_g_object_unref0 (file);
-		goto __finally55;
-		__catch55_g_error:
+		goto __finally61;
+		__catch61_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -449,7 +449,7 @@ gboolean beat_box_not_imported_window_deleteSelectedItems (BeatBoxNotImportedWin
 			fprintf (stdout, "Could not move file %s to recycle: %s\n", location, err->message);
 			_g_error_free0 (err);
 		}
-		__finally55:
+		__finally61:
 		if (_inner_error_ != NULL) {
 			_g_free0 (location);
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);

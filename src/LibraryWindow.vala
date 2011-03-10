@@ -118,6 +118,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 			
 			// make sure we don't re-count stats
+			if((int)settings.getLastSongPosition() > 5)
+				queriedlastfm = true;
 			if((int)settings.getLastSongPosition() > 30)
 				song_considered_played = true;
 			if((double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
@@ -133,9 +135,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("Building user interface\n");
 		
 		// set the size based on saved gconf settings
-		set_size_request(900, 600);
-		set_size_request(settings.getWindowWidth(), settings.getWindowHeight());
-		allow_shrink = true;
+		//set_size_request(900, 600);
+		set_default_size(settings.getWindowWidth(), settings.getWindowHeight());
+		//allow_shrink = true;
+		
+		// set window min/max
+		Gdk.Geometry geo = Gdk.Geometry();
+		geo.min_width = 700;
+		geo.min_height = 400;
+		set_geometry_hints(this, geo, Gdk.WindowHints.MIN_SIZE);
 		
 		// set the title
 		set_title("BeatBox");
@@ -613,7 +621,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void previousClicked () {
-		if(queriedlastfm)
+		if(!queriedlastfm)
 			lm.getPrevious(true);
 		else
 			topDisplay.change_value(ScrollType.NONE, 0);
@@ -686,6 +694,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void sourcesToSongsHandleSet(Gdk.Rectangle rectangle) {
+		int height, width;
+		get_size(out width, out height);
+		
+		if(rectangle.width > height/2) {
+			sourcesToSongs.set_position(height/2);
+			return;
+		}
+		
 		if(settings.getSidebarWidth() != rectangle.width) {
 			updateCurrentSong();
 			settings.setSidebarWidth(rectangle.width);
@@ -817,7 +833,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
 		}
 		
-		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+		if(searchField.text != "" && searchField.text != searchField.hint_string) {
+			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+		}
 		
 		updateSensitivities();
 	}
@@ -842,8 +861,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
 		}
 		
-		if(searchField.text != "" && searchField.text != searchField.hint_string)
+		if(searchField.text != "" && searchField.text != searchField.hint_string) {
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+		}
 		
 		updateSensitivities();
 	}

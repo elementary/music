@@ -96,6 +96,16 @@ typedef struct _BeatBoxSettingsClass BeatBoxSettingsClass;
 typedef struct _BeatBoxDataBaseManager BeatBoxDataBaseManager;
 typedef struct _BeatBoxDataBaseManagerClass BeatBoxDataBaseManagerClass;
 
+#define BEAT_BOX_TYPE_DATA_BASE_UPDATER (beat_box_data_base_updater_get_type ())
+#define BEAT_BOX_DATA_BASE_UPDATER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_DATA_BASE_UPDATER, BeatBoxDataBaseUpdater))
+#define BEAT_BOX_DATA_BASE_UPDATER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_DATA_BASE_UPDATER, BeatBoxDataBaseUpdaterClass))
+#define BEAT_BOX_IS_DATA_BASE_UPDATER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_DATA_BASE_UPDATER))
+#define BEAT_BOX_IS_DATA_BASE_UPDATER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_DATA_BASE_UPDATER))
+#define BEAT_BOX_DATA_BASE_UPDATER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_DATA_BASE_UPDATER, BeatBoxDataBaseUpdaterClass))
+
+typedef struct _BeatBoxDataBaseUpdater BeatBoxDataBaseUpdater;
+typedef struct _BeatBoxDataBaseUpdaterClass BeatBoxDataBaseUpdaterClass;
+
 #define BEAT_BOX_TYPE_FILE_OPERATOR (beat_box_file_operator_get_type ())
 #define BEAT_BOX_FILE_OPERATOR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_FILE_OPERATOR, BeatBoxFileOperator))
 #define BEAT_BOX_FILE_OPERATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_FILE_OPERATOR, BeatBoxFileOperatorClass))
@@ -215,6 +225,7 @@ struct _BeatBoxLibraryManager {
 	BeatBoxLibraryManagerPrivate * priv;
 	BeatBoxSettings* settings;
 	BeatBoxDataBaseManager* dbm;
+	BeatBoxDataBaseUpdater* dbu;
 	BeatBoxFileOperator* fo;
 	BeatBoxStreamPlayer* player;
 	LastFMCore* lfm;
@@ -268,6 +279,7 @@ BeatBoxSimilarSongsView* beat_box_similar_songs_view_construct (GType object_typ
 void beat_box_music_tree_view_set_hint (BeatBoxMusicTreeView* self, const gchar* the_hint);
 GType beat_box_settings_get_type (void) G_GNUC_CONST;
 GType beat_box_data_base_manager_get_type (void) G_GNUC_CONST;
+GType beat_box_data_base_updater_get_type (void) G_GNUC_CONST;
 GType beat_box_file_operator_get_type (void) G_GNUC_CONST;
 GType beat_box_stream_player_get_type (void) G_GNUC_CONST;
 GType last_fm_core_get_type (void) G_GNUC_CONST;
@@ -576,7 +588,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	regex = (_tmp3_ = _tmp2_, _g_free0 (_tmp1_), _tmp3_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch62_g_regex_error;
+			goto __catch67_g_regex_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -587,7 +599,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	if (_inner_error_ != NULL) {
 		_g_regex_unref0 (regex);
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch62_g_regex_error;
+			goto __catch67_g_regex_error;
 		}
 		_g_regex_unref0 (regex);
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -598,8 +610,8 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	_g_regex_unref0 (regex);
 	return result;
 	_g_regex_unref0 (regex);
-	goto __finally62;
-	__catch62_g_regex_error:
+	goto __finally67;
+	__catch67_g_regex_error:
 	{
 		GError * e;
 		e = _inner_error_;
@@ -607,7 +619,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_assert_not_reached ();
 		_g_error_free0 (e);
 	}
-	__finally62:
+	__finally67:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);

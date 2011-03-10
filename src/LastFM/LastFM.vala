@@ -5,8 +5,12 @@ using Xml;
 
 public class LastFM.Core : Object {
 	BeatBox.LibraryManager _lm;
+	
+	/** NOTICE: These API keys and secrets are unique to BeatBox and Beatbox
+	 * only. To get your own, FREE key go to http://www.last.fm/api/account */
 	public static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
 	public static const string secret = "92ba5023f6868e680a3352c71e21243d";
+	
 	public string token;
 	public string session_key;
 	
