@@ -394,6 +394,18 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void modelRowsReordered(TreePath path, TreeIter iter, void* new_order) {
+		if(hint == "queue") {
+			lm.clear_queue();
+			
+			TreeIter item;
+			for(int i = 0; sort.get_iter_from_string(out item, i.to_string()); ++i) {
+				int id;
+				sort.get(item, 0, out id);
+				
+				lm.queue_song_by_id(id);
+			}
+		}
+		
 		if(is_current) {
 			setAsCurrentList( (lm.song_info.song != null) ? _rows.get(lm.song_info.song.rowid).get_path().to_string() : "0");
 		}

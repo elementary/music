@@ -109,7 +109,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				int position = (int)settings.getLastSongPosition();
 				Timeout.add(500, () => {
 					lm.playSong(s.rowid);
+					
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
+					if(settings.getShuffleEnabled())
+						shuffleClicked();
+					
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).scrollToCurrent();
 					
 					topDisplay.change_value(ScrollType.NONE, position);
@@ -135,9 +139,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("Building user interface\n");
 		
 		// set the size based on saved gconf settings
-		//set_size_request(900, 600);
 		set_default_size(settings.getWindowWidth(), settings.getWindowHeight());
-		//allow_shrink = true;
 		
 		// set window min/max
 		Gdk.Geometry geo = Gdk.Geometry();
@@ -147,6 +149,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// set the title
 		set_title("BeatBox");
+		
+		// set the icon
+		set_icon( render_icon("beatbox", IconSize.DIALOG, null));
 		
 		/* Initialize all components */
 		verticalBox = new VBox(false, 0);
@@ -503,7 +508,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(lm.get_album_location(i)));
 				}
 				else {
-					//set to beatbox icon
+					notification.set_image_from_pixbuf(render_icon("beatbox", IconSize.DIALOG, null));
 				}
 				
 				notification.show();
@@ -514,8 +519,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		
-		//updateCurrentSong();
-		sideTree.updatePlayQueue();
+		updateCurrentSong();
+		//sideTree.updatePlayQueue();
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {
@@ -806,8 +811,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			notification.close();
 			if(!has_toplevel_focus) {
 				notification.update("Import Complete", "BeatBox has imported your library", "music-folder");
+				notification.set_image_from_pixbuf(render_icon("beatbox", IconSize.DIALOG, null));
 				
 				notification.show();
+				notification.set_timeout(5000);
 			}
 		}
 		catch(GLib.Error err) {
@@ -884,6 +891,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		ad.set_version("0.1");
 		ad.set_website("https://launchpad.net/beat-box");
 		ad.set_website_label("Launchpad");
+		ad.set_icon( render_icon(Gtk.Stock.ABOUT, IconSize.DIALOG, null));
 		
 		string[] authors = new string[1];
 		authors[0] = "Scott Ringwelski";

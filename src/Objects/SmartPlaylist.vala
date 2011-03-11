@@ -2,7 +2,8 @@ using Gee;
 
 public class BeatBox.SmartPlaylist : Object {
 	private int _rowid;
-	private string sort_column; // Artist, Rating, etc.
+	public string sort_column; // Artist, Rating, etc.
+	public Gtk.SortType sort_direction; // ASCENDING/DESCENDING
 	private string _name;
 	private string _conditional; //any or all
 	private Gee.ArrayList<SmartQuery> _queries;

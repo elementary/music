@@ -7,6 +7,7 @@ public class BeatBox.Beatbox : GLib.Object {
 	private static DataBaseManager dbm;
 	private static StreamPlayer _player;
 	
+	public const string STOCK_BEATBOX = "beatbox";
 	public const string STOCK_MUSIC_LIBRARY = "folder-music";
 	public const string STOCK_MEDIA_QUEUE = "media-audio";
 	public const string STOCK_MEDIA_ALREADY_PLAYED = "emblem-urgent";
@@ -17,6 +18,7 @@ public class BeatBox.Beatbox : GLib.Object {
 	public const string STOCK_NOW_PLAYING = "audio-volume-high";
 	
 	const Gtk.StockItem[] stock_items = {
+		{ STOCK_BEATBOX, null, 0, 0 },
 		{ STOCK_MUSIC_LIBRARY, null, 0, 0 },
 		{ STOCK_MEDIA_QUEUE, null, 0, 0 },
 		{ STOCK_MEDIA_ALREADY_PLAYED, null, 0, 0 },

@@ -42,6 +42,9 @@ public class BeatBox.PreferencesWindow : Window {
 		set_size_request(400, 300);
 		allow_shrink = true;
 		
+		// set icon
+		set_icon( render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
+		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 10);
 		

@@ -1,6 +1,7 @@
 public class BeatBox.Playlist : Object {
 	private string _name;
-	private string sort_column; // Artist, Rating, etc.
+	public string sort_column; // Artist, Rating, etc.
+	public Gtk.SortType sort_direction; //ASCENDING/DESCENDING
 	private int _rowid;
 	private Gee.LinkedList<Song> _songs; // hold title, artist, album
 	

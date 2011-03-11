@@ -518,6 +518,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return (_queue.size == 0);
 	}
 	
+	public void clear_queue() {
+		_queue.clear();
+	}
+	
 	public void queue_song_by_id(int id) {
 		_queue.offer_tail(id);
 	}
@@ -589,6 +593,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void shuffleMusic() {
 		_current_shuffled.clear();
 		_current_shuffled_index = 0;
+		settings.setShuffleEnabled(true);
 		
 		//create temp list of all of current's song id's
 		LinkedList<int> temp = new LinkedList<int>();
@@ -609,6 +614,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void unShuffleMusic() {
 		_current_shuffled.clear();
 		_current_shuffled_index = 0;
+		settings.setShuffleEnabled(false);
 		
 		//make sure we continue playing where we left off
 		for(int i = 0; i < _current.size; ++i) {
