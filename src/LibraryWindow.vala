@@ -836,7 +836,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("TODO: re-populate view without freezing view\n");
 		
 		foreach(Song s in new_songs) {
-			stdout.printf("NEW SONG %s by %s\n", s.title, s.artist);
+			//stdout.printf("NEW SONG %s by %s\n", s.title, s.artist);
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
 		}
 		
@@ -862,11 +862,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("TODO: re-populate view without freezing view\n");
 		//Widget w = sideTree.getWidget(sideTree.library_music_iter);
 		//((MusicTreeView)w).populateView(lm.song_ids(), false);
-		
-		foreach(Song s in new_songs) {
-			stdout.printf("NEW SONG %s by %s\n", s.title, s.artist);
-			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
-		}
 		
 		if(searchField.text != "" && searchField.text != searchField.hint_string) {
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();

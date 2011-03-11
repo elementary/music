@@ -175,6 +175,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 			add_song(s);
 		}
 		
+		progress_notification("Populating list...", 0.0);
+		
 		Idle.add( () => { 
 			save_songs();
 			music_added(not_imported); 
@@ -200,7 +202,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 	}
 	
-	     // i should do the actual file browsing here
 	public void* add_folder_to_library_thread () {
 		var file = GLib.File.new_for_path(temp_add_folder);
 		
@@ -221,8 +222,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		foreach(Song s in new_songs) {
-			stdout.printf("new song in import %s\n", s.title);
 			s.rowid = index++;
+			stdout.printf("new song in import %s with rowid %d\n", s.title, s.rowid);
 			add_song(s);
 			
 			if(settings.getCopyImportedMusic())
@@ -268,11 +269,26 @@ public class BeatBox.LibraryManager : GLib.Object {
 		fo.rescan_music(GLib.File.new_for_path(settings.getMusicFolder()), ref paths, ref not_imported, ref new_songs);
 		
 		// all songs remaining are no longer in folder hierarchy
-		foreach(Song s in _songs.values) {
-			foreach(string path in paths) {
-				if(s.file == path)
-					removed.add(s.rowid);
+		int index = 1;
+		lock(_songs) {
+			foreach(Song s in _songs.values) {
+				if(s.rowid > index)
+					index = s.rowid + 1;
+				
+				foreach(string path in paths) {
+					if(s.file == path)
+						removed.add(s.rowid);
+				}
 			}
+		}
+		
+		foreach(Song s in new_songs) {
+			s.rowid = index++;
+			stdout.printf("new song in rescan %s with rowid %d\n", s.title, s.rowid);
+			add_song(s);
+			
+			if(settings.getCopyImportedMusic())
+				fo.update_file_hierarchy(s, false);
 		}
 		
 		dbm.remove_songs(paths);
@@ -424,7 +440,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void save_songs() {
 		try {
-			Thread.create<void*>( () => { dbm.save_songs(_songs.values); return null; }, false);
+			Thread.create<void*>( () => { 
+				lock(_songs) {
+					dbm.save_songs(_songs.values);
+				} 
+				
+				return null; 
+			}, false);
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
@@ -444,9 +466,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		rv.title = title;
 		rv.artist = artist;
 		
-		foreach(Song s in _songs.values) {
-			if(s.title == title && s.artist == artist)
-				return s;
+		lock (_songs) {
+			foreach(Song s in _songs.values) {
+				if(s.title == title && s.artist == artist)
+					return s;
+			}
 		}
 		
 		return rv;

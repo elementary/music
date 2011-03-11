@@ -111,7 +111,6 @@ public class BeatBox.FileOperator : Object {
 						Song s = import_song(file_path);
 						
 						if(s != null) {
-							lm.add_song(s);
 							new_songs.add(s);
 						}
 						else
