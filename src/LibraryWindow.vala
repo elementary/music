@@ -887,6 +887,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		ad.set_website("https://launchpad.net/beat-box");
 		ad.set_website_label("Launchpad");
 		ad.set_icon( render_icon(Gtk.Stock.ABOUT, IconSize.DIALOG, null));
+		ad.logo = render_icon("beatbox", IconSize.DIALOG, null);
 		
 		string[] authors = new string[1];
 		authors[0] = "Scott Ringwelski";
@@ -897,6 +898,46 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		});
 		
 		ad.show();
+		
+		LinkedList<string> fakes = new LinkedList<string>();
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
+		
+		NotImportedWindow npw = new NotImportedWindow(fakes);
+		npw.show();
 	}
 	
 	public virtual void editPreferencesClick() {

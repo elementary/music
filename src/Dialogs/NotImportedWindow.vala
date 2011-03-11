@@ -20,9 +20,9 @@ public class BeatBox.NotImportedWindow : Window{
 		this.set_title("Not Imported Files");
 		
 		// set the size based on saved gconf settings
-		set_size_request(475, 350);
+		set_default_size(475, -1);
 		this.window_position = WindowPosition.CENTER;
-		//allow_shrink = true;
+		allow_shrink = false;
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 20);
@@ -86,6 +86,10 @@ public class BeatBox.NotImportedWindow : Window{
 		listBox.pack_start(trashAll, false, true, 5);
 		listBox.pack_start(filesScroll, true, true, 5);
 		
+		Expander exp = new Expander("Corrupted files:");
+		exp.add(listBox);
+		exp.expanded = false;
+		
 		HButtonBox bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(moveToTrash, false, false, 0);
@@ -94,7 +98,7 @@ public class BeatBox.NotImportedWindow : Window{
 		bottomButtons.child_ipad_x = 10;
 		
 		content.pack_start(information, false, true, 0);
-		content.pack_start(listBox, true, true, 0);
+		content.pack_start(exp, true, true, 0);
 		content.pack_start(bottomButtons, false, true, 10);
 		
 		padding.pack_start(content, true, true, 10);
@@ -102,6 +106,15 @@ public class BeatBox.NotImportedWindow : Window{
 		moveToTrash.clicked.connect(moveToTrashClick);
 		trashAll.toggled.connect(trashAllToggled);
 		okButton.clicked.connect( () => { this.destroy(); });
+		exp.activate.connect( () => {
+			if(exp.get_expanded()) {
+				allow_shrink = true;
+				set_size_request(475, 155);
+				allow_shrink = false;
+			}
+			else
+				set_size_request(475, 350);
+		});
 		
 		add(padding);
 		show_all();
