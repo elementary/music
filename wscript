@@ -43,7 +43,7 @@ def configure(ctx):
 	check_pkg(ctx, 'libnotify', '0.5.0')
 
 def build(bld):
-	bld.add_subdirs('src')
+	bld.add_subdirs('src src/Objects src/LastFM src/Dialogs src/Widgets')
 	bld.add_group()
 	
 	bld.install_files ('${MDATADIR}/icons/hicolor/scalable/apps',
