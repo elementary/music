@@ -233,6 +233,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 				index = i + 1;
 		}
 		
+		fo.resetProgress(new_songs.size);
+		progress_notification("<b>Copying</b> files to <b>Music Folder</b>", 0.0);
+		int progress = 0;
 		foreach(Song s in new_songs) {
 			s.rowid = index++;
 			stdout.printf("new song in import %s with rowid %d\n", s.title, s.rowid);
@@ -240,6 +243,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			if(settings.getCopyImportedMusic())
 				fo.update_file_hierarchy(s, false);
+			
+			progress++;
+			progress_notification(null, (double)((double)progress)/((double)new_songs.size));
 		}
 		
 		Idle.add( () => { 

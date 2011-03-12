@@ -437,8 +437,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void progressNotification(string? message, double progress) {
 		//THIS IS WHAT CAUSES IT TO CRASH... WTF. SOMETHING WITH PANGO
-		//if(message != null)
-			//topDisplay.set_label_text(message);
+		if(message != null)
+			topDisplay.set_label_markup(message);
 		
 		if(progress != 0.0 && progress > 0.0 && progress < 1.0)
 			topDisplay.set_progress_value(progress);
@@ -825,7 +825,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		stdout.printf("TODO: re-populate view without freezing view\n");
+		stdout.printf("Adding new songs\n");
 		
 		foreach(Song s in new_songs) {
 			//stdout.printf("NEW SONG %s by %s\n", s.title, s.artist);
