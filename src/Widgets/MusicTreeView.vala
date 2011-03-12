@@ -47,6 +47,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	//for song list right click
 	Menu songMenuActionMenu;
 	MenuItem songEditSong;
+	MenuItem songFileBrowse;
 	MenuItem songMenuQueue;
 	MenuItem songMenuNewPlaylist;
 	MenuItem songMenuAddToPlaylist; // make menu on fly
@@ -371,6 +372,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		//song list right click menu
 		songMenuActionMenu = new Menu();
 		songEditSong = new MenuItem.with_label("Edit Song Info");
+		songFileBrowse = new MenuItem.with_label("Where in the world is Carmen Sandiego??");
 		songMenuQueue = new MenuItem.with_label("Queue");
 		songMenuNewPlaylist = new MenuItem.with_label("New Playlist");
 		songMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
@@ -384,6 +386,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		songRateSong4 = new MenuItem.with_label("4 Stars");
 		songRateSong5 = new MenuItem.with_label("5 Stars");
 		songMenuActionMenu.append(songEditSong);
+		songMenuActionMenu.append(songFileBrowse);
 		
 		songRateSongMenu.append(songRateSong0);
 		songRateSongMenu.append(songRateSong1);
@@ -401,6 +404,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		songMenuActionMenu.append(new SeparatorMenuItem());
 		songMenuActionMenu.append(songRemove);
 		songEditSong.activate.connect(songMenuEditClicked);
+		songFileBrowse.activate.connect(songFileBrowseClicked);
 		songMenuQueue.activate.connect(songMenuQueueClicked);
 		songMenuNewPlaylist.activate.connect(songMenuNewPlaylistClicked);
 		songRemove.activate.connect(songRemoveClicked);
@@ -1066,6 +1070,25 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual void songEditorSaved(LinkedList<Song> songs) {
 		lm.update_songs(songs, true);
+	}
+	
+	public virtual void songFileBrowseClicked() {
+		TreeSelection selected = view.get_selection();
+		selected.set_mode(SelectionMode.MULTIPLE);
+		TreeModel temp;
+		
+		foreach(TreePath path in selected.get_selected_rows(out temp)) {
+			TreeIter item;
+			temp.get_iter(out item, path);
+			
+			int id;
+			temp.get(item, 0, out id);
+			Song s = lm.song_from_id(id);
+			
+			stdout.printf("File is %s\n", s.file);
+			
+			return;
+		}
 	}
 	
 	public virtual void songMenuQueueClicked() {
