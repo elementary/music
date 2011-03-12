@@ -34,10 +34,8 @@ public class BeatBox.SimilarPane : HPaned {
 		transferPlayback = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		toolInfo = new Label("");
 		save = new ToolButton.from_stock(Gtk.Stock.SAVE);
-		similars = new MusicTreeView(lm, lw, -1);
+		similars = new MusicTreeView(lm, lw, _lm.similar_setup.sort_column, _lm.similar_setup.sort_direction, MusicTreeView.Hint.SIMILAR, -1);
 		ssv = new SimilarSongsView(_lm, _lw);
-		
-		similars.set_hint("similar");
 		
 		ToolItem toolInfoBin = new ToolItem();
 		toolInfoBin.add(toolInfo);

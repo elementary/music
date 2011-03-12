@@ -3,7 +3,7 @@ using TagLib;
 using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
-	public const int COLUMN_COUNT = 17;
+	public const int COLUMN_COUNT = 18;
 	
 	SQLHeavy.Database _db;
 	
@@ -31,8 +31,8 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("CREATE TABLE song_list_columns (`title` TEXT,`visible` INT,`width` INT)");
 			initialize_columns();
-			_db.execute("CREATE TABLE playlists (`name` TEXT, `songs` TEXT)");
-			_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT)");
+			_db.execute("CREATE TABLE playlists (`name` TEXT, `songs` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
+			_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
 			_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT)");
 			_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
 			_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
@@ -131,8 +131,8 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * 
 	 * save_song_list_columns() saves the columns to db
 	 */
-	public ArrayList<Gtk.TreeViewColumn> load_song_list_columns() {
-		var rv = new ArrayList<Gtk.TreeViewColumn>();
+	public  LinkedList<Gtk.TreeViewColumn> load_song_list_columns() {
+		var rv = new LinkedList<Gtk.TreeViewColumn>();
 		
 		try {
 			Query query = new Query(_db, "SELECT * FROM `song_list_columns`");
@@ -188,6 +188,12 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_string(":title", " ");
 			query.set_int(":visible", 1);
 			query.set_int(":width", 24);
+			query.execute();
+			
+			//number
+			query.set_string(":title", "#");
+			query.set_int(":visible", 1);
+			query.set_int(":width", 40);
 			query.execute();
 			
 			//track
@@ -487,6 +493,9 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				Playlist p = new Playlist.with_info(results.fetch_int(0), results.fetch_string(1));
 				p.songs_from_string(results.fetch_string(2));
+				p.tvs.sort_column = results.fetch_string(3);
+				p.tvs.set_sort_direction_from_string(results.fetch_string(4));
+				p.tvs.import_columns(results.fetch_string(5));
 				
 				rv.add(p);
 			}
@@ -502,12 +511,16 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `playlists`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare ("INSERT INTO `playlists` (`name`, `songs`) VALUES (:name, :songs);");
+			query = transaction.prepare ("INSERT INTO `playlists` (`name`, `songs`, 'sort_column', 'sort_direction', 'columns') VALUES (:name, :songs, :sort_column, :sort_direction, :columns);");
 			
 			foreach(Playlist p in playlists) {
 				
 				query.set_string(":name", p.name);
 				query.set_string(":songs", p.songs_to_string());
+				query.set_string(":sort_column", p.tvs.sort_column);
+				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
+				query.set_string(":columns", p.tvs.columns_to_string());
+				
 				query.execute();
 			}
 			
@@ -521,10 +534,13 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	public void update_playlist(Playlist p) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `playlists` SET name=:name, songs=:songs WHERE name=:name");
+			Query query = transaction.prepare("UPDATE `playlists` SET name=:name, songs=:songs, sort_column=:sort_column, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
 			
 			query.set_string(":name", p.name);
 			query.set_string(":songs", p.songs_to_string());
+			query.set_string(":sort_column", p.tvs.sort_column);
+			query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
+			query.set_string(":columns", p.tvs.columns_to_string());
 				
 			query.execute();
 			transaction.commit();
@@ -555,6 +571,11 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				p.name = results.fetch_string(1);
 				p.conditional = results.fetch_string(2);
 				p.queries_from_string(results.fetch_string(3));
+				p.limit = ( results.fetch_string(4) == "1") ? true : false;
+				p.limit_amount = results.fetch_int(5);
+				p.tvs.sort_column = results.fetch_string(6);
+				p.tvs.set_sort_direction_from_string(results.fetch_string(7));
+				p.tvs.import_columns(results.fetch_string(8));
 				
 				rv.add(p);
 			}
@@ -570,7 +591,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `smart_playlists`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`) VALUES (:name, :and_or, :queries);");
+			query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
 			
 			index = 0;
 			item_count = smarts.size;
@@ -580,6 +601,12 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				query.set_string(":name", s.name);
 				query.set_string(":and_or", s.conditional);
 				query.set_string(":queries", s.queries_to_string());
+				query.set_int(":limit", ( s.limit ) ? 1 : 0);
+				query.set_int(":limit_amount", s.limit_amount);
+				query.set_string(":sort_column", s.tvs.sort_column);
+				query.set_string(":sort_direction", s.tvs.sort_direction_to_string());
+				query.set_string(":columns", s.tvs.columns_to_string());
+				
 				query.execute();
 			}
 			
@@ -593,11 +620,16 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	public void update_smart_playlist(SmartPlaylist p) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `smart_playlists` SET name=:name, and_or=:and_or, queries=:queries WHERE name=:name");
+			Query query = transaction.prepare("UPDATE `smart_playlists` SET name=:name, and_or=:and_or, queries=:queries, limit=:limit, limit_amount=:limit_amount, sort_column=:sort_column, sort_direction=:sort_direction, columns=:columns WHERE name=:name");
 			
 			query.set_string(":name", p.name);
 			query.set_string(":and_or", p.conditional);
 			query.set_string(":queries", p.queries_to_string());
+			query.set_int(":limit", ( p.limit ) ? 1 : 0);
+			query.set_int(":limit_amount", p.limit_amount);
+			query.set_string(":sort_column", p.tvs.sort_column);
+			query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
+			query.set_string(":columns", p.tvs.columns_to_string());
 				
 			query.execute();
 			transaction.commit();

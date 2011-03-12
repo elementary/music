@@ -26,7 +26,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private HashMap<string, LastFM.AlbumInfo> _albums;//key:artist<sep>album
 	private HashMap<string, LastFM.TrackInfo> _tracks;//key:artist<sep>album<sep>track
 	
-	private ArrayList<Gtk.TreeViewColumn> _columns;
+	public TreeViewSetup music_setup;
+	public TreeViewSetup similar_setup;
+	public TreeViewSetup queue_setup;
+	public TreeViewSetup history_setup;
 	
 	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new songs play, this goes with it
 	public int _current_index;
@@ -89,6 +92,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		shuffle = false;
 		doing_file_operations = false;
 		
+		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING);
+		similar_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
+		queue_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
+		history_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
+		
 		//load all songs from db
 		foreach(Song s in dbm.load_songs()) {
 			_songs.set(s.rowid, s);
@@ -102,11 +110,24 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Playlist p in dbm.load_playlists()) {
 			_playlists.set(p.rowid, p);
 			
-			if(p.name == "autosaved_queue") {
+			if(p.name == "autosaved_music") {
+				music_setup = p.tvs;
+				_playlists.unset(p.rowid);
+			}
+			else if(p.name == "autosaved_similar") {
+				similar_setup = p.tvs;
+				_playlists.unset(p.rowid);				
+			}
+			else if(p.name == "autosaved_queue") {
 				foreach(int i in songs_from_playlist(p.rowid)) {
 					queue_song_by_id(i);
 				}
 				
+				queue_setup = p.tvs;
+				_playlists.unset(p.rowid);
+			}
+			else if(p.name == "autosaved_history") {
+				history_setup = p.tvs;
 				_playlists.unset(p.rowid);
 			}
 		}
@@ -121,15 +142,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		foreach(LastFM.TrackInfo t in dbm.load_tracks()) {
 			_tracks.set(t.name + " by " + t.artist, t);
-		}
-		
-		_columns = dbm.load_song_list_columns();
-		
-		if(_columns.size != dbm.COLUMN_COUNT) {
-			dbm.initialize_columns();
-			
-			_columns.clear();
-			_columns = dbm.load_song_list_columns();
 		}
 	}
 	
@@ -304,16 +316,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/******************** Song list columns *******************/
-	public ArrayList<Gtk.TreeViewColumn> columns() {
-		return _columns;
-	}
-	
-	public ArrayList<Gtk.TreeViewColumn> fresh_columns() {
+	public LinkedList<Gtk.TreeViewColumn> fresh_columns() {
 		return dbm.load_song_list_columns();
-	}
-	
-	public void save_song_list_columns(ArrayList<Gtk.TreeViewColumn> columns) {
-		dbm.save_song_list_columns(columns);
 	}
 	
 	/************************ Playlist stuff ******************/
@@ -338,8 +342,24 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(int i in _queue) {
 			p_queue.addSong(song_from_id(i));
 		}
+		p_queue.tvs = queue_setup;
+		
+		Playlist p_history = new Playlist();
+		p_history.name = "autosaved_history";
+		p_history.tvs = history_setup;
+		
+		Playlist p_similar = new Playlist();
+		p_similar.name = "autosaved_similar";
+		p_similar.tvs = similar_setup;
+		
+		Playlist p_music = new Playlist();
+		p_music.name = "autosaved_music";
+		p_music.tvs = music_setup;
 		
 		playlists_and_queue.add(p_queue);
+		playlists_and_queue.add(p_history);
+		playlists_and_queue.add(p_similar);
+		playlists_and_queue.add(p_music);
 		dbm.save_playlists(playlists_and_queue);
 	}
 	

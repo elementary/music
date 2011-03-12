@@ -346,20 +346,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addItem(sideTree.playlists_iter, null, sp, "Similar");
 		mainViews.pack_start(sp, true, true, 0);
 		
-		mtv = new MusicTreeView(lm, this, -1);
-		mtv.set_hint("queue");
+		mtv = new MusicTreeView(lm, this, lm.queue_setup.sort_column, lm.queue_setup.sort_direction, MusicTreeView.Hint.QUEUE, -1);
 		mtv.populateView(lm.queue(), false);
 		sideTree.addItem(sideTree.playlists_iter, null, mtv, "Queue");
 		mainViews.pack_start(mtv, true, true, 0);
 		
-		mtv = new MusicTreeView(lm, this, -1);
-		mtv.set_hint("history");
+		mtv = new MusicTreeView(lm, this,  lm.history_setup.sort_column, lm.history_setup.sort_direction, MusicTreeView.Hint.HISTORY, -1);
 		mtv.populateView(lm.already_played(), false);
 		sideTree.addItem(sideTree.playlists_iter, null, mtv, "History");
 		mainViews.pack_start(mtv, true, true, 0);
 		
-		mtv = new MusicTreeView(lm, this, -1);
-		mtv.set_hint("music");
+		mtv = new MusicTreeView(lm, this,  lm.music_setup.sort_column, lm.music_setup.sort_direction, MusicTreeView.Hint.MUSIC, -1);
 		mtv.populateView(lm.song_ids(), false);
 		sideTree.addItem(sideTree.library_iter, null, mtv, "Music");
 		mainViews.pack_start(mtv, true, true, 0);
@@ -390,9 +387,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(o is Playlist) {
 			Playlist p = (Playlist)o;
 			
-			mtv = new MusicTreeView(lm, this, -1);
-			mtv.set_hint("playlist");
-			mtv.set_id(p.rowid);
+			mtv = new MusicTreeView(lm, this, p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.PLAYLIST, p.rowid);
 			mtv.populateView(lm.songs_from_playlist(p.rowid), false);
 			item = sideTree.addItem(sideTree.playlists_iter, p, mtv, p.name);
 			mainViews.pack_start(mtv, true, true, 0);
@@ -400,9 +395,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 			
-			mtv = new MusicTreeView(lm, this, -1);
-			mtv.set_hint("smart playlist");
-			mtv.set_id(p.rowid);
+			mtv = new MusicTreeView(lm, this, p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.SMART_PLAYLIST, p.rowid);
 			mtv.populateView(lm.songs_from_smart_playlist(p.rowid), false);
 			item = sideTree.addItem(sideTree.playlists_iter, p, mtv, p.name);
 			mainViews.pack_start(mtv, true, true, 0);
@@ -665,13 +658,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void nextClicked() {
+		lm.getNext(true);
+		
 		// if not 90% done, skip it
 		if(!added_to_play_count) {
 			lm.song_info.song.skip_count++;
-			//don't need to update song because it will be updated when the new song is played
 		}
-		
-		lm.getNext(true);
 	}
 	
 	public virtual void shuffleClicked() {

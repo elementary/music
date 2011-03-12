@@ -52,6 +52,9 @@ public class BeatBox.NotImportedWindow : Window{
             TreeIter iter;
             filesModel.get_iter (out iter, tree_path);
             filesModel.set (iter, 0, !toggle.active);
+            
+            moveToTrash.set_sensitive(false);
+            filesModel.foreach(updateMoveToTrashSensetivity);
         });
 
         var column = new TreeViewColumn ();
@@ -73,6 +76,8 @@ public class BeatBox.NotImportedWindow : Window{
 		
 		filesScroll.add(filesView);
 		filesScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		
+		moveToTrash.set_sensitive(false);
 		
 		/* set up controls layout */
 		HBox information = new HBox(false, 0);
@@ -131,6 +136,18 @@ public class BeatBox.NotImportedWindow : Window{
 		return alignment;
 	}
 	
+	public bool updateMoveToTrashSensetivity(TreeModel model, TreePath path, TreeIter iter) {
+		bool sel = false;
+		model.get(iter, 0, out sel);
+		
+		if(sel) {
+			moveToTrash.set_sensitive(true);
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public bool selectAll(TreeModel model, TreePath path, TreeIter iter) {
 		filesModel.set(iter, 0, true);
 		
@@ -147,10 +164,12 @@ public class BeatBox.NotImportedWindow : Window{
 		if(trashAll.active) {
 			filesModel.foreach(selectAll);
 			filesView.set_sensitive(false);
+			moveToTrash.set_sensitive(true);
 		}
 		else {
 			filesModel.foreach(unselectAll);
 			filesView.set_sensitive(true);
+			moveToTrash.set_sensitive(false);
 		}
 	}
 	

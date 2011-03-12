@@ -2,8 +2,7 @@ using Gee;
 
 public class BeatBox.SmartPlaylist : Object {
 	private int _rowid;
-	public string sort_column; // Artist, Rating, etc.
-	public Gtk.SortType sort_direction; // ASCENDING/DESCENDING
+	public TreeViewSetup tvs;
 	private string _name;
 	private string _conditional; //any or all
 	private Gee.ArrayList<SmartQuery> _queries;
@@ -14,9 +13,9 @@ public class BeatBox.SmartPlaylist : Object {
 	
 	public SmartPlaylist() {
 		_name = "";
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
 		_conditional = "all";
 		query_count = 0;
-		sort_column = "";
 		_queries = new Gee.ArrayList<SmartQuery>();
 		_limit = false;
 		_limit_amount = 50;
@@ -106,6 +105,9 @@ public class BeatBox.SmartPlaylist : Object {
 			
 			if((conditional == "all" && match_count == _queries.size) || (conditional == "any" && match_count >= 1))
 				rv.add(s.rowid);
+				
+			if(_limit && _limit_amount <= rv.size)
+				return rv;
 		}
 		
 		return rv;

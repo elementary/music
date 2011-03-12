@@ -1,18 +1,18 @@
 public class BeatBox.Playlist : Object {
 	private string _name;
-	public string sort_column; // Artist, Rating, etc.
-	public Gtk.SortType sort_direction; //ASCENDING/DESCENDING
+	public TreeViewSetup tvs;
 	private int _rowid;
 	private Gee.LinkedList<Song> _songs; // hold title, artist, album
 	
 	public Playlist() {
 		_name = "New Playlist";
-		sort_column = "";
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
 		_songs = new Gee.LinkedList<Song>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
 		_songs = new Gee.LinkedList<Song>();
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
 		_rowid = rowid;
 		_name = name;
 	}
