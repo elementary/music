@@ -18,6 +18,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public Hint hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	string sort_column;
 	SortType sort_direction;
+	public bool removing_songs;
 	
 	public bool is_current_view;
 	public bool is_current;
@@ -101,6 +102,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		last_search = "";
 		timeout_search = new LinkedList<string>();
+		removing_songs = false;
 		
 		sort_column = sort;
 		sort_direction = dir;
@@ -527,6 +529,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void intelligentTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+		if(removing_songs)
+			return;
+		
 		/** all of the # based columns. only show # if not 0 **/
 		if(tvc.title == "Track" || tvc.title == "Year" || tvc.title == "#" || tvc.title == "Plays" || tvc.title == "Skips") {
 			int val;
@@ -549,6 +554,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void ratingsCellDataFunction(CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+		if(removing_songs)
+			return;
+		
 		int rating = 0;
 		tree_model.get(iter, _columns.index_of("Rating"), out rating);
 		
@@ -751,6 +759,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		model.get_iter(out item, path);
 		model.remove(item);
 		
+		_rows.unset(i);
+		
 		stdout.printf("Removed song %s by %s from model************\n", lm.song_from_id(i).title, lm.song_from_id(i).artist);
 		return true;
 	}
@@ -784,10 +794,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void songs_removed(LinkedList<int> ids) {
+		removing_songs = true;
 		foreach(int id in ids) {
-			stdout.printf("removing id %d\n", id);
+			//stdout.printf("removing id %d\n", id);
 			removeSong(id);
 		}
+		removing_songs = false;
 	}
 	
 	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {

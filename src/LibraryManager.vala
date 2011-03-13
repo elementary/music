@@ -274,7 +274,7 @@ public class BeatBox.LibraryManager : GLib.Object {
         
 	public void* rescan_music_thread_function () {
 		LinkedList<string> paths = new LinkedList<string>();
-		LinkedList<int> removed = new LinkedList<int>();
+		LinkedList<Song> removed = new LinkedList<Song>();
 		
 		foreach(Song s in _songs.values) {
 				paths.add(s.file);
@@ -295,9 +295,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 				
 				foreach(string path in paths) {
 					if(s.file == path)
-						removed.add(s.rowid);
+						removed.add(s);
 				}
 			}
+		}
+		
+		lock(_songs) {
+			remove_songs(removed);
 		}
 		
 		foreach(Song s in new_songs) {
@@ -551,8 +555,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		//string file_path = song_from_id(id).file;
 		foreach(Song s in toRemove) {
-			_songs.unset(s.rowid);
-			
 			removedIds.add(s.rowid);
 			removePaths.add(s.file);
 		}
@@ -561,6 +563,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		dbu.removeItem(removePaths);
 		fo.remove_songs(removePaths);
+		
+		foreach(Song s in toRemove) {
+			_songs.unset(s.rowid);
+		}
 	}
 	
 	/**************** Queue Stuff **************************/
