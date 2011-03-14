@@ -291,7 +291,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.name = "SidebarContent";
 		
 		songInfoScroll.add(songInfo);
-		songInfoScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		songInfoScroll.set_policy(PolicyType.NEVER, PolicyType.NEVER);
 		
 		pandoraScroll.add(pandora);
 		grooveSharkScroll.add(grooveShark);
