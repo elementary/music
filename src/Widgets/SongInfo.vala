@@ -58,7 +58,7 @@ public class BeatBox.SongInfo : Object {
          * to ~/.beatbox/albums/ folder and name it by the album name. 
          */
         
-        return Environment.get_user_cache_dir() + "/beatbox_song_info.html";
+        return Environment.get_user_cache_dir() + "/beatbox/beatbox_song_info.html";
 	}
 	
 	public string generate_html() {

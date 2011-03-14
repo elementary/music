@@ -39,6 +39,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Button banButton;
 	ElementaryWidgets.TopDisplay topDisplay;
 	public ElementaryWidgets.ElementarySearchEntry searchField;
+	ToggleToolButton songInfoButton;
 	ElementaryWidgets.AppMenu appMenu;
 	Statusbar statusBar;
 	
@@ -182,6 +183,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		banButton = new Button.with_label("Ban");
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
+		songInfoButton = new ToggleToolButton.from_stock(Gtk.Stock.INFO);
 		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
@@ -281,13 +283,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.insert(nextButton, 2);
         topControls.insert(topDisplayBin, 3);
         topControls.insert(searchFieldBin, 4);
-        topControls.insert(appMenuBin, 5);
+        topControls.insert(songInfoButton, 5);
+        topControls.insert(appMenuBin, 6);
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
 		sideTree.name = "SidebarContent";
 		
+		songInfoScroll.add(songInfo);
+		songInfoScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		
+		pandoraScroll.add(pandora);
+		grooveSharkScroll.add(grooveShark);
+		
 		contentBox.pack_start(welcomeScreen, true, true, 0);
+		contentBox.pack_start(songInfoScroll, true, true, 0);
 		welcomeScreen.append("folder-music", "Import", "Select your music folder to import from.");
 		
 		contentBox.pack_start(mainViews, true, true, 0);
@@ -295,10 +305,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		sourcesToSongs.add1(sideBar);
 		sourcesToSongs.add2(contentBox);
-		
-		songInfoScroll.add(songInfo);
-		pandoraScroll.add(pandora);
-		grooveSharkScroll.add(grooveShark);
 		
 		songInfo.window_features.scrollbar_visible = false;
 		
@@ -317,6 +323,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleButton.clicked.connect(shuffleClicked);
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
+		songInfoButton.clicked.connect(songInfoButtonClicked);
 		//notification.closed.connect(notificationClosed);
 		
 		show_all();
@@ -337,10 +344,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		MusicTreeView mtv;
 		
 		sideTree.addBasicItems();
-		
-		// put song info first so it is on top when using multiple views
-		//sideTree.addItem(null, new GLib.Object(), songInfoScroll, "Song Info");
-		mainViews.pack_start(songInfoScroll, true, true, 0);
 		
 		SimilarPane sp = new SimilarPane(lm, this);
 		sideTree.addItem(sideTree.playlists_iter, null, sp, "Similar");
@@ -413,10 +416,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			playButton.set_sensitive(false);
 			nextButton.set_sensitive(false);
 			searchField.set_sensitive(false);
+			songInfoButton.set_sensitive(false);
+			songInfoButton.set_active(false);
 			statusBar.hide();
 			
 			if(settings.getMusicFolder() != "") {
 				mainViews.hide();
+				songInfoScroll.hide();
 				welcomeScreen.show();
 			}
 		}
@@ -428,10 +434,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			playButton.set_sensitive(true);
 			nextButton.set_sensitive(true);
 			searchField.set_sensitive(true);
+			songInfoButton.set_sensitive(true);
 			statusBar.show();
 			
-			welcomeScreen.hide();
-			mainViews.show();
+			if(!songInfoButton.get_active()) {
+				welcomeScreen.hide();
+				songInfoScroll.hide();
+				mainViews.show();
+			}
+			else {
+				welcomeScreen.hide();
+				songInfoScroll.show();
+				mainViews.hide();
+			}
 		}
 	}
 	
@@ -529,6 +544,57 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
 		LastFM.AlbumInfo album = new LastFM.AlbumInfo.basic();
 		
+		/* if we don't have the last fm info, fetch it *
+		if(lm.song_info.album.name != lm.song_info.song.album || lm.song_info.album.artist != lm.song_info.song.artist) {
+			update_album = true;
+			
+			if(!lm.album_info_exists(lm.song_info.song.album + " by " + lm.song_info.song.artist))
+				album = new LastFM.AlbumInfo.with_info(lm.song_info.song.artist, lm.song_info.song.album);
+		}
+		if(lm.song_info.artist.name != lm.song_info.song.artist) {
+			update_artist = true;
+			
+			if(!lm.artist_info_exists(lm.song_info.song.artist))
+				artist = new LastFM.ArtistInfo.with_artist(lm.song_info.song.artist);
+		}
+		if(lm.song_info.track.name != lm.song_info.song.title || lm.song_info.track.artist != lm.song_info.song.artist) {
+			update_track = true;
+			
+			if(!lm.track_info_exists(lm.song_info.song.title + " by " + lm.song_info.song.artist))
+				track = new LastFM.TrackInfo.with_info(lm.song_info.song.artist, lm.song_info.song.title);
+		}
+		
+		/* if we are still on the same song after downloading info, update and continue on *
+		bool update_song_display = false;
+		if(album != null && lm.song_info.song.album == album.name && update_album) {
+			update_song_display = true;
+			lm.song_info.album = album;
+			lm.save_album(album);
+			
+			//try to save album image locally
+			if(lm.get_album_location(lm.song_info.song.rowid) == null)
+				lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
+		}
+		if(artist != null && lm.song_info.song.artist == artist.name && update_artist) {
+			update_song_display = true;
+			lm.song_info.artist = artist;
+			lm.save_artist(artist);
+			
+			//try to save artist art locally
+			if(lm.get_artist_image_location(lm.song_info.song.rowid) == null)
+				lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
+		}
+		if(track != null && lm.song_info.song.title == track.name && update_track) {
+			update_song_display = true;
+			lm.song_info.track = track;
+			lm.save_track(track);
+		}
+		
+		if(update_song_display) {
+			Idle.add(updateSongInfo);
+			Idle.add(updateCurrentSong);
+		}*/
+		
 		if(lm.song_info.album.name != lm.song_info.song.album || lm.song_info.album.artist != lm.song_info.song.artist) {
 			update_album = true;
 			
@@ -559,7 +625,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				artist = new LastFM.ArtistInfo.with_artist(lm.song_info.song.artist);
 				
 				//try to save artist art locally
-				if(lm.get_album_location(lm.song_info.song.rowid) == null && artist != null)
+				if(lm.get_artist_image_location(lm.song_info.song.rowid) == null && artist != null)
 					lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
 				
 				if(artist != null)
@@ -614,6 +680,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
     public bool updateSongInfo() {
 		string html_file = lm.song_info.update_file(lm.song_info.artist, lm.song_info.track, lm.song_info.album, lm.song_info.song);
 		songInfo.open(html_file);
+		stdout.printf("opening new file\n");
 		
 		return false;
 	}
@@ -688,6 +755,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void searchFieldIconPressed(EntryIconPosition p0, Gdk.Event p1) {
 		Widget w = sideTree.getSelectedWidget();
 		w.focus(DirectionType.UP);
+	}
+	
+	public virtual void songInfoButtonClicked() {
+		if(songInfoButton.get_active()) {
+			stdout.printf("showing\n");
+			mainViews.hide();
+			songInfoScroll.show();
+			welcomeScreen.hide();
+		}
+		else {
+			stdout.printf("hiding\n");
+			mainViews.show();
+			songInfoScroll.hide();
+			welcomeScreen.hide();
+		}
 	}
 	
 	public virtual void sourcesToSongsHandleSet(Gdk.Rectangle rectangle) {
