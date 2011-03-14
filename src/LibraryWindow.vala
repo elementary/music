@@ -281,9 +281,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.insert(previousButton, 0);
         topControls.insert(playButton, 1);
         topControls.insert(nextButton, 2);
-        topControls.insert(topDisplayBin, 3);
-        topControls.insert(searchFieldBin, 4);
-        topControls.insert(songInfoButton, 5);
+        topControls.insert(songInfoButton, 3);
+        topControls.insert(topDisplayBin, 4);
+        topControls.insert(searchFieldBin, 5);
         topControls.insert(appMenuBin, 6);
 		
 		//set the name for elementary theming
