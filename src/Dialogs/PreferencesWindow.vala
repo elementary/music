@@ -2,6 +2,7 @@ using Gtk;
 
 public class BeatBox.PreferencesWindow : Window {
 	private BeatBox.LibraryManager _lm;
+	private BeatBox.LibraryWindow _lw;
 	
 	//for padding around notebook mostly
 	private VBox content;
@@ -26,10 +27,13 @@ public class BeatBox.PreferencesWindow : Window {
 	
 	public signal void changed(string folder);
 	
-	public PreferencesWindow(LibraryManager lm) {
+	public PreferencesWindow(LibraryManager lm, LibraryWindow lw) {
 		this._lm = lm;
+		this._lw = lw;
 		
 		buildUI();
+		
+		_lm.file_operations_done.connect(fileOperationsDone);
 	}
 	
 	public void buildUI() {
@@ -37,6 +41,9 @@ public class BeatBox.PreferencesWindow : Window {
 		set_title("Preferences");
 		
 		this.window_position = WindowPosition.CENTER;
+		this.type_hint = Gdk.WindowTypeHint.DIALOG;
+		this.set_modal(true);
+		this.set_transient_for(_lw);
 		
 		// set the size
 		set_size_request(400, 300);
@@ -69,7 +76,13 @@ public class BeatBox.PreferencesWindow : Window {
 		managementLabel.set_markup("<b>Library Management</b>");
 		lastfmLabel.set_markup("<b>Last FM Integration</b>");
 		
+		/* file chooser stuff */
 		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
+		
+		if(_lm.doing_file_operations) {
+			fileChooser.set_sensitive(false);
+			fileChooser.set_tooltip_text("You must wait until previous file operations finish before setting your music folder");
+		}
 		
 		/* initialize library management settings */
 		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
@@ -167,5 +180,10 @@ public class BeatBox.PreferencesWindow : Window {
 	
 	public virtual void cancelClicked() {
 		this.destroy();
+	}
+	
+	public virtual void fileOperationsDone() {
+		fileChooser.set_tooltip_text("");
+		fileChooser.set_sensitive(true);
 	}
 }

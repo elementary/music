@@ -448,6 +448,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				mainViews.hide();
 			}
 		}
+		
+		if(lm.doing_file_operations) {
+			fileImportMusic.set_sensitive(false);
+			fileRescanMusicFolder.set_sensitive(false);
+		}
+		else {
+			fileImportMusic.set_sensitive(true);
+			fileRescanMusicFolder.set_sensitive(true);
+		}
 	}
 	
 	public virtual void progressNotification(string? message, double progress) {
@@ -835,15 +844,25 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				topDisplay.show_progressbar();
 				
 				lm.add_folder_to_library(folder);
+				updateSensitivities();
 			}
+		}
+		else {
+			stdout.printf("Can't add to library.. already doing file operations\n");
 		}
 	}
 	
 	public virtual void fileRescanMusicFolderClick() {
-		topDisplay.set_label_markup("<b>Rescanning music folder for changes</b>");
-		topDisplay.show_progressbar();
-		
-		lm.rescan_music_folder();
+		if(!lm.doing_file_operations) {
+			topDisplay.set_label_markup("<b>Rescanning music folder for changes</b>");
+			topDisplay.show_progressbar();
+			
+			lm.rescan_music_folder();
+			updateSensitivities();
+		}
+		else {
+			stdout.printf("Can't rescan.. doing file operations already\n");
+		}
 	}
 	
 	public virtual void musicCounted(int count) {
@@ -1015,7 +1034,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void editPreferencesClick() {
-		PreferencesWindow pw = new PreferencesWindow(lm);
+		PreferencesWindow pw = new PreferencesWindow(lm, this);
 		
 		pw.changed.connect( (folder) => {
 			setMusicFolder(folder);

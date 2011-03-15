@@ -115,6 +115,9 @@ namespace ElementaryWidgets {
 		}
 		
 		public virtual void value_changed() {
+			if(!scale.visible)
+				return;
+			
 			//make pretty current time
 			int minute = 0;
 			int seconds = (int)scale.get_value();

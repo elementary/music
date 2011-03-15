@@ -48,6 +48,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void music_imported(LinkedList<Song> new_songs, LinkedList<string> not_imported);
 	public signal void music_rescanned(LinkedList<Song> new_songs, LinkedList<string> not_imported);
 	public signal void progress_notification(string? message, double progress);
+	public signal void file_operations_done();
 	
 	public signal void current_cleared();
 	public signal void song_added(int id);
@@ -196,6 +197,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		});
 		
 		doing_file_operations = false;
+		file_operations_done();
 		return null;
 	}
 	
@@ -255,6 +257,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		});
 		
 		doing_file_operations = false;
+		file_operations_done();
 		return null;
 	}
         
@@ -322,6 +325,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		});
 		
 		doing_file_operations = false;
+		file_operations_done();
 		return null;
 	}
 	

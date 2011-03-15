@@ -31,7 +31,7 @@ public class BeatBox.NotImportedWindow : Window{
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
 		Label title = new Label("Unable to import " + files.size.to_string() + "songs");
 		Label info = new Label("BeatBox was unable to import " + files.size.to_string() + " songs. The files may be damaged.");
-		trashAll = new CheckButton.with_label("Move all files to trash");
+		trashAll = new CheckButton.with_label("Move all corrupted files to trash");
 		filesScroll = new ScrolledWindow(null, null);
 		filesView = new TreeView();
 		filesModel = new ListStore(2, typeof(bool), typeof(string));
@@ -88,10 +88,9 @@ public class BeatBox.NotImportedWindow : Window{
 		information.pack_start(information_text, true, true, 10);
 		
 		VBox listBox = new VBox(false, 0);
-		listBox.pack_start(trashAll, false, true, 5);
 		listBox.pack_start(filesScroll, true, true, 5);
 		
-		Expander exp = new Expander("Corrupted files:");
+		Expander exp = new Expander("Select individual files to move to trash:");
 		exp.add(listBox);
 		exp.expanded = false;
 		
@@ -103,7 +102,8 @@ public class BeatBox.NotImportedWindow : Window{
 		bottomButtons.child_ipad_x = 10;
 		
 		content.pack_start(information, false, true, 0);
-		content.pack_start(exp, true, true, 0);
+		content.pack_start(wrap_alignment(trashAll, 5, 0, 0, 75), false, true, 0);
+		content.pack_start(wrap_alignment(exp, 0, 0, 0, 75), true, true, 0);
 		content.pack_start(bottomButtons, false, true, 10);
 		
 		padding.pack_start(content, true, true, 10);
@@ -115,6 +115,7 @@ public class BeatBox.NotImportedWindow : Window{
 			if(exp.get_expanded()) {
 				allow_shrink = true;
 				set_size_request(475, 155);
+				set_default_size(475, 155);
 				allow_shrink = false;
 			}
 			else
