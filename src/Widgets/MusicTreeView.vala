@@ -374,7 +374,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		//song list right click menu
 		songMenuActionMenu = new Menu();
 		songEditSong = new MenuItem.with_label("Edit Song Info");
-		songFileBrowse = new MenuItem.with_label("Where in the world is Carmen Sandiego??");
+		songFileBrowse = new MenuItem.with_label("Show in File Browser");
 		songMenuQueue = new MenuItem.with_label("Queue");
 		songMenuNewPlaylist = new MenuItem.with_label("New Playlist");
 		songMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
@@ -1097,7 +1097,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			temp.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
-			stdout.printf("File is %s\n", s.file);
+			try {
+				var file = File.new_for_path(s.file);
+				GLib.AppInfo.launch_default_for_uri (file.get_parent().get_path(), null);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not browse song %s: %s\n", s.file, err.message);
+			}
 			
 			return;
 		}

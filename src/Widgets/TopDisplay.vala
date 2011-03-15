@@ -72,7 +72,8 @@ namespace ElementaryWidgets {
 		}
 		
 		public void set_progress_value(double progress) {
-			progressbar.set_fraction(progress);
+			if(progress > 0.0 && progress < 1.0)
+				progressbar.set_fraction(progress);
 		}
 		
 		/** scale functions **/

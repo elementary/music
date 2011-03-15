@@ -102,7 +102,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else {
 			lm.clearCurrent();
 			//((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList("0");
-		
+			
+			// make sure we don't re-count stats
+			if((int)settings.getLastSongPosition() > 5)
+				queriedlastfm = true;
+			if((int)settings.getLastSongPosition() > 30)
+				song_considered_played = true;
+			if((double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
+				added_to_play_count = true;
+			
 			Song s = settings.getLastSongPlaying();
 			s = lm.song_from_name(s.title, s.artist);
 			if(s.rowid != 0) {
@@ -121,14 +129,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					return false;
 				});
 			}
-			
-			// make sure we don't re-count stats
-			if((int)settings.getLastSongPosition() > 5)
-				queriedlastfm = true;
-			if((int)settings.getLastSongPosition() > 30)
-				song_considered_played = true;
-			if((double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
-				added_to_play_count = true;
 			
 			// rescan on startup
 			lm.rescan_music_folder();
@@ -1082,7 +1082,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		foreach(BeatBox.Song sim in similar) {
 			BeatBox.Song s = lm.song_from_name(sim.title, sim.artist);
 			if(s.rowid != 0) {
-				similarIDs.add(s.rowid);
+				if(s.rowid == lm.song_info.song.rowid)
+					similarIDs.offer_head(s.rowid);
+				else
+					similarIDs.add(s.rowid);
 			}
 			else {
 				similarDont.add(sim);
