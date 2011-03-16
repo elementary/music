@@ -510,6 +510,17 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return rv;
 	}
 	
+	public Song? song_from_file(string file) {
+		lock(_songs) {
+			foreach(Song s in _songs.values) {
+				if(s.file == file)
+					return s;
+			}
+		}
+		
+		return null;
+	}
+	
 	public Collection<int> songs_from_search(string search, Collection<int> songs_to_search) {
 		string l_search = search.down();
 		

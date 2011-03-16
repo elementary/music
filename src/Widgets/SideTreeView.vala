@@ -100,6 +100,11 @@ public class BeatBox.SideTreeView : TreeView {
 		playlistRemove.activate.connect(playlistMenuRemoveClicked);
 		playlistMenu.show_all();
 		
+		/* set up drag dest stuff */
+		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
+		Gtk.drag_dest_add_uri_targets(this);
+		this.drag_data_received.connect(dragReceived);
+		
 		this.show_all();
 	}
 	
@@ -351,8 +356,8 @@ public class BeatBox.SideTreeView : TreeView {
 			if(!sideTreeModel.get_iter(out iter, path))
 				return false;
 			
-			int id;
-			sideTreeModel.get(iter, 0, out id);
+			GLib.Object o;
+			sideTreeModel.get(iter, 0, out o);
 			string name;
 			sideTreeModel.get(iter, 2, out name);
 			
@@ -595,4 +600,60 @@ public class BeatBox.SideTreeView : TreeView {
 		resetView();
 		//sideTreeModel.foreach(updateView);
 	}
+	
+	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
+		bool success = false;
+		TreeIter iter;
+		TreePath path;
+		TreeViewColumn column;
+		int cell_x;
+		int cell_y;
+		
+		stdout.printf("drag received\n");
+		
+		/* get the iter we are on */
+		this.get_path_at_pos(x, y, out path, out column, out cell_x, out cell_y);
+		if(!sideTreeModel.get_iter(out iter, path)) {
+			Gtk.drag_finish(context, false, false, timestamp);
+			return;
+		}
+		stdout.printf("continueing...\n");
+		GLib.Object o;
+		sideTreeModel.get(iter, 0, out o);
+		string name;
+		sideTreeModel.get(iter, 2, out name);
+		
+		/* make sure it is either queue or normal playlist */
+		if(name == "Queue") {
+			foreach (string uri in data.get_uris ()) {
+				stdout.printf("oh hey queue\n");
+				File file = File.new_for_uri (uri);
+				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
+					Song add = lm.song_from_file(file.get_path());
+					
+					if(add != null) {
+						lm.queue_song_by_id(add.rowid);
+						success = true;
+					}
+				}
+			}
+		}
+		else if(o is Playlist) {
+			Playlist p = (Playlist)o;
+			stdout.printf("playlist nerd\n");
+			foreach (string uri in data.get_uris ()) {
+				File file = File.new_for_uri (uri);
+				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
+					Song add = lm.song_from_file(file.get_path());
+					
+					if(add != null) {
+						p.addSong(add);
+						success = true;
+					}
+				}
+			}
+		}
+		
+		Gtk.drag_finish (context, success, false, timestamp);
+    }
 }

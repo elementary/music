@@ -316,6 +316,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		// allow selecting multiple rows
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
 		
+		// drag source
+		drag_source_set(view, Gdk.ModifierType.BUTTON1_MASK, {}, Gdk.DragAction.MOVE);
+		Gtk.drag_source_add_uri_targets(view);
+		
 		// column chooser menu
 		columnChooserMenu = new Menu();
 		columnSmartSorting = new MenuItem.with_label("Smart sorting");
@@ -426,6 +430,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		this.sort.rows_reordered.connect(modelRowsReordered);
 		this.sort.sort_column_changed.connect(sortColumnChanged);
+        view.drag_data_get.connect(onDragDataGet);
 		this.vadjustment.value_changed.connect(viewScroll);
 		lw.searchField.changed.connect(searchFieldChanged);
 	}
@@ -1348,4 +1353,23 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
+	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+        Gtk.TreeIter iter;
+        Gtk.TreeModel temp_model;
+        
+        var rows = view.get_selection().get_selected_rows(out temp_model);
+        string[] uris = null;
+        
+        foreach(TreePath path in rows) {
+            temp_model.get_iter_from_string (out iter, path.to_string ());
+            
+			int id;
+			temp_model.get (iter, 0, out id);
+			stdout.printf("adding %s\n", lm.song_from_id(id).file);
+			uris += ("file://" + lm.song_from_id(id).file);
+		}
+		
+        if (uris != null)
+            selection_data.set_uris(uris);
+    }
 }
