@@ -22,6 +22,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public bool is_current_view;
 	public bool is_current;
+	public bool dragging;
 	
 	LinkedList<string> timeout_search;//stops from doing useless search
 	string last_search;//stops from searching same thing multiple times
@@ -303,12 +304,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
 		view.set_model(sort);
-		view.set_reorderable(true);
 		view.set_headers_clickable(true);
 		view.set_fixed_height_mode(true);
 		
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);
+		view.button_release_event.connect(viewClickRelease);
 		view.columns_changed.connect(viewColumnsChanged);
 		
 		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
@@ -430,7 +431,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		this.sort.rows_reordered.connect(modelRowsReordered);
 		this.sort.sort_column_changed.connect(sortColumnChanged);
-        view.drag_data_get.connect(onDragDataGet);
+		this.view.drag_begin.connect(onDragBegin);
+        this.view.drag_data_get.connect(onDragDataGet);
+        this.view.drag_end.connect(onDragEnd);
 		this.vadjustment.value_changed.connect(viewScroll);
 		lw.searchField.changed.connect(searchFieldChanged);
 	}
@@ -859,6 +862,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			lm.shuffleMusic();
 	}
 	
+	/* button_press_event */
 	public virtual bool viewClick(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
 			/* create add to playlist menu */
@@ -906,6 +910,24 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			view.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
 			
+			/* don't unselect everything if multiple selected until button release
+			 * for drag and drop reasons */
+			if(view.get_selection().count_selected_rows() > 1) {
+				if(view.get_selection().path_is_selected(path)) {
+					if(((event.state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK)|
+						((event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK)) {
+							view.get_selection().unselect_path(path);
+					}
+					return true;
+				}
+				else if(!(((event.state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK)|
+						((event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK))) {
+					return true;
+				}
+				
+				return false;
+			}
+			
 			if(!sort.get_iter(out iter, path) || column.title != "Rating")
 				return false;
 			
@@ -923,6 +945,31 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		
 		return false;
+	}
+	
+	/* button_release_event */
+	private bool viewClickRelease(Gtk.Widget sender, Gdk.EventButton event) {
+		/* if we were dragging, then set dragging to false */
+		if(dragging && event.button == 1) {
+			dragging = false;
+			return true;
+		}
+		else if(((event.state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK) | ((event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK)) {
+			return true;
+		}
+		else {
+			TreePath path;
+			TreeViewColumn tvc;
+			int cell_x;
+			int cell_y;
+			int x = (int)event.x;
+			int y = (int)event.y;
+			
+			if(!(view.get_path_at_pos(x, y, out path, out tvc, out cell_x, out cell_y))) return false;
+			view.get_selection().unselect_all();
+			view.get_selection().select_path(path);
+			return false;
+		}
 	}
 	
 	private bool viewHeaderClick(Gtk.Widget w, Gdk.EventButton e) {
@@ -1353,6 +1400,23 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
+	public virtual void onDragBegin(Gtk.Widget sender, Gdk.DragContext context) {
+		dragging = true;
+		stdout.printf("drag begin\n");
+
+		Gdk.drag_abort(context, Gtk.get_current_event_time());
+		
+		if(view.get_selection().count_selected_rows() == 1) {
+			drag_source_set_icon_stock(this, Gtk.Stock.DND);
+		}
+		else if(view.get_selection().count_selected_rows() > 1) {
+			drag_source_set_icon_stock(this, Gtk.Stock.DND_MULTIPLE);
+		}
+		else {
+			return;
+		}
+	}
+	
 	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         Gtk.TreeIter iter;
         Gtk.TreeModel temp_model;
@@ -1372,4 +1436,18 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
         if (uris != null)
             selection_data.set_uris(uris);
     }
+    
+    public virtual void onDragEnd(Gtk.Widget sender, Gdk.DragContext context) {
+		dragging = false;
+		
+		stdout.printf("drag end\n");
+		
+		//unset_rows_drag_dest();
+		Gtk.drag_dest_set(this,
+		                  Gtk.DestDefaults.ALL,
+		                  {},
+		                  Gdk.DragAction.COPY|
+		                  Gdk.DragAction.MOVE
+		                  );
+	}
 }
