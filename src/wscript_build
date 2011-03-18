@@ -12,7 +12,11 @@ obj = bld.new_task_gen ('cc', 'program')
 obj.name = 'beatbox'
 obj.target = 'beatbox'
 obj.includes = '. ..'
-obj.find_sources_in_dirs ('.')
+obj.find_sources_in_dirs('.')
+obj.find_sources_in_dirs('Dialogs')
+obj.find_sources_in_dirs('Objects')
+obj.find_sources_in_dirs('LastFM')
+obj.find_sources_in_dirs('Widgets')
 obj.uselib = 'GIO GTHREAD GTK LIBNOTIFY INDICATE UNIQUE WEBKIT'
 obj.packages = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0 libnotify gnet-2.0 dbus-glib-1 unique-1.0'
 obj.vapi_dirs = '.'
