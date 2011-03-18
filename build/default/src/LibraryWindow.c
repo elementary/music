@@ -1179,10 +1179,10 @@ static void _lambda12_ (BeatBoxLibraryWindow* self) {
 	auth_uri = _tmp0_;
 	g_app_info_launch_default_for_uri (auth_uri, NULL, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch52_g_error;
+		goto __catch55_g_error;
 	}
-	goto __finally52;
-	__catch52_g_error:
+	goto __finally55;
+	__catch55_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -1190,7 +1190,7 @@ static void _lambda12_ (BeatBoxLibraryWindow* self) {
 		fprintf (stdout, "Could not load webpage %s: %s\n", auth_uri, err->message);
 		_g_error_free0 (err);
 	}
-	__finally52:
+	__finally55:
 	if (_inner_error_ != NULL) {
 		_g_free0 (auth_uri);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -1214,10 +1214,10 @@ static void _lambda13_ (BeatBoxLibraryWindow* self) {
 	auth_uri = _tmp0_;
 	g_app_info_launch_default_for_uri (auth_uri, NULL, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch53_g_error;
+		goto __catch56_g_error;
 	}
-	goto __finally53;
-	__catch53_g_error:
+	goto __finally56;
+	__catch56_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -1225,7 +1225,7 @@ static void _lambda13_ (BeatBoxLibraryWindow* self) {
 		fprintf (stdout, "Could not load webpage %s: %s\n", auth_uri, err->message);
 		_g_error_free0 (err);
 	}
-	__finally53:
+	__finally56:
 	if (_inner_error_ != NULL) {
 		_g_free0 (auth_uri);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -1249,10 +1249,10 @@ static void _lambda14_ (BeatBoxLibraryWindow* self) {
 	auth_uri = _tmp0_;
 	g_app_info_launch_default_for_uri (auth_uri, NULL, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch54_g_error;
+		goto __catch57_g_error;
 	}
-	goto __finally54;
-	__catch54_g_error:
+	goto __finally57;
+	__catch57_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -1260,7 +1260,7 @@ static void _lambda14_ (BeatBoxLibraryWindow* self) {
 		fprintf (stdout, "Could not load webpage %s: %s\n", auth_uri, err->message);
 		_g_error_free0 (err);
 	}
-	__finally54:
+	__finally57:
 	if (_inner_error_ != NULL) {
 		_g_free0 (auth_uri);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -2024,13 +2024,13 @@ gboolean beat_box_library_window_updateCurrentSong (BeatBoxLibraryWindow* self) 
 			_tmp6_ = gdk_pixbuf_new_from_file_at_size (file, _tmp4_, _tmp5_, &_inner_error_);
 			_tmp7_ = _tmp6_;
 			if (_inner_error_ != NULL) {
-				goto __catch55_g_error;
+				goto __catch58_g_error;
 			}
 			_tmp8_ = _tmp7_;
 			gtk_image_set_from_pixbuf (self->priv->coverArt, _tmp8_);
 			_g_object_unref0 (_tmp8_);
-			goto __finally55;
-			__catch55_g_error:
+			goto __finally58;
+			__catch58_g_error:
 			{
 				GError * err;
 				err = _inner_error_;
@@ -2038,7 +2038,7 @@ gboolean beat_box_library_window_updateCurrentSong (BeatBoxLibraryWindow* self) 
 				fprintf (stdout, "Could not set image art: %s\n", err->message);
 				_g_error_free0 (err);
 			}
-			__finally55:
+			__finally58:
 			if (_inner_error_ != NULL) {
 				_g_free0 (file);
 				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -2077,7 +2077,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	regex = (_tmp3_ = _tmp2_, _g_free0 (_tmp1_), _tmp3_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch56_g_regex_error;
+			goto __catch59_g_regex_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -2088,7 +2088,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	if (_inner_error_ != NULL) {
 		_g_regex_unref0 (regex);
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch56_g_regex_error;
+			goto __catch59_g_regex_error;
 		}
 		_g_regex_unref0 (regex);
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -2099,8 +2099,8 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	_g_regex_unref0 (regex);
 	return result;
 	_g_regex_unref0 (regex);
-	goto __finally56;
-	__catch56_g_regex_error:
+	goto __finally59;
+	__catch59_g_regex_error:
 	{
 		GError * e;
 		e = _inner_error_;
@@ -2108,7 +2108,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_assert_not_reached ();
 		_g_error_free0 (e);
 	}
-	__finally56:
+	__finally59:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -2228,7 +2228,7 @@ static void beat_box_library_window_real_song_played (BeatBoxLibraryWindow* self
 			_tmp43_ = gdk_pixbuf_new_from_file (_tmp42_, &_inner_error_);
 			_tmp45_ = (_tmp44_ = _tmp43_, _g_free0 (_tmp42_), _tmp44_);
 			if (_inner_error_ != NULL) {
-				goto __catch57_g_error;
+				goto __catch60_g_error;
 			}
 			_tmp46_ = _tmp45_;
 			notify_notification_set_image_from_pixbuf (self->priv->notification, _tmp46_);
@@ -2243,11 +2243,11 @@ static void beat_box_library_window_real_song_played (BeatBoxLibraryWindow* self
 		}
 		notify_notification_show (self->priv->notification, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch57_g_error;
+			goto __catch60_g_error;
 		}
 		notify_notification_set_timeout (self->priv->notification, 5000);
-		goto __finally57;
-		__catch57_g_error:
+		goto __finally60;
+		__catch60_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -2255,7 +2255,7 @@ static void beat_box_library_window_real_song_played (BeatBoxLibraryWindow* self
 			fprintf (stderr, "Could not show notification: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally57:
+		__finally60:
 		if (_inner_error_ != NULL) {
 			_g_free0 (song_label);
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -3083,7 +3083,7 @@ static void beat_box_library_window_real_musicAdded (BeatBoxLibraryWindow* self,
 	beat_box_library_manager_save_songs (self->priv->lm);
 	notify_notification_close (self->priv->notification, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch58_g_error;
+		goto __catch61_g_error;
 	}
 	if (!(g_object_get ((GtkWindow*) self, "has-toplevel-focus", &_tmp18_, NULL), _tmp18_)) {
 		GdkPixbuf* _tmp19_ = NULL;
@@ -3095,12 +3095,12 @@ static void beat_box_library_window_real_musicAdded (BeatBoxLibraryWindow* self,
 		_g_object_unref0 (_tmp20_);
 		notify_notification_show (self->priv->notification, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch58_g_error;
+			goto __catch61_g_error;
 		}
 		notify_notification_set_timeout (self->priv->notification, 5000);
 	}
-	goto __finally58;
-	__catch58_g_error:
+	goto __finally61;
+	__catch61_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -3108,7 +3108,7 @@ static void beat_box_library_window_real_musicAdded (BeatBoxLibraryWindow* self,
 		fprintf (stderr, "Could not show notification: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally58:
+	__finally61:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (w);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -3532,14 +3532,14 @@ static void beat_box_library_window_real_current_position_update (BeatBoxLibrary
 			g_thread_create (_beat_box_library_window_lastfm_thread_function_gthread_func, self, FALSE, &_inner_error_);
 			if (_inner_error_ != NULL) {
 				if (_inner_error_->domain == G_THREAD_ERROR) {
-					goto __catch59_g_thread_error;
+					goto __catch62_g_thread_error;
 				}
 				g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 				g_clear_error (&_inner_error_);
 				return;
 			}
-			goto __finally59;
-			__catch59_g_thread_error:
+			goto __finally62;
+			__catch62_g_thread_error:
 			{
 				GError * err;
 				err = _inner_error_;
@@ -3547,7 +3547,7 @@ static void beat_box_library_window_real_current_position_update (BeatBoxLibrary
 				fprintf (stdout, "ERROR: Could not create last fm thread: %s \n", err->message);
 				_g_error_free0 (err);
 			}
-			__finally59:
+			__finally62:
 			if (_inner_error_ != NULL) {
 				g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 				g_clear_error (&_inner_error_);

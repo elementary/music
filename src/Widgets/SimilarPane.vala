@@ -56,7 +56,7 @@ public class BeatBox.SimilarPane : VBox {
 		transferPlayback.hide();
 	}
 	
-	public void updateSongs(Song la, Collection<int> have, Collection<Song> shouldHave) {
+	public void updateSongs(Song la, Collection<int> have) {
 		_next = la;
 		_have.clear();
 		

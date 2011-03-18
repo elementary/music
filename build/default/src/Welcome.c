@@ -56,8 +56,8 @@ ElementaryWidgetsWelcome* elementary_widgets_welcome_construct (GType object_typ
 void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gchar* icon_name, const gchar* label_text, const gchar* description_text);
 static Block10Data* block10_data_ref (Block10Data* _data10_);
 static void block10_data_unref (Block10Data* _data10_);
-static gboolean _lambda10_ (Block10Data* _data10_);
-static gboolean __lambda10__gtk_widget_button_release_event (GtkWidget* _sender, GdkEventButton* event, gpointer self);
+static gboolean _lambda11_ (Block10Data* _data10_);
+static gboolean __lambda11__gtk_widget_button_release_event (GtkWidget* _sender, GdkEventButton* event, gpointer self);
 static void elementary_widgets_welcome_finalize (GObject* obj);
 
 
@@ -166,7 +166,7 @@ static gpointer _g_object_ref0 (gpointer self) {
 }
 
 
-static gboolean _lambda10_ (Block10Data* _data10_) {
+static gboolean _lambda11_ (Block10Data* _data10_) {
 	ElementaryWidgetsWelcome * self;
 	gboolean result = FALSE;
 	gint _tmp0_;
@@ -180,9 +180,9 @@ static gboolean _lambda10_ (Block10Data* _data10_) {
 }
 
 
-static gboolean __lambda10__gtk_widget_button_release_event (GtkWidget* _sender, GdkEventButton* event, gpointer self) {
+static gboolean __lambda11__gtk_widget_button_release_event (GtkWidget* _sender, GdkEventButton* event, gpointer self) {
 	gboolean result;
-	result = _lambda10_ (self);
+	result = _lambda11_ (self);
 	return result;
 }
 
@@ -250,7 +250,7 @@ void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gc
 	_tmp13_ = _g_object_ref0 (_data10_->button);
 	self->children = g_list_append (self->children, _tmp13_);
 	gtk_box_pack_start ((GtkBox*) self->options, (GtkWidget*) _data10_->button, FALSE, FALSE, (guint) 0);
-	g_signal_connect_data ((GtkWidget*) _data10_->button, "button-release-event", (GCallback) __lambda10__gtk_widget_button_release_event, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
+	g_signal_connect_data ((GtkWidget*) _data10_->button, "button-release-event", (GCallback) __lambda11__gtk_widget_button_release_event, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 	_g_object_unref0 (description);
 	_g_object_unref0 (label);
 	_g_object_unref0 (vbox);

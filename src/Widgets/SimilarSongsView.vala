@@ -4,7 +4,7 @@ using Gee;
 public class BeatBox.SimilarSongsView : TreeView {
 	private BeatBox.LibraryManager _lm;
 	private BeatBox.LibraryWindow _lw;
-	private new ListStore model;
+	private ListStore model;
 	private LinkedList<Song> songs;
 	
 	private LinkedList<string> urlsToOpen;//queue for opening urls

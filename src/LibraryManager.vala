@@ -502,7 +502,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		lock (_songs) {
 			foreach(Song s in _songs.values) {
-				if(s.title == title && s.artist == artist)
+				if(s.title.down() == title.down() && s.artist.down() == artist.down())
 					return s;
 			}
 		}

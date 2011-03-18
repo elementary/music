@@ -946,10 +946,10 @@ void beat_box_library_manager_set_music_folder (BeatBoxLibraryManager* self, con
 		beat_box_settings_setMusicFolder (self->settings, folder);
 		g_thread_create (_beat_box_library_manager_set_music_thread_function_gthread_func, self, FALSE, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch43_g_error;
+			goto __catch46_g_error;
 		}
-		goto __finally43;
-		__catch43_g_error:
+		goto __finally46;
+		__catch46_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -957,7 +957,7 @@ void beat_box_library_manager_set_music_folder (BeatBoxLibraryManager* self, con
 			fprintf (stdout, "Could not create thread to set music folder: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally43:
+		__finally46:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
@@ -1104,10 +1104,10 @@ void beat_box_library_manager_add_folder_to_library (BeatBoxLibraryManager* self
 		self->priv->temp_add_folder = _tmp3_;
 		g_thread_create (_beat_box_library_manager_add_folder_to_library_thread_gthread_func, self, FALSE, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch44_g_error;
+			goto __catch47_g_error;
 		}
-		goto __finally44;
-		__catch44_g_error:
+		goto __finally47;
+		__catch47_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -1115,7 +1115,7 @@ void beat_box_library_manager_add_folder_to_library (BeatBoxLibraryManager* self
 			fprintf (stdout, "Could not create thread to add music folder: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally44:
+		__finally47:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
@@ -1286,10 +1286,10 @@ void beat_box_library_manager_rescan_music_folder (BeatBoxLibraryManager* self) 
 		g_signal_emit_by_name (self, "progress-notification", "Rescanning music for changes. This may take a while", 0.0);
 		g_thread_create (_beat_box_library_manager_rescan_music_thread_function_gthread_func, self, FALSE, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch45_g_error;
+			goto __catch48_g_error;
 		}
-		goto __finally45;
-		__catch45_g_error:
+		goto __finally48;
+		__catch48_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -1297,7 +1297,7 @@ void beat_box_library_manager_rescan_music_folder (BeatBoxLibraryManager* self) 
 			fprintf (stdout, "Could not create thread to rescan music folder: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally45:
+		__finally48:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
@@ -1467,7 +1467,7 @@ void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManag
 			}
 			_g_object_unref0 (_s_it);
 		}
-		__finally46:
+		__finally49:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (removed);
@@ -1482,7 +1482,7 @@ void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManag
 	{
 		g_static_rec_mutex_lock (&self->priv->__lock__songs);
 		beat_box_library_manager_remove_songs (self, removed);
-		__finally47:
+		__finally50:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (removed);
@@ -1916,7 +1916,7 @@ static void* _lambda2_ (BeatBoxLibraryManager* self) {
 		_tmp1_ = _tmp0_;
 		beat_box_data_base_manager_save_songs (self->dbm, _tmp1_);
 		_g_object_unref0 (_tmp1_);
-		__finally49:
+		__finally52:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -1941,10 +1941,10 @@ void beat_box_library_manager_save_songs (BeatBoxLibraryManager* self) {
 	g_return_if_fail (self != NULL);
 	g_thread_create (__lambda2__gthread_func, self, FALSE, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch48_g_error;
+		goto __catch51_g_error;
 	}
-	goto __finally48;
-	__catch48_g_error:
+	goto __finally51;
+	__catch51_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -1952,7 +1952,7 @@ void beat_box_library_manager_save_songs (BeatBoxLibraryManager* self) {
 		fprintf (stdout, "Could not create thread to rescan music folder: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally48:
+	__finally51:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -2030,7 +2030,7 @@ BeatBoxSong* beat_box_library_manager_song_from_name (BeatBoxLibraryManager* sel
 			}
 			_g_object_unref0 (_s_it);
 		}
-		__finally50:
+		__finally53:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (rv);
@@ -2083,7 +2083,7 @@ BeatBoxSong* beat_box_library_manager_song_from_file (BeatBoxLibraryManager* sel
 			}
 			_g_object_unref0 (_s_it);
 		}
-		__finally51:
+		__finally54:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);

@@ -195,10 +195,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 						"body", "Artist\nAlbum");
 		
 		/* Set properties of various controls */
-		sourcesToSongs.child1_resize = 1;
 		sideBar.set_size_request(settings.getSidebarWidth(), -1);
-		
-		songsToInfo.child1_resize = 1;
+		songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 		
 		//for setting maximum size for setting hpane position max size
 		//sideBar.set_geometry_hints(
@@ -292,11 +290,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		contentBox.pack_start(mainViews, true, true, 0);
 		contentBox.pack_start(statusBar, false, true, 0);
 		
-		songsToInfo.add1(contentBox);
-		songsToInfo.add2(infoPanel);
+		songsToInfo.pack1(contentBox, true, true);
+		songsToInfo.pack2(infoPanel, true, false);
 		
-		sourcesToSongs.add1(sideBar);
-		sourcesToSongs.add2(songsToInfo);
+		sourcesToSongs.pack1(sideBar, true, true);
+		sourcesToSongs.pack2(songsToInfo, true, false);
 		
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
 		sideBar.pack_end(coverArt, false, true, 0);
@@ -313,6 +311,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleButton.clicked.connect(shuffleClicked);
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
+		infoPanel.size_allocate.connect(infoPanelResized);
 		
 		show_all();
 		topMenu.hide();
@@ -510,7 +509,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		updateCurrentSong();
-		updateSongInfo();
+		infoPanel.updateSong(lm.song_info.song.rowid);
 		//sideTree.updatePlayQueue();
 	}
 	
@@ -671,7 +670,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
     
     public bool updateSongInfo() {
 		infoPanel.updateSong(lm.song_info.song.rowid);
-		stdout.printf("opening new file\n");
 		
 		return false;
 	}
@@ -1078,6 +1076,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		
+		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
+		((SimilarPane)w).updateSongs(lm.song_info.song, similarIDs);
+		
 		infoPanel.updateSongList(similarDont);
 	}
 	
@@ -1100,6 +1101,26 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(folder != "" && folder != settings.getMusicFolder()) {
 				setMusicFolder(folder);
 			}
+		}
+	}
+	
+	public virtual void infoPanelResized(Gdk.Rectangle rectangle) {
+		if(songsToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 250) {
+			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 250);
+			return;
+		}
+		else if(songsToInfo.get_position() > (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150) {
+			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150);
+			return;
+		}
+		
+		/*if(settings.getSidebarWidth() != rectangle.width) {
+			updateCurrentSong();
+			settings.setSidebarWidth(rectangle.width);
+		}*/
+		
+		if(lm.settings.getMoreWidth() != rectangle.width) {
+			lm.settings.setMoreWidth(rectangle.width);
 		}
 	}
 }

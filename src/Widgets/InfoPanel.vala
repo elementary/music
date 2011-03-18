@@ -42,6 +42,13 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		title.set_markup("<span size=\"large\"><b>Title</b></span>");
 		year.set_markup("<span size=\"x-small\">Year</span>");
 		
+		/* ellipsize */
+		title.ellipsize = Pango.EllipsizeMode.END;
+		artist.ellipsize = Pango.EllipsizeMode.END;
+		album.ellipsize = Pango.EllipsizeMode.END;
+		year.ellipsize = Pango.EllipsizeMode.END;
+		
+		
 		HBox padding = new HBox(false, 10);
 		VBox content = new VBox(false, 0);
 		
@@ -63,11 +70,12 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		add(vp);
 		
-		this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		this.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
 		this.set_shadow_type(ShadowType.NONE);
 		
 		// signals here
 		rating.rating_changed.connect(ratingChanged);
+		this.size_allocate.connect(resized);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -96,13 +104,20 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 			year.set_markup("<span size=\"x-small\">" + s.year.to_string() + "</span>");
 		else
 			year.set_markup("");
-			
-		// do artistImage stuff
+		
+		updateArtistImage();
+	}
+	
+	public void updateArtistImage() {
+		if(lm.song_from_id(id) == null)
+			return;
+		
 		string file = "";
 		if((file = lm.get_artist_image_location(id)) != null) {
 			artistImage.show();
 			try {
-				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file(file));
+				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 10, lm.settings.getMoreWidth() - 10, true));
+				//artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file(file));
 			}
 			catch(GLib.Error err) {
 				stdout.printf("Could not set info panel image art: %s\n", err.message);
@@ -110,15 +125,25 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		}
 		else
 			artistImage.hide();
-			
 	}
 	
 	public void updateSongList(Collection<Song> songs) {
-		ssv.populateView(songs);
+		if(songs.size > 8) {
+			ssv.show();
+			ssv.populateView(songs);
+		}
+		else {
+			ssv.hide();
+		}
 	}
 	
 	public virtual void ratingChanged(int new_rating) {
 		lm.song_from_id(id).rating = new_rating;
 		lm.update_song(lm.song_from_id(id), false);
+	}
+	
+	public virtual void resized(Gdk.Rectangle rectangle) {
+		// resize the image to fit
+		updateArtistImage();
 	}
 }
