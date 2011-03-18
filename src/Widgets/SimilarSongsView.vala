@@ -1,10 +1,9 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.SimilarSongsView : ScrolledWindow {
+public class BeatBox.SimilarSongsView : TreeView {
 	private BeatBox.LibraryManager _lm;
 	private BeatBox.LibraryWindow _lw;
-	private TreeView view;
 	private ListStore model;
 	private LinkedList<Song> songs;
 	
@@ -16,8 +15,6 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 		songs = new LinkedList<Song>();
 		urlsToOpen = new LinkedList<string>();
 		
-		view = new TreeView();
-		
 		/* id is always first and is stored as an int. Then the rest are (1)
 		 * strings (for simplicity), and include:
 		 * #, track, title, artist, album, genre, comment, year, rating, (9)
@@ -28,24 +25,23 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 		TreeViewColumn col = new TreeViewColumn();
 		col.title = "song";
 		col.visible = false;
-		view.insert_column(col, 0);
+		insert_column(col, 0);
 		
-		view.insert_column_with_attributes(-1, "More", new CellRendererText(), "markup", 1, null);
-		//view.get_column(1).set_alignment((float)0.5);
+		insert_column_with_attributes(-1, "Similar Songs", new CellRendererText(), "markup", 1, null);
+		get_column(1).sizing = Gtk.TreeViewColumnSizing.FIXED;
+		get_column(1).set_alignment((float)0.5);
 		
-		view.set_model(model);
-		view.set_grid_lines(TreeViewGridLines.NONE);
+		set_model(model);
+		//set_grid_lines(TreeViewGridLines.HORIZONTAL);
 		
-		this.add(view);
-		this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-		
-		view.row_activated.connect(viewDoubleClick);
+		row_activated.connect(viewDoubleClick);
 	}
 	
 	public void populateView(Collection<Song> nSongs) {
 		songs.clear();
 		model.clear();
 		
+		int count = 0;
 		foreach(Song s in nSongs) {
 			songs.add(s);
 			
@@ -55,7 +51,11 @@ public class BeatBox.SimilarSongsView : ScrolledWindow {
 			var title_fixed = s.title.replace("&", "&amp;");
 			var artist_fixed = s.artist.replace("&", "&amp;");
 			
-			model.set(iter, 0, s, 1, "<b>" + title_fixed + "</b>" + " by\n" + "<b>" + artist_fixed + "</b>");
+			model.set(iter, 0, s, 1, "<b>" + title_fixed + "</b>" + " \n" + artist_fixed );
+			++count;
+			
+			if(count >= 16)
+				return;
 		}
 	}
 	

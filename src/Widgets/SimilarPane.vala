@@ -1,23 +1,20 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.SimilarPane : HPaned {
+public class BeatBox.SimilarPane : VBox {
 	BeatBox.LibraryManager _lm;
 	BeatBox.LibraryWindow _lw;
 	public Song _base;
 	Song _next;
 	
 	public LinkedList<int> _have; // this is updated EVERY song play. does not necessarily represent what is showing
-	LinkedList<Song> _shouldHave; //^
 	
-	VBox left;
 	Toolbar toolbar;
 	ToolButton refresh;
 	Label toolInfo;
 	ToolButton transferPlayback;
 	ToolButton save;
 	MusicTreeView similars;
-	SimilarSongsView ssv;
 	
 	public signal void playlist_saved(Playlist p);
 	
@@ -26,16 +23,13 @@ public class BeatBox.SimilarPane : HPaned {
 		_lw = lw;
 		
 		_have = new LinkedList<int>();
-		_shouldHave = new LinkedList<Song>();
 		
-		left = new VBox(false, 0);
 		toolbar = new Toolbar();
 		refresh = new ToolButton.from_stock(Gtk.Stock.REFRESH);
 		transferPlayback = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		toolInfo = new Label("");
 		save = new ToolButton.from_stock(Gtk.Stock.SAVE);
 		similars = new MusicTreeView(lm, lw, _lm.similar_setup.sort_column, _lm.similar_setup.sort_direction, MusicTreeView.Hint.SIMILAR, -1);
-		ssv = new SimilarSongsView(_lm, _lw);
 		
 		ToolItem toolInfoBin = new ToolItem();
 		toolInfoBin.add(toolInfo);
@@ -50,21 +44,14 @@ public class BeatBox.SimilarPane : HPaned {
 		toolbar.insert(toolInfoBin, 2);
 		toolbar.insert(save, 3);
 		
-		left.pack_start(similars, true, true, 0);
-		left.pack_end(toolbar, false, false, 0);
-		
-		add1(left);
-		add2(ssv);
-		child2_resize = 1;
-		
-		position = _lm.settings.getMoreWidth();
+		pack_start(similars, true, true, 0);
+		pack_end(toolbar, false, false, 0);
 		
 		show_all();
 		
 		refresh.clicked.connect(refreshClicked);
 		transferPlayback.clicked.connect(transferPlaybackClicked);
 		save.clicked.connect(saveClicked);
-		this.child2.size_allocate.connect(paneHandleSet);
 		
 		transferPlayback.hide();
 	}
@@ -72,13 +59,9 @@ public class BeatBox.SimilarPane : HPaned {
 	public void updateSongs(Song la, Collection<int> have, Collection<Song> shouldHave) {
 		_next = la;
 		_have.clear();
-		_shouldHave.clear();
 		
 		foreach(int i in have)
 			_have.add(i);
-		
-		foreach(Song s in shouldHave)
-			_shouldHave.add(s);
 		
 		if(!(_lm.current_songs().size == similars.get_songs().size && _lm.current_songs().contains_all(similars.get_songs()))) {
 			updateDisplay();
@@ -96,7 +79,6 @@ public class BeatBox.SimilarPane : HPaned {
 			do_transfer = true;
 		
 		similars.populateView(_have, false);
-		ssv.populateView(_shouldHave);
 		
 		_base = _next;
 		toolInfo.set_markup("Songs similar to <b>" + _base.title.replace("&", "&amp;") + "</b> by <b>" + _base.artist.replace("&", "&amp;") + "</b>");
@@ -135,11 +117,5 @@ public class BeatBox.SimilarPane : HPaned {
 		_lw.addSideListItem(p);
 		
 		save.hide();
-	}
-	
-	public virtual void paneHandleSet(Gdk.Rectangle rectangle) {
-		if(_lm.settings.getMoreWidth() != position) {
-			_lm.settings.setMoreWidth(position);
-		}
 	}
 }

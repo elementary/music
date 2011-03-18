@@ -19,6 +19,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	VBox mainViews;
 	ElementaryWidgets.Welcome welcomeScreen;
 	HPaned sourcesToSongs; //allows for draggable
+	HPaned songsToInfo; // song info pane
 	ScrolledWindow sideTreeScroll;
 	VBox sideBar;
 	VBox contentBox;
@@ -26,9 +27,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ScrolledWindow songInfoScroll;
 	ScrolledWindow pandoraScroll;
 	ScrolledWindow grooveSharkScroll;
-	WebView songInfo;
-	WebView pandora;
-	WebView grooveShark;
+	InfoPanel infoPanel;
 	Image coverArt;
 	Toolbar topControls;
 	ToolButton previousButton;
@@ -39,7 +38,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Button banButton;
 	ElementaryWidgets.TopDisplay topDisplay;
 	public ElementaryWidgets.ElementarySearchEntry searchField;
-	ToggleToolButton songInfoButton;
 	ElementaryWidgets.AppMenu appMenu;
 	Statusbar statusBar;
 	
@@ -157,6 +155,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		/* Initialize all components */
 		verticalBox = new VBox(false, 0);
 		sourcesToSongs = new HPaned();
+		songsToInfo = new HPaned();
 		contentBox = new VBox(false, 0);
 		mainViews = new VBox(false, 0);
 		welcomeScreen = new ElementaryWidgets.Welcome("Get some tunes.", "BeatBox can't seem to find your music");
@@ -183,14 +182,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		banButton = new Button.with_label("Ban");
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
-		songInfoButton = new ToggleToolButton.from_stock(Gtk.Stock.INFO);
 		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
 		grooveSharkScroll = new ScrolledWindow(null, null);
-		songInfo = new WebView();
-		pandora = new WebView();
-		grooveShark = new WebView();
+		infoPanel = new InfoPanel(lm, this);
 		sideBar = new VBox(false, 0);
 		statusBar = new Statusbar();
 		notification = (Notify.Notification)GLib.Object.new (
@@ -201,6 +197,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		/* Set properties of various controls */
 		sourcesToSongs.child1_resize = 1;
 		sideBar.set_size_request(settings.getSidebarWidth(), -1);
+		
+		songsToInfo.child1_resize = 1;
 		
 		//for setting maximum size for setting hpane position max size
 		//sideBar.set_geometry_hints(
@@ -266,7 +264,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		verticalBox.pack_start(topMenu, false, true, 0);
 		verticalBox.pack_start(topControls, false, true, 0);
         verticalBox.pack_start(sourcesToSongs, true, true, 0);
-        //verticalBox.pack_start(statusBar, false, true, 0);
         
         ToolItem topDisplayBin = new ToolItem();
         ToolItem searchFieldBin = new ToolItem();
@@ -281,32 +278,25 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.insert(previousButton, 0);
         topControls.insert(playButton, 1);
         topControls.insert(nextButton, 2);
-        topControls.insert(songInfoButton, 3);
-        topControls.insert(topDisplayBin, 4);
-        topControls.insert(searchFieldBin, 5);
-        topControls.insert(appMenuBin, 6);
+        topControls.insert(topDisplayBin, 3);
+        topControls.insert(searchFieldBin, 4);
+        topControls.insert(appMenuBin, 5);
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
 		sideTree.name = "SidebarContent";
 		
-		songInfoScroll.add(songInfo);
-		songInfoScroll.set_policy(PolicyType.NEVER, PolicyType.NEVER);
-		
-		pandoraScroll.add(pandora);
-		grooveSharkScroll.add(grooveShark);
-		
 		contentBox.pack_start(welcomeScreen, true, true, 0);
-		contentBox.pack_start(songInfoScroll, true, true, 0);
 		welcomeScreen.append("folder-music", "Import", "Select your music folder to import from.");
 		
 		contentBox.pack_start(mainViews, true, true, 0);
 		contentBox.pack_start(statusBar, false, true, 0);
 		
-		sourcesToSongs.add1(sideBar);
-		sourcesToSongs.add2(contentBox);
+		songsToInfo.add1(contentBox);
+		songsToInfo.add2(infoPanel);
 		
-		songInfo.window_features.scrollbar_visible = false;
+		sourcesToSongs.add1(sideBar);
+		sourcesToSongs.add2(songsToInfo);
 		
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
 		sideBar.pack_end(coverArt, false, true, 0);
@@ -323,8 +313,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleButton.clicked.connect(shuffleClicked);
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
-		songInfoButton.clicked.connect(songInfoButtonClicked);
-		//notification.closed.connect(notificationClosed);
 		
 		show_all();
 		topMenu.hide();
@@ -332,7 +320,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_scale_sensitivity(false);
 		coverArt.hide();
 		sideTree.resetView();
-		songInfoScroll.hide();
 		welcomeScreen.hide();
 		updateSensitivities();
 	}
@@ -416,8 +403,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			playButton.set_sensitive(false);
 			nextButton.set_sensitive(false);
 			searchField.set_sensitive(false);
-			songInfoButton.set_sensitive(false);
-			songInfoButton.set_active(false);
 			statusBar.hide();
 			
 			if(settings.getMusicFolder() != "") {
@@ -434,19 +419,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			playButton.set_sensitive(true);
 			nextButton.set_sensitive(true);
 			searchField.set_sensitive(true);
-			songInfoButton.set_sensitive(true);
 			statusBar.show();
-			
-			if(!songInfoButton.get_active()) {
-				welcomeScreen.hide();
-				songInfoScroll.hide();
-				mainViews.show();
-			}
-			else {
-				welcomeScreen.hide();
-				songInfoScroll.show();
-				mainViews.hide();
-			}
 		}
 		
 		if(lm.doing_file_operations) {
@@ -537,6 +510,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		updateCurrentSong();
+		updateSongInfo();
 		//sideTree.updatePlayQueue();
 	}
 	
@@ -547,11 +521,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
+	/** This function can take lots of time (as much as a minute) to complete,
+	 * especially on slow networks. Therefore, throughout the function we should
+	 * constantly be checking that what we are fetching still has a purpose
+	 * (the user hasn't switched songs). If at any point it is realized the user switched songs,
+	 * get the hell out. If we make it to the end without the user switching songs, update
+	 * the songInfo pane and complete the thread. We save what we fetch as 
+	 * soon as we get the info back (save as we go/constantly) */
 	public void* lastfm_thread_function () {
 		bool update_track = false, update_artist = false, update_album = false;
 		LastFM.ArtistInfo artist = new LastFM.ArtistInfo.basic();
 		LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
 		LastFM.AlbumInfo album = new LastFM.AlbumInfo.basic();
+		
+		/* first, fetch all the different information. if at any point */
 		
 		/* if we don't have the last fm info, fetch it *
 		if(lm.song_info.album.name != lm.song_info.song.album || lm.song_info.album.artist != lm.song_info.song.artist) {
@@ -687,8 +670,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
     }
     
     public bool updateSongInfo() {
-		string html_file = lm.song_info.update_file(lm.song_info.artist, lm.song_info.track, lm.song_info.album, lm.song_info.song);
-		songInfo.open(html_file);
+		infoPanel.updateSong(lm.song_info.song.rowid);
 		stdout.printf("opening new file\n");
 		
 		return false;
@@ -764,21 +746,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void searchFieldIconPressed(EntryIconPosition p0, Gdk.Event p1) {
 		Widget w = sideTree.getSelectedWidget();
 		w.focus(DirectionType.UP);
-	}
-	
-	public virtual void songInfoButtonClicked() {
-		if(songInfoButton.get_active()) {
-			stdout.printf("showing\n");
-			mainViews.hide();
-			songInfoScroll.show();
-			welcomeScreen.hide();
-		}
-		else {
-			stdout.printf("hiding\n");
-			mainViews.show();
-			songInfoScroll.hide();
-			welcomeScreen.hide();
-		}
 	}
 	
 	public virtual void sourcesToSongsHandleSet(Gdk.Rectangle rectangle) {
@@ -1111,8 +1078,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		
-		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
-		((SimilarPane)w).updateSongs(lm.song_info.song, similarIDs, similarDont);
+		infoPanel.updateSongList(similarDont);
 	}
 	
 	public void setStatusBarText(string text) {
