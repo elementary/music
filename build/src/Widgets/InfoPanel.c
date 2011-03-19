@@ -78,6 +78,8 @@ typedef struct _BeatBoxSimilarSongsViewClass BeatBoxSimilarSongsViewClass;
 typedef struct _BeatBoxSong BeatBoxSong;
 typedef struct _BeatBoxSongClass BeatBoxSongClass;
 #define _g_free0(var) (var = (g_free (var), NULL))
+#define _g_regex_unref0(var) ((var == NULL) ? NULL : (var = (g_regex_unref (var), NULL)))
+#define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
 typedef struct _BeatBoxLibraryManagerPrivate BeatBoxLibraryManagerPrivate;
 
 #define BEAT_BOX_TYPE_SETTINGS (beat_box_settings_get_type ())
@@ -159,7 +161,6 @@ typedef struct _BeatBoxTreeViewSetupClass BeatBoxTreeViewSetupClass;
 
 typedef struct _BeatBoxSongInfo BeatBoxSongInfo;
 typedef struct _BeatBoxSongInfoClass BeatBoxSongInfoClass;
-#define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
 
 struct _BeatBoxInfoPanel {
 	GtkScrolledWindow parent_instance;
@@ -450,48 +451,112 @@ GtkAlignment* beat_box_info_panel_wrap_alignment (GtkWidget* widget, gint top, g
 }
 
 
+static gchar* string_replace (const gchar* self, const gchar* old, const gchar* replacement) {
+	gchar* result = NULL;
+	gchar* _tmp0_ = NULL;
+	gchar* _tmp1_;
+	GRegex* _tmp2_ = NULL;
+	GRegex* _tmp3_;
+	GRegex* regex;
+	gchar* _tmp4_ = NULL;
+	gchar* _tmp5_;
+	GError * _inner_error_ = NULL;
+	g_return_val_if_fail (self != NULL, NULL);
+	g_return_val_if_fail (old != NULL, NULL);
+	g_return_val_if_fail (replacement != NULL, NULL);
+	_tmp0_ = g_regex_escape_string (old, -1);
+	_tmp1_ = _tmp0_;
+	_tmp2_ = g_regex_new (_tmp1_, 0, 0, &_inner_error_);
+	regex = (_tmp3_ = _tmp2_, _g_free0 (_tmp1_), _tmp3_);
+	if (_inner_error_ != NULL) {
+		if (_inner_error_->domain == G_REGEX_ERROR) {
+			goto __catch72_g_regex_error;
+		}
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return NULL;
+	}
+	_tmp4_ = g_regex_replace_literal (regex, self, (gssize) (-1), 0, replacement, 0, &_inner_error_);
+	_tmp5_ = _tmp4_;
+	if (_inner_error_ != NULL) {
+		_g_regex_unref0 (regex);
+		if (_inner_error_->domain == G_REGEX_ERROR) {
+			goto __catch72_g_regex_error;
+		}
+		_g_regex_unref0 (regex);
+		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return NULL;
+	}
+	result = _tmp5_;
+	_g_regex_unref0 (regex);
+	return result;
+	_g_regex_unref0 (regex);
+	goto __finally72;
+	__catch72_g_regex_error:
+	{
+		GError * e;
+		e = _inner_error_;
+		_inner_error_ = NULL;
+		g_assert_not_reached ();
+		_g_error_free0 (e);
+	}
+	__finally72:
+	if (_inner_error_ != NULL) {
+		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+		g_clear_error (&_inner_error_);
+		return NULL;
+	}
+}
+
+
 void beat_box_info_panel_updateSong (BeatBoxInfoPanel* self, gint new_id) {
 	BeatBoxSong* _tmp0_ = NULL;
 	BeatBoxSong* s;
 	const gchar* _tmp1_ = NULL;
-	gchar* _tmp2_;
+	gchar* _tmp2_ = NULL;
 	gchar* _tmp3_;
-	const gchar* _tmp4_ = NULL;
-	const gchar* _tmp5_ = NULL;
-	gint _tmp6_;
-	gint _tmp7_;
+	gchar* _tmp4_;
+	gchar* _tmp5_;
+	const gchar* _tmp6_ = NULL;
+	const gchar* _tmp7_ = NULL;
+	gint _tmp8_;
+	gint _tmp9_;
 	g_return_if_fail (self != NULL);
 	self->priv->id = new_id;
 	_tmp0_ = beat_box_library_manager_song_from_id (self->priv->lm, self->priv->id);
 	s = _tmp0_;
 	_tmp1_ = beat_box_song_get_title (s);
-	_tmp2_ = g_strconcat ("<span size=\"large\"><b>", _tmp1_, NULL);
-	_tmp3_ = g_strconcat (_tmp2_, "</b></span>", NULL);
-	gtk_label_set_markup (self->priv->title, _tmp3_);
+	_tmp2_ = string_replace (_tmp1_, "&", "&amp;");
+	_tmp3_ = _tmp2_;
+	_tmp4_ = g_strconcat ("<span size=\"large\"><b>", _tmp3_, NULL);
+	_tmp5_ = g_strconcat (_tmp4_, "</b></span>", NULL);
+	gtk_label_set_markup (self->priv->title, _tmp5_);
+	_g_free0 (_tmp5_);
+	_g_free0 (_tmp4_);
 	_g_free0 (_tmp3_);
-	_g_free0 (_tmp2_);
-	_tmp4_ = beat_box_song_get_artist (s);
-	gtk_label_set_text (self->priv->artist, _tmp4_);
-	_tmp5_ = beat_box_song_get_album (s);
-	gtk_label_set_text (self->priv->album, _tmp5_);
-	_tmp6_ = beat_box_song_get_rating (s);
-	beat_box_rating_widget_set_rating (self->priv->rating, _tmp6_);
-	_tmp7_ = beat_box_song_get_year (s);
-	if (_tmp7_ > 1900) {
-		gint _tmp8_;
-		gchar* _tmp9_ = NULL;
-		gchar* _tmp10_;
-		gchar* _tmp11_;
+	_tmp6_ = beat_box_song_get_artist (s);
+	gtk_label_set_text (self->priv->artist, _tmp6_);
+	_tmp7_ = beat_box_song_get_album (s);
+	gtk_label_set_text (self->priv->album, _tmp7_);
+	_tmp8_ = beat_box_song_get_rating (s);
+	beat_box_rating_widget_set_rating (self->priv->rating, _tmp8_);
+	_tmp9_ = beat_box_song_get_year (s);
+	if (_tmp9_ > 1900) {
+		gint _tmp10_;
+		gchar* _tmp11_ = NULL;
 		gchar* _tmp12_;
-		_tmp8_ = beat_box_song_get_year (s);
-		_tmp9_ = g_strdup_printf ("%i", _tmp8_);
-		_tmp10_ = _tmp9_;
-		_tmp11_ = g_strconcat ("<span size=\"x-small\">", _tmp10_, NULL);
-		_tmp12_ = g_strconcat (_tmp11_, "</span>", NULL);
-		gtk_label_set_markup (self->priv->year, _tmp12_);
+		gchar* _tmp13_;
+		gchar* _tmp14_;
+		_tmp10_ = beat_box_song_get_year (s);
+		_tmp11_ = g_strdup_printf ("%i", _tmp10_);
+		_tmp12_ = _tmp11_;
+		_tmp13_ = g_strconcat ("<span size=\"x-small\">", _tmp12_, NULL);
+		_tmp14_ = g_strconcat (_tmp13_, "</span>", NULL);
+		gtk_label_set_markup (self->priv->year, _tmp14_);
+		_g_free0 (_tmp14_);
+		_g_free0 (_tmp13_);
 		_g_free0 (_tmp12_);
-		_g_free0 (_tmp11_);
-		_g_free0 (_tmp10_);
 	} else {
 		gtk_label_set_markup (self->priv->year, "");
 	}
@@ -533,13 +598,13 @@ void beat_box_info_panel_updateArtistImage (BeatBoxInfoPanel* self) {
 		_tmp8_ = gdk_pixbuf_new_from_file_at_scale (file, _tmp6_ - 10, _tmp7_ - 10, TRUE, &_inner_error_);
 		_tmp9_ = _tmp8_;
 		if (_inner_error_ != NULL) {
-			goto __catch72_g_error;
+			goto __catch73_g_error;
 		}
 		_tmp10_ = _tmp9_;
 		gtk_image_set_from_pixbuf (self->priv->artistImage, _tmp10_);
 		_g_object_unref0 (_tmp10_);
-		goto __finally72;
-		__catch72_g_error:
+		goto __finally73;
+		__catch73_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -547,7 +612,7 @@ void beat_box_info_panel_updateArtistImage (BeatBoxInfoPanel* self) {
 			fprintf (stdout, "Could not set info panel image art: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally72:
+		__finally73:
 		if (_inner_error_ != NULL) {
 			_g_free0 (file);
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);

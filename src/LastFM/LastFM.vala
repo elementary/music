@@ -4,7 +4,7 @@
 using Xml;
 
 public class LastFM.Core : Object {
-	BeatBox.LibraryManager _lm;
+	BeatBox.LibraryManager lm;
 	
 	/** NOTICE: These API keys and secrets are unique to BeatBox and Beatbox
 	 * only. To get your own, FREE key go to http://www.last.fm/api/account */
@@ -14,8 +14,8 @@ public class LastFM.Core : Object {
 	public string token;
 	public string session_key;
 	
-	public Core(BeatBox.LibraryManager lm) {
-		_lm = lm;
+	public Core(BeatBox.LibraryManager lmm) {
+		lm = lmm;
 	}
 	
 	/** vala sucks here **/
@@ -89,92 +89,4 @@ public class LastFM.Core : Object {
 		
 		return false;
 	}
-	
-	public void* lastfm_thread_function () {
-		/*bool update_track = false, update_artist = false, update_album = false;
-		LastFM.ArtistInfo artist = new LastFM.ArtistInfo.basic();
-		LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
-		LastFM.AlbumInfo album = new LastFM.AlbumInfo.basic();
-		
-		if(lm.song_info.album.name != lm.song_info.song.album || lm.song_info.album.artist != lm.song_info.song.artist) {
-			update_album = true;
-			
-			if(!lm.album_info_exists(lm.song_info.song.album + " by " + lm.song_info.song.artist)) {
-				//stdout.printf("Downloading new Album Info from Last FM\n");
-				album = new LastFM.AlbumInfo.with_info(lm.song_info.song.artist, lm.song_info.song.album);
-				
-				//try to save album image locally
-				if(lm.get_album_location(lm.song_info.song.rowid) == null && album != null)
-					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
-				
-				if(album != null)
-					lm.save_album(album);
-			}
-			else {
-				album = lm.get_album(lm.song_info.song.album + " by " + lm.song_info.song.artist);
-				
-				//if no local image saved, save it now
-				if(lm.get_album_location(lm.song_info.song.rowid) == null && album != null)
-					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
-			}
-		}
-		if(lm.song_info.artist.name != lm.song_info.song.artist) {
-			update_artist = true;
-			
-			if(!lm.artist_info_exists(lm.song_info.song.artist)) {
-				//stdout.printf("Downloading new Artist Info from Last FM\n");
-				artist = new LastFM.ArtistInfo.with_artist(lm.song_info.song.artist);
-				
-				//try to save artist art locally
-				if(lm.get_album_location(lm.song_info.song.rowid) == null && artist != null)
-					lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
-				
-				if(artist != null)
-					lm.save_artist(artist);
-			}
-			else {
-				artist = lm.get_artist(lm.song_info.song.artist);
-				
-				//if no local image saved, save it now
-				if(lm.get_artist_image_location(lm.song_info.song.rowid) == null)
-					lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
-			}
-		}
-		if(lm.song_info.track.name != lm.song_info.song.title || lm.song_info.track.artist != lm.song_info.song.artist) {
-			update_track = true;
-			
-			if(!lm.track_info_exists(lm.song_info.song.title + " by " + lm.song_info.song.artist)) {
-				//stdout.printf("Downloading new Track Info from Last FM\n");
-				track = new LastFM.TrackInfo.with_info(lm.song_info.song.artist, lm.song_info.song.title);
-				
-				if(track != null)
-					lm.save_track(track);
-			}
-			else
-				track = lm.get_track(lm.song_info.song.title + " by " + lm.song_info.song.artist);
-		}
-		
-		//test if song info is still what we want or if user has moved on
-		bool update_song_display = false;
-		
-		if(lm.song_info.album.name != album.name && update_album) {
-			update_song_display = true;
-			lm.song_info.album = album;
-		}
-		if(lm.song_info.artist.name != artist.name && update_artist) {
-			update_song_display = true;
-			lm.song_info.artist = artist;
-		}
-		if(lm.song_info.track.name != track.name && update_track) {
-			update_song_display = true;
-			lm.song_info.track = track;
-		}
-		
-		if(update_song_display) {
-			Idle.add(updateSongInfo);
-			Idle.add(updateCurrentSong);
-		}*/
-		
-		return null;
-    }
 }

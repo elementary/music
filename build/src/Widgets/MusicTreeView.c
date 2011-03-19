@@ -219,7 +219,7 @@ typedef struct _LastFMAlbumInfo LastFMAlbumInfo;
 typedef struct _LastFMAlbumInfoClass LastFMAlbumInfoClass;
 #define _gtk_tree_path_free0(var) ((var == NULL) ? NULL : (var = (gtk_tree_path_free (var), NULL)))
 #define _gtk_tree_row_reference_free0(var) ((var == NULL) ? NULL : (var = (gtk_tree_row_reference_free (var), NULL)))
-typedef struct _Block8Data Block8Data;
+typedef struct _Block9Data Block9Data;
 #define __g_list_free__gtk_tree_path_free0_0(var) ((var == NULL) ? NULL : (var = (_g_list_free__gtk_tree_path_free0_ (var), NULL)))
 
 #define BEAT_BOX_TYPE_SONG_EDITOR (beat_box_song_editor_get_type ())
@@ -232,7 +232,7 @@ typedef struct _Block8Data Block8Data;
 typedef struct _BeatBoxSongEditor BeatBoxSongEditor;
 typedef struct _BeatBoxSongEditorClass BeatBoxSongEditorClass;
 #define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
-typedef struct _Block9Data Block9Data;
+typedef struct _Block10Data Block10Data;
 
 #define BEAT_BOX_TYPE_PLAYLIST_NAME_WINDOW (beat_box_playlist_name_window_get_type ())
 #define BEAT_BOX_PLAYLIST_NAME_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_PLAYLIST_NAME_WINDOW, BeatBoxPlaylistNameWindow))
@@ -431,7 +431,7 @@ struct _BeatBoxLibraryWindowClass {
 	void (*editPreferencesClick) (BeatBoxLibraryWindow* self);
 	void (*end_of_stream) (BeatBoxLibraryWindow* self, BeatBoxSong* s);
 	void (*current_position_update) (BeatBoxLibraryWindow* self, gint64 position);
-	void (*similarRetrieved) (BeatBoxLibraryWindow* self, GeeLinkedList* similar);
+	void (*similarRetrieved) (BeatBoxLibraryWindow* self, GeeLinkedList* similarIDs, GeeLinkedList* similarDont);
 	void (*infoPanelResized) (BeatBoxLibraryWindow* self, GdkRectangle* rectangle);
 };
 
@@ -458,13 +458,13 @@ struct _BeatBoxSongInfoClass {
 	GObjectClass parent_class;
 };
 
-struct _Block8Data {
+struct _Block9Data {
 	int _ref_count_;
 	BeatBoxMusicTreeView * self;
 	BeatBoxPlaylist* p;
 };
 
-struct _Block9Data {
+struct _Block10Data {
 	int _ref_count_;
 	BeatBoxMusicTreeView * self;
 	BeatBoxPlaylist* p;
@@ -625,10 +625,10 @@ gboolean beat_box_library_manager_is_shuffled (BeatBoxLibraryManager* self);
 void beat_box_library_manager_shuffleMusic (BeatBoxLibraryManager* self);
 static gboolean beat_box_music_tree_view_real_viewClick (BeatBoxMusicTreeView* self, GdkEventButton* event);
 GeeCollection* beat_box_library_manager_playlists (BeatBoxLibraryManager* self);
-static Block8Data* block8_data_ref (Block8Data* _data8_);
-static void block8_data_unref (Block8Data* _data8_);
+static Block9Data* block9_data_ref (Block9Data* _data9_);
+static void block9_data_unref (Block9Data* _data9_);
 const gchar* beat_box_playlist_get_name (BeatBoxPlaylist* self);
-static void _lambda6_ (Block8Data* _data8_);
+static void _lambda6_ (Block9Data* _data9_);
 void beat_box_playlist_addSong (BeatBoxPlaylist* self, BeatBoxSong* s);
 static void _gtk_tree_path_free0_ (gpointer var);
 static void _g_list_free__gtk_tree_path_free0_ (GList* self);
@@ -658,14 +658,14 @@ static void beat_box_music_tree_view_real_songFileBrowseClicked (BeatBoxMusicTre
 static void beat_box_music_tree_view_real_songMenuQueueClicked (BeatBoxMusicTreeView* self);
 void beat_box_library_manager_queue_song_by_id (BeatBoxLibraryManager* self, gint id);
 static void beat_box_music_tree_view_real_songMenuNewPlaylistClicked (BeatBoxMusicTreeView* self);
-static Block9Data* block9_data_ref (Block9Data* _data9_);
-static void block9_data_unref (Block9Data* _data9_);
+static Block10Data* block10_data_ref (Block10Data* _data10_);
+static void block10_data_unref (Block10Data* _data10_);
 BeatBoxPlaylist* beat_box_playlist_new (void);
 BeatBoxPlaylist* beat_box_playlist_construct (GType object_type);
 BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxPlaylist* original);
 BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxPlaylist* original);
 GType beat_box_playlist_name_window_get_type (void) G_GNUC_CONST;
-static void _lambda7_ (BeatBoxPlaylist* newP, Block9Data* _data9_);
+static void _lambda7_ (BeatBoxPlaylist* newP, Block10Data* _data10_);
 gint beat_box_library_manager_add_playlist (BeatBoxLibraryManager* self, BeatBoxPlaylist* p);
 void beat_box_library_window_addSideListItem (BeatBoxLibraryWindow* self, GObject* o);
 static void __lambda7__beat_box_playlist_name_window_playlist_saved (BeatBoxPlaylistNameWindow* _sender, BeatBoxPlaylist* p, gpointer self);
@@ -3453,17 +3453,17 @@ void beat_box_music_tree_view_setAsCurrentList (BeatBoxMusicTreeView* self, cons
 }
 
 
-static Block8Data* block8_data_ref (Block8Data* _data8_) {
-	g_atomic_int_inc (&_data8_->_ref_count_);
-	return _data8_;
+static Block9Data* block9_data_ref (Block9Data* _data9_) {
+	g_atomic_int_inc (&_data9_->_ref_count_);
+	return _data9_;
 }
 
 
-static void block8_data_unref (Block8Data* _data8_) {
-	if (g_atomic_int_dec_and_test (&_data8_->_ref_count_)) {
-		_g_object_unref0 (_data8_->self);
-		_g_object_unref0 (_data8_->p);
-		g_slice_free (Block8Data, _data8_);
+static void block9_data_unref (Block9Data* _data9_) {
+	if (g_atomic_int_dec_and_test (&_data9_->_ref_count_)) {
+		_g_object_unref0 (_data9_->self);
+		_g_object_unref0 (_data9_->p);
+		g_slice_free (Block9Data, _data9_);
 	}
 }
 
@@ -3484,14 +3484,14 @@ static void _g_list_free__gtk_tree_path_free0_ (GList* self) {
 }
 
 
-static void _lambda6_ (Block8Data* _data8_) {
+static void _lambda6_ (Block9Data* _data9_) {
 	BeatBoxMusicTreeView * self;
 	GtkTreeModel* temp = NULL;
 	GtkTreeSelection* _tmp0_ = NULL;
 	GtkTreeModel* _tmp1_ = NULL;
 	GList* _tmp2_ = NULL;
 	GtkTreeModel* _tmp3_;
-	self = _data8_->self;
+	self = _data9_->self;
 	_tmp0_ = gtk_tree_view_get_selection (self->priv->view);
 	_tmp2_ = gtk_tree_selection_get_selected_rows (_tmp0_, &_tmp1_);
 	_g_object_unref0 (temp);
@@ -3517,7 +3517,7 @@ static void _lambda6_ (Block8Data* _data8_) {
 				gtk_tree_model_get (temp, &item, 0, &id, -1);
 				_tmp6_ = beat_box_library_manager_song_from_id (self->priv->lm, id);
 				_tmp7_ = _tmp6_;
-				beat_box_playlist_addSong (_data8_->p, _tmp7_);
+				beat_box_playlist_addSong (_data9_->p, _tmp7_);
 				_g_object_unref0 (_tmp7_);
 				_gtk_tree_path_free0 (path);
 			}
@@ -3567,31 +3567,31 @@ static gboolean beat_box_music_tree_view_real_viewClick (BeatBoxMusicTreeView* s
 			_tmp4_ = gee_iterable_iterator ((GeeIterable*) _tmp3_);
 			_p_it = (_tmp5_ = _tmp4_, _g_object_unref0 (_tmp3_), _tmp5_);
 			while (TRUE) {
-				Block8Data* _data8_;
+				Block9Data* _data9_;
 				gboolean _tmp6_;
 				gpointer _tmp7_ = NULL;
 				const gchar* _tmp8_ = NULL;
 				GtkMenuItem* _tmp9_ = NULL;
 				GtkMenuItem* playlist;
-				_data8_ = g_slice_new0 (Block8Data);
-				_data8_->_ref_count_ = 1;
-				_data8_->self = g_object_ref (self);
+				_data9_ = g_slice_new0 (Block9Data);
+				_data9_->_ref_count_ = 1;
+				_data9_->self = g_object_ref (self);
 				_tmp6_ = gee_iterator_next (_p_it);
 				if (!_tmp6_) {
-					block8_data_unref (_data8_);
-					_data8_ = NULL;
+					block9_data_unref (_data9_);
+					_data9_ = NULL;
 					break;
 				}
 				_tmp7_ = gee_iterator_get (_p_it);
-				_data8_->p = (BeatBoxPlaylist*) _tmp7_;
-				_tmp8_ = beat_box_playlist_get_name (_data8_->p);
+				_data9_->p = (BeatBoxPlaylist*) _tmp7_;
+				_tmp8_ = beat_box_playlist_get_name (_data9_->p);
 				_tmp9_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp8_);
 				playlist = g_object_ref_sink (_tmp9_);
 				gtk_menu_shell_append ((GtkMenuShell*) addToPlaylistMenu, (GtkWidget*) playlist);
-				g_signal_connect_data (playlist, "activate", (GCallback) __lambda6__gtk_menu_item_activate, block8_data_ref (_data8_), (GClosureNotify) block8_data_unref, 0);
+				g_signal_connect_data (playlist, "activate", (GCallback) __lambda6__gtk_menu_item_activate, block9_data_ref (_data9_), (GClosureNotify) block9_data_unref, 0);
 				_g_object_unref0 (playlist);
-				block8_data_unref (_data8_);
-				_data8_ = NULL;
+				block9_data_unref (_data9_);
+				_data9_ = NULL;
 			}
 			_g_object_unref0 (_p_it);
 		}
@@ -4507,11 +4507,11 @@ static void beat_box_music_tree_view_real_songFileBrowseClicked (BeatBoxMusicTre
 				_g_object_unref0 (_tmp11_);
 				if (_inner_error_ != NULL) {
 					_g_object_unref0 (file);
-					goto __catch73_g_error;
+					goto __catch74_g_error;
 				}
 				_g_object_unref0 (file);
-				goto __finally73;
-				__catch73_g_error:
+				goto __finally74;
+				__catch74_g_error:
 				{
 					GError * err;
 					const gchar* _tmp14_ = NULL;
@@ -4521,7 +4521,7 @@ static void beat_box_music_tree_view_real_songFileBrowseClicked (BeatBoxMusicTre
 					fprintf (stdout, "Could not browse song %s: %s\n", _tmp14_, err->message);
 					_g_error_free0 (err);
 				}
-				__finally73:
+				__finally74:
 				if (_inner_error_ != NULL) {
 					_g_object_unref0 (s);
 					_gtk_tree_path_free0 (path);
@@ -4601,27 +4601,27 @@ void beat_box_music_tree_view_songMenuQueueClicked (BeatBoxMusicTreeView* self) 
 }
 
 
-static Block9Data* block9_data_ref (Block9Data* _data9_) {
-	g_atomic_int_inc (&_data9_->_ref_count_);
-	return _data9_;
+static Block10Data* block10_data_ref (Block10Data* _data10_) {
+	g_atomic_int_inc (&_data10_->_ref_count_);
+	return _data10_;
 }
 
 
-static void block9_data_unref (Block9Data* _data9_) {
-	if (g_atomic_int_dec_and_test (&_data9_->_ref_count_)) {
-		_g_object_unref0 (_data9_->self);
-		_g_object_unref0 (_data9_->p);
-		g_slice_free (Block9Data, _data9_);
+static void block10_data_unref (Block10Data* _data10_) {
+	if (g_atomic_int_dec_and_test (&_data10_->_ref_count_)) {
+		_g_object_unref0 (_data10_->self);
+		_g_object_unref0 (_data10_->p);
+		g_slice_free (Block10Data, _data10_);
 	}
 }
 
 
-static void _lambda7_ (BeatBoxPlaylist* newP, Block9Data* _data9_) {
+static void _lambda7_ (BeatBoxPlaylist* newP, Block10Data* _data10_) {
 	BeatBoxMusicTreeView * self;
-	self = _data9_->self;
+	self = _data10_->self;
 	g_return_if_fail (newP != NULL);
-	beat_box_library_manager_add_playlist (self->priv->lm, _data9_->p);
-	beat_box_library_window_addSideListItem (self->priv->lw, (GObject*) _data9_->p);
+	beat_box_library_manager_add_playlist (self->priv->lm, _data10_->p);
+	beat_box_library_window_addSideListItem (self->priv->lw, (GObject*) _data10_->p);
 }
 
 
@@ -4631,7 +4631,7 @@ static void __lambda7__beat_box_playlist_name_window_playlist_saved (BeatBoxPlay
 
 
 static void beat_box_music_tree_view_real_songMenuNewPlaylistClicked (BeatBoxMusicTreeView* self) {
-	Block9Data* _data9_;
+	Block10Data* _data10_;
 	BeatBoxPlaylist* _tmp0_ = NULL;
 	GtkTreeSelection* _tmp1_ = NULL;
 	GtkTreeSelection* _tmp2_;
@@ -4643,11 +4643,11 @@ static void beat_box_music_tree_view_real_songMenuNewPlaylistClicked (BeatBoxMus
 	BeatBoxPlaylistNameWindow* _tmp10_ = NULL;
 	BeatBoxPlaylistNameWindow* pnw;
 	g_return_if_fail (self != NULL);
-	_data9_ = g_slice_new0 (Block9Data);
-	_data9_->_ref_count_ = 1;
-	_data9_->self = g_object_ref (self);
+	_data10_ = g_slice_new0 (Block10Data);
+	_data10_->_ref_count_ = 1;
+	_data10_->self = g_object_ref (self);
 	_tmp0_ = beat_box_playlist_new ();
-	_data9_->p = _tmp0_;
+	_data10_->p = _tmp0_;
 	_tmp1_ = gtk_tree_view_get_selection (self->priv->view);
 	_tmp2_ = _g_object_ref0 (_tmp1_);
 	selected = _tmp2_;
@@ -4676,21 +4676,21 @@ static void beat_box_music_tree_view_real_songMenuNewPlaylistClicked (BeatBoxMus
 				gtk_tree_model_get ((GtkTreeModel*) self->priv->sort, &item, 0, &id, -1);
 				_tmp8_ = beat_box_library_manager_song_from_id (self->priv->lm, id);
 				_tmp9_ = _tmp8_;
-				beat_box_playlist_addSong (_data9_->p, _tmp9_);
+				beat_box_playlist_addSong (_data10_->p, _tmp9_);
 				_g_object_unref0 (_tmp9_);
 				_gtk_tree_path_free0 (path);
 			}
 		}
 		__g_list_free__gtk_tree_path_free0_0 (path_collection);
 	}
-	_tmp10_ = beat_box_playlist_name_window_new (_data9_->p);
+	_tmp10_ = beat_box_playlist_name_window_new (_data10_->p);
 	pnw = g_object_ref_sink (_tmp10_);
-	g_signal_connect_data (pnw, "playlist-saved", (GCallback) __lambda7__beat_box_playlist_name_window_playlist_saved, block9_data_ref (_data9_), (GClosureNotify) block9_data_unref, 0);
+	g_signal_connect_data (pnw, "playlist-saved", (GCallback) __lambda7__beat_box_playlist_name_window_playlist_saved, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 	_g_object_unref0 (pnw);
 	_g_object_unref0 (temp);
 	_g_object_unref0 (selected);
-	block9_data_unref (_data9_);
-	_data9_ = NULL;
+	block10_data_unref (_data10_);
+	_data10_ = NULL;
 }
 
 

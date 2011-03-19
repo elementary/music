@@ -16,8 +16,9 @@ public class LastFM.TrackInfo : Object {
 	private string _content;
 	
 	private Gee.ArrayList<LastFM.Tag> _tags;
-	
 	private LastFM.Tag tagToAdd;
+	
+	//public signal void track_info_retrieved(LastFM.TrackInfo info);
 	
 	public TrackInfo.basic() {
 		_name = "Unknown Track";

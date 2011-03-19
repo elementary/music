@@ -1,6 +1,8 @@
 using Xml;
 
 public class LastFM.SimilarSongs : Object {
+	public static const int MAX_FETCHED = 20;
+	
 	BeatBox.LibraryManager _lm;
 	BeatBox.Song _base;
 	bool working;
@@ -9,7 +11,7 @@ public class LastFM.SimilarSongs : Object {
 	
 	BeatBox.Song similarToAdd;
 	
-	public signal void similar_retrieved(Gee.LinkedList<BeatBox.Song> similarSongs);
+	public signal void similar_retrieved(Gee.LinkedList<int> similarIDs, Gee.LinkedList<BeatBox.Song> similarDont);
 	
 	public class SimilarSongs(BeatBox.LibraryManager lm) {
 		_lm = lm;
@@ -33,13 +35,28 @@ public class LastFM.SimilarSongs : Object {
 	
 	public void* similar_thread_function () {	
 		similar = new Gee.LinkedList<BeatBox.Song>();
+		var similarIDs = new Gee.LinkedList<int>();
+		var similarDont = new Gee.LinkedList<BeatBox.Song>();
 		
 		getSimilarTracks(_base.title, _base.artist);
 		
-		similar.add(_base);
+		foreach(BeatBox.Song sim in similar) {
+			BeatBox.Song s = _lm.song_from_name(sim.title, sim.artist);
+			if(s.rowid != 0) {
+				if(s.rowid == _lm.song_info.song.rowid)
+					similarIDs.offer_head(s.rowid);
+				else
+					similarIDs.add(s.rowid);
+			}
+			else {
+				similarDont.add(sim);
+			}
+		}
+		
+		similarIDs.add(_base.rowid);
 		
 		Idle.add( () => {
-			similar_retrieved(similar);
+			similar_retrieved(similarIDs, similarDont);
 			return false;
 		});
 		
@@ -87,6 +104,9 @@ public class LastFM.SimilarSongs : Object {
 				if(node_name == "name") {
 					if(similarToAdd != null) {
 						similar.add(similarToAdd);
+						
+						if(similar.size >= MAX_FETCHED)
+							return;
 					}
 					
 					similarToAdd = new BeatBox.Song("");

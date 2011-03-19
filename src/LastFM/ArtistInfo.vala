@@ -20,6 +20,8 @@ public class LastFM.ArtistInfo : Object {
 	private Gee.ArrayList<LastFM.Tag> _tags;
 	private Gee.ArrayList<LastFM.ArtistInfo> _similarArtists;
 	
+	//public signal void artist_info_retrieved(LastFM.ArtistInfo info);
+	
 	// used by parser
 	ArtistInfo similarToAdd;
 	Tag tagToAdd;
@@ -67,6 +69,9 @@ public class LastFM.ArtistInfo : Object {
         
         // Let's parse those nodes
         parse_node (root, "");
+        
+        // We now have artist info
+        //artist_info_retrieved(this);
 
         // Free the document
         delete doc;

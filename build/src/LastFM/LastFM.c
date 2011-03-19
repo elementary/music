@@ -47,7 +47,7 @@ struct _LastFMCoreClass {
 };
 
 struct _LastFMCorePrivate {
-	BeatBoxLibraryManager* _lm;
+	BeatBoxLibraryManager* lm;
 };
 
 
@@ -61,8 +61,8 @@ enum  {
 };
 #define LAST_FM_CORE_api "a40ea1720028bd40c66b17d7146b3f3b"
 #define LAST_FM_CORE_secret "92ba5023f6868e680a3352c71e21243d"
-LastFMCore* last_fm_core_new (BeatBoxLibraryManager* lm);
-LastFMCore* last_fm_core_construct (GType object_type, BeatBoxLibraryManager* lm);
+LastFMCore* last_fm_core_new (BeatBoxLibraryManager* lmm);
+LastFMCore* last_fm_core_construct (GType object_type, BeatBoxLibraryManager* lmm);
 gchar* last_fm_core_fix_for_url (const gchar* fix);
 gchar* last_fm_core_generate_md5 (LastFMCore* self, const gchar* text);
 gchar* last_fm_core_generate_signature (LastFMCore* self, const gchar* token, const gchar* method);
@@ -70,7 +70,6 @@ gchar* last_fm_core_getToken (LastFMCore* self);
 gchar* last_fm_core_getSessionKey (LastFMCore* self, const gchar* token);
 gboolean last_fm_core_loveTrack (LastFMCore* self, const gchar* title, const gchar* artist);
 gboolean last_fm_core_banTrack (LastFMCore* self, const gchar* title, const gchar* artist);
-void* last_fm_core_lastfm_thread_function (LastFMCore* self);
 static void last_fm_core_finalize (GObject* obj);
 
 
@@ -79,22 +78,22 @@ static gpointer _g_object_ref0 (gpointer self) {
 }
 
 
-LastFMCore* last_fm_core_construct (GType object_type, BeatBoxLibraryManager* lm) {
+LastFMCore* last_fm_core_construct (GType object_type, BeatBoxLibraryManager* lmm) {
 	LastFMCore * self = NULL;
 	BeatBoxLibraryManager* _tmp0_;
 	BeatBoxLibraryManager* _tmp1_;
-	g_return_val_if_fail (lm != NULL, NULL);
+	g_return_val_if_fail (lmm != NULL, NULL);
 	self = (LastFMCore*) g_object_new (object_type, NULL);
-	_tmp0_ = _g_object_ref0 (lm);
+	_tmp0_ = _g_object_ref0 (lmm);
 	_tmp1_ = _tmp0_;
-	_g_object_unref0 (self->priv->_lm);
-	self->priv->_lm = _tmp1_;
+	_g_object_unref0 (self->priv->lm);
+	self->priv->lm = _tmp1_;
 	return self;
 }
 
 
-LastFMCore* last_fm_core_new (BeatBoxLibraryManager* lm) {
-	return last_fm_core_construct (LAST_FM_TYPE_CORE, lm);
+LastFMCore* last_fm_core_new (BeatBoxLibraryManager* lmm) {
+	return last_fm_core_construct (LAST_FM_TYPE_CORE, lmm);
 }
 
 
@@ -406,14 +405,6 @@ gboolean last_fm_core_banTrack (LastFMCore* self, const gchar* title, const gcha
 }
 
 
-void* last_fm_core_lastfm_thread_function (LastFMCore* self) {
-	void* result = NULL;
-	g_return_val_if_fail (self != NULL, NULL);
-	result = NULL;
-	return result;
-}
-
-
 static void last_fm_core_class_init (LastFMCoreClass * klass) {
 	last_fm_core_parent_class = g_type_class_peek_parent (klass);
 	g_type_class_add_private (klass, sizeof (LastFMCorePrivate));
@@ -429,7 +420,7 @@ static void last_fm_core_instance_init (LastFMCore * self) {
 static void last_fm_core_finalize (GObject* obj) {
 	LastFMCore * self;
 	self = LAST_FM_CORE (obj);
-	_g_object_unref0 (self->priv->_lm);
+	_g_object_unref0 (self->priv->lm);
 	_g_free0 (self->token);
 	_g_free0 (self->session_key);
 	G_OBJECT_CLASS (last_fm_core_parent_class)->finalize (obj);

@@ -18,6 +18,8 @@ public class LastFM.AlbumInfo : Object {
 	
 	private LastFM.Tag tagToAdd;
 	
+	//public signal void album_info_retrieved(LastFM.AlbumInfo info);
+	
 	public AlbumInfo.basic() {
 		_name = "Unkown Album";
 		_artist = "Unkown Artist";
@@ -56,6 +58,9 @@ public class LastFM.AlbumInfo : Object {
         
         // Let's parse those nodes
         parse_node (root, "");
+        
+        //we now have an album info
+        //album_info_retrieved(this);
 
         // Free the document
         delete doc;

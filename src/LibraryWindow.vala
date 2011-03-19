@@ -196,6 +196,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		/* Set properties of various controls */
 		sideBar.set_size_request(settings.getSidebarWidth(), -1);
+		sourcesToSongs.set_position(settings.getSidebarWidth());
 		songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 		
 		//for setting maximum size for setting hpane position max size
@@ -520,153 +521,91 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	/** This function can take lots of time (as much as a minute) to complete,
-	 * especially on slow networks. Therefore, throughout the function we should
-	 * constantly be checking that what we are fetching still has a purpose
-	 * (the user hasn't switched songs). If at any point it is realized the user switched songs,
-	 * get the hell out. If we make it to the end without the user switching songs, update
-	 * the songInfo pane and complete the thread. We save what we fetch as 
-	 * soon as we get the info back (save as we go/constantly) */
-	public void* lastfm_thread_function () {
-		bool update_track = false, update_artist = false, update_album = false;
-		LastFM.ArtistInfo artist = new LastFM.ArtistInfo.basic();
+	public void* lastfm_track_thread_function () {
 		LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
-		LastFM.AlbumInfo album = new LastFM.AlbumInfo.basic();
 		
-		/* first, fetch all the different information. if at any point */
+		string artist_s = lm.song_info.song.artist;
+		string track_s = lm.song_info.song.title;
 		
-		/* if we don't have the last fm info, fetch it *
-		if(lm.song_info.album.name != lm.song_info.song.album || lm.song_info.album.artist != lm.song_info.song.artist) {
-			update_album = true;
+		/* first fetch track info since that is most likely to change */
+		if(!lm.track_info_exists(track_s + " by " + artist_s)) {
+			stdout.printf("fetching track info...\n");
+			track = new LastFM.TrackInfo.with_info(artist_s, track_s);
 			
-			if(!lm.album_info_exists(lm.song_info.song.album + " by " + lm.song_info.song.artist))
-				album = new LastFM.AlbumInfo.with_info(lm.song_info.song.artist, lm.song_info.song.album);
-		}
-		if(lm.song_info.artist.name != lm.song_info.song.artist) {
-			update_artist = true;
+			if(track != null)
+				lm.save_track(track);
 			
-			if(!lm.artist_info_exists(lm.song_info.song.artist))
-				artist = new LastFM.ArtistInfo.with_artist(lm.song_info.song.artist);
-		}
-		if(lm.song_info.track.name != lm.song_info.song.title || lm.song_info.track.artist != lm.song_info.song.artist) {
-			update_track = true;
+			if(track_s == lm.song_info.song.title && artist_s == lm.song_info.song.artist)
+				lm.song_info.track = track;
 			
-			if(!lm.track_info_exists(lm.song_info.song.title + " by " + lm.song_info.song.artist))
-				track = new LastFM.TrackInfo.with_info(lm.song_info.song.artist, lm.song_info.song.title);
-		}
-		
-		/* if we are still on the same song after downloading info, update and continue on *
-		bool update_song_display = false;
-		if(album != null && lm.song_info.song.album == album.name && update_album) {
-			update_song_display = true;
-			lm.song_info.album = album;
-			lm.save_album(album);
-			
-			//try to save album image locally
-			if(lm.get_album_location(lm.song_info.song.rowid) == null)
-				lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
-		}
-		if(artist != null && lm.song_info.song.artist == artist.name && update_artist) {
-			update_song_display = true;
-			lm.song_info.artist = artist;
-			lm.save_artist(artist);
-			
-			//try to save artist art locally
-			if(lm.get_artist_image_location(lm.song_info.song.rowid) == null)
-				lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
-		}
-		if(track != null && lm.song_info.song.title == track.name && update_track) {
-			update_song_display = true;
-			lm.song_info.track = track;
-			lm.save_track(track);
-		}
-		
-		if(update_song_display) {
-			Idle.add(updateSongInfo);
-			Idle.add(updateCurrentSong);
-		}*/
-		
-		if(lm.song_info.album.name != lm.song_info.song.album || lm.song_info.album.artist != lm.song_info.song.artist) {
-			update_album = true;
-			
-			if(!lm.album_info_exists(lm.song_info.song.album + " by " + lm.song_info.song.artist)) {
-				//stdout.printf("Downloading new Album Info from Last FM\n");
-				album = new LastFM.AlbumInfo.with_info(lm.song_info.song.artist, lm.song_info.song.album);
-				
-				//try to save album image locally
-				if(lm.get_album_location(lm.song_info.song.rowid) == null && album != null)
-					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
-				
-				if(album != null)
-					lm.save_album(album);
-			}
-			else {
-				album = lm.get_album(lm.song_info.song.album + " by " + lm.song_info.song.artist);
-				
-				//if no local image saved, save it now
-				if(lm.get_album_location(lm.song_info.song.rowid) == null && album != null)
-					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
-			}
-		}
-		if(lm.song_info.artist.name != lm.song_info.song.artist) {
-			update_artist = true;
-			
-			if(!lm.artist_info_exists(lm.song_info.song.artist)) {
-				//stdout.printf("Downloading new Artist Info from Last FM\n");
-				artist = new LastFM.ArtistInfo.with_artist(lm.song_info.song.artist);
-				
-				//try to save artist art locally
-				if(lm.get_artist_image_location(lm.song_info.song.rowid) == null && artist != null)
-					lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
-				
-				if(artist != null)
-					lm.save_artist(artist);
-			}
-			else {
-				artist = lm.get_artist(lm.song_info.song.artist);
-				
-				//if no local image saved, save it now
-				if(lm.get_artist_image_location(lm.song_info.song.rowid) == null)
-					lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
-			}
-		}
-		if(lm.song_info.track.name != lm.song_info.song.title || lm.song_info.track.artist != lm.song_info.song.artist) {
-			update_track = true;
-			
-			if(!lm.track_info_exists(lm.song_info.song.title + " by " + lm.song_info.song.artist)) {
-				//stdout.printf("Downloading new Track Info from Last FM\n");
-				track = new LastFM.TrackInfo.with_info(lm.song_info.song.artist, lm.song_info.song.title);
-				
-				if(track != null)
-					lm.save_track(track);
-			}
-			else
-				track = lm.get_track(lm.song_info.song.title + " by " + lm.song_info.song.artist);
-		}
-		
-		//test if song info is still what we want or if user has moved on
-		bool update_song_display = false;
-		
-		if(lm.song_info.album.name != album.name && update_album) {
-			update_song_display = true;
-			lm.song_info.album = album;
-		}
-		if(lm.song_info.artist.name != artist.name && update_artist) {
-			update_song_display = true;
-			lm.song_info.artist = artist;
-		}
-		if(lm.song_info.track.name != track.name && update_track) {
-			update_song_display = true;
-			lm.song_info.track = track;
-		}
-		
-		if(update_song_display) {
-			Idle.add(updateSongInfo);
-			Idle.add(updateCurrentSong);
+			stdout.printf("track info fetched\n");
 		}
 		
 		return null;
-    }
+	}
+	
+	public void* lastfm_album_thread_function () {
+		LastFM.AlbumInfo album = new LastFM.AlbumInfo.basic();
+		
+		string artist_s = lm.song_info.song.artist;
+		string album_s = lm.song_info.song.album;
+		
+		/* fetch album info now. only save if still on current song */
+		if(!lm.album_info_exists(album_s + " by " + artist_s)) {
+			stdout.printf("fetching album info...\n");
+			album = new LastFM.AlbumInfo.with_info(artist_s, album_s);
+			
+			if(album != null)
+				lm.save_album(album);
+			
+			/* make sure we save image to right location (user hasn't changed songs) */
+			if(lm.song_info.song != null && album != null && album_s == lm.song_info.song.album &&
+			artist_s == lm.song_info.song.artist && lm.get_album_location(lm.song_info.song.rowid) == null) {
+				lm.song_info.album = album;
+				
+				lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
+			}
+			else {
+				stdout.printf("song has changed, exiting\n");
+				return null;
+			}
+		}
+		
+		Idle.add(updateCurrentSong);
+		
+		return null;
+	}
+	
+	public void* lastfm_artist_thread_function () {
+		LastFM.ArtistInfo artist = new LastFM.ArtistInfo.basic();
+		
+		string artist_s = lm.song_info.song.artist;
+		
+		/* fetch artist info now. save only if still on current song */
+		if(!lm.artist_info_exists(artist_s)) {
+			stdout.printf("fetching artist info...\n");
+			artist = new LastFM.ArtistInfo.with_artist(artist_s);
+			
+			if(artist != null)
+				lm.save_artist(artist);
+			
+			//try to save artist art locally
+			if(lm.song_info.song != null && artist != null && artist_s == lm.song_info.song.artist &&
+			lm.get_artist_image_location(lm.song_info.song.rowid) == null) {
+				lm.song_info.artist = artist;
+				
+				lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
+			}
+			else {
+				stdout.printf("song has changed, exiting\n");
+				return null;
+			}
+		}
+		
+		Idle.add( () => { infoPanel.updateArtistImage(); return false;});
+		
+		return null;
+	}
     
     public bool updateSongInfo() {
 		infoPanel.updateSong(lm.song_info.song.rowid);
@@ -1024,14 +963,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {
 				queriedlastfm = true;
+				
+				similarSongs.queryForSimilar(lm.song_info.song);
+				
 				try {
-					Thread.create<void*>(lastfm_thread_function, false);
+					Thread.create<void*>(lastfm_track_thread_function, false);
+					Thread.create<void*>(lastfm_album_thread_function, false);
+					Thread.create<void*>(lastfm_artist_thread_function, false);
 				}
 				catch(GLib.ThreadError err) {
 					stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
 				}
-				
-				similarSongs.queryForSimilar(lm.song_info.song);
 			}
 			
 			//at 30 seconds in, we consider the song as played
@@ -1059,23 +1001,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	public virtual void similarRetrieved(LinkedList<Song> similar) {
-		LinkedList<int> similarIDs = new LinkedList<int>();
-		var similarDont = new LinkedList<Song>();
-		
-		foreach(BeatBox.Song sim in similar) {
-			BeatBox.Song s = lm.song_from_name(sim.title, sim.artist);
-			if(s.rowid != 0) {
-				if(s.rowid == lm.song_info.song.rowid)
-					similarIDs.offer_head(s.rowid);
-				else
-					similarIDs.add(s.rowid);
-			}
-			else {
-				similarDont.add(sim);
-			}
-		}
-		
+	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 		((SimilarPane)w).updateSongs(lm.song_info.song, similarIDs);
 		

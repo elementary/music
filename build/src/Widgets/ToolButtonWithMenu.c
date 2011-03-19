@@ -165,7 +165,7 @@ void tool_button_with_menu_popup_menu (ToolButtonWithMenu* self, GdkEventButton*
 		_tmp1_ = (*ev).time;
 	}
 	gtk_menu_popup (self->menu, NULL, NULL, _tool_button_with_menu_get_menu_position_gtk_menu_position_func, self, _tmp0_, _tmp1_);
-	__finally78:
+	__finally79:
 	_tmp4_ = (g_object_get (self->menu, "attach-widget", &_tmp3_, NULL), _tmp3_);
 	if ((_tmp5_ = _tmp4_ != NULL, _g_object_unref0 (_tmp4_), _tmp5_)) {
 		GtkWidget* _tmp6_ = NULL;

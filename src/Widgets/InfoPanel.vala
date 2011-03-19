@@ -93,7 +93,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		id = new_id;
 		Song s = lm.song_from_id(id);
 		
-		title.set_markup("<span size=\"large\"><b>" + s.title + "</b></span>");
+		title.set_markup("<span size=\"large\"><b>" + s.title.replace("&", "&amp;") + "</b></span>");
 		artist.set_text(s.artist);
 		album.set_text(s.album);
 		
