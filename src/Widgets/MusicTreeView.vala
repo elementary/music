@@ -26,6 +26,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	LinkedList<string> timeout_search;//stops from doing useless search
 	string last_search;//stops from searching same thing multiple times
+	bool showing_all; // stops from searching unnecesarilly when changing b/w 0 words and search hint, etc.
 	bool scrolled_recently;
 	
 	//for header column chooser
@@ -103,6 +104,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		last_search = "";
 		timeout_search = new LinkedList<string>();
+		showing_all = true;
 		removing_songs = false;
 		
 		sort_column = sort;
@@ -463,9 +465,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(is_current_view) {
 			timeout_search.offer_head(lw.searchField.get_text());
 			Timeout.add(200, () => {
-				view.set_model(null);
-				
 				if(lw.searchField.get_text() == timeout_search.poll_tail() && lw.searchField.get_text() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
+					view.set_model(null);
+					
 					TreeIter iter;
 					for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
 						int id;
@@ -482,18 +484,26 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					}
 					
 					last_search = lw.searchField.get_text();
+					showing_all = false;
+					
+					view.set_model(sort);
+					scrollToCurrent();
 				}
-				else if(lw.searchField.get_text() != last_search && (lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
+				else if(!showing_all && lw.searchField.get_text() != last_search && (lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
+					view.set_model(null);
+					
 					TreeIter iter;
 					for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
 						model.set(iter, 1, true);
 					}
+					
 					last_search = lw.searchField.get_text();
-				}
-				view.set_model(sort);
-				
-				if(!scrolled_recently)
+					showing_all = true;
+					
+					view.set_model(sort);
 					scrollToCurrent();
+				}
+				
 				return false;
 			});
 		}

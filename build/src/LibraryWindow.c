@@ -3641,39 +3641,51 @@ void beat_box_library_window_welcomeScreenActivated (BeatBoxLibraryWindow* self,
 
 
 static void beat_box_library_window_real_infoPanelResized (BeatBoxLibraryWindow* self, GdkRectangle* rectangle) {
+	gint height = 0;
+	gint width = 0;
 	gint _tmp0_;
 	gint _tmp1_;
 	gint _tmp2_;
-	gint _tmp10_;
+	gint _tmp3_;
+	gint _tmp4_;
+	gint _tmp5_;
+	gint _tmp13_;
 	g_return_if_fail (self != NULL);
-	_tmp0_ = gtk_paned_get_position ((GtkPaned*) self->priv->songsToInfo);
-	_tmp1_ = beat_box_settings_getWindowWidth (self->priv->lm->settings);
-	_tmp2_ = beat_box_settings_getSidebarWidth (self->priv->lm->settings);
-	if (_tmp0_ < ((_tmp1_ - _tmp2_) - 250)) {
-		gint _tmp3_;
-		gint _tmp4_;
-		_tmp3_ = beat_box_settings_getWindowWidth (self->priv->lm->settings);
-		_tmp4_ = beat_box_settings_getSidebarWidth (self->priv->lm->settings);
-		gtk_paned_set_position ((GtkPaned*) self->priv->songsToInfo, (_tmp3_ - _tmp4_) - 250);
+	gtk_window_get_size ((GtkWindow*) self, &_tmp0_, &_tmp1_);
+	width = _tmp0_;
+	height = _tmp1_;
+	_tmp2_ = gtk_paned_get_position ((GtkPaned*) self->priv->sourcesToSongs);
+	if (_tmp2_ > (height / 2)) {
 		return;
-	} else {
-		gint _tmp5_;
+	}
+	_tmp3_ = gtk_paned_get_position ((GtkPaned*) self->priv->songsToInfo);
+	_tmp4_ = beat_box_settings_getWindowWidth (self->priv->lm->settings);
+	_tmp5_ = beat_box_settings_getSidebarWidth (self->priv->lm->settings);
+	if (_tmp3_ < ((_tmp4_ - _tmp5_) - 250)) {
 		gint _tmp6_;
 		gint _tmp7_;
-		_tmp5_ = gtk_paned_get_position ((GtkPaned*) self->priv->songsToInfo);
 		_tmp6_ = beat_box_settings_getWindowWidth (self->priv->lm->settings);
 		_tmp7_ = beat_box_settings_getSidebarWidth (self->priv->lm->settings);
-		if (_tmp5_ > ((_tmp6_ - _tmp7_) - 150)) {
-			gint _tmp8_;
-			gint _tmp9_;
-			_tmp8_ = beat_box_settings_getWindowWidth (self->priv->lm->settings);
-			_tmp9_ = beat_box_settings_getSidebarWidth (self->priv->lm->settings);
-			gtk_paned_set_position ((GtkPaned*) self->priv->songsToInfo, (_tmp8_ - _tmp9_) - 150);
+		gtk_paned_set_position ((GtkPaned*) self->priv->songsToInfo, (_tmp6_ - _tmp7_) - 250);
+		return;
+	} else {
+		gint _tmp8_;
+		gint _tmp9_;
+		gint _tmp10_;
+		_tmp8_ = gtk_paned_get_position ((GtkPaned*) self->priv->songsToInfo);
+		_tmp9_ = beat_box_settings_getWindowWidth (self->priv->lm->settings);
+		_tmp10_ = beat_box_settings_getSidebarWidth (self->priv->lm->settings);
+		if (_tmp8_ > ((_tmp9_ - _tmp10_) - 150)) {
+			gint _tmp11_;
+			gint _tmp12_;
+			_tmp11_ = beat_box_settings_getWindowWidth (self->priv->lm->settings);
+			_tmp12_ = beat_box_settings_getSidebarWidth (self->priv->lm->settings);
+			gtk_paned_set_position ((GtkPaned*) self->priv->songsToInfo, (_tmp11_ - _tmp12_) - 150);
 			return;
 		}
 	}
-	_tmp10_ = beat_box_settings_getMoreWidth (self->priv->lm->settings);
-	if (_tmp10_ != (*rectangle).width) {
+	_tmp13_ = beat_box_settings_getMoreWidth (self->priv->lm->settings);
+	if (_tmp13_ != (*rectangle).width) {
 		beat_box_settings_setMoreWidth (self->priv->lm->settings, (*rectangle).width);
 	}
 }

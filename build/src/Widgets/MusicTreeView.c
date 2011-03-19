@@ -311,6 +311,7 @@ struct _BeatBoxMusicTreeViewPrivate {
 	GtkSortType sort_direction;
 	GeeLinkedList* timeout_search;
 	gchar* last_search;
+	gboolean showing_all;
 	gboolean scrolled_recently;
 	GtkMenu* columnChooserMenu;
 	GtkMenuItem* columnSmartSorting;
@@ -825,6 +826,7 @@ BeatBoxMusicTreeView* beat_box_music_tree_view_construct (GType object_type, Bea
 	_tmp13_ = _tmp12_;
 	_g_object_unref0 (self->priv->timeout_search);
 	self->priv->timeout_search = _tmp13_;
+	self->priv->showing_all = TRUE;
 	self->removing_songs = FALSE;
 	_tmp14_ = g_strdup (sort);
 	_tmp15_ = _tmp14_;
@@ -2064,7 +2066,6 @@ static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
 	gpointer _tmp4_ = NULL;
 	gchar* _tmp5_;
 	gboolean _tmp6_;
-	gtk_tree_view_set_model (self->priv->view, NULL);
 	_tmp2_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
 	_tmp3_ = _tmp2_;
 	_tmp4_ = gee_deque_poll_tail ((GeeDeque*) self->priv->timeout_search);
@@ -2104,6 +2105,7 @@ static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
 		GtkTreeIter iter = {0};
 		gchar* _tmp51_ = NULL;
 		gchar* _tmp52_;
+		gtk_tree_view_set_model (self->priv->view, NULL);
 		{
 			gint i;
 			i = 0;
@@ -2223,14 +2225,23 @@ static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
 		_tmp52_ = _tmp51_;
 		_g_free0 (self->priv->last_search);
 		self->priv->last_search = _tmp52_;
+		self->priv->showing_all = FALSE;
+		gtk_tree_view_set_model (self->priv->view, (GtkTreeModel*) self->priv->sort);
+		beat_box_music_tree_view_scrollToCurrent (self);
 	} else {
 		gboolean _tmp53_ = FALSE;
-		gchar* _tmp54_ = NULL;
-		gchar* _tmp55_;
-		gboolean _tmp56_;
-		_tmp54_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-		_tmp55_ = _tmp54_;
-		if ((_tmp56_ = g_strcmp0 (_tmp55_, self->priv->last_search) != 0, _g_free0 (_tmp55_), _tmp56_)) {
+		gboolean _tmp54_ = FALSE;
+		if (!self->priv->showing_all) {
+			gchar* _tmp55_ = NULL;
+			gchar* _tmp56_;
+			_tmp55_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+			_tmp56_ = _tmp55_;
+			_tmp54_ = g_strcmp0 (_tmp56_, self->priv->last_search) != 0;
+			_g_free0 (_tmp56_);
+		} else {
+			_tmp54_ = FALSE;
+		}
+		if (_tmp54_) {
 			gboolean _tmp57_ = FALSE;
 			gchar* _tmp58_ = NULL;
 			gchar* _tmp59_;
@@ -2255,6 +2266,7 @@ static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
 			GtkTreeIter iter = {0};
 			gchar* _tmp69_ = NULL;
 			gchar* _tmp70_;
+			gtk_tree_view_set_model (self->priv->view, NULL);
 			{
 				gint i;
 				i = 0;
@@ -2286,11 +2298,10 @@ static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
 			_tmp70_ = _tmp69_;
 			_g_free0 (self->priv->last_search);
 			self->priv->last_search = _tmp70_;
+			self->priv->showing_all = TRUE;
+			gtk_tree_view_set_model (self->priv->view, (GtkTreeModel*) self->priv->sort);
+			beat_box_music_tree_view_scrollToCurrent (self);
 		}
-	}
-	gtk_tree_view_set_model (self->priv->view, (GtkTreeModel*) self->priv->sort);
-	if (!self->priv->scrolled_recently) {
-		beat_box_music_tree_view_scrollToCurrent (self);
 	}
 	result = FALSE;
 	return result;

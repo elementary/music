@@ -1031,6 +1031,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void infoPanelResized(Gdk.Rectangle rectangle) {
+		int height, width;
+		get_size(out width, out height);
+		
+		if(sourcesToSongs.get_position() > height/2)
+			return;
+		
 		if(songsToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 250) {
 			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 250);
 			return;
