@@ -72,6 +72,7 @@ enum  {
 #define BEAT_BOX_SETTINGS_WINDOW_HEIGHT "/apps/beatbox/preferences/ui/window_height"
 #define BEAT_BOX_SETTINGS_SIDEBAR_WIDTH "/apps/beatbox/preferences/ui/sidebar_width"
 #define BEAT_BOX_SETTINGS_MORE_WIDTH "/apps/beatbox/preferences/ui/more_width"
+#define BEAT_BOX_SETTINGS_MORE_VISIBLE "/apps/beatbox/preferences/ui/more_visible"
 BeatBoxSettings* beat_box_settings_new (void);
 BeatBoxSettings* beat_box_settings_construct (GType object_type);
 static gboolean beat_box_settings_getBool (BeatBoxSettings* self, const gchar* path, gboolean def);
@@ -86,6 +87,7 @@ gint beat_box_settings_getWindowWidth (BeatBoxSettings* self);
 gint beat_box_settings_getWindowHeight (BeatBoxSettings* self);
 gint beat_box_settings_getSidebarWidth (BeatBoxSettings* self);
 gint beat_box_settings_getMoreWidth (BeatBoxSettings* self);
+gboolean beat_box_settings_getMoreVisible (BeatBoxSettings* self);
 gboolean beat_box_settings_getUpdateFolderHierarchy (BeatBoxSettings* self);
 gboolean beat_box_settings_getCopyImportedMusic (BeatBoxSettings* self);
 GType beat_box_song_get_type (void) G_GNUC_CONST;
@@ -104,6 +106,7 @@ void beat_box_settings_setWindowWidth (BeatBoxSettings* self, gint val);
 void beat_box_settings_setWindowHeight (BeatBoxSettings* self, gint val);
 void beat_box_settings_setSidebarWidth (BeatBoxSettings* self, gint val);
 void beat_box_settings_setMoreWidth (BeatBoxSettings* self, gint val);
+void beat_box_settings_setMoreVisible (BeatBoxSettings* self, gboolean val);
 void beat_box_settings_setUpdateFolderHierarchy (BeatBoxSettings* self, gboolean val);
 void beat_box_settings_setCopyImportedMusic (BeatBoxSettings* self, gboolean val);
 void beat_box_settings_setLastSongPlaying (BeatBoxSettings* self, BeatBoxSong* s);
@@ -443,6 +446,16 @@ gint beat_box_settings_getMoreWidth (BeatBoxSettings* self) {
 }
 
 
+gboolean beat_box_settings_getMoreVisible (BeatBoxSettings* self) {
+	gboolean result = FALSE;
+	gboolean _tmp0_;
+	g_return_val_if_fail (self != NULL, FALSE);
+	_tmp0_ = beat_box_settings_getBool (self, BEAT_BOX_SETTINGS_MORE_VISIBLE, TRUE);
+	result = _tmp0_;
+	return result;
+}
+
+
 gboolean beat_box_settings_getUpdateFolderHierarchy (BeatBoxSettings* self) {
 	gboolean result = FALSE;
 	gboolean _tmp0_;
@@ -572,6 +585,12 @@ void beat_box_settings_setSidebarWidth (BeatBoxSettings* self, gint val) {
 void beat_box_settings_setMoreWidth (BeatBoxSettings* self, gint val) {
 	g_return_if_fail (self != NULL);
 	beat_box_settings_setInt (self, BEAT_BOX_SETTINGS_MORE_WIDTH, val);
+}
+
+
+void beat_box_settings_setMoreVisible (BeatBoxSettings* self, gboolean val) {
+	g_return_if_fail (self != NULL);
+	beat_box_settings_setBool (self, BEAT_BOX_SETTINGS_MORE_VISIBLE, val);
 }
 
 

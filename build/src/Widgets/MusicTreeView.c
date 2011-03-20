@@ -428,6 +428,7 @@ struct _BeatBoxLibraryWindowClass {
 	void (*musicRescanned) (BeatBoxLibraryWindow* self, GeeLinkedList* new_songs, GeeLinkedList* not_imported);
 	void (*song_added) (BeatBoxLibraryWindow* self, gint id);
 	void (*songs_removed) (BeatBoxLibraryWindow* self, GeeLinkedList* removed);
+	void (*showInfoPanelToggled) (BeatBoxLibraryWindow* self);
 	void (*helpAboutClick) (BeatBoxLibraryWindow* self);
 	void (*editPreferencesClick) (BeatBoxLibraryWindow* self);
 	void (*end_of_stream) (BeatBoxLibraryWindow* self, BeatBoxSong* s);

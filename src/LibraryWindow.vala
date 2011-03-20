@@ -48,6 +48,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Menu libraryOperationsMenu;
 	MenuItem fileImportMusic;
 	MenuItem fileRescanMusicFolder;
+	CheckMenuItem showInfoPanel;
 	MenuItem helpOnline;
 	MenuItem helpTranslate;
 	MenuItem helpReport;
@@ -167,6 +168,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		libraryOperationsMenu = new Menu();
 		fileImportMusic = new MenuItem.with_label("Import to Library");
 		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
+		showInfoPanel = new CheckMenuItem.with_label("Show Info Panel");
 		helpOnline = new MenuItem.with_label("Get Help Online...");
 		helpTranslate = new MenuItem.with_label("Translate This Application...");
 		helpReport = new MenuItem.with_label("Report a Problem...");
@@ -217,6 +219,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		settingsMenu.append(libraryOperations);
 		settingsMenu.append(new SeparatorMenuItem());
+		settingsMenu.append(showInfoPanel);
+		settingsMenu.append(new SeparatorMenuItem());
 		settingsMenu.append(helpOnline);
 		settingsMenu.append(helpTranslate);
 		settingsMenu.append(helpReport);
@@ -226,6 +230,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
+		showInfoPanel.toggled.connect(showInfoPanelToggled);
 		helpOnline.activate.connect( () => {
 			string auth_uri = "https://answers.launchpad.net/beat-box";
 			try {
@@ -321,6 +326,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		coverArt.hide();
 		sideTree.resetView();
 		welcomeScreen.hide();
+		infoPanel.set_visible(settings.getMoreVisible());
+		showInfoPanel.set_active(settings.getMoreVisible());
 		updateSensitivities();
 	}
 	
@@ -874,6 +881,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void songs_removed(LinkedList<int> removed) {
 		updateSensitivities();
+	}
+	
+	public virtual void showInfoPanelToggled() {
+		infoPanel.set_visible(showInfoPanel.get_active());
+		settings.setMoreVisible(showInfoPanel.get_active());
 	}
 	
 	public virtual void helpAboutClick() {
