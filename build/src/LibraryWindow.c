@@ -1155,7 +1155,7 @@ BeatBoxLibraryWindow* beat_box_library_window_construct (GType object_type, Beat
 				_data7_->_data6_ = block6_data_ref (_data6_);
 				_tmp32_ = beat_box_settings_getLastSongPosition (self->priv->settings);
 				_data7_->position = (gint) _tmp32_;
-				g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 500, __lambda21__gsource_func, block7_data_ref (_data7_), block7_data_unref);
+				g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 200, __lambda21__gsource_func, block7_data_ref (_data7_), block7_data_unref);
 				block7_data_unref (_data7_);
 				_data7_ = NULL;
 			}
@@ -1720,6 +1720,7 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	gtk_widget_set_visible ((GtkWidget*) self->priv->infoPanel, _tmp95_);
 	_tmp96_ = beat_box_settings_getMoreVisible (self->priv->settings);
 	gtk_check_menu_item_set_active (self->priv->showInfoPanel, _tmp96_);
+	gtk_widget_set_sensitive ((GtkWidget*) self->priv->showInfoPanel, FALSE);
 	beat_box_library_window_updateSensitivities (self);
 	_g_object_unref0 (appMenuBin);
 	_g_object_unref0 (searchFieldBin);
@@ -2318,6 +2319,7 @@ static void beat_box_library_window_real_song_played (BeatBoxLibraryWindow* self
 	beat_box_library_window_updateCurrentSong (self);
 	_tmp49_ = beat_box_song_get_rowid (self->priv->lm->song_info->song);
 	beat_box_info_panel_updateSong (self->priv->infoPanel, _tmp49_);
+	gtk_widget_set_sensitive ((GtkWidget*) self->priv->showInfoPanel, TRUE);
 	_g_free0 (song_label);
 }
 

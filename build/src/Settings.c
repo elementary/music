@@ -440,7 +440,7 @@ gint beat_box_settings_getMoreWidth (BeatBoxSettings* self) {
 	gint result = 0;
 	gint _tmp0_;
 	g_return_val_if_fail (self != NULL, 0);
-	_tmp0_ = beat_box_settings_getInt (self, BEAT_BOX_SETTINGS_MORE_WIDTH, 725);
+	_tmp0_ = beat_box_settings_getInt (self, BEAT_BOX_SETTINGS_MORE_WIDTH, 200);
 	result = _tmp0_;
 	return result;
 }
@@ -450,7 +450,7 @@ gboolean beat_box_settings_getMoreVisible (BeatBoxSettings* self) {
 	gboolean result = FALSE;
 	gboolean _tmp0_;
 	g_return_val_if_fail (self != NULL, FALSE);
-	_tmp0_ = beat_box_settings_getBool (self, BEAT_BOX_SETTINGS_MORE_VISIBLE, TRUE);
+	_tmp0_ = beat_box_settings_getBool (self, BEAT_BOX_SETTINGS_MORE_VISIBLE, FALSE);
 	result = _tmp0_;
 	return result;
 }

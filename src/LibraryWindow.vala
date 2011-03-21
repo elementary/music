@@ -115,7 +115,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(s.rowid != 0) {
 				/* time out works because... monkeys eat bananas */
 				int position = (int)settings.getLastSongPosition();
-				Timeout.add(500, () => {
+				Timeout.add(200, () => {
 					lm.playSong(s.rowid);
 					
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
@@ -328,6 +328,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		welcomeScreen.hide();
 		infoPanel.set_visible(settings.getMoreVisible());
 		showInfoPanel.set_active(settings.getMoreVisible());
+		showInfoPanel.set_sensitive(false); // set back to normal when a song is played
 		updateSensitivities();
 	}
 	
@@ -518,7 +519,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		updateCurrentSong();
 		infoPanel.updateSong(lm.song_info.song.rowid);
-		//sideTree.updatePlayQueue();
+		showInfoPanel.set_sensitive(true);
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {

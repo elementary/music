@@ -561,6 +561,7 @@ void beat_box_info_panel_updateSong (BeatBoxInfoPanel* self, gint new_id) {
 		gtk_label_set_markup (self->priv->year, "");
 	}
 	beat_box_info_panel_updateArtistImage (self);
+	gtk_widget_hide ((GtkWidget*) self->priv->ssv);
 	_g_object_unref0 (s);
 }
 

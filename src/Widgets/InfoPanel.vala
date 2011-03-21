@@ -106,6 +106,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 			year.set_markup("");
 		
 		updateArtistImage();
+		ssv.hide();
 	}
 	
 	public void updateArtistImage() {

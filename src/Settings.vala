@@ -124,11 +124,11 @@ public class BeatBox.Settings : Object {
 	}
 	
 	public int getMoreWidth() {
-		return getInt(MORE_WIDTH, 725);
+		return getInt(MORE_WIDTH, 200);
 	}
 	
 	public bool getMoreVisible() {
-		return getBool(MORE_VISIBLE, true);
+		return getBool(MORE_VISIBLE, false);
 	}
 	
 	public bool getUpdateFolderHierarchy() {

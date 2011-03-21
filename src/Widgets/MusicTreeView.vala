@@ -463,9 +463,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual void searchFieldChanged() {
 		if(is_current_view) {
-			timeout_search.offer_head(lw.searchField.get_text());
+			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(200, () => {
-				if(lw.searchField.get_text() == timeout_search.poll_tail() && lw.searchField.get_text() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
+				if(lw.searchField.get_text().down() == timeout_search.poll_tail() && lw.searchField.get_text().down() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
 					view.set_model(null);
 					
 					TreeIter iter;
@@ -477,13 +477,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 						s = lm.song_from_id(id);
 						
 						bool show = false;
-						if(lw.searchField.get_text() in s.title.down() || lw.searchField.get_text() in s.artist.down() || lw.searchField.get_text() in s.album.down() || lw.searchField.get_text() in s.genre.down())
+						if(lw.searchField.get_text().down() in s.title.down() || lw.searchField.get_text().down() in s.artist.down() || lw.searchField.get_text().down() in s.album.down() || lw.searchField.get_text().down() in s.genre.down())
 							show = true;
 						
 						model.set(iter, 1, show);
 					}
 					
-					last_search = lw.searchField.get_text();
+					last_search = lw.searchField.get_text().down();
 					showing_all = false;
 					
 					view.set_model(sort);
@@ -497,7 +497,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 						model.set(iter, 1, true);
 					}
 					
-					last_search = lw.searchField.get_text();
+					last_search = lw.searchField.get_text().down();
 					showing_all = true;
 					
 					view.set_model(sort);

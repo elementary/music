@@ -2064,157 +2064,187 @@ static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
 	gboolean _tmp1_ = FALSE;
 	gchar* _tmp2_ = NULL;
 	gchar* _tmp3_;
-	gpointer _tmp4_ = NULL;
+	gchar* _tmp4_ = NULL;
 	gchar* _tmp5_;
-	gboolean _tmp6_;
+	gpointer _tmp6_ = NULL;
+	gchar* _tmp7_;
+	gboolean _tmp8_;
 	_tmp2_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
 	_tmp3_ = _tmp2_;
-	_tmp4_ = gee_deque_poll_tail ((GeeDeque*) self->priv->timeout_search);
-	_tmp5_ = (gchar*) _tmp4_;
-	if ((_tmp6_ = g_strcmp0 (_tmp3_, _tmp5_) == 0, _g_free0 (_tmp5_), _g_free0 (_tmp3_), _tmp6_)) {
-		gchar* _tmp7_ = NULL;
-		gchar* _tmp8_;
-		_tmp7_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-		_tmp8_ = _tmp7_;
-		_tmp1_ = g_strcmp0 (_tmp8_, self->priv->last_search) != 0;
-		_g_free0 (_tmp8_);
+	_tmp4_ = g_utf8_strdown (_tmp3_, (gssize) (-1));
+	_tmp5_ = _tmp4_;
+	_tmp6_ = gee_deque_poll_tail ((GeeDeque*) self->priv->timeout_search);
+	_tmp7_ = (gchar*) _tmp6_;
+	if ((_tmp8_ = g_strcmp0 (_tmp5_, _tmp7_) == 0, _g_free0 (_tmp7_), _g_free0 (_tmp5_), _g_free0 (_tmp3_), _tmp8_)) {
+		gchar* _tmp9_ = NULL;
+		gchar* _tmp10_;
+		gchar* _tmp11_ = NULL;
+		gchar* _tmp12_;
+		_tmp9_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+		_tmp10_ = _tmp9_;
+		_tmp11_ = g_utf8_strdown (_tmp10_, (gssize) (-1));
+		_tmp12_ = _tmp11_;
+		_tmp1_ = g_strcmp0 (_tmp12_, self->priv->last_search) != 0;
+		_g_free0 (_tmp12_);
+		_g_free0 (_tmp10_);
 	} else {
 		_tmp1_ = FALSE;
 	}
 	if (_tmp1_) {
-		gboolean _tmp9_ = FALSE;
-		gchar* _tmp10_ = NULL;
-		gchar* _tmp11_;
-		gboolean _tmp12_;
-		_tmp10_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-		_tmp11_ = _tmp10_;
-		if ((_tmp12_ = g_strcmp0 (_tmp11_, "") == 0, _g_free0 (_tmp11_), _tmp12_)) {
-			_tmp9_ = TRUE;
+		gboolean _tmp13_ = FALSE;
+		gchar* _tmp14_ = NULL;
+		gchar* _tmp15_;
+		gboolean _tmp16_;
+		_tmp14_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+		_tmp15_ = _tmp14_;
+		if ((_tmp16_ = g_strcmp0 (_tmp15_, "") == 0, _g_free0 (_tmp15_), _tmp16_)) {
+			_tmp13_ = TRUE;
 		} else {
-			gchar* _tmp13_ = NULL;
-			gchar* _tmp14_;
-			_tmp13_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-			_tmp14_ = _tmp13_;
-			_tmp9_ = g_strcmp0 (_tmp14_, ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField)->hint_string) == 0;
-			_g_free0 (_tmp14_);
+			gchar* _tmp17_ = NULL;
+			gchar* _tmp18_;
+			_tmp17_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+			_tmp18_ = _tmp17_;
+			_tmp13_ = g_strcmp0 (_tmp18_, ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField)->hint_string) == 0;
+			_g_free0 (_tmp18_);
 		}
-		_tmp0_ = !_tmp9_;
+		_tmp0_ = !_tmp13_;
 	} else {
 		_tmp0_ = FALSE;
 	}
 	if (_tmp0_) {
 		GtkTreeIter iter = {0};
-		gchar* _tmp51_ = NULL;
-		gchar* _tmp52_;
+		gchar* _tmp63_ = NULL;
+		gchar* _tmp64_;
+		gchar* _tmp65_ = NULL;
+		gchar* _tmp66_;
 		gtk_tree_view_set_model (self->priv->view, NULL);
 		{
 			gint i;
 			i = 0;
 			{
-				gboolean _tmp15_;
-				_tmp15_ = TRUE;
+				gboolean _tmp19_;
+				_tmp19_ = TRUE;
 				while (TRUE) {
-					gchar* _tmp16_ = NULL;
-					gchar* _tmp17_;
-					GtkTreeIter _tmp18_ = {0};
-					gboolean _tmp19_;
-					gboolean _tmp20_;
+					gchar* _tmp20_ = NULL;
+					gchar* _tmp21_;
+					GtkTreeIter _tmp22_ = {0};
+					gboolean _tmp23_;
+					gboolean _tmp24_;
 					gint id = 0;
 					BeatBoxSong* s = NULL;
-					BeatBoxSong* _tmp21_ = NULL;
-					BeatBoxSong* _tmp22_;
+					BeatBoxSong* _tmp25_ = NULL;
+					BeatBoxSong* _tmp26_;
 					gboolean show;
-					gboolean _tmp23_ = FALSE;
-					gboolean _tmp24_ = FALSE;
-					gboolean _tmp25_ = FALSE;
-					const gchar* _tmp26_ = NULL;
-					gchar* _tmp27_ = NULL;
-					gchar* _tmp28_;
-					gchar* _tmp29_ = NULL;
-					gchar* _tmp30_;
-					gboolean _tmp31_;
-					gboolean _tmp32_;
-					if (!_tmp15_) {
+					gboolean _tmp27_ = FALSE;
+					gboolean _tmp28_ = FALSE;
+					gboolean _tmp29_ = FALSE;
+					const gchar* _tmp30_ = NULL;
+					gchar* _tmp31_ = NULL;
+					gchar* _tmp32_;
+					gchar* _tmp33_ = NULL;
+					gchar* _tmp34_;
+					gchar* _tmp35_ = NULL;
+					gchar* _tmp36_;
+					gboolean _tmp37_;
+					gboolean _tmp38_;
+					if (!_tmp19_) {
 						i = i + 1;
 					}
-					_tmp15_ = FALSE;
-					_tmp16_ = g_strdup_printf ("%i", i);
-					_tmp17_ = _tmp16_;
-					_tmp19_ = gtk_tree_model_get_iter_from_string ((GtkTreeModel*) self->priv->model, &_tmp18_, _tmp17_);
-					iter = _tmp18_;
-					if ((_tmp20_ = !_tmp19_, _g_free0 (_tmp17_), _tmp20_)) {
+					_tmp19_ = FALSE;
+					_tmp20_ = g_strdup_printf ("%i", i);
+					_tmp21_ = _tmp20_;
+					_tmp23_ = gtk_tree_model_get_iter_from_string ((GtkTreeModel*) self->priv->model, &_tmp22_, _tmp21_);
+					iter = _tmp22_;
+					if ((_tmp24_ = !_tmp23_, _g_free0 (_tmp21_), _tmp24_)) {
 						break;
 					}
 					gtk_tree_model_get ((GtkTreeModel*) self->priv->model, &iter, 0, &id, -1);
-					_tmp21_ = beat_box_library_manager_song_from_id (self->priv->lm, id);
-					_tmp22_ = _tmp21_;
+					_tmp25_ = beat_box_library_manager_song_from_id (self->priv->lm, id);
+					_tmp26_ = _tmp25_;
 					_g_object_unref0 (s);
-					s = _tmp22_;
+					s = _tmp26_;
 					show = FALSE;
-					_tmp26_ = beat_box_song_get_title (s);
-					_tmp27_ = g_utf8_strdown (_tmp26_, (gssize) (-1));
-					_tmp28_ = _tmp27_;
-					_tmp29_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-					_tmp30_ = _tmp29_;
-					_tmp31_ = string_contains (_tmp28_, _tmp30_);
-					if ((_tmp32_ = _tmp31_, _g_free0 (_tmp30_), _g_free0 (_tmp28_), _tmp32_)) {
-						_tmp25_ = TRUE;
-					} else {
-						const gchar* _tmp33_ = NULL;
-						gchar* _tmp34_ = NULL;
-						gchar* _tmp35_;
-						gchar* _tmp36_ = NULL;
-						gchar* _tmp37_;
-						gboolean _tmp38_;
-						_tmp33_ = beat_box_song_get_artist (s);
-						_tmp34_ = g_utf8_strdown (_tmp33_, (gssize) (-1));
-						_tmp35_ = _tmp34_;
-						_tmp36_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-						_tmp37_ = _tmp36_;
-						_tmp38_ = string_contains (_tmp35_, _tmp37_);
-						_tmp25_ = _tmp38_;
-						_g_free0 (_tmp37_);
-						_g_free0 (_tmp35_);
-					}
-					if (_tmp25_) {
-						_tmp24_ = TRUE;
+					_tmp30_ = beat_box_song_get_title (s);
+					_tmp31_ = g_utf8_strdown (_tmp30_, (gssize) (-1));
+					_tmp32_ = _tmp31_;
+					_tmp33_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+					_tmp34_ = _tmp33_;
+					_tmp35_ = g_utf8_strdown (_tmp34_, (gssize) (-1));
+					_tmp36_ = _tmp35_;
+					_tmp37_ = string_contains (_tmp32_, _tmp36_);
+					if ((_tmp38_ = _tmp37_, _g_free0 (_tmp36_), _g_free0 (_tmp34_), _g_free0 (_tmp32_), _tmp38_)) {
+						_tmp29_ = TRUE;
 					} else {
 						const gchar* _tmp39_ = NULL;
 						gchar* _tmp40_ = NULL;
 						gchar* _tmp41_;
 						gchar* _tmp42_ = NULL;
 						gchar* _tmp43_;
-						gboolean _tmp44_;
-						_tmp39_ = beat_box_song_get_album (s);
+						gchar* _tmp44_ = NULL;
+						gchar* _tmp45_;
+						gboolean _tmp46_;
+						_tmp39_ = beat_box_song_get_artist (s);
 						_tmp40_ = g_utf8_strdown (_tmp39_, (gssize) (-1));
 						_tmp41_ = _tmp40_;
 						_tmp42_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
 						_tmp43_ = _tmp42_;
-						_tmp44_ = string_contains (_tmp41_, _tmp43_);
-						_tmp24_ = _tmp44_;
+						_tmp44_ = g_utf8_strdown (_tmp43_, (gssize) (-1));
+						_tmp45_ = _tmp44_;
+						_tmp46_ = string_contains (_tmp41_, _tmp45_);
+						_tmp29_ = _tmp46_;
+						_g_free0 (_tmp45_);
 						_g_free0 (_tmp43_);
 						_g_free0 (_tmp41_);
 					}
-					if (_tmp24_) {
-						_tmp23_ = TRUE;
+					if (_tmp29_) {
+						_tmp28_ = TRUE;
 					} else {
-						const gchar* _tmp45_ = NULL;
-						gchar* _tmp46_ = NULL;
-						gchar* _tmp47_;
+						const gchar* _tmp47_ = NULL;
 						gchar* _tmp48_ = NULL;
 						gchar* _tmp49_;
-						gboolean _tmp50_;
-						_tmp45_ = beat_box_song_get_genre (s);
-						_tmp46_ = g_utf8_strdown (_tmp45_, (gssize) (-1));
-						_tmp47_ = _tmp46_;
-						_tmp48_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+						gchar* _tmp50_ = NULL;
+						gchar* _tmp51_;
+						gchar* _tmp52_ = NULL;
+						gchar* _tmp53_;
+						gboolean _tmp54_;
+						_tmp47_ = beat_box_song_get_album (s);
+						_tmp48_ = g_utf8_strdown (_tmp47_, (gssize) (-1));
 						_tmp49_ = _tmp48_;
-						_tmp50_ = string_contains (_tmp47_, _tmp49_);
-						_tmp23_ = _tmp50_;
+						_tmp50_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+						_tmp51_ = _tmp50_;
+						_tmp52_ = g_utf8_strdown (_tmp51_, (gssize) (-1));
+						_tmp53_ = _tmp52_;
+						_tmp54_ = string_contains (_tmp49_, _tmp53_);
+						_tmp28_ = _tmp54_;
+						_g_free0 (_tmp53_);
+						_g_free0 (_tmp51_);
 						_g_free0 (_tmp49_);
-						_g_free0 (_tmp47_);
 					}
-					if (_tmp23_) {
+					if (_tmp28_) {
+						_tmp27_ = TRUE;
+					} else {
+						const gchar* _tmp55_ = NULL;
+						gchar* _tmp56_ = NULL;
+						gchar* _tmp57_;
+						gchar* _tmp58_ = NULL;
+						gchar* _tmp59_;
+						gchar* _tmp60_ = NULL;
+						gchar* _tmp61_;
+						gboolean _tmp62_;
+						_tmp55_ = beat_box_song_get_genre (s);
+						_tmp56_ = g_utf8_strdown (_tmp55_, (gssize) (-1));
+						_tmp57_ = _tmp56_;
+						_tmp58_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+						_tmp59_ = _tmp58_;
+						_tmp60_ = g_utf8_strdown (_tmp59_, (gssize) (-1));
+						_tmp61_ = _tmp60_;
+						_tmp62_ = string_contains (_tmp57_, _tmp61_);
+						_tmp27_ = _tmp62_;
+						_g_free0 (_tmp61_);
+						_g_free0 (_tmp59_);
+						_g_free0 (_tmp57_);
+					}
+					if (_tmp27_) {
 						show = TRUE;
 					}
 					gtk_list_store_set (self->priv->model, &iter, 1, show, -1);
@@ -2222,83 +2252,91 @@ static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
 				}
 			}
 		}
-		_tmp51_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-		_tmp52_ = _tmp51_;
+		_tmp63_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+		_tmp64_ = _tmp63_;
+		_tmp65_ = g_utf8_strdown (_tmp64_, (gssize) (-1));
+		_tmp66_ = _tmp65_;
 		_g_free0 (self->priv->last_search);
-		self->priv->last_search = _tmp52_;
+		self->priv->last_search = _tmp66_;
+		_g_free0 (_tmp64_);
 		self->priv->showing_all = FALSE;
 		gtk_tree_view_set_model (self->priv->view, (GtkTreeModel*) self->priv->sort);
 		beat_box_music_tree_view_scrollToCurrent (self);
 	} else {
-		gboolean _tmp53_ = FALSE;
-		gboolean _tmp54_ = FALSE;
+		gboolean _tmp67_ = FALSE;
+		gboolean _tmp68_ = FALSE;
 		if (!self->priv->showing_all) {
-			gchar* _tmp55_ = NULL;
-			gchar* _tmp56_;
-			_tmp55_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-			_tmp56_ = _tmp55_;
-			_tmp54_ = g_strcmp0 (_tmp56_, self->priv->last_search) != 0;
-			_g_free0 (_tmp56_);
-		} else {
-			_tmp54_ = FALSE;
-		}
-		if (_tmp54_) {
-			gboolean _tmp57_ = FALSE;
-			gchar* _tmp58_ = NULL;
-			gchar* _tmp59_;
-			gboolean _tmp60_;
-			_tmp58_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-			_tmp59_ = _tmp58_;
-			if ((_tmp60_ = g_strcmp0 (_tmp59_, "") == 0, _g_free0 (_tmp59_), _tmp60_)) {
-				_tmp57_ = TRUE;
-			} else {
-				gchar* _tmp61_ = NULL;
-				gchar* _tmp62_;
-				_tmp61_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-				_tmp62_ = _tmp61_;
-				_tmp57_ = g_strcmp0 (_tmp62_, ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField)->hint_string) == 0;
-				_g_free0 (_tmp62_);
-			}
-			_tmp53_ = _tmp57_;
-		} else {
-			_tmp53_ = FALSE;
-		}
-		if (_tmp53_) {
-			GtkTreeIter iter = {0};
 			gchar* _tmp69_ = NULL;
 			gchar* _tmp70_;
+			_tmp69_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+			_tmp70_ = _tmp69_;
+			_tmp68_ = g_strcmp0 (_tmp70_, self->priv->last_search) != 0;
+			_g_free0 (_tmp70_);
+		} else {
+			_tmp68_ = FALSE;
+		}
+		if (_tmp68_) {
+			gboolean _tmp71_ = FALSE;
+			gchar* _tmp72_ = NULL;
+			gchar* _tmp73_;
+			gboolean _tmp74_;
+			_tmp72_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+			_tmp73_ = _tmp72_;
+			if ((_tmp74_ = g_strcmp0 (_tmp73_, "") == 0, _g_free0 (_tmp73_), _tmp74_)) {
+				_tmp71_ = TRUE;
+			} else {
+				gchar* _tmp75_ = NULL;
+				gchar* _tmp76_;
+				_tmp75_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+				_tmp76_ = _tmp75_;
+				_tmp71_ = g_strcmp0 (_tmp76_, ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField)->hint_string) == 0;
+				_g_free0 (_tmp76_);
+			}
+			_tmp67_ = _tmp71_;
+		} else {
+			_tmp67_ = FALSE;
+		}
+		if (_tmp67_) {
+			GtkTreeIter iter = {0};
+			gchar* _tmp83_ = NULL;
+			gchar* _tmp84_;
+			gchar* _tmp85_ = NULL;
+			gchar* _tmp86_;
 			gtk_tree_view_set_model (self->priv->view, NULL);
 			{
 				gint i;
 				i = 0;
 				{
-					gboolean _tmp63_;
-					_tmp63_ = TRUE;
+					gboolean _tmp77_;
+					_tmp77_ = TRUE;
 					while (TRUE) {
-						gchar* _tmp64_ = NULL;
-						gchar* _tmp65_;
-						GtkTreeIter _tmp66_ = {0};
-						gboolean _tmp67_;
-						gboolean _tmp68_;
-						if (!_tmp63_) {
+						gchar* _tmp78_ = NULL;
+						gchar* _tmp79_;
+						GtkTreeIter _tmp80_ = {0};
+						gboolean _tmp81_;
+						gboolean _tmp82_;
+						if (!_tmp77_) {
 							i = i + 1;
 						}
-						_tmp63_ = FALSE;
-						_tmp64_ = g_strdup_printf ("%i", i);
-						_tmp65_ = _tmp64_;
-						_tmp67_ = gtk_tree_model_get_iter_from_string ((GtkTreeModel*) self->priv->model, &_tmp66_, _tmp65_);
-						iter = _tmp66_;
-						if ((_tmp68_ = !_tmp67_, _g_free0 (_tmp65_), _tmp68_)) {
+						_tmp77_ = FALSE;
+						_tmp78_ = g_strdup_printf ("%i", i);
+						_tmp79_ = _tmp78_;
+						_tmp81_ = gtk_tree_model_get_iter_from_string ((GtkTreeModel*) self->priv->model, &_tmp80_, _tmp79_);
+						iter = _tmp80_;
+						if ((_tmp82_ = !_tmp81_, _g_free0 (_tmp79_), _tmp82_)) {
 							break;
 						}
 						gtk_list_store_set (self->priv->model, &iter, 1, TRUE, -1);
 					}
 				}
 			}
-			_tmp69_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
-			_tmp70_ = _tmp69_;
+			_tmp83_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
+			_tmp84_ = _tmp83_;
+			_tmp85_ = g_utf8_strdown (_tmp84_, (gssize) (-1));
+			_tmp86_ = _tmp85_;
 			_g_free0 (self->priv->last_search);
-			self->priv->last_search = _tmp70_;
+			self->priv->last_search = _tmp86_;
+			_g_free0 (_tmp84_);
 			self->priv->showing_all = TRUE;
 			gtk_tree_view_set_model (self->priv->view, (GtkTreeModel*) self->priv->sort);
 			beat_box_music_tree_view_scrollToCurrent (self);
@@ -2321,9 +2359,14 @@ static void beat_box_music_tree_view_real_searchFieldChanged (BeatBoxMusicTreeVi
 	if (self->is_current_view) {
 		gchar* _tmp0_ = NULL;
 		gchar* _tmp1_;
+		gchar* _tmp2_ = NULL;
+		gchar* _tmp3_;
 		_tmp0_ = elementary_widgets_elementary_entry_get_text ((ElementaryWidgetsElementaryEntry*) self->priv->lw->searchField);
 		_tmp1_ = _tmp0_;
-		gee_deque_offer_head ((GeeDeque*) self->priv->timeout_search, _tmp1_);
+		_tmp2_ = g_utf8_strdown (_tmp1_, (gssize) (-1));
+		_tmp3_ = _tmp2_;
+		gee_deque_offer_head ((GeeDeque*) self->priv->timeout_search, _tmp3_);
+		_g_free0 (_tmp3_);
 		_g_free0 (_tmp1_);
 		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 200, __lambda9__gsource_func, g_object_ref (self), g_object_unref);
 	}

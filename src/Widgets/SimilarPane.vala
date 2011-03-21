@@ -44,8 +44,8 @@ public class BeatBox.SimilarPane : VBox {
 		toolbar.insert(toolInfoBin, 2);
 		toolbar.insert(save, 3);
 		
-		pack_start(similars, true, true, 0);
-		pack_end(toolbar, false, false, 0);
+		pack_start(toolbar, false, false, 0);
+		pack_end(similars, true, true, 0);
 		
 		show_all();
 		

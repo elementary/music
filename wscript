@@ -28,7 +28,6 @@ def check_pkg (ctx, name, lib_name, version=''):
 	ctx.check_cfg (package=name, uselib_store=lib_name, args='--cflags --libs', atleast_version=version, mandatory=True)
 
 def configure(ctx):
-	#print('->configuring beatbox in ' + ctx.path.abspath())
 	ctx.check_tool('compiler_cc gnu_dirs')
 	ctx.check_tool('vala')
 	ctx.check_tool('gnu_dirs')
@@ -45,14 +44,16 @@ def configure(ctx):
 	check_pkg(ctx, 'unique-1.0', 'UNIQUE', '0.9')
 
 def build(bld):
+	bld.install_files ('${MDATADIR}/applications', 'data/' + APPNAME + '.desktop')
+	
+	bld.install_files ('${MDATADIR}/icons/hicolor/scalable/apps',
+                       top + '/images/beatbox.svg')
+	
 	bld.program(
 		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0 libnotify gnet-2.0 dbus-glib-1 unique-1.0',
 		target        = APPNAME,
 		uselib        = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY INDICATE UNIQUE WEBKIT',
 		source        =  bld.path.ant_glob(('*.vala', 'src/*.vala', 'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 'src/Widgets/*.vala')) 
 		)
-	
-	bld.install_files ('${MDATADIR}/icons/hicolor/scalable/apps',
-                       top + '/images/beatbox.svg')
 	
 

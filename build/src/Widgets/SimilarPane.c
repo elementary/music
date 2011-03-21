@@ -423,8 +423,8 @@ BeatBoxSimilarPane* beat_box_similar_pane_construct (GType object_type, BeatBoxL
 	gtk_toolbar_insert (self->priv->toolbar, (GtkToolItem*) self->priv->transferPlayback, 1);
 	gtk_toolbar_insert (self->priv->toolbar, toolInfoBin, 2);
 	gtk_toolbar_insert (self->priv->toolbar, (GtkToolItem*) self->priv->save, 3);
-	gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->similars, TRUE, TRUE, (guint) 0);
-	gtk_box_pack_end ((GtkBox*) self, (GtkWidget*) self->priv->toolbar, FALSE, FALSE, (guint) 0);
+	gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->toolbar, FALSE, FALSE, (guint) 0);
+	gtk_box_pack_end ((GtkBox*) self, (GtkWidget*) self->priv->similars, TRUE, TRUE, (guint) 0);
 	gtk_widget_show_all ((GtkWidget*) self);
 	g_signal_connect_object (self->priv->refresh, "clicked", (GCallback) _beat_box_similar_pane_refreshClicked_gtk_tool_button_clicked, self, 0);
 	g_signal_connect_object (self->priv->transferPlayback, "clicked", (GCallback) _beat_box_similar_pane_transferPlaybackClicked_gtk_tool_button_clicked, self, 0);
