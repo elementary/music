@@ -308,6 +308,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.set_model(sort);
 		view.set_headers_clickable(true);
 		view.set_fixed_height_mode(true);
+		view.rules_hint = true;
 		
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);

@@ -1616,6 +1616,7 @@ void beat_box_music_tree_view_buildUI (BeatBoxMusicTreeView* self) {
 	gtk_tree_view_set_model (self->priv->view, (GtkTreeModel*) self->priv->sort);
 	gtk_tree_view_set_headers_clickable (self->priv->view, TRUE);
 	gtk_tree_view_set_fixed_height_mode (self->priv->view, TRUE);
+	gtk_tree_view_set_rules_hint (self->priv->view, TRUE);
 	g_signal_connect_object (self->priv->view, "row-activated", (GCallback) _beat_box_music_tree_view_viewDoubleClick_gtk_tree_view_row_activated, self, 0);
 	g_signal_connect_object ((GtkWidget*) self->priv->view, "button-press-event", (GCallback) _beat_box_music_tree_view_viewClick_gtk_widget_button_press_event, self, 0);
 	g_signal_connect_object ((GtkWidget*) self->priv->view, "button-release-event", (GCallback) _beat_box_music_tree_view_viewClickRelease_gtk_widget_button_release_event, self, 0);
