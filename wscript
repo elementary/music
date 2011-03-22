@@ -9,6 +9,7 @@
 
 import os
 import Build
+import Utils
 import Task
 import Node
 from TaskGen import extension, feature
@@ -17,7 +18,6 @@ APPNAME = 'beatbox'
 VERSION = '0.1'
 VALAC_VERSION = '0.11.5'
 
-top = '.'
 out = 'build'
 
 def options (opt):
@@ -44,11 +44,11 @@ def configure(ctx):
 	check_pkg(ctx, 'unique-1.0', 'UNIQUE', '0.9')
 
 def build(bld):
-	bld.install_files ('${MDATADIR}/applications', 'data/' + APPNAME + '.desktop')
+	bld.install_files ('${PREFIX}/share/applications', '/data/' + APPNAME + '.desktop')
 	
-	bld.install_files ('${MDATADIR}/icons/hicolor/scalable/apps',
-                       top + '/images/beatbox.svg')
-	
+	bld.install_files ('${PREFIX}/share/icons/hicolor/scalable/apps',
+                       '/images/beatbox.svg')
+                       
 	bld.program(
 		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0 libnotify gnet-2.0 dbus-glib-1 unique-1.0',
 		target        = APPNAME,
