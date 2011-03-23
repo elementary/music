@@ -1,6 +1,6 @@
-# project beatbox (0.1) configured on Mon Mar 21 22:22:23 2011 by
+# project beatbox (0.1) configured on Wed Mar 23 11:06:23 2011 by
 # waf 1.6.2 (abi 98, python 20606f0 on linux2)
-# using ./waf configure
+# using ./waf configure --prefix=/usr
 #
 ----------------------------------------
 Setting top to
@@ -46,6 +46,13 @@ out: Vala 0.11.6
 Checking for valac version >= (0, 8, 0)
 (0, 11, 6)
 (tool gnu_dirs is already loaded, skipping)
+----------------------------------------
+Checking for 'dbus-glib-1' >= 
+['/usr/bin/pkg-config', '--atleast-version=', 'dbus-glib-1']
+['/usr/bin/pkg-config', 'dbus-glib-1', '--cflags', '--libs']
+out: -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -L/lib -ldbus-glib-1 -ldbus-1 -lpthread -lgobject-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
 ----------------------------------------
 Checking for 'gtk+-2.0' >= 2.16.0
 ['/usr/bin/pkg-config', '--atleast-version=2.16.0', 'gtk+-2.0']

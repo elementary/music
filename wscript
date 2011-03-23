@@ -31,7 +31,7 @@ def configure(ctx):
 	ctx.check_tool('compiler_cc gnu_dirs')
 	ctx.check_tool('vala')
 	ctx.check_tool('gnu_dirs')
-	check_pkg(ctx, 'dbus-glib-1', 'DBUS', '1.0')
+	check_pkg(ctx, 'dbus-glib-1', 'DBUS' '0.5')
 	check_pkg(ctx, 'gtk+-2.0', 'GTK', '2.16.0')
 	check_pkg(ctx, 'gee-1.0', 'GEE', '0.5.3')
 	check_pkg(ctx, 'gstreamer-0.10', 'GSTREAMER', '0.10')
