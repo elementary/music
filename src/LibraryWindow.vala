@@ -1077,12 +1077,34 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void repeatChooserOptionChanged(int val) {
 		lm.settings.setRepeatMode(val);
+		
+		if(val == 0)
+			lm.repeat = LibraryManager.Repeat.OFF;
+		else if(val == 1)
+			lm.repeat = LibraryManager.Repeat.SONG;
+		else if(val == 2)
+			lm.repeat = LibraryManager.Repeat.ALBUM;
+		else if(val == 3)
+			lm.repeat = LibraryManager.Repeat.ARTIST;
+		else if(val == 4)
+			lm.repeat = LibraryManager.Repeat.ALL;
 	}
 	
 	public virtual void shuffleChooserOptionChanged(int val) {
 		lm.settings.setShuffleMode(val);
 		
 		// do stuff depending on the mode chosen.
+		if(val == lm.shuffle)
+			return;
+			
+		if(val == 0)
+			lm.unShuffleMusic();
+		else if(val == 1)
+			lm.shuffleMusic(LibraryManager.Shuffle.ARTIST);
+		else if(val == 2)
+			lm.shuffleMusic(LibraryManager.Shuffle.ALBUM);
+		else if(val == 3)
+			lm.shuffleMusic(LibraryManager.Shuffle.ALL);
 	}
 	
 	public virtual void infoPanelChooserOptionChanged(int val) {

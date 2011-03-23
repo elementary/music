@@ -451,10 +451,10 @@ struct _BeatBoxLibraryWindowPrivate {
 
 typedef enum  {
 	BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF,
-	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL,
-	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG,
 	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM,
-	BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL
 } BeatBoxLibraryManagerRepeat;
 
 typedef enum  {
@@ -907,6 +907,8 @@ static void beat_box_library_window_real_repeatChooserOptionChanged (BeatBoxLibr
 void beat_box_settings_setRepeatMode (BeatBoxSettings* self, gint val);
 static void beat_box_library_window_real_shuffleChooserOptionChanged (BeatBoxLibraryWindow* self, gint val);
 void beat_box_settings_setShuffleMode (BeatBoxSettings* self, gint val);
+void beat_box_library_manager_unShuffleMusic (BeatBoxLibraryManager* self);
+void beat_box_library_manager_shuffleMusic (BeatBoxLibraryManager* self, BeatBoxLibraryManagerShuffle mode);
 static void beat_box_library_window_real_infoPanelChooserOptionChanged (BeatBoxLibraryWindow* self, gint val);
 void beat_box_settings_setMoreVisible (BeatBoxSettings* self, gboolean val);
 static void beat_box_library_window_finalize (GObject* obj);
@@ -3829,6 +3831,25 @@ void beat_box_library_window_infoPanelResized (BeatBoxLibraryWindow* self, GdkRe
 static void beat_box_library_window_real_repeatChooserOptionChanged (BeatBoxLibraryWindow* self, gint val) {
 	g_return_if_fail (self != NULL);
 	beat_box_settings_setRepeatMode (self->priv->lm->settings, val);
+	if (val == 0) {
+		self->priv->lm->repeat = BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF;
+	} else {
+		if (val == 1) {
+			self->priv->lm->repeat = BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG;
+		} else {
+			if (val == 2) {
+				self->priv->lm->repeat = BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM;
+			} else {
+				if (val == 3) {
+					self->priv->lm->repeat = BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST;
+				} else {
+					if (val == 4) {
+						self->priv->lm->repeat = BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL;
+					}
+				}
+			}
+		}
+	}
 }
 
 
@@ -3840,6 +3861,24 @@ void beat_box_library_window_repeatChooserOptionChanged (BeatBoxLibraryWindow* s
 static void beat_box_library_window_real_shuffleChooserOptionChanged (BeatBoxLibraryWindow* self, gint val) {
 	g_return_if_fail (self != NULL);
 	beat_box_settings_setShuffleMode (self->priv->lm->settings, val);
+	if (val == self->priv->lm->shuffle) {
+		return;
+	}
+	if (val == 0) {
+		beat_box_library_manager_unShuffleMusic (self->priv->lm);
+	} else {
+		if (val == 1) {
+			beat_box_library_manager_shuffleMusic (self->priv->lm, BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ARTIST);
+		} else {
+			if (val == 2) {
+				beat_box_library_manager_shuffleMusic (self->priv->lm, BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALBUM);
+			} else {
+				if (val == 3) {
+					beat_box_library_manager_shuffleMusic (self->priv->lm, BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL);
+				}
+			}
+		}
+	}
 }
 
 

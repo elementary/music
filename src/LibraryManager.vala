@@ -66,10 +66,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public enum Repeat {
 		OFF,
-		ALL,
-		ARTIST,
+		SONG,
 		ALBUM,
-		SONG;
+		ARTIST,
+		ALL;
 	}
 	
 	public LibraryManager(StreamPlayer player, BeatBox.DataBaseManager dbmn, BeatBox.Settings sett) {
@@ -704,14 +704,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		else if(mode == Shuffle.ARTIST) {
-			
+			stdout.printf("shuffling by artist\n");
 		}
 		else if(mode == Shuffle.ALBUM) {
-			
+			stdout.printf("shuffling by album\n");
 		}
 	}
 	
 	public void unShuffleMusic() {
+		stdout.printf("unshuffling music\n");
 		_current_shuffled.clear();
 		_current_shuffled_index = 0;
 		settings.setShuffleMode(Shuffle.OFF);
@@ -751,11 +752,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 			else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
 				// make sure we are repeating what we need to be
-				if(repeat == Repeat.ARTIST && song_from_id(_current_shuffled.get(_current_shuffled_index) + 1).artist != song_info.song.artist) {
+				if(repeat == Repeat.ARTIST && song_from_id(_current_shuffled.get(_current_shuffled_index + 1)).artist != song_from_id(_current_shuffled.get(_current_shuffled_index)).artist) {
 					while(song_from_id(_current_shuffled.get(_current_shuffled_index - 1)).artist == song_info.song.artist)
 						--_current_shuffled_index;
 				}
-				else if(repeat == Repeat.ALBUM && song_from_id(_current_shuffled.get(_current_shuffled_index) + 1).album != song_info.song.album) {
+				else if(repeat == Repeat.ALBUM && song_from_id(_current_shuffled.get(_current_shuffled_index + 1)).album != song_from_id(_current_shuffled.get(_current_shuffled_index)).album) {
 					while(song_from_id(_current_shuffled.get(_current_shuffled_index - 1)).album == song_info.song.album)
 						--_current_shuffled_index;
 				}
@@ -776,18 +777,33 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		else {
 			if(song_info.song == null) {
-				foreach(Song s in _songs.values)
-					addToCurrent(s.rowid);
-				
 				_current_index = 0;
 				rv = _current.get(0);
 			}
+			else if(repeat == Repeat.SONG) {
+				rv = _current.get(_current_index);
+			}
 			else if(_current_index == (_current.size - 1)) {// consider repeat options
-				_current_index = 0;
+				if(repeat == Repeat.ALL)
+					_current_index = 0;
+				else
+					return 0;
+				
 				rv = _current.get(0);
 			}
 			else if(_current_index >= 0 && _current_index < (_current.size - 1)){
-				++_current_index;
+				// make sure we are repeating what we need to be
+				if(repeat == Repeat.ARTIST && song_from_id(_current.get(_current_index + 1)).artist != song_from_id(_current.get(_current_index)).artist) {
+					while(song_from_id(_current.get(_current_index - 1)).artist == song_info.song.artist)
+						--_current_index;
+				}
+				else if(repeat == Repeat.ALBUM && song_from_id(_current.get(_current_index + 1)).album != song_from_id(_current.get(_current_index)).album) {
+					while(song_from_id(_current.get(_current_index - 1)).album == song_info.song.album)
+						--_current_index;
+				}
+				else
+					++_current_index;
+				
 				rv = _current.get(_current_index);
 			}
 			else {
