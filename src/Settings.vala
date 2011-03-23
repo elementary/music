@@ -11,7 +11,8 @@ public class BeatBox.Settings : Object {
 	public static const string COPY_IMPORTED_MUSIC = "/apps/beatbox/preferences/music/copy_imported_music";
 	public static const string LAST_SONG_PLAYING = "/apps/beatbox/preferences/music/last_song_playing";
 	public static const string LAST_SONG_POSITION = "/apps/beatbox/preferences/music/last_song_position";
-	public static const string SHUFFLE_ENABLED = "/apps/beatbox/preferences/music/shuffle_enabled";
+	public static const string SHUFFLE_MODE = "/apps/beatbox/preferences/music/shuffle_mode";
+	public static const string REPEAT_MODE = "/apps/beatbox/preferences/music/repeat_mode";
 	
 	public static const string WINDOW_MAXIMIZED = "/apps/beatbox/preferences/ui/window_maximized";
 	public static const string WINDOW_WIDTH = "/apps/beatbox/preferences/ui/window_width";
@@ -157,12 +158,12 @@ public class BeatBox.Settings : Object {
 		return getInt(LAST_SONG_POSITION, 0);
 	}
 	
-	public bool getShuffleEnabled() {
-		return getBool(SHUFFLE_ENABLED, false);
+	public int getShuffleMode() {
+		return getInt(SHUFFLE_MODE, 0);
 	}
 	
-	public bool getLastFMAutoLogin() {
-		return getBool(LASTFM_AUTO_LOGIN, false);
+	public int getRepeatMode() {
+		return getInt(REPEAT_MODE, 0);
 	}
 	
 	public string getLastFMSessionKey() {
@@ -214,12 +215,12 @@ public class BeatBox.Settings : Object {
 		setInt(LAST_SONG_POSITION, val);
 	}
 	
-	public void setShuffleEnabled(bool val) {
-		setBool(SHUFFLE_ENABLED, val);
+	public void setShuffleMode(int val) {
+		setInt(SHUFFLE_MODE, val);
 	}
 	
-	public void setLastFMAutoLogin(bool val) {
-		setBool(LASTFM_AUTO_LOGIN, val);
+	public void setRepeatMode(int val) {
+		setInt(REPEAT_MODE, val);
 	}
 	
 	public void setLastFMSessionKey(string val) {

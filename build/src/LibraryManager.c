@@ -106,6 +106,10 @@ typedef struct _BeatBoxTreeViewSetupClass BeatBoxTreeViewSetupClass;
 typedef struct _BeatBoxSongInfo BeatBoxSongInfo;
 typedef struct _BeatBoxSongInfoClass BeatBoxSongInfoClass;
 
+#define BEAT_BOX_LIBRARY_MANAGER_TYPE_REPEAT (beat_box_library_manager_repeat_get_type ())
+
+#define BEAT_BOX_LIBRARY_MANAGER_TYPE_SHUFFLE (beat_box_library_manager_shuffle_get_type ())
+
 #define BEAT_BOX_TYPE_SMART_PLAYLIST (beat_box_smart_playlist_get_type ())
 #define BEAT_BOX_SMART_PLAYLIST(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SMART_PLAYLIST, BeatBoxSmartPlaylist))
 #define BEAT_BOX_SMART_PLAYLIST_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_SMART_PLAYLIST, BeatBoxSmartPlaylistClass))
@@ -174,6 +178,21 @@ typedef struct _Block3Data Block3Data;
 typedef struct _Block4Data Block4Data;
 typedef struct _Block5Data Block5Data;
 
+typedef enum  {
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG
+} BeatBoxLibraryManagerRepeat;
+
+typedef enum  {
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALBUM,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL
+} BeatBoxLibraryManagerShuffle;
+
 struct _BeatBoxLibraryManager {
 	GObject parent_instance;
 	BeatBoxLibraryManagerPrivate * priv;
@@ -192,8 +211,8 @@ struct _BeatBoxLibraryManager {
 	gint _current_shuffled_index;
 	BeatBoxSongInfo* song_info;
 	gboolean playing;
-	gboolean repeat;
-	gboolean shuffle;
+	BeatBoxLibraryManagerRepeat repeat;
+	BeatBoxLibraryManagerShuffle shuffle;
 	gboolean doing_file_operations;
 };
 
@@ -273,6 +292,8 @@ GType beat_box_stream_player_get_type (void) G_GNUC_CONST;
 GType last_fm_core_get_type (void) G_GNUC_CONST;
 GType beat_box_tree_view_setup_get_type (void) G_GNUC_CONST;
 GType beat_box_song_info_get_type (void) G_GNUC_CONST;
+GType beat_box_library_manager_repeat_get_type (void) G_GNUC_CONST;
+GType beat_box_library_manager_shuffle_get_type (void) G_GNUC_CONST;
 GType beat_box_smart_playlist_get_type (void) G_GNUC_CONST;
 GType beat_box_playlist_get_type (void) G_GNUC_CONST;
 GType beat_box_song_get_type (void) G_GNUC_CONST;
@@ -424,9 +445,9 @@ gboolean beat_box_library_manager_is_shuffled (BeatBoxLibraryManager* self);
 GeeCollection* beat_box_library_manager_current_songs (BeatBoxLibraryManager* self);
 void beat_box_library_manager_clearCurrent (BeatBoxLibraryManager* self);
 void beat_box_library_manager_addToCurrent (BeatBoxLibraryManager* self, gint i);
-void beat_box_library_manager_shuffleMusic (BeatBoxLibraryManager* self);
-void beat_box_settings_setShuffleEnabled (BeatBoxSettings* self, gboolean val);
+void beat_box_library_manager_shuffleMusic (BeatBoxLibraryManager* self, BeatBoxLibraryManagerShuffle mode);
 void beat_box_library_manager_unShuffleMusic (BeatBoxLibraryManager* self);
+void beat_box_settings_setShuffleMode (BeatBoxSettings* self, gint val);
 gint beat_box_library_manager_getNext (BeatBoxLibraryManager* self, gboolean play);
 void beat_box_library_manager_playSong (BeatBoxLibraryManager* self, gint id);
 gint beat_box_library_manager_getPrevious (BeatBoxLibraryManager* self, gboolean play);
@@ -464,6 +485,30 @@ static void g_cclosure_user_marshal_VOID__INT_INT (GClosure * closure, GValue * 
 static void beat_box_library_manager_finalize (GObject* obj);
 static void _vala_beat_box_library_manager_get_property (GObject * object, guint property_id, GValue * value, GParamSpec * pspec);
 static void _vala_beat_box_library_manager_set_property (GObject * object, guint property_id, const GValue * value, GParamSpec * pspec);
+
+
+GType beat_box_library_manager_shuffle_get_type (void) {
+	static volatile gsize beat_box_library_manager_shuffle_type_id__volatile = 0;
+	if (g_once_init_enter (&beat_box_library_manager_shuffle_type_id__volatile)) {
+		static const GEnumValue values[] = {{BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF, "BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF", "off"}, {BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ARTIST, "BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ARTIST", "artist"}, {BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALBUM, "BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALBUM", "album"}, {BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL, "BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL", "all"}, {0, NULL, NULL}};
+		GType beat_box_library_manager_shuffle_type_id;
+		beat_box_library_manager_shuffle_type_id = g_enum_register_static ("BeatBoxLibraryManagerShuffle", values);
+		g_once_init_leave (&beat_box_library_manager_shuffle_type_id__volatile, beat_box_library_manager_shuffle_type_id);
+	}
+	return beat_box_library_manager_shuffle_type_id__volatile;
+}
+
+
+GType beat_box_library_manager_repeat_get_type (void) {
+	static volatile gsize beat_box_library_manager_repeat_type_id__volatile = 0;
+	if (g_once_init_enter (&beat_box_library_manager_repeat_type_id__volatile)) {
+		static const GEnumValue values[] = {{BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF, "BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF", "off"}, {BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL, "BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL", "all"}, {BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST, "BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST", "artist"}, {BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM, "BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM", "album"}, {BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG, "BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG", "song"}, {0, NULL, NULL}};
+		GType beat_box_library_manager_repeat_type_id;
+		beat_box_library_manager_repeat_type_id = g_enum_register_static ("BeatBoxLibraryManagerRepeat", values);
+		g_once_init_leave (&beat_box_library_manager_repeat_type_id__volatile, beat_box_library_manager_repeat_type_id);
+	}
+	return beat_box_library_manager_repeat_type_id__volatile;
+}
 
 
 static gpointer _g_object_ref0 (gpointer self) {
@@ -624,8 +669,8 @@ BeatBoxLibraryManager* beat_box_library_manager_construct (GType object_type, Be
 	_tmp41_ = _tmp40_;
 	_g_object_unref0 (self->song_info->album);
 	self->song_info->album = _tmp41_;
-	self->repeat = TRUE;
-	self->shuffle = FALSE;
+	self->repeat = BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF;
+	self->shuffle = BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF;
 	self->doing_file_operations = FALSE;
 	_tmp42_ = beat_box_tree_view_setup_new ("Artist", GTK_SORT_ASCENDING);
 	_tmp43_ = _tmp42_;
@@ -2513,13 +2558,18 @@ void beat_box_library_manager_addToCurrent (BeatBoxLibraryManager* self, gint i)
 }
 
 
-void beat_box_library_manager_shuffleMusic (BeatBoxLibraryManager* self) {
+void beat_box_library_manager_shuffleMusic (BeatBoxLibraryManager* self, BeatBoxLibraryManagerShuffle mode) {
 	GeeLinkedList* _tmp0_ = NULL;
 	GeeLinkedList* temp;
 	g_return_if_fail (self != NULL);
+	if (mode == BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF) {
+		beat_box_library_manager_unShuffleMusic (self);
+		return;
+	}
 	gee_abstract_map_clear ((GeeAbstractMap*) self->priv->_current_shuffled);
 	self->_current_shuffled_index = 0;
-	beat_box_settings_setShuffleEnabled (self->settings, TRUE);
+	beat_box_settings_setShuffleMode (self->settings, (gint) mode);
+	self->shuffle = mode;
 	_tmp0_ = gee_linked_list_new (G_TYPE_INT, NULL, NULL, NULL);
 	temp = _tmp0_;
 	{
@@ -2546,34 +2596,42 @@ void beat_box_library_manager_shuffleMusic (BeatBoxLibraryManager* self) {
 		}
 		_g_object_unref0 (_i_it);
 	}
-	{
-		gint i;
-		i = 0;
+	if (mode == BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL) {
 		{
-			gboolean _tmp7_;
-			_tmp7_ = TRUE;
-			while (TRUE) {
-				gint _tmp8_;
-				gint _tmp9_;
-				gint32 _tmp10_;
-				gint random;
-				gpointer _tmp11_ = NULL;
-				gpointer _tmp12_ = NULL;
-				if (!_tmp7_) {
-					i = i + 1;
+			gint i;
+			i = 0;
+			{
+				gboolean _tmp7_;
+				_tmp7_ = TRUE;
+				while (TRUE) {
+					gint _tmp8_;
+					gint _tmp9_;
+					gint32 _tmp10_;
+					gint random;
+					gpointer _tmp11_ = NULL;
+					gpointer _tmp12_ = NULL;
+					if (!_tmp7_) {
+						i = i + 1;
+					}
+					_tmp7_ = FALSE;
+					_tmp8_ = gee_map_get_size ((GeeMap*) self->priv->_current);
+					if (!(i < _tmp8_)) {
+						break;
+					}
+					_tmp9_ = gee_collection_get_size ((GeeCollection*) temp);
+					_tmp10_ = g_random_int_range ((gint32) 0, (gint32) _tmp9_);
+					random = (gint) _tmp10_;
+					_tmp11_ = gee_abstract_list_get ((GeeAbstractList*) temp, random);
+					gee_abstract_map_set ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (i), GINT_TO_POINTER (GPOINTER_TO_INT (_tmp11_)));
+					_tmp12_ = gee_abstract_list_get ((GeeAbstractList*) temp, random);
+					gee_abstract_collection_remove ((GeeAbstractCollection*) temp, GINT_TO_POINTER (GPOINTER_TO_INT (_tmp12_)));
 				}
-				_tmp7_ = FALSE;
-				_tmp8_ = gee_map_get_size ((GeeMap*) self->priv->_current);
-				if (!(i < _tmp8_)) {
-					break;
-				}
-				_tmp9_ = gee_collection_get_size ((GeeCollection*) temp);
-				_tmp10_ = g_random_int_range ((gint32) 0, (gint32) _tmp9_);
-				random = (gint) _tmp10_;
-				_tmp11_ = gee_abstract_list_get ((GeeAbstractList*) temp, random);
-				gee_abstract_map_set ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (i), GINT_TO_POINTER (GPOINTER_TO_INT (_tmp11_)));
-				_tmp12_ = gee_abstract_list_get ((GeeAbstractList*) temp, random);
-				gee_abstract_collection_remove ((GeeAbstractCollection*) temp, GINT_TO_POINTER (GPOINTER_TO_INT (_tmp12_)));
+			}
+		}
+	} else {
+		if (mode == BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ARTIST) {
+		} else {
+			if (mode == BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALBUM) {
 			}
 		}
 	}
@@ -2585,7 +2643,8 @@ void beat_box_library_manager_unShuffleMusic (BeatBoxLibraryManager* self) {
 	g_return_if_fail (self != NULL);
 	gee_abstract_map_clear ((GeeAbstractMap*) self->priv->_current_shuffled);
 	self->_current_shuffled_index = 0;
-	beat_box_settings_setShuffleEnabled (self->settings, FALSE);
+	beat_box_settings_setShuffleMode (self->settings, (gint) BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF);
+	self->shuffle = BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF;
 	{
 		gint i;
 		i = 0;
@@ -2631,183 +2690,240 @@ gint beat_box_library_manager_getNext (BeatBoxLibraryManager* self, gboolean pla
 		_tmp2_ = gee_map_get_size ((GeeMap*) self->priv->_current_shuffled);
 		if (_tmp2_ > 0) {
 			if (self->song_info->song == NULL) {
-				gpointer _tmp10_ = NULL;
-				{
-					GeeCollection* _tmp3_ = NULL;
-					GeeCollection* _tmp4_;
-					GeeIterator* _tmp5_ = NULL;
-					GeeIterator* _tmp6_;
-					GeeIterator* _s_it;
-					_tmp3_ = gee_map_get_values ((GeeMap*) self->priv->_songs);
-					_tmp4_ = _tmp3_;
-					_tmp5_ = gee_iterable_iterator ((GeeIterable*) _tmp4_);
-					_s_it = (_tmp6_ = _tmp5_, _g_object_unref0 (_tmp4_), _tmp6_);
-					while (TRUE) {
-						gboolean _tmp7_;
-						gpointer _tmp8_ = NULL;
-						BeatBoxSong* s;
-						gint _tmp9_;
-						_tmp7_ = gee_iterator_next (_s_it);
-						if (!_tmp7_) {
-							break;
-						}
-						_tmp8_ = gee_iterator_get (_s_it);
-						s = (BeatBoxSong*) _tmp8_;
-						_tmp9_ = beat_box_song_get_rowid (s);
-						beat_box_library_manager_addToCurrent (self, _tmp9_);
-						_g_object_unref0 (s);
-					}
-					_g_object_unref0 (_s_it);
-				}
-				beat_box_library_manager_shuffleMusic (self);
+				gpointer _tmp3_ = NULL;
 				self->_current_shuffled_index = 0;
-				_tmp10_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (0));
-				rv = GPOINTER_TO_INT (_tmp10_);
+				_tmp3_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (0));
+				rv = GPOINTER_TO_INT (_tmp3_);
 			} else {
-				gint _tmp11_;
-				_tmp11_ = gee_map_get_size ((GeeMap*) self->priv->_current_shuffled);
-				if (self->_current_shuffled_index == (_tmp11_ - 1)) {
-					gpointer _tmp12_ = NULL;
-					self->_current_shuffled_index = 0;
-					_tmp12_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (0));
-					rv = GPOINTER_TO_INT (_tmp12_);
+				if (self->repeat == BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG) {
+					gpointer _tmp4_ = NULL;
+					_tmp4_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (self->_current_shuffled_index));
+					rv = GPOINTER_TO_INT (_tmp4_);
 				} else {
-					gboolean _tmp13_ = FALSE;
-					if (self->_current_shuffled_index >= 0) {
-						gint _tmp14_;
-						_tmp14_ = gee_map_get_size ((GeeMap*) self->priv->_current_shuffled);
-						_tmp13_ = self->_current_shuffled_index < (_tmp14_ - 1);
-					} else {
-						_tmp13_ = FALSE;
-					}
-					if (_tmp13_) {
-						gpointer _tmp15_ = NULL;
-						self->_current_shuffled_index = self->_current_shuffled_index + 1;
-						_tmp15_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (self->_current_shuffled_index));
-						rv = GPOINTER_TO_INT (_tmp15_);
-					} else {
-						gpointer _tmp23_ = NULL;
-						{
-							GeeCollection* _tmp16_ = NULL;
-							GeeCollection* _tmp17_;
-							GeeIterator* _tmp18_ = NULL;
-							GeeIterator* _tmp19_;
-							GeeIterator* _s_it;
-							_tmp16_ = gee_map_get_values ((GeeMap*) self->priv->_songs);
-							_tmp17_ = _tmp16_;
-							_tmp18_ = gee_iterable_iterator ((GeeIterable*) _tmp17_);
-							_s_it = (_tmp19_ = _tmp18_, _g_object_unref0 (_tmp17_), _tmp19_);
-							while (TRUE) {
-								gboolean _tmp20_;
-								gpointer _tmp21_ = NULL;
-								BeatBoxSong* s;
-								gint _tmp22_;
-								_tmp20_ = gee_iterator_next (_s_it);
-								if (!_tmp20_) {
-									break;
-								}
-								_tmp21_ = gee_iterator_get (_s_it);
-								s = (BeatBoxSong*) _tmp21_;
-								_tmp22_ = beat_box_song_get_rowid (s);
-								beat_box_library_manager_addToCurrent (self, _tmp22_);
-								_g_object_unref0 (s);
-							}
-							_g_object_unref0 (_s_it);
+					gint _tmp5_;
+					_tmp5_ = gee_map_get_size ((GeeMap*) self->priv->_current_shuffled);
+					if (self->_current_shuffled_index == (_tmp5_ - 1)) {
+						gpointer _tmp6_ = NULL;
+						if (self->repeat == BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL) {
+							self->_current_shuffled_index = 0;
+						} else {
+							result = 0;
+							return result;
 						}
-						beat_box_library_manager_shuffleMusic (self);
-						self->_current_shuffled_index = 0;
-						_tmp23_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (0));
-						rv = GPOINTER_TO_INT (_tmp23_);
+						_tmp6_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (0));
+						rv = GPOINTER_TO_INT (_tmp6_);
+					} else {
+						gboolean _tmp7_ = FALSE;
+						if (self->_current_shuffled_index >= 0) {
+							gint _tmp8_;
+							_tmp8_ = gee_map_get_size ((GeeMap*) self->priv->_current_shuffled);
+							_tmp7_ = self->_current_shuffled_index < (_tmp8_ - 1);
+						} else {
+							_tmp7_ = FALSE;
+						}
+						if (_tmp7_) {
+							gboolean _tmp9_ = FALSE;
+							gpointer _tmp33_ = NULL;
+							if (self->repeat == BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST) {
+								gpointer _tmp10_ = NULL;
+								BeatBoxSong* _tmp11_ = NULL;
+								BeatBoxSong* _tmp12_;
+								const gchar* _tmp13_ = NULL;
+								const gchar* _tmp14_ = NULL;
+								_tmp10_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (self->_current_shuffled_index));
+								_tmp11_ = beat_box_library_manager_song_from_id (self, GPOINTER_TO_INT (_tmp10_) + 1);
+								_tmp12_ = _tmp11_;
+								_tmp13_ = beat_box_song_get_artist (_tmp12_);
+								_tmp14_ = beat_box_song_get_artist (self->song_info->song);
+								_tmp9_ = g_strcmp0 (_tmp13_, _tmp14_) != 0;
+								_g_object_unref0 (_tmp12_);
+							} else {
+								_tmp9_ = FALSE;
+							}
+							if (_tmp9_) {
+								while (TRUE) {
+									gpointer _tmp15_ = NULL;
+									BeatBoxSong* _tmp16_ = NULL;
+									BeatBoxSong* _tmp17_;
+									const gchar* _tmp18_ = NULL;
+									const gchar* _tmp19_ = NULL;
+									gboolean _tmp20_;
+									_tmp15_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (self->_current_shuffled_index - 1));
+									_tmp16_ = beat_box_library_manager_song_from_id (self, GPOINTER_TO_INT (_tmp15_));
+									_tmp17_ = _tmp16_;
+									_tmp18_ = beat_box_song_get_artist (_tmp17_);
+									_tmp19_ = beat_box_song_get_artist (self->song_info->song);
+									if ((_tmp20_ = !(g_strcmp0 (_tmp18_, _tmp19_) == 0), _g_object_unref0 (_tmp17_), _tmp20_)) {
+										break;
+									}
+									self->_current_shuffled_index = self->_current_shuffled_index - 1;
+								}
+							} else {
+								gboolean _tmp21_ = FALSE;
+								if (self->repeat == BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM) {
+									gpointer _tmp22_ = NULL;
+									BeatBoxSong* _tmp23_ = NULL;
+									BeatBoxSong* _tmp24_;
+									const gchar* _tmp25_ = NULL;
+									const gchar* _tmp26_ = NULL;
+									_tmp22_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (self->_current_shuffled_index));
+									_tmp23_ = beat_box_library_manager_song_from_id (self, GPOINTER_TO_INT (_tmp22_) + 1);
+									_tmp24_ = _tmp23_;
+									_tmp25_ = beat_box_song_get_album (_tmp24_);
+									_tmp26_ = beat_box_song_get_album (self->song_info->song);
+									_tmp21_ = g_strcmp0 (_tmp25_, _tmp26_) != 0;
+									_g_object_unref0 (_tmp24_);
+								} else {
+									_tmp21_ = FALSE;
+								}
+								if (_tmp21_) {
+									while (TRUE) {
+										gpointer _tmp27_ = NULL;
+										BeatBoxSong* _tmp28_ = NULL;
+										BeatBoxSong* _tmp29_;
+										const gchar* _tmp30_ = NULL;
+										const gchar* _tmp31_ = NULL;
+										gboolean _tmp32_;
+										_tmp27_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (self->_current_shuffled_index - 1));
+										_tmp28_ = beat_box_library_manager_song_from_id (self, GPOINTER_TO_INT (_tmp27_));
+										_tmp29_ = _tmp28_;
+										_tmp30_ = beat_box_song_get_album (_tmp29_);
+										_tmp31_ = beat_box_song_get_album (self->song_info->song);
+										if ((_tmp32_ = !(g_strcmp0 (_tmp30_, _tmp31_) == 0), _g_object_unref0 (_tmp29_), _tmp32_)) {
+											break;
+										}
+										self->_current_shuffled_index = self->_current_shuffled_index - 1;
+									}
+								} else {
+									self->_current_shuffled_index = self->_current_shuffled_index + 1;
+								}
+							}
+							_tmp33_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (self->_current_shuffled_index));
+							rv = GPOINTER_TO_INT (_tmp33_);
+						} else {
+							gpointer _tmp41_ = NULL;
+							{
+								GeeCollection* _tmp34_ = NULL;
+								GeeCollection* _tmp35_;
+								GeeIterator* _tmp36_ = NULL;
+								GeeIterator* _tmp37_;
+								GeeIterator* _s_it;
+								_tmp34_ = gee_map_get_values ((GeeMap*) self->priv->_songs);
+								_tmp35_ = _tmp34_;
+								_tmp36_ = gee_iterable_iterator ((GeeIterable*) _tmp35_);
+								_s_it = (_tmp37_ = _tmp36_, _g_object_unref0 (_tmp35_), _tmp37_);
+								while (TRUE) {
+									gboolean _tmp38_;
+									gpointer _tmp39_ = NULL;
+									BeatBoxSong* s;
+									gint _tmp40_;
+									_tmp38_ = gee_iterator_next (_s_it);
+									if (!_tmp38_) {
+										break;
+									}
+									_tmp39_ = gee_iterator_get (_s_it);
+									s = (BeatBoxSong*) _tmp39_;
+									_tmp40_ = beat_box_song_get_rowid (s);
+									beat_box_library_manager_addToCurrent (self, _tmp40_);
+									_g_object_unref0 (s);
+								}
+								_g_object_unref0 (_s_it);
+							}
+							beat_box_library_manager_shuffleMusic (self, self->shuffle);
+							self->_current_shuffled_index = 0;
+							_tmp41_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (0));
+							rv = GPOINTER_TO_INT (_tmp41_);
+						}
 					}
 				}
 			}
 		} else {
 			if (self->song_info->song == NULL) {
-				gpointer _tmp31_ = NULL;
+				gpointer _tmp49_ = NULL;
 				{
-					GeeCollection* _tmp24_ = NULL;
-					GeeCollection* _tmp25_;
-					GeeIterator* _tmp26_ = NULL;
-					GeeIterator* _tmp27_;
+					GeeCollection* _tmp42_ = NULL;
+					GeeCollection* _tmp43_;
+					GeeIterator* _tmp44_ = NULL;
+					GeeIterator* _tmp45_;
 					GeeIterator* _s_it;
-					_tmp24_ = gee_map_get_values ((GeeMap*) self->priv->_songs);
-					_tmp25_ = _tmp24_;
-					_tmp26_ = gee_iterable_iterator ((GeeIterable*) _tmp25_);
-					_s_it = (_tmp27_ = _tmp26_, _g_object_unref0 (_tmp25_), _tmp27_);
+					_tmp42_ = gee_map_get_values ((GeeMap*) self->priv->_songs);
+					_tmp43_ = _tmp42_;
+					_tmp44_ = gee_iterable_iterator ((GeeIterable*) _tmp43_);
+					_s_it = (_tmp45_ = _tmp44_, _g_object_unref0 (_tmp43_), _tmp45_);
 					while (TRUE) {
-						gboolean _tmp28_;
-						gpointer _tmp29_ = NULL;
+						gboolean _tmp46_;
+						gpointer _tmp47_ = NULL;
 						BeatBoxSong* s;
-						gint _tmp30_;
-						_tmp28_ = gee_iterator_next (_s_it);
-						if (!_tmp28_) {
+						gint _tmp48_;
+						_tmp46_ = gee_iterator_next (_s_it);
+						if (!_tmp46_) {
 							break;
 						}
-						_tmp29_ = gee_iterator_get (_s_it);
-						s = (BeatBoxSong*) _tmp29_;
-						_tmp30_ = beat_box_song_get_rowid (s);
-						beat_box_library_manager_addToCurrent (self, _tmp30_);
+						_tmp47_ = gee_iterator_get (_s_it);
+						s = (BeatBoxSong*) _tmp47_;
+						_tmp48_ = beat_box_song_get_rowid (s);
+						beat_box_library_manager_addToCurrent (self, _tmp48_);
 						_g_object_unref0 (s);
 					}
 					_g_object_unref0 (_s_it);
 				}
 				self->_current_index = 0;
-				_tmp31_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current, GINT_TO_POINTER (0));
-				rv = GPOINTER_TO_INT (_tmp31_);
+				_tmp49_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current, GINT_TO_POINTER (0));
+				rv = GPOINTER_TO_INT (_tmp49_);
 			} else {
-				gint _tmp32_;
-				_tmp32_ = gee_map_get_size ((GeeMap*) self->priv->_current);
-				if (self->_current_index == (_tmp32_ - 1)) {
-					gpointer _tmp33_ = NULL;
+				gint _tmp50_;
+				_tmp50_ = gee_map_get_size ((GeeMap*) self->priv->_current);
+				if (self->_current_index == (_tmp50_ - 1)) {
+					gpointer _tmp51_ = NULL;
 					self->_current_index = 0;
-					_tmp33_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current, GINT_TO_POINTER (0));
-					rv = GPOINTER_TO_INT (_tmp33_);
+					_tmp51_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current, GINT_TO_POINTER (0));
+					rv = GPOINTER_TO_INT (_tmp51_);
 				} else {
-					gboolean _tmp34_ = FALSE;
+					gboolean _tmp52_ = FALSE;
 					if (self->_current_index >= 0) {
-						gint _tmp35_;
-						_tmp35_ = gee_map_get_size ((GeeMap*) self->priv->_current);
-						_tmp34_ = self->_current_index < (_tmp35_ - 1);
+						gint _tmp53_;
+						_tmp53_ = gee_map_get_size ((GeeMap*) self->priv->_current);
+						_tmp52_ = self->_current_index < (_tmp53_ - 1);
 					} else {
-						_tmp34_ = FALSE;
+						_tmp52_ = FALSE;
 					}
-					if (_tmp34_) {
-						gpointer _tmp36_ = NULL;
+					if (_tmp52_) {
+						gpointer _tmp54_ = NULL;
 						self->_current_index = self->_current_index + 1;
-						_tmp36_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current, GINT_TO_POINTER (self->_current_index));
-						rv = GPOINTER_TO_INT (_tmp36_);
+						_tmp54_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current, GINT_TO_POINTER (self->_current_index));
+						rv = GPOINTER_TO_INT (_tmp54_);
 					} else {
-						gpointer _tmp44_ = NULL;
+						gpointer _tmp62_ = NULL;
 						{
-							GeeCollection* _tmp37_ = NULL;
-							GeeCollection* _tmp38_;
-							GeeIterator* _tmp39_ = NULL;
-							GeeIterator* _tmp40_;
+							GeeCollection* _tmp55_ = NULL;
+							GeeCollection* _tmp56_;
+							GeeIterator* _tmp57_ = NULL;
+							GeeIterator* _tmp58_;
 							GeeIterator* _s_it;
-							_tmp37_ = gee_map_get_values ((GeeMap*) self->priv->_songs);
-							_tmp38_ = _tmp37_;
-							_tmp39_ = gee_iterable_iterator ((GeeIterable*) _tmp38_);
-							_s_it = (_tmp40_ = _tmp39_, _g_object_unref0 (_tmp38_), _tmp40_);
+							_tmp55_ = gee_map_get_values ((GeeMap*) self->priv->_songs);
+							_tmp56_ = _tmp55_;
+							_tmp57_ = gee_iterable_iterator ((GeeIterable*) _tmp56_);
+							_s_it = (_tmp58_ = _tmp57_, _g_object_unref0 (_tmp56_), _tmp58_);
 							while (TRUE) {
-								gboolean _tmp41_;
-								gpointer _tmp42_ = NULL;
+								gboolean _tmp59_;
+								gpointer _tmp60_ = NULL;
 								BeatBoxSong* s;
-								gint _tmp43_;
-								_tmp41_ = gee_iterator_next (_s_it);
-								if (!_tmp41_) {
+								gint _tmp61_;
+								_tmp59_ = gee_iterator_next (_s_it);
+								if (!_tmp59_) {
 									break;
 								}
-								_tmp42_ = gee_iterator_get (_s_it);
-								s = (BeatBoxSong*) _tmp42_;
-								_tmp43_ = beat_box_song_get_rowid (s);
-								beat_box_library_manager_addToCurrent (self, _tmp43_);
+								_tmp60_ = gee_iterator_get (_s_it);
+								s = (BeatBoxSong*) _tmp60_;
+								_tmp61_ = beat_box_song_get_rowid (s);
+								beat_box_library_manager_addToCurrent (self, _tmp61_);
 								_g_object_unref0 (s);
 							}
 							_g_object_unref0 (_s_it);
 						}
 						self->_current_index = 0;
-						_tmp44_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current, GINT_TO_POINTER (0));
-						rv = GPOINTER_TO_INT (_tmp44_);
+						_tmp62_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current, GINT_TO_POINTER (0));
+						rv = GPOINTER_TO_INT (_tmp62_);
 					}
 				}
 			}
@@ -2863,7 +2979,7 @@ gint beat_box_library_manager_getPrevious (BeatBoxLibraryManager* self, gboolean
 				}
 				_g_object_unref0 (_s_it);
 			}
-			beat_box_library_manager_shuffleMusic (self);
+			beat_box_library_manager_shuffleMusic (self, self->shuffle);
 			_tmp9_ = gee_map_get_size ((GeeMap*) self->priv->_current_shuffled);
 			self->_current_shuffled_index = _tmp9_ - 1;
 			_tmp10_ = gee_abstract_map_get ((GeeAbstractMap*) self->priv->_current_shuffled, GINT_TO_POINTER (self->_current_shuffled_index));

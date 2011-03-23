@@ -66,7 +66,8 @@ enum  {
 #define BEAT_BOX_SETTINGS_COPY_IMPORTED_MUSIC "/apps/beatbox/preferences/music/copy_imported_music"
 #define BEAT_BOX_SETTINGS_LAST_SONG_PLAYING "/apps/beatbox/preferences/music/last_song_playing"
 #define BEAT_BOX_SETTINGS_LAST_SONG_POSITION "/apps/beatbox/preferences/music/last_song_position"
-#define BEAT_BOX_SETTINGS_SHUFFLE_ENABLED "/apps/beatbox/preferences/music/shuffle_enabled"
+#define BEAT_BOX_SETTINGS_SHUFFLE_MODE "/apps/beatbox/preferences/music/shuffle_mode"
+#define BEAT_BOX_SETTINGS_REPEAT_MODE "/apps/beatbox/preferences/music/repeat_mode"
 #define BEAT_BOX_SETTINGS_WINDOW_MAXIMIZED "/apps/beatbox/preferences/ui/window_maximized"
 #define BEAT_BOX_SETTINGS_WINDOW_WIDTH "/apps/beatbox/preferences/ui/window_width"
 #define BEAT_BOX_SETTINGS_WINDOW_HEIGHT "/apps/beatbox/preferences/ui/window_height"
@@ -97,8 +98,8 @@ BeatBoxSong* beat_box_song_construct (GType object_type, const gchar* file);
 void beat_box_song_set_title (BeatBoxSong* self, const gchar* value);
 void beat_box_song_set_artist (BeatBoxSong* self, const gchar* value);
 gint beat_box_settings_getLastSongPosition (BeatBoxSettings* self);
-gboolean beat_box_settings_getShuffleEnabled (BeatBoxSettings* self);
-gboolean beat_box_settings_getLastFMAutoLogin (BeatBoxSettings* self);
+gint beat_box_settings_getShuffleMode (BeatBoxSettings* self);
+gint beat_box_settings_getRepeatMode (BeatBoxSettings* self);
 gchar* beat_box_settings_getLastFMSessionKey (BeatBoxSettings* self);
 void beat_box_settings_setMusicFolder (BeatBoxSettings* self, const gchar* path);
 void beat_box_settings_setWindowMaximized (BeatBoxSettings* self, gboolean val);
@@ -113,8 +114,8 @@ void beat_box_settings_setLastSongPlaying (BeatBoxSettings* self, BeatBoxSong* s
 const gchar* beat_box_song_get_title (BeatBoxSong* self);
 const gchar* beat_box_song_get_artist (BeatBoxSong* self);
 void beat_box_settings_setLastSongPosition (BeatBoxSettings* self, gint val);
-void beat_box_settings_setShuffleEnabled (BeatBoxSettings* self, gboolean val);
-void beat_box_settings_setLastFMAutoLogin (BeatBoxSettings* self, gboolean val);
+void beat_box_settings_setShuffleMode (BeatBoxSettings* self, gint val);
+void beat_box_settings_setRepeatMode (BeatBoxSettings* self, gint val);
 void beat_box_settings_setLastFMSessionKey (BeatBoxSettings* self, const gchar* val);
 static void beat_box_settings_finalize (GObject* obj);
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func);
@@ -520,21 +521,21 @@ gint beat_box_settings_getLastSongPosition (BeatBoxSettings* self) {
 }
 
 
-gboolean beat_box_settings_getShuffleEnabled (BeatBoxSettings* self) {
-	gboolean result = FALSE;
-	gboolean _tmp0_;
-	g_return_val_if_fail (self != NULL, FALSE);
-	_tmp0_ = beat_box_settings_getBool (self, BEAT_BOX_SETTINGS_SHUFFLE_ENABLED, FALSE);
+gint beat_box_settings_getShuffleMode (BeatBoxSettings* self) {
+	gint result = 0;
+	gint _tmp0_;
+	g_return_val_if_fail (self != NULL, 0);
+	_tmp0_ = beat_box_settings_getInt (self, BEAT_BOX_SETTINGS_SHUFFLE_MODE, 0);
 	result = _tmp0_;
 	return result;
 }
 
 
-gboolean beat_box_settings_getLastFMAutoLogin (BeatBoxSettings* self) {
-	gboolean result = FALSE;
-	gboolean _tmp0_;
-	g_return_val_if_fail (self != NULL, FALSE);
-	_tmp0_ = beat_box_settings_getBool (self, BEAT_BOX_SETTINGS_LASTFM_AUTO_LOGIN, FALSE);
+gint beat_box_settings_getRepeatMode (BeatBoxSettings* self) {
+	gint result = 0;
+	gint _tmp0_;
+	g_return_val_if_fail (self != NULL, 0);
+	_tmp0_ = beat_box_settings_getInt (self, BEAT_BOX_SETTINGS_REPEAT_MODE, 0);
 	result = _tmp0_;
 	return result;
 }
@@ -629,15 +630,15 @@ void beat_box_settings_setLastSongPosition (BeatBoxSettings* self, gint val) {
 }
 
 
-void beat_box_settings_setShuffleEnabled (BeatBoxSettings* self, gboolean val) {
+void beat_box_settings_setShuffleMode (BeatBoxSettings* self, gint val) {
 	g_return_if_fail (self != NULL);
-	beat_box_settings_setBool (self, BEAT_BOX_SETTINGS_SHUFFLE_ENABLED, val);
+	beat_box_settings_setInt (self, BEAT_BOX_SETTINGS_SHUFFLE_MODE, val);
 }
 
 
-void beat_box_settings_setLastFMAutoLogin (BeatBoxSettings* self, gboolean val) {
+void beat_box_settings_setRepeatMode (BeatBoxSettings* self, gint val) {
 	g_return_if_fail (self != NULL);
-	beat_box_settings_setBool (self, BEAT_BOX_SETTINGS_LASTFM_AUTO_LOGIN, val);
+	beat_box_settings_setInt (self, BEAT_BOX_SETTINGS_REPEAT_MODE, val);
 }
 
 

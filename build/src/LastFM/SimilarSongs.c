@@ -128,6 +128,10 @@ typedef struct _BeatBoxTreeViewSetupClass BeatBoxTreeViewSetupClass;
 
 typedef struct _BeatBoxSongInfo BeatBoxSongInfo;
 typedef struct _BeatBoxSongInfoClass BeatBoxSongInfoClass;
+
+#define BEAT_BOX_LIBRARY_MANAGER_TYPE_REPEAT (beat_box_library_manager_repeat_get_type ())
+
+#define BEAT_BOX_LIBRARY_MANAGER_TYPE_SHUFFLE (beat_box_library_manager_shuffle_get_type ())
 typedef struct _BeatBoxSongInfoPrivate BeatBoxSongInfoPrivate;
 
 #define LAST_FM_TYPE_ARTIST_INFO (last_fm_artist_info_get_type ())
@@ -186,6 +190,21 @@ struct _Block2Data {
 	GeeLinkedList* similarDont;
 };
 
+typedef enum  {
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG
+} BeatBoxLibraryManagerRepeat;
+
+typedef enum  {
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALBUM,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL
+} BeatBoxLibraryManagerShuffle;
+
 struct _BeatBoxLibraryManager {
 	GObject parent_instance;
 	BeatBoxLibraryManagerPrivate * priv;
@@ -204,8 +223,8 @@ struct _BeatBoxLibraryManager {
 	gint _current_shuffled_index;
 	BeatBoxSongInfo* song_info;
 	gboolean playing;
-	gboolean repeat;
-	gboolean shuffle;
+	BeatBoxLibraryManagerRepeat repeat;
+	BeatBoxLibraryManagerShuffle shuffle;
 	gboolean doing_file_operations;
 };
 
@@ -259,6 +278,8 @@ GType beat_box_stream_player_get_type (void) G_GNUC_CONST;
 GType last_fm_core_get_type (void) G_GNUC_CONST;
 GType beat_box_tree_view_setup_get_type (void) G_GNUC_CONST;
 GType beat_box_song_info_get_type (void) G_GNUC_CONST;
+GType beat_box_library_manager_repeat_get_type (void) G_GNUC_CONST;
+GType beat_box_library_manager_shuffle_get_type (void) G_GNUC_CONST;
 GType last_fm_artist_info_get_type (void) G_GNUC_CONST;
 GType last_fm_track_info_get_type (void) G_GNUC_CONST;
 GType last_fm_album_info_get_type (void) G_GNUC_CONST;

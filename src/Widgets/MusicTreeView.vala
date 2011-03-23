@@ -302,7 +302,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		filter.set_visible_column(_columns.index_of("visible"));
 		
-		stdout.printf("setting sort column as %d or %s\n", _columns.index_of(sort_column), sort_column);
 		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
 		view.set_model(sort);
@@ -870,7 +869,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			updateSong(lm.song_info.song.rowid);
 			
 		if(lm.is_shuffled())
-			lm.shuffleMusic();
+			lm.shuffleMusic(lm.shuffle);
 	}
 	
 	/* button_press_event */

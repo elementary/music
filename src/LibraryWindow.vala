@@ -33,13 +33,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ToolButton previousButton;
 	ToolButton playButton;
 	ToolButton nextButton;
-	Button shuffleButton;
 	Button loveButton;
 	Button banButton;
 	ElementaryWidgets.TopDisplay topDisplay;
 	public ElementaryWidgets.ElementarySearchEntry searchField;
 	ElementaryWidgets.AppMenu appMenu;
-	Statusbar statusBar;
+	HBox statusBar;
+	Label statusBarLabel;
+	SimpleOptionChooser shuffleChooser;
+	SimpleOptionChooser repeatChooser;
+	SimpleOptionChooser infoPanelChooser;
 	
 	MenuBar topMenu;
 	
@@ -48,7 +51,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	Menu libraryOperationsMenu;
 	MenuItem fileImportMusic;
 	MenuItem fileRescanMusicFolder;
-	CheckMenuItem showInfoPanel;
 	MenuItem helpOnline;
 	MenuItem helpTranslate;
 	MenuItem helpReport;
@@ -119,8 +121,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					lm.playSong(s.rowid);
 					
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
-					if(settings.getShuffleEnabled())
-						shuffleClicked();
+					if(settings.getShuffleMode() != LibraryManager.Shuffle.OFF)
+						stdout.printf("shuffle me dude! (no really fix this at line 124\n");
 					
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).scrollToCurrent();
 					
@@ -168,7 +170,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		libraryOperationsMenu = new Menu();
 		fileImportMusic = new MenuItem.with_label("Import to Library");
 		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
-		showInfoPanel = new CheckMenuItem.with_label("Show Info Panel");
 		helpOnline = new MenuItem.with_label("Get Help Online...");
 		helpTranslate = new MenuItem.with_label("Translate This Application...");
 		helpReport = new MenuItem.with_label("Report a Problem...");
@@ -179,7 +180,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PREVIOUS);
 		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
-		shuffleButton = new Button.with_label("Shuffle");
 		loveButton = new Button.with_label("Love");
 		banButton = new Button.with_label("Ban");
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
@@ -190,14 +190,18 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		grooveSharkScroll = new ScrolledWindow(null, null);
 		infoPanel = new InfoPanel(lm, this);
 		sideBar = new VBox(false, 0);
-		statusBar = new Statusbar();
+		statusBar = new HBox(false, 0);
+		statusBarLabel = new Label("");
+		shuffleChooser = new SimpleOptionChooser(render_icon("media-playlist-shuffle-active-symbolic", IconSize.SMALL_TOOLBAR, null), render_icon("media-playlist-shuffle-symbolic", IconSize.SMALL_TOOLBAR, null));
+		repeatChooser = new SimpleOptionChooser(render_icon("media-playlist-repeat-active-symbolic", IconSize.SMALL_TOOLBAR, null), render_icon("media-playlist-repeat-symbolic", IconSize.SMALL_TOOLBAR, null));
+		infoPanelChooser = new SimpleOptionChooser(render_icon("help-info", IconSize.SMALL_TOOLBAR, null), render_icon("help-info", IconSize.SMALL_TOOLBAR, null));
+		
 		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
 						"summary", "Title",
 						"body", "Artist\nAlbum");
 		
 		/* Set properties of various controls */
-		sideBar.set_size_request(settings.getSidebarWidth(), -1);
 		sourcesToSongs.set_position(settings.getSidebarWidth());
 		songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 		
@@ -206,8 +210,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		buildSideTree();
 		
-		shuffleButton.relief = Gtk.ReliefStyle.NONE;
-		//shuffleButton.image = new Gtk.Image.from_stock(Gtk.Stock.MEDIA_SHUFFLE, Gtk.IconSize.SMALL_TOOLBAR);
 		loveButton.relief = Gtk.ReliefStyle.NONE;
 		banButton.relief = Gtk.ReliefStyle.NONE;
 		
@@ -219,8 +221,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		settingsMenu.append(libraryOperations);
 		settingsMenu.append(new SeparatorMenuItem());
-		settingsMenu.append(showInfoPanel);
-		settingsMenu.append(new SeparatorMenuItem());
 		settingsMenu.append(helpOnline);
 		settingsMenu.append(helpTranslate);
 		settingsMenu.append(helpReport);
@@ -230,7 +230,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
-		showInfoPanel.toggled.connect(showInfoPanelToggled);
+		
 		helpOnline.activate.connect( () => {
 			string auth_uri = "https://answers.launchpad.net/beat-box";
 			try {
@@ -261,7 +261,31 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		helpAbout.activate.connect(helpAboutClick);
 		editPreferences.activate.connect(editPreferencesClick);
 		
-		statusBar.has_resize_grip = true;
+		// make the background white
+		EventBox statusEventBox = new EventBox();
+		statusEventBox.add(statusBar);
+		
+		Gdk.Color c = Gdk.Color();
+		Gdk.Color.parse("#FFFFFF", out c);
+		statusEventBox.modify_bg(StateType.NORMAL, c);
+		
+		repeatChooser.appendItem("Off");
+		repeatChooser.appendItem("Song");
+		repeatChooser.appendItem("Album");
+		repeatChooser.appendItem("Artist");
+		repeatChooser.appendItem("All");
+		
+		shuffleChooser.appendItem("Off");
+		shuffleChooser.appendItem("Artist");
+		shuffleChooser.appendItem("Album");
+		shuffleChooser.appendItem("All");
+		
+		infoPanelChooser.appendItem("Hide");
+		infoPanelChooser.appendItem("Show");
+		
+		repeatChooser.setOption(settings.getRepeatMode());
+		shuffleChooser.setOption(settings.getShuffleMode());
+		infoPanelChooser.setOption(settings.getMoreVisible() ? 1 : 0);
 		
 		/* Add controls to the GUI */
 		add(verticalBox);
@@ -294,7 +318,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		welcomeScreen.append("folder-music", "Import", "Select your music folder to import from.");
 		
 		contentBox.pack_start(mainViews, true, true, 0);
-		contentBox.pack_start(statusBar, false, true, 0);
+		contentBox.pack_start(statusEventBox, false, true, 0);
 		
 		songsToInfo.pack1(contentBox, true, true);
 		songsToInfo.pack2(infoPanel, true, false);
@@ -305,7 +329,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
 		sideBar.pack_end(coverArt, false, true, 0);
 		
-		statusBar.pack_start(shuffleButton);
+		statusBar.pack_start(shuffleChooser, false, false, 2);
+		statusBar.pack_start(repeatChooser, false, false, 2);
+		statusBar.pack_start(statusBarLabel, true, true, 0);
+		statusBar.pack_start(infoPanelChooser, false, false, 2);
+		
 		
 		/* Connect events to functions */
 		sourcesToSongs.child1.size_allocate.connect(sourcesToSongsHandleSet);
@@ -314,10 +342,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton.clicked.connect(previousClicked);
 		playButton.clicked.connect(playClicked);
 		nextButton.clicked.connect(nextClicked);
-		shuffleButton.clicked.connect(shuffleClicked);
 		loveButton.clicked.connect(loveButtonClicked);
 		banButton.clicked.connect(banButtonClicked);
 		infoPanel.size_allocate.connect(infoPanelResized);
+		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
+		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
+		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
 		
 		show_all();
 		topMenu.hide();
@@ -327,8 +357,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.resetView();
 		welcomeScreen.hide();
 		infoPanel.set_visible(settings.getMoreVisible());
-		showInfoPanel.set_active(settings.getMoreVisible());
-		showInfoPanel.set_sensitive(false); // set back to normal when a song is played
 		updateSensitivities();
 	}
 	
@@ -519,7 +547,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		updateCurrentSong();
 		infoPanel.updateSong(lm.song_info.song.rowid);
-		showInfoPanel.set_sensitive(true);
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {
@@ -666,17 +693,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// if not 90% done, skip it
 		if(!added_to_play_count) {
 			lm.song_info.song.skip_count++;
-		}
-	}
-	
-	public virtual void shuffleClicked() {
-		if(shuffleButton.get_label() == "Shuffle") {
-			shuffleButton.set_label("Unshuffle");
-			lm.shuffleMusic();
-		}
-		else {
-			shuffleButton.set_label("Shuffle");
-			lm.unShuffleMusic();
 		}
 	}
 	
@@ -884,11 +900,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 	}
 	
-	public virtual void showInfoPanelToggled() {
-		infoPanel.set_visible(showInfoPanel.get_active());
-		settings.setMoreVisible(showInfoPanel.get_active());
-	}
-	
 	public virtual void helpAboutClick() {
 		AboutDialog ad = new AboutDialog();
 		
@@ -1022,7 +1033,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void setStatusBarText(string text) {
-		stdout.printf("View changed, set text to %s\n", text);
+		statusBarLabel.set_text(text);
 	}
 	
 	public void welcomeScreenActivated(int index) {
@@ -1059,13 +1070,23 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			return;
 		}
 		
-		/*if(settings.getSidebarWidth() != rectangle.width) {
-			updateCurrentSong();
-			settings.setSidebarWidth(rectangle.width);
-		}*/
-		
 		if(lm.settings.getMoreWidth() != rectangle.width) {
 			lm.settings.setMoreWidth(rectangle.width);
 		}
+	}
+	
+	public virtual void repeatChooserOptionChanged(int val) {
+		lm.settings.setRepeatMode(val);
+	}
+	
+	public virtual void shuffleChooserOptionChanged(int val) {
+		lm.settings.setShuffleMode(val);
+		
+		// do stuff depending on the mode chosen.
+	}
+	
+	public virtual void infoPanelChooserOptionChanged(int val) {
+		infoPanel.set_visible(val == 1);
+		lm.settings.setMoreVisible(val == 1);
 	}
 }

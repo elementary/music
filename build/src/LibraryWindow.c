@@ -13,8 +13,8 @@
 #include <gdk/gdk.h>
 #include <libnotify/notify.h>
 #include <stdio.h>
-#include <gio/gio.h>
 #include <gdk-pixbuf/gdk-pixdata.h>
+#include <gio/gio.h>
 #include <time.h>
 
 
@@ -158,6 +158,16 @@ typedef struct _ToolButtonWithMenuClass ToolButtonWithMenuClass;
 
 typedef struct _ElementaryWidgetsAppMenu ElementaryWidgetsAppMenu;
 typedef struct _ElementaryWidgetsAppMenuClass ElementaryWidgetsAppMenuClass;
+
+#define BEAT_BOX_TYPE_SIMPLE_OPTION_CHOOSER (beat_box_simple_option_chooser_get_type ())
+#define BEAT_BOX_SIMPLE_OPTION_CHOOSER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SIMPLE_OPTION_CHOOSER, BeatBoxSimpleOptionChooser))
+#define BEAT_BOX_SIMPLE_OPTION_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_SIMPLE_OPTION_CHOOSER, BeatBoxSimpleOptionChooserClass))
+#define BEAT_BOX_IS_SIMPLE_OPTION_CHOOSER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_SIMPLE_OPTION_CHOOSER))
+#define BEAT_BOX_IS_SIMPLE_OPTION_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_SIMPLE_OPTION_CHOOSER))
+#define BEAT_BOX_SIMPLE_OPTION_CHOOSER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_SIMPLE_OPTION_CHOOSER, BeatBoxSimpleOptionChooserClass))
+
+typedef struct _BeatBoxSimpleOptionChooser BeatBoxSimpleOptionChooser;
+typedef struct _BeatBoxSimpleOptionChooserClass BeatBoxSimpleOptionChooserClass;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 #define _g_free0(var) (var = (g_free (var), NULL))
 
@@ -231,6 +241,10 @@ typedef struct _BeatBoxTreeViewSetupClass BeatBoxTreeViewSetupClass;
 
 typedef struct _BeatBoxSongInfo BeatBoxSongInfo;
 typedef struct _BeatBoxSongInfoClass BeatBoxSongInfoClass;
+
+#define BEAT_BOX_LIBRARY_MANAGER_TYPE_REPEAT (beat_box_library_manager_repeat_get_type ())
+
+#define BEAT_BOX_LIBRARY_MANAGER_TYPE_SHUFFLE (beat_box_library_manager_shuffle_get_type ())
 typedef struct _Block6Data Block6Data;
 typedef struct _BeatBoxSongInfoPrivate BeatBoxSongInfoPrivate;
 
@@ -359,7 +373,6 @@ struct _BeatBoxLibraryWindowClass {
 	void (*previousClicked) (BeatBoxLibraryWindow* self);
 	void (*playClicked) (BeatBoxLibraryWindow* self);
 	void (*nextClicked) (BeatBoxLibraryWindow* self);
-	void (*shuffleClicked) (BeatBoxLibraryWindow* self);
 	void (*loveButtonClicked) (BeatBoxLibraryWindow* self);
 	void (*banButtonClicked) (BeatBoxLibraryWindow* self);
 	void (*searchFieldIconPressed) (BeatBoxLibraryWindow* self, GtkEntryIconPosition p0, GdkEvent* p1);
@@ -374,13 +387,15 @@ struct _BeatBoxLibraryWindowClass {
 	void (*musicRescanned) (BeatBoxLibraryWindow* self, GeeLinkedList* new_songs, GeeLinkedList* not_imported);
 	void (*song_added) (BeatBoxLibraryWindow* self, gint id);
 	void (*songs_removed) (BeatBoxLibraryWindow* self, GeeLinkedList* removed);
-	void (*showInfoPanelToggled) (BeatBoxLibraryWindow* self);
 	void (*helpAboutClick) (BeatBoxLibraryWindow* self);
 	void (*editPreferencesClick) (BeatBoxLibraryWindow* self);
 	void (*end_of_stream) (BeatBoxLibraryWindow* self, BeatBoxSong* s);
 	void (*current_position_update) (BeatBoxLibraryWindow* self, gint64 position);
 	void (*similarRetrieved) (BeatBoxLibraryWindow* self, GeeLinkedList* similarIDs, GeeLinkedList* similarDont);
 	void (*infoPanelResized) (BeatBoxLibraryWindow* self, GdkRectangle* rectangle);
+	void (*repeatChooserOptionChanged) (BeatBoxLibraryWindow* self, gint val);
+	void (*shuffleChooserOptionChanged) (BeatBoxLibraryWindow* self, gint val);
+	void (*infoPanelChooserOptionChanged) (BeatBoxLibraryWindow* self, gint val);
 };
 
 struct _BeatBoxLibraryWindowPrivate {
@@ -411,18 +426,20 @@ struct _BeatBoxLibraryWindowPrivate {
 	GtkToolButton* previousButton;
 	GtkToolButton* playButton;
 	GtkToolButton* nextButton;
-	GtkButton* shuffleButton;
 	GtkButton* loveButton;
 	GtkButton* banButton;
 	ElementaryWidgetsTopDisplay* topDisplay;
 	ElementaryWidgetsAppMenu* appMenu;
-	GtkStatusbar* statusBar;
+	GtkHBox* statusBar;
+	GtkLabel* statusBarLabel;
+	BeatBoxSimpleOptionChooser* shuffleChooser;
+	BeatBoxSimpleOptionChooser* repeatChooser;
+	BeatBoxSimpleOptionChooser* infoPanelChooser;
 	GtkMenuBar* topMenu;
 	GtkMenuItem* libraryOperations;
 	GtkMenu* libraryOperationsMenu;
 	GtkMenuItem* fileImportMusic;
 	GtkMenuItem* fileRescanMusicFolder;
-	GtkCheckMenuItem* showInfoPanel;
 	GtkMenuItem* helpOnline;
 	GtkMenuItem* helpTranslate;
 	GtkMenuItem* helpReport;
@@ -431,6 +448,21 @@ struct _BeatBoxLibraryWindowPrivate {
 	GtkMenu* settingsMenu;
 	NotifyNotification* notification;
 };
+
+typedef enum  {
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG
+} BeatBoxLibraryManagerRepeat;
+
+typedef enum  {
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALBUM,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL
+} BeatBoxLibraryManagerShuffle;
 
 struct _BeatBoxLibraryManager {
 	GObject parent_instance;
@@ -450,8 +482,8 @@ struct _BeatBoxLibraryManager {
 	gint _current_shuffled_index;
 	BeatBoxSongInfo* song_info;
 	gboolean playing;
-	gboolean repeat;
-	gboolean shuffle;
+	BeatBoxLibraryManagerRepeat repeat;
+	BeatBoxLibraryManagerShuffle shuffle;
 	gboolean doing_file_operations;
 };
 
@@ -576,6 +608,7 @@ GType beat_box_info_panel_get_type (void) G_GNUC_CONST;
 GType elementary_widgets_top_display_get_type (void) G_GNUC_CONST;
 GType tool_button_with_menu_get_type (void) G_GNUC_CONST;
 GType elementary_widgets_app_menu_get_type (void) G_GNUC_CONST;
+GType beat_box_simple_option_chooser_get_type (void) G_GNUC_CONST;
 #define BEAT_BOX_LIBRARY_WINDOW_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowPrivate))
 enum  {
 	BEAT_BOX_LIBRARY_WINDOW_DUMMY_PROPERTY
@@ -598,6 +631,8 @@ GType beat_box_file_operator_get_type (void) G_GNUC_CONST;
 GType last_fm_core_get_type (void) G_GNUC_CONST;
 GType beat_box_tree_view_setup_get_type (void) G_GNUC_CONST;
 GType beat_box_song_info_get_type (void) G_GNUC_CONST;
+GType beat_box_library_manager_repeat_get_type (void) G_GNUC_CONST;
+GType beat_box_library_manager_shuffle_get_type (void) G_GNUC_CONST;
 void beat_box_library_window_end_of_stream (BeatBoxLibraryWindow* self, BeatBoxSong* s);
 static void _beat_box_library_window_end_of_stream_beat_box_stream_player_end_of_stream (BeatBoxStreamPlayer* _sender, BeatBoxSong* s, gpointer self);
 void beat_box_library_window_current_position_update (BeatBoxLibraryWindow* self, gint64 position);
@@ -645,18 +680,17 @@ const gchar* beat_box_song_get_artist (BeatBoxSong* self);
 gint beat_box_song_get_rowid (BeatBoxSong* self);
 static Block7Data* block7_data_ref (Block7Data* _data7_);
 static void block7_data_unref (Block7Data* _data7_);
-static gboolean _lambda21_ (Block7Data* _data7_);
+static gboolean _lambda22_ (Block7Data* _data7_);
 void beat_box_library_manager_playSong (BeatBoxLibraryManager* self, gint id);
 GtkWidget* beat_box_side_tree_view_getWidget (BeatBoxSideTreeView* self, GtkTreeIter* iter);
 GType beat_box_smart_playlist_get_type (void) G_GNUC_CONST;
 GType beat_box_playlist_get_type (void) G_GNUC_CONST;
 GType beat_box_music_tree_view_get_type (void) G_GNUC_CONST;
 void beat_box_music_tree_view_setAsCurrentList (BeatBoxMusicTreeView* self, const gchar* current_song_path);
-gboolean beat_box_settings_getShuffleEnabled (BeatBoxSettings* self);
-void beat_box_library_window_shuffleClicked (BeatBoxLibraryWindow* self);
+gint beat_box_settings_getShuffleMode (BeatBoxSettings* self);
 void beat_box_music_tree_view_scrollToCurrent (BeatBoxMusicTreeView* self);
 gboolean elementary_widgets_top_display_change_value (ElementaryWidgetsTopDisplay* self, GtkScrollType scroll, gdouble val);
-static gboolean __lambda21__gsource_func (gpointer self);
+static gboolean __lambda22__gsource_func (gpointer self);
 void beat_box_library_manager_rescan_music_folder (BeatBoxLibraryManager* self);
 gint beat_box_settings_getWindowWidth (BeatBoxSettings* self);
 gint beat_box_settings_getWindowHeight (BeatBoxSettings* self);
@@ -672,6 +706,8 @@ ElementaryWidgetsAppMenu* elementary_widgets_app_menu_new_from_stock (const gcha
 ElementaryWidgetsAppMenu* elementary_widgets_app_menu_construct_from_stock (GType object_type, const gchar* stock_image, GtkIconSize size, const gchar* label, GtkMenu* menu);
 BeatBoxInfoPanel* beat_box_info_panel_new (BeatBoxLibraryManager* lmm, BeatBoxLibraryWindow* lww);
 BeatBoxInfoPanel* beat_box_info_panel_construct (GType object_type, BeatBoxLibraryManager* lmm, BeatBoxLibraryWindow* lww);
+BeatBoxSimpleOptionChooser* beat_box_simple_option_chooser_new (GdkPixbuf* enabled, GdkPixbuf* disabled);
+BeatBoxSimpleOptionChooser* beat_box_simple_option_chooser_construct (GType object_type, GdkPixbuf* enabled, GdkPixbuf* disabled);
 gint beat_box_settings_getSidebarWidth (BeatBoxSettings* self);
 gint beat_box_settings_getMoreWidth (BeatBoxSettings* self);
 static void beat_box_library_window_buildSideTree (BeatBoxLibraryWindow* self);
@@ -680,18 +716,20 @@ void beat_box_library_window_fileImportMusicClick (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_fileImportMusicClick_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 void beat_box_library_window_fileRescanMusicFolderClick (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_fileRescanMusicFolderClick_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
-void beat_box_library_window_showInfoPanelToggled (BeatBoxLibraryWindow* self);
-static void _beat_box_library_window_showInfoPanelToggled_gtk_check_menu_item_toggled (GtkCheckMenuItem* _sender, gpointer self);
-static void _lambda12_ (BeatBoxLibraryWindow* self);
-static void __lambda12__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _lambda13_ (BeatBoxLibraryWindow* self);
 static void __lambda13__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 static void _lambda14_ (BeatBoxLibraryWindow* self);
 static void __lambda14__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void _lambda15_ (BeatBoxLibraryWindow* self);
+static void __lambda15__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 void beat_box_library_window_helpAboutClick (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_helpAboutClick_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 void beat_box_library_window_editPreferencesClick (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_editPreferencesClick_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+gint beat_box_simple_option_chooser_appendItem (BeatBoxSimpleOptionChooser* self, const gchar* text);
+void beat_box_simple_option_chooser_setOption (BeatBoxSimpleOptionChooser* self, gint index);
+gint beat_box_settings_getRepeatMode (BeatBoxSettings* self);
+gboolean beat_box_settings_getMoreVisible (BeatBoxSettings* self);
 void elementary_widgets_welcome_append (ElementaryWidgetsWelcome* self, const gchar* icon_name, const gchar* label_text, const gchar* description_text);
 void beat_box_library_window_sourcesToSongsHandleSet (BeatBoxLibraryWindow* self, GdkRectangle* rectangle);
 static void _beat_box_library_window_sourcesToSongsHandleSet_gtk_widget_size_allocate (GtkWidget* _sender, GdkRectangle* allocation, gpointer self);
@@ -705,17 +743,21 @@ void beat_box_library_window_playClicked (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_playClicked_gtk_tool_button_clicked (GtkToolButton* _sender, gpointer self);
 void beat_box_library_window_nextClicked (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_nextClicked_gtk_tool_button_clicked (GtkToolButton* _sender, gpointer self);
-static void _beat_box_library_window_shuffleClicked_gtk_button_clicked (GtkButton* _sender, gpointer self);
 void beat_box_library_window_loveButtonClicked (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_loveButtonClicked_gtk_button_clicked (GtkButton* _sender, gpointer self);
 void beat_box_library_window_banButtonClicked (BeatBoxLibraryWindow* self);
 static void _beat_box_library_window_banButtonClicked_gtk_button_clicked (GtkButton* _sender, gpointer self);
 void beat_box_library_window_infoPanelResized (BeatBoxLibraryWindow* self, GdkRectangle* rectangle);
 static void _beat_box_library_window_infoPanelResized_gtk_widget_size_allocate (GtkWidget* _sender, GdkRectangle* allocation, gpointer self);
+void beat_box_library_window_repeatChooserOptionChanged (BeatBoxLibraryWindow* self, gint val);
+static void _beat_box_library_window_repeatChooserOptionChanged_beat_box_simple_option_chooser_option_changed (BeatBoxSimpleOptionChooser* _sender, gint index, gpointer self);
+void beat_box_library_window_shuffleChooserOptionChanged (BeatBoxLibraryWindow* self, gint val);
+static void _beat_box_library_window_shuffleChooserOptionChanged_beat_box_simple_option_chooser_option_changed (BeatBoxSimpleOptionChooser* _sender, gint index, gpointer self);
+void beat_box_library_window_infoPanelChooserOptionChanged (BeatBoxLibraryWindow* self, gint val);
+static void _beat_box_library_window_infoPanelChooserOptionChanged_beat_box_simple_option_chooser_option_changed (BeatBoxSimpleOptionChooser* _sender, gint index, gpointer self);
 void elementary_widgets_top_display_show_scale (ElementaryWidgetsTopDisplay* self);
 void elementary_widgets_top_display_set_scale_sensitivity (ElementaryWidgetsTopDisplay* self, gboolean val);
 void beat_box_side_tree_view_resetView (BeatBoxSideTreeView* self);
-gboolean beat_box_settings_getMoreVisible (BeatBoxSettings* self);
 void beat_box_side_tree_view_addBasicItems (BeatBoxSideTreeView* self);
 BeatBoxSimilarPane* beat_box_similar_pane_new (BeatBoxLibraryManager* lm, BeatBoxLibraryWindow* lw);
 BeatBoxSimilarPane* beat_box_similar_pane_construct (GType object_type, BeatBoxLibraryManager* lm, BeatBoxLibraryWindow* lw);
@@ -781,9 +823,9 @@ void beat_box_library_manager_save_artist (BeatBoxLibraryManager* self, LastFMAr
 gchar* beat_box_library_manager_get_artist_image_location (BeatBoxLibraryManager* self, gint id);
 GdkPixbuf* beat_box_library_manager_save_artist_image_locally (BeatBoxLibraryManager* self, gint id, const gchar* image);
 LastFMImage* last_fm_artist_info_get_url_image (LastFMArtistInfo* self);
-static gboolean _lambda20_ (BeatBoxLibraryWindow* self);
+static gboolean _lambda21_ (BeatBoxLibraryWindow* self);
 void beat_box_info_panel_updateArtistImage (BeatBoxInfoPanel* self);
-static gboolean __lambda20__gsource_func (gpointer self);
+static gboolean __lambda21__gsource_func (gpointer self);
 gboolean beat_box_library_window_updateSongInfo (BeatBoxLibraryWindow* self);
 static void beat_box_library_window_real_previousClicked (BeatBoxLibraryWindow* self);
 gint beat_box_library_manager_getPrevious (BeatBoxLibraryManager* self, gboolean play);
@@ -795,9 +837,6 @@ void beat_box_stream_player_pause_stream (BeatBoxStreamPlayer* self);
 static void beat_box_library_window_real_nextClicked (BeatBoxLibraryWindow* self);
 gint beat_box_song_get_skip_count (BeatBoxSong* self);
 void beat_box_song_set_skip_count (BeatBoxSong* self, gint value);
-static void beat_box_library_window_real_shuffleClicked (BeatBoxLibraryWindow* self);
-void beat_box_library_manager_shuffleMusic (BeatBoxLibraryManager* self);
-void beat_box_library_manager_unShuffleMusic (BeatBoxLibraryManager* self);
 static void beat_box_library_window_real_loveButtonClicked (BeatBoxLibraryWindow* self);
 gboolean last_fm_core_loveTrack (LastFMCore* self, const gchar* title, const gchar* artist);
 static void beat_box_library_window_real_banButtonClicked (BeatBoxLibraryWindow* self);
@@ -834,19 +873,17 @@ void beat_box_music_tree_view_searchFieldChanged (BeatBoxMusicTreeView* self);
 static void beat_box_library_window_real_musicRescanned (BeatBoxLibraryWindow* self, GeeLinkedList* new_songs, GeeLinkedList* not_imported);
 static void beat_box_library_window_real_song_added (BeatBoxLibraryWindow* self, gint id);
 static void beat_box_library_window_real_songs_removed (BeatBoxLibraryWindow* self, GeeLinkedList* removed);
-static void beat_box_library_window_real_showInfoPanelToggled (BeatBoxLibraryWindow* self);
-void beat_box_settings_setMoreVisible (BeatBoxSettings* self, gboolean val);
 static void beat_box_library_window_real_helpAboutClick (BeatBoxLibraryWindow* self);
 static Block8Data* block8_data_ref (Block8Data* _data8_);
 static void block8_data_unref (Block8Data* _data8_);
-static void _lambda15_ (gint response_id, Block8Data* _data8_);
-static void __lambda15__gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self);
+static void _lambda16_ (gint response_id, Block8Data* _data8_);
+static void __lambda16__gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self);
 static void beat_box_library_window_real_editPreferencesClick (BeatBoxLibraryWindow* self);
 BeatBoxPreferencesWindow* beat_box_preferences_window_new (BeatBoxLibraryManager* lm, BeatBoxLibraryWindow* lw);
 BeatBoxPreferencesWindow* beat_box_preferences_window_construct (GType object_type, BeatBoxLibraryManager* lm, BeatBoxLibraryWindow* lw);
 GType beat_box_preferences_window_get_type (void) G_GNUC_CONST;
-static void _lambda19_ (const gchar* folder, BeatBoxLibraryWindow* self);
-static void __lambda19__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self);
+static void _lambda20_ (const gchar* folder, BeatBoxLibraryWindow* self);
+static void __lambda20__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self);
 void beat_box_library_manager_set_music_folder (BeatBoxLibraryManager* self, const gchar* folder);
 static void beat_box_library_window_real_end_of_stream (BeatBoxLibraryWindow* self, BeatBoxSong* s);
 static void beat_box_library_window_real_current_position_update (BeatBoxLibraryWindow* self, gint64 position);
@@ -866,6 +903,12 @@ void beat_box_info_panel_updateSongList (BeatBoxInfoPanel* self, GeeCollection* 
 void beat_box_library_window_setStatusBarText (BeatBoxLibraryWindow* self, const gchar* text);
 static void beat_box_library_window_real_infoPanelResized (BeatBoxLibraryWindow* self, GdkRectangle* rectangle);
 void beat_box_settings_setMoreWidth (BeatBoxSettings* self, gint val);
+static void beat_box_library_window_real_repeatChooserOptionChanged (BeatBoxLibraryWindow* self, gint val);
+void beat_box_settings_setRepeatMode (BeatBoxSettings* self, gint val);
+static void beat_box_library_window_real_shuffleChooserOptionChanged (BeatBoxLibraryWindow* self, gint val);
+void beat_box_settings_setShuffleMode (BeatBoxSettings* self, gint val);
+static void beat_box_library_window_real_infoPanelChooserOptionChanged (BeatBoxLibraryWindow* self, gint val);
+void beat_box_settings_setMoreVisible (BeatBoxSettings* self, gboolean val);
 static void beat_box_library_window_finalize (GObject* obj);
 static void _vala_array_destroy (gpointer array, gint array_length, GDestroyNotify destroy_func);
 static void _vala_array_free (gpointer array, gint array_length, GDestroyNotify destroy_func);
@@ -976,14 +1019,14 @@ static void block7_data_unref (Block7Data* _data7_) {
 }
 
 
-static gboolean _lambda21_ (Block7Data* _data7_) {
+static gboolean _lambda22_ (Block7Data* _data7_) {
 	Block6Data* _data6_;
 	BeatBoxLibraryWindow * self;
 	gboolean result = FALSE;
 	gint _tmp0_;
 	GtkWidget* _tmp1_ = NULL;
 	BeatBoxMusicTreeView* _tmp2_;
-	gboolean _tmp3_;
+	gint _tmp3_;
 	GtkWidget* _tmp4_ = NULL;
 	BeatBoxMusicTreeView* _tmp5_;
 	_data6_ = _data7_->_data6_;
@@ -994,9 +1037,9 @@ static gboolean _lambda21_ (Block7Data* _data7_) {
 	_tmp2_ = BEAT_BOX_MUSIC_TREE_VIEW (_tmp1_);
 	beat_box_music_tree_view_setAsCurrentList (_tmp2_, NULL);
 	_g_object_unref0 (_tmp2_);
-	_tmp3_ = beat_box_settings_getShuffleEnabled (self->priv->settings);
-	if (_tmp3_) {
-		beat_box_library_window_shuffleClicked (self);
+	_tmp3_ = beat_box_settings_getShuffleMode (self->priv->settings);
+	if (_tmp3_ != BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF) {
+		fprintf (stdout, "shuffle me dude! (no really fix this at line 124\n");
 	}
 	_tmp4_ = beat_box_side_tree_view_getWidget (self->priv->sideTree, &self->priv->sideTree->library_music_iter);
 	_tmp5_ = BEAT_BOX_MUSIC_TREE_VIEW (_tmp4_);
@@ -1008,9 +1051,9 @@ static gboolean _lambda21_ (Block7Data* _data7_) {
 }
 
 
-static gboolean __lambda21__gsource_func (gpointer self) {
+static gboolean __lambda22__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda21_ (self);
+	result = _lambda22_ (self);
 	return result;
 }
 
@@ -1155,7 +1198,7 @@ BeatBoxLibraryWindow* beat_box_library_window_construct (GType object_type, Beat
 				_data7_->_data6_ = block6_data_ref (_data6_);
 				_tmp32_ = beat_box_settings_getLastSongPosition (self->priv->settings);
 				_data7_->position = (gint) _tmp32_;
-				g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 200, __lambda21__gsource_func, block7_data_ref (_data7_), block7_data_unref);
+				g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 200, __lambda22__gsource_func, block7_data_ref (_data7_), block7_data_unref);
 				block7_data_unref (_data7_);
 				_data7_ = NULL;
 			}
@@ -1183,12 +1226,7 @@ static void _beat_box_library_window_fileRescanMusicFolderClick_gtk_menu_item_ac
 }
 
 
-static void _beat_box_library_window_showInfoPanelToggled_gtk_check_menu_item_toggled (GtkCheckMenuItem* _sender, gpointer self) {
-	beat_box_library_window_showInfoPanelToggled (self);
-}
-
-
-static void _lambda12_ (BeatBoxLibraryWindow* self) {
+static void _lambda13_ (BeatBoxLibraryWindow* self) {
 	gchar* _tmp0_;
 	gchar* auth_uri;
 	GError * _inner_error_ = NULL;
@@ -1218,12 +1256,12 @@ static void _lambda12_ (BeatBoxLibraryWindow* self) {
 }
 
 
-static void __lambda12__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-	_lambda12_ (self);
+static void __lambda13__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+	_lambda13_ (self);
 }
 
 
-static void _lambda13_ (BeatBoxLibraryWindow* self) {
+static void _lambda14_ (BeatBoxLibraryWindow* self) {
 	gchar* _tmp0_;
 	gchar* auth_uri;
 	GError * _inner_error_ = NULL;
@@ -1253,12 +1291,12 @@ static void _lambda13_ (BeatBoxLibraryWindow* self) {
 }
 
 
-static void __lambda13__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-	_lambda13_ (self);
+static void __lambda14__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+	_lambda14_ (self);
 }
 
 
-static void _lambda14_ (BeatBoxLibraryWindow* self) {
+static void _lambda15_ (BeatBoxLibraryWindow* self) {
 	gchar* _tmp0_;
 	gchar* auth_uri;
 	GError * _inner_error_ = NULL;
@@ -1288,8 +1326,8 @@ static void _lambda14_ (BeatBoxLibraryWindow* self) {
 }
 
 
-static void __lambda14__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-	_lambda14_ (self);
+static void __lambda15__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+	_lambda15_ (self);
 }
 
 
@@ -1333,11 +1371,6 @@ static void _beat_box_library_window_nextClicked_gtk_tool_button_clicked (GtkToo
 }
 
 
-static void _beat_box_library_window_shuffleClicked_gtk_button_clicked (GtkButton* _sender, gpointer self) {
-	beat_box_library_window_shuffleClicked (self);
-}
-
-
 static void _beat_box_library_window_loveButtonClicked_gtk_button_clicked (GtkButton* _sender, gpointer self) {
 	beat_box_library_window_loveButtonClicked (self);
 }
@@ -1350,6 +1383,21 @@ static void _beat_box_library_window_banButtonClicked_gtk_button_clicked (GtkBut
 
 static void _beat_box_library_window_infoPanelResized_gtk_widget_size_allocate (GtkWidget* _sender, GdkRectangle* allocation, gpointer self) {
 	beat_box_library_window_infoPanelResized (self, allocation);
+}
+
+
+static void _beat_box_library_window_repeatChooserOptionChanged_beat_box_simple_option_chooser_option_changed (BeatBoxSimpleOptionChooser* _sender, gint index, gpointer self) {
+	beat_box_library_window_repeatChooserOptionChanged (self, index);
+}
+
+
+static void _beat_box_library_window_shuffleChooserOptionChanged_beat_box_simple_option_chooser_option_changed (BeatBoxSimpleOptionChooser* _sender, gint index, gpointer self) {
+	beat_box_library_window_shuffleChooserOptionChanged (self, index);
+}
+
+
+static void _beat_box_library_window_infoPanelChooserOptionChanged_beat_box_simple_option_chooser_option_changed (BeatBoxSimpleOptionChooser* _sender, gint index, gpointer self) {
+	beat_box_library_window_infoPanelChooserOptionChanged (self, index);
 }
 
 
@@ -1387,8 +1435,8 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	GtkMenuItem* _tmp29_;
 	GtkMenuItem* _tmp30_ = NULL;
 	GtkMenuItem* _tmp31_;
-	GtkCheckMenuItem* _tmp32_ = NULL;
-	GtkCheckMenuItem* _tmp33_;
+	GtkMenuItem* _tmp32_ = NULL;
+	GtkMenuItem* _tmp33_;
 	GtkMenuItem* _tmp34_ = NULL;
 	GtkMenuItem* _tmp35_;
 	GtkMenuItem* _tmp36_ = NULL;
@@ -1397,64 +1445,84 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	GtkMenuItem* _tmp39_;
 	GtkMenuItem* _tmp40_ = NULL;
 	GtkMenuItem* _tmp41_;
-	GtkMenuItem* _tmp42_ = NULL;
-	GtkMenuItem* _tmp43_;
-	GtkMenu* _tmp44_ = NULL;
-	GtkMenu* _tmp45_;
-	GtkToolbar* _tmp46_ = NULL;
-	GtkToolbar* _tmp47_;
+	GtkMenu* _tmp42_ = NULL;
+	GtkMenu* _tmp43_;
+	GtkToolbar* _tmp44_ = NULL;
+	GtkToolbar* _tmp45_;
+	GtkToolButton* _tmp46_ = NULL;
+	GtkToolButton* _tmp47_;
 	GtkToolButton* _tmp48_ = NULL;
 	GtkToolButton* _tmp49_;
 	GtkToolButton* _tmp50_ = NULL;
 	GtkToolButton* _tmp51_;
-	GtkToolButton* _tmp52_ = NULL;
-	GtkToolButton* _tmp53_;
+	GtkButton* _tmp52_ = NULL;
+	GtkButton* _tmp53_;
 	GtkButton* _tmp54_ = NULL;
 	GtkButton* _tmp55_;
-	GtkButton* _tmp56_ = NULL;
-	GtkButton* _tmp57_;
-	GtkButton* _tmp58_ = NULL;
-	GtkButton* _tmp59_;
-	ElementaryWidgetsTopDisplay* _tmp60_ = NULL;
-	ElementaryWidgetsTopDisplay* _tmp61_;
-	ElementaryWidgetsElementarySearchEntry* _tmp62_ = NULL;
-	ElementaryWidgetsElementarySearchEntry* _tmp63_;
-	ElementaryWidgetsAppMenu* _tmp64_ = NULL;
-	ElementaryWidgetsAppMenu* _tmp65_;
+	ElementaryWidgetsTopDisplay* _tmp56_ = NULL;
+	ElementaryWidgetsTopDisplay* _tmp57_;
+	ElementaryWidgetsElementarySearchEntry* _tmp58_ = NULL;
+	ElementaryWidgetsElementarySearchEntry* _tmp59_;
+	ElementaryWidgetsAppMenu* _tmp60_ = NULL;
+	ElementaryWidgetsAppMenu* _tmp61_;
+	GtkScrolledWindow* _tmp62_ = NULL;
+	GtkScrolledWindow* _tmp63_;
+	GtkScrolledWindow* _tmp64_ = NULL;
+	GtkScrolledWindow* _tmp65_;
 	GtkScrolledWindow* _tmp66_ = NULL;
 	GtkScrolledWindow* _tmp67_;
-	GtkScrolledWindow* _tmp68_ = NULL;
-	GtkScrolledWindow* _tmp69_;
-	GtkScrolledWindow* _tmp70_ = NULL;
-	GtkScrolledWindow* _tmp71_;
-	BeatBoxInfoPanel* _tmp72_ = NULL;
-	BeatBoxInfoPanel* _tmp73_;
-	GtkVBox* _tmp74_ = NULL;
-	GtkVBox* _tmp75_;
-	GtkStatusbar* _tmp76_ = NULL;
-	GtkStatusbar* _tmp77_;
-	GObject* _tmp78_ = NULL;
-	GObject* _tmp79_;
-	NotifyNotification* _tmp80_;
-	gint _tmp81_;
-	gint _tmp82_;
-	gint _tmp83_;
-	gint _tmp84_;
-	gint _tmp85_;
-	GtkSeparatorMenuItem* _tmp86_ = NULL;
-	GtkSeparatorMenuItem* _tmp87_;
-	GtkSeparatorMenuItem* _tmp88_ = NULL;
-	GtkSeparatorMenuItem* _tmp89_;
-	GtkSeparatorMenuItem* _tmp90_ = NULL;
-	GtkSeparatorMenuItem* _tmp91_;
-	GtkToolItem* _tmp92_ = NULL;
+	BeatBoxInfoPanel* _tmp68_ = NULL;
+	BeatBoxInfoPanel* _tmp69_;
+	GtkVBox* _tmp70_ = NULL;
+	GtkVBox* _tmp71_;
+	GtkHBox* _tmp72_ = NULL;
+	GtkHBox* _tmp73_;
+	GtkLabel* _tmp74_ = NULL;
+	GtkLabel* _tmp75_;
+	GdkPixbuf* _tmp76_ = NULL;
+	GdkPixbuf* _tmp77_;
+	GdkPixbuf* _tmp78_ = NULL;
+	GdkPixbuf* _tmp79_;
+	BeatBoxSimpleOptionChooser* _tmp80_ = NULL;
+	BeatBoxSimpleOptionChooser* _tmp81_;
+	GdkPixbuf* _tmp82_ = NULL;
+	GdkPixbuf* _tmp83_;
+	GdkPixbuf* _tmp84_ = NULL;
+	GdkPixbuf* _tmp85_;
+	BeatBoxSimpleOptionChooser* _tmp86_ = NULL;
+	BeatBoxSimpleOptionChooser* _tmp87_;
+	GdkPixbuf* _tmp88_ = NULL;
+	GdkPixbuf* _tmp89_;
+	GdkPixbuf* _tmp90_ = NULL;
+	GdkPixbuf* _tmp91_;
+	BeatBoxSimpleOptionChooser* _tmp92_ = NULL;
+	BeatBoxSimpleOptionChooser* _tmp93_;
+	GObject* _tmp94_ = NULL;
+	GObject* _tmp95_;
+	NotifyNotification* _tmp96_;
+	gint _tmp97_;
+	gint _tmp98_;
+	gint _tmp99_;
+	gint _tmp100_;
+	GtkSeparatorMenuItem* _tmp101_ = NULL;
+	GtkSeparatorMenuItem* _tmp102_;
+	GtkSeparatorMenuItem* _tmp103_ = NULL;
+	GtkSeparatorMenuItem* _tmp104_;
+	GtkEventBox* _tmp105_ = NULL;
+	GtkEventBox* statusEventBox;
+	GdkColor c = {0};
+	GdkColor _tmp106_ = {0};
+	gint _tmp107_;
+	gint _tmp108_;
+	gint _tmp109_ = 0;
+	gboolean _tmp110_;
+	GtkToolItem* _tmp111_ = NULL;
 	GtkToolItem* topDisplayBin;
-	GtkToolItem* _tmp93_ = NULL;
+	GtkToolItem* _tmp112_ = NULL;
 	GtkToolItem* searchFieldBin;
-	GtkToolItem* _tmp94_ = NULL;
+	GtkToolItem* _tmp113_ = NULL;
 	GtkToolItem* appMenuBin;
-	gboolean _tmp95_;
-	gboolean _tmp96_;
+	gboolean _tmp114_;
 	g_return_if_fail (self != NULL);
 	fprintf (stdout, "Building user interface\n");
 	_tmp0_ = beat_box_settings_getWindowWidth (self->priv->settings);
@@ -1525,112 +1593,135 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	_tmp31_ = g_object_ref_sink (_tmp30_);
 	_g_object_unref0 (self->priv->fileRescanMusicFolder);
 	self->priv->fileRescanMusicFolder = _tmp31_;
-	_tmp32_ = (GtkCheckMenuItem*) gtk_check_menu_item_new_with_label ("Show Info Panel");
+	_tmp32_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("Get Help Online...");
 	_tmp33_ = g_object_ref_sink (_tmp32_);
-	_g_object_unref0 (self->priv->showInfoPanel);
-	self->priv->showInfoPanel = _tmp33_;
-	_tmp34_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("Get Help Online...");
-	_tmp35_ = g_object_ref_sink (_tmp34_);
 	_g_object_unref0 (self->priv->helpOnline);
-	self->priv->helpOnline = _tmp35_;
-	_tmp36_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("Translate This Application...");
-	_tmp37_ = g_object_ref_sink (_tmp36_);
+	self->priv->helpOnline = _tmp33_;
+	_tmp34_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("Translate This Application...");
+	_tmp35_ = g_object_ref_sink (_tmp34_);
 	_g_object_unref0 (self->priv->helpTranslate);
-	self->priv->helpTranslate = _tmp37_;
-	_tmp38_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("Report a Problem...");
-	_tmp39_ = g_object_ref_sink (_tmp38_);
+	self->priv->helpTranslate = _tmp35_;
+	_tmp36_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("Report a Problem...");
+	_tmp37_ = g_object_ref_sink (_tmp36_);
 	_g_object_unref0 (self->priv->helpReport);
-	self->priv->helpReport = _tmp39_;
-	_tmp40_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("About");
-	_tmp41_ = g_object_ref_sink (_tmp40_);
+	self->priv->helpReport = _tmp37_;
+	_tmp38_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("About");
+	_tmp39_ = g_object_ref_sink (_tmp38_);
 	_g_object_unref0 (self->priv->helpAbout);
-	self->priv->helpAbout = _tmp41_;
-	_tmp42_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("Preferences");
-	_tmp43_ = g_object_ref_sink (_tmp42_);
+	self->priv->helpAbout = _tmp39_;
+	_tmp40_ = (GtkMenuItem*) gtk_menu_item_new_with_label ("Preferences");
+	_tmp41_ = g_object_ref_sink (_tmp40_);
 	_g_object_unref0 (self->priv->editPreferences);
-	self->priv->editPreferences = _tmp43_;
-	_tmp44_ = (GtkMenu*) gtk_menu_new ();
-	_tmp45_ = g_object_ref_sink (_tmp44_);
+	self->priv->editPreferences = _tmp41_;
+	_tmp42_ = (GtkMenu*) gtk_menu_new ();
+	_tmp43_ = g_object_ref_sink (_tmp42_);
 	_g_object_unref0 (self->priv->settingsMenu);
-	self->priv->settingsMenu = _tmp45_;
-	_tmp46_ = (GtkToolbar*) gtk_toolbar_new ();
-	_tmp47_ = g_object_ref_sink (_tmp46_);
+	self->priv->settingsMenu = _tmp43_;
+	_tmp44_ = (GtkToolbar*) gtk_toolbar_new ();
+	_tmp45_ = g_object_ref_sink (_tmp44_);
 	_g_object_unref0 (self->priv->topControls);
-	self->priv->topControls = _tmp47_;
-	_tmp48_ = (GtkToolButton*) gtk_tool_button_new_from_stock (GTK_STOCK_MEDIA_PREVIOUS);
-	_tmp49_ = g_object_ref_sink (_tmp48_);
+	self->priv->topControls = _tmp45_;
+	_tmp46_ = (GtkToolButton*) gtk_tool_button_new_from_stock (GTK_STOCK_MEDIA_PREVIOUS);
+	_tmp47_ = g_object_ref_sink (_tmp46_);
 	_g_object_unref0 (self->priv->previousButton);
-	self->priv->previousButton = _tmp49_;
-	_tmp50_ = (GtkToolButton*) gtk_tool_button_new_from_stock (GTK_STOCK_MEDIA_PLAY);
-	_tmp51_ = g_object_ref_sink (_tmp50_);
+	self->priv->previousButton = _tmp47_;
+	_tmp48_ = (GtkToolButton*) gtk_tool_button_new_from_stock (GTK_STOCK_MEDIA_PLAY);
+	_tmp49_ = g_object_ref_sink (_tmp48_);
 	_g_object_unref0 (self->priv->playButton);
-	self->priv->playButton = _tmp51_;
-	_tmp52_ = (GtkToolButton*) gtk_tool_button_new_from_stock (GTK_STOCK_MEDIA_NEXT);
-	_tmp53_ = g_object_ref_sink (_tmp52_);
+	self->priv->playButton = _tmp49_;
+	_tmp50_ = (GtkToolButton*) gtk_tool_button_new_from_stock (GTK_STOCK_MEDIA_NEXT);
+	_tmp51_ = g_object_ref_sink (_tmp50_);
 	_g_object_unref0 (self->priv->nextButton);
-	self->priv->nextButton = _tmp53_;
-	_tmp54_ = (GtkButton*) gtk_button_new_with_label ("Shuffle");
-	_tmp55_ = g_object_ref_sink (_tmp54_);
-	_g_object_unref0 (self->priv->shuffleButton);
-	self->priv->shuffleButton = _tmp55_;
-	_tmp56_ = (GtkButton*) gtk_button_new_with_label ("Love");
-	_tmp57_ = g_object_ref_sink (_tmp56_);
+	self->priv->nextButton = _tmp51_;
+	_tmp52_ = (GtkButton*) gtk_button_new_with_label ("Love");
+	_tmp53_ = g_object_ref_sink (_tmp52_);
 	_g_object_unref0 (self->priv->loveButton);
-	self->priv->loveButton = _tmp57_;
-	_tmp58_ = (GtkButton*) gtk_button_new_with_label ("Ban");
-	_tmp59_ = g_object_ref_sink (_tmp58_);
+	self->priv->loveButton = _tmp53_;
+	_tmp54_ = (GtkButton*) gtk_button_new_with_label ("Ban");
+	_tmp55_ = g_object_ref_sink (_tmp54_);
 	_g_object_unref0 (self->priv->banButton);
-	self->priv->banButton = _tmp59_;
-	_tmp60_ = elementary_widgets_top_display_new (self->priv->lm);
-	_tmp61_ = g_object_ref_sink (_tmp60_);
+	self->priv->banButton = _tmp55_;
+	_tmp56_ = elementary_widgets_top_display_new (self->priv->lm);
+	_tmp57_ = g_object_ref_sink (_tmp56_);
 	_g_object_unref0 (self->priv->topDisplay);
-	self->priv->topDisplay = _tmp61_;
-	_tmp62_ = elementary_widgets_elementary_search_entry_new ("Search...");
-	_tmp63_ = g_object_ref_sink (_tmp62_);
+	self->priv->topDisplay = _tmp57_;
+	_tmp58_ = elementary_widgets_elementary_search_entry_new ("Search...");
+	_tmp59_ = g_object_ref_sink (_tmp58_);
 	_g_object_unref0 (self->searchField);
-	self->searchField = _tmp63_;
-	_tmp64_ = elementary_widgets_app_menu_new_from_stock (GTK_STOCK_PROPERTIES, GTK_ICON_SIZE_MENU, "Menu", self->priv->settingsMenu);
-	_tmp65_ = g_object_ref_sink (_tmp64_);
+	self->searchField = _tmp59_;
+	_tmp60_ = elementary_widgets_app_menu_new_from_stock (GTK_STOCK_PROPERTIES, GTK_ICON_SIZE_MENU, "Menu", self->priv->settingsMenu);
+	_tmp61_ = g_object_ref_sink (_tmp60_);
 	_g_object_unref0 (self->priv->appMenu);
-	self->priv->appMenu = _tmp65_;
+	self->priv->appMenu = _tmp61_;
+	_tmp62_ = (GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL);
+	_tmp63_ = g_object_ref_sink (_tmp62_);
+	_g_object_unref0 (self->priv->songInfoScroll);
+	self->priv->songInfoScroll = _tmp63_;
+	_tmp64_ = (GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL);
+	_tmp65_ = g_object_ref_sink (_tmp64_);
+	_g_object_unref0 (self->priv->pandoraScroll);
+	self->priv->pandoraScroll = _tmp65_;
 	_tmp66_ = (GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL);
 	_tmp67_ = g_object_ref_sink (_tmp66_);
-	_g_object_unref0 (self->priv->songInfoScroll);
-	self->priv->songInfoScroll = _tmp67_;
-	_tmp68_ = (GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL);
-	_tmp69_ = g_object_ref_sink (_tmp68_);
-	_g_object_unref0 (self->priv->pandoraScroll);
-	self->priv->pandoraScroll = _tmp69_;
-	_tmp70_ = (GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL);
-	_tmp71_ = g_object_ref_sink (_tmp70_);
 	_g_object_unref0 (self->priv->grooveSharkScroll);
-	self->priv->grooveSharkScroll = _tmp71_;
-	_tmp72_ = beat_box_info_panel_new (self->priv->lm, self);
-	_tmp73_ = g_object_ref_sink (_tmp72_);
+	self->priv->grooveSharkScroll = _tmp67_;
+	_tmp68_ = beat_box_info_panel_new (self->priv->lm, self);
+	_tmp69_ = g_object_ref_sink (_tmp68_);
 	_g_object_unref0 (self->priv->infoPanel);
-	self->priv->infoPanel = _tmp73_;
-	_tmp74_ = (GtkVBox*) gtk_vbox_new (FALSE, 0);
-	_tmp75_ = g_object_ref_sink (_tmp74_);
+	self->priv->infoPanel = _tmp69_;
+	_tmp70_ = (GtkVBox*) gtk_vbox_new (FALSE, 0);
+	_tmp71_ = g_object_ref_sink (_tmp70_);
 	_g_object_unref0 (self->priv->sideBar);
-	self->priv->sideBar = _tmp75_;
-	_tmp76_ = (GtkStatusbar*) gtk_statusbar_new ();
-	_tmp77_ = g_object_ref_sink (_tmp76_);
+	self->priv->sideBar = _tmp71_;
+	_tmp72_ = (GtkHBox*) gtk_hbox_new (FALSE, 0);
+	_tmp73_ = g_object_ref_sink (_tmp72_);
 	_g_object_unref0 (self->priv->statusBar);
-	self->priv->statusBar = _tmp77_;
-	_tmp78_ = g_object_new (NOTIFY_TYPE_NOTIFICATION, "summary", "Title", "body", "Artist\nAlbum", NULL);
-	_tmp80_ = NOTIFY_NOTIFICATION ((_tmp79_ = _tmp78_, G_IS_INITIALLY_UNOWNED (_tmp79_) ? g_object_ref_sink (_tmp79_) : _tmp79_));
+	self->priv->statusBar = _tmp73_;
+	_tmp74_ = (GtkLabel*) gtk_label_new ("");
+	_tmp75_ = g_object_ref_sink (_tmp74_);
+	_g_object_unref0 (self->priv->statusBarLabel);
+	self->priv->statusBarLabel = _tmp75_;
+	_tmp76_ = gtk_widget_render_icon ((GtkWidget*) self, "media-playlist-shuffle-active-symbolic", GTK_ICON_SIZE_SMALL_TOOLBAR, NULL);
+	_tmp77_ = _tmp76_;
+	_tmp78_ = gtk_widget_render_icon ((GtkWidget*) self, "media-playlist-shuffle-symbolic", GTK_ICON_SIZE_SMALL_TOOLBAR, NULL);
+	_tmp79_ = _tmp78_;
+	_tmp80_ = beat_box_simple_option_chooser_new (_tmp77_, _tmp79_);
+	_tmp81_ = g_object_ref_sink (_tmp80_);
+	_g_object_unref0 (self->priv->shuffleChooser);
+	self->priv->shuffleChooser = _tmp81_;
+	_g_object_unref0 (_tmp79_);
+	_g_object_unref0 (_tmp77_);
+	_tmp82_ = gtk_widget_render_icon ((GtkWidget*) self, "media-playlist-repeat-active-symbolic", GTK_ICON_SIZE_SMALL_TOOLBAR, NULL);
+	_tmp83_ = _tmp82_;
+	_tmp84_ = gtk_widget_render_icon ((GtkWidget*) self, "media-playlist-repeat-symbolic", GTK_ICON_SIZE_SMALL_TOOLBAR, NULL);
+	_tmp85_ = _tmp84_;
+	_tmp86_ = beat_box_simple_option_chooser_new (_tmp83_, _tmp85_);
+	_tmp87_ = g_object_ref_sink (_tmp86_);
+	_g_object_unref0 (self->priv->repeatChooser);
+	self->priv->repeatChooser = _tmp87_;
+	_g_object_unref0 (_tmp85_);
+	_g_object_unref0 (_tmp83_);
+	_tmp88_ = gtk_widget_render_icon ((GtkWidget*) self, "help-info", GTK_ICON_SIZE_SMALL_TOOLBAR, NULL);
+	_tmp89_ = _tmp88_;
+	_tmp90_ = gtk_widget_render_icon ((GtkWidget*) self, "help-info", GTK_ICON_SIZE_SMALL_TOOLBAR, NULL);
+	_tmp91_ = _tmp90_;
+	_tmp92_ = beat_box_simple_option_chooser_new (_tmp89_, _tmp91_);
+	_tmp93_ = g_object_ref_sink (_tmp92_);
+	_g_object_unref0 (self->priv->infoPanelChooser);
+	self->priv->infoPanelChooser = _tmp93_;
+	_g_object_unref0 (_tmp91_);
+	_g_object_unref0 (_tmp89_);
+	_tmp94_ = g_object_new (NOTIFY_TYPE_NOTIFICATION, "summary", "Title", "body", "Artist\nAlbum", NULL);
+	_tmp96_ = NOTIFY_NOTIFICATION ((_tmp95_ = _tmp94_, G_IS_INITIALLY_UNOWNED (_tmp95_) ? g_object_ref_sink (_tmp95_) : _tmp95_));
 	_g_object_unref0 (self->priv->notification);
-	self->priv->notification = _tmp80_;
-	_tmp81_ = beat_box_settings_getSidebarWidth (self->priv->settings);
-	gtk_widget_set_size_request ((GtkWidget*) self->priv->sideBar, _tmp81_, -1);
-	_tmp82_ = beat_box_settings_getSidebarWidth (self->priv->settings);
-	gtk_paned_set_position ((GtkPaned*) self->priv->sourcesToSongs, _tmp82_);
-	_tmp83_ = beat_box_settings_getWindowWidth (self->priv->lm->settings);
-	_tmp84_ = beat_box_settings_getSidebarWidth (self->priv->lm->settings);
-	_tmp85_ = beat_box_settings_getMoreWidth (self->priv->lm->settings);
-	gtk_paned_set_position ((GtkPaned*) self->priv->songsToInfo, (_tmp83_ - _tmp84_) - _tmp85_);
+	self->priv->notification = _tmp96_;
+	_tmp97_ = beat_box_settings_getSidebarWidth (self->priv->settings);
+	gtk_paned_set_position ((GtkPaned*) self->priv->sourcesToSongs, _tmp97_);
+	_tmp98_ = beat_box_settings_getWindowWidth (self->priv->lm->settings);
+	_tmp99_ = beat_box_settings_getSidebarWidth (self->priv->lm->settings);
+	_tmp100_ = beat_box_settings_getMoreWidth (self->priv->lm->settings);
+	gtk_paned_set_position ((GtkPaned*) self->priv->songsToInfo, (_tmp98_ - _tmp99_) - _tmp100_);
 	beat_box_library_window_buildSideTree (self);
-	gtk_button_set_relief (self->priv->shuffleButton, GTK_RELIEF_NONE);
 	gtk_button_set_relief (self->priv->loveButton, GTK_RELIEF_NONE);
 	gtk_button_set_relief (self->priv->banButton, GTK_RELIEF_NONE);
 	beat_box_library_window_updateSensitivities (self);
@@ -1638,43 +1729,65 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->libraryOperationsMenu, (GtkWidget*) self->priv->fileRescanMusicFolder);
 	gtk_menu_item_set_submenu (self->priv->libraryOperations, self->priv->libraryOperationsMenu);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) self->priv->libraryOperations);
-	_tmp86_ = (GtkSeparatorMenuItem*) gtk_separator_menu_item_new ();
-	_tmp87_ = g_object_ref_sink (_tmp86_);
-	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) ((GtkMenuItem*) _tmp87_));
-	_g_object_unref0 (_tmp87_);
-	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) ((GtkMenuItem*) self->priv->showInfoPanel));
-	_tmp88_ = (GtkSeparatorMenuItem*) gtk_separator_menu_item_new ();
-	_tmp89_ = g_object_ref_sink (_tmp88_);
-	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) ((GtkMenuItem*) _tmp89_));
-	_g_object_unref0 (_tmp89_);
+	_tmp101_ = (GtkSeparatorMenuItem*) gtk_separator_menu_item_new ();
+	_tmp102_ = g_object_ref_sink (_tmp101_);
+	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) ((GtkMenuItem*) _tmp102_));
+	_g_object_unref0 (_tmp102_);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) self->priv->helpOnline);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) self->priv->helpTranslate);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) self->priv->helpReport);
-	_tmp90_ = (GtkSeparatorMenuItem*) gtk_separator_menu_item_new ();
-	_tmp91_ = g_object_ref_sink (_tmp90_);
-	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) ((GtkMenuItem*) _tmp91_));
-	_g_object_unref0 (_tmp91_);
+	_tmp103_ = (GtkSeparatorMenuItem*) gtk_separator_menu_item_new ();
+	_tmp104_ = g_object_ref_sink (_tmp103_);
+	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) ((GtkMenuItem*) _tmp104_));
+	_g_object_unref0 (_tmp104_);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) self->priv->helpAbout);
 	gtk_menu_shell_append ((GtkMenuShell*) self->priv->settingsMenu, (GtkWidget*) self->priv->editPreferences);
 	g_signal_connect_object (self->priv->fileImportMusic, "activate", (GCallback) _beat_box_library_window_fileImportMusicClick_gtk_menu_item_activate, self, 0);
 	g_signal_connect_object (self->priv->fileRescanMusicFolder, "activate", (GCallback) _beat_box_library_window_fileRescanMusicFolderClick_gtk_menu_item_activate, self, 0);
-	g_signal_connect_object (self->priv->showInfoPanel, "toggled", (GCallback) _beat_box_library_window_showInfoPanelToggled_gtk_check_menu_item_toggled, self, 0);
-	g_signal_connect_object (self->priv->helpOnline, "activate", (GCallback) __lambda12__gtk_menu_item_activate, self, 0);
-	g_signal_connect_object (self->priv->helpTranslate, "activate", (GCallback) __lambda13__gtk_menu_item_activate, self, 0);
-	g_signal_connect_object (self->priv->helpReport, "activate", (GCallback) __lambda14__gtk_menu_item_activate, self, 0);
+	g_signal_connect_object (self->priv->helpOnline, "activate", (GCallback) __lambda13__gtk_menu_item_activate, self, 0);
+	g_signal_connect_object (self->priv->helpTranslate, "activate", (GCallback) __lambda14__gtk_menu_item_activate, self, 0);
+	g_signal_connect_object (self->priv->helpReport, "activate", (GCallback) __lambda15__gtk_menu_item_activate, self, 0);
 	g_signal_connect_object (self->priv->helpAbout, "activate", (GCallback) _beat_box_library_window_helpAboutClick_gtk_menu_item_activate, self, 0);
 	g_signal_connect_object (self->priv->editPreferences, "activate", (GCallback) _beat_box_library_window_editPreferencesClick_gtk_menu_item_activate, self, 0);
-	gtk_statusbar_set_has_resize_grip (self->priv->statusBar, TRUE);
+	_tmp105_ = (GtkEventBox*) gtk_event_box_new ();
+	statusEventBox = g_object_ref_sink (_tmp105_);
+	gtk_container_add ((GtkContainer*) statusEventBox, (GtkWidget*) self->priv->statusBar);
+	memset (&c, 0, sizeof (GdkColor));
+	gdk_color_parse ("#FFFFFF", &_tmp106_);
+	c = _tmp106_;
+	gtk_widget_modify_bg ((GtkWidget*) statusEventBox, GTK_STATE_NORMAL, &c);
+	beat_box_simple_option_chooser_appendItem (self->priv->repeatChooser, "Off");
+	beat_box_simple_option_chooser_appendItem (self->priv->repeatChooser, "Song");
+	beat_box_simple_option_chooser_appendItem (self->priv->repeatChooser, "Album");
+	beat_box_simple_option_chooser_appendItem (self->priv->repeatChooser, "Artist");
+	beat_box_simple_option_chooser_appendItem (self->priv->repeatChooser, "All");
+	beat_box_simple_option_chooser_appendItem (self->priv->shuffleChooser, "Off");
+	beat_box_simple_option_chooser_appendItem (self->priv->shuffleChooser, "Artist");
+	beat_box_simple_option_chooser_appendItem (self->priv->shuffleChooser, "Album");
+	beat_box_simple_option_chooser_appendItem (self->priv->shuffleChooser, "All");
+	beat_box_simple_option_chooser_appendItem (self->priv->infoPanelChooser, "Hide");
+	beat_box_simple_option_chooser_appendItem (self->priv->infoPanelChooser, "Show");
+	_tmp107_ = beat_box_settings_getRepeatMode (self->priv->settings);
+	beat_box_simple_option_chooser_setOption (self->priv->repeatChooser, _tmp107_);
+	_tmp108_ = beat_box_settings_getShuffleMode (self->priv->settings);
+	beat_box_simple_option_chooser_setOption (self->priv->shuffleChooser, _tmp108_);
+	_tmp110_ = beat_box_settings_getMoreVisible (self->priv->settings);
+	if (_tmp110_) {
+		_tmp109_ = 1;
+	} else {
+		_tmp109_ = 0;
+	}
+	beat_box_simple_option_chooser_setOption (self->priv->infoPanelChooser, _tmp109_);
 	gtk_container_add ((GtkContainer*) self, (GtkWidget*) self->priv->verticalBox);
 	gtk_box_pack_start ((GtkBox*) self->priv->verticalBox, (GtkWidget*) self->priv->topMenu, FALSE, TRUE, (guint) 0);
 	gtk_box_pack_start ((GtkBox*) self->priv->verticalBox, (GtkWidget*) self->priv->topControls, FALSE, TRUE, (guint) 0);
 	gtk_box_pack_start ((GtkBox*) self->priv->verticalBox, (GtkWidget*) self->priv->sourcesToSongs, TRUE, TRUE, (guint) 0);
-	_tmp92_ = gtk_tool_item_new ();
-	topDisplayBin = g_object_ref_sink (_tmp92_);
-	_tmp93_ = gtk_tool_item_new ();
-	searchFieldBin = g_object_ref_sink (_tmp93_);
-	_tmp94_ = gtk_tool_item_new ();
-	appMenuBin = g_object_ref_sink (_tmp94_);
+	_tmp111_ = gtk_tool_item_new ();
+	topDisplayBin = g_object_ref_sink (_tmp111_);
+	_tmp112_ = gtk_tool_item_new ();
+	searchFieldBin = g_object_ref_sink (_tmp112_);
+	_tmp113_ = gtk_tool_item_new ();
+	appMenuBin = g_object_ref_sink (_tmp113_);
 	gtk_container_add ((GtkContainer*) topDisplayBin, (GtkWidget*) self->priv->topDisplay);
 	gtk_container_set_border_width ((GtkContainer*) topDisplayBin, (guint) 5);
 	gtk_container_add ((GtkContainer*) searchFieldBin, (GtkWidget*) self->searchField);
@@ -1691,24 +1804,29 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	gtk_box_pack_start ((GtkBox*) self->priv->contentBox, (GtkWidget*) self->priv->welcomeScreen, TRUE, TRUE, (guint) 0);
 	elementary_widgets_welcome_append (self->priv->welcomeScreen, "folder-music", "Import", "Select your music folder to import from.");
 	gtk_box_pack_start ((GtkBox*) self->priv->contentBox, (GtkWidget*) self->priv->mainViews, TRUE, TRUE, (guint) 0);
-	gtk_box_pack_start ((GtkBox*) self->priv->contentBox, (GtkWidget*) self->priv->statusBar, FALSE, TRUE, (guint) 0);
+	gtk_box_pack_start ((GtkBox*) self->priv->contentBox, (GtkWidget*) statusEventBox, FALSE, TRUE, (guint) 0);
 	gtk_paned_pack1 ((GtkPaned*) self->priv->songsToInfo, (GtkWidget*) self->priv->contentBox, TRUE, TRUE);
 	gtk_paned_pack2 ((GtkPaned*) self->priv->songsToInfo, (GtkWidget*) self->priv->infoPanel, TRUE, FALSE);
 	gtk_paned_pack1 ((GtkPaned*) self->priv->sourcesToSongs, (GtkWidget*) self->priv->sideBar, TRUE, TRUE);
 	gtk_paned_pack2 ((GtkPaned*) self->priv->sourcesToSongs, (GtkWidget*) self->priv->songsToInfo, TRUE, FALSE);
 	gtk_box_pack_start ((GtkBox*) self->priv->sideBar, (GtkWidget*) self->priv->sideTreeScroll, TRUE, TRUE, (guint) 0);
 	gtk_box_pack_end ((GtkBox*) self->priv->sideBar, (GtkWidget*) self->priv->coverArt, FALSE, TRUE, (guint) 0);
-	gtk_box_pack_start ((GtkBox*) self->priv->statusBar, (GtkWidget*) self->priv->shuffleButton, TRUE, TRUE, (guint) 0);
+	gtk_box_pack_start ((GtkBox*) self->priv->statusBar, (GtkWidget*) self->priv->shuffleChooser, FALSE, FALSE, (guint) 2);
+	gtk_box_pack_start ((GtkBox*) self->priv->statusBar, (GtkWidget*) self->priv->repeatChooser, FALSE, FALSE, (guint) 2);
+	gtk_box_pack_start ((GtkBox*) self->priv->statusBar, (GtkWidget*) self->priv->statusBarLabel, TRUE, TRUE, (guint) 0);
+	gtk_box_pack_start ((GtkBox*) self->priv->statusBar, (GtkWidget*) self->priv->infoPanelChooser, FALSE, FALSE, (guint) 2);
 	g_signal_connect_object (((GtkPaned*) self->priv->sourcesToSongs)->child1, "size-allocate", (GCallback) _beat_box_library_window_sourcesToSongsHandleSet_gtk_widget_size_allocate, self, 0);
 	g_signal_connect_object (self->priv->welcomeScreen, "activated", (GCallback) _beat_box_library_window_welcomeScreenActivated_elementary_widgets_welcome_activated, self, 0);
 	g_signal_connect_object ((GtkTreeView*) self->priv->sideTree, "row-activated", (GCallback) _beat_box_library_window_sideListDoubleClick_gtk_tree_view_row_activated, self, 0);
 	g_signal_connect_object (self->priv->previousButton, "clicked", (GCallback) _beat_box_library_window_previousClicked_gtk_tool_button_clicked, self, 0);
 	g_signal_connect_object (self->priv->playButton, "clicked", (GCallback) _beat_box_library_window_playClicked_gtk_tool_button_clicked, self, 0);
 	g_signal_connect_object (self->priv->nextButton, "clicked", (GCallback) _beat_box_library_window_nextClicked_gtk_tool_button_clicked, self, 0);
-	g_signal_connect_object (self->priv->shuffleButton, "clicked", (GCallback) _beat_box_library_window_shuffleClicked_gtk_button_clicked, self, 0);
 	g_signal_connect_object (self->priv->loveButton, "clicked", (GCallback) _beat_box_library_window_loveButtonClicked_gtk_button_clicked, self, 0);
 	g_signal_connect_object (self->priv->banButton, "clicked", (GCallback) _beat_box_library_window_banButtonClicked_gtk_button_clicked, self, 0);
 	g_signal_connect_object ((GtkWidget*) self->priv->infoPanel, "size-allocate", (GCallback) _beat_box_library_window_infoPanelResized_gtk_widget_size_allocate, self, 0);
+	g_signal_connect_object (self->priv->repeatChooser, "option-changed", (GCallback) _beat_box_library_window_repeatChooserOptionChanged_beat_box_simple_option_chooser_option_changed, self, 0);
+	g_signal_connect_object (self->priv->shuffleChooser, "option-changed", (GCallback) _beat_box_library_window_shuffleChooserOptionChanged_beat_box_simple_option_chooser_option_changed, self, 0);
+	g_signal_connect_object (self->priv->infoPanelChooser, "option-changed", (GCallback) _beat_box_library_window_infoPanelChooserOptionChanged_beat_box_simple_option_chooser_option_changed, self, 0);
 	gtk_widget_show_all ((GtkWidget*) self);
 	gtk_widget_hide ((GtkWidget*) self->priv->topMenu);
 	elementary_widgets_top_display_show_scale (self->priv->topDisplay);
@@ -1716,15 +1834,13 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	gtk_widget_hide ((GtkWidget*) self->priv->coverArt);
 	beat_box_side_tree_view_resetView (self->priv->sideTree);
 	gtk_widget_hide ((GtkWidget*) self->priv->welcomeScreen);
-	_tmp95_ = beat_box_settings_getMoreVisible (self->priv->settings);
-	gtk_widget_set_visible ((GtkWidget*) self->priv->infoPanel, _tmp95_);
-	_tmp96_ = beat_box_settings_getMoreVisible (self->priv->settings);
-	gtk_check_menu_item_set_active (self->priv->showInfoPanel, _tmp96_);
-	gtk_widget_set_sensitive ((GtkWidget*) self->priv->showInfoPanel, FALSE);
+	_tmp114_ = beat_box_settings_getMoreVisible (self->priv->settings);
+	gtk_widget_set_visible ((GtkWidget*) self->priv->infoPanel, _tmp114_);
 	beat_box_library_window_updateSensitivities (self);
 	_g_object_unref0 (appMenuBin);
 	_g_object_unref0 (searchFieldBin);
 	_g_object_unref0 (topDisplayBin);
+	_g_object_unref0 (statusEventBox);
 }
 
 
@@ -2319,7 +2435,6 @@ static void beat_box_library_window_real_song_played (BeatBoxLibraryWindow* self
 	beat_box_library_window_updateCurrentSong (self);
 	_tmp49_ = beat_box_song_get_rowid (self->priv->lm->song_info->song);
 	beat_box_info_panel_updateSong (self->priv->infoPanel, _tmp49_);
-	gtk_widget_set_sensitive ((GtkWidget*) self->priv->showInfoPanel, TRUE);
 	_g_free0 (song_label);
 }
 
@@ -2573,7 +2688,7 @@ void* beat_box_library_window_lastfm_album_thread_function (BeatBoxLibraryWindow
 }
 
 
-static gboolean _lambda20_ (BeatBoxLibraryWindow* self) {
+static gboolean _lambda21_ (BeatBoxLibraryWindow* self) {
 	gboolean result = FALSE;
 	beat_box_info_panel_updateArtistImage (self->priv->infoPanel);
 	result = FALSE;
@@ -2581,9 +2696,9 @@ static gboolean _lambda20_ (BeatBoxLibraryWindow* self) {
 }
 
 
-static gboolean __lambda20__gsource_func (gpointer self) {
+static gboolean __lambda21__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda20_ (self);
+	result = _lambda21_ (self);
 	return result;
 }
 
@@ -2667,7 +2782,7 @@ void* beat_box_library_window_lastfm_artist_thread_function (BeatBoxLibraryWindo
 			return result;
 		}
 	}
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda20__gsource_func, g_object_ref (self), g_object_unref);
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda21__gsource_func, g_object_ref (self), g_object_unref);
 	result = NULL;
 	_g_free0 (artist_s);
 	_g_object_unref0 (artist);
@@ -2758,25 +2873,6 @@ static void beat_box_library_window_real_nextClicked (BeatBoxLibraryWindow* self
 
 void beat_box_library_window_nextClicked (BeatBoxLibraryWindow* self) {
 	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->nextClicked (self);
-}
-
-
-static void beat_box_library_window_real_shuffleClicked (BeatBoxLibraryWindow* self) {
-	const gchar* _tmp0_ = NULL;
-	g_return_if_fail (self != NULL);
-	_tmp0_ = gtk_button_get_label (self->priv->shuffleButton);
-	if (g_strcmp0 (_tmp0_, "Shuffle") == 0) {
-		gtk_button_set_label (self->priv->shuffleButton, "Unshuffle");
-		beat_box_library_manager_shuffleMusic (self->priv->lm);
-	} else {
-		gtk_button_set_label (self->priv->shuffleButton, "Shuffle");
-		beat_box_library_manager_unShuffleMusic (self->priv->lm);
-	}
-}
-
-
-void beat_box_library_window_shuffleClicked (BeatBoxLibraryWindow* self) {
-	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->shuffleClicked (self);
 }
 
 
@@ -3296,22 +3392,6 @@ void beat_box_library_window_songs_removed (BeatBoxLibraryWindow* self, GeeLinke
 }
 
 
-static void beat_box_library_window_real_showInfoPanelToggled (BeatBoxLibraryWindow* self) {
-	gboolean _tmp0_;
-	gboolean _tmp1_;
-	g_return_if_fail (self != NULL);
-	_tmp0_ = gtk_check_menu_item_get_active (self->priv->showInfoPanel);
-	gtk_widget_set_visible ((GtkWidget*) self->priv->infoPanel, _tmp0_);
-	_tmp1_ = gtk_check_menu_item_get_active (self->priv->showInfoPanel);
-	beat_box_settings_setMoreVisible (self->priv->settings, _tmp1_);
-}
-
-
-void beat_box_library_window_showInfoPanelToggled (BeatBoxLibraryWindow* self) {
-	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->showInfoPanelToggled (self);
-}
-
-
 static Block8Data* block8_data_ref (Block8Data* _data8_) {
 	g_atomic_int_inc (&_data8_->_ref_count_);
 	return _data8_;
@@ -3327,15 +3407,15 @@ static void block8_data_unref (Block8Data* _data8_) {
 }
 
 
-static void _lambda15_ (gint response_id, Block8Data* _data8_) {
+static void _lambda16_ (gint response_id, Block8Data* _data8_) {
 	BeatBoxLibraryWindow * self;
 	self = _data8_->self;
 	gtk_object_destroy ((GtkObject*) _data8_->ad);
 }
 
 
-static void __lambda15__gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self) {
-	_lambda15_ (response_id, self);
+static void __lambda16__gtk_dialog_response (GtkDialog* _sender, gint response_id, gpointer self) {
+	_lambda16_ (response_id, self);
 }
 
 
@@ -3383,7 +3463,7 @@ static void beat_box_library_window_real_helpAboutClick (BeatBoxLibraryWindow* s
 	_g_free0 (authors[0]);
 	authors[0] = _tmp7_;
 	gtk_about_dialog_set_authors (_data8_->ad, authors);
-	g_signal_connect_data ((GtkDialog*) _data8_->ad, "response", (GCallback) __lambda15__gtk_dialog_response, block8_data_ref (_data8_), (GClosureNotify) block8_data_unref, 0);
+	g_signal_connect_data ((GtkDialog*) _data8_->ad, "response", (GCallback) __lambda16__gtk_dialog_response, block8_data_ref (_data8_), (GClosureNotify) block8_data_unref, 0);
 	gtk_widget_show ((GtkWidget*) _data8_->ad);
 	_tmp8_ = gee_linked_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL);
 	fakes = _tmp8_;
@@ -3438,14 +3518,14 @@ void beat_box_library_window_helpAboutClick (BeatBoxLibraryWindow* self) {
 }
 
 
-static void _lambda19_ (const gchar* folder, BeatBoxLibraryWindow* self) {
+static void _lambda20_ (const gchar* folder, BeatBoxLibraryWindow* self) {
 	g_return_if_fail (folder != NULL);
 	beat_box_library_window_setMusicFolder (self, folder);
 }
 
 
-static void __lambda19__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self) {
-	_lambda19_ (folder, self);
+static void __lambda20__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self) {
+	_lambda20_ (folder, self);
 }
 
 
@@ -3455,7 +3535,7 @@ static void beat_box_library_window_real_editPreferencesClick (BeatBoxLibraryWin
 	g_return_if_fail (self != NULL);
 	_tmp0_ = beat_box_preferences_window_new (self->priv->lm, self);
 	pw = g_object_ref_sink (_tmp0_);
-	g_signal_connect_object (pw, "changed", (GCallback) __lambda19__beat_box_preferences_window_changed, self, 0);
+	g_signal_connect_object (pw, "changed", (GCallback) __lambda20__beat_box_preferences_window_changed, self, 0);
 	_g_object_unref0 (pw);
 }
 
@@ -3638,7 +3718,7 @@ void beat_box_library_window_similarRetrieved (BeatBoxLibraryWindow* self, GeeLi
 void beat_box_library_window_setStatusBarText (BeatBoxLibraryWindow* self, const gchar* text) {
 	g_return_if_fail (self != NULL);
 	g_return_if_fail (text != NULL);
-	fprintf (stdout, "View changed, set text to %s\n", text);
+	gtk_label_set_text (self->priv->statusBarLabel, text);
 }
 
 
@@ -3746,6 +3826,40 @@ void beat_box_library_window_infoPanelResized (BeatBoxLibraryWindow* self, GdkRe
 }
 
 
+static void beat_box_library_window_real_repeatChooserOptionChanged (BeatBoxLibraryWindow* self, gint val) {
+	g_return_if_fail (self != NULL);
+	beat_box_settings_setRepeatMode (self->priv->lm->settings, val);
+}
+
+
+void beat_box_library_window_repeatChooserOptionChanged (BeatBoxLibraryWindow* self, gint val) {
+	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->repeatChooserOptionChanged (self, val);
+}
+
+
+static void beat_box_library_window_real_shuffleChooserOptionChanged (BeatBoxLibraryWindow* self, gint val) {
+	g_return_if_fail (self != NULL);
+	beat_box_settings_setShuffleMode (self->priv->lm->settings, val);
+}
+
+
+void beat_box_library_window_shuffleChooserOptionChanged (BeatBoxLibraryWindow* self, gint val) {
+	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->shuffleChooserOptionChanged (self, val);
+}
+
+
+static void beat_box_library_window_real_infoPanelChooserOptionChanged (BeatBoxLibraryWindow* self, gint val) {
+	g_return_if_fail (self != NULL);
+	gtk_widget_set_visible ((GtkWidget*) self->priv->infoPanel, val == 1);
+	beat_box_settings_setMoreVisible (self->priv->lm->settings, val == 1);
+}
+
+
+void beat_box_library_window_infoPanelChooserOptionChanged (BeatBoxLibraryWindow* self, gint val) {
+	BEAT_BOX_LIBRARY_WINDOW_GET_CLASS (self)->infoPanelChooserOptionChanged (self, val);
+}
+
+
 static void beat_box_library_window_class_init (BeatBoxLibraryWindowClass * klass) {
 	beat_box_library_window_parent_class = g_type_class_peek_parent (klass);
 	g_type_class_add_private (klass, sizeof (BeatBoxLibraryWindowPrivate));
@@ -3756,7 +3870,6 @@ static void beat_box_library_window_class_init (BeatBoxLibraryWindowClass * klas
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->previousClicked = beat_box_library_window_real_previousClicked;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->playClicked = beat_box_library_window_real_playClicked;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->nextClicked = beat_box_library_window_real_nextClicked;
-	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->shuffleClicked = beat_box_library_window_real_shuffleClicked;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->loveButtonClicked = beat_box_library_window_real_loveButtonClicked;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->banButtonClicked = beat_box_library_window_real_banButtonClicked;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->searchFieldIconPressed = beat_box_library_window_real_searchFieldIconPressed;
@@ -3771,13 +3884,15 @@ static void beat_box_library_window_class_init (BeatBoxLibraryWindowClass * klas
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->musicRescanned = beat_box_library_window_real_musicRescanned;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->song_added = beat_box_library_window_real_song_added;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->songs_removed = beat_box_library_window_real_songs_removed;
-	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->showInfoPanelToggled = beat_box_library_window_real_showInfoPanelToggled;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->helpAboutClick = beat_box_library_window_real_helpAboutClick;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->editPreferencesClick = beat_box_library_window_real_editPreferencesClick;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->end_of_stream = beat_box_library_window_real_end_of_stream;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->current_position_update = beat_box_library_window_real_current_position_update;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->similarRetrieved = beat_box_library_window_real_similarRetrieved;
 	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->infoPanelResized = beat_box_library_window_real_infoPanelResized;
+	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->repeatChooserOptionChanged = beat_box_library_window_real_repeatChooserOptionChanged;
+	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->shuffleChooserOptionChanged = beat_box_library_window_real_shuffleChooserOptionChanged;
+	BEAT_BOX_LIBRARY_WINDOW_CLASS (klass)->infoPanelChooserOptionChanged = beat_box_library_window_real_infoPanelChooserOptionChanged;
 	G_OBJECT_CLASS (klass)->finalize = beat_box_library_window_finalize;
 }
 
@@ -3814,19 +3929,21 @@ static void beat_box_library_window_finalize (GObject* obj) {
 	_g_object_unref0 (self->priv->previousButton);
 	_g_object_unref0 (self->priv->playButton);
 	_g_object_unref0 (self->priv->nextButton);
-	_g_object_unref0 (self->priv->shuffleButton);
 	_g_object_unref0 (self->priv->loveButton);
 	_g_object_unref0 (self->priv->banButton);
 	_g_object_unref0 (self->priv->topDisplay);
 	_g_object_unref0 (self->searchField);
 	_g_object_unref0 (self->priv->appMenu);
 	_g_object_unref0 (self->priv->statusBar);
+	_g_object_unref0 (self->priv->statusBarLabel);
+	_g_object_unref0 (self->priv->shuffleChooser);
+	_g_object_unref0 (self->priv->repeatChooser);
+	_g_object_unref0 (self->priv->infoPanelChooser);
 	_g_object_unref0 (self->priv->topMenu);
 	_g_object_unref0 (self->priv->libraryOperations);
 	_g_object_unref0 (self->priv->libraryOperationsMenu);
 	_g_object_unref0 (self->priv->fileImportMusic);
 	_g_object_unref0 (self->priv->fileRescanMusicFolder);
-	_g_object_unref0 (self->priv->showInfoPanel);
 	_g_object_unref0 (self->priv->helpOnline);
 	_g_object_unref0 (self->priv->helpTranslate);
 	_g_object_unref0 (self->priv->helpReport);

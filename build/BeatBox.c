@@ -5,9 +5,9 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
+#include <gdk/gdk.h>
 #include <stdlib.h>
 #include <string.h>
-#include <gdk/gdk.h>
 #include <unique/unique.h>
 #include <stdio.h>
 
@@ -82,15 +82,6 @@ enum  {
 GType beat_box_library_window_get_type (void) G_GNUC_CONST;
 GType beat_box_data_base_manager_get_type (void) G_GNUC_CONST;
 GType beat_box_stream_player_get_type (void) G_GNUC_CONST;
-#define BEAT_BOX_BEATBOX_STOCK_BEATBOX "beatbox"
-#define BEAT_BOX_BEATBOX_STOCK_MUSIC_LIBRARY "folder-music"
-#define BEAT_BOX_BEATBOX_STOCK_MEDIA_QUEUE "media-audio"
-#define BEAT_BOX_BEATBOX_STOCK_MEDIA_ALREADY_PLAYED "emblem-urgent"
-#define BEAT_BOX_BEATBOX_STOCK_PLAYLIST "playlist"
-#define BEAT_BOX_BEATBOX_STOCK_PLAYLIST_AUTOMATIC "playlist-automatic"
-#define BEAT_BOX_BEATBOX_STOCK_SONG_STARRED "starred"
-#define BEAT_BOX_BEATBOX_STOCK_SONG_NOT_STARRED "not-starred"
-#define BEAT_BOX_BEATBOX_STOCK_NOW_PLAYING "audio-volume-high"
 gint beat_box_beatbox_main (gchar** args, int args_length1);
 void beat_box_beatbox_add_stock_images (void);
 BeatBoxStreamPlayer* beat_box_stream_player_new (gchar** args, int args_length1);
@@ -104,7 +95,7 @@ BeatBoxBeatbox* beat_box_beatbox_new (void);
 BeatBoxBeatbox* beat_box_beatbox_construct (GType object_type);
 static void beat_box_beatbox_finalize (GObject* obj);
 
-static const GtkStockItem BEAT_BOX_BEATBOX_stock_items[9] = {{BEAT_BOX_BEATBOX_STOCK_BEATBOX, NULL, 0, (guint) 0}, {BEAT_BOX_BEATBOX_STOCK_MUSIC_LIBRARY, NULL, 0, (guint) 0}, {BEAT_BOX_BEATBOX_STOCK_MEDIA_QUEUE, NULL, 0, (guint) 0}, {BEAT_BOX_BEATBOX_STOCK_MEDIA_ALREADY_PLAYED, NULL, 0, (guint) 0}, {BEAT_BOX_BEATBOX_STOCK_PLAYLIST, "_Playlist", 0, (guint) 0}, {BEAT_BOX_BEATBOX_STOCK_PLAYLIST_AUTOMATIC, "_Smart Playlist", 0, (guint) 0}, {BEAT_BOX_BEATBOX_STOCK_SONG_STARRED, NULL, 0, (guint) 0}, {BEAT_BOX_BEATBOX_STOCK_SONG_NOT_STARRED, NULL, 0, (guint) 0}, {BEAT_BOX_BEATBOX_STOCK_NOW_PLAYING, NULL, 0, (guint) 0}};
+static const GtkStockItem BEAT_BOX_BEATBOX_stock_items[14] = {{"beatbox", NULL, 0, (guint) 0}, {"folder-music", NULL, 0, (guint) 0}, {"media-audio", NULL, 0, (guint) 0}, {"emblem-urgent", NULL, 0, (guint) 0}, {"playlist", "_Playlist", 0, (guint) 0}, {"playlist-automatic", "_Smart Playlist", 0, (guint) 0}, {"starred", NULL, 0, (guint) 0}, {"not-starred", NULL, 0, (guint) 0}, {"audio-volume-high", NULL, 0, (guint) 0}, {"media-playlist-repeat-active-symbolic", NULL, 0, (guint) 0}, {"media-playlist-repeat-symbolic", NULL, 0, (guint) 0}, {"media-playlist-shuffle-active-symbolic", NULL, 0, (guint) 0}, {"media-playlist-shuffle-symbolic", NULL, 0, (guint) 0}, {"help-info", NULL, 0, (guint) 0}};
 
 gint beat_box_beatbox_main (gchar** args, int args_length1) {
 	gint result = 0;

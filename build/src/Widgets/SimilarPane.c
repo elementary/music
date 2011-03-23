@@ -145,6 +145,10 @@ typedef struct _BeatBoxTreeViewSetupClass BeatBoxTreeViewSetupClass;
 typedef struct _BeatBoxSongInfo BeatBoxSongInfo;
 typedef struct _BeatBoxSongInfoClass BeatBoxSongInfoClass;
 
+#define BEAT_BOX_LIBRARY_MANAGER_TYPE_REPEAT (beat_box_library_manager_repeat_get_type ())
+
+#define BEAT_BOX_LIBRARY_MANAGER_TYPE_SHUFFLE (beat_box_library_manager_shuffle_get_type ())
+
 #define BEAT_BOX_MUSIC_TREE_VIEW_TYPE_HINT (beat_box_music_tree_view_hint_get_type ())
 #define _g_free0(var) (var = (g_free (var), NULL))
 #define _g_regex_unref0(var) ((var == NULL) ? NULL : (var = (g_regex_unref (var), NULL)))
@@ -217,6 +221,21 @@ struct _BeatBoxSimilarPanePrivate {
 	BeatBoxMusicTreeView* similars;
 };
 
+typedef enum  {
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM,
+	BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG
+} BeatBoxLibraryManagerRepeat;
+
+typedef enum  {
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ARTIST,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALBUM,
+	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL
+} BeatBoxLibraryManagerShuffle;
+
 struct _BeatBoxLibraryManager {
 	GObject parent_instance;
 	BeatBoxLibraryManagerPrivate * priv;
@@ -235,8 +254,8 @@ struct _BeatBoxLibraryManager {
 	gint _current_shuffled_index;
 	BeatBoxSongInfo* song_info;
 	gboolean playing;
-	gboolean repeat;
-	gboolean shuffle;
+	BeatBoxLibraryManagerRepeat repeat;
+	BeatBoxLibraryManagerShuffle shuffle;
 	gboolean doing_file_operations;
 };
 
@@ -289,6 +308,8 @@ GType beat_box_stream_player_get_type (void) G_GNUC_CONST;
 GType last_fm_core_get_type (void) G_GNUC_CONST;
 GType beat_box_tree_view_setup_get_type (void) G_GNUC_CONST;
 GType beat_box_song_info_get_type (void) G_GNUC_CONST;
+GType beat_box_library_manager_repeat_get_type (void) G_GNUC_CONST;
+GType beat_box_library_manager_shuffle_get_type (void) G_GNUC_CONST;
 const gchar* beat_box_tree_view_setup_get_sort_column (BeatBoxTreeViewSetup* self);
 GtkSortType beat_box_tree_view_setup_get_sort_direction (BeatBoxTreeViewSetup* self);
 GType beat_box_music_tree_view_hint_get_type (void) G_GNUC_CONST;

@@ -7,7 +7,7 @@ public class BeatBox.Beatbox : GLib.Object {
 	private static DataBaseManager dbm;
 	private static StreamPlayer _player;
 	
-	public const string STOCK_BEATBOX = "beatbox";
+	/*public const string STOCK_BEATBOX = "beatbox";
 	public const string STOCK_MUSIC_LIBRARY = "folder-music";
 	public const string STOCK_MEDIA_QUEUE = "media-audio";
 	public const string STOCK_MEDIA_ALREADY_PLAYED = "emblem-urgent";
@@ -15,18 +15,24 @@ public class BeatBox.Beatbox : GLib.Object {
 	public const string STOCK_PLAYLIST_AUTOMATIC = "playlist-automatic";
 	public const string STOCK_SONG_STARRED = "starred";
 	public const string STOCK_SONG_NOT_STARRED = "not-starred";
-	public const string STOCK_NOW_PLAYING = "audio-volume-high";
+	public const string STOCK_NOW_PLAYING = "audio-volume-high";*/
 	
 	const Gtk.StockItem[] stock_items = {
-		{ STOCK_BEATBOX, null, 0, 0 },
-		{ STOCK_MUSIC_LIBRARY, null, 0, 0 },
-		{ STOCK_MEDIA_QUEUE, null, 0, 0 },
-		{ STOCK_MEDIA_ALREADY_PLAYED, null, 0, 0 },
-		{ STOCK_PLAYLIST, N_("_Playlist"), 0, 0 },
-		{ STOCK_PLAYLIST_AUTOMATIC, N_("_Smart Playlist"), 0, 0 },
-		{ STOCK_SONG_STARRED, null, 0, 0 },
-		{ STOCK_SONG_NOT_STARRED, null, 0, 0 },
-		{ STOCK_NOW_PLAYING, null, 0, 0 }
+		{ "beatbox", null, 0, 0 },
+		{ "folder-music", null, 0, 0 },
+		{ "media-audio", null, 0, 0 },
+		{ "emblem-urgent", null, 0, 0 },
+		{ "playlist", N_("_Playlist"), 0, 0 },
+		{ "playlist-automatic", N_("_Smart Playlist"), 0, 0 },
+		{ "starred", null, 0, 0 },
+		{ "not-starred", null, 0, 0 },
+		{ "audio-volume-high", null, 0, 0 },
+		{ "media-playlist-repeat-active-symbolic", null, 0, 0},
+		{ "media-playlist-repeat-symbolic", null, 0, 0},
+		{ "media-playlist-shuffle-active-symbolic", null, 0, 0},
+		{ "media-playlist-shuffle-symbolic", null, 0, 0},
+		{ "help-info", null, 0, 0 }
+		
     };
 	
 	public static int main(string[] args) {
