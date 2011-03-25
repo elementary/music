@@ -121,8 +121,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					lm.playSong(s.rowid);
 					
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
-					if(settings.getShuffleMode() != LibraryManager.Shuffle.OFF)
-						stdout.printf("shuffle me dude! (no really fix this at line 124\n");
+					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL)
+						lm.setShuffleMode(LibraryManager.Shuffle.ALL);
 					
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).scrollToCurrent();
 					
@@ -276,8 +276,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		repeatChooser.appendItem("All");
 		
 		shuffleChooser.appendItem("Off");
-		shuffleChooser.appendItem("Artist");
-		shuffleChooser.appendItem("Album");
 		shuffleChooser.appendItem("All");
 		
 		infoPanelChooser.appendItem("Hide");
@@ -688,7 +686,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void nextClicked() {
-		lm.getNext(true);
+		int next_id = lm.getNext(true);
+		
+		/* test to stop playback/reached end */
+		if(next_id == 0) {
+			lm.player.pause_stream();
+			lm.playing = false;
+			updateSensitivities();
+			return;
+		}
 		
 		// if not 90% done, skip it
 		if(!added_to_play_count) {
@@ -1091,20 +1097,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void shuffleChooserOptionChanged(int val) {
-		lm.settings.setShuffleMode(val);
-		
-		// do stuff depending on the mode chosen.
-		if(val == lm.shuffle)
-			return;
-			
 		if(val == 0)
-			lm.unShuffleMusic();
+			lm.setShuffleMode(LibraryManager.Shuffle.OFF);
 		else if(val == 1)
-			lm.shuffleMusic(LibraryManager.Shuffle.ARTIST);
-		else if(val == 2)
-			lm.shuffleMusic(LibraryManager.Shuffle.ALBUM);
-		else if(val == 3)
-			lm.shuffleMusic(LibraryManager.Shuffle.ALL);
+			lm.setShuffleMode(LibraryManager.Shuffle.ALL);
 	}
 	
 	public virtual void infoPanelChooserOptionChanged(int val) {

@@ -867,9 +867,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		if(lm.song_info.song != null)
 			updateSong(lm.song_info.song.rowid);
-			
-		if(lm.is_shuffled())
-			lm.shuffleMusic(lm.shuffle);
 	}
 	
 	/* button_press_event */

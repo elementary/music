@@ -39,7 +39,6 @@ public class LastFM.SimilarSongs : Object {
 		var similarDont = new Gee.LinkedList<BeatBox.Song>();
 		
 		getSimilarTracks(_base.title, _base.artist);
-		
 		foreach(BeatBox.Song sim in similar) {
 			BeatBox.Song s = _lm.song_from_name(sim.title, sim.artist);
 			if(s.rowid != 0) {

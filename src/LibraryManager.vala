@@ -59,8 +59,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public enum Shuffle {
 		OFF,
-		ARTIST,
-		ALBUM,
 		ALL;
 	}
 	
@@ -676,53 +674,38 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_current.set(_current.size, i);
 	}
 	
-	public void shuffleMusic(Shuffle mode) {
-		if(mode == Shuffle.OFF) {
-			unShuffleMusic();
+	public void setShuffleMode(Shuffle mode) {
+		if(mode == shuffle)
 			return;
-		}
 		
 		_current_shuffled.clear();
 		_current_shuffled_index = 0;
 		settings.setShuffleMode(mode);
 		shuffle = mode;
 		
-		//create temp list of all of current's song id's
-		LinkedList<int> temp = new LinkedList<int>();
-		foreach(int i in _current.values) {
-			temp.add(i);
+		if(mode == Shuffle.OFF) {
+			//make sure we continue playing where we left off
+			for(int i = 0; i < _current.size; ++i) {
+				if(_current.get(i) == song_info.song.rowid) {
+					_current_index = i;
+					return;
+				}
+			}
 		}
-		
-		//loop through all current song id's and pick a random one remaining
-		//and set that int i as one of those this is confusing just a sort
-		if(mode == Shuffle.ALL) {
+		else if(mode == Shuffle.ALL) {
+			//create temp list of all of current's song id's
+			LinkedList<int> temp = new LinkedList<int>();
+			foreach(int i in _current.values) {
+				temp.add(i);
+			}
+			
+			//loop through all current song id's and pick a random one remaining
+			//and set that int i as one of those this is confusing just a sort
 			for(int i = 0;i < _current.size; ++i) {
 				int random = GLib.Random.int_range(0, temp.size);
 				
 				_current_shuffled.set(i, temp.get(random));
 				temp.remove(temp.get(random));
-			}
-		}
-		else if(mode == Shuffle.ARTIST) {
-			stdout.printf("shuffling by artist\n");
-		}
-		else if(mode == Shuffle.ALBUM) {
-			stdout.printf("shuffling by album\n");
-		}
-	}
-	
-	public void unShuffleMusic() {
-		stdout.printf("unshuffling music\n");
-		_current_shuffled.clear();
-		_current_shuffled_index = 0;
-		settings.setShuffleMode(Shuffle.OFF);
-		shuffle = Shuffle.OFF;
-		
-		//make sure we continue playing where we left off
-		for(int i = 0; i < _current.size; ++i) {
-			if(_current.get(i) == song_info.song.rowid) {
-				_current_index = i;
-				return;
 			}
 		}
 	}
@@ -745,12 +728,20 @@ public class BeatBox.LibraryManager : GLib.Object {
 			else if(_current_shuffled_index == (_current_shuffled.size - 1)) {// consider repeat options
 				if(repeat == Repeat.ALL)
 					_current_shuffled_index = 0;
-				else
+				else {
+					/* reset to no song playing */
+					song_info.song = null;
+					_current_shuffled.clear();
+					_current.clear();
+					_current_shuffled_index = 0;
+					_current_index = 0;
 					return 0;
+				}
 				
 				rv = _current_shuffled.get(0);
 			}
 			else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
+				stdout.printf("normal\n");
 				// make sure we are repeating what we need to be
 				if(repeat == Repeat.ARTIST && song_from_id(_current_shuffled.get(_current_shuffled_index + 1)).artist != song_from_id(_current_shuffled.get(_current_shuffled_index)).artist) {
 					while(song_from_id(_current_shuffled.get(_current_shuffled_index - 1)).artist == song_info.song.artist)
@@ -766,10 +757,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 				rv = _current_shuffled.get(_current_shuffled_index);
 			}
 			else {
+				stdout.printf("else??????????????????????????????????\n");
 				foreach(Song s in _songs.values)
 					addToCurrent(s.rowid);
-				
-				shuffleMusic(shuffle);
 				
 				_current_shuffled_index = 0;
 				rv = _current_shuffled.get(0);
@@ -815,6 +805,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		
+		stdout.printf("getNext() rv=%d\n", rv);
+		
 		if(play)
 			playSong(rv);
 		
@@ -833,8 +825,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 				// i should actually pause the music / stop the music instead of playing first song
 				foreach(Song s in _songs.values)
 					addToCurrent(s.rowid);
-				
-				shuffleMusic(shuffle);
 				
 				_current_shuffled_index = _current_shuffled.size - 1;
 				rv = _current_shuffled.get(_current_shuffled_index);
