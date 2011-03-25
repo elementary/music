@@ -9,6 +9,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 	Pixbuf disabled;
 	
 	int clicked_index;
+	int previous_index; // for left click
 	bool toggling;
 	
 	public signal void option_changed(int index);
@@ -22,6 +23,9 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		
 		width_request  = (enabled.width > disabled.width) ? enabled.width : disabled.width;
 		height_request = (enabled.height > disabled.height) ? enabled.height : disabled.height;
+		
+		clicked_index = 0;
+		previous_index = 1;
 		
 		// make the background white
 		Gdk.Color c = Gdk.Color();
@@ -82,10 +86,12 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 	
 	public virtual bool buttonPress(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-			if(clicked_index == items.size - 1)
+			if(clicked_index == 0)
+				setOption(previous_index);
+			else {
+				previous_index = clicked_index;
 				setOption(0);
-			else
-				setOption(++clicked_index);
+			}
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) {
 			menu.popup (null, null, null, 3, get_current_event_time());

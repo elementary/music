@@ -42,6 +42,7 @@ struct _BeatBoxSimpleOptionChooserPrivate {
 	GdkPixbuf* enabled;
 	GdkPixbuf* disabled;
 	gint clicked_index;
+	gint previous_index;
 	gboolean toggling;
 };
 
@@ -149,6 +150,8 @@ BeatBoxSimpleOptionChooser* beat_box_simple_option_chooser_construct (GType obje
 		_tmp9_ = _tmp13_;
 	}
 	g_object_set ((GtkWidget*) self, "height-request", _tmp9_, NULL);
+	self->priv->clicked_index = 0;
+	self->priv->previous_index = 1;
 	memset (&c, 0, sizeof (GdkColor));
 	gdk_color_parse ("#FFFFFF", &_tmp14_);
 	c = _tmp14_;
@@ -284,25 +287,23 @@ static gboolean beat_box_simple_option_chooser_real_buttonPress (BeatBoxSimpleOp
 		_tmp0_ = FALSE;
 	}
 	if (_tmp0_) {
-		gint _tmp1_;
-		_tmp1_ = gee_collection_get_size ((GeeCollection*) self->priv->items);
-		if (self->priv->clicked_index == (_tmp1_ - 1)) {
-			beat_box_simple_option_chooser_setOption (self, 0);
+		if (self->priv->clicked_index == 0) {
+			beat_box_simple_option_chooser_setOption (self, self->priv->previous_index);
 		} else {
-			self->priv->clicked_index = self->priv->clicked_index + 1;
-			beat_box_simple_option_chooser_setOption (self, self->priv->clicked_index);
+			self->priv->previous_index = self->priv->clicked_index;
+			beat_box_simple_option_chooser_setOption (self, 0);
 		}
 	} else {
-		gboolean _tmp2_ = FALSE;
+		gboolean _tmp1_ = FALSE;
 		if ((*event).type == GDK_BUTTON_PRESS) {
-			_tmp2_ = (*event).button == 3;
+			_tmp1_ = (*event).button == 3;
 		} else {
-			_tmp2_ = FALSE;
+			_tmp1_ = FALSE;
 		}
-		if (_tmp2_) {
-			guint32 _tmp3_;
-			_tmp3_ = gtk_get_current_event_time ();
-			gtk_menu_popup (self->priv->menu, NULL, NULL, NULL, NULL, (guint) 3, _tmp3_);
+		if (_tmp1_) {
+			guint32 _tmp2_;
+			_tmp2_ = gtk_get_current_event_time ();
+			gtk_menu_popup (self->priv->menu, NULL, NULL, NULL, NULL, (guint) 3, _tmp2_);
 		}
 	}
 	result = FALSE;
