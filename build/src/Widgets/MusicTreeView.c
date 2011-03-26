@@ -667,8 +667,8 @@ static void beat_box_music_tree_view_real_songMenuEditClicked (BeatBoxMusicTreeV
 LastFMTrackInfo* beat_box_library_manager_get_track (BeatBoxLibraryManager* self, const gchar* track_key);
 LastFMArtistInfo* beat_box_library_manager_get_artist (BeatBoxLibraryManager* self, const gchar* artist_key);
 LastFMAlbumInfo* beat_box_library_manager_get_album (BeatBoxLibraryManager* self, const gchar* album_key);
-BeatBoxSongEditor* beat_box_song_editor_new (GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album);
-BeatBoxSongEditor* beat_box_song_editor_construct (GType object_type, GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album);
+BeatBoxSongEditor* beat_box_song_editor_new (BeatBoxLibraryWindow* lw, GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album);
+BeatBoxSongEditor* beat_box_song_editor_construct (GType object_type, BeatBoxLibraryWindow* lw, GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album);
 GType beat_box_song_editor_get_type (void) G_GNUC_CONST;
 void beat_box_music_tree_view_songEditorSaved (BeatBoxMusicTreeView* self, GeeLinkedList* songs);
 static void _beat_box_music_tree_view_songEditorSaved_beat_box_song_editor_songs_saved (BeatBoxSongEditor* _sender, GeeLinkedList* songs, gpointer self);
@@ -682,8 +682,8 @@ static Block10Data* block10_data_ref (Block10Data* _data10_);
 static void block10_data_unref (Block10Data* _data10_);
 BeatBoxPlaylist* beat_box_playlist_new (void);
 BeatBoxPlaylist* beat_box_playlist_construct (GType object_type);
-BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxPlaylist* original);
-BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxPlaylist* original);
+BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original);
+BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original);
 GType beat_box_playlist_name_window_get_type (void) G_GNUC_CONST;
 static void _lambda7_ (BeatBoxPlaylist* newP, Block10Data* _data10_);
 gint beat_box_library_manager_add_playlist (BeatBoxLibraryManager* self, BeatBoxPlaylist* p);
@@ -4428,7 +4428,7 @@ static void beat_box_music_tree_view_real_songMenuEditClicked (BeatBoxMusicTreeV
 	_tmp57_ = (gchar*) _tmp56_;
 	_tmp58_ = beat_box_library_manager_get_album (self->priv->lm, _tmp57_);
 	_tmp59_ = _tmp58_;
-	_tmp60_ = beat_box_song_editor_new (to_edit, _tmp51_, _tmp55_, _tmp59_);
+	_tmp60_ = beat_box_song_editor_new (self->priv->lw, to_edit, _tmp51_, _tmp55_, _tmp59_);
 	_tmp61_ = g_object_ref_sink (_tmp60_);
 	_g_object_unref0 (_tmp59_);
 	_g_free0 (_tmp57_);
@@ -4696,7 +4696,7 @@ static void beat_box_music_tree_view_real_songMenuNewPlaylistClicked (BeatBoxMus
 		}
 		__g_list_free__gtk_tree_path_free0_0 (path_collection);
 	}
-	_tmp10_ = beat_box_playlist_name_window_new (_data10_->p);
+	_tmp10_ = beat_box_playlist_name_window_new (self->priv->lw, _data10_->p);
 	pnw = g_object_ref_sink (_tmp10_);
 	g_signal_connect_data (pnw, "playlist-saved", (GCallback) __lambda7__beat_box_playlist_name_window_playlist_saved, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 	_g_object_unref0 (pnw);

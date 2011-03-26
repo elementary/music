@@ -8,6 +8,7 @@
 #include <gee.h>
 #include <stdlib.h>
 #include <string.h>
+#include <gdk/gdk.h>
 #include <float.h>
 #include <math.h>
 
@@ -43,6 +44,16 @@ typedef struct _BeatBoxSongClass BeatBoxSongClass;
 typedef struct _BeatBoxFieldEditor BeatBoxFieldEditor;
 typedef struct _BeatBoxFieldEditorClass BeatBoxFieldEditorClass;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
+
+#define BEAT_BOX_TYPE_LIBRARY_WINDOW (beat_box_library_window_get_type ())
+#define BEAT_BOX_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindow))
+#define BEAT_BOX_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+#define BEAT_BOX_IS_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_IS_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_LIBRARY_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+
+typedef struct _BeatBoxLibraryWindow BeatBoxLibraryWindow;
+typedef struct _BeatBoxLibraryWindowClass BeatBoxLibraryWindowClass;
 
 #define LAST_FM_TYPE_TRACK_INFO (last_fm_track_info_get_type ())
 #define LAST_FM_TRACK_INFO(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), LAST_FM_TYPE_TRACK_INFO, LastFMTrackInfo))
@@ -136,11 +147,12 @@ GType beat_box_field_editor_get_type (void) G_GNUC_CONST;
 enum  {
 	BEAT_BOX_SONG_EDITOR_DUMMY_PROPERTY
 };
+GType beat_box_library_window_get_type (void) G_GNUC_CONST;
 GType last_fm_track_info_get_type (void) G_GNUC_CONST;
 GType last_fm_artist_info_get_type (void) G_GNUC_CONST;
 GType last_fm_album_info_get_type (void) G_GNUC_CONST;
-BeatBoxSongEditor* beat_box_song_editor_new (GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album);
-BeatBoxSongEditor* beat_box_song_editor_construct (GType object_type, GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album);
+BeatBoxSongEditor* beat_box_song_editor_new (BeatBoxLibraryWindow* lw, GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album);
+BeatBoxSongEditor* beat_box_song_editor_construct (GType object_type, BeatBoxLibraryWindow* lw, GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album);
 BeatBoxSong* beat_box_song_copy (BeatBoxSong* self);
 gint beat_box_song_get_track (BeatBoxSong* self);
 void beat_box_song_set_track (BeatBoxSong* self, gint value);
@@ -210,7 +222,7 @@ static void _beat_box_song_editor_saveClicked_gtk_button_clicked (GtkButton* _se
 }
 
 
-BeatBoxSongEditor* beat_box_song_editor_construct (GType object_type, GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album) {
+BeatBoxSongEditor* beat_box_song_editor_construct (GType object_type, BeatBoxLibraryWindow* lw, GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album) {
 	BeatBoxSongEditor * self = NULL;
 	GeeHashMap* _tmp0_ = NULL;
 	GeeLinkedList* _tmp1_;
@@ -290,10 +302,15 @@ BeatBoxSongEditor* beat_box_song_editor_construct (GType object_type, GeeLinkedL
 	GtkAlignment* _tmp108_ = NULL;
 	GtkAlignment* _tmp109_;
 	gint _tmp110_;
+	g_return_val_if_fail (lw != NULL, NULL);
 	g_return_val_if_fail (songs != NULL, NULL);
 	self = (BeatBoxSongEditor*) g_object_new (object_type, NULL);
 	gtk_window_set_title ((GtkWindow*) self, "Properties");
 	g_object_set ((GtkWindow*) self, "window-position", GTK_WIN_POS_CENTER, NULL);
+	gtk_window_set_type_hint ((GtkWindow*) self, GDK_WINDOW_TYPE_HINT_DIALOG);
+	gtk_window_set_modal ((GtkWindow*) self, TRUE);
+	gtk_window_set_transient_for ((GtkWindow*) self, (GtkWindow*) lw);
+	gtk_window_set_destroy_with_parent ((GtkWindow*) self, TRUE);
 	_tmp0_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, BEAT_BOX_TYPE_FIELD_EDITOR, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
 	_g_object_unref0 (self->priv->fields);
 	self->priv->fields = _tmp0_;
@@ -616,8 +633,8 @@ BeatBoxSongEditor* beat_box_song_editor_construct (GType object_type, GeeLinkedL
 }
 
 
-BeatBoxSongEditor* beat_box_song_editor_new (GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album) {
-	return beat_box_song_editor_construct (BEAT_BOX_TYPE_SONG_EDITOR, songs, track, artist, album);
+BeatBoxSongEditor* beat_box_song_editor_new (BeatBoxLibraryWindow* lw, GeeLinkedList* songs, LastFMTrackInfo* track, LastFMArtistInfo* artist, LastFMAlbumInfo* album) {
+	return beat_box_song_editor_construct (BEAT_BOX_TYPE_SONG_EDITOR, lw, songs, track, artist, album);
 }
 
 

@@ -5,6 +5,7 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
+#include <gdk/gdk.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -30,6 +31,16 @@ typedef struct _BeatBoxPlaylistNameWindowPrivate BeatBoxPlaylistNameWindowPrivat
 typedef struct _BeatBoxPlaylist BeatBoxPlaylist;
 typedef struct _BeatBoxPlaylistClass BeatBoxPlaylistClass;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
+
+#define BEAT_BOX_TYPE_LIBRARY_WINDOW (beat_box_library_window_get_type ())
+#define BEAT_BOX_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindow))
+#define BEAT_BOX_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+#define BEAT_BOX_IS_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_IS_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_LIBRARY_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+
+typedef struct _BeatBoxLibraryWindow BeatBoxLibraryWindow;
+typedef struct _BeatBoxLibraryWindowClass BeatBoxLibraryWindowClass;
 
 struct _BeatBoxPlaylistNameWindow {
 	GtkWindow parent_instance;
@@ -59,8 +70,9 @@ GType beat_box_playlist_get_type (void) G_GNUC_CONST;
 enum  {
 	BEAT_BOX_PLAYLIST_NAME_WINDOW_DUMMY_PROPERTY
 };
-BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxPlaylist* original);
-BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxPlaylist* original);
+GType beat_box_library_window_get_type (void) G_GNUC_CONST;
+BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original);
+BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original);
 const gchar* beat_box_playlist_get_name (BeatBoxPlaylist* self);
 GtkAlignment* beat_box_playlist_name_window_wrap_alignment (GtkWidget* widget, gint top, gint right, gint bottom, gint left);
 void beat_box_playlist_name_window_saveClicked (BeatBoxPlaylistNameWindow* self);
@@ -88,7 +100,7 @@ static void _beat_box_playlist_name_window_nameActivate_gtk_entry_activate (GtkE
 }
 
 
-BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxPlaylist* original) {
+BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original) {
 	BeatBoxPlaylistNameWindow * self = NULL;
 	BeatBoxPlaylist* _tmp0_;
 	GtkVBox* _tmp1_ = NULL;
@@ -104,10 +116,14 @@ BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object
 	GtkAlignment* _tmp9_;
 	GtkAlignment* _tmp10_ = NULL;
 	GtkAlignment* _tmp11_;
+	g_return_val_if_fail (lw != NULL, NULL);
 	g_return_val_if_fail (original != NULL, NULL);
 	self = (BeatBoxPlaylistNameWindow*) g_object_new (object_type, NULL);
 	gtk_window_set_title ((GtkWindow*) self, "Playlist Editor");
 	g_object_set ((GtkWindow*) self, "window-position", GTK_WIN_POS_CENTER, NULL);
+	gtk_window_set_type_hint ((GtkWindow*) self, GDK_WINDOW_TYPE_HINT_DIALOG);
+	gtk_window_set_modal ((GtkWindow*) self, TRUE);
+	gtk_window_set_transient_for ((GtkWindow*) self, (GtkWindow*) lw);
 	gtk_window_set_destroy_with_parent ((GtkWindow*) self, TRUE);
 	_tmp0_ = _g_object_ref0 (original);
 	_g_object_unref0 (self->_original);
@@ -154,8 +170,8 @@ BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object
 }
 
 
-BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxPlaylist* original) {
-	return beat_box_playlist_name_window_construct (BEAT_BOX_TYPE_PLAYLIST_NAME_WINDOW, original);
+BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original) {
+	return beat_box_playlist_name_window_construct (BEAT_BOX_TYPE_PLAYLIST_NAME_WINDOW, lw, original);
 }
 
 

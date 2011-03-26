@@ -1133,7 +1133,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			to_edit.add(s);
 		}
 		
-		SongEditor se = new SongEditor(to_edit, lm.get_track(lastfmStuff.get("track")), 
+		SongEditor se = new SongEditor(lw, to_edit, lm.get_track(lastfmStuff.get("track")), 
 										lm.get_artist(lastfmStuff.get("artist")), 
 										lm.get_album(lastfmStuff.get("album")));
 		se.songs_saved.connect(songEditorSaved);
@@ -1201,7 +1201,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			p.addSong(lm.song_from_id(id));
 		}
 		
-		PlaylistNameWindow pnw = new PlaylistNameWindow(p);
+		PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
 		pnw.playlist_saved.connect( (newP) => { 
 			lm.add_playlist(p);
 			lw.addSideListItem(p); 

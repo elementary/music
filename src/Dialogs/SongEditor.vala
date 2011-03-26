@@ -22,9 +22,15 @@ public class BeatBox.SongEditor : Window {
 	
 	public signal void songs_saved(LinkedList<Song> songs);
 	
-	public SongEditor(LinkedList<Song> songs, LastFM.TrackInfo? track, LastFM.ArtistInfo? artist, LastFM.AlbumInfo? album) {
+	public SongEditor(LibraryWindow lw, LinkedList<Song> songs, LastFM.TrackInfo? track, LastFM.ArtistInfo? artist, LastFM.AlbumInfo? album) {
 		this.title = "Properties";
+		
 		this.window_position = WindowPosition.CENTER;
+		this.type_hint = Gdk.WindowTypeHint.DIALOG;
+		this.set_modal(true);
+		this.set_transient_for(lw);
+		this.destroy_with_parent = true;
+		
 		fields = new HashMap<string, FieldEditor>();
 		
 		_songs = songs;

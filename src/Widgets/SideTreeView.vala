@@ -495,7 +495,7 @@ public class BeatBox.SideTreeView : TreeView {
 	
 	//smart playlist context menu
 	public virtual void smartPlaylistMenuNewClicked() {
-		SmartPlaylistEditor spe = new SmartPlaylistEditor(new SmartPlaylist());
+		SmartPlaylistEditor spe = new SmartPlaylistEditor(lw, new SmartPlaylist());
 		spe.playlist_saved.connect(smartPlaylistEditorSaved);
 	}
 	
@@ -528,7 +528,7 @@ public class BeatBox.SideTreeView : TreeView {
 	
 	//playlist context menu
 	public virtual void playlistMenuNewClicked() {
-		PlaylistNameWindow pnw = new PlaylistNameWindow(new Playlist());
+		PlaylistNameWindow pnw = new PlaylistNameWindow(lw, new Playlist());
 		pnw.playlist_saved.connect(playlistNameWindowSaved);
 	}
 	
@@ -569,11 +569,11 @@ public class BeatBox.SideTreeView : TreeView {
 		sideTreeModel.get(iter, 0, out o);
 		
 		if(o is Playlist) {
-			PlaylistNameWindow pnw = new PlaylistNameWindow(((Playlist)o));
+			PlaylistNameWindow pnw = new PlaylistNameWindow(lw, ((Playlist)o));
 			pnw.playlist_saved.connect(playlistNameWindowSaved);
 		}
 		else if(o is SmartPlaylist) {
-			SmartPlaylistEditor spe = new SmartPlaylistEditor((SmartPlaylist)o);
+			SmartPlaylistEditor spe = new SmartPlaylistEditor(lw, (SmartPlaylist)o);
 			spe.playlist_saved.connect(smartPlaylistEditorSaved);
 		}
 	}

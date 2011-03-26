@@ -8,6 +8,7 @@
 #include <gee.h>
 #include <stdlib.h>
 #include <string.h>
+#include <gdk/gdk.h>
 #include <gio/gio.h>
 #include <stdio.h>
 
@@ -23,6 +24,16 @@ typedef struct _BeatBoxNotImportedWindow BeatBoxNotImportedWindow;
 typedef struct _BeatBoxNotImportedWindowClass BeatBoxNotImportedWindowClass;
 typedef struct _BeatBoxNotImportedWindowPrivate BeatBoxNotImportedWindowPrivate;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
+
+#define BEAT_BOX_TYPE_LIBRARY_WINDOW (beat_box_library_window_get_type ())
+#define BEAT_BOX_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindow))
+#define BEAT_BOX_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+#define BEAT_BOX_IS_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_IS_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_LIBRARY_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+
+typedef struct _BeatBoxLibraryWindow BeatBoxLibraryWindow;
+typedef struct _BeatBoxLibraryWindowClass BeatBoxLibraryWindowClass;
 typedef struct _Block1Data Block1Data;
 #define _g_free0(var) (var = (g_free (var), NULL))
 #define _gtk_tree_path_free0(var) ((var == NULL) ? NULL : (var = (gtk_tree_path_free (var), NULL)))
@@ -65,8 +76,9 @@ GType beat_box_not_imported_window_get_type (void) G_GNUC_CONST;
 enum  {
 	BEAT_BOX_NOT_IMPORTED_WINDOW_DUMMY_PROPERTY
 };
-BeatBoxNotImportedWindow* beat_box_not_imported_window_new (GeeLinkedList* files);
-BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_type, GeeLinkedList* files);
+GType beat_box_library_window_get_type (void) G_GNUC_CONST;
+BeatBoxNotImportedWindow* beat_box_not_imported_window_new (BeatBoxLibraryWindow* lw, GeeLinkedList* files);
+BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_type, BeatBoxLibraryWindow* lw, GeeLinkedList* files);
 static Block1Data* block1_data_ref (Block1Data* _data1_);
 static void block1_data_unref (Block1Data* _data1_);
 static void _lambda17_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBoxNotImportedWindow* self);
@@ -174,8 +186,8 @@ static void _lambda19_ (Block1Data* _data1_) {
 	_tmp0_ = gtk_expander_get_expanded (_data1_->exp);
 	if (_tmp0_) {
 		g_object_set ((GtkWindow*) self, "allow-shrink", TRUE, NULL);
-		gtk_widget_set_size_request ((GtkWidget*) self, 475, 155);
-		gtk_window_set_default_size ((GtkWindow*) self, 475, 155);
+		gtk_widget_set_size_request ((GtkWidget*) self, 475, 180);
+		gtk_window_resize ((GtkWindow*) self, 475, 180);
 		g_object_set ((GtkWindow*) self, "allow-shrink", FALSE, NULL);
 	} else {
 		gtk_widget_set_size_request ((GtkWidget*) self, 475, 350);
@@ -188,7 +200,7 @@ static void __lambda19__gtk_expander_activate (GtkExpander* _sender, gpointer se
 }
 
 
-BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_type, GeeLinkedList* files) {
+BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_type, BeatBoxLibraryWindow* lw, GeeLinkedList* files) {
 	BeatBoxNotImportedWindow * self = NULL;
 	Block1Data* _data1_;
 	GeeLinkedList* _tmp0_;
@@ -249,6 +261,7 @@ BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_t
 	GtkAlignment* _tmp49_;
 	GtkAlignment* _tmp50_ = NULL;
 	GtkAlignment* _tmp51_;
+	g_return_val_if_fail (lw != NULL, NULL);
 	g_return_val_if_fail (files != NULL, NULL);
 	_data1_ = g_slice_new0 (Block1Data);
 	_data1_->_ref_count_ = 1;
@@ -258,8 +271,12 @@ BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_t
 	_g_object_unref0 (self->priv->_files);
 	self->priv->_files = _tmp0_;
 	gtk_window_set_title ((GtkWindow*) self, "Not Imported Files");
-	gtk_window_set_default_size ((GtkWindow*) self, 475, -1);
 	g_object_set ((GtkWindow*) self, "window-position", GTK_WIN_POS_CENTER, NULL);
+	gtk_window_set_type_hint ((GtkWindow*) self, GDK_WINDOW_TYPE_HINT_DIALOG);
+	gtk_window_set_modal ((GtkWindow*) self, TRUE);
+	gtk_window_set_transient_for ((GtkWindow*) self, (GtkWindow*) lw);
+	gtk_window_set_destroy_with_parent ((GtkWindow*) self, TRUE);
+	gtk_window_set_default_size ((GtkWindow*) self, 475, -1);
 	g_object_set ((GtkWindow*) self, "allow-shrink", FALSE, NULL);
 	_tmp1_ = (GtkVBox*) gtk_vbox_new (FALSE, 10);
 	_g_object_unref0 (self->priv->content);
@@ -428,8 +445,8 @@ BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_t
 }
 
 
-BeatBoxNotImportedWindow* beat_box_not_imported_window_new (GeeLinkedList* files) {
-	return beat_box_not_imported_window_construct (BEAT_BOX_TYPE_NOT_IMPORTED_WINDOW, files);
+BeatBoxNotImportedWindow* beat_box_not_imported_window_new (BeatBoxLibraryWindow* lw, GeeLinkedList* files) {
+	return beat_box_not_imported_window_construct (BEAT_BOX_TYPE_NOT_IMPORTED_WINDOW, lw, files);
 }
 
 

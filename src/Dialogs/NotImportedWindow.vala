@@ -14,14 +14,19 @@ public class BeatBox.NotImportedWindow : Window{
 	ListStore filesModel;
 	Button moveToTrash;
 	
-	public NotImportedWindow(LinkedList<string> files) {
+	public NotImportedWindow(LibraryWindow lw, LinkedList<string> files) {
 		_files = files;
 		
 		this.set_title("Not Imported Files");
 		
 		// set the size based on saved gconf settings
-		set_default_size(475, -1);
 		this.window_position = WindowPosition.CENTER;
+		this.type_hint = Gdk.WindowTypeHint.DIALOG;
+		this.set_modal(true);
+		this.set_transient_for(lw);
+		this.destroy_with_parent = true;
+		
+		set_default_size(475, -1);
 		allow_shrink = false;
 		
 		content = new VBox(false, 10);
@@ -114,8 +119,8 @@ public class BeatBox.NotImportedWindow : Window{
 		exp.activate.connect( () => {
 			if(exp.get_expanded()) {
 				allow_shrink = true;
-				set_size_request(475, 155);
-				set_default_size(475, 155);
+				set_size_request(475, 180);
+				resize(475, 180);
 				allow_shrink = false;
 			}
 			else

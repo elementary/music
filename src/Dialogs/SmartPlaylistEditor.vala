@@ -22,9 +22,14 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	
 	public signal void playlist_saved(SmartPlaylist sp);
 	
-	public SmartPlaylistEditor(SmartPlaylist sp) {
+	public SmartPlaylistEditor(LibraryWindow lw, SmartPlaylist sp) {
 		this.title = "Smart Playlist Editor";
+		
 		this.window_position = WindowPosition.CENTER;
+		this.type_hint = Gdk.WindowTypeHint.DIALOG;
+		this.set_modal(true);
+		this.set_transient_for(lw);
+		this.destroy_with_parent = true;
 		
 		_sp = sp;
 		

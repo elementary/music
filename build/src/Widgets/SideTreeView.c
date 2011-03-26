@@ -297,8 +297,8 @@ void beat_box_side_tree_view_resetView (BeatBoxSideTreeView* self);
 static void beat_box_side_tree_view_real_smartPlaylistMenuNewClicked (BeatBoxSideTreeView* self);
 BeatBoxSmartPlaylist* beat_box_smart_playlist_new (void);
 BeatBoxSmartPlaylist* beat_box_smart_playlist_construct (GType object_type);
-BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_new (BeatBoxSmartPlaylist* sp);
-BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_construct (GType object_type, BeatBoxSmartPlaylist* sp);
+BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_new (BeatBoxLibraryWindow* lw, BeatBoxSmartPlaylist* sp);
+BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_construct (GType object_type, BeatBoxLibraryWindow* lw, BeatBoxSmartPlaylist* sp);
 GType beat_box_smart_playlist_editor_get_type (void) G_GNUC_CONST;
 void beat_box_side_tree_view_smartPlaylistEditorSaved (BeatBoxSideTreeView* self, BeatBoxSmartPlaylist* sp);
 static void _beat_box_side_tree_view_smartPlaylistEditorSaved_beat_box_smart_playlist_editor_playlist_saved (BeatBoxSmartPlaylistEditor* _sender, BeatBoxSmartPlaylist* sp, gpointer self);
@@ -309,8 +309,8 @@ void beat_box_library_window_addSideListItem (BeatBoxLibraryWindow* self, GObjec
 static void beat_box_side_tree_view_real_playlistMenuNewClicked (BeatBoxSideTreeView* self);
 BeatBoxPlaylist* beat_box_playlist_new (void);
 BeatBoxPlaylist* beat_box_playlist_construct (GType object_type);
-BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxPlaylist* original);
-BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxPlaylist* original);
+BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original);
+BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original);
 GType beat_box_playlist_name_window_get_type (void) G_GNUC_CONST;
 void beat_box_side_tree_view_playlistNameWindowSaved (BeatBoxSideTreeView* self, BeatBoxPlaylist* p);
 static void _beat_box_side_tree_view_playlistNameWindowSaved_beat_box_playlist_name_window_playlist_saved (BeatBoxPlaylistNameWindow* _sender, BeatBoxPlaylist* p, gpointer self);
@@ -1563,7 +1563,7 @@ static void beat_box_side_tree_view_real_smartPlaylistMenuNewClicked (BeatBoxSid
 	g_return_if_fail (self != NULL);
 	_tmp0_ = beat_box_smart_playlist_new ();
 	_tmp1_ = _tmp0_;
-	_tmp2_ = beat_box_smart_playlist_editor_new (_tmp1_);
+	_tmp2_ = beat_box_smart_playlist_editor_new (self->priv->lw, _tmp1_);
 	_tmp3_ = g_object_ref_sink (_tmp2_);
 	_g_object_unref0 (_tmp1_);
 	spe = _tmp3_;
@@ -1663,7 +1663,7 @@ static void beat_box_side_tree_view_real_playlistMenuNewClicked (BeatBoxSideTree
 	g_return_if_fail (self != NULL);
 	_tmp0_ = beat_box_playlist_new ();
 	_tmp1_ = _tmp0_;
-	_tmp2_ = beat_box_playlist_name_window_new (_tmp1_);
+	_tmp2_ = beat_box_playlist_name_window_new (self->priv->lw, _tmp1_);
 	_tmp3_ = g_object_ref_sink (_tmp2_);
 	_g_object_unref0 (_tmp1_);
 	pnw = _tmp3_;
@@ -1773,7 +1773,7 @@ static void beat_box_side_tree_view_real_playlistMenuEditClicked (BeatBoxSideTre
 	if (BEAT_BOX_IS_PLAYLIST (o)) {
 		BeatBoxPlaylistNameWindow* _tmp5_ = NULL;
 		BeatBoxPlaylistNameWindow* pnw;
-		_tmp5_ = beat_box_playlist_name_window_new (BEAT_BOX_PLAYLIST (o));
+		_tmp5_ = beat_box_playlist_name_window_new (self->priv->lw, BEAT_BOX_PLAYLIST (o));
 		pnw = g_object_ref_sink (_tmp5_);
 		g_signal_connect_object (pnw, "playlist-saved", (GCallback) _beat_box_side_tree_view_playlistNameWindowSaved_beat_box_playlist_name_window_playlist_saved, self, 0);
 		_g_object_unref0 (pnw);
@@ -1781,7 +1781,7 @@ static void beat_box_side_tree_view_real_playlistMenuEditClicked (BeatBoxSideTre
 		if (BEAT_BOX_IS_SMART_PLAYLIST (o)) {
 			BeatBoxSmartPlaylistEditor* _tmp6_ = NULL;
 			BeatBoxSmartPlaylistEditor* spe;
-			_tmp6_ = beat_box_smart_playlist_editor_new (BEAT_BOX_SMART_PLAYLIST (o));
+			_tmp6_ = beat_box_smart_playlist_editor_new (self->priv->lw, BEAT_BOX_SMART_PLAYLIST (o));
 			spe = g_object_ref_sink (_tmp6_);
 			g_signal_connect_object (spe, "playlist-saved", (GCallback) _beat_box_side_tree_view_smartPlaylistEditorSaved_beat_box_smart_playlist_editor_playlist_saved, self, 0);
 			_g_object_unref0 (spe);

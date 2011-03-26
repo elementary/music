@@ -47,15 +47,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	MenuBar topMenu;
 	
 	// basic file stuff
-	MenuItem libraryOperations;
+	ImageMenuItem libraryOperations;
 	Menu libraryOperationsMenu;
 	MenuItem fileImportMusic;
 	MenuItem fileRescanMusicFolder;
-	MenuItem helpOnline;
+	ImageMenuItem helpOnline;
 	MenuItem helpTranslate;
 	MenuItem helpReport;
-	MenuItem helpAbout;
-	MenuItem editPreferences;
+	ImageMenuItem helpAbout;
+	ImageMenuItem editPreferences;
 	
 	Menu settingsMenu;
 	
@@ -166,15 +166,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTreeScroll = new ScrolledWindow(null, null);
 		coverArt = new Image();	
 		topMenu = new MenuBar();
-		libraryOperations = new MenuItem.with_label("Library");
+		libraryOperations = new ImageMenuItem.from_stock("folder-music", null);
 		libraryOperationsMenu = new Menu();
 		fileImportMusic = new MenuItem.with_label("Import to Library");
 		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
-		helpOnline = new MenuItem.with_label("Get Help Online...");
+		helpOnline = new ImageMenuItem.from_stock(Gtk.Stock.HELP, null);
 		helpTranslate = new MenuItem.with_label("Translate This Application...");
 		helpReport = new MenuItem.with_label("Report a Problem...");
-		helpAbout = new MenuItem.with_label("About");
-		editPreferences = new MenuItem.with_label("Preferences");
+		helpAbout = new ImageMenuItem.from_stock(Gtk.Stock.ABOUT, null);
+		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
 		settingsMenu = new Menu();
 		topControls = new Toolbar();
 		previousButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PREVIOUS);
@@ -215,9 +215,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		updateSensitivities();
 		
+		/* create appmenu menu */
 		libraryOperationsMenu.append(fileImportMusic);
 		libraryOperationsMenu.append(fileRescanMusicFolder);
 		libraryOperations.submenu = libraryOperationsMenu;
+		libraryOperations.set_label("Library");
 		
 		settingsMenu.append(libraryOperations);
 		settingsMenu.append(new SeparatorMenuItem());
@@ -231,6 +233,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 		
+		helpOnline.set_label("Get Help Online...");
 		helpOnline.activate.connect( () => {
 			string auth_uri = "https://answers.launchpad.net/beat-box";
 			try {
@@ -258,6 +261,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				stdout.printf("Could not load webpage %s: %s\n", auth_uri, err.message);
 			}
 		});
+		
+		helpAbout.set_label("About");
+		editPreferences.set_label("Preferences");
+		
 		helpAbout.activate.connect(helpAboutClick);
 		editPreferences.activate.connect(editPreferencesClick);
 		
@@ -825,7 +832,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
 		if(not_imported.size > 0) {
-			NotImportedWindow nim = new NotImportedWindow(not_imported);
+			NotImportedWindow nim = new NotImportedWindow(this, not_imported);
 			nim.show();
 		}
 		
@@ -963,7 +970,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
 		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
 		
-		NotImportedWindow npw = new NotImportedWindow(fakes);
+		NotImportedWindow npw = new NotImportedWindow(this, fakes);
 		npw.show();
 	}
 	

@@ -11,9 +11,13 @@ public class BeatBox.PlaylistNameWindow : Window {
 	
 	public signal void playlist_saved(Playlist p);
 	
-	public PlaylistNameWindow(Playlist original) {
+	public PlaylistNameWindow(LibraryWindow lw, Playlist original) {
 		title = "Playlist Editor";
+		
 		this.window_position = WindowPosition.CENTER;
+		this.type_hint = Gdk.WindowTypeHint.DIALOG;
+		this.set_modal(true);
+		this.set_transient_for(lw);
 		this.destroy_with_parent = true;
 		//this.type = WindowType.POPUP;
 		

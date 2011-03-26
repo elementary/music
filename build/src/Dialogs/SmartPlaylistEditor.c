@@ -6,6 +6,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <gee.h>
+#include <gdk/gdk.h>
 #include <stdlib.h>
 #include <string.h>
 #include <float.h>
@@ -53,6 +54,16 @@ typedef struct _ElementaryWidgetsElementaryEntryClass ElementaryWidgetsElementar
 typedef struct _BeatBoxSmartPlaylistEditorQuery BeatBoxSmartPlaylistEditorQuery;
 typedef struct _BeatBoxSmartPlaylistEditorQueryClass BeatBoxSmartPlaylistEditorQueryClass;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
+
+#define BEAT_BOX_TYPE_LIBRARY_WINDOW (beat_box_library_window_get_type ())
+#define BEAT_BOX_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindow))
+#define BEAT_BOX_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+#define BEAT_BOX_IS_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_IS_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_LIBRARY_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+
+typedef struct _BeatBoxLibraryWindow BeatBoxLibraryWindow;
+typedef struct _BeatBoxLibraryWindowClass BeatBoxLibraryWindowClass;
 
 #define BEAT_BOX_TYPE_SMART_QUERY (beat_box_smart_query_get_type ())
 #define BEAT_BOX_SMART_QUERY(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SMART_QUERY, BeatBoxSmartQuery))
@@ -130,8 +141,9 @@ GType beat_box_smart_playlist_editor_query_get_type (void) G_GNUC_CONST;
 enum  {
 	BEAT_BOX_SMART_PLAYLIST_EDITOR_DUMMY_PROPERTY
 };
-BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_new (BeatBoxSmartPlaylist* sp);
-BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_construct (GType object_type, BeatBoxSmartPlaylist* sp);
+GType beat_box_library_window_get_type (void) G_GNUC_CONST;
+BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_new (BeatBoxLibraryWindow* lw, BeatBoxSmartPlaylist* sp);
+BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_construct (GType object_type, BeatBoxLibraryWindow* lw, BeatBoxSmartPlaylist* sp);
 ElementaryWidgetsElementaryEntry* elementary_widgets_elementary_entry_new (const gchar* hint_string);
 ElementaryWidgetsElementaryEntry* elementary_widgets_elementary_entry_construct (GType object_type, const gchar* hint_string);
 const gchar* beat_box_smart_playlist_get_name (BeatBoxSmartPlaylist* self);
@@ -191,7 +203,7 @@ static void _beat_box_smart_playlist_editor_saveClick_gtk_button_clicked (GtkBut
 }
 
 
-BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_construct (GType object_type, BeatBoxSmartPlaylist* sp) {
+BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_construct (GType object_type, BeatBoxLibraryWindow* lw, BeatBoxSmartPlaylist* sp) {
 	BeatBoxSmartPlaylistEditor * self = NULL;
 	BeatBoxSmartPlaylist* _tmp0_;
 	GtkVBox* _tmp1_ = NULL;
@@ -235,10 +247,15 @@ BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_construct (GType obje
 	GtkAlignment* _tmp38_;
 	GtkAlignment* _tmp39_ = NULL;
 	GtkAlignment* _tmp40_;
+	g_return_val_if_fail (lw != NULL, NULL);
 	g_return_val_if_fail (sp != NULL, NULL);
 	self = (BeatBoxSmartPlaylistEditor*) g_object_new (object_type, NULL);
 	gtk_window_set_title ((GtkWindow*) self, "Smart Playlist Editor");
 	g_object_set ((GtkWindow*) self, "window-position", GTK_WIN_POS_CENTER, NULL);
+	gtk_window_set_type_hint ((GtkWindow*) self, GDK_WINDOW_TYPE_HINT_DIALOG);
+	gtk_window_set_modal ((GtkWindow*) self, TRUE);
+	gtk_window_set_transient_for ((GtkWindow*) self, (GtkWindow*) lw);
+	gtk_window_set_destroy_with_parent ((GtkWindow*) self, TRUE);
 	_tmp0_ = _g_object_ref0 (sp);
 	_g_object_unref0 (self->priv->_sp);
 	self->priv->_sp = _tmp0_;
@@ -424,8 +441,8 @@ BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_construct (GType obje
 }
 
 
-BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_new (BeatBoxSmartPlaylist* sp) {
-	return beat_box_smart_playlist_editor_construct (BEAT_BOX_TYPE_SMART_PLAYLIST_EDITOR, sp);
+BeatBoxSmartPlaylistEditor* beat_box_smart_playlist_editor_new (BeatBoxLibraryWindow* lw, BeatBoxSmartPlaylist* sp) {
+	return beat_box_smart_playlist_editor_construct (BEAT_BOX_TYPE_SMART_PLAYLIST_EDITOR, lw, sp);
 }
 
 
