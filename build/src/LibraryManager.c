@@ -8,8 +8,8 @@
 #include <string.h>
 #include <float.h>
 #include <math.h>
-#include <gee.h>
 #include <gtk/gtk.h>
+#include <gee.h>
 #include <stdio.h>
 #include <gio/gio.h>
 #include <gdk-pixbuf/gdk-pixdata.h>
@@ -25,6 +25,16 @@
 typedef struct _BeatBoxLibraryManager BeatBoxLibraryManager;
 typedef struct _BeatBoxLibraryManagerClass BeatBoxLibraryManagerClass;
 typedef struct _BeatBoxLibraryManagerPrivate BeatBoxLibraryManagerPrivate;
+
+#define BEAT_BOX_TYPE_LIBRARY_WINDOW (beat_box_library_window_get_type ())
+#define BEAT_BOX_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindow))
+#define BEAT_BOX_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+#define BEAT_BOX_IS_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_IS_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_LIBRARY_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+
+typedef struct _BeatBoxLibraryWindow BeatBoxLibraryWindow;
+typedef struct _BeatBoxLibraryWindowClass BeatBoxLibraryWindowClass;
 
 #define BEAT_BOX_TYPE_SETTINGS (beat_box_settings_get_type ())
 #define BEAT_BOX_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SETTINGS, BeatBoxSettings))
@@ -177,6 +187,7 @@ typedef struct _BeatBoxPlaylistPrivate BeatBoxPlaylistPrivate;
 typedef struct _Block3Data Block3Data;
 typedef struct _Block4Data Block4Data;
 typedef struct _Block5Data Block5Data;
+typedef struct _Block6Data Block6Data;
 
 typedef enum  {
 	BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF,
@@ -194,6 +205,7 @@ typedef enum  {
 struct _BeatBoxLibraryManager {
 	GObject parent_instance;
 	BeatBoxLibraryManagerPrivate * priv;
+	BeatBoxLibraryWindow* lw;
 	BeatBoxSettings* settings;
 	BeatBoxDataBaseManager* dbm;
 	BeatBoxDataBaseUpdater* dbu;
@@ -233,6 +245,7 @@ struct _BeatBoxLibraryManagerPrivate {
 	GeeHashMap* _albums;
 	GeeHashMap* _tracks;
 	gchar* temp_add_folder;
+	GeeLinkedList* temp_add_files;
 };
 
 struct _BeatBoxSongInfo {
@@ -274,6 +287,13 @@ struct _Block4Data {
 struct _Block5Data {
 	int _ref_count_;
 	BeatBoxLibraryManager * self;
+	GeeLinkedList* new_songs;
+	GeeLinkedList* not_imported;
+};
+
+struct _Block6Data {
+	int _ref_count_;
+	BeatBoxLibraryManager * self;
 	GeeLinkedList* not_imported;
 	GeeLinkedList* new_songs;
 };
@@ -282,6 +302,7 @@ struct _Block5Data {
 static gpointer beat_box_library_manager_parent_class = NULL;
 
 GType beat_box_library_manager_get_type (void) G_GNUC_CONST;
+GType beat_box_library_window_get_type (void) G_GNUC_CONST;
 GType beat_box_settings_get_type (void) G_GNUC_CONST;
 GType beat_box_data_base_manager_get_type (void) G_GNUC_CONST;
 GType beat_box_data_base_updater_get_type (void) G_GNUC_CONST;
@@ -303,8 +324,8 @@ enum  {
 	BEAT_BOX_LIBRARY_MANAGER_DUMMY_PROPERTY,
 	BEAT_BOX_LIBRARY_MANAGER_CURRENT_INDEX
 };
-BeatBoxLibraryManager* beat_box_library_manager_new (BeatBoxStreamPlayer* player, BeatBoxDataBaseManager* dbmn, BeatBoxSettings* sett);
-BeatBoxLibraryManager* beat_box_library_manager_construct (GType object_type, BeatBoxStreamPlayer* player, BeatBoxDataBaseManager* dbmn, BeatBoxSettings* sett);
+BeatBoxLibraryManager* beat_box_library_manager_new (BeatBoxStreamPlayer* player, BeatBoxDataBaseManager* dbmn, BeatBoxSettings* sett, BeatBoxLibraryWindow* lww);
+BeatBoxLibraryManager* beat_box_library_manager_construct (GType object_type, BeatBoxStreamPlayer* player, BeatBoxDataBaseManager* dbmn, BeatBoxSettings* sett, BeatBoxLibraryWindow* lww);
 BeatBoxDataBaseUpdater* beat_box_data_base_updater_new (BeatBoxDataBaseManager* databm);
 BeatBoxDataBaseUpdater* beat_box_data_base_updater_construct (GType object_type, BeatBoxDataBaseManager* databm);
 BeatBoxFileOperator* beat_box_file_operator_new (BeatBoxLibraryManager* lmm, BeatBoxSettings* sett);
@@ -357,27 +378,35 @@ void beat_box_library_manager_add_song (BeatBoxLibraryManager* self, BeatBoxSong
 static gboolean _lambda1_ (Block3Data* _data3_);
 void beat_box_library_manager_save_songs (BeatBoxLibraryManager* self);
 static gboolean __lambda1__gsource_func (gpointer self);
-void beat_box_library_manager_add_folder_to_library (BeatBoxLibraryManager* self, const gchar* folder);
-void* beat_box_library_manager_add_folder_to_library_thread (BeatBoxLibraryManager* self);
-static gpointer _beat_box_library_manager_add_folder_to_library_thread_gthread_func (gpointer self);
+void beat_box_library_manager_add_files_to_library (BeatBoxLibraryManager* self, GeeLinkedList* files);
+void* beat_box_library_manager_add_files_to_library_thread (BeatBoxLibraryManager* self);
+static gpointer _beat_box_library_manager_add_files_to_library_thread_gthread_func (gpointer self);
 static Block4Data* block4_data_ref (Block4Data* _data4_);
 static void block4_data_unref (Block4Data* _data4_);
-const gchar* beat_box_song_get_title (BeatBoxSong* self);
+void beat_box_file_operator_get_music_files_individually (BeatBoxFileOperator* self, GeeLinkedList* files, GeeLinkedList** songs, GeeLinkedList** not_imported);
 gboolean beat_box_settings_getCopyImportedMusic (BeatBoxSettings* self);
+const gchar* beat_box_song_get_title (BeatBoxSong* self);
 void beat_box_file_operator_update_file_hierarchy (BeatBoxFileOperator* self, BeatBoxSong* s, gboolean delete_old);
 static gboolean _lambda3_ (Block4Data* _data4_);
 static gboolean __lambda3__gsource_func (gpointer self);
+void beat_box_library_manager_add_folder_to_library (BeatBoxLibraryManager* self, const gchar* folder);
+void* beat_box_library_manager_add_folder_to_library_thread (BeatBoxLibraryManager* self);
+static gpointer _beat_box_library_manager_add_folder_to_library_thread_gthread_func (gpointer self);
+static Block5Data* block5_data_ref (Block5Data* _data5_);
+static void block5_data_unref (Block5Data* _data5_);
+static gboolean _lambda4_ (Block5Data* _data5_);
+static gboolean __lambda4__gsource_func (gpointer self);
 void beat_box_library_manager_rescan_music_folder (BeatBoxLibraryManager* self);
 void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManager* self);
 static gpointer _beat_box_library_manager_rescan_music_thread_function_gthread_func (gpointer self);
-static Block5Data* block5_data_ref (Block5Data* _data5_);
-static void block5_data_unref (Block5Data* _data5_);
+static Block6Data* block6_data_ref (Block6Data* _data6_);
+static void block6_data_unref (Block6Data* _data6_);
 const gchar* beat_box_song_get_file (BeatBoxSong* self);
 void beat_box_file_operator_rescan_music (BeatBoxFileOperator* self, GFile* music_folder, GeeLinkedList** current_song_paths, GeeLinkedList** not_imported, GeeLinkedList** new_songs);
 void beat_box_library_manager_remove_songs (BeatBoxLibraryManager* self, GeeLinkedList* toRemove);
 void beat_box_data_base_manager_remove_songs (BeatBoxDataBaseManager* self, GeeCollection* songs);
-static gboolean _lambda4_ (Block5Data* _data5_);
-static gboolean __lambda4__gsource_func (gpointer self);
+static gboolean _lambda5_ (Block6Data* _data6_);
+static gboolean __lambda5__gsource_func (gpointer self);
 GeeLinkedList* beat_box_library_manager_fresh_columns (BeatBoxLibraryManager* self);
 GeeLinkedList* beat_box_data_base_manager_load_song_list_columns (BeatBoxDataBaseManager* self);
 gint beat_box_library_manager_playlist_count (BeatBoxLibraryManager* self);
@@ -523,264 +552,269 @@ static void _beat_box_library_manager_dbProgress_beat_box_data_base_manager_db_p
 }
 
 
-BeatBoxLibraryManager* beat_box_library_manager_construct (GType object_type, BeatBoxStreamPlayer* player, BeatBoxDataBaseManager* dbmn, BeatBoxSettings* sett) {
+BeatBoxLibraryManager* beat_box_library_manager_construct (GType object_type, BeatBoxStreamPlayer* player, BeatBoxDataBaseManager* dbmn, BeatBoxSettings* sett, BeatBoxLibraryWindow* lww) {
 	BeatBoxLibraryManager * self = NULL;
-	BeatBoxStreamPlayer* _tmp0_;
-	BeatBoxSettings* _tmp1_;
-	BeatBoxDataBaseManager* _tmp2_;
-	BeatBoxDataBaseUpdater* _tmp3_ = NULL;
-	BeatBoxFileOperator* _tmp4_ = NULL;
-	GeeHashMap* _tmp5_ = NULL;
+	BeatBoxLibraryWindow* _tmp0_;
+	BeatBoxStreamPlayer* _tmp1_;
+	BeatBoxSettings* _tmp2_;
+	BeatBoxDataBaseManager* _tmp3_;
+	BeatBoxDataBaseUpdater* _tmp4_ = NULL;
+	BeatBoxFileOperator* _tmp5_ = NULL;
 	GeeHashMap* _tmp6_ = NULL;
 	GeeHashMap* _tmp7_ = NULL;
 	GeeHashMap* _tmp8_ = NULL;
 	GeeHashMap* _tmp9_ = NULL;
 	GeeHashMap* _tmp10_ = NULL;
-	GeeLinkedList* _tmp11_ = NULL;
+	GeeHashMap* _tmp11_ = NULL;
 	GeeLinkedList* _tmp12_ = NULL;
-	LastFMCore* _tmp13_ = NULL;
-	GeeHashMap* _tmp14_ = NULL;
+	GeeLinkedList* _tmp13_ = NULL;
+	LastFMCore* _tmp14_ = NULL;
 	GeeHashMap* _tmp15_ = NULL;
 	GeeHashMap* _tmp16_ = NULL;
-	BeatBoxSongInfo* _tmp17_ = NULL;
-	LastFMTrackInfo* _tmp18_ = NULL;
-	LastFMArtistInfo* _tmp19_ = NULL;
-	LastFMAlbumInfo* _tmp20_ = NULL;
-	BeatBoxTreeViewSetup* _tmp21_ = NULL;
+	GeeHashMap* _tmp17_ = NULL;
+	BeatBoxSongInfo* _tmp18_ = NULL;
+	LastFMTrackInfo* _tmp19_ = NULL;
+	LastFMArtistInfo* _tmp20_ = NULL;
+	LastFMAlbumInfo* _tmp21_ = NULL;
 	BeatBoxTreeViewSetup* _tmp22_ = NULL;
 	BeatBoxTreeViewSetup* _tmp23_ = NULL;
 	BeatBoxTreeViewSetup* _tmp24_ = NULL;
+	BeatBoxTreeViewSetup* _tmp25_ = NULL;
 	g_return_val_if_fail (player != NULL, NULL);
 	g_return_val_if_fail (dbmn != NULL, NULL);
 	g_return_val_if_fail (sett != NULL, NULL);
+	g_return_val_if_fail (lww != NULL, NULL);
 	self = (BeatBoxLibraryManager*) g_object_new (object_type, NULL);
-	_tmp0_ = _g_object_ref0 (player);
+	_tmp0_ = _g_object_ref0 (lww);
+	_g_object_unref0 (self->lw);
+	self->lw = _tmp0_;
+	_tmp1_ = _g_object_ref0 (player);
 	_g_object_unref0 (self->player);
-	self->player = _tmp0_;
-	_tmp1_ = _g_object_ref0 (sett);
+	self->player = _tmp1_;
+	_tmp2_ = _g_object_ref0 (sett);
 	_g_object_unref0 (self->settings);
-	self->settings = _tmp1_;
-	_tmp2_ = _g_object_ref0 (dbmn);
+	self->settings = _tmp2_;
+	_tmp3_ = _g_object_ref0 (dbmn);
 	_g_object_unref0 (self->dbm);
-	self->dbm = _tmp2_;
-	_tmp3_ = beat_box_data_base_updater_new (self->dbm);
+	self->dbm = _tmp3_;
+	_tmp4_ = beat_box_data_base_updater_new (self->dbm);
 	_g_object_unref0 (self->dbu);
-	self->dbu = _tmp3_;
-	_tmp4_ = beat_box_file_operator_new (self, self->settings);
+	self->dbu = _tmp4_;
+	_tmp5_ = beat_box_file_operator_new (self, self->settings);
 	_g_object_unref0 (self->fo);
-	self->fo = _tmp4_;
+	self->fo = _tmp5_;
 	g_signal_connect_object (self->fo, "fo-progress", (GCallback) _beat_box_library_manager_dbProgress_beat_box_file_operator_fo_progress, self, 0);
 	g_signal_connect_object (self->dbm, "db-progress", (GCallback) _beat_box_library_manager_dbProgress_beat_box_data_base_manager_db_progress, self, 0);
-	_tmp5_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, BEAT_BOX_TYPE_SMART_PLAYLIST, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
+	_tmp6_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, BEAT_BOX_TYPE_SMART_PLAYLIST, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
 	_g_object_unref0 (self->priv->_smart_playlists);
-	self->priv->_smart_playlists = _tmp5_;
-	_tmp6_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, BEAT_BOX_TYPE_PLAYLIST, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
+	self->priv->_smart_playlists = _tmp6_;
+	_tmp7_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, BEAT_BOX_TYPE_PLAYLIST, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
 	_g_object_unref0 (self->priv->_playlists);
-	self->priv->_playlists = _tmp6_;
-	_tmp7_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
+	self->priv->_playlists = _tmp7_;
+	_tmp8_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
 	_g_object_unref0 (self->priv->_songs);
-	self->priv->_songs = _tmp7_;
-	_tmp8_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, G_TYPE_INT, NULL, NULL, NULL, NULL, NULL);
-	_g_object_unref0 (self->priv->_current);
-	self->priv->_current = _tmp8_;
+	self->priv->_songs = _tmp8_;
 	_tmp9_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, G_TYPE_INT, NULL, NULL, NULL, NULL, NULL);
-	_g_object_unref0 (self->priv->_current_shuffled);
-	self->priv->_current_shuffled = _tmp9_;
+	_g_object_unref0 (self->priv->_current);
+	self->priv->_current = _tmp9_;
 	_tmp10_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, G_TYPE_INT, NULL, NULL, NULL, NULL, NULL);
+	_g_object_unref0 (self->priv->_current_shuffled);
+	self->priv->_current_shuffled = _tmp10_;
+	_tmp11_ = gee_hash_map_new (G_TYPE_INT, NULL, NULL, G_TYPE_INT, NULL, NULL, NULL, NULL, NULL);
 	_g_object_unref0 (self->priv->_current_view);
-	self->priv->_current_view = _tmp10_;
-	_tmp11_ = gee_linked_list_new (G_TYPE_INT, NULL, NULL, NULL);
-	_g_object_unref0 (self->priv->_queue);
-	self->priv->_queue = _tmp11_;
+	self->priv->_current_view = _tmp11_;
 	_tmp12_ = gee_linked_list_new (G_TYPE_INT, NULL, NULL, NULL);
+	_g_object_unref0 (self->priv->_queue);
+	self->priv->_queue = _tmp12_;
+	_tmp13_ = gee_linked_list_new (G_TYPE_INT, NULL, NULL, NULL);
 	_g_object_unref0 (self->priv->_already_played);
-	self->priv->_already_played = _tmp12_;
-	_tmp13_ = last_fm_core_new (self);
+	self->priv->_already_played = _tmp13_;
+	_tmp14_ = last_fm_core_new (self);
 	_g_object_unref0 (self->lfm);
-	self->lfm = _tmp13_;
-	_tmp14_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, LAST_FM_TYPE_ARTIST_INFO, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
+	self->lfm = _tmp14_;
+	_tmp15_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, LAST_FM_TYPE_ARTIST_INFO, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
 	_g_object_unref0 (self->priv->_artists);
-	self->priv->_artists = _tmp14_;
-	_tmp15_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, LAST_FM_TYPE_ALBUM_INFO, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
+	self->priv->_artists = _tmp15_;
+	_tmp16_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, LAST_FM_TYPE_ALBUM_INFO, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
 	_g_object_unref0 (self->priv->_albums);
-	self->priv->_albums = _tmp15_;
-	_tmp16_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, LAST_FM_TYPE_TRACK_INFO, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
+	self->priv->_albums = _tmp16_;
+	_tmp17_ = gee_hash_map_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, LAST_FM_TYPE_TRACK_INFO, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL, NULL, NULL);
 	_g_object_unref0 (self->priv->_tracks);
-	self->priv->_tracks = _tmp16_;
+	self->priv->_tracks = _tmp17_;
 	self->_played_index = 0;
-	_tmp17_ = beat_box_song_info_new ();
+	_tmp18_ = beat_box_song_info_new ();
 	_g_object_unref0 (self->song_info);
-	self->song_info = _tmp17_;
-	_tmp18_ = last_fm_track_info_new_basic ();
+	self->song_info = _tmp18_;
+	_tmp19_ = last_fm_track_info_new_basic ();
 	_g_object_unref0 (self->song_info->track);
-	self->song_info->track = _tmp18_;
-	_tmp19_ = last_fm_artist_info_new_basic ();
+	self->song_info->track = _tmp19_;
+	_tmp20_ = last_fm_artist_info_new_basic ();
 	_g_object_unref0 (self->song_info->artist);
-	self->song_info->artist = _tmp19_;
-	_tmp20_ = last_fm_album_info_new_basic ();
+	self->song_info->artist = _tmp20_;
+	_tmp21_ = last_fm_album_info_new_basic ();
 	_g_object_unref0 (self->song_info->album);
-	self->song_info->album = _tmp20_;
+	self->song_info->album = _tmp21_;
 	self->repeat = BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF;
 	self->shuffle = BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF;
 	self->doing_file_operations = FALSE;
-	_tmp21_ = beat_box_tree_view_setup_new ("Artist", GTK_SORT_ASCENDING);
+	_tmp22_ = beat_box_tree_view_setup_new ("Artist", GTK_SORT_ASCENDING);
 	_g_object_unref0 (self->music_setup);
-	self->music_setup = _tmp21_;
-	_tmp22_ = beat_box_tree_view_setup_new ("#", GTK_SORT_ASCENDING);
-	_g_object_unref0 (self->similar_setup);
-	self->similar_setup = _tmp22_;
+	self->music_setup = _tmp22_;
 	_tmp23_ = beat_box_tree_view_setup_new ("#", GTK_SORT_ASCENDING);
-	_g_object_unref0 (self->queue_setup);
-	self->queue_setup = _tmp23_;
+	_g_object_unref0 (self->similar_setup);
+	self->similar_setup = _tmp23_;
 	_tmp24_ = beat_box_tree_view_setup_new ("#", GTK_SORT_ASCENDING);
+	_g_object_unref0 (self->queue_setup);
+	self->queue_setup = _tmp24_;
+	_tmp25_ = beat_box_tree_view_setup_new ("#", GTK_SORT_ASCENDING);
 	_g_object_unref0 (self->history_setup);
-	self->history_setup = _tmp24_;
+	self->history_setup = _tmp25_;
 	{
-		GeeArrayList* _tmp25_ = NULL;
+		GeeArrayList* _tmp26_ = NULL;
 		GeeArrayList* _s_list;
-		gint _tmp26_;
+		gint _tmp27_;
 		gint _s_size;
 		gint _s_index;
-		_tmp25_ = beat_box_data_base_manager_load_songs (self->dbm);
-		_s_list = _tmp25_;
-		_tmp26_ = gee_collection_get_size ((GeeCollection*) _s_list);
-		_s_size = _tmp26_;
+		_tmp26_ = beat_box_data_base_manager_load_songs (self->dbm);
+		_s_list = _tmp26_;
+		_tmp27_ = gee_collection_get_size ((GeeCollection*) _s_list);
+		_s_size = _tmp27_;
 		_s_index = -1;
 		while (TRUE) {
-			gpointer _tmp27_ = NULL;
+			gpointer _tmp28_ = NULL;
 			BeatBoxSong* s;
-			gint _tmp28_;
+			gint _tmp29_;
 			_s_index = _s_index + 1;
 			if (!(_s_index < _s_size)) {
 				break;
 			}
-			_tmp27_ = gee_abstract_list_get ((GeeAbstractList*) _s_list, _s_index);
-			s = (BeatBoxSong*) _tmp27_;
-			_tmp28_ = beat_box_song_get_rowid (s);
-			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_songs, GINT_TO_POINTER (_tmp28_), s);
+			_tmp28_ = gee_abstract_list_get ((GeeAbstractList*) _s_list, _s_index);
+			s = (BeatBoxSong*) _tmp28_;
+			_tmp29_ = beat_box_song_get_rowid (s);
+			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_songs, GINT_TO_POINTER (_tmp29_), s);
 			_g_object_unref0 (s);
 		}
 		_g_object_unref0 (_s_list);
 	}
 	{
-		GeeArrayList* _tmp29_ = NULL;
+		GeeArrayList* _tmp30_ = NULL;
 		GeeArrayList* _p_list;
-		gint _tmp30_;
+		gint _tmp31_;
 		gint _p_size;
 		gint _p_index;
-		_tmp29_ = beat_box_data_base_manager_load_smart_playlists (self->dbm);
-		_p_list = _tmp29_;
-		_tmp30_ = gee_collection_get_size ((GeeCollection*) _p_list);
-		_p_size = _tmp30_;
+		_tmp30_ = beat_box_data_base_manager_load_smart_playlists (self->dbm);
+		_p_list = _tmp30_;
+		_tmp31_ = gee_collection_get_size ((GeeCollection*) _p_list);
+		_p_size = _tmp31_;
 		_p_index = -1;
 		while (TRUE) {
-			gpointer _tmp31_ = NULL;
+			gpointer _tmp32_ = NULL;
 			BeatBoxSmartPlaylist* p;
-			gint _tmp32_;
+			gint _tmp33_;
 			_p_index = _p_index + 1;
 			if (!(_p_index < _p_size)) {
 				break;
 			}
-			_tmp31_ = gee_abstract_list_get ((GeeAbstractList*) _p_list, _p_index);
-			p = (BeatBoxSmartPlaylist*) _tmp31_;
-			_tmp32_ = beat_box_smart_playlist_get_rowid (p);
-			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_smart_playlists, GINT_TO_POINTER (_tmp32_), p);
+			_tmp32_ = gee_abstract_list_get ((GeeAbstractList*) _p_list, _p_index);
+			p = (BeatBoxSmartPlaylist*) _tmp32_;
+			_tmp33_ = beat_box_smart_playlist_get_rowid (p);
+			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_smart_playlists, GINT_TO_POINTER (_tmp33_), p);
 			_g_object_unref0 (p);
 		}
 		_g_object_unref0 (_p_list);
 	}
 	{
-		GeeArrayList* _tmp33_ = NULL;
+		GeeArrayList* _tmp34_ = NULL;
 		GeeArrayList* _p_list;
-		gint _tmp34_;
+		gint _tmp35_;
 		gint _p_size;
 		gint _p_index;
-		_tmp33_ = beat_box_data_base_manager_load_playlists (self->dbm);
-		_p_list = _tmp33_;
-		_tmp34_ = gee_collection_get_size ((GeeCollection*) _p_list);
-		_p_size = _tmp34_;
+		_tmp34_ = beat_box_data_base_manager_load_playlists (self->dbm);
+		_p_list = _tmp34_;
+		_tmp35_ = gee_collection_get_size ((GeeCollection*) _p_list);
+		_p_size = _tmp35_;
 		_p_index = -1;
 		while (TRUE) {
-			gpointer _tmp35_ = NULL;
+			gpointer _tmp36_ = NULL;
 			BeatBoxPlaylist* p;
-			gint _tmp36_;
-			const gchar* _tmp37_ = NULL;
+			gint _tmp37_;
+			const gchar* _tmp38_ = NULL;
 			_p_index = _p_index + 1;
 			if (!(_p_index < _p_size)) {
 				break;
 			}
-			_tmp35_ = gee_abstract_list_get ((GeeAbstractList*) _p_list, _p_index);
-			p = (BeatBoxPlaylist*) _tmp35_;
-			_tmp36_ = beat_box_playlist_get_rowid (p);
-			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp36_), p);
-			_tmp37_ = beat_box_playlist_get_name (p);
-			if (g_strcmp0 (_tmp37_, "autosaved_music") == 0) {
-				BeatBoxTreeViewSetup* _tmp38_;
-				gint _tmp39_;
-				_tmp38_ = _g_object_ref0 (p->tvs);
+			_tmp36_ = gee_abstract_list_get ((GeeAbstractList*) _p_list, _p_index);
+			p = (BeatBoxPlaylist*) _tmp36_;
+			_tmp37_ = beat_box_playlist_get_rowid (p);
+			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp37_), p);
+			_tmp38_ = beat_box_playlist_get_name (p);
+			if (g_strcmp0 (_tmp38_, "autosaved_music") == 0) {
+				BeatBoxTreeViewSetup* _tmp39_;
+				gint _tmp40_;
+				_tmp39_ = _g_object_ref0 (p->tvs);
 				_g_object_unref0 (self->music_setup);
-				self->music_setup = _tmp38_;
-				_tmp39_ = beat_box_playlist_get_rowid (p);
-				gee_abstract_map_unset ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp39_), NULL);
+				self->music_setup = _tmp39_;
+				_tmp40_ = beat_box_playlist_get_rowid (p);
+				gee_abstract_map_unset ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp40_), NULL);
 			} else {
-				const gchar* _tmp40_ = NULL;
-				_tmp40_ = beat_box_playlist_get_name (p);
-				if (g_strcmp0 (_tmp40_, "autosaved_similar") == 0) {
-					BeatBoxTreeViewSetup* _tmp41_;
-					gint _tmp42_;
-					_tmp41_ = _g_object_ref0 (p->tvs);
+				const gchar* _tmp41_ = NULL;
+				_tmp41_ = beat_box_playlist_get_name (p);
+				if (g_strcmp0 (_tmp41_, "autosaved_similar") == 0) {
+					BeatBoxTreeViewSetup* _tmp42_;
+					gint _tmp43_;
+					_tmp42_ = _g_object_ref0 (p->tvs);
 					_g_object_unref0 (self->similar_setup);
-					self->similar_setup = _tmp41_;
-					_tmp42_ = beat_box_playlist_get_rowid (p);
-					gee_abstract_map_unset ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp42_), NULL);
+					self->similar_setup = _tmp42_;
+					_tmp43_ = beat_box_playlist_get_rowid (p);
+					gee_abstract_map_unset ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp43_), NULL);
 				} else {
-					const gchar* _tmp43_ = NULL;
-					_tmp43_ = beat_box_playlist_get_name (p);
-					if (g_strcmp0 (_tmp43_, "autosaved_queue") == 0) {
-						BeatBoxTreeViewSetup* _tmp48_;
-						gint _tmp49_;
+					const gchar* _tmp44_ = NULL;
+					_tmp44_ = beat_box_playlist_get_name (p);
+					if (g_strcmp0 (_tmp44_, "autosaved_queue") == 0) {
+						BeatBoxTreeViewSetup* _tmp49_;
+						gint _tmp50_;
 						{
-							gint _tmp44_;
-							GeeLinkedList* _tmp45_ = NULL;
+							gint _tmp45_;
+							GeeLinkedList* _tmp46_ = NULL;
 							GeeLinkedList* _i_list;
-							gint _tmp46_;
+							gint _tmp47_;
 							gint _i_size;
 							gint _i_index;
-							_tmp44_ = beat_box_playlist_get_rowid (p);
-							_tmp45_ = beat_box_library_manager_songs_from_playlist (self, _tmp44_);
-							_i_list = _tmp45_;
-							_tmp46_ = gee_collection_get_size ((GeeCollection*) _i_list);
-							_i_size = _tmp46_;
+							_tmp45_ = beat_box_playlist_get_rowid (p);
+							_tmp46_ = beat_box_library_manager_songs_from_playlist (self, _tmp45_);
+							_i_list = _tmp46_;
+							_tmp47_ = gee_collection_get_size ((GeeCollection*) _i_list);
+							_i_size = _tmp47_;
 							_i_index = -1;
 							while (TRUE) {
-								gpointer _tmp47_ = NULL;
+								gpointer _tmp48_ = NULL;
 								gint i;
 								_i_index = _i_index + 1;
 								if (!(_i_index < _i_size)) {
 									break;
 								}
-								_tmp47_ = gee_abstract_list_get ((GeeAbstractList*) _i_list, _i_index);
-								i = GPOINTER_TO_INT (_tmp47_);
+								_tmp48_ = gee_abstract_list_get ((GeeAbstractList*) _i_list, _i_index);
+								i = GPOINTER_TO_INT (_tmp48_);
 								beat_box_library_manager_queue_song_by_id (self, i);
 							}
 							_g_object_unref0 (_i_list);
 						}
-						_tmp48_ = _g_object_ref0 (p->tvs);
+						_tmp49_ = _g_object_ref0 (p->tvs);
 						_g_object_unref0 (self->queue_setup);
-						self->queue_setup = _tmp48_;
-						_tmp49_ = beat_box_playlist_get_rowid (p);
-						gee_abstract_map_unset ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp49_), NULL);
+						self->queue_setup = _tmp49_;
+						_tmp50_ = beat_box_playlist_get_rowid (p);
+						gee_abstract_map_unset ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp50_), NULL);
 					} else {
-						const gchar* _tmp50_ = NULL;
-						_tmp50_ = beat_box_playlist_get_name (p);
-						if (g_strcmp0 (_tmp50_, "autosaved_history") == 0) {
-							BeatBoxTreeViewSetup* _tmp51_;
-							gint _tmp52_;
-							_tmp51_ = _g_object_ref0 (p->tvs);
+						const gchar* _tmp51_ = NULL;
+						_tmp51_ = beat_box_playlist_get_name (p);
+						if (g_strcmp0 (_tmp51_, "autosaved_history") == 0) {
+							BeatBoxTreeViewSetup* _tmp52_;
+							gint _tmp53_;
+							_tmp52_ = _g_object_ref0 (p->tvs);
 							_g_object_unref0 (self->history_setup);
-							self->history_setup = _tmp51_;
-							_tmp52_ = beat_box_playlist_get_rowid (p);
-							gee_abstract_map_unset ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp52_), NULL);
+							self->history_setup = _tmp52_;
+							_tmp53_ = beat_box_playlist_get_rowid (p);
+							gee_abstract_map_unset ((GeeAbstractMap*) self->priv->_playlists, GINT_TO_POINTER (_tmp53_), NULL);
 						}
 					}
 				}
@@ -790,112 +824,112 @@ BeatBoxLibraryManager* beat_box_library_manager_construct (GType object_type, Be
 		_g_object_unref0 (_p_list);
 	}
 	{
-		GeeCollection* _tmp53_ = NULL;
-		GeeCollection* _tmp54_;
-		GeeIterator* _tmp55_ = NULL;
-		GeeIterator* _tmp56_;
+		GeeCollection* _tmp54_ = NULL;
+		GeeCollection* _tmp55_;
+		GeeIterator* _tmp56_ = NULL;
+		GeeIterator* _tmp57_;
 		GeeIterator* _a_it;
-		_tmp53_ = beat_box_data_base_manager_load_artists (self->dbm);
-		_tmp54_ = _tmp53_;
-		_tmp55_ = gee_iterable_iterator ((GeeIterable*) _tmp54_);
-		_tmp56_ = _tmp55_;
-		_g_object_unref0 (_tmp54_);
-		_a_it = _tmp56_;
+		_tmp54_ = beat_box_data_base_manager_load_artists (self->dbm);
+		_tmp55_ = _tmp54_;
+		_tmp56_ = gee_iterable_iterator ((GeeIterable*) _tmp55_);
+		_tmp57_ = _tmp56_;
+		_g_object_unref0 (_tmp55_);
+		_a_it = _tmp57_;
 		while (TRUE) {
-			gboolean _tmp57_;
-			gpointer _tmp58_ = NULL;
+			gboolean _tmp58_;
+			gpointer _tmp59_ = NULL;
 			LastFMArtistInfo* a;
-			const gchar* _tmp59_ = NULL;
-			_tmp57_ = gee_iterator_next (_a_it);
-			if (!_tmp57_) {
+			const gchar* _tmp60_ = NULL;
+			_tmp58_ = gee_iterator_next (_a_it);
+			if (!_tmp58_) {
 				break;
 			}
-			_tmp58_ = gee_iterator_get (_a_it);
-			a = (LastFMArtistInfo*) _tmp58_;
-			_tmp59_ = last_fm_artist_info_get_name (a);
-			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_artists, _tmp59_, a);
+			_tmp59_ = gee_iterator_get (_a_it);
+			a = (LastFMArtistInfo*) _tmp59_;
+			_tmp60_ = last_fm_artist_info_get_name (a);
+			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_artists, _tmp60_, a);
 			_g_object_unref0 (a);
 		}
 		_g_object_unref0 (_a_it);
 	}
 	{
-		GeeCollection* _tmp60_ = NULL;
-		GeeCollection* _tmp61_;
-		GeeIterator* _tmp62_ = NULL;
-		GeeIterator* _tmp63_;
+		GeeCollection* _tmp61_ = NULL;
+		GeeCollection* _tmp62_;
+		GeeIterator* _tmp63_ = NULL;
+		GeeIterator* _tmp64_;
 		GeeIterator* _a_it;
-		_tmp60_ = beat_box_data_base_manager_load_albums (self->dbm);
-		_tmp61_ = _tmp60_;
-		_tmp62_ = gee_iterable_iterator ((GeeIterable*) _tmp61_);
-		_tmp63_ = _tmp62_;
-		_g_object_unref0 (_tmp61_);
-		_a_it = _tmp63_;
+		_tmp61_ = beat_box_data_base_manager_load_albums (self->dbm);
+		_tmp62_ = _tmp61_;
+		_tmp63_ = gee_iterable_iterator ((GeeIterable*) _tmp62_);
+		_tmp64_ = _tmp63_;
+		_g_object_unref0 (_tmp62_);
+		_a_it = _tmp64_;
 		while (TRUE) {
-			gboolean _tmp64_;
-			gpointer _tmp65_ = NULL;
+			gboolean _tmp65_;
+			gpointer _tmp66_ = NULL;
 			LastFMAlbumInfo* a;
-			const gchar* _tmp66_ = NULL;
-			gchar* _tmp67_;
+			const gchar* _tmp67_ = NULL;
 			gchar* _tmp68_;
-			const gchar* _tmp69_ = NULL;
-			gchar* _tmp70_;
+			gchar* _tmp69_;
+			const gchar* _tmp70_ = NULL;
 			gchar* _tmp71_;
-			_tmp64_ = gee_iterator_next (_a_it);
-			if (!_tmp64_) {
+			gchar* _tmp72_;
+			_tmp65_ = gee_iterator_next (_a_it);
+			if (!_tmp65_) {
 				break;
 			}
-			_tmp65_ = gee_iterator_get (_a_it);
-			a = (LastFMAlbumInfo*) _tmp65_;
-			_tmp66_ = last_fm_album_info_get_name (a);
-			_tmp67_ = g_strconcat (_tmp66_, " by ", NULL);
-			_tmp68_ = _tmp67_;
-			_tmp69_ = last_fm_album_info_get_artist (a);
-			_tmp70_ = g_strconcat (_tmp68_, _tmp69_, NULL);
-			_tmp71_ = _tmp70_;
-			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_albums, _tmp71_, a);
-			_g_free0 (_tmp71_);
-			_g_free0 (_tmp68_);
+			_tmp66_ = gee_iterator_get (_a_it);
+			a = (LastFMAlbumInfo*) _tmp66_;
+			_tmp67_ = last_fm_album_info_get_name (a);
+			_tmp68_ = g_strconcat (_tmp67_, " by ", NULL);
+			_tmp69_ = _tmp68_;
+			_tmp70_ = last_fm_album_info_get_artist (a);
+			_tmp71_ = g_strconcat (_tmp69_, _tmp70_, NULL);
+			_tmp72_ = _tmp71_;
+			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_albums, _tmp72_, a);
+			_g_free0 (_tmp72_);
+			_g_free0 (_tmp69_);
 			_g_object_unref0 (a);
 		}
 		_g_object_unref0 (_a_it);
 	}
 	{
-		GeeCollection* _tmp72_ = NULL;
-		GeeCollection* _tmp73_;
-		GeeIterator* _tmp74_ = NULL;
-		GeeIterator* _tmp75_;
+		GeeCollection* _tmp73_ = NULL;
+		GeeCollection* _tmp74_;
+		GeeIterator* _tmp75_ = NULL;
+		GeeIterator* _tmp76_;
 		GeeIterator* _t_it;
-		_tmp72_ = beat_box_data_base_manager_load_tracks (self->dbm);
-		_tmp73_ = _tmp72_;
-		_tmp74_ = gee_iterable_iterator ((GeeIterable*) _tmp73_);
-		_tmp75_ = _tmp74_;
-		_g_object_unref0 (_tmp73_);
-		_t_it = _tmp75_;
+		_tmp73_ = beat_box_data_base_manager_load_tracks (self->dbm);
+		_tmp74_ = _tmp73_;
+		_tmp75_ = gee_iterable_iterator ((GeeIterable*) _tmp74_);
+		_tmp76_ = _tmp75_;
+		_g_object_unref0 (_tmp74_);
+		_t_it = _tmp76_;
 		while (TRUE) {
-			gboolean _tmp76_;
-			gpointer _tmp77_ = NULL;
+			gboolean _tmp77_;
+			gpointer _tmp78_ = NULL;
 			LastFMTrackInfo* t;
-			const gchar* _tmp78_ = NULL;
-			gchar* _tmp79_;
+			const gchar* _tmp79_ = NULL;
 			gchar* _tmp80_;
-			const gchar* _tmp81_ = NULL;
-			gchar* _tmp82_;
+			gchar* _tmp81_;
+			const gchar* _tmp82_ = NULL;
 			gchar* _tmp83_;
-			_tmp76_ = gee_iterator_next (_t_it);
-			if (!_tmp76_) {
+			gchar* _tmp84_;
+			_tmp77_ = gee_iterator_next (_t_it);
+			if (!_tmp77_) {
 				break;
 			}
-			_tmp77_ = gee_iterator_get (_t_it);
-			t = (LastFMTrackInfo*) _tmp77_;
-			_tmp78_ = last_fm_track_info_get_name (t);
-			_tmp79_ = g_strconcat (_tmp78_, " by ", NULL);
-			_tmp80_ = _tmp79_;
-			_tmp81_ = last_fm_track_info_get_artist (t);
-			_tmp82_ = g_strconcat (_tmp80_, _tmp81_, NULL);
-			_tmp83_ = _tmp82_;
-			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_tracks, _tmp83_, t);
-			_g_free0 (_tmp83_);
-			_g_free0 (_tmp80_);
+			_tmp78_ = gee_iterator_get (_t_it);
+			t = (LastFMTrackInfo*) _tmp78_;
+			_tmp79_ = last_fm_track_info_get_name (t);
+			_tmp80_ = g_strconcat (_tmp79_, " by ", NULL);
+			_tmp81_ = _tmp80_;
+			_tmp82_ = last_fm_track_info_get_artist (t);
+			_tmp83_ = g_strconcat (_tmp81_, _tmp82_, NULL);
+			_tmp84_ = _tmp83_;
+			gee_abstract_map_set ((GeeAbstractMap*) self->priv->_tracks, _tmp84_, t);
+			_g_free0 (_tmp84_);
+			_g_free0 (_tmp81_);
 			_g_object_unref0 (t);
 		}
 		_g_object_unref0 (_t_it);
@@ -904,8 +938,8 @@ BeatBoxLibraryManager* beat_box_library_manager_construct (GType object_type, Be
 }
 
 
-BeatBoxLibraryManager* beat_box_library_manager_new (BeatBoxStreamPlayer* player, BeatBoxDataBaseManager* dbmn, BeatBoxSettings* sett) {
-	return beat_box_library_manager_construct (BEAT_BOX_TYPE_LIBRARY_MANAGER, player, dbmn, sett);
+BeatBoxLibraryManager* beat_box_library_manager_new (BeatBoxStreamPlayer* player, BeatBoxDataBaseManager* dbmn, BeatBoxSettings* sett, BeatBoxLibraryWindow* lww) {
+	return beat_box_library_manager_construct (BEAT_BOX_TYPE_LIBRARY_MANAGER, player, dbmn, sett, lww);
 }
 
 
@@ -948,10 +982,10 @@ void beat_box_library_manager_set_music_folder (BeatBoxLibraryManager* self, con
 		beat_box_settings_setMusicFolder (self->settings, folder);
 		g_thread_create (_beat_box_library_manager_set_music_thread_function_gthread_func, self, FALSE, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch48_g_error;
+			goto __catch49_g_error;
 		}
-		goto __finally48;
-		__catch48_g_error:
+		goto __finally49;
+		__catch49_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -959,7 +993,7 @@ void beat_box_library_manager_set_music_folder (BeatBoxLibraryManager* self, con
 			fprintf (stdout, "Could not create thread to set music folder: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally48:
+		__finally49:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
@@ -1080,48 +1114,38 @@ void* beat_box_library_manager_set_music_thread_function (BeatBoxLibraryManager*
 }
 
 
-static gpointer _beat_box_library_manager_add_folder_to_library_thread_gthread_func (gpointer self) {
+static gpointer _beat_box_library_manager_add_files_to_library_thread_gthread_func (gpointer self) {
 	gpointer result;
-	result = beat_box_library_manager_add_folder_to_library_thread (self);
+	result = beat_box_library_manager_add_files_to_library_thread (self);
 	return result;
 }
 
 
-void beat_box_library_manager_add_folder_to_library (BeatBoxLibraryManager* self, const gchar* folder) {
+void beat_box_library_manager_add_files_to_library (BeatBoxLibraryManager* self, GeeLinkedList* files) {
 	GError * _inner_error_ = NULL;
 	g_return_if_fail (self != NULL);
-	g_return_if_fail (folder != NULL);
+	g_return_if_fail (files != NULL);
 	if (!self->doing_file_operations) {
-		gchar* _tmp0_;
-		gchar* _tmp1_;
-		gchar* _tmp2_;
-		gchar* _tmp3_;
-		gchar* _tmp4_;
+		GeeLinkedList* _tmp0_;
 		self->doing_file_operations = TRUE;
-		_tmp0_ = g_strconcat ("Adding music from ", folder, NULL);
-		_tmp1_ = _tmp0_;
-		_tmp2_ = g_strconcat (_tmp1_, " to library. This may take a while", NULL);
-		_tmp3_ = _tmp2_;
-		g_signal_emit_by_name (self, "progress-notification", _tmp3_, 0.0);
-		_g_free0 (_tmp3_);
-		_g_free0 (_tmp1_);
-		_tmp4_ = g_strdup (folder);
-		_g_free0 (self->priv->temp_add_folder);
-		self->priv->temp_add_folder = _tmp4_;
-		g_thread_create (_beat_box_library_manager_add_folder_to_library_thread_gthread_func, self, FALSE, &_inner_error_);
+		g_signal_emit_by_name (self, "progress-notification", "Adding files to library. This may take a while", 0.0);
+		_tmp0_ = _g_object_ref0 (files);
+		_g_object_unref0 (self->priv->temp_add_files);
+		self->priv->temp_add_files = _tmp0_;
+		g_thread_create (_beat_box_library_manager_add_files_to_library_thread_gthread_func, self, FALSE, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch49_g_error;
+			goto __catch50_g_error;
 		}
-		goto __finally49;
-		__catch49_g_error:
+		goto __finally50;
+		__catch50_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
 			_inner_error_ = NULL;
-			fprintf (stdout, "Could not create thread to add music folder: %s\n", err->message);
+			fprintf (stdout, "Could not create thread to add music files: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally49:
+		__finally50:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
@@ -1165,33 +1189,30 @@ static gboolean __lambda3__gsource_func (gpointer self) {
 }
 
 
-void* beat_box_library_manager_add_folder_to_library_thread (BeatBoxLibraryManager* self) {
+void* beat_box_library_manager_add_files_to_library_thread (BeatBoxLibraryManager* self) {
 	void* result = NULL;
 	Block4Data* _data4_;
-	GFile* _tmp0_ = NULL;
-	GFile* file;
+	gint _tmp0_;
 	gint _tmp1_;
-	gint items;
 	GeeLinkedList* _tmp2_ = NULL;
 	GeeLinkedList* _tmp3_ = NULL;
 	gint index;
 	gint _tmp10_;
+	gboolean _tmp11_;
 	gint progress;
 	g_return_val_if_fail (self != NULL, NULL);
 	_data4_ = g_slice_new0 (Block4Data);
 	_data4_->_ref_count_ = 1;
 	_data4_->self = g_object_ref (self);
-	_tmp0_ = g_file_new_for_path (self->priv->temp_add_folder);
-	file = _tmp0_;
-	_tmp1_ = beat_box_file_operator_count_music_files (self->fo, file);
-	items = _tmp1_;
-	g_signal_emit_by_name (self, "music-counted", items);
-	beat_box_file_operator_resetProgress (self->fo, items);
+	_tmp0_ = gee_collection_get_size ((GeeCollection*) self->priv->temp_add_files);
+	g_signal_emit_by_name (self, "music-counted", _tmp0_);
+	_tmp1_ = gee_collection_get_size ((GeeCollection*) self->priv->temp_add_files);
+	beat_box_file_operator_resetProgress (self->fo, _tmp1_);
 	_tmp2_ = gee_linked_list_new (BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL);
 	_data4_->new_songs = _tmp2_;
 	_tmp3_ = gee_linked_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL);
 	_data4_->not_imported = _tmp3_;
-	beat_box_file_operator_get_music_files (self->fo, file, &_data4_->new_songs, &_data4_->not_imported);
+	beat_box_file_operator_get_music_files_individually (self->fo, self->priv->temp_add_files, &_data4_->new_songs, &_data4_->not_imported);
 	index = 1;
 	{
 		GeeSet* _tmp4_ = NULL;
@@ -1223,6 +1244,205 @@ void* beat_box_library_manager_add_folder_to_library_thread (BeatBoxLibraryManag
 	}
 	_tmp10_ = gee_collection_get_size ((GeeCollection*) _data4_->new_songs);
 	beat_box_file_operator_resetProgress (self->fo, _tmp10_);
+	_tmp11_ = beat_box_settings_getCopyImportedMusic (self->settings);
+	if (_tmp11_) {
+		g_signal_emit_by_name (self, "progress-notification", "<b>Copying</b> files to <b>Music Folder</b>", 0.0);
+	}
+	progress = 0;
+	{
+		GeeLinkedList* _tmp12_;
+		GeeLinkedList* _s_list;
+		gint _tmp13_;
+		gint _s_size;
+		gint _s_index;
+		_tmp12_ = _g_object_ref0 (_data4_->new_songs);
+		_s_list = _tmp12_;
+		_tmp13_ = gee_collection_get_size ((GeeCollection*) _s_list);
+		_s_size = _tmp13_;
+		_s_index = -1;
+		while (TRUE) {
+			gpointer _tmp14_ = NULL;
+			BeatBoxSong* s;
+			const gchar* _tmp15_ = NULL;
+			gint _tmp16_;
+			gboolean _tmp17_;
+			gint _tmp18_;
+			_s_index = _s_index + 1;
+			if (!(_s_index < _s_size)) {
+				break;
+			}
+			_tmp14_ = gee_abstract_list_get ((GeeAbstractList*) _s_list, _s_index);
+			s = (BeatBoxSong*) _tmp14_;
+			index = index + 1;
+			beat_box_song_set_rowid (s, index);
+			_tmp15_ = beat_box_song_get_title (s);
+			_tmp16_ = beat_box_song_get_rowid (s);
+			fprintf (stdout, "new song in import %s with rowid %d\n", _tmp15_, _tmp16_);
+			beat_box_library_manager_add_song (self, s);
+			_tmp17_ = beat_box_settings_getCopyImportedMusic (self->settings);
+			if (_tmp17_) {
+				beat_box_file_operator_update_file_hierarchy (self->fo, s, FALSE);
+			}
+			progress++;
+			_tmp18_ = gee_collection_get_size ((GeeCollection*) _data4_->new_songs);
+			g_signal_emit_by_name (self, "progress-notification", NULL, ((gdouble) ((gdouble) progress)) / ((gdouble) _tmp18_));
+			_g_object_unref0 (s);
+		}
+		_g_object_unref0 (_s_list);
+	}
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda3__gsource_func, block4_data_ref (_data4_), block4_data_unref);
+	self->doing_file_operations = FALSE;
+	g_signal_emit_by_name (self, "file-operations-done");
+	result = NULL;
+	block4_data_unref (_data4_);
+	_data4_ = NULL;
+	return result;
+}
+
+
+static gpointer _beat_box_library_manager_add_folder_to_library_thread_gthread_func (gpointer self) {
+	gpointer result;
+	result = beat_box_library_manager_add_folder_to_library_thread (self);
+	return result;
+}
+
+
+void beat_box_library_manager_add_folder_to_library (BeatBoxLibraryManager* self, const gchar* folder) {
+	GError * _inner_error_ = NULL;
+	g_return_if_fail (self != NULL);
+	g_return_if_fail (folder != NULL);
+	if (!self->doing_file_operations) {
+		gchar* _tmp0_;
+		gchar* _tmp1_;
+		gchar* _tmp2_;
+		gchar* _tmp3_;
+		gchar* _tmp4_;
+		self->doing_file_operations = TRUE;
+		_tmp0_ = g_strconcat ("Adding music from ", folder, NULL);
+		_tmp1_ = _tmp0_;
+		_tmp2_ = g_strconcat (_tmp1_, " to library. This may take a while", NULL);
+		_tmp3_ = _tmp2_;
+		g_signal_emit_by_name (self, "progress-notification", _tmp3_, 0.0);
+		_g_free0 (_tmp3_);
+		_g_free0 (_tmp1_);
+		_tmp4_ = g_strdup (folder);
+		_g_free0 (self->priv->temp_add_folder);
+		self->priv->temp_add_folder = _tmp4_;
+		g_thread_create (_beat_box_library_manager_add_folder_to_library_thread_gthread_func, self, FALSE, &_inner_error_);
+		if (_inner_error_ != NULL) {
+			goto __catch51_g_error;
+		}
+		goto __finally51;
+		__catch51_g_error:
+		{
+			GError * err;
+			err = _inner_error_;
+			_inner_error_ = NULL;
+			fprintf (stdout, "Could not create thread to add music folder: %s\n", err->message);
+			_g_error_free0 (err);
+		}
+		__finally51:
+		if (_inner_error_ != NULL) {
+			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
+			g_clear_error (&_inner_error_);
+			return;
+		}
+	}
+}
+
+
+static Block5Data* block5_data_ref (Block5Data* _data5_) {
+	g_atomic_int_inc (&_data5_->_ref_count_);
+	return _data5_;
+}
+
+
+static void block5_data_unref (Block5Data* _data5_) {
+	if (g_atomic_int_dec_and_test (&_data5_->_ref_count_)) {
+		_g_object_unref0 (_data5_->self);
+		_g_object_unref0 (_data5_->not_imported);
+		_g_object_unref0 (_data5_->new_songs);
+		g_slice_free (Block5Data, _data5_);
+	}
+}
+
+
+static gboolean _lambda4_ (Block5Data* _data5_) {
+	BeatBoxLibraryManager * self;
+	gboolean result = FALSE;
+	self = _data5_->self;
+	beat_box_library_manager_save_songs (self);
+	g_signal_emit_by_name (self, "music-imported", _data5_->new_songs, _data5_->not_imported);
+	result = FALSE;
+	return result;
+}
+
+
+static gboolean __lambda4__gsource_func (gpointer self) {
+	gboolean result;
+	result = _lambda4_ (self);
+	return result;
+}
+
+
+void* beat_box_library_manager_add_folder_to_library_thread (BeatBoxLibraryManager* self) {
+	void* result = NULL;
+	Block5Data* _data5_;
+	GFile* _tmp0_ = NULL;
+	GFile* file;
+	gint _tmp1_;
+	gint items;
+	GeeLinkedList* _tmp2_ = NULL;
+	GeeLinkedList* _tmp3_ = NULL;
+	gint index;
+	gint _tmp10_;
+	gint progress;
+	g_return_val_if_fail (self != NULL, NULL);
+	_data5_ = g_slice_new0 (Block5Data);
+	_data5_->_ref_count_ = 1;
+	_data5_->self = g_object_ref (self);
+	_tmp0_ = g_file_new_for_path (self->priv->temp_add_folder);
+	file = _tmp0_;
+	_tmp1_ = beat_box_file_operator_count_music_files (self->fo, file);
+	items = _tmp1_;
+	g_signal_emit_by_name (self, "music-counted", items);
+	beat_box_file_operator_resetProgress (self->fo, items);
+	_tmp2_ = gee_linked_list_new (BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL);
+	_data5_->new_songs = _tmp2_;
+	_tmp3_ = gee_linked_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL);
+	_data5_->not_imported = _tmp3_;
+	beat_box_file_operator_get_music_files (self->fo, file, &_data5_->new_songs, &_data5_->not_imported);
+	index = 1;
+	{
+		GeeSet* _tmp4_ = NULL;
+		GeeSet* _tmp5_;
+		GeeIterator* _tmp6_ = NULL;
+		GeeIterator* _tmp7_;
+		GeeIterator* _i_it;
+		_tmp4_ = gee_map_get_keys ((GeeMap*) self->priv->_songs);
+		_tmp5_ = _tmp4_;
+		_tmp6_ = gee_iterable_iterator ((GeeIterable*) _tmp5_);
+		_tmp7_ = _tmp6_;
+		_g_object_unref0 (_tmp5_);
+		_i_it = _tmp7_;
+		while (TRUE) {
+			gboolean _tmp8_;
+			gpointer _tmp9_ = NULL;
+			gint i;
+			_tmp8_ = gee_iterator_next (_i_it);
+			if (!_tmp8_) {
+				break;
+			}
+			_tmp9_ = gee_iterator_get (_i_it);
+			i = GPOINTER_TO_INT (_tmp9_);
+			if (i > index) {
+				index = i + 1;
+			}
+		}
+		_g_object_unref0 (_i_it);
+	}
+	_tmp10_ = gee_collection_get_size ((GeeCollection*) _data5_->new_songs);
+	beat_box_file_operator_resetProgress (self->fo, _tmp10_);
 	g_signal_emit_by_name (self, "progress-notification", "<b>Copying</b> files to <b>Music Folder</b>", 0.0);
 	progress = 0;
 	{
@@ -1231,7 +1451,7 @@ void* beat_box_library_manager_add_folder_to_library_thread (BeatBoxLibraryManag
 		gint _tmp12_;
 		gint _s_size;
 		gint _s_index;
-		_tmp11_ = _g_object_ref0 (_data4_->new_songs);
+		_tmp11_ = _g_object_ref0 (_data5_->new_songs);
 		_s_list = _tmp11_;
 		_tmp12_ = gee_collection_get_size ((GeeCollection*) _s_list);
 		_s_size = _tmp12_;
@@ -1262,19 +1482,19 @@ void* beat_box_library_manager_add_folder_to_library_thread (BeatBoxLibraryManag
 				beat_box_file_operator_update_file_hierarchy (self->fo, s, FALSE);
 			}
 			progress++;
-			_tmp18_ = gee_collection_get_size ((GeeCollection*) _data4_->new_songs);
+			_tmp18_ = gee_collection_get_size ((GeeCollection*) _data5_->new_songs);
 			g_signal_emit_by_name (self, "progress-notification", NULL, ((gdouble) ((gdouble) progress)) / ((gdouble) _tmp18_));
 			_g_object_unref0 (s);
 		}
 		_g_object_unref0 (_s_list);
 	}
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda3__gsource_func, block4_data_ref (_data4_), block4_data_unref);
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda4__gsource_func, block5_data_ref (_data5_), block5_data_unref);
 	self->doing_file_operations = FALSE;
 	g_signal_emit_by_name (self, "file-operations-done");
 	result = NULL;
 	_g_object_unref0 (file);
-	block4_data_unref (_data4_);
-	_data4_ = NULL;
+	block5_data_unref (_data5_);
+	_data5_ = NULL;
 	return result;
 }
 
@@ -1294,10 +1514,10 @@ void beat_box_library_manager_rescan_music_folder (BeatBoxLibraryManager* self) 
 		g_signal_emit_by_name (self, "progress-notification", "Rescanning music for changes. This may take a while", 0.0);
 		g_thread_create (_beat_box_library_manager_rescan_music_thread_function_gthread_func, self, FALSE, &_inner_error_);
 		if (_inner_error_ != NULL) {
-			goto __catch50_g_error;
+			goto __catch52_g_error;
 		}
-		goto __finally50;
-		__catch50_g_error:
+		goto __finally52;
+		__catch52_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -1305,7 +1525,7 @@ void beat_box_library_manager_rescan_music_folder (BeatBoxLibraryManager* self) 
 			fprintf (stdout, "Could not create thread to rescan music folder: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally50:
+		__finally52:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
@@ -1315,42 +1535,42 @@ void beat_box_library_manager_rescan_music_folder (BeatBoxLibraryManager* self) 
 }
 
 
-static Block5Data* block5_data_ref (Block5Data* _data5_) {
-	g_atomic_int_inc (&_data5_->_ref_count_);
-	return _data5_;
+static Block6Data* block6_data_ref (Block6Data* _data6_) {
+	g_atomic_int_inc (&_data6_->_ref_count_);
+	return _data6_;
 }
 
 
-static void block5_data_unref (Block5Data* _data5_) {
-	if (g_atomic_int_dec_and_test (&_data5_->_ref_count_)) {
-		_g_object_unref0 (_data5_->self);
-		_g_object_unref0 (_data5_->new_songs);
-		_g_object_unref0 (_data5_->not_imported);
-		g_slice_free (Block5Data, _data5_);
+static void block6_data_unref (Block6Data* _data6_) {
+	if (g_atomic_int_dec_and_test (&_data6_->_ref_count_)) {
+		_g_object_unref0 (_data6_->self);
+		_g_object_unref0 (_data6_->new_songs);
+		_g_object_unref0 (_data6_->not_imported);
+		g_slice_free (Block6Data, _data6_);
 	}
 }
 
 
-static gboolean _lambda4_ (Block5Data* _data5_) {
+static gboolean _lambda5_ (Block6Data* _data6_) {
 	BeatBoxLibraryManager * self;
 	gboolean result = FALSE;
-	self = _data5_->self;
-	g_signal_emit_by_name (self, "music-rescanned", _data5_->new_songs, _data5_->not_imported);
+	self = _data6_->self;
+	g_signal_emit_by_name (self, "music-rescanned", _data6_->new_songs, _data6_->not_imported);
 	result = FALSE;
 	return result;
 }
 
 
-static gboolean __lambda4__gsource_func (gpointer self) {
+static gboolean __lambda5__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda4_ (self);
+	result = _lambda5_ (self);
 	return result;
 }
 
 
 void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManager* self) {
 	void* result = NULL;
-	Block5Data* _data5_;
+	Block6Data* _data6_;
 	GeeLinkedList* _tmp0_ = NULL;
 	GeeLinkedList* paths;
 	GeeLinkedList* _tmp1_ = NULL;
@@ -1365,9 +1585,9 @@ void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManag
 	gint index;
 	GError * _inner_error_ = NULL;
 	g_return_val_if_fail (self != NULL, NULL);
-	_data5_ = g_slice_new0 (Block5Data);
-	_data5_->_ref_count_ = 1;
-	_data5_->self = g_object_ref (self);
+	_data6_ = g_slice_new0 (Block6Data);
+	_data6_->_ref_count_ = 1;
+	_data6_->self = g_object_ref (self);
 	_tmp0_ = gee_linked_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL);
 	paths = _tmp0_;
 	_tmp1_ = gee_linked_list_new (BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL);
@@ -1404,14 +1624,14 @@ void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManag
 	_tmp9_ = gee_collection_get_size ((GeeCollection*) paths);
 	beat_box_file_operator_resetProgress (self->fo, _tmp9_);
 	_tmp10_ = gee_linked_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL);
-	_data5_->not_imported = _tmp10_;
+	_data6_->not_imported = _tmp10_;
 	_tmp11_ = gee_linked_list_new (BEAT_BOX_TYPE_SONG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL);
-	_data5_->new_songs = _tmp11_;
+	_data6_->new_songs = _tmp11_;
 	_tmp12_ = beat_box_settings_getMusicFolder (self->settings);
 	_tmp13_ = _tmp12_;
 	_tmp14_ = g_file_new_for_path (_tmp13_);
 	_tmp15_ = _tmp14_;
-	beat_box_file_operator_rescan_music (self->fo, _tmp15_, &paths, &_data5_->not_imported, &_data5_->new_songs);
+	beat_box_file_operator_rescan_music (self->fo, _tmp15_, &paths, &_data6_->not_imported, &_data6_->new_songs);
 	_g_object_unref0 (_tmp15_);
 	_g_free0 (_tmp13_);
 	index = 1;
@@ -1479,13 +1699,13 @@ void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManag
 			}
 			_g_object_unref0 (_s_it);
 		}
-		__finally51:
+		__finally53:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (removed);
 			_g_object_unref0 (paths);
-			block5_data_unref (_data5_);
-			_data5_ = NULL;
+			block6_data_unref (_data6_);
+			_data6_ = NULL;
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
 			return NULL;
@@ -1494,13 +1714,13 @@ void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManag
 	{
 		g_static_rec_mutex_lock (&self->priv->__lock__songs);
 		beat_box_library_manager_remove_songs (self, removed);
-		__finally52:
+		__finally54:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (removed);
 			_g_object_unref0 (paths);
-			block5_data_unref (_data5_);
-			_data5_ = NULL;
+			block6_data_unref (_data6_);
+			_data6_ = NULL;
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
 			return NULL;
@@ -1512,7 +1732,7 @@ void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManag
 		gint _tmp29_;
 		gint _s_size;
 		gint _s_index;
-		_tmp28_ = _g_object_ref0 (_data5_->new_songs);
+		_tmp28_ = _g_object_ref0 (_data6_->new_songs);
 		_s_list = _tmp28_;
 		_tmp29_ = gee_collection_get_size ((GeeCollection*) _s_list);
 		_s_size = _tmp29_;
@@ -1546,14 +1766,14 @@ void* beat_box_library_manager_rescan_music_thread_function (BeatBoxLibraryManag
 		_g_object_unref0 (_s_list);
 	}
 	beat_box_data_base_manager_remove_songs (self->dbm, (GeeCollection*) paths);
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda4__gsource_func, block5_data_ref (_data5_), block5_data_unref);
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda5__gsource_func, block6_data_ref (_data6_), block6_data_unref);
 	self->doing_file_operations = FALSE;
 	g_signal_emit_by_name (self, "file-operations-done");
 	result = NULL;
 	_g_object_unref0 (removed);
 	_g_object_unref0 (paths);
-	block5_data_unref (_data5_);
-	_data5_ = NULL;
+	block6_data_unref (_data6_);
+	_data6_ = NULL;
 	return result;
 }
 
@@ -1920,7 +2140,7 @@ static void* _lambda2_ (BeatBoxLibraryManager* self) {
 		_tmp1_ = _tmp0_;
 		beat_box_data_base_manager_save_songs (self->dbm, _tmp1_);
 		_g_object_unref0 (_tmp1_);
-		__finally54:
+		__finally56:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -1945,10 +2165,10 @@ void beat_box_library_manager_save_songs (BeatBoxLibraryManager* self) {
 	g_return_if_fail (self != NULL);
 	g_thread_create (__lambda2__gthread_func, self, FALSE, &_inner_error_);
 	if (_inner_error_ != NULL) {
-		goto __catch53_g_error;
+		goto __catch55_g_error;
 	}
-	goto __finally53;
-	__catch53_g_error:
+	goto __finally55;
+	__catch55_g_error:
 	{
 		GError * err;
 		err = _inner_error_;
@@ -1956,7 +2176,7 @@ void beat_box_library_manager_save_songs (BeatBoxLibraryManager* self) {
 		fprintf (stdout, "Could not create thread to rescan music folder: %s\n", err->message);
 		_g_error_free0 (err);
 	}
-	__finally53:
+	__finally55:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -2058,7 +2278,7 @@ BeatBoxSong* beat_box_library_manager_song_from_name (BeatBoxLibraryManager* sel
 			}
 			_g_object_unref0 (_s_it);
 		}
-		__finally55:
+		__finally57:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			_g_object_unref0 (rv);
@@ -2113,7 +2333,7 @@ BeatBoxSong* beat_box_library_manager_song_from_file (BeatBoxLibraryManager* sel
 			}
 			_g_object_unref0 (_s_it);
 		}
-		__finally56:
+		__finally58:
 		g_static_rec_mutex_unlock (&self->priv->__lock__songs);
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -2521,6 +2741,7 @@ void beat_box_library_manager_clearCurrent (BeatBoxLibraryManager* self) {
 	g_return_if_fail (self != NULL);
 	g_signal_emit_by_name (self, "current-cleared");
 	gee_abstract_map_clear ((GeeAbstractMap*) self->priv->_current);
+	self->shuffle = BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF;
 }
 
 
@@ -2538,7 +2759,7 @@ void beat_box_library_manager_setShuffleMode (BeatBoxLibraryManager* self, BeatB
 		return;
 	}
 	gee_abstract_map_clear ((GeeAbstractMap*) self->priv->_current_shuffled);
-	self->_current_shuffled_index = 0;
+	self->_current_shuffled_index = 1;
 	beat_box_settings_setShuffleMode (self->settings, (gint) mode);
 	self->shuffle = mode;
 	if (mode == BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF) {
@@ -2693,7 +2914,6 @@ gint beat_box_library_manager_getNext (BeatBoxLibraryManager* self, gboolean pla
 						if (_tmp7_) {
 							gboolean _tmp9_ = FALSE;
 							gpointer _tmp39_ = NULL;
-							fprintf (stdout, "normal\n");
 							if (self->repeat == BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST) {
 								gpointer _tmp10_ = NULL;
 								BeatBoxSong* _tmp11_ = NULL;
@@ -2790,7 +3010,6 @@ gint beat_box_library_manager_getNext (BeatBoxLibraryManager* self, gboolean pla
 							rv = GPOINTER_TO_INT (_tmp39_);
 						} else {
 							gpointer _tmp47_ = NULL;
-							fprintf (stdout, "else??????????????????????????????????\n");
 							{
 								GeeCollection* _tmp40_ = NULL;
 								GeeCollection* _tmp41_;
@@ -2997,7 +3216,6 @@ gint beat_box_library_manager_getNext (BeatBoxLibraryManager* self, gboolean pla
 			}
 		}
 	}
-	fprintf (stdout, "getNext() rv=%d\n", rv);
 	if (play) {
 		beat_box_library_manager_playSong (self, rv);
 	}
@@ -3498,6 +3716,7 @@ static void beat_box_library_manager_instance_init (BeatBoxLibraryManager * self
 static void beat_box_library_manager_finalize (GObject* obj) {
 	BeatBoxLibraryManager * self;
 	self = BEAT_BOX_LIBRARY_MANAGER (obj);
+	_g_object_unref0 (self->lw);
 	_g_object_unref0 (self->settings);
 	_g_object_unref0 (self->dbm);
 	_g_object_unref0 (self->dbu);
@@ -3522,6 +3741,7 @@ static void beat_box_library_manager_finalize (GObject* obj) {
 	_g_object_unref0 (self->history_setup);
 	_g_object_unref0 (self->song_info);
 	_g_free0 (self->priv->temp_add_folder);
+	_g_object_unref0 (self->priv->temp_add_files);
 	G_OBJECT_CLASS (beat_box_library_manager_parent_class)->finalize (obj);
 }
 

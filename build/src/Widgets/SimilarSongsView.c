@@ -189,7 +189,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	regex = _tmp3_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch76_g_regex_error;
+			goto __catch78_g_regex_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -200,7 +200,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	if (_inner_error_ != NULL) {
 		_g_regex_unref0 (regex);
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch76_g_regex_error;
+			goto __catch78_g_regex_error;
 		}
 		_g_regex_unref0 (regex);
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -211,8 +211,8 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	_g_regex_unref0 (regex);
 	return result;
 	_g_regex_unref0 (regex);
-	goto __finally76;
-	__catch76_g_regex_error:
+	goto __finally78;
+	__catch78_g_regex_error:
 	{
 		GError * e;
 		e = _inner_error_;
@@ -220,7 +220,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_assert_not_reached ();
 		_g_error_free0 (e);
 	}
-	__finally76:
+	__finally78:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -348,15 +348,15 @@ static void beat_box_similar_songs_view_real_viewDoubleClick (BeatBoxSimilarSong
 	g_thread_create (_beat_box_similar_songs_view_openurl_thread_function_gthread_func, self, FALSE, &_inner_error_);
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == G_THREAD_ERROR) {
-			goto __catch77_g_thread_error;
+			goto __catch79_g_thread_error;
 		}
 		_g_object_unref0 (s);
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
 		return;
 	}
-	goto __finally77;
-	__catch77_g_thread_error:
+	goto __finally79;
+	__catch79_g_thread_error:
 	{
 		GError * err;
 		const gchar* _tmp6_ = NULL;
@@ -366,7 +366,7 @@ static void beat_box_similar_songs_view_real_viewDoubleClick (BeatBoxSimilarSong
 		fprintf (stdout, "ERROR: Could not create thread to open %s: %s \n", _tmp6_, err->message);
 		_g_error_free0 (err);
 	}
-	__finally77:
+	__finally79:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (s);
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -401,10 +401,10 @@ void* beat_box_similar_songs_view_openurl_thread_function (BeatBoxSimilarSongsVi
 		g_app_info_launch_default_for_uri (_tmp4_, NULL, &_inner_error_);
 		_g_free0 (_tmp4_);
 		if (_inner_error_ != NULL) {
-			goto __catch78_g_error;
+			goto __catch80_g_error;
 		}
-		goto __finally78;
-		__catch78_g_error:
+		goto __finally80;
+		__catch80_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -412,7 +412,7 @@ void* beat_box_similar_songs_view_openurl_thread_function (BeatBoxSimilarSongsVi
 			fprintf (stdout, "Could not open url in Last FM: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally78:
+		__finally80:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);

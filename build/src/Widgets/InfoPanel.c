@@ -206,6 +206,7 @@ typedef enum  {
 struct _BeatBoxLibraryManager {
 	GObject parent_instance;
 	BeatBoxLibraryManagerPrivate * priv;
+	BeatBoxLibraryWindow* lw;
 	BeatBoxSettings* settings;
 	BeatBoxDataBaseManager* dbm;
 	BeatBoxDataBaseUpdater* dbu;
@@ -473,7 +474,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	regex = _tmp3_;
 	if (_inner_error_ != NULL) {
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch72_g_regex_error;
+			goto __catch74_g_regex_error;
 		}
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -484,7 +485,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	if (_inner_error_ != NULL) {
 		_g_regex_unref0 (regex);
 		if (_inner_error_->domain == G_REGEX_ERROR) {
-			goto __catch72_g_regex_error;
+			goto __catch74_g_regex_error;
 		}
 		_g_regex_unref0 (regex);
 		g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
@@ -495,8 +496,8 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 	_g_regex_unref0 (regex);
 	return result;
 	_g_regex_unref0 (regex);
-	goto __finally72;
-	__catch72_g_regex_error:
+	goto __finally74;
+	__catch74_g_regex_error:
 	{
 		GError * e;
 		e = _inner_error_;
@@ -504,7 +505,7 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_assert_not_reached ();
 		_g_error_free0 (e);
 	}
-	__finally72:
+	__finally74:
 	if (_inner_error_ != NULL) {
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
@@ -610,13 +611,13 @@ void beat_box_info_panel_updateArtistImage (BeatBoxInfoPanel* self) {
 		_tmp7_ = gdk_pixbuf_new_from_file_at_scale (file, _tmp5_ - 10, _tmp6_ - 10, TRUE, &_inner_error_);
 		_tmp8_ = _tmp7_;
 		if (_inner_error_ != NULL) {
-			goto __catch73_g_error;
+			goto __catch75_g_error;
 		}
 		_tmp9_ = _tmp8_;
 		gtk_image_set_from_pixbuf (self->priv->artistImage, _tmp9_);
 		_g_object_unref0 (_tmp9_);
-		goto __finally73;
-		__catch73_g_error:
+		goto __finally75;
+		__catch75_g_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -624,7 +625,7 @@ void beat_box_info_panel_updateArtistImage (BeatBoxInfoPanel* self) {
 			fprintf (stdout, "Could not set info panel image art: %s\n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally73:
+		__finally75:
 		if (_inner_error_ != NULL) {
 			_g_free0 (file);
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);

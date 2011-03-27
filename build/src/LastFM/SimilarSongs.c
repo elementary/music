@@ -10,6 +10,7 @@
 #include <string.h>
 #include <float.h>
 #include <math.h>
+#include <gtk/gtk.h>
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 
@@ -48,6 +49,16 @@ typedef struct _BeatBoxLibraryManagerClass BeatBoxLibraryManagerClass;
 #define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
 typedef struct _Block2Data Block2Data;
 typedef struct _BeatBoxLibraryManagerPrivate BeatBoxLibraryManagerPrivate;
+
+#define BEAT_BOX_TYPE_LIBRARY_WINDOW (beat_box_library_window_get_type ())
+#define BEAT_BOX_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindow))
+#define BEAT_BOX_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+#define BEAT_BOX_IS_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_IS_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_LIBRARY_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+
+typedef struct _BeatBoxLibraryWindow BeatBoxLibraryWindow;
+typedef struct _BeatBoxLibraryWindowClass BeatBoxLibraryWindowClass;
 
 #define BEAT_BOX_TYPE_SETTINGS (beat_box_settings_get_type ())
 #define BEAT_BOX_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SETTINGS, BeatBoxSettings))
@@ -206,6 +217,7 @@ typedef enum  {
 struct _BeatBoxLibraryManager {
 	GObject parent_instance;
 	BeatBoxLibraryManagerPrivate * priv;
+	BeatBoxLibraryWindow* lw;
 	BeatBoxSettings* settings;
 	BeatBoxDataBaseManager* dbm;
 	BeatBoxDataBaseUpdater* dbu;
@@ -268,6 +280,7 @@ const gchar* beat_box_song_get_title (BeatBoxSong* self);
 const gchar* beat_box_song_get_artist (BeatBoxSong* self);
 BeatBoxSong* beat_box_library_manager_song_from_name (BeatBoxLibraryManager* self, const gchar* title, const gchar* artist);
 gint beat_box_song_get_rowid (BeatBoxSong* self);
+GType beat_box_library_window_get_type (void) G_GNUC_CONST;
 GType beat_box_settings_get_type (void) G_GNUC_CONST;
 GType beat_box_data_base_manager_get_type (void) G_GNUC_CONST;
 GType beat_box_data_base_updater_get_type (void) G_GNUC_CONST;
@@ -281,8 +294,8 @@ GType beat_box_library_manager_shuffle_get_type (void) G_GNUC_CONST;
 GType last_fm_artist_info_get_type (void) G_GNUC_CONST;
 GType last_fm_track_info_get_type (void) G_GNUC_CONST;
 GType last_fm_album_info_get_type (void) G_GNUC_CONST;
-static gboolean _lambda5_ (Block2Data* _data2_);
-static gboolean __lambda5__gsource_func (gpointer self);
+static gboolean _lambda6_ (Block2Data* _data2_);
+static gboolean __lambda6__gsource_func (gpointer self);
 gchar* last_fm_core_fix_for_url (const gchar* fix);
 #define LAST_FM_CORE_api "a40ea1720028bd40c66b17d7146b3f3b"
 void last_fm_similar_songs_parse_similar_nodes (LastFMSimilarSongs* self, xmlNode* node, const gchar* parent);
@@ -338,14 +351,14 @@ static void last_fm_similar_songs_real_queryForSimilar (LastFMSimilarSongs* self
 		g_thread_create (_last_fm_similar_songs_similar_thread_function_gthread_func, self, FALSE, &_inner_error_);
 		if (_inner_error_ != NULL) {
 			if (_inner_error_->domain == G_THREAD_ERROR) {
-				goto __catch47_g_thread_error;
+				goto __catch48_g_thread_error;
 			}
 			g_critical ("file %s: line %d: unexpected error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
 			return;
 		}
-		goto __finally47;
-		__catch47_g_thread_error:
+		goto __finally48;
+		__catch48_g_thread_error:
 		{
 			GError * err;
 			err = _inner_error_;
@@ -353,7 +366,7 @@ static void last_fm_similar_songs_real_queryForSimilar (LastFMSimilarSongs* self
 			fprintf (stdout, "ERROR: Could not create similar thread: %s \n", err->message);
 			_g_error_free0 (err);
 		}
-		__finally47:
+		__finally48:
 		if (_inner_error_ != NULL) {
 			g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 			g_clear_error (&_inner_error_);
@@ -384,7 +397,7 @@ static void block2_data_unref (Block2Data* _data2_) {
 }
 
 
-static gboolean _lambda5_ (Block2Data* _data2_) {
+static gboolean _lambda6_ (Block2Data* _data2_) {
 	LastFMSimilarSongs * self;
 	gboolean result = FALSE;
 	self = _data2_->self;
@@ -394,9 +407,9 @@ static gboolean _lambda5_ (Block2Data* _data2_) {
 }
 
 
-static gboolean __lambda5__gsource_func (gpointer self) {
+static gboolean __lambda6__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda5_ (self);
+	result = _lambda6_ (self);
 	return result;
 }
 
@@ -478,7 +491,7 @@ void* last_fm_similar_songs_similar_thread_function (LastFMSimilarSongs* self) {
 	}
 	_tmp16_ = beat_box_song_get_rowid (self->priv->_base);
 	gee_abstract_collection_add ((GeeAbstractCollection*) _data2_->similarIDs, GINT_TO_POINTER (_tmp16_));
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda5__gsource_func, block2_data_ref (_data2_), block2_data_unref);
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda6__gsource_func, block2_data_ref (_data2_), block2_data_unref);
 	self->priv->working = FALSE;
 	result = NULL;
 	block2_data_unref (_data2_);

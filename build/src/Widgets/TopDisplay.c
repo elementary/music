@@ -36,6 +36,16 @@ typedef struct _BeatBoxLibraryManagerClass BeatBoxLibraryManagerClass;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 typedef struct _BeatBoxLibraryManagerPrivate BeatBoxLibraryManagerPrivate;
 
+#define BEAT_BOX_TYPE_LIBRARY_WINDOW (beat_box_library_window_get_type ())
+#define BEAT_BOX_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindow))
+#define BEAT_BOX_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+#define BEAT_BOX_IS_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_IS_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW))
+#define BEAT_BOX_LIBRARY_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
+
+typedef struct _BeatBoxLibraryWindow BeatBoxLibraryWindow;
+typedef struct _BeatBoxLibraryWindowClass BeatBoxLibraryWindowClass;
+
 #define BEAT_BOX_TYPE_SETTINGS (beat_box_settings_get_type ())
 #define BEAT_BOX_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SETTINGS, BeatBoxSettings))
 #define BEAT_BOX_SETTINGS_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_SETTINGS, BeatBoxSettingsClass))
@@ -202,6 +212,7 @@ typedef enum  {
 struct _BeatBoxLibraryManager {
 	GObject parent_instance;
 	BeatBoxLibraryManagerPrivate * priv;
+	BeatBoxLibraryWindow* lw;
 	BeatBoxSettings* settings;
 	BeatBoxDataBaseManager* dbm;
 	BeatBoxDataBaseUpdater* dbu;
@@ -257,6 +268,7 @@ void elementary_widgets_top_display_value_changed (ElementaryWidgetsTopDisplay* 
 static void _elementary_widgets_top_display_value_changed_gtk_range_value_changed (GtkRange* _sender, gpointer self);
 gboolean elementary_widgets_top_display_change_value (ElementaryWidgetsTopDisplay* self, GtkScrollType scroll, gdouble val);
 static gboolean _elementary_widgets_top_display_change_value_gtk_range_change_value (GtkRange* _sender, GtkScrollType scroll, gdouble new_value, gpointer self);
+GType beat_box_library_window_get_type (void) G_GNUC_CONST;
 GType beat_box_settings_get_type (void) G_GNUC_CONST;
 GType beat_box_data_base_manager_get_type (void) G_GNUC_CONST;
 GType beat_box_data_base_updater_get_type (void) G_GNUC_CONST;

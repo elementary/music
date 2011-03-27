@@ -25,7 +25,7 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	private bool is_valid_file_type(string type) {
-		return (type.down().has_suffix(".mp3") || type.down().has_suffix(".m4a") || type.down().has_suffix(".wma") || type.down().has_suffix(".ogg") || type.down().has_suffix(".flac") || type.down().has_suffix(".mp4"));
+		return (type.down().has_suffix(".mp3") || type.down().has_suffix(".m4a") || type.down().has_suffix(".wma") || type.down().has_suffix(".ogg") || type.down().has_suffix(".flac") || type.down().has_suffix(".mp4") || type.down().has_suffix(".ogg"));
 	}
 	
 	public int count_music_files(GLib.File music_folder) {
@@ -77,6 +77,35 @@ public class BeatBox.FileOperator : Object {
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not get music: %s\n", err.message);
+		}
+	}
+	
+	public void get_music_files_individually(LinkedList<string> files, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
+		foreach(string file in files) {
+			try {
+				GLib.File gio_file = GLib.File.new_for_uri(file);
+				FileInfo file_info = gio_file.query_info("*", FileQueryInfoFlags.NONE);
+				string file_path = gio_file.get_path();
+				
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
+					++index;
+					fo_progress(null, (double)((double)index)/((double)item_count));
+					
+					Song s = import_song(file_path);
+					
+					if(s != null) {
+						songs.add(s);
+					}
+					else
+						not_imported.add(file_path);
+				}
+				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
+					get_music_files(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
+				}
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not get song %s: %s\n", file, err.message);
+			}
 		}
 	}
         
@@ -426,6 +455,7 @@ public class BeatBox.FileOperator : Object {
 				stdout.printf("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s, err.message);
 				
 				//tell the user the file could not be moved and ask if they'd like to delete permanently instead.
+				Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Could not trash file %s, would you like to permanently delete it? You cannot undo these changes.", s);
 			}
 		}
 	}

@@ -223,7 +223,7 @@ typedef struct _LastFMAlbumInfo LastFMAlbumInfo;
 typedef struct _LastFMAlbumInfoClass LastFMAlbumInfoClass;
 #define _gtk_tree_path_free0(var) ((var == NULL) ? NULL : (var = (gtk_tree_path_free (var), NULL)))
 #define _gtk_tree_row_reference_free0(var) ((var == NULL) ? NULL : (var = (gtk_tree_row_reference_free (var), NULL)))
-typedef struct _Block9Data Block9Data;
+typedef struct _Block10Data Block10Data;
 #define __g_list_free__gtk_tree_path_free0_0(var) ((var == NULL) ? NULL : (var = (_g_list_free__gtk_tree_path_free0_ (var), NULL)))
 
 #define BEAT_BOX_TYPE_SONG_EDITOR (beat_box_song_editor_get_type ())
@@ -236,7 +236,7 @@ typedef struct _Block9Data Block9Data;
 typedef struct _BeatBoxSongEditor BeatBoxSongEditor;
 typedef struct _BeatBoxSongEditorClass BeatBoxSongEditorClass;
 #define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
-typedef struct _Block10Data Block10Data;
+typedef struct _Block11Data Block11Data;
 
 #define BEAT_BOX_TYPE_PLAYLIST_NAME_WINDOW (beat_box_playlist_name_window_get_type ())
 #define BEAT_BOX_PLAYLIST_NAME_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_PLAYLIST_NAME_WINDOW, BeatBoxPlaylistNameWindow))
@@ -369,6 +369,7 @@ typedef enum  {
 struct _BeatBoxLibraryManager {
 	GObject parent_instance;
 	BeatBoxLibraryManagerPrivate * priv;
+	BeatBoxLibraryWindow* lw;
 	BeatBoxSettings* settings;
 	BeatBoxDataBaseManager* dbm;
 	BeatBoxDataBaseUpdater* dbu;
@@ -418,6 +419,7 @@ struct _BeatBoxSmartPlaylistClass {
 struct _BeatBoxLibraryWindow {
 	GtkWindow parent_instance;
 	BeatBoxLibraryWindowPrivate * priv;
+	gboolean dragging_from_music;
 	ElementaryWidgetsElementarySearchEntry* searchField;
 };
 
@@ -453,6 +455,7 @@ struct _BeatBoxLibraryWindowClass {
 	void (*repeatChooserOptionChanged) (BeatBoxLibraryWindow* self, gint val);
 	void (*shuffleChooserOptionChanged) (BeatBoxLibraryWindow* self, gint val);
 	void (*infoPanelChooserOptionChanged) (BeatBoxLibraryWindow* self, gint val);
+	void (*dragReceived) (BeatBoxLibraryWindow* self, GdkDragContext* context, gint x, gint y, GtkSelectionData* data, guint info, guint timestamp);
 };
 
 struct _ElementaryWidgetsElementaryEntry {
@@ -478,13 +481,13 @@ struct _BeatBoxSongInfoClass {
 	GObjectClass parent_class;
 };
 
-struct _Block9Data {
+struct _Block10Data {
 	int _ref_count_;
 	BeatBoxMusicTreeView * self;
 	BeatBoxPlaylist* p;
 };
 
-struct _Block10Data {
+struct _Block11Data {
 	int _ref_count_;
 	BeatBoxMusicTreeView * self;
 	BeatBoxPlaylist* p;
@@ -602,13 +605,14 @@ const gchar* beat_box_song_get_artist (BeatBoxSong* self);
 const gchar* beat_box_song_get_album (BeatBoxSong* self);
 gint beat_box_song_get_track (BeatBoxSong* self);
 const gchar* beat_box_song_get_file (BeatBoxSong* self);
+gint beat_box_music_tree_view_albumCompareFunc (BeatBoxMusicTreeView* self, GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b);
 static void beat_box_music_tree_view_real_searchFieldChanged (BeatBoxMusicTreeView* self);
 gchar* elementary_widgets_elementary_entry_get_text (ElementaryWidgetsElementaryEntry* self);
-static gboolean _lambda9_ (BeatBoxMusicTreeView* self);
+static gboolean _lambda10_ (BeatBoxMusicTreeView* self);
 const gchar* beat_box_song_get_title (BeatBoxSong* self);
 const gchar* beat_box_song_get_genre (BeatBoxSong* self);
 void beat_box_music_tree_view_scrollToCurrent (BeatBoxMusicTreeView* self);
-static gboolean __lambda9__gsource_func (gpointer self);
+static gboolean __lambda10__gsource_func (gpointer self);
 static void beat_box_music_tree_view_real_sortColumnChanged (BeatBoxMusicTreeView* self);
 void beat_box_music_tree_view_updateTreeViewSetup (BeatBoxMusicTreeView* self);
 static void beat_box_music_tree_view_real_modelRowsReordered (BeatBoxMusicTreeView* self, GtkTreePath* path, GtkTreeIter* iter, void* new_order);
@@ -643,16 +647,17 @@ void beat_box_library_window_playClicked (BeatBoxLibraryWindow* self);
 void beat_box_library_manager_set_current_index (BeatBoxLibraryManager* self, gint value);
 void beat_box_library_manager_clearCurrent (BeatBoxLibraryManager* self);
 void beat_box_library_manager_addToCurrent (BeatBoxLibraryManager* self, gint i);
+void beat_box_library_manager_setShuffleMode (BeatBoxLibraryManager* self, BeatBoxLibraryManagerShuffle mode);
 static gboolean beat_box_music_tree_view_real_viewClick (BeatBoxMusicTreeView* self, GdkEventButton* event);
 GeeCollection* beat_box_library_manager_playlists (BeatBoxLibraryManager* self);
-static Block9Data* block9_data_ref (Block9Data* _data9_);
-static void block9_data_unref (Block9Data* _data9_);
+static Block10Data* block10_data_ref (Block10Data* _data10_);
+static void block10_data_unref (Block10Data* _data10_);
 const gchar* beat_box_playlist_get_name (BeatBoxPlaylist* self);
-static void _lambda6_ (Block9Data* _data9_);
+static void _lambda7_ (Block10Data* _data10_);
 void beat_box_playlist_addSong (BeatBoxPlaylist* self, BeatBoxSong* s);
 static void _gtk_tree_path_free0_ (gpointer var);
 static void _g_list_free__gtk_tree_path_free0_ (GList* self);
-static void __lambda6__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
+static void __lambda7__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
 void beat_box_song_set_rating (BeatBoxSong* self, gint value);
 void beat_box_library_manager_update_song (BeatBoxLibraryManager* self, BeatBoxSong* s, gboolean updateMeta);
 void beat_box_music_tree_view_viewHeadersResized (BeatBoxMusicTreeView* self);
@@ -678,17 +683,17 @@ static void beat_box_music_tree_view_real_songFileBrowseClicked (BeatBoxMusicTre
 static void beat_box_music_tree_view_real_songMenuQueueClicked (BeatBoxMusicTreeView* self);
 void beat_box_library_manager_queue_song_by_id (BeatBoxLibraryManager* self, gint id);
 static void beat_box_music_tree_view_real_songMenuNewPlaylistClicked (BeatBoxMusicTreeView* self);
-static Block10Data* block10_data_ref (Block10Data* _data10_);
-static void block10_data_unref (Block10Data* _data10_);
+static Block11Data* block11_data_ref (Block11Data* _data11_);
+static void block11_data_unref (Block11Data* _data11_);
 BeatBoxPlaylist* beat_box_playlist_new (void);
 BeatBoxPlaylist* beat_box_playlist_construct (GType object_type);
 BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_new (BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original);
 BeatBoxPlaylistNameWindow* beat_box_playlist_name_window_construct (GType object_type, BeatBoxLibraryWindow* lw, BeatBoxPlaylist* original);
 GType beat_box_playlist_name_window_get_type (void) G_GNUC_CONST;
-static void _lambda7_ (BeatBoxPlaylist* newP, Block10Data* _data10_);
+static void _lambda8_ (BeatBoxPlaylist* newP, Block11Data* _data11_);
 gint beat_box_library_manager_add_playlist (BeatBoxLibraryManager* self, BeatBoxPlaylist* p);
 void beat_box_library_window_addSideListItem (BeatBoxLibraryWindow* self, GObject* o);
-static void __lambda7__beat_box_playlist_name_window_playlist_saved (BeatBoxPlaylistNameWindow* _sender, BeatBoxPlaylist* p, gpointer self);
+static void __lambda8__beat_box_playlist_name_window_playlist_saved (BeatBoxPlaylistNameWindow* _sender, BeatBoxPlaylist* p, gpointer self);
 static void beat_box_music_tree_view_real_songRemoveClicked (BeatBoxMusicTreeView* self);
 void beat_box_library_manager_unqueue_song_by_id (BeatBoxLibraryManager* self, gint id);
 void beat_box_playlist_removeSong (BeatBoxPlaylist* self, BeatBoxSong* s);
@@ -700,8 +705,8 @@ static void beat_box_music_tree_view_real_songRateSong3Clicked (BeatBoxMusicTree
 static void beat_box_music_tree_view_real_songRateSong4Clicked (BeatBoxMusicTreeView* self);
 static void beat_box_music_tree_view_real_songRateSong5Clicked (BeatBoxMusicTreeView* self);
 static void beat_box_music_tree_view_real_viewScroll (BeatBoxMusicTreeView* self);
-static gboolean _lambda8_ (BeatBoxMusicTreeView* self);
-static gboolean __lambda8__gsource_func (gpointer self);
+static gboolean _lambda9_ (BeatBoxMusicTreeView* self);
+static gboolean __lambda9__gsource_func (gpointer self);
 static void beat_box_music_tree_view_real_onDragBegin (BeatBoxMusicTreeView* self, GtkWidget* sender, GdkDragContext* context);
 static void beat_box_music_tree_view_real_onDragDataGet (BeatBoxMusicTreeView* self, GdkDragContext* context, GtkSelectionData* selection_data, guint info, guint time_);
 static void _vala_array_add2 (gchar*** array, int* length, int* size, gchar* value);
@@ -874,6 +879,8 @@ void beat_box_music_tree_view_updateSensitivities (BeatBoxMusicTreeView* self) {
 	if (self->hint == BEAT_BOX_MUSIC_TREE_VIEW_HINT_MUSIC) {
 		gtk_widget_set_sensitive ((GtkWidget*) self->priv->songRemove, TRUE);
 		gtk_menu_item_set_label (self->priv->songRemove, "Move to Trash");
+		gtk_check_menu_item_set_active (self->priv->columnNumber, FALSE);
+		gtk_widget_set_visible ((GtkWidget*) self->priv->columnNumber, FALSE);
 	} else {
 		if (self->hint == BEAT_BOX_MUSIC_TREE_VIEW_HINT_SIMILAR) {
 			gtk_widget_set_sensitive ((GtkWidget*) self->priv->songRemove, FALSE);
@@ -1971,6 +1978,137 @@ gint beat_box_music_tree_view_artistCompareFunc (BeatBoxMusicTreeView* self, Gtk
 }
 
 
+gint beat_box_music_tree_view_albumCompareFunc (BeatBoxMusicTreeView* self, GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b) {
+	gint result = 0;
+	gint a_id = 0;
+	gint b_id = 0;
+	BeatBoxSong* a_song = NULL;
+	BeatBoxSong* b_song = NULL;
+	BeatBoxSong* _tmp0_ = NULL;
+	BeatBoxSong* _tmp1_ = NULL;
+	gboolean _tmp2_ = FALSE;
+	const gchar* _tmp3_ = NULL;
+	gchar* _tmp4_ = NULL;
+	gchar* _tmp5_;
+	const gchar* _tmp6_ = NULL;
+	gchar* _tmp7_ = NULL;
+	gchar* _tmp8_;
+	gboolean _tmp9_;
+	g_return_val_if_fail (self != NULL, 0);
+	g_return_val_if_fail (model != NULL, 0);
+	gtk_tree_model_get (model, a, 0, &a_id, -1);
+	gtk_tree_model_get (model, b, 0, &b_id, -1);
+	_tmp0_ = beat_box_library_manager_song_from_id (self->priv->lm, a_id);
+	_g_object_unref0 (a_song);
+	a_song = _tmp0_;
+	_tmp1_ = beat_box_library_manager_song_from_id (self->priv->lm, b_id);
+	_g_object_unref0 (b_song);
+	b_song = _tmp1_;
+	_tmp3_ = beat_box_song_get_album (a_song);
+	_tmp4_ = g_utf8_strdown (_tmp3_, (gssize) (-1));
+	_tmp5_ = _tmp4_;
+	_tmp6_ = beat_box_song_get_album (b_song);
+	_tmp7_ = g_utf8_strdown (_tmp6_, (gssize) (-1));
+	_tmp8_ = _tmp7_;
+	_tmp9_ = g_strcmp0 (_tmp5_, _tmp8_) == 0;
+	_g_free0 (_tmp8_);
+	_g_free0 (_tmp5_);
+	if (_tmp9_) {
+		gint _tmp10_;
+		gint _tmp11_;
+		_tmp10_ = beat_box_song_get_track (a_song);
+		_tmp11_ = beat_box_song_get_track (b_song);
+		_tmp2_ = _tmp10_ == _tmp11_;
+	} else {
+		_tmp2_ = FALSE;
+	}
+	if (_tmp2_) {
+		gint _tmp12_ = 0;
+		const gchar* _tmp13_ = NULL;
+		gchar* _tmp14_ = NULL;
+		gchar* _tmp15_;
+		const gchar* _tmp16_ = NULL;
+		gchar* _tmp17_ = NULL;
+		gchar* _tmp18_;
+		gboolean _tmp19_;
+		_tmp13_ = beat_box_song_get_file (a_song);
+		_tmp14_ = g_utf8_strdown (_tmp13_, (gssize) (-1));
+		_tmp15_ = _tmp14_;
+		_tmp16_ = beat_box_song_get_file (b_song);
+		_tmp17_ = g_utf8_strdown (_tmp16_, (gssize) (-1));
+		_tmp18_ = _tmp17_;
+		_tmp19_ = g_strcmp0 (_tmp15_, _tmp18_) > 0;
+		_g_free0 (_tmp18_);
+		_g_free0 (_tmp15_);
+		if (_tmp19_) {
+			_tmp12_ = 1;
+		} else {
+			_tmp12_ = -1;
+		}
+		result = _tmp12_;
+		_g_object_unref0 (b_song);
+		_g_object_unref0 (a_song);
+		return result;
+	} else {
+		const gchar* _tmp20_ = NULL;
+		gchar* _tmp21_ = NULL;
+		gchar* _tmp22_;
+		const gchar* _tmp23_ = NULL;
+		gchar* _tmp24_ = NULL;
+		gchar* _tmp25_;
+		gboolean _tmp26_;
+		_tmp20_ = beat_box_song_get_album (a_song);
+		_tmp21_ = g_utf8_strdown (_tmp20_, (gssize) (-1));
+		_tmp22_ = _tmp21_;
+		_tmp23_ = beat_box_song_get_album (b_song);
+		_tmp24_ = g_utf8_strdown (_tmp23_, (gssize) (-1));
+		_tmp25_ = _tmp24_;
+		_tmp26_ = g_strcmp0 (_tmp22_, _tmp25_) == 0;
+		_g_free0 (_tmp25_);
+		_g_free0 (_tmp22_);
+		if (_tmp26_) {
+			gint _tmp27_;
+			gint _tmp28_;
+			_tmp27_ = beat_box_song_get_track (a_song);
+			_tmp28_ = beat_box_song_get_track (b_song);
+			result = _tmp27_ - _tmp28_;
+			_g_object_unref0 (b_song);
+			_g_object_unref0 (a_song);
+			return result;
+		} else {
+			gint _tmp29_ = 0;
+			const gchar* _tmp30_ = NULL;
+			gchar* _tmp31_ = NULL;
+			gchar* _tmp32_;
+			const gchar* _tmp33_ = NULL;
+			gchar* _tmp34_ = NULL;
+			gchar* _tmp35_;
+			gboolean _tmp36_;
+			_tmp30_ = beat_box_song_get_album (a_song);
+			_tmp31_ = g_utf8_strdown (_tmp30_, (gssize) (-1));
+			_tmp32_ = _tmp31_;
+			_tmp33_ = beat_box_song_get_album (b_song);
+			_tmp34_ = g_utf8_strdown (_tmp33_, (gssize) (-1));
+			_tmp35_ = _tmp34_;
+			_tmp36_ = g_strcmp0 (_tmp32_, _tmp35_) > 0;
+			_g_free0 (_tmp35_);
+			_g_free0 (_tmp32_);
+			if (_tmp36_) {
+				_tmp29_ = 1;
+			} else {
+				_tmp29_ = -1;
+			}
+			result = _tmp29_;
+			_g_object_unref0 (b_song);
+			_g_object_unref0 (a_song);
+			return result;
+		}
+	}
+	_g_object_unref0 (b_song);
+	_g_object_unref0 (a_song);
+}
+
+
 static gboolean string_contains (const gchar* self, const gchar* needle) {
 	gboolean result = FALSE;
 	gchar* _tmp0_ = NULL;
@@ -1982,7 +2120,7 @@ static gboolean string_contains (const gchar* self, const gchar* needle) {
 }
 
 
-static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
+static gboolean _lambda10_ (BeatBoxMusicTreeView* self) {
 	gboolean result = FALSE;
 	gboolean _tmp0_ = FALSE;
 	gboolean _tmp1_ = FALSE;
@@ -2281,9 +2419,9 @@ static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
 }
 
 
-static gboolean __lambda9__gsource_func (gpointer self) {
+static gboolean __lambda10__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda9_ (self);
+	result = _lambda10_ (self);
 	return result;
 }
 
@@ -2302,7 +2440,7 @@ static void beat_box_music_tree_view_real_searchFieldChanged (BeatBoxMusicTreeVi
 		gee_deque_offer_head ((GeeDeque*) self->priv->timeout_search, _tmp3_);
 		_g_free0 (_tmp3_);
 		_g_free0 (_tmp1_);
-		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 200, __lambda9__gsource_func, g_object_ref (self), g_object_unref);
+		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 200, __lambda10__gsource_func, g_object_ref (self), g_object_unref);
 	}
 }
 
@@ -3359,8 +3497,10 @@ void beat_box_music_tree_view_viewDoubleClick (BeatBoxMusicTreeView* self, GtkTr
 
 
 void beat_box_music_tree_view_setAsCurrentList (BeatBoxMusicTreeView* self, const gchar* current_song_path) {
+	gboolean shuffle;
 	GtkTreeIter iter = {0};
 	g_return_if_fail (self != NULL);
+	shuffle = self->priv->lm->shuffle == BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL;
 	if (current_song_path != NULL) {
 		gint _tmp0_;
 		_tmp0_ = atoi (current_song_path);
@@ -3440,20 +3580,23 @@ void beat_box_music_tree_view_setAsCurrentList (BeatBoxMusicTreeView* self, cons
 		_tmp18_ = beat_box_song_get_rowid (self->priv->lm->song_info->song);
 		beat_box_music_tree_view_updateSong (self, _tmp18_);
 	}
+	if (shuffle) {
+		beat_box_library_manager_setShuffleMode (self->priv->lm, BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL);
+	}
 }
 
 
-static Block9Data* block9_data_ref (Block9Data* _data9_) {
-	g_atomic_int_inc (&_data9_->_ref_count_);
-	return _data9_;
+static Block10Data* block10_data_ref (Block10Data* _data10_) {
+	g_atomic_int_inc (&_data10_->_ref_count_);
+	return _data10_;
 }
 
 
-static void block9_data_unref (Block9Data* _data9_) {
-	if (g_atomic_int_dec_and_test (&_data9_->_ref_count_)) {
-		_g_object_unref0 (_data9_->self);
-		_g_object_unref0 (_data9_->p);
-		g_slice_free (Block9Data, _data9_);
+static void block10_data_unref (Block10Data* _data10_) {
+	if (g_atomic_int_dec_and_test (&_data10_->_ref_count_)) {
+		_g_object_unref0 (_data10_->self);
+		_g_object_unref0 (_data10_->p);
+		g_slice_free (Block10Data, _data10_);
 	}
 }
 
@@ -3474,14 +3617,14 @@ static void _g_list_free__gtk_tree_path_free0_ (GList* self) {
 }
 
 
-static void _lambda6_ (Block9Data* _data9_) {
+static void _lambda7_ (Block10Data* _data10_) {
 	BeatBoxMusicTreeView * self;
 	GtkTreeModel* temp = NULL;
 	GtkTreeSelection* _tmp0_ = NULL;
 	GtkTreeModel* _tmp1_ = NULL;
 	GList* _tmp2_ = NULL;
 	GtkTreeModel* _tmp3_;
-	self = _data9_->self;
+	self = _data10_->self;
 	_tmp0_ = gtk_tree_view_get_selection (self->priv->view);
 	_tmp2_ = gtk_tree_selection_get_selected_rows (_tmp0_, &_tmp1_);
 	_g_object_unref0 (temp);
@@ -3507,7 +3650,7 @@ static void _lambda6_ (Block9Data* _data9_) {
 				gtk_tree_model_get (temp, &item, 0, &id, -1);
 				_tmp6_ = beat_box_library_manager_song_from_id (self->priv->lm, id);
 				_tmp7_ = _tmp6_;
-				beat_box_playlist_addSong (_data9_->p, _tmp7_);
+				beat_box_playlist_addSong (_data10_->p, _tmp7_);
 				_g_object_unref0 (_tmp7_);
 				_gtk_tree_path_free0 (path);
 			}
@@ -3518,8 +3661,8 @@ static void _lambda6_ (Block9Data* _data9_) {
 }
 
 
-static void __lambda6__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
-	_lambda6_ (self);
+static void __lambda7__gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self) {
+	_lambda7_ (self);
 }
 
 
@@ -3559,31 +3702,31 @@ static gboolean beat_box_music_tree_view_real_viewClick (BeatBoxMusicTreeView* s
 			_g_object_unref0 (_tmp3_);
 			_p_it = _tmp5_;
 			while (TRUE) {
-				Block9Data* _data9_;
+				Block10Data* _data10_;
 				gboolean _tmp6_;
 				gpointer _tmp7_ = NULL;
 				const gchar* _tmp8_ = NULL;
 				GtkMenuItem* _tmp9_ = NULL;
 				GtkMenuItem* playlist;
-				_data9_ = g_slice_new0 (Block9Data);
-				_data9_->_ref_count_ = 1;
-				_data9_->self = g_object_ref (self);
+				_data10_ = g_slice_new0 (Block10Data);
+				_data10_->_ref_count_ = 1;
+				_data10_->self = g_object_ref (self);
 				_tmp6_ = gee_iterator_next (_p_it);
 				if (!_tmp6_) {
-					block9_data_unref (_data9_);
-					_data9_ = NULL;
+					block10_data_unref (_data10_);
+					_data10_ = NULL;
 					break;
 				}
 				_tmp7_ = gee_iterator_get (_p_it);
-				_data9_->p = (BeatBoxPlaylist*) _tmp7_;
-				_tmp8_ = beat_box_playlist_get_name (_data9_->p);
+				_data10_->p = (BeatBoxPlaylist*) _tmp7_;
+				_tmp8_ = beat_box_playlist_get_name (_data10_->p);
 				_tmp9_ = (GtkMenuItem*) gtk_menu_item_new_with_label (_tmp8_);
 				playlist = g_object_ref_sink (_tmp9_);
 				gtk_menu_shell_append ((GtkMenuShell*) addToPlaylistMenu, (GtkWidget*) playlist);
-				g_signal_connect_data (playlist, "activate", (GCallback) __lambda6__gtk_menu_item_activate, block9_data_ref (_data9_), (GClosureNotify) block9_data_unref, 0);
+				g_signal_connect_data (playlist, "activate", (GCallback) __lambda7__gtk_menu_item_activate, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
 				_g_object_unref0 (playlist);
-				block9_data_unref (_data9_);
-				_data9_ = NULL;
+				block10_data_unref (_data10_);
+				_data10_ = NULL;
 			}
 			_g_object_unref0 (_p_it);
 		}
@@ -4520,11 +4663,11 @@ static void beat_box_music_tree_view_real_songFileBrowseClicked (BeatBoxMusicTre
 				_g_object_unref0 (_tmp11_);
 				if (_inner_error_ != NULL) {
 					_g_object_unref0 (file);
-					goto __catch74_g_error;
+					goto __catch76_g_error;
 				}
 				_g_object_unref0 (file);
-				goto __finally74;
-				__catch74_g_error:
+				goto __finally76;
+				__catch76_g_error:
 				{
 					GError * err;
 					const gchar* _tmp14_ = NULL;
@@ -4534,7 +4677,7 @@ static void beat_box_music_tree_view_real_songFileBrowseClicked (BeatBoxMusicTre
 					fprintf (stdout, "Could not browse song %s: %s\n", _tmp14_, err->message);
 					_g_error_free0 (err);
 				}
-				__finally74:
+				__finally76:
 				if (_inner_error_ != NULL) {
 					_g_object_unref0 (s);
 					_gtk_tree_path_free0 (path);
@@ -4614,37 +4757,37 @@ void beat_box_music_tree_view_songMenuQueueClicked (BeatBoxMusicTreeView* self) 
 }
 
 
-static Block10Data* block10_data_ref (Block10Data* _data10_) {
-	g_atomic_int_inc (&_data10_->_ref_count_);
-	return _data10_;
+static Block11Data* block11_data_ref (Block11Data* _data11_) {
+	g_atomic_int_inc (&_data11_->_ref_count_);
+	return _data11_;
 }
 
 
-static void block10_data_unref (Block10Data* _data10_) {
-	if (g_atomic_int_dec_and_test (&_data10_->_ref_count_)) {
-		_g_object_unref0 (_data10_->self);
-		_g_object_unref0 (_data10_->p);
-		g_slice_free (Block10Data, _data10_);
+static void block11_data_unref (Block11Data* _data11_) {
+	if (g_atomic_int_dec_and_test (&_data11_->_ref_count_)) {
+		_g_object_unref0 (_data11_->self);
+		_g_object_unref0 (_data11_->p);
+		g_slice_free (Block11Data, _data11_);
 	}
 }
 
 
-static void _lambda7_ (BeatBoxPlaylist* newP, Block10Data* _data10_) {
+static void _lambda8_ (BeatBoxPlaylist* newP, Block11Data* _data11_) {
 	BeatBoxMusicTreeView * self;
-	self = _data10_->self;
+	self = _data11_->self;
 	g_return_if_fail (newP != NULL);
-	beat_box_library_manager_add_playlist (self->priv->lm, _data10_->p);
-	beat_box_library_window_addSideListItem (self->priv->lw, (GObject*) _data10_->p);
+	beat_box_library_manager_add_playlist (self->priv->lm, _data11_->p);
+	beat_box_library_window_addSideListItem (self->priv->lw, (GObject*) _data11_->p);
 }
 
 
-static void __lambda7__beat_box_playlist_name_window_playlist_saved (BeatBoxPlaylistNameWindow* _sender, BeatBoxPlaylist* p, gpointer self) {
-	_lambda7_ (p, self);
+static void __lambda8__beat_box_playlist_name_window_playlist_saved (BeatBoxPlaylistNameWindow* _sender, BeatBoxPlaylist* p, gpointer self) {
+	_lambda8_ (p, self);
 }
 
 
 static void beat_box_music_tree_view_real_songMenuNewPlaylistClicked (BeatBoxMusicTreeView* self) {
-	Block10Data* _data10_;
+	Block11Data* _data11_;
 	BeatBoxPlaylist* _tmp0_ = NULL;
 	GtkTreeSelection* _tmp1_ = NULL;
 	GtkTreeSelection* _tmp2_;
@@ -4656,11 +4799,11 @@ static void beat_box_music_tree_view_real_songMenuNewPlaylistClicked (BeatBoxMus
 	BeatBoxPlaylistNameWindow* _tmp10_ = NULL;
 	BeatBoxPlaylistNameWindow* pnw;
 	g_return_if_fail (self != NULL);
-	_data10_ = g_slice_new0 (Block10Data);
-	_data10_->_ref_count_ = 1;
-	_data10_->self = g_object_ref (self);
+	_data11_ = g_slice_new0 (Block11Data);
+	_data11_->_ref_count_ = 1;
+	_data11_->self = g_object_ref (self);
 	_tmp0_ = beat_box_playlist_new ();
-	_data10_->p = _tmp0_;
+	_data11_->p = _tmp0_;
 	_tmp1_ = gtk_tree_view_get_selection (self->priv->view);
 	_tmp2_ = _g_object_ref0 (_tmp1_);
 	selected = _tmp2_;
@@ -4689,21 +4832,21 @@ static void beat_box_music_tree_view_real_songMenuNewPlaylistClicked (BeatBoxMus
 				gtk_tree_model_get ((GtkTreeModel*) self->priv->sort, &item, 0, &id, -1);
 				_tmp8_ = beat_box_library_manager_song_from_id (self->priv->lm, id);
 				_tmp9_ = _tmp8_;
-				beat_box_playlist_addSong (_data10_->p, _tmp9_);
+				beat_box_playlist_addSong (_data11_->p, _tmp9_);
 				_g_object_unref0 (_tmp9_);
 				_gtk_tree_path_free0 (path);
 			}
 		}
 		__g_list_free__gtk_tree_path_free0_0 (path_collection);
 	}
-	_tmp10_ = beat_box_playlist_name_window_new (self->priv->lw, _data10_->p);
+	_tmp10_ = beat_box_playlist_name_window_new (self->priv->lw, _data11_->p);
 	pnw = g_object_ref_sink (_tmp10_);
-	g_signal_connect_data (pnw, "playlist-saved", (GCallback) __lambda7__beat_box_playlist_name_window_playlist_saved, block10_data_ref (_data10_), (GClosureNotify) block10_data_unref, 0);
+	g_signal_connect_data (pnw, "playlist-saved", (GCallback) __lambda8__beat_box_playlist_name_window_playlist_saved, block11_data_ref (_data11_), (GClosureNotify) block11_data_unref, 0);
 	_g_object_unref0 (pnw);
 	_g_object_unref0 (temp);
 	_g_object_unref0 (selected);
-	block10_data_unref (_data10_);
-	_data10_ = NULL;
+	block11_data_unref (_data11_);
+	_data11_ = NULL;
 }
 
 
@@ -5247,7 +5390,7 @@ void beat_box_music_tree_view_scrollToCurrent (BeatBoxMusicTreeView* self) {
 }
 
 
-static gboolean _lambda8_ (BeatBoxMusicTreeView* self) {
+static gboolean _lambda9_ (BeatBoxMusicTreeView* self) {
 	gboolean result = FALSE;
 	self->priv->scrolled_recently = FALSE;
 	result = FALSE;
@@ -5255,9 +5398,9 @@ static gboolean _lambda8_ (BeatBoxMusicTreeView* self) {
 }
 
 
-static gboolean __lambda8__gsource_func (gpointer self) {
+static gboolean __lambda9__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda8_ (self);
+	result = _lambda9_ (self);
 	return result;
 }
 
@@ -5271,7 +5414,7 @@ static void beat_box_music_tree_view_real_viewScroll (BeatBoxMusicTreeView* self
 		_tmp0_ = FALSE;
 	}
 	if (_tmp0_) {
-		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 30000, __lambda8__gsource_func, g_object_ref (self), g_object_unref);
+		g_timeout_add_full (G_PRIORITY_DEFAULT, (guint) 30000, __lambda9__gsource_func, g_object_ref (self), g_object_unref);
 		self->priv->scrolled_recently = TRUE;
 	}
 }
@@ -5290,6 +5433,7 @@ static void beat_box_music_tree_view_real_onDragBegin (BeatBoxMusicTreeView* sel
 	g_return_if_fail (sender != NULL);
 	g_return_if_fail (context != NULL);
 	self->dragging = TRUE;
+	self->priv->lw->dragging_from_music = TRUE;
 	fprintf (stdout, "drag begin\n");
 	_tmp0_ = gtk_get_current_event_time ();
 	gdk_drag_abort (context, _tmp0_);
@@ -5410,6 +5554,7 @@ static void beat_box_music_tree_view_real_onDragEnd (BeatBoxMusicTreeView* self,
 	g_return_if_fail (sender != NULL);
 	g_return_if_fail (context != NULL);
 	self->dragging = FALSE;
+	self->priv->lw->dragging_from_music = FALSE;
 	fprintf (stdout, "drag end\n");
 	_tmp0_ = g_new0 (GtkTargetEntry, 0);
 	_tmp1_ = _tmp0_;

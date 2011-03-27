@@ -137,6 +137,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(hint == Hint.MUSIC) {
 			songRemove.set_sensitive(true);
 			songRemove.set_label("Move to Trash");
+			columnNumber.set_active(false);
+			columnNumber.set_visible(false);
 		}
 		else if(hint == Hint.SIMILAR) {
 			songRemove.set_sensitive(false);
@@ -315,6 +317,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.columns_changed.connect(viewColumnsChanged);
 		
 		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
+		sort.set_sort_func(_columns.index_of("Album"), albumCompareFunc);
+		
 		
 		// allow selecting multiple rows
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
@@ -459,6 +463,37 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
 		else
 			return (a_song.artist.down() > b_song.artist.down()) ? 1 : -1;
+	}
+	
+	public int albumCompareFunc (TreeModel model, TreeIter a, TreeIter b) {
+		int a_id, b_id;
+		Song a_song, b_song;
+		
+		model.get(a, 0, out a_id);
+		model.get(b, 0, out b_id);
+		
+		a_song = lm.song_from_id(a_id);
+		b_song = lm.song_from_id(b_id);
+		
+		if(a_song.album.down() == b_song.album.down() && a_song.track == b_song.track)
+			return (a_song.file.down() > b_song.file.down()) ? 1 : -1;
+		else if(a_song.album.down() == b_song.album.down())
+			return a_song.track - b_song.track;
+		else
+			return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
+	}
+	
+	public int genericCompareFunc (TreeModel model, TreeIter a, TreeIter b) {
+		int a_id, b_id;
+		Song a_song, b_song;
+		
+		model.get(a, 0, out a_id);
+		model.get(b, 0, out b_id);
+		
+		a_song = lm.song_from_id(a_id);
+		b_song = lm.song_from_id(b_id);
+		
+		
 	}
 	
 	public virtual void searchFieldChanged() {
@@ -840,6 +875,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void setAsCurrentList(string? current_song_path) {
+		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
+		
 		if(current_song_path != null) {
 			lm.current_index = int.parse(current_song_path);
 		}
@@ -867,6 +904,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		if(lm.song_info.song != null)
 			updateSong(lm.song_info.song.rowid);
+			
+		if(shuffle)
+			lm.setShuffleMode(LibraryManager.Shuffle.ALL);
 	}
 	
 	/* button_press_event */
@@ -1409,6 +1449,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual void onDragBegin(Gtk.Widget sender, Gdk.DragContext context) {
 		dragging = true;
+		lw.dragging_from_music = true;
 		stdout.printf("drag begin\n");
 
 		Gdk.drag_abort(context, Gtk.get_current_event_time());
@@ -1446,6 +1487,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
     
     public virtual void onDragEnd(Gtk.Widget sender, Gdk.DragContext context) {
 		dragging = false;
+		lw.dragging_from_music = false;
 		
 		stdout.printf("drag end\n");
 		

@@ -250,19 +250,19 @@ static GdkPixbuf* last_fm_image_generate_pixbuf (LastFMImage* self) {
 	_tmp5_ = g_file_read (file, NULL, &_inner_error_);
 	_tmp6_ = _tmp5_;
 	if (_inner_error_ != NULL) {
-		goto __catch45_g_error;
+		goto __catch46_g_error;
 	}
 	_g_object_unref0 (filestream);
 	filestream = _tmp6_;
 	_tmp7_ = gdk_pixbuf_new_from_stream_at_scale ((GInputStream*) filestream, self->priv->_size[0], self->priv->_size[1], TRUE, NULL, &_inner_error_);
 	_tmp8_ = _tmp7_;
 	if (_inner_error_ != NULL) {
-		goto __catch45_g_error;
+		goto __catch46_g_error;
 	}
 	_g_object_unref0 (rv);
 	rv = _tmp8_;
-	goto __finally45;
-	__catch45_g_error:
+	goto __finally46;
+	__catch46_g_error:
 	{
 		GError * err;
 		const gchar* _tmp9_ = NULL;
@@ -274,7 +274,7 @@ static GdkPixbuf* last_fm_image_generate_pixbuf (LastFMImage* self) {
 		rv = NULL;
 		_g_error_free0 (err);
 	}
-	__finally45:
+	__finally46:
 	if (_inner_error_ != NULL) {
 		_g_object_unref0 (filestream);
 		_g_object_unref0 (file);

@@ -81,19 +81,19 @@ BeatBoxNotImportedWindow* beat_box_not_imported_window_new (BeatBoxLibraryWindow
 BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_type, BeatBoxLibraryWindow* lw, GeeLinkedList* files);
 static Block1Data* block1_data_ref (Block1Data* _data1_);
 static void block1_data_unref (Block1Data* _data1_);
-static void _lambda17_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBoxNotImportedWindow* self);
+static void _lambda18_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBoxNotImportedWindow* self);
 gboolean beat_box_not_imported_window_updateMoveToTrashSensetivity (BeatBoxNotImportedWindow* self, GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter);
 static gboolean _beat_box_not_imported_window_updateMoveToTrashSensetivity_gtk_tree_model_foreach_func (GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter, gpointer self);
-static void __lambda17__gtk_cell_renderer_toggle_toggled (GtkCellRendererToggle* _sender, const gchar* path, gpointer self);
+static void __lambda18__gtk_cell_renderer_toggle_toggled (GtkCellRendererToggle* _sender, const gchar* path, gpointer self);
 GtkAlignment* beat_box_not_imported_window_wrap_alignment (GtkWidget* widget, gint top, gint right, gint bottom, gint left);
 void beat_box_not_imported_window_moveToTrashClick (BeatBoxNotImportedWindow* self);
 static void _beat_box_not_imported_window_moveToTrashClick_gtk_button_clicked (GtkButton* _sender, gpointer self);
 void beat_box_not_imported_window_trashAllToggled (BeatBoxNotImportedWindow* self);
 static void _beat_box_not_imported_window_trashAllToggled_gtk_toggle_button_toggled (GtkToggleButton* _sender, gpointer self);
-static void _lambda18_ (BeatBoxNotImportedWindow* self);
-static void __lambda18__gtk_button_clicked (GtkButton* _sender, gpointer self);
-static void _lambda19_ (Block1Data* _data1_);
-static void __lambda19__gtk_expander_activate (GtkExpander* _sender, gpointer self);
+static void _lambda19_ (BeatBoxNotImportedWindow* self);
+static void __lambda19__gtk_button_clicked (GtkButton* _sender, gpointer self);
+static void _lambda20_ (Block1Data* _data1_);
+static void __lambda20__gtk_expander_activate (GtkExpander* _sender, gpointer self);
 gboolean beat_box_not_imported_window_selectAll (BeatBoxNotImportedWindow* self, GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter);
 gboolean beat_box_not_imported_window_unselectAll (BeatBoxNotImportedWindow* self, GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter);
 static void beat_box_not_imported_window_real_trashAllToggled (BeatBoxNotImportedWindow* self);
@@ -134,7 +134,7 @@ static gboolean _beat_box_not_imported_window_updateMoveToTrashSensetivity_gtk_t
 }
 
 
-static void _lambda17_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBoxNotImportedWindow* self) {
+static void _lambda18_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBoxNotImportedWindow* self) {
 	GtkTreePath* _tmp0_ = NULL;
 	GtkTreePath* tree_path;
 	GtkTreeIter iter = {0};
@@ -154,8 +154,8 @@ static void _lambda17_ (GtkCellRendererToggle* toggle, const gchar* path, BeatBo
 }
 
 
-static void __lambda17__gtk_cell_renderer_toggle_toggled (GtkCellRendererToggle* _sender, const gchar* path, gpointer self) {
-	_lambda17_ (_sender, path, self);
+static void __lambda18__gtk_cell_renderer_toggle_toggled (GtkCellRendererToggle* _sender, const gchar* path, gpointer self) {
+	_lambda18_ (_sender, path, self);
 }
 
 
@@ -169,17 +169,17 @@ static void _beat_box_not_imported_window_trashAllToggled_gtk_toggle_button_togg
 }
 
 
-static void _lambda18_ (BeatBoxNotImportedWindow* self) {
+static void _lambda19_ (BeatBoxNotImportedWindow* self) {
 	gtk_object_destroy ((GtkObject*) self);
 }
 
 
-static void __lambda18__gtk_button_clicked (GtkButton* _sender, gpointer self) {
-	_lambda18_ (self);
+static void __lambda19__gtk_button_clicked (GtkButton* _sender, gpointer self) {
+	_lambda19_ (self);
 }
 
 
-static void _lambda19_ (Block1Data* _data1_) {
+static void _lambda20_ (Block1Data* _data1_) {
 	BeatBoxNotImportedWindow * self;
 	gboolean _tmp0_;
 	self = _data1_->self;
@@ -195,8 +195,8 @@ static void _lambda19_ (Block1Data* _data1_) {
 }
 
 
-static void __lambda19__gtk_expander_activate (GtkExpander* _sender, gpointer self) {
-	_lambda19_ (self);
+static void __lambda20__gtk_expander_activate (GtkExpander* _sender, gpointer self) {
+	_lambda20_ (self);
 }
 
 
@@ -346,7 +346,7 @@ BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_t
 	gtk_label_set_line_wrap (info, FALSE);
 	_tmp35_ = (GtkCellRendererToggle*) gtk_cell_renderer_toggle_new ();
 	toggle = g_object_ref_sink (_tmp35_);
-	g_signal_connect_object (toggle, "toggled", (GCallback) __lambda17__gtk_cell_renderer_toggle_toggled, self, 0);
+	g_signal_connect_object (toggle, "toggled", (GCallback) __lambda18__gtk_cell_renderer_toggle_toggled, self, 0);
 	_tmp36_ = gtk_tree_view_column_new ();
 	column = g_object_ref_sink (_tmp36_);
 	gtk_tree_view_column_set_title (column, "del");
@@ -425,8 +425,8 @@ BeatBoxNotImportedWindow* beat_box_not_imported_window_construct (GType object_t
 	gtk_box_pack_start ((GtkBox*) self->priv->padding, (GtkWidget*) self->priv->content, TRUE, TRUE, (guint) 10);
 	g_signal_connect_object (self->priv->moveToTrash, "clicked", (GCallback) _beat_box_not_imported_window_moveToTrashClick_gtk_button_clicked, self, 0);
 	g_signal_connect_object ((GtkToggleButton*) self->priv->trashAll, "toggled", (GCallback) _beat_box_not_imported_window_trashAllToggled_gtk_toggle_button_toggled, self, 0);
-	g_signal_connect_object (okButton, "clicked", (GCallback) __lambda18__gtk_button_clicked, self, 0);
-	g_signal_connect_data (_data1_->exp, "activate", (GCallback) __lambda19__gtk_expander_activate, block1_data_ref (_data1_), (GClosureNotify) block1_data_unref, 0);
+	g_signal_connect_object (okButton, "clicked", (GCallback) __lambda19__gtk_button_clicked, self, 0);
+	g_signal_connect_data (_data1_->exp, "activate", (GCallback) __lambda20__gtk_expander_activate, block1_data_ref (_data1_), (GClosureNotify) block1_data_unref, 0);
 	gtk_container_add ((GtkContainer*) self, (GtkWidget*) self->priv->padding);
 	gtk_widget_show_all ((GtkWidget*) self);
 	_g_object_unref0 (bottomButtons);

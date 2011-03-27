@@ -47,8 +47,8 @@ enum  {
 };
 ToolButtonWithMenu* tool_button_with_menu_construct (GType object_type, GtkImage* image, const gchar* label, GtkMenu* _menu, GtkPositionType menu_orientation);
 void tool_button_with_menu_set_menu_orientation (ToolButtonWithMenu* self, GtkPositionType value);
-static void _lambda11_ (ToolButtonWithMenu* self);
-static void __lambda11__gtk_menu_shell_deactivate (GtkMenuShell* _sender, gpointer self);
+static void _lambda12_ (ToolButtonWithMenu* self);
+static void __lambda12__gtk_menu_shell_deactivate (GtkMenuShell* _sender, gpointer self);
 static gboolean tool_button_with_menu_on_mnemonic_activate (ToolButtonWithMenu* self, gboolean group_cycling);
 static gboolean _tool_button_with_menu_on_mnemonic_activate_gtk_widget_mnemonic_activate (GtkWidget* _sender, gboolean group_cycling, gpointer self);
 void tool_button_with_menu_popdown_menu (ToolButtonWithMenu* self);
@@ -68,13 +68,13 @@ static gpointer _g_object_ref0 (gpointer self) {
 }
 
 
-static void _lambda11_ (ToolButtonWithMenu* self) {
+static void _lambda12_ (ToolButtonWithMenu* self) {
 	gtk_toggle_tool_button_set_active ((GtkToggleToolButton*) self, FALSE);
 }
 
 
-static void __lambda11__gtk_menu_shell_deactivate (GtkMenuShell* _sender, gpointer self) {
-	_lambda11_ (self);
+static void __lambda12__gtk_menu_shell_deactivate (GtkMenuShell* _sender, gpointer self) {
+	_lambda12_ (self);
 }
 
 
@@ -114,7 +114,7 @@ ToolButtonWithMenu* tool_button_with_menu_construct (GType object_type, GtkImage
 	_g_object_unref0 (self->menu);
 	self->menu = _tmp3_;
 	gtk_menu_attach_to_widget (self->menu, (GtkWidget*) self, NULL);
-	g_signal_connect_object ((GtkMenuShell*) self->menu, "deactivate", (GCallback) __lambda11__gtk_menu_shell_deactivate, self, 0);
+	g_signal_connect_object ((GtkMenuShell*) self->menu, "deactivate", (GCallback) __lambda12__gtk_menu_shell_deactivate, self, 0);
 	g_signal_connect_object ((GtkWidget*) self, "mnemonic-activate", (GCallback) _tool_button_with_menu_on_mnemonic_activate_gtk_widget_mnemonic_activate, self, 0);
 	g_signal_connect_object ((GtkMenuShell*) self->menu, "deactivate", (GCallback) _tool_button_with_menu_popdown_menu_gtk_menu_shell_deactivate, self, 0);
 	return self;
@@ -164,7 +164,7 @@ void tool_button_with_menu_popup_menu (ToolButtonWithMenu* self, GdkEventButton*
 		_tmp1_ = (*ev).time;
 	}
 	gtk_menu_popup (self->menu, NULL, NULL, _tool_button_with_menu_get_menu_position_gtk_menu_position_func, self, _tmp0_, _tmp1_);
-	__finally79:
+	__finally81:
 	g_object_get (self->menu, "attach-widget", &_tmp3_, NULL);
 	_tmp4_ = _tmp3_;
 	_tmp5_ = _tmp4_ != NULL;

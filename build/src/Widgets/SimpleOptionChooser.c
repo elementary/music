@@ -23,7 +23,7 @@ typedef struct _BeatBoxSimpleOptionChooser BeatBoxSimpleOptionChooser;
 typedef struct _BeatBoxSimpleOptionChooserClass BeatBoxSimpleOptionChooserClass;
 typedef struct _BeatBoxSimpleOptionChooserPrivate BeatBoxSimpleOptionChooserPrivate;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
-typedef struct _Block11Data Block11Data;
+typedef struct _Block12Data Block12Data;
 
 struct _BeatBoxSimpleOptionChooser {
 	GtkEventBox parent_instance;
@@ -46,7 +46,7 @@ struct _BeatBoxSimpleOptionChooserPrivate {
 	gboolean toggling;
 };
 
-struct _Block11Data {
+struct _Block12Data {
 	int _ref_count_;
 	BeatBoxSimpleOptionChooser * self;
 	GtkCheckMenuItem* item;
@@ -68,10 +68,10 @@ gboolean beat_box_simple_option_chooser_exposeEvent (BeatBoxSimpleOptionChooser*
 static gboolean _beat_box_simple_option_chooser_exposeEvent_gtk_widget_expose_event (GtkWidget* _sender, GdkEventExpose* event, gpointer self);
 void beat_box_simple_option_chooser_setOption (BeatBoxSimpleOptionChooser* self, gint index);
 gint beat_box_simple_option_chooser_appendItem (BeatBoxSimpleOptionChooser* self, const gchar* text);
-static Block11Data* block11_data_ref (Block11Data* _data11_);
-static void block11_data_unref (Block11Data* _data11_);
-static void _lambda12_ (Block11Data* _data11_);
-static void __lambda12__gtk_check_menu_item_toggled (GtkCheckMenuItem* _sender, gpointer self);
+static Block12Data* block12_data_ref (Block12Data* _data12_);
+static void block12_data_unref (Block12Data* _data12_);
+static void _lambda13_ (Block12Data* _data12_);
+static void __lambda13__gtk_check_menu_item_toggled (GtkCheckMenuItem* _sender, gpointer self);
 static gboolean beat_box_simple_option_chooser_real_buttonPress (BeatBoxSimpleOptionChooser* self, GdkEventButton* event);
 static gboolean beat_box_simple_option_chooser_real_exposeEvent (BeatBoxSimpleOptionChooser* self, GdkEventExpose* event);
 static void beat_box_simple_option_chooser_finalize (GObject* obj);
@@ -214,31 +214,31 @@ void beat_box_simple_option_chooser_setOption (BeatBoxSimpleOptionChooser* self,
 }
 
 
-static Block11Data* block11_data_ref (Block11Data* _data11_) {
-	g_atomic_int_inc (&_data11_->_ref_count_);
-	return _data11_;
+static Block12Data* block12_data_ref (Block12Data* _data12_) {
+	g_atomic_int_inc (&_data12_->_ref_count_);
+	return _data12_;
 }
 
 
-static void block11_data_unref (Block11Data* _data11_) {
-	if (g_atomic_int_dec_and_test (&_data11_->_ref_count_)) {
-		_g_object_unref0 (_data11_->self);
-		_g_object_unref0 (_data11_->item);
-		g_slice_free (Block11Data, _data11_);
+static void block12_data_unref (Block12Data* _data12_) {
+	if (g_atomic_int_dec_and_test (&_data12_->_ref_count_)) {
+		_g_object_unref0 (_data12_->self);
+		_g_object_unref0 (_data12_->item);
+		g_slice_free (Block12Data, _data12_);
 	}
 }
 
 
-static void _lambda12_ (Block11Data* _data11_) {
+static void _lambda13_ (Block12Data* _data12_) {
 	BeatBoxSimpleOptionChooser * self;
-	self = _data11_->self;
+	self = _data12_->self;
 	if (!self->priv->toggling) {
 		gint _tmp0_;
 		self->priv->toggling = TRUE;
-		_tmp0_ = gee_abstract_list_index_of ((GeeAbstractList*) self->priv->items, _data11_->item);
+		_tmp0_ = gee_abstract_list_index_of ((GeeAbstractList*) self->priv->items, _data12_->item);
 		if (self->priv->clicked_index != _tmp0_) {
 			gint _tmp1_;
-			_tmp1_ = gee_abstract_list_index_of ((GeeAbstractList*) self->priv->items, _data11_->item);
+			_tmp1_ = gee_abstract_list_index_of ((GeeAbstractList*) self->priv->items, _data12_->item);
 			beat_box_simple_option_chooser_setOption (self, _tmp1_);
 		} else {
 			beat_box_simple_option_chooser_setOption (self, 0);
@@ -248,31 +248,31 @@ static void _lambda12_ (Block11Data* _data11_) {
 }
 
 
-static void __lambda12__gtk_check_menu_item_toggled (GtkCheckMenuItem* _sender, gpointer self) {
-	_lambda12_ (self);
+static void __lambda13__gtk_check_menu_item_toggled (GtkCheckMenuItem* _sender, gpointer self) {
+	_lambda13_ (self);
 }
 
 
 gint beat_box_simple_option_chooser_appendItem (BeatBoxSimpleOptionChooser* self, const gchar* text) {
 	gint result = 0;
-	Block11Data* _data11_;
+	Block12Data* _data12_;
 	GtkCheckMenuItem* _tmp0_ = NULL;
 	gint _tmp1_;
 	g_return_val_if_fail (self != NULL, 0);
 	g_return_val_if_fail (text != NULL, 0);
-	_data11_ = g_slice_new0 (Block11Data);
-	_data11_->_ref_count_ = 1;
-	_data11_->self = g_object_ref (self);
+	_data12_ = g_slice_new0 (Block12Data);
+	_data12_->_ref_count_ = 1;
+	_data12_->self = g_object_ref (self);
 	_tmp0_ = (GtkCheckMenuItem*) gtk_check_menu_item_new_with_label (text);
-	_data11_->item = g_object_ref_sink (_tmp0_);
-	gee_abstract_collection_add ((GeeAbstractCollection*) self->priv->items, _data11_->item);
-	gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) _data11_->item));
-	g_signal_connect_data (_data11_->item, "toggled", (GCallback) __lambda12__gtk_check_menu_item_toggled, block11_data_ref (_data11_), (GClosureNotify) block11_data_unref, 0);
-	gtk_widget_show ((GtkWidget*) _data11_->item);
+	_data12_->item = g_object_ref_sink (_tmp0_);
+	gee_abstract_collection_add ((GeeAbstractCollection*) self->priv->items, _data12_->item);
+	gtk_menu_shell_append ((GtkMenuShell*) self->priv->menu, (GtkWidget*) ((GtkMenuItem*) _data12_->item));
+	g_signal_connect_data (_data12_->item, "toggled", (GCallback) __lambda13__gtk_check_menu_item_toggled, block12_data_ref (_data12_), (GClosureNotify) block12_data_unref, 0);
+	gtk_widget_show ((GtkWidget*) _data12_->item);
 	_tmp1_ = gee_collection_get_size ((GeeCollection*) self->priv->items);
 	result = _tmp1_ - 1;
-	block11_data_unref (_data11_);
-	_data11_ = NULL;
+	block12_data_unref (_data12_);
+	_data12_ = NULL;
 	return result;
 }
 

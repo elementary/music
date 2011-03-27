@@ -6,6 +6,7 @@ using Gtk;
  * the visual representation of this class
  */
 public class BeatBox.LibraryManager : GLib.Object {
+	public BeatBox.LibraryWindow lw;
 	public BeatBox.Settings settings;
 	public BeatBox.DataBaseManager dbm;
 	public BeatBox.DataBaseUpdater dbu;
@@ -41,6 +42,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public Shuffle shuffle;
 	
 	private string temp_add_folder;
+	private LinkedList<string> temp_add_files;
 	public bool doing_file_operations;
 	
 	public signal void music_counted(int count);
@@ -70,7 +72,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		ALL;
 	}
 	
-	public LibraryManager(StreamPlayer player, BeatBox.DataBaseManager dbmn, BeatBox.Settings sett) {
+	public LibraryManager(StreamPlayer player, BeatBox.DataBaseManager dbmn, BeatBox.Settings sett, BeatBox.LibraryWindow lww) {
+		this.lw = lww;
 		this.player = player;
 		this.settings = sett;
 		
@@ -214,6 +217,66 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return null;
 	}
 	
+	public void add_files_to_library(LinkedList<string> files) {
+		if(!doing_file_operations) {
+			doing_file_operations = true;
+			progress_notification("Adding files to library. This may take a while", 0.0);
+			
+			temp_add_files = files;
+			try {
+				Thread.create<void*>(add_files_to_library_thread, false);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not create thread to add music files: %s\n", err.message);
+			}
+		}
+	}
+	
+	public void* add_files_to_library_thread () {
+		music_counted(temp_add_files.size);
+		fo.resetProgress(temp_add_files.size);
+		
+		var new_songs = new LinkedList<Song>();
+		var not_imported = new LinkedList<string>();
+		fo.get_music_files_individually(temp_add_files, ref new_songs, ref not_imported);
+		
+		int index = 1;
+		
+		// start at biggest value
+		foreach(int i in _songs.keys) {
+			if(i > index)
+				index = i + 1;
+		}
+		
+		fo.resetProgress(new_songs.size);
+		
+		if(settings.getCopyImportedMusic())
+			progress_notification("<b>Copying</b> files to <b>Music Folder</b>", 0.0);
+		
+		int progress = 0;
+		foreach(Song s in new_songs) {
+			s.rowid = ++index;
+			stdout.printf("new song in import %s with rowid %d\n", s.title, s.rowid);
+			add_song(s);
+			
+			if(settings.getCopyImportedMusic())
+				fo.update_file_hierarchy(s, false);
+			
+			progress++;
+			progress_notification(null, (double)((double)progress)/((double)new_songs.size));
+		}
+		
+		Idle.add( () => { 
+			save_songs();
+			music_imported(new_songs, not_imported);
+			return false; 
+		});
+		
+		doing_file_operations = false;
+		file_operations_done();
+		return null;
+	}
+	
 	public void add_folder_to_library(string folder) {
 		if(!doing_file_operations) {
 			doing_file_operations = true;
@@ -265,7 +328,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		Idle.add( () => { 
 			save_songs();
-			music_imported(new_songs, not_imported); 
+			music_imported(new_songs, not_imported);
 			return false; 
 		});
 		
@@ -666,8 +729,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void clearCurrent() {
 		current_cleared();
-		
 		_current.clear();
+		
+		shuffle = Shuffle.OFF; // must manually reshuffle
 	}
 	
 	public void addToCurrent(int i) {
@@ -679,7 +743,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return;
 		
 		_current_shuffled.clear();
-		_current_shuffled_index = 0;
+		_current_shuffled_index = 1;
 		settings.setShuffleMode(mode);
 		shuffle = mode;
 		
@@ -741,7 +805,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 				rv = _current_shuffled.get(0);
 			}
 			else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
-				stdout.printf("normal\n");
 				// make sure we are repeating what we need to be
 				if(repeat == Repeat.ARTIST && song_from_id(_current_shuffled.get(_current_shuffled_index + 1)).artist != song_from_id(_current_shuffled.get(_current_shuffled_index)).artist) {
 					while(song_from_id(_current_shuffled.get(_current_shuffled_index - 1)).artist == song_info.song.artist)
@@ -757,7 +820,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 				rv = _current_shuffled.get(_current_shuffled_index);
 			}
 			else {
-				stdout.printf("else??????????????????????????????????\n");
 				foreach(Song s in _songs.values)
 					addToCurrent(s.rowid);
 				
@@ -804,8 +866,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 				rv = _current.get(0);
 			}
 		}
-		
-		stdout.printf("getNext() rv=%d\n", rv);
 		
 		if(play)
 			playSong(rv);
