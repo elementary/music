@@ -180,8 +180,11 @@ public class BeatBox.FileOperator : Object {
 				s.date_added = (int)time_t();
 			}
 			finally {
-				if(s.title == null || s.title == "") s.title = "Unkown";
-				if(s.artist == null || s.artist == "") s.artist = "Unkown";
+				if(s.title == null || s.title == "") {
+					string[] paths = file_path.split("/", 0);
+					s.title = paths[paths.length - 1];
+				}
+				if(s.artist == null || s.artist == "") s.artist = "Unknown";
 			}
 		}
 		else {

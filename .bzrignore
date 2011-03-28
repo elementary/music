@@ -5,3 +5,6 @@ build
 .waf-1.6.2-ad4cc42bd7d347f7e283789e711b993f
 .lock-wafbuild
 .lock-wscript
+/.lock*
+.waf*
+

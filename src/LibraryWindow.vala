@@ -136,7 +136,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 			
 			// rescan on startup
-			lm.rescan_music_folder();
+			/*lm.rescan_music_folder();*/
 		}
 	}
 	
@@ -931,46 +931,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		});
 		
 		ad.show();
-		
-		LinkedList<string> fakes = new LinkedList<string>();
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		fakes.add("blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-		
-		NotImportedWindow npw = new NotImportedWindow(this, fakes);
-		npw.show();
 	}
 	
 	public virtual void editPreferencesClick() {

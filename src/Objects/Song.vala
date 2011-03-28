@@ -42,8 +42,8 @@ public class BeatBox.Song : GLib.Object{
 		file_size = 0;
 		rowid = 0;
 		track = 0;
-		title = "Unkown Title";
-		artist = "Unkown Artist";
+		title = "Unknown Title";
+		artist = "Unknown Artist";
 		album = "Unknown Album";
 		genre = "";
 		comment = "";

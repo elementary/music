@@ -493,7 +493,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		a_song = lm.song_from_id(a_id);
 		b_song = lm.song_from_id(b_id);
 		
-		
+		return 0;
 	}
 	
 	public virtual void searchFieldChanged() {
@@ -875,6 +875,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void setAsCurrentList(string? current_song_path) {
+		if(is_current)
+			return;
+		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		if(current_song_path != null) {

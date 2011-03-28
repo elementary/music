@@ -598,7 +598,6 @@ public class BeatBox.SideTreeView : TreeView {
 		w.destroy();
 		sideTreeModel.remove(iter);
 		resetView();
-		//sideTreeModel.foreach(updateView);
 	}
 	
 	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
@@ -609,7 +608,6 @@ public class BeatBox.SideTreeView : TreeView {
 		int cell_x;
 		int cell_y;
 		
-		stdout.printf("drag received\n");
 		
 		/* get the iter we are on */
 		this.get_path_at_pos(x, y, out path, out column, out cell_x, out cell_y);
@@ -617,7 +615,7 @@ public class BeatBox.SideTreeView : TreeView {
 			Gtk.drag_finish(context, false, false, timestamp);
 			return;
 		}
-		stdout.printf("continueing...\n");
+		
 		GLib.Object o;
 		sideTreeModel.get(iter, 0, out o);
 		string name;
@@ -626,7 +624,6 @@ public class BeatBox.SideTreeView : TreeView {
 		/* make sure it is either queue or normal playlist */
 		if(name == "Queue") {
 			foreach (string uri in data.get_uris ()) {
-				stdout.printf("oh hey queue\n");
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
 					Song add = lm.song_from_file(file.get_path());
@@ -640,7 +637,7 @@ public class BeatBox.SideTreeView : TreeView {
 		}
 		else if(o is Playlist) {
 			Playlist p = (Playlist)o;
-			stdout.printf("playlist nerd\n");
+			
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {

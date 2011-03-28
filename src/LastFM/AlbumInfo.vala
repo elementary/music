@@ -21,8 +21,8 @@ public class LastFM.AlbumInfo : Object {
 	//public signal void album_info_retrieved(LastFM.AlbumInfo info);
 	
 	public AlbumInfo.basic() {
-		_name = "Unkown Album";
-		_artist = "Unkown Artist";
+		_name = "Unknown Album";
+		_artist = "Unknown Artist";
 		_tags = new Gee.ArrayList<LastFM.Tag>();
 		url_image = new LastFM.Image.basic();
 	}

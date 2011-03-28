@@ -27,7 +27,7 @@ public class LastFM.ArtistInfo : Object {
 	Tag tagToAdd;
 	
 	public ArtistInfo.basic() {
-		_name = "Unkown Artist";
+		_name = "Unknown Artist";
 		_tags = new Gee.ArrayList<LastFM.Tag>();
 		_similarArtists = new Gee.ArrayList<LastFM.ArtistInfo>();
 		url_image = new LastFM.Image.basic();

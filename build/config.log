@@ -1,6 +1,6 @@
-# project beatbox (0.1) configured on Wed Mar 23 11:06:23 2011 by
+# project beatbox (0.1) configured on Sun Mar 27 01:20:33 2011 by
 # waf 1.6.2 (abi 98, python 20606f0 on linux2)
-# using ./waf configure --prefix=/usr
+# using ./waf configure
 #
 ----------------------------------------
 Setting top to
@@ -40,11 +40,11 @@ Checking for program valac
 /usr/bin/valac
 find program=['valac'] paths=['/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games'] var='VALAC' -> '/usr/bin/valac'
 /usr/bin/valac --version
-out: Vala 0.11.6
+out: Vala 0.11.7
 
 ----------------------------------------
 Checking for valac version >= (0, 8, 0)
-(0, 11, 6)
+(0, 11, 7)
 (tool gnu_dirs is already loaded, skipping)
 ----------------------------------------
 Checking for 'dbus-glib-1' >= 

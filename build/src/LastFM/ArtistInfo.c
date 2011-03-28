@@ -155,7 +155,7 @@ LastFMArtistInfo* last_fm_artist_info_construct_basic (GType object_type) {
 	LastFMImage* _tmp3_ = NULL;
 	LastFMImage* _tmp4_;
 	self = (LastFMArtistInfo*) g_object_new (object_type, NULL);
-	_tmp0_ = g_strdup ("Unkown Artist");
+	_tmp0_ = g_strdup ("Unknown Artist");
 	_g_free0 (self->priv->_name);
 	self->priv->_name = _tmp0_;
 	_tmp1_ = gee_array_list_new (LAST_FM_TYPE_TAG, (GBoxedCopyFunc) g_object_ref, g_object_unref, NULL);

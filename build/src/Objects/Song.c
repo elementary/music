@@ -157,8 +157,8 @@ BeatBoxSong* beat_box_song_construct (GType object_type, const gchar* file) {
 	beat_box_song_set_file_size (self, 0);
 	beat_box_song_set_rowid (self, 0);
 	beat_box_song_set_track (self, 0);
-	beat_box_song_set_title (self, "Unkown Title");
-	beat_box_song_set_artist (self, "Unkown Artist");
+	beat_box_song_set_title (self, "Unknown Title");
+	beat_box_song_set_artist (self, "Unknown Artist");
 	beat_box_song_set_album (self, "Unknown Album");
 	beat_box_song_set_genre (self, "");
 	beat_box_song_set_comment (self, "");

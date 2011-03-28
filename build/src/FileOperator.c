@@ -900,8 +900,8 @@ BeatBoxSong* beat_box_file_operator_import_song (BeatBoxFileOperator* self, cons
 		time_t _tmp26_;
 		gboolean _tmp27_ = FALSE;
 		const gchar* _tmp28_ = NULL;
-		gboolean _tmp30_ = FALSE;
-		const gchar* _tmp31_ = NULL;
+		gboolean _tmp32_ = FALSE;
+		const gchar* _tmp33_ = NULL;
 		_tmp6_ = taglib_file_tag (tag_file);
 		_tmp7_ = taglib_tag_title (_tmp6_);
 		beat_box_song_set_title (s, _tmp7_);
@@ -944,18 +944,28 @@ BeatBoxSong* beat_box_file_operator_import_song (BeatBoxFileOperator* self, cons
 			_tmp27_ = g_strcmp0 (_tmp29_, "") == 0;
 		}
 		if (_tmp27_) {
-			beat_box_song_set_title (s, "Unkown");
+			gchar** _tmp30_;
+			gchar** _tmp31_ = NULL;
+			gchar** paths;
+			gint paths_length1;
+			gint _paths_size_;
+			_tmp31_ = _tmp30_ = g_strsplit (file_path, "/", 0);
+			paths = _tmp31_;
+			paths_length1 = _vala_array_length (_tmp30_);
+			_paths_size_ = _vala_array_length (_tmp30_);
+			beat_box_song_set_title (s, paths[paths_length1 - 1]);
+			paths = (_vala_array_free (paths, paths_length1, (GDestroyNotify) g_free), NULL);
 		}
-		_tmp31_ = beat_box_song_get_artist (s);
-		if (_tmp31_ == NULL) {
-			_tmp30_ = TRUE;
+		_tmp33_ = beat_box_song_get_artist (s);
+		if (_tmp33_ == NULL) {
+			_tmp32_ = TRUE;
 		} else {
-			const gchar* _tmp32_ = NULL;
-			_tmp32_ = beat_box_song_get_artist (s);
-			_tmp30_ = g_strcmp0 (_tmp32_, "") == 0;
+			const gchar* _tmp34_ = NULL;
+			_tmp34_ = beat_box_song_get_artist (s);
+			_tmp32_ = g_strcmp0 (_tmp34_, "") == 0;
 		}
-		if (_tmp30_) {
-			beat_box_song_set_artist (s, "Unkown");
+		if (_tmp32_) {
+			beat_box_song_set_artist (s, "Unknown");
 		}
 		if (_inner_error_ != NULL) {
 			_taglib_file_free0 (tag_file);

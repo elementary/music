@@ -1867,7 +1867,6 @@ static void beat_box_side_tree_view_real_dragReceived (BeatBoxSideTreeView* self
 	g_return_if_fail (context != NULL);
 	g_return_if_fail (data != NULL);
 	success = FALSE;
-	fprintf (stdout, "drag received\n");
 	gtk_tree_view_get_path_at_pos ((GtkTreeView*) self, x, y, &_tmp0_, &_tmp1_, &_tmp2_, &_tmp3_);
 	_gtk_tree_path_free0 (path);
 	path = _tmp0_;
@@ -1884,7 +1883,6 @@ static void beat_box_side_tree_view_real_dragReceived (BeatBoxSideTreeView* self
 		_gtk_tree_path_free0 (path);
 		return;
 	}
-	fprintf (stdout, "continueing...\n");
 	gtk_tree_model_get ((GtkTreeModel*) self->priv->sideTreeModel, &iter, 0, &o, -1);
 	gtk_tree_model_get ((GtkTreeModel*) self->priv->sideTreeModel, &iter, 2, &name, -1);
 	if (g_strcmp0 (name, "Queue") == 0) {
@@ -1907,7 +1905,6 @@ static void beat_box_side_tree_view_real_dragReceived (BeatBoxSideTreeView* self
 					GFile* file;
 					gboolean _tmp11_ = FALSE;
 					GFileType _tmp12_;
-					fprintf (stdout, "oh hey queue\n");
 					_tmp10_ = g_file_new_for_uri (uri);
 					file = _tmp10_;
 					_tmp12_ = g_file_query_file_type (file, G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS, NULL);
@@ -1952,7 +1949,6 @@ static void beat_box_side_tree_view_real_dragReceived (BeatBoxSideTreeView* self
 			gchar** _tmp21_ = NULL;
 			_tmp19_ = _g_object_ref0 (BEAT_BOX_PLAYLIST (o));
 			p = _tmp19_;
-			fprintf (stdout, "playlist nerd\n");
 			_tmp21_ = _tmp20_ = gtk_selection_data_get_uris (data);
 			{
 				gchar** uri_collection;
