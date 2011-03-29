@@ -192,9 +192,11 @@ public class BeatBox.SongEditor : Window {
 	}
 }
 
-public class BeatBox.FieldEditor : HBox {
+public class BeatBox.FieldEditor : VBox {
 	private string _name;
 	private string _original;
+	
+	private HBox nameBox;
 	
 	private CheckButton check;
 	private Label label;
@@ -212,11 +214,16 @@ public class BeatBox.FieldEditor : HBox {
 		
 		check = new CheckButton();
 		label = new Label(_name);
-		label.set_size_request(40, -1);
-		label.justify = Justification.LEFT;
+		nameBox = new HBox(false, 0);
 		
-		this.pack_start(check, false, false, 0);
-		this.pack_start(label, false, false, 0);
+		label.justify = Justification.LEFT;
+		label.xalign = 0.0f;
+		label.set_markup("<b>" + _name + "</b>");
+		
+		nameBox.pack_start(check, false, false, 0);
+		nameBox.pack_start(label, false, true, 0);
+		
+		this.pack_start(nameBox, false, false, 0);
 		
 		if(w is Entry && !(w is SpinButton)) {
 			check.set_active(original != "");
@@ -260,10 +267,6 @@ public class BeatBox.FieldEditor : HBox {
 			//callback on file dialogue saved. setup here
 			this.pack_start(image, true, true, 0);
 		}
-		
-		reset = new Button.from_stock(Gtk.Stock.CLEAR);
-		reset.clicked.connect(resetClicked);
-		this.pack_end(reset, false, false, 0);
 	}
 	
 	public void set_check_visible(bool val) {

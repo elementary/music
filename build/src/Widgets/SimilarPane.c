@@ -10,6 +10,7 @@
 #include <string.h>
 #include <float.h>
 #include <math.h>
+#include <gdk/gdk.h>
 
 
 #define BEAT_BOX_TYPE_SIMILAR_PANE (beat_box_similar_pane_get_type ())
@@ -213,12 +214,14 @@ struct _BeatBoxSimilarPanePrivate {
 	BeatBoxLibraryManager* _lm;
 	BeatBoxLibraryWindow* _lw;
 	BeatBoxSong* _next;
-	GtkToolbar* toolbar;
+	GtkHBox* toolbar;
 	GtkToolButton* refresh;
 	GtkLabel* toolInfo;
 	GtkToolButton* transferPlayback;
 	GtkToolButton* save;
 	BeatBoxMusicTreeView* similars;
+	GtkEventBox* errorBox;
+	GtkLabel* errorLabel;
 };
 
 typedef enum  {
@@ -314,18 +317,22 @@ GtkSortType beat_box_tree_view_setup_get_sort_direction (BeatBoxTreeViewSetup* s
 GType beat_box_music_tree_view_hint_get_type (void) G_GNUC_CONST;
 BeatBoxMusicTreeView* beat_box_music_tree_view_new (BeatBoxLibraryManager* lmm, BeatBoxLibraryWindow* lww, const gchar* sort, GtkSortType dir, BeatBoxMusicTreeViewHint the_hint, gint id);
 BeatBoxMusicTreeView* beat_box_music_tree_view_construct (GType object_type, BeatBoxLibraryManager* lmm, BeatBoxLibraryWindow* lww, const gchar* sort, GtkSortType dir, BeatBoxMusicTreeViewHint the_hint, gint id);
+void beat_box_similar_pane_songPlayed (BeatBoxSimilarPane* self, gint id, gint old);
+static void _beat_box_similar_pane_songPlayed_beat_box_library_manager_song_played (BeatBoxLibraryManager* _sender, gint id, gint old_id, gpointer self);
 void beat_box_similar_pane_refreshClicked (BeatBoxSimilarPane* self);
 static void _beat_box_similar_pane_refreshClicked_gtk_tool_button_clicked (GtkToolButton* _sender, gpointer self);
 void beat_box_similar_pane_transferPlaybackClicked (BeatBoxSimilarPane* self);
 static void _beat_box_similar_pane_transferPlaybackClicked_gtk_tool_button_clicked (GtkToolButton* _sender, gpointer self);
 void beat_box_similar_pane_saveClicked (BeatBoxSimilarPane* self);
 static void _beat_box_similar_pane_saveClicked_gtk_tool_button_clicked (GtkToolButton* _sender, gpointer self);
-void beat_box_similar_pane_updateSongs (BeatBoxSimilarPane* self, BeatBoxSong* la, GeeCollection* have);
+void beat_box_similar_pane_initializeView (BeatBoxSimilarPane* self);
 GeeCollection* beat_box_library_manager_current_songs (BeatBoxLibraryManager* self);
 GeeSet* beat_box_music_tree_view_get_songs (BeatBoxMusicTreeView* self);
-void beat_box_similar_pane_updateDisplay (BeatBoxSimilarPane* self);
+BeatBoxSong* beat_box_library_manager_song_from_id (BeatBoxLibraryManager* self, gint id);
 const gchar* beat_box_song_get_title (BeatBoxSong* self);
 const gchar* beat_box_song_get_artist (BeatBoxSong* self);
+void beat_box_similar_pane_updateSongs (BeatBoxSimilarPane* self, BeatBoxSong* la, GeeLinkedList* have);
+void beat_box_similar_pane_updateDisplay (BeatBoxSimilarPane* self);
 void beat_box_music_tree_view_populateView (BeatBoxMusicTreeView* self, GeeCollection* songs, gboolean is_search);
 GType last_fm_artist_info_get_type (void) G_GNUC_CONST;
 GType last_fm_track_info_get_type (void) G_GNUC_CONST;
@@ -341,7 +348,6 @@ BeatBoxPlaylist* beat_box_playlist_construct (GType object_type);
 GType beat_box_playlist_get_type (void) G_GNUC_CONST;
 void beat_box_playlist_set_name (BeatBoxPlaylist* self, const gchar* value);
 void beat_box_playlist_addSong (BeatBoxPlaylist* self, BeatBoxSong* s);
-BeatBoxSong* beat_box_library_manager_song_from_id (BeatBoxLibraryManager* self, gint id);
 gint beat_box_library_manager_add_playlist (BeatBoxLibraryManager* self, BeatBoxPlaylist* p);
 void beat_box_library_window_addSideListItem (BeatBoxLibraryWindow* self, GObject* o);
 static void beat_box_similar_pane_finalize (GObject* obj);
@@ -349,6 +355,11 @@ static void beat_box_similar_pane_finalize (GObject* obj);
 
 static gpointer _g_object_ref0 (gpointer self) {
 	return self ? g_object_ref (self) : NULL;
+}
+
+
+static void _beat_box_similar_pane_songPlayed_beat_box_library_manager_song_played (BeatBoxLibraryManager* _sender, gint id, gint old_id, gpointer self) {
+	beat_box_similar_pane_songPlayed (self, id, old_id);
 }
 
 
@@ -372,16 +383,22 @@ BeatBoxSimilarPane* beat_box_similar_pane_construct (GType object_type, BeatBoxL
 	BeatBoxLibraryManager* _tmp0_;
 	BeatBoxLibraryWindow* _tmp1_;
 	GeeLinkedList* _tmp2_ = NULL;
-	GtkToolbar* _tmp3_ = NULL;
-	GtkToolButton* _tmp4_ = NULL;
+	GtkLabel* _tmp3_ = NULL;
+	GtkHBox* _tmp4_ = NULL;
 	GtkToolButton* _tmp5_ = NULL;
-	GtkLabel* _tmp6_ = NULL;
-	GtkToolButton* _tmp7_ = NULL;
-	const gchar* _tmp8_ = NULL;
-	GtkSortType _tmp9_;
-	BeatBoxMusicTreeView* _tmp10_ = NULL;
-	GtkToolItem* _tmp11_ = NULL;
+	GtkToolButton* _tmp6_ = NULL;
+	GtkLabel* _tmp7_ = NULL;
+	GtkToolButton* _tmp8_ = NULL;
+	const gchar* _tmp9_ = NULL;
+	GtkSortType _tmp10_;
+	BeatBoxMusicTreeView* _tmp11_ = NULL;
+	GtkEventBox* _tmp12_ = NULL;
+	GdkColor c = {0};
+	GdkColor _tmp13_ = {0};
+	GtkToolItem* _tmp14_ = NULL;
 	GtkToolItem* toolInfoBin;
+	GtkLabel* _tmp15_ = NULL;
+	GtkLabel* _tmp16_;
 	g_return_val_if_fail (lm != NULL, NULL);
 	g_return_val_if_fail (lw != NULL, NULL);
 	self = (BeatBoxSimilarPane*) g_object_new (object_type, NULL);
@@ -394,40 +411,64 @@ BeatBoxSimilarPane* beat_box_similar_pane_construct (GType object_type, BeatBoxL
 	_tmp2_ = gee_linked_list_new (G_TYPE_INT, NULL, NULL, NULL);
 	_g_object_unref0 (self->_have);
 	self->_have = _tmp2_;
-	_tmp3_ = (GtkToolbar*) gtk_toolbar_new ();
+	_tmp3_ = (GtkLabel*) gtk_label_new ("");
+	_g_object_unref0 (self->priv->errorLabel);
+	self->priv->errorLabel = g_object_ref_sink (_tmp3_);
+	_tmp4_ = (GtkHBox*) gtk_hbox_new (FALSE, 0);
 	_g_object_unref0 (self->priv->toolbar);
-	self->priv->toolbar = g_object_ref_sink (_tmp3_);
-	_tmp4_ = (GtkToolButton*) gtk_tool_button_new_from_stock (GTK_STOCK_REFRESH);
+	self->priv->toolbar = g_object_ref_sink (_tmp4_);
+	_tmp5_ = (GtkToolButton*) gtk_tool_button_new (NULL, "Update to Most Recent Song");
 	_g_object_unref0 (self->priv->refresh);
-	self->priv->refresh = g_object_ref_sink (_tmp4_);
-	_tmp5_ = (GtkToolButton*) gtk_tool_button_new_from_stock (GTK_STOCK_MEDIA_PLAY);
+	self->priv->refresh = g_object_ref_sink (_tmp5_);
+	_tmp6_ = (GtkToolButton*) gtk_tool_button_new (NULL, "Start Playing These Songs");
 	_g_object_unref0 (self->priv->transferPlayback);
-	self->priv->transferPlayback = g_object_ref_sink (_tmp5_);
-	_tmp6_ = (GtkLabel*) gtk_label_new ("");
+	self->priv->transferPlayback = g_object_ref_sink (_tmp6_);
+	_tmp7_ = (GtkLabel*) gtk_label_new ("");
 	_g_object_unref0 (self->priv->toolInfo);
-	self->priv->toolInfo = g_object_ref_sink (_tmp6_);
-	_tmp7_ = (GtkToolButton*) gtk_tool_button_new_from_stock (GTK_STOCK_SAVE);
+	self->priv->toolInfo = g_object_ref_sink (_tmp7_);
+	_tmp8_ = (GtkToolButton*) gtk_tool_button_new (NULL, "Save as Playlist");
 	_g_object_unref0 (self->priv->save);
-	self->priv->save = g_object_ref_sink (_tmp7_);
-	_tmp8_ = beat_box_tree_view_setup_get_sort_column (self->priv->_lm->similar_setup);
-	_tmp9_ = beat_box_tree_view_setup_get_sort_direction (self->priv->_lm->similar_setup);
-	_tmp10_ = beat_box_music_tree_view_new (lm, lw, _tmp8_, _tmp9_, BEAT_BOX_MUSIC_TREE_VIEW_HINT_SIMILAR, -1);
+	self->priv->save = g_object_ref_sink (_tmp8_);
+	_tmp9_ = beat_box_tree_view_setup_get_sort_column (self->priv->_lm->similar_setup);
+	_tmp10_ = beat_box_tree_view_setup_get_sort_direction (self->priv->_lm->similar_setup);
+	_tmp11_ = beat_box_music_tree_view_new (lm, lw, _tmp9_, _tmp10_, BEAT_BOX_MUSIC_TREE_VIEW_HINT_SIMILAR, -1);
 	_g_object_unref0 (self->priv->similars);
-	self->priv->similars = g_object_ref_sink (_tmp10_);
-	_tmp11_ = gtk_tool_item_new ();
-	toolInfoBin = g_object_ref_sink (_tmp11_);
+	self->priv->similars = g_object_ref_sink (_tmp11_);
+	_tmp12_ = (GtkEventBox*) gtk_event_box_new ();
+	_g_object_unref0 (self->priv->errorBox);
+	self->priv->errorBox = g_object_ref_sink (_tmp12_);
+	gtk_container_add ((GtkContainer*) self->priv->errorBox, (GtkWidget*) self->priv->errorLabel);
+	memset (&c, 0, sizeof (GdkColor));
+	gdk_color_parse ("#FFFFFF", &_tmp13_);
+	c = _tmp13_;
+	gtk_widget_modify_bg ((GtkWidget*) self->priv->errorBox, GTK_STATE_NORMAL, &c);
+	g_object_set ((GtkMisc*) self->priv->errorLabel, "xalign", 0.5f, NULL);
+	gtk_label_set_justify (self->priv->errorLabel, GTK_JUSTIFY_CENTER);
+	gtk_label_set_markup (self->priv->errorLabel, "<span weight=\"bold\" size=\"larger\">Similar Song View</span>\n" \
+"In this view, BeatBox will automatically find songs similar to the one" \
+" you are playing. You can then start playing those songs, or save them" \
+" for later.");
+	_tmp14_ = gtk_tool_item_new ();
+	toolInfoBin = g_object_ref_sink (_tmp14_);
 	gtk_container_add ((GtkContainer*) toolInfoBin, (GtkWidget*) self->priv->toolInfo);
 	gtk_tool_item_set_expand (toolInfoBin, TRUE);
 	gtk_tool_item_set_tooltip_text ((GtkToolItem*) self->priv->refresh, "Refresh to show the most current song's similar songs");
 	gtk_tool_item_set_tooltip_text ((GtkToolItem*) self->priv->transferPlayback, "Transfer playback to continue playing these songs");
 	gtk_tool_item_set_tooltip_text ((GtkToolItem*) self->priv->save, "Save as a playlist");
-	gtk_toolbar_insert (self->priv->toolbar, (GtkToolItem*) self->priv->refresh, 0);
-	gtk_toolbar_insert (self->priv->toolbar, (GtkToolItem*) self->priv->transferPlayback, 1);
-	gtk_toolbar_insert (self->priv->toolbar, toolInfoBin, 2);
-	gtk_toolbar_insert (self->priv->toolbar, (GtkToolItem*) self->priv->save, 3);
+	_tmp15_ = (GtkLabel*) gtk_label_new ("Update to Most Recent Song");
+	_tmp16_ = g_object_ref_sink (_tmp15_);
+	gtk_tool_button_set_label_widget (self->priv->refresh, (GtkWidget*) _tmp16_);
+	_g_object_unref0 (_tmp16_);
+	gtk_tool_button_set_label (self->priv->transferPlayback, "Start Playing These Songs");
+	gtk_tool_button_set_label (self->priv->save, "Save as Playlist");
+	gtk_box_pack_start ((GtkBox*) self->priv->toolbar, (GtkWidget*) self->priv->refresh, FALSE, FALSE, (guint) 0);
+	gtk_box_pack_start ((GtkBox*) self->priv->toolbar, (GtkWidget*) self->priv->transferPlayback, FALSE, FALSE, (guint) 0);
+	gtk_box_pack_end ((GtkBox*) self->priv->toolbar, (GtkWidget*) self->priv->save, FALSE, FALSE, (guint) 0);
+	gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->errorBox, TRUE, TRUE, (guint) 0);
 	gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->toolbar, FALSE, FALSE, (guint) 0);
-	gtk_box_pack_end ((GtkBox*) self, (GtkWidget*) self->priv->similars, TRUE, TRUE, (guint) 0);
+	gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->similars, TRUE, TRUE, (guint) 0);
 	gtk_widget_show_all ((GtkWidget*) self);
+	g_signal_connect_object (self->priv->_lm, "song-played", (GCallback) _beat_box_similar_pane_songPlayed_beat_box_library_manager_song_played, self, 0);
 	g_signal_connect_object (self->priv->refresh, "clicked", (GCallback) _beat_box_similar_pane_refreshClicked_gtk_tool_button_clicked, self, 0);
 	g_signal_connect_object (self->priv->transferPlayback, "clicked", (GCallback) _beat_box_similar_pane_transferPlaybackClicked_gtk_tool_button_clicked, self, 0);
 	g_signal_connect_object (self->priv->save, "clicked", (GCallback) _beat_box_similar_pane_saveClicked_gtk_tool_button_clicked, self, 0);
@@ -442,94 +483,11 @@ BeatBoxSimilarPane* beat_box_similar_pane_new (BeatBoxLibraryManager* lm, BeatBo
 }
 
 
-void beat_box_similar_pane_updateSongs (BeatBoxSimilarPane* self, BeatBoxSong* la, GeeCollection* have) {
-	BeatBoxSong* _tmp0_;
-	gboolean _tmp4_ = FALSE;
-	GeeCollection* _tmp5_ = NULL;
-	GeeCollection* _tmp6_;
-	gint _tmp7_;
-	GeeSet* _tmp8_ = NULL;
-	GeeSet* _tmp9_;
-	gint _tmp10_;
-	gboolean _tmp11_;
+void beat_box_similar_pane_initializeView (BeatBoxSimilarPane* self) {
 	g_return_if_fail (self != NULL);
-	g_return_if_fail (la != NULL);
-	g_return_if_fail (have != NULL);
-	_tmp0_ = _g_object_ref0 (la);
-	_g_object_unref0 (self->priv->_next);
-	self->priv->_next = _tmp0_;
-	gee_abstract_collection_clear ((GeeAbstractCollection*) self->_have);
-	{
-		GeeIterator* _tmp1_ = NULL;
-		GeeIterator* _i_it;
-		_tmp1_ = gee_iterable_iterator ((GeeIterable*) have);
-		_i_it = _tmp1_;
-		while (TRUE) {
-			gboolean _tmp2_;
-			gpointer _tmp3_ = NULL;
-			gint i;
-			_tmp2_ = gee_iterator_next (_i_it);
-			if (!_tmp2_) {
-				break;
-			}
-			_tmp3_ = gee_iterator_get (_i_it);
-			i = GPOINTER_TO_INT (_tmp3_);
-			gee_abstract_collection_add ((GeeAbstractCollection*) self->_have, GINT_TO_POINTER (i));
-		}
-		_g_object_unref0 (_i_it);
-	}
-	_tmp5_ = beat_box_library_manager_current_songs (self->priv->_lm);
-	_tmp6_ = _tmp5_;
-	_tmp7_ = gee_collection_get_size (_tmp6_);
-	_tmp8_ = beat_box_music_tree_view_get_songs (self->priv->similars);
-	_tmp9_ = _tmp8_;
-	_tmp10_ = gee_collection_get_size ((GeeCollection*) _tmp9_);
-	_tmp11_ = _tmp7_ == _tmp10_;
-	_g_object_unref0 (_tmp9_);
-	_g_object_unref0 (_tmp6_);
-	if (_tmp11_) {
-		GeeCollection* _tmp12_ = NULL;
-		GeeCollection* _tmp13_;
-		GeeSet* _tmp14_ = NULL;
-		GeeSet* _tmp15_;
-		gboolean _tmp16_;
-		_tmp12_ = beat_box_library_manager_current_songs (self->priv->_lm);
-		_tmp13_ = _tmp12_;
-		_tmp14_ = beat_box_music_tree_view_get_songs (self->priv->similars);
-		_tmp15_ = _tmp14_;
-		_tmp16_ = gee_collection_contains_all (_tmp13_, (GeeCollection*) _tmp15_);
-		_tmp4_ = _tmp16_;
-		_g_object_unref0 (_tmp15_);
-		_g_object_unref0 (_tmp13_);
-	} else {
-		_tmp4_ = FALSE;
-	}
-	if (!_tmp4_) {
-		beat_box_similar_pane_updateDisplay (self);
-	} else {
-		const gchar* _tmp17_ = NULL;
-		gchar* _tmp18_;
-		gchar* _tmp19_;
-		gchar* _tmp20_;
-		gchar* _tmp21_;
-		const gchar* _tmp22_ = NULL;
-		gchar* _tmp23_;
-		gchar* _tmp24_;
-		gtk_widget_show ((GtkWidget*) self->priv->refresh);
-		_tmp17_ = beat_box_song_get_title (self->priv->_next);
-		_tmp18_ = g_strconcat ("Refresh to show songs similar to: ", _tmp17_, NULL);
-		_tmp19_ = _tmp18_;
-		_tmp20_ = g_strconcat (_tmp19_, " by ", NULL);
-		_tmp21_ = _tmp20_;
-		_tmp22_ = beat_box_song_get_artist (self->priv->_next);
-		_tmp23_ = g_strconcat (_tmp21_, _tmp22_, NULL);
-		_tmp24_ = _tmp23_;
-		gtk_tool_item_set_tooltip_text ((GtkToolItem*) self->priv->refresh, _tmp24_);
-		_g_free0 (_tmp24_);
-		_g_free0 (_tmp21_);
-		_g_free0 (_tmp19_);
-		gtk_widget_hide ((GtkWidget*) self->priv->transferPlayback);
-	}
+	gtk_widget_show ((GtkWidget*) self->priv->errorBox);
+	gtk_widget_hide ((GtkWidget*) self->priv->similars);
+	gtk_widget_hide ((GtkWidget*) self->priv->toolbar);
 }
 
 
@@ -590,6 +548,236 @@ static gchar* string_replace (const gchar* self, const gchar* old, const gchar* 
 		g_critical ("file %s: line %d: uncaught error: %s (%s, %d)", __FILE__, __LINE__, _inner_error_->message, g_quark_to_string (_inner_error_->domain), _inner_error_->code);
 		g_clear_error (&_inner_error_);
 		return NULL;
+	}
+}
+
+
+void beat_box_similar_pane_songPlayed (BeatBoxSimilarPane* self, gint id, gint old) {
+	gboolean _tmp0_ = FALSE;
+	GeeCollection* _tmp1_ = NULL;
+	GeeCollection* _tmp2_;
+	gint _tmp3_;
+	GeeSet* _tmp4_ = NULL;
+	GeeSet* _tmp5_;
+	gint _tmp6_;
+	gboolean _tmp7_;
+	g_return_if_fail (self != NULL);
+	_tmp1_ = beat_box_library_manager_current_songs (self->priv->_lm);
+	_tmp2_ = _tmp1_;
+	_tmp3_ = gee_collection_get_size (_tmp2_);
+	_tmp4_ = beat_box_music_tree_view_get_songs (self->priv->similars);
+	_tmp5_ = _tmp4_;
+	_tmp6_ = gee_collection_get_size ((GeeCollection*) _tmp5_);
+	_tmp7_ = _tmp3_ == _tmp6_;
+	_g_object_unref0 (_tmp5_);
+	_g_object_unref0 (_tmp2_);
+	if (_tmp7_) {
+		GeeCollection* _tmp8_ = NULL;
+		GeeCollection* _tmp9_;
+		GeeSet* _tmp10_ = NULL;
+		GeeSet* _tmp11_;
+		gboolean _tmp12_;
+		_tmp8_ = beat_box_library_manager_current_songs (self->priv->_lm);
+		_tmp9_ = _tmp8_;
+		_tmp10_ = beat_box_music_tree_view_get_songs (self->priv->similars);
+		_tmp11_ = _tmp10_;
+		_tmp12_ = gee_collection_contains_all (_tmp9_, (GeeCollection*) _tmp11_);
+		_tmp0_ = _tmp12_;
+		_g_object_unref0 (_tmp11_);
+		_g_object_unref0 (_tmp9_);
+	} else {
+		_tmp0_ = FALSE;
+	}
+	if (!_tmp0_) {
+		BeatBoxSong* _tmp13_ = NULL;
+		BeatBoxSong* _tmp14_;
+		const gchar* _tmp15_ = NULL;
+		gchar* _tmp16_ = NULL;
+		gchar* _tmp17_;
+		gchar* _tmp18_;
+		gchar* _tmp19_;
+		gchar* _tmp20_;
+		gchar* _tmp21_;
+		BeatBoxSong* _tmp22_ = NULL;
+		BeatBoxSong* _tmp23_;
+		const gchar* _tmp24_ = NULL;
+		gchar* _tmp25_ = NULL;
+		gchar* _tmp26_;
+		gchar* _tmp27_;
+		gchar* _tmp28_;
+		gchar* _tmp29_;
+		gchar* _tmp30_;
+		gtk_widget_hide ((GtkWidget*) self->priv->similars);
+		gtk_widget_hide ((GtkWidget*) self->priv->toolbar);
+		_tmp13_ = beat_box_library_manager_song_from_id (self->priv->_lm, id);
+		_tmp14_ = _tmp13_;
+		_tmp15_ = beat_box_song_get_title (_tmp14_);
+		_tmp16_ = string_replace (_tmp15_, "&", "&amp;");
+		_tmp17_ = _tmp16_;
+		_tmp18_ = g_strconcat ("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\n" \
+"BeatBox is loading songs similar to ", _tmp17_, NULL);
+		_tmp19_ = _tmp18_;
+		_tmp20_ = g_strconcat (_tmp19_, " by ", NULL);
+		_tmp21_ = _tmp20_;
+		_tmp22_ = beat_box_library_manager_song_from_id (self->priv->_lm, id);
+		_tmp23_ = _tmp22_;
+		_tmp24_ = beat_box_song_get_artist (_tmp23_);
+		_tmp25_ = string_replace (_tmp24_, "&", "&amp;");
+		_tmp26_ = _tmp25_;
+		_tmp27_ = g_strconcat (_tmp21_, _tmp26_, NULL);
+		_tmp28_ = _tmp27_;
+		_tmp29_ = g_strconcat (_tmp28_, "...", NULL);
+		_tmp30_ = _tmp29_;
+		gtk_label_set_markup (self->priv->errorLabel, _tmp30_);
+		_g_free0 (_tmp30_);
+		_g_free0 (_tmp28_);
+		_g_free0 (_tmp26_);
+		_g_object_unref0 (_tmp23_);
+		_g_free0 (_tmp21_);
+		_g_free0 (_tmp19_);
+		_g_free0 (_tmp17_);
+		_g_object_unref0 (_tmp14_);
+		gtk_widget_show ((GtkWidget*) self->priv->errorBox);
+	}
+}
+
+
+void beat_box_similar_pane_updateSongs (BeatBoxSimilarPane* self, BeatBoxSong* la, GeeLinkedList* have) {
+	BeatBoxSong* _tmp0_;
+	GeeLinkedList* _tmp1_;
+	gint _tmp2_;
+	gboolean _tmp17_ = FALSE;
+	GeeCollection* _tmp18_ = NULL;
+	GeeCollection* _tmp19_;
+	gint _tmp20_;
+	GeeSet* _tmp21_ = NULL;
+	GeeSet* _tmp22_;
+	gint _tmp23_;
+	gboolean _tmp24_;
+	g_return_if_fail (self != NULL);
+	g_return_if_fail (la != NULL);
+	g_return_if_fail (have != NULL);
+	_tmp0_ = _g_object_ref0 (la);
+	_g_object_unref0 (self->priv->_next);
+	self->priv->_next = _tmp0_;
+	_tmp1_ = _g_object_ref0 (have);
+	_g_object_unref0 (self->_have);
+	self->_have = _tmp1_;
+	_tmp2_ = gee_collection_get_size ((GeeCollection*) self->_have);
+	if (_tmp2_ < 10) {
+		const gchar* _tmp3_ = NULL;
+		gchar* _tmp4_ = NULL;
+		gchar* _tmp5_;
+		gchar* _tmp6_;
+		gchar* _tmp7_;
+		gchar* _tmp8_;
+		gchar* _tmp9_;
+		const gchar* _tmp10_ = NULL;
+		gchar* _tmp11_ = NULL;
+		gchar* _tmp12_;
+		gchar* _tmp13_;
+		gchar* _tmp14_;
+		gchar* _tmp15_;
+		gchar* _tmp16_;
+		_tmp3_ = beat_box_song_get_title (la);
+		_tmp4_ = string_replace (_tmp3_, "&", "&amp;");
+		_tmp5_ = _tmp4_;
+		_tmp6_ = g_strconcat ("<span weight=\"bold\" size=\"larger\">No Similar Songs</span>\n" \
+"BeatBox could not find songs similar to ", _tmp5_, NULL);
+		_tmp7_ = _tmp6_;
+		_tmp8_ = g_strconcat (_tmp7_, " by ", NULL);
+		_tmp9_ = _tmp8_;
+		_tmp10_ = beat_box_song_get_artist (la);
+		_tmp11_ = string_replace (_tmp10_, "&", "&amp;");
+		_tmp12_ = _tmp11_;
+		_tmp13_ = g_strconcat (_tmp9_, _tmp12_, NULL);
+		_tmp14_ = _tmp13_;
+		_tmp15_ = g_strconcat (_tmp14_, ".\n" \
+"You could have incorrect data, no internet connection, or non-mainstre" \
+"am music.", NULL);
+		_tmp16_ = _tmp15_;
+		gtk_label_set_markup (self->priv->errorLabel, _tmp16_);
+		_g_free0 (_tmp16_);
+		_g_free0 (_tmp14_);
+		_g_free0 (_tmp12_);
+		_g_free0 (_tmp9_);
+		_g_free0 (_tmp7_);
+		_g_free0 (_tmp5_);
+		gtk_widget_show ((GtkWidget*) self->priv->errorBox);
+		gtk_widget_hide ((GtkWidget*) self->priv->similars);
+		gtk_widget_hide ((GtkWidget*) self->priv->toolbar);
+		return;
+	} else {
+		gtk_widget_hide ((GtkWidget*) self->priv->errorBox);
+		gtk_widget_show ((GtkWidget*) self->priv->similars);
+		gtk_widget_show ((GtkWidget*) self->priv->toolbar);
+	}
+	_tmp18_ = beat_box_library_manager_current_songs (self->priv->_lm);
+	_tmp19_ = _tmp18_;
+	_tmp20_ = gee_collection_get_size (_tmp19_);
+	_tmp21_ = beat_box_music_tree_view_get_songs (self->priv->similars);
+	_tmp22_ = _tmp21_;
+	_tmp23_ = gee_collection_get_size ((GeeCollection*) _tmp22_);
+	_tmp24_ = _tmp20_ == _tmp23_;
+	_g_object_unref0 (_tmp22_);
+	_g_object_unref0 (_tmp19_);
+	if (_tmp24_) {
+		GeeCollection* _tmp25_ = NULL;
+		GeeCollection* _tmp26_;
+		GeeSet* _tmp27_ = NULL;
+		GeeSet* _tmp28_;
+		gboolean _tmp29_;
+		_tmp25_ = beat_box_library_manager_current_songs (self->priv->_lm);
+		_tmp26_ = _tmp25_;
+		_tmp27_ = beat_box_music_tree_view_get_songs (self->priv->similars);
+		_tmp28_ = _tmp27_;
+		_tmp29_ = gee_collection_contains_all (_tmp26_, (GeeCollection*) _tmp28_);
+		_tmp17_ = _tmp29_;
+		_g_object_unref0 (_tmp28_);
+		_g_object_unref0 (_tmp26_);
+	} else {
+		_tmp17_ = FALSE;
+	}
+	if (!_tmp17_) {
+		beat_box_similar_pane_updateDisplay (self);
+	} else {
+		const gchar* _tmp30_ = NULL;
+		gchar* _tmp31_ = NULL;
+		gchar* _tmp32_;
+		gchar* _tmp33_;
+		gchar* _tmp34_;
+		gchar* _tmp35_;
+		gchar* _tmp36_;
+		const gchar* _tmp37_ = NULL;
+		gchar* _tmp38_ = NULL;
+		gchar* _tmp39_;
+		gchar* _tmp40_;
+		gchar* _tmp41_;
+		gchar* _tmp42_;
+		gchar* _tmp43_;
+		gtk_widget_show ((GtkWidget*) self->priv->refresh);
+		_tmp30_ = beat_box_song_get_title (self->priv->_next);
+		_tmp31_ = string_replace (_tmp30_, "&", "&amp;");
+		_tmp32_ = _tmp31_;
+		_tmp33_ = g_strconcat ("Refresh to show songs similar to: <b>", _tmp32_, NULL);
+		_tmp34_ = _tmp33_;
+		_tmp35_ = g_strconcat (_tmp34_, "</b> by <b>", NULL);
+		_tmp36_ = _tmp35_;
+		_tmp37_ = beat_box_song_get_artist (self->priv->_next);
+		_tmp38_ = string_replace (_tmp37_, "&", "&amp;");
+		_tmp39_ = _tmp38_;
+		_tmp40_ = g_strconcat (_tmp36_, _tmp39_, NULL);
+		_tmp41_ = _tmp40_;
+		_tmp42_ = g_strconcat (_tmp41_, "</b>", NULL);
+		_tmp43_ = _tmp42_;
+		gtk_tool_item_set_tooltip_markup ((GtkToolItem*) self->priv->refresh, _tmp43_);
+		_g_free0 (_tmp43_);
+		_g_free0 (_tmp41_);
+		_g_free0 (_tmp39_);
+		_g_free0 (_tmp36_);
+		_g_free0 (_tmp34_);
+		_g_free0 (_tmp32_);
+		gtk_widget_hide ((GtkWidget*) self->priv->transferPlayback);
 	}
 }
 
@@ -675,6 +863,7 @@ void beat_box_similar_pane_updateDisplay (BeatBoxSimilarPane* self) {
 	_g_free0 (_tmp20_);
 	_g_free0 (_tmp18_);
 	_g_free0 (_tmp16_);
+	gtk_widget_show ((GtkWidget*) self->priv->toolbar);
 	gtk_widget_hide ((GtkWidget*) self->priv->refresh);
 	gtk_widget_show ((GtkWidget*) self->priv->transferPlayback);
 	gtk_widget_show ((GtkWidget*) self->priv->save);
@@ -718,6 +907,8 @@ static void beat_box_similar_pane_real_saveClicked (BeatBoxSimilarPane* self) {
 	const gchar* _tmp1_ = NULL;
 	gchar* _tmp2_;
 	gchar* _tmp3_;
+	gboolean _tmp12_ = FALSE;
+	gboolean _tmp13_;
 	g_return_if_fail (self != NULL);
 	_tmp0_ = beat_box_playlist_new ();
 	p = _tmp0_;
@@ -760,6 +951,17 @@ static void beat_box_similar_pane_real_saveClicked (BeatBoxSimilarPane* self) {
 	beat_box_library_manager_add_playlist (self->priv->_lm, p);
 	beat_box_library_window_addSideListItem (self->priv->_lw, (GObject*) p);
 	gtk_widget_hide ((GtkWidget*) self->priv->save);
+	_tmp13_ = gtk_widget_get_visible ((GtkWidget*) self->priv->refresh);
+	if (_tmp13_ == FALSE) {
+		gboolean _tmp14_;
+		_tmp14_ = gtk_widget_get_visible ((GtkWidget*) self->priv->transferPlayback);
+		_tmp12_ = _tmp14_ == FALSE;
+	} else {
+		_tmp12_ = FALSE;
+	}
+	if (_tmp12_) {
+		gtk_widget_hide ((GtkWidget*) self->priv->toolbar);
+	}
 	_g_object_unref0 (p);
 }
 
@@ -799,6 +1001,8 @@ static void beat_box_similar_pane_finalize (GObject* obj) {
 	_g_object_unref0 (self->priv->transferPlayback);
 	_g_object_unref0 (self->priv->save);
 	_g_object_unref0 (self->priv->similars);
+	_g_object_unref0 (self->priv->errorBox);
+	_g_object_unref0 (self->priv->errorLabel);
 	G_OBJECT_CLASS (beat_box_similar_pane_parent_class)->finalize (obj);
 }
 

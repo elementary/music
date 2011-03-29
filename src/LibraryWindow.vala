@@ -372,6 +372,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		welcomeScreen.hide();
 		infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
+		((SimilarPane)sideTree.getWidget(sideTree.playlists_similar_iter)).initializeView();
 	}
 	
 	/** Builds the side tree on TreeView view

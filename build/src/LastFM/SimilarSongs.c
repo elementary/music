@@ -8,9 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <float.h>
-#include <math.h>
-#include <gtk/gtk.h>
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 
@@ -48,132 +45,6 @@ typedef struct _BeatBoxLibraryManagerClass BeatBoxLibraryManagerClass;
 #define _g_object_unref0(var) ((var == NULL) ? NULL : (var = (g_object_unref (var), NULL)))
 #define _g_error_free0(var) ((var == NULL) ? NULL : (var = (g_error_free (var), NULL)))
 typedef struct _Block2Data Block2Data;
-typedef struct _BeatBoxLibraryManagerPrivate BeatBoxLibraryManagerPrivate;
-
-#define BEAT_BOX_TYPE_LIBRARY_WINDOW (beat_box_library_window_get_type ())
-#define BEAT_BOX_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindow))
-#define BEAT_BOX_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
-#define BEAT_BOX_IS_LIBRARY_WINDOW(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW))
-#define BEAT_BOX_IS_LIBRARY_WINDOW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_LIBRARY_WINDOW))
-#define BEAT_BOX_LIBRARY_WINDOW_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_LIBRARY_WINDOW, BeatBoxLibraryWindowClass))
-
-typedef struct _BeatBoxLibraryWindow BeatBoxLibraryWindow;
-typedef struct _BeatBoxLibraryWindowClass BeatBoxLibraryWindowClass;
-
-#define BEAT_BOX_TYPE_SETTINGS (beat_box_settings_get_type ())
-#define BEAT_BOX_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SETTINGS, BeatBoxSettings))
-#define BEAT_BOX_SETTINGS_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_SETTINGS, BeatBoxSettingsClass))
-#define BEAT_BOX_IS_SETTINGS(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_SETTINGS))
-#define BEAT_BOX_IS_SETTINGS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_SETTINGS))
-#define BEAT_BOX_SETTINGS_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_SETTINGS, BeatBoxSettingsClass))
-
-typedef struct _BeatBoxSettings BeatBoxSettings;
-typedef struct _BeatBoxSettingsClass BeatBoxSettingsClass;
-
-#define BEAT_BOX_TYPE_DATA_BASE_MANAGER (beat_box_data_base_manager_get_type ())
-#define BEAT_BOX_DATA_BASE_MANAGER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_DATA_BASE_MANAGER, BeatBoxDataBaseManager))
-#define BEAT_BOX_DATA_BASE_MANAGER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_DATA_BASE_MANAGER, BeatBoxDataBaseManagerClass))
-#define BEAT_BOX_IS_DATA_BASE_MANAGER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_DATA_BASE_MANAGER))
-#define BEAT_BOX_IS_DATA_BASE_MANAGER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_DATA_BASE_MANAGER))
-#define BEAT_BOX_DATA_BASE_MANAGER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_DATA_BASE_MANAGER, BeatBoxDataBaseManagerClass))
-
-typedef struct _BeatBoxDataBaseManager BeatBoxDataBaseManager;
-typedef struct _BeatBoxDataBaseManagerClass BeatBoxDataBaseManagerClass;
-
-#define BEAT_BOX_TYPE_DATA_BASE_UPDATER (beat_box_data_base_updater_get_type ())
-#define BEAT_BOX_DATA_BASE_UPDATER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_DATA_BASE_UPDATER, BeatBoxDataBaseUpdater))
-#define BEAT_BOX_DATA_BASE_UPDATER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_DATA_BASE_UPDATER, BeatBoxDataBaseUpdaterClass))
-#define BEAT_BOX_IS_DATA_BASE_UPDATER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_DATA_BASE_UPDATER))
-#define BEAT_BOX_IS_DATA_BASE_UPDATER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_DATA_BASE_UPDATER))
-#define BEAT_BOX_DATA_BASE_UPDATER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_DATA_BASE_UPDATER, BeatBoxDataBaseUpdaterClass))
-
-typedef struct _BeatBoxDataBaseUpdater BeatBoxDataBaseUpdater;
-typedef struct _BeatBoxDataBaseUpdaterClass BeatBoxDataBaseUpdaterClass;
-
-#define BEAT_BOX_TYPE_FILE_OPERATOR (beat_box_file_operator_get_type ())
-#define BEAT_BOX_FILE_OPERATOR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_FILE_OPERATOR, BeatBoxFileOperator))
-#define BEAT_BOX_FILE_OPERATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_FILE_OPERATOR, BeatBoxFileOperatorClass))
-#define BEAT_BOX_IS_FILE_OPERATOR(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_FILE_OPERATOR))
-#define BEAT_BOX_IS_FILE_OPERATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_FILE_OPERATOR))
-#define BEAT_BOX_FILE_OPERATOR_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_FILE_OPERATOR, BeatBoxFileOperatorClass))
-
-typedef struct _BeatBoxFileOperator BeatBoxFileOperator;
-typedef struct _BeatBoxFileOperatorClass BeatBoxFileOperatorClass;
-
-#define BEAT_BOX_TYPE_STREAM_PLAYER (beat_box_stream_player_get_type ())
-#define BEAT_BOX_STREAM_PLAYER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_STREAM_PLAYER, BeatBoxStreamPlayer))
-#define BEAT_BOX_STREAM_PLAYER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_STREAM_PLAYER, BeatBoxStreamPlayerClass))
-#define BEAT_BOX_IS_STREAM_PLAYER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_STREAM_PLAYER))
-#define BEAT_BOX_IS_STREAM_PLAYER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_STREAM_PLAYER))
-#define BEAT_BOX_STREAM_PLAYER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_STREAM_PLAYER, BeatBoxStreamPlayerClass))
-
-typedef struct _BeatBoxStreamPlayer BeatBoxStreamPlayer;
-typedef struct _BeatBoxStreamPlayerClass BeatBoxStreamPlayerClass;
-
-#define LAST_FM_TYPE_CORE (last_fm_core_get_type ())
-#define LAST_FM_CORE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), LAST_FM_TYPE_CORE, LastFMCore))
-#define LAST_FM_CORE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), LAST_FM_TYPE_CORE, LastFMCoreClass))
-#define LAST_FM_IS_CORE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LAST_FM_TYPE_CORE))
-#define LAST_FM_IS_CORE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), LAST_FM_TYPE_CORE))
-#define LAST_FM_CORE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), LAST_FM_TYPE_CORE, LastFMCoreClass))
-
-typedef struct _LastFMCore LastFMCore;
-typedef struct _LastFMCoreClass LastFMCoreClass;
-
-#define BEAT_BOX_TYPE_TREE_VIEW_SETUP (beat_box_tree_view_setup_get_type ())
-#define BEAT_BOX_TREE_VIEW_SETUP(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_TREE_VIEW_SETUP, BeatBoxTreeViewSetup))
-#define BEAT_BOX_TREE_VIEW_SETUP_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_TREE_VIEW_SETUP, BeatBoxTreeViewSetupClass))
-#define BEAT_BOX_IS_TREE_VIEW_SETUP(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_TREE_VIEW_SETUP))
-#define BEAT_BOX_IS_TREE_VIEW_SETUP_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_TREE_VIEW_SETUP))
-#define BEAT_BOX_TREE_VIEW_SETUP_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_TREE_VIEW_SETUP, BeatBoxTreeViewSetupClass))
-
-typedef struct _BeatBoxTreeViewSetup BeatBoxTreeViewSetup;
-typedef struct _BeatBoxTreeViewSetupClass BeatBoxTreeViewSetupClass;
-
-#define BEAT_BOX_TYPE_SONG_INFO (beat_box_song_info_get_type ())
-#define BEAT_BOX_SONG_INFO(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), BEAT_BOX_TYPE_SONG_INFO, BeatBoxSongInfo))
-#define BEAT_BOX_SONG_INFO_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), BEAT_BOX_TYPE_SONG_INFO, BeatBoxSongInfoClass))
-#define BEAT_BOX_IS_SONG_INFO(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), BEAT_BOX_TYPE_SONG_INFO))
-#define BEAT_BOX_IS_SONG_INFO_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), BEAT_BOX_TYPE_SONG_INFO))
-#define BEAT_BOX_SONG_INFO_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), BEAT_BOX_TYPE_SONG_INFO, BeatBoxSongInfoClass))
-
-typedef struct _BeatBoxSongInfo BeatBoxSongInfo;
-typedef struct _BeatBoxSongInfoClass BeatBoxSongInfoClass;
-
-#define BEAT_BOX_LIBRARY_MANAGER_TYPE_REPEAT (beat_box_library_manager_repeat_get_type ())
-
-#define BEAT_BOX_LIBRARY_MANAGER_TYPE_SHUFFLE (beat_box_library_manager_shuffle_get_type ())
-typedef struct _BeatBoxSongInfoPrivate BeatBoxSongInfoPrivate;
-
-#define LAST_FM_TYPE_ARTIST_INFO (last_fm_artist_info_get_type ())
-#define LAST_FM_ARTIST_INFO(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), LAST_FM_TYPE_ARTIST_INFO, LastFMArtistInfo))
-#define LAST_FM_ARTIST_INFO_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), LAST_FM_TYPE_ARTIST_INFO, LastFMArtistInfoClass))
-#define LAST_FM_IS_ARTIST_INFO(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LAST_FM_TYPE_ARTIST_INFO))
-#define LAST_FM_IS_ARTIST_INFO_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), LAST_FM_TYPE_ARTIST_INFO))
-#define LAST_FM_ARTIST_INFO_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), LAST_FM_TYPE_ARTIST_INFO, LastFMArtistInfoClass))
-
-typedef struct _LastFMArtistInfo LastFMArtistInfo;
-typedef struct _LastFMArtistInfoClass LastFMArtistInfoClass;
-
-#define LAST_FM_TYPE_TRACK_INFO (last_fm_track_info_get_type ())
-#define LAST_FM_TRACK_INFO(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), LAST_FM_TYPE_TRACK_INFO, LastFMTrackInfo))
-#define LAST_FM_TRACK_INFO_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), LAST_FM_TYPE_TRACK_INFO, LastFMTrackInfoClass))
-#define LAST_FM_IS_TRACK_INFO(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LAST_FM_TYPE_TRACK_INFO))
-#define LAST_FM_IS_TRACK_INFO_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), LAST_FM_TYPE_TRACK_INFO))
-#define LAST_FM_TRACK_INFO_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), LAST_FM_TYPE_TRACK_INFO, LastFMTrackInfoClass))
-
-typedef struct _LastFMTrackInfo LastFMTrackInfo;
-typedef struct _LastFMTrackInfoClass LastFMTrackInfoClass;
-
-#define LAST_FM_TYPE_ALBUM_INFO (last_fm_album_info_get_type ())
-#define LAST_FM_ALBUM_INFO(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), LAST_FM_TYPE_ALBUM_INFO, LastFMAlbumInfo))
-#define LAST_FM_ALBUM_INFO_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), LAST_FM_TYPE_ALBUM_INFO, LastFMAlbumInfoClass))
-#define LAST_FM_IS_ALBUM_INFO(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LAST_FM_TYPE_ALBUM_INFO))
-#define LAST_FM_IS_ALBUM_INFO_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), LAST_FM_TYPE_ALBUM_INFO))
-#define LAST_FM_ALBUM_INFO_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), LAST_FM_TYPE_ALBUM_INFO, LastFMAlbumInfoClass))
-
-typedef struct _LastFMAlbumInfo LastFMAlbumInfo;
-typedef struct _LastFMAlbumInfoClass LastFMAlbumInfoClass;
 #define _g_free0(var) (var = (g_free (var), NULL))
 
 struct _LastFMSimilarSongs {
@@ -201,61 +72,6 @@ struct _Block2Data {
 	GeeLinkedList* similarDont;
 };
 
-typedef enum  {
-	BEAT_BOX_LIBRARY_MANAGER_REPEAT_OFF,
-	BEAT_BOX_LIBRARY_MANAGER_REPEAT_SONG,
-	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALBUM,
-	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ARTIST,
-	BEAT_BOX_LIBRARY_MANAGER_REPEAT_ALL
-} BeatBoxLibraryManagerRepeat;
-
-typedef enum  {
-	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_OFF,
-	BEAT_BOX_LIBRARY_MANAGER_SHUFFLE_ALL
-} BeatBoxLibraryManagerShuffle;
-
-struct _BeatBoxLibraryManager {
-	GObject parent_instance;
-	BeatBoxLibraryManagerPrivate * priv;
-	BeatBoxLibraryWindow* lw;
-	BeatBoxSettings* settings;
-	BeatBoxDataBaseManager* dbm;
-	BeatBoxDataBaseUpdater* dbu;
-	BeatBoxFileOperator* fo;
-	BeatBoxStreamPlayer* player;
-	LastFMCore* lfm;
-	BeatBoxTreeViewSetup* music_setup;
-	BeatBoxTreeViewSetup* similar_setup;
-	BeatBoxTreeViewSetup* queue_setup;
-	BeatBoxTreeViewSetup* history_setup;
-	gint _played_index;
-	gint _current_index;
-	gint _current_shuffled_index;
-	BeatBoxSongInfo* song_info;
-	gboolean playing;
-	BeatBoxLibraryManagerRepeat repeat;
-	BeatBoxLibraryManagerShuffle shuffle;
-	gboolean doing_file_operations;
-};
-
-struct _BeatBoxLibraryManagerClass {
-	GObjectClass parent_class;
-	void (*dbProgress) (BeatBoxLibraryManager* self, const gchar* message, gdouble progress);
-};
-
-struct _BeatBoxSongInfo {
-	GObject parent_instance;
-	BeatBoxSongInfoPrivate * priv;
-	BeatBoxSong* song;
-	LastFMArtistInfo* artist;
-	LastFMTrackInfo* track;
-	LastFMAlbumInfo* album;
-};
-
-struct _BeatBoxSongInfoClass {
-	GObjectClass parent_class;
-};
-
 
 static gpointer last_fm_similar_songs_parent_class = NULL;
 
@@ -280,20 +96,6 @@ const gchar* beat_box_song_get_title (BeatBoxSong* self);
 const gchar* beat_box_song_get_artist (BeatBoxSong* self);
 BeatBoxSong* beat_box_library_manager_song_from_name (BeatBoxLibraryManager* self, const gchar* title, const gchar* artist);
 gint beat_box_song_get_rowid (BeatBoxSong* self);
-GType beat_box_library_window_get_type (void) G_GNUC_CONST;
-GType beat_box_settings_get_type (void) G_GNUC_CONST;
-GType beat_box_data_base_manager_get_type (void) G_GNUC_CONST;
-GType beat_box_data_base_updater_get_type (void) G_GNUC_CONST;
-GType beat_box_file_operator_get_type (void) G_GNUC_CONST;
-GType beat_box_stream_player_get_type (void) G_GNUC_CONST;
-GType last_fm_core_get_type (void) G_GNUC_CONST;
-GType beat_box_tree_view_setup_get_type (void) G_GNUC_CONST;
-GType beat_box_song_info_get_type (void) G_GNUC_CONST;
-GType beat_box_library_manager_repeat_get_type (void) G_GNUC_CONST;
-GType beat_box_library_manager_shuffle_get_type (void) G_GNUC_CONST;
-GType last_fm_artist_info_get_type (void) G_GNUC_CONST;
-GType last_fm_track_info_get_type (void) G_GNUC_CONST;
-GType last_fm_album_info_get_type (void) G_GNUC_CONST;
 static gboolean _lambda6_ (Block2Data* _data2_);
 static gboolean __lambda6__gsource_func (gpointer self);
 gchar* last_fm_core_fix_for_url (const gchar* fix);
@@ -422,7 +224,7 @@ void* last_fm_similar_songs_similar_thread_function (LastFMSimilarSongs* self) {
 	GeeLinkedList* _tmp2_ = NULL;
 	const gchar* _tmp3_ = NULL;
 	const gchar* _tmp4_ = NULL;
-	gint _tmp16_;
+	gint _tmp13_;
 	g_return_val_if_fail (self != NULL, NULL);
 	_data2_ = g_slice_new0 (Block2Data);
 	_data2_->_ref_count_ = 1;
@@ -469,18 +271,8 @@ void* last_fm_similar_songs_similar_thread_function (LastFMSimilarSongs* self) {
 			_tmp11_ = beat_box_song_get_rowid (s);
 			if (_tmp11_ != 0) {
 				gint _tmp12_;
-				gint _tmp13_;
 				_tmp12_ = beat_box_song_get_rowid (s);
-				_tmp13_ = beat_box_song_get_rowid (self->priv->_lm->song_info->song);
-				if (_tmp12_ == _tmp13_) {
-					gint _tmp14_;
-					_tmp14_ = beat_box_song_get_rowid (s);
-					gee_deque_offer_head ((GeeDeque*) _data2_->similarIDs, GINT_TO_POINTER (_tmp14_));
-				} else {
-					gint _tmp15_;
-					_tmp15_ = beat_box_song_get_rowid (s);
-					gee_abstract_collection_add ((GeeAbstractCollection*) _data2_->similarIDs, GINT_TO_POINTER (_tmp15_));
-				}
+				gee_abstract_collection_add ((GeeAbstractCollection*) _data2_->similarIDs, GINT_TO_POINTER (_tmp12_));
 			} else {
 				gee_abstract_collection_add ((GeeAbstractCollection*) _data2_->similarDont, sim);
 			}
@@ -489,8 +281,8 @@ void* last_fm_similar_songs_similar_thread_function (LastFMSimilarSongs* self) {
 		}
 		_g_object_unref0 (_sim_list);
 	}
-	_tmp16_ = beat_box_song_get_rowid (self->priv->_base);
-	gee_abstract_collection_add ((GeeAbstractCollection*) _data2_->similarIDs, GINT_TO_POINTER (_tmp16_));
+	_tmp13_ = beat_box_song_get_rowid (self->priv->_base);
+	gee_deque_offer_head ((GeeDeque*) _data2_->similarIDs, GINT_TO_POINTER (_tmp13_));
 	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda6__gsource_func, block2_data_ref (_data2_), block2_data_unref);
 	self->priv->working = FALSE;
 	result = NULL;
@@ -582,8 +374,8 @@ void last_fm_similar_songs_parse_similar_nodes (LastFMSimilarSongs* self, xmlNod
 			gchar* node_name;
 			gchar* _tmp2_ = NULL;
 			gchar* node_content;
+			gchar* _tmp4_;
 			gchar* _tmp5_;
-			gchar* _tmp6_;
 			if (!_tmp0_) {
 				iter = iter->next;
 			}
@@ -600,20 +392,13 @@ void last_fm_similar_songs_parse_similar_nodes (LastFMSimilarSongs* self, xmlNod
 			node_content = _tmp2_;
 			if (g_strcmp0 (parent, "similartrackstrack") == 0) {
 				if (g_strcmp0 (node_name, "name") == 0) {
-					BeatBoxSong* _tmp4_ = NULL;
+					BeatBoxSong* _tmp3_ = NULL;
 					if (self->priv->similarToAdd != NULL) {
-						gint _tmp3_;
 						gee_abstract_collection_add ((GeeAbstractCollection*) self->priv->similar, self->priv->similarToAdd);
-						_tmp3_ = gee_collection_get_size ((GeeCollection*) self->priv->similar);
-						if (_tmp3_ >= LAST_FM_SIMILAR_SONGS_MAX_FETCHED) {
-							_g_free0 (node_content);
-							_g_free0 (node_name);
-							return;
-						}
 					}
-					_tmp4_ = beat_box_song_new ("");
+					_tmp3_ = beat_box_song_new ("");
 					_g_object_unref0 (self->priv->similarToAdd);
-					self->priv->similarToAdd = _tmp4_;
+					self->priv->similarToAdd = _tmp3_;
 					beat_box_song_set_title (self->priv->similarToAdd, node_content);
 				} else {
 					if (g_strcmp0 (node_name, "url") == 0) {
@@ -627,10 +412,10 @@ void last_fm_similar_songs_parse_similar_nodes (LastFMSimilarSongs* self, xmlNod
 					}
 				}
 			}
-			_tmp5_ = g_strconcat (parent, node_name, NULL);
-			_tmp6_ = _tmp5_;
-			last_fm_similar_songs_parse_similar_nodes (self, iter, _tmp6_);
-			_g_free0 (_tmp6_);
+			_tmp4_ = g_strconcat (parent, node_name, NULL);
+			_tmp5_ = _tmp4_;
+			last_fm_similar_songs_parse_similar_nodes (self, iter, _tmp5_);
+			_g_free0 (_tmp5_);
 			_g_free0 (node_content);
 			_g_free0 (node_name);
 		}

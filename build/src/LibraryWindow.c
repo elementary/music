@@ -693,7 +693,6 @@ void beat_box_library_manager_setShuffleMode (BeatBoxLibraryManager* self, BeatB
 void beat_box_music_tree_view_scrollToCurrent (BeatBoxMusicTreeView* self);
 gboolean elementary_widgets_top_display_change_value (ElementaryWidgetsTopDisplay* self, GtkScrollType scroll, gdouble val);
 static gboolean __lambda23__gsource_func (gpointer self);
-void beat_box_library_manager_rescan_music_folder (BeatBoxLibraryManager* self);
 gint beat_box_settings_getWindowWidth (BeatBoxSettings* self);
 gint beat_box_settings_getWindowHeight (BeatBoxSettings* self);
 ElementaryWidgetsWelcome* elementary_widgets_welcome_new (const gchar* title_text, const gchar* subtitle_text);
@@ -762,10 +761,11 @@ static void _beat_box_library_window_dragReceived_gtk_widget_drag_data_received 
 void elementary_widgets_top_display_show_scale (ElementaryWidgetsTopDisplay* self);
 void elementary_widgets_top_display_set_scale_sensitivity (ElementaryWidgetsTopDisplay* self, gboolean val);
 void beat_box_side_tree_view_resetView (BeatBoxSideTreeView* self);
+GType beat_box_similar_pane_get_type (void) G_GNUC_CONST;
+void beat_box_similar_pane_initializeView (BeatBoxSimilarPane* self);
 void beat_box_side_tree_view_addBasicItems (BeatBoxSideTreeView* self);
 BeatBoxSimilarPane* beat_box_similar_pane_new (BeatBoxLibraryManager* lm, BeatBoxLibraryWindow* lw);
 BeatBoxSimilarPane* beat_box_similar_pane_construct (GType object_type, BeatBoxLibraryManager* lm, BeatBoxLibraryWindow* lw);
-GType beat_box_similar_pane_get_type (void) G_GNUC_CONST;
 GtkTreeIter* beat_box_side_tree_view_addItem (BeatBoxSideTreeView* self, GtkTreeIter* parent, GObject* o, GtkWidget* w, const gchar* name);
 const gchar* beat_box_tree_view_setup_get_sort_column (BeatBoxTreeViewSetup* self);
 GtkSortType beat_box_tree_view_setup_get_sort_direction (BeatBoxTreeViewSetup* self);
@@ -827,9 +827,9 @@ void beat_box_library_manager_save_artist (BeatBoxLibraryManager* self, LastFMAr
 gchar* beat_box_library_manager_get_artist_image_location (BeatBoxLibraryManager* self, gint id);
 GdkPixbuf* beat_box_library_manager_save_artist_image_locally (BeatBoxLibraryManager* self, gint id, const gchar* image);
 LastFMImage* last_fm_artist_info_get_url_image (LastFMArtistInfo* self);
-static gboolean _lambda22_ (BeatBoxLibraryWindow* self);
+static gboolean _lambda19_ (BeatBoxLibraryWindow* self);
 void beat_box_info_panel_updateArtistImage (BeatBoxInfoPanel* self);
-static gboolean __lambda22__gsource_func (gpointer self);
+static gboolean __lambda19__gsource_func (gpointer self);
 gboolean beat_box_library_window_updateSongInfo (BeatBoxLibraryWindow* self);
 static void beat_box_library_window_real_previousClicked (BeatBoxLibraryWindow* self);
 gint beat_box_library_manager_getPrevious (BeatBoxLibraryManager* self, gboolean play);
@@ -865,6 +865,7 @@ static void beat_box_library_window_real_fileImportMusicClick (BeatBoxLibraryWin
 void elementary_widgets_top_display_show_progressbar (ElementaryWidgetsTopDisplay* self);
 void beat_box_library_manager_add_folder_to_library (BeatBoxLibraryManager* self, const gchar* folder);
 static void beat_box_library_window_real_fileRescanMusicFolderClick (BeatBoxLibraryWindow* self);
+void beat_box_library_manager_rescan_music_folder (BeatBoxLibraryManager* self);
 static void beat_box_library_window_real_musicCounted (BeatBoxLibraryWindow* self, gint count);
 static void beat_box_library_window_real_musicAdded (BeatBoxLibraryWindow* self, GeeLinkedList* not_imported);
 void elementary_widgets_top_display_set_label_text (ElementaryWidgetsTopDisplay* self, const gchar* text);
@@ -886,8 +887,8 @@ static void beat_box_library_window_real_editPreferencesClick (BeatBoxLibraryWin
 BeatBoxPreferencesWindow* beat_box_preferences_window_new (BeatBoxLibraryManager* lm, BeatBoxLibraryWindow* lw);
 BeatBoxPreferencesWindow* beat_box_preferences_window_construct (GType object_type, BeatBoxLibraryManager* lm, BeatBoxLibraryWindow* lw);
 GType beat_box_preferences_window_get_type (void) G_GNUC_CONST;
-static void _lambda21_ (const gchar* folder, BeatBoxLibraryWindow* self);
-static void __lambda21__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self);
+static void _lambda18_ (const gchar* folder, BeatBoxLibraryWindow* self);
+static void __lambda18__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self);
 void beat_box_library_manager_set_music_folder (BeatBoxLibraryManager* self, const gchar* folder);
 static void beat_box_library_window_real_end_of_stream (BeatBoxLibraryWindow* self, BeatBoxSong* s);
 static void beat_box_library_window_real_current_position_update (BeatBoxLibraryWindow* self, gint64 position);
@@ -902,7 +903,7 @@ void beat_box_side_tree_view_updateAlreadyPlayed (BeatBoxSideTreeView* self);
 gint beat_box_song_get_play_count (BeatBoxSong* self);
 void beat_box_song_set_play_count (BeatBoxSong* self, gint value);
 static void beat_box_library_window_real_similarRetrieved (BeatBoxLibraryWindow* self, GeeLinkedList* similarIDs, GeeLinkedList* similarDont);
-void beat_box_similar_pane_updateSongs (BeatBoxSimilarPane* self, BeatBoxSong* la, GeeCollection* have);
+void beat_box_similar_pane_updateSongs (BeatBoxSimilarPane* self, BeatBoxSong* la, GeeLinkedList* have);
 void beat_box_info_panel_updateSongList (BeatBoxInfoPanel* self, GeeCollection* songs);
 void beat_box_library_window_setStatusBarText (BeatBoxLibraryWindow* self, const gchar* text);
 static void beat_box_library_window_real_infoPanelResized (BeatBoxLibraryWindow* self, GdkRectangle* rectangle);
@@ -1195,7 +1196,6 @@ BeatBoxLibraryWindow* beat_box_library_window_construct (GType object_type, Beat
 				block8_data_unref (_data8_);
 				_data8_ = NULL;
 			}
-			beat_box_library_manager_rescan_music_folder (self->priv->lm);
 			block7_data_unref (_data7_);
 			_data7_ = NULL;
 		}
@@ -1484,6 +1484,8 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	GtkTargetEntry* _tmp75_;
 	gint _tmp75__length1;
 	gboolean _tmp76_;
+	GtkWidget* _tmp77_ = NULL;
+	BeatBoxSimilarPane* _tmp78_;
 	g_return_if_fail (self != NULL);
 	fprintf (stdout, "Building user interface\n");
 	_tmp0_ = beat_box_settings_getWindowWidth (self->priv->settings);
@@ -1768,6 +1770,10 @@ void beat_box_library_window_build_ui (BeatBoxLibraryWindow* self) {
 	_tmp76_ = beat_box_settings_getMoreVisible (self->priv->settings);
 	gtk_widget_set_visible ((GtkWidget*) self->priv->infoPanel, _tmp76_);
 	beat_box_library_window_updateSensitivities (self);
+	_tmp77_ = beat_box_side_tree_view_getWidget (self->priv->sideTree, &self->priv->sideTree->playlists_similar_iter);
+	_tmp78_ = BEAT_BOX_SIMILAR_PANE (_tmp77_);
+	beat_box_similar_pane_initializeView (_tmp78_);
+	_g_object_unref0 (_tmp78_);
 	_g_object_unref0 (appMenuBin);
 	_g_object_unref0 (searchFieldBin);
 	_g_object_unref0 (topDisplayBin);
@@ -2693,7 +2699,7 @@ void* beat_box_library_window_lastfm_album_thread_function (BeatBoxLibraryWindow
 }
 
 
-static gboolean _lambda22_ (BeatBoxLibraryWindow* self) {
+static gboolean _lambda19_ (BeatBoxLibraryWindow* self) {
 	gboolean result = FALSE;
 	beat_box_info_panel_updateArtistImage (self->priv->infoPanel);
 	result = FALSE;
@@ -2701,9 +2707,9 @@ static gboolean _lambda22_ (BeatBoxLibraryWindow* self) {
 }
 
 
-static gboolean __lambda22__gsource_func (gpointer self) {
+static gboolean __lambda19__gsource_func (gpointer self) {
 	gboolean result;
-	result = _lambda22_ (self);
+	result = _lambda19_ (self);
 	return result;
 }
 
@@ -2781,7 +2787,7 @@ void* beat_box_library_window_lastfm_artist_thread_function (BeatBoxLibraryWindo
 			return result;
 		}
 	}
-	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda22__gsource_func, g_object_ref (self), g_object_unref);
+	g_idle_add_full (G_PRIORITY_DEFAULT_IDLE, __lambda19__gsource_func, g_object_ref (self), g_object_unref);
 	result = NULL;
 	_g_free0 (artist_s);
 	_g_object_unref0 (artist);
@@ -3563,10 +3569,6 @@ static void beat_box_library_window_real_helpAboutClick (BeatBoxLibraryWindow* s
 	gint _authors_size_;
 	gchar* _tmp6_;
 	gchar* _tmp7_;
-	GeeLinkedList* _tmp8_ = NULL;
-	GeeLinkedList* fakes;
-	BeatBoxNotImportedWindow* _tmp9_ = NULL;
-	BeatBoxNotImportedWindow* npw;
 	g_return_if_fail (self != NULL);
 	_data9_ = g_slice_new0 (Block9Data);
 	_data9_->_ref_count_ = 1;
@@ -3596,48 +3598,6 @@ static void beat_box_library_window_real_helpAboutClick (BeatBoxLibraryWindow* s
 	gtk_about_dialog_set_authors (_data9_->ad, authors);
 	g_signal_connect_data ((GtkDialog*) _data9_->ad, "response", (GCallback) __lambda17__gtk_dialog_response, block9_data_ref (_data9_), (GClosureNotify) block9_data_unref, 0);
 	gtk_widget_show ((GtkWidget*) _data9_->ad);
-	_tmp8_ = gee_linked_list_new (G_TYPE_STRING, (GBoxedCopyFunc) g_strdup, g_free, NULL);
-	fakes = _tmp8_;
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	gee_abstract_collection_add ((GeeAbstractCollection*) fakes, "blah/bla;lfkj/asd;lkjf/a;sdfj.mp3");
-	_tmp9_ = beat_box_not_imported_window_new (self, fakes);
-	npw = g_object_ref_sink (_tmp9_);
-	gtk_widget_show ((GtkWidget*) npw);
-	_g_object_unref0 (npw);
-	_g_object_unref0 (fakes);
 	authors = (_vala_array_free (authors, authors_length1, (GDestroyNotify) g_free), NULL);
 	block9_data_unref (_data9_);
 	_data9_ = NULL;
@@ -3649,14 +3609,14 @@ void beat_box_library_window_helpAboutClick (BeatBoxLibraryWindow* self) {
 }
 
 
-static void _lambda21_ (const gchar* folder, BeatBoxLibraryWindow* self) {
+static void _lambda18_ (const gchar* folder, BeatBoxLibraryWindow* self) {
 	g_return_if_fail (folder != NULL);
 	beat_box_library_window_setMusicFolder (self, folder);
 }
 
 
-static void __lambda21__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self) {
-	_lambda21_ (folder, self);
+static void __lambda18__beat_box_preferences_window_changed (BeatBoxPreferencesWindow* _sender, const gchar* folder, gpointer self) {
+	_lambda18_ (folder, self);
 }
 
 
@@ -3666,7 +3626,7 @@ static void beat_box_library_window_real_editPreferencesClick (BeatBoxLibraryWin
 	g_return_if_fail (self != NULL);
 	_tmp0_ = beat_box_preferences_window_new (self->priv->lm, self);
 	pw = g_object_ref_sink (_tmp0_);
-	g_signal_connect_object (pw, "changed", (GCallback) __lambda21__beat_box_preferences_window_changed, self, 0);
+	g_signal_connect_object (pw, "changed", (GCallback) __lambda18__beat_box_preferences_window_changed, self, 0);
 	_g_object_unref0 (pw);
 }
 
@@ -3839,7 +3799,7 @@ static void beat_box_library_window_real_similarRetrieved (BeatBoxLibraryWindow*
 	g_return_if_fail (similarDont != NULL);
 	_tmp0_ = beat_box_side_tree_view_getWidget (self->priv->sideTree, &self->priv->sideTree->playlists_similar_iter);
 	w = _tmp0_;
-	beat_box_similar_pane_updateSongs (BEAT_BOX_SIMILAR_PANE (w), self->priv->lm->song_info->song, (GeeCollection*) similarIDs);
+	beat_box_similar_pane_updateSongs (BEAT_BOX_SIMILAR_PANE (w), self->priv->lm->song_info->song, similarIDs);
 	beat_box_info_panel_updateSongList (self->priv->infoPanel, (GeeCollection*) similarDont);
 	_g_object_unref0 (w);
 }

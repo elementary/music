@@ -42,17 +42,14 @@ public class LastFM.SimilarSongs : Object {
 		foreach(BeatBox.Song sim in similar) {
 			BeatBox.Song s = _lm.song_from_name(sim.title, sim.artist);
 			if(s.rowid != 0) {
-				if(s.rowid == _lm.song_info.song.rowid)
-					similarIDs.offer_head(s.rowid);
-				else
-					similarIDs.add(s.rowid);
+				similarIDs.add(s.rowid);
 			}
 			else {
 				similarDont.add(sim);
 			}
 		}
 		
-		similarIDs.add(_base.rowid);
+		similarIDs.offer_head(_base.rowid);
 		
 		Idle.add( () => {
 			similar_retrieved(similarIDs, similarDont);
@@ -103,9 +100,6 @@ public class LastFM.SimilarSongs : Object {
 				if(node_name == "name") {
 					if(similarToAdd != null) {
 						similar.add(similarToAdd);
-						
-						if(similar.size >= MAX_FETCHED)
-							return;
 					}
 					
 					similarToAdd = new BeatBox.Song("");

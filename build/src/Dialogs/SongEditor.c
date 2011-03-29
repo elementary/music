@@ -112,12 +112,12 @@ struct _BeatBoxSongEditorPrivate {
 };
 
 struct _BeatBoxFieldEditor {
-	GtkHBox parent_instance;
+	GtkVBox parent_instance;
 	BeatBoxFieldEditorPrivate * priv;
 };
 
 struct _BeatBoxFieldEditorClass {
-	GtkHBoxClass parent_class;
+	GtkVBoxClass parent_class;
 	void (*entryChanged) (BeatBoxFieldEditor* self);
 	void (*textViewChanged) (BeatBoxFieldEditor* self);
 	void (*spinButtonChanged) (BeatBoxFieldEditor* self);
@@ -127,6 +127,7 @@ struct _BeatBoxFieldEditorClass {
 struct _BeatBoxFieldEditorPrivate {
 	gchar* _name;
 	gchar* _original;
+	GtkHBox* nameBox;
 	GtkCheckButton* check;
 	GtkLabel* label;
 	GtkEntry* entry;
@@ -203,11 +204,10 @@ void beat_box_field_editor_textViewChanged (BeatBoxFieldEditor* self);
 static void _beat_box_field_editor_textViewChanged_gtk_text_buffer_changed (GtkTextBuffer* _sender, gpointer self);
 void beat_box_field_editor_spinButtonChanged (BeatBoxFieldEditor* self);
 static void _beat_box_field_editor_spinButtonChanged_gtk_adjustment_value_changed (GtkAdjustment* _sender, gpointer self);
-void beat_box_field_editor_resetClicked (BeatBoxFieldEditor* self);
-static void _beat_box_field_editor_resetClicked_gtk_button_clicked (GtkButton* _sender, gpointer self);
 static void beat_box_field_editor_real_entryChanged (BeatBoxFieldEditor* self);
 static void beat_box_field_editor_real_textViewChanged (BeatBoxFieldEditor* self);
 static void beat_box_field_editor_real_spinButtonChanged (BeatBoxFieldEditor* self);
+void beat_box_field_editor_resetClicked (BeatBoxFieldEditor* self);
 static void beat_box_field_editor_real_resetClicked (BeatBoxFieldEditor* self);
 static void beat_box_field_editor_finalize (GObject* obj);
 
@@ -1021,19 +1021,18 @@ static void _beat_box_field_editor_spinButtonChanged_gtk_adjustment_value_change
 }
 
 
-static void _beat_box_field_editor_resetClicked_gtk_button_clicked (GtkButton* _sender, gpointer self) {
-	beat_box_field_editor_resetClicked (self);
-}
-
-
 BeatBoxFieldEditor* beat_box_field_editor_construct (GType object_type, const gchar* name, const gchar* original, GtkWidget* w) {
 	BeatBoxFieldEditor * self = NULL;
 	gchar* _tmp0_;
 	gchar* _tmp1_;
 	GtkCheckButton* _tmp2_ = NULL;
 	GtkLabel* _tmp3_ = NULL;
-	gboolean _tmp4_ = FALSE;
-	GtkButton* _tmp14_ = NULL;
+	GtkHBox* _tmp4_ = NULL;
+	gchar* _tmp5_;
+	gchar* _tmp6_;
+	gchar* _tmp7_;
+	gchar* _tmp8_;
+	gboolean _tmp9_ = FALSE;
 	g_return_val_if_fail (name != NULL, NULL);
 	g_return_val_if_fail (original != NULL, NULL);
 	g_return_val_if_fail (w != NULL, NULL);
@@ -1051,70 +1050,81 @@ BeatBoxFieldEditor* beat_box_field_editor_construct (GType object_type, const gc
 	_tmp3_ = (GtkLabel*) gtk_label_new (self->priv->_name);
 	_g_object_unref0 (self->priv->label);
 	self->priv->label = g_object_ref_sink (_tmp3_);
-	gtk_widget_set_size_request ((GtkWidget*) self->priv->label, 40, -1);
+	_tmp4_ = (GtkHBox*) gtk_hbox_new (FALSE, 0);
+	_g_object_unref0 (self->priv->nameBox);
+	self->priv->nameBox = g_object_ref_sink (_tmp4_);
 	gtk_label_set_justify (self->priv->label, GTK_JUSTIFY_LEFT);
-	gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->check, FALSE, FALSE, (guint) 0);
-	gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->label, FALSE, FALSE, (guint) 0);
+	g_object_set ((GtkMisc*) self->priv->label, "xalign", 0.0f, NULL);
+	_tmp5_ = g_strconcat ("<b>", self->priv->_name, NULL);
+	_tmp6_ = _tmp5_;
+	_tmp7_ = g_strconcat (_tmp6_, "</b>", NULL);
+	_tmp8_ = _tmp7_;
+	gtk_label_set_markup (self->priv->label, _tmp8_);
+	_g_free0 (_tmp8_);
+	_g_free0 (_tmp6_);
+	gtk_box_pack_start ((GtkBox*) self->priv->nameBox, (GtkWidget*) self->priv->check, FALSE, FALSE, (guint) 0);
+	gtk_box_pack_start ((GtkBox*) self->priv->nameBox, (GtkWidget*) self->priv->label, FALSE, TRUE, (guint) 0);
+	gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->nameBox, FALSE, FALSE, (guint) 0);
 	if (GTK_IS_ENTRY (w)) {
-		_tmp4_ = !GTK_IS_SPIN_BUTTON (w);
+		_tmp9_ = !GTK_IS_SPIN_BUTTON (w);
 	} else {
-		_tmp4_ = FALSE;
+		_tmp9_ = FALSE;
 	}
-	if (_tmp4_) {
-		GtkEntry* _tmp5_;
+	if (_tmp9_) {
+		GtkEntry* _tmp10_;
 		gtk_toggle_button_set_active ((GtkToggleButton*) self->priv->check, g_strcmp0 (original, "") != 0);
-		_tmp5_ = _g_object_ref0 (GTK_ENTRY (w));
+		_tmp10_ = _g_object_ref0 (GTK_ENTRY (w));
 		_g_object_unref0 (self->priv->entry);
-		self->priv->entry = _tmp5_;
+		self->priv->entry = _tmp10_;
 		gtk_widget_set_size_request ((GtkWidget*) self->priv->entry, 200, -1);
 		gtk_entry_set_text (self->priv->entry, original);
 		g_signal_connect_object ((GtkEditable*) self->priv->entry, "changed", (GCallback) _beat_box_field_editor_entryChanged_gtk_editable_changed, self, 0);
 		gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->entry, TRUE, TRUE, (guint) 0);
 	} else {
 		if (GTK_IS_TEXT_VIEW (w)) {
-			GtkTextView* _tmp6_;
-			GtkTextBuffer* _tmp7_ = NULL;
-			GtkScrolledWindow* _tmp8_ = NULL;
+			GtkTextView* _tmp11_;
+			GtkTextBuffer* _tmp12_ = NULL;
+			GtkScrolledWindow* _tmp13_ = NULL;
 			GtkScrolledWindow* scroll;
-			GtkTextBuffer* _tmp9_ = NULL;
+			GtkTextBuffer* _tmp14_ = NULL;
 			gtk_toggle_button_set_active ((GtkToggleButton*) self->priv->check, g_strcmp0 (original, "") != 0);
-			_tmp6_ = _g_object_ref0 (GTK_TEXT_VIEW (w));
+			_tmp11_ = _g_object_ref0 (GTK_TEXT_VIEW (w));
 			_g_object_unref0 (self->priv->textView);
-			self->priv->textView = _tmp6_;
+			self->priv->textView = _tmp11_;
 			gtk_widget_set_size_request ((GtkWidget*) self->priv->textView, 200, 100);
 			gtk_text_view_set_wrap_mode (self->priv->textView, GTK_WRAP_WORD);
-			_tmp7_ = gtk_text_view_get_buffer (self->priv->textView);
-			g_object_set (_tmp7_, "text", original, NULL);
-			_tmp8_ = (GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL);
-			scroll = g_object_ref_sink (_tmp8_);
+			_tmp12_ = gtk_text_view_get_buffer (self->priv->textView);
+			g_object_set (_tmp12_, "text", original, NULL);
+			_tmp13_ = (GtkScrolledWindow*) gtk_scrolled_window_new (NULL, NULL);
+			scroll = g_object_ref_sink (_tmp13_);
 			gtk_scrolled_window_set_policy (scroll, GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
 			gtk_container_add ((GtkContainer*) scroll, (GtkWidget*) self->priv->textView);
-			_tmp9_ = gtk_text_view_get_buffer (self->priv->textView);
-			g_signal_connect_object (_tmp9_, "changed", (GCallback) _beat_box_field_editor_textViewChanged_gtk_text_buffer_changed, self, 0);
+			_tmp14_ = gtk_text_view_get_buffer (self->priv->textView);
+			g_signal_connect_object (_tmp14_, "changed", (GCallback) _beat_box_field_editor_textViewChanged_gtk_text_buffer_changed, self, 0);
 			gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) scroll, TRUE, TRUE, (guint) 0);
 			_g_object_unref0 (scroll);
 		} else {
 			if (GTK_IS_SPIN_BUTTON (w)) {
-				GtkSpinButton* _tmp10_;
-				gdouble _tmp11_;
-				GtkAdjustment* _tmp12_ = NULL;
+				GtkSpinButton* _tmp15_;
+				gdouble _tmp16_;
+				GtkAdjustment* _tmp17_ = NULL;
 				gtk_toggle_button_set_active ((GtkToggleButton*) self->priv->check, g_strcmp0 (original, "-1") != 0);
-				_tmp10_ = _g_object_ref0 (GTK_SPIN_BUTTON (w));
+				_tmp15_ = _g_object_ref0 (GTK_SPIN_BUTTON (w));
 				_g_object_unref0 (self->priv->spinButton);
-				self->priv->spinButton = _tmp10_;
+				self->priv->spinButton = _tmp15_;
 				gtk_widget_set_size_request ((GtkWidget*) self->priv->spinButton, 80, -1);
-				_tmp11_ = double_parse (original);
-				gtk_spin_button_set_value (self->priv->spinButton, _tmp11_);
-				_tmp12_ = gtk_spin_button_get_adjustment (self->priv->spinButton);
-				g_signal_connect_object (_tmp12_, "value-changed", (GCallback) _beat_box_field_editor_spinButtonChanged_gtk_adjustment_value_changed, self, 0);
+				_tmp16_ = double_parse (original);
+				gtk_spin_button_set_value (self->priv->spinButton, _tmp16_);
+				_tmp17_ = gtk_spin_button_get_adjustment (self->priv->spinButton);
+				g_signal_connect_object (_tmp17_, "value-changed", (GCallback) _beat_box_field_editor_spinButtonChanged_gtk_adjustment_value_changed, self, 0);
 				gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->spinButton, TRUE, TRUE, (guint) 0);
 			} else {
 				if (GTK_IS_IMAGE (w)) {
-					GtkImage* _tmp13_;
+					GtkImage* _tmp18_;
 					gtk_toggle_button_set_active ((GtkToggleButton*) self->priv->check, g_strcmp0 (original, "") != 0);
-					_tmp13_ = _g_object_ref0 (GTK_IMAGE (w));
+					_tmp18_ = _g_object_ref0 (GTK_IMAGE (w));
 					_g_object_unref0 (self->priv->image);
-					self->priv->image = _tmp13_;
+					self->priv->image = _tmp18_;
 					gtk_widget_set_size_request ((GtkWidget*) self->priv->image, 100, 100);
 					gtk_image_set_from_file (self->priv->image, original);
 					gtk_box_pack_start ((GtkBox*) self, (GtkWidget*) self->priv->image, TRUE, TRUE, (guint) 0);
@@ -1122,11 +1132,6 @@ BeatBoxFieldEditor* beat_box_field_editor_construct (GType object_type, const gc
 			}
 		}
 	}
-	_tmp14_ = (GtkButton*) gtk_button_new_from_stock (GTK_STOCK_CLEAR);
-	_g_object_unref0 (self->priv->reset);
-	self->priv->reset = g_object_ref_sink (_tmp14_);
-	g_signal_connect_object (self->priv->reset, "clicked", (GCallback) _beat_box_field_editor_resetClicked_gtk_button_clicked, self, 0);
-	gtk_box_pack_end ((GtkBox*) self, (GtkWidget*) self->priv->reset, FALSE, FALSE, (guint) 0);
 	return self;
 }
 
@@ -1325,6 +1330,7 @@ static void beat_box_field_editor_finalize (GObject* obj) {
 	self = BEAT_BOX_FIELD_EDITOR (obj);
 	_g_free0 (self->priv->_name);
 	_g_free0 (self->priv->_original);
+	_g_object_unref0 (self->priv->nameBox);
 	_g_object_unref0 (self->priv->check);
 	_g_object_unref0 (self->priv->label);
 	_g_object_unref0 (self->priv->entry);
@@ -1341,7 +1347,7 @@ GType beat_box_field_editor_get_type (void) {
 	if (g_once_init_enter (&beat_box_field_editor_type_id__volatile)) {
 		static const GTypeInfo g_define_type_info = { sizeof (BeatBoxFieldEditorClass), (GBaseInitFunc) NULL, (GBaseFinalizeFunc) NULL, (GClassInitFunc) beat_box_field_editor_class_init, (GClassFinalizeFunc) NULL, NULL, sizeof (BeatBoxFieldEditor), 0, (GInstanceInitFunc) beat_box_field_editor_instance_init, NULL };
 		GType beat_box_field_editor_type_id;
-		beat_box_field_editor_type_id = g_type_register_static (GTK_TYPE_HBOX, "BeatBoxFieldEditor", &g_define_type_info, 0);
+		beat_box_field_editor_type_id = g_type_register_static (GTK_TYPE_VBOX, "BeatBoxFieldEditor", &g_define_type_info, 0);
 		g_once_init_leave (&beat_box_field_editor_type_id__volatile, beat_box_field_editor_type_id);
 	}
 	return beat_box_field_editor_type_id__volatile;
