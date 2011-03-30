@@ -397,8 +397,6 @@ BeatBoxSimilarPane* beat_box_similar_pane_construct (GType object_type, BeatBoxL
 	GdkColor _tmp13_ = {0};
 	GtkToolItem* _tmp14_ = NULL;
 	GtkToolItem* toolInfoBin;
-	GtkLabel* _tmp15_ = NULL;
-	GtkLabel* _tmp16_;
 	g_return_val_if_fail (lm != NULL, NULL);
 	g_return_val_if_fail (lw != NULL, NULL);
 	self = (BeatBoxSimilarPane*) g_object_new (object_type, NULL);
@@ -455,12 +453,6 @@ BeatBoxSimilarPane* beat_box_similar_pane_construct (GType object_type, BeatBoxL
 	gtk_tool_item_set_tooltip_text ((GtkToolItem*) self->priv->refresh, "Refresh to show the most current song's similar songs");
 	gtk_tool_item_set_tooltip_text ((GtkToolItem*) self->priv->transferPlayback, "Transfer playback to continue playing these songs");
 	gtk_tool_item_set_tooltip_text ((GtkToolItem*) self->priv->save, "Save as a playlist");
-	_tmp15_ = (GtkLabel*) gtk_label_new ("Update to Most Recent Song");
-	_tmp16_ = g_object_ref_sink (_tmp15_);
-	gtk_tool_button_set_label_widget (self->priv->refresh, (GtkWidget*) _tmp16_);
-	_g_object_unref0 (_tmp16_);
-	gtk_tool_button_set_label (self->priv->transferPlayback, "Start Playing These Songs");
-	gtk_tool_button_set_label (self->priv->save, "Save as Playlist");
 	gtk_box_pack_start ((GtkBox*) self->priv->toolbar, (GtkWidget*) self->priv->refresh, FALSE, FALSE, (guint) 0);
 	gtk_box_pack_start ((GtkBox*) self->priv->toolbar, (GtkWidget*) self->priv->transferPlayback, FALSE, FALSE, (guint) 0);
 	gtk_box_pack_end ((GtkBox*) self->priv->toolbar, (GtkWidget*) self->priv->save, FALSE, FALSE, (guint) 0);

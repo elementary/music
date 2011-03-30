@@ -318,6 +318,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
 		sort.set_sort_func(_columns.index_of("Album"), albumCompareFunc);
+		sort.set_default_sort_func(genericCompareFunc);
 		
 		
 		// allow selecting multiple rows
@@ -483,17 +484,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
 	}
 	
-	public int genericCompareFunc (TreeModel model, TreeIter a, TreeIter b) {
+	public int genericCompareFunc(TreeModel model, TreeIter a, TreeIter b) {
 		int a_id, b_id;
-		Song a_song, b_song;
 		
-		model.get(a, 0, out a_id);
-		model.get(b, 0, out b_id);
+		model.get(a, _columns.index_of("#"), out a_id);
+		model.get(b, _columns.index_of("#"), out b_id);
 		
-		a_song = lm.song_from_id(a_id);
-		b_song = lm.song_from_id(b_id);
-		
-		return 0;
+		return (a_id > b_id) ? 1 : -1;
 	}
 	
 	public virtual void searchFieldChanged() {

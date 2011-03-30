@@ -55,13 +55,8 @@ public class BeatBox.SimilarPane : VBox {
 		transferPlayback.set_tooltip_text("Transfer playback to continue playing these songs");
 		save.set_tooltip_text("Save as a playlist");
 		
-		refresh.set_label_widget(new Label("Update to Most Recent Song"));
-		transferPlayback.set_label("Start Playing These Songs");
-		save.set_label("Save as Playlist");
-		
 		toolbar.pack_start(refresh, false, false, 0);
 		toolbar.pack_start(transferPlayback, false, false, 0);
-		//toolbar.insert(toolInfoBin, 2);
 		toolbar.pack_end(save, false, false, 0);
 		
 		pack_start(errorBox, true, true, 0);

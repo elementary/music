@@ -31,7 +31,6 @@ def configure(ctx):
 	ctx.check_tool('compiler_cc gnu_dirs')
 	ctx.check_tool('vala')
 	ctx.check_tool('gnu_dirs')
-	check_pkg(ctx, 'dbus-glib-1', 'DBUS' '0.5')
 	check_pkg(ctx, 'gtk+-2.0', 'GTK', '2.16.0')
 	check_pkg(ctx, 'gee-1.0', 'GEE', '0.5.3')
 	check_pkg(ctx, 'gstreamer-0.10', 'GSTREAMER', '0.10')
@@ -43,6 +42,7 @@ def configure(ctx):
 	check_pkg(ctx, 'gconf-2.0', 'GCONF', '2.31.91')
 	check_pkg(ctx, 'libnotify', 'LIBNOTIFY', '0.5.0')
 	check_pkg(ctx, 'unique-1.0', 'UNIQUE', '0.9')
+	check_pkg(ctx, 'dbus-glib-1', 'DBUS', '0.5')
 
 def build(bld):
 	bld.install_files ('${PREFIX}/share/applications', '/data/' + APPNAME + '.desktop')
@@ -51,9 +51,9 @@ def build(bld):
                        '/images/beatbox.svg')
                        
 	bld.program(
-		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0 libnotify gnet-2.0 dbus-glib-1 unique-1.0',
+		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0 dbus-glib-1',
 		target        = APPNAME,
-		uselib        = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY INDICATE DBUS UNIQUE WEBKIT',
+		uselib        = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY INDICATE UNIQUE WEBKIT DBUS',
 		source        =  bld.path.ant_glob(('*.vala', 'src/*.vala', 'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 'src/Widgets/*.vala')) 
 		)
 	

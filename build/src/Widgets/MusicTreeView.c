@@ -559,6 +559,8 @@ gint beat_box_music_tree_view_artistCompareFunc (BeatBoxMusicTreeView* self, Gtk
 static gint _beat_box_music_tree_view_artistCompareFunc_gtk_tree_iter_compare_func (GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b, gpointer self);
 gint beat_box_music_tree_view_albumCompareFunc (BeatBoxMusicTreeView* self, GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b);
 static gint _beat_box_music_tree_view_albumCompareFunc_gtk_tree_iter_compare_func (GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b, gpointer self);
+gint beat_box_music_tree_view_genericCompareFunc (BeatBoxMusicTreeView* self, GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b);
+static gint _beat_box_music_tree_view_genericCompareFunc_gtk_tree_iter_compare_func (GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b, gpointer self);
 void beat_box_music_tree_view_updateColumnVisibilities (BeatBoxMusicTreeView* self);
 void beat_box_music_tree_view_columnSmartSortingClick (BeatBoxMusicTreeView* self);
 static void _beat_box_music_tree_view_columnSmartSortingClick_gtk_menu_item_activate (GtkMenuItem* _sender, gpointer self);
@@ -607,7 +609,6 @@ const gchar* beat_box_song_get_artist (BeatBoxSong* self);
 const gchar* beat_box_song_get_album (BeatBoxSong* self);
 gint beat_box_song_get_track (BeatBoxSong* self);
 const gchar* beat_box_song_get_file (BeatBoxSong* self);
-gint beat_box_music_tree_view_genericCompareFunc (BeatBoxMusicTreeView* self, GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b);
 static void beat_box_music_tree_view_real_searchFieldChanged (BeatBoxMusicTreeView* self);
 gchar* elementary_widgets_elementary_entry_get_text (ElementaryWidgetsElementaryEntry* self);
 static gboolean _lambda10_ (BeatBoxMusicTreeView* self);
@@ -961,6 +962,13 @@ static gint _beat_box_music_tree_view_artistCompareFunc_gtk_tree_iter_compare_fu
 static gint _beat_box_music_tree_view_albumCompareFunc_gtk_tree_iter_compare_func (GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b, gpointer self) {
 	gint result;
 	result = beat_box_music_tree_view_albumCompareFunc (self, model, a, b);
+	return result;
+}
+
+
+static gint _beat_box_music_tree_view_genericCompareFunc_gtk_tree_iter_compare_func (GtkTreeModel* model, GtkTreeIter* a, GtkTreeIter* b, gpointer self) {
+	gint result;
+	result = beat_box_music_tree_view_genericCompareFunc (self, model, a, b);
 	return result;
 }
 
@@ -1583,6 +1591,7 @@ void beat_box_music_tree_view_buildUI (BeatBoxMusicTreeView* self) {
 	gtk_tree_sortable_set_sort_func ((GtkTreeSortable*) self->priv->sort, _tmp107_, _beat_box_music_tree_view_artistCompareFunc_gtk_tree_iter_compare_func, g_object_ref (self), g_object_unref);
 	_tmp108_ = gee_abstract_list_index_of ((GeeAbstractList*) self->priv->_columns, "Album");
 	gtk_tree_sortable_set_sort_func ((GtkTreeSortable*) self->priv->sort, _tmp108_, _beat_box_music_tree_view_albumCompareFunc_gtk_tree_iter_compare_func, g_object_ref (self), g_object_unref);
+	gtk_tree_sortable_set_default_sort_func ((GtkTreeSortable*) self->priv->sort, _beat_box_music_tree_view_genericCompareFunc_gtk_tree_iter_compare_func, g_object_ref (self), g_object_unref);
 	_tmp109_ = gtk_tree_view_get_selection (self->priv->view);
 	gtk_tree_selection_set_mode (_tmp109_, GTK_SELECTION_MULTIPLE);
 	_tmp110_ = g_new0 (GtkTargetEntry, 0);
@@ -2125,23 +2134,21 @@ gint beat_box_music_tree_view_genericCompareFunc (BeatBoxMusicTreeView* self, Gt
 	gint result = 0;
 	gint a_id = 0;
 	gint b_id = 0;
-	BeatBoxSong* a_song = NULL;
-	BeatBoxSong* b_song = NULL;
-	BeatBoxSong* _tmp0_ = NULL;
-	BeatBoxSong* _tmp1_ = NULL;
+	gint _tmp0_;
+	gint _tmp1_;
+	gint _tmp2_ = 0;
 	g_return_val_if_fail (self != NULL, 0);
 	g_return_val_if_fail (model != NULL, 0);
-	gtk_tree_model_get (model, a, 0, &a_id, -1);
-	gtk_tree_model_get (model, b, 0, &b_id, -1);
-	_tmp0_ = beat_box_library_manager_song_from_id (self->priv->lm, a_id);
-	_g_object_unref0 (a_song);
-	a_song = _tmp0_;
-	_tmp1_ = beat_box_library_manager_song_from_id (self->priv->lm, b_id);
-	_g_object_unref0 (b_song);
-	b_song = _tmp1_;
-	result = 0;
-	_g_object_unref0 (b_song);
-	_g_object_unref0 (a_song);
+	_tmp0_ = gee_abstract_list_index_of ((GeeAbstractList*) self->priv->_columns, "#");
+	gtk_tree_model_get (model, a, _tmp0_, &a_id, -1);
+	_tmp1_ = gee_abstract_list_index_of ((GeeAbstractList*) self->priv->_columns, "#");
+	gtk_tree_model_get (model, b, _tmp1_, &b_id, -1);
+	if (a_id > b_id) {
+		_tmp2_ = 1;
+	} else {
+		_tmp2_ = -1;
+	}
+	result = _tmp2_;
 	return result;
 }
 
