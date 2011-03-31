@@ -61,11 +61,10 @@ beatbox_VALASOURCES = \
 	Objects/SmartPlaylist.vala				\
 	Objects/SmartQuery.vala					\
 	Objects/Song.vala						\
+	Objects/SongInfo.vala					\
 	Objects/SoundMenuIntegration.vala		\
 	Objects/TreeViewSetup.vala				\
 	Widgets/AppMenu.vala					\
-	Widgets/CellRendererSmartText.vala		\
-	Widgets/Discoverer.vala					\
 	Widgets/ElementaryEntry.vala			\
 	Widgets/ElementaryTreeView.vala			\
 	Widgets/InfoPanel.vala					\
@@ -76,8 +75,6 @@ beatbox_VALASOURCES = \
 	Widgets/SimilarPane.vala				\
 	Widgets/SimilarSongsView.vala			\
 	Widgets/SimpleOptionChooser.vala		\
-	Widgets/SongInfo.vala					\
-	Widgets/SongList.vala					\
 	Widgets/ToolButtonWithMenu.vala			\
 	Widgets/TopDisplay.vala					\
 	Widgets/Welcome.vala					\
