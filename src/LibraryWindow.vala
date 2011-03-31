@@ -113,7 +113,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				queriedlastfm = true;
 			if((int)settings.getLastSongPosition() > 30)
 				song_considered_played = true;
-			if((double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
+			if(lm.song_info.song != null && (double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
 				added_to_play_count = true;
 			
 			Song s = settings.getLastSongPlaying();
@@ -608,8 +608,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(lm.song_info.song != null && album != null && album_s == lm.song_info.song.album &&
 			artist_s == lm.song_info.song.artist && lm.get_album_location(lm.song_info.song.rowid) == null) {
 				lm.song_info.album = album;
-				
-				lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
+			
+                if (album.url_image.url != null)
+    				lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
 			}
 			else {
 				return null;

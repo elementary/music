@@ -79,7 +79,10 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		catch (SQLHeavy.Error err) {
 			stdout.printf("This is terrible. Could not even make db file. Please report this. Message: %s", err.message);
 		}
-		
+
+        // disable synchronized commits for performance reasons ... this is not vital
+        _db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
+	
 		if(need_create)
 			create_db();
 	}
