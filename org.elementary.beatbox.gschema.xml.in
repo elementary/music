@@ -1,0 +1,9 @@
+<schemalist>
+  <schema id="org.elementary.beatbox.preferences.ui" path="/apps/beatbox/preferences/ui/">
+    <key name="sidebar-width" type="i">
+      <default>148</default>
+      <_summary>Width of the side pane</_summary>
+      <_description>The default width of the side pane in new windows.</_description>
+    </key>
+  </schema>
+</schemalist>
