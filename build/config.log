@@ -1,4 +1,4 @@
-# project beatbox (0.1) configured on Sun Mar 27 01:20:33 2011 by
+# project beatbox (0.1) configured on Wed Mar 30 15:17:57 2011 by
 # waf 1.6.2 (abi 98, python 20606f0 on linux2)
 # using ./waf configure
 #
@@ -46,13 +46,6 @@ out: Vala 0.11.7
 Checking for valac version >= (0, 8, 0)
 (0, 11, 7)
 (tool gnu_dirs is already loaded, skipping)
-----------------------------------------
-Checking for 'dbus-glib-1' >= 
-['/usr/bin/pkg-config', '--atleast-version=', 'dbus-glib-1']
-['/usr/bin/pkg-config', 'dbus-glib-1', '--cflags', '--libs']
-out: -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -L/lib -ldbus-glib-1 -ldbus-1 -lpthread -lgobject-2.0 -lgthread-2.0 -lrt -lglib-2.0  
-
-yes
 ----------------------------------------
 Checking for 'gtk+-2.0' >= 2.16.0
 ['/usr/bin/pkg-config', '--atleast-version=2.16.0', 'gtk+-2.0']
@@ -128,5 +121,12 @@ Checking for 'unique-1.0' >= 0.9
 ['/usr/bin/pkg-config', '--atleast-version=0.9', 'unique-1.0']
 ['/usr/bin/pkg-config', 'unique-1.0', '--cflags', '--libs']
 out: -pthread -I/usr/include/unique-1.0 -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12  -pthread -lunique-1.0 -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lm -lcairo -lpng12 -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+
+yes
+----------------------------------------
+Checking for 'dbus-glib-1' >= 0.5
+['/usr/bin/pkg-config', '--atleast-version=0.5', 'dbus-glib-1']
+['/usr/bin/pkg-config', 'dbus-glib-1', '--cflags', '--libs']
+out: -pthread -I/usr/include/dbus-1.0 -I/usr/lib/dbus-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  -pthread -L/lib -ldbus-glib-1 -ldbus-1 -lpthread -lgobject-2.0 -lgthread-2.0 -lrt -lglib-2.0  
 
 yes

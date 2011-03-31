@@ -8,6 +8,7 @@
 #'./BeatBox'
 
 import os
+import sys
 import Build
 import Utils
 import Task
@@ -29,7 +30,12 @@ def check_pkg (ctx, name, lib_name, version=''):
 
 def configure(ctx):
 	ctx.check_tool('compiler_cc gnu_dirs')
+	
 	ctx.check_tool('vala')
+	if ctx.env['VALAC_VERSION'][1] < 10 or ctx.env['VALAC_VERSION'][2] < 6:
+         print('valac >= 0.11.6 required')
+         sys.exit(1)
+         
 	ctx.check_tool('gnu_dirs')
 	check_pkg(ctx, 'gtk+-2.0', 'GTK', '2.16.0')
 	check_pkg(ctx, 'gee-1.0', 'GEE', '0.5.3')
