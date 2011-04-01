@@ -5,6 +5,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	private BeatBox.LibraryManager lm;
 	private BeatBox.LibraryWindow lw;
 	private TreeView view;
+	private MusicTreeModel mtm;
 	private ListStore model;
 	private TreeModelFilter filter;
 	private TreeModelSort sort; //one to use.
@@ -299,7 +300,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		viewColumnsChanged();
 		
 		model = new ListStore.newv(getColumnTypes());
-		MusicTreeModel mtm = new MusicTreeModel(getColumnTypes());//this is so that it compiles
+		mtm = new MusicTreeModel(lm, getColumnTypes());//this is so that it compiles
 		filter = new TreeModelFilter(model, null);
 		sort = new TreeModelSort.with_model(filter);
 		
@@ -307,7 +308,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
-		view.set_model(sort);
+		view.set_model(mtm);
 		view.set_headers_clickable(true);
 		view.set_fixed_height_mode(true);
 		view.rules_hint = true;
@@ -711,20 +712,22 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.freeze_child_notify();
 		view.set_model(null);
 		
+		mtm.append_songs(songs);
+		
 		//get selected songs and put in temp array
 		
-		if(!is_search) {
+		/*if(!is_search) {
 			model.clear();
 			this._rows.clear();
 			
 			foreach(int i in songs) {
 				addSong(lm.song_from_id(i));
 			}
-		}
+		}*/
 		
 		//reselect songs that were selected before populateview update
 		
-		view.set_model(sort);
+		view.set_model(mtm);
 		view.thaw_child_notify();
 	}
 	

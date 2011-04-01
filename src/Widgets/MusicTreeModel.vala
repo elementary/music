@@ -9,6 +9,7 @@ using Gee;
 using GLib;
 
 public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
+	LibraryManager lm;
 	int stamp; // all iters must match this
 	
     /* data storage variables */
@@ -24,7 +25,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 	
 	/** Initialize data storage, columns, etc. **/
-	public MusicTreeModel(Type[] column_types) {
+	public MusicTreeModel(LibraryManager lm, Type[] column_types) {
+		this.lm = lm;
 		_columns = column_types;
        rows = new Sequence<ValueArray>(null);
        
@@ -33,7 +35,24 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	
 	/** calls func on each node in model in a depth-first fashion **/
 	public void foreach(TreeModelForeachFunc func) {
+		stdout.printf("foreach\n");
+		SequenceIter s_iter = rows.get_begin_iter();
+		bool walk = true;;
 		
+		while(true) {
+			s_iter = s_iter.next();
+			
+			TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+			
+			TreeIter iter = new TreeIter();
+			iter.stamp = this.stamp;
+			iter.user_data = s_iter;
+			
+			walk = func(this, path, iter);
+			
+			if(s_iter.is_end() || !walk)
+				return;
+		}
 	}
 
 	/** Sets params of each id-value pair of the value of that iter **/
@@ -73,14 +92,13 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes iter with the first iterator in the tree (the one at the path "0") and returns true. **/
 	public bool get_iter_first (out TreeIter iter) {
-		iter.stamp = this.stamp;
-		
 		if(rows.get_length() == 0)
 			return false;
 		
+		iter.stamp = this.stamp;
 		iter.user_data = rows.get_begin_iter();
 		
-		return false;
+		return true;
 	}
 
 	/** Sets iter to a valid iterator pointing to path_string, if it exists. **/
@@ -117,7 +135,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/**   **/
 	public void get_valist (TreeIter iter, void* var_args) {
-		
+		if(iter.stamp != this.stamp)
+			return;
 	}
 
 	/** Initializes and sets value to that at column. **/
@@ -143,13 +162,15 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Returns the number of children that iter has. **/
 	public int iter_n_children (TreeIter? iter) {
+		if(iter == null)
+			return rows.get_length();
 		
 		return 0;
 	}
 
 	/** Sets iter to point to the node following it at the current level. **/
 	public bool iter_next (ref TreeIter iter) {
-		if(iter.stamp != this.stamp)
+		if(iter.stamp != this.stamp || ((SequenceIter)iter.user_data).is_end())
 			return false;
 		
 		iter.user_data = ((SequenceIter)iter.user_data).next();
@@ -159,11 +180,10 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
-		iter.stamp = this.stamp;
-		
-		if(n < 0 || n >= rows.get_length())
+		if(n < 0 || n >= rows.get_length() || parent != null)
 			return false;
 		
+		iter.stamp = this.stamp;
 		iter.user_data = rows.get_iter_at_pos(n);
 		
 		return true;
@@ -171,20 +191,54 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
-		iter.stamp = this.stamp;
 		
 		return false;
 	}
 
 	/** Lets the tree ref the node. **/
-	public void ref_node (TreeIter iter) {
-		
-	}
+	public void ref_node (TreeIter iter) {}
 
 	/** Lets the tree unref the node. **/
-	public void unref_node (TreeIter iter) {
-		
+	public void unref_node (TreeIter iter) {}
+    
+    /** Some actual functions to use this model **/
+    
+    /** simply adds iter to the model **/
+    public void append(out TreeIter iter) {
+		SequenceIter<ValueArray> added = rows.append(new ValueArray(0));
+		iter.stamp = this.stamp;
+		iter.user_data = added;
 	}
+	
+	/** convenience method to insert songs into the model. No iters returned. **/
+    public void append_songs(Collection<int> songs) {
+		foreach(int id in songs) {
+			Song s = lm.song_from_id(id);
+			ValueArray va = new ValueArray(17);
+			
+			va.append(s.rowid);
+			va.append(true);
+			va.append(new Value(typeof(Gdk.Pixbuf)));
+			va.append(rows.get_length());
+			va.append(s.track);
+			va.append(s.title);
+			va.append(s.length.to_string());
+			va.append(s.artist);
+			va.append(s.album);
+			va.append(s.genre);
+			va.append(s.year);
+			va.append(s.bitrate);
+			va.append(s.rating);
+			va.append(s.play_count);
+			va.append(s.skip_count);
+			va.append(s.pretty_date_added());
+			va.append(s.pretty_last_played());
+			va.append(s.bpm);
+			
+			SequenceIter<ValueArray> added = rows.append(va.copy());
+		}
+	}
+    
     
     /** TreeSortable Interface. **/
     
