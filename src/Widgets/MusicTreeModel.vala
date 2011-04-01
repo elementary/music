@@ -1,27 +1,19 @@
 /** A TreeModel implemented to support list-only sorting and filtering.
  * TreeIter data holds:
- *      stamp - index of row in rows
- *      user_data - visibility?
+ *      user_data - SequenceIter?
  * 
  */
 
 using Gtk;
-using Gee;
 using GLib;
-
-private class BeatBox.RowData : GLib.Object {
-    int real_index; // as opposed to the always changing index in rows from sorting
-    
-    Value[] data; // data for each column
-    int visible; // for search/filtering
-}
 
 public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
     /* data storage variables */
-    LinkedList<RowData> rows; // A GLib.Value is vala equivelant void*, but pretty.
+    Sequence<Value[]> rows;
     
     Type[] _columns; // an array of the column types
     int visible_column;
+    int sort_column;
     
     /* custom signals for custom treeview. for speed */
     public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
@@ -32,8 +24,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public MusicTreeModel(Type[] column_types) {
 		_columns = column_types;
         column_count = _columns.size;
-        
-        rows = new HashMap<int, Value[]>();
+       rows = new Sequence<Value[]>(null);
+       
+       stamp = GLib.Random.next_int();
 	}
 	
 	/** calls func on each node in model in a depth-first fashion **/
@@ -43,7 +36,20 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets params of each id-value pair of the value of that iter **/
 	public void get (TreeIter iter, ...) {
-	
+		int key = (int)iter->user_data;
+		var args = va_list(); // now call args.arg() to poll
+		
+		while(true) {
+			int index = args.arg();
+			if(i == -1) {
+				break;
+			}
+			else {
+				Value v = args.arg();
+				/* set v to iter's value at index */
+				
+			}
+		}
 	}
 
 	/** Returns Type of column at index_ **/
@@ -58,21 +64,48 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to a valid iterator pointing to path **/
 	public bool get_iter (out TreeIter iter, TreePath path) {
+		int path_index = path.get_indices()[0];
+		
+		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
+			return false;
+		
+        var seq_iter = rows.get_iter_at_pos(path_index);
+        if(seq_iter == null)
+			return false;
         
+		iter->stamp = this.stamp;
+		iter->user_data = seq_iter;
         
-		return false;
+		return true;
 	}
 
 	/** Initializes iter with the first iterator in the tree (the one at the path "0") and returns true. **/
 	public bool get_iter_first (out TreeIter iter) {
+		iter->stamp = this.stamp;
+		
+		if(rows.get_length() == 0)
+			return false;
+		
+		iter->user_data = rows.get_begin_iter();
 		
 		return false;
 	}
 
 	/** Sets iter to a valid iterator pointing to path_string, if it exists. **/
 	public bool get_iter_from_string (out TreeIter iter, string path_string) {
+		int path_index = int.parse(path_string);
 		
-		return false;
+		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
+			return false;
+		
+        var seq_iter = rows.get_iter_at_pos(path_index);
+        if(seq_iter == null)
+			return false;
+        
+		iter->stamp = this.stamp;
+		iter->user_data = seq_iter;
+        
+		return true;
 	}
 
 	/** Returns the number of columns supported by tree_model. **/
@@ -82,24 +115,26 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
 	public TreePath get_path (TreeIter iter) {
-		
-		return new TreePath();
+		return new TreePath.from_string(((SequenceIter)iter->user_data).get_position().to_string());
 	}
 
 	/** Generates a string representation of the iter. **/
 	public string get_string_from_iter (TreeIter iter) {
-		
-		return "";
+		return ((SequenceIter)iter->user_data).get_position().to_string();
 	}
 
 	/**   **/
 	public void get_valist (TreeIter iter, void* var_args) {
-	
+		
 	}
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value value) {
-	
+		if(iter->stamp != this.stamp || column < 0 || column >= _columns.size)
+			return;
+		
+		value = ((SequenceIter)iter->user_data).get()[column];
+		
 	}
 
 	/** Sets iter to point to the first child of parent. **/
@@ -122,18 +157,26 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to point to the node following it at the current level. **/
 	public bool iter_next (ref TreeIter iter) {
+		iter->user_data = ((SequenceIter)iter->user_data).next();
 		
 		return false;
 	}
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
+		iter->stamp = this.stamp;
 		
-		return false;
+		if(n < 0 || n >= rows.get_length())
+			return false;
+		
+		iter->user_data = rows.get_iter_at_pos(n);
+		
+		return true;
 	}
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
+		iter->stamp = this.stamp;
 		
 		return false;
 	}

@@ -299,6 +299,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		viewColumnsChanged();
 		
 		model = new ListStore.newv(getColumnTypes());
+		MusicTreeModel mtm = new MusicTreeModel(getColumnTypes());//this is so that it compiles
 		filter = new TreeModelFilter(model, null);
 		sort = new TreeModelSort.with_model(filter);
 		
