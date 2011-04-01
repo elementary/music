@@ -728,13 +728,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public TreeIter? addSong(Song s) {
-		TreeIter item;
-		model.append(out item);
-		
-		/* allows for easy updating, removing of songs */
-		_rows.set(s.rowid, new TreeRowReference(model, model.get_path(item)));
-		
-		model.set(item, _columns.index_of("id"), s.rowid,
+		TreeIter? item;
+		//model.append(out item);
+        
+		model.insert_with_values(out item, _rows.size + 1, _columns.index_of("id"), s.rowid,
 								_columns.index_of("visible"), true,
 								_columns.index_of(" "), (lm.song_info.song != null && s.rowid == lm.song_info.song.rowid && is_current) ? view.render_icon("audio-volume-high", IconSize.MENU, null) : null,
 								_columns.index_of("#"), _rows.size,
@@ -753,6 +750,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 								_columns.index_of("Last Played"), s.pretty_last_played(),
 								_columns.index_of("BPM"), s.bpm);
 		
+        /* allows for easy updating, removing of songs */
+		_rows.set(s.rowid, new TreeRowReference(model, model.get_path(item)));
+        
 		return item;
 	}
 	
