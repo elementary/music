@@ -8,18 +8,14 @@ using Gtk;
 using Gee;
 using GLib;
 
-public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
+public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 	LibraryManager lm;
 	int stamp; // all iters must match this
+	Gdk.Pixbuf _playing;
 	
     /* data storage variables */
     Sequence<ValueArray> rows;
-    
-    Type[] _columns; // an array of the column types
-    
-    TreeIterCompareFunc default_sort;
-    int sort_column;
-    SortType sort_type;
+    private LinkedList<string> _columns;
     
     /* custom signals for custom treeview. for speed */
     public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
@@ -27,13 +23,11 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 	
 	/** Initialize data storage, columns, etc. **/
-	public MusicTreeModel(LibraryManager lm, Type[] column_types) {
+	public MusicTreeModel(LibraryManager lm, LinkedList<string> column_types, Gdk.Pixbuf playing) {
 		this.lm = lm;
 		_columns = column_types;
+		_playing = playing;
        rows = new Sequence<ValueArray>(null);
-       
-       sort_column = 0;
-       sort_type = SortType.ASCENDING;
        
        stamp = (int)GLib.Random.next_int();
 	}
@@ -41,10 +35,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	/** calls func on each node in model in a depth-first fashion **/
 	public void foreach(TreeModelForeachFunc func) {
 		SequenceIter s_iter = rows.get_begin_iter();
-		bool walk = true;;
 		
-		while(true) {
-			s_iter = s_iter.next();
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
 			
 			TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
 			
@@ -52,15 +45,13 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			iter.stamp = this.stamp;
 			iter.user_data = s_iter;
 			
-			walk = func(this, path, iter);
-			
-			if(s_iter.is_end() || !walk)
+			if(!func(this, path, iter))
 				return;
 		}
 	}
 
 	/** Sets params of each id-value pair of the value of that iter **/
-	public void get (TreeIter iter, ...) {
+	public new void get (TreeIter iter, ...) {
 		if(iter.stamp != this.stamp || ((SequenceIter<ValueArray>)iter.user_data).is_end())
 			return;
 		
@@ -68,34 +59,35 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		while(true) {
 			int col = args.arg();
-			if(col < 0 || col >= _columns.length)
+			if(col < 0 || col >= _columns.size)
 				return;
 			
-			if(_columns[col] == typeof(int)) {
-				stdout.printf("oh hi\n");
-				int val = args.arg();
-				val = ((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_int();
-			}
-			else if(_columns[col] == typeof(string)) {
-				stdout.printf("oh hi2\n");
-				string val = args.arg();
-				val = ((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_string();
-			}
-			else if(_columns[col] == typeof(Gdk.Pixbuf)) {
-				stdout.printf("oh hi3\n");
+			if(_columns[col] == " ") {
 				Gdk.Pixbuf val = args.arg();
 				val = (Gdk.Pixbuf)((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_object();
 			}
+			else if(_columns[col] == "Title" || _columns[col] == "Artist" || _columns[col] == "Album" || _columns[col] == "Genre") {
+				string val = args.arg();
+				val = ((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_string();
+			}
 			else {
-				stdout.printf("unkown\n");
 				int val = args.arg();
+				val = ((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_int();
 			}
 		}
 	}
 
 	/** Returns Type of column at index_ **/
-	public Type get_column_type (int index_) {
-		return _columns[index_];
+	public Type get_column_type (int col) {
+		if(_columns[col] == " ") {
+			return typeof(Gdk.Pixbuf);
+		}
+		else if(_columns[col] == "Title" || _columns[col] == "Artist" || _columns[col] == "Album" || _columns[col] == "Genre") {
+			return typeof(string);
+		}
+		else {
+			return typeof(int);
+		}
 	}
 
 	/** Returns a set of flags supported by this interface **/
@@ -150,7 +142,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Returns the number of columns supported by tree_model. **/
 	public int get_n_columns () {
-		return _columns.length;
+		return _columns.size;
 	}
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
@@ -171,7 +163,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column >= _columns.length)
+		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size)
 			return;
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end())
@@ -244,9 +236,10 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
     public void append_songs(Collection<int> songs) {
 		foreach(int id in songs) {
 			Song s = lm.song_from_id(id);
+			
 			ValueArray va = new ValueArray(17);
 			
-			va.append(s.rowid);
+			/*va.append(s.rowid);
 			va.append(true);
 			va.append(Value(typeof(Gdk.Pixbuf)));
 			va.append(rows.get_length());
@@ -261,11 +254,109 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			va.append(s.rating);
 			va.append(s.play_count);
 			va.append(s.skip_count);
-			va.append(s.pretty_date_added());
-			va.append(s.pretty_last_played());
-			va.append(s.bpm);
+			va.append(s.date_added);
+			va.append(s.last_played);
+			va.append(s.bpm);*/
+
+			for(int i = 0;i < _columns.size; ++i) {
+				if(_columns.get(i) == "id")
+					va.append(s.rowid);
+				else if(_columns.get(i) == "visible")
+					va.append(true);
+				else if(_columns.get(i) == " ")
+					va.append(Value(typeof(Gdk.Pixbuf)));
+				else if(_columns.get(i) == "#")
+					va.append(rows.get_length() + 1);
+				else if(_columns.get(i) == "Track")
+					va.append(s.track);
+				else if(_columns.get(i) == "Title")
+					va.append(s.title);
+				else if(_columns.get(i) == "Length")
+					va.append(s.length);
+				else if(_columns.get(i) == "Artist")
+					va.append(s.artist);
+				else if(_columns.get(i) == "Album")
+					va.append(s.album);
+				else if(_columns.get(i) == "Genre")
+					va.append(s.genre);
+				else if(_columns.get(i) == "Year")
+					va.append(s.year);
+				else if(_columns.get(i) == "Bitrate")
+					va.append(s.bitrate);
+				else if(_columns.get(i) == "Rating")
+					va.append(s.rating);
+				else if(_columns.get(i) == "Plays")
+					va.append(s.play_count);
+				else if(_columns.get(i) == "Skips")
+					va.append(s.skip_count);
+				else if(_columns.get(i) == "Date Added")
+					va.append(s.date_added);
+				else if(_columns.get(i) == "Last Played")
+					va.append(s.last_played);
+				else if(_columns.get(i) == "BPM")
+					va.append(s.bpm);
+			}
 			
 			SequenceIter<ValueArray> added = rows.append(va.copy());
+		}
+	}
+	
+	// just a convenience function
+	public void updateSong(int id, bool is_current) {
+		ArrayList<int> temp = new ArrayList<int>();
+		temp.add(id);
+		updateSongs(temp, is_current);
+	}
+	
+	public void updateSongs(owned ArrayList<int> rowids, bool is_current) {
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		bool emit_signal = false;
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(rowids.contains(rows.get(s_iter).values[0].get_int())) {
+				int rowid = rows.get(s_iter).values[0].get_int();
+				Song s = lm.song_from_id(rowid);
+				
+				// this is to tell if we should emit row_changed. only do so if pixbuf changed
+				if(rowid == lm.song_info.song.rowid)
+					emit_signal = true;
+				else
+					emit_signal = false;
+				
+				rows.get(s_iter).values[_columns.index_of("visible")] = true;
+				rows.get(s_iter).values[_columns.index_of(" ")] = (lm.song_info.song != null && rowid == lm.song_info.song.rowid && is_current) ? _playing : null;
+				rows.get(s_iter).values[_columns.index_of("Track")] = s.track;
+				rows.get(s_iter).values[_columns.index_of("Title")] = s.title;
+				rows.get(s_iter).values[_columns.index_of("Length")] = s.length;
+				rows.get(s_iter).values[_columns.index_of("Artist")] = s.artist;
+				rows.get(s_iter).values[_columns.index_of("Album")] = s.album;
+				rows.get(s_iter).values[_columns.index_of("Genre")] = s.genre;
+				rows.get(s_iter).values[_columns.index_of("Year")] = s.year;
+				rows.get(s_iter).values[_columns.index_of("Bitrate")] = s.bitrate;
+				rows.get(s_iter).values[_columns.index_of("Rating")] = s.rating;
+				rows.get(s_iter).values[_columns.index_of("Plays")] = s.play_count;
+				rows.get(s_iter).values[_columns.index_of("Skips")] = s.skip_count;
+				rows.get(s_iter).values[_columns.index_of("Date Added")] = s.date_added;
+				rows.get(s_iter).values[_columns.index_of("Last Played")] = s.last_played;
+				rows.get(s_iter).values[_columns.index_of("BPM")] = s.bpm;
+				
+				rowids.remove(rowid);
+			}
+			
+			if(emit_signal) {
+				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+				
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = s_iter;
+				
+				row_changed(path, iter);
+			}
+			
+			if(rowids.size <= 0)
+				return;
 		}
 	}
 	
@@ -277,27 +368,23 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		while(true) {
 			int col = args.arg();
-			if(col < 0 || col >= _columns.length)
+			if(col < 0 || col >= _columns.size)
 				return;
 			
-			if(_columns[col] == typeof(int)) {
-				stdout.printf("set oh hi\n");
-				int val = args.arg();
-				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_int(val);
-			}
-			else if(_columns[col] == typeof(string)) {
-				stdout.printf("set oh hi2\n");
-				string val = args.arg();
-				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_string(val);
-			}
-			else if(_columns[col] == typeof(Gdk.Pixbuf)) {
+			else if(_columns[col] == " ") {
 				stdout.printf("set oh hi3\n");
 				Gdk.Pixbuf val = args.arg();
 				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_object(val);
 			}
+			else if(_columns[col] == "Title" || _columns[col] == "Artist" || _columns[col] == "Album" || _columns[col] == "Genre") {
+				stdout.printf("set oh hi2\n");
+				string val = args.arg();
+				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_string(val);
+			}
 			else {
-				stdout.printf("invalid type\n");
-				return;
+				stdout.printf("set oh hi\n");
+				int val = args.arg();
+				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_int(val);
 			}
 		}
 	}
@@ -305,49 +392,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public void remove(TreeIter iter) {
 		if(iter.stamp != this.stamp)
 			return;
-		
-		row_deleted(new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string()));
+			
+		var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
 		rows.remove((SequenceIter<ValueArray>)iter.user_data);
+		row_deleted(path);
 	}
-    
-    /** Fills in sort_column_id and order with the current sort column and the order. **/
-    public bool get_sort_column_id (out int sort_column_id, out SortType order) {
-		if(sort_column_id < -2 || sort_column_id >= _columns.length)
-			return false;
-		
-        sort_column_id = sort_column;
-        order = sort_type;
-        
-        return true;
-    }
-    
-    /**  Returns true if the model has a default sort function. **/
-    public bool has_default_sort_func () {
-        return (default_sort != null);
-    }
-    
-    /** Sets the default comparison function used when sorting to be sort_func. **/
-    public void set_default_sort_func (owned TreeIterCompareFunc sort_func) {
-        default_sort = sort_func;
-    }
-    
-    /** Sets the current sort column to be sort_column_id. **/
-    public void set_sort_column_id (int sort_column_id, SortType order) {
-		if(sort_column_id < 0 || sort_column_id >= _columns.length)
-			return;
-		
-        sort_column = sort_column_id;
-        sort_type = order;
-        
-        /* now do the sorting */
-        stdout.printf("SORT NOW,RIGHT?\n");
-    }
-    
-    /** Sets the comparison function used when sorting to be sort_func. **/
-    public void set_sort_func (int sort_column_id, owned TreeIterCompareFunc sort_func) {
-		if(sort_column_id < 0 || sort_column_id >= _columns.length)
-			return;
-		
-        //column_sort_funcs[sort_column_id] = sort_func;
-    }
 }

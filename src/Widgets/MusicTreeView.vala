@@ -297,12 +297,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		viewColumnsChanged();
 		
-		//model = new ListStore.newv(getColumnTypes());
-		music_model = new MusicTreeModel(lm, getColumnTypes());//this is so that it compiles
-		//filter = new TreeModelFilter(mtm, null);
+		music_model = new MusicTreeModel(lm, _columns, render_icon("audio-volume-high", IconSize.MENU, null));
 		sort = new TreeModelSort.with_model(music_model);
-		
-		//filter.set_visible_column(_columns.index_of("visible"));
 		
 		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
@@ -498,8 +494,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
 				if(lw.searchField.get_text().down() == timeout_search.poll_tail() && lw.searchField.get_text().down() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
-					
-					stdout.printf("searching for %s\n", lw.searchField.get_text());
 					Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), _songs);
 					populateView(searched_songs, true);
 					
@@ -509,19 +503,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					scrollToCurrent();
 				}
 				else if(!showing_all && lw.searchField.get_text() != last_search && (lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
-					//view.set_model(null);
-					
-					/*TreeIter iter;
-					for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
-						model.set(iter, 1, true);
-					}*/
+					populateView(_songs, false);
 					
 					last_search = lw.searchField.get_text().down();
 					showing_all = true;
 					
-					populateView(_songs, false);
-					
-					//view.set_model(sort);
 					scrollToCurrent();
 				}
 				
@@ -703,55 +689,19 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			_songs = songs;
 		}
 		
-		music_model = new MusicTreeModel(lm, getColumnTypes());
+		music_model = new MusicTreeModel(lm, _columns, render_icon("audio-volume-high", IconSize.MENU, null));
 		sort = new TreeModelSort.with_model(music_model);
 		
 		//save song selection
-		stdout.printf("before appending songs\n");
+		
 		_rows.clear();
 		music_model.append_songs(songs);
-		stdout.printf("before sorting\n");
+		
 		// restore song selection
 		
 		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
-		stdout.printf("all done\n");
 		view.set_model(sort);
 		view.thaw_child_notify();
-	}
-	
-	public bool updateSong(int i) {
-		if(!_rows.has_key(i))
-			return false;
-		
-		TreeIter item;
-		TreePath path = _rows.get(i).get_path();
-		
-		if(path == null) {
-			_rows.unset(i);
-			return false;
-		}
-		
-		music_model.get_iter(out item, path);
-		Song s = lm.song_from_id(i);
-		
-		music_model.set(item, _columns.index_of("id"), s.rowid,
-								_columns.index_of(" "), (lm.song_info.song != null && i == lm.song_info.song.rowid && is_current) ? view.render_icon("audio-volume-high", IconSize.MENU, null) : null,
-								_columns.index_of("Track"), s.track,
-								_columns.index_of("Title"), s.title,
-								_columns.index_of("Length"), s.pretty_length(),
-								_columns.index_of("Artist"), s.artist,
-								_columns.index_of("Album"), s.album,
-								_columns.index_of("Genre"), s.genre,
-								_columns.index_of("Year"), s.year,
-								_columns.index_of("Bitrate"), s.bitrate,
-								_columns.index_of("Rating"), s.rating,
-								_columns.index_of("Plays"), s.play_count,
-								_columns.index_of("Skips"), s.skip_count,
-								_columns.index_of("Date Added"), s.pretty_date_added(),
-								_columns.index_of("Last Played"), s.pretty_last_played(),
-								_columns.index_of("BPM"), s.bpm);
-		
-		return true;
 	}
 	
 	public bool removeSong(int i) {
@@ -782,24 +732,26 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		this.is_current = false;
 		
 		if(lm.song_info.song != null)
-			updateSong(lm.song_info.song.rowid);
+			music_model.updateSong(lm.song_info.song.rowid, is_current);
 	}
 	
 	public virtual void song_played(int id, int old) {
 		if(old != -1)
-			updateSong(old);
+			music_model.updateSong(old, is_current);
 		
 		if(!scrolled_recently) {
 			scrollToCurrent();
 		}
 		
-		updateSong(id);
+		music_model.updateSong(id, is_current);
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {
+		ArrayList<int> temp = new ArrayList<int>();
 		foreach(int id in ids) {
-			updateSong(id);
+			temp.add(id);
 		}
+		music_model.updateSongs(temp, is_current);
 		
 		//since a song may have changed location, reset current
 		if(is_current)
@@ -866,7 +818,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		is_current = true;
 		
 		if(lm.song_info.song != null)
-			updateSong(lm.song_info.song.rowid);
+			music_model.updateSong(lm.song_info.song.rowid, is_current);
 			
 		if(shuffle)
 			lm.setShuffleMode(LibraryManager.Shuffle.ALL);
@@ -1143,7 +1095,16 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void songEditorSaved(LinkedList<Song> songs) {
-		lm.update_songs(songs, true);
+		//lm.update_songs(songs, true);
+		stdout.printf("updating songs\n");
+		
+		var ar_songs = new ArrayList<int>();
+		foreach(Song s in songs) {
+			ar_songs.add(s.rowid);
+		}
+		
+		music_model.updateSongs(ar_songs, is_current);
+		stdout.printf("updated!\n");
 	}
 	
 	public virtual void songFileBrowseClicked() {
