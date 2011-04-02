@@ -16,8 +16,10 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
     Sequence<ValueArray> rows;
     
     Type[] _columns; // an array of the column types
-    int visible_column;
+    
+    TreeIterCompareFunc default_sort;
     int sort_column;
+    SortType sort_type;
     
     /* custom signals for custom treeview. for speed */
     public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
@@ -30,12 +32,14 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		_columns = column_types;
        rows = new Sequence<ValueArray>(null);
        
+       sort_column = 0;
+       sort_type = SortType.ASCENDING;
+       
        stamp = (int)GLib.Random.next_int();
 	}
 	
 	/** calls func on each node in model in a depth-first fashion **/
 	public void foreach(TreeModelForeachFunc func) {
-		stdout.printf("foreach\n");
 		SequenceIter s_iter = rows.get_begin_iter();
 		bool walk = true;;
 		
@@ -44,7 +48,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			
 			TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
 			
-			TreeIter iter = new TreeIter();
+			TreeIter iter = TreeIter();
 			iter.stamp = this.stamp;
 			iter.user_data = s_iter;
 			
@@ -57,10 +61,36 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets params of each id-value pair of the value of that iter **/
 	public void get (TreeIter iter, ...) {
-		if(iter.stamp != this.stamp)
+		if(iter.stamp != this.stamp || ((SequenceIter<ValueArray>)iter.user_data).is_end())
 			return;
 		
 		var args = va_list(); // now call args.arg() to poll
+		
+		while(true) {
+			int col = args.arg();
+			if(col < 0 || col >= _columns.length)
+				return;
+			
+			if(_columns[col] == typeof(int)) {
+				stdout.printf("oh hi\n");
+				int val = args.arg();
+				val = ((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_int();
+			}
+			else if(_columns[col] == typeof(string)) {
+				stdout.printf("oh hi2\n");
+				string val = args.arg();
+				val = ((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_string();
+			}
+			else if(_columns[col] == typeof(Gdk.Pixbuf)) {
+				stdout.printf("oh hi3\n");
+				Gdk.Pixbuf val = args.arg();
+				val = (Gdk.Pixbuf)((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_object();
+			}
+			else {
+				stdout.printf("unkown\n");
+				int val = args.arg();
+			}
+		}
 	}
 
 	/** Returns Type of column at index_ **/
@@ -140,12 +170,12 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 
 	/** Initializes and sets value to that at column. **/
-	public void get_value (TreeIter iter, int column, out Value value) {
+	public void get_value (TreeIter iter, int column, out Value val) {
 		if(iter.stamp != this.stamp || column < 0 || column >= _columns.length)
 			return;
 		
-		value = ((SequenceIter<ValueArray>)iter.user_data).get().get_nth(column);
-		
+		if(!((SequenceIter<ValueArray>)iter.user_data).is_end())
+			val = rows.get(((SequenceIter<ValueArray>)iter.user_data)).values[column];
 	}
 
 	/** Sets iter to point to the first child of parent. **/
@@ -218,7 +248,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			
 			va.append(s.rowid);
 			va.append(true);
-			va.append(new Value(typeof(Gdk.Pixbuf)));
+			va.append(Value(typeof(Gdk.Pixbuf)));
 			va.append(rows.get_length());
 			va.append(s.track);
 			va.append(s.title);
@@ -239,61 +269,44 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		}
 	}
     
-    
-    /** TreeSortable Interface. **/
-    
     /** Fills in sort_column_id and order with the current sort column and the order. **/
     public bool get_sort_column_id (out int sort_column_id, out SortType order) {
-        sort_column_id = 0;
-        order = SortType.ASCENDING;
+		if(sort_column_id < -2 || sort_column_id >= _columns.length)
+			return false;
+		
+        sort_column_id = sort_column;
+        order = sort_type;
         
-        return false;
+        return true;
     }
     
     /**  Returns true if the model has a default sort function. **/
     public bool has_default_sort_func () {
-        
-        return false;
+        return (default_sort != null);
     }
     
     /** Sets the default comparison function used when sorting to be sort_func. **/
     public void set_default_sort_func (owned TreeIterCompareFunc sort_func) {
-        
+        default_sort = sort_func;
     }
     
     /** Sets the current sort column to be sort_column_id. **/
     public void set_sort_column_id (int sort_column_id, SortType order) {
+		if(sort_column_id < 0 || sort_column_id >= _columns.length)
+			return;
+		
+        sort_column = sort_column_id;
+        sort_type = order;
         
+        /* now do the sorting */
+        stdout.printf("SORT NOW,RIGHT?\n");
     }
     
     /** Sets the comparison function used when sorting to be sort_func. **/
     public void set_sort_func (int sort_column_id, owned TreeIterCompareFunc sort_func) {
-        
-    }
-    
-    /** This is for filtering. Same approach as TreeModelFilter for the most part
-     * set_visible_column: sets the index of the column to use for filtering
-     * get_real_iter() : returns an iter that is relative to ALL iters, not just filtered ones
-     * filter() : The model is not filtered on visible_column_change, it is filtered on filter()
-     */
-    
-    /* Sets the column that is checked for whether or not the row is visible */
-    public void set_visible_column(int index) {
-        visible_column = index;
-    }
-    
-    /* Gets the visible column */
-    public int get_visible_column() {
-        return visible_column;
-    }
-    
-    /* If you give it an iter of filtered rows, it will return an iter of all rows */
-    public void get_overall_iter(out TreeIter real_iter, TreeIter filtered_iter) {
-        
-    }
-    
-    /* This does all the filtering. I am not sure how this works yet. */
-    public void filter() {
-        
+		if(sort_column_id < 0 || sort_column_id >= _columns.length)
+			return;
+		
+        //column_sort_funcs[sort_column_id] = sort_func;
     }
 }

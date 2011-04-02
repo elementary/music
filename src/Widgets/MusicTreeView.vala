@@ -301,14 +301,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		model = new ListStore.newv(getColumnTypes());
 		mtm = new MusicTreeModel(lm, getColumnTypes());//this is so that it compiles
-		filter = new TreeModelFilter(model, null);
+		filter = new TreeModelFilter(mtm, null);
 		sort = new TreeModelSort.with_model(filter);
 		
 		filter.set_visible_column(_columns.index_of("visible"));
 		
 		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
-		view.set_model(mtm);
+		view.set_model(sort);
 		view.set_headers_clickable(true);
 		view.set_fixed_height_mode(true);
 		view.rules_hint = true;
@@ -727,7 +727,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		//reselect songs that were selected before populateview update
 		
-		view.set_model(mtm);
+		view.set_model(sort);
 		view.thaw_child_notify();
 	}
 	
@@ -895,12 +895,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		TreeIter iter;
 		for(int i = 0; sort.get_iter_from_string(out iter, i.to_string()); ++i) {
-			int id;
-			sort.get(iter, 0, out id);
+			Value id;
+			sort.get_value(iter, 0, out id);
 			
-			lm.addToCurrent(id);
+			lm.addToCurrent(id.get_int());
 			
-			if(lm.song_info.song.rowid == id && current_song_path == null)
+			if(lm.song_info.song.rowid == id.get_int() && current_song_path == null)
 				lm.current_index = i;
 		}
 		

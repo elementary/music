@@ -32,7 +32,7 @@ def configure(ctx):
 	ctx.check_tool('compiler_cc gnu_dirs')
 	
 	ctx.check_tool('vala')
-	if ctx.env['VALAC_VERSION'][1] < 10 or ctx.env['VALAC_VERSION'][2] < 6:
+	if ctx.env['VALAC_VERSION'][1] < 11 or ctx.env['VALAC_VERSION'][2] < 6:
          print('valac >= 0.11.6 required')
          sys.exit(1)
          
