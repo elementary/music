@@ -603,7 +603,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(search == null || search == "")
 			return songs_to_search;
 		
-		var rv = new ArrayList<int>();
+		var rv = new LinkedList<int>();
 		
 		foreach(int i in songs_to_search) {
 			Song s = song_from_id(i);

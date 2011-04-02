@@ -268,6 +268,47 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			SequenceIter<ValueArray> added = rows.append(va.copy());
 		}
 	}
+	
+	public void set(TreeIter iter, ...) {
+		if(iter.stamp != this.stamp)
+			return;
+		
+		var args = va_list(); // now call args.arg() to poll
+		
+		while(true) {
+			int col = args.arg();
+			if(col < 0 || col >= _columns.length)
+				return;
+			
+			if(_columns[col] == typeof(int)) {
+				stdout.printf("set oh hi\n");
+				int val = args.arg();
+				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_int(val);
+			}
+			else if(_columns[col] == typeof(string)) {
+				stdout.printf("set oh hi2\n");
+				string val = args.arg();
+				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_string(val);
+			}
+			else if(_columns[col] == typeof(Gdk.Pixbuf)) {
+				stdout.printf("set oh hi3\n");
+				Gdk.Pixbuf val = args.arg();
+				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_object(val);
+			}
+			else {
+				stdout.printf("invalid type\n");
+				return;
+			}
+		}
+	}
+	
+	public void remove(TreeIter iter) {
+		if(iter.stamp != this.stamp)
+			return;
+		
+		row_deleted(new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string()));
+		rows.remove((SequenceIter<ValueArray>)iter.user_data);
+	}
     
     /** Fills in sort_column_id and order with the current sort column and the order. **/
     public bool get_sort_column_id (out int sort_column_id, out SortType order) {

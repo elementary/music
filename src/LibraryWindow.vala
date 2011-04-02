@@ -871,9 +871,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		foreach(Song s in new_songs) {
+		stdout.printf("TODO: add all new songs from import to music treeview\n");
+		/*foreach(Song s in new_songs) {
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
-		}
+		}*/
 		
 		if(searchField.text != "" && searchField.text != searchField.hint_string) {
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
@@ -894,9 +895,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		foreach(Song s in new_songs) {
+		stdout.printf("TODO: add all new songs from import to music treeview\n");
+		/*foreach(Song s in new_songs) {
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
-		}
+		}*/
 		
 		if(searchField.text != "" && searchField.text != searchField.hint_string) {
 			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
