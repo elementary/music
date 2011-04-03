@@ -489,7 +489,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void searchFieldChanged() {
-		if(is_current_view) {
+		if(is_current_view && lw.searchField.get_text().length != 1) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
 				if(lw.searchField.get_text().down() == timeout_search.poll_tail() && lw.searchField.get_text().down() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
@@ -639,56 +639,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
-	public Type[] getColumnTypes() {
-		Type[] types = new Type[lm.dbm.COLUMN_COUNT];
-		
-		int index = 0;
-		foreach(TreeViewColumn tvc in view.get_columns()) {
-			if(tvc.title == "id")
-				types[index] = typeof(int);
-			else if(tvc.title == "visible")
-				types[index] = typeof(bool);
-			else if(tvc.title == " ")
-				types[index] = typeof(Gdk.Pixbuf);
-			else if(tvc.title == "#")
-				types[index] = typeof(int);
-			else if(tvc.title == "Track")
-				types[index] = typeof(int);
-			else if(tvc.title == "Title")
-				types[index] = typeof(string);
-			else if(tvc.title == "Length")
-				types[index] = typeof(string);
-			else if(tvc.title == "Artist")
-				types[index] = typeof(string);
-			else if(tvc.title == "Album")
-				types[index] = typeof(string);
-			else if(tvc.title == "Genre")
-				types[index] = typeof(string);
-			else if(tvc.title == "Year")
-				types[index] = typeof(int);
-			else if(tvc.title == "Bitrate")
-				types[index] = typeof(int);
-			else if(tvc.title == "Rating")
-				types[index] = typeof(int);
-			else if(tvc.title == "Plays")
-				types[index] = typeof(int);
-			else if(tvc.title == "Skips")
-				types[index] = typeof(int);
-			else if(tvc.title == "Date Added")
-				types[index] = typeof(string);
-			else if(tvc.title == "Last Played")
-				types[index] = typeof(string);
-			else if(tvc.title == "BPM")
-				types[index] = typeof(int);
-			
-			++index;
-		}
-		
-		//this.model.set_column_types(types);
-		
-		return types;
-	}
-	
 	public void populateView(Collection<int> songs, bool is_search) {
 		view.freeze_child_notify();
 		view.set_model(null);
@@ -740,11 +690,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {
-		ArrayList<int> temp = new ArrayList<int>();
-		foreach(int id in ids) {
-			temp.add(id);
-		}
-		music_model.updateSongs(temp, is_current);
+		
+		music_model.updateSongs(ids, is_current);
 		
 		//since a song may have changed location, reset current
 		if(is_current)

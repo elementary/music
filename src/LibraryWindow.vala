@@ -131,8 +131,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).scrollToCurrent();
 					
 					topDisplay.change_value(ScrollType.NONE, position);
+						
 					return false;
 				});
+			}
+			else {
+				/* don't show info panel if nothing playing */
+				infoPanel.set_visible(false);
 			}
 			
 			// rescan on startup
@@ -561,7 +566,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		updateCurrentSong();
+		
 		infoPanel.updateSong(lm.song_info.song.rowid);
+		if(settings.getMoreVisible())
+			infoPanel.set_visible(true);
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {
