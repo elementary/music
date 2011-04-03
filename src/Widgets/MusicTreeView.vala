@@ -711,6 +711,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
 		sort.set_sort_func(_columns.index_of("Album"), albumCompareFunc);
 		sort.set_default_sort_func(genericCompareFunc);
+		
+		if(lm.song_info.song != null)
+			music_model.updateSong(lm.song_info.song.rowid, is_current);
+		
 		view.set_model(sort);
 		view.thaw_child_notify();
 	}
