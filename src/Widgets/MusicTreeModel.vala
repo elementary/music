@@ -331,7 +331,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 		updateSongs(temp, is_current);
 	}
 	
-	public void updateSongs(owned ArrayList<int> rowids, bool is_current) {
+	public void updateSongs(owned Collection<int> rowids, bool is_current) {
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -376,7 +376,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 		}
 	}
 	
-	public void set(TreeIter iter, ...) {
+	public new void set(TreeIter iter, ...) {
 		if(iter.stamp != this.stamp)
 			return;
 		
@@ -412,5 +412,27 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 		var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
 		rows.remove((SequenceIter<ValueArray>)iter.user_data);
 		row_deleted(path);
+	}
+	
+	public void removeSongs(Collection<int> rowids) {
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(rowids.contains(rows.get(s_iter).values[0].get_int())) {
+				int rowid = rows.get(s_iter).values[0].get_int();
+				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+					
+				rows.remove(s_iter);
+					
+				row_deleted(path);
+				rowids.remove(rowid);
+				--index;
+			}
+			
+			if(rowids.size <= 0)
+				return;
+		}
 	}
 }

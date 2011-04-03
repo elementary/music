@@ -715,30 +715,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.thaw_child_notify();
 	}
 	
-	public bool removeSong(int i) {
-		if(!_rows.has_key(i))
-			return false;
-		
-		stdout.printf("has key %d\n", i);
-		
-		TreeIter item;
-		TreePath path = _rows.get(i).get_path();
-		
-		if(path == null) {
-			_rows.unset(i);
-			stdout.printf("path was invalid.. unsetting row %d\n", i);
-			return false;
-		}
-		
-		music_model.get_iter(out item, path);
-		music_model.remove(item);
-		
-		_rows.unset(i);
-		
-		stdout.printf("Removed song %s by %s from model************\n", lm.song_from_id(i).title, lm.song_from_id(i).artist);
-		return true;
-	}
-	
 	public virtual void current_cleared() {
 		this.is_current = false;
 		
@@ -773,10 +749,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual void songs_removed(LinkedList<int> ids) {
 		removing_songs = true;
-		foreach(int id in ids) {
-			//stdout.printf("removing id %d\n", id);
-			removeSong(id);
-		}
+		music_model.removeSongs(ids);
 		removing_songs = false;
 	}
 	
@@ -1190,32 +1163,24 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		
 		LinkedList<Song> toRemove = new LinkedList<Song>();
+		LinkedList<int> toRemoveIDs = new LinkedList<int>();
 		TreeModel temp;
 		
-		/* reverse list of selected rows so when we remove multiple rows
-		 * our treepaths aren't messed up
-		 */
-		GLib.List<TreePath> paths = new GLib.List<TreePath>();
 		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			paths.prepend(path);
-		}
-		
-		foreach(TreePath path in paths) {
 			TreeIter item;
 			temp.get_iter(out item, path);
 			
 			int id;
 			temp.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
-			stdout.printf("Song is %s by %s\n", s.title, s.artist);
+			
+			toRemoveIDs.add(id);
 			
 			if(hint == Hint.QUEUE) {
 				lm.unqueue_song_by_id(s.rowid);
-				removeSong(id);
 			}
 			else if(hint == Hint.PLAYLIST) {
 				lm.playlist_from_id(relative_id).removeSong(s);
-				removeSong(id);
 			}
 			else if(hint == Hint.MUSIC) {
 				toRemove.add(s);
@@ -1224,6 +1189,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		if(hint == Hint.MUSIC)
 			lm.remove_songs(toRemove);
+			
+		music_model.removeSongs(toRemoveIDs);
 	}
 	
 	public virtual void songRateSong0Clicked() {
