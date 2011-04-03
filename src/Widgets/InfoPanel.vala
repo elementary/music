@@ -19,6 +19,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		lw = lww;
 		
 		buildUI();
+		
+		lm.songs_updated.connect(songs_updated);
 	}
 	
 	private void buildUI() {
@@ -141,6 +143,11 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	public virtual void ratingChanged(int new_rating) {
 		lm.song_from_id(id).rating = new_rating;
 		lm.update_song(lm.song_from_id(id), false);
+	}
+	
+	public virtual void songs_updated(Collection<int> ids) {
+		if(ids.contains(lm.song_info.song.rowid))
+			rating.set_rating(lm.song_info.song.rating);
 	}
 	
 	public virtual void resized(Gdk.Rectangle rectangle) {

@@ -206,7 +206,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in to_use) {
-			if(tvc.title == "Bitrate" || tvc.title == "Year" || tvc.title == "#" || tvc.title == "Track" || tvc.title == "Plays" || tvc.title == "Skips") {
+			if(tvc.title == "Bitrate" || tvc.title == "Year" || tvc.title == "#" || tvc.title == "Track" || tvc.title == "Length" || tvc.title == "Plays" || tvc.title == "Skips") {
 				view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), intelligentTreeViewFiller);
 				
 				view.get_column(index).resizable = true;
@@ -315,7 +315,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
 		sort.set_sort_func(_columns.index_of("Album"), albumCompareFunc);
 		sort.set_default_sort_func(genericCompareFunc);
-		
 		
 		// allow selecting multiple rows
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
@@ -576,6 +575,15 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			else
 				((CellRendererText)cell).text = val.to_string() + " kbps";
 		}
+		else if(tvc.title == "Length") {
+			int val;
+			tree_model.get(iter, tvc.sort_column_id, out val);
+			
+			if(val <= 0)
+				((CellRendererText)cell).text = "";
+			else
+				((CellRendererText)cell).text = (val / 60).to_string() + ":" + (val % 60).to_string();
+		}
 	}
 	
 	public void ratingsCellDataFunction(CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
@@ -700,6 +708,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		// restore song selection
 		
 		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
+		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
+		sort.set_sort_func(_columns.index_of("Album"), albumCompareFunc);
+		sort.set_default_sort_func(genericCompareFunc);
 		view.set_model(sort);
 		view.thaw_child_notify();
 	}
@@ -736,8 +747,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void song_played(int id, int old) {
-		if(old != -1)
+		if(old != -1) {
 			music_model.updateSong(old, is_current);
+			music_model.turnOffPixbuf(old);
+		}
 		
 		if(!scrolled_recently) {
 			scrollToCurrent();

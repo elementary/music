@@ -301,6 +301,29 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 		}
 	}
 	
+	public void turnOffPixbuf(int id) {
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(id == rows.get(s_iter).values[0].get_int()) {
+				Song s = lm.song_from_id(id);
+				
+				rows.get(s_iter).values[_columns.index_of(" ")] = Value(typeof(Gdk.Pixbuf));;
+				
+				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+				
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = s_iter;
+				
+				row_changed(path, iter);
+				return;
+			}
+		}
+	}
+	
 	// just a convenience function
 	public void updateSong(int id, bool is_current) {
 		ArrayList<int> temp = new ArrayList<int>();
@@ -311,7 +334,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 	public void updateSongs(owned ArrayList<int> rowids, bool is_current) {
 		SequenceIter s_iter = rows.get_begin_iter();
 		
-		bool emit_signal = false;
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
@@ -319,14 +341,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 				int rowid = rows.get(s_iter).values[0].get_int();
 				Song s = lm.song_from_id(rowid);
 				
-				// this is to tell if we should emit row_changed. only do so if pixbuf changed
-				if(rowid == lm.song_info.song.rowid)
-					emit_signal = true;
-				else
-					emit_signal = false;
-				
 				rows.get(s_iter).values[_columns.index_of("visible")] = true;
-				rows.get(s_iter).values[_columns.index_of(" ")] = (lm.song_info.song != null && rowid == lm.song_info.song.rowid && is_current) ? _playing : null;
+				rows.get(s_iter).values[_columns.index_of(" ")] = (lm.song_info.song != null && rowid == lm.song_info.song.rowid && is_current) ? _playing : Value(typeof(Gdk.Pixbuf));
 				rows.get(s_iter).values[_columns.index_of("Track")] = s.track;
 				rows.get(s_iter).values[_columns.index_of("Title")] = s.title;
 				rows.get(s_iter).values[_columns.index_of("Length")] = s.length;
@@ -342,17 +358,17 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 				rows.get(s_iter).values[_columns.index_of("Last Played")] = s.last_played;
 				rows.get(s_iter).values[_columns.index_of("BPM")] = s.bpm;
 				
+				if(rowid == lm.song_info.song.rowid) {
+					TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+				
+					TreeIter iter = TreeIter();
+					iter.stamp = this.stamp;
+					iter.user_data = s_iter;
+					
+					row_changed(path, iter);
+				}
+				
 				rowids.remove(rowid);
-			}
-			
-			if(emit_signal) {
-				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
-				
-				TreeIter iter = TreeIter();
-				iter.stamp = this.stamp;
-				iter.user_data = s_iter;
-				
-				row_changed(path, iter);
 			}
 			
 			if(rowids.size <= 0)

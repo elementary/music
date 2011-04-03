@@ -55,6 +55,7 @@ public class BeatBox.RatingWidget : EventBox {
 			new_rating = 0;
 		
 		updateRating(new_rating);
+		set_rating(new_rating);
 		
 		return true;
 	}
