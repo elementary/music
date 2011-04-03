@@ -334,9 +334,9 @@ public class BeatBox.SideTreeView : TreeView {
 			
 			string fancy_size = "";
 			if(total_mbs < 1000)
-				fancy_size = ((float)(total_mbs)).to_string() + " MB's";
+				fancy_size = ((float)(total_mbs)).to_string() + " MB";
 			else 
-				fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB's";
+				fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
 			
 			lw.setStatusBarText(count.to_string() + " items, " + fancy + ", " + fancy_size);
 		}

@@ -162,7 +162,6 @@ public class BeatBox.FileOperator : Object {
 		Song s = new Song(file_path);
 		TagLib.File tag_file;
 		
-		//db_progress("Adding file " + file_path, 0.0);
 		tag_file = new TagLib.File(file_path);
 		
 		if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
@@ -178,6 +177,10 @@ public class BeatBox.FileOperator : Object {
 				s.length = tag_file.audioproperties.length;
 				s.samplerate = tag_file.audioproperties.samplerate;
 				s.date_added = (int)time_t();
+				
+				/* get the size and convert to MB */
+				s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+				
 			}
 			finally {
 				if(s.title == null || s.title == "") {

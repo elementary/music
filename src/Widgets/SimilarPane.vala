@@ -145,7 +145,7 @@ public class BeatBox.SimilarPane : VBox {
 	
 	public virtual void transferPlaybackClicked() {
 		//set the similar songs to current, hide button, set current_index
-		similars.setAsCurrentList(null);
+		similars.setAsCurrentList(0);
 		
 		transferPlayback.hide();
 	}

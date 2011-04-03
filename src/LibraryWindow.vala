@@ -124,7 +124,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				Timeout.add(200, () => {
 					lm.playSong(s.rowid);
 					
-					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(null);
+					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(0);
 					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL)
 						lm.setShuffleMode(LibraryManager.Shuffle.ALL);
 					
@@ -677,11 +677,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			//set current songs by current view
 			Widget w = sideTree.getSelectedWidget();
 			if(w is MusicTreeView) {
-				((MusicTreeView)w).setAsCurrentList("0");
+				((MusicTreeView)w).setAsCurrentList(1);
 			}
 			else {
 				w = sideTree.getWidget(sideTree.library_music_iter);
-				((MusicTreeView)w).setAsCurrentList("0");
+				((MusicTreeView)w).setAsCurrentList(1);
 			}
 			
 			lm.playing = true;

@@ -25,7 +25,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		height_request = (enabled.height > disabled.height) ? enabled.height : disabled.height;
 		
 		clicked_index = 0;
-		previous_index = 1;
+		previous_index = 0;
 		
 		// make the background white
 		Gdk.Color c = Gdk.Color();
@@ -67,19 +67,12 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 				else
 					setOption(0);
 				
-				/*clicked_index = items.index_of(item);
-				option_changed(clicked_index);
-				
-				foreach(CheckMenuItem cmi in items) {
-					if(cmi != item)
-						cmi.set_active(false);
-				}
-				*/
 				toggling = false;
 			}
 		});
 		
 		item.show();
+		++previous_index; // my lazy way of making sure the bottom item is the default on/off on click
 		
 		return items.size - 1;
 	}

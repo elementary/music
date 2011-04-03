@@ -224,6 +224,23 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 	public void unref_node (TreeIter iter) {}
     
     /** Some actual functions to use this model **/
+    public TreeIter? getIterFromRowid(int id) {
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(id == rows.get(s_iter).values[0].get_int()) {
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = s_iter;
+				
+				return iter;
+			}
+		}
+		
+		return null;
+	}
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
@@ -435,4 +452,5 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 				return;
 		}
 	}
+	
 }
