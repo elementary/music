@@ -577,9 +577,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		rv.artist = artist;
 		
 		lock (_songs) {
-			foreach(Song s in _songs.values) {
-				if(s.title.down() == title.down() && s.artist.down() == artist.down())
-					return s;
+			var it = _songs.map_iterator();
+			for (var has_next = it.first(); has_next; has_next = it.next ()) {
+				if(((Song)it.get_value()).title.down() == title.down() && ((Song)it.get_value()).artist.down() == artist.down())
+					return ((Song)it.get_value());
 			}
 		}
 		
