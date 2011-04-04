@@ -534,7 +534,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		LinkedList<int> rv = new LinkedList<int>();
 		
 		foreach(Song s in updates) {
-			_songs.set(s.rowid, s);
+			/*_songs.set(s.rowid, s);*/
 			
 			rv.add(s.rowid);
 		}
@@ -577,10 +577,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		rv.artist = artist;
 		
 		lock (_songs) {
-			var it = _songs.map_iterator();
-			for (var has_next = it.first(); has_next; has_next = it.next ()) {
-				if(((Song)it.get_value()).title.down() == title.down() && ((Song)it.get_value()).artist.down() == artist.down())
-					return ((Song)it.get_value());
+			foreach(Song s in _songs.values) {
+				if(s.title.down() == title.down() && s.artist.down() == artist.down())
+					return s;
 			}
 		}
 		
