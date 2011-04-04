@@ -44,7 +44,7 @@ public class BeatBox.SimilarPane : VBox {
 		
 		errorLabel.xalign = 0.5f;
 		errorLabel.justify = Justification.CENTER;
-		errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Song View</span>\nIn this view, BeatBox will automatically find songs similar to the one you are playing. You can then start playing those songs, or save them for later.");
+		errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Song View</span>\nIn this view, BeatBox will automatically find songs similar to the one you are playing.\nYou can then start playing those songs, or save them for later.");
 		
 		/* set up toolbar */
 		ToolItem toolInfoBin = new ToolItem();

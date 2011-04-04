@@ -72,7 +72,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		});
 		
 		item.show();
-		++previous_index; // my lazy way of making sure the bottom item is the default on/off on click
+		previous_index = items.size - 1; // my lazy way of making sure the bottom item is the default on/off on click
 		
 		return items.size - 1;
 	}

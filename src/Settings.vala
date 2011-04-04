@@ -125,7 +125,7 @@ public class BeatBox.Settings : Object {
 	}
 	
 	public int getMoreWidth() {
-		return getInt(MORE_WIDTH, 200);
+		return getInt(MORE_WIDTH, 150);
 	}
 	
 	public bool getMoreVisible() {

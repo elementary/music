@@ -278,8 +278,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 			for(int i = 0;i < _columns.size; ++i) {
 				if(_columns.get(i) == "id")
 					va.append(s.rowid);
-				else if(_columns.get(i) == "visible")
-					va.append(true);
 				else if(_columns.get(i) == " ")
 					va.append(Value(typeof(Gdk.Pixbuf)));
 				else if(_columns.get(i) == "#")
@@ -358,7 +356,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 				int rowid = rows.get(s_iter).values[0].get_int();
 				Song s = lm.song_from_id(rowid);
 				
-				rows.get(s_iter).values[_columns.index_of("visible")] = true;
 				rows.get(s_iter).values[_columns.index_of(" ")] = (lm.song_info.song != null && rowid == lm.song_info.song.rowid && is_current) ? _playing : Value(typeof(Gdk.Pixbuf));
 				rows.get(s_iter).values[_columns.index_of("Track")] = s.track;
 				rows.get(s_iter).values[_columns.index_of("Title")] = s.title;

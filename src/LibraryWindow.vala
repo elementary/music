@@ -448,8 +448,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		mtv.show_all();
-		//sideTree.get_selection().unselect_all();
-		//sideTree.get_selection().select_iter(item);
 	}
 	
 	public void updateSensitivities() {

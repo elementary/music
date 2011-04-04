@@ -3,7 +3,7 @@ using TagLib;
 using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
-	public const int COLUMN_COUNT = 18;
+	public const int COLUMN_COUNT = 17;
 	
 	SQLHeavy.Database _db;
 	
@@ -33,7 +33,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			initialize_columns();
 			_db.execute("CREATE TABLE playlists (`name` TEXT, `songs` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
 			_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
-			_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT)");
+			_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'file_size' INT)");
 			_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
 			_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
 			_db.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'url' TEXT, 'duration' INT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT)");
@@ -177,12 +177,6 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			/* add all columns to db */
 			//id
 			query.set_string(":title", "id");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 10);
-			query.execute();
-			
-			//visible (for search)
-			query.set_string(":title", "visible");
 			query.set_int(":visible", 0);
 			query.set_int(":width", 10);
 			query.execute();
@@ -346,6 +340,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				s.skip_count = results.fetch_int(14);
 				s.date_added = results.fetch_int(15);
 				s.last_played = results.fetch_int(16);
+				s.file_size = results.fetch_int(17);
 				
 				rv.add(s);
 			}
@@ -361,7 +356,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `songs`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`) VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed);");
+			query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size') VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size);");
 			
 			foreach(Song s in songs) {
 				query.set_string(":file", s.file);
@@ -380,6 +375,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				query.set_int(":skipcount", s.skip_count);
 				query.set_int(":dateadded", s.date_added);
 				query.set_int(":lastplayed", s.last_played);
+				query.set_int(":file_size", s.file_size);
 				
 				query.execute();
 			}
@@ -414,6 +410,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_int(":skipcount", s.skip_count);
 			query.set_int(":dateadded", s.date_added);
 			query.set_int(":lastplayed", s.last_played);
+			query.set_int(":file_size", s.file_size);
 			
 			if(saving)
 				query.set_int(":rowid", s.rowid);
@@ -445,7 +442,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	public void update_songs(Gee.Collection<Song> songs) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `songs` SET file=:file, title=:title, artist=:artist, album=:album, genre=:genre, comment=:comment, year=:year, track=:track, bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed WHERE rowid=:rowid");
+			Query query = transaction.prepare("UPDATE `songs` SET file=:file, title=:title, artist=:artist, album=:album, genre=:genre, comment=:comment, year=:year, track=:track, bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed file_size=:file_size WHERE rowid=:rowid");
 			
 			foreach(Song s in songs) {
 				if(s.rowid != 0)
@@ -468,6 +465,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				query.set_int(":skipcount", s.skip_count);
 				query.set_int(":dateadded", s.date_added);
 				query.set_int(":lastplayed", s.last_played);
+				query.set_int(":file_size", s.file_size);
 				
 				query.execute();
 			}

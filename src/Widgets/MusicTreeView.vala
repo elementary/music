@@ -219,13 +219,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				if(is_initial) {
 					if(hint == Hint.MUSIC) {
 						if(tvc.title == "#")
-							view.get_column(index).visible = false;
+							columnNumber.active = false;
 						else if(tvc.title == "Track")
 							view.get_column(index).visible = true;
 					}
 					else if(hint == Hint.SIMILAR) {
 						if(tvc.title == "#")
-							view.get_column(index).visible = true;
+							view.get_column(index).visible = false;
 						else if(tvc.title == "Track")
 							view.get_column(index).visible = false;
 					}
@@ -580,7 +580,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			if(val <= 0)
 				((CellRendererText)cell).text = "";
 			else
-				((CellRendererText)cell).text = (val / 60).to_string() + ":" + (val % 60).to_string();
+				((CellRendererText)cell).text = (val / 60).to_string() + ":" + (((val % 60) >= 10) ? (val % 60).to_string() : ("0" + (val % 60).to_string()));
 		}
 	}
 	
@@ -654,18 +654,17 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		// restore song selection
 		
-		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
 		sort.set_sort_func(_columns.index_of("Album"), albumCompareFunc);
 		sort.set_default_sort_func(genericCompareFunc);
+		
+		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
 		if(lm.song_info.song != null)
 			music_model.updateSong(lm.song_info.song.rowid, is_current);
 		
 		view.set_model(sort);
-		
 		scrollToCurrent();
-		
 		view.thaw_child_notify();
 	}
 	

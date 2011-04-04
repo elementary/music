@@ -170,7 +170,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void set_music_folder(string folder) {
 		if(!doing_file_operations) {
 			doing_file_operations = true;
-			progress_notification("Importing music from " + folder + ". This may take a while", 0.0);
+			progress_notification("Importing music from <b>" + folder + "</b>. This may take a while", 0.0);
 			
 			settings.setMusicFolder(folder);
 			try {
@@ -204,7 +204,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			add_song(s);
 		}
 		
-		progress_notification("Populating list...", 0.0);
+		progress_notification("<b>Populating list...</b>", 0.0);
 		
 		Idle.add( () => { 
 			save_songs();
@@ -220,7 +220,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void add_files_to_library(LinkedList<string> files) {
 		if(!doing_file_operations) {
 			doing_file_operations = true;
-			progress_notification("Adding files to library. This may take a while", 0.0);
+			progress_notification("Adding files to library. This may take a while...", 0.0);
 			
 			temp_add_files = files;
 			try {
@@ -251,7 +251,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		fo.resetProgress(new_songs.size);
 		
 		if(settings.getCopyImportedMusic())
-			progress_notification("<b>Copying</b> files to <b>Music Folder</b>", 0.0);
+			progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 		
 		int progress = 0;
 		foreach(Song s in new_songs) {
@@ -280,7 +280,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void add_folder_to_library(string folder) {
 		if(!doing_file_operations) {
 			doing_file_operations = true;
-			progress_notification("Adding music from " + folder + " to library. This may take a while", 0.0);
+			progress_notification("Adding music from <b>" + folder + "</b> to library. This may take a while...", 0.0);
 			
 			temp_add_folder = folder;
 			try {
@@ -312,7 +312,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		fo.resetProgress(new_songs.size);
-		progress_notification("<b>Copying</b> files to <b>Music Folder</b>", 0.0);
+		progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 		int progress = 0;
 		foreach(Song s in new_songs) {
 			s.rowid = index++;
@@ -340,7 +340,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void rescan_music_folder() {
 		if(!doing_file_operations) {
 			doing_file_operations = true;
-			progress_notification("Rescanning music for changes. This may take a while", 0.0);
+			progress_notification("Rescanning music for changes. This may take a while...", 0.0);
 			
 			try {
 					Thread.create<void*>(rescan_music_thread_function, false);
