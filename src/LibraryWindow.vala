@@ -556,6 +556,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				
 				if(notify_pix != null)
 					notification.set_image_from_pixbuf(notify_pix);
+				else
+					notification.set_image_from_pixbuf(null);
 				
 				notification.show();
 				notification.set_timeout(5000);
@@ -857,7 +859,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			notification.close();
 			if(!has_toplevel_focus) {
 				notification.update("Import Complete", "BeatBox has imported your library", "beatbox");
-				notification.set_image_from_pixbuf(render_icon("beatbox", IconSize.DIALOG, null));
+				
+				Gdk.Pixbuf my_pix = render_icon("beatbox", IconSize.DIALOG, null);
+				
+				if(my_pix != null)
+					notification.set_image_from_pixbuf(my_pix);
 				
 				notification.show();
 				notification.set_timeout(5000);
