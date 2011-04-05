@@ -556,8 +556,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				
 				if(notify_pix != null)
 					notification.set_image_from_pixbuf(notify_pix);
-				else
-					notification.set_image_from_pixbuf(null);
+				else {
+					/* create blank pixbuf so we don't show old album art */
+					Gdk.Pixbuf blank = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, width_request, height_request);
+					blank.fill((uint) 0xffffff00);
+					notification.set_image_from_pixbuf(blank);
+				}
 				
 				notification.show();
 				notification.set_timeout(5000);
