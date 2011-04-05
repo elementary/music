@@ -548,12 +548,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				notification.set_timeout(1);
 				notification.update(lm.song_from_id(i).title, lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album, "");
 				
-				if(lm.get_album_location(i) != null) {
-					notification.set_image_from_pixbuf(new Gdk.Pixbuf.from_file(lm.get_album_location(i)));
-				}
-				else {
-					notification.set_image_from_pixbuf(render_icon("beatbox", IconSize.DIALOG, null));
-				}
+				Gdk.Pixbuf notify_pix;
+				if(lm.get_album_location(i) != null)
+					notify_pix = new Gdk.Pixbuf.from_file(lm.get_album_location(i));
+				else
+					notify_pix = render_icon("beatbox", IconSize.DIALOG, null);
+				
+				if(notify_pix != null)
+					notification.set_image_from_pixbuf(notify_pix);
 				
 				notification.show();
 				notification.set_timeout(5000);

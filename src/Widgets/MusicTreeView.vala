@@ -4,6 +4,7 @@ using Gtk;
 public class BeatBox.MusicTreeView : ScrolledWindow {
 	private BeatBox.LibraryManager lm;
 	private BeatBox.LibraryWindow lw;
+	private BeatBox.SortHelper sh;
 	private TreeView view;
 	private MusicTreeModel music_model; // this is always full of songs, for quick unsearching
 	private TreeModelSort sort; //one to use.
@@ -95,6 +96,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, Hint the_hint, int id) {
 		lm = lmm;
 		lw = lww;
+		sh = new SortHelper(lm);
 		
 		_songs = new LinkedList<int>();
 		_columns = new LinkedList<string>();
@@ -310,9 +312,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.button_release_event.connect(viewClickRelease);
 		view.columns_changed.connect(viewColumnsChanged);
 		
-		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
-		sort.set_sort_func(_columns.index_of("Album"), albumCompareFunc);
-		sort.set_default_sort_func(genericCompareFunc);
+		sort.set_sort_func(_columns.index_of("Artist"), sh.artistCompareFunc);
+		sort.set_sort_func(_columns.index_of("Album"), sh.albumCompareFunc);
 		
 		// allow selecting multiple rows
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
@@ -436,54 +437,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
         this.view.drag_end.connect(onDragEnd);
 		this.vadjustment.value_changed.connect(viewScroll);
 		lw.searchField.changed.connect(searchFieldChanged);
-	}
-	
-	/* A custom sort function for the artist column. Considers album name and track */
-	public int artistCompareFunc (TreeModel model, TreeIter a, TreeIter b) {
-		int a_id, b_id;
-		Song a_song, b_song;
-		
-		model.get(a, 0, out a_id);
-		model.get(b, 0, out b_id);
-		
-		a_song = lm.song_from_id(a_id);
-		b_song = lm.song_from_id(b_id);
-		
-		if(a_song.artist.down() == b_song.artist.down() && a_song.album.down() == b_song.album.down() && a_song.track == b_song.track)
-			return (a_song.file.down() > b_song.file.down()) ? 1 : -1;
-		else if(a_song.artist.down() == b_song.artist.down() && a_song.album.down() == b_song.album.down())
-			return a_song.track - b_song.track;
-		else if(a_song.artist.down() == b_song.artist.down())
-			return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
-		else
-			return (a_song.artist.down() > b_song.artist.down()) ? 1 : -1;
-	}
-	
-	public int albumCompareFunc (TreeModel model, TreeIter a, TreeIter b) {
-		int a_id, b_id;
-		Song a_song, b_song;
-		
-		model.get(a, 0, out a_id);
-		model.get(b, 0, out b_id);
-		
-		a_song = lm.song_from_id(a_id);
-		b_song = lm.song_from_id(b_id);
-		
-		if(a_song.album.down() == b_song.album.down() && a_song.track == b_song.track)
-			return (a_song.file.down() > b_song.file.down()) ? 1 : -1;
-		else if(a_song.album.down() == b_song.album.down())
-			return a_song.track - b_song.track;
-		else
-			return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
-	}
-	
-	public int genericCompareFunc(TreeModel model, TreeIter a, TreeIter b) {
-		int a_id, b_id;
-		
-		model.get(a, _columns.index_of("#"), out a_id);
-		model.get(b, _columns.index_of("#"), out b_id);
-		
-		return (a_id > b_id) ? 1 : -1;
 	}
 	
 	public virtual void searchFieldChanged() {
@@ -654,9 +607,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		// restore song selection
 		
-		sort.set_sort_func(_columns.index_of("Artist"), artistCompareFunc);
-		sort.set_sort_func(_columns.index_of("Album"), albumCompareFunc);
-		sort.set_default_sort_func(genericCompareFunc);
+		sort.set_sort_func(_columns.index_of("Artist"), sh.artistCompareFunc);
+		sort.set_sort_func(_columns.index_of("Album"), sh.albumCompareFunc);
 		
 		sort.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
