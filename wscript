@@ -50,10 +50,18 @@ def configure(ctx):
 	check_pkg(ctx, 'unique-1.0', 'UNIQUE', '0.9')
 
 def build(bld):
+	#install basic desktop file
 	bld.install_files ('${PREFIX}/share/applications', '/data/' + APPNAME + '.desktop')
 	
-	bld.install_files ('${PREFIX}/share/icons/hicolor/scalable/apps',
-                       '/images/beatbox.svg')
+	#install icons
+	bld.install_files('${PREFIX}/share/icons/hicolor/scalable/apps', '/images/icons/128x128/apps/beatbox.svg');
+   	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/apps', '/images/icons/16x16/apps/beatbox.svg');
+   	bld.install_files('${PREFIX}/share/icons/hicolor/22x22/apps', '/images/icons/22x22/apps/beatbox.svg');
+   	bld.install_files('${PREFIX}/share/icons/hicolor/24x24/apps', '/images/icons/24x24/apps/beatbox.svg');
+   	bld.install_files('${PREFIX}/share/icons/hicolor/32x32/apps', '/images/icons/32x32/apps/beatbox.svg');
+   	bld.install_files('${PREFIX}/share/icons/hicolor/48x48/apps', '/images/icons/48x48/apps/beatbox.svg');
+   	bld.install_files('${PREFIX}/share/icons/hicolor/64x64/apps', '/images/icons/64x64/apps/beatbox.svg');
+   	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/apps', '/images/icons/128x128/apps/beatbox.svg');
                        
 	bld.program(
 		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0',
