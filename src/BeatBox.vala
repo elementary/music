@@ -47,6 +47,10 @@ public class BeatBox.Beatbox : GLib.Object {
 		} else {
 			Gdk.threads_init();
 			
+			for(int i = 0; i < GLib.Environment.get_system_data_dirs ().length; ++i) {
+				stdout.printf("%d:%s\n", i, GLib.Environment.get_system_data_dirs ()[i]);
+			}
+			
 			//check for .desktop file
 			/*var desktop_file = File.new_for_path("/usr/share/applications/beatbox.desktop");
 			
@@ -68,7 +72,7 @@ public class BeatBox.Beatbox : GLib.Object {
 			_player = new BeatBox.StreamPlayer(args);
 			
 			stdout.printf("Creating database manager\n");
-			dbm = new DataBaseManager(true, true);
+			dbm = new DataBaseManager();
 			
 			stdout.printf("Loading database\n");
 			dbm.load_db();

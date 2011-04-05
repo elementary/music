@@ -4,13 +4,14 @@ using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
 	public const int COLUMN_COUNT = 17;
+	public const int USER_VERSION = 0;
+	GLib.File beatbox_db;
+	GLib.File beatbox_folder;
 	
 	SQLHeavy.Database _db;
 	
 	Transaction transaction;// the current sql transaction
 	Query query; //current query to do while doing mass transactions
-	bool write;
-	bool create;
 	
 	int index;
 	int item_count;
@@ -20,71 +21,68 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * @param write True if has write access
 	 * @param create True to have create access
 	 */
-	public DataBaseManager(bool write, bool create) {
-		this.write = write;
-		this.create = create;
-	}
-	
-	/** Used on the first run. Creates all the tables and initializes them
-	 */
-	public void create_db() {
+	public DataBaseManager() {
 		try {
-			_db.execute("CREATE TABLE song_list_columns (`title` TEXT,`visible` INT,`width` INT)");
-			initialize_columns();
-			_db.execute("CREATE TABLE playlists (`name` TEXT, `songs` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
-			_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
-			_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'file_size' INT)");
-			_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
-			_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
-			_db.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'url' TEXT, 'duration' INT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT)");
-			
-		}
-		catch (SQLHeavy.Error err) {
-			stdout.printf("Bad news: could not create tables. Please report this. Message: %s\n", err.message);
-		}
-	}
-	
-	/** Loads the db into memory, creates it if need be, adds music if need be
-	 * 
-	 */
-	public void load_db() {
-		bool need_create = false;
-		
-		var beatbox_folder = GLib.File.new_for_path(Environment.get_user_data_dir() + "/beatbox");
-		if(!beatbox_folder.query_exists()) {
-			try {
+			// get the beatbox folder
+			beatbox_folder = GLib.File.new_for_path(Environment.get_user_data_dir() + "/beatbox");
+			if(!beatbox_folder.query_exists())
 				beatbox_folder.make_directory(null);
-			}
-			catch(GLib.Error err) {
-				stdout.printf("CRITICAL: Could not create beatbox folder in data directory: %s\n", err.message);
-			}
+				
+			beatbox_db = GLib.File.new_for_path(beatbox_folder.get_path() + "/beatbox_db.db");
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not create beatbox database parent or database: %s\n", err.message);
 		}
 		
-		var db_file = GLib.File.new_for_path(beatbox_folder.get_path() + "/beatbox_db.db");
-		if(!db_file.query_exists())
-			need_create = true;
-		
 		try {
-			if(write && !create)
-				_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE);
-			else if(!write && create)
-				_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.CREATE);
-			else if(write && create)
-				_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
-			else
-				_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ);
+			_db = new SQLHeavy.Database(null, SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
+			
+			_db.user_version = USER_VERSION;
+			stdout.printf("_version: %d\n", _db.user_version);
+			// disable synchronized commits for performance reasons ... this is not vital
+			_db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
+		}
+		catch(SQLHeavy.Error err) {
+			stdout.printf("Could not do initial db load: %s\n", err.message);
+		}
+	}
+	
+	/** Loads the db into memory */
+	public void load_db() {
+		bool loaded_versioned = false;
+		GLib.File schema_folder;
+
+		try {
+			// get the beatbox folder
+			beatbox_folder = GLib.File.new_for_path(Environment.get_user_data_dir() + "/beatbox");
+			if(!beatbox_folder.query_exists())
+				beatbox_folder.make_directory(null);
+			
+			// find the versioned db with schema info
+			for(int i = 0; i < GLib.Environment.get_system_data_dirs().length; ++i) {
+				stdout.printf("%d:%s\n", i, GLib.Path.build_filename(GLib.Environment.get_system_data_dirs()[i], "/beatbox/schema"));
+				schema_folder = GLib.File.new_for_path(GLib.Path.build_filename(GLib.Environment.get_system_data_dirs()[i], "/beatbox/schema"));
+				
+				// load the db using the versioned schema
+				if(schema_folder.query_exists()) {
+					stdout.printf("_version: %d\n", _db.user_version);
+					_db = (SQLHeavy.VersionedDatabase)GLib.Object.new (
+						typeof (SQLHeavy.VersionedDatabase),
+						"filename", beatbox_db.get_path(),
+						"schema", schema_folder.get_path(),
+						"user_version", USER_VERSION);
+					//_db = new SQLHeavy.VersionedDatabase(beatbox_db.get_path(), schema_folder.get_path());
+					stdout.printf("_version: %d\n", _db.user_version);
+					loaded_versioned = true;
+					break;
+				}
+			}
 			
 			/* _db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); }); */
 		}
-		catch (SQLHeavy.Error err) {
-			stdout.printf("This is terrible. Could not even make db file. Please report this. Message: %s", err.message);
+		catch(SQLHeavy.Error err) {
+			stdout.printf("CRITICAL: Could not load music library database: %s\n", err.message);
 		}
-
-        // disable synchronized commits for performance reasons ... this is not vital
-        _db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
-	
-		if(need_create)
-			create_db();
 	}
 	
 	public void resetProgress(int items) {

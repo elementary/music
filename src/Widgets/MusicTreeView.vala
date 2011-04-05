@@ -607,6 +607,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		// restore song selection
 		
+		sort.set_sort_func(_columns.index_of("Track"), sh.trackCompareFunc);
 		sort.set_sort_func(_columns.index_of("Artist"), sh.artistCompareFunc);
 		sort.set_sort_func(_columns.index_of("Album"), sh.albumCompareFunc);
 		

@@ -17,7 +17,7 @@ from TaskGen import extension, feature
 
 APPNAME = 'beatbox'
 VERSION = '0.1'
-VALAC_VERSION = '0.11.5'
+VALAC_VERSION = '0.11.6'
 
 out = 'build'
 
@@ -51,7 +51,11 @@ def configure(ctx):
 
 def build(bld):
 	#install basic desktop file
-	bld.install_files ('${PREFIX}/share/applications', '/data/' + APPNAME + '.desktop')
+	bld.install_files('${PREFIX}/share/applications', '/data/' + APPNAME + '.desktop')
+	
+	#install db schema files
+	bld.install_files('${PREFIX}/share/beatbox/schema', '/data/versioned_database.db')
+	bld.install_files('${PREFIX}/share/beatbox/schema', '/data/Create.sql')
 	
 	#install icons
 	bld.install_files('${PREFIX}/share/icons/hicolor/scalable/apps', '/images/icons/128x128/apps/beatbox.svg');

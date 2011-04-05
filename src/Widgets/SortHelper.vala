@@ -8,7 +8,23 @@ public class BeatBox.SortHelper : GLib.Object {
 		this.lm = lm;
 	}
 	
-	public int artistCompareFunc (TreeModel model, TreeIter a, TreeIter b) {
+	public int trackCompareFunc(TreeModel model, TreeIter a, TreeIter b) {
+		int a_id, b_id;
+		Song a_song, b_song;
+		
+		model.get(a, 0, out a_id);
+		model.get(b, 0, out b_id);
+		
+		a_song = lm.song_from_id(a_id);
+		b_song = lm.song_from_id(b_id);
+		
+		if(a_song.track == b_song.track)
+			return (a_song.file.down() > b_song.file.down()) ? 1 : -1;
+		else
+			return (a_song.track > b_song.track) ? 1 : -1;
+	}
+	
+	public int artistCompareFunc(TreeModel model, TreeIter a, TreeIter b) {
 		int a_id, b_id;
 		Song a_song, b_song;
 		
@@ -28,7 +44,7 @@ public class BeatBox.SortHelper : GLib.Object {
 			return (a_song.artist.down() > b_song.artist.down()) ? 1 : -1;
 	}
 	
-	public int albumCompareFunc (TreeModel model, TreeIter a, TreeIter b) {
+	public int albumCompareFunc(TreeModel model, TreeIter a, TreeIter b) {
 		int a_id, b_id;
 		Song a_song, b_song;
 		
