@@ -4,14 +4,13 @@ using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
 	public const int COLUMN_COUNT = 17;
-	public const int USER_VERSION = 0;
-	GLib.File beatbox_db;
-	GLib.File beatbox_folder;
 	
 	SQLHeavy.Database _db;
 	
 	Transaction transaction;// the current sql transaction
 	Query query; //current query to do while doing mass transactions
+	bool write;
+	bool create;
 	
 	int index;
 	int item_count;
@@ -22,66 +21,59 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * @param create True to have create access
 	 */
 	public DataBaseManager() {
-		try {
-			// get the beatbox folder
-			beatbox_folder = GLib.File.new_for_path(Environment.get_user_data_dir() + "/beatbox");
-			if(!beatbox_folder.query_exists())
+		bool need_create = false;
+		GLib.File beatbox_folder;
+		GLib.File db_file;
+		
+		beatbox_folder = GLib.File.new_for_path(GLib.Path.build_filename(Environment.get_user_data_dir(), "/beatbox"));
+		if(!beatbox_folder.query_exists()) {
+			try {
 				beatbox_folder.make_directory(null);
-				
-			beatbox_db = GLib.File.new_for_path(beatbox_folder.get_path() + "/beatbox_db.db");
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not create beatbox database parent or database: %s\n", err.message);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("CRITICAL: Could not create beatbox folder in data directory: %s\n", err.message);
+			}
 		}
 		
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_db.db"));
+		if(!db_file.query_exists())
+			need_create = true;
+		
 		try {
-			_db = new SQLHeavy.Database(null, SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
-			
-			_db.user_version = USER_VERSION;
-			stdout.printf("_version: %d\n", _db.user_version);
-			// disable synchronized commits for performance reasons ... this is not vital
-			_db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
+			_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.CREATE | SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE);
 		}
-		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not do initial db load: %s\n", err.message);
+		catch (SQLHeavy.Error err) {
+			stdout.printf("This is terrible. Could not even make db file. Please report this. Message: %s", err.message);
 		}
-	}
+		
+        // disable synchronized commits for performance reasons ... this is not vital
+        _db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
+        /* _db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); }); */
 	
-	/** Loads the db into memory */
-	public void load_db() {
-		bool loaded_versioned = false;
-		GLib.File schema_folder;
-
-		try {
-			// get the beatbox folder
-			beatbox_folder = GLib.File.new_for_path(Environment.get_user_data_dir() + "/beatbox");
-			if(!beatbox_folder.query_exists())
-				beatbox_folder.make_directory(null);
-			
-			// find the versioned db with schema info
-			for(int i = 0; i < GLib.Environment.get_system_data_dirs().length; ++i) {
-				stdout.printf("%d:%s\n", i, GLib.Path.build_filename(GLib.Environment.get_system_data_dirs()[i], "/beatbox/schema"));
-				schema_folder = GLib.File.new_for_path(GLib.Path.build_filename(GLib.Environment.get_system_data_dirs()[i], "/beatbox/schema"));
+		if(need_create) {
+			try {
+				_db.execute("CREATE TABLE playlists (`name` TEXT, `songs` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
+				_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
+				_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'file_size' INT, 'lyrics' TEXT)");
+				_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
+				_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
+				_db.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'url' TEXT, 'duration' INT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT)");
 				
-				// load the db using the versioned schema
-				if(schema_folder.query_exists()) {
-					stdout.printf("_version: %d\n", _db.user_version);
-					_db = (SQLHeavy.VersionedDatabase)GLib.Object.new (
-						typeof (SQLHeavy.VersionedDatabase),
-						"filename", beatbox_db.get_path(),
-						"schema", schema_folder.get_path(),
-						"user_version", USER_VERSION);
-					//_db = new SQLHeavy.VersionedDatabase(beatbox_db.get_path(), schema_folder.get_path());
-					stdout.printf("_version: %d\n", _db.user_version);
-					loaded_versioned = true;
-					break;
-				}
 			}
-			
-			/* _db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); }); */
+			catch (SQLHeavy.Error err) {
+				stdout.printf("Bad news: could not create tables. Please report this. Message: %s\n", err.message);
+			}
+		}
+		
+		/* now make sure db schema is up to date. 
+		 * Whenever field is added, do check here and add above as well 
+		*/
+		try {
+			int test = _db.get_table("songs").field_index("lyrics");
 		}
 		catch(SQLHeavy.Error err) {
-			stdout.printf("CRITICAL: Could not load music library database: %s\n", err.message);
+			stdout.printf("Could not find lyric field, adding it\n");
+			_db.execute("ALTER TABLE songs ADD lyrics TEXT");
 		}
 	}
 	
@@ -125,185 +117,6 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		}
 	}
 	
-	/** SONG LIST COLUMNS **
-	 * song_list_columns() loads song list columns from db
-	 * 
-	 * initialize_columns() sets columns to initial widths
-	 * 
-	 * save_song_list_columns() saves the columns to db
-	 */
-	public  LinkedList<Gtk.TreeViewColumn> load_song_list_columns() {
-		var rv = new LinkedList<Gtk.TreeViewColumn>();
-		
-		try {
-			Query query = new Query(_db, "SELECT * FROM `song_list_columns`");
-			
-			index = 0;
-			for (var results = query.execute () ; !results.finished ; results.next ()) {
-				Gtk.TreeViewColumn tvc;
-				if(results.fetch_string(0) != " " && results.fetch_string(0) != "Rating")
-					tvc = new Gtk.TreeViewColumn.with_attributes(results.fetch_string(0), new Gtk.CellRendererText(), "text", index, null);
-				else
-					tvc = new Gtk.TreeViewColumn.with_attributes(results.fetch_string(0), new Gtk.CellRendererPixbuf(), "pixbuf", index, null);
-				
-				tvc.visible = (results.fetch_int(1) == 1);
-				tvc.fixed_width = results.fetch_int(2);
-				tvc.resizable = true;
-				tvc.reorderable = true;
-				tvc.clickable = true;
-				tvc.sort_column_id = index;
-				tvc.set_sort_indicator(false);
-				tvc.sizing = Gtk.TreeViewColumnSizing.FIXED;
-					
-				rv.add(tvc);
-				++index;
-			}
-		}
-		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not load song list columns: %s\n", err.message);
-		}
-		
-		return rv;
-	}
-	
-	public void initialize_columns() {
-		try {
-			_db.execute("DELETE FROM `song_list_columns`");
-			transaction = _db.begin_transaction();
-			query = transaction.prepare ("INSERT INTO `song_list_columns` (`title`, `visible`, `width`) VALUES (:title, :visible, :width);");
-			
-			/* add all columns to db */
-			//id
-			query.set_string(":title", "id");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 10);
-			query.execute();
-			
-			//currently playing
-			query.set_string(":title", " ");
-			query.set_int(":visible", 1);
-			query.set_int(":width", 24);
-			query.execute();
-			
-			//number
-			query.set_string(":title", "#");
-			query.set_int(":visible", 1);
-			query.set_int(":width", 40);
-			query.execute();
-			
-			//track
-			query.set_string(":title", "Track");
-			query.set_int(":visible", 1);
-			query.set_int(":width", 60);
-			query.execute();
-			
-			//title
-			query.set_string(":title", "Title");
-			query.set_int(":visible", 1);
-			query.set_int(":width", 220);
-			query.execute();
-			
-			//length
-			query.set_string(":title", "Length");
-			query.set_int(":visible", 1);
-			query.set_int(":width", 75);
-			query.execute();
-			
-			//artist
-			query.set_string(":title", "Artist");
-			query.set_int(":visible", 1);
-			query.set_int(":width", 110);
-			query.execute();
-			
-			//album
-			query.set_string(":title", "Album");
-			query.set_int(":visible", 1);
-			query.set_int(":width", 200);
-			query.execute();
-			
-			//genre
-			query.set_string(":title", "Genre");
-			query.set_int(":visible", 1);
-			query.set_int(":width", 70);
-			query.execute();
-			
-			//year
-			query.set_string(":title", "Year");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 30);
-			query.execute();
-			
-			//bitrate
-			query.set_string(":title", "Bitrate");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 20);
-			query.execute();
-			
-			//rating
-			query.set_string(":title", "Rating");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 90);
-			query.execute();
-			
-			//playcount
-			query.set_string(":title", "Plays");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 20);
-			query.execute();
-			
-			//skipcount
-			query.set_string(":title", "Skips");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 20);
-			query.execute();
-			
-			//date added
-			query.set_string(":title", "Date Added");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 70);
-			query.execute();
-			
-			
-			//last played
-			query.set_string(":title", "Last Played");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 70);
-			query.execute();
-			
-			//bpm
-			query.set_string(":title", "BPM");
-			query.set_int(":visible", 0);
-			query.set_int(":width", 30);
-			query.execute();
-			
-			transaction.commit();
-		}
-		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not initialize values for song list columns: %s\n", err.message);
-		}
-	}
-	
-	public void save_song_list_columns(ArrayList<Gtk.TreeViewColumn> columns) {
-		try {
-			_db.execute("DELETE FROM `song_list_columns`");
-			transaction = _db.begin_transaction();
-			query = transaction.prepare ("INSERT INTO `song_list_columns` (`title`, `visible`, `width`) VALUES (:title, :visible, :width);");
-			
-			foreach(Gtk.TreeViewColumn tvc in columns) {
-				stdout.printf("saving column %s\n", tvc.title);
-				query.set_string(":title", tvc.title);
-				query.set_int(":visible", tvc.visible ? 1 : 0);
-				query.set_int(":width", tvc.width == 0 ? 50 : tvc.width);
-				query.execute();
-			}
-			
-			transaction.commit();
-		}
-		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not save columns: %s\n", err.message);
-		}
-	}
-	
 	/** SONGS **
 	 * load_songs() loads songs from db
 	 * 
@@ -339,6 +152,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				s.date_added = results.fetch_int(15);
 				s.last_played = results.fetch_int(16);
 				s.file_size = results.fetch_int(17);
+				s.lyrics = results.fetch_string(18);
 				
 				rv.add(s);
 			}
@@ -374,6 +188,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				query.set_int(":dateadded", s.date_added);
 				query.set_int(":lastplayed", s.last_played);
 				query.set_int(":file_size", s.file_size);
+				query.set_string(":lyrics", s.lyrics);
 				
 				query.execute();
 			}
@@ -409,6 +224,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_int(":dateadded", s.date_added);
 			query.set_int(":lastplayed", s.last_played);
 			query.set_int(":file_size", s.file_size);
+			query.set_string(":lyrics", s.lyrics);
 			
 			if(saving)
 				query.set_int(":rowid", s.rowid);
@@ -464,6 +280,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				query.set_int(":dateadded", s.date_added);
 				query.set_int(":lastplayed", s.last_played);
 				query.set_int(":file_size", s.file_size);
+				query.set_string(":lyrics", s.lyrics);
 				
 				query.execute();
 			}

@@ -32,6 +32,7 @@ public class BeatBox.Song : GLib.Object{
 	private int _date_added;
 	private int _last_played;
 	private string _lastfm_url;
+	private string _lyrics;
 	
 	
 	//core stuff
@@ -58,6 +59,7 @@ public class BeatBox.Song : GLib.Object{
 		skip_count = 0;
 		date_added = 0;
 		last_played = 0;
+		lyrics = "";
 	}
 	
 	public string file {
@@ -211,6 +213,11 @@ public class BeatBox.Song : GLib.Object{
 		set { _lastfm_url = value; }
 	}
 	
+	public string lyrics {
+		get { return _lyrics; }
+		set { _lyrics = value; }
+	}
+	
 	public Song copy() {
 		Song rv = new Song(_file);
 		rv.file_name = file_name;
@@ -234,6 +241,7 @@ public class BeatBox.Song : GLib.Object{
 		rv.skip_count = skip_count;
 		rv.date_added = date_added;
 		rv.last_played = last_played;
+		rv.lyrics = lyrics;
 		
 		return rv;
 	}

@@ -6,13 +6,13 @@ public class BeatBox.Playlist : Object {
 	
 	public Playlist() {
 		_name = "New Playlist";
-		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.PLAYLIST);
 		_songs = new Gee.LinkedList<Song>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
 		_songs = new Gee.LinkedList<Song>();
-		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.PLAYLIST);
 		_rowid = rowid;
 		_name = name;
 	}

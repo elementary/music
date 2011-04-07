@@ -109,10 +109,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		shuffle = Shuffle.OFF;
 		doing_file_operations = false;
 		
-		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING);
-		similar_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
-		queue_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
-		history_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING);
+		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, MusicTreeView.Hint.MUSIC);
+		similar_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.SIMILAR);
+		queue_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.QUEUE);
+		history_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.HISTORY);
 		
 		//load all songs from db
 		foreach(Song s in dbm.load_songs()) {
@@ -403,11 +403,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		doing_file_operations = false;
 		file_operations_done();
 		return null;
-	}
-	
-	/******************** Song list columns *******************/
-	public LinkedList<Gtk.TreeViewColumn> fresh_columns() {
-		return dbm.load_song_list_columns();
 	}
 	
 	/************************ Playlist stuff ******************/

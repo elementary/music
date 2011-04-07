@@ -32,9 +32,10 @@ def configure(ctx):
 	ctx.check_tool('compiler_cc gnu_dirs')
 	
 	ctx.check_tool('vala')
-	if ctx.env['VALAC_VERSION'][1] < 11 or ctx.env['VALAC_VERSION'][2] < 6:
-         print('valac >= 0.11.6 required')
-         sys.exit(1)
+	if ctx.env['VALAC_VERSION'][1] < 12:
+		if ctx.env['VALAC_VERSION'][1] < 11 or ctx.env['VALAC_VERSION'][2] < 6:
+			print('valac >= 0.11.6 required')
+			sys.exit(1)
          
 	ctx.check_tool('gnu_dirs')
 	check_pkg(ctx, 'gtk+-2.0', 'GTK', '2.16.0')
@@ -52,10 +53,6 @@ def configure(ctx):
 def build(bld):
 	#install basic desktop file
 	bld.install_files('${PREFIX}/share/applications', '/data/' + APPNAME + '.desktop')
-	
-	#install db schema files
-	bld.install_files('${PREFIX}/share/beatbox/schema', '/data/versioned_database.db')
-	bld.install_files('${PREFIX}/share/beatbox/schema', '/data/Create.sql')
 	
 	#install icons
 	bld.install_files('${PREFIX}/share/icons/hicolor/scalable/apps', '/images/icons/128x128/apps/beatbox.svg');

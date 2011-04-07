@@ -183,27 +183,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		else if(hint == Hint.SMART_PLAYLIST)
 			to_use = lm.smart_playlist_from_id(relative_id).tvs.get_columns();
 		
-		bool is_initial = false;
-		if(to_use.size != lm.dbm.COLUMN_COUNT) {
-			is_initial = true;
-			stdout.printf("Change in column schema. Resetting columns.\n");
-			lm.dbm.initialize_columns();
-			to_use = lm.fresh_columns();
-			
-			if(hint == Hint.MUSIC)
-				lm.music_setup.set_columns(lm.fresh_columns());
-			else if(hint == Hint.SIMILAR)
-				lm.similar_setup.set_columns(lm.fresh_columns());
-			else if(hint == Hint.QUEUE)
-				lm.queue_setup.set_columns(lm.fresh_columns());
-			else if(hint == Hint.HISTORY)
-				lm.history_setup.set_columns(lm.fresh_columns());
-			else if(hint == Hint.PLAYLIST)
-				lm.playlist_from_id(relative_id).tvs.set_columns(lm.fresh_columns());
-			else if(hint == Hint.SMART_PLAYLIST)
-				lm.smart_playlist_from_id(relative_id).tvs.set_columns(lm.fresh_columns());
-		}
-		
 		int index = 0;
 		foreach(TreeViewColumn tvc in to_use) {
 			if(tvc.title == "Bitrate" || tvc.title == "Year" || tvc.title == "#" || tvc.title == "Track" || tvc.title == "Length" || tvc.title == "Plays" || tvc.title == "Skips") {
@@ -217,45 +196,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				view.get_column(index).visible = tvc.visible;
 				view.get_column(index).sizing = Gtk.TreeViewColumnSizing.FIXED;
 				view.get_column(index).fixed_width = tvc.fixed_width;
-				
-				if(is_initial) {
-					if(hint == Hint.MUSIC) {
-						if(tvc.title == "#")
-							columnNumber.active = false;
-						else if(tvc.title == "Track")
-							view.get_column(index).visible = true;
-					}
-					else if(hint == Hint.SIMILAR) {
-						if(tvc.title == "#")
-							view.get_column(index).visible = false;
-						else if(tvc.title == "Track")
-							view.get_column(index).visible = false;
-					}
-					else if(hint == Hint.QUEUE) {
-						if(tvc.title == "#")
-							view.get_column(index).visible = true;
-						else if(tvc.title == "Track")
-							view.get_column(index).visible = false;
-					}
-					else if(hint == Hint.HISTORY) {
-						if(tvc.title == "#")
-							view.get_column(index).visible = true;
-						else if(tvc.title == "Track")
-							view.get_column(index).visible = false;
-					}
-					else if(hint == Hint.PLAYLIST) {
-						if(tvc.title == "#")
-							view.get_column(index).visible = true;
-						else if(tvc.title == "Track")
-							view.get_column(index).visible = false;
-					}
-					else if(hint == Hint.SMART_PLAYLIST) {
-						if(tvc.title == "#")
-							view.get_column(index).visible = false;
-						else if(tvc.title == "Track")
-							view.get_column(index).visible = true;
-					}
-				}
 			}
 			else if(tvc.title == "Rating") {
 				view.insert_column(tvc, index);
@@ -850,7 +790,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			return;
 		}
 		
-		TreeViewSetup tvs = new TreeViewSetup("#", SortType.ASCENDING);
+		TreeViewSetup tvs;
 			
 		if(hint == Hint.MUSIC)
 			tvs = lm.music_setup;
@@ -862,8 +802,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			tvs = lm.history_setup;
 		else if(hint == Hint.PLAYLIST)
 			tvs = lm.playlist_from_id(relative_id).tvs;
-		else if(hint == Hint.SMART_PLAYLIST)
+		else/* if(hint == Hint.SMART_PLAYLIST)*/
 			tvs = lm.smart_playlist_from_id(relative_id).tvs;
+			
+		if(tvs == null)
+			return;
 		
 		int sort_id = 7;
 		SortType sort_dir = Gtk.SortType.ASCENDING;
