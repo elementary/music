@@ -773,7 +773,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		lm.settings.setLastSongPosition((int)topDisplay.get_scale_value());
 		
-		//stdout.printf("Saving songs\n");
+		stdout.printf("Saving songs\n");
 		//lm.save_songs();
 		
 		stdout.printf("Saving playlists\n");

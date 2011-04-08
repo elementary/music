@@ -8,9 +8,6 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	SQLHeavy.Database _db;
 	
 	Transaction transaction;// the current sql transaction
-	Query query; //current query to do while doing mass transactions
-	bool write;
-	bool create;
 	
 	int index;
 	int item_count;
@@ -40,15 +37,15 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			need_create = true;
 		
 		try {
-			_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.CREATE | SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE);
+			_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("This is terrible. Could not even make db file. Please report this. Message: %s", err.message);
+			stdout.printf("This is terrible. Could not even load database. Please report this. Message: %s", err.message);
 		}
 		
         // disable synchronized commits for performance reasons ... this is not vital
         _db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
-        /* _db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); }); */
+        _db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); });
 	
 		if(need_create) {
 			try {
@@ -68,53 +65,24 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		/* now make sure db schema is up to date. 
 		 * Whenever field is added, do check here and add above as well 
 		*/
-		try {
-			int test = _db.get_table("songs").field_index("lyrics");
-		}
-		catch(SQLHeavy.Error err) {
+		if(_db.get_table("songs").field_count == 17) {
 			stdout.printf("Could not find lyric field, adding it\n");
 			_db.execute("ALTER TABLE songs ADD lyrics TEXT");
+		}
+		
+		/* now clean up and just reload the db (this also gets rid of signals that
+		 * were connected when doing the above work... bug in sqlheavy i believe.s */
+		try {
+			_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
+		}
+		catch (SQLHeavy.Error err) {
+			stdout.printf("This is terrible. Could not even load database. Please report this. Message: %s", err.message);
 		}
 	}
 	
 	public void resetProgress(int items) {
 		index = 0;
 		item_count = items;
-	}
-	
-	/** simply returns the db location on file
-	 */
-	public string db_location() {
-		return _db.filename;
-	}
-	
-	public void begin_transaction(string script) {
-		try {
-			transaction = _db.begin_transaction();
-			query = transaction.prepare (script);
-		}
-		catch(SQLHeavy.Error err) {
-			stdout.printf("could not begin transaction: %s \n", err.message);
-		}
-	}
-	
-	public void commit_transaction() {
-		try {
-			transaction.commit();
-		}
-		catch(SQLHeavy.Error err) {
-			stdout.printf("could not commit transaction: %s \n", err.message);
-		}
-	}
-	
-	/** This is rather unsafe and should only be done if you know what you're doing **/
-	public void drop_table(string table) {
-		try {
-			_db.execute("DELETE FROM `" + table + "`");
-		}
-		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not delete table %s: %s\n", table, err.message);
-		}
 	}
 	
 	/** SONGS **
@@ -158,7 +126,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not load song from db: %s\n", err.message);
+			stdout.printf("Could not load songs from db: %s\n", err.message);
 		}
 		
 		return rv;
@@ -168,7 +136,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `songs`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size') VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size);");
+			Query query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size', 'lyrics') VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size, :lyrics);");
 			
 			foreach(Song s in songs) {
 				query.set_string(":file", s.file);
@@ -205,37 +173,6 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * @param id The rowid to update
 	 * @param s The song to save
 	 */
-	public void add_song_mass(Song s, bool saving) {
-		try {
-			query.set_string(":file", s.file);
-			query.set_string(":title", s.title);
-			query.set_string(":artist", s.artist);
-			query.set_string(":album", s.album);
-			query.set_string(":genre", s.genre);
-			query.set_string(":comment", s.comment);
-			query.set_int(":year", s.year);
-			query.set_int(":track", s.track);
-			query.set_int(":bitrate", s.bitrate);
-			query.set_int(":length", s.length);
-			query.set_int(":samplerate", s.samplerate);
-			query.set_int(":rating", s.rating);
-			query.set_int(":playcount", s.play_count);
-			query.set_int(":skipcount", s.skip_count);
-			query.set_int(":dateadded", s.date_added);
-			query.set_int(":lastplayed", s.last_played);
-			query.set_int(":file_size", s.file_size);
-			query.set_string(":lyrics", s.lyrics);
-			
-			if(saving)
-				query.set_int(":rowid", s.rowid);
-			
-			query.execute();
-		}
-		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not set query to save song %d: %s \n", s.rowid, err.message);
-		}
-	}
-	
 	public void remove_songs(Collection<string> songs) {
 		try {
 			transaction = _db.begin_transaction();
@@ -249,19 +186,19 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction.commit();
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not remove song from db: %s\n", err.message);
+			stdout.printf("Could not remove songs from db: %s\n", err.message);
 		}
 	}
 	
 	public void update_songs(Gee.Collection<Song> songs) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `songs` SET file=:file, title=:title, artist=:artist, album=:album, genre=:genre, comment=:comment, year=:year, track=:track, bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed file_size=:file_size WHERE rowid=:rowid");
+			Query query = transaction.prepare("UPDATE `songs` SET file=:file, title=:title, artist=:artist, album=:album, genre=:genre, comment=:comment, year=:year, track=:track, bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed, file_size=:file_size, lyrics=:lyrics WHERE rowid=:rowid");
 			
 			foreach(Song s in songs) {
-				if(s.rowid != 0)
+				if(s.rowid != 0) {
 					query.set_string(":rowid", s.rowid.to_string());
-				
+				}
 				
 				query.set_string(":file", s.file);
 				query.set_string(":title", s.title);
@@ -288,7 +225,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction.commit();
 		}
 		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not save songs: %s \n", err.message);
+			stdout.printf("Could not update songs: %s \n", err.message);
 		}
 	}
 	
@@ -317,7 +254,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not load song from db: %s\n", err.message);
+			stdout.printf("Could not load playlists from db: %s\n", err.message);
 		}
 		
 		return rv;
@@ -327,10 +264,9 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `playlists`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare ("INSERT INTO `playlists` (`name`, `songs`, 'sort_column', 'sort_direction', 'columns') VALUES (:name, :songs, :sort_column, :sort_direction, :columns);");
+			Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `songs`, 'sort_column', 'sort_direction', 'columns') VALUES (:name, :songs, :sort_column, :sort_direction, :columns);");
 			
 			foreach(Playlist p in playlists) {
-				
 				query.set_string(":name", p.name);
 				query.set_string(":songs", p.songs_to_string());
 				query.set_string(":sort_column", p.tvs.sort_column);
@@ -362,7 +298,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction.commit();
 		}
 		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not save playlist: %s \n", err.message);
+			stdout.printf("Could not update playlist: %s \n", err.message);
 		}
 	}
 	
@@ -397,7 +333,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not load song from db: %s\n", err.message);
+			stdout.printf("Could not load smart playlists from db: %s\n", err.message);
 		}
 		
 		return rv;
@@ -407,7 +343,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `smart_playlists`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
+			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
 			
 			index = 0;
 			item_count = smarts.size;
@@ -451,7 +387,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction.commit();
 		}
 		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not save smart playlist: %s \n", err.message);
+			stdout.printf("Could not update smart playlist: %s \n", err.message);
 		}
 	}
 	
@@ -460,7 +396,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `albums`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare("INSERT INTO `albums` (`name`, 'artist', `mbid`, `url`, 'release_date', 'listeners', 'playcount', 'tags', 'url_image') VALUES (:name, :artist, :mbid, :url, :release_date, :listeners, :playcount, :tags, :url_image);");
+			Query query = transaction.prepare("INSERT INTO `albums` (`name`, 'artist', `mbid`, `url`, 'release_date', 'listeners', 'playcount', 'tags', 'url_image') VALUES (:name, :artist, :mbid, :url, :release_date, :listeners, :playcount, :tags, :url_image);");
 			
 			foreach(LastFM.AlbumInfo a in albums) {
 				query.set_string(":name", a.name);
@@ -599,7 +535,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `artists`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare("INSERT INTO `artists` (`name`, `mbid`, `url`, 'streamable', 'listeners', 'playcount', 'published', 'summary', 'content', 'tags', 'similar', 'url_image') VALUES (:name, :mbid, :url, :streamable, :listeners, :playcount, :published, :summary, :content, :tags, :similar, :url_image);");
+			Query query = transaction.prepare("INSERT INTO `artists` (`name`, `mbid`, `url`, 'streamable', 'listeners', 'playcount', 'published', 'summary', 'content', 'tags', 'similar', 'url_image') VALUES (:name, :mbid, :url, :streamable, :listeners, :playcount, :published, :summary, :content, :tags, :similar, :url_image);");
 			
 			foreach(LastFM.ArtistInfo a in artists) {
 				query.set_string(":name", a.name);
@@ -682,7 +618,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `tracks`");
 			transaction = _db.begin_transaction();
-			query = transaction.prepare("INSERT INTO `tracks` ('id', `name`, `artist`, `url`, 'duration', 'streamable', 'listeners', 'playcount', 'summary', 'content', 'tags') VALUES (:id, :name, :artist, :url, :duration, :streamable, :listeners, :playcount, :summary, :content, :tags);");
+			Query query = transaction.prepare("INSERT INTO `tracks` ('id', `name`, `artist`, `url`, 'duration', 'streamable', 'listeners', 'playcount', 'summary', 'content', 'tags') VALUES (:id, :name, :artist, :url, :duration, :streamable, :listeners, :playcount, :summary, :content, :tags);");
 			
 			foreach(LastFM.TrackInfo t in tracks) {
 				query.set_int(":id", t.id);

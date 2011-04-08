@@ -77,18 +77,20 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 			GLib.Object next;
 			if((next = toUpdate.poll()) != null) {
 				if(next is LinkedList<Song>) {
+					stdout.printf("dbu speaking\n");
 					dbm.update_songs(((LinkedList<Song>)next));
+					stdout.printf("dbu logging off\n");
 				}
 				else if(next is Playlist) {
-					dbm.update_playlist((Playlist)next);
+					//dbm.update_playlist((Playlist)next);
 				}
 				else if(next is SmartPlaylist) {
-					dbm.update_smart_playlist((SmartPlaylist)next);
+					//dbm.update_smart_playlist((SmartPlaylist)next);
 				}
 			}
 			else if((next = toRemove.poll()) != null) {
 				if(next is LinkedList<string>) {
-					dbm.remove_songs((LinkedList<string>)next);
+					//dbm.remove_songs((LinkedList<string>)next);
 				}
 			}
 			else {

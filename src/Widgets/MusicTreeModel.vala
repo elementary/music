@@ -250,7 +250,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 	}
 	
 	/** convenience method to insert songs into the model. No iters returned. **/
-    public void append_songs(Collection<int> songs) {
+    public void append_songs(Collection<int> songs, bool emit) {
 		foreach(int id in songs) {
 			Song s = lm.song_from_id(id);
 			
@@ -313,6 +313,16 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 			}
 			
 			SequenceIter<ValueArray> added = rows.append(va.copy());
+			
+			if(emit) {
+				TreePath path = new TreePath.from_string(added.get_position().to_string());
+			
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = added;
+				
+				row_inserted(path, iter);
+			}
 		}
 	}
 	

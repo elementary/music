@@ -445,6 +445,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		playlists_and_queue.add(p_history);
 		playlists_and_queue.add(p_similar);
 		playlists_and_queue.add(p_music);
+		
 		dbm.save_playlists(playlists_and_queue);
 	}
 	
@@ -554,7 +555,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}, false);
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+			stdout.printf("Could not create thread to save songs: %s\n", err.message);
 		}
 	}
 	

@@ -93,8 +93,11 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 				_columns.get(index).pack_start(crtext, true);
 				_columns.get(index).set_attributes(crtext, "text", index);
 			}
-			else
-				_columns.get(index).pack_start(new CellRendererPixbuf(), false);
+			else {
+				CellRendererPixbuf crpix = new CellRendererPixbuf();
+				_columns.get(index).pack_start(crpix, true);
+				_columns.get(index).set_attributes(crpix, "pixbuf", index);
+			}
 				
 			
 			_columns.get(index).resizable = true;
@@ -140,9 +143,8 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 	
 	public void import_columns(string cols) {
 		string[] col_strings = cols.split("<column_seperator>", 0);
-		stdout.printf("Found %d columns\n", col_strings.length);
 		
-		if(col_strings.length == COLUMN_COUNT + 1) { /* the '+1' because col_strings has blank column at end */
+		if(col_strings.length - 1 == COLUMN_COUNT) { /* the '-1' because col_strings has blank column at end */
 			_columns.clear();
 		}
 		else {
@@ -178,7 +180,7 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 		string rv = "";
 		
 		foreach(TreeViewColumn tvc in _columns) {
-			rv += tvc.title + "<value_seperator>" + tvc.fixed_width.to_string() + "<value_seperator>" + ( (tvc.visible) ? "1" : "0" ) + "<column_seperator>";
+			rv += tvc.title + "<value_seperator>" + ((tvc.width >= 10) ? tvc.width.to_string() : tvc.fixed_width.to_string()) + "<value_seperator>" + ( (tvc.visible) ? "1" : "0" ) + "<column_seperator>";
 		}
 		
 		return rv;

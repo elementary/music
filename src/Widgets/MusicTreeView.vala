@@ -10,6 +10,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	private TreeModelSort sort; //one to use.
 	
 	private Collection<int> _songs;
+	private Collection<int> _showing_songs;
 	private LinkedList<string> _columns;
 	
 	//private string current_path; // based on sort, always up to date.
@@ -99,6 +100,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		sh = new SortHelper(lm);
 		
 		_songs = new LinkedList<int>();
+		_showing_songs = new LinkedList<int>();
 		_columns = new LinkedList<string>();
 		
 		last_search = "";
@@ -232,6 +234,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			GLib.assert(ancestor != null);
 			
 			ancestor.button_press_event.connect(viewHeaderClick);
+			view.get_column(index).notify["width"].connect(viewHeadersResized);
 			
 			++index;
 		}
@@ -252,6 +255,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.button_release_event.connect(viewClickRelease);
 		view.columns_changed.connect(viewColumnsChanged);
 		
+		//sort.set_default_sort_func(sh.defaultSortFunc);
 		sort.set_sort_func(_columns.index_of("Artist"), sh.artistCompareFunc);
 		sort.set_sort_func(_columns.index_of("Album"), sh.albumCompareFunc);
 		
@@ -383,15 +387,56 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(is_current_view && lw.searchField.get_text().length != 1) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
-				if(lw.searchField.get_text().down() == timeout_search.poll_tail() && lw.searchField.get_text().down() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
-					Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), _songs);
-					populateView(searched_songs, true);
+				string to_search = timeout_search.poll_tail();
+				//if(lw.searchField.get_text().down() == timeout_search.poll_tail() && lw.searchField.get_text().down() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
+					Collection<int> searched_songs = lm.songs_from_search(to_search, _songs);
+					
+					if(searched_songs.size == _showing_songs.size) {
+						stdout.printf("i would be doing nothing normally\n");
+					}
+					else if(to_search == "") {
+						populateView(_songs, false);
+					}
+					else if(searched_songs.size > _showing_songs.size) { /* less specific search */
+						populateView(searched_songs, true);
+						/* remove the songs already showing
+						foreach(int i in _showing_songs) {
+							searched_songs.remove(i);
+						}
+						
+						// update _showing_songs to equal all old and new
+						_showing_songs.add_all(searched_songs);
+						
+						stdout.printf("adding %d songs\n", searched_songs.size);
+						
+						view.set_model(null);
+						music_model.append_songs(searched_songs, true);
+						view.set_model(sort);*/
+					}
+					else { /* more specific search, remove some of showing songs. */
+						populateView(searched_songs, true);
+						/*var to_remove = new LinkedList<int>();
+						
+						foreach(int i in _showing_songs) {
+							if(!searched_songs.contains(i))
+								to_remove.add(i);
+						}
+						
+						stdout.printf("removing %d songs\n", to_remove.size);
+						
+						view.set_model(null);
+						music_model.removeSongs(to_remove);
+						view.set_model(sort);
+						
+						
+						_showing_songs = searched_songs;*/
+					}
 					
 					last_search = lw.searchField.get_text().down();
-					showing_all = false;
+					showing_all = (_showing_songs.size == _songs.size);
 					
 					scrollToCurrent();
-				}
+				/*}
 				else if(!showing_all && lw.searchField.get_text() != last_search && (lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
 					populateView(_songs, false);
 					
@@ -399,7 +444,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					showing_all = true;
 					
 					scrollToCurrent();
-				}
+				}*/
 				
 				return false;
 			});
@@ -538,15 +583,18 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			_songs = songs;
 		}
 		
+		_showing_songs = songs;
+		
 		music_model = new MusicTreeModel(lm, _columns, render_icon("audio-volume-high", IconSize.MENU, null));
 		sort = new TreeModelSort.with_model(music_model);
 		
 		//save song selection
 		
-		music_model.append_songs(songs);
+		music_model.append_songs(songs, false);
 		
 		// restore song selection
 		
+		//sort.set_default_sort_func(sh.defaultSortFunc);
 		sort.set_sort_func(_columns.index_of("Track"), sh.trackCompareFunc);
 		sort.set_sort_func(_columns.index_of("Artist"), sh.artistCompareFunc);
 		sort.set_sort_func(_columns.index_of("Album"), sh.albumCompareFunc);
@@ -757,7 +805,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			return true;
 		}
 		else if(e.button == 1) {
-			
+			updateTreeViewSetup();
 			return false;
 		}
 		
@@ -765,7 +813,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void viewHeadersResized() {
-		stdout.printf("headers resized\n");
 		updateTreeViewSetup();
 	}
 	
@@ -814,6 +861,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		if(sort_id <= 0)
 			sort_id = 7;
+		
+		sort_column = _columns.get(sort_id);
+		sort_direction = sort_dir;
 		
 		tvs.set_columns(get_columns());
 		tvs.sort_column = _columns.get(sort_id);
@@ -915,16 +965,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public virtual void songEditorSaved(LinkedList<Song> songs) {
-		//lm.update_songs(songs, true);
-		stdout.printf("updating songs\n");
-		
-		var ar_songs = new ArrayList<int>();
-		foreach(Song s in songs) {
-			ar_songs.add(s.rowid);
-		}
-		
-		music_model.updateSongs(ar_songs, is_current);
-		stdout.printf("updated!\n");
+		lm.update_songs(songs, true);
 	}
 	
 	public virtual void songFileBrowseClicked() {
