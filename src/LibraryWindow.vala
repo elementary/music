@@ -478,7 +478,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			statusBar.show();
 		}
 		
-		if(lm.song_info.song == null) {
+		if(lm.song_info.song == null && lm.song_count() > 0) {
 			topDisplay.set_visible(false);
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 		}

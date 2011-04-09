@@ -583,6 +583,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.freeze_child_notify();
 		view.set_model(null);
 		
+		int sort_col;
+		SortType sort_dir;
+		music_model.get_sort_column_id(out sort_col, out sort_dir);
+		
 		if(!is_search) {
 			_songs = songs;
 		}
@@ -597,15 +601,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		// restore song selection
 		
-		music_model.set_sort_func(_columns.index_of("Track"), sh.trackCompareFunc);
-		music_model.set_sort_func(_columns.index_of("Artist"), sh.artistCompareFunc);
-		music_model.set_sort_func(_columns.index_of("Album"), sh.albumCompareFunc);
-		
-		music_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
+		music_model.set_sort_column_id(sort_col, sort_dir);
 		
 		if(lm.song_info.song != null)
 			music_model.updateSong(lm.song_info.song.rowid, is_current);
 		
+		scrollToCurrent();
 		view.set_model(music_model);
 		scrollToCurrent();
 		view.thaw_child_notify();
@@ -813,6 +814,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		else if(e.button == 1) {
 			updateTreeViewSetup();
+			
 			return false;
 		}
 		

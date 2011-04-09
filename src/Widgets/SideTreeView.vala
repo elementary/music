@@ -536,6 +536,7 @@ public class BeatBox.SideTreeView : TreeView {
 					addItem(playlists_iter, sp, w, sp.name);
 					
 					((MusicTreeView)w).populateView(lm.songs_from_smart_playlist(sp.rowid), false);
+					sideListSelectionChange();
 					
 					break;
 				}

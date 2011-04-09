@@ -94,6 +94,9 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		songLimit = new SpinButton.with_range(0, 500, 10);
 		Label limiterLabel = new Label("songs");
 		
+		limitSongs.set_active(_sp.limit);
+		songLimit.set_value((double)_sp.limit_amount);
+		
 		HBox limiterBox = new HBox(false, 2);
 		limiterBox.pack_start(limitSongs, false, false, 0);
 		limiterBox.pack_start(songLimit, false, false, 0);
@@ -159,6 +162,8 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		
 		_sp.name = _name.text;
 		_sp.conditional = comboMatch.get_active_text();
+		_sp.limit = limitSongs.get_active();
+		_sp.limit_amount = (int)songLimit.get_value();
 		
 		playlist_saved(_sp);
 		

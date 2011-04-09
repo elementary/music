@@ -55,7 +55,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
 				_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
 				_db.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'url' TEXT, 'duration' INT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT)");
-				
+				addDefaultSmartPlaylists();
 			}
 			catch (SQLHeavy.Error err) {
 				stdout.printf("Bad news: could not create tables. Please report this. Message: %s\n", err.message);
@@ -309,6 +309,88 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * 
 	 * smart_playlist_from_name() searches db for smart playlist with given name
 	 */
+	public void addDefaultSmartPlaylists() {
+		try {
+			TreeViewSetup tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.SMART_PLAYLIST);
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
+			
+			query.set_string(":name", "Top Rated");
+			query.set_string(":and_or", "any");
+			query.set_string(":queries", "Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Recently Added");
+			query.set_string(":and_or", "any");
+			query.set_string(":queries", "Date Added<value_seperator>is within<value_seperator>7<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Recently Played");
+			query.set_string(":and_or", "any");
+			query.set_string(":queries", "Last Played<value_seperator>is within<value_seperator>7<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Recent Favorites");
+			query.set_string(":and_or", "any");
+			query.set_string(":queries", "Last Played<value_seperator>is within<value_seperator>7<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Never Played");
+			query.set_string(":and_or", "any");
+			query.set_string(":queries", "Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Over Played");
+			query.set_string(":and_or", "any");
+			query.set_string(":queries", "Playcount<value_seperator>is at least<value_seperator>10<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Not Recently Played");
+			query.set_string(":and_or", "any");
+			query.set_string(":queries", "Last Played<value_seperator>is before<value_seperator>7<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			transaction.commit();
+		}
+		catch (SQLHeavy.Error err) {
+			stdout.printf("Could not initialize smart playlists: %s\n", err.message);
+		}
+	}
 	public Gee.ArrayList<SmartPlaylist> load_smart_playlists() {
 		var rv = new ArrayList<SmartPlaylist>();
 		
