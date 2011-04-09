@@ -88,6 +88,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.lm.song_added.connect(song_added);
 		this.lm.songs_removed.connect(songs_removed);
 		this.lm.song_played.connect(song_played);
+		this.lm.playback_stopped.connect(playback_stopped);
 		this.lm.songs_updated.connect(songs_updated);
 		
 		this.similarSongs.similar_retrieved.connect(similarRetrieved);
@@ -468,12 +469,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else {
 			if(lm.song_info.song != null)
 				topDisplay.set_scale_sensitivity(true);
+				
 			
 			previousButton.set_sensitive(true);
 			playButton.set_sensitive(true);
 			nextButton.set_sensitive(true);
 			searchField.set_sensitive(true);
 			statusBar.show();
+		}
+		
+		if(lm.song_info.song == null) {
+			topDisplay.set_visible(false);
+			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+		}
+		else {
+			topDisplay.set_visible(true);
 		}
 		
 		if(lm.doing_file_operations) {
@@ -576,6 +586,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		infoPanel.updateSong(lm.song_info.song.rowid);
 		if(settings.getMoreVisible())
 			infoPanel.set_visible(true);
+			
+		updateSensitivities();
+	}
+	
+	public virtual void playback_stopped(int was_playing) {
+		//reset some booleans
+		queriedlastfm = false;
+		song_considered_played = false;
+		added_to_play_count = false;
+		
+		// this will hide album cover art
+		updateCurrentSong();
+		
+		updateSensitivities();
+		
+		stdout.printf("stopped\n");
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {
@@ -672,8 +698,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void previousClicked () {
-		if(!queriedlastfm)
-			lm.getPrevious(true);
+		if(!queriedlastfm) {
+			int prev_id = lm.getPrevious(true);
+			
+			/* test to stop playback/reached end */
+			if(prev_id == 0) {
+				lm.player.pause_stream();
+				lm.playing = false;
+				updateSensitivities();
+				return;
+			}
+		}
 		else
 			topDisplay.change_value(ScrollType.NONE, 0);
 	}

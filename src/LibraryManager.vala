@@ -58,6 +58,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void songs_removed(LinkedList<int> ids);
 	public signal void song_queued(int id);
 	public signal void song_played(int id, int old_id);
+	public signal void playback_stopped(int was_playing);
 	
 	public enum Shuffle {
 		OFF,
@@ -834,8 +835,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 			else if(_current_index == (_current.size - 1)) {// consider repeat options
 				if(repeat == Repeat.ALL)
 					_current_index = 0;
-				else
+				else {
+					stopPlayback();
 					return 0;
+				}
 				
 				rv = _current.get(0);
 			}
@@ -873,12 +876,39 @@ public class BeatBox.LibraryManager : GLib.Object {
 		int rv;
 		
 		if(_current_shuffled.size > 0) {
-			if(_current_shuffled_index > 0) {
-				--_current_shuffled_index;
+			if(song_info.song == null) {
+				_current_shuffled_index = _current_shuffled.size - 1;
+				rv = _current_shuffled.get(_current_shuffled_index);
+			}
+			else if(repeat == Repeat.SONG) {
+				rv = _current_shuffled.get(_current_shuffled_index);
+			}
+			else if(_current_shuffled_index == (0)) {// consider repeat options
+				if(repeat == Repeat.ALL)
+					_current_shuffled_index = _current_shuffled.size - 1;
+				else {
+					stopPlayback();
+					return 0;
+				}
+				
+				rv = _current_shuffled.get(_current_shuffled_index);
+			}
+			else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
+				// make sure we are repeating what we need to be
+				if(repeat == Repeat.ARTIST && song_from_id(_current_shuffled.get(_current_shuffled_index - 1)).artist != song_from_id(_current_shuffled.get(_current_shuffled_index)).artist) {
+					while(song_from_id(_current_shuffled.get(_current_shuffled_index + 1)).artist == song_info.song.artist)
+						++_current_shuffled_index;
+				}
+				else if(repeat == Repeat.ALBUM && song_from_id(_current_shuffled.get(_current_shuffled_index - 1)).album != song_from_id(_current_shuffled.get(_current_shuffled_index)).album) {
+					while(song_from_id(_current_shuffled.get(_current_shuffled_index + 1)).album == song_info.song.album)
+						++_current_shuffled_index;
+				}
+				else
+					--_current_shuffled_index;
+				
 				rv = _current_shuffled.get(_current_shuffled_index);
 			}
 			else {
-				// i should actually pause the music / stop the music instead of playing first song
 				foreach(Song s in _songs.values)
 					addToCurrent(s.rowid);
 				
@@ -887,12 +917,39 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		else {
-			if(_current_index > 0) {
-				--_current_index;
+			if(song_info.song == null) {
+				_current_index = _current.size - 1;
+				rv = _current.get(_current_index);
+			}
+			else if(repeat == Repeat.SONG) {
+				rv = _current.get(_current_index);
+			}
+			else if(_current_index == (0)) {// consider repeat options
+				if(repeat == Repeat.ALL)
+					_current_index = _current.size - 1;
+				else {
+					stopPlayback();
+					return 0;
+				}
+				
+				rv = _current.get(_current_index);
+			}
+			else if(_current_index >= 0 && _current_index < (_current.size - 1)){
+				// make sure we are repeating what we need to be
+				if(repeat == Repeat.ARTIST && song_from_id(_current.get(_current_index - 1)).artist != song_from_id(_current.get(_current_index)).artist) {
+					while(song_from_id(_current.get(_current_index + 1)).artist == song_info.song.artist)
+						++_current_index;
+				}
+				else if(repeat == Repeat.ALBUM && song_from_id(_current.get(_current_index - 1)).album != song_from_id(_current.get(_current_index)).album) {
+					while(song_from_id(_current.get(_current_index + 1)).album == song_info.song.album)
+						++_current_index;
+				}
+				else
+					--_current_index;
+				
 				rv = _current.get(_current_index);
 			}
 			else {
-				// i should actually pause the music / stop the music instead of playing first song
 				foreach(Song s in _songs.values)
 					addToCurrent(s.rowid);
 				
@@ -909,6 +966,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void playSong(int id) {
 		int old_id = -1;
+		
+		if(id == 0)
+			return;
 		
 		if(song_info.song != null)
 			old_id = song_info.song.rowid;
@@ -927,6 +987,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 		settings.setLastSongPlaying(song_from_id(id));
 		
 		song_played(id, old_id);
+	}
+	
+	public void stopPlayback() {
+		player.pause_stream();
+		
+		int was_playing = 0;
+		if(song_info.song != null)
+			was_playing = song_info.song.rowid;
+		
+		settings.setLastSongPlaying(null);
+		song_info.update(null, null, null, null);
+		
+		playback_stopped(was_playing);
 	}
 	
 	/************* Last FM Artist Stuff ************/

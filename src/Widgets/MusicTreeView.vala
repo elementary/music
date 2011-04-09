@@ -127,6 +127,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		lm.songs_updated.connect(songs_updated);
 		lm.songs_removed.connect(songs_removed);
 		lm.song_played.connect(song_played);
+		lm.playback_stopped.connect(playback_stopped);
 		lm.current_cleared.connect(current_cleared);
 		
 		buildUI();
@@ -260,9 +261,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.button_press_event.connect(viewClick);
 		view.button_release_event.connect(viewClickRelease);
 		view.columns_changed.connect(viewColumnsChanged);
-		
-		music_model.set_sort_func(_columns.index_of("Artist"), sh.artistCompareFunc);
-		music_model.set_sort_func(_columns.index_of("Album"), sh.albumCompareFunc);
 		
 		// allow selecting multiple rows
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
@@ -476,6 +474,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(is_current) {
 			setAsCurrentList(0);
 		}
+		
+		if(!scrolled_recently) {
+			scrollToCurrent();
+		}
 	}
 	
 	public virtual void viewColumnsChanged() {
@@ -653,6 +655,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		
 		music_model.updateSong(id, is_current);
+	}
+	
+	public virtual void playback_stopped(int was_playing) {
+		if(was_playing >= 1) {
+			music_model.turnOffPixbuf(was_playing);
+		}
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {

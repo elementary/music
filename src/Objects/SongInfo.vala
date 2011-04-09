@@ -2,10 +2,10 @@
  * the current song playing. Mostly here because of dependence. */
 
 public class BeatBox.SongInfo : GLib.Object {
-	public BeatBox.Song song;
-	public LastFM.ArtistInfo artist;
-	public LastFM.TrackInfo track;
-	public LastFM.AlbumInfo album;
+	public BeatBox.Song? song;
+	public LastFM.ArtistInfo? artist;
+	public LastFM.TrackInfo? track;
+	public LastFM.AlbumInfo? album;
 	
     public SongInfo() {
 		//don't initialize song because we check for null throughout the program
@@ -14,7 +14,7 @@ public class BeatBox.SongInfo : GLib.Object {
 		album = new LastFM.AlbumInfo.basic();
 	}
 	
-	public void update(LastFM.ArtistInfo art, LastFM.TrackInfo tra, LastFM.AlbumInfo alb, BeatBox.Song s) {
+	public void update(LastFM.ArtistInfo? art, LastFM.TrackInfo? tra, LastFM.AlbumInfo? alb, BeatBox.Song? s) {
 		song = s;
 		artist = art;
 		track = tra;

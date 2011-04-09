@@ -207,8 +207,11 @@ public class BeatBox.Settings : Object {
 		setBool(COPY_IMPORTED_MUSIC, val);
 	}
 	
-	public void setLastSongPlaying(Song s) {
-		setString(LAST_SONG_PLAYING, s.title + "<seperator>" + s.artist);
+	public void setLastSongPlaying(Song? s) {
+		if(s != null)
+			setString(LAST_SONG_PLAYING, s.title + "<seperator>" + s.artist);
+		else
+			setString(LAST_SONG_PLAYING, "");
 	}
 	
 	public void setLastSongPosition(int val) {
