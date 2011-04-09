@@ -475,12 +475,15 @@ public class BeatBox.SideTreeView : TreeView {
 		if(!sideTreeModel.get_iter(out iter, path))
 			return;
 			
-		/*if(getWidget(iter) is MusicTreeView) {
+		if(getWidget(iter) is MusicTreeView) {
 			((MusicTreeView)getWidget(iter)).setAsCurrentList(1);
-			lm.getNext(true);
+			
+			lm.playSong(lm.songFromCurrentIndex(0));
+			lm.player.play_stream();
+			
 			if(!lm.playing)
 				lw.playClicked();
-		}*/
+		}
 	}
 	
 	public bool updateView(TreeModel model, TreePath path, TreeIter item) {

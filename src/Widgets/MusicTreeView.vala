@@ -990,7 +990,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			try {
 				var file = File.new_for_path(s.file);
-				GLib.AppInfo.launch_default_for_uri (file.get_parent().get_path(), null);
+				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
 			}
 			catch(GLib.Error err) {
 				stdout.printf("Could not browse song %s: %s\n", s.file, err.message);

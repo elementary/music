@@ -720,6 +720,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 	}
 	
+	public int songFromCurrentIndex(int index_in_current) {
+		if(_current_shuffled.size == 0)
+			return _current.get(index_in_current);
+		else
+			return _current_shuffled.get(index_in_current);
+	}
+	
 	public Collection<int> current_songs() {
 		return _current.values;
 	}
