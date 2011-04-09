@@ -8,7 +8,15 @@ using Gtk;
 using Gee;
 using GLib;
 
-public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
+public class BeatBox.CompareFuncHolder : GLib.Object {
+	public TreeIterCompareFunc sort_func;
+	
+	public CompareFuncHolder(TreeIterCompareFunc func) {
+		sort_func = func;
+	}
+}
+
+public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	LibraryManager lm;
 	int stamp; // all iters must match this
 	Gdk.Pixbuf _playing;
@@ -16,6 +24,12 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
     /* data storage variables */
     Sequence<ValueArray> rows;
     private LinkedList<string> _columns;
+    
+    /* treesortable stuff */
+    private int sort_column_id;
+    private SortType sort_direction;
+    private TreeIterCompareFunc default_sort_func;
+    private HashMap<int, CompareFuncHolder> column_sorts;
     
     /* custom signals for custom treeview. for speed */
     public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
@@ -29,54 +43,13 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 		_playing = playing;
        rows = new Sequence<ValueArray>(null);
        
+       sort_column_id = -2;
+       sort_direction = SortType.ASCENDING;
+       column_sorts = new HashMap<int, CompareFuncHolder>();
+       
        stamp = (int)GLib.Random.next_int();
 	}
 	
-	/** calls func on each node in model in a depth-first fashion **/
-	public void foreach(TreeModelForeachFunc func) {
-		SequenceIter s_iter = rows.get_begin_iter();
-		
-		for(int index = 0; index < rows.get_length(); ++index) {
-			s_iter = rows.get_iter_at_pos(index);
-			
-			TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
-			
-			TreeIter iter = TreeIter();
-			iter.stamp = this.stamp;
-			iter.user_data = s_iter;
-			
-			if(!func(this, path, iter))
-				return;
-		}
-	}
-
-	/** Sets params of each id-value pair of the value of that iter **/
-	public new void get (TreeIter iter, ...) {
-		if(iter.stamp != this.stamp || ((SequenceIter<ValueArray>)iter.user_data).is_end())
-			return;
-		
-		var args = va_list(); // now call args.arg() to poll
-		
-		while(true) {
-			int col = args.arg();
-			if(col < 0 || col >= _columns.size)
-				return;
-			
-			if(_columns[col] == " ") {
-				Gdk.Pixbuf val = args.arg();
-				val = (Gdk.Pixbuf)((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_object();
-			}
-			else if(_columns[col] == "Title" || _columns[col] == "Artist" || _columns[col] == "Album" || _columns[col] == "Genre") {
-				string val = args.arg();
-				val = ((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_string();
-			}
-			else {
-				int val = args.arg();
-				val = ((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).get_int();
-			}
-		}
-	}
-
 	/** Returns Type of column at index_ **/
 	public Type get_column_type (int col) {
 		if(_columns[col] == " ") {
@@ -111,35 +84,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
         
 		return true;
 	}
-
-	/** Initializes iter with the first iterator in the tree (the one at the path "0") and returns true. **/
-	public bool get_iter_first (out TreeIter iter) {
-		if(rows.get_length() == 0)
-			return false;
-		
-		iter.stamp = this.stamp;
-		iter.user_data = rows.get_begin_iter();
-		
-		return true;
-	}
-
-	/** Sets iter to a valid iterator pointing to path_string, if it exists. **/
-	public bool get_iter_from_string (out TreeIter iter, string path_string) {
-		int path_index = int.parse(path_string);
-		
-		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
-			return false;
-		
-        var seq_iter = rows.get_iter_at_pos(path_index);
-        if(seq_iter == null)
-			return false;
-        
-		iter.stamp = this.stamp;
-		iter.user_data = seq_iter;
-        
-		return true;
-	}
-
+	
 	/** Returns the number of columns supported by tree_model. **/
 	public int get_n_columns () {
 		return _columns.size;
@@ -148,17 +93,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
 	public TreePath get_path (TreeIter iter) {
 		return new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
-	}
-
-	/** Generates a string representation of the iter. **/
-	public string get_string_from_iter (TreeIter iter) {
-		return ((SequenceIter)iter.user_data).get_position().to_string();
-	}
-
-	/**   **/
-	public void get_valist (TreeIter iter, void* var_args) {
-		if(iter.stamp != this.stamp)
-			return;
 	}
 
 	/** Initializes and sets value to that at column. **/
@@ -192,10 +126,13 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 
 	/** Sets iter to point to the node following it at the current level. **/
 	public bool iter_next (ref TreeIter iter) {
-		if(iter.stamp != this.stamp || ((SequenceIter)iter.user_data).is_end())
+		if(iter.stamp != this.stamp)
 			return false;
 		
 		iter.user_data = ((SequenceIter)iter.user_data).next();
+		
+		if(((SequenceIter)iter.user_data).is_end())
+			return false;
 		
 		return true;
 	}
@@ -369,9 +306,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 				rows.get(s_iter).values[_columns.index_of(" ")] = (lm.song_info.song != null && rowid == lm.song_info.song.rowid && is_current) ? _playing : Value(typeof(Gdk.Pixbuf));
 				rows.get(s_iter).values[_columns.index_of("Track")] = s.track;
 				rows.get(s_iter).values[_columns.index_of("Title")] = s.title;
-				rows.get(s_iter).values[_columns.index_of("Length")] = s.length;
-				rows.get(s_iter).values[_columns.index_of("Artist")] = s.artist;
-				rows.get(s_iter).values[_columns.index_of("Album")] = s.album;
+				rows.get(s_iter).values[_columns.index_of("Length")] = (int)s.length;
+				rows.get(s_iter).values[_columns.index_of("Artist")] = (string)s.artist;
+				rows.get(s_iter).values[_columns.index_of("Album")] = (string)s.album;
 				rows.get(s_iter).values[_columns.index_of("Genre")] = s.genre;
 				rows.get(s_iter).values[_columns.index_of("Year")] = s.year;
 				rows.get(s_iter).values[_columns.index_of("Bitrate")] = s.bitrate;
@@ -460,4 +397,110 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel {
 		}
 	}
 	
+	/** Fills in sort_column_id and order with the current sort column and the order. **/
+	public bool get_sort_column_id(out int sort_column_id, out SortType order) {
+		sort_column_id = this.sort_column_id;
+		order = sort_direction;
+		
+		return true;
+	}
+	
+	/** Returns true if the model has a default sort function. **/
+	public bool has_default_sort_func() {
+		return (default_sort_func != null);
+	}
+	
+	/** Sets the default comparison function used when sorting to be sort_func. **/
+	public void set_default_sort_func(owned TreeIterCompareFunc sort_func) {
+		default_sort_func = sort_func;
+	}
+	
+	/** Sets the current sort column to be sort_column_id. **/
+	public void set_sort_column_id(int sort_column_id, SortType order) {
+		bool changed = (this.sort_column_id != sort_column_id || order != sort_direction);
+		
+		this.sort_column_id = sort_column_id;
+		sort_direction = order;
+		
+		if(changed && sort_column_id >= 0) {
+			/* do the sort for reals */
+			rows.sort_iter(sequenceIterCompareFunc);
+			
+			sort_column_changed();
+		}
+	}
+	
+	/** Sets the comparison function used when sorting to be sort_func. **/
+	public void set_sort_func(int sort_column_id, owned TreeIterCompareFunc sort_func) {
+		column_sorts.set(sort_column_id, new CompareFuncHolder(sort_func));
+	}
+	
+	/** Custom function to use built in sort in GLib.Sequence to our advantage **/
+	public int sequenceIterCompareFunc(SequenceIter<ValueArray> a, SequenceIter<ValueArray> b) {
+		int rv;
+		
+		if(sort_column_id < 0)
+			return 0;
+		
+		/*if(column_sorts.get(sort_column_id) != null) {
+			TreeIter iter_a = TreeIter();
+			iter_a.stamp = this.stamp;
+			iter_a.user_data = a;
+			
+			TreeIter iter_b = TreeIter();
+			iter_b.stamp = this.stamp;
+			iter_b.user_data = b;
+			
+			rv = ((TreeIterCompareFunc)column_sorts.get(sort_column_id).sort_func)(this, iter_a, iter_b);
+		}
+		else if(has_default_sort_func()) {
+			TreeIter iter_a = TreeIter();
+			iter_a.stamp = this.stamp;
+			iter_a.user_data = a;
+			
+			TreeIter iter_b = TreeIter();
+			iter_b.stamp = this.stamp;
+			iter_b.user_data = b;
+			
+			rv = default_sort_func(this, iter_a, iter_b);
+		}*/
+		if(_columns.get(sort_column_id) == "Artist") {
+			Song a_song = lm.song_from_id(rows.get(a).values[0].get_int());
+			Song b_song = lm.song_from_id(rows.get(b).values[0].get_int());
+			
+			if(a_song.artist.down() == b_song.artist.down() && a_song.album.down() == b_song.album.down() && a_song.track == b_song.track)
+				return (a_song.file.down() > b_song.file.down()) ? 1 : -1;
+			else if(a_song.artist.down() == b_song.artist.down() && a_song.album.down() == b_song.album.down())
+				return a_song.track - b_song.track;
+			else if(a_song.artist.down() == b_song.artist.down())
+				return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
+			else
+				return (a_song.artist.down() > b_song.artist.down()) ? 1 : -1;
+		}
+		else if(_columns.get(sort_column_id) == "Artist") {
+			Song a_song = lm.song_from_id(rows.get(a).values[0].get_int());
+			Song b_song = lm.song_from_id(rows.get(b).values[0].get_int());
+			
+			if(a_song.album.down() == b_song.album.down() && a_song.track == b_song.track)
+				return (a_song.file.down() > b_song.file.down()) ? 1 : -1;
+			else if(a_song.album.down() == b_song.album.down())
+				return a_song.track - b_song.track;
+			else
+				return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
+		}
+		else {
+			/* just do a default, basic sort */
+			if(rows.get(a).values[sort_column_id].holds(typeof(int))) {
+				rv = rows.get(a).values[sort_column_id].get_int() - rows.get(b).values[sort_column_id].get_int();
+			}
+			else if(rows.get(a).values[sort_column_id].holds(typeof(string))) {
+				rv = ((rows.get(a).values[sort_column_id].get_string() > rows.get(b).values[sort_column_id].get_string()) ? 1 : -1);
+			}
+			else {
+				rv = ((rows.get(a).values[sort_column_id].get_object() != null) ? 1 : -1);
+			}
+		}
+		
+		return rv;
+	}
 }
