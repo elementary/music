@@ -32,7 +32,6 @@ public class LastFM.AlbumInfo : Object {
 		string artist_fixed = LastFM.Core.fix_for_url(artist);
 		
 		var url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + api + "&artist=" + artist_fixed + "&album=" + album_fixed;
-		stdout.printf("Parsing album info.\n");
 		Xml.Doc* doc = Parser.parse_file (url);
 		AlbumInfo.with_doc(doc);
 	}

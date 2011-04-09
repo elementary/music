@@ -181,6 +181,8 @@ public class BeatBox.SongEditor : Window {
 				s.track = int.parse(fields.get("Track").get_value());
 			if(fields.get("Year").checked())
 				s.year = int.parse(fields.get("Year").get_value());
+			if(fields.get("Rating").checked())
+				s.rating = int.parse(fields.get("Rating").get_value());
 		}
 		
 		songs_saved(_songs);

@@ -315,12 +315,12 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
 			
-			query.set_string(":name", "Top Rated");
+			query.set_string(":name", "Favorites");
 			query.set_string(":and_or", "any");
 			query.set_string(":queries", "Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_column", "Rating");
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -330,7 +330,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_string(":queries", "Date Added<value_seperator>is within<value_seperator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_column", "Artist");
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -340,7 +340,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_string(":queries", "Last Played<value_seperator>is within<value_seperator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_column", "Last Played");
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -350,7 +350,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_string(":queries", "Last Played<value_seperator>is within<value_seperator>7<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_column", "Rating");
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -360,7 +360,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_string(":queries", "Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_column", "Artist");
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -370,7 +370,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.set_string(":queries", "Playcount<value_seperator>is at least<value_seperator>10<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", tvs.sort_column);
+			query.set_string(":sort_column", "Plays");
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();

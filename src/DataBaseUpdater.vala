@@ -77,9 +77,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 			GLib.Object next;
 			if((next = toUpdate.poll()) != null) {
 				if(next is LinkedList<Song>) {
-					stdout.printf("dbu speaking\n");
 					dbm.update_songs(((LinkedList<Song>)next));
-					stdout.printf("dbu logging off\n");
 				}
 				else if(next is Playlist) {
 					//dbm.update_playlist((Playlist)next);

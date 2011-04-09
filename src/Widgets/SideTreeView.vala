@@ -173,11 +173,11 @@ public class BeatBox.SideTreeView : TreeView {
 		sideTreeModel.append(out library_iter, null);
 		sideTreeModel.set(library_iter, 0, null, 1, null, 2, "<b>Library</b>");
 		
-		sideTreeModel.append(out devices_iter, null);
+		/*sideTreeModel.append(out devices_iter, null);
 		sideTreeModel.set(devices_iter, 0, null, 1, null, 2, "<b>Devices</b>");
 		
 		sideTreeModel.append(out network_iter, null);
-		sideTreeModel.set(network_iter, 0, null, 1, null, 2, "<b>Network</b>");
+		sideTreeModel.set(network_iter, 0, null, 1, null, 2, "<b>Network</b>");*/
 		
 		sideTreeModel.append(out playlists_iter, null);
 		sideTreeModel.set(playlists_iter, 0, null, 1, null, 2, "<b>Playlists</b>");
@@ -463,6 +463,22 @@ public class BeatBox.SideTreeView : TreeView {
 			else {
 				
 				return true;
+			}
+		}
+		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 2) {
+			TreeIter iter;
+			TreePath path;
+			TreeViewColumn column;
+			int cell_x;
+			int cell_y;
+			
+			this.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
+		
+			if(!sideTreeModel.get_iter(out iter, path))
+				return false;
+				
+			if(getWidget(iter) is MusicTreeView) {
+				((MusicTreeView)getWidget(iter)).setAsCurrentList(0);
 			}
 		}
 		

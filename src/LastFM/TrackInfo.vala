@@ -31,7 +31,6 @@ public class LastFM.TrackInfo : Object {
 		
 		string url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=" + api + "&artist=" + artist_fixed + "&track=" + track_fixed;
 		
-		stdout.printf("Parsing track info.\n");
 		Xml.Doc* doc = Parser.parse_file (url);
 		TrackInfo.with_doc(doc);
 	}

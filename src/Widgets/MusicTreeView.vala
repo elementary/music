@@ -530,10 +530,28 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(removing_songs)
 			return;
 		
+		bool cursor_over = false;
+		int x = 0;
+		int y = 0;
+		view.get_pointer(out x, out y);
+		
+		TreePath cPath;
+		TreeViewColumn cColumn;
+		int cell_x;
+		int cell_y;
+		
+		if(view.get_path_at_pos (x,  y, out cPath, out cColumn, out cell_x, out cell_y)) {
+			//stdout.printf("valid path\n");
+			if(cPath.to_string() == tree_model.get_path(iter).to_string() && cColumn.title == "Rating") {
+				//stdout.printf("OVER RATING------------\n");
+				cursor_over = true;
+			}
+		}
+		
 		Value rating;
 		tree_model.get_value(iter, _columns.index_of("Rating"), out rating);
 		
-		if(cell_layout.get_cells().index(cell) < rating.get_int()/* || (cursor_over && cell_layout.get_cells().index(cell) * 18 <= cell_x)*/)
+		if(cell_layout.get_cells().index(cell) < rating.get_int() || (cursor_over && cell_layout.get_cells().index(cell) * 18 <= cell_x))
 			((CellRendererPixbuf)cell).pixbuf = starred;
 		else if(view.get_selection().iter_is_selected(iter))
 			((CellRendererPixbuf)cell).pixbuf = not_starred;
@@ -975,6 +993,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual void songEditorSaved(LinkedList<Song> songs) {
 		lm.update_songs(songs, true);
+		
+		if(hint == Hint.SMART_PLAYLIST) {
+			// make sure these songs still belongs here
+		}
 	}
 	
 	public virtual void songFileBrowseClicked() {
