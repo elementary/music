@@ -8,14 +8,13 @@ public class BeatBox.SongEditor : Window {
 	private VBox content;
 	private HBox padding;
 	
-	private Notebook notebook;
-	private Viewport editView;
 	private VBox vert; // seperates editors with buttons and other stuff
 	private HBox horiz; // seperates text with numerical editors
 	private VBox textVert; // seperates text editors
 	private VBox numerVert; // seperates numerical editors
 	
 	private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
+	private StatsDisplay stats;
 	
 	private Button _save;
 	
@@ -23,8 +22,6 @@ public class BeatBox.SongEditor : Window {
 	public signal void songs_saved(LinkedList<Song> songs);
 	
 	public SongEditor(LibraryWindow lw, LinkedList<Song> songs, LastFM.TrackInfo? track, LastFM.ArtistInfo? artist, LastFM.AlbumInfo? album) {
-		this.title = "Properties";
-		
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
@@ -67,6 +64,13 @@ public class BeatBox.SongEditor : Window {
 			//last_played = 0;
 		}
 		
+		if(songs.size == 1) {
+			title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
+		}
+		else {
+			title = "Editing " + songs.size.to_string() + " songs";// + (sum.artist != "" ? (" by " + sum.artist + " ") : " ") + (sum.album != "" ? (" on " + sum.album) : "");
+		}
+		
 		fields.set("Title", new FieldEditor("Title", sum.title, new Entry()));
 		fields.set("Artist", new FieldEditor("Artist", sum.artist, new Entry()));
 		fields.set("Album", new FieldEditor("Album", sum.album, new Entry()));
@@ -74,26 +78,29 @@ public class BeatBox.SongEditor : Window {
 		fields.set("Comment", new FieldEditor("Comment", sum.comment, new TextView()));
 		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 100, 1)));
 		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(1000, 9999, 1)));
+		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false)));
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 10);
-		notebook = new Notebook();
-		editView = new Viewport(null, null);
 		vert = new VBox(false, 0);
 		horiz = new HBox(false, 0);
 		textVert = new VBox(false, 0);
 		numerVert = new VBox(false, 0);
+		stats = new StatsDisplay(sum.play_count, sum.skip_count, sum.last_played);
 		
 		textVert.pack_start(fields.get("Title"), false, true, 0);
-		textVert.pack_start(fields.get("Artist"), false, true, 0);
-		textVert.pack_start(fields.get("Album"), false, true, 0);
-		textVert.pack_start(fields.get("Genre"), false, true, 0);
-		textVert.pack_start(fields.get("Comment"), false, true, 0);
+		textVert.pack_start(fields.get("Artist"), false, true, 5);
+		textVert.pack_start(fields.get("Album"), false, true, 5);
+		textVert.pack_start(fields.get("Comment"), false, true, 5);
 		
 		numerVert.pack_start(fields.get("Track"), false, true, 0);
-		numerVert.pack_start(fields.get("Year"), false, true, 0);
+		numerVert.pack_start(fields.get("Genre"), false, true, 5);
+		numerVert.pack_start(fields.get("Year"), false, true, 5);
+		numerVert.pack_start(fields.get("Rating"), false, true, 5);
+		//if(songs.size == 1)
+			//numerVert.pack_start(stats, false, true, 5);
 		
-		horiz.pack_start(textVert, false, true, 0);
+		horiz.pack_start(wrap_alignment(textVert, 0, 30, 0, 0), false, true, 0);
 		horiz.pack_end(numerVert, false, true, 0);
 		vert.pack_start(horiz, true, true, 0);
 		
@@ -103,18 +110,7 @@ public class BeatBox.SongEditor : Window {
 		
 		buttonSep.pack_end(_save, false, false, 0);
 		
-		editView.add(vert);
-		
-		notebook.append_page(editView, new Label("Properties"));
-		
-		if(track != null)
-			notebook.append_page(generate_track_page(track), new Label("Track Info"));
-		if(artist != null)
-			notebook.append_page(generate_artist_page(artist), new Label("Artist Info"));
-		if(album != null)
-			notebook.append_page(generate_album_page(album), new Label("Album Info"));
-		
-		content.pack_start(wrap_alignment(notebook, 10, 0, 0, 0), true, true, 0);
+		content.pack_start(wrap_alignment(vert, 10, 0, 0, 0), true, true, 0);
 		content.pack_start(wrap_alignment(buttonSep, 0, 0, 10, 0), false, true, 0);
 		
 		padding.pack_start(content, true, true, 10);
@@ -203,6 +199,7 @@ public class BeatBox.FieldEditor : VBox {
 	private Entry entry;
 	private TextView textView;
 	private SpinButton spinButton;
+	private RatingWidget ratingWidget;
 	private Image image;
 	private Button reset;
 
@@ -210,7 +207,7 @@ public class BeatBox.FieldEditor : VBox {
 		_name = name;
 		_original = original;
 		
-		this.spacing = 5;
+		this.spacing = 0;
 		
 		check = new CheckButton();
 		label = new Label(_name);
@@ -229,7 +226,11 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(original != "");
 			
 			entry = (Entry)w;
-			entry.set_size_request(200, -1);
+			if(name != "Genre")
+				entry.set_size_request(300, -1);
+			else
+				entry.set_size_request(100, -1);
+			
 			entry.set_text(original);
 			entry.changed.connect(entryChanged);
 			this.pack_start(entry, true, true, 0);
@@ -238,13 +239,21 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(original != "");
 			
 			textView = (TextView)w;
-			textView.set_size_request(200, 100);
+			textView.set_size_request(300, 100);
 			textView.set_wrap_mode(WrapMode.WORD);
 			textView.get_buffer().text = original;
 			
 			ScrolledWindow scroll = new ScrolledWindow(null, null);
+			Viewport viewport = new Viewport(null, null);
+			
+			viewport.set_shadow_type(ShadowType.ETCHED_IN);
 			scroll.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
-			scroll.add(textView);
+			
+			viewport.add(textView);
+			scroll.add(viewport);
+			
+			scroll.set_size_request(300, 100);
+			viewport.set_size_request(300, 100);
 			
 			textView.buffer.changed.connect(textViewChanged);
 			this.pack_start(scroll, true, true, 0);
@@ -253,7 +262,7 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(original != "-1");
 			
 			spinButton = (SpinButton)w;
-			spinButton.set_size_request(80, -1);
+			spinButton.set_size_request(100, -1);
 			spinButton.value = double.parse(original);
 			spinButton.adjustment.value_changed.connect(spinButtonChanged);
 			this.pack_start(spinButton, true, true, 0);
@@ -266,6 +275,15 @@ public class BeatBox.FieldEditor : VBox {
 			image.set_from_file(original);
 			//callback on file dialogue saved. setup here
 			this.pack_start(image, true, true, 0);
+		}
+		else if(w is RatingWidget) {
+			check.set_active(original != "");
+			
+			ratingWidget = (RatingWidget)w;
+			ratingWidget.set_rating(int.parse(original));
+			ratingWidget.rating_changed.connect(ratingChanged);
+			
+			this.pack_start(ratingWidget, true, true, 0);
 		}
 	}
 	
@@ -294,6 +312,13 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(false);
 	}
 	
+	public virtual void ratingChanged(int new_rating) {
+		if(ratingWidget.get_rating() != int.parse(_original))
+			check.set_active(true);
+		else
+			check.set_active(false);
+	}
+	
 	public bool checked() {
 		return check.get_active();
 	}
@@ -311,6 +336,9 @@ public class BeatBox.FieldEditor : VBox {
 		else if(image != null) {
 			image.set_from_file(_original);
 		}
+		else if(ratingWidget != null) {
+			ratingWidget.set_rating(int.parse(_original));
+		}
 	}
 	
 	public string get_value() {
@@ -326,7 +354,67 @@ public class BeatBox.FieldEditor : VBox {
 		else if(image != null) {
 			return image.file;
 		}
+		else if(ratingWidget != null) {
+			return ratingWidget.get_rating().to_string();
+		}
 		
 		return "";
+	}
+}
+
+public class BeatBox.StatsDisplay : VBox {
+	public int plays;
+	public int skips;
+	public int last_played;
+	
+	Label header;
+	Label info;
+	Button reset;
+	
+	public StatsDisplay(int plays, int skips, int last_played) {
+		this.plays = plays;
+		this.skips = skips;
+		this.last_played = last_played;
+		
+		header = new Label("");
+		info = new Label("");
+		reset = new Button.with_label("Reset");
+		
+		header.justify = Justification.LEFT;
+		header.xalign = 0.0f;
+		header.set_markup("<b>Stats</b>");
+		
+		info.justify = Justification.LEFT;
+		info.xalign = 0.0f;
+		
+		setInfoText();
+		
+		pack_start(header, true, false, 0);
+		pack_start(info, true, true, 0);
+		pack_start(reset, true, false, 0);
+		
+		reset.clicked.connect(resetClicked);
+	}
+	
+	public virtual void resetClicked() {
+		plays = 0;
+		skips = 0;
+		last_played = 0;
+		
+		setInfoText();
+		
+		reset.set_sensitive(false);
+	}
+	
+	private void setInfoText() {
+		var t = Time.local(last_played);
+		string pretty_last_played = t.format("%m/%e/%Y %l:%M %p");
+		
+		string text = "";
+		text += "Plays: <span gravity=\"east\">" + plays.to_string() + "</span>\n";
+		text += "Skips: <span gravity=\"east\">" + skips.to_string() + "</span>\n";
+		text += "Last Played: <span gravity=\"east\">" + ((last_played != 0) ? pretty_last_played : "Never") + "</span>";
+		
+		info.set_markup(text);
 	}
 }

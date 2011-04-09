@@ -4,17 +4,18 @@ using Gdk;
 public class BeatBox.RatingWidget : EventBox {
 	private int rating;
 	
+	private bool centered;
 	private Pixbuf _canvas;
 	private Pixbuf not_starred;
 	private Pixbuf starred;
 	
 	public signal void rating_changed(int new_rating);
 	
-	public RatingWidget() {
-		// make the background white
-		Gdk.Color c = Gdk.Color();
-		Gdk.Color.parse("#FFFFFF", out c);
-		modify_bg(StateType.NORMAL, c);
+	public RatingWidget(Color? c, bool centered) {
+		this.centered = centered;
+		
+		if(c != null)
+			modify_bg(StateType.NORMAL, c);
 		
 		starred = this.render_icon("starred", IconSize.SMALL_TOOLBAR, null);
 		not_starred = this.render_icon("not-starred", IconSize.SMALL_TOOLBAR, null);
@@ -94,12 +95,18 @@ public class BeatBox.RatingWidget : EventBox {
 	
 	/** @override on_expose_event to paint our own custom widget **/
 	public virtual bool exposeEvent(EventExpose event) {
-		event.window.draw_pixbuf(
-				style.bg_gc[0], _canvas,
-				0, 0, (event.area.width - width_request)/2, 0, width_request, height_request,
-				Gdk.RgbDither.NONE, 0, 0
-			);
-			
+		if(centered) {
+			event.window.draw_pixbuf(
+					style.bg_gc[0], _canvas,
+					0, 0, (event.area.width - width_request)/2, 0, width_request, height_request,
+					Gdk.RgbDither.NONE, 0, 0);
+		}
+		else {
+			event.window.draw_pixbuf(
+					style.bg_gc[0], _canvas,
+					0, 0, 0, 0, width_request, height_request,
+					Gdk.RgbDither.NONE, 0, 0);
+		}
 		return true;
 	}
 }

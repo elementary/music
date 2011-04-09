@@ -81,6 +81,7 @@ public class BeatBox.SideTreeView : TreeView {
 		}
 		
 		this.button_press_event.connect(sideListClick);
+		this.row_activated.connect(sideListDoubleClick);
 		this.get_selection().changed.connect(sideListSelectionChange);
 		this.expand_all();
 		
@@ -383,6 +384,9 @@ public class BeatBox.SideTreeView : TreeView {
 					else if(iter == playlists_history_iter) {
 						
 					}
+					else if(iter == playlists_similar_iter) {
+						
+					}
 					else {
 						playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					}
@@ -463,6 +467,20 @@ public class BeatBox.SideTreeView : TreeView {
 		}
 		
 		return false;
+	}
+	
+	public virtual void sideListDoubleClick(TreePath path, TreeViewColumn column) {
+		TreeIter iter;
+		
+		if(!sideTreeModel.get_iter(out iter, path))
+			return;
+			
+		/*if(getWidget(iter) is MusicTreeView) {
+			((MusicTreeView)getWidget(iter)).setAsCurrentList(1);
+			lm.getNext(true);
+			if(!lm.playing)
+				lw.playClicked();
+		}*/
 	}
 	
 	public bool updateView(TreeModel model, TreePath path, TreeIter item) {

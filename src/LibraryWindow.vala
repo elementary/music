@@ -806,8 +806,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("Stopping playback\n");
 		lm.player.pause_stream();
 		
-		lm.settings.setLastSongPosition((int)topDisplay.get_scale_value());
-		
 		stdout.printf("Saving songs\n");
 		//lm.save_songs();
 		
@@ -1012,6 +1010,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		double sec = 0.0;
 		if(lm.song_info.song != null) {
 			sec = ((double)position/1000000000);
+			
+			lm.settings.setLastSongPosition((int)sec);
 			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {

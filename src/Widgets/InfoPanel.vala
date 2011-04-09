@@ -35,7 +35,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		title = new Label("Title");
 		artist = new Label("Artist");
 		artistImage = new Image();
-		rating = new RatingWidget();
+		rating = new RatingWidget(c, true);
 		album = new Label("Album");
 		year = new Label("Year");
 		ssv = new SimilarSongsView(lm, lw);
