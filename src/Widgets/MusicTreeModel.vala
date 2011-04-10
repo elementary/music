@@ -270,8 +270,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			s_iter = rows.get_iter_at_pos(index);
 			
 			if(id == rows.get(s_iter).values[0].get_int()) {
-				Song s = lm.song_from_id(id);
-				
 				rows.get(s_iter).values[_columns.index_of(" ")] = Value(typeof(Gdk.Pixbuf));;
 				
 				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
@@ -442,51 +440,31 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(sort_column_id < 0)
 			return 0;
 		
-		/*if(column_sorts.get(sort_column_id) != null) {
-			TreeIter iter_a = TreeIter();
-			iter_a.stamp = this.stamp;
-			iter_a.user_data = a;
-			
-			TreeIter iter_b = TreeIter();
-			iter_b.stamp = this.stamp;
-			iter_b.user_data = b;
-			
-			rv = ((TreeIterCompareFunc)column_sorts.get(sort_column_id).sort_func)(this, iter_a, iter_b);
-		}
-		else if(has_default_sort_func()) {
-			TreeIter iter_a = TreeIter();
-			iter_a.stamp = this.stamp;
-			iter_a.user_data = a;
-			
-			TreeIter iter_b = TreeIter();
-			iter_b.stamp = this.stamp;
-			iter_b.user_data = b;
-			
-			rv = default_sort_func(this, iter_a, iter_b);
-		}*/
 		if(_columns.get(sort_column_id) == "Artist") {
 			Song a_song = lm.song_from_id(rows.get(a).values[0].get_int());
 			Song b_song = lm.song_from_id(rows.get(b).values[0].get_int());
 			
-			if(a_song.artist.down() == b_song.artist.down() && a_song.album.down() == b_song.album.down() && a_song.track == b_song.track)
-				return (a_song.file.down() > b_song.file.down()) ? 1 : -1;
-			else if(a_song.artist.down() == b_song.artist.down() && a_song.album.down() == b_song.album.down())
-				return a_song.track - b_song.track;
-			else if(a_song.artist.down() == b_song.artist.down())
-				return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
+			if(a_song.artist.down() == b_song.artist.down()) {
+				if(a_song.album.down() == b_song.album.down())
+					rv = (sort_direction == SortType.ASCENDING) ? a_song.track - b_song.track : b_song.track - a_song.track;
+				else
+					rv = advancedStringCompare(a_song.album.down(), b_song.album.down());
+			}
 			else
-				return (a_song.artist.down() > b_song.artist.down()) ? 1 : -1;
+				rv = advancedStringCompare(a_song.artist.down(), b_song.artist.down());
 		}
-		else if(_columns.get(sort_column_id) == "Artist") {
+		else if(_columns.get(sort_column_id) == "Album") {
 			Song a_song = lm.song_from_id(rows.get(a).values[0].get_int());
 			Song b_song = lm.song_from_id(rows.get(b).values[0].get_int());
 			
-			if(a_song.album.down() == b_song.album.down() && a_song.track == b_song.track)
-				return (a_song.file.down() > b_song.file.down()) ? 1 : -1;
-			else if(a_song.album.down() == b_song.album.down())
-				return a_song.track - b_song.track;
-			else
-				return (a_song.album.down() > b_song.album.down()) ? 1 : -1;
+			if(a_song.album.down() == b_song.album.down())
+				rv = (sort_direction == SortType.ASCENDING) ? a_song.track - b_song.track : b_song.track - a_song.track;
+			else {
+				if(a_song.album == "")
+					rv = 1;
+				else
+					rv = advancedStringCompare(a_song.album.down(), b_song.album.down());
+			}
 		}
 		else {
 			/* just do a default, basic sort */
@@ -494,13 +472,25 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 				rv = rows.get(a).values[sort_column_id].get_int() - rows.get(b).values[sort_column_id].get_int();
 			}
 			else if(rows.get(a).values[sort_column_id].holds(typeof(string))) {
-				rv = ((rows.get(a).values[sort_column_id].get_string() > rows.get(b).values[sort_column_id].get_string()) ? 1 : -1);
+				rv = advancedStringCompare(rows.get(a).values[sort_column_id].get_string().down(), rows.get(b).values[sort_column_id].get_string().down());
 			}
 			else {
 				rv = ((rows.get(a).values[sort_column_id].get_object() != null) ? 1 : -1);
 			}
 		}
 		
+		if(sort_direction == SortType.DESCENDING)
+			rv = (rv > 0) ? -1 : 1;
+		
 		return rv;
+	}
+	
+	private int advancedStringCompare(string a, string b) {
+		if(a == "" && b != "")
+			return 1;
+		else if(a != "" && b == "")
+			return -1;
+		
+		return (a > b) ? 1 : -1;
 	}
 }

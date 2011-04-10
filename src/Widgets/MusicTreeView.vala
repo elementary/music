@@ -22,9 +22,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public bool is_current;
 	public bool dragging;
 	
-	LinkedList<string> timeout_search;//stops from doing useless search
+	LinkedList<string> timeout_search;//stops from doing useless search (timeout)
 	string last_search;//stops from searching same thing multiple times
 	bool showing_all; // stops from searching unnecesarilly when changing b/w 0 words and search hint, etc.
+	
 	bool scrolled_recently;
 	
 	//for header column chooser
@@ -860,7 +861,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void updateTreeViewSetup() {
-		if(music_model == null || !(music_model is TreeModelSort)) {
+		if(music_model == null || !(music_model is TreeSortable)) {
 			return;
 		}
 		
