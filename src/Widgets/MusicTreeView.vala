@@ -530,7 +530,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(removing_songs)
 			return;
 		
-		bool cursor_over = false;
+		/*bool cursor_over = false;
 		int x = 0;
 		int y = 0;
 		view.get_pointer(out x, out y);
@@ -546,12 +546,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				//stdout.printf("OVER RATING------------\n");
 				cursor_over = true;
 			}
-		}
+		}*/
 		
 		Value rating;
 		tree_model.get_value(iter, _columns.index_of("Rating"), out rating);
 		
-		if(cell_layout.get_cells().index(cell) < rating.get_int() || (cursor_over && cell_layout.get_cells().index(cell) * 18 <= cell_x))
+		if(cell_layout.get_cells().index(cell) < rating.get_int()/* || (cursor_over && cell_layout.get_cells().index(cell) * 18 <= cell_x)*/)
 			((CellRendererPixbuf)cell).pixbuf = starred;
 		else if(view.get_selection().iter_is_selected(iter))
 			((CellRendererPixbuf)cell).pixbuf = not_starred;
@@ -624,10 +624,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(lm.song_info.song != null)
 			music_model.updateSong(lm.song_info.song.rowid, is_current);
 		
-		scrollToCurrent();
 		view.set_model(music_model);
-		scrollToCurrent();
 		view.thaw_child_notify();
+		
+		scrollToCurrent();
 	}
 	
 	public virtual void current_cleared() {
