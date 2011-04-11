@@ -49,6 +49,7 @@ def configure(ctx):
 	check_pkg(ctx, 'gconf-2.0', 'GCONF', '2.31.91')
 	check_pkg(ctx, 'libnotify', 'LIBNOTIFY', '0.5.0')
 	check_pkg(ctx, 'unique-1.0', 'UNIQUE', '0.9')
+	check_pkg(ctx, 'rest-0.6', 'REST', '0.6')
 
 def build(bld):
 	#install basic desktop file
@@ -65,9 +66,9 @@ def build(bld):
    	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/apps', '/images/icons/128x128/apps/beatbox.svg');
                        
 	bld.program(
-		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0',
+		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0 rest-0.6',
 		target        = APPNAME,
-		uselib        = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY INDICATE UNIQUE WEBKIT',
+		uselib        = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY INDICATE UNIQUE WEBKIT REST',
 		source        =  bld.path.ant_glob(('*.vala', 'src/*.vala', 'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 'src/Widgets/*.vala')) 
 		)
 	

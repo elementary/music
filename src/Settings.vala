@@ -4,6 +4,7 @@ public class BeatBox.Settings : Object {
 	public static const string LASTFM_USERNAME = "/apps/beatbox/preferences/lastfm/username";
 	public static const string LASTFM_PASSWORD = "/apps/beatbox/preferences/lastfm/pass";
 	public static const string LASTFM_AUTO_LOGIN = "/apps/beatbox/preferences/lastfm/auto_login";
+	public static const string LASTFM_TOKEN = "/apps/beatbox/preferences/lastfm/lastfm_token";
 	public static const string LASTFM_SESSION_KEY = "/apps/beatbox/preferences/lastfm/lastfm_session_key";
 	
 	public static const string MUSIC_FOLDER = "/apps/beatbox/preferences/music/music_folder";
@@ -166,6 +167,10 @@ public class BeatBox.Settings : Object {
 		return getInt(REPEAT_MODE, 0);
 	}
 	
+	public string getLastFMToken() {
+		return getString(LASTFM_TOKEN, "");
+	}
+	
 	public string getLastFMSessionKey() {
 		return getString(LASTFM_SESSION_KEY, "");
 	}
@@ -224,6 +229,10 @@ public class BeatBox.Settings : Object {
 	
 	public void setRepeatMode(int val) {
 		setInt(REPEAT_MODE, val);
+	}
+	
+	public void setLastFMToken(string val) {
+		setString(LASTFM_TOKEN, val);
 	}
 	
 	public void setLastFMSessionKey(string val) {

@@ -309,7 +309,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// start at biggest value
 		foreach(int i in _songs.keys) {
 			if(i > index)
-				index = i + 1;
+				index = i + 2;
 		}
 		
 		fo.resetProgress(new_songs.size);
@@ -371,7 +371,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		lock(_songs) {
 			foreach(Song s in _songs.values) {
 				if(s.rowid > index)
-					index = s.rowid + 1;
+					index = s.rowid + 2;
 				
 				foreach(string path in paths) {
 					if(s.file == path)

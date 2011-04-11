@@ -598,6 +598,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
+	public void addSongs(Collection<int> songs) {
+		foreach(int i in songs) {
+			_songs.add(i);
+		}
+		
+		music_model.append_songs(songs, true);
+	}
+	
 	public void populateView(Collection<int> songs, bool is_search) {
 		view.freeze_child_notify();
 		view.set_model(null);

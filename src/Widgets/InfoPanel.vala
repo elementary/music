@@ -152,6 +152,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	
 	public virtual void resized(Gdk.Rectangle rectangle) {
 		// resize the image to fit
+		artistImage.icon_size = rectangle.width - 10;
 		updateArtistImage();
 	}
 }

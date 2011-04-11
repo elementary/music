@@ -35,8 +35,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ToolButton previousButton;
 	ToolButton playButton;
 	ToolButton nextButton;
-	Button loveButton;
-	Button banButton;
+	ToolButton loveButton;
+	ToolButton banButton;
 	ElementaryWidgets.TopDisplay topDisplay;
 	public ElementaryWidgets.ElementarySearchEntry searchField;
 	ElementaryWidgets.AppMenu appMenu;
@@ -190,8 +190,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PREVIOUS);
 		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
-		loveButton = new Button.with_label("Love");
-		banButton = new Button.with_label("Ban");
+		loveButton = new ToolButton.from_stock(Gtk.Stock.SAVE);
+		banButton = new ToolButton.from_stock(Gtk.Stock.OPEN);
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
 		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
@@ -219,9 +219,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//sideBar.set_geometry_hints(
 		
 		buildSideTree();
-		
-		loveButton.relief = Gtk.ReliefStyle.NONE;
-		banButton.relief = Gtk.ReliefStyle.NONE;
 		
 		updateSensitivities();
 		
@@ -324,6 +321,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.insert(topDisplayBin, 3);
         topControls.insert(searchFieldBin, 4);
         topControls.insert(appMenuBin, 5);
+        topControls.insert(loveButton, 6);
+        topControls.insert(banButton, 7);
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
@@ -922,15 +921,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		stdout.printf("TODO: add all new songs from import to music treeview\n");
-		/*foreach(Song s in new_songs) {
-			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
-		}*/
-		
-		if(searchField.text != "" && searchField.text != searchField.hint_string) {
-			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
-			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
-		}
+		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).populateView(lm.song_ids(), false);
 		
 		updateSensitivities();
 	}
@@ -946,15 +937,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		stdout.printf("TODO: add all new songs from import to music treeview\n");
-		/*foreach(Song s in new_songs) {
-			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).addSong(s);
-		}*/
-		
-		if(searchField.text != "" && searchField.text != searchField.hint_string) {
-			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
-			((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
-		}
+		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).populateView(lm.song_ids(), false);
 		
 		updateSensitivities();
 	}
