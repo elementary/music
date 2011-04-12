@@ -2,11 +2,10 @@
  * @author Scott Ringwelski
 */
 using Xml;
-using Rest;
+using Soup;
 
 public class LastFM.Core : Object {
 	BeatBox.LibraryManager lm;
-	Rest.Proxy proxy;
 	
 	/** NOTICE: These API keys and secrets are unique to BeatBox and Beatbox
 	 * only. To get your own, FREE key go to http://www.last.fm/api/account */
@@ -20,8 +19,6 @@ public class LastFM.Core : Object {
 		lm = lmm;
 		token = lm.settings.getLastFMToken();
 		session_key = lm.settings.getLastFMSessionKey();
-		
-		proxy = new Rest.Proxy("POST http://ws.audioscrobbler.com/2.0/", false);
 	}
 	
 	/** vala sucks here **/
@@ -48,7 +45,7 @@ public class LastFM.Core : Object {
 	}
 	
 	public string generate_tracklove_signature(string artist, string track) {
-		return generate_md5("api_key" + api + "artist" + artist + "methodtrack.lovesk" + session_key + "track" + track + secret);
+		return generate_md5("api_key" + api + "artist" + artist + "methodtrack.loveformatjsonsk" + session_key + "track" + track + secret);
 	}
 	
 	public string? getToken() {
@@ -96,39 +93,37 @@ public class LastFM.Core : Object {
 	}
 	
 	public bool loveTrack(string title, string artist) {
-		Rest.ProxyCall call = proxy.new_call();
-		
-		call.add_params("method", "track.love",
-						"api_key", api,
-						"api_sig", generate_tracklove_signature(artist, title),
-						"artist", artist,
-						"sk", session_key,
-						"track", title);
-		
-		try { 
-			call.run_async(on_call_finish, this); 
-		}
-		catch (GLib.Error err) { 
-			stdout.printf("Could not love track: %s\n", err.message);
-		}
-		
-		/*var uri = "POST http://ws.audioscrobbler.com/2.0/?method=track.love&api_key=" + api + "&api_sig=" + generate_tracklove_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&sk=" + session_key + "&track=" + fix_for_url(title);
+		var uri = "http://ws.audioscrobbler.com/2.0/";//?method=track.love&api_key=" + api + "&api_sig=" + generate_tracklove_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&sk=" + session_key + "&track=" + fix_for_url(title);
 		
 		stdout.printf("sending %s\n", uri);
 		
 		Soup.SessionAsync session = new Soup.SessionAsync();
-		Soup.Message message = new Soup.Message ("POST", uri);
+		Soup.Message message = new Soup.Message ("GET", uri);
+		stdout.printf("bai\n");
 		
+		var headers = new Soup.MessageHeaders(MessageHeadersType.REQUEST);
+		stdout.printf("in positions\n");
+		headers.append("method", "track.love");
+		headers.append("api_key", api);
+		headers.append("api_sig", generate_tracklove_signature(artist, title));
+		headers.append("artist", fix_for_url(artist));
+		headers.append("format", "json");
+		headers.append("sk", session_key);
+		headers.append("track", fix_for_url(title));
+		stdout.printf("oh haibai\n");
+		
+		message.request_headers = headers;
+		
+		stdout.printf("bai\n");
 		/* send the HTTP request */
-		//session.send_message(message);
-		
-		//stdout.printf(message.response_body.data);
+		session.queue_message(message, (sess, mess) => {
+		stdout.printf ("Message length: %lld\n%s\n",
+					   mess.response_body.length,
+					   mess.response_body.data);
+		});
+		stdout.printf("bai\n");
 		
 		return false;
-	}
-	
-	private void on_call_finish(Rest.ProxyCall call) {
-		stdout.printf("Call finished\n");
 	}
 	
 	public bool banTrack(string title, string artist) {
