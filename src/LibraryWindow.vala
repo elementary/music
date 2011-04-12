@@ -122,14 +122,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(s.rowid != 0) {
 				/* time out works because... monkeys eat bananas */
 				int position = (int)settings.getLastSongPosition();
-				Timeout.add(200, () => {
+				Timeout.add(150, () => {
 					lm.playSong(s.rowid);
 					
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(0);
 					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL)
 						lm.setShuffleMode(LibraryManager.Shuffle.ALL);
 					
-					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).scrollToCurrent();
+					searchField.set_text(lm.settings.getSearchString());
 					
 					topDisplay.change_value(ScrollType.NONE, position);
 						
@@ -480,9 +480,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(lm.song_info.song == null && lm.song_count() > 0) {
 			topDisplay.set_visible(false);
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
+			infoPanel.set_visible(false);
+			infoPanelChooser.set_visible(false);
 		}
 		else {
 			topDisplay.set_visible(true);
+			
+			if(lm.settings.getMoreVisible())
+				infoPanel.set_visible(true);
+				
+			infoPanelChooser.set_visible(true);
 		}
 		
 		if(lm.doing_file_operations) {
@@ -891,7 +898,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		((MusicTreeView)w).populateView(lm.song_ids(), false);
 		
 		if(not_imported.size > 0) {
-			NotImportedWindow nim = new NotImportedWindow(this, not_imported);
+			NotImportedWindow nim = new NotImportedWindow(this, not_imported, lm.settings.getMusicFolder());
 			nim.show();
 		}
 		
@@ -930,7 +937,23 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).populateView(lm.song_ids(), false);
+		// this will update the view in the main treeview b/c the songs in that are equal to lm.songs()
+		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+		
+		Widget selected_w = sideTree.getSelectedWidget();
+		if(selected_w is MusicTreeView) {
+			MusicTreeView sel_mtv = ((MusicTreeView)selected_w);
+			
+			if(sel_mtv.hint == MusicTreeView.Hint.SMART_PLAYLIST) {
+				var new_ids = new LinkedList<int>();
+				foreach(Song s in new_songs) {
+					new_ids.add(s.rowid);
+				}
+				
+				sel_mtv.addSongs(new_ids);
+				sel_mtv.searchFieldChanged();
+			}
+		}
 		
 		updateSensitivities();
 	}
@@ -946,7 +969,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).populateView(lm.song_ids(), false);
+		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+		
+		Widget selected_w = sideTree.getSelectedWidget();
+		if(selected_w is MusicTreeView) {
+			MusicTreeView sel_mtv = ((MusicTreeView)selected_w);
+			
+			if(sel_mtv.hint == MusicTreeView.Hint.SMART_PLAYLIST) {
+				var new_ids = new LinkedList<int>();
+				foreach(Song s in new_songs) {
+					new_ids.add(s.rowid);
+				}
+				
+				sel_mtv.addSongs(new_ids);
+				sel_mtv.searchFieldChanged();
+			}
+		}
 		
 		updateSensitivities();
 	}

@@ -3,6 +3,7 @@ using Gtk;
 
 public class BeatBox.NotImportedWindow : Window{
 	LinkedList<string> _files;
+	string music_folder;
 	
 	//for padding around notebook mostly
 	private VBox content;
@@ -14,8 +15,9 @@ public class BeatBox.NotImportedWindow : Window{
 	ListStore filesModel;
 	Button moveToTrash;
 	
-	public NotImportedWindow(LibraryWindow lw, LinkedList<string> files) {
+	public NotImportedWindow(LibraryWindow lw, LinkedList<string> files, string music) {
 		_files = files;
+		this.music_folder = music;
 		
 		this.set_title("Not Imported Files");
 		
@@ -34,7 +36,7 @@ public class BeatBox.NotImportedWindow : Window{
 		
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
-		Label title = new Label("Unable to import " + files.size.to_string() + "songs");
+		Label title = new Label("Unable to import " + files.size.to_string() + "songs from " + music_folder);
 		Label info = new Label("BeatBox was unable to import " + files.size.to_string() + " songs. The files may be damaged.");
 		trashAll = new CheckButton.with_label("Move all corrupted files to trash");
 		filesScroll = new ScrolledWindow(null, null);
@@ -46,7 +48,7 @@ public class BeatBox.NotImportedWindow : Window{
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Unable to import " + files.size.to_string() + " songs</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">Unable to import " + files.size.to_string() + " songs from " + music_folder + "</span>");
 		info.xalign = 0.0f;
 		info.set_line_wrap(false);
 		
@@ -76,7 +78,7 @@ public class BeatBox.NotImportedWindow : Window{
 			TreeIter item;
 			filesModel.append(out item);
 			
-			filesModel.set(item, 0, false, 1, file);
+			filesModel.set(item, 0, false, 1, file.replace(music_folder, ""));
 		}
 		
 		filesScroll.add(filesView);
@@ -187,7 +189,7 @@ public class BeatBox.NotImportedWindow : Window{
 		
 		if(selected) {
 			try {
-				var file = File.new_for_path(location);
+				var file = File.new_for_path(music_folder + location);
 				file.trash();
 			}
 			catch(GLib.Error err) {

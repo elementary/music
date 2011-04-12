@@ -34,7 +34,7 @@ namespace ElementaryWidgets {
 			//label.set_markup("<b></b>");
 			
 			this.pack_start(label, false, true, 0);
-			this.pack_start(progressbar, false, true, 2);
+			this.pack_start(progressbar, false, true, 0);
 			this.pack_start(scaleBox, false, true, 0);
 			
 			this.scale.button_press_event.connect(scale_button_press);

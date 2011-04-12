@@ -4,7 +4,6 @@ public class BeatBox.Settings : Object {
 	public static const string LASTFM_USERNAME = "/apps/beatbox/preferences/lastfm/username";
 	public static const string LASTFM_PASSWORD = "/apps/beatbox/preferences/lastfm/pass";
 	public static const string LASTFM_AUTO_LOGIN = "/apps/beatbox/preferences/lastfm/auto_login";
-	public static const string LASTFM_TOKEN = "/apps/beatbox/preferences/lastfm/lastfm_token";
 	public static const string LASTFM_SESSION_KEY = "/apps/beatbox/preferences/lastfm/lastfm_session_key";
 	
 	public static const string MUSIC_FOLDER = "/apps/beatbox/preferences/music/music_folder";
@@ -14,6 +13,7 @@ public class BeatBox.Settings : Object {
 	public static const string LAST_SONG_POSITION = "/apps/beatbox/preferences/music/last_song_position";
 	public static const string SHUFFLE_MODE = "/apps/beatbox/preferences/music/shuffle_mode";
 	public static const string REPEAT_MODE = "/apps/beatbox/preferences/music/repeat_mode";
+	public static const string SEARCH_STRING = "/apps/beatbox/preferences/music/search_string";
 	
 	public static const string WINDOW_MAXIMIZED = "/apps/beatbox/preferences/ui/window_maximized";
 	public static const string WINDOW_WIDTH = "/apps/beatbox/preferences/ui/window_width";
@@ -133,6 +133,10 @@ public class BeatBox.Settings : Object {
 		return getBool(MORE_VISIBLE, false);
 	}
 	
+	public string getSearchString() {
+		return getString(SEARCH_STRING, "");
+	}
+	
 	public bool getUpdateFolderHierarchy() {
 		return getBool(UPDATE_FOLDER_HIERARCHY, false);
 	}
@@ -165,10 +169,6 @@ public class BeatBox.Settings : Object {
 	
 	public int getRepeatMode() {
 		return getInt(REPEAT_MODE, 0);
-	}
-	
-	public string getLastFMToken() {
-		return getString(LASTFM_TOKEN, "");
 	}
 	
 	public string getLastFMSessionKey() {
@@ -204,6 +204,10 @@ public class BeatBox.Settings : Object {
 		setBool(MORE_VISIBLE, val);
 	}
 	
+	public void setSearchString(string val) {
+		setString(SEARCH_STRING, val);
+	}
+	
 	public void setUpdateFolderHierarchy(bool val) {
 		setBool(UPDATE_FOLDER_HIERARCHY, val);
 	}
@@ -229,10 +233,6 @@ public class BeatBox.Settings : Object {
 	
 	public void setRepeatMode(int val) {
 		setInt(REPEAT_MODE, val);
-	}
-	
-	public void setLastFMToken(string val) {
-		setString(LASTFM_TOKEN, val);
 	}
 	
 	public void setLastFMSessionKey(string val) {

@@ -397,6 +397,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		Idle.add( () => { 
 			//maybe pass in songs_added, which appends those songs to the treeview?
+			save_songs();
 			music_rescanned(new_songs, not_imported); 
 			return false; 
 		});

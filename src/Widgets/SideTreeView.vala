@@ -312,34 +312,7 @@ public class BeatBox.SideTreeView : TreeView {
 		sideTreeModel.foreach(updateView);
 		
 		if(current_widget is MusicTreeView) {
-			int count = 0;
-			int total_time = 0;
-			int total_mbs = 0;
-			
-			foreach(int id in ((MusicTreeView)current_widget).get_songs()) {
-				++count;
-				total_time += lm.song_from_id(id).length;
-				total_mbs += lm.song_from_id(id).file_size;
-			}
-			
-			string fancy = "";
-			if(total_time < 3600) { // less than 1 hour show in minute units
-				fancy = (total_time/60).to_string() + " minutes";
-			}
-			else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
-				fancy = (total_time/3600).to_string() + " hours";
-			}
-			else { // units in days
-				fancy = (total_time/(24 * 3600)).to_string() + " days";
-			}
-			
-			string fancy_size = "";
-			if(total_mbs < 1000)
-				fancy_size = ((float)(total_mbs)).to_string() + " MB";
-			else 
-				fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
-			
-			lw.setStatusBarText(count.to_string() + " items, " + fancy + ", " + fancy_size);
+			((MusicTreeView)current_widget).setStatusBarText();
 		}
 	}
 	

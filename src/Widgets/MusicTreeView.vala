@@ -436,10 +436,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 						_showing_songs = searched_songs;*/
 					}
 					
-					last_search = lw.searchField.get_text().down();
+					last_search = to_search;
 					showing_all = (_showing_songs.size == _songs.size);
 					
 					scrollToCurrent();
+					
+					lm.settings.setSearchString(to_search);
+					setStatusBarText();
 				/*}
 				else if(!showing_all && lw.searchField.get_text() != last_search && (lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
 					populateView(_songs, false);
@@ -637,6 +640,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.thaw_child_notify();
 		
 		scrollToCurrent();
+		
+		setStatusBarText();
 	}
 	
 	public virtual void current_cleared() {
@@ -1317,5 +1322,38 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		                  Gdk.DragAction.COPY|
 		                  Gdk.DragAction.MOVE
 		                  );
+	}
+	
+	public void setStatusBarText() {
+		if(is_current_view) {
+			int count = 0;
+			int total_time = 0;
+			int total_mbs = 0;
+			
+			foreach(int id in get_songs()) {
+				++count;
+				total_time += lm.song_from_id(id).length;
+				total_mbs += lm.song_from_id(id).file_size;
+			}
+			
+			string fancy = "";
+			if(total_time < 3600) { // less than 1 hour show in minute units
+				fancy = (total_time/60).to_string() + " minutes";
+			}
+			else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
+				fancy = (total_time/3600).to_string() + " hours";
+			}
+			else { // units in days
+				fancy = (total_time/(24 * 3600)).to_string() + " days";
+			}
+			
+			string fancy_size = "";
+			if(total_mbs < 1000)
+				fancy_size = ((float)(total_mbs)).to_string() + " MB";
+			else 
+				fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
+			
+			lw.setStatusBarText(count.to_string() + " items, " + fancy + ", " + fancy_size);
+		}
 	}
 }

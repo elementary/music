@@ -17,7 +17,6 @@ public class LastFM.Core : Object {
 	
 	public Core(BeatBox.LibraryManager lmm) {
 		lm = lmm;
-		token = lm.settings.getLastFMToken();
 		session_key = lm.settings.getLastFMSessionKey();
 	}
 	
@@ -71,9 +70,7 @@ public class LastFM.Core : Object {
 		
 		for (Xml.Node* iter = root->children; iter != null; iter = iter->next) {
             if(iter->name == "token") {
-				string token = iter->get_content();
-				lm.settings.setLastFMToken(token);
-				return token;
+				return iter->get_content();
 			}
 		}
 		
