@@ -318,11 +318,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.insert(previousButton, 0);
         topControls.insert(playButton, 1);
         topControls.insert(nextButton, 2);
-        topControls.insert(topDisplayBin, 3);
-        topControls.insert(searchFieldBin, 4);
-        topControls.insert(appMenuBin, 5);
-        topControls.insert(loveButton, 6);
-        topControls.insert(banButton, 7);
+        topControls.insert(loveButton, 3);
+        topControls.insert(banButton, 4);
+        topControls.insert(topDisplayBin, 5);
+        topControls.insert(searchFieldBin, 6);
+        topControls.insert(appMenuBin, 7);
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
@@ -689,6 +689,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		return null;
 	}
+	
+	public void* lastfm_scrobble_thread_function () {
+		if(lm.song_info.song != null) {
+			lm.lfm.scrobbleTrack(lm.song_info.song.title, lm.song_info.song.artist);
+			lm.lfm.updateNowPlaying(lm.song_info.song.title, lm.song_info.song.artist);
+		}
+		
+		return null;
+	}
     
     public bool updateSongInfo() {
 		infoPanel.updateSong(lm.song_info.song.rowid);
@@ -1006,6 +1015,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					Thread.create<void*>(lastfm_track_thread_function, false);
 					Thread.create<void*>(lastfm_album_thread_function, false);
 					Thread.create<void*>(lastfm_artist_thread_function, false);
+					Thread.create<void*>(lastfm_scrobble_thread_function, false);
 				}
 				catch(GLib.ThreadError err) {
 					stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);

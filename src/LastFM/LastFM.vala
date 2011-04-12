@@ -45,7 +45,19 @@ public class LastFM.Core : Object {
 	}
 	
 	public string generate_tracklove_signature(string artist, string track) {
-		return generate_md5("api_key" + api + "artist" + artist + "methodtrack.loveformatjsonsk" + session_key + "track" + track + secret);
+		return generate_md5("api_key" + api + "artist" + artist + "methodtrack.lovesk" + session_key + "track" + track + secret);
+	}
+	
+	public string generate_trackban_signature(string artist, string track) {
+		return generate_md5("api_key" + api + "artist" + artist + "methodtrack.bansk" + session_key + "track" + track + secret);
+	}
+	
+	public string generate_trackscrobble_signature(string artist, string track, int timestamp) {
+		return generate_md5("api_key" + api + "artist" + artist + "methodtrack.scrobblesk" + session_key + "timestamp" + timestamp.to_string() + "track" + track + secret);
+	}
+	
+	public string generate_trackupdatenowplaying_signature(string artist, string track) {
+		return generate_md5("api_key" + api + "artist" + artist + "methodtrack.updateNowPlayingsk" + session_key + "track" + track + secret);
 	}
 	
 	public string? getToken() {
@@ -93,48 +105,120 @@ public class LastFM.Core : Object {
 	}
 	
 	public bool loveTrack(string title, string artist) {
-		var uri = "http://ws.audioscrobbler.com/2.0/";//?method=track.love&api_key=" + api + "&api_sig=" + generate_tracklove_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&sk=" + session_key + "&track=" + fix_for_url(title);
+		if(session_key == null || session_key == "") {
+			stdout.printf("User tried to ban a track, but is not logged into Last FM\n");
+			return false;
+		}
 		
-		stdout.printf("sending %s\n", uri);
+		var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_tracklove_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.love&sk=" + session_key + "&track=" + fix_for_url(title);
 		
-		Soup.SessionAsync session = new Soup.SessionAsync();
-		Soup.Message message = new Soup.Message ("GET", uri);
-		stdout.printf("bai\n");
+		Soup.SessionSync session = new Soup.SessionSync();
+		Soup.Message message = new Soup.Message ("POST", uri);
 		
 		var headers = new Soup.MessageHeaders(MessageHeadersType.REQUEST);
-		stdout.printf("in positions\n");
-		headers.append("method", "track.love");
 		headers.append("api_key", api);
 		headers.append("api_sig", generate_tracklove_signature(artist, title));
-		headers.append("artist", fix_for_url(artist));
-		headers.append("format", "json");
+		headers.append("artist", artist);
+		headers.append("method", "track.love");
 		headers.append("sk", session_key);
-		headers.append("track", fix_for_url(title));
-		stdout.printf("oh haibai\n");
+		headers.append("track", title);
 		
 		message.request_headers = headers;
 		
-		stdout.printf("bai\n");
 		/* send the HTTP request */
-		session.queue_message(message, (sess, mess) => {
-		stdout.printf ("Message length: %lld\n%s\n",
-					   mess.response_body.length,
-					   mess.response_body.data);
-		});
-		stdout.printf("bai\n");
+		session.send_message(message);
 		
-		return false;
+		if(message.response_body.length == 0)
+			return false;
+		
+		return true;
 	}
 	
 	public bool banTrack(string title, string artist) {
-		/*var uri = "http://ws.audioscrobbler.com/2.0/?method=track.ban&api_key=" + api + "&api_sig=" + generate_signature(token, "track.ban") + "&sk=" + lm.settings.getLastFMSessionKey() + "&track=" + fix_for_url(title) + "&artist=" + fix_for_url(artist);
+		if(session_key == null || session_key == "") {
+			stdout.printf("User tried to ban a track, but is not logged into Last FM\n");
+			return false;
+		}
 		
-		Soup.SessionAsync session = new Soup.SessionAsync();
+		var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_trackban_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.ban&sk=" + session_key + "&track=" + fix_for_url(title);
+		
+		Soup.SessionSync session = new Soup.SessionSync();
 		Soup.Message message = new Soup.Message ("POST", uri);
 		
-		/* send the HTTP request */
-		//session.send_message(message);
+		var headers = new Soup.MessageHeaders(MessageHeadersType.REQUEST);
+		headers.append("api_key", api);
+		headers.append("api_sig", generate_trackban_signature(artist, title));
+		headers.append("artist", artist);
+		headers.append("method", "track.ban");
+		headers.append("sk", session_key);
+		headers.append("track", title);
 		
-		return false;
+		message.request_headers = headers;
+		
+		/* send the HTTP request */
+		session.send_message(message);
+		
+		if(message.response_body.length == 0)
+			return false;
+		
+		return true;
+	}
+	
+	public bool scrobbleTrack(string title, string artist) {
+		if(session_key == null || session_key == "")
+			return false;
+		
+		var timestamp = (int)time_t();
+		var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_trackscrobble_signature(artist, title, timestamp) + "&artist=" + fix_for_url(artist) + "&method=track.scrobble&sk=" + session_key + "&timestamp=" + timestamp.to_string() + "&track=" + fix_for_url(title);
+		
+		Soup.SessionSync session = new Soup.SessionSync();
+		Soup.Message message = new Soup.Message ("POST", uri);
+		
+		var headers = new Soup.MessageHeaders(MessageHeadersType.REQUEST);
+		headers.append("api_key", api);
+		headers.append("api_sig", generate_trackscrobble_signature(artist, title, timestamp));
+		headers.append("artist", artist);
+		headers.append("method", "track.scrobble");
+		headers.append("sk", session_key);
+		headers.append("timestamp", timestamp.to_string());
+		headers.append("track", title);
+		
+		message.request_headers = headers;
+		
+		/* send the HTTP request */
+		session.send_message(message);
+		
+		if(message.response_body.length == 0)
+			return false;
+		
+		return true;
+	}
+	
+	public bool updateNowPlaying(string title, string artist) {
+		if(session_key == null || session_key == "")
+			return false;
+		
+		var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_trackupdatenowplaying_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.updateNowPlaying&sk=" + session_key + "&track=" + fix_for_url(title);
+		
+		Soup.SessionSync session = new Soup.SessionSync();
+		Soup.Message message = new Soup.Message ("POST", uri);
+		
+		var headers = new Soup.MessageHeaders(MessageHeadersType.REQUEST);
+		headers.append("api_key", api);
+		headers.append("api_sig", generate_trackupdatenowplaying_signature(artist, title));
+		headers.append("artist", artist);
+		headers.append("method", "track.updateNowPlaying");
+		headers.append("sk", session_key);
+		headers.append("track", title);
+		
+		message.request_headers = headers;
+		
+		/* send the HTTP request */
+		session.send_message(message);
+		
+		if(message.response_body.length == 0)
+			return false;
+		
+		return true;
 	}
 }
