@@ -11,7 +11,7 @@
 
 build: build-stamp
 
-build-stamp: configure
+build-stamp:
 	dh_testdir
 	./waf configure --prefix=/usr
 	./waf build

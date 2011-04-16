@@ -42,7 +42,7 @@ def configure(ctx):
 	check_pkg(ctx, 'gee-1.0', 'GEE', '0.5.3')
 	check_pkg(ctx, 'gstreamer-0.10', 'GSTREAMER', '0.10')
 	check_pkg(ctx, 'taglib_c', 'TAGLIB', '1.6.3')
-	check_pkg(ctx, 'gio-2.0', 'GIO', '2.28.0')
+	check_pkg(ctx, 'gio-2.0', 'GIO', '2.26.0')
 	check_pkg(ctx, 'sqlheavy-0.1', 'SQLHEAVY', '0.0')
 	check_pkg(ctx, 'webkit-1.0', 'WEBKIT', '1.2.5')
 	check_pkg(ctx, 'libxml-2.0', 'LIBXML', '2.7.7')
