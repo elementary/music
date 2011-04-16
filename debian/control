@@ -1,0 +1,43 @@
+Source: beatbox
+Section: sound
+Priority: optional
+Maintainer: Scott Ringwelski <sgringwe@mtu.edu>
+Build-Depends: 	debhelper (>= 7.0),
+				libgtk2.0-dev,
+				libgee-dev,
+				libgstreamer0.10-dev,
+				libtag1-dev,
+				libwebkit-dev,
+				libxml2,
+				libgconf2-dev,
+				libnotify-dev,
+				libunique-dev,
+				libsoup2.4-dev,
+				libdbus-glib-1-dev
+Standards-Version: 3.8.4
+Homepage: https://launchpad.net/beat-box
+Package: beatbox
+Architecture: any
+Depends: 	${shlibs:Depends}, ${misc:Depends},
+			libgtk2.0-0 (>= 2.18.0),
+			libgee2 (>= 0.5.0),
+			gstreamer0.10-plugins-base,
+			libtag1c2a,
+			libwebkit-1.0-2,
+			libxml2,
+			libgconf2-4 (>= 2.22.0),
+			libnotify1,
+			libunique-1.0-0 (>= 1.0.0),
+			libsoup2.4-1 (>= 2.26.0),
+			libdbus-glib-1-2 (>= 0.80)
+Description: An easy to use music player and library manager.
+ BeatBox music player is an easy to use, stable, fast, and good
+ looking music library organizer. It has many modern features
+ including 
+ *Last.FM integration to download artwork, information, and scrobble your music.
+ *Playlists and Smart Playlists
+ *Find music similar to the currently playing song
+ *Simple User Interface
+ *Fast searching for music
+ *Queue system
+ *Mass song editing
