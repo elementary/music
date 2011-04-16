@@ -12,6 +12,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	bool queriedlastfm; // whether or not we have queried last fm for the current song info
 	bool song_considered_played; //whether or not we have updated last played and added to already played list
 	bool added_to_play_count; // whether or not we have added one to play count on playing song
+	bool scrobbled_track;
 	LinkedList<string> timeout_search;//stops from doing useless search
 	string last_search;//stops from searching same thing multiple times
 	
@@ -556,6 +557,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		queriedlastfm = false;
 		song_considered_played = false;
 		added_to_play_count = false;
+		scrobbled_track = false;
 		
 		
 		//update the notifier
@@ -574,9 +576,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					notification.set_image_from_pixbuf(notify_pix);
 				else {
 					/* create blank pixbuf so we don't show old album art */
-					Gdk.Pixbuf blank = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, 2, 2);
+					/*Gdk.Pixbuf blank = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, 2, 2);
 					blank.fill((uint) 0xffffff00);
-					notification.set_image_from_pixbuf(blank);
+					notification.set_image_from_pixbuf(blank);*/
 				}
 				
 				notification.show();
@@ -697,10 +699,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		return null;
 	}
 	
+	public void* lastfm_update_nowplaying_thread_function() {
+		if(lm.song_info.song != null) {
+			lm.lfm.updateNowPlaying(lm.song_info.song.title, lm.song_info.song.artist);
+		}
+		
+		return null;
+	}
+	
 	public void* lastfm_scrobble_thread_function () {
 		if(lm.song_info.song != null) {
 			lm.lfm.scrobbleTrack(lm.song_info.song.title, lm.song_info.song.artist);
-			lm.lfm.updateNowPlaying(lm.song_info.song.title, lm.song_info.song.artist);
 		}
 		
 		return null;
@@ -1053,7 +1062,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					Thread.create<void*>(lastfm_track_thread_function, false);
 					Thread.create<void*>(lastfm_album_thread_function, false);
 					Thread.create<void*>(lastfm_artist_thread_function, false);
-					Thread.create<void*>(lastfm_scrobble_thread_function, false);
+					Thread.create<void*>(lastfm_update_nowplaying_thread_function, false);
 				}
 				catch(GLib.ThreadError err) {
 					stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
@@ -1070,6 +1079,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				// add to the already played list
 				lm.add_already_played(lm.song_info.song.rowid);
 				sideTree.updateAlreadyPlayed();
+			}
+			
+			// at halfway, scrobble
+			if((double)(sec/(double)lm.song_info.song.length) > 0.50 && !scrobbled_track) {
+				scrobbled_track = true;
+				try {
+					Thread.create<void*>(lastfm_scrobble_thread_function, false);
+				}
+				catch(GLib.ThreadError err) {
+					stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
+				}
 			}
 			
 			// at 90% done with song, add 1 to play count

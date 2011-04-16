@@ -1,6 +1,7 @@
 using Xml;
+using Json;
 
-public class LastFM.TrackInfo : Object {
+public class LastFM.TrackInfo : GLib.Object {
 	static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
 	
 	private int _id;
@@ -31,7 +32,16 @@ public class LastFM.TrackInfo : Object {
 		
 		string url = "http://ws.audioscrobbler.com/2.0/?method=track.getinfo&api_key=" + api + "&artist=" + artist_fixed + "&track=" + track_fixed;
 		
-		Xml.Doc* doc = Parser.parse_file (url);
+		/*Soup.SessionSync session = new Soup.SessionSync();
+		Soup.Message message = new Soup.Message ("GET", url);
+		
+		session.timeout = 30;// after 30 seconds, give up
+		
+		/* send the HTTP request *
+		session.send_message(message);
+		
+		Xml.Doc* doc = Xml.Parser.parse_memory((string)message.response_body.data, (int)message.response_body.length);*/
+		Xml.Doc* doc = Xml.Parser.parse_file(url);
 		TrackInfo.with_doc(doc);
 	}
 	
@@ -41,7 +51,6 @@ public class LastFM.TrackInfo : Object {
 		
 		tagToAdd = null;
         if (doc == null) {
-            stderr.printf ("Could not get Track info. \n");
             return;
         }
 
@@ -50,7 +59,6 @@ public class LastFM.TrackInfo : Object {
         if (root == null) {
             // Free the document manually before returning
             delete doc;
-            stderr.printf ("The xml file is empty. \n");
             return;
         }
         

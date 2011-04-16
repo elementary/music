@@ -31,7 +31,9 @@ public class BeatBox.Beatbox : GLib.Object {
 		{ "media-playlist-repeat-symbolic", null, 0, 0},
 		{ "media-playlist-shuffle-active-symbolic", null, 0, 0},
 		{ "media-playlist-shuffle-symbolic", null, 0, 0},
-		{ "help-info", null, 0, 0 }
+		{ "help-info", null, 0, 0 },
+		{ "application-community", null, 0, 0},
+		{ "edit-delete", null, 0, 0}
 		
     };
 	

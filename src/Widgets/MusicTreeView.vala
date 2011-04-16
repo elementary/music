@@ -28,6 +28,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	bool scrolled_recently;
 	
+	CellDataFunctionHelper cellHelper;
+	
 	//for header column chooser
 	Menu columnChooserMenu;
 	MenuItem columnSmartSorting;
@@ -65,6 +67,20 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	Gdk.Pixbuf starred;
 	Gdk.Pixbuf not_starred;
+	
+	// for editing cells in-treeview
+	CellRendererText cellTrack;
+	CellRendererText cellTitle;
+	CellRendererText cellLength;
+	CellRendererText cellArtist;
+	CellRendererText cellAlbum;
+	CellRendererText cellGenre;
+	CellRendererText cellYear;
+	CellRendererPixbuf cellRating;
+	CellRendererText cellSkips;
+	CellRendererText cellPlays;
+	CellRendererText cellBitrate;
+	
 	
 	public signal void view_being_searched(string key);
 	
@@ -121,6 +137,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		hint = the_hint;
 		relative_id = id;
 		
+		cellHelper = new CellDataFunctionHelper(this);
+		
 		//generate star pixbuf
 		starred = this.render_icon("starred", IconSize.MENU, null);
 		not_starred = this.render_icon("not-starred", IconSize.MENU, null);
@@ -174,6 +192,23 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public void buildUI() {
 		view = new TreeView();
 		
+		cellTrack = new CellRendererText();
+		cellTitle = new CellRendererText();
+		cellLength = new CellRendererText();
+		cellArtist = new CellRendererText();
+		cellAlbum = new CellRendererText();
+		cellGenre = new CellRendererText();
+		cellYear = new CellRendererText();
+		cellRating = new CellRendererPixbuf();
+		cellSkips = new CellRendererText();
+		cellPlays = new CellRendererText();
+		cellBitrate = new CellRendererText();
+		
+		cellRating.xalign = 0.0f;
+		
+		//cellTitle.editable = false;
+		//cellTitle.edited.connect(cellTitleEdited);
+		
 		/* id is always first and is stored as an int. Then the rest are (1)
 		 * strings (for simplicity), and include:
 		 * #, track, title, artist, album, genre, comment, year, rating, (9)
@@ -196,8 +231,36 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		int index = 0;
 		foreach(TreeViewColumn tvc in to_use) {
-			if(tvc.title == "Bitrate" || tvc.title == "Year" || tvc.title == "#" || tvc.title == "Track" || tvc.title == "Length" || tvc.title == "Plays" || tvc.title == "Skips") {
-				view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), intelligentTreeViewFiller);
+			if(!(tvc.title == " " || tvc.title == "id")) {
+				if(tvc.title == "Bitrate")
+					view.insert_column_with_data_func(-1, tvc.title, cellBitrate, cellHelper.bitrateTreeViewFiller);
+				else if(tvc.title == "Length")
+					view.insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.lengthTreeViewFiller);
+				else if(tvc.title == "Date Added" || tvc.title == "Last Played")
+					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
+				else if(tvc.title == "Rating")
+					view.insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
+				else if(tvc.title == "Year")
+					view.insert_column_with_data_func(-1, tvc.title, cellYear, cellHelper.intelligentTreeViewFiller);
+				else if(tvc.title == "#")
+					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
+				else if(tvc.title == "Track")
+					view.insert_column_with_data_func(-1, tvc.title, cellTrack, cellHelper.intelligentTreeViewFiller);
+				else if(tvc.title == "Plays")
+					view.insert_column_with_data_func(-1, tvc.title, cellPlays, cellHelper.intelligentTreeViewFiller);
+				else if(tvc.title == "Skips")
+					view.insert_column_with_data_func(-1, tvc.title, cellSkips, cellHelper.intelligentTreeViewFiller);
+				else if(tvc.title == "Title")
+					view.insert_column_with_data_func(-1, tvc.title, cellTitle, cellHelper.stringTreeViewFiller);
+				else if(tvc.title == "Artist")
+					view.insert_column_with_data_func(-1, tvc.title, cellArtist, cellHelper.stringTreeViewFiller);
+				else if(tvc.title == "Album")
+					view.insert_column_with_data_func(-1, tvc.title, cellAlbum, cellHelper.stringTreeViewFiller);
+				else if(tvc.title == "Genre")
+					view.insert_column_with_data_func(-1, tvc.title, cellGenre, cellHelper.stringTreeViewFiller);
+				else if(tvc.title == "BPM")
+					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
+				
 				
 				view.get_column(index).resizable = true;
 				view.get_column(index).reorderable = true;
@@ -207,18 +270,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				view.get_column(index).visible = tvc.visible;
 				view.get_column(index).sizing = Gtk.TreeViewColumnSizing.FIXED;
 				view.get_column(index).fixed_width = tvc.fixed_width;
-			}
-			else if(tvc.title == "Rating") {
-				view.insert_column(tvc, index);
-				//tvc.resizable = false;
-				tvc.fixed_width = 92;
-				
-				view.get_column(index).clear();
-				for(int i = 0; i <=4; ++i) {
-					var cell = new CellRendererPixbuf();
-					view.get_column(index).pack_start(cell, false);
-					view.get_column(index).set_cell_data_func(cell, ratingsCellDataFunction);
-				}
 			}
 			else if(tvc.title == " ") {
 				view.insert_column(tvc, index);
@@ -230,9 +281,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			}
 			else {
 				view.insert_column(tvc, index);
-				
-				//foreach(CellRenderer cell in tvc.cell_list)
-				//	cell.ellipsize = Pango.EllipsizeMode.END;
 			}
 			
 			// add this widget crap so we can get right clicks
@@ -387,6 +435,17 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		lw.searchField.changed.connect(searchFieldChanged);
 	}
 	
+	public void cellTitleEdited(string path, string new_text) {
+		/*int rowid;
+		stdout.printf("done!\n");
+		if((rowid = music_model.getRowidFromPath(path)) != 0) {
+			lm.song_from_id(rowid).title = new_text;
+			
+			lm.update_song(lm.song_from_id(rowid), true);
+		}
+		cellTitle.editable = false; */
+	}
+	
 	public virtual void searchFieldChanged() {
 		if(is_current_view && lw.searchField.get_text().length != 1) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
@@ -396,7 +455,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					Collection<int> searched_songs = lm.songs_from_search(to_search, _songs);
 					
 					if(searched_songs.size == _showing_songs.size) {
-						stdout.printf("i would be doing nothing normally\n");
+						// do nothing
 					}
 					else if(to_search == "") {
 						populateView(_songs, false);
@@ -527,6 +586,22 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				((CellRendererText)cell).text = "";
 			else
 				((CellRendererText)cell).text = (val.get_int() / 60).to_string() + ":" + (((val.get_int() % 60) >= 10) ? (val.get_int() % 60).to_string() : ("0" + (val.get_int() % 60).to_string()));
+		}
+		else if(tvc.title == "Date Added") {
+			Value val;
+			tree_model.get_value(iter, 0, out val);
+			
+			Song s = lm.song_from_id(val.get_int());
+			
+			((CellRendererText)cell).text = s.pretty_date_added();
+		}
+		else if(tvc.title == "Last Played") {
+			Value val;
+			tree_model.get_value(iter, 0, out val);
+			
+			Song s = lm.song_from_id(val.get_int());
+			
+			((CellRendererText)cell).text = s.pretty_last_played();
 		}
 	}
 	
@@ -788,10 +863,21 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					return true;
 				}
 				else if(!(((event.state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK)|
-						((event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK))) {
+				((event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK))) {
 					return true;
 				}
 				
+				return false;
+			}
+			else if(view.get_selection().count_selected_rows() == 1 && view.get_selection().path_is_selected(path) &&
+			!(((event.state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK)|
+			((event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK))) {
+				/*stdout.printf("edit!\n");
+				if(column.title == "Title") {
+					cellTitle.editable = true;
+					view.set_cursor_on_cell(path, column, cellTitle, true);
+				}*/
+					
 				return false;
 			}
 			
@@ -802,7 +888,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			int new_rating = 0;
 			
 			if(cell_x > 5)
-				new_rating = (cell_x + 18) / 18;
+				new_rating = (cell_x + 16) / 18;
 			
 			music_model.get_value(iter, 0, out id);
 			Song s = lm.song_from_id(id.get_int());

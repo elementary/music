@@ -249,7 +249,6 @@ public class BeatBox.FileOperator : Object {
 		
 		GLib.File file = GLib.File.new_for_uri(uri);
 		if(file == null) {
-			stdout.printf("Could not access %s\n", uri);
 			return null;
 		}
 		
@@ -258,11 +257,9 @@ public class BeatBox.FileOperator : Object {
 		try {
 			filestream = file.read(null);
 			rv = new Gdk.Pixbuf.from_stream(filestream, null);
-			stdout.printf("Saving to %s\n", get_folder(s.file));
 			rv.save(get_folder(s.file) + s.album.replace("/", "_") + ".jpg", "jpeg");
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not save album art from %s: %s\n", uri, err.message);
 			rv = null;
 		}
 		
@@ -308,7 +305,6 @@ public class BeatBox.FileOperator : Object {
 			rv.save(get_folder(get_folder(s.file)) + s.artist + ".jpg", "jpeg");
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not save artist image from %s: %s\n", uri, err.message);
 			rv = null;
 		}
 		

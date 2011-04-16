@@ -8,6 +8,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	
 	private Label title;
 	private Label artist;
+	private Button loveSong;
+	private Button banSong;
 	private Gtk.Image artistImage;
 	private RatingWidget rating; // need to make custom widget in future
 	private Label album;
@@ -34,6 +36,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		title = new Label("Title");
 		artist = new Label("Artist");
+		loveSong = new Button();
+		banSong = new Button();
 		artistImage = new Image();
 		rating = new RatingWidget(c, true);
 		album = new Label("Album");
@@ -50,12 +54,24 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		album.ellipsize = Pango.EllipsizeMode.END;
 		year.ellipsize = Pango.EllipsizeMode.END;
 		
+		loveSong.relief = ReliefStyle.NONE;
+		banSong.relief = ReliefStyle.NONE;
+		loveSong.set_image(new Image.from_stock("application-community", IconSize.MENU));
+		banSong.set_image(new Image.from_stock(Gtk.Stock.DELETE, IconSize.MENU));
 		
 		HBox padding = new HBox(false, 10);
 		VBox content = new VBox(false, 0);
 		
+		HBox buttons = new HBox(false, 0);
+		buttons.pack_start(loveSong, false, false, 0);
+		buttons.pack_end(banSong, false, false, 0);
+		
+		var center_buttons = new Alignment(0.5f, 0.0f, 1.0f, 1.0f);
+		center_buttons.add(buttons);
+		
 		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(artist, 2, 0, 0, 5), false, true, 0);
+		content.pack_start(center_buttons, false, true, 0);
 		content.pack_start(wrap_alignment(artistImage, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(rating, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(album, 5, 0, 0, 5), false, true, 0);
@@ -152,7 +168,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	
 	public virtual void resized(Gdk.Rectangle rectangle) {
 		// resize the image to fit
-		artistImage.icon_size = rectangle.width - 10;
+		//artistImage.icon_size = rectangle.width - 10;
 		updateArtistImage();
 	}
 }

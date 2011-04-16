@@ -70,7 +70,16 @@ public class LastFM.SimilarSongs : Object {
 		var artist_fixed = LastFM.Core.fix_for_url(artist);
 		var title_fixed =  LastFM.Core.fix_for_url(title);
 		var url = "http://ws.audioscrobbler.com/2.0/?method=track.getsimilar&artist=" + artist_fixed + "&track=" + title_fixed + "&api_key=" + LastFM.Core.api;
-		Xml.Doc* doc = Parser.parse_file (url);
+		
+		Soup.SessionSync session = new Soup.SessionSync();
+		Soup.Message message = new Soup.Message ("GET", url);
+		
+		session.timeout = 30;// after 30 seconds, give up
+		
+		/* send the HTTP request */
+		session.send_message(message);
+		
+		Xml.Doc* doc = Xml.Parser.parse_memory((string)message.response_body.data, (int)message.response_body.length);
 		
 		if(doc == null)
 			stdout.printf("Could not load similar artist information for %s by %s\n", title, artist);

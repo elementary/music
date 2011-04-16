@@ -32,7 +32,17 @@ public class LastFM.AlbumInfo : Object {
 		string artist_fixed = LastFM.Core.fix_for_url(artist);
 		
 		var url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + api + "&artist=" + artist_fixed + "&album=" + album_fixed;
-		Xml.Doc* doc = Parser.parse_file (url);
+		
+		/*Soup.SessionSync session = new Soup.SessionSync();
+		Soup.Message message = new Soup.Message ("GET", url);
+		
+		session.timeout = 30;// after 30 seconds, give up
+		
+		/* send the HTTP request *
+		session.send_message(message);
+		
+		Xml.Doc* doc = Xml.Parser.parse_memory((string)message.response_body.data, (int)message.response_body.length); */
+		Xml.Doc* doc = Xml.Parser.parse_file(url);
 		AlbumInfo.with_doc(doc);
 	}
 	
@@ -42,7 +52,6 @@ public class LastFM.AlbumInfo : Object {
 		tagToAdd = null;
 		
         if (doc == null) {
-            stderr.printf ("Could not get album info. \n");
             return;
         }
 
@@ -51,7 +60,6 @@ public class LastFM.AlbumInfo : Object {
         if (root == null) {
             // Free the document manually before returning
             delete doc;
-            stderr.printf ("The xml file is empty. \n");
             return;
         }
         

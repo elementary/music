@@ -178,6 +178,25 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		return null;
 	}
+	
+	public int getRowidFromIter(TreeIter iter) {
+		if(iter.stamp != this.stamp || ((SequenceIter)iter.user_data).is_end())
+			return 0;
+		
+		return rows.get(((SequenceIter<ValueArray>)iter.user_data)).values[0].get_int();
+	}
+    
+    public int getRowidFromPath(string path) {
+		if(int.parse(path) < 0 || int.parse(path) >= rows.get_length())
+			return 0;
+		
+		SequenceIter s_iter = rows.get_iter_at_pos(int.parse(path));
+		
+		if(s_iter.is_end())
+			return 0;
+		
+		return rows.get(s_iter).values[0].get_int(); 
+	}
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
