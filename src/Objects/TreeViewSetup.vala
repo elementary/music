@@ -55,11 +55,11 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 										"visible", true));
 		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 										"title", "Year", 
-										"fixed_width", 30,
+										"fixed_width", 50,
 										"visible", false));
 		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 										"title", "Bitrate", 
-										"fixed_width", 20,
+										"fixed_width", 70,
 										"visible", false));
 		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 										"title", "Rating", 
@@ -67,23 +67,23 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 										"visible", false));
 		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 										"title", "Plays", 
-										"fixed_width", 20,
+										"fixed_width", 40,
 										"visible", false));
 		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 										"title", "Skips", 
-										"fixed_width", 20,
+										"fixed_width", 40,
 										"visible", false));
 		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 										"title", "Date Added", 
-										"fixed_width", 70,
+										"fixed_width", 130,
 										"visible", false));
 		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 										"title", "Last Played", 
-										"fixed_width", 70,
+										"fixed_width", 130,
 										"visible", false));
 		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 										"title", "BPM", 
-										"fixed_width", 30,
+										"fixed_width", 40,
 										"visible", false));
 		
 		

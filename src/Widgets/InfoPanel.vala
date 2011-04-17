@@ -58,7 +58,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		loveSong.relief = ReliefStyle.NONE;
 		banSong.relief = ReliefStyle.NONE;
 		loveSong.set_image(new Image.from_stock("lastfm-love", IconSize.MENU));
-		banSong.set_image(new Image.from_stock("latfm-ban", IconSize.MENU));
+		banSong.set_image(new Image.from_stock(Gtk.Stock.DELETE, IconSize.MENU));
 		
 		HBox padding = new HBox(false, 10);
 		VBox content = new VBox(false, 0);
