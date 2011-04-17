@@ -77,10 +77,10 @@ def build(bld):
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/not-starred.svg');
 	
 	#playlist icons
-	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/categories', '/images/icons/16x16/mimes/playlist.svg');
-	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/categories', '/images/icons/16x16/mimes/playlist-automatic.svg');
-	bld.install_files('${PREFIX}/share/icons/hicolor/22x22/categories', '/images/icons/22x22/mimes/playlist.svg');
-	bld.install_files('${PREFIX}/share/icons/hicolor/22x22/categories', '/images/icons/22x22/mimes/playlist-automatic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/mimes/playlist.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/mimes/playlist-automatic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/22x22/status', '/images/icons/22x22/mimes/playlist.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/22x22/status', '/images/icons/22x22/mimes/playlist-automatic.svg');
 	
 	#last fm
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/lastfm-love.svg');
