@@ -22,8 +22,8 @@ public class BeatBox.Beatbox : GLib.Object {
 		{ "folder-music", null, 0, 0 },
 		{ "media-audio", null, 0, 0 },
 		{ "emblem-urgent", null, 0, 0 },
-		{ "playlist", N_("_Playlist"), 0, 0 },
-		{ "playlist-automatic", N_("_Smart Playlist"), 0, 0 },
+		{ "playlist", null, 0, 0 },
+		{ "playlist-automatic", null, 0, 0 },
 		{ "starred", null, 0, 0 },
 		{ "not-starred", null, 0, 0 },
 		{ "audio-volume-high", null, 0, 0 },
@@ -31,9 +31,9 @@ public class BeatBox.Beatbox : GLib.Object {
 		{ "media-playlist-repeat-symbolic", null, 0, 0},
 		{ "media-playlist-shuffle-active-symbolic", null, 0, 0},
 		{ "media-playlist-shuffle-symbolic", null, 0, 0},
-		{ "help-info", null, 0, 0 },
-		{ "application-community", null, 0, 0},
-		{ "edit-delete", null, 0, 0}
+		{ "info", null, 0, 0 },
+		{ "lastfm-love", null, 0, 0},
+		{ "lastfm-ban", null, 0, 0}
 		
     };
 	

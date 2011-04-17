@@ -15,6 +15,8 @@ public class LastFM.Core : Object {
 	public string token;
 	public string session_key;
 	
+	public signal void logged_in();
+	
 	public Core(BeatBox.LibraryManager lmm) {
 		lm = lmm;
 		session_key = lm.settings.getLastFMSessionKey();

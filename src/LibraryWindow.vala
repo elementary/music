@@ -36,8 +36,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ToolButton previousButton;
 	ToolButton playButton;
 	ToolButton nextButton;
-	ToolButton loveButton;
-	ToolButton banButton;
 	ElementaryWidgets.TopDisplay topDisplay;
 	public ElementaryWidgets.ElementarySearchEntry searchField;
 	ElementaryWidgets.AppMenu appMenu;
@@ -191,8 +189,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PREVIOUS);
 		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
-		loveButton = new ToolButton.from_stock(Gtk.Stock.SAVE);
-		banButton = new ToolButton.from_stock(Gtk.Stock.OPEN);
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
 		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
@@ -205,7 +201,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusBarLabel = new Label("");
 		shuffleChooser = new SimpleOptionChooser(render_icon("media-playlist-shuffle-active-symbolic", IconSize.SMALL_TOOLBAR, null), render_icon("media-playlist-shuffle-symbolic", IconSize.SMALL_TOOLBAR, null));
 		repeatChooser = new SimpleOptionChooser(render_icon("media-playlist-repeat-active-symbolic", IconSize.SMALL_TOOLBAR, null), render_icon("media-playlist-repeat-symbolic", IconSize.SMALL_TOOLBAR, null));
-		infoPanelChooser = new SimpleOptionChooser(render_icon("help-info", IconSize.SMALL_TOOLBAR, null), render_icon("help-info", IconSize.SMALL_TOOLBAR, null));
+		infoPanelChooser = new SimpleOptionChooser(render_icon("info", IconSize.SMALL_TOOLBAR, null), render_icon("info", IconSize.SMALL_TOOLBAR, null));
 		
 		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
@@ -319,11 +315,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.insert(previousButton, 0);
         topControls.insert(playButton, 1);
         topControls.insert(nextButton, 2);
-        topControls.insert(loveButton, 3);
-        topControls.insert(banButton, 4);
-        topControls.insert(topDisplayBin, 5);
-        topControls.insert(searchFieldBin, 6);
-        topControls.insert(appMenuBin, 7);
+        topControls.insert(topDisplayBin, 3);
+        topControls.insert(searchFieldBin, 4);
+        topControls.insert(appMenuBin, 5);
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
@@ -357,8 +351,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton.clicked.connect(previousClicked);
 		playButton.clicked.connect(playClicked);
 		nextButton.clicked.connect(nextClicked);
-		loveButton.clicked.connect(loveButtonClicked);
-		banButton.clicked.connect(banButtonClicked);
 		infoPanel.size_allocate.connect(infoPanelResized);
 		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
@@ -694,7 +686,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		
-		Idle.add( () => { infoPanel.updateArtistImage(); return false;});
+		Idle.add( () => { infoPanel.updateArtistImage(true); return false;});
 		
 		return null;
 	}
@@ -1141,11 +1133,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(sourcesToSongs.get_position() > height/2)
 			return;
 		
-		if(songsToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 250) {
-			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 250);
+		if(songsToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 155) { // this is max size
+			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 155);
 			return;
 		}
-		else if(songsToInfo.get_position() > (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150) {
+		else if(songsToInfo.get_position() > (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150) { // this is min size
 			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150);
 			return;
 		}

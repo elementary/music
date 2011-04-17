@@ -159,6 +159,8 @@ public class BeatBox.PreferencesWindow : Window {
 				}
 				else {
 					_lm.settings.setLastFMSessionKey(sk);
+					_lm.lfm.session_key = sk;
+					_lm.lfm.logged_in();
 					stdout.printf("Successfully obtained a sessionkey\n");
 					lastfmLogin.set_sensitive(false);
 					lastfmLogin.set_label("Success!");

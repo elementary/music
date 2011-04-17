@@ -65,7 +65,27 @@ def build(bld):
    	bld.install_files('${PREFIX}/share/icons/hicolor/48x48/apps', '/images/icons/48x48/apps/beatbox.svg');
    	bld.install_files('${PREFIX}/share/icons/hicolor/64x64/apps', '/images/icons/64x64/apps/beatbox.svg');
    	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/apps', '/images/icons/128x128/apps/beatbox.svg');
-                       
+   	
+   	#shuffle and repeat
+   	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-repeat-active-symbolic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-repeat-symbolic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-shuffle-active-symbolic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-shuffle-symbolic.svg');
+	
+	#star, not star
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/starred.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/not-starred.svg');
+	
+	#playlist icons
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/categories', '/images/icons/16x16/mimes/playlist.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/categories', '/images/icons/16x16/mimes/playlist-automatic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/22x22/categories', '/images/icons/22x22/mimes/playlist.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/22x22/categories', '/images/icons/22x22/mimes/playlist-automatic.svg');
+	
+	#last fm
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/lastfm-love.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/lastfm-ban.svg');
+	
 	bld.program(
 		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 webkit-1.0 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0 libsoup-2.4 json-glib-1.0',
 		target        = APPNAME,

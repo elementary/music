@@ -23,6 +23,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		buildUI();
 		
 		lm.songs_updated.connect(songs_updated);
+		lm.lfm.logged_in.connect(logged_in_to_lastfm);
 	}
 	
 	private void buildUI() {
@@ -56,22 +57,21 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		loveSong.relief = ReliefStyle.NONE;
 		banSong.relief = ReliefStyle.NONE;
-		loveSong.set_image(new Image.from_stock("application-community", IconSize.MENU));
-		banSong.set_image(new Image.from_stock(Gtk.Stock.DELETE, IconSize.MENU));
+		loveSong.set_image(new Image.from_stock("lastfm-love", IconSize.MENU));
+		banSong.set_image(new Image.from_stock("latfm-ban", IconSize.MENU));
 		
 		HBox padding = new HBox(false, 10);
 		VBox content = new VBox(false, 0);
 		
 		HBox buttons = new HBox(false, 0);
+		buttons.pack_start(new Label(""), true, true, 0);
 		buttons.pack_start(loveSong, false, false, 0);
+		buttons.pack_end(new Label(""), true, true, 0);
 		buttons.pack_end(banSong, false, false, 0);
-		
-		var center_buttons = new Alignment(0.5f, 0.0f, 1.0f, 1.0f);
-		center_buttons.add(buttons);
 		
 		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(artist, 2, 0, 0, 5), false, true, 0);
-		content.pack_start(center_buttons, false, true, 0);
+		content.pack_start(buttons, false, true, 0);
 		content.pack_start(wrap_alignment(artistImage, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(rating, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(album, 5, 0, 0, 5), false, true, 0);
@@ -94,6 +94,9 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		// signals here
 		rating.rating_changed.connect(ratingChanged);
 		this.size_allocate.connect(resized);
+		//title.button_press_event.connect(titleClicked);
+		loveSong.clicked.connect(loveButtonClicked);
+		banSong.clicked.connect(banButtonClicked);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -105,6 +108,21 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		alignment.add(widget);
 		return alignment;
+	}
+	
+	public void logged_in_to_lastfm() {
+		setVisibilities();
+	}
+	
+	public void setVisibilities() {
+		if(lm.settings.getLastFMSessionKey() != "") {
+			loveSong.set_visible(true);
+			banSong.set_visible(true);
+		}
+		else {
+			loveSong.set_visible(false);
+			banSong.set_visible(false);
+		}
 	}
 	
 	public void updateSong(int new_id) {
@@ -123,11 +141,13 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		else
 			year.set_markup("");
 		
-		updateArtistImage();
+		updateArtistImage(false);
 		ssv.hide();
+		
+		setVisibilities();
 	}
 	
-	public void updateArtistImage() {
+	public void updateArtistImage(bool is_initial) {
 		if(lm.song_from_id(id) == null)
 			return;
 		
@@ -135,7 +155,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		if((file = lm.get_artist_image_location(id)) != null) {
 			artistImage.show();
 			try {
-				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 10, lm.settings.getMoreWidth() - 10, true));
+				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_scale(file, ((is_initial) ? 140 : lm.settings.getMoreWidth() - 10), ((is_initial) ? 140 : lm.settings.getMoreWidth() - 10), true));
 				//artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file(file));
 			}
 			catch(GLib.Error err) {
@@ -169,6 +189,29 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	public virtual void resized(Gdk.Rectangle rectangle) {
 		// resize the image to fit
 		//artistImage.icon_size = rectangle.width - 10;
-		updateArtistImage();
+		updateArtistImage(false);
+	}
+	
+	public virtual bool titleClicked(Gdk.EventButton event) {
+		Thread.create<void*>(() => {
+			try {
+				GLib.AppInfo.launch_default_for_uri (lm.song_info.track.url, null);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not open url in Last FM: %s\n", err.message);
+			}
+			
+			return null;
+		}, false);
+		
+		return false;
+	}
+	
+	public virtual void loveButtonClicked() {
+		lm.lfm.loveTrack(lm.song_info.song.title, lm.song_info.song.artist);
+	}
+	
+	public virtual void banButtonClicked() {
+		lm.lfm.banTrack(lm.song_info.song.title, lm.song_info.song.artist);
 	}
 }

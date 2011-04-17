@@ -45,7 +45,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		
         // disable synchronized commits for performance reasons ... this is not vital
         _db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
-        _db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); });
+        //_db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); });
 	
 		if(need_create) {
 			try {

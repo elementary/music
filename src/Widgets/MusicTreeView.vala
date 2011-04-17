@@ -869,17 +869,17 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				
 				return false;
 			}
-			else if(view.get_selection().count_selected_rows() == 1 && view.get_selection().path_is_selected(path) &&
+			/*else if(view.get_selection().count_selected_rows() == 1 && view.get_selection().path_is_selected(path) &&
 			!(((event.state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK)|
 			((event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK))) {
 				/*stdout.printf("edit!\n");
 				if(column.title == "Title") {
 					cellTitle.editable = true;
 					view.set_cursor_on_cell(path, column, cellTitle, true);
-				}*/
+				}*
 					
 				return false;
-			}
+			}*/
 			
 			if(!music_model.get_iter(out iter, path) || column.title != "Rating")
 				return false;
