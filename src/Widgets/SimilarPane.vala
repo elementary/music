@@ -14,7 +14,7 @@ public class BeatBox.SimilarPane : VBox {
 	Label toolInfo;
 	ToolButton transferPlayback;
 	ToolButton save;
-	MusicTreeView similars;
+	public MusicTreeView similars;
 	EventBox errorBox;
 	Label errorLabel;
 	

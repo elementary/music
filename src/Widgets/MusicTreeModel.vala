@@ -336,7 +336,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 				rows.get(s_iter).values[_columns.index_of("Last Played")] = s.last_played;
 				rows.get(s_iter).values[_columns.index_of("BPM")] = s.bpm;
 				
-				if(rowid == lm.song_info.song.rowid) {
+				//if(rowid == lm.song_info.song.rowid) {
 					TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
 				
 					TreeIter iter = TreeIter();
@@ -344,7 +344,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 					iter.user_data = s_iter;
 					
 					row_changed(path, iter);
-				}
+				//}
 				
 				rowids.remove(rowid);
 			}

@@ -314,6 +314,9 @@ public class BeatBox.SideTreeView : TreeView {
 		if(current_widget is MusicTreeView) {
 			((MusicTreeView)current_widget).setStatusBarText();
 		}
+		else if(current_widget is SimilarPane) {
+			((SimilarPane)current_widget).similars.setStatusBarText();
+		}
 	}
 	
 	public virtual bool sideListClick(Gdk.EventButton event) {
@@ -452,6 +455,9 @@ public class BeatBox.SideTreeView : TreeView {
 				
 			if(getWidget(iter) is MusicTreeView) {
 				((MusicTreeView)getWidget(iter)).setAsCurrentList(0);
+			}
+			else if(getWidget(iter) is SimilarPane) {
+				((SimilarPane)getWidget(iter)).similars.setAsCurrentList(0);
 			}
 		}
 		
