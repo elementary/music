@@ -15,7 +15,7 @@ build-stamp:
 	dh_testdir
 	./waf configure --prefix=/usr
 	./waf build
-	touch $@
+	
 
 clean: 
 	dh_testdir
