@@ -268,6 +268,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 					va.append(s.bpm);
 			}
 			
+			/* mem leak in va.copy() */
 			SequenceIter<ValueArray> added = rows.append(va.copy());
 			
 			if(emit) {
