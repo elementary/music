@@ -1,5 +1,5 @@
-beatbox (0.1-0ubuntu1) lucid; urgency=low
+beatbox (0+bzr162-1) experimental; urgency=low
 
-  * Initial release
+  * Initial release (Closes: #617617).
 
- -- Scott Ringwelski <sgringwe@mtu.edu>  Tue, 12 Apr 2011 19:07:30 -0400
+ -- Devid Antonio Filoni <d.filoni@ubuntu.com>  Wed, 18 May 2011 17:19:52 +0200
