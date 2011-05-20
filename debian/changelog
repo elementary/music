@@ -1,5 +1,13 @@
+<<<<<<< TREE
 beatbox (0.1-0ubuntu1) natty; urgency=low
 
   * Initial release
 
  -- Scott Ringwelski <sgringwe@mtu.edu>  Tue, 12 Apr 2011 19:07:30 -0400
+=======
+beatbox (VERSION-0+natty1) natty
+
+  * Initial release (Closes: #617617).
+
+ -- Devid Antonio Filoni <d.filoni@ubuntu.com>  Wed, 18 May 2011 17:19:52 +0200
+>>>>>>> MERGE-SOURCE
