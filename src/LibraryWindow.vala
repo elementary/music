@@ -1,6 +1,5 @@
 using Gtk;
 using Gee;
-using WebKit;
 using Notify;
 
 public class BeatBox.LibraryWindow : Gtk.Window {
