@@ -27,6 +27,9 @@ public class BeatBox.RatingWidget : EventBox {
 		set_rating(0);
 		updateRating(0);
 		
+        add_events(Gdk.EventMask.BUTTON_PRESS_MASK
+                  | Gdk.EventMask.BUTTON_RELEASE_MASK
+                  | Gdk.EventMask.POINTER_MOTION_MASK);
 		//motion_notify_event.connect(mouseOver);
 		button_press_event.connect(buttonPress);
 		expose_event.connect(exposeEvent);
@@ -46,7 +49,7 @@ public class BeatBox.RatingWidget : EventBox {
 	}
 	
 	/* just draw new rating */
-	public override bool motion_notify_event(EventMotion event) {
+	/*public override bool motion_notify_event(EventMotion event) {
 		int new_rating = 0;
 		
 		int buffer = (this.allocation.width - width_request)/2;
@@ -56,10 +59,9 @@ public class BeatBox.RatingWidget : EventBox {
 			new_rating = 0;
 		
 		updateRating(new_rating);
-		set_rating(new_rating);
 		
 		return true;
-	}
+	}*/
 	
 	/* draw new rating AND update rating */
 	public virtual bool buttonPress(Gdk.EventButton event) {
@@ -71,7 +73,6 @@ public class BeatBox.RatingWidget : EventBox {
 		else
 			new_rating = 0;
 		
-		updateRating(new_rating);
 		set_rating(new_rating);
 		
 		return true;
@@ -81,6 +82,7 @@ public class BeatBox.RatingWidget : EventBox {
 			_canvas.fill((uint) 0xffffff00);
 			
 			/* generate the canvas image */
+			
 			for (int i = 0; i < 5; i++) {
 				if (i < fake_rating) {
 					starred.copy_area(0, 0, starred.width, starred.height, _canvas, i * starred.width, 0);
@@ -109,4 +111,37 @@ public class BeatBox.RatingWidget : EventBox {
 		}
 		return true;
 	}
+}
+public class BeatBox.RatingWidgetMenu : Gtk.MenuItem
+{
+    RatingWidget rating;
+    public bool already_drawn = false;
+    public int rating_value{ get{ return rating.get_rating(); } set{rating.set_rating(value); }}
+    public RatingWidgetMenu()
+    {
+        rating = new RatingWidget(null, false);
+        add(rating);
+    }
+    
+    public override bool motion_notify_event(Gdk.EventMotion ev)
+    {
+        //rating.motion_notify_event(ev);
+        rating.queue_draw();
+        return true;
+    }
+    
+    public override bool expose_event(Gdk.EventExpose expose)
+    {
+        if(already_drawn)
+        rating.expose_event(expose);
+        already_drawn = true;
+        return true;
+    }
+    
+    public override bool button_press_event(Gdk.EventButton ev)
+    {
+        rating.button_press_event(ev);
+        activate();
+        return true;
+    }
 }

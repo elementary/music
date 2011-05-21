@@ -1,0 +1,3 @@
+.lock-wafbuild
+.waf*
+build

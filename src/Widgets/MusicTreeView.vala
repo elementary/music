@@ -57,7 +57,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	MenuItem songMenuAddToPlaylist; // make menu on fly
 	MenuItem songRateSong;
 	Menu songRateSongMenu;
-	MenuItem songRateSong0;
+	RatingWidgetMenu rating_item;
 	MenuItem songRateSong1;
 	MenuItem songRateSong2;
 	MenuItem songRateSong3;
@@ -309,6 +309,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);
+		
+		view.cursor_changed.connect_after(() => { update_rating_menu(); });
 		view.button_release_event.connect(viewClickRelease);
 		view.columns_changed.connect(viewColumnsChanged);
 		
@@ -384,23 +386,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		songRemove = new MenuItem.with_label("Remove song");
 		songRateSongMenu = new Menu();
 		songRateSong = new MenuItem.with_label("Rate Song");
-		songRateSong0 = new MenuItem.with_label("No Stars");
-		songRateSong1 = new MenuItem.with_label("1 Stars");
-		songRateSong2 = new MenuItem.with_label("2 Stars");
-		songRateSong3 = new MenuItem.with_label("3 Stars");
-		songRateSong4 = new MenuItem.with_label("4 Stars");
-		songRateSong5 = new MenuItem.with_label("5 Stars");
+		rating_item = new RatingWidgetMenu();
 		songMenuActionMenu.append(songEditSong);
 		songMenuActionMenu.append(songFileBrowse);
 		
-		songRateSongMenu.append(songRateSong0);
-		songRateSongMenu.append(songRateSong1);
-		songRateSongMenu.append(songRateSong2);
-		songRateSongMenu.append(songRateSong3);
-		songRateSongMenu.append(songRateSong4);
-		songRateSongMenu.append(songRateSong5);
-		songMenuActionMenu.append(songRateSong);
-		songRateSong.submenu = songRateSongMenu;
+		songMenuActionMenu.append(rating_item);
 		
 		songMenuActionMenu.append(new SeparatorMenuItem());
 		songMenuActionMenu.append(songMenuQueue);
@@ -413,13 +403,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		songMenuQueue.activate.connect(songMenuQueueClicked);
 		songMenuNewPlaylist.activate.connect(songMenuNewPlaylistClicked);
 		songRemove.activate.connect(songRemoveClicked);
-		songRateSong0.activate.connect(songRateSong0Clicked);
-		songRateSong1.activate.connect(songRateSong1Clicked);
-		songRateSong2.activate.connect(songRateSong2Clicked);
-		songRateSong3.activate.connect(songRateSong3Clicked);
-		songRateSong4.activate.connect(songRateSong4Clicked);
-		songRateSong5.activate.connect(songRateSong5Clicked);
-		songMenuActionMenu.show_all();
+		rating_item.activate.connect(songRateSong0Clicked);
+		//songMenuActionMenu.show_all();
 		
 		updateSensitivities();
 		
@@ -835,6 +820,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			else
 				songMenuAddToPlaylist.set_sensitive(true);
 			
+			songMenuActionMenu.show_all();
+			//little hack to avoid a glitch, remove it if you know what you are doing
+			rating_item.already_drawn = false;
 			songMenuActionMenu.popup (null, null, null, 3, get_current_event_time());
 			
 			TreeSelection selected = view.get_selection();
@@ -1214,11 +1202,28 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			l_model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
-			s.rating = 0;
+			s.rating = rating_item.rating_value;
 			los.add(s);
 		}
 		
 		lm.update_songs(los, false);
+	}
+	
+	public void update_rating_menu() {
+		TreeSelection selected = view.get_selection();
+		selected.set_mode(SelectionMode.MULTIPLE);
+		TreeModel l_model;
+
+		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
+			TreeIter item;
+			l_model.get_iter(out item, path);
+			
+			int id;
+			l_model.get(item, 0, out id);
+			Song s = lm.song_from_id(id);
+			
+			rating_item.rating_value = s.rating;
+		}
 	}
 	
 	public virtual void songRateSong1Clicked() {
