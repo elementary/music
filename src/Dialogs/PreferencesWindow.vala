@@ -64,7 +64,13 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		lastfmLabel = new Label("Last FM Integration");
 		lastfmInfo = new Label("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
-		lastfmLogin = new Button.with_label("Enable Scrobbling");
+		
+		if(_lm.settings.getLastFMSessionKey() == null)
+			lastfmLogin = new Button.with_label("Enable Scrobbling");
+		else {
+			lastfmLogin = new Button.with_label("Scrobbling already Enabled");
+			lastfmLogin.set_tooltip_text("Click to redo the Last FM Login Process");
+		}
 		
 		saveChanges = new Button.with_label("Close");
 		

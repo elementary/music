@@ -116,7 +116,7 @@ public class BeatBox.SmartPlaylist : Object {
 	public bool song_matches_query(SmartQuery q, Song s) {
 		if(q.field == "Album") { //strings
 			if(q.comparator == "is")
-				return q.value == s.album;
+				return q.value.down() == s.album.down();
 			else if(q.comparator == "contains")
 				return (q.value.down() in s.album.down());
 			else if(q.comparator == "does not contain")
@@ -124,7 +124,7 @@ public class BeatBox.SmartPlaylist : Object {
 		}
 		else if(q.field == "Artist") {
 			if(q.comparator == "is")
-				return q.value == s.artist;
+				return q.value.down() == s.artist.down();
 			else if(q.comparator == "contains")
 				return (q.value.down() in s.artist.down());
 			else if(q.comparator == "does not contain")
@@ -132,7 +132,7 @@ public class BeatBox.SmartPlaylist : Object {
 		}
 		else if(q.field == "Comment") {
 			if(q.comparator == "is")
-				return q.value == s.comment;
+				return q.value.down() == s.comment.down();
 			else if(q.comparator == "contains")
 				return (q.value.down() in s.comment.down());
 			else if(q.comparator == "does not contain")
@@ -140,7 +140,7 @@ public class BeatBox.SmartPlaylist : Object {
 		}
 		else if(q.field == "Genre") {
 			if(q.comparator == "is")
-				return q.value == s.genre;
+				return q.value.down() == s.genre.down();
 			else if(q.comparator == "contains")
 				return (q.value.down() in s.genre.down());
 			else if(q.comparator == "does not contain")
@@ -148,7 +148,7 @@ public class BeatBox.SmartPlaylist : Object {
 		}
 		else if(q.field == "Title") {
 			if(q.comparator == "is")
-				return q.value == s.title;
+				return q.value.down() == s.title.down();
 			else if(q.comparator == "contains")
 				return (q.value.down() in s.title.down());
 			else if(q.comparator == "does not contain")

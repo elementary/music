@@ -174,6 +174,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		else if(hint == Hint.QUEUE) {
 			songRemove.set_sensitive(true);
 			songRemove.set_label("Remove from Queue");
+			songMenuQueue.set_sensitive(false);
 		}
 		else if(hint == Hint.HISTORY) {
 			songRemove.set_sensitive(false);

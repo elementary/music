@@ -95,19 +95,6 @@ public class BeatBox.SimilarPane : VBox {
 		_next = la;
 		_have = have;
 		
-		if(_have.size < 10) {
-			errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">No Similar Songs</span>\nBeatBox could not find songs similar to " + la.title.replace("&", "&amp;") + " by " + la.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
-			errorBox.show();
-			similars.hide();
-			toolbar.hide();
-			return;
-		}
-		else {
-			errorBox.hide();
-			similars.show();
-			toolbar.show();
-		}
-		
 		if(!(_lm.current_songs().size == similars.get_songs().size && _lm.current_songs().contains_all(similars.get_songs()))) {
 			updateDisplay();
 		}
@@ -116,6 +103,10 @@ public class BeatBox.SimilarPane : VBox {
 			refresh.set_tooltip_markup("Refresh to show songs similar to: <b>" + _next.title.replace("&", "&amp;") + "</b> by <b>" + _next.artist.replace("&", "&amp;") + "</b>");
 			transferPlayback.hide();
 		}
+		
+		// don't show refresh if there are less than 10 songs loaded
+		if(_have.size < 10)
+			refresh.hide();
 	}
 	
 	public void updateDisplay() {
@@ -123,11 +114,22 @@ public class BeatBox.SimilarPane : VBox {
 		if((_lm.current_songs().size == similars.get_songs().size && _lm.current_songs().contains_all(similars.get_songs())))
 			do_transfer = true;
 		
+		if(_have.size < 10) {
+			errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">No Similar Songs</span>\nBeatBox could not find songs similar to " + _next.title.replace("&", "&amp;") + " by " + _next.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
+			errorBox.show();
+			similars.hide();
+			toolbar.hide();
+		}
+		else {
+			errorBox.hide();
+			similars.show();
+			toolbar.show();
+		}
+		
 		similars.populateView(_have, false);
 		
 		_base = _next;
 		toolInfo.set_markup("Songs similar to <b>" + _base.title.replace("&", "&amp;") + "</b> by <b>" + _base.artist.replace("&", "&amp;") + "</b>");
-		toolbar.show();
 		refresh.hide();
 		transferPlayback.show();
 		save.show();
