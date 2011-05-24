@@ -49,7 +49,7 @@ public class BeatBox.RatingWidget : EventBox {
 	}
 	
 	/* just draw new rating */
-	/*public override bool motion_notify_event(EventMotion event) {
+	public override bool motion_notify_event(EventMotion event) {
 		int new_rating = 0;
 		
 		int buffer = (this.allocation.width - width_request)/2;
@@ -61,7 +61,7 @@ public class BeatBox.RatingWidget : EventBox {
 		updateRating(new_rating);
 		
 		return true;
-	}*/
+	}
 	
 	/* draw new rating AND update rating */
 	public virtual bool buttonPress(Gdk.EventButton event) {
@@ -125,7 +125,7 @@ public class BeatBox.RatingWidgetMenu : Gtk.MenuItem
     
     public override bool motion_notify_event(Gdk.EventMotion ev)
     {
-        //rating.motion_notify_event(ev);
+        rating.motion_notify_event(ev);
         rating.queue_draw();
         return true;
     }
