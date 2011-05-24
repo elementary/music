@@ -48,6 +48,7 @@ public class BeatBox.Beatbox : GLib.Object {
 			app.send_message (command, message);
 		} else {
 			Gdk.threads_init();
+			Notify.init("beatbox");
 			
 			//check for .desktop file
 			/*var desktop_file = File.new_for_path("/usr/share/applications/beatbox.desktop");

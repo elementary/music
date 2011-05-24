@@ -269,7 +269,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			}
 			
 			/* mem leak in va.copy() */
-			SequenceIter<ValueArray> added = rows.append(va.copy());
+			SequenceIter<ValueArray> added = rows.append((owned) va);
 			
 			if(emit) {
 				TreePath path = new TreePath.from_string(added.get_position().to_string());
