@@ -1,10 +1,28 @@
 using Gst;
- 
+using Gee;
+
+public class BeatBox.EqualizerPreset {
+	string name;
+	float freq;
+	float width;
+	float gain;
+	
+	public EqualizerPreset(string name, float freq, float width, float gain) {
+		this.name = name;
+		this.freq = freq;
+		this.width = width;
+		this.gain = gain;
+	}
+}
+
 public class BeatBox.StreamPlayer : GLib.Object {
 	MainLoop loop;
     dynamic Element play;
+    dynamic Element equalizer;
     Gst.Bus bus;
     Song current;
+    
+	public ArrayList<BeatBox.EqualizerPreset> presetList;
     
     /** signals **/
     public signal void end_of_stream(Song s);
@@ -13,8 +31,18 @@ public class BeatBox.StreamPlayer : GLib.Object {
     public StreamPlayer(string[] args) {
 		Gst.init(ref args);
 		play = ElementFactory.make ("playbin", "play");
+		equalizer = ElementFactory.make("equalizer-10bands", "equalizer");
+		equalizer.set("num-bands", 3, null);
+		
+		play.link(equalizer);
+		
 		bus = play.get_bus();
 		bus.add_watch(bus_callback);
+		
+		presetList = new ArrayList<BeatBox.EqualizerPreset>();
+		presetList.add(new BeatBox.EqualizerPreset("Rock", 120.0f, 40.0f, -3.0f));
+		presetList.add(new BeatBox.EqualizerPreset("Flat", 500.0f, 20.0f, 12.0f));
+		presetList.add(new BeatBox.EqualizerPreset("Pop", 1503.0f, 2.0f, 20.0f));
 		
 		loop = new MainLoop();
 		var time = new TimeoutSource(500);

@@ -4,6 +4,7 @@ namespace ElementaryWidgets {
 	public class TopDisplay : VBox {
 		BeatBox.LibraryManager lm;
 		Label label;
+		Button cancelButton;
 		HBox scaleBox;
 		Label leftTime;
 		Label rightTime;
@@ -16,6 +17,7 @@ namespace ElementaryWidgets {
 			this.lm = lmm;
 			
 			label = new Label("");
+			cancelButton = new Button.from_stock(Gtk.Stock.CANCEL);
 			scale = new HScale.with_range(0, 1, 1);
 			leftTime = new Label("0:00");
 			rightTime = new Label("0:00");
@@ -33,10 +35,15 @@ namespace ElementaryWidgets {
 			label.ellipsize = Pango.EllipsizeMode.END;
 			//label.set_markup("<b></b>");
 			
-			this.pack_start(label, false, true, 0);
+			HBox labelBox = new HBox(false, 1);
+			labelBox.pack_start(label, true, true, 0);
+			labelBox.pack_end(cancelButton, false, false, 0);
+			
+			this.pack_start(labelBox, false, true, 0);
 			this.pack_start(progressbar, false, true, 0);
 			this.pack_start(scaleBox, false, true, 0);
 			
+			//this.cancelButton.clicked.connect(cancel_clicked);
 			this.scale.button_press_event.connect(scale_button_press);
 			this.scale.value_changed.connect(value_changed);
 			this.scale.change_value.connect(change_value);
