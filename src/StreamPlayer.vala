@@ -31,10 +31,10 @@ public class BeatBox.StreamPlayer : GLib.Object {
     public StreamPlayer(string[] args) {
 		Gst.init(ref args);
 		play = ElementFactory.make ("playbin", "play");
-		equalizer = ElementFactory.make("equalizer-10bands", "equalizer");
+		equalizer = ElementFactory.make("equalizer-nbands", "equalizer");
 		equalizer.set("num-bands", 3, null);
 		
-		play.link(equalizer);
+		//play.link(equalizer);
 		
 		bus = play.get_bus();
 		bus.add_watch(bus_callback);

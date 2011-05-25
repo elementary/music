@@ -2,7 +2,7 @@ using Gtk;
 using Gdk;
 
 public class BeatBox.RatingWidget : EventBox {
-	private int rating;
+	internal int rating;
 	
 	private bool centered;
 	private Pixbuf _canvas;
@@ -29,10 +29,17 @@ public class BeatBox.RatingWidget : EventBox {
 		
         add_events(Gdk.EventMask.BUTTON_PRESS_MASK
                   | Gdk.EventMask.BUTTON_RELEASE_MASK
-                  | Gdk.EventMask.POINTER_MOTION_MASK);
+                  | Gdk.EventMask.POINTER_MOTION_MASK
+                  | Gdk.EventMask.LEAVE_NOTIFY_MASK);
 		//motion_notify_event.connect(mouseOver);
 		button_press_event.connect(buttonPress);
 		expose_event.connect(exposeEvent);
+	}
+	
+	public override bool leave_notify_event(Gdk.EventCrossing ev)
+	{
+	    updateRating(rating);
+	    return true;
 	}
 	
 	public void set_rating(int new_rating) {
@@ -49,7 +56,7 @@ public class BeatBox.RatingWidget : EventBox {
 	}
 	
 	/* just draw new rating */
-	/*public override bool motion_notify_event(EventMotion event) {
+	public override bool motion_notify_event(EventMotion event) {
 		int new_rating = 0;
 		
 		int buffer = (this.allocation.width - width_request)/2;
@@ -61,7 +68,7 @@ public class BeatBox.RatingWidget : EventBox {
 		updateRating(new_rating);
 		
 		return true;
-	}*/
+	}
 	
 	/* draw new rating AND update rating */
 	public virtual bool buttonPress(Gdk.EventButton event) {
@@ -125,9 +132,9 @@ public class BeatBox.RatingWidgetMenu : Gtk.MenuItem
     
     public override bool motion_notify_event(Gdk.EventMotion ev)
     {
-        //rating.motion_notify_event(ev);
-        rating.queue_draw();
-        return true;
+        rating.motion_notify_event(ev);
+        //rating.queue_draw();
+        return false;
     }
     
     public override bool expose_event(Gdk.EventExpose expose)
@@ -144,4 +151,9 @@ public class BeatBox.RatingWidgetMenu : Gtk.MenuItem
         activate();
         return true;
     }
+	public override bool leave_notify_event(Gdk.EventCrossing ev)
+	{
+	    rating.updateRating(rating.rating);
+	    return true;
+	}
 }
