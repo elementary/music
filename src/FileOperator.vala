@@ -8,8 +8,8 @@ public class BeatBox.FileOperator : Object {
 	bool inThread;
 	LinkedList<Song> toSave;
 	
-	int index;
-	int item_count;
+	public int index;
+	public int item_count;
 	public signal void fo_progress(string? message, double progress);
 	
 	public FileOperator(BeatBox.LibraryManager lmm, BeatBox.Settings sett) {
@@ -60,7 +60,6 @@ public class BeatBox.FileOperator : Object {
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					++index;
-					fo_progress(null, (double)((double)index)/((double)item_count));
 					
 					Song s = import_song(file_path);
 					
@@ -89,7 +88,6 @@ public class BeatBox.FileOperator : Object {
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					++index;
-					fo_progress(null, (double)((double)index)/((double)item_count));
 					
 					Song s = import_song(file_path);
 					
@@ -127,8 +125,6 @@ public class BeatBox.FileOperator : Object {
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
-				
-				fo_progress(null, (double)((double)index)/((double)item_count));
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					if(current_song_paths.contains(file_path)) {
