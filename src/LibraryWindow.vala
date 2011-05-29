@@ -1070,6 +1070,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				// add to the already played list
 				lm.add_already_played(lm.song_info.song.rowid);
 				sideTree.updateAlreadyPlayed();
+				
+				var event = new Zeitgeist.Event.full(Zeitgeist.ZG_ACCESS_EVENT,
+					Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://beatbox.desktop",
+					new Zeitgeist.Subject.full(
+					GLib.File.new_for_path(lm.song_info.song.file).get_uri(),
+					Zeitgeist.NFO_AUDIO, Zeitgeist.NFO_FILE_DATA_OBJECT,
+					"text/plain", "", lm.song_info.song.title, ""));
+				new Zeitgeist.Log ().insert_events_no_reply(event);
 			}
 			
 			// at halfway, scrobble
