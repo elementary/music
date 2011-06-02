@@ -399,9 +399,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addItem(sideTree.library_iter, null, mtv, "Music");
 		mainViews.pack_start(mtv, true, true, 0);
 		
-		var filterSongs = new LinkedList<Song>();
+		var filterSongs = new LinkedList<int>();
 		foreach(Song s in lm.songs())
-			filterSongs.add(s);
+			filterSongs.add(s.rowid);
 		
 		FilterView fv = new FilterView(lm, this, filterSongs);
 		sideTree.addItem(sideTree.library_iter, null, fv, "Filter View");
