@@ -37,7 +37,6 @@ namespace ElementaryWidgets {
 			
 			HBox labelBox = new HBox(false, 1);
 			labelBox.pack_start(label, true, true, 0);
-			labelBox.pack_end(cancelButton, false, false, 0);
 			
 			this.pack_start(labelBox, false, true, 0);
 			this.pack_start(progressbar, false, true, 0);

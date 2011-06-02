@@ -120,7 +120,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(s.rowid != 0) {
 				/* time out works because... monkeys eat bananas */
 				int position = (int)settings.getLastSongPosition();
-				Timeout.add(150, () => {
+				Timeout.add(250, () => {
 					lm.playSong(s.rowid);
 					
 					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(0);
@@ -346,7 +346,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		/* Connect events to functions */
 		sourcesToSongs.child1.size_allocate.connect(sourcesToSongsHandleSet);
 		welcomeScreen.activated.connect(welcomeScreenActivated);
-		sideTree.row_activated.connect(sideListDoubleClick);
+		//sideTree.row_activated.connect(sideListDoubleClick);
 		previousButton.clicked.connect(previousClicked);
 		playButton.clicked.connect(playClicked);
 		nextButton.clicked.connect(nextClicked);
@@ -398,6 +398,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mtv.populateView(lm.song_ids(), false);
 		sideTree.addItem(sideTree.library_iter, null, mtv, "Music");
 		mainViews.pack_start(mtv, true, true, 0);
+		
+		var filterSongs = new LinkedList<Song>();
+		foreach(Song s in lm.songs())
+			filterSongs.add(s);
+		
+		FilterView fv = new FilterView(lm, this, filterSongs);
+		sideTree.addItem(sideTree.library_iter, null, fv, "Filter View");
+		mainViews.pack_start(fv, true, true, 0);
 		
 		// load smart playlists
 		foreach(SmartPlaylist p in lm.smart_playlists()) {
@@ -503,16 +511,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			topDisplay.set_progress_value(progress);
 	}
 	
-	public virtual void sideListDoubleClick (TreePath path, TreeViewColumn column) {
-		
-	}
-	
 	public bool updateCurrentSong() {
 		//loop through all musictreeviews and call updatecurrentsong
 		
 		if(lm.song_info.song != null) {
-			string file = "";
-			if((file = lm.get_album_location(lm.song_info.song.rowid)) != null) {
+			string file = lm.song_info.song.getAlbumArtPath();
+			if(GLib.File.new_for_path(file).query_exists()) {
 				coverArt.show();
 				try {
 					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(file, sourcesToSongs.position, sourcesToSongs.position));
@@ -558,8 +562,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				notification.update(lm.song_from_id(i).title, lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album, "");
 				
 				Gdk.Pixbuf notify_pix;
-				if(lm.get_album_location(i) != null)
-					notify_pix = new Gdk.Pixbuf.from_file(lm.get_album_location(i));
+				if(File.new_for_path(lm.song_from_id(i).getAlbumArtPath()).query_exists())
+					notify_pix = new Gdk.Pixbuf.from_file(lm.song_from_id(i).getAlbumArtPath());
 				else
 					notify_pix = render_icon("beatbox", IconSize.DIALOG, null);
 				
@@ -645,7 +649,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			/* make sure we save image to right location (user hasn't changed songs) */
 			if(lm.song_info.song != null && album != null && album_s == lm.song_info.song.album &&
-			artist_s == lm.song_info.song.artist && lm.get_album_location(lm.song_info.song.rowid) == null) {
+			artist_s == lm.song_info.song.artist && !File.new_for_path(lm.song_info.song.getAlbumArtPath()).query_exists()) {
 				lm.song_info.album = album;
 			
                 if (album.url_image.url != null)
@@ -675,7 +679,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			//try to save artist art locally
 			if(lm.song_info.song != null && artist != null && artist_s == lm.song_info.song.artist &&
-			lm.get_artist_image_location(lm.song_info.song.rowid) == null) {
+			!File.new_for_path(lm.song_info.song.getArtistImagePath()).query_exists()) {
 				lm.song_info.artist = artist;
 				
 				lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);

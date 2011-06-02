@@ -415,6 +415,28 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		}
 	}
 	
+	/*public LinkedList<Song> getOrderedSongs() {
+		var rv = new LinkedList<Song>();
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(id == rows.get(s_iter).values[0].get_int()) {
+				rows.get(s_iter).values[_columns.index_of(" ")] = Value(typeof(Gdk.Pixbuf));;
+				
+				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+				
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = s_iter;
+				
+				row_changed(path, iter);
+				return;
+			}
+		}
+	}*/
+	
 	/** Fills in sort_column_id and order with the current sort column and the order. **/
 	public bool get_sort_column_id(out int sort_column_id, out SortType order) {
 		sort_column_id = this.sort_column_id;

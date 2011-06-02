@@ -346,7 +346,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			query.execute();
 			
 			query.set_string(":name", "Recent Favorites");
-			query.set_string(":and_or", "any");
+			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Last Played<value_seperator>is within<value_seperator>7<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);

@@ -1,4 +1,5 @@
 using TagLib;
+using GLib;
 using Gee;
 
 public class BeatBox.FileOperator : Object {
@@ -119,6 +120,8 @@ public class BeatBox.FileOperator : Object {
 	 */
 	public void rescan_music(GLib.File music_folder, ref LinkedList<string> current_song_paths, ref LinkedList<string> not_imported, ref LinkedList<Song> new_songs) {
 		GLib.FileInfo file_info = null;
+		string current_artist = "";
+		string current_album = ""; // these are purposely reset on recursive call
 		
 		int songs_added = 0;
 		try {
@@ -137,6 +140,8 @@ public class BeatBox.FileOperator : Object {
 						
 						if(s != null) {
 							new_songs.add(s);
+							current_artist = s.artist;
+							current_album = s.album;
 						}
 						else
 							not_imported.add(file_path);
@@ -193,49 +198,6 @@ public class BeatBox.FileOperator : Object {
 		return s;
 	}
 	
-	private bool is_image_file_type(string type) {
-		return (type.has_suffix(".jpg") || type.has_suffix(".png"));
-	}
-	
-	//use gio.file.get_parent() instead
-	public static string get_folder(string file) {
-		string[] paths = file.split("/", 0);
-		
-		//this makes it work correctly for all cases
-		if(!file.has_suffix("/"))
-			paths += " ";
-		
-		string folder_string = "";
-		for(int index = 0; index < paths.length - 2;++index)
-			folder_string += paths[index] + "/";
-			
-		return folder_string;
-	}
-	
-	public string? find_album(Song s) {
-		string album_folder_string = get_folder(s.file);
-		GLib.File album_folder = GLib.File.new_for_path(album_folder_string);
-		
-		//now search this folder for an .jpg or .png
-		GLib.FileInfo file_info = null;
-		
-		try {
-			var enumerator = album_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-			while ((file_info = enumerator.next_file ()) != null) {
-				var file_path = album_folder.get_path() + "/" + file_info.get_name();
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_image_file_type(file_info.get_name()) && s.album in file_info.get_name()) {
-					return file_path;
-				}
-			}
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not find album artwork: %s\n", err.message);
-		}
-		
-		return null;
-	}
-	
 	public Gdk.Pixbuf? save_album(Song s, string uri) {
 		Gdk.Pixbuf rv;
 		
@@ -253,36 +215,14 @@ public class BeatBox.FileOperator : Object {
 		try {
 			filestream = file.read(null);
 			rv = new Gdk.Pixbuf.from_stream(filestream, null);
-			rv.save(get_folder(s.file) + s.album.replace("/", "_") + ".jpg", "jpeg");
+			stdout.printf("Saving album art at %s\n", Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg"));
+			rv.save(Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg"), "jpeg");
 		}
 		catch(GLib.Error err) {
 			rv = null;
 		}
 		
 		return rv;
-	}
-	
-	public string? find_artist_image(Song s) {
-		// get the folder of the folder
-		string artist_folder_string = get_folder(get_folder(s.file));
-		GLib.File artist_folder = GLib.File.new_for_path(artist_folder_string);
-		GLib.FileInfo file_info = null;
-		
-		try {
-			var enumerator = artist_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-			while ((file_info = enumerator.next_file ()) != null) {
-				var file_path = artist_folder.get_path() + "/" + file_info.get_name();
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_image_file_type(file_info.get_name())) {
-					return file_path;
-				}
-			}
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not find artist image: %s\n", err.message);
-		}	
-		
-		return null;
 	}
 	
 	public Gdk.Pixbuf? save_artist_image(Song s, string uri) {
@@ -298,7 +238,7 @@ public class BeatBox.FileOperator : Object {
 		try {
 			filestream = file.read(null);
 			rv = new Gdk.Pixbuf.from_stream(filestream, null);
-			rv.save(get_folder(get_folder(s.file)) + s.artist + ".jpg", "jpeg");
+			rv.save(Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_parent().get_path(), "Artist.jpg"), "jpeg");
 		}
 		catch(GLib.Error err) {
 			rv = null;
@@ -368,7 +308,7 @@ public class BeatBox.FileOperator : Object {
 			/* initialize file objects */
 			var original = GLib.File.new_for_path(s.file);
 			var file_info = original.query_info ("*", FileQueryInfoFlags.NONE, null);
-			var dest = GLib.File.new_for_path(settings.getMusicFolder() + "/" + s.artist.replace("/", "_") + "/" + s.album.replace("/", "_") + "/" + file_info.get_name());
+			var dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), file_info.get_name()));
 			
 			if(original.get_path() == dest.get_path())
 				return;

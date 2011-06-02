@@ -151,8 +151,9 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		if(lm.song_from_id(id) == null)
 			return;
 		
-		string file = "";
-		if((file = lm.get_artist_image_location(id)) != null) {
+		string file = lm.song_from_id(id).getArtistImagePath();
+		if(GLib.File.new_for_path(file).query_exists()) {
+			stdout.printf("found artist image dawg\n");
 			artistImage.show();
 			try {
 				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_scale(file, ((is_initial) ? 140 : lm.settings.getMoreWidth() - 10), ((is_initial) ? 140 : lm.settings.getMoreWidth() - 10), true));

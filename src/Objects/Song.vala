@@ -245,4 +245,12 @@ public class BeatBox.Song : GLib.Object{
 		
 		return rv;
 	}
+	
+	public string getAlbumArtPath() {
+		return Path.build_path("/", _file.substring(0, _file.last_index_of("/", 0)), "Album.jpg");
+	}
+	
+	public string getArtistImagePath() {
+		return Path.build_path("/", _file.substring(0, _file.substring(0, _file.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
+	}
 }

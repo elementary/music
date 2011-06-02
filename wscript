@@ -50,7 +50,8 @@ def configure(ctx):
 	check_pkg(ctx, 'unique-1.0', 'UNIQUE', '0.9')
 	check_pkg(ctx, 'libsoup-2.4', 'SOUP', '2.25.2')
 	check_pkg(ctx, 'json-glib-1.0', 'JSON', '0.10')
-	check_pkg (ctx, 'zeitgeist-1.0', 'ZEITGEIST', '0.3.10')
+	check_pkg(ctx, 'zeitgeist-1.0', 'ZEITGEIST', '0.3.10')
+	check_pkg(ctx, 'webkit-1.0', 'WEBKIT', '0.0')
 
 def build(bld):
 	#install basic desktop file
@@ -87,9 +88,9 @@ def build(bld):
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/lastfm-ban.svg');
 	
 	bld.program(
-		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0 libsoup-2.4 json-glib-1.0 zeitgeist-1.0',
+		packages      = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0 libsoup-2.4 json-glib-1.0 zeitgeist-1.0 webkit-1.0',
 		target        = APPNAME,
-		uselib        = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY INDICATE UNIQUE SOUP JSON ZEITGEIST',
+		uselib        = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY INDICATE UNIQUE SOUP JSON ZEITGEIST WEBKIT',
 		source        =  bld.path.ant_glob(('*.vala', 'src/*.vala', 'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 'src/Widgets/*.vala')) 
 		)
 	

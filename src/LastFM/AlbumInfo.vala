@@ -46,6 +46,14 @@ public class LastFM.AlbumInfo : Object {
 		AlbumInfo.with_doc(doc);
 	}
 	
+	public AlbumInfo.no_query(string artist, string album) {
+		AlbumInfo.basic();
+		
+		_name = album;
+		_artist = artist;
+		
+	}
+	
 	public AlbumInfo.with_doc( Xml.Doc* doc) {
 		AlbumInfo.basic();
 		

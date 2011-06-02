@@ -639,17 +639,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 	/** make this smarter **/
 	public void add_song(Song s) {
 		//fill in rowid's
-		if(s.rowid == 0) {
-			int index = 1;
-			foreach(int i in _songs.keys) {
-				if(i > index)
-					index = i + 1;
+		lock(_songs) {
+			if(s.rowid == 0) {
+				int index = 1;
+				foreach(int i in _songs.keys) {
+					if(i > index)
+						index = i + 1;
+				}
+				stdout.printf("Song %s by %s new rowid: %d\n", s.title, s.artist, index);
+				s.rowid = index + 1;
 			}
-			stdout.printf("Song %s by %s new rowid: %d\n", s.title, s.artist, index);
-			s.rowid = index + 1;
+			
+			_songs.set(s.rowid, s);
 		}
-		
-		_songs.set(s.rowid, s);
 		
 		song_added(s.rowid);
 	}
@@ -1087,16 +1089,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/************ Image stuff ********************/
-	public string? get_album_location(int id) {
-		return fo.find_album(_songs.get(id));
+	public string getAlbumArtPath(int id) {
+		return _songs.get(id).getAlbumArtPath();
 	}
 	
 	public Gdk.Pixbuf? save_album_locally(int id, string album) {
 		return fo.save_album(_songs.get(id), album);
 	}
 	
-	public string? get_artist_image_location(int id) {
-		return fo.find_artist_image(_songs.get(id));
+	public string getArtistImagePath(int id) {
+		return _songs.get(id).getArtistImagePath();
 	}
 	
 	public Gdk.Pixbuf? save_artist_image_locally(int id, string image) {
