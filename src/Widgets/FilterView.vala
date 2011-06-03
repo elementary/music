@@ -35,12 +35,24 @@ public class BeatBox.FilterView : ScrolledWindow {
 		mainBox = new VBox(false, 0);
 		view = new WebView();
 		viewScroll = new ScrolledWindow(null, null);
+		Label infoLabel = new Label("");
+		EventBox infoBox = new EventBox();
 		
         viewScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
         viewScroll.add (view);
 		
 		view.settings.enable_default_context_menu = false;
 		
+		Gdk.Color c = Gdk.Color();
+		Gdk.Color.parse("#FFFFFF", out c);
+		infoBox.modify_bg(StateType.NORMAL, c);
+		
+		infoLabel.xalign = 0.5f;
+		infoLabel.justify = Justification.CENTER;
+		infoLabel.set_markup("<span weight=\"bold\" size=\"larger\">NOTICE</span>\nThank you for using the BeatBox development PPA! This 'view' is new and under development.\n However, we want your opinions. \nAfter you try it out a little bit, let us know what you think at https://answers.launchpad.net/beat-box/+question/160089.\nThank you!");
+		
+		infoBox.add(infoLabel);
+		mainBox.pack_start(infoBox, false, true, 0);
 		mainBox.pack_start(viewScroll, true, true, 0);
 		
 		Viewport vp = new Viewport(null, null);

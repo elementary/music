@@ -52,6 +52,7 @@ def configure(ctx):
 	check_pkg(ctx, 'json-glib-1.0', 'JSON', '0.10')
 	check_pkg(ctx, 'zeitgeist-1.0', 'ZEITGEIST', '0.3.10')
 	check_pkg(ctx, 'webkit-1.0', 'WEBKIT', '0.0')
+	#check_pkg(ctx, 'indicate-0.5', 'INDICATE', '0.5.0')
 
 def build(bld):
 	#install basic desktop file
