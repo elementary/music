@@ -88,7 +88,7 @@ public class MprisRoot : GLib.Object {
 	
 	public string Identity {
 		owned get {
-			return "BeatBox Music Player";
+			return "BeatBox";
 		}
 	}
 	
