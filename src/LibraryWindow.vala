@@ -3,7 +3,7 @@ using Gee;
 using Notify;
 
 public class BeatBox.LibraryWindow : Gtk.Window {
-	BeatBox.LibraryManager lm;
+	public BeatBox.LibraryManager lm;
 	BeatBox.Settings settings;
 	LastFM.SimilarSongs similarSongs;
 	BeatBox.MediaKeyListener mkl;
@@ -71,6 +71,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		timeout_search = new LinkedList<string>();
 		mkl = new MediaKeyListener(lm, this);
 		last_search = "";
+		
+		stdout.printf("Initializing MPRIS and sound menu\n");
+		var mpris = new MPRIS(lm, this);
 		
 		dragging_from_music = false;
 		

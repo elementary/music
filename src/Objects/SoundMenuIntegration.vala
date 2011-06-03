@@ -1,4 +1,4 @@
-/*using Indicate;
+using Indicate;
 
 public class BeatBox.SoundMenuIntegration : GLib.Object {
 	private LibraryManager lm;
@@ -20,10 +20,10 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 	private void on_name_appeared(DBusConnection conn, string name) {
 		stdout.printf("name %s appeared\n", name);
 		
-		/* set up the server to connect to music.beatbox dbus *
+		/* set up the server to connect to music.beatbox dbus */
 		server = Indicate.Server.ref_default();
 		server.set("type", "music.beatbox");
-		//server.set_desktop_file(GLib.Path.build_filename(Config.DATADIR, "applications", "beatbox.desktop", null));
+		server.set_desktop_file(GLib.Path.build_filename(GLib.Environment.get_user_data_dir(), "applications", "beatbox.desktop", null));
 		server.show();
 	}
 	
@@ -34,4 +34,4 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 			server.hide();
 	}
 }
-*/
+

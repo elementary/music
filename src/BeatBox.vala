@@ -3,7 +3,7 @@ using Gtk;
  * 
  */
 public class BeatBox.Beatbox : GLib.Object {
-	private static LibraryWindow _program;
+	public static LibraryWindow _program;
 	private static DataBaseManager dbm;
 	private static StreamPlayer _player;
 	
