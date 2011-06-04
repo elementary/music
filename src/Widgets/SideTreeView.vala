@@ -418,8 +418,9 @@ public class BeatBox.SideTreeView : TreeView {
 						return true;
 				}
 				else if(iter == playlists_queue_iter) {
-					MusicTreeView mtv = (MusicTreeView)w;
-					mtv.populateView(lm.queue(), false);
+					ViewWrapper vw = (ViewWrapper)w;
+					vw.list.populateView(lm.queue(), false);
+					vw.setView(ViewWrapper.ViewType.FILTER_VIEW);
 				}
 				else if(iter == playlists_history_iter) {
 					MusicTreeView mtv = (MusicTreeView)w;

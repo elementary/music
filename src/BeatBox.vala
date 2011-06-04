@@ -33,7 +33,10 @@ public class BeatBox.Beatbox : GLib.Object {
 		{ "media-playlist-shuffle-symbolic", null, 0, 0},
 		{ "info", null, 0, 0 },
 		{ "lastfm-love", null, 0, 0},
-		{ "lastfm-ban", null, 0, 0}
+		{ "lastfm-ban", null, 0, 0},
+		{ "view-list-icons-symbolic", null, 0, 0},
+		{ "view-list-details-symbolic", null, 0, 0},
+		{ "view-list-column-symbolic", null, 0, 0}
 		
     };
 	

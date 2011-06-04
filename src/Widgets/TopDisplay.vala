@@ -17,7 +17,6 @@ namespace ElementaryWidgets {
 			this.lm = lmm;
 			
 			label = new Label("");
-			cancelButton = new Button.from_stock(Gtk.Stock.CANCEL);
 			scale = new HScale.with_range(0, 1, 1);
 			leftTime = new Label("0:00");
 			rightTime = new Label("0:00");
@@ -35,12 +34,14 @@ namespace ElementaryWidgets {
 			label.ellipsize = Pango.EllipsizeMode.END;
 			//label.set_markup("<b></b>");
 			
-			HBox labelBox = new HBox(false, 1);
+			HBox labelBox = new HBox(false, 0);
 			labelBox.pack_start(label, true, true, 0);
 			
+			//labelBox.set_size_request(-1, 5);
+			
 			this.pack_start(labelBox, false, true, 0);
-			this.pack_start(progressbar, false, true, 0);
-			this.pack_start(scaleBox, false, true, 0);
+			this.pack_start(wrap_alignment(progressbar, 0, 5, 0, 5), false, true, 0);
+			this.pack_start(wrap_alignment(scaleBox, 0, 5, 0, 5), false, true, 0);
 			
 			//this.cancelButton.clicked.connect(cancel_clicked);
 			this.scale.button_press_event.connect(scale_button_press);
@@ -49,6 +50,18 @@ namespace ElementaryWidgets {
 			this.lm.player.current_position_update.connect(player_position_update);
 			show_all();
 		}
+		
+		public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+			var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+			alignment.top_padding = top;
+			alignment.right_padding = right;
+			alignment.bottom_padding = bottom;
+			alignment.left_padding = left;
+			
+			alignment.add(widget);
+			return alignment;
+		}
+		
 		/** label functions **/
 		public void set_label_text(string text) {
 			label.set_text(text);

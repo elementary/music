@@ -19,6 +19,8 @@ public class BeatBox.FilterView : ScrolledWindow {
 	private string last_search;
 	LinkedList<string> timeout_search;
 	
+	public signal void itemClicked(string artist, string album);
+	
 	/* songs should be mutable, as we will be sorting it */
 	public FilterView(LibraryManager lmm, LibraryWindow lww, LinkedList<int> ssongs) {
 		lm = lmm;
@@ -88,53 +90,40 @@ public class BeatBox.FilterView : ScrolledWindow {
             body { 
                 background: #fff; 
                 font-family: "Droid Sans",sans-serif; 
-                margin: 0px auto; 
+                margin: 0 auto; 
                 width: 100%; 
-            } 
+            }
             #main {
-				
+				margin: auto;
 			}
-            #main li {
-				float: left;
-				display: inline-block;
-				list-style-type: none;
-			}
-            #artistSection { 
-                clear: both; 
-                padding-right: 80px; 
-                float: left; 
-            }
-            #artistSection h3 a {
-                color: #999999;
-                text-decoration: none;
-            }
-            #artistSection ul {
+            #main ul {
                 height: auto;
                 padding-bottom: 10px;
                 margin-left: 0px;
                 padding-left: 0px;
                 margin-top: -10px;
             }
-            #artistSection ul li {
+            #main ul li {
                 float: left;
-                width: 120px;
-                height: 160px;
+                width: 150px;
+                height: 200px;
                 display: inline-block;
                 list-style-type: none;
                 padding-right: 10px;
+                padding-left: 10px;
                 padding-bottom: 5px;
                 overflow: hidden;
             }
-            #artistSection ul li img {
-                width: 120px;
-                height: 120px;
+            #main ul li img {
+                width: 150px;
+                height: 150px;
             }
-            #artistSection ul li p {
+            #main ul li p {
                 clear: both;
                 overflow: hidden;
                 text-align: center;
                 margin-top: 0px;
-                font-size: 11px;
+                font-size: 12px;
                 margin-bottom: 0px;
             }
         </style></head><body><div id="main"><ul>""";
@@ -142,33 +131,17 @@ public class BeatBox.FilterView : ScrolledWindow {
         // first sort the songs so we know they are grouped by artists, then albums
 		toShow.sort((CompareFunc)songCompareFunc);
 		
-		string previousArtist = "";
 		string previousAlbum = "";
-		
-		// start with the first song (instead of checking a bool every iteration which is slow)
-		if(toShow.size > 0) {
-			html += "<li><div id=\"artistSection\"><h3><a href=\"#\" >" + toShow.get(0).artist + "</a></h3><ul>"; //first artist section
-			html += "<li><a href=\"" + toShow.get(0).album + "<seperater>" + toShow.get(0).artist + "\"><img src=\"file://" + toShow.get(0).getAlbumArtPath() + "\" /></a><p>" + ( (toShow.get(0).album == "") ? "Miscellaneous" : toShow.get(0).album) + "</p><p>2007</p><p>Rock</p></li>";
-			previousAlbum = toShow.get(0).album;
-			previousArtist = toShow.get(0).artist;
-		}
 		
 		// NOTE: things to keep in mind are search, miller column, artist="", album="" cases
 		foreach(Song s in toShow) {
-			if(s.artist != previousArtist) {
-				html += "</ul></div></li><li><div id=\"artistSection\"><h3><a href=\"#\" >" + s.artist + "</a></h3><ul>"; // end previous artist, start next
-				previousArtist = s.artist;
-				
-				html += "<li><a href=\"" + s.album + "<seperater>" + s.artist + "\"><img src=\"file://" + s.getAlbumArtPath() + "\" /></a><p>" + ( (s.album == "") ? "Miscellaneous" : s.album) + "</p><p>2007</p><p>Rock</p></li>";
-				previousAlbum = s.album;
-			}
-			else if(s.album != previousAlbum) {
-				html += "<li><a href=\"" + s.album + "<seperater>" + s.artist + "\"><img src=\"file://" + s.getAlbumArtPath() + "\" /></a><p>" + ( (s.album == "") ? "Miscellaneous" : s.album) + "</p><p>2007</p><p>Rock</p></li>";
+			if(s.album != previousAlbum) {
+				html += "<li><a href=\"" + s.album + "<seperater>" + s.artist + "\"><img src=\"file://" + s.getAlbumArtPath() + "\" /></a><p>" + ( (s.album == "") ? "Miscellaneous" : s.album) + "</p><p>" + s.artist + "</p></li>";
 				previousAlbum = s.album;
 			}
 		}
 		
-		html += "</ul></div></li></ul></div></body></html>"; // finish up the last song, finish up html
+		html += "</ul></div></body></html>"; // finish up the last song, finish up html
 		
 		view.load_string(html, "text/html", "utf8", "file://");
 	}
@@ -185,7 +158,7 @@ public class BeatBox.FilterView : ScrolledWindow {
 			// switch the view
 			string[] splitUp = request.uri.split("<seperater>", 0);
 			
-			stdout.printf("Showing song list with only songs from album " + splitUp[0] + " by " + splitUp[1] + "\n");
+			itemClicked(splitUp[0], splitUp[1]);
 			
 			return WebKit.NavigationResponse.IGNORE;
 		}

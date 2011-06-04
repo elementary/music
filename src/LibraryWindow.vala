@@ -36,6 +36,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ToolButton playButton;
 	ToolButton nextButton;
 	ElementaryWidgets.TopDisplay topDisplay;
+	ElementaryWidgets.ModeButton viewSelector;
 	public ElementaryWidgets.ElementarySearchEntry searchField;
 	ElementaryWidgets.AppMenu appMenu;
 	HBox statusBar;
@@ -192,6 +193,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
+		viewSelector = new ElementaryWidgets.ModeButton();
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
 		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
@@ -305,21 +307,33 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         verticalBox.pack_start(sourcesToSongs, true, true, 0);
         
         ToolItem topDisplayBin = new ToolItem();
+        ToolItem viewSelectorBin = new ToolItem();
         ToolItem searchFieldBin = new ToolItem();
         ToolItem appMenuBin = new ToolItem();
         topDisplayBin.add(topDisplay);
-        topDisplayBin.set_border_width(5);
+        topDisplayBin.set_border_width(1);
+        viewSelectorBin.add(viewSelector);
+        viewSelectorBin.set_border_width(3);
         searchFieldBin.add(searchField);
         appMenuBin.add(appMenu);
         
         topDisplayBin.set_expand(true);
+        viewSelector.append(new Image.from_stock("view-list-icons-symbolic", IconSize.MENU));
+        viewSelector.append(new Image.from_stock("view-list-details-symbolic", IconSize.MENU));
+        viewSelector.append(new Image.from_stock("view-list-column-symbolic", IconSize.MENU));
+        
+        var sep1 = new SeparatorToolItem();
+        var sep2 = new SeparatorToolItem();
+        sep1.set_draw(false);
+        sep2.set_draw(false);
         
         topControls.insert(previousButton, 0);
         topControls.insert(playButton, 1);
         topControls.insert(nextButton, 2);
-        topControls.insert(topDisplayBin, 3);
-        topControls.insert(searchFieldBin, 4);
-        topControls.insert(appMenuBin, 5);
+        topControls.insert(viewSelectorBin, 3);
+        topControls.insert(topDisplayBin, 4);
+        topControls.insert(searchFieldBin, 5);
+        topControls.insert(appMenuBin, 6);
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
@@ -380,6 +394,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 */
 	private void buildSideTree() {
 		MusicTreeView mtv;
+		ViewWrapper vw;
 		
 		sideTree.addBasicItems();
 		
@@ -387,10 +402,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addItem(sideTree.playlists_iter, null, sp, "Similar");
 		mainViews.pack_start(sp, true, true, 0);
 		
-		mtv = new MusicTreeView(lm, this, lm.queue_setup.sort_column, lm.queue_setup.sort_direction, MusicTreeView.Hint.QUEUE, -1);
-		mtv.populateView(lm.queue(), false);
-		sideTree.addItem(sideTree.playlists_iter, null, mtv, "Queue");
-		mainViews.pack_start(mtv, true, true, 0);
+		vw = new ViewWrapper(lm, this, lm.queue(), lm.queue_setup.sort_column, lm.queue_setup.sort_direction, MusicTreeView.Hint.QUEUE, -1);
+		sideTree.addItem(sideTree.playlists_iter, null, vw, "Queue");
+		mainViews.pack_start(vw, true, true, 0);
 		
 		mtv = new MusicTreeView(lm, this,  lm.history_setup.sort_column, lm.history_setup.sort_direction, MusicTreeView.Hint.HISTORY, -1);
 		mtv.populateView(lm.already_played(), false);
@@ -542,6 +556,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//set the title
 		var song_label = "<b>" + lm.song_from_id(i).title.replace("&", "&amp;") + "</b>" + " by " + "<b>" + lm.song_from_id(i).artist.replace("&", "&amp;") + "</b>" + " on " + "<b>" +lm.song_from_id(i).album.replace("&", "&amp;") + "</b>";
 		topDisplay.set_label_markup(song_label);
+		//this.set_title(lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " on " + lm.song_from_id(i).album);
 		
 		//reset the song position
 		topDisplay.set_scale_sensitivity(true);
