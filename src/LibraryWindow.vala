@@ -36,7 +36,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ToolButton playButton;
 	ToolButton nextButton;
 	ElementaryWidgets.TopDisplay topDisplay;
-	ElementaryWidgets.ModeButton viewSelector;
+	public ElementaryWidgets.ModeButton viewSelector;
 	public ElementaryWidgets.ElementarySearchEntry searchField;
 	ElementaryWidgets.AppMenu appMenu;
 	HBox statusBar;
@@ -127,7 +127,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				Timeout.add(250, () => {
 					lm.playSong(s.rowid);
 					
-					((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).setAsCurrentList(0);
+					((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).list.setAsCurrentList(0);
 					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL)
 						lm.setShuffleMode(LibraryManager.Shuffle.ALL);
 					
@@ -382,7 +382,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.show_scale();
 		topDisplay.set_scale_sensitivity(false);
 		coverArt.hide();
-		sideTree.resetView();
+		//sideTree.resetView();
 		welcomeScreen.hide();
 		infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
@@ -393,7 +393,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 * @param view The side tree to build it on
 	 */
 	private void buildSideTree() {
-		MusicTreeView mtv;
 		ViewWrapper vw;
 		
 		sideTree.addBasicItems();
@@ -406,23 +405,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addItem(sideTree.playlists_iter, null, vw, "Queue");
 		mainViews.pack_start(vw, true, true, 0);
 		
-		mtv = new MusicTreeView(lm, this,  lm.history_setup.sort_column, lm.history_setup.sort_direction, MusicTreeView.Hint.HISTORY, -1);
-		mtv.populateView(lm.already_played(), false);
-		sideTree.addItem(sideTree.playlists_iter, null, mtv, "History");
-		mainViews.pack_start(mtv, true, true, 0);
+		vw = new ViewWrapper(lm, this, lm.already_played(), lm.history_setup.sort_column, lm.history_setup.sort_direction, MusicTreeView.Hint.HISTORY, -1);
+		sideTree.addItem(sideTree.playlists_iter, null, vw, "History");
+		mainViews.pack_start(vw, true, true, 0);
 		
-		mtv = new MusicTreeView(lm, this,  lm.music_setup.sort_column, lm.music_setup.sort_direction, MusicTreeView.Hint.MUSIC, -1);
-		mtv.populateView(lm.song_ids(), false);
-		sideTree.addItem(sideTree.library_iter, null, mtv, "Music");
-		mainViews.pack_start(mtv, true, true, 0);
-		
-		var filterSongs = new LinkedList<int>();
-		foreach(Song s in lm.songs())
-			filterSongs.add(s.rowid);
-		
-		FilterView fv = new FilterView(lm, this, filterSongs);
-		sideTree.addItem(sideTree.library_iter, null, fv, "Filter View");
-		mainViews.pack_start(fv, true, true, 0);
+		vw = new ViewWrapper(lm, this, lm.song_ids(), lm.music_setup.sort_column, lm.music_setup.sort_direction, MusicTreeView.Hint.MUSIC, -1);
+		sideTree.addItem(sideTree.library_iter, null, vw, "Music");
+		mainViews.pack_start(vw, true, true, 0);
 		
 		// load smart playlists
 		foreach(SmartPlaylist p in lm.smart_playlists()) {
@@ -434,37 +423,32 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			addSideListItem(p);
 		}
 		
-		
-		sideTree.resetView();
 		sideTree.expand_all();
-		
 		sideTreeScroll = new ScrolledWindow(null, null);
-		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		sideTreeScroll.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
 		sideTreeScroll.add(sideTree);
 	}
 	
 	public void addSideListItem(GLib.Object o) {
 		TreeIter item = sideTree.library_music_iter;
-		MusicTreeView mtv = null;
+		ViewWrapper vw = null;
 		
 		if(o is Playlist) {
 			Playlist p = (Playlist)o;
 			
-			mtv = new MusicTreeView(lm, this, p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.PLAYLIST, p.rowid);
-			mtv.populateView(lm.songs_from_playlist(p.rowid), false);
-			item = sideTree.addItem(sideTree.playlists_iter, p, mtv, p.name);
-			mainViews.pack_start(mtv, true, true, 0);
+			vw = new ViewWrapper(lm, this, lm.songs_from_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.PLAYLIST, p.rowid);
+			item = sideTree.addItem(sideTree.playlists_iter, p, vw, p.name);
+			mainViews.pack_start(vw, true, true, 0);
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 			
-			mtv = new MusicTreeView(lm, this, p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.SMART_PLAYLIST, p.rowid);
-			mtv.populateView(lm.songs_from_smart_playlist(p.rowid), false);
-			item = sideTree.addItem(sideTree.playlists_iter, p, mtv, p.name);
-			mainViews.pack_start(mtv, true, true, 0);
+			vw = new ViewWrapper(lm, this, lm.songs_from_smart_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.SMART_PLAYLIST, p.rowid);
+			item = sideTree.addItem(sideTree.playlists_iter, p, vw, p.name);
+			mainViews.pack_start(vw, true, true, 0);
 		}
 		
-		mtv.show_all();
+		vw.show_all();
 	}
 	
 	public void updateSensitivities() {
@@ -754,12 +738,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(lm.song_info.song == null) {
 			//set current songs by current view
 			Widget w = sideTree.getSelectedWidget();
-			if(w is MusicTreeView) {
-				((MusicTreeView)w).setAsCurrentList(1);
+			if(w is ViewWrapper) {
+				((ViewWrapper)w).list.setAsCurrentList(1);
 			}
 			else {
 				w = sideTree.getWidget(sideTree.library_music_iter);
-				((MusicTreeView)w).setAsCurrentList(1);
+				((ViewWrapper)w).list.setAsCurrentList(1);
 			}
 			
 			lm.playing = true;

@@ -299,20 +299,78 @@ public class BeatBox.SideTreeView : TreeView {
 	public void updatePlayQueue() {
 		Widget w;
 		sideTreeModel.get(playlists_queue_iter, 1, out w);
-		((MusicTreeView)w).populateView(lm.queue(), false);
+		((ViewWrapper)w).list.populateView(lm.queue(), false);
 	}
 	
 	public void updateAlreadyPlayed() {
 		Widget w;
 		sideTreeModel.get(playlists_history_iter, 1, out w);
-		((MusicTreeView)w).populateView(lm.already_played(), false);
+		((ViewWrapper)w).list.populateView(lm.already_played(), false);
 	}
 	
 	public virtual void sideListSelectionChange() {
+		TreeSelection selected = this.get_selection();
+		selected.set_mode(SelectionMode.SINGLE);
+		TreeModel model;
+		TreeIter iter;
+		selected.get_selected (out model, out iter);
+		
+		GLib.Object o;
+		sideTreeModel.get(iter, 0, out o);
+		Widget w;
+		sideTreeModel.get(iter, 1, out w);
+		string name;
+		sideTreeModel.get(iter, 2, out name);
+		
+		TreeIter parent;
+		sideTreeModel.iter_parent(out parent, iter);
+		if(sideTreeModel.iter_is_valid(parent)) {
+			this.get_selection().select_iter(iter);
+			
+			string parent_name;
+			sideTreeModel.get(parent, 2, out parent_name);
+			
+			if(iter == playlists_similar_iter) {
+				if(((SimilarPane)w)._base == null || ((SimilarPane)w)._have.size == 0)
+					return;
+			}
+			else if(iter == playlists_queue_iter) {
+				ViewWrapper vw = (ViewWrapper)w;
+				vw.populateViews(lm.queue(), false);
+			}
+			else if(iter == playlists_history_iter) {
+				ViewWrapper vw = (ViewWrapper)w;
+				vw.populateViews(lm.already_played(), false);
+			}
+			else if(parent == playlists_iter && o is SmartPlaylist) {
+				ViewWrapper vw = (ViewWrapper)w;
+				vw.populateViews(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
+			}
+			else if(parent == playlists_iter && o is Playlist) {
+				ViewWrapper vw = (ViewWrapper)w;
+				vw.populateViews(lm.songs_from_playlist(((Playlist)o).rowid), false);
+			}
+		}
+		
+		if(w is ViewWrapper) {
+			switch(lw.viewSelector.selected) {
+				case 0:
+					((ViewWrapper)w).setView(ViewWrapper.ViewType.FILTER_VIEW);
+					break;
+				case 1:
+					((ViewWrapper)w).setView(ViewWrapper.ViewType.LIST);
+					break;
+				case 2:
+					((ViewWrapper)w).setView(ViewWrapper.ViewType.MILLER);
+					break;
+			}
+		}
+		
+		
 		sideTreeModel.foreach(updateView);
 		
-		if(current_widget is MusicTreeView) {
-			((MusicTreeView)current_widget).setStatusBarText();
+		if(current_widget is ViewWrapper) {
+			((ViewWrapper)current_widget).list.setStatusBarText();
 		}
 		else if(current_widget is SimilarPane) {
 			((SimilarPane)current_widget).similars.setStatusBarText();
@@ -387,7 +445,7 @@ public class BeatBox.SideTreeView : TreeView {
 			return false;
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-			TreeIter iter;
+			/*TreeIter iter;
 			TreePath path;
 			TreeViewColumn column;
 			int cell_x;
@@ -440,7 +498,7 @@ public class BeatBox.SideTreeView : TreeView {
 			else {
 				
 				return true;
-			}
+			}*/
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 2) {
 			TreeIter iter;
@@ -454,8 +512,8 @@ public class BeatBox.SideTreeView : TreeView {
 			if(!sideTreeModel.get_iter(out iter, path))
 				return false;
 				
-			if(getWidget(iter) is MusicTreeView) {
-				((MusicTreeView)getWidget(iter)).setAsCurrentList(0);
+			if(getWidget(iter) is ViewWrapper) {
+				((ViewWrapper)getWidget(iter)).list.setAsCurrentList(0);
 			}
 			else if(getWidget(iter) is SimilarPane) {
 				((SimilarPane)getWidget(iter)).similars.setAsCurrentList(0);
@@ -471,8 +529,8 @@ public class BeatBox.SideTreeView : TreeView {
 		if(!sideTreeModel.get_iter(out iter, path))
 			return;
 			
-		if(getWidget(iter) is MusicTreeView) {
-			((MusicTreeView)getWidget(iter)).setAsCurrentList(1);
+		if(getWidget(iter) is ViewWrapper) {
+			((ViewWrapper)getWidget(iter)).list.setAsCurrentList(1);
 			
 			lm.playSong(lm.songFromCurrentIndex(0));
 			lm.player.play_stream();
@@ -490,14 +548,14 @@ public class BeatBox.SideTreeView : TreeView {
 			if(this.get_selection().iter_is_selected(item)) {
 				w.show();
 				this.current_widget = w;
-				if(w is MusicTreeView) {
-					((MusicTreeView)w).is_current_view = true;
+				if(w is ViewWrapper) {
+					((ViewWrapper)w).list.is_current_view = true;
 				}
 			}
 			else {
 				w.hide();
-				if(w is MusicTreeView)
-					((MusicTreeView)w).is_current_view = false;
+				if(w is ViewWrapper)
+					((ViewWrapper)w).list.is_current_view = false;
 			}
 		}
 		

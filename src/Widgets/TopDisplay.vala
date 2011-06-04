@@ -37,8 +37,6 @@ namespace ElementaryWidgets {
 			HBox labelBox = new HBox(false, 0);
 			labelBox.pack_start(label, true, true, 0);
 			
-			//labelBox.set_size_request(-1, 5);
-			
 			this.pack_start(labelBox, false, true, 0);
 			this.pack_start(wrap_alignment(progressbar, 0, 5, 0, 5), false, true, 0);
 			this.pack_start(wrap_alignment(scaleBox, 0, 5, 0, 5), false, true, 0);
