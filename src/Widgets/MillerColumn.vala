@@ -138,7 +138,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 			return _selected;
 		}
 		set {
-			stdout.printf("being set to %s\n", value);
 			_selected = value;
 			sortModel.foreach(selectProperString);
 			selectedChanged(_selected);
@@ -182,7 +181,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		if(view.get_selection().get_selected(out tempModel, out iter)) {
 			tempModel.get(iter, 0, out text);
 			_selected = text;
-			stdout.printf("should see callback\n");
 			selectedChanged(_selected);
 		}
 	}
@@ -202,8 +200,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		
 		// select All <category> item
 		view.get_selection().changed.disconnect(selectionChanged);
-		sortModel.get_iter_first(out iter);
-		view.get_selection().select_iter(iter);
+		sortModel.foreach(selectProperString);
 		view.get_selection().changed.connect(selectionChanged);
 	}
 	

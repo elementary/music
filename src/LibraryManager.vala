@@ -625,7 +625,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 					rv.add(i);
 			}
 		}
-		stdout.printf("bye\n");
 		return rv;
 	}
 	

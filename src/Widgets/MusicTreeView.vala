@@ -437,7 +437,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(is_current_view && lw.searchField.get_text().length != 1) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
-				stdout.printf("is thisfor realz?\n");
+				
 				string to_search = timeout_search.poll_tail();
 				//if(lw.searchField.get_text().down() == timeout_search.poll_tail() && lw.searchField.get_text().down() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
 					Collection<int> searched_songs = lm.songs_from_search(to_search, 
@@ -445,12 +445,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 																		lw.miller.artists.selected,
 																		lw.miller.albums.selected,
 																		_songs);
-					stdout.printf("done\n");
+					
 					if(searched_songs.size == _showing_songs.size) {
 						// do nothing
-					}
-					else if(searched_songs.size == 0) {
-						stdout.printf("size is 0\n");
 					}
 					/*else if(to_search == "") {
 						populateView(_songs, false);
@@ -497,7 +494,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					
 					lm.settings.setSearchString(to_search);
 					setStatusBarText();
-					stdout.printf("reached end\n");
 				/*}
 				else if(!showing_all && lw.searchField.get_text() != last_search && (lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
 					populateView(_songs, false);
