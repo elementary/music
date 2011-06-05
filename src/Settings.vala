@@ -140,7 +140,7 @@ public class BeatBox.Settings : Object {
 	}
 	
 	public int getMillerHeight() {
-		return getInt(MILLER_HEIGHT, 150);
+		return getInt(MILLER_HEIGHT, 250);
 	}
 	
 	public string getSearchString() {

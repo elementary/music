@@ -82,17 +82,17 @@ public class BeatBox.MillerColumns : HPaned {
 		}
 		else {
 			var albumsSet = new HashSet<string>();
-			//var genresSet = new HashSet<string>();
+			var genresSet = new HashSet<string>();
 			
 			foreach(int id in songs) {
 				if(text == "All Artists" || text == lm.song_from_id(id).artist) {
 					albumsSet.add(lm.song_from_id(id).album);
-					//genresSet.add(lm.song_from_id(id).genre);
+					genresSet.add(lm.song_from_id(id).genre);
 				}
 			}
 			
 			albums.populate(albumsSet);
-			//genres.populate(genresSet);
+			genres.populate(genresSet);
 		}
 		
 		changed();
@@ -101,7 +101,7 @@ public class BeatBox.MillerColumns : HPaned {
 		if(text == "All Albums") {
 			populateColumns(songs);
 		}
-		/*else {
+		else {
 			var artistsSet = new HashSet<string>();
 			var genresSet = new HashSet<string>();
 			
@@ -114,7 +114,7 @@ public class BeatBox.MillerColumns : HPaned {
 			
 			artists.populate(artistsSet);
 			genres.populate(genresSet);
-		}*/
+		}
 		
 		changed();
 	}
