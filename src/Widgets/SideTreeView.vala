@@ -299,78 +299,20 @@ public class BeatBox.SideTreeView : TreeView {
 	public void updatePlayQueue() {
 		Widget w;
 		sideTreeModel.get(playlists_queue_iter, 1, out w);
-		((ViewWrapper)w).list.populateView(lm.queue(), false);
+		((ViewWrapper)w).populateViews(lm.queue(), false);
 	}
 	
 	public void updateAlreadyPlayed() {
 		Widget w;
 		sideTreeModel.get(playlists_history_iter, 1, out w);
-		((ViewWrapper)w).list.populateView(lm.already_played(), false);
+		((ViewWrapper)w).populateViews(lm.already_played(), false);
 	}
 	
 	public virtual void sideListSelectionChange() {
-		TreeSelection selected = this.get_selection();
-		selected.set_mode(SelectionMode.SINGLE);
-		TreeModel model;
-		TreeIter iter;
-		selected.get_selected (out model, out iter);
-		
-		GLib.Object o;
-		sideTreeModel.get(iter, 0, out o);
-		Widget w;
-		sideTreeModel.get(iter, 1, out w);
-		string name;
-		sideTreeModel.get(iter, 2, out name);
-		
-		TreeIter parent;
-		sideTreeModel.iter_parent(out parent, iter);
-		if(sideTreeModel.iter_is_valid(parent)) {
-			this.get_selection().select_iter(iter);
-			
-			string parent_name;
-			sideTreeModel.get(parent, 2, out parent_name);
-			
-			if(iter == playlists_similar_iter) {
-				if(((SimilarPane)w)._base == null || ((SimilarPane)w)._have.size == 0)
-					return;
-			}
-			else if(iter == playlists_queue_iter) {
-				ViewWrapper vw = (ViewWrapper)w;
-				vw.populateViews(lm.queue(), false);
-			}
-			else if(iter == playlists_history_iter) {
-				ViewWrapper vw = (ViewWrapper)w;
-				vw.populateViews(lm.already_played(), false);
-			}
-			else if(parent == playlists_iter && o is SmartPlaylist) {
-				ViewWrapper vw = (ViewWrapper)w;
-				vw.populateViews(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
-			}
-			else if(parent == playlists_iter && o is Playlist) {
-				ViewWrapper vw = (ViewWrapper)w;
-				vw.populateViews(lm.songs_from_playlist(((Playlist)o).rowid), false);
-			}
-		}
-		
-		if(w is ViewWrapper) {
-			switch(lw.viewSelector.selected) {
-				case 0:
-					((ViewWrapper)w).setView(ViewWrapper.ViewType.FILTER_VIEW);
-					break;
-				case 1:
-					((ViewWrapper)w).setView(ViewWrapper.ViewType.LIST);
-					break;
-				case 2:
-					((ViewWrapper)w).setView(ViewWrapper.ViewType.MILLER);
-					break;
-			}
-		}
-		
-		
 		sideTreeModel.foreach(updateView);
 		
 		if(current_widget is ViewWrapper) {
-			((ViewWrapper)current_widget).list.setStatusBarText();
+			((ViewWrapper)current_widget).setStatusBarText();
 		}
 		else if(current_widget is SimilarPane) {
 			((SimilarPane)current_widget).similars.setStatusBarText();
@@ -445,7 +387,7 @@ public class BeatBox.SideTreeView : TreeView {
 			return false;
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-			/*TreeIter iter;
+			TreeIter iter;
 			TreePath path;
 			TreeViewColumn column;
 			int cell_x;
@@ -477,28 +419,41 @@ public class BeatBox.SideTreeView : TreeView {
 				}
 				else if(iter == playlists_queue_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
-					vw.list.populateView(lm.queue(), false);
-					vw.setView(ViewWrapper.ViewType.FILTER_VIEW);
+					vw.populateViews(lm.queue(), false);
 				}
 				else if(iter == playlists_history_iter) {
-					MusicTreeView mtv = (MusicTreeView)w;
-					mtv.populateView(lm.already_played(), false);
+					ViewWrapper vw = (ViewWrapper)w;
+					vw.populateViews(lm.already_played(), false);
 				}
 				else if(parent == playlists_iter && o is SmartPlaylist) {
-					MusicTreeView mtv = (MusicTreeView)w;
-					mtv.populateView(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
+					ViewWrapper vw = (ViewWrapper)w;
+					vw.populateViews(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
 				}
 				else if(parent == playlists_iter && o is Playlist) {
-					MusicTreeView mtv = (MusicTreeView)w;
-					mtv.populateView(lm.songs_from_playlist(((Playlist)o).rowid), false);
+					ViewWrapper vw = (ViewWrapper)w;
+					vw.populateViews(lm.songs_from_playlist(((Playlist)o).rowid), false);
 				}
+				
+				if(w is ViewWrapper) {
+				switch(lw.viewSelector.selected) {
+					case 0:
+						((ViewWrapper)w).setView(ViewWrapper.ViewType.FILTER_VIEW);
+						break;
+					case 1:
+						((ViewWrapper)w).setView(ViewWrapper.ViewType.LIST);
+						break;
+					case 2:
+						((ViewWrapper)w).setView(ViewWrapper.ViewType.MILLER);
+						break;
+				}
+		}
 				
 				return false;
 			}
 			else {
 				
 				return true;
-			}*/
+			}
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 2) {
 			TreeIter iter;
@@ -589,7 +544,7 @@ public class BeatBox.SideTreeView : TreeView {
 					sideTreeModel.remove(pivot);
 					addItem(playlists_iter, sp, w, sp.name);
 					
-					((MusicTreeView)w).populateView(lm.songs_from_smart_playlist(sp.rowid), false);
+					((ViewWrapper)w).populateViews(lm.songs_from_smart_playlist(sp.rowid), false);
 					sideListSelectionChange();
 					
 					break;
@@ -622,7 +577,7 @@ public class BeatBox.SideTreeView : TreeView {
 					
 					sideTreeModel.remove(pivot);
 					addItem(playlists_iter, p, w, p.name);
-					((MusicTreeView)w).populateView(lm.songs_from_playlist(p.rowid), false);
+					((ViewWrapper)w).populateViews(lm.songs_from_playlist(p.rowid), false);
 					
 					break;
 				}

@@ -21,6 +21,8 @@ public class BeatBox.Settings : Object {
 	public static const string SIDEBAR_WIDTH = "/apps/beatbox/preferences/ui/sidebar_width";
 	public static const string MORE_WIDTH = "/apps/beatbox/preferences/ui/more_width";
 	public static const string MORE_VISIBLE = "/apps/beatbox/preferences/ui/more_visible";
+	public static const string VIEW_MODE = "/apps/beatbox/preferences/ui/view_mode";
+	public static const string MILLER_HEIGHT = "/apps/beatbox/preferences/ui/miller_height";
 	
 	public Settings() {
 		client = GConf.Client.get_default();
@@ -133,6 +135,14 @@ public class BeatBox.Settings : Object {
 		return getBool(MORE_VISIBLE, false);
 	}
 	
+	public int getViewMode() {
+		return getInt(VIEW_MODE, 1);
+	}
+	
+	public int getMillerHeight() {
+		return getInt(MILLER_HEIGHT, 150);
+	}
+	
 	public string getSearchString() {
 		return getString(SEARCH_STRING, "");
 	}
@@ -202,6 +212,14 @@ public class BeatBox.Settings : Object {
 	
 	public void setMoreVisible(bool val) {
 		setBool(MORE_VISIBLE, val);
+	}
+	
+	public void setViewMode(int val) {
+		setInt(VIEW_MODE, val);
+	}
+	
+	public void setMillerHeight(int val) {
+		setInt(MILLER_HEIGHT, val);
 	}
 	
 	public void setSearchString(string val) {

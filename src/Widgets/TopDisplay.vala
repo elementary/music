@@ -22,10 +22,13 @@ namespace ElementaryWidgets {
 			rightTime = new Label("0:00");
 			progressbar = new ProgressBar();
 			
-			scaleBox = new HBox(false, 1);
+			scaleBox = new HBox(false, 0);
 			scaleBox.pack_start(leftTime, false, false, 0);
 			scaleBox.pack_start(scale, true, true, 0);
 			scaleBox.pack_start(rightTime, false, false, 0);
+			
+			HBox progressBox = new HBox(false, 0);
+			progressBox.pack_start(progressbar);
 			
 			scale.set_draw_value(false);
 			
@@ -34,11 +37,8 @@ namespace ElementaryWidgets {
 			label.ellipsize = Pango.EllipsizeMode.END;
 			//label.set_markup("<b></b>");
 			
-			HBox labelBox = new HBox(false, 0);
-			labelBox.pack_start(label, true, true, 0);
-			
-			this.pack_start(labelBox, false, true, 0);
-			this.pack_start(wrap_alignment(progressbar, 0, 5, 0, 5), false, true, 0);
+			this.pack_start(label, false, true, 0);
+			this.pack_start(wrap_alignment(progressBox, 0, 5, 0, 5), false, true, 0);
 			this.pack_start(wrap_alignment(scaleBox, 0, 5, 0, 5), false, true, 0);
 			
 			//this.cancelButton.clicked.connect(cancel_clicked);
@@ -89,7 +89,7 @@ namespace ElementaryWidgets {
 		}
 		
 		public void set_progress_value(double progress) {
-			if(progress > 0.0 && progress < 1.0)
+			if(progress >= 0.0 && progress <= 1.0)
 				progressbar.set_fraction(progress);
 		}
 		

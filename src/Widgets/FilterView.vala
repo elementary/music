@@ -6,16 +6,19 @@ public class ArtistItem : Widget {
 	Label artistLabel;
 }
 
-public class BeatBox.FilterView : Viewport {
+public class BeatBox.FilterView : ScrolledWindow {
 	LibraryManager lm;
 	LibraryWindow lw;
 	LinkedList<int> songs;
 	
 	WebView view;
-	ScrolledWindow viewScroll;
+	Table table;
 	
 	private string last_search;
 	LinkedList<string> timeout_search;
+	
+	public bool isCurrentView;
+	public bool needsUpdate;
 	
 	public signal void itemClicked(string artist, string album);
 	
@@ -33,15 +36,15 @@ public class BeatBox.FilterView : Viewport {
 	
 	public void buildUI() {
 		view = new WebView();
-		viewScroll = new ScrolledWindow(null, null);
+		Viewport v = new Viewport(null, null);
 		
-        viewScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-        viewScroll.add(view);
+        set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		
 		view.settings.enable_default_context_menu = false;
 		
-		set_shadow_type(ShadowType.NONE);
-		add(viewScroll);
+		v.set_shadow_type(ShadowType.NONE);
+		v.add(view);
+		add(v);
 		
 		show_all();
 		
@@ -70,18 +73,15 @@ public class BeatBox.FilterView : Viewport {
             body { 
                 background: #fff; 
                 font-family: "Droid Sans",sans-serif; 
-                margin: 0 auto; 
-                width: 100%; 
+                margin-top: 10px;
             }
             #main {
-				margin: auto;
-				margin-top: 10px;
+				width: 100%;
+				margin: 0px auto;
 			}
             #main ul {
-                height: auto;
                 padding-bottom: 10px;
-                margin-left: 0px;
-                padding-left: 0px;
+                margin: auto;
             }
             #main ul li {
                 float: left;
@@ -124,6 +124,7 @@ public class BeatBox.FilterView : Viewport {
 		html += "</ul></div></body></html>"; // finish up the last song, finish up html
 		
 		view.load_string(html, "text/html", "utf8", "file://");
+		needsUpdate = false;
 	}
 	
 	public static int songCompareFunc(Song a, Song b) {
@@ -147,13 +148,17 @@ public class BeatBox.FilterView : Viewport {
 	}
 	
 	public virtual void searchFieldChanged() {
-		if(/*is_current_view && */lw.searchField.get_text().length != 1) {
+		if(isCurrentView && lw.searchField.get_text().length != 1) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
 				string to_search = timeout_search.poll_tail();
 				
 				var toSearch = new LinkedList<Song>();
-				foreach(int id in lm.songs_from_search(to_search, songs)) {
+				foreach(int id in lm.songs_from_search(to_search, lw.miller.genres.selected, 
+													lw.miller.artists.selected,
+													lw.miller.albums.selected,
+													songs)) {
+					
 					toSearch.add(lm.song_from_id(id));
 				}
 					

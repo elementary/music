@@ -21,6 +21,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public bool is_current_view;
 	public bool is_current;
 	public bool dragging;
+	public bool needsUpdate;
 	
 	LinkedList<string> timeout_search;//stops from doing useless search (timeout)
 	string last_search;//stops from searching same thing multiple times
@@ -58,11 +59,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	MenuItem songRateSong;
 	Menu songRateSongMenu;
 	RatingWidgetMenu rating_item;
-	MenuItem songRateSong1;
-	MenuItem songRateSong2;
-	MenuItem songRateSong3;
-	MenuItem songRateSong4;
-	MenuItem songRateSong5;
 	MenuItem songRemove;
 	
 	Gdk.Pixbuf starred;
@@ -419,6 +415,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
         this.view.drag_end.connect(onDragEnd);
 		this.vadjustment.value_changed.connect(viewScroll);
 		lw.searchField.changed.connect(searchFieldChanged);
+		lw.miller.changed.connect(searchFieldChanged);
 	}
 	
 	public void cellTitleEdited(string path, string new_text) {
@@ -432,20 +429,32 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		cellTitle.editable = false; */
 	}
 	
+	public virtual void millerChanged() {
+		
+	}
+	
 	public virtual void searchFieldChanged() {
 		if(is_current_view && lw.searchField.get_text().length != 1) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
+				stdout.printf("is thisfor realz?\n");
 				string to_search = timeout_search.poll_tail();
 				//if(lw.searchField.get_text().down() == timeout_search.poll_tail() && lw.searchField.get_text().down() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
-					Collection<int> searched_songs = lm.songs_from_search(to_search, _songs);
-					
+					Collection<int> searched_songs = lm.songs_from_search(to_search, 
+																		lw.miller.genres.selected, 
+																		lw.miller.artists.selected,
+																		lw.miller.albums.selected,
+																		_songs);
+					stdout.printf("done\n");
 					if(searched_songs.size == _showing_songs.size) {
 						// do nothing
 					}
-					else if(to_search == "") {
-						populateView(_songs, false);
+					else if(searched_songs.size == 0) {
+						stdout.printf("size is 0\n");
 					}
+					/*else if(to_search == "") {
+						populateView(_songs, false);
+					}*/
 					else if(searched_songs.size > _showing_songs.size) { /* less specific search */
 						populateView(searched_songs, true);
 						/* remove the songs already showing
@@ -488,6 +497,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					
 					lm.settings.setSearchString(to_search);
 					setStatusBarText();
+					stdout.printf("reached end\n");
 				/*}
 				else if(!showing_all && lw.searchField.get_text() != last_search && (lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
 					populateView(_songs, false);
@@ -702,6 +712,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		scrollToCurrent();
 		
+		needsUpdate = false;
 		setStatusBarText();
 	}
 	

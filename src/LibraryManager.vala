@@ -611,20 +611,21 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return null;
 	}
 	
-	public Collection<int> songs_from_search(string search, Collection<int> songs_to_search) {
+	public Collection<int> songs_from_search(string search, string genre, string artist, string album, Collection<int> songs_to_search) {
 		string l_search = search.down();
 		
-		if(search == null || search == "")
+		/*if(search == null || search == "")
 			return songs_to_search;
-		
+		*/
 		var rv = new LinkedList<int>();
-		
 		foreach(int i in songs_to_search) {
 			Song s = song_from_id(i);
-			if(l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())
-				rv.add(i);
+			if(l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down()) {
+				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist) && (album == "All Albums" || s.album == album))
+					rv.add(i);
+			}
 		}
-		
+		stdout.printf("bye\n");
 		return rv;
 	}
 	

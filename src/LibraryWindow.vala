@@ -16,9 +16,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	string last_search;//stops from searching same thing multiple times
 	
 	public bool dragging_from_music;
+	public bool millerVisible;
 	
 	VBox verticalBox;
 	VBox mainViews;
+	public MillerColumns miller;
+	VPaned millerPane;
 	ElementaryWidgets.Welcome welcomeScreen;
 	HPaned sourcesToSongs; //allows for draggable
 	HPaned songsToInfo; // song info pane
@@ -172,6 +175,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToSongs = new HPaned();
 		songsToInfo = new HPaned();
 		contentBox = new VBox(false, 0);
+		millerPane = new VPaned();
+		miller = new MillerColumns(lm, this);
 		mainViews = new VBox(false, 0);
 		welcomeScreen = new ElementaryWidgets.Welcome("Get some tunes.", "BeatBox can't seem to find your music");
 		sideTree = new SideTreeView(lm, this);	
@@ -219,7 +224,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//for setting maximum size for setting hpane position max size
 		//sideBar.set_geometry_hints(
 		
+		miller.populateColumns(lm.song_ids());
 		buildSideTree();
+		
+		miller.set_position(settings.getMillerHeight());
 		
 		updateSensitivities();
 		
@@ -322,11 +330,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         viewSelector.append(new Image.from_stock("view-list-details-symbolic", IconSize.MENU));
         viewSelector.append(new Image.from_stock("view-list-column-symbolic", IconSize.MENU));
         
-        var sep1 = new SeparatorToolItem();
-        var sep2 = new SeparatorToolItem();
-        sep1.set_draw(false);
-        sep2.set_draw(false);
-        
         topControls.insert(previousButton, 0);
         topControls.insert(playButton, 1);
         topControls.insert(nextButton, 2);
@@ -342,7 +345,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 		welcomeScreen.append("folder-music", "Import", "Select your music folder to import from.");
 		
-		contentBox.pack_start(mainViews, true, true, 0);
+		millerPane.pack1(miller, false, true);
+		millerPane.pack2(mainViews, true, true);
+		
+		contentBox.pack_start(millerPane, true, true, 0);
 		contentBox.pack_start(statusEventBox, false, true, 0);
 		
 		songsToInfo.pack1(contentBox, true, true);
@@ -371,6 +377,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
+		viewSelector.notify["selected"].connect( () => { 
+			settings.setViewMode(viewSelector.selected); 
+			miller.set_visible(viewSelector.selected == 2);
+			millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
+		});
+		millerPane.child1.size_allocate.connect(millerResized);
 		
 		/* set up drag dest stuff */
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
@@ -382,7 +394,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.show_scale();
 		topDisplay.set_scale_sensitivity(false);
 		coverArt.hide();
-		//sideTree.resetView();
+		sideTree.resetView();
+		viewSelector.selected = settings.getViewMode();
 		welcomeScreen.hide();
 		infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
@@ -424,13 +437,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		sideTree.expand_all();
+		sideTree.resetView();
 		sideTreeScroll = new ScrolledWindow(null, null);
 		sideTreeScroll.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
 		sideTreeScroll.add(sideTree);
 	}
 	
 	public void addSideListItem(GLib.Object o) {
-		TreeIter item = sideTree.library_music_iter;
+		TreeIter item = sideTree.library_music_iter; //just a default
 		ViewWrapper vw = null;
 		
 		if(o is Playlist) {
@@ -796,6 +810,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		w.focus(DirectionType.UP);
 	}
 	
+	public virtual void millerResized(Gdk.Rectangle rectangle) {
+		if(viewSelector.selected == 2) {
+			settings.setMillerHeight(rectangle.height);
+		}
+	}
+	
 	public virtual void sourcesToSongsHandleSet(Gdk.Rectangle rectangle) {
 		int height, width;
 		get_size(out width, out height);
@@ -901,7 +921,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		//repopulate collection and playlists and reset queue and already played
 		Widget w = sideTree.getWidget(sideTree.library_music_iter);
-		((MusicTreeView)w).populateView(lm.song_ids(), false);
+		((ViewWrapper)w).populateViews(lm.song_ids(), true);
 		
 		if(not_imported.size > 0) {
 			NotImportedWindow nim = new NotImportedWindow(this, not_imported, lm.settings.getMusicFolder());
@@ -944,20 +964,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			topDisplay.set_label_text("");
 		
 		// this will update the view in the main treeview b/c the songs in that are equal to lm.songs()
-		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+		((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).list.searchFieldChanged();
+		((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).filterView.searchFieldChanged();
 		
 		Widget selected_w = sideTree.getSelectedWidget();
-		if(selected_w is MusicTreeView) {
-			MusicTreeView sel_mtv = ((MusicTreeView)selected_w);
+		if(selected_w is ViewWrapper) {
+			ViewWrapper sel_vw = ((ViewWrapper)selected_w);
 			
-			if(sel_mtv.hint == MusicTreeView.Hint.SMART_PLAYLIST) {
+			if(sel_vw.list.hint == MusicTreeView.Hint.SMART_PLAYLIST) {
 				var new_ids = new LinkedList<int>();
 				foreach(Song s in new_songs) {
 					new_ids.add(s.rowid);
 				}
 				
-				sel_mtv.addSongs(new_ids);
-				sel_mtv.searchFieldChanged();
+				sel_vw.list.addSongs(new_ids);
+				sel_vw.list.searchFieldChanged();
 			}
 		}
 		
@@ -978,17 +999,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
 		
 		Widget selected_w = sideTree.getSelectedWidget();
-		if(selected_w is MusicTreeView) {
-			MusicTreeView sel_mtv = ((MusicTreeView)selected_w);
+		if(selected_w is ViewWrapper) {
+			ViewWrapper sel_vw = ((ViewWrapper)selected_w);
 			
-			if(sel_mtv.hint == MusicTreeView.Hint.SMART_PLAYLIST) {
+			if(sel_vw.list.hint == MusicTreeView.Hint.SMART_PLAYLIST) {
 				var new_ids = new LinkedList<int>();
 				foreach(Song s in new_songs) {
 					new_ids.add(s.rowid);
 				}
 				
-				sel_mtv.addSongs(new_ids);
-				sel_mtv.searchFieldChanged();
+				sel_vw.list.addSongs(new_ids);
+				sel_vw.list.searchFieldChanged();
 			}
 		}
 		
