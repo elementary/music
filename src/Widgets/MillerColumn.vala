@@ -82,17 +82,17 @@ public class BeatBox.MillerColumns : HPaned {
 		}
 		else {
 			var albumsSet = new HashSet<string>();
-			var genresSet = new HashSet<string>();
+			//var genresSet = new HashSet<string>();
 			
 			foreach(int id in songs) {
 				if(text == "All Artists" || text == lm.song_from_id(id).artist) {
 					albumsSet.add(lm.song_from_id(id).album);
-					genresSet.add(lm.song_from_id(id).genre);
+					//genresSet.add(lm.song_from_id(id).genre);
 				}
 			}
 			
 			albums.populate(albumsSet);
-			genres.populate(genresSet);
+			//genres.populate(genresSet);
 		}
 		
 		changed();
@@ -101,7 +101,7 @@ public class BeatBox.MillerColumns : HPaned {
 		if(text == "All Albums") {
 			populateColumns(songs);
 		}
-		else {
+		/*else {
 			var artistsSet = new HashSet<string>();
 			var genresSet = new HashSet<string>();
 			
@@ -114,7 +114,7 @@ public class BeatBox.MillerColumns : HPaned {
 			
 			artists.populate(artistsSet);
 			genres.populate(genresSet);
-		}
+		}*/
 		
 		changed();
 	}
@@ -153,7 +153,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		view.insert_column_with_attributes(-1, category, new CellRendererText(), "text", 0, null);
 		
 		sortModel = new TreeModelSort.with_model(model);
-		view.set_headers_visible(false);
+		//view.set_headers_visible(false);
 		view.set_model(sortModel);
 		
 		sortModel.set_sort_column_id(0, Gtk.SortType.ASCENDING);
@@ -169,6 +169,8 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		});
 		
 		add(view);
+		
+		//set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
 		
 		view.get_selection().changed.connect(selectionChanged);
 	}
