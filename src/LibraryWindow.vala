@@ -176,7 +176,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		songsToInfo = new HPaned();
 		contentBox = new VBox(false, 0);
 		millerPane = new VPaned();
-		miller = new MillerColumns(lm, this);
 		mainViews = new VBox(false, 0);
 		welcomeScreen = new ElementaryWidgets.Welcome("Get some tunes.", "BeatBox can't seem to find your music");
 		sideTree = new SideTreeView(lm, this);	
@@ -200,6 +199,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
 		viewSelector = new ElementaryWidgets.ModeButton();
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
+		miller = new MillerColumns(lm, this); //miller must be below search for it to work properly
 		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);

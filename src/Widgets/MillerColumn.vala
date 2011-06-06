@@ -20,14 +20,6 @@ public class BeatBox.MillerColumns : HBox {
 		albums = new MillerColumn("Albums");
 		genres = new MillerColumn("Genres");
 		
-		/*HPaned artistsToAlbums = new HPaned();
-		
-		artistsToAlbums.pack1(artists, true, false);
-		artistsToAlbums.pack2(albums, true, false);
-		
-		pack1(genres, true, false);
-		pack2(artistsToAlbums, true, false);*/
-		
 		pack_start(genres, true, true, 1);
 		pack_start(artists, true, true, 1);
 		pack_start(albums, true, true, 1);
@@ -70,7 +62,7 @@ public class BeatBox.MillerColumns : HBox {
 	}
 	
 	public void populateColumns(Collection<int> songs) {
-		Collection<int> searched_songs = lm.songs_from_search("", 
+		Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
 															lw.miller.genres.selected, 
 															lw.miller.artists.selected,
 															lw.miller.albums.selected,
