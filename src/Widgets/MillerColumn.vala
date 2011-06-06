@@ -55,72 +55,75 @@ public class BeatBox.MillerColumns : HPaned {
 	}
 	
 	public virtual void genreSelected(string text) {
+		populateColumns(songs);
 		/* repopulate artists and albums based on this genre */
-		if(text == "All Genres") {
-			populateColumns(songs);
-		}
-		else {
-			var artistsSet = new HashSet<string>();
-			var albumsSet = new HashSet<string>();
-			
-			foreach(int id in songs) {
-				if((text == "All Genres" || text == lm.song_from_id(id).genre) &&
-					(artists.selected == "All Artists" ? true : (lm.song_from_id(id).artist == artists.selected)) &&
-					(albums.selected == "All Albums" ? true : (lm.song_from_id(id).album == albums.selected))) {
-					artistsSet.add(lm.song_from_id(id).artist);
-					albumsSet.add(lm.song_from_id(id).album);
-				}
-			}
-			
-			artists.populate(artistsSet);
-			albums.populate(albumsSet);
-		}
+//~ 		if(text == "All Genres") {
+//~ 			populateColumns(songs);
+//~ 		}
+//~ 		else {
+//~ 			var artistsSet = new HashSet<string>();
+//~ 			var albumsSet = new HashSet<string>();
+//~ 			
+//~ 			foreach(int id in songs) {
+//~ 				if((text == "All Genres" || text == lm.song_from_id(id).genre) &&
+//~ 					(artists.selected == "All Artists" || lm.song_from_id(id).artist == artists.selected) &&
+//~ 					(albums.selected == "All Albums" || lm.song_from_id(id).album == albums.selected)) {
+//~ 					artistsSet.add(lm.song_from_id(id).artist);
+//~ 					albumsSet.add(lm.song_from_id(id).album);
+//~ 				}
+//~ 			}
+//~ 			
+//~ 			artists.populate(artistsSet);
+//~ 			albums.populate(albumsSet);
+//~ 		}
 		
 		changed();
 	}
 	public virtual void artistSelected(string text) {
-		if(text == "All Artists") {
-			populateColumns(songs);
-		}
-		else {
-			var albumsSet = new HashSet<string>();
-			var genresSet = new HashSet<string>();
-			
-			foreach(int id in songs) {
-				if(text == "All Artists" || text == lm.song_from_id(id).artist &&
-					(genres.selected == "All Genres" ? true : (lm.song_from_id(id).genre == genres.selected)) &&
-					(albums.selected == "All Albums" ? true : (lm.song_from_id(id).album == albums.selected))) {
-					albumsSet.add(lm.song_from_id(id).album);
-					genresSet.add(lm.song_from_id(id).genre);
-				}
-			}
-			
-			albums.populate(albumsSet);
-			genres.populate(genresSet);
-		}
+		populateColumns(songs);
+//		if(text == "All Artists") {
+//			populateColumns(songs);
+//		}
+//		else {
+//~ 			var albumsSet = new HashSet<string>();
+//~ 			var genresSet = new HashSet<string>();
+//~ 			
+//~ 			foreach(int id in songs) {
+//~ 				if(text == "All Artists" || text == lm.song_from_id(id).artist &&
+//~ 					(genres.selected == "All Genres" || lm.song_from_id(id).genre == genres.selected) &&
+//~ 					(albums.selected == "All Albums" || lm.song_from_id(id).album == albums.selected)) {
+//~ 					albumsSet.add(lm.song_from_id(id).album);
+//~ 					genresSet.add(lm.song_from_id(id).genre);
+//~ 				}
+//~ 			}
+//~ 			
+//~ 			albums.populate(albumsSet);
+//~ 			genres.populate(genresSet);
+//~ 		}
 		
 		changed();
 	}
 	public virtual void albumSelected(string text) {
-		if(text == "All Albums") {
-			populateColumns(songs);
-		}
-		else {
-			var artistsSet = new HashSet<string>();
-			var genresSet = new HashSet<string>();
-			
-			foreach(int id in songs) {
-				if(text == "All Albums" || text == lm.song_from_id(id).album &&
-					(artists.selected == "All Artists" ? true : (lm.song_from_id(id).artist == artists.selected)) &&
-					(genres.selected == "All Genres" ? true : (lm.song_from_id(id).genre == genres.selected))) {
-					artistsSet.add(lm.song_from_id(id).artist);
-					genresSet.add(lm.song_from_id(id).genre);
-				}
-			}
-			
-			artists.populate(artistsSet);
-			genres.populate(genresSet);
-		}
+		populateColumns(songs);
+//~ 		if(text == "All Albums") {
+//~ 			populateColumns(songs);
+//~ 		}
+//~ 		else {
+//~ 			var artistsSet = new HashSet<string>();
+//~ 			var genresSet = new HashSet<string>();
+//~ 			
+//~ 			foreach(int id in songs) {
+//~ 				if(text == "All Albums" || text == lm.song_from_id(id).album &&
+//~ 					(artists.selected == "All Artists" || lm.song_from_id(id).artist == artists.selected) &&
+//~ 					(genres.selected == "All Genres" || lm.song_from_id(id).genre == genres.selected)) {
+//~ 					artistsSet.add(lm.song_from_id(id).artist);
+//~ 					genresSet.add(lm.song_from_id(id).genre);
+//~ 				}
+//~ 			}
+//~ 			
+//~ 			artists.populate(artistsSet);
+//~ 			genres.populate(genresSet);
+//~ 		}
 		
 		changed();
 	}
