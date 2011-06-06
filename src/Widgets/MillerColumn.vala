@@ -34,13 +34,19 @@ public class BeatBox.MillerColumns : HPaned {
 	}
 	
 	public void populateColumns(Collection<int> songs) {
+		Collection<int> searched_songs = lm.songs_from_search("", 
+															lw.miller.genres.selected, 
+															lw.miller.artists.selected,
+															lw.miller.albums.selected,
+															songs);
+		
 		this.songs = songs;
 		
 		var artistsSet = new HashSet<string>();
 		var albumsSet = new HashSet<string>();
 		var genresSet = new HashSet<string>();
 		
-		foreach(int id in songs) {
+		foreach(int id in searched_songs) {
 			if((genres.selected == "All Genres" || genres.selected == lm.song_from_id(id).genre) &&
 				(artists.selected == "All Artists" || artists.selected == lm.song_from_id(id).artist) &&
 				(albums.selected == "All Albums" || albums.selected == lm.song_from_id(id).album))
