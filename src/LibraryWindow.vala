@@ -76,8 +76,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mkl = new MediaKeyListener(lm, this);
 		last_search = "";
 		
+#if HAVE_INDICATE
+#if HAVE_DBUSMENU
 		stdout.printf("Initializing MPRIS and sound menu\n");
 		var mpris = new MPRIS(lm, this);
+#endif
+#endif
 		
 		dragging_from_music = false;
 		
@@ -1102,6 +1106,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				lm.add_already_played(lm.song_info.song.rowid);
 				sideTree.updateAlreadyPlayed();
 				
+#if HAVE_ZEITGEIST
 				var event = new Zeitgeist.Event.full(Zeitgeist.ZG_ACCESS_EVENT,
 					Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://beatbox.desktop",
 					new Zeitgeist.Subject.full(
@@ -1109,6 +1114,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					Zeitgeist.NFO_AUDIO, Zeitgeist.NFO_FILE_DATA_OBJECT,
 					"text/plain", "", lm.song_info.song.title, ""));
 				new Zeitgeist.Log ().insert_events_no_reply(event);
+#endif
 			}
 			
 			// at halfway, scrobble

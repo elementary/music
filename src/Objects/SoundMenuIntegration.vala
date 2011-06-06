@@ -1,3 +1,5 @@
+#if HAVE_INDICATE
+#if HAVE_DBUSMENU
 using Indicate;
 
 public class BeatBox.SoundMenuIntegration : GLib.Object {
@@ -34,4 +36,5 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 			server.hide();
 	}
 }
-
+#endif
+#endif
