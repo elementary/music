@@ -31,6 +31,16 @@ public class BeatBox.MillerColumns : HPaned {
 		genres.selectedChanged.connect(genreSelected);
 		artists.selectedChanged.connect(artistSelected);
 		albums.selectedChanged.connect(albumSelected);
+		
+		genres.resetRequested.connect(resetColumns);
+		artists.resetRequested.connect(resetColumns);
+		albums.resetRequested.connect(resetColumns);
+	}
+	
+	public void resetColumns() {
+		artists.selected = "All Artists";
+		albums.selected = "All Albums";
+		genres.selected = "All Genres";
 	}
 	
 	public void populateColumns(Collection<int> songs) {
@@ -62,74 +72,16 @@ public class BeatBox.MillerColumns : HPaned {
 	
 	public virtual void genreSelected(string text) {
 		populateColumns(songs);
-		/* repopulate artists and albums based on this genre */
-//~ 		if(text == "All Genres") {
-//~ 			populateColumns(songs);
-//~ 		}
-//~ 		else {
-//~ 			var artistsSet = new HashSet<string>();
-//~ 			var albumsSet = new HashSet<string>();
-//~ 			
-//~ 			foreach(int id in songs) {
-//~ 				if((text == "All Genres" || text == lm.song_from_id(id).genre) &&
-//~ 					(artists.selected == "All Artists" || lm.song_from_id(id).artist == artists.selected) &&
-//~ 					(albums.selected == "All Albums" || lm.song_from_id(id).album == albums.selected)) {
-//~ 					artistsSet.add(lm.song_from_id(id).artist);
-//~ 					albumsSet.add(lm.song_from_id(id).album);
-//~ 				}
-//~ 			}
-//~ 			
-//~ 			artists.populate(artistsSet);
-//~ 			albums.populate(albumsSet);
-//~ 		}
 		
 		changed();
 	}
 	public virtual void artistSelected(string text) {
 		populateColumns(songs);
-//		if(text == "All Artists") {
-//			populateColumns(songs);
-//		}
-//		else {
-//~ 			var albumsSet = new HashSet<string>();
-//~ 			var genresSet = new HashSet<string>();
-//~ 			
-//~ 			foreach(int id in songs) {
-//~ 				if(text == "All Artists" || text == lm.song_from_id(id).artist &&
-//~ 					(genres.selected == "All Genres" || lm.song_from_id(id).genre == genres.selected) &&
-//~ 					(albums.selected == "All Albums" || lm.song_from_id(id).album == albums.selected)) {
-//~ 					albumsSet.add(lm.song_from_id(id).album);
-//~ 					genresSet.add(lm.song_from_id(id).genre);
-//~ 				}
-//~ 			}
-//~ 			
-//~ 			albums.populate(albumsSet);
-//~ 			genres.populate(genresSet);
-//~ 		}
 		
 		changed();
 	}
 	public virtual void albumSelected(string text) {
 		populateColumns(songs);
-//~ 		if(text == "All Albums") {
-//~ 			populateColumns(songs);
-//~ 		}
-//~ 		else {
-//~ 			var artistsSet = new HashSet<string>();
-//~ 			var genresSet = new HashSet<string>();
-//~ 			
-//~ 			foreach(int id in songs) {
-//~ 				if(text == "All Albums" || text == lm.song_from_id(id).album &&
-//~ 					(artists.selected == "All Artists" || lm.song_from_id(id).artist == artists.selected) &&
-//~ 					(genres.selected == "All Genres" || lm.song_from_id(id).genre == genres.selected)) {
-//~ 					artistsSet.add(lm.song_from_id(id).artist);
-//~ 					genresSet.add(lm.song_from_id(id).genre);
-//~ 				}
-//~ 			}
-//~ 			
-//~ 			artists.populate(artistsSet);
-//~ 			genres.populate(genresSet);
-//~ 		}
 		
 		changed();
 	}
@@ -144,6 +96,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	string _selected;
 	
 	public signal void selectedChanged(string selected);
+	public signal void resetRequested();
 	
 	public string selected {
 		get {
@@ -169,6 +122,8 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		sortModel = new TreeModelSort.with_model(model);
 		//view.set_headers_visible(false);
 		view.set_model(sortModel);
+		view.get_column(0).set_alignment((float)0.5);
+		view.get_column(0).sizing = Gtk.TreeViewColumnSizing.FIXED;
 		
 		sortModel.set_sort_column_id(0, Gtk.SortType.ASCENDING);
 		sortModel.set_sort_func(0, (tModel, a, b) => {
@@ -187,6 +142,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		//set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
 		
 		view.get_selection().changed.connect(selectionChanged);
+		view.row_activated.connect(viewDoubleClick);
 	}
 	
 	public virtual void selectionChanged() {
@@ -198,6 +154,17 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 			_selected = text;
 			selectedChanged(_selected);
 		}
+	}
+	
+	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
+		TreeIter item;
+		sortModel.get_iter(out item, path);
+		
+		string text;
+		sortModel.get(item, 0, out text);
+		
+		if(text == "All " + category)
+			resetRequested();
 	}
 	
 	public void populate(HashSet<string> items) {
