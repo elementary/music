@@ -58,7 +58,8 @@ public class BeatBox.MillerColumns : HBox {
 	}
 	
 	public virtual void searchFieldChanged() {
-		populateColumns(songs);
+		if(visible)
+			populateColumns(songs);
 	}
 	
 	public void populateColumns(Collection<int> songs) {

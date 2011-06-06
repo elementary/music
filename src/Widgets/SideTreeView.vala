@@ -440,10 +440,8 @@ public class BeatBox.SideTreeView : TreeView {
 						((ViewWrapper)w).setView(ViewWrapper.ViewType.FILTER_VIEW);
 						break;
 					case 1:
-						((ViewWrapper)w).setView(ViewWrapper.ViewType.LIST);
-						break;
 					case 2:
-						((ViewWrapper)w).setView(ViewWrapper.ViewType.MILLER);
+						((ViewWrapper)w).setView(ViewWrapper.ViewType.LIST);
 						break;
 				}
 		}
@@ -504,13 +502,13 @@ public class BeatBox.SideTreeView : TreeView {
 				w.show();
 				this.current_widget = w;
 				if(w is ViewWrapper) {
-					((ViewWrapper)w).list.is_current_view = true;
+					((ViewWrapper)w).setIsCurrentView(true);
 				}
 			}
 			else {
 				w.hide();
 				if(w is ViewWrapper)
-					((ViewWrapper)w).list.is_current_view = false;
+					((ViewWrapper)w).setIsCurrentView(false);
 			}
 		}
 		

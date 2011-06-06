@@ -9,11 +9,11 @@ public class BeatBox.ViewWrapper : VBox {
 	Collection<int> songs;
 	
 	ViewType currentView;
+	bool isCurrentView;
 	
 	public enum ViewType {
 		LIST,
-		FILTER_VIEW,
-		MILLER
+		FILTER_VIEW
 	}
 	
 	public ViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, MusicTreeView.Hint the_hint, int id) {
@@ -56,14 +56,32 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 	}
 	
+	public void setIsCurrentView(bool isIt) {
+		isCurrentView = isIt;
+		
+		if(!isIt) {
+			list.is_current_view = false;
+			filterView.isCurrentView = false;
+		}
+		else {
+			setView(currentView);
+		}
+	}
+	
 	public void setView(ViewType type) {
-		if(type == ViewType.LIST || type == ViewType.MILLER) {
+		if(type == ViewType.LIST) {
 			list.show();
 			filterView.hide();
+			
+			if(isCurrentView)
+				list.is_current_view = true;
 		}
 		else {
 			list.hide();
 			filterView.show();
+			
+			if(isCurrentView)
+				filterView.isCurrentView = true;
 		}
 		
 		currentView = type;
@@ -90,7 +108,6 @@ public class BeatBox.ViewWrapper : VBox {
 	public void setStatusBarText() {
 		switch(currentView) {
 			case ViewType.FILTER_VIEW:
-			case ViewType.MILLER:
 			case ViewType.LIST:
 				list.setStatusBarText();
 				break;
