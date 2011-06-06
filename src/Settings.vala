@@ -23,6 +23,7 @@ public class BeatBox.Settings : Object {
 	public static const string MORE_VISIBLE = "/apps/beatbox/preferences/ui/more_visible";
 	public static const string VIEW_MODE = "/apps/beatbox/preferences/ui/view_mode";
 	public static const string MILLER_HEIGHT = "/apps/beatbox/preferences/ui/miller_height";
+	public static const string MILLER_COLUMN_VISIBILITIES = "/apps/beatbox/preferences/ui/miller_column_visibilities";
 	
 	public Settings() {
 		client = GConf.Client.get_default();
@@ -143,6 +144,14 @@ public class BeatBox.Settings : Object {
 		return getInt(MILLER_HEIGHT, 250);
 	}
 	
+	public void getMillerVisibilities(out bool genre, out bool artist, out bool album) {
+		string vis = getString(MILLER_COLUMN_VISIBILITIES, "GenreArtistAlbum");
+		
+		genre = vis.contains("Genre");
+		artist = vis.contains("Artist");
+		album = vis.contains("Album");
+	}
+	
 	public string getSearchString() {
 		return getString(SEARCH_STRING, "");
 	}
@@ -220,6 +229,15 @@ public class BeatBox.Settings : Object {
 	
 	public void setMillerHeight(int val) {
 		setInt(MILLER_HEIGHT, val);
+	}
+	
+	public void setMillerColumnVisibilities(bool genre, bool artist, bool album) {
+		string vis = "";
+		if(genre)	vis += "Genre";
+		if(artist)	vis += "Artist";
+		if(album)	vis += "Album";
+			
+		setString(MILLER_COLUMN_VISIBILITIES, vis);
 	}
 	
 	public void setSearchString(string val) {

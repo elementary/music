@@ -227,7 +227,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		miller.populateColumns(lm.song_ids());
 		buildSideTree();
 		
-		miller.set_position(settings.getMillerHeight());
+		millerPane.set_position(settings.getMillerHeight());
 		
 		updateSensitivities();
 		
@@ -400,6 +400,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
 		((SimilarPane)sideTree.getWidget(sideTree.playlists_similar_iter)).initializeView();
+		
+		bool genreV, artistV, albumV;
+		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
+		miller.updateColumnVisibilities(genreV, artistV, albumV);
 	}
 	
 	/** Builds the side tree on TreeView view

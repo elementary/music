@@ -1,7 +1,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.MillerColumns : HPaned {
+public class BeatBox.MillerColumns : HBox {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Collection<int> songs;
@@ -20,13 +20,17 @@ public class BeatBox.MillerColumns : HPaned {
 		albums = new MillerColumn("Albums");
 		genres = new MillerColumn("Genres");
 		
-		HPaned artistsToAlbums = new HPaned();
+		/*HPaned artistsToAlbums = new HPaned();
 		
 		artistsToAlbums.pack1(artists, true, false);
 		artistsToAlbums.pack2(albums, true, false);
 		
 		pack1(genres, true, false);
-		pack2(artistsToAlbums, true, false);
+		pack2(artistsToAlbums, true, false);*/
+		
+		pack_start(genres, true, true, 1);
+		pack_start(artists, true, true, 1);
+		pack_start(albums, true, true, 1);
 		
 		genres.selectedChanged.connect(genreSelected);
 		artists.selectedChanged.connect(artistSelected);
@@ -35,12 +39,34 @@ public class BeatBox.MillerColumns : HPaned {
 		genres.resetRequested.connect(resetColumns);
 		artists.resetRequested.connect(resetColumns);
 		albums.resetRequested.connect(resetColumns);
+		
+		genres.columnVisibilityUpdate.connect(updateColumnVisibilities);
+		artists.columnVisibilityUpdate.connect(updateColumnVisibilities);
+		albums.columnVisibilityUpdate.connect(updateColumnVisibilities);
+		
+		lw.searchField.changed.connect(searchFieldChanged);
+	}
+	
+	public void updateColumnVisibilities(bool genreV, bool artistV, bool albumV) {
+		genres.set_visible(genreV);
+		artists.set_visible(artistV);
+		albums.set_visible(albumV);
+		
+		genres.setColumnVisibilities(genreV, artistV, albumV);
+		artists.setColumnVisibilities(genreV, artistV, albumV);
+		albums.setColumnVisibilities(genreV, artistV, albumV);
+		
+		lm.settings.setMillerColumnVisibilities(genreV, artistV, albumV);
 	}
 	
 	public void resetColumns() {
 		artists.selected = "All Artists";
 		albums.selected = "All Albums";
 		genres.selected = "All Genres";
+	}
+	
+	public virtual void searchFieldChanged() {
+		populateColumns(songs);
 	}
 	
 	public void populateColumns(Collection<int> songs) {
@@ -87,6 +113,9 @@ public class BeatBox.MillerColumns : HPaned {
 	}
 }
 
+
+
+
 public class BeatBox.MillerColumn : ScrolledWindow {
 	string category;
 	TreeView view;
@@ -95,8 +124,14 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	
 	string _selected;
 	
+	Menu columnChooserMenu;
+	CheckMenuItem columnGenres;
+	CheckMenuItem columnArtists;
+	CheckMenuItem columnAlbums;
+	
 	public signal void selectedChanged(string selected);
 	public signal void resetRequested();
+	public signal void columnVisibilityUpdate(bool genres, bool artists, bool albums);
 	
 	public string selected {
 		get {
@@ -117,7 +152,18 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		model = new ListStore(1, typeof(string));
 		category = categ;
 		
-		view.insert_column_with_attributes(-1, category, new CellRendererText(), "text", 0, null);
+		var cell = new CellRendererText();
+		cell.ellipsize = Pango.EllipsizeMode.END;
+		view.insert_column_with_attributes(-1, category, cell, "text", 0, null);
+		
+		// add this widget crap so we can get right clicks
+		view.get_column(0).clickable = true;
+		view.get_column(0).widget = new Gtk.Label(category);
+		view.get_column(0).widget.show();
+		view.get_column(0).set_sort_indicator(false);
+		Gtk.Widget ancestor = view.get_column(0).widget.get_ancestor(typeof(Gtk.Button));
+		GLib.assert(ancestor != null);
+		ancestor.button_press_event.connect(viewHeaderClick);
 		
 		sortModel = new TreeModelSort.with_model(model);
 		//view.set_headers_visible(false);
@@ -137,12 +183,43 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 				return -1;
 		});
 		
+		columnChooserMenu = new Menu();
+		columnGenres = new CheckMenuItem.with_label("Genres");
+		columnArtists = new CheckMenuItem.with_label("Artists");
+		columnAlbums = new CheckMenuItem.with_label("Albums");
+		columnChooserMenu.append(columnGenres);
+		columnChooserMenu.append(columnArtists);
+		columnChooserMenu.append(columnAlbums);
+		columnGenres.toggled.connect(columnMenuToggled);
+		columnArtists.toggled.connect(columnMenuToggled);
+		columnAlbums.toggled.connect(columnMenuToggled);
+		columnChooserMenu.show_all();
+		
 		add(view);
 		
 		//set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
 		
 		view.get_selection().changed.connect(selectionChanged);
 		view.row_activated.connect(viewDoubleClick);
+	}
+	
+	public virtual void columnMenuToggled() {
+		columnVisibilityUpdate(columnGenres.active, columnArtists.active, columnAlbums.active);
+	}
+	
+	public void setColumnVisibilities(bool genres, bool artists, bool albums) {
+		columnGenres.active = genres;
+		columnArtists.active = artists;
+		columnAlbums.active = albums;
+	}
+	
+	private bool viewHeaderClick(Gtk.Widget w, Gdk.EventButton e) {
+		if(e.button == 3) {
+			columnChooserMenu.popup(null, null, null, 3, get_current_event_time());
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public virtual void selectionChanged() {
