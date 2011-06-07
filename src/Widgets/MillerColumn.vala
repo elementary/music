@@ -112,8 +112,7 @@ public class BeatBox.MillerColumns : HBox {
 public class BeatBox.MillerColumn : ScrolledWindow {
 	string category;
 	TreeView view;
-	ListStore model;
-	TreeModelSort sortModel;
+	MillerModel model;
 	
 	string _selected;
 	
@@ -135,14 +134,14 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		}
 		set {
 			_selected = value;
-			sortModel.foreach(selectProperString);
+			model.foreach(selectProperString);
 			selectedChanged(_selected);
 		}
 	}
 	
 	public MillerColumn(string categ) {
 		view = new TreeView();
-		model = new ListStore(1, typeof(string));
+		model = new MillerModel(categ);
 		category = categ;
 		
 		var cell = new CellRendererText();
@@ -158,23 +157,9 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		GLib.assert(ancestor != null);
 		ancestor.button_press_event.connect(viewHeaderClick);
 		
-		sortModel = new TreeModelSort.with_model(model);
 		//view.set_headers_visible(false);
-		view.set_model(sortModel);
 		view.get_column(0).set_alignment((float)0.5);
 		view.get_column(0).sizing = Gtk.TreeViewColumnSizing.FIXED;
-		
-		sortModel.set_sort_column_id(0, Gtk.SortType.ASCENDING);
-		sortModel.set_sort_func(0, (tModel, a, b) => {
-			string aString, bString;
-			tModel.get(a, 0, out aString);
-			tModel.get(b, 0, out bString);
-			
-			if(aString != "All " + category && (aString > bString))
-				return 1;
-			else
-				return -1;
-		});
 		
 		columnChooserMenu = new Menu();
 		columnGenres = new CheckMenuItem.with_label("Genres");
@@ -204,6 +189,21 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		columnGenres.active = genres;
 		columnArtists.active = artists;
 		columnAlbums.active = albums;
+		
+		if(!genres && !artists) {
+			columnAlbums.set_sensitive(false);
+		}
+		else if(!genres && !albums) {
+			columnArtists.set_sensitive(false);
+		}
+		else if(!artists && !albums) {
+			columnGenres.set_sensitive(false);
+		}
+		else {
+			columnGenres.set_sensitive(true);
+			columnArtists.set_sensitive(true);
+			columnAlbums.set_sensitive(true);
+		}
 	}
 	
 	private bool viewHeaderClick(Gtk.Widget w, Gdk.EventButton e) {
@@ -228,31 +228,28 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	
 	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
 		TreeIter item;
-		sortModel.get_iter(out item, path);
+		model.get_iter(out item, path);
 		
-		string text;
-		sortModel.get(item, 0, out text);
+		Value text;
+		model.get_value(item, 0, out text);
 		
-		if(text == "All " + category)
+		if(text.get_string() == "All " + category)
 			resetRequested();
 	}
 	
 	public void populate(HashSet<string> items) {
-		model.clear();
 		items.remove("");
+		items.add("All " + category);
 		TreeIter iter;
 		
-		model.append(out iter);
-		model.set(iter, 0, "All " + category);
+		model = new MillerModel(category);
+		model.append_items(items, true);
+		model.set_sort_column_id(0, Gtk.SortType.ASCENDING);
+		view.set_model(model);
 		
-		foreach(string s in items) {
-			model.append(out iter);
-			model.set(iter, 0, s);
-		}
-		
-		// select All <category> item
+		// select selected item
 		view.get_selection().changed.disconnect(selectionChanged);
-		sortModel.foreach(selectProperString);
+		model.foreach(selectProperString);
 		view.get_selection().changed.connect(selectionChanged);
 	}
 	

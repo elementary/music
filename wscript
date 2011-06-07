@@ -85,6 +85,9 @@ def build(bld):
    	bld.install_files('${PREFIX}/share/icons/hicolor/64x64/apps', '/images/icons/64x64/apps/beatbox.svg');
    	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/apps', '/images/icons/128x128/apps/beatbox.svg');
    	
+   	#install media-audio for default album image
+   	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/mimetypes', '/images/icons/128x128/mimes/media-audio.svg');
+   	
    	#shuffle and repeat
    	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-repeat-active-symbolic.svg');
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-repeat-symbolic.svg');
@@ -104,6 +107,11 @@ def build(bld):
 	#last fm
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/lastfm-love.svg');
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/lastfm-ban.svg');
+	
+	#view mode icons
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/view-list-column-symbolic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/view-list-details-symbolic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/view-list-icons-symbolic.svg');
 	
 	obj = bld.new_task_gen ('c', 'program')
 	obj.features = 'c cprogram'

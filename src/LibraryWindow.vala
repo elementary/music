@@ -480,10 +480,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			playButton.set_sensitive(false);
 			nextButton.set_sensitive(false);
 			searchField.set_sensitive(false);
+			viewSelector.selected = 1;
+			viewSelector.set_sensitive(false);
 			statusBar.hide();
 			
 			if(settings.getMusicFolder() != "") {
 				mainViews.hide();
+				miller.hide();
 				songInfoScroll.hide();
 				welcomeScreen.show();
 			}
@@ -496,6 +499,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			previousButton.set_sensitive(true);
 			playButton.set_sensitive(true);
 			nextButton.set_sensitive(true);
+			viewSelector.set_sensitive(true);
 			searchField.set_sensitive(true);
 			statusBar.show();
 		}

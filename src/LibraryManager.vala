@@ -199,12 +199,26 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
 		
 		var items = fo.count_music_files(file);
+		
+		// get permission from user to continue when song count is 0
+		/*if(song_count() == 0) {
+			var dialog = new MessageDialog(lw, DialogFlags.MODAL, MessageType.QUESTION, ButtonsType.YES_NO, 
+			"BeatBox found " + items.to_string() + " songs in " + settings.getMusicFolder() + ". Would you like to import?");
+			
+			var result = dialog.run();
+			dialog.destroy();
+			
+			if(result == ResponseType.NO) {
+				return null;
+			}
+		}*/
+		
 		music_counted(items);
 		fo.resetProgress(items);
 		
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
-		
+		stdout.printf("1\n");
 		
 		fo.get_music_files(file, ref new_songs, ref not_imported);
 		
@@ -219,7 +233,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		progress_notification("<b>Populating list...</b>", 0.0);
-		
+		stdout.printf("1\n");
 		Idle.add( () => { 
 			save_songs();
 			music_added(not_imported); 

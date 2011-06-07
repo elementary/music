@@ -413,25 +413,33 @@ public class BeatBox.SideTreeView : TreeView {
 				string parent_name;
 				sideTreeModel.get(parent, 2, out parent_name);
 				
-				if(iter == playlists_similar_iter) {
+				if(iter == library_music_iter) {
+					lw.miller.populateColumns(lm.song_ids());
+				}
+				else if(iter == playlists_similar_iter) {
 					if(((SimilarPane)w)._base == null || ((SimilarPane)w)._have.size == 0)
 						return true;
 				}
 				else if(iter == playlists_queue_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					vw.populateViews(lm.queue(), false);
+					lw.miller.populateColumns(lm.queue());
 				}
 				else if(iter == playlists_history_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					vw.populateViews(lm.already_played(), false);
+					lw.miller.populateColumns(lm.already_played());
 				}
 				else if(parent == playlists_iter && o is SmartPlaylist) {
 					ViewWrapper vw = (ViewWrapper)w;
 					vw.populateViews(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
+					stdout.printf("populating miller\n");
+					lw.miller.populateColumns(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid));
 				}
 				else if(parent == playlists_iter && o is Playlist) {
 					ViewWrapper vw = (ViewWrapper)w;
 					vw.populateViews(lm.songs_from_playlist(((Playlist)o).rowid), false);
+					lw.miller.populateColumns(lm.songs_from_playlist(((Playlist)o).rowid));
 				}
 				
 				if(w is ViewWrapper) {
@@ -443,8 +451,8 @@ public class BeatBox.SideTreeView : TreeView {
 					case 2:
 						((ViewWrapper)w).setView(ViewWrapper.ViewType.LIST);
 						break;
+					}
 				}
-		}
 				
 				return false;
 			}

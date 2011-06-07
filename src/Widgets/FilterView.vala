@@ -17,6 +17,8 @@ public class BeatBox.FilterView : ScrolledWindow {
 	private string last_search;
 	LinkedList<string> timeout_search;
 	
+	string defaultPath;
+	
 	public bool isCurrentView;
 	public bool needsUpdate;
 	
@@ -30,6 +32,9 @@ public class BeatBox.FilterView : ScrolledWindow {
 		
 		last_search = "";
 		timeout_search = new LinkedList<string>();
+		
+		defaultPath = GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null);
+		stdout.printf("default path is %s\n", defaultPath);
 		
 		buildUI();
 	}
@@ -116,7 +121,7 @@ public class BeatBox.FilterView : ScrolledWindow {
 		// NOTE: things to keep in mind are search, miller column, artist="", album="" cases
 		foreach(Song s in toShow) {
 			if(s.album != previousAlbum) {
-				html += "<li><a href=\"" + s.album + "<seperater>" + s.artist + "\"><img src=\"file://" + s.getAlbumArtPath() + "\" /></a><p>" + ( (s.album == "") ? "Miscellaneous" : s.album) + "</p><p>" + s.artist + "</p></li>";
+				html += "<li><a href=\"" + s.album + "<seperater>" + s.artist + "\"><img width=\"150\" height=\"150\" src=\"file://" + (GLib.File.new_for_path(s.getAlbumArtPath()).query_exists() ? s.getAlbumArtPath() : defaultPath) + "\" /></a><p>" + ( (s.album == "") ? "Miscellaneous" : s.album) + "</p><p>" + s.artist + "</p></li>";
 				previousAlbum = s.album;
 			}
 		}

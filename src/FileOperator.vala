@@ -26,7 +26,13 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	private bool is_valid_file_type(string type) {
-		return (type.down().has_suffix(".mp3") || type.down().has_suffix(".m4a") || type.down().has_suffix(".wma") || type.down().has_suffix(".ogg") || type.down().has_suffix(".flac") || type.down().has_suffix(".mp4") || type.down().has_suffix(".ogg"));
+		var typeDown = type.down();
+		
+		return (typeDown.has_suffix(".mp3") || typeDown.has_suffix(".m4a") || 
+				typeDown.has_suffix(".wma") || typeDown.has_suffix(".ogg") || 
+				typeDown.has_suffix(".flac") || typeDown.has_suffix(".mp4") || 
+				typeDown.has_suffix(".oga") || typeDown.has_suffix(".m4p") ||
+				typeDown.has_suffix(".aac") || typeDown.has_suffix(".alac"));
 	}
 	
 	public int count_music_files(GLib.File music_folder) {
