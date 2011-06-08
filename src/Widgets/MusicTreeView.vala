@@ -212,6 +212,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		 * bitrate, play count, last played, date added, file name, (5)
 		 * bpm, length, file size, (3) */
 		LinkedList<TreeViewColumn> to_use = new LinkedList<TreeViewColumn>();
+		LinkedList<TreeViewColumn> originalOrder = new LinkedList<TreeViewColumn>();
+		LinkedList<string> correctStringOrder = new LinkedList<string>();
 		
 		if(hint == Hint.MUSIC)
 			to_use = lm.music_setup.get_columns();
@@ -226,14 +228,56 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		else if(hint == Hint.SMART_PLAYLIST)
 			to_use = lm.smart_playlist_from_id(relative_id).tvs.get_columns();
 		
+		/* put them in the order for treemodel */
+		foreach(var tvc in to_use) {
+			if(tvc.title == "id")
+				originalOrder.add(tvc);
+			else if(tvc.title == " ")
+				originalOrder.add(tvc);
+			else if(tvc.title == "#")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Track")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Length")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Title")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Artist")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Album")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Genre")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Year")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Bitrate")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Rating")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Plays")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Skips")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Date Added")
+				originalOrder.add(tvc);
+			else if(tvc.title == "Last Played")
+				originalOrder.add(tvc);
+			else if(tvc.title == "BPM")
+				originalOrder.add(tvc);
+				
+			correctStringOrder.add(tvc.title);
+		}
+		
 		int index = 0;
-		foreach(TreeViewColumn tvc in to_use) {
+		foreach(TreeViewColumn tvc in originalOrder) {
 			if(!(tvc.title == " " || tvc.title == "id")) {
 				if(tvc.title == "Bitrate")
 					view.insert_column_with_data_func(-1, tvc.title, cellBitrate, cellHelper.bitrateTreeViewFiller);
 				else if(tvc.title == "Length")
 					view.insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.lengthTreeViewFiller);
-				else if(tvc.title == "Date Added" || tvc.title == "Last Played")
+				else if(tvc.title == "Date Added")
+					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
+				else if(tvc.title == "Last Played")
 					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
 				else if(tvc.title == "Rating")
 					view.insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
@@ -260,7 +304,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				
 				
 				view.get_column(index).resizable = true;
-				view.get_column(index).reorderable = true;
+				view.get_column(index).reorderable = false;
 				view.get_column(index).clickable = true;
 				view.get_column(index).sort_column_id = index;
 				view.get_column(index).set_sort_indicator(false);
@@ -275,6 +319,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				tvc.clickable = false;
 				tvc.sort_column_id = -1;
 				tvc.resizable = false;
+				tvc.reorderable = false;
+			}
+			else if(tvc.title == "id") {
+				view.insert_column(tvc, index);
 			}
 			else {
 				view.insert_column(tvc, index);
@@ -292,6 +340,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			++index;
 		}
+		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
 		music_model = new MusicTreeModel(lm, get_column_strings(), render_icon("audio-volume-high", IconSize.MENU, null));
@@ -302,6 +351,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.set_headers_clickable(true);
 		view.set_fixed_height_mode(true);
 		view.rules_hint = true;
+		view.set_reorderable(false);
 		
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);
@@ -416,6 +466,20 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		this.vadjustment.value_changed.connect(viewScroll);
 		lw.searchField.changed.connect(searchFieldChanged);
 		lw.miller.changed.connect(searchFieldChanged);
+	}
+	
+	public void rearrangeColumns(LinkedList<string> correctOrder) {
+		view.move_column_after(view.get_column(6), view.get_column(7));
+		//stdout.printf("correctOrder.length = %d, view.get_columns.length() = %d\n", correctOrder.size, (int)view.get_columns().length());
+		/* iterate through view.get_columns and if a column is not in the
+		 * same location as correctOrder, move it there.
+		*/
+		for(int index = 0; index < view.get_columns().length(); ++index) {
+			//stdout.printf("on index %d column %s originally moving to %d\n", index, view.get_column(index).title, correctOrder.index_of(view.get_column(index).title));
+			if(view.get_column(index).title != correctOrder.get(index)) {
+				view.move_column_after(view.get_column(index), view.get_column(correctOrder.index_of(view.get_column(index).title)));
+			}
+		}
 	}
 	
 	public void cellTitleEdited(string path, string new_text) {

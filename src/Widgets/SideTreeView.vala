@@ -414,7 +414,9 @@ public class BeatBox.SideTreeView : TreeView {
 				sideTreeModel.get(parent, 2, out parent_name);
 				
 				if(iter == library_music_iter) {
+					ViewWrapper vw = (ViewWrapper)w;
 					lw.miller.populateColumns(lm.song_ids());
+					vw.populateViews(lm.song_ids(), false);
 				}
 				else if(iter == playlists_similar_iter) {
 					if(((SimilarPane)w)._base == null || ((SimilarPane)w)._have.size == 0)

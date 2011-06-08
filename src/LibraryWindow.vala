@@ -911,17 +911,18 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void musicCounted(int count) {
-		stdout.printf("taha!\n");
+		stdout.printf("Found %d files in music folder, importing.\n", count);
 		if(count > 0) {
 			//hide welcome view if showing
 			welcomeScreen.hide();
-			mainViews.show();
+			//mainViews.show(); // this causes an error that crashes app due to gtk in threaded function
 		}
 	}
 	
 	/* this is after setting the music library */
 	public virtual void musicAdded(LinkedList<string> not_imported) {
 		sideTree.resetView();
+		mainViews.show();
 		topDisplay.show_scale();
 		
 		if(lm.song_info.song != null) {

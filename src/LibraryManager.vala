@@ -214,11 +214,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}*/
 		
 		music_counted(items);
+		
 		fo.resetProgress(items);
 		
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
-		stdout.printf("1\n");
 		
 		fo.get_music_files(file, ref new_songs, ref not_imported);
 		

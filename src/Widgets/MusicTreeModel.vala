@@ -212,13 +212,12 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			
 			ValueArray va = new ValueArray(17);
 			
-			/*va.append(s.rowid);
-			va.append(true);
+			va.append(s.rowid);
 			va.append(Value(typeof(Gdk.Pixbuf)));
 			va.append(rows.get_length());
 			va.append(s.track);
 			va.append(s.title);
-			va.append(s.length.to_string());
+			va.append(s.length);
 			va.append(s.artist);
 			va.append(s.album);
 			va.append(s.genre);
@@ -229,9 +228,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			va.append(s.skip_count);
 			va.append(s.date_added);
 			va.append(s.last_played);
-			va.append(s.bpm);*/
+			va.append(s.bpm);
 
-			for(int i = 0;i < _columns.size; ++i) {
+			/*for(int i = 0;i < _columns.size; ++i) {
 				if(_columns.get(i) == "id")
 					va.append(s.rowid);
 				else if(_columns.get(i) == " ")
@@ -267,7 +266,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 				else if(_columns.get(i) == "BPM")
 					va.append(s.bpm);
 			}
-			
+			*/
 			/* mem leak in va.copy() */
 			SequenceIter<ValueArray> added = rows.append((owned) va);
 			

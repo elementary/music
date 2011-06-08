@@ -94,9 +94,9 @@ public class BeatBox.ViewWrapper : VBox {
 	public void populateViews(Collection<int> songs, bool populateBoth) {
 		this.songs = songs;
 		
-		if((currentView == ViewType.LIST || populateBoth) && list.needsUpdate)
+		if((currentView == ViewType.LIST || populateBoth))
 			list.populateView(songs, false);
-		else if((currentView == ViewType.FILTER_VIEW || populateBoth) && filterView.needsUpdate) {
+		else if((currentView == ViewType.FILTER_VIEW || populateBoth)) {
 			var linkedSongs = new LinkedList<Song>();
 			foreach(int id in songs)
 				linkedSongs.add(lm.song_from_id(id));
