@@ -53,23 +53,23 @@ def configure(ctx):
 	check_pkg(ctx, 'json-glib-1.0', 'JSON', '0.10')
 	check_pkg(ctx, 'webkit-1.0', 'WEBKIT', '0.0')
 
-	check_pkg(ctx, 'zeitgeist-1.0', 'ZEITGEIST', '0.3.10')
+	check_pkg(ctx, 'zeitgeist-1.0', 'ZEITGEIST', '0.3.10', mandatory=False)
 	if ctx.env['HAVE_ZEITGEIST']:
             ctx.env.append_value ('CFLAGS', '-D HAVE_ZEITGEIST')
-        else:
-            print ('Building without zeitgeist-1.0 (used to provide event logging).')
+	else:
+		print ('Building without zeitgeist-1.0 (used to provide event logging).')
 
 	check_pkg(ctx, 'indicate-0.5', 'INDICATE', '0.5.0', mandatory=False)
 	if ctx.env['HAVE_INDICATE']:
             ctx.env.append_value ('CFLAGS', '-D HAVE_INDICATE')
-        else:
-            print ('Building without indicate-0.5 (used to show Sound Menu).')
+	else:
+		print ('Building without indicate-0.5 (used to show Sound Menu).')
 
 	check_pkg(ctx, 'dbusmenu-glib-0.4', 'DBUSMENU', '0.4.3', mandatory=False)
 	if ctx.env['HAVE_DBUSMENU']:
             ctx.env.append_value ('CFLAGS', '-D HAVE_DBUSMENU')
-        else:
-            print ('Building without dbusmenu-glib-0.4 (used to show Sound Menu).')
+	else:
+		print ('Building without dbusmenu-glib-0.4 (used to show Sound Menu).')
 
 def build(bld):
 	#install basic desktop file
