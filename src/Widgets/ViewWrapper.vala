@@ -22,7 +22,7 @@ public class BeatBox.ViewWrapper : VBox {
 		this.songs = songs;
 		
 		list = new MusicTreeView(lm, lw, sort, dir, the_hint, id);
-		list.populateView(songs, false);
+		//list.populateView(songs, false);
 		
 		/* have to convert to linked list<song> */
 		var linkedSongs = new LinkedList<int>();
@@ -75,6 +75,8 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			if(isCurrentView)
 				list.is_current_view = true;
+			else
+				list.is_current_view = false;
 		}
 		else {
 			list.hide();
@@ -82,6 +84,8 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			if(isCurrentView)
 				filterView.isCurrentView = true;
+			else
+				filterView.isCurrentView = false;
 		}
 		
 		currentView = type;

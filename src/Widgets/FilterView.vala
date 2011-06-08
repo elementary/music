@@ -14,6 +14,7 @@ public class BeatBox.FilterView : ScrolledWindow {
 	WebView view;
 	Table table;
 	
+	private Collection<int> showingSongs;
 	private string last_search;
 	LinkedList<string> timeout_search;
 	
@@ -30,6 +31,7 @@ public class BeatBox.FilterView : ScrolledWindow {
 		lw = lww;
 		songs = ssongs;
 		
+		showingSongs = new LinkedList<int>();
 		last_search = "";
 		timeout_search = new LinkedList<string>();
 		
@@ -73,6 +75,14 @@ public class BeatBox.FilterView : ScrolledWindow {
 	 * shown
 	*/
 	public void generateHTML(LinkedList<Song> toShow) {
+		
+		/** NOTE: This could have a bad effect if user coincidentally
+		 * searches for something that has same number of results as 
+		 * a different search. However, this cuts lots of unecessary
+		 * loading of lists/icon lists */
+		if(showingSongs.size == toShow.size)
+			return;
+		
 		string html = """<!DOCTYPE html> <html lang="en"><head> 
         <style media="screen" type="text/css"> 
             body { 
@@ -113,11 +123,12 @@ public class BeatBox.FilterView : ScrolledWindow {
             }
         </style></head><body><div id="main"><ul>""";
         
+        stdout.printf("sorting songs\n");
         // first sort the songs so we know they are grouped by artists, then albums
 		toShow.sort((CompareFunc)songCompareFunc);
 		
 		string previousAlbum = "";
-		
+		stdout.printf("creating html with loop\n");
 		// NOTE: things to keep in mind are search, miller column, artist="", album="" cases
 		foreach(Song s in toShow) {
 			if(s.album != previousAlbum) {
@@ -128,8 +139,12 @@ public class BeatBox.FilterView : ScrolledWindow {
 		
 		html += "</ul></div></body></html>"; // finish up the last song, finish up html
 		
+		stdout.printf("loading string\n");
 		view.load_string(html, "text/html", "utf8", "file://");
 		needsUpdate = false;
+		stdout.printf("loaded\n");
+		
+		showingSongs = toShow;
 	}
 	
 	public static int songCompareFunc(Song a, Song b) {
@@ -157,17 +172,22 @@ public class BeatBox.FilterView : ScrolledWindow {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
 				string to_search = timeout_search.poll_tail();
+				stdout.printf("searching for %s\n", to_search);
 				
-				var toSearch = new LinkedList<Song>();
-				foreach(int id in lm.songs_from_search(to_search, lw.miller.genres.selected, 
-													lw.miller.artists.selected,
-													lw.miller.albums.selected,
-													songs)) {
+				if(timeout_search.size == 0) {
+					var toSearch = new LinkedList<Song>();
+					foreach(int id in lm.songs_from_search(to_search, lw.miller.genres.selected, 
+														lw.miller.artists.selected,
+														lw.miller.albums.selected,
+														songs)) {
+						
+						toSearch.add(lm.song_from_id(id));
+					}
 					
-					toSearch.add(lm.song_from_id(id));
+					if(showingSongs.size != toSearch.size) {
+						generateHTML(toSearch);
+					}
 				}
-					
-				generateHTML(toSearch);
 				
 				return false;
 			});

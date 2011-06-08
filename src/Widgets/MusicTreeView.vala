@@ -741,6 +741,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void populateView(Collection<int> songs, bool is_search) {
+		
+		/** NOTE: This could have a bad effect if user coincidentally
+		 * searches for something that has same number of results as 
+		 * a different search. However, this cuts lots of unecessary
+		 * loading of lists/icon lists */
+		if(_showing_songs.size == songs.size)
+			return;
+		
 		view.freeze_child_notify();
 		view.set_model(null);
 		
