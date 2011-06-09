@@ -76,12 +76,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mkl = new MediaKeyListener(lm, this);
 		last_search = "";
 		
-#if HAVE_INDICATE
-#if HAVE_DBUSMENU
+		#if HAVE_INDICATE
+			stdout.printf("have indicate\n");
+		#endif
+		#if HAVE_DBUSMENU
+			stdout.printf("have dbus menu\n");
+		#endif
+		
+//#if HAVE_INDICATE
+//#if HAVE_DBUSMENU
 		stdout.printf("Initializing MPRIS and sound menu\n");
-		var mpris = new MPRIS(lm, this);
-#endif
-#endif
+		var mpris = new BeatBox.MPRIS(lm, this);
+//#endif
+//#endif
 		
 		dragging_from_music = false;
 		
@@ -874,6 +881,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void fileImportMusicClick() {
 		if(!lm.doing_file_operations) {
+			if(!(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists() && lm.settings.getCopyImportedMusic())) {
+				var dialog = new MessageDialog(this, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.OK, 
+				"Before importing, you must mount your music folder.");
+				
+				var result = dialog.run();
+				dialog.destroy();
+				
+				return;
+			}
+			
 			string folder = "";
             var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
                                       FileChooserAction.SELECT_FOLDER,
@@ -885,11 +902,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			file_chooser.destroy ();
 			
 			if(folder != "" && folder != settings.getMusicFolder()) {
-				topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b> to library.");
-				topDisplay.show_progressbar();
-				
-				lm.add_folder_to_library(folder);
-				updateSensitivities();
+				if(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists() && lm.settings.getCopyImportedMusic()) {
+					topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b> to library.");
+					topDisplay.show_progressbar();
+					
+					lm.add_folder_to_library(folder);
+					updateSensitivities();
+				}
 			}
 		}
 		else {
@@ -899,11 +918,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void fileRescanMusicFolderClick() {
 		if(!lm.doing_file_operations) {
-			topDisplay.set_label_markup("<b>Rescanning music folder for changes</b>");
-			topDisplay.show_progressbar();
-			
-			lm.rescan_music_folder();
-			updateSensitivities();
+			if(GLib.File.new_for_path(this.settings.getMusicFolder()).query_exists()) {
+				topDisplay.set_label_markup("<b>Rescanning music folder for changes</b>");
+				topDisplay.show_progressbar();
+				
+				lm.rescan_music_folder();
+				updateSensitivities();
+			}
+			else {
+				var dialog = new MessageDialog(this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, 
+				"You must mount your music folder before rescanning.");
+				
+				dialog.run();
+				dialog.destroy();
+			}
 		}
 		else {
 			stdout.printf("Can't rescan.. doing file operations already\n");
@@ -1009,7 +1037,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).searchFieldChanged();
+		((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).list.searchFieldChanged();
 		
 		Widget selected_w = sideTree.getSelectedWidget();
 		if(selected_w is ViewWrapper) {
