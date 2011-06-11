@@ -132,6 +132,34 @@ public class BeatBox.AlbumView : DrawingArea {
         return true;
     }
     
+    public signal void activate(AlbumComponent album);
+    
+    public override bool button_press_event(Gdk.EventButton event)
+    {
+        last_x = event.x;
+        last_y = event.y;
+        double x = 0.0;
+        double y = 0.0;
+        foreach(var album in albums)
+        {
+            if(x < last_x < x + album_size && y < last_y < y + album_size)
+            {
+                selected_x = x;
+                selected_y = y;
+                use_clip = true;
+                activate(album);
+                break;
+            }
+            x += album_size;
+            if(x > allocation.width - album_size)
+            {
+                x = 0.0;
+                y += album_size;
+            }
+        }
+        return true;
+    }
+    
     public void add_album(string album_, string artist, string image_path)
     {
         var album = new AlbumComponent();
@@ -144,14 +172,18 @@ public class BeatBox.AlbumView : DrawingArea {
         album.image = new Gdk.Pixbuf.from_file_at_scale(image_path, (int)(album_size - 2*album_padding), (int)(album_size -2*height - 2*album_padding), true); /* TODO: error handling */
         albums.add(album);
     }
+    
+    public void clear()
+    {
+        albums.clear();
+    }
 }
 
 public class BeatBox.FilterView : ScrolledWindow {
 	LibraryManager lm;
 	LibraryWindow lw;
 	LinkedList<int> songs;
-	
-	WebView view;
+
 	Table table;
 	
 	private Collection<int> showingSongs;
@@ -183,34 +215,21 @@ public class BeatBox.FilterView : ScrolledWindow {
 	}
 	
 	public void buildUI() {
-		view = new WebView();
 		Viewport v = new Viewport(null, null);
 		
         set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		
-		view.settings.enable_default_context_menu = false;
-		
 		v.set_shadow_type(ShadowType.NONE);
-		//v.add(view);
 		albums = new AlbumView();
+		albums.activate.connect( (album) => {
+		        print("here\n");
+		        itemClicked(album.album, album.artist);
+		    });
 		v.add(albums);
 		add(v);
 		
 		show_all();
-		
-		view.navigation_requested.connect(navigationRequested);
 		lw.searchField.changed.connect(searchFieldChanged);
-	}
-	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
 	}
 	
 	/** Goes through the hashmap and generates html. If artist,album, or genre
@@ -225,69 +244,22 @@ public class BeatBox.FilterView : ScrolledWindow {
 		 * loading of lists/icon lists */
 		if(showingSongs.size == toShow.size)
 			return;
-		
-		string html = """<!DOCTYPE html> <html lang="en"><head> 
-        <style media="screen" type="text/css"> 
-            body { 
-                background: #fff; 
-                font-family: "Droid Sans",sans-serif; 
-                margin-top: 10px;
-            }
-            #main {
-				width: 100%;
-				margin: 0px auto;
-			}
-            #main ul {
-                padding-bottom: 10px;
-                margin: auto;
-            }
-            #main ul li {
-                float: left;
-                width: 150px;
-                height: 200px;
-                display: inline-block;
-                list-style-type: none;
-                padding-right: 10px;
-                padding-left: 10px;
-                padding-bottom: 5px;
-                overflow: hidden;
-            }
-            #main ul li img {
-                width: 150px;
-                height: 150px;
-            }
-            #main ul li p {
-                clear: both;
-                overflow: hidden;
-                text-align: center;
-                margin-top: 0px;
-                font-size: 12px;
-                margin-bottom: 0px;
-            }
-        </style></head><body><div id="main"><ul>""";
         
         stdout.printf("sorting songs\n");
         // first sort the songs so we know they are grouped by artists, then albums
 		toShow.sort((CompareFunc)songCompareFunc);
+		albums.clear();
 		
 		string previousAlbum = "";
 		stdout.printf("creating html with loop\n");
 		// NOTE: things to keep in mind are search, miller column, artist="", album="" cases
 		foreach(Song s in toShow) {
 			if(s.album != previousAlbum) {
-				/*html += "<li><a href=\"" + s.album + "<seperater>" + s.artist + "\"><img width=\"150\" height=\"150\" src=\"file://" + (GLib.File.new_for_path(s.getAlbumArtPath()).query_exists() ? s.getAlbumArtPath() : defaultPath) + "\" /></a><p>" + ( (s.album == "") ? "Miscellaneous" : s.album) + "</p><p>" + s.artist + "</p></li>";*/
 				albums.add_album(s.album, s.artist, (GLib.File.new_for_path(s.getAlbumArtPath()).query_exists() ? s.getAlbumArtPath() : defaultPath));
 				
 				previousAlbum = s.album;
 			}
 		}
-		
-		html += "</ul></div></body></html>"; // finish up the last song, finish up html
-		
-		stdout.printf("loading string\n");
-		view.load_string(html, "text/html", "utf8", "file://");
-		needsUpdate = false;
-		stdout.printf("loaded\n");
 		
 		showingSongs = toShow;
 		albums.queue_draw();
