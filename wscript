@@ -123,11 +123,14 @@ def build(bld):
 	if obj.env['HAVE_ZEITGEIST']:
 		obj.packages += ' zeitgeist-1.0'
 		obj.uselib += ' ZEITGEIST'
+		obj.env.append_value ('VALAFLAGS', '--define=HAVE_ZEITGEIST')
 
 	if obj.env['HAVE_INDICATE']:
 		obj.packages += ' Indicate-0.5'
 		obj.uselib += ' INDICATE'
+		obj.env.append_value ('VALAFLAGS', '--define=HAVE_INDICATE')
 
 	if obj.env['HAVE_DBUSMENU']:
 		obj.packages += ' Dbusmenu-0.4'
 		obj.uselib += ' DBUSMENU'
+		obj.env.append_value ('VALAFLAGS', '--define=HAVE_DBUSMENU')

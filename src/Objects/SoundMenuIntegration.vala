@@ -1,5 +1,5 @@
-//#if HAVE_INDICATE
-//#if HAVE_DBUSMENU
+#if HAVE_INDICATE
+#if HAVE_DBUSMENU
 using Indicate;
 
 public class BeatBox.SoundMenuIntegration : GLib.Object {
@@ -17,8 +17,6 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 		                      BusNameWatcherFlags.NONE,
 		                      on_name_appeared,
 		                      on_name_vanished);
-		
-		stdout.printf("%s\n", GLib.Path.build_filename(GLib.Environment.get_user_data_dir(), "applications", "beatbox.desktop", null));
 	}
 	
 	private void on_name_appeared(DBusConnection conn, string name) {
@@ -27,8 +25,7 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 		/* set up the server to connect to music.beatbox dbus */
 		server = Indicate.Server.ref_default();
 		server.set("type", "music.beatbox");
-		stdout.printf("%s\n", GLib.Path.build_filename(GLib.Environment.get_user_data_dir(), "applications", "beatbox.desktop", null));
-		server.set_desktop_file(GLib.Path.build_filename(GLib.Environment.get_user_data_dir(), "applications", "beatbox.desktop", null));
+		server.set_desktop_file(GLib.Path.build_filename("/usr", "share", "applications", "beatbox.desktop", null));
 		server.show();
 	}
 	
@@ -39,5 +36,5 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 			server.hide();
 	}
 }
-//#endif
-//#endif
+#endif
+#endif

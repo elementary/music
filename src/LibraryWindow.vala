@@ -21,7 +21,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	VBox verticalBox;
 	VBox mainViews;
 	public MillerColumns miller;
-	VPaned millerPane;
+	HPaned millerPane;
 	ElementaryWidgets.Welcome welcomeScreen;
 	HPaned sourcesToSongs; //allows for draggable
 	HPaned songsToInfo; // song info pane
@@ -71,24 +71,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		//this is used by many objects, is the media backend
 		lm = new BeatBox.LibraryManager(player, dbm, settings, this);
+		
+		//various objects
 		similarSongs = new LastFM.SimilarSongs(lm);
 		timeout_search = new LinkedList<string>();
 		mkl = new MediaKeyListener(lm, this);
 		last_search = "";
 		
-		#if HAVE_INDICATE
-			stdout.printf("have indicate\n");
-		#endif
-		#if HAVE_DBUSMENU
-			stdout.printf("have dbus menu\n");
-		#endif
-		
-//#if HAVE_INDICATE
-//#if HAVE_DBUSMENU
+#if HAVE_INDICATE
+#if HAVE_DBUSMENU
 		stdout.printf("Initializing MPRIS and sound menu\n");
 		var mpris = new BeatBox.MPRIS(lm, this);
-//#endif
-//#endif
+#endif
+#endif
 		
 		dragging_from_music = false;
 		
@@ -186,7 +181,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToSongs = new HPaned();
 		songsToInfo = new HPaned();
 		contentBox = new VBox(false, 0);
-		millerPane = new VPaned();
+		millerPane = new HPaned();
 		mainViews = new VBox(false, 0);
 		welcomeScreen = new ElementaryWidgets.Welcome("Get some tunes.", "BeatBox can't seem to find your music");
 		sideTree = new SideTreeView(lm, this);	

@@ -1,5 +1,5 @@
-//#if HAVE_INDICATE
-//#if HAVE_DBUSMENU
+#if HAVE_INDICATE
+#if HAVE_DBUSMENU
 /** Original Authors: 	Andreas Obergrusberger
  * 						Jörn Magens
  * 
@@ -425,5 +425,5 @@ public class MprisPlayer : GLib.Object {
 		return;
 	}
 }
-//#endif
-//#endif
+#endif
+#endif
