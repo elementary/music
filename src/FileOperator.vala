@@ -389,14 +389,30 @@ public class BeatBox.FileOperator : Object {
 				success = original.move(dest, FileCopyFlags.NONE, null, null);
 			}
 			
-			if(success)
+			// also copy it's album art.
+			
+			if(success) {
 				s.file = dest.get_path();
+				
+				if(s.getAlbumArtPath().contains(original.get_parent().get_path())) {
+					var songFile = GLib.File.new_for_path(s.getAlbumArtPath());
+					var albumArtDest = Path.build_path("/", dest.get_parent().get_path(), "Album.jpg");
+					
+					stdout.printf("copying album art to %s\n", albumArtDest);
+					if(songFile.copy(GLib.File.new_for_path(albumArtDest), FileCopyFlags.NONE, null, null)) {
+						s.setAlbumArtPath(albumArtDest);
+					}
+					else
+						stdout.printf("Failure: Could not copy album art from %s to new folder at %s\n", s.getAlbumArtPath(), albumArtDest);
+				}
+			}
 			else
 				stdout.printf("Failure: Could not copy imported song %s to media folder %s\n", s.file, dest.get_path());
 			
 			/* if we are supposed to delete the old, make sure there are no items left in folder if we do */
 			if(delete_old) {
 				var old_folder_items = count_music_files(original.get_parent());
+				// must check for .jpg's as well.
 				
 				if(old_folder_items == 0) {
 					stdout.printf("going to delete %s because no files are in it\n", original.get_parent().get_path());

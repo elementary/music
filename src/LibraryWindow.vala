@@ -21,7 +21,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	VBox verticalBox;
 	VBox mainViews;
 	public MillerColumns miller;
-	HPaned millerPane;
+	VPaned millerPane;
 	ElementaryWidgets.Welcome welcomeScreen;
 	HPaned sourcesToSongs; //allows for draggable
 	HPaned songsToInfo; // song info pane
@@ -53,6 +53,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	// basic file stuff
 	ImageMenuItem libraryOperations;
 	Menu libraryOperationsMenu;
+	MenuItem fileSetMusicFolder;
 	MenuItem fileImportMusic;
 	MenuItem fileRescanMusicFolder;
 	ImageMenuItem helpOnline;
@@ -181,7 +182,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToSongs = new HPaned();
 		songsToInfo = new HPaned();
 		contentBox = new VBox(false, 0);
-		millerPane = new HPaned();
+		millerPane = new VPaned();
 		mainViews = new VBox(false, 0);
 		welcomeScreen = new ElementaryWidgets.Welcome("Get some tunes.", "BeatBox can't seem to find your music");
 		sideTree = new SideTreeView(lm, this);	
@@ -190,6 +191,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topMenu = new MenuBar();
 		libraryOperations = new ImageMenuItem.from_stock("folder-music", null);
 		libraryOperationsMenu = new Menu();
+		fileSetMusicFolder = new MenuItem.with_label("Set Music Folder");
 		fileImportMusic = new MenuItem.with_label("Import to Library");
 		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
 		helpOnline = new ImageMenuItem.from_stock(Gtk.Stock.HELP, null);
@@ -252,6 +254,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		settingsMenu.append(helpAbout);
 		settingsMenu.append(editPreferences);
 		
+		fileSetMusicFolder.activate.connect(editPreferencesClick);
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 		
@@ -349,7 +352,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.name = "SidebarContent";
 		
 		contentBox.pack_start(welcomeScreen, true, true, 0);
-		welcomeScreen.append("folder-music", "Import", "Select your music folder to import from.");
+		welcomeScreen.append("folder-music", "Set Music Folder", "Select your music folder and build your library.");
 		
 		millerPane.pack1(miller, false, true);
 		millerPane.pack2(mainViews, true, true);
@@ -679,7 +682,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			/* make sure we save image to right location (user hasn't changed songs) */
 			if(lm.song_info.song != null && album != null && album_s == lm.song_info.song.album &&
-			artist_s == lm.song_info.song.artist && !File.new_for_path(lm.song_info.song.getAlbumArtPath()).query_exists()) {
+			artist_s == lm.song_info.song.artist && lm.song_info.song.getAlbumArtPath().contains("media-audio.svg")) {
 				lm.song_info.album = album;
 			
                 if (album.url_image.url != null)

@@ -532,7 +532,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 						music_model.append_songs(searched_songs, true);
 						view.set_model(music_model);*/
 					}
-					else if(needsUpdate) { /* more specific search, remove some of showing songs. */
+					else { /* more specific search, remove some of showing songs. */ /* Should somehow incorporate needsUpdate w/out stopping miller search */
 						populateView(searched_songs, true);
 						/*var to_remove = new LinkedList<int>();
 						

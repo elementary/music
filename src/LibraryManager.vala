@@ -170,6 +170,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public bool doProgressNotificationWithTimeout() {
 		progress_notification(null, (double)((double)fo.index)/((double)fo.item_count));
+		stdout.printf("progress notification call\n");
 		
 		if(fo.index != 0 && fo.index != fo.item_count) {
 			Timeout.add(100, doProgressNotificationWithTimeout);
@@ -199,20 +200,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
 		
 		var items = fo.count_music_files(file);
-		
-		// get permission from user to continue when song count is 0
-		/*if(song_count() == 0) {
-			var dialog = new MessageDialog(lw, DialogFlags.MODAL, MessageType.QUESTION, ButtonsType.YES_NO, 
-			"BeatBox found " + items.to_string() + " songs in " + settings.getMusicFolder() + ". Would you like to import?");
-			
-			var result = dialog.run();
-			dialog.destroy();
-			
-			if(result == ResponseType.NO) {
-				return null;
-			}
-		}*/
-		
 		music_counted(items);
 		
 		fo.resetProgress(items);
