@@ -262,6 +262,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 		
 		/* create appmenu menu */
+		libraryOperationsMenu.append(fileSetMusicFolder);
 		libraryOperationsMenu.append(fileImportMusic);
 		libraryOperationsMenu.append(fileRescanMusicFolder);
 		libraryOperations.submenu = libraryOperationsMenu;
@@ -513,6 +514,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public void updateSensitivities() {
 		if(lm.song_count() == 0) {
+			fileImportMusic.set_sensitive(false);
+			fileRescanMusicFolder.set_sensitive(false);
 			topDisplay.set_scale_sensitivity(false);
 			previousButton.set_sensitive(false);
 			playButton.set_sensitive(false);
@@ -533,7 +536,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(lm.song_info.song != null)
 				topDisplay.set_scale_sensitivity(true);
 				
-			
+			fileImportMusic.set_sensitive(true);
+			fileRescanMusicFolder.set_sensitive(true);
 			previousButton.set_sensitive(true);
 			playButton.set_sensitive(true);
 			nextButton.set_sensitive(true);
@@ -558,10 +562,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		if(lm.doing_file_operations) {
+			fileSetMusicFolder.set_sensitive(false);
 			fileImportMusic.set_sensitive(false);
 			fileRescanMusicFolder.set_sensitive(false);
 		}
 		else {
+			fileSetMusicFolder.set_sensitive(true);
 			fileImportMusic.set_sensitive(true);
 			fileRescanMusicFolder.set_sensitive(true);
 		}
@@ -994,6 +1000,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//repopulate collection and playlists and reset queue and already played
 		Widget w = sideTree.getWidget(sideTree.library_music_iter);
 		((ViewWrapper)w).populateViews(lm.song_ids(), true);
+		miller.populateColumns(lm.song_ids());
 		
 		if(not_imported.size > 0) {
 			NotImportedWindow nim = new NotImportedWindow(this, not_imported, lm.settings.getMusicFolder());

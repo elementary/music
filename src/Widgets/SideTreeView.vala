@@ -256,7 +256,7 @@ public class BeatBox.SideTreeView : TreeView {
 				}
 			} while(true);
 			
-			sideTreeModel.set(item, 0, o, 1, w, 2, name);
+			sideTreeModel.set(item, 0, o, 1, w, 2, name.replace("&", "&amp;"));
 			this.expand_to_path(sideTreeModel.get_path(item));
 			this.get_selection().select_iter(item);
 			
@@ -282,7 +282,7 @@ public class BeatBox.SideTreeView : TreeView {
 				}
 			} while(true);
 			
-			sideTreeModel.set(item, 0, o, 1, w, 2, name);
+			sideTreeModel.set(item, 0, o, 1, w, 2, name.replace("&", "&amp;"));
 			this.expand_to_path(sideTreeModel.get_path(item));
 			this.get_selection().select_iter(item);
 			
