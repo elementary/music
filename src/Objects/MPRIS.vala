@@ -155,11 +155,12 @@ public class MprisRoot : GLib.Object {
 	}
 
 	public void Quit() {
-		stdout.printf("Can't quit yet!\n");
+		BeatBox.Beatbox._program.destroy();
 	}
 	
 	public void Raise() {
-		stdout.printf("Can't show myself yet!\n");
+		stdout.printf("trying to raise\n");
+		BeatBox.Beatbox._program.present();
 	}
 }
 
@@ -173,6 +174,7 @@ public class MprisPlayer : GLib.Object {
 	private uint send_property_source = 0;
 	private uint update_metadata_source = 0;
 	private HashTable<string,Variant> changed_properties = null;
+	private HashTable<string,Variant> _metadata;
 	
 	private static enum Direction {
 		NEXT = 0,
@@ -182,7 +184,39 @@ public class MprisPlayer : GLib.Object {
 	
 	public MprisPlayer(DBusConnection conn) {
 		this.conn = conn;
+		_metadata = new HashTable<string,Variant>(str_hash, str_equal);
 		
+		BeatBox.Beatbox._program.lm.song_played.connect(songPlayed);
+	}
+	
+	private void trigger_metadata_update() {
+		if(update_metadata_source != 0)
+			Source.remove(update_metadata_source);
+
+		update_metadata_source = Timeout.add(300, () => {
+			//print("trigger_metadata_update %s\n", global.current_artist);
+			Variant variant = this.PlaybackStatus;
+			queue_property_for_notification("Metadata", variant);
+			update_metadata_source = 0;
+			return false;
+		});
+	}
+	
+	public virtual void songPlayed(int id) {
+		BeatBox.Song s = BeatBox.Beatbox._program.lm.song_from_id(id);
+		
+		string[] artistArray = {};
+		artistArray += s.artist;
+		string[] genreArray = {};
+		genreArray += s.genre;
+		
+		_metadata.insert("xesam:artist", artistArray);
+		_metadata.insert("xesam:album", s.album);
+		_metadata.insert("xesam:title", s.title);
+		_metadata.insert("sesam:genre", genreArray);
+		_metadata.insert("mpris:artUrl", "file://" + s.getAlbumArtPath());
+		
+		trigger_metadata_update();
 	}
 	
 	private bool send_property_change() {
@@ -310,7 +344,6 @@ public class MprisPlayer : GLib.Object {
 		}
 	}
 	
-	private HashTable<string,Variant> _metadata = new HashTable<string,Variant>(str_hash, str_equal);
 	public HashTable<string,Variant>? Metadata { //a{sv}
 		owned get {
 			Variant variant = "1";
