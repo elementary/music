@@ -118,7 +118,7 @@ def build(bld):
 	obj.packages = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0'
 	obj.target = APPNAME
 	obj.uselib = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT'
-	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 'src/Widgets/*.vala', 'src/Widgets/Album View/*.vala', 'src/Widgets/List View/*.vala', 'src/Widgets/Miller Columns/*.vala'))
+	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 'src/Widgets/*.vala', 'src/Widgets/Album View/*.vala', 'src/Widgets/List View/*.vala', 'src/Widgets/Miller Columns/*.vala'))
 
 	if obj.env['HAVE_ZEITGEIST']:
 		obj.packages += ' zeitgeist-1.0'

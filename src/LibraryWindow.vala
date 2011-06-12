@@ -55,7 +55,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ScrolledWindow pandoraScroll;
 	ScrolledWindow grooveSharkScroll;
 	InfoPanel infoPanel;
-	Image coverArt;
+	CoverArtImage coverArt;
 	Toolbar topControls;
 	ToolButton previousButton;
 	ToolButton playButton;
@@ -209,7 +209,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		welcomeScreen = new ElementaryWidgets.Welcome("Get some tunes.", "BeatBox can't seem to find your music");
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);
-		coverArt = new Image();	
+		coverArt = new CoverArtImage(lm, this);	
 		topMenu = new MenuBar();
 		libraryOperations = new ImageMenuItem.from_stock("folder-music", null);
 		libraryOperationsMenu = new Menu();
