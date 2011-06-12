@@ -381,6 +381,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.cursor_changed.connect_after(() => { update_rating_menu(); });
 		view.button_release_event.connect(viewClickRelease);
 		view.columns_changed.connect(viewColumnsChanged);
+		view.key_press_event.connect(keyPressed);
 		
 		// allow selecting multiple rows
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
@@ -889,6 +890,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		if(!lm.playing) {
 			lw.playClicked();
 		}
+	}
+	
+	public bool keyPressed(Gdk.EventKey event) {
+		lw.searchField.grab_focus();
+		lw.searchField.insert_at_cursor(event.str);
+		return true;
 	}
 	
 	/* button_press_event */

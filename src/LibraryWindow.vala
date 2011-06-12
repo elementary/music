@@ -394,7 +394,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusBar.pack_start(shuffleChooser, false, false, 2);
 		statusBar.pack_start(repeatChooser, false, false, 2);
 		statusBar.pack_start(statusBarLabel, true, true, 0);
-		statusBar.pack_start(infoPanelChooser, false, false, 2);
+		statusBar.pack_start(wrap_alignment(infoPanelChooser, 0, 10, 0, 0), false, false, 2);
 		
 		
 		/* Connect events to functions */
@@ -435,6 +435,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
 		miller.updateColumnVisibilities(genreV, artistV, albumV);
+	}
+	
+	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+		alignment.top_padding = top;
+		alignment.right_padding = right;
+		alignment.bottom_padding = bottom;
+		alignment.left_padding = left;
+		
+		alignment.add(widget);
+		return alignment;
 	}
 	
 	/** Builds the side tree on TreeView view

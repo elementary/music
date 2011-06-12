@@ -25,7 +25,7 @@ using Gee;
 
 public class BeatBox.MillerColumns : HBox {
 	LibraryManager lm;
-	LibraryWindow lw;
+	public LibraryWindow lw;
 	Collection<int> songs;
 	
 	public MillerColumn genres;
@@ -38,9 +38,9 @@ public class BeatBox.MillerColumns : HBox {
 		lm = lmm;
 		lw = lww;
 		
-		artists = new MillerColumn("Artists");
-		albums = new MillerColumn("Albums");
-		genres = new MillerColumn("Genres");
+		artists = new MillerColumn(this, "Artists");
+		albums = new MillerColumn(this, "Albums");
+		genres = new MillerColumn(this, "Genres");
 		
 		pack_start(genres, true, true, 1);
 		pack_start(artists, true, true, 1);
@@ -132,6 +132,7 @@ public class BeatBox.MillerColumns : HBox {
 
 
 public class BeatBox.MillerColumn : ScrolledWindow {
+	MillerColumns millerParent;
 	string category;
 	TreeView view;
 	MillerModel model;
@@ -161,7 +162,8 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		}
 	}
 	
-	public MillerColumn(string categ) {
+	public MillerColumn(MillerColumns parent, string categ) {
+		this.millerParent = parent;
 		view = new TreeView();
 		model = new MillerModel(categ);
 		category = categ;
@@ -201,6 +203,13 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		
 		view.get_selection().changed.connect(selectionChanged);
 		view.row_activated.connect(viewDoubleClick);
+		view.key_press_event.connect(keyPressed);
+	}
+	
+	public bool keyPressed(Gdk.EventKey event) {
+		millerParent.lw.searchField.grab_focus();
+		millerParent.lw.searchField.insert_at_cursor(event.str);
+		return true;
 	}
 	
 	public virtual void columnMenuToggled() {
