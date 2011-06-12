@@ -35,6 +35,13 @@ public class BeatBox.FileOperator : Object {
 				typeDown.has_suffix(".aac") || typeDown.has_suffix(".alac"));
 	}
 	
+	private bool is_valid_image_type(string type) {
+		var typeDown = type.down();
+		
+		return (typeDown.has_suffix(".jpg") || typeDown.has_suffix(".jpeg") ||
+				typeDown.has_suffix(".png"));
+	}
+	
 	public int count_music_files(GLib.File music_folder) {
 		GLib.FileInfo file_info = null;
 		
@@ -59,9 +66,20 @@ public class BeatBox.FileOperator : Object {
 	
 	public void get_music_files(GLib.File music_folder, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
 		GLib.FileInfo file_info = null;
+		string artPath = "";
 		
 		try {
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				var file_path = music_folder.get_path() + "/" + file_info.get_name();
+				
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
+					artPath = file_path;
+					break;
+				}
+			}
+				
+			enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
@@ -72,6 +90,7 @@ public class BeatBox.FileOperator : Object {
 					
 					if(s != null) {
 						songs.add(s);
+						s.setAlbumArtPath(artPath);
 					}
 					else
 						not_imported.add(file_path);
@@ -128,10 +147,21 @@ public class BeatBox.FileOperator : Object {
 		GLib.FileInfo file_info = null;
 		string current_artist = "";
 		string current_album = ""; // these are purposely reset on recursive call
+		string artPath = "";
 		
 		int songs_added = 0;
 		try {
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				var file_path = music_folder.get_path() + "/" + file_info.get_name();
+				
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
+					artPath = file_path;
+					break;
+				}
+			}
+				
+			enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
@@ -148,6 +178,8 @@ public class BeatBox.FileOperator : Object {
 							new_songs.add(s);
 							current_artist = s.artist;
 							current_album = s.album;
+							
+							s.setAlbumArtPath(artPath);
 						}
 						else
 							not_imported.add(file_path);
@@ -221,8 +253,10 @@ public class BeatBox.FileOperator : Object {
 		try {
 			filestream = file.read(null);
 			rv = new Gdk.Pixbuf.from_stream(filestream, null);
-			stdout.printf("Saving album art at %s\n", Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg"));
 			rv.save(Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg"), "jpeg");
+			s.setAlbumArtPath(Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg"));
+			
+			lm.update_song(s, false);
 		}
 		catch(GLib.Error err) {
 			rv = null;

@@ -51,7 +51,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			try {
 				_db.execute("CREATE TABLE playlists (`name` TEXT, `songs` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
 				_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
-				_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'file_size' INT, 'lyrics' TEXT)");
+				_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'file_size' INT, 'lyrics' TEXT, 'album_path' TEXT)");
 				_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
 				_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
 				_db.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'url' TEXT, 'duration' INT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT)");
@@ -65,10 +65,18 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		/* now make sure db schema is up to date. 
 		 * Whenever field is added, do check here and add above as well 
 		*/
-		if(_db.get_table("songs").field_count == 17) {
-			stdout.printf("Could not find lyric field, adding it\n");
-			_db.execute("ALTER TABLE songs ADD lyrics TEXT");
+		stdout.printf("Doing database checks\n");
+		var fieldCount = _db.get_table("songs").field_count;
+		if(fieldCount == 18) {
+			stdout.printf("Could not find album_path field, adding it\n");
+			_db.execute("ALTER TABLE songs ADD album_path TEXT");
 		}
+		else if(fieldCount == 17) {
+			stdout.printf("Could not find lyric field or album_path field, adding both\n");
+			_db.execute("ALTER TABLE songs ADD lyrics TEXT");
+			_db.execute("ALTER TABLE songs ADD album_path TEXT");
+		}
+		stdout.printf("finished checks\n");
 		
 		/* now clean up and just reload the db (this also gets rid of signals that
 		 * were connected when doing the above work... bug in sqlheavy i believe.s */
@@ -121,6 +129,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				s.last_played = results.fetch_int(16);
 				s.file_size = results.fetch_int(17);
 				s.lyrics = results.fetch_string(18);
+				s.setAlbumArtPath(results.fetch_string(19));
 				
 				rv.add(s);
 			}
@@ -136,7 +145,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			_db.execute("DELETE FROM `songs`");
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size', 'lyrics') VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size, :lyrics);");
+			Query query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size', 'lyrics', 'album_path') VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size, :lyrics, :album_path);");
 			
 			foreach(Song s in songs) {
 				query.set_string(":file", s.file);
@@ -157,6 +166,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				query.set_int(":lastplayed", s.last_played);
 				query.set_int(":file_size", s.file_size);
 				query.set_string(":lyrics", s.lyrics);
+				query.set_string(":album_path", s.getAlbumArtPath());
 				
 				query.execute();
 			}
@@ -193,7 +203,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	public void update_songs(Gee.Collection<Song> songs) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `songs` SET file=:file, title=:title, artist=:artist, album=:album, genre=:genre, comment=:comment, year=:year, track=:track, bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed, file_size=:file_size, lyrics=:lyrics WHERE rowid=:rowid");
+			Query query = transaction.prepare("UPDATE `songs` SET file=:file, title=:title, artist=:artist, album=:album, genre=:genre, comment=:comment, year=:year, track=:track, bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed, file_size=:file_size, lyrics=:lyrics, album_path=:album_path WHERE rowid=:rowid");
 			
 			foreach(Song s in songs) {
 				if(s.rowid != 0) {
@@ -218,6 +228,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				query.set_int(":lastplayed", s.last_played);
 				query.set_int(":file_size", s.file_size);
 				query.set_string(":lyrics", s.lyrics);
+				query.set_string(":album_path", s.getAlbumArtPath());
 				
 				query.execute();
 			}

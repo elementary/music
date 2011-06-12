@@ -33,6 +33,7 @@ public class BeatBox.Song : GLib.Object{
 	private int _last_played;
 	private string _lastfm_url;
 	private string _lyrics;
+	private string _album_path;
 	
 	
 	//core stuff
@@ -60,6 +61,7 @@ public class BeatBox.Song : GLib.Object{
 		date_added = 0;
 		last_played = 0;
 		lyrics = "";
+		_album_path = "";
 	}
 	
 	public string file {
@@ -242,12 +244,21 @@ public class BeatBox.Song : GLib.Object{
 		rv.date_added = date_added;
 		rv.last_played = last_played;
 		rv.lyrics = lyrics;
+		rv.setAlbumArtPath(getAlbumArtPath());
 		
 		return rv;
 	}
 	
+	public void setAlbumArtPath(string? path) {
+		if(path != null)
+			_album_path = path;
+	}
+	
 	public string getAlbumArtPath() {
-		return Path.build_path("/", _file.substring(0, _file.last_index_of("/", 0)), "Album.jpg");
+		if(_album_path == "")
+			return GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null);
+		else
+			return _album_path;
 	}
 	
 	public string getArtistImagePath() {

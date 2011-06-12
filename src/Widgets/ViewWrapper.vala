@@ -36,6 +36,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		setView(ViewType.LIST);
 		filterView.needsUpdate = true;
+		list.needsUpdate = true;
 		
 		if(the_hint == MusicTreeView.Hint.MUSIC)
 			populateViews(songs, true);
@@ -73,8 +74,11 @@ public class BeatBox.ViewWrapper : VBox {
 			list.show();
 			filterView.hide();
 			
-			if(isCurrentView)
+			if(isCurrentView) {
 				list.is_current_view = true;
+				if(list.needsUpdate)
+					list.populateView(songs, false);
+			}
 			else
 				list.is_current_view = false;
 		}
@@ -82,8 +86,16 @@ public class BeatBox.ViewWrapper : VBox {
 			list.hide();
 			filterView.show();
 			
-			if(isCurrentView)
+			if(isCurrentView) {
 				filterView.isCurrentView = true;
+				if(filterView.needsUpdate) {
+					var linkedSongs = new LinkedList<Song>();
+					foreach(int id in songs)
+						linkedSongs.add(lm.song_from_id(id));
+					
+					filterView.generateHTML(linkedSongs);
+				}
+			}
 			else
 				filterView.isCurrentView = false;
 		}

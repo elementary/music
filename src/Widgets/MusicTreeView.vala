@@ -510,7 +510,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 																		lw.miller.albums.selected,
 																		_songs);
 					
-					if(searched_songs.size == _showing_songs.size) {
+					if(searched_songs.size == _showing_songs.size && !needsUpdate) {
 						// do nothing
 					}
 					/*else if(to_search == "") {
@@ -532,7 +532,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 						music_model.append_songs(searched_songs, true);
 						view.set_model(music_model);*/
 					}
-					else { /* more specific search, remove some of showing songs. */
+					else if(needsUpdate) { /* more specific search, remove some of showing songs. */
 						populateView(searched_songs, true);
 						/*var to_remove = new LinkedList<int>();
 						
