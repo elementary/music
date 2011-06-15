@@ -175,7 +175,6 @@ public class MprisRoot : GLib.Object {
 	}
 	
 	public void Raise() {
-		stdout.printf("trying to raise\n");
 		BeatBox.Beatbox._program.present();
 	}
 }
