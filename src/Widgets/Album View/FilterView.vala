@@ -24,11 +24,12 @@ using Gtk;
 using Gee;
 using WebKit;
 
-public class BeatBox.FilterView : ScrolledWindow {
+public class BeatBox.FilterView : VBox {
 	LibraryManager lm;
 	LibraryWindow lw;
 	LinkedList<int> songs;
 	
+	ScrolledWindow scroll;
 	WebView view;
 	Table table;
 	
@@ -59,21 +60,25 @@ public class BeatBox.FilterView : ScrolledWindow {
 	}
 	
 	public void buildUI() {
+		scroll = new ScrolledWindow(null, null);
 		view = new WebView();
-		Viewport v = new Viewport(null, null);
 		
-        set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		scroll.add(view);
+		
+        //set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		
 		view.settings.enable_default_context_menu = false;
+		view.settings.auto_resize_window = true;
 		
-		v.set_shadow_type(ShadowType.NONE);
-		v.add(view);
-		add(v);
+		//v.set_shadow_type(ShadowType.NONE);
+		//v.add(view);
+		pack_start(scroll, true, true, 0);
 		
 		show_all();
 		
 		view.navigation_requested.connect(navigationRequested);
 		lw.searchField.changed.connect(searchFieldChanged);
+		
 	}
 	
 	/** Goes through the hashmap and generates html. If artist,album, or genre
@@ -102,11 +107,12 @@ public class BeatBox.FilterView : ScrolledWindow {
 			}
             #main ul {
                 padding-bottom: 10px;
+                margin-left: -20px;
             }
             #main ul li {
                 float: left;
-                width: 150px;
-                height: 200px;
+                width: 128px;
+                height: 175px;
                 display: inline-block;
                 list-style-type: none;
                 padding-right: 10px;
@@ -115,8 +121,8 @@ public class BeatBox.FilterView : ScrolledWindow {
                 overflow: hidden;
             }
             #main ul li img {
-                width: 150px;
-                height: 150px;
+                width: 128px;
+                height: 128px;
             }
             #main ul li p {
                 clear: both;
@@ -134,11 +140,11 @@ public class BeatBox.FilterView : ScrolledWindow {
 		string previousAlbum = "";
 		foreach(Song s in toShow) {
 			if(s.album != previousAlbum) {
-				html += "<li><a href=\"" + s.album + "<seperater>" + s.artist + "\"><img width=\"150\" height=\"150\" src=\"file://" + s.getAlbumArtPath() + "\" /></a><p>" + ( (s.album == "") ? "Unknown" : s.album) + "</p><p>" + s.artist + "</p></li>";
+				html += "<li><a href=\"" + s.album.replace("\"", "'") + "<seperater>" + s.artist.replace("\"", "'") + "\"><img width=\"128\" height=\"128\" src=\"file://" + s.getAlbumArtPath() + "\" /></a><p>" + ( (s.album == "") ? "Unknown" : s.album.replace("\"", "'")) + "</p><p>" + s.artist.replace("\"", "'") + "</p></li>";
 				previousAlbum = s.album;
 			}
 		}
-		
+			
 		html += "</ul></div></body></html>"; // finish up the last song, finish up html
 		
 		view.load_html_string(html, "file://");
@@ -193,5 +199,4 @@ public class BeatBox.FilterView : ScrolledWindow {
 			});
 		}
 	}
-	
 }

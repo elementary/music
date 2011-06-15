@@ -20,6 +20,7 @@
  */
  #if HAVE_INDICATE
 #if HAVE_DBUSMENU
+using Gee;
  
 public class BeatBox.MPRIS : GLib.Object {
 	LibraryManager lm;
@@ -202,6 +203,7 @@ public class MprisPlayer : GLib.Object {
 		_metadata = new HashTable<string,Variant>(str_hash, str_equal);
 		
 		BeatBox.Beatbox._program.lm.song_played.connect(songPlayed);
+		BeatBox.Beatbox._program.lm.song_updated.connect(songPlayed);
 	}
 	
 	private void trigger_metadata_update() {
@@ -218,8 +220,13 @@ public class MprisPlayer : GLib.Object {
 	}
 	
 	public virtual void songPlayed(int id) {
+		stdout.printf("song played/edited\n");
 		BeatBox.Song s = BeatBox.Beatbox._program.lm.song_from_id(id);
 		
+		if(s.rowid != BeatBox.Beatbox._program.lm.song_info.song.rowid)
+			return;
+		
+		stdout.printf("we're in\n");
 		string[] artistArray = {};
 		artistArray += s.artist;
 		string[] genreArray = {};

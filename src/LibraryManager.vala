@@ -76,6 +76,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public signal void current_cleared();
 	public signal void song_added(int id);
+	public signal void song_updated(int id);
 	public signal void songs_updated(LinkedList<int> ids);
 	public signal void songs_removed(LinkedList<int> ids);
 	public signal void song_queued(int id);
@@ -576,6 +577,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		songs_updated(rv);
+		if(updates.size == 1)
+			song_updated(updates.to_array()[0].rowid);
 		
 		/* now do background work */
 		if(updateMeta)

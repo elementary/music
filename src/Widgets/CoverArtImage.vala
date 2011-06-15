@@ -26,6 +26,8 @@ public class BeatBox.CoverArtImage : Image {
 	LibraryManager lm;
 	LibraryWindow lw;
 	
+	public Gdk.Pixbuf defaultImage;
+	
 	public CoverArtImage(LibraryManager lmm, LibraryWindow lww) {
 		lm = lmm;
 		lw = lww;
@@ -71,6 +73,11 @@ public class BeatBox.CoverArtImage : Image {
 					// wait for everything to finish up and then update the songs
 					Timeout.add(2000, () => {
 						lm.update_songs(updated_songs, false);
+						
+						// for sound menu (dbus doesn't like linked lists
+						if(updated_songs.contains(lm.song_info.song))
+							lm.update_song(lm.song_info.song, false);
+						
 						return false;
 					});
 					success = true;

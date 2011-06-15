@@ -56,7 +56,8 @@ public class BeatBox.Beatbox : GLib.Object {
 		{ "lastfm-ban", null, 0, 0},
 		{ "view-list-icons-symbolic", null, 0, 0},
 		{ "view-list-details-symbolic", null, 0, 0},
-		{ "view-list-column-symbolic", null, 0, 0}
+		{ "view-list-column-symbolic", null, 0, 0},
+		{ "drop-album", null, 0, 0}
 		
     };
 	

@@ -52,6 +52,7 @@ def configure(ctx):
 	check_pkg(ctx, 'libsoup-2.4', 'SOUP', '2.25.2')
 	check_pkg(ctx, 'json-glib-1.0', 'JSON', '0.10')
 	check_pkg(ctx, 'webkit-1.0', 'WEBKIT', '0.0')
+	check_pkg(ctx, 'rest-0.7', 'REST', '0.6');
 
 	check_pkg(ctx, 'zeitgeist-1.0', 'ZEITGEIST', '0.3.10', mandatory=False)
 	if ctx.env['HAVE_ZEITGEIST']:
@@ -61,13 +62,13 @@ def configure(ctx):
 
 	check_pkg(ctx, 'indicate-0.5', 'INDICATE', '0.5.0', mandatory=False)
 	if ctx.env['HAVE_INDICATE']:
-            ctx.env.append_value ('CFLAGS', '-D HAVE_INDICATE')
+		ctx.env.append_value ('CFLAGS', '-D HAVE_INDICATE')
 	else:
 		print ('Building without indicate-0.5 (used to show Sound Menu).')
 
 	check_pkg(ctx, 'dbusmenu-glib-0.4', 'DBUSMENU', '0.4.3', mandatory=False)
 	if ctx.env['HAVE_DBUSMENU']:
-            ctx.env.append_value ('CFLAGS', '-D HAVE_DBUSMENU')
+		ctx.env.append_value ('CFLAGS', '-D HAVE_DBUSMENU')
 	else:
 		print ('Building without dbusmenu-glib-0.4 (used to show Sound Menu).')
 
@@ -77,19 +78,20 @@ def build(bld):
 	
 	#install icons
 	bld.install_files('${PREFIX}/share/icons/hicolor/scalable/apps', '/images/icons/128x128/apps/beatbox.svg');
-   	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/apps', '/images/icons/16x16/apps/beatbox.svg');
-   	bld.install_files('${PREFIX}/share/icons/hicolor/22x22/apps', '/images/icons/22x22/apps/beatbox.svg');
-   	bld.install_files('${PREFIX}/share/icons/hicolor/24x24/apps', '/images/icons/24x24/apps/beatbox.svg');
-   	bld.install_files('${PREFIX}/share/icons/hicolor/32x32/apps', '/images/icons/32x32/apps/beatbox.svg');
-   	bld.install_files('${PREFIX}/share/icons/hicolor/48x48/apps', '/images/icons/48x48/apps/beatbox.svg');
-   	bld.install_files('${PREFIX}/share/icons/hicolor/64x64/apps', '/images/icons/64x64/apps/beatbox.svg');
-   	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/apps', '/images/icons/128x128/apps/beatbox.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/apps', '/images/icons/16x16/apps/beatbox.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/22x22/apps', '/images/icons/22x22/apps/beatbox.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/24x24/apps', '/images/icons/24x24/apps/beatbox.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/32x32/apps', '/images/icons/32x32/apps/beatbox.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/48x48/apps', '/images/icons/48x48/apps/beatbox.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/64x64/apps', '/images/icons/64x64/apps/beatbox.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/apps', '/images/icons/128x128/apps/beatbox.svg');
    	
    	#install media-audio for default album image
-   	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/mimetypes', '/images/icons/128x128/mimes/media-audio.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/mimetypes', '/images/icons/128x128/mimes/media-audio.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/mimetypes', '/images/icons/128x128/mimes/drop-album.svg');
    	
    	#shuffle and repeat
-   	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-repeat-active-symbolic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-repeat-active-symbolic.svg');
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-repeat-symbolic.svg');
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-shuffle-active-symbolic.svg');
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/status', '/images/icons/16x16/status/media-playlist-shuffle-symbolic.svg');
@@ -115,10 +117,13 @@ def build(bld):
 	
 	obj = bld.new_task_gen ('c', 'program')
 	obj.features = 'c cprogram'
-	obj.packages = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0'
+	obj.packages = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0 rest-0.6'
 	obj.target = APPNAME
-	obj.uselib = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT'
-	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 'src/Widgets/*.vala', 'src/Widgets/Album View/*.vala', 'src/Widgets/List View/*.vala', 'src/Widgets/Miller Columns/*.vala'))
+	obj.uselib = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT REST'
+	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 
+									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
+									'src/Widgets/*.vala', 'src/Widgets/Album View/*.vala', 'src/Widgets/List View/*.vala', 
+									'src/Widgets/Miller Columns/*.vala', 'src/Store/*.vala', 'src/Store/Widgets/*.vala'))
 
 	if obj.env['HAVE_ZEITGEIST']:
 		obj.packages += ' zeitgeist-1.0'

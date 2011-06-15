@@ -893,9 +893,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public bool keyPressed(Gdk.EventKey event) {
-		lw.searchField.grab_focus();
-		lw.searchField.insert_at_cursor(event.str);
-		return true;
+		//lw.searchField.grab_focus();
+		//lw.searchField.insert_at_cursor(event.str);
+		return false;
 	}
 	
 	/* button_press_event */

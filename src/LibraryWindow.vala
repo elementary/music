@@ -425,7 +425,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topMenu.hide();
 		topDisplay.show_scale();
 		topDisplay.set_scale_sensitivity(false);
-		coverArt.hide();
 		sideTree.resetView();
 		viewSelector.selected = settings.getViewMode();
 		welcomeScreen.hide();
@@ -453,6 +452,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 * @param view The side tree to build it on
 	 */
 	private void buildSideTree() {
+		stdout.printf("getting artists..\n");
+		
+		Store.store store = new Store.store();
+		var pinkArtists = store.searchArtists("pink");
+		stdout.printf("should be here\n");
+		
 		ViewWrapper vw;
 		
 		sideTree.addBasicItems();
@@ -472,6 +477,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		vw = new ViewWrapper(lm, this, lm.song_ids(), lm.music_setup.sort_column, lm.music_setup.sort_direction, MusicTreeView.Hint.MUSIC, -1);
 		sideTree.addItem(sideTree.library_iter, null, vw, "Music");
 		mainViews.pack_start(vw, true, true, 0);
+		
+		var av = new Store.ArtistView(new Store.Artist(1), true);
+		sideTree.addItem(sideTree.library_iter, null, av, "Artist View");
+		mainViews.pack_start(av, true, true, 0);
 		
 		// load smart playlists
 		foreach(SmartPlaylist p in lm.smart_playlists()) {
@@ -587,8 +596,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		if(lm.song_info.song != null) {
 			string file = lm.song_info.song.getAlbumArtPath();
-			if(GLib.File.new_for_path(file).query_exists()) {
-				coverArt.show();
+			if(file.contains(settings.getMusicFolder())) {
 				try {
 					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(file, sourcesToSongs.position, sourcesToSongs.position));
 				}
@@ -596,8 +604,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					stdout.printf("Could not set image art: %s\n", err.message);
 				}
 			}
-			else
-				coverArt.hide();
+			else {
+				try {
+					var dropAlbum = GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "drop-album.svg");
+					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(dropAlbum, sourcesToSongs.position, sourcesToSongs.position));
+				}
+				catch(GLib.Error err) {
+					stdout.printf("Could not set image art: %s\n", err.message);
+				}
+			}
 		}
 		
 		return false;
@@ -608,7 +623,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 */
 	public virtual void song_played(int i) {
 		//set the title
-		var song_label = "<b>" + lm.song_from_id(i).title.replace("&", "&amp;") + "</b>" + " by " + "<b>" + lm.song_from_id(i).artist.replace("&", "&amp;") + "</b>" + " on " + "<b>" +lm.song_from_id(i).album.replace("&", "&amp;") + "</b>";
+		var song_label = "<b>" + lm.song_from_id(i).title.replace("&", "&amp;") + "</b>" + ((lm.song_from_id(i).artist != "") ? " by " : "") + "<b>" + lm.song_from_id(i).artist.replace("&", "&amp;") + "</b>" + ((lm.song_from_id(i).album != "") ? " on " : "") + "<b>" + lm.song_from_id(i).album.replace("&", "&amp;") + "</b>";
 		topDisplay.set_label_markup(song_label);
 		//this.set_title(lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " on " + lm.song_from_id(i).album);
 		
@@ -918,7 +933,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void fileImportMusicClick() {
 		if(!lm.doing_file_operations) {
-			if(!(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists() && lm.settings.getCopyImportedMusic())) {
+			/*if(!(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists() && lm.settings.getCopyImportedMusic())) {
 				var dialog = new MessageDialog(this, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.OK, 
 				"Before importing, you must mount your music folder.");
 				
@@ -926,7 +941,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				dialog.destroy();
 				
 				return;
-			}
+			}*/
 			
 			string folder = "";
             var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
