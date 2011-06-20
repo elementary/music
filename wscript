@@ -117,9 +117,9 @@ def build(bld):
 	
 	obj = bld.new_task_gen ('c', 'program')
 	obj.features = 'c cprogram'
-	obj.packages = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify gnet-2.0 unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0 rest-0.6'
+	obj.packages = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0 rest-0.6'
 	obj.target = APPNAME
-	obj.uselib = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GNET GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT REST'
+	obj.uselib = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT REST'
 	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 
 									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
 									'src/Widgets/*.vala', 'src/Widgets/Album View/*.vala', 'src/Widgets/List View/*.vala', 
