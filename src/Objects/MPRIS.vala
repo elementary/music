@@ -191,7 +191,7 @@ public class MprisPlayer : GLib.Object {
 	private HashTable<string,Variant> changed_properties = null;
 	private HashTable<string,Variant> _metadata;
 	
-	private static enum Direction {
+	private enum Direction {
 		NEXT = 0,
 		PREVIOUS,
 		STOP
