@@ -1175,7 +1175,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void current_position_update(int64 position) {
-		if(lm.song_info.song.rowid == -2) // is preview
+		if(lm.song_info.song != null && lm.song_info.song.rowid == -2) // is preview
 			return;
 		
 		double sec = 0.0;

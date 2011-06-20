@@ -21,11 +21,14 @@
  */
 
 using Gtk;
+using Gee;
 
 public class Store.AlbumView : ScrolledWindow {
 	Store.StoreView parent;
 	Store.store store;
 	private Store.Release release;
+	private LinkedList<Store.Track> tracksListList;
+	private LinkedList<Store.Release> similarReleasesList;
 	
 	private Image albumArt;
 	private Gtk.Label albumName;
@@ -41,9 +44,14 @@ public class Store.AlbumView : ScrolledWindow {
 		parent = view;
 		store = s;
 		release = r;
+		tracksListList = new LinkedList<Store.Track>();
+		similarReleasesList = new LinkedList<Store.Release>();
+		
 		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 128, 128);
 		
 		buildUI();
+		
+		setAlbum(release);
 	}
 	
 	public void buildUI() {
@@ -109,13 +117,50 @@ public class Store.AlbumView : ScrolledWindow {
 	}
 	
 	public void populate() {
-		setAlbum(store.getRelease(release.releaseID));
-		
-		foreach(var track in release.getTracks()) {
-			addTrack(track);
+		try {
+			Thread.create<void*>(setalbum_thread_function, false);
+			Thread.create<void*>(gettracks_thread_function, false);
+			Thread.create<void*>(getsimilarreleases_thread_function, false);
 		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to get populate ArtistView: %s \n", err.message);
+		}
+	}
+	
+	public void* setalbum_thread_function () {
+		Store.Release r = store.getRelease(release.releaseID, 200);
+		
+		Idle.add( () => { setAlbum(r); return false; });
+		
+		return null;
+	}
+	
+	public void* gettracks_thread_function () {
+		foreach(var track in release.getTracks())
+			tracksListList.add(track);
+		
+		Idle.add( () => { 
+			foreach(var track in tracksListList)
+				trackList.addItem(track);
+				
+			return false;
+		});
+		
+		return null;
+	}
+	
+	public void* getsimilarreleases_thread_function () {
 		foreach(var rel in release.getSimilar(1))
-			addSimilarRelease(rel);
+			similarReleasesList.add(rel);
+		
+		Idle.add( () => { 
+			foreach(var rel in similarReleasesList)
+				similarReleases.addItem(rel);
+				
+			return false;
+		});
+		
+		return null;
 	}
 	
 	public void setAlbum(Store.Release release) {

@@ -21,11 +21,14 @@
  */
 
 using Gtk;
+using Gee;
 
 public class Store.ArtistView : ScrolledWindow {
 	Store.StoreView parent;
 	Store.store store;
 	private Store.Artist artist;
+	private LinkedList<Store.Track> topTracksList;
+	private LinkedList<Store.Release> releasesList;
 	
 	private Image artistImage;
 	private Gtk.Label artistName;
@@ -40,9 +43,14 @@ public class Store.ArtistView : ScrolledWindow {
 		parent = view;
 		store = s;
 		artist = a;
+		topTracksList = new LinkedList<Store.Track>();
+		releasesList = new LinkedList<Store.Release>();
+		
 		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 128, 128);
 				
 		buildUI();
+		
+		setArtist(artist);
 	}
 	
 	public void buildUI() {
@@ -93,12 +101,50 @@ public class Store.ArtistView : ScrolledWindow {
 	}
 	
 	public void populate() {
-		setArtist(store.getArtist(artist.artistID));
+		try {
+			Thread.create<void*>(setartist_thread_function, false);
+			Thread.create<void*>(gettracks_thread_function, false);
+			Thread.create<void*>(getreleases_thread_function, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to get populate ArtistView: %s \n", err.message);
+		}
+	}
+	
+	public void* setartist_thread_function () {
+		Store.Artist a = store.getArtist(artist.artistID);
 		
-		foreach(var track in artist.getTopTracks(1))
-			topTracks.addItem(track);
-		foreach(var rel in artist.getReleases(null, 1))
-			releases.addItem(rel);
+		Idle.add( () => { setArtist(a); return false; });
+		
+		return null;
+	}
+	
+	public void* gettracks_thread_function () {
+		foreach(var track in artist.getTopTracks(1, 25))
+			topTracksList.add(track);
+		
+		Idle.add( () => { 
+			foreach(var track in topTracksList)
+				topTracks.addItem(track);
+				
+			return false;
+		});
+		
+		return null;
+	}
+	
+	public void* getreleases_thread_function () {
+		foreach(var rel in artist.getReleases("album", 1))
+			releasesList.add(rel);
+		
+		Idle.add( () => { 
+			foreach(var rel in releasesList)
+				releases.addItem(rel);
+				
+			return false;
+		});
+		
+		return null;
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {

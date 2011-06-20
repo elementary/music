@@ -26,15 +26,15 @@ using Xml;
 
 public class Store.store : GLib.Object {
 	public static string api = "http://api.7digital.com/1.2/";
-	public static string country = "USA";
+	public static string country = "US";
 	public static string key = "7dtjyu9qbu";
 	
 	public store() {
 		
 	}
 	
-	public static Store.Release? getRelease(int id) {
-		string url = api + "release/details" + "?releaseid=" + id.to_string() + "&oauth_consumer_key=" + key + "&country=" + country;
+	public static Store.Release? getRelease(int id, int imagesize) {
+		string url = api + "release/details" + "?releaseid=" + id.to_string() + "&oauth_consumer_key=" + key + "&country=" + country + "&imagesize=" + imagesize.to_string();
 		
 		stdout.printf("release: %s\n", url);
 		

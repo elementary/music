@@ -91,7 +91,7 @@ public class Store.StoreView : VBox {
 	
 	public void setView(Widget w) {
 		stdout.printf("setView()\n");
-		currentView.hide();
+		currentView.destroy();
 		stdout.printf("1\n");
 		currentView = w;
 		stdout.printf("2\n");

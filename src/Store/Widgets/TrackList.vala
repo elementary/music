@@ -29,7 +29,7 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 	private ListStore store; // (-1, Store.Track, title, artist/album, length, price
 	string secondaryText; // Either 'Artist' or 'Album'
 	
-	private bool resizing;
+	private bool alreadyResized;
 	
 	public signal void stream_requested(Store.Track track);
 	public signal void purchase_requested(Store.Track track);
@@ -37,7 +37,7 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 	public TrackList(Store.StoreView view, string secondary) {
 		parent = view;
 		secondaryText = secondary;
-		resizing = false;
+		alreadyResized = false;
 		
 		buildUI();
 	}
@@ -86,6 +86,13 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 	}
 	
 	public virtual void resized(Gdk.Rectangle rectangle) {
+		if(alreadyResized) {
+			alreadyResized = false;
+			return;
+		}
+		
+		alreadyResized = true;
+		
 		int width = rectangle.width;
 		int height = rectangle.height;
 		

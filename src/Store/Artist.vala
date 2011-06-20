@@ -110,14 +110,14 @@ public class Store.Artist : Store.SearchResult {
 		return rv;
 	}
 	
-	public LinkedList<Store.Track> getTopTracks(int page) {
+	public LinkedList<Store.Track> getTopTracks(int page, int max) {
 		var rv = new LinkedList<Store.Track>();
 		
-		string url = Store.store.api + "artist/toptracks" + "?artistid=" + artistID.to_string() + 
+		string url = Store.store.api + "track/search" + "?q=" + name + 
 					"&oauth_consumer_key=" + Store.store.key + 
 					"&country=" + Store.store.country + 
-					"&page=" + page.to_string() +
-					"&pageSize=25";
+					"&page=" + page.to_string() + 
+					"&pagesize=100";
 		
 		stdout.printf("parsing %s\n", url);
 		
@@ -134,12 +134,22 @@ public class Store.Artist : Store.SearchResult {
 				continue;
 			}
 			
-			if(iter->name == "track") {
-				Store.Track toAdd = Store.XMLParser.parseTrack(iter);
+			if(iter->name == "searchResult") {
+				Store.Track toAdd = new Store.Track(0);
 				
-				stdout.printf("added: %s %s %s %s\n", toAdd.title, toAdd.artist.name, toAdd.isrc, toAdd.duration.to_string());
-				if(toAdd != null)
+				for(Xml.Node* subIter = iter->children; subIter != null; subIter = subIter->next) {
+					if(subIter->name == "track")
+						toAdd = Store.XMLParser.parseTrack(subIter);
+				}
+				
+				if(toAdd != null && toAdd.artist.name == name) {
+					stdout.printf("track result: %s %s %s\n", toAdd.title, toAdd.artist.name, toAdd.url);
+					toAdd.searchType = "track";
 					rv.add(toAdd);
+					
+					if(rv.size >= max)
+						return rv;
+				}
 			}
 		}
 		
