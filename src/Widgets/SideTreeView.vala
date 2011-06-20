@@ -35,6 +35,7 @@ public class BeatBox.SideTreeView : TreeView {
 	public TreeIter devices_iter;
 	
 	public TreeIter network_iter;
+	public TreeIter network_store_iter;
 	
 	public TreeIter playlists_iter;
 	public TreeIter playlists_queue_iter;
@@ -196,10 +197,10 @@ public class BeatBox.SideTreeView : TreeView {
 		sideTreeModel.set(library_iter, 0, null, 1, null, 2, "<b>Library</b>");
 		
 		/*sideTreeModel.append(out devices_iter, null);
-		sideTreeModel.set(devices_iter, 0, null, 1, null, 2, "<b>Devices</b>");
+		sideTreeModel.set(devices_iter, 0, null, 1, null, 2, "<b>Devices</b>");*/
 		
 		sideTreeModel.append(out network_iter, null);
-		sideTreeModel.set(network_iter, 0, null, 1, null, 2, "<b>Network</b>");*/
+		sideTreeModel.set(network_iter, 0, null, 1, null, 2, "<b>Network</b>");
 		
 		sideTreeModel.append(out playlists_iter, null);
 		sideTreeModel.set(playlists_iter, 0, null, 1, null, 2, "<b>Playlists</b>");
@@ -210,6 +211,11 @@ public class BeatBox.SideTreeView : TreeView {
 			sideTreeModel.append(out library_music_iter, parent);
 			sideTreeModel.set(library_music_iter, 0, o, 1, w, 2, name);
 			return library_music_iter;
+		}
+		else if(name == "Music Store" && parent == network_iter) {
+			sideTreeModel.append(out network_store_iter, parent);
+			sideTreeModel.set(network_store_iter, 0, o, 1, w, 2, name);
+			return network_store_iter;
 		}
 		else if(name == "Podcasts" && parent == library_iter) {
 			sideTreeModel.append(out library_podcasts_iter, parent);
@@ -457,7 +463,6 @@ public class BeatBox.SideTreeView : TreeView {
 				else if(parent == playlists_iter && o is SmartPlaylist) {
 					ViewWrapper vw = (ViewWrapper)w;
 					vw.populateViews(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
-					stdout.printf("populating miller\n");
 					lw.miller.populateColumns(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid));
 				}
 				else if(parent == playlists_iter && o is Playlist) {
@@ -536,11 +541,18 @@ public class BeatBox.SideTreeView : TreeView {
 				if(w is ViewWrapper) {
 					((ViewWrapper)w).setIsCurrentView(true);
 				}
+				else if(w is Store.StoreView) {
+					((Store.StoreView)w).setIsCurrentView(true);
+				}
 			}
 			else {
 				w.hide();
-				if(w is ViewWrapper)
+				if(w is ViewWrapper) {
 					((ViewWrapper)w).setIsCurrentView(false);
+				}
+				else if(w is Store.StoreView) {
+					((Store.StoreView)w).setIsCurrentView(false);
+				}
 			}
 		}
 		

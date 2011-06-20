@@ -57,6 +57,7 @@ public class BeatBox.Song : GLib.Object{
 	private string _lyrics;
 	private string _album_path;
 	
+	public bool isPreview;
 	
 	//core stuff
 	public Song(string file) {

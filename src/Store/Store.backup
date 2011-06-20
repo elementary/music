@@ -1,0 +1,113 @@
+using Gee;
+using Rest;
+
+public class Store.store : GLib.Object {
+	GLib.Object weak_ref = new GLib.Object();
+	public static string api = "http://api.7digital.com/1.2/";
+	public static string country = "USA";
+	public static string key = "7dtjyu9qbu";
+	
+	public signal void artist_retrieved(Store.Artist artist);
+	
+	public store() {
+		Xml.Parser.init();
+	}
+	
+	
+	/** Search methods
+	 * simply return objects matching the search string
+	 * @search the string to search
+	 * 
+	*/
+	public LinkedList<Store.Artist> searchArtists(string search) {
+		var rv = new LinkedList<Store.Artist>();
+		Store.Artist toAdd;
+		
+		var proxy = new Rest.Proxy(api + "artist/search", false);
+		var pCall = proxy.new_call();
+		
+		pCall.add_params("q", search,
+						"oauth_consumer_key", key,
+						"country", country);
+		
+		try {
+			pCall.run_async( (call) => {
+				
+				Xml.Parser.init();
+				Xml.Doc* doc = Xml.Parser.parse_doc(call.get_payload());
+				if(doc == null)
+					return;
+				
+				Xml.Node* root = doc->get_root_element ();
+				if (root == null) {
+					delete doc;
+					return;
+				}
+				
+				// parse root
+				Store.Artist a = Store.XMLParser.parseArtist(root->children);
+				stdout.printf("%s, %s, %s\n", a.name, a.url, a.imagePath);
+				
+				delete doc;
+				
+			}, this);
+		}
+		catch(Error e) {
+			stdout.printf("ERROR: Could not search for artists with %s: %s\n", search, e.message);
+		}
+		
+		return rv;
+	}
+	
+	public LinkedList<Store.Release> searchReleases(string search) {
+		
+		return new LinkedList<Store.Release>();
+	}
+	
+	public LinkedList<Store.Track> searchTracks(string search) {
+		
+		return new LinkedList<Store.Track>();
+	}
+	
+	
+	/** Chart methods
+	 * Return current top x objects
+	 * @period Either week, month, or year
+	 * @toDate The last day to include, in YYYYDDMM format
+	 * @tag an optional tag (rock, pop). If null, ignored
+	 * 
+	*/
+	public LinkedList<Store.Artist> topArtists(string period, string toDate, string? tag) {
+		
+		return new LinkedList<Store.Artist>();
+	}
+	
+	public LinkedList<Store.Release> topReleases(string period, string toDate, string? tag) {
+		
+		return new LinkedList<Store.Release>();
+	}
+	
+	public LinkedList<Store.Track> topTracks(string period, string toDate) {
+		
+		return new LinkedList<Store.Track>();
+	}
+	
+	/** Get releases of certain timeframe
+	 * @fromDate the first day in YYYYMMDD format
+	 * @toDate the last day in YYYYMMDD format
+	*/
+	public LinkedList<Store.Release> getReleasesByDate(string fromDate, string toDate) {
+		
+		return new LinkedList<Store.Release>();
+	}
+	
+	/** Returns releases matching all tag(s), starting with most recent
+	 * @tags One or more tags to match
+	 * 
+	*/
+	public LinkedList<Store.Release> newReleasesByTag(string tags) {
+		
+		return new LinkedList<Store.Release>();
+	}
+	
+}

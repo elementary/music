@@ -1035,9 +1035,28 @@ public class BeatBox.LibraryManager : GLib.Object {
 			player.pause_stream();
 		
 		//update settings
-		settings.setLastSongPlaying(song_from_id(id));
+		if(id != -2)
+			settings.setLastSongPlaying(song_from_id(id));
 		
 		song_played(id, old_id);
+	}
+	
+	public void playTrackPreview(Store.Track track, string uri) {
+		Song s = new Song(uri);
+		s.isPreview = true;
+		s.rowid = -2;
+		s.title = track.title;
+		s.artist = track.artist.name;
+		s.album = track.release.title;
+		s.length = 30;
+		
+		add_song(s);
+		
+		playSong(-2);
+		
+		if(!playing) {
+			lw.playClicked();
+		}
 	}
 	
 	public void stopPlayback() {

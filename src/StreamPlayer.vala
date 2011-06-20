@@ -99,6 +99,11 @@ public class BeatBox.StreamPlayer : GLib.Object {
     }
 	
     public void play_song (Song s) {
+		if(s.isPreview) {
+			play_uri(s.file);
+			return;
+		}
+		
 		if(s.file.length > 2) {// play a new file
 			current = s;
 			play.uri = "file://" + s.file;
@@ -108,6 +113,14 @@ public class BeatBox.StreamPlayer : GLib.Object {
 		
         play.set_state(State.PLAYING);
     }
+    
+    public void play_uri(string uri) {
+		play.uri = uri;
+		play.set_state(State.READY);
+		play_stream();
+		
+		play.set_state(State.PLAYING);
+	}
     
     public void play_stream() {
 		play.set_state(State.PLAYING);

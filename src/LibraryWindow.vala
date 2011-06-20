@@ -104,7 +104,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 #if HAVE_INDICATE
 #if HAVE_DBUSMENU
 		stdout.printf("Initializing MPRIS and sound menu\n");
-		var mpris = new BeatBox.MPRIS(lm, this);
+		//var mpris = new BeatBox.MPRIS(lm, this);
 #endif
 #endif
 		
@@ -454,9 +454,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	private void buildSideTree() {
 		stdout.printf("getting artists..\n");
 		
-		Store.store store = new Store.store();
-		var pinkArtists = store.searchArtists("pink");
-		stdout.printf("should be here\n");
+		//var newRockReleases = store.newReleasesByTag("rock", 1);
+		//var la = store.getReleasesInRange("20110601", null, 1);
+		//var topTracks = store.topTracks("month", null, 1);
+		/*foreach(var artist in store.topArtists("week", null, null, 1)) {
+			stdout.printf("%s\n", artist.name);
+		}*/
 		
 		ViewWrapper vw;
 		
@@ -478,9 +481,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addItem(sideTree.library_iter, null, vw, "Music");
 		mainViews.pack_start(vw, true, true, 0);
 		
-		var av = new Store.ArtistView(new Store.Artist(1), true);
-		sideTree.addItem(sideTree.library_iter, null, av, "Artist View");
-		mainViews.pack_start(av, true, true, 0);
+		Store.StoreView storeView = new Store.StoreView(lm, this);
+		sideTree.addItem(sideTree.network_iter, null, storeView, "Music Store");
+		mainViews.pack_start(storeView, true, true, 0);
+		
 		
 		// load smart playlists
 		foreach(SmartPlaylist p in lm.smart_playlists()) {
@@ -621,7 +625,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	/** This should be used whenever a call to play a new song is made
 	 * @param s The song that is now playing
 	 */
-	public virtual void song_played(int i) {
+	public virtual void song_played(int i, int old) {
+		if(old == -2 && i != -2) { // -2 is id reserved for previews
+			Song s = settings.getLastSongPlaying();
+			s = lm.song_from_name(s.title, s.artist);
+			
+			if(s.rowid != 0) {
+				lm.playSong(s.rowid);
+				int position = (int)settings.getLastSongPosition();
+				topDisplay.change_value(ScrollType.NONE, position);
+			}
+			
+			return;
+		}
+		
 		//set the title
 		var song_label = "<b>" + lm.song_from_id(i).title.replace("&", "&amp;") + "</b>" + ((lm.song_from_id(i).artist != "") ? " by " : "") + "<b>" + lm.song_from_id(i).artist.replace("&", "&amp;") + "</b>" + ((lm.song_from_id(i).album != "") ? " on " : "") + "<b>" + lm.song_from_id(i).album.replace("&", "&amp;") + "</b>";
 		topDisplay.set_label_markup(song_label);
@@ -1158,6 +1175,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void current_position_update(int64 position) {
+		if(lm.song_info.song.rowid == -2) // is preview
+			return;
+		
 		double sec = 0.0;
 		if(lm.song_info.song != null) {
 			sec = ((double)position/1000000000);

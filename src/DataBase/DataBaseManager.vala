@@ -173,27 +173,29 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			Query query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size', 'lyrics', 'album_path') VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size, :lyrics, :album_path);");
 			
 			foreach(Song s in songs) {
-				query.set_string(":file", s.file);
-				query.set_string(":title", s.title);
-				query.set_string(":artist", s.artist);
-				query.set_string(":album", s.album);
-				query.set_string(":genre", s.genre);
-				query.set_string(":comment", s.comment);
-				query.set_int(":year", s.year);
-				query.set_int(":track", s.track);
-				query.set_int(":bitrate", s.bitrate);
-				query.set_int(":length", s.length);
-				query.set_int(":samplerate", s.samplerate);
-				query.set_int(":rating", s.rating);
-				query.set_int(":playcount", s.play_count);
-				query.set_int(":skipcount", s.skip_count);
-				query.set_int(":dateadded", s.date_added);
-				query.set_int(":lastplayed", s.last_played);
-				query.set_int(":file_size", s.file_size);
-				query.set_string(":lyrics", s.lyrics);
-				query.set_string(":album_path", s.getAlbumArtPath());
-				
-				query.execute();
+				if(s.rowid > 0) {
+					query.set_string(":file", s.file);
+					query.set_string(":title", s.title);
+					query.set_string(":artist", s.artist);
+					query.set_string(":album", s.album);
+					query.set_string(":genre", s.genre);
+					query.set_string(":comment", s.comment);
+					query.set_int(":year", s.year);
+					query.set_int(":track", s.track);
+					query.set_int(":bitrate", s.bitrate);
+					query.set_int(":length", s.length);
+					query.set_int(":samplerate", s.samplerate);
+					query.set_int(":rating", s.rating);
+					query.set_int(":playcount", s.play_count);
+					query.set_int(":skipcount", s.skip_count);
+					query.set_int(":dateadded", s.date_added);
+					query.set_int(":lastplayed", s.last_played);
+					query.set_int(":file_size", s.file_size);
+					query.set_string(":lyrics", s.lyrics);
+					query.set_string(":album_path", s.getAlbumArtPath());
+					
+					query.execute();
+				}
 			}
 			
 			transaction.commit();
@@ -231,31 +233,33 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			Query query = transaction.prepare("UPDATE `songs` SET file=:file, title=:title, artist=:artist, album=:album, genre=:genre, comment=:comment, year=:year, track=:track, bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed, file_size=:file_size, lyrics=:lyrics, album_path=:album_path WHERE rowid=:rowid");
 			
 			foreach(Song s in songs) {
-				if(s.rowid != 0) {
-					query.set_string(":rowid", s.rowid.to_string());
+				if(s.rowid != -2) {
+					if(s.rowid != 0) {
+						query.set_string(":rowid", s.rowid.to_string());
+					}
+					
+					query.set_string(":file", s.file);
+					query.set_string(":title", s.title);
+					query.set_string(":artist", s.artist);
+					query.set_string(":album", s.album);
+					query.set_string(":genre", s.genre);
+					query.set_string(":comment", s.comment);
+					query.set_int(":year", s.year);
+					query.set_int(":track", s.track);
+					query.set_int(":bitrate", s.bitrate);
+					query.set_int(":length", s.length);
+					query.set_int(":samplerate", s.samplerate);
+					query.set_int(":rating", s.rating);
+					query.set_int(":playcount", s.play_count);
+					query.set_int(":skipcount", s.skip_count);
+					query.set_int(":dateadded", s.date_added);
+					query.set_int(":lastplayed", s.last_played);
+					query.set_int(":file_size", s.file_size);
+					query.set_string(":lyrics", s.lyrics);
+					query.set_string(":album_path", s.getAlbumArtPath());
+					
+					query.execute();
 				}
-				
-				query.set_string(":file", s.file);
-				query.set_string(":title", s.title);
-				query.set_string(":artist", s.artist);
-				query.set_string(":album", s.album);
-				query.set_string(":genre", s.genre);
-				query.set_string(":comment", s.comment);
-				query.set_int(":year", s.year);
-				query.set_int(":track", s.track);
-				query.set_int(":bitrate", s.bitrate);
-				query.set_int(":length", s.length);
-				query.set_int(":samplerate", s.samplerate);
-				query.set_int(":rating", s.rating);
-				query.set_int(":playcount", s.play_count);
-				query.set_int(":skipcount", s.skip_count);
-				query.set_int(":dateadded", s.date_added);
-				query.set_int(":lastplayed", s.last_played);
-				query.set_int(":file_size", s.file_size);
-				query.set_string(":lyrics", s.lyrics);
-				query.set_string(":album_path", s.getAlbumArtPath());
-				
-				query.execute();
 			}
 			
 			transaction.commit();
