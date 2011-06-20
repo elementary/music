@@ -446,6 +446,13 @@ public class BeatBox.SideTreeView : TreeView {
 					lw.miller.populateColumns(lm.song_ids());
 					vw.populateViews(lm.song_ids(), false);
 				}
+				else if(iter == network_store_iter) {
+					Store.StoreView sv = (Store.StoreView)w;
+					if(!sv.isInitialized) {
+						sv.homeView = new Store.HomeView(sv, sv.store);
+						sv.isInitialized = true;
+					}
+				}
 				else if(iter == playlists_similar_iter) {
 					if(((SimilarPane)w)._base == null || ((SimilarPane)w)._have.size == 0)
 						return true;

@@ -28,9 +28,11 @@ public class Store.StoreView : VBox {
 	
 	public BeatBox.LibraryManager lm;
 	public BeatBox.LibraryWindow lw;
+	public bool isInitialized;
 	bool isCurrentView;
 	
-	Store.HomeView homeView;
+	public Store.HomeView homeView;
+	Store.SearchResultsView searchPage;
 	Widget currentView;
 	
 	Toolbar topPanel;
@@ -40,7 +42,11 @@ public class Store.StoreView : VBox {
 	public StoreView(BeatBox.LibraryManager lm, BeatBox.LibraryWindow lw) {
 		this.lm = lm;
 		this.lw = lw;
+		
 		store = new Store.store();
+		
+		isCurrentView = false;
+		isInitialized = false;
 		
 		buildUI();
 	}
@@ -77,16 +83,65 @@ public class Store.StoreView : VBox {
 		if(!isCurrentView)
 			return;
 		
-		var searchPage = new SearchResultsView(this, store);
-		foreach(var track in store.searchTracks(lw.searchField.get_text(), 1))
-			searchPage.addTrack(track);
-		foreach(var artist in store.searchArtists(lw.searchField.get_text(), null, 1))
-			searchPage.addArtist(artist);
-		foreach(var rel in store.searchReleases(lw.searchField.get_text(), 1))
-			searchPage.addRelease(rel);
-		
+		searchPage = new SearchResultsView(this, store);
 		setView(searchPage);
 		
+		try {
+			Thread.create<void*>(searchtracks_thread_function, false);
+			Thread.create<void*>(searchartists_thread_function, false);
+			Thread.create<void*>(searchreleases_thread_function, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to get populate ArtistView: %s \n", err.message);
+		}
+	}
+	
+	public void* searchtracks_thread_function () {
+		var search = new LinkedList<Store.Track>();
+		
+		foreach(var track in store.searchTracks(lw.searchField.get_text(), 1))
+			search.add(track);
+		
+		Idle.add( () => { 
+			foreach(var track in search)
+				searchPage.addTrack(track);
+				
+			return false;
+		});
+		
+		return null;
+	}
+	
+	public void* searchartists_thread_function () {
+		var search = new LinkedList<Store.Artist>();
+		
+		foreach(var artist in store.searchArtists(lw.searchField.get_text(), null, 1))
+			search.add(artist);
+		
+		Idle.add( () => { 
+			foreach(var artist in search)
+				searchPage.addArtist(artist);
+				
+			return false;
+		});
+		
+		return null;
+	}
+	
+	public void* searchreleases_thread_function () {
+		var search = new LinkedList<Store.Release>();
+		
+		foreach(var rel in store.searchReleases(lw.searchField.get_text(), 1))
+			search.add(rel);
+		
+		Idle.add( () => { 
+			foreach(var rel in search)
+				searchPage.addRelease(rel);
+				
+			return false;
+		});
+		
+		return null;
 	}
 	
 	public void setView(Widget w) {

@@ -102,7 +102,7 @@ public class Store.HomeView : HBox {
 		// now fetch the results
 		mainList.clear();
 		for(int i = 1; i < 4; ++i) {
-			foreach(var rel in store.newReleasesByTag(((tagSelector.get_active_text() != "All Genres") ? tagSelector.get_active_text() : "rock"), i)) {
+			foreach(var rel in store.newReleasesByTag(((tagSelector.get_active_text() != "All Genres" && tagSelector.get_active_text() != "")  ? tagSelector.get_active_text() : "rock"), i)) {
 				mainList.addItem(rel);
 			}
 		}
