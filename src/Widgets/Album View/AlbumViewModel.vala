@@ -54,7 +54,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	public AlbumViewModel(LibraryManager lm, Gdk.Pixbuf defaultImage) {
 		this.lm = lm;
 		this.defaultImage = defaultImage;
-       rows = new Sequence<AlbumViewModelObject>();
+       rows = new Sequence<AlbumViewModelObject>(null);
        
        stamp = (int)GLib.Random.next_int();
 	}
