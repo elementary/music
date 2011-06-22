@@ -40,6 +40,7 @@ public class Store.Release : Store.SearchResult {
 	public bool availableDrmFree;
 	public LinkedList<Store.Format> formats;
 	public Store.Label label;
+	public Gdk.Pixbuf image;
 	
 	public Release(int id) {
 		releaseID = id;
@@ -54,7 +55,8 @@ public class Store.Release : Store.SearchResult {
 		string url = Store.store.api + "release/recommend" + "?releaseid=" + releaseID.to_string() + 
 					"&oauth_consumer_key=" + Store.store.key + 
 					"&country=" + Store.store.country + 
-					"&page=" + page.to_string();
+					"&page=" + page.to_string() + 
+					"&imagesize=100";
 		
 		stdout.printf("parsing %s\n", url);
 		

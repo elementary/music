@@ -449,7 +449,7 @@ public class BeatBox.SideTreeView : TreeView {
 				else if(iter == network_store_iter) {
 					Store.StoreView sv = (Store.StoreView)w;
 					if(!sv.isInitialized) {
-						sv.homeView = new Store.HomeView(sv, sv.store);
+						sv.homeView.populate();
 						sv.isInitialized = true;
 					}
 				}

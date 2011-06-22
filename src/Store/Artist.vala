@@ -31,6 +31,7 @@ public class Store.Artist : Store.SearchResult {
 	public string imagePath;
 	public string url;
 	public double popularity;
+	public Gdk.Pixbuf image;
 	
 	public signal void artist_fetched();
 	
@@ -46,7 +47,8 @@ public class Store.Artist : Store.SearchResult {
 					"&oauth_consumer_key=" + Store.store.key + 
 					"&country=" + Store.store.country + 
 					"&page=" + page.to_string() + 
-					((type != null) ? ("&type=" + type) : "");
+					((type != null) ? ("&type=" + type) : "") + 
+					"&imagesize=100";
 		
 		stdout.printf("parsing %s\n", url);
 		

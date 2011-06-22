@@ -28,16 +28,18 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 	private TreeView view;
 	private ListStore store; // (-1, Store.Track, title, artist/album, length, price
 	string secondaryText; // Either 'Artist' or 'Album'
+	bool headersVisible;
 	
 	private bool alreadyResized;
 	
 	public signal void stream_requested(Store.Track track);
 	public signal void purchase_requested(Store.Track track);
 	
-	public TrackList(Store.StoreView view, string secondary) {
+	public TrackList(Store.StoreView view, string secondary, bool showHeaders) {
 		parent = view;
 		secondaryText = secondary;
 		alreadyResized = false;
+		headersVisible = showHeaders;
 		
 		buildUI();
 	}
@@ -68,6 +70,8 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 		foreach(var column in view.get_columns()) {
 			column.sizing = TreeViewColumnSizing.FIXED;
 		}
+		
+		view.set_headers_visible(headersVisible);
 		
 		view.button_press_event.connect(trackListClick);
 		view.row_activated.connect(trackListDoubleClick);

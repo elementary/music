@@ -47,7 +47,7 @@ public class Store.AlbumView : ScrolledWindow {
 		tracksListList = new LinkedList<Store.Track>();
 		similarReleasesList = new LinkedList<Store.Release>();
 		
-		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 128, 128);
+		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
 		
 		buildUI();
 		
@@ -64,7 +64,7 @@ public class Store.AlbumView : ScrolledWindow {
 		albumArtist = new Gtk.Label("");
 		releaseDate = new Gtk.Label("");
 		priceFlags = new VBox(false, 0);
-		trackList = new Store.TrackList(parent, "Album");
+		trackList = new Store.TrackList(parent, "Album", true);
 		similarReleases = new Store.IconView(parent);
 		
 		topInfo.pack_start(wrap_alignment(albumName, 20, 10, 10, 0), false, true, 0);
@@ -78,6 +78,10 @@ public class Store.AlbumView : ScrolledWindow {
 		albumName.xalign = 0.0f;
 		albumArtist.xalign = 0.0f;
 		releaseDate.xalign = 0.0f;
+		
+		albumName.ellipsize = Pango.EllipsizeMode.END;
+		albumArtist.ellipsize = Pango.EllipsizeMode.END;
+		releaseDate.ellipsize = Pango.EllipsizeMode.END;
 		
 		/* make some 'category' labels */
 		var trackListLabel = new Gtk.Label("");
@@ -121,6 +125,9 @@ public class Store.AlbumView : ScrolledWindow {
 			Thread.create<void*>(setalbum_thread_function, false);
 			Thread.create<void*>(gettracks_thread_function, false);
 			Thread.create<void*>(getsimilarreleases_thread_function, false);
+			parent.max = 5;
+			parent.index = 0;
+			parent.progressNotification();
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("ERROR: Could not create thread to get populate ArtistView: %s \n", err.message);
@@ -129,8 +136,16 @@ public class Store.AlbumView : ScrolledWindow {
 	
 	public void* setalbum_thread_function () {
 		Store.Release r = store.getRelease(release.releaseID, 200);
+		r.image = Store.store.getPixbuf(r.imagePath, 200, 200);
 		
-		Idle.add( () => { setAlbum(r); return false; });
+		++parent.index;
+		
+		Idle.add( () => { 
+			setAlbum(r); 
+			++parent.index;
+			
+			return false; 
+		});
 		
 		return null;
 	}
@@ -139,10 +154,13 @@ public class Store.AlbumView : ScrolledWindow {
 		foreach(var track in release.getTracks())
 			tracksListList.add(track);
 		
+		++parent.index;
+		
 		Idle.add( () => { 
 			foreach(var track in tracksListList)
 				trackList.addItem(track);
 				
+			++parent.index;
 			return false;
 		});
 		
@@ -150,13 +168,18 @@ public class Store.AlbumView : ScrolledWindow {
 	}
 	
 	public void* getsimilarreleases_thread_function () {
-		foreach(var rel in release.getSimilar(1))
+		foreach(var rel in release.getSimilar(1)) {
+			rel.image = Store.store.getPixbuf(rel.imagePath, 100, 100);
 			similarReleasesList.add(rel);
+		}
+		
+		++parent.index;
 		
 		Idle.add( () => { 
 			foreach(var rel in similarReleasesList)
 				similarReleases.addItem(rel);
 				
+			++parent.index;
 			return false;
 		});
 		
@@ -169,9 +192,11 @@ public class Store.AlbumView : ScrolledWindow {
 		albumArtist.set_markup("<span font=\"24\">" + release.artist.name.replace("&", "&amp;") + "</span>");
 		releaseDate.set_markup("<span font=\"14\">Released " + release.releaseDate.substring(0, 10).replace("-", "/") + "</span>");
 		
-		Gdk.Pixbuf relImg = Store.store.getPixbuf(release.imagePath, 200, 200);
-		if(relImg != null) {
-			albumArt.set_from_pixbuf(relImg);
+		if(release.image == null)
+			release.image = Store.store.getPixbuf(release.imagePath, 200, 200);
+		
+		if(release.image != null) {
+			albumArt.set_from_pixbuf(release.image);
 		}
 		else
 			albumArt.set_from_pixbuf(defaultPix);

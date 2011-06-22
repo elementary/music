@@ -30,7 +30,7 @@ public class Store.XMLParser : GLib.Object {
 		Xml.Doc* doc = Xml.Parser.parse_memory((string)message.response_body.data, (int)message.response_body.length);
 		if(doc == null)
 			return null;
-		stdout.printf("%s\n", (string)message.response_body.data);
+		//stdout.printf("%s\n", (string)message.response_body.data);
         Xml.Node* root = doc->get_root_element ();
         if (root == null) {
             delete doc;

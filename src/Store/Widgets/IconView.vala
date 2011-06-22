@@ -34,7 +34,7 @@ public class Store.IconView : Gtk.ScrolledWindow {
 	public IconView(Store.StoreView view) {
 		parent = view;
 		
-		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 128, 128);
+		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
 		
 		buildUI();
 	}
@@ -79,15 +79,21 @@ public class Store.IconView : Gtk.ScrolledWindow {
 		
 		if(obj is Store.Artist) {
 			var art = (Store.Artist)obj;
-			Gdk.Pixbuf artImage = Store.store.getPixbuf(art.imagePath, 100, 100);
+			
+			if(art.image == null)
+				art.image = Store.store.getPixbuf(art.imagePath, 100, 100);
+			
 			store.append(out iter);
-			store.set(iter, 0, obj, 1, (artImage != null) ? artImage : defaultPix, 2, ellipsize(art.name, 20).replace("&", "&amp;"));
+			store.set(iter, 0, obj, 1, (art.image != null) ? art.image : defaultPix, 2, ellipsize(art.name, 20).replace("&", "&amp;"));
 		}
 		else {
 			var rel = (Store.Release)obj;
-			Gdk.Pixbuf artImage = Store.store.getPixbuf(rel.imagePath, 100, 100);
+			
+			if(rel.image == null)
+				rel.image = Store.store.getPixbuf(rel.imagePath, 100, 100);
+			
 			store.append(out iter);
-			store.set(iter, 0, obj, 1, (artImage != null) ? artImage : defaultPix, 2, "<b>" + ellipsize(rel.title, 16).replace("&", "&amp;") + "</b>\n" + ellipsize(rel.artist.name, 16).replace("&", "&amp;"));
+			store.set(iter, 0, obj, 1, (rel.image != null) ? rel.image : defaultPix, 2, "<b>" + ellipsize(rel.title, 16).replace("&", "&amp;") + "</b>\n" + ellipsize(rel.artist.name, 16).replace("&", "&amp;"));
 		}
 		
 		icons.set_columns(store.iter_n_children(null));

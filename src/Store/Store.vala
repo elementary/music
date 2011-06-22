@@ -223,7 +223,7 @@ public class Store.store : GLib.Object {
 						((toDate != null) ? ("&todate=" + toDate) : "") +
 						"&oauth_consumer_key=" + Store.store.key + 
 						"&country=" + Store.store.country + 
-						"&page=" + page.to_string();
+						"&page=" + page.to_string() + "&pagesize=30";
 			
 			stdout.printf("parsing %s\n", url);
 			
@@ -267,7 +267,7 @@ public class Store.store : GLib.Object {
 			string url = Store.store.api + "artist/bytag/top" + "?tags=" + tags + 
 						"&oauth_consumer_key=" + Store.store.key + 
 						"&country=" + Store.store.country + 
-						"&page=" + page.to_string();
+						"&page=" + page.to_string() + "&pagesize=30";
 			
 			stdout.printf("parsing %s\n", url);
 			
@@ -311,7 +311,8 @@ public class Store.store : GLib.Object {
 						((toDate != null) ? ("&todate=" + toDate) : "") +
 						"&oauth_consumer_key=" + Store.store.key + 
 						"&country=" + Store.store.country + 
-						"&page=" + page.to_string();
+						"&page=" + page.to_string() + "&pagesize=30" +
+						"&imagesize=200" + "&type=album" + "&sort=popularity";
 			
 			stdout.printf("parsing %s\n", url);
 			
@@ -357,7 +358,7 @@ public class Store.store : GLib.Object {
 						"&tags=" + tags + 
 						"&oauth_consumer_key=" + Store.store.key + 
 						"&country=" + Store.store.country + 
-						"&page=" + page.to_string();
+						"&page=" + page.to_string() + "&pagesize=30";
 			
 			stdout.printf("parsing %s\n", url);
 			
@@ -401,7 +402,7 @@ public class Store.store : GLib.Object {
 					((toDate != null) ? ("&todate=" + toDate) : "") +
 					"&oauth_consumer_key=" + Store.store.key + 
 					"&country=" + Store.store.country + 
-					"&page=" + page.to_string();
+					"&page=" + page.to_string() + "&pagesize=30";
 		
 		stdout.printf("parsing %s\n", url);
 		

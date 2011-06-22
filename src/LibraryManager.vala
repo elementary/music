@@ -194,7 +194,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public bool doProgressNotificationWithTimeout() {
 		progress_notification(null, (double)((double)fo.index)/((double)fo.item_count));
 		
-		if(fo.index < fo.item_count) {
+		if(fo.index <= fo.item_count) {
 			Timeout.add(100, doProgressNotificationWithTimeout);
 		}
 		

@@ -1,199 +1,209 @@
 using Gtk;
+using Gee;
 
-public class Store.HomeView : HBox {
+public class Store.HomeView : ScrolledWindow {
 	Store.store store;
 	Store.StoreView parent;
 	
-	Toolbar leftBar;
-	ComboBox tagSelector;
-	ToggleToolButton newReleasesOption;
-	ToggleToolButton topArtistsOption;
-	ToggleToolButton topReleasesOption;
-	ToggleToolButton topTracksOption;
-	ToggleToolButton recommendedOption;
-	
-	bool toggling;
-	ToggleToolButton currentlySelected;
-	
-	SearchList mainList;
+	HBox allItems;
+	Store.ObjectList tagList;
+	Store.ObjectList artistList;
+	Store.TrackList trackList;
+	Store.ReleaseRotator releaseRotator;
+	Store.IconView topRock;
 	
 	public HomeView(StoreView storeView, Store.store store) {
 		this.parent = storeView;
 		this.store = store;
-		toggling = false;
 		
 		buildUI();
-		
-		topArtistsOption.active = true;
-        currentlySelected = topArtistsOption;
 	}
 	
 	public void buildUI() {
-		leftBar = new Toolbar();
-		tagSelector = new ComboBox.text();
-		newReleasesOption = new ToggleToolButton();
-		topArtistsOption = new ToggleToolButton();
-		topReleasesOption = new ToggleToolButton();
-		topTracksOption = new ToggleToolButton();
-		recommendedOption = new ToggleToolButton();
+		allItems = new HBox(false, 0);
+		VBox leftItems = new VBox(false, 0);
+		VBox centerItems = new VBox(false, 0);
 		
-		mainList = new Store.SearchList(parent, SearchList.SearchListType.RELEASE);
+		tagList = new ObjectList(parent, "Popular Genres");
+		artistList = new ObjectList(parent, "Top Artists");
+		trackList = new TrackList(parent, "Artist", false);
+		releaseRotator = new ReleaseRotator(parent);
+		topRock = new IconView(parent);
 		
-		tagSelector.append_text("All Genres");
-		tagSelector.append_text("pop");
-		tagSelector.append_text("rock");
-		tagSelector.append_text("electronic");
-		tagSelector.append_text("dance");
-		tagSelector.append_text("punk");
-		tagSelector.append_text("country");
-		tagSelector.append_text("grunge");
-		tagSelector.append_text("hip hop/rap");
-		tagSelector.append_text("comedy");
+		/* category labels */
+		var genresLabel = new Gtk.Label("");
+		var artistsLabel = new Gtk.Label("");
+		var tracksLabel = new Gtk.Label("");
+		var rockLabel = new Gtk.Label("");
 		
-		ToolItem tagSelectorBin = new ToolItem();
-        tagSelectorBin.add(tagSelector);
-        tagSelectorBin.set_border_width(1);
-        
-        leftBar.insert(tagSelectorBin, 0);
-        leftBar.insert(new SeparatorToolItem(), 1);
-        leftBar.insert(newReleasesOption, 2);
-        leftBar.insert(new SeparatorToolItem(), 3);
-        leftBar.insert(topArtistsOption, 4);
-        leftBar.insert(topReleasesOption, 5);
-        leftBar.insert(topTracksOption, 6);
-        leftBar.insert(new SeparatorToolItem(), 7);
-        leftBar.insert(recommendedOption, 8);
-        
-        leftBar.set_orientation(Orientation.VERTICAL);
-        
-        newReleasesOption.set_label("New Releases");
-        topArtistsOption.set_label("Top Artists");
-        topReleasesOption.set_label("Top Releases");
-        topTracksOption.set_label("Top Tracks");
-        recommendedOption.set_label("Recommended");
-        
-        pack_start(leftBar, false, true, 10);
-        pack_start(mainList, true, true, 0);
-        
-        show_all();
-        
-        newReleasesOption.toggled.connect(newReleasesOptionToggled);
-        topArtistsOption.toggled.connect(topArtistsOptionToggled);
-        topReleasesOption.toggled.connect(topReleasesOptionToggled);
-        topTracksOption.toggled.connect(topTracksOptionToggled);
-        recommendedOption.toggled.connect(recommendedOptionToggled);
+		genresLabel.xalign = 0.0f;
+		artistsLabel.xalign = 0.0f;
+		tracksLabel.xalign = 0.0f;
+		rockLabel.xalign = 0.0f;
+		
+		genresLabel.set_markup("<span weight=\"bold\" size=\"larger\">Popular Genres</span>");
+		artistsLabel.set_markup("<span weight=\"bold\" size=\"larger\">Top Artists</span>");
+		tracksLabel.set_markup("<span weight=\"bold\" size=\"larger\">Top Tracks</span>");
+		rockLabel.set_markup("<span weight=\"bold\" size=\"larger\">New Rock Releases</span>");
+		
+		leftItems.pack_start(wrap_alignment(genresLabel, 20, 0, 0, 20), false, true, 0);
+		leftItems.pack_start(wrap_alignment(tagList, 10, 10, 30, 20), false, true, 0);
+		leftItems.pack_start(wrap_alignment(artistsLabel, 10, 0, 0, 20), false, true, 0);
+		leftItems.pack_start(wrap_alignment(artistList, 10, 10, 10, 20), false, true, 0);
+		
+		centerItems.pack_start(wrap_alignment(releaseRotator, 0, 0, 40, 0), false, true, 0);
+		centerItems.pack_start(wrap_alignment(tracksLabel, 0, 0, 0, 0), false, true, 0);
+		centerItems.pack_start(wrap_alignment(trackList, 10, 0, 0, 0), false, true, 0);
+		centerItems.pack_start(wrap_alignment(rockLabel, 40, 0, 0, 0), false, true, 0);
+		centerItems.pack_start(wrap_alignment(topRock, 10, 0, 0, 0), false, true, 0);
+		
+		allItems.pack_start(leftItems, false, true, 0);
+		allItems.pack_start(wrap_alignment(centerItems, 20, 20, 10, 10), true, true, 0);
+		
+		releaseRotator.set_size_request(-1, 200);
+		tagList.set_size_request(200, 250);
+		artistList.set_size_request(200, 450);
+		trackList.set_size_request(-1, 300);
+		topRock.set_size_request(-1, 200);
+		
+		add_with_viewport(allItems);
+		
+		show_all();
+		
 	}
 	
-	public void newReleasesOptionToggled() {
-		if(currentlySelected == newReleasesOption || toggling)
-			return;
+	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+		alignment.top_padding = top;
+		alignment.right_padding = right;
+		alignment.bottom_padding = bottom;
+		alignment.left_padding = left;
 		
-		toggling = true;
-		newReleasesOption.active = true;
-		topArtistsOption.active = false;
-		topReleasesOption.active = false;
-		topTracksOption.active = false;
-		recommendedOption.active = false;
-		toggling = false;
-		
-		currentlySelected = newReleasesOption;
-		mainList.setType(SearchList.SearchListType.RELEASE);
-		
-		// now fetch the results
-		mainList.clear();
-		for(int i = 1; i < 4; ++i) {
-			foreach(var rel in store.newReleasesByTag(((tagSelector.get_active_text() != "All Genres" && tagSelector.get_active_text() != "")  ? tagSelector.get_active_text() : "rock"), i)) {
-				mainList.addItem(rel);
-			}
+		alignment.add(widget);
+		return alignment;
+	}
+	
+	public void populate() {
+		try {
+			Thread.create<void*>(getartists_thread_function, false);
+			Thread.create<void*>(getreleases_thread_function, false);
+			Thread.create<void*>(gettracks_thread_function, false);
+			Thread.create<void*>(gettoprock_thread_function, false);
+			Thread.create<void*>(getgenres_thread_function, false);
+			parent.max = 6;
+			parent.index = 0;
+			parent.progressNotification();
 		}
-	}
-	
-	public void topArtistsOptionToggled() {
-		if(currentlySelected == topArtistsOption || toggling)
-			return;
-		
-		toggling = true;
-		newReleasesOption.active = false;
-		topArtistsOption.active = true;
-		topReleasesOption.active = false;
-		topTracksOption.active = false;
-		recommendedOption.active = false;
-		toggling = false;
-		
-		currentlySelected = topArtistsOption;
-		mainList.setType(SearchList.SearchListType.ARTIST);
-		
-		mainList.clear();
-		for(int i = 1; i < 4; ++i) {
-			foreach(var artist in store.topArtists("week", null, ((tagSelector.get_active_text() != "All Genres") ? tagSelector.get_active_text() : null), i)) {
-				mainList.addItem(artist);
-			}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to get populate ArtistView: %s \n", err.message);
 		}
 	}
 	
-	public void topReleasesOptionToggled() {
-		if(currentlySelected == topReleasesOption || toggling)
-			return;
+	public void* getartists_thread_function () {
+		var tops = new LinkedList<Artist>();
 		
-		toggling = true;
-		newReleasesOption.active = false;
-		topArtistsOption.active = false;
-		topReleasesOption.active = true;
-		topTracksOption.active = false;
-		recommendedOption.active = false;
-		toggling = false;
+		foreach(var art in store.topArtists("week", null, null, 1))
+			tops.add(art);
 		
-		currentlySelected = topReleasesOption;
-		mainList.setType(SearchList.SearchListType.RELEASE);
+		++parent.index;
 		
-		mainList.clear();
-		for(int i = 1; i < 4; ++i) {
-			foreach(var rel in store.topReleases("week", null, ((tagSelector.get_active_text() != "All Genres") ? tagSelector.get_active_text() : null), i)) {
-				mainList.addItem(rel);
-			}
-		}
+		Idle.add( () => { 
+			foreach(var art in tops)
+				artistList.addItem(art);
+				
+			++parent.index;
+			return false;
+		});
+		
+		return null;
 	}
 	
-	public void topTracksOptionToggled() {
-		if(currentlySelected == topTracksOption || toggling)
-			return;
+	public void* getreleases_thread_function () {
+		var tops = new LinkedList<Release>();
 		
-		toggling = true;
-		newReleasesOption.active = false;
-		topArtistsOption.active = false;
-		topReleasesOption.active = false;
-		topTracksOption.active = true;
-		recommendedOption.active = false;
-		toggling = false;
+		foreach(var rel in store.topReleases("week", null, null, 1)) {
+			rel.image = Store.store.getPixbuf(rel.imagePath, 200, 200);
+			tops.add(rel);
+			
+			// get off to a start
+			if(tops.size == 1)
+				releaseRotator.setReleases(tops);
+		}
 		
-		currentlySelected = topTracksOption;
-		mainList.setType(SearchList.SearchListType.TRACK);
+		++parent.index;
 		
-		mainList.clear();
-		foreach(var release in store.topTracks("week", null, 1)) {
-			mainList.addItem(release);
-		}
-		foreach(var release in store.topTracks("week", null, 2)) {
-			mainList.addItem(release);
-		}
-		foreach(var release in store.topTracks("week", null, 3)) {
-			mainList.addItem(release);
-		}
+		releaseRotator.setReleases(tops);
+		
+		return null;
 	}
 	
-	public void recommendedOptionToggled() {
-		if(currentlySelected == recommendedOption || toggling)
-			return;
+	public void* gettracks_thread_function () {
+		var tops = new LinkedList<Track>();
 		
-		toggling = true;
-		newReleasesOption.active = false;
-		topArtistsOption.active = false;
-		topReleasesOption.active = false;
-		topTracksOption.active = false;
-		recommendedOption.active = true;
-		toggling = false;
+		foreach(var track in store.topTracks("week", null, 1))
+			tops.add(track);
 		
-		currentlySelected = recommendedOption;
-		mainList.setType(SearchList.SearchListType.TRACK);
+		++parent.index;
+		
+		Idle.add( () => { 
+			foreach(var track in tops)
+				trackList.addItem(track);
+				
+			++parent.index;
+			return false;
+		});
+		
+		return null;
 	}
+	
+	public void* gettoprock_thread_function () {
+		var rock = new LinkedList<Release>();
+		
+		foreach(var rel in store.topReleases("week", null, "rock", 1)) {
+			rel.image = Store.store.getPixbuf(rel.imagePath, 100, 100);
+			rock.add(rel);
+		}
+		
+		++parent.index;
+		
+		Idle.add( () => { 
+			foreach(var rel in rock)
+				topRock.addItem(rel);
+				
+			++parent.index;
+			return false;
+		});
+		
+		return null;
+	}
+	
+	public void* getgenres_thread_function () {
+		var gens = new LinkedList<Tag>();
+		
+		gens.add( new Tag.with_values("pop", "Pop", "") );
+		gens.add( new Tag.with_values("rock", "Rock", "") );
+		gens.add( new Tag.with_values("electronic", "Electronic", "") );
+		gens.add( new Tag.with_values("jazz", "Jazz", "") );
+		gens.add( new Tag.with_values("alternative-indie", "Alternative/Indie", "") );
+		gens.add( new Tag.with_values("country", "Country", "") );
+		gens.add( new Tag.with_values("grunge", "Grunge", "") );
+		gens.add( new Tag.with_values("2000s", "2000's", "") );
+		gens.add( new Tag.with_values("reggae", "Reggae", "") );
+		gens.add( new Tag.with_values("new-age", "New Age", "") );
+		gens.add( new Tag.with_values("instrumental", "Instrumental", "") );
+		gens.add( new Tag.with_values("soundtrack", "Soundtrack", "") );
+		
+		++parent.index;
+		
+		Idle.add( () => { 
+			foreach(var tag in gens)
+				tagList.addItem(tag);
+				
+			++parent.index;
+			return false;
+		});
+		
+		return null;
+	}
+	
 }

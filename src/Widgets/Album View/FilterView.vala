@@ -97,9 +97,10 @@ public class BeatBox.FilterView : VBox {
 		string html = """<!DOCTYPE html> <html lang="en"><head> 
         <style media="screen" type="text/css"> 
             body { 
-                background: #fff; 
+                background: #363636;
                 font-family: "Droid Sans",sans-serif; 
                 margin-top: 10px;
+                color: #ffffff;
             }
             #main {
 				margin: 0px auto;
@@ -117,12 +118,13 @@ public class BeatBox.FilterView : VBox {
                 list-style-type: none;
                 padding-right: 10px;
                 padding-left: 10px;
-                padding-bottom: 5px;
+                padding-bottom: 12px;
                 overflow: hidden;
             }
             #main ul li img {
                 width: 128px;
                 height: 128px;
+                -webkit-box-shadow:0 2px 10px rgba(0,0,0,.69);
             }
             #main ul li p {
                 clear: both;
@@ -131,6 +133,7 @@ public class BeatBox.FilterView : VBox {
                 margin-top: 0px;
                 font-size: 12px;
                 margin-bottom: 0px;
+                color: #ffffff;
             }
         </style></head><body><div id="main"><ul>""";
         

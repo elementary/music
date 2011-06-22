@@ -31,6 +31,9 @@ public class Store.StoreView : VBox {
 	public bool isInitialized;
 	bool isCurrentView;
 	
+	public int index;
+	public int max;
+	
 	public Store.HomeView homeView;
 	Store.SearchResultsView searchPage;
 	Widget currentView;
@@ -47,6 +50,9 @@ public class Store.StoreView : VBox {
 		
 		isCurrentView = false;
 		isInitialized = false;
+		
+		index = 0;
+		max = 0;
 		
 		buildUI();
 	}
@@ -77,6 +83,7 @@ public class Store.StoreView : VBox {
 	public void homeButtonClicked() {
 		homeView = new HomeView(this, store);
 		setView(homeView);
+		homeView.populate();
 	}
 	
 	public void searchFieldActivated() {
@@ -145,14 +152,18 @@ public class Store.StoreView : VBox {
 	}
 	
 	public void setView(Widget w) {
-		stdout.printf("setView()\n");
 		currentView.destroy();
-		stdout.printf("1\n");
 		currentView = w;
-		stdout.printf("2\n");
 		container.add(currentView);
-		stdout.printf("3\n");
 	}
 	
-	
+	public bool progressNotification() {
+		double progress = (double)((double)index)/((double)max);
+		lm.lw.progressNotification(null, progress);
+		
+		if(progress >= 0.0 && progress <= 1.0)
+			Timeout.add(25, progressNotification);
+			
+		return false;
+	}
 }

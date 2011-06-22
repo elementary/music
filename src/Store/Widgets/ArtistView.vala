@@ -46,7 +46,7 @@ public class Store.ArtistView : ScrolledWindow {
 		topTracksList = new LinkedList<Store.Track>();
 		releasesList = new LinkedList<Store.Release>();
 		
-		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 128, 128);
+		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
 				
 		buildUI();
 		
@@ -63,9 +63,11 @@ public class Store.ArtistView : ScrolledWindow {
 		upDown = new Gtk.Label("");
 		bio = new Gtk.Label("");
 		releases = new Store.IconView(parent);
-		topTracks = new Store.TrackList(parent, "Album");
+		topTracks = new Store.TrackList(parent, "Album", true);
 		
 		artistName.xalign = 0.0f;
+		
+		artistName.ellipsize = Pango.EllipsizeMode.END;
 		
 		topInfo.pack_start(wrap_alignment(artistName, 20, 10, 10, 0), false, true, 0);
 		topInfo.pack_start(bio, true, true, 0);
@@ -105,6 +107,9 @@ public class Store.ArtistView : ScrolledWindow {
 			Thread.create<void*>(setartist_thread_function, false);
 			Thread.create<void*>(gettracks_thread_function, false);
 			Thread.create<void*>(getreleases_thread_function, false);
+			parent.index = 0;
+			parent.max = 5; // must get to 6 for progress bar to turn off
+			parent.progressNotification();
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("ERROR: Could not create thread to get populate ArtistView: %s \n", err.message);
@@ -113,8 +118,12 @@ public class Store.ArtistView : ScrolledWindow {
 	
 	public void* setartist_thread_function () {
 		Store.Artist a = store.getArtist(artist.artistID);
-		
-		Idle.add( () => { setArtist(a); return false; });
+		++parent.index;
+		Idle.add( () => { 
+			setArtist(a); 
+			++parent.index;
+			return false; 
+		});
 		
 		return null;
 	}
@@ -122,11 +131,12 @@ public class Store.ArtistView : ScrolledWindow {
 	public void* gettracks_thread_function () {
 		foreach(var track in artist.getTopTracks(1, 25))
 			topTracksList.add(track);
-		
+		++parent.index;
 		Idle.add( () => { 
 			foreach(var track in topTracksList)
 				topTracks.addItem(track);
-				
+			
+			++parent.index;
 			return false;
 		});
 		
@@ -134,13 +144,17 @@ public class Store.ArtistView : ScrolledWindow {
 	}
 	
 	public void* getreleases_thread_function () {
-		foreach(var rel in artist.getReleases("album", 1))
+		foreach(var rel in artist.getReleases("album", 1)) {
+			rel.image = Store.store.getPixbuf(rel.imagePath, 100, 100);
 			releasesList.add(rel);
+		}
+			
+		++parent.index;
 		
 		Idle.add( () => { 
 			foreach(var rel in releasesList)
 				releases.addItem(rel);
-				
+			++parent.index;
 			return false;
 		});
 		
@@ -162,10 +176,11 @@ public class Store.ArtistView : ScrolledWindow {
 		this.artist = artist;
 		artistName.set_markup("<span weight=\"bold\" font=\"40\">" + artist.name.replace("&", "&amp;") + "</span>");
 		
-		Gdk.Pixbuf artistImg = Store.store.getPixbuf(artist.imagePath, 200, 200);
-		if(artistImg != null) {
-			stdout.printf("booya\n");
-			artistImage.set_from_pixbuf(artistImg);
+		if(artist.image == null)
+			artist.image = Store.store.getPixbuf(artist.imagePath, 200, 200);
+			
+		if(artist.image != null) {
+			artistImage.set_from_pixbuf(artist.image);
 		}
 		else
 			artistImage.set_from_pixbuf(defaultPix);

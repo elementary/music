@@ -591,8 +591,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(message != null)
 			topDisplay.set_label_markup(message);
 		
-		if(progress != 0.0 && progress > 0.0 && progress < 1.0)
-			topDisplay.set_progress_value(progress);
+		topDisplay.set_progress_value(progress);
 	}
 	
 	public bool updateCurrentSong() {

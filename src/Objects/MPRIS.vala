@@ -426,7 +426,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public bool CanSeek {
 		get {
-			return true;
+			return false;
 		}
 	}
 	

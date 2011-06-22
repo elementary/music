@@ -38,4 +38,10 @@ public class Store.Tag : GLib.Object {
 	public Tag(string id) {
 		tagID = id;
 	}
+	
+	public Tag.with_values(string id, string text, string url) {
+		this.tagID = id;
+		this.text = text;
+		this.url = url;
+	}
 }
