@@ -21,7 +21,6 @@
  */
 
 using Gee;
-using Rest;
 using Xml;
 
 public class Store.store : GLib.Object {
@@ -311,7 +310,7 @@ public class Store.store : GLib.Object {
 						((toDate != null) ? ("&todate=" + toDate) : "") +
 						"&oauth_consumer_key=" + Store.store.key + 
 						"&country=" + Store.store.country + 
-						"&page=" + page.to_string() + "&pagesize=30" +
+						"&page=" + page.to_string() + "&pagesize=15" +
 						"&imagesize=200" + "&type=album" + "&sort=popularity";
 			
 			stdout.printf("parsing %s\n", url);

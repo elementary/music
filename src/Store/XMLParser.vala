@@ -141,8 +141,14 @@ public class Store.XMLParser : GLib.Object {
 		
 		Store.Label rv = new Store.Label(id);
 		
-		rv.name = node->children->content;
-		
+		for (Xml.Node* iter = node->children; iter != null; iter = iter->next) {
+			if (iter->type != ElementType.ELEMENT_NODE) {
+				continue;
+			}
+			
+			if(iter->name == "name")
+				rv.name = iter->get_content();		
+		}
 		return rv;
 	}
 	
@@ -234,7 +240,7 @@ public class Store.XMLParser : GLib.Object {
 			else if(name == "bitRate")
 				rv.bitrate = int.parse(content);
 			else if(name == "drmFree")
-				rv.drmFree = (content == "True") ? true : false;
+				rv.drmFree = (content == "true") ? true : false;
 		}
 		
 		return rv;

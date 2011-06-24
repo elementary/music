@@ -256,7 +256,7 @@ public class MprisPlayer : GLib.Object {
 		changed_properties = null;
 		
 		try {
-			conn.emit_signal(null,
+			conn.emit_signal("org.mpris.MediaPlayer2.beatbox",
 			                 "/org/mpris/MediaPlayer2", 
 			                 "org.freedesktop.DBus.Properties", 
 			                 "PropertiesChanged", 

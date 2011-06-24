@@ -52,7 +52,6 @@ def configure(ctx):
 	check_pkg(ctx, 'libsoup-2.4', 'SOUP', '2.25.2')
 	check_pkg(ctx, 'json-glib-1.0', 'JSON', '0.10')
 	check_pkg(ctx, 'webkit-1.0', 'WEBKIT', '0.0')
-	check_pkg(ctx, 'rest-0.7', 'REST', '0.6');
 
 	check_pkg(ctx, 'zeitgeist-1.0', 'ZEITGEIST', '0.3.10', mandatory=False)
 	if ctx.env['HAVE_ZEITGEIST']:
@@ -117,9 +116,9 @@ def build(bld):
 	
 	obj = bld.new_task_gen ('c', 'program')
 	obj.features = 'c cprogram'
-	obj.packages = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0 rest-0.6'
+	obj.packages = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0'
 	obj.target = APPNAME
-	obj.uselib = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT REST'
+	obj.uselib = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT'
 	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 
 									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
 									'src/Widgets/*.vala', 'src/Widgets/Album View/*.vala', 'src/Widgets/List View/*.vala', 

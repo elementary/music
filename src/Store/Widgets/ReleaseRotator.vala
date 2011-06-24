@@ -1,5 +1,6 @@
 using Gtk;
 using Gee;
+using Gdk;
 
 public class Store.ReleaseRotator : HBox {
 	Store.StoreView parent;
@@ -7,7 +8,7 @@ public class Store.ReleaseRotator : HBox {
 	int index;
 	bool cancelOld;
 	
-	private Image albumArt;
+	private Gtk.Image albumArt;
 	private Gtk.Label albumName;
 	private Gtk.Label albumArtist;
 	private Gtk.Label releaseDate;
@@ -30,7 +31,7 @@ public class Store.ReleaseRotator : HBox {
 	
 	public void buildUI() {
 		VBox topInfo = new VBox(false, 0);
-		albumArt = new Image();
+		albumArt = new Gtk.Image();
 		albumName = new Gtk.Label("");
 		albumArtist = new Gtk.Label("");
 		releaseDate = new Gtk.Label("");
@@ -46,6 +47,19 @@ public class Store.ReleaseRotator : HBox {
 		topInfo.pack_start(wrap_alignment(albumName, 0, 0, 10, 0), false, true, 0);
 		topInfo.pack_start(wrap_alignment(albumArtist, 0, 0, 10, 0), false, true, 0);
 		topInfo.pack_start(wrap_alignment(releaseDate, 0, 0, 10, 0), false, true, 0);
+		
+		HBox tags = new HBox(false, 0);
+		Color blue, lightblue, white;
+		Color.parse("#366C9F", out blue);
+		Color.parse("#E8EEF5", out lightblue);
+		Color.parse("#ffffff", out white);
+		
+		/*tags.pack_start(wrap_alignment(new TagLabel("Rock", blue, lightblue, white), 0, 5, 10, 5), false, false, 0);
+		tags.pack_start(wrap_alignment(new TagLabel("2000's", blue, lightblue, white), 0, 5, 10, 5), false, false, 0);
+		tags.pack_start(wrap_alignment(new TagLabel("Pop", blue, lightblue, white), 0, 5, 10, 5), false, false, 0);
+		tags.pack_start(wrap_alignment(new TagLabel("Indie", blue, lightblue, white), 0, 5, 10, 5), false, false, 0);*/
+		
+		topInfo.pack_start(wrap_alignment(tags, 0, 0, 10, 0), false, false, 0);
 		
 		pack_start(wrap_alignment(albumArt, 0, 10, 0, 0), false, true, 0);
 		pack_start(topInfo, true, true, 0);

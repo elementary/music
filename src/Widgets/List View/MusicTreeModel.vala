@@ -230,7 +230,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			
 			va.append(s.rowid);
 			va.append(Value(typeof(Gdk.Pixbuf)));
-			va.append(rows.get_length());
+			va.append(rows.get_length() + 1);
 			va.append(s.track);
 			va.append(s.title);
 			va.append(s.length);

@@ -409,11 +409,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
-		viewSelector.notify["selected"].connect( () => { 
-			settings.setViewMode(viewSelector.selected); 
-			miller.set_visible(viewSelector.selected == 2);
-			millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
-		});
+		viewSelector.notify["selected"].connect(updateMillerColumns);
 		millerPane.child1.size_allocate.connect(millerResized);
 		
 		/* set up drag dest stuff */
@@ -430,7 +426,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		welcomeScreen.hide();
 		infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
-		((SimilarPane)sideTree.getWidget(sideTree.playlists_similar_iter)).initializeView();
+		updateMillerColumns();
 		
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
@@ -465,9 +461,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		sideTree.addBasicItems();
 		
-		SimilarPane sp = new SimilarPane(lm, this);
-		sideTree.addItem(sideTree.playlists_iter, null, sp, "Similar");
-		mainViews.pack_start(sp, true, true, 0);
+		vw = new ViewWrapper(lm, this, new LinkedList<int>(), lm.similar_setup.sort_column, lm.similar_setup.sort_direction, MusicTreeView.Hint.SIMILAR, -1);
+		sideTree.addItem(sideTree.playlists_iter, null, vw, "Similar");
+		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.queue(), lm.queue_setup.sort_column, lm.queue_setup.sort_direction, MusicTreeView.Hint.QUEUE, -1);
 		sideTree.addItem(sideTree.playlists_iter, null, vw, "Queue");
@@ -625,7 +621,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 * @param s The song that is now playing
 	 */
 	public virtual void song_played(int i, int old) {
-		if(old == -2 && i != -2) { // -2 is id reserved for previews
+		/*if(old == -2 && i != -2) { // -2 is id reserved for previews
 			Song s = settings.getLastSongPlaying();
 			s = lm.song_from_name(s.title, s.artist);
 			
@@ -636,7 +632,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 			
 			return;
-		}
+		}*/
 		
 		//set the title
 		var song_label = "<b>" + lm.song_from_id(i).title.replace("&", "&amp;") + "</b>" + ((lm.song_from_id(i).artist != "") ? " by " : "") + "<b>" + lm.song_from_id(i).artist.replace("&", "&amp;") + "</b>" + ((lm.song_from_id(i).album != "") ? " on " : "") + "<b>" + lm.song_from_id(i).album.replace("&", "&amp;") + "</b>";
@@ -694,6 +690,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			infoPanel.set_visible(true);
 			
 		updateSensitivities();
+		updateMillerColumns();
 	}
 	
 	public virtual void playback_stopped(int was_playing) {
@@ -1187,7 +1184,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(position > 5000000000 && !queriedlastfm) {
 				queriedlastfm = true;
 				
-				similarSongs.queryForSimilar(lm.song_info.song);
+				var similarList = ((ViewWrapper)sideTree.getWidget(sideTree.playlists_similar_iter)).list;
+				
+				// only query if not playing from similars
+				stdout.printf("%d %d\n", lm.current_songs().size, similarList.get_songs().size);
+				if(!(lm.current_songs().size == similarList.get_songs().size && lm.current_songs().contains_all(similarList.get_songs()))) {
+					stdout.printf("querying for similar..\n");
+					similarSongs.queryForSimilar(lm.song_info.song);
+				}
 				
 				try {
 					Thread.create<void*>(lastfm_track_thread_function, false);
@@ -1248,9 +1252,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
-		((SimilarPane)w).updateSongs(lm.song_info.song, similarIDs);
+		
+		((ViewWrapper)w).populateViews(similarIDs, true);
+		((SimilarPane)((ViewWrapper)w).list).updateSongs(lm.song_info.song, similarIDs);
+		
+		((ViewWrapper)w).similarsFetched = true;
+		((ViewWrapper)w).setView(((ViewWrapper)w).currentView);
 		
 		infoPanel.updateSongList(similarDont);
+		miller.populateColumns(((ViewWrapper)w).list.get_songs());
+		updateMillerColumns();
 	}
 	
 	public void setStatusBarText(string text) {
@@ -1321,6 +1332,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void infoPanelChooserOptionChanged(int val) {
 		infoPanel.set_visible(val == 1);
 		lm.settings.setMoreVisible(val == 1);
+	}
+	
+	public void updateMillerColumns() {
+		settings.setViewMode(viewSelector.selected);
+			
+		bool similarcheck = ((ViewWrapper)sideTree.getSelectedWidget()).list is SimilarPane && !((ViewWrapper)sideTree.getSelectedWidget()).similarsFetched;
+		
+		miller.set_visible(viewSelector.selected == 2 && !similarcheck);
+		millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
 	}
 	
 	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {

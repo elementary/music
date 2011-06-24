@@ -33,8 +33,10 @@ public class Store.AlbumView : ScrolledWindow {
 	private Image albumArt;
 	private Gtk.Label albumName;
 	private Gtk.Label albumArtist;
+	private TagLabel viewArtist;
+	private TagLabel purchase;
 	private Gtk.Label releaseDate;
-	private VBox priceFlags;
+	private HBox priceFlags;
 	private Store.TrackList trackList;
 	private Store.IconView similarReleases;
 	
@@ -59,21 +61,33 @@ public class Store.AlbumView : ScrolledWindow {
 		HBox topRow = new HBox(false, 0);
 		VBox topInfo = new VBox(false, 0);
 		VBox topFlags = new VBox(false, 0);
+		HBox splitter = new HBox(false, 0);
+		VBox leftSide = new VBox(false, 0);
+		VBox rightSide = new VBox(false, 0);
+		
 		albumArt = new Image();
 		albumName = new Gtk.Label("");
 		albumArtist = new Gtk.Label("");
+		
+		Gdk.Color blue, lightblue, white;
+		Gdk.Color.parse("#366C9F", out blue);
+		Gdk.Color.parse("#E8EEF5", out lightblue);
+		Gdk.Color.parse("#ffffff", out white);
+		viewArtist = new TagLabel("View Artist", blue, lightblue, white, release.artist, true);
+		purchase = new TagLabel("Purchase Release", blue, lightblue, white, release, true);
+		
 		releaseDate = new Gtk.Label("");
-		priceFlags = new VBox(false, 0);
+		priceFlags = new HBox(false, 0);
 		trackList = new Store.TrackList(parent, "Album", true);
 		similarReleases = new Store.IconView(parent);
 		
 		topInfo.pack_start(wrap_alignment(albumName, 20, 10, 10, 0), false, true, 0);
 		topInfo.pack_start(wrap_alignment(albumArtist, 0, 10, 10, 0), false, true, 0);
 		topInfo.pack_start(wrap_alignment(releaseDate, 0, 10, 10, 0), false, true, 0);
+		topInfo.pack_start(wrap_alignment(priceFlags, 0, 10, 10, 0), false, true, 0);
 		
-		topRow.pack_start(wrap_alignment(albumArt, 20, 10, 40, 20), false, true, 0);
+		topRow.pack_start(wrap_alignment(albumArt, 20, 10, 10, 20), false, true, 0);
 		topRow.pack_start(topInfo, true, true, 0);
-		topRow.pack_start(priceFlags, false, true, 0);
 		
 		albumName.xalign = 0.0f;
 		albumArtist.xalign = 0.0f;
@@ -93,20 +107,43 @@ public class Store.AlbumView : ScrolledWindow {
 		similarReleasesLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Releases</span>");
 		
 		// set minimal size for main widgets
+		leftSide.set_size_request(200, -1);
 		trackList.set_size_request(-1, 250);
 		similarReleases.set_size_request(-1, 200);
 		
+		leftSide.pack_start(wrap_alignment(viewArtist, 0, 0, 10, 0), false, true, 0);
+		leftSide.pack_start(wrap_alignment(purchase, 0, 0, 10, 0), false, true, 0);
+		stdout.printf("label: %s %s\n", release.label.name, release.label.labelID.to_string());
+		leftSide.pack_start(wrap_alignment(new Gtk.Label(release.label.name), 0, 10, 10, 20), false, true, 0);
+		
+		//rightSide.pack_start(wrap_alignment(trackListLabel, 0, 0, 10, 20), false, true, 0);
+		rightSide.pack_start(wrap_alignment(trackList, 0, 20, 40, 20), true, true, 0);
+		rightSide.pack_start(wrap_alignment(similarReleasesLabel, 0, 0, 10, 20), false, true, 0);
+		rightSide.pack_start(wrap_alignment(similarReleases, 0, 20, 40, 20), true, true, 0);
+		
+		splitter.pack_start(wrap_alignment(leftSide, 0, 0, 40, 20), false, true, 0);
+		splitter.pack_start(rightSide, true, true, 0);
+		
 		allDetails.pack_start(topRow, true, true, 0);
-		allDetails.pack_start(wrap_alignment(trackListLabel, 0, 00, 10, 20), false, true, 0);
-		allDetails.pack_start(wrap_alignment(trackList, 0, 20, 40, 20), true, true, 0);
-		allDetails.pack_start(wrap_alignment(similarReleasesLabel, 0, 0, 10, 20), false, true, 0);
-		allDetails.pack_start(wrap_alignment(similarReleases, 0, 20, 40, 20), true, true, 0);
+		allDetails.pack_start(splitter, true, true, 0);
 		
 		/** now fill in with the artist's data **/
 		
-		add_with_viewport(allDetails);
+		Viewport vp = new Viewport(null, null);
+		vp.set_shadow_type(ShadowType.NONE);
+		vp.add(allDetails);
+		
+		add(vp);
 		
 		show_all();
+		
+		viewArtist.button_press_event.connect( (event) => {
+			var newView = new ArtistView(parent, parent.store, release.artist);
+			parent.setView(newView);
+			newView.populate();
+			
+			return false;
+		});
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -144,6 +181,8 @@ public class Store.AlbumView : ScrolledWindow {
 			setAlbum(r); 
 			++parent.index;
 			
+			Thread.create<void*>(gettaglabels_thread_function, false);
+			
 			return false; 
 		});
 		
@@ -178,6 +217,57 @@ public class Store.AlbumView : ScrolledWindow {
 		Idle.add( () => { 
 			foreach(var rel in similarReleasesList)
 				similarReleases.addItem(rel);
+				
+			++parent.index;
+			return false;
+		});
+		
+		return null;
+	}
+	
+	public void* gettaglabels_thread_function () {
+		var labels = new LinkedList<Store.TagLabel>();
+		
+		Gdk.Color orange;
+		Gdk.Color lightorange;
+		Gdk.Color white;
+		
+		Gdk.Color.parse("#F67F0F", out orange);
+		Gdk.Color.parse("#FFFF00", out lightorange);
+		Gdk.Color.parse("#FFFFFF", out white);
+		
+		foreach(var format in release.formats) {
+			stdout.printf("format: %s %s\n", format.fileFormat, format.bitrate.to_string());
+			if(format.fileFormat.down().contains("mp3")) {
+				labels.add(new TagLabel("MP3", orange, lightorange, white, format, false));
+				labels.add(new TagLabel(format.bitrate.to_string() + "k", orange, lightorange, white, format, false));
+				
+				if(format.drmFree)
+					labels.add(new TagLabel("DRM Free", orange, lightorange, white, format, false));
+			}
+		}
+		
+		if(labels.size == 0 && release.formats.size > 0) {
+			Format format = release.formats.get(0);
+			
+			labels.add(new TagLabel(format.fileFormat, orange, lightorange, white, format, false));
+			labels.add(new TagLabel(format.bitrate.to_string() + "k", orange, lightorange, white, format, false));
+			
+			if(format.drmFree)
+				labels.add(new TagLabel("DRM Free", orange, lightorange, white, format, false));
+		}
+		
+		if(release.price != null/* && !release.price.formattedPrice.contains("0.00")*/) {
+			labels.add(new TagLabel(release.price.formattedPrice, orange, lightorange, white, release.price, false));
+		}
+		
+		++parent.index;
+		
+		Idle.add( () => { 
+			foreach(var lab in labels) {
+				stdout.printf("label added: %s\n", lab.label);
+				priceFlags.pack_start(lab, false, false, 5);
+			}
 				
 			++parent.index;
 			return false;

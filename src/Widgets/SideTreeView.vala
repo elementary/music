@@ -48,6 +48,7 @@ public class BeatBox.SideTreeView : TreeView {
 	MenuItem smartPlaylistNew;
 	MenuItem playlistEdit;
 	MenuItem playlistRemove;
+	MenuItem playlistSave;
 	
 	Widget current_widget;
 	
@@ -114,14 +115,17 @@ public class BeatBox.SideTreeView : TreeView {
 		smartPlaylistNew = new MenuItem.with_label("New Smart Playlist");
 		playlistEdit = new MenuItem.with_label("Edit");
 		playlistRemove = new MenuItem.with_label("Remove");
+		playlistSave = new MenuItem.with_label("Save as Playlist");
 		playlistMenu.append(playlistNew);
 		playlistMenu.append(smartPlaylistNew);
 		playlistMenu.append(playlistEdit);
 		playlistMenu.append(playlistRemove);
+		playlistMenu.append(playlistSave);
 		playlistNew.activate.connect(playlistMenuNewClicked);
 		smartPlaylistNew.activate.connect(smartPlaylistMenuNewClicked);
 		playlistEdit.activate.connect(playlistMenuEditClicked);
 		playlistRemove.activate.connect(playlistMenuRemoveClicked);
+		playlistSave.activate.connect(playlistSaveClicked);
 		playlistMenu.show_all();
 		
 		/* set up drag dest stuff */
@@ -264,6 +268,7 @@ public class BeatBox.SideTreeView : TreeView {
 			
 			sideTreeModel.set(item, 0, o, 1, w, 2, name.replace("&", "&amp;"));
 			this.expand_to_path(sideTreeModel.get_path(item));
+			this.get_selection().unselect_all();
 			this.get_selection().select_iter(item);
 			
 			return item;
@@ -290,6 +295,7 @@ public class BeatBox.SideTreeView : TreeView {
 			
 			sideTreeModel.set(item, 0, o, 1, w, 2, name.replace("&", "&amp;"));
 			this.expand_to_path(sideTreeModel.get_path(item));
+			this.get_selection().unselect_all();
 			this.get_selection().select_iter(item);
 			
 			return item;
@@ -300,6 +306,8 @@ public class BeatBox.SideTreeView : TreeView {
 			sideTreeModel.set(iter, 0, o, 1, w, 2, name);
 			return iter;
 		}
+		
+		sideTreeModel.foreach(updateView);
 	}
 	
 	public Widget getSelectedWidget() {
@@ -342,9 +350,9 @@ public class BeatBox.SideTreeView : TreeView {
 		if(current_widget is ViewWrapper) {
 			((ViewWrapper)current_widget).setStatusBarText();
 		}
-		else if(current_widget is SimilarPane) {
+		/*else if(current_widget is SimilarPane) {
 			((SimilarPane)current_widget).similars.setStatusBarText();
-		}
+		}*/
 	}
 	
 	public virtual bool sideListClick(Gdk.EventButton event) {
@@ -389,9 +397,11 @@ public class BeatBox.SideTreeView : TreeView {
 						
 					}
 					else if(iter == playlists_similar_iter) {
-						
+						playlistSave.visible = true;
+						playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					}
 					else {
+						playlistSave.visible = false;
 						playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					}
 				}
@@ -454,8 +464,9 @@ public class BeatBox.SideTreeView : TreeView {
 					}
 				}
 				else if(iter == playlists_similar_iter) {
-					if(((SimilarPane)w)._base == null || ((SimilarPane)w)._have.size == 0)
-						return true;
+					ViewWrapper vw = (ViewWrapper)w;
+					lw.miller.populateColumns(vw.list.get_songs());
+					lw.updateMillerColumns();
 				}
 				else if(iter == playlists_queue_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
@@ -512,9 +523,9 @@ public class BeatBox.SideTreeView : TreeView {
 			if(getWidget(iter) is ViewWrapper) {
 				((ViewWrapper)getWidget(iter)).list.setAsCurrentList(0);
 			}
-			else if(getWidget(iter) is SimilarPane) {
+			/*else if(getWidget(iter) is SimilarPane) {
 				((SimilarPane)getWidget(iter)).similars.setAsCurrentList(0);
-			}
+			}*/
 		}
 		
 		return false;
@@ -678,6 +689,23 @@ public class BeatBox.SideTreeView : TreeView {
 		w.destroy();
 		sideTreeModel.remove(iter);
 		resetView();
+	}
+	
+	// can only be done on similar songs
+	public void playlistSaveClicked() {
+		TreeSelection selected = this.get_selection();
+		selected.set_mode(SelectionMode.SINGLE);
+		TreeModel model;
+		TreeIter iter;
+		selected.get_selected (out model, out iter);
+		
+		Widget w;
+		sideTreeModel.get(iter, 1, out w);
+		
+		if(w is ViewWrapper && ((ViewWrapper)w).list is SimilarPane) {
+			SimilarPane sp = (SimilarPane)(((ViewWrapper)w).list);
+			sp.savePlaylist();
+		}
 	}
 	
 	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {

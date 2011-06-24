@@ -28,10 +28,14 @@ public class BeatBox.ViewWrapper : VBox {
 	public LibraryWindow lw;
 	public MusicTreeView list;
 	public FilterView filterView;
+	private WarningLabel errorBox;
 	Collection<int> songs;
 	
-	ViewType currentView;
+	public ViewType currentView;
 	bool isCurrentView;
+	
+	// for Hint.SIMILAR only
+	public bool similarsFetched;
 	
 	public enum ViewType {
 		LIST,
@@ -43,7 +47,13 @@ public class BeatBox.ViewWrapper : VBox {
 		lw = lww;
 		this.songs = songs;
 		
-		list = new MusicTreeView(lm, lw, sort, dir, the_hint, id);
+		if(the_hint != MusicTreeView.Hint.SIMILAR)
+			list = new MusicTreeView(lm, lw, sort, dir, the_hint, id);
+		else {
+			list = new SimilarPane(lm, lw);
+			errorBox = new WarningLabel();
+		}
+		
 		//list.populateView(songs, false);
 		
 		/* have to convert to linked list<song> */
@@ -56,6 +66,9 @@ public class BeatBox.ViewWrapper : VBox {
 		pack_start(list, true, true, 0);
 		pack_start(filterView, true, true, 0);
 		
+		if(list.hint == MusicTreeView.Hint.SIMILAR)
+			pack_start(errorBox, true, true, 0);
+		
 		setView(ViewType.LIST);
 		filterView.needsUpdate = true;
 		list.needsUpdate = true;
@@ -65,6 +78,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		filterView.itemClicked.connect(filterViewItemClicked);
 		lw.viewSelector.notify["selected"].connect(selectorViewChanged);
+		lm.song_played.connect(songPlayed);
 	}
 	
 	public virtual void selectorViewChanged() {
@@ -92,6 +106,41 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public void setView(ViewType type) {
+		currentView = type;
+		
+		if(list.hint == MusicTreeView.Hint.SIMILAR) {
+			// check if we should show a warning or not
+			SimilarPane sp = (SimilarPane)(list);
+			
+			if(!similarsFetched) { // still fetching similar songs
+				stdout.printf("1\n");
+				errorBox.show();
+				list.hide();
+				filterView.hide();
+				
+				return;
+			}
+			else if(!(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs())) ) { // not currently playing list and have fetched
+				if(sp.get_songs().size < 10) { // say we could not find similar songs
+					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No Similar Songs</span>\nBeatBox could not find songs similar to " + sp._next.title.replace("&", "&amp;") + " by " + sp._next.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
+					errorBox.show();
+					list.hide();
+					filterView.hide();
+					stdout.printf("2\n");
+					
+					return;
+				}
+				else {
+					stdout.printf("3\n");
+					errorBox.hide();
+				}
+			}
+			
+			stdout.printf("always\n");
+			
+			// if we get here, we are following normal behavior
+		}
+		
 		if(type == ViewType.LIST) {
 			list.show();
 			filterView.hide();
@@ -121,12 +170,25 @@ public class BeatBox.ViewWrapper : VBox {
 			else
 				filterView.isCurrentView = false;
 		}
-		
-		currentView = type;
 	}
 	
 	public ViewType getView() {
 		return currentView;
+	}
+	
+	public void songPlayed(int id, int old) {
+		if(list.hint != MusicTreeView.Hint.SIMILAR)
+			return;
+			
+		if(!(lm.current_songs().size == list.get_songs().size && lm.current_songs().contains_all(list.get_songs()))) {
+			/* a new song is played. don't show list until songs have loaded */
+			
+			errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\nBeatBox is loading songs similar to " + lm.song_from_id(id).title.replace("&", "&amp;") + " by " + lm.song_from_id(id).artist.replace("&", "&amp;") + "...");
+			errorBox.show();
+			list.hide();
+			filterView.hide();
+			similarsFetched = false;
+		}
 	}
 	
 	public void populateViews(Collection<int> songs, bool populateBoth) {
@@ -141,6 +203,8 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			filterView.generateHTML(linkedSongs);
 		}
+		
+		setView(this.currentView);
 	}
 	
 	public void setStatusBarText() {

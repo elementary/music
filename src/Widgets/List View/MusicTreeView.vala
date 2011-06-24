@@ -24,8 +24,8 @@ using Gee;
 using Gtk;
 
 public class BeatBox.MusicTreeView : ScrolledWindow {
-	private BeatBox.LibraryManager lm;
-	private BeatBox.LibraryWindow lw;
+	public BeatBox.LibraryManager lm;
+	public BeatBox.LibraryWindow lw;
 	private BeatBox.SortHelper sh;
 	private TreeView view;
 	private MusicTreeModel music_model; // this is always full of songs, for quick unsearching
