@@ -79,6 +79,8 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 		
 		add(view);
 		
+		set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
+		
 		show_all();
 	}
 	

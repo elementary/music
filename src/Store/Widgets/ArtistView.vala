@@ -95,9 +95,11 @@ public class Store.ArtistView : ScrolledWindow {
 		allDetails.pack_start(wrap_alignment(releases, 0, 20, 40, 20), true, true, 0);
 		
 		/** now fill in with the artist's data **/
+		Viewport vp = new Viewport(null, null);
+		vp.set_shadow_type(ShadowType.NONE);
+		vp.add(allDetails);
 		
-		
-		add_with_viewport(allDetails);
+		add(vp);
 		
 		show_all();
 	}

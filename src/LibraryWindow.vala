@@ -477,9 +477,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addItem(sideTree.library_iter, null, vw, "Music");
 		mainViews.pack_start(vw, true, true, 0);
 		
-		Store.StoreView storeView = new Store.StoreView(lm, this);
-		sideTree.addItem(sideTree.network_iter, null, storeView, "Music Store");
-		mainViews.pack_start(storeView, true, true, 0);
+		if(BeatBox.Beatbox.enableStore) {
+			Store.StoreView storeView = new Store.StoreView(lm, this);
+			sideTree.addItem(sideTree.network_iter, null, storeView, "Music Store");
+			mainViews.pack_start(storeView, true, true, 0);
+		}
 		
 		
 		// load smart playlists
@@ -1337,9 +1339,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public void updateMillerColumns() {
 		settings.setViewMode(viewSelector.selected);
 			
-		bool similarcheck = ((ViewWrapper)sideTree.getSelectedWidget()).list is SimilarPane && !((ViewWrapper)sideTree.getSelectedWidget()).similarsFetched;
+		bool similarcheck = sideTree.getSelectedWidget() is ViewWrapper && 
+							((ViewWrapper)sideTree.getSelectedWidget()).list is SimilarPane && 
+							!((ViewWrapper)sideTree.getSelectedWidget()).similarsFetched;
+		bool storecheck = (sideTree.getSelectedWidget() is Store.StoreView);
 		
-		miller.set_visible(viewSelector.selected == 2 && !similarcheck);
+		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck);
 		millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
 	}
 	

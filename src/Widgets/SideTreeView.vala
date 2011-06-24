@@ -461,6 +461,7 @@ public class BeatBox.SideTreeView : TreeView {
 					if(!sv.isInitialized) {
 						sv.homeView.populate();
 						sv.isInitialized = true;
+						lw.updateMillerColumns();
 					}
 				}
 				else if(iter == playlists_similar_iter) {

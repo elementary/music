@@ -75,7 +75,7 @@ public class Store.AlbumView : ScrolledWindow {
 		Gdk.Color.parse("#ffffff", out white);
 		viewArtist = new TagLabel("View Artist", blue, lightblue, white, release.artist, true);
 		purchase = new TagLabel("Purchase Release", blue, lightblue, white, release, true);
-		
+		stdout.printf("hi0\n");
 		releaseDate = new Gtk.Label("");
 		priceFlags = new HBox(false, 0);
 		trackList = new Store.TrackList(parent, "Album", true);
@@ -100,21 +100,22 @@ public class Store.AlbumView : ScrolledWindow {
 		/* make some 'category' labels */
 		var trackListLabel = new Gtk.Label("");
 		var similarReleasesLabel = new Gtk.Label("");
-		
+		stdout.printf("hi\n");
 		trackListLabel.xalign = 0.0f;
 		similarReleasesLabel.xalign = 0.0f;
 		trackListLabel.set_markup("<span weight=\"bold\" size=\"larger\">Track List</span>");
 		similarReleasesLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Releases</span>");
-		
+		stdout.printf("hi\n");
 		// set minimal size for main widgets
 		leftSide.set_size_request(200, -1);
 		trackList.set_size_request(-1, 250);
 		similarReleases.set_size_request(-1, 200);
-		
+		stdout.printf("hi\n");
 		leftSide.pack_start(wrap_alignment(viewArtist, 0, 0, 10, 0), false, true, 0);
+		stdout.printf("hi\n");
 		leftSide.pack_start(wrap_alignment(purchase, 0, 0, 10, 0), false, true, 0);
-		stdout.printf("label: %s %s\n", release.label.name, release.label.labelID.to_string());
-		leftSide.pack_start(wrap_alignment(new Gtk.Label(release.label.name), 0, 10, 10, 20), false, true, 0);
+		//stdout.printf("label: %s %s\n", release.label.name, release.label.labelID.to_string());
+		//leftSide.pack_start(wrap_alignment(new Gtk.Label(release.label.name), 0, 10, 10, 20), false, true, 0);
 		
 		//rightSide.pack_start(wrap_alignment(trackListLabel, 0, 0, 10, 20), false, true, 0);
 		rightSide.pack_start(wrap_alignment(trackList, 0, 20, 40, 20), true, true, 0);

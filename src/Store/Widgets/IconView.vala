@@ -61,6 +61,8 @@ public class Store.IconView : Gtk.ScrolledWindow {
 		
 		show_all();
 		
+		set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
+		
 		icons.item_activated.connect(itemActivated);
 	}
 	

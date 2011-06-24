@@ -26,6 +26,7 @@ public class BeatBox.Beatbox : GLib.Object {
 	public static LibraryWindow _program;
 	private static DataBaseManager dbm;
 	private static StreamPlayer _player;
+	public static bool enableStore;
 	
 	/*public const string STOCK_BEATBOX = "beatbox";
 	public const string STOCK_MUSIC_LIBRARY = "folder-music";
@@ -65,6 +66,8 @@ public class BeatBox.Beatbox : GLib.Object {
 		Gtk.init(ref args);
 		
 		Unique.App app = new Unique.App ("org.elementary.beatbox", null);
+		
+		enableStore = (args[1] == "elementary") && (args[2] == "rocks");
 	
 		if (app.is_running) { //not starting if already running
 			Unique.Command command = Unique.Command.ACTIVATE;

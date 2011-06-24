@@ -66,7 +66,11 @@ public class Store.HomeView : ScrolledWindow {
 		trackList.set_size_request(-1, 300);
 		topRock.set_size_request(-1, 200);
 		
-		add_with_viewport(allItems);
+		Viewport vp = new Viewport(null, null);
+		vp.set_shadow_type(ShadowType.NONE);
+		vp.add(allItems);
+		
+		add(vp);
 		
 		show_all();
 		

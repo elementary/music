@@ -41,6 +41,8 @@ public class Store.ObjectList : ScrolledWindow {
 		
 		add(view);
 		
+		set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
+		
 		show_all();
 	}
 	

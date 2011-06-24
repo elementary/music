@@ -91,6 +91,8 @@ public class Store.SearchList : Gtk.ScrolledWindow {
 		
 		add(view);
 		
+		set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
+		
 		show_all();
 	}
 	

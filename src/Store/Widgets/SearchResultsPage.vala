@@ -56,7 +56,11 @@ public class Store.SearchResultsView : ScrolledWindow {
 		
 		allLists.pack_start(bottomLists);
 		
-		add_with_viewport(allLists);
+		Viewport vp = new Viewport(null, null);
+		vp.set_shadow_type(ShadowType.NONE);
+		vp.add(allLists);
+		
+		add(vp);
 		
 		show_all();
 	}
