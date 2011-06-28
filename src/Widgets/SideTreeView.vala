@@ -203,8 +203,10 @@ public class BeatBox.SideTreeView : TreeView {
 		/*sideTreeModel.append(out devices_iter, null);
 		sideTreeModel.set(devices_iter, 0, null, 1, null, 2, "<b>Devices</b>");*/
 		
-		sideTreeModel.append(out network_iter, null);
-		sideTreeModel.set(network_iter, 0, null, 1, null, 2, "<b>Network</b>");
+		if(BeatBox.Beatbox.enableStore) {
+			sideTreeModel.append(out network_iter, null);
+			sideTreeModel.set(network_iter, 0, null, 1, null, 2, "<b>Network</b>");
+		}
 		
 		sideTreeModel.append(out playlists_iter, null);
 		sideTreeModel.set(playlists_iter, 0, null, 1, null, 2, "<b>Playlists</b>");

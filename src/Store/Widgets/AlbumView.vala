@@ -33,10 +33,14 @@ public class Store.AlbumView : ScrolledWindow {
 	private Image albumArt;
 	private Gtk.Label albumName;
 	private Gtk.Label albumArtist;
-	private TagLabel viewArtist;
 	private TagLabel purchase;
 	private Gtk.Label releaseDate;
+	private Gtk.Label producer;
 	private HBox priceFlags;
+	private VBox rightButtons;
+	private VBox middleLeft;
+	private Gtk.Label description;
+	private HBox tags; 
 	private Store.TrackList trackList;
 	private Store.IconView similarReleases;
 	
@@ -57,94 +61,101 @@ public class Store.AlbumView : ScrolledWindow {
 	}
 	
 	public void buildUI() {
+		/* put it in event box so we can color background white */
+		EventBox eb = new EventBox();
+		
+		// make the background white
+		Gdk.Color c = Gdk.Color();
+		Gdk.Color.parse("#FFFFFF", out c);
+		eb.modify_bg(StateType.NORMAL, c);
+		
 		VBox allDetails = new VBox(false, 0);
 		HBox topRow = new HBox(false, 0);
 		VBox topInfo = new VBox(false, 0);
 		VBox topFlags = new VBox(false, 0);
-		HBox splitter = new HBox(false, 0);
-		VBox leftSide = new VBox(false, 0);
-		VBox rightSide = new VBox(false, 0);
 		
 		albumArt = new Image();
 		albumName = new Gtk.Label("");
 		albumArtist = new Gtk.Label("");
-		
-		Gdk.Color blue, lightblue, white;
-		Gdk.Color.parse("#366C9F", out blue);
-		Gdk.Color.parse("#E8EEF5", out lightblue);
-		Gdk.Color.parse("#ffffff", out white);
-		viewArtist = new TagLabel("View Artist", blue, lightblue, white, release.artist, true);
-		purchase = new TagLabel("Purchase Release", blue, lightblue, white, release, true);
-		stdout.printf("hi0\n");
 		releaseDate = new Gtk.Label("");
-		priceFlags = new HBox(false, 0);
-		trackList = new Store.TrackList(parent, "Album", true);
+		producer = new Gtk.Label("");
+		priceFlags = new HBox(false, 5);
+		rightButtons = new VBox(false, 0);
+		description = new Gtk.Label("");
+		tags = new HBox(false, 5);
+		trackList = new Store.TrackList(parent, "Album", false);
 		similarReleases = new Store.IconView(parent);
 		
+		HBox topInfoSplit = new HBox(false, 0);
 		topInfo.pack_start(wrap_alignment(albumName, 20, 10, 10, 0), false, true, 0);
 		topInfo.pack_start(wrap_alignment(albumArtist, 0, 10, 10, 0), false, true, 0);
 		topInfo.pack_start(wrap_alignment(releaseDate, 0, 10, 10, 0), false, true, 0);
+		topInfo.pack_start(wrap_alignment(producer, 0, 10, 10, 0), false, true, 0);
 		topInfo.pack_start(wrap_alignment(priceFlags, 0, 10, 10, 0), false, true, 0);
 		
-		topRow.pack_start(wrap_alignment(albumArt, 20, 10, 10, 20), false, true, 0);
-		topRow.pack_start(topInfo, true, true, 0);
+		topInfoSplit.pack_start(topInfo, true, true, 0);
+		topInfoSplit.pack_start(rightButtons, false, true, 0);
+		
+		topRow.pack_start(wrap_alignment(albumArt, 20, 10, 20, 20), false, true, 0);
+		topRow.pack_start(topInfoSplit, true, true, 0);
 		
 		albumName.xalign = 0.0f;
 		albumArtist.xalign = 0.0f;
 		releaseDate.xalign = 0.0f;
+		producer.xalign = 0.0f;
 		
 		albumName.ellipsize = Pango.EllipsizeMode.END;
 		albumArtist.ellipsize = Pango.EllipsizeMode.END;
 		releaseDate.ellipsize = Pango.EllipsizeMode.END;
+		producer.ellipsize = Pango.EllipsizeMode.END;
 		
 		/* make some 'category' labels */
-		var trackListLabel = new Gtk.Label("");
 		var similarReleasesLabel = new Gtk.Label("");
-		stdout.printf("hi\n");
-		trackListLabel.xalign = 0.0f;
 		similarReleasesLabel.xalign = 0.0f;
-		trackListLabel.set_markup("<span weight=\"bold\" size=\"larger\">Track List</span>");
 		similarReleasesLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Releases</span>");
-		stdout.printf("hi\n");
+		
 		// set minimal size for main widgets
-		leftSide.set_size_request(200, -1);
+		//description.set_size_request(100, 600);
 		trackList.set_size_request(-1, 250);
-		similarReleases.set_size_request(-1, 200);
-		stdout.printf("hi\n");
-		leftSide.pack_start(wrap_alignment(viewArtist, 0, 0, 10, 0), false, true, 0);
-		stdout.printf("hi\n");
-		leftSide.pack_start(wrap_alignment(purchase, 0, 0, 10, 0), false, true, 0);
-		//stdout.printf("label: %s %s\n", release.label.name, release.label.labelID.to_string());
-		//leftSide.pack_start(wrap_alignment(new Gtk.Label(release.label.name), 0, 10, 10, 20), false, true, 0);
-		
-		//rightSide.pack_start(wrap_alignment(trackListLabel, 0, 0, 10, 20), false, true, 0);
-		rightSide.pack_start(wrap_alignment(trackList, 0, 20, 40, 20), true, true, 0);
-		rightSide.pack_start(wrap_alignment(similarReleasesLabel, 0, 0, 10, 20), false, true, 0);
-		rightSide.pack_start(wrap_alignment(similarReleases, 0, 20, 40, 20), true, true, 0);
-		
-		splitter.pack_start(wrap_alignment(leftSide, 0, 0, 40, 20), false, true, 0);
-		splitter.pack_start(rightSide, true, true, 0);
+		similarReleases.set_size_request(-1, 180);
 		
 		allDetails.pack_start(topRow, true, true, 0);
-		allDetails.pack_start(splitter, true, true, 0);
+		allDetails.pack_start(wrap_alignment(description, 0, 20, 20, 20), true, true, 0);
+		allDetails.pack_start(wrap_alignment(trackList, 0, 20, 6, 20), true, true, 0);
+		allDetails.pack_start(wrap_alignment(tags, 0, 20, 6, 20), false, true, 0);
+		allDetails.pack_start(wrap_alignment(similarReleasesLabel, 34, 0, 6, 20), false, true, 0);
+		allDetails.pack_start(wrap_alignment(similarReleases, 0, 20, 40, 20), true, true, 0);
 		
 		/** now fill in with the artist's data **/
+		//description.ellipsize = Pango.EllipsizeMode.END;
+		description.set_line_wrap(true);
+		//description.set_line_wrap_mode(Pango.WrapMode.WORD);
+		description.yalign = 0.0f;
+		description.xalign = 0.0f;
+		
+		eb.add(allDetails);
 		
 		Viewport vp = new Viewport(null, null);
 		vp.set_shadow_type(ShadowType.NONE);
-		vp.add(allDetails);
+		vp.add(eb);
 		
 		add(vp);
 		
 		show_all();
 		
-		viewArtist.button_press_event.connect( (event) => {
+		/*viewArtist.button_press_event.connect( (event) => {
 			var newView = new ArtistView(parent, parent.store, release.artist);
 			parent.setView(newView);
 			newView.populate();
 			
 			return false;
-		});
+		});*/
+		
+		this.size_allocate.connect(resized);
+	}
+	
+	public virtual void resized(Gdk.Rectangle rec) {
+		description.set_size_request(rec.width - 40, -1);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -163,6 +174,7 @@ public class Store.AlbumView : ScrolledWindow {
 			Thread.create<void*>(setalbum_thread_function, false);
 			Thread.create<void*>(gettracks_thread_function, false);
 			Thread.create<void*>(getsimilarreleases_thread_function, false);
+			Thread.create<void*>(getalbuminfo_thread_function, false);
 			parent.max = 5;
 			parent.index = 0;
 			parent.progressNotification();
@@ -229,37 +241,29 @@ public class Store.AlbumView : ScrolledWindow {
 	public void* gettaglabels_thread_function () {
 		var labels = new LinkedList<Store.TagLabel>();
 		
-		Gdk.Color orange;
-		Gdk.Color lightorange;
-		Gdk.Color white;
-		
-		Gdk.Color.parse("#F67F0F", out orange);
-		Gdk.Color.parse("#FFFF00", out lightorange);
-		Gdk.Color.parse("#FFFFFF", out white);
-		
 		foreach(var format in release.formats) {
 			stdout.printf("format: %s %s\n", format.fileFormat, format.bitrate.to_string());
 			if(format.fileFormat.down().contains("mp3")) {
-				labels.add(new TagLabel("MP3", orange, lightorange, white, format, false));
-				labels.add(new TagLabel(format.bitrate.to_string() + "k", orange, lightorange, white, format, false));
+				labels.add(new TagLabel("MP3", "orange", format, false));
+				labels.add(new TagLabel(format.bitrate.to_string() + "k", "orange", format, false));
 				
 				if(format.drmFree)
-					labels.add(new TagLabel("DRM Free", orange, lightorange, white, format, false));
+					labels.add(new TagLabel("DRM Free", "orange", format, false));
 			}
 		}
 		
 		if(labels.size == 0 && release.formats.size > 0) {
 			Format format = release.formats.get(0);
 			
-			labels.add(new TagLabel(format.fileFormat, orange, lightorange, white, format, false));
-			labels.add(new TagLabel(format.bitrate.to_string() + "k", orange, lightorange, white, format, false));
+			labels.add(new TagLabel(format.fileFormat, "orange", format, false));
+			labels.add(new TagLabel(format.bitrate.to_string() + "k", "orange", format, false));
 			
 			if(format.drmFree)
-				labels.add(new TagLabel("DRM Free", orange, lightorange, white, format, false));
+				labels.add(new TagLabel("DRM Free", "orange", format, false));
 		}
 		
 		if(release.price != null/* && !release.price.formattedPrice.contains("0.00")*/) {
-			labels.add(new TagLabel(release.price.formattedPrice, orange, lightorange, white, release.price, false));
+			labels.add(new TagLabel(release.price.formattedPrice, "orange", release.price, false));
 		}
 		
 		++parent.index;
@@ -267,7 +271,7 @@ public class Store.AlbumView : ScrolledWindow {
 		Idle.add( () => { 
 			foreach(var lab in labels) {
 				stdout.printf("label added: %s\n", lab.label);
-				priceFlags.pack_start(lab, false, false, 5);
+				priceFlags.pack_start(lab, false, false, 0);
 			}
 				
 			++parent.index;
@@ -277,11 +281,58 @@ public class Store.AlbumView : ScrolledWindow {
 		return null;
 	}
 	
+	public void* getalbuminfo_thread_function () {
+		/* first get album description */
+		LastFM.AlbumInfo album = new LastFM.AlbumInfo.basic();
+		
+		string artist_s = release.artist.name;
+		string album_s = release.title;
+		
+		/* fetch album info now. only save if still on current song */
+		//if(!parent.lm.album_info_exists(album_s + " by " + artist_s)) {
+			
+			album = new LastFM.AlbumInfo.with_info(artist_s, album_s);
+			stdout.printf("fetched album\n");
+			if(album != null) {
+				//parent.lm.save_album(album);
+				stdout.printf("saved album\n");
+			}
+			
+		//}
+		//else {
+		//	album = parent.lm.get_album(album_s + " by " + artist_s);
+		//}
+		
+		/* now get the 7digital tags */
+		var tags = new LinkedList<Store.Tag>();
+		foreach(var tag in release.getTags(1))
+			tags.add(tag);
+		
+		Idle.add( () => {
+			if(album != null && album.summary != null && album.summary.length > 200) { 
+				setDescription(album.summary);
+				//description.set_size_request(-1, 100);
+			}
+			
+			foreach(var tag in tags) {
+				stdout.printf("tag added: %s\n", tag.text);
+				this.tags.pack_start(new TagLabel(tag.text, "blue", tag, true), false, false, 0);
+			}
+			
+			return false;
+		});
+		
+		return null;
+	}
+	
 	public void setAlbum(Store.Release release) {
 		this.release = release;
-		albumName.set_markup("<span weight=\"bold\" font=\"40\">" + release.title.replace("&", "&amp;") + "</span>");
-		albumArtist.set_markup("<span font=\"24\">" + release.artist.name.replace("&", "&amp;") + "</span>");
-		releaseDate.set_markup("<span font=\"14\">Released " + release.releaseDate.substring(0, 10).replace("-", "/") + "</span>");
+		albumName.set_markup("<span weight=\"bold\" font=\"34\">" + release.title.replace("&", "&amp;") + "</span>");
+		albumArtist.set_markup("<span font=\"22\">" + release.artist.name.replace("&", "&amp;") + "</span>");
+		releaseDate.set_markup("<span font=\"11\">Released " + release.releaseDate.substring(0, 10).replace("-", "/") + "</span>");
+		
+		if(release.label.name != null && release.label.name != "")
+			producer.set_markup("<span font=\"11\">" + release.label.name.substring(0, 10).replace("-", "/") + "</span>");
 		
 		if(release.image == null)
 			release.image = Store.store.getPixbuf(release.imagePath, 200, 200);
@@ -291,6 +342,10 @@ public class Store.AlbumView : ScrolledWindow {
 		}
 		else
 			albumArt.set_from_pixbuf(defaultPix);
+	}
+	
+	public void setDescription(string desc) {
+		description.set_markup(desc);
 	}
 	
 	public void addTrack(Store.Track track) {

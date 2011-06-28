@@ -106,9 +106,14 @@ public class BeatBox.MillerColumns : HBox {
 			genresSet.add(lm.song_from_id(id).genre);
 		}
 		
-		artists.populate(artistsSet);
-		albums.populate(albumsSet);
-		genres.populate(genresSet);
+		if(artists.selected == "All Artists")
+			artists.populate(artistsSet);
+			
+		if(albums.selected == "All Albums")
+			albums.populate(albumsSet);
+		
+		if(genres.selected == "All Genres")
+			genres.populate(genresSet);
 	}
 	
 	public virtual void genreSelected(string text) {

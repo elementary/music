@@ -33,6 +33,7 @@ public class LastFM.AlbumInfo : Object {
 	private string _mbid;
 	private string _url;
 	private string _releasedate;
+	private string _summary;
 	
 	private int _listeners;
 	private int _playcount;
@@ -154,6 +155,12 @@ public class LastFM.AlbumInfo : Object {
 				else if(node_name == "url")
 					tagToAdd.url = node_content;
 			}
+			else if(parent == "albumwiki") {
+				if(node_name == "summary")
+					_summary = node_content;
+				
+				stdout.printf("%s\n", node_content);
+			}
 
             // Followed by its children nodes
             parse_node (iter, parent + node_name);
@@ -183,6 +190,11 @@ public class LastFM.AlbumInfo : Object {
 	public string releasedate {
 		get { return _releasedate; }
 		set { _releasedate = value; }
+	}
+	
+	public string summary {
+		get { return _summary; }
+		set { _summary = value; }
 	}
 	
 	public int listeners {

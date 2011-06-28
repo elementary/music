@@ -30,7 +30,7 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 	string secondaryText; // Either 'Artist' or 'Album'
 	bool headersVisible;
 	
-	private bool alreadyResized;
+	private int alreadyResized;
 	
 	public signal void stream_requested(Store.Track track);
 	public signal void purchase_requested(Store.Track track);
@@ -38,7 +38,7 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 	public TrackList(Store.StoreView view, string secondary, bool showHeaders) {
 		parent = view;
 		secondaryText = secondary;
-		alreadyResized = false;
+		alreadyResized = 0;
 		headersVisible = showHeaders;
 		
 		buildUI();
@@ -46,7 +46,7 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 	
 	public void buildUI() {
 		view = new TreeView();
-		store = new ListStore(6, typeof(Store.Track), typeof(string), typeof(string), typeof(string), typeof(string), typeof(string));
+		store = new ListStore(5, typeof(Store.Track), typeof(string), typeof(string), typeof(string), typeof(string));
 		view.set_model(store);
 		
 		// setup the columns
@@ -59,23 +59,25 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 		cell.ellipsize = Pango.EllipsizeMode.END;
 		view.insert_column_with_attributes(-1, "#", cell, "text", 1, null);
 		view.insert_column_with_attributes(-1, "Title", cell, "text", 2, null);
-		view.insert_column_with_attributes(-1, secondaryText, cell, "text", 3, null);
-		view.insert_column_with_attributes(-1, "Length", cell, "text", 4, null);
-		view.insert_column_with_attributes(-1, "Price", cell, "text", 5, null);
+		view.insert_column_with_attributes(-1, "Length", cell, "text", 3, null);
+		view.insert_column_with_attributes(-1, "Price", cell, "text", 4, null);
 		
 		view.get_column(1).fixed_width = 30;
-		view.get_column(4).fixed_width = 55;
-		view.get_column(5).fixed_width = 80;
+		view.get_column(3).fixed_width = 55;
+		view.get_column(4).fixed_width = 80;
 		
 		foreach(var column in view.get_columns()) {
 			column.sizing = TreeViewColumnSizing.FIXED;
 		}
 		
-		view.set_headers_visible(headersVisible);
+		view.get_column(2).sizing = TreeViewColumnSizing.AUTOSIZE;
+		view.get_column(2).expand = true;
+		
+		//view.set_headers_visible(headersVisible);
 		
 		view.button_press_event.connect(trackListClick);
 		view.row_activated.connect(trackListDoubleClick);
-		view.size_allocate.connect(resized);
+		//view.size_allocate.connect(resized);
 		
 		add(view);
 		
@@ -88,11 +90,11 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 		TreeIter iter;
 		store.append(out iter);
 		
-		store.set(iter, 0, track, 1, store.iter_n_children(null).to_string(), 2, track.title, 3, ((secondaryText == "Artist") ? track.artist.name : track.release.title), 4, track.prettyDuration(), 5, track.price.formattedPrice);
+		store.set(iter, 0, track, 1, store.iter_n_children(null).to_string(), 2, track.title, 3, track.prettyDuration(), 4, track.price.formattedPrice);
 	}
 	
 	public virtual void resized(Gdk.Rectangle rectangle) {
-		if(alreadyResized) {
+		/*if(alreadyResized) {
 			alreadyResized = false;
 			return;
 		}
@@ -105,14 +107,7 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 		int others = 165; // total of other widths combined
 		int remainder = width - others;
 		
-		if(remainder <= 270) {
-			view.get_column(2).fixed_width = 180;
-			view.get_column(3).fixed_width = 90;
-		}
-		else if(view.get_column(2).fixed_width != (int)(remainder * 0.7f)) {
-			view.get_column(2).fixed_width = (int)(remainder * 0.7f);
-			view.get_column(3).fixed_width = (int)(remainder * 0.3f);
-		}
+		view.get_column(2).fixed_width = remainder;*/
 	}
 	
 	public virtual bool trackListClick(Gdk.EventButton event) {

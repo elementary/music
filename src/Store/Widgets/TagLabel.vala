@@ -15,7 +15,7 @@ public class Store.TagLabel : EventBox {
 	public Color background; // default background color
 	public Color secondary; // new text color on hover
 	
-	public TagLabel (string label, Color foreground, Color background, Color secondary, GLib.Object obj, bool hover_change) {
+	public TagLabel (string label, string scheme, GLib.Object obj, bool hover_change) {
 		
 		this._label = new Gtk.Label (label);
 		this.foreground = foreground;
@@ -23,6 +23,17 @@ public class Store.TagLabel : EventBox {
 		this.secondary = secondary;
 		this.obj = obj;
 		this.hover_change = hover_change;
+		
+		if(scheme == "orange") {
+			Gdk.Color.parse("#F67F0F", out foreground);
+			Gdk.Color.parse("#FFFF00", out background);
+			Gdk.Color.parse("#FFFFFF", out secondary);
+		}
+		else if(scheme == "blue") {
+			Gdk.Color.parse("#366CA3", out foreground);
+			Gdk.Color.parse("#E8EEF5", out background);
+			Gdk.Color.parse("#FFFFFF", out secondary);
+		}
 		
 		// EventBox properties
 		set_visible_window (false);
