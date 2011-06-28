@@ -1292,6 +1292,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		if(hint == Hint.MUSIC)
 			lm.remove_songs(toRemove);
+		if(hint == Hint.PLAYLIST)
+			lm.save_playlists();
+		else if(hint == Hint.QUEUE)
+			lm.save_playlists();
 			
 		music_model.removeSongs(toRemoveIDs);
 	}

@@ -115,6 +115,12 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 				if(next is LinkedList<string>) {
 					//dbm.remove_songs((LinkedList<string>)next);
 				}
+				else if(next is Playlist) {
+					dbm.remove_playlist((Playlist)next);
+				}
+				else if(next is SmartPlaylist) {
+					dbm.remove_smart_playlist((SmartPlaylist)next);
+				}
 			}
 			else {
 				inThread = false;

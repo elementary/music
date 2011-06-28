@@ -217,14 +217,11 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public virtual void filterViewItemClicked(string album, string artist) {
-		stdout.printf("test---------------\n");
-		
 		if(lw.millerVisible)
 			lw.viewSelector.selected = 2;
 		else
 			lw.viewSelector.selected = 1;
 		
-		stdout.printf("setting text");
 		lw.miller.albums.selected = album;
 	}
 }

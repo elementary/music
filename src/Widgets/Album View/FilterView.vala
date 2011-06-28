@@ -157,10 +157,7 @@ public class BeatBox.FilterView : VBox {
 	}
 	
 	public static int songCompareFunc(Song a, Song b) {
-		if(a.artist.down() == b.artist.down())
-			return (a.album.down() > b.album.down()) ? 1 : -1;
-		else
-			return (a.artist.down() > b.artist.down()) ? 1 : -1;
+		return (a.album > b.album) ? 1 : -1;
 	}
 	
 	public virtual NavigationResponse navigationRequested(WebFrame frame, NetworkRequest request) {

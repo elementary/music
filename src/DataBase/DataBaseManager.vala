@@ -342,6 +342,21 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		}
 	}
 	
+	public void remove_playlist(Playlist p) {
+		try {
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare("DELETE FROM `playlists` WHERE rowid=:rowid");
+			
+			query.set_int(":rowid", p.rowid);
+			query.execute();
+			
+			transaction.commit();
+		}
+		catch (SQLHeavy.Error err) {
+			stdout.printf("Could not remove playlist from db: %s\n", err.message);
+		}
+	}
+	
 	/** SMART PLAYLISTS **
 	 * load_smart_playlists() loads smart playlists from db
 	 * 
@@ -467,11 +482,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
 			
-			index = 0;
-			item_count = smarts.size;
 			foreach(SmartPlaylist s in smarts) {
-				db_progress(null, ((double)index++)/((double)item_count));
-				
 				query.set_string(":name", s.name);
 				query.set_string(":and_or", s.conditional);
 				query.set_string(":queries", s.queries_to_string());
@@ -510,6 +521,21 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		}
 		catch(SQLHeavy.Error err) {
 			stdout.printf("Could not update smart playlist: %s \n", err.message);
+		}
+	}
+	
+	public void remove_smart_playlist(SmartPlaylist p) {
+		try {
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare("DELETE FROM `smart_playlists` WHERE rowid=:rowid");
+			
+			query.set_int(":rowid", p.rowid);
+			query.execute();
+			
+			transaction.commit();
+		}
+		catch (SQLHeavy.Error err) {
+			stdout.printf("Could not remove smart playlist from db: %s\n", err.message);
 		}
 	}
 	

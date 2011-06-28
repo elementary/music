@@ -302,6 +302,9 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		
 		if(s == _selected) {
 			view.get_selection().select_iter(item);
+			
+			view.scroll_to_cell(path, null, false, 0.0f, 0.0f);
+			
 			return true;
 		}
 		else

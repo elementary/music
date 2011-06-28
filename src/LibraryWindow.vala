@@ -927,7 +927,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void on_quit() {
 		//first: the user will never know that we don't actually close in the speed of light :p
-		this.hide();
+		//this.hide();
 		
 		//second: stop music
 		stdout.printf("Stopping playback\n");
@@ -937,13 +937,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//lm.save_songs();
 		
 		stdout.printf("Saving playlists\n");
-		lm.save_playlists();
-		lm.save_smart_playlists();
+		//lm.save_playlists();
+		//lm.save_smart_playlists();
 		
 		stdout.printf("Saving LastFM Info\n");
-		lm.save_artists();
-		lm.save_albums();
-		lm.save_tracks();
+		//lm.save_artists();
+		//lm.save_albums();
+		//lm.save_tracks();
 	}
 	
 	public virtual void fileImportMusicClick() {
