@@ -40,7 +40,12 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	/** Initialize data storage, columns, etc. **/
 	public MillerModel(string category) {
 		this.category = category;
-       rows = new Sequence<string>(null);
+		
+#if VALA_0_14
+		rows = new Sequence<string>();
+#else
+		rows = new Sequence<string>(null);
+#endif
        
        sort_column_id = -2;
        sort_direction = SortType.ASCENDING;
@@ -81,7 +86,11 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	}
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
+#if VALA_0_14
+	public TreePath? get_path (TreeIter iter) {
+#else
 	public TreePath get_path (TreeIter iter) {
+#endif
 		return new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
 	}
 

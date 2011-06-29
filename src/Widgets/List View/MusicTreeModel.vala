@@ -57,7 +57,12 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		this.lm = lm;
 		_columns = column_types;
 		_playing = playing;
-       rows = new Sequence<Song>(null);
+
+#if VALA_0_14
+		rows = new Sequence<Song>();
+#else
+		rows = new Sequence<Song>(null);
+#endif
        
        sort_column_id = -2;
        sort_direction = SortType.ASCENDING;
@@ -107,7 +112,11 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
+#if VALA_0_14
+	public TreePath? get_path (TreeIter iter) {
+#else
 	public TreePath get_path (TreeIter iter) {
+#endif
 		return new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
 	}
 

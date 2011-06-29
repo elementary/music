@@ -54,7 +54,12 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	public AlbumViewModel(LibraryManager lm, Gdk.Pixbuf defaultImage) {
 		this.lm = lm;
 		this.defaultImage = defaultImage;
-       rows = new Sequence<AlbumViewModelObject>(null);
+
+#if VALA_0_14
+		rows = new Sequence<AlbumViewModelObject>();
+#else
+		rows = new Sequence<AlbumViewModelObject>(null);
+#endif
        
        stamp = (int)GLib.Random.next_int();
 	}
@@ -95,7 +100,11 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	}
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
+#if VALA_0_14
+	public TreePath? get_path (TreeIter iter) {
+#else
 	public TreePath get_path (TreeIter iter) {
+#endif
 		return new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
 	}
 
