@@ -269,7 +269,11 @@ public class BeatBox.SideTreeView : TreeView {
 			} while(true);
 			
 			sideTreeModel.set(item, 0, o, 1, w, 2, name.replace("&", "&amp;"));
-			this.get_selection().select_iter(item);
+			if(visible) {
+				this.get_selection().unselect_all();
+				this.get_selection().select_iter(item);
+				sideListSelectionChange();
+			}
 			
 			return item;
 		}
@@ -294,7 +298,11 @@ public class BeatBox.SideTreeView : TreeView {
 			} while(true);
 			
 			sideTreeModel.set(item, 0, o, 1, w, 2, name.replace("&", "&amp;"));
-			this.get_selection().select_iter(item);
+			if(visible) {
+				this.get_selection().unselect_all();
+				this.get_selection().select_iter(item);
+				sideListSelectionChange();
+			}
 			
 			return item;
 		}
@@ -341,9 +349,7 @@ public class BeatBox.SideTreeView : TreeView {
 	}
 	
 	public virtual void sideListSelectionChange() {
-		stdout.printf("updating view..\n");
 		sideTreeModel.foreach(updateView);
-		stdout.printf("updated\n");
 		
 		if(current_widget is ViewWrapper) {
 			((ViewWrapper)current_widget).setStatusBarText();
@@ -553,7 +559,6 @@ public class BeatBox.SideTreeView : TreeView {
 		
 		if(w != null) {
 			if(this.get_selection().iter_is_selected(item)) {
-				stdout.printf("is selected\n");
 				w.show();
 				this.current_widget = w;
 				if(w is ViewWrapper) {
@@ -639,7 +644,9 @@ public class BeatBox.SideTreeView : TreeView {
 					
 					sideTreeModel.remove(pivot);
 					addItem(playlists_iter, p, w, p.name);
+					
 					((ViewWrapper)w).populateViews(lm.songs_from_playlist(p.rowid), false);
+					lm.save_playlists();
 					
 					break;
 				}

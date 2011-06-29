@@ -113,7 +113,6 @@ public class BeatBox.ViewWrapper : VBox {
 			SimilarPane sp = (SimilarPane)(list);
 			
 			if(!similarsFetched) { // still fetching similar songs
-				stdout.printf("1\n");
 				errorBox.show();
 				list.hide();
 				filterView.hide();
@@ -126,17 +125,13 @@ public class BeatBox.ViewWrapper : VBox {
 					errorBox.show();
 					list.hide();
 					filterView.hide();
-					stdout.printf("2\n");
 					
 					return;
 				}
 				else {
-					stdout.printf("3\n");
 					errorBox.hide();
 				}
 			}
-			
-			stdout.printf("always\n");
 			
 			// if we get here, we are following normal behavior
 		}

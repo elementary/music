@@ -603,6 +603,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not set image art: %s\n", err.message);
+					lm.song_info.song.setAlbumArtPath("");
 				}
 			}
 			else {
