@@ -276,7 +276,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		settingsMenu.append(helpTranslate);
 		settingsMenu.append(helpReport);
 		settingsMenu.append(new SeparatorMenuItem());
-		settignsMenu.append(editEqualizer);
+		settingsMenu.append(editEqualizer);
 		settingsMenu.append(editPreferences);
 		settingsMenu.append(helpAbout);
 		
@@ -1160,6 +1160,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void editEqualizerClick() {
+		EqualizerWindow ew = new EqualizerWindow(lm, this);
 		
 	}
 	

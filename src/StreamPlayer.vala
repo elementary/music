@@ -23,28 +23,15 @@
 using Gst;
 using Gee;
 
-public class BeatBox.EqualizerPreset {
-	public float freq;
-	public float width;
-	public float gain;
-	
-	public EqualizerPreset(float freq, float width, float gain) {
-		this.freq = freq;
-		this.width = width;
-		this.gain = gain;
-	}
-}
-
 public class BeatBox.StreamPlayer : GLib.Object {
 	MainLoop loop;
-    dynamic Bin bin;
+	dynamic Bin bin;
+    dynamic Pipeline pipeline;
     dynamic Element play;
     dynamic Element sink;
     dynamic Element equalizer;
     Gst.Bus bus;
     Song current;
-    
-	public ArrayList<BeatBox.EqualizerPreset> presetList;
     
     /** signals **/
     public signal void end_of_stream(Song s);
@@ -53,11 +40,14 @@ public class BeatBox.StreamPlayer : GLib.Object {
     public StreamPlayer(string[] args) {
 		Gst.init(ref args);
 		bin = new Gst.Bin("bin");
-		play = ElementFactory.make("playbin", "playbin");
+		pipeline = new Gst.Pipeline("pipeline");
+		play = ElementFactory.make("playbin2", "playbin");
 		equalizer = ElementFactory.make("equalizer-nbands", "equalizer");
 		sink = ElementFactory.make("autoaudiosink", "sink");
 		
-		equalizer.set("num-bands", 3, null);
+		bin.add_many(pipeline, play, equalizer, sink);
+		
+		equalizer.set("num-bands", 10, null);
 		
 		bus = play.get_bus();
 		bus.add_watch(bus_callback);
@@ -65,23 +55,25 @@ public class BeatBox.StreamPlayer : GLib.Object {
 		GhostPad gPad = new GhostPad("sink", equalizer.get_static_pad("sink"));
 		bin.add_pad(gPad);
 		
-		presetList = new ArrayList<BeatBox.EqualizerPreset>();
-		presetList.add(new BeatBox.EqualizerPreset(120.0f, 40.0f, -3.0f));
-		presetList.add(new BeatBox.EqualizerPreset(500.0f, 20.0f, 12.0f));
-		presetList.add(new BeatBox.EqualizerPreset(1503.0f, 2.0f, 15.0f));
+		int[10] freqs = {60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000};
 		
-		for (int index = 0; index < 3; index++) {
+		float last_freq = 0;
+		for (int index = 0; index < 10; index++) {
 			Gst.Object band = ((Gst.ChildProxy)equalizer).get_child_by_index(index);
-			band.set("freq", presetList.get(index).freq,
-			"bandwidth", presetList.get(index).width,
-			"gain", presetList.get(index).gain);
+			
+			float freq = freqs[index];
+			float bandwidth = freq - last_freq;
+			last_freq = freq;
+			
+			band.set("freq", freq,
+			"bandwidth", bandwidth,
+			"gain", 0.0f);
 		}
 		
-		bin.add_many(sink, equalizer);
-		equalizer.link(sink);
+		equalizer.link_many(sink, play, pipeline);
 		
 		// if i uncomment this, my code will not play any music
-		play.set("audio-sink", bin); 
+		//play.set("audio-sink", bin); 
 		
 		loop = new MainLoop();
 		var time = new TimeoutSource(500);
@@ -96,18 +88,13 @@ public class BeatBox.StreamPlayer : GLib.Object {
 			
 			if(switchtime > 10) {
 				stdout.printf("switching\n");
-				var gains = new LinkedList<int>();
-				gains.add(switcharoo ? -24 : 0);
-				gains.add(switcharoo ? 0 : 12);
-				gains.add(switcharoo ? -12 : 6);
 				
-				
-				for (int i=0 ; i< gains.size ; ++i) {
-					float gain = gains.get(i);
-					if (gain < 0)
-						gain *= 0.24f;
-					else
-						gain *= 0.12f;
+				for (int i=0 ; i< 10 ; ++i) {
+					float gain = switcharoo ? -24 : 12;
+					//if (gain < 0)
+					//	gain *= 0.24f;
+					//else
+					//	gain *= 0.12f;
 					
 					Gst.Object band = ((Gst.ChildProxy)equalizer).get_child_by_index(i);
 					band.set("gain", gain, null);
