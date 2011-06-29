@@ -121,8 +121,12 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			
 			if(column == 0)
 				val = s.rowid;
-			else if(column == 1)
-				val = Value(typeof(Gdk.Pixbuf));
+			else if(column == 1) {
+				if(lm.song_info.song != null && lm.song_info.song.rowid == s.rowid)
+					val = _playing;
+				else
+					val = Value(typeof(Gdk.Pixbuf));
+			}
 			else if(column == 2)
 				val = ((SequenceIter<ValueArray>)iter.user_data).get_position() + 1;
 			else if(column == 3)
