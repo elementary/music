@@ -82,6 +82,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	MenuItem helpTranslate;
 	MenuItem helpReport;
 	ImageMenuItem helpAbout;
+	MenuItem editEqualizer;
 	ImageMenuItem editPreferences;
 	
 	Menu settingsMenu;
@@ -220,6 +221,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		helpTranslate = new MenuItem.with_label("Translate This Application...");
 		helpReport = new MenuItem.with_label("Report a Problem...");
 		helpAbout = new ImageMenuItem.from_stock(Gtk.Stock.ABOUT, null);
+		editEqualizer = new MenuItem.with_label("Equalizer");
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
 		settingsMenu = new Menu();
 		topControls = new Toolbar();
@@ -274,8 +276,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		settingsMenu.append(helpTranslate);
 		settingsMenu.append(helpReport);
 		settingsMenu.append(new SeparatorMenuItem());
-		settingsMenu.append(helpAbout);
+		settignsMenu.append(editEqualizer);
 		settingsMenu.append(editPreferences);
+		settingsMenu.append(helpAbout);
 		
 		fileSetMusicFolder.activate.connect(editPreferencesClick);
 		fileImportMusic.activate.connect(fileImportMusicClick);
@@ -314,6 +317,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		editPreferences.set_label("Preferences");
 		
 		helpAbout.activate.connect(helpAboutClick);
+		editEqualizer.activate.connect(editEqualizerClick);
 		editPreferences.activate.connect(editPreferencesClick);
 		
 		// make the background white
@@ -1155,7 +1159,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		ad.show();
 	}
 	
-	public virtual void editPreferencesClick() {
+	public void editEqualizerClick() {
+		
+	}
+	
+	public void editPreferencesClick() {
 		PreferencesWindow pw = new PreferencesWindow(lm, this);
 		
 		pw.changed.connect( (folder) => {

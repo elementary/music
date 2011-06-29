@@ -158,8 +158,6 @@ public class LastFM.AlbumInfo : Object {
 			else if(parent == "albumwiki") {
 				if(node_name == "summary")
 					_summary = node_content;
-				
-				stdout.printf("%s\n", node_content);
 			}
 
             // Followed by its children nodes
