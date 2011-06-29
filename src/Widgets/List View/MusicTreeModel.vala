@@ -484,17 +484,43 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 					rv = advancedStringCompare(a_song.album.down(), b_song.album.down());
 			}
 		}
+		else if(_columns.get(sort_column_id) == "#") {
+			rv = a.get_position() - b.get_position();
+		}
+		else if(_columns.get(sort_column_id) == "Track") {
+			rv = rows.get(a).track - rows.get(b).track;
+		}
+		else if(_columns.get(sort_column_id) == "Length") {
+			rv = rows.get(a).length - rows.get(b).length;
+		}
+		else if(_columns.get(sort_column_id) == "Genre") {
+			rv = advancedStringCompare(rows.get(a).genre.down(), rows.get(b).genre.down());
+		}
+		else if(_columns.get(sort_column_id) == "Year") {
+			rv = rows.get(a).year - rows.get(b).year;
+		}
+		else if(_columns.get(sort_column_id) == "Bitrate") {
+			rv = rows.get(a).bitrate - rows.get(b).bitrate;
+		}
+		else if(_columns.get(sort_column_id) == "Rating") {
+			rv = rows.get(a).rating - rows.get(b).rating;
+		}
+		else if(_columns.get(sort_column_id) == "Last Played") {
+			rv = rows.get(a).last_played - rows.get(b).last_played;
+		}
+		else if(_columns.get(sort_column_id) == "Date Added") {
+			rv = rows.get(a).date_added - rows.get(b).date_added;
+		}
+		else if(_columns.get(sort_column_id) == "Plays") {
+			rv = rows.get(a).play_count - rows.get(b).play_count;
+		}
+		else if(_columns.get(sort_column_id) == "Skips") {
+			rv = rows.get(a).skip_count - rows.get(b).skip_count;
+		}
+		else if(_columns.get(sort_column_id) == "BPM") {
+			rv = rows.get(a).bpm - rows.get(b).bpm;
+		}
 		else {
-			/* just do a default, basic sort */
-			/*if(rows.get(a).values[sort_column_id].holds(typeof(int))) {
-				rv = rows.get(a).values[sort_column_id].get_int() - rows.get(b).values[sort_column_id].get_int();
-			}
-			else if(rows.get(a).values[sort_column_id].holds(typeof(string))) {
-				rv = advancedStringCompare(rows.get(a).values[sort_column_id].get_string().down(), rows.get(b).values[sort_column_id].get_string().down());
-			}
-			else {
-				rv = ((rows.get(a).values[sort_column_id].get_object() != null) ? 1 : -1);
-			}*/
 			rv = 1;
 		}
 		
