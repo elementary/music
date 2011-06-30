@@ -47,6 +47,10 @@ public class BeatBox.Settings : Object {
 	public static const string MILLER_HEIGHT = "/apps/beatbox/preferences/ui/miller_height";
 	public static const string MILLER_COLUMN_VISIBILITIES = "/apps/beatbox/preferences/ui/miller_column_visibilities";
 	
+	public static const string SELECTED_PRESET = "/apps/beatbox/preferences/equalizer/selected_preset";
+	public static const string PRESETS = "/apps/beatbox/preferences/equalizer/presets";
+	public static const string AUTO_SWITCH_PRESET = "/apps/beatbox/preferences/equalizer/auto_switch_preset";
+	
 	public Settings() {
 		client = GConf.Client.get_default();
 	}
@@ -216,6 +220,44 @@ public class BeatBox.Settings : Object {
 		return getString(LASTFM_SESSION_KEY, "");
 	}
 	
+	public EqualizerPreset getSelectedPreset() {
+		string[] vals = getString(SELECTED_PRESET, "").split("<val_sep>", 0);
+		var rv = new EqualizerPreset.basic(vals[0]);
+		
+		for(int i = 1; i < vals.length; ++i) {
+			rv.setGain(i, int.parse(vals[i]));
+		}
+		
+		return rv;
+	}
+	
+	public Gee.Collection<EqualizerPreset> getPresets() {
+		var rv = new Gee.LinkedList<EqualizerPreset>();
+		
+		string list = getString(PRESETS, "");
+		string[] presets = list.split("<preset_seperator>", 0);
+		
+		int index;
+		for(index = 0; index < presets.length - 1; ++index) {
+			string[] vals = presets[index].split("<val_sep>", 0);
+			
+			var p = new EqualizerPreset.basic(vals[0]);
+			
+			for(int i = 1; i < vals.length; ++i) {
+				p.setGain(i, int.parse(vals[i]));
+			}
+			
+			rv.add(p);
+		}
+		
+		return rv;
+	}
+	
+	public bool getAutoSwitchPreset() {
+		return getBool(AUTO_SWITCH_PRESET, false);
+	}
+	
+	
 	/** Set Values **/
 	public void setMusicFolder(string path) {
 		setString(MUSIC_FOLDER, path);
@@ -295,5 +337,35 @@ public class BeatBox.Settings : Object {
 	
 	public void setLastFMSessionKey(string val) {
 		setString(LASTFM_SESSION_KEY, val);
+	}
+	
+	public void setSelectedPreset(EqualizerPreset preset) {
+		string toSave = preset.name;
+		
+		foreach(int gain in preset.gains) {
+			toSave += "<val_sep>" + gain.to_string();
+		}
+		
+		setString(SELECTED_PRESET, toSave);
+	}
+	
+	public void setPresets(Gee.Collection<EqualizerPreset> presets) {
+		string rv = "";
+		
+		foreach(var p in presets) {
+			rv += p.name;
+			
+			for(int i = 0; i < 10; ++i) {
+				rv += "<val_sep>" + p.getGain(i).to_string();
+			}
+			
+			rv += "<preset_seperator>";
+		}
+		
+		setString(PRESETS, rv);
+	}
+	
+	public void setAutoSwitchPreset(bool val) {
+		setBool(AUTO_SWITCH_PRESET, val);
 	}
 }

@@ -190,7 +190,7 @@ namespace ElementaryWidgets {
 			scale.set_value(val);
 			scale_value_changed(scroll, val);
 			this.lm.player.current_position_update.connect(player_position_update);
-			lm.player.seek_position((int64)(val * 1000000000));
+			lm.player.setPosition((int64)(val * 1000000000));
 			
 			return false;
 		}

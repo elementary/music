@@ -89,12 +89,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	Notify.Notification notification;
 	
-	public LibraryWindow(BeatBox.DataBaseManager dbm, BeatBox.StreamPlayer player) {
+	public LibraryWindow(BeatBox.DataBaseManager dbm, string[] args) {
 		settings = new BeatBox.Settings();
 		//this.player = player;
 		
 		//this is used by many objects, is the media backend
-		lm = new BeatBox.LibraryManager(player, dbm, settings, this);
+		lm = new BeatBox.LibraryManager(dbm, settings, this, args);
 		
 		//various objects
 		similarSongs = new LastFM.SimilarSongs(lm);
@@ -829,7 +829,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			/* test to stop playback/reached end */
 			if(prev_id == 0) {
-				lm.player.pause_stream();
+				lm.player.pause();
 				lm.playing = false;
 				updateSensitivities();
 				return;
@@ -853,19 +853,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			lm.playing = true;
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
-			lm.player.play_stream();
+			lm.player.play();
 			
 			lm.getNext(true);
 		}
 		else {
 			if(lm.playing) {
 				lm.playing = false;
-				lm.player.pause_stream();
+				lm.player.pause();
 				playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 			}
 			else {
 				lm.playing = true;
-				lm.player.play_stream();
+				lm.player.play();
 				playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			}
 		}
@@ -876,7 +876,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		/* test to stop playback/reached end */
 		if(next_id == 0) {
-			lm.player.pause_stream();
+			lm.player.pause();
 			lm.playing = false;
 			updateSensitivities();
 			return;
@@ -936,7 +936,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		//second: stop music
 		stdout.printf("Stopping playback\n");
-		lm.player.pause_stream();
+		lm.player.pause();
 		
 		stdout.printf("Saving songs\n");
 		//lm.save_songs();
@@ -1178,7 +1178,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		lm.set_music_folder(folder);
 	}
 	
-	public virtual void end_of_stream(Song s) {
+	public virtual void end_of_stream() {
 		nextClicked();
 	}
 	

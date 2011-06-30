@@ -546,7 +546,7 @@ public class BeatBox.SideTreeView : TreeView {
 			((ViewWrapper)getWidget(iter)).list.setAsCurrentList(1);
 			
 			lm.playSong(lm.songFromCurrentIndex(0));
-			lm.player.play_stream();
+			lm.player.play();
 			
 			if(!lm.playing)
 				lw.playClicked();

@@ -33,7 +33,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.DataBaseManager dbm;
 	public BeatBox.DataBaseUpdater dbu;
 	public BeatBox.FileOperator fo;
-	public BeatBox.StreamPlayer player;
+	public BeatBox.Streamer player;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	private HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
@@ -96,9 +96,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		ALL;
 	}
 	
-	public LibraryManager(StreamPlayer player, BeatBox.DataBaseManager dbmn, BeatBox.Settings sett, BeatBox.LibraryWindow lww) {
+	public LibraryManager(BeatBox.DataBaseManager dbmn, BeatBox.Settings sett, BeatBox.LibraryWindow lww, string[] args) {
 		this.lw = lww;
-		this.player = player;
+		this.player = new Streamer(this, lw, args);
 		this.settings = sett;
 		
 		this.dbm = dbmn;
@@ -183,6 +183,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		foreach(LastFM.TrackInfo t in dbm.load_tracks()) {
 			_tracks.set(t.name + " by " + t.artist, t);
+		}
+		
+		// set the equalizer
+		EqualizerPreset p = settings.getSelectedPreset();
+		for(int i = 0; i < 10; ++i) {
+			player.setEqualizerGain(i, p.getGain(i));
 		}
 	}
 	
@@ -1057,14 +1063,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 			old_id = song_info.song.rowid;
 		
 		// actually play the song asap
-		player.play_song(song_from_id(id));
+		player.setURI("file://" + song_from_id(id).file);
 			
 		// set the current song
 		song_info.song = song_from_id(id);
 		
 		//pause if paused
 		if(!playing)
-			player.pause_stream();
+			player.pause();
 		
 		//update settings
 		if(id != -2)
@@ -1092,7 +1098,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void stopPlayback() {
-		player.pause_stream();
+		player.pause();
 		
 		int was_playing = 0;
 		if(song_info.song != null)

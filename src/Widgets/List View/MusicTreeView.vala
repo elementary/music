@@ -885,7 +885,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		// play the song
 		lm.playSong(id.get_int());
-		lm.player.play_stream();
+		lm.player.play();
 		
 		if(!lm.playing) {
 			lw.playClicked();
