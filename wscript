@@ -86,7 +86,7 @@ def build(bld):
 	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/apps', '/images/icons/128x128/apps/beatbox.svg');
    	
    	#install media-audio for default album image
-	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/mimetypes', '/images/icons/128x128/mimes/media-audio.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/mimetypes', '/images/icons/128x128/mimes/media-audio.png');
 	bld.install_files('${PREFIX}/share/icons/hicolor/128x128/mimetypes', '/images/icons/128x128/mimes/drop-album.svg');
    	
    	#shuffle and repeat
