@@ -49,13 +49,14 @@ public class BeatBox.PresetList : TreeView {
 		mo.get(it, 0, out o);
 		
 		preset_selected((EqualizerPreset)o);
+		scroll_to_cell(mo.get_path(it), null, false, 0.0f, 0.0f);
 	}
 	
 	public void selectPreset(EqualizerPreset? p) {
 		get_selection().unselect_all();
 		
 		if(p == null) {
-			get_selection().select_path( new TreePath.from_string("0"));
+			get_selection().select_path( new TreePath.from_string("0") );
 			return;
 		}
 		
@@ -66,7 +67,8 @@ public class BeatBox.PresetList : TreeView {
 			
 			if(((EqualizerPreset)o).name == p.name) {
 				get_selection().select_iter(iter);
-				scroll_to_cell(store.get_path(iter), null, false, 0.0f, 0.0f);
+				scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
+				stdout.printf("tada\n");
 				return;
 			}
 		}

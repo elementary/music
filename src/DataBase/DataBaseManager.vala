@@ -166,7 +166,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		return rv;
 	}
 	
-	public void save_songs(Collection<Song> songs) {
+	/*public void save_songs(Collection<Song> songs) {
 		try {
 			_db.execute("DELETE FROM `songs`");
 			transaction = _db.begin_transaction();
@@ -174,6 +174,47 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			
 			foreach(Song s in songs) {
 				if(s.rowid > 0) {
+					query.set_string(":file", s.file);
+					query.set_string(":title", s.title);
+					query.set_string(":artist", s.artist);
+					query.set_string(":album", s.album);
+					query.set_string(":genre", s.genre);
+					query.set_string(":comment", s.comment);
+					query.set_int(":year", s.year);
+					query.set_int(":track", s.track);
+					query.set_int(":bitrate", s.bitrate);
+					query.set_int(":length", s.length);
+					query.set_int(":samplerate", s.samplerate);
+					query.set_int(":rating", s.rating);
+					query.set_int(":playcount", s.play_count);
+					query.set_int(":skipcount", s.skip_count);
+					query.set_int(":dateadded", s.date_added);
+					query.set_int(":lastplayed", s.last_played);
+					query.set_int(":file_size", s.file_size);
+					query.set_string(":lyrics", s.lyrics);
+					query.set_string(":album_path", s.getAlbumArtPath());
+					
+					query.execute();
+				}
+			}
+			
+			transaction.commit();
+		}
+		catch(SQLHeavy.Error err) {
+			stdout.printf("Could not save songs: %s \n", err.message);
+		}
+	}*/
+	
+	public void add_songs(Collection<Song> songs) {
+		try {
+			//_db.execute("DELETE FROM `songs`");
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare ("INSERT INTO `songs` ('rowid', `file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size', 'lyrics', 'album_path') VALUES (:rowid, :file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size, :lyrics, :album_path);");
+			
+			foreach(Song s in songs) {
+				if(s.rowid > 0) {
+					stdout.printf("inserting %s by %s at %d\n", s.title, s.artist, s.rowid);
+					query.set_int(":rowid", s.rowid);
 					query.set_string(":file", s.file);
 					query.set_string(":title", s.title);
 					query.set_string(":artist", s.artist);
@@ -234,10 +275,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			
 			foreach(Song s in songs) {
 				if(s.rowid != -2) {
-					if(s.rowid != 0) {
-						query.set_string(":rowid", s.rowid.to_string());
-					}
-					
+					query.set_string(":rowid", s.rowid.to_string());
 					query.set_string(":file", s.file);
 					query.set_string(":title", s.title);
 					query.set_string(":artist", s.artist);

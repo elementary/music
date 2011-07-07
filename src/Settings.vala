@@ -47,6 +47,7 @@ public class BeatBox.Settings : Object {
 	public static const string MILLER_HEIGHT = "/apps/beatbox/preferences/ui/miller_height";
 	public static const string MILLER_COLUMN_VISIBILITIES = "/apps/beatbox/preferences/ui/miller_column_visibilities";
 	
+	public static const string EQUALIZER_DISABLED = "/apps/beatbox/preferences/equalizer/equalizer_disabled";
 	public static const string SELECTED_PRESET = "/apps/beatbox/preferences/equalizer/selected_preset";
 	public static const string PRESETS = "/apps/beatbox/preferences/equalizer/presets";
 	public static const string AUTO_SWITCH_PRESET = "/apps/beatbox/preferences/equalizer/auto_switch_preset";
@@ -220,6 +221,10 @@ public class BeatBox.Settings : Object {
 		return getString(LASTFM_SESSION_KEY, "");
 	}
 	
+	public bool getEqualizerDisabled() {
+		return getBool(EQUALIZER_DISABLED, false);
+	}
+	
 	public EqualizerPreset getSelectedPreset() {
 		string[] vals = getString(SELECTED_PRESET, "").split("<val_sep>", 0);
 		var rv = new EqualizerPreset.basic(vals[0]);
@@ -244,7 +249,7 @@ public class BeatBox.Settings : Object {
 			var p = new EqualizerPreset.basic(vals[0]);
 			
 			for(int i = 1; i < vals.length; ++i) {
-				p.setGain(i, int.parse(vals[i]));
+				p.setGain(i - 1, int.parse(vals[i]));
 			}
 			
 			rv.add(p);
@@ -337,6 +342,10 @@ public class BeatBox.Settings : Object {
 	
 	public void setLastFMSessionKey(string val) {
 		setString(LASTFM_SESSION_KEY, val);
+	}
+	
+	public void setEqualizerDisabled(bool val) {
+		setBool(EQUALIZER_DISABLED, val);
 	}
 	
 	public void setSelectedPreset(EqualizerPreset preset) {

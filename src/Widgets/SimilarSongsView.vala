@@ -82,33 +82,38 @@ public class BeatBox.SimilarSongsView : TreeView {
 	}
 	
 	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
-		TreeIter item;
-		
-		// get db's rowid of row clicked
-		model.get_iter(out item, path);
-		Song s;
-		model.get(item, 0, out s);
-		
-		if(s != null && s.lastfm_url != null && s.lastfm_url != "")
-			urlsToOpen.offer(s.lastfm_url);
-		
 		try {
-			Thread.create<void*>(openurl_thread_function, false);
+			Thread.create<void*>(take_action, false);
 		}
 		catch(GLib.ThreadError err) {
-			stdout.printf("ERROR: Could not create thread to open %s: %s \n", s.lastfm_url, err.message);
+			stdout.printf("ERROR: Could not create thread to have fun: %s \n", err.message);
 		}
 	}
 	
-	public void* openurl_thread_function () {	
-		if(urlsToOpen.peek() != null) {
-			try {
-				GLib.AppInfo.launch_default_for_uri (urlsToOpen.poll(), null);
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not open url in Last FM: %s\n", err.message);
+	public void* take_action () {
+		TreeIter iter;
+		TreeModel mo;
+		Song s;
+		
+		get_selection().get_selected(out mo, out iter);
+		mo.get(iter, 0, out s);
+
+		Store.store store = new Store.store();
+		
+		for(int i = 0; i < 3; ++i) {
+			stdout.printf("testing page %d\n",i);
+			foreach(var track in store.searchTracks(s.title, i)) {
+				if(track.title.down() == s.title.down() && track.artist.name.down() == s.artist.down()) {
+					_lm.playTrackPreview(track, track.getPreviewLink());
+					
+					return null;
+				}
 			}
 		}
+		
+		// fall back to just opening the last fm page
+		if(s != null && s.lastfm_url != null && s.lastfm_url != "")
+			GLib.AppInfo.launch_default_for_uri (s.lastfm_url, null);
 		
 		return null;
 	}

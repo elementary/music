@@ -113,7 +113,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 			}
 			else if((next = toRemove.poll()) != null) {
 				if(next is LinkedList<string>) {
-					//dbm.remove_songs((LinkedList<string>)next);
+					dbm.remove_songs((LinkedList<string>)next);
 				}
 				else if(next is Playlist) {
 					dbm.remove_playlist((Playlist)next);

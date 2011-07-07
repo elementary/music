@@ -201,7 +201,7 @@ public class BeatBox.PreferencesWindow : Window {
 	}
 		
 	public virtual void saveClicked() {
-		if(fileChooser.get_current_folder() != _lm.settings.getMusicFolder()) {
+		if(fileChooser.get_current_folder() != _lm.settings.getMusicFolder() || _lm.song_count() == 0) {
 			changed(fileChooser.get_current_folder());
 		}
 		

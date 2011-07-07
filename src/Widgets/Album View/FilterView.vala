@@ -37,7 +37,7 @@ public class BeatBox.FilterView : VBox {
 	private string last_search;
 	LinkedList<string> timeout_search;
 	
-	string defaultPath;
+	//string defaultPath;
 	
 	public bool isCurrentView;
 	public bool needsUpdate;
@@ -54,7 +54,7 @@ public class BeatBox.FilterView : VBox {
 		last_search = "";
 		timeout_search = new LinkedList<string>();
 		
-		defaultPath = GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null);
+		//defaultPath = GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.png", null);
 		
 		buildUI();
 	}

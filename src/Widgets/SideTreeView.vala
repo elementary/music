@@ -471,39 +471,39 @@ public class BeatBox.SideTreeView : TreeView {
 				else if(iter == playlists_similar_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					lw.miller.populateColumns(vw.list.get_songs());
-					lw.updateMillerColumns();
+					lw.updateMillerColumns(); // don't show millers if showing warning label
 				}
 				else if(iter == playlists_queue_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
-					//vw.populateViews(lm.queue(), false);
+					
+					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.queue());
+					
 					lw.miller.populateColumns(lm.queue());
 				}
 				else if(iter == playlists_history_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
-					//vw.populateViews(lm.already_played(), false);
+					
+					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.already_played());
+					
 					lw.miller.populateColumns(lm.already_played());
 				}
 				else if(parent == playlists_iter && o is SmartPlaylist) {
 					ViewWrapper vw = (ViewWrapper)w;
-					//vw.populateViews(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
+					
+					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid));
+					
 					lw.miller.populateColumns(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid));
 				}
 				else if(parent == playlists_iter && o is Playlist) {
 					ViewWrapper vw = (ViewWrapper)w;
-					//vw.populateViews(lm.songs_from_playlist(((Playlist)o).rowid), false);
+					
+					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.songs_from_playlist(((Playlist)o).rowid));
+					
 					lw.miller.populateColumns(lm.songs_from_playlist(((Playlist)o).rowid));
-				}
-				
-				if(w is ViewWrapper) {
-				switch(lw.viewSelector.selected) {
-					case 0:
-						((ViewWrapper)w).setView(ViewWrapper.ViewType.FILTER_VIEW);
-						break;
-					case 1:
-					case 2:
-						((ViewWrapper)w).setView(ViewWrapper.ViewType.LIST);
-						break;
-					}
 				}
 				
 				return false;

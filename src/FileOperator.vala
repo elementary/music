@@ -374,6 +374,8 @@ public class BeatBox.FileOperator : Object {
 			
 			if(original.get_path() == dest.get_path())
 				return;
+				
+			stdout.printf("\n\n");
 			
 			/* make sure that the parent folders exist */
 			if(!dest.get_parent().get_parent().query_exists()) {
@@ -411,21 +413,19 @@ public class BeatBox.FileOperator : Object {
 				success = original.move(dest, FileCopyFlags.NONE, null, null);
 			}
 			
-			// also copy it's album art.
-			
 			if(success) {
 				s.file = dest.get_path();
+				lm.update_song(s, false); // make sure that the song's file path is updated in db.
 				
 				if(s.getAlbumArtPath().contains(original.get_parent().get_path())) {
 					var songFile = GLib.File.new_for_path(s.getAlbumArtPath());
 					var albumArtDest = Path.build_path("/", dest.get_parent().get_path(), "Album.jpg");
 					
-					stdout.printf("copying album art to %s\n", albumArtDest);
-					if(songFile.copy(GLib.File.new_for_path(albumArtDest), FileCopyFlags.NONE, null, null)) {
+					if(!GLib.File.new_for_path(albumArtDest).query_exists() && songFile.query_exists() &&
+					songFile.copy(GLib.File.new_for_path(albumArtDest), FileCopyFlags.NONE, null, null)) {
+						stdout.printf("Copying album art to %s\n", albumArtDest);
 						s.setAlbumArtPath(albumArtDest);
 					}
-					else
-						stdout.printf("Failure: Could not copy album art from %s to new folder at %s\n", s.getAlbumArtPath(), albumArtDest);
 				}
 			}
 			else

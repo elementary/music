@@ -187,8 +187,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// set the equalizer
 		EqualizerPreset p = settings.getSelectedPreset();
-		for(int i = 0; i < 10; ++i) {
-			player.setEqualizerGain(i, p.getGain(i));
+		if(p != null) {
+			for(int i = 0; i < 10; ++i) {
+				player.setEqualizerGain(i, p.getGain(i));
+			}
 		}
 	}
 	
@@ -207,10 +209,41 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return false;
 	}
 	
+	/* warning! this sets the music folder in the process */
+	public void count_music_files(GLib.File folder) {
+		if(!doing_file_operations) {
+			doing_file_operations = true;
+			settings.setMusicFolder(folder.get_path());
+			
+			try {
+				Thread.create<void*>(count_files_thread_function, false);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not create thread to count music files: %s\n", err.message);
+			}
+		}
+	}
+	
+	public void* count_files_thread_function () {
+		var file = GLib.File.new_for_path(settings.getMusicFolder());
+		
+		fo.index = 0;
+		var items = fo.count_music_files(file);
+		
+		Idle.add( () => {
+			doing_file_operations = false;
+			music_counted(items);
+			return false;
+		});
+		
+		file_operations_done();
+		return null;
+	}
+	
 	public void set_music_folder(string folder) {
 		if(!doing_file_operations) {
 			doing_file_operations = true;
-			progress_notification("Importing music from <b>" + folder + "</b>. This may take a while", 0.0);
+			progress_notification("Importing music from <b>" + folder + "</b>.", 0.0);
 			
 			settings.setMusicFolder(folder);
 			try {
@@ -228,9 +261,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
 		
 		var items = fo.count_music_files(file);
-		music_counted(items);
+		//music_counted(items);
 		
-		fo.resetProgress(items);
+		fo.resetProgress(items - 1);
 		
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
@@ -241,21 +274,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_queue.clear();
 		//_current.clear();
 		
-		int index = 1;
-		foreach(Song s in new_songs) {
-			s.rowid = index++;
-			add_song(s);
-		}
+		add_songs(new_songs);
 		
-		progress_notification("<b>Populating list...</b>", 0.0);
-		stdout.printf("1\n");
 		Idle.add( () => { 
-			save_songs();
+			
+			doing_file_operations = false;
 			music_added(not_imported); 
 			return false; 
 		});
 		
-		doing_file_operations = false;
 		file_operations_done();
 		return null;
 	}
@@ -277,32 +304,22 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void* add_files_to_library_thread () {
-		music_counted(temp_add_files.size);
-		fo.resetProgress(temp_add_files.size);
+		//music_counted(temp_add_files.size);
+		fo.resetProgress(temp_add_files.size - 1);
 		
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
 		fo.get_music_files_individually(temp_add_files, ref new_songs, ref not_imported);
 		
-		int index = 1;
+		fo.resetProgress(new_songs.size - 1);
 		
-		// start at biggest value
-		foreach(int i in _songs.keys) {
-			if(i > index)
-				index = i + 1;
-		}
-		
-		fo.resetProgress(new_songs.size);
+		add_songs(new_songs);
 		
 		if(settings.getCopyImportedMusic())
 			progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 		
 		int progress = 0;
 		foreach(Song s in new_songs) {
-			s.rowid = ++index;
-			stdout.printf("new song in import %s with rowid %d\n", s.title, s.rowid);
-			add_song(s);
-			
 			if(settings.getCopyImportedMusic())
 				fo.update_file_hierarchy(s, false);
 			
@@ -311,12 +328,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		Idle.add( () => { 
-			save_songs();
+			
+			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
 			return false; 
 		});
 		
-		doing_file_operations = false;
 		file_operations_done();
 		return null;
 	}
@@ -341,29 +358,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var file = GLib.File.new_for_path(temp_add_folder);
 		
 		var items = fo.count_music_files(file);
-		music_counted(items);
-		fo.resetProgress(items);
+		//music_counted(items);
+		fo.resetProgress(items - 1);
 		
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
 		fo.get_music_files(file, ref new_songs, ref not_imported);
 		
-		int index = 1;
+		add_songs(new_songs);
 		
-		// start at biggest value
-		foreach(int i in _songs.keys) {
-			if(i > index)
-				index = i + 2;
-		}
-		
-		fo.resetProgress(new_songs.size);
+		fo.resetProgress(new_songs.size - 1);
 		progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 		int progress = 0;
 		foreach(Song s in new_songs) {
-			s.rowid = index++;
-			stdout.printf("new song in import %s with rowid %d\n", s.title, s.rowid);
-			add_song(s);
-			
 			if(settings.getCopyImportedMusic())
 				fo.update_file_hierarchy(s, false);
 			
@@ -372,12 +379,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		Idle.add( () => { 
-			save_songs();
+			
+			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
 			return false; 
 		});
 		
-		doing_file_operations = false;
 		file_operations_done();
 		return null;
 	}
@@ -405,7 +412,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				paths.add(s.file);
 		}
 		
-		fo.resetProgress(paths.size);
+		fo.resetProgress(paths.size - 1);
 		
 		var not_imported = new LinkedList<string>();
 		var new_songs = new LinkedList<Song>();
@@ -415,9 +422,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		int index = 1;
 		lock(_songs) {
 			foreach(Song s in _songs.values) {
-				if(s.rowid > index)
-					index = s.rowid + 2;
-				
 				foreach(string path in paths) {
 					if(s.file == path)
 						removed.add(s);
@@ -429,11 +433,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			remove_songs(removed);
 		}
 		
+		add_songs(new_songs);
+		
 		foreach(Song s in new_songs) {
-			s.rowid = index++;
-			stdout.printf("new song in rescan %s with rowid %d\n", s.title, s.rowid);
-			add_song(s);
-			
 			if(settings.getCopyImportedMusic())
 				fo.update_file_hierarchy(s, false);
 		}
@@ -442,12 +444,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		Idle.add( () => { 
 			//maybe pass in songs_added, which appends those songs to the treeview?
-			save_songs();
+			
+			doing_file_operations = false;
 			music_rescanned(new_songs, not_imported); 
 			return false; 
 		});
 		
-		doing_file_operations = false;
 		file_operations_done();
 		return null;
 	}
@@ -468,7 +470,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void save_playlists() {
 		try {
 			Thread.create<void*>( () => { 
-				stdout.printf("hi\n");
 				lock(_playlists) {
 					
 					var playlists_and_queue = new LinkedList<Playlist>();
@@ -610,7 +611,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		foreach(Song s in updates) {
 			/*_songs.set(s.rowid, s);*/
-			
 			rv.add(s.rowid);
 		}
 		
@@ -621,7 +621,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		/* now do background work */
 		if(updateMeta)
 			fo.save_songs(updates);
-		
+		stdout.printf("rowid of %s is %d\n", updates.to_array()[0].title, updates.to_array()[0].rowid);
 		dbu.updateItem(updates);
 	}
 	
@@ -629,7 +629,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		try {
 			Thread.create<void*>( () => { 
 				lock(_songs) {
-					dbm.save_songs(_songs.values);
+					dbm.update_songs(_songs.values);
 				} 
 				
 				return null; 
@@ -700,7 +700,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/** make this smarter **/
-	public void add_song(Song s) {
+	/*public void add_song(Song s) {
 		//fill in rowid's
 		lock(_songs) {
 			if(s.rowid == 0) {
@@ -715,8 +715,27 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			_songs.set(s.rowid, s);
 		}
+	}*/
+	
+	public void add_songs(Collection<Song> new_songs) {
+		int top_index = 0;
 		
-		song_added(s.rowid);
+		lock(_songs) {
+			foreach(int i in _songs.keys) {
+				if(i > top_index)
+					top_index = i;
+			}
+		}
+		
+		foreach(var s in new_songs) {
+			if(s.rowid == 0)
+				s.rowid = ++top_index;
+			
+			_songs.set(s.rowid, s);
+		}
+		
+		if(new_songs.size > 1 && new_songs.to_array()[0].rowid != -2)
+			dbm.add_songs(new_songs);
 	}
 	
 	public void remove_songs(LinkedList<Song> toRemove) {
@@ -1063,7 +1082,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 			old_id = song_info.song.rowid;
 		
 		// actually play the song asap
-		player.setURI("file://" + song_from_id(id).file);
+		if(!song_from_id(id).isPreview)
+			player.setURI("file://" + song_from_id(id).file);
+		else
+			player.setURI(song_from_id(id).file);
 			
 		// set the current song
 		song_info.song = song_from_id(id);
@@ -1088,7 +1110,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		s.album = track.release.title;
 		s.length = 30;
 		
-		add_song(s);
+		LinkedList<Song> temps = new LinkedList<Song>();
+		temps.add(s);
+		add_songs(temps);
 		
 		playSong(-2);
 		

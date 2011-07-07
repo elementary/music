@@ -38,10 +38,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public Hint hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	string sort_column;
 	SortType sort_direction;
+	private bool playlistSaveTimeoutAdded;
 	public bool removing_songs;
 	
 	public bool is_current_view;
-	public bool is_current;
+	private bool _is_current;
 	public bool dragging;
 	public bool needsUpdate;
 	
@@ -111,6 +112,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		SMART_PLAYLIST;
 	}
 	
+	public bool is_current {
+		get { return _is_current; }
+		set {
+			_is_current = value;
+			music_model.is_current = value;
+		}
+	}
+	
 	public Collection<int> get_songs() {
 		return _songs;
 	}
@@ -153,6 +162,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		sort_column = sort;
 		sort_direction = dir;
 		hint = the_hint;
+		playlistSaveTimeoutAdded = false;
 		relative_id = id;
 		
 		cellHelper = new CellDataFunctionHelper(this);
@@ -764,13 +774,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void populateView(Collection<int> songs, bool is_search) {
-		
+		stdout.printf("populating music treeview\n");
 		/** NOTE: This could have a bad effect if user coincidentally
 		 * searches for something that has same number of results as 
 		 * a different search. However, this cuts lots of unecessary
 		 * loading of lists/icon lists */
-		if(_showing_songs.size == songs.size)
+		if(_showing_songs.size == songs.size && hint != Hint.HISTORY && hint != Hint.QUEUE) {
 			return;
+		}
 		
 		view.freeze_child_notify();
 		view.set_model(null);
@@ -851,6 +862,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		
 		music_model.updateSong(id, is_current);
+		
+		if(hint == Hint.QUEUE) {
+			populateView(lm.queue(), false);
+		}
 	}
 	
 	public virtual void playback_stopped(int was_playing) {
@@ -1050,7 +1065,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		sort_column = _columns.get(main_sort);
 		music_model.set_sort_column_id(main_sort, Gtk.SortType.ASCENDING);
-		updateTreeViewSetup();
 		
 		if(is_current)
 			setAsCurrentList(0);
@@ -1092,6 +1106,16 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		tvs.set_columns(get_columns());
 		tvs.sort_column = _columns.get(sort_id);
 		tvs.sort_direction = sort_dir;
+		
+		if(!playlistSaveTimeoutAdded) {
+			playlistSaveTimeoutAdded = true;
+			Timeout.add(2000, () => {
+				lm.save_playlists(); 
+				playlistSaveTimeoutAdded = false;
+				
+				return false; 
+			});
+		}
 	}
 	
 	/** When the column chooser popup menu has a change/toggle **/
@@ -1534,7 +1558,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			int total_time = 0;
 			int total_mbs = 0;
 			
-			foreach(int id in get_songs()) {
+			foreach(int id in _showing_songs) {
 				++count;
 				total_time += lm.song_from_id(id).length;
 				total_mbs += lm.song_from_id(id).file_size;

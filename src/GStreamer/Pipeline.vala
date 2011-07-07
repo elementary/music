@@ -32,7 +32,7 @@ public class BeatBox.Pipeline : GLib.Object {
 		playbin = ElementFactory.make("playbin2", "playbin");
 		
 		audiosink = ElementFactory.make("autoaudiosink", "audiosink");
-		audiosink.set("profile", 1); // says we handle music and movies
+		//audiosink.set("profile", 1); // says we handle music and movies
 		
 		audiobin = new Gst.Bin("audiobin"); // this holds the real primary sink
 		

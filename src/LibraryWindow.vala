@@ -39,6 +39,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public bool dragging_from_music;
 	public bool millerVisible;
+	bool askToSetFolder;
 	
 	VBox verticalBox;
 	VBox mainViews;
@@ -110,6 +111,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 #endif
 		
 		dragging_from_music = false;
+		askToSetFolder = false;
 		
 		build_ui();
 		
@@ -120,7 +122,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.lm.music_imported.connect(musicImported);
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
-		this.lm.song_added.connect(song_added);
 		this.lm.songs_removed.connect(songs_removed);
 		this.lm.song_played.connect(song_played);
 		this.lm.playback_stopped.connect(playback_stopped);
@@ -134,11 +135,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		this.present();
 		if(lm.song_count() == 0 && settings.getMusicFolder() == "") {
-			stdout.printf("First run, setting music folder and importing.\n");
-			setMusicFolder(GLib.Environment.get_user_special_dir(UserDirectory.MUSIC));
-		}
-		else if(lm.song_count() == 0 && settings.getMusicFolder() != "") {
-			setMusicFolder(GLib.Environment.get_user_special_dir(UserDirectory.MUSIC));
+			stdout.printf("First run.\n");
+			
 		}
 		else {
 			lm.clearCurrent();
@@ -528,7 +526,34 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void updateSensitivities() {
-		if(lm.song_count() == 0) {
+		bool haveSongs = (lm.song_count() != 0);
+		bool doingOps = lm.doing_file_operations;
+		bool nullSong = (lm.song_info.song == null);
+		bool showMore = lm.settings.getMoreVisible();
+		
+		fileSetMusicFolder.set_sensitive(!doingOps);
+		fileImportMusic.set_sensitive(!doingOps && haveSongs);
+		fileRescanMusicFolder.set_sensitive(!doingOps && haveSongs);
+		
+		topDisplay.set_visible(!nullSong || doingOps);
+		
+		previousButton.set_sensitive(haveSongs);
+		playButton.set_sensitive(haveSongs);
+		nextButton.set_sensitive(haveSongs);
+		searchField.set_sensitive(haveSongs);
+		viewSelector.set_sensitive(haveSongs);
+		
+		mainViews.set_visible(haveSongs);
+		miller.set_visible(haveSongs && viewSelector.selected == 2);
+		songInfoScroll.set_visible(haveSongs);
+		welcomeScreen.set_visible(!haveSongs);
+		statusBar.set_visible(haveSongs);
+		
+		infoPanel.set_visible(haveSongs && showMore && !nullSong);
+		infoPanelChooser.set_visible(haveSongs && !nullSong);
+		
+		stdout.printf("updating sensitivities\n");
+		/*if(lm.song_count() == 0) {
 			fileImportMusic.set_sensitive(false);
 			fileRescanMusicFolder.set_sensitive(false);
 			topDisplay.set_scale_sensitivity(false);
@@ -540,34 +565,45 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			viewSelector.set_sensitive(false);
 			statusBar.hide();
 			
-			if(settings.getMusicFolder() != "") {
+			//if(settings.getMusicFolder() != "") {
 				mainViews.hide();
 				miller.hide();
 				songInfoScroll.hide();
 				welcomeScreen.show();
-			}
+			//}
 		}
 		else {
 			if(lm.song_info.song != null)
 				topDisplay.set_scale_sensitivity(true);
-				
-			fileImportMusic.set_sensitive(true);
-			fileRescanMusicFolder.set_sensitive(true);
+			
 			previousButton.set_sensitive(true);
 			playButton.set_sensitive(true);
 			nextButton.set_sensitive(true);
 			viewSelector.set_sensitive(true);
 			searchField.set_sensitive(true);
 			statusBar.show();
-		}
+			welcomeScreen.hide();
+			
+			
+			if(lm.doing_file_operations) {
+				fileSetMusicFolder.set_sensitive(false);
+				fileImportMusic.set_sensitive(false);
+				fileRescanMusicFolder.set_sensitive(false);
+			}
+			else {
+				fileSetMusicFolder.set_sensitive(true);
+				fileImportMusic.set_sensitive(true);
+				fileRescanMusicFolder.set_sensitive(true);
+			}
+		}*/
 		
-		if(lm.song_info.song == null && lm.song_count() > 0) {
-			topDisplay.set_visible(false);
+		if(lm.song_info.song == null || lm.song_count() == 0) {
+			//topDisplay.set_visible(false);
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
-			infoPanel.set_visible(false);
-			infoPanelChooser.set_visible(false);
+			//infoPanel.set_visible(false);
+			//infoPanelChooser.set_visible(false);
 		}
-		else {
+		/*else {
 			topDisplay.set_visible(true);
 			
 			if(lm.settings.getMoreVisible())
@@ -576,16 +612,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			infoPanelChooser.set_visible(true);
 		}
 		
-		if(lm.doing_file_operations) {
-			fileSetMusicFolder.set_sensitive(false);
-			fileImportMusic.set_sensitive(false);
-			fileRescanMusicFolder.set_sensitive(false);
-		}
-		else {
-			fileSetMusicFolder.set_sensitive(true);
-			fileImportMusic.set_sensitive(true);
-			fileRescanMusicFolder.set_sensitive(true);
-		}
+		if(lm.doing_file_operations)
+			topDisplay.set_visible(true);*/
 	}
 	
 	public virtual void progressNotification(string? message, double progress) {
@@ -690,14 +718,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		
-		updateCurrentSong();
-		
-		infoPanel.updateSong(lm.song_info.song.rowid);
-		if(settings.getMoreVisible())
-			infoPanel.set_visible(true);
+		if(!lm.song_info.song.isPreview) {
+			updateCurrentSong();
 			
+			infoPanel.updateSong(lm.song_info.song.rowid);
+			if(settings.getMoreVisible())
+				infoPanel.set_visible(true);
+			
+			updateMillerColumns();
+		}
+		
 		updateSensitivities();
-		updateMillerColumns();
 	}
 	
 	public virtual void playback_stopped(int was_playing) {
@@ -756,7 +787,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			/* make sure we save image to right location (user hasn't changed songs) */
 			if(lm.song_info.song != null && album != null && album_s == lm.song_info.song.album &&
-			artist_s == lm.song_info.song.artist && lm.song_info.song.getAlbumArtPath().contains("media-audio.svg")) {
+			artist_s == lm.song_info.song.artist && lm.song_info.song.getAlbumArtPath().contains("media-audio.png")) {
 				lm.song_info.album = album;
 			
                 if (album.url_image.url != null)
@@ -789,7 +820,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			!File.new_for_path(lm.song_info.song.getArtistImagePath()).query_exists()) {
 				lm.song_info.artist = artist;
 				
-				lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
+				if (artist.url_image.url != null)
+					lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
 			}
 			else {
 				return null;
@@ -1011,12 +1043,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void musicCounted(int count) {
-		stdout.printf("Found %d files in music folder, importing.\n", count);
-		if(count > 0) {
-			//hide welcome view if showing
-			welcomeScreen.hide();
-			//mainViews.show(); // this causes an error that crashes app due to gtk in threaded function
-		}
+		stdout.printf("found %d songs, importing.\n", count);
 	}
 	
 	/* this is after setting the music library */
@@ -1032,9 +1059,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		//repopulate collection and playlists and reset queue and already played
-		Widget w = sideTree.getWidget(sideTree.library_music_iter);
-		((ViewWrapper)w).populateViews(lm.song_ids(), true);
+		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
+		vw.doUpdate((viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.song_ids());
 		miller.populateColumns(lm.song_ids());
 		
 		if(not_imported.size > 0) {
@@ -1077,9 +1104,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		// this will update the view in the main treeview b/c the songs in that are equal to lm.songs()
-		((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).list.searchFieldChanged();
-		((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).filterView.searchFieldChanged();
+		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
+		vw.doUpdate((viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.song_ids());
+		miller.populateColumns(lm.song_ids());
 		
 		Widget selected_w = sideTree.getSelectedWidget();
 		if(selected_w is ViewWrapper) {
@@ -1110,7 +1138,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).list.searchFieldChanged();
+		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
+		vw.doUpdate((viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.song_ids());
+		miller.populateColumns(lm.song_ids());
 		
 		Widget selected_w = sideTree.getSelectedWidget();
 		if(selected_w is ViewWrapper) {
@@ -1128,10 +1159,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		updateSensitivities();
-	}
-	
-	public virtual void song_added(int id) {
-		
 	}
 	
 	public virtual void songs_removed(LinkedList<int> removed) {

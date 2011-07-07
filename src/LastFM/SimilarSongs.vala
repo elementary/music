@@ -113,7 +113,10 @@ public class LastFM.SimilarSongs : Object {
 		else {
 			//stdout.printf("Getting similar tracks with %s... \n", url);
 			similarToAdd = null;
+			
+			stdout.printf("parsing..\n");
 			parse_similar_nodes(doc->get_root_element(), "");
+			stdout.printf("pasrsed\n");
 		}
 		
 		delete doc;

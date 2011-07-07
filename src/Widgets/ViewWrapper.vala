@@ -142,7 +142,7 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			if(isCurrentView) {
 				list.is_current_view = true;
-				if(list.needsUpdate)
+				//if(list.needsUpdate)
 					list.populateView(songs, false);
 			}
 			else
@@ -154,13 +154,13 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			if(isCurrentView) {
 				filterView.isCurrentView = true;
-				if(filterView.needsUpdate) {
+				//if(filterView.needsUpdate) {
 					var linkedSongs = new LinkedList<Song>();
 					foreach(int id in songs)
 						linkedSongs.add(lm.song_from_id(id));
 					
 					filterView.generateHTML(linkedSongs);
-				}
+				//}
 			}
 			else
 				filterView.isCurrentView = false;
@@ -184,6 +184,11 @@ public class BeatBox.ViewWrapper : VBox {
 			filterView.hide();
 			similarsFetched = false;
 		}
+	}
+	
+	public void doUpdate(ViewType type, Collection<int> songs) {
+		this.songs = songs;
+		setView(type);
 	}
 	
 	public void populateViews(Collection<int> songs, bool populateBoth) {

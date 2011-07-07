@@ -36,6 +36,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	LibraryManager lm;
 	int stamp; // all iters must match this
 	Gdk.Pixbuf _playing;
+	public bool is_current;
 	
     /* data storage variables */
     Sequence<Song> rows;
@@ -131,7 +132,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			if(column == 0)
 				val = s.rowid;
 			else if(column == 1) {
-				if(lm.song_info.song != null && lm.song_info.song.rowid == s.rowid)
+				if(lm.song_info.song != null && lm.song_info.song.rowid == s.rowid && is_current)
 					val = _playing;
 				else
 					val = Value(typeof(Gdk.Pixbuf));
@@ -274,7 +275,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
     public void append_songs(Collection<int> songs, bool emit) {
 		foreach(int id in songs) {
 			Song s = lm.song_from_id(id);
-
+			stdout.printf("appending %s by %s\n", s.title, s.artist);
 			SequenceIter<Song> added = rows.append(s);
 			
 			if(emit) {
