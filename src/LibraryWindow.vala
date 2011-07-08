@@ -1134,7 +1134,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree(false);
+		resetSideTree();
 		
 		updateSensitivities();
 	}
