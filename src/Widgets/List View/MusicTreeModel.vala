@@ -275,7 +275,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
     public void append_songs(Collection<int> songs, bool emit) {
 		foreach(int id in songs) {
 			Song s = lm.song_from_id(id);
-			stdout.printf("appending %s by %s\n", s.title, s.artist);
+			
 			SequenceIter<Song> added = rows.append(s);
 			
 			if(emit) {

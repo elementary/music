@@ -50,7 +50,7 @@ namespace ElementaryWidgets {
 			scaleBox.pack_start(rightTime, false, false, 0);
 			
 			HBox progressBox = new HBox(false, 0);
-			progressBox.pack_start(progressbar);
+			progressBox.pack_start(wrap_alignment(progressbar, 2, 0, 0, 0));
 			
 			scale.set_draw_value(false);
 			
@@ -113,11 +113,8 @@ namespace ElementaryWidgets {
 		// automatically shows/hides progress bar/scale based on progress's value
 		public void set_progress_value(double progress) {
 			if(progress >= 0.0 && progress <= 1.0) {
-				show_progressbar();
 				progressbar.set_fraction(progress);
 			}
-			else
-				show_scale();
 		}
 		
 		/** scale functions **/

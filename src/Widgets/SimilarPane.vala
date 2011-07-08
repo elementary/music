@@ -103,7 +103,7 @@ public class BeatBox.SimilarPane : MusicTreeView {
 			//errorBox.hide();
 		}
 		
-		populateView(_have, false);
+		populateView(_have, false, false);
 		
 		_base = _next;
 		

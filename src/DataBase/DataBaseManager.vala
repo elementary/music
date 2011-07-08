@@ -205,6 +205,15 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		}
 	}*/
 	
+	public void clear_songs() {
+		try {
+			_db.execute("DELETE FROM `songs`");
+		}
+		catch(SQLHeavy.Error err) {
+			stdout.printf("Could not clear songs: %s \n", err.message);
+		}
+	}
+	
 	public void add_songs(Collection<Song> songs) {
 		try {
 			//_db.execute("DELETE FROM `songs`");

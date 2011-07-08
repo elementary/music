@@ -257,6 +257,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		miller.populateColumns(lm.song_ids());
 		buildSideTree();
 		
+		sideTreeScroll = new ScrolledWindow(null, null);
+		sideTreeScroll.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
+		sideTreeScroll.add(sideTree);
+		
 		millerPane.set_position(settings.getMillerHeight());
 		
 		updateSensitivities();
@@ -498,9 +502,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		sideTree.expand_all();
 		sideTree.resetView();
-		sideTreeScroll = new ScrolledWindow(null, null);
-		sideTreeScroll.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
-		sideTreeScroll.add(sideTree);
 	}
 	
 	public void addSideListItem(GLib.Object o) {
@@ -535,7 +536,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fileImportMusic.set_sensitive(!doingOps && haveSongs);
 		fileRescanMusicFolder.set_sensitive(!doingOps && haveSongs);
 		
+		if(doingOps)
+			topDisplay.show_progressbar();
+		else
+			topDisplay.show_scale();
+		
 		topDisplay.set_visible(!nullSong || doingOps);
+		topDisplay.set_scale_sensitivity(!nullSong);
 		
 		previousButton.set_sensitive(haveSongs);
 		playButton.set_sensitive(haveSongs);
@@ -1042,15 +1049,27 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
+	public void resetSideTree() {
+		sideTree.resetView();
+		
+		// clear all other playlists, reset to Music, populate music
+		mainViews.children.foreach( (vw) => {
+			stdout.printf("hi\n");
+			if(vw is ViewWrapper)
+				((ViewWrapper)vw).clear();
+		});
+		
+		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
+		vw.doUpdate(vw.currentView, lm.song_ids(), true);
+		miller.populateColumns(lm.song_ids());
+	}
+	
 	public virtual void musicCounted(int count) {
 		stdout.printf("found %d songs, importing.\n", count);
 	}
 	
 	/* this is after setting the music library */
 	public virtual void musicAdded(LinkedList<string> not_imported) {
-		sideTree.resetView();
-		mainViews.show();
-		topDisplay.show_scale();
 		
 		if(lm.song_info.song != null) {
 			var song_label = "<b>" + lm.song_info.song.title + "</b>" + " by " + "<b>" + lm.song_info.song.artist + "</b>" + " on " + "<b>" +lm.song_info.song.album + "</b>";
@@ -1059,10 +1078,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-		vw.doUpdate((viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.song_ids());
-		miller.populateColumns(lm.song_ids());
+		resetSideTree();
 		
 		if(not_imported.size > 0) {
 			NotImportedWindow nim = new NotImportedWindow(this, not_imported, lm.settings.getMusicFolder());
@@ -1070,8 +1086,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		updateSensitivities();
-		
-		lm.save_songs();
 		
 		//now notify user
 		try {
@@ -1104,25 +1118,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-		vw.doUpdate((viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.song_ids());
-		miller.populateColumns(lm.song_ids());
-		
-		Widget selected_w = sideTree.getSelectedWidget();
-		if(selected_w is ViewWrapper) {
-			ViewWrapper sel_vw = ((ViewWrapper)selected_w);
-			
-			if(sel_vw.list.hint == MusicTreeView.Hint.SMART_PLAYLIST) {
-				var new_ids = new LinkedList<int>();
-				foreach(Song s in new_songs) {
-					new_ids.add(s.rowid);
-				}
-				
-				sel_vw.list.addSongs(new_ids);
-				sel_vw.list.searchFieldChanged();
-			}
-		}
+		resetSideTree();
 		
 		updateSensitivities();
 	}
@@ -1138,25 +1134,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-		vw.doUpdate((viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.song_ids());
-		miller.populateColumns(lm.song_ids());
-		
-		Widget selected_w = sideTree.getSelectedWidget();
-		if(selected_w is ViewWrapper) {
-			ViewWrapper sel_vw = ((ViewWrapper)selected_w);
-			
-			if(sel_vw.list.hint == MusicTreeView.Hint.SMART_PLAYLIST) {
-				var new_ids = new LinkedList<int>();
-				foreach(Song s in new_songs) {
-					new_ids.add(s.rowid);
-				}
-				
-				sel_vw.list.addSongs(new_ids);
-				sel_vw.list.searchFieldChanged();
-			}
-		}
+		resetSideTree();
 		
 		updateSensitivities();
 	}
@@ -1200,9 +1178,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void setMusicFolder(string folder) {
+		stdout.printf("SETTING MUSIC FOLDER TO %s\n", folder);
 		topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b>");
 		topDisplay.show_progressbar();
 		lm.set_music_folder(folder);
+		updateSensitivities();
 	}
 	
 	public virtual void end_of_stream() {
@@ -1292,11 +1272,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 		
-		((ViewWrapper)w).populateViews(similarIDs, true);
-		((SimilarPane)((ViewWrapper)w).list).updateSongs(lm.song_info.song, similarIDs);
+		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true);
 		
 		((ViewWrapper)w).similarsFetched = true;
-		((ViewWrapper)w).setView(((ViewWrapper)w).currentView);
 		
 		infoPanel.updateSongList(similarDont);
 		miller.populateColumns(((ViewWrapper)w).list.get_songs());

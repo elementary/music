@@ -33,6 +33,10 @@ public class BeatBox.PresetList : TreeView {
 		this.show_all();
 	}
 	
+	public void clearList() {
+		store.clear();
+	}
+	
 	public void addPreset(EqualizerPreset ep) {
 		TreeIter iter;
 		
@@ -40,7 +44,19 @@ public class BeatBox.PresetList : TreeView {
 		store.set(iter, 0, ep, 1, ep.name);
 	}
 	
+	public void removeSelected() {
+		TreeModel mo;
+		TreeIter it;
+		get_selection().get_selected(out mo, out it);
+		
+		get_selection().select_path( new TreePath.from_string("0") );
+		store.remove(it);
+	}
+	
 	public virtual void listSelectionChange() {
+		if(get_selection().count_selected_rows() != 1)
+			return;
+		
 		TreeModel mo;
 		TreeIter it;
 		get_selection().get_selected(out mo, out it);

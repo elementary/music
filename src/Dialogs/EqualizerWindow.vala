@@ -31,10 +31,11 @@ public class BeatBox.EqualizerWindow : Window {
 		buildUI();
 		addPresets();
 		
+		sideList.selectPreset(lm.settings.getSelectedPreset());
+		
 		equalizerOnOff.set_active(lm.settings.getEqualizerDisabled());
 		equalizerOnOffToggled();
 		
-		sideList.selectPreset(lm.settings.getSelectedPreset());
 		autoSwitch.set_active(lm.settings.getAutoSwitchPreset());
 		initialized = true;
 	}
@@ -128,6 +129,9 @@ public class BeatBox.EqualizerWindow : Window {
 		show_all();
 		
 		equalizerOnOff.toggled.connect(equalizerOnOffToggled);
+		addPreset.clicked.connect(addPresetClicked);
+		removePreset.clicked.connect(removePresetClicked);
+		restorePresets.clicked.connect(restorePresetsClicked);
 		sideList.preset_selected.connect(presetSelected);
 		this.destroy.connect(onQuit);
 	}
@@ -148,6 +152,18 @@ public class BeatBox.EqualizerWindow : Window {
 		
 		foreach(var scale in scaleList)
 			scale.set_sensitive(!equalizerOnOff.get_active());
+			
+		if(!equalizerOnOff.get_active()) {
+			EqualizerPreset p = sideList.getSelectedPreset();
+			
+			for(int i = 0; i < 10; ++i)
+				lm.player.setEqualizerGain(i, p.getGain(i));
+		}
+		else {
+			for(int i = 0; i < 10; ++i) {
+				lm.player.setEqualizerGain(i, 0);
+			}
+		}
 	}
 	
 	public void addPresets() {
@@ -186,7 +202,6 @@ public class BeatBox.EqualizerWindow : Window {
 	}
 	
 	public void presetSelected(EqualizerPreset p) {
-		stdout.printf("selected\n");
 		
 		targetLevels.clear();
 		foreach(int i in p.gains)
@@ -231,10 +246,50 @@ public class BeatBox.EqualizerWindow : Window {
 		return true; // keep going
 	}
 	
+	public virtual void addPresetClicked() {
+		PresetNameWindow pnw = new PresetNameWindow(lw, new EqualizerPreset.basic("Custom Preset"));
+		pnw.preset_saved.connect(presetNameWindowSaved);
+	}
+	
+	public virtual void presetNameWindowSaved(EqualizerPreset p) {
+		sideList.addPreset(p);
+	}
+	
+	public void removePresetClicked() {
+		sideList.removeSelected();
+	}
+	
+	public void restorePresetsClicked() {
+		sideList.clearList();
+		addDefaultPresets();
+	}
+	
 	public void onQuit() {
 		lm.settings.setEqualizerDisabled(equalizerOnOff.get_active());
 		lm.settings.setSelectedPreset(sideList.getSelectedPreset());
 		lm.settings.setPresets(sideList.getPresets());
 		lm.settings.setAutoSwitchPreset(autoSwitch.get_active());
+		
+		if(lm.settings.getAutoSwitchPreset() && !lm.settings.getEqualizerDisabled()) {
+			bool matched_genre = false;
+			foreach(var p in lm.settings.getPresets()) {
+				if(p.name.down() == lm.song_info.song.genre.down()) {
+					
+					matched_genre = true;
+					
+					for(int i = 0; i < 10; ++i)
+						lm.player.setEqualizerGain(i, p.getGain(i));
+					
+					break;
+				}
+			}
+			
+			if(!matched_genre) {
+				var p = lm.settings.getSelectedPreset();
+				
+				for(int i = 0; i < 10; ++i)
+					lm.player.setEqualizerGain(i, p.getGain(i));
+			}
+		}
 	}
 }

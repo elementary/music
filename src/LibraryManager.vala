@@ -202,8 +202,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public bool doProgressNotificationWithTimeout() {
 		progress_notification(null, (double)((double)fo.index)/((double)fo.item_count));
 		
-		if(fo.index <= fo.item_count) {
-			Timeout.add(100, doProgressNotificationWithTimeout);
+		if(fo.index < fo.item_count && doing_file_operations) {
+			return true;
 		}
 		
 		return false;
@@ -248,7 +248,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			settings.setMusicFolder(folder);
 			try {
 				Thread.create<void*>(set_music_thread_function, false);
-				Timeout.add(100, doProgressNotificationWithTimeout);
 			}
 			catch(GLib.Error err) {
 				stdout.printf("Could not create thread to set music folder: %s\n", err.message);
@@ -263,7 +262,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var items = fo.count_music_files(file);
 		//music_counted(items);
 		
-		fo.resetProgress(items - 1);
+		fo.resetProgress(items);
+		Timeout.add(100, doProgressNotificationWithTimeout);
 		
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
@@ -273,6 +273,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_songs.clear();
 		_queue.clear();
 		//_current.clear();
+		dbm.clear_songs();
 		
 		add_songs(new_songs);
 		
@@ -295,7 +296,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			temp_add_files = files;
 			try {
 				Thread.create<void*>(add_files_to_library_thread, false);
-				Timeout.add(100, doProgressNotificationWithTimeout);
 			}
 			catch(GLib.Error err) {
 				stdout.printf("Could not create thread to add music files: %s\n", err.message);
@@ -306,25 +306,26 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void* add_files_to_library_thread () {
 		//music_counted(temp_add_files.size);
 		fo.resetProgress(temp_add_files.size - 1);
+		Timeout.add(100, doProgressNotificationWithTimeout);
 		
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
 		fo.get_music_files_individually(temp_add_files, ref new_songs, ref not_imported);
 		
-		fo.resetProgress(new_songs.size - 1);
+		fo.resetProgress(new_songs.size);
 		
 		add_songs(new_songs);
 		
 		if(settings.getCopyImportedMusic())
 			progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 		
-		int progress = 0;
+		Timeout.add(100, doProgressNotificationWithTimeout);
+		
 		foreach(Song s in new_songs) {
 			if(settings.getCopyImportedMusic())
 				fo.update_file_hierarchy(s, false);
 			
-			progress++;
-			progress_notification(null, (double)((double)progress)/((double)new_songs.size));
+			fo.index++;
 		}
 		
 		Idle.add( () => { 
@@ -346,7 +347,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			temp_add_folder = folder;
 			try {
 				Thread.create<void*>(add_folder_to_library_thread, false);
-				Timeout.add(100, doProgressNotificationWithTimeout);
 			}
 			catch(GLib.Error err) {
 				stdout.printf("Could not create thread to add music folder: %s\n", err.message);
@@ -359,7 +359,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		var items = fo.count_music_files(file);
 		//music_counted(items);
-		fo.resetProgress(items - 1);
+		fo.resetProgress(items);
+		Timeout.add(100, doProgressNotificationWithTimeout);
 		
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
@@ -367,15 +368,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		add_songs(new_songs);
 		
-		fo.resetProgress(new_songs.size - 1);
+		fo.resetProgress(new_songs.size);
+		Timeout.add(100, doProgressNotificationWithTimeout);
+		
 		progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
-		int progress = 0;
+		
 		foreach(Song s in new_songs) {
 			if(settings.getCopyImportedMusic())
 				fo.update_file_hierarchy(s, false);
 			
-			progress++;
-			progress_notification(null, (double)((double)progress)/((double)new_songs.size));
+			fo.index++;
 		}
 		
 		Idle.add( () => { 
@@ -396,7 +398,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			try {
 					Thread.create<void*>(rescan_music_thread_function, false);
-					Timeout.add(100, doProgressNotificationWithTimeout);
 			}
 			catch(GLib.Error err) {
 					stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
@@ -412,7 +413,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 				paths.add(s.file);
 		}
 		
-		fo.resetProgress(paths.size - 1);
+		fo.resetProgress(paths.size);
+		Timeout.add(100, doProgressNotificationWithTimeout);
 		
 		var not_imported = new LinkedList<string>();
 		var new_songs = new LinkedList<Song>();
@@ -1099,6 +1101,29 @@ public class BeatBox.LibraryManager : GLib.Object {
 			settings.setLastSongPlaying(song_from_id(id));
 		
 		song_played(id, old_id);
+		
+		// lastly update equalizer
+		if(settings.getAutoSwitchPreset() && !settings.getEqualizerDisabled()) {
+			bool matched_genre = false;
+			foreach(var p in settings.getPresets()) {
+				if(p.name.down() == song_info.song.genre.down()) {
+					
+					matched_genre = true;
+					
+					for(int i = 0; i < 10; ++i)
+						player.setEqualizerGain(i, p.getGain(i));
+					
+					break;
+				}
+			}
+			
+			if(!matched_genre) {
+				var p = settings.getSelectedPreset();
+				
+				for(int i = 0; i < 10; ++i)
+					player.setEqualizerGain(i, p.getGain(i));
+			}
+		}
 	}
 	
 	public void playTrackPreview(Store.Track track, string uri) {

@@ -27,7 +27,7 @@ using WebKit;
 public class BeatBox.FilterView : VBox {
 	LibraryManager lm;
 	LibraryWindow lw;
-	LinkedList<int> songs;
+	Collection<int> songs;
 	
 	ScrolledWindow scroll;
 	WebView view;
@@ -45,7 +45,7 @@ public class BeatBox.FilterView : VBox {
 	public signal void itemClicked(string artist, string album);
 	
 	/* songs should be mutable, as we will be sorting it */
-	public FilterView(LibraryManager lmm, LibraryWindow lww, LinkedList<int> ssongs) {
+	public FilterView(LibraryManager lmm, LibraryWindow lww, Collection<int> ssongs) {
 		lm = lmm;
 		lw = lww;
 		songs = ssongs;
@@ -57,6 +57,10 @@ public class BeatBox.FilterView : VBox {
 		//defaultPath = GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.png", null);
 		
 		buildUI();
+	}
+	
+	public void set_songs(LinkedList<int> new_songs) {
+		songs = new_songs;
 	}
 	
 	public void buildUI() {
@@ -85,13 +89,13 @@ public class BeatBox.FilterView : VBox {
 	 * is set, makes sure that only items that fit those filters are
 	 * shown
 	*/
-	public void generateHTML(LinkedList<Song> toShow) {
+	public void generateHTML(LinkedList<int> toShow, bool force) {
 		
 		/** NOTE: This could have a bad effect if user coincidentally
 		 * searches for something that has same number of results as 
 		 * a different search. However, this cuts lots of unecessary
 		 * loading of lists/icon lists */
-		if(showingSongs.size == toShow.size)
+		if(showingSongs.size == toShow.size && !force)
 			return;
 		
 		string html = """<!DOCTYPE html> <html lang="en"><head> 
@@ -141,7 +145,9 @@ public class BeatBox.FilterView : VBox {
 		toShow.sort((CompareFunc)songCompareFunc);
 		
 		string previousAlbum = "";
-		foreach(Song s in toShow) {
+		foreach(int i in toShow) {
+			Song s = lm.song_from_id(i);
+			
 			if(s.album != previousAlbum) {
 				html += "<li><a href=\"" + s.album.replace("\"", "'") + "<seperater>" + s.artist.replace("\"", "'") + "\"><img width=\"128\" height=\"128\" src=\"file://" + s.getAlbumArtPath() + "\" /></a><p>" + ( (s.album == "") ? "Unknown" : s.album.replace("\"", "'")) + "</p><p>" + s.artist.replace("\"", "'") + "</p></li>";
 				previousAlbum = s.album;
@@ -181,17 +187,17 @@ public class BeatBox.FilterView : VBox {
 				stdout.printf("searching for %s\n", to_search);
 				
 				if(timeout_search.size == 0) {
-					var toSearch = new LinkedList<Song>();
+					var toSearch = new LinkedList<int>();
 					foreach(int id in lm.songs_from_search(to_search, "All Genres", 
 														"All Artists",
 														"All Albums",
 														songs)) {
 						
-						toSearch.add(lm.song_from_id(id));
+						toSearch.add(id);
 					}
 					
 					if(showingSongs.size != toSearch.size) {
-						generateHTML(toSearch);
+						generateHTML(toSearch, false);
 					}
 				}
 				

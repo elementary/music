@@ -120,6 +120,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
+	public void set_songs(LinkedList<int> new_songs) {
+		_songs = new_songs;
+	}
+	
 	public Collection<int> get_songs() {
 		return _songs;
 	}
@@ -550,7 +554,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 						populateView(_songs, false);
 					}*/
 					else if(searched_songs.size > _showing_songs.size) { /* less specific search */
-						populateView(searched_songs, true);
+						populateView(searched_songs, true, false);
 						/* remove the songs already showing
 						foreach(int i in _showing_songs) {
 							searched_songs.remove(i);
@@ -566,7 +570,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 						view.set_model(music_model);*/
 					}
 					else { /* more specific search, remove some of showing songs. */ /* Should somehow incorporate needsUpdate w/out stopping miller search */
-						populateView(searched_songs, true);
+						populateView(searched_songs, true, false);
 						/*var to_remove = new LinkedList<int>();
 						
 						foreach(int i in _showing_songs) {
@@ -773,15 +777,18 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		music_model.append_songs(songs, true);
 	}
 	
-	public void populateView(Collection<int> songs, bool is_search) {
+	public void populateView(Collection<int> songs, bool is_search, bool force) {
 		stdout.printf("populating music treeview\n");
 		/** NOTE: This could have a bad effect if user coincidentally
 		 * searches for something that has same number of results as 
 		 * a different search. However, this cuts lots of unecessary
 		 * loading of lists/icon lists */
-		if(_showing_songs.size == songs.size && hint != Hint.HISTORY && hint != Hint.QUEUE) {
+		 stdout.printf("%d to %d\n",_showing_songs.size, songs.size);
+		if(_showing_songs.size == songs.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force) {
 			return;
 		}
+		
+		stdout.printf("populating\n");
 		
 		view.freeze_child_notify();
 		view.set_model(null);
@@ -864,7 +871,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		music_model.updateSong(id, is_current);
 		
 		if(hint == Hint.QUEUE) {
-			populateView(lm.queue(), false);
+			populateView(lm.queue(), false, false);
 		}
 	}
 	
