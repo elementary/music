@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Devid Antonio Filoni <d.filoni@ubuntu.com>
 Build-Depends: debhelper (>= 7.0.50~), valac-0.12 (>= 0.11.6), libgtk2.0-dev
  (>= 2.16.0), libgee-dev (>= 0.5.3), libgstreamer0.10-dev (>= 0.10),
- libtagc0-dev (>= 1.6.3), libsqlheavy-dev (>= 2.4),
+ libtagc0-dev (>= 1.6.3), libsqlheavy-dev (>= 0.0),
  libxml2-dev (>= 2.7.7), libgconf2-dev (>= 2.31.91), libnotify-dev (>= 0.5.0),
  libunique-dev (>= 0.9), libsoup2.4-dev (>= 2.25.2), libjson-glib-dev
  (>= 0.10), libdbus-glib-1-dev, libzeitgeist-dev, libwebkitgtk-dev, 
