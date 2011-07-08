@@ -32,7 +32,7 @@ public class BeatBox.ViewWrapper : VBox {
 	Collection<int> songs;
 	
 	public ViewType currentView;
-	bool isCurrentView;
+	public bool isCurrentView;
 	
 	// for Hint.SIMILAR only
 	public bool similarsFetched;

@@ -142,12 +142,14 @@ public class BeatBox.FilterView : VBox {
         </style></head><body><div id="main"><ul>""";
         
         // first sort the songs so we know they are grouped by artists, then albums
-		toShow.sort((CompareFunc)songCompareFunc);
+        var toShowS = new LinkedList<Song>();
+        foreach(int i in toShow)
+			toShowS.add(lm.song_from_id(i));
+		
+        toShowS.sort((CompareFunc)songCompareFunc);
 		
 		string previousAlbum = "";
-		foreach(int i in toShow) {
-			Song s = lm.song_from_id(i);
-			
+		foreach(var s in toShowS) {
 			if(s.album != previousAlbum) {
 				html += "<li><a href=\"" + s.album.replace("\"", "'") + "<seperater>" + s.artist.replace("\"", "'") + "\"><img width=\"128\" height=\"128\" src=\"file://" + s.getAlbumArtPath() + "\" /></a><p>" + ( (s.album == "") ? "Unknown" : s.album.replace("\"", "'")) + "</p><p>" + s.artist.replace("\"", "'") + "</p></li>";
 				previousAlbum = s.album;

@@ -1277,8 +1277,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		((ViewWrapper)w).similarsFetched = true;
 		
 		infoPanel.updateSongList(similarDont);
-		miller.populateColumns(((ViewWrapper)w).list.get_songs());
-		updateMillerColumns();
+		
+		if(((ViewWrapper)w).isCurrentView) {
+			miller.populateColumns(((ViewWrapper)w).list.get_songs());
+			updateMillerColumns();
+		}
 	}
 	
 	public void setStatusBarText(string text) {

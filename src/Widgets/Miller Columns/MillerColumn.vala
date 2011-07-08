@@ -274,6 +274,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 	
 	public void populate(HashSet<string> items) {
+		stdout.printf("Populating %s with %d items\n", category, items.size);
 		items.remove("");
 		items.add("All " + category);
 		TreeIter iter;
