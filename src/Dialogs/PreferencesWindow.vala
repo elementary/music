@@ -71,7 +71,7 @@ public class BeatBox.PreferencesWindow : Window {
 		this.set_transient_for(_lw);
 		
 		// set the size
-		set_size_request(400, 300);
+		set_size_request(400, -1);
 		allow_shrink = true;
 		
 		// set icon

@@ -106,7 +106,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 #if HAVE_INDICATE
 #if HAVE_DBUSMENU
 		stdout.printf("Initializing MPRIS and sound menu\n");
-		//var mpris = new BeatBox.MPRIS(lm, this);
+		var mpris = new BeatBox.MPRIS(lm, this);
 #endif
 #endif
 		
@@ -1134,7 +1134,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree();
+		resetSideTree(false);
 		
 		updateSensitivities();
 	}
