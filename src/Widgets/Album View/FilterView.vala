@@ -100,15 +100,16 @@ public class BeatBox.FilterView : VBox {
 		}
 		
 		var potentialShowing = new LinkedList<int>();
-		if(lw.searchField.get_text() != "") {
+		if(lw.searchField.get_text() == "" && lw.miller.genres.selected == "All Genres" &&
+		lw.miller.artists.selected == "All Artists" && lw.miller.albums.selected == "All Albums") {
+			potentialShowing.add_all(toShow);
+		}
+		else {
 			potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
 												lw.miller.genres.selected, 
 												lw.miller.artists.selected,
 												lw.miller.albums.selected,
 												songs));
-		}
-		else {
-			potentialShowing.add_all(toShow);
 		}
 		
 		if(showingSongs.size == potentialShowing.size && !force)

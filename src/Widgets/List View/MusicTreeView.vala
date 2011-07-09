@@ -550,6 +550,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					// do nothing
 				}
 				else {*/
+					stdout.printf("populating\n");
 					populateView(_songs, true, false);
 				//}
 					
@@ -742,27 +743,28 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		 * searches for something that has same number of results as 
 		 * a different search. However, this cuts lots of unecessary
 		 * loading of lists/icon lists */
-		if(lw.searchField.get_text() == "" && _showing_songs.size == songs.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force) {
+		/*if(lw.searchField.get_text() == "" && _showing_songs.size == songs.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force) {
 			return;
-		}
+		}*/
 		
 		if(!is_search) {
 			_songs = songs;
 		}
 		
 		var potentialShowing = new LinkedList<int>();
-		if(lw.searchField.get_text() != "") {
+		if(lw.searchField.get_text() == "" && lw.miller.genres.selected == "All Genres" &&
+		lw.miller.artists.selected == "All Artists" && lw.miller.albums.selected == "All Albums") {
+			potentialShowing.add_all(songs);
+		}
+		else {
 			potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
 												lw.miller.genres.selected, 
 												lw.miller.artists.selected,
 												lw.miller.albums.selected,
 												_songs));
 		}
-		else {
-			potentialShowing.add_all(songs);
-		}
 		
-		
+		stdout.printf("comparing %d to %d\n", _showing_songs.size, potentialShowing.size);
 		if(_showing_songs.size == potentialShowing.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force)
 			return;
 		else
