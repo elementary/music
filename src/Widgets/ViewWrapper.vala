@@ -144,9 +144,9 @@ public class BeatBox.ViewWrapper : VBox {
 				
 				return;
 			}
-			else if(!(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs())) ) { // not currently playing list and have fetched
-				if(sp.get_songs().size < 10) { // say we could not find similar songs
-					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No Similar Songs</span>\nBeatBox could not find songs similar to " + sp._next.title.replace("&", "&amp;") + " by " + sp._next.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
+			else if( !(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs())) ) { // not currently playing list and have fetched
+				if(songs.size < 10) { // say we could not find similar songs
+					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No Similar Songs</span>\nBeatBox could not find songs similar to " + lm.song_info.song.title.replace("&", "&amp;") + " by " + lm.song_info.song.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
 					errorBox.show();
 					list.hide();
 					filterView.hide();

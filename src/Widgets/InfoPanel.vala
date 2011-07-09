@@ -91,10 +91,17 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		buttons.pack_end(new Label(""), true, true, 0);
 		buttons.pack_end(banSong, false, false, 0);
 		
+		ScrolledWindow artistImageScroll = new ScrolledWindow(null, null);
+		Viewport imageVP = new Viewport(null, null);
+		artistImageScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
+		imageVP.set_shadow_type(ShadowType.NONE);
+		imageVP.add(artistImage);
+		artistImageScroll.add(imageVP);
+		
 		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(artist, 2, 0, 0, 5), false, true, 0);
 		content.pack_start(buttons, false, true, 0);
-		content.pack_start(wrap_alignment(artistImage, 5, 0, 0, 5), false, true, 0);
+		content.pack_start(wrap_alignment(artistImageScroll, 5, 5, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(rating, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(album, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(year, 0, 0, 20, 5), false, true, 0);
@@ -177,7 +184,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		if(GLib.File.new_for_path(file).query_exists()) {
 			artistImage.show();
 			try {
-				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_scale(file, ((is_initial) ? 140 : lm.settings.getMoreWidth() - 10), ((is_initial) ? 140 : lm.settings.getMoreWidth() - 10), true));
+				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 11, lm.settings.getMoreWidth() - 10, true));
 				//artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file(file));
 			}
 			catch(GLib.Error err) {

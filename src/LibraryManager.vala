@@ -623,7 +623,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		/* now do background work */
 		if(updateMeta)
 			fo.save_songs(updates);
-		stdout.printf("rowid of %s is %d\n", updates.to_array()[0].title, updates.to_array()[0].rowid);
+		
 		dbu.updateItem(updates);
 	}
 	
@@ -1102,7 +1102,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		song_played(id, old_id);
 		
-		// lastly update equalizer
+		try {
+			Thread.create<void*>(change_gains_thread, false);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not create thread to change gains: %s\n", err.message);
+		}
+	}
+	
+	public void* change_gains_thread () {
 		if(settings.getAutoSwitchPreset() && !settings.getEqualizerDisabled()) {
 			bool matched_genre = false;
 			foreach(var p in settings.getPresets()) {
@@ -1124,6 +1132,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 					player.setEqualizerGain(i, p.getGain(i));
 			}
 		}
+		
+		return null;
 	}
 	
 	public void playTrackPreview(Store.Track track, string uri) {

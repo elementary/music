@@ -162,8 +162,8 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		}
 		set {
 			_selected = value;
-			model.foreach(selectProperString);
 			selectedChanged(_selected);
+			model.foreach(selectProperString);
 		}
 	}
 	
@@ -212,6 +212,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 	
 	public bool keyPressed(Gdk.EventKey event) {
+		// if (event.str is char or number
 		millerParent.lw.searchField.grab_focus();
 		millerParent.lw.searchField.insert_at_cursor(event.str);
 		return true;
@@ -274,7 +275,10 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 	
 	public void populate(HashSet<string> items) {
-		stdout.printf("Populating %s with %d items\n", category, items.size);
+		if(items.size == model.iter_n_children(null))
+			return;
+		
+		//stdout.printf("Populating %s with %d items\n", category, items.size);
 		items.remove("");
 		items.add("All " + category);
 		TreeIter iter;

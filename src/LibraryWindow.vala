@@ -390,10 +390,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		contentBox.pack_start(statusEventBox, false, true, 0);
 		
 		songsToInfo.pack1(contentBox, true, true);
-		songsToInfo.pack2(infoPanel, true, false);
+		songsToInfo.pack2(infoPanel, false, false);
 		
-		sourcesToSongs.pack1(sideBar, true, true);
-		sourcesToSongs.pack2(songsToInfo, true, false);
+		sourcesToSongs.pack1(sideBar, false, true);
+		sourcesToSongs.pack2(songsToInfo, true, true);
 		
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
 		sideBar.pack_end(coverArt, false, true, 0);
@@ -454,8 +454,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 * @param view The side tree to build it on
 	 */
 	private void buildSideTree() {
-		stdout.printf("getting artists..\n");
-		
 		//var newRockReleases = store.newReleasesByTag("rock", 1);
 		//var la = store.getReleasesInRange("20110601", null, 1);
 		//var topTracks = store.topTracks("month", null, 1);
@@ -559,7 +557,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		infoPanel.set_visible(haveSongs && showMore && !nullSong);
 		infoPanelChooser.set_visible(haveSongs && !nullSong);
 		
-		stdout.printf("updating sensitivities\n");
 		/*if(lm.song_count() == 0) {
 			fileImportMusic.set_sensitive(false);
 			fileRescanMusicFolder.set_sensitive(false);
@@ -1206,9 +1203,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				var similarList = ((ViewWrapper)sideTree.getWidget(sideTree.playlists_similar_iter)).list;
 				
 				// only query if not playing from similars
-				stdout.printf("%d %d\n", lm.current_songs().size, similarList.get_songs().size);
 				if(!(lm.current_songs().size == similarList.get_songs().size && lm.current_songs().contains_all(similarList.get_songs()))) {
-					stdout.printf("querying for similar..\n");
+					//stdout.printf("querying for similar..\n");
 					similarSongs.queryForSimilar(lm.song_info.song);
 				}
 				
@@ -1272,9 +1268,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 		
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true);
-		
 		((ViewWrapper)w).similarsFetched = true;
+		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true);
 		
 		infoPanel.updateSongList(similarDont);
 		
@@ -1313,8 +1308,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(sourcesToSongs.get_position() > height/2)
 			return;
 		
-		if(songsToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 155) { // this is max size
-			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 155);
+		//songsToInfo.max_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300;
+		//songsToInfo.min_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150;
+		
+		if(songsToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300) { // this is max size
+			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300);
 			return;
 		}
 		else if(songsToInfo.get_position() > (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150) { // this is min size

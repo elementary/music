@@ -89,14 +89,34 @@ public class BeatBox.FilterView : VBox {
 	 * is set, makes sure that only items that fit those filters are
 	 * shown
 	*/
-	public void generateHTML(LinkedList<int> toShow, bool force) {
+	public void generateHTML(Collection<int> toShow, bool force) {
 		
 		/** NOTE: This could have a bad effect if user coincidentally
 		 * searches for something that has same number of results as 
 		 * a different search. However, this cuts lots of unecessary
 		 * loading of lists/icon lists */
-		if(showingSongs.size == toShow.size && !force)
+		if(lw.searchField.get_text() == "" && showingSongs.size == toShow.size && !force) {
 			return;
+		}
+		
+		var potentialShowing = new LinkedList<int>();
+		if(lw.searchField.get_text() != "") {
+			potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
+												lw.miller.genres.selected, 
+												lw.miller.artists.selected,
+												lw.miller.albums.selected,
+												songs));
+		}
+		else {
+			potentialShowing.add_all(toShow);
+		}
+		
+		if(showingSongs.size == potentialShowing.size && !force)
+			return;
+		else
+			showingSongs = potentialShowing;
+		
+		stdout.printf("populating filterview\n");
 		
 		string html = """<!DOCTYPE html> <html lang="en"><head> 
         <style media="screen" type="text/css"> 
@@ -143,7 +163,7 @@ public class BeatBox.FilterView : VBox {
         
         // first sort the songs so we know they are grouped by artists, then albums
         var toShowS = new LinkedList<Song>();
-        foreach(int i in toShow)
+        foreach(int i in showingSongs)
 			toShowS.add(lm.song_from_id(i));
 		
         toShowS.sort((CompareFunc)songCompareFunc);
@@ -160,8 +180,6 @@ public class BeatBox.FilterView : VBox {
 		
 		view.load_html_string(html, "file://");
 		needsUpdate = false;
-		
-		showingSongs = toShow;
 	}
 	
 	public static int songCompareFunc(Song a, Song b) {
@@ -185,22 +203,10 @@ public class BeatBox.FilterView : VBox {
 		if(isCurrentView && lw.searchField.get_text().length != 1) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
-				string to_search = timeout_search.poll_tail();
-				stdout.printf("searching for %s\n", to_search);
+				timeout_search.poll_tail();
 				
 				if(timeout_search.size == 0) {
-					var toSearch = new LinkedList<int>();
-					foreach(int id in lm.songs_from_search(to_search, "All Genres", 
-														"All Artists",
-														"All Albums",
-														songs)) {
-						
-						toSearch.add(id);
-					}
-					
-					if(showingSongs.size != toSearch.size) {
-						generateHTML(toSearch, false);
-					}
+					generateHTML(songs, false);
 				}
 				
 				return false;

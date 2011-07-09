@@ -61,16 +61,16 @@ public class BeatBox.MPRIS : GLib.Object {
 			connection.register_object("/org/mpris/MediaPlayer2", player);
 		} 
 		catch(IOError e) {
-			print("%s\n", e.message);
+			print("could not create MPRIS player: %s\n", e.message);
 		}
 	}
 
 	private void on_name_acquired(DBusConnection connection, string name) {
-		print("name acquired\n");
+		//print("name acquired\n");
 	}	
 
 	private void on_name_lost(DBusConnection connection, string name) {
-		print("name_lost\n");
+		//print("name_lost\n");
 	}
 }
 
@@ -219,13 +219,11 @@ public class MprisPlayer : GLib.Object {
 	}
 	
 	public virtual void songPlayed(int id) {
-		stdout.printf("song played/edited\n");
 		BeatBox.Song s = BeatBox.Beatbox._program.lm.song_from_id(id);
 		
 		if(s.rowid != BeatBox.Beatbox._program.lm.song_info.song.rowid)
 			return;
 		
-		stdout.printf("we're in\n");
 		string[] artistArray = {};
 		artistArray += s.artist;
 		string[] genreArray = {};
@@ -267,7 +265,7 @@ public class MprisPlayer : GLib.Object {
 			                 );
 		}
 		catch(Error e) {
-			print("%s\n", e.message);
+			print("Could not send MPRIS property change: %s\n", e.message);
 		}
 		send_property_source = 0;
 		return false;

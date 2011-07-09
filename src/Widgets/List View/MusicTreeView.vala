@@ -401,7 +401,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
 		
 		// drag source
-		drag_source_set(view, Gdk.ModifierType.BUTTON1_MASK, {}, Gdk.DragAction.MOVE);
+		drag_source_set(view, Gdk.ModifierType.BUTTON1_MASK, {}, Gdk.DragAction.COPY);
 		Gtk.drag_source_add_uri_targets(view);
 		
 		// column chooser menu
@@ -540,70 +540,26 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			Timeout.add(100, () => {
 				
 				string to_search = timeout_search.poll_tail();
-				//if(lw.searchField.get_text().down() == timeout_search.poll_tail() && lw.searchField.get_text().down() != last_search && !(lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
-					Collection<int> searched_songs = lm.songs_from_search(to_search, 
+				/*Collection<int> searched_songs = lm.songs_from_search(to_search, 
 																		lw.miller.genres.selected, 
 																		lw.miller.artists.selected,
 																		lw.miller.albums.selected,
 																		_songs);
 					
-					if(searched_songs.size == _showing_songs.size && !needsUpdate) {
-						// do nothing
-					}
-					/*else if(to_search == "") {
-						populateView(_songs, false);
-					}*/
-					else if(searched_songs.size > _showing_songs.size) { /* less specific search */
-						populateView(searched_songs, true, false);
-						/* remove the songs already showing
-						foreach(int i in _showing_songs) {
-							searched_songs.remove(i);
-						}
-						
-						// update _showing_songs to equal all old and new
-						_showing_songs.add_all(searched_songs);
-						
-						stdout.printf("adding %d songs\n", searched_songs.size);
-						
-						view.set_model(null);
-						music_model.append_songs(searched_songs, true);
-						view.set_model(music_model);*/
-					}
-					else { /* more specific search, remove some of showing songs. */ /* Should somehow incorporate needsUpdate w/out stopping miller search */
-						populateView(searched_songs, true, false);
-						/*var to_remove = new LinkedList<int>();
-						
-						foreach(int i in _showing_songs) {
-							if(!searched_songs.contains(i))
-								to_remove.add(i);
-						}
-						
-						stdout.printf("removing %d songs\n", to_remove.size);
-						
-						view.set_model(null);
-						music_model.removeSongs(to_remove);
-						view.set_model(music_model);
-						
-						
-						_showing_songs = searched_songs;*/
-					}
+				if(searched_songs.size == _showing_songs.size && !needsUpdate) {
+					// do nothing
+				}
+				else {*/
+					populateView(_songs, true, false);
+				//}
 					
-					last_search = to_search;
-					showing_all = (_showing_songs.size == _songs.size);
-					
-					scrollToCurrent();
-					
-					lm.settings.setSearchString(to_search);
-					setStatusBarText();
-				/*}
-				else if(!showing_all && lw.searchField.get_text() != last_search && (lw.searchField.get_text() == "" || lw.searchField.get_text() == lw.searchField.hint_string)) {
-					populateView(_songs, false);
-					
-					last_search = lw.searchField.get_text().down();
-					showing_all = true;
-					
-					scrollToCurrent();
-				}*/
+				last_search = to_search;
+				showing_all = (_showing_songs.size == _songs.size);
+				
+				scrollToCurrent();
+				
+				lm.settings.setSearchString(to_search);
+				setStatusBarText();
 				
 				return false;
 			});
@@ -614,7 +570,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		updateTreeViewSetup();
 	}
 	
+#if VALA_0_14
+	public virtual void modelRowsReordered(TreePath path, TreeIter? iter, void* new_order) {
+#else
 	public virtual void modelRowsReordered(TreePath path, TreeIter iter, void* new_order) {
+#endif
 		/*if(hint == "queue") {
 			lm.clear_queue();
 			
@@ -778,17 +738,37 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void populateView(Collection<int> songs, bool is_search, bool force) {
-		stdout.printf("populating music treeview\n");
 		/** NOTE: This could have a bad effect if user coincidentally
 		 * searches for something that has same number of results as 
 		 * a different search. However, this cuts lots of unecessary
 		 * loading of lists/icon lists */
-		 stdout.printf("%d to %d\n",_showing_songs.size, songs.size);
-		if(_showing_songs.size == songs.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force) {
+		if(lw.searchField.get_text() == "" && _showing_songs.size == songs.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force) {
 			return;
 		}
 		
-		stdout.printf("populating\n");
+		if(!is_search) {
+			_songs = songs;
+		}
+		
+		var potentialShowing = new LinkedList<int>();
+		if(lw.searchField.get_text() != "") {
+			potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
+												lw.miller.genres.selected, 
+												lw.miller.artists.selected,
+												lw.miller.albums.selected,
+												_songs));
+		}
+		else {
+			potentialShowing.add_all(songs);
+		}
+		
+		
+		if(_showing_songs.size == potentialShowing.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force)
+			return;
+		else
+			_showing_songs = potentialShowing;
+		
+		stdout.printf("populating mtv\n");
 		
 		view.freeze_child_notify();
 		view.set_model(null);
@@ -797,17 +777,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		SortType sort_dir;
 		music_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		if(!is_search) {
-			_songs = songs;
-		}
-		
-		_showing_songs = songs;
-		
 		music_model = new MusicTreeModel(lm, get_column_strings(), render_icon("audio-volume-high", IconSize.MENU, null));
 		
 		//save song selection
 		
-		music_model.append_songs(songs, false);
+		music_model.append_songs(_showing_songs, false);
 		
 		// restore song selection
 		
@@ -915,6 +889,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public bool keyPressed(Gdk.EventKey event) {
+		// if(is char or number)
 		//lw.searchField.grab_focus();
 		//lw.searchField.insert_at_cursor(event.str);
 		return false;

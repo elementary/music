@@ -97,16 +97,18 @@ public class BeatBox.SimilarSongsView : TreeView {
 		
 		get_selection().get_selected(out mo, out iter);
 		mo.get(iter, 0, out s);
-
-		Store.store store = new Store.store();
 		
-		for(int i = 0; i < 3; ++i) {
-			stdout.printf("testing page %d\n",i);
-			foreach(var track in store.searchTracks(s.title, i)) {
-				if(track.title.down() == s.title.down() && track.artist.name.down() == s.artist.down()) {
-					_lm.playTrackPreview(track, track.getPreviewLink());
-					
-					return null;
+		if(BeatBox.Beatbox.enableStore) {
+			Store.store store = new Store.store();
+			
+			for(int i = 0; i < 3; ++i) {
+				stdout.printf("testing page %d\n",i);
+				foreach(var track in store.searchTracks(s.title, i)) {
+					if(track.title.down() == s.title.down() && track.artist.name.down() == s.artist.down()) {
+						_lm.playTrackPreview(track, track.getPreviewLink());
+						
+						return null;
+					}
 				}
 			}
 		}
