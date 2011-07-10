@@ -69,6 +69,11 @@ public class BeatBox.Pipeline : GLib.Object {
 		// now add CDDA and Video
 		cdda = new CDDA();
 		video = new Video();
+		if(video.element != null) {
+			audiosinkqueue.link_many(video.element);
+			//((Gst.Bin)audiobin).add_many(video.element);
+			playbin.set("video-sink", video.element);
+		}
 		
 		//bus.add_watch(busCallback);
 		/*play.about_to_finish.connect(aboutToFinish);

@@ -40,8 +40,10 @@ def configure(ctx):
          
 	ctx.check_tool('gnu_dirs')
 	check_pkg(ctx, 'gtk+-2.0', 'GTK', '2.16.0')
+	check_pkg(ctx, 'gdk-x11-2.0', 'GDK_X11', '2.0')
 	check_pkg(ctx, 'gee-1.0', 'GEE', '0.5.3')
 	check_pkg(ctx, 'gstreamer-0.10', 'GSTREAMER', '0.10')
+	check_pkg(ctx, 'gstreamer-interfaces-0.10', 'GSTREAMER_INTERFACES', '0.10');
 	check_pkg(ctx, 'taglib_c', 'TAGLIB', '1.6.3')
 	check_pkg(ctx, 'gio-2.0', 'GIO', '2.26.0')
 	check_pkg(ctx, 'sqlheavy-0.1', 'SQLHEAVY', '0.0')
@@ -116,9 +118,9 @@ def build(bld):
 	
 	obj = bld.new_task_gen ('c', 'program')
 	obj.features = 'c cprogram'
-	obj.packages = 'gtk+-2.0 gee-1.0 gstreamer-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0'
+	obj.packages = 'gtk+-2.0 gdk-x11-2.0 gee-1.0 gstreamer-0.10 gstreamer-interfaces-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0'
 	obj.target = APPNAME
-	obj.uselib = 'GIO GOBJECT GEE GSTREAMER TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT'
+	obj.uselib = 'GIO GDK_X11 GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT'
 	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 
 									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
 									'src/Widgets/*.vala', 'src/Widgets/Album View/*.vala', 'src/Widgets/List View/*.vala', 

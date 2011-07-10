@@ -764,13 +764,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 												_songs));
 		}
 		
-		stdout.printf("comparing %d to %d\n", _showing_songs.size, potentialShowing.size);
 		if(_showing_songs.size == potentialShowing.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force)
 			return;
 		else
 			_showing_songs = potentialShowing;
-		
-		stdout.printf("populating mtv\n");
 		
 		view.freeze_child_notify();
 		view.set_model(null);

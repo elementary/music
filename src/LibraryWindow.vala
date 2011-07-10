@@ -46,6 +46,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public MillerColumns miller;
 	VPaned millerPane;
 	ElementaryWidgets.Welcome welcomeScreen;
+	public DrawingArea videoArea;
 	HPaned sourcesToSongs; //allows for draggable
 	HPaned songsToInfo; // song info pane
 	ScrolledWindow sideTreeScroll;
@@ -205,6 +206,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		contentBox = new VBox(false, 0);
 		millerPane = new VPaned();
 		mainViews = new VBox(false, 0);
+		videoArea = new DrawingArea();
 		welcomeScreen = new ElementaryWidgets.Welcome("Get some tunes.", "BeatBox can't seem to find your music");
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);
@@ -350,6 +352,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		add(verticalBox);
 		verticalBox.pack_start(topMenu, false, true, 0);
 		verticalBox.pack_start(topControls, false, true, 0);
+		verticalBox.pack_start(videoArea, true, true, 0);
         verticalBox.pack_start(sourcesToSongs, true, true, 0);
         
         ToolItem topDisplayBin = new ToolItem();
@@ -367,6 +370,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         viewSelector.append(new Image.from_stock("view-list-icons-symbolic", IconSize.MENU));
         viewSelector.append(new Image.from_stock("view-list-details-symbolic", IconSize.MENU));
         viewSelector.append(new Image.from_stock("view-list-column-symbolic", IconSize.MENU));
+        viewSelector.append(new Image.from_stock("view-list-icons-symbolic", IconSize.MENU));
         
         topControls.insert(previousButton, 0);
         topControls.insert(playButton, 1);
@@ -416,7 +420,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
 		viewSelector.notify["selected"].connect(updateMillerColumns);
+		viewSelector.notify["selected"].connect( () => { updateSensitivities(); } );
 		millerPane.child1.size_allocate.connect(millerResized);
+		searchField.activate.connect(searchFieldActivate);
 		
 		/* set up drag dest stuff */
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
@@ -538,6 +544,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			topDisplay.show_progressbar();
 		else
 			topDisplay.show_scale();
+		
+		sourcesToSongs.set_visible(viewSelector.selected != 3);
+		videoArea.set_visible(viewSelector.selected == 3);
 		
 		topDisplay.set_visible(!nullSong || doingOps);
 		topDisplay.set_scale_sensitivity(!nullSong);
@@ -1362,6 +1371,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck);
 		millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
+	}
+	
+	public void searchFieldActivate() {
+		Widget w = sideTree.getSelectedWidget();
+		
+		if(w is ViewWrapper) {
+			ViewWrapper vw = (ViewWrapper)w;
+			
+			vw.list.setAsCurrentList(1);
+			lm.current_index = 0;
+			lm.playSong(lm.songFromCurrentIndex(0));
+			
+			if(!lm.playing)
+				playClicked();
+		}
 	}
 	
 	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
