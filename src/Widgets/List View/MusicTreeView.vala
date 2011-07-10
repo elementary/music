@@ -896,9 +896,11 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public bool keyPressed(Gdk.EventKey event) {
-		// if(is char or number)
-		//lw.searchField.grab_focus();
-		//lw.searchField.insert_at_cursor(event.str);
+		if(Regex.match_simple("[a-zA-Z0-9]", event.str)) {
+			lw.searchField.grab_focus();
+			lw.searchField.insert_at_cursor(event.str);
+		}
+		
 		return false;
 	}
 	
@@ -982,7 +984,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				return false;
 			}*/
 			
-			if(!music_model.get_iter(out iter, path) || column.title != "Rating")
+			/*if(!music_model.get_iter(out iter, path) || column.title != "Rating")
 				return false;
 			
 			Value id;	
@@ -995,7 +997,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			Song s = lm.song_from_id(id.get_int());
 			s.rating = new_rating;
 			
-			lm.update_song(s, false);
+			lm.update_song(s, false);*/
 		}
 		
 		return false;

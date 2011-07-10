@@ -118,7 +118,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 	public virtual bool exposeEvent(EventExpose event) {
 		event.window.draw_pixbuf(
 				style.bg_gc[0], (clicked_index != 0) ? enabled : disabled,
-				0, 0, (event.area.width - width_request)/2, 0, width_request, height_request,
+				0, 0, 0, 0, width_request, height_request,
 				Gdk.RgbDither.NONE, 0, 0
 			);
 			

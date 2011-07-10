@@ -328,7 +328,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		Gdk.Color c = Gdk.Color();
 		Gdk.Color.parse("#FFFFFF", out c);
-		statusEventBox.modify_bg(StateType.NORMAL, c);
+		statusEventBox.modify_bg(Gtk.StateType.NORMAL, sideTree.style.base[Gtk.StateType.NORMAL]);
 		
 		repeatChooser.appendItem("Off");
 		repeatChooser.appendItem("Song");

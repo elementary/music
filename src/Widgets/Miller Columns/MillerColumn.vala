@@ -212,9 +212,10 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 	
 	public bool keyPressed(Gdk.EventKey event) {
-		// if (event.str is char or number
-		millerParent.lw.searchField.grab_focus();
-		millerParent.lw.searchField.insert_at_cursor(event.str);
+		if(Regex.match_simple("[a-zA-Z0-9]", event.str)) {
+			millerParent.lw.searchField.grab_focus();
+			millerParent.lw.searchField.insert_at_cursor(event.str);
+		}
 		return true;
 	}
 	
