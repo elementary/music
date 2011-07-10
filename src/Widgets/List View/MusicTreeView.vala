@@ -800,6 +800,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		needsUpdate = false;
 		setStatusBarText();
+		
+		if(is_current)
+			setAsCurrentList(0);
 	}
 	
 	public virtual void current_cleared() {
@@ -810,6 +813,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	}
 	
 	public void setAsCurrentList(int song_id) {
+		stdout.printf("setting as current\n");
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
