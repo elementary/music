@@ -96,6 +96,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		artistImageScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
 		imageVP.set_shadow_type(ShadowType.NONE);
 		imageVP.add(artistImage);
+		imageVP.modify_bg(StateType.NORMAL, c);
 		artistImageScroll.add(imageVP);
 		
 		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
