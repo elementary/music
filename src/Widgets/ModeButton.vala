@@ -45,7 +45,11 @@ namespace ElementaryWidgets {
             motion_notify_event.connect(on_motion_notify_event);
             scroll_event.connect(on_scroll_event);	
         }
-
+		
+		public int get_num_items() {
+			return (int)box.get_children().length();
+		}
+		
         public int selected {
             get {
                 return this._selected;
@@ -101,6 +105,13 @@ namespace ElementaryWidgets {
             this.removed (index, child);
             this.queue_draw ();
         }
+        
+        public void set_visible(int index, bool vis) {
+			if (index < -1 || index >= box.get_children ().length ())
+                return;
+            
+            box.get_children().nth_data(index).set_visible(vis);
+		}
 
         public new void focus (Widget widget) {
             int select = box.get_children().index(widget);
@@ -164,7 +175,13 @@ namespace ElementaryWidgets {
         protected override bool expose_event (Gdk.EventExpose event){
         
 			var clip_region = Gdk.Rectangle () {x=0, y=0, width=0, height=0};
-			var n_children = (int) box.get_children().length();
+			var n_children = 0;//(int) box.get_children().length();
+			
+			foreach(var w in box.get_children()) {
+				if(w.visible)
+					++n_children;
+			}
+			
 			event.window.begin_paint_rect (event.area);
 			Gtk.paint_box (this.style, event.window, Gtk.StateType.NORMAL, Gtk.ShadowType.IN, event.area, this, "button", event.area.x, event.area.y, event.area.width, event.area.height);
 			

@@ -71,33 +71,6 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	}
 	
 	public void* update_db_thread_function () {
-//		while(true) {
-//			GLib.Object next = toUpdate.poll();
-			
-//			if(next == null) { /* nothing to update, anything to remove? */
-//				next = toRemove.poll();
-				
-//				if(next == null) {
-//					inThread = false;
-//					return null;
-//				}
-				
-//				if(next is LinkedList<string>) {
-//					dbm.remove_songs((LinkedList<string>)next);
-//				}
-//			}
-			
-//			if(next is LinkedList<Song>) {
-//				dbm.update_songs(((LinkedList<Song>)next));
-//			}
-//			else if(next is Playlist) {
-//				dbm.update_playlist((Playlist)next);
-//			}
-//			else if(next is SmartPlaylist) {
-//				dbm.update_smart_playlist((SmartPlaylist)next);
-//			}
-//		}
-		
 		while(true) {
 			GLib.Object next;
 			if((next = toUpdate.poll()) != null) {

@@ -43,7 +43,8 @@ def configure(ctx):
 	check_pkg(ctx, 'gdk-x11-2.0', 'GDK_X11', '2.0')
 	check_pkg(ctx, 'gee-1.0', 'GEE', '0.5.3')
 	check_pkg(ctx, 'gstreamer-0.10', 'GSTREAMER', '0.10')
-	check_pkg(ctx, 'gstreamer-interfaces-0.10', 'GSTREAMER_INTERFACES', '0.10');
+	check_pkg(ctx, 'gstreamer-interfaces-0.10', 'GSTREAMER_INTERFACES', '0.10')
+	check_pkg(ctx, 'gstreamer-pbutils-0.10', 'GSTREAMER_PBUTILS', '0.10')
 	check_pkg(ctx, 'taglib_c', 'TAGLIB', '1.6.3')
 	check_pkg(ctx, 'gio-2.0', 'GIO', '2.26.0')
 	check_pkg(ctx, 'sqlheavy-0.1', 'SQLHEAVY', '0.0')
@@ -115,12 +116,13 @@ def build(bld):
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/view-list-column-symbolic.svg');
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/view-list-details-symbolic.svg');
 	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/view-list-icons-symbolic.svg');
+	bld.install_files('${PREFIX}/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/view-list-video-symbolic.svg');
 	
 	obj = bld.new_task_gen ('c', 'program')
 	obj.features = 'c cprogram'
-	obj.packages = 'gtk+-2.0 gdk-x11-2.0 gee-1.0 gstreamer-0.10 gstreamer-interfaces-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0'
+	obj.packages = 'gtk+-2.0 gdk-x11-2.0 gee-1.0 gstreamer-0.10 gstreamer-interfaces-0.10 gstreamer-pbutils-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify unique-1.0 libsoup-2.4 json-glib-1.0 webkit-1.0'
 	obj.target = APPNAME
-	obj.uselib = 'GIO GDK_X11 GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT'
+	obj.uselib = 'GIO GDK_X11 GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES GSTREAMER_PBUTILS TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT'
 	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 
 									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
 									'src/Widgets/*.vala', 'src/Widgets/Album View/*.vala', 'src/Widgets/List View/*.vala', 

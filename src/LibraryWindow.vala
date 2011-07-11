@@ -370,7 +370,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         viewSelector.append(new Image.from_stock("view-list-icons-symbolic", IconSize.MENU));
         viewSelector.append(new Image.from_stock("view-list-details-symbolic", IconSize.MENU));
         viewSelector.append(new Image.from_stock("view-list-column-symbolic", IconSize.MENU));
-        viewSelector.append(new Image.from_stock("view-list-icons-symbolic", IconSize.MENU));
+        viewSelector.append(new Image.from_stock("view-list-video-symbolic", IconSize.MENU));
         
         topControls.insert(previousButton, 0);
         topControls.insert(playButton, 1);
@@ -742,6 +742,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		updateSensitivities();
+		
+		// if it is a video, show the video option and select it
+		Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
+		if(disc.discover_uri("file://" + lm.song_info.song.file).get_video_streams().length() > 0) {
+			//if(viewSelector.get_num_items() == 3) {
+				viewSelector.set_visible(3, true);
+			//}
+			
+			viewSelector.selected = 3;
+		}
+		else {
+			//stdout.printf("is not video, removing\n");
+			viewSelector.set_visible(3, false);
+			viewSelector.selected = settings.getViewMode();
+		}
 	}
 	
 	public virtual void playback_stopped(int was_playing) {
@@ -1209,13 +1224,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(position > 5000000000 && !queriedlastfm) {
 				queriedlastfm = true;
 				
-				var similarList = ((ViewWrapper)sideTree.getWidget(sideTree.playlists_similar_iter)).list;
-				
-				// only query if not playing from similars
-				if(!(lm.current_songs().size == similarList.get_songs().size && lm.current_songs().contains_all(similarList.get_songs()))) {
-					//stdout.printf("querying for similar..\n");
-					similarSongs.queryForSimilar(lm.song_info.song);
-				}
+				similarSongs.queryForSimilar(lm.song_info.song);
 				
 				try {
 					Thread.create<void*>(lastfm_track_thread_function, false);
@@ -1362,7 +1371,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void updateMillerColumns() {
-		settings.setViewMode(viewSelector.selected);
+		if(viewSelector.selected != 3)
+			settings.setViewMode(viewSelector.selected);
 			
 		bool similarcheck = sideTree.getSelectedWidget() is ViewWrapper && 
 							((ViewWrapper)sideTree.getSelectedWidget()).list is SimilarPane && 

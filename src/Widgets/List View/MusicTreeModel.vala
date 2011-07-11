@@ -504,6 +504,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		else if(_columns.get(sort_column_id) == "Track") {
 			rv = rows.get(a).track - rows.get(b).track;
 		}
+		else if(_columns.get(sort_column_id) == "Title") {
+			rv = advancedStringCompare(rows.get(a).title.down(), rows.get(b).title.down());
+		}
 		else if(_columns.get(sort_column_id) == "Length") {
 			rv = rows.get(a).length - rows.get(b).length;
 		}
