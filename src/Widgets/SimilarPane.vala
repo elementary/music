@@ -136,5 +136,6 @@ public class BeatBox.SimilarPane : MusicTreeView {
 		
 		lm.add_playlist(p);
 		lw.addSideListItem(p);
+		lw.sideTree.sideListSelectionChange();
 	}
 }

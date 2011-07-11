@@ -499,7 +499,7 @@ public class BeatBox.SideTreeView : TreeView {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
 					
-					lw.miller.populateColumns(lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid));
+					lw.miller.populateColumns(vw.songs);
 				}
 				else if(parent == playlists_iter && o is Playlist) {
 					ViewWrapper vw = (ViewWrapper)w;
@@ -507,7 +507,7 @@ public class BeatBox.SideTreeView : TreeView {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.songs_from_playlist(((Playlist)o).rowid), false);
 					
-					lw.miller.populateColumns(lm.songs_from_playlist(((Playlist)o).rowid));
+					lw.miller.populateColumns(vw.songs);
 				}
 				
 				((ViewWrapper)current_widget).setStatusBarText();

@@ -112,6 +112,13 @@ namespace ElementaryWidgets {
             
             box.get_children().nth_data(index).set_visible(vis);
 		}
+		
+		public bool get_visible(int index) {
+			if (index < -1 || index >= box.get_children ().length ())
+                return false;
+            
+            return box.get_children().nth_data(index).visible;
+		}
 
         public new void focus (Widget widget) {
             int select = box.get_children().index(widget);
@@ -153,7 +160,13 @@ namespace ElementaryWidgets {
         }
 
         protected bool on_motion_notify_event (EventMotion event) {
-            int n_children = (int) box.get_children ().length ();
+            var n_children = 0;//(int) box.get_children().length();
+			
+			foreach(var w in box.get_children()) {
+				if(w.visible)
+					++n_children;
+			}
+			
             if (n_children < 1)
                 return false;
 

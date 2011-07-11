@@ -196,7 +196,6 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 			if(col < 0 || col >= 1)
 				return;
 			else if(col == 0) {
-				stdout.printf("set oh hi3\n");
 				string val = args.arg();
 				rows.set(((SequenceIter<string>)iter.user_data), val);
 			}

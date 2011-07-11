@@ -117,7 +117,6 @@ public class BeatBox.FilterView : VBox {
 		else
 			showingSongs = potentialShowing;
 		
-		stdout.printf("populating filterview\n");
 		
 		string html = """<!DOCTYPE html> <html lang="en"><head> 
         <style media="screen" type="text/css"> 

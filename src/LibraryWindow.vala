@@ -52,7 +52,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ScrolledWindow sideTreeScroll;
 	VBox sideBar;
 	VBox contentBox;
-	SideTreeView sideTree;
+	public SideTreeView sideTree;
 	ScrolledWindow songInfoScroll;
 	ScrolledWindow pandoraScroll;
 	ScrolledWindow grooveSharkScroll;
@@ -746,11 +746,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// if it is a video, show the video option and select it
 		Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
 		if(disc.discover_uri("file://" + lm.song_info.song.file).get_video_streams().length() > 0) {
-			//if(viewSelector.get_num_items() == 3) {
+			if(!viewSelector.get_visible(3)) {
 				viewSelector.set_visible(3, true);
-			//}
-			
-			viewSelector.selected = 3;
+				viewSelector.selected = 3;
+			}
 		}
 		else {
 			//stdout.printf("is not video, removing\n");
