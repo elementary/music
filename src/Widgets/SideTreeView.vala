@@ -33,6 +33,7 @@ public class BeatBox.SideTreeView : TreeView {
 	public TreeIter library_audiobooks_iter;
 	
 	public TreeIter devices_iter;
+	public TreeIter devices_cdrom_iter;
 	
 	public TreeIter network_iter;
 	public TreeIter network_store_iter;
@@ -41,6 +42,11 @@ public class BeatBox.SideTreeView : TreeView {
 	public TreeIter playlists_queue_iter;
 	public TreeIter playlists_history_iter;
 	public TreeIter playlists_similar_iter;
+	
+	//for cdrom right click
+	Menu CDMenu;
+	MenuItem CDimportToLibrary;
+	MenuItem CDeject;
 	
 	//for playlist right click
 	Menu playlistMenu;
@@ -108,6 +114,15 @@ public class BeatBox.SideTreeView : TreeView {
 		this.row_activated.connect(sideListDoubleClick);
 		this.get_selection().changed.connect(sideListSelectionChange);
 		this.expand_all();
+		
+		CDMenu = new Menu();
+		CDimportToLibrary = new MenuItem.with_label("Import to Library");
+		CDeject = new MenuItem.with_label("Eject");
+		CDMenu.append(CDimportToLibrary);
+		CDMenu.append(CDeject);
+		CDimportToLibrary.activate.connect(CDimportToLibraryClicked);
+		CDeject.activate.connect(CDejectClicked);
+		CDMenu.show_all();
 		
 		//playlist right click menu
 		playlistMenu = new Menu();
@@ -204,8 +219,9 @@ public class BeatBox.SideTreeView : TreeView {
 		sideTreeModel.append(out library_iter, null);
 		sideTreeModel.set(library_iter, 0, null, 1, null, 2, "<b>Library</b>");
 		
-		/*sideTreeModel.append(out devices_iter, null);
-		sideTreeModel.set(devices_iter, 0, null, 1, null, 2, "<b>Devices</b>");*/
+		// devices is added on/off based on if it has any children to show
+		sideTreeModel.append(out devices_iter, null);
+		sideTreeModel.set(devices_iter, 0, null, 1, null, 2, "<b>Devices</b>");
 		
 		if(BeatBox.Beatbox.enableStore) {
 			sideTreeModel.append(out network_iter, null);
@@ -221,6 +237,11 @@ public class BeatBox.SideTreeView : TreeView {
 			sideTreeModel.append(out library_music_iter, parent);
 			sideTreeModel.set(library_music_iter, 0, o, 1, w, 2, name);
 			return library_music_iter;
+		}
+		else if(name == "CD ROM" && parent == devices_iter) {
+			sideTreeModel.append(out devices_cdrom_iter, parent);
+			sideTreeModel.set(devices_cdrom_iter, 0, o, 1, 2, 2, name);
+			return devices_cdrom_iter;
 		}
 		else if(name == "Music Store" && parent == network_iter) {
 			sideTreeModel.append(out network_store_iter, parent);
@@ -316,6 +337,10 @@ public class BeatBox.SideTreeView : TreeView {
 			sideTreeModel.set(iter, 0, o, 1, w, 2, name);
 			return iter;
 		}
+	}
+	
+	public void removeItem(TreeIter iter) {
+		sideTreeModel.remove(iter);
 	}
 	
 	public Widget getSelectedWidget() {
@@ -594,6 +619,18 @@ public class BeatBox.SideTreeView : TreeView {
 		this.get_selection().unselect_all();
 		this.get_selection().select_iter(library_music_iter);
 		model.foreach(updateView);
+	}
+	
+	// cd rom context menu
+	public void CDimportToLibraryClicked() {
+		
+	}
+	
+	public void CDejectClicked() {
+		GLib.Object o;
+		sideTreeModel.get(devices_cdrom_iter, 0, out o);
+		
+		((CDRipper)o).ejectCD();
 	}
 	
 	//smart playlist context menu

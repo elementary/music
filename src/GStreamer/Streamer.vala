@@ -4,6 +4,7 @@ public class BeatBox.Streamer : GLib.Object {
 	LibraryManager lm;
 	LibraryWindow lw;
 	BeatBox.Pipeline pipe;
+	CDRipper ripper;
 	
 	 /** signals **/
     public signal void end_of_stream();
@@ -20,6 +21,10 @@ public class BeatBox.Streamer : GLib.Object {
 		pipe.bus.add_watch(busCallback);
 		
 		Timeout.add(500, doPositionUpdate);
+	}
+	
+	public void songRipped(Song s) {
+		setURI("file://" + s.file);
 	}
 	
 	public bool doPositionUpdate() {
@@ -84,6 +89,18 @@ public class BeatBox.Streamer : GLib.Object {
 	/* Extra stuff */
 	public void setEqualizerGain(int index, int val) {
 		pipe.eq.setGain(index, val);
+	}
+	
+	public void ripCD(string device, int count) {
+		ripper = new CDRipper(device, count);
+		ripper.ripSong(1, "/home/scott/cdtest/track 1.mp3");
+		
+		ripper.song_ripped.connect(song_ripped);
+	}
+	
+	public void song_ripped(Song s) {
+		if(s.track < ripper.track_count)
+			ripper.ripSong(s.track + 1, "/home/scott/cdtest/track " + (s.track + 1).to_string() + ".mp3");
 	}
 	
 	
