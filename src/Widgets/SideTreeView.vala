@@ -22,10 +22,9 @@
 
 using Gtk;
 
-public class BeatBox.SideTreeView : TreeView {
+public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	LibraryManager lm;
 	LibraryWindow lw;
-	TreeStore sideTreeModel;
 	
 	public TreeIter library_iter;
 	public TreeIter library_music_iter;
@@ -66,55 +65,6 @@ public class BeatBox.SideTreeView : TreeView {
 	}
 	
 	public void buildUI() {
-		/* 0: playlist, smart playlist, etc.
-		 * 1: the widget to show in relation
-		 * 2: name to display
-		 */
-		sideTreeModel = new TreeStore(4, typeof(GLib.Object), typeof(Widget), typeof(string), typeof(string));
-		this.set_model(sideTreeModel);
-		this.set_headers_visible(false);
-		//this.set_grid_lines(TreeViewGridLines.NONE);
-		//this.show_expanders = false;
-		
-		TreeViewColumn col = new TreeViewColumn();
-		col.title = "object";
-		this.insert_column(col, 0);
-		
-		col = new TreeViewColumn();
-		col.title = "widget";
-		this.insert_column(col, 1);
-		
-		var cell_renderer_text = new Gtk.CellRendererText();
-		var cell_renderer_pixbuf = new Gtk.CellRendererPixbuf();
-		this.insert_column_with_data_func(-1, "title", cell_renderer_pixbuf, smartPixTextColumnData);
-		this.get_column(2).pack_end(cell_renderer_text, true);
-		this.get_column(2).set_attributes(cell_renderer_text, "markup", 2, null);
-		this.get_column(2).alignment = 0.0f;
-		//this.get_column(2).max_width = 150;
-		//this.get_column(2).fixed_width = 150;
-		cell_renderer_text.xalign = 0.0f;
-		//this.get_column(2).expand = false;
-		
-		col = new TreeViewColumn();
-		col.title = "expander";
-		col.expand = true;
-		this.insert_column(col, 3);
-		//this.set_expander_column(get_column(2));
-		this.set_show_expanders(false);
-		
-		int index = 0;
-		foreach(TreeViewColumn tvc in this.get_columns()) {
-			if(index == 0 || index == 1)
-				tvc.visible = false;
-			
-			++index;
-		}
-		
-		this.button_press_event.connect(sideListClick);
-		this.row_activated.connect(sideListDoubleClick);
-		this.get_selection().changed.connect(sideListSelectionChange);
-		this.expand_all();
-		
 		CDMenu = new Menu();
 		CDimportToLibrary = new MenuItem.with_label("Import to Library");
 		CDeject = new MenuItem.with_label("Eject");
@@ -143,6 +93,11 @@ public class BeatBox.SideTreeView : TreeView {
 		playlistSave.activate.connect(playlistSaveClicked);
 		playlistMenu.show_all();
 		
+		this.button_press_event.connect(sideListClick);
+		this.row_activated.connect(sideListDoubleClick);
+		this.true_selection_change.connect(sideListSelectionChange);
+		this.expand_all();
+		
 		/* set up drag dest stuff */
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
@@ -151,153 +106,71 @@ public class BeatBox.SideTreeView : TreeView {
 		this.show_all();
 	}
 	
-	public void smartPixTextColumnData(TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
-		GLib.Object o = null;
-		string title = "";
-		tree_model.get(iter, 0, out o, 2, out title);
-		
-		TreeIter parent;
-		//if(sideTreeModel.iter_is_valid(parent))
-		//	sideTreeModel.get(parent, out parent_string);
-		
-		/* NOTE: This is only called for the pixbuf cellrenderer!!!!!!! */
-		if(cell is CellRendererPixbuf && iter == library_music_iter) {
-			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("folder-music", IconSize.MENU);
-		}
-		else if(cell is CellRendererPixbuf && iter == playlists_similar_iter) {
-			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("playlist-automatic", IconSize.MENU);
-			
-			//make it insensitive if no similar songs/not enough
-		}
-		else if(cell is CellRendererPixbuf && iter == playlists_queue_iter) {
-			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("media-audio", IconSize.MENU);
-		}
-		else if(cell is CellRendererPixbuf && iter == playlists_history_iter) {
-			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("emblem-urgent", IconSize.MENU);
-		}
-		else if(cell is CellRendererPixbuf && o is SmartPlaylist) {
-			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("playlist-automatic", IconSize.MENU);
-		}
-		else if(cell is CellRendererPixbuf && o is Playlist) {
-			((CellRendererPixbuf)cell).pixbuf = get_pixbuf_from_stock("playlist", IconSize.MENU);
-		}
-		else
-			((CellRendererPixbuf)cell).pixbuf = null;
-		
-		//align pixbuf to right, text to left
-		if(cell is CellRendererPixbuf) {
-			cell.set_fixed_size(40, 0);
-			cell.set_alignment((float)1.0, (float)1.0);
-			//((CellRendererPixbuf)cell).alignment = Alignment.RIGHT;
-			((CellRendererPixbuf)cell).stock_size = 16;
-		}
-			
-		if(!sideTreeModel.iter_parent(out parent, iter)) {
-			cell.visible = false;
-		}
-		else {
-			cell.visible = true;
-		}
-	}
-	
-	private Gdk.Pixbuf get_pixbuf_from_stock (string stock_id, Gtk.IconSize size) {
-		Gdk.Pixbuf pixbuf;
-		
-		pixbuf = this.render_icon(stock_id, size, null);
-		
-		if(pixbuf == null)
-		stdout.printf("Could not render icon %s\n", stock_id);
-		
-		return pixbuf;
-	}
-	
-	public void clearList() {
-		sideTreeModel.clear();
-	}
-	
 	public void addBasicItems() {
-		sideTreeModel.append(out library_iter, null);
-		sideTreeModel.set(library_iter, 0, null, 1, null, 2, "<b>Library</b>");
-		
-		// devices is added on/off based on if it has any children to show
-		sideTreeModel.append(out devices_iter, null);
-		sideTreeModel.set(devices_iter, 0, null, 1, null, 2, "<b>Devices</b>");
-		
-		if(BeatBox.Beatbox.enableStore) {
-			sideTreeModel.append(out network_iter, null);
-			sideTreeModel.set(network_iter, 0, null, 1, null, 2, "<b>Network</b>");
-		}
-		
-		sideTreeModel.append(out playlists_iter, null);
-		sideTreeModel.set(playlists_iter, 0, null, 1, null, 2, "<b>Playlists</b>");
+		library_iter = addItem(null, null, null, null, "Library", null);
+		devices_iter = addItem(null, null, null, null, "Devices", null);
+		network_iter = addItem(null, null, null, null, "Network", null);
+		playlists_iter = addItem(null, null, null, null, "Playlists", null);
 	}
 	
-	public TreeIter? addItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
+	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
 		if(name == "Music" && parent == library_iter) {
-			sideTreeModel.append(out library_music_iter, parent);
-			sideTreeModel.set(library_music_iter, 0, o, 1, w, 2, name);
+			library_music_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
 			return library_music_iter;
 		}
 		else if(name == "CD ROM" && parent == devices_iter) {
-			sideTreeModel.append(out devices_cdrom_iter, parent);
-			sideTreeModel.set(devices_cdrom_iter, 0, o, 1, 2, 2, name);
+			devices_cdrom_iter = addItem(parent, o, w, render_icon("", IconSize.MENU, null), name, null);
 			return devices_cdrom_iter;
 		}
 		else if(name == "Music Store" && parent == network_iter) {
-			sideTreeModel.append(out network_store_iter, parent);
-			sideTreeModel.set(network_store_iter, 0, o, 1, w, 2, name);
+			network_store_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
 			return network_store_iter;
 		}
 		else if(name == "Podcasts" && parent == library_iter) {
-			sideTreeModel.append(out library_podcasts_iter, parent);
-			sideTreeModel.set(library_podcasts_iter, 0, o, 1, w, 2, name);
+			library_podcasts_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
 			return library_podcasts_iter;
 		}
 		else if(name == "Audiobooks" && parent == library_iter) {
-			sideTreeModel.append(out library_audiobooks_iter, parent);
-			sideTreeModel.set(library_audiobooks_iter, 0, o, 1, w, 2, name);
+			library_audiobooks_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
 			return library_audiobooks_iter;
 		}
 		else if(name == "Similar" && parent == playlists_iter) {
-			sideTreeModel.append(out playlists_similar_iter, parent);
-			sideTreeModel.set(playlists_similar_iter, 0, o, 1, w, 2, name);
+			playlists_similar_iter = addItem(parent, o, w, render_icon("playlist-automatic", IconSize.MENU, null), name, null);
 			return playlists_similar_iter;
 		}
 		else if(name == "Queue" && parent == playlists_iter) {
-			sideTreeModel.append(out playlists_queue_iter, parent);
-			sideTreeModel.set(playlists_queue_iter, 0, o, 1, w, 2, name);
+			playlists_queue_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
 			return playlists_queue_iter;
 		}
 		else if(name == "History" && parent == playlists_iter) {
-			sideTreeModel.append(out playlists_history_iter, parent);
-			sideTreeModel.set(playlists_history_iter, 0, o, 1, w, 2, name);
+			playlists_history_iter = addItem(parent, o, w, render_icon("emblem-urgent", IconSize.MENU, null), name, null);
 			return playlists_history_iter;
 		}
 		else if(o is SmartPlaylist) {
 			TreeIter item;
 			TreeIter pivot;
-			sideTreeModel.iter_children(out pivot, playlists_iter);
+			tree.iter_children(out pivot, playlists_iter);
 			
 			do {
 				string tempName;
 				GLib.Object tempO;
-				sideTreeModel.get(pivot, 0, out tempO, 2, out tempName);
+				tree.get(pivot, 0, out tempO, 4, out tempName);
 				
 				if(tempO != null && ((tempO is Playlist) || tempName > name)) {
-					sideTreeModel.insert_before(out item, playlists_iter, pivot);
+					tree.insert_before(out item, playlists_iter, pivot);
 					break;
 				}
-				else if(!sideTreeModel.iter_next(ref pivot)) {
-					sideTreeModel.append(out item, parent);
+				else if(!tree.iter_next(ref pivot)) {
+					tree.append(out item, parent);
 					break;
 				}
+				
 			} while(true);
 			
-			sideTreeModel.set(item, 0, o, 1, w, 2, name.replace("&", "&amp;"));
+			tree.set(item, 0, o, 1, w, 2, true, 3, render_icon("playlist-automatic", IconSize.MENU, null), 4, name.replace("&", "&amp;"), 5, null);
+			
 			if(visible) {
-				this.get_selection().unselect_all();
-				this.get_selection().select_iter(item);
-				sideListSelectionChange();
+				this.get_selection().select_iter(convertToFilter(item));
 			}
 			
 			return item;
@@ -305,87 +178,49 @@ public class BeatBox.SideTreeView : TreeView {
 		else if(o is Playlist) {
 			TreeIter item;
 			TreeIter pivot;
-			sideTreeModel.iter_children(out pivot, playlists_iter);
+			tree.iter_children(out pivot, playlists_iter);
 			
 			do {
 				string tempName;
 				GLib.Object tempO;
-				sideTreeModel.get(pivot, 0, out tempO, 2, out tempName);
+				tree.get(pivot, 0, out tempO, 4, out tempName);
 				
 				if(tempO != null && tempO is Playlist && tempName > name) {
-					sideTreeModel.insert_before(out item, playlists_iter, pivot);
+					tree.insert_before(out item, playlists_iter, pivot);
 					break;
 				}
-				else if(!sideTreeModel.iter_next(ref pivot)) {
-					sideTreeModel.append(out item, parent);
+				else if(!tree.iter_next(ref pivot)) {
+					tree.append(out item, parent);
 					break;
 				}
 			} while(true);
 			
-			sideTreeModel.set(item, 0, o, 1, w, 2, name.replace("&", "&amp;"));
+			tree.set(item, 0, o, 1, w, 2, true, 3, render_icon("playlist", IconSize.MENU, null), 4, name.replace("&", "&amp;"), 5, null);
 			if(visible) {
-				this.get_selection().unselect_all();
-				this.get_selection().select_iter(item);
-				sideListSelectionChange();
+				this.get_selection().select_iter(convertToFilter(item));
 			}
 			
 			return item;
 		}
 		else {
-			TreeIter iter;
-			sideTreeModel.append(out iter, parent);
-			sideTreeModel.set(iter, 0, o, 1, w, 2, name);
-			return iter;
+			return addItem(parent, o, w, null, name, null);
 		}
-	}
-	
-	public void removeItem(TreeIter iter) {
-		sideTreeModel.remove(iter);
-	}
-	
-	public Widget getSelectedWidget() {
-		TreeSelection selected = this.get_selection();
-		selected.set_mode(SelectionMode.SINGLE);
-		TreeModel model;
-		TreeIter iter;
-		selected.get_selected (out model, out iter);
-		
-		Widget w;
-		sideTreeModel.get(iter, 1, out w);
-		return w;
-	}
-	
-	public Widget getWidget(TreeIter iter) {
-		Widget w;
-		sideTreeModel.get(iter, 1, out w);
-		return w;
-	}
-	
-	public Widget get_current_widget() {
-		return current_widget;
 	}
 	
 	public void updatePlayQueue() {
 		Widget w;
-		sideTreeModel.get(playlists_queue_iter, 1, out w);
+		filter.get(convertToFilter(playlists_queue_iter), 1, out w);
 		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.queue(), true);
 	}
 	
 	public void updateAlreadyPlayed() {
 		Widget w;
-		sideTreeModel.get(playlists_history_iter, 1, out w);
+		filter.get(convertToFilter(playlists_history_iter), 1, out w);
 		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.already_played(), true);
 	}
 	
 	public virtual void sideListSelectionChange() {
-		sideTreeModel.foreach(updateView);
-		
-		if(current_widget is ViewWrapper) {
-			//((ViewWrapper)current_widget).setStatusBarText();
-		}
-		/*else if(current_widget is SimilarPane) {
-			((SimilarPane)current_widget).similars.setStatusBarText();
-		}*/
+		tree.foreach(updateView);
 	}
 	
 	public virtual bool sideListClick(Gdk.EventButton event) {
@@ -399,37 +234,23 @@ public class BeatBox.SideTreeView : TreeView {
 			
 			this.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
 			
-			if(!sideTreeModel.get_iter(out iter, path))
+			if(!filter.get_iter(out iter, path))
 				return false;
+			stdout.printf("1\n");
 			
 			GLib.Object o;
-			sideTreeModel.get(iter, 0, out o);
+			filter.get(iter, 0, out o);
 			string name;
-			sideTreeModel.get(iter, 2, out name);
+			filter.get(iter, 4, out name);
 			
 			TreeIter parent;
-			sideTreeModel.iter_parent(out parent, iter);
-			if(sideTreeModel.iter_is_valid(parent)) {
+			if(filter.iter_parent(out parent, iter)) {
 				
 				string parent_name;
-				sideTreeModel.get(parent, 2, out parent_name);
-				if(iter == library_music_iter) {
-					
-				}
-				else if(iter == library_podcasts_iter) {
-					
-				}
-				else if(iter == library_audiobooks_iter) {
-					
-				}
-				else if(parent == playlists_iter) {
-					if(iter == playlists_queue_iter) {
-						
-					}
-					else if(iter == playlists_history_iter) {
-						
-					}
-					else if(iter == playlists_similar_iter) {
+				filter.get(parent, 4, out parent_name);
+				
+				if(parent == convertToFilter(playlists_iter)) {
+					if(iter == convertToFilter(playlists_similar_iter)) {
 						playlistSave.visible = true;
 						playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					}
@@ -440,16 +261,7 @@ public class BeatBox.SideTreeView : TreeView {
 				}
 			}
 			else {
-				if(iter == library_iter) {
-					return true;
-				}
-				else if(iter == devices_iter) {
-					return true;
-				}
-				else if(iter == network_iter) {
-					return true;
-				}
-				else if(iter == playlists_iter) {
+				if(iter == convertToFilter(playlists_iter)) {
 					playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					return true;
 				}
@@ -457,7 +269,7 @@ public class BeatBox.SideTreeView : TreeView {
 			
 			return false;
 		}
-		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
+		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 2) {
 			TreeIter iter;
 			TreePath path;
 			TreeViewColumn column;
@@ -465,25 +277,58 @@ public class BeatBox.SideTreeView : TreeView {
 			int cell_y;
 			
 			this.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
-			
-			if(!sideTreeModel.get_iter(out iter, path))
+		
+			if(!filter.get_iter(out iter, path))
 				return false;
-			
-			GLib.Object o;
-			sideTreeModel.get(iter, 0, out o);
-			Widget w;
-			sideTreeModel.get(iter, 1, out w);
-			string name;
-			sideTreeModel.get(iter, 2, out name);
-			
-			TreeIter parent;
-			sideTreeModel.iter_parent(out parent, iter);
-			if(sideTreeModel.iter_is_valid(parent)) {
-				this.get_selection().select_iter(iter);
 				
-				string parent_name;
-				sideTreeModel.get(parent, 2, out parent_name);
+			if(getWidget(iter) is ViewWrapper) {
+				((ViewWrapper)getWidget(iter)).list.setAsCurrentList(0);
+			}
+			
+			((ViewWrapper)current_widget).setStatusBarText();
+		}
+		
+		return false;
+	}
+	
+	public virtual void sideListDoubleClick(TreePath path, TreeViewColumn column) {
+		TreeIter iter;
+		
+		if(!filter.get_iter(out iter, path))
+			return;
+			
+		if(getWidget(iter) is ViewWrapper) {
+			((ViewWrapper)getWidget(iter)).list.setAsCurrentList(1);
+			
+			lm.playSong(lm.songFromCurrentIndex(0));
+			lm.player.play();
+			
+			if(!lm.playing)
+				lw.playClicked();
+		}
+	}
+	
+	public void resetView() {
+		get_selection().unselect_all();
+		get_selection().select_iter(convertToFilter(library_music_iter));
+		filter.foreach(updateView);
+	}
+	
+	public bool updateView(TreeModel model, TreePath path, TreeIter iter) {
+		Widget w;
+		GLib.Object o;
+		model.get(iter, 0, out o, 1, out w);
+		
+		if(w == null)
+			return false;
+		
+		if(w == getSelectedWidget()) {
+			w.show();
+			
+			if(w is ViewWrapper) {
+				((ViewWrapper)w).setIsCurrentView(true);
 				
+				/* update the lists if we need to */
 				if(iter == library_music_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					lw.miller.populateColumns(lm.song_ids());
@@ -518,7 +363,7 @@ public class BeatBox.SideTreeView : TreeView {
 					
 					lw.miller.populateColumns(lm.already_played());
 				}
-				else if(parent == playlists_iter && o is SmartPlaylist) {
+				else if(o is SmartPlaylist) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
@@ -526,7 +371,7 @@ public class BeatBox.SideTreeView : TreeView {
 					
 					lw.miller.populateColumns(vw.songs);
 				}
-				else if(parent == playlists_iter && o is Playlist) {
+				else if(o is Playlist) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
@@ -535,90 +380,23 @@ public class BeatBox.SideTreeView : TreeView {
 					lw.miller.populateColumns(vw.songs);
 				}
 				
-				((ViewWrapper)current_widget).setStatusBarText();
-				
-				return false;
+				((ViewWrapper)w).setStatusBarText();
 			}
-			else {
-				
-				return true;
+			else if(w is Store.StoreView) {
+				((Store.StoreView)w).setIsCurrentView(true);
 			}
 		}
-		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 2) {
-			TreeIter iter;
-			TreePath path;
-			TreeViewColumn column;
-			int cell_x;
-			int cell_y;
+		else {
+			w.hide();
 			
-			this.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
-		
-			if(!sideTreeModel.get_iter(out iter, path))
-				return false;
-				
-			if(getWidget(iter) is ViewWrapper) {
-				((ViewWrapper)getWidget(iter)).list.setAsCurrentList(0);
+			if(w is ViewWrapper) {
+				((ViewWrapper)w).setIsCurrentView(false);
 			}
-			/*else if(getWidget(iter) is SimilarPane) {
-				((SimilarPane)getWidget(iter)).similars.setAsCurrentList(0);
-			}*/
-			
-			((ViewWrapper)current_widget).setStatusBarText();
+			else if(w is Store.StoreView) {
+				((Store.StoreView)w).setIsCurrentView(false);
+			}
 		}
-		
 		return false;
-	}
-	
-	public virtual void sideListDoubleClick(TreePath path, TreeViewColumn column) {
-		TreeIter iter;
-		
-		if(!sideTreeModel.get_iter(out iter, path))
-			return;
-			
-		if(getWidget(iter) is ViewWrapper) {
-			((ViewWrapper)getWidget(iter)).list.setAsCurrentList(1);
-			
-			lm.playSong(lm.songFromCurrentIndex(0));
-			lm.player.play();
-			
-			if(!lm.playing)
-				lw.playClicked();
-		}
-	}
-	
-	public bool updateView(TreeModel model, TreePath path, TreeIter item) {
-		Widget w;
-		model.get(item, 1, out w);
-		
-		if(w != null) {
-			if(this.get_selection().iter_is_selected(item)) {
-				w.show();
-				this.current_widget = w;
-				if(w is ViewWrapper) {
-					((ViewWrapper)w).setIsCurrentView(true);
-				}
-				else if(w is Store.StoreView) {
-					((Store.StoreView)w).setIsCurrentView(true);
-				}
-			}
-			else {
-				w.hide();
-				if(w is ViewWrapper) {
-					((ViewWrapper)w).setIsCurrentView(false);
-				}
-				else if(w is Store.StoreView) {
-					((Store.StoreView)w).setIsCurrentView(false);
-				}
-			}
-		}
-		
-		return false;
-	}
-	
-	public void resetView() {
-		this.get_selection().unselect_all();
-		this.get_selection().select_iter(library_music_iter);
-		model.foreach(updateView);
 	}
 	
 	// cd rom context menu
@@ -628,7 +406,7 @@ public class BeatBox.SideTreeView : TreeView {
 	
 	public void CDejectClicked() {
 		GLib.Object o;
-		sideTreeModel.get(devices_cdrom_iter, 0, out o);
+		filter.get(devices_cdrom_iter, 0, out o);
 		
 		((CDRipper)o).ejectCD();
 	}
@@ -645,21 +423,21 @@ public class BeatBox.SideTreeView : TreeView {
 				
 			do {
 				GLib.Object o;
-				sideTreeModel.get(pivot, 0, out o);
+				tree.get(pivot, 0, out o);
 				if(o is SmartPlaylist && ((SmartPlaylist)o).rowid == sp.rowid) {
 					string name;
 					Widget w;
-					sideTreeModel.get(pivot, 1, out w, 2, out name);
+					tree.get(pivot, 1, out w, 2, out name);
 					
-					sideTreeModel.remove(pivot);
-					addItem(playlists_iter, sp, w, sp.name);
+					tree.remove(pivot);
+					addItem(playlists_iter, sp, w, render_icon("playlist-automatic", IconSize.MENU, null), sp.name, null);
 					
 					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_smart_playlist(sp.rowid), false);
 					lm.save_smart_playlists();
 					
 					break;
 				}
-			} while(sideTreeModel.iter_next(ref pivot));
+			} while(tree.iter_next(ref pivot));
 		}
 		else {
 			lm.add_smart_playlist(sp); // this queues save_smart_playlists()
@@ -681,21 +459,21 @@ public class BeatBox.SideTreeView : TreeView {
 				
 			do {
 				GLib.Object o;
-				sideTreeModel.get(pivot, 0, out o);
+				tree.get(pivot, 0, out o);
 				if(o is Playlist && ((Playlist)o).rowid == p.rowid) {
 					string name;
 					Widget w;
-					sideTreeModel.get(pivot, 1, out w, 2, out name);
+					tree.get(pivot, 1, out w, 2, out name);
 					
-					sideTreeModel.remove(pivot);
-					addItem(playlists_iter, p, w, p.name);
+					tree.remove(pivot);
+					addItem(playlists_iter, p, w, render_icon("playlist", IconSize.MENU, null), p.name, null);
 					
 					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_playlist(p.rowid), false);
 					lm.save_playlists();
 					
 					break;
 				}
-			} while(sideTreeModel.iter_next(ref pivot));
+			} while(tree.iter_next(ref pivot));
 		}
 		else {
 			lm.add_playlist(p);
@@ -713,7 +491,7 @@ public class BeatBox.SideTreeView : TreeView {
 		selected.get_selected (out model, out iter);
 		
 		GLib.Object o;
-		sideTreeModel.get(iter, 0, out o);
+		tree.get(iter, 0, out o);
 		
 		if(o is Playlist) {
 			PlaylistNameWindow pnw = new PlaylistNameWindow(lw, ((Playlist)o));
@@ -733,9 +511,9 @@ public class BeatBox.SideTreeView : TreeView {
 		selected.get_selected (out model, out iter);
 		
 		GLib.Object o;
-		sideTreeModel.get(iter, 0, out o);
+		tree.get(iter, 0, out o);
 		Widget w;
-		sideTreeModel.get(iter, 1, out w);
+		tree.get(iter, 1, out w);
 		
 		if(o is Playlist)
 			lm.remove_playlist(((Playlist)o).rowid);
@@ -743,7 +521,7 @@ public class BeatBox.SideTreeView : TreeView {
 			lm.remove_smart_playlist(((SmartPlaylist)o).rowid);
 		
 		w.destroy();
-		sideTreeModel.remove(iter);
+		tree.remove(iter);
 		resetView();
 	}
 	
@@ -756,7 +534,7 @@ public class BeatBox.SideTreeView : TreeView {
 		selected.get_selected (out model, out iter);
 		
 		Widget w;
-		sideTreeModel.get(iter, 1, out w);
+		tree.get(iter, 1, out w);
 		
 		if(w is ViewWrapper && ((ViewWrapper)w).list is SimilarPane) {
 			SimilarPane sp = (SimilarPane)(((ViewWrapper)w).list);
@@ -772,21 +550,22 @@ public class BeatBox.SideTreeView : TreeView {
 		int cell_x;
 		int cell_y;
 		
-		
+		stdout.printf("start\n");
 		/* get the iter we are on */
 		this.get_path_at_pos(x, y, out path, out column, out cell_x, out cell_y);
-		if(!sideTreeModel.get_iter(out iter, path)) {
+		if(!filter.get_iter(out iter, path)) {
 			Gtk.drag_finish(context, false, false, timestamp);
 			return;
 		}
-		
+		stdout.printf("here\n");
 		GLib.Object o;
-		sideTreeModel.get(iter, 0, out o);
+		filter.get(iter, 0, out o);
 		string name;
-		sideTreeModel.get(iter, 2, out name);
+		filter.get(iter, 4, out name);
 		
 		/* make sure it is either queue or normal playlist */
 		if(name == "Queue") {
+			stdout.printf("queue\n");
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
@@ -801,7 +580,7 @@ public class BeatBox.SideTreeView : TreeView {
 		}
 		else if(o is Playlist) {
 			Playlist p = (Playlist)o;
-			
+			stdout.printf("playlist\n");
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {

@@ -159,7 +159,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				Timeout.add(250, () => {
 					lm.playSong(s.rowid);
 					
-					((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).list.setAsCurrentList(0);
+					((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.setAsCurrentList(0);
 					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL)
 						lm.setShuffleMode(LibraryManager.Shuffle.ALL);
 					
@@ -407,7 +407,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusBar.pack_start(statusBarLabel, true, true, 0);
 		statusBar.pack_start(wrap_alignment(infoPanelChooser, 0, 10, 0, 0), false, false, 2);
 		
-		
 		/* Connect events to functions */
 		sourcesToSongs.child1.size_allocate.connect(sourcesToSongsHandleSet);
 		welcomeScreen.activated.connect(welcomeScreenActivated);
@@ -430,13 +429,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		drag_data_received.connect(dragReceived);
 		
 		show_all();
-		topMenu.hide();
-		topDisplay.show_scale();
-		topDisplay.set_scale_sensitivity(false);
+		//topMenu.hide();
+		//topDisplay.show_scale();
 		sideTree.resetView();
+		//topDisplay.set_scale_sensitivity(false);
 		viewSelector.selected = settings.getViewMode();
-		welcomeScreen.hide();
-		infoPanel.set_visible(settings.getMoreVisible());
+		//welcomeScreen.hide();
+		//infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
 		updateMillerColumns();
 		
@@ -472,24 +471,24 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addBasicItems();
 		
 		vw = new ViewWrapper(lm, this, new LinkedList<int>(), lm.similar_setup.sort_column, lm.similar_setup.sort_direction, MusicTreeView.Hint.SIMILAR, -1);
-		sideTree.addItem(sideTree.playlists_iter, null, vw, "Similar");
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "Similar");
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.queue(), lm.queue_setup.sort_column, lm.queue_setup.sort_direction, MusicTreeView.Hint.QUEUE, -1);
-		sideTree.addItem(sideTree.playlists_iter, null, vw, "Queue");
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "Queue");
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.already_played(), lm.history_setup.sort_column, lm.history_setup.sort_direction, MusicTreeView.Hint.HISTORY, -1);
-		sideTree.addItem(sideTree.playlists_iter, null, vw, "History");
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "History");
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.song_ids(), lm.music_setup.sort_column, lm.music_setup.sort_direction, MusicTreeView.Hint.MUSIC, -1);
-		sideTree.addItem(sideTree.library_iter, null, vw, "Music");
+		sideTree.addSideItem(sideTree.library_iter, null, vw, "Music");
 		mainViews.pack_start(vw, true, true, 0);
 		
 		if(BeatBox.Beatbox.enableStore) {
 			Store.StoreView storeView = new Store.StoreView(lm, this);
-			sideTree.addItem(sideTree.network_iter, null, storeView, "Music Store");
+			sideTree.addSideItem(sideTree.network_iter, null, storeView, "Music Store");
 			mainViews.pack_start(storeView, true, true, 0);
 		}
 		
@@ -516,14 +515,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Playlist p = (Playlist)o;
 			
 			vw = new ViewWrapper(lm, this, lm.songs_from_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.PLAYLIST, p.rowid);
-			item = sideTree.addItem(sideTree.playlists_iter, p, vw, p.name);
+			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
 			mainViews.pack_start(vw, true, true, 0);
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 			
 			vw = new ViewWrapper(lm, this, lm.songs_from_smart_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.SMART_PLAYLIST, p.rowid);
-			item = sideTree.addItem(sideTree.playlists_iter, p, vw, p.name);
+			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
 			mainViews.pack_start(vw, true, true, 0);
 		}
 		
@@ -906,7 +905,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				((ViewWrapper)w).list.setAsCurrentList(1);
 			}
 			else {
-				w = sideTree.getWidget(sideTree.library_music_iter);
+				w = sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
 				((ViewWrapper)w).list.setAsCurrentList(1);
 			}
 			
@@ -1079,7 +1078,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				((ViewWrapper)vw).clear();
 		});
 		
-		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
+		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
 		vw.doUpdate(vw.currentView, lm.song_ids(), true);
 		miller.populateColumns(lm.song_ids());
 	}
@@ -1283,7 +1282,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {
-		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
+		Widget w = sideTree.getWidget(sideTree.convertToFilter(sideTree.playlists_similar_iter));
 		
 		((ViewWrapper)w).similarsFetched = true;
 		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true);
