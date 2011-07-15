@@ -427,7 +427,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				if(o is SmartPlaylist && ((SmartPlaylist)o).rowid == sp.rowid) {
 					string name;
 					Widget w;
-					tree.get(pivot, 1, out w, 2, out name);
+					tree.get(pivot, 1, out w, 4, out name);
 					
 					tree.remove(pivot);
 					addItem(playlists_iter, sp, w, render_icon("playlist-automatic", IconSize.MENU, null), sp.name, null);
@@ -463,7 +463,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				if(o is Playlist && ((Playlist)o).rowid == p.rowid) {
 					string name;
 					Widget w;
-					tree.get(pivot, 1, out w, 2, out name);
+					tree.get(pivot, 1, out w, 4, out name);
 					
 					tree.remove(pivot);
 					addItem(playlists_iter, p, w, render_icon("playlist", IconSize.MENU, null), p.name, null);
@@ -491,7 +491,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		selected.get_selected (out model, out iter);
 		
 		GLib.Object o;
-		tree.get(iter, 0, out o);
+		filter.get(iter, 0, out o);
 		
 		if(o is Playlist) {
 			PlaylistNameWindow pnw = new PlaylistNameWindow(lw, ((Playlist)o));
@@ -511,9 +511,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		selected.get_selected (out model, out iter);
 		
 		GLib.Object o;
-		tree.get(iter, 0, out o);
+		filter.get(iter, 0, out o);
 		Widget w;
-		tree.get(iter, 1, out w);
+		filter.get(iter, 1, out w);
 		
 		if(o is Playlist)
 			lm.remove_playlist(((Playlist)o).rowid);
@@ -521,7 +521,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			lm.remove_smart_playlist(((SmartPlaylist)o).rowid);
 		
 		w.destroy();
-		tree.remove(iter);
+		removeItem(iter);
 		resetView();
 	}
 	
@@ -534,7 +534,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		selected.get_selected (out model, out iter);
 		
 		Widget w;
-		tree.get(iter, 1, out w);
+		filter.get(iter, 1, out w);
 		
 		if(w is ViewWrapper && ((ViewWrapper)w).list is SimilarPane) {
 			SimilarPane sp = (SimilarPane)(((ViewWrapper)w).list);
@@ -550,14 +550,13 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		int cell_x;
 		int cell_y;
 		
-		stdout.printf("start\n");
 		/* get the iter we are on */
 		this.get_path_at_pos(x, y, out path, out column, out cell_x, out cell_y);
 		if(!filter.get_iter(out iter, path)) {
 			Gtk.drag_finish(context, false, false, timestamp);
 			return;
 		}
-		stdout.printf("here\n");
+		
 		GLib.Object o;
 		filter.get(iter, 0, out o);
 		string name;
@@ -565,7 +564,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		
 		/* make sure it is either queue or normal playlist */
 		if(name == "Queue") {
-			stdout.printf("queue\n");
+			
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
@@ -577,10 +576,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					}
 				}
 			}
+			
 		}
 		else if(o is Playlist) {
 			Playlist p = (Playlist)o;
-			stdout.printf("playlist\n");
+			
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
@@ -592,6 +592,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					}
 				}
 			}
+			
 		}
 		
 		Gtk.drag_finish (context, success, false, timestamp);

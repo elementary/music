@@ -515,7 +515,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Playlist p = (Playlist)o;
 			
 			vw = new ViewWrapper(lm, this, lm.songs_from_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.PLAYLIST, p.rowid);
+			stdout.printf("adding\n");
 			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
+			stdout.printf("added\n");
 			mainViews.pack_start(vw, true, true, 0);
 		}
 		else if(o is SmartPlaylist) {

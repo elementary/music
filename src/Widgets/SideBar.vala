@@ -201,7 +201,7 @@ namespace ElementaryWidgets {
 		/* Convenient add/remove/edit methods */
 		public TreeIter addItem(TreeIter? parent, GLib.Object? o, Widget? w, Gdk.Pixbuf? pixbuf, string text, Gdk.Pixbuf? clickable) {
 			TreeIter iter;
-			stdout.printf("added %s\n", text);
+			
 			tree.append(out iter, parent);
 			tree.set(iter, 0, o, 1, w, 2, true, 3, pixbuf, 4, text, 5, clickable);
 			
