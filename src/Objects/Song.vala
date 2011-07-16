@@ -56,6 +56,7 @@ public class BeatBox.Song : GLib.Object{
 	private string _lastfm_url;
 	private string _lyrics;
 	private string _album_path;
+	private Gdk.Pixbuf _album_art;
 	
 	public bool isPreview;
 	
@@ -243,6 +244,11 @@ public class BeatBox.Song : GLib.Object{
 		set { _lyrics = value; }
 	}
 	
+	public Gdk.Pixbuf? album_art {
+		get { return _album_art; }
+		set { _album_art = value; }
+	}
+	
 	public Song copy() {
 		Song rv = new Song(_file);
 		rv.file_name = file_name;
@@ -267,6 +273,7 @@ public class BeatBox.Song : GLib.Object{
 		rv.date_added = date_added;
 		rv.last_played = last_played;
 		rv.lyrics = lyrics;
+		rv.album_art = album_art;
 		rv.setAlbumArtPath(getAlbumArtPath());
 		
 		return rv;
