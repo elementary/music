@@ -24,26 +24,17 @@ using Gtk;
 using Gee;
 using GLib;
 
-public class BeatBox.AlbumViewModelObject : GLib.Object {
-	public string artist;
-	public string album;
-	public Gdk.Pixbuf? art;
-	
-	public AlbumViewModelObject(Gdk.Pixbuf? pix, string artistt, string albumm) {
-		art = pix;
-		artist = artistt;
-		album = albumm;
-	}
-}
-
 public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	LibraryManager lm;
 	int stamp; // all iters must match this
 	Gdk.Pixbuf defaultImage;
 	
     /* data storage variables */
-    Sequence<AlbumViewModelObject> rows;
-    private LinkedList<string> _columns;
+    Sequence<int> rows;
+    
+    /* threaded pixbuf fetching */
+    public TreeIter start_visible;
+    public TreeIter end_visible;
     
     /* custom signals for custom treeview. for speed */
     public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
@@ -56,9 +47,9 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		this.defaultImage = defaultImage;
 
 #if VALA_0_14
-		rows = new Sequence<AlbumViewModelObject>();
+		rows = new Sequence<int>();
 #else
-		rows = new Sequence<AlbumViewModelObject>(null);
+		rows = new Sequence<int>(null);
 #endif
        
        stamp = (int)GLib.Random.next_int();
@@ -68,8 +59,11 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	public Type get_column_type (int col) {
 		if(col == 0)
 			return typeof(Gdk.Pixbuf);
-		else
+		else if(col == 1)
 			return typeof(string);
+		else
+			return typeof(Song);
+		
 	}
 
 	/** Returns a set of flags supported by this interface **/
@@ -96,7 +90,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	
 	/** Returns the number of columns supported by tree_model. **/
 	public int get_n_columns () {
-		return 2;
+		return 3;
 	}
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
@@ -113,11 +107,26 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		if(iter.stamp != this.stamp || column < 0 || column >= 2)
 			return;
 		
-		if(!((SequenceIter<AlbumViewModelObject>)iter.user_data).is_end()) {
-			if(column == 0)
-				val = rows.get(((SequenceIter<AlbumViewModelObject>)iter.user_data)).art;
-			else
-				val = rows.get(((SequenceIter<AlbumViewModelObject>)iter.user_data)).album + "\n" + rows.get(((SequenceIter<AlbumViewModelObject>)iter.user_data)).artist;
+		if(!((SequenceIter<Song>)iter.user_data).is_end()) {
+			Song s = lm.song_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
+			
+			if(column == 0) {
+				
+				if(s.album_art != null) {
+					val = s.album_art;
+				}
+				else {
+					val = defaultImage;
+				}
+				
+			}
+			else if(column == 1)
+				val = s.album.replace("&", "&amp;") + "\n" + "<span foreground=\"#999\">" + s.artist.replace("&", "&amp;") + "</span>";
+			else if(column == 2) {
+				stdout.printf("returning song\n");
+				val = s;
+				stdout.printf("returned\n");
+			}
 		}
 	}
 
@@ -177,36 +186,17 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	/** Lets the tree unref the node. **/
 	public void unref_node (TreeIter iter) {}
     
-    public TreeIter? getIterFromAlbumArtist(string album, string artist) {
-    /** Some actual functions to use this model **/
-		SequenceIter s_iter = rows.get_begin_iter();
-		
-		for(int index = 0; index < rows.get_length(); ++index) {
-			s_iter = rows.get_iter_at_pos(index);
-			
-			if(artist == rows.get(s_iter).artist && album == rows.get(s_iter).album) {
-				TreeIter iter = TreeIter();
-				iter.stamp = this.stamp;
-				iter.user_data = s_iter;
-				
-				return iter;
-			}
-		}
-		
-		return null;
-	}
-    
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
-		SequenceIter<AlbumViewModelObject> added = rows.append(new AlbumViewModelObject(defaultImage, "", ""));
+		SequenceIter<int> added = rows.append(0);
 		iter.stamp = this.stamp;
 		iter.user_data = added;
 	}
 	
 	/** convenience method to insert songs into the model. No iters returned. **/
-    public void appendAlbums(Collection<AlbumViewModelObject> albums, bool emit) {
+    public void appendSongs(Collection<int> albums, bool emit) {
 		foreach(var album in albums) {
-			SequenceIter<AlbumViewModelObject> added = rows.append(album);
+			SequenceIter<int> added = rows.append(album);
 			
 			if(emit) {
 				TreePath path = new TreePath.from_string(added.get_position().to_string());
@@ -224,14 +214,14 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	 * @albumOld the old album name
 	 * @album the new album object to use
 	*/
-	public void updateAlbum(string artistOld, string albumOld, AlbumViewModelObject album) {
+	public void updateAlbum(string artistOld, string albumOld, Song album) {
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
-			if(rows.get(s_iter).artist == artistOld && rows.get(s_iter).album == albumOld) {
-				rows.set(s_iter, album);
+			if(lm.song_from_id(rows.get(s_iter)).artist == artistOld && lm.song_from_id(rows.get(s_iter)).album == albumOld) {
+				rows.set(s_iter, album.rowid);
 				
 				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
 				
@@ -256,17 +246,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			int col = args.arg();
 			if(col < 0 || col >= 1)
 				return;
-			else if(col == 0) {
-				stdout.printf("set oh hi3\n");
-				Gdk.Pixbuf val = args.arg();
-				rows.get(((SequenceIter<AlbumViewModelObject>)iter.user_data)).art = val;
-			}
-			else {
-				stdout.printf("set oh hi4\n");
-				string val = args.arg();
-				rows.get(((SequenceIter<AlbumViewModelObject>)iter.user_data)).album = val.split("\n")[0];
-				rows.get(((SequenceIter<AlbumViewModelObject>)iter.user_data)).artist = val.split("\n")[1];
-			}
+			
+			
 		}
 	}
 	
@@ -275,51 +256,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			return;
 			
 		var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
-		rows.remove((SequenceIter<AlbumViewModelObject>)iter.user_data);
+		rows.remove((SequenceIter<int>)iter.user_data);
 		row_deleted(path);
 	}
-	
-	/*public void removeSongs(Collection<int> rowids) {
-		SequenceIter s_iter = rows.get_begin_iter();
-		
-		for(int index = 0; index < rows.get_length(); ++index) {
-			s_iter = rows.get_iter_at_pos(index);
-			
-			if(rowids.contains(rows.get(s_iter).values[0].get_int())) {
-				int rowid = rows.get(s_iter).values[0].get_int();
-				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
-					
-				rows.remove(s_iter);
-					
-				row_deleted(path);
-				rowids.remove(rowid);
-				--index;
-			}
-			
-			if(rowids.size <= 0)
-				return;
-		}
-	}*/
-	
-	/*public LinkedList<Song> getOrderedSongs() {
-		var rv = new LinkedList<Song>();
-		SequenceIter s_iter = rows.get_begin_iter();
-		
-		for(int index = 0; index < rows.get_length(); ++index) {
-			s_iter = rows.get_iter_at_pos(index);
-			
-			if(id == rows.get(s_iter).values[0].get_int()) {
-				rows.get(s_iter).values[_columns.index_of(" ")] = Value(typeof(Gdk.Pixbuf));;
-				
-				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
-				
-				TreeIter iter = TreeIter();
-				iter.stamp = this.stamp;
-				iter.user_data = s_iter;
-				
-				row_changed(path, iter);
-				return;
-			}
-		}
-	}*/
 }

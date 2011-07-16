@@ -27,7 +27,7 @@ public class BeatBox.ViewWrapper : VBox {
 	public LibraryManager lm;
 	public LibraryWindow lw;
 	public MusicTreeView list;
-	public FilterView filterView;
+	public AlbumView albumView;
 	private WarningLabel errorBox;
 	public Collection<int> songs;
 	
@@ -55,21 +55,21 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		
 		//list.populateView(songs, false);
-		filterView = new FilterView(lm, lw, songs);
+		albumView = new AlbumView(lm, lw, songs);
 		
 		pack_start(list, true, true, 0);
-		pack_start(filterView, true, true, 0);
+		pack_start(albumView, true, true, 0);
 		
 		if(list.hint == MusicTreeView.Hint.SIMILAR)
 			pack_start(errorBox, true, true, 0);
 		
-		filterView.needsUpdate = true;
+		albumView.needsUpdate = true;
 		list.needsUpdate = true;
 		
 		if(the_hint == MusicTreeView.Hint.MUSIC)
 			doUpdate(ViewType.LIST, songs, true);
 		
-		filterView.itemClicked.connect(filterViewItemClicked);
+		albumView.itemClicked.connect(filterViewItemClicked);
 		lw.viewSelector.notify["selected"].connect(selectorViewChanged);
 		lm.song_played.connect(songPlayed);
 	}
@@ -91,7 +91,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		if(!isIt) {
 			list.is_current_view = false;
-			filterView.isCurrentView = false;
+			albumView.isCurrentView = false;
 		}
 		else {
 			doUpdate(currentView, songs, false);
@@ -112,7 +112,7 @@ public class BeatBox.ViewWrapper : VBox {
 			errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\nBeatBox is loading songs similar to " + lm.song_from_id(id).title.replace("&", "&amp;") + " by " + lm.song_from_id(id).artist.replace("&", "&amp;") + "...");
 			errorBox.show();
 			list.hide();
-			filterView.hide();
+			albumView.hide();
 			similarsFetched = false;
 		}
 	}
@@ -125,8 +125,8 @@ public class BeatBox.ViewWrapper : VBox {
 		list.set_songs(empty);
 		list.populateView(empty, false, false);
 		
-		filterView.set_songs(empty);
-		filterView.generateHTML(empty, false);
+		albumView.set_songs(empty);
+		albumView.generateHTML(empty, false);
 	}
 	
 	public void doUpdate(ViewType type, Collection<int> songs, bool force) {
@@ -140,7 +140,7 @@ public class BeatBox.ViewWrapper : VBox {
 			if(!similarsFetched) { // still fetching similar songs
 				errorBox.show();
 				list.hide();
-				filterView.hide();
+				albumView.hide();
 				
 				return;
 			}
@@ -149,7 +149,7 @@ public class BeatBox.ViewWrapper : VBox {
 					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No Similar Songs</span>\nBeatBox could not find songs similar to " + lm.song_info.song.title.replace("&", "&amp;") + " by " + lm.song_info.song.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
 					errorBox.show();
 					list.hide();
-					filterView.hide();
+					albumView.hide();
 					
 					return;
 				}
@@ -168,7 +168,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		if(type == ViewType.LIST) {
 			list.show();
-			filterView.hide();
+			albumView.hide();
 			
 			if(isCurrentView) {
 				list.is_current_view = true;
@@ -179,14 +179,14 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		else {
 			list.hide();
-			filterView.show();
+			albumView.show();
 			
 			if(isCurrentView) {
-				filterView.isCurrentView = true;
-				filterView.generateHTML(songs, force);
+				albumView.isCurrentView = true;
+				albumView.generateHTML(songs, force);
 			}
 			else
-				filterView.isCurrentView = false;
+				albumView.isCurrentView = false;
 		}
 	}
 	

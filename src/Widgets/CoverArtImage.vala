@@ -72,9 +72,17 @@ public class BeatBox.CoverArtImage : Image {
 					
 					// wait for everything to finish up and then update the songs
 					Timeout.add(2000, () => {
+						
+						try {
+							Thread.create<void*>(lm.fetch_thread_function, false);
+						}
+						catch(GLib.ThreadError err) {
+							stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+						}
+						
 						lm.update_songs(updated_songs, false);
 						
-						// for sound menu (dbus doesn't like linked lists
+						// for sound menu (dbus doesn't like linked lists)
 						if(updated_songs.contains(lm.song_info.song))
 							lm.update_song(lm.song_info.song, false);
 						

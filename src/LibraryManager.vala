@@ -193,6 +193,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 				player.setEqualizerGain(i, p.getGain(i));
 			}
 		}
+		
+		// start thread to load all the songs pixbuf's
+		try {
+			Thread.create<void*>(fetch_thread_function, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+		}
 	}
 	
 	/************ Library/Collection management stuff ************/
@@ -281,7 +289,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Idle.add( () => { 
 			
 			doing_file_operations = false;
-			music_added(not_imported); 
+			music_added(not_imported);
+			
+			try {
+				Thread.create<void*>(fetch_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+			}
+			
 			return false; 
 		});
 		
@@ -333,6 +349,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
+			
+			try {
+				Thread.create<void*>(fetch_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+			}
+			
 			return false; 
 		});
 		
@@ -385,6 +409,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
+			
+			try {
+				Thread.create<void*>(fetch_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+			}
+			
 			return false; 
 		});
 		
@@ -450,6 +482,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			doing_file_operations = false;
 			music_rescanned(new_songs, not_imported); 
+			
+			try {
+				Thread.create<void*>(fetch_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+			}
+			
 			return false; 
 		});
 		
@@ -1284,6 +1324,38 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public Gdk.Pixbuf? save_artist_image_locally(int id, string image) {
 		return fo.save_artist_image(_songs.get(id), image);
+	}
+	
+	/* at the start, load all the pixbufs */
+	public void* fetch_thread_function () {
+		
+		var toShowS = new LinkedList<Song>();
+        foreach(var s in _songs.values)
+			toShowS.add(s);
+        
+        // first sort the songs so we know they are grouped by artists, then albums
+		toShowS.sort((CompareFunc)songCompareFunc);
+		
+		string previousAlbum = "";
+		foreach(Song s in toShowS) {
+			if(s.album != previousAlbum) {
+				
+				if(s.album_art == null && !s.getAlbumArtPath().contains("/usr/share/")) {
+					s.album_art = new Gdk.Pixbuf.from_file_at_size(s.getAlbumArtPath(), 128, 128);
+				}
+				
+				// also try loading from metadata!
+				
+				previousAlbum = s.album;
+			}
+		}
+		
+		return null;
+
+	}
+	
+	public static int songCompareFunc(Song a, Song b) {
+		return (a.album > b.album) ? 1 : -1;
 	}
 	
 }

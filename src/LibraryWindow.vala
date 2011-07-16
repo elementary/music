@@ -437,6 +437,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//welcomeScreen.hide();
 		//infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
+		viewSelector.set_visible(3, false);
 		updateMillerColumns();
 		
 		bool genreV, artistV, albumV;
@@ -818,8 +819,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			artist_s == lm.song_info.song.artist && lm.song_info.song.getAlbumArtPath().contains("media-audio.png")) {
 				lm.song_info.album = album;
 			
-                if (album.url_image.url != null)
-    				lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
+                if (album.url_image.url != null) {
+					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
+					
+					// start thread to load all the songs pixbuf's
+					try {
+						Thread.create<void*>(lm.fetch_thread_function, false);
+					}
+					catch(GLib.ThreadError err) {
+						stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+					}
+				}
 			}
 			else {
 				return null;
@@ -1313,7 +1323,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 			file_chooser.destroy ();
 			
-			if(folder != "" && folder != settings.getMusicFolder()) {
+			if(folder != "" && (folder != settings.getMusicFolder() || lm.song_count() == 0)) {
 				setMusicFolder(folder);
 			}
 		}

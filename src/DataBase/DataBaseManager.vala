@@ -222,7 +222,6 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			
 			foreach(Song s in songs) {
 				if(s.rowid > 0) {
-					stdout.printf("inserting %s by %s at %d\n", s.title, s.artist, s.rowid);
 					query.set_int(":rowid", s.rowid);
 					query.set_string(":file", s.file);
 					query.set_string(":title", s.title);

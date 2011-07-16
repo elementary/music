@@ -275,10 +275,23 @@ public class BeatBox.FileOperator : Object {
 		try {
 			filestream = file.read(null);
 			rv = new Gdk.Pixbuf.from_stream(filestream, null);
-			rv.save(Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg"), "jpeg");
-			s.setAlbumArtPath(Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg"));
+			var dest = Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg");
+			rv.save(dest, "jpeg");
 			
-			lm.update_song(s, false);
+			Gee.LinkedList<Song> updated_songs = new Gee.LinkedList<Song>();
+			foreach(int i in lm.song_ids()) {
+				if(lm.song_from_id(i).artist == s.artist && lm.song_from_id(i).album == s.album) {
+					stdout.printf("setting album art for %s by %s\n", lm.song_from_id(i).title, lm.song_from_id(i).artist);
+					lm.song_from_id(i).setAlbumArtPath(dest);
+					updated_songs.add(lm.song_from_id(i));
+				}
+			}
+			
+			lm.update_songs(updated_songs, false);
+			
+			// for sound menu (dbus doesn't like linked lists)
+			if(updated_songs.contains(lm.song_info.song))
+				lm.update_song(lm.song_info.song, false);
 		}
 		catch(GLib.Error err) {
 			rv = null;

@@ -764,7 +764,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 												_songs));
 		}
 		
-		if(_showing_songs.size == potentialShowing.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force)
+		if(_showing_songs.size == potentialShowing.size && potentialShowing.size > 500 && hint != Hint.HISTORY && hint != Hint.QUEUE && !force)
 			return;
 		else
 			_showing_songs = potentialShowing;
