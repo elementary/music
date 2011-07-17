@@ -130,8 +130,24 @@ public class BeatBox.LibraryManager : GLib.Object {
 		song_info.artist = new LastFM.ArtistInfo.basic();
 		song_info.album = new LastFM.AlbumInfo.basic();
 		
-		repeat = Repeat.OFF;
-		shuffle = Shuffle.OFF;
+		int repeatValue = settings.getRepeatMode();
+		if(repeatValue == 0)
+			repeat = LibraryManager.Repeat.OFF;
+		else if(repeatValue == 1)
+			repeat = LibraryManager.Repeat.SONG;
+		else if(repeatValue == 2)
+			repeat = LibraryManager.Repeat.ALBUM;
+		else if(repeatValue == 3)
+			repeat = LibraryManager.Repeat.ARTIST;
+		else if(repeatValue == 4)
+			repeat = LibraryManager.Repeat.ALL;
+		
+		var shuffleValue = settings.getShuffleMode();
+		if(shuffleValue == 0)
+			setShuffleMode(LibraryManager.Shuffle.OFF);
+		else if(shuffleValue == 1)
+			setShuffleMode(LibraryManager.Shuffle.ALL);
+		
 		doing_file_operations = false;
 		
 		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, MusicTreeView.Hint.MUSIC);

@@ -746,7 +746,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 		
 		// if it is a video, show the video option and select it
-		Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
+		/*Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
 		if(disc.discover_uri("file://" + lm.song_info.song.file).get_video_streams().length() > 0) {
 			if(!viewSelector.get_visible(3)) {
 				viewSelector.set_visible(3, true);
@@ -757,7 +757,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			//stdout.printf("is not video, removing\n");
 			viewSelector.set_visible(3, false);
 			viewSelector.selected = settings.getViewMode();
-		}
+		}*/
 	}
 	
 	public virtual void playback_stopped(int was_playing) {

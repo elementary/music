@@ -125,8 +125,8 @@ def build(bld):
 	obj.uselib = 'GIO GDK_X11 GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES GSTREAMER_PBUTILS TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD LIBNOTIFY UNIQUE SOUP JSON WEBKIT'
 	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 
 									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
-									'src/Widgets/*.vala', 'src/Widgets/Album View/*.vala', 'src/Widgets/List View/*.vala', 
-									'src/Widgets/Miller Columns/*.vala', 'src/Store/*.vala', 'src/Store/Widgets/*.vala',
+									'src/Widgets/*.vala', 'src/Widgets/AlbumView/*.vala', 'src/Widgets/ListView/*.vala', 
+									'src/Widgets/MillerColumns/*.vala', 'src/Store/*.vala', 'src/Store/Widgets/*.vala',
 									'src/GStreamer/*.vala'))
 
 	if obj.env['HAVE_ZEITGEIST']:
