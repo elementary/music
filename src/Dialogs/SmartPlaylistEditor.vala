@@ -37,7 +37,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	private Label optionsLabel;
 	
 	ElementaryWidgets.ElementaryEntry _name;
-	ComboBox comboMatch;
+	ComboBoxText comboMatch;
 	VBox vertQueries;
 	Gee.ArrayList<SmartPlaylistEditorQuery> spQueries;
 	Button addButton;
@@ -82,7 +82,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		/* create match checkbox/combo combination */
 		HBox matchBox = new HBox(false, 2);
 		Label tMatch = new Label("Match");
-		comboMatch = new ComboBox.text();
+		comboMatch = new ComboBoxText();
 		comboMatch.insert_text(0, "any");
 		comboMatch.insert_text(1, "all");
 		Label tOfTheFollowing = new Label("of the following:");
@@ -200,8 +200,8 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 	private SmartQuery _q;
 	
 	public HBox _box;
-	private ComboBox _field;
-	private ComboBox _comparator;
+	private ComboBoxText _field;
+	private ComboBoxText _comparator;
 	private Entry _value;
 	private SpinButton _valueNumerical;
 	private Label _units;
@@ -232,8 +232,8 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		fields.set("Year", 12);
 		
 		_box = new HBox(false, 2);
-		_field = new ComboBox.text();
-		_comparator = new ComboBox.text();
+		_field = new ComboBoxText();
+		_comparator = new ComboBoxText();
 		_value = new Entry();
 		_valueNumerical = new SpinButton.with_range(0, 1000, 1);
 		_remove = new Button.with_label("Remove");
@@ -297,7 +297,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			_value.show();
 			_valueNumerical.hide();
 			
-			for(int i = 0;i < 3; ++i) _comparator.remove_text(0);
+			for(int i = 0;i < 3; ++i) _comparator.remove(0);
 			_comparator.append_text("is");
 			_comparator.append_text("contains");
 			_comparator.append_text("does not contain");
@@ -312,7 +312,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			_value.hide();
 			
 			if(_field.get_active_text() == "Bitrate" || _field.get_active_text() == "Year" || _field.get_active_text() == "Rating" || _field.get_active_text() == "Playcount" || _field.get_active_text() == "Skipcount" || _field.get_active_text() == "Length") {
-				for(int i = 0;i < 3; ++i) _comparator.remove_text(0);
+				for(int i = 0;i < 3; ++i) _comparator.remove(0);
 				_comparator.append_text("is exactly");
 				_comparator.append_text("is at most");
 				_comparator.append_text("is at least");
@@ -323,7 +323,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 				_comparator.set_active( (comparators.has_key(_q.comparator)) ? comparators.get(_q.comparator) : 0);
 			}
 			else if(_field.get_active_text() == "Date Added" || _field.get_active_text() == "Last Played") {
-				for(int i = 0;i < 3; ++i) _comparator.remove_text(0);
+				for(int i = 0;i < 3; ++i) _comparator.remove(0);
 				_comparator.append_text("is exactly");
 				_comparator.append_text("is within");
 				_comparator.append_text("is before");

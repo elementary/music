@@ -55,7 +55,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		modify_bg(StateType.NORMAL, c);
 		
 		button_press_event.connect(buttonPress);
-		expose_event.connect(exposeEvent);
+		draw.connect(exposeEvent);
 	}
 	
 	public void setOption(int index) {
@@ -115,13 +115,9 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		return false;
 	}
 	
-	public virtual bool exposeEvent(EventExpose event) {
-		event.window.draw_pixbuf(
-				style.bg_gc[0], (clicked_index != 0) ? enabled : disabled,
-				0, 0, 0, 0, width_request, height_request,
-				Gdk.RgbDither.NONE, 0, 0
-			);
-			
+	public virtual bool exposeEvent(Cairo.Context context) {
+		Gdk.cairo_set_source_pixbuf(context, (clicked_index != 0) ? enabled : disabled, 0, 0);
+		
 		return true;
 	}
 }

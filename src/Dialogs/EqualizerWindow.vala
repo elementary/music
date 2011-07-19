@@ -50,7 +50,7 @@ public class BeatBox.EqualizerWindow : Window {
 		
 		// set the size
 		set_size_request(-1, 300);
-		allow_shrink = true;
+		resizable = true;
 		
 		// set icon
 		set_icon( render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));

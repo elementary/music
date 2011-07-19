@@ -316,7 +316,7 @@ public class Store.AlbumView : ScrolledWindow {
 			
 			foreach(var tag in tags) {
 				stdout.printf("tag added: %s\n", tag.text);
-				this.tags.pack_start(new TagLabel(tag.text, "blue", tag, true), false, false, 0);
+				//this.tags.pack_start(new TagLabel(tag.text, "blue", tag, true), false, false, 0);
 			}
 			
 			return false;

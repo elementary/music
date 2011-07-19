@@ -44,8 +44,8 @@ namespace ElementaryWidgets {
 			height = 12;
 		}
 		
-		public override void render(Gdk.Window window, Widget widget, Rectangle background_area, Rectangle cell_area, Rectangle expose_area, CellRendererState flags) {
-			Gtk.paint_expander(widget.get_style(), window, StateType.NORMAL, background_area, widget, "treeview", 
+		public override void render(Cairo.Context context, Widget widget, Rectangle background_area, Rectangle cell_area, CellRendererState flags) {
+			Gtk.paint_expander(widget.get_style(), context, StateType.NORMAL, widget, "treeview", 
 								cell_area.x + 12 / 2, cell_area.y + 20 / 2, expanded ? ExpanderStyle.EXPANDED : ExpanderStyle.COLLAPSED);
 		}
 	}

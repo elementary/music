@@ -408,7 +408,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusBar.pack_start(wrap_alignment(infoPanelChooser, 0, 10, 0, 0), false, false, 2);
 		
 		/* Connect events to functions */
-		sourcesToSongs.child1.size_allocate.connect(sourcesToSongsHandleSet);
+		sourcesToSongs.get_child1().size_allocate.connect(sourcesToSongsHandleSet);
 		welcomeScreen.activated.connect(welcomeScreenActivated);
 		//sideTree.row_activated.connect(sideListDoubleClick);
 		previousButton.clicked.connect(previousClicked);
@@ -420,7 +420,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
 		viewSelector.notify["selected"].connect(updateMillerColumns);
 		viewSelector.notify["selected"].connect( () => { updateSensitivities(); } );
-		millerPane.child1.size_allocate.connect(millerResized);
+		millerPane.get_child1().size_allocate.connect(millerResized);
 		searchField.activate.connect(searchFieldActivate);
 		
 		/* set up drag dest stuff */
@@ -1084,7 +1084,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.resetView();
 		
 		// clear all other playlists, reset to Music, populate music
-		mainViews.children.foreach( (vw) => {
+		mainViews.get_children().foreach( (vw) => {
 			stdout.printf("hi\n");
 			if(vw is ViewWrapper)
 				((ViewWrapper)vw).clear();
