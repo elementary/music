@@ -24,7 +24,7 @@ using Gtk;
 using Gee;
 
 public class Store.AlbumView : ScrolledWindow {
-	Store.StoreView parent;
+	Store.StoreView storeView;
 	Store.store store;
 	private Store.Release release;
 	private LinkedList<Store.Track> tracksListList;
@@ -33,7 +33,7 @@ public class Store.AlbumView : ScrolledWindow {
 	private Image albumArt;
 	private Gtk.Label albumName;
 	private Gtk.Label albumArtist;
-	private TagLabel purchase;
+	//private TagLabel purchase;
 	private Gtk.Label releaseDate;
 	private Gtk.Label producer;
 	private HBox priceFlags;
@@ -47,7 +47,7 @@ public class Store.AlbumView : ScrolledWindow {
 	private Gdk.Pixbuf defaultPix;
 	
 	public AlbumView(Store.StoreView view, Store.store s, Release r) {
-		parent = view;
+		storeView = view;
 		store = s;
 		release = r;
 		tracksListList = new LinkedList<Store.Track>();
@@ -83,8 +83,8 @@ public class Store.AlbumView : ScrolledWindow {
 		rightButtons = new VBox(false, 0);
 		description = new Gtk.Label("");
 		tags = new HBox(false, 5);
-		trackList = new Store.TrackList(parent, "Album", false);
-		similarReleases = new Store.IconView(parent);
+		trackList = new Store.TrackList(storeView, "Album", false);
+		similarReleases = new Store.IconView(storeView);
 		
 		HBox topInfoSplit = new HBox(false, 0);
 		topInfo.pack_start(wrap_alignment(albumName, 20, 10, 10, 0), false, true, 0);
@@ -144,8 +144,8 @@ public class Store.AlbumView : ScrolledWindow {
 		show_all();
 		
 		/*viewArtist.button_press_event.connect( (event) => {
-			var newView = new ArtistView(parent, parent.store, release.artist);
-			parent.setView(newView);
+			var newView = new ArtistView(storeView, storeView.store, release.artist);
+			storeView.setView(newView);
 			newView.populate();
 			
 			return false;
@@ -175,9 +175,9 @@ public class Store.AlbumView : ScrolledWindow {
 			Thread.create<void*>(gettracks_thread_function, false);
 			Thread.create<void*>(getsimilarreleases_thread_function, false);
 			Thread.create<void*>(getalbuminfo_thread_function, false);
-			parent.max = 5;
-			parent.index = 0;
-			parent.progressNotification();
+			storeView.max = 5;
+			storeView.index = 0;
+			storeView.progressNotification();
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("ERROR: Could not create thread to get populate ArtistView: %s \n", err.message);
@@ -188,11 +188,11 @@ public class Store.AlbumView : ScrolledWindow {
 		Store.Release r = store.getRelease(release.releaseID, 200);
 		r.image = Store.store.getPixbuf(r.imagePath, 200, 200);
 		
-		++parent.index;
+		++storeView.index;
 		
 		Idle.add( () => { 
 			setAlbum(r); 
-			++parent.index;
+			++storeView.index;
 			
 			Thread.create<void*>(gettaglabels_thread_function, false);
 			
@@ -206,13 +206,13 @@ public class Store.AlbumView : ScrolledWindow {
 		foreach(var track in release.getTracks())
 			tracksListList.add(track);
 		
-		++parent.index;
+		++storeView.index;
 		
 		Idle.add( () => { 
 			foreach(var track in tracksListList)
 				trackList.addItem(track);
 				
-			++parent.index;
+			++storeView.index;
 			return false;
 		});
 		
@@ -225,13 +225,13 @@ public class Store.AlbumView : ScrolledWindow {
 			similarReleasesList.add(rel);
 		}
 		
-		++parent.index;
+		++storeView.index;
 		
 		Idle.add( () => { 
 			foreach(var rel in similarReleasesList)
 				similarReleases.addItem(rel);
 				
-			++parent.index;
+			++storeView.index;
 			return false;
 		});
 		
@@ -239,7 +239,7 @@ public class Store.AlbumView : ScrolledWindow {
 	}
 	
 	public void* gettaglabels_thread_function () {
-		var labels = new LinkedList<Store.TagLabel>();
+		/*var labels = new LinkedList<Store.TagLabel>();
 		
 		foreach(var format in release.formats) {
 			stdout.printf("format: %s %s\n", format.fileFormat, format.bitrate.to_string());
@@ -262,11 +262,11 @@ public class Store.AlbumView : ScrolledWindow {
 				labels.add(new TagLabel("DRM Free", "orange", format, false));
 		}
 		
-		if(release.price != null/* && !release.price.formattedPrice.contains("0.00")*/) {
+		if(release.price != null/* && !release.price.formattedPrice.contains("0.00")*) {
 			labels.add(new TagLabel(release.price.formattedPrice, "orange", release.price, false));
 		}
 		
-		++parent.index;
+		++storeView.index;
 		
 		Idle.add( () => { 
 			foreach(var lab in labels) {
@@ -274,9 +274,9 @@ public class Store.AlbumView : ScrolledWindow {
 				priceFlags.pack_start(lab, false, false, 0);
 			}
 				
-			++parent.index;
+			++storeView.index;
 			return false;
-		});
+		});*/
 		
 		return null;
 	}
@@ -289,18 +289,18 @@ public class Store.AlbumView : ScrolledWindow {
 		string album_s = release.title;
 		
 		/* fetch album info now. only save if still on current song */
-		//if(!parent.lm.album_info_exists(album_s + " by " + artist_s)) {
+		//if(!storeView.lm.album_info_exists(album_s + " by " + artist_s)) {
 			
 			album = new LastFM.AlbumInfo.with_info(artist_s, album_s);
 			stdout.printf("fetched album\n");
 			if(album != null) {
-				//parent.lm.save_album(album);
+				//storeView.lm.save_album(album);
 				stdout.printf("saved album\n");
 			}
 			
 		//}
 		//else {
-		//	album = parent.lm.get_album(album_s + " by " + artist_s);
+		//	album = storeView.lm.get_album(album_s + " by " + artist_s);
 		//}
 		
 		/* now get the 7digital tags */

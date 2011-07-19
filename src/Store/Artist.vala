@@ -58,7 +58,7 @@ public class Store.Artist : Store.SearchResult {
 		
 		Xml.Node* node = Store.XMLParser.getRootNode(message);
 		if(node == null)
-			return null;
+			return rv;
         
 		for (Xml.Node* iter = node->children; iter != null; iter = iter->next) {
 			if (iter->type != ElementType.ELEMENT_NODE) {
@@ -94,7 +94,7 @@ public class Store.Artist : Store.SearchResult {
 		
 		Xml.Node* node = Store.XMLParser.getRootNode(message);
 		if(node == null)
-			return null;
+			return rv;
         
 		for (Xml.Node* iter = node->children; iter != null; iter = iter->next) {
 			if (iter->type != ElementType.ELEMENT_NODE) {
@@ -129,7 +129,7 @@ public class Store.Artist : Store.SearchResult {
 		
 		Xml.Node* node = Store.XMLParser.getRootNode(message);
 		if(node == null)
-			return null;
+			return rv;
         
 		for (Xml.Node* iter = node->children; iter != null; iter = iter->next) {
 			if (iter->type != ElementType.ELEMENT_NODE) {
@@ -174,7 +174,7 @@ public class Store.Artist : Store.SearchResult {
 		
 		Xml.Node* node = Store.XMLParser.getRootNode(message);
 		if(node == null)
-			return null;
+			return rv;
         
 		for (Xml.Node* iter = node->children; iter != null; iter = iter->next) {
 			if (iter->type != ElementType.ELEMENT_NODE) {

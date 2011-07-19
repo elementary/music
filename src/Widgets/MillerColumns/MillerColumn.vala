@@ -282,7 +282,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		//stdout.printf("Populating %s with %d items\n", category, items.size);
 		items.remove("");
 		items.add("All " + category);
-		TreeIter iter;
 		
 		model = new MillerModel(category);
 		model.append_items(items, true);

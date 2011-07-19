@@ -25,7 +25,6 @@ using Gdk;
 
 public class BeatBox.CellDataFunctionHelper : GLib.Object {
 	MusicTreeView mtv;
-	private Pixbuf[] ratings;
 	private Pixbuf _canvas;
 	private Pixbuf not_starred;
 	private Pixbuf starred;
@@ -36,17 +35,6 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		not_starred = mtv.render_icon("not-starred", IconSize.SMALL_TOOLBAR, null);
 		
 		_canvas = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, starred.width * 5, starred.height);
-		
-		//ratings = new Pixbuf[5];
-		
-		/*for(int i = 0; i < 5; ++i) {
-			ratings[i] = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, starred.width * 5, starred.height);
-			
-			mtv.window.draw_pixbuf(
-					mtv.style.bg_gc[0], ratings[i],
-					0, 0, 0, 0, (starred.width) * i, starred.height,
-					Gdk.RgbDither.NONE, 0, 0);
-		}*/
 	}
 	
 	// for Track, Year, #, Plays, Skips. Simply shows nothing if less than 1.
@@ -117,9 +105,6 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 				if (i < val.get_int()) {
 					starred.copy_area(0, 0, starred.width, starred.height, _canvas, i * starred.width, 0);
 				}
-				/*else if(((CellRendererPixbuf)cell).follow_state) {
-					not_starred.copy_area(0, 0, not_starred.width, not_starred.height, _canvas, i * not_starred.width, 0);
-				}*/
 			}
 			
 			((CellRendererPixbuf)cell).pixbuf = _canvas;

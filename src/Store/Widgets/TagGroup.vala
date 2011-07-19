@@ -1,4 +1,4 @@
-using Gtk;
+/*using Gtk;
 using Gee;
 
 public class Store.TagGroup : Layout {
@@ -90,4 +90,4 @@ public class Store.TagGroup : Layout {
 		}
 	}
 	
-}
+}*/

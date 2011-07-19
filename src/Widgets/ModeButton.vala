@@ -106,14 +106,14 @@ namespace ElementaryWidgets {
             this.queue_draw ();
         }
         
-        public void set_visible(int index, bool vis) {
+        public void set_showing(int index, bool vis) {
 			if (index < -1 || index >= box.get_children ().length ())
                 return;
             
             box.get_children().nth_data(index).set_visible(vis);
 		}
 		
-		public bool get_visible(int index) {
+		public bool get_showing(int index) {
 			if (index < -1 || index >= box.get_children ().length ())
                 return false;
             

@@ -50,11 +50,11 @@ public class BeatBox.Streamer : GLib.Object {
 	public void setURI(string uri) {
 		setState(State.READY);
 		pipe.playbin.uri = uri;
-		
+		/*
 		if(pipe.video.element != null) {
 			var xoverlay = pipe.video.element as XOverlay;
 			xoverlay.set_xwindow_id (Gdk.x11_drawable_get_xid (lw.videoArea.window));
-		}
+		}*/
 		
 		setState(State.PLAYING);
 		
@@ -87,6 +87,14 @@ public class BeatBox.Streamer : GLib.Object {
 	}
 	
 	/* Extra stuff */
+	public void enableEqualizer() {
+		pipe.enableEqualizer();
+	}
+	
+	public void disableEqualizer() {
+		pipe.disableEqualizer();
+	}
+	
 	public void setEqualizerGain(int index, int val) {
 		pipe.eq.setGain(index, val);
 	}

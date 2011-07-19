@@ -228,7 +228,6 @@ public class BeatBox.FieldEditor : VBox {
 	private SpinButton spinButton;
 	private RatingWidget ratingWidget;
 	private Image image;
-	private Button reset;
 
 	public FieldEditor(string name, string original, Widget w) {
 		_name = name;

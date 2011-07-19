@@ -302,15 +302,12 @@ public class MprisPlayer : GLib.Object {
 			switch(BeatBox.Beatbox._program.lm.repeat) {
 				case(BeatBox.LibraryManager.Repeat.OFF):
 					return "None";
-					break;
 				case(BeatBox.LibraryManager.Repeat.SONG):
 					return "Track";
-					break;
 				case(BeatBox.LibraryManager.Repeat.ALBUM):
 				case(BeatBox.LibraryManager.Repeat.ARTIST):
 				case(BeatBox.LibraryManager.Repeat.ALL):
 					return "Playlist";
-					break;
 			}
 			
 			return "Playlist";

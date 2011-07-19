@@ -23,7 +23,7 @@
 using Gtk;
 
 public class Store.IconView : Gtk.ScrolledWindow {
-	Store.StoreView parent;
+	Store.StoreView storeView;
 	
 	Gtk.IconView icons;
 	ListStore store;
@@ -32,7 +32,7 @@ public class Store.IconView : Gtk.ScrolledWindow {
 	public signal void itemClicked(string artist, string album);
 	
 	public IconView(Store.StoreView view) {
-		parent = view;
+		storeView = view;
 		
 		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
 		
@@ -112,14 +112,14 @@ public class Store.IconView : Gtk.ScrolledWindow {
 		
 		if(o is Store.Release) {
 			Release rel = (Store.Release)o;
-			var newView = new AlbumView(parent, parent.store, rel);
-			parent.setView(newView);
+			var newView = new AlbumView(storeView, storeView.store, rel);
+			storeView.setView(newView);
 			newView.populate();
 		}
 		else if(o is Store.Artist) {
 			Artist art = (Store.Artist)o;
-			var newView = new ArtistView(parent, parent.store, art);
-			parent.setView(newView);
+			var newView = new ArtistView(storeView, storeView.store, art);
+			storeView.setView(newView);
 			newView.populate();
 		}
 	}

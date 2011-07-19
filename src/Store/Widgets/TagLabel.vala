@@ -1,4 +1,4 @@
-using Gtk;
+/*using Gtk;
 using Gdk;
 
 public class Store.TagLabel : EventBox {
@@ -18,9 +18,6 @@ public class Store.TagLabel : EventBox {
 	public TagLabel (string label, string scheme, GLib.Object obj, bool hover_change) {
 		
 		this._label = new Gtk.Label (label);
-		this.foreground = foreground;
-		this.background = background;
-		this.secondary = secondary;
 		this.obj = obj;
 		this.hover_change = hover_change;
 		
@@ -46,7 +43,7 @@ public class Store.TagLabel : EventBox {
 		add (wrap_alignment (_label, 5, 5, 5, 5));
 		
 		// Signals and callbacks
-		expose_event.connect (on_expose_event);
+		draw.connect (on_expose_event);
 		
 		show_all();
 	}
@@ -72,7 +69,7 @@ public class Store.TagLabel : EventBox {
 		return true;
 	}
 	
-	private bool on_expose_event (Widget widget, EventExpose event) {
+	private bool on_expose_event (Cairo.Context context) {
 	
 		var cr = cairo_create (event.window);
 		
@@ -90,4 +87,4 @@ public class Store.TagLabel : EventBox {
 		return false;
 	}
 	
-}
+}*/

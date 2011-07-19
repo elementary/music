@@ -951,6 +951,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			view.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
 			
+			if(!music_model.get_iter(out iter, path))
+				return false;
+			
 			/* don't unselect everything if multiple selected until button release
 			 * for drag and drop reasons */
 			if(view.get_selection().count_selected_rows() > 1) {

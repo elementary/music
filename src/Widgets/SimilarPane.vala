@@ -31,10 +31,6 @@ public class BeatBox.SimilarPane : MusicTreeView {
 	
 	public LinkedList<int> _have; // this is updated EVERY song play. does not necessarily represent what is showing
 	
-	//public MusicTreeView similars;
-	EventBox errorBox;
-	Label errorLabel;
-	
 	public signal void playlist_saved(Playlist p);
 	
 	public SimilarPane(BeatBox.LibraryManager lm, BeatBox.LibraryWindow lw) {

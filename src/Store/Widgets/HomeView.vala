@@ -3,7 +3,7 @@ using Gee;
 
 public class Store.HomeView : ScrolledWindow {
 	Store.store store;
-	Store.StoreView parent;
+	Store.StoreView storeView;
 	
 	HBox allItems;
 	Store.ObjectList tagList;
@@ -13,7 +13,7 @@ public class Store.HomeView : ScrolledWindow {
 	Store.IconView topRock;
 	
 	public HomeView(StoreView storeView, Store.store store) {
-		this.parent = storeView;
+		this.storeView = storeView;
 		this.store = store;
 		
 		buildUI();
@@ -24,11 +24,11 @@ public class Store.HomeView : ScrolledWindow {
 		VBox leftItems = new VBox(false, 0);
 		VBox centerItems = new VBox(false, 0);
 		
-		tagList = new ObjectList(parent, "Popular Genres");
-		artistList = new ObjectList(parent, "Top Artists");
-		trackList = new TrackList(parent, "Artist", false);
-		releaseRotator = new ReleaseRotator(parent);
-		topRock = new IconView(parent);
+		tagList = new ObjectList(storeView, "Popular Genres");
+		artistList = new ObjectList(storeView, "Top Artists");
+		trackList = new TrackList(storeView, "Artist", false);
+		releaseRotator = new ReleaseRotator(storeView);
+		topRock = new IconView(storeView);
 		
 		/* category labels */
 		var genresLabel = new Gtk.Label("");
@@ -94,9 +94,9 @@ public class Store.HomeView : ScrolledWindow {
 			Thread.create<void*>(gettracks_thread_function, false);
 			Thread.create<void*>(gettoprock_thread_function, false);
 			Thread.create<void*>(getgenres_thread_function, false);
-			parent.max = 6;
-			parent.index = 0;
-			parent.progressNotification();
+			storeView.max = 6;
+			storeView.index = 0;
+			storeView.progressNotification();
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("ERROR: Could not create thread to get populate ArtistView: %s \n", err.message);
@@ -109,13 +109,13 @@ public class Store.HomeView : ScrolledWindow {
 		foreach(var art in store.topArtists("week", null, null, 1))
 			tops.add(art);
 		
-		++parent.index;
+		++storeView.index;
 		
 		Idle.add( () => { 
 			foreach(var art in tops)
 				artistList.addItem(art);
 				
-			++parent.index;
+			++storeView.index;
 			return false;
 		});
 		
@@ -134,7 +134,7 @@ public class Store.HomeView : ScrolledWindow {
 				releaseRotator.setReleases(tops);
 		}
 		
-		++parent.index;
+		++storeView.index;
 		
 		releaseRotator.setReleases(tops);
 		
@@ -147,13 +147,13 @@ public class Store.HomeView : ScrolledWindow {
 		foreach(var track in store.topTracks("week", null, 1))
 			tops.add(track);
 		
-		++parent.index;
+		++storeView.index;
 		
 		Idle.add( () => { 
 			foreach(var track in tops)
 				trackList.addItem(track);
 				
-			++parent.index;
+			++storeView.index;
 			return false;
 		});
 		
@@ -168,13 +168,13 @@ public class Store.HomeView : ScrolledWindow {
 			rock.add(rel);
 		}
 		
-		++parent.index;
+		++storeView.index;
 		
 		Idle.add( () => { 
 			foreach(var rel in rock)
 				topRock.addItem(rel);
 				
-			++parent.index;
+			++storeView.index;
 			return false;
 		});
 		
@@ -197,13 +197,13 @@ public class Store.HomeView : ScrolledWindow {
 		gens.add( new Tag.with_values("instrumental", "Instrumental", "") );
 		gens.add( new Tag.with_values("soundtrack", "Soundtrack", "") );
 		
-		++parent.index;
+		++storeView.index;
 		
 		Idle.add( () => { 
 			foreach(var tag in gens)
 				tagList.addItem(tag);
 				
-			++parent.index;
+			++storeView.index;
 			return false;
 		});
 		

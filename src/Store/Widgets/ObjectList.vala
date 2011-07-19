@@ -1,14 +1,14 @@
 using Gtk;
 
 public class Store.ObjectList : ScrolledWindow {
-	Store.StoreView parent;
+	Store.StoreView storeView;
 	string title;
 	
 	TreeView view;
 	ListStore store;
 	
 	public ObjectList(Store.StoreView view, string title) {
-		parent = view;
+		storeView = view;
 		this.title = title;
 		
 		buildUI();
@@ -85,14 +85,14 @@ public class Store.ObjectList : ScrolledWindow {
 		}
 		else if(o is Store.Artist) {
 			Artist art = (Store.Artist)o;
-			var newView = new ArtistView(parent, parent.store, art);
-			parent.setView(newView);
+			var newView = new ArtistView(storeView, storeView.store, art);
+			storeView.setView(newView);
 			newView.populate();
 		}
 		else if(o is Store.Release) {
 			Release rel = (Store.Release)o;
-			var newView = new AlbumView(parent, parent.store, rel);
-			parent.setView(newView);
+			var newView = new AlbumView(storeView, storeView.store, rel);
+			storeView.setView(newView);
 			newView.populate();
 		}
 	}

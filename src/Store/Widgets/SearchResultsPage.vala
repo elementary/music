@@ -1,7 +1,7 @@
 using Gtk;
 
 public class Store.SearchResultsView : ScrolledWindow {
-	Store.StoreView parent;
+	Store.StoreView storeView;
 	Store.store store;
 	
 	public Store.SearchList tracks;
@@ -9,7 +9,7 @@ public class Store.SearchResultsView : ScrolledWindow {
 	public Store.SearchList releases;
 	
 	public SearchResultsView(Store.StoreView view, Store.store store) {
-		this.parent = view;
+		this.storeView = view;
 		this.store = store;
 		
 		buildUI();
@@ -21,9 +21,9 @@ public class Store.SearchResultsView : ScrolledWindow {
 		VBox leftList = new VBox(false, 0);
 		VBox rightList = new VBox(false, 0);
 		
-		tracks = new SearchList(parent, SearchList.SearchListType.TRACK);
-		artists = new SearchList(parent, SearchList.SearchListType.ARTIST);
-		releases = new SearchList(parent, SearchList.SearchListType.RELEASE);
+		tracks = new SearchList(storeView, SearchList.SearchListType.TRACK);
+		artists = new SearchList(storeView, SearchList.SearchListType.ARTIST);
+		releases = new SearchList(storeView, SearchList.SearchListType.RELEASE);
 		
 		/* make some 'category' labels */
 		var tracksLabel = new Gtk.Label("");

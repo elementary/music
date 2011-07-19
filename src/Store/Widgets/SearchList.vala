@@ -23,7 +23,7 @@
 using Gtk;
 
 public class Store.SearchList : Gtk.ScrolledWindow {
-	Store.StoreView parent;
+	Store.StoreView storeView;
 	
 	private TreeView view;
 	private ListStore store; // (-1, Object,  #, track/release/artist, extra[1,2,3,4], ...
@@ -42,7 +42,7 @@ public class Store.SearchList : Gtk.ScrolledWindow {
 	
 	public SearchList(Store.StoreView storeView, SearchListType type) {
 		this.type = type;
-		parent = storeView;
+		this.storeView = storeView;
 		
 		buildUI();
 		setType(type);
@@ -235,17 +235,17 @@ public class Store.SearchList : Gtk.ScrolledWindow {
 		store.get(iter, 0, out o);
 		
 		if(o is Store.Track)
-			parent.lm.playTrackPreview((Store.Track)o, ((Store.Track)o).getPreviewLink());
+			storeView.lm.playTrackPreview((Store.Track)o, ((Store.Track)o).getPreviewLink());
 		else if(o is Store.Release) {
 			Release rel = (Store.Release)o;
-			var newView = new AlbumView(parent, parent.store, rel);
-			parent.setView(newView);
+			var newView = new AlbumView(storeView, storeView.store, rel);
+			storeView.setView(newView);
 			newView.populate();
 		}
 		else if(o is Store.Artist) {
 			Artist art = (Store.Artist)o;
-			var newView = new ArtistView(parent, parent.store, art);
-			parent.setView(newView);
+			var newView = new ArtistView(storeView, storeView.store, art);
+			storeView.setView(newView);
 			newView.populate();
 		}
 	}

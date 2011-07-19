@@ -24,7 +24,7 @@ using Gtk;
 using Gee;
 
 public class Store.ArtistView : ScrolledWindow {
-	Store.StoreView parent;
+	Store.StoreView storeView;
 	Store.store store;
 	private Store.Artist artist;
 	private LinkedList<Store.Track> topTracksList;
@@ -40,7 +40,7 @@ public class Store.ArtistView : ScrolledWindow {
 	private Gdk.Pixbuf defaultPix;
 	
 	public ArtistView(Store.StoreView view, Store.store s, Artist a) {
-		parent = view;
+		storeView = view;
 		store = s;
 		artist = a;
 		topTracksList = new LinkedList<Store.Track>();
@@ -62,8 +62,8 @@ public class Store.ArtistView : ScrolledWindow {
 		artistName = new Gtk.Label("");
 		upDown = new Gtk.Label("");
 		bio = new Gtk.Label("");
-		releases = new Store.IconView(parent);
-		topTracks = new Store.TrackList(parent, "Album", true);
+		releases = new Store.IconView(storeView);
+		topTracks = new Store.TrackList(storeView, "Album", true);
 		
 		artistName.xalign = 0.0f;
 		
@@ -109,9 +109,9 @@ public class Store.ArtistView : ScrolledWindow {
 			Thread.create<void*>(setartist_thread_function, false);
 			Thread.create<void*>(gettracks_thread_function, false);
 			Thread.create<void*>(getreleases_thread_function, false);
-			parent.index = 0;
-			parent.max = 5; // must get to 6 for progress bar to turn off
-			parent.progressNotification();
+			storeView.index = 0;
+			storeView.max = 5; // must get to 6 for progress bar to turn off
+			storeView.progressNotification();
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("ERROR: Could not create thread to get populate ArtistView: %s \n", err.message);
@@ -120,10 +120,10 @@ public class Store.ArtistView : ScrolledWindow {
 	
 	public void* setartist_thread_function () {
 		Store.Artist a = store.getArtist(artist.artistID);
-		++parent.index;
+		++storeView.index;
 		Idle.add( () => { 
 			setArtist(a); 
-			++parent.index;
+			++storeView.index;
 			return false; 
 		});
 		
@@ -133,12 +133,12 @@ public class Store.ArtistView : ScrolledWindow {
 	public void* gettracks_thread_function () {
 		foreach(var track in artist.getTopTracks(1, 25))
 			topTracksList.add(track);
-		++parent.index;
+		++storeView.index;
 		Idle.add( () => { 
 			foreach(var track in topTracksList)
 				topTracks.addItem(track);
 			
-			++parent.index;
+			++storeView.index;
 			return false;
 		});
 		
@@ -151,12 +151,12 @@ public class Store.ArtistView : ScrolledWindow {
 			releasesList.add(rel);
 		}
 			
-		++parent.index;
+		++storeView.index;
 		
 		Idle.add( () => { 
 			foreach(var rel in releasesList)
 				releases.addItem(rel);
-			++parent.index;
+			++storeView.index;
 			return false;
 		});
 		

@@ -25,6 +25,7 @@ using Gtk;
 public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	LibraryManager lm;
 	LibraryWindow lw;
+	DeviceManager dm;
 	
 	public TreeIter library_iter;
 	public TreeIter library_music_iter;
@@ -60,6 +61,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public SideTreeView(LibraryManager lmm, LibraryWindow lww) {
 		this.lm = lmm;
 		this.lw = lww;
+		dm = new DeviceManager();
 		
 		buildUI();
 	}
@@ -331,8 +333,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				/* update the lists if we need to */
 				if(iter == library_music_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
+					
+					//vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+					//			lm.song_ids(), false);
+					
 					lw.miller.populateColumns(lm.song_ids());
-					//vw.populateViews(lm.song_ids(), false);
 				}
 				else if(iter == network_store_iter) {
 					Store.StoreView sv = (Store.StoreView)w;

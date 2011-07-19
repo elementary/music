@@ -93,4 +93,18 @@ public class BeatBox.Pipeline : GLib.Object {
 	private void textTagsChanged(Gst.Element sender, int stream_number) {
 		
 	}
+	
+	public void enableEqualizer() {
+		if (eq.element != null) {
+			audiosinkqueue.unlink_many(audiosink); // link the queue with the real audio sink
+			audiosinkqueue.link_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
+		}
+	}
+	
+	public void disableEqualizer() {
+		if (eq.element != null) {
+			audiosinkqueue.unlink_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
+			audiosinkqueue.link_many(audiosink); // link the queue with the real audio sink
+		}
+	}
 }

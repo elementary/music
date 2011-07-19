@@ -55,7 +55,7 @@ public class BeatBox.RatingWidget : EventBox {
                   | Gdk.EventMask.LEAVE_NOTIFY_MASK);
 		//motion_notify_event.connect(mouseOver);
 		button_press_event.connect(buttonPress);
-		expose_event.connect(exposeEvent);
+		draw.connect(exposeEvent);
 	}
 	
 	public override bool leave_notify_event(Gdk.EventCrossing ev)
@@ -81,7 +81,10 @@ public class BeatBox.RatingWidget : EventBox {
 	public override bool motion_notify_event(EventMotion event) {
 		int new_rating = 0;
 		
-		int buffer = (this.allocation.width - width_request)/2;
+		Allocation al;
+		get_allocation(out al);
+		
+		int buffer = (al.width - width_request)/2;
 		if(event.x - buffer > 5)
 			new_rating = (int)((event.x - buffer + 18) / 18);
 		else
@@ -96,7 +99,10 @@ public class BeatBox.RatingWidget : EventBox {
 	public virtual bool buttonPress(Gdk.EventButton event) {
 		int new_rating = 0;
 		
-		int buffer = (this.allocation.width - width_request)/2;
+		Allocation al;
+		get_allocation(out al);
+		
+		int buffer = (al.width - width_request)/2;
 		if(event.x - buffer > 5)
 			new_rating = (int)((event.x - buffer + 18) / 18);
 		else
@@ -125,18 +131,12 @@ public class BeatBox.RatingWidget : EventBox {
 		}
 	
 	/** @override on_expose_event to paint our own custom widget **/
-	public virtual bool exposeEvent(EventExpose event) {
+	public virtual bool exposeEvent(Cairo.Context cairo) {
 		if(centered) {
-			event.window.draw_pixbuf(
-					style.bg_gc[0], _canvas,
-					0, 0, (event.area.width - width_request)/2, 0, width_request, height_request,
-					Gdk.RgbDither.NONE, 0, 0);
+			Gdk.cairo_set_source_pixbuf(cairo, _canvas, 0, 0);
 		}
 		else {
-			event.window.draw_pixbuf(
-					style.bg_gc[0], _canvas,
-					0, 0, 0, 0, width_request, height_request,
-					Gdk.RgbDither.NONE, 0, 0);
+			Gdk.cairo_set_source_pixbuf(cairo, _canvas, 0, 0);
 		}
 		return true;
 	}
@@ -159,10 +159,10 @@ public class BeatBox.RatingWidgetMenu : Gtk.MenuItem
         return false;
     }
     
-    public override bool expose_event(Gdk.EventExpose expose)
+    public override bool draw(Cairo.Context context)
     {
         if(already_drawn)
-        rating.expose_event(expose);
+        rating.exposeEvent(context);
         already_drawn = true;
         return true;
     }

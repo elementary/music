@@ -65,17 +65,17 @@ public class BeatBox.Beatbox : GLib.Object {
 	public static int main(string[] args) {
 		Gtk.init(ref args);
 		
-		Unique.App app = new Unique.App ("org.elementary.beatbox", null);
+		//Unique.App app = new Unique.App ("org.elementary.beatbox", null);
 		
 		enableStore = (args[1] == "elementary") && (args[2] == "rocks");
 	
-		if (app.is_running) { //not starting if already running
+		/*if (app.is_running) { //not starting if already running
 			Unique.Command command = Unique.Command.ACTIVATE;
 			Unique.MessageData message = new Unique.MessageData();
 			app.send_message (command, message);
-		} else {
+		} else {*/
 			Gdk.threads_init();
-			Notify.init("beatbox");
+			//Notify.init("beatbox");
 			
 			//check for .desktop file
 			/*var desktop_file = File.new_for_path("/usr/share/applications/beatbox.desktop");
@@ -98,10 +98,10 @@ public class BeatBox.Beatbox : GLib.Object {
 			dbm = new DataBaseManager();
 			
 			_program = new BeatBox.LibraryWindow(dbm, args);
-			app.watch_window(_program);
+			//app.watch_window(_program);
 			
 			Gtk.main();
-		}
+		//}
 		
         return 1;
 	}

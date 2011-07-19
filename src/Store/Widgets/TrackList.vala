@@ -23,7 +23,7 @@
 using Gtk;
 
 public class Store.TrackList : Gtk.ScrolledWindow {
-	Store.StoreView parent;
+	Store.StoreView storeView;
 	
 	private TreeView view;
 	private ListStore store; // (-1, Store.Track, title, artist/album, length, price
@@ -36,7 +36,7 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 	public signal void purchase_requested(Store.Track track);
 	
 	public TrackList(Store.StoreView view, string secondary, bool showHeaders) {
-		parent = view;
+		storeView = view;
 		secondaryText = secondary;
 		alreadyResized = 0;
 		headersVisible = showHeaders;
@@ -128,7 +128,7 @@ public class Store.TrackList : Gtk.ScrolledWindow {
 		store.get(iter, 0, out o);
 		
 		if(o is Store.Track) {
-			parent.lm.playTrackPreview((Store.Track)o, ((Store.Track)o).getPreviewLink());
+			storeView.lm.playTrackPreview((Store.Track)o, ((Store.Track)o).getPreviewLink());
 		}
 	}
 	

@@ -26,7 +26,6 @@ namespace ElementaryWidgets {
 	public class TopDisplay : VBox {
 		BeatBox.LibraryManager lm;
 		Label label;
-		Button cancelButton;
 		HBox scaleBox;
 		Label leftTime;
 		Label rightTime;

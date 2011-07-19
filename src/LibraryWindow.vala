@@ -22,7 +22,7 @@
 
 using Gtk;
 using Gee;
-using Notify;
+//using Notify;
 
 public class BeatBox.LibraryWindow : Gtk.Window {
 	public BeatBox.LibraryManager lm;
@@ -89,7 +89,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	Menu settingsMenu;
 	
-	Notify.Notification notification;
+	//Notify.Notification notification;
 	
 	public LibraryWindow(BeatBox.DataBaseManager dbm, string[] args) {
 		settings = new BeatBox.Settings();
@@ -244,10 +244,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		repeatChooser = new SimpleOptionChooser(render_icon("media-playlist-repeat-active-symbolic", IconSize.SMALL_TOOLBAR, null), render_icon("media-playlist-repeat-symbolic", IconSize.SMALL_TOOLBAR, null));
 		infoPanelChooser = new SimpleOptionChooser(render_icon("info", IconSize.SMALL_TOOLBAR, null), render_icon("info", IconSize.SMALL_TOOLBAR, null));
 		
-		notification = (Notify.Notification)GLib.Object.new (
+		/*notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
 						"summary", "Title",
-						"body", "Artist\nAlbum");
+						"body", "Artist\nAlbum");*/
 		
 		/* Set properties of various controls */
 		sourcesToSongs.set_position(settings.getSidebarWidth());
@@ -437,7 +437,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//welcomeScreen.hide();
 		//infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
-		viewSelector.set_visible(3, false);
+		viewSelector.set_showing(3, false);
 		updateMillerColumns();
 		
 		bool genreV, artistV, albumV;
@@ -705,7 +705,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		
 		//update the notifier
-		if(!has_toplevel_focus) {
+		/*if(!has_toplevel_focus) {
 			try {
 				notification.set_timeout(1);
 				notification.update(lm.song_from_id(i).title, lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album, "");
@@ -722,7 +722,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					/* create blank pixbuf so we don't show old album art */
 					/*Gdk.Pixbuf blank = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, 2, 2);
 					blank.fill((uint) 0xffffff00);
-					notification.set_image_from_pixbuf(blank);*/
+					notification.set_image_from_pixbuf(blank);*
 				}
 				
 				notification.show();
@@ -731,7 +731,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			catch(GLib.Error err) {
 				stderr.printf("Could not show notification: %s\n", err.message);
 			}
-		}
+		}*/
 		
 		if(!lm.song_info.song.isPreview) {
 			updateCurrentSong();
@@ -746,18 +746,18 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 		
 		// if it is a video, show the video option and select it
-		/*Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
+		Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
 		if(disc.discover_uri("file://" + lm.song_info.song.file).get_video_streams().length() > 0) {
-			if(!viewSelector.get_visible(3)) {
-				viewSelector.set_visible(3, true);
+			if(!viewSelector.get_showing(3)) {
+				viewSelector.set_showing(3, true);
 				viewSelector.selected = 3;
 			}
 		}
 		else {
 			//stdout.printf("is not video, removing\n");
-			viewSelector.set_visible(3, false);
+			viewSelector.set_showing(3, false);
 			viewSelector.selected = settings.getViewMode();
-		}*/
+		}
 	}
 	
 	public virtual void playback_stopped(int was_playing) {
@@ -1119,7 +1119,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 		
 		//now notify user
-		try {
+		/*try {
 			notification.close();
 			if(!has_toplevel_focus) {
 				notification.update("Import Complete", "BeatBox has imported your library", "beatbox");
@@ -1135,7 +1135,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		catch(GLib.Error err) {
 			stderr.printf("Could not show notification: %s\n", err.message);
-		}
+		}*/
 	}
 	
 	/* this is when you import music from a foreign location into the library */

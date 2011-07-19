@@ -54,7 +54,7 @@ public class BeatBox.NotImportedWindow : Window{
 		this.destroy_with_parent = true;
 		
 		set_default_size(475, -1);
-		allow_shrink = false;
+		resizable = false;
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 20);
@@ -131,7 +131,6 @@ public class BeatBox.NotImportedWindow : Window{
 		bottomButtons.pack_end(moveToTrash, false, false, 0);
 		bottomButtons.pack_end(okButton, false, false, 10);
 		bottomButtons.set_spacing(10);
-		bottomButtons.child_ipad_x = 10;
 		
 		content.pack_start(information, false, true, 0);
 		content.pack_start(wrap_alignment(trashAll, 5, 0, 0, 75), false, true, 0);
@@ -145,10 +144,10 @@ public class BeatBox.NotImportedWindow : Window{
 		okButton.clicked.connect( () => { this.destroy(); });
 		exp.activate.connect( () => {
 			if(exp.get_expanded()) {
-				allow_shrink = true;
+				resizable = true;
 				set_size_request(475, 180);
 				resize(475, 180);
-				allow_shrink = false;
+				resizable = false;
 			}
 			else
 				set_size_request(475, 350);

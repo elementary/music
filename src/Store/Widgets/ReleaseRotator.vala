@@ -3,7 +3,7 @@ using Gee;
 using Gdk;
 
 public class Store.ReleaseRotator : HBox {
-	Store.StoreView parent;
+	Store.StoreView storeView;
 	LinkedList<Store.Release> releases;
 	int index;
 	bool cancelOld;
@@ -14,7 +14,7 @@ public class Store.ReleaseRotator : HBox {
 	private Gtk.Label releaseDate;
 	
 	public ReleaseRotator(Store.StoreView view) {
-		parent = view;
+		storeView = view;
 		releases = new LinkedList<Store.Release>();
 		index = 0;
 		cancelOld = false;

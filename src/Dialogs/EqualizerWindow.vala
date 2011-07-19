@@ -270,6 +270,13 @@ public class BeatBox.EqualizerWindow : Window {
 		lm.settings.setPresets(sideList.getPresets());
 		lm.settings.setAutoSwitchPreset(autoSwitch.get_active());
 		
+		if(lm.settings.getEqualizerDisabled()) {
+			lm.player.disableEqualizer();
+		}
+		else {
+			lm.player.enableEqualizer();
+		}
+		
 		if(lm.settings.getAutoSwitchPreset() && !lm.settings.getEqualizerDisabled()) {
 			bool matched_genre = false;
 			foreach(var p in lm.settings.getPresets()) {
