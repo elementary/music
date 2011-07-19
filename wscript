@@ -63,17 +63,23 @@ def configure(ctx):
 	else:
 		print ('Building without zeitgeist-1.0 (used to provide event logging).')
 
-	check_pkg(ctx, 'Indicate-0.5', 'INDICATE', '0.5.0', mandatory=False)
+	check_pkg(ctx, 'indicate-0.5', 'INDICATE', '0.5.0', mandatory=False)
 	if ctx.env['HAVE_INDICATE']:
 		ctx.env.append_value ('CFLAGS', '-D HAVE_INDICATE')
 	else:
 		print ('Building without indicate-0.5 (used to show Sound Menu).')
 
-	check_pkg(ctx, 'DbusmenuGtk3-0.4', 'DBUSMENU', '0.4.3', mandatory=False)
+	check_pkg(ctx, 'dbusmenu-glib-0.4', 'DBUSMENU', '0.4.3')
 	if ctx.env['HAVE_DBUSMENU']:
 		ctx.env.append_value ('CFLAGS', '-D HAVE_DBUSMENU')
 	else:
 		print ('Building without dbusmenu-glib-0.4 (used to show Sound Menu).')
+
+	check_pkg(ctx, 'dbusmenu-gtk3-0.4', 'DBUSMENUGTK', '0.4.3', mandatory=False)
+	if ctx.env['HAVE_DBUSMENUGTK']:
+		ctx.env.append_value ('CFLAGS', '-D HAVE_DBUSMENUGTK')
+	else:
+		print ('Building without dbusmenu-gtk3-0.4 (used to show Sound Menu).')
 
 def build(bld):
 	#install basic desktop file
@@ -123,7 +129,7 @@ def build(bld):
 	obj.features = 'c cprogram'
 	obj.packages = 'gtk+-3.0 gee-1.0 gstreamer-0.10 gstreamer-interfaces-0.10 gstreamer-pbutils-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libsoup-2.4 json-glib-1.0'
 	obj.target = APPNAME
-	obj.uselib = 'GIO GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES GSTREAMER_PBUTILS TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD SOUP JSON'
+	obj.uselib = 'GTK GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES GSTREAMER_PBUTILS TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD SOUP JSON'
 	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 
 									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
 									'src/Widgets/*.vala', 'src/Widgets/AlbumView/*.vala', 'src/Widgets/ListView/*.vala', 
@@ -140,7 +146,11 @@ def build(bld):
 		obj.uselib += ' INDICATE'
 		obj.env.append_value ('VALAFLAGS', '--define=HAVE_INDICATE')
 
-	if obj.env['HAVE_DBUSMENU']:
+	if obj.env['HAVE_DBUSMENUGTK']:
 		obj.packages += ' DbusmenuGtk3-0.4'
+		obj.uselib += ' DBUSMENUGTK'
+		obj.env.append_value ('VALAFLAGS', '--define=HAVE_DBUSMENUGTK')
+	if obj.env['HAVE_DBUSMENU']:
+		obj.packages += ' Dbusmenu-0.4'
 		obj.uselib += ' DBUSMENU'
 		obj.env.append_value ('VALAFLAGS', '--define=HAVE_DBUSMENU')
