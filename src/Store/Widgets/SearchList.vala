@@ -159,7 +159,7 @@ public class Store.SearchList : Gtk.ScrolledWindow {
 	
 	}
 	
-	public virtual void resized(Gdk.Rectangle rectangle) {
+	public virtual void resized(Allocation rectangle) {
 		if(alreadyResized) {
 			alreadyResized = false;
 			return;

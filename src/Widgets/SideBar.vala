@@ -31,7 +31,7 @@ namespace ElementaryWidgets {
 	
 	public class CellRendererExpander : CellRenderer {
 		public bool expanded;
-		public static int EXPANDER_SIZE = 12;
+		public static int EXPANDER_SIZE = 8;
 		
 		public CellRendererExpander() {
 			expanded = false;
@@ -40,13 +40,18 @@ namespace ElementaryWidgets {
 		public override void get_size(Widget widget, Rectangle? cell_area, out int x_offset, out int y_offset, out int width, out int height) {
 			x_offset = 0;
 			y_offset = 4;
-			width = 12;
-			height = 12;
+			width = 8;
+			height = 8;
 		}
 		
 		public override void render(Cairo.Context context, Widget widget, Rectangle background_area, Rectangle cell_area, CellRendererState flags) {
-			Gtk.paint_expander(widget.get_style(), context, StateType.NORMAL, widget, "treeview", 
-								cell_area.x + 12 / 2, cell_area.y + 20 / 2, expanded ? ExpanderStyle.EXPANDED : ExpanderStyle.COLLAPSED);
+			if(expanded)
+				widget.get_style_context().set_state(StateFlags.ACTIVE);
+			else
+				widget.get_style_context().set_state(StateFlags.NORMAL);
+			
+			Gtk.render_expander(widget.get_style_context(), context,
+								cell_area.x + 8 / 2, cell_area.y + 8 / 2, 8.0, 8.0);//expanded ? ExpanderStyle.EXPANDED : ExpanderStyle.COLLAPSED);
 		}
 	}
 	
@@ -288,7 +293,7 @@ namespace ElementaryWidgets {
 				if(selectedIter != null)
 					this.get_selection().select_iter(selectedIter);
 			}
-			else {
+			else if(pending != selectedIter) {
 				selectedIter = pending;
 				true_selection_change(selectedIter);
 			}
@@ -348,11 +353,11 @@ namespace ElementaryWidgets {
 			int pixbuf_start;
 			int pixbuf_width;
 			col.cell_get_position(pix_cell, out pixbuf_start, out pixbuf_width);
-			
+			stdout.printf("pixbuf: %d and %d\n", pixbuf_start, pixbuf_width);
 			int cell_start;
 			int cell_width;
 			col.cell_get_position(expander_cell, out cell_start, out cell_width);
-			
+			stdout.printf("expander: %d and %d\n", cell_start, cell_width);
 			cell_start -= pixbuf_start;
 			
 			if(x > cell_start)

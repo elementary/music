@@ -117,6 +117,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 	
 	public virtual bool exposeEvent(Cairo.Context context) {
 		Gdk.cairo_set_source_pixbuf(context, (clicked_index != 0) ? enabled : disabled, 0, 0);
+		context.paint();
 		
 		return true;
 	}

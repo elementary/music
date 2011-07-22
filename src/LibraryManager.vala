@@ -217,6 +217,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		catch(GLib.ThreadError err) {
 			stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
 		}
+		
+		var cdda = new CDDA();
+		cdda.getSongList("cdda://sr0/");
 	}
 	
 	/************ Library/Collection management stuff ************/
@@ -1140,8 +1143,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(song_info.song != null)
 			old_id = song_info.song.rowid;
 		
+		stdout.printf("%s\n", song_from_id(id).album.down());
 		// actually play the song asap
-		if(!song_from_id(id).isPreview)
+		if(song_from_id(id).album.down().contains("no genre")) {
+			stdout.printf("wtf\n");
+			player.setURI("cdda://1");
+		}
+		else if(!song_from_id(id).isPreview)
 			player.setURI("file://" + song_from_id(id).file);
 		else
 			player.setURI(song_from_id(id).file);

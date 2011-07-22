@@ -84,7 +84,10 @@ public class BeatBox.RatingWidget : EventBox {
 		Allocation al;
 		get_allocation(out al);
 		
-		int buffer = (al.width - width_request)/2;
+		int buffer = 22;
+		if(centered)
+			buffer = (al.width - width_request) / 2;
+		
 		if(event.x - buffer > 5)
 			new_rating = (int)((event.x - buffer + 18) / 18);
 		else
@@ -102,7 +105,10 @@ public class BeatBox.RatingWidget : EventBox {
 		Allocation al;
 		get_allocation(out al);
 		
-		int buffer = (al.width - width_request)/2;
+		int buffer = 22;
+		if(centered)
+			buffer = (al.width - width_request) / 2;
+		
 		if(event.x - buffer > 5)
 			new_rating = (int)((event.x - buffer + 18) / 18);
 		else
@@ -132,12 +138,18 @@ public class BeatBox.RatingWidget : EventBox {
 	
 	/** @override on_expose_event to paint our own custom widget **/
 	public virtual bool exposeEvent(Cairo.Context cairo) {
+		Allocation al;
+		get_allocation(out al);
+		
 		if(centered) {
-			Gdk.cairo_set_source_pixbuf(cairo, _canvas, 0, 0);
+			Gdk.cairo_set_source_pixbuf(cairo, _canvas, (al.width - width_request) / 2, (al.height - height_request) / 2);
 		}
 		else {
-			Gdk.cairo_set_source_pixbuf(cairo, _canvas, 0, 0);
+			Gdk.cairo_set_source_pixbuf(cairo, _canvas, 12, 0);
 		}
+		
+		cairo.paint();
+		
 		return true;
 	}
 }

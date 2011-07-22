@@ -971,13 +971,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		w.focus(DirectionType.UP);
 	}
 	
-	public virtual void millerResized(Gdk.Rectangle rectangle) {
+	public virtual void millerResized(Allocation rectangle) {
 		if(viewSelector.selected == 2) {
 			settings.setMillerHeight(rectangle.height);
 		}
 	}
 	
-	public virtual void sourcesToSongsHandleSet(Gdk.Rectangle rectangle) {
+	public virtual void sourcesToSongsHandleSet(Allocation rectangle) {
 		int height, width;
 		get_size(out width, out height);
 		
@@ -1329,7 +1329,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	public virtual void infoPanelResized(Gdk.Rectangle rectangle) {
+	public virtual void infoPanelResized(Allocation rectangle) {
 		int height, width;
 		get_size(out width, out height);
 		

@@ -216,7 +216,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 			rating.set_rating(lm.song_info.song.rating);
 	}
 	
-	public virtual void resized(Gdk.Rectangle rectangle) {
+	public virtual void resized(Allocation rectangle) {
 		// resize the image to fit
 		//artistImage.icon_size = rectangle.width - 10;
 		updateArtistImage(false);

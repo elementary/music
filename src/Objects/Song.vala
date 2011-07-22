@@ -34,6 +34,7 @@ public class BeatBox.Song : GLib.Object{
 	//tags
 	private string _title;
 	private string _artist;
+	private string _album_artist;
 	private string _album;
 	private string _genre;
 	private string _comment;
@@ -70,6 +71,7 @@ public class BeatBox.Song : GLib.Object{
 		track = 0;
 		title = "Unknown Title";
 		artist = "Unknown Artist";
+		album_artist = "";
 		album = "Unknown Album";
 		genre = "";
 		comment = "";
@@ -123,6 +125,11 @@ public class BeatBox.Song : GLib.Object{
     public string artist {
         get { return _artist; }
         set { _artist = value; }
+    }
+    
+     public string album_artist {
+        get { return _album_artist; }
+        set { _album_artist = value; }
     }
     
     public string album {
@@ -258,6 +265,7 @@ public class BeatBox.Song : GLib.Object{
 		rv.track = track;
 		rv.title = title;
 		rv.artist = artist;
+		rv.album_artist = album_artist;
 		rv.album = album;
 		rv.genre = genre;
 		rv.comment = comment;

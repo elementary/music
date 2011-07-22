@@ -64,7 +64,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		songs = new_songs;
 	}
 	
-	public void resized(Gdk.Rectangle alloc) {
+	public void resized(Allocation alloc) {
 		icons.set_columns((alloc.width - (icons.margin * 2))/( icons.get_item_width()));
 	}
 	

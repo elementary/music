@@ -49,6 +49,7 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	public void setURI(string uri) {
 		setState(State.READY);
+		stdout.printf("setting uri to %s\n", uri);
 		pipe.playbin.uri = uri;
 		/*
 		if(pipe.video.element != null) {

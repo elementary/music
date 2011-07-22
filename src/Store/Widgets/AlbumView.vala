@@ -154,7 +154,7 @@ public class Store.AlbumView : ScrolledWindow {
 		this.size_allocate.connect(resized);
 	}
 	
-	public virtual void resized(Gdk.Rectangle rec) {
+	public virtual void resized(Allocation rec) {
 		description.set_size_request(rec.width - 40, -1);
 	}
 	
