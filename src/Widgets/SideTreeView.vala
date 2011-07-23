@@ -63,6 +63,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		this.lw = lww;
 		dm = new DeviceManager();
 		
+		dm.device_added.connect(deviceAdded);
+		dm.device_removed.connect(deviceRemoved);
+		
 		buildUI();
 	}
 	
@@ -120,8 +123,12 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			library_music_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
 			return library_music_iter;
 		}
-		else if(name == "CD ROM" && parent == devices_iter) {
-			devices_cdrom_iter = addItem(parent, o, w, render_icon("", IconSize.MENU, null), name, null);
+		else if(o is Device && ((Device)o).getContentType() == "cdrom" && parent == devices_iter) {
+			devices_cdrom_iter = addItem(parent, o, w, new StatusIcon.from_gicon(((Device)o).getIcon()).pixbuf, name, null);
+			return devices_cdrom_iter;
+		}
+		else if(o is Device && ((Device)o).getContentType() == "cdrom" && parent == devices_iter) {
+			devices_cdrom_iter = addItem(parent, o, w, new StatusIcon.from_gicon(((Device)o).getIcon()).pixbuf, name, null);
 			return devices_cdrom_iter;
 		}
 		else if(name == "Music Store" && parent == network_iter) {
@@ -602,4 +609,28 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		
 		Gtk.drag_finish (context, success, false, timestamp);
     }
+    
+    /* device stuff */
+    public void deviceAdded(Device d) {
+		lw.addSideListItem(d);
+	}
+	
+	public void deviceRemoved(Device d) {
+		stdout.printf("b\n");
+		TreeIter pivot;
+		if(!tree.iter_children(out pivot, devices_iter))
+			return;
+		stdout.printf("c\n");
+		do {
+			GLib.Object o;
+			tree.get(pivot, 0, out o);
+			stdout.printf("at item\n");
+			if(o is Device && ((Device)o).getMountLocation() == d.getMountLocation()) {
+				stdout.printf("removing item\n");
+				removeItem(convertToFilter(pivot));
+				
+				break;
+			}
+		} while(tree.iter_next(ref pivot));
+	}
 }

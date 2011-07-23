@@ -1,12 +1,15 @@
 public class BeatBox.Device : GLib.Object {
 	private Mount mount;
-	
-	private string[] mediaTypes;
+	private double audioPercentage;
 	
 	public Device(Mount m) {
 		this.mount = m;
 		
-		stdout.printf("content type is %s\n", getContentType());
+		/*int audio = 0;
+		int other = 0;
+		FileOperator.guess_content_type(mount.get_default_location(), ref audio, ref other);
+		
+		audioPercentage = (double)(audio/(other + audio));*/
 	}
 	
 	public string getMountLocation() {
@@ -33,9 +36,9 @@ public class BeatBox.Device : GLib.Object {
 		return getSize() - getFreeSpace();
 	}
 	
-	//public GLib.Icon getIcon() {
-	//	return mount.get_icon();
-	//}
+	public GLib.Icon getIcon() {
+		return mount.get_icon();
+	}
 	
 	public bool canEject() {
 		return mount.can_eject();
@@ -54,12 +57,42 @@ public class BeatBox.Device : GLib.Object {
 	}
 	
 	public string getContentType() {
-		string[] type = ContentType.guess_for_tree(mount.get_default_location());
+		if(getMountLocation().has_prefix("cdda://")) {
+			return "cdrom";
+		}
+		else if(File.new_for_path(getMountLocation() + "/iTunes_Control").query_exists() ||
+				File.new_for_path(getMountLocation() + "/iPod_Control").query_exists() ||
+				File.new_for_path(getMountLocation() + "/iTunes/iTunes_Control").query_exists()) {
+			return "ipod";		
+		}
+		else if(getMountLocation().has_prefix("afc://")) {
+			return "ipod";
+		}
+		else if(File.new_for_path(getMountLocation() + "/Android").query_exists()) {
+			return "android";
+		}
 		
-		foreach(string s in type)
-			stdout.printf("type: %s\n", s);
-			
-		return "";
+		
+		return "non-audio (all i recognize right now are cd's and ipods/iphones/ipads)";
+	}
+	
+	public string getDescription() {
+		if(getMountLocation().has_prefix("cdda://")) {
+			return "You inserted a CD-ROM.";
+		}
+		else if(File.new_for_path(getMountLocation() + "/iTunes_Control").query_exists() ||
+				File.new_for_path(getMountLocation() + "/iPod_Control").query_exists() ||
+				File.new_for_path(getMountLocation() + "/iTunes/iTunes_Control").query_exists()) {
+			return "You inserted an older iPod device. This is not an iPhone or iPad";		
+		}
+		else if(getMountLocation().has_prefix("afc://")) {
+			return "You inserted a newer iPod device, or an iPhone or iPad.";
+		}
+		else if(File.new_for_path(getMountLocation() + "/Android").query_exists()) {
+			return "You inserted an Android device. You are pretty cool.";
+		}
+		
+		return "You inserted a device that is not a CD nor iPod";
 	}
 	
 	public bool isShadowed() {
@@ -74,52 +107,6 @@ public class BeatBox.Device : GLib.Object {
 			
 		return false;
 	}
-	
-	/*public string get_description() {
-        string 	description = _("You have just inserted a medium");
-		if (this.content_types.length() == 0){
-			return description;
-		}
-		
-		if (this.is_bluetooth()){
-			description = _("You have just inserted a bluetooth device");
-		}
-		
-		/*get only the first content_types of the device*
-		string x_content_type = this.content_types.nth_data(0);
-		
-		/*TAKEN FROM NATUTILUS(nautilus-autorun.c) Customize greeting for well-known x-content types *
-		if (x_content_type == "x-content/audio-cdda") {
-			description = _("You have just inserted an Audio CD");
-		} else if (x_content_type == "x-content/audio-dvd") {
-			description = _("You have just inserted an Audio DVD");
-		} else if (x_content_type == "x-content/video-dvd") {
-			description = _("You have just inserted a Video DVD");
-		} else if (x_content_type == "x-content/video-vcd") {
-			description = _("You have just inserted a Video CD");
-		} else if (x_content_type == "x-content/video-svcd") {
-			description = _("You have just inserted a Super Video CD");
-		} else if (x_content_type == "x-content/blank-cd") {
-			description = _("You have just inserted a blank CD");
-		} else if (x_content_type == "x-content/blank-dvd") {
-			description = _("You have just inserted a blank DVD");
-		} else if (x_content_type == "x-content/blank-cd") {
-			description = _("You have just inserted a blank Blu-Ray disc");
-		} else if (x_content_type == "x-content/blank-cd") {
-			description = _("You have just inserted a blank HD DVD");
-		} else if (x_content_type == "x-content/image-photocd") {
-			description = _("You have just inserted a Photo CD");
-		} else if (x_content_type == "x-content/image-dcf") {
-			description = _("You have just inserted a medium with photos");
-		} else if (x_content_type == "x-content/image-picturecd") {
-			description = _("You have just inserted a Picture CD");
-		} else if (x_content_type == "x-content/audio-player") {
-			description = _("You have just inserted an audio player");
-		}else if (x_content_type == "x-content/software") {
-			description = _("You have just inserted a medium with software intended to be automatically started");
-		}
-		return description;
-    }*/
 	
 	public void dummy(GLib.Object? source_object, GLib.AsyncResult res) {
 		

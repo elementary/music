@@ -1,9 +1,15 @@
+using Gee;
+
 public class BeatBox.DeviceManager : GLib.Object {
 	VolumeMonitor vm;
-	Volume current;
+	LinkedList<Device> devices;
+	
+	public signal void device_added(Device d);
+	public signal void device_removed(Device d);
 	
 	public DeviceManager() {
 		vm = VolumeMonitor.get();
+		devices = new LinkedList<Device>();
 		
 		vm.mount_added.connect(mount_added);
 		vm.mount_changed.connect(mount_changed);
@@ -15,6 +21,12 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	public virtual void mount_added (Mount mount) {
+		foreach(var dev in devices) {
+			if(dev.getMountLocation() == mount.get_default_location().get_parse_name()) {
+				return;
+			}
+		}
+		
 		stdout.printf("mount_added: %s\n", mount.get_name());
 		stdout.printf(" parse_name: %s\n uri: %s\n nice_name: %s\n unix_device: %s\n",
 						mount.get_default_location().get_parse_name(),
@@ -22,8 +34,13 @@ public class BeatBox.DeviceManager : GLib.Object {
 						mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_LABEL),
 						mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_UNIX_DEVICE));
 		var device = new Device(mount);
-		stdout.printf("is shadowed: %s\n", device.isShadowed() ? "true" : "false");
-		stdout.printf(" has media: %s\n", device.isMedia() ? "true" : "false");
+		
+		stdout.printf("mount preview icon: %s\n", mount.get_default_location().query_info("*", FileQueryInfoFlags.NONE).get_attribute_string(FILE_ATTRIBUTE_PREVIEW_ICON));
+		
+		if(device.getContentType() == "cdrom" || device.getContentType() == "ipod") {
+			devices.add(device);
+			device_added(device);
+		}
 	}
 	
 	public virtual void mount_changed (Mount mount) {
@@ -35,7 +52,16 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	public virtual void mount_removed (Mount mount) {
-		stdout.printf("mount_removed\n");
+		stdout.printf("mount_removed: %s\n", mount.get_default_location().get_parse_name());
+		
+		foreach(var dev in devices) {
+			if(dev.getMountLocation() == mount.get_default_location().get_parse_name()) {
+				devices.remove(dev);
+				device_removed(dev);
+				
+				return;
+			}
+		}
 	}
 	
 	public void mountedCallback(Object? source_object, AsyncResult res) {

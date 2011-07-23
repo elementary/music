@@ -47,7 +47,7 @@ public class BeatBox.FileOperator : Object {
 		item_count = items;
 	}
 	
-	private bool is_valid_file_type(string type) {
+	private static bool is_valid_file_type(string type) {
 		var typeDown = type.down();
 		
 		return (typeDown.has_suffix(".mp3") || typeDown.has_suffix(".m4a") || 
@@ -57,7 +57,7 @@ public class BeatBox.FileOperator : Object {
 				typeDown.has_suffix(".aac") || typeDown.has_suffix(".alac"));
 	}
 	
-	private bool is_valid_image_type(string type) {
+	private static bool is_valid_image_type(string type) {
 		var typeDown = type.down();
 		
 		return (typeDown.has_suffix(".jpg") || typeDown.has_suffix(".jpeg") ||
@@ -190,6 +190,21 @@ public class BeatBox.FileOperator : Object {
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					if(current_song_paths.contains(file_path)) {
 						current_song_paths.remove(file_path);
+						
+						FileInfo info;
+        string content_type;
+        
+        try {
+            info = GLib.File.new_for_path(file_path).query_info(FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
+                FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
+                
+            
+        content_type = info.get_content_type ();
+        
+        stdout.printf ("Hello, : %s", content_type);
+        } catch (Error err) {
+            warning("Unable to determine content type: %s", err.message);
+        }
 							
 						++index;
 					}
@@ -486,6 +501,29 @@ public class BeatBox.FileOperator : Object {
 				//tell the user the file could not be moved and ask if they'd like to delete permanently instead.
 				Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Could not trash file %s, would you like to permanently delete it? You cannot undo these changes.", s);
 			}
+		}
+	}
+	
+	public static void guess_content_type(GLib.File root, ref int audio, ref int other) {
+		GLib.FileInfo file_info = null;
+		
+		try {
+			var enumerator = root.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				var file_path = root.get_path() + "/" + file_info.get_name();
+				
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
+					++audio;
+				}
+				else if(file_info.get_file_type() == GLib.FileType.REGULAR) {
+					++other;
+				}
+				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY)
+					guess_content_type(GLib.File.new_for_path(file_path), ref audio, ref other);
+			}
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not guess content types: %s\n", err.message);
 		}
 	}
 }

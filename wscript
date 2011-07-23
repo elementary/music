@@ -70,7 +70,7 @@ def configure(ctx):
 	else:
 		print ('Building without indicate-0.5 (used to show Sound Menu).')
 
-	check_pkg(ctx, 'dbusmenu-glib-0.4', 'DBUSMENU', '0.4.3')
+	check_pkg(ctx, 'dbusmenu-glib-0.4', 'DBUSMENU', '0.4.3', mandatory=False)
 	if ctx.env['HAVE_DBUSMENU']:
 		ctx.env.append_value ('CFLAGS', '-D HAVE_DBUSMENU')
 	else:

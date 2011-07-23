@@ -516,9 +516,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Playlist p = (Playlist)o;
 			
 			vw = new ViewWrapper(lm, this, lm.songs_from_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.PLAYLIST, p.rowid);
-			stdout.printf("adding\n");
 			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
-			stdout.printf("added\n");
 			mainViews.pack_start(vw, true, true, 0);
 		}
 		else if(o is SmartPlaylist) {
@@ -527,6 +525,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			vw = new ViewWrapper(lm, this, lm.songs_from_smart_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, MusicTreeView.Hint.SMART_PLAYLIST, p.rowid);
 			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
 			mainViews.pack_start(vw, true, true, 0);
+		}
+		else if(o is Device) {
+			Device d = (Device)o;
+			
+			if(d.getContentType() == "cdrom") {
+				Label l = new Label(d.getDescription());
+				//vw = new ViewWrapper(lm, this, new Gee.LinkedList<int>(), "Track", Gtk.SortType.ASCENDING, MusicTreeView.Hint.QUEUE, -1);
+				item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
+				mainViews.pack_start(l, true, true, 0);
+			}
+			else if(d.getContentType() == "ipod") {
+				Label l = new Label(d.getDescription());
+				item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
+				mainViews.pack_start(l, true, true, 0);
+			}
 		}
 		
 		vw.show_all();
