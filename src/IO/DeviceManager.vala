@@ -37,7 +37,8 @@ public class BeatBox.DeviceManager : GLib.Object {
 		
 		stdout.printf("mount preview icon: %s\n", mount.get_default_location().query_info("*", FileQueryInfoFlags.NONE).get_attribute_string(FILE_ATTRIBUTE_PREVIEW_ICON));
 		
-		if(device.getContentType() == "cdrom" || device.getContentType() == "ipod") {
+		if(device.getContentType() == "cdrom" || device.getContentType().contains("ipod") 
+			|| device.getContentType() == "android") {
 			devices.add(device);
 			device_added(device);
 		}

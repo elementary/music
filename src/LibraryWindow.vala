@@ -530,12 +530,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Device d = (Device)o;
 			
 			if(d.getContentType() == "cdrom") {
-				Label l = new Label(d.getDescription());
-				//vw = new ViewWrapper(lm, this, new Gee.LinkedList<int>(), "Track", Gtk.SortType.ASCENDING, MusicTreeView.Hint.QUEUE, -1);
-				item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
-				mainViews.pack_start(l, true, true, 0);
+				vw = new DeviceViewWrapper(lm, this, new Gee.LinkedList<int>(), "Track", Gtk.SortType.ASCENDING, MusicTreeView.Hint.CDROM, -1, d);
+				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName());
+				mainViews.pack_start(vw, true, true, 0);
 			}
-			else if(d.getContentType() == "ipod") {
+			else if(d.getContentType().contains("ipod")) {
 				Label l = new Label(d.getDescription());
 				item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
 				mainViews.pack_start(l, true, true, 0);

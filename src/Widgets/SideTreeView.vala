@@ -123,13 +123,19 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			library_music_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
 			return library_music_iter;
 		}
-		else if(o is Device && ((Device)o).getContentType() == "cdrom" && parent == devices_iter) {
-			devices_cdrom_iter = addItem(parent, o, w, new StatusIcon.from_gicon(((Device)o).getIcon()).pixbuf, name, null);
-			return devices_cdrom_iter;
-		}
-		else if(o is Device && ((Device)o).getContentType() == "cdrom" && parent == devices_iter) {
-			devices_cdrom_iter = addItem(parent, o, w, new StatusIcon.from_gicon(((Device)o).getIcon()).pixbuf, name, null);
-			return devices_cdrom_iter;
+		else if(o is Device && parent == devices_iter) {
+			Device d = (Device)o;
+			
+			if(d.getContentType() == "cdrom")
+				return addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
+			else if(d.getContentType() == "ipod-new")
+				return addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
+			else if(d.getContentType() == "ipod-old")
+				return addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
+			else if(d.getContentType() == "android")
+				return addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
+			else
+				return addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
 		}
 		else if(name == "Music Store" && parent == network_iter) {
 			network_store_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);

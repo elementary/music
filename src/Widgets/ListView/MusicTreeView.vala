@@ -109,7 +109,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		QUEUE,
 		HISTORY,
 		PLAYLIST,
-		SMART_PLAYLIST;
+		SMART_PLAYLIST,
+		CDROM;
 	}
 	
 	public bool is_current {
@@ -263,6 +264,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			to_use = lm.playlist_from_id(relative_id).tvs.get_columns();
 		else if(hint == Hint.SMART_PLAYLIST)
 			to_use = lm.smart_playlist_from_id(relative_id).tvs.get_columns();
+		else if(hint == Hint.CDROM) {
+			to_use = new TreeViewSetup("Track", Gtk.SortType.ASCENDING, Hint.CDROM).get_columns();
+		}
 		
 		/* put them in the order for treemodel */
 		foreach(var tvc in to_use) {
@@ -1077,6 +1081,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			tvs = lm.history_setup;
 		else if(hint == Hint.PLAYLIST)
 			tvs = lm.playlist_from_id(relative_id).tvs;
+		else if(hint == Hint.CDROM)
+			return;
 		else/* if(hint == Hint.SMART_PLAYLIST)*/
 			tvs = lm.smart_playlist_from_id(relative_id).tvs;
 			

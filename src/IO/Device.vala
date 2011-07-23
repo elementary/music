@@ -63,10 +63,10 @@ public class BeatBox.Device : GLib.Object {
 		else if(File.new_for_path(getMountLocation() + "/iTunes_Control").query_exists() ||
 				File.new_for_path(getMountLocation() + "/iPod_Control").query_exists() ||
 				File.new_for_path(getMountLocation() + "/iTunes/iTunes_Control").query_exists()) {
-			return "ipod";		
+			return "ipod-old";		
 		}
 		else if(getMountLocation().has_prefix("afc://")) {
-			return "ipod";
+			return "ipod-new";
 		}
 		else if(File.new_for_path(getMountLocation() + "/Android").query_exists()) {
 			return "android";

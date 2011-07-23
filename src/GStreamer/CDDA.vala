@@ -61,12 +61,20 @@ public class BeatBox.CDDA : GLib.Object {
 		for (device_info = enumerator.next_file(); device_info != null; device_info = enumerator.next_file()) {
 			Song s = new Song("cdda://" + index.to_string());
 			
-			s.title = device_info.get_attribute_string("xattr::org.gnome.audio.title");
-			s.artist = device_info.get_attribute_string("xattr::org.gnome.audio.artist");
-			s.length = (int)device_info.get_attribute_uint64("xattr::org.gnome.audio.duration");
+			var title = device_info.get_attribute_string("xattr::org.gnome.audio.title");
+			var artist = device_info.get_attribute_string("xattr::org.gnome.audio.artist");
+			var length = (int)device_info.get_attribute_uint64("xattr::org.gnome.audio.duration");
 			
-			s.album_artist = album_artist;
-			s.genre = album_genre;
+			s.length = length; // no need to check, it's our best guess either way
+			
+			if(title != null)
+				s.title = title;
+			if(artist != null)
+				s.artist = artist;
+			if(album_artist != null)
+				s.album_artist = album_artist;
+			if(album_genre != null)
+				s.genre = album_genre;
 			
 			// do some checks
 			bool artistValid = (s.artist != null && s.artist != "");
