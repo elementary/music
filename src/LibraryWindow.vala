@@ -540,6 +540,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
 				mainViews.pack_start(l, true, true, 0);
 			}
+			else if(d.getContentType() == "android") {
+				Label l = new Label(d.getDescription());
+				item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
+				mainViews.pack_start(l, true, true, 0);
+
+			}
 		}
 		
 		vw.show_all();
