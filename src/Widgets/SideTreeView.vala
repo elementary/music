@@ -274,6 +274,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 						playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					}
 				}
+				else if(o is Device && ((Device)o).getContentType() == "cdrom") {
+					CDMenu.popup(null, null, null, 3, get_current_event_time());
+				}
 			}
 			else {
 				if(iter == convertToFilter(playlists_iter)) {
@@ -419,14 +422,19 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	
 	// cd rom context menu
 	public void CDimportToLibraryClicked() {
+		TreeIter iter = getSelectedIter();
+		Widget w = getSelectedWidget();
 		
+		GLib.Object o;
+		filter.get(iter, 0, out o);
+		
+		if(o is Device && ((Device)o).getContentType() == "cdrom") {
+			((DeviceViewWrapper)w).ripSongs();
+		}
 	}
 	
 	public void CDejectClicked() {
-		GLib.Object o;
-		filter.get(devices_cdrom_iter, 0, out o);
-		
-		((CDRipper)o).ejectCD();
+		stdout.printf("i should learn to eject myself\n");
 	}
 	
 	//smart playlist context menu

@@ -9,22 +9,6 @@ public class BeatBox.CDDA : GLib.Object {
 		//GLib.Signal.connect(playbin, "notify::source", (GLib.Callback)notifySourceCallback, this);
 	}
 	
-	public void notifySourceCallback(Gst.Element playbin) {
-		stdout.printf("hi\n");
-		Gst.Element element;
-		playbin.get("source", out element);
-		stdout.printf("bye\n");
-		
-		if(element == null || !(element is Gst.CddaBaseSrc)) {
-			stdout.printf("uri null or not cddabasesrc\n");
-			return;
-		}
-		stdout.printf("or maybe\n");
-		element.set("device", "cdda://");
-		stdout.printf("not\n");
-		
-	}
-	
 	public static LinkedList<Song> getSongList(string device_uri) {
 		var rv = new LinkedList<Song>();
 		File device_file;
@@ -65,6 +49,7 @@ public class BeatBox.CDDA : GLib.Object {
 			var artist = device_info.get_attribute_string("xattr::org.gnome.audio.artist");
 			var length = (int)device_info.get_attribute_uint64("xattr::org.gnome.audio.duration");
 			
+			s.track = index;
 			s.length = length; // no need to check, it's our best guess either way
 			
 			if(title != null)
@@ -87,6 +72,8 @@ public class BeatBox.CDDA : GLib.Object {
 			
 			stdout.printf("Added %s %s %s %s\n", s.title, s.artist, s.album_artist, s.genre);
 			rv.add(s);
+			
+			++index;
 		}
 		
 		return rv;

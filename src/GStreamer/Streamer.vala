@@ -100,19 +100,6 @@ public class BeatBox.Streamer : GLib.Object {
 		pipe.eq.setGain(index, val);
 	}
 	
-	public void ripCD(string device, int count) {
-		ripper = new CDRipper(device, count);
-		ripper.ripSong(1, "/home/scott/cdtest/track 1.mp3");
-		
-		ripper.song_ripped.connect(song_ripped);
-	}
-	
-	public void song_ripped(Song s) {
-		if(s.track < ripper.track_count)
-			ripper.ripSong(s.track + 1, "/home/scott/cdtest/track " + (s.track + 1).to_string() + ".mp3");
-	}
-	
-	
 	/* Callbacks */
 	private bool busCallback(Gst.Bus bus, Gst.Message message) {
 		switch (message.type) {

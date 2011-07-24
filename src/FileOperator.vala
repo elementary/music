@@ -397,8 +397,14 @@ public class BeatBox.FileOperator : Object {
 		try {
 			/* initialize file objects */
 			var original = GLib.File.new_for_path(s.file);
+			var ext = get_extension(s.file);
 			var file_info = original.query_info ("*", FileQueryInfoFlags.NONE, null);
-			var dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), file_info.get_name()));
+			
+			GLib.File dest;
+			string extra = "";
+			while((dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + extra + ext))).query_exists()) {
+				extra += "_";
+			}
 			
 			if(original.get_path() == dest.get_path())
 				return;
@@ -525,5 +531,9 @@ public class BeatBox.FileOperator : Object {
 		catch(GLib.Error err) {
 			stdout.printf("Could not guess content types: %s\n", err.message);
 		}
+	}
+	
+	public string get_extension(string name) {
+		return name.slice(name.last_index_of(".", 0), name.length);
 	}
 }

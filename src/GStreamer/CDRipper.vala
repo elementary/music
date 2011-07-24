@@ -20,15 +20,19 @@ public class BeatBox.CDRipper : GLib.Object {
 	public CDRipper(string device, int count) {
 		_device = device;
 		track_count = count;
-		
+	}
+	
+	public bool initialize() {
 		pipeline = new Gst.Pipeline("pipeline");
 		src = ElementFactory.make("cdparanoiasrc", "mycdparanoia");
 		queue = ElementFactory.make("queue", "queue");
 		filter = ElementFactory.make("lame", "encoder");
 		sink = ElementFactory.make("filesink", "filesink");
 		
-		if(src == null || queue == null || filter == null || sink == null)
-			stdout.printf("Could not create GST Elements for ripping\n");
+		if(src == null || queue == null || filter == null || sink == null) {
+			stdout.printf("Could not create GST Elements for ripping.\n");
+			return false;
+		}
 		
 		src.set("device", _device);
 		queue.set("max-size-time", 120 * Gst.SECOND);
@@ -37,10 +41,13 @@ public class BeatBox.CDRipper : GLib.Object {
 		
 		((Gst.Bin)pipeline).add_many(src, queue, filter, sink);
 		if(!src.link_many(queue, filter, sink)) {
+			return false;
 			stdout.printf("CD Ripper link_many failed\n");
 		}
 		
 		pipeline.bus.add_watch(busCallback);
+		
+		return true;
 	}
 	
 	private bool busCallback(Gst.Bus bus, Gst.Message message) {
@@ -67,7 +74,7 @@ public class BeatBox.CDRipper : GLib.Object {
 				GLib.Error err;
 				string debug;
 				message.parse_error (out err, out debug);
-				stdout.printf ("Error: %s\n", err.message);
+				stdout.printf ("Error: %s!:%s\n", err.message, debug);
 				break;
 			case Gst.MessageType.EOS:
 				pipeline.set_state(Gst.State.NULL);
@@ -81,15 +88,12 @@ public class BeatBox.CDRipper : GLib.Object {
         return true;
     }
     
-    public void ripSong(int track, string path) {
+    public void ripSong(int track, string path, Song s) {
 		sink.set_state(Gst.State.NULL);
 		sink.set("location", path);
 		
 		src.set("track", track);
-		
-		current_song = new Song(path);
-		current_song.track = track;
-		current_song.title = "Track " + track.to_string();
+		current_song = s;
 		
 		/*Iterator<Gst.Element> tagger = ((Gst.Bin)converter).iterate_all_by_interface(typeof(TagSetter));
 		tagger.foreach( (el) => {
