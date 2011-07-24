@@ -793,8 +793,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_songs.set(s.rowid, s);
 		}
 		
-		if(new_songs.size > 1 && new_songs.to_array()[0].rowid != -2 && permanent)
+		if(new_songs.size > 0 && new_songs.to_array()[0].rowid != -2 && permanent) {
 			dbm.add_songs(new_songs);
+		}
 	}
 	
 	public void remove_songs(LinkedList<Song> toRemove) {

@@ -25,7 +25,7 @@ using Gtk;
 public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	LibraryManager lm;
 	LibraryWindow lw;
-	DeviceManager dm;
+	public DeviceManager dm;
 	
 	public TreeIter library_iter;
 	public TreeIter library_music_iter;
@@ -627,24 +627,30 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
     /* device stuff */
     public void deviceAdded(Device d) {
 		lw.addSideListItem(d);
+		filter.foreach(updateView);
 	}
 	
 	public void deviceRemoved(Device d) {
-		stdout.printf("b\n");
 		TreeIter pivot;
 		if(!tree.iter_children(out pivot, devices_iter))
 			return;
-		stdout.printf("c\n");
+			
+		bool was_selected = false;
+		
 		do {
 			GLib.Object o;
 			tree.get(pivot, 0, out o);
-			stdout.printf("at item\n");
 			if(o is Device && ((Device)o).getMountLocation() == d.getMountLocation()) {
-				stdout.printf("removing item\n");
+				if(get_selection().iter_is_selected(convertToFilter(pivot)))
+					was_selected = true;
+				
 				removeItem(convertToFilter(pivot));
 				
 				break;
 			}
 		} while(tree.iter_next(ref pivot));
+		
+		if(was_selected)
+			resetView();
 	}
 }

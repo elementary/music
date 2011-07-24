@@ -22,8 +22,23 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	public void ripSongs() {
 		if(d.getContentType() != "cdrom")
 			return;
+			
+		if(!GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
+			stdout.printf("Could not access temp file\n");
+			return;
+		}
+		
+		if(lm.doing_file_operations) {
+			stdout.printf("Already doing file operations, cannot start song ripper\n");
+			return;
+		}
 		
 		ripper = new CDRipper(d.getUnixDevicePath(), songs.size);
+		ripper.progress_notification.connect( (progress) => {
+			
+			lw.progressNotification(null, progress);
+			
+		});
 		
 		if(!ripper.initialize()) {
 			stdout.printf("Could not create CD Ripper\n");
@@ -32,7 +47,15 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		
 		ripper.song_ripped.connect(songRipped);
 		
-		ripper.ripSong(1, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", lm.song_from_id(songs.to_array()[0]));
+		Song s = lm.song_from_id(songs.to_array()[0]);
+		
+		ripper.ripSong(1, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", s);
+		
+		var update = "Ripping track 1: <b>" + s.title.replace("&", "&amp;") + "</b>" + ((s.artist != "Unknown Artist") ? " by " : "") + "<b>" + s.artist.replace("&", "&amp;") + "</b>" + ((s.album != "Unknown Album") ? " on " : "") + "<b>" + s.album.replace("&", "&amp;") + "</b>";
+		lw.progressNotification(update, 0.0);
+		
+		lm.doing_file_operations = true;
+		lw.updateSensitivities();
 	}
 	
 	public void songRipped(Song s) {
@@ -42,7 +65,7 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		
 		var temp = new LinkedList<Song>();
 		temp.add(s);
-		lm.remove_songs(temp);
+		//lm.remove_songs(temp);
 		lm.add_songs(temp, true);
 		
 		// now we have to find the right location for it
@@ -50,7 +73,15 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		
 		// do it again on next track
 		if(s.track < ripper.track_count) {
-			ripper.ripSong(s.track + 1, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", lm.song_from_id(songs.to_array()[s.track]));
+			Song next = lm.song_from_id(songs.to_array()[s.track]);
+			ripper.ripSong(next.track, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", next);
+			
+			var update = "<b>Importing</b> track " + next.track.to_string() + ": <b>" + next.title.replace("&", "&amp;") + "</b>" + ((next.artist != "Unknown Artist") ? " by " : "") + "<b>" + next.artist.replace("&", "&amp;") + "</b>" + ((next.album != "Unknown Album") ? " on " : "") + "<b>" + next.album.replace("&", "&amp;") + "</b>";
+			lw.progressNotification(update, 0.0);
+		}
+		else {
+			lm.doing_file_operations = false;
+			lw.updateSensitivities();
 		}
 	}
 	

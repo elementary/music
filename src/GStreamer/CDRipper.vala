@@ -14,7 +14,7 @@ public class BeatBox.CDRipper : GLib.Object {
 	private bool _isRipping;
 	
 	public signal void song_ripped(Song s);
-	public signal void progress_notification(string? message, double progress);
+	public signal void progress_notification(double progress);
 	public signal void error(string message);
 	
 	public CDRipper(string device, int count) {
@@ -47,7 +47,36 @@ public class BeatBox.CDRipper : GLib.Object {
 		
 		pipeline.bus.add_watch(busCallback);
 		
+		Timeout.add(500, doPositionUpdate);
+		
 		return true;
+	}
+	
+	public bool doPositionUpdate() {
+		progress_notification((double)getPosition()/getDuration());
+		
+		if(getDuration() <= 0)
+			return false;
+		else
+			return true;
+	}
+	
+	public int64 getPosition() {
+		int64 rv = (int64)0;
+		Format f = Format.TIME;
+		
+		src.query_position(ref f, out rv);
+		
+		return rv;
+	}
+	
+	public int64 getDuration() {
+		int64 rv = (int64)0;
+		Format f = Format.TIME;
+		
+		src.query_duration(ref f, out rv);
+		
+		return rv;
 	}
 	
 	private bool busCallback(Gst.Bus bus, Gst.Message message) {

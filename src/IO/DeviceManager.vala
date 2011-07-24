@@ -20,6 +20,35 @@ public class BeatBox.DeviceManager : GLib.Object {
 		vm.volume_removed.connect(volume_removed);
 	}
 	
+	public void loadPreExistingMounts() {
+		
+		// this can take time if we have to rev up the cd drive
+		try {
+			Thread.create<void*>(get_pre_existing_mounts, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: could not create mount getter thread: %s \n", err.message);
+		}
+	}
+	
+	public void* get_pre_existing_mounts () {
+		var mounts = new LinkedList<Mount>();
+		
+		foreach(var m in vm.get_mounts()) {
+			mounts.add(m);
+		}
+		
+		Idle.add( () => {
+			
+			foreach(var m in mounts)
+				mount_added(m);
+			
+			return false;
+		});
+		
+		return null;
+	}
+	
 	public virtual void mount_added (Mount mount) {
 		foreach(var dev in devices) {
 			if(dev.getMountLocation() == mount.get_default_location().get_parse_name()) {

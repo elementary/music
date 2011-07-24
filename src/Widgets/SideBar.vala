@@ -232,6 +232,10 @@ namespace ElementaryWidgets {
 					tree.set(parent, 2, false);
 			}
 			
+			Widget w;
+			tree.get(iter, SideBarColumn.COLUMN_WIDGET, out w);
+			w.destroy();
+			
 			return tree.remove(iter);
 		}
 		
@@ -268,8 +272,16 @@ namespace ElementaryWidgets {
 		}
 		
 		public Widget? getSelectedWidget() {
+			TreeModel m;
+			TreeIter? iter;
+			
+			if(!this.get_selection().get_selected(out m, out iter)) { // user has nothing selected, reselect last selected
+				if(iter == null)
+					return null;
+			}
+			
 			Widget w;
-			filter.get(selectedIter, SideBarColumn.COLUMN_WIDGET, out w);
+			filter.get(iter, SideBarColumn.COLUMN_WIDGET, out w);
 			return w;
 		}
 		

@@ -21,7 +21,12 @@ public class BeatBox.Device : GLib.Object {
 	}
 	
 	public string getUnixDevicePath() {
-		return mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_UNIX_DEVICE);
+		if(mount.get_volume() != null)
+			return mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_UNIX_DEVICE);
+		else if(mount.get_drive() != null)
+			return mount.get_drive().get_identifier(VOLUME_IDENTIFIER_KIND_UNIX_DEVICE);
+		else
+			return "";
 	}
 	
 	public int64 getSize() {
@@ -73,7 +78,7 @@ public class BeatBox.Device : GLib.Object {
 		}
 		
 		
-		return "non-audio (all i recognize right now are cd's and ipods/iphones/ipads)";
+		return "non-audio";
 	}
 	
 	public string getDescription() {

@@ -440,6 +440,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector.set_showing(3, false);
 		updateMillerColumns();
 		
+		// add mounts to side tree view
+		sideTree.dm.loadPreExistingMounts();
+		
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
 		miller.updateColumnVisibilities(genreV, artistV, albumV);
