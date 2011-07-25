@@ -203,10 +203,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// set the equalizer
-		EqualizerPreset p = settings.getSelectedPreset();
-		if(p != null) {
-			for(int i = 0; i < 10; ++i) {
-				player.setEqualizerGain(i, p.getGain(i));
+		if(!settings.getEqualizerDisabled()) {
+			EqualizerPreset p = settings.getSelectedPreset();
+			if(p != null) {
+				for(int i = 0; i < 10; ++i) {
+					player.setEqualizerGain(i, p.getGain(i));
+				}
 			}
 		}
 		
@@ -1156,7 +1158,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		//update settings
 		if(id != -2)
-			settings.setLastSongPlaying(song_from_id(id));
+			settings.setLastSongPlaying(id);
 		
 		song_played(id, old_id);
 		
@@ -1221,7 +1223,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(song_info.song != null)
 			was_playing = song_info.song.rowid;
 		
-		settings.setLastSongPlaying(null);
+		settings.setLastSongPlaying(0);
 		song_info.update(null, null, null, null);
 		
 		playback_stopped(was_playing);

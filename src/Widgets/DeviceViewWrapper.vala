@@ -24,12 +24,12 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 			return;
 			
 		if(!GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
-			stdout.printf("Could not access temp file\n");
+			doAlert("Could not find Music Folder", "Please make sure that your music folder is accessible and mounted before importing the CD.");
 			return;
 		}
 		
 		if(lm.doing_file_operations) {
-			stdout.printf("Already doing file operations, cannot start song ripper\n");
+			doAlert("BeatBox is already doing an import", "Please wait until BeatBox is finished with the current import before importing the CD.");
 			return;
 		}
 		

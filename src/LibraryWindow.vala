@@ -151,13 +151,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(lm.song_info.song != null && (double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
 				added_to_play_count = true;
 			
-			Song s = settings.getLastSongPlaying();
-			s = lm.song_from_name(s.title, s.artist);
-			if(s.rowid != 0) {
+			int i = settings.getLastSongPlaying();
+			if(i != 0) {
 				/* time out works because... monkeys eat bananas */
 				int position = (int)settings.getLastSongPosition();
 				Timeout.add(250, () => {
-					lm.playSong(s.rowid);
+					lm.playSong(i);
 					
 					((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.setAsCurrentList(0);
 					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL)
@@ -1440,5 +1439,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		lm.add_files_to_library(files_dragged);
+	}
+	
+	public void doAlert(string title, string message) {
+		var dialog = new MessageDialog(this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, 
+				"You must mount your music folder before rescanning.");
+				
+				dialog.run();
+				dialog.destroy();
 	}
 }

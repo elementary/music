@@ -191,18 +191,8 @@ public class BeatBox.Settings : Object {
 		return getBool(COPY_IMPORTED_MUSIC, false);
 	}
 	
-	public Song getLastSongPlaying() {
-		string[] song_parts = getString(LAST_SONG_PLAYING, "").split("<seperator>", 0);
-		
-		Song rv = new Song("");
-		
-		if(song_parts.length < 2)
-			return rv;
-		
-		rv.title = song_parts[0];
-		rv.artist = song_parts[1];
-		
-		return rv;
+	public int getLastSongPlaying() {
+		return getInt(LAST_SONG_PLAYING, 0);
 	}
 	
 	public int getLastSongPosition() {
@@ -321,11 +311,8 @@ public class BeatBox.Settings : Object {
 		setBool(COPY_IMPORTED_MUSIC, val);
 	}
 	
-	public void setLastSongPlaying(Song? s) {
-		if(s != null)
-			setString(LAST_SONG_PLAYING, s.title + "<seperator>" + s.artist);
-		else
-			setString(LAST_SONG_PLAYING, "");
+	public void setLastSongPlaying(int val) {
+		setInt(LAST_SONG_PLAYING, val);
 	}
 	
 	public void setLastSongPosition(int val) {
