@@ -205,6 +205,6 @@ public class BeatBox.ViewWrapper : VBox {
 		else
 			lw.viewSelector.selected = 1;
 		
-		lw.miller.albums.selected = album;
+		lw.miller.albums.set_selected(album);
 	}
 }

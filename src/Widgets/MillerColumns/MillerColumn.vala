@@ -71,24 +71,25 @@ public class BeatBox.MillerColumns : HBox {
 		albums.setColumnVisibilities(genreV, artistV, albumV);
 		
 		lm.settings.setMillerColumnVisibilities(genreV, artistV, albumV);
+		populateColumns("", songs);
 	}
 	
 	public void resetColumns() {
-		artists.selected = "All Artists";
-		albums.selected = "All Albums";
-		genres.selected = "All Genres";
+		artists.set_selected("All Artists");
+		albums.set_selected("All Albums");
+		genres.set_selected("All Genres");
 	}
 	
 	public virtual void searchFieldChanged() {
 		if(visible)
-			populateColumns(songs);
+			populateColumns("", songs);
 	}
 	
-	public void populateColumns(Collection<int> songs) {
+	public void populateColumns(string trigger, Collection<int> songs) {
 		Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
-															lw.miller.genres.selected, 
-															lw.miller.artists.selected,
-															lw.miller.albums.selected,
+															lw.miller.genres.get_selected(), 
+															lw.miller.artists.get_selected(),
+															lw.miller.albums.get_selected(),
 															songs);
 		
 		this.songs = songs;
@@ -98,36 +99,36 @@ public class BeatBox.MillerColumns : HBox {
 		var genresSet = new HashSet<string>();
 		
 		foreach(int id in searched_songs) {
-			if((genres.selected == "All Genres" || genres.selected == lm.song_from_id(id).genre) &&
-				(artists.selected == "All Artists" || artists.selected == lm.song_from_id(id).artist) &&
-				(albums.selected == "All Albums" || albums.selected == lm.song_from_id(id).album))
+			if((genres.get_selected() == "All Genres" || genres.get_selected() == lm.song_from_id(id).genre) &&
+				(artists.get_selected() == "All Artists" || artists.get_selected() == lm.song_from_id(id).artist) &&
+				(albums.get_selected() == "All Albums" || albums.get_selected() == lm.song_from_id(id).album))
 			artistsSet.add(lm.song_from_id(id).artist);
 			albumsSet.add(lm.song_from_id(id).album);
 			genresSet.add(lm.song_from_id(id).genre);
 		}
 		
-		if(artists.selected == "All Artists")
+		if(trigger != "Artists" && artists.get_selected() == "All Artists")
 			artists.populate(artistsSet);
 			
-		if(albums.selected == "All Albums")
+		if(trigger != "Albums" && albums.get_selected() == "All Albums")
 			albums.populate(albumsSet);
 		
-		if(genres.selected == "All Genres")
+		if(trigger != "Genres" && genres.get_selected() == "All Genres")
 			genres.populate(genresSet);
 	}
 	
-	public virtual void genreSelected(string text) {
-		populateColumns(songs);
+	public virtual void genreSelected(string cat, string text) {
+		populateColumns(cat, songs);
 		
 		changed();
 	}
-	public virtual void artistSelected(string text) {
-		populateColumns(songs);
+	public virtual void artistSelected(string cat, string text) {
+		populateColumns(cat, songs);
 		
 		changed();
 	}
-	public virtual void albumSelected(string text) {
-		populateColumns(songs);
+	public virtual void albumSelected(string cat, string text) {
+		populateColumns(cat, songs);
 		
 		changed();
 	}
@@ -149,22 +150,24 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	CheckMenuItem columnArtists;
 	CheckMenuItem columnAlbums;
 	
-	public signal void selectedChanged(string selected);
+	public signal void selectedChanged(string category, string selected);
 	public signal void resetRequested();
 	public signal void columnVisibilityUpdate(bool genres, bool artists, bool albums);
 	
-	public string selected {
-		get {
-			if(_selected == null)
-				_selected = "All " + category;
-			
-			return _selected;
-		}
-		set {
-			_selected = value;
-			selectedChanged(_selected);
-			model.foreach(selectProperString);
-		}
+	public string get_selected() {
+		if(_selected == null)
+			_selected = "All " + category;
+		
+		if(!this.visible || millerParent.lw.viewSelector.selected != 2)
+			return "All " + category;
+		
+		return _selected;
+	}
+	
+	public void set_selected(string val) {
+		_selected = val;
+		selectedChanged(category, _selected);
+		model.foreach(selectProperString);
 	}
 	
 	public MillerColumn(MillerColumns parent, string categ) {
@@ -260,7 +263,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		if(view.get_selection().get_selected(out tempModel, out iter)) {
 			tempModel.get(iter, 0, out text);
 			_selected = text;
-			selectedChanged(_selected);
+			selectedChanged(category, _selected);
 		}
 	}
 	

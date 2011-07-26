@@ -260,7 +260,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//for setting maximum size for setting hpane position max size
 		//sideBar.set_geometry_hints(
 		
-		miller.populateColumns(lm.song_ids());
+		miller.populateColumns("", lm.song_ids());
 		buildSideTree();
 		
 		sideTreeScroll = new ScrolledWindow(null, null);
@@ -1118,7 +1118,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
 		vw.doUpdate(vw.currentView, lm.song_ids(), true);
-		miller.populateColumns(lm.song_ids());
+		miller.populateColumns("", lm.song_ids());
 	}
 	
 	public virtual void musicCounted(int count) {
@@ -1332,7 +1332,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		infoPanel.updateSongList(similarDont);
 		
 		if(((ViewWrapper)w).isCurrentView) {
-			miller.populateColumns(((ViewWrapper)w).list.get_songs());
+			miller.populateColumns("", ((ViewWrapper)w).list.get_songs());
 			updateMillerColumns();
 		}
 	}

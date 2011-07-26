@@ -80,8 +80,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		
 		var potentialShowing = new LinkedList<int>();
 		
-		if(lw.searchField.get_text() == "" && lw.miller.genres.selected == "All Genres" &&
-		lw.miller.artists.selected == "All Artists" && lw.miller.albums.selected == "All Albums") {
+		if(lw.searchField.get_text() == "") {
 			potentialShowing.add_all(toShow);
 		}
 		

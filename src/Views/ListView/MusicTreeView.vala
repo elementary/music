@@ -755,16 +755,18 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			_songs = songs;
 		}
 		
+		stdout.printf("%s,%s,%s\n", lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected());
+		
 		var potentialShowing = new LinkedList<int>();
-		if(lw.searchField.get_text() == "" && lw.miller.genres.selected == "All Genres" &&
-		lw.miller.artists.selected == "All Artists" && lw.miller.albums.selected == "All Albums") {
+		if(lw.searchField.get_text() == "" && lw.miller.genres.get_selected() == "All Genres" &&
+		lw.miller.artists.get_selected() == "All Artists" && lw.miller.albums.get_selected() == "All Albums") {
 			potentialShowing.add_all(songs);
 		}
 		else {
 			potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
-												lw.miller.genres.selected, 
-												lw.miller.artists.selected,
-												lw.miller.albums.selected,
+												lw.miller.genres.get_selected(), 
+												lw.miller.artists.get_selected(),
+												lw.miller.albums.get_selected(),
 												_songs));
 		}
 		
