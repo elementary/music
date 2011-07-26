@@ -9,6 +9,7 @@ public class BeatBox.Streamer : GLib.Object {
 	 /** signals **/
     public signal void end_of_stream();
     public signal void current_position_update(int64 position);
+    public signal void song_not_found();
 	
 	public Streamer(LibraryManager lm, LibraryWindow lw, string[] args) {
 		Gst.init(ref args);

@@ -118,6 +118,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		this.lm.player.end_of_stream.connect(end_of_stream);
 		this.lm.player.current_position_update.connect(current_position_update);
+		this.lm.player.song_not_found.connect(song_not_found);
 		this.lm.music_counted.connect(musicCounted);
 		this.lm.music_added.connect(musicAdded);
 		this.lm.music_imported.connect(musicImported);
@@ -177,6 +178,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			// rescan on startup
 			/*lm.rescan_music_folder();*/
 		}
+		
+		/*if(!File.new_for_path(settings.getMusicFolder()).query_exists() && settings.getMusicFolder() != "") {
+			doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using BeatBox.");
+		}*/
 	}
 	
 	public void build_ui() {
@@ -753,6 +758,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}*/
 		
+		 //FIXME: Could give errors for song previews, non-native files, etc.
+		if(!GLib.File.new_for_path(lm.song_info.song.file).query_exists() && this.visible) {
+			song_not_found();
+		}
+		
 		if(!lm.song_info.song.isPreview) {
 			updateCurrentSong();
 			
@@ -766,7 +776,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 		
 		// if it is a video, show the video option and select it
-		Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
+		/*Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
 		if(disc.discover_uri("file://" + lm.song_info.song.file).get_video_streams().length() > 0) {
 			if(!viewSelector.get_showing(3)) {
 				viewSelector.set_showing(3, true);
@@ -777,7 +787,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			//stdout.printf("is not video, removing\n");
 			viewSelector.set_showing(3, false);
 			viewSelector.selected = settings.getViewMode();
-		}
+		}*/
 	}
 	
 	public virtual void playback_stopped(int was_playing) {
@@ -1088,11 +1098,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				updateSensitivities();
 			}
 			else {
-				var dialog = new MessageDialog(this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, 
-				"You must mount your music folder before rescanning.");
-				
-				dialog.run();
-				dialog.destroy();
+				doAlert("Could not find Music Folder", "Please make sure that your music folder is accessible and mounted.");
 			}
 		}
 		else {
@@ -1313,6 +1319,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
+	public void song_not_found() {
+		var not_found = new FileNotFoundDialog(lm, this, lm.song_info.song.rowid);
+	}
+	
 	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {
 		Widget w = sideTree.getWidget(sideTree.convertToFilter(sideTree.playlists_similar_iter));
 		
@@ -1443,9 +1453,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public void doAlert(string title, string message) {
 		var dialog = new MessageDialog(this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, 
-				"You must mount your music folder before rescanning.");
+				title);
+		
+		dialog.title = "BeatBox";
+		dialog.secondary_text = message;
+		dialog.secondary_use_markup = true;
 				
-				dialog.run();
-				dialog.destroy();
+		dialog.run();
+		dialog.destroy();
 	}
 }

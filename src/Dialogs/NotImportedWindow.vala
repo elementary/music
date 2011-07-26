@@ -47,7 +47,7 @@ public class BeatBox.NotImportedWindow : Window{
 		this.set_title("Not Imported Files");
 		
 		// set the size based on saved gconf settings
-		this.window_position = WindowPosition.CENTER;
+		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
 		this.set_transient_for(lw);

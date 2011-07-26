@@ -133,9 +133,9 @@ def build(bld):
 	obj.uselib = 'GTK GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES GSTREAMER_PBUTILS GSTREAMER_CDDA TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD SOUP JSON'
 	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 
 									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
-									'src/Widgets/*.vala', 'src/Widgets/AlbumView/*.vala', 'src/Widgets/ListView/*.vala', 
+									'src/Widgets/*.vala', 'src/Views/AlbumView/*.vala', 'src/Views/ListView/*.vala', 
 									'src/Widgets/MillerColumns/*.vala', 'src/Store/*.vala', 'src/Store/Widgets/*.vala',
-									'src/GStreamer/*.vala', 'src/IO/*.vala'))
+									'src/GStreamer/*.vala', 'src/IO/*.vala', 'src/Views/*.vala'))
 
 	if obj.env['HAVE_ZEITGEIST']:
 		obj.packages += ' zeitgeist-1.0'
