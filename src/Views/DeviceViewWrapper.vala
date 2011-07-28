@@ -33,6 +33,11 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 			return;
 		}
 		
+		if(d.getUnixDevicePath() == "") {
+			lw.doAlert("BeatBox could not import CD", "Please make sure that it is properly mounted, and possibly try re-logging in.");
+			return;
+		}
+		
 		ripper = new CDRipper(d.getUnixDevicePath(), songs.size);
 		ripper.progress_notification.connect( (progress) => {
 			

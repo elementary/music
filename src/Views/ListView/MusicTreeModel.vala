@@ -39,7 +39,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public bool is_current;
 	
     /* data storage variables */
-    Sequence<Song> rows;
+    Sequence<int> rows;
     private LinkedList<string> _columns;
     
     /* treesortable stuff */
@@ -60,9 +60,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		_playing = playing;
 
 #if VALA_0_14
-		rows = new Sequence<Song>();
+		rows = new Sequence<int>();
 #else
-		rows = new Sequence<Song>(null);
+		rows = new Sequence<int>(null);
 #endif
        
        sort_column_id = -2;
@@ -127,7 +127,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			return;
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
-			Song s = rows.get(((SequenceIter<Song>)iter.user_data));
+			Song s = lm.song_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
 			
 			if(column == 0)
 				val = s.rowid;
@@ -138,7 +138,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 					val = Value(typeof(Gdk.Pixbuf));
 			}
 			else if(column == 2)
-				val = ((SequenceIter<ValueArray>)iter.user_data).get_position() + 1;
+				val = ((SequenceIter<int>)iter.user_data).get_position() + 1;
 			else if(column == 3)
 				val = s.track;
 			else if(column == 4)
@@ -233,7 +233,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
-			if(id == rows.get(s_iter).rowid) {
+			if(id == rows.get(s_iter)) {
 				TreeIter iter = TreeIter();
 				iter.stamp = this.stamp;
 				iter.user_data = s_iter;
@@ -249,7 +249,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(iter.stamp != this.stamp || ((SequenceIter)iter.user_data).is_end())
 			return 0;
 		
-		return rows.get(((SequenceIter<Song>)iter.user_data)).rowid;
+		return rows.get(((SequenceIter<int>)iter.user_data));
 	}
     
     public int getRowidFromPath(string path) {
@@ -261,12 +261,12 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(s_iter.is_end())
 			return 0;
 		
-		return rows.get(s_iter).rowid;
+		return rows.get(s_iter);
 	}
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
-		SequenceIter<Song> added = rows.append(new Song(""));
+		SequenceIter<int> added = rows.append(0);
 		iter.stamp = this.stamp;
 		iter.user_data = added;
 	}
@@ -274,9 +274,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	/** convenience method to insert songs into the model. No iters returned. **/
     public void append_songs(Collection<int> songs, bool emit) {
 		foreach(int id in songs) {
-			Song s = lm.song_from_id(id);
-			
-			SequenceIter<Song> added = rows.append(s);
+			SequenceIter<int> added = rows.append(id);
 			
 			if(emit) {
 				TreePath path = new TreePath.from_string(added.get_position().to_string());
@@ -296,7 +294,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
-			if(id == rows.get(s_iter).rowid) {
+			if(id == rows.get(s_iter)) {
 				//rows.get(s_iter).values[_columns.index_of(" ")] = Value(typeof(Gdk.Pixbuf));;
 				
 				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
@@ -319,13 +317,13 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	public void updateSongs(owned Collection<int> rowids, bool is_current) {
-		SequenceIter s_iter = rows.get_begin_iter();
+		/*SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
-			if(rowids.contains(rows.get(s_iter).rowid)) {
-				rows.set(s_iter, lm.song_from_id(rows.get(s_iter).rowid));
+			if(rowids.contains(rows.get(s_iter))) {
+				rows.set(s_iter, lm.song_from_id(rows.get(s_iter)));
 				
 				//if(rowid == lm.song_info.song.rowid) {
 					TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
@@ -337,12 +335,12 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 					row_changed(path, iter);
 				//}
 				
-				rowids.remove(rows.get(s_iter).rowid);
+				rowids.remove(rows.get(s_iter));
 			}
 			
 			if(rowids.size <= 0)
 				return;
-		}
+		}*/
 	}
 	
 	public new void set(TreeIter iter, ...) {
@@ -379,7 +377,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			return;
 			
 		var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
-		rows.remove((SequenceIter<Song>)iter.user_data);
+		rows.remove((SequenceIter<int>)iter.user_data);
 		row_deleted(path);
 	}
 	
@@ -389,8 +387,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
-			if(rowids.contains(rows.get(s_iter).rowid)) {
-				int rowid = rows.get(s_iter).rowid;
+			if(rowids.contains(rows.get(s_iter))) {
+				int rowid = rows.get(s_iter);
 				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
 					
 				rows.remove(s_iter);
@@ -466,16 +464,16 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	/** Custom function to use built in sort in GLib.Sequence to our advantage **/
-	public int sequenceIterCompareFunc(SequenceIter<Song> a, SequenceIter<Song> b) {
+	public int sequenceIterCompareFunc(SequenceIter<int> a, SequenceIter<int> b) {
 		int rv;
 		
 		if(sort_column_id < 0)
 			return 0;
 		
+		Song a_song = lm.song_from_id(rows.get(a));
+		Song b_song = lm.song_from_id(rows.get(b));
+		
 		if(_columns.get(sort_column_id) == "Artist") {
-			Song a_song = rows.get(a);
-			Song b_song = rows.get(b);
-			
 			if(a_song.artist.down() == b_song.artist.down()) {
 				if(a_song.album.down() == b_song.album.down())
 					rv = (sort_direction == SortType.ASCENDING) ? a_song.track - b_song.track : b_song.track - a_song.track;
@@ -486,9 +484,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 				rv = advancedStringCompare(a_song.artist.down(), b_song.artist.down());
 		}
 		else if(_columns.get(sort_column_id) == "Album") {
-			Song a_song = rows.get(a);
-			Song b_song = rows.get(b);
-			
 			if(a_song.album.down() == b_song.album.down())
 				rv = (sort_direction == SortType.ASCENDING) ? a_song.track - b_song.track : b_song.track - a_song.track;
 			else {
@@ -502,40 +497,40 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			rv = a.get_position() - b.get_position();
 		}
 		else if(_columns.get(sort_column_id) == "Track") {
-			rv = rows.get(a).track - rows.get(b).track;
+			rv = a_song.track - b_song.track;
 		}
 		else if(_columns.get(sort_column_id) == "Title") {
-			rv = advancedStringCompare(rows.get(a).title.down(), rows.get(b).title.down());
+			rv = advancedStringCompare(a_song.title.down(), b_song.title.down());
 		}
 		else if(_columns.get(sort_column_id) == "Length") {
-			rv = rows.get(a).length - rows.get(b).length;
+			rv = a_song.length - b_song.length;
 		}
 		else if(_columns.get(sort_column_id) == "Genre") {
-			rv = advancedStringCompare(rows.get(a).genre.down(), rows.get(b).genre.down());
+			rv = advancedStringCompare(a_song.genre.down(), b_song.genre.down());
 		}
 		else if(_columns.get(sort_column_id) == "Year") {
-			rv = rows.get(a).year - rows.get(b).year;
+			rv = a_song.year - b_song.year;
 		}
 		else if(_columns.get(sort_column_id) == "Bitrate") {
-			rv = rows.get(a).bitrate - rows.get(b).bitrate;
+			rv = a_song.bitrate - b_song.bitrate;
 		}
 		else if(_columns.get(sort_column_id) == "Rating") {
-			rv = rows.get(a).rating - rows.get(b).rating;
+			rv = a_song.rating - b_song.rating;
 		}
 		else if(_columns.get(sort_column_id) == "Last Played") {
-			rv = rows.get(a).last_played - rows.get(b).last_played;
+			rv = a_song.last_played - b_song.last_played;
 		}
 		else if(_columns.get(sort_column_id) == "Date Added") {
-			rv = rows.get(a).date_added - rows.get(b).date_added;
+			rv = a_song.date_added - b_song.date_added;
 		}
 		else if(_columns.get(sort_column_id) == "Plays") {
-			rv = rows.get(a).play_count - rows.get(b).play_count;
+			rv = a_song.play_count - b_song.play_count;
 		}
 		else if(_columns.get(sort_column_id) == "Skips") {
-			rv = rows.get(a).skip_count - rows.get(b).skip_count;
+			rv = a_song.skip_count - b_song.skip_count;
 		}
 		else if(_columns.get(sort_column_id) == "BPM") {
-			rv = rows.get(a).bpm - rows.get(b).bpm;
+			rv = a_song.bpm - b_song.bpm;
 		}
 		else {
 			rv = 1;

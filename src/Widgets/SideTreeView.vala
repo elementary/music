@@ -341,7 +341,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return false;
 		
 		if(w == getSelectedWidget()) {
+			bool showing = w.visible;
 			w.show();
+			
+			if(showing)
+				return false;
 			
 			if(w is ViewWrapper) {
 				((ViewWrapper)w).setIsCurrentView(true);
@@ -482,18 +486,21 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public virtual void playlistNameWindowSaved(Playlist p) {
 		if(p.rowid > 0) {
 			TreeIter pivot = playlists_history_iter;
-				
+				stdout.printf("1\n");
 			do {
 				GLib.Object o;
+				stdout.printf("a\n");
 				tree.get(pivot, 0, out o);
 				if(o is Playlist && ((Playlist)o).rowid == p.rowid) {
 					string name;
 					Widget w;
+					stdout.printf("ab\n");
 					tree.get(pivot, 1, out w, 4, out name);
-					
+					stdout.printf("b\n");
 					tree.remove(pivot);
-					addItem(playlists_iter, p, w, render_icon("playlist", IconSize.MENU, null), p.name, null);
-					
+					stdout.printf("wtf\n");
+					lw.addSideListItem(p);
+					stdout.printf("c\n");
 					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_playlist(p.rowid), false);
 					lm.save_playlists();
 					

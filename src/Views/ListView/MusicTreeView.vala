@@ -755,7 +755,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			_songs = songs;
 		}
 		
-		stdout.printf("%s,%s,%s\n", lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected());
+		//stdout.printf("%s,%s,%s\n", lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected());
 		
 		var potentialShowing = new LinkedList<int>();
 		if(lw.searchField.get_text() == "" && lw.miller.genres.get_selected() == "All Genres" &&

@@ -24,13 +24,15 @@ using Gtk;
 using Gee;
 
 public class BeatBox.MillerColumns : HBox {
-	LibraryManager lm;
+	public  LibraryManager lm;
 	public LibraryWindow lw;
-	Collection<int> songs;
+	public Collection<int> songs;
 	
 	public MillerColumn genres;
 	public MillerColumn artists;
 	public MillerColumn albums;
+	
+	bool inUpdate = false;
 	
 	public signal void changed();
 	
@@ -86,6 +88,13 @@ public class BeatBox.MillerColumns : HBox {
 	}
 	
 	public void populateColumns(string trigger, Collection<int> songs) {
+		//if(inUpdate)
+		//	return;
+		
+		//inUpdate = true;
+		stdout.printf("%s: millers pop with %s %s %s\n", trigger, lw.miller.genres.get_selected(), 
+															lw.miller.artists.get_selected(),
+															lw.miller.albums.get_selected());
 		Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
 															lw.miller.genres.get_selected(), 
 															lw.miller.artists.get_selected(),
@@ -99,36 +108,114 @@ public class BeatBox.MillerColumns : HBox {
 		var genresSet = new HashSet<string>();
 		
 		foreach(int id in searched_songs) {
-			if((genres.get_selected() == "All Genres" || genres.get_selected() == lm.song_from_id(id).genre) &&
-				(artists.get_selected() == "All Artists" || artists.get_selected() == lm.song_from_id(id).artist) &&
-				(albums.get_selected() == "All Albums" || albums.get_selected() == lm.song_from_id(id).album))
 			artistsSet.add(lm.song_from_id(id).artist);
 			albumsSet.add(lm.song_from_id(id).album);
 			genresSet.add(lm.song_from_id(id).genre);
 		}
 		
-		if(trigger != "Artists" && artists.get_selected() == "All Artists")
-			artists.populate(artistsSet);
-			
-		if(trigger != "Albums" && albums.get_selected() == "All Albums")
-			albums.populate(albumsSet);
+		genres.populate(genresSet);
+		artists.populate(artistsSet);
+		albums.populate(albumsSet);
+			/*
 		
-		if(trigger != "Genres" && genres.get_selected() == "All Genres")
+		if(trigger == "") {
+			stdout.printf("a\n");
+			genres.set_selected("All Genres");
+			artists.set_selected("All Artists");
+			albums.set_selected("All Albums");
+			
 			genres.populate(genresSet);
+			artists.populate(artistsSet);
+			albums.populate(albumsSet);
+			
+			
+			
+			
+			stdout.printf("a2\n");
+			
+		}
+		else if(trigger == "Genres") {
+			stdout.printf("b\n");
+			artists.set_selected("All Artists");
+			//albums.set_selected("All Albums");
+
+			artists.populate(artistsSet);
+			//albums.populate(albumsSet);
+			
+						
+			
+			stdout.printf("b2\n");
+		}
+		else if(trigger == "Artists") {
+			albums.set_selected("All Albums");
+			albums.populate(albumsSet);
+			
+			
+		}
+		
+		inUpdate = false;*/
 	}
 	
 	public virtual void genreSelected(string cat, string text) {
-		populateColumns(cat, songs);
+		/*if(inUpdate)
+			return;
+		
+		inUpdate = true;
+		
+		Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
+															lw.miller.genres.get_selected(), 
+															"All Artists",
+															"All Albums",
+															songs);
+		
+		this.songs = searched_songs;
+		
+		var artistsSet = new HashSet<string>();
+		var albumsSet = new HashSet<string>();
+		
+		foreach(int id in searched_songs) {
+			artistsSet.add(lm.song_from_id(id).artist);
+			albumsSet.add(lm.song_from_id(id).album);
+		}
+		
+		stdout.printf("b\n");
+		artists.set_selected("All Artists");
+		albums.set_selected("All Albums");
+
+		artists.populate(artistsSet);
+		albums.populate(albumsSet);*/
 		
 		changed();
 	}
 	public virtual void artistSelected(string cat, string text) {
-		populateColumns(cat, songs);
+		/*if(inUpdate)
+			return;
+		
+		inUpdate = true;
+		
+		Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
+															lw.miller.genres.get_selected(), 
+															lw.miller.artists.get_selected(),
+															"All Albums",
+															songs);
+		
+		this.songs = searched_songs;
+		
+		var albumsSet = new HashSet<string>();
+		
+		foreach(int id in searched_songs) {
+			albumsSet.add(lm.song_from_id(id).album);
+		}
+		
+		stdout.printf("b\n");
+		albums.set_selected("All Albums");
+
+		albums.populate(albumsSet);*/
 		
 		changed();
 	}
 	public virtual void albumSelected(string cat, string text) {
-		populateColumns(cat, songs);
+		//populateColumns(cat, songs);
 		
 		changed();
 	}
@@ -138,6 +225,8 @@ public class BeatBox.MillerColumns : HBox {
 
 
 public class BeatBox.MillerColumn : ScrolledWindow {
+	LibraryManager lm;
+	LibraryWindow lw;
 	MillerColumns millerParent;
 	string category;
 	TreeView view;
@@ -154,24 +243,10 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	public signal void resetRequested();
 	public signal void columnVisibilityUpdate(bool genres, bool artists, bool albums);
 	
-	public string get_selected() {
-		if(_selected == null)
-			_selected = "All " + category;
-		
-		if(!this.visible || millerParent.lw.viewSelector.selected != 2)
-			return "All " + category;
-		
-		return _selected;
-	}
-	
-	public void set_selected(string val) {
-		_selected = val;
-		selectedChanged(category, _selected);
-		model.foreach(selectProperString);
-	}
-	
 	public MillerColumn(MillerColumns parent, string categ) {
 		this.millerParent = parent;
+		lw = parent.lw;
+		lm = parent.lm;
 		view = new TreeView();
 		model = new MillerModel(categ);
 		category = categ;
@@ -212,6 +287,22 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		view.get_selection().changed.connect(selectionChanged);
 		view.row_activated.connect(viewDoubleClick);
 		view.key_press_event.connect(keyPressed);
+	}
+	
+	public string get_selected() {
+		if(_selected == null)
+			_selected = "All " + category;
+		
+		if(!this.visible || millerParent.lw.viewSelector.selected != 2)
+			return "All " + category;
+		
+		return _selected;
+	}
+	
+	public void set_selected(string val) {
+		_selected = val;
+		selectedChanged(category, _selected);
+		model.foreach(selectProperString);
 	}
 	
 	public bool keyPressed(Gdk.EventKey event) {
@@ -257,13 +348,56 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 	
 	public virtual void selectionChanged() {
+		stdout.printf("hi\n");
 		TreeModel tempModel;
 		TreeIter iter;
 		string text;
 		if(view.get_selection().get_selected(out tempModel, out iter)) {
 			tempModel.get(iter, 0, out text);
 			_selected = text;
-			selectedChanged(category, _selected);
+			stdout.printf("boo %s\n", category);
+			if(category == "Genres") {
+				stdout.printf("genre\n");
+				Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
+															lw.miller.genres.get_selected(), 
+															"All Artists",
+															"All Albums",
+															millerParent.songs);
+				
+				var artistsSet = new HashSet<string>();
+				var albumsSet = new HashSet<string>();
+				
+				foreach(int id in searched_songs) {
+					artistsSet.add(lm.song_from_id(id).artist);
+					albumsSet.add(lm.song_from_id(id).album);
+				}
+				
+				stdout.printf("b\n");
+				lw.miller.artists.set_selected("All Artists");
+				lw.miller.albums.set_selected("All Albums");
+
+				lw.miller.artists.populate(artistsSet);
+				lw.miller.albums.populate(albumsSet);
+			}
+			else if(category == "Artists") {
+				stdout.printf("artist\n");
+				Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
+															lw.miller.genres.get_selected(), 
+															lw.miller.artists.get_selected(),
+															"All Albums",
+															millerParent.songs);
+		
+				var albumsSet = new HashSet<string>();
+				foreach(int id in searched_songs) {
+					albumsSet.add(lm.song_from_id(id).album);
+				}
+				
+				stdout.printf("b\n");
+				lw.miller.albums.set_selected("All Albums");
+
+				lw.miller.albums.populate(albumsSet);
+			}
+			
 		}
 	}
 	

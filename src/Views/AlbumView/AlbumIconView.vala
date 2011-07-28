@@ -74,9 +74,9 @@ public class BeatBox.AlbumView : ScrolledWindow {
 	*/
 	public void generateHTML(Collection<int> toShow, bool force) {
 		
-		if(lw.searchField.get_text() == "" && showingSongs.size == toShow.size && toShow.size > 500 && !force) {
+		/*if(lw.searchField.get_text() == "" && showingSongs.size == toShow.size && toShow.size > 500 && !force) {
 			return;
-		}
+		}*/
 		
 		var potentialShowing = new LinkedList<int>();
 		
