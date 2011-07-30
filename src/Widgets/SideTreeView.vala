@@ -235,7 +235,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public virtual void sideListSelectionChange() {
-		tree.foreach(updateView);
+		if(lw.initializationFinished) {
+			tree.foreach(updateView);
+		}
+		
 	}
 	
 	public virtual bool sideListClick(Gdk.EventButton event) {
@@ -404,6 +407,15 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					
 					lw.miller.populateColumns("", vw.songs);
 				}
+				else if(o is Device) {
+					stdout.printf("is device\n");
+					DeviceViewWrapper vw = (DeviceViewWrapper)w;
+					
+					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								vw.songs, true, false);
+					
+					lw.miller.populateColumns("", vw.songs);
+				}
 				
 				((ViewWrapper)w).setStatusBarText();
 			}
@@ -438,7 +450,15 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void CDejectClicked() {
-		stdout.printf("i should learn to eject myself\n");
+		TreeIter iter = getSelectedIter();
+		Widget w = getSelectedWidget();
+		
+		GLib.Object o;
+		filter.get(iter, 0, out o);
+		
+		if(o is Device && ((Device)o).getContentType() == "cdrom") {
+			((Device)o).unmount();
+		}
 	}
 	
 	//smart playlist context menu

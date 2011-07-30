@@ -766,6 +766,20 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return rv;
 	}
 	
+	public Collection<int> temps_from_search(string search, string genre, string artist, string album, Collection<int> songs_to_search) {
+		string l_search = search.down();
+		
+		var rv = new LinkedList<int>();
+		foreach(int i in songs_to_search) {
+			Song s = song_from_id(i);
+			if(l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down()) {
+				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist) && (album == "All Albums" || s.album == album))
+					rv.add(i);
+			}
+		}
+		return rv;
+	}
+	
 	public LinkedList<int> songs_from_playlist(int id) {
 		return _playlists.get(id).analyze(this);
 	}

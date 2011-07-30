@@ -32,7 +32,7 @@ public class BeatBox.ViewWrapper : VBox {
 	public Collection<int> songs;
 	public Collection<int> showingSongs;
 	
-	MusicTreeView.Hint hint;
+	public MusicTreeView.Hint hint;
 	public ViewType currentView;
 	public bool isCurrentView;
 	
@@ -181,26 +181,45 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		var potentialShowing = new LinkedList<int>();
 		bool doPopulate = true;
-		if(currentView != ViewWrapper.ViewType.FILTER_VIEW) {
-			potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
-												lw.miller.genres.get_selected(), 
-												lw.miller.artists.get_selected(),
-												lw.miller.albums.get_selected(),
-												songs));
 		
+		if(hint != MusicTreeView.Hint.CDROM) {
+			if(currentView != ViewWrapper.ViewType.FILTER_VIEW) {
+				potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
+													lw.miller.genres.get_selected(), 
+													lw.miller.artists.get_selected(),
+													lw.miller.albums.get_selected(),
+													songs));
+			
+			}
+			else {
+				potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
+													"All Genres", 
+													"All Artists",
+													"All Albums",
+													songs));
+			}
 		}
 		else {
-			potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
-												"All Genres", 
-												"All Artists",
-												"All Albums",
-												songs));
+			if(currentView != ViewWrapper.ViewType.FILTER_VIEW) {
+				potentialShowing.add_all(lm.temps_from_search(lw.searchField.get_text(), 
+													lw.miller.genres.get_selected(), 
+													lw.miller.artists.get_selected(),
+													lw.miller.albums.get_selected(),
+													songs));
+			
+			}
+			else {
+				potentialShowing.add_all(lm.temps_from_search(lw.searchField.get_text(), 
+													"All Genres", 
+													"All Artists",
+													"All Albums",
+													songs));
+			}
 		}
 		
 		if(showingSongs.size == potentialShowing.size && potentialShowing.size > 500 && hint != MusicTreeView.Hint.HISTORY && hint != MusicTreeView.Hint.QUEUE && !force)
 			doPopulate = false;
 		
-		stdout.printf("populating\n");
 		showingSongs = potentialShowing;
 		
 		if(type == ViewType.LIST) {
@@ -210,8 +229,9 @@ public class BeatBox.ViewWrapper : VBox {
 			if(isCurrentView) {
 				list.is_current_view = true;
 				
-				if(doPopulate || list.needsUpdate)
+				if(doPopulate || list.needsUpdate) {
 					list.populateView(showingSongs, !set_songs, force);
+				}
 			}
 			else
 				list.is_current_view = false;
@@ -251,12 +271,12 @@ public class BeatBox.ViewWrapper : VBox {
 	
 	
 	public virtual void searchFieldChanged() {
-		if(isCurrentView && lw.searchField.get_text().length != 1) {
+		if(lw.initializationFinished && isCurrentView && lw.searchField.get_text().length != 1) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
 				
 				string to_search = timeout_search.poll_tail();
-				
+				stdout.printf("search filed changed\n");
 				doUpdate(this.currentView, songs, false, false);
 					
 				last_search = to_search;

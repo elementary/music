@@ -44,6 +44,7 @@ public class BeatBox.CDDA : GLib.Object {
 		int index = 1;
 		for (device_info = enumerator.next_file(); device_info != null; device_info = enumerator.next_file()) {
 			Song s = new Song("cdda://" + index.to_string());
+			s.isTemporary = true;
 			
 			var title = device_info.get_attribute_string("xattr::org.gnome.audio.title");
 			var artist = device_info.get_attribute_string("xattr::org.gnome.audio.artist");

@@ -125,7 +125,7 @@ public class BeatBox.SmartPlaylist : Object {
 					match_count++;
 			}
 			
-			if((conditional == "all" && match_count == _queries.size) || (conditional == "any" && match_count >= 1))
+			if(((conditional == "all" && match_count == _queries.size) || (conditional == "any" && match_count >= 1)) && !s.isTemporary)
 				rv.add(s.rowid);
 				
 			if(_limit && _limit_amount <= rv.size)

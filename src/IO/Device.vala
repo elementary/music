@@ -49,7 +49,7 @@ public class BeatBox.Device : GLib.Object {
 		return mount.can_eject();
 	}
 	
-	private void eject() {
+	public void eject() {
 		if(canEject())
 			mount.eject(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
 	}

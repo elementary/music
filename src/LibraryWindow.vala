@@ -41,6 +41,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public bool millerVisible;
 	bool askToSetFolder;
 	
+	public bool initializationFinished;
+	
 	VBox verticalBox;
 	VBox mainViews;
 	public MillerColumns miller;
@@ -114,8 +116,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		dragging_from_music = false;
 		askToSetFolder = false;
 		
-		build_ui();
-		
 		this.lm.player.end_of_stream.connect(end_of_stream);
 		this.lm.player.current_position_update.connect(current_position_update);
 		this.lm.player.song_not_found.connect(song_not_found);
@@ -135,7 +135,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		check_resize.connect(on_resize);
 		this.destroy.connect (Gtk.main_quit);
 		
-		this.present();
 		if(lm.song_count() == 0 && settings.getMusicFolder() == "") {
 			stdout.printf("First run.\n");
 			
@@ -182,6 +181,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		/*if(!File.new_for_path(settings.getMusicFolder()).query_exists() && settings.getMusicFolder() != "") {
 			doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using BeatBox.");
 		}*/
+		
+		build_ui();
+		this.present();
+		
+		initializationFinished = true;
 	}
 	
 	public void build_ui() {
@@ -433,6 +437,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		drag_data_received.connect(dragReceived);
 		
 		show_all();
+		
 		//topMenu.hide();
 		//topDisplay.show_scale();
 		sideTree.resetView();

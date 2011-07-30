@@ -326,7 +326,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		if(items.size == model.iter_n_children(null))
 			return;
 		
-		//stdout.printf("Populating %s with %d items\n", category, items.size);
 		items.remove("");
 		items.add("All " + category);
 		
