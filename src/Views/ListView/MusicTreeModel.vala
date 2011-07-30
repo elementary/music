@@ -295,8 +295,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			s_iter = rows.get_iter_at_pos(index);
 			
 			if(id == rows.get(s_iter)) {
-				//rows.get(s_iter).values[_columns.index_of(" ")] = Value(typeof(Gdk.Pixbuf));;
-				
 				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
 				
 				TreeIter iter = TreeIter();
@@ -317,30 +315,26 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	public void updateSongs(owned Collection<int> rowids, bool is_current) {
-		/*SequenceIter s_iter = rows.get_begin_iter();
+		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
 			if(rowids.contains(rows.get(s_iter))) {
-				rows.set(s_iter, lm.song_from_id(rows.get(s_iter)));
+				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+			
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = s_iter;
 				
-				//if(rowid == lm.song_info.song.rowid) {
-					TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
-				
-					TreeIter iter = TreeIter();
-					iter.stamp = this.stamp;
-					iter.user_data = s_iter;
-					
-					row_changed(path, iter);
-				//}
+				row_changed(path, iter);
 				
 				rowids.remove(rows.get(s_iter));
 			}
 			
 			if(rowids.size <= 0)
 				return;
-		}*/
+		}
 	}
 	
 	public new void set(TreeIter iter, ...) {

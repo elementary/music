@@ -505,8 +505,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
         this.view.drag_data_get.connect(onDragDataGet);
         this.view.drag_end.connect(onDragEnd);
 		this.vadjustment.value_changed.connect(viewScroll);
-		lw.searchField.changed.connect(searchFieldChanged);
-		lw.miller.changed.connect(searchFieldChanged);
 	}
 	
 	public void rearrangeColumns(LinkedList<string> correctOrder) {
@@ -536,39 +534,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual void millerChanged() {
 		
-	}
-	
-	public virtual void searchFieldChanged() {
-		if(is_current_view && lw.searchField.get_text().length != 1) {
-			timeout_search.offer_head(lw.searchField.get_text().down());
-			Timeout.add(100, () => {
-				
-				string to_search = timeout_search.poll_tail();
-				/*Collection<int> searched_songs = lm.songs_from_search(to_search, 
-																		lw.miller.genres.selected, 
-																		lw.miller.artists.selected,
-																		lw.miller.albums.selected,
-																		_songs);
-					
-				if(searched_songs.size == _showing_songs.size && !needsUpdate) {
-					// do nothing
-				}
-				else {*/
-					stdout.printf("populating\n");
-					populateView(_songs, true, false);
-				//}
-					
-				last_search = to_search;
-				showing_all = (_showing_songs.size == _songs.size);
-				
-				scrollToCurrent();
-				
-				lm.settings.setSearchString(to_search);
-				setStatusBarText();
-				
-				return false;
-			});
-		}
 	}
 	
 	public virtual void sortColumnChanged() {
@@ -755,25 +720,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			_songs = songs;
 		}
 		
-		//stdout.printf("%s,%s,%s\n", lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected());
-		
-		var potentialShowing = new LinkedList<int>();
-		if(lw.searchField.get_text() == "" && lw.miller.genres.get_selected() == "All Genres" &&
-		lw.miller.artists.get_selected() == "All Artists" && lw.miller.albums.get_selected() == "All Albums") {
-			potentialShowing.add_all(songs);
-		}
-		else {
-			potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
-												lw.miller.genres.get_selected(), 
-												lw.miller.artists.get_selected(),
-												lw.miller.albums.get_selected(),
-												_songs));
-		}
-		
-		if(_showing_songs.size == potentialShowing.size && potentialShowing.size > 500 && hint != Hint.HISTORY && hint != Hint.QUEUE && !force)
-			return;
-		else
-			_showing_songs = potentialShowing;
+		_showing_songs = songs;
 		
 		view.freeze_child_notify();
 		view.set_model(null);

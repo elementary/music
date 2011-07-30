@@ -55,7 +55,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		add(v);
 		
 		show_all();
-		lw.searchField.changed.connect(searchFieldChanged);
+		
 		icons.item_activated.connect(itemActivated);
 		this.size_allocate.connect(resized);
 	}
@@ -72,31 +72,10 @@ public class BeatBox.AlbumView : ScrolledWindow {
 	 * is set, makes sure that only items that fit those filters are
 	 * shown
 	*/
-	public void generateHTML(Collection<int> toShow, bool force) {
+	public void populateView(Collection<int> toShow, bool force) {
 		
-		/*if(lw.searchField.get_text() == "" && showingSongs.size == toShow.size && toShow.size > 500 && !force) {
-			return;
-		}*/
+		showingSongs = toShow;
 		
-		var potentialShowing = new LinkedList<int>();
-		
-		if(lw.searchField.get_text() == "") {
-			potentialShowing.add_all(toShow);
-		}
-		
-		else {
-			potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
-												"All Genres", 
-												"All Artists",
-												"All Albums",
-												songs));
-		}
-		
-		if(showingSongs.size == potentialShowing.size && !force)
-			return;
-		else
-			showingSongs = potentialShowing;
-        
         var toShowS = new LinkedList<Song>();
         foreach(int i in showingSongs)
 			toShowS.add(lm.song_from_id(i));
@@ -106,7 +85,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		
 		LinkedList<int> albs = new LinkedList<int>();
 		string previousAlbum = "";
-		stdout.printf("a\n");
+		
 		foreach(Song s in toShowS) {
 			if(s.album != previousAlbum) {
 				albs.add(s.rowid);
@@ -114,7 +93,6 @@ public class BeatBox.AlbumView : ScrolledWindow {
 				previousAlbum = s.album;
 			}
 		}
-		stdout.printf("b\n");
 		
 		model = new AlbumViewModel(lm, defaultPix);
 		model.appendSongs(albs, false);
@@ -125,21 +103,6 @@ public class BeatBox.AlbumView : ScrolledWindow {
 	
 	public static int songCompareFunc(Song a, Song b) {
 		return (a.album > b.album) ? 1 : -1;
-	}
-	
-	public virtual void searchFieldChanged() {
-		if(isCurrentView && lw.searchField.get_text().length != 1) {
-			timeout_search.offer_head(lw.searchField.get_text().down());
-			Timeout.add(100, () => {
-				timeout_search.poll_tail();
-				
-				if(timeout_search.size == 0) {
-					generateHTML(songs, false);
-				}
-				
-				return false;
-			});
-		}
 	}
 	
 	public virtual void itemActivated(TreePath path) {

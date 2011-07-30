@@ -225,13 +225,13 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public void updatePlayQueue() {
 		Widget w;
 		filter.get(convertToFilter(playlists_queue_iter), 1, out w);
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.queue(), true);
+		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.queue(), true, true);
 	}
 	
 	public void updateAlreadyPlayed() {
 		Widget w;
 		filter.get(convertToFilter(playlists_history_iter), 1, out w);
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.already_played(), true);
+		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.already_played(), true, true);
 	}
 	
 	public virtual void sideListSelectionChange() {
@@ -376,7 +376,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.queue(), false);
+								lm.queue(), true, false);
 					
 					lw.miller.populateColumns("", lm.queue());
 				}
@@ -384,7 +384,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.already_played(), false);
+								lm.already_played(), true, false);
 					
 					lw.miller.populateColumns("", lm.already_played());
 				}
@@ -392,7 +392,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), false);
+								lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), true, false);
 					
 					lw.miller.populateColumns("", vw.songs);
 				}
@@ -400,7 +400,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.songs_from_playlist(((Playlist)o).rowid), false);
+								lm.songs_from_playlist(((Playlist)o).rowid), true, false);
 					
 					lw.miller.populateColumns("", vw.songs);
 				}
@@ -462,7 +462,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					tree.remove(pivot);
 					addItem(playlists_iter, sp, w, render_icon("playlist-automatic", IconSize.MENU, null), sp.name, null);
 					
-					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_smart_playlist(sp.rowid), false);
+					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_smart_playlist(sp.rowid), true, false);
 					lm.save_smart_playlists();
 					
 					break;
@@ -501,7 +501,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					stdout.printf("wtf\n");
 					lw.addSideListItem(p);
 					stdout.printf("c\n");
-					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_playlist(p.rowid), false);
+					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_playlist(p.rowid), true, false);
 					lm.save_playlists();
 					
 					break;

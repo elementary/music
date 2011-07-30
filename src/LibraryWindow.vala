@@ -1117,7 +1117,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		});
 		
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
-		vw.doUpdate(vw.currentView, lm.song_ids(), true);
+		vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
 		miller.populateColumns("", lm.song_ids());
 	}
 	
@@ -1327,7 +1327,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Widget w = sideTree.getWidget(sideTree.convertToFilter(sideTree.playlists_similar_iter));
 		
 		((ViewWrapper)w).similarsFetched = true;
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true);
+		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true, true);
 		
 		infoPanel.updateSongList(similarDont);
 		

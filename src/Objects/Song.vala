@@ -60,6 +60,7 @@ public class BeatBox.Song : GLib.Object{
 	private Gdk.Pixbuf _album_art;
 	
 	public bool isPreview;
+	public bool isTemporary;
 	
 	//core stuff
 	public Song(string file) {
@@ -88,6 +89,7 @@ public class BeatBox.Song : GLib.Object{
 		last_played = 0;
 		lyrics = "";
 		_album_path = "";
+		isTemporary = false;
 	}
 	
 	public string file {

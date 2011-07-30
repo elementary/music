@@ -365,14 +365,15 @@ namespace ElementaryWidgets {
 			int pixbuf_start;
 			int pixbuf_width;
 			col.cell_get_position(pix_cell, out pixbuf_start, out pixbuf_width);
-			stdout.printf("pixbuf: %d and %d\n", pixbuf_start, pixbuf_width);
-			int cell_start;
-			int cell_width;
-			col.cell_get_position(expander_cell, out cell_start, out cell_width);
-			stdout.printf("expander: %d and %d\n", cell_start, cell_width);
-			cell_start -= pixbuf_start;
+			int text_start;
+			int text_width;
+			col.cell_get_position(text_cell, out text_start, out text_width);
+			int click_start;
+			int click_width;
+			col.cell_get_position(clickable_cell, out click_start, out click_width);
+			int total = text_start + text_width + click_width - pixbuf_start;
 			
-			if(x > cell_start)
+			if(x > total)
 				return true;
 			
 			return false;

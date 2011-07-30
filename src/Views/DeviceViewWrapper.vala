@@ -100,7 +100,7 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 			ids.add(s.rowid);
 		
 		Idle.add( () => {
-			doUpdate(currentView, ids, true);
+			doUpdate(currentView, ids, true, true);
 			
 			return false;
 		});
