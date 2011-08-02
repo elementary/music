@@ -117,7 +117,7 @@ public class BeatBox.CDRipper : GLib.Object {
         return true;
     }
     
-    public void ripSong(int track, string path, Song s) {
+    public void ripSong(uint track, string path, Song s) {
 		sink.set_state(Gst.State.NULL);
 		sink.set("location", path);
 		

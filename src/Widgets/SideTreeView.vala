@@ -510,14 +510,14 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			do {
 				GLib.Object o;
 				stdout.printf("a\n");
-				tree.get(pivot, 0, out o);
+				filter.get(pivot, 0, out o);
 				if(o is Playlist && ((Playlist)o).rowid == p.rowid) {
 					string name;
 					Widget w;
 					stdout.printf("ab\n");
-					tree.get(pivot, 1, out w, 4, out name);
+					filter.get(pivot, 1, out w, 4, out name);
 					stdout.printf("b\n");
-					tree.remove(pivot);
+					removeItem(pivot);
 					stdout.printf("wtf\n");
 					lw.addSideListItem(p);
 					stdout.printf("c\n");

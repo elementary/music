@@ -26,7 +26,6 @@ using Gtk;
 public class BeatBox.MusicTreeView : ScrolledWindow {
 	public BeatBox.LibraryManager lm;
 	public BeatBox.LibraryWindow lw;
-	private BeatBox.SortHelper sh;
 	private TreeView view;
 	private MusicTreeModel music_model; // this is always full of songs, for quick unsearching
 	
@@ -153,7 +152,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, Hint the_hint, int id) {
 		lm = lmm;
 		lw = lww;
-		sh = new SortHelper(lm);
 		
 		_songs = new LinkedList<int>();
 		_showing_songs = new LinkedList<int>();
@@ -1303,7 +1301,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			l_model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
-			rating_item.rating_value = s.rating;
+			rating_item.rating_value = (int)s.rating;
 		}
 	}
 	
@@ -1499,9 +1497,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public void setStatusBarText() {
 		if(is_current_view) {
-			int count = 0;
-			int total_time = 0;
-			int total_mbs = 0;
+			uint count = 0;
+			uint total_time = 0;
+			uint total_mbs = 0;
 			
 			foreach(int id in _showing_songs) {
 				++count;

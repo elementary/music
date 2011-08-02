@@ -24,7 +24,7 @@ using Gtk;
 using Gee;
 
 public class BeatBox.MillerColumns : HBox {
-	public  LibraryManager lm;
+	public LibraryManager lm;
 	public LibraryWindow lw;
 	public Collection<int> songs;
 	

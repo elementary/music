@@ -164,7 +164,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		album.set_text(s.album);
 		
 		// do rating stuff
-		rating.set_rating(s.rating);
+		rating.set_rating((int)s.rating);
 		
 		if(s.year > 1900)
 			year.set_markup("<span size=\"x-small\">" + s.year.to_string() + "</span>");
@@ -213,7 +213,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	
 	public virtual void songs_updated(Collection<int> ids) {
 		if(ids.contains(lm.song_info.song.rowid))
-			rating.set_rating(lm.song_info.song.rating);
+			rating.set_rating((int)lm.song_info.song.rating);
 	}
 	
 	public virtual void resized(Allocation rectangle) {

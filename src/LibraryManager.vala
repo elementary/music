@@ -1196,6 +1196,29 @@ public class BeatBox.LibraryManager : GLib.Object {
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to change gains: %s\n", err.message);
 		}
+		
+		/* if same song 1 second later...
+		 * check for embedded art if need be (not loaded from on file) and use that
+		 * check that the s.getAlbumArtPath() exists, if not set to "" and call updateCurrentSong
+		 */
+		Timeout.add(1000, () => {
+			
+			if(song_info.song.rowid == id) {
+				if(!File.new_for_path(song_info.song.getAlbumArtPath()).query_exists()) {
+					song_info.song.setAlbumArtPath("");
+					lw.updateCurrentSong();
+					
+					
+				}
+			}
+			
+			return false;
+			
+		});
+	}
+	
+	public void playSongTimeoutChecks() {
+		
 	}
 	
 	public void* change_gains_thread () {

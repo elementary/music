@@ -57,7 +57,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		
-		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_db.db"));
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox.db"));
 		if(!db_file.query_exists())
 			need_create = true;
 		
@@ -76,7 +76,18 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			try {
 				_db.execute("CREATE TABLE playlists (`name` TEXT, `songs` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
 				_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
-				_db.execute("CREATE TABLE songs (`file` TEXT,`title` TEXT,`artist` TEXT,`album` TEXT,`genre` TEXT,`comment` TEXT, `year` INT, `track` INT, `bitrate` INT, `length` INT, `samplerate` INT, `rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'file_size' INT, 'lyrics' TEXT, 'album_path' TEXT)");
+				
+				_db.execute("""CREATE TABLE songs (`file` TEXT, 'file_size' INT, `title` TEXT,`artist` TEXT, 'composer' TEXT, 'album_artist' TEXT,
+				`album` TEXT, 'grouping' TEXT, `genre` TEXT,`comment` TEXT, 'lyrics' TEXT, 'album_path' TEXT, 'has_embedded' INT, 
+				`year` INT, `track` INT, 'track_count' INT, 'album_number' INT, 'album_count' INT, `bitrate` INT, `length` INT, `samplerate` INT, 
+				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT,
+				 `lastplayed` INT, 'lastmodified' INT)""");
+				
+				
+				
+				
+				
+				
 				_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
 				_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
 				_db.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'url' TEXT, 'duration' INT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT)");
@@ -90,7 +101,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		/* now make sure db schema is up to date. 
 		 * Whenever field is added, do check here and add above as well 
 		*/
-		stdout.printf("Doing database checks\n");
+		/*stdout.printf("Doing database checks\n");
 		var fieldCount = _db.get_table("songs").field_count;
 		if(fieldCount == 18) {
 			stdout.printf("Could not find album_path field, adding it\n");
@@ -101,16 +112,16 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			_db.execute("ALTER TABLE songs ADD lyrics TEXT");
 			_db.execute("ALTER TABLE songs ADD album_path TEXT");
 		}
-		stdout.printf("finished checks\n");
+		stdout.printf("finished checks\n");*/
 		
 		/* now clean up and just reload the db (this also gets rid of signals that
 		 * were connected when doing the above work... bug in sqlheavy i believe.s */
-		try {
+		/*try {
 			_db = new SQLHeavy.Database (db_file.get_path(), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
 		}
 		catch (SQLHeavy.Error err) {
 			stdout.printf("This is terrible. Could not even load database. Please report this. Message: %s", err.message);
-		}
+		}*/
 	}
 	
 	public void resetProgress(int items) {
@@ -135,26 +146,35 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			Query query = new Query(_db, script);
 			
 			for (var results = query.execute(); !results.finished; results.next() ) {
+				
 				Song s = new Song(results.fetch_string(1));
 				s.rowid = results.fetch_int(0);
-				s.title = results.fetch_string(2);
-				s.artist = results.fetch_string(3);
-				s.album = results.fetch_string(4);
-				s.genre = results.fetch_string(5);
-				s.comment = results.fetch_string(6);
-				s.year = results.fetch_int(7);
-				s.track = results.fetch_int(8);
-				s.bitrate = results.fetch_int(9);
-				s.length = results.fetch_int(10);
-				s.samplerate = results.fetch_int(11);
-				s.rating = results.fetch_int(12);
-				s.play_count = results.fetch_int(13);
-				s.skip_count = results.fetch_int(14);
-				s.date_added = results.fetch_int(15);
-				s.last_played = results.fetch_int(16);
-				s.file_size = results.fetch_int(17);
-				s.lyrics = results.fetch_string(18);
-				s.setAlbumArtPath(results.fetch_string(19));
+				s.file_size = (uint)results.fetch_int(2);
+				s.title = results.fetch_string(3);
+				s.artist = results.fetch_string(4);
+				s.composer = results.fetch_string(5);
+				s.album_artist = results.fetch_string(6);
+				s.album = results.fetch_string(7);
+				s.grouping = results.fetch_string(8);
+				s.genre = results.fetch_string(9);
+				s.comment = results.fetch_string(10);
+				s.lyrics = results.fetch_string(11);
+				s.setAlbumArtPath(results.fetch_string(12));
+				s.has_embedded = (results.fetch_int(13) == 1);
+				s.year = (uint)results.fetch_int(14);
+				s.track = (uint)results.fetch_int(15);
+				s.track_count = (uint)results.fetch_int(16);
+				s.album_number = (uint)results.fetch_int(17);
+				s.album_count = (uint)results.fetch_int(18);
+				s.bitrate = (uint)results.fetch_int(19);
+				s.length = (uint)results.fetch_int(20);
+				s.samplerate = (uint)results.fetch_int(21);
+				s.rating = (uint)results.fetch_int(22);
+				s.play_count = (uint)results.fetch_int(23);
+				s.skip_count = (uint)results.fetch_int(24);
+				s.date_added = (uint)results.fetch_int(25);
+				s.last_played = (uint)results.fetch_int(26);
+				s.last_modified = (uint)results.fetch_int(27);
 				
 				rv.add(s);
 			}
@@ -218,30 +238,43 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			//_db.execute("DELETE FROM `songs`");
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("INSERT INTO `songs` ('rowid', `file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size', 'lyrics', 'album_path') VALUES (:rowid, :file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size, :lyrics, :album_path);");
+			Query query = transaction.prepare ("""INSERT INTO 'songs' ('rowid', 'file', 'file_size', 'title', 'artist', 'composer', 'album_artist',
+'album', 'grouping', 'genre', 'comment', 'lyrics', 'album_path', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
+'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified') 
+VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping, 
+:genre, :comment, :lyrics, :album_path, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate, 
+:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified);""");
 			
 			foreach(Song s in songs) {
 				if(s.rowid > 0) {
-					query.set_int(":rowid", s.rowid);
+					query.set_int(":rowid", (int)s.rowid);
 					query.set_string(":file", s.file);
+					query.set_int(":file_size", (int)s.file_size);
 					query.set_string(":title", s.title);
 					query.set_string(":artist", s.artist);
+					query.set_string(":composer", s.composer);
+					query.set_string(":album_artist", s.album_artist);
 					query.set_string(":album", s.album);
+					query.set_string(":grouping", s.grouping);
 					query.set_string(":genre", s.genre);
 					query.set_string(":comment", s.comment);
-					query.set_int(":year", s.year);
-					query.set_int(":track", s.track);
-					query.set_int(":bitrate", s.bitrate);
-					query.set_int(":length", s.length);
-					query.set_int(":samplerate", s.samplerate);
-					query.set_int(":rating", s.rating);
-					query.set_int(":playcount", s.play_count);
-					query.set_int(":skipcount", s.skip_count);
-					query.set_int(":dateadded", s.date_added);
-					query.set_int(":lastplayed", s.last_played);
-					query.set_int(":file_size", s.file_size);
 					query.set_string(":lyrics", s.lyrics);
 					query.set_string(":album_path", s.getAlbumArtPath());
+					query.set_int(":has_embedded", s.has_embedded ? 1 : 0);
+					query.set_int(":year", (int)s.year);
+					query.set_int(":track", (int)s.track);
+					query.set_int(":track_count", (int)s.track_count);
+					query.set_int(":album_number", (int)s.album_number);
+					query.set_int(":album_count", (int)s.album_count);
+					query.set_int(":bitrate", (int)s.bitrate);
+					query.set_int(":length", (int)s.length);
+					query.set_int(":samplerate", (int)s.samplerate);
+					query.set_int(":rating", (int)s.rating);
+					query.set_int(":playcount", (int)s.play_count);
+					query.set_int(":skipcount", (int)s.skip_count);
+					query.set_int(":dateadded", (int)s.date_added);
+					query.set_int(":lastplayed", (int)s.last_played);
+					query.set_int(":lastmodified", (int)s.last_modified);
 					
 					query.execute();
 				}
@@ -279,30 +312,39 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	public void update_songs(Gee.Collection<Song> songs) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `songs` SET file=:file, title=:title, artist=:artist, album=:album, genre=:genre, comment=:comment, year=:year, track=:track, bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed, file_size=:file_size, lyrics=:lyrics, album_path=:album_path WHERE rowid=:rowid");
+			Query query = transaction.prepare("UPDATE `songs` SET file=:file, file_size=:file_size, title=:title, artist=:artist, composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics, album_path=:album_path, has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number, album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified WHERE rowid=:rowid");
 			
 			foreach(Song s in songs) {
-				if(s.rowid != -2) {
-					query.set_string(":rowid", s.rowid.to_string());
+				if(s.rowid != -2 && s.rowid > 0) {
+					
+					query.set_int(":rowid", (int)s.rowid);
 					query.set_string(":file", s.file);
+					query.set_int(":file_size", (int)s.file_size);
 					query.set_string(":title", s.title);
 					query.set_string(":artist", s.artist);
+					query.set_string(":composer", s.composer);
+					query.set_string(":album_artist", s.album_artist);
 					query.set_string(":album", s.album);
+					query.set_string(":grouping", s.grouping);
 					query.set_string(":genre", s.genre);
 					query.set_string(":comment", s.comment);
-					query.set_int(":year", s.year);
-					query.set_int(":track", s.track);
-					query.set_int(":bitrate", s.bitrate);
-					query.set_int(":length", s.length);
-					query.set_int(":samplerate", s.samplerate);
-					query.set_int(":rating", s.rating);
-					query.set_int(":playcount", s.play_count);
-					query.set_int(":skipcount", s.skip_count);
-					query.set_int(":dateadded", s.date_added);
-					query.set_int(":lastplayed", s.last_played);
-					query.set_int(":file_size", s.file_size);
 					query.set_string(":lyrics", s.lyrics);
 					query.set_string(":album_path", s.getAlbumArtPath());
+					query.set_int(":has_embedded", s.has_embedded ? 1 : 0);
+					query.set_int(":year", (int)s.year);
+					query.set_int(":track", (int)s.track);
+					query.set_int(":track_count", (int)s.track_count);
+					query.set_int(":album_number", (int)s.album_number);
+					query.set_int(":album_count", (int)s.album_count);
+					query.set_int(":bitrate", (int)s.bitrate);
+					query.set_int(":length", (int)s.length);
+					query.set_int(":samplerate", (int)s.samplerate);
+					query.set_int(":rating", (int)s.rating);
+					query.set_int(":playcount", (int)s.play_count);
+					query.set_int(":skipcount", (int)s.skip_count);
+					query.set_int(":dateadded", (int)s.date_added);
+					query.set_int(":lastplayed", (int)s.last_played);
+					query.set_int(":lastmodified", (int)s.last_modified);
 					
 					query.execute();
 				}

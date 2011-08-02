@@ -140,11 +140,11 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			else if(column == 2)
 				val = ((SequenceIter<int>)iter.user_data).get_position() + 1;
 			else if(column == 3)
-				val = s.track;
+				val = (int)s.track;
 			else if(column == 4)
 				val = s.title;
 			else if(column == 5)
-				val = s.length;
+				val = (int)s.length;
 			else if(column == 6)
 				val = s.artist;
 			else if(column == 7)
@@ -152,21 +152,21 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			else if(column == 8)
 				val = s.genre;
 			else if(column == 9)
-				val = s.year;
+				val = (int)s.year;
 			else if(column == 10)
-				val = s.bitrate;
+				val = (int)s.bitrate;
 			else if(column == 11)
-				val = s.rating;
+				val = (int)s.rating;
 			else if(column == 12)
-				val = s.play_count;
+				val = (int)s.play_count;
 			else if(column == 13)
-				val = s.skip_count;
+				val = (int)s.skip_count;
 			else if(column == 14)
-				val = s.date_added;
+				val = (int)s.date_added;
 			else if(column == 15)
-				val = s.last_played;
+				val = (int)s.last_played;
 			else if(column == 16)
-				val = s.bpm;
+				val = (int)s.bpm;
 		}
 	}
 
@@ -470,7 +470,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(_columns.get(sort_column_id) == "Artist") {
 			if(a_song.artist.down() == b_song.artist.down()) {
 				if(a_song.album.down() == b_song.album.down())
-					rv = (sort_direction == SortType.ASCENDING) ? a_song.track - b_song.track : b_song.track - a_song.track;
+					rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_song.track - b_song.track) : (int)(b_song.track - a_song.track));
 				else
 					rv = advancedStringCompare(a_song.album.down(), b_song.album.down());
 			}
@@ -479,7 +479,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		}
 		else if(_columns.get(sort_column_id) == "Album") {
 			if(a_song.album.down() == b_song.album.down())
-				rv = (sort_direction == SortType.ASCENDING) ? a_song.track - b_song.track : b_song.track - a_song.track;
+				rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_song.track - b_song.track) : (int)(b_song.track - a_song.track));
 			else {
 				if(a_song.album == "")
 					rv = 1;
@@ -491,40 +491,40 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			rv = a.get_position() - b.get_position();
 		}
 		else if(_columns.get(sort_column_id) == "Track") {
-			rv = a_song.track - b_song.track;
+			rv = (int)(a_song.track - b_song.track);
 		}
 		else if(_columns.get(sort_column_id) == "Title") {
 			rv = advancedStringCompare(a_song.title.down(), b_song.title.down());
 		}
 		else if(_columns.get(sort_column_id) == "Length") {
-			rv = a_song.length - b_song.length;
+			rv = (int)(a_song.length - b_song.length);
 		}
 		else if(_columns.get(sort_column_id) == "Genre") {
 			rv = advancedStringCompare(a_song.genre.down(), b_song.genre.down());
 		}
 		else if(_columns.get(sort_column_id) == "Year") {
-			rv = a_song.year - b_song.year;
+			rv = (int)(a_song.year - b_song.year);
 		}
 		else if(_columns.get(sort_column_id) == "Bitrate") {
-			rv = a_song.bitrate - b_song.bitrate;
+			rv = (int)(a_song.bitrate - b_song.bitrate);
 		}
 		else if(_columns.get(sort_column_id) == "Rating") {
-			rv = a_song.rating - b_song.rating;
+			rv = (int)(a_song.rating - b_song.rating);
 		}
 		else if(_columns.get(sort_column_id) == "Last Played") {
-			rv = a_song.last_played - b_song.last_played;
+			rv = (int)(a_song.last_played - b_song.last_played);
 		}
 		else if(_columns.get(sort_column_id) == "Date Added") {
-			rv = a_song.date_added - b_song.date_added;
+			rv = (int)(a_song.date_added - b_song.date_added);
 		}
 		else if(_columns.get(sort_column_id) == "Plays") {
-			rv = a_song.play_count - b_song.play_count;
+			rv = (int)(a_song.play_count - b_song.play_count);
 		}
 		else if(_columns.get(sort_column_id) == "Skips") {
-			rv = a_song.skip_count - b_song.skip_count;
+			rv = (int)(a_song.skip_count - b_song.skip_count);
 		}
 		else if(_columns.get(sort_column_id) == "BPM") {
-			rv = a_song.bpm - b_song.bpm;
+			rv = (int)(a_song.bpm - b_song.bpm);
 		}
 		else {
 			rv = 1;

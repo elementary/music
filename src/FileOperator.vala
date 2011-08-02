@@ -23,10 +23,12 @@
 using TagLib;
 using GLib;
 using Gee;
+using Gst;
 
-public class BeatBox.FileOperator : Object {
+public class BeatBox.FileOperator : GLib.Object {
 	private BeatBox.LibraryManager lm;
 	private BeatBox.Settings settings;
+	private BeatBox.GstreamerTagger tagger;
 	
 	bool inThread;
 	LinkedList<Song> toSave;
@@ -38,6 +40,8 @@ public class BeatBox.FileOperator : Object {
 	public FileOperator(BeatBox.LibraryManager lmm, BeatBox.Settings sett) {
 		lm = lmm;
 		settings = sett;
+		tagger = new GstreamerTagger();
+		
 		inThread = false;
 		toSave = new LinkedList<Song>();
 	}
@@ -108,7 +112,7 @@ public class BeatBox.FileOperator : Object {
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					++index;
 					
-					Song s = import_song(file_path);
+					Song s = tagger.import_song(GLib.File.new_for_path(file_path));
 					
 					if(s != null) {
 						songs.add(s);
@@ -137,7 +141,7 @@ public class BeatBox.FileOperator : Object {
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					++index;
 					
-					Song s = import_song(file_path);
+					Song s = tagger.import_song(GLib.File.new_for_path(file_path));
 					
 					if(s != null) {
 						songs.add(s);
@@ -191,25 +195,11 @@ public class BeatBox.FileOperator : Object {
 					if(current_song_paths.contains(file_path)) {
 						current_song_paths.remove(file_path);
 						
-						FileInfo info;
-        string content_type;
-        
-        try {
-            info = GLib.File.new_for_path(file_path).query_info(FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
-                FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-                
-            
-        content_type = info.get_content_type ();
-        
-        stdout.printf ("Hello, : %s", content_type);
-        } catch (Error err) {
-            warning("Unable to determine content type: %s", err.message);
-        }
 							
 						++index;
 					}
 					else if(!current_song_paths.contains(file_path)) {
-						Song s = import_song(file_path);
+						Song s = tagger.import_song(GLib.File.new_for_path(file_path));
 						
 						if(s != null) {
 							new_songs.add(s);
@@ -234,44 +224,6 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
-	public Song? import_song(string file_path) {
-		Song s = new Song(file_path);
-		TagLib.File tag_file;
-		
-		tag_file = new TagLib.File(file_path);
-		
-		if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
-			try {
-				s.title = tag_file.tag.title;
-				s.artist = tag_file.tag.artist;
-				s.album = tag_file.tag.album;
-				s.genre = tag_file.tag.genre;
-				s.comment = tag_file.tag.comment;
-				s.year = (int)tag_file.tag.year;
-				s.track = (int)tag_file.tag.track;
-				s.bitrate = tag_file.audioproperties.bitrate;
-				s.length = tag_file.audioproperties.length;
-				s.samplerate = tag_file.audioproperties.samplerate;
-				s.date_added = (int)time_t();
-				
-				/* get the size and convert to MB */
-				s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
-				
-			}
-			finally {
-				if(s.title == null || s.title == "") {
-					string[] paths = file_path.split("/", 0);
-					s.title = paths[paths.length - 1];
-				}
-				if(s.artist == null || s.artist == "") s.artist = "Unknown";
-			}
-		}
-		else {
-			return null;
-		}
-		
-		return s;
-	}
 	
 	public Gdk.Pixbuf? save_album(Song s, string uri) {
 		Gdk.Pixbuf rv;
@@ -363,30 +315,7 @@ public class BeatBox.FileOperator : Object {
 				return null;
 			}
 			
-			TagLib.File tag_file;
 			
-			stdout.printf("Saving file %s \n", s.file);
-			tag_file = new TagLib.File(s.file);
-			
-			if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
-				try {
-					tag_file.tag.title = s.title;
-					tag_file.tag.artist = s.artist;
-					tag_file.tag.album = s.album;
-					tag_file.tag.genre = s.genre;
-					tag_file.tag.comment = s.comment;
-					tag_file.tag.year = s.year;
-					tag_file.tag.track  = s.track;
-					
-					tag_file.save();
-				}
-				finally {
-					
-				}
-			}
-			else {
-				stdout.printf("Could not save %s.\n", s.file);
-			}
 			
 			if(settings.getUpdateFolderHierarchy())
 				update_file_hierarchy(s, true);

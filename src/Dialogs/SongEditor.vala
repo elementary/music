@@ -39,7 +39,6 @@ public class BeatBox.SongEditor : Window {
 	private VBox numerVert; // seperates numerical editors
 	
 	private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
-	private StatsDisplay stats;
 	
 	private Button _save;
 	
@@ -111,7 +110,6 @@ public class BeatBox.SongEditor : Window {
 		horiz = new HBox(false, 0);
 		textVert = new VBox(false, 0);
 		numerVert = new VBox(false, 0);
-		stats = new StatsDisplay(sum.play_count, sum.skip_count, sum.last_played);
 		
 		textVert.pack_start(fields.get("Title"), false, true, 0);
 		textVert.pack_start(fields.get("Artist"), false, true, 5);
