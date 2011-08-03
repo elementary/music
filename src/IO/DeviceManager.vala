@@ -57,11 +57,12 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 		
 		stdout.printf("mount_added: %s\n", mount.get_name());
-		stdout.printf(" parse_name: %s\n uri: %s\n nice_name: %s\n unix_device: %s\n",
+		stdout.printf(" parse_name: %s\n uri: %s\n nice_name: %s\n unix_device: %s\n test: %s\n",
 						mount.get_default_location().get_parse_name(),
 						mount.get_default_location().get_uri(),
 						mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_LABEL),
-						mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_UNIX_DEVICE));
+						mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_UNIX_DEVICE),
+						new UnixMountEntry(mount.get_default_location().get_path(), 0).get_device_path());
 		var device = new Device(mount);
 		
 		stdout.printf("mount preview icon: %s\n", mount.get_default_location().query_info("*", FileQueryInfoFlags.NONE).get_attribute_string(FILE_ATTRIBUTE_PREVIEW_ICON));

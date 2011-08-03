@@ -15,7 +15,7 @@ public class BeatBox.CDRipper : GLib.Object {
 	
 	public signal void song_ripped(Song s);
 	public signal void progress_notification(double progress);
-	public signal void error(string message);
+	public signal void error(string err, Message message);
 	
 	public CDRipper(string device, int count) {
 		_device = device;
@@ -34,7 +34,6 @@ public class BeatBox.CDRipper : GLib.Object {
 			return false;
 		}
 		
-		src.set("device", _device);
 		queue.set("max-size-time", 120 * Gst.SECOND);
 		
 		_format = Gst.format_get_by_nick("track");
@@ -104,6 +103,11 @@ public class BeatBox.CDRipper : GLib.Object {
 				string debug;
 				message.parse_error (out err, out debug);
 				stdout.printf ("Error: %s!:%s\n", err.message, debug);
+				break;
+			case Gst.MessageType.ELEMENT:
+				stdout.printf("missing element\n");
+				error("missing element", message);
+				
 				break;
 			case Gst.MessageType.EOS:
 				pipeline.set_state(Gst.State.NULL);

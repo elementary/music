@@ -9,11 +9,6 @@ public class BeatBox.FileNotFoundDialog : Window {
 	private VBox content;
 	private HBox padding;
 	
-	CheckButton trashAll;
-	ScrolledWindow filesScroll;
-	TreeView filesView;
-	ListStore filesModel;
-	
 	Button removeSong;
 	Button locateSong;
 	Button rescanLibrary;

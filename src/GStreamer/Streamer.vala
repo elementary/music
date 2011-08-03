@@ -109,10 +109,25 @@ public class BeatBox.Streamer : GLib.Object {
             string debug;
             message.parse_error (out err, out debug);
             stdout.printf ("Error: %s\n", err.message);
+            
+            if(!GLib.File.new_for_path(lm.song_info.song.file).query_exists() && lm.song_info.song.file.contains(lm.settings.getMusicFolder())) {
+				song_not_found();
+			}
+            
             break;
         case Gst.MessageType.EOS:
 			end_of_stream();
             break;
+        case Gst.MessageType.ELEMENT:
+			if(message.get_structure() != null && is_missing_plugin_message(message)) {
+				InstallGstreamerPluginsDialog dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
+				
+				if(lm.playing) {
+					lw.playClicked();
+				}
+			}
+			
+			break;
         default:
             break;
         }

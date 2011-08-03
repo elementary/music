@@ -763,10 +763,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}*/
 		
-		 //FIXME: Could give errors for song previews, non-native files, etc.
-		if(!GLib.File.new_for_path(lm.song_info.song.file).query_exists() && this.visible) {
-			song_not_found();
-		}
 		
 		if(!lm.song_info.song.isPreview) {
 			updateCurrentSong();
@@ -893,8 +889,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			!File.new_for_path(lm.song_info.song.getArtistImagePath()).query_exists()) {
 				lm.song_info.artist = artist;
 				
-				if (artist.url_image.url != null)
-					lm.save_artist_image_locally(lm.song_info.song.rowid, artist.url_image.url);
 			}
 			else {
 				return null;

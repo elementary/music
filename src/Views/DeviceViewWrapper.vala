@@ -33,12 +33,7 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 			return;
 		}
 		
-		if(d.getUnixDevicePath() == "") {
-			lw.doAlert("BeatBox could not import CD", "Please make sure that it is properly mounted, and possibly try re-logging in.");
-			return;
-		}
-		
-		ripper = new CDRipper(d.getUnixDevicePath(), songs.size);
+		ripper = new CDRipper(d.getMountLocation(), songs.size);
 		ripper.progress_notification.connect( (progress) => {
 			
 			lw.progressNotification(null, progress);
@@ -51,6 +46,7 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		}
 		
 		ripper.song_ripped.connect(songRipped);
+		ripper.error.connect(ripperError);
 		
 		Song s = lm.song_from_id(songs.to_array()[0]);
 		
@@ -58,6 +54,7 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		
 		var update = "Ripping track 1: <b>" + s.title.replace("&", "&amp;") + "</b>" + ((s.artist != "Unknown Artist") ? " by " : "") + "<b>" + s.artist.replace("&", "&amp;") + "</b>" + ((s.album != "Unknown Album") ? " on " : "") + "<b>" + s.album.replace("&", "&amp;") + "</b>";
 		lw.progressNotification(update, 0.0);
+		
 		
 		lm.doing_file_operations = true;
 		lw.updateSensitivities();
@@ -106,5 +103,13 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		});
 		
 		return null;
+	}
+	
+	public void ripperError(string err, Gst.Message message) {
+		if(err == "missing element") {
+			if(message.get_structure() != null && Gst.is_missing_plugin_message(message)) {
+					InstallGstreamerPluginsDialog dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
+				}
+		}
 	}
 }
