@@ -110,10 +110,6 @@ public class BeatBox.Streamer : GLib.Object {
             message.parse_error (out err, out debug);
             stdout.printf ("Error: %s\n", err.message);
             
-            if(!GLib.File.new_for_path(lm.song_info.song.file).query_exists() && lm.song_info.song.file.contains(lm.settings.getMusicFolder())) {
-				song_not_found();
-			}
-            
             break;
         case Gst.MessageType.EOS:
 			end_of_stream();

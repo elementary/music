@@ -547,9 +547,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				mainViews.pack_start(vw, true, true, 0);
 			}
 			else if(d.getContentType().contains("ipod")) {
-				Label l = new Label(d.getDescription());
-				item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
-				mainViews.pack_start(l, true, true, 0);
+				DeviceSummaryWidget dsm = new DeviceSummaryWidget(lm, this, d);
+				item = sideTree.addSideItem(sideTree.devices_iter, d, dsm, d.getDisplayName());
+				mainViews.pack_start(dsm, true, true, 0);
 			}
 			else if(d.getContentType() == "android") {
 				Label l = new Label(d.getDescription());
@@ -567,6 +567,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool doingOps = lm.doing_file_operations;
 		bool nullSong = (lm.song_info.song == null);
 		bool showMore = lm.settings.getMoreVisible();
+		bool showingSongList = (sideTree.getSelectedWidget() is ViewWrapper);
 		
 		fileSetMusicFolder.set_sensitive(!doingOps);
 		fileImportMusic.set_sensitive(!doingOps && haveSongs);
@@ -590,7 +591,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector.set_sensitive(haveSongs);
 		
 		mainViews.set_visible(haveSongs);
-		miller.set_visible(haveSongs && viewSelector.selected == 2);
+		miller.set_visible(haveSongs && viewSelector.selected == 2 && showingSongList);
 		songInfoScroll.set_visible(haveSongs);
 		welcomeScreen.set_visible(!haveSongs);
 		statusBar.set_visible(haveSongs);

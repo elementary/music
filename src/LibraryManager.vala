@@ -1168,6 +1168,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(id == 0 || song_from_id(id) == null)
 			return;
 		
+		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
+			lw.song_not_found();
+			return;
+		}
+		
 		if(song_info.song != null)
 			old_id = song_info.song.rowid;
 		

@@ -23,9 +23,10 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current song playing. Mostly here because of dependence. */
 
-/*using Gee;
+using Gee;
 
-public interface BeatBox.Syncable {
+public interface BeatBox.Syncable : Object {
+	Device device;
 	DeviceType type;
 	string internalName;
 	string displayName;

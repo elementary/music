@@ -2,6 +2,7 @@ using Gst;
 
 public class BeatBox.GstreamerTagger : GLib.Object {
 	private Gst.Discoverer disc;
+	DiscovererInfo info;
 	
 	public GstreamerTagger() {
 		disc = new Discoverer((ClockTime)(10*Gst.SECOND));
@@ -10,7 +11,6 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 	public Song? import_song(GLib.File file) {
 		Song s = new Song(file.get_path());
 		stdout.printf("importing %s\n", file.get_path());
-		DiscovererInfo info;
 		
 		if(Gst.uri_is_valid (file.get_uri())) {
 			try {
@@ -30,10 +30,7 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 			return null;
 		}
 		
-		stdout.printf("import_song info fetched\n");
-		unowned TagList tags = info.get_tags();
-		stdout.printf("taglist set\n");
-		if(info != null && tags != null) {
+		if(info != null && info.get_tags() != null) {
 			try {
 				string title, artist, composer, album_artist, album, grouping, genre, comment, lyrics;
 				uint track, track_count, album_number, album_count, bitrate, rating;
@@ -42,50 +39,50 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 				GLib.Date? date = new GLib.Date();
 				
 				/* get title, artist, album artist, album, genre, comment, lyrics strings */
-				if(tags.get_string(TAG_TITLE, out title))
+				if(info.get_tags().get_string(TAG_TITLE, out title))
 					s.title = title;
-				if(tags.get_string(TAG_ARTIST, out artist))
+				if(info.get_tags().get_string(TAG_ARTIST, out artist))
 					s.artist = artist;
-				if(tags.get_string(TAG_COMPOSER, out composer))
+				if(info.get_tags().get_string(TAG_COMPOSER, out composer))
 					s.composer = composer;
 				
-				if(tags.get_string(TAG_ALBUM_ARTIST, out album_artist))
+				if(info.get_tags().get_string(TAG_ALBUM_ARTIST, out album_artist))
 					s.album_artist = album_artist;
 				else
 					s.album_artist = s.artist;
 				
-				if(tags.get_string(TAG_ALBUM, out album))
+				if(info.get_tags().get_string(TAG_ALBUM, out album))
 					s.album = album;
-				if(tags.get_string(TAG_GROUPING, out grouping))
+				if(info.get_tags().get_string(TAG_GROUPING, out grouping))
 					s.grouping = grouping;
-				if(tags.get_string(TAG_GENRE, out genre))
+				if(info.get_tags().get_string(TAG_GENRE, out genre))
 					s.genre = genre;
-				if(tags.get_string(TAG_COMMENT, out comment))
+				if(info.get_tags().get_string(TAG_COMMENT, out comment))
 					s.comment = comment;
-				if(tags.get_string(TAG_LYRICS, out lyrics))
+				if(info.get_tags().get_string(TAG_LYRICS, out lyrics))
 					s.lyrics = lyrics;
 				
 				/* get the year */
-				if(tags.get_date(TAG_DATE, out date)) {
+				if(info.get_tags().get_date(TAG_DATE, out date)) {
 					if(date != null)
 						s.year = (int)date.get_year();
 				}
 				/* get track/album number/count, bitrating, rating, bpm */
-				if(tags.get_uint(TAG_TRACK_NUMBER, out track))
+				if(info.get_tags().get_uint(TAG_TRACK_NUMBER, out track))
 					s.track = (int)track;
-				if(tags.get_uint(TAG_TRACK_COUNT, out track_count))
+				if(info.get_tags().get_uint(TAG_TRACK_COUNT, out track_count))
 					s.track_count = track_count;
 					
-				if(tags.get_uint(TAG_ALBUM_VOLUME_NUMBER, out album_number))
+				if(info.get_tags().get_uint(TAG_ALBUM_VOLUME_NUMBER, out album_number))
 					s.album_number = album_number;
-				if(tags.get_uint(TAG_ALBUM_VOLUME_COUNT, out album_count))
+				if(info.get_tags().get_uint(TAG_ALBUM_VOLUME_COUNT, out album_count))
 					s.album_count = album_count;
 				
-				if(tags.get_uint(TAG_BITRATE, out bitrate))
+				if(info.get_tags().get_uint(TAG_BITRATE, out bitrate))
 					s.bitrate = (int)(bitrate/1000);
-				if(tags.get_uint(TAG_USER_RATING, out rating))
+				if(info.get_tags().get_uint(TAG_USER_RATING, out rating))
 					s.rating = (int)((rating > 0 && rating <= 5) ? rating : 0);
-				if(tags.get_double(TAG_BEATS_PER_MINUTE, out bpm))
+				if(info.get_tags().get_double(TAG_BEATS_PER_MINUTE, out bpm))
 					s.bpm = (int)bpm;
 				if(info.get_audio_streams().length() > 0)
 					s.samplerate = info.get_audio_streams().nth_data(0).get_sample_rate();
@@ -95,7 +92,7 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 				
 				/* see if it has an image data */
 				Gst.Buffer buf;
-				if(tags.get_buffer(TAG_IMAGE, out buf))
+				if(info.get_tags().get_buffer(TAG_IMAGE, out buf))
 					s.has_embedded = true;
 				
 				s.date_added = (int)time_t();

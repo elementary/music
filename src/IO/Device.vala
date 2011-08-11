@@ -46,17 +46,29 @@ public class BeatBox.Device : GLib.Object {
 	}
 	
 	public bool canEject() {
+		if(mount.get_drive() != null && mount.get_drive().can_eject())
+			return mount.get_drive().can_eject();
+		
+		if(mount.get_volume() != null && mount.get_volume().can_eject())
+			return mount.get_volume().can_eject();
+		
 		return mount.can_eject();
 	}
 	
 	public void eject() {
-		if(canEject())
-			mount.eject(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
+		if(mount.get_drive() != null)
+			mount.get_drive().eject(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
+		
+		if(mount.get_volume() != null)
+			mount.get_volume().eject(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
+		
+		mount.eject(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
 	}
 	
 	public void unmount() {
-		if(canEject())
+		if(canEject()) {
 			eject();
+		}
 		else
 			mount.unmount(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
 	}

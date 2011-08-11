@@ -61,7 +61,8 @@ public class BeatBox.Beatbox : GLib.Object {
 		{ "view-list-video-symbolic", null, 0, 0},
 		{ "media-optical-audio", null, 0, 0},
 		{ "phone", null, 0, 0},
-		{ "multimedia-player", null, 0, 0}
+		{ "multimedia-player", null, 0, 0},
+		{ "media-eject", null, 0, 0 }
 		
     };
 	

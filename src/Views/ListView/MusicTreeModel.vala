@@ -468,18 +468,27 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		Song b_song = lm.song_from_id(rows.get(b));
 		
 		if(_columns.get(sort_column_id) == "Artist") {
-			if(a_song.artist.down() == b_song.artist.down()) {
-				if(a_song.album.down() == b_song.album.down())
-					rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_song.track - b_song.track) : (int)(b_song.track - a_song.track));
+			if(a_song.album_artist.down() == b_song.album_artist.down()) {
+				if(a_song.album.down() == b_song.album.down()) {
+					if(a_song.album_number == b_song.album_number)
+						rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_song.track - b_song.track) : (int)(b_song.track - a_song.track));
+					else
+						rv = (int)((int)a_song.album_number - (int)b_song.album_number);
+				}
 				else
 					rv = advancedStringCompare(a_song.album.down(), b_song.album.down());
 			}
 			else
-				rv = advancedStringCompare(a_song.artist.down(), b_song.artist.down());
+				rv = advancedStringCompare(a_song.album_artist.down(), b_song.album_artist.down());
 		}
 		else if(_columns.get(sort_column_id) == "Album") {
-			if(a_song.album.down() == b_song.album.down())
-				rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_song.track - b_song.track) : (int)(b_song.track - a_song.track));
+			if(a_song.album.down() == b_song.album.down()) {
+				if(a_song.album_number == b_song.album_number)
+					rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_song.track - b_song.track) : (int)(b_song.track - a_song.track));
+				else
+					rv = (int)((int)a_song.album_number - (int)b_song.album_number);
+				
+			}
 			else {
 				if(a_song.album == "")
 					rv = 1;

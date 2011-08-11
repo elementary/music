@@ -101,6 +101,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		this.button_press_event.connect(sideListClick);
 		this.row_activated.connect(sideListDoubleClick);
 		this.true_selection_change.connect(sideListSelectionChange);
+		this.clickable_clicked.connect(clickableClicked);
 		this.expand_all();
 		
 		/* set up drag dest stuff */
@@ -127,7 +128,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			Device d = (Device)o;
 			
 			if(d.getContentType() == "cdrom")
-				return addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
+				return addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, render_icon("media-eject", IconSize.MENU, null));
 			else if(d.getContentType() == "ipod-new")
 				return addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "ipod-old")
@@ -239,6 +240,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			tree.foreach(updateView);
 		}
 		
+		lw.updateSensitivities();
 	}
 	
 	public virtual bool sideListClick(Gdk.EventButton event) {
@@ -679,5 +681,14 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		
 		if(was_selected)
 			resetView();
+	}
+	
+	public void clickableClicked(TreeIter iter) {
+		GLib.Object o;
+		filter.get(iter, 0, out o);
+		
+		if(o is Device && ((Device)o).getContentType() == "cdrom") {
+			((Device)o).unmount();
+		}
 	}
 }

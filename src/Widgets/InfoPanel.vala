@@ -185,7 +185,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		if(GLib.File.new_for_path(file).query_exists()) {
 			artistImage.show();
 			try {
-				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 11, lm.settings.getMoreWidth() - 10, true));
+				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 10, lm.settings.getMoreWidth() - 10, true));
 				//artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file(file));
 			}
 			catch(GLib.Error err) {
