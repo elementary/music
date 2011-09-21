@@ -376,6 +376,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					ViewWrapper vw = (ViewWrapper)w;
 					lw.miller.populateColumns("", vw.list.get_songs());
 					lw.updateMillerColumns(); // don't show millers if showing warning label
+					
+					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								vw.songs, true, false);
 				}
 				else if(iter == playlists_queue_iter) {
 					ViewWrapper vw = (ViewWrapper)w;

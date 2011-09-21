@@ -57,7 +57,7 @@ def configure(ctx):
 	check_pkg(ctx, 'json-glib-1.0', 'JSON', '0.10')
 	#check_pkg(ctx, 'webkit-1.0', 'WEBKIT', '0.0')
 	#check_pkg(ctx, 'gnome-vfs-2.0', 'GVFS', '0.0')
-	check_pkg(ctx, 'gio-unix-2.0' 'GIO_UNIX', '0.0')
+	check_pkg(ctx, 'gio-unix-2.0', 'GIO_UNIX', '0.0')
 
 	check_pkg(ctx, 'zeitgeist-1.0', 'ZEITGEIST', '0.3.10', mandatory=False)
 	if ctx.env['HAVE_ZEITGEIST']:
@@ -127,12 +127,12 @@ def build(bld):
 	bld.install_files('/usr/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/view-list-icons-symbolic.svg');
 	bld.install_files('/usr/share/icons/hicolor/16x16/actions', '/images/icons/16x16/actions/view-list-video-symbolic.svg');
 	
-	obj = bld.new_task_gen ('c', 'program')
+	obj = bld.new_task_gen ('valac', 'program')
 	obj.features = 'c cprogram'
 	obj.packages = 'gtk+-3.0 gee-1.0 gstreamer-0.10 gstreamer-interfaces-0.10 gstreamer-pbutils-0.10 gstreamer-cdda-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libsoup-2.4 json-glib-1.0 gio-unix-2.0'
 	obj.target = APPNAME
 	obj.uselib = 'GTK GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES GSTREAMER_PBUTILS GSTREAMER_CDDA TAGLIB GIO SQLHEAVY LIBXML GCONF GTHREAD SOUP JSON GIO_UNIX'
-	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/DataBase/*.vala', 
+	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/*.c', 'src/*.h', 'src/DataBase/*.vala', 
 									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
 									'src/Widgets/*.vala', 'src/Views/AlbumView/*.vala', 'src/Views/ListView/*.vala', 
 									'src/Widgets/MillerColumns/*.vala', 'src/Store/*.vala', 'src/Store/Widgets/*.vala',

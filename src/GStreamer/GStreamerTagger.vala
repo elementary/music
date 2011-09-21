@@ -88,7 +88,7 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 					s.samplerate = info.get_audio_streams().nth_data(0).get_sample_rate();
 				
 				/* get length */
-				s.length = info.get_duration()/1000000000;
+				s.length = (uint)info.get_duration()/1000000000;
 				
 				/* see if it has an image data */
 				Gst.Buffer buf;

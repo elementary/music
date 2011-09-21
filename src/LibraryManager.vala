@@ -1169,7 +1169,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return;
 		
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
-			lw.song_not_found();
+			lw.song_not_found(id);
 			return;
 		}
 		

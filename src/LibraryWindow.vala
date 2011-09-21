@@ -118,7 +118,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		this.lm.player.end_of_stream.connect(end_of_stream);
 		this.lm.player.current_position_update.connect(current_position_update);
-		this.lm.player.song_not_found.connect(song_not_found);
+		//this.lm.player.song_not_found.connect(song_not_found);
 		this.lm.music_counted.connect(musicCounted);
 		this.lm.music_added.connect(musicAdded);
 		this.lm.music_imported.connect(musicImported);
@@ -1319,8 +1319,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	public void song_not_found() {
-		var not_found = new FileNotFoundDialog(lm, this, lm.song_info.song.rowid);
+	public void song_not_found(int id) {
+		var not_found = new FileNotFoundDialog(lm, this, id);
 	}
 	
 	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {
@@ -1418,8 +1418,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 							((ViewWrapper)sideTree.getSelectedWidget()).list is SimilarPane && 
 							!((ViewWrapper)sideTree.getSelectedWidget()).similarsFetched;
 		bool storecheck = (sideTree.getSelectedWidget() is Store.StoreView);
+		bool haveSongs = (lm.song_count() != 0);
 		
-		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck);
+		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck && haveSongs);
 		millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
 	}
 	
