@@ -1,6 +1,6 @@
 using Gtk;
 
-public class BeatBox.PresetList : TreeView {
+public class BeatBox.PresetList : ComboBox {
 	LibraryManager lm;
 	LibraryWindow lw;
 	ListStore store;
@@ -17,18 +17,15 @@ public class BeatBox.PresetList : TreeView {
 	public void buildUI() {
 		store = new ListStore(2, typeof(GLib.Object), typeof(string));
 		this.set_model(store);
-		this.set_headers_visible(false);
 		
-		TreeViewColumn col = new TreeViewColumn();
-		col.title = "object";
-		col.visible = false;
-		this.insert_column(col, 0);
+		this.set_id_column(1);
 		
 		var cell = new CellRendererText();
 		cell.ellipsize = Pango.EllipsizeMode.END;
-		this.insert_column_with_attributes(-1, "label", cell, "text", 1, null);
+		this.pack_start(cell, true);
+		this.add_attribute(cell, "text", 1);
 		
-		this.get_selection().changed.connect(listSelectionChange);
+		this.changed.connect(listSelectionChange);
 		
 		this.show_all();
 	}
@@ -45,35 +42,23 @@ public class BeatBox.PresetList : TreeView {
 	}
 	
 	public void removeSelected() {
-		TreeModel mo;
-		TreeIter it;
-		get_selection().get_selected(out mo, out it);
-		
-		get_selection().select_path( new TreePath.from_string("0") );
-		store.remove(it);
+		// TODO: Fixme
 	}
 	
 	public virtual void listSelectionChange() {
-		if(get_selection().count_selected_rows() != 1)
-			return;
-		
-		TreeModel mo;
 		TreeIter it;
-		get_selection().get_selected(out mo, out it);
+		get_active_iter(out it);
 		
 		GLib.Object o;
-		mo.get(it, 0, out o);
+		store.get(it, 0, out o);
 		
+		set_title(((EqualizerPreset)o).name);
 		preset_selected((EqualizerPreset)o);
-		scroll_to_cell(mo.get_path(it), null, false, 0.0f, 0.0f);
 	}
 	
 	public void selectPreset(EqualizerPreset? p) {
-		get_selection().unselect_all();
-		
 		if(p == null) {
-			get_selection().select_path( new TreePath.from_string("0") );
-			return;
+			set_active(0);
 		}
 		
 		TreeIter iter;
@@ -82,23 +67,22 @@ public class BeatBox.PresetList : TreeView {
 			store.get(iter, 0, out o);
 			
 			if(((EqualizerPreset)o).name == p.name) {
-				get_selection().select_iter(iter);
-				scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
+				set_active_iter(iter);
+				
 				stdout.printf("tada\n");
 				return;
 			}
 		}
 		
-		get_selection().select_path( new TreePath.from_string("0"));
+		set_active(0);
 	}
 	
 	public EqualizerPreset getSelectedPreset() {
-		TreeModel mo;
 		TreeIter it;
-		get_selection().get_selected(out mo, out it);
+		get_active_iter(out it);
 		
 		GLib.Object o;
-		mo.get(it, 0, out o);
+		store.get(it, 0, out o);
 		
 		return (EqualizerPreset)o;
 	}

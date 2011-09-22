@@ -88,6 +88,14 @@ public class BeatBox.Streamer : GLib.Object {
 		return rv;
 	}
 	
+	public void setVolume(double val) {
+		pipe.playbin.volume = val;
+	}
+	
+	public double getVolume() {
+		return pipe.playbin.volume;
+	}
+	
 	/* Extra stuff */
 	public void enableEqualizer() {
 		pipe.enableEqualizer();
