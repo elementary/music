@@ -51,6 +51,7 @@ public class BeatBox.Settings : Object {
 	public static const string SELECTED_PRESET = "/apps/beatbox/preferences/equalizer/selected_preset";
 	public static const string PRESETS = "/apps/beatbox/preferences/equalizer/presets";
 	public static const string AUTO_SWITCH_PRESET = "/apps/beatbox/preferences/equalizer/auto_switch_preset";
+	public static const string VOLUME = "/apps/beatbox/preferences/equalizer/volume";
 	
 	public Settings() {
 		client = GConf.Client.get_default();
@@ -252,6 +253,10 @@ public class BeatBox.Settings : Object {
 		return getBool(AUTO_SWITCH_PRESET, false);
 	}
 	
+	public double getVolume() {
+		return (double)((double)(getInt(VOLUME, 100)) / 100.0);
+	}
+	
 	
 	/** Set Values **/
 	public void setMusicFolder(string path) {
@@ -363,5 +368,9 @@ public class BeatBox.Settings : Object {
 	
 	public void setAutoSwitchPreset(bool val) {
 		setBool(AUTO_SWITCH_PRESET, val);
+	}
+	
+	public void setVolume(double val) {
+		setInt(VOLUME, (int)(val*100));
 	}
 }

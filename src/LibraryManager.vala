@@ -100,7 +100,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public LibraryManager(BeatBox.DataBaseManager dbmn, BeatBox.Settings sett, BeatBox.LibraryWindow lww, string[] args) {
 		this.lw = lww;
 		this.player = new Streamer(this, lw, args);
-		//player.ripCD("/dev/cdrom", 15);
 		this.settings = sett;
 		
 		this.dbm = dbmn;
@@ -212,6 +211,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 				}
 			}
 		}
+		
+		// set the volume
+		lm.player.setVolume(settings.getVolume());
 		
 		// start thread to load all the songs pixbuf's
 		try {

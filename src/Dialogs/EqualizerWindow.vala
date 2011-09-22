@@ -6,15 +6,13 @@ public class BeatBox.EqualizerWindow : Window {
 	
 	Switch equalizerOnOff;
 	PresetList sideList;
-	Button addPreset;
-	Button removePreset;
-	Button restorePresets;
-	CheckButton autoSwitch;
+	HScale volumeSlider;
 	
 	bool initialized;
 	
 	HBox scales;
 	List<VScale> scaleList;
+	bool autoSwitchChosen;
 	
 	private bool inTransition;
 	private Gee.ArrayList<int> targetLevels;
@@ -26,8 +24,10 @@ public class BeatBox.EqualizerWindow : Window {
 		scaleList = new List<VScale>();
 		initialized = false;
 		targetLevels = new Gee.ArrayList<int>();
+		autoSwitchChosen = false;
 		
 		buildUI();
+		
 		addPresets();
 		
 		sideList.selectPreset(lm.settings.getSelectedPreset());
@@ -35,7 +35,8 @@ public class BeatBox.EqualizerWindow : Window {
 		equalizerOnOff.set_active(!lm.settings.getEqualizerDisabled());
 		equalizerOnOffToggled();
 		
-		autoSwitch.set_active(lm.settings.getAutoSwitchPreset());
+		volumeSlider.set_value(lm.player.getVolume());
+		
 		initialized = true;
 	}
 	
@@ -48,8 +49,13 @@ public class BeatBox.EqualizerWindow : Window {
 		this.set_transient_for(lw);
 		
 		// set the size
-		set_size_request(-1, 200);
+		set_size_request(-1, 350);
 		resizable = true;
+		
+		Gdk.Geometry geo = Gdk.Geometry();
+		geo.min_width = 400;
+		geo.min_height = 350;
+		set_geometry_hints(this, geo, Gdk.WindowHints.MIN_SIZE);
 		
 		// set icon
 		set_icon( render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
@@ -64,13 +70,8 @@ public class BeatBox.EqualizerWindow : Window {
 		
 		equalizerOnOff = new Switch();
 		sideList = new PresetList(lm, lw);
-		addPreset = new Button.with_label("Add");
-		removePreset = new Button.with_label("Remove");
-		restorePresets = new Button.with_label("Restore Presets");
-		autoSwitch = new CheckButton.with_label("Automatically switch based on current song");
 		
 		string[] decibals = {"32", "64", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"};
-		
 		for(int index = 0; index < 10; ++index) {
 			VBox holder = new VBox(false, 0);
 			VScale v = new VScale.with_range(-80, 80, 1);
@@ -91,32 +92,36 @@ public class BeatBox.EqualizerWindow : Window {
 			});
 		}
 		
+		volumeSlider = new HScale.with_range(0.0, 1.0, 0.01);
+		volumeSlider.draw_value = false;
+		
 		//category labels
 		Label equalizerLabel = new Label("");
-		Label advancedLabel = new Label("");
+		Label volumeLabel = new Label("");
 		
 		equalizerLabel.xalign = 0.0f;
-		advancedLabel.xalign = 0.0f;
+		volumeLabel.xalign = 0.0f;
 		
 		equalizerLabel.set_markup("<b>Equalizer</b>");
-		advancedLabel.set_markup("<b>Auto Switch</b>");
+		volumeLabel.set_markup("<b>Volume</b>");
 		
 		sideList.set_size_request(150, -1);
 		
 		bottomItems.pack_start(wrap_alignment(equalizerOnOff, 0, 0, 0, 0), false, true, 0);
-		bottomItems.pack_start(wrap_alignment(sideList, 0, 0, 0, 10), false, true, 0);
-		bottomItems.pack_end(wrap_alignment(addPreset, 0, 0, 0, 10), false, true, 0);
-		//bottomItems.pack_start(addPreset, false, false, 0);
-		//bottomItems.pack_start(removePreset, false, false, 0);
-		//bottomItems.pack_start(restorePresets, false, false, 0);
+		bottomItems.pack_start(wrap_alignment(sideList, 0, 0, 0, 6), false, true, 0);
 		
-		advanced.pack_start(autoSwitch, false, false, 0);
+		/** Add save and cancel buttons **/
+		HButtonBox bottomButtons = new HButtonBox();
+		var doneButton = new Button.with_label("Close");
+		bottomButtons.set_layout(ButtonBoxStyle.END);
+		bottomButtons.pack_end(doneButton, false, false, 0);
 		
-		//allItems.pack_start(wrap_alignment(equalizerLabel, 10, 0, 0, 0), false, true, 0);
-		allItems.pack_start(wrap_alignment(scales, 10, 10, 0, 10), true, true, 0);
-		allItems.pack_start(wrap_alignment(bottomItems, 6, 10, 10, 10), false, true, 0);
-		//allItems.pack_start(advancedLabel, false, true, 0);
-		//allItems.pack_start(wrap_alignment(advanced, 0, 0, 10, 10), false, true, 0);
+		allItems.pack_start(wrap_alignment(equalizerLabel, 10, 0, 0, 0), false, true, 0);
+		allItems.pack_start(wrap_alignment(scales, 0, 0, 0, 10), true, true, 0);
+		allItems.pack_start(wrap_alignment(bottomItems, 0, 0, 0, 10), false, true, 0);
+		allItems.pack_start(wrap_alignment(volumeLabel, 0, 0, 0, 0), false, true, 0);
+		allItems.pack_start(wrap_alignment(volumeSlider, 0, 0, 0, 10), false, true, 0);
+		allItems.pack_end(wrap_alignment(bottomButtons, 0, 10, 10, 0), false, true, 0);
 		
 		padding.pack_start(allItems, true, true, 10);
 		add(padding);
@@ -124,11 +129,13 @@ public class BeatBox.EqualizerWindow : Window {
 		show_all();
 		
 		equalizerOnOff.notify["active"].connect(equalizerOnOffToggled);
-		addPreset.clicked.connect(addPresetClicked);
-		removePreset.clicked.connect(removePresetClicked);
-		restorePresets.clicked.connect(restorePresetsClicked);
+		sideList.automatic_preset_chosen.connect(automaticPresetChosen);
+		sideList.add_preset_chosen.connect(addPresetClicked);
+		sideList.delete_preset_chosen.connect(removePresetClicked);
 		sideList.preset_selected.connect(presetSelected);
-		this.destroy.connect(onQuit);
+		volumeSlider.value_changed.connect(volumeSliderChanged);
+		doneButton.clicked.connect(onQuit);
+		//this.destroy.connect(onQuit);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -165,6 +172,9 @@ public class BeatBox.EqualizerWindow : Window {
 	public void addPresets() {
 		var saved = lm.settings.getPresets();
 		
+		sideList.clearList();
+		
+		sideList.addTopOptions();
 		if(saved.size == 0)
 			addDefaultPresets();
 		
@@ -196,6 +206,8 @@ public class BeatBox.EqualizerWindow : Window {
 	}
 	
 	public void presetSelected(EqualizerPreset p) {
+		autoSwitchChosen = false;
+		
 		targetLevels.clear();
 		foreach(int i in p.gains)
 			targetLevels.add(i);
@@ -239,6 +251,10 @@ public class BeatBox.EqualizerWindow : Window {
 		return true; // keep going
 	}
 	
+	public void automaticPresetChosen() {
+		autoSwitchChosen = true;
+	}
+	
 	public virtual void addPresetClicked() {
 		PresetNameWindow pnw = new PresetNameWindow(lw, new EqualizerPreset.basic("Custom Preset"));
 		pnw.preset_saved.connect(presetNameWindowSaved);
@@ -249,7 +265,8 @@ public class BeatBox.EqualizerWindow : Window {
 	}
 	
 	public void removePresetClicked() {
-		sideList.removeSelected();
+		stdout.printf("removing selected..\n");
+		sideList.removeCurrentPreset();
 	}
 	
 	public void restorePresetsClicked() {
@@ -257,11 +274,16 @@ public class BeatBox.EqualizerWindow : Window {
 		addDefaultPresets();
 	}
 	
+	public void volumeSliderChanged() {
+		lm.player.setVolume(volumeSlider.get_value());
+	}
+	
 	public void onQuit() {
 		lm.settings.setEqualizerDisabled(!equalizerOnOff.get_active());
 		lm.settings.setSelectedPreset(sideList.getSelectedPreset());
 		lm.settings.setPresets(sideList.getPresets());
-		lm.settings.setAutoSwitchPreset(autoSwitch.get_active());
+		lm.settings.setAutoSwitchPreset(autoSwitchChosen);
+		lm.settings.setVolume(lm.player.getVolume());
 		
 		if(lm.settings.getEqualizerDisabled()) {
 			lm.player.disableEqualizer();
@@ -291,5 +313,7 @@ public class BeatBox.EqualizerWindow : Window {
 					lm.player.setEqualizerGain(i, p.getGain(i));
 			}
 		}
+		
+		this.destroy();
 	}
 }

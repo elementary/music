@@ -194,6 +194,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// set the size based on saved gconf settings
 		set_default_size(settings.getWindowWidth(), settings.getWindowHeight());
+		resize(settings.getWindowWidth(), settings.getWindowHeight());
 		
 		// set window min/max
 		Gdk.Geometry geo = Gdk.Geometry();
@@ -436,7 +437,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Gtk.drag_dest_add_uri_targets(this);
 		drag_data_received.connect(dragReceived);
 		
+		// nowthat everything is added, resize to proper height
+		resize(settings.getWindowWidth(), this.default_height);
+		
 		show_all();
+		
+		// nowthat everything is added, resize to proper height
+		resize(settings.getWindowWidth(), this.default_height);
 		
 		//topMenu.hide();
 		//topDisplay.show_scale();
