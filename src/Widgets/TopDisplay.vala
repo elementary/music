@@ -31,6 +31,7 @@ namespace ElementaryWidgets {
 		Label rightTime;
 		HScale scale;
 		ProgressBar progressbar;
+		Button cancelButton;
 		
 		public signal void scale_value_changed(ScrollType scroll, double val);
 		
@@ -42,6 +43,7 @@ namespace ElementaryWidgets {
 			leftTime = new Label("0:00");
 			rightTime = new Label("0:00");
 			progressbar = new ProgressBar();
+			cancelButton = new Button();
 			
 			scaleBox = new HBox(false, 0);
 			scaleBox.pack_start(leftTime, false, false, 0);
@@ -49,7 +51,8 @@ namespace ElementaryWidgets {
 			scaleBox.pack_start(rightTime, false, false, 0);
 			
 			HBox progressBox = new HBox(false, 0);
-			progressBox.pack_start(wrap_alignment(progressbar, 2, 0, 0, 0));
+			progressBox.pack_start(wrap_alignment(progressbar, 2, 0, 0, 0), true, true, 0);
+			progressBox.pack_end(wrap_alignment(cancelButton, 2, 2, 0, 2), false, false, 0);
 			
 			scale.set_draw_value(false);
 			
@@ -58,11 +61,13 @@ namespace ElementaryWidgets {
 			label.ellipsize = Pango.EllipsizeMode.END;
 			//label.set_markup("<b></b>");
 			
+			cancelButton.set_image(new Image.from_stock(Gtk.Stock.CANCEL, IconSize.MENU));
+			
 			this.pack_start(label, false, true, 0);
 			this.pack_start(wrap_alignment(progressBox, 0, 5, 0, 5), false, true, 0);
 			this.pack_start(wrap_alignment(scaleBox, 0, 5, 0, 5), false, true, 0);
 			
-			//this.cancelButton.clicked.connect(cancel_clicked);
+			this.cancelButton.clicked.connect(cancel_clicked);
 			this.scale.button_press_event.connect(scale_button_press);
 			this.scale.value_changed.connect(value_changed);
 			this.scale.change_value.connect(change_value);
@@ -195,11 +200,13 @@ namespace ElementaryWidgets {
 		public void show_scale() {
 			scaleBox.show();
 			progressbar.hide();
+			cancelButton.hide();
 		}
 		
 		public void show_progressbar() {
 			progressbar.show();
 			scaleBox.hide();
+			cancelButton.show();
 		}
 		
 		public virtual void player_position_update(int64 position) {
@@ -208,6 +215,10 @@ namespace ElementaryWidgets {
 				sec = ((double)position/1000000000);
 				set_scale_value(sec);
 			}
+		}
+		
+		public void cancel_clicked() {
+			lm.cancel_operations();
 		}
 	}
 }

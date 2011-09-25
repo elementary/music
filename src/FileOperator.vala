@@ -34,17 +34,26 @@ public class BeatBox.FileOperator : Object {
 	public int index;
 	public int item_count;
 	public signal void fo_progress(string? message, double progress);
+	public signal void import_cancelled();
+	public signal void rescan_cancelled();
+	
+	public bool cancelled; // set to true if user cancels
+	bool cancelSent; // needed to not send cancel signal twice (in recursive function)
 	
 	public FileOperator(BeatBox.LibraryManager lmm, BeatBox.Settings sett) {
 		lm = lmm;
 		settings = sett;
 		inThread = false;
 		toSave = new LinkedList<Song>();
+		cancelled = false;
+		cancelSent = false;
 	}
 	
 	public void resetProgress(int items) {
 		index = 0;
 		item_count = items;
+		cancelled = false;
+		cancelSent = false;
 	}
 	
 	private static bool is_valid_file_type(string type) {
@@ -90,6 +99,10 @@ public class BeatBox.FileOperator : Object {
 		GLib.FileInfo file_info = null;
 		string artPath = "";
 		
+		if(cancelled) {
+			return;
+		}
+		
 		try {
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
@@ -129,6 +142,11 @@ public class BeatBox.FileOperator : Object {
 	
 	public void get_music_files_individually(LinkedList<string> files, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
 		foreach(string file in files) {
+			
+			if(cancelled) {
+				return;
+			}
+			
 			try {
 				GLib.File gio_file = GLib.File.new_for_uri(file);
 				FileInfo file_info = gio_file.query_info("*", FileQueryInfoFlags.NONE);
@@ -171,6 +189,11 @@ public class BeatBox.FileOperator : Object {
 		string current_album = ""; // these are purposely reset on recursive call
 		string artPath = "";
 		
+		if(cancelled) {
+			return;
+		}
+			
+		
 		int songs_added = 0;
 		try {
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
@@ -191,21 +214,6 @@ public class BeatBox.FileOperator : Object {
 					if(current_song_paths.contains(file_path)) {
 						current_song_paths.remove(file_path);
 						
-						FileInfo info;
-        string content_type;
-        
-        try {
-            info = GLib.File.new_for_path(file_path).query_info(FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
-                FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-                
-            
-        content_type = info.get_content_type ();
-        
-        stdout.printf ("Hello, : %s", content_type);
-        } catch (Error err) {
-            warning("Unable to determine content type: %s", err.message);
-        }
-							
 						++index;
 					}
 					else if(!current_song_paths.contains(file_path)) {
@@ -264,6 +272,9 @@ public class BeatBox.FileOperator : Object {
 					s.title = paths[paths.length - 1];
 				}
 				if(s.artist == null || s.artist == "") s.artist = "Unknown";
+				
+				s.album_artist = s.artist;
+				s.album_number = 1;
 			}
 		}
 		else {

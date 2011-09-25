@@ -1119,44 +1119,24 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel temp;
 		
-		HashMap<string, string> lastfmStuff = new HashMap<string, string>();
-		
 		//tempSongs.clear();
-		var to_edit = new LinkedList<Song>();
+		var to_edit = new LinkedList<int>();
 		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			TreeIter item;
-			temp.get_iter(out item, path);
+			int id = music_model.getRowidFromPath(path.to_string());
 			
-			int id;
-			temp.get(item, 0, out id);
-			Song s = lm.song_from_id(id);
-			
-			if(!lastfmStuff.has_key("track"))
-				lastfmStuff.set("track", s.title + " by " + s.artist);
-			else if(lastfmStuff.get("track") != (s.title + " by " + s.artist))
-				lastfmStuff.set("track", "");
-			
-			if(!lastfmStuff.has_key("artist"))
-				lastfmStuff.set("artist", s.artist);
-			else if(lastfmStuff.get("artist") != s.artist)
-				lastfmStuff.set("artist", "");
-			
-			if(!lastfmStuff.has_key("album"))
-				lastfmStuff.set("album", s.album + " by " + s.artist);
-			else if(lastfmStuff.get("album") != (s.album + " by " + s.artist))
-				lastfmStuff.set("album", "");
-			
-			to_edit.add(s);
+			to_edit.add(id);
 		}
 		
-		SongEditor se = new SongEditor(lw, to_edit, lm.get_track(lastfmStuff.get("track")), 
-										lm.get_artist(lastfmStuff.get("artist")), 
-										lm.get_album(lastfmStuff.get("album")));
+		SongEditor se = new SongEditor(lm, music_model.getOrderedSongs(), to_edit);
 		se.songs_saved.connect(songEditorSaved);
 	}
 	
-	public virtual void songEditorSaved(LinkedList<Song> songs) {
-		lm.update_songs(songs, true);
+	public virtual void songEditorSaved(LinkedList<int> songs) {
+		LinkedList<Song> toUpdate = new LinkedList<Song>();
+		foreach(int i in songs)
+			toUpdate.add(lm.song_from_id(i));
+		
+		lm.update_songs(toUpdate, true);
 		
 		if(hint == Hint.SMART_PLAYLIST) {
 			// make sure these songs still belongs here

@@ -235,7 +235,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field = new ComboBoxText();
 		_comparator = new ComboBoxText();
 		_value = new Entry();
-		_valueNumerical = new SpinButton.with_range(0, 1000, 1);
+		_valueNumerical = new SpinButton.with_range(0, 9999, 1);
 		_remove = new Button.with_label("Remove");
 		
 		_field.append_text("Album");

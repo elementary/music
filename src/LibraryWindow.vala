@@ -1081,7 +1081,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			file_chooser.destroy ();
 			
 			if(folder != "" && folder != settings.getMusicFolder()) {
-				if(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists() && lm.settings.getCopyImportedMusic()) {
+				if(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
 					topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b> to library.");
 					topDisplay.show_progressbar();
 					
@@ -1118,7 +1118,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// clear all other playlists, reset to Music, populate music
 		mainViews.get_children().foreach( (vw) => {
-			stdout.printf("hi\n");
 			if(vw is ViewWrapper)
 				((ViewWrapper)vw).clear();
 		});

@@ -213,7 +213,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// set the volume
-		lm.player.setVolume(settings.getVolume());
+		player.setVolume(settings.getVolume());
 		
 		// start thread to load all the songs pixbuf's
 		try {
@@ -290,7 +290,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
 		
 		var items = fo.count_music_files(file);
-		//music_counted(items);
 		
 		fo.resetProgress(items);
 		Timeout.add(100, doProgressNotificationWithTimeout);
@@ -302,14 +301,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		_songs.clear();
 		_queue.clear();
-		//_current.clear();
 		dbm.clear_songs();
 		
 		add_songs(new_songs, true);
 		
 		Idle.add( () => { 
-			
 			doing_file_operations = false;
+			
 			music_added(not_imported);
 			
 			try {
@@ -319,7 +317,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
 			}
 			
-			return false; 
+			return false;
 		});
 		
 		file_operations_done();
@@ -840,6 +838,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			removePaths.add(s.file);
 		}
 		
+		// TODO: Check why this is in the order it is
 		songs_removed(removedIds);
 		
 		dbu.removeItem(removePaths);
@@ -1433,6 +1432,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public static int songCompareFunc(Song a, Song b) {
 		return (a.album > b.album) ? 1 : -1;
+	}
+	
+	public void cancel_operations() {
+		fo.cancelled = true;
 	}
 	
 }
