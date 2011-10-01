@@ -80,7 +80,7 @@ public class BeatBox.CDRipper : GLib.Object {
 	
 	private bool busCallback(Gst.Bus bus, Gst.Message message) {
 		switch (message.type) {
-			case Gst.MessageType.STATE_CHANGED:
+			/*case Gst.MessageType.STATE_CHANGED:
 				Gst.State oldstate;
 				Gst.State newstate;
 				Gst.State pending;
@@ -97,7 +97,7 @@ public class BeatBox.CDRipper : GLib.Object {
 					}
 				}
 				
-				break;
+				break;*/
 			case Gst.MessageType.ERROR:
 				GLib.Error err;
 				string debug;
@@ -123,11 +123,12 @@ public class BeatBox.CDRipper : GLib.Object {
     
     public void ripSong(uint track, string path, Song s) {
 		sink.set_state(Gst.State.NULL);
+		stdout.printf("1\n");
 		sink.set("location", path);
-		
+		stdout.printf("2\n");
 		src.set("track", track);
 		current_song = s;
-		
+		stdout.printf("3\n");
 		/*Iterator<Gst.Element> tagger = ((Gst.Bin)converter).iterate_all_by_interface(typeof(TagSetter));
 		tagger.foreach( (el) => {
 			
@@ -136,11 +137,7 @@ public class BeatBox.CDRipper : GLib.Object {
 			
 		});*/
 		
-		
+		stdout.printf("4\n");
 		pipeline.set_state(Gst.State.PLAYING);
-	}
-	
-	public void ejectCD() {
-		stdout.printf("NOT ACTUALLY EJECTING CD BUT WISH I WAS\n");
 	}
 }

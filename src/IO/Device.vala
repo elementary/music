@@ -2,6 +2,8 @@ public class BeatBox.Device : GLib.Object {
 	private Mount mount;
 	private double audioPercentage;
 	
+	public signal void device_unmounted();
+	
 	public Device(Mount m) {
 		this.mount = m;
 		
@@ -63,6 +65,8 @@ public class BeatBox.Device : GLib.Object {
 			mount.get_volume().eject(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
 		
 		mount.eject(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
+		
+		device_unmounted();
 	}
 	
 	public void unmount() {
@@ -71,6 +75,8 @@ public class BeatBox.Device : GLib.Object {
 		}
 		else
 			mount.unmount(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
+			
+		device_unmounted();
 	}
 	
 	public string getContentType() {

@@ -47,6 +47,8 @@ public class BeatBox.FileOperator : Object {
 		toSave = new LinkedList<Song>();
 		cancelled = false;
 		cancelSent = false;
+		
+		lm.progress_cancel_clicked.connect( () => { cancelled = true; } );
 	}
 	
 	public void resetProgress(int items) {
@@ -95,7 +97,7 @@ public class BeatBox.FileOperator : Object {
         return index;
 	}
 	
-	public void get_music_files(GLib.File music_folder, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
+	public void get_music_files_set(GLib.File music_folder, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
 		GLib.FileInfo file_info = null;
 		string artPath = "";
 		
@@ -125,13 +127,67 @@ public class BeatBox.FileOperator : Object {
 					
 					if(s != null) {
 						songs.add(s);
+						
+						if(songs.size % 500 == 0) {
+							lm.add_songs(songs, true);
+							
+							songs.clear();
+						}
+						
 						s.setAlbumArtPath(artPath);
 					}
 					else
 						not_imported.add(file_path);
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					get_music_files(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
+					get_music_files_set(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
+				}
+			}
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not get music: %s\n", err.message);
+		}
+	}
+	
+	public void get_music_files_folder(GLib.File music_folder, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
+		GLib.FileInfo file_info = null;
+		string artPath = "";
+		
+		if(cancelled) {
+			return;
+		}
+		
+		try {
+			
+			
+			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				var file_path = music_folder.get_path() + "/" + file_info.get_name();
+				
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
+					artPath = file_path;
+					break;
+				}
+			}
+				
+			enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				var file_path = music_folder.get_path() + "/" + file_info.get_name();
+				
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
+					++index;
+					
+					Song s = import_song(file_path);
+					
+					if(s != null) {
+						songs.add(s);
+						s.setAlbumArtPath(artPath);
+					}
+					else
+						not_imported.add(file_path);
+				}
+				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
+					get_music_files_folder(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
 				}
 			}
 		}
@@ -164,7 +220,7 @@ public class BeatBox.FileOperator : Object {
 						not_imported.add(file_path);
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					get_music_files(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
+					get_music_files_folder(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
 				}
 			}
 			catch(GLib.Error err) {
@@ -376,7 +432,6 @@ public class BeatBox.FileOperator : Object {
 			
 			TagLib.File tag_file;
 			
-			stdout.printf("Saving file %s \n", s.file);
 			tag_file = new TagLib.File(s.file);
 			
 			if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {

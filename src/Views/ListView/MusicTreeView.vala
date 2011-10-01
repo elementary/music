@@ -128,6 +128,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		return _songs;
 	}
 	
+	public Collection<int> get_showing_songs() {
+		return music_model.getOrderedSongs();
+	}
+	
 	public LinkedList<TreeViewColumn> get_columns() {
 		var rv = new LinkedList<TreeViewColumn>();
 		
@@ -730,11 +734,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		music_model = new MusicTreeModel(lm, get_column_strings(), render_icon("audio-volume-high", IconSize.MENU, null));
 		music_model.is_current = _is_current;
 		
-		//save song selection
+		var hPos = this.vadjustment.get_value();
 		
 		music_model.append_songs(_showing_songs, false);
-		
-		// restore song selection
 		
 		music_model.set_sort_column_id(sort_col, sort_dir);
 		
@@ -744,7 +746,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.set_model(music_model);
 		view.thaw_child_notify();
 		
-		scrollToCurrent();
+		if(is_current && lm.song_info.song != null)
+			scrollToCurrent();
+		else
+			this.view.scroll_to_point(0, (int)hPos);
 		
 		needsUpdate = false;
 		setStatusBarText();
@@ -1237,8 +1242,12 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			}
 		}
 		
-		if(hint == Hint.MUSIC)
-			lm.remove_songs(toRemove);
+		if(hint == Hint.MUSIC) {
+			
+			
+			
+			lm.remove_songs(toRemove, false);
+		}
 		if(hint == Hint.PLAYLIST)
 			lm.save_playlists();
 		else if(hint == Hint.QUEUE)

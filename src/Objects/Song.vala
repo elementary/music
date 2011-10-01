@@ -72,6 +72,8 @@ public class BeatBox.Song : GLib.Object{
 	public bool isPreview { get; set; default = false; }
 	public bool isTemporary { get; set; default = false; }
 	
+	public Gdk.Pixbuf? unique_status_image;
+	
 	//core stuff
 	public Song(string file) {
 		this.file = file;

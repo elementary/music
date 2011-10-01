@@ -74,6 +74,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void progress_notification(string? message, double progress);
 	public signal void file_operations_started();
 	public signal void file_operations_done();
+	public signal void progress_cancel_clicked();
 	
 	public signal void current_cleared();
 	public signal void song_added(int id);
@@ -275,6 +276,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 			doing_file_operations = true;
 			progress_notification("Importing music from <b>" + folder + "</b>.", 0.0);
 			
+			clear_songs();
+			_queue.clear();
+			dbm.clear_songs();
+			lw.resetSideTree();
+			
 			settings.setMusicFolder(folder);
 			try {
 				Thread.create<void*>(set_music_thread_function, false);
@@ -297,11 +303,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
 		
-		fo.get_music_files(file, ref new_songs, ref not_imported);
-		
-		_songs.clear();
-		_queue.clear();
-		dbm.clear_songs();
+		stdout.printf("setting music folder\n");
+		fo.get_music_files_set(file, ref new_songs, ref not_imported);
 		
 		add_songs(new_songs, true);
 		
@@ -408,7 +411,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
-		fo.get_music_files(file, ref new_songs, ref not_imported);
+		fo.get_music_files_folder(file, ref new_songs, ref not_imported);
 		
 		add_songs(new_songs, true);
 		
@@ -462,6 +465,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		LinkedList<Song> removed = new LinkedList<Song>();
 		
 		foreach(Song s in _songs.values) {
+			if(!s.isTemporary && !s.isPreview)
 				paths.add(s.file);
 		}
 		
@@ -477,14 +481,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 		lock(_songs) {
 			foreach(Song s in _songs.values) {
 				foreach(string path in paths) {
-					if(s.file == path)
+					if(s.file == path && !s.isTemporary && !s.isPreview) {
 						removed.add(s);
+					}
 				}
 			}
 		}
 		
 		lock(_songs) {
-			remove_songs(removed);
+			remove_songs(removed, false);
 		}
 		
 		add_songs(new_songs, true);
@@ -642,7 +647,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	/******************** Song stuff ******************/
 	public void clear_songs() {
+		var reAdd = new LinkedList<Song>();
+		foreach(int i in _songs.keys) {
+			if(_songs.get(i).isTemporary || _songs.get(i).isPreview) {
+				reAdd.add(_songs.get(i));
+			}
+		}
+		
 		_songs.clear();
+		
+		foreach(Song s in reAdd) {
+			stdout.printf("reAdding %d\n", s.rowid);
+			_songs.set(s.rowid, s);
+		}
 	}
 	
 	public int song_count() {
@@ -828,7 +845,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 	}
 	
-	public void remove_songs(LinkedList<Song> toRemove) {
+	public void remove_songs(LinkedList<Song> toRemove, bool trash) {
 		LinkedList<int> removedIds = new LinkedList<int>();
 		LinkedList<string> removePaths = new LinkedList<string>();
 		
@@ -840,9 +857,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// TODO: Check why this is in the order it is
 		songs_removed(removedIds);
-		
 		dbu.removeItem(removePaths);
-		fo.remove_songs(removePaths);
+		
+		if(trash) {
+			fo.remove_songs(removePaths);
+		}
 		
 		foreach(Song s in toRemove) {
 			_songs.unset(s.rowid);
@@ -1170,8 +1189,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return;
 		
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
+			song_from_id(id).unique_status_image = lw.render_icon(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.MENU, null);
 			lw.song_not_found(id);
 			return;
+		}
+		else {
+			song_from_id(id).unique_status_image = null;
 		}
 		
 		if(song_info.song != null)
@@ -1213,18 +1236,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 				if(!File.new_for_path(song_info.song.getAlbumArtPath()).query_exists()) {
 					song_info.song.setAlbumArtPath("");
 					lw.updateCurrentSong();
-					
-					
 				}
 			}
 			
 			return false;
 			
 		});
-	}
-	
-	public void playSongTimeoutChecks() {
-		
 	}
 	
 	public void* change_gains_thread () {
@@ -1435,7 +1452,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void cancel_operations() {
-		fo.cancelled = true;
+		progress_cancel_clicked();
 	}
 	
 }

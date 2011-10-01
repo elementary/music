@@ -64,7 +64,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ToolButton previousButton;
 	ToolButton playButton;
 	ToolButton nextButton;
-	ElementaryWidgets.TopDisplay topDisplay;
+	public ElementaryWidgets.TopDisplay topDisplay;
 	public ElementaryWidgets.ModeButton viewSelector;
 	public ElementaryWidgets.ElementarySearchEntry searchField;
 	ElementaryWidgets.AppMenu appMenu;
@@ -152,7 +152,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				added_to_play_count = true;
 			
 			int i = settings.getLastSongPlaying();
-			if(i != 0) {
+			if(i != 0 && args[1] == "") {
 				/* time out works because... monkeys eat bananas */
 				int position = (int)settings.getLastSongPosition();
 				Timeout.add(250, () => {
@@ -186,6 +186,26 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.present();
 		
 		initializationFinished = true;
+		
+		// play the arg if there is one
+		if( args[1] != "" && File.new_for_uri(args[1]).query_exists()) {
+			Song s = new Song(File.new_for_uri(args[1]).get_path());
+			
+			s = lm.fo.import_song(File.new_for_uri(args[1]).get_path());
+			
+			s.isTemporary = true;
+			
+			LinkedList<Song> temps = new LinkedList<Song>();
+			temps.add(s);
+			lm.add_songs(temps, false);
+			
+			lm.playSong(s.rowid);
+			topDisplay.change_value(ScrollType.NONE, 0.0);
+			
+			if(!lm.playing) {
+				playClicked();
+			}
+		}
 	}
 	
 	public void build_ui() {
@@ -675,6 +695,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			topDisplay.set_label_markup(message);
 		
 		topDisplay.set_progress_value(progress);
+		
+		// if we are adding songs, refresh periodically
+		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
+		if(lm.songs().size - vw.list.get_showing_songs().size >= 500) {
+			
+			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
+			miller.populateColumns("", lm.song_ids());
+			
+			updateSensitivities();
+		}
 	}
 	
 	public bool updateCurrentSong() {
@@ -1118,7 +1148,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// clear all other playlists, reset to Music, populate music
 		mainViews.get_children().foreach( (vw) => {
-			if(vw is ViewWrapper)
+			if(vw is ViewWrapper && !(vw is DeviceViewWrapper))
 				((ViewWrapper)vw).clear();
 		});
 		
@@ -1135,7 +1165,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void musicAdded(LinkedList<string> not_imported) {
 		
 		if(lm.song_info.song != null) {
-			var song_label = "<b>" + lm.song_info.song.title + "</b>" + " by " + "<b>" + lm.song_info.song.artist + "</b>" + " on " + "<b>" +lm.song_info.song.album + "</b>";
+			var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.artist != "") ? " by " : "") + "<b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.album != "") ? " on " : "") + "<b>" + lm.song_info.song.album.replace("&", "&amp;") + "</b>";
 			topDisplay.set_label_markup(song_label);
 		}
 		else
@@ -1175,8 +1205,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.show_scale();
 		
 		if(lm.song_info.song != null) {
-			var song_label = "<b>" + lm.song_info.song.title + "</b>" + " by " + "<b>" + lm.song_info.song.artist + "</b>" + " on " + "<b>" +lm.song_info.song.album + "</b>";
-			topDisplay.set_label_markup(song_label);
+			var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.artist != "") ? " by " : "") + "<b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.album != "") ? " on " : "") + "<b>" + lm.song_info.song.album.replace("&", "&amp;") + "</b>";
+			topDisplay.set_label_markup(song_label);		
 		}
 		else
 			topDisplay.set_label_text("");
@@ -1191,7 +1221,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.show_scale();
 		
 		if(lm.song_info.song != null) {
-			var song_label = "<b>" + lm.song_info.song.title + "</b>" + " by " + "<b>" + lm.song_info.song.artist + "</b>" + " on " + "<b>" +lm.song_info.song.album + "</b>";
+			var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.artist != "") ? " by " : "") + "<b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.album != "") ? " on " : "") + "<b>" + lm.song_info.song.album.replace("&", "&amp;") + "</b>";
 			topDisplay.set_label_markup(song_label);
 		}
 		else
@@ -1263,7 +1293,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			lm.settings.setLastSongPosition((int)sec);
 			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
-			if(position > 5000000000 && !queriedlastfm) {
+			if(position > 5000000000 && !queriedlastfm && !lm.doing_file_operations) {
 				queriedlastfm = true;
 				
 				similarSongs.queryForSimilar(lm.song_info.song);

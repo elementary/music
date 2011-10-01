@@ -50,8 +50,7 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	public void setURI(string uri) {
 		setState(State.READY);
-		stdout.printf("setting uri to %s\n", uri);
-		pipe.playbin.uri = uri;
+		pipe.playbin.uri = uri.replace("#", "%23");
 		/*
 		if(pipe.video.element != null) {
 			var xoverlay = pipe.video.element as XOverlay;

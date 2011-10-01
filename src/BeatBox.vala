@@ -71,7 +71,7 @@ public class BeatBox.Beatbox : GLib.Object {
 		
 		//Unique.App app = new Unique.App ("org.elementary.beatbox", null);
 		
-		enableStore = (args[1] == "elementary") && (args[2] == "rocks");
+		//enableStore = (args[1] == "elementary") && (args[2] == "rocks");
 	
 		/*if (app.is_running) { //not starting if already running
 			Unique.Command command = Unique.Command.ACTIVATE;

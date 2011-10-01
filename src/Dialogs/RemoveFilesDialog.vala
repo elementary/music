@@ -1,7 +1,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.FileNotFoundDialog : Window {
+public class BeatBox.RemoveFilesDialog : Window {
 	LibraryManager lm;
 	LibraryWindow lw;
 	int song_id;
@@ -14,7 +14,7 @@ public class BeatBox.FileNotFoundDialog : Window {
 	Button rescanLibrary;
 	Button doNothing;
 	
-	public FileNotFoundDialog(LibraryManager lm, LibraryWindow lw, int id) {
+	public RemoveFilesDialog(LibraryManager lm, LibraryWindow lw, int id) {
 		this.lm = lm;
 		this.lw = lw;
 		song_id = id;
@@ -101,7 +101,8 @@ public class BeatBox.FileNotFoundDialog : Window {
 	public void removeSongClicked() {
 		var temp = new LinkedList<Song>();
 		temp.add(lm.song_from_id(song_id));
-		lm.remove_songs(temp, false);
+		//lm.remove_songs(temp);
+		//lm.remove_songs(temp);
 		
 		this.destroy();
 	}
