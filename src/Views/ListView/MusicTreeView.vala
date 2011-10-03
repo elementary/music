@@ -306,6 +306,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				originalOrder.add(tvc);
 			else if(tvc.title == "BPM")
 				originalOrder.add(tvc);
+			else
+				originalOrder.add(tvc);
 				
 			correctStringOrder.add(tvc.title);
 		}
@@ -343,6 +345,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 					view.insert_column_with_data_func(-1, tvc.title, cellGenre, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "BPM")
 					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
+				else
+					view.insert_column(tvc, index);
 				
 				
 				view.get_column(index).resizable = true;
@@ -362,6 +366,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				tvc.sort_column_id = -1;
 				tvc.resizable = false;
 				tvc.reorderable = false;
+				
+				tvc.set_cell_data_func(tvc.get_cells().nth_data(0), iconDataFunc);
+				tvc.set_cell_data_func(tvc.get_cells().nth_data(1), iconDataFunc);
 			}
 			else if(tvc.title == "id") {
 				view.insert_column(tvc, index);
@@ -382,6 +389,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			++index;
 		}
+		
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
@@ -507,6 +515,25 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
         this.view.drag_data_get.connect(onDragDataGet);
         this.view.drag_end.connect(onDragEnd);
 		this.vadjustment.value_changed.connect(viewScroll);
+	}
+	
+	public void iconDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
+		Value? id;
+		model.get_value(iter, 0, out id);
+		
+		bool showIndicator = lm.song_from_id(id.get_int()).showIndicator;
+		
+		if(renderer is CellRendererPixbuf) {
+			renderer.visible = !showIndicator;
+			renderer.width = showIndicator ? 0 : 16;
+		}
+		if(renderer is CellRendererSpinner) {
+			if(showIndicator) {
+				((CellRendererSpinner)renderer).active = true;
+			}
+			renderer.visible = showIndicator;
+			renderer.width = showIndicator ? 16 : 0;
+		}
 	}
 	
 	public void rearrangeColumns(LinkedList<string> correctOrder) {

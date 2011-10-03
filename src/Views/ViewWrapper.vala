@@ -276,7 +276,7 @@ public class BeatBox.ViewWrapper : VBox {
 			Timeout.add(100, () => {
 				
 				string to_search = timeout_search.poll_tail();
-				stdout.printf("search filed changed\n");
+				//stdout.printf("search filed changed\n");
 				doUpdate(this.currentView, songs, false, false);
 					
 				last_search = to_search;

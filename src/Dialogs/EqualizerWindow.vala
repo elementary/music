@@ -30,7 +30,13 @@ public class BeatBox.EqualizerWindow : Window {
 		
 		addPresets();
 		
-		sideList.selectPreset(lm.settings.getSelectedPreset());
+		var preset = lm.settings.getSelectedPreset();
+		
+		if(preset != null)
+			sideList.selectPreset(preset);
+		
+		if(lm.settings.getAutoSwitchPreset())
+			sideList.selectAutomaticPreset();
 		
 		equalizerOnOff.set_active(!lm.settings.getEqualizerDisabled());
 		equalizerOnOffToggled();

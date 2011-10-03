@@ -121,6 +121,10 @@ public class BeatBox.PresetList : ComboBox {
 		}
 	}
 	
+	public void selectAutomaticPreset() {
+		set_active(0);
+	}
+	
 	public void selectPreset(EqualizerPreset? p) {
 		if(p == null) {
 			set_active(0);

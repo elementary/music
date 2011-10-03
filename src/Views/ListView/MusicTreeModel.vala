@@ -169,6 +169,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 				val = (int)s.last_played;
 			else if(column == 16)
 				val = (int)s.bpm;
+			else if(column == 17)
+				val = (int)s.pulseProgress;
 		}
 	}
 

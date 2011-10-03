@@ -110,6 +110,10 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 										"title", "BPM", 
 										"fixed_width", 40,
 										"visible", false));
+		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+										"title", "Pulser", 
+										"fixed_width", 40,
+										"visible", false));
 		
 		
 		for(int index = 0; index < _columns.size; ++index) {
@@ -117,6 +121,17 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 				CellRendererText crtext = new CellRendererText();
 				_columns.get(index).pack_start(crtext, true);
 				_columns.get(index).set_attributes(crtext, "text", index);
+			}
+			else if(_columns.get(index).title == " ") {
+				CellRendererPixbuf crpix = new CellRendererPixbuf();
+				_columns.get(index).pack_start(crpix, true);
+				_columns.get(index).set_attributes(crpix, "pixbuf", index);
+				CellRendererSpinner crspin = new CellRendererSpinner();
+				_columns.get(index).pack_start(crspin, true);
+				_columns.get(index).add_attribute(crspin, "pulse", 17);
+				
+				crspin.active = true;
+				
 			}
 			else {
 				CellRendererPixbuf crpix = new CellRendererPixbuf();
@@ -184,8 +199,17 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 			TreeViewColumn tvc;
 			if(pieces_of_column[0] != " " && pieces_of_column[0] != "Rating")
 				tvc = new Gtk.TreeViewColumn.with_attributes(pieces_of_column[0], new Gtk.CellRendererText(), "text", index, null);
-			else
+			else if(pieces_of_column[0] == " ") {
 				tvc = new Gtk.TreeViewColumn.with_attributes(pieces_of_column[0], new Gtk.CellRendererPixbuf(), "pixbuf", index, null);
+				
+				var crSpin = new CellRendererSpinner();
+				crSpin.active = true;
+				tvc.pack_start(crSpin, true);
+				tvc.add_attribute(crSpin, "pulse", 17);
+			}
+			else {
+				tvc = new Gtk.TreeViewColumn.with_attributes(pieces_of_column[0], new Gtk.CellRendererPixbuf(), "pixbuf", index, null);
+			}
 			
 			tvc.resizable = true;
 			tvc.reorderable = true;

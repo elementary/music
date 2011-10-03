@@ -412,6 +412,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
 		sideTree.name = "SidebarContent";
+		sideTree.get_style_context().add_class("sidebar");
 		
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 		welcomeScreen.append("folder-music", "Set Music Folder", "Select your music folder and build your library.");
@@ -621,10 +622,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		miller.set_visible(haveSongs && viewSelector.selected == 2 && showingSongList);
 		songInfoScroll.set_visible(haveSongs);
 		welcomeScreen.set_visible(!haveSongs);
+		welcomeScreen.set_sensitivity(0, !doingOps);
 		statusBar.set_visible(haveSongs);
 		
 		infoPanel.set_visible(haveSongs && showMore && !nullSong);
 		infoPanelChooser.set_visible(haveSongs && !nullSong);
+		coverArt.set_visible(!nullSong);
 		
 		/*if(lm.song_count() == 0) {
 			fileImportMusic.set_sensitive(false);
@@ -961,7 +964,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void previousClicked () {
-		if(!queriedlastfm) {
+		if(lm.player.getPosition() < 5000000000) {
 			int prev_id = lm.getPrevious(true);
 			
 			/* test to stop playback/reached end */

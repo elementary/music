@@ -86,6 +86,7 @@ namespace ElementaryWidgets {
 			box.show ();
 			set_visible_window (false);
 			
+			// set window min/max
 			set_size_request(-1, 24);
 		}
 		

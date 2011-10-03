@@ -62,6 +62,11 @@ namespace ElementaryWidgets {
 			
 		}
 		
+		public void set_sensitivity(uint index, bool val) {
+			if(index < children.length() && children.nth_data(index) is Gtk.Widget)
+				children.nth_data(index).set_sensitive(val);
+		}
+		
 		public void append (string icon_name, string label_text, string description_text) {
 	        
 	        // Button

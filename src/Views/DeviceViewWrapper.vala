@@ -5,12 +5,18 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	Device d;
 	CDRipper ripper;
 	
+	Song song_being_ripped;
+	Song previous_song;
+	
 	bool cancelled;
 	
 	public DeviceViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, MusicTreeView.Hint the_hint, int id, Device d) {
 		base(lmm, lww, songs, sort, dir, the_hint, id);
 		this.d = d;
 		cancelled = false;
+		
+		song_being_ripped = null;
+		previous_song = null;
 		
 		// in thread get song list
 		try {
@@ -61,8 +67,9 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		ripper.error.connect(ripperError);
 		
 		Song s = lm.song_from_id(songs.to_array()[0]);
+		song_being_ripped = s;
 		
-		s.unique_status_image = render_icon(Gtk.Stock.NO, Gtk.IconSize.MENU, null);
+		s.showIndicator = true;
 		lm.update_song(s, false);
 		
 		ripper.ripSong(1, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", s);
@@ -73,6 +80,27 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		
 		lm.doing_file_operations = true;
 		lw.updateSensitivities();
+		
+		// this refreshes so that the spinner shows
+		doUpdate(currentView, songs, true, true);
+		
+		// this spins the spinner for the current song being imported
+		Timeout.add(100, pulser);
+	}
+	
+	public bool pulser() {
+		if(song_being_ripped != null) {
+			song_being_ripped.pulseProgress++;
+			
+			var updated = new LinkedList<int>();
+			updated.add(song_being_ripped.rowid);
+			list.songs_updated(updated);
+			
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public void songRipped(Song s) {
@@ -83,17 +111,34 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		
 		// set the song's date_added and file size
 		s.date_added = (int)time_t();
-		s.file_size = (int)(GLib.File.new_for_path(s.file).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
-		s.isTemporary = false;
 		
+		if(GLib.File.new_for_path(s.file).query_exists())
+			s.file_size = (int)(GLib.File.new_for_path(s.file).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+		else
+			s.file_size = 0;
+		
+		s.isTemporary = false;
+		s.showIndicator = false;
+		stdout.printf("sR0.1\n");
 		// then save the metadata to the file
 		var temp = new LinkedList<Song>();
 		temp.add(s);
-		
+		stdout.printf("sR0.2\n");
 		lm.add_songs(temp, true);
-		
+		stdout.printf("sR0.3\n");
 		// now we have to find the right location for it
+		
+		previous_song = s.copy();
 		lm.fo.update_file_hierarchy(s, true);
+		/*try {
+			Thread.create<void*>(update_file_location_thread, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to move the song: %s \n", err.message);
+			
+			if(previous_song != null)
+				lm.fo.update_file_hierarchy(previous_song, true);
+		}*/
 		
 		stdout.printf("sR2\n");
 		// now we have to find the right location for it
@@ -103,9 +148,10 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		// do it again on next track
 		if(s.track < ripper.track_count && !cancelled) {
 			Song next = lm.song_from_id(songs.to_array()[s.track]);
+			song_being_ripped = next;
 			ripper.ripSong(next.track, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", next);
 			stdout.printf("sR5\n");
-			next.unique_status_image = render_icon(Gtk.Stock.NO, Gtk.IconSize.MENU, null);
+			next.showIndicator = true;
 			lm.update_song(next, false);
 			stdout.printf("sR6\n");
 			var update = "<b>Importing</b> track " + next.track.to_string() + ": <b>" + next.title.replace("&", "&amp;") + "</b>" + ((next.artist != "Unknown Artist") ? " by " : "") + "<b>" + next.artist.replace("&", "&amp;") + "</b>" + ((next.album != "Unknown Album") ? " on " : "") + "<b>" + next.album.replace("&", "&amp;") + "</b>";
@@ -113,6 +159,7 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		}
 		else {
 			lm.doing_file_operations = false;
+			song_being_ripped = null;
 			
 			if(lm.song_info.song != null) {
 				var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.artist != "") ? " by " : "") + "<b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.album != "") ? " on " : "") + "<b>" + lm.song_info.song.album.replace("&", "&amp;") + "</b>";
@@ -126,19 +173,26 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		}
 	}
 	
-	public void* prepare_cdrom_list () {
-		var songs = CDDA.getSongList(d.getMountLocation());
+	public void* update_file_location_thread() {
+		if(previous_song != null)
+			lm.fo.update_file_hierarchy(previous_song, true);
 		
-		lm.add_songs(songs, false);
+		return null;
+	}
+	
+	public void* prepare_cdrom_list () {
+		var tSongs = CDDA.getSongList(d.getMountLocation());
+		
+		lm.add_songs(tSongs, false);
 		
 		var ids = new LinkedList<int>();
-		foreach(var s in songs)
+		foreach(var s in tSongs)
 			ids.add(s.rowid);
 			
 		d.device_unmounted.connect( () => {
-			foreach(Song s in songs) {
+			foreach(Song s in tSongs) {
 				s.unique_status_image = null;
-				lm.update_songs(songs, false);
+				lm.update_songs(tSongs, false);
 			}
 		});
 		
