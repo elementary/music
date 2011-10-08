@@ -545,7 +545,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 					Playlist p_queue = new Playlist();
 					p_queue.name = "autosaved_queue";
 					foreach(int i in _queue) {
-						p_queue.addSong(song_from_id(i));
+						p_queue.addSong(i);
 					}
 					p_queue.tvs = queue_setup;
 					

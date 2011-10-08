@@ -27,7 +27,7 @@ using Gee;
 using Gtk;
 
 public class BeatBox.TreeViewSetup : GLib.Object {
-	public static const int COLUMN_COUNT = 17;
+	public static const int COLUMN_COUNT = 18;
 	
 	public MusicTreeView.Hint hint;
 	private string _sort_column; // Artist, Album

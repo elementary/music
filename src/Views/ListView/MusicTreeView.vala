@@ -272,43 +272,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		/* put them in the order for treemodel */
 		foreach(var tvc in to_use) {
-			if(tvc.title == "id")
-				originalOrder.add(tvc);
-			else if(tvc.title == " ")
-				originalOrder.add(tvc);
-			else if(tvc.title == "#")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Track")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Length")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Title")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Artist")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Album")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Genre")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Year")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Bitrate")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Rating")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Plays")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Skips")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Date Added")
-				originalOrder.add(tvc);
-			else if(tvc.title == "Last Played")
-				originalOrder.add(tvc);
-			else if(tvc.title == "BPM")
-				originalOrder.add(tvc);
-			else
-				originalOrder.add(tvc);
-				
+			originalOrder.add(tvc);
 			correctStringOrder.add(tvc.title);
 		}
 		
@@ -900,7 +864,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 						
 						int id;
 						temp.get(item, 0, out id);
-						p.addSong(lm.song_from_id(id));
+						p.addSong(id);
 					}
 				});
 			}
@@ -1230,7 +1194,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			Value id;
 			music_model.get_value(item, 0, out id);
 			
-			p.addSong(lm.song_from_id(id.get_int()));
+			p.addSong(id.get_int());
 		}
 		
 		PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
@@ -1262,7 +1226,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				lm.unqueue_song_by_id(s.rowid);
 			}
 			else if(hint == Hint.PLAYLIST) {
-				lm.playlist_from_id(relative_id).removeSong(s);
+				lm.playlist_from_id(relative_id).removeSong(id);
 			}
 			else if(hint == Hint.MUSIC) {
 				toRemove.add(s);

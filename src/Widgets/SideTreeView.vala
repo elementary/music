@@ -499,7 +499,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			lw.addSideListItem(sp);
 		}
 		
-		sideListSelectionChange();
+		//sideListSelectionChange();
 	}
 	
 	//playlist context menu
@@ -645,7 +645,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					Song add = lm.song_from_file(file.get_path());
 					
 					if(add != null) {
-						p.addSong(add);
+						p.addSong(add.rowid);
 						success = true;
 					}
 				}

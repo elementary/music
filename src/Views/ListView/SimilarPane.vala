@@ -127,7 +127,7 @@ public class BeatBox.SimilarPane : MusicTreeView {
 		p.name = "Similar to " + _base.title;
 		
 		foreach(int id in get_songs()) {
-			p.addSong(lm.song_from_id(id));
+			p.addSong(id);
 		}
 		
 		lm.add_playlist(p);

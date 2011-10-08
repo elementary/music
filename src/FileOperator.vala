@@ -86,8 +86,10 @@ public class BeatBox.FileOperator : Object {
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					index++;
 				}
-				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY)
+				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY) {
+					stdout.printf("directory size: %d\n", (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000));
 					count_music_files(GLib.File.new_for_path(file_path));
+				}
 			}
 		}
 		catch(GLib.Error err) {
