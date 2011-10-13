@@ -87,7 +87,6 @@ public class BeatBox.FileOperator : Object {
 					index++;
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY) {
-					stdout.printf("directory size: %d\n", (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000));
 					count_music_files(GLib.File.new_for_path(file_path));
 				}
 			}
@@ -108,16 +107,32 @@ public class BeatBox.FileOperator : Object {
 		}
 		
 		try {
+			/* get a list of all images in folder as potential album art choices */
+			var image_list = new LinkedList<string>();
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
-					artPath = file_path;
-					break;
+					image_list.add(file_info.get_name());
 				}
 			}
-				
+			
+			/* now choose one based on priorities */
+			foreach(string sU in image_list) {
+				var s = sU.down();
+				if(s.contains("folder.")) {
+					artPath = music_folder.get_path() + "/" + sU;
+					break;
+				}
+				else if(s.contains("cover."))
+					artPath = music_folder.get_path() + "/" + sU;
+				else if(!artPath.contains("cover.") && s.contains("album."))
+					artPath = music_folder.get_path() + "/" + sU;
+				else if(artPath == "")
+					artPath = music_folder.get_path() + "/" + sU;
+			}
+			
 			enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
@@ -160,16 +175,30 @@ public class BeatBox.FileOperator : Object {
 		}
 		
 		try {
-			
-			
+			/* get a list of all images in folder as potential album art choices */
+			var image_list = new LinkedList<string>();
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
-					artPath = file_path;
+					image_list.add(file_info.get_name());
+				}
+			}
+			
+			/* now choose one based on priorities */
+			foreach(string sU in image_list) {
+				var s = sU.down();
+				if(s.contains("folder.")) {
+					artPath = music_folder.get_path() + "/" + sU;
 					break;
 				}
+				else if(s.contains("cover."))
+					artPath = music_folder.get_path() + "/" + sU;
+				else if(!artPath.contains("cover.") && s.contains("album."))
+					artPath = music_folder.get_path() + "/" + sU;
+				else if(artPath == "")
+					artPath = music_folder.get_path() + "/" + sU;
 			}
 				
 			enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
@@ -254,14 +283,30 @@ public class BeatBox.FileOperator : Object {
 		
 		int songs_added = 0;
 		try {
+			/* get a list of all images in folder as potential album art choices */
+			var image_list = new LinkedList<string>();
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
-					artPath = file_path;
+					image_list.add(file_info.get_name());
+				}
+			}
+			
+			/* now choose one based on priorities */
+			foreach(string sU in image_list) {
+				var s = sU.down();
+				if(s.contains("folder.")) {
+					artPath = music_folder.get_path() + "/" + sU;
 					break;
 				}
+				else if(s.contains("cover."))
+					artPath = music_folder.get_path() + "/" + sU;
+				else if(!artPath.contains("cover.") && s.contains("album."))
+					artPath = music_folder.get_path() + "/" + sU;
+				else if(artPath == "")
+					artPath = music_folder.get_path() + "/" + sU;
 			}
 				
 			enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);

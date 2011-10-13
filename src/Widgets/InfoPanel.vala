@@ -32,6 +32,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	private Label artist;
 	private Button loveSong;
 	private Button banSong;
+	private ScrolledWindow artistImageScroll;
 	private Gtk.Image artistImage;
 	private RatingWidget rating; // need to make custom widget in future
 	private Label album;
@@ -91,7 +92,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		buttons.pack_end(new Label(""), true, true, 0);
 		buttons.pack_end(banSong, false, false, 0);
 		
-		ScrolledWindow artistImageScroll = new ScrolledWindow(null, null);
+		artistImageScroll = new ScrolledWindow(null, null);
 		Viewport imageVP = new Viewport(null, null);
 		artistImageScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
 		imageVP.set_shadow_type(ShadowType.NONE);
@@ -185,7 +186,13 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		if(GLib.File.new_for_path(file).query_exists()) {
 			artistImage.show();
 			try {
-				artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 10, lm.settings.getMoreWidth() - 10, true));
+				var pixbuf = new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 10, lm.settings.getMoreWidth() - 10, true);
+				var max_width = artistImageScroll.get_allocated_width();
+				
+				while(pixbuf.width > max_width) {
+					pixbuf = pixbuf.scale_simple(pixbuf.width - 5, pixbuf.height - 5, Gdk.InterpType.BILINEAR);
+				}
+				artistImage.set_from_pixbuf(pixbuf);
 				//artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file(file));
 			}
 			catch(GLib.Error err) {

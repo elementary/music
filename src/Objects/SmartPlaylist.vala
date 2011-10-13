@@ -33,6 +33,9 @@ public class BeatBox.SmartPlaylist : Object {
 	private bool _limit;
 	private int _limit_amount;
 	
+	public bool is_up_to_date;
+	LinkedList<int> songs;
+	
 	public SmartPlaylist() {
 		_name = "";
 		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.SMART_PLAYLIST);
@@ -115,6 +118,11 @@ public class BeatBox.SmartPlaylist : Object {
 	}
 	
 	public LinkedList<int> analyze(LibraryManager lm) {
+		if(is_up_to_date) {
+			stdout.printf("returning songs\n");
+			return songs;
+		}
+		
 		LinkedList<int> rv = new LinkedList<int>();
 		
 		foreach(Song s in lm.songs()) {
@@ -131,6 +139,9 @@ public class BeatBox.SmartPlaylist : Object {
 			if(_limit && _limit_amount <= rv.size)
 				return rv;
 		}
+		
+		is_up_to_date = true;
+		songs = rv;
 		
 		return rv;
 	}

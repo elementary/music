@@ -62,7 +62,9 @@ public class BeatBox.Beatbox : GLib.Object {
 		{ "media-optical-audio", null, 0, 0},
 		{ "phone", null, 0, 0},
 		{ "multimedia-player", null, 0, 0},
-		{ "media-eject", null, 0, 0 }
+		{ "media-eject", null, 0, 0 },
+		{ "process-completed-symbolic", null, 0, 0},
+		{ "process-error-symbolic", null, 0, 0}
 		
     };
 	
@@ -79,7 +81,7 @@ public class BeatBox.Beatbox : GLib.Object {
 			app.send_message (command, message);
 		} else {*/
 			Gdk.threads_init();
-			//Notify.init("beatbox");
+			Notify.init("beatbox");
 			
 			//check for .desktop file
 			/*var desktop_file = File.new_for_path("/usr/share/applications/beatbox.desktop");

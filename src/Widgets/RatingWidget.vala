@@ -84,7 +84,7 @@ public class BeatBox.RatingWidget : EventBox {
 		Allocation al;
 		get_allocation(out al);
 		
-		int buffer = 22;
+		int buffer = 32;
 		if(centered)
 			buffer = (al.width - width_request) / 2;
 		
@@ -105,7 +105,8 @@ public class BeatBox.RatingWidget : EventBox {
 		Allocation al;
 		get_allocation(out al);
 		
-		int buffer = 22;
+		// buffer for !centered off for new menu problems
+		int buffer = 32;
 		if(centered)
 			buffer = (al.width - width_request) / 2;
 		
@@ -145,7 +146,7 @@ public class BeatBox.RatingWidget : EventBox {
 			Gdk.cairo_set_source_pixbuf(cairo, _canvas, (al.width - width_request) / 2, (al.height - height_request) / 2);
 		}
 		else {
-			Gdk.cairo_set_source_pixbuf(cairo, _canvas, 12, 0);
+			Gdk.cairo_set_source_pixbuf(cairo, _canvas, 0, 0);
 		}
 		
 		cairo.paint();

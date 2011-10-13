@@ -106,7 +106,6 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	public void songRipped(Song s) {
 		// when this song was added to the library before, it was added temporarily
 		// remove and re-add permanently this time
-		stdout.printf("sR0\n");
 		s.file = lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3";
 		
 		// set the song's date_added and file size
@@ -119,15 +118,13 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		
 		s.isTemporary = false;
 		s.showIndicator = false;
-		stdout.printf("sR0.1\n");
+		
 		// then save the metadata to the file
 		var temp = new LinkedList<Song>();
 		temp.add(s);
-		stdout.printf("sR0.2\n");
 		lm.add_songs(temp, true);
-		stdout.printf("sR0.3\n");
-		// now we have to find the right location for it
 		
+		// now we have to find the right location for it
 		previous_song = s.copy();
 		lm.fo.update_file_hierarchy(s, true);
 		/*try {
@@ -140,20 +137,17 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 				lm.fo.update_file_hierarchy(previous_song, true);
 		}*/
 		
-		stdout.printf("sR2\n");
 		// now we have to find the right location for it
-		stdout.printf("sR3\n");
-		s.unique_status_image = render_icon(Gtk.Stock.OK, Gtk.IconSize.MENU, null);
-		stdout.printf("sR4\n");
+		s.unique_status_image = render_icon("process-completed-symbolic", Gtk.IconSize.MENU, null);
 		// do it again on next track
 		if(s.track < ripper.track_count && !cancelled) {
 			Song next = lm.song_from_id(songs.to_array()[s.track]);
 			song_being_ripped = next;
 			ripper.ripSong(next.track, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", next);
-			stdout.printf("sR5\n");
+			
 			next.showIndicator = true;
 			lm.update_song(next, false);
-			stdout.printf("sR6\n");
+			
 			var update = "<b>Importing</b> track " + next.track.to_string() + ": <b>" + next.title.replace("&", "&amp;") + "</b>" + ((next.artist != "Unknown Artist") ? " by " : "") + "<b>" + next.artist.replace("&", "&amp;") + "</b>" + ((next.album != "Unknown Album") ? " on " : "") + "<b>" + next.album.replace("&", "&amp;") + "</b>";
 			lw.progressNotification(update, 0.0);
 		}

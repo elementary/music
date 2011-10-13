@@ -1123,8 +1123,14 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			to_edit.add(id);
 		}
 		
-		SongEditor se = new SongEditor(lm, music_model.getOrderedSongs(), to_edit);
-		se.songs_saved.connect(songEditorSaved);
+		/*if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
+			song_from_id(id).unique_status_image = lw.render_icon("process-error-symbolic", Gtk.IconSize.MENU, null);
+			lw.song_not_found(id);
+		}
+		else {*/
+			SongEditor se = new SongEditor(lm, music_model.getOrderedSongs(), to_edit);
+			se.songs_saved.connect(songEditorSaved);
+		//}
 	}
 	
 	public virtual void songEditorSaved(LinkedList<int> songs) {

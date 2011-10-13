@@ -170,7 +170,6 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
     public void append_items(Collection<string> songs, bool emit) {
 		foreach(string s in songs) {
 			
-			/* mem leak in va.copy() */
 			SequenceIter<string> added = rows.append(s);
 			
 			if(emit) {

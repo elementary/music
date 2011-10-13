@@ -226,8 +226,8 @@ public class BeatBox.ViewWrapper : VBox {
 			list.show();
 			albumView.hide();
 			
-			if(isCurrentView) {
-				list.is_current_view = true;
+			if(isCurrentView || force) {
+				list.is_current_view = isCurrentView;
 				
 				if(doPopulate || list.needsUpdate) {
 					list.populateView(showingSongs, !set_songs, force);
@@ -240,8 +240,8 @@ public class BeatBox.ViewWrapper : VBox {
 			list.hide();
 			albumView.show();
 			
-			if(isCurrentView) {
-				albumView.isCurrentView = true;
+			if(isCurrentView || force) {
+				albumView.isCurrentView = isCurrentView;
 				
 				if(doPopulate || albumView.needsUpdate)
 					albumView.populateView(showingSongs, force);

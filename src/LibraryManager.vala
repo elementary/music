@@ -216,9 +216,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// set the volume
 		player.setVolume(settings.getVolume());
 		
-		// start thread to load all the songs pixbuf's
+		// start thread to load all the songs pixbuf's and to load playlists
 		try {
 			Thread.create<void*>(fetch_thread_function, false);
+			Thread.create<void*>(update_playlists_thread, false);
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
@@ -702,6 +703,29 @@ public class BeatBox.LibraryManager : GLib.Object {
 			fo.save_songs(updates);
 		
 		dbu.updateItem(updates);
+		
+		// mark all smart playlists as not up to date
+		foreach(SmartPlaylist sp in _smart_playlists.values) {
+			sp.is_up_to_date = false;
+		}
+		
+		// now update all smart playlists behind the scenes.
+		try {
+			Thread.create<void*>(update_playlists_thread, false);
+		} 
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to update smart playlists: %s \n", err.message);
+		}
+	}
+	
+	public void* update_playlists_thread () {
+		// update them
+		foreach(SmartPlaylist sp in _smart_playlists.values) {
+			if(!sp.is_up_to_date)
+				sp.analyze(this);
+		}
+		
+		return null;
 	}
 	
 	public void save_songs() {
@@ -1189,7 +1213,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return;
 		
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
-			song_from_id(id).unique_status_image = lw.render_icon(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.MENU, null);
+			song_from_id(id).unique_status_image = lw.render_icon("process-error-symbolic", Gtk.IconSize.MENU, null);
 			lw.song_not_found(id);
 			return;
 		}
@@ -1434,10 +1458,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(s.album != previousAlbum) {
 				
 				if(s.album_art == null && !s.getAlbumArtPath().contains("/usr/share/")) {
+					// when we actually set the album art, using the lm.song_from_id one not the ones we used just for sorting
 					s.album_art = new Gdk.Pixbuf.from_file_at_size(s.getAlbumArtPath(), 128, 128);
 				}
 				
-				// also try loading from metadata!
+				// also try loading from metadata
 				
 				previousAlbum = s.album;
 			}

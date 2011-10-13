@@ -22,7 +22,7 @@
 
 using Gtk;
 using Gee;
-//using Notify;
+using Notify;
 
 public class BeatBox.LibraryWindow : Gtk.Window {
 	public BeatBox.LibraryManager lm;
@@ -91,7 +91,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	Menu settingsMenu;
 	
-	//Notify.Notification notification;
+	public Notify.Notification notification;
 	
 	public LibraryWindow(BeatBox.DataBaseManager dbm, string[] args) {
 		settings = new BeatBox.Settings();
@@ -152,10 +152,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				added_to_play_count = true;
 			
 			int i = settings.getLastSongPlaying();
-			if(i != 0 && args[1] == "") {
+			if(i != 0) {
 				/* time out works because... monkeys eat bananas */
 				int position = (int)settings.getLastSongPosition();
 				Timeout.add(250, () => {
+					stdout.printf("playing song %d\n", i);
 					lm.playSong(i);
 					
 					((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.setAsCurrentList(0);
@@ -273,10 +274,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		repeatChooser = new SimpleOptionChooser(render_icon("media-playlist-repeat-active-symbolic", IconSize.SMALL_TOOLBAR, null), render_icon("media-playlist-repeat-symbolic", IconSize.SMALL_TOOLBAR, null));
 		infoPanelChooser = new SimpleOptionChooser(render_icon("info", IconSize.SMALL_TOOLBAR, null), render_icon("info", IconSize.SMALL_TOOLBAR, null));
 		
-		/*notification = (Notify.Notification)GLib.Object.new (
+		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
 						"summary", "Title",
-						"body", "Artist\nAlbum");*/
+						"body", "Artist\nAlbum");
 		
 		/* Set properties of various controls */
 		sourcesToSongs.set_position(settings.getSidebarWidth());
@@ -629,71 +630,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		infoPanelChooser.set_visible(haveSongs && !nullSong);
 		coverArt.set_visible(!nullSong);
 		
-		/*if(lm.song_count() == 0) {
-			fileImportMusic.set_sensitive(false);
-			fileRescanMusicFolder.set_sensitive(false);
-			topDisplay.set_scale_sensitivity(false);
-			previousButton.set_sensitive(false);
-			playButton.set_sensitive(false);
-			nextButton.set_sensitive(false);
-			searchField.set_sensitive(false);
-			viewSelector.selected = 1;
-			viewSelector.set_sensitive(false);
-			statusBar.hide();
-			
-			//if(settings.getMusicFolder() != "") {
-				mainViews.hide();
-				miller.hide();
-				songInfoScroll.hide();
-				welcomeScreen.show();
-			//}
-		}
-		else {
-			if(lm.song_info.song != null)
-				topDisplay.set_scale_sensitivity(true);
-			
-			previousButton.set_sensitive(true);
-			playButton.set_sensitive(true);
-			nextButton.set_sensitive(true);
-			viewSelector.set_sensitive(true);
-			searchField.set_sensitive(true);
-			statusBar.show();
-			welcomeScreen.hide();
-			
-			
-			if(lm.doing_file_operations) {
-				fileSetMusicFolder.set_sensitive(false);
-				fileImportMusic.set_sensitive(false);
-				fileRescanMusicFolder.set_sensitive(false);
-			}
-			else {
-				fileSetMusicFolder.set_sensitive(true);
-				fileImportMusic.set_sensitive(true);
-				fileRescanMusicFolder.set_sensitive(true);
-			}
-		}*/
 		
 		if(lm.song_info.song == null || lm.song_count() == 0) {
-			//topDisplay.set_visible(false);
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
-			//infoPanel.set_visible(false);
-			//infoPanelChooser.set_visible(false);
 		}
-		/*else {
-			topDisplay.set_visible(true);
-			
-			if(lm.settings.getMoreVisible())
-				infoPanel.set_visible(true);
-				
-			infoPanelChooser.set_visible(true);
-		}
-		
-		if(lm.doing_file_operations)
-			topDisplay.set_visible(true);*/
 	}
 	
 	public virtual void progressNotification(string? message, double progress) {
-		//THIS IS WHAT CAUSES IT TO CRASH... WTF. SOMETHING WITH PANGO
 		if(message != null)
 			topDisplay.set_label_markup(message);
 		
@@ -773,37 +716,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		song_considered_played = false;
 		added_to_play_count = false;
 		scrobbled_track = false;
-		
-		
-		//update the notifier
-		/*if(!has_toplevel_focus) {
-			try {
-				notification.set_timeout(1);
-				notification.update(lm.song_from_id(i).title, lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album, "");
-				
-				Gdk.Pixbuf notify_pix;
-				if(File.new_for_path(lm.song_from_id(i).getAlbumArtPath()).query_exists())
-					notify_pix = new Gdk.Pixbuf.from_file(lm.song_from_id(i).getAlbumArtPath());
-				else
-					notify_pix = render_icon("beatbox", IconSize.DIALOG, null);
-				
-				if(notify_pix != null)
-					notification.set_image_from_pixbuf(notify_pix);
-				else {
-					/* create blank pixbuf so we don't show old album art */
-					/*Gdk.Pixbuf blank = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, 2, 2);
-					blank.fill((uint) 0xffffff00);
-					notification.set_image_from_pixbuf(blank);*
-				}
-				
-				notification.show();
-				notification.set_timeout(5000);
-			}
-			catch(GLib.Error err) {
-				stderr.printf("Could not show notification: %s\n", err.message);
-			}
-		}*/
-		
 		
 		if(!lm.song_info.song.isPreview) {
 			updateCurrentSong();
@@ -1184,7 +1096,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 		
 		//now notify user
-		/*try {
+		try {
 			notification.close();
 			if(!has_toplevel_focus) {
 				notification.update("Import Complete", "BeatBox has imported your library", "beatbox");
@@ -1200,7 +1112,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		catch(GLib.Error err) {
 			stderr.printf("Could not show notification: %s\n", err.message);
-		}*/
+		}
 	}
 	
 	/* this is when you import music from a foreign location into the library */

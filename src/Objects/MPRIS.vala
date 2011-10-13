@@ -254,6 +254,7 @@ public class MprisPlayer : GLib.Object {
 		changed_properties = null;
 		
 		try {
+			stdout.printf("sending property change\n");
 			conn.emit_signal("org.mpris.MediaPlayer2.beatbox",
 			                 "/org/mpris/MediaPlayer2", 
 			                 "org.freedesktop.DBus.Properties", 
@@ -263,6 +264,7 @@ public class MprisPlayer : GLib.Object {
 			                             builder, 
 			                             invalidated_builder)
 			                 );
+			stdout.printf("sent property change\n");
 		}
 		catch(Error e) {
 			print("Could not send MPRIS property change: %s\n", e.message);
