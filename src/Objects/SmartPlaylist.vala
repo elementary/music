@@ -119,7 +119,6 @@ public class BeatBox.SmartPlaylist : Object {
 	
 	public LinkedList<int> analyze(LibraryManager lm) {
 		if(is_up_to_date) {
-			stdout.printf("returning songs\n");
 			return songs;
 		}
 		

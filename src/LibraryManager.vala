@@ -721,7 +721,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void* update_playlists_thread () {
 		// update them
 		foreach(SmartPlaylist sp in _smart_playlists.values) {
-			if(!sp.is_up_to_date)
+			//if(!sp.is_up_to_date) // for now just update them all. it is quick.
 				sp.analyze(this);
 		}
 		

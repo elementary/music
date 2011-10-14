@@ -421,7 +421,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), true, false);
 					
-					lw.miller.populateColumns("", vw.songs);
+					lw.miller.populateColumns("", vw.showingSongs);
 				}
 				else if(o is Playlist) {
 					ViewWrapper vw = (ViewWrapper)w;
@@ -429,7 +429,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.songs_from_playlist(((Playlist)o).rowid), true, false);
 					
-					lw.miller.populateColumns("", vw.songs);
+					lw.miller.populateColumns("", vw.showingSongs);
 				}
 				else if(o is Device) {
 					stdout.printf("is device\n");

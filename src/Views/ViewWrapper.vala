@@ -248,6 +248,15 @@ public class BeatBox.ViewWrapper : VBox {
 			}
 			else
 				albumView.isCurrentView = false;
+				
+			stdout.printf("setting focus\n");
+			albumView.icons.has_focus = true;
+			/*Gdk.EventButton ev = new Gdk.EventButton();
+			ev.type = Gdk.EventType.BUTTON_PRESS;
+			ev.x = 1;
+			ev.y = 1;
+			ev.button = 1;
+			albumView.icons.button_press_event(ev);*/
 		}
 	}
 	

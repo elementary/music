@@ -10,7 +10,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 	private string last_search;
 	LinkedList<string> timeout_search;
 	
-	IconView icons;
+	public IconView icons;
 	AlbumViewModel model;
 	
 	Gdk.Pixbuf defaultPix;
@@ -56,6 +56,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		
 		show_all();
 		
+		icons.button_press_event.connect(buttonPressEvent);
 		icons.item_activated.connect(itemActivated);
 		this.size_allocate.connect(resized);
 	}
@@ -103,6 +104,31 @@ public class BeatBox.AlbumView : ScrolledWindow {
 	
 	public static int songCompareFunc(Song a, Song b) {
 		return (a.album > b.album) ? 1 : -1;
+	}
+	
+	public bool buttonPressEvent(Gdk.EventButton ev) {
+		stdout.printf("button was pressed\n");
+		if(ev.type == Gdk.EventType.BUTTON_PRESS && ev.button == 1) {
+			// select one based on mouse position
+			TreeIter iter;
+			TreePath path;
+			TreeViewColumn column;
+			CellRenderer cell;
+			
+			icons.get_item_at_pos((int)ev.x, (int)ev.y, out path, out cell);
+			
+			if(!model.get_iter(out iter, path))
+				return false;
+			
+			string s;
+			model.get(iter, 1, out s);
+			
+			string[] pieces = s.split("\n", 0);
+		
+			itemClicked(pieces[0], pieces[1]);
+		}
+		
+		return false;
 	}
 	
 	public virtual void itemActivated(TreePath path) {
