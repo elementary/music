@@ -33,7 +33,8 @@ public class BeatBox.SmartPlaylist : Object {
 	private bool _limit;
 	private int _limit_amount;
 	
-	public bool is_up_to_date;
+	private bool _is_up_to_date;
+	public bool viewWrapper_is_up_to_date;
 	LinkedList<int> songs;
 	
 	public SmartPlaylist() {
@@ -44,6 +45,18 @@ public class BeatBox.SmartPlaylist : Object {
 		_queries = new Gee.ArrayList<SmartQuery>();
 		_limit = false;
 		_limit_amount = 50;
+		viewWrapper_is_up_to_date = false;
+		is_up_to_date = false;
+	}
+	
+	public bool is_up_to_date {
+		get { return _is_up_to_date; }
+		set { 
+			_is_up_to_date = value;
+			
+			if(!value)
+				viewWrapper_is_up_to_date = value; 
+		}
 	}
 	
 	public int rowid {

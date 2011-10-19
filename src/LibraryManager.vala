@@ -38,6 +38,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	private HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
 	private HashMap<int, Song> _songs; // rowid, song of all songs
+	private LinkedList<int> _locals; // list of all local songs
 	private HashMap<int, int> _current; // id, song of current songs.
 	private HashMap<int, int> _current_shuffled;//list of id's yet to be played while on shuffle
 	private HashMap<int, int> _current_view; // id, song of currently showing songs
@@ -113,6 +114,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_smart_playlists = new HashMap<int, SmartPlaylist>();
 		_playlists = new HashMap<int, Playlist>();
 		_songs = new HashMap<int, Song>();
+		_locals = new LinkedList<int>();
 		_current = new HashMap<int, int>();
 		_current_shuffled = new HashMap<int, int>();
 		_current_view = new HashMap<int, int>();
@@ -159,6 +161,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		//load all songs from db
 		foreach(Song s in dbm.load_songs()) {
 			_songs.set(s.rowid, s);
+			_locals.add(s.rowid);
 		}
 		
 		foreach(SmartPlaylist p in dbm.load_smart_playlists()) {
@@ -278,6 +281,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			progress_notification("Importing music from <b>" + folder + "</b>.", 0.0);
 			
 			clear_songs();
+			_locals.clear();
 			_queue.clear();
 			dbm.clear_songs();
 			lw.resetSideTree();
@@ -780,21 +784,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public Collection<int> songs_from_search(string search, string genre, string artist, string album, Collection<int> songs_to_search) {
 		string l_search = search.down();
 		
-		/*if(search == null || search == "")
-			return songs_to_search;
-		*/
 		var rv = new LinkedList<int>();
 		
 		if(search == "" && genre == "All Genres" && artist == "All Artists" && album == "All Albums") {
-			foreach(int i in songs_to_search) {
-				Song s = song_from_id(i);
-				
-				if(!s.isTemporary) {
-					rv.add(i);
-				}
-			}
-			
-			return rv;
+			return _locals;
 		}
 		
 		foreach(int i in songs_to_search) {
@@ -862,6 +855,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 				s.rowid = ++top_index;
 			
 			_songs.set(s.rowid, s);
+			
+			if(permanent)
+				_locals.add(s.rowid);
 		}
 		
 		if(new_songs.size > 0 && new_songs.to_array()[0].rowid != -2 && permanent) {
@@ -1240,16 +1236,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 		//update settings
 		if(id != -2)
 			settings.setLastSongPlaying(id);
-		
+		stdout.printf("song played callback\n");
 		song_played(id, old_id);
-		
+		stdout.printf("starting eq thread\n");
 		try {
 			Thread.create<void*>(change_gains_thread, false);
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to change gains: %s\n", err.message);
 		}
-		
+		stdout.printf("done\n");
 		/* if same song 1 second later...
 		 * check for embedded art if need be (not loaded from on file) and use that
 		 * check that the s.getAlbumArtPath() exists, if not set to "" and call updateCurrentSong

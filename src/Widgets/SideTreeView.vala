@@ -241,7 +241,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		}
 		
 		lw.updateSensitivities();
-		stdout.printf("selection updated\n");
+		stdout.printf("selection updated\n\n\n");
 	}
 	
 	public virtual bool sideListClick(Gdk.EventButton event) {
@@ -415,13 +415,14 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					
 					lw.miller.populateColumns("", lm.already_played());
 				}
-				else if(o is SmartPlaylist) {
+				else if(o is SmartPlaylist && !((SmartPlaylist)o).viewWrapper_is_up_to_date) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), true, false);
 					
 					lw.miller.populateColumns("", vw.showingSongs);
+					((SmartPlaylist)o).viewWrapper_is_up_to_date = true;
 				}
 				else if(o is Playlist) {
 					ViewWrapper vw = (ViewWrapper)w;
