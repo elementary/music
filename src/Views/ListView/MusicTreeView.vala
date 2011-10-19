@@ -27,9 +27,10 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public BeatBox.LibraryManager lm;
 	public BeatBox.LibraryWindow lw;
 	private TreeView view;
-	private MusicTreeModel music_model; // this is always full of songs, for quick unsearching
+	private MusicTreeModel music_model;
 	
-	private Collection<int> _songs;
+	public Collection<int> showNext; // these are populated if necessary when user opens this view.
+	//private Collection<int> _songs;
 	private Collection<int> _showing_songs;
 	private LinkedList<string> _columns;
 	
@@ -120,12 +121,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
-	public void set_songs(LinkedList<int> new_songs) {
-		_songs = new_songs;
-	}
 	
 	public Collection<int> get_songs() {
-		return _songs;
+		return music_model.getOrderedSongs();
 	}
 	
 	public Collection<int> get_showing_songs() {
@@ -157,7 +155,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		lm = lmm;
 		lw = lww;
 		
-		_songs = new LinkedList<int>();
+		//_songs = new LinkedList<int>();
 		_showing_songs = new LinkedList<int>();
 		_columns = new LinkedList<string>();
 		
@@ -692,15 +690,15 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 	}
 	
-	public void addSongs(Collection<int> songs) {
+	/*public void addSongs(Collection<int> songs) {
 		foreach(int i in songs) {
 			_songs.add(i);
 		}
 		
 		music_model.append_songs(songs, true);
-	}
+	}*/
 	
-	public void populateView(Collection<int> songs, bool is_search, bool force) {
+	public void populateView() {
 		/** NOTE: This could have a bad effect if user coincidentally
 		 * searches for something that has same number of results as 
 		 * a different search. However, this cuts lots of unecessary
@@ -708,12 +706,13 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		/*if(lw.searchField.get_text() == "" && _showing_songs.size == songs.size && hint != Hint.HISTORY && hint != Hint.QUEUE && !force) {
 			return;
 		}*/
-		
-		if(!is_search) {
-			_songs = songs;
+		if(showNext == _showing_songs) {
+			return;
 		}
 		
-		_showing_songs = songs;
+		if(showNext != _showing_songs) {
+			_showing_songs = showNext;
+		}
 		
 		view.freeze_child_notify();
 		view.set_model(null);
@@ -795,7 +794,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		music_model.updateSong(id, is_current);
 		
 		if(hint == Hint.QUEUE) {
-			populateView(lm.queue(), false, false);
+			showNext = lm.queue();
+			populateView();
 		}
 	}
 	

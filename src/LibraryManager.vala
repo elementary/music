@@ -44,6 +44,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private HashMap<int, int> _current_view; // id, song of currently showing songs
 	private LinkedList<int> _queue; // rowid, Song of queue
 	private LinkedList<int> _already_played; // Song of already played
+	private HashMap<string, Gdk.Pixbuf> _album_art; // All album art
 	
 	public LastFM.Core lfm;
 	private HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
@@ -120,6 +121,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_current_view = new HashMap<int, int>();
 		_queue = new LinkedList<int>();
 		_already_played = new LinkedList<int>();
+		_album_art = new HashMap<string, Gdk.Pixbuf>();
 		
 		lfm = new LastFM.Core(this);
 		_artists = new HashMap<string, LastFM.ArtistInfo>();
@@ -786,10 +788,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		var rv = new LinkedList<int>();
 		
-		if(search == "" && genre == "All Genres" && artist == "All Artists" && album == "All Albums") {
-			return _locals;
-		}
-		
 		foreach(int i in songs_to_search) {
 			Song s = song_from_id(i);
 			if(!s.isTemporary && l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down()) {
@@ -1446,16 +1444,15 @@ public class BeatBox.LibraryManager : GLib.Object {
         foreach(var s in _songs.values)
 			toShowS.add(s);
         
-        // first sort the songs so we know they are grouped by artists, then albums
+        // first sort the songs so we know they are grouped by album artist, album
 		toShowS.sort((CompareFunc)songCompareFunc);
 		
 		string previousAlbum = "";
 		foreach(Song s in toShowS) {
 			if(s.album != previousAlbum) {
 				
-				if(s.album_art == null && !s.getAlbumArtPath().contains("/usr/share/")) {
-					// when we actually set the album art, using the lm.song_from_id one not the ones we used just for sorting
-					s.album_art = new Gdk.Pixbuf.from_file_at_size(s.getAlbumArtPath(), 128, 128);
+				if(!s.getAlbumArtPath().contains("/usr/share/")) {
+					_album_art.set(s.artist+s.album, new Gdk.Pixbuf.from_file_at_size(s.getAlbumArtPath(), 128, 128));
 				}
 				
 				// also try loading from metadata
@@ -1469,11 +1466,23 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public static int songCompareFunc(Song a, Song b) {
-		return (a.album > b.album) ? 1 : -1;
+		if(a.album_artist != b.album_artist)
+			return (a.album > b.album) ? 1 : -1;
+		else
+			return (a.album_artist > b.album_artist) ? 1 : -1;
 	}
 	
 	public void cancel_operations() {
 		progress_cancel_clicked();
+	}
+	
+	public Gdk.Pixbuf get_album_art(int id) {
+		Song s = _songs.get(id);
+		
+		if(s == null)
+			return null;
+		
+		return _album_art.get(s.artist+s.album);
 	}
 	
 }

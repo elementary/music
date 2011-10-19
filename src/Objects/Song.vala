@@ -144,7 +144,7 @@ public class BeatBox.Song : GLib.Object{
 	}
 	
 	public string getAlbumArtPath() {
-		if(_album_path == "")
+		if(_album_path == "" || _album_path == null)
 			return GLib.Path.build_filename("/", "usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.png", null);
 		else
 			return _album_path;

@@ -112,8 +112,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			
 			if(column == 0) {
 				
-				if(s.album_art != null) {
-					val = s.album_art;
+				if(lm.get_album_art(s.rowid) != null) {
+					val = lm.get_album_art(s.rowid);
 				}
 				else {
 					val = defaultImage;
@@ -123,9 +123,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			else if(column == 1)
 				val = s.album.replace("&", "&amp;") + "\n" + "<span foreground=\"#999\">" + s.artist.replace("&", "&amp;") + "</span>";
 			else if(column == 2) {
-				stdout.printf("returning song\n");
 				val = s;
-				stdout.printf("returned\n");
 			}
 		}
 	}

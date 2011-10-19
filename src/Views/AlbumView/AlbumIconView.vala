@@ -6,6 +6,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 	LibraryWindow lw;
 	Collection<int> songs;
 	
+	public Collection<int> showNext; // these are populated if necessary when user opens this view.
 	private Collection<int> showingSongs;
 	private string last_search;
 	LinkedList<string> timeout_search;
@@ -73,9 +74,13 @@ public class BeatBox.AlbumView : ScrolledWindow {
 	 * is set, makes sure that only items that fit those filters are
 	 * shown
 	*/
-	public void populateView(Collection<int> toShow, bool force) {
+	public void populateView() {
+		/*if(showNext == showingSongs) {
+			stdout.printf("no need to repopulate album view\n");
+			return;
+		}*/
 		
-		showingSongs = toShow;
+		showingSongs = showNext;
 		
         var toShowS = new LinkedList<Song>();
         foreach(int i in showingSongs)

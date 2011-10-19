@@ -86,6 +86,7 @@ public class BeatBox.MillerColumns : HBox {
 	}
 	
 	public void populateColumns(string trigger, Collection<int> songs) {
+		stdout.printf("populating millers\n");
 		Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
 															"All Genres", 
 															"All Artists",
@@ -107,7 +108,7 @@ public class BeatBox.MillerColumns : HBox {
 		genres.populate(genresSet);
 		artists.populate(artistsSet);
 		albums.populate(albumsSet);
-		
+		stdout.printf("populated millers\n");
 		if(!genresSet.contains(genres.get_selected())) {
 			genres.set_selected("All Genres");
 		}
@@ -284,7 +285,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 				
 				lw.miller.artists.set_selected("All Artists");
 				lw.miller.albums.set_selected("All Albums");
-
+				
 				lw.miller.artists.populate(artistsSet);
 				lw.miller.albums.populate(albumsSet);
 			}

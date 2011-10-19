@@ -156,7 +156,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				/* time out works because... monkeys eat bananas */
 				int position = (int)settings.getLastSongPosition();
 				Timeout.add(250, () => {
-					stdout.printf("playing song %d\n", i);
 					lm.playSong(i);
 					
 					((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.setAsCurrentList(0);

@@ -357,6 +357,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public bool updateView(TreeModel model, TreePath path, TreeIter iter) {
+		if(!lw.initializationFinished)
+			return true;
+		
 		Widget w;
 		GLib.Object o;
 		model.get(iter, 0, out o, 1, out w);

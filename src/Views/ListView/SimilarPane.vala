@@ -68,27 +68,21 @@ public class BeatBox.SimilarPane : MusicTreeView {
 	}
 	
 	public void songPlayed(int id, int old) {
-		if(!(lm.current_songs().size == get_songs().size && lm.current_songs().contains_all(get_songs()))) {
-			/* a new song is played. don't show list until songs have loaded */
-			//similars.hide();
-			
-			//errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\nBeatBox is loading songs similar to " + lm.song_from_id(id).title.replace("&", "&amp;") + " by " + lm.song_from_id(id).artist.replace("&", "&amp;") + "...");
-			//errorBox.show();
-		}
+
 	}
 	
 	public void updateSongs(Song la, LinkedList<int> have) {
 		_next = la;
 		_have = have;
 		
-		if(!(lm.current_songs().size == get_songs().size && lm.current_songs().contains_all(get_songs()))) {
+		if(!is_current) {
 			updateDisplay();
 		}
 	}
 	
 	public void updateDisplay() {
 		bool do_transfer = false;
-		if((lm.current_songs().size == get_songs().size && lm.current_songs().contains_all(get_songs())))
+		if(is_current)
 			do_transfer = true;
 		
 		if(_have.size < 10) {
@@ -99,7 +93,8 @@ public class BeatBox.SimilarPane : MusicTreeView {
 			//errorBox.hide();
 		}
 		
-		populateView(_have, false, false);
+		showNext = _have;
+		populateView();
 		
 		_base = _next;
 		
