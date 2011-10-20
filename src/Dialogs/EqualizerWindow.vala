@@ -70,9 +70,7 @@ public class BeatBox.EqualizerWindow : Window {
 		VBox allItems = new VBox(false, 10);
 		scales = new HBox(false, 0);
 		
-		HBox topItems = new HBox(false, 0);
 		HBox bottomItems = new HBox(false, 0);
-		HBox advanced = new HBox(false, 0);
 		
 		equalizerOnOff = new Switch();
 		sideList = new PresetList(lm, lw);
@@ -156,7 +154,6 @@ public class BeatBox.EqualizerWindow : Window {
 	}
 	
 	public void equalizerOnOffToggled() {
-		stdout.printf("eOnOff %s", equalizerOnOff.get_active() ? "true" : "false");
 		sideList.set_sensitive(equalizerOnOff.get_active());
 		
 		foreach(var scale in scaleList)
@@ -165,8 +162,10 @@ public class BeatBox.EqualizerWindow : Window {
 		if(equalizerOnOff.get_active()) {
 			EqualizerPreset p = sideList.getSelectedPreset();
 			
-			for(int i = 0; i < 10; ++i)
-				lm.player.setEqualizerGain(i, p.getGain(i));
+			if(p != null) {
+				for(int i = 0; i < 10; ++i)
+					lm.player.setEqualizerGain(i, p.getGain(i));
+			}
 		}
 		else {
 			for(int i = 0; i < 10; ++i) {
@@ -212,11 +211,15 @@ public class BeatBox.EqualizerWindow : Window {
 	}
 	
 	public void presetSelected(EqualizerPreset p) {
+		if(p == null)
+			return;
+		
 		autoSwitchChosen = false;
 		
 		targetLevels.clear();
-		foreach(int i in p.gains)
+		foreach(int i in p.gains) {
 			targetLevels.add(i);
+		}
 		
 		if(!initialized) {
 			for(int index = 0; index < 10; ++index) {
@@ -286,7 +289,10 @@ public class BeatBox.EqualizerWindow : Window {
 	
 	public void onQuit() {
 		lm.settings.setEqualizerDisabled(!equalizerOnOff.get_active());
-		lm.settings.setSelectedPreset(sideList.getSelectedPreset());
+		
+		if(sideList.getSelectedPreset() != null)
+			lm.settings.setSelectedPreset(sideList.getSelectedPreset());
+		
 		lm.settings.setPresets(sideList.getPresets());
 		lm.settings.setAutoSwitchPreset(autoSwitchChosen);
 		lm.settings.setVolume(lm.player.getVolume());

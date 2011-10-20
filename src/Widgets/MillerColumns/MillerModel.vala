@@ -34,7 +34,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
     /* treesortable stuff */
     private int sort_column_id;
     private SortType sort_direction;
-    private TreeIterCompareFunc default_sort_func;
+    private unowned TreeIterCompareFunc default_sort_func;
     private HashMap<int, CompareFuncHolder> column_sorts;
 	
 	/** Initialize data storage, columns, etc. **/

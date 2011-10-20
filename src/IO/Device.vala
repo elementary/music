@@ -1,6 +1,5 @@
 public class BeatBox.Device : GLib.Object {
 	private Mount mount;
-	private double audioPercentage;
 	
 	public signal void device_unmounted();
 	
@@ -32,7 +31,17 @@ public class BeatBox.Device : GLib.Object {
 	}
 	
 	public int64 getSize() {
-		return mount.get_default_location().query_info("*", FileQueryInfoFlags.NONE).get_size();
+		int64 rv;
+		
+		try {
+			rv = mount.get_default_location().query_info("*", FileQueryInfoFlags.NONE).get_size();
+		}
+		catch(GLib.Error err) {
+			rv = 0;
+			stdout.printf("Could not fetch size of mount\n");
+		}
+		
+		return rv;
 	}
 	
 	public int64 getFreeSpace() {

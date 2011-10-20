@@ -25,7 +25,7 @@ using Gee;
 using GLib;
 
 public class BeatBox.CompareFuncHolder : GLib.Object {
-	public TreeIterCompareFunc sort_func;
+	public unowned TreeIterCompareFunc sort_func;
 	
 	public CompareFuncHolder(TreeIterCompareFunc func) {
 		sort_func = func;
@@ -45,7 +45,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
     /* treesortable stuff */
     private int sort_column_id;
     private SortType sort_direction;
-    private TreeIterCompareFunc default_sort_func;
+    private unowned TreeIterCompareFunc default_sort_func;
     private HashMap<int, CompareFuncHolder> column_sorts;
     
     /* custom signals for custom treeview. for speed */
@@ -59,11 +59,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		_columns = column_types;
 		_playing = playing;
 
-#if VALA_0_14
 		rows = new Sequence<int>();
-#else
-		rows = new Sequence<int>(null);
-#endif
        
        sort_column_id = -2;
        sort_direction = SortType.ASCENDING;
@@ -113,11 +109,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
-#if VALA_0_14
 	public TreePath? get_path (TreeIter iter) {
-#else
-	public TreePath get_path (TreeIter iter) {
-#endif
 		return new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
 	}
 

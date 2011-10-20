@@ -111,10 +111,18 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		// set the song's date_added and file size
 		s.date_added = (int)time_t();
 		
-		if(GLib.File.new_for_path(s.file).query_exists())
-			s.file_size = (int)(GLib.File.new_for_path(s.file).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
-		else
-			s.file_size = 0;
+		if(GLib.File.new_for_path(s.file).query_exists()) {
+			try {
+				s.file_size = (int)(GLib.File.new_for_path(s.file).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+			}
+			catch(Error err) {
+				s.file_size = 5; // best guess
+				stdout.printf("Could not ripped song's file_size: %s\n", err.message);
+			}
+		}
+		else {
+			s.file_size = 5; // best guess
+		}
 		
 		s.isTemporary = false;
 		s.showIndicator = false;
@@ -203,6 +211,7 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		if(err == "missing element") {
 			if(message.get_structure() != null && Gst.is_missing_plugin_message(message)) {
 					InstallGstreamerPluginsDialog dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
+					dialog.show();
 				}
 		}
 	}

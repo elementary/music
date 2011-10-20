@@ -1,4 +1,4 @@
-using Gst;
+/*using Gst;
 
 public class BeatBox.GstreamerTagger : GLib.Object {
 	private Gst.Discoverer disc;
@@ -38,7 +38,7 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 				int64 duration;
 				GLib.Date? date = new GLib.Date();
 				
-				/* get title, artist, album artist, album, genre, comment, lyrics strings */
+				// get title, artist, album artist, album, genre, comment, lyrics strings
 				if(info.get_tags().get_string(TAG_TITLE, out title))
 					s.title = title;
 				if(info.get_tags().get_string(TAG_ARTIST, out artist))
@@ -62,12 +62,12 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 				if(info.get_tags().get_string(TAG_LYRICS, out lyrics))
 					s.lyrics = lyrics;
 				
-				/* get the year */
+				// get the year
 				if(info.get_tags().get_date(TAG_DATE, out date)) {
 					if(date != null)
 						s.year = (int)date.get_year();
 				}
-				/* get track/album number/count, bitrating, rating, bpm */
+				// get track/album number/count, bitrating, rating, bpm
 				if(info.get_tags().get_uint(TAG_TRACK_NUMBER, out track))
 					s.track = (int)track;
 				if(info.get_tags().get_uint(TAG_TRACK_COUNT, out track_count))
@@ -87,17 +87,17 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 				if(info.get_audio_streams().length() > 0)
 					s.samplerate = info.get_audio_streams().nth_data(0).get_sample_rate();
 				
-				/* get length */
+				// get length
 				s.length = (uint)info.get_duration()/1000000000;
 				
-				/* see if it has an image data */
+				// see if it has an image data
 				Gst.Buffer buf;
 				if(info.get_tags().get_buffer(TAG_IMAGE, out buf))
 					s.has_embedded = true;
 				
 				s.date_added = (int)time_t();
 				stdout.printf("g\n");
-				/* get the size and convert to MB */
+				// get the size and convert to MB
 				s.file_size = (int)(file.query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
 				
 			}
@@ -215,11 +215,11 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 			  }
 		}
 		
-		return rv;	*/
+		return rv;	*
 	}
 	
 	public bool save_embedded_art(Gdk.Pixbuf pix) {
 		
 		return false;
 	}
-}
+} */

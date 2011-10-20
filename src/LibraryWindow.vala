@@ -188,7 +188,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		initializationFinished = true;
 		
 		// play the arg if there is one
-		if( args[1] != "" && File.new_for_uri(args[1]).query_exists()) {
+		/*if( args[1] != "" && File.new_for_uri(args[1]).query_exists()) {
 			Song s = new Song(File.new_for_uri(args[1]).get_path());
 			
 			s = lm.fo.import_song(File.new_for_uri(args[1]).get_path());
@@ -205,7 +205,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(!lm.playing) {
 				playClicked();
 			}
-		}
+		}*/
 	}
 	
 	public void build_ui() {
@@ -1173,7 +1173,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public void editEqualizerClick() {
 		EqualizerWindow ew = new EqualizerWindow(lm, this);
-		
+		ew.show();
 	}
 	
 	public void editPreferencesClick() {
@@ -1271,6 +1271,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public void song_not_found(int id) {
 		var not_found = new FileNotFoundDialog(lm, this, id);
+		not_found.show();
 	}
 	
 	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {

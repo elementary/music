@@ -143,21 +143,21 @@ def build(bld):
 									'src/Widgets/MillerColumns/*.vala', 'src/Store/*.vala', 'src/Store/Widgets/*.vala',
 									'src/GStreamer/*.vala', 'src/IO/*.vala', 'src/Views/*.vala'))
 
-	if obj.env['HAVE_ZEITGEIST']:
-		obj.packages += ' zeitgeist-1.0'
-		obj.uselib += ' ZEITGEIST'
-		obj.env.append_value ('VALAFLAGS', '--define=HAVE_ZEITGEIST')
+	#if obj.env['HAVE_ZEITGEIST']:
+		#obj.packages += ' zeitgeist-1.0'
+		#obj.uselib += ' ZEITGEIST'
+		#obj.env.append_value ('VALAFLAGS', '--define=HAVE_ZEITGEIST')
 
-	if obj.env['HAVE_INDICATE']:
-		obj.packages += ' Indicate-0.6'
-		obj.uselib += ' INDICATE'
-		obj.env.append_value ('VALAFLAGS', '--define=HAVE_INDICATE')
+	#if obj.env['HAVE_INDICATE']:
+		#obj.packages += ' Indicate-0.6'
+		#obj.uselib += ' INDICATE'
+		#obj.env.append_value ('VALAFLAGS', '--define=HAVE_INDICATE')
 
-	if obj.env['HAVE_DBUSMENUGTK']:
-		obj.packages += ' DbusmenuGtk3-0.4'
-		obj.uselib += ' DBUSMENUGTK'
-		obj.env.append_value ('VALAFLAGS', '--define=HAVE_DBUSMENUGTK')
-	if obj.env['HAVE_DBUSMENU']:
-		obj.packages += ' Dbusmenu-0.4'
-		obj.uselib += ' DBUSMENU'
-		obj.env.append_value ('VALAFLAGS', '--define=HAVE_DBUSMENU')
+	#if obj.env['HAVE_DBUSMENUGTK']:
+		#obj.packages += ' DbusmenuGtk3-0.4'
+		#obj.uselib += ' DBUSMENUGTK'
+		#obj.env.append_value ('VALAFLAGS', '--define=HAVE_DBUSMENUGTK')
+	#if obj.env['HAVE_DBUSMENU']:
+		#obj.packages += ' Dbusmenu-0.4'
+		#obj.uselib += ' DBUSMENU'
+		#obj.env.append_value ('VALAFLAGS', '--define=HAVE_DBUSMENU')

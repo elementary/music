@@ -22,7 +22,7 @@ public class BeatBox.Pipeline : GLib.Object {
 	dynamic Gst.Element audiobin;
 	dynamic Gst.Element preamp;
 	//dynamic Gst.Element volume;
-	dynamic Gst.Element rgvolume;
+	//dynamic Gst.Element rgvolume;
 	
 	public Pipeline() {
 		gapless = new ReplayGain();
@@ -82,7 +82,7 @@ public class BeatBox.Pipeline : GLib.Object {
 		play.video_tags_changed.connect(videoTagsChanged);*/
 	}
 	
-	private void videoTagsChanged(Gst.Element sender, int stream_number) {
+	/*private void videoTagsChanged(Gst.Element sender, int stream_number) {
 		
 	}
 
@@ -92,7 +92,7 @@ public class BeatBox.Pipeline : GLib.Object {
 
 	private void textTagsChanged(Gst.Element sender, int stream_number) {
 		
-	}
+	}*/
 	
 	public void enableEqualizer() {
 		if (eq.element != null) {

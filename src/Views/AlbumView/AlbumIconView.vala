@@ -31,7 +31,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		last_search = "";
 		timeout_search = new LinkedList<string>();
 		
-		defaultPix = new Gdk.Pixbuf.from_file(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.png", null));
+		defaultPix = lm.defaultAlbumArt;
 		
 		buildUI();
 	}
@@ -57,7 +57,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		
 		show_all();
 		
-		icons.button_press_event.connect(buttonPressEvent);
+		//icons.button_press_event.connect(buttonPressEvent);
 		icons.item_activated.connect(itemActivated);
 		this.size_allocate.connect(resized);
 	}
@@ -117,7 +117,6 @@ public class BeatBox.AlbumView : ScrolledWindow {
 			// select one based on mouse position
 			TreeIter iter;
 			TreePath path;
-			TreeViewColumn column;
 			CellRenderer cell;
 			
 			icons.get_item_at_pos((int)ev.x, (int)ev.y, out path, out cell);

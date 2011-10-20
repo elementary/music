@@ -230,16 +230,22 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	}
 	
 	public virtual bool titleClicked(Gdk.EventButton event) {
-		Thread.create<void*>(() => {
-			try {
-				GLib.AppInfo.launch_default_for_uri (lm.song_info.track.url, null);
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not open url in Last FM: %s\n", err.message);
-			}
+		try {
+			Thread.create<void*>(() => {
+				try {
+					GLib.AppInfo.launch_default_for_uri (lm.song_info.track.url, null);
+				}
+				catch(GLib.Error err) {
+					stdout.printf("Could not open url in Last FM: %s\n", err.message);
+				}
+				
+				return null;
+			}, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("Could not create thread to open title:%s\n", err.message);
 			
-			return null;
-		}, false);
+		}
 		
 		return false;
 	}

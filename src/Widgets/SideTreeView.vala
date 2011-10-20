@@ -241,7 +241,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		}
 		
 		lw.updateSensitivities();
-		stdout.printf("selection updated\n\n\n");
 	}
 	
 	public virtual bool sideListClick(Gdk.EventButton event) {
@@ -357,9 +356,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public bool updateView(TreeModel model, TreePath path, TreeIter iter) {
-		if(!lw.initializationFinished)
-			return true;
-		
 		Widget w;
 		GLib.Object o;
 		model.get(iter, 0, out o, 1, out w);
@@ -377,14 +373,15 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			if(w is ViewWrapper) {
 				((ViewWrapper)w).setIsCurrentView(true);
 				
+				if(!lw.initializationFinished)
+					return false;
+				
 				/* update the lists if we need to */
 				if(iter == library_music_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
-					//vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-					//			lm.song_ids(), false);
-					
-					lw.miller.populateColumns("", lm.song_ids());
+					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.song_ids(), false, false);
 				}
 				else if(iter == network_store_iter) {
 					Store.StoreView sv = (Store.StoreView)w;
@@ -396,7 +393,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 				else if(iter == playlists_similar_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
-					lw.miller.populateColumns("", vw.list.get_songs());
 					lw.updateMillerColumns(); // don't show millers if showing warning label
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
@@ -407,45 +403,34 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.queue(), true, false);
-					
-					lw.miller.populateColumns("", lm.queue());
 				}
 				else if(iter == playlists_history_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.already_played(), true, false);
-					
-					lw.miller.populateColumns("", lm.already_played());
 				}
 				else if(o is SmartPlaylist && !((SmartPlaylist)o).viewWrapper_is_up_to_date) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.songs_from_smart_playlist(((SmartPlaylist)o).rowid), true, false);
-					
-					lw.miller.populateColumns("", vw.showingSongs);
-					((SmartPlaylist)o).viewWrapper_is_up_to_date = true;
 				}
 				else if(o is Playlist) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.songs_from_playlist(((Playlist)o).rowid), true, false);
-					
-					lw.miller.populateColumns("", vw.showingSongs);
 				}
 				else if(o is Device) {
-					stdout.printf("is device\n");
 					DeviceViewWrapper vw = (DeviceViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								vw.songs, true, false);
-					
-					lw.miller.populateColumns("", vw.songs);
 				}
 				
-				//((ViewWrapper)w).setStatusBarText();
+				lw.miller.populateColumns("", ((ViewWrapper)w).showingSongs);
+				((ViewWrapper)w).setStatusBarText();
 			}
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(true);
@@ -479,7 +464,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	
 	public void CDejectClicked() {
 		TreeIter iter = getSelectedIter();
-		Widget w = getSelectedWidget();
 		
 		GLib.Object o;
 		filter.get(iter, 0, out o);

@@ -11,7 +11,6 @@ public class BeatBox.CDRipper : GLib.Object {
 	private string _device;
 	public int track_count;
 	private Format _format;
-	private bool _isRipping;
 	
 	public signal void song_ripped(Song s);
 	public signal void progress_notification(double progress);
@@ -40,8 +39,8 @@ public class BeatBox.CDRipper : GLib.Object {
 		
 		((Gst.Bin)pipeline).add_many(src, queue, filter, sink);
 		if(!src.link_many(queue, filter, sink)) {
-			return false;
 			stdout.printf("CD Ripper link_many failed\n");
+			return false;
 		}
 		
 		pipeline.bus.add_watch(busCallback);

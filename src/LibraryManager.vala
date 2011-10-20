@@ -46,6 +46,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private LinkedList<int> _already_played; // Song of already played
 	private HashMap<string, Gdk.Pixbuf> _album_art; // All album art
 	
+	public Gdk.Pixbuf defaultAlbumArt;
+	public Gdk.Pixbuf nowPlayingIcon;
+	
 	public LastFM.Core lfm;
 	private HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
 	private HashMap<string, LastFM.AlbumInfo> _albums;//key:artist<sep>album
@@ -122,6 +125,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_queue = new LinkedList<int>();
 		_already_played = new LinkedList<int>();
 		_album_art = new HashMap<string, Gdk.Pixbuf>();
+		
+		try {
+			defaultAlbumArt = new Gdk.Pixbuf.from_file(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.png", null));
+			nowPlayingIcon = lw.render_icon("audio-volume-high", IconSize.MENU, null);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not load default album art image\n");
+		}
 		
 		lfm = new LastFM.Core(this);
 		_artists = new HashMap<string, LastFM.ArtistInfo>();
@@ -484,7 +495,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		fo.rescan_music(GLib.File.new_for_path(settings.getMusicFolder()), ref paths, ref not_imported, ref new_songs);
 		
 		// all songs remaining are no longer in folder hierarchy
-		int index = 1;
 		lock(_songs) {
 			foreach(Song s in _songs.values) {
 				foreach(string path in paths) {
@@ -1206,9 +1216,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(id == 0 || song_from_id(id) == null)
 			return;
 		
+		stdout.printf("file...\n");
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
 			song_from_id(id).unique_status_image = lw.render_icon("process-error-symbolic", Gtk.IconSize.MENU, null);
 			lw.song_not_found(id);
+			stdout.printf("error\n");
 			return;
 		}
 		else {
@@ -1234,16 +1246,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 		//update settings
 		if(id != -2)
 			settings.setLastSongPlaying(id);
-		stdout.printf("song played callback\n");
+		
 		song_played(id, old_id);
-		stdout.printf("starting eq thread\n");
+		
 		try {
 			Thread.create<void*>(change_gains_thread, false);
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to change gains: %s\n", err.message);
 		}
-		stdout.printf("done\n");
+		
 		/* if same song 1 second later...
 		 * check for embedded art if need be (not loaded from on file) and use that
 		 * check that the s.getAlbumArtPath() exists, if not set to "" and call updateCurrentSong
@@ -1452,7 +1464,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(s.album != previousAlbum) {
 				
 				if(!s.getAlbumArtPath().contains("/usr/share/")) {
-					_album_art.set(s.artist+s.album, new Gdk.Pixbuf.from_file_at_size(s.getAlbumArtPath(), 128, 128));
+					try {
+						_album_art.set(s.artist+s.album, new Gdk.Pixbuf.from_file_at_size(s.getAlbumArtPath(), 128, 128));
+					}
+					catch(GLib.Error err) {}
 				}
 				
 				// also try loading from metadata
@@ -1476,7 +1491,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		progress_cancel_clicked();
 	}
 	
-	public Gdk.Pixbuf get_album_art(int id) {
+	public Gdk.Pixbuf? get_album_art(int id) {
 		Song s = _songs.get(id);
 		
 		if(s == null)

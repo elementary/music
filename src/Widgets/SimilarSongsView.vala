@@ -114,8 +114,14 @@ public class BeatBox.SimilarSongsView : TreeView {
 		}
 		
 		// fall back to just opening the last fm page
-		if(s != null && s.lastfm_url != null && s.lastfm_url != "")
-			GLib.AppInfo.launch_default_for_uri (s.lastfm_url, null);
+		if(s != null && s.lastfm_url != null && s.lastfm_url != "") {
+			try {
+				GLib.AppInfo.launch_default_for_uri (s.lastfm_url, null);
+			}
+			catch(Error err) {
+				stdout.printf("Couldn't open the similar song's last fm page: %s\n", err.message);
+			}
+		}
 		
 		return null;
 	}

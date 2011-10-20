@@ -4,7 +4,6 @@ public class BeatBox.Streamer : GLib.Object {
 	LibraryManager lm;
 	LibraryWindow lw;
 	BeatBox.Pipeline pipe;
-	CDRipper ripper;
 	
 	 /** signals **/
     public signal void end_of_stream();
@@ -122,12 +121,8 @@ public class BeatBox.Streamer : GLib.Object {
 			end_of_stream();
             break;
         case Gst.MessageType.ELEMENT:
-			if(message.get_structure() != null && is_missing_plugin_message(message)) {
-				InstallGstreamerPluginsDialog dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
-				
-				if(lm.playing) {
-					lw.playClicked();
-				}
+			if(lm.playing) {
+				lw.playClicked();
 			}
 			
 			break;

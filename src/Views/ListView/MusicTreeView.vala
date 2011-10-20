@@ -721,7 +721,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		SortType sort_dir;
 		music_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		music_model = new MusicTreeModel(lm, get_column_strings(), render_icon("audio-volume-high", IconSize.MENU, null));
+		music_model = new MusicTreeModel(lm, get_column_strings(), lm.nowPlayingIcon);
 		music_model.is_current = _is_current;
 		
 		var hPos = this.vadjustment.get_value();

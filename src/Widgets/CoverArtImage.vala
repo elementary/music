@@ -55,13 +55,33 @@ public class BeatBox.CoverArtImage : Image {
 				var dest = File.new_for_path(Path.build_path("/", playingPath.get_parent().get_path(), "Album.jpg"));
 				var destTemp = File.new_for_path(Path.build_path("/", playingPath.get_parent().get_path(), "AlbumTemporaryPathToEnsureNoProtection.jpg"));
 				
-				if(original.copy(destTemp, FileCopyFlags.NONE, null, null)) {
+				bool copySuccess = false;
+				
+				try {
+					success = original.copy(destTemp, FileCopyFlags.NONE, null, null);
+				}
+				catch(Error err) {
+					stdout.printf("Couldn't copy file over\n");
+				}
+				
+				if(copySuccess) {
 					
 					// test successful, no block on copy
-					if(dest.query_exists())
-						dest.delete();
+					if(dest.query_exists()) {
+						try {
+							dest.delete();
+						}
+						catch(Error err) {
+							stdout.printf("Could not delete previous file\n");
+						}
+					}
 					
-					destTemp.move(dest, FileCopyFlags.NONE, null, null);
+					try {
+						destTemp.move(dest, FileCopyFlags.NONE, null, null);
+					}
+					catch(Error err) {
+						stdout.printf("Could not move to destination\n");
+					}
 					
 					Gee.LinkedList<Song> updated_songs = new Gee.LinkedList<Song>();
 					foreach(int id in lm.song_ids()) {

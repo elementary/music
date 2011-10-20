@@ -111,7 +111,6 @@ public class BeatBox.FileOperator : Object {
 			var image_list = new LinkedList<string>();
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
-				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
 					image_list.add(file_info.get_name());
@@ -179,7 +178,6 @@ public class BeatBox.FileOperator : Object {
 			var image_list = new LinkedList<string>();
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
-				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
 					image_list.add(file_info.get_name());
@@ -287,7 +285,6 @@ public class BeatBox.FileOperator : Object {
 			var image_list = new LinkedList<string>();
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
-				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
 					image_list.add(file_info.get_name());
@@ -511,7 +508,6 @@ public class BeatBox.FileOperator : Object {
 			/* initialize file objects */
 			var original = GLib.File.new_for_path(s.file);
 			var ext = get_extension(s.file);
-			var file_info = original.query_info ("*", FileQueryInfoFlags.NONE, null);
 			
 			GLib.File dest;
 			string extra = "";
@@ -618,7 +614,7 @@ public class BeatBox.FileOperator : Object {
 				stdout.printf("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s, err.message);
 				
 				//tell the user the file could not be moved and ask if they'd like to delete permanently instead.
-				Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Could not trash file %s, would you like to permanently delete it? You cannot undo these changes.", s);
+				//Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Could not trash file %s, would you like to permanently delete it? You cannot undo these changes.", s);
 			}
 		}
 	}
