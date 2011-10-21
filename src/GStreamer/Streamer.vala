@@ -120,12 +120,6 @@ public class BeatBox.Streamer : GLib.Object {
         case Gst.MessageType.EOS:
 			end_of_stream();
             break;
-        case Gst.MessageType.ELEMENT:
-			if(lm.playing) {
-				lw.playClicked();
-			}
-			
-			break;
         default:
             break;
         }

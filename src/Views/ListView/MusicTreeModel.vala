@@ -124,10 +124,10 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			if(column == 0)
 				val = s.rowid;
 			else if(column == 1) {
-				if(lm.song_info.song != null && lm.song_info.song.rowid == s.rowid && is_current)
-					val = _playing;
-				else if(s.unique_status_image != null)
+				if(s.unique_status_image != null)
 					val = s.unique_status_image;
+				else if(lm.song_info.song != null && lm.song_info.song.rowid == s.rowid && is_current)
+					val = _playing;
 				else
 					val = Value(typeof(Gdk.Pixbuf));
 			}

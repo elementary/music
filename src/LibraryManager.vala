@@ -1216,28 +1216,28 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(id == 0 || song_from_id(id) == null)
 			return;
 		
-		stdout.printf("file...\n");
+		// save previous song's id
+		if(song_info.song != null)
+			old_id = song_info.song.rowid;
+		
+		// set the current song
+		song_info.song = song_from_id(id);
+		
+		// check that the file exists
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
 			song_from_id(id).unique_status_image = lw.render_icon("process-error-symbolic", Gtk.IconSize.MENU, null);
 			lw.song_not_found(id);
-			stdout.printf("error\n");
 			return;
 		}
 		else {
 			song_from_id(id).unique_status_image = null;
 		}
 		
-		if(song_info.song != null)
-			old_id = song_info.song.rowid;
-		
 		// actually play the song asap
 		if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://"))
 			player.setURI("file://" + song_from_id(id).file);
 		else
 			player.setURI(song_from_id(id).file);
-			
-		// set the current song
-		song_info.song = song_from_id(id);
 		
 		//pause if paused
 		if(!playing)
