@@ -103,12 +103,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		ALL;
 	}
 	
-	public LibraryManager(BeatBox.DataBaseManager dbmn, BeatBox.Settings sett, BeatBox.LibraryWindow lww, string[] args) {
+	public LibraryManager(BeatBox.Settings sett, BeatBox.LibraryWindow lww, string[] args) {
 		this.lw = lww;
 		this.player = new Streamer(this, lw, args);
 		this.settings = sett;
 		
-		this.dbm = dbmn;
+		this.dbm = new DataBaseManager(this);
 		this.dbu = new DataBaseUpdater(dbm);
 		this.fo = new BeatBox.FileOperator(this, settings);
 		

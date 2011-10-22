@@ -110,6 +110,9 @@ public class BeatBox.SongEditor : Window {
 			title = "Editing " + songs.size.to_string() + " songs";// + (sum.artist != "" ? (" by " + sum.artist + " ") : " ") + (sum.album != "" ? (" on " + sum.album) : "");
 		}
 		
+		if(sum.year == -1)
+			sum.year = new Time().year;
+		
 		fields.set("Title", new FieldEditor("Title", sum.title, new Entry()));
 		fields.set("Artist", new FieldEditor("Artist", sum.artist, new Entry()));
 		fields.set("Album Artist", new FieldEditor("Album Artist", sum.album_artist, new Entry()));
@@ -118,7 +121,7 @@ public class BeatBox.SongEditor : Window {
 		fields.set("Comment", new FieldEditor("Comment", sum.comment, new TextView()));
 		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Disc", new FieldEditor("Disc", sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
-		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(1000, 9999, 1)));
+		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(0, 9999, 1)));
 		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false)));
 		
 		content = new VBox(false, 10);

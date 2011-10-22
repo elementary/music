@@ -24,7 +24,7 @@ public class BeatBox.Playlist : Object {
 	private string _name;
 	public TreeViewSetup tvs;
 	private int _rowid;
-	private Gee.LinkedList<int> _songs; // hold title, artist, album
+	private Gee.LinkedList<int> _songs;
 	
 	public Playlist() {
 		_name = "New Playlist";
@@ -65,21 +65,24 @@ public class BeatBox.Playlist : Object {
 		_songs.clear();
 	}
 	
-	public void songs_from_string(string songs) {
+	public void songs_from_string(string songs, LibraryManager lm) {
 		string[] song_strings = songs.split("<song_seperator>", 0);
 		
 		int index;
 		for(index = 0; index < song_strings.length - 1; ++index) {
-			
-			addSong(int.parse(song_strings[index]));
+			string[] pieces_of_song = song_strings[index].split("<value_seperator>", 0);
+
+			Song s = lm.song_from_name(pieces_of_song[0], pieces_of_song[1]);
+			addSong(s.rowid);
 		}
 	}
 	
-	public string songs_to_string() {
+	public string songs_to_string(LibraryManager lm) {
 		string rv = "";
 		
 		foreach(int id in _songs) {
-			rv += id.to_string() + "<song_seperator>";
+			Song s = lm.song_from_id(id);
+			rv += s.title + "<value_seperator>" + s.artist + "<song_seperator>";
 		}
 		
 		return rv;

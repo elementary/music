@@ -28,6 +28,7 @@ using TagLib;
 using Gee;
 
 public class BeatBox.DataBaseManager : GLib.Object {
+	LibraryManager lm;
 	public const int COLUMN_COUNT = 17;
 	
 	SQLHeavy.Database _db;
@@ -42,7 +43,8 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	 * @param write True if has write access
 	 * @param create True to have create access
 	 */
-	public DataBaseManager() {
+	public DataBaseManager(LibraryManager lm) {
+		this.lm = lm;
 		bool need_create = false;
 		GLib.File beatbox_folder;
 		GLib.File db_file;
@@ -373,7 +375,7 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 			
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				Playlist p = new Playlist.with_info(results.fetch_int(0), results.fetch_string(1));
-				p.songs_from_string(results.fetch_string(2));
+				p.songs_from_string(results.fetch_string(2), lm);
 				p.tvs.sort_column = results.fetch_string(3);
 				p.tvs.set_sort_direction_from_string(results.fetch_string(4));
 				p.tvs.import_columns(results.fetch_string(5));
@@ -396,7 +398,7 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 			
 			foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
-				query.set_string(":songs", p.songs_to_string());
+				query.set_string(":songs", p.songs_to_string(lm));
 				query.set_string(":sort_column", p.tvs.sort_column);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());
@@ -417,7 +419,7 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 			Query query = transaction.prepare("UPDATE `playlists` SET name=:name, songs=:songs, sort_column=:sort_column, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
 			
 			query.set_string(":name", p.name);
-			query.set_string(":songs", p.songs_to_string());
+			query.set_string(":songs", p.songs_to_string(lm));
 			query.set_string(":sort_column", p.tvs.sort_column);
 			query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 			query.set_string(":columns", p.tvs.columns_to_string());

@@ -93,12 +93,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public Notify.Notification notification;
 	
-	public LibraryWindow(BeatBox.DataBaseManager dbm, string[] args) {
+	public signal void playPauseChanged();
+	
+	public LibraryWindow(string[] args) {
 		settings = new BeatBox.Settings();
 		//this.player = player;
 		
 		//this is used by many objects, is the media backend
-		lm = new BeatBox.LibraryManager(dbm, settings, this, args);
+		lm = new BeatBox.LibraryManager(settings, this, args);
 		
 		//various objects
 		similarSongs = new LastFM.SimilarSongs(lm);
@@ -643,7 +645,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// if we are adding songs, refresh periodically
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
-		if(lm.songs().size - vw.list.get_showing_songs().size >= 500) {
+		if(lm.songs().size - vw.songs.size >= 500) {
 			
 			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
 			miller.populateColumns("", lm.song_ids());
@@ -920,6 +922,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			}
 		}
+		
+		playPauseChanged();
 	}
 	
 	public virtual void nextClicked() {

@@ -203,6 +203,11 @@ public class MprisPlayer : GLib.Object {
 		
 		BeatBox.Beatbox._program.lm.song_played.connect(songPlayed);
 		BeatBox.Beatbox._program.lm.song_updated.connect(songPlayed);
+		BeatBox.Beatbox._program.playPauseChanged.connect(playingChanged);
+	}
+	
+	private void playingChanged() {
+		trigger_metadata_update();
 	}
 	
 	private void trigger_metadata_update() {
@@ -212,7 +217,9 @@ public class MprisPlayer : GLib.Object {
 		update_metadata_source = Timeout.add(300, () => {
 			//print("trigger_metadata_update %s\n", global.current_artist);
 			Variant variant = this.PlaybackStatus;
-			queue_property_for_notification("Metadata", variant);
+			
+			queue_property_for_notification("PlaybackStatus", variant);
+			queue_property_for_notification("Metadata", _metadata);
 			update_metadata_source = 0;
 			return false;
 		});
@@ -234,6 +241,8 @@ public class MprisPlayer : GLib.Object {
 		_metadata.insert("xesam:title", s.title);
 		_metadata.insert("sesam:genre", genreArray);
 		_metadata.insert("mpris:artUrl", "file://" + s.getAlbumArtPath());
+		_metadata.insert("mpris:length", BeatBox.Beatbox._program.lm.player.getDuration()/1000);
+		_metadata.insert("xesam:userRating", s.rating);
 		
 		trigger_metadata_update();
 	}
@@ -254,7 +263,6 @@ public class MprisPlayer : GLib.Object {
 		changed_properties = null;
 		
 		try {
-			stdout.printf("sending property change\n");
 			conn.emit_signal("org.mpris.MediaPlayer2.beatbox",
 			                 "/org/mpris/MediaPlayer2", 
 			                 "org.freedesktop.DBus.Properties", 
@@ -264,7 +272,6 @@ public class MprisPlayer : GLib.Object {
 			                             builder, 
 			                             invalidated_builder)
 			                 );
-			stdout.printf("sent property change\n");
 		}
 		catch(Error e) {
 			print("Could not send MPRIS property change: %s\n", e.message);
@@ -335,13 +342,13 @@ public class MprisPlayer : GLib.Object {
 		}
 	}
 	
-	/*public double Rate {
+	public double Rate {
 		get {
 			return (double)1.0;
 		}
 		set {
 		}
-	}*/
+	}
 	
 	public bool Shuffle {
 		get {
@@ -370,18 +377,18 @@ public class MprisPlayer : GLib.Object {
 		}
 	}
 	
-	/*public double Volume {
-		owned get{
-			return (double)1.0;
+	public double Volume {
+		get{
+			return BeatBox.Beatbox._program.lm.player.getVolume();
 		}
 		set {
-			
+			BeatBox.Beatbox._program.lm.player.setVolume(value);
 		}
-	}*/
+	}
 	
 	public int64 Position {
 		get {
-			return (int64)1;
+			return (BeatBox.Beatbox._program.lm.player.getPosition()/1000);
 		}
 	}
 	
@@ -423,7 +430,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public bool CanSeek {
 		get {
-			return false;
+			return true;
 		}
 	}
 	
@@ -462,18 +469,15 @@ public class MprisPlayer : GLib.Object {
 	}
 	
 	public void Seek(int64 Offset) {
-		return;
+		//BeatBox.Beatbox._program.lm.player.setPosition(Position/ 1000);
+		stdout.printf("Must seek!\n");
 	}
 	
 	public void SetPosition(string dobj, int64 Position) {
-		//print(" set position %lf\n", ((double)Position/(xn.gPl.length_time / 1000.0)));
-		//xn.gPl.gst_position = ((double)Position/(xn.gPl.length_time / 1000.0));
-		stdout.printf("Must set position!\n");
+		BeatBox.Beatbox._program.lm.player.setPosition(Position * 1000);
 	}
 	
 	public void OpenUri(string Uri) {
-		//TODO
-		return;
 	}
 }
 #endif

@@ -71,18 +71,12 @@ def configure(ctx):
 		ctx.env.append_value ('CFLAGS', '-D HAVE_INDICATE')
 	else:
 		print ('Building without indicate-0.5 (used to show Sound Menu).')
-
+		
 	check_pkg(ctx, 'dbusmenu-glib-0.4', 'DBUSMENU', '0.4.3', mandatory=False)
 	if ctx.env['HAVE_DBUSMENU']:
 		ctx.env.append_value ('CFLAGS', '-D HAVE_DBUSMENU')
 	else:
 		print ('Building without dbusmenu-glib-0.4 (used to show Sound Menu).')
-
-	check_pkg(ctx, 'dbusmenu-gtk3-0.4', 'DBUSMENUGTK', '0.4.3', mandatory=False)
-	if ctx.env['HAVE_DBUSMENUGTK']:
-		ctx.env.append_value ('CFLAGS', '-D HAVE_DBUSMENUGTK')
-	else:
-		print ('Building without dbusmenu-gtk3-0.4 (used to show Sound Menu).')
 
 def build(bld):
 	#install basic desktop file
@@ -152,11 +146,6 @@ def build(bld):
 		obj.packages += ' Indicate-0.6'
 		obj.uselib += ' INDICATE'
 		obj.env.append_value ('VALAFLAGS', '--define=HAVE_INDICATE')
-
-	if obj.env['HAVE_DBUSMENUGTK']:
-		obj.packages += ' DbusmenuGtk3-0.4'
-		obj.uselib += ' DBUSMENUGTK'
-		obj.env.append_value ('VALAFLAGS', '--define=HAVE_DBUSMENUGTK')
 	if obj.env['HAVE_DBUSMENU']:
 		obj.packages += ' Dbusmenu-0.4'
 		obj.uselib += ' DBUSMENU'

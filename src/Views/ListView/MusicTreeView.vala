@@ -72,6 +72,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	CheckMenuItem columnDateAdded;
 	CheckMenuItem columnLastPlayed;
 	CheckMenuItem columnBPM;
+	
 	//for song list right click
 	Menu songMenuActionMenu;
 	MenuItem songEditSong;
@@ -197,7 +198,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	public void updateSensitivities() {
 		if(hint == Hint.MUSIC) {
 			songRemove.set_sensitive(true);
-			songRemove.set_label("Move to Trash");
+			songRemove.set_label("Remove from Library");
 			columnNumber.set_active(false);
 			columnNumber.set_visible(false);
 		}
@@ -1239,10 +1240,15 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		}
 		
 		if(hint == Hint.MUSIC) {
+			Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Would you like to move the files to the trash?");
+			md.title = "Move to Trash";
 			
+			if(md.run() == ResponseType.YES)
+				lm.remove_songs(toRemove, true);
+			else
+				lm.remove_songs(toRemove, false);
 			
-			
-			lm.remove_songs(toRemove, false);
+			md.destroy();
 		}
 		if(hint == Hint.PLAYLIST)
 			lm.save_playlists();

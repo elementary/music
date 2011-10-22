@@ -24,7 +24,6 @@ using Gtk;
 
 public class BeatBox.Beatbox : GLib.Object {
 	public static LibraryWindow _program;
-	private static DataBaseManager dbm;
 	public static bool enableStore;
 	
 	/*public const string STOCK_BEATBOX = "beatbox";
@@ -99,11 +98,8 @@ public class BeatBox.Beatbox : GLib.Object {
 			}*/
 			
 			add_stock_images();
-			
-			stdout.printf("Loading database\n");
-			dbm = new DataBaseManager();
-			
-			_program = new BeatBox.LibraryWindow(dbm, args);
+						
+			_program = new BeatBox.LibraryWindow(args);
 			//app.watch_window(_program);
 			
 			Gtk.main();
