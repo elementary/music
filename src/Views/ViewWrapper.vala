@@ -194,7 +194,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
 		//if(!this.visible || force) {
-			stdout.printf("searching..\n");
+			//stdout.printf("searching..\n");
 			var potentialShowing = new LinkedList<int>();
 			
 			if(hint != MusicTreeView.Hint.CDROM) {
@@ -235,14 +235,14 @@ public class BeatBox.ViewWrapper : VBox {
 			list.showNext = potentialShowing;
 			albumView.showNext = potentialShowing;
 			showingSongs = potentialShowing;
-			stdout.printf("searched\n");
+			//stdout.printf("searched\n");
 		//}
 		
 		if(this.visible) {
 			if(type == ViewType.LIST) {
-				stdout.printf("populating\n");
+				//stdout.printf("populating\n");
 				list.populateView();
-				stdout.printf("populated\n");
+				//stdout.printf("populated\n");
 				list.show();
 				albumView.hide();
 				
@@ -279,7 +279,6 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public void millerChanged() {
-		stdout.printf("miller changed 1\n");
 		if(lw.initializationFinished && isCurrentView) {
 			stdout.printf("miller changed\n");
 			doUpdate(this.currentView, songs, false, true);
@@ -300,7 +299,7 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public virtual void searchFieldChanged() {
-		if(lw.initializationFinished && isCurrentView && lw.searchField.get_text().length != 1) {
+		if(lw.initializationFinished && isCurrentView && lw.searchField.get_text().length != 1 && this.visible) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
 				

@@ -25,6 +25,8 @@ using Gee;
 using Notify;
 
 public class BeatBox.LibraryWindow : Gtk.Window {
+	public static Granite.Application app { get; private set; }
+	
 	public BeatBox.LibraryManager lm;
 	BeatBox.Settings settings;
 	LastFM.SimilarSongs similarSongs;
@@ -44,7 +46,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public bool initializationFinished;
 	
 	VBox verticalBox;
-	VBox mainViews;
+	public VBox mainViews;
 	public MillerColumns miller;
 	VPaned millerPane;
 	ElementaryWidgets.Welcome welcomeScreen;
@@ -187,7 +189,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		build_ui();
 		this.present();
 		
-		initializationFinished = true;
+		Timeout.add(1000, () => {
+			initializationFinished = true;
+			return false;
+		});
 		
 		// play the arg if there is one
 		/*if( args[1] != "" && File.new_for_uri(args[1]).query_exists()) {

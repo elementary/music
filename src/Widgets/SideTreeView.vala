@@ -431,7 +431,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 								vw.songs, true, false);
 				}
 				
-				lw.miller.populateColumns("", ((ViewWrapper)w).showingSongs);
+				if(lw.initializationFinished) {
+					stdout.printf("populating miller columns\n");
+					lw.miller.populateColumns("", ((ViewWrapper)w).showingSongs);
+				}
 				((ViewWrapper)w).setStatusBarText();
 			}
 			else if(w is Store.StoreView) {

@@ -104,17 +104,19 @@ public class BeatBox.MillerColumns : HBox {
 			genresSet.add(lm.song_from_id(id).genre);
 		}
 		
+		stdout.printf("populating the three miller columns\n");
 		genres.populate(genresSet);
 		artists.populate(artistsSet);
 		albums.populate(albumsSet);
+		stdout.printf("if selected does not exist in one of three columns, setting it\n");
 		
-		if(!genresSet.contains(genres.get_selected())) {
+		if(!(genres.get_selected() == "All Genres") && !genresSet.contains(genres.get_selected())) {
 			genres.set_selected("All Genres");
 		}
-		else if(!artistsSet.contains(artists.get_selected())) {
+		else if(!(artists.get_selected() == "All Artists") && !artistsSet.contains(artists.get_selected())) {
 			artists.set_selected("All Artists");
 		}
-		else if(!albumsSet.contains(albums.get_selected())) {
+		else if(!(albums.get_selected() == "All Albums") && !albumsSet.contains(albums.get_selected())) {
 			albums.set_selected("All Albums");
 		}
 	}
@@ -212,7 +214,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 	
 	public void set_selected(string val) {
-		if(!lw.initializationFinished)
+		if(!lw.initializationFinished || !this.visible || val == _selected)
 			return;
 		
 		stdout.printf("selected\n");

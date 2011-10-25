@@ -17,7 +17,7 @@ from TaskGen import extension, feature
 
 APPNAME = 'beatbox'
 VERSION = '0.1'
-VALAC_VERSION = '0.11.6'
+VALAC_VERSION = '0.13.0'
 
 out = 'build'
 
@@ -59,6 +59,7 @@ def configure(ctx):
 	#check_pkg(ctx, 'webkit-1.0', 'WEBKIT', '0.0')
 	#check_pkg(ctx, 'gnome-vfs-2.0', 'GVFS', '0.0')
 	check_pkg(ctx, 'gio-unix-2.0', 'GIO_UNIX', '0.0')
+	check_pkg(ctx, 'granite', 'GRANITE', '0.0');
 
 	check_pkg(ctx, 'zeitgeist-1.0', 'ZEITGEIST', '0.3.10', mandatory=False)
 	if ctx.env['HAVE_ZEITGEIST']:
@@ -128,9 +129,9 @@ def build(bld):
 	
 	obj = bld.new_task_gen ('valac', 'program')
 	obj.features = 'c cprogram'
-	obj.packages = 'glib-2.0 gtk+-3.0 gee-1.0 gstreamer-0.10 gstreamer-interfaces-0.10 gstreamer-pbutils-0.10 gstreamer-cdda-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify libsoup-2.4 json-glib-1.0 gio-unix-2.0'
+	obj.packages = 'glib-2.0 gtk+-3.0 gee-1.0 gstreamer-0.10 gstreamer-interfaces-0.10 gstreamer-pbutils-0.10 gstreamer-cdda-0.10 taglib_c gio-2.0 sqlheavy-0.1 libxml-2.0 gconf-2.0 libnotify libsoup-2.4 json-glib-1.0 gio-unix-2.0 granite'
 	obj.target = APPNAME
-	obj.uselib = 'GLIB GTK GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES GSTREAMER_PBUTILS GSTREAMER_CDDA TAGLIB GIO SQLHEAVY LIBXML GCONF LIBNOTIFY GTHREAD SOUP JSON GIO_UNIX'
+	obj.uselib = 'GLIB GTK GOBJECT GEE GSTREAMER GSTREAMER_INTERFACES GSTREAMER_PBUTILS GSTREAMER_CDDA TAGLIB GIO SQLHEAVY LIBXML GCONF LIBNOTIFY GTHREAD SOUP JSON GIO_UNIX GRANITE'
 	obj.source =  obj.path.ant_glob(('*.vala', 'src/*.vala', 'src/*.c', 'src/*.h', 'src/DataBase/*.vala', 
 									'src/Dialogs/*.vala', 'src/LastFM/*.vala', 'src/Objects/*.vala', 
 									'src/Widgets/*.vala', 'src/Views/AlbumView/*.vala', 'src/Views/ListView/*.vala', 

@@ -235,7 +235,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// start thread to load all the songs pixbuf's and to load playlists
 		try {
 			Thread.create<void*>(fetch_thread_function, false);
-			Thread.create<void*>(update_playlists_thread, false);
+			//Thread.create<void*>(update_playlists_thread, false);
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
@@ -727,18 +727,20 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// now update all smart playlists behind the scenes.
 		try {
-			Thread.create<void*>(update_playlists_thread, false);
+			Thread.create<void*>(update_views_thread, false);
 		} 
 		catch(GLib.ThreadError err) {
 			stdout.printf("ERROR: Could not create thread to update smart playlists: %s \n", err.message);
 		}
 	}
 	
-	public void* update_playlists_thread () {
+	public void* update_views_thread () {
 		// update them
-		foreach(SmartPlaylist sp in _smart_playlists.values) {
-			//if(!sp.is_up_to_date) // for now just update them all. it is quick.
-				sp.analyze(this);
+		foreach(Widget w in lw.mainViews.get_children()) {
+			if(!w.visible && w is ViewWrapper) {
+				ViewWrapper vw = (ViewWrapper)w;
+				vw.doUpdate(vw.currentView, vw.songs, false, false);
+			}
 		}
 		
 		return null;
