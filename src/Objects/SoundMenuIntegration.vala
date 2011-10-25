@@ -41,8 +41,6 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 	}
 	
 	private void on_name_appeared(DBusConnection conn, string name) {
-		stdout.printf("name %s appeared\n", name);
-		
 		/* set up the server to connect to music.beatbox dbus */
 		server = Indicate.Server.ref_default();
 		server.set("type", "music.beatbox");
@@ -51,8 +49,6 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 	}
 	
 	private void on_name_vanished(DBusConnection conn, string name) {
-		stdout.printf("name %s vanished\n", name);
-		
 		if(server != null)
 			server.hide();
 	}

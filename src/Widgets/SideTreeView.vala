@@ -373,8 +373,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			if(w is ViewWrapper) {
 				((ViewWrapper)w).setIsCurrentView(true);
 				
-				if(!lw.initializationFinished)
+				if(!lw.initializationFinished) {
+					stdout.printf("returning false not initialized yet\n");
 					return false;
+				}
 				
 				/* update the lists if we need to */
 				if(iter == library_music_iter) {

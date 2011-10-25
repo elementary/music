@@ -212,6 +212,12 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 	
 	public void set_selected(string val) {
+		if(!lw.initializationFinished)
+			return;
+		
+		stdout.printf("selected\n");
+		
+		stdout.printf("passed selected\n");
 		_selected = val;
 		selectedChanged(category, _selected);
 		model.foreach(selectProperString);

@@ -35,6 +35,7 @@ public class BeatBox.SongEditor : Window {
 	//for padding around notebook mostly
 	private VBox content;
 	private HBox padding;
+	Notebook notebook;
 	
 	private VBox vert; // seperates editors with buttons and other stuff
 	private HBox horiz; // seperates text with numerical editors
@@ -126,6 +127,7 @@ public class BeatBox.SongEditor : Window {
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 10);
+		notebook = new Notebook();
 		vert = new VBox(false, 0);
 		horiz = new HBox(false, 0);
 		textVert = new VBox(false, 0);
@@ -178,6 +180,17 @@ public class BeatBox.SongEditor : Window {
 		_previous.clicked.connect(previousClicked);
 		_next.clicked.connect(nextClicked);
 		_save.clicked.connect(saveClicked);
+	}
+	
+	public Viewport createLyricsViewport() {
+		Viewport rv = new Viewport(null, null);
+		
+		var padding = new HBox(false, 10);
+		var content = new VBox(false, 10);
+		var lyricsText = new TextView();
+		
+		
+		return rv;
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {

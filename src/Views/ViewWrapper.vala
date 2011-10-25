@@ -193,7 +193,8 @@ public class BeatBox.ViewWrapper : VBox {
 		/* END special case */
 		
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
-		if(!this.visible || force) {
+		//if(!this.visible || force) {
+			stdout.printf("searching..\n");
 			var potentialShowing = new LinkedList<int>();
 			
 			if(hint != MusicTreeView.Hint.CDROM) {
@@ -234,11 +235,14 @@ public class BeatBox.ViewWrapper : VBox {
 			list.showNext = potentialShowing;
 			albumView.showNext = potentialShowing;
 			showingSongs = potentialShowing;
-		}
+			stdout.printf("searched\n");
+		//}
 		
 		if(this.visible) {
 			if(type == ViewType.LIST) {
+				stdout.printf("populating\n");
 				list.populateView();
+				stdout.printf("populated\n");
 				list.show();
 				albumView.hide();
 				
@@ -275,7 +279,9 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public void millerChanged() {
+		stdout.printf("miller changed 1\n");
 		if(lw.initializationFinished && isCurrentView) {
+			stdout.printf("miller changed\n");
 			doUpdate(this.currentView, songs, false, true);
 			
 			showing_all = (showingSongs.size == songs.size);
@@ -284,12 +290,12 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		else if(lw.initializationFinished) {
 			// start thread to prepare for when it is current
-			try {
+			/*try {
 				Thread.create<void*>(update_view_thread, false);
 			}
 			catch(GLib.ThreadError err) {
 				
-			}
+			}*/
 		}
 	}
 	
@@ -302,6 +308,7 @@ public class BeatBox.ViewWrapper : VBox {
 				if(to_search != lw.searchField.get_text() || to_search == last_search)
 					return false;
 				
+				stdout.printf("search field changed\n");
 				doUpdate(this.currentView, songs, false, true);
 					
 				last_search = to_search;
@@ -315,12 +322,12 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		else if(lw.initializationFinished && lw.searchField.get_text().length != 1){
 			// start thread to prepare for when it is current
-			try {
+			/*try {
 				Thread.create<void*>(update_view_thread, false);
 			}
 			catch(GLib.ThreadError err) {
 				
-			}
+			}*/
 		}
 	}
 	
