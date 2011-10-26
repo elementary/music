@@ -34,7 +34,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	private Collection<int> _showing_songs;
 	private LinkedList<string> _columns;
 	
-	public int relative_id;// if playlist, playlist id, etc.
+	public int relative_id;// if playlist, smart playlist, etc.
 	public Hint hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	string sort_column;
 	SortType sort_direction;

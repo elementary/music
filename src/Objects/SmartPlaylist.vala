@@ -131,9 +131,9 @@ public class BeatBox.SmartPlaylist : Object {
 	}
 	
 	public LinkedList<int> analyze(LibraryManager lm) {
-		if(is_up_to_date) {
-			return songs;
-		}
+		//if(is_up_to_date) {
+		//	return songs;
+		//}
 		
 		LinkedList<int> rv = new LinkedList<int>();
 		

@@ -721,16 +721,25 @@ public class BeatBox.LibraryManager : GLib.Object {
 		dbu.updateItem(updates);
 		
 		// mark all smart playlists as not up to date
-		foreach(SmartPlaylist sp in _smart_playlists.values) {
-			sp.is_up_to_date = false;
+		//foreach(SmartPlaylist sp in _smart_playlists.values) {
+		//	sp.is_up_to_date = false;
+		//}
+		
+		foreach(Widget w in lw.mainViews.get_children()) {
+			if(w.visible && w is ViewWrapper && ((ViewWrapper)w).isCurrentView) {
+				ViewWrapper vw = (ViewWrapper)w;
+				
+				if(vw.list.hint == MusicTreeView.Hint.SMART_PLAYLIST)
+					vw.doUpdate(vw.currentView, songs_from_smart_playlist(vw.list.relative_id), false, true);
+			}
 		}
 		
-		// now update all smart playlists behind the scenes.
+		// now update all non-showing views
 		try {
 			Thread.create<void*>(update_views_thread, false);
 		} 
 		catch(GLib.ThreadError err) {
-			stdout.printf("ERROR: Could not create thread to update smart playlists: %s \n", err.message);
+			stdout.printf("ERROR: Could not create thread to update hidden views: %s \n", err.message);
 		}
 	}
 	

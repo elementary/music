@@ -69,7 +69,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public ElementaryWidgets.TopDisplay topDisplay;
 	public ElementaryWidgets.ModeButton viewSelector;
 	public ElementaryWidgets.ElementarySearchEntry searchField;
-	ElementaryWidgets.AppMenu appMenu;
+	//ElementaryWidgets.AppMenu appMenu;
 	HBox statusBar;
 	Label statusBarLabel;
 	SimpleOptionChooser shuffleChooser;
@@ -87,7 +87,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ImageMenuItem helpOnline;
 	MenuItem helpTranslate;
 	MenuItem helpReport;
-	ImageMenuItem helpAbout;
 	MenuItem editEqualizer;
 	ImageMenuItem editPreferences;
 	
@@ -97,7 +96,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public signal void playPauseChanged();
 	
-	public LibraryWindow(string[] args) {
+	public LibraryWindow(Granite.Application app, string[] args) {
+		this.app = app;
 		settings = new BeatBox.Settings();
 		//this.player = player;
 		
@@ -256,7 +256,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		helpOnline = new ImageMenuItem.from_stock(Gtk.Stock.HELP, null);
 		helpTranslate = new MenuItem.with_label("Translate This Application...");
 		helpReport = new MenuItem.with_label("Report a Problem...");
-		helpAbout = new ImageMenuItem.from_stock(Gtk.Stock.ABOUT, null);
 		editEqualizer = new MenuItem.with_label("Equalizer");
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
 		settingsMenu = new Menu();
@@ -268,7 +267,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector = new ElementaryWidgets.ModeButton();
 		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
 		miller = new MillerColumns(lm, this); //miller must be below search for it to work properly
-		appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
+		//appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
 		grooveSharkScroll = new ScrolledWindow(null, null);
@@ -318,7 +317,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		settingsMenu.append(new SeparatorMenuItem());
 		settingsMenu.append(editEqualizer);
 		settingsMenu.append(editPreferences);
-		settingsMenu.append(helpAbout);
 		
 		fileSetMusicFolder.activate.connect(editPreferencesClick);
 		fileImportMusic.activate.connect(fileImportMusicClick);
@@ -353,10 +351,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		});
 		
-		helpAbout.set_label("About");
 		editPreferences.set_label("Preferences");
 		
-		helpAbout.activate.connect(helpAboutClick);
 		editEqualizer.activate.connect(editEqualizerClick);
 		editPreferences.activate.connect(editPreferencesClick);
 		
@@ -400,7 +396,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         viewSelectorBin.add(viewSelector);
         viewSelectorBin.set_border_width(3);
         searchFieldBin.add(searchField);
-        appMenuBin.add(appMenu);
+        //appMenuBin.add(app.create_appmenu(settingsMenu));
         
         topDisplayBin.set_expand(true);
         viewSelector.append(new Image.from_stock("view-list-icons-symbolic", IconSize.MENU));
@@ -414,7 +410,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.insert(viewSelectorBin, 3);
         topControls.insert(topDisplayBin, 4);
         topControls.insert(searchFieldBin, 5);
-        topControls.insert(appMenuBin, 6);
+        topControls.insert(app.create_appmenu(settingsMenu), 6);
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
@@ -1157,27 +1153,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void songs_removed(LinkedList<int> removed) {
 		updateSensitivities();
-	}
-	
-	public virtual void helpAboutClick() {
-		AboutDialog ad = new AboutDialog();
-		
-		ad.set_program_name("BeatBox");
-		ad.set_version("0.1");
-		ad.set_website("https://launchpad.net/beat-box");
-		ad.set_website_label("Launchpad");
-		ad.set_icon( render_icon(Gtk.Stock.ABOUT, IconSize.DIALOG, null));
-		ad.logo = render_icon("beatbox", IconSize.DIALOG, null);
-		
-		string[] authors = new string[1];
-		authors[0] = "Scott Ringwelski";
-		ad.set_authors(authors);
-		
-		ad.response.connect( (response_id) => { 
-			ad.destroy(); 
-		});
-		
-		ad.show();
 	}
 	
 	public void editEqualizerClick() {

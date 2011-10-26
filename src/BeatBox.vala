@@ -66,12 +66,12 @@ public class BeatBox.Beatbox : Granite.Application {
 	
 	construct {
 		// App info
-		/*build_data_dir = Build.DATADIR;
-		build_pkg_data_dir = Build.PKGDATADIR;
-		build_release_name = Build.RELEASE_NAME;
-		build_version = Build.VERSION;
-		build_version_info = Build.VERSION_INFO;
-		*/
+		//build_data_dir = Build.DATADIR;
+		//build_pkg_data_dir = Build.PKGDATADIR;
+		build_release_name = "Beta";
+		build_version = "0.1";
+		build_version_info = "0.1 (Beta)";
+		
 		program_name = "BeatBox";
 		exec_name = "beatbox";
 		
@@ -79,6 +79,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		application_id = "net.launchpad.beatbox";
 		app_icon = "beatbox";
 		app_launcher = "beatbox.desktop";
+		app_years = "2010-2011";
 		
 		main_url = "https://launchpad.net/beat-box";
 		bug_url = "https://bugs.launchpad.net/beat-box";
@@ -99,7 +100,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		Notify.init("beatbox");
 		add_stock_images();
 		
-		_program = new BeatBox.LibraryWindow(args);
+		_program = new BeatBox.LibraryWindow(this, args);
 		
 		_program.set_application(this);
 		//_program.show_all();

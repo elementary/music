@@ -193,7 +193,7 @@ public class BeatBox.ViewWrapper : VBox {
 		/* END special case */
 		
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
-		//if(!this.visible || force) {
+		if(!this.visible || force) {
 			//stdout.printf("searching..\n");
 			var potentialShowing = new LinkedList<int>();
 			
@@ -236,7 +236,7 @@ public class BeatBox.ViewWrapper : VBox {
 			albumView.showNext = potentialShowing;
 			showingSongs = potentialShowing;
 			//stdout.printf("searched\n");
-		//}
+		}
 		
 		if(this.visible) {
 			if(type == ViewType.LIST) {

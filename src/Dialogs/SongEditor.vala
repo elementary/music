@@ -19,12 +19,9 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  */
-
-/* Merely a place holder for multiple pieces of information regarding
- * the current song playing. Mostly here because of dependence. */
-
 using Gtk;
 using Gee;
+using Granite;
 
 public class BeatBox.SongEditor : Window {
 	LibraryManager _lm;
@@ -35,7 +32,7 @@ public class BeatBox.SongEditor : Window {
 	//for padding around notebook mostly
 	private VBox content;
 	private HBox padding;
-	Notebook notebook;
+	Widgets.StaticNotebook notebook;
 	
 	private VBox vert; // seperates editors with buttons and other stuff
 	private HBox horiz; // seperates text with numerical editors
@@ -43,6 +40,7 @@ public class BeatBox.SongEditor : Window {
 	private VBox numerVert; // seperates numerical editors
 	
 	private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
+	private TextView lyricsText;
 	
 	private Button _previous;
 	private Button _next;
@@ -60,16 +58,55 @@ public class BeatBox.SongEditor : Window {
 		
 		_lm = lm;
 		
-		fields = new HashMap<string, FieldEditor>();
-		
 		_allSongs = allSongs;
 		_songs = songs;
 		
-		Song sum = lm.song_from_id(songs.get(0)).copy();
+		notebook = new Granite.Widgets.StaticNotebook();
+		notebook.append_page(createBasicViewport(), new Label("Metadata"));
+		if(_songs.size == 1)
+			notebook.append_page(createLyricsViewport(), new Label("Lyrics"));
+		else
+			lyricsText = null;
+		
+		HButtonBox buttonSep = new HButtonBox();
+		buttonSep.set_layout(ButtonBoxStyle.END);
+		_previous = new Button.with_label("Previous");
+		_next = new Button.with_label("Next");
+		_save = new Button.with_label("Done");
+		
+		buttonSep.pack_start(_previous, false, false, 0);
+		buttonSep.pack_start(_next, false, false, 0);
+		buttonSep.pack_end(_save, false, false, 0);
+		
+		content.pack_start(wrap_alignment(notebook, 10, 0, 0, 0), true, true, 0);
+		content.pack_start(wrap_alignment(buttonSep, 0, 0, 10, 0), false, true, 0);
+		
+		((Gtk.ButtonBox)buttonSep).set_child_secondary(_next, true);
+		((Gtk.ButtonBox)buttonSep).set_child_secondary(_previous, true);
+		
+		padding.pack_start(content, true, true, 10);
+		add(padding);
+		
+		show_all();
+		
+		if(_songs.size == 1) {
+			foreach(FieldEditor fe in fields.values)
+				fe.set_check_visible(false);
+		}
+		
+		_previous.clicked.connect(previousClicked);
+		_next.clicked.connect(nextClicked);
+		_save.clicked.connect(saveClicked);
+	}
+	
+	public Viewport createBasicViewport() {
+		Viewport rv = new Viewport(null, null);
+		fields = new HashMap<string, FieldEditor>();
+		Song sum = _lm.song_from_id(_songs.get(0)).copy();
 		
 		/** find what these songs have what common, and keep those values **/
 		foreach(int i in _songs) {
-			Song s = lm.song_from_id(i);
+			Song s = _lm.song_from_id(i);
 			
 			if(s.track != sum.track)
 				sum.track = 0;
@@ -108,7 +145,7 @@ public class BeatBox.SongEditor : Window {
 			title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
 		}
 		else {
-			title = "Editing " + songs.size.to_string() + " songs";// + (sum.artist != "" ? (" by " + sum.artist + " ") : " ") + (sum.album != "" ? (" on " + sum.album) : "");
+			title = "Editing " + _songs.size.to_string() + " songs";// + (sum.artist != "" ? (" by " + sum.artist + " ") : " ") + (sum.album != "" ? (" on " + sum.album) : "");
 		}
 		
 		if(sum.year == -1)
@@ -127,7 +164,6 @@ public class BeatBox.SongEditor : Window {
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 10);
-		notebook = new Notebook();
 		vert = new VBox(false, 0);
 		horiz = new HBox(false, 0);
 		textVert = new VBox(false, 0);
@@ -151,46 +187,38 @@ public class BeatBox.SongEditor : Window {
 		horiz.pack_end(numerVert, false, true, 0);
 		vert.pack_start(horiz, true, true, 0);
 		
-		HButtonBox buttonSep = new HButtonBox();
-		buttonSep.set_layout(ButtonBoxStyle.END);
-		_previous = new Button.with_label("Previous");
-		_next = new Button.with_label("Next");
-		_save = new Button.with_label("Done");
+		rv.add(vert);
 		
-		buttonSep.set_child_secondary((Widget)_next, true);
-		buttonSep.set_child_secondary((Widget)_previous, true);
-		
-		buttonSep.pack_start(_previous, false, false, 0);
-		buttonSep.pack_start(_next, false, false, 0);
-		buttonSep.pack_end(_save, false, false, 0);
-		
-		content.pack_start(wrap_alignment(vert, 10, 0, 0, 0), true, true, 0);
-		content.pack_start(wrap_alignment(buttonSep, 0, 0, 10, 0), false, true, 0);
-		
-		padding.pack_start(content, true, true, 10);
-		add(padding);
-		
-		show_all();
-		
-		if(_songs.size == 1) {
-			foreach(FieldEditor fe in fields.values)
-				fe.set_check_visible(false);
-		}
-		
-		_previous.clicked.connect(previousClicked);
-		_next.clicked.connect(nextClicked);
-		_save.clicked.connect(saveClicked);
+		return rv;
 	}
 	
 	public Viewport createLyricsViewport() {
 		Viewport rv = new Viewport(null, null);
 		
-		var padding = new HBox(false, 10);
-		var content = new VBox(false, 10);
-		var lyricsText = new TextView();
+		var padding = new VBox(false, 10);
+		var content = new HBox(false, 10);
 		
+		var fetchButton = new Button.with_label("Fetch lyrics");
+		VButtonBox rightButtons = new VButtonBox();
+		rightButtons.set_layout(ButtonBoxStyle.CENTER);
+		rightButtons.pack_start(fetchButton, false, false, 0);
+		
+		lyricsText = new TextView();
+		lyricsText.get_buffer().text = _lm.song_from_id(_songs.get(0)).lyrics;
+		
+		content.pack_start(lyricsText, true, true, 0);
+		content.pack_start(rightButtons, false, false, 0);
+		
+		padding.pack_start(content, true, true, 0);
+		rv.add(padding);
+		
+		fetchButton.clicked.connect(fetchLyricsClicked);
 		
 		return rv;
+	}
+	
+	public void fetchLyricsClicked() {
+		// fetch lyrics here
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -262,6 +290,16 @@ public class BeatBox.SongEditor : Window {
 		fields.get("Disc").set_value(sum.album_number.to_string());
 		fields.get("Year").set_value(sum.year.to_string());
 		fields.get("Rating").set_value(sum.rating.to_string());
+		
+		if(lyricsText == null) {
+			var lyrics = createLyricsViewport();
+			
+			notebook.append_page(lyrics, new Label("Lyrics"));
+			lyrics.show_all();
+		}
+		else {
+			lyricsText.get_buffer().text = sum.lyrics;
+		}
 	}
 	
 	public void save_songs() {
@@ -289,6 +327,10 @@ public class BeatBox.SongEditor : Window {
 				s.year = int.parse(fields.get("Year").get_value());
 			if(fields.get("Rating").checked())
 				s.rating = int.parse(fields.get("Rating").get_value());
+				
+			// save lyrics
+			if(lyricsText != null)
+				s.lyrics = lyricsText.get_buffer().text;
 		}
 		
 		songs_saved(_songs);
