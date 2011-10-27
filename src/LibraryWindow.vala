@@ -189,10 +189,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		build_ui();
 		this.present();
 		
-		Timeout.add(1000, () => {
+		//Timeout.add(1000, () => {
 			initializationFinished = true;
-			return false;
-		});
+		//	return false;
+		//});
 		
 		// play the arg if there is one
 		/*if( args[1] != "" && File.new_for_uri(args[1]).query_exists()) {

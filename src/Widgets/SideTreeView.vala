@@ -433,7 +433,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				
 				if(lw.initializationFinished) {
 					stdout.printf("populating miller columns\n");
-					lw.miller.populateColumns("", ((ViewWrapper)w).showingSongs);
+					lw.miller.populateColumns("", ((ViewWrapper)w).songs);
 				}
 				((ViewWrapper)w).setStatusBarText();
 			}

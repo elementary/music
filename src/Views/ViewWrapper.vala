@@ -289,12 +289,12 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		else if(lw.initializationFinished) {
 			// start thread to prepare for when it is current
-			/*try {
+			try {
 				Thread.create<void*>(update_view_thread, false);
 			}
 			catch(GLib.ThreadError err) {
 				
-			}*/
+			}
 		}
 	}
 	
@@ -321,12 +321,12 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		else if(lw.initializationFinished && lw.searchField.get_text().length != 1){
 			// start thread to prepare for when it is current
-			/*try {
+			try {
 				Thread.create<void*>(update_view_thread, false);
 			}
 			catch(GLib.ThreadError err) {
 				
-			}*/
+			}
 		}
 	}
 	

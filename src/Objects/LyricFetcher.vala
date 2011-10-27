@@ -62,7 +62,7 @@ public class BeatBox.LyricFetcher : GLib.Object {
 		
 		if(start != -1 && end != -1 && end > start) {
 			string lyrics = content.substring(start, end - start);
-			lyrics = lyrics.replace("<br>", "\n").replace("<i>","").replace("<i/>","").strip();
+			lyrics = lyrics.replace("<br><br>", "").replace("<br>","").replace("<i>","").replace("</i>","").strip();
 			return lyrics;
 		}
 		
