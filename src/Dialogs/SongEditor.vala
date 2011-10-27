@@ -128,6 +128,10 @@ public class BeatBox.SongEditor : Window {
 				sum.year = -1;
 			if(s.bitrate != sum.bitrate)
 				sum.bitrate = -1;
+			if(s.composer != sum.composer)
+				sum.composer = "";
+			if(s.grouping != sum.grouping)
+				sum.grouping = "";
 			//length = 0;
 			//samplerate = 0;
 			if(s.bpm != sum.bpm)
@@ -156,6 +160,8 @@ public class BeatBox.SongEditor : Window {
 		fields.set("Album Artist", new FieldEditor("Album Artist", sum.album_artist, new Entry()));
 		fields.set("Album", new FieldEditor("Album", sum.album, new Entry()));
 		fields.set("Genre", new FieldEditor("Genre", sum.genre, new Entry()));
+		fields.set("Composer", new FieldEditor("Composer", sum.composer, new Entry()));
+		fields.set("Grouping", new FieldEditor("Grouping", sum.grouping, new Entry()));
 		fields.set("Comment", new FieldEditor("Comment", sum.comment, new TextView()));
 		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Disc", new FieldEditor("Disc", sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
@@ -172,12 +178,14 @@ public class BeatBox.SongEditor : Window {
 		textVert.pack_start(fields.get("Title"), false, true, 0);
 		textVert.pack_start(fields.get("Artist"), false, true, 5);
 		textVert.pack_start(fields.get("Album Artist"), false, true, 5);
+		textVert.pack_start(fields.get("Composer"), false, true, 5);
 		textVert.pack_start(fields.get("Album"), false, true, 5);
 		textVert.pack_start(fields.get("Comment"), false, true, 5);
 		
 		numerVert.pack_start(fields.get("Track"), false, true, 0);
 		numerVert.pack_start(fields.get("Disc"), false, true, 5);
 		numerVert.pack_start(fields.get("Genre"), false, true, 5);
+		numerVert.pack_start(fields.get("Grouping"), false, true, 5);
 		numerVert.pack_start(fields.get("Year"), false, true, 5);
 		numerVert.pack_start(fields.get("Rating"), false, true, 5);
 		//if(songs.size == 1)
@@ -309,6 +317,8 @@ public class BeatBox.SongEditor : Window {
 		fields.get("Disc").set_value(sum.album_number.to_string());
 		fields.get("Year").set_value(sum.year.to_string());
 		fields.get("Rating").set_value(sum.rating.to_string());
+		fields.get("Composer").set_value(sum.composer);
+		fields.get("Grouping").set_value(sum.grouping);
 		
 		if(lyricsText == null) {
 			var lyrics = createLyricsViewport();
@@ -335,6 +345,10 @@ public class BeatBox.SongEditor : Window {
 				s.album = fields.get("Album").get_value();
 			if(fields.get("Genre").checked())
 				s.genre = fields.get("Genre").get_value();
+			if(fields.get("Composer").checked())
+				s.composer = fields.get("Composer").get_value();
+			if(fields.get("Grouping").checked())
+				s.grouping = fields.get("Grouping").get_value();
 			if(fields.get("Comment").checked())
 				s.comment = fields.get("Comment").get_value();
 				
@@ -400,7 +414,7 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(original != "");
 			
 			entry = (Entry)w;
-			if(name != "Genre")
+			if(name != "Genre" && name != "Grouping")
 				entry.set_size_request(300, -1);
 			else
 				entry.set_size_request(100, -1);
