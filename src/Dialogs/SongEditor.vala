@@ -206,8 +206,21 @@ public class BeatBox.SongEditor : Window {
 		lyricsText = new TextView();
 		lyricsText.get_buffer().text = _lm.song_from_id(_songs.get(0)).lyrics;
 		
-		content.pack_start(lyricsText, true, true, 0);
+		ScrolledWindow scroll = new ScrolledWindow(null, null);
+		Viewport viewport = new Viewport(null, null);
+		
+		viewport.set_shadow_type(ShadowType.ETCHED_IN);
+		scroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		
+		viewport.add(lyricsText);
+		scroll.add(viewport);
+		
+		content.pack_start(scroll, true, true, 0);
 		content.pack_start(rightButtons, false, false, 0);
+		
+		lyricsText.set_size_request(400, -1);
+		scroll.set_size_request(400, -1);
+		viewport.set_size_request(400, -1);
 		
 		padding.pack_start(content, true, true, 0);
 		rv.add(padding);
@@ -219,6 +232,12 @@ public class BeatBox.SongEditor : Window {
 	
 	public void fetchLyricsClicked() {
 		// fetch lyrics here
+		Song s = _lm.song_from_id(_songs.get(0));
+		LyricFetcher lf = new LyricFetcher(s.album_artist, s.title);
+		var fetchedLyrics = lf.fetch_lyrics();
+		
+		if(fetchedLyrics != "")
+			lyricsText.get_buffer().text = lf.fetch_lyrics();
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
