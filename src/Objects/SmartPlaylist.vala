@@ -175,6 +175,14 @@ public class BeatBox.SmartPlaylist : Object {
 			else if(q.comparator == "does not contain")
 				return !(q.value.down() in s.artist.down());
 		}
+		else if(q.field == "Composer") {
+			if(q.comparator == "is")
+				return q.value.down() == s.composer.down();
+			else if(q.comparator == "contains")
+				return (q.value.down() in s.composer.down());
+			else if(q.comparator == "does not contain")
+				return !(q.value.down() in s.composer.down());
+		}
 		else if(q.field == "Comment") {
 			if(q.comparator == "is")
 				return q.value.down() == s.comment.down();
@@ -190,6 +198,14 @@ public class BeatBox.SmartPlaylist : Object {
 				return (q.value.down() in s.genre.down());
 			else if(q.comparator == "does not contain")
 				return !(q.value.down() in s.genre.down());
+		}
+		else if(q.field == "Grouping") {
+			if(q.comparator == "is")
+				return q.value.down() == s.grouping.down();
+			else if(q.comparator == "contains")
+				return (q.value.down() in s.grouping.down());
+			else if(q.comparator == "does not contain")
+				return !(q.value.down() in s.grouping.down());
 		}
 		else if(q.field == "Title") {
 			if(q.comparator == "is")

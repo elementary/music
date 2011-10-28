@@ -80,8 +80,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	MenuItem songMenuQueue;
 	MenuItem songMenuNewPlaylist;
 	MenuItem songMenuAddToPlaylist; // make menu on fly
-	MenuItem songRateSong;
-	Menu songRateSongMenu;
+	//MenuItem songRateSong;
+	//Menu songRateSongMenu;
 	RatingWidgetMenu rating_item;
 	MenuItem songRemove;
 	
@@ -369,7 +369,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);
 		
-		view.cursor_changed.connect_after(() => { update_rating_menu(); });
+		//view.cursor_changed.connect_after(() => { update_rating_menu(); });
 		view.button_release_event.connect(viewClickRelease);
 		view.columns_changed.connect(viewColumnsChanged);
 		view.key_press_event.connect(keyPressed);
@@ -444,8 +444,8 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		songMenuNewPlaylist = new MenuItem.with_label("New Playlist");
 		songMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
 		songRemove = new MenuItem.with_label("Remove song");
-		songRateSongMenu = new Menu();
-		songRateSong = new MenuItem.with_label("Rate Song");
+		//songRateSongMenu = new Menu();
+		//songRateSong = new MenuItem.with_label("Rate Song");
 		rating_item = new RatingWidgetMenu();
 		songMenuActionMenu.append(songEditSong);
 		songMenuActionMenu.append(songFileBrowse);
@@ -878,8 +878,25 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 				songMenuAddToPlaylist.set_sensitive(true);
 			
 			songMenuActionMenu.show_all();
-			//little hack to avoid a glitch, remove it if you know what you are doing
-			rating_item.already_drawn = false;
+			
+			int set_rating = -1;
+			TreeModel temp;
+			foreach(TreePath path in view.get_selection().get_selected_rows(out temp)) {
+				TreeIter item;
+				temp.get_iter(out item, path);
+				
+				int id;
+				temp.get(item, 0, out id);
+				
+				if(set_rating == -1)
+					set_rating = (int)lm.song_from_id(id).rating;
+				else if(set_rating != lm.song_from_id(id).rating) {
+					set_rating = 0;
+					break;
+				}
+			}
+			
+			rating_item.rating_value = set_rating;
 			songMenuActionMenu.popup (null, null, null, 3, get_current_event_time());
 			
 			TreeSelection selected = view.get_selection();
@@ -1279,7 +1296,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		lm.update_songs(los, false);
 	}
 	
-	public void update_rating_menu() {
+	/*public void update_rating_menu() {
 		TreeSelection selected = view.get_selection();
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel l_model;
@@ -1294,7 +1311,7 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			
 			rating_item.rating_value = (int)s.rating;
 		}
-	}
+	}*/
 	
 	public virtual void songRateSong1Clicked() {
 		TreeSelection selected = view.get_selection();

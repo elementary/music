@@ -221,15 +221,16 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		fields.set("Artist", 1);
 		fields.set("Bitrate", 2);
 		fields.set("Comment", 3);
-		fields.set("Date Added", 4);
-		fields.set("Genre", 5);
-		fields.set("Last Played", 6);
-		fields.set("Length", 7);
-		fields.set("Playcount", 8);
-		fields.set("Rating", 9);
-		fields.set("Skipcount", 10);
-		fields.set("Title", 11);
-		fields.set("Year", 12);
+		fields.set("Composer", 4);
+		fields.set("Date Added", 5);
+		fields.set("Genre", 6);
+		fields.set("Last Played", 7);
+		fields.set("Length", 8);
+		fields.set("Playcount", 9);
+		fields.set("Rating", 10);
+		fields.set("Skipcount", 11);
+		fields.set("Title", 12);
+		fields.set("Year", 13);
 		
 		_box = new HBox(false, 2);
 		_field = new ComboBoxText();
@@ -242,8 +243,10 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.append_text("Artist");
 		_field.append_text("Bitrate");
 		_field.append_text("Comment");
+		_field.append_text("Composer");
 		_field.append_text("Date Added");
 		_field.append_text("Genre");
+		_field.append_text("Grouping");
 		_field.append_text("Last Played");
 		_field.append_text("Length");
 		_field.append_text("Playcount");
@@ -255,7 +258,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.set_active(fields.get(q.field));
 		_comparator.set_active(comparators.get(q.comparator));
 		
-		if(q.field == "Album" || q.field == "Artist" || q.field == "Comment" || q.field == "Genre" || q.field == "Title") {
+		if(q.field == "Album" || q.field == "Artist" || q.field == "Comment" || q.field == "Composer" ||  q.field == "Genre" || q.field == "Grouping" || q.field == "Title") {
 			_value.text = q.value;
 		}
 		else {
@@ -284,7 +287,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		rv.field = _field.get_active_text();
 		rv.comparator = _comparator.get_active_text();
 		
-		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Title")
+		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Composer" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Grouping" || _field.get_active_text() == "Title")
 			rv.value = _value.text;
 		else
 			rv.value = _valueNumerical.value.to_string();
@@ -293,7 +296,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 	}
 	
 	public virtual void fieldChanged() {
-		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Title") {
+		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Composer" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Grouping" || _field.get_active_text() == "Title") {
 			_value.show();
 			_valueNumerical.hide();
 			

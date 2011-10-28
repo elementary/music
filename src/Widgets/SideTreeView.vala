@@ -374,7 +374,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				((ViewWrapper)w).setIsCurrentView(true);
 				
 				if(!lw.initializationFinished) {
-					stdout.printf("returning false not initialized yet\n");
 					return false;
 				}
 				
@@ -431,8 +430,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 								vw.songs, true, false);
 				}
 				
-				if(lw.initializationFinished) {
-					stdout.printf("populating miller columns\n");
+				if(lw.initializationFinished && (lw.viewSelector.selected == 2)) {
 					lw.miller.populateColumns("", ((ViewWrapper)w).songs);
 				}
 				((ViewWrapper)w).setStatusBarText();

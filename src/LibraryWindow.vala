@@ -390,7 +390,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         ToolItem topDisplayBin = new ToolItem();
         ToolItem viewSelectorBin = new ToolItem();
         ToolItem searchFieldBin = new ToolItem();
-        ToolItem appMenuBin = new ToolItem();
         topDisplayBin.add(topDisplay);
         topDisplayBin.set_border_width(1);
         viewSelectorBin.add(viewSelector);
@@ -440,6 +439,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusBar.pack_start(statusBarLabel, true, true, 0);
 		statusBar.pack_start(wrap_alignment(infoPanelChooser, 0, 10, 0, 0), false, false, 2);
 		
+		// add mounts to side tree view
+		sideTree.dm.loadPreExistingMounts();
+		
 		/* Connect events to functions */
 		sourcesToSongs.get_child1().size_allocate.connect(sourcesToSongsHandleSet);
 		welcomeScreen.activated.connect(welcomeScreenActivated);
@@ -461,9 +463,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Gtk.drag_dest_add_uri_targets(this);
 		drag_data_received.connect(dragReceived);
 		
-		// nowthat everything is added, resize to proper height
-		resize(settings.getWindowWidth(), this.default_height);
-		
 		show_all();
 		
 		// nowthat everything is added, resize to proper height
@@ -478,10 +477,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
 		viewSelector.set_showing(3, false);
-		updateMillerColumns();
-		
-		// add mounts to side tree view
-		sideTree.dm.loadPreExistingMounts();
+		//updateMillerColumns();
 		
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
@@ -1357,6 +1353,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck && haveSongs);
 		millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
+		
+		// populate if selected == 2 (miller columns)
+		if(viewSelector.selected == 2 && sideTree.getSelectedWidget() is ViewWrapper) {
+			ViewWrapper vw = (ViewWrapper)sideTree.getSelectedWidget();
+			
+			miller.populateColumns("", vw.songs);
+		}
 	}
 	
 	public void searchFieldActivate() {

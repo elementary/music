@@ -63,7 +63,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		loveSong = new Button();
 		banSong = new Button();
 		artistImage = new Image();
-		rating = new RatingWidget(c, true);
+		rating = new RatingWidget(c, true, false);
 		album = new Label("Album");
 		year = new Label("Year");
 		ssv = new SimilarSongsView(lm, lw);

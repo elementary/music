@@ -117,9 +117,11 @@ public class BeatBox.Song : GLib.Object{
 		rv.album_count = album_count;
 		rv.title = title;
 		rv.artist = artist;
+		rv.composer = composer;
 		rv.album_artist = album_artist;
 		rv.album = album;
 		rv.genre = genre;
+		rv.grouping = grouping;
 		rv.comment = comment;
 		rv.year = year;
 		rv.bitrate = bitrate;
@@ -134,6 +136,12 @@ public class BeatBox.Song : GLib.Object{
 		rv.lyrics = lyrics;
 		rv.album_art = album_art;
 		rv.setAlbumArtPath(getAlbumArtPath());
+		rv.isPreview = isPreview;
+		rv.isTemporary = isTemporary;
+		rv.last_modified = last_modified;
+		rv.pulseProgress = pulseProgress;
+		rv.showIndicator = showIndicator;
+		rv.unique_status_image = unique_status_image;
 		
 		return rv;
 	}

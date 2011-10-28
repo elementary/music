@@ -27,14 +27,16 @@ public class BeatBox.RatingWidget : EventBox {
 	internal int rating;
 	
 	private bool centered;
+	private bool menuItem;
 	private Pixbuf _canvas;
 	private Pixbuf not_starred;
 	private Pixbuf starred;
 	
 	public signal void rating_changed(int new_rating);
 	
-	public RatingWidget(Color? c, bool centered) {
+	public RatingWidget(Color? c, bool centered, bool isMenu) {
 		this.centered = centered;
+		menuItem = isMenu;
 		
 		if(c != null)
 			modify_bg(StateType.NORMAL, c);
@@ -84,9 +86,11 @@ public class BeatBox.RatingWidget : EventBox {
 		Allocation al;
 		get_allocation(out al);
 		
-		int buffer = 32;
+		int buffer = 0;
 		if(centered)
 			buffer = (al.width - width_request) / 2;
+		else if(menuItem)
+			buffer = 32;
 		
 		if(event.x - buffer > 5)
 			new_rating = (int)((event.x - buffer + 18) / 18);
@@ -106,9 +110,11 @@ public class BeatBox.RatingWidget : EventBox {
 		get_allocation(out al);
 		
 		// buffer for !centered off for new menu problems
-		int buffer = 32;
+		int buffer = 0;
 		if(centered)
 			buffer = (al.width - width_request) / 2;
+		else if(menuItem)
+			buffer = 32;
 		
 		if(event.x - buffer > 5)
 			new_rating = (int)((event.x - buffer + 18) / 18);
@@ -154,40 +160,50 @@ public class BeatBox.RatingWidget : EventBox {
 		return true;
 	}
 }
-public class BeatBox.RatingWidgetMenu : Gtk.MenuItem
-{
+public class BeatBox.RatingWidgetMenu : Gtk.MenuItem {
     RatingWidget rating;
     public bool already_drawn = false;
     public int rating_value{ get{ return rating.get_rating(); } set{rating.set_rating(value); }}
-    public RatingWidgetMenu()
-    {
-        rating = new RatingWidget(null, false);
+    public RatingWidgetMenu() {
+		//holder = new EventBox();
+        rating = new RatingWidget(null, false, true);
+        //label = new Label("Test test");
+        
+        //holder.add(rating);
         add(rating);
+        
+        /*var rgba = get_style_context().get_background_color(StateFlags.NORMAL);
+        stdout.printf(rgba.to_string());
+        Color c;
+        Color.parse(rgba.to_string(), out c);
+        stdout.printf(c.to_string());
+        rating.modify_bg(StateType.NORMAL, c);*/
+        
+        //height_request = 20;
+        //margin_left = 24;
     }
     
-    public override bool motion_notify_event(Gdk.EventMotion ev)
-    {
+    public override bool motion_notify_event(Gdk.EventMotion ev) {
         rating.motion_notify_event(ev);
-        //rating.queue_draw();
-        return false;
-    }
-    
-    public override bool draw(Cairo.Context context)
-    {
-        if(already_drawn)
-        rating.exposeEvent(context);
-        already_drawn = true;
+        rating.queue_draw();
         return true;
     }
     
-    public override bool button_press_event(Gdk.EventButton ev)
-    {
+    public override bool draw(Cairo.Context context) {
+        if(already_drawn) {
+			//rating.exposeEvent(context);
+		}
+		
+        already_drawn = true;
+        return false;
+    }
+    
+    public override bool button_press_event(Gdk.EventButton ev) {
         rating.button_press_event(ev);
         activate();
         return true;
     }
-	public override bool leave_notify_event(Gdk.EventCrossing ev)
-	{
+	public override bool leave_notify_event(Gdk.EventCrossing ev) {
 	    rating.updateRating(rating.rating);
 	    return true;
 	}

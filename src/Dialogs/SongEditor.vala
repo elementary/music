@@ -25,6 +25,7 @@ using Granite;
 
 public class BeatBox.SongEditor : Window {
 	LibraryManager _lm;
+	LyricFetcher lf;
 	
 	LinkedList<int> _allSongs;
 	LinkedList<int> _songs;
@@ -55,6 +56,9 @@ public class BeatBox.SongEditor : Window {
 		this.set_modal(true);
 		this.set_transient_for(lm.lw);
 		this.destroy_with_parent = true;
+		
+		lf = new LyricFetcher();
+		lf.lyrics_fetched.connect(lyricsFetched);
 		
 		_lm = lm;
 		
@@ -92,6 +96,8 @@ public class BeatBox.SongEditor : Window {
 		if(_songs.size == 1) {
 			foreach(FieldEditor fe in fields.values)
 				fe.set_check_visible(false);
+				
+			fetchLyricsClicked();
 		}
 		
 		_previous.clicked.connect(previousClicked);
@@ -103,7 +109,7 @@ public class BeatBox.SongEditor : Window {
 		Viewport rv = new Viewport(null, null);
 		fields = new HashMap<string, FieldEditor>();
 		Song sum = _lm.song_from_id(_songs.get(0)).copy();
-		
+		stdout.printf("Composer: %s\nGrouping: %s\n", sum.composer, sum.grouping);
 		/** find what these songs have what common, and keep those values **/
 		foreach(int i in _songs) {
 			Song s = _lm.song_from_id(i);
@@ -145,6 +151,8 @@ public class BeatBox.SongEditor : Window {
 			//last_played = 0;
 		}
 		
+		stdout.printf("Composer: %s\nGrouping: %s\n", sum.composer, sum.grouping);
+		
 		if(_songs.size == 1) {
 			title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
 		}
@@ -153,7 +161,7 @@ public class BeatBox.SongEditor : Window {
 		}
 		
 		if(sum.year == -1)
-			sum.year = new Time().year;
+			sum.year = Time().year;
 		
 		fields.set("Title", new FieldEditor("Title", sum.title, new Entry()));
 		fields.set("Artist", new FieldEditor("Artist", sum.artist, new Entry()));
@@ -166,7 +174,7 @@ public class BeatBox.SongEditor : Window {
 		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Disc", new FieldEditor("Disc", sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(0, 9999, 1)));
-		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false)));
+		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false, false)));
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 10);
@@ -235,17 +243,19 @@ public class BeatBox.SongEditor : Window {
 		
 		fetchButton.clicked.connect(fetchLyricsClicked);
 		
+		
 		return rv;
 	}
 	
 	public void fetchLyricsClicked() {
 		// fetch lyrics here
 		Song s = _lm.song_from_id(_songs.get(0));
-		LyricFetcher lf = new LyricFetcher(s.album_artist, s.title);
-		var fetchedLyrics = lf.fetch_lyrics();
-		
-		if(fetchedLyrics != "")
-			lyricsText.get_buffer().text = lf.fetch_lyrics();
+		lf.fetch_lyrics(s.album_artist, s.title);
+	}
+	
+	public void lyricsFetched(string fetchedLyrics) {
+		if(fetchedLyrics != null && fetchedLyrics != "")
+			lyricsText.get_buffer().text = fetchedLyrics;
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -329,6 +339,9 @@ public class BeatBox.SongEditor : Window {
 		else {
 			lyricsText.get_buffer().text = sum.lyrics;
 		}
+		
+		if(sum.lyrics == "")
+			fetchLyricsClicked();
 	}
 	
 	public void save_songs() {
@@ -364,6 +377,8 @@ public class BeatBox.SongEditor : Window {
 			// save lyrics
 			if(lyricsText != null)
 				s.lyrics = lyricsText.get_buffer().text;
+				
+			stdout.printf("Song: %s\nComposer: %s\nGrouping: %s\n", s.title, s.composer, s.grouping);
 		}
 		
 		songs_saved(_songs);
