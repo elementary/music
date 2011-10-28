@@ -384,21 +384,20 @@ public class BeatBox.FileOperator : Object {
 		return s;
 	}
 	
-	public Gdk.Pixbuf? save_album(Song s, string uri) {
-		Gdk.Pixbuf rv;
-		
+	public void save_album(Song s, string uri) {
 		if(uri == null || uri == "") {
-			return null;
+			return;
 		}
 		
 		GLib.File file = GLib.File.new_for_uri(uri);
 		if(file == null) {
-			return null;
+			return;
 		}
 		
 		FileInputStream filestream;
 		
 		try {
+			Gdk.Pixbuf rv;
 			filestream = file.read(null);
 			rv = new Gdk.Pixbuf.from_stream(filestream, null);
 			var dest = Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg");
@@ -406,7 +405,7 @@ public class BeatBox.FileOperator : Object {
 			
 			Gee.LinkedList<Song> updated_songs = new Gee.LinkedList<Song>();
 			foreach(int i in lm.song_ids()) {
-				if(lm.song_from_id(i).artist == s.artist && lm.song_from_id(i).album == s.album) {
+				if(lm.song_from_id(i).artist == s.artist && lm.song_from_id(i).album == s.album) { 
 					stdout.printf("setting album art for %s by %s\n", lm.song_from_id(i).title, lm.song_from_id(i).artist);
 					lm.song_from_id(i).setAlbumArtPath(dest);
 					updated_songs.add(lm.song_from_id(i));
@@ -420,10 +419,8 @@ public class BeatBox.FileOperator : Object {
 				lm.update_song(lm.song_info.song, false);
 		}
 		catch(GLib.Error err) {
-			rv = null;
+			stdout.printf("Could not save album to file: %s\n", err.message);
 		}
-		
-		return rv;
 	}
 	
 	public Gdk.Pixbuf? save_artist_image(Song s, string uri) {

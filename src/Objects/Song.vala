@@ -66,7 +66,6 @@ public class BeatBox.Song : GLib.Object{
 	public string lastfm_url { get; set; default = ""; }
 	
 	private string _album_path;
-	public Gdk.Pixbuf? album_art { get; set; }
 	public bool has_embedded { get; set; default = false; }
 	
 	public bool isPreview { get; set; default = false; }
@@ -133,8 +132,7 @@ public class BeatBox.Song : GLib.Object{
 		rv.skip_count = skip_count;
 		rv.date_added = date_added;
 		rv.last_played = last_played;
-		rv.lyrics = lyrics;
-		rv.album_art = album_art;
+		rv.lyrics = lyrics; 
 		rv.setAlbumArtPath(getAlbumArtPath());
 		rv.isPreview = isPreview;
 		rv.isTemporary = isTemporary;

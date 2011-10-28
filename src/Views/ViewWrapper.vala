@@ -195,19 +195,20 @@ public class BeatBox.ViewWrapper : VBox {
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
 		if(!this.visible || force) {
 			//stdout.printf("searching..\n");
-			var potentialShowing = new LinkedList<int>();
+			var potentialShowingList = new LinkedList<int>();
+			var potentialShowingAlbums = new LinkedList<int>();
 			
 			if(hint != MusicTreeView.Hint.CDROM) {
-				if(currentView != ViewWrapper.ViewType.FILTER_VIEW) {
-					potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
+				if(type != ViewWrapper.ViewType.FILTER_VIEW || !force) {
+					potentialShowingAlbums.add_all(lm.songs_from_search(lw.searchField.get_text(), 
 														lw.miller.genres.get_selected(), 
 														lw.miller.artists.get_selected(),
 														lw.miller.albums.get_selected(),
 														songs));
 				
 				}
-				else {
-					potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
+				if(type == ViewWrapper.ViewType.FILTER_VIEW || !force) {
+					potentialShowingList.add_all(lm.songs_from_search(lw.searchField.get_text(), 
 														"All Genres", 
 														"All Artists",
 														"All Albums",
@@ -215,26 +216,29 @@ public class BeatBox.ViewWrapper : VBox {
 				}
 			}
 			else {
-				if(currentView != ViewWrapper.ViewType.FILTER_VIEW) {
-					potentialShowing.add_all(lm.temps_from_search(lw.searchField.get_text(), 
+				if(type != ViewWrapper.ViewType.FILTER_VIEW || !force) {
+					potentialShowingAlbums.add_all(lm.temps_from_search(lw.searchField.get_text(), 
 														lw.miller.genres.get_selected(), 
 														lw.miller.artists.get_selected(),
 														lw.miller.albums.get_selected(),
 														songs));
 				
 				}
-				else {
-					potentialShowing.add_all(lm.temps_from_search(lw.searchField.get_text(), 
+				if(type == ViewWrapper.ViewType.FILTER_VIEW || !force) { 
+					potentialShowingList.add_all(lm.temps_from_search(lw.searchField.get_text(), 
 														"All Genres", 
 														"All Artists",
 														"All Albums",
 														songs));
 				}
 			}
-		
-			list.showNext = potentialShowing;
-			albumView.showNext = potentialShowing;
-			showingSongs = potentialShowing;
+			
+			if(type != ViewWrapper.ViewType.FILTER_VIEW || !force)
+				list.showNext = potentialShowingList;
+			if(type == ViewWrapper.ViewType.FILTER_VIEW || !force)
+				albumView.showNext = potentialShowingAlbums;
+				
+			showingSongs = potentialShowingList;
 			//stdout.printf("searched\n");
 		}
 		
@@ -330,7 +334,8 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public void* update_view_thread () {
-		doUpdate(this.currentView, songs, false, false);
+		doUpdate(ViewType.LIST, songs, false, false);
+		doUpdate(ViewType.FILTER_VIEW, songs, false, false);
 		
 		return null;	
 	}

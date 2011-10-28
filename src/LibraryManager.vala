@@ -1448,8 +1448,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _songs.get(id).getAlbumArtPath();
 	}
 	
-	public Gdk.Pixbuf? save_album_locally(int id, string album) {
-		return fo.save_album(_songs.get(id), album);
+	public void save_album_locally(int id, string album) {
+		fo.save_album(_songs.get(id), album);
 	}
 	
 	public string getArtistImagePath(int id) {
@@ -1474,7 +1474,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Song s in toShowS) {
 			if(s.album != previousAlbum) {
 				
-				if(!s.getAlbumArtPath().contains("/usr/share/")) {
+				if(!s.getAlbumArtPath().contains("/usr/share/") && _album_art.get(s.artist+s.album) == null) {
 					try {
 						_album_art.set(s.artist+s.album, new Gdk.Pixbuf.from_file_at_size(s.getAlbumArtPath(), 128, 128));
 					}
