@@ -1,7 +1,7 @@
 using Gtk;
 
 public class BeatBox.WarningLabel : EventBox {
-	Label errorLabel;
+	public Label errorLabel;
 	
 	public WarningLabel() {
 		errorLabel = new Label("");

@@ -1307,20 +1307,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(viewSelector.selected != 3)
 			settings.setViewMode(viewSelector.selected);
 			
-		bool similarcheck = sideTree.getSelectedWidget() is ViewWrapper && 
-							((ViewWrapper)sideTree.getSelectedWidget()).errorBox.visible;
+		bool similarcheck = sideTree.getSelectedWidget() is ViewWrapper  && 
+							((ViewWrapper)sideTree.getSelectedWidget()).errorBox != null && 
+							((ViewWrapper)sideTree.getSelectedWidget()).errorBox.errorLabel.visible;
+		bool isCdrom = sideTree.getSelectedWidget() is DeviceViewWrapper;
 		bool storecheck = (sideTree.getSelectedWidget() is Store.StoreView);
 		bool haveSongs = (lm.song_count() != 0);
 		
-		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck && haveSongs);
+		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck && !isCdrom && haveSongs);
 		millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
 		
 		// populate if selected == 2 (miller columns)
-		if(initializationFinished && viewSelector.selected == 2 && sideTree.getSelectedWidget() is ViewWrapper) {
+		/*if(initializationFinished && viewSelector.selected == 2 && sideTree.getSelectedWidget() is ViewWrapper && miller.visible) {
 			ViewWrapper vw = (ViewWrapper)sideTree.getSelectedWidget();
 			
 			miller.populateColumns("", vw.songs);
-		}
+		}*/
 	}
 	
 	public void searchFieldActivate() {

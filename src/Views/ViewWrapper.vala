@@ -99,8 +99,15 @@ public class BeatBox.ViewWrapper : VBox {
 				doUpdate(ViewWrapper.ViewType.FILTER_VIEW, songs, false, false);
 				break;
 			case 1:
+				doUpdate(ViewWrapper.ViewType.LIST, songs, false, false);
+				break;
 			case 2:
 				doUpdate(ViewWrapper.ViewType.LIST, songs, false, false);
+				
+				if(isCurrentView) {
+					stdout.printf("populating millers\n");
+					lw.miller.populateColumns("", showingSongs);
+				}
 				break;
 		}
 	}
