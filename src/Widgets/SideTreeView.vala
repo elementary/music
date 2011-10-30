@@ -74,7 +74,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		CDimportToLibrary = new MenuItem.with_label("Import to Library");
 		CDeject = new MenuItem.with_label("Eject");
 		CDMenu.append(CDimportToLibrary);
-		CDMenu.append(CDeject);
+		//CDMenu.append(CDeject);
 		CDimportToLibrary.activate.connect(CDimportToLibraryClicked);
 		CDeject.activate.connect(CDejectClicked);
 		CDMenu.show_all();
@@ -128,7 +128,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			Device d = (Device)o;
 			
 			if(d.getContentType() == "cdrom")
-				return addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, render_icon("media-eject", IconSize.MENU, null));
+				return addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "ipod-new")
 				return addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "ipod-old")
@@ -189,6 +189,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				this.get_selection().select_iter(convertToFilter(item));
 			}
 			
+			sideListSelectionChange();
 			return item;
 		}
 		else if(o is Playlist) {
@@ -216,9 +217,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				this.get_selection().select_iter(convertToFilter(item));
 			}
 			
+			sideListSelectionChange();
 			return item;
 		}
 		else {
+			sideListSelectionChange();
 			return addItem(parent, o, w, null, name, null);
 		}
 	}
@@ -630,13 +633,12 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		}
 		
 		GLib.Object o;
-		filter.get(iter, 0, out o);
+		Widget w;
 		string name;
-		filter.get(iter, 4, out name);
+		filter.get(iter, 0, out o, 1, out w, 4, out name);
 		
 		/* make sure it is either queue or normal playlist */
 		if(name == "Queue") {
-			
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
@@ -649,6 +651,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 			}
 			
+			ViewWrapper vw = (ViewWrapper)w;
+			vw.millerChanged();
 		}
 		else if(o is Playlist) {
 			Playlist p = (Playlist)o;
@@ -664,6 +668,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					}
 				}
 			}
+			
+			ViewWrapper vw = (ViewWrapper)w;
+			vw.millerChanged();
 			
 		}
 		

@@ -106,7 +106,7 @@ public class BeatBox.ViewWrapper : VBox {
 				
 				if(isCurrentView) {
 					stdout.printf("populating millers\n");
-					lw.miller.populateColumns("", showingSongs);
+					lw.miller.populateColumns("", songs);
 				}
 				break;
 		}

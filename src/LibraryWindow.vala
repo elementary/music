@@ -549,6 +549,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		vw.show_all();
+		if(viewSelector.selected == 0) {
+			vw.albumView.show();
+			vw.list.hide();
+		}
+		else {
+			vw.list.show();
+			vw.albumView.hide();
+		}
 	}
 	
 	public void updateSensitivities() {

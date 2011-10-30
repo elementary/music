@@ -66,6 +66,7 @@ public class BeatBox.Device : GLib.Object {
 		return mount.can_eject();
 	}
 	
+	/* This freezes up stuff START */
 	public void eject() {
 		if(mount.get_drive() != null)
 			mount.get_drive().eject(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
@@ -87,6 +88,7 @@ public class BeatBox.Device : GLib.Object {
 			
 		device_unmounted();
 	}
+	/* This freezes up stuff END */
 	
 	public string getContentType() {
 		if(getMountLocation().has_prefix("cdda://")) {
