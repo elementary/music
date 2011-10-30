@@ -32,6 +32,7 @@ public class LastFM.TrackInfo : GLib.Object {
 	private int _id;
 	private string _name;
 	private string _artist;
+	private string _album;
 	private string _url;
 	private int _duration;
 	private int _streamable;
@@ -125,6 +126,10 @@ public class LastFM.TrackInfo : GLib.Object {
 				else if(node_name == "listeners")
 					_listeners = int.parse(node_content);
 			}
+			else if(parent == "trackalbum") {
+				if(node_name == "title")
+					_album = node_content;
+			}
 			else if(parent == "trackartist") {
 				if(node_name == "name")
 					_artist = node_content;
@@ -165,6 +170,11 @@ public class LastFM.TrackInfo : GLib.Object {
 	public string artist {
 		get { return _artist; }
 		set { _artist = value; }
+	}
+	
+	public string album {
+		get { return _album; }
+		set { _album = value; }
 	}
 	
 	public string url {

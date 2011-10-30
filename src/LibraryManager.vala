@@ -811,7 +811,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		foreach(int i in songs_to_search) {
 			Song s = song_from_id(i);
-			if(!s.isTemporary && l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down()) {
+			if(!s.isTemporary && (l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
 				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist) && (album == "All Albums" || s.album == album))
 					rv.add(i);
 			}

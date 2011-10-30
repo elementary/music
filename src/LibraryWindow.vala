@@ -580,7 +580,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector.set_sensitive(haveSongs);
 		
 		mainViews.set_visible(haveSongs);
-		miller.set_visible(haveSongs && viewSelector.selected == 2 && showingSongList);
+		//miller.set_visible(haveSongs && viewSelector.selected == 2 && showingSongList);
 		songInfoScroll.set_visible(haveSongs);
 		welcomeScreen.set_visible(!haveSongs);
 		welcomeScreen.set_sensitivity(0, !doingOps);
@@ -1224,7 +1224,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		infoPanel.updateSongList(similarDont);
 		
-		if(((ViewWrapper)w).isCurrentView) {
+		if(((ViewWrapper)w).isCurrentView && !((ViewWrapper)w).list.is_current) {
 			miller.populateColumns("", ((ViewWrapper)w).list.get_songs());
 			updateMillerColumns();
 		}
@@ -1308,8 +1308,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			settings.setViewMode(viewSelector.selected);
 			
 		bool similarcheck = sideTree.getSelectedWidget() is ViewWrapper && 
-							((ViewWrapper)sideTree.getSelectedWidget()).list is SimilarPane && 
-							!((ViewWrapper)sideTree.getSelectedWidget()).similarsFetched;
+							((ViewWrapper)sideTree.getSelectedWidget()).errorBox.visible;
 		bool storecheck = (sideTree.getSelectedWidget() is Store.StoreView);
 		bool haveSongs = (lm.song_count() != 0);
 		
@@ -1317,7 +1316,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
 		
 		// populate if selected == 2 (miller columns)
-		if(viewSelector.selected == 2 && sideTree.getSelectedWidget() is ViewWrapper) {
+		if(initializationFinished && viewSelector.selected == 2 && sideTree.getSelectedWidget() is ViewWrapper) {
 			ViewWrapper vw = (ViewWrapper)sideTree.getSelectedWidget();
 			
 			miller.populateColumns("", vw.songs);

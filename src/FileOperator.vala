@@ -447,7 +447,7 @@ public class BeatBox.FileOperator : Object {
 	
 	public void save_songs(Collection<Song> to_save) {
 		foreach(Song s in to_save) {
-			if(!(toSave.contains(s)))
+			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview)
 				toSave.offer(s);
 		}
 		

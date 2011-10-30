@@ -55,8 +55,36 @@ public class BeatBox.CDDA : GLib.Object {
 				
 				if(title != null)
 					s.title = title;
+				else
+					s.title = "Unknown Title";
+					
 				if(artist != null)
 					s.artist = artist;
+				else
+					s.artist = "Unknown Artist";
+					
+				if((album_name == null || album_name != "" || album_genre == null || album_genre == "") && index == 1) {
+					var info = getInfoFromTitleArtist(s.artist, s.title);
+					
+					if(info != null) {
+						if(album_name == null || album_name == "")
+							album_name = info.album;
+						if((album_genre == null || album_genre == "") && info.tagStrings().size > 0)
+							album_genre = info.tagStrings().get(0);
+					}
+				}
+					
+				if(album_name != null && album_name != "")
+					s.album = album_name;
+				else {
+					s.album = "Unkown Album";
+				}
+				
+				if(album_genre != null && album_genre != "")
+					s.genre = album_genre;
+				else
+					s.genre = "";
+				
 				if(album_artist != null)
 					s.album_artist = album_artist;
 				if(album_genre != null)
@@ -70,6 +98,16 @@ public class BeatBox.CDDA : GLib.Object {
 					s.album_artist = s.artist;
 				else if(!artistValid && albumArtistValid)
 					s.artist = s.album_artist;
+					
+				// remove artist name from title
+				s.title = remove_artist_from_title(s.title, s.artist);
+				
+				// capatalize nicely
+				s.title = to_caps(s.title);
+				s.artist = to_caps(s.artist);
+				s.album_artist = to_caps(s.album_artist);
+				s.album = to_caps(s.album);
+				s.genre = to_caps(s.genre);
 				
 				stdout.printf("Added %s %s %s %s\n", s.title, s.artist, s.album_artist, s.genre);
 				rv.add(s);
@@ -83,8 +121,54 @@ public class BeatBox.CDDA : GLib.Object {
 		return rv;
 	}
 	
-	public void getLastFMSongList(ref LinkedList<Song> songs, string artist, string album) {
+	public static string remove_artist_from_title(string orig, string artist) {
+		string s = orig.down();
+		string art = artist.down();
 		
+		int needle_index = s.index_of(art);
+		
+		if(needle_index != -1) {
+			s = s.replace(art, "");
+			s = s.strip();
+			
+			if(s.get_char(0) == '-' || s.get_char(s.length - 1) == '-') {
+				s = s.replace("-", "");
+				s = s.strip();
+			}
+		}
+		
+		return s;
+	}
+	
+	public static string to_caps(string orig) {
+		var builder = new StringBuilder ();
+		
+		string s = orig.down();
+		unichar c;
+		bool capNext = true;
+		for (int i = 0; s.get_next_char(ref i, out c);) {
+			if(capNext) {
+				builder.append(c.to_string().up());
+				capNext = false;
+			}
+			else if(c.to_string() == " ") {
+				capNext = true;
+				builder.append(c.to_string());
+			}
+			else {
+				builder.append(c.to_string());
+			}
+		}
+		
+		return builder.str;
+	}
+	
+	public static LastFM.TrackInfo getInfoFromTitleArtist(string artist, string title) {
+		LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
+		
+		track = new LastFM.TrackInfo.with_info(artist, title);
+		
+		return track;
 	}
 	
 }

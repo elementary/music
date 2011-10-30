@@ -109,7 +109,7 @@ public class BeatBox.SongEditor : Window {
 		Viewport rv = new Viewport(null, null);
 		fields = new HashMap<string, FieldEditor>();
 		Song sum = _lm.song_from_id(_songs.get(0)).copy();
-		stdout.printf("Composer: %s\nGrouping: %s\n", sum.composer, sum.grouping);
+		
 		/** find what these songs have what common, and keep those values **/
 		foreach(int i in _songs) {
 			Song s = _lm.song_from_id(i);
@@ -150,8 +150,6 @@ public class BeatBox.SongEditor : Window {
 			//date_added = 0;
 			//last_played = 0;
 		}
-		
-		stdout.printf("Composer: %s\nGrouping: %s\n", sum.composer, sum.grouping);
 		
 		if(_songs.size == 1) {
 			title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
@@ -377,8 +375,6 @@ public class BeatBox.SongEditor : Window {
 			// save lyrics
 			if(lyricsText != null)
 				s.lyrics = lyricsText.get_buffer().text;
-				
-			stdout.printf("Song: %s\nComposer: %s\nGrouping: %s\n", s.title, s.composer, s.grouping);
 		}
 		
 		songs_saved(_songs);

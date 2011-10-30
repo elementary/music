@@ -28,7 +28,7 @@ public class BeatBox.ViewWrapper : VBox {
 	public LibraryWindow lw;
 	public MusicTreeView list;
 	public AlbumView albumView;
-	private WarningLabel errorBox;
+	public WarningLabel errorBox;
 	public Collection<int> songs;
 	public Collection<int> showingSongs;
 	
@@ -176,7 +176,7 @@ public class BeatBox.ViewWrapper : VBox {
 					errorBox.show();
 					list.hide();
 					albumView.hide();
-					
+					stdout.printf("2\n");
 					return;
 				}
 				else {
@@ -186,7 +186,7 @@ public class BeatBox.ViewWrapper : VBox {
 				}
 			}
 			else if(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs()) && similarsFetched) { // needs update, but won't because not worthy
-				
+				stdout.printf("3\n");
 				return;
 			}
 		}
