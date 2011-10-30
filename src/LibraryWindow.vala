@@ -372,6 +372,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.insert(topDisplayBin, 4);
         topControls.insert(searchFieldBin, 5);
         topControls.insert(app.create_appmenu(settingsMenu), 6);
+        
+        viewSelector.get_style_context().add_class("raised");
+        topControls.get_style_context().add_class("primary-toolbar");
 		
 		//set the name for elementary theming
 		sourcesToSongs.name = "SidebarHandleLeft";
