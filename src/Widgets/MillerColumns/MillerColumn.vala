@@ -318,8 +318,10 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		items.remove("");
 		items.add("All " + category);
 		
-		if(!(items.contains(get_selected())))
+		if(!(items.contains(get_selected()))) {
 			_selected = "All " + category;
+			selectedChanged(category, _selected);
+		}
 		
 		model = new MillerModel(category);
 		model.append_items(items, true);

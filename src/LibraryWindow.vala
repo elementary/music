@@ -84,9 +84,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	MenuItem fileSetMusicFolder;
 	MenuItem fileImportMusic;
 	MenuItem fileRescanMusicFolder;
-	ImageMenuItem helpOnline;
-	MenuItem helpTranslate;
-	MenuItem helpReport;
 	MenuItem editEqualizer;
 	ImageMenuItem editPreferences;
 	
@@ -253,9 +250,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fileSetMusicFolder = new MenuItem.with_label("Set Music Folder");
 		fileImportMusic = new MenuItem.with_label("Import to Library");
 		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
-		helpOnline = new ImageMenuItem.from_stock(Gtk.Stock.HELP, null);
-		helpTranslate = new MenuItem.with_label("Translate This Application...");
-		helpReport = new MenuItem.with_label("Report a Problem...");
 		editEqualizer = new MenuItem.with_label("Equalizer");
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
 		settingsMenu = new Menu();
@@ -311,10 +305,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		settingsMenu.append(libraryOperations);
 		settingsMenu.append(new SeparatorMenuItem());
-		settingsMenu.append(helpOnline);
-		settingsMenu.append(helpTranslate);
-		settingsMenu.append(helpReport);
-		settingsMenu.append(new SeparatorMenuItem());
 		settingsMenu.append(editEqualizer);
 		settingsMenu.append(editPreferences);
 		
@@ -322,34 +312,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 		
-		helpOnline.set_label("Get Help Online...");
-		helpOnline.activate.connect( () => {
-			string auth_uri = "https://answers.launchpad.net/beat-box";
-			try {
-				GLib.AppInfo.launch_default_for_uri (auth_uri, null);
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not load webpage %s: %s\n", auth_uri, err.message);
-			}
-		});
-		helpTranslate.activate.connect( () => {
-			string auth_uri = "https://translations.launchpad.net/beat-box";
-			try {
-				GLib.AppInfo.launch_default_for_uri (auth_uri, null);
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not load webpage %s: %s\n", auth_uri, err.message);
-			}
-		});
-		helpReport.activate.connect( () => {
-			string auth_uri = "https://bugs.launchpad.net/beat-box";
-			try {
-				GLib.AppInfo.launch_default_for_uri (auth_uri, null);
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not load webpage %s: %s\n", auth_uri, err.message);
-			}
-		});
 		
 		editPreferences.set_label("Preferences");
 		
