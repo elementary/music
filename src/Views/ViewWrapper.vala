@@ -192,7 +192,10 @@ public class BeatBox.ViewWrapper : VBox {
 					sp._base = lm.song_info.song;
 				}
 			}
-			else if(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs()) && similarsFetched) { // needs update, but won't because not worthy
+			/* this stops similar from refreshing when a song from that list is playing. add !set_songs to make sure to update when
+			 * the user searches
+			 * */
+			else if(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs()) && similarsFetched && list.is_current) { // needs update, but won't because not worthy
 				stdout.printf("3\n");
 				return;
 			}
