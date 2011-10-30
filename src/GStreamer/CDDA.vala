@@ -71,6 +71,7 @@ public class BeatBox.CDDA : GLib.Object {
 							album_name = info.album;
 						if((album_genre == null || album_genre == "") && info.tagStrings().size > 0)
 							album_genre = info.tagStrings().get(0);
+						
 					}
 				}
 					
