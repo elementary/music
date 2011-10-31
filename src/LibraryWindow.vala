@@ -363,7 +363,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         viewSelector.append(new Image.from_stock("view-list-icons-symbolic", IconSize.MENU));
         viewSelector.append(new Image.from_stock("view-list-details-symbolic", IconSize.MENU));
         viewSelector.append(new Image.from_stock("view-list-column-symbolic", IconSize.MENU));
-        viewSelector.append(new Image.from_stock("view-list-video-symbolic", IconSize.MENU));
+        //viewSelector.append(new Image.from_stock("view-list-video-symbolic", IconSize.MENU));
         
         topControls.insert(previousButton, 0);
         topControls.insert(playButton, 1);
@@ -377,8 +377,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.get_style_context().add_class("primary-toolbar");
 		
 		//set the name for elementary theming
-		sourcesToSongs.name = "SidebarHandleLeft";
-		sideTree.name = "SidebarContent";
+		//sourcesToSongs.name = "SidebarHandleLeft";
+		//sideTree.name = "SidebarContent";
+		sourcesToSongs.get_style_context().add_class("pane-separator");
 		sideTree.get_style_context().add_class("sidebar");
 		
 		contentBox.pack_start(welcomeScreen, true, true, 0);

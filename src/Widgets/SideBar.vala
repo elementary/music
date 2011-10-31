@@ -360,8 +360,10 @@ namespace ElementaryWidgets {
 		private bool overExpander(TreeIter iter, TreeViewColumn col, int x, int y) {
 			if(filter.get_path(iter).get_depth() != 1)
 				return false;
+			else
+				return true;
 			
-			/* for some reason, the pixbuf SOMETIMES takes space, somtimes doesn't so cope for that */
+			/* for some reason, the pixbuf SOMETIMES takes space, somtimes doesn't so cope for that *
 			int pixbuf_start;
 			int pixbuf_width;
 			col.cell_get_position(pix_cell, out pixbuf_start, out pixbuf_width);
@@ -376,7 +378,7 @@ namespace ElementaryWidgets {
 			if(x > total)
 				return true;
 			
-			return false;
+			return false;*/
 		}
 		
 		/* Helpers for child->filter, filter->child */

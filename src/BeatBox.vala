@@ -69,8 +69,8 @@ public class BeatBox.Beatbox : Granite.Application {
 		//build_data_dir = Build.DATADIR;
 		//build_pkg_data_dir = Build.PKGDATADIR;
 		build_release_name = "Beta";
-		build_version = "0.1";
-		build_version_info = "0.1 (Beta)";
+		build_version = "0.2";
+		build_version_info = "0.2 (Beta)";
 		
 		program_name = "BeatBox";
 		exec_name = "beatbox";
