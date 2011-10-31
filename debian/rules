@@ -2,25 +2,3 @@
 
 %:
 	dh $@ 
-
-override_dh_auto_clean:
-	./waf distclean
-
-	rm -rf _build_
-	rm -rf .waf*
-	rm -rf .lock-wscript
-
-override_dh_auto_configure:
-	./waf configure --prefix /usr
-
-override_dh_auto_build:
-	./waf build
-
-override_dh_auto_install:
-	./waf install --destdir $(CURDIR)/debian/beatbox
-
-override_dh_installchangelogs:
-	dh_installchangelogs NEWS
-
-override_dh_installman:
-	dh_installman $(CURDIR)/debian/beatbox.1
