@@ -1,2 +1,0 @@
-?package(beatbox):needs="X11" section="Applications/Sound" \
-  title="BeatBox" command="/usr/bin/beatbox"
