@@ -31,6 +31,7 @@ Package: beatbox-dbg
 Architecture: any
 Depends: beatbox (= ${binary:Version}), ${misc:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
+Enhances: beatbox
 Description: debugging symbols for beatbox
  BeatBox is an easy to use, stable, fast and good looking music library
  organizer written in vala.
