@@ -1289,7 +1289,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(settings.getAutoSwitchPreset() && !settings.getEqualizerDisabled()) {
 			bool matched_genre = false;
 			foreach(var p in settings.getPresets()) {
-				if(p.name.down() == song_info.song.genre.down()) {
+				if(p != null && p.name.down() == song_info.song.genre.down()) {
 					
 					matched_genre = true;
 					
@@ -1302,6 +1302,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			if(!matched_genre) {
 				var p = settings.getSelectedPreset();
+				
+				if(p == null)
+					return null;
 				
 				for(int i = 0; i < 10; ++i)
 					player.setEqualizerGain(i, p.getGain(i));

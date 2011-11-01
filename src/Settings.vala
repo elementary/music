@@ -216,8 +216,12 @@ public class BeatBox.Settings : Object {
 		return getBool(EQUALIZER_DISABLED, false);
 	}
 	
-	public EqualizerPreset getSelectedPreset() {
+	public EqualizerPreset? getSelectedPreset() {
 		string[] vals = getString(SELECTED_PRESET, "").split("<val_sep>", 0);
+		
+		if(vals.length == 0 || vals[0] == null)
+			return null;
+		
 		var rv = new EqualizerPreset.basic(vals[0]);
 		
 		for(int i = 1; i < vals.length; ++i) {
@@ -232,6 +236,9 @@ public class BeatBox.Settings : Object {
 		
 		string list = getString(PRESETS, "");
 		string[] presets = list.split("<preset_seperator>", 0);
+		
+		if(presets.length == 0)
+			return rv;
 		
 		int index;
 		for(index = 0; index < presets.length - 1; ++index) {
