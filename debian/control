@@ -1,6 +1,4 @@
 Source: beatbox
-Section: sound
-Priority: optional
 Maintainer: Devid Antonio Filoni <d.filoni@ubuntu.com>
 Build-Depends: debhelper (>= 7.0.50~), valac (>= 0.13.0), cmake (>= 2.6),
  libgtk-3-dev (>= 3.0), libgee-dev (>= 0.5.3), libgstreamer0.10-dev (>= 0.10),
@@ -11,14 +9,16 @@ Build-Depends: debhelper (>= 7.0.50~), valac (>= 0.13.0), cmake (>= 2.6),
  libdbusmenu-glib-dev (>= 0.4),
  libgstreamer-plugins-base0.10-dev (>= 0.10),
  libdbusmenu-gtk3-dev, libgranite-dev
- 
 Standards-Version: 3.9.2
 Homepage: https://launchpad.net/beat-box
+
 Package: beatbox
 Architecture: any
+Section: sound
+Priority: optional
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
-Description: A simple, fast, and good looking music player
+Description: Simple, fast, and good looking music player
  BeatBox is an easy to use, stable, fast and good looking music library
  organizer written in vala.
  .
@@ -29,10 +29,12 @@ Description: A simple, fast, and good looking music player
 
 Package: beatbox-dbg
 Architecture: any
+Section: debug
+Priority: extra
 Depends: beatbox (= ${binary:Version}), ${misc:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
 Enhances: beatbox
-Description: debugging symbols for beatbox
+Description: Simple, fast, and good looking music player (debugging symbols)
  BeatBox is an easy to use, stable, fast and good looking music library
  organizer written in vala.
  .
@@ -41,5 +43,5 @@ Description: debugging symbols for beatbox
  find music similar to the currently playing song, simple UI, fast searching
  for music, queue system, mass song editing and more...
  .
- This package contains the debugging symbols for BeatBox.
+ This package contains debugging symbols for BeatBox.
 
