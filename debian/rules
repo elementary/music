@@ -20,5 +20,8 @@ export DH_OPTIONS
 %:
 	dh $@ 
 
+override_dh_strip:
+	dh_strip --dbg-package=beatbox-dbg
+
 override_dh_builddeb:
 	dh_builddeb -- -Zxz

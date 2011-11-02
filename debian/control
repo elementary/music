@@ -26,3 +26,20 @@ Description: A simple, fast, and good looking music player
  artwork, information, and scrobble your music, playlists and smart playlists,
  find music similar to the currently playing song, simple UI, fast searching
  for music, queue system, mass song editing and more...
+
+Package: beatbox-dbg
+Architecture: any
+Depends: beatbox (= ${binary:Version}), ${misc:Depends}
+Pre-Depends: dpkg (>= 1.15.6)
+Enhances: beatbox
+Description: debugging symbols for beatbox
+ BeatBox is an easy to use, stable, fast and good looking music library
+ organizer written in vala.
+ .
+ It has many modern features including Last.FM integration to download
+ artwork, information, and scrobble your music, playlists and smart playlists,
+ find music similar to the currently playing song, simple UI, fast searching
+ for music, queue system, mass song editing and more...
+ .
+ This package contains the debugging symbols for BeatBox.
+
