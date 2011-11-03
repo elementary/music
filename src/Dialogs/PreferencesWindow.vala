@@ -72,7 +72,7 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		// set the size
 		set_size_request(400, -1);
-		resizable = true;
+		resizable = false;
 		
 		// set icon
 		set_icon( render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));

@@ -47,7 +47,8 @@ public class BeatBox.EqualizerWindow : Window {
 	}
 	
 	public void buildUI() {
-		set_title("Unequalizer");
+	    // We don't want a title
+		set_title("");
 		
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -63,7 +64,7 @@ public class BeatBox.EqualizerWindow : Window {
 		set_geometry_hints(this, geo, Gdk.WindowHints.MIN_SIZE);
 		
 		// set icon
-		set_icon( render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
+		set_icon(render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
 		
 		HBox padding = new HBox(false, 10);
 		VBox allItems = new VBox(false, 10);
@@ -98,7 +99,7 @@ public class BeatBox.EqualizerWindow : Window {
 		volumeSlider = new HScale.with_range(0.0, 1.0, 0.01);
 		volumeSlider.draw_value = false;
 		
-		//category labels
+		// category labels
 		Label equalizerLabel = new Label("");
 		Label volumeLabel = new Label("");
 		
@@ -111,9 +112,9 @@ public class BeatBox.EqualizerWindow : Window {
 		sideList.set_size_request(150, -1);
 		
 		bottomItems.pack_start(wrap_alignment(equalizerOnOff, 0, 0, 0, 0), false, true, 0);
-		bottomItems.pack_start(wrap_alignment(sideList, 0, 0, 0, 6), false, true, 0);
+		bottomItems.pack_start(wrap_alignment(sideList, 0, 0, 0, 6), false, false, 0);
 		
-		/** Add save and cancel buttons **/
+		// Add save and cancel buttons
 		HButtonBox bottomButtons = new HButtonBox();
 		var doneButton = new Button.with_label("Close");
 		bottomButtons.set_layout(ButtonBoxStyle.END);
@@ -138,7 +139,7 @@ public class BeatBox.EqualizerWindow : Window {
 		sideList.preset_selected.connect(presetSelected);
 		volumeSlider.value_changed.connect(volumeSliderChanged);
 		doneButton.clicked.connect(onQuit);
-		//this.destroy.connect(onQuit);
+		this.destroy.connect(onQuit);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
