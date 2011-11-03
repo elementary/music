@@ -67,8 +67,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ToolButton playButton;
 	ToolButton nextButton;
 	public ElementaryWidgets.TopDisplay topDisplay;
-	public ElementaryWidgets.ModeButton viewSelector;
-	public ElementaryWidgets.ElementarySearchEntry searchField;
+	public Granite.Widgets.ModeButton viewSelector;
+	public Granite.Widgets.SearchBar searchField;
 	//ElementaryWidgets.AppMenu appMenu;
 	HBox statusBar;
 	Label statusBarLabel;
@@ -258,8 +258,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
-		viewSelector = new ElementaryWidgets.ModeButton();
-		searchField = new ElementaryWidgets.ElementarySearchEntry("Search...");
+		viewSelector = new Granite.Widgets.ModeButton();
+		searchField = new Granite.Widgets.SearchBar("Search...");
 		miller = new MillerColumns(lm, this); //miller must be below search for it to work properly
 		//appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
@@ -377,8 +377,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         topControls.get_style_context().add_class("primary-toolbar");
 		
 		//set the name for elementary theming
-		//sourcesToSongs.name = "SidebarHandleLeft";
-		//sideTree.name = "SidebarContent";
+		sourcesToSongs.name = "SidebarHandleLeft";
+		sideTree.name = "SidebarContent";
 		sourcesToSongs.get_style_context().add_class("pane-separator");
 		sideTree.get_style_context().add_class("sidebar");
 		
@@ -419,8 +419,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
-		viewSelector.notify["selected"].connect(updateMillerColumns);
-		viewSelector.notify["selected"].connect( () => { updateSensitivities(); } );
+		viewSelector.mode_changed.connect(updateMillerColumns);
+		viewSelector.mode_changed.connect( () => { updateSensitivities(); } );
 		millerPane.get_child1().size_allocate.connect(millerResized);
 		searchField.activate.connect(searchFieldActivate);
 		
@@ -442,7 +442,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//welcomeScreen.hide();
 		//infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
-		viewSelector.set_showing(3, false);
+		viewSelector.selected = 3;
 		//updateMillerColumns();
 		
 		bool genreV, artistV, albumV;
