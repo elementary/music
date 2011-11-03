@@ -91,12 +91,10 @@ vala_precompile(VALA_C
     Widgets/PresetList.vala
     Widgets/CoverArtImage.vala
     Widgets/SideBar.vala
-    Widgets/ElementaryEntry.vala
     Widgets/SideTreeView.vala
     Widgets/MillerColumns/MillerModel.vala
     Widgets/MillerColumns/MillerColumn.vala
     Widgets/RatingWidget.vala
-    Widgets/ModeButton.vala
     Widgets/AppMenu.vala
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala

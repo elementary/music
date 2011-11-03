@@ -83,7 +83,7 @@ public class BeatBox.ViewWrapper : VBox {
 			doUpdate(ViewType.LIST, songs, true, true);
 		
 		albumView.itemClicked.connect(filterViewItemClicked);
-		lw.viewSelector.notify["selected"].connect(selectorViewChanged);
+		lw.viewSelector.mode_changed.connect(selectorViewChanged);
 		lm.song_played.connect(songPlayed);
 		
 		lw.searchField.changed.connect(searchFieldChanged);

@@ -36,7 +36,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	private Label rulesLabel;
 	private Label optionsLabel;
 	
-	ElementaryWidgets.ElementaryEntry _name;
+	Granite.Widgets.HintedEntry _name;
 	ComboBoxText comboMatch;
 	VBox vertQueries;
 	Gee.ArrayList<SmartPlaylistEditorQuery> spQueries;
@@ -75,7 +75,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		optionsLabel.set_markup("<b>Options</b>");
 		
 		/* add the name entry */
-		_name = new ElementaryWidgets.ElementaryEntry("Playlist Title");
+		_name = new Granite.Widgets.HintedEntry("Playlist Title");
 		if(_sp.name != "")
 			_name.set_text(_sp.name);
 		
