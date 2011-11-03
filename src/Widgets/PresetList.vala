@@ -23,6 +23,8 @@ public class BeatBox.PresetList : ComboBox {
 		store = new ListStore(2, typeof(GLib.Object), typeof(string));
 		this.set_model(store);
 		
+		this.set_size_request(-1, 800);
+		
 		this.set_id_column(1);
 		this.set_row_separator_func( (model, iter) => {
 			string content = "";

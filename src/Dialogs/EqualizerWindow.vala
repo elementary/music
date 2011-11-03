@@ -60,16 +60,18 @@ public class BeatBox.EqualizerWindow : Window {
 		
 		Gdk.Geometry geo = Gdk.Geometry();
 		geo.min_width = 400;
-		geo.min_height = 350;
+		geo.min_height = 300;
 		set_geometry_hints(this, geo, Gdk.WindowHints.MIN_SIZE);
 		
 		// set icon
 		set_icon(render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
 		
-		HBox padding = new HBox(false, 10);
+		HBox master_pad = new HBox(false, 10);
+		VBox padding = new VBox(false, 0);
 		VBox allItems = new VBox(false, 10);
 		scales = new HBox(false, 0);
-		
+
+        Toolbar bottomToolbar = new Toolbar();		
 		HBox bottomItems = new HBox(false, 0);
 		
 		equalizerOnOff = new Switch();
@@ -102,33 +104,51 @@ public class BeatBox.EqualizerWindow : Window {
 		// category labels
 		Label equalizerLabel = new Label("");
 		Label volumeLabel = new Label("");
-		
+
 		equalizerLabel.xalign = 0.0f;
 		volumeLabel.xalign = 0.0f;
-		
-		equalizerLabel.set_markup("<b>Equalizer</b>");
+
 		volumeLabel.set_markup("<b>Volume</b>");
-		
+		equalizerLabel.set_markup("<b>Equalizer</b>");
+
 		sideList.set_size_request(150, -1);
+
+//		bottomItems.pack_start(wrap_alignment(equalizerOnOff, 0, 0, 0, 0), false, true, 0);
+//		bottomItems.pack_start(wrap_alignment(sideList, 0, 0, 0, 6), false, true, 0);
+
+		var on_off_button = new ToolItem();
+		on_off_button.add(equalizerOnOff);
+
+		var side_list = new ToolItem();
+		side_list.add(sideList);
+
+		var space_item = new ToolItem();
+		space_item.set_expand(true);
 		
-		bottomItems.pack_start(wrap_alignment(equalizerOnOff, 0, 0, 0, 0), false, true, 0);
-		bottomItems.pack_start(wrap_alignment(sideList, 0, 0, 0, 6), false, false, 0);
-		
-		// Add save and cancel buttons
-		HButtonBox bottomButtons = new HButtonBox();
 		var doneButton = new Button.with_label("Close");
-		bottomButtons.set_layout(ButtonBoxStyle.END);
-		bottomButtons.pack_end(doneButton, false, false, 0);
-		
-		allItems.pack_start(wrap_alignment(equalizerLabel, 10, 0, 0, 0), false, true, 0);
-		allItems.pack_start(wrap_alignment(scales, 0, 0, 0, 10), true, true, 0);
-		allItems.pack_start(wrap_alignment(bottomItems, 0, 0, 0, 10), false, true, 0);
-		allItems.pack_start(wrap_alignment(volumeLabel, 0, 0, 0, 0), false, true, 0);
-		allItems.pack_start(wrap_alignment(volumeSlider, 0, 0, 0, 10), false, true, 0);
-		allItems.pack_end(wrap_alignment(bottomButtons, 0, 10, 10, 0), false, true, 0);
+		var done_button = new ToolItem();
+		done_button.add(doneButton);
+
+		bottomToolbar.insert(on_off_button, 0);
+		bottomToolbar.insert(side_list, 1);
+		bottomToolbar.insert(space_item, 2);
+		bottomToolbar.insert(done_button, 3);
+
+		// Old and busted
+//		bottomToolbar.get_style_context().add_class("primary-toolbar");		
+        // New hotness
+		bottomToolbar.get_style_context().add_class("bottom-toolbar");
+
+		allItems.pack_start(wrap_alignment(equalizerLabel, 0, 12, 0, 12), false, true, 0);
+		allItems.pack_start(wrap_alignment(scales, 0, 12, 0, 12), true, true, 0);
+//		allItems.pack_start(wrap_alignment(bottomItems, 0, 0, 0, 10), false, true, 0);
+//		allItems.pack_start(wrap_alignment(volumeLabel, 0, 0, 0, 0), false, true, 0);
+//		allItems.pack_start(wrap_alignment(volumeSlider, 0, 0, 0, 10), false, true, 0);
+		padding.pack_end(wrap_alignment(bottomToolbar, 0, 0, 0, 0), false, false, 0);
 		
 		padding.pack_start(allItems, true, true, 10);
-		add(padding);
+		master_pad.pack_start(padding);
+		add(master_pad);
 		
 		show_all();
 		
@@ -139,7 +159,7 @@ public class BeatBox.EqualizerWindow : Window {
 		sideList.preset_selected.connect(presetSelected);
 		volumeSlider.value_changed.connect(volumeSliderChanged);
 		doneButton.clicked.connect(onQuit);
-		this.destroy.connect(onQuit);
+//		this.delete_event.connect(onQuit);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
