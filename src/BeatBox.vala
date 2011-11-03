@@ -59,6 +59,11 @@ public class BeatBox.Beatbox : Granite.Application {
     };
     
     public static int main(string[] args) {
+		Gtk.init(ref args);
+		Gdk.threads_init();
+		Notify.init("beatbox");
+		add_stock_images();
+		
 		var app = new Beatbox();
 		stdout.printf("output 1\n");
 		app.args = args;
@@ -90,6 +95,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		translate_url = "https://translations.launchpad.net/beat-box";
 		
 		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>"};
+		
 	}
     
 	protected override void activate () {
@@ -98,19 +104,11 @@ public class BeatBox.Beatbox : Granite.Application {
 			return;
 		}
 		
-		Gtk.init(ref args);
-		stdout.printf("output 4\n");
-		Gdk.threads_init();
-		Notify.init("beatbox");
-		add_stock_images();
 		stdout.printf("output 5\n");
 		_program = new BeatBox.LibraryWindow(this, args);
 		stdout.printf("output 6\n");
 		_program.set_application(this);
 		stdout.printf("output 7\n");
-		//_program.show_all();
-		
-		Gtk.main();
 	}
 	
 	public static void add_stock_images() {

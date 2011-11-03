@@ -184,7 +184,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}*/
 		
 		build_ui();
-		this.present();
+		//this.present();
 		
 		//Timeout.add(1000, () => {
 			initializationFinished = true;
@@ -448,6 +448,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
 		miller.updateColumnVisibilities(genreV, artistV, albumV);
+		stdout.printf("User interface has been built\n");
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -957,24 +958,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void on_quit() {
-		//first: the user will never know that we don't actually close in the speed of light :p
-		//this.hide();
-		
-		//second: stop music
 		stdout.printf("Stopping playback\n");
 		lm.player.pause();
-		
-		stdout.printf("Saving songs\n");
-		//lm.save_songs();
-		
-		stdout.printf("Saving playlists\n");
-		//lm.save_playlists();
-		//lm.save_smart_playlists();
-		
-		stdout.printf("Saving LastFM Info\n");
-		//lm.save_artists();
-		//lm.save_albums();
-		//lm.save_tracks();
 	}
 	
 	public virtual void fileImportMusicClick() {

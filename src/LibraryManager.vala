@@ -553,9 +553,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void save_playlists() {
 		try {
-			Thread.create<void*>( () => { 
-				lock(_playlists) {
-					
+			lock(_playlists) {
+				Thread.create<void*>( () => {
 					var playlists_and_queue = new LinkedList<Playlist>();
 					playlists_and_queue.add_all(_playlists.values);
 					
@@ -584,10 +583,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 					playlists_and_queue.add(p_music);
 					
 					dbm.save_playlists(playlists_and_queue);
-				}
-				
-				return null; 
-			}, false);
+					return null; 
+				}, false);
+			}
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to save playlists: %s\n", err.message);
