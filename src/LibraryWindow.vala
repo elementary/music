@@ -776,7 +776,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			artist_s == lm.song_info.song.artist && lm.song_info.song.getAlbumArtPath().contains("media-audio.png")) {
 				lm.song_info.album = album;
 			
-                if (album.url_image.url != null) {
+                if (album.url_image.url != null && lm.settings.getUpdateFolderHierarchy()) {
 					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
 					
 					// start thread to load all the songs pixbuf's
