@@ -1,4 +1,4 @@
-debian/apport/beatbox.conf etc/apport/crashdb.conf.d/
-debian/apport/source_beatbox.py usr/share/apport/general-hooks/
+debian/apport/beatbox-crashdb.conf etc/apport/crashdb.conf.d/
+debian/apport/source_beatbox.py usr/share/apport/package-hooks/
 debian/tmp/usr/share/* usr/share/
 debian/tmp/usr/bin/* usr/bin/
