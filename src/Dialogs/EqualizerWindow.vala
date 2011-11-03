@@ -51,12 +51,11 @@ public class BeatBox.EqualizerWindow : Window {
 		
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		//this.set_modal(true);
 		this.set_transient_for(lw);
 		
 		// set the size
 		set_size_request(-1, 350);
-		resizable = true;
+		resizable = false;
 		
 		Gdk.Geometry geo = Gdk.Geometry();
 		geo.min_width = 400;
