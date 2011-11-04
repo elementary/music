@@ -44,7 +44,8 @@ public class BeatBox.PlaylistNameWindow : Window {
 		this.set_modal(true);
 		this.set_transient_for(lw);
 		this.destroy_with_parent = true;
-		//this.type = WindowType.POPUP;
+//		this.type = WindowType.POPUP;
+		
 		
 		_original = original;
 		
