@@ -1,6 +1,7 @@
 using Gtk;
 
-public class BeatBox.EqualizerWindow : Window {
+public class BeatBox.EqualizerWindow : Gtk.Window {
+
 	LibraryManager lm;
 	LibraryWindow lw;
 	
@@ -9,23 +10,23 @@ public class BeatBox.EqualizerWindow : Window {
 	
 	bool initialized;
 	
-	List<VScale> scaleList;
+	List<VScale> scale_list;
 	List<Label> label_list;
-	bool autoSwitchChosen;
+	bool automatic_chosen;
 	
-	private bool in_transition;
-	private Gee.ArrayList<int> targetLevels;
+	bool in_transition;
+    Gee.ArrayList<int> target_levels;
 	
 	public EqualizerWindow (LibraryManager lm, LibraryWindow lw) {
 	
 		this.lm = lm;
 		this.lw = lw;
 		
-		scaleList = new List<VScale>();
+		scale_list = new List<VScale>();
 		label_list = new List<Label>();
 		initialized = false;
-		targetLevels = new Gee.ArrayList<int>();
-		autoSwitchChosen = false;
+		target_levels = new Gee.ArrayList<int>();
+		automatic_chosen = false;
 		
 		build_ui();
 		
@@ -48,7 +49,7 @@ public class BeatBox.EqualizerWindow : Window {
 		initialized = true;
 	}
 	
-	public void build_ui () {
+	void build_ui () {
 	
 		set_title("Equalizer");
 		
@@ -83,14 +84,14 @@ public class BeatBox.EqualizerWindow : Window {
 			holder.pack_end(wrap_alignment(label, 4, 0, 0, 0), false, false, 0);
 			
 			scales.pack_start(holder, true, true, 6);
-			scaleList.append(v);
+			scale_list.append(v);
 			label_list.append(label);
 			
 			v.value_changed.connect( () => {
-				lm.player.setEqualizerGain(scaleList.index(v), (int)scaleList.nth_data(scaleList.index(v)).get_value());
+				lm.player.setEqualizerGain(scale_list.index(v), (int)scale_list.nth_data(scale_list.index(v)).get_value());
 				
 				if (!in_transition)
-					preset_combo.getSelectedPreset().setGain(scaleList.index(v), (int)scaleList.nth_data(scaleList.index(v)).get_value());
+					preset_combo.getSelectedPreset().setGain(scale_list.index(v), (int)scale_list.nth_data(scale_list.index(v)).get_value());
 			});
 		}
 
@@ -135,7 +136,8 @@ public class BeatBox.EqualizerWindow : Window {
 		show_all();
 	}
 	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+    static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+	
 		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
 		alignment.top_padding = top;
 		alignment.right_padding = right;
@@ -148,57 +150,52 @@ public class BeatBox.EqualizerWindow : Window {
 	
 	void set_sliders_sensitivity (bool sensitivity) {
 	
-		foreach (var scale in scaleList) {
-		    label_list.nth_data(scaleList.index(scale)).sensitive = sensitivity;
+		foreach (var scale in scale_list) {
+		    label_list.nth_data(scale_list.index(scale)).sensitive = sensitivity;
 			scale.sensitive = sensitivity;
 		}	
 	}
 	
-	public void on_eq_switch_toggled () {
+    void on_eq_switch_toggled () {
 	    
 		preset_combo.sensitive = eq_switch.get_active();
 		
 		if (eq_switch.get_active()) {
-		    stdout.printf("Active\n");
-			EqualizerPreset p = preset_combo.getSelectedPreset();
-			
-			if (p != null) {
+			EqualizerPreset? selected_preset = preset_combo.getSelectedPreset();
+			if (selected_preset != null) {
 				for(int i = 0; i < 10; ++i)
-					lm.player.setEqualizerGain(i, p.getGain(i));
+					lm.player.setEqualizerGain(i, selected_preset.getGain(i));
 			}
 		} else {
-		    stdout.printf("Inactive\n");
-			for(int i = 0; i < 10; ++i) {
+			for (int i = 0; i < 10; ++i) {
 				lm.player.setEqualizerGain(i, 0);
 			}
 		}
 		
-        if (autoSwitchChosen) {
-            stdout.printf("Sliders going inactive\n");
-	        set_sliders_sensitivity (false);
+        if (automatic_chosen) {
+	        set_sliders_sensitivity(false);
         } else {
-            stdout.printf("Sliders going get_active()\n");
-	        set_sliders_sensitivity (eq_switch.get_active());
+	        set_sliders_sensitivity(eq_switch.get_active());
         }
 	}
 	
-	public void load_presets () {
+	void load_presets () {
 	
-		var saved = lm.settings.getPresets();
+		var saved_presets = lm.settings.getPresets();
 			
 		preset_combo.clearList();
 		preset_combo.addTopOptions();
 		
-		if (saved.size == 0) {
+		if (saved_presets.size == 0) {
 			load_default_presets();
 		}
 		
-		foreach(EqualizerPreset p in saved) {
-			preset_combo.addPreset(p);
+		foreach (EqualizerPreset preset in saved_presets) {
+			preset_combo.addPreset(preset);
 		}
 	}
 	
-	public void load_default_presets () {
+	void load_default_presets () {
 	
 		preset_combo.addPreset( new EqualizerPreset.with_gains("Flat", {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}) );
 		preset_combo.addPreset( new EqualizerPreset.with_gains("Classical", {0, 0, 0, 0, 0, 0, -40, -40, -40, -50}) );
@@ -220,44 +217,43 @@ public class BeatBox.EqualizerWindow : Window {
 		preset_combo.addPreset( new EqualizerPreset.with_gains("Techno", {40, 30, 0, -30, -25, 0, 40, 50, 50, 45}) );
 	}
 	
-	public void presetSelected(EqualizerPreset p) {
+	void presetSelected(EqualizerPreset p) {
 	
-	    assert(p != null);
-		
-		autoSwitchChosen = false;
+		automatic_chosen = false;
 		set_sliders_sensitivity (true);
-		targetLevels.clear();
+		target_levels.clear();
+		
 		foreach (int i in p.gains) {
-			targetLevels.add(i);
+			target_levels.add(i);
 		}
 		
 		if (!initialized) {
 			for (int index = 0; index < 10; ++index) {
-				scaleList.nth_data(index).set_value(targetLevels.get(index));
+				scale_list.nth_data(index).set_value(target_levels.get(index));
 			}
 			return;
 		}
 		
-		if(!in_transition) {
+		if (!in_transition) {
 			in_transition = true;
 			Timeout.add(20, transition_scales);
 		}
 	}
 	
-	public bool transition_scales () {
+	bool transition_scales () {
 	
 		bool is_finished = true;
 		
 		for (int index = 0; index < 10; ++index) {
-			//scaleList.nth_data(index).set_value((double)p.getGain(index));
-			double currLvl = scaleList.nth_data(index).get_value();
-			double targetLvl = targetLevels.get(index);
+			//scale_list.nth_data(index).set_value((double)p.getGain(index));
+			double currLvl = scale_list.nth_data(index).get_value();
+			double targetLvl = target_levels.get(index);
 			double difference = targetLvl - currLvl;
             
             if (Math.fabs(difference) <= 1)
-                scaleList.nth_data(index).set_value(targetLvl);
+                scale_list.nth_data(index).set_value(targetLvl);
             else {
-                scaleList.nth_data(index).set_value(scaleList.nth_data(index).get_value() + (difference / 8.0));
+                scale_list.nth_data(index).set_value(scale_list.nth_data(index).get_value() + (difference / 8.0));
                 is_finished = false;
 			}
 		}
@@ -270,36 +266,36 @@ public class BeatBox.EqualizerWindow : Window {
 		return true; // keep going
 	}
 	
-	public void on_automatic_chosen () {
+	void on_automatic_chosen () {
 	
 	    stdout.printf("Automatic chosen\n");
-		autoSwitchChosen = true;
+		automatic_chosen = true;
 		set_sliders_sensitivity (false);
 	}
 	
-	public virtual void addPresetClicked () {
+	void addPresetClicked () {
 	
 		PresetNameWindow pnw = new PresetNameWindow(lw, new EqualizerPreset.basic("Custom Preset"));
 		pnw.preset_saved.connect(presetNameWindowSaved);
 	}
 	
-	public virtual void presetNameWindowSaved(EqualizerPreset p) {
+	void presetNameWindowSaved(EqualizerPreset p) {
 	
 		preset_combo.addPreset(p);
 	}
 	
-	public void removePresetClicked () {
+	void removePresetClicked () {
 	
 		preset_combo.removeCurrentPreset();
 	}
 	
-	public void restorePresetsClicked () {
+	void restorePresetsClicked () {
 	
 		preset_combo.clearList();
 		load_default_presets();
 	}
 	
-	public void on_close () {
+	void on_close () {
 	
         stdout.printf("On_closing\n");
 	
@@ -310,7 +306,7 @@ public class BeatBox.EqualizerWindow : Window {
 		}
 		
 		lm.settings.setPresets(preset_combo.getPresets());
-		lm.settings.setAutoSwitchPreset(autoSwitchChosen);
+		lm.settings.setAutoSwitchPreset(automatic_chosen);
 		
 		if (lm.settings.getEqualizerDisabled()) {
 			lm.player.disableEqualizer();
