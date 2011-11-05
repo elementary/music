@@ -130,7 +130,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		preset_combo.add_preset_chosen.connect(addPresetClicked);
 		preset_combo.delete_preset_chosen.connect(removePresetClicked);
 		preset_combo.preset_selected.connect(presetSelected);
-		close_button.clicked.connect(on_close);
+		close_button.clicked.connect( () => (destroy()) );
 		destroy.connect(on_close);
 		
 		show_all();
@@ -279,7 +279,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		pnw.preset_saved.connect(presetNameWindowSaved);
 	}
 	
-	void presetNameWindowSaved(EqualizerPreset p) {
+	void presetNameWindowSaved (EqualizerPreset p) {
 	
 		preset_combo.addPreset(p);
 	}
