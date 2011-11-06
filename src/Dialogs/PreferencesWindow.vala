@@ -67,12 +67,12 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.set_modal(true);
+//		this.set_modal(true);
 		this.set_transient_for(_lw);
 		
 		// set the size
-		set_size_request(400, -1);
-		resizable = true;
+//		set_size_request(-1, -1);
+//		resizable = false;
 		
 		// set icon
 		set_icon( render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
