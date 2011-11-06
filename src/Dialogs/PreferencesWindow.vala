@@ -25,43 +25,45 @@
 
 using Gtk;
 
-public class BeatBox.PreferencesWindow : Window {
-	private BeatBox.LibraryManager _lm;
-	private BeatBox.LibraryWindow _lw;
+public class BeatBox.PreferencesWindow : Gtk.Window {
+	BeatBox.LibraryManager _lm;
+	BeatBox.LibraryWindow _lw;
 	
 	//for padding around notebook mostly
-	private VBox content;
-	private HBox padding;
+    VBox content;
+	HBox padding;
 	
 	//category labels
-	private Label musicLabel;
-	private Label managementLabel;
-	private Label lastfmLabel;
+	Label musicLabel;
+	Label managementLabel;
+	Label lastfmLabel;
 	
-	private FileChooserButton fileChooser;
+	FileChooserButton fileChooser;
 	
-	private CheckButton organizeFolders;
-	private CheckButton copyImportedMusic;
+	CheckButton organizeFolders;
+	CheckButton copyImportedMusic;
 	
-	private Button lastfmLogin;
-	private Label lastfmInfo;
+	Button lastfmLogin;
+	Label lastfmInfo;
 	
-	private Button saveChanges;
+	Button saveChanges;
 	
-	private string lastfm_token;
+	string lastfm_token;
 	
 	public signal void changed(string folder);
 	
-	public PreferencesWindow(LibraryManager lm, LibraryWindow lw) {
+	public PreferencesWindow (LibraryManager lm, LibraryWindow lw) {
+	
 		this._lm = lm;
 		this._lw = lw;
 		
-		buildUI();
+		build_ui();
 		
 		_lm.file_operations_done.connect(fileOperationsDone);
 	}
 	
-	public void buildUI() {
+	void build_ui () {
+	
 		// set the title
 		set_title("Preferences");
 		
@@ -139,14 +141,15 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		padding.pack_start(content, true, true, 10);
 		
-		this.add(padding);
+		add(padding);
 		show_all();
 		
 		lastfmLogin.clicked.connect(lastfmLoginClick);
 		saveChanges.clicked.connect(saveClicked);
 	}
 	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+	static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+	
 		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
 		alignment.top_padding = top;
 		alignment.right_padding = right;
@@ -157,7 +160,8 @@ public class BeatBox.PreferencesWindow : Window {
 		return alignment;
 	}
 	
-	public virtual void lastfmLoginClick() {
+	void lastfmLoginClick() {
+	
 		if(lastfmLogin.get_label() == "Enable Scrobbling" || lastfmLogin.get_label() == "Unsuccessful. Click to try again.") {
 			lastfm_token = _lm.lfm.getToken();
 			if(lastfm_token == null) {
@@ -200,7 +204,8 @@ public class BeatBox.PreferencesWindow : Window {
 		}
 	}
 		
-	public virtual void saveClicked() {
+	void saveClicked() {
+	
 		if(fileChooser.get_current_folder() != _lm.settings.getMusicFolder() || _lm.song_count() == 0) {
 			changed(fileChooser.get_current_folder());
 		}
@@ -211,11 +216,13 @@ public class BeatBox.PreferencesWindow : Window {
 		this.destroy();
 	}
 	
-	public virtual void cancelClicked() {
+	void cancelClicked() {
+	
 		this.destroy();
 	}
 	
-	public virtual void fileOperationsDone() {
+	void fileOperationsDone() {
+	
 		fileChooser.set_tooltip_text("");
 		fileChooser.set_sensitive(true);
 	}
