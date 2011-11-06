@@ -29,23 +29,12 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 	BeatBox.LibraryManager _lm;
 	BeatBox.LibraryWindow _lw;
 	
-	//for padding around notebook mostly
-    VBox content;
-	HBox padding;
-	
-	//category labels
-	Label musicLabel;
-	Label managementLabel;
-	Label lastfmLabel;
-	
 	FileChooserButton fileChooser;
 	
 	CheckButton organizeFolders;
 	CheckButton copyImportedMusic;
 	
 	Button lastfmLogin;
-	Label lastfmInfo;
-	
 	Button saveChanges;
 	
 	string lastfm_token;
@@ -64,33 +53,28 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 	
 	void build_ui () {
 	
-		// set the title
 		set_title("Preferences");
+
+		// Window properties
+		window_position = WindowPosition.CENTER;
+		type_hint = Gdk.WindowTypeHint.DIALOG;
+		modal = true;
+		resizable = false;
+		set_transient_for(_lw);
+		set_size_request(400, 350);
+
+		var content = new VBox(false, 10);
+		var padding = new HBox(false, 10);
 		
-		this.window_position = WindowPosition.CENTER;
-		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-//		this.set_modal(true);
-		this.set_transient_for(_lw);
-		
-		// set the size
-//		set_size_request(-1, -1);
-//		resizable = false;
-		
-		// set icon
-		set_icon( render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
-		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 10);
-		
-		musicLabel = new Label("Music Folder Location");
+		var musicLabel = new Label("Music Folder Location");
 		fileChooser = new FileChooserButton("Music Folder", FileChooserAction.SELECT_FOLDER);
 		
-		managementLabel = new Label("Library Management");
+		var managementLabel = new Label("Library Management");
 		organizeFolders = new CheckButton.with_label("Keep Music folder organized");
 		copyImportedMusic = new CheckButton.with_label("Copy files to Music folder when added to Library");
 		
-		lastfmLabel = new Label("Last FM Integration");
-		lastfmInfo = new Label("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
+		var lastfmLabel = new Label("Last FM Integration");
+		var lastfmInfo = new Granite.Widgets.WrapLabel("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
 		
 		if(_lm.settings.getLastFMSessionKey() == null || _lm.settings.getLastFMSessionKey() == "")
 			lastfmLogin = new Button.with_label("Enable Scrobbling");
@@ -101,7 +85,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		
 		saveChanges = new Button.with_label("Close");
 		
-		/* fancy up the category labels */
+		// fancy up the category labels
 		musicLabel.xalign = 0.0f;
 		managementLabel.xalign = 0.0f;
 		lastfmLabel.xalign = 0.0f;
@@ -109,26 +93,26 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		managementLabel.set_markup("<b>Library Management</b>");
 		lastfmLabel.set_markup("<b>Last FM Integration</b>");
 		
-		/* file chooser stuff */
+		// file chooser stuff
 		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
 		
-		if(_lm.doing_file_operations) {
+		if (_lm.doing_file_operations) {
 			fileChooser.set_sensitive(false);
 			fileChooser.set_tooltip_text("You must wait until previous file operations finish before setting your music folder");
 		}
 		
-		/* initialize library management settings */
+		// initialize library management settings
 		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
 		copyImportedMusic.set_active(_lm.settings.getCopyImportedMusic());
 		
 		lastfmInfo.set_line_wrap(true);
 		
-		/** Add save and cancel buttons **/
-		HButtonBox bottomButtons = new HButtonBox();
+		// Add save and cancel buttons
+		var bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(saveChanges, false, false, 0);
 		
-		/** put it all together **/
+		// Pack all widgets
 		content.pack_start(wrap_alignment(musicLabel, 10, 0, 0, 0), false, true, 0);
 		content.pack_start(wrap_alignment(fileChooser, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(managementLabel, false, true, 0);
@@ -140,12 +124,12 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		content.pack_end(bottomButtons, false, true, 10);
 		
 		padding.pack_start(content, true, true, 10);
-		
 		add(padding);
-		show_all();
 		
 		lastfmLogin.clicked.connect(lastfmLoginClick);
 		saveChanges.clicked.connect(saveClicked);
+		
+		show_all();
 	}
 	
 	static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -213,15 +197,15 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
 		_lm.settings.setCopyImportedMusic(copyImportedMusic.get_active());
 		
-		this.destroy();
+		destroy();
 	}
 	
-	void cancelClicked() {
+	void cancelClicked () {
 	
-		this.destroy();
+		destroy();
 	}
 	
-	void fileOperationsDone() {
+	void fileOperationsDone () {
 	
 		fileChooser.set_tooltip_text("");
 		fileChooser.set_sensitive(true);
