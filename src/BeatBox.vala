@@ -65,11 +65,8 @@ public class BeatBox.Beatbox : Granite.Application {
 		add_stock_images();
 		
 		var app = new Beatbox();
-		stdout.printf("output 1\n");
 		app.args = args;
-		stdout.printf("output 2\n");
 		return app.run(args);
-		stdout.printf("output 3\n");
 	}
 	
 	construct {
@@ -104,11 +101,8 @@ public class BeatBox.Beatbox : Granite.Application {
 			return;
 		}
 		
-		stdout.printf("output 5\n");
 		_program = new BeatBox.LibraryWindow(this, args);
-		stdout.printf("output 6\n");
 		_program.set_application(this);
-		stdout.printf("output 7\n");
 	}
 	
 	public static void add_stock_images() {
