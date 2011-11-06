@@ -245,7 +245,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		bool is_finished = true;
 		
 		for (int index = 0; index < 10; ++index) {
-			//scale_list.nth_data(index).set_value((double)p.getGain(index));
 			double currLvl = scale_list.nth_data(index).get_value();
 			double targetLvl = target_levels.get(index);
 			double difference = targetLvl - currLvl;
@@ -268,7 +267,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	
 	void on_automatic_chosen () {
 	
-	    stdout.printf("Automatic chosen\n");
 		automatic_chosen = true;
 		set_sliders_sensitivity (false);
 	}
@@ -296,8 +294,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 	
 	void on_close () {
-	
-        stdout.printf("On_closing\n");
 	
 		lm.settings.setEqualizerDisabled(!eq_switch.get_active());
 		
