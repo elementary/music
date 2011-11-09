@@ -25,70 +25,56 @@
 
 using Gtk;
 
-public class BeatBox.PreferencesWindow : Window {
-	private BeatBox.LibraryManager _lm;
-	private BeatBox.LibraryWindow _lw;
+public class BeatBox.PreferencesWindow : Gtk.Window {
+	BeatBox.LibraryManager _lm;
+	BeatBox.LibraryWindow _lw;
 	
-	//for padding around notebook mostly
-	private VBox content;
-	private HBox padding;
+	FileChooserButton fileChooser;
 	
-	//category labels
-	private Label musicLabel;
-	private Label managementLabel;
-	private Label lastfmLabel;
+	CheckButton organizeFolders;
+	CheckButton copyImportedMusic;
 	
-	private FileChooserButton fileChooser;
+	Button lastfmLogin;
+	Button saveChanges;
 	
-	private CheckButton organizeFolders;
-	private CheckButton copyImportedMusic;
-	
-	private Button lastfmLogin;
-	private Label lastfmInfo;
-	
-	private Button saveChanges;
-	
-	private string lastfm_token;
+	string lastfm_token;
 	
 	public signal void changed(string folder);
 	
-	public PreferencesWindow(LibraryManager lm, LibraryWindow lw) {
+	public PreferencesWindow (LibraryManager lm, LibraryWindow lw) {
+	
 		this._lm = lm;
 		this._lw = lw;
 		
-		buildUI();
+		build_ui();
 		
 		_lm.file_operations_done.connect(fileOperationsDone);
 	}
 	
-	public void buildUI() {
-		// set the title
+	void build_ui () {
+	
 		set_title("Preferences");
+
+		// Window properties
+		window_position = WindowPosition.CENTER;
+		type_hint = Gdk.WindowTypeHint.DIALOG;
+		modal = true;
+		resizable = false;
+		set_transient_for(_lw);
+		set_size_request(400, 350);
+
+		var content = new VBox(false, 10);
+		var padding = new HBox(false, 10);
 		
-		this.window_position = WindowPosition.CENTER;
-		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-//		this.set_modal(true);
-		this.set_transient_for(_lw);
-		
-		// set the size
-//		set_size_request(-1, -1);
-//		resizable = false;
-		
-		// set icon
-		set_icon( render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
-		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 10);
-		
-		musicLabel = new Label("Music Folder Location");
+		var musicLabel = new Label("Music Folder Location");
 		fileChooser = new FileChooserButton("Music Folder", FileChooserAction.SELECT_FOLDER);
 		
-		managementLabel = new Label("Library Management");
+		var managementLabel = new Label("Library Management");
 		organizeFolders = new CheckButton.with_label("Keep Music folder organized");
 		copyImportedMusic = new CheckButton.with_label("Copy files to Music folder when added to Library");
 		
-		lastfmLabel = new Label("Last FM Integration");
-		lastfmInfo = new Label("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
+		var lastfmLabel = new Label("Last FM Integration");
+		var lastfmInfo = new Granite.Widgets.WrapLabel("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
 		
 		if(_lm.settings.getLastFMSessionKey() == null || _lm.settings.getLastFMSessionKey() == "")
 			lastfmLogin = new Button.with_label("Enable Scrobbling");
@@ -99,7 +85,7 @@ public class BeatBox.PreferencesWindow : Window {
 		
 		saveChanges = new Button.with_label("Close");
 		
-		/* fancy up the category labels */
+		// fancy up the category labels
 		musicLabel.xalign = 0.0f;
 		managementLabel.xalign = 0.0f;
 		lastfmLabel.xalign = 0.0f;
@@ -107,26 +93,26 @@ public class BeatBox.PreferencesWindow : Window {
 		managementLabel.set_markup("<b>Library Management</b>");
 		lastfmLabel.set_markup("<b>Last FM Integration</b>");
 		
-		/* file chooser stuff */
+		// file chooser stuff
 		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
 		
-		if(_lm.doing_file_operations) {
+		if (_lm.doing_file_operations) {
 			fileChooser.set_sensitive(false);
 			fileChooser.set_tooltip_text("You must wait until previous file operations finish before setting your music folder");
 		}
 		
-		/* initialize library management settings */
+		// initialize library management settings
 		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
 		copyImportedMusic.set_active(_lm.settings.getCopyImportedMusic());
 		
 		lastfmInfo.set_line_wrap(true);
 		
-		/** Add save and cancel buttons **/
-		HButtonBox bottomButtons = new HButtonBox();
+		// Add save and cancel buttons
+		var bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(saveChanges, false, false, 0);
 		
-		/** put it all together **/
+		// Pack all widgets
 		content.pack_start(wrap_alignment(musicLabel, 10, 0, 0, 0), false, true, 0);
 		content.pack_start(wrap_alignment(fileChooser, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(managementLabel, false, true, 0);
@@ -138,15 +124,16 @@ public class BeatBox.PreferencesWindow : Window {
 		content.pack_end(bottomButtons, false, true, 10);
 		
 		padding.pack_start(content, true, true, 10);
-		
-		this.add(padding);
-		show_all();
+		add(padding);
 		
 		lastfmLogin.clicked.connect(lastfmLoginClick);
 		saveChanges.clicked.connect(saveClicked);
+		
+		show_all();
 	}
 	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+	static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+	
 		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
 		alignment.top_padding = top;
 		alignment.right_padding = right;
@@ -157,7 +144,8 @@ public class BeatBox.PreferencesWindow : Window {
 		return alignment;
 	}
 	
-	public virtual void lastfmLoginClick() {
+	void lastfmLoginClick() {
+	
 		if(lastfmLogin.get_label() == "Enable Scrobbling" || lastfmLogin.get_label() == "Unsuccessful. Click to try again.") {
 			lastfm_token = _lm.lfm.getToken();
 			if(lastfm_token == null) {
@@ -200,7 +188,8 @@ public class BeatBox.PreferencesWindow : Window {
 		}
 	}
 		
-	public virtual void saveClicked() {
+	void saveClicked() {
+	
 		if(fileChooser.get_current_folder() != _lm.settings.getMusicFolder() || _lm.song_count() == 0) {
 			changed(fileChooser.get_current_folder());
 		}
@@ -208,14 +197,16 @@ public class BeatBox.PreferencesWindow : Window {
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
 		_lm.settings.setCopyImportedMusic(copyImportedMusic.get_active());
 		
-		this.destroy();
+		destroy();
 	}
 	
-	public virtual void cancelClicked() {
-		this.destroy();
+	void cancelClicked () {
+	
+		destroy();
 	}
 	
-	public virtual void fileOperationsDone() {
+	void fileOperationsDone () {
+	
 		fileChooser.set_tooltip_text("");
 		fileChooser.set_sensitive(true);
 	}
