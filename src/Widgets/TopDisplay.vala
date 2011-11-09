@@ -54,7 +54,6 @@ namespace ElementaryWidgets {
 			progressBox.pack_start(wrap_alignment(progressbar, 2, 0, 0, 0), true, true, 0);
 			progressBox.pack_end(wrap_alignment(cancelButton, 2, 2, 0, 2), false, false, 0);
 			
-			progressbar.set_size_request(-1, 8);
 			scale.set_draw_value(false);
 			
 			label.set_justify(Justification.CENTER);
@@ -202,12 +201,18 @@ namespace ElementaryWidgets {
 			scaleBox.show();
 			progressbar.hide();
 			cancelButton.hide();
+			
+			cancelButton.set_size_request(0,0);
+			progressbar.set_size_request(-1, 0);
 		}
 		
 		public void show_progressbar() {
 			progressbar.show();
 			scaleBox.hide();
 			cancelButton.show();
+			
+			cancelButton.set_size_request(12, 12);
+			progressbar.set_size_request(-1, 12);
 		}
 		
 		public virtual void player_position_update(int64 position) {

@@ -505,17 +505,19 @@ public class BeatBox.FileOperator : Object {
 			/* initialize file objects */
 			var original = GLib.File.new_for_path(s.file);
 			var ext = get_extension(s.file);
-			
 			GLib.File dest;
+			
+			dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + ext));
+			
+			if(original.get_path() == dest.get_path()) {
+				stdout.printf("File is already in correct location\n");
+				return;
+			}
+			
 			string extra = "";
 			while((dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + extra + ext))).query_exists()) {
 				extra += "_";
 			}
-			
-			if(original.get_path() == dest.get_path())
-				return;
-				
-			stdout.printf("\n\n");
 			
 			/* make sure that the parent folders exist */
 			if(!dest.get_parent().get_parent().query_exists()) {
