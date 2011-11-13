@@ -87,7 +87,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		app_years = "2010-2011";
 		
 		main_url = "https://launchpad.net/beat-box";
-		bug_url = "https://bugs.launchpad.net/beat-box";
+		bug_url = "https://bugs.launchpad.net/beat-box/+filebug";
 		help_url = "https://answers.launchpad.net/beat-box";
 		translate_url = "https://translations.launchpad.net/beat-box";
 		
