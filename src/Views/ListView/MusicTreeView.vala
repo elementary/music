@@ -56,7 +56,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	//for header column chooser
 	Menu columnChooserMenu;
-	MenuItem columnSmartSorting;
 	CheckMenuItem columnNumber;
 	CheckMenuItem columnTrack;
 	CheckMenuItem columnTitle;
@@ -383,7 +382,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		
 		// column chooser menu
 		columnChooserMenu = new Menu();
-		columnSmartSorting = new MenuItem.with_label("Smart sorting");
 		columnNumber = new CheckMenuItem.with_label("#");
 		columnTrack = new CheckMenuItem.with_label("Track");
 		columnTitle = new CheckMenuItem.with_label("Title");
@@ -400,8 +398,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnLastPlayed = new CheckMenuItem.with_label("Last Played");
 		columnBPM = new CheckMenuItem.with_label("BPM");
 		updateColumnVisibilities();
-		columnChooserMenu.append(columnSmartSorting);
-		columnChooserMenu.append(new SeparatorMenuItem());
 		columnChooserMenu.append(columnNumber);
 		columnChooserMenu.append(columnTrack);
 		columnChooserMenu.append(columnTitle);
@@ -417,7 +413,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 		columnChooserMenu.append(columnDateAdded);
 		columnChooserMenu.append(columnLastPlayed);
 		columnChooserMenu.append(columnBPM);
-		columnSmartSorting.activate.connect(columnSmartSortingClick);
 		columnNumber.toggled.connect(columnMenuToggled);
 		columnTrack.toggled.connect(columnMenuToggled);
 		columnTitle.toggled.connect(columnMenuToggled);
@@ -1007,21 +1002,6 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 	
 	public virtual void viewHeadersResized() {
 		updateTreeViewSetup();
-	}
-	
-	public virtual void columnSmartSortingClick() {
-		int main_sort = _columns.index_of("#");
-		
-		if(hint == Hint.MUSIC || hint == Hint.SMART_PLAYLIST)
-			main_sort = _columns.index_of("Artist");
-		else if(hint == Hint.SIMILAR || hint == Hint.QUEUE || hint == Hint.HISTORY || hint == Hint.PLAYLIST)
-			main_sort = _columns.index_of("#");
-		
-		sort_column = _columns.get(main_sort);
-		music_model.set_sort_column_id(main_sort, Gtk.SortType.ASCENDING);
-		
-		if(is_current)
-			setAsCurrentList(0);
 	}
 	
 	public void updateTreeViewSetup() {
