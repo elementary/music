@@ -1273,6 +1273,9 @@ public class BeatBox.MusicTreeView : ScrolledWindow {
 			lm.save_playlists();
 			
 		music_model.removeSongs(toRemoveIDs);
+		
+		// in case all the songs from certain miller items were removed, update miller
+		lw.miller.populateColumns("", music_model.getOrderedSongs());
 	}
 	
 	public virtual void songRateSong0Clicked() {
