@@ -23,7 +23,7 @@
 namespace ElementaryWidgets {
 	using Gtk;
 	
-	public class TopDisplay : VBox {
+	public class TopDisplay : HBox {
 		BeatBox.LibraryManager lm;
 		Label label;
 		HBox scaleBox;
@@ -50,10 +50,6 @@ namespace ElementaryWidgets {
 			scaleBox.pack_start(scale, true, true, 0);
 			scaleBox.pack_start(rightTime, false, false, 0);
 			
-			HBox progressBox = new HBox(false, 0);
-			progressBox.pack_start(wrap_alignment(progressbar, 2, 0, 0, 0), true, true, 0);
-			progressBox.pack_end(wrap_alignment(cancelButton, 2, 2, 0, 2), false, false, 0);
-			
 			scale.set_draw_value(false);
 			
 			label.set_justify(Justification.CENTER);
@@ -63,9 +59,16 @@ namespace ElementaryWidgets {
 			
 			cancelButton.set_image(new Image.from_stock(Gtk.Stock.CANCEL, IconSize.MENU));
 			
-			this.pack_start(label, false, true, 0);
-			this.pack_start(wrap_alignment(progressBox, 0, 5, 0, 5), false, true, 0);
-			this.pack_start(wrap_alignment(scaleBox, 0, 5, 0, 5), false, true, 0);
+			cancelButton.set_relief(Gtk.ReliefStyle.NONE);
+			
+			// all but cancel
+			VBox info = new VBox(false, 0);
+			info.pack_start(label, false, true, 0);
+			info.pack_start(wrap_alignment(progressbar, 0, 5, 0, 5), false, true, 0);
+			info.pack_start(wrap_alignment(scaleBox, 0, 5, 0, 5), false, true, 0);
+			
+			this.pack_start(info, true, true, 0);
+			this.pack_end(wrap_alignment(cancelButton, 2, 2, 0, 2), false, false, 0);
 			
 			this.cancelButton.clicked.connect(cancel_clicked);
 			this.scale.button_press_event.connect(scale_button_press);
