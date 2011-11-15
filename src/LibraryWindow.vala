@@ -541,9 +541,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				mainViews.pack_start(vw, true, true, 0);
 			}
 			else if(d.getContentType().contains("ipod")) {
+				stdout.printf("a\n");
 				DeviceSummaryWidget dsm = new DeviceSummaryWidget(lm, this, d);
+				stdout.printf("a\n");
 				item = sideTree.addSideItem(sideTree.devices_iter, d, dsm, d.getDisplayName());
+				stdout.printf("a\n");
 				mainViews.pack_start(dsm, true, true, 0);
+				stdout.printf("a\n");
 			}
 			else if(d.getContentType() == "android") {
 				Label l = new Label(d.getDescription());
@@ -553,14 +557,26 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		
+		stdout.printf("b\n");
 		vw.show_all();
+		stdout.printf("b\n");
+		
+		if(vw == null || vw.list == null || vw.albumView == null)
+			return;
+		
 		if(viewSelector.selected == 0) {
+			stdout.printf("c\n");
 			vw.albumView.show();
+			stdout.printf("c\n");
 			vw.list.hide();
+			stdout.printf("c\n");
 		}
 		else {
+			stdout.printf("d\n");
 			vw.list.show();
+			stdout.printf("d\n");
 			vw.albumView.hide();
+			stdout.printf("d\n");
 		}
 	}
 	
