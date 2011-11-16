@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/apps/beatbox/lastfm/" id="org.gnome.beatbox.lastfm">
+    <key type="s" name="session-key">
+      <default>''</default>
+      <summary>Unique session key</summary>
+      <description>Used to login to Last.FM</description>
+    </key>
+  </schema>
+  
+  <schema path="/apps/beatbox/music/" id="org.gnome.beatbox.music">
+    <key type="s" name="music-folder">
+      <default>''</default>
+      <summary>Path to music folder</summary>
+      <description>Where music is copied to, saved, and managed</description>
+    </key>
+    <key type="b" name="update-folder-hierarchy">
+      <default>false</default>
+      <summary>Whether or not to auto-organize folders and rename files</summary>
+      <description>Whether or not to auto-organize folders and rename files</description>
+    </key>
+    <key type="b" name="copy-imported-music">
+      <default>false</default>
+      <summary>Whether or not to copy imported files to music folder</summary>
+      <description>Whether or not to copy imported files to music folder</description>
+    </key>
+    <key type="i" name="last-song-playing">
+      <default>0</default>
+      <summary>ID of last song playing</summary>
+      <description>ID of last song playing</description>
+    </key>
+    <key type="i" name="last-song-position">
+      <default>0</default>
+      <summary>Position, in seconds, of song</summary>
+      <description>Position, in seconds, of song when BeatBox last closed</description>
+    </key>
+    <key type="i" name="shuffle-mode">
+      <default>0</default>
+      <summary>An index representing the shuffle mode</summary>
+      <description>An index representing the shuffle mode</description>
+    </key>
+    <key type="i" name="repeat-mode">
+      <default>0</default>
+      <summary>An index representing the repeat mode</summary>
+      <description>An index representing the repeat mode</description>
+    </key>
+    <key type="s" name="search-string">
+      <default>''</default>
+      <summary>String of last search</summary>
+      <description>String of last search</description>
+    </key>
+  </schema>
+  
+  <schema path="/apps/beatbox/ui/" id="org.gnome.beatbox.ui">
+    <key type="i" name="window-width">
+      <default>1100</default>
+      <summary>Window width</summary>
+      <description>Window width</description>
+    </key>
+    <key type="i" name="window-height">
+      <default>600</default>
+      <summary>Window height</summary>
+      <description>Window height</description>
+    </key>
+    <key type="i" name="sidebar-width">
+      <default>200</default>
+      <summary>Sidebar width</summary>
+      <description>Sidebar width</description>
+    </key>
+    <key type="i" name="more-width">
+      <default>150</default>
+      <summary>Right panel width</summary>
+      <description>Right panel width</description>
+    </key>
+    <key type="b" name="more-visible">
+      <default>false</default>
+      <summary>Whether or not the right panel is showing</summary>
+      <description>Whether or not the right panel is showing</description>
+    </key>
+    <key type="i" name="miller-height">
+      <default>250</default>
+      <summary>Miller columns height</summary>
+      <description>Miller columns height</description>
+    </key>
+    <key type="b" name="window-maximized">
+      <default>false</default>
+      <summary>Whether or not the window is maximized</summary>
+      <description>Whether or not the window is maximized</description>
+    </key>
+    <key type="s" name="miller-column-visibilities">
+      <default>'GenreArtistAlbum'</default>
+      <summary>A string that is 'decoded' to represent which miller columns to show</summary>
+      <description>A string that is 'decoded' to represent which miller columns to show</description>
+    </key>
+    <key type="i" name="view-mode">
+      <default>1</default>
+      <summary>Index of which view type to use</summary>
+      <description>Index of which view type to use</description>
+    </key>
+  </schema>
+  
+  <schema path="/apps/beatbox/equalizer/" id="org.gnome.beatbox.equalizer">
+    <key type="b" name="equalizer-disabled">
+      <default>true</default>
+      <summary>Whether or not the equalizer is disabled</summary>
+      <description>Whether or not the equalizer is disabled</description>
+    </key>
+    <key type="s" name="selected-preset">
+      <default>''</default>
+      <summary>Contains information regarding the user-selected preset</summary>
+      <description>Contains information regarding the user-selected preset</description>
+    </key>
+    <key type="s" name="presets">
+      <default>''</default>
+      <summary>Contains the list of presets</summary>
+      <description>Contains the list of presets</description>
+    </key>
+    <key type="b" name="auto-switch-preset">
+      <default>true</default>
+      <summary>Whether or not to use the auto preset</summary>
+      <description>Whether or not to use the auto preset</description>
+    </key>
+    <key type="i" name="volume">
+      <default>100</default>
+      <range min="0" max="100"/>
+      <summary>BeatBox's volume from 0-100</summary>
+      <description>BeatBox's volume from 0-100</description>
+    </key>
+  </schema>
+</schemalist>
