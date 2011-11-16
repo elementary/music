@@ -541,13 +541,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				mainViews.pack_start(vw, true, true, 0);
 			}
 			else if(d.getContentType().contains("ipod")) {
-				stdout.printf("a\n");
 				DeviceSummaryWidget dsm = new DeviceSummaryWidget(lm, this, d);
-				stdout.printf("a\n");
 				item = sideTree.addSideItem(sideTree.devices_iter, d, dsm, d.getDisplayName());
-				stdout.printf("a\n");
 				mainViews.pack_start(dsm, true, true, 0);
-				stdout.printf("a\n");
 			}
 			else if(d.getContentType() == "android") {
 				Label l = new Label(d.getDescription());
@@ -557,26 +553,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		
-		stdout.printf("b\n");
-		vw.show_all();
-		stdout.printf("b\n");
-		
 		if(vw == null || vw.list == null || vw.albumView == null)
 			return;
 		
+		vw.show_all();
 		if(viewSelector.selected == 0) {
-			stdout.printf("c\n");
 			vw.albumView.show();
-			stdout.printf("c\n");
 			vw.list.hide();
-			stdout.printf("c\n");
 		}
 		else {
-			stdout.printf("d\n");
 			vw.list.show();
-			stdout.printf("d\n");
 			vw.albumView.hide();
-			stdout.printf("d\n");
 		}
 	}
 	
@@ -633,7 +620,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// if we are adding songs, refresh periodically
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
-		if(lm.songs().size - vw.songs.size >= 500) {
+		if(lm.songs().size - vw.showingSongs.size >= 500) {
 			
 			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
 			miller.populateColumns("", lm.song_ids());
@@ -1162,7 +1149,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			lm.settings.setLastSongPosition((int)sec);
 			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
-			if(position > 5000000000 && !queriedlastfm && !lm.doing_file_operations) {
+			if(position > 5000000000 && !queriedlastfm) {
 				queriedlastfm = true;
 				
 				similarSongs.queryForSimilar(lm.song_info.song);

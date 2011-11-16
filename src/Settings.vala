@@ -20,55 +20,103 @@
  * Boston, MA 02111-1307, USA.
  */
 
+using Gee;
+
 public class BeatBox.Settings : Object {
-	GConf.Client client;
+	GLib.Settings lastfm;
+	GLib.Settings ui;
+	GLib.Settings music;
+	GLib.Settings equalizer;
 	
-	public static const string LASTFM_USERNAME = "/apps/beatbox/preferences/lastfm/username";
-	public static const string LASTFM_PASSWORD = "/apps/beatbox/preferences/lastfm/pass";
-	public static const string LASTFM_AUTO_LOGIN = "/apps/beatbox/preferences/lastfm/auto_login";
-	public static const string LASTFM_SESSION_KEY = "/apps/beatbox/preferences/lastfm/lastfm_session_key";
+	public static const string LASTFM_SESSION_KEY = "session-key";
 	
-	public static const string MUSIC_FOLDER = "/apps/beatbox/preferences/music/music_folder";
-	public static const string UPDATE_FOLDER_HIERARCHY = "/apps/beatbox/preferences/music/update_folder_hierarchy";
-	public static const string COPY_IMPORTED_MUSIC = "/apps/beatbox/preferences/music/copy_imported_music";
-	public static const string LAST_SONG_PLAYING = "/apps/beatbox/preferences/music/last_song_playing";
-	public static const string LAST_SONG_POSITION = "/apps/beatbox/preferences/music/last_song_position";
-	public static const string SHUFFLE_MODE = "/apps/beatbox/preferences/music/shuffle_mode";
-	public static const string REPEAT_MODE = "/apps/beatbox/preferences/music/repeat_mode";
-	public static const string SEARCH_STRING = "/apps/beatbox/preferences/music/search_string";
+	public static const string MUSIC_FOLDER = "music-folder";
+	public static const string UPDATE_FOLDER_HIERARCHY = "update-folder-hierarchy";
+	public static const string COPY_IMPORTED_MUSIC = "copy-imported-music";
+	public static const string LAST_SONG_PLAYING = "last-song-playing";
+	public static const string LAST_SONG_POSITION = "last-song-position";
+	public static const string SHUFFLE_MODE = "shuffle-mode";
+	public static const string REPEAT_MODE = "repeat-mode";
+	public static const string SEARCH_STRING = "search-string";
 	
-	public static const string WINDOW_MAXIMIZED = "/apps/beatbox/preferences/ui/window_maximized";
-	public static const string WINDOW_WIDTH = "/apps/beatbox/preferences/ui/window_width";
-	public static const string WINDOW_HEIGHT = "/apps/beatbox/preferences/ui/window_height";
-	public static const string SIDEBAR_WIDTH = "/apps/beatbox/preferences/ui/sidebar_width";
-	public static const string MORE_WIDTH = "/apps/beatbox/preferences/ui/more_width";
-	public static const string MORE_VISIBLE = "/apps/beatbox/preferences/ui/more_visible";
-	public static const string VIEW_MODE = "/apps/beatbox/preferences/ui/view_mode";
-	public static const string MILLER_HEIGHT = "/apps/beatbox/preferences/ui/miller_height";
-	public static const string MILLER_COLUMN_VISIBILITIES = "/apps/beatbox/preferences/ui/miller_column_visibilities";
+	public static const string WINDOW_MAXIMIZED = "window-maximized";
+	public static const string WINDOW_WIDTH = "window-width";
+	public static const string WINDOW_HEIGHT = "window-height";
+	public static const string SIDEBAR_WIDTH = "sidebar-width";
+	public static const string MORE_WIDTH = "more-width";
+	public static const string MORE_VISIBLE = "more-visible";
+	public static const string VIEW_MODE = "view-mode";
+	public static const string MILLER_HEIGHT = "miller-height";
+	public static const string MILLER_COLUMN_VISIBILITIES = "miller-column-visibilities";
 	
-	public static const string EQUALIZER_DISABLED = "/apps/beatbox/preferences/equalizer/equalizer_disabled";
-	public static const string SELECTED_PRESET = "/apps/beatbox/preferences/equalizer/selected_preset";
-	public static const string PRESETS = "/apps/beatbox/preferences/equalizer/presets";
-	public static const string AUTO_SWITCH_PRESET = "/apps/beatbox/preferences/equalizer/auto_switch_preset";
-	public static const string VOLUME = "/apps/beatbox/preferences/equalizer/volume";
+	public static const string EQUALIZER_DISABLED = "equalizer-disabled";
+	public static const string SELECTED_PRESET = "selected-preset";
+	public static const string PRESETS = "presets";
+	public static const string AUTO_SWITCH_PRESET = "auto-switch-preset";
+	public static const string VOLUME = "volume";
+	
+	LinkedList<string> lastfm_settings;
+	LinkedList<string> ui_settings;
+	LinkedList<string> music_settings;
+	LinkedList<string> equalizer_settings;
 	
 	public Settings() {
-		client = GConf.Client.get_default();
+		lastfm = new GLib.Settings("org.gnome.beatbox.lastfm");
+		ui = new GLib.Settings("org.gnome.beatbox.ui");
+		music = new GLib.Settings("org.gnome.beatbox.music");
+		equalizer = new GLib.Settings("org.gnome.beatbox.equalizer");
+		
+		lastfm_settings = new LinkedList<string>();
+		ui_settings = new LinkedList<string>();
+		music_settings = new LinkedList<string>();
+		equalizer_settings = new LinkedList<string>();
+		
+		lastfm_settings.add(LASTFM_SESSION_KEY);
+		
+		music_settings.add(MUSIC_FOLDER);
+		music_settings.add(UPDATE_FOLDER_HIERARCHY);
+		music_settings.add(COPY_IMPORTED_MUSIC);
+		music_settings.add(LAST_SONG_PLAYING);
+		music_settings.add(LAST_SONG_POSITION);
+		music_settings.add(SHUFFLE_MODE);
+		music_settings.add(REPEAT_MODE);
+		music_settings.add(SEARCH_STRING);
+		
+		ui_settings.add(WINDOW_MAXIMIZED);
+		ui_settings.add(WINDOW_WIDTH);
+		ui_settings.add(WINDOW_HEIGHT);
+		ui_settings.add(SIDEBAR_WIDTH);
+		ui_settings.add(MORE_VISIBLE);
+		ui_settings.add(MORE_WIDTH);
+		ui_settings.add(VIEW_MODE);
+		ui_settings.add(MILLER_HEIGHT);
+		ui_settings.add(MILLER_COLUMN_VISIBILITIES);
+		
+		equalizer_settings.add(EQUALIZER_DISABLED);
+		equalizer_settings.add(SELECTED_PRESET);
+		equalizer_settings.add(PRESETS);
+		equalizer_settings.add(AUTO_SWITCH_PRESET);
+		equalizer_settings.add(VOLUME);
 	}
 	
 	private bool getBool(string path, bool def) {
 		bool rv = def;
 		
-		try {
-			if(client.get(path) != null) {
-				rv = client.get_bool(path);
-			}
-			else
-				rv = def;
+		if(lastfm_settings.contains(path)) {
+			rv = lastfm.get_boolean(path);
 		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not get bool value %s from gconf: %s\n", path, err.message);
+		else if(ui_settings.contains(path)) {
+			rv = ui.get_boolean(path);
+		}
+		else if(music_settings.contains(path)) {
+			rv = music.get_boolean(path);
+		}
+		else if(equalizer_settings.contains(path)) {
+			rv = equalizer.get_boolean(path);
+		}
+		else {
+			stdout.printf("could not find bool for %s\n", path);
+			rv = def;
 		}
 		
 		return rv;
@@ -77,15 +125,21 @@ public class BeatBox.Settings : Object {
 	private string getString(string path, string def) {
 		string rv = def;
 		
-		try {
-			if(client.get(path) != null) {
-				rv = client.get_string(path);
-			}
-			else
-				rv = def;
+		if(lastfm_settings.contains(path)) {
+			rv = lastfm.get_string(path);
 		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not get string value %s from gconf: %s\n", path, err.message);
+		else if(ui_settings.contains(path)) {
+			rv = ui.get_string(path);
+		}
+		else if(music_settings.contains(path)) {
+			rv = music.get_string(path);
+		}
+		else if(equalizer_settings.contains(path)) {
+			rv = equalizer.get_string(path);
+		}
+		else {
+			stdout.printf("could not find string for %s\n", path);
+			rv = def;
 		}
 		
 		return rv;
@@ -94,44 +148,77 @@ public class BeatBox.Settings : Object {
 	private int getInt(string path, int def) {
 		int rv = def;
 		
-		try {
-			if(client.get(path) != null) {
-				rv = client.get_int(path);
-			}
-			else
-				rv = def;
+		if(lastfm_settings.contains(path)) {
+			rv = lastfm.get_int(path);
 		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not get int value %s from gconf: %s\n", path, err.message);
+		else if(ui_settings.contains(path)) {
+			rv = ui.get_int(path);
+		}
+		else if(music_settings.contains(path)) {
+			rv = music.get_int(path);
+		}
+		else if(equalizer_settings.contains(path)) {
+			rv = equalizer.get_int(path);
+		}
+		else {
+			stdout.printf("could not find int for %s\n", path);
+			rv = def;
 		}
 		
 		return rv;
 	}
 	
 	private void setBool(string path, bool val) {
-		try {
-			client.set_bool(path, val);
+		if(lastfm_settings.contains(path)) {
+			lastfm.set_boolean(path, val);
 		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not set bool value %s from gconf: %s\n", path, err.message);
+		else if(ui_settings.contains(path)) {
+			ui.set_boolean(path, val);
+		}
+		else if(music_settings.contains(path)) {
+			music.set_boolean(path, val);
+		}
+		else if(equalizer_settings.contains(path)) {
+			equalizer.set_boolean(path, val);
+		}
+		else {
+			stdout.printf("could not find int for %s\n", path);
 		}
 	}
 	
 	private void setString(string path, string val) {
-		try {
-			client.set_string(path, val);
+		if(lastfm_settings.contains(path)) {
+			lastfm.set_string(path, val);
 		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not set string value %s from gconf: %s\n", path, err.message);
+		else if(ui_settings.contains(path)) {
+			ui.set_string(path, val);
+		}
+		else if(music_settings.contains(path)) {
+			music.set_string(path, val);
+		}
+		else if(equalizer_settings.contains(path)) {
+			equalizer.set_string(path, val);
+		}
+		else {
+			stdout.printf("could not find int for %s\n", path);
 		}
 	}
 	
 	private void setInt(string path, int val) {
-		try {
-			client.set_int(path, val);
+		if(lastfm_settings.contains(path)) {
+			lastfm.set_int(path, val);
 		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not set int value %s from gconf: %s\n", path, err.message);
+		else if(ui_settings.contains(path)) {
+			ui.set_int(path, val);
+		}
+		else if(music_settings.contains(path)) {
+			music.set_int(path, val);
+		}
+		else if(equalizer_settings.contains(path)) {
+			equalizer.set_int(path, val);
+		}
+		else {
+			stdout.printf("could not find int for %s\n", path);
 		}
 	}
 	
