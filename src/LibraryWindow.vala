@@ -657,6 +657,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		return false;
 	}
 	
+	public void updateInfoLabel() {
+		if(lm.doing_file_operations || lm.song_info.song == null)
+			return;
+		
+		//set the title
+		Song s = lm.song_info.song;
+		var title = "<b>" + s.title.replace("&", "&amp;") + "</b>";
+		var artist = ((s.artist != "") ? " by " : "") + "<b>" + s.artist.replace("&", "&amp;") + "</b>";
+		var album = ((s.album != "") ? " on " : "") + "<b>" + s.album.replace("&", "&amp;") + "</b>";
+		
+		var song_label = title + artist + album;
+		topDisplay.set_label_markup(song_label);
+	}
+	
 	/** This should be used whenever a call to play a new song is made
 	 * @param s The song that is now playing
 	 */
@@ -674,10 +688,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			return;
 		}*/
 		
-		//set the title
-		var song_label = "<b>" + lm.song_from_id(i).title.replace("&", "&amp;") + "</b>" + ((lm.song_from_id(i).artist != "") ? " by " : "") + "<b>" + lm.song_from_id(i).artist.replace("&", "&amp;") + "</b>" + ((lm.song_from_id(i).album != "") ? " on " : "") + "<b>" + lm.song_from_id(i).album.replace("&", "&amp;") + "</b>";
-		topDisplay.set_label_markup(song_label);
-		//this.set_title(lm.song_from_id(i).title + " by " + lm.song_from_id(i).artist + " on " + lm.song_from_id(i).album);
+		updateInfoLabel();
 		
 		//reset the song position
 		topDisplay.set_scale_sensitivity(true);
@@ -736,8 +747,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void songs_updated(Collection<int> ids) {
 		if(lm.song_info.song != null && ids.contains(lm.song_info.song.rowid)) {
-			var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + " by " + "<b>" + lm.song_info.song.artist.replace("&", "&amp;")  + "</b>" + " on " + "<b>" +lm.song_info.song.album.replace("&", "&amp;")  + "</b>";
-			topDisplay.set_label_markup(song_label);
+			updateInfoLabel();
 		}
 	}
 	
@@ -1042,8 +1052,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void musicAdded(LinkedList<string> not_imported) {
 		
 		if(lm.song_info.song != null) {
-			var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.artist != "") ? " by " : "") + "<b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.album != "") ? " on " : "") + "<b>" + lm.song_info.song.album.replace("&", "&amp;") + "</b>";
-			topDisplay.set_label_markup(song_label);
+			updateInfoLabel();
 		}
 		else
 			topDisplay.set_label_text("");
@@ -1082,8 +1091,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.show_scale();
 		
 		if(lm.song_info.song != null) {
-			var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.artist != "") ? " by " : "") + "<b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.album != "") ? " on " : "") + "<b>" + lm.song_info.song.album.replace("&", "&amp;") + "</b>";
-			topDisplay.set_label_markup(song_label);		
+			updateInfoLabel();	
 		}
 		else
 			topDisplay.set_label_text("");
@@ -1098,8 +1106,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.show_scale();
 		
 		if(lm.song_info.song != null) {
-			var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.artist != "") ? " by " : "") + "<b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.album != "") ? " on " : "") + "<b>" + lm.song_info.song.album.replace("&", "&amp;") + "</b>";
-			topDisplay.set_label_markup(song_label);
+			updateInfoLabel();
 		}
 		else
 			topDisplay.set_label_text("");
