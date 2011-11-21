@@ -15,10 +15,26 @@ public class BeatBox.DeviceManager : GLib.Object {
 		vm.mount_changed.connect(mount_changed);
 		vm.mount_pre_unmount.connect(mount_pre_unmount);
 		vm.mount_removed.connect(mount_removed);
-		vm.volume_added.connect(volume_added);
-		vm.volume_changed.connect(volume_changed);
-		vm.volume_removed.connect(volume_removed);
+		
+		/*vmVfs = GnomeVFS.get_volume_monitor();
+		vmVfs.volume_mounted.connect(gvfs_mounted);
+		vmVfs.drive_connected.connect( () => { stdout.printf("drive connected\n"); });
+		vmVfs.drive_disconnected.connect( () => { stdout.printf("drive disconnected\n"); });
+		vmVfs.volume_unmounted.connect(gvfs_unmounted);
+		
+		var monitor = File.new_for_path("/home/scott/.gvfs").monitor_directory(FileMonitorFlags.NONE);
+		
+		monitor.changed.connect( () => { stdout.printf("changed\n"); });
+		
+		// gudev 
+		GUdev.Client client = new GUdev.Client({"usb", null});
+		client.uevent.connect(uevent_cb);*/
 	}
+	
+	/*public void uevent_cb(string action, GUdev.Device device) {
+		stdout.printf("action; %s\n", action);
+			stdout.printf("device: %s\n", device.get_device_file());
+	}*/
 	
 	public void loadPreExistingMounts() {
 		
@@ -40,8 +56,9 @@ public class BeatBox.DeviceManager : GLib.Object {
 		
 		Idle.add( () => {
 			
-			foreach(var m in mounts)
+			foreach(var m in mounts) {
 				mount_added(m);
+			}
 			
 			return false;
 		});
@@ -49,28 +66,49 @@ public class BeatBox.DeviceManager : GLib.Object {
 		return null;
 	}
 	
+	public void add_mount(string path) {
+		stdout.printf("added mount %s\n", path);
+	}
+	
 	public virtual void mount_added (Mount mount) {
+		stdout.printf("mount added at %s\n", mount.get_default_location().get_path());
 		foreach(var dev in devices) {
-			if(dev.getMountLocation() == mount.get_default_location().get_parse_name()) {
+			if(dev.get_path() == mount.get_default_location().get_path()) {
 				return;
 			}
 		}
 		
-		/*stdout.printf("mount_added: %s\n", mount.get_name());
-		stdout.printf(" parse_name: %s\n uri: %s\n nice_name: %s\n unix_device: %s\n test: %s\n",
-						mount.get_default_location().get_parse_name(),
-						mount.get_default_location().get_uri(),
-						mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_LABEL),
-						mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_UNIX_DEVICE),
-						new UnixMountEntry(mount.get_default_location().get_path(), 0).get_device_path());*/
-		var device = new Device(mount);
+		Device added;
+		if(mount.get_default_location().get_path().has_prefix("cdda://")) {
+			added = new CDRomDevice(mount);
+		}
+		else if(File.new_for_path(mount.get_default_location().get_path() + "/iTunes_Control").query_exists() ||
+				File.new_for_path(mount.get_default_location().get_path() + "/iPod_Control").query_exists() ||
+				File.new_for_path(mount.get_default_location().get_path() + "/iTunes/iTunes_Control").query_exists()) {
+			added = new iPodDevice(mount);	
+		}
+		else if(mount.get_default_location().get_parse_name().has_prefix("afc://")) {
+			added = new iPodDevice(mount);
+		}
+		else if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists()) {
+			added = new AndroidDevice(mount);
+		}
+		else { // not a music player, ignore it
+			return;
+		}
 		
-		//stdout.printf("mount preview icon: %s\n", mount.get_default_location().query_info("*", FileQueryInfoFlags.NONE).get_attribute_string(FILE_ATTRIBUTE_PREVIEW_ICON));
+		if(added == null) {
+			stdout.printf("added is null. initialization failed, meaning it is invalid. not using it\n");
+			return;
+		}
 		
-		if(device.getContentType() == "cdrom" || device.getContentType().contains("ipod") 
-			|| device.getContentType() == "android") {
-			devices.add(device);
-			device_added(device);
+		added.set_mount(mount);
+		
+		devices.add(added);
+		device_added(added);
+		
+		if(!added.initialize()) {
+			mount_removed(added.get_mount());
 		}
 	}
 	
@@ -86,7 +124,9 @@ public class BeatBox.DeviceManager : GLib.Object {
 		stdout.printf("mount_removed: %s\n", mount.get_default_location().get_parse_name());
 		
 		foreach(var dev in devices) {
-			if(dev.getMountLocation() == mount.get_default_location().get_parse_name()) {
+			stdout.printf("comparing %s to %s\n", dev.get_path(), mount.get_default_location().get_path());
+			if(dev.get_path() == mount.get_default_location().get_path()) {
+				stdout.printf("removed %s\n", mount.get_default_location().get_path());
 				devices.remove(dev);
 				device_removed(dev);
 				
@@ -95,27 +135,11 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 	}
 	
-	public void mountedCallback(Object? source_object, AsyncResult res) {
-		//stdout.printf("mounted %s!\n", (string)current.get_mount().guess_content_type_sync(true, null));
+	public void gvfs_mounted(GnomeVFS.Volume volume) {
+		stdout.printf("gvfs mounted\n");
 	}
 	
-	public virtual void volume_added (Volume volume) {
-		//Device d = new Device(volume);
-		
-		//stdout.printf("volume added: %s, %s\n", volume.get_name(), volume.get_mount().guess_content_type_sync(true, null));
-		
-		//Timeout.add(5000, () => { stdout.printf("volume added: %s\n", volume.get_mount().guess_content_type_sync(true, null)); return false; } );
-	}
-	
-	public virtual void volume_changed (Volume volume) {
-		//stdout.printf("volume changed: %s %s\n", volume.get_name(), volume.get_mount().guess_content_type_sync(true, null));
-		
-		//Timeout.add(5000, () => { stdout.printf("volume changed: %s\n", volume.get_mount().guess_content_type_sync(true, null)); return false; } );
-	}
-	
-	public virtual void volume_removed (Volume volume) {
-		//stdout.printf("volume removed: %s, %S\n", volume.get_name(), volume.get_mount().guess_content_type_sync(true, null));
-		
-		//Timeout.add(5000, () => { stdout.printf("volume removed: %s\n", volume.get_mount().guess_content_type_sync(true, null)); return false; } );
+	public void gvfs_unmounted(GnomeVFS.Volume volume) {
+		stdout.printf("gvfs unmounted\n");
 	}
 }

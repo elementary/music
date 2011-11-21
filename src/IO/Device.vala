@@ -1,19 +1,43 @@
-public class BeatBox.Device : GLib.Object {
-	private Mount mount;
+public interface BeatBox.Device : GLib.Object {
+	//private Mount mount;
 	
 	public signal void device_unmounted();
 	
-	public Device(Mount m) {
+	/*public Device(Mount m) {
 		this.mount = m;
 		
 		/*int audio = 0;
 		int other = 0;
 		FileOperator.guess_content_type(mount.get_default_location(), ref audio, ref other);
 		
-		audioPercentage = (double)(audio/(other + audio));*/
-	}
+		audioPercentage = (double)(audio/(other + audio));*
+		stdout.printf("created mount at %s and is type %s\n", get_path(), getContentType());
+		
+		if(getContentType() == "ipod-new" || getContentType() == "ipod-old") {
+			var db = GPod.iTunesDB.parse(get_path());
+			
+			for(int i = 0; i < db.tracks.length(); ++i) {
+				stdout.printf("%s %s %s\n", db.tracks.nth_data(i).title, db.tracks.nth_data(i).artist, db.tracks.nth_data(i).album);
+			}
+		}
+	}*/
 	
-	public string getMountLocation() {
+	public abstract bool initialize();
+	public abstract string getContentType();
+	public abstract string getDisplayName();
+	public abstract void set_mount(Mount mount);
+	public abstract Mount get_mount();
+	public abstract string get_path();
+	public abstract void set_icon(GLib.Icon icon);
+	public abstract GLib.Icon get_icon();
+	public abstract int64 get_capacity();
+	public abstract int64 get_used_space();
+	public abstract int64 get_free_space();
+	public abstract void unmount();
+	public abstract void eject();
+	public abstract void get_device_type();
+	
+	/*public string get_path() {
 		return mount.get_default_location().get_parse_name();
 	}
 	
@@ -66,7 +90,7 @@ public class BeatBox.Device : GLib.Object {
 		return mount.can_eject();
 	}
 	
-	/* This freezes up stuff START */
+	// This freezes up stuff START
 	public void eject() {
 		if(mount.get_drive() != null)
 			mount.get_drive().eject(GLib.MountUnmountFlags.NONE, null, (AsyncReadyCallback)dummy);
@@ -88,21 +112,21 @@ public class BeatBox.Device : GLib.Object {
 			
 		device_unmounted();
 	}
-	/* This freezes up stuff END */
+	// This freezes up stuff END 
 	
 	public string getContentType() {
-		if(getMountLocation().has_prefix("cdda://")) {
+		if(get_path().has_prefix("cdda://")) {
 			return "cdrom";
 		}
-		else if(File.new_for_path(getMountLocation() + "/iTunes_Control").query_exists() ||
-				File.new_for_path(getMountLocation() + "/iPod_Control").query_exists() ||
-				File.new_for_path(getMountLocation() + "/iTunes/iTunes_Control").query_exists()) {
+		else if(File.new_for_path(get_path() + "/iTunes_Control").query_exists() ||
+				File.new_for_path(get_path() + "/iPod_Control").query_exists() ||
+				File.new_for_path(get_path() + "/iTunes/iTunes_Control").query_exists()) {
 			return "ipod-old";		
 		}
-		else if(getMountLocation().has_prefix("afc://")) {
+		else if(get_path().has_prefix("afc://")) {
 			return "ipod-new";
 		}
-		else if(File.new_for_path(getMountLocation() + "/Android").query_exists()) {
+		else if(File.new_for_path(get_path() + "/Android").query_exists()) {
 			return "android";
 		}
 		
@@ -111,18 +135,18 @@ public class BeatBox.Device : GLib.Object {
 	}
 	
 	public string getDescription() {
-		if(getMountLocation().has_prefix("cdda://")) {
+		if(get_path().has_prefix("cdda://")) {
 			return "You inserted a CD-ROM.";
 		}
-		else if(File.new_for_path(getMountLocation() + "/iTunes_Control").query_exists() ||
-				File.new_for_path(getMountLocation() + "/iPod_Control").query_exists() ||
-				File.new_for_path(getMountLocation() + "/iTunes/iTunes_Control").query_exists()) {
+		else if(File.new_for_path(get_path() + "/iTunes_Control").query_exists() ||
+				File.new_for_path(get_path() + "/iPod_Control").query_exists() ||
+				File.new_for_path(get_path() + "/iTunes/iTunes_Control").query_exists()) {
 			return "You inserted an older iPod device. This is not an iPhone or iPad";		
 		}
-		else if(getMountLocation().has_prefix("afc://")) {
+		else if(get_path().has_prefix("afc://")) {
 			return "You inserted a newer iPod device, or an iPhone or iPad.";
 		}
-		else if(File.new_for_path(getMountLocation() + "/Android").query_exists()) {
+		else if(File.new_for_path(get_path() + "/Android").query_exists()) {
 			return "You inserted an Android device. You are pretty cool.";
 		}
 		
@@ -144,5 +168,5 @@ public class BeatBox.Device : GLib.Object {
 	
 	public void dummy(GLib.Object? source_object, GLib.AsyncResult res) {
 		
-	}
+	}*/
 }

@@ -426,8 +426,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.songs_from_playlist(((Playlist)o).rowid), true, false);
 				}
-				else if(o is Device) {
-					DeviceViewWrapper vw = (DeviceViewWrapper)w;
+				else if(o is Device && ((Device)o).getContentType() == "cdrom") {
+					CDRomViewWrapper vw = (CDRomViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								vw.songs, true, false);
@@ -465,7 +465,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		filter.get(iter, 0, out o);
 		
 		if(o is Device && ((Device)o).getContentType() == "cdrom") {
-			((DeviceViewWrapper)w).ripSongs();
+			((CDRomViewWrapper)w).ripSongs();
 		}
 	}
 	
@@ -692,7 +692,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		do {
 			GLib.Object o;
 			tree.get(pivot, 0, out o);
-			if(o is Device && ((Device)o).getMountLocation() == d.getMountLocation()) {
+			if(o is Device && ((Device)o).get_path() == d.get_path()) {
 				if(get_selection().iter_is_selected(convertToFilter(pivot)))
 					was_selected = true;
 				

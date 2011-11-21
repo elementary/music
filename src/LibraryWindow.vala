@@ -536,7 +536,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Device d = (Device)o;
 			
 			if(d.getContentType() == "cdrom") {
-				vw = new DeviceViewWrapper(lm, this, new Gee.LinkedList<int>(), "Track", Gtk.SortType.ASCENDING, MusicTreeView.Hint.CDROM, -1, d);
+				vw = new CDRomViewWrapper(lm, this, new Gee.LinkedList<int>(), "Track", Gtk.SortType.ASCENDING, MusicTreeView.Hint.CDROM, -1, d);
 				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName());
 				mainViews.pack_start(vw, true, true, 0);
 			}
@@ -546,9 +546,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				mainViews.pack_start(dsm, true, true, 0);
 			}
 			else if(d.getContentType() == "android") {
-				Label l = new Label(d.getDescription());
-				item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
-				mainViews.pack_start(l, true, true, 0);
+				//Label l = new Label(d.getDescription());
+				//item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
+				//mainViews.pack_start(l, true, true, 0);
 
 			}
 		}
@@ -1035,7 +1035,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// clear all other playlists, reset to Music, populate music
 		mainViews.get_children().foreach( (vw) => {
-			if(vw is ViewWrapper && !(vw is DeviceViewWrapper))
+			if(vw is ViewWrapper && !(vw is CDRomViewWrapper))
 				((ViewWrapper)vw).clear();
 		});
 		
@@ -1317,7 +1317,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool similarcheck = sideTree.getSelectedWidget() is ViewWrapper  && 
 							((ViewWrapper)sideTree.getSelectedWidget()).errorBox != null && 
 							((ViewWrapper)sideTree.getSelectedWidget()).errorBox.visible;
-		bool isCdrom = sideTree.getSelectedWidget() is DeviceViewWrapper;
+		bool isCdrom = sideTree.getSelectedWidget() is CDRomViewWrapper;
 		bool storecheck = (sideTree.getSelectedWidget() is Store.StoreView);
 		bool haveSongs = (lm.song_count() != 0);
 		

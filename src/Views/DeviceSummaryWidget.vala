@@ -56,6 +56,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		content.pack_start(deviceNameBox, false, true, 0);
 		content.pack_start(syncHBox, false, true, 0);
 		content.pack_start(syncButtonsComplete, false, true, 0);
+		content.pack_start(new Label(dev.get_path()), false, false, 0);
 		
 		add_with_viewport(wrap_alignment(content, 15, 10, 10, 10));
 		
