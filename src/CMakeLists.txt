@@ -151,7 +151,6 @@ vala_precompile(VALA_C
     Dialogs/PreferencesWindow.vala
     Dialogs/InstallGstreamerPluginsDialog.vala
     Dialogs/SongEditor.vala
-    Dialogs/PresetNameWindow.vala
     Dialogs/PlaylistNameWindow.vala
     Dialogs/FileNotFoundDialog.vala
     Dialogs/RemoveFilesDialog.vala

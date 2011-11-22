@@ -1,3 +1,25 @@
+/*-
+ * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ *
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * BeatBox Music Player: http://www.launchpad.net/beat-box
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 using Gtk;
 
 public class BeatBox.PresetList : ComboBox {
@@ -9,7 +31,6 @@ public class BeatBox.PresetList : ComboBox {
 	
 	public signal void preset_selected(EqualizerPreset p);
 	public signal void automatic_preset_chosen();
-	public signal void add_preset_chosen();
 	public signal void delete_preset_chosen();
 	
 	public PresetList(LibraryManager lm, LibraryWindow lw) {
@@ -55,9 +76,7 @@ public class BeatBox.PresetList : ComboBox {
 		
 		store.append(out iter);
 		store.set(iter, 0, null, 1, "<separator_item_unique_name>");
-		
-		store.append(out iter);
-		store.set(iter, 0, null, 1, "Add New...");
+
 		store.append(out iter);
 		store.set(iter, 0, null, 1, "Delete Current");
 		
@@ -108,14 +127,11 @@ public class BeatBox.PresetList : ComboBox {
 			currentPreset = (EqualizerPreset)o;
 			preset_selected((EqualizerPreset)o);
 		}
-		else { // is Automatic, Add New, or Delete Current
+		else { // is Automatic, Delete Current
 			if(get_active() == 0) {
 				automatic_preset_chosen();
 			}
 			else if(get_active() == 2) {
-				add_preset_chosen();
-			}
-			else if(get_active() == 3) {
 				delete_preset_chosen();
 				selectPreset(currentPreset);
 			}
@@ -172,3 +188,4 @@ public class BeatBox.PresetList : ComboBox {
 		return rv;
 	}
 }
+

@@ -1,7 +1,7 @@
 /*-
  * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
  *
- * Originaly Written by Scott Ringwelski for BeatBox Music Player
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or
@@ -49,9 +49,10 @@ public class BeatBox.Settings : Object {
 	public static const string MILLER_HEIGHT = "miller-height";
 	public static const string MILLER_COLUMN_VISIBILITIES = "miller-column-visibilities";
 	
-	public static const string EQUALIZER_DISABLED = "equalizer-disabled";
+	public static const string EQUALIZER_ENABLED = "equalizer-enabled";
 	public static const string SELECTED_PRESET = "selected-preset";
-	public static const string PRESETS = "presets";
+	public static const string CUSTOM_PRESETS = "custom-presets";
+	public static const string DEFAULT_PRESETS = "default-presets";
 	public static const string AUTO_SWITCH_PRESET = "auto-switch-preset";
 	public static const string VOLUME = "volume";
 	
@@ -92,9 +93,10 @@ public class BeatBox.Settings : Object {
 		ui_settings.add(MILLER_HEIGHT);
 		ui_settings.add(MILLER_COLUMN_VISIBILITIES);
 		
-		equalizer_settings.add(EQUALIZER_DISABLED);
+		equalizer_settings.add(EQUALIZER_ENABLED);
 		equalizer_settings.add(SELECTED_PRESET);
-		equalizer_settings.add(PRESETS);
+		equalizer_settings.add(CUSTOM_PRESETS);
+		equalizer_settings.add(DEFAULT_PRESETS);
 		equalizer_settings.add(AUTO_SWITCH_PRESET);
 		equalizer_settings.add(VOLUME);
 	}
@@ -221,7 +223,8 @@ public class BeatBox.Settings : Object {
 			stdout.printf("could not find int for %s\n", path);
 		}
 	}
-	
+
+
 	/** Get values **/
 	public string getMusicFolder() {
 		return getString(MUSIC_FOLDER, "");
@@ -299,12 +302,12 @@ public class BeatBox.Settings : Object {
 		return getString(LASTFM_SESSION_KEY, "");
 	}
 	
-	public bool getEqualizerDisabled() {
-		return getBool(EQUALIZER_DISABLED, false);
+	public bool getEqualizerEnabled() {
+		return getBool(EQUALIZER_ENABLED, false);
 	}
 	
 	public EqualizerPreset? getSelectedPreset() {
-		string[] vals = getString(SELECTED_PRESET, "").split("<val_sep>", 0);
+		string[] vals = getString(SELECTED_PRESET, "").split(",", 0);
 		
 		if(vals.length == 0 || vals[0] == null)
 			return null;
@@ -312,24 +315,44 @@ public class BeatBox.Settings : Object {
 		var rv = new EqualizerPreset.basic(vals[0]);
 		
 		for(int i = 1; i < vals.length; ++i) {
-			rv.setGain(i, int.parse(vals[i]));
+			rv.setGain(i-1, int.parse(vals[i]));
 		}
 		
 		return rv;
 	}
 	
-	public Gee.Collection<EqualizerPreset> getPresets() {
+	public Gee.Collection<EqualizerPreset> getDefaultPresets() {
+
+		return getPresets(DEFAULT_PRESETS);
+	
+	}
+	
+	public Gee.Collection<EqualizerPreset> getCustomPresets() {
+	
+		return getPresets(CUSTOM_PRESETS);
+	
+	}
+
+	public Gee.Collection<EqualizerPreset> getPresets(string? type) {
 		var rv = new Gee.LinkedList<EqualizerPreset>();
-		
-		string list = getString(PRESETS, "");
-		string[] presets = list.split("<preset_seperator>", 0);
+
+		string list;
+
+		if(type == DEFAULT_PRESETS)
+			list = getString(DEFAULT_PRESETS, "");
+		else if(type == CUSTOM_PRESETS)
+			list = getString(CUSTOM_PRESETS, "");
+		else
+			list = getString(DEFAULT_PRESETS, "") + getString(CUSTOM_PRESETS, "");
+
+		string[] presets = list.split("/", 0);
 		
 		if(presets.length == 0)
 			return rv;
 		
 		int index;
 		for(index = 0; index < presets.length - 1; ++index) {
-			string[] vals = presets[index].split("<val_sep>", 0);
+			string[] vals = presets[index].split(",", 0);
 			
 			var p = new EqualizerPreset.basic(vals[0]);
 			
@@ -341,8 +364,8 @@ public class BeatBox.Settings : Object {
 		}
 		
 		return rv;
-	}
-	
+	}	
+
 	public bool getAutoSwitchPreset() {
 		return getBool(AUTO_SWITCH_PRESET, false);
 	}
@@ -430,36 +453,39 @@ public class BeatBox.Settings : Object {
 		setString(LASTFM_SESSION_KEY, val);
 	}
 	
-	public void setEqualizerDisabled(bool val) {
-		setBool(EQUALIZER_DISABLED, val);
+	public void setEqualizerEnabled(bool val) {
+		setBool(EQUALIZER_ENABLED, val);
 	}
 	
 	public void setSelectedPreset(EqualizerPreset preset) {
 		string toSave = preset.name;
 		
 		foreach(int gain in preset.gains) {
-			toSave += "<val_sep>" + gain.to_string();
+			toSave += "," + gain.to_string();
 		}
 		
 		setString(SELECTED_PRESET, toSave);
 	}
-	
-	public void setPresets(Gee.Collection<EqualizerPreset> presets) {
+
+	public void setPresets(Gee.Collection<EqualizerPreset> presets, string? type) {
 		string rv = "";
 		
 		foreach(var p in presets) {
 			rv += p.name;
 			
 			for(int i = 0; i < 10; ++i) {
-				rv += "<val_sep>" + p.getGain(i).to_string();
+				rv += "," + p.getGain(i).to_string();
 			}
 			
-			rv += "<preset_seperator>";
+			rv += "/";
 		}
 		
-		setString(PRESETS, rv);
+		if (type != null)
+			setString(CUSTOM_PRESETS, rv);
+		else
+			setString(DEFAULT_PRESETS, rv);
 	}
-	
+
 	public void setAutoSwitchPreset(bool val) {
 		setBool(AUTO_SWITCH_PRESET, val);
 	}
@@ -468,3 +494,4 @@ public class BeatBox.Settings : Object {
 		setInt(VOLUME, (int)(val*100));
 	}
 }
+

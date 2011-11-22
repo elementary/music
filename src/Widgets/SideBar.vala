@@ -1,7 +1,7 @@
 /*-
  * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
  *
- * Originaly Written by Scott Ringwelski for BeatBox Music Player and Granite Library
+ * Originally Written by Scott Ringwelski for BeatBox Music Player and Granite Library
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  * Granite Library:		 http://www.launchpad.net/granite
  *

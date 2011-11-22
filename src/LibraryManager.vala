@@ -1,7 +1,7 @@
 /*-
  * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
  *
- * Originaly Written by Scott Ringwelski for BeatBox Music Player
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or
@@ -218,17 +218,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(LastFM.TrackInfo t in dbm.load_tracks()) {
 			_tracks.set(t.name + " by " + t.artist, t);
 		}
-		
+
 		// set the equalizer
-		if(!settings.getEqualizerDisabled()) {
-			EqualizerPreset p = settings.getSelectedPreset();
-			if(p != null) {
-				for(int i = 0; i < 10; ++i) {
-					player.setEqualizerGain(i, p.getGain(i));
+		if(settings.getEqualizerEnabled() && !settings.getAutoSwitchPreset()) {
+				EqualizerPreset p = settings.getSelectedPreset();
+				if(p != null) {
+					for(int i = 0; i < 10; ++i)
+						player.setEqualizerGain(i, p.getGain(i));
 				}
-			}
 		}
-		
+
 		// set the volume
 		player.setVolume(settings.getVolume());
 		
@@ -1284,9 +1283,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void* change_gains_thread () {
-		if(settings.getAutoSwitchPreset() && !settings.getEqualizerDisabled()) {
+		if(settings.getEqualizerEnabled() && settings.getAutoSwitchPreset()) {
 			bool matched_genre = false;
-			foreach(var p in settings.getPresets()) {
+			foreach(var p in settings.getPresets(null)) {
 				if(p != null && p.name.down() == song_info.song.genre.down()) {
 					
 					matched_genre = true;
