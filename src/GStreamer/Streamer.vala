@@ -105,7 +105,6 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	public void setEqualizerGain(int index, int val) {
 		pipe.eq.setGain(index, val);
-		stdout.printf("%i ".printf(val));
 	}
 	
 	/* Callbacks */
