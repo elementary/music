@@ -190,13 +190,14 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		preset_combo.sensitive = eq_active;
 
+		set_sliders_sensitivity(eq_active);
+
 		if (eq_active) {
 			if(automatic_chosen) {
 				set_sliders_sensitivity(false);
 				preset_combo.selectAutomaticPreset();
 				on_automatic_chosen();
 			} else {
-				set_sliders_sensitivity(eq_active);
 				EqualizerPreset? selected_preset = preset_combo.getSelectedPreset();
 				if (selected_preset != null) {
 					for(int i = 0; i < 10; ++i)
@@ -369,7 +370,8 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		lm.settings.setAutoSwitchPreset(automatic_chosen);
 
-		lm.change_gains_thread();
+		if(!automatic_chosen)
+			lm.change_gains_thread();
 		
 		destroy();
 	}
