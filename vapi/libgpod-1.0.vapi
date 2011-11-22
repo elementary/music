@@ -67,8 +67,25 @@ namespace GPod {
 	public static bool cp(string from_file, string to_file) throws GLib.Error;
 	public static GPod.Track cp_finalize(GPod.Track track, string mountpoint, string dest_filename) throws GLib.Error;
 	public static bool itdb_cp_track_to_ipod(GPod.Track track, string filename) throws GLib.Error;
-	public static void filename_fs2ipod(string filename);
-	public static void filename_ipod2fs(string ipod_file);
+	
+	[CCode (cname = "itdb_filename_ipod2fs")]
+	private static void _filename_ipod2fs(string ipod_file);
+	[CCode (cname = "_vala_itdb_filename_ipod2fs")]
+	public static string filename_ipod2fs (string ipod_file) {
+	  string retval = ipod_file;
+	  _filename_ipod2fs (retval);
+	  return retval;
+	}
+	
+	[CCode (cname = "itdb_filename_fs2ipod")]
+	private static void _filename_fs2ipod (string filename);
+	[CCode (cname = "_vala_itdb_filename_fs2ipod")]
+	public static string filename_fs2ipod (string filename) {
+	  string retval = filename;
+	  _filename_fs2ipod (retval);
+	  return retval;
+	}
+	
     public void set_mountpoint (string mp);
     public unowned string get_mountpoint ();
     

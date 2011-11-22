@@ -208,7 +208,7 @@ public class BeatBox.ViewWrapper : VBox {
 			var potentialShowing = new LinkedList<int>();
 			var potentialShowingAlbum = new LinkedList<int>();
 			
-			if(hint != MusicTreeView.Hint.CDROM) {
+			if(hint != MusicTreeView.Hint.CDROM && hint != MusicTreeView.Hint.DEVICE) {
 				//if(type != ViewWrapper.ViewType.FILTER_VIEW) {
 					potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
 														lw.miller.genres.get_selected(), 
@@ -249,7 +249,7 @@ public class BeatBox.ViewWrapper : VBox {
 			//stdout.printf("searched\n");
 		}
 		
-		if(this.visible) {
+		if(this.visible || force) {
 			if(type == ViewType.LIST) {
 				//stdout.printf("populating\n");
 				list.populateView();

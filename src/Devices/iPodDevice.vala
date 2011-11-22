@@ -2,6 +2,7 @@ using GPod;
 using Gee;
 
 public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
+	LibraryManager lm;
 	iTunesDB db;
 	Mount mount;
 	GLib.Icon icon;
@@ -9,8 +10,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	LinkedList<int> songs;
 	
 	public iPodDevice(LibraryManager lm, Mount mount) {
+		this.lm = lm;
 		this.mount = mount;
 		icon = mount.get_icon();
+		songs = new LinkedList<int>();
 	}
 	
 	public bool initialize() {
@@ -23,21 +26,35 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		
 		var trToSo = new LinkedList<Song>();
-		
-		
 		for(int i = 0; i < db.tracks.length(); ++i) {
-			trToSo.add(new Song.from_track(db.tracks.nth_data(i)));
+			var s = Song.from_track(get_path(), db.tracks.nth_data(i));
+			s.isTemporary = true;
+			trToSo.add(s);
 		}
 		
-		lm.add_songs(trToSo, false);
-		
-		foreach(var s in tSongs)
-			songs.add(s.rowid);
+		//lock(lm._songs) {
+			stdout.printf("adding %d songs\n", trToSo.size);
+			lm.add_songs(trToSo, false);
+			stdout.printf("added songs in idle\n");
 			
-		d.device_unmounted.connect( () => {
-			foreach(Song s in tSongs) {
+			foreach(var s in trToSo) {
+				stdout.printf("lm.song_from_id: %s\n", lm.song_from_id(s.rowid).title);
+			}
+			
+			foreach(var s in trToSo) {
+				stdout.printf("trToSo: %s\n", s.title);
+				this.songs.add(s.rowid);
+			}
+			
+			foreach(int s in songs) {
+				stdout.printf("songs data: %s\n", lm.song_from_id(s).title);
+			}
+		//}
+		
+		device_unmounted.connect( () => {
+			foreach(Song s in trToSo) {
 				s.unique_status_image = null;
-				lm.update_songs(tSongs, false);
+				lm.update_songs(trToSo, false);
 			}
 		});
 		
@@ -101,5 +118,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	public void get_device_type() {
 		
+	}
+	
+	public LinkedList<int> get_songs() {
+		return songs;
 	}
 }

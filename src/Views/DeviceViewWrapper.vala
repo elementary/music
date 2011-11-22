@@ -1,12 +1,14 @@
 using Gee;
 
-public class BeatBox.CDRomViewWrapper : ViewWrapper {
+public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	//DeviceView dv;
 	Device d;
 	bool cancelled;
 	
-	public CDRomViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, MusicTreeView.Hint the_hint, int id, Device d) {
+	public DeviceViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, MusicTreeView.Hint the_hint, int id, Device d) {
+		the_hint = MusicTreeView.Hint.DEVICE;
 		base(lmm, lww, songs, sort, dir, the_hint, id);
+		
 		this.d = d;
 		cancelled = false;
 		
@@ -21,7 +23,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 	
 	
 	public bool pulser() {
-		if(song_being_ripped != null) {
+		/*if(song_being_ripped != null) {
 			song_being_ripped.pulseProgress++;
 			
 			var updated = new LinkedList<int>();
@@ -32,6 +34,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 		}
 		else {
 			return false;
-		}
+		}*/
+		return false;
 	}
 }

@@ -1,13 +1,15 @@
 using Gee;
 
 public class BeatBox.DeviceManager : GLib.Object {
+	LibraryManager lm;
 	VolumeMonitor vm;
 	LinkedList<Device> devices;
 	
 	public signal void device_added(Device d);
 	public signal void device_removed(Device d);
 	
-	public DeviceManager() {
+	public DeviceManager(LibraryManager lm) {
+		this.lm = lm;
 		vm = VolumeMonitor.get();
 		devices = new LinkedList<Device>();
 		
@@ -15,26 +17,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 		vm.mount_changed.connect(mount_changed);
 		vm.mount_pre_unmount.connect(mount_pre_unmount);
 		vm.mount_removed.connect(mount_removed);
-		
-		/*vmVfs = GnomeVFS.get_volume_monitor();
-		vmVfs.volume_mounted.connect(gvfs_mounted);
-		vmVfs.drive_connected.connect( () => { stdout.printf("drive connected\n"); });
-		vmVfs.drive_disconnected.connect( () => { stdout.printf("drive disconnected\n"); });
-		vmVfs.volume_unmounted.connect(gvfs_unmounted);
-		
-		var monitor = File.new_for_path("/home/scott/.gvfs").monitor_directory(FileMonitorFlags.NONE);
-		
-		monitor.changed.connect( () => { stdout.printf("changed\n"); });
-		
-		// gudev 
-		GUdev.Client client = new GUdev.Client({"usb", null});
-		client.uevent.connect(uevent_cb);*/
 	}
-	
-	/*public void uevent_cb(string action, GUdev.Device device) {
-		stdout.printf("action; %s\n", action);
-			stdout.printf("device: %s\n", device.get_device_file());
-	}*/
 	
 	public void loadPreExistingMounts() {
 		
@@ -71,7 +54,6 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	public virtual void mount_added (Mount mount) {
-		stdout.printf("mount added at %s\n", mount.get_default_location().get_path());
 		foreach(var dev in devices) {
 			if(dev.get_path() == mount.get_default_location().get_path()) {
 				return;
@@ -85,10 +67,10 @@ public class BeatBox.DeviceManager : GLib.Object {
 		else if(File.new_for_path(mount.get_default_location().get_path() + "/iTunes_Control").query_exists() ||
 				File.new_for_path(mount.get_default_location().get_path() + "/iPod_Control").query_exists() ||
 				File.new_for_path(mount.get_default_location().get_path() + "/iTunes/iTunes_Control").query_exists()) {
-			added = new iPodDevice(mount);	
+			added = new iPodDevice(lm, mount);	
 		}
 		else if(mount.get_default_location().get_parse_name().has_prefix("afc://")) {
-			added = new iPodDevice(mount);
+			added = new iPodDevice(lm, mount);
 		}
 		else if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists()) {
 			added = new AndroidDevice(mount);
@@ -98,16 +80,20 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 		
 		if(added == null) {
-			stdout.printf("added is null. initialization failed, meaning it is invalid. not using it\n");
+			stdout.printf("Found device at %s is invalid. Not using it\n", mount.get_default_location().get_parse_name());
 			return;
 		}
 		
 		added.set_mount(mount);
-		
 		devices.add(added);
-		device_added(added);
 		
-		if(!added.initialize()) {
+		if(added.initialize()) {
+			Song s = lm.song_from_id(added.get_songs()[0]);
+			stdout.printf("first song is %s %s %s\n", s.title, s.artist, s.album);
+			stdout.printf("added ipod is size %d with \n", added.get_songs().size);
+			device_added(added);
+		}
+		else {
 			mount_removed(added.get_mount());
 		}
 	}
@@ -121,25 +107,13 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	public virtual void mount_removed (Mount mount) {
-		stdout.printf("mount_removed: %s\n", mount.get_default_location().get_parse_name());
-		
 		foreach(var dev in devices) {
-			stdout.printf("comparing %s to %s\n", dev.get_path(), mount.get_default_location().get_path());
 			if(dev.get_path() == mount.get_default_location().get_path()) {
-				stdout.printf("removed %s\n", mount.get_default_location().get_path());
 				devices.remove(dev);
 				device_removed(dev);
 				
 				return;
 			}
 		}
-	}
-	
-	public void gvfs_mounted(GnomeVFS.Volume volume) {
-		stdout.printf("gvfs mounted\n");
-	}
-	
-	public void gvfs_unmounted(GnomeVFS.Volume volume) {
-		stdout.printf("gvfs unmounted\n");
 	}
 }

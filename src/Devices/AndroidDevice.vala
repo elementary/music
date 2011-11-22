@@ -1,4 +1,5 @@
 using GPod;
+using Gee;
 
 public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 	Mount mount;
@@ -61,5 +62,9 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 	
 	public void get_device_type() {
 		
+	}
+	
+	public LinkedList<int> get_songs() {
+		return new LinkedList<int>();
 	}
 }

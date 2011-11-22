@@ -82,15 +82,25 @@ public class BeatBox.MillerColumns : HBox {
 	
 	public virtual void searchFieldChanged() {
 		if(visible)
-			populateColumns("", songs);
+			populateColumns( (lw.sideTree.getSelectedObject() is Device) ? "device" : "", songs);
 	}
 	
 	public void populateColumns(string trigger, Collection<int> songs) {
-		Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
+		Collection<int> searched_songs;
+		if(trigger == "device") {
+			searched_songs = lm.temps_from_search(lw.searchField.get_text(), 
 															"All Genres", 
 															"All Artists",
 															"All Albums",
 															songs);
+		}
+		else {
+			searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
+															"All Genres", 
+															"All Artists",
+															"All Albums",
+															songs);
+		}
 		
 		this.songs = songs;
 		

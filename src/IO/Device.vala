@@ -1,3 +1,5 @@
+using Gee;
+
 public interface BeatBox.Device : GLib.Object {
 	//private Mount mount;
 	
@@ -36,6 +38,7 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract void unmount();
 	public abstract void eject();
 	public abstract void get_device_type();
+	public abstract LinkedList<int> get_songs();
 	
 	/*public string get_path() {
 		return mount.get_default_location().get_parse_name();

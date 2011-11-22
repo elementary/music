@@ -34,6 +34,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.DataBaseUpdater dbu;
 	public BeatBox.FileOperator fo;
 	public BeatBox.Streamer player;
+	public BeatBox.DeviceManager dm;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	private HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
@@ -228,6 +229,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 				}
 			}
 		}
+		
+		dm = new DeviceManager(this);
 		
 		// set the volume
 		player.setVolume(settings.getVolume());
@@ -828,6 +831,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 					rv.add(i);
 			}
 		}
+		
 		return rv;
 	}
 	
@@ -1243,10 +1247,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// actually play the song asap
-		if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://"))
+		if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://")) // normal file
 			player.setURI("file://" + song_from_id(id).file);
 		else
-			player.setURI(song_from_id(id).file);
+			player.setURI(song_from_id(id).file); // probably cdda
 		
 		//pause if paused
 		if(!playing)

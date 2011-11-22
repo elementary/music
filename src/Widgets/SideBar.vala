@@ -285,6 +285,20 @@ namespace ElementaryWidgets {
 			return w;
 		}
 		
+		public Object? getSelectedObject() {
+			TreeModel m;
+			TreeIter? iter;
+			
+			if(!this.get_selection().get_selected(out m, out iter)) { // user has nothing selected, reselect last selected
+				if(iter == null)
+					return null;
+			}
+			
+			Object o;
+			filter.get(iter, SideBarColumn.COLUMN_OBJECT, out o);
+			return o;
+		}
+		
 		/* stops user from selecting the root nodes */
 		public void selectionChange() {
 			TreeModel model;

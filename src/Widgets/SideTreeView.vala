@@ -25,7 +25,6 @@ using Gtk;
 public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	LibraryManager lm;
 	LibraryWindow lw;
-	public DeviceManager dm;
 	
 	public TreeIter library_iter;
 	public TreeIter library_music_iter;
@@ -61,10 +60,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public SideTreeView(LibraryManager lmm, LibraryWindow lww) {
 		this.lm = lmm;
 		this.lw = lww;
-		dm = new DeviceManager();
 		
-		dm.device_added.connect(deviceAdded);
-		dm.device_removed.connect(deviceRemoved);
+		lm.dm.device_added.connect(deviceAdded);
+		lm.dm.device_removed.connect(deviceRemoved);
 		
 		buildUI();
 	}
@@ -432,9 +430,15 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								vw.songs, true, false);
 				}
+				else if(o is Device) {
+					DeviceViewWrapper vw = (DeviceViewWrapper)w;
+					
+					vw.doUpdate(vw.getView(), vw.songs, true, false);
+				}
 				
 				if(lw.initializationFinished && (lw.viewSelector.selected == 2)) {
-					lw.miller.populateColumns("", ((ViewWrapper)w).songs);
+					stdout.printf("doing miller update\n");
+					lw.miller.populateColumns( (o is Device) ? "device" : "", ((ViewWrapper)w).songs);
 				}
 				lw.updateMillerColumns();
 				((ViewWrapper)w).setStatusBarText();

@@ -22,9 +22,7 @@ pkg_check_modules(DEPS
     json-glib-1.0
     gio-unix-2.0
     granite
-    libgpod-1.0
-    gnome-vfs-2.0
-    gudev-1.0)
+    libgpod-1.0)
 
 pkg_check_modules(ZEITGEIST zeitgeist-1.0)
 if(${ZEITGEIST_FOUND})
@@ -138,6 +136,7 @@ vala_precompile(VALA_C
     GStreamer/Streamer.vala
     Views/ViewWrapper.vala
     Views/CDRomViewWrapper.vala
+    Views/DeviceViewWrapper.vala
     Views/ListView/SimilarPane.vala
     Views/ListView/MusicTreeModel.vala
     Views/ListView/MusicTreeView.vala
@@ -184,8 +183,6 @@ PACKAGES
     gio-unix-2.0
     granite
     libgpod-1.0
-    gnome-vfs-2.0
-    gudev-1.0
     ${ADD_PKG}
 )
 

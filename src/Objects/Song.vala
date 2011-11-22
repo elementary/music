@@ -159,4 +159,34 @@ public class BeatBox.Song : GLib.Object{
 	public string getArtistImagePath() {
 		return Path.build_path("/", file.substring(0, _file.substring(0, _file.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
 	}
+	
+	public static Song from_track(string root, GPod.Track track) {
+		Song rv = new Song(Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
+		
+		if(track.title != null) {			rv.title = track.title; }
+		if(track.artist != null) {			rv.artist = track.artist; }
+		if(track.albumartist != null) {		rv.album_artist = track.albumartist; }
+		if(track.album != null) {			rv.album = track.album; }
+		if(track.genre != null) {			rv.genre = track.genre; }
+		if(track.comment != null) {			rv.comment = track.comment; }
+		if(track.composer != null) {		rv.composer = track.composer; }
+		if(track.grouping != null) {		rv.grouping = track.grouping; }
+		rv.album_number = track.cd_nr;
+		rv.album_count = track.cds;
+		rv.track = track.track_nr;
+		rv.track_count = track.tracks;
+		rv.bitrate = track.bitrate;
+		rv.year = track.year;
+		rv.date_added = (int)track.time_added;
+		rv.last_modified = (int)track.time_modified;
+		rv.last_played = (int)track.time_played;
+		rv.rating = track.rating;
+		rv.play_count = track.playcount;
+		rv.bpm = track.BPM;
+		rv.skip_count = track.skipcount;
+		rv.length = track.tracklen  / 1000;
+		rv.file_size = track.size / 1000000;
+		
+		return rv;
+	}
 }
