@@ -34,6 +34,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.DataBaseUpdater dbu;
 	public BeatBox.FileOperator fo;
 	public BeatBox.Streamer player;
+	public BeatBox.DeviceManager dm;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	private HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
@@ -218,7 +219,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(LastFM.TrackInfo t in dbm.load_tracks()) {
 			_tracks.set(t.name + " by " + t.artist, t);
 		}
-
+		
 		// set the equalizer
 		if(settings.getEqualizerEnabled() && !settings.getAutoSwitchPreset()) {
 				EqualizerPreset p = settings.getSelectedPreset();
@@ -227,7 +228,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 						player.setEqualizerGain(i, p.getGain(i));
 				}
 		}
-
+		
+		dm = new DeviceManager(this);
+		
 		// set the volume
 		player.setVolume(settings.getVolume());
 		
@@ -827,6 +830,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 					rv.add(i);
 			}
 		}
+		
 		return rv;
 	}
 	
@@ -1242,10 +1246,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// actually play the song asap
-		if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://"))
+		if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://")) // normal file
 			player.setURI("file://" + song_from_id(id).file);
 		else
-			player.setURI(song_from_id(id).file);
+			player.setURI(song_from_id(id).file); // probably cdda
 		
 		//pause if paused
 		if(!playing)
@@ -1283,7 +1287,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void* change_gains_thread () {
-		if(settings.getEqualizerEnabled() && settings.getAutoSwitchPreset()) {
+		if(settings.getAutoSwitchPreset() && settings.getEqualizerEnabled()) {
 			bool matched_genre = false;
 			foreach(var p in settings.getPresets(null)) {
 				if(p != null && p.name.down() == song_info.song.genre.down()) {
