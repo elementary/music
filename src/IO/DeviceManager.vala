@@ -1,13 +1,15 @@
 using Gee;
 
 public class BeatBox.DeviceManager : GLib.Object {
+	LibraryManager lm;
 	VolumeMonitor vm;
 	LinkedList<Device> devices;
 	
 	public signal void device_added(Device d);
 	public signal void device_removed(Device d);
 	
-	public DeviceManager() {
+	public DeviceManager(LibraryManager lm) {
+		this.lm = lm;
 		vm = VolumeMonitor.get();
 		devices = new LinkedList<Device>();
 		
@@ -15,9 +17,6 @@ public class BeatBox.DeviceManager : GLib.Object {
 		vm.mount_changed.connect(mount_changed);
 		vm.mount_pre_unmount.connect(mount_pre_unmount);
 		vm.mount_removed.connect(mount_removed);
-		vm.volume_added.connect(volume_added);
-		vm.volume_changed.connect(volume_changed);
-		vm.volume_removed.connect(volume_removed);
 	}
 	
 	public void loadPreExistingMounts() {
@@ -40,8 +39,9 @@ public class BeatBox.DeviceManager : GLib.Object {
 		
 		Idle.add( () => {
 			
-			foreach(var m in mounts)
+			foreach(var m in mounts) {
 				mount_added(m);
+			}
 			
 			return false;
 		});
@@ -49,28 +49,52 @@ public class BeatBox.DeviceManager : GLib.Object {
 		return null;
 	}
 	
+	public void add_mount(string path) {
+		stdout.printf("added mount %s\n", path);
+	}
+	
 	public virtual void mount_added (Mount mount) {
 		foreach(var dev in devices) {
-			if(dev.getMountLocation() == mount.get_default_location().get_parse_name()) {
+			if(dev.get_path() == mount.get_default_location().get_path()) {
 				return;
 			}
 		}
 		
-		/*stdout.printf("mount_added: %s\n", mount.get_name());
-		stdout.printf(" parse_name: %s\n uri: %s\n nice_name: %s\n unix_device: %s\n test: %s\n",
-						mount.get_default_location().get_parse_name(),
-						mount.get_default_location().get_uri(),
-						mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_LABEL),
-						mount.get_volume().get_identifier(VOLUME_IDENTIFIER_KIND_UNIX_DEVICE),
-						new UnixMountEntry(mount.get_default_location().get_path(), 0).get_device_path());*/
-		var device = new Device(mount);
+		Device added;
+		if(mount.get_default_location().get_path().has_prefix("cdda://")) {
+			added = new CDRomDevice(mount);
+		}
+		else if(File.new_for_path(mount.get_default_location().get_path() + "/iTunes_Control").query_exists() ||
+				File.new_for_path(mount.get_default_location().get_path() + "/iPod_Control").query_exists() ||
+				File.new_for_path(mount.get_default_location().get_path() + "/iTunes/iTunes_Control").query_exists()) {
+			added = new iPodDevice(lm, mount);	
+		}
+		else if(mount.get_default_location().get_parse_name().has_prefix("afc://")) {
+			added = new iPodDevice(lm, mount);
+		}
+		else if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists()) {
+			added = new AndroidDevice(mount);
+		}
+		else { // not a music player, ignore it
+			return;
+		}
 		
-		//stdout.printf("mount preview icon: %s\n", mount.get_default_location().query_info("*", FileQueryInfoFlags.NONE).get_attribute_string(FILE_ATTRIBUTE_PREVIEW_ICON));
+		if(added == null) {
+			stdout.printf("Found device at %s is invalid. Not using it\n", mount.get_default_location().get_parse_name());
+			return;
+		}
 		
-		if(device.getContentType() == "cdrom" || device.getContentType().contains("ipod") 
-			|| device.getContentType() == "android") {
-			devices.add(device);
-			device_added(device);
+		added.set_mount(mount);
+		devices.add(added);
+		
+		if(added.initialize()) {
+			Song s = lm.song_from_id(added.get_songs()[0]);
+			stdout.printf("first song is %s %s %s\n", s.title, s.artist, s.album);
+			stdout.printf("added ipod is size %d with \n", added.get_songs().size);
+			device_added(added);
+		}
+		else {
+			mount_removed(added.get_mount());
 		}
 	}
 	
@@ -83,39 +107,13 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	public virtual void mount_removed (Mount mount) {
-		stdout.printf("mount_removed: %s\n", mount.get_default_location().get_parse_name());
-		
 		foreach(var dev in devices) {
-			if(dev.getMountLocation() == mount.get_default_location().get_parse_name()) {
+			if(dev.get_path() == mount.get_default_location().get_path()) {
 				devices.remove(dev);
 				device_removed(dev);
 				
 				return;
 			}
 		}
-	}
-	
-	public void mountedCallback(Object? source_object, AsyncResult res) {
-		//stdout.printf("mounted %s!\n", (string)current.get_mount().guess_content_type_sync(true, null));
-	}
-	
-	public virtual void volume_added (Volume volume) {
-		//Device d = new Device(volume);
-		
-		//stdout.printf("volume added: %s, %s\n", volume.get_name(), volume.get_mount().guess_content_type_sync(true, null));
-		
-		//Timeout.add(5000, () => { stdout.printf("volume added: %s\n", volume.get_mount().guess_content_type_sync(true, null)); return false; } );
-	}
-	
-	public virtual void volume_changed (Volume volume) {
-		//stdout.printf("volume changed: %s %s\n", volume.get_name(), volume.get_mount().guess_content_type_sync(true, null));
-		
-		//Timeout.add(5000, () => { stdout.printf("volume changed: %s\n", volume.get_mount().guess_content_type_sync(true, null)); return false; } );
-	}
-	
-	public virtual void volume_removed (Volume volume) {
-		//stdout.printf("volume removed: %s, %S\n", volume.get_name(), volume.get_mount().guess_content_type_sync(true, null));
-		
-		//Timeout.add(5000, () => { stdout.printf("volume removed: %s\n", volume.get_mount().guess_content_type_sync(true, null)); return false; } );
 	}
 }

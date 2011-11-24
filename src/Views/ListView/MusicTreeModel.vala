@@ -535,6 +535,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	private int advancedStringCompare(string a, string b) {
+		if(a == null || b == null)
+			stdout.printf("a or b is null\n");
 		if(a == "" && b != "")
 			return 1;
 		else if(a != "" && b == "")

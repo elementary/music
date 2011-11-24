@@ -1,7 +1,7 @@
 /*-
  * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
  *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * Originaly Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or
@@ -28,7 +28,7 @@ public class BeatBox.ViewWrapper : VBox {
 	public LibraryWindow lw;
 	public MusicTreeView list;
 	public AlbumView albumView;
-	public WarningLabel errorBox;
+	private WarningLabel errorBox;
 	public Collection<int> songs;
 	public Collection<int> showingSongs;
 	
@@ -83,7 +83,7 @@ public class BeatBox.ViewWrapper : VBox {
 			doUpdate(ViewType.LIST, songs, true, true);
 		
 		albumView.itemClicked.connect(filterViewItemClicked);
-		lw.viewSelector.mode_changed.connect(selectorViewChanged);
+		lw.viewSelector.notify["selected"].connect(selectorViewChanged);
 		lm.song_played.connect(songPlayed);
 		
 		lw.searchField.changed.connect(searchFieldChanged);
@@ -96,17 +96,22 @@ public class BeatBox.ViewWrapper : VBox {
 	public virtual void selectorViewChanged() {
 		switch(lw.viewSelector.selected) {
 			case 0:
-				doUpdate(ViewWrapper.ViewType.FILTER_VIEW, songs, false, false);
+				currentView = ViewType.FILTER_VIEW;
+				albumView.show();
+				list.hide();
+				
+				if(!isCurrentView) {
+					albumView.isCurrentView = false;
+				}
 				break;
 			case 1:
-				doUpdate(ViewWrapper.ViewType.LIST, songs, false, false);
-				break;
 			case 2:
-				doUpdate(ViewWrapper.ViewType.LIST, songs, false, false);
+				currentView = ViewType.LIST;
+				albumView.hide();
+				list.show();
 				
-				if(isCurrentView) {
-					stdout.printf("populating millers\n");
-					lw.miller.populateColumns("", songs);
+				if(!isCurrentView) {
+					list.is_current_view = false;
 				}
 				break;
 		}
@@ -164,8 +169,6 @@ public class BeatBox.ViewWrapper : VBox {
 			this.songs = songs;
 		}
 		
-		currentView = type;
-		
 		/* BEGIN special case for similar songs */
 		if(list.hint == MusicTreeView.Hint.SIMILAR && this.visible) {
 			SimilarPane sp = (SimilarPane)(list);
@@ -183,7 +186,7 @@ public class BeatBox.ViewWrapper : VBox {
 					errorBox.show();
 					list.hide();
 					albumView.hide();
-					stdout.printf("2\n");
+					
 					return;
 				}
 				else {
@@ -192,11 +195,8 @@ public class BeatBox.ViewWrapper : VBox {
 					sp._base = lm.song_info.song;
 				}
 			}
-			/* this stops similar from refreshing when a song from that list is playing. add !set_songs to make sure to update when
-			 * the user searches
-			 * */
-			else if(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs()) && similarsFetched && list.is_current) { // needs update, but won't because not worthy
-				stdout.printf("3\n");
+			else if(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs()) && similarsFetched) { // needs update, but won't because not worthy
+				
 				return;
 			}
 		}
@@ -205,68 +205,73 @@ public class BeatBox.ViewWrapper : VBox {
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
 		if(!this.visible || force) {
 			//stdout.printf("searching..\n");
-			var potentialShowing = new LinkedList<int>();
-			var potentialShowingAlbum = new LinkedList<int>();
+			var potentialShowingList = new LinkedList<int>();
+			var potentialShowingAlbums = new LinkedList<int>();
 			
-			if(hint != MusicTreeView.Hint.CDROM && hint != MusicTreeView.Hint.DEVICE) {
-				//if(type != ViewWrapper.ViewType.FILTER_VIEW) {
-					potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
+			if(hint != MusicTreeView.Hint.CDROM) {
+				if(type != ViewWrapper.ViewType.FILTER_VIEW || !force) {
+					potentialShowingList.add_all(lm.songs_from_search(lw.searchField.get_text(), 
 														lw.miller.genres.get_selected(), 
 														lw.miller.artists.get_selected(),
 														lw.miller.albums.get_selected(),
 														songs));
 				
-				//}
-				//else {
-					potentialShowingAlbum.add_all(lm.songs_from_search(lw.searchField.get_text(), 
+				}
+				if(type == ViewWrapper.ViewType.FILTER_VIEW || !force) {
+					potentialShowingAlbums.add_all(lm.songs_from_search(lw.searchField.get_text(), 
 														lw.miller.genres.get_selected(), 
 														lw.miller.artists.get_selected(),
 														"All Albums",
 														songs));
-				//}
+				}
 			}
 			else {
-				//if(type != ViewWrapper.ViewType.FILTER_VIEW) {
-					potentialShowing.add_all(lm.temps_from_search(lw.searchField.get_text(), 
+				if(type != ViewWrapper.ViewType.FILTER_VIEW || !force) {
+					potentialShowingList.add_all(lm.temps_from_search(lw.searchField.get_text(), 
 														lw.miller.genres.get_selected(), 
 														lw.miller.artists.get_selected(),
 														lw.miller.albums.get_selected(),
 														songs));
 				
-				//}
-				//else {
-					potentialShowingAlbum.add_all(lm.temps_from_search(lw.searchField.get_text(), 
+				}
+				if(type == ViewWrapper.ViewType.FILTER_VIEW || !force) { 
+					potentialShowingAlbums.add_all(lm.temps_from_search(lw.searchField.get_text(), 
 														lw.miller.genres.get_selected(), 
 														lw.miller.artists.get_selected(),
 														"All Albums",
 														songs));
-				//}
+				}
 			}
 			
-			list.showNext = potentialShowing;
-			albumView.showNext = potentialShowingAlbum;
-			showingSongs = potentialShowing;
+			if(type != ViewWrapper.ViewType.FILTER_VIEW || !force) {
+				list.showNext = potentialShowingList;
+				showingSongs = potentialShowingList;
+			}
+			if(type == ViewWrapper.ViewType.FILTER_VIEW || !force)
+				albumView.showNext = potentialShowingAlbums;
+				
+			showingSongs = potentialShowingList;
 			//stdout.printf("searched\n");
 		}
 		
-		if(this.visible || force) {
-			if(type == ViewType.LIST) {
+		if(this.visible) {
+			if(type != ViewType.FILTER_VIEW) {
 				//stdout.printf("populating\n");
 				list.populateView();
 				//stdout.printf("populated\n");
-				list.show();
-				albumView.hide();
+				//list.show();
+				//albumView.hide();
 				
-				if(!isCurrentView)
-					list.is_current_view = false;
+				//if(!isCurrentView)
+					//list.is_current_view = false;
 			}
 			else {
 				albumView.populateView();
-				list.hide();
-				albumView.show();
+				//list.hide();
+				//albumView.show();
 				
-				if(!isCurrentView)
-					albumView.isCurrentView = false;
+				//if(!isCurrentView)
+				//	albumView.isCurrentView = false;
 			}
 		}
 	}
@@ -290,7 +295,7 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public void millerChanged() {
-		if(lw.initializationFinished && isCurrentView) {
+		if(lw.initializationFinished && isCurrentView && this.visible) {
 			stdout.printf("miller changed\n");
 			doUpdate(this.currentView, songs, false, true);
 			
@@ -300,6 +305,7 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		else if(lw.initializationFinished) {
 			// start thread to prepare for when it is current
+			stdout.printf("inverse miller changed\n");
 			try {
 				Thread.create<void*>(update_view_thread, false);
 			}
@@ -318,7 +324,6 @@ public class BeatBox.ViewWrapper : VBox {
 				if(to_search != lw.searchField.get_text() || to_search == last_search)
 					return false;
 				
-				stdout.printf("search field changed\n");
 				doUpdate(this.currentView, songs, false, true);
 					
 				last_search = to_search;
@@ -342,7 +347,12 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public void* update_view_thread () {
-		doUpdate(this.currentView, songs, false, false);
+		if(!isCurrentView || list.visible) {
+			doUpdate(ViewType.FILTER_VIEW, songs, false, false);
+		}
+		else if(!isCurrentView || albumView.visible) {
+			doUpdate(ViewType.LIST, songs, false, false);
+		}
 		
 		return null;	
 	}

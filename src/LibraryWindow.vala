@@ -406,7 +406,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusBar.pack_start(wrap_alignment(infoPanelChooser, 0, 10, 0, 0), false, false, 2);
 		
 		// add mounts to side tree view
-		sideTree.dm.loadPreExistingMounts();
+		lm.dm.loadPreExistingMounts();
 		
 		/* Connect events to functions */
 		sourcesToSongs.get_child1().size_allocate.connect(sourcesToSongsHandleSet);
@@ -536,20 +536,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Device d = (Device)o;
 			
 			if(d.getContentType() == "cdrom") {
-				vw = new DeviceViewWrapper(lm, this, new Gee.LinkedList<int>(), "Track", Gtk.SortType.ASCENDING, MusicTreeView.Hint.CDROM, -1, d);
+				vw = new CDRomViewWrapper(lm, this, new Gee.LinkedList<int>(), "Track", Gtk.SortType.ASCENDING, MusicTreeView.Hint.CDROM, -1, d);
 				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName());
 				mainViews.pack_start(vw, true, true, 0);
 			}
-			else if(d.getContentType().contains("ipod")) {
-				DeviceSummaryWidget dsm = new DeviceSummaryWidget(lm, this, d);
-				item = sideTree.addSideItem(sideTree.devices_iter, d, dsm, d.getDisplayName());
-				mainViews.pack_start(dsm, true, true, 0);
-			}
-			else if(d.getContentType() == "android") {
-				Label l = new Label(d.getDescription());
-				item = sideTree.addSideItem(sideTree.devices_iter, d, l, d.getDisplayName());
-				mainViews.pack_start(l, true, true, 0);
-
+			else {
+				stdout.printf("adding ipod device view with %d\n", d.get_songs().size);
+				vw = new DeviceViewWrapper(lm, this, d.get_songs(), "Artist", Gtk.SortType.ASCENDING, MusicTreeView.Hint.DEVICE, -1, d);
+				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName());
+				mainViews.pack_start(vw, true, true, 0);
 			}
 		}
 		
@@ -1036,7 +1031,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// clear all other playlists, reset to Music, populate music
 		mainViews.get_children().foreach( (vw) => {
-			if(vw is ViewWrapper && !(vw is DeviceViewWrapper))
+			if(vw is ViewWrapper && !(vw is CDRomViewWrapper))
 				((ViewWrapper)vw).clear();
 		});
 		
@@ -1316,7 +1311,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool similarcheck = sideTree.getSelectedWidget() is ViewWrapper  && 
 							((ViewWrapper)sideTree.getSelectedWidget()).errorBox != null && 
 							((ViewWrapper)sideTree.getSelectedWidget()).errorBox.visible;
-		bool isCdrom = sideTree.getSelectedWidget() is DeviceViewWrapper;
+		bool isCdrom = sideTree.getSelectedWidget() is CDRomViewWrapper;
 		bool storecheck = (sideTree.getSelectedWidget() is Store.StoreView);
 		bool haveSongs = (lm.song_count() != 0);
 		

@@ -1,6 +1,6 @@
 find_package(Vala REQUIRED)
 include(ValaVersion)
-ensure_vala_version("0.14.0" MINIMUM)
+ensure_vala_version("0.13.0" MINIMUM)
 include(ValaPrecompile)
 
 find_package(PkgConfig)
@@ -21,8 +21,7 @@ pkg_check_modules(DEPS
     libsoup-2.4
     json-glib-1.0
     gio-unix-2.0
-    granite
-    libgpod-1.0)
+    granite)
 
 pkg_check_modules(ZEITGEIST zeitgeist-1.0)
 if(${ZEITGEIST_FOUND})
@@ -68,9 +67,6 @@ vala_precompile(VALA_C
     LastFM/SimilarSongs.vala
     BeatBox.vala
     #    Devices/Syncable.vala
-    Devices/iPodDevice.vala
-    Devices/AndroidDevice.vala
-    Devices/CDRomDevice.vala
     LibraryWindow.vala
     LibraryManager.vala
     Objects/TreeViewSetup.vala
@@ -135,7 +131,6 @@ vala_precompile(VALA_C
     GStreamer/ReplayGain.vala
     GStreamer/Streamer.vala
     Views/ViewWrapper.vala
-    Views/CDRomViewWrapper.vala
     Views/DeviceViewWrapper.vala
     Views/ListView/SimilarPane.vala
     Views/ListView/MusicTreeModel.vala
@@ -152,18 +147,16 @@ vala_precompile(VALA_C
     IO/DeviceManager.vala
     Settings.vala
     Dialogs/EqualizerWindow.vala
-    Dialogs/PresetNameWindow.vala
     Dialogs/SmartPlaylistEditor.vala
     Dialogs/PreferencesWindow.vala
     Dialogs/InstallGstreamerPluginsDialog.vala
     Dialogs/SongEditor.vala
+    Dialogs/PresetNameWindow.vala
     Dialogs/PlaylistNameWindow.vala
     Dialogs/FileNotFoundDialog.vala
     Dialogs/RemoveFilesDialog.vala
     Dialogs/NotImportedWindow.vala
-OPTIONS
-    --vapidir=${CMAKE_SOURCE_DIR}/vapi
-    ${ADD_OPTIONS}
+    ../vapi/libgpod-1.0.vapi
 PACKAGES
     glib-2.0
     gtk+-3.0
@@ -184,6 +177,9 @@ PACKAGES
     granite
     libgpod-1.0
     ${ADD_PKG}
+OPTIONS
+    --vapidir=${CMAKE_SOURCE_DIR}/vapi
+    ${ADD_OPTIONS}
 )
 
 add_executable(beatbox ${VALA_C})
