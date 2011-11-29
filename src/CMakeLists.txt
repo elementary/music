@@ -100,6 +100,7 @@ vala_precompile(VALA_C
     Widgets/MillerColumns/MillerColumn.vala
     Widgets/RatingWidget.vala
     Widgets/AppMenu.vala
+    Widgets/DeviceBar.vala
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
     Store/Price.vala
@@ -137,6 +138,7 @@ vala_precompile(VALA_C
     Views/ViewWrapper.vala
     Views/CDRomViewWrapper.vala
     Views/DeviceViewWrapper.vala
+    Views/DeviceView.vala
     Views/ListView/SimilarPane.vala
     Views/ListView/MusicTreeModel.vala
     Views/ListView/MusicTreeView.vala

@@ -42,16 +42,16 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		return icon;
 	}
 	
-	public int64 get_capacity() {
-		return (int64)0;
+	public uint64 get_capacity() {
+		return (uint64)0;
 	}
 	
-	public int64 get_used_space() {
-		return (int64)0;
+	public uint64 get_used_space() {
+		return (uint64)0;
 	}
 	
-	public int64 get_free_space() {
-		return (int64)0;
+	public uint64 get_free_space() {
+		return (uint64)0;
 	}
 	
 	public void unmount() {
@@ -66,7 +66,31 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		
 	}
 	
-	public LinkedList<int> get_songs() {
+	public Collection<int> get_songs() {
 		return new LinkedList<int>();
+	}
+	
+	public Collection<int> get_playlists() {
+		return new LinkedList<int>();
+	}
+	
+	public Collection<int> get_smart_playlists() {
+		return new LinkedList<int>();
+	}
+	
+	public bool sync_songs(LinkedList<int> list) {
+		return false;
+	}
+	
+	public bool sync_playlists(LinkedList<int> list) {
+		return false;
+	}
+	
+	public bool will_fit(LinkedList<int> list) {
+		return false;
+	}
+	
+	public bool is_syncing() {
+		return false;
 	}
 }

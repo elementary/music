@@ -542,9 +542,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 			else {
 				stdout.printf("adding ipod device view with %d\n", d.get_songs().size);
-				vw = new DeviceViewWrapper(lm, this, d.get_songs(), "Artist", Gtk.SortType.ASCENDING, MusicTreeView.Hint.DEVICE, -1, d);
-				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName());
-				mainViews.pack_start(vw, true, true, 0);
+				DeviceView dv = new DeviceView(lm, d);
+				//vw = new DeviceViewWrapper(lm, this, d.get_songs(), "Artist", Gtk.SortType.ASCENDING, MusicTreeView.Hint.DEVICE, -1, d);
+				item = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName());
+				mainViews.pack_start(dv, true, true, 0);
 			}
 		}
 		

@@ -37,7 +37,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.DeviceManager dm;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
-	private HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
+	public HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
 	private HashMap<int, Song> _songs; // rowid, song of all songs
 	private LinkedList<int> _locals; // list of all local songs
 	private HashMap<int, int> _current; // id, song of current songs.
@@ -843,23 +843,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _smart_playlists.get(id).analyze(this);
 	}
 	
-	/** make this smarter **/
-	/*public void add_song(Song s) {
-		//fill in rowid's
-		lock(_songs) {
-			if(s.rowid == 0) {
-				int index = 1;
-				foreach(int i in _songs.keys) {
-					if(i > index)
-						index = i + 1;
-				}
-				stdout.printf("Song %s by %s new rowid: %d\n", s.title, s.artist, index);
-				s.rowid = index + 1;
-			}
-			
-			_songs.set(s.rowid, s);
-		}
-	}*/
+	public void add_song(Song s, bool permanent) {
+		var coll = new LinkedList<Song>();
+		coll.add(s);
+		add_songs(coll, permanent);
+	}
 	
 	public void add_songs(Collection<Song> new_songs, bool permanent) {
 		int top_index = 0;

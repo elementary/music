@@ -91,4 +91,12 @@ public class BeatBox.Playlist : Object {
 	public Gee.LinkedList<int> analyze(LibraryManager lm) {
 		return _songs;
 	}
+	
+	public static Playlist from_ipod(GPod.Playlist p) {
+		Playlist rv = new Playlist();
+		
+		rv.name = p.name;
+		
+		return rv;
+	}
 }

@@ -67,8 +67,8 @@ public class BeatBox.ViewWrapper : VBox {
 		//list.populateView(songs, false);
 		albumView = new AlbumView(lm, lw, songs);
 		
-		pack_start(list, true, true, 0);
-		pack_start(albumView, true, true, 0);
+		pack_end(list, true, true, 0);
+		pack_end(albumView, true, true, 0);
 		
 		if(list.hint == MusicTreeView.Hint.SIMILAR)
 			pack_start(errorBox, true, true, 0);

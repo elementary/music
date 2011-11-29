@@ -430,11 +430,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								vw.songs, true, false);
 				}
-				else if(o is Device) {
-					DeviceViewWrapper vw = (DeviceViewWrapper)w;
-					
-					vw.doUpdate(vw.getView(), vw.songs, true, false);
-				}
 				
 				if(lw.initializationFinished && (lw.viewSelector.selected == 2)) {
 					stdout.printf("doing miller update\n");
@@ -446,6 +441,19 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(true);
 			}
+			else if(w is DeviceView) {
+				stdout.printf("o is device\n");
+				DeviceView dv = (DeviceView)w;
+				
+				dv.updateChildren();
+				
+				if(lw.initializationFinished && (lw.viewSelector.selected == 2)) {
+					stdout.printf("doing miller update\n");
+					lw.miller.populateColumns( (o is Device) ? "device" : "", ((DeviceView)w).music_list.songs);
+				}
+				lw.updateMillerColumns();
+				((DeviceView)w).music_list.setStatusBarText();
+			}
 		}
 		else {
 			w.hide();
@@ -455,6 +463,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			}
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(false);
+			}
+			else if(w is DeviceView) {
+				((DeviceView)w).setIsCurrentView(false);
 			}
 		}
 		return false;

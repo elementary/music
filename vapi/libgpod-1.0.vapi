@@ -16,6 +16,9 @@ namespace GPod {
 	  public bool supports_photo();
 	  public bool supports_podcast();
 	  public int get_uuid();
+	  
+	  [CCode (cname="itdb_get_music_dir")]
+	  public static string get_music_dir(string mount_point);
   }	
   
   [Compact]
@@ -66,7 +69,7 @@ namespace GPod {
 	public static string cp_get_dest_filename(GPod.Track track, string mountpoint, string filename) throws GLib.Error;
 	public static bool cp(string from_file, string to_file) throws GLib.Error;
 	public static GPod.Track cp_finalize(GPod.Track track, string mountpoint, string dest_filename) throws GLib.Error;
-	public static bool itdb_cp_track_to_ipod(GPod.Track track, string filename) throws GLib.Error;
+	public static bool cp_track_to_ipod(GPod.Track track, string filename) throws GLib.Error;
 	
 	[CCode (cname = "itdb_filename_ipod2fs")]
 	private static void _filename_ipod2fs(string ipod_file);
@@ -90,7 +93,7 @@ namespace GPod {
     public unowned string get_mountpoint ();
     
     /* track functions */
-    public void track_add(GPod.Track track, int32 pos);
+    public void track_add(owned GPod.Track track, int32 pos);
     public GPod.Track track_by_id(uint32 id);
     public GLib.Tree track_id_tree_create();
     public static void track_id_tree_destroy(GLib.Tree idtree);
@@ -109,10 +112,10 @@ namespace GPod {
 	public void spl_update_live();
 	
 	/* for master playlist */
-	public GPod.Playlist playlist_mpl();
+	public weak GPod.Playlist playlist_mpl();
 	
 	/* for podcasts */
-	public GPod.Playlist playlist_podcasts();
+	public weak GPod.Playlist playlist_podcasts();
   }
 
   [Compact]
@@ -332,8 +335,11 @@ namespace GPod {
     public uint16 gapless_track_flag;
     public uint16 gapless_album_flag;
     public uint16 obsolete;
-    public unowned GPod.Artwork artwork;
+    //public unowned GPod.Artwork artwork;
     public uint mhii_link;
+    
+    //[CCode (cname="itdb_track_new")]
+	public Track();
     
     public void remove();
     public void unlink();

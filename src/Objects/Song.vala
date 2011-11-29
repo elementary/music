@@ -187,6 +187,73 @@ public class BeatBox.Song : GLib.Object{
 		rv.length = track.tracklen  / 1000;
 		rv.file_size = track.size / 1000000;
 		
+		if(rv.artist == "" && rv.album_artist != null)
+			rv.artist = rv.album_artist;
+		else if(rv.album_artist == "" && rv.artist != null)
+			rv.album_artist = rv.artist;
+		
 		return rv;
+	}
+	
+	public void update_track(ref unowned GPod.Track t) {
+		if(t == null)
+			return;
+			
+		if(title != null) 			t.title = title;
+		if(artist != null) 			t.artist = artist;
+		if(album_artist != null) 	t.albumartist = album_artist;
+		if(album != null) 			t.album = album;
+		if(genre != null) 			t.genre = genre;
+		if(comment != null) 		t.comment = comment;
+		if(composer != null) 		t.composer = composer;
+		if(grouping != null)		t.grouping = grouping;
+		t.cd_nr = (int)album_number;
+		t.cds = (int)album_count;
+		t.track_nr = (int)track;
+		t.tracks = (int)track_count;
+		t.bitrate = (int)bitrate;
+		t.year = (int)year;
+		t.time_modified = (time_t)last_modified;
+		t.time_played = (time_t)last_played;
+		t.rating = rating;
+		t.playcount = play_count;
+		t.BPM = (uint16)bpm;
+		t.skipcount = skip_count;
+		
+		if(t.artist == "" && t.albumartist != null)
+			t.artist = t.albumartist;
+		else if(t.albumartist == "" && t.artist != null)
+			t.albumartist = t.artist;
+	}
+	
+	/* caller must set ipod_path */
+	public GPod.Track track_from_song() {
+		GPod.Track t = new GPod.Track();
+		
+		t.title = title;
+		t.artist = artist;
+		t.albumartist = album_artist;
+		t.album = album;
+		t.genre = genre;
+		t.comment = comment;
+		t.composer = composer;
+		t.grouping = grouping;
+		t.cd_nr = (int)album_number;
+		t.cds = (int)album_count;
+		t.track_nr = (int)track;
+		t.tracks = (int)track_count;
+		t.bitrate = (int)bitrate;
+		t.year = (int)year;
+		t.time_modified = (time_t)last_modified;
+		t.time_played = (time_t)last_played;
+		t.rating = rating;
+		t.playcount = play_count;
+		t.BPM = (uint16)bpm;
+		t.skipcount = skip_count;
+		t.tracklen = (int)length * 1000;
+		t.size = file_size * 1000000;
+		t.mediatype = 1;
+		
+		return t;
 	}
 }

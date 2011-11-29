@@ -6,14 +6,25 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	iTunesDB db;
 	Mount mount;
 	GLib.Icon icon;
+	bool currently_syncing;
+	LinkedList<int> list; // used to pass data to thread
 	
-	LinkedList<int> songs;
+	HashMap<unowned GPod.Track, int> songs;
+	HashMap<unowned GPod.Track, int> podcasts;
+	HashMap<unowned GPod.Playlist, int> playlists;
+	HashMap<unowned GPod.Playlist, int> smart_playlists;
+	
 	
 	public iPodDevice(LibraryManager lm, Mount mount) {
 		this.lm = lm;
 		this.mount = mount;
 		icon = mount.get_icon();
-		songs = new LinkedList<int>();
+		currently_syncing = false;
+		
+		songs = new HashMap<unowned GPod.Track, int>();
+		podcasts = new HashMap<unowned GPod.Track, int>();
+		playlists = new HashMap<unowned GPod.Playlist, int>();
+		smart_playlists = new HashMap<unowned GPod.Playlist, int>();
 	}
 	
 	public bool initialize() {
@@ -25,36 +36,62 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			return false;
 		}
 		
-		var trToSo = new LinkedList<Song>();
 		for(int i = 0; i < db.tracks.length(); ++i) {
 			var s = Song.from_track(get_path(), db.tracks.nth_data(i));
 			s.isTemporary = true;
-			trToSo.add(s);
+			
+			var existing = lm.song_from_name(s.title, s.artist);
+			
+			if(existing.rowid > 0) {
+				this.songs.set(db.tracks.nth_data(i), existing.rowid);
+			}
+			else {
+				lm.add_song(s, false);
+				this.songs.set(db.tracks.nth_data(i), s.rowid);
+			}
+		}
+		
+		unowned GPod.Playlist podcast = db.playlist_podcasts();
+		stdout.printf("there are %d podcasts\n", (int)podcast.tracks_number());
+		foreach(unowned GPod.Track t in db.tracks) {
+			if(t.podcasturl != null && t.podcasturl.length > 5) {
+				stdout.printf("found podcast\n");
+				podcasts.set(t, songs.get(t));
+				songs.unset(t);
+			}
 		}
 		
 		//lock(lm._songs) {
-			stdout.printf("adding %d songs\n", trToSo.size);
-			lm.add_songs(trToSo, false);
-			stdout.printf("added songs in idle\n");
-			
-			foreach(var s in trToSo) {
-				stdout.printf("lm.song_from_id: %s\n", lm.song_from_id(s.rowid).title);
-			}
-			
-			foreach(var s in trToSo) {
-				stdout.printf("trToSo: %s\n", s.title);
-				this.songs.add(s.rowid);
-			}
-			
-			foreach(int s in songs) {
-				stdout.printf("songs data: %s\n", lm.song_from_id(s).title);
-			}
+			//lm.add_songs(trToSo, false);
 		//}
+		/*
+		for(int i = 0; i < db.playlists.length(); ++i) {
+			unowned GPod.Playlist p = db.playlists.nth_data(i);
+			
+			if(!p.is_spl) {
+				Playlist bbPlaylist = Playlist.from_ipod(p);
+				
+				foreach(unowned GPod.Track t in songs.keys) {
+					if(p.contains_track(t)) {
+						bbPlaylist.addSong(songs.get(t));
+					}
+				}
+				
+				lm.add_playlist(bbPlaylist);
+				playlists.set(p, bbPlaylist.rowid);
+			}
+			else {
+				SmartPlaylist sp = SmartPlaylist.from_ipod(p);
+				
+				
+			}
+		}*/
 		
 		device_unmounted.connect( () => {
-			foreach(Song s in trToSo) {
+			foreach(int i in songs.values) {
+				Song s = lm.song_from_id(i);
 				s.unique_status_image = null;
-				lm.update_songs(trToSo, false);
+				lm.update_song(s, false);
 			}
 		});
 		
@@ -96,16 +133,18 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		return icon;
 	}
 	
-	public int64 get_capacity() {
-		return (int64)0;
+	public uint64 get_capacity() {
+		var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+		return file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 	}
 	
-	public int64 get_used_space() {
-		return (int64)0;
+	public uint64 get_used_space() {
+		return get_capacity() - get_free_space();
 	}
 	
-	public int64 get_free_space() {
-		return (int64)0;
+	public uint64 get_free_space() {
+		var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+		return file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_FREE);
 	}
 	
 	public void unmount() {
@@ -120,7 +159,192 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 	}
 	
-	public LinkedList<int> get_songs() {
-		return songs;
+	public Collection<int> get_songs() {
+		return songs.values;
+	}
+	
+	public Collection<int> get_playlists() {
+		return playlists.values;
+	}
+	
+	public Collection<int> get_smart_playlists() {
+		return smart_playlists.values;
+	}
+	
+	public bool sync_songs(LinkedList<int> list) {
+		if(currently_syncing) {
+			stdout.printf("Tried to sync when already syncing\n");
+			return false;
+		}
+		
+		bool fits = will_fit(list);
+		if(!fits) {
+			stdout.printf("Tried to sync songs that will not fit\n");
+			return false;
+		}
+		
+		this.list = list;
+		
+		try {
+			Thread.create<void*>(sync_songs_thread, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to sync songs: %s \n", err.message);
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public bool is_syncing() {
+		return currently_syncing;
+	}
+	
+	public bool will_fit(LinkedList<int> list) {
+		uint64 list_size = 0;
+		foreach(int i in list) {
+			list_size += lm.song_from_id(i).file_size * 1000000; // convert from MB to bytes
+		}
+		
+		stdout.printf("comparing %d to %d\n", (int)get_free_space(), (int)list_size);
+		return get_free_space() > list_size;
+	}
+	
+	void* sync_songs_thread() {
+		currently_syncing = true;
+		db.start_sync();
+		
+		/* first remove removed songs */
+		var removed = new HashMap<unowned GPod.Track, int>();
+		foreach(var entry in songs.entries) {
+			if(!list.contains(entry.value)) {
+				unowned GPod.Track t = entry.key;
+				
+				if(t != null) {
+					remove_song(t);
+					removed.set(t, entry.value);
+				}
+			}
+		}
+		songs.unset_all(removed);
+		
+		stdout.printf("Updating existing tracks...\n");
+		/* anything left will be synced. update songs that are already on list */
+		foreach(var entry in songs.entries) {
+			Song s = lm.song_from_id(entry.value);
+			stdout.printf("Updating %s\n", s.title);
+			unowned GPod.Track t = entry.key;
+			s.update_track(ref t);
+		}
+		
+		stdout.printf("Adding new songs...\n");
+		/* now add all in list that weren't in songs */
+		foreach(var i in list) {
+			if(!songs.values.contains(i)) {
+				add_song(i);
+			}
+		}
+		
+		db.write();
+		
+		/** Clean up unused files **/
+		stdout.printf("Cleaning up iPod File System\n");
+		var music_folder = File.new_for_path(GPod.Device.get_music_dir(get_path()));
+		var used_paths = new LinkedList<string>();
+		foreach(unowned GPod.Track t in songs.keys) {
+			used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
+		}
+		cleanup_files(music_folder, used_paths);
+		
+		db.stop_sync();
+		currently_syncing = false;
+		
+		return null;
+	}
+	
+	/* Adds to track list, mpl, and copies the file over */
+	void add_song(int i) {
+		Song s = lm.song_from_id(i);
+		GPod.Track t = s.track_from_song();
+		stdout.printf("Adding song %s by %s\n", t.title, t.artist);
+		db.track_add((owned)t, -1);
+		
+		unowned GPod.Track added = db.tracks.nth_data(db.tracks.length() - 1);
+		
+		if(added == null || added.title != s.title) {
+			stdout.printf("Track was not properly appended. Returning.\n");
+			return;
+		}
+		else {
+			stdout.printf("Just added %s by %s\n", added.title, added.artist);
+		}
+		
+		unowned GPod.Playlist mpl = db.playlist_mpl();
+		mpl.add_track(added, -1);
+		
+		if(db.cp_track_to_ipod(added, s.file)) {
+			stdout.printf("New track successfully copied to %s\n", added.ipod_path);
+			songs.set(added, i);
+		}
+		else {
+			stdout.printf("Failed to copy track %s to iPod. Removing it from database.\n", added.title);
+			remove_song(added);
+		}
+	}
+	
+	void remove_song(GPod.Track t) {
+		string title = t.title;
+		
+		/* first delete it off disk */
+		var path = Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path));
+		var file = File.new_for_path(path);
+		
+		if(file.query_exists()) {
+			file.delete();
+			stdout.printf("Successfully removed music file %s from iPod Disk\n", path);
+		}
+		else {
+			stdout.printf("Could not delete iPod File at %s. Unused file on iPod\n", path);
+		}
+		
+		t.remove();
+		
+		foreach(unowned GPod.Playlist p in db.playlists) {
+			if(p.contains_track(t));
+				p.remove_track(t);
+		}
+		
+		stdout.printf("Removed song %s\n", title);
+	}
+	
+	void cleanup_files(GLib.File music_folder, LinkedList<string> used_paths) {
+		GLib.FileInfo file_info = null;
+		stdout.printf("music_folder is %s\n", music_folder.get_path());
+		
+		try {
+			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				var file_path = Path.build_path("/", music_folder.get_path(), file_info.get_name());
+				
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && !used_paths.contains(file_path)) { /* delete it, it's unused */
+					stdout.printf("Deleting unused file %s\n", file_path);
+					var file = File.new_for_path(file_path);
+					file.delete();
+				}
+				else if(file_info.get_file_type() == GLib.FileType.REGULAR) {
+					used_paths.remove(file_path);
+				}
+				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY) {
+					cleanup_files(GLib.File.new_for_path(file_path), used_paths);
+				}
+			}
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
+		}
+	}
+	
+	public bool sync_playlists(LinkedList<int> list) {
+		return false;
 	}
 }

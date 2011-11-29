@@ -11,6 +11,9 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 	Button openSyncFilter;
 	Button sync;
 	
+	ListStore playlists;
+	ComboBox playlistCombo;
+	
 	public DeviceSummaryWidget(LibraryManager lm, LibraryWindow lw, Device d) {
 		this.lm = lm;
 		this.lw = lw;
@@ -31,13 +34,36 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		var content = new VBox(false, 10);
 		
+		
+		playlists = new ListStore(2, typeof(GLib.Object), typeof(string));
+		playlistCombo = new ComboBox();
+		playlistCombo.set_model(playlists);
+		
+		playlistCombo.set_size_request(-1, 800);
+		
+		playlistCombo.set_id_column(1);
+		playlistCombo.set_row_separator_func( (model, iter) => {
+			string sep = "";
+			model.get(iter, 1, out sep);
+			
+			return sep == "<separator_item_unique_name>";
+		});
+		
+		var cell = new CellRendererText();
+		cell.ellipsize = Pango.EllipsizeMode.END;
+		playlistCombo.pack_start(cell, true);
+		playlistCombo.add_attribute(cell, "text", 1);
+		
+		playlistCombo.popup.connect(playlistListShown);
+		//playlistCombo.changed.connect(playlistSelectionChanged);
+		
 		var deviceNameBox = new HBox(true, 6);
 		deviceNameBox.pack_start(deviceNameLabel, false, true, 0);
 		deviceNameBox.pack_start(deviceName, false, true, 0);
 		
 		var syncOptionsBox = new VBox(false, 0);
 		syncOptionsBox.pack_start(syncAllMusic, false, false, 0);
-		syncOptionsBox.pack_start(filterSyncedMusic, false, false, 0);
+		syncOptionsBox.pack_start(playlistCombo, false, false, 0);
 		filterSyncedMusic.join_group(syncAllMusic);
 		
 		var syncHBox = new HBox(true, 6);
@@ -71,6 +97,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
 		
+		playlistListShown();
 		
 		show_all();
 	}
@@ -84,5 +111,25 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		alignment.add(widget);
 		return alignment;
+	}
+	
+	public Playlist selected_playlist() {
+		TreeIter it;
+		playlistCombo.get_active_iter(out it);
+		
+		GLib.Object o;
+		playlists.get(it, 0, out o);
+		
+		return (Playlist)o;
+	}
+	
+	void playlistListShown() {
+		playlists.clear();
+		
+		foreach(var p in lm.playlists()) {
+			TreeIter iter;
+			playlists.append(out iter);
+			playlists.set(iter, 0, p, 1, p.name);
+		}
 	}
 }

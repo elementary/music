@@ -32,9 +32,9 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract string get_path();
 	public abstract void set_icon(GLib.Icon icon);
 	public abstract GLib.Icon get_icon();
-	public abstract uint64 get_capacity();
-	public abstract uint64 get_used_space();
-	public abstract uint64 get_free_space();
+	public abstract int64 get_capacity();
+	public abstract int64 get_used_space();
+	public abstract int64 get_free_space();
 	public abstract void unmount();
 	public abstract void eject();
 	public abstract void get_device_type();
@@ -43,8 +43,6 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract Collection<int> get_smart_playlists();
 	public abstract bool sync_songs(LinkedList<int> list);
 	public abstract bool sync_playlists(LinkedList<int> list);
-	public abstract bool is_syncing();
-	public abstract bool will_fit(LinkedList<int> list);
 	
 	/*public string get_path() {
 		return mount.get_default_location().get_parse_name();
