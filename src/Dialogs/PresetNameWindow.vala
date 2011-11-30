@@ -45,7 +45,7 @@ public class BeatBox.PresetNameWindow : Window {
 		this.set_transient_for(lw);
 		this.destroy_with_parent = true;
 		resizable = false;
-		set_size_request(190, -1);		
+		set_size_request(200, -1);		
 
 		_original = original;
 		
