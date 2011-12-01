@@ -297,4 +297,82 @@ public class BeatBox.SmartPlaylist : Object {
 		
 		return false;
 	}
+	
+	public GPod.Playlist get_gpod_playlist() {
+		GPod.Playlist rv = new GPod.Playlist(name, true);
+		
+		rv.splpref.liveupdate = 1;
+		
+		foreach(var sq in _queries) {
+			rv.splr_add_new(-1);
+			
+			unowned GPod.SPLRule rule = rv.splrules.rules.nth_data(rv.splrules.rules.length() - 1);
+			
+			if(sq.field == "Album" || sq.field == "Artist" || sq.field == "Composer" || sq.field == "Comment" || sq.field == "Genre" || sq.field == "Grouping" || sq.field == "Title") {
+				rule.field = GPod.SPLFieldType.STRING;
+				rule.action = GPod.SPLActionType.STRING;
+				rule.@string = sq.value;
+			}
+			else if(sq.field == "Bitrate" || sq.field == "Playcount" || sq.field == "Skipcount" || sq.field == "Year" || sq.field == "Length" || sq.field == "Rating") {
+				rule.field = GPod.SPLFieldType.INT;
+				
+				if(sq.comparator == "is exactly") {
+					stdout.printf("int ex\n");
+					rule.action = GPod.SPLActionType.INT;
+					rule.fromvalue = uint64.parse(sq.value);
+				}
+				else if(sq.comparator == "is less than") {
+					stdout.printf("int less\n");
+					rule.action = GPod.SPLActionType.RANGE_INT;
+					rule.fromvalue = (uint64)0;
+					rule.tovalue = uint64.parse(sq.value);
+				}
+				else if(sq.comparator == "is greater than") {
+					stdout.printf("int greater\n");
+					rule.action = GPod.SPLActionType.RANGE_INT;
+					rule.fromvalue = uint64.parse(sq.value);
+					rule.tovalue = (uint64)99999999; // BIG. like that one commercial.
+				}
+				
+				if(sq.field == "Rating") {
+					rule.fromvalue *= 20;
+					rule.tovalue *= 20;
+				}
+				
+				rule.fromunits = rule.tounits = (uint64)1;
+				
+			}
+			else if(sq.field == "Date Added" || sq.field == "Last Played") {
+				rule.field = GPod.SPLFieldType.DATE;
+				
+				if(sq.comparator == "is exactly") {
+					stdout.printf("date ex\n");
+					rule.action = GPod.SPLActionType.DATE;
+					rule.fromdate = int64.parse(sq.value);
+					rule.fromunits = rule.tounits = (uint64)(60 * 60 * 24);
+				}
+				else if(sq.comparator == "is within") {
+					stdout.printf("date within\n");
+					rule.action = GPod.SPLActionType.RANGE_DATE;
+					rule.todate = (int64)time_t() / (60 * 60 * 24);
+					rule.fromdate = ((int64)time_t() / (60 * 60 * 24)) - int64.parse(sq.value);
+					rule.fromunits = rule.tounits = (uint64)(60 * 60 * 24);
+				}
+				else if(sq.comparator == "is before") {
+					stdout.printf("date bef\n");
+					rule.action = GPod.SPLActionType.RANGE_DATE;
+					rule.todate = ((int64)time_t() / (60 * 60 * 24)) - int64.parse(sq.value);
+					rule.fromdate = (int64)0;
+					rule.fromunits = rule.tounits = (uint64)(60 * 60 * 24);
+				}
+			}
+		}
+		
+		rv.splpref.checkrules = (uint8)queries().size;
+		rv.splpref.checklimits = (uint8)0;
+		rv.splrules.match_operator = (conditional == "any") ? GPod.SPLMatch.OR : GPod.SPLMatch.AND;
+		rv.is_spl = true;
+		
+		return rv;
+	}
 }

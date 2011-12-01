@@ -22,6 +22,10 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		return mount.get_name();
 	}
 	
+	public string get_fancy_description() {
+		return "No Description";
+	}
+	
 	public void set_mount(Mount mount) {
 		this.mount = mount;
 	}
@@ -44,6 +48,10 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 	
 	public uint64 get_capacity() {
 		return (uint64)0;
+	}
+	
+	public string get_fancy_capacity() {
+		return "Unknown capacity";
 	}
 	
 	public uint64 get_used_space() {

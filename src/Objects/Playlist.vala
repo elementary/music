@@ -92,10 +92,14 @@ public class BeatBox.Playlist : Object {
 		return _songs;
 	}
 	
-	public static Playlist from_ipod(GPod.Playlist p) {
-		Playlist rv = new Playlist();
+	public bool contains_song(int i) {
+		return _songs.contains(i);
+	}
+	
+	public GPod.Playlist get_gpod_playlist() {
+		GPod.Playlist rv = new GPod.Playlist(name, false);
 		
-		rv.name = p.name;
+		rv.sortorder = tvs.get_gpod_sortorder();
 		
 		return rv;
 	}

@@ -120,7 +120,13 @@ namespace ElementaryWidgets {
 		// automatically shows/hides progress bar/scale based on progress's value
 		public void set_progress_value(double progress) {
 			if(progress >= 0.0 && progress <= 1.0) {
+				if(!progressbar.visible)
+					show_progressbar();
 				progressbar.set_fraction(progress);
+			}
+			else {
+				if(!scale.visible)
+					show_scale();
 			}
 		}
 		

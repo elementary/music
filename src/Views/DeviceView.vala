@@ -1,4 +1,5 @@
 using Gtk;
+using Gee;
 
 public class BeatBox.DeviceView : VBox {
 	LibraryManager lm;
@@ -35,6 +36,7 @@ public class BeatBox.DeviceView : VBox {
 		
 		bar.option_changed.connect(bar_option_changed);
 		bar.sync_requested.connect(syncClicked);
+		d.progress_notification.connect(deviceProgress);
 	}
 	
 	public void updateChildren() {
@@ -92,17 +94,36 @@ public class BeatBox.DeviceView : VBox {
 	}
 	
 	void syncClicked() {
-		Playlist p = summary.selected_playlist();
+		LinkedList<int> list = new LinkedList<int>();
 		
-		bool fits = d.will_fit(lm.songs_from_playlist(p.rowid));
+		if(summary.allSongsSelected()) {
+			foreach(var s in lm.songs())
+				list.add(s.rowid);
+		}
+		else {
+			Playlist p = summary.selected_playlist();
+			
+			if(p == null) {
+				lw.doAlert("Cannot Sync", "You must either select a playlist to sync, or select to sync all your songs");
+			}
+			
+			list = lm.songs_from_playlist(p.rowid);
+		}
+			
+		
+		bool fits = d.will_fit(list);
 		if(!fits) {
-			lw.doAlert("Cannot Sync", "Cannot Sync Device with playlist " + p.name + ". Not enough space on disk\n");
+			lw.doAlert("Cannot Sync", "Cannot Sync Device with selected songs. Not enough space on disk\n");
 		}
 		else if(d.is_syncing()) {
 			lw.doAlert("Cannot Sync", "Device is already being synced.");
 		}
 		else {
-			d.sync_songs(lm.songs_from_playlist(p.rowid));
+			d.sync_songs(list);
 		}
+	}
+	
+	void deviceProgress(string? message, double progress) {
+		lw.progressNotification(message, progress);
 	}
 }

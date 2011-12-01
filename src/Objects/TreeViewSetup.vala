@@ -234,4 +234,37 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 		
 		return rv;
 	}
+	
+	public GPod.PlaylistSortOrder get_gpod_sortorder() {
+		if(sort_column == "#")
+			return GPod.PlaylistSortOrder.MANUAL;
+		else if(sort_column == "Track")
+			return GPod.PlaylistSortOrder.TRACK_NR;
+		else if(sort_column == "Title")
+			return GPod.PlaylistSortOrder.TITLE;
+		else if(sort_column == "Length")
+			return GPod.PlaylistSortOrder.TIME;
+		else if(sort_column == "Artist")
+			return GPod.PlaylistSortOrder.ARTIST;
+		else if(sort_column == "Album")
+			return GPod.PlaylistSortOrder.ALBUM;
+		else if(sort_column == "Genre")
+			return GPod.PlaylistSortOrder.GENRE;
+		else if(sort_column == "Bitrate")
+			return GPod.PlaylistSortOrder.BITRATE;
+		else if(sort_column == "Year")
+			return GPod.PlaylistSortOrder.YEAR;
+		else if(sort_column == "Date Added")
+			return GPod.PlaylistSortOrder.TIME_ADDED;
+		else if(sort_column == "Plays")
+			return GPod.PlaylistSortOrder.PLAYCOUNT;
+		else if(sort_column == "Last Played")
+			return GPod.PlaylistSortOrder.TIME_PLAYED;
+		else if(sort_column == "BPM")
+			return GPod.PlaylistSortOrder.BPM;
+		else if(sort_column == "Rating")
+			return GPod.PlaylistSortOrder.RATING;
+		else
+			return GPod.PlaylistSortOrder.MANUAL;
+	}
 }

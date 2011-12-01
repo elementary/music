@@ -8,6 +8,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	GLib.Icon icon;
 	bool currently_syncing;
 	LinkedList<int> list; // used to pass data to thread
+	int index = 0;
+	int total = 0;
+	string current_operation;
 	
 	HashMap<unowned GPod.Track, int> songs;
 	HashMap<unowned GPod.Track, int> podcasts;
@@ -20,6 +23,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		this.mount = mount;
 		icon = mount.get_icon();
 		currently_syncing = false;
+		
+		index = 0;
+		total = 0;
+		current_operation = "";
 		
 		songs = new HashMap<unowned GPod.Track, int>();
 		podcasts = new HashMap<unowned GPod.Track, int>();
@@ -113,6 +120,19 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		return mount.get_name();
 	}
 	
+	public string get_fancy_description() {
+		/*unowned GPod.iPodInfo ipod_info = db.device.get_ipod_info();
+		stdout.printf("got here\n");
+		GPod.iPodModel enum_model = ipod_info.ipod_model;
+		GPod.iPodGeneration enum_gen = ipod_info.ipod_generation;*/
+		stdout.printf("got here\n");
+		string model = "model here";//GPod.iPodInfo.get_ipod_model_name_string(enum_model);
+		stdout.printf("got here\n");
+		//var gen = GPod.iPodInfo.get_ipod_generation_string(enum_gen);
+		string gen = "gen 1";
+		return gen + " " + model;
+	}
+	
 	public void set_mount(Mount mount) {
 		this.mount = mount;
 	}
@@ -136,6 +156,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	public uint64 get_capacity() {
 		var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
 		return file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
+	}
+	
+	public string get_fancy_capacity() {
+		return "Unknown Capacity";//db.device.get_ipod_info().capacity.to_string() + "GB";
 	}
 	
 	public uint64 get_used_space() {
@@ -214,7 +238,13 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		currently_syncing = true;
 		db.start_sync();
 		
+		index = 0;
+		//  # added (only part that takes time is adding
+		total = list.size + list.size/10;
+		Timeout.add(500, doProgressNotificationWithTimeout);
+		
 		/* first remove removed songs */
+		current_operation = "Removing old songs from iPod and updating current ones";
 		var removed = new HashMap<unowned GPod.Track, int>();
 		foreach(var entry in songs.entries) {
 			if(!list.contains(entry.value)) {
@@ -225,8 +255,15 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 					removed.set(t, entry.value);
 				}
 			}
+			else if(entry.key.ipod_path == null || entry.key.ipod_path == "" || !File.new_for_path(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(entry.key.ipod_path))).query_exists()) {
+				remove_song(entry.key);
+				removed.set(entry.key, entry.value);
+			}
 		}
 		songs.unset_all(removed);
+		
+		// no matter where index is, set it to 1/3 now
+		index = list.size/20;
 		
 		stdout.printf("Updating existing tracks...\n");
 		/* anything left will be synced. update songs that are already on list */
@@ -235,26 +272,37 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			stdout.printf("Updating %s\n", s.title);
 			unowned GPod.Track t = entry.key;
 			s.update_track(ref t);
+			++index;
 		}
+		
+		index = list.size/10;
 		
 		stdout.printf("Adding new songs...\n");
 		/* now add all in list that weren't in songs */
+		current_operation = "Adding new songs to iPod...";
 		foreach(var i in list) {
 			if(!songs.values.contains(i)) {
 				add_song(i);
 			}
+			++index;
 		}
+		
+		// sync playlists
+		sync_playlists();
 		
 		db.write();
 		
 		/** Clean up unused files **/
 		stdout.printf("Cleaning up iPod File System\n");
+		current_operation = "Cleaning up unused files from iPod";
 		var music_folder = File.new_for_path(GPod.Device.get_music_dir(get_path()));
 		var used_paths = new LinkedList<string>();
 		foreach(unowned GPod.Track t in songs.keys) {
 			used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
 		}
 		cleanup_files(music_folder, used_paths);
+		
+		index += 2;
 		
 		db.stop_sync();
 		currently_syncing = false;
@@ -266,6 +314,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	void add_song(int i) {
 		Song s = lm.song_from_id(i);
 		GPod.Track t = s.track_from_song();
+		current_operation = "Adding song <b>" + t.title + "</b> by <b>" + t.artist + "</b> to iPod";
 		stdout.printf("Adding song %s by %s\n", t.title, t.artist);
 		db.track_add((owned)t, -1);
 		
@@ -275,15 +324,11 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			stdout.printf("Track was not properly appended. Returning.\n");
 			return;
 		}
-		else {
-			stdout.printf("Just added %s by %s\n", added.title, added.artist);
-		}
 		
 		unowned GPod.Playlist mpl = db.playlist_mpl();
 		mpl.add_track(added, -1);
 		
 		if(db.cp_track_to_ipod(added, s.file)) {
-			stdout.printf("New track successfully copied to %s\n", added.ipod_path);
 			songs.set(added, i);
 		}
 		else {
@@ -296,15 +341,17 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		string title = t.title;
 		
 		/* first delete it off disk */
-		var path = Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path));
-		var file = File.new_for_path(path);
-		
-		if(file.query_exists()) {
-			file.delete();
-			stdout.printf("Successfully removed music file %s from iPod Disk\n", path);
-		}
-		else {
-			stdout.printf("Could not delete iPod File at %s. Unused file on iPod\n", path);
+		if(t.ipod_path != null) {
+			var path = Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path));
+			var file = File.new_for_path(path);
+			
+			if(file.query_exists()) {
+				file.delete();
+				stdout.printf("Successfully removed music file %s from iPod Disk\n", path);
+			}
+			else {
+				stdout.printf("Could not delete iPod File at %s. Unused file on iPod\n", path);
+			}
 		}
 		
 		t.remove();
@@ -319,7 +366,6 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	void cleanup_files(GLib.File music_folder, LinkedList<string> used_paths) {
 		GLib.FileInfo file_info = null;
-		stdout.printf("music_folder is %s\n", music_folder.get_path());
 		
 		try {
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
@@ -344,7 +390,46 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 	}
 	
-	public bool sync_playlists(LinkedList<int> list) {
+	public bool doProgressNotificationWithTimeout() {
+		progress_notification(current_operation.replace("&", "&amp;"), (double)((double)index)/((double)total));
+		
+		if(index < total && is_syncing()) {
+			return true;
+		}
+		
 		return false;
+	}
+	
+	/* should be called from thread */
+	private void sync_playlists() {
+		// first remove all playlists from db
+		var all_playlists = new LinkedList<unowned GPod.Playlist>();
+		foreach(unowned GPod.Playlist p in db.playlists) {
+			if(!p.is_mpl() && !p.is_podcasts() && !p.is_audiobooks()) {
+				all_playlists.add(p);
+			}
+		}
+		foreach(unowned GPod.Playlist p in all_playlists) {
+			stdout.printf("removed playlist %s\n", p.name);
+			p.remove();
+		}
+		
+		var to_sync = new LinkedList<unowned GPod.Playlist>();
+		foreach(var playlist in lm.playlists()) {
+			GPod.Playlist p = playlist.get_gpod_playlist();
+			db.playlist_add((owned)p, -1);
+			
+			unowned GPod.Playlist added = db.playlists.nth_data(db.playlists.length() - 1);
+			stdout.printf("added playlist %s\n", added.name);
+			foreach(var entry in songs.entries) {
+				if(playlist.contains_song(entry.value)) {
+					added.add_track(entry.key, -1);
+				}
+			}
+		}
+		foreach(var smart_playlist in lm.smart_playlists()) {
+			GPod.Playlist p = smart_playlist.get_gpod_playlist();
+			db.playlist_add((owned)p, -1);
+		}
 	}
 }

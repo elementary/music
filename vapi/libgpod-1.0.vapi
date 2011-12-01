@@ -9,7 +9,7 @@ namespace GPod {
 	  public bool write_sysinfo() throws GLib.Error;
 	  public string get_sysinfo(string field);
 	  public void set_sysinfo(string field, string value);
-	  public GPod.iPodInfo get_ipod_info();
+	  public unowned GPod.iPodInfo get_ipod_info();
 	  public bool supports_artwork();
 	  public bool supports_chapter_image();
 	  public bool supports_video();
@@ -24,13 +24,15 @@ namespace GPod {
   [Compact]
   [CCode (cname="Itdb_IpodInfo", lower_case_cprefix = "itdb_info_")]
   public class iPodInfo {
-	  public const string model_number;
-	  public const double capacity;
-	  public const GPod.iPodModel ipod_model;
-	  public const GPod.iPodGeneration ipod_generation;
-	  public const uint musicdirs;
+	  public string model_number;
+	  public double capacity;
+	  public GPod.iPodModel ipod_model;
+	  public GPod.iPodGeneration ipod_generation;
+	  public uint musicdirs;
 	  
+	  [CCode (cname="itdb_info_get_ipod_model_name_string")]
 	  public static string get_ipod_model_name_string(GPod.iPodModel model);
+	  [CCode (cname="itdb_info_get_ipod_generation_string")]
 	  public static string get_ipod_generation_string(GPod.iPodGeneration generation);
   }
 	
@@ -103,6 +105,7 @@ namespace GPod {
     public static bool init_ipod (string mountpoint, string model_number, string model_name) throws GLib.Error;
 	
 	/* playlist stuff */
+	public void playlist_add(owned GPod.Playlist pl, int32 pos);
 	public GPod.Playlist playlist_by_id(uint64 id);
 	public GPod.Playlist playlist_by_nr(uint32 num);
 	public GPod.Playlist playlist_by_name(string name);
@@ -112,10 +115,10 @@ namespace GPod {
 	public void spl_update_live();
 	
 	/* for master playlist */
-	public weak GPod.Playlist playlist_mpl();
+	public unowned GPod.Playlist playlist_mpl();
 	
 	/* for podcasts */
-	public weak GPod.Playlist playlist_podcasts();
+	public unowned GPod.Playlist playlist_podcasts();
   }
 
   [Compact]
@@ -124,6 +127,7 @@ namespace GPod {
     public unowned GPod.iTunesDB itdb;
     public string name;
     public int num;
+    public GLib.List<unowned GPod.Track> members;
     public bool is_spl;
     public time_t timestamp;
     public uint64 id;
@@ -131,6 +135,8 @@ namespace GPod {
     public uint32 podcastflag;
     public GPod.SPLPref splpref;
     public GPod.SPLRules splrules;
+    
+    public Playlist(string title, bool ispl);
 
     //public void add (GPod.Playlist pl, uint32 pos);
     public void move (uint32 pos);
@@ -157,19 +163,19 @@ namespace GPod {
     public bool is_audiobooks();
     
     /* for smart playlists */
-    [CCode (cname = "itdb_")]
+    [CCode (cname = "itdb_splr_remove")]
     public void splr_remove(GPod.SPLRule splr);
     
-    [CCode (cname = "itdb_")]
-    public void splr_add(GPod.SPLRule splr, int pos);
+    [CCode (cname = "itdb_splr_add")]
+    public void splr_add(owned GPod.SPLRule splr, int pos);
     
-    [CCode (cname = "itdb_")]
-    public GPod.SPLRule splr_add_new(int pos);
+    [CCode (cname = "itdb_splr_add_new")]
+    public unowned GPod.SPLRule? splr_add_new(int pos);
     
-    [CCode (cname = "itdb_")]
+    [CCode (cname = "itdb_spl_copy_rules")]
     public void spl_copy_rules(GPod.Playlist src);
     
-    [CCode (cname = "itdb_")]
+    [CCode (cname = "itdb_spl_update")]
     public void spl_update();
   }
   
@@ -205,7 +211,7 @@ namespace GPod {
   public struct SPLRules {
 	  public int32 unk004;
 	  public uint32 match_operator;
-	  public GLib.List<GPod.SPLRule> rules;
+	  public GLib.List<unowned GPod.SPLRule?> rules;
   }
   
   [Compact]
@@ -435,6 +441,36 @@ namespace GPod {
     SHUFFLE_GOLD,
     SHUFFLE_STAINLESS,
     IPAD
+  }
+  
+  [CCode (cname="ItdbPlaylistSortOrder", cprefix="ITDB_PSO_")]
+  public enum PlaylistSortOrder {
+	MANUAL,
+    TITLE,
+    ALBUM,
+    ARTIST,
+    BITRATE,
+    GENRE,
+    FILETYPE,
+    TIME_MODIFIED,
+    TRACK_NR,
+    SIZE,
+    TIME,
+    YEAR,
+    SAMPLERATE,
+    COMMENT,
+    TIME_ADDED,
+    EQUALIZER,
+    COMPOSER,
+    PLAYCOUNT,
+    TIME_PLAYED,
+    CD_NR,
+    RATING,
+    RELEASE_DATE,
+    BPM,
+    GROUPING,
+    CATEGORY,
+    DESCRIPTION
   }
   
   [CCode (cname = "ItdbSPLMatch", cprefix="ITDB_SPLMATCH_")]

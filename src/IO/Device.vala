@@ -4,6 +4,7 @@ public interface BeatBox.Device : GLib.Object {
 	//private Mount mount;
 	
 	public signal void device_unmounted();
+	public signal void progress_notification(string? message, double progress);
 	
 	/*public Device(Mount m) {
 		this.mount = m;
@@ -27,12 +28,14 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract bool initialize();
 	public abstract string getContentType();
 	public abstract string getDisplayName();
+	public abstract string get_fancy_description();
 	public abstract void set_mount(Mount mount);
 	public abstract Mount get_mount();
 	public abstract string get_path();
 	public abstract void set_icon(GLib.Icon icon);
 	public abstract GLib.Icon get_icon();
 	public abstract uint64 get_capacity();
+	public abstract string get_fancy_capacity();
 	public abstract uint64 get_used_space();
 	public abstract uint64 get_free_space();
 	public abstract void unmount();
@@ -42,7 +45,6 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract Collection<int> get_playlists();
 	public abstract Collection<int> get_smart_playlists();
 	public abstract bool sync_songs(LinkedList<int> list);
-	public abstract bool sync_playlists(LinkedList<int> list);
 	public abstract bool is_syncing();
 	public abstract bool will_fit(LinkedList<int> list);
 	
