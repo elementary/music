@@ -35,22 +35,23 @@ public class BeatBox.PresetNameWindow : Window {
 	public Button _save;
 	
 	public signal void preset_saved(EqualizerPreset p);
-	
+
 	public PresetNameWindow(LibraryWindow lw, EqualizerPreset original) {
-		title = "Preset Editor";
+		title = "";
 		
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
 		this.set_transient_for(lw);
 		this.destroy_with_parent = true;
-		//this.type = WindowType.POPUP;
-		
+		resizable = false;
+		set_size_request(200, -1);		
+
 		_original = original;
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 10);
-		
+
 		/* start out by creating all category labels */
 		Label nameLabel = new Label("Name of Preset");
 		_name = new Entry();

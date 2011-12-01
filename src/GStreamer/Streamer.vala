@@ -6,9 +6,9 @@ public class BeatBox.Streamer : GLib.Object {
 	BeatBox.Pipeline pipe;
 	
 	 /** signals **/
-    public signal void end_of_stream();
-    public signal void current_position_update(int64 position);
-    public signal void song_not_found();
+	public signal void end_of_stream();
+	public signal void current_position_update(int64 position);
+	public signal void song_not_found();
 	
 	public Streamer(LibraryManager lm, LibraryWindow lw, string[] args) {
 		Gst.init(ref args);
@@ -63,9 +63,9 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	public void setPosition(int64 pos) {
 		pipe.playbin.seek(1.0,
-        Gst.Format.TIME, Gst.SeekFlags.FLUSH,
-        Gst.SeekType.SET, pos,
-        Gst.SeekType.NONE, getDuration());
+		Gst.Format.TIME, Gst.SeekFlags.FLUSH,
+		Gst.SeekType.SET, pos,
+		Gst.SeekType.NONE, getDuration());
 	}
 	
 	public int64 getPosition() {
@@ -110,20 +110,20 @@ public class BeatBox.Streamer : GLib.Object {
 	/* Callbacks */
 	private bool busCallback(Gst.Bus bus, Gst.Message message) {
 		switch (message.type) {
-        case Gst.MessageType.ERROR:
-            GLib.Error err;
-            string debug;
-            message.parse_error (out err, out debug);
-            stdout.printf ("Error: %s\n", err.message);
-            
-            break;
-        case Gst.MessageType.EOS:
+		case Gst.MessageType.ERROR:
+			GLib.Error err;
+			string debug;
+			message.parse_error (out err, out debug);
+			stdout.printf ("Error: %s\n", err.message);
+			
+			break;
+		case Gst.MessageType.EOS:
 			end_of_stream();
-            break;
-        default:
-            break;
-        }
+			break;
+		default:
+			break;
+		}
  
-        return true;
-    }
+		return true;
+	}
 }

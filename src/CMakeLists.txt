@@ -154,11 +154,11 @@ vala_precompile(VALA_C
     IO/DeviceManager.vala
     Settings.vala
     Dialogs/EqualizerWindow.vala
+    Dialogs/PresetNameWindow.vala
     Dialogs/SmartPlaylistEditor.vala
     Dialogs/PreferencesWindow.vala
     Dialogs/InstallGstreamerPluginsDialog.vala
     Dialogs/SongEditor.vala
-    Dialogs/PresetNameWindow.vala
     Dialogs/PlaylistNameWindow.vala
     Dialogs/FileNotFoundDialog.vala
     Dialogs/RemoveFilesDialog.vala

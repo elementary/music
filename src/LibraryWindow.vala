@@ -1,7 +1,7 @@
 /*-
  * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
  *
- * Originaly Written by Scott Ringwelski for BeatBox Music Player
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or
@@ -968,6 +968,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void on_quit() {
 		stdout.printf("Stopping playback\n");
+		lm.settings.setLastSongPosition((int)((double)lm.player.getPosition()/1000000000));
 		lm.player.pause();
 	}
 	
@@ -1148,9 +1149,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		double sec = 0.0;
 		if(lm.song_info.song != null) {
 			sec = ((double)position/1000000000);
-			
-			lm.settings.setLastSongPosition((int)sec);
-			
+
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {
 				queriedlastfm = true;
