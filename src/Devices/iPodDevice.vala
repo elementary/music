@@ -240,7 +240,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		index = 0;
 		//  # added (only part that takes time is adding
-		total = list.size + list.size/10;
+		total = list.size + (list.size/10);
 		Timeout.add(500, doProgressNotificationWithTimeout);
 		
 		/* first remove removed songs */
@@ -302,7 +302,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		cleanup_files(music_folder, used_paths);
 		
-		index += 2;
+		index = total + 2;
 		
 		db.stop_sync();
 		currently_syncing = false;
@@ -402,6 +402,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	/* should be called from thread */
 	private void sync_playlists() {
+		current_operation = "Syncing playlists";
 		// first remove all playlists from db
 		var all_playlists = new LinkedList<unowned GPod.Playlist>();
 		foreach(unowned GPod.Playlist p in db.playlists) {

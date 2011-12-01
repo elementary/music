@@ -1,7 +1,7 @@
 /*-
  * Copyright (c) 2011	   Scott Ringwelski <sgringwe@mtu.edu>
  *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * Originally Written by Scott Ringwelski and Victor Eduardo for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or

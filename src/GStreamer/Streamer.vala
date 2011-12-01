@@ -5,6 +5,8 @@ public class BeatBox.Streamer : GLib.Object {
 	LibraryWindow lw;
 	BeatBox.Pipeline pipe;
 	
+	InstallGstreamerPluginsDialog dialog;
+	
 	 /** signals **/
 	public signal void end_of_stream();
 	public signal void current_position_update(int64 position);
@@ -119,6 +121,11 @@ public class BeatBox.Streamer : GLib.Object {
 			break;
 		case Gst.MessageType.EOS:
 			end_of_stream();
+			break;
+		case Gst.MessageType.ELEMENT:
+			if(message.get_structure() != null && is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
+				dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
+			}
 			break;
 		default:
 			break;
