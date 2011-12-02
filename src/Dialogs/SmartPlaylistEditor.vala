@@ -224,13 +224,14 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		fields.set("Composer", 4);
 		fields.set("Date Added", 5);
 		fields.set("Genre", 6);
-		fields.set("Last Played", 7);
-		fields.set("Length", 8);
-		fields.set("Playcount", 9);
-		fields.set("Rating", 10);
-		fields.set("Skipcount", 11);
-		fields.set("Title", 12);
-		fields.set("Year", 13);
+		fields.set("Grouping", 7);
+		fields.set("Last Played", 8);
+		fields.set("Length", 9);
+		fields.set("Playcount", 10);
+		fields.set("Rating", 11);
+		fields.set("Skipcount", 12);
+		fields.set("Title", 13);
+		fields.set("Year", 14);
 		
 		_box = new HBox(false, 2);
 		_field = new ComboBoxText();
@@ -256,6 +257,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.append_text("Year");
 		
 		_field.set_active(fields.get(q.field));
+		stdout.printf("setting filed to %s\n", q.field);
 		_comparator.set_active(comparators.get(q.comparator));
 		
 		if(q.field == "Album" || q.field == "Artist" || q.field == "Comment" || q.field == "Composer" ||  q.field == "Genre" || q.field == "Grouping" || q.field == "Title") {

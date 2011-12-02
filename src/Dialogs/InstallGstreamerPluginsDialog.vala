@@ -6,7 +6,6 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 	LibraryWindow lw;
 	Gst.Message message;
 	string detail;
-	bool showing;
 	
 	private VBox content;
 	private HBox padding;

@@ -59,4 +59,104 @@ public class BeatBox.SmartQuery : Object {
 		get { return _value; }
 		set { _value = value; }
 	}
+	
+	public void set_rule_properties(GPod.SPLRule rule) {
+		stdout.printf("adding rule\n");
+		if(field == "Album") { // strings
+			rule.field = GPod.SPLField.ALBUM;
+			rule.@string = value;
+		}
+		else if(field == "Artist") {
+			rule.field = GPod.SPLField.ARTIST;
+			rule.@string = value;
+		}
+		else if(field == "Composer") {
+			rule.field = GPod.SPLField.COMPOSER;
+			rule.@string = value;
+		}
+		else if(field == "Comment") {
+			rule.field = GPod.SPLField.COMMENT;
+			rule.@string = value;
+		}
+		else if(field == "Genre") {
+			rule.field = GPod.SPLField.GENRE;
+			rule.@string = value;
+		}
+		else if(field == "Grouping") {
+			rule.field = GPod.SPLField.GROUPING;
+			rule.@string = value;
+		}
+		else if(field == "Title") {
+			rule.field = GPod.SPLField.SONG_NAME;
+			rule.@string = value;
+		}
+		else if(field == "Bitrate") { // ints
+			rule.field = GPod.SPLField.BITRATE;
+			rule.fromvalue = uint64.parse(value);
+			rule.tovalue = uint64.parse(value);
+		}
+		else if(field == "Playcount") {
+			rule.field = GPod.SPLField.PLAYCOUNT;
+			rule.fromvalue = uint64.parse(value);
+			rule.tovalue = uint64.parse(value);
+		}
+		else if(field == "Skipcount") {
+			rule.field = GPod.SPLField.SKIPCOUNT;
+			rule.fromvalue = uint64.parse(value);
+			rule.tovalue = uint64.parse(value);
+		}
+		else if(field == "Year") {
+			rule.field = GPod.SPLField.YEAR;
+			rule.fromvalue = uint64.parse(value);
+			rule.tovalue = uint64.parse(value);
+		}
+		else if(field == "Length") {
+			rule.field = GPod.SPLField.TIME;
+			rule.fromvalue = uint64.parse(value) * 1000;
+			rule.tovalue = uint64.parse(value) * 1000;
+		}
+		else if(field == "Rating") {
+			rule.field = GPod.SPLField.RATING;
+			rule.fromvalue = uint64.parse(value) * 20;
+			rule.tovalue = uint64.parse(value) * 20;
+		}
+		else if(field == "Date Added") {
+			rule.field = GPod.SPLField.DATE_ADDED;
+			rule.fromvalue = uint64.parse(value) * 1000;
+			rule.tovalue = uint64.parse(value) * 1000;
+		}
+		else if(field == "Last Played") {
+			rule.field = GPod.SPLField.LAST_PLAYED;
+			rule.fromvalue = uint64.parse(value) * 20;
+			rule.tovalue = uint64.parse(value) * 20;
+		}
+		
+		rule.tounits = 1;
+		
+		// set action type
+		if(comparator == "is") {
+			rule.action = GPod.SPLAction.IS_STRING;
+		}
+		else if(comparator == "contains") {
+			rule.action = GPod.SPLAction.CONTAINS;
+		}
+		else if(comparator == "does not contain") {
+			rule.action = GPod.SPLAction.DOES_NOT_CONTAIN;
+		}
+		else if(comparator == "is exactly") {
+			rule.action = GPod.SPLAction.IS_INT;
+		}
+		else if(comparator == "is at most") {
+			rule.action = GPod.SPLAction.IS_NOT_GREATER_THAN;
+		}
+		else if(comparator == "is at least") {
+			rule.action = GPod.SPLAction.IS_NOT_LESS_THAN;
+		}
+		else if(comparator == "is within") {
+			rule.action = GPod.SPLAction.IS_GREATER_THAN;
+		}
+		else if(comparator == "is before") {
+			rule.action = GPod.SPLAction.IS_LESS_THAN;
+		}
+	}
 }

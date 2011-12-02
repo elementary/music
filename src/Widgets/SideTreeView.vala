@@ -184,10 +184,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			tree.set(item, 0, o, 1, w, 2, true, 3, render_icon("playlist-automatic", IconSize.MENU, null), 4, name.replace("&", "&amp;"), 5, null);
 			
 			if(visible) {
-				this.get_selection().select_iter(convertToFilter(item));
+				//this.get_selection().select_iter(convertToFilter(item));
 			}
 			
-			sideListSelectionChange();
+			//sideListSelectionChange();
 			return item;
 		}
 		else if(o is Playlist) {
@@ -212,10 +212,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			
 			tree.set(item, 0, o, 1, w, 2, true, 3, render_icon("playlist", IconSize.MENU, null), 4, name.replace("&", "&amp;"), 5, null);
 			if(visible) {
-				this.get_selection().select_iter(convertToFilter(item));
+				//this.get_selection().select_iter(convertToFilter(item));
 			}
 			
-			sideListSelectionChange();
+			//sideListSelectionChange();
 			return item;
 		}
 		else {
@@ -515,10 +515,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					Widget w;
 					tree.get(pivot, 1, out w, 4, out name);
 					
-					tree.remove(pivot);
-					addItem(playlists_iter, sp, w, render_icon("playlist-automatic", IconSize.MENU, null), sp.name, null);
+					removeItem(convertToFilter(pivot));
+					lw.addSideListItem(sp);
+					//addItem(playlists_iter, sp, w, render_icon("playlist-automatic", IconSize.MENU, null), sp.name, null);
 					
-					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_smart_playlist(sp.rowid), true, false);
+					//((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_smart_playlist(sp.rowid), true, false);
 					lm.save_smart_playlists();
 					
 					break;
@@ -546,17 +547,15 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			do {
 				GLib.Object o;
 				stdout.printf("a\n");
-				filter.get(pivot, 0, out o);
+				tree.get(pivot, 0, out o);
 				if(o is Playlist && ((Playlist)o).rowid == p.rowid) {
 					string name;
 					Widget w;
-					stdout.printf("ab\n");
-					filter.get(pivot, 1, out w, 4, out name);
-					stdout.printf("b\n");
-					removeItem(pivot);
-					stdout.printf("wtf\n");
+					tree.get(pivot, 1, out w, 4, out name);
+					
+					removeItem(convertToFilter(pivot));
 					lw.addSideListItem(p);
-					stdout.printf("c\n");
+					
 					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_playlist(p.rowid), true, false);
 					lm.save_playlists();
 					

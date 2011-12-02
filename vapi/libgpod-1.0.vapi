@@ -194,7 +194,10 @@ namespace GPod {
   public struct SPLRule {
 	  public uint32 field;
 	  public uint32 action;
+	  
+	  [CCode (cname="string")]
 	  public string @string;
+	  
 	  public uint64 fromvalue;
 	  public int64 fromdate;
 	  public uint64 fromunits;

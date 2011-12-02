@@ -430,7 +430,26 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		foreach(var smart_playlist in lm.smart_playlists()) {
 			GPod.Playlist p = smart_playlist.get_gpod_playlist();
+			
 			db.playlist_add((owned)p, -1);
+			unowned GPod.Playlist pl = db.playlists.nth_data(db.playlists.length() - 1);
+			
+			smart_playlist.set_playlist_properties(pl);
+			
+		}
+		
+		db.spl_update_all();
+		
+		foreach(unowned GPod.Playlist p in db.playlists) {
+			if(p.is_spl) {
+				stdout.printf("found spl named %s. %d\n", p.name, (int)p.splpref.liveupdate);
+				
+				foreach(unowned GPod.SPLRule? r in p.splrules.rules) {
+					if(r.@string == null)
+						stdout.printf("@string is null\n");
+					//stdout.printf("playlist %Lu has rule %Lu and string %s\n", r.field, r.action, (r.@string != null) ? r.@string : "(is null)");
+				}
+			}
 		}
 	}
 }

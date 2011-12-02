@@ -301,78 +301,126 @@ public class BeatBox.SmartPlaylist : Object {
 	public GPod.Playlist get_gpod_playlist() {
 		GPod.Playlist rv = new GPod.Playlist(name, true);
 		
+		return rv;
+	}
+	
+	public void set_playlist_properties(GPod.Playlist rv) {
 		rv.splpref.liveupdate = 1;
 		
 		foreach(var sq in _queries) {
 			rv.splr_add_new(-1);
 			
-			unowned GPod.SPLRule rule = rv.splrules.rules.nth_data(rv.splrules.rules.length() - 1);
+			unowned GPod.SPLRule? rule = rv.splrules.rules.nth_data(rv.splrules.rules.length() - 1);
 			
-			if(sq.field == "Album" || sq.field == "Artist" || sq.field == "Composer" || sq.field == "Comment" || sq.field == "Genre" || sq.field == "Grouping" || sq.field == "Title") {
-				rule.field = GPod.SPLFieldType.STRING;
-				rule.action = GPod.SPLActionType.STRING;
-				rule.@string = sq.value;
+			stdout.printf("adding rule\n");
+			var field = sq.field;
+			var value = sq.value;
+			stdout.printf("sq.value is %s\n", value);
+			var comparator = sq.comparator;
+			if(field == "Album") { // strings
+				rule.field = GPod.SPLField.ALBUM;
+				rule.@string = value;
 			}
-			else if(sq.field == "Bitrate" || sq.field == "Playcount" || sq.field == "Skipcount" || sq.field == "Year" || sq.field == "Length" || sq.field == "Rating") {
-				rule.field = GPod.SPLFieldType.INT;
-				
-				if(sq.comparator == "is exactly") {
-					stdout.printf("int ex\n");
-					rule.action = GPod.SPLActionType.INT;
-					rule.fromvalue = uint64.parse(sq.value);
-				}
-				else if(sq.comparator == "is less than") {
-					stdout.printf("int less\n");
-					rule.action = GPod.SPLActionType.RANGE_INT;
-					rule.fromvalue = (uint64)0;
-					rule.tovalue = uint64.parse(sq.value);
-				}
-				else if(sq.comparator == "is greater than") {
-					stdout.printf("int greater\n");
-					rule.action = GPod.SPLActionType.RANGE_INT;
-					rule.fromvalue = uint64.parse(sq.value);
-					rule.tovalue = (uint64)99999999; // BIG. like that one commercial.
-				}
-				
-				if(sq.field == "Rating") {
-					rule.fromvalue *= 20;
-					rule.tovalue *= 20;
-				}
-				
-				rule.fromunits = rule.tounits = (uint64)1;
-				
+			else if(field == "Artist") {
+				rule.field = GPod.SPLField.ARTIST;
+				rule.@string = value;
 			}
-			else if(sq.field == "Date Added" || sq.field == "Last Played") {
-				rule.field = GPod.SPLFieldType.DATE;
-				
-				if(sq.comparator == "is exactly") {
-					stdout.printf("date ex\n");
-					rule.action = GPod.SPLActionType.DATE;
-					rule.fromdate = int64.parse(sq.value);
-					rule.fromunits = rule.tounits = (uint64)(60 * 60 * 24);
-				}
-				else if(sq.comparator == "is within") {
-					stdout.printf("date within\n");
-					rule.action = GPod.SPLActionType.RANGE_DATE;
-					rule.todate = (int64)time_t() / (60 * 60 * 24);
-					rule.fromdate = ((int64)time_t() / (60 * 60 * 24)) - int64.parse(sq.value);
-					rule.fromunits = rule.tounits = (uint64)(60 * 60 * 24);
-				}
-				else if(sq.comparator == "is before") {
-					stdout.printf("date bef\n");
-					rule.action = GPod.SPLActionType.RANGE_DATE;
-					rule.todate = ((int64)time_t() / (60 * 60 * 24)) - int64.parse(sq.value);
-					rule.fromdate = (int64)0;
-					rule.fromunits = rule.tounits = (uint64)(60 * 60 * 24);
-				}
+			else if(field == "Composer") {
+				rule.field = GPod.SPLField.COMPOSER;
+				rule.@string = value;
 			}
+			else if(field == "Comment") {
+				rule.field = GPod.SPLField.COMMENT;
+				rule.@string = value;
+			}
+			else if(field == "Genre") {
+				rule.field = GPod.SPLField.GENRE;
+				rule.@string = value;
+			}
+			else if(field == "Grouping") {
+				rule.field = GPod.SPLField.GROUPING;
+				rule.@string = value;
+			}
+			else if(field == "Title") {
+				rule.field = GPod.SPLField.SONG_NAME;
+				rule.@string = value;
+			}
+			else if(field == "Bitrate") { // ints
+				rule.field = GPod.SPLField.BITRATE;
+				rule.fromvalue = uint64.parse(value);
+				rule.tovalue = uint64.parse(value);
+			}
+			else if(field == "Playcount") {
+				rule.field = GPod.SPLField.PLAYCOUNT;
+				rule.fromvalue = uint64.parse(value);
+				rule.tovalue = uint64.parse(value);
+			}
+			else if(field == "Skipcount") {
+				rule.field = GPod.SPLField.SKIPCOUNT;
+				rule.fromvalue = uint64.parse(value);
+				rule.tovalue = uint64.parse(value);
+			}
+			else if(field == "Year") {
+				rule.field = GPod.SPLField.YEAR;
+				rule.fromvalue = uint64.parse(value);
+				rule.tovalue = uint64.parse(value);
+			}
+			else if(field == "Length") {
+				rule.field = GPod.SPLField.TIME;
+				rule.fromvalue = uint64.parse(value) * 1000;
+				rule.tovalue = uint64.parse(value) * 1000;
+			}
+			else if(field == "Rating") {
+				rule.field = GPod.SPLField.RATING;
+				rule.fromvalue = uint64.parse(value);
+				rule.tovalue = uint64.parse(value);
+			}
+			else if(field == "Date Added") {
+				rule.field = GPod.SPLField.DATE_ADDED;
+				rule.fromvalue = uint64.parse(value);
+				rule.tovalue = uint64.parse(value);
+			}
+			else if(field == "Last Played") {
+				rule.field = GPod.SPLField.LAST_PLAYED;
+				rule.fromvalue = uint64.parse(value);
+				rule.tovalue = uint64.parse(value);
+			}
+			
+			rule.tounits = 1;
+			
+			// set action type
+			if(comparator == "is") {
+				rule.action = GPod.SPLAction.IS_STRING;
+			}
+			else if(comparator == "contains") {
+				rule.action = GPod.SPLAction.CONTAINS;
+			}
+			else if(comparator == "does not contain") {
+				rule.action = GPod.SPLAction.DOES_NOT_CONTAIN;
+			}
+			else if(comparator == "is exactly") {
+				rule.action = GPod.SPLAction.IS_INT;
+			}
+			else if(comparator == "is at most") {
+				rule.action = GPod.SPLAction.IS_NOT_GREATER_THAN;
+			}
+			else if(comparator == "is at least") {
+				rule.action = GPod.SPLAction.IS_NOT_LESS_THAN;
+			}
+			else if(comparator == "is within") {
+				rule.action = GPod.SPLAction.IS_GREATER_THAN;
+			}
+			else if(comparator == "is before") {
+				rule.action = GPod.SPLAction.IS_LESS_THAN;
+			}
+			
+			stdout.printf("in smartplaylist  has rule and string %s\n", rule.@string);
 		}
 		
+		stdout.printf("check %d rules\n", queries().size);
 		rv.splpref.checkrules = (uint8)queries().size;
 		rv.splpref.checklimits = (uint8)0;
 		rv.splrules.match_operator = (conditional == "any") ? GPod.SPLMatch.OR : GPod.SPLMatch.AND;
 		rv.is_spl = true;
-		
-		return rv;
 	}
 }
