@@ -16,7 +16,6 @@ pkg_check_modules(DEPS
     gio-2.0
     sqlheavy-0.1
     libxml-2.0
-    gconf-2.0
     libnotify
     libsoup-2.4
     json-glib-1.0
@@ -178,7 +177,6 @@ PACKAGES
     gio-2.0
     sqlheavy-0.1
     libxml-2.0
-    gconf-2.0
     libnotify
     libsoup-2.4
     json-glib-1.0

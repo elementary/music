@@ -306,6 +306,7 @@ public class BeatBox.SmartPlaylist : Object {
 	
 	public void set_playlist_properties(GPod.Playlist rv) {
 		rv.splpref.liveupdate = 1;
+		stdout.printf("playlist is %s\n", name);
 		
 		foreach(var sq in _queries) {
 			rv.splr_add_new(-1);
@@ -324,6 +325,7 @@ public class BeatBox.SmartPlaylist : Object {
 			else if(field == "Artist") {
 				rule.field = GPod.SPLField.ARTIST;
 				rule.@string = value;
+				stdout.printf("hi at artist\n");
 			}
 			else if(field == "Composer") {
 				rule.field = GPod.SPLField.COMPOSER;
@@ -372,8 +374,8 @@ public class BeatBox.SmartPlaylist : Object {
 			}
 			else if(field == "Rating") {
 				rule.field = GPod.SPLField.RATING;
-				rule.fromvalue = uint64.parse(value);
-				rule.tovalue = uint64.parse(value);
+				rule.fromvalue = uint64.parse(value) * 20;
+				rule.tovalue = uint64.parse(value) * 20;
 			}
 			else if(field == "Date Added") {
 				rule.field = GPod.SPLField.DATE_ADDED;
@@ -394,6 +396,7 @@ public class BeatBox.SmartPlaylist : Object {
 			}
 			else if(comparator == "contains") {
 				rule.action = GPod.SPLAction.CONTAINS;
+				stdout.printf("hi at contains\n");
 			}
 			else if(comparator == "does not contain") {
 				rule.action = GPod.SPLAction.DOES_NOT_CONTAIN;
@@ -417,8 +420,8 @@ public class BeatBox.SmartPlaylist : Object {
 			stdout.printf("in smartplaylist  has rule and string %s\n", rule.@string);
 		}
 		
-		stdout.printf("check %d rules\n", queries().size);
-		rv.splpref.checkrules = (uint8)queries().size;
+		stdout.printf("check %d rules\n", (int)rv.splrules.rules.length());
+		rv.splpref.checkrules = (uint8)rv.splrules.rules.length();
 		rv.splpref.checklimits = (uint8)0;
 		rv.splrules.match_operator = (conditional == "any") ? GPod.SPLMatch.OR : GPod.SPLMatch.AND;
 		rv.is_spl = true;

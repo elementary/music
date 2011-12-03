@@ -431,22 +431,34 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		foreach(var smart_playlist in lm.smart_playlists()) {
 			GPod.Playlist p = smart_playlist.get_gpod_playlist();
 			
+			stdout.printf("created playlist and it has %d rules\n", (int)p.splrules.rules.length());
+			
 			db.playlist_add((owned)p, -1);
 			unowned GPod.Playlist pl = db.playlists.nth_data(db.playlists.length() - 1);
 			
+			// remove the pre-added rule that libgpod already adds
+			//unowned GPod.SPLRule stupidRule = pl.splrules.rules.nth_data(0);
+			//pl.splr_remove(stupidRule);
+			
+			stdout.printf("pre-added playlist and it has %d rules\n", (int)pl.splrules.rules.length());
+			
 			smart_playlist.set_playlist_properties(pl);
 			
+			stdout.printf("added playlist and it has %d rules\n", (int)pl.splrules.rules.length());
 		}
 		
 		db.spl_update_all();
 		
 		foreach(unowned GPod.Playlist p in db.playlists) {
 			if(p.is_spl) {
-				stdout.printf("found spl named %s. %d\n", p.name, (int)p.splpref.liveupdate);
+				stdout.printf("found spl named %s. has %d rules with %d liveupdate\n", p.name, (int)p.splrules.rules.length(), (int)p.splpref.liveupdate);
 				
 				foreach(unowned GPod.SPLRule? r in p.splrules.rules) {
+					stdout.printf("found a rule with field %d and action %d\n", (int)r.field, (int)r.action);
 					if(r.@string == null)
 						stdout.printf("@string is null\n");
+					else
+						stdout.printf("@string is %s\n", r.@string);
 					//stdout.printf("playlist %Lu has rule %Lu and string %s\n", r.field, r.action, (r.@string != null) ? r.@string : "(is null)");
 				}
 			}

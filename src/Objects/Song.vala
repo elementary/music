@@ -215,7 +215,7 @@ public class BeatBox.Song : GLib.Object{
 		t.year = (int)year;
 		t.time_modified = (time_t)last_modified;
 		t.time_played = (time_t)last_played;
-		t.rating = rating;
+		t.rating = rating * 20;
 		t.playcount = play_count;
 		t.BPM = (uint16)bpm;
 		t.skipcount = skip_count;
@@ -246,7 +246,7 @@ public class BeatBox.Song : GLib.Object{
 		t.year = (int)year;
 		t.time_modified = (time_t)last_modified;
 		t.time_played = (time_t)last_played;
-		t.rating = rating;
+		t.rating = rating * 20;
 		t.playcount = play_count;
 		t.BPM = (uint16)bpm;
 		t.skipcount = skip_count;

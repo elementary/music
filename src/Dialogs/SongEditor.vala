@@ -254,6 +254,8 @@ public class BeatBox.SongEditor : Window {
 	public void lyricsFetched(string fetchedLyrics) {
 		if(fetchedLyrics != null && fetchedLyrics != "")
 			lyricsText.get_buffer().text = fetchedLyrics;
+		else
+			lyricsText.get_buffer().text = "Lyrics not found.";
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
