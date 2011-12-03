@@ -1318,12 +1318,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 							((ViewWrapper)sideTree.getSelectedWidget()).errorBox != null && 
 							((ViewWrapper)sideTree.getSelectedWidget()).errorBox.visible;
 		bool isCdrom = sideTree.getSelectedWidget() is CDRomViewWrapper;
+		bool isDeviceView = sideTree.getSelectedWidget() is DeviceView/* && ((DeviceView)sideTree.getSelectedWidget()).currentViewIndex() == 0*/;
 		bool storecheck = (sideTree.getSelectedWidget() is Store.StoreView);
 		bool haveSongs = (lm.song_count() != 0);
 		
-		//stdout.printf("
-		
-		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck && !isCdrom && haveSongs);
+		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck && !isCdrom && !isDeviceView && haveSongs);
 		millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
 		
 		// populate if selected == 2 (miller columns)

@@ -217,6 +217,12 @@ namespace GPod {
 	  public GLib.List<unowned GPod.SPLRule?> rules;
   }
   
+  /*[Compact]
+  [CCode (cname="Itdb_Thumb", lower_case_prefix="itdb_thumb_")]
+  public class Thumb {
+	  
+  }*/
+  
   [Compact]
   [CCode (cname="Itdb_Artwork", lower_case_cprefix="itdb_artwork_")]
   public class Artwork {
@@ -344,7 +350,7 @@ namespace GPod {
     public uint16 gapless_track_flag;
     public uint16 gapless_album_flag;
     public uint16 obsolete;
-    //public unowned GPod.Artwork artwork;
+    public unowned GPod.Artwork artwork;
     public uint mhii_link;
     
     //[CCode (cname="itdb_track_new")]

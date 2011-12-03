@@ -273,6 +273,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			stdout.printf("Updating %s\n", s.title);
 			unowned GPod.Track t = entry.key;
 			s.update_track(ref t);
+			
+			t.set_thumbnails_from_pixbuf(lm.get_album_art(s.rowid));
+			
 			++index;
 		}
 		
@@ -328,6 +331,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	void add_song(int i) {
 		Song s = lm.song_from_id(i);
 		GPod.Track t = s.track_from_song();
+		t.set_thumbnails_from_pixbuf(lm.get_album_art(s.rowid));
 		current_operation = "Adding song <b>" + t.title + "</b> by <b>" + t.artist + "</b> to iPod";
 		stdout.printf("Adding song %s by %s\n", t.title, t.artist);
 		db.track_add((owned)t, -1);

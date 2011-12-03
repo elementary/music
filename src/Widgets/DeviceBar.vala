@@ -62,4 +62,8 @@ public class BeatBox.DeviceBar : Gtk.HBox {
 	void syncClick() {
 		sync_requested();
 	}
+	
+	public int currentPage() {
+		return tabs.page;
+	}
 }

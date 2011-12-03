@@ -59,15 +59,16 @@ public class BeatBox.DeviceView : VBox {
 						vw.doUpdate(vw.getView(), vw.songs, true, false);
 					}
 					
-					if(lw.initializationFinished && (lw.viewSelector.selected == 2)) {
+					// no millers in device view's for now. it looks weird.
+					/*if(lw.initializationFinished && (lw.viewSelector.selected == 2)) {
 						stdout.printf("doing miller update from device view\n");
 						lw.miller.populateColumns("device", vw.songs);
 					}
-					lw.updateMillerColumns();
+					lw.updateMillerColumns();*/
 					vw.setStatusBarText();
 				}
 				else {
-					lw.updateMillerColumns();
+					//lw.updateMillerColumns();
 				}
 			}
 		}
@@ -90,7 +91,12 @@ public class BeatBox.DeviceView : VBox {
 			podcast_list.show();
 		}
 		
+		lw.updateMillerColumns();
 		setIsCurrentView(true);
+	}
+	
+	public int currentViewIndex() {
+		return bar.currentPage();
 	}
 	
 	void syncClicked() {
