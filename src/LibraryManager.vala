@@ -679,7 +679,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public int song_count() {
-		return _songs.size;
+		return _locals.size;
 	}
 	
 	public Collection<Song> songs() {
@@ -893,6 +893,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Song s in toRemove) {
 			_songs.unset(s.rowid);
 		}
+		
+		lw.updateSensitivities();
 	}
 	
 	/**************** Queue Stuff **************************/

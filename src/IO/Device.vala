@@ -28,6 +28,7 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract bool initialize();
 	public abstract string getContentType();
 	public abstract string getDisplayName();
+	public abstract void setDisplayName(string name);
 	public abstract string get_fancy_description();
 	public abstract void set_mount(Mount mount);
 	public abstract Mount get_mount();
@@ -46,6 +47,7 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract Collection<int> get_smart_playlists();
 	public abstract bool sync_songs(LinkedList<int> list);
 	public abstract bool is_syncing();
+	public abstract void cancel_sync();
 	public abstract bool will_fit(LinkedList<int> list);
 	
 	/*public string get_path() {

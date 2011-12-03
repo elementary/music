@@ -28,6 +28,7 @@ public class BeatBox.Song : GLib.Object{
 	public string file { get; set; default = ""; }
 	public uint file_size { get; set; default = 0; }
 	public int rowid { get; construct set; default = 0; }
+	public int mediatype { get; set; default = 0; } // 0 = song, 1 = podcast, 2 = audiobook
 	
 	//tags
 	public string title { get; set; default = "Unkown Title"; }
@@ -64,6 +65,7 @@ public class BeatBox.Song : GLib.Object{
 	public uint last_played { get; set; default = 0; }
 	public uint last_modified { get; set; default = 0; }
 	public string lastfm_url { get; set; default = ""; }
+	public string podcast_url { get; set; default = ""; }
 	
 	private string _album_path;
 	public bool has_embedded { get; set; default = false; }
@@ -215,7 +217,7 @@ public class BeatBox.Song : GLib.Object{
 		t.year = (int)year;
 		t.time_modified = (time_t)last_modified;
 		t.time_played = (time_t)last_played;
-		t.rating = rating * 20;
+		t.rating = rating;
 		t.playcount = play_count;
 		t.recent_playcount = play_count;
 		t.BPM = (uint16)bpm;
@@ -252,7 +254,7 @@ public class BeatBox.Song : GLib.Object{
 		t.year = (int)year;
 		t.time_modified = (time_t)last_modified;
 		t.time_played = (time_t)last_played;
-		t.rating = rating * 20;
+		t.rating = rating;
 		t.playcount = play_count;
 		t.recent_playcount = play_count;
 		t.BPM = (uint16)bpm;

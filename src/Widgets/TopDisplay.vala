@@ -120,13 +120,17 @@ namespace ElementaryWidgets {
 		// automatically shows/hides progress bar/scale based on progress's value
 		public void set_progress_value(double progress) {
 			if(progress >= 0.0 && progress <= 1.0) {
-				if(!progressbar.visible)
+				if(!progressbar.visible) {
 					show_progressbar();
+					set_label_showing(true);
+				}
+				
 				progressbar.set_fraction(progress);
 			}
 			else {
-				if(!scale.visible)
+				if(!scale.visible) {
 					show_scale();
+				}
 			}
 		}
 		
@@ -207,6 +211,7 @@ namespace ElementaryWidgets {
 		
 		/** other functions **/
 		public void show_scale() {
+			stdout.printf("showing scale\n");
 			scaleBox.show();
 			progressbar.hide();
 			cancelButton.hide();
@@ -216,6 +221,7 @@ namespace ElementaryWidgets {
 		}
 		
 		public void show_progressbar() {
+			stdout.printf("showing progress bar\n");
 			progressbar.show();
 			scaleBox.hide();
 			cancelButton.show();

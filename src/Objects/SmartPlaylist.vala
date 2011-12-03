@@ -305,7 +305,6 @@ public class BeatBox.SmartPlaylist : Object {
 	}
 	
 	public void set_playlist_properties(GPod.Playlist rv) {
-		rv.splpref.liveupdate = 1;
 		stdout.printf("playlist is %s\n", name);
 		
 		foreach(var sq in _queries) {
@@ -316,7 +315,6 @@ public class BeatBox.SmartPlaylist : Object {
 			stdout.printf("adding rule\n");
 			var field = sq.field;
 			var value = sq.value;
-			stdout.printf("sq.value is %s\n", value);
 			var comparator = sq.comparator;
 			if(field == "Album") { // strings
 				rule.field = GPod.SPLField.ALBUM;
@@ -351,46 +349,57 @@ public class BeatBox.SmartPlaylist : Object {
 				rule.field = GPod.SPLField.BITRATE;
 				rule.fromvalue = uint64.parse(value);
 				rule.tovalue = uint64.parse(value);
+				rule.tounits = 1;
+				rule.fromunits = 1;
 			}
 			else if(field == "Playcount") {
 				rule.field = GPod.SPLField.PLAYCOUNT;
 				rule.fromvalue = uint64.parse(value);
 				rule.tovalue = uint64.parse(value);
+				rule.tounits = 1;
+				rule.fromunits = 1;
 			}
 			else if(field == "Skipcount") {
 				rule.field = GPod.SPLField.SKIPCOUNT;
 				rule.fromvalue = uint64.parse(value);
 				rule.tovalue = uint64.parse(value);
+				rule.tounits = 1;
 			}
 			else if(field == "Year") {
 				rule.field = GPod.SPLField.YEAR;
 				rule.fromvalue = uint64.parse(value);
 				rule.tovalue = uint64.parse(value);
+				rule.tounits = 1;
+				rule.fromunits = 1;
 			}
 			else if(field == "Length") {
 				rule.field = GPod.SPLField.TIME;
 				rule.fromvalue = uint64.parse(value) * 1000;
 				rule.tovalue = uint64.parse(value) * 1000;
+				rule.tounits = 1;
+				rule.fromunits = 1;
 			}
 			else if(field == "Rating") {
 				rule.field = GPod.SPLField.RATING;
 				rule.fromvalue = uint64.parse(value) * 20;
 				rule.tovalue = uint64.parse(value) * 20;
+				rule.tounits = 1;//20;
+				rule.fromunits = 1;//20;
 			}
 			else if(field == "Date Added") {
 				rule.field = GPod.SPLField.DATE_ADDED;
-				rule.fromvalue = uint64.parse(value);
-				rule.tovalue = uint64.parse(value);
-				rule.tounits = 60 * 60 * 24;
+				rule.fromvalue = uint64.parse(value) * 60 * 60 * 24;
+				rule.tovalue = uint64.parse(value) * 60 * 60 * 24;
+				rule.tounits = 1;//60 * 60 * 24;
+				rule.fromunits = 1;//60 * 60 * 24;
 			}
 			else if(field == "Last Played") {
 				rule.field = GPod.SPLField.LAST_PLAYED;
-				rule.fromvalue = uint64.parse(value);
-				rule.tovalue = uint64.parse(value);
-				rule.tounits = 60 * 60 * 24;
+				rule.fromvalue = uint64.parse(value) * 60 * 60 * 24;
+				rule.tovalue = uint64.parse(value) * 60 * 60 * 24;
+				rule.tounits = 1;//60 * 60 * 24;
+				rule.fromunits = 1;//60 * 60 * 24;
 			}
-			
-			rule.tounits = 1;
 			
 			// set action type
 			if(comparator == "is") {
@@ -430,6 +439,7 @@ public class BeatBox.SmartPlaylist : Object {
 		rv.splpref.checkrules = (uint8)rv.splrules.rules.length();
 		rv.splpref.checklimits = (uint8)0;
 		rv.splrules.match_operator = (conditional == "any") ? GPod.SPLMatch.OR : GPod.SPLMatch.AND;
+		rv.splpref.liveupdate = 1;
 		rv.is_spl = true;
 	}
 }

@@ -102,6 +102,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 	public virtual void mount_removed (Mount mount) {
 		foreach(var dev in devices) {
 			if(dev.get_path() == mount.get_default_location().get_path()) {
+				dev.device_unmounted();
 				devices.remove(dev);
 				device_removed(dev);
 				

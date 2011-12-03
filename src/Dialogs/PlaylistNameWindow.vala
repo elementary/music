@@ -27,6 +27,7 @@ using Gtk;
 
 public class BeatBox.PlaylistNameWindow : Window {
 	public Playlist _original;
+	LibraryWindow lw;
 	
 	VBox content;
 	HBox padding;
@@ -37,6 +38,8 @@ public class BeatBox.PlaylistNameWindow : Window {
 	public signal void playlist_saved(Playlist p);
 	
 	public PlaylistNameWindow(LibraryWindow lw, Playlist original) {
+		this.lw = lw;
+		
 		title = "Playlist Editor";
 		
 		this.window_position = WindowPosition.CENTER;
@@ -80,6 +83,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 		
 		_save.clicked.connect(saveClicked);
 		_name.activate.connect(nameActivate);
+		_name.changed.connect(nameChanged);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -93,14 +97,31 @@ public class BeatBox.PlaylistNameWindow : Window {
 		return alignment;
 	}
 	
-	public virtual void saveClicked() {
+	void saveClicked() {
 		_original.name = _name.text;
 		playlist_saved(_original);
 		
 		this.destroy();
 	}
 	
-	public virtual void nameActivate() {
+	void nameActivate() {
 		saveClicked();
+	}
+	
+	void nameChanged() {
+		if(_name.get_text() == "") {
+			_save.set_sensitive(false);
+			return;
+		}
+		else {
+			foreach(var p in lw.lm.playlists()) {
+				if((_original == null || _original.rowid != p.rowid) && _name.get_text() == p.name) {
+					_save.set_sensitive(false);
+					return;
+				}
+			}
+		}
+		
+		_save.set_sensitive(true);
 	}
 }

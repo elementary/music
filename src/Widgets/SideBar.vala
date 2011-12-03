@@ -242,7 +242,34 @@ namespace ElementaryWidgets {
 		public void setVisibility(TreeIter it, bool val) {
 			TreeIter iter = convertToChild(it);
 			
-			tree.set(it, 2, val);
+			tree.set(it, SideBarColumn.COLUMN_VISIBLE, val);
+		}
+		
+		public void setName(TreeIter it, string name) {
+			TreeIter iter = convertToChild(it);
+			
+			tree.set(it, SideBarColumn.COLUMN_TEXT, name);
+		}
+		
+		// parent should be filter iter
+		public bool setNameFromObject(TreeIter parent, GLib.Object o, string name) {
+			TreeIter realParent = convertToChild(parent);
+			TreeIter pivot;
+			tree.iter_children(out pivot, realParent);
+			
+			do {
+				GLib.Object tempO;
+				tree.get(pivot, 0, out tempO);
+				
+				if(tempO == o) {
+					tree.set(pivot, SideBarColumn.COLUMN_TEXT, name);
+					return true;
+				}
+				else if(!tree.iter_next(ref pivot)) {
+					return false;
+				}
+				
+			} while(true);
 		}
 		
 		public TreeIter? getSelectedIter() {
@@ -407,9 +434,15 @@ namespace ElementaryWidgets {
 				return null;
 			
 			TreeIter rv;
-			filter.convert_child_iter_to_iter(out rv, child);
+			//stdout.printf("converting child to filter\n");
 			
-			return rv;
+			if(filter.convert_child_iter_to_iter(out rv, child)) {
+				//stdout.printf("success\n");
+				return rv;
+			}
+			
+			//stdout.printf("failed\n");
+			return null;
 		}
 		
 		public TreeIter? convertToChild(TreeIter? filt) {

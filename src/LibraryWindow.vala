@@ -184,12 +184,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}*/
 		
 		build_ui();
-		//this.present();
 		
-		//Timeout.add(1000, () => {
-			initializationFinished = true;
-		//	return false;
-		//});
+		initializationFinished = true;
+		updateSensitivities();
 		
 		// play the arg if there is one
 		/*if( args[1] != "" && File.new_for_uri(args[1]).query_exists()) {
@@ -564,6 +561,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void updateSensitivities() {
+		if(!initializationFinished)
+			return;
+		
 		bool folderSet = (lm.settings.getMusicFolder() != "");
 		bool haveSongs = lm.song_count() > 0;
 		bool doingOps = lm.doing_file_operations;
@@ -612,7 +612,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void progressNotification(string? message, double progress) {
-		if(message != null)
+		if(message != null && progress >= 0.0 && progress <= 1.0)
 			topDisplay.set_label_markup(message);
 		
 		topDisplay.set_progress_value(progress);
@@ -657,11 +657,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void updateInfoLabel() {
-		if(lm.doing_file_operations)
+		if(lm.doing_file_operations) {
+			stdout.printf("doing file operations, returning null in updateInfoLabel\n");
 			return;
+		}
 			
 		if(lm.song_info.song == null) {
 			topDisplay.set_label_markup("");
+			stdout.printf("setting info label as ''\n");
 			return;
 		}
 		

@@ -18,6 +18,17 @@ public class BeatBox.DeviceView : VBox {
 		
 		
 		buildUI();
+		
+		ulong connector = lm.progress_cancel_clicked.connect( () => {
+			if(d.is_syncing()) {
+				lw.doAlert("Cancelling Sync", "Device Sync has been cancelled. Importing will stop after this song.");
+				d.cancel_sync();
+			}
+		});
+		d.device_unmounted.connect( () => {
+			stdout.printf("device unmounted\n");
+			d.disconnect(connector);
+		});
 	}
 	
 	void buildUI() {
@@ -77,6 +88,7 @@ public class BeatBox.DeviceView : VBox {
 	void bar_option_changed(int option) {
 		if(option == 0) {
 			summary.show();
+			summary.refreshPlaylistList();
 			music_list.hide();
 			podcast_list.hide();
 		}
@@ -107,13 +119,17 @@ public class BeatBox.DeviceView : VBox {
 				list.add(s.rowid);
 		}
 		else {
-			Playlist p = summary.selected_playlist();
+			GLib.Object p = summary.selected_playlist();
 			
 			if(p == null) {
 				lw.doAlert("Cannot Sync", "You must either select a playlist to sync, or select to sync all your songs");
 			}
-			
-			list = lm.songs_from_playlist(p.rowid);
+			else if(p is Playlist) {
+				list = lm.songs_from_playlist(((Playlist)p).rowid);
+			}
+			else if(p is SmartPlaylist) {
+				list = lm.songs_from_smart_playlist(((SmartPlaylist)p).rowid);
+			}
 		}
 			
 		

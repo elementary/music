@@ -15,15 +15,6 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		
 		
 		this.d = d;
-		cancelled = false;
-		
-		ulong connector = lm.progress_cancel_clicked.connect( () => { 
-			cancelled = true;
-			lw.doAlert("Cancelling Import", "CD Import has been cancelled. Importing will stop after this song.");
-		});
-		d.device_unmounted.connect( () => {
-			d.disconnect(connector);
-		});
 	}
 	
 	/*void devicebar_changed(int option) {

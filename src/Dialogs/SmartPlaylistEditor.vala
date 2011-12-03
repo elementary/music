@@ -27,6 +27,7 @@ using Gtk;
 using Gee;
 
 public class BeatBox.SmartPlaylistEditor : Window {
+	LibraryWindow lw;
 	SmartPlaylist _sp;
 	
 	VBox content;
@@ -48,6 +49,8 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	public signal void playlist_saved(SmartPlaylist sp);
 	
 	public SmartPlaylistEditor(LibraryWindow lw, SmartPlaylist sp) {
+		this.lw = lw;
+		
 		this.title = "Smart Playlist Editor";
 		
 		this.window_position = WindowPosition.CENTER;
@@ -153,6 +156,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		}
 		
 		save.clicked.connect(saveClick);
+		_name.changed.connect(nameChanged);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -164,6 +168,23 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		
 		alignment.add(widget);
 		return alignment;
+	}
+	
+	void nameChanged() {
+		if(_name.get_text() == "") {
+			save.set_sensitive(false);
+			return;
+		}
+		else {
+			foreach(var p in lw.lm.smart_playlists()) {
+				if((_sp == null || _sp.rowid != p.rowid) && _name.get_text() == p.name) {
+					save.set_sensitive(false);
+					return;
+				}
+			}
+		}
+		
+		save.set_sensitive(true);
 	}
 	
 	public void addRow() {

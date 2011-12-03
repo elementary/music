@@ -20,6 +20,10 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 		return mount.get_name();
 	}
 	
+	public void setDisplayName(string name) {
+		
+	}
+	
 	public string get_fancy_description() {
 		return "No Description";
 	}
@@ -98,5 +102,9 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 	
 	public bool is_syncing() {
 		return false;
+	}
+	
+	public void cancel_sync() {
+		
 	}
 }
