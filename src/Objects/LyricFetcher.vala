@@ -52,28 +52,32 @@ public class BeatBox.LyricFetcher : GLib.Object {
 		
 		uint8[] uintcontent;
 		string etag_out;
+		bool load_successful = false;
+		string lyrics = "";
 		
 		try {
 			page.load_contents(null, out uintcontent, out etag_out);
+			load_successful = true;
 		}
 		catch(Error err) {
 			stdout.printf("Could not load contents of %s: %s\n", url, err.message);
-			return "";
+			load_successful = false;
 		}
 		
-		string content = (string)uintcontent;
-		
-		var startString = "<!-- start of lyrics -->";
-		var endString = "<!-- end of lyrics -->";
-		var start = content.index_of(startString, 0) + startString.length;
-		var end = content.index_of(endString, start);
-		
-		//stdout.printf("getting content from %d->%d\n", start, end);
-		
-		string lyrics = "";
-		if(start != -1 && end != -1 && end > start) {
-			lyrics = content.substring(start, end - start);
-			lyrics = lyrics.replace("<br><br>", "").replace("<br>","").replace("<i>","").replace("</i>","").strip();
+		if(load_successful) {
+			string content = (string)uintcontent;
+			
+			var startString = "<!-- start of lyrics -->";
+			var endString = "<!-- end of lyrics -->";
+			var start = content.index_of(startString, 0) + startString.length;
+			var end = content.index_of(endString, start);
+			
+			//stdout.printf("getting content from %d->%d\n", start, end);
+			
+			if(start != -1 && end != -1 && end > start) {
+				lyrics = content.substring(start, end - start);
+				lyrics = lyrics.replace("<br><br>", "").replace("<br>","").replace("<i>","").replace("</i>","").strip();
+			}
 		}
 		
 		Idle.add( () => {

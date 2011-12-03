@@ -217,8 +217,14 @@ public class BeatBox.Song : GLib.Object{
 		t.time_played = (time_t)last_played;
 		t.rating = rating * 20;
 		t.playcount = play_count;
+		t.recent_playcount = play_count;
 		t.BPM = (uint16)bpm;
 		t.skipcount = skip_count;
+		t.tracklen = (int)length * 1000;
+		t.size = file_size * 1000000;
+		t.mediatype = 1;
+		t.lyrics_flag = 1;
+		t.description = lyrics;
 		
 		if(t.artist == "" && t.albumartist != null)
 			t.artist = t.albumartist;
@@ -248,11 +254,14 @@ public class BeatBox.Song : GLib.Object{
 		t.time_played = (time_t)last_played;
 		t.rating = rating * 20;
 		t.playcount = play_count;
+		t.recent_playcount = play_count;
 		t.BPM = (uint16)bpm;
 		t.skipcount = skip_count;
 		t.tracklen = (int)length * 1000;
 		t.size = file_size * 1000000;
 		t.mediatype = 1;
+		t.lyrics_flag = 1;
+		t.description = lyrics;
 		
 		return t;
 	}

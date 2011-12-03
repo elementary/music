@@ -299,7 +299,7 @@ public class BeatBox.SmartPlaylist : Object {
 	}
 	
 	public GPod.Playlist get_gpod_playlist() {
-		GPod.Playlist rv = new GPod.Playlist(name, true);
+		GPod.Playlist rv = new GPod.Playlist(name, false);
 		
 		return rv;
 	}
@@ -381,11 +381,13 @@ public class BeatBox.SmartPlaylist : Object {
 				rule.field = GPod.SPLField.DATE_ADDED;
 				rule.fromvalue = uint64.parse(value);
 				rule.tovalue = uint64.parse(value);
+				rule.tounits = 60 * 60 * 24;
 			}
 			else if(field == "Last Played") {
 				rule.field = GPod.SPLField.LAST_PLAYED;
 				rule.fromvalue = uint64.parse(value);
 				rule.tovalue = uint64.parse(value);
+				rule.tounits = 60 * 60 * 24;
 			}
 			
 			rule.tounits = 1;
@@ -405,10 +407,14 @@ public class BeatBox.SmartPlaylist : Object {
 				rule.action = GPod.SPLAction.IS_INT;
 			}
 			else if(comparator == "is at most") {
-				rule.action = GPod.SPLAction.IS_NOT_GREATER_THAN;
+				rule.action = GPod.SPLAction.IS_LESS_THAN;
+				rule.fromvalue += 1;
+				rule.tovalue += 1;
 			}
 			else if(comparator == "is at least") {
-				rule.action = GPod.SPLAction.IS_NOT_LESS_THAN;
+				rule.action = GPod.SPLAction.IS_GREATER_THAN;
+				rule.fromvalue -= 1;
+				rule.tovalue -= 1;
 			}
 			else if(comparator == "is within") {
 				rule.action = GPod.SPLAction.IS_GREATER_THAN;

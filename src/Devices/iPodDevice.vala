@@ -239,8 +239,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		db.start_sync();
 		
 		index = 0;
-		//  # added (only part that takes time is adding
-		total = list.size + (list.size/10);
+		
+		total = songs.entries.size + songs.entries.size + list.size + 10;
 		Timeout.add(500, doProgressNotificationWithTimeout);
 		
 		/* first remove removed songs */
@@ -259,11 +259,12 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 				remove_song(entry.key);
 				removed.set(entry.key, entry.value);
 			}
+			++index;
 		}
 		songs.unset_all(removed);
 		
 		// no matter where index is, set it to 1/3 now
-		index = list.size/20;
+		//index = total/4;
 		
 		stdout.printf("Updating existing tracks...\n");
 		/* anything left will be synced. update songs that are already on list */
@@ -275,7 +276,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			++index;
 		}
 		
-		index = list.size/10;
+		//index = total/2;
 		
 		stdout.printf("Adding new songs...\n");
 		/* now add all in list that weren't in songs */
@@ -284,17 +285,22 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			if(!songs.values.contains(i)) {
 				add_song(i);
 			}
+			
 			++index;
 		}
 		
 		// sync playlists
 		sync_playlists();
 		
+		index += 3;
+		
+		current_operation = "Finishing sync process...";
 		db.write();
+		
+		index += 3;
 		
 		/** Clean up unused files **/
 		stdout.printf("Cleaning up iPod File System\n");
-		current_operation = "Cleaning up unused files from iPod";
 		var music_folder = File.new_for_path(GPod.Device.get_music_dir(get_path()));
 		var used_paths = new LinkedList<string>();
 		foreach(unowned GPod.Track t in songs.keys) {
@@ -302,10 +308,18 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		cleanup_files(music_folder, used_paths);
 		
-		index = total + 2;
+		index = total + 3;
 		
 		db.stop_sync();
 		currently_syncing = false;
+		
+		Idle.add( () => {
+			lm.lw.topDisplay.show_scale();
+			lm.lw.updateInfoLabel();
+			lm.lw.searchField.changed();
+			
+			return false;
+		});
 		
 		return null;
 	}

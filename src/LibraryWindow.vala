@@ -654,8 +654,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void updateInfoLabel() {
-		if(lm.doing_file_operations || lm.song_info.song == null)
+		if(lm.doing_file_operations)
 			return;
+			
+		if(lm.song_info.song == null) {
+			topDisplay.set_label_markup("");
+			return;
+		}
 		
 		//set the title
 		Song s = lm.song_info.song;
