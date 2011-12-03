@@ -334,7 +334,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public void resetView() {
 		get_selection().unselect_all();
 		get_selection().select_iter(convertToFilter(library_music_iter));
-		filter.foreach(updateView);
+		tree.foreach(updateView);
 	}
 	
 	// currently not used
@@ -693,7 +693,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
     /* device stuff */
     public void deviceAdded(Device d) {
 		lw.addSideListItem(d);
-		filter.foreach(updateView);
+		tree.foreach(updateView);
 	}
 	
 	public void deviceRemoved(Device d) {

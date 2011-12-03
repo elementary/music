@@ -674,7 +674,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_songs.clear();
 		
 		foreach(Song s in reAdd) {
-			stdout.printf("reAdding %d\n", s.rowid);
 			_songs.set(s.rowid, s);
 		}
 	}

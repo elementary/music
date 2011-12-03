@@ -239,6 +239,12 @@ namespace ElementaryWidgets {
 			return tree.remove(iter);
 		}
 		
+		public void setVisibility(TreeIter it, bool val) {
+			TreeIter iter = convertToChild(it);
+			
+			tree.set(it, 2, val);
+		}
+		
 		public TreeIter? getSelectedIter() {
 			TreeModel mod;
 			TreeIter sel;
