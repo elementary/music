@@ -9,7 +9,6 @@ public class BeatBox.PresetList : ComboBox {
 	private int ncustompresets;
 
 	private bool default_presets_modified;
-	private bool custom_presets_modified;
 	
 	private bool modifying_list;
 
@@ -19,12 +18,11 @@ public class BeatBox.PresetList : ComboBox {
 		}
 	}
 
-	public bool preset_list_changed {
+	public bool default_presets_changed {
 		get {
-			return default_presets_modified || custom_presets_modified;
+			return default_presets_modified;
 		} set {
 			default_presets_modified = value;
-			custom_presets_modified = value;
 		}
 	}
 	
@@ -106,7 +104,6 @@ public class BeatBox.PresetList : ComboBox {
 			default_presets_modified = true;
 		} else {
 			ncustompresets++;
-			custom_presets_modified = true;
 		}
 
 		if((this.preset_list_size - 1) < 1) {
@@ -142,7 +139,6 @@ public class BeatBox.PresetList : ComboBox {
 					default_presets_modified = true;
 				} else {
 					ncustompresets--;
-					custom_presets_modified = true;
 				}
 				
 				store.remove(iter);

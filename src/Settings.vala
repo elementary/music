@@ -452,7 +452,7 @@ public class BeatBox.Settings : Object {
 	}
 	
 	public void setSelectedPreset(EqualizerPreset preset) {
-		setString(SELECTED_PRESET, preset.name ?? "");
+		setString(SELECTED_PRESET, (preset != null)? preset.name : "");
 	}
 
 	public void setPresets(Gee.Collection<EqualizerPreset> presets, string? type) {

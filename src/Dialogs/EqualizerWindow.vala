@@ -74,9 +74,8 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		initialized = true;
 
-		if (lm.settings.getAutoSwitchPreset()) {
+		if (lm.settings.getAutoSwitchPreset())
 			preset_combo.selectAutomaticPreset();
-		}
 	}
 	
 	void build_ui () {
@@ -86,7 +85,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		window_position = WindowPosition.CENTER;
 		type_hint = Gdk.WindowTypeHint.DIALOG;
 		set_transient_for(lw);
-		
 		set_size_request(440, 224);
 		resizable = false;
 		set_deletable(false);
@@ -96,8 +94,8 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		var outer_box = new HBox(false, 10);
 		var inner_box = new VBox(false, 0);
 		var scales = new HBox(false, 0);
-		bottom_toolbar = new Toolbar();		
 		
+		bottom_toolbar = new Toolbar();
 		eq_switch = new Switch();
 		preset_combo = new PresetList(lm, lw);
 		
@@ -175,9 +173,9 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		
 		eq_switch.notify["active"].connect(on_eq_switch_toggled);
 		preset_combo.automatic_preset_chosen.connect(on_automatic_chosen);
-		preset_combo.add_preset_chosen.connect(addPresetClicked);
-		preset_combo.delete_preset_chosen.connect(removePresetClicked);
-		preset_combo.preset_selected.connect(presetSelected);
+		preset_combo.add_preset_chosen.connect(add_preset_clicked);
+		preset_combo.delete_preset_chosen.connect(remove_preset_clicked);
+		preset_combo.preset_selected.connect (preset_selected);
 		new_preset_entry.activate.connect (add_new_preset);
 		new_preset_entry.icon_press.connect (new_preset_entry_icon_pressed);
 		new_preset_entry.focus_out_event.connect (on_entry_focus_out);
@@ -233,7 +231,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		
 			set_sliders_sensitivity(false);
 			preset_combo.selectAutomaticPreset();
-			//on_automatic_chosen();
+			on_automatic_chosen();
 		} else {
 			for (int i = 0; i < 10; ++i)
 				lm.player.setEqualizerGain(i, 0);
@@ -257,10 +255,10 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			preset_combo.addPreset(preset);
 		}
 		
-		preset_combo.preset_list_changed = false;
+		preset_combo.default_presets_changed = false;
 	}
 
-	void presetSelected(EqualizerPreset p) {
+	void preset_selected (EqualizerPreset p) {
 		automatic_chosen = false;
 		set_sliders_sensitivity (true);
 		target_levels.clear();
@@ -269,16 +267,20 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			target_levels.add(i);
 		}
 		
-		if (!initialized) {
+		set_target_levels ();
+		
+		if (!in_transition && !closing) {
+			in_transition = true;
+			Timeout.add(20, transition_scales);
+		}
+	}
+	
+	void set_target_levels () {
+		if (!initialized || closing) {
 			for (int index = 0; index < 10; ++index) {
 				scale_list.nth_data(index).set_value(target_levels.get(index));
 			}
 			return;
-		}
-		
-		if (!in_transition) {
-			in_transition = true;
-			Timeout.add(20, transition_scales);
 		}
 	}
 	
@@ -380,7 +382,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		do
 		{
 			preset_name = (from_current)? current_preset_name + " (" : "";
-			preset_name += "Custom" + ((from_current)? "" : "Preset"); 
+			preset_name += "Custom" + ((from_current)? "" : " Preset"); 
 			preset_name += ((!is_valid && i > 0)? " " + i.to_string() : "");
 			preset_name += (from_current)? ")" : "";
 
@@ -395,11 +397,11 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	public bool verify_preset_name(string name) {
 	
 		/* This function verifies the name of a new preset.
-		 * It will return true whenever:
-		 *  - The name is not null
-		 *  - The name doesn't consist [enterely] of white space.
-		 *  - The name is not already in the list.
-		 */
+		   It will return 'true' whenever:
+		    - The name is not null
+		    - The name doesn't consist [enterely] of white space.
+		    - The name is not already in the list.
+		*/
 
 		int white_space = 0;
 		int str_length = name.length;
@@ -430,14 +432,14 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		return !preset_already_exists;
 	}
 
-	void addPresetClicked () {
+	void add_preset_clicked () {
 		string name = create_new_preset_name(false);
 		PresetNameWindow pnw = new PresetNameWindow(this, new EqualizerPreset.basic(name));
-		pnw.preset_saved.connect(presetNameWindowSaved);
-		pnw.action_canceled.connect(on_preset_name_window_closed);
+		pnw.preset_saved.connect(preset_name_window_saved);
+		pnw.action_canceled.connect(select_last_used_preset);
 	}
 	
-	void on_preset_name_window_closed () {
+	void select_last_used_preset () {
 		var last_preset = preset_combo.last_selected_preset;
 		
 		if(!automatic_chosen && last_preset != null)
@@ -446,11 +448,11 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			preset_combo.selectAutomaticPreset();
 	}
 	
-	void presetNameWindowSaved (EqualizerPreset p) {
+	void preset_name_window_saved (EqualizerPreset p) {
 		preset_combo.addPreset(p);
 	}
 
-	void removePresetClicked () {
+	void remove_preset_clicked () {
 		if(!automatic_chosen)
 			preset_combo.removeCurrentPreset();
 	}
@@ -468,10 +470,13 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 
 	void on_quit () {
+
 		if(!in_transition)
-			close_equalizer();
-		else
-			Timeout.add(20, close_equalizer);		
+			on_close_button_clicked();
+		else {
+			set_target_levels ();
+			close_equalizer ();
+		}
 	}
 
 	bool close_equalizer () {
@@ -484,21 +489,20 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		if(preset_combo.getSelectedPreset() != null)
 			lm.settings.setSelectedPreset(preset_combo.getSelectedPreset());
 
-		// Don't save the presets if there are no modifications
-		if(preset_combo.preset_list_changed) {
-			var defaultPresets = new Gee.LinkedList<EqualizerPreset>();
-			var customPresets = new Gee.LinkedList<EqualizerPreset>();
+		var defaultPresets = new Gee.LinkedList<EqualizerPreset>();
+		var customPresets = new Gee.LinkedList<EqualizerPreset>();
 
-			foreach (EqualizerPreset preset in preset_combo.getPresets()) {
-				if (preset.is_default == true)
-					defaultPresets.add (preset);
-				else
-					customPresets.add (preset);
-			}
-
-			lm.settings.setPresets (defaultPresets, null);
-			lm.settings.setPresets (customPresets, "custom-presets");
+		foreach (EqualizerPreset preset in preset_combo.getPresets()) {
+			if (preset.is_default == true)
+				defaultPresets.add (preset);
+			else
+				customPresets.add (preset);
 		}
+
+		if(preset_combo.default_presets_changed)		
+			lm.settings.setPresets (defaultPresets, null);
+
+		lm.settings.setPresets (customPresets, lm.settings.CUSTOM_PRESETS);
 
 		lm.settings.setAutoSwitchPreset (automatic_chosen);
 
