@@ -20,14 +20,12 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* Merely a place holder for multiple pieces of information regarding
- * the current song playing. Mostly here because of dependence. */
-
 using Gtk;
 
 public class BeatBox.PresetNameWindow : Window {
 	public EqualizerPreset _original;
 	
+	EqualizerWindow ew;
 	VBox content;
 	HBox padding;
 	
@@ -35,14 +33,17 @@ public class BeatBox.PresetNameWindow : Window {
 	public Button _save;
 	
 	public signal void preset_saved(EqualizerPreset p);
+	public signal void action_canceled();
 
-	public PresetNameWindow(LibraryWindow lw, EqualizerPreset original) {
+	public PresetNameWindow(EqualizerWindow ew, EqualizerPreset original) {
 		title = "";
+		
+		this.ew = ew;
 		
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
-		this.set_transient_for(lw);
+		this.set_transient_for(ew);
 		this.destroy_with_parent = true;
 		resizable = false;
 		set_size_request(200, -1);		
@@ -80,6 +81,7 @@ public class BeatBox.PresetNameWindow : Window {
 		
 		_save.clicked.connect(saveClicked);
 		_name.activate.connect(nameActivate);
+		this.destroy.connect(on_action_canceled);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -94,7 +96,9 @@ public class BeatBox.PresetNameWindow : Window {
 	}
 	
 	public virtual void saveClicked() {
-		_original.name = _name.text;
+		if(ew.verify_preset_name(_name.text))
+			_original.name = _name.text;
+
 		preset_saved(_original);
 		
 		this.destroy();
@@ -102,5 +106,10 @@ public class BeatBox.PresetNameWindow : Window {
 	
 	public virtual void nameActivate() {
 		saveClicked();
+	}
+	
+	public virtual void on_action_canceled() {
+		action_canceled();
+		this.destroy();
 	}
 }
