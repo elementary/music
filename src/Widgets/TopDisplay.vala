@@ -211,7 +211,6 @@ namespace ElementaryWidgets {
 		
 		/** other functions **/
 		public void show_scale() {
-			stdout.printf("showing scale\n");
 			scaleBox.show();
 			progressbar.hide();
 			cancelButton.hide();
@@ -221,7 +220,6 @@ namespace ElementaryWidgets {
 		}
 		
 		public void show_progressbar() {
-			stdout.printf("showing progress bar\n");
 			progressbar.show();
 			scaleBox.hide();
 			cancelButton.show();

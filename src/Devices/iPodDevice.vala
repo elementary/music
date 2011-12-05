@@ -36,7 +36,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		smart_playlists = new HashMap<unowned GPod.Playlist, int>();
 	}
 	
-	public bool initialize() {
+	public bool start_initialization() {
 		try {
 			db = iTunesDB.parse(get_path());
 		}
@@ -45,8 +45,25 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			return false;
 		}
 		
+		return true;
+	}
+	
+	public void finish_initialization() {
+		device_unmounted.connect( () => {
+			
+		});
+		
+		try {
+			Thread.create<void*>(finish_initialization_thread, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to finish ipod initialization: %s \n", err.message);
+		}
+	}
+	
+	void* finish_initialization_thread() {
 		for(int i = 0; i < db.tracks.length(); ++i) {
-			stdout.printf("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
+			//stdout.printf("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
 			var s = Song.from_track(get_path(), db.tracks.nth_data(i));
 			s.isTemporary = true;
 			
@@ -101,15 +118,13 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			}
 		}*/
 		
-		device_unmounted.connect( () => {
-			/*foreach(int i in songs.values) {
-				Song s = lm.song_from_id(i);
-				s.unique_status_image = null;
-				lm.update_song(s, false);
-			}*/
+		Idle.add( () => {
+			initialized(this);
+			
+			return false;
 		});
 		
-		return true;
+		return null;
 	}
 	
 	public bool isNew() {
@@ -129,6 +144,12 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	public void setDisplayName(string name) {
 		db.playlist_mpl().name = name;
+		try {
+			mount.get_default_location().set_display_name(name);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not set iPod Mount Display Name: %s\n", err.message);
+		}
 		lm.lw.sideTree.setNameFromObject(lm.lw.sideTree.convertToFilter(lm.lw.sideTree.devices_iter), this, name);
 	}
 	
@@ -252,6 +273,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	void* sync_songs_thread() {
 		currently_syncing = true;
+		lm.doing_file_operations = true;
 		index = 0;
 		total = songs.entries.size + songs.entries.size + list.size + 10;
 		Timeout.add(500, doProgressNotificationWithTimeout);
@@ -348,6 +370,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		
 		Idle.add( () => {
+			lm.doing_file_operations = false;
 			lm.lw.topDisplay.show_scale();
 			lm.lw.updateInfoLabel();
 			lm.lw.searchField.changed();

@@ -3,7 +3,9 @@ using Gee;
 public interface BeatBox.Device : GLib.Object {
 	//private Mount mount;
 	
+	public signal void initialized(Device d);
 	public signal void device_unmounted();
+	public signal void progress_notification(string? message, double progress);
 	
 	/*public Device(Mount m) {
 		this.mount = m;
@@ -24,17 +26,21 @@ public interface BeatBox.Device : GLib.Object {
 		}
 	}*/
 	
-	public abstract bool initialize();
+	public abstract bool start_initialization();
+	public abstract void finish_initialization();
 	public abstract string getContentType();
 	public abstract string getDisplayName();
+	public abstract void setDisplayName(string name);
+	public abstract string get_fancy_description();
 	public abstract void set_mount(Mount mount);
 	public abstract Mount get_mount();
 	public abstract string get_path();
 	public abstract void set_icon(GLib.Icon icon);
 	public abstract GLib.Icon get_icon();
-	public abstract int64 get_capacity();
-	public abstract int64 get_used_space();
-	public abstract int64 get_free_space();
+	public abstract uint64 get_capacity();
+	public abstract string get_fancy_capacity();
+	public abstract uint64 get_used_space();
+	public abstract uint64 get_free_space();
 	public abstract void unmount();
 	public abstract void eject();
 	public abstract void get_device_type();
@@ -42,7 +48,9 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract Collection<int> get_playlists();
 	public abstract Collection<int> get_smart_playlists();
 	public abstract bool sync_songs(LinkedList<int> list);
-	public abstract bool sync_playlists(LinkedList<int> list);
+	public abstract bool is_syncing();
+	public abstract void cancel_sync();
+	public abstract bool will_fit(LinkedList<int> list);
 	
 	/*public string get_path() {
 		return mount.get_default_location().get_parse_name();

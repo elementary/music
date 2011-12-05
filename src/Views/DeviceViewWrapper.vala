@@ -4,8 +4,7 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	Device d;
 	bool cancelled;
 	
-	public DeviceViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, MusicTreeView.Hint the_hint, int id, Device d) {
-		the_hint = MusicTreeView.Hint.DEVICE;
+	public DeviceViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
 		base(lmm, lww, songs, sort, dir, the_hint, id);
 		
 		list.hide();

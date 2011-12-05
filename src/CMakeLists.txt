@@ -66,7 +66,8 @@ vala_precompile(VALA_C
     LastFM/ArtistInfo.vala
     LastFM/SimilarSongs.vala
     BeatBox.vala
-    #    Devices/Syncable.vala
+    Devices/DeviceManager.vala
+    Devices/Device.vala
     Devices/iPodDevice.vala
     Devices/AndroidDevice.vala
     Devices/CDRomDevice.vala
@@ -138,9 +139,12 @@ vala_precompile(VALA_C
     Views/CDRomViewWrapper.vala
     Views/DeviceViewWrapper.vala
     Views/DeviceView.vala
+    Views/ContentView.vala
     Views/ListView/SimilarPane.vala
     Views/ListView/MusicTreeModel.vala
     Views/ListView/MusicTreeView.vala
+    Views/ListView/PodcastTreeModel.vala
+    Views/ListView/PodcastListView.vala
     Views/CellDataFunctionHelper.vala
     Views/DeviceSummaryWidget.vala
     Views/AlbumView/AlbumViewModel.vala
@@ -149,8 +153,6 @@ vala_precompile(VALA_C
     #    Views/External/ListView/ExternalMusicTreeModel.vala
     #    Views/External/ExternalViewWrapper.vala
     Views/CellRendererRating.vala
-    IO/Device.vala
-    IO/DeviceManager.vala
     Settings.vala
     Dialogs/EqualizerWindow.vala
     Dialogs/PresetNameWindow.vala

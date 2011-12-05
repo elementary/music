@@ -65,7 +65,11 @@ public class BeatBox.Song : GLib.Object{
 	public uint last_played { get; set; default = 0; }
 	public uint last_modified { get; set; default = 0; }
 	public string lastfm_url { get; set; default = ""; }
+	
 	public string podcast_url { get; set; default = ""; }
+	public bool is_new_podcast { get; set; default = false; }
+	public int resume_pos { get; set; default = 0; } // for podcasts and audiobooks
+	public int podcast_date { get; set; default = 0; }
 	
 	private string _album_path;
 	public bool has_embedded { get; set; default = false; }
@@ -143,6 +147,13 @@ public class BeatBox.Song : GLib.Object{
 		rv.showIndicator = showIndicator;
 		rv.unique_status_image = unique_status_image;
 		
+		// added for podcasts/audiobooks
+		rv.mediatype = mediatype;
+		rv.podcast_url = podcast_url;
+		rv.is_new_podcast = is_new_podcast;
+		rv.resume_pos = resume_pos;
+		rv.podcast_date = podcast_date;
+		
 		return rv;
 	}
 	
@@ -189,6 +200,18 @@ public class BeatBox.Song : GLib.Object{
 		rv.length = track.tracklen  / 1000;
 		rv.file_size = track.size / 1000000;
 		
+		if(track.mediatype == GPod.MediaType.AUDIO)
+			rv.mediatype = 0;
+		else if(track.mediatype == GPod.MediaType.PODCAST)
+			rv.mediatype = 1;
+		else if(track.mediatype == GPod.MediaType.AUDIOBOOK)
+			rv.mediatype = 2;
+		
+		rv.podcast_url = track.podcasturl;
+		rv.is_new_podcast = track.mark_unplayed == 1;
+		rv.resume_pos = (int)track.bookmark_time;
+		rv.podcast_date = (int)track.time_released;
+		
 		if(rv.artist == "" && rv.album_artist != null)
 			rv.artist = rv.album_artist;
 		else if(rv.album_artist == "" && rv.artist != null)
@@ -228,6 +251,8 @@ public class BeatBox.Song : GLib.Object{
 		t.lyrics_flag = 1;
 		t.description = lyrics;
 		
+		// TODO: Podcast stuff
+		
 		if(t.artist == "" && t.albumartist != null)
 			t.artist = t.albumartist;
 		else if(t.albumartist == "" && t.artist != null)
@@ -264,6 +289,8 @@ public class BeatBox.Song : GLib.Object{
 		t.mediatype = 1;
 		t.lyrics_flag = 1;
 		t.description = lyrics;
+		
+		// TODO: podcast stuff
 		
 		return t;
 	}

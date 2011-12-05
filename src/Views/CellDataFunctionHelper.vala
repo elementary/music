@@ -24,15 +24,13 @@ using Gtk;
 using Gdk;
 
 public class BeatBox.CellDataFunctionHelper : GLib.Object {
-	MusicTreeView mtv;
 	private Pixbuf _canvas;
 	private Pixbuf not_starred;
 	private Pixbuf starred;
 	
-	public CellDataFunctionHelper(MusicTreeView mt) {
-		mtv = mt;
-		starred = mtv.render_icon("starred", IconSize.SMALL_TOOLBAR, null);
-		not_starred = mtv.render_icon("not-starred", IconSize.SMALL_TOOLBAR, null);
+	public CellDataFunctionHelper(Gdk.Pixbuf starred, Gdk.Pixbuf not_starred) {
+		this.starred = starred;
+		this.not_starred = not_starred;
 		
 		_canvas = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, starred.width * 5, starred.height);
 	}

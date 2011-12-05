@@ -9,8 +9,13 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 		this.mount = mount;
 	}
 	
-	public bool initialize() {
+	public bool start_initialization() {
 		return false;
+	}
+	
+	public void finish_initialization() {
+		
+		//initialized(this);
 	}
 	
 	public string getContentType() {

@@ -34,8 +34,8 @@ public class BeatBox.DeviceView : VBox {
 	void buildUI() {
 		bar = new DeviceBar(lm, d);
 		summary = new DeviceSummaryWidget(lm, lw, d);
-		music_list = new DeviceViewWrapper(lm, lw, d.get_songs(), "Artist", SortType.ASCENDING, MusicTreeView.Hint.DEVICE, -1, d);
-		podcast_list = new DeviceViewWrapper(lm, lw, new Gee.LinkedList<int>(), "Artist", SortType.ASCENDING, MusicTreeView.Hint.DEVICE, -1, d);
+		music_list = new DeviceViewWrapper(lm, lw, d.get_songs(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
+		podcast_list = new DeviceViewWrapper(lm, lw, new Gee.LinkedList<int>(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
 		
 		pack_start(bar, false, true, 0);
 		pack_end(summary, true, true, 0);
@@ -55,9 +55,9 @@ public class BeatBox.DeviceView : VBox {
 		podcast_list.doUpdate(podcast_list.getView(), podcast_list.songs, true, false);
 	}
 	
-	public void setIsCurrentView(bool val) {
-		music_list.setIsCurrentView(val);
-		podcast_list.setIsCurrentView(val);
+	public void set_is_current_view(bool val) {
+		music_list.set_is_current_view(val);
+		podcast_list.set_is_current_view(val);
 		
 		if(val) {
 			// loop through and turn on/off views
@@ -65,7 +65,7 @@ public class BeatBox.DeviceView : VBox {
 				if(get_children().nth_data(i) is ViewWrapper) {
 					ViewWrapper vw = (ViewWrapper)get_children().nth_data(i);
 					
-					vw.setIsCurrentView(vw.visible);
+					vw.set_is_current_view(vw.visible);
 					if(vw.visible) {
 						vw.doUpdate(vw.getView(), vw.songs, true, false);
 					}
@@ -76,7 +76,7 @@ public class BeatBox.DeviceView : VBox {
 						lw.miller.populateColumns("device", vw.songs);
 					}
 					lw.updateMillerColumns();*/
-					vw.setStatusBarText();
+					vw.set_statusbar_text();
 				}
 				else {
 					//lw.updateMillerColumns();
@@ -104,7 +104,7 @@ public class BeatBox.DeviceView : VBox {
 		}
 		
 		lw.updateMillerColumns();
-		setIsCurrentView(true);
+		set_is_current_view(true);
 	}
 	
 	public int currentViewIndex() {

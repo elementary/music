@@ -10,8 +10,13 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		this.icon = mount.get_icon();
 	}
 	
-	public bool initialize() {
+	public bool start_initialization() {
 		return false;
+	}
+	
+	public void finish_initialization() {
+		
+		//initialized(this);
 	}
 	
 	public string getContentType() {

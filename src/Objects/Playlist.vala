@@ -28,13 +28,13 @@ public class BeatBox.Playlist : Object {
 	
 	public Playlist() {
 		_name = "New Playlist";
-		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.PLAYLIST);
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_songs = new Gee.LinkedList<int>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
 		_songs = new Gee.LinkedList<int>();
-		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.PLAYLIST);
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_rowid = rowid;
 		_name = name;
 	}

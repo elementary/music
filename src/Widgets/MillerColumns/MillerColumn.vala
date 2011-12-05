@@ -81,28 +81,30 @@ public class BeatBox.MillerColumns : HBox {
 	}
 	
 	public virtual void searchFieldChanged() {
-		if(visible)
-			populateColumns( (lw.sideTree.getSelectedObject() is Device) ? "device" : "", songs);
+		if(visible) {
+			populateColumns("dont care", songs);
+		}
 	}
 	
 	public void populateColumns(string trigger, Collection<int> songs) {
-		Collection<int> searched_songs;
-		if(trigger == "device") {
-			searched_songs = lm.temps_from_search(lw.searchField.get_text(), 
-															"All Genres", 
-															"All Artists",
-															"All Albums",
-															songs);
+		this.songs = songs;
+		
+		Widget w = lw.sideTree.getSelectedWidget();
+		ViewWrapper.Hint hint = ViewWrapper.Hint.MUSIC;
+		
+		if(w is ViewWrapper) {
+			hint = ((ViewWrapper)w).hint;
 		}
 		else {
-			searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
-															"All Genres", 
-															"All Artists",
-															"All Albums",
-															songs);
+			// no need to populate if not viewing viewwrapper
+			return;
 		}
 		
-		this.songs = songs;
+		Collection<int> searched_songs = new LinkedList<int>();
+		Collection<int> searched_songs_albums = new LinkedList<int>();
+		lm.do_search(lw.searchField.get_text(), hint,
+					"All Genres", "All Artists", "All Albums",
+					songs, ref searched_songs, ref searched_songs_albums);
 		
 		var artistsSet = new HashSet<string>();
 		var albumsSet = new HashSet<string>();
@@ -129,11 +131,22 @@ public class BeatBox.MillerColumns : HBox {
 	}
 	
 	public virtual void genreSelected(string cat, string text) {
-		Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
-															genres.get_selected(), 
-															artists.get_selected(),
-															albums.get_selected(),
-															songs);
+		Widget w = lw.sideTree.getSelectedWidget();
+		ViewWrapper.Hint hint = ViewWrapper.Hint.MUSIC;
+		
+		if(w is ViewWrapper) {
+			hint = ((ViewWrapper)w).hint;
+		}
+		else {
+			// no need to populate if not viewing viewwrapper
+			return;
+		}
+		
+		Collection<int> searched_songs = new LinkedList<int>();
+		Collection<int> searched_songs_album = new LinkedList<int>();
+		lm.do_search(lw.searchField.get_text(), hint,
+					genres.get_selected(), artists.get_selected(), albums.get_selected(),
+					songs, ref searched_songs, ref searched_songs_album);
 		
 		var artistsSet = new HashSet<string>();
 		var albumsSet = new HashSet<string>();
@@ -149,11 +162,22 @@ public class BeatBox.MillerColumns : HBox {
 		changed();
 	}
 	public virtual void artistSelected(string cat, string text) {
-		Collection<int> searched_songs = lm.songs_from_search(lw.searchField.get_text(), 
-															genres.get_selected(), 
-															artists.get_selected(),
-															albums.get_selected(),
-															songs);
+		Widget w = lw.sideTree.getSelectedWidget();
+		ViewWrapper.Hint hint = ViewWrapper.Hint.MUSIC;
+		
+		if(w is ViewWrapper) {
+			hint = ((ViewWrapper)w).hint;
+		}
+		else {
+			// no need to populate if not viewing viewwrapper
+			return;
+		}
+		
+		Collection<int> searched_songs = new LinkedList<int>();
+		Collection<int> searched_songs_album = new LinkedList<int>();
+		lm.do_search(lw.searchField.get_text(), hint,
+					genres.get_selected(), artists.get_selected(), albums.get_selected(),
+					songs, ref searched_songs, ref searched_songs_album);
 		
 		var albumsSet = new HashSet<string>();
 		

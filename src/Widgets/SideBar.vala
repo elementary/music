@@ -242,13 +242,13 @@ namespace ElementaryWidgets {
 		public void setVisibility(TreeIter it, bool val) {
 			TreeIter iter = convertToChild(it);
 			
-			tree.set(it, SideBarColumn.COLUMN_VISIBLE, val);
+			tree.set(iter, SideBarColumn.COLUMN_VISIBLE, val);
 		}
 		
 		public void setName(TreeIter it, string name) {
 			TreeIter iter = convertToChild(it);
 			
-			tree.set(it, SideBarColumn.COLUMN_TEXT, name);
+			tree.set(iter, SideBarColumn.COLUMN_TEXT, name);
 		}
 		
 		// parent should be filter iter
@@ -306,29 +306,29 @@ namespace ElementaryWidgets {
 		
 		public Widget? getSelectedWidget() {
 			TreeModel m;
-			TreeIter? iter;
+			TreeIter iter;
 			
 			if(!this.get_selection().get_selected(out m, out iter)) { // user has nothing selected, reselect last selected
-				if(iter == null)
+				//if(iter == null)
 					return null;
 			}
 			
 			Widget w;
-			filter.get(iter, SideBarColumn.COLUMN_WIDGET, out w);
+			m.get(iter, SideBarColumn.COLUMN_WIDGET, out w);
 			return w;
 		}
 		
 		public Object? getSelectedObject() {
 			TreeModel m;
-			TreeIter? iter;
+			TreeIter iter;
 			
 			if(!this.get_selection().get_selected(out m, out iter)) { // user has nothing selected, reselect last selected
-				if(iter == null)
+				//if(iter == null)
 					return null;
 			}
 			
 			Object o;
-			filter.get(iter, SideBarColumn.COLUMN_OBJECT, out o);
+			m.get(iter, SideBarColumn.COLUMN_OBJECT, out o);
 			return o;
 		}
 		

@@ -368,6 +368,22 @@ namespace GPod {
     public Gdk.Pixbuf get_thumbnail(int width, int height);
   }
   
+  [CCode (cname = "Itdb_Mediatype", cprefix="ITDB_MEDIATYPE_")]
+  public enum MediaType {
+	AUDIO,
+    MOVIE,
+    PODCAST,
+    AUDIOBOOK,
+    MUSICVIDEO,
+    TVSHOW,
+    RINGTONE,
+    RENTAL,
+    ITUNES_EXTRA,
+    MEMO,
+    ITUNES_U,
+    EPUB_BOOK
+  }
+  
   [CCode (cname = "Itdb_IpodGeneration", cprefix="ITDB_IPOD_GENERATION_")]
   public enum iPodGeneration {
 	UNKNOWN,

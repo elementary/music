@@ -27,14 +27,15 @@ using Gee;
 using Gtk;
 
 public class BeatBox.TreeViewSetup : GLib.Object {
-	public static const int COLUMN_COUNT = 18;
+	public static const int MUSIC_COLUMN_COUNT = 18;
+	public static const int PODCAST_COLUMN_COUNT = 11;
 	
-	public MusicTreeView.Hint hint;
+	public ViewWrapper.Hint hint;
 	private string _sort_column; // Artist, Album
 	private Gtk.SortType _sort_direction; // ASCENDING, DESCENDING
 	private LinkedList<TreeViewColumn> _columns;
 	
-	public TreeViewSetup(string sort_col, SortType sort_dir, MusicTreeView.Hint hint) {
+	public TreeViewSetup(string sort_col, SortType sort_dir, ViewWrapper.Hint hint) {
 		this.hint = hint;
 		_sort_column = sort_col;
 		_sort_direction = sort_dir;
@@ -42,78 +43,130 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 		_columns = new LinkedList<TreeViewColumn>();
 		
 		/* initial column state */
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "id", 
-										"fixed_width", 10,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", " ", 
-										"fixed_width", 24,
-										"visible", true));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "#", 
-										"fixed_width", 40,
-										"visible", (hint == MusicTreeView.Hint.QUEUE || hint == MusicTreeView.Hint.HISTORY || hint == MusicTreeView.Hint.PLAYLIST)));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Track", 
-										"fixed_width", 60,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Title", 
-										"fixed_width", 220,
-										"visible", true));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Length", 
-										"fixed_width", 75,
-										"visible", true));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Artist", 
-										"fixed_width", 110,
-										"visible", true));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Album", 
-										"fixed_width", 200,
-										"visible", true));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Genre", 
-										"fixed_width", 70,
-										"visible", true));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Year", 
-										"fixed_width", 50,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Bitrate", 
-										"fixed_width", 70,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Rating", 
-										"fixed_width", 90,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Plays", 
-										"fixed_width", 40,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Skips", 
-										"fixed_width", 40,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Date Added", 
-										"fixed_width", 130,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Last Played", 
-										"fixed_width", 130,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "BPM", 
-										"fixed_width", 40,
-										"visible", false));
-		_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-										"title", "Pulser", 
-										"fixed_width", 40,
-										"visible", false));
+		if(hint != ViewWrapper.Hint.PODCAST  && hint != ViewWrapper.Hint.DEVICE_PODCAST &&
+		hint != ViewWrapper.Hint.AUDIOBOOK && hint != ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "id", 
+											"fixed_width", 10,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", " ", 
+											"fixed_width", 24,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "#", 
+											"fixed_width", 40,
+											"visible", (hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY || hint == ViewWrapper.Hint.PLAYLIST)));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Track", 
+											"fixed_width", 60,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Title", 
+											"fixed_width", 220,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Length", 
+											"fixed_width", 75,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Artist", 
+											"fixed_width", 110,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Album", 
+											"fixed_width", 200,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Genre", 
+											"fixed_width", 70,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Year", 
+											"fixed_width", 50,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Bitrate", 
+											"fixed_width", 70,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Rating", 
+											"fixed_width", 90,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Plays", 
+											"fixed_width", 40,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Skips", 
+											"fixed_width", 40,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Date Added", 
+											"fixed_width", 130,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Last Played", 
+											"fixed_width", 130,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "BPM", 
+											"fixed_width", 40,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Pulser", 
+											"fixed_width", 40,
+											"visible", false));
+		}
+		else if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "id", 
+											"fixed_width", 10,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", " ", 
+											"fixed_width", 24,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Episode", 
+											"fixed_width", 70,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Name", 
+											"fixed_width", 220,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Length", 
+											"fixed_width", 75,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Artist", 
+											"fixed_width", 110,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Date", 
+											"fixed_width", 70,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Category", 
+											"fixed_width", 100,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Comments", 
+											"fixed_width", 70,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Rating", 
+											"fixed_width", 90,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Pulser", 
+											"fixed_width", 40,
+											"visible", false));
+		}
+		else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+			
+		}
 		
 		
 		for(int index = 0; index < _columns.size; ++index) {
@@ -184,13 +237,14 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 	public void import_columns(string cols) {
 		string[] col_strings = cols.split("<column_seperator>", 0);
 		
-		if(col_strings.length - 1 == COLUMN_COUNT) { /* the '-1' because col_strings has blank column at end */
+		/*if(col_strings.length - 1 == COLUMN_COUNT) { // the '-1' because col_strings has blank column at end
 			_columns.clear();
 		}
 		else {
 			stdout.printf("Unsuccessful column data import. Falling back to default.\n");
 			return;
-		}
+		}*/
+		_columns.clear();
 		
 		int index;
 		for(index = 0; index < col_strings.length - 1; ++index) { /* the '-1' because col_strings has blank column at end */
@@ -238,9 +292,9 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 	public GPod.PlaylistSortOrder get_gpod_sortorder() {
 		if(sort_column == "#")
 			return GPod.PlaylistSortOrder.MANUAL;
-		else if(sort_column == "Track")
+		else if(sort_column == "Track" || sort_column == "Episode")
 			return GPod.PlaylistSortOrder.TRACK_NR;
-		else if(sort_column == "Title")
+		else if(sort_column == "Title" || sort_column == "Name")
 			return GPod.PlaylistSortOrder.TITLE;
 		else if(sort_column == "Length")
 			return GPod.PlaylistSortOrder.TIME;
@@ -254,6 +308,8 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 			return GPod.PlaylistSortOrder.BITRATE;
 		else if(sort_column == "Year")
 			return GPod.PlaylistSortOrder.YEAR;
+		else if(sort_column == "Date")
+			return GPod.PlaylistSortOrder.RELEASE_DATE;
 		else if(sort_column == "Date Added")
 			return GPod.PlaylistSortOrder.TIME_ADDED;
 		else if(sort_column == "Plays")
@@ -264,6 +320,8 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 			return GPod.PlaylistSortOrder.BPM;
 		else if(sort_column == "Rating")
 			return GPod.PlaylistSortOrder.RATING;
+		else if(sort_column == "Comments")
+			return GPod.PlaylistSortOrder.DESCRIPTION;
 		else
 			return GPod.PlaylistSortOrder.MANUAL;
 	}

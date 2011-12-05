@@ -10,7 +10,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 	
 	bool cancelled;
 	
-	public CDRomViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, MusicTreeView.Hint the_hint, int id, Device d) {
+	public CDRomViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
 		base(lmm, lww, songs, sort, dir, the_hint, id);
 		this.d = d;
 		cancelled = false;
@@ -94,7 +94,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 			
 			var updated = new LinkedList<int>();
 			updated.add(song_being_ripped.rowid);
-			list.songs_updated(updated);
+			list.update_songs(updated);
 			
 			return true;
 		}

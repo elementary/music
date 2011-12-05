@@ -456,7 +456,7 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 	 */
 	public void addDefaultSmartPlaylists() {
 		try {
-			TreeViewSetup tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, MusicTreeView.Hint.SMART_PLAYLIST);
+			TreeViewSetup tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
 			

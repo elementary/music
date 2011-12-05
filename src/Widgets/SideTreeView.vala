@@ -310,10 +310,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				return false;
 				
 			if(getWidget(iter) is ViewWrapper) {
-				((ViewWrapper)getWidget(iter)).list.setAsCurrentList(0);
+				((ViewWrapper)getWidget(iter)).list.set_as_current_list(0);
+				((ViewWrapper)getWidget(iter)).set_statusbar_text();
 			}
-			
-			((ViewWrapper)current_widget).setStatusBarText();
 		}
 		
 		return false;
@@ -326,7 +325,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return;
 			
 		if(getWidget(iter) is ViewWrapper) {
-			((ViewWrapper)getWidget(iter)).list.setAsCurrentList(1);
+			((ViewWrapper)getWidget(iter)).list.set_as_current_list(1);
 			
 			lm.playSong(lm.songFromCurrentIndex(0));
 			lm.player.play();
@@ -377,7 +376,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				return false;
 			
 			if(w is ViewWrapper) {
-				((ViewWrapper)w).setIsCurrentView(true);
+				((ViewWrapper)w).set_is_current_view(true);
 				
 				if(!lw.initializationFinished) {
 					return false;
@@ -389,6 +388,12 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.song_ids(), false, false);
+				}
+				else if(iter == library_podcasts_iter) {
+					ViewWrapper vw = (ViewWrapper)w;
+					
+					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.podcast_ids(), false, false);
 				}
 				else if(iter == network_store_iter) {
 					Store.StoreView sv = (Store.StoreView)w;
@@ -441,7 +446,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					lw.miller.populateColumns( (o is Device) ? "device" : "", ((ViewWrapper)w).songs);
 				}
 				lw.updateMillerColumns();
-				((ViewWrapper)w).setStatusBarText();
+				((ViewWrapper)w).set_statusbar_text();
 			}
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(true);
@@ -457,20 +462,20 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					lw.miller.populateColumns( (o is Device) ? "device" : "", ((DeviceView)w).music_list.songs);
 				}
 				lw.updateMillerColumns();
-				((DeviceView)w).music_list.setStatusBarText();
+				((DeviceView)w).music_list.set_statusbar_text();
 			}
 		}
 		else {
 			w.hide();
 			
 			if(w is ViewWrapper) {
-				((ViewWrapper)w).setIsCurrentView(false);
+				((ViewWrapper)w).set_is_current_view(false);
 			}
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(false);
 			}
 			else if(w is DeviceView) {
-				((DeviceView)w).setIsCurrentView(false);
+				((DeviceView)w).set_is_current_view(false);
 			}
 		}
 		return false;

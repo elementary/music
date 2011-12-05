@@ -83,12 +83,17 @@ public class BeatBox.DeviceManager : GLib.Object {
 		added.set_mount(mount);
 		devices.add(added);
 		
-		if(added.initialize()) {
-			device_added(added);
+		if(added.start_initialization()) {
+			added.finish_initialization();
+			added.initialized.connect(deviceInitialized);
 		}
 		else {
 			mount_removed(added.get_mount());
 		}
+	}
+	
+	void deviceInitialized(Device d) {
+		device_added(d);
 	}
 	
 	public virtual void mount_changed (Mount mount) {

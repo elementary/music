@@ -34,11 +34,11 @@ public class BeatBox.SimilarPane : MusicTreeView {
 	public signal void playlist_saved(Playlist p);
 	
 	public SimilarPane(BeatBox.LibraryManager lm, BeatBox.LibraryWindow lw) {
-		base(lm, lw, lm.similar_setup.sort_column, lm.similar_setup.sort_direction, MusicTreeView.Hint.SIMILAR, -1);
+		base(lm, lw, lm.similar_setup.sort_column, lm.similar_setup.sort_direction, ViewWrapper.Hint.SIMILAR, -1);
 		
 		_have = new LinkedList<int>();
 		
-		//similars = new MusicTreeView(lm, lw, lm.similar_setup.sort_column, lm.similar_setup.sort_direction, MusicTreeView.Hint.SIMILAR, -1);
+		//similars = new MusicTreeView(lm, lw, lm.similar_setup.sort_column, lm.similar_setup.sort_direction, ViewWrapper.Hint.SIMILAR, -1);
 		
 		/* set up white error label */
 		/*errorBox = new EventBox();
@@ -75,14 +75,14 @@ public class BeatBox.SimilarPane : MusicTreeView {
 		_next = la;
 		_have = have;
 		
-		if(!is_current) {
+		if(!get_is_current()) {
 			updateDisplay();
 		}
 	}
 	
 	public void updateDisplay() {
 		bool do_transfer = false;
-		if(is_current)
+		if(get_is_current())
 			do_transfer = true;
 		
 		if(_have.size < 10) {
@@ -93,8 +93,8 @@ public class BeatBox.SimilarPane : MusicTreeView {
 			//errorBox.hide();
 		}
 		
-		showNext = _have;
-		populateView();
+		set_show_next(_have);
+		populate_view();
 		
 		_base = _next;
 		
@@ -111,7 +111,7 @@ public class BeatBox.SimilarPane : MusicTreeView {
 	
 	public virtual void transferPlaybackClicked() {
 		//set the similar songs to current, hide button, set current_index
-		setAsCurrentList(0);
+		set_as_current_list(0);
 		
 		//transferPlayback.hide();
 	}

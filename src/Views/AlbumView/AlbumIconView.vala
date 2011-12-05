@@ -1,13 +1,13 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.AlbumView : ScrolledWindow {
+public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Collection<int> songs;
 	
-	public Collection<int> showNext; // these are populated if necessary when user opens this view.
-	private Collection<int> showingSongs;
+	private Collection<int> _show_next; // these are populated if necessary when user opens this view.
+	private Collection<int> _showing_songs;
 	private string last_search;
 	LinkedList<string> timeout_search;
 	
@@ -16,8 +16,9 @@ public class BeatBox.AlbumView : ScrolledWindow {
 	
 	Gdk.Pixbuf defaultPix;
 	
-	public bool isCurrentView;
-	public bool needsUpdate;
+	bool _is_current;
+	bool _is_current_view;
+	bool needsUpdate;
 	
 	public signal void itemClicked(string artist, string album);
 	
@@ -27,7 +28,7 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		lw = lww;
 		songs = ssongs;
 		
-		showingSongs = new LinkedList<int>();
+		_showing_songs = new LinkedList<int>();
 		last_search = "";
 		timeout_search = new LinkedList<string>();
 		
@@ -62,9 +63,89 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		this.size_allocate.connect(resized);
 	}
 	
-	public void set_songs(Collection<int> new_songs) {
-		songs = new_songs;
+	public void set_is_current(bool val) {
+		_is_current = val;
+		//model.is_current = val;
 	}
+	
+	public bool get_is_current() {
+		return _is_current;
+	}
+	
+	public void set_is_current_view(bool val) {
+		_is_current_view = val;
+	}
+	
+	public bool get_is_current_view() {
+		return _is_current_view;
+	}
+	
+	public void set_hint(ViewWrapper.Hint hint) {
+		// nothing
+	}
+	
+	public ViewWrapper.Hint get_hint() {
+		return ViewWrapper.Hint.MUSIC;
+	}
+	
+	public void set_show_next(Collection<int> songs) {
+		_show_next = songs;
+	}
+	
+	public void set_relative_id(int id) {
+		// do nothing
+	}
+	
+	public int get_relative_id() {
+		return 0;
+	}
+	
+	public Collection<int> get_songs() {
+		return songs;
+	}
+	
+	public Collection<int> get_showing_songs() {
+		return _showing_songs;
+	}
+	
+	public void set_as_current_list(int song_id) {
+		set_is_current(true);
+	}
+	
+	public void set_statusbar_text() {
+		uint count = 0;
+		uint total_time = 0;
+		uint total_mbs = 0;
+		
+		foreach(int id in _showing_songs) {
+			++count;
+			total_time += lm.song_from_id(id).length;
+			total_mbs += lm.song_from_id(id).file_size;
+		}
+		
+		string fancy = "";
+		if(total_time < 3600) { // less than 1 hour show in minute units
+			fancy = (total_time/60).to_string() + " minutes";
+		}
+		else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
+			fancy = (total_time/3600).to_string() + " hours";
+		}
+		else { // units in days
+			fancy = (total_time/(24 * 3600)).to_string() + " days";
+		}
+		
+		string fancy_size = "";
+		if(total_mbs < 1000)
+			fancy_size = ((float)(total_mbs)).to_string() + " MB";
+		else 
+			fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
+		
+		lw.set_statusbar_text(count.to_string() + " items, " + fancy + ", " + fancy_size);
+	}
+	
+	/*public void set_songs(Collection<int> new_songs) {
+		songs = new_songs;
+	}*/
 	
 	public void resized(Allocation alloc) {
 		icons.set_columns((alloc.width - (icons.margin * 2))/( icons.get_item_width()));
@@ -74,16 +155,16 @@ public class BeatBox.AlbumView : ScrolledWindow {
 	 * is set, makes sure that only items that fit those filters are
 	 * shown
 	*/
-	public void populateView() {
-		/*if(showNext == showingSongs) {
+	public void populate_view() {
+		/*if(_show_next == _showing_songs) {
 			stdout.printf("no need to repopulate album view\n");
 			return;
 		}*/
 		
-		showingSongs = showNext;
+		_showing_songs = _show_next;
 		
         var toShowS = new LinkedList<Song>();
-        foreach(int i in showingSongs)
+        foreach(int i in _showing_songs)
 			toShowS.add(lm.song_from_id(i));
         
         // first sort the songs so we know they are grouped by artists, then albums
@@ -105,6 +186,10 @@ public class BeatBox.AlbumView : ScrolledWindow {
 		icons.set_model(model);
 		
 		needsUpdate = false;
+	}
+	
+	public void update_songs(Collection<int> songs) {
+		// nothing to do
 	}
 	
 	public static int songCompareFunc(Song a, Song b) {
