@@ -94,6 +94,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 		findNewItems(rss, node, mp3_urls, ref new_podcasts, 10);
 		
 		lm.add_songs(new_podcasts, true);
+		lw.updateSensitivities();
 		
 		return new_podcasts.size > 0;
 	}

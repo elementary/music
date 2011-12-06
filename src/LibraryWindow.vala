@@ -597,11 +597,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		searchField.set_sensitive(haveSongs);
 		viewSelector.set_sensitive(haveSongs);
 		
-		mainViews.set_visible(folderSet);
+		mainViews.set_visible(haveSongs);
 		//miller.set_visible(haveSongs && viewSelector.selected == 2 && showingSongList);
-		welcomeScreen.set_visible(!folderSet);
+		welcomeScreen.set_visible(!haveSongs);
 		welcomeScreen.set_sensitivity(0, !doingOps);
-		statusBar.set_visible(folderSet);
+		statusBar.set_visible(haveSongs);
 		
 		infoPanel.set_visible(haveSongs && showMore && !nullSong);
 		infoPanelChooser.set_visible(haveSongs && !nullSong);
@@ -1046,14 +1046,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.resetView();
 		
 		// clear all other playlists, reset to Music, populate music
-		mainViews.get_children().foreach( (vw) => {
-			if(vw is ViewWrapper && !(vw is CDRomViewWrapper))
-				((ViewWrapper)vw).clear();
-		});
+		/*mainViews.get_children().foreach( (w) => {
+			if(w is ViewWrapper && !(w is CDRomViewWrapper) && !(w is DeviceViewWrapper))
+				ViewWrapper vw = (ViewWrapper)w;
+				.doUpdate(vw.currentView, 
+		});*/
+		searchField.changed();
 		
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
 		vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
 		miller.populateColumns("", lm.song_ids());
+		
+		vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_podcasts_iter));
+		vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true);
 	}
 	
 	public virtual void musicCounted(int count) {
@@ -1069,7 +1074,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree();
+		//resetSideTree();
+		searchField.changed();
 		
 		if(not_imported.size > 0) {
 			NotImportedWindow nim = new NotImportedWindow(this, not_imported, lm.settings.getMusicFolder());
@@ -1108,7 +1114,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree();
+		//resetSideTree();
+		searchField.changed();
 		
 		updateSensitivities();
 	}
@@ -1123,7 +1130,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree();
+		//resetSideTree();
+		searchField.changed();
 		
 		updateSensitivities();
 	}

@@ -191,6 +191,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 				_audiobooks.set(s.rowid, s);
 		}
 		
+		if(_songs.size == 0)
+			settings.setMusicFolder("");
+		
 		foreach(SmartPlaylist p in dbm.load_smart_playlists()) {
 			_smart_playlists.set(p.rowid, p);
 		}
@@ -313,10 +316,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 			progress_notification("Importing music from <b>" + folder + "</b>.", 0.0);
 			
 			clear_songs();
-			_locals.clear();
 			_queue.clear();
 			dbm.clear_songs();
 			lw.resetSideTree();
+			
+			foreach(int i in _songs.keys) {
+				stdout.printf("remainging: %d %s\n", i, song_from_id(i).title);
+			}
 			
 			settings.setMusicFolder(folder);
 			try {
@@ -501,8 +507,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		LinkedList<string> paths = new LinkedList<string>();
 		LinkedList<Song> removed = new LinkedList<Song>();
 		
+		string music_folder = settings.getMusicFolder();
 		foreach(Song s in _songs.values) {
-			if(!s.isTemporary && !s.isPreview)
+			if(!s.isTemporary && !s.isPreview && s.file.has_prefix(music_folder))
 				paths.add(s.file);
 		}
 		
@@ -511,13 +518,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		var not_imported = new LinkedList<string>();
 		var new_songs = new LinkedList<Song>();
-		fo.rescan_music(GLib.File.new_for_path(settings.getMusicFolder()), ref paths, ref not_imported, ref new_songs);
+		fo.rescan_music(GLib.File.new_for_path(music_folder), ref paths, ref not_imported, ref new_songs);
 		
 		// all songs remaining are no longer in folder hierarchy
 		lock(_songs) {
 			foreach(Song s in _songs.values) {
 				foreach(string path in paths) {
-					if(s.file == path && !s.isTemporary && !s.isPreview) {
+					if(s.file == path && !s.isTemporary && !s.isPreview && s.file.has_prefix(music_folder)) {
 						removed.add(s);
 					}
 				}
@@ -688,20 +695,17 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void clear_songs() {
 		var reAdd = new LinkedList<Song>();
 		foreach(int i in _songs.keys) {
-			if(_songs.get(i).isTemporary || _songs.get(i).isPreview) {
-				reAdd.add(_songs.get(i));
+			if(!(_songs.get(i).isTemporary || _songs.get(i).isPreview || _songs.get(i).file.has_prefix("http://"))) {
+				_songs.unset(i);
+				_podcasts.unset(i);
+				_audiobooks.unset(i);
+				_locals.remove(i);
 			}
-		}
-		
-		_songs.clear();
-		
-		foreach(Song s in reAdd) {
-			_songs.set(s.rowid, s);
 		}
 	}
 	
 	public int song_count() {
-		return _locals.size;
+		return _songs.size;
 	}
 	
 	public Collection<Song> songs() {
@@ -1024,6 +1028,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			else if(s.mediatype == 2)
 				_audiobooks.unset(s.rowid);
 		}
+		
+		if(_songs.size == 0)
+			settings.setMusicFolder("");
 		
 		lw.updateSensitivities();
 	}
