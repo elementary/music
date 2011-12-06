@@ -82,8 +82,8 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				_db.execute("""CREATE TABLE songs (`file` TEXT, 'file_size' INT, `title` TEXT,`artist` TEXT, 'composer' TEXT, 'album_artist' TEXT,
 				`album` TEXT, 'grouping' TEXT, `genre` TEXT,`comment` TEXT, 'lyrics' TEXT, 'album_path' TEXT, 'has_embedded' INT, 
 				`year` INT, `track` INT, 'track_count' INT, 'album_number' INT, 'album_count' INT, `bitrate` INT, `length` INT, `samplerate` INT, 
-				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT,
-				 `lastplayed` INT, 'lastmodified' INT)""");
+				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'lastmodified' INT, 'mediatype' INT, 
+				'podcast_rss' TEXT, 'podcast_url', TEXT, 'podcast_date' INT, 'is_new_podcast' INT, 'resume_pos', INT)""");
 				
 				
 				
@@ -177,6 +177,12 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				s.date_added = (uint)results.fetch_int(25);
 				s.last_played = (uint)results.fetch_int(26);
 				s.last_modified = (uint)results.fetch_int(27);
+				s.mediatype = (int)results.fetch_int(28);
+				s.podcast_rss = results.fetch_string(29);
+				s.podcast_url = results.fetch_string(30);
+				s.podcast_date = results.fetch_int(31);
+				s.is_new_podcast = (results.fetch_int(32) == 1) ? true : false;
+				s.resume_pos = results.fetch_int(33);
 				
 				rv.add(s);
 			}
@@ -242,10 +248,12 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare ("""INSERT INTO 'songs' ('rowid', 'file', 'file_size', 'title', 'artist', 'composer', 'album_artist',
 'album', 'grouping', 'genre', 'comment', 'lyrics', 'album_path', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
-'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified') 
+'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified', 'mediatype', 'podcast_rss',
+'podcast_url', 'podcast_date', 'is_new_podcast', 'resume_pos') 
 VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping, 
 :genre, :comment, :lyrics, :album_path, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate, 
-:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified);""");
+:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :mediatype, :podcast_rss, :podcast_url, :podcast_date, :is_new_podcast,
+:resume_pos);""");
 			
 			foreach(Song s in songs) {
 				if(s.rowid > 0) {
@@ -277,6 +285,12 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 					query.set_int(":dateadded", (int)s.date_added);
 					query.set_int(":lastplayed", (int)s.last_played);
 					query.set_int(":lastmodified", (int)s.last_modified);
+					query.set_int(":mediatype", s.mediatype);
+					query.set_string(":podcast_rss", s.podcast_rss);
+					query.set_string(":podcast_url", s.podcast_url);
+					query.set_int(":podcast_date", s.podcast_date);
+					query.set_int(":is_new_podcast", s.is_new_podcast ? 1 : 0);
+					query.set_int(":resume_pos", s.resume_pos);
 					
 					query.execute();
 				}
@@ -314,7 +328,12 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 	public void update_songs(Gee.Collection<Song> songs) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `songs` SET file=:file, file_size=:file_size, title=:title, artist=:artist, composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics, album_path=:album_path, has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number, album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified WHERE rowid=:rowid");
+			Query query = transaction.prepare("""UPDATE `songs` SET file=:file, file_size=:file_size, title=:title, artist=:artist,
+composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics, 
+album_path=:album_path, has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number, 
+album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, 
+dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediatype=:mediatype, podcast_rss=:podcast_rss, podcast_url=:podcast_url,
+podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_pos WHERE rowid=:rowid""");
 			
 			foreach(Song s in songs) {
 				if(s.rowid != -2 && s.rowid > 0) {
@@ -347,6 +366,12 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 					query.set_int(":dateadded", (int)s.date_added);
 					query.set_int(":lastplayed", (int)s.last_played);
 					query.set_int(":lastmodified", (int)s.last_modified);
+					query.set_int(":mediatype", s.mediatype);
+					query.set_string(":podcast_rss", s.podcast_rss);
+					query.set_string(":podcast_url", s.podcast_url);
+					query.set_int(":podcast_date", s.podcast_date);
+					query.set_int(":is_new_podcast", s.is_new_podcast ? 1 : 0);
+					query.set_int(":resume_pos", s.resume_pos);
 					
 					query.execute();
 				}

@@ -20,7 +20,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			mp3_urls.add(pod.podcast_url);
 		}
 		
-		LinkedList<int> new_podcasts = new LinkedList<int>();
+		LinkedList<Song> new_podcasts = new LinkedList<Song>();
 		foreach(string rss in rss_urls) {
 			stdout.printf("podcast_rss: %s\n", rss);
 			
@@ -33,19 +33,9 @@ public class BeatBox.PodcastManager : GLib.Object {
 			
 			Xml.Node* node = getRootNode(message);
 			if(node == null)
-				return null;
+				return;
 			
-			// get root node rss properties
-			/*for (Xml.Attr* prop = node->properties; prop != null; prop = prop->next) {
-				string attr_name = prop->name;
-
-				// Notice the ->children which points to a Node*
-				// (Attr doesn't feature content)
-				string attr_content = prop->children->content;
-				print_indent (attr_name, attr_content, '|');
-			}*/
-			
-			findNewItems(node, mp3_urls, ref new_podcasts);
+			findNewItems(rss, node, mp3_urls, ref new_podcasts, 10);
 		}
 		
 		// make sure s.mediatype = 1
@@ -55,29 +45,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			// somehow send signal that they were added. also try doing progressNotifications to refresh the list on the fly
 			
 			return false;
-		})
-	}
-	
-	public Xml.Node* getRootNode(Soup.Message message) {
-		Xml.Parser.init();
-		Xml.Doc* doc = Xml.Parser.parse_memory((string)message.response_body.data, (int)message.response_body.length);
-		if(doc == null)
-			return null;
-		//stdout.printf("%s\n", (string)message.response_body.data);
-        Xml.Node* root = doc->get_root_element ();
-        if (root == null) {
-            delete doc;
-            return null;
-        }
-        
-        // make sure we got an 'ok' response
-		for (Xml.Attr* prop = root->properties; prop != null && prop->name != "status" ; prop = prop->next) {
-			if(prop->children->content != "ok")
-				return null;
-		}
-		
-		// we actually want one level down from root. top level is <response status="ok" ... >
-		return root->children;
+		});
 	}
 	
 	public void parse_new_rss(string rss) {
@@ -91,34 +59,51 @@ public class BeatBox.PodcastManager : GLib.Object {
 		session.send_message(message);
 		
 		Xml.Node* node = getRootNode(message);
+		stdout.printf("got root node\n");
 		if(node == null)
-			return null;
-		
-		// get root node rss properties
-		string category, artist, 
-		for (Xml.Attr* prop = node->properties; prop != null; prop = prop->next) {
-			string attr_name = prop->name;
-			string attr_content = prop->children->content;
+			return;
+		stdout.printf("going to find new items for %s\n", rss);
+		HashSet<string> mp3_urls = new HashSet<string>();
+		LinkedList<Song> new_podcasts = new LinkedList<Song>();
+		foreach(int i in lm.podcast_ids()) {
+			var pod = lm.song_from_id(i);
 			
-			// maybe use this if it is useful later.
+			mp3_urls.add(pod.podcast_url);
 		}
 		
-		findNewItems(node, mp3_urls, ref new_podcasts);
+		findNewItems(rss, node, mp3_urls, ref new_podcasts, 10);
+		
+		lm.add_songs(new_podcasts, true);
+	}
+	
+	public Xml.Node* getRootNode(Soup.Message message) {
+		Xml.Parser.init();
+		Xml.Doc* doc = Xml.Parser.parse_memory((string)message.response_body.data, (int)message.response_body.length);
+		if(doc == null)
+			return null;
+		//stdout.printf("%s\n", (string)message.response_body.data);
+        Xml.Node* root = doc->get_root_element ();
+        if (root == null) {
+            delete doc;
+            return null;
+        }
+		
+		// we actually want one level down from root. top level is <response status="ok" ... >
+		return root;
 	}
 	
 	// parses a xml root node for new podcasts
-	public void findNewItems(Xml.Node* node, HashSet<string> existing, ref LinkedList<int> found, int max_items) {
-		string pod_title, category, summary, image_url, 
-		int id = int.parse(node->properties->children->content);
-		if(id <= 0)
-			return null;
+	public void findNewItems(string rss, Xml.Node* node, HashSet<string> existing, ref LinkedList<Song> found, int max_items) {
+		stdout.printf("findNewItems\n");
+		string pod_title = ""; string category = ""; string summary = ""; string image_url = "";
+		int image_width, image_height;
+		int visited_items = 0;
 		
-		// go down to channel level
-		node = node->children;
+		node = node->children->next;
 		
 		for (Xml.Node* iter = node->children; iter != null; iter = iter->next) {
-			if (iter->type != ElementType.ELEMENT_NODE) {
-				continue;
+			if (iter->type != Xml.ElementType.ELEMENT_NODE) {
+				continue; // should this be break?
 			}
 			
 			string name = iter->name;
@@ -129,24 +114,23 @@ public class BeatBox.PodcastManager : GLib.Object {
 			else if(name == "category")
 				category = content;
 			else if(name == "image") {
-				rv.type = content;
 				for (Xml.Node* image_iter = iter->children; image_iter != null; image_iter = image_iter->next) {
 					if(image_iter->name == "url")
 						image_url = image_iter->get_content();
 					else if(image_iter->name == "width")
-						image_width = image_iter->get_content();
+						image_width = int.parse(image_iter->get_content());
 					else if(image_iter->name == "height")
-						image_height = image_iter->get_content();
+						image_height = int.parse(image_iter->get_content());
 				}
 			}
 			else if(name == "itunes:summary") {
 				summary = iter->get_content();
 			}
 			else if(name == "item") {
+				stdout.printf("at item\n");
+				Song new_p = new Song("");
+			
 				for (Xml.Node* item_iter = iter->children; item_iter != null; item_iter = item_iter->next) {
-					string p_path = "";
-					
-					Song new_p = new Song(p_path);
 					if(item_iter->name == "title")
 						new_p.title = item_iter->get_content();
 					else if(item_iter->name == "enclosure") {
@@ -156,9 +140,10 @@ public class BeatBox.PodcastManager : GLib.Object {
 							
 							if(attr_name == "url") {
 								new_p.podcast_url = attr_content;
+								new_p.file = attr_content;
 							}
 							else if(attr_name == "length") {
-								new_p.length = 
+								new_p.length = int.parse(attr_content)/8000; // why 8000? no clue
 							}
 						}
 					}
@@ -168,9 +153,45 @@ public class BeatBox.PodcastManager : GLib.Object {
 									"%a, %d %b %Y %H:%M:%S %Z");
 						//s.podcast_date = tm.get_
 					}
+					else if(name == "itunes:duration") {
+						string[] dur_pieces = item_iter->get_content().split(":", 0);
+						
+						int seconds = 0; int minutes = 0; int hours = 0;
+						seconds = int.parse(dur_pieces[dur_pieces.length - 1]);
+						if(dur_pieces.length > 1)
+							minutes = int.parse(dur_pieces[dur_pieces.length - 2]);
+						if(dur_pieces.length > 2)
+							hours = int.parse(dur_pieces[dur_pieces.length - 3]);
+							
+						new_p.length = seconds + (minutes * 60) + (hours * 3600);
+					}
+				}
+				
+				if(new_p.podcast_url != null && !existing.contains(new_p.podcast_url) && new_p.podcast_url != "") {
+					new_p.mediatype = 1;
+					new_p.podcast_rss = rss;
+					new_p.genre = category;
+					new_p.artist = pod_title;
+					new_p.album_artist = pod_title;
+					//new_p.album = ??
+					new_p.comment = summary;
+					
+					stdout.printf("added item %s %s %s %s\n", new_p.podcast_url, new_p.genre, new_p.artist, new_p.comment);
+					
+					found.add(new_p);
+					++visited_items;
+					
+					if(visited_items >= max_items - 1)
+						return;
+				}
+				else {
+					stdout.printf("failed to fetch item\n");
+					++visited_items;
+					
+					if(visited_items >= max_items - 1)
+						return;
 				}
 			}
-			
 		}
 	}
 }

@@ -35,6 +35,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.FileOperator fo;
 	public BeatBox.Streamer player;
 	public BeatBox.DeviceManager dm;
+	public BeatBox.PodcastManager pm;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	public HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
@@ -115,6 +116,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		this.dbm = new DataBaseManager(this);
 		this.dbu = new DataBaseUpdater(dbm);
 		this.fo = new BeatBox.FileOperator(this, settings);
+		this.pm = new PodcastManager(this, lw);
 		
 		fo.fo_progress.connect(dbProgress);
 		dbm.db_progress.connect(dbProgress);
@@ -251,6 +253,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+		}
+		
+		pm.parse_new_rss("http://www.npr.org/rss/podcast.php?id=510208");
+		
+		foreach(var i in podcast_ids()) {
+			stdout.printf("podcast id %d %s %s\n", i, song_from_id(i).artist, song_from_id(i).title);
 		}
 	}
 	
@@ -976,9 +984,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			if(permanent)
 				_locals.add(s.rowid);
-			else if(s.mediatype == 1)
+			if(s.mediatype == 1)
 				_podcasts.set(s.rowid, s);
-			else if(s.mediatype == 2)
+			if(s.mediatype == 2)
 				_audiobooks.set(s.rowid, s);
 		}
 		
@@ -1355,7 +1363,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// actually play the song asap
-		if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://")) // normal file
+		if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://") && !song_from_id(id).file.contains("http://")) // normal file
 			player.setURI("file://" + song_from_id(id).file);
 		else
 			player.setURI(song_from_id(id).file); // probably cdda

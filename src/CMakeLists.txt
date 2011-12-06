@@ -84,6 +84,7 @@ vala_precompile(VALA_C
     Objects/MediaKeyListener.vala
     Objects/MPRIS.vala
     Objects/Playlist.vala
+    Objects/PodcastManager.vala
     Widgets/Welcome.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarSongsView.vala
