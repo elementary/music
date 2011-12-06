@@ -165,6 +165,7 @@ vala_precompile(VALA_C
     Dialogs/FileNotFoundDialog.vala
     Dialogs/RemoveFilesDialog.vala
     Dialogs/NotImportedWindow.vala
+    Dialogs/AddPodcastWindow.vala
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     ${ADD_OPTIONS}

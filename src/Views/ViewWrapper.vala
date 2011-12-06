@@ -109,6 +109,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		lw.viewSelector.mode_changed.connect(selectorViewChanged);
 		lm.song_played.connect(songPlayed);
+		lm.songs_added.connect(songs_added);
 		
 		lw.searchField.changed.connect(searchFieldChanged);
 		lw.miller.changed.connect(millerChanged);
@@ -162,6 +163,21 @@ public class BeatBox.ViewWrapper : VBox {
 			albumView.hide();
 			similarsFetched = false;
 		}
+	}
+	
+	void songs_added(LinkedList<int> ids) {
+		bool refreshPod = hint == ViewWrapper.Hint.PODCAST;
+		bool refreshMusic = hint == ViewWrapper.Hint.MUSIC;
+		
+		foreach(int i in ids) {
+			refreshPod = refreshPod && (lm.song_from_id(i).mediatype == 1);
+			refreshMusic = refreshMusic && (lm.song_from_id(i).mediatype == 0);
+		}
+		
+		if(refreshPod)
+			doUpdate(currentView, lm.podcast_ids(), true, true);
+		/*else if(refreshMusic)
+			doUpdate(currentView, lm.song_ids(), true, true);*/
 	}
 	
 	public void clear() {

@@ -42,6 +42,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public TreeIter playlists_history_iter;
 	public TreeIter playlists_similar_iter;
 	
+	//for podcast right click
+	Menu podcastMenu;
+	MenuItem podcastAdd;
+	MenuItem podcastRefresh;
+	
 	//for cdrom right click
 	Menu CDMenu;
 	MenuItem CDimportToLibrary;
@@ -68,6 +73,15 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void buildUI() {
+		podcastMenu = new Menu();
+		podcastAdd = new MenuItem.with_label("Add Podcast");
+		podcastRefresh = new MenuItem.with_label("Download new Episodes");
+		podcastMenu.append(podcastAdd);
+		podcastMenu.append(podcastRefresh);
+		podcastAdd.activate.connect(podcastAddClicked);
+		podcastRefresh.activate.connect(podcastRefreshClicked);
+		podcastMenu.show_all();
+		
 		CDMenu = new Menu();
 		CDimportToLibrary = new MenuItem.with_label("Import to Library");
 		CDeject = new MenuItem.with_label("Eject");
@@ -274,7 +288,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				string parent_name;
 				filter.get(parent, 4, out parent_name);
 				
-				if(parent == convertToFilter(playlists_iter)) {
+				if(iter == convertToFilter(library_podcasts_iter)) {
+					podcastMenu.popup (null, null, null, 3, get_current_event_time());
+				}
+				else if(parent == convertToFilter(playlists_iter)) {
 					if(iter == convertToFilter(playlists_similar_iter)) {
 						playlistSave.visible = true;
 						playlistMenu.popup (null, null, null, 3, get_current_event_time());
@@ -479,6 +496,16 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			}
 		}
 		return false;
+	}
+	
+	// podcast context menu
+	void podcastAddClicked() {
+		AddPodcastWindow apw = new AddPodcastWindow(lw);
+		apw.lw = lw; // avoid warnings
+	}
+	
+	void podcastRefreshClicked() {
+		lm.pm.find_new_podcasts();
 	}
 	
 	// cd rom context menu

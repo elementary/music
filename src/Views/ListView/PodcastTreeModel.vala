@@ -114,7 +114,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 			Song s = lm.song_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
 			
 			if(column == 0)
-				val = s.rowid;
+				val = (int)s.rowid;
 			else if(column == 1) {
 				if(s.unique_status_image != null)
 					val = s.unique_status_image;
@@ -130,7 +130,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 			else if(column == 4)
 				val = (int)s.length;
 			else if(column == 5)
-				val = s.artist; // displayed as 'Name'
+				val = s.artist; 
 			else if(column == 6)
 				val = (int)s.podcast_date;
 			else if(column == 7)
@@ -436,7 +436,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		if(_columns.get(sort_column_id) == "Artist") {
 			if(a_song.artist.down() == b_song.artist.down()) {
-				rv = (int)(a_song.track - b_song.track);
+				rv = (int)(b_song.podcast_date - a_song.podcast_date);
 			}
 			else
 				rv = advancedStringCompare(a_song.artist.down(), b_song.artist.down());

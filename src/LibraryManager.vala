@@ -87,8 +87,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void progress_cancel_clicked();
 	
 	public signal void current_cleared();
-	public signal void song_added(int id);
 	public signal void song_updated(int id);
+	public signal void songs_added(LinkedList<int> ids);
 	public signal void songs_updated(LinkedList<int> ids);
 	public signal void songs_removed(LinkedList<int> ids);
 	public signal void song_queued(int id);
@@ -184,6 +184,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Song s in dbm.load_songs()) {
 			_songs.set(s.rowid, s);
 			_locals.add(s.rowid);
+			
+			if(s.mediatype == 1)
+				_podcasts.set(s.rowid, s);
+			if(s.mediatype == 2)
+				_audiobooks.set(s.rowid, s);
 		}
 		
 		foreach(SmartPlaylist p in dbm.load_smart_playlists()) {
@@ -253,12 +258,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
-		}
-		
-		pm.parse_new_rss("http://www.npr.org/rss/podcast.php?id=510208");
-		
-		foreach(var i in podcast_ids()) {
-			stdout.printf("podcast id %d %s %s\n", i, song_from_id(i).artist, song_from_id(i).title);
 		}
 	}
 	
@@ -976,10 +975,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		
+		var added = new LinkedList<int>();
 		foreach(var s in new_songs) {
 			if(s.rowid == 0)
 				s.rowid = ++top_index;
 			
+			added.add(s.rowid);
 			_songs.set(s.rowid, s);
 			
 			if(permanent)
@@ -993,6 +994,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(new_songs.size > 0 && new_songs.to_array()[0].rowid != -2 && permanent) {
 			dbm.add_songs(new_songs);
 		}
+		
+		songs_added(added);
 	}
 	
 	public void remove_songs(LinkedList<Song> toRemove, bool trash) {
@@ -1367,6 +1370,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			player.setURI("file://" + song_from_id(id).file);
 		else
 			player.setURI(song_from_id(id).file); // probably cdda
+			
+		if(song_from_id(id).mediatype == 1 || song_from_id(id).mediatype == 2)
+			player.setPosition(song_from_id(id).resume_pos * 1000000000);
 		
 		//pause if paused
 		if(!playing)

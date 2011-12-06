@@ -421,12 +421,13 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 					view.insert_column_with_data_func(-1, tvc.title, cellTitle, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Artist")
 					view.insert_column_with_data_func(-1, tvc.title, cellArtist, cellHelper.stringTreeViewFiller);
-				else if(tvc.title == "Comments")
+				else if(tvc.title == "Comment")
 					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Category")
 					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
-				else
+				else {
 					view.insert_column(tvc, index);
+				}
 				
 				
 				view.get_column(index).resizable = true;
@@ -506,7 +507,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		columnArtist = new CheckMenuItem.with_label("Artist");
 		columnDate = new CheckMenuItem.with_label("Date");
 		columnRating = new CheckMenuItem.with_label("Rating");
-		columnComments = new CheckMenuItem.with_label("Comments");
+		columnComments = new CheckMenuItem.with_label("Comment");
 		columnCategory = new CheckMenuItem.with_label("Category");
 		updateColumnVisibilities();
 		columnChooserMenu.append(columnEpisode);
@@ -644,10 +645,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	
 	public virtual void viewColumnsChanged() {
 		if((int)(view.get_columns().length()) != lm.podcast_setup.PODCAST_COLUMN_COUNT) {
-			stdout.printf("returning %d %d\n", (int)(view.get_columns().length()), lm.podcast_setup.PODCAST_COLUMN_COUNT);
 			return;
 		}
-		stdout.printf("not returning\n");
 		
 		_columns.clear();
 		foreach(TreeViewColumn tvc in view.get_columns()) {
@@ -672,7 +671,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				columnDate.active = view.get_column(index).visible;
 			else if(tvc.title == "Rating")
 				columnRating.active = view.get_column(index).visible;
-			else if(tvc.title == "Comments")
+			else if(tvc.title == "Comment")
 				columnComments.active = view.get_column(index).visible;
 			else if(tvc.title == "Category")
 				columnCategory.active = view.get_column(index).visible;
@@ -950,7 +949,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				view.get_column(index).visible = columnDate.active;
 			else if(tvc.title == "Rating")
 				view.get_column(index).visible = columnRating.active;
-			else if(tvc.title == "Comments")
+			else if(tvc.title == "Comment")
 				view.get_column(index).visible = columnComments.active;
 			else if(tvc.title == "Category")
 				view.get_column(index).visible = columnCategory.active;
@@ -1087,7 +1086,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		}
 		
 		if(get_hint() == ViewWrapper.Hint.PODCAST) {
-			Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Would you like to move the files to the trash?");
+			Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Would you like to move any episodes you saved locally to the trash?");
 			md.title = "Move to Trash";
 			
 			if(md.run() == ResponseType.YES)

@@ -83,10 +83,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				`album` TEXT, 'grouping' TEXT, `genre` TEXT,`comment` TEXT, 'lyrics' TEXT, 'album_path' TEXT, 'has_embedded' INT, 
 				`year` INT, `track` INT, 'track_count' INT, 'album_number' INT, 'album_count' INT, `bitrate` INT, `length` INT, `samplerate` INT, 
 				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'lastmodified' INT, 'mediatype' INT, 
-				'podcast_rss' TEXT, 'podcast_url', TEXT, 'podcast_date' INT, 'is_new_podcast' INT, 'resume_pos', INT)""");
-				
-				
-				
+				'podcast_rss' TEXT, 'podcast_url' TEXT, 'podcast_date' INT, 'is_new_podcast' INT, 'resume_pos', INT)""");
 				
 				
 				
@@ -403,6 +400,10 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				p.songs_from_string(results.fetch_string(2), lm);
 				p.tvs.sort_column = results.fetch_string(3);
 				p.tvs.set_sort_direction_from_string(results.fetch_string(4));
+				
+				if(p.name == "autosaved_podcast")
+					p.tvs.hint = ViewWrapper.Hint.PODCAST;
+				
 				p.tvs.import_columns(results.fetch_string(5));
 				
 				rv.add(p);

@@ -675,8 +675,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//set the title
 		Song s = lm.song_info.song;
 		var title = "<b>" + s.title.replace("&", "&amp;") + "</b>";
-		var artist = ((s.artist != "") ? " by " : "") + "<b>" + s.artist.replace("&", "&amp;") + "</b>";
-		var album = ((s.album != "") ? " on " : "") + "<b>" + s.album.replace("&", "&amp;") + "</b>";
+		var artist = ((s.artist != "" && s.artist != "Unknown Artist") ? (" by " + "<b>" + s.artist.replace("&", "&amp;") + "</b>") : "");
+		var album = ((s.album != "" && s.album != "Unknown Album") ? (" on " + "<b>" + s.album.replace("&", "&amp;") + "</b>") : "");
 		
 		var song_label = title + artist + album;
 		topDisplay.set_label_markup(song_label);
@@ -1164,6 +1164,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		double sec = 0.0;
 		if(lm.song_info.song != null) {
 			sec = ((double)position/1000000000);
+			
+			// if podcast or audiobook, remember position
+			if(lm.song_info.song.mediatype == 1 || lm.song_info.song.mediatype == 2)
+				lm.song_info.song.resume_pos = (int)sec;
 
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {

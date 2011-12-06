@@ -130,7 +130,7 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", "Episode", 
 											"fixed_width", 70,
-											"visible", true));
+											"visible", false));
 			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", "Name", 
 											"fixed_width", 220,
@@ -181,7 +181,17 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 				_columns.get(index).set_attributes(crpix, "pixbuf", index);
 				CellRendererSpinner crspin = new CellRendererSpinner();
 				_columns.get(index).pack_start(crspin, true);
-				_columns.get(index).add_attribute(crspin, "pulse", 17);
+				
+				if(hint != ViewWrapper.Hint.PODCAST  && hint != ViewWrapper.Hint.DEVICE_PODCAST &&
+				hint != ViewWrapper.Hint.AUDIOBOOK && hint != ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+					_columns.get(index).add_attribute(crspin, "pulse", 17);
+				}
+				else if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
+					_columns.get(index).add_attribute(crspin, "pulse", 10);
+				}
+				else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+					_columns.get(index).add_attribute(crspin, "pulse", 10);
+				}
 				
 				crspin.active = true;
 				
@@ -259,7 +269,17 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 				var crSpin = new CellRendererSpinner();
 				crSpin.active = true;
 				tvc.pack_start(crSpin, true);
-				tvc.add_attribute(crSpin, "pulse", 17);
+				
+				if(hint != ViewWrapper.Hint.PODCAST  && hint != ViewWrapper.Hint.DEVICE_PODCAST &&
+				hint != ViewWrapper.Hint.AUDIOBOOK && hint != ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+					tvc.add_attribute(crSpin, "pulse", 17);
+				}
+				else if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
+					tvc.add_attribute(crSpin, "pulse", 10);
+				}
+				else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+					tvc.add_attribute(crSpin, "pulse", 10);
+				}
 			}
 			else {
 				tvc = new Gtk.TreeViewColumn.with_attributes(pieces_of_column[0], new Gtk.CellRendererPixbuf(), "pixbuf", index, null);
