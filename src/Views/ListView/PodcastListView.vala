@@ -394,11 +394,14 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)
 			to_use = lm.smart_playlist_from_id(relative_id).tvs.get_columns();*/
 		if(get_hint() == ViewWrapper.Hint.PODCAST) {
+			stdout.printf("plv line 397\n");
 			to_use = lm.podcast_setup.get_columns();
 		}
 		else if(get_hint() == ViewWrapper.Hint.DEVICE_PODCAST) {
 			to_use = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST).get_columns();
 		}
+		
+		stdout.printf("to_use is %d\n", to_use.size);
 		
 		/* put them in the order for treemodel */
 		foreach(var tvc in to_use) {
@@ -643,8 +646,11 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	}
 	
 	public virtual void viewColumnsChanged() {
-		if((int)(view.get_columns().length()) != lm.music_setup.PODCAST_COLUMN_COUNT)
+		if((int)(view.get_columns().length()) != lm.podcast_setup.PODCAST_COLUMN_COUNT) {
+			stdout.printf("returning %d %d\n", (int)(view.get_columns().length()), lm.podcast_setup.PODCAST_COLUMN_COUNT);
 			return;
+		}
+		stdout.printf("not returning\n");
 		
 		_columns.clear();
 		foreach(TreeViewColumn tvc in view.get_columns()) {
@@ -906,12 +912,14 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		if(tvs == null)
 			return;
 		
-		int sort_id = 7;
+		int sort_id = 5;
 		SortType sort_dir = Gtk.SortType.ASCENDING;
 		podcast_model.get_sort_column_id(out sort_id, out sort_dir);
 		
+		stdout.printf("sort id is %d and column length is %d\n", sort_id, _columns.size);
+		
 		if(sort_id <= 0)
-			sort_id = 7;
+			sort_id = 5;
 		
 		sort_column = _columns.get(sort_id);
 		sort_direction = sort_dir;

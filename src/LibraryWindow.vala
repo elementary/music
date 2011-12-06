@@ -573,6 +573,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool doingOps = lm.doing_file_operations;
 		bool nullSong = (lm.song_info.song == null);
 		bool showMore = lm.settings.getMoreVisible();
+		
 		bool showingSongList = (sideTree.getSelectedWidget() is ViewWrapper);
 		
 		fileSetMusicFolder.set_sensitive(!doingOps);
@@ -607,8 +608,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		coverArt.set_visible(!nullSong);
 		
 		// hide playlists when song list is empty
-		sideTree.setVisibility(sideTree.convertToFilter(sideTree.playlists_iter), haveSongs);
-		
+		sideTree.setVisibility(sideTree.playlists_iter, haveSongs);
 		
 		if(lm.song_info.song == null || haveSongs) {
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
@@ -622,7 +622,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_progress_value(progress);
 		
 		// if we are adding songs, refresh periodically
-		
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
 		if(lm.songs().size - vw.showingSongs.size >= 500) {
 			
@@ -790,7 +789,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		string album_s = lm.song_info.song.album;
 		
 		/* fetch album info now. only save if still on current song */
-		if(!lm.album_info_exists(album_s + " by " + artist_s)) {
+		if(!lm.album_info_exists(album_s + " by " + artist_s) || lm.get_album_art(lm.song_info.song.rowid) == null) {
 			album = new LastFM.AlbumInfo.with_info(artist_s, album_s);
 			
 			if(album != null)

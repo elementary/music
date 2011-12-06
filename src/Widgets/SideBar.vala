@@ -239,10 +239,9 @@ namespace ElementaryWidgets {
 			return tree.remove(iter);
 		}
 		
+		// input MUST be a child iter
 		public void setVisibility(TreeIter it, bool val) {
-			TreeIter iter = convertToChild(it);
-			
-			tree.set(iter, SideBarColumn.COLUMN_VISIBLE, val);
+			tree.set(it, SideBarColumn.COLUMN_VISIBLE, val);
 		}
 		
 		public void setName(TreeIter it, string name) {

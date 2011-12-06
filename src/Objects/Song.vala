@@ -66,6 +66,7 @@ public class BeatBox.Song : GLib.Object{
 	public uint last_modified { get; set; default = 0; }
 	public string lastfm_url { get; set; default = ""; }
 	
+	public string podcast_rss { get; set; default = ""; }
 	public string podcast_url { get; set; default = ""; }
 	public bool is_new_podcast { get; set; default = false; }
 	public int resume_pos { get; set; default = 0; } // for podcasts and audiobooks
