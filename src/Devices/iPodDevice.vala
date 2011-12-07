@@ -267,11 +267,11 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			list_size += lm.song_from_id(i).file_size * 1000000; // convert from MB to bytes
 		}
 		
-		stdout.printf("comparing %d to %d\n", (int)get_free_space(), (int)list_size);
 		return get_free_space() > list_size;
 	}
 	
 	void* sync_songs_thread() {
+		current_operation = "Syncing <b>" + getDisplayName() + "</b>...";
 		currently_syncing = true;
 		lm.doing_file_operations = true;
 		bool error_occurred = false;
@@ -302,7 +302,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			}
 			
 			++sub_index;
-			index = (int)(0.15 * (sub_index/songs.size));
+			index = (int)(15.0 * (double)((double)sub_index/(double)songs.size));
 		}
 		songs.unset_all(removed);
 		
@@ -315,7 +315,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		foreach(var entry in songs.entries) {
 			if(!sync_cancelled) {
 				Song s = lm.song_from_id(entry.value);
-				stdout.printf("Updating %s\n", s.title);
+				
 				unowned GPod.Track t = entry.key;
 				s.update_track(ref t);
 				
@@ -323,7 +323,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 					t.set_thumbnails_from_pixbuf(lm.get_album_art(s.rowid));
 			}
 			
-			index = (int)(15 + ( 0.1 * (sub_index / songs.size)));
+			index = (int)(15.0 + (double)(10.0 * (double)((double)sub_index /(double)songs.size)));
 		}
 		
 		//index = total/2;
@@ -333,12 +333,11 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		current_operation = "Adding new songs to iPod...";
 		sub_index = 0;
 		int new_song_size = 0;
-		
 		foreach(var i in list) {
-			if(!songs.values.contains(i))
+			if(!songs.values.contains(i)) {
 				new_song_size++;
+			}
 		}
-		
 		foreach(var i in list) {
 			if(!sync_cancelled) {
 				if(!songs.values.contains(i)) {
@@ -347,7 +346,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 				}
 			}
 			
-			index = (int)(25 + (0.5 * (sub_index/new_song_size)));
+			index = (int)(25.0 + (double)(50.0 * (double)((double)sub_index/(double)new_song_size)));
 		}
 		
 		if(!sync_cancelled) {
@@ -495,7 +494,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	/* should be called from thread */
-	// index = 75 at this point. will go to 85
+	// index = 75 at this point. will go to 95
 	private void sync_playlists() {
 		current_operation = "Syncing playlists";
 		// first remove all playlists from db
@@ -506,34 +505,39 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			}
 		}
 		foreach(unowned GPod.Playlist p in all_playlists) {
-			stdout.printf("removed playlist %s\n", p.name);
 			p.remove();
 		}
 		index = 78;
 		
 		var to_sync = new LinkedList<unowned GPod.Playlist>();
+		int sub_index = 0;
 		foreach(var playlist in lm.playlists()) {
 			GPod.Playlist p = playlist.get_gpod_playlist();
 			db.playlist_add((owned)p, -1);
 			
 			unowned GPod.Playlist added = db.playlists.nth_data(db.playlists.length() - 1);
-			stdout.printf("added playlist %s\n", added.name);
 			foreach(var entry in songs.entries) {
 				if(playlist.contains_song(entry.value)) {
 					added.add_track(entry.key, -1);
+					++sub_index;
+					index = (int)(78.0 + (double)(7.0 * (double)((double)sub_index/(double)lm.playlists().size)));
 				}
 			}
 		}
-		index = 80;
+		index = 85;
+		sub_index = 0;
 		foreach(var smart_playlist in lm.smart_playlists()) {
 			GPod.Playlist p = smart_playlist.get_gpod_playlist();
 			
 			db.playlist_add((owned)p, -1);
 			unowned GPod.Playlist pl = db.playlists.nth_data(db.playlists.length() - 1);
 			smart_playlist.set_playlist_properties(pl);
+			
+			++sub_index;
+			index = (int)(85.0 + (double)(5.0 * (double)((double)sub_index/(double)lm.smart_playlists().size)));
 		}
-		index = 82;
+		index = 90;
 		db.spl_update_live();
-		index = 85;
+		index = 95;
 	}
 }
