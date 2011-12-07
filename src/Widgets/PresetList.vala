@@ -5,9 +5,11 @@ public class BeatBox.PresetList : ComboBox {
 	LibraryWindow lw;
 	ListStore store;
 	
-	private int ndefaultpresets = 0;
-	private int ncustompresets = 0;
+	private int ndefaultpresets;
+	private int ncustompresets;
 
+	private bool default_presets_modified;
+	
 	private bool modifying_list;
 
 	public int preset_list_size {
@@ -15,9 +17,17 @@ public class BeatBox.PresetList : ComboBox {
 			return ndefaultpresets + ncustompresets;
 		}
 	}
+
+	public bool default_presets_changed {
+		get {
+			return default_presets_modified;
+		} set {
+			default_presets_modified = value;
+		}
+	}
 	
-	EqualizerPreset currentPreset;
-	
+	public EqualizerPreset last_selected_preset;
+
 	public signal void preset_selected(EqualizerPreset p);
 	public signal void automatic_preset_chosen();
 	public signal void add_preset_chosen();
@@ -27,6 +37,8 @@ public class BeatBox.PresetList : ComboBox {
 		this.lm = lm;
 		this.lw = lw;
 
+		ndefaultpresets = 0;
+		ncustompresets = 0;
 		modifying_list = false;
 		
 		buildUI();
@@ -74,7 +86,7 @@ public class BeatBox.PresetList : ComboBox {
 			store.set(iter, 0, null, 1, "Add New...");
 		}
 
-		if((ndefaultpresets + ncustompresets) > 0) {
+		if(this.preset_list_size > 0) {
 			store.append(out iter);
 			store.set(iter, 0, null, 1, "Delete Current");
 		}
@@ -87,26 +99,23 @@ public class BeatBox.PresetList : ComboBox {
 		modifying_list = true;
 		TreeIter iter;
 
-		if((ndefaultpresets + ncustompresets) < 1) {
-		
-			clearList();
-		
-			if(ep.is_default)
-				ndefaultpresets++;
-			else
-				ncustompresets++;
+		if(ep.is_default) {
+			ndefaultpresets++;
+			default_presets_modified = true;
+		} else {
+			ncustompresets++;
+		}
 
+		if((this.preset_list_size - 1) < 1) {
+			clearList();
 			addTopOptions();
 		}
-		else if(ep.is_default)
-			ndefaultpresets++;
-		else
-			ncustompresets++;
 
 		store.append(out iter);
 		store.set(iter, 0, ep, 1, ep.name);
 
 		modifying_list = false;
+
 		// TODO: Sort item
 
 		set_active_iter(iter);
@@ -115,7 +124,7 @@ public class BeatBox.PresetList : ComboBox {
 	public void removeCurrentPreset() {
 		modifying_list = true;
 	
-		if(currentPreset == null || (ndefaultpresets + ncustompresets) < 1) {
+		if(last_selected_preset == null || this.preset_list_size < 1) {
 			return;
 		}
 		
@@ -124,20 +133,23 @@ public class BeatBox.PresetList : ComboBox {
 			GLib.Object o;
 			store.get(iter, 0, out o);
 			
-			if(o != null && o is EqualizerPreset && ((EqualizerPreset)o) == currentPreset) {
-				if(((EqualizerPreset)o).is_default)
+			if(o != null && o is EqualizerPreset && ((EqualizerPreset)o) == last_selected_preset) {
+				if (((EqualizerPreset)o).is_default) {
 					ndefaultpresets--;
-				else
+					default_presets_modified = true;
+				} else {
 					ncustompresets--;
+				}
 				
 				store.remove(iter);
 			}
 		}
 
-		if((ndefaultpresets + ncustompresets) < 1) {
+		if(this.preset_list_size < 1) {
 			clearList();
 			addTopOptions();
 		}
+		
 		modifying_list = false;
 		set_active(0);
 	}
@@ -154,7 +166,7 @@ public class BeatBox.PresetList : ComboBox {
 
 		if(o != null && o is EqualizerPreset) {
 			set_title(((EqualizerPreset)o).name);
-			currentPreset = (EqualizerPreset)o;
+			last_selected_preset = (EqualizerPreset)o;
 			preset_selected((EqualizerPreset)o);
 		}
 		else { // is Automatic, Add Preset or Delete Current
@@ -166,7 +178,7 @@ public class BeatBox.PresetList : ComboBox {
 			}
 			else {
 				delete_preset_chosen();
-				selectPreset(currentPreset);
+				selectPreset(last_selected_preset.name);
 			}
 		}
 	}
@@ -175,34 +187,36 @@ public class BeatBox.PresetList : ComboBox {
 		set_active(0);
 	}
 	
-	public void selectPreset(EqualizerPreset? p) {
-		if(p == null) {
+	public void selectPreset(string? preset_name) {
+		if(preset_name == null || preset_name.length < 1) {
 			set_active(0);
 		}
-		
+
 		TreeIter iter;
 		for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
 			GLib.Object o;
 			store.get(iter, 0, out o);
-			
-			if(o != null && o is EqualizerPreset && ((EqualizerPreset)o).name == p.name) {
+
+			if(o != null && o is EqualizerPreset && ((EqualizerPreset)o).name == preset_name) {
 				set_active_iter(iter);
-				
 				return;
 			}
 		}
-		
+
 		set_active(0);
 	}
 	
-	public EqualizerPreset getSelectedPreset() {
+	public EqualizerPreset? getSelectedPreset() {
 		TreeIter it;
 		get_active_iter(out it);
 		
 		GLib.Object o;
 		store.get(it, 0, out o);
-		
-		return (EqualizerPreset)o;
+
+		if(o != null && o is EqualizerPreset)
+			return (EqualizerPreset)o;
+		else
+			return null;
 	}
 	
 	public Gee.Collection<EqualizerPreset> getPresets() {
@@ -220,3 +234,4 @@ public class BeatBox.PresetList : ComboBox {
 		return rv;
 	}
 }
+

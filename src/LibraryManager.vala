@@ -242,11 +242,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// set the equalizer
 		if(settings.getEqualizerEnabled() && !settings.getAutoSwitchPreset()) {
-				EqualizerPreset p = settings.getSelectedPreset();
-				if(p != null) {
-					for(int i = 0; i < 10; ++i)
-						player.setEqualizerGain(i, p.getGain(i));
-				}
+			set_selected_equalizer_preset ();
 		}
 		
 		dm = new DeviceManager(this);
@@ -1432,13 +1428,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 			
 			if(!matched_genre) {
-				var p = settings.getSelectedPreset();
-				
-				if(p == null)
-					return null;
-				
-				for(int i = 0; i < 10; ++i)
-					player.setEqualizerGain(i, p.getGain(i));
+				set_selected_equalizer_preset ();
 			}
 		}
 		
@@ -1636,6 +1626,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 		progress_cancel_clicked();
 	}
 	
+	public void set_selected_equalizer_preset () {
+		string selected_preset = settings.getSelectedPreset();
+		if(selected_preset != null) {
+			foreach (EqualizerPreset p in settings.getPresets(null)) {
+				if(p.name == selected_preset) {
+					for(int i = 0; i < 10; ++i)
+						player.setEqualizerGain(i, p.getGain(i));
+					break;
+				}
+			}
+		}
+	}
+
 	public Gdk.Pixbuf? get_album_art(int id) {
 		Song s = _songs.get(id);
 		

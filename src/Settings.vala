@@ -306,18 +306,12 @@ public class BeatBox.Settings : Object {
 		return getBool(EQUALIZER_ENABLED, false);
 	}
 	
-	public EqualizerPreset? getSelectedPreset() {
-		string[] vals = getString(SELECTED_PRESET, "").split(",", 0);
+	public string? getSelectedPreset() {
+		string rv = getString(SELECTED_PRESET, "");
 		
-		if(vals.length == 0 || vals[0] == null)
+		if(rv != null && rv.length == 0)
 			return null;
-		
-		var rv = new EqualizerPreset.basic(vals[0]);
-		
-		for(int i = 1; i < vals.length; ++i) {
-			rv.setGain(i-1, int.parse(vals[i]));
-		}
-		
+
 		return rv;
 	}
 	
@@ -458,13 +452,7 @@ public class BeatBox.Settings : Object {
 	}
 	
 	public void setSelectedPreset(EqualizerPreset preset) {
-		string toSave = preset.name;
-		
-		foreach(int gain in preset.gains) {
-			toSave += "," + gain.to_string();
-		}
-		
-		setString(SELECTED_PRESET, toSave);
+		setString(SELECTED_PRESET, (preset != null)? preset.name : "");
 	}
 
 	public void setPresets(Gee.Collection<EqualizerPreset> presets, string? type) {
