@@ -636,4 +636,13 @@ namespace GPod {
     SORT_TVSHOW,
     ALBUM_RATING
   }
+  
+  [CCode (cname = "ItdbFileError", cprefix="ITDB_FILE_ERROR_")]
+  public enum FileError {
+    SEEK,
+    CORRUPT,
+    NOTFOUND,
+    RENAME,
+    ITDB_CORRUPT
+  }
 }

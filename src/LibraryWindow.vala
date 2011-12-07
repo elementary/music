@@ -1176,7 +1176,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			// if podcast or audiobook, remember position
 			if(lm.song_info.song.mediatype == 1 || lm.song_info.song.mediatype == 2)
 				lm.song_info.song.resume_pos = (int)sec;
-
+			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {
 				queriedlastfm = true;

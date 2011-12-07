@@ -274,8 +274,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	void* sync_songs_thread() {
 		currently_syncing = true;
 		lm.doing_file_operations = true;
+		bool error_occurred = false;
 		index = 0;
-		total = songs.entries.size + songs.entries.size + list.size + 10;
+		int sub_index = 0;
+		total = 100;
 		Timeout.add(500, doProgressNotificationWithTimeout);
 		
 		db.start_sync();
@@ -299,7 +301,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 				}
 			}
 			
-			++index;
+			++sub_index;
+			index = (int)(0.15 * (sub_index/songs.size));
 		}
 		songs.unset_all(removed);
 		
@@ -307,6 +310,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		//index = total/4;
 		
 		stdout.printf("Updating existing tracks...\n");
+		sub_index = 0;
 		/* anything left will be synced. update songs that are already on list */
 		foreach(var entry in songs.entries) {
 			if(!sync_cancelled) {
@@ -319,7 +323,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 					t.set_thumbnails_from_pixbuf(lm.get_album_art(s.rowid));
 			}
 			
-			++index;
+			index = (int)(15 + ( 0.1 * (sub_index / songs.size)));
 		}
 		
 		//index = total/2;
@@ -327,26 +331,40 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		stdout.printf("Adding new songs...\n");
 		/* now add all in list that weren't in songs */
 		current_operation = "Adding new songs to iPod...";
+		sub_index = 0;
+		int new_song_size = 0;
+		
+		foreach(var i in list) {
+			if(!songs.values.contains(i))
+				new_song_size++;
+		}
+		
 		foreach(var i in list) {
 			if(!sync_cancelled) {
 				if(!songs.values.contains(i)) {
 					add_song(i);
+					++sub_index;
 				}
 			}
 			
-			++index;
+			index = (int)(25 + (0.5 * (sub_index/new_song_size)));
 		}
 		
 		if(!sync_cancelled) {
 			// sync playlists
 			sync_playlists();
 			
-			index += 3;
-			
 			current_operation = "Finishing sync process...";
-			db.write();
 			
-			index += 3;
+			try {
+				db.write();
+			}
+			catch(GLib.Error err) {
+				error_occurred = true;
+				sync_cancelled = true;
+			}
+			
+			index = 98;
 			
 			/** Clean up unused files **/
 			stdout.printf("Cleaning up iPod File System\n");
@@ -357,7 +375,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			}
 			cleanup_files(music_folder, used_paths);
 			
-			index = total + 1;
+			index = 101;
 			
 			db.stop_sync();
 		}
@@ -477,6 +495,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	/* should be called from thread */
+	// index = 75 at this point. will go to 85
 	private void sync_playlists() {
 		current_operation = "Syncing playlists";
 		// first remove all playlists from db
@@ -490,6 +509,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			stdout.printf("removed playlist %s\n", p.name);
 			p.remove();
 		}
+		index = 78;
 		
 		var to_sync = new LinkedList<unowned GPod.Playlist>();
 		foreach(var playlist in lm.playlists()) {
@@ -504,6 +524,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 				}
 			}
 		}
+		index = 80;
 		foreach(var smart_playlist in lm.smart_playlists()) {
 			GPod.Playlist p = smart_playlist.get_gpod_playlist();
 			
@@ -511,6 +532,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			unowned GPod.Playlist pl = db.playlists.nth_data(db.playlists.length() - 1);
 			smart_playlist.set_playlist_properties(pl);
 		}
+		index = 82;
 		db.spl_update_live();
+		index = 85;
 	}
 }

@@ -689,15 +689,17 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	/******************** Song stuff ******************/
 	public void clear_songs() {
-		var reAdd = new LinkedList<Song>();
+		var unset = new HashMap<int, Song>();
 		foreach(int i in _songs.keys) {
 			if(!(_songs.get(i).isTemporary || _songs.get(i).isPreview || _songs.get(i).file.has_prefix("http://"))) {
-				_songs.unset(i);
+				unset.set(i, _songs.get(i));
 				_podcasts.unset(i);
 				_audiobooks.unset(i);
 				_locals.remove(i);
 			}
 		}
+		
+		_songs.unset_all(unset);
 	}
 	
 	public int song_count() {
@@ -1405,6 +1407,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 					song_info.song.setAlbumArtPath("");
 					lw.updateCurrentSong();
 				}
+				
+				// potentially fix song length
+				song_info.song.length = (int)(player.getDuration()/1000000000);
+				update_song(song_info.song, true);
 			}
 			
 			return false;
@@ -1416,7 +1422,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(settings.getAutoSwitchPreset() && settings.getEqualizerEnabled()) {
 			bool matched_genre = false;
 			foreach(var p in settings.getPresets(null)) {
-				if(p != null && p.name.down() == song_info.song.genre.down()) {
+				if(p != null && song_info.song != null && p.name.down() == song_info.song.genre.down()) {
 					
 					matched_genre = true;
 					
