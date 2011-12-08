@@ -45,6 +45,7 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract void eject();
 	public abstract void get_device_type();
 	public abstract Collection<int> get_songs();
+	public abstract Collection<int> get_podcasts();
 	public abstract Collection<int> get_playlists();
 	public abstract Collection<int> get_smart_playlists();
 	public abstract bool sync_songs(LinkedList<int> list);
