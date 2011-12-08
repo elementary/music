@@ -220,6 +220,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		return songs.values;
 	}
 	
+	public Collection<int> get_podcasts() {
+		return podcasts.values;
+	}
+	
 	public Collection<int> get_playlists() {
 		return playlists.values;
 	}
@@ -231,6 +235,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	public bool sync_songs(LinkedList<int> list) {
 		if(currently_syncing) {
 			stdout.printf("Tried to sync when already syncing\n");
+			return false;
+		}
+		else if(lm.doing_file_operations) {
+			stdout.printf("Can't sync. Already doing file operations\n");
 			return false;
 		}
 		

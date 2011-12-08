@@ -839,8 +839,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	Collection<int> to_search, ref Collection<int> results, ref Collection<int> album_results) {
 		string l_search = search.down();
 		int mediatype = 0;
-		bool is_temp = (hint == ViewWrapper.Hint.CDROM ||hint == ViewWrapper.Hint.DEVICE_AUDIO || 
-						hint == ViewWrapper.Hint.DEVICE_PODCAST || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK);
+		bool is_temp = false;//(hint == ViewWrapper.Hint.CDROM || hint == ViewWrapper.Hint.DEVICE_AUDIO || 
+						//hint == ViewWrapper.Hint.DEVICE_PODCAST || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK);
 		
 		if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 			mediatype = 1;
@@ -848,10 +848,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 		else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
 			mediatype = 2;
 		}
+		else if(hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY || 
+		hint == ViewWrapper.Hint.PLAYLIST || hint == ViewWrapper.Hint.SMART_PLAYLIST) {
+			mediatype = 3;
+		}
 		
 		foreach(int i in to_search) {
 			Song s = song_from_id(i);
-			if(s != null && s.mediatype == mediatype && (s.isTemporary == is_temp) && 
+			if(s != null && (s.mediatype == mediatype || mediatype == 3) && /* leave out is_temp stuff */ 
 			(l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
 				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist))
 					if(album == "All Albums" || s.album == album) {
@@ -862,96 +866,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 	}
-	
-	/*public Collection<int> songs_from_search(string search, string genre, string artist, string album, Collection<int> songs_to_search) {
-		string l_search = search.down();
-		
-		var rv = new LinkedList<int>();
-		
-		foreach(int i in songs_to_search) {
-			Song s = song_from_id(i);
-			if(s != null && s.mediatype == 0 && !s.isTemporary && (l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
-				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist) && (album == "All Albums" || s.album == album))
-					rv.add(i);
-			}
-		}
-		return rv;
-	}
-	
-	public Collection<int> temps_from_search(string search, string genre, string artist, string album, Collection<int> songs_to_search) {
-		string l_search = search.down();
-		
-		var rv = new LinkedList<int>();
-		foreach(int i in songs_to_search) {
-			Song s = song_from_id(i);
-			if(s != null && s.mediatype == 0 && (l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
-				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist) && (album == "All Albums" || s.album == album))
-					rv.add(i);
-			}
-		}
-		
-		return rv;
-	}
-	
-	public Collection<int> podcasts_from_search(string search, string genre, string artist, string album, Collection<int> songs_to_search) {
-		string l_search = search.down();
-		
-		var rv = new LinkedList<int>();
-		
-		foreach(int i in songs_to_search) {
-			Song s = song_from_id(i);
-			if(s != null && s.mediatype == 1 && !s.isTemporary && (l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
-				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist) && (album == "All Albums" || s.album == album))
-					rv.add(i);
-			}
-		}
-		return rv;
-	}
-	
-	public Collection<int> temp_podcasts_from_search(string search, string genre, string artist, string album, Collection<int> songs_to_search) {
-		string l_search = search.down();
-		
-		var rv = new LinkedList<int>();
-		foreach(int i in songs_to_search) {
-			Song s = song_from_id(i);
-			if(s != null && s.mediatype == 1 && (l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
-				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist) && (album == "All Albums" || s.album == album))
-					rv.add(i);
-			}
-		}
-		
-		return rv;
-	}
-	
-	public Collection<int> audiobooks_from_search(string search, string genre, string artist, string album, Collection<int> songs_to_search) {
-		string l_search = search.down();
-		
-		var rv = new LinkedList<int>();
-		
-		foreach(int i in songs_to_search) {
-			Song s = song_from_id(i);
-			if(s != null && s.mediatype == 2 && !s.isTemporary && (l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
-				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist) && (album == "All Albums" || s.album == album))
-					rv.add(i);
-			}
-		}
-		return rv;
-	}
-	
-	public Collection<int> temp_audiobooks_from_search(string search, string genre, string artist, string album, Collection<int> songs_to_search) {
-		string l_search = search.down();
-		
-		var rv = new LinkedList<int>();
-		foreach(int i in songs_to_search) {
-			Song s = song_from_id(i);
-			if(s != null && s.mediatype == 2 && (l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
-				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist) && (album == "All Albums" || s.album == album))
-					rv.add(i);
-			}
-		}
-		
-		return rv;
-	}*/
 	
 	public LinkedList<int> songs_from_playlist(int id) {
 		return _playlists.get(id).analyze(this);
@@ -985,7 +899,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			added.add(s.rowid);
 			_songs.set(s.rowid, s);
 			
-			if(permanent)
+			if(permanent && !s.isTemporary)
 				_locals.add(s.rowid);
 			if(s.mediatype == 1)
 				_podcasts.set(s.rowid, s);
@@ -1025,6 +939,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 				_podcasts.unset(s.rowid);
 			else if(s.mediatype == 2)
 				_audiobooks.unset(s.rowid);
+				
+			foreach(var p in _playlists.values) {
+				p.removeSong(s.rowid);
+			}
 		}
 		
 		if(_songs.size == 0)
@@ -1409,8 +1327,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 				}
 				
 				// potentially fix song length
-				song_info.song.length = (int)(player.getDuration()/1000000000);
-				update_song(song_info.song, true);
+				if((player.getDuration()/1000000000) > 1) {
+					song_info.song.length = (int)(player.getDuration()/1000000000);
+					update_song(song_info.song, true);
+				}
 			}
 			
 			return false;

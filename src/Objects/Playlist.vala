@@ -54,7 +54,8 @@ public class BeatBox.Playlist : Object {
 	}
 	
 	public void addSong(int id) {
-		_songs.add(id);
+		if(!contains_song(id))
+			_songs.add(id);
 	}
 	
 	public void removeSong(int id) {

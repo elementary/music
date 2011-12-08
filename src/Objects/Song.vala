@@ -177,6 +177,7 @@ public class BeatBox.Song : GLib.Object{
 	public static Song from_track(string root, GPod.Track track) {
 		Song rv = new Song(Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
 		
+		rv.isTemporary = true;
 		if(track.title != null) {			rv.title = track.title; }
 		if(track.artist != null) {			rv.artist = track.artist; }
 		if(track.albumartist != null) {		rv.album_artist = track.albumartist; }
@@ -252,7 +253,17 @@ public class BeatBox.Song : GLib.Object{
 		t.lyrics_flag = 1;
 		t.description = lyrics;
 		
-		// TODO: Podcast stuff
+		if(mediatype == 0)
+			t.mediatype = GPod.MediaType.AUDIO;
+		else if(mediatype == 1)
+			t.mediatype = GPod.MediaType.PODCAST;
+		else if(mediatype == 2)
+			t.mediatype = GPod.MediaType.AUDIOBOOK;
+		
+		t.podcasturl = podcast_url;
+		t.mark_unplayed = (play_count == 0) ? 1 : 0;
+		t.bookmark_time = resume_pos;
+		t.time_released = podcast_date;
 		
 		if(t.artist == "" && t.albumartist != null)
 			t.artist = t.albumartist;
@@ -264,14 +275,14 @@ public class BeatBox.Song : GLib.Object{
 	public GPod.Track track_from_song() {
 		GPod.Track t = new GPod.Track();
 		
-		t.title = title;
-		t.artist = artist;
-		t.albumartist = album_artist;
-		t.album = album;
-		t.genre = genre;
-		t.comment = comment;
-		t.composer = composer;
-		t.grouping = grouping;
+		if(title != null) 			t.title = title;
+		if(artist != null) 			t.artist = artist;
+		if(album_artist != null) 	t.albumartist = album_artist;
+		if(album != null) 			t.album = album;
+		if(genre != null) 			t.genre = genre;
+		if(comment != null) 		t.comment = comment;
+		if(composer != null) 		t.composer = composer;
+		if(grouping != null)		t.grouping = grouping;
 		t.cd_nr = (int)album_number;
 		t.cds = (int)album_count;
 		t.track_nr = (int)track;
@@ -291,7 +302,22 @@ public class BeatBox.Song : GLib.Object{
 		t.lyrics_flag = 1;
 		t.description = lyrics;
 		
-		// TODO: podcast stuff
+		if(mediatype == 0)
+			t.mediatype = GPod.MediaType.AUDIO;
+		else if(mediatype == 1)
+			t.mediatype = GPod.MediaType.PODCAST;
+		else if(mediatype == 2)
+			t.mediatype = GPod.MediaType.AUDIOBOOK;
+		
+		t.podcasturl = podcast_url;
+		t.mark_unplayed = (play_count == 0) ? 1 : 0;
+		t.bookmark_time = resume_pos;
+		t.time_released = podcast_date;
+		
+		if(t.artist == "" && t.albumartist != null)
+			t.artist = t.albumartist;
+		else if(t.albumartist == "" && t.artist != null)
+			t.albumartist = t.artist;
 		
 		return t;
 	}

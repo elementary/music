@@ -4,14 +4,22 @@ public class BeatBox.PodcastManager : GLib.Object {
 	LibraryManager lm;
 	LibraryWindow lw;
 	bool fetching;
+	bool saving_locally;
+	
+	int index;
+	int total;
+	GLib.File new_dest;
+	int64 online_size;
+	string current_operation;
+	
+	Collection<int> save_locally_ids;
 	
 	public PodcastManager(LibraryManager lm, LibraryWindow lw) {
 		this.lm = lm;
 		this.lw = lw;
-		fetching = false;
+		fetching = saving_locally = false;
+		index = total = 0;
 	}
-	
-	
 	
 	public void find_new_podcasts() {
 		if(fetching) {
@@ -224,5 +232,74 @@ public class BeatBox.PodcastManager : GLib.Object {
 				}
 			}
 		}
+	}
+	
+	public void save_episodes_locally(Collection<int> ids) {
+		if(fetching) {
+			stdout.printf("Not going to save episodes locally. Must wait to finish fetching.\n");
+			return;
+		}
+		else if(lm.doing_file_operations) {
+			stdout.printf("Can't save episodes locally. Already doing file operations.\n");
+			return;
+		}
+		
+		save_locally_ids = ids;
+		
+		try {
+			Thread.create<void*>(save_episodes_locally_thread, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to save episodes locally: %s \n", err.message);
+		}
+	}
+	
+	public void* save_episodes_locally_thread () {
+		if(save_locally_ids == null || save_locally_ids.size == 0)
+			return null;
+		
+		saving_locally = true;
+		lm.doing_file_operations = true;
+		index = 0;
+		total = save_locally_ids.size;
+		Timeout.add(500, doProgressNotificationWithTimeout);
+		
+		foreach(var i in save_locally_ids) {
+			// first, transfer it to local thread
+			// then, set i.file to the new location
+			current_operation = "Saving episode <b>" + lm.song_from_id(i).title + "</b> to file system";
+			online_size = File.new_for_uri(lm.song_from_id(i).podcast_url).query_info("*", FileQueryInfoFlags.NONE).get_size();
+			new_dest = lm.fo.get_new_destination(lm.song_from_id(i));
+			lm.fo.update_file_hierarchy(lm.song_from_id(i), false);
+			++index;
+		}
+		
+		index = total + 1;
+		
+		Idle.add( () => {
+			lm.doing_file_operations = false;
+			lm.lw.topDisplay.show_scale();
+			lm.lw.updateInfoLabel();
+			//lm.lw.searchField.changed();
+			saving_locally = false;
+			
+			return false;
+		});
+		
+		return null;
+	}
+	
+	public bool doProgressNotificationWithTimeout() {
+		int64 current_local_size = 0;
+		if(new_dest.query_exists())
+			current_local_size = new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size();
+		
+		lw.progressNotification(current_operation.replace("&", "&amp;"), (double)(((double)index + (double)((double)current_local_size/(double)online_size))/((double)total)));
+		
+		if(index < total && saving_locally) {
+			return true;
+		}
+		
+		return false;
 	}
 }

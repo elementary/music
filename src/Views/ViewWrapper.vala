@@ -248,84 +248,9 @@ public class BeatBox.ViewWrapper : VBox {
 			Collection<int> potentialShowing = new LinkedList<int>();
 			Collection<int> potentialShowingAlbum = new LinkedList<int>();
 			
-			//TODO: consider doing songs_from_search(..,...,.., ref results, ref albumResults)
-			
 			lm.do_search(lw.searchField.get_text(), hint,
 					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
 					songs, ref potentialShowing, ref potentialShowingAlbum);
-			
-			/*if(hint == ViewWrapper.Hint.PODCAST) {
-				potentialShowing.add_all(lm.podcasts_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														lw.miller.albums.get_selected(),
-														songs));
-				potentialShowingAlbum.add_all(lm.podcasts_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														"All Albums",
-														songs));
-			}
-			else if(hint == ViewWrapper.Hint.DEVICE_PODCAST) {
-				potentialShowing.add_all(lm.temp_podcasts_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														lw.miller.albums.get_selected(),
-														songs));
-				potentialShowingAlbum.add_all(lm.temp_podcasts_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														"All Albums",
-														songs));
-			}
-			if(hint == ViewWrapper.Hint.AUDIOBOOK) {
-				potentialShowing.add_all(lm.audiobooks_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														lw.miller.albums.get_selected(),
-														songs));
-				potentialShowingAlbum.add_all(lm.audiobooks_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														"All Albums",
-														songs));
-			}
-			else if(hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
-				potentialShowing.add_all(lm.temp_audiobooks_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														lw.miller.albums.get_selected(),
-														songs));
-				potentialShowingAlbum.add_all(lm.temp_audiobooks_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														"All Albums",
-														songs));
-			}
-			else if(hint == ViewWrapper.Hint.DEVICE_AUDIO || hint == ViewWrapper.Hint.CDROM) {
-					potentialShowing.add_all(lm.temps_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														lw.miller.albums.get_selected(),
-														songs));
-					potentialShowingAlbum.add_all(lm.temps_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														"All Albums",
-														songs));
-			}
-			else {
-				potentialShowing.add_all(lm.songs_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														lw.miller.albums.get_selected(),
-														songs));
-				potentialShowingAlbum.add_all(lm.songs_from_search(lw.searchField.get_text(), 
-														lw.miller.genres.get_selected(), 
-														lw.miller.artists.get_selected(),
-														"All Albums",
-														songs));
-			}*/
 			
 			list.set_show_next(potentialShowing);
 			albumView.set_show_next(potentialShowingAlbum);

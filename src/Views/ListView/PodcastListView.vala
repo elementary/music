@@ -75,6 +75,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	//Menu songRateSongMenu;
 	RatingWidgetMenu rating_item;
 	MenuItem songRemove;
+	MenuItem songSaveLocally;
 	
 	Gdk.Pixbuf starred;
 	Gdk.Pixbuf not_starred;
@@ -537,11 +538,13 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		songMenuNewPlaylist = new MenuItem.with_label("New Playlist");
 		songMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
 		songRemove = new MenuItem.with_label("Remove song");
+		songSaveLocally = new MenuItem.with_label("Save Locally");
 		//songRateSongMenu = new Menu();
 		//songRateSong = new MenuItem.with_label("Rate Song");
 		rating_item = new RatingWidgetMenu();
 		songMenuActionMenu.append(songEditSong);
 		songMenuActionMenu.append(songFileBrowse);
+		songMenuActionMenu.append(songSaveLocally);
 		
 		songMenuActionMenu.append(rating_item);
 		
@@ -553,6 +556,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		songMenuActionMenu.append(songRemove);
 		songEditSong.activate.connect(songMenuEditClicked);
 		songFileBrowse.activate.connect(songFileBrowseClicked);
+		songSaveLocally.activate.connect(songSaveLocallyClicked);
 		songMenuQueue.activate.connect(songMenuQueueClicked);
 		songMenuNewPlaylist.activate.connect(songMenuNewPlaylistClicked);
 		songRemove.activate.connect(songRemoveClicked);
@@ -1002,6 +1006,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel temp;
 		
+		int count = 0;
 		foreach(TreePath path in selected.get_selected_rows(out temp)) {
 			TreeIter item;
 			temp.get_iter(out item, path);
@@ -1018,8 +1023,31 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				stdout.printf("Could not browse song %s: %s\n", s.file, err.message);
 			}
 			
-			return;
+			if(count > 10) {
+				lw.doAlert("Stopping File Browse", "Too many songs have already been opened in File Browser. Stopping any more openings.");
+				return;
+			}
 		}
+	}
+	
+	void songSaveLocallyClicked() {
+		TreeSelection selected = view.get_selection();
+		selected.set_mode(SelectionMode.MULTIPLE);
+		TreeModel temp;
+		
+		var toSave = new LinkedList<int>();
+		foreach(TreePath path in selected.get_selected_rows(out temp)) {
+			TreeIter item;
+			temp.get_iter(out item, path);
+			
+			int id;
+			temp.get(item, 0, out id);
+			Song s = lm.song_from_id(id);
+			
+			toSave.add(id);
+		}
+		
+		lm.pm.save_episodes_locally(toSave);
 	}
 	
 	public virtual void songMenuQueueClicked() {

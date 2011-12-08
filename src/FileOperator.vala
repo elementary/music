@@ -447,7 +447,7 @@ public class BeatBox.FileOperator : Object {
 	
 	public void save_songs(Collection<Song> to_save) {
 		foreach(Song s in to_save) {
-			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview)
+			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview && s.file.has_prefix(lm.settings.getMusicFolder()))
 				toSave.offer(s);
 		}
 		
@@ -500,18 +500,24 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
-	public void update_file_hierarchy(Song s, bool delete_old) {
+	public GLib.File get_new_destination(Song s) {
+		GLib.File dest;
+		
 		try {
 			/* initialize file objects */
-			var original = GLib.File.new_for_path(s.file);
+			GLib.File original;
+			if(s.file.has_prefix("http://"))
+				original = GLib.File.new_for_uri(s.file);
+			else
+				original = GLib.File.new_for_path(s.file);
+			
 			var ext = get_extension(s.file);
-			GLib.File dest;
 			
 			dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + ext));
 			
 			if(original.get_path() == dest.get_path()) {
 				stdout.printf("File is already in correct location\n");
-				return;
+				return null;
 			}
 			
 			string extra = "";
@@ -543,6 +549,28 @@ public class BeatBox.FileOperator : Object {
 					// does it make sense to return here?
 				}
 			}
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not find new destination!: %s\n", err.message);
+		}
+		
+		return dest;
+	}
+	
+	public void update_file_hierarchy(Song s, bool delete_old) {
+		try {
+			GLib.File dest = get_new_destination(s);
+			
+			if(dest == null)
+				return;
+			
+			GLib.File original;
+			if(s.file.has_prefix("http://"))
+				original = GLib.File.new_for_uri(s.file);
+			else
+				original = GLib.File.new_for_path(s.file);
+			
+			var ext = get_extension(s.file);
 			
 			/* copy the file over */
 			bool success = false;
@@ -556,10 +584,12 @@ public class BeatBox.FileOperator : Object {
 			}
 			
 			if(success) {
+				stdout.printf("success copying file\n");
 				s.file = dest.get_path();
 				lm.update_song(s, false); // make sure that the song's file path is updated in db.
 				
-				if(s.getAlbumArtPath().contains(original.get_parent().get_path())) {
+				if(original.get_uri().has_prefix("file://") && original.get_parent().get_path() != null &&
+				s.getAlbumArtPath().contains(original.get_parent().get_path())) {
 					var songFile = GLib.File.new_for_path(s.getAlbumArtPath());
 					var albumArtDest = Path.build_path("/", dest.get_parent().get_path(), "Album.jpg");
 					

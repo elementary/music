@@ -35,7 +35,7 @@ public class BeatBox.DeviceView : VBox {
 		bar = new DeviceBar(lm, d);
 		summary = new DeviceSummaryWidget(lm, lw, d);
 		music_list = new DeviceViewWrapper(lm, lw, d.get_songs(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
-		podcast_list = new DeviceViewWrapper(lm, lw, new Gee.LinkedList<int>(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
+		podcast_list = new DeviceViewWrapper(lm, lw, d.get_podcasts(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
 		
 		pack_start(bar, false, true, 0);
 		pack_end(summary, true, true, 0);
