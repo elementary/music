@@ -34,7 +34,7 @@ public class BeatBox.LyricFetcher : GLib.Object {
 	}
 	
 	public void fetch_lyrics(string artist, string title) {
-		this.artist = (string)artist.replace(" ","").replace(".","").replace("-", "").replace("?","").replace("(","").replace(")","").replace("'","").down().to_utf8();
+		this.artist = (string)artist.replace(" ","").replace(".","").replace("-", "").replace("?","").replace("(","").replace(")","").replace("'","").down().replace("the","").to_utf8();
 		this.title = (string)title.replace(" ","").replace(".","").replace("-", "").replace("?","").replace("(","").replace(")","").replace("'","").down().to_utf8();
 		
 		url = urlFormat.printf(this.artist, this.title);
