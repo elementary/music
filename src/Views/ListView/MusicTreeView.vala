@@ -154,7 +154,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	public void set_as_current_list(int song_id) {
-		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
+		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL && !get_is_current());
 		
 		lm.clearCurrent();
 		TreeIter iter;
@@ -191,9 +191,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			return;
 		}
 		
-		if(_show_next != _showing_songs) {
-			_showing_songs = _show_next;
-		}
+		_showing_songs = _show_next;
 		
 		view.freeze_child_notify();
 		view.set_model(null);
@@ -234,9 +232,11 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		uint total_mbs = 0;
 		
 		foreach(int id in _showing_songs) {
-			++count;
-			total_time += lm.song_from_id(id).length;
-			total_mbs += lm.song_from_id(id).file_size;
+			if(lm.song_ids().contains(id)) {
+				++count;
+				total_time += lm.song_from_id(id).length;
+				total_mbs += lm.song_from_id(id).file_size;
+			}
 		}
 		
 		string fancy = "";
@@ -256,7 +256,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		else 
 			fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
 		
-		lw.set_statusbar_text(count.to_string() + " items, " + fancy + ", " + fancy_size);
+		lw.set_statusbar_text(count.to_string() + " songs, " + fancy + ", " + fancy_size);
 	}
 	
 	/* music tree view specific functions */
@@ -773,9 +773,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	void songs_removed(LinkedList<int> ids) {
-		removing_songs = true;
 		music_model.removeSongs(ids);
-		removing_songs = false;
+		_showing_songs.remove_all(ids);
+		_show_next.remove_all(ids);
 	}
 	
 	void viewDoubleClick(TreePath path, TreeViewColumn column) {
@@ -787,7 +787,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		music_model.get_value(item, 0, out id);
 		
 		set_as_current_list(id.get_int());
-		
 		// play the song
 		lm.playSong(id.get_int());
 		
@@ -1189,8 +1188,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			lm.save_playlists();
 		else if(get_hint() == ViewWrapper.Hint.QUEUE)
 			lm.save_playlists();
-			
-		music_model.removeSongs(toRemoveIDs);
 		
 		// in case all the songs from certain miller items were removed, update miller
 		lw.miller.populateColumns("", music_model.getOrderedSongs());

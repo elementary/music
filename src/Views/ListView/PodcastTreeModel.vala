@@ -39,6 +39,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
     private SortType sort_direction;
     private unowned TreeIterCompareFunc default_sort_func;
     private HashMap<int, CompareFuncHolder> column_sorts;
+    bool removing_songs;
     
     /* custom signals for custom treeview. for speed */
     public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
@@ -50,6 +51,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		this.lm = lm;
 		_columns = column_types;
 		_playing = playing;
+		removing_songs = false;
 
 		rows = new Sequence<int>();
        
@@ -109,6 +111,11 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public void get_value (TreeIter iter, int column, out Value val) {
 		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size)
 			return;
+			
+		if(removing_songs) {
+			val = Value(get_column_type(column));
+			return;
+		}
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
 			Song s = lm.song_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
@@ -350,6 +357,8 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	public void removeSongs(Collection<int> rowids) {
+		removing_songs = true;
+		stdout.printf("removeSongs start\n");
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -366,9 +375,13 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 				--index;
 			}
 			
-			if(rowids.size <= 0)
+			if(rowids.size <= 0) {
+				removing_songs = false;
 				return;
+			}
 		}
+		stdout.printf("removeSongs finished\n");
+		removing_songs = false;
 	}
 	
 	public LinkedList<int> getOrderedSongs() {

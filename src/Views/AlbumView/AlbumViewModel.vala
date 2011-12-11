@@ -35,6 +35,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
     /* threaded pixbuf fetching */
     public TreeIter start_visible;
     public TreeIter end_visible;
+    bool removing_songs;
     
     /* custom signals for custom treeview. for speed */
     public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
@@ -45,12 +46,9 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	public AlbumViewModel(LibraryManager lm, Gdk.Pixbuf defaultImage) {
 		this.lm = lm;
 		this.defaultImage = defaultImage;
+		removing_songs = false;
 
-#if VALA_0_14
 		rows = new Sequence<int>();
-#else
-		rows = new Sequence<int>(null);
-#endif
        
        stamp = (int)GLib.Random.next_int();
 	}
@@ -94,11 +92,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	}
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
-#if VALA_0_14
 	public TreePath? get_path (TreeIter iter) {
-#else
-	public TreePath get_path (TreeIter iter) {
-#endif
 		return new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
 	}
 
@@ -106,6 +100,11 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	public void get_value (TreeIter iter, int column, out Value val) {
 		if(iter.stamp != this.stamp || column < 0 || column >= 2)
 			return;
+			
+		if(removing_songs) {
+			val = Value(get_column_type(column));
+			return;
+		}
 		
 		if(!((SequenceIter<Song>)iter.user_data).is_end()) {
 			Song s = lm.song_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
@@ -256,5 +255,32 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
 		rows.remove((SequenceIter<int>)iter.user_data);
 		row_deleted(path);
+	}
+	
+	public void removeSongs(Collection<int> rowids) {
+		removing_songs = true;
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(rowids.contains(rows.get(s_iter))) {
+				int rowid = rows.get(s_iter);
+				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+					
+				rows.remove(s_iter);
+					
+				row_deleted(path);
+				rowids.remove(rowid);
+				--index;
+			}
+			
+			if(rowids.size <= 0) {
+				removing_songs = false;
+				return;
+			}
+		}
+		
+		removing_songs = false;
 	}
 }

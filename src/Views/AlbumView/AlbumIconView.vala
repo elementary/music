@@ -35,6 +35,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		defaultPix = lm.defaultAlbumArt;
 		
 		buildUI();
+		
+		lm.songs_removed.connect(songs_removed);
 	}
 	
 	public void buildUI() {
@@ -232,6 +234,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		string[] pieces = s.split("\n", 0);
 		
 		itemClicked(pieces[0], pieces[1]);
+	}
+	
+	void songs_removed(LinkedList<int> ids) {
+		model.removeSongs(ids);
+		_showing_songs.remove_all(ids);
+		_show_next.remove_all(ids);
 	}
 	
 }

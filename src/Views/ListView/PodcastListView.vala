@@ -148,7 +148,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	}
 	
 	public void set_as_current_list(int song_id) {
-		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
+		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL && !get_is_current());
 		
 		lm.clearCurrent();
 		TreeIter iter;
@@ -228,9 +228,11 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		uint total_mbs = 0;
 		
 		foreach(int id in _showing_songs) {
-			++count;
-			total_time += lm.song_from_id(id).length;
-			total_mbs += lm.song_from_id(id).file_size;
+			if(lm.song_ids().contains(id)) {
+				++count;
+				total_time += lm.song_from_id(id).length;
+				total_mbs += lm.song_from_id(id).file_size;
+			}
 		}
 		
 		string fancy = "";
@@ -250,7 +252,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		else 
 			fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
 		
-		lw.set_statusbar_text(count.to_string() + " items, " + fancy + ", " + fancy_size);
+		lw.set_statusbar_text(count.to_string() + " episodes, " + fancy + ", " + fancy_size);
 	}
 	
 	/* music tree view specific functions */
@@ -729,9 +731,9 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	}
 	
 	void songs_removed(LinkedList<int> ids) {
-		removing_songs = true;
 		podcast_model.removeSongs(ids);
-		removing_songs = false;
+		_showing_songs.remove_all(ids);
+		_show_next.remove_all(ids);
 	}
 	
 	void viewDoubleClick(TreePath path, TreeViewColumn column) {
@@ -1124,8 +1126,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			
 			md.destroy();
 		}
-		
-		podcast_model.removeSongs(toRemoveIDs);
 		
 		// in case all the songs from certain miller items were removed, update miller
 		lw.miller.populateColumns("", podcast_model.getOrderedSongs());

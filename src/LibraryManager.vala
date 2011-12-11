@@ -166,12 +166,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		else if(repeatValue == 4)
 			repeat = LibraryManager.Repeat.ALL;
 		
-		var shuffleValue = settings.getShuffleMode();
-		if(shuffleValue == 0)
-			setShuffleMode(LibraryManager.Shuffle.OFF);
-		else if(shuffleValue == 1)
-			setShuffleMode(LibraryManager.Shuffle.ALL);
-		
 		doing_file_operations = false;
 		
 		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
@@ -266,7 +260,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public bool doProgressNotificationWithTimeout() {
-		progress_notification(null, (double)((double)fo.index)/((double)fo.item_count));
+		if(doing_file_operations)
+			progress_notification(null, (double)((double)fo.index)/((double)fo.item_count));
 		
 		if(fo.index < fo.item_count && doing_file_operations) {
 			return true;
@@ -392,8 +387,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		fo.resetProgress(new_songs.size);
 		
-		add_songs(new_songs, true);
-		
 		if(settings.getCopyImportedMusic())
 			progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 		
@@ -407,6 +400,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		Idle.add( () => { 
+			add_songs(new_songs, true);
 			
 			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
@@ -452,8 +446,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var not_imported = new LinkedList<string>();
 		fo.get_music_files_folder(file, ref new_songs, ref not_imported);
 		
-		add_songs(new_songs, true);
-		
 		fo.resetProgress(new_songs.size);
 		Timeout.add(100, doProgressNotificationWithTimeout);
 		
@@ -467,6 +459,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		Idle.add( () => { 
+			add_songs(new_songs, true);
 			
 			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
@@ -527,21 +520,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		
-		lock(_songs) {
-			remove_songs(removed, false);
-		}
-		
-		add_songs(new_songs, true);
-		
-		foreach(Song s in new_songs) {
-			if(settings.getCopyImportedMusic())
-				fo.update_file_hierarchy(s, false);
-		}
-		
 		dbm.remove_songs(paths);
 		
-		Idle.add( () => { 
-			//maybe pass in songs_added, which appends those songs to the treeview?
+		Idle.add( () => {
+			remove_songs(removed, false);
+			add_songs(new_songs, true);
+			
+			foreach(Song s in new_songs) {
+				if(settings.getCopyImportedMusic())
+					fo.update_file_hierarchy(s, false);
+			}
 			
 			doing_file_operations = false;
 			music_rescanned(new_songs, not_imported); 
@@ -813,12 +801,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Song rv = new Song("");
 		rv.title = title;
 		rv.artist = artist;
+		int[] searchable;
 		
-		lock (_songs) {
-			foreach(Song s in _songs.values) {
-				if(s.title.down() == title.down() && s.artist.down() == artist.down())
-					return s;
-			}
+		lock(_locals) {
+			searchable = _locals.to_array();
+		}
+		
+		for(int i = 0; i < searchable.length; ++i) {
+			Song s = _songs.get(searchable[i]);
+			if(s.title.down() == title.down() && s.artist.down() == artist.down())
+				return s;
 		}
 		
 		return rv;
@@ -911,7 +903,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 			dbm.add_songs(new_songs);
 		}
 		
-		songs_added(added);
+		Idle.add( () => {
+			songs_added(added);
+			
+			return false;
+		});
 	}
 	
 	public void remove_songs(LinkedList<Song> toRemove, bool trash) {
@@ -925,7 +921,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// TODO: Check why this is in the order it is
-		songs_removed(removedIds);
 		dbu.removeItem(removePaths);
 		
 		if(trash) {
@@ -934,6 +929,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		foreach(Song s in toRemove) {
 			_songs.unset(s.rowid);
+			_locals.remove(s.rowid);
 			
 			if(s.mediatype == 1)
 				_podcasts.unset(s.rowid);
@@ -944,6 +940,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 				p.removeSong(s.rowid);
 			}
 		}
+		
+		songs_removed(removedIds);
 		
 		if(_songs.size == 0)
 			settings.setMusicFolder("");
@@ -1055,6 +1053,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		else if(mode == Shuffle.ALL) {
+			stdout.printf("reshuffling\n");
 			//create temp list of all of current's song id's
 			LinkedList<int> temp = new LinkedList<int>();
 			foreach(int i in _current.values) {

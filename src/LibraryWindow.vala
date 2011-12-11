@@ -431,16 +431,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// nowthat everything is added, resize to proper height
 		resize(settings.getWindowWidth(), this.default_height);
 		
-		//topMenu.hide();
-		//topDisplay.show_scale();
 		sideTree.resetView();
-		//topDisplay.set_scale_sensitivity(false);
 		viewSelector.selected = settings.getViewMode();
-		//welcomeScreen.hide();
-		//infoPanel.set_visible(settings.getMoreVisible());
 		updateSensitivities();
 		viewSelector.selected = 3;
-		//updateMillerColumns();
 		
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
@@ -580,6 +574,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fileImportMusic.set_sensitive(!doingOps && folderSet);
 		fileRescanMusicFolder.set_sensitive(!doingOps && folderSet);
 		
+		stdout.printf("doingOps is %d\n", doingOps ? 1 : 0);
+		
 		if(doingOps)
 			topDisplay.show_progressbar();
 		else
@@ -610,7 +606,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// hide playlists when song list is empty
 		sideTree.setVisibility(sideTree.playlists_iter, haveSongs);
 		
-		if(lm.song_info.song == null || haveSongs) {
+		if(lm.song_info.song == null || haveSongs && !lm.playing) {
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 		}
 	}
@@ -704,7 +700,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//reset the song position
 		topDisplay.set_scale_sensitivity(true);
 		topDisplay.set_scale_range(0.0, lm.song_info.song.length);
-		topDisplay.set_scale_value(0.0);
+		stdout.printf("using %d\n", lm.song_info.song.resume_pos);
+		topDisplay.set_scale_value((lm.song_info.song.mediatype == 1 || lm.song_info.song.mediatype == 2) ? (double)lm.song_info.song.resume_pos : 0.0);
 		
 		//if(!songPosition.get_sensitive())
 		//	songPosition.set_sensitive(true);
@@ -1074,8 +1071,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		//resetSideTree();
-		searchField.changed();
+		resetSideTree();
+		//var init = searchField.get_text();
+		//searchField.set_text("up");
 		
 		if(not_imported.size > 0) {
 			NotImportedWindow nim = new NotImportedWindow(this, not_imported, lm.settings.getMusicFolder());
@@ -1106,33 +1104,28 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	/* this is when you import music from a foreign location into the library */
 	public virtual void musicImported(LinkedList<Song> new_songs, LinkedList<string> not_imported) {
-		topDisplay.show_scale();
-		
 		if(lm.song_info.song != null) {
 			updateInfoLabel();	
 		}
 		else
 			topDisplay.set_label_text("");
 		
-		//resetSideTree();
-		searchField.changed();
+		resetSideTree();
+		//searchField.changed();
 		
 		updateSensitivities();
 	}
 	
 	public virtual void musicRescanned(LinkedList<Song> new_songs, LinkedList<string> not_imported) {
-		//sideTree.resetView();
-		topDisplay.show_scale();
-		
 		if(lm.song_info.song != null) {
 			updateInfoLabel();
 		}
 		else
 			topDisplay.set_label_text("");
 		
-		//resetSideTree();
-		searchField.changed();
-		
+		resetSideTree();
+		//searchField.changed();
+		stdout.printf("music Rescanned\n");
 		updateSensitivities();
 	}
 	

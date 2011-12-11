@@ -38,17 +38,28 @@ public class BeatBox.PodcastManager : GLib.Object {
 	public void* find_new_podcasts_thread () {
 		HashSet<string> rss_urls = new HashSet<string>();
 		HashSet<string> mp3_urls = new HashSet<string>();
+		HashMap<string, string> rss_names = new HashMap<string, string>();
 		
 		foreach(int i in lm.podcast_ids()) {
 			var pod = lm.song_from_id(i);
 			
 			rss_urls.add(pod.podcast_rss);
 			mp3_urls.add(pod.podcast_url);
+			rss_names.set(pod.podcast_rss, pod.artist);
 		}
 		
+		index = 0;
+		total = 10 * rss_urls.size;
+		current_operation = "Looking for new episodes";
+		lm.doing_file_operations = true;
+		fetching = true;
+		Timeout.add(500, doProgressNotificationWithTimeout);
+		
 		LinkedList<Song> new_podcasts = new LinkedList<Song>();
+		var rss_index = 0;
 		foreach(string rss in rss_urls) {
 			stdout.printf("podcast_rss: %s\n", rss);
+			current_operation = "Fetching new <b>" + rss_names.get(rss).replace("&", "&amp;") + "</b> podcast episodes...";
 			
 			// create an HTTP session to twitter
 			var session = new Soup.SessionSync();
@@ -58,17 +69,22 @@ public class BeatBox.PodcastManager : GLib.Object {
 			session.send_message(message);
 			
 			Xml.Node* node = getRootNode(message);
-			if(node == null)
-				return null;
+			if(node != null) {
+				findNewItems(rss, node, mp3_urls, ref new_podcasts, 10);
+			}
 			
-			findNewItems(rss, node, mp3_urls, ref new_podcasts, 10);
+			++rss_index;
+			index = rss_index * 10;
 		}
 		
-		// make sure s.mediatype = 1
-		lm.add_songs(new_podcasts, true);
+		index = total + 1;
+		fetching = false;
+		lm.doing_file_operations = false;
 		
 		Idle.add( () => {
-			
+			lm.add_songs(new_podcasts, true);
+			lw.updateSensitivities();
+			lm.lw.updateInfoLabel();
 			
 			return false;
 		});
@@ -76,9 +92,32 @@ public class BeatBox.PodcastManager : GLib.Object {
 		return null;
 	}
 	
+	public bool is_valid_rss(string url) {
+		// create an HTTP session to twitter
+		var session = new Soup.SessionSync();
+		var message = new Soup.Message ("GET", url);
+		
+		// send the HTTP request
+		session.send_message(message);
+		
+		Xml.Node* node = getRootNode(message);
+		stdout.printf("got root node\n");
+		if(node == null)
+			return false;
+		
+		return node->name == "rss";
+	}
+	
 	public bool parse_new_rss(string rss) {
+		fetching = true;
+		index = 0;
+		total = 10;
+		current_operation = "Fetching podcast from <b>" + rss + "</b>";
+		lm.doing_file_operations = true;
+		Timeout.add(500, doProgressNotificationWithTimeout);
+		
 		stdout.printf("podcast_rss: %s\n", rss);
-			
+		
 		// create an HTTP session to twitter
 		var session = new Soup.SessionSync();
 		var message = new Soup.Message ("GET", rss);
@@ -88,8 +127,10 @@ public class BeatBox.PodcastManager : GLib.Object {
 		
 		Xml.Node* node = getRootNode(message);
 		stdout.printf("got root node\n");
-		if(node == null)
+		if(node == null) {
+			fetching = false;
 			return false;
+		}
 			
 		HashSet<string> mp3_urls = new HashSet<string>();
 		LinkedList<Song> new_podcasts = new LinkedList<Song>();
@@ -101,8 +142,13 @@ public class BeatBox.PodcastManager : GLib.Object {
 		
 		findNewItems(rss, node, mp3_urls, ref new_podcasts, 10);
 		
+		index = 11;
+		fetching = false;
+		lm.doing_file_operations = false;
+		
 		lm.add_songs(new_podcasts, true);
 		lw.updateSensitivities();
+		lm.lw.updateInfoLabel();
 		
 		return new_podcasts.size > 0;
 	}
@@ -125,7 +171,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 	
 	// parses a xml root node for new podcasts
 	public void findNewItems(string rss, Xml.Node* node, HashSet<string> existing, ref LinkedList<Song> found, int max_items) {
-		string pod_title = ""; string category = ""; string summary = ""; string image_url = "";
+		string pod_title = ""; string pod_author = ""; string category = ""; string summary = ""; string image_url = "";
 		int image_width, image_height;
 		int visited_items = 0;
 		
@@ -141,6 +187,8 @@ public class BeatBox.PodcastManager : GLib.Object {
 			
 			if(name == "title")
 				pod_title = content.replace("\n","").replace("\t","").replace("\r","");
+			else if(name == "author")
+				pod_author = content.replace("\n","").replace("\t","").replace("\r","");
 			else if(name == "category") {
 				if(content != "")
 					category = content.replace("\n","").replace("\t","").replace("\r","");
@@ -174,6 +222,11 @@ public class BeatBox.PodcastManager : GLib.Object {
 					//stdout.printf("name is %s\n", item_iter->name);
 					if(item_iter->name == "title")
 						new_p.title = item_iter->get_content();
+					else if(name == "author") {
+						pod_author = item_iter->get_content().replace("\n","").replace("\t","").replace("\r","");
+						new_p.artist = pod_author;
+						new_p.album_artist = pod_author;
+					}
 					else if(item_iter->name == "enclosure") {
 						for (Xml.Attr* prop = item_iter->properties; prop != null; prop = prop->next) {
 							string attr_name = prop->name;
@@ -209,27 +262,29 @@ public class BeatBox.PodcastManager : GLib.Object {
 				}
 				
 				if(new_p.podcast_url != null && !existing.contains(new_p.podcast_url) && new_p.podcast_url != "") {
+					if(pod_author == null || pod_author == "")
+						pod_author = pod_title;
+					if(category == null || category == "")
+						category = "Podcast";
+					
 					new_p.mediatype = 1;
 					new_p.podcast_rss = rss;
 					new_p.genre = category;
-					new_p.artist = pod_title;
-					new_p.album_artist = pod_title;
+					new_p.artist = pod_author;
+					new_p.album_artist = pod_author;
+					new_p.album = pod_title;
 					//new_p.album = ??
 					if(new_p.comment == "")			new_p.comment = summary;
 					if(new_p.podcast_date == 0)		new_p.podcast_date = (int)time_t();
 					
 					found.add(new_p);
-					++visited_items;
-					
-					if(visited_items >= max_items - 1)
-						return;
 				}
-				else {
-					++visited_items;
-					
-					if(visited_items >= max_items - 1)
-						return;
-				}
+				
+				++visited_items;
+				++index;
+				
+				if(visited_items >= max_items - 1)
+					return;
 			}
 		}
 	}
@@ -262,7 +317,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 		lm.doing_file_operations = true;
 		index = 0;
 		total = save_locally_ids.size;
-		Timeout.add(500, doProgressNotificationWithTimeout);
+		Timeout.add(500, doProgressNotificationWithTimeoutSaveLocally);
 		
 		foreach(var i in save_locally_ids) {
 			// first, transfer it to local thread
@@ -278,7 +333,6 @@ public class BeatBox.PodcastManager : GLib.Object {
 		
 		Idle.add( () => {
 			lm.doing_file_operations = false;
-			lm.lw.topDisplay.show_scale();
 			lm.lw.updateInfoLabel();
 			//lm.lw.searchField.changed();
 			saving_locally = false;
@@ -290,13 +344,24 @@ public class BeatBox.PodcastManager : GLib.Object {
 	}
 	
 	public bool doProgressNotificationWithTimeout() {
+		if(fetching)
+			lw.progressNotification(current_operation.replace("&", "&amp;"), (double)((double)index/(double)total));
+		
+		if(index < total && fetching) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public bool doProgressNotificationWithTimeoutSaveLocally() {
 		int64 current_local_size = 0;
 		if(new_dest.query_exists())
 			current_local_size = new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size();
 		
 		lw.progressNotification(current_operation.replace("&", "&amp;"), (double)(((double)index + (double)((double)current_local_size/(double)online_size))/((double)total)));
 		
-		if(index < total && saving_locally) {
+		if(index < total && lm.doing_file_operations) {
 			return true;
 		}
 		

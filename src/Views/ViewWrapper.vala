@@ -110,6 +110,7 @@ public class BeatBox.ViewWrapper : VBox {
 		lw.viewSelector.mode_changed.connect(selectorViewChanged);
 		lm.song_played.connect(songPlayed);
 		lm.songs_added.connect(songs_added);
+		lm.songs_removed.connect(songs_removed);
 		
 		lw.searchField.changed.connect(searchFieldChanged);
 		lw.miller.changed.connect(millerChanged);
@@ -178,6 +179,11 @@ public class BeatBox.ViewWrapper : VBox {
 			doUpdate(currentView, lm.podcast_ids(), true, true);
 		/*else if(refreshMusic)
 			doUpdate(currentView, lm.song_ids(), true, true);*/
+	}
+	
+	void songs_removed(LinkedList<int> ids) {
+		//songs.remove_all(ids);
+		showingSongs.remove_all(ids);
 	}
 	
 	public void clear() {

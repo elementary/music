@@ -32,12 +32,23 @@ public class BeatBox.AddPodcastWindow : Window {
 	HBox padding;
 	
 	Granite.Widgets.HintedEntry _source;
+	Gtk.Image _is_valid;
+	Gtk.Spinner _is_working;
 	Button _save;
+	
+	Gdk.Pixbuf not_valid;
+	Gdk.Pixbuf valid;
+	
+	Gee.HashSet<string> existing_rss;
+	bool already_validating;
+	string next;
 	
 	public signal void playlist_saved(Playlist p);
 	
 	public AddPodcastWindow(LibraryWindow lw) {
 		this.lw = lw;
+		already_validating = false;
+		next = "";
 		
 		title = "Add Podcast";
 		
@@ -53,31 +64,55 @@ public class BeatBox.AddPodcastWindow : Window {
 		content = new VBox(false, 10);
 		padding = new HBox(false, 10);
 		
+		/* get pixbufs */
+		valid = render_icon("process-completed-symbolic", IconSize.MENU, null);
+		not_valid = render_icon("process-error-symbolic", IconSize.MENU, null);
+		
+		if(valid == null)
+			valid = render_icon(Gtk.Stock.YES, IconSize.MENU, null);
+		if(not_valid == null)
+			not_valid = render_icon(Gtk.Stock.NO, IconSize.MENU, null);
+		
 		/* start out by creating all category labels */
 		Label sourceLabel = new Label("Podcast RSS Source");
 		_source = new Granite.Widgets.HintedEntry("Podcast Source...");
+		_is_valid = new Gtk.Image.from_pixbuf(not_valid);
+		_is_working = new Gtk.Spinner();
 		_save = new Button.with_label("Add");
 		
 		/* set up controls */
 		sourceLabel.xalign = 0.0f;
 		sourceLabel.set_markup("<b>Podcast RSS Source</b>");
 		
+		_is_working.start();
+		
 		/* add controls to form */
 		HButtonBox bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(_save, false, false, 0);
 		
+		/* source vbox */
+		HBox sourceBox = new HBox(false, 6);
+		sourceBox.pack_start(_source, true, true, 0);
+		sourceBox.pack_end(_is_valid, false, false, 0);
+		sourceBox.pack_end(_is_working, false, false, 0);
+		
 		content.pack_start(wrap_alignment(sourceLabel, 10, 0, 0, 0), false, true, 0);
-		content.pack_start(wrap_alignment(_source, 0, 10, 0, 0), false, true, 0);
+		content.pack_start(wrap_alignment(sourceBox, 0, 10, 0, 0), false, true, 0);
 		content.pack_start(bottomButtons, false, false, 10);
 		
 		padding.pack_start(content, true, true, 10);
 		
 		add(padding);
 		
-		show_all();
+		existing_rss = new Gee.HashSet<string>();
+		foreach(int i in lw.lm.podcast_ids()) {
+			var pod = lw.lm.song_from_id(i);
+			existing_rss.add(pod.podcast_rss);
+		}
 		
-		//resize(400, -1);
+		show_all();
+		sourceChanged();
 		
 		_save.clicked.connect(saveClicked);
 		_source.activate.connect(sourceActivate);
@@ -110,6 +145,59 @@ public class BeatBox.AddPodcastWindow : Window {
 	}
 	
 	void sourceChanged() {
-		// possibly do on-the-fly validation
+		string url = _source.get_text();
+		
+		// simple quick validation
+		if(!url.has_prefix("http://") || url.contains(" ") || existing_rss.contains(url)) {
+			_is_valid.set_from_pixbuf(not_valid);
+			_is_valid.show();
+			_is_working.hide();
+			_save.set_sensitive(false);
+			next = "";
+		}
+		else {
+			_is_working.show();
+			_is_valid.hide();
+			
+			if(already_validating) {
+				next = url;
+			}
+			else {
+				already_validating = true;
+				next = url;
+				
+				try {
+					Thread.create<void*>(test_url_validity, false);
+				}
+				catch(GLib.ThreadError err) {
+					stdout.printf("ERROR: Could not create thread to fetch new podcasts: %s \n", err.message);
+				}
+			}
+		}
+	}
+	
+	public void* test_url_validity () {
+		bool is_valid = false;
+		while(next != "") {
+			var previous_url = next;
+			next = "";
+			is_valid = lw.lm.pm.is_valid_rss(previous_url) && !existing_rss.contains(previous_url);
+		}
+		
+		Idle.add( () => {
+			_is_working.hide();
+			_is_valid.show();
+			if(is_valid)
+				_is_valid.set_from_pixbuf(valid);
+			else
+				_is_valid.set_from_pixbuf(not_valid);
+			
+			_save.set_sensitive(is_valid);
+			
+			already_validating = false;
+			return false;
+		});
+				
+		return null;
 	}
 }
