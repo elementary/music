@@ -41,8 +41,11 @@ public class BeatBox.AddPodcastWindow : Window {
 		
 		title = "Add Podcast";
 		
-		set_default_size(400, -1);
+		//set_default_size(400, -1);
+		set_size_request(400, -1);
 		//resize(400, -1);
+		
+		this.resizable = false;
 		
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;

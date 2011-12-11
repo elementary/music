@@ -21,29 +21,26 @@
  */
 
 public class BeatBox.LyricFetcher : GLib.Object {
-	private static const string urlFormat = "http://www.azlyrics.com/lyrics/%s/%s.html";
+
+	private static const string URL_FORMAT = "http://www.azlyrics.com/lyrics/%s/%s.html";
 	
-	private string artist;
-	private string title;
 	private string url;
 	
 	public signal void lyrics_fetched(string lyrics);
 	
 	public LyricFetcher() {
-		
+	
 	}
 	
 	public void fetch_lyrics(string artist, string title) {
-		this.artist = (string)artist.replace(" ","").replace(".","").replace("-", "").replace("?","").replace("(","").replace(")","").replace("'","").down().replace("the","").to_utf8();
-		this.title = (string)title.replace(" ","").replace(".","").replace("-", "").replace("?","").replace("(","").replace(")","").replace("'","").down().to_utf8();
 		
-		url = urlFormat.printf(this.artist, this.title);
+		parse_url (artist, title);
 		
 		try {
 			Thread.create<void*>(fetch_lyrics_thread, false);
 		}
 		catch(GLib.ThreadError err) {
-			stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
+			stdout.printf("ERROR: Could not create lyrics thread: %s \n", err.message);
 		}
 	}
 	
@@ -67,12 +64,11 @@ public class BeatBox.LyricFetcher : GLib.Object {
 		if(load_successful) {
 			string content = (string)uintcontent;
 			
-			var startString = "<!-- start of lyrics -->";
-			var endString = "<!-- end of lyrics -->";
-			var start = content.index_of(startString, 0) + startString.length;
-			var end = content.index_of(endString, start);
+			const string START_STRING = "<!-- start of lyrics -->";
+			const string END_STRING = "<!-- end of lyrics -->";
 			
-			//stdout.printf("getting content from %d->%d\n", start, end);
+			var start = content.index_of(START_STRING, 0) + START_STRING.length;
+			var end = content.index_of(END_STRING, start);
 			
 			if(start != -1 && end != -1 && end > start) {
 				lyrics = content.substring(start, end - start);
@@ -88,4 +84,29 @@ public class BeatBox.LyricFetcher : GLib.Object {
 		
 		return null;
 	}
+	
+	private void parse_url (string artist, string title) {
+
+		url = URL_FORMAT.printf (fix_string (artist), fix_string (title));
+	}
+	
+	private string fix_string (string? str) {
+
+		string rv = "";
+
+		if (str == null)
+			return rv;
+
+		for (int i = 0; i < str.length; ++i) {
+			if (('a' <= str[i] && str[i] <= 'z') || ('A' <= str[i] && str[i] <= 'Z') ||
+			    ('0' <= str[i] && str[i] <= '9')) {
+				rv += str[i].to_string ();
+			}
+		}
+
+		rv =  (string) rv.down ().to_utf8 ();
+
+		return rv;
+	}
+
 }

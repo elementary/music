@@ -1175,25 +1175,26 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		}
 		
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {
-			Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Would you like to move the files to the trash?");
-			md.title = "Move to Trash";
+
+			RemoveFromLibraryDialog dialog = new RemoveFromLibraryDialog (lm.lw, toRemove.size);
 			
-			if(md.run() == ResponseType.YES)
-				lm.remove_songs(toRemove, true);
-			else
-				lm.remove_songs(toRemove, false);
-			
-			md.destroy();
+			dialog.ok_button_pressed.connect ( (delete_files) => {
+				lm.remove_songs (toRemove, delete_files);
+				music_model.removeSongs(toRemoveIDs);
+				
+				lw.miller.populateColumns("", music_model.getOrderedSongs());
+			});
 		}
-		if(get_hint() == ViewWrapper.Hint.PLAYLIST)
-			lm.save_playlists();
-		else if(get_hint() == ViewWrapper.Hint.QUEUE)
+		
+		if(get_hint() == ViewWrapper.Hint.PLAYLIST || get_hint() == ViewWrapper.Hint.QUEUE) {
 			lm.save_playlists();
 			
-		music_model.removeSongs(toRemoveIDs);
-		
-		// in case all the songs from certain miller items were removed, update miller
-		lw.miller.populateColumns("", music_model.getOrderedSongs());
+			music_model.removeSongs(toRemoveIDs);
+
+			// in case all the songs from certain miller items were removed, update miller
+			lw.miller.populateColumns("", music_model.getOrderedSongs());
+		}
+
 	}
 	
 	public virtual void songRateSongClicked() {
