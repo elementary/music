@@ -63,27 +63,25 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	void* finish_initialization_thread() {
 		for(int i = 0; i < db.tracks.length(); ++i) {
+			unowned GPod.Track t = db.tracks.nth_data(i);
 			//stdout.printf("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
-			var s = Song.from_track(get_path(), db.tracks.nth_data(i));
+			var s = Song.from_track(get_path(), t);
 			s.isTemporary = true;
 			
 			var existing = lm.song_from_name(s.title, s.artist);
 			
 			if(existing.rowid > 0) {
-				this.songs.set(db.tracks.nth_data(i), existing.rowid);
+				//stdout.printf("found match for %s\n", s.title);
+				this.songs.set(t, existing.rowid);
 			}
 			else {
+				stdout.printf("did not found match for %s,%s\n", s.title, s.artist);
 				lm.add_song(s, false);
-				this.songs.set(db.tracks.nth_data(i), s.rowid);
+				this.songs.set(t, s.rowid);
 			}
-		}
-		
-		for(int i = 0; i < db.playlists.length(); ++i) {
-			stdout.printf("found playlist %s with is_spl %d and liveupdate %d\n", db.playlists.nth_data(i).name, db.playlists.nth_data(i).is_spl ? 1 : 0, (int)db.playlists.nth_data(i).splpref.liveupdate);
 		}
 		
 		unowned GPod.Playlist podcast = db.playlist_podcasts();
-		stdout.printf("there are %d podcasts\n", (int)podcast.tracks_number());
 		foreach(unowned GPod.Track t in db.tracks) {
 			if(t.podcasturl != null && t.podcasturl.length > 5) {
 				stdout.printf("found podcast\n");
@@ -290,6 +288,23 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		db.start_sync();
 		
+		// sync local files with new info
+		foreach(unowned GPod.Track t in songs.keys) {
+			Song s = lm.song_from_id(songs.get(t));
+			
+			if(!s.isTemporary) {
+				// update the song with data from device
+				stdout.printf("t.rating is %d, s.rating is %d\n", (int)t.rating, (int)s.rating);
+				if((int)t.time_modified > s.last_modified) {
+					stdout.printf("--------------t.rating is %d, s.rating is %d\n", (int)t.rating, (int)s.rating);
+					s.rating = t.rating / 20;
+					s.play_count = t.playcount;
+					s.skip_count = t.skipcount;
+					s.last_played = (int)t.time_played;
+				}
+			}
+		}
+		
 		/* first remove removed songs */
 		current_operation = "Removing old songs from iPod and updating current ones";
 		var removed = new HashMap<unowned GPod.Track, int>();
@@ -342,13 +357,13 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		sub_index = 0;
 		int new_song_size = 0;
 		foreach(var i in list) {
-			if(!songs.values.contains(i)) {
+			if(!songs.values.contains(i) && lm.song_from_id(i).mediatype == 0) {
 				new_song_size++;
 			}
 		}
 		foreach(var i in list) {
 			if(!sync_cancelled) {
-				if(!songs.values.contains(i)) {
+				if(!songs.values.contains(i) && lm.song_from_id(i).mediatype == 0) {
 					add_song(i);
 					++sub_index;
 				}
@@ -360,6 +375,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		if(!sync_cancelled) {
 			// sync playlists
 			sync_playlists();
+			sync_podcasts();
 			
 			current_operation = "Finishing sync process...";
 			
@@ -395,6 +411,12 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		
 		Idle.add( () => {
+			LinkedList<Song> temps = new LinkedList<Song>();
+			foreach(int i in songs.values)
+				temps.add(lm.song_from_id(i));
+			
+			lm.update_songs(temps, false);
+		
 			lm.doing_file_operations = false;
 			lm.lw.topDisplay.show_scale();
 			lm.lw.updateInfoLabel();
@@ -428,6 +450,11 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		unowned GPod.Playlist mpl = db.playlist_mpl();
 		mpl.add_track(added, -1);
+		
+		if(added.mediatype == GPod.MediaType.PODCAST) {
+			unowned GPod.Playlist ppl = db.playlist_podcasts();
+			ppl.add_track(added, -1);
+		}
 		
 		if(db.cp_track_to_ipod(added, s.file)) {
 			songs.set(added, i);
@@ -499,6 +526,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		
 		return false;
+	}
+	
+	void sync_podcasts() {
+		
 	}
 	
 	/* should be called from thread */

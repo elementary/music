@@ -158,10 +158,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	 * shown
 	*/
 	public void populate_view() {
-		/*if(_show_next == _showing_songs) {
-			stdout.printf("no need to repopulate album view\n");
+		if(_show_next == _showing_songs) {
 			return;
-		}*/
+		}
 		
 		_showing_songs = _show_next;
 		
@@ -183,9 +182,24 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			}
 		}
 		
+		var hPos = this.vadjustment.get_value();
+		
 		model = new AlbumViewModel(lm, defaultPix);
 		model.appendSongs(albs, false);
 		icons.set_model(model);
+		
+		move_focus_out(DirectionType.UP);
+		
+		/* this is required to make the iconview initially scrollable */
+		if(albs.size > 0) {
+			//icons.select_path(new TreePath.from_string((albs.size - 1).to_string()));
+			//icons.unselect_all();
+		}
+		
+		if(get_is_current() && lm.song_info.song != null)
+			scrollToCurrent();
+		else
+			this.vadjustment.set_value((int)hPos);
 		
 		needsUpdate = false;
 	}
@@ -242,4 +256,20 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		_show_next.remove_all(ids);
 	}
 	
+	public void scrollToCurrent() {
+		if(!get_is_current() || lm.song_info.song == null)
+			return;
+		
+		TreeIter iter;
+		for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
+			Value vs;
+			model.get_value(iter, 2, out vs);
+
+			if(icons is IconView && ((Song)vs).album == lm.song_info.song.album) {
+				icons.scroll_to_path(new TreePath.from_string(i.to_string()), false, 0.0f, 0.0f);
+				
+				return;
+			}
+		}
+	}
 }

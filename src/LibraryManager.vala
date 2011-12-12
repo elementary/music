@@ -193,6 +193,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		//load all playlists from db
+		stdout.printf("loading playlists\n");
 		foreach(Playlist p in dbm.load_playlists()) {
 			_playlists.set(p.rowid, p);
 			
@@ -221,6 +222,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				_playlists.unset(p.rowid);
 			}
 		}
+		stdout.printf("finished loading playlists\n");
 		
 		foreach(LastFM.ArtistInfo a in dbm.load_artists()) {
 			_artists.set(a.name, a);
@@ -727,6 +729,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Song s in updates) {
 			/*_songs.set(s.rowid, s);*/
 			rv.add(s.rowid);
+			
+			s.last_modified = (int)time_t();
 		}
 		
 		songs_updated(rv);
@@ -801,14 +805,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Song rv = new Song("");
 		rv.title = title;
 		rv.artist = artist;
-		int[] searchable;
+		Song[] searchable;
 		
-		lock(_locals) {
-			searchable = _locals.to_array();
+		lock(_songs) {
+			searchable = _songs.values.to_array();
 		}
 		
 		for(int i = 0; i < searchable.length; ++i) {
-			Song s = _songs.get(searchable[i]);
+			Song s = searchable[i];
 			if(s.title.down() == title.down() && s.artist.down() == artist.down())
 				return s;
 		}
