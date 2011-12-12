@@ -20,9 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* Merely a place holder for multiple pieces of information regarding
- * the current song playing. Mostly here because of dependence. */
-
 using Gtk;
 
 public class BeatBox.PlaylistNameWindow : Window {
@@ -40,7 +37,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 	public PlaylistNameWindow(LibraryWindow lw, Playlist original) {
 		this.lw = lw;
 		
-		title = "Playlist Editor";
+		title = "";
 		
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -49,6 +46,8 @@ public class BeatBox.PlaylistNameWindow : Window {
 		this.destroy_with_parent = true;
 //		this.type = WindowType.POPUP;
 		
+		set_size_request (250, -1);
+		resizable = false;
 		
 		_original = original;
 		

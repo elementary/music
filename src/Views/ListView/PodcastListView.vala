@@ -147,30 +147,26 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		return podcast_model.getOrderedSongs();
 	}
 	
-	public void set_as_current_list(int song_id) {
-		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL && !get_is_current());
+	public void set_as_current_list(int song_id, bool is_initial) {
+		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
-		TreeIter iter;
-		for(int i = 0; podcast_model.get_iter_from_string(out iter, i.to_string()); ++i) {
-			Value id;
-			podcast_model.get_value(iter, 0, out id);
+		int i = 0;
+		foreach(int id in podcast_model.getOrderedSongs()) {
+			lm.addToCurrent(id);
 			
-			lm.addToCurrent(id.get_int());
+			if(!shuffle && lm.song_info.song != null && lm.song_info.song.rowid == id && song_id == 0)
+				lm.current_index = i;
+			else if(!shuffle && lm.song_info.song != null && song_id == id)
+				lm.current_index = i;
 			
-			if(lm.song_info.song != null && lm.song_info.song.rowid == id.get_int() && song_id == 0)
-				lm.current_index = i;
-			else if(lm.song_info.song != null && song_id == id.get_int())
-				lm.current_index = i;
+			++i;
 		}
 		
 		set_is_current(true);
 		
 		if(lm.song_info.song != null)
 			podcast_model.updateSong(lm.song_info.song.rowid, get_is_current());
-			
-		if(shuffle)
-			lm.setShuffleMode(LibraryManager.Shuffle.ALL);
 	}
 	
 	public void populate_view() {
@@ -218,8 +214,9 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		set_statusbar_text();
 		
-		if(get_is_current())
-			set_as_current_list(0);
+		// just because a user searches, doesn't mean we want to update the playing list
+		/*if(get_is_current())
+			set_as_current_list(0, false);*/
 	}
 	
 	public void set_statusbar_text() {
@@ -641,7 +638,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		}*/
 		
 		if(get_is_current()) {
-			set_as_current_list(0);
+			set_as_current_list(0, false);
 		}
 		
 		if(!scrolled_recently) {
@@ -725,9 +722,9 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	void songs_updated(Collection<int> ids) {
 		podcast_model.updateSongs(ids, get_is_current());
 		
-		//since a song may have changed location, reset current
+		//since a song may have changed order, reset current
 		if(get_is_current())
-			set_as_current_list(0);
+			set_as_current_list(0, false);
 	}
 	
 	void songs_removed(LinkedList<int> ids) {
@@ -744,7 +741,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		Value id;
 		podcast_model.get_value(item, 0, out id);
 		
-		set_as_current_list(id.get_int());
+		set_as_current_list(id.get_int(), !_is_current);
 		
 		// play the song
 		lm.playSong(id.get_int());

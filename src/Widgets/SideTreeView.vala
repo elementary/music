@@ -327,7 +327,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				return false;
 				
 			if(getWidget(iter) is ViewWrapper) {
-				((ViewWrapper)getWidget(iter)).list.set_as_current_list(0);
+				((ViewWrapper)getWidget(iter)).list.set_as_current_list(0, true);
 				((ViewWrapper)getWidget(iter)).set_statusbar_text();
 			}
 		}
@@ -342,7 +342,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return;
 			
 		if(getWidget(iter) is ViewWrapper) {
-			((ViewWrapper)getWidget(iter)).list.set_as_current_list(1);
+			((ViewWrapper)getWidget(iter)).list.set_as_current_list(1, true);
 			
 			lm.playSong(lm.songFromCurrentIndex(0));
 			lm.player.play();

@@ -19,6 +19,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  */
+
 using Gtk;
 using Gee;
 using Granite;
@@ -56,6 +57,9 @@ public class BeatBox.SongEditor : Window {
 		this.set_modal(true);
 		this.set_transient_for(lm.lw);
 		this.destroy_with_parent = true;
+		
+		set_size_request (520, -1);
+		resizable = false;
 		
 		lf = new LyricFetcher();
 		lf.lyrics_fetched.connect(lyricsFetched);
@@ -97,7 +101,7 @@ public class BeatBox.SongEditor : Window {
 			foreach(FieldEditor fe in fields.values)
 				fe.set_check_visible(false);
 				
-			fetchLyricsClicked();
+			fetch_lyrics (false);
 		}
 		
 		_previous.clicked.connect(previousClicked);
@@ -246,9 +250,15 @@ public class BeatBox.SongEditor : Window {
 	}
 	
 	public void fetchLyricsClicked() {
-		// fetch lyrics here
+		fetch_lyrics (true);
+	}
+	
+	private void fetch_lyrics (bool overwrite) {
 		Song s = _lm.song_from_id(_songs.get(0));
-		lf.fetch_lyrics(s.album_artist, s.title);
+		
+		// fetch lyrics here
+		if (!(s.lyrics != "" && !overwrite))
+			lf.fetch_lyrics(s.album_artist, s.title);
 	}
 	
 	public void lyricsFetched(string fetchedLyrics) {

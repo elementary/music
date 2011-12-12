@@ -9,7 +9,7 @@ public interface BeatBox.ContentView : Gtk.ScrolledWindow {
 	
 	public abstract void set_show_next(Collection<int> songs);
 	public abstract void populate_view();
-	public abstract void set_as_current_list(int song_id);
+	public abstract void set_as_current_list(int song_id, bool is_initial);
 	public abstract void set_statusbar_text();
 	
 	public abstract void set_is_current(bool val);

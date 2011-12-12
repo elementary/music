@@ -159,9 +159,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				Timeout.add(250, () => {
 					lm.playSong(i);
 					
-					((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.set_as_current_list(0);
+					((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.set_as_current_list(0, true);
 					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL)
-						lm.setShuffleMode(LibraryManager.Shuffle.ALL);
+						lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
 					
 					searchField.set_text(lm.settings.getSearchString());
 					
@@ -887,14 +887,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void playClicked () {
 		if(lm.song_info.song == null) {
+			stdout.printf("No song is currently playing. Starting from the top\n");
 			//set current songs by current view
 			Widget w = sideTree.getSelectedWidget();
 			if(w is ViewWrapper) {
-				((ViewWrapper)w).list.set_as_current_list(1);
+				((ViewWrapper)w).list.set_as_current_list(1, true);
 			}
 			else {
 				w = sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
-				((ViewWrapper)w).list.set_as_current_list(1);
+				((ViewWrapper)w).list.set_as_current_list(1, true);
 			}
 			
 			lm.playing = true;
@@ -1315,9 +1316,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void shuffleChooserOptionChanged(int val) {
 		if(val == 0)
-			lm.setShuffleMode(LibraryManager.Shuffle.OFF);
+			lm.setShuffleMode(LibraryManager.Shuffle.OFF, true);
 		else if(val == 1)
-			lm.setShuffleMode(LibraryManager.Shuffle.ALL);
+			lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
 	}
 	
 	public virtual void infoPanelChooserOptionChanged(int val) {
@@ -1354,7 +1355,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(w is ViewWrapper) {
 			ViewWrapper vw = (ViewWrapper)w;
 			
-			vw.list.set_as_current_list(1);
+			vw.list.set_as_current_list(1, !vw.list.get_is_current());
 			lm.current_index = 0;
 			lm.playSong(lm.songFromCurrentIndex(0));
 			

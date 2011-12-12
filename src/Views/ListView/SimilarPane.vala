@@ -111,7 +111,7 @@ public class BeatBox.SimilarPane : MusicTreeView {
 	
 	public virtual void transferPlaybackClicked() {
 		//set the similar songs to current, hide button, set current_index
-		set_as_current_list(0);
+		set_as_current_list(0, true);
 		
 		//transferPlayback.hide();
 	}

@@ -1011,20 +1011,25 @@ public class BeatBox.LibraryManager : GLib.Object {
 		set {
 			if(_current_shuffled.size == 0)
 				_current_index = value;
-			else
+			else {
+				stdout.printf("just set _current_shuffled_index to %d\n", value);
 				_current_shuffled_index = value;
+			}
 		}
 	}
 	
 	public int songFromCurrentIndex(int index_in_current) {
-		if(_current_shuffled.size == 0)
+		if(shuffle == Shuffle.OFF)
 			return _current.get(index_in_current);
 		else
 			return _current_shuffled.get(index_in_current);
 	}
 	
 	public Collection<int> current_songs() {
-		return _current.values;
+		if(shuffle == Shuffle.OFF)
+			return _current_shuffled.values;
+		else
+			return _current.values;
 	}
 	
 	public void clearCurrent() {
@@ -1038,26 +1043,34 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_current.set(_current.size, i);
 	}
 	
-	public void setShuffleMode(Shuffle mode) {
-		if(mode == shuffle)
+	public void setShuffleMode(Shuffle mode, bool reshuffle) {
+		/*if(mode == shuffle)
 			return;
-		
-		_current_shuffled.clear();
-		_current_shuffled_index = 1;
+		*/
 		settings.setShuffleMode(mode);
 		shuffle = mode;
 		
+		if(!reshuffle)
+			return;
+		
+		_current_shuffled.clear();
+		_current_shuffled_index = 0;
+		
 		if(mode == Shuffle.OFF) {
-			//make sure we continue playing where we left off
-			for(int i = 0; i < _current.size; ++i) {
-				if(_current.get(i) == song_info.song.rowid) {
-					_current_index = i;
-					return;
+			if(song_info.song != null) {
+				//make sure we continue playing where we left off
+				for(int i = 0; i < _current.size; ++i) {
+					if(_current.get(i) == song_info.song.rowid) {
+						_current_index = i;
+						return;
+					}
 				}
+			}
+			else {
+				_current_index = 0;
 			}
 		}
 		else if(mode == Shuffle.ALL) {
-			stdout.printf("reshuffling\n");
 			//create temp list of all of current's song id's
 			LinkedList<int> temp = new LinkedList<int>();
 			foreach(int i in _current.values) {
@@ -1066,10 +1079,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			//loop through all current song id's and pick a random one remaining
 			//and set that int i as one of those this is confusing just a sort
-			for(int i = 0;i < _current.size; ++i) {
+			//_current_shuffled.set(0, song_info.song.rowid);
+			for(int i = 1;i < _current.size; ++i) {
 				int random = GLib.Random.int_range(0, temp.size);
 				
-				_current_shuffled.set(i, temp.get(random));
+				//if(temp.get(random) != song_info.song.rowid) {
+				if(song_info.song != null && temp.get(random) == song_info.song.rowid) {
+					_current_shuffled.set(0, song_info.song.rowid);
+					--i;
+				}
+				else {
+					_current_shuffled.set(i, temp.get(random));
+				}
 				temp.remove(temp.get(random));
 			}
 		}
@@ -1082,7 +1103,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(!queue_empty()) {
 			rv = poll_queue();
 		}
-		else if(_current_shuffled.size > 0) {
+		else if(_current_shuffled.size != 0) {
 			if(song_info.song == null) {
 				_current_shuffled_index = 0;
 				rv = _current_shuffled.get(0);
@@ -1115,8 +1136,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 					while(song_from_id(_current_shuffled.get(_current_shuffled_index - 1)).album == song_info.song.album)
 						--_current_shuffled_index;
 				}
-				else
+				else {
 					++_current_shuffled_index;
+				}
 				
 				rv = _current_shuffled.get(_current_shuffled_index);
 			}
@@ -1125,6 +1147,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 					addToCurrent(s.rowid);
 				
 				_current_shuffled_index = 0;
+				setShuffleMode(Shuffle.ALL, true);
 				rv = _current_shuffled.get(0);
 			}
 		}
@@ -1179,7 +1202,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public int getPrevious(bool play) {
 		int rv;
 		
-		if(_current_shuffled.size > 0) {
+		if(_current_shuffled.size != 0) {
 			if(song_info.song == null) {
 				_current_shuffled_index = _current_shuffled.size - 1;
 				rv = _current_shuffled.get(_current_shuffled_index);
@@ -1187,7 +1210,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			else if(repeat == Repeat.SONG) {
 				rv = _current_shuffled.get(_current_shuffled_index);
 			}
-			else if(_current_shuffled_index == (0)) {// consider repeat options
+			else if(_current_shuffled_index == 0) {// consider repeat options
 				if(repeat == Repeat.ALL)
 					_current_shuffled_index = _current_shuffled.size - 1;
 				else {
@@ -1197,7 +1220,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				
 				rv = _current_shuffled.get(_current_shuffled_index);
 			}
-			else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
+			else if(_current_shuffled_index > 0 && _current_shuffled_index < _current_shuffled.size){
 				// make sure we are repeating what we need to be
 				if(repeat == Repeat.ARTIST && song_from_id(_current_shuffled.get(_current_shuffled_index - 1)).artist != song_from_id(_current_shuffled.get(_current_shuffled_index)).artist) {
 					while(song_from_id(_current_shuffled.get(_current_shuffled_index + 1)).artist == song_info.song.artist)
@@ -1238,7 +1261,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				
 				rv = _current.get(_current_index);
 			}
-			else if(_current_index >= 0 && _current_index < (_current.size - 1)){
+			else if(_current_index > 0 && _current_index < _current.size){
 				// make sure we are repeating what we need to be
 				if(repeat == Repeat.ARTIST && song_from_id(_current.get(_current_index - 1)).artist != song_from_id(_current.get(_current_index)).artist) {
 					while(song_from_id(_current.get(_current_index + 1)).artist == song_info.song.artist)

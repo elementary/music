@@ -110,7 +110,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return _showing_songs;
 	}
 	
-	public void set_as_current_list(int song_id) {
+	public void set_as_current_list(int song_id, bool is_initial) {
 		set_is_current(true);
 	}
 	

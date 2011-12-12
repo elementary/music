@@ -153,30 +153,28 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		return music_model.getOrderedSongs();
 	}
 	
-	public void set_as_current_list(int song_id) {
-		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL && !get_is_current());
+	public void set_as_current_list(int song_id, bool is_initial) {
+		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
-		TreeIter iter;
-		for(int i = 0; music_model.get_iter_from_string(out iter, i.to_string()); ++i) {
-			Value id;
-			music_model.get_value(iter, 0, out id);
+		int i = 0;
+		foreach(int id in music_model.getOrderedSongs()) {
+			lm.addToCurrent(id);
 			
-			lm.addToCurrent(id.get_int());
+			if(!shuffle && lm.song_info.song != null && lm.song_info.song.rowid == id && song_id == 0)
+				lm.current_index = i;
+			else if(!shuffle && lm.song_info.song != null && song_id == id)
+				lm.current_index = i;
 			
-			if(lm.song_info.song != null && lm.song_info.song.rowid == id.get_int() && song_id == 0)
-				lm.current_index = i;
-			else if(lm.song_info.song != null && song_id == id.get_int())
-				lm.current_index = i;
+			++i;
 		}
 		
 		set_is_current(true);
 		
 		if(lm.song_info.song != null)
 			music_model.updateSong(lm.song_info.song.rowid, get_is_current());
-			
-		if(shuffle)
-			lm.setShuffleMode(LibraryManager.Shuffle.ALL);
+		
+		lm.setShuffleMode(LibraryManager.Shuffle.ALL, shuffle && is_initial);
 	}
 	
 	public void populate_view() {
@@ -222,8 +220,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		set_statusbar_text();
 		
-		if(get_is_current())
-			set_as_current_list(0);
+		/*if(get_is_current())
+			set_as_current_list(0);*/
 	}
 	
 	public void set_statusbar_text() {
@@ -670,7 +668,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		}*/
 		
 		if(get_is_current()) {
-			set_as_current_list(0);
+			set_as_current_list(0, false);
 		}
 		
 		if(!scrolled_recently) {
@@ -769,7 +767,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		//since a song may have changed location, reset current
 		if(get_is_current())
-			set_as_current_list(0);
+			set_as_current_list(0, false);
 	}
 	
 	void songs_removed(LinkedList<int> ids) {
@@ -786,9 +784,10 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		Value id;
 		music_model.get_value(item, 0, out id);
 		
-		set_as_current_list(id.get_int());
 		// play the song
 		lm.playSong(id.get_int());
+		
+		set_as_current_list(id.get_int(), true);
 		
 		if(!lm.playing) {
 			lw.playClicked();
@@ -1174,23 +1173,26 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		}
 		
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {
-			Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Would you like to move the files to the trash?");
-			md.title = "Move to Trash";
+
+			RemoveFromLibraryDialog dialog = new RemoveFromLibraryDialog (lm.lw, toRemove.size);
 			
-			if(md.run() == ResponseType.YES)
-				lm.remove_songs(toRemove, true);
-			else
-				lm.remove_songs(toRemove, false);
-			
-			md.destroy();
+			dialog.ok_button_pressed.connect ( (delete_files) => {
+				lm.remove_songs (toRemove, delete_files);
+				music_model.removeSongs(toRemoveIDs);
+				
+				lw.miller.populateColumns("", music_model.getOrderedSongs());
+			});
 		}
-		if(get_hint() == ViewWrapper.Hint.PLAYLIST)
-			lm.save_playlists();
-		else if(get_hint() == ViewWrapper.Hint.QUEUE)
-			lm.save_playlists();
 		
-		// in case all the songs from certain miller items were removed, update miller
-		lw.miller.populateColumns("", music_model.getOrderedSongs());
+		if(get_hint() == ViewWrapper.Hint.PLAYLIST || get_hint() == ViewWrapper.Hint.QUEUE) {
+			lm.save_playlists();
+			
+			music_model.removeSongs(toRemoveIDs);
+
+			// in case all the songs from certain miller items were removed, update miller
+			lw.miller.populateColumns("", music_model.getOrderedSongs());
+		}
+
 	}
 	
 	public virtual void songRateSongClicked() {
