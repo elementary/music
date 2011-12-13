@@ -30,6 +30,11 @@ install(FILES icons/16x16/mimes/playlist-automatic.svg DESTINATION share/icons/h
 install(FILES icons/22x22/mimes/playlist.svg DESTINATION share/icons/hicolor/22x22/status)
 install(FILES icons/22x22/mimes/playlist-automatic.svg DESTINATION share/icons/hicolor/22x22/status)
 
+#rss for podcasts
+install(FILES icons/22x22/mimes/application-rss+xml.svg DESTINATION share/icons/hicolor/22x22/mimes)
+install(FILES icons/24x24/mimes/application-rss+xml.svg DESTINATION share/icons/hicolor/24x24/mimes)
+install(FILES icons/48x48/mimes/application-rss+xml.svg DESTINATION share/icons/hicolor/48x48/mimes)
+
 # process-completed and error
 install(FILES icons/16x16/mimes/process-completed-symbolic.svg DESTINATION share/icons/hicolor/16x16/status)
 install(FILES icons/16x16/mimes/process-error-symbolic.svg DESTINATION share/icons/hicolor/16x16/status)

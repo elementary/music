@@ -93,6 +93,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	void deviceInitialized(Device d) {
+		d.get_unique_identifier();
 		device_added(d);
 	}
 	

@@ -70,7 +70,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			
 			Xml.Node* node = getRootNode(message);
 			if(node != null) {
-				findNewItems(rss, node, mp3_urls, ref new_podcasts, 10);
+				findNewItems(rss, node, mp3_urls, ref new_podcasts);
 			}
 			
 			++rss_index;
@@ -140,7 +140,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			mp3_urls.add(pod.podcast_url);
 		}
 		
-		findNewItems(rss, node, mp3_urls, ref new_podcasts, 10);
+		findNewItems(rss, node, mp3_urls, ref new_podcasts);
 		
 		index = 11;
 		fetching = false;
@@ -170,7 +170,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 	}
 	
 	// parses a xml root node for new podcasts
-	public void findNewItems(string rss, Xml.Node* node, HashSet<string> existing, ref LinkedList<Song> found, int max_items) {
+	public void findNewItems(string rss, Xml.Node* node, HashSet<string> existing, ref LinkedList<Song> found) {
 		string pod_title = ""; string pod_author = ""; string category = ""; string summary = ""; string image_url = "";
 		int image_width, image_height;
 		int visited_items = 0;
@@ -283,8 +283,8 @@ public class BeatBox.PodcastManager : GLib.Object {
 				++visited_items;
 				++index;
 				
-				if(visited_items >= max_items - 1)
-					return;
+				//if(visited_items >= max_items - 1)
+				//	return;
 			}
 		}
 	}

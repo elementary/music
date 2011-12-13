@@ -54,7 +54,8 @@ public class BeatBox.Beatbox : Granite.Application {
 		{ "multimedia-player", null, 0, 0},
 		{ "media-eject", null, 0, 0 },
 		{ "process-completed-symbolic", null, 0, 0},
-		{ "process-error-symbolic", null, 0, 0}
+		{ "process-error-symbolic", null, 0, 0},
+		{ "application-rss+xml", null, 0, 0}
 		
     };
     

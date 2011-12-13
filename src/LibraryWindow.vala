@@ -700,8 +700,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//reset the song position
 		topDisplay.set_scale_sensitivity(true);
 		topDisplay.set_scale_range(0.0, lm.song_info.song.length);
-		stdout.printf("using %d\n", lm.song_info.song.resume_pos);
-		topDisplay.set_scale_value((lm.song_info.song.mediatype == 1 || lm.song_info.song.mediatype == 2) ? (double)lm.song_info.song.resume_pos : 0.0);
+		
+		if(lm.song_from_id(i).mediatype == 1 || lm.song_from_id(i).mediatype == 2) {
+			stdout.printf("setting position to resume_pos which is %d\n", lm.song_from_id(i).resume_pos );
+			Timeout.add(250, () => {
+				topDisplay.change_value(ScrollType.NONE, lm.song_from_id(i).resume_pos);
+				return false;
+			});
+		}
+		else {
+			topDisplay.change_value(ScrollType.NONE, 0);
+		}
 		
 		//if(!songPosition.get_sensitive())
 		//	songPosition.set_sensitive(true);

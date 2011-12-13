@@ -155,7 +155,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return network_store_iter;
 		}
 		else if(name == "Podcasts" && parent == library_iter) {
-			library_podcasts_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
+			library_podcasts_iter = addItem(parent, o, w, render_icon("application-rss+xml", IconSize.MENU, null), name, null);
 			return library_podcasts_iter;
 		}
 		else if(name == "Audiobooks" && parent == library_iter) {

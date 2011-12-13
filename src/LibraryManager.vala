@@ -1319,9 +1319,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			player.setURI("file://" + song_from_id(id).file);
 		else
 			player.setURI(song_from_id(id).file); // probably cdda
-			
-		if(song_from_id(id).mediatype == 1 || song_from_id(id).mediatype == 2)
-			player.setPosition(song_from_id(id).resume_pos * 1000000000);
 		
 		//pause if paused
 		if(!playing)
