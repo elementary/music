@@ -1,7 +1,8 @@
 using Gee;
 
 public interface BeatBox.Device : GLib.Object {
-	//private Mount mount;
+	private LibraryManager lm;
+	public DevicePreferences preferences;
 	
 	public signal void initialized(Device d);
 	public signal void device_unmounted();
@@ -25,6 +26,13 @@ public interface BeatBox.Device : GLib.Object {
 			}
 		}
 	}*/
+	
+	public Device(LibraryManager lm) {
+		this.lm = lm;
+		
+		// get preferences. if no preferences, create new and initialize it
+		// and it's id
+	}
 	
 	public abstract bool start_initialization();
 	public abstract void finish_initialization();
@@ -57,8 +65,16 @@ public interface BeatBox.Device : GLib.Object {
 		Mount m = get_mount();
 		string uuid = m.get_uuid();
 		File root = m.get_root();
+		string rv = "";
 		
-		stdout.printf("unique: %s,%s\n", uuid, root.get_uri());
-		return uuid;
+		if(root != null && root.get_uri() != null) {
+			rv += root.get_uri();
+		}
+		if(uuid != null && uuid != "") {
+			rv += "/" + uuid;
+		}
+		
+		stdout.printf("created uri of %s\n", rv);
+		return rv;
 	}
 }
