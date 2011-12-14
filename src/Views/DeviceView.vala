@@ -6,10 +6,12 @@ public class BeatBox.DeviceView : VBox {
 	LibraryWindow lw;
 	Device d;
 	
-	DeviceBar bar;
+	//DeviceBar bar;
+	Granite.Widgets.StaticNotebook tabs;
 	DeviceSummaryWidget summary;
 	public DeviceViewWrapper music_list;
 	DeviceViewWrapper podcast_list;
+	DeviceViewWrapper audiobook_list;
 	
 	public DeviceView(LibraryManager lm, Device d) {
 		this.lm = lm;
@@ -32,32 +34,48 @@ public class BeatBox.DeviceView : VBox {
 	}
 	
 	void buildUI() {
-		bar = new DeviceBar(lm, d);
-		summary = new DeviceSummaryWidget(lm, lw, d);
-		music_list = new DeviceViewWrapper(lm, lw, d.get_songs(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
-		podcast_list = new DeviceViewWrapper(lm, lw, d.get_podcasts(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
+		//bar = new DeviceBar(lm, d);
+		tabs = new Granite.Widgets.StaticNotebook();
 		
-		pack_start(bar, false, true, 0);
-		pack_end(summary, true, true, 0);
-		pack_end(music_list, true, true, 0);
-		pack_end(podcast_list, true, true, 0);
+		summary = new DeviceSummaryWidget(lm, lw, d);
+		tabs.append_page(summary, new Label("General"));
+		
+		music_list = new DeviceViewWrapper(lm, lw, d.get_songs(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
+		tabs.append_page(music_list, new Label("Music"));
+		
+		if(d.supports_podcasts()) {
+			podcast_list = new DeviceViewWrapper(lm, lw, d.get_podcasts(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
+			tabs.append_page(podcast_list, new Label("Podcasts"));
+		}
+		if(d.supports_audiobooks()) {
+			
+		}
+		
+		pack_start(tabs, true, true, 0);
 		
 		show_all();
 		bar_option_changed(0);
 		
-		bar.option_changed.connect(bar_option_changed);
-		bar.sync_requested.connect(syncClicked);
+		tabs.page_changed.connect(bar_option_changed);
 		d.progress_notification.connect(deviceProgress);
 	}
 	
 	public void updateChildren() {
+		summary.refreshLists();
 		music_list.doUpdate(music_list.getView(), music_list.songs, true, false);
-		podcast_list.doUpdate(podcast_list.getView(), podcast_list.songs, true, false);
+		
+		if(d.supports_podcasts())
+			podcast_list.doUpdate(podcast_list.getView(), podcast_list.songs, true, false);
+		if(d.supports_audiobooks())
+			stdout.printf("will update audiobook list in future\n");
 	}
 	
 	public void set_is_current_view(bool val) {
 		music_list.set_is_current_view(val);
-		podcast_list.set_is_current_view(val);
+		
+		if(d.supports_podcasts())
+			podcast_list.set_is_current_view(val);
+		// add audiobook too
 		
 		if(val) {
 			// loop through and turn on/off views
@@ -86,29 +104,12 @@ public class BeatBox.DeviceView : VBox {
 	}
 	
 	void bar_option_changed(int option) {
-		if(option == 0) {
-			summary.show();
-			summary.refreshPlaylistList();
-			music_list.hide();
-			podcast_list.hide();
-		}
-		else if(option == 1) {
-			summary.hide();
-			music_list.show();
-			podcast_list.hide();
-		}
-		else if(option == 2) {
-			summary.hide();
-			music_list.hide();
-			podcast_list.show();
-		}
-		
 		lw.updateMillerColumns();
 		set_is_current_view(true);
 	}
 	
 	public int currentViewIndex() {
-		return bar.currentPage();
+		return tabs.page;
 	}
 	
 	void syncClicked() {
@@ -119,7 +120,7 @@ public class BeatBox.DeviceView : VBox {
 				list.add(s.rowid);
 		}
 		else {
-			GLib.Object p = summary.selected_playlist();
+			/*GLib.Object p = summary.selected_playlist();
 			
 			if(p == null) {
 				lw.doAlert("Cannot Sync", "You must either select a playlist to sync, or select to sync all your songs");
@@ -129,7 +130,7 @@ public class BeatBox.DeviceView : VBox {
 			}
 			else if(p is SmartPlaylist) {
 				list = lm.songs_from_smart_playlist(((SmartPlaylist)p).rowid);
-			}
+			}*/
 		}
 			
 		

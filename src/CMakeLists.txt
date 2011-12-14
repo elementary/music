@@ -71,6 +71,7 @@ vala_precompile(VALA_C
     Devices/iPodDevice.vala
     Devices/AndroidDevice.vala
     Devices/CDRomDevice.vala
+    Devices/DevicePreferences.vala
     LibraryWindow.vala
     LibraryManager.vala
     Objects/TreeViewSetup.vala

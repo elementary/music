@@ -59,7 +59,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		
-		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_373.db"));
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_386.db"));
 		if(!db_file.query_exists())
 			need_create = true;
 		
@@ -85,7 +85,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'lastmodified' INT, 'mediatype' INT, 
 				'podcast_rss' TEXT, 'podcast_url' TEXT, 'podcast_date' INT, 'is_new_podcast' INT, 'resume_pos', INT)""");
 				
-				
+				_db.execute("CREATE TABLE devices ('unique_id' TEXT, 'sync_when_mounted' INT,'sync_music' INT, 'sync_podcasts' INT, 'sync_audiobooks' INT, 'sync_all_music' INT, 'sync_all_podcasts' INT, 'sync_all_audiobooks' INT, 'music_playlist' STRING, 'podcast_playlist' STRING, 'audiobook_playlist' STRING)");
 				
 				_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
 				_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
@@ -909,6 +909,72 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		}
 		catch(SQLHeavy.Error err) {
 			stdout.printf("Could not save tracks: %s\n", err.message);
+		}
+	}
+	
+	public Collection<DevicePreferences> load_devices() {
+		var rv = new LinkedList<DevicePreferences>();
+		
+		try {
+			string script = "SELECT rowid,* FROM `devices`";
+			Query query = new Query(_db, script);
+			
+			for (var results = query.execute(); !results.finished; results.next() ) {
+				DevicePreferences dp = new DevicePreferences(results.fetch_string(1));
+				
+				dp.sync_when_mounted = results.fetch_int(2) == 1;
+				dp.sync_music = results.fetch_int(3) == 1;
+				dp.sync_podcasts = results.fetch_int(4) == 1;
+				dp.sync_audiobooks = results.fetch_int(5) == 1;
+				dp.sync_all_music = results.fetch_int(6) == 1;
+				dp.sync_all_podcasts = results.fetch_int(7) == 1;
+				dp.sync_all_audiobooks = results.fetch_int(8) == 1;
+				dp.music_playlist = results.fetch_string(9);
+				dp.podcast_playlist = results.fetch_string(10);
+				dp.audiobook_playlist = results.fetch_string(11);
+				
+				rv.add(dp);
+			}
+		}
+		catch (SQLHeavy.Error err) {
+			stdout.printf("Could not load devices from db: %s\n", err.message);
+		}
+		
+		return rv;
+	}
+	
+	public void save_devices(Collection<DevicePreferences> devices) {
+		try {
+			_db.execute("DELETE FROM `devices`");
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare("""INSERT INTO `devices` ('unique_id', 'sync_when_mounted', 'sync_music', 
+			'sync_podcasts', 'sync_audiobooks', 'sync_all_music', 'sync_all_podcasts', 'sync_all_audiobooks', 'music_playlist', 
+			'podcast_playlist', 'audiobook_playlist') VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks, 
+			:sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist);""");
+			
+			foreach(DevicePreferences dp in devices) {
+				query.set_string(":unique_id", dp.id);
+				query.set_int(":sync_when_mounted", dp.sync_when_mounted ? 1 : 0);
+				
+				query.set_int(":sync_music", dp.sync_music ? 1 : 0);
+				query.set_int(":sync_podcasts", dp.sync_podcasts ? 1 : 0);
+				query.set_int(":sync_audiobooks", dp.sync_audiobooks ? 1 : 0);
+				
+				query.set_int(":sync_all_music", dp.sync_all_music ? 1 : 0);
+				query.set_int(":sync_all_podcasts", dp.sync_all_podcasts ? 1 : 0);
+				query.set_int(":sync_all_audiobooks", dp.sync_all_audiobooks ? 1 : 0);
+				
+				query.set_string(":music_playlist", dp.music_playlist);
+				query.set_string(":podcast_playlist", dp.podcast_playlist);
+				query.set_string(":audiobook_playlist", dp.audiobook_playlist);
+				
+				query.execute();
+			}
+			
+			transaction.commit();
+		}
+		catch(SQLHeavy.Error err) {
+			stdout.printf("Could not save devices: %s\n", err.message);
 		}
 	}
 }

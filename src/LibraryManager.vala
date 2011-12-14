@@ -43,6 +43,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private HashMap<int, Song> _podcasts;
 	private HashMap<int, Song> _audiobooks;
 	private LinkedList<int> _locals; // list of all local songs
+	private HashMap<string, DevicePreferences> _device_preferences;
+	
 	private HashMap<int, int> _current; // id, song of current songs.
 	private HashMap<int, int> _current_shuffled;//list of id's yet to be played while on shuffle
 	private HashMap<int, int> _current_view; // id, song of currently showing songs
@@ -127,6 +129,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_podcasts = new HashMap<int, Song>(); // subset of _songs
 		_audiobooks = new HashMap<int, Song>(); // subset of _songs
 		_locals = new LinkedList<int>();
+		_device_preferences = new HashMap<string, DevicePreferences>();
+		
 		_current = new HashMap<int, int>();
 		_current_shuffled = new HashMap<int, int>();
 		_current_view = new HashMap<int, int>();
@@ -239,6 +243,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// set the equalizer
 		if(settings.getEqualizerEnabled() && !settings.getAutoSwitchPreset()) {
 			set_selected_equalizer_preset ();
+		}
+		
+		// pre-load devices and their preferences
+		foreach(DevicePreferences dp in dbm.load_devices()) {
+			_device_preferences.set(dp.id, dp);
 		}
 		
 		dm = new DeviceManager(this);
@@ -1427,7 +1436,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void save_artists() {
 		try {
 			Thread.create<void*>( () => { 
-				lock(_smart_playlists) {
+				lock(_artists) {
 					dbm.save_artists(_artists.values);
 				}
 				
@@ -1460,7 +1469,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void save_albums() {
 		try {
 			Thread.create<void*>( () => { 
-				lock(_smart_playlists) {
+				lock(_albums) {
 					dbm.save_albums(_albums.values);
 				}
 				
@@ -1493,7 +1502,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void save_tracks() {
 		try {
 			Thread.create<void*>( () => { 
-				lock(_smart_playlists) {
+				lock(_tracks) {
 					dbm.save_tracks(_tracks.values);
 				}
 				
@@ -1597,4 +1606,28 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _album_art.get(s.artist+s.album);
 	}
 	
+	/* Device Preferences */
+	public DevicePreferences? get_device_preferences(string id) {
+		return _device_preferences.get(id);
+	}
+	
+	public void add_device_preferences(DevicePreferences dp) {
+		_device_preferences.set(dp.id, dp);
+		save_device_preferences();
+	}
+	
+	public void save_device_preferences() {
+		try {
+			Thread.create<void*>( () => { 
+				lock(_device_preferences) {
+					dbm.save_devices(_device_preferences.values);
+				}
+				
+				return null; 
+			}, false);
+		}
+		catch(GLib.Error err) {
+			stdout.printf("Could not create thread to save device preferences: %s\n", err.message);
+		}
+	}
 }

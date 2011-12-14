@@ -1,9 +1,6 @@
 using Gee;
 
 public interface BeatBox.Device : GLib.Object {
-	private LibraryManager lm;
-	public DevicePreferences preferences;
-	
 	public signal void initialized(Device d);
 	public signal void device_unmounted();
 	public signal void progress_notification(string? message, double progress);
@@ -27,13 +24,7 @@ public interface BeatBox.Device : GLib.Object {
 		}
 	}*/
 	
-	public Device(LibraryManager lm) {
-		this.lm = lm;
-		
-		// get preferences. if no preferences, create new and initialize it
-		// and it's id
-	}
-	
+	public abstract DevicePreferences get_preferences();
 	public abstract bool start_initialization();
 	public abstract void finish_initialization();
 	public abstract string getContentType();
@@ -52,8 +43,11 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract void unmount();
 	public abstract void eject();
 	public abstract void get_device_type();
+	public abstract bool supports_podcasts();
+	public abstract bool supports_audiobooks();
 	public abstract Collection<int> get_songs();
 	public abstract Collection<int> get_podcasts();
+	public abstract Collection<int> get_audiobooks();
 	public abstract Collection<int> get_playlists();
 	public abstract Collection<int> get_smart_playlists();
 	public abstract bool sync_songs(LinkedList<int> list);
@@ -66,15 +60,14 @@ public interface BeatBox.Device : GLib.Object {
 		string uuid = m.get_uuid();
 		File root = m.get_root();
 		string rv = "";
-		
+		stdout.printf("uuid: %s\n", uuid);
 		if(root != null && root.get_uri() != null) {
 			rv += root.get_uri();
 		}
 		if(uuid != null && uuid != "") {
-			rv += "/" + uuid;
+			rv += ("/" + uuid);
 		}
 		
-		stdout.printf("created uri of %s\n", rv);
 		return rv;
 	}
 }

@@ -3,6 +3,7 @@ using Gee;
 
 public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	LibraryManager lm;
+	DevicePreferences pref;
 	iTunesDB db;
 	Mount mount;
 	GLib.Icon icon;
@@ -15,6 +16,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	HashMap<unowned GPod.Track, int> songs;
 	HashMap<unowned GPod.Track, int> podcasts;
+	HashMap<unowned GPod.Track, int> audiobooks;
 	HashMap<unowned GPod.Playlist, int> playlists;
 	HashMap<unowned GPod.Playlist, int> smart_playlists;
 	
@@ -22,6 +24,13 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	public iPodDevice(LibraryManager lm, Mount mount) {
 		this.lm = lm;
 		this.mount = mount;
+		
+		pref = lm.get_device_preferences(get_unique_identifier());
+		if(pref == null) {
+			pref = new DevicePreferences(get_unique_identifier());
+			lm.add_device_preferences(pref);
+		}
+		
 		icon = mount.get_icon();
 		currently_syncing = false;
 		sync_cancelled = false;
@@ -32,8 +41,13 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		songs = new HashMap<unowned GPod.Track, int>();
 		podcasts = new HashMap<unowned GPod.Track, int>();
+		audiobooks = new HashMap<unowned GPod.Track, int>();
 		playlists = new HashMap<unowned GPod.Playlist, int>();
 		smart_playlists = new HashMap<unowned GPod.Playlist, int>();
+	}
+	
+	public DevicePreferences get_preferences() {
+		return pref;
 	}
 	
 	public bool start_initialization() {
@@ -62,6 +76,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	void* finish_initialization_thread() {
+		var toAdd = new HashMap<unowned GPod.Track, Song>();
 		for(int i = 0; i < db.tracks.length(); ++i) {
 			unowned GPod.Track t = db.tracks.nth_data(i);
 			//stdout.printf("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
@@ -75,17 +90,27 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 				this.songs.set(t, existing.rowid);
 			}
 			else {
-				stdout.printf("did not found match for %s,%s\n", s.title, s.artist);
-				lm.add_song(s, false);
-				this.songs.set(t, s.rowid);
+				toAdd.set(t, s);
 			}
 		}
 		
-		unowned GPod.Playlist podcast = db.playlist_podcasts();
+		lm.add_songs(toAdd.values, false);
+		foreach(var e in toAdd.entries) {
+			this.songs.set(e.key, e.value.rowid);
+		}
+		
+		// load podcasts
 		foreach(unowned GPod.Track t in db.tracks) {
-			if(t.podcasturl != null && t.podcasturl.length > 5) {
-				stdout.printf("found podcast\n");
+			if(t.podcasturl != null && t.podcasturl.length > 5 && t.mediatype == GPod.MediaType.PODCAST) {
 				podcasts.set(t, songs.get(t));
+				songs.unset(t);
+			}
+		}
+		
+		// load audiobooks
+		foreach(unowned GPod.Track t in db.tracks) {
+			if(t.mediatype == GPod.MediaType.AUDIOBOOK) {
+				audiobooks.set(t, songs.get(t));
 				songs.unset(t);
 			}
 		}
@@ -214,12 +239,24 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 	}
 	
+	public bool supports_podcasts() {
+		return db.device.supports_podcast();
+	}
+	
+	public bool supports_audiobooks() {
+		return true; // no device.supports_audiobook(), but there is audiobook playlist
+	}
+	
 	public Collection<int> get_songs() {
 		return songs.values;
 	}
 	
 	public Collection<int> get_podcasts() {
 		return podcasts.values;
+	}
+	
+	public Collection<int> get_audiobooks() {
+		return audiobooks.values;
 	}
 	
 	public Collection<int> get_playlists() {

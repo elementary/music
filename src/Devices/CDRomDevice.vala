@@ -10,6 +10,10 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		this.icon = mount.get_icon();
 	}
 	
+	public DevicePreferences get_preferences() {
+		return new DevicePreferences(get_unique_identifier());
+	}
+	
 	public bool start_initialization() {
 		return false;
 	}
@@ -83,11 +87,23 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		
 	}
 	
+	public bool supports_podcasts() {
+		return false;
+	}
+	
+	public bool supports_audiobooks() {
+		return false;
+	}
+	
 	public Collection<int> get_songs() {
 		return new LinkedList<int>();
 	}
 	
 	public Collection<int> get_podcasts() {
+		return new LinkedList<int>();
+	}
+	
+	public Collection<int> get_audiobooks() {
 		return new LinkedList<int>();
 	}
 	
