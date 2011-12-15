@@ -17,8 +17,9 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 	ListStore podcastList;
 	ListStore audiobookList;
 	
-	ListStore playlists;
-	ComboBox playlistCombo;
+	Gtk.Image deviceImage;
+	SpaceWidget spaceWidget;
+	Button syncButton;
 	
 	public DeviceSummaryWidget(LibraryManager lm, LibraryWindow lw, Device d) {
 		this.lm = lm;
@@ -29,8 +30,8 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 	}
 	
 	public void buildUI() {
+		// options at top
 		deviceName = new Granite.Widgets.HintedEntry("Device Name");
-		
 		syncAtStart = new CheckButton.with_label("Automatically sync when mounted");
 		syncMusic = new CheckButton.with_label("Sync Music with");
 		syncPodcasts = new CheckButton.with_label("Sync Podcasts with");
@@ -42,6 +43,10 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		podcastList = new ListStore(2, typeof(GLib.Object), typeof(string));
 		audiobookList = new ListStore(2, typeof(GLib.Object), typeof(string));
 		
+		deviceImage = new Gtk.Image.from_gicon(dev.get_icon(), IconSize.DIALOG);
+		spaceWidget = new SpaceWidget((double)dev.get_capacity());
+		syncButton = new Button.with_label("Sync");
+		
 		Label deviceNameLabel = new Label("Device Name:");
 		Label syncOptionsLabel = new Label("Sync Options:");
 		
@@ -49,6 +54,9 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		setupLists();
 		
+		setupSpaceWidget();
+		
+		// create layout
 		var deviceNameBox = new HBox(true, 6);
 		deviceNameBox.pack_start(deviceNameLabel, false, true, 0);
 		deviceNameBox.pack_start(deviceName, false, true, 0);
@@ -76,12 +84,24 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		if(dev.supports_audiobooks())
 			syncOptionsBox.pack_start(audiobookBox, false, false, 0);
 		
+		/* has list of sync options */
 		var syncHBox = new HBox(true, 6);
 		syncHBox.pack_start(syncOptionsLabel, false, true, 0);
 		syncHBox.pack_start(syncOptionsBox, false, true, 0);
 		
+		// create bottom section
+		var syncButtonBox = new VBox(false, 0);
+		syncButtonBox.pack_end(syncButton, false, false, 0);
+		
+		var bottomBox = new HBox(false, 0);
+		bottomBox.pack_start(deviceImage, false, true, 0);
+		bottomBox.pack_start(spaceWidget, true, true, 0);
+		bottomBox.pack_start(syncButtonBox, false, false, 0);
+		
+		// put it all together
 		content.pack_start(deviceNameBox, false, true, 0);
 		content.pack_start(syncHBox, false, true, 0);
+		content.pack_end(bottomBox, false, true, 0);
 		
 		add_with_viewport(wrap_alignment(content, 15, 10, 10, 10));
 		
@@ -95,10 +115,11 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		syncOptionsBox.halign = Align.START;
 		
 		set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
+		spaceWidget.set_size_request(-1, 20);
 		
 		refreshLists();
 		
-		// set initial values */
+		// set initial values
 		syncAtStart.active = dev.get_preferences().sync_when_mounted;
 		syncMusic.active = dev.get_preferences().sync_music;
 		syncPodcasts.active = dev.get_preferences().sync_podcasts;
@@ -148,8 +169,27 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		audiobookDropdown.changed.connect(savePreferences);
 		
 		deviceName.changed.connect(deviceNameChanged);
+		syncButton.clicked.connect(syncClicked);
 		
 		show_all();
+	}
+	
+	void setupSpaceWidget() {
+		double song_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
+		
+		foreach(int i in dev.get_songs()) {
+			song_size += (double)(lm.song_from_id(i).file_size * 1000000);
+		}
+		foreach(int i in dev.get_podcasts()) {
+			podcast_size += (double)(lm.song_from_id(i).file_size * 1000000);
+		}
+		foreach(int i in dev.get_audiobooks()) {
+			audiobook_size += (double)(lm.song_from_id(i).file_size * 1000000);
+		}
+		
+		spaceWidget.add_item("Songs", song_size, 0, 0, 128);
+		spaceWidget.add_item("Podcasts", podcast_size, 255, 165, 0);
+		spaceWidget.add_item("Audiobooks", audiobook_size, 255, 0, 0);
 	}
 	
 	void setupLists() {
@@ -277,28 +317,95 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 			audiobookDropdown.set_active(0);
 	}
 	
-	/*public GLib.Object selected_playlist() {
-		TreeIter it;
-		playlistCombo.get_active_iter(out it);
+	void syncClicked() {
+		Gee.LinkedList<int> list = new Gee.LinkedList<int>();
+		var pref = dev.get_preferences();
 		
-		GLib.Object o;
-		playlists.get(it, 0, out o);
-		
-		return o;
-	}*/
-	
-	/*public void refreshPlaylistList() {
-		playlists.clear();
-		
-		foreach(var p in lm.smart_playlists()) {
-			TreeIter iter;
-			playlists.append(out iter);
-			playlists.set(iter, 0, p, 1, p.name);
+		if(pref.sync_music) {
+			if(pref.sync_all_music) {
+				foreach(var s in lm.songs()) {
+					if(s.mediatype == 0)
+						list.add(s.rowid);
+				}
+			}
+			else {
+				var p = lm.playlist_from_name(pref.music_playlist);
+				
+				if(p != null) {
+					foreach(int i in p.songs()) {
+						if(lm.song_from_id(i).mediatype == 0)
+							list.add(i);
+					}
+				}
+				else {
+					lw.doAlert("Sync Failed", "The playlist named <b>" + pref.music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+					pref.music_playlist = "";
+					pref.sync_all_music = true;
+					musicDropdown.set_active(0);
+					return;
+				}
+			}
 		}
-		foreach(var p in lm.playlists()) {
-			TreeIter iter;
-			playlists.append(out iter);
-			playlists.set(iter, 0, p, 1, p.name);
+		if(pref.sync_podcasts) {
+			if(pref.sync_all_podcasts) {
+				foreach(var s in lm.songs()) {
+					if(s.mediatype == 1)
+						list.add(s.rowid);
+				}
+			}
+			else {
+				var p = lm.playlist_from_name(pref.podcast_playlist);
+				
+				if(p != null) {
+					foreach(int i in p.songs()) {
+						if(lm.song_from_id(i).mediatype == 1)
+							list.add(i);
+					}
+				}
+				else {
+					lw.doAlert("Sync Failed", "The playlist named <b>" + pref.podcast_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+					pref.podcast_playlist = "";
+					pref.sync_all_podcasts = true;
+					musicDropdown.set_active(0);
+					return;
+				}
+			}
 		}
-	}*/
+		if(pref.sync_audiobooks) {
+			if(pref.sync_all_audiobooks) {
+				foreach(var s in lm.songs()) {
+					if(s.mediatype == 2)
+						list.add(s.rowid);
+				}
+			}
+			else {
+				var p = lm.playlist_from_name(pref.audiobook_playlist);
+				
+				if(p != null) {
+					foreach(int i in p.songs()) {
+						if(lm.song_from_id(i).mediatype == 2)
+							list.add(i);
+					}
+				}
+				else {
+					lw.doAlert("Sync Failed", "The playlist named <b>" + pref.audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+					pref.audiobook_playlist = "";
+					pref.sync_all_audiobooks = true;
+					musicDropdown.set_active(0);
+					return;
+				}
+			}
+		}
+		
+		bool fits = dev.will_fit(list);
+		if(!fits) {
+			lw.doAlert("Cannot Sync", "Cannot Sync Device with selected sync settings. Not enough space on disk\n");
+		}
+		else if(dev.is_syncing()) {
+			lw.doAlert("Cannot Sync", "Device is already being synced.");
+		}
+		else {
+			dev.sync_songs(list);
+		}
+	}
 }

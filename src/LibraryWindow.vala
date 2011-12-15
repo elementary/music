@@ -568,6 +568,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool nullSong = (lm.song_info.song == null);
 		bool showMore = lm.settings.getMoreVisible();
 		
+		stdout.printf("before\n");
 		bool showingSongList = (sideTree.getSelectedWidget() is ViewWrapper);
 		
 		fileSetMusicFolder.set_sensitive(!doingOps);
@@ -594,7 +595,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector.set_sensitive(haveSongs);
 		
 		mainViews.set_visible(haveSongs);
-		//miller.set_visible(haveSongs && viewSelector.selected == 2 && showingSongList);
+		miller.set_visible(haveSongs && viewSelector.selected == 2 && showingSongList);
 		welcomeScreen.set_visible(!haveSongs);
 		welcomeScreen.set_sensitivity(0, !doingOps);
 		statusBar.set_visible(haveSongs);

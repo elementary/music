@@ -622,6 +622,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _playlists.get(id);
 	}
 	
+	public Playlist? playlist_from_name(string name) {
+		foreach(var p in _playlists.values) {
+			if(p.name == name)
+				return p;
+		}
+		
+		return null;
+	}
+	
 	public int add_playlist(Playlist p) {
 		p.rowid = _playlists.size + 1;
 		_playlists.set(p.rowid, p);
@@ -690,11 +699,17 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void clear_songs() {
 		var unset = new HashMap<int, Song>();
 		foreach(int i in _songs.keys) {
-			if(!(_songs.get(i).isTemporary || _songs.get(i).isPreview || _songs.get(i).file.has_prefix("http://"))) {
-				unset.set(i, _songs.get(i));
-				_podcasts.unset(i);
-				_audiobooks.unset(i);
-				_locals.remove(i);
+			Song s = _songs.get(i);
+			if(!(s.isTemporary || s.isPreview || s.file.has_prefix("http://"))) {
+				if(s.mediatype == 1 && s.podcast_url != null && s.podcast_url.has_prefix("http://")) {
+					s.file = s.podcast_url;
+				}
+				else {
+					unset.set(i, s);
+					_podcasts.unset(i);
+					_audiobooks.unset(i);
+					_locals.remove(i);
+				}
 			}
 		}
 		
@@ -844,8 +859,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 	Collection<int> to_search, ref Collection<int> results, ref Collection<int> album_results) {
 		string l_search = search.down();
 		int mediatype = 0;
-		bool is_temp = false;//(hint == ViewWrapper.Hint.CDROM || hint == ViewWrapper.Hint.DEVICE_AUDIO || 
-						//hint == ViewWrapper.Hint.DEVICE_PODCAST || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK);
+		bool include_temps = (hint == ViewWrapper.Hint.CDROM || hint == ViewWrapper.Hint.DEVICE_AUDIO || 
+						hint == ViewWrapper.Hint.DEVICE_PODCAST || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK ||
+						hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY);
 		
 		if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 			mediatype = 1;
@@ -853,14 +869,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 		else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
 			mediatype = 2;
 		}
-		else if(hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY || 
+		else if(hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY ||
 		hint == ViewWrapper.Hint.PLAYLIST || hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-			mediatype = 3;
+			mediatype = 3; // some lists should be able to have ALL media types
 		}
 		
 		foreach(int i in to_search) {
 			Song s = song_from_id(i);
-			if(s != null && (s.mediatype == mediatype || mediatype == 3) && /* leave out is_temp stuff */ 
+			if(s != null && (s.mediatype == mediatype || mediatype == 3) && (!s.isTemporary || include_temps) &&
 			(l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
 				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist))
 					if(album == "All Albums" || s.album == album) {

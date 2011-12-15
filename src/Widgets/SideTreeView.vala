@@ -196,14 +196,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			} while(true);
 			
 			tree.set(item, 0, o, 1, w, 2, true, 3, render_icon("playlist-automatic", IconSize.MENU, null), 4, name.replace("&", "&amp;"), 5, null);
-			//stdout.printf("o is sp6\n");
+			
 			if(visible) {
-				//stdout.printf("o is sp6.5\n");
-				TreeIter itemFilter = convertToFilter(item);
-				//stdout.printf("o is sp6.6\n");
-				// this gives a failure message because evidently convertToFilter returns an invalid iter
-				this.get_selection().select_iter(itemFilter);
-				//stdout.printf("o is sp7\n");
+				TreeIter? filterItem = convertToFilter(item);
+				if(filterItem != null)
+					setSelectedIter(filterItem);
 			}
 			
 			//sideListSelectionChange();
@@ -231,7 +228,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			
 			tree.set(item, 0, o, 1, w, 2, true, 3, render_icon("playlist", IconSize.MENU, null), 4, name.replace("&", "&amp;"), 5, null);
 			if(visible) {
-				this.get_selection().select_iter(convertToFilter(item));
+				TreeIter? filterItem = convertToFilter(item);
+				if(filterItem != null)
+					setSelectedIter(filterItem);
 			}
 			
 			//sideListSelectionChange();
@@ -353,8 +352,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void resetView() {
-		get_selection().unselect_all();
-		get_selection().select_iter(convertToFilter(library_music_iter));
+		setSelectedIter(convertToFilter(library_music_iter));
 		tree.foreach(updateView);
 	}
 	
@@ -578,10 +576,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public virtual void playlistNameWindowSaved(Playlist p) {
 		if(p.rowid > 0) {
 			TreeIter pivot = playlists_history_iter;
-				stdout.printf("1\n");
+			
 			do {
 				GLib.Object o;
-				stdout.printf("a\n");
+				
 				tree.get(pivot, 0, out o);
 				if(o is Playlist && ((Playlist)o).rowid == p.rowid) {
 					string name;

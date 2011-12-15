@@ -95,6 +95,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 	void deviceInitialized(Device d) {
 		d.get_unique_identifier();
 		device_added(d);
+		lm.lw.updateSensitivities();
 	}
 	
 	public virtual void mount_changed (Mount mount) {
@@ -110,6 +111,25 @@ public class BeatBox.DeviceManager : GLib.Object {
 			if(dev.get_path() == mount.get_default_location().get_path()) {
 				devices.remove(dev);
 				device_removed(dev);
+				
+				// removing temp songs
+				var toRemove = new LinkedList<Song>();
+				foreach(int i in dev.get_songs()) {
+					Song s = lm.song_from_id(i);
+					if(s.isTemporary)
+						toRemove.add(s);
+				}
+				foreach(int i in dev.get_podcasts()) {
+					Song s = lm.song_from_id(i);
+					if(s.isTemporary)
+						toRemove.add(s);
+				}
+				foreach(int i in dev.get_audiobooks()) {
+					Song s = lm.song_from_id(i);
+					if(s.isTemporary)
+						toRemove.add(s);
+				}
+				lm.remove_songs(toRemove, false);
 				
 				return;
 			}

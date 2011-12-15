@@ -146,7 +146,6 @@ namespace ElementaryWidgets {
 			this.set_grid_lines(TreeViewGridLines.NONE);
 			this.name = "SidebarContent";
 			
-			
 			this.get_selection().changed.connect(selectionChange);
 			this.button_press_event.connect(sideBarClick);
 		}
@@ -241,7 +240,14 @@ namespace ElementaryWidgets {
 		
 		// input MUST be a child iter
 		public void setVisibility(TreeIter it, bool val) {
+			bool was = false;
+			tree.get(it, SideBarColumn.COLUMN_VISIBLE, out was);
 			tree.set(it, SideBarColumn.COLUMN_VISIBLE, val);
+			
+			if(val && !was) {
+				stdout.printf("expanding row\n");
+				expand_row(filter.get_path(convertToFilter(it)), true);
+			}
 		}
 		
 		public void setName(TreeIter it, string name) {
@@ -280,6 +286,17 @@ namespace ElementaryWidgets {
 			}
 			
 			return null;
+		}
+		
+		public void setSelectedIter(TreeIter iter) {
+			this.get_selection().changed.disconnect(selectionChange);
+			get_selection().unselect_all();
+			stdout.printf("selecting iter\n");
+			get_selection().select_iter(iter);
+			this.get_selection().changed.connect(selectionChange);
+			selectedIter = iter;
+			stdout.printf("selected iter\n");
+			
 		}
 		
 		public bool expandItem(TreeIter iter, bool expanded) {
@@ -337,8 +354,9 @@ namespace ElementaryWidgets {
 			TreeIter pending;
 			
 			if(!this.get_selection().get_selected(out model, out pending)) { // user has nothing selected, reselect last selected
-				if(selectedIter != null)
+				if(selectedIter != null) {
 					this.get_selection().select_iter(selectedIter);
+				}
 				
 				return;
 			}
@@ -347,7 +365,6 @@ namespace ElementaryWidgets {
 			
 			if(path.get_depth() == 1) {
 				this.get_selection().unselect_all();
-				
 				if(selectedIter != null)
 					this.get_selection().select_iter(selectedIter);
 			}
@@ -433,14 +450,11 @@ namespace ElementaryWidgets {
 				return null;
 			
 			TreeIter rv;
-			//stdout.printf("converting child to filter\n");
 			
 			if(filter.convert_child_iter_to_iter(out rv, child)) {
-				//stdout.printf("success\n");
 				return rv;
 			}
 			
-			//stdout.printf("failed\n");
 			return null;
 		}
 		
