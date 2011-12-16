@@ -1071,7 +1071,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		foreach(int i in songs)
 			toUpdate.add(lm.song_from_id(i));
 		
-		lm.update_songs(toUpdate, true);
+		// could have edited rating, so record_time is true
+		lm.update_songs(toUpdate, true, true);
 		
 		if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
 			// make sure these songs still belongs here
@@ -1213,7 +1214,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			los.add(s);
 		}
 		
-		lm.update_songs(los, false);
+		lm.update_songs(los, false, true);
 	}
 	
 	public void scrollToCurrent() {

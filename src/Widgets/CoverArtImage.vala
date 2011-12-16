@@ -100,11 +100,11 @@ public class BeatBox.CoverArtImage : Image {
 							stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
 						}
 						
-						lm.update_songs(updated_songs, false);
+						lm.update_songs(updated_songs, false, false);
 						
 						// for sound menu (dbus doesn't like linked lists)
 						if(updated_songs.contains(lm.song_info.song))
-							lm.update_song(lm.song_info.song, false);
+							lm.update_song(lm.song_info.song, false, false);
 						
 						return false;
 					});

@@ -412,11 +412,11 @@ public class BeatBox.FileOperator : Object {
 				}
 			}
 			
-			lm.update_songs(updated_songs, false);
+			lm.update_songs(updated_songs, false, false);
 			
 			// for sound menu (dbus doesn't like linked lists)
 			if(updated_songs.contains(lm.song_info.song))
-				lm.update_song(lm.song_info.song, false);
+				lm.update_song(lm.song_info.song, false, false);
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not save album to file: %s\n", err.message);
@@ -586,7 +586,11 @@ public class BeatBox.FileOperator : Object {
 			if(success) {
 				stdout.printf("success copying file\n");
 				s.file = dest.get_path();
-				lm.update_song(s, false); // make sure that the song's file path is updated in db.
+				
+				// wait to update song when out of thread
+				Idle.add( () => {
+					lm.update_song(s, false, false); return false;
+				});
 				
 				if(original.get_uri().has_prefix("file://") && original.get_parent().get_path() != null &&
 				s.getAlbumArtPath().contains(original.get_parent().get_path())) {

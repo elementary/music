@@ -331,14 +331,16 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			
 			if(!s.isTemporary) {
 				// update the song with data from device
-				stdout.printf("t.rating is %d, s.rating is %d\n", (int)t.rating, (int)s.rating);
-				if((int)t.time_modified > s.last_modified) {
-					stdout.printf("--------------t.rating is %d, s.rating is %d\n", (int)t.rating, (int)s.rating);
+				//stdout.printf("t.rating is %d, s.rating is %d\n", (int)t.rating, (int)s.rating);
+				if(pref.last_sync_time >= s.last_modified) { // song has not been modified since last sync
+					if(t.rating > 0)
+						stdout.printf("%s rating %d\n", t.title, (int)t.rating);
 					s.rating = t.rating / 20;
-					s.play_count = t.playcount;
-					s.skip_count = t.skipcount;
-					s.last_played = (int)t.time_played;
 				}
+				
+				s.play_count += t.recent_playcount;
+				s.skip_count += t.recent_skipcount;
+				s.last_played = (s.last_played > (int)t.time_played) ? s.last_played : (int)t.time_played;
 			}
 		}
 		
@@ -452,7 +454,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			foreach(int i in songs.values)
 				temps.add(lm.song_from_id(i));
 			
-			lm.update_songs(temps, false);
+			// update songs before we set last_sync_time
+			lm.update_songs(temps, false, true);
+			pref.last_sync_time = (int)time_t();
+			lm.save_device_preferences();
 		
 			lm.doing_file_operations = false;
 			lm.lw.topDisplay.show_scale();

@@ -1,6 +1,6 @@
 using Gee;
 
-public class BeatBox.SpaceWidget : Gtk.DrawingArea {
+public class BeatBox.SpaceWidget : Gtk.EventBox {
 	Pango.Layout layout;
 	
 	HashMap<int, SpaceWidgetItem> items;

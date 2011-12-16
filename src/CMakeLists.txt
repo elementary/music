@@ -3,6 +3,14 @@ include(ValaVersion)
 ensure_vala_version("0.14.0" MINIMUM)
 include(ValaPrecompile)
 
+
+set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
+set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/beat-box")
+set(GETTEXT_PACKAGE "beat-box")
+set(RELEASE_NAME "Acolyte")
+set(VERSION "0.3")
+set(VERSION_INFO "Pre-Release")
+
 find_package(PkgConfig)
 pkg_check_modules(DEPS
     glib-2.0
@@ -169,6 +177,7 @@ vala_precompile(VALA_C
     Dialogs/NotImportedWindow.vala
     Dialogs/AddPodcastWindow.vala
     Dialogs/RemoveFromLibraryDialog.vala
+    ${CMAKE_SOURCE_DIR}/vapi/config.vapi
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     ${ADD_OPTIONS}

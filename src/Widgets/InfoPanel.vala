@@ -215,7 +215,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	
 	public virtual void ratingChanged(int new_rating) {
 		lm.song_from_id(id).rating = new_rating;
-		lm.update_song(lm.song_from_id(id), false);
+		lm.update_song(lm.song_from_id(id), false, true);
 	}
 	
 	public virtual void songs_updated(Collection<int> ids) {

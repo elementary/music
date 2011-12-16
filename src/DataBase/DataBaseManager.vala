@@ -59,7 +59,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		
-		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_386.db"));
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_389.db"));
 		if(!db_file.query_exists())
 			need_create = true;
 		
@@ -85,7 +85,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'lastmodified' INT, 'mediatype' INT, 
 				'podcast_rss' TEXT, 'podcast_url' TEXT, 'podcast_date' INT, 'is_new_podcast' INT, 'resume_pos', INT)""");
 				
-				_db.execute("CREATE TABLE devices ('unique_id' TEXT, 'sync_when_mounted' INT,'sync_music' INT, 'sync_podcasts' INT, 'sync_audiobooks' INT, 'sync_all_music' INT, 'sync_all_podcasts' INT, 'sync_all_audiobooks' INT, 'music_playlist' STRING, 'podcast_playlist' STRING, 'audiobook_playlist' STRING)");
+				_db.execute("CREATE TABLE devices ('unique_id' TEXT, 'sync_when_mounted' INT,'sync_music' INT, 'sync_podcasts' INT, 'sync_audiobooks' INT, 'sync_all_music' INT, 'sync_all_podcasts' INT, 'sync_all_audiobooks' INT, 'music_playlist' STRING, 'podcast_playlist' STRING, 'audiobook_playlist' STRING, 'last_sync_time' INT)");
 				
 				_db.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
 				_db.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
@@ -932,6 +932,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				dp.music_playlist = results.fetch_string(9);
 				dp.podcast_playlist = results.fetch_string(10);
 				dp.audiobook_playlist = results.fetch_string(11);
+				dp.last_sync_time = results.fetch_int(12);
 				
 				rv.add(dp);
 			}
@@ -949,8 +950,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare("""INSERT INTO `devices` ('unique_id', 'sync_when_mounted', 'sync_music', 
 			'sync_podcasts', 'sync_audiobooks', 'sync_all_music', 'sync_all_podcasts', 'sync_all_audiobooks', 'music_playlist', 
-			'podcast_playlist', 'audiobook_playlist') VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks, 
-			:sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist);""");
+			'podcast_playlist', 'audiobook_playlist', 'last_sync_time') VALUES (:unique_id, :sync_when_mounted, :sync_music, :sync_podcasts, :sync_audiobooks, 
+			:sync_all_music, :sync_all_podcasts, :sync_all_audiobooks, :music_playlist, :podcast_playlist, :audiobook_playlist, :last_sync_time);""");
 			
 			foreach(DevicePreferences dp in devices) {
 				query.set_string(":unique_id", dp.id);
@@ -967,6 +968,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				query.set_string(":music_playlist", dp.music_playlist);
 				query.set_string(":podcast_playlist", dp.podcast_playlist);
 				query.set_string(":audiobook_playlist", dp.audiobook_playlist);
+				query.set_int(":last_sync_time", dp.last_sync_time);
 				
 				query.execute();
 			}

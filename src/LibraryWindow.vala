@@ -242,7 +242,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTreeScroll = new ScrolledWindow(null, null);
 		coverArt = new CoverArtImage(lm, this);	
 		topMenu = new MenuBar();
-		libraryOperations = new ImageMenuItem.from_stock("folder-music", null);
+		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
 		libraryOperationsMenu = new Menu();
 		fileSetMusicFolder = new MenuItem.with_label("Set Music Folder");
 		fileImportMusic = new MenuItem.with_label("Import to Library");
@@ -380,7 +380,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.get_style_context().add_class("sidebar");
 		
 		contentBox.pack_start(welcomeScreen, true, true, 0);
-		welcomeScreen.append("folder-music", "Set Music Folder", "Select your music folder and build your library.");
+		welcomeScreen.append("library-music", "Set Music Folder", "Select your music folder and build your library.");
 		
 		millerPane.pack1(miller, false, true);
 		millerPane.pack2(mainViews, true, true);
@@ -568,14 +568,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool nullSong = (lm.song_info.song == null);
 		bool showMore = lm.settings.getMoreVisible();
 		
-		stdout.printf("before\n");
 		bool showingSongList = (sideTree.getSelectedWidget() is ViewWrapper);
 		
 		fileSetMusicFolder.set_sensitive(!doingOps);
 		fileImportMusic.set_sensitive(!doingOps && folderSet);
 		fileRescanMusicFolder.set_sensitive(!doingOps && folderSet);
-		
-		stdout.printf("doingOps is %d\n", doingOps ? 1 : 0);
 		
 		if(doingOps)
 			topDisplay.show_progressbar();
@@ -931,6 +928,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void nextClicked() {
+		// if not 90% done, skip it
+		if(!added_to_play_count) {
+			lm.song_info.song.skip_count++;
+			lm.update_song(lm.song_info.song, false, false);
+		}
+		
 		int next_id = lm.getNext(true);
 		
 		/* test to stop playback/reached end */
@@ -939,11 +942,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			lm.playing = false;
 			updateSensitivities();
 			return;
-		}
-		
-		// if not 90% done, skip it
-		if(!added_to_play_count) {
-			lm.song_info.song.skip_count++;
 		}
 	}
 	
@@ -1203,7 +1201,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				song_considered_played = true;
 				
 				lm.song_info.song.last_played = (int)time_t();
-				lm.update_song(lm.song_info.song, false);
+				lm.update_song(lm.song_info.song, false, false);
 				
 				// add to the already played list
 				lm.add_already_played(lm.song_info.song.rowid);
@@ -1235,7 +1233,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if((double)(sec/(double)lm.song_info.song.length) > 0.90 && !added_to_play_count) {
 				added_to_play_count = true;
 				lm.song_info.song.play_count++;
-				lm.update_song(lm.song_info.song, false);
+				lm.update_song(lm.song_info.song, false, false);
 			}
 			
 		}

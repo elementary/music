@@ -993,7 +993,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		foreach(int i in songs)
 			toUpdate.add(lm.song_from_id(i));
 		
-		lm.update_songs(toUpdate, true);
+		// user could have edited rating, so record time
+		lm.update_songs(toUpdate, true, true);
 		
 		if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
 			// make sure these songs still belongs here
@@ -1146,7 +1147,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			los.add(s);
 		}
 		
-		lm.update_songs(los, false);
+		lm.update_songs(los, false, true);
 	}
 	
 	/*public void update_rating_menu() {

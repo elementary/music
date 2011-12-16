@@ -1,0 +1,11 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define DATADIR "@DATADIR@"
+#define PKG_DATADIR "@PKG_DATADIR@"
+#define GETTEXT_PACKAGE "@GETTEXT_PACKAGE@"
+#define RELEASE_NAME "@RELEASE_NAME@"
+#define VERSION "@VERSION@"
+#define VERSION_INFO "@VERSION_INFO@"
+
+#endif //CONFIG_H

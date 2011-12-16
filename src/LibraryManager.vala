@@ -54,6 +54,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public Gdk.Pixbuf defaultAlbumArt;
 	public Gdk.Pixbuf nowPlayingIcon;
+	public Gdk.Pixbuf music_icon;
+	public Gdk.Pixbuf podcast_icon;
+	public Gdk.Pixbuf audiobook_icon;
+	public Gdk.Pixbuf playlist_icon;
+	public Gdk.Pixbuf smart_playlist_icon;
 	
 	public LastFM.Core lfm;
 	private HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
@@ -141,9 +146,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 		try {
 			defaultAlbumArt = new Gdk.Pixbuf.from_file(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.png", null));
 			nowPlayingIcon = lw.render_icon("audio-volume-high", IconSize.MENU, null);
+			music_icon = lw.render_icon("library-music", IconSize.MENU, null);
+			podcast_icon = lw.render_icon("library-podcast", IconSize.MENU, null);
+			audiobook_icon = lw.render_icon("library-audiobook", IconSize.MENU, null);
+			playlist_icon = lw.render_icon("playlist", IconSize.MENU, null);
+			smart_playlist_icon = lw.render_icon("playlist-automatic", IconSize.MENU, null);
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not load default album art image\n");
+			stdout.printf("Could not load icons\n");
 		}
 		
 		lfm = new LastFM.Core(this);
@@ -740,21 +750,22 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _songs;
 	}
 	
-	public void update_song(Song s, bool updateMeta) {
+	public void update_song(Song s, bool updateMeta, bool record_time) {
 		LinkedList<Song> one = new LinkedList<Song>();
 		one.add(s);
 		
-		update_songs(one, updateMeta);
+		update_songs(one, updateMeta, record_time);
 	}
 	
-	public void update_songs(Collection<Song> updates, bool updateMeta) {
+	public void update_songs(Collection<Song> updates, bool updateMeta, bool record_time) {
 		LinkedList<int> rv = new LinkedList<int>();
 		
 		foreach(Song s in updates) {
 			/*_songs.set(s.rowid, s);*/
 			rv.add(s.rowid);
 			
-			s.last_modified = (int)time_t();
+			if(record_time)
+				s.last_modified = (int)time_t();
 		}
 		
 		songs_updated(rv);
@@ -1377,7 +1388,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				// potentially fix song length
 				if((player.getDuration()/1000000000) > 1) {
 					song_info.song.length = (int)(player.getDuration()/1000000000);
-					update_song(song_info.song, true);
+					update_song(song_info.song, true, false);
 				}
 			}
 			

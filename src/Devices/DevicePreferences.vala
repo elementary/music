@@ -2,6 +2,7 @@ public class BeatBox.DevicePreferences : GLib.Object {
 	public string id { get; construct set; }
 	
 	public bool sync_when_mounted { get; set; }
+	public int last_sync_time { get; set; }
 	
 	public bool sync_music { get; set; default=true; }
 	public bool sync_podcasts { get; set; default=false; }
