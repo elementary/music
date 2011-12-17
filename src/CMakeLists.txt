@@ -6,10 +6,14 @@ include(ValaPrecompile)
 
 set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/beat-box")
+set(ICON_FOLDER "${CMAKE_INSTALL_PREFIX}/share/beat-box/icons")
 set(GETTEXT_PACKAGE "beat-box")
 set(RELEASE_NAME "Acolyte")
 set(VERSION "0.3")
 set(VERSION_INFO "Pre-Release")
+
+configure_file(${CMAKE_SOURCE_DIR}/src/config.h.cmake ${CMAKE_BINARY_DIR}/src/config.h)
+add_definitions(-include config.h)
 
 find_package(PkgConfig)
 pkg_check_modules(DEPS
@@ -94,6 +98,7 @@ vala_precompile(VALA_C
     Objects/MPRIS.vala
     Objects/Playlist.vala
     Objects/PodcastManager.vala
+    Objects/Icons.vala
     Widgets/Welcome.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarSongsView.vala
@@ -177,7 +182,7 @@ vala_precompile(VALA_C
     Dialogs/NotImportedWindow.vala
     Dialogs/AddPodcastWindow.vala
     Dialogs/RemoveFromLibraryDialog.vala
-    ${CMAKE_SOURCE_DIR}/vapi/config.vapi
+    ${CMAKE_SOURCE_DIR}/src/config.vapi
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     ${ADD_OPTIONS}

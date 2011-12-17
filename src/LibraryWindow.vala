@@ -182,31 +182,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		/*if(!File.new_for_path(settings.getMusicFolder()).query_exists() && settings.getMusicFolder() != "") {
 			doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using BeatBox.");
 		}*/
-		
-		build_ui();
-		
-		initializationFinished = true;
-		updateSensitivities();
-		
-		// play the arg if there is one
-		/*if( args[1] != "" && File.new_for_uri(args[1]).query_exists()) {
-			Song s = new Song(File.new_for_uri(args[1]).get_path());
-			
-			s = lm.fo.import_song(File.new_for_uri(args[1]).get_path());
-			
-			s.isTemporary = true;
-			
-			LinkedList<Song> temps = new LinkedList<Song>();
-			temps.add(s);
-			lm.add_songs(temps, false);
-			
-			lm.playSong(s.rowid);
-			topDisplay.change_value(ScrollType.NONE, 0.0);
-			
-			if(!lm.playing) {
-				playClicked();
-			}
-		}*/
 	}
 	
 	public void build_ui() {
@@ -227,7 +202,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		set_title("BeatBox");
 		
 		// set the icon
-		set_icon( render_icon("beatbox", IconSize.DIALOG, null));
+		set_icon(lm.icons.beatbox_icon);
 		
 		/* Initialize all components */
 		verticalBox = new VBox(false, 0);
@@ -266,9 +241,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideBar = new VBox(false, 0);
 		statusBar = new HBox(false, 0);
 		statusBarLabel = new Label("");
-		shuffleChooser = new SimpleOptionChooser(render_icon("media-playlist-shuffle-active-symbolic", IconSize.SMALL_TOOLBAR, null), render_icon("media-playlist-shuffle-symbolic", IconSize.SMALL_TOOLBAR, null));
-		repeatChooser = new SimpleOptionChooser(render_icon("media-playlist-repeat-active-symbolic", IconSize.SMALL_TOOLBAR, null), render_icon("media-playlist-repeat-symbolic", IconSize.SMALL_TOOLBAR, null));
-		infoPanelChooser = new SimpleOptionChooser(render_icon("info", IconSize.SMALL_TOOLBAR, null), render_icon("info", IconSize.SMALL_TOOLBAR, null));
+		shuffleChooser = new SimpleOptionChooser(lm.icons.shuffle_on_icon, lm.icons.shuffle_off_icon);
+		repeatChooser = new SimpleOptionChooser(lm.icons.repeat_on_icon, lm.icons.repeat_off_icon);
+		infoPanelChooser = new SimpleOptionChooser(lm.icons.info_icon, lm.icons.info_icon);
 		
 		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
@@ -357,9 +332,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
         //appMenuBin.add(app.create_appmenu(settingsMenu));
         
         topDisplayBin.set_expand(true);
-        viewSelector.append(new Image.from_stock("view-list-icons-symbolic", IconSize.MENU));
-        viewSelector.append(new Image.from_stock("view-list-details-symbolic", IconSize.MENU));
-        viewSelector.append(new Image.from_stock("view-list-column-symbolic", IconSize.MENU));
+        viewSelector.append(new Image.from_pixbuf(lm.icons.view_icons_icon));
+        viewSelector.append(new Image.from_pixbuf(lm.icons.view_details_icon));
+        viewSelector.append(new Image.from_pixbuf(lm.icons.view_column_icon));
         //viewSelector.append(new Image.from_stock("view-list-video-symbolic", IconSize.MENU));
         
         topControls.insert(previousButton, 0);
@@ -433,13 +408,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		sideTree.resetView();
 		viewSelector.selected = settings.getViewMode();
-		updateSensitivities();
 		viewSelector.selected = 3;
 		
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
 		miller.updateColumnVisibilities(genreV, artistV, albumV);
 		stdout.printf("User interface has been built\n");
+		
+		initializationFinished = true;
+		updateSensitivities();
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -642,7 +619,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 			else {
 				try {
-					var dropAlbum = GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "drop-album.svg");
+					var dropAlbum = GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "128x128", "mimetypes", "drop-album.svg");
 					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(dropAlbum, sourcesToSongs.position, sourcesToSongs.position));
 				}
 				catch(GLib.Error err) {
@@ -1097,10 +1074,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(!has_toplevel_focus) {
 				notification.update("Import Complete", "BeatBox has imported your library", "beatbox");
 				
-				Gdk.Pixbuf my_pix = render_icon("beatbox", IconSize.DIALOG, null);
-				
-				if(my_pix != null)
-					notification.set_image_from_pixbuf(my_pix);
+				if(lm.icons.beatbox_icon != null)
+					notification.set_image_from_pixbuf(lm.icons.beatbox_icon);
 				
 				notification.show();
 				notification.set_timeout(5000);

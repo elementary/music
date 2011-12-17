@@ -73,13 +73,11 @@ public class BeatBox.Beatbox : Granite.Application {
 	
 	construct {
 		// App info
-		build_data_dir = Build.Info.DATADIR;
-		build_pkg_data_dir = Build.Info.GET_PKG_DATADIR();
-		build_release_name = Build.Info.RELEASE_NAME;
-		build_version = Build.Info.VERSION;
-		build_version_info = Build.Info.VERSION_INFO;
-		
-		stdout.printf("installed files to %s\n", Build.Info.GET_PKG_DATADIR());
+		build_data_dir = Build.DATADIR;
+		build_pkg_data_dir = Build.PKG_DATADIR;
+		build_release_name = Build.RELEASE_NAME;
+		build_version = Build.VERSION;
+		build_version_info = Build.VERSION_INFO;
 		
 		program_name = "BeatBox";
 		exec_name = "beatbox";
@@ -96,7 +94,6 @@ public class BeatBox.Beatbox : Granite.Application {
 		translate_url = "https://translations.launchpad.net/beat-box";
 		
 		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>"};
-		
 	}
     
 	protected override void activate () {
@@ -106,6 +103,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		}
 		
 		_program = new BeatBox.LibraryWindow(this, args);
+		_program.build_ui();
 		_program.set_application(this);
 	}
 	

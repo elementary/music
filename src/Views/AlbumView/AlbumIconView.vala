@@ -32,7 +32,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		last_search = "";
 		timeout_search = new LinkedList<string>();
 		
-		defaultPix = lm.defaultAlbumArt;
+		defaultPix = lm.icons.default_album_art;
 		
 		buildUI();
 		

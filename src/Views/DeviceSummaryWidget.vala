@@ -293,11 +293,11 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		/* add entire library options */
 		musicList.append(out iter);
-		musicList.set(iter, 0, null, 1, "All Music", 2, lm.music_icon);
+		musicList.set(iter, 0, null, 1, "All Music", 2, lm.icons.music_icon);
 		podcastList.append(out iter);
-		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.podcast_icon);
+		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.icons.podcast_icon);
 		audiobookList.append(out iter);
-		audiobookList.set(iter, 0, null, 1, "All Audiobooks", 2, lm.audiobook_icon);
+		audiobookList.set(iter, 0, null, 1, "All Audiobooks", 2, lm.icons.audiobook_icon);
 		
 		/* add separator */
 		musicList.append(out iter);
@@ -310,19 +310,19 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		/* add all playlists */
 		foreach(var p in lm.smart_playlists()) {
 			musicList.append(out iter);
-			musicList.set(iter, 0, p, 1, p.name, 2, lm.smart_playlist_icon);
+			musicList.set(iter, 0, p, 1, p.name, 2, lm.icons.smart_playlist_icon);
 			podcastList.append(out iter);
-			podcastList.set(iter, 0, p, 1, p.name, 2, lm.smart_playlist_icon);
+			podcastList.set(iter, 0, p, 1, p.name, 2, lm.icons.smart_playlist_icon);
 			audiobookList.append(out iter);
-			audiobookList.set(iter, 0, p, 1, p.name, 2, lm.smart_playlist_icon);
+			audiobookList.set(iter, 0, p, 1, p.name, 2, lm.icons.smart_playlist_icon);
 		}
 		foreach(var p in lm.playlists()) {
 			musicList.append(out iter);
-			musicList.set(iter, 0, p, 1, p.name, 2, lm.playlist_icon);
+			musicList.set(iter, 0, p, 1, p.name, 2, lm.icons.playlist_icon);
 			podcastList.append(out iter);
-			podcastList.set(iter, 0, p, 1, p.name, 2, lm.playlist_icon);
+			podcastList.set(iter, 0, p, 1, p.name, 2, lm.icons.playlist_icon);
 			audiobookList.append(out iter);
-			audiobookList.set(iter, 0, p, 1, p.name, 2, lm.playlist_icon);
+			audiobookList.set(iter, 0, p, 1, p.name, 2, lm.icons.playlist_icon);
 		}
 		
 		if(!musicDropdown.set_active_id(musicString))

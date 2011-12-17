@@ -7,5 +7,6 @@
 #define RELEASE_NAME "@RELEASE_NAME@"
 #define VERSION "@VERSION@"
 #define VERSION_INFO "@VERSION_INFO@"
+#define ICON_FOLDER "@ICON_FOLDER@"
 
 #endif //CONFIG_H

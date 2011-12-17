@@ -36,6 +36,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.Streamer player;
 	public BeatBox.DeviceManager dm;
 	public BeatBox.PodcastManager pm;
+	public BeatBox.Icons icons;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	public HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
@@ -51,14 +52,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private LinkedList<int> _queue; // rowid, Song of queue
 	private LinkedList<int> _already_played; // Song of already played
 	private HashMap<string, Gdk.Pixbuf> _album_art; // All album art
-	
-	public Gdk.Pixbuf defaultAlbumArt;
-	public Gdk.Pixbuf nowPlayingIcon;
-	public Gdk.Pixbuf music_icon;
-	public Gdk.Pixbuf podcast_icon;
-	public Gdk.Pixbuf audiobook_icon;
-	public Gdk.Pixbuf playlist_icon;
-	public Gdk.Pixbuf smart_playlist_icon;
 	
 	public LastFM.Core lfm;
 	private HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
@@ -143,18 +136,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_already_played = new LinkedList<int>();
 		_album_art = new HashMap<string, Gdk.Pixbuf>();
 		
-		try {
-			defaultAlbumArt = new Gdk.Pixbuf.from_file(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.png", null));
-			nowPlayingIcon = lw.render_icon("audio-volume-high", IconSize.MENU, null);
-			music_icon = lw.render_icon("library-music", IconSize.MENU, null);
-			podcast_icon = lw.render_icon("library-podcast", IconSize.MENU, null);
-			audiobook_icon = lw.render_icon("library-audiobook", IconSize.MENU, null);
-			playlist_icon = lw.render_icon("playlist", IconSize.MENU, null);
-			smart_playlist_icon = lw.render_icon("playlist-automatic", IconSize.MENU, null);
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not load icons\n");
-		}
+		icons = new Icons(this, lw);
+		icons.load_icons();
 		
 		lfm = new LastFM.Core(this);
 		_artists = new HashMap<string, LastFM.ArtistInfo>();
@@ -1342,7 +1325,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// check that the file exists
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
-			song_from_id(id).unique_status_image = lw.render_icon("process-error-symbolic", Gtk.IconSize.MENU, null);
+			song_from_id(id).unique_status_image = icons.process_error_icon;
 			lw.song_not_found(id);
 			return;
 		}

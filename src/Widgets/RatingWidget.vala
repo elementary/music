@@ -41,8 +41,9 @@ public class BeatBox.RatingWidget : EventBox {
 		if(c != null)
 			modify_bg(StateType.NORMAL, c);
 		
-		starred = this.render_icon("starred", IconSize.SMALL_TOOLBAR, null);
-		not_starred = this.render_icon("not-starred", IconSize.SMALL_TOOLBAR, null);
+		// i hate doing this but it is a must
+		starred = BeatBox.Beatbox._program.lm.icons.starred_icon;
+		not_starred = BeatBox.Beatbox._program.lm.icons.not_starred_icon;
 		
 		width_request  = starred.width * 5;
 		height_request = starred.height;

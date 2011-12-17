@@ -192,7 +192,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		podcast_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), lm.nowPlayingIcon);
+		podcast_model = new PodcastTreeModel(lm, get_column_strings(), lm.icons.now_playing_icon);
 		podcast_model.is_current = _is_current;
 		
 		var hPos = this.vadjustment.get_value();
@@ -297,11 +297,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		playlistSaveTimeoutAdded = false;
 		relative_id = id;
 		
-		//generate star pixbuf
-		starred = this.render_icon("starred", IconSize.MENU, null);
-		not_starred = this.render_icon("not-starred", IconSize.MENU, null);
-		
-		cellHelper = new CellDataFunctionHelper(starred, not_starred);
+		cellHelper = new CellDataFunctionHelper(lm);
 		
 		lm.songs_updated.connect(songs_updated);
 		lm.songs_removed.connect(songs_removed);
@@ -474,7 +470,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), render_icon("audio-volume-high", IconSize.MENU, null));
+		podcast_model = new PodcastTreeModel(lm, get_column_strings(), lm.icons.now_playing_icon);
 		
 		podcast_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
@@ -979,7 +975,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		}
 		
 		/*if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
-			song_from_id(id).unique_status_image = lw.render_icon("process-error-symbolic", Gtk.IconSize.MENU, null);
+			song_from_id(id).unique_status_image = lm.icons.process_error_icon;
 			lw.song_not_found(id);
 		}
 		else {*/
