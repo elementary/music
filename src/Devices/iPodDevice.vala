@@ -14,6 +14,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	int total = 0;
 	string current_operation;
 	
+	HashMap<unowned GPod.Track, int> media;
 	HashMap<unowned GPod.Track, int> songs;
 	HashMap<unowned GPod.Track, int> podcasts;
 	HashMap<unowned GPod.Track, int> audiobooks;
@@ -39,6 +40,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		total = 0;
 		current_operation = "";
 		
+		media = new HashMap<unowned GPod.Track, int>();
 		songs = new HashMap<unowned GPod.Track, int>();
 		podcasts = new HashMap<unowned GPod.Track, int>();
 		audiobooks = new HashMap<unowned GPod.Track, int>();
@@ -87,7 +89,14 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			
 			if(existing.rowid > 0) {
 				//stdout.printf("found match for %s\n", s.title);
-				this.songs.set(t, existing.rowid);
+				this.media.set(t, existing.rowid);
+				
+				if(t.mediatype == GPod.MediaType.AUDIO)
+					this.songs.set(t, existing.rowid);
+				else if(t.mediatype == GPod.MediaType.PODCAST)
+					this.podcasts.set(t, existing.rowid);
+				else if(t.mediatype == GPod.MediaType.AUDIOBOOK)
+					this.audiobooks.set(t, existing.rowid);
 			}
 			else {
 				toAdd.set(t, s);
@@ -96,23 +105,14 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		lm.add_songs(toAdd.values, false);
 		foreach(var e in toAdd.entries) {
-			this.songs.set(e.key, e.value.rowid);
-		}
-		
-		// load podcasts
-		foreach(unowned GPod.Track t in db.tracks) {
-			if(t.podcasturl != null && t.podcasturl.length > 5 && t.mediatype == GPod.MediaType.PODCAST) {
-				podcasts.set(t, songs.get(t));
-				songs.unset(t);
-			}
-		}
-		
-		// load audiobooks
-		foreach(unowned GPod.Track t in db.tracks) {
-			if(t.mediatype == GPod.MediaType.AUDIOBOOK) {
-				audiobooks.set(t, songs.get(t));
-				songs.unset(t);
-			}
+			this.media.set(e.key, e.value.rowid);
+			
+			if(e.key.mediatype == GPod.MediaType.AUDIO)
+				this.songs.set(e.key, e.value.rowid);
+			else if(e.key.mediatype == GPod.MediaType.PODCAST)
+				this.podcasts.set(e.key, e.value.rowid);
+			else if(e.key.mediatype == GPod.MediaType.AUDIOBOOK)
+				this.audiobooks.set(e.key, e.value.rowid);
 		}
 		
 		//lock(lm._songs) {
@@ -326,8 +326,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		db.start_sync();
 		
 		// sync local files with new info
-		foreach(unowned GPod.Track t in songs.keys) {
-			Song s = lm.song_from_id(songs.get(t));
+		foreach(unowned GPod.Track t in media.keys) {
+			Song s = lm.song_from_id(media.get(t));
 			
 			if(!s.isTemporary) {
 				// update the song with data from device
@@ -347,7 +347,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		/* first remove removed songs */
 		current_operation = "Removing old songs from iPod and updating current ones";
 		var removed = new HashMap<unowned GPod.Track, int>();
-		foreach(var entry in songs.entries) {
+		foreach(var entry in media.entries) {
 			if(!sync_cancelled) {
 				if(!list.contains(entry.value)) {
 					unowned GPod.Track t = entry.key;
@@ -366,7 +366,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			++sub_index;
 			index = (int)(15.0 * (double)((double)sub_index/(double)songs.size));
 		}
+		media.unset_all(removed);
 		songs.unset_all(removed);
+		podcasts.unset_all(removed);
+		audiobooks.unset_all(removed);
 		
 		// no matter where index is, set it to 1/3 now
 		//index = total/4;
@@ -374,7 +377,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		stdout.printf("Updating existing tracks...\n");
 		sub_index = 0;
 		/* anything left will be synced. update songs that are already on list */
-		foreach(var entry in songs.entries) {
+		foreach(var entry in media.entries) {
 			if(!sync_cancelled) {
 				Song s = lm.song_from_id(entry.value);
 				
@@ -396,13 +399,13 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		sub_index = 0;
 		int new_song_size = 0;
 		foreach(var i in list) {
-			if(!songs.values.contains(i) && lm.song_from_id(i).mediatype == 0) {
+			if(!media.values.contains(i)) {
 				new_song_size++;
 			}
 		}
 		foreach(var i in list) {
 			if(!sync_cancelled) {
-				if(!songs.values.contains(i) && lm.song_from_id(i).mediatype == 0) {
+				if(!songs.values.contains(i)) {
 					add_song(i);
 					++sub_index;
 				}
@@ -432,7 +435,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			stdout.printf("Cleaning up iPod File System\n");
 			var music_folder = File.new_for_path(GPod.Device.get_music_dir(get_path()));
 			var used_paths = new LinkedList<string>();
-			foreach(unowned GPod.Track t in songs.keys) {
+			foreach(unowned GPod.Track t in media.keys) {
 				used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
 			}
 			cleanup_files(music_folder, used_paths);
@@ -451,7 +454,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		Idle.add( () => {
 			LinkedList<Song> temps = new LinkedList<Song>();
-			foreach(int i in songs.values)
+			foreach(int i in media.values)
 				temps.add(lm.song_from_id(i));
 			
 			// update songs before we set last_sync_time
@@ -464,6 +467,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			lm.lw.updateInfoLabel();
 			lm.lw.searchField.changed();
 			currently_syncing = false;
+			
+			sync_finished(!sync_cancelled);
 			
 			return false;
 		});
@@ -497,7 +502,12 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			unowned GPod.Playlist ppl = db.playlist_podcasts();
 			ppl.add_track(added, -1);
 		}
+		/*else if(added.mediatype == GPod.MediaType.AUDIOBOOK) {
+			unowned GPod.Playlist apl = db.playlist_audiobooks();
+			apl.add_track(added, -1);
+		}*/
 		
+		stdout.printf("copying track to ipod\n");
 		if(db.cp_track_to_ipod(added, s.file)) {
 			songs.set(added, i);
 		}
@@ -505,6 +515,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			stdout.printf("Failed to copy track %s to iPod. Removing it from database.\n", added.title);
 			remove_song(added);
 		}
+		stdout.printf("copyied\n");
 	}
 	
 	void remove_song(GPod.Track t) {

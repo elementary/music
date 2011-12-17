@@ -298,6 +298,10 @@ public class BeatBox.PodcastManager : GLib.Object {
 			stdout.printf("Can't save episodes locally. Already doing file operations.\n");
 			return;
 		}
+		else if(!File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
+			lw.doAlert("Could not save locally", "The music folder could not be found. It may need to be mounted");
+			return;
+		}
 		
 		save_locally_ids = ids;
 		

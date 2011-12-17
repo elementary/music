@@ -56,7 +56,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		setupLists();
 		
-		setupSpaceWidget();
+		refreshSpaceWidget();
 		
 		// device name box
 		var deviceNameBox = new HBox(true, 6);
@@ -182,7 +182,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		show_all();
 	}
 	
-	void setupSpaceWidget() {
+	void refreshSpaceWidget() {
 		double song_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
 		
 		foreach(int i in dev.get_songs()) {
@@ -333,6 +333,11 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 			audiobookDropdown.set_active(0);
 	}
 	
+	void sync_finished(bool success) {
+		refreshSpaceWidget();
+		syncButton.sensitive = true;
+	}
+	
 	void syncClicked() {
 		Gee.LinkedList<int> list = new Gee.LinkedList<int>();
 		var pref = dev.get_preferences();
@@ -345,12 +350,22 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 				}
 			}
 			else {
-				var p = lm.playlist_from_name(pref.music_playlist);
+				GLib.Object p = lm.playlist_from_name(pref.music_playlist);
+				if(p == null)
+					p = lm.smart_playlist_from_name(pref.music_playlist);
 				
 				if(p != null) {
-					foreach(int i in p.songs()) {
-						if(lm.song_from_id(i).mediatype == 0)
-							list.add(i);
+					if(p is Playlist) {
+						foreach(int i in ((Playlist)p).songs()) {
+							if(lm.song_from_id(i).mediatype == 0)
+								list.add(i);
+						}
+					}
+					else {
+						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
+							if(lm.song_from_id(i).mediatype == 0)
+								list.add(i);
+						}
 					}
 				}
 				else {
@@ -370,12 +385,22 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 				}
 			}
 			else {
-				var p = lm.playlist_from_name(pref.podcast_playlist);
+				GLib.Object p = lm.playlist_from_name(pref.podcast_playlist);
+				if(p == null)
+					p = lm.smart_playlist_from_name(pref.podcast_playlist);
 				
 				if(p != null) {
-					foreach(int i in p.songs()) {
-						if(lm.song_from_id(i).mediatype == 1)
-							list.add(i);
+					if(p is Playlist) {
+						foreach(int i in ((Playlist)p).songs()) {
+							if(lm.song_from_id(i).mediatype == 1 && !lm.song_from_id(i).file.has_prefix("http://"))
+								list.add(i);
+						}
+					}
+					else {
+						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
+							if(lm.song_from_id(i).mediatype == 1 && !lm.song_from_id(i).file.has_prefix("http://"))
+								list.add(i);
+						}
 					}
 				}
 				else {
@@ -395,12 +420,22 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 				}
 			}
 			else {
-				var p = lm.playlist_from_name(pref.audiobook_playlist);
+				GLib.Object p = lm.playlist_from_name(pref.audiobook_playlist);
+				if(p == null)
+					p = lm.smart_playlist_from_name(pref.audiobook_playlist);
 				
 				if(p != null) {
-					foreach(int i in p.songs()) {
-						if(lm.song_from_id(i).mediatype == 2)
-							list.add(i);
+					if(p is Playlist) {
+						foreach(int i in ((Playlist)p).songs()) {
+							if(lm.song_from_id(i).mediatype == 2)
+								list.add(i);
+						}
+					}
+					else {
+						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
+							if(lm.song_from_id(i).mediatype == 2)
+								list.add(i);
+						}
 					}
 				}
 				else {
@@ -421,6 +456,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 			lw.doAlert("Cannot Sync", "Device is already being synced.");
 		}
 		else {
+			syncButton.sensitive = false;
 			dev.sync_songs(list);
 		}
 	}

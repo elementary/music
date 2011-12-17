@@ -657,6 +657,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _smart_playlists.get(id);
 	}
 	
+	public SmartPlaylist? smart_playlist_from_name(string name) {
+		foreach(var p in _smart_playlists.values) {
+			if(p.name == name)
+				return p; 
+		}
+		
+		return null;
+	}
+	
 	public void save_smart_playlists() {
 		try {
 			Thread.create<void*>( () => { 

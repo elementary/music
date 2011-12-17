@@ -4,6 +4,7 @@ public interface BeatBox.Device : GLib.Object {
 	public signal void initialized(Device d);
 	public signal void device_unmounted();
 	public signal void progress_notification(string? message, double progress);
+	public signal void sync_finished(bool success);
 	
 	/*public Device(Mount m) {
 		this.mount = m;
