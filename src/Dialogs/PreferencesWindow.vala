@@ -107,7 +107,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		
 		lastfmInfo.set_line_wrap(true);
 		
-		// Add save and cancel buttons
+		// Add save button
 		var bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(saveChanges, false, false, 0);
@@ -199,12 +199,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		
 		destroy();
 	}
-	
-	void cancelClicked () {
-	
-		destroy();
-	}
-	
+
 	void fileOperationsDone () {
 	
 		fileChooser.set_tooltip_text("");

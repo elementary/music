@@ -57,7 +57,7 @@ public class BeatBox.LyricFetcher : GLib.Object {
 			load_successful = true;
 		}
 		catch(Error err) {
-			stdout.printf("Could not load contents of %s: %s\n", url, err.message);
+			stdout.printf("Could not load contents of %s : %s\n", url, err.message);
 			load_successful = false;
 		}
 		

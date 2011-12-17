@@ -41,6 +41,8 @@ public class BeatBox.SongEditor : Window {
 	private VBox textVert; // seperates text editors
 	private VBox numerVert; // seperates numerical editors
 	
+	private VBox lyricsContent;
+	
 	private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
 	private TextView lyricsText;
 	
@@ -48,6 +50,8 @@ public class BeatBox.SongEditor : Window {
 	private Button _next;
 	private Button _save;
 	
+	private InfoBar lyricsInfobar;
+	private Label lyricsInfobarLabel;
 	
 	public signal void songs_saved(LinkedList<int> songs);
 	
@@ -100,6 +104,8 @@ public class BeatBox.SongEditor : Window {
 		if(_songs.size == 1) {
 			foreach(FieldEditor fe in fields.values)
 				fe.set_check_visible(false);
+		
+			lyricsInfobar.hide();
 				
 			fetch_lyrics (false);
 		}
@@ -159,7 +165,7 @@ public class BeatBox.SongEditor : Window {
 			title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
 		}
 		else {
-			title = "Editing " + _songs.size.to_string() + " songs";// + (sum.artist != "" ? (" by " + sum.artist + " ") : " ") + (sum.album != "" ? (" on " + sum.album) : "");
+			title = "Editing " + _songs.size.to_string() + " songs";
 		}
 		
 		if(sum.year == -1)
@@ -214,12 +220,21 @@ public class BeatBox.SongEditor : Window {
 		Viewport rv = new Viewport(null, null);
 		
 		var padding = new VBox(false, 10);
-		var content = new HBox(false, 10);
+		lyricsContent = new VBox(false, 10);
 		
-		var fetchButton = new Button.with_label("Fetch lyrics");
-		VButtonBox rightButtons = new VButtonBox();
-		rightButtons.set_layout(ButtonBoxStyle.CENTER);
-		rightButtons.pack_start(fetchButton, false, false, 0);
+		lyricsInfobarLabel = new Label("");
+		
+		lyricsInfobarLabel.set_justify(Justification.LEFT);
+		lyricsInfobarLabel.set_single_line_mode(true);
+		lyricsInfobarLabel.ellipsize = Pango.EllipsizeMode.END;
+		
+		lyricsInfobar = new InfoBar();
+		lyricsInfobar.add_buttons("Try again", Gtk.ResponseType.OK);
+		lyricsInfobar.set_message_type (Gtk.MessageType.WARNING);
+		
+		((Gtk.Container)lyricsInfobar.get_content_area()).add(lyricsInfobarLabel);
+
+		lyricsInfobar.response.connect(fetchLyricsClicked);
 		
 		lyricsText = new TextView();
 		lyricsText.get_buffer().text = _lm.song_from_id(_songs.get(0)).lyrics;
@@ -233,19 +248,16 @@ public class BeatBox.SongEditor : Window {
 		viewport.add(lyricsText);
 		scroll.add(viewport);
 		
-		content.pack_start(scroll, true, true, 0);
-		content.pack_start(rightButtons, false, false, 0);
+		lyricsContent.pack_start(scroll, true, true, 0);
+		lyricsContent.pack_start(lyricsInfobar, false, true, 5);
 		
 		lyricsText.set_size_request(400, -1);
 		scroll.set_size_request(400, -1);
 		viewport.set_size_request(400, -1);
 		
-		padding.pack_start(content, true, true, 0);
+		padding.pack_start(lyricsContent, true, true, 0);
 		rv.add(padding);
-		
-		fetchButton.clicked.connect(fetchLyricsClicked);
-		
-		
+
 		return rv;
 	}
 	
@@ -255,17 +267,42 @@ public class BeatBox.SongEditor : Window {
 	
 	private void fetch_lyrics (bool overwrite) {
 		Song s = _lm.song_from_id(_songs.get(0));
-		
+
 		// fetch lyrics here
-		if (!(s.lyrics != "" && !overwrite))
+		if (!(!is_white_space (s.lyrics) && !overwrite))
 			lf.fetch_lyrics(s.album_artist, s.title);
+		else
+			lyricsInfobar.hide();
+
+	}
+	
+	private bool is_white_space (string? text) {
+
+		int white_space = 0;
+
+		if (text == null)
+			return true;
+
+		for (int i = 0; i < text.length; ++i)
+			if (text[i] == ' ' || text[i] == '\t' || text[i] == '\n')
+				white_space ++;
+
+		if (white_space == text.length)
+			return true;
+		else
+			return false;
 	}
 	
 	public void lyricsFetched(string fetchedLyrics) {
-		if(fetchedLyrics != null && fetchedLyrics != "")
+		if(fetchedLyrics != null && !is_white_space (fetchedLyrics)) {
+			lyricsInfobar.hide();
+			lyricsInfobarLabel.set_text ("");
 			lyricsText.get_buffer().text = fetchedLyrics;
-		else
-			lyricsText.get_buffer().text = "Lyrics not found for " + fields["Title"].get_value() + " by " + fields["Artist"].get_value() + ".";
+		}
+		else {
+			lyricsInfobar.show_all();
+			lyricsInfobarLabel.set_text ("Lyrics not found for " + fields["Title"].get_value() + " by " + fields["Artist"].get_value());
+		}
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -350,8 +387,7 @@ public class BeatBox.SongEditor : Window {
 			lyricsText.get_buffer().text = sum.lyrics;
 		}
 		
-		if(sum.lyrics == "")
-			fetchLyricsClicked();
+		fetch_lyrics (false);
 	}
 	
 	public void save_songs() {
@@ -450,7 +486,7 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(original != "");
 			
 			textView = (TextView)w;
-			textView.set_size_request(300, 100);
+			textView.set_size_request(300, 90);
 			textView.set_wrap_mode(WrapMode.WORD);
 			textView.get_buffer().text = original;
 			
