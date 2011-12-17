@@ -29,7 +29,9 @@ public class BeatBox.Beatbox : Granite.Application {
 	
 	const Gtk.StockItem[] stock_items = {
 		{ "beatbox", null, 0, 0 },
-		{ "folder-music", null, 0, 0 },
+		{ "library-music", null, 0, 0 },
+		{ "library-podcast", null, 0, 0},
+		{ "library-audiobook", null, 0, 0},
 		{ "media-audio", null, 0, 0 },
 		{ "emblem-urgent", null, 0, 0 },
 		{ "playlist", null, 0, 0 },
@@ -54,8 +56,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		{ "multimedia-player", null, 0, 0},
 		{ "media-eject", null, 0, 0 },
 		{ "process-completed-symbolic", null, 0, 0},
-		{ "process-error-symbolic", null, 0, 0},
-		{ "application-rss+xml", null, 0, 0}
+		{ "process-error-symbolic", null, 0, 0}
 		
     };
     
@@ -72,11 +73,11 @@ public class BeatBox.Beatbox : Granite.Application {
 	
 	construct {
 		// App info
-		//build_data_dir = Build.DATADIR;
-		//build_pkg_data_dir = Build.PKGDATADIR;
-		build_release_name = "Beta";
-		build_version = "0.2";
-		build_version_info = "0.2 (Beta)";
+		build_data_dir = Build.DATADIR;
+		build_pkg_data_dir = Build.PKG_DATADIR;
+		build_release_name = Build.RELEASE_NAME;
+		build_version = Build.VERSION;
+		build_version_info = Build.VERSION_INFO;
 		
 		program_name = "BeatBox";
 		exec_name = "beatbox";
@@ -93,7 +94,6 @@ public class BeatBox.Beatbox : Granite.Application {
 		translate_url = "https://translations.launchpad.net/beat-box";
 		
 		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>"};
-		
 	}
     
 	protected override void activate () {
@@ -103,6 +103,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		}
 		
 		_program = new BeatBox.LibraryWindow(this, args);
+		_program.build_ui();
 		_program.set_application(this);
 	}
 	

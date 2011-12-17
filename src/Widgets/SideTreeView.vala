@@ -133,8 +133,16 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	
 	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
 		if(name == "Music" && parent == library_iter) {
-			library_music_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
+			library_music_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
 			return library_music_iter;
+		}
+		else if(name == "Podcasts" && parent == library_iter) {
+			library_podcasts_iter = addItem(parent, o, w, lm.icons.podcast_icon, name, null);
+			return library_podcasts_iter;
+		}
+		else if(name == "Audiobooks" && parent == library_iter) {
+			library_audiobooks_iter = addItem(parent, o, w, lm.icons.audiobook_icon, name, null);
+			return library_audiobooks_iter;
 		}
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
@@ -151,23 +159,15 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				return addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
 		}
 		else if(name == "Music Store" && parent == network_iter) {
-			network_store_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
+			network_store_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
 			return network_store_iter;
 		}
-		else if(name == "Podcasts" && parent == library_iter) {
-			library_podcasts_iter = addItem(parent, o, w, render_icon("application-rss+xml", IconSize.MENU, null), name, null);
-			return library_podcasts_iter;
-		}
-		else if(name == "Audiobooks" && parent == library_iter) {
-			library_audiobooks_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
-			return library_audiobooks_iter;
-		}
 		else if(name == "Similar" && parent == playlists_iter) {
-			playlists_similar_iter = addItem(parent, o, w, render_icon("playlist-automatic", IconSize.MENU, null), name, null);
+			playlists_similar_iter = addItem(parent, o, w, lm.icons.smart_playlist_icon, name, null);
 			return playlists_similar_iter;
 		}
 		else if(name == "Queue" && parent == playlists_iter) {
-			playlists_queue_iter = addItem(parent, o, w, render_icon("folder-music", IconSize.MENU, null), name, null);
+			playlists_queue_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
 			return playlists_queue_iter;
 		}
 		else if(name == "History" && parent == playlists_iter) {
@@ -195,7 +195,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				
 			} while(true);
 			
-			tree.set(item, 0, o, 1, w, 2, true, 3, render_icon("playlist-automatic", IconSize.MENU, null), 4, name.replace("&", "&amp;"), 5, null);
+			tree.set(item, 0, o, 1, w, 2, true, 3, lm.icons.smart_playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
 			
 			if(visible) {
 				TreeIter? filterItem = convertToFilter(item);
@@ -226,7 +226,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 			} while(true);
 			
-			tree.set(item, 0, o, 1, w, 2, true, 3, render_icon("playlist", IconSize.MENU, null), 4, name.replace("&", "&amp;"), 5, null);
+			tree.set(item, 0, o, 1, w, 2, true, 3, lm.icons.playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
 			if(visible) {
 				TreeIter? filterItem = convertToFilter(item);
 				if(filterItem != null)
@@ -552,7 +552,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					
 					removeItem(convertToFilter(pivot));
 					lw.addSideListItem(sp);
-					//addItem(playlists_iter, sp, w, render_icon("playlist-automatic", IconSize.MENU, null), sp.name, null);
 					
 					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_smart_playlist(sp.rowid), true, false);
 					lm.save_smart_playlists();

@@ -6,7 +6,8 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 	Device dev;
 	
 	Granite.Widgets.HintedEntry deviceName;
-	CheckButton syncAtStart;
+	Switch syncAtStart;
+	
 	CheckButton syncMusic;
 	CheckButton syncPodcasts;
 	CheckButton syncAudiobooks;
@@ -32,23 +33,24 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 	public void buildUI() {
 		// options at top
 		deviceName = new Granite.Widgets.HintedEntry("Device Name");
-		syncAtStart = new CheckButton.with_label("Automatically sync when mounted");
-		syncMusic = new CheckButton.with_label("Sync Music with");
-		syncPodcasts = new CheckButton.with_label("Sync Podcasts with");
-		syncAudiobooks = new CheckButton.with_label("Sync Audiobooks with");
+		syncAtStart = new Gtk.Switch();
+		syncMusic = new CheckButton();
+		syncPodcasts = new CheckButton();
+		syncAudiobooks = new CheckButton();
 		musicDropdown = new ComboBox();
 		podcastDropdown = new ComboBox();
 		audiobookDropdown = new ComboBox();
-		musicList = new ListStore(2, typeof(GLib.Object), typeof(string));
-		podcastList = new ListStore(2, typeof(GLib.Object), typeof(string));
-		audiobookList = new ListStore(2, typeof(GLib.Object), typeof(string));
+		musicList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
+		podcastList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
+		audiobookList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
 		
 		deviceImage = new Gtk.Image.from_gicon(dev.get_icon(), IconSize.DIALOG);
 		spaceWidget = new SpaceWidget((double)dev.get_capacity());
 		syncButton = new Button.with_label("Sync");
 		
 		Label deviceNameLabel = new Label("Device Name:");
-		Label syncOptionsLabel = new Label("Sync Options:");
+		Label autoSyncLabel = new Label("Automatically sync when plugged in:");
+		Label syncOptionsLabel = new Label("Sync:");
 		
 		var content = new VBox(false, 10);
 		
@@ -56,42 +58,44 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		setupSpaceWidget();
 		
-		// create layout
+		// device name box
 		var deviceNameBox = new HBox(true, 6);
 		deviceNameBox.pack_start(deviceNameLabel, false, true, 0);
 		deviceNameBox.pack_start(deviceName, false, true, 0);
 		
-		/* music box */
+		// auto sync box
+		var autoSyncBox = new HBox(true, 6);
+		autoSyncBox.pack_start(autoSyncLabel, false, true, 0);
+		autoSyncBox.pack_start(wrap_alignment(syncAtStart, 0, 0, 0, 0), false, true, 0);
+		
+		// sync options box
 		var musicBox = new HBox(false, 6);
 		musicBox.pack_start(syncMusic, false, false, 0);
 		musicBox.pack_start(musicDropdown, false, false, 0);
-		/* podcast box */
+		
 		var podcastBox = new HBox(false, 6);
 		podcastBox.pack_start(syncPodcasts, false, false, 0);
 		podcastBox.pack_start(podcastDropdown, false, false, 0);
-		/* audiobook box */
+		
 		var audiobookBox = new HBox(false, 6);
 		audiobookBox.pack_start(syncAudiobooks, false, false, 0);
 		audiobookBox.pack_start(audiobookDropdown, false, false, 0);
 		
-		/* vbox of all checkboxes */
 		var syncOptionsBox = new VBox(false, 0);
-		syncOptionsBox.pack_start(syncAtStart, false, false, 0);
 		syncOptionsBox.pack_start(musicBox, false, false, 0);
+		if(dev.supports_podcasts()) 	syncOptionsBox.pack_start(podcastBox, false, false, 0);
+		if(dev.supports_audiobooks()) 	syncOptionsBox.pack_start(audiobookBox, false, false, 0);
 		
-		if(dev.supports_podcasts())
-			syncOptionsBox.pack_start(podcastBox, false, false, 0);
-		if(dev.supports_audiobooks())
-			syncOptionsBox.pack_start(audiobookBox, false, false, 0);
-		
-		/* has list of sync options */
 		var syncHBox = new HBox(true, 6);
 		syncHBox.pack_start(syncOptionsLabel, false, true, 0);
 		syncHBox.pack_start(syncOptionsBox, false, true, 0);
 		
 		// create bottom section
-		var syncButtonBox = new VBox(false, 0);
+		//var syncBox = new VBox(false, 0);
+		var syncButtonBox = new VButtonBox();
+		syncButtonBox.set_layout(ButtonBoxStyle.END);
 		syncButtonBox.pack_end(syncButton, false, false, 0);
+		//syncBox.pack_end(syncButton, false, false, 0);
 		
 		var bottomBox = new HBox(false, 0);
 		bottomBox.pack_start(deviceImage, false, true, 0);
@@ -100,6 +104,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		// put it all together
 		content.pack_start(deviceNameBox, false, true, 0);
+		content.pack_start(autoSyncBox, false, true, 0);
 		content.pack_start(syncHBox, false, true, 0);
 		content.pack_end(bottomBox, false, true, 0);
 		
@@ -109,6 +114,9 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		deviceName.halign = Align.START;
 		if(dev.getDisplayName() != "")
 			deviceName.set_text(dev.getDisplayName());
+			
+		autoSyncLabel.xalign = 1.0f;
+		syncAtStart.halign = Align.START;
 		
 		syncOptionsLabel.yalign = 0.0f;
 		syncOptionsLabel.xalign = 1.0f;
@@ -160,7 +168,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		}
 		
 		// hop onto signals to save preferences
-		syncAtStart.toggled.connect(savePreferences);
+		syncAtStart.notify["active"].connect(savePreferences);
 		syncMusic.toggled.connect(savePreferences);
 		syncPodcasts.toggled.connect(savePreferences);
 		syncAudiobooks.toggled.connect(savePreferences);
@@ -204,6 +212,14 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		musicDropdown.set_row_separator_func(rowSeparatorFunc);
 		podcastDropdown.set_row_separator_func(rowSeparatorFunc);
 		audiobookDropdown.set_row_separator_func(rowSeparatorFunc);
+		
+		var music_cell = new CellRendererPixbuf();
+		musicDropdown.pack_start(music_cell, false);
+		musicDropdown.add_attribute(music_cell, "pixbuf", 2);
+		podcastDropdown.pack_start(music_cell, false);
+		podcastDropdown.add_attribute(music_cell, "pixbuf", 2);
+		audiobookDropdown.pack_start(music_cell, false);
+		audiobookDropdown.add_attribute(music_cell, "pixbuf", 2);
 		
 		var cell = new CellRendererText();
 		cell.ellipsize = Pango.EllipsizeMode.END;
@@ -277,11 +293,11 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		/* add entire library options */
 		musicList.append(out iter);
-		musicList.set(iter, 0, null, 1, "Entire Music Library");
+		musicList.set(iter, 0, null, 1, "All Music", 2, lm.icons.music_icon);
 		podcastList.append(out iter);
-		podcastList.set(iter, 0, null, 1, "Entire Podcast Library");
+		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.icons.podcast_icon);
 		audiobookList.append(out iter);
-		audiobookList.set(iter, 0, null, 1, "Entire Audiobook Library");
+		audiobookList.set(iter, 0, null, 1, "All Audiobooks", 2, lm.icons.audiobook_icon);
 		
 		/* add separator */
 		musicList.append(out iter);
@@ -294,19 +310,19 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		/* add all playlists */
 		foreach(var p in lm.smart_playlists()) {
 			musicList.append(out iter);
-			musicList.set(iter, 0, p, 1, p.name);
+			musicList.set(iter, 0, p, 1, p.name, 2, lm.icons.smart_playlist_icon);
 			podcastList.append(out iter);
-			podcastList.set(iter, 0, p, 1, p.name);
+			podcastList.set(iter, 0, p, 1, p.name, 2, lm.icons.smart_playlist_icon);
 			audiobookList.append(out iter);
-			audiobookList.set(iter, 0, p, 1, p.name);
+			audiobookList.set(iter, 0, p, 1, p.name, 2, lm.icons.smart_playlist_icon);
 		}
 		foreach(var p in lm.playlists()) {
 			musicList.append(out iter);
-			musicList.set(iter, 0, p, 1, p.name);
+			musicList.set(iter, 0, p, 1, p.name, 2, lm.icons.playlist_icon);
 			podcastList.append(out iter);
-			podcastList.set(iter, 0, p, 1, p.name);
+			podcastList.set(iter, 0, p, 1, p.name, 2, lm.icons.playlist_icon);
 			audiobookList.append(out iter);
-			audiobookList.set(iter, 0, p, 1, p.name);
+			audiobookList.set(iter, 0, p, 1, p.name, 2, lm.icons.playlist_icon);
 		}
 		
 		if(!musicDropdown.set_active_id(musicString))

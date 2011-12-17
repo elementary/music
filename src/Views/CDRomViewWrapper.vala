@@ -70,7 +70,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 		song_being_ripped = s;
 		
 		s.showIndicator = true;
-		lm.update_song(s, false);
+		lm.update_song(s, false, false);
 		
 		ripper.ripSong(1, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", s);
 		
@@ -154,7 +154,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 			ripper.ripSong(next.track, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", next);
 			
 			next.showIndicator = true;
-			lm.update_song(next, false);
+			lm.update_song(next, false, false);
 			
 			var update = "<b>Importing</b> track " + next.track.to_string() + ": <b>" + next.title.replace("&", "&amp;") + "</b>" + ((next.artist != "Unknown Artist") ? " by " : "") + "<b>" + next.artist.replace("&", "&amp;") + "</b>" + ((next.album != "Unknown Album") ? " on " : "") + "<b>" + next.album.replace("&", "&amp;") + "</b>";
 			lw.progressNotification(update, 0.0);
@@ -194,7 +194,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 		d.device_unmounted.connect( () => {
 			foreach(Song s in tSongs) {
 				s.unique_status_image = null;
-				lm.update_songs(tSongs, false);
+				lm.update_songs(tSongs, false, false);
 			}
 		});
 		

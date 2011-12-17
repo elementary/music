@@ -198,7 +198,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		music_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		music_model = new MusicTreeModel(lm, get_column_strings(), lm.nowPlayingIcon);
+		music_model = new MusicTreeModel(lm, get_column_strings(), lm.icons.now_playing_icon);
 		music_model.is_current = _is_current;
 		
 		var hPos = this.vadjustment.get_value();
@@ -302,11 +302,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		playlistSaveTimeoutAdded = false;
 		relative_id = id;
 		
-		//generate star pixbuf
-		starred = this.render_icon("starred", IconSize.MENU, null);
-		not_starred = this.render_icon("not-starred", IconSize.MENU, null);
-		
-		cellHelper = new CellDataFunctionHelper(starred, not_starred);
+		cellHelper = new CellDataFunctionHelper(lm);
 		
 		lm.songs_updated.connect(songs_updated);
 		lm.songs_removed.connect(songs_removed);
@@ -1071,7 +1067,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		foreach(int i in songs)
 			toUpdate.add(lm.song_from_id(i));
 		
-		lm.update_songs(toUpdate, true);
+		// could have edited rating, so record_time is true
+		lm.update_songs(toUpdate, true, true);
 		
 		if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
 			// make sure these songs still belongs here
@@ -1213,7 +1210,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			los.add(s);
 		}
 		
-		lm.update_songs(los, false);
+		lm.update_songs(los, false, true);
 	}
 	
 	public void scrollToCurrent() {

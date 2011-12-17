@@ -36,6 +36,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.Streamer player;
 	public BeatBox.DeviceManager dm;
 	public BeatBox.PodcastManager pm;
+	public BeatBox.Icons icons;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	public HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
@@ -51,9 +52,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private LinkedList<int> _queue; // rowid, Song of queue
 	private LinkedList<int> _already_played; // Song of already played
 	private HashMap<string, Gdk.Pixbuf> _album_art; // All album art
-	
-	public Gdk.Pixbuf defaultAlbumArt;
-	public Gdk.Pixbuf nowPlayingIcon;
 	
 	public LastFM.Core lfm;
 	private HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
@@ -138,13 +136,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_already_played = new LinkedList<int>();
 		_album_art = new HashMap<string, Gdk.Pixbuf>();
 		
-		try {
-			defaultAlbumArt = new Gdk.Pixbuf.from_file(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.png", null));
-			nowPlayingIcon = lw.render_icon("audio-volume-high", IconSize.MENU, null);
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not load default album art image\n");
-		}
+		icons = new Icons(this, lw);
+		icons.load_icons();
 		
 		lfm = new LastFM.Core(this);
 		_artists = new HashMap<string, LastFM.ArtistInfo>();
@@ -740,21 +733,22 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _songs;
 	}
 	
-	public void update_song(Song s, bool updateMeta) {
+	public void update_song(Song s, bool updateMeta, bool record_time) {
 		LinkedList<Song> one = new LinkedList<Song>();
 		one.add(s);
 		
-		update_songs(one, updateMeta);
+		update_songs(one, updateMeta, record_time);
 	}
 	
-	public void update_songs(Collection<Song> updates, bool updateMeta) {
+	public void update_songs(Collection<Song> updates, bool updateMeta, bool record_time) {
 		LinkedList<int> rv = new LinkedList<int>();
 		
 		foreach(Song s in updates) {
 			/*_songs.set(s.rowid, s);*/
 			rv.add(s.rowid);
 			
-			s.last_modified = (int)time_t();
+			if(record_time)
+				s.last_modified = (int)time_t();
 		}
 		
 		songs_updated(rv);
@@ -1331,7 +1325,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// check that the file exists
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
-			song_from_id(id).unique_status_image = lw.render_icon("process-error-symbolic", Gtk.IconSize.MENU, null);
+			song_from_id(id).unique_status_image = icons.process_error_icon;
 			lw.song_not_found(id);
 			return;
 		}
@@ -1377,7 +1371,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				// potentially fix song length
 				if((player.getDuration()/1000000000) > 1) {
 					song_info.song.length = (int)(player.getDuration()/1000000000);
-					update_song(song_info.song, true);
+					update_song(song_info.song, true, false);
 				}
 			}
 			
