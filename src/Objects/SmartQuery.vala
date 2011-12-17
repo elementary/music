@@ -130,12 +130,33 @@ public class BeatBox.SmartQuery : Object {
 			rule.fromvalue = uint64.parse(value) * 20;
 			rule.tovalue = uint64.parse(value) * 20;
 		}
+		else if(field == "Date Released") {
+			// no equivelant
+		}
+		else if(field == "Media Type") {
+			rule.field = GPod.SPLField.VIDEO_KIND;
+			if(value == "0") {
+				rule.fromvalue = (uint64)GPod.MediaType.AUDIO;
+				rule.tovalue = (uint64)GPod.MediaType.AUDIO;
+			}
+			else if(value == "1") {
+				rule.fromvalue = (uint64)GPod.MediaType.PODCAST;
+				rule.tovalue = (uint64)GPod.MediaType.PODCAST;
+			}
+			else if(value == "2") {
+				rule.fromvalue = (uint64)GPod.MediaType.AUDIOBOOK;
+				rule.tovalue = (uint64)GPod.MediaType.AUDIOBOOK;
+			}
+		}
 		
 		rule.tounits = 1;
 		
 		// set action type
 		if(comparator == "is") {
 			rule.action = GPod.SPLAction.IS_STRING;
+		}
+		else if(comparator == "is not") {
+			rule.action = GPod.SPLAction.IS_NOT_INT;
 		}
 		else if(comparator == "contains") {
 			rule.action = GPod.SPLAction.CONTAINS;

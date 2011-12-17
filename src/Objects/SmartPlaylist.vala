@@ -277,6 +277,20 @@ public class BeatBox.SmartPlaylist : Object {
 				return now.compare(played) > 0;
 			}
 		}
+		else if(q.field == "Date Released") {//time
+			var now = new DateTime.now_local();
+			var released = new DateTime.from_unix_local(s.podcast_date);
+			released = released.add_days(int.parse(q.value));
+			
+			if(q.comparator == "is exactly")
+				return (now.get_day_of_year() == released.get_day_of_year() && now.get_year() == released.get_year());
+			else if(q.comparator == "is within") {
+				return released.compare(now) > 0;
+			}
+			else if(q.comparator == "is before") {
+				return now.compare(released) > 0;
+			}
+		}
 		else if(q.field == "Last Played") {
 			if(s.last_played == 0)
 				return false;
@@ -293,6 +307,12 @@ public class BeatBox.SmartPlaylist : Object {
 			else if(q.comparator == "is before") {
 				return now.compare(played) > 0;
 			}
+		}
+		else if(q.field == "Media Type") {
+			if(q.comparator == "is")
+				return s.mediatype == int.parse(q.value);
+			else if(q.comparator == "is not")
+				return s.mediatype != int.parse(q.value);
 		}
 		
 		return false;
@@ -400,10 +420,31 @@ public class BeatBox.SmartPlaylist : Object {
 				rule.tounits = 1;//60 * 60 * 24;
 				rule.fromunits = 1;//60 * 60 * 24;
 			}
+			else if(field == "Date Released") {
+				// no equivelant
+			}
+			else if(field == "Media Type") {
+				rule.field = GPod.SPLField.VIDEO_KIND;
+				if(value == "0") {
+					rule.fromvalue = (uint64)GPod.MediaType.AUDIO;
+					rule.tovalue = (uint64)GPod.MediaType.AUDIO;
+				}
+				else if(value == "1") {
+					rule.fromvalue = (uint64)GPod.MediaType.PODCAST;
+					rule.tovalue = (uint64)GPod.MediaType.PODCAST;
+				}
+				else if(value == "2") {
+					rule.fromvalue = (uint64)GPod.MediaType.AUDIOBOOK;
+					rule.tovalue = (uint64)GPod.MediaType.AUDIOBOOK;
+				}
+			}
 			
 			// set action type
 			if(comparator == "is") {
 				rule.action = GPod.SPLAction.IS_STRING;
+			}
+			else if(comparator == "is not") {
+				rule.action = GPod.SPLAction.IS_NOT_INT;
 			}
 			else if(comparator == "contains") {
 				rule.action = GPod.SPLAction.CONTAINS;

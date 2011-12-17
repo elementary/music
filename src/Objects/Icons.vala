@@ -95,7 +95,7 @@ public class BeatBox.Icons : GLib.Object {
 				rv = IconTheme.get_default().load_icon(name, width, IconLookupFlags.GENERIC_FALLBACK);
 			}
 			catch(Error err) {
-				stdout.printf("Default theme does not have icon for '%s', falling back to BeatBox default: %s\n", name, err.message);
+				stdout.printf("Default theme does not have icon for '%s', falling back to BeatBox default.\n", name);
 			}
 		}
 		

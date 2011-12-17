@@ -225,6 +225,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 	private ComboBoxText _comparator;
 	private Entry _value;
 	private SpinButton _valueNumerical;
+	private ComboBoxText _valueOption;
 	private Label _units;
 	private Button _remove;
 	
@@ -244,21 +245,24 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		fields.set("Comment", 3);
 		fields.set("Composer", 4);
 		fields.set("Date Added", 5);
-		fields.set("Genre", 6);
-		fields.set("Grouping", 7);
-		fields.set("Last Played", 8);
-		fields.set("Length", 9);
-		fields.set("Playcount", 10);
-		fields.set("Rating", 11);
-		fields.set("Skipcount", 12);
-		fields.set("Title", 13);
-		fields.set("Year", 14);
+		fields.set("Date Released", 6);
+		fields.set("Genre", 7);
+		fields.set("Grouping", 8);
+		fields.set("Last Played", 9);
+		fields.set("Length", 10);
+		fields.set("Media Type", 11);
+		fields.set("Playcount", 12);
+		fields.set("Rating", 13);
+		fields.set("Skipcount", 14);
+		fields.set("Title", 15);
+		fields.set("Year", 16);
 		
 		_box = new HBox(false, 2);
 		_field = new ComboBoxText();
 		_comparator = new ComboBoxText();
 		_value = new Entry();
 		_valueNumerical = new SpinButton.with_range(0, 9999, 1);
+		_valueOption = new ComboBoxText();
 		_remove = new Button.with_label("Remove");
 		
 		_field.append_text("Album");
@@ -267,10 +271,12 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.append_text("Comment");
 		_field.append_text("Composer");
 		_field.append_text("Date Added");
+		_field.append_text("Date Released");
 		_field.append_text("Genre");
 		_field.append_text("Grouping");
 		_field.append_text("Last Played");
 		_field.append_text("Length");
+		_field.append_text("Media Type");
 		_field.append_text("Playcount");
 		_field.append_text("Rating");
 		_field.append_text("Skipcount");
@@ -284,6 +290,12 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		if(q.field == "Album" || q.field == "Artist" || q.field == "Comment" || q.field == "Composer" ||  q.field == "Genre" || q.field == "Grouping" || q.field == "Title") {
 			_value.text = q.value;
 		}
+		else if(q.field == "Media Type") {
+			_valueOption.append_text("Song");
+			_valueOption.append_text("Podcast");
+			_valueOption.append_text("Audiobook");
+			_valueOption.set_active(int.parse(q.value));
+		}
 		else {
 			_valueNumerical.set_value(int.parse(q.value));
 		}
@@ -293,6 +305,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_box.pack_start(_field, false, true, 0);
 		_box.pack_start(_comparator, false ,true, 1);
 		_box.pack_start(_value, true, true, 1);
+		_box.pack_start(_valueOption, true, true, 1);
 		_box.pack_start(_valueNumerical, true, true, 1);
 		_box.pack_start(_units, false, true, 1);
 		_box.pack_start(_remove, false, true, 0);
@@ -312,6 +325,8 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		
 		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Composer" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Grouping" || _field.get_active_text() == "Title")
 			rv.value = _value.text;
+		else if(_field.get_active_text() == "Media Type")
+			rv.value = _valueOption.get_active().to_string();
 		else
 			rv.value = _valueNumerical.value.to_string();
 		
@@ -322,8 +337,10 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Composer" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Grouping" || _field.get_active_text() == "Title") {
 			_value.show();
 			_valueNumerical.hide();
+			_valueOption.hide();
 			
 			for(int i = 0;i < 3; ++i) _comparator.remove(0);
+			
 			_comparator.append_text("is");
 			_comparator.append_text("contains");
 			_comparator.append_text("does not contain");
@@ -333,9 +350,31 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			
 			_comparator.set_active( (comparators.has_key(_q.comparator)) ? comparators.get(_q.comparator) : 0);
 		}
+		else if(_field.get_active_text() == "Media Type") {
+			_value.hide();
+			_valueNumerical.hide();
+			_valueOption.show();
+			
+			// upate valueOption 
+			_valueOption.remove_all();
+			_valueOption.append_text("Song");
+			_valueOption.append_text("Podcast");
+			_valueOption.append_text("Audiobook");
+			_valueOption.set_active(int.parse(_q.value));
+			
+			_comparator.remove_all();
+			
+			_comparator.append_text("is");
+			_comparator.append_text("is not");
+			comparators.set("is", 0);
+			comparators.set("is not", 1);
+			
+			_comparator.set_active( (comparators.has_key(_q.comparator)) ? comparators.get(_q.comparator) : 0);
+		}
 		else {
 			_valueNumerical.show();
 			_value.hide();
+			_valueOption.hide();
 			
 			if(_field.get_active_text() == "Bitrate" || _field.get_active_text() == "Year" || _field.get_active_text() == "Rating" || _field.get_active_text() == "Playcount" || _field.get_active_text() == "Skipcount" || _field.get_active_text() == "Length") {
 				for(int i = 0;i < 3; ++i) _comparator.remove(0);
@@ -348,7 +387,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 				
 				_comparator.set_active( (comparators.has_key(_q.comparator)) ? comparators.get(_q.comparator) : 0);
 			}
-			else if(_field.get_active_text() == "Date Added" || _field.get_active_text() == "Last Played") {
+			else if(_field.get_active_text() == "Date Added" || _field.get_active_text() == "Last Played" || _field.get_active_text() == "Date Released") {
 				for(int i = 0;i < 3; ++i) _comparator.remove(0);
 				_comparator.append_text("is exactly");
 				_comparator.append_text("is within");
@@ -368,7 +407,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			_units.set_text("seconds");
 			_units.show();
 		}
-		else if(_field.get_active_text() == "Last Played" || _field.get_active_text() == "Date Added") {
+		else if(_field.get_active_text() == "Last Played" || _field.get_active_text() == "Date Added" || _field.get_active_text() == "Date Released") {
 			_units.set_text("days ago");
 			_units.show();
 		}
