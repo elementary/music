@@ -41,6 +41,9 @@ install(FILES icons/22x22/mimetypes/playlist-automatic.svg DESTINATION share/bea
 install(FILES icons/16x16/mimetypes/process-completed-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 install(FILES icons/16x16/mimetypes/process-error-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 
+# process stop
+install(FILES icons/16x16/actions/process-stop.svg DESTINATION share/beat-box/icons/hicolor/16x16/actions)
+
 #last fm
 install(FILES icons/16x16/actions/lastfm-love.svg DESTINATION share/beat-box/icons/hicolor/16x16/actions)
 install(FILES icons/16x16/actions/lastfm-ban.svg DESTINATION share/beat-box/icons/hicolor/16x16/actions)
