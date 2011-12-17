@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011	   Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -319,39 +319,39 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		verticalBox.pack_start(topMenu, false, true, 0);
 		verticalBox.pack_start(topControls, false, true, 0);
 		verticalBox.pack_start(videoArea, true, true, 0);
-        verticalBox.pack_start(sourcesToSongs, true, true, 0);
-        
-        ToolItem topDisplayBin = new ToolItem();
-        ToolItem viewSelectorBin = new ToolItem();
-        ToolItem searchFieldBin = new ToolItem();
-        topDisplayBin.add(topDisplay);
-        topDisplayBin.set_border_width(1);
-        viewSelectorBin.add(viewSelector);
-        viewSelectorBin.set_border_width(3);
-        searchFieldBin.add(searchField);
-        //appMenuBin.add(app.create_appmenu(settingsMenu));
-        
-        topDisplayBin.set_expand(true);
-        viewSelector.append(new Image.from_pixbuf(lm.icons.view_icons_icon));
-        viewSelector.append(new Image.from_pixbuf(lm.icons.view_details_icon));
-        viewSelector.append(new Image.from_pixbuf(lm.icons.view_column_icon));
-        //viewSelector.append(new Image.from_stock("view-list-video-symbolic", IconSize.MENU));
-        
-        topControls.insert(previousButton, 0);
-        topControls.insert(playButton, 1);
-        topControls.insert(nextButton, 2);
-        topControls.insert(viewSelectorBin, 3);
-        topControls.insert(topDisplayBin, 4);
-        topControls.insert(searchFieldBin, 5);
-        topControls.insert(app.create_appmenu(settingsMenu), 6);
-        
-        viewSelector.get_style_context().add_class("raised");
-        topControls.get_style_context().add_class("primary-toolbar");
+		verticalBox.pack_start(sourcesToSongs, true, true, 0);
+		
+		ToolItem topDisplayBin = new ToolItem();
+		ToolItem viewSelectorBin = new ToolItem();
+		ToolItem searchFieldBin = new ToolItem();
+		topDisplayBin.add(topDisplay);
+		topDisplayBin.set_border_width(1);
+		viewSelectorBin.add(viewSelector);
+		viewSelectorBin.set_border_width(3);
+		searchFieldBin.add(searchField);
+		//appMenuBin.add(app.create_appmenu(settingsMenu));
+		
+		topDisplayBin.set_expand(true);
+		viewSelector.append(new Image.from_pixbuf(lm.icons.view_icons_icon));
+		viewSelector.append(new Image.from_pixbuf(lm.icons.view_details_icon));
+		viewSelector.append(new Image.from_pixbuf(lm.icons.view_column_icon));
+		//viewSelector.append(new Image.from_stock("view-list-video-symbolic", IconSize.MENU));
+		
+		topControls.insert(previousButton, 0);
+		topControls.insert(playButton, 1);
+		topControls.insert(nextButton, 2);
+		topControls.insert(viewSelectorBin, 3);
+		topControls.insert(topDisplayBin, 4);
+		topControls.insert(searchFieldBin, 5);
+		topControls.insert(app.create_appmenu(settingsMenu), 6);
+		
+		viewSelector.get_style_context().add_class("raised");
+		topControls.get_style_context().add_class("primary-toolbar");
 		
 		//set the name for elementary theming
-		sourcesToSongs.name = "SidebarHandleLeft";
-		sideTree.name = "SidebarContent";
-		sourcesToSongs.get_style_context().add_class("pane-separator");
+		//sourcesToSongs.name = "SidebarHandleLeft";
+		//sideTree.name = "SidebarContent";
+		sourcesToSongs.get_style_context().add_class("sidebar-pane-separator");
 		sideTree.get_style_context().add_class("sidebar");
 		
 		contentBox.pack_start(welcomeScreen, true, true, 0);
@@ -781,7 +781,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			artist_s == lm.song_info.song.artist && lm.song_info.song.getAlbumArtPath().contains("media-audio.png")) {
 				lm.song_info.album = album;
 			
-                if (album.url_image.url != null && lm.settings.getUpdateFolderHierarchy()) {
+				if (album.url_image.url != null && lm.settings.getUpdateFolderHierarchy()) {
 					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
 					
 					// start thread to load all the songs pixbuf's
@@ -846,8 +846,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		return null;
 	}
-    
-    public bool updateSongInfo() {
+	
+	public bool updateSongInfo() {
 		infoPanel.updateSong(lm.song_info.song.rowid);
 		
 		return false;
@@ -983,10 +983,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}*/
 			
 			string folder = "";
-            var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
-                                      FileChooserAction.SELECT_FOLDER,
-                                      Gtk.Stock.CANCEL, ResponseType.CANCEL,
-                                      Gtk.Stock.OPEN, ResponseType.ACCEPT);
+			var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+									  FileChooserAction.SELECT_FOLDER,
+									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
+									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
 			if (file_chooser.run () == ResponseType.ACCEPT) {
 				folder = file_chooser.get_filename();
 			}
@@ -1243,10 +1243,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public void welcomeScreenActivated(int index) {
 		if(!lm.doing_file_operations && index == 0) {
 			string folder = "";
-            var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
-                                      FileChooserAction.SELECT_FOLDER,
-                                      Gtk.Stock.CANCEL, ResponseType.CANCEL,
-                                      Gtk.Stock.OPEN, ResponseType.ACCEPT);
+			var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+									  FileChooserAction.SELECT_FOLDER,
+									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
+									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
 			if (file_chooser.run () == ResponseType.ACCEPT) {
 				folder = file_chooser.get_filename();
 			}
