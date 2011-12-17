@@ -405,7 +405,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		foreach(var i in list) {
 			if(!sync_cancelled) {
-				if(!songs.values.contains(i)) {
+				if(!media.values.contains(i)) {
 					add_song(i);
 					++sub_index;
 				}

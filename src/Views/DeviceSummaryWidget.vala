@@ -178,11 +178,16 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		deviceName.changed.connect(deviceNameChanged);
 		syncButton.clicked.connect(syncClicked);
+		dev.sync_finished.connect(sync_finished);
 		
 		show_all();
 	}
 	
 	void refreshSpaceWidget() {
+		spaceWidget.remove_item("Songs");
+		spaceWidget.remove_item("Podcasts");
+		spaceWidget.remove_item("Audiobooks");
+		
 		double song_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
 		
 		foreach(int i in dev.get_songs()) {
@@ -198,6 +203,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		spaceWidget.add_item("Songs", song_size, 0, 0, 128);
 		spaceWidget.add_item("Podcasts", podcast_size, 255, 165, 0);
 		spaceWidget.add_item("Audiobooks", audiobook_size, 255, 0, 0);
+		spaceWidget.queue_draw();
 	}
 	
 	void setupLists() {
