@@ -330,6 +330,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			online_size = File.new_for_uri(lm.song_from_id(i).podcast_url).query_info("*", FileQueryInfoFlags.NONE).get_size();
 			new_dest = lm.fo.get_new_destination(lm.song_from_id(i));
 			lm.fo.update_file_hierarchy(lm.song_from_id(i), false);
+			lm.song_from_id(i).file_size = (int)(File.new_for_path(new_dest).query_info("*", FileQueryInfoFlags.NONE).get_size() / 1000000);
 			++index;
 		}
 		
