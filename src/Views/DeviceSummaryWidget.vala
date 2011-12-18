@@ -184,9 +184,9 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 	}
 	
 	void refreshSpaceWidget() {
-		spaceWidget.remove_item("Songs");
-		spaceWidget.remove_item("Podcasts");
-		spaceWidget.remove_item("Audiobooks");
+		spaceWidget.remove_item(0);
+		spaceWidget.remove_item(1);
+		spaceWidget.remove_item(2);
 		
 		double song_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
 		

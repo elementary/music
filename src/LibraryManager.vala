@@ -1336,6 +1336,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
 			song_from_id(id).unique_status_image = icons.process_error_icon;
 			lw.song_not_found(id);
+			stopPlayback();
 			return;
 		}
 		else {

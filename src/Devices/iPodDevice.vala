@@ -509,7 +509,14 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		stdout.printf("copying track to ipod\n");
 		if(db.cp_track_to_ipod(added, s.file)) {
-			songs.set(added, i);
+			media.set(added, i);
+			
+			if(added.mediatype == GPod.MediaType.AUDIO)
+				this.songs.set(added, i);
+			else if(added.mediatype == GPod.MediaType.PODCAST)
+				this.podcasts.set(added, i);
+			else if(added.mediatype == GPod.MediaType.AUDIOBOOK)
+				this.audiobooks.set(added, i);
 		}
 		else {
 			stdout.printf("Failed to copy track %s to iPod. Removing it from database.\n", added.title);

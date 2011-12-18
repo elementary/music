@@ -68,7 +68,7 @@ namespace ElementaryWidgets {
 			info.pack_start(wrap_alignment(scaleBox, 0, 5, 0, 5), false, true, 0);
 			
 			this.pack_start(info, true, true, 0);
-			this.pack_end(wrap_alignment(cancelButton, 2, 2, 0, 2), false, false, 0);
+			this.pack_end(wrap_alignment(cancelButton, 0, 2, 0, 2), false, false, 0);
 			
 			this.cancelButton.clicked.connect(cancel_clicked);
 			this.scale.button_press_event.connect(scale_button_press);
@@ -226,7 +226,6 @@ namespace ElementaryWidgets {
 			cancelButton.show();
 			
 			cancelButton.set_size_request(12, 12);
-			progressbar.set_size_request(-1, 12);
 		}
 		
 		public virtual void player_position_update(int64 position) {

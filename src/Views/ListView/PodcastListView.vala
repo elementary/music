@@ -167,6 +167,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		if(lm.song_info.song != null)
 			podcast_model.updateSong(lm.song_info.song.rowid, get_is_current());
+		
+		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
 	
 	public void populate_view() {

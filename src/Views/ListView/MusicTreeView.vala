@@ -174,7 +174,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		if(lm.song_info.song != null)
 			music_model.updateSong(lm.song_info.song.rowid, get_is_current());
 		
-		lm.setShuffleMode(LibraryManager.Shuffle.ALL, shuffle && is_initial);
+		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
 	
 	public void populate_view() {

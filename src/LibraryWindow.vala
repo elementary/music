@@ -160,8 +160,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					lm.playSong(i);
 					
 					((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.set_as_current_list(0, true);
-					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL)
+					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
+						stdout.printf("line 164 setting to shuffle mode all\n");
 						lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
+					}
 					
 					searchField.set_text(lm.settings.getSearchString());
 					
@@ -284,7 +286,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 		
-		
 		editPreferences.set_label("Preferences");
 		
 		editEqualizer.activate.connect(editEqualizerClick);
@@ -344,6 +345,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topControls.insert(topDisplayBin, 4);
 		topControls.insert(searchFieldBin, 5);
 		topControls.insert(app.create_appmenu(settingsMenu), 6);
+		
+		// for consistency
+		topControls.set_size_request(-1, 45);
+		//viewSelector.set_size_request(-1, 20);
 		
 		viewSelector.get_style_context().add_class("raised");
 		topControls.get_style_context().add_class("primary-toolbar");
