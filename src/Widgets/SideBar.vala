@@ -245,7 +245,6 @@ namespace ElementaryWidgets {
 			tree.set(it, SideBarColumn.COLUMN_VISIBLE, val);
 			
 			if(val && !was) {
-				stdout.printf("expanding row\n");
 				expand_row(filter.get_path(convertToFilter(it)), true);
 			}
 		}
@@ -291,12 +290,10 @@ namespace ElementaryWidgets {
 		public void setSelectedIter(TreeIter iter) {
 			this.get_selection().changed.disconnect(selectionChange);
 			get_selection().unselect_all();
-			stdout.printf("selecting iter\n");
+			
 			get_selection().select_iter(iter);
 			this.get_selection().changed.connect(selectionChange);
 			selectedIter = iter;
-			stdout.printf("selected iter\n");
-			
 		}
 		
 		public bool expandItem(TreeIter iter, bool expanded) {

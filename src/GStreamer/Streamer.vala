@@ -52,11 +52,11 @@ public class BeatBox.Streamer : GLib.Object {
 	public void setURI(string uri) {
 		setState(State.READY);
 		pipe.playbin.uri = uri.replace("#", "%23");
-		/*
+		
 		if(pipe.video.element != null) {
 			var xoverlay = pipe.video.element as XOverlay;
-			xoverlay.set_xwindow_id (Gdk.x11_drawable_get_xid (lw.videoArea.window));
-		}*/
+			xoverlay.set_xwindow_id(Gdk.X11Window.get_xid(lw.videoArea.get_window ()));
+		}
 		
 		setState(State.PLAYING);
 		

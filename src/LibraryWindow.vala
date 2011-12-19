@@ -35,6 +35,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	bool queriedlastfm; // whether or not we have queried last fm for the current song info
 	bool song_considered_played; //whether or not we have updated last played and added to already played list
 	bool added_to_play_count; // whether or not we have added one to play count on playing song
+	bool tested_for_video; // whether or not we have tested if song is video and shown video
 	bool scrobbled_track;
 	LinkedList<string> timeout_search;//stops from doing useless search
 	string last_search;//stops from searching same thing multiple times
@@ -151,31 +152,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				song_considered_played = true;
 			if(lm.song_info.song != null && (double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
 				added_to_play_count = true;
-			
-			int i = settings.getLastSongPlaying();
-			if(i != 0) {
-				/* time out works because... monkeys eat bananas */
-				int position = (int)settings.getLastSongPosition();
-				Timeout.add(250, () => {
-					lm.playSong(i);
-					
-					((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.set_as_current_list(0, true);
-					if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
-						stdout.printf("line 164 setting to shuffle mode all\n");
-						lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
-					}
-					
-					searchField.set_text(lm.settings.getSearchString());
-					
-					topDisplay.change_value(ScrollType.NONE, position);
-						
-					return false;
-				});
-			}
-			else {
-				/* don't show info panel if nothing playing */
-				infoPanel.set_visible(false);
-			}
 			
 			// rescan on startup
 			/*lm.rescan_music_folder();*/
@@ -336,7 +312,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector.append(new Image.from_pixbuf(lm.icons.view_icons_icon));
 		viewSelector.append(new Image.from_pixbuf(lm.icons.view_details_icon));
 		viewSelector.append(new Image.from_pixbuf(lm.icons.view_column_icon));
-		//viewSelector.append(new Image.from_stock("view-list-video-symbolic", IconSize.MENU));
+		viewSelector.append(new Image.from_pixbuf(lm.icons.view_video_icon));
 		
 		topControls.insert(previousButton, 0);
 		topControls.insert(playButton, 1);
@@ -413,12 +389,35 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		sideTree.resetView();
 		viewSelector.selected = settings.getViewMode();
-		viewSelector.selected = 3;
 		
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
 		miller.updateColumnVisibilities(genreV, artistV, albumV);
 		stdout.printf("User interface has been built\n");
+		
+		int i = settings.getLastSongPlaying();
+		if(i != 0) {
+			/* time out works because... monkeys eat bananas */
+			int position = (int)settings.getLastSongPosition();
+			//Timeout.add(250, () => {
+				lm.playSong(i);
+				
+				((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.set_as_current_list(0, true);
+				if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
+					lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
+				}
+				
+				searchField.set_text(lm.settings.getSearchString());
+				
+				topDisplay.change_value(ScrollType.NONE, position);
+					
+				//return false;
+			//});
+		}
+		else {
+			/* don't show info panel if nothing playing */
+			infoPanel.set_visible(false);
+		}
 		
 		initializationFinished = true;
 		updateSensitivities();
@@ -599,7 +598,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// if we are adding songs, refresh periodically
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
-		if(lm.songs().size - vw.showingSongs.size >= 500) {
+		if(lm.songs().size - vw.song_count >= 500) {
 			
 			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
 			miller.populateColumns("", lm.song_ids());
@@ -696,6 +695,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//	songPosition.set_sensitive(true);
 		
 		//reset some booleans
+		tested_for_video = false;
 		queriedlastfm = false;
 		song_considered_played = false;
 		added_to_play_count = false;
@@ -712,24 +712,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		updateSensitivities();
-		
-		// if it is a video, show the video option and select it
-		/*Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
-		if(disc.discover_uri("file://" + lm.song_info.song.file).get_video_streams().length() > 0) {
-			if(!viewSelector.get_showing(3)) {
-				viewSelector.set_showing(3, true);
-				viewSelector.selected = 3;
-			}
-		}
-		else {
-			//stdout.printf("is not video, removing\n");
-			viewSelector.set_showing(3, false);
-			viewSelector.selected = settings.getViewMode();
-		}*/
 	}
 	
 	public virtual void playback_stopped(int was_playing) {
 		//reset some booleans
+		tested_for_video = false;
 		queriedlastfm = false;
 		song_considered_played = false;
 		added_to_play_count = false;
@@ -1155,8 +1142,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(lm.song_info.song != null) {
 			sec = ((double)position/1000000000);
 			
-			// if podcast or audiobook, remember position
-			if(lm.song_info.song.mediatype == 1 || lm.song_info.song.mediatype == 2)
+			// if podcast or audiobook, and song is considered played, remember position
+			if(lm.song_info.song.mediatype == 1 || lm.song_info.song.mediatype == 2 && song_considered_played)
 				lm.song_info.song.resume_pos = (int)sec;
 			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info

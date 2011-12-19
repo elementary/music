@@ -31,6 +31,7 @@ public class BeatBox.ViewWrapper : VBox {
 	public WarningLabel errorBox;
 	public Collection<int> songs;
 	public Collection<int> showingSongs;
+	public int song_count;
 	
 	public ViewWrapper.Hint hint;
 	public ViewType currentView;
@@ -67,6 +68,7 @@ public class BeatBox.ViewWrapper : VBox {
 		lm = lmm;
 		lw = lww;
 		this.songs = songs;
+		song_count = songs.size;
 		showingSongs = new LinkedList<int>();
 		timeout_search = new LinkedList<string>();
 		
@@ -208,6 +210,7 @@ public class BeatBox.ViewWrapper : VBox {
 	public void doUpdate(ViewType type, Collection<int> songs, bool set_songs, bool force) {
 		if(set_songs) {
 			this.songs = songs;
+			song_count = songs.size;
 		}
 		
 		currentView = type;

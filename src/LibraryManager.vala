@@ -109,6 +109,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public LibraryManager(BeatBox.Settings sett, BeatBox.LibraryWindow lww, string[] args) {
+		stdout.printf("test\n");
 		this.lw = lww;
 		this.player = new Streamer(this, lw, args);
 		this.settings = sett;
@@ -1382,6 +1383,31 @@ public class BeatBox.LibraryManager : GLib.Object {
 				if((player.getDuration()/1000000000) > 1) {
 					song_info.song.length = (int)(player.getDuration()/1000000000);
 					update_song(song_info.song, true, false);
+				}
+				
+				// if it is a video, show the video option and select it
+				Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
+				Gst.DiscovererInfo info = null;
+				try {
+					info = disc.discover_uri("file://" + song_info.song.file);
+				}
+				catch(Error err) {
+					stdout.printf("Error discovering file %s: %s\n", song_info.song.file, err.message);
+				}
+				if(info != null && info.get_video_streams().length() > 0) {
+					if(lw.viewSelector.get_children().length() != 4) {
+						lw.viewSelector.append(new Image.from_pixbuf(icons.view_video_icon));
+						lw.viewSelector.selected = 3;
+					}
+				}
+				else {
+					if(lw.viewSelector.selected == 3) {
+						lw.viewSelector.selected = 1; // show list
+					}
+					
+					if(lw.viewSelector.get_children().length() == 4) {
+						lw.viewSelector.remove(3);
+					}
 				}
 			}
 			

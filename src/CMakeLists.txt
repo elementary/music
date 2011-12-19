@@ -19,6 +19,7 @@ find_package(PkgConfig)
 pkg_check_modules(DEPS
     glib-2.0
     gtk+-3.0
+    gdk-x11-3.0
     gee-1.0
     gstreamer-0.10
     gstreamer-interfaces-0.10
@@ -99,6 +100,7 @@ vala_precompile(VALA_C
     Objects/Playlist.vala
     Objects/PodcastManager.vala
     Objects/Icons.vala
+    Objects/CommandLineParser.vala
     Widgets/Welcome.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarSongsView.vala
@@ -189,6 +191,7 @@ OPTIONS
 PACKAGES
     glib-2.0
     gtk+-3.0
+    gdk-x11-3.0
     gee-1.0
     gstreamer-0.10
     gstreamer-interfaces-0.10

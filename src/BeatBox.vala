@@ -22,7 +22,15 @@
 
 using Gtk;
 
+namespace Option {
+		[CCode (array_length = false, array_null_terminated = true)]
+		static string[] to_add;
+		
+		static string to_play;
+	}
+
 public class BeatBox.Beatbox : Granite.Application {
+	public static Granite.Application app;
 	public static LibraryWindow _program;
 	public static bool enableStore;
 	public static unowned string[] args;
@@ -59,16 +67,42 @@ public class BeatBox.Beatbox : Granite.Application {
 		{ "process-error-symbolic", null, 0, 0}
 		
     };
+	
+	static const OptionEntry[] my_options = {
+		{ "add-to-library", 'a', 0, OptionArg.FILENAME_ARRAY, ref Option.to_add, "Adds the list of files to the BeatBox library", "FILE1 FILE2 ..." },
+		{ "play-uri", 'p', 0, OptionArg.STRING, ref Option.to_play, "Plays given uri", "URI" },
+		{ null }
+	};
     
     public static int main(string[] args) {
+		var opt_context = new OptionContext("- BeatBox help page.");
+		opt_context.set_help_enabled(true);
+		opt_context.add_main_entries(my_options, "beatbox");
+		opt_context.add_group(Gtk.get_option_group(true));
+		
+		try {
+			opt_context.parse(ref args);
+		}
+		catch(Error err) {
+			stdout.printf("Error parsing arguments: %s\n", err.message);
+		}
+		
 		Gtk.init(ref args);
 		Gdk.threads_init();
 		Notify.init("beatbox");
 		add_stock_images();
 		
-		var app = new Beatbox();
-		app.args = args;
-		return app.run(args);
+		app = new Beatbox();
+		app.set_application_id("net.launchpad.beatbox");
+		app.flags = ApplicationFlags.FLAGS_NONE;
+		//((Beatbox)app).args = args;
+		
+		app.command_line.connect(command_line);
+		
+		// passing any args will crash app
+		string[] fake = {};
+		unowned string[] fake_u = fake;
+		return app.run(fake_u);
 	}
 	
 	construct {
@@ -95,15 +129,39 @@ public class BeatBox.Beatbox : Granite.Application {
 		
 		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>"};
 	}
+	
+	public static int command_line() {
+		return 0;
+	}
     
 	protected override void activate () {
 		if (_program != null) {
 			_program.present (); // present window if app is already open
+			//stdout.printf("to play is %s\n", Option.to_play);
 			return;
 		}
 		
 		_program = new BeatBox.LibraryWindow(this, args);
 		_program.build_ui();
+		
+		if(Option.to_play != null) {
+			stdout.printf("not null\n");
+			File f = File.new_for_uri(Option.to_play);
+			if(f.query_exists()) {
+				stdout.printf("query exists\n");
+				Song temp = _program.lm.fo.import_song(f.get_path());
+				
+				temp.isTemporary = true;
+				_program.lm.add_song(temp, false);
+				_program.lm.playSong(temp.rowid);
+				stdout.printf("song played %s %s %d\n", temp.title, temp.artist, temp.rowid);
+			}
+		}
+		else if(Option.to_add.length > 0) {
+			
+		}
+		
+		
 		_program.set_application(this);
 	}
 	
