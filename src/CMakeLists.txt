@@ -100,7 +100,6 @@ vala_precompile(VALA_C
     Objects/Playlist.vala
     Objects/PodcastManager.vala
     Objects/Icons.vala
-    Objects/CommandLineParser.vala
     Widgets/Welcome.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarSongsView.vala

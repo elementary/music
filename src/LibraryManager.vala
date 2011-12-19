@@ -1389,7 +1389,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
 				Gst.DiscovererInfo info = null;
 				try {
-					info = disc.discover_uri("file://" + song_info.song.file);
+					var uri = (!song_info.song.file.has_prefix("http://")) ? "file://" + song_info.song.file : song_info.song.file;
+					info = disc.discover_uri(uri);
 				}
 				catch(Error err) {
 					stdout.printf("Error discovering file %s: %s\n", song_info.song.file, err.message);
