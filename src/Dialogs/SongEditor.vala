@@ -104,8 +104,6 @@ public class BeatBox.SongEditor : Window {
 		if(_songs.size == 1) {
 			foreach(FieldEditor fe in fields.values)
 				fe.set_check_visible(false);
-		
-			lyricsInfobar.hide();
 				
 			fetch_lyrics (false);
 		}
@@ -225,7 +223,7 @@ public class BeatBox.SongEditor : Window {
 		lyricsInfobarLabel = new Label("");
 		
 		lyricsInfobarLabel.set_justify(Justification.LEFT);
-		lyricsInfobarLabel.set_single_line_mode(true);
+		lyricsInfobarLabel.set_single_line_mode(false);
 		lyricsInfobarLabel.ellipsize = Pango.EllipsizeMode.END;
 		
 		lyricsInfobar = new InfoBar();
@@ -237,6 +235,7 @@ public class BeatBox.SongEditor : Window {
 		lyricsInfobar.response.connect(fetchLyricsClicked);
 		
 		lyricsText = new TextView();
+		lyricsText.set_wrap_mode(WrapMode.WORD_CHAR);
 		lyricsText.get_buffer().text = _lm.song_from_id(_songs.get(0)).lyrics;
 		
 		ScrolledWindow scroll = new ScrolledWindow(null, null);
@@ -487,7 +486,7 @@ public class BeatBox.FieldEditor : VBox {
 			
 			textView = (TextView)w;
 			textView.set_size_request(300, 90);
-			textView.set_wrap_mode(WrapMode.WORD);
+			textView.set_wrap_mode(WrapMode.WORD_CHAR);
 			textView.get_buffer().text = original;
 			
 			ScrolledWindow scroll = new ScrolledWindow(null, null);

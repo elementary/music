@@ -64,7 +64,6 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 
         ok_button = new Button.with_label ("OK");
         cancel_button = new Button.with_label ("Cancel");
-        cancel_button.grab_focus ();
 
         string checkbox_text = "Move file" + ((number_of_songs > 1)? "s": "") + " to the trash";
 
@@ -100,6 +99,8 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
         cancel_button.clicked.connect ( () => { destroy (); });
 
         add(padding);
+
+	cancel_button.grab_focus ();
 
         show_all();
     }
