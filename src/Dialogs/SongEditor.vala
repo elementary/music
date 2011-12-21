@@ -101,13 +101,16 @@ public class BeatBox.SongEditor : Window {
 		
 		show_all();
 		
+		_next.sensitive = allSongs.size > 1;
+		_previous.sensitive = allSongs.size > 1;
+		
 		if(_songs.size == 1) {
 			foreach(FieldEditor fe in fields.values)
 				fe.set_check_visible(false);
 				
 			fetch_lyrics (false);
 		}
-		
+
 		_previous.clicked.connect(previousClicked);
 		_next.clicked.connect(nextClicked);
 		_save.clicked.connect(saveClicked);
