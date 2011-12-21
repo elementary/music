@@ -77,6 +77,8 @@ public class BeatBox.ViewWrapper : VBox {
 		if(the_hint == ViewWrapper.Hint.SIMILAR) {
 			list = new SimilarPane(lm, lw);
 			errorBox = new WarningLabel();
+			errorBox.show_icon = false;
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">Similar Song View</span>\n\nIn this view, BeatBox will automatically find songs similar to the one you are playing.\nYou can then start playing those songs, or save them for later.");
 		}
 		else if(the_hint == ViewWrapper.Hint.PODCAST || the_hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 			list = new PodcastListView(lm, lw, sort, dir, the_hint, id);
@@ -159,8 +161,8 @@ public class BeatBox.ViewWrapper : VBox {
 			
 		if(!(lm.current_songs().size == list.get_songs().size && lm.current_songs().contains_all(list.get_songs()))) {
 			/* a new song is played. don't show list until songs have loaded */
-			
-			errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\nBeatBox is loading songs similar to " + lm.song_from_id(id).title.replace("&", "&amp;") + " by " + lm.song_from_id(id).artist.replace("&", "&amp;") + "...");
+			errorBox.show_icon = false;
+			errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\n\nBeatBox is loading songs similar to <b>" + lm.song_from_id(id).title.replace("&", "&amp;") + "</b> by <b>" + lm.song_from_id(id).artist.replace("&", "&amp;") + "</b> ...");
 			errorBox.show();
 			list.hide();
 			albumView.hide();
@@ -228,7 +230,8 @@ public class BeatBox.ViewWrapper : VBox {
 			}
 			else if( !(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs())) ) { // not currently playing list and have fetched
 				if(songs.size < 10) { // say we could not find similar songs
-					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No Similar Songs</span>\nBeatBox could not find songs similar to " + lm.song_info.song.title.replace("&", "&amp;") + " by " + lm.song_info.song.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
+					errorBox.show_icon = true;
+					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No similar songs found\n</span>\nBeatBox could not find songs similar to <b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b> by <b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>.\n\nMake sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches.");
 					errorBox.show();
 					list.hide();
 					albumView.hide();

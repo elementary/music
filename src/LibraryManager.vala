@@ -235,7 +235,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// set the equalizer
-		set_equalizer_preset ();
+		set_equalizer_gains ();
 				
 		// pre-load devices and their preferences
 		foreach(DevicePreferences dp in dbm.load_devices()) {
@@ -1431,7 +1431,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				}
 			}
 
-			set_equalizer_preset ();
+			set_equalizer_gains ();
 		}
 		
 		return null;
@@ -1628,7 +1628,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		progress_cancel_clicked();
 	}
 	
-	public void set_equalizer_preset () {
+	public void set_equalizer_gains () {
 		if(settings.getEqualizerEnabled() && !settings.getAutoSwitchPreset()) {
 			string selected_preset = settings.getSelectedPreset();
 			if(selected_preset != null) {

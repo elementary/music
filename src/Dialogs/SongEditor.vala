@@ -223,7 +223,7 @@ public class BeatBox.SongEditor : Window {
 		lyricsInfobarLabel = new Label("");
 		
 		lyricsInfobarLabel.set_justify(Justification.LEFT);
-		lyricsInfobarLabel.set_single_line_mode(false);
+		lyricsInfobarLabel.set_single_line_mode(true);
 		lyricsInfobarLabel.ellipsize = Pango.EllipsizeMode.END;
 		
 		lyricsInfobar = new InfoBar();

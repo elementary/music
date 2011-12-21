@@ -74,7 +74,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		initialized = true;
 
-		if (automatic_chosen)
+		if (lm.settings.getAutoSwitchPreset ())
 			preset_combo.selectAutomaticPreset();
 	}
 	
@@ -180,7 +180,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		new_preset_entry.icon_press.connect (new_preset_entry_icon_pressed);
 		new_preset_entry.focus_out_event.connect (on_entry_focus_out);
 
-		close_button.clicked.connect(on_close_button_clicked);
+		close_button.clicked.connect(on_quit);
 		destroy.connect(on_quit);
 		
 		show_all();
@@ -341,7 +341,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 	void on_default_preset_modified() {
 
-		if(adding_preset)
+		if(adding_preset || closing)
 			return;
 
 		adding_preset = true;
@@ -411,6 +411,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			i++;
 
 			is_valid = verify_preset_name(preset_name);
+
 		} while (!is_valid);
 
 		return preset_name;
@@ -418,12 +419,13 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 	public bool verify_preset_name(string name) {
 	
-		/* This function verifies the name of a new preset.
-		   It will return 'true' whenever:
-		    - The name is not null
-		    - The name doesn't consist [enterely] of white space.
-		    - The name is not already in the list.
-		*/
+		/**
+		 *  This function verifies the name of a new preset.
+		 *  It will return 'true' whenever:
+		 *   - The name is not null
+		 *   - The name doesn't consist [enterely] of white space.
+		 *   - The name is not already in the list.
+		 **/
 
 		int white_space = 0;
 		int str_length = name.length;
@@ -479,44 +481,21 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			preset_combo.removeCurrentPreset();
 	}
 
-	void on_close_button_clicked () {
-		closing = true;
-
-		if(adding_preset)
-			add_new_preset();
-
-		if(!in_transition)
-			close_equalizer();
-		else
-			Timeout.add(20, close_equalizer);
-	}
-
 	void on_quit () {
 
 		closing = true;
 
-		if (!in_transition)
-			on_close_button_clicked();
-		else {
+		if (!in_transition && adding_preset)
+			add_new_preset();
+		else
 			set_target_levels ();
-			close_equalizer ();
-		}
-	}
-
-	bool close_equalizer () {
-
-		if (in_transition)
-			return true;
-
-		lm.settings.setSelectedPreset(preset_combo.getSelectedPreset());
 
 		save_presets ();
-
+		lm.settings.setSelectedPreset (preset_combo.getSelectedPreset());
 		lm.settings.setAutoSwitchPreset (automatic_chosen);
 
 		destroy();
-		
-		return false;
-	}
-}
 
+	}
+
+}

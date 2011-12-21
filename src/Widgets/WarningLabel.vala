@@ -1,20 +1,49 @@
 using Gtk;
 
 public class BeatBox.WarningLabel : EventBox {
-	public Label errorLabel;
+
+	private Box content;
+
+	private Label errorLabel;
+	private Image warningIcon;
+	
+	private Spinner spinner;
+	
+	public bool show_icon {
+		get {
+			return warningIcon.visible;
+		}
+		set {
+			warningIcon.set_no_show_all (!value);
+			warningIcon.set_visible (value);
+		}
+	}
 	
 	public WarningLabel() {
 		errorLabel = new Label("");
+		warningIcon = new Image.from_stock (Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 		
-		add(errorLabel);
+		content = new Box (Orientation.VERTICAL, 10);
+		var outer_box = new Box (Orientation.VERTICAL, 0);
+		var top_padding = new Box (Orientation.VERTICAL, 0);
+		var bottom_padding = new Box (Orientation.VERTICAL, 0);
+
+		content.pack_start (warningIcon, false, false, 10);
+		content.pack_start (errorLabel, false, true, 0);
+
+		outer_box.pack_start (top_padding, true, true, 0);
+		outer_box.pack_start (content, false, true, 10);
+		outer_box.pack_start (bottom_padding, true, true, 0);
+
+		add(outer_box);
 		
 		Gdk.Color c = Gdk.Color();
 		Gdk.Color.parse("#FFFFFF", out c);
 		modify_bg(StateType.NORMAL, c);
 		
 		errorLabel.xalign = 0.5f;
-		errorLabel.justify = Justification.CENTER;
-		errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Song View</span>\nIn this view, BeatBox will automatically find songs similar to the one you are playing.\nYou can then start playing those songs, or save them for later.");
+		errorLabel.set_justify(Justification.CENTER);
+		errorLabel.ellipsize = Pango.EllipsizeMode.END;
 	}
 	
 	public void setWarning(string warning) {
