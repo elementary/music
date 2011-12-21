@@ -6,9 +6,7 @@ public class BeatBox.WarningLabel : EventBox {
 
 	private Label errorLabel;
 	private Image warningIcon;
-	
-	private Spinner spinner;
-	
+
 	public bool show_icon {
 		get {
 			return warningIcon.visible;
