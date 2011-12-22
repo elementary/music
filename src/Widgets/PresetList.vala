@@ -27,6 +27,8 @@ public class BeatBox.PresetList : ComboBox {
 	LibraryWindow lw;
 	ListStore store;
 	
+	private const string SEPARATOR_NAME = "<separator_item_unique_name>";
+	
 	private int ndefaultpresets;
 	private int ncustompresets;
 
@@ -70,14 +72,14 @@ public class BeatBox.PresetList : ComboBox {
 		store = new ListStore(2, typeof(GLib.Object), typeof(string));
 		this.set_model(store);
 		
-		this.set_size_request(-1, 800);
+		//this.set_size_request(-1, 800);
 		
 		this.set_id_column(1);
 		this.set_row_separator_func( (model, iter) => {
 			string content = "";
 			model.get(iter, 1, out content);
 			
-			return content == "<separator_item_unique_name>";
+			return content == SEPARATOR_NAME;
 		});
 		
 		var cell = new CellRendererText();
@@ -100,9 +102,8 @@ public class BeatBox.PresetList : ComboBox {
 		store.append(out iter);
 		store.set(iter, 0, null, 1, "Automatic");
 		
-		store.append(out iter);
-		store.set(iter, 0, null, 1, "<separator_item_unique_name>");
-
+		addSeparator ();
+		
 		if(ndefaultpresets < 1) {
 			store.append(out iter);
 			store.set(iter, 0, null, 1, "Add New...");
@@ -113,8 +114,13 @@ public class BeatBox.PresetList : ComboBox {
 			store.set(iter, 0, null, 1, "Delete Current");
 		}
 
+		addSeparator ();
+	}
+	
+	public void addSeparator () {
+		TreeIter iter;
 		store.append(out iter);
-		store.set(iter, 0, null, 1, "<separator_item_unique_name>");
+		store.set(iter, 0, null, 1, SEPARATOR_NAME);
 	}
 	
 	public void addPreset(EqualizerPreset ep) {
@@ -128,10 +134,13 @@ public class BeatBox.PresetList : ComboBox {
 			ncustompresets++;
 		}
 
-		if((this.preset_list_size - 1) < 1) {
+		if(this.preset_list_size < 2) {
 			clearList();
 			addTopOptions();
 		}
+
+		if (!ep.is_default && ncustompresets < 2 && ndefaultpresets > 1)
+			addSeparator ();
 
 		store.append(out iter);
 		store.set(iter, 0, ep, 1, ep.name);
@@ -149,7 +158,7 @@ public class BeatBox.PresetList : ComboBox {
 		if(last_selected_preset == null || this.preset_list_size < 1) {
 			return;
 		}
-		
+
 		TreeIter iter;
 		for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
 			GLib.Object o;
@@ -162,8 +171,10 @@ public class BeatBox.PresetList : ComboBox {
 				} else {
 					ncustompresets--;
 				}
-				
+
 				store.remove(iter);
+			
+				break;
 			}
 		}
 
@@ -171,7 +182,22 @@ public class BeatBox.PresetList : ComboBox {
 			clearList();
 			addTopOptions();
 		}
-		
+
+		// Remove the separator
+		if ((last_selected_preset.is_default && ndefaultpresets < 1 && ncustompresets > 0) ||
+		    !last_selected_preset.is_default && ncustompresets < 1 && ndefaultpresets > 0) {
+
+			for(int i = store.iter_n_children(null) - 1; store.get_iter_from_string(out iter, i.to_string()); --i) {
+				string text;
+				store.get(iter, 1, out text);
+			
+				if(text != null && text == SEPARATOR_NAME) {
+					store.remove(iter);
+					break;
+				}
+			}
+		}
+
 		modifying_list = false;
 		set_active(0);
 	}

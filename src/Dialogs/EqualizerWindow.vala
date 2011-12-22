@@ -252,10 +252,10 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			preset.is_default = true;
 			preset_combo.addPreset(preset);
 		}
-
+		
 		foreach (EqualizerPreset preset in custom_presets)
 			preset_combo.addPreset(preset);
-		
+
 		preset_combo.default_presets_changed = false;
 	}
 
@@ -292,7 +292,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		
 		if (!in_transition && !closing) {
 			in_transition = true;
-			Timeout.add(20, transition_scales);
+			Timeout.add(25, transition_scales);
 		}
 	}
 	
@@ -347,7 +347,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		set_target_levels ();
 		
-		lm.change_gains_thread ();		
+		lm.change_gains_thread ();
 	}
 
 	void on_default_preset_modified () {
@@ -448,6 +448,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		if(str_length < 1)
 			return false;
 
+		// TODO: Parse UTF-8 properly
 		for(int i = 0; i < str_length; ++i) {
 			if(name[i] == ' ' || name[i] == '\t')
 				white_space++;

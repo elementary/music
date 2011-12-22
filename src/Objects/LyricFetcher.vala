@@ -97,6 +97,7 @@ public class BeatBox.LyricFetcher : GLib.Object {
 		if (str == null)
 			return rv;
 
+		// TODO: Parse UTF-8 properly, using offsets
 		for (int i = 0; i < str.length; ++i) {
 			if (('a' <= str[i] && str[i] <= 'z') || ('A' <= str[i] && str[i] <= 'Z') ||
 			    ('0' <= str[i] && str[i] <= '9')) {

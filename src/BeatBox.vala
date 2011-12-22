@@ -128,6 +128,8 @@ public class BeatBox.Beatbox : Granite.Application {
 		translate_url = "https://translations.launchpad.net/beat-box";
 		
 		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>"};
+
+		about_artists = {"Daniel Foré <daniel@elementaryos.org>"};
 	}
 	
 	public static int command_line() {
