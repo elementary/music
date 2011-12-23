@@ -127,9 +127,9 @@ public class BeatBox.Beatbox : Granite.Application {
 		help_url = "https://answers.launchpad.net/beat-box";
 		translate_url = "https://translations.launchpad.net/beat-box";
 		
-		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>"};
+		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>", null};
 
-		about_artists = {"Daniel Foré <daniel@elementaryos.org>"};
+		about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
 	}
 	
 	public static int command_line() {
