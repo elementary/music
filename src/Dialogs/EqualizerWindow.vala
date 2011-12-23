@@ -48,7 +48,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	
 	private string new_preset_name;
 
-	
 	public EqualizerWindow (LibraryManager lm, LibraryWindow lw) {
 	
 		this.lm = lm;
@@ -68,20 +67,15 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 				
 		initialized = true;
 
-		if (eq_switch.get_active ()) {
-			if (lm.settings.getAutoSwitchPreset ()) {
-				preset_combo.selectAutomaticPreset();
-			} else {
-				var preset = lm.settings.getSelectedPreset();
-				if (preset != null)
-					preset_combo.selectPreset(preset);
-			}
+		if (lm.settings.getAutoSwitchPreset ()) {
+			preset_combo.selectAutomaticPreset();
 		} else {
-			apply_changes = true;
+			var preset = lm.settings.getSelectedPreset();
+			if (preset != null)
+				preset_combo.selectPreset(preset);
 		}
 
 		on_eq_switch_toggled ();
-		
 		apply_changes = true;
 	}
 	
@@ -240,7 +234,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 				}
 			}
 			else {
-				set_sliders_sensitivity(false);
 				preset_combo.selectAutomaticPreset();
 			}
 		}
@@ -318,9 +311,9 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	
 	bool transition_scales () {
 	
-		if (!in_transition || preset_combo.automatic_chosen)
+		if (!in_transition)
 			return false;
-	
+
 		bool is_finished = true;
 		
 		for (int index = 0; index < 10; ++index) {
@@ -353,9 +346,10 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		for (int i = 0; i < 10; ++i)
 			target_levels.add(0);
 
-		set_target_levels ();
-
 		set_sliders_sensitivity (false);
+
+		in_transition = true;
+		Timeout.add (20, transition_scales);
 
 		if (apply_changes) {
 			save_presets ();
