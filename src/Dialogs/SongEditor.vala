@@ -272,7 +272,7 @@ public class BeatBox.SongEditor : Window {
 
 		// fetch lyrics here
 		if (!(!is_white_space (s.lyrics) && !overwrite))
-			lf.fetch_lyrics(s.album_artist, s.title);
+			lf.fetch_lyrics(s.artist, s.album_artist, s.title);
 		else
 			lyricsInfobar.hide();
 

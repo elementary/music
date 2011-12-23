@@ -25,16 +25,21 @@ public class BeatBox.LyricFetcher : GLib.Object {
 	private static const string URL_FORMAT = "http://www.azlyrics.com/lyrics/%s/%s.html";
 	
 	private string url;
+	private string artist;
+	private string album_artist;
+	private string title;
 	
 	public signal void lyrics_fetched(string lyrics);
 	
 	public LyricFetcher() {
-	
+		// Do nothing
 	}
 	
-	public void fetch_lyrics(string artist, string title) {
+	public void fetch_lyrics(string artist, string album_artist, string title) {
 		
-		parse_url (artist, title);
+		this.artist = artist;
+		this.album_artist = album_artist;
+		this.title = title;
 		
 		try {
 			Thread.create<void*>(fetch_lyrics_thread, false);
@@ -45,6 +50,8 @@ public class BeatBox.LyricFetcher : GLib.Object {
 	}
 	
 	public void* fetch_lyrics_thread () {
+		
+		parse_url (artist, title);
 		File page = File.new_for_uri(url);
 		
 		uint8[] uintcontent;
@@ -56,9 +63,23 @@ public class BeatBox.LyricFetcher : GLib.Object {
 			page.load_contents(null, out uintcontent, out etag_out);
 			load_successful = true;
 		}
-		catch(Error err) {
+		catch (Error err) {
 			stdout.printf("Could not load contents of %s : %s\n", url, err.message);
 			load_successful = false;
+		}
+		
+		// Try again
+		if (!load_successful) {
+			try {
+				parse_url (album_artist, title);
+				page = File.new_for_uri (url);
+				page.load_contents(null, out uintcontent, out etag_out);
+				load_successful = true;
+			}
+			catch (Error err) {
+				stdout.printf("Could not load contents of %s : %s\n", url, err.message);
+				load_successful = false;
+			}
 		}
 		
 		if(load_successful) {
@@ -81,33 +102,24 @@ public class BeatBox.LyricFetcher : GLib.Object {
 			return false;
 		});
 		
-		
 		return null;
 	}
 	
 	private void parse_url (string artist, string title) {
-
 		url = URL_FORMAT.printf (fix_string (artist), fix_string (title));
 	}
 	
 	private string fix_string (string? str) {
-
-		string rv = "";
-
 		if (str == null)
-			return rv;
+			return "";
 
-		// TODO: Parse UTF-8 properly, using offsets
-		for (int i = 0; i < str.length; ++i) {
-			if (('a' <= str[i] && str[i] <= 'z') || ('A' <= str[i] && str[i] <= 'Z') ||
-			    ('0' <= str[i] && str[i] <= '9')) {
-				rv += str[i].to_string ();
-			}
-		}
+		var fixed_string = new StringBuilder ();
+		unichar c;
 
-		rv =  (string) rv.down ().to_utf8 ();
+		for (int i = 0; str.get_next_char (ref i, out c);)
+			if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || ('0' <= c && c <= '9'))
+				fixed_string.append_unichar (c);
 
-		return rv;
+		return  (string) fixed_string.str.down ().to_utf8 ();
 	}
-
 }
