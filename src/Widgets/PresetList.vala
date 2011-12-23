@@ -147,8 +147,8 @@ public class BeatBox.PresetList : ComboBox {
 		store.set(iter, 0, ep, 1, ep.name);
 
 		modifying_list = false;
-
 		automatic_selected = false;
+		
 		set_active_iter(iter);
 	}
 	
@@ -156,9 +156,8 @@ public class BeatBox.PresetList : ComboBox {
 		modifying_list = true;
 
 		if (automatic_selected || last_selected_preset == null || this.preset_list_size < 1) {
-			automatic_selected = true;
 			modifying_list = false;
-			set_active (0);
+			selectAutomaticPreset ();
 			return;
 		}
 
@@ -186,8 +185,7 @@ public class BeatBox.PresetList : ComboBox {
 			addTopOptions();
 		}
 
-		// If either the list of default or custom presets is empty, remove the separator
-		// and update the options of the top list
+		// If either the list of default or custom presets is empty...
 
 		if (last_selected_preset.is_default && ndefaultpresets < 1 && ncustompresets > 0) {
 
@@ -244,8 +242,8 @@ public class BeatBox.PresetList : ComboBox {
 		}
 
 		modifying_list = false;
-		automatic_selected = true;
-		set_active(0);
+		
+		selectAutomaticPreset ();
 	}
 	
 	public virtual void listSelectionChange() {
@@ -308,8 +306,7 @@ public class BeatBox.PresetList : ComboBox {
 			}
 		}
 		
-		automatic_selected = true;
-		set_active(0);
+		selectAutomaticPreset ();
 	}
 	
 	public EqualizerPreset? getSelectedPreset() {
@@ -326,6 +323,7 @@ public class BeatBox.PresetList : ComboBox {
 	}
 	
 	public Gee.Collection<EqualizerPreset> getPresets() {
+		
 		var rv = new Gee.LinkedList<EqualizerPreset>();
 		
 		TreeIter iter;

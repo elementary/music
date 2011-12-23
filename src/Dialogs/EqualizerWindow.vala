@@ -80,7 +80,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 	
 	void build_ui () {
-	
 		set_title("Equalizer");
 		
 		window_position = WindowPosition.CENTER;
@@ -135,7 +134,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		}
 
-		preset_combo.set_size_request(170, -1);
+		preset_combo.set_size_request(165, -1);
 
 		var eq_switch_item = new ToolItem();
 		eq_switch_item.add(eq_switch);
@@ -144,7 +143,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		side_list.add(preset_combo);
 
 		new_preset_entry = new Entry();
-		new_preset_entry.set_size_request(170, -1);
+		new_preset_entry.set_size_request(165, -1);
 		new_preset_entry.set_icon_from_stock(Gtk.EntryIconPosition.SECONDARY, Gtk.Stock.OK);
 		new_preset_entry.set_icon_tooltip_text(Gtk.EntryIconPosition.SECONDARY, "Save this preset");
 
@@ -208,7 +207,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 	
 	void set_sliders_sensitivity (bool sensitivity) {
-	
 		foreach (var scale in scale_list) {
 			label_list.nth_data(scale_list.index(scale)).sensitive = sensitivity;
 			scale.sensitive = sensitivity;
@@ -216,7 +214,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 	
 	void on_eq_switch_toggled () {
-
 		in_transition = false;
 
 		bool eq_active = eq_switch.get_active();
@@ -240,11 +237,19 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		else {
 			for (int i = 0; i < 10; ++i)
 				lm.player.setEqualizerGain(i, 0);
+
+			if (preset_combo.automatic_chosen) {
+				target_levels.clear ();
+			
+				for (int i = 0; i < 10; ++i)
+					target_levels.add (0);
+				
+				set_target_levels ();
+			}
 		}
 	}
 	
 	void load_presets () {
-
 		var default_presets = lm.settings.getDefaultPresets();
 		var custom_presets = lm.settings.getCustomPresets();
 
@@ -263,7 +268,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 
 	void save_presets () {
-	
 		var defaultPresets = new Gee.LinkedList<EqualizerPreset>();
 		var customPresets = new Gee.LinkedList<EqualizerPreset>();
 
@@ -289,10 +293,11 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		set_sliders_sensitivity (true);
 		target_levels.clear();
 		
-		foreach (int i in p.gains)
+		foreach (int i in p.gains) {
 			target_levels.add(i);
+		}
 
-		if (closing || (initialized && !apply_changes)) {
+		if (closing || (initialized && !apply_changes) || adding_preset) {
 			set_target_levels ();
 		}
 		else if (!in_transition) {
@@ -302,7 +307,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 	
 	void set_target_levels () {
-
 		in_transition = false;
 
 		for (int index = 0; index < 10; ++index)
@@ -310,7 +314,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 	
 	bool transition_scales () {
-	
 		if (!in_transition)
 			return false;
 
@@ -321,8 +324,12 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			double targetLvl = target_levels.get(index);
 			double difference = targetLvl - currLvl;
 			
-			if (closing || Math.fabs(difference) <= 1)
+			if (closing || Math.fabs(difference) <= 1) {
 				scale_list.nth_data(index).set_value(targetLvl);
+				// if switching from the automatic mode, apply the changes correctly
+				if (!preset_combo.automatic_chosen && targetLvl < 1)
+					lm.player.setEqualizerGain (index, 0);
+			}
 			else {
 				scale_list.nth_data(index).set_value(scale_list.nth_data(index).get_value() + (difference / 8.0));
 				is_finished = false;
@@ -338,7 +345,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 	
 	void on_automatic_chosen () {
-
 		lm.settings.setAutoSwitchPreset (preset_combo.automatic_chosen);
 
 		target_levels.clear();
@@ -478,6 +484,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 	
 	void select_last_used_preset () {
+
 		var last_preset = preset_combo.last_selected_preset;
 	
 		if(!lm.settings.getAutoSwitchPreset () && last_preset != null)
@@ -491,11 +498,10 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 
 	void remove_preset_clicked () {
-			preset_combo.removeCurrentPreset();
+		preset_combo.removeCurrentPreset();
 	}
 
 	void on_quit () {
-
 		closing = true;
 
 		if (in_transition)

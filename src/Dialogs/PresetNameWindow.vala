@@ -35,7 +35,11 @@ public class BeatBox.PresetNameWindow : Window {
 	public signal void preset_saved(EqualizerPreset p);
 	public signal void action_canceled();
 
+	private bool saved; 
+
 	public PresetNameWindow(EqualizerWindow ew, EqualizerPreset original) {
+		saved = false;
+		
 		title = "";
 		
 		this.ew = ew;
@@ -100,7 +104,7 @@ public class BeatBox.PresetNameWindow : Window {
 			_original.name = _name.text;
 
 		preset_saved(_original);
-		
+		saved = true;
 		this.destroy();
 	}
 	
@@ -109,7 +113,8 @@ public class BeatBox.PresetNameWindow : Window {
 	}
 	
 	public virtual void on_action_canceled() {
-		action_canceled();
+		if (!saved)
+			action_canceled();
 		this.destroy();
 	}
 }
