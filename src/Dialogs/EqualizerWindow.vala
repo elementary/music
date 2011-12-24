@@ -237,15 +237,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		else {
 			for (int i = 0; i < 10; ++i)
 				lm.player.setEqualizerGain(i, 0);
-
-			if (preset_combo.automatic_chosen) {
-				target_levels.clear ();
-			
-				for (int i = 0; i < 10; ++i)
-					target_levels.add (0);
-				
-				set_target_levels ();
-			}
 		}
 	}
 	
@@ -327,7 +318,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			if (closing || Math.fabs(difference) <= 1) {
 				scale_list.nth_data(index).set_value(targetLvl);
 				// if switching from the automatic mode, apply the changes correctly
-				if (!preset_combo.automatic_chosen && targetLvl < 1)
+				if (!preset_combo.automatic_chosen && targetLvl == 0)
 					lm.player.setEqualizerGain (index, 0);
 			}
 			else {
@@ -354,14 +345,15 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		set_sliders_sensitivity (false);
 
-		in_transition = true;
-		Timeout.add (20, transition_scales);
-
 		if (apply_changes) {
+			in_transition = true;
+			Timeout.add (20, transition_scales);
 			save_presets ();
 			lm.change_gains_thread ();
 		}
-
+		else {
+			set_target_levels ();
+		}
 	}
 
 	void on_default_preset_modified () {

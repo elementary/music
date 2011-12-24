@@ -15,7 +15,8 @@ install(FILES icons/128x128/apps/beatbox.svg DESTINATION share/icons/hicolor/128
 install(FILES icons/24x24/mimetypes/library-music.svg DESTINATION share/beat-box/icons/hicolor/24x24/mimetypes)
 install(FILES icons/24x24/mimetypes/library-podcast.svg DESTINATION share/beat-box/icons/hicolor/24x24/mimetypes)
 
-install(FILES icons/22x22/mimetypes/library-music.svg DESTINATION share/beat-box/icons/hicolor/22x22/mimetypes)
+install(FILES icons/16x16/mimetypes/library-music.svg DESTINATION share/beat-box/icons/hicolor/16x16/mimetypes)
+#install(FILES icons/22x22/mimetypes/library-music.svg DESTINATION share/beat-box/icons/hicolor/22x22/mimetypes)
 install(FILES icons/22x22/mimetypes/library-podcast.svg DESTINATION share/beat-box/icons/hicolor/22x22/mimetypes)
 
 #install(FILES icons/16x16/mimetypes/library-audiobook.svg DESTINATION share/beat-box/icons/hicolor/16x16/mimetypes)
@@ -25,7 +26,10 @@ install(FILES icons/22x22/mimetypes/library-podcast.svg DESTINATION share/beat-b
 #install media-audio for default album image
 install(FILES icons/128x128/mimetypes/media-audio.png DESTINATION share/beat-box/icons/hicolor/128x128/mimetypes)
 install(FILES icons/128x128/mimetypes/drop-album.svg DESTINATION share/beat-box/icons/hicolor/128x128/mimetypes)
-   
+
+# History icon
+install(FILES icons/22x22/actions/document-open-recent.svg DESTINATION share/beat-box/icons/hicolor/22x22/actions)
+
 #shuffle and repeat
 install(FILES icons/16x16/status/media-playlist-repeat-active-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-repeat-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
