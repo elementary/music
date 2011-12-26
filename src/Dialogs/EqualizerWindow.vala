@@ -27,24 +27,26 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	LibraryManager lm;
 	LibraryWindow lw;
 	
-	Switch eq_switch;
-	PresetList preset_combo;
-	Entry new_preset_entry;
-	Toolbar bottom_toolbar;
-	ToolItem side_list;
-	ToolItem new_preset_field;
-	Button close_button;
-	
-	bool apply_changes;
-	bool initialized;
-	bool adding_preset;
-	bool closing;
+	private Switch eq_switch;
+	private PresetList preset_combo;
+	private Entry new_preset_entry;
+	private Toolbar bottom_toolbar;
+	private ToolItem side_list;
+	private ToolItem new_preset_field;
+	private Button close_button;
 
-	List<VScale> scale_list;
-	List<Label> label_list;
+	private bool apply_changes;
+	private bool initialized;
+	private bool adding_preset;
+	private bool closing;
+
+	private const int ANIMATION_TIMEOUT = 20;
+
+	private List<VScale> scale_list;
+	private List<Label> label_list;
 	
-	bool in_transition;
-	Gee.ArrayList<int> target_levels;
+	private bool in_transition;
+	private Gee.ArrayList<int> target_levels;
 	
 	private string new_preset_name;
 
@@ -293,7 +295,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		}
 		else if (!in_transition) {
 			in_transition = true;
-			Timeout.add(20, transition_scales);
+			Timeout.add(ANIMATION_TIMEOUT, transition_scales);
 		}
 	}
 	
@@ -347,7 +349,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		if (apply_changes) {
 			in_transition = true;
-			Timeout.add (20, transition_scales);
+			Timeout.add (ANIMATION_TIMEOUT, transition_scales);
 			save_presets ();
 			lm.change_gains_thread ();
 		}
