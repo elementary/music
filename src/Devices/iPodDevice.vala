@@ -310,7 +310,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			list_size += lm.song_from_id(i).file_size * 1000000; // convert from MB to bytes
 		}
 		
-		return get_free_space() > list_size;
+		return get_capacity() > list_size;
 	}
 	
 	void* sync_songs_thread() {
