@@ -101,15 +101,16 @@ public class BeatBox.SongEditor : Window {
 		
 		show_all();
 		
+		_next.sensitive = allSongs.size > 1;
+		_previous.sensitive = allSongs.size > 1;
+		
 		if(_songs.size == 1) {
 			foreach(FieldEditor fe in fields.values)
 				fe.set_check_visible(false);
-		
-			lyricsInfobar.hide();
 				
 			fetch_lyrics (false);
 		}
-		
+
 		_previous.clicked.connect(previousClicked);
 		_next.clicked.connect(nextClicked);
 		_save.clicked.connect(saveClicked);
@@ -237,6 +238,7 @@ public class BeatBox.SongEditor : Window {
 		lyricsInfobar.response.connect(fetchLyricsClicked);
 		
 		lyricsText = new TextView();
+		lyricsText.set_wrap_mode(WrapMode.WORD_CHAR);
 		lyricsText.get_buffer().text = _lm.song_from_id(_songs.get(0)).lyrics;
 		
 		ScrolledWindow scroll = new ScrolledWindow(null, null);
@@ -270,7 +272,7 @@ public class BeatBox.SongEditor : Window {
 
 		// fetch lyrics here
 		if (!(!is_white_space (s.lyrics) && !overwrite))
-			lf.fetch_lyrics(s.album_artist, s.title);
+			lf.fetch_lyrics(s.artist, s.album_artist, s.title);
 		else
 			lyricsInfobar.hide();
 
@@ -487,7 +489,7 @@ public class BeatBox.FieldEditor : VBox {
 			
 			textView = (TextView)w;
 			textView.set_size_request(300, 90);
-			textView.set_wrap_mode(WrapMode.WORD);
+			textView.set_wrap_mode(WrapMode.WORD_CHAR);
 			textView.get_buffer().text = original;
 			
 			ScrolledWindow scroll = new ScrolledWindow(null, null);

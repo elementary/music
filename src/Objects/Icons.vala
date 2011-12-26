@@ -12,6 +12,7 @@ public class BeatBox.Icons : GLib.Object {
 	public Gdk.Pixbuf music_icon;
 	public Gdk.Pixbuf podcast_icon;
 	public Gdk.Pixbuf audiobook_icon;
+	public Gdk.Pixbuf history_icon;
 	public Gdk.Pixbuf playlist_icon;
 	public Gdk.Pixbuf smart_playlist_icon;
 	public Gdk.Pixbuf lastfm_love_icon;
@@ -54,12 +55,13 @@ public class BeatBox.Icons : GLib.Object {
 		}
 		
 		beatbox_icon = safe_render_icon("beatbox", IconSize.DIALOG, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "apps", "beatbox.svg"));
-		now_playing_icon = safe_render_icon("audio-volume-high", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "22x22", "mimetypes", "library-music.svg"));
+		now_playing_icon = safe_render_icon("audio-volume-high", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "mimetypes", "library-music.svg"));
 		
-		music_icon = safe_render_icon("library-music", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "22x22", "mimetypes", "library-music.svg"));
+		music_icon = safe_render_icon("library-music", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "mimetypes", "library-music.svg"));
 		podcast_icon = safe_render_icon("library-podcast", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "22x22", "mimetypes", "library-podcast.svg"));
 		//audiobook_icon = safe_render_icon("library-audiobook", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "22x22", "mimetypes", "library-audiobook.svg"));
 		
+		history_icon = safe_render_icon("document-open-recent", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "22x22", "actions", "document-open-recent.svg"));
 		playlist_icon = safe_render_icon("playlist", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "22x22", "mimetypes", "playlist.svg"));
 		smart_playlist_icon = safe_render_icon("playlist-automatic", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "22x22", "mimetypes", "playlist-automatic.svg"));
 		
@@ -76,7 +78,8 @@ public class BeatBox.Icons : GLib.Object {
 		view_icons_icon = safe_render_icon("view-list-icons-symbolic", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "actions", "view-list-icons-symbolic.svg"));
 		view_video_icon = safe_render_icon("view-list-video-symbolic", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "actions", "view-list-video-symbolic.svg"));
 		
-		process_stop_icon = safe_render_icon("process-stop", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "actions", "process-stop.svg"));
+		//process_stop_icon = safe_render_icon("process-stop", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "actions", "process-stop.svg"));
+		process_stop_icon = safe_render_icon("process-stop-symbolic", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "actions", "process-stop-symbolic.svg"));
 		
 		process_completed_icon = safe_render_icon("process-completed-symbolic", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "status", "process-completed-symbolic.svg"));
 		process_error_icon = safe_render_icon("process-error-symbolic", IconSize.MENU, GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "16x16", "status", "process-error-symbolic.svg"));

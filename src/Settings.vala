@@ -451,11 +451,11 @@ public class BeatBox.Settings : Object {
 		setBool(EQUALIZER_ENABLED, val);
 	}
 	
-	public void setSelectedPreset(EqualizerPreset preset) {
+	public void setSelectedPreset(EqualizerPreset? preset) {
 		setString(SELECTED_PRESET, (preset != null)? preset.name : "");
 	}
 
-	public void setPresets(Gee.Collection<EqualizerPreset> presets, string? type) {
+	public void setPresets(Gee.Collection<EqualizerPreset> presets, string type) {
 		string rv = "";
 		
 		foreach(var p in presets) {
@@ -468,9 +468,9 @@ public class BeatBox.Settings : Object {
 			rv += "/";
 		}
 		
-		if (type != null)
+		if (type == CUSTOM_PRESETS)
 			setString(CUSTOM_PRESETS, rv);
-		else
+		else if (type == DEFAULT_PRESETS)
 			setString(DEFAULT_PRESETS, rv);
 	}
 

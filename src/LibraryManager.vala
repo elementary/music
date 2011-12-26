@@ -235,10 +235,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// set the equalizer
-		if(settings.getEqualizerEnabled() && !settings.getAutoSwitchPreset()) {
-			set_selected_equalizer_preset ();
-		}
-		
+		set_equalizer_gains ();
+				
 		// pre-load devices and their preferences
 		foreach(DevicePreferences dp in dbm.load_devices()) {
 			_device_preferences.set(dp.id, dp);
@@ -1419,22 +1417,21 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void* change_gains_thread () {
 		if(settings.getAutoSwitchPreset() && settings.getEqualizerEnabled()) {
-			bool matched_genre = false;
 			foreach(var p in settings.getPresets(null)) {
-				if(p != null && song_info.song != null && p.name.down() == song_info.song.genre.down()) {
+				if(p != null && song_info.song != null)  {
+					var preset_genre = p.name.down ();
+					var song_genre = song_info.song.genre.down();
+
+					if ((preset_genre in song_genre) || (song_genre in preset_genre)) {
+						for(int i = 0; i < 10; ++i)
+							player.setEqualizerGain(i, p.getGain(i));
 					
-					matched_genre = true;
-					
-					for(int i = 0; i < 10; ++i)
-						player.setEqualizerGain(i, p.getGain(i));
-					
-					break;
+						return null;
+					}
 				}
 			}
-			
-			if(!matched_genre) {
-				set_selected_equalizer_preset ();
-			}
+
+			set_equalizer_gains ();
 		}
 		
 		return null;
@@ -1631,16 +1628,21 @@ public class BeatBox.LibraryManager : GLib.Object {
 		progress_cancel_clicked();
 	}
 	
-	public void set_selected_equalizer_preset () {
-		string selected_preset = settings.getSelectedPreset();
-		if(selected_preset != null) {
-			foreach (EqualizerPreset p in settings.getPresets(null)) {
-				if(p.name == selected_preset) {
-					for(int i = 0; i < 10; ++i)
-						player.setEqualizerGain(i, p.getGain(i));
-					break;
+	public void set_equalizer_gains () {
+		if(settings.getEqualizerEnabled() && !settings.getAutoSwitchPreset()) {
+			string selected_preset = settings.getSelectedPreset();
+			if(selected_preset != null) {
+				foreach (EqualizerPreset p in settings.getPresets(null)) {
+					if(p.name == selected_preset) {
+						for(int i = 0; i < 10; ++i)
+							player.setEqualizerGain(i, p.getGain(i));
+						break;
+					}
 				}
 			}
+		} else {
+			for (int i = 0; i < 10; ++i)
+				player.setEqualizerGain(i, 0);
 		}
 	}
 

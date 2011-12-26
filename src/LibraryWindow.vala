@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011	   Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -77,7 +77,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	SimpleOptionChooser repeatChooser;
 	SimpleOptionChooser infoPanelChooser;
 	
-	MenuBar topMenu;
+	//MenuBar topMenu;
 	
 	// basic file stuff
 	ImageMenuItem libraryOperations;
@@ -194,7 +194,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);
 		coverArt = new CoverArtImage(lm, this);	
-		topMenu = new MenuBar();
+		//topMenu = new MenuBar();
 		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
 		libraryOperationsMenu = new Menu();
 		fileSetMusicFolder = new MenuItem.with_label("Set Music Folder");
@@ -293,7 +293,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		/* Add controls to the GUI */
 		add(verticalBox);
-		verticalBox.pack_start(topMenu, false, true, 0);
+		//verticalBox.pack_start(topMenu, false, true, 0);
 		verticalBox.pack_start(topControls, false, true, 0);
 		verticalBox.pack_start(videoArea, true, true, 0);
 		verticalBox.pack_start(sourcesToSongs, true, true, 0);

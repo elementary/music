@@ -215,8 +215,12 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		if(get_is_current() && lm.song_info.song != null)
 			scrollToCurrent();
-		else
-			this.view.scroll_to_point(0, (int)hPos);
+		
+		// FIXME: assertion `gtk_widget_get_realized (GTK_WIDGET (tree_view))' failed
+		//        PLEASE NOTE THAT THE WIDGET MUST BE REALIZED BEFORE USING scroll_to_point() !
+		
+		//else
+		//	this.view.scroll_to_point(0, (int)hPos);
 		
 		set_statusbar_text();
 		

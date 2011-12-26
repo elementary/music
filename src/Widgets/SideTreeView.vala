@@ -171,7 +171,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return playlists_queue_iter;
 		}
 		else if(name == "History" && parent == playlists_iter) {
-			playlists_history_iter = addItem(parent, o, w, render_icon("emblem-urgent", IconSize.MENU, null), name, null);
+			playlists_history_iter = addItem(parent, o, w, lm.icons.history_icon, name, null);
 			return playlists_history_iter;
 		}
 		else if(o is SmartPlaylist) {
