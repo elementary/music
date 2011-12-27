@@ -495,6 +495,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		view.set_fixed_height_mode(true);
 		view.rules_hint = true;
 		view.set_reorderable(false);
+		//view.enable_grid_lines = TreeViewGridLines.VERTICAL; // will require special theming to work properly
 		
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);

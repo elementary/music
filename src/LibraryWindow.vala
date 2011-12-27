@@ -70,14 +70,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public ElementaryWidgets.TopDisplay topDisplay;
 	public Granite.Widgets.ModeButton viewSelector;
 	public Granite.Widgets.SearchBar searchField;
-	//ElementaryWidgets.AppMenu appMenu;
 	HBox statusBar;
 	Label statusBarLabel;
 	SimpleOptionChooser shuffleChooser;
 	SimpleOptionChooser repeatChooser;
 	SimpleOptionChooser infoPanelChooser;
-	
-	//MenuBar topMenu;
 	
 	// basic file stuff
 	ImageMenuItem libraryOperations;
@@ -97,7 +94,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public LibraryWindow(Granite.Application app, string[] args) {
 		this.app = app;
 		settings = new BeatBox.Settings();
-		//this.player = player;
 		
 		//this is used by many objects, is the media backend
 		lm = new BeatBox.LibraryManager(settings, this, args);
@@ -194,7 +190,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);
 		coverArt = new CoverArtImage(lm, this);	
-		//topMenu = new MenuBar();
 		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
 		libraryOperationsMenu = new Menu();
 		fileSetMusicFolder = new MenuItem.with_label("Set Music Folder");
@@ -211,7 +206,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector = new Granite.Widgets.ModeButton();
 		searchField = new Granite.Widgets.SearchBar("Search...");
 		miller = new MillerColumns(lm, this); //miller must be below search for it to work properly
-		//appMenu = new ElementaryWidgets.AppMenu.from_stock(Gtk.Stock.PROPERTIES, Gtk.IconSize.MENU, "Menu", settingsMenu);
 		songInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
 		grooveSharkScroll = new ScrolledWindow(null, null);
@@ -293,7 +287,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		/* Add controls to the GUI */
 		add(verticalBox);
-		//verticalBox.pack_start(topMenu, false, true, 0);
 		verticalBox.pack_start(topControls, false, true, 0);
 		verticalBox.pack_start(videoArea, true, true, 0);
 		verticalBox.pack_start(sourcesToSongs, true, true, 0);
@@ -306,7 +299,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelectorBin.add(viewSelector);
 		viewSelectorBin.set_border_width(3);
 		searchFieldBin.add(searchField);
-		//appMenuBin.add(app.create_appmenu(settingsMenu));
 		
 		topDisplayBin.set_expand(true);
 		viewSelector.append(new Image.from_pixbuf(lm.icons.view_icons_icon));

@@ -1,0 +1,149 @@
+using Gtk;
+using Gee;
+
+public class BeatBox.SetMusicFolderConfirmation : Window {
+	LibraryManager lm;
+	LibraryWindow lw;
+	string path;
+	
+	private VBox content;
+	private HBox padding;
+	
+	Button savePlaylists;
+	Button ok;
+	Button cancel;
+	
+	Gtk.Image is_finished;
+	Gtk.Spinner is_working;
+	
+	public signal void finished(bool response);
+	
+	public SetMusicFolderConfirmation(LibraryManager lm, LibraryWindow lw, string path) {
+		this.lm = lm;
+		this.lw = lw;
+		this.path = path;
+		
+		this.set_title("BeatBox");
+		
+		// set the size based on saved gconf settings
+		//this.window_position = WindowPosition.CENTER;
+		this.type_hint = Gdk.WindowTypeHint.DIALOG;
+		this.set_modal(true);
+		this.set_transient_for(lw);
+		this.destroy_with_parent = true;
+		
+		//set_default_size(250, -1);
+		resizable = false;
+		
+		content = new VBox(false, 10);
+		padding = new HBox(false, 20);
+		
+		// initialize controls
+		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
+		Label title = new Label("");
+		Label info = new Label("");
+		savePlaylists = new Button.with_label("Export Playlists");
+		ok = new Button.with_label("Yes");
+		cancel = new Button.with_label("No");
+		is_finished = new Gtk.Image();
+		is_working = new Gtk.Spinner();
+		
+		// pretty up labels
+		title.xalign = 0.0f;
+		title.set_markup("<span weight=\"bold\" size=\"larger\">Set Music Folder?</span>");
+		info.xalign = 0.0f;
+		info.set_line_wrap(false);
+		info.set_markup("Are you sure you want to set the music folder to <b>" + path.replace("&", "&amp;") + "</b>? This will reset your library and remove static playlists.");
+		
+		/* set up controls layout */
+		HBox information = new HBox(false, 0);
+		VBox information_text = new VBox(false, 0);
+		information.pack_start(warning, false, false, 10);
+		information_text.pack_start(title, false, true, 10);
+		information_text.pack_start(info, false, true, 0);
+		information.pack_start(information_text, true, true, 10);
+		
+		// save playlist hbox
+		HBox playlistBox = new HBox(false, 6);
+		playlistBox.pack_start(savePlaylists, true, true, 0);
+		playlistBox.pack_end(is_finished, false, false, 0);
+		playlistBox.pack_end(is_working, false, false, 0);
+		
+		HButtonBox bottomButtons = new HButtonBox();
+		bottomButtons.set_layout(ButtonBoxStyle.END);
+		bottomButtons.pack_start(playlistBox, false, false, 0);
+		bottomButtons.pack_end(cancel, false, false, 0);
+		bottomButtons.pack_end(ok, false, false, 0);
+		bottomButtons.set_spacing(10);
+		
+		((Gtk.ButtonBox)bottomButtons).set_child_secondary(playlistBox, true);
+		
+		content.pack_start(information, false, true, 0);
+		content.pack_start(bottomButtons, false, true, 10);
+		
+		padding.pack_start(content, true, true, 10);
+		
+		savePlaylists.set_sensitive(lm.song_count() > 0 && lm.playlist_count() > 0);
+		
+		savePlaylists.clicked.connect(savePlaylistsClicked);
+		cancel.clicked.connect(cancel_clicked);
+		ok.clicked.connect(ok_clicked);
+		
+		add(padding);
+		show_all();
+		
+		is_working.hide();
+	}
+	
+	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+		alignment.top_padding = top;
+		alignment.right_padding = right;
+		alignment.bottom_padding = bottom;
+		alignment.left_padding = left;
+		
+		alignment.add(widget);
+		return alignment;
+	}
+	
+	public void savePlaylistsClicked() {
+		string folder = "";
+		var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+								  FileChooserAction.SELECT_FOLDER,
+								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
+								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+		if (file_chooser.run () == ResponseType.ACCEPT) {
+			folder = file_chooser.get_filename();
+		}
+		
+		file_chooser.destroy ();
+		
+		if(folder != "") {
+			is_working.show();
+			is_finished.hide();
+			
+			// foreach playlist in lm.playlists(), save to (p.name).m3u
+			var success = true;
+			foreach(var p in lm.playlists()) {
+				if(!p.save_playlist_m3u(lm, folder))
+					success = false;
+			}
+			
+			is_working.hide();
+			is_finished.show();
+			is_finished.set_from_pixbuf(success ? lm.icons.process_completed_icon : lm.icons.process_error_icon);
+		}
+	}
+	
+	public void cancel_clicked() {
+		finished(false);
+		
+		this.destroy();
+	}
+	
+	public void ok_clicked() {
+		finished(true);
+		
+		this.destroy();
+	}
+}

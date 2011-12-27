@@ -64,7 +64,7 @@ public class BeatBox.Playlist : Object {
 		return _songs;
 	}
 	
-	public void addSong(int id, bool check_dups) {
+	public void addSong(int id) {
 		//if(!contains_song(id))
 			_songs.add(id);
 	}
