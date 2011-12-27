@@ -220,9 +220,7 @@ namespace ElementaryWidgets {
 			return iter;
 		}
 		
-		public bool removeItem(TreeIter iter_f) {
-			TreeIter iter = convertToChild(iter_f);
-			
+		public bool removeItem(TreeIter iter) {
 			TreeIter parent;
 			if(tree.iter_parent(out parent, iter)) {
 				if(tree.iter_n_children(parent) > 1)
@@ -245,7 +243,9 @@ namespace ElementaryWidgets {
 			tree.set(it, SideBarColumn.COLUMN_VISIBLE, val);
 			
 			if(val && !was) {
+				stdout.printf("error happening sidebar.vala 246...\n");
 				expand_row(filter.get_path(convertToFilter(it)), true);
+				stdout.printf("error finished\n");
 			}
 		}
 		
@@ -313,7 +313,7 @@ namespace ElementaryWidgets {
 		
 		public Widget? getWidget(TreeIter iter) {
 			Widget w;
-			filter.get(iter, SideBarColumn.COLUMN_WIDGET, out w);
+			tree.get(iter, SideBarColumn.COLUMN_WIDGET, out w);
 			return w;
 		}
 		

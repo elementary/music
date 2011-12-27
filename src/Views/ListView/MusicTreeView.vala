@@ -815,11 +815,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 				playlist.activate.connect( () => {
 					TreeModel temp;
 					foreach(TreePath path in view.get_selection().get_selected_rows(out temp)) {
-						TreeIter item;
-						temp.get_iter(out item, path);
-						
-						int id;
-						temp.get(item, 0, out id);
+						int id = music_model.getRowidFromPath(path.to_string());
 						p.addSong(id);
 					}
 				});

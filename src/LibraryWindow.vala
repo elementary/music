@@ -402,7 +402,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			//Timeout.add(250, () => {
 				lm.playSong(i);
 				
-				((ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter))).list.set_as_current_list(0, true);
+				((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).list.set_as_current_list(0, true);
 				if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
 					lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
 				}
@@ -597,7 +597,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_progress_value(progress);
 		
 		// if we are adding songs, refresh periodically
-		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
+		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
 		if(lm.songs().size - vw.song_count >= 500) {
 			
 			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
@@ -870,7 +870,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				((ViewWrapper)w).list.set_as_current_list(1, true);
 			}
 			else {
-				w = sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
+				w = sideTree.getWidget(sideTree.library_music_iter);
 				((ViewWrapper)w).list.set_as_current_list(1, true);
 			}
 			
@@ -1017,22 +1017,25 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	public void resetSideTree() {
+	public void resetSideTree(/*bool clear_views*/) {
 		sideTree.resetView();
 		
 		// clear all other playlists, reset to Music, populate music
-		/*mainViews.get_children().foreach( (w) => {
-			if(w is ViewWrapper && !(w is CDRomViewWrapper) && !(w is DeviceViewWrapper))
-				ViewWrapper vw = (ViewWrapper)w;
-				.doUpdate(vw.currentView, 
-		});*/
-		searchField.changed();
+		/*if(clear_views) {
+			mainViews.get_children().foreach( (w) => {
+				if(w is ViewWrapper && !(w is CDRomViewWrapper) && !(w is DeviceViewWrapper)) {
+					ViewWrapper vw = (ViewWrapper)w;
+					vw.doUpdate(vw.currentView, new LinkedList<int>(), true, true);
+				}
+			});
+		}
+		searchField.changed();*/
 		
-		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_music_iter));
+		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
 		vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
 		miller.populateColumns("", lm.song_ids());
 		
-		vw = (ViewWrapper)sideTree.getWidget(sideTree.convertToFilter(sideTree.library_podcasts_iter));
+		vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
 		vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true);
 	}
 	
@@ -1215,7 +1218,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {
-		Widget w = sideTree.getWidget(sideTree.convertToFilter(sideTree.playlists_similar_iter));
+		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 		
 		((ViewWrapper)w).similarsFetched = true;
 		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true, true);

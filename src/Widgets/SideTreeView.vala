@@ -299,6 +299,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 						playlistSave.visible = false;
 						playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					}
+					
+					if(o is Playlist || o is SmartPlaylist)
+						playlistRemove.sensitive = true;
+					else
+						playlistRemove.sensitive = false;
 				}
 				else if(o is Device && ((Device)o).getContentType() == "cdrom") {
 					CDMenu.popup(null, null, null, 3, get_current_event_time());
@@ -306,6 +311,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			}
 			else {
 				if(iter == convertToFilter(playlists_iter)) {
+					playlistRemove.sensitive = false;
 					playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					return true;
 				}
@@ -315,6 +321,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 2) {
 			TreeIter iter;
+			TreeIter iter_f;
 			TreePath path;
 			TreeViewColumn column;
 			int cell_x;
@@ -322,12 +329,15 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			
 			this.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
 		
-			if(!filter.get_iter(out iter, path))
+			if(!filter.get_iter(out iter_f, path))
 				return false;
 				
-			if(getWidget(iter) is ViewWrapper) {
-				((ViewWrapper)getWidget(iter)).list.set_as_current_list(0, true);
-				((ViewWrapper)getWidget(iter)).set_statusbar_text();
+			iter = convertToChild(iter_f);
+			
+			Widget w = getWidget(iter);
+			if(w is ViewWrapper) {
+				((ViewWrapper)w).list.set_as_current_list(0, true);
+				((ViewWrapper)w).set_statusbar_text();
 			}
 		}
 		
@@ -335,13 +345,17 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public virtual void sideListDoubleClick(TreePath path, TreeViewColumn column) {
+		TreeIter iter_f;
 		TreeIter iter;
 		
-		if(!filter.get_iter(out iter, path))
+		if(!filter.get_iter(out iter_f, path))
 			return;
 			
-		if(getWidget(iter) is ViewWrapper) {
-			((ViewWrapper)getWidget(iter)).list.set_as_current_list(1, true);
+		iter = convertToChild(iter_f);
+			
+		Widget w = getWidget(iter);
+		if(w is ViewWrapper) {
+			((ViewWrapper)w).list.set_as_current_list(1, true);
 			
 			lm.playSong(lm.songFromCurrentIndex(0));
 			lm.player.play();
@@ -550,7 +564,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					Widget w;
 					tree.get(pivot, 1, out w, 4, out name);
 					
-					removeItem(convertToFilter(pivot));
+					removeItem(pivot);
 					lw.addSideListItem(sp);
 					
 					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_smart_playlist(sp.rowid), true, false);
@@ -563,6 +577,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		else {
 			lm.add_smart_playlist(sp); // this queues save_smart_playlists()
 			lw.addSideListItem(sp);
+			sideListSelectionChange();
 		}
 	}
 	
@@ -585,7 +600,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					Widget w;
 					tree.get(pivot, 1, out w, 4, out name);
 					
-					removeItem(convertToFilter(pivot));
+					removeItem(pivot);
 					lw.addSideListItem(p);
 					
 					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_playlist(p.rowid), true, false);
@@ -598,9 +613,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		else {
 			lm.add_playlist(p);
 			lw.addSideListItem(p);
+			sideListSelectionChange();
 		}
-		
-		//sideListSelectionChange();
 	}
 	
 	public virtual void playlistMenuEditClicked() {
@@ -631,9 +645,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		selected.get_selected (out model, out iter);
 		
 		GLib.Object o;
-		filter.get(iter, 0, out o);
 		Widget w;
-		filter.get(iter, 1, out w);
+		filter.get(iter, 0, out o, 1, out w);
 		
 		if(o is Playlist)
 			lm.remove_playlist(((Playlist)o).rowid);
@@ -643,6 +656,33 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		w.destroy();
 		removeItem(iter);
 		resetView();
+	}
+	
+	// removes all normal playlists from the side list, as well as LM
+	public void removeAllStaticPlaylists() {
+		TreeIter pivot = playlists_history_iter;
+		var toRemove = new Gee.LinkedList<int>();
+		
+		// keep taking from bottom until all playlists are gone
+		tree.iter_nth_child(out pivot, playlists_iter, tree.iter_n_children(playlists_iter) - 1);
+		
+		do {
+			GLib.Object o;
+			
+			tree.get(pivot, 0, out o);
+			if(o is Playlist) {
+				toRemove.add(((Playlist)o).rowid);
+				removeItem(pivot);
+			}
+			else {
+				break;
+			}
+			
+		} while(tree.iter_nth_child(out pivot, playlists_iter, tree.iter_n_children(playlists_iter) - 1));
+		
+		foreach(int i in toRemove) {
+			lm.remove_playlist(i);
+		}
 	}
 	
 	// can only be done on similar songs
@@ -742,7 +782,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				if(get_selection().iter_is_selected(convertToFilter(pivot)))
 					was_selected = true;
 				
-				removeItem(convertToFilter(pivot));
+				removeItem(pivot);
 				
 				break;
 			}

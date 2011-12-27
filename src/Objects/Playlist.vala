@@ -32,6 +32,17 @@ public class BeatBox.Playlist : Object {
 		_songs = new Gee.LinkedList<int>();
 	}
 	
+	public Playlist.from_m3u(LibraryManager lm, string file) {
+		_name = "New Playlist";
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+		_songs = new Gee.LinkedList<int>();
+		
+		// now try and load m3u file
+		// if some files are not found by song_from_file(), ask at end if user would like to import the file to library
+		// if so, just do import_individual_files
+		// if not, do nothing and accept that music files are scattered. 
+	}
+	
 	public Playlist.with_info(int rowid, string name) {
 		_songs = new Gee.LinkedList<int>();
 		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
@@ -71,10 +82,9 @@ public class BeatBox.Playlist : Object {
 		
 		int index;
 		for(index = 0; index < song_strings.length - 1; ++index) {
-			string[] pieces_of_song = song_strings[index].split("<value_seperator>", 0);
-
-			Song s = lm.song_from_name(pieces_of_song[0], pieces_of_song[1]);
-			addSong(s.rowid);
+			int id = int.parse(song_strings[index]);
+			
+			addSong(id);
 		}
 	}
 	
@@ -82,8 +92,7 @@ public class BeatBox.Playlist : Object {
 		string rv = "";
 		
 		foreach(int id in _songs) {
-			Song s = lm.song_from_id(id);
-			rv += s.title + "<value_seperator>" + s.artist + "<song_seperator>";
+			rv += id.to_string() + "<song_seperator>";
 		}
 		
 		return rv;
@@ -101,6 +110,38 @@ public class BeatBox.Playlist : Object {
 		GPod.Playlist rv = new GPod.Playlist(name, false);
 		
 		rv.sortorder = tvs.get_gpod_sortorder();
+		
+		return rv;
+	}
+	
+	public bool save_playlist_m3u(LibraryManager lm, string folder) {
+		bool rv = false;
+		string to_save = "#EXTM3U";
+		
+		foreach(int i in _songs) {
+			Song s = lm.song_from_id(i);
+			
+			to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + s.file;
+		}
+		
+		File dest = GLib.File.new_for_path(Path.build_path("/", folder, name.replace("/", "_") + ".m3u"));
+		try {
+			// find a file path that doesn't exist
+			string extra = "";
+			while((dest = GLib.File.new_for_path(Path.build_path("/", folder, name.replace("/", "_") + extra + ".m3u"))).query_exists()) {
+				extra += "_";
+			}
+			
+			var file_stream = dest.create(FileCreateFlags.NONE);
+			
+			// Write text data to file
+			var data_stream = new DataOutputStream (file_stream);
+			data_stream.put_string(to_save);
+			rv = true;
+		}
+		catch(Error err) {
+			stdout.printf("Could not save playlist %s to m3u file %s: %s\n", name, dest.get_path(), err.message);
+		}
 		
 		return rv;
 	}

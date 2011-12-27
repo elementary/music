@@ -306,25 +306,33 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void set_music_folder(string folder) {
 		if(!doing_file_operations) {
-			doing_file_operations = true;
-			progress_notification("Importing music from <b>" + folder + "</b>.", 0.0);
-			
-			clear_songs();
-			_queue.clear();
-			dbm.clear_songs();
-			lw.resetSideTree();
-			
-			foreach(int i in _songs.keys) {
-				stdout.printf("remainging: %d %s\n", i, song_from_id(i).title);
-			}
-			
-			settings.setMusicFolder(folder);
-			try {
-				Thread.create<void*>(set_music_thread_function, false);
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not create thread to set music folder: %s\n", err.message);
-			}
+			var cont = false;
+			var smfc = new SetMusicFolderConfirmation(this, lw, folder);
+			smfc.finished.connect( (cont) => {
+				if(cont) {
+					doing_file_operations = true;
+					progress_notification("Importing music from <b>" + folder + "</b>.", 0.0);
+					
+					lw.sideTree.removeAllStaticPlaylists();
+					stdout.printf("removed static playlists\n");
+					lw.resetSideTree();
+					stdout.printf("reset side tree\n");
+					clear_songs();
+					_queue.clear();
+					dbm.clear_songs();
+					stdout.printf("cleared songs\n");
+					lw.updateSensitivities();
+					stdout.printf("updated sensitivities\n");
+					
+					settings.setMusicFolder(folder);
+					try {
+						Thread.create<void*>(set_music_thread_function, false);
+					}
+					catch(GLib.Error err) {
+						stdout.printf("Could not create thread to set music folder: %s\n", err.message);
+					}
+				}
+			});
 		}
 	}
         
@@ -698,7 +706,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	/******************** Song stuff ******************/
 	public void clear_songs() {
-		var unset = new HashMap<int, Song>();
+		var unset = new LinkedList<Song>();//HashMap<int, Song>();
 		foreach(int i in _songs.keys) {
 			Song s = _songs.get(i);
 			if(!(s.isTemporary || s.isPreview || s.file.has_prefix("http://"))) {
@@ -706,7 +714,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 					s.file = s.podcast_url;
 				}
 				else {
-					unset.set(i, s);
+					unset.add(s);//set(i, s);
 					_podcasts.unset(i);
 					_audiobooks.unset(i);
 					_locals.remove(i);
@@ -714,7 +722,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		
-		_songs.unset_all(unset);
+		remove_songs(unset, false);
+		//_songs.unset_all(unset);
 	}
 	
 	public int song_count() {
