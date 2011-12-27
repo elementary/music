@@ -192,8 +192,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		//load all playlists from db
 		stdout.printf("loading playlists\n");
+		var playlists_added = new LinkedList<string>();
 		foreach(Playlist p in dbm.load_playlists()) {
-			_playlists.set(p.rowid, p);
+			stdout.printf("adding playlist %s\n", p.name);
+			if(!playlists_added.contains(p.name)) { // sometimes we get duplicates. don't add duplicates
+				_playlists.set(p.rowid, p);
+				playlists_added.add(p.name);
+			}
 			
 			if(p.name == "autosaved_music") {
 				music_setup = p.tvs;
@@ -247,7 +252,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// set the volume
 		player.setVolume(settings.getVolume());
 		
-		// start thread to load all the songs pixbuf's and to load playlists
+		// start thread to load all the songs pixbuf's
 		try {
 			Thread.create<void*>(fetch_thread_function, false);
 			//Thread.create<void*>(update_playlists_thread, false);
@@ -573,6 +578,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void save_playlists() {
+		stdout.printf("trying to save playlists\n");
+		if(!lw.initializationFinished)
+			return;
+		stdout.printf("actually saving playlists\n");
 		try {
 			lock(_playlists) {
 				Thread.create<void*>( () => {

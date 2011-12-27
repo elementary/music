@@ -638,22 +638,23 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public virtual void playlistMenuRemoveClicked() {
+		TreeIter iter, iter_f;
 		TreeSelection selected = this.get_selection();
 		selected.set_mode(SelectionMode.SINGLE);
 		TreeModel model;
-		TreeIter iter;
-		selected.get_selected (out model, out iter);
+		selected.get_selected (out model, out iter_f);
 		
 		GLib.Object o;
 		Widget w;
-		filter.get(iter, 0, out o, 1, out w);
+		filter.get(iter_f, 0, out o, 1, out w);
 		
 		if(o is Playlist)
 			lm.remove_playlist(((Playlist)o).rowid);
 		else if(o is SmartPlaylist)
 			lm.remove_smart_playlist(((SmartPlaylist)o).rowid);
 		
-		w.destroy();
+		iter = convertToChild(iter_f);
+		
 		removeItem(iter);
 		resetView();
 	}

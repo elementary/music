@@ -64,8 +64,8 @@ public class BeatBox.Playlist : Object {
 		return _songs;
 	}
 	
-	public void addSong(int id) {
-		if(!contains_song(id))
+	public void addSong(int id, bool check_dups) {
+		//if(!contains_song(id))
 			_songs.add(id);
 	}
 	
@@ -78,7 +78,7 @@ public class BeatBox.Playlist : Object {
 	}
 	
 	public void songs_from_string(string songs, LibraryManager lm) {
-		string[] song_strings = songs.split("<song_seperator>", 0);
+		string[] song_strings = songs.split(",", 0);
 		
 		int index;
 		for(index = 0; index < song_strings.length - 1; ++index) {
@@ -92,7 +92,7 @@ public class BeatBox.Playlist : Object {
 		string rv = "";
 		
 		foreach(int id in _songs) {
-			rv += id.to_string() + "<song_seperator>";
+			rv += id.to_string() + ",";
 		}
 		
 		return rv;

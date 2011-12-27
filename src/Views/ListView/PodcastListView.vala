@@ -1133,6 +1133,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		TreeModel l_model;
 		
 		var los = new LinkedList<Song>();
+		int new_rating = rating_item.rating_value;
 		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
 			TreeIter item;
 			l_model.get_iter(out item, path);
@@ -1141,7 +1142,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			l_model.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
-			s.rating = rating_item.rating_value;
+			s.rating = new_rating;
 			los.add(s);
 		}
 		
