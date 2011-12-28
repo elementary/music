@@ -197,32 +197,33 @@ public class BeatBox.LibraryManager : GLib.Object {
 			stdout.printf("adding playlist %s\n", p.name);
 			if(!playlists_added.contains(p.name)) { // sometimes we get duplicates. don't add duplicates
 				_playlists.set(p.rowid, p);
-				playlists_added.add(p.name);
-			}
 			
-			if(p.name == "autosaved_music") {
-				music_setup = p.tvs;
-				_playlists.unset(p.rowid);
-			}
-			else if(p.name == "autosaved_podcast") {
-				podcast_setup = p.tvs;
-				_playlists.unset(p.rowid);
-			}
-			else if(p.name == "autosaved_similar") {
-				similar_setup = p.tvs;
-				_playlists.unset(p.rowid);				
-			}
-			else if(p.name == "autosaved_queue") {
-				foreach(int i in songs_from_playlist(p.rowid)) {
-					queue_song_by_id(i);
+				if(p.name == "autosaved_music") {
+					music_setup = p.tvs;
+					_playlists.unset(p.rowid);
+				}
+				else if(p.name == "autosaved_podcast") {
+					podcast_setup = p.tvs;
+					_playlists.unset(p.rowid);
+				}
+				else if(p.name == "autosaved_similar") {
+					similar_setup = p.tvs;
+					_playlists.unset(p.rowid);				
+				}
+				else if(p.name == "autosaved_queue") {
+					foreach(int i in songs_from_playlist(p.rowid)) {
+						queue_song_by_id(i);
+					}
+					
+					queue_setup = p.tvs;
+					_playlists.unset(p.rowid);
+				}
+				else if(p.name == "autosaved_history") {
+					history_setup = p.tvs;
+					_playlists.unset(p.rowid);
 				}
 				
-				queue_setup = p.tvs;
-				_playlists.unset(p.rowid);
-			}
-			else if(p.name == "autosaved_history") {
-				history_setup = p.tvs;
-				_playlists.unset(p.rowid);
+				playlists_added.add(p.name);
 			}
 		}
 		stdout.printf("finished loading playlists\n");
@@ -311,37 +312,27 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void set_music_folder(string folder) {
 		if(!doing_file_operations) {
-			var cont = false;
-			var smfc = new SetMusicFolderConfirmation(this, lw, folder);
-			smfc.finished.connect( (cont) => {
-				if(cont) {
-					doing_file_operations = true;
-					progress_notification("Importing music from <b>" + folder + "</b>.", 0.0);
-					
-					lw.sideTree.removeAllStaticPlaylists();
-					stdout.printf("removed static playlists\n");
-					lw.resetSideTree();
-					stdout.printf("reset side tree\n");
-					clear_songs();
-					_queue.clear();
-					dbm.clear_songs();
-					stdout.printf("cleared songs\n");
-					lw.updateSensitivities();
-					stdout.printf("updated sensitivities\n");
-					
-					settings.setMusicFolder(folder);
-					try {
-						Thread.create<void*>(set_music_thread_function, false);
-					}
-					catch(GLib.Error err) {
-						stdout.printf("Could not create thread to set music folder: %s\n", err.message);
-					}
-				}
-			});
+			doing_file_operations = true;
+			progress_notification("Importing music from <b>" + folder + "</b>...", 0.0);
+			
+			lw.sideTree.removeAllStaticPlaylists();
+			lw.resetSideTree();
+			clear_songs();
+			_queue.clear();
+			dbm.clear_songs();
+			lw.updateSensitivities();
+			
+			settings.setMusicFolder(folder);
+			
+			try {
+				Thread.create<void*>(set_music_thread_function, false);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not create thread to set music folder: %s\n", err.message);
+			}
 		}
 	}
-        
-        // i should do the actual file browsing here
+	
 	public void* set_music_thread_function () {
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
 		
@@ -353,7 +344,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
 		
-		stdout.printf("setting music folder\n");
 		fo.get_music_files_set(file, ref new_songs, ref not_imported);
 		
 		add_songs(new_songs, true);
@@ -380,7 +370,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void add_files_to_library(LinkedList<string> files) {
 		if(!doing_file_operations) {
 			doing_file_operations = true;
-			progress_notification("Adding files to library. This may take a while...", 0.0);
+			progress_notification("Adding files to library...", 0.0);
 			
 			temp_add_files = files;
 			try {
@@ -401,16 +391,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var not_imported = new LinkedList<string>();
 		fo.get_music_files_individually(temp_add_files, ref new_songs, ref not_imported);
 		
+		bool was_cancelled = fo.cancelled;
 		fo.resetProgress(new_songs.size);
-		
 		if(settings.getCopyImportedMusic())
 			progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 		
 		Timeout.add(100, doProgressNotificationWithTimeout);
 		
 		foreach(Song s in new_songs) {
-			if(settings.getCopyImportedMusic())
-				fo.update_file_hierarchy(s, false);
+			if(settings.getCopyImportedMusic() && !was_cancelled)
+				fo.update_file_hierarchy(s, false, false);
 			
 			fo.index++;
 		}
@@ -420,6 +410,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
+			update_songs(new_songs, false, false);
 			
 			try {
 				Thread.create<void*>(fetch_thread_function, false);
@@ -462,14 +453,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var not_imported = new LinkedList<string>();
 		fo.get_music_files_folder(file, ref new_songs, ref not_imported);
 		
+		bool was_cancelled = fo.cancelled;
 		fo.resetProgress(new_songs.size);
 		Timeout.add(100, doProgressNotificationWithTimeout);
 		
 		progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 		
 		foreach(Song s in new_songs) {
-			if(settings.getCopyImportedMusic())
-				fo.update_file_hierarchy(s, false);
+			if(settings.getCopyImportedMusic() && !was_cancelled)
+				fo.update_file_hierarchy(s, false, false);
 			
 			fo.index++;
 		}
@@ -479,6 +471,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
+			update_songs(new_songs, false, false);
 			
 			try {
 				Thread.create<void*>(fetch_thread_function, false);
@@ -538,17 +531,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		dbm.remove_songs(paths);
 		
+		foreach(Song s in new_songs) {
+			if(settings.getCopyImportedMusic())
+				fo.update_file_hierarchy(s, false, false);
+		}
+		
 		Idle.add( () => {
 			remove_songs(removed, false);
 			add_songs(new_songs, true);
 			
-			foreach(Song s in new_songs) {
-				if(settings.getCopyImportedMusic())
-					fo.update_file_hierarchy(s, false);
-			}
-			
 			doing_file_operations = false;
 			music_rescanned(new_songs, not_imported); 
+			update_songs(new_songs, false, false);
 			
 			try {
 				Thread.create<void*>(fetch_thread_function, false);

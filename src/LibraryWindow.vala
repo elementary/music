@@ -952,6 +952,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("Stopping playback\n");
 		lm.settings.setLastSongPosition((int)((double)lm.player.getPosition()/1000000000));
 		lm.player.pause();
+		
+		stdout.printf("TODO: Clean up play queue\n");
 	}
 	
 	public virtual void fileImportMusicClick() {
@@ -1118,11 +1120,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void setMusicFolder(string folder) {
-		stdout.printf("SETTING MUSIC FOLDER TO %s\n", folder);
-		topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b>");
-		topDisplay.show_progressbar();
-		lm.set_music_folder(folder);
-		updateSensitivities();
+		if(lm.doing_file_operations)
+			return;
+		
+		if(lm.song_count() > 0 || lm.playlist_count() > 0) {
+			var smfc = new SetMusicFolderConfirmation(lm, this, folder);
+			smfc.finished.connect( (cont) => {
+				if(cont) {
+					lm.set_music_folder(folder);
+				}
+			});
+		}
+		else {
+			lm.set_music_folder(folder);
+		}
 	}
 	
 	public virtual void end_of_stream() {

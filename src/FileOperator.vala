@@ -225,15 +225,15 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
-	public void get_music_files_individually(LinkedList<string> files, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
-		foreach(string file in files) {
+	public void get_music_files_individually(LinkedList<string> paths, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
+		foreach(string file in paths) {
 			
 			if(cancelled) {
 				return;
 			}
 			
 			try {
-				GLib.File gio_file = GLib.File.new_for_uri(file);
+				GLib.File gio_file = GLib.File.new_for_path(file);
 				FileInfo file_info = gio_file.query_info("*", FileQueryInfoFlags.NONE);
 				string file_path = gio_file.get_path();
 				
@@ -496,7 +496,7 @@ public class BeatBox.FileOperator : Object {
 			}
 			
 			if(settings.getUpdateFolderHierarchy())
-				update_file_hierarchy(s, true);
+				update_file_hierarchy(s, true, false);
 		}
 	}
 	
@@ -557,7 +557,7 @@ public class BeatBox.FileOperator : Object {
 		return dest;
 	}
 	
-	public void update_file_hierarchy(Song s, bool delete_old) {
+	public void update_file_hierarchy(Song s, bool delete_old, bool emit_update) {
 		try {
 			GLib.File dest = get_new_destination(s);
 			
@@ -588,9 +588,11 @@ public class BeatBox.FileOperator : Object {
 				s.file = dest.get_path();
 				
 				// wait to update song when out of thread
-				Idle.add( () => {
-					lm.update_song(s, false, false); return false;
-				});
+				if(emit_update) {
+					Idle.add( () => {
+						lm.update_song(s, false, false); return false;
+					});
+				}
 				
 				if(original.get_uri().has_prefix("file://") && original.get_parent().get_path() != null &&
 				s.getAlbumArtPath().contains(original.get_parent().get_path())) {
@@ -677,5 +679,55 @@ public class BeatBox.FileOperator : Object {
 	
 	public string get_extension(string name) {
 		return name.slice(name.last_index_of(".", 0), name.length);
+	}
+	
+	/* should be called from thread */
+	public Playlist import_from_playlist_file_info(string name, LinkedList<string> paths, ref LinkedList<Song> new_songs, ref LinkedList<string> not_imported) {
+		Playlist rv = new Playlist();
+		var internals = new LinkedList<int>();
+		var externals = new LinkedList<string>();
+		
+		foreach(string path in paths) {
+			Song s;
+			if( (s = lm.song_from_file(path)) != null)
+				internals.add(s.rowid);
+			else
+				externals.add(path);
+		}
+		
+		rv.name = name;
+		foreach(int i in internals)
+			rv.addSong(i);
+		
+		/* this is pretty much copied from lm.import_files_individually */
+		// first get the files
+		bool was_cancelled = cancelled;
+		resetProgress(externals.size - 1);
+		Timeout.add(500, lm.doProgressNotificationWithTimeout);
+		
+		get_music_files_individually(externals, ref new_songs, ref not_imported);
+		
+		//add to library
+		lm.add_songs(new_songs, true);
+		foreach(var s in new_songs)
+			rv.addSong(s.rowid);
+		
+		// now copy them into the library (if settings say to)
+		resetProgress(new_songs.size);
+		if(settings.getCopyImportedMusic())
+			lm.progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
+		
+		Timeout.add(500, lm.doProgressNotificationWithTimeout);
+		
+		foreach(Song s in new_songs) {
+			if(settings.getCopyImportedMusic() && !was_cancelled)
+				update_file_hierarchy(s, false, false);
+			
+			index++;
+		}
+		
+		lm.file_operations_done();
+		
+		return rv;
 	}
 }
