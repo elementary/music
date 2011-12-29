@@ -188,22 +188,11 @@ public class BeatBox.Playlist : Object {
 			var dis = new DataInputStream(file.read());
 			
 			while ((line = dis.read_line(null)) != null) {
-				if(line.has_prefix("http://")) {
+				if(line.has_prefix("http:/")) {
 					Song s = new Song(line);
+					s.mediatype = 3;
 					
-					// use previous line to get information about it.
-					if(previous_line.has_prefix("#EXTINF")) {
-						previous_line.replace("#EXTINF:", ""); // now we have <length>, <artist> - <title>
-						
-						string[] data = previous_line.split(" ", 0);
-						
-						s.length = int.parse(data[0].replace(",",""));
-						s.artist = data[1];
-						s.title = data[3];
-					}
-					else {
-						s.album_artist = "Radio Station";
-					}
+					s.album_artist = "Radio Station";
 					
 					if(s.length <= 0)
 						stations.add(s);
@@ -256,12 +245,13 @@ public class BeatBox.Playlist : Object {
 		}
 		
 		foreach(var entry in files.entries) {
-			if(entry.value.has_prefix("http://") && lengths.get(entry.key) != null && int.parse(lengths.get(entry.key)) <= 0)  {
+			if(entry.value.has_prefix("http:/")/* && lengths.get(entry.key) != null && int.parse(lengths.get(entry.key)) <= 0*/)  {
 				Song s = new Song(entry.value);
-				s.title = titles.get(entry.key);
+				s.mediatype = 3;
+				s.album_artist = titles.get(entry.key);
 				
 				if(s.title == null)
-					s.title = "Radio Station";
+					s.album_artist = "Radio Station";
 				
 				stations.add(s);
 			}

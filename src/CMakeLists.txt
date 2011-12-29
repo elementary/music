@@ -162,6 +162,8 @@ vala_precompile(VALA_C
     Views/ListView/MusicTreeView.vala
     Views/ListView/PodcastTreeModel.vala
     Views/ListView/PodcastListView.vala
+    Views/ListView/RadioListView.vala
+    Views/ListView/RadioTreeModel.vala
     Views/CellDataFunctionHelper.vala
     Views/DeviceSummaryWidget.vala
     Views/AlbumView/AlbumViewModel.vala

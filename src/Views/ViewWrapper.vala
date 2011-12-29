@@ -53,6 +53,7 @@ public class BeatBox.ViewWrapper : VBox {
 		MUSIC,
 		PODCAST,
 		AUDIOBOOK,
+		STATION,
 		SIMILAR,
 		QUEUE,
 		HISTORY,
@@ -82,6 +83,9 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		else if(the_hint == ViewWrapper.Hint.PODCAST || the_hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 			list = new PodcastListView(lm, lw, sort, dir, the_hint, id);
+		}
+		else if(the_hint == ViewWrapper.Hint.STATION) {
+			list = new RadioListView(lm, lw, sort, dir, the_hint, id);
 		}
 		else if(the_hint == ViewWrapper.Hint.AUDIOBOOK || the_hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
 			list = new MusicTreeView(lm, lw, sort, dir, the_hint, id);

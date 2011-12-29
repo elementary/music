@@ -84,13 +84,13 @@ public class BeatBox.Pipeline : GLib.Object {
 	
 	/*private void videoTagsChanged(Gst.Element sender, int stream_number) {
 		
-	}
+	}*/
 
 	private void audioTagsChanged(Gst.Element sender, int stream_number) {
 		
 	}
 
-	private void textTagsChanged(Gst.Element sender, int stream_number) {
+	/*private void textTagsChanged(Gst.Element sender, int stream_number) {
 		
 	}*/
 	

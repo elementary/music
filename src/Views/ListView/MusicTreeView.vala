@@ -773,8 +773,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	
 	void songs_removed(LinkedList<int> ids) {
 		music_model.removeSongs(ids);
-		_showing_songs.remove_all(ids);
-		_show_next.remove_all(ids);
+		//_showing_songs.remove_all(ids);
+		//_show_next.remove_all(ids);
 	}
 	
 	void viewDoubleClick(TreePath path, TreeViewColumn column) {

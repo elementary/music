@@ -371,7 +371,7 @@ public class BeatBox.FileOperator : Object {
 					string[] paths = file_path.split("/", 0);
 					s.title = paths[paths.length - 1];
 				}
-				if(s.artist == null || s.artist == "") s.artist = "Unknown";
+				if(s.artist == null || s.artist == "") s.artist = "Unknown Artist";
 				
 				s.album_artist = s.artist;
 				s.album_number = 1;

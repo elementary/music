@@ -36,6 +36,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public TreeIter devices_cdrom_iter;
 	
 	public TreeIter network_iter;
+	public TreeIter network_radio_iter;
 	public TreeIter network_store_iter;
 	
 	public TreeIter playlists_iter;
@@ -62,6 +63,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	MenuItem playlistSave;
 	MenuItem playlistExport;
 	MenuItem playlistImport;
+	
+	//for radio station right click
+	Menu radioMenu;
+	MenuItem radioImportStations;
 	
 	Widget current_widget;
 	
@@ -93,6 +98,12 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		CDimportToLibrary.activate.connect(CDimportToLibraryClicked);
 		CDeject.activate.connect(CDejectClicked);
 		CDMenu.show_all();
+		
+		radioMenu = new Menu();
+		radioImportStations = new MenuItem.with_label("Import Station");
+		radioMenu.append(radioImportStations);
+		radioImportStations.activate.connect(playlistImportClicked);
+		radioMenu.show_all();
 		
 		//playlist right click menu
 		playlistMenu = new Menu();
@@ -170,6 +181,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		else if(name == "Music Store" && parent == network_iter) {
 			network_store_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
 			return network_store_iter;
+		}
+		else if(name == "Radio Stations" && parent == network_iter) {
+			network_radio_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
+			return network_radio_iter;
 		}
 		else if(name == "Similar" && parent == playlists_iter) {
 			playlists_similar_iter = addItem(parent, o, w, lm.icons.smart_playlist_icon, name, null);
@@ -298,6 +313,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				
 				if(iter == convertToFilter(library_podcasts_iter)) {
 					podcastMenu.popup (null, null, null, 3, get_current_event_time());
+				}
+				else if(iter == convertToFilter(network_radio_iter)) {
+					radioMenu.popup(null, null, null, 3, get_current_event_time());
 				}
 				else if(parent == convertToFilter(playlists_iter)) {
 					if(iter == convertToFilter(playlists_similar_iter)) {
@@ -437,6 +455,12 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.podcast_ids(), false, false);
+				}
+				else if(iter == network_radio_iter) {
+					ViewWrapper vw = (ViewWrapper)w;
+					
+					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								lm.station_ids(), false, false);
 				}
 				else if(iter == network_store_iter) {
 					Store.StoreView sv = (Store.StoreView)w;
@@ -940,7 +964,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 			}
 			if(stations.size > 0) {
+				lm.add_songs(stations, true);
 				
+				Widget w = getWidget(network_radio_iter);
+				((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.station_ids(), true, true);
 			}
 		}
 	}

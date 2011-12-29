@@ -43,6 +43,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private HashMap<int, Song> _songs; // rowid, song of all songs
 	private HashMap<int, Song> _podcasts;
 	private HashMap<int, Song> _audiobooks;
+	private HashMap<int, Song> _stations;
 	private LinkedList<int> _locals; // list of all local songs
 	private HashMap<string, DevicePreferences> _device_preferences;
 	
@@ -60,6 +61,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public TreeViewSetup music_setup;
 	public TreeViewSetup podcast_setup;
+	public TreeViewSetup station_setup;
 	public TreeViewSetup similar_setup;
 	public TreeViewSetup queue_setup;
 	public TreeViewSetup history_setup;
@@ -127,6 +129,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_songs = new HashMap<int, Song>();
 		_podcasts = new HashMap<int, Song>(); // subset of _songs
 		_audiobooks = new HashMap<int, Song>(); // subset of _songs
+		_stations = new HashMap<int, Song>(); // subset of _songs
 		_locals = new LinkedList<int>();
 		_device_preferences = new HashMap<string, DevicePreferences>();
 		
@@ -168,6 +171,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
 		podcast_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PODCAST);
+		station_setup = new TreeViewSetup("Genre", Gtk.SortType.ASCENDING, ViewWrapper.Hint.STATION);
 		similar_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.SIMILAR);
 		queue_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.QUEUE);
 		history_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.HISTORY);
@@ -181,6 +185,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 				_podcasts.set(s.rowid, s);
 			if(s.mediatype == 2)
 				_audiobooks.set(s.rowid, s);
+			if(s.mediatype == 3)
+				_stations.set(s.rowid, s);
 		}
 		
 		if(_songs.size == 0)
@@ -191,7 +197,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		//load all playlists from db
-		stdout.printf("loading playlists\n");
 		var playlists_added = new LinkedList<string>();
 		foreach(Playlist p in dbm.load_playlists()) {
 			stdout.printf("adding playlist %s\n", p.name);
@@ -204,6 +209,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 				}
 				else if(p.name == "autosaved_podcast") {
 					podcast_setup = p.tvs;
+					_playlists.unset(p.rowid);
+				}
+				else if(p.name == "autosaved_station") {
+					station_setup = p.tvs;
 					_playlists.unset(p.rowid);
 				}
 				else if(p.name == "autosaved_similar") {
@@ -226,7 +235,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 				playlists_added.add(p.name);
 			}
 		}
-		stdout.printf("finished loading playlists\n");
 		
 		foreach(LastFM.ArtistInfo a in dbm.load_artists()) {
 			_artists.set(a.name, a);
@@ -605,11 +613,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 					p_podcast.name = "autosaved_podcast";
 					p_podcast.tvs = podcast_setup;
 					
+					Playlist p_station = new Playlist();
+					p_station.name = "autosaved_station";
+					p_station.tvs = station_setup;
+					
 					playlists_and_queue.add(p_queue);
 					playlists_and_queue.add(p_history);
 					playlists_and_queue.add(p_similar);
 					playlists_and_queue.add(p_music);
 					playlists_and_queue.add(p_podcast);
+					playlists_and_queue.add(p_station);
 					
 					dbm.save_playlists(playlists_and_queue);
 					return null; 
@@ -713,7 +726,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(int i in _songs.keys) {
 			Song s = _songs.get(i);
 			if(!(s.isTemporary || s.isPreview || s.file.has_prefix("http://"))) {
-				if(s.mediatype == 1 && s.podcast_url != null && s.podcast_url.has_prefix("http://")) {
+				if( (s.mediatype == 1 && s.podcast_url != null && s.podcast_url.has_prefix("http://")) || s.mediatype == 3) {
 					s.file = s.podcast_url;
 				}
 				else {
@@ -726,7 +739,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		remove_songs(unset, false);
-		//_songs.unset_all(unset);
 	}
 	
 	public int song_count() {
@@ -747,6 +759,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public Collection<int> audiobook_ids() {
 		return _audiobooks.keys;
+	}
+	
+	public Collection<int> station_ids() {
+		return _stations.keys;
 	}
 	
 	public HashMap<int, Song> song_hash() {
@@ -883,14 +899,17 @@ public class BeatBox.LibraryManager : GLib.Object {
 		else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
 			mediatype = 2;
 		}
+		else if(hint == ViewWrapper.Hint.STATION) {
+			mediatype = 3;
+		}
 		else if(hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY ||
 		hint == ViewWrapper.Hint.PLAYLIST || hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-			mediatype = 3; // some lists should be able to have ALL media types
+			mediatype = -1; // some lists should be able to have ALL media types
 		}
 		
 		foreach(int i in to_search) {
 			Song s = song_from_id(i);
-			if(s != null && (s.mediatype == mediatype || mediatype == 3) && (!s.isTemporary || include_temps) &&
+			if(s != null && (s.mediatype == mediatype || mediatype == -1) && (!s.isTemporary || include_temps) &&
 			(l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
 				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist))
 					if(album == "All Albums" || s.album == album) {
@@ -936,10 +955,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			if(permanent && !s.isTemporary)
 				_locals.add(s.rowid);
+				
 			if(s.mediatype == 1)
 				_podcasts.set(s.rowid, s);
-			if(s.mediatype == 2)
+			else if(s.mediatype == 2)
 				_audiobooks.set(s.rowid, s);
+			else if(s.mediatype == 3)
+				_stations.set(s.rowid, s);
 		}
 		
 		if(new_songs.size > 0 && new_songs.to_array()[0].rowid != -2 && permanent) {
@@ -978,6 +1000,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 				_podcasts.unset(s.rowid);
 			else if(s.mediatype == 2)
 				_audiobooks.unset(s.rowid);
+			else if(s.mediatype == 3)
+				_stations.unset(s.rowid);
 				
 			foreach(var p in _playlists.values) {
 				p.removeSong(s.rowid);
@@ -1691,4 +1715,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			stdout.printf("Could not create thread to save device preferences: %s\n", err.message);
 		}
 	}
+	
+	/** Radio stations **/
+	
 }
