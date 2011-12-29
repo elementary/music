@@ -141,9 +141,13 @@ public class BeatBox.Streamer : GLib.Object {
 						string[] pieces = title.split("-", 0);
 						
 						if(pieces.length >= 2) {
+							string old_title = lm.song_info.song.title;
+							string old_artist = lm.song_info.song.artist;
 							lm.song_info.song.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
 							lm.song_info.song.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
-							lw.song_played(lm.song_info.song.rowid, lm.song_info.song.rowid); // pretend as if song changed
+							
+							if(old_title != lm.song_info.song.title || old_artist != lm.song_info.song.artist)
+								lw.song_played(lm.song_info.song.rowid, lm.song_info.song.rowid); // pretend as if song changed
 						}
 						else {
 							lm.song_info.song.artist = "Unknown Artist";
