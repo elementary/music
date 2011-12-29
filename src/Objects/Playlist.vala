@@ -19,8 +19,6 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  */
- 
-using Gee;
 
 public class BeatBox.Playlist : Object {
 	private string _name;
@@ -32,6 +30,17 @@ public class BeatBox.Playlist : Object {
 		_name = "New Playlist";
 		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_songs = new Gee.LinkedList<int>();
+	}
+	
+	public Playlist.from_m3u(LibraryManager lm, string file) {
+		_name = "New Playlist";
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+		_songs = new Gee.LinkedList<int>();
+		
+		// now try and load m3u file
+		// if some files are not found by song_from_file(), ask at end if user would like to import the file to library
+		// if so, just do import_individual_files
+		// if not, do nothing and accept that music files are scattered. 
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
@@ -105,7 +114,6 @@ public class BeatBox.Playlist : Object {
 		return rv;
 	}
 	
-	// how to specify a file?
 	public bool save_playlist_m3u(LibraryManager lm, string folder) {
 		bool rv = false;
 		string to_save = "#EXTM3U";
@@ -136,152 +144,5 @@ public class BeatBox.Playlist : Object {
 		}
 		
 		return rv;
-	}
-	
-	public bool save_playlist_pls(LibraryManager lm, string folder) {
-		bool rv = false;
-		string to_save = "[playlist]\n\nNumberOfEntries=" + _songs.size.to_string() + "\nVersion=2";
-		
-		int index = 1;
-		foreach(int i in _songs) {
-			Song s = lm.song_from_id(i);
-			
-			to_save += "\n\nFile" + index.to_string() + "=" + s.file + "\nTitle" + index.to_string() + "=" + s.title + "\nLength" + index.to_string() + "=" + s.length.to_string();
-			++index;
-		}
-		
-		File dest = GLib.File.new_for_path(Path.build_path("/", folder, name.replace("/", "_") + ".pls"));
-		try {
-			// find a file path that doesn't exist
-			string extra = "";
-			while((dest = GLib.File.new_for_path(Path.build_path("/", folder, name.replace("/", "_") + extra + ".pls"))).query_exists()) {
-				extra += "_";
-			}
-			
-			var file_stream = dest.create(FileCreateFlags.NONE);
-			
-			// Write text data to file
-			var data_stream = new DataOutputStream (file_stream);
-			data_stream.put_string(to_save);
-			rv = true;
-		}
-		catch(Error err) {
-			stdout.printf("Could not save playlist %s to pls file %s: %s\n", name, dest.get_path(), err.message);
-		}
-		
-		return rv;
-	}
-	
-	public static bool parse_paths_from_m3u(LibraryManager lm, string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Song> stations) {
-		// now try and load m3u file
-		// if some files are not found by song_from_file(), ask at end if user would like to import the file to library
-		// if so, just do import_individual_files
-		// if not, do nothing and accept that music files are scattered.
-		
-		var file = File.new_for_path(path);
-		if(!file.query_exists())
-			return false;
-		
-		try {
-			string line;
-			string previous_line = "";
-			var dis = new DataInputStream(file.read());
-			
-			while ((line = dis.read_line(null)) != null) {
-				if(line.has_prefix("http://")) {
-					Song s = new Song(line);
-					
-					// use previous line to get information about it.
-					if(previous_line.has_prefix("#EXTINF")) {
-						previous_line.replace("#EXTINF:", ""); // now we have <length>, <artist> - <title>
-						
-						string[] data = previous_line.split(" ", 0);
-						
-						s.length = int.parse(data[0].replace(",",""));
-						s.artist = data[1];
-						s.title = data[3];
-					}
-					else {
-						s.album_artist = "Radio Station";
-					}
-					
-					if(s.length <= 0)
-						stations.add(s);
-					else
-						locals.add(line);
-				}
-				else if(line[0] != '#') {
-					locals.add(line);
-				}
-				
-				previous_line = line;
-			}
-		}
-		catch(Error err) {
-			stdout.printf("Could not load m3u file at %s: %s\n", path, err.message);
-			return false;
-		}
-		
-		return true;
-	}
-	
-	public static bool parse_paths_from_pls(LibraryManager lm, string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Song> stations) {
-		var files = new HashMap<int, string>();
-		var titles = new HashMap<int, string>();
-		var lengths = new HashMap<int, string>();
-		
-		var file = File.new_for_path(path);
-		if(!file.query_exists())
-			return false;
-		
-		try {
-			string line;
-			var dis = new DataInputStream(file.read());
-			
-			while ((line = dis.read_line(null)) != null) {
-				if(line.has_prefix("File")) {
-					parse_index_and_value("File", line, ref files);
-				}
-				else if(line.has_prefix("Title")) {
-					parse_index_and_value("Title", line, ref titles);
-				}
-				else if(line.has_prefix("Length")) {
-					parse_index_and_value("Length", line, ref lengths);
-				}
-			}
-		}
-		catch(Error err) {
-			stdout.printf("Could not load m3u file at %s: %s\n", path, err.message);
-			return false;
-		}
-		
-		foreach(var entry in files.entries) {
-			if(entry.value.has_prefix("http://") && lengths.get(entry.key) != null && int.parse(lengths.get(entry.key)) <= 0)  {
-				Song s = new Song(entry.value);
-				s.title = titles.get(entry.key);
-				
-				if(s.title == null)
-					s.title = "Radio Station";
-				
-				stations.add(s);
-			}
-			else {
-				locals.add(entry.value);
-			}
-		}
-		
-		
-		return true;
-	}
-	
-	public static void parse_index_and_value(string prefix, string line, ref HashMap<int, string> map) {
-		int index;
-		string val;
-		string[] parts = line.split("=", 2);
-		
-		index = int.parse(parts[0].replace(prefix,""));
-		val = parts[1];
-		
-		map.set(index, val);
 	}
 }

@@ -39,7 +39,7 @@ public class BeatBox.ViewWrapper : VBox {
 	
 	LinkedList<string> timeout_search;//stops from doing useless search (timeout)
 	string last_search;//stops from searching same thing multiple times
-	bool showing_all; // stops from searching unnecesarilly when changing b/w 0 words and search get_hint().
+	bool showing_all; // stops from searching unnecesarilly when changing b/w 0 words and search get_hint(), etc.
 	
 	// for Hint.SIMILAR only
 	public bool similarsFetched;

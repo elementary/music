@@ -134,7 +134,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 		
 		// now we have to find the right location for it
 		previous_song = s.copy();
-		lm.fo.update_file_hierarchy(s, true, false);
+		lm.fo.update_file_hierarchy(s, true);
 		/*try {
 			Thread.create<void*>(update_file_location_thread, false);
 		}
@@ -177,7 +177,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 	
 	public void* update_file_location_thread() {
 		if(previous_song != null)
-			lm.fo.update_file_hierarchy(previous_song, true, false);
+			lm.fo.update_file_hierarchy(previous_song, true);
 		
 		return null;
 	}

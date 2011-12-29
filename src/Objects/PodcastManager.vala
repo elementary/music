@@ -329,7 +329,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			current_operation = "Saving episode <b>" + lm.song_from_id(i).title + "</b> to file system";
 			online_size = File.new_for_uri(lm.song_from_id(i).podcast_url).query_info("*", FileQueryInfoFlags.NONE).get_size();
 			new_dest = lm.fo.get_new_destination(lm.song_from_id(i));
-			lm.fo.update_file_hierarchy(lm.song_from_id(i), false, true);
+			lm.fo.update_file_hierarchy(lm.song_from_id(i), false);
 			lm.song_from_id(i).file_size = (int)(new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size() / 1000000);
 			++index;
 		}

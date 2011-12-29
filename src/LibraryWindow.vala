@@ -176,7 +176,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		set_title("BeatBox");
 		
 		// set the icon
-		set_icon(lm.icons.beatbox_icon);
+		set_icon(lm.icons.beatbox_icon.render (IconSize.DIALOG, null));
 		
 		/* Initialize all components */
 		verticalBox = new VBox(false, 0);
@@ -213,9 +213,25 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideBar = new VBox(false, 0);
 		statusBar = new HBox(false, 0);
 		statusBarLabel = new Label("");
-		shuffleChooser = new SimpleOptionChooser(lm.icons.shuffle_on_icon, lm.icons.shuffle_off_icon);
-		repeatChooser = new SimpleOptionChooser(lm.icons.repeat_on_icon, lm.icons.repeat_off_icon);
-		infoPanelChooser = new SimpleOptionChooser(lm.icons.info_icon, lm.icons.info_icon);
+		
+		// make the background white
+		EventBox statusEventBox = new EventBox();
+		statusEventBox.add(statusBar);
+		
+		Gdk.Color c = Gdk.Color();
+		Gdk.Color.parse("#FFFFFF", out c);
+		statusEventBox.modify_bg(Gtk.StateType.NORMAL, sideTree.style.base[Gtk.StateType.NORMAL]);
+		
+		var statusBarStyle = statusBar.get_style_context ();
+
+		var shuffle_on_icon = lm.icons.shuffle_on_icon.render (IconSize.MENU, statusBarStyle);
+		var shuffle_off_icon = lm.icons.shuffle_off_icon.render (IconSize.MENU, statusBarStyle);
+		var repeat_on_icon = lm.icons.repeat_on_icon.render (IconSize.MENU, statusBarStyle);
+		var repeat_off_icon = lm.icons.repeat_off_icon.render (IconSize.MENU, statusBarStyle);
+
+		shuffleChooser = new SimpleOptionChooser(shuffle_on_icon, shuffle_off_icon);
+		repeatChooser = new SimpleOptionChooser(repeat_on_icon, repeat_off_icon);
+		infoPanelChooser = new SimpleOptionChooser(lm.icons.info_icon.render(null, null), lm.icons.info_icon.render(null, null));
 		
 		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
@@ -260,15 +276,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		editEqualizer.activate.connect(editEqualizerClick);
 		editPreferences.activate.connect(editPreferencesClick);
-		
-		// make the background white
-		EventBox statusEventBox = new EventBox();
-		statusEventBox.add(statusBar);
-		
-		Gdk.Color c = Gdk.Color();
-		Gdk.Color.parse("#FFFFFF", out c);
-		statusEventBox.modify_bg(Gtk.StateType.NORMAL, sideTree.style.base[Gtk.StateType.NORMAL]);
-		
+
 		repeatChooser.appendItem("Off");
 		repeatChooser.appendItem("Song");
 		repeatChooser.appendItem("Album");
@@ -301,10 +309,18 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		searchFieldBin.add(searchField);
 		
 		topDisplayBin.set_expand(true);
-		viewSelector.append(new Image.from_pixbuf(lm.icons.view_icons_icon));
-		viewSelector.append(new Image.from_pixbuf(lm.icons.view_details_icon));
-		viewSelector.append(new Image.from_pixbuf(lm.icons.view_column_icon));
-		viewSelector.append(new Image.from_pixbuf(lm.icons.view_video_icon));
+		
+		var viewSelectorStyle = viewSelector.get_style_context ();
+		
+		var view_column_icon = lm.icons.view_column_icon.render (IconSize.MENU, viewSelectorStyle);
+		var view_details_icon = lm.icons.view_details_icon.render (IconSize.MENU, viewSelectorStyle);
+		var view_icons_icon = lm.icons.view_icons_icon.render (IconSize.MENU, viewSelectorStyle);
+		var view_video_icon = lm.icons.view_video_icon.render (IconSize.MENU, viewSelectorStyle);
+
+		viewSelector.append(new Image.from_pixbuf(view_icons_icon));
+		viewSelector.append(new Image.from_pixbuf(view_details_icon));
+		viewSelector.append(new Image.from_pixbuf(view_column_icon));
+		viewSelector.append(new Image.from_pixbuf(view_video_icon));
 		
 		topControls.insert(previousButton, 0);
 		topControls.insert(playButton, 1);
@@ -316,14 +332,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// for consistency
 		topControls.set_size_request(-1, 45);
-		//viewSelector.set_size_request(-1, 20);
+		viewSelector.set_size_request(-1, 35);
 		
 		viewSelector.get_style_context().add_class("raised");
 		topControls.get_style_context().add_class("primary-toolbar");
 		
-		//set the name for elementary theming
-		//sourcesToSongs.name = "SidebarHandleLeft";
-		//sideTree.name = "SidebarContent";
+		//set the style for elementary theming
 		sourcesToSongs.get_style_context().add_class("sidebar-pane-separator");
 		sideTree.get_style_context().add_class("sidebar");
 		
@@ -952,8 +966,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("Stopping playback\n");
 		lm.settings.setLastSongPosition((int)((double)lm.player.getPosition()/1000000000));
 		lm.player.pause();
-		
-		stdout.printf("TODO: Clean up play queue\n");
 	}
 	
 	public virtual void fileImportMusicClick() {
@@ -1062,10 +1074,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			notification.close();
 			if(!has_toplevel_focus) {
 				notification.update("Import Complete", "BeatBox has imported your library", "beatbox");
-				
-				if(lm.icons.beatbox_icon != null)
-					notification.set_image_from_pixbuf(lm.icons.beatbox_icon);
-				
+				var beatbox_icon = lm.icons.beatbox_icon.render (IconSize.DIALOG, null);
+				notification.set_image_from_pixbuf(beatbox_icon);
 				notification.show();
 				notification.set_timeout(5000);
 			}
@@ -1120,20 +1130,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void setMusicFolder(string folder) {
-		if(lm.doing_file_operations)
-			return;
-		
-		if(lm.song_count() > 0 || lm.playlist_count() > 0) {
-			var smfc = new SetMusicFolderConfirmation(lm, this, folder);
-			smfc.finished.connect( (cont) => {
-				if(cont) {
-					lm.set_music_folder(folder);
-				}
-			});
-		}
-		else {
-			lm.set_music_folder(folder);
-		}
+		stdout.printf("SETTING MUSIC FOLDER TO %s\n", folder);
+		topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b>");
+		topDisplay.show_progressbar();
+		lm.set_music_folder(folder);
+		updateSensitivities();
 	}
 	
 	public virtual void end_of_stream() {

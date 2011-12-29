@@ -131,7 +131,7 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 			
 			is_working.hide();
 			is_finished.show();
-			is_finished.set_from_pixbuf(success ? lm.icons.process_completed_icon : lm.icons.process_error_icon);
+			is_finished.set_from_pixbuf(success ? lm.icons.process_completed_icon.render (IconSize.MENU, null) : lm.icons.process_error_icon.render (IconSize.MENU, null));
 		}
 	}
 	

@@ -21,7 +21,6 @@
  */
 
 using Gtk;
-using Gee;
 
 public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	LibraryManager lm;
@@ -60,8 +59,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	MenuItem playlistEdit;
 	MenuItem playlistRemove;
 	MenuItem playlistSave;
-	MenuItem playlistExport;
-	MenuItem playlistImport;
 	
 	Widget current_widget;
 	
@@ -101,22 +98,16 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		playlistEdit = new MenuItem.with_label("Edit");
 		playlistRemove = new MenuItem.with_label("Remove");
 		playlistSave = new MenuItem.with_label("Save as Playlist");
-		playlistExport = new MenuItem.with_label("Export...");
-		playlistImport = new MenuItem.with_label("Import Playlist");
 		playlistMenu.append(playlistNew);
 		playlistMenu.append(smartPlaylistNew);
 		playlistMenu.append(playlistEdit);
 		playlistMenu.append(playlistRemove);
 		playlistMenu.append(playlistSave);
-		playlistMenu.append(playlistExport);
-		playlistMenu.append(playlistImport);
 		playlistNew.activate.connect(playlistMenuNewClicked);
 		smartPlaylistNew.activate.connect(smartPlaylistMenuNewClicked);
 		playlistEdit.activate.connect(playlistMenuEditClicked);
 		playlistRemove.activate.connect(playlistMenuRemoveClicked);
 		playlistSave.activate.connect(playlistSaveClicked);
-		playlistExport.activate.connect(playlistExportClicked);
-		playlistImport.activate.connect(playlistImportClicked);
 		playlistMenu.show_all();
 		
 		this.button_press_event.connect(sideListClick);
@@ -141,21 +132,28 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
+		var music_icon = lm.icons.music_icon.render (IconSize.MENU, null);
+		var podcast_icon = lm.icons.podcast_icon.render (IconSize.MENU, null);
+		var audiobook_icon = lm.icons.audiobook_icon.render (IconSize.MENU, null);
+		var history_icon = lm.icons.history_icon.render (IconSize.MENU, null);
+		var smart_playlist_icon = lm.icons.smart_playlist_icon.render (IconSize.MENU, null);
+		
 		if(name == "Music" && parent == library_iter) {
-			library_music_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
+			library_music_iter = addItem(parent, o, w, music_icon, name, null);
 			return library_music_iter;
 		}
 		else if(name == "Podcasts" && parent == library_iter) {
-			library_podcasts_iter = addItem(parent, o, w, lm.icons.podcast_icon, name, null);
+			library_podcasts_iter = addItem(parent, o, w, podcast_icon, name, null);
 			return library_podcasts_iter;
 		}
 		else if(name == "Audiobooks" && parent == library_iter) {
-			library_audiobooks_iter = addItem(parent, o, w, lm.icons.audiobook_icon, name, null);
+			library_audiobooks_iter = addItem(parent, o, w, audiobook_icon, name, null);
 			return library_audiobooks_iter;
 		}
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
 			
+			// FIXME: Add those icons to Objects/Icons.vala
 			if(d.getContentType() == "cdrom")
 				return addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "ipod-new")
@@ -168,19 +166,19 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				return addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
 		}
 		else if(name == "Music Store" && parent == network_iter) {
-			network_store_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
+			network_store_iter = addItem(parent, o, w, music_icon, name, null);
 			return network_store_iter;
 		}
 		else if(name == "Similar" && parent == playlists_iter) {
-			playlists_similar_iter = addItem(parent, o, w, lm.icons.smart_playlist_icon, name, null);
+			playlists_similar_iter = addItem(parent, o, w, smart_playlist_icon, name, null);
 			return playlists_similar_iter;
 		}
 		else if(name == "Queue" && parent == playlists_iter) {
-			playlists_queue_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
+			playlists_queue_iter = addItem(parent, o, w, music_icon, name, null);
 			return playlists_queue_iter;
 		}
 		else if(name == "History" && parent == playlists_iter) {
-			playlists_history_iter = addItem(parent, o, w, lm.icons.history_icon, name, null);
+			playlists_history_iter = addItem(parent, o, w, history_icon, name, null);
 			return playlists_history_iter;
 		}
 		else if(o is SmartPlaylist) {
@@ -204,7 +202,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				
 			} while(true);
 			
-			tree.set(item, 0, o, 1, w, 2, true, 3, lm.icons.smart_playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
+			tree.set(item, 0, o, 1, w, 2, true, 3, smart_playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
 			
 			if(visible) {
 				TreeIter? filterItem = convertToFilter(item);
@@ -313,9 +311,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 						playlistRemove.sensitive = true;
 					else
 						playlistRemove.sensitive = false;
-						
-					playlistExport.visible = true;
-					playlistImport.visible = false;
 				}
 				else if(o is Device && ((Device)o).getContentType() == "cdrom") {
 					CDMenu.popup(null, null, null, 3, get_current_event_time());
@@ -324,8 +319,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			else {
 				if(iter == convertToFilter(playlists_iter)) {
 					playlistRemove.sensitive = false;
-					playlistExport.visible = false;
-					playlistImport.visible = true;
 					playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					return true;
 				}
@@ -714,234 +707,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		if(w is ViewWrapper && ((ViewWrapper)w).list is SimilarPane) {
 			SimilarPane sp = (SimilarPane)(((ViewWrapper)w).list);
 			sp.savePlaylist();
-		}
-	}
-	
-	void playlistExportClicked() {
-		TreeIter iter, iter_f;
-		TreeSelection selected = this.get_selection();
-		selected.set_mode(SelectionMode.SINGLE);
-		TreeModel model;
-		selected.get_selected (out model, out iter_f);
-		
-		GLib.Object o;
-		Widget w;
-		filter.get(iter_f, 0, out o, 1, out w);
-		
-		iter = convertToChild(iter_f);
-		
-		Playlist p;
-		if(o is Playlist) {
-			p = (Playlist)o;
-		}
-		else {
-			p = new Playlist();
-			
-			if(o is SmartPlaylist) {
-				foreach(int i in ((SmartPlaylist)o).analyze(lm))
-					p.addSong(i);
-					
-				p.name = ((SmartPlaylist)o).name;
-			}
-			else {
-				foreach(int i in ((ViewWrapper)w).songs)
-					p.addSong(i);
-				
-				if(iter == playlists_similar_iter)
-					p.name = (lm.song_info.song != null) ? ("Similar to " + lm.song_info.song.title) : "Similar list";
-				else if(iter == playlists_queue_iter)
-					p.name = Time.local(time_t()).format("%m/%e/%Y %l:%M %p") + " play queue";
-				else if(iter == playlists_history_iter)
-					p.name = Time.local(time_t()).format("%m/%e/%Y %l:%M %p") + " play history";
-				else
-					p.name = "Unkown playlist";
-			}
-		}
-		
-		if(p == null)
-			return;
-		
-		string file = "";
-		string name = "";
-		string extension = "";
-		var file_chooser = new FileChooserDialog ("Export Playlist", lw,
-								  FileChooserAction.SAVE,
-								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
-								  Gtk.Stock.SAVE, ResponseType.ACCEPT);
-		
-		// filters for .m3u and .pls
-		var m3u_filter = new FileFilter();
-		m3u_filter.add_pattern("*.m3u");
-		m3u_filter.set_filter_name("MPEG Version 3.0 Extended (*.m3u)");
-		file_chooser.add_filter(m3u_filter);
-		
-		var pls_filter = new FileFilter();
-		pls_filter.add_pattern("*.pls");
-		pls_filter.set_filter_name("Shoutcast Playlist Version 2.0 (*.pls)");
-		file_chooser.add_filter(pls_filter);
-		
-		file_chooser.do_overwrite_confirmation = true;
-		file_chooser.set_current_name(p.name + ".m3u");
-		
-		// set original folder. if we don't, then file_chooser.get_filename() starts as null, which is bad for signal below.
-		if(File.new_for_path(lm.settings.getMusicFolder()).query_exists())
-			file_chooser.set_current_folder(lm.settings.getMusicFolder());
-		else
-			file_chooser.set_current_folder(Environment.get_home_dir());
-			
-		
-		// listen for filter change
-		file_chooser.notify["filter"].connect( () => {
-			if(file_chooser.get_filename() == null) // happens when no folder is chosen. need way to get textbox text, rather than filename
-				return;
-			
-			if(file_chooser.filter == m3u_filter) {
-				stdout.printf("changed to m3u\n");
-				var new_file = file_chooser.get_filename().replace(".pls", ".m3u");
-				
-				if(new_file.slice(new_file.last_index_of(".", 0), new_file.length).length == 0) {
-					new_file += ".m3u";
-				}
-				
-				file_chooser.set_current_name(new_file.slice(new_file.last_index_of("/", 0) + 1, new_file.length));
-			}
-			else {
-				stdout.printf("changed to pls\n");
-				var new_file = file_chooser.get_filename().replace(".m3u", ".pls");
-				
-				if(new_file.slice(new_file.last_index_of(".", 0), new_file.length).length == 0) {
-					new_file += ".pls";
-				}
-				
-				file_chooser.set_current_name(new_file.slice(new_file.last_index_of("/", 0) + 1, new_file.length));
-			}
-		});
-		
-		if (file_chooser.run () == ResponseType.ACCEPT) {
-			file = file_chooser.get_filename();
-			extension = file.slice(file.last_index_of(".", 0), file.length);
-			
-			if(extension.length == 0 || extension[0] != '.') {
-				extension = (file_chooser.filter == m3u_filter) ? ".m3u" : ".pls";
-				file += extension;
-			}
-			
-			name = file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
-			stdout.printf("name is %s extension is %s\n", name, extension);
-		}
-		
-		file_chooser.destroy ();
-		
-		string original_name = p.name;
-		if(file != "") {
-			var f = File.new_for_path(file);
-			
-			string folder = f.get_parent().get_path();
-			p.name = name; // temporary to save
-			
-			if(file.has_suffix(".m3u"))
-				p.save_playlist_m3u(lm, folder);
-			else
-				p.save_playlist_pls(lm, folder);
-		}
-		
-		p.name = original_name;
-	}
-	
-	void playlistImportClicked() {
-		string file = "";
-		string name = "";
-		var file_chooser = new FileChooserDialog ("Import Playlist", lw,
-								  FileChooserAction.OPEN,
-								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
-								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
-		
-		// filters for .m3u and .pls
-		var m3u_filter = new FileFilter();
-		m3u_filter.add_pattern("*.m3u");
-		m3u_filter.set_filter_name("MPEG Version 3.0 Extended (*.m3u)");
-		file_chooser.add_filter(m3u_filter);
-		
-		var pls_filter = new FileFilter();
-		pls_filter.add_pattern("*.pls");
-		pls_filter.set_filter_name("Shoutcast Playlist Version 2.0 (*.pls)");
-		file_chooser.add_filter(pls_filter);
-		
-		if (file_chooser.run () == ResponseType.ACCEPT) {
-			file = file_chooser.get_filename();
-			name = file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
-		}
-		
-		file_chooser.destroy ();
-		
-		var paths = new LinkedList<string>();
-		var stations = new LinkedList<Song>();
-		bool success = false;
-		
-		if(file != "") {
-			if(file.has_suffix(".m3u")) {
-				success = Playlist.parse_paths_from_m3u(lm, file, ref paths, ref stations);
-			}
-			else if(file.has_suffix(".pls")) {
-				success = Playlist.parse_paths_from_pls(lm, file, ref paths, ref stations);
-			}
-			else {
-				success = false;
-				lw.doAlert("Invalid Playlist", "Unrecognized playlist file. Import failed.");
-				return;
-			}
-		}
-		
-		if(success) {
-			if(paths.size > 0) {
-				try {
-					lm.doing_file_operations = true;
-					lm.progress_notification("Importing <b>" + name + "</b> to Library...", 0.0);
-					lw.updateSensitivities();
-					
-					stdout.printf("stv 900\n");
-					Thread.create<void*>( () => {
-						
-						stdout.printf("stv 901\n");
-						var new_songs = new LinkedList<Song>();
-						var not_imported = new LinkedList<string>();
-						stdout.printf("stv 902\n");
-						Playlist p = lm.fo.import_from_playlist_file_info(name, paths, ref new_songs, ref not_imported);
-						stdout.printf("stv 903\n");
-						
-						Idle.add( () => {
-							stdout.printf("stv 904\n");
-							
-							lm.doing_file_operations = false;
-							lm.music_imported(new_songs, not_imported);
-							
-							lm.update_songs(new_songs, false, false);
-							
-							if(p != null) {
-								PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
-								pnw.playlist_saved.connect(playlistNameWindowSaved);
-							}
-							
-							try {
-								Thread.create<void*>(lm.fetch_thread_function, false);
-							}
-							catch(GLib.ThreadError err) {
-								stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
-							}
-							
-							return false;
-						});
-						
-						return null;
-					}, false);
-				}
-				catch(Error err) {
-					stdout.printf("Could not create thread to import playlist: %s\n", err.message);
-				}
-			}
-			if(stations.size > 0) {
-				
-			}
 		}
 	}
 	

@@ -31,10 +31,10 @@ install(FILES icons/128x128/mimetypes/drop-album.svg DESTINATION share/beat-box/
 install(FILES icons/22x22/actions/document-open-recent.svg DESTINATION share/beat-box/icons/hicolor/22x22/actions)
 
 #shuffle and repeat
-install(FILES icons/16x16/status/media-playlist-repeat-active-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-repeat-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
-install(FILES icons/16x16/status/media-playlist-shuffle-active-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
+install(FILES icons/16x16/status/media-playlist-no-repeat-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-shuffle-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
+install(FILES icons/16x16/status/media-playlist-no-shuffle-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 
 #star not star
 install(FILES icons/16x16/status/starred.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
