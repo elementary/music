@@ -189,7 +189,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			network_store_iter = addItem(parent, o, w, music_icon, name, null);
 			return network_store_iter;
 		}
-		else if(name == "Radio Stations" && parent == network_iter) {
+		else if(name == "Internet Radio" && parent == network_iter) {
 			var radio_icon = lm.icons.radio_icon.render (IconSize.MENU, null);
 			network_radio_iter = addItem(parent, o, w, radio_icon, name, null);
 			return network_radio_iter;

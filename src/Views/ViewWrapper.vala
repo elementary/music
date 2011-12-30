@@ -229,10 +229,11 @@ public class BeatBox.ViewWrapper : VBox {
 				errorBox.show();
 				list.hide();
 				albumView.hide();
+				stdout.printf("1\n");
 				
 				return;
 			}
-			else if( !(lm.current_songs().size == sp.get_songs().size && lm.current_songs().contains_all(sp.get_songs())) ) { // not currently playing list and have fetched
+			else if(!list.get_is_current()) { // not currently playing list and have fetched
 				if(songs.size < 10) { // say we could not find similar songs
 					errorBox.show_icon = true;
 					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No similar songs found\n</span>\nBeatBox could not find songs similar to <b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b> by <b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>.\nMake sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches.");
@@ -243,6 +244,7 @@ public class BeatBox.ViewWrapper : VBox {
 					return;
 				}
 				else {
+					stdout.printf("2.5\n");
 					errorBox.hide();
 					
 					sp._base = lm.song_info.song;

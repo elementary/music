@@ -478,7 +478,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.station_ids(), lm.station_setup.sort_column, lm.station_setup.sort_direction, ViewWrapper.Hint.STATION, -1);
-		sideTree.addSideItem(sideTree.network_iter, null, vw, "Radio Stations");
+		sideTree.addSideItem(sideTree.network_iter, null, vw, "Internet Radio");
 		mainViews.pack_start(vw, true, true, 0);
 		
 		if(BeatBox.Beatbox.enableStore) {
@@ -912,22 +912,27 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				((ViewWrapper)w).list.set_as_current_list(1, true);
 			}
 			
-			lm.playing = true;
-			playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
-			lm.player.play();
-			
 			lm.getNext(true);
+			
+			lm.playing = true;
+			playButton.set_stock_id((lm.song_info.song.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
+			lm.player.play();
 		}
 		else {
 			if(lm.playing) {
 				lm.playing = false;
-				lm.player.pause();
+				
+				if(lm.song_info.song.mediatype != 3)
+					lm.player.pause();
+				else
+					lm.stopPlayback();
+				
 				playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 			}
 			else {
 				lm.playing = true;
 				lm.player.play();
-				playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
+				playButton.set_stock_id((lm.song_info.song.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
 			}
 		}
 		

@@ -135,39 +135,42 @@ public class BeatBox.Streamer : GLib.Object {
             Gst.State pending;
             message.parse_state_changed (out oldstate, out newstate,
                                          out pending);
-            stdout.printf ("state changed: %s->%s:%s\n",
+            /*stdout.printf ("state changed: %s->%s:%s\n",
                            oldstate.to_string (), newstate.to_string (),
-                           pending.to_string ());
+                           pending.to_string ());*/
                            
             if(newstate != Gst.State.PLAYING)
 				break;
 			
-			if(pipe.videoStreamCount() > 0) {
-				stdout.printf("turning on video\n");
-				if(lw.viewSelector.get_children().length() != 4) {
-					var viewSelectorStyle = lw.viewSelector.get_style_context ();
-					var view_video_icon = lm.icons.view_video_icon.render (Gtk.IconSize.MENU, viewSelectorStyle);
-					lw.viewSelector.append(new Gtk.Image.from_pixbuf(view_video_icon));
->>>>>>> MERGE-SOURCE
-					lw.viewSelector.selected = 3;
+			Idle.add( () => {
+				if(pipe.videoStreamCount() > 0) {
+					if(lw.viewSelector.get_children().length() != 4) {
+						stdout.printf("turning on video\n");
+						var viewSelectorStyle = lw.viewSelector.get_style_context ();
+						var view_video_icon = lm.icons.view_video_icon.render (Gtk.IconSize.MENU, viewSelectorStyle);
+						lw.viewSelector.append(new Gtk.Image.from_pixbuf(view_video_icon));
+						lw.viewSelector.selected = 3;
+					}
 				}
-			}
-			else {
-				stdout.printf("turning off video\n");
-				if(lw.viewSelector.selected == 3) {
-					lw.viewSelector.selected = 1; // show list
+				else if(getPosition() > 0 && lw.viewSelector.get_children().length() == 4) {
+					stdout.printf("turning off video\n");
+					if(lw.viewSelector.selected == 3) {
+						lw.viewSelector.selected = 1; // show list
+					}
+					
+					if(lw.viewSelector.get_children().length() == 4) {
+						lw.viewSelector.remove(3);
+					}
 				}
 				
-				if(lw.viewSelector.get_children().length() == 4) {
-					lw.viewSelector.remove(3);
-				}
-			}
+				return false;
+			});
 			
 			
 			break;
 		case Gst.MessageType.TAG:
             Gst.TagList tag_list;
-            stdout.printf ("taglist found\n");
+            
             message.parse_tag (out tag_list);
             if(tag_list != null) {
 				if(tag_list.get_tag_size(TAG_TITLE) > 0) {
@@ -175,7 +178,6 @@ public class BeatBox.Streamer : GLib.Object {
 					tag_list.get_string(TAG_TITLE, out title);
 					
 					if(lm.song_info.song.mediatype == 3 && title != "") { // is radio
-						stdout.printf("title: %s\n", title);
 						string[] pieces = title.split("-", 0);
 						
 						if(pieces.length >= 2) {
@@ -188,10 +190,8 @@ public class BeatBox.Streamer : GLib.Object {
 								lw.song_played(lm.song_info.song.rowid, lm.song_info.song.rowid); // pretend as if song changed
 						}
 						else {
-							lm.song_info.song.artist = "Unknown Artist";
-							lm.song_info.song.title = title;
 							// if the title doesn't follow the general title - artist format, probably not a song change and instead an advert
-							lw.updateInfoLabel();
+							lw.topDisplay.set_label_markup(lm.song_info.song.album_artist + "\n" + title);
 						}
 						
 					}
