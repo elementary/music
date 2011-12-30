@@ -198,7 +198,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		music_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		music_model = new MusicTreeModel(lm, get_column_strings(), lm.icons.now_playing_icon);
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
+		music_model = new MusicTreeModel(lm, get_column_strings(), now_playing_icon);
 		music_model.is_current = _is_current;
 		
 		var hPos = this.vadjustment.get_value();
@@ -486,7 +487,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
-		music_model = new MusicTreeModel(lm, get_column_strings(), render_icon("audio-volume-high", IconSize.MENU, null));
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
+		
+		music_model = new MusicTreeModel(lm, get_column_strings(), now_playing_icon);
 		
 		music_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		

@@ -152,21 +152,28 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
+		var music_icon = lm.icons.music_icon.render (IconSize.MENU, null);
+		var podcast_icon = lm.icons.podcast_icon.render (IconSize.MENU, null);
+		var history_icon = lm.icons.history_icon.render (IconSize.MENU, null);
+		var smart_playlist_icon = lm.icons.smart_playlist_icon.render (IconSize.MENU, null);
+	
 		if(name == "Music" && parent == library_iter) {
-			library_music_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
+			library_music_iter = addItem(parent, o, w, music_icon, name, null);
 			return library_music_iter;
 		}
 		else if(name == "Podcasts" && parent == library_iter) {
-			library_podcasts_iter = addItem(parent, o, w, lm.icons.podcast_icon, name, null);
+			library_podcasts_iter = addItem(parent, o, w, podcast_icon, name, null);
 			return library_podcasts_iter;
 		}
 		else if(name == "Audiobooks" && parent == library_iter) {
-			library_audiobooks_iter = addItem(parent, o, w, lm.icons.audiobook_icon, name, null);
+			// FIXME: add icon
+			var audiobook_icon = lm.icons.audiobook_icon.render (IconSize.MENU, null);
+			library_audiobooks_iter = addItem(parent, o, w, audiobook_icon, name, null);
 			return library_audiobooks_iter;
 		}
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
-			
+			// TODO: Install and load these icons using the Icons module
 			if(d.getContentType() == "cdrom")
 				return addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "ipod-new")
@@ -179,23 +186,24 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				return addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
 		}
 		else if(name == "Music Store" && parent == network_iter) {
-			network_store_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
+			network_store_iter = addItem(parent, o, w, music_icon, name, null);
 			return network_store_iter;
 		}
 		else if(name == "Radio Stations" && parent == network_iter) {
-			network_radio_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
+			var radio_icon = lm.icons.radio_icon.render (IconSize.MENU, null);
+			network_radio_iter = addItem(parent, o, w, radio_icon, name, null);
 			return network_radio_iter;
 		}
 		else if(name == "Similar" && parent == playlists_iter) {
-			playlists_similar_iter = addItem(parent, o, w, lm.icons.smart_playlist_icon, name, null);
+			playlists_similar_iter = addItem(parent, o, w, smart_playlist_icon, name, null);
 			return playlists_similar_iter;
 		}
 		else if(name == "Queue" && parent == playlists_iter) {
-			playlists_queue_iter = addItem(parent, o, w, lm.icons.music_icon, name, null);
+			playlists_queue_iter = addItem(parent, o, w, music_icon, name, null);
 			return playlists_queue_iter;
 		}
 		else if(name == "History" && parent == playlists_iter) {
-			playlists_history_iter = addItem(parent, o, w, lm.icons.history_icon, name, null);
+			playlists_history_iter = addItem(parent, o, w, history_icon, name, null);
 			return playlists_history_iter;
 		}
 		else if(o is SmartPlaylist) {
@@ -219,7 +227,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				
 			} while(true);
 			
-			tree.set(item, 0, o, 1, w, 2, true, 3, lm.icons.smart_playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
+			tree.set(item, 0, o, 1, w, 2, true, 3, smart_playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
 			
 			if(visible) {
 				TreeIter? filterItem = convertToFilter(item);
@@ -250,7 +258,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 			} while(true);
 			
-			tree.set(item, 0, o, 1, w, 2, true, 3, lm.icons.playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
+			var playlist_icon = lm.icons.playlist_icon.render (IconSize.MENU, null);
+			tree.set(item, 0, o, 1, w, 2, true, 3, playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
 			if(visible) {
 				TreeIter? filterItem = convertToFilter(item);
 				if(filterItem != null)

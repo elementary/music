@@ -59,8 +59,8 @@ namespace ElementaryWidgets {
 			label.ellipsize = Pango.EllipsizeMode.END;
 			
 			//label.set_markup("<b></b>");
-			
-			cancelButton.set_image(new Image.from_pixbuf(lm.icons.process_stop_icon));
+			var process_stop_icon = lm.icons.process_stop_icon.render (IconSize.MENU, get_style_context());
+			cancelButton.set_image(new Image.from_pixbuf(process_stop_icon));
 			
 			cancelButton.set_relief(Gtk.ReliefStyle.NONE);
 			

@@ -80,8 +80,12 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		loveSong.relief = ReliefStyle.NONE;
 		banSong.relief = ReliefStyle.NONE;
-		loveSong.set_image(new Image.from_pixbuf(lm.icons.lastfm_love_icon));
-		banSong.set_image(new Image.from_pixbuf(lm.icons.lastfm_ban_icon));
+		
+		var lastfm_love_icon = lm.icons.lastfm_love_icon.render (IconSize.MENU, null);
+		var lastfm_ban_icon = lm.icons.lastfm_ban_icon.render (IconSize.MENU, null);
+		
+		loveSong.set_image(new Image.from_pixbuf(lastfm_love_icon));
+		banSong.set_image(new Image.from_pixbuf(lastfm_ban_icon));
 		
 		HBox padding = new HBox(false, 10);
 		VBox content = new VBox(false, 0);

@@ -1,4 +1,5 @@
 using Gst;
+using Gtk;
 
 public class BeatBox.Streamer : GLib.Object {
 	LibraryManager lm;
@@ -7,7 +8,7 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	InstallGstreamerPluginsDialog dialog;
 	
-	 /** signals **/
+	/** signals **/
 	public signal void end_of_stream();
 	public signal void current_position_update(int64 position);
 	public signal void song_not_found();
@@ -128,7 +129,7 @@ public class BeatBox.Streamer : GLib.Object {
 		case Gst.MessageType.EOS:
 			end_of_stream();
 			break;
-		case MessageType.STATE_CHANGED:
+		case Gst.MessageType.STATE_CHANGED:
 			Gst.State oldstate;
             Gst.State newstate;
             Gst.State pending;
@@ -144,7 +145,10 @@ public class BeatBox.Streamer : GLib.Object {
 			if(pipe.videoStreamCount() > 0) {
 				stdout.printf("turning on video\n");
 				if(lw.viewSelector.get_children().length() != 4) {
-					lw.viewSelector.append(new Gtk.Image.from_pixbuf(lm.icons.view_video_icon));
+					var viewSelectorStyle = lw.viewSelector.get_style_context ();
+					var view_video_icon = lm.icons.view_video_icon.render (Gtk.IconSize.MENU, viewSelectorStyle);
+					lw.viewSelector.append(new Gtk.Image.from_pixbuf(view_video_icon));
+>>>>>>> MERGE-SOURCE
 					lw.viewSelector.selected = 3;
 				}
 			}
@@ -161,7 +165,7 @@ public class BeatBox.Streamer : GLib.Object {
 			
 			
 			break;
-		case MessageType.TAG:
+		case Gst.MessageType.TAG:
             Gst.TagList tag_list;
             stdout.printf ("taglist found\n");
             message.parse_tag (out tag_list);

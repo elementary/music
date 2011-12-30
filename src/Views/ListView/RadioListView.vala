@@ -209,7 +209,8 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		radio_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		radio_model = new RadioTreeModel(lm, get_column_strings(), lm.icons.now_playing_icon);
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
+		radio_model = new RadioTreeModel(lm, get_column_strings(), now_playing_icon);
 		radio_model.is_current = _is_current;
 		
 		var hPos = this.vadjustment.get_value();
@@ -373,7 +374,8 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
-		radio_model = new RadioTreeModel(lm, get_column_strings(), lm.icons.now_playing_icon);
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
+		radio_model = new RadioTreeModel(lm, get_column_strings(), now_playing_icon);
 		
 		radio_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
