@@ -74,6 +74,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public bool playing;
 	public Repeat repeat;
 	public Shuffle shuffle;
+	public int next_gapless_id;
 	
 	private string temp_add_folder;
 	private LinkedList<string> temp_add_files;
@@ -1184,6 +1185,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 					_current.clear();
 					_current_shuffled_index = 0;
 					_current_index = 0;
+					
+					if(play)
+						stopPlayback();
+					
 					return 0;
 				}
 				
@@ -1226,7 +1231,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 				if(repeat == Repeat.ALL)
 					_current_index = 0;
 				else {
-					stopPlayback();
+					if(play)
+						stopPlayback();
 					return 0;
 				}
 				
@@ -1379,10 +1385,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// actually play the song asap
-		if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://") && !song_from_id(id).file.contains("http://")) // normal file
-			player.setURI("file://" + song_from_id(id).file);
-		else
-			player.setURI(song_from_id(id).file); // probably cdda
+		if(next_gapless_id == 0) {
+			if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://") && !song_from_id(id).file.contains("http://")) // normal file
+				player.setURI("file://" + song_from_id(id).file);
+			else
+				player.setURI(song_from_id(id).file); // probably cdda
+		}
+		else {
+			next_gapless_id = 0;
+		}
 		
 		//pause if paused
 		if(!playing)
@@ -1417,32 +1428,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 				if((player.getDuration()/1000000000) > 1) {
 					song_info.song.length = (int)(player.getDuration()/1000000000);
 					update_song(song_info.song, true, false);
-				}
-				
-				// if it is a video, show the video option and select it
-				Gst.Discoverer disc = new Gst.Discoverer((Gst.ClockTime)(10*Gst.SECOND));
-				Gst.DiscovererInfo info = null;
-				try {
-					var uri = (!song_info.song.file.has_prefix("http://")) ? "file://" + song_info.song.file : song_info.song.file;
-					info = disc.discover_uri(uri);
-				}
-				catch(Error err) {
-					stdout.printf("Error discovering file %s: %s\n", song_info.song.file, err.message);
-				}
-				if(info != null && info.get_video_streams().length() > 0) {
-					if(lw.viewSelector.get_children().length() != 4) {
-						lw.viewSelector.append(new Image.from_pixbuf(icons.view_video_icon));
-						lw.viewSelector.selected = 3;
-					}
-				}
-				else {
-					if(lw.viewSelector.selected == 3) {
-						lw.viewSelector.selected = 1; // show list
-					}
-					
-					if(lw.viewSelector.get_children().length() == 4) {
-						lw.viewSelector.remove(3);
-					}
 				}
 			}
 			

@@ -925,7 +925,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			lm.update_song(lm.song_info.song, false, false);
 		}
 		
-		int next_id = lm.getNext(true);
+		int next_id;
+		if(lm.next_gapless_id != 0) {
+			next_id = lm.next_gapless_id;
+			lm.playSong(lm.next_gapless_id);
+		}
+		else
+			next_id = lm.getNext(true);
 		
 		/* test to stop playback/reached end */
 		if(next_id == 0) {

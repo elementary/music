@@ -78,7 +78,10 @@ public class BeatBox.FileNotFoundDialog : Window {
 		removeSong.clicked.connect(removeSongClicked);
 		locateSong.clicked.connect(locateSongClicked);
 		rescanLibrary.clicked.connect(rescanLibraryClicked);
-		doNothing.clicked.connect( () => { this.destroy(); });
+		doNothing.clicked.connect( () => { 
+			lm.getNext(true);
+			this.destroy(); 
+		});
 		
 		lm.file_operations_started.connect(file_operations_started);
 		lm.file_operations_done.connect(file_operations_done);
@@ -112,6 +115,20 @@ public class BeatBox.FileNotFoundDialog : Window {
 								  FileChooserAction.OPEN,
 								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+		
+		// try and help user by setting a sane default folder
+		var invalid_file = File.new_for_path(lm.song_from_id(song_id).file);
+		
+		if(invalid_file.get_parent().query_exists())
+			file_chooser.set_current_folder(invalid_file.get_parent().get_path());
+		else if(invalid_file.get_parent().get_parent().query_exists() && 
+		invalid_file.get_parent().get_parent().get_path().contains(lm.settings.getMusicFolder()))
+			file_chooser.set_current_folder(invalid_file.get_parent().get_parent().get_path());
+		else if(File.new_for_path(lm.settings.getMusicFolder()).query_exists())
+			file_chooser.set_current_folder(lm.settings.getMusicFolder());
+		else
+			file_chooser.set_current_folder(Environment.get_home_dir());
+		
 		if (file_chooser.run () == ResponseType.ACCEPT) {
 			file = file_chooser.get_filename();
 		}
@@ -120,6 +137,8 @@ public class BeatBox.FileNotFoundDialog : Window {
 		
 		if(file != "") {
 			lm.song_from_id(song_id).file = file;
+			lm.update_song(lm.song_from_id(song_id), false, false);
+			lm.getNext(true);
 			
 			this.destroy();
 		}
@@ -127,6 +146,7 @@ public class BeatBox.FileNotFoundDialog : Window {
 	
 	public void rescanLibraryClicked() {
 		lw.fileRescanMusicFolderClick();
+		lm.getNext(true);
 		
 		this.destroy();
 	}
