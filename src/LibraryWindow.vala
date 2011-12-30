@@ -176,7 +176,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		set_title("BeatBox");
 		
 		// set the icon
-		set_icon(lm.icons.beatbox_icon.render (IconSize.DIALOG, null));
+		set_icon(lm.icons.beatbox_icon.render (IconSize.MENU, null));
 		
 		/* Initialize all components */
 		verticalBox = new VBox(false, 0);
@@ -218,6 +218,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		EventBox statusEventBox = new EventBox();
 		statusEventBox.add(statusBar);
 		
+		// Set style for theming
+		statusEventBox.get_style_context().add_class ("beatbox-statusbar");
+		
 		Gdk.Color c = Gdk.Color();
 		Gdk.Color.parse("#FFFFFF", out c);
 		statusEventBox.modify_bg(Gtk.StateType.NORMAL, sideTree.style.base[Gtk.StateType.NORMAL]);
@@ -231,7 +234,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		shuffleChooser = new SimpleOptionChooser(shuffle_on_icon, shuffle_off_icon);
 		repeatChooser = new SimpleOptionChooser(repeat_on_icon, repeat_off_icon);
-		infoPanelChooser = new SimpleOptionChooser(lm.icons.info_icon.render(null, null), lm.icons.info_icon.render(null, null));
+		infoPanelChooser = new SimpleOptionChooser(lm.icons.info_icon.render(IconSize.MENU, null), lm.icons.info_icon.render(IconSize.MENU, null));
 		
 		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
@@ -332,7 +335,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// for consistency
 		topControls.set_size_request(-1, 45);
-		viewSelector.set_size_request(-1, 35);
 		
 		viewSelector.get_style_context().add_class("raised");
 		topControls.get_style_context().add_class("primary-toolbar");

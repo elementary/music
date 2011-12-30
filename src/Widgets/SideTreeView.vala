@@ -134,7 +134,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
 		var music_icon = lm.icons.music_icon.render (IconSize.MENU, null);
 		var podcast_icon = lm.icons.podcast_icon.render (IconSize.MENU, null);
-		var audiobook_icon = lm.icons.audiobook_icon.render (IconSize.MENU, null);
 		var history_icon = lm.icons.history_icon.render (IconSize.MENU, null);
 		var smart_playlist_icon = lm.icons.smart_playlist_icon.render (IconSize.MENU, null);
 		
@@ -147,6 +146,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return library_podcasts_iter;
 		}
 		else if(name == "Audiobooks" && parent == library_iter) {
+			var audiobook_icon = lm.icons.audiobook_icon.render (IconSize.MENU, null);
 			library_audiobooks_iter = addItem(parent, o, w, audiobook_icon, name, null);
 			return library_audiobooks_iter;
 		}
@@ -233,7 +233,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 			} while(true);
 			
-			tree.set(item, 0, o, 1, w, 2, true, 3, lm.icons.playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
+			var playlist_icon = lm.icons.playlist_icon.render (IconSize.MENU, null);
+			
+			tree.set(item, 0, o, 1, w, 2, true, 3, playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
 			if(visible) {
 				TreeIter? filterItem = convertToFilter(item);
 				if(filterItem != null)
