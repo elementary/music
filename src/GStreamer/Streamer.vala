@@ -204,9 +204,8 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	void about_to_finish() {
 		int i = lm.getNext(false);
-		if(lm.song_from_id(i) != null) {
-			Song s = lm.song_from_id(i);
-			
+		Song s = lm.song_from_id(i);
+		if(s != null && s.mediatype != 3) { // don't do this with radio stations
 			if(!s.isPreview && !s.file.contains("cdda://") && !s.file.contains("http://")) // normal file
 				pipe.playbin.uri = "file://" + s.file;
 			else
