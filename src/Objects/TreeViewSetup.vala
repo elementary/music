@@ -29,6 +29,7 @@ using Gtk;
 public class BeatBox.TreeViewSetup : GLib.Object {
 	public static const int MUSIC_COLUMN_COUNT = 18;
 	public static const int PODCAST_COLUMN_COUNT = 11;
+	public static const int RADIO_COLUMN_COUNT = 6;
 	
 	public ViewWrapper.Hint hint;
 	private string _sort_column; // Artist, Album
@@ -43,8 +44,82 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 		_columns = new LinkedList<TreeViewColumn>();
 		
 		/* initial column state */
-		if(hint != ViewWrapper.Hint.PODCAST  && hint != ViewWrapper.Hint.DEVICE_PODCAST &&
-		hint != ViewWrapper.Hint.AUDIOBOOK && hint != ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+		if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "id", 
+											"fixed_width", 10,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", " ", 
+											"fixed_width", 24,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Episode", 
+											"fixed_width", 70,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Name", 
+											"fixed_width", 220,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Length", 
+											"fixed_width", 75,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Artist", 
+											"fixed_width", 110,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Date", 
+											"fixed_width", 70,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Category", 
+											"fixed_width", 100,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Comment", 
+											"fixed_width", 70,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Rating", 
+											"fixed_width", 90,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Pulser", 
+											"fixed_width", 40,
+											"visible", false));
+		}
+		else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+			
+		}
+		else if(hint == ViewWrapper.Hint.STATION) {
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "id", 
+											"fixed_width", 10,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", " ", 
+											"fixed_width", 24,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Station", 
+											"fixed_width", 300,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Genre", 
+											"fixed_width", 100,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Rating", 
+											"fixed_width", 90,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Pulser", 
+											"fixed_width", 40,
+											"visible", false));
+		}
+		else {
 			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", "id", 
 											"fixed_width", 10,
@@ -118,55 +193,6 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 											"fixed_width", 40,
 											"visible", false));
 		}
-		else if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "id", 
-											"fixed_width", 10,
-											"visible", false));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", " ", 
-											"fixed_width", 24,
-											"visible", true));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "Episode", 
-											"fixed_width", 70,
-											"visible", false));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "Name", 
-											"fixed_width", 220,
-											"visible", true));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "Length", 
-											"fixed_width", 75,
-											"visible", true));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "Artist", 
-											"fixed_width", 110,
-											"visible", true));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "Date", 
-											"fixed_width", 70,
-											"visible", true));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "Category", 
-											"fixed_width", 100,
-											"visible", false));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "Comment", 
-											"fixed_width", 70,
-											"visible", true));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "Rating", 
-											"fixed_width", 90,
-											"visible", false));
-			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
-											"title", "Pulser", 
-											"fixed_width", 40,
-											"visible", false));
-		}
-		else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
-			
-		}
 		
 		
 		for(int index = 0; index < _columns.size; ++index) {
@@ -182,15 +208,17 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 				CellRendererSpinner crspin = new CellRendererSpinner();
 				_columns.get(index).pack_start(crspin, true);
 				
-				if(hint != ViewWrapper.Hint.PODCAST  && hint != ViewWrapper.Hint.DEVICE_PODCAST &&
-				hint != ViewWrapper.Hint.AUDIOBOOK && hint != ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
-					_columns.get(index).add_attribute(crspin, "pulse", 17);
-				}
-				else if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
+				if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 					_columns.get(index).add_attribute(crspin, "pulse", 10);
+				}
+				else if(hint == ViewWrapper.Hint.STATION) {
+					_columns.get(index).add_attribute(crspin, "pulse", 5);
 				}
 				else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
 					_columns.get(index).add_attribute(crspin, "pulse", 10);
+				}
+				else {
+					_columns.get(index).add_attribute(crspin, "pulse", 17);
 				}
 				
 				crspin.active = true;
@@ -270,15 +298,17 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 				crSpin.active = true;
 				tvc.pack_start(crSpin, true);
 				
-				if(hint != ViewWrapper.Hint.PODCAST  && hint != ViewWrapper.Hint.DEVICE_PODCAST &&
-				hint != ViewWrapper.Hint.AUDIOBOOK && hint != ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
-					tvc.add_attribute(crSpin, "pulse", 17);
-				}
-				else if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
+				if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 					tvc.add_attribute(crSpin, "pulse", 10);
+				}
+				else if(hint == ViewWrapper.Hint.STATION) {
+					tvc.add_attribute(crSpin, "pulse", 5);
 				}
 				else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
 					tvc.add_attribute(crSpin, "pulse", 10);
+				}
+				else {
+					tvc.add_attribute(crSpin, "pulse", 17);
 				}
 			}
 			else {

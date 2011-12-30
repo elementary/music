@@ -403,6 +403,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				
 				if(p.name == "autosaved_podcast")
 					p.tvs.hint = ViewWrapper.Hint.PODCAST;
+				else if(p.name == "autosaved_station")
+					p.tvs.hint = ViewWrapper.Hint.STATION;
 				
 				p.tvs.import_columns(results.fetch_string(5));
 				

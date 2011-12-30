@@ -214,16 +214,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusBar = new HBox(false, 0);
 		statusBarLabel = new Label("");
 		
-		// make the background white
-		EventBox statusEventBox = new EventBox();
-		statusEventBox.add(statusBar);
-		
-		// Set style for theming
-		statusEventBox.get_style_context().add_class ("beatbox-statusbar");
-		
-		Gdk.Color c = Gdk.Color();
-		Gdk.Color.parse("#FFFFFF", out c);
-		statusEventBox.modify_bg(Gtk.StateType.NORMAL, sideTree.style.base[Gtk.StateType.NORMAL]);
 		
 		var statusBarStyle = statusBar.get_style_context ();
 
@@ -279,7 +269,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		editEqualizer.activate.connect(editEqualizerClick);
 		editPreferences.activate.connect(editPreferencesClick);
-
+		
+		// make the background white
+		EventBox statusEventBox = new EventBox();
+		statusEventBox.add(statusBar);
+		
+		Gdk.Color c = Gdk.Color();
+		Gdk.Color.parse("#FFFFFF", out c);
+		statusEventBox.modify_bg(Gtk.StateType.NORMAL, sideTree.style.base[Gtk.StateType.NORMAL]);
+		
 		repeatChooser.appendItem("Off");
 		repeatChooser.appendItem("Song");
 		repeatChooser.appendItem("Album");
@@ -312,8 +310,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		searchFieldBin.add(searchField);
 		
 		topDisplayBin.set_expand(true);
-		
-		var viewSelectorStyle = viewSelector.get_style_context ();
+				var viewSelectorStyle = viewSelector.get_style_context ();
 		
 		var view_column_icon = lm.icons.view_column_icon.render (IconSize.MENU, viewSelectorStyle);
 		var view_details_icon = lm.icons.view_details_icon.render (IconSize.MENU, viewSelectorStyle);
@@ -323,7 +320,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector.append(new Image.from_pixbuf(view_icons_icon));
 		viewSelector.append(new Image.from_pixbuf(view_details_icon));
 		viewSelector.append(new Image.from_pixbuf(view_column_icon));
-		viewSelector.append(new Image.from_pixbuf(view_video_icon));
+		//viewSelector.append(new Image.from_pixbuf(view_video_icon));
+		
 		
 		topControls.insert(previousButton, 0);
 		topControls.insert(playButton, 1);
@@ -335,11 +333,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// for consistency
 		topControls.set_size_request(-1, 45);
+		//viewSelector.set_size_request(-1, 20);
 		
 		viewSelector.get_style_context().add_class("raised");
 		topControls.get_style_context().add_class("primary-toolbar");
 		
-		//set the style for elementary theming
+		//set the name for elementary theming
+		//sourcesToSongs.name = "SidebarHandleLeft";
+		//sideTree.name = "SidebarContent";
 		sourcesToSongs.get_style_context().add_class("sidebar-pane-separator");
 		sideTree.get_style_context().add_class("sidebar");
 		
@@ -394,9 +395,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// nowthat everything is added, resize to proper height
 		resize(settings.getWindowWidth(), this.default_height);
+		viewSelector.selected = settings.getViewMode();
 		
 		sideTree.resetView();
-		viewSelector.selected = settings.getViewMode();
 		
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
@@ -475,6 +476,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		vw = new ViewWrapper(lm, this, lm.podcast_ids(), lm.podcast_setup.sort_column, lm.podcast_setup.sort_direction, ViewWrapper.Hint.PODCAST, -1);
 		sideTree.addSideItem(sideTree.library_iter, null, vw, "Podcasts");
+		mainViews.pack_start(vw, true, true, 0);
+		
+		vw = new ViewWrapper(lm, this, lm.station_ids(), lm.station_setup.sort_column, lm.station_setup.sort_direction, ViewWrapper.Hint.STATION, -1);
+		sideTree.addSideItem(sideTree.network_iter, null, vw, "Radio Stations");
 		mainViews.pack_start(vw, true, true, 0);
 		
 		if(BeatBox.Beatbox.enableStore) {
@@ -565,6 +570,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		if(doingOps)
 			topDisplay.show_progressbar();
+		else if(!nullSong && lm.song_info.song.mediatype == 3) {
+			topDisplay.hide_scale_and_progressbar();
+		}
 		else
 			topDisplay.show_scale();
 		
@@ -655,13 +663,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			return;
 		}
 		
+		string beg = "";
+		if(lm.song_info.song.mediatype == 3) // radio
+			beg = "<b>" + lm.song_info.song.album_artist.replace("\n", "") + "</b>\n";
+		
 		//set the title
 		Song s = lm.song_info.song;
 		var title = "<b>" + s.title.replace("&", "&amp;") + "</b>";
 		var artist = ((s.artist != "" && s.artist != "Unknown Artist") ? (" by " + "<b>" + s.artist.replace("&", "&amp;") + "</b>") : "");
 		var album = ((s.album != "" && s.album != "Unknown Album") ? (" on " + "<b>" + s.album.replace("&", "&amp;") + "</b>") : "");
 		
-		var song_label = title + artist + album;
+		var song_label = beg + title + artist + album;
 		topDisplay.set_label_markup(song_label);
 	}
 	
@@ -720,6 +732,25 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		updateSensitivities();
+		
+		// if radio, we can't depend on current_position_update. do that stuff now.
+		if(lm.song_info.song.mediatype == 3) {
+			queriedlastfm = true;
+			similarSongs.queryForSimilar(lm.song_info.song);
+			
+			try {
+				Thread.create<void*>(lastfm_track_thread_function, false);
+				Thread.create<void*>(lastfm_album_thread_function, false);
+				Thread.create<void*>(lastfm_artist_thread_function, false);
+				Thread.create<void*>(lastfm_update_nowplaying_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
+			}
+			
+			// always show notifications for the radio, since user likely does not know song
+			mkl.showNotification(lm.song_info.song.rowid);
+		}
 	}
 	
 	public virtual void playback_stopped(int was_playing) {
@@ -968,6 +999,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("Stopping playback\n");
 		lm.settings.setLastSongPosition((int)((double)lm.player.getPosition()/1000000000));
 		lm.player.pause();
+		
+		stdout.printf("TODO: Clean up play queue\n");
 	}
 	
 	public virtual void fileImportMusicClick() {
@@ -1132,11 +1165,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void setMusicFolder(string folder) {
-		stdout.printf("SETTING MUSIC FOLDER TO %s\n", folder);
-		topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b>");
-		topDisplay.show_progressbar();
-		lm.set_music_folder(folder);
-		updateSensitivities();
+		if(lm.doing_file_operations)
+			return;
+		
+		if(lm.song_count() > 0 || lm.playlist_count() > 0) {
+			var smfc = new SetMusicFolderConfirmation(lm, this, folder);
+			smfc.finished.connect( (cont) => {
+				if(cont) {
+					lm.set_music_folder(folder);
+				}
+			});
+		}
+		else {
+			lm.set_music_folder(folder);
+		}
 	}
 	
 	public virtual void end_of_stream() {

@@ -23,18 +23,18 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
+public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	public BeatBox.LibraryManager lm;
 	public BeatBox.LibraryWindow lw;
 	TreeView view;
-	MusicTreeModel music_model;
+	RadioTreeModel radio_model;
 	
 	Collection<int> _show_next; // these are populated if necessary when user opens this view.
 	//private Collection<int> _songs;
 	Collection<int> _showing_songs;
 	LinkedList<string> _columns;
 	
-	int relative_id;// if playlist, smart playlist, etc. 
+	int relative_id;// if playlist, smart playlist, etc.
 	ViewWrapper.Hint hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	string sort_column;
 	SortType sort_direction;
@@ -55,21 +55,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	
 	//for header column chooser
 	Menu columnChooserMenu;
-	CheckMenuItem columnNumber;
-	CheckMenuItem columnTrack;
-	CheckMenuItem columnTitle;
-	CheckMenuItem columnLength;
-	CheckMenuItem columnArtist;
-	CheckMenuItem columnAlbum;
-	CheckMenuItem columnGenre;
-	CheckMenuItem columnYear;
-	CheckMenuItem columnBitRate;
 	CheckMenuItem columnRating;
-	CheckMenuItem columnPlayCount;
-	CheckMenuItem columnSkipCount;
-	CheckMenuItem columnDateAdded;
-	CheckMenuItem columnLastPlayed;
-	CheckMenuItem columnBPM;
+	CheckMenuItem columnStation;
+	CheckMenuItem columnGenre;
 	
 	//for song list right click
 	Menu songMenuActionMenu;
@@ -82,6 +70,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	//Menu songRateSongMenu;
 	RatingWidgetMenu rating_item;
 	MenuItem songRemove;
+	MenuItem songSaveLocally;
 	
 	Gdk.Pixbuf starred;
 	Gdk.Pixbuf not_starred;
@@ -100,20 +89,40 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	CellRendererText cellBitrate;
 	
 	
-	//public signal void view_being_searched(string key);
-	
-	/*public bool is_current {
-		get { return _is_current; }
-		set {
-			_is_current = value;
-			music_model.is_current = value;
-		}
-	}*/
+	public RadioListView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
+		lm = lmm;
+		lw = lww;
+		
+		//_songs = new LinkedList<int>();
+		_showing_songs = new LinkedList<int>();
+		_columns = new LinkedList<string>();
+		
+		last_search = "";
+		timeout_search = new LinkedList<string>();
+		showing_all = true;
+		removing_songs = false;
+		
+		sort_column = sort;
+		sort_direction = dir;
+		hint = the_hint;
+		playlistSaveTimeoutAdded = false;
+		relative_id = id;
+		
+		cellHelper = new CellDataFunctionHelper(lm);
+		
+		lm.songs_updated.connect(songs_updated);
+		lm.songs_removed.connect(songs_removed);
+		lm.song_played.connect(song_played);
+		lm.playback_stopped.connect(playback_stopped);
+		lm.current_cleared.connect(current_cleared);
+		
+		buildUI();
+	}
 	
 	/* interface functions */
 	public void set_is_current(bool val) {
 		_is_current = val;
-		music_model.is_current = val;
+		radio_model.is_current = val;
 	}
 	
 	public bool get_is_current() {
@@ -150,7 +159,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	public Collection<int> get_songs() {
-		return music_model.getOrderedSongs();
+		return radio_model.getOrderedSongs();
 	}
 	
 	public void set_as_current_list(int song_id, bool is_initial) {
@@ -158,7 +167,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		lm.clearCurrent();
 		int i = 0;
-		foreach(int id in music_model.getOrderedSongs()) {
+		foreach(int id in radio_model.getOrderedSongs()) {
 			lm.addToCurrent(id);
 			
 			if(!shuffle && lm.song_info.song != null && lm.song_info.song.rowid == id && song_id == 0)
@@ -172,7 +181,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		set_is_current(true);
 		
 		if(lm.song_info.song != null)
-			music_model.updateSong(lm.song_info.song.rowid, get_is_current());
+			radio_model.updateSong(lm.song_info.song.rowid, get_is_current());
 		
 		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
@@ -189,82 +198,59 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			return;
 		}
 		
-		_showing_songs = _show_next;
+		if(_show_next != _showing_songs) {
+			_showing_songs = _show_next;
+		}
 		
 		view.freeze_child_notify();
 		view.set_model(null);
 		
 		int sort_col;
 		SortType sort_dir;
-		music_model.get_sort_column_id(out sort_col, out sort_dir);
+		radio_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context ());
-		music_model = new MusicTreeModel(lm, get_column_strings(), now_playing_icon);
-		music_model.is_current = _is_current;
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context());
+		radio_model = new RadioTreeModel(lm, get_column_strings(), now_playing_icon);
+		radio_model.is_current = _is_current;
 		
 		var hPos = this.vadjustment.get_value();
 		
-		music_model.append_songs(_showing_songs, false);
+		radio_model.append_songs(_showing_songs, false);
 		
-		music_model.set_sort_column_id(sort_col, sort_dir);
+		radio_model.set_sort_column_id(sort_col, sort_dir);
 		
 		if(lm.song_info.song != null)
-			music_model.updateSong(lm.song_info.song.rowid, get_is_current());
+			radio_model.updateSong(lm.song_info.song.rowid, get_is_current());
 		
-		view.set_model(music_model);
+		view.set_model(radio_model);
 		view.thaw_child_notify();
 		
 		if(get_is_current() && lm.song_info.song != null)
 			scrollToCurrent();
-		
-		// FIXME: assertion `gtk_widget_get_realized (GTK_WIDGET (tree_view))' failed
-		//        PLEASE NOTE THAT THE WIDGET MUST BE REALIZED BEFORE USING scroll_to_point() !
-		
-		//else
-		//	this.view.scroll_to_point(0, (int)hPos);
+		else
+			this.view.scroll_to_point(0, (int)hPos);
 		
 		set_statusbar_text();
 		
+		// just because a user searches, doesn't mean we want to update the playing list
 		/*if(get_is_current())
-			set_as_current_list(0);*/
+			set_as_current_list(0, false);*/
 	}
 	
 	public void set_statusbar_text() {
 		uint count = 0;
-		uint total_time = 0;
-		uint total_mbs = 0;
 		
 		foreach(int id in _showing_songs) {
-			if(lm.song_ids().contains(id)) {
+			if(lm.song_ids().contains(id))
 				++count;
-				total_time += lm.song_from_id(id).length;
-				total_mbs += lm.song_from_id(id).file_size;
-			}
 		}
 		
-		string fancy = "";
-		if(total_time < 3600) { // less than 1 hour show in minute units
-			fancy = (total_time/60).to_string() + " minutes";
-		}
-		else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
-			fancy = (total_time/3600).to_string() + " hours";
-		}
-		else { // units in days
-			fancy = (total_time/(24 * 3600)).to_string() + " days";
-		}
-		
-		string fancy_size = "";
-		if(total_mbs < 1000)
-			fancy_size = ((float)(total_mbs)).to_string() + " MB";
-		else 
-			fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
-		
-		lw.set_statusbar_text(count.to_string() + " songs, " + fancy + ", " + fancy_size);
+		lw.set_statusbar_text(count.to_string() + " stations");
 	}
 	
 	/* music tree view specific functions */
 	public Collection<int> get_showing_songs() {
-		return music_model.getOrderedSongs();
+		return radio_model.getOrderedSongs();
 	}
 	
 	public LinkedList<TreeViewColumn> get_columns() {
@@ -285,74 +271,13 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		return rv;
 	}
 	
-	/**
-	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
-	 */
-	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
-		lm = lmm;
-		lw = lww;
-		
-		//_songs = new LinkedList<int>();
-		_showing_songs = new LinkedList<int>();
-		_columns = new LinkedList<string>();
-		
-		last_search = "";
-		timeout_search = new LinkedList<string>();
-		showing_all = true;
-		removing_songs = false;
-		
-		sort_column = sort;
-		sort_direction = dir;
-		hint = the_hint;
-		playlistSaveTimeoutAdded = false;
-		relative_id = id;
-		
-		cellHelper = new CellDataFunctionHelper(lm);
-		
-		lm.songs_updated.connect(songs_updated);
-		lm.songs_removed.connect(songs_removed);
-		lm.song_played.connect(song_played);
-		lm.playback_stopped.connect(playback_stopped);
-		lm.current_cleared.connect(current_cleared);
-		
-		buildUI();
-	}
-	
 	public void set_id(int id) {
 		relative_id = id;
 	}
 	
 	void updateSensitivities() {
-		if(get_hint() == ViewWrapper.Hint.MUSIC) {
-			songRemove.set_sensitive(true);
-			songRemove.set_label("Remove from Library");
-			columnNumber.set_active(false);
-			columnNumber.set_visible(false);
-		}
-		else if(get_hint() == ViewWrapper.Hint.SIMILAR) {
-			songRemove.set_sensitive(false);
-		}
-		else if(get_hint() == ViewWrapper.Hint.QUEUE) {
-			songRemove.set_sensitive(true);
-			songRemove.set_label("Remove from Queue");
-			songMenuQueue.set_sensitive(false);
-		}
-		else if(get_hint() == ViewWrapper.Hint.HISTORY) {
-			songRemove.set_sensitive(false);
-		}
-		else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-			songRemove.set_sensitive(true);
-		}
-		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
-			songRemove.set_sensitive(false);
-		}
-		else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO || get_hint() == ViewWrapper.Hint.DEVICE_AUDIOBOOK || get_hint() == ViewWrapper.Hint.DEVICE_PODCAST) {
-			songRemove.set_sensitive(false);
-			songRemove.set_label("TODO: Remove from device");
-		}
-		else {
-			songRemove.set_sensitive(false);
-		}
+		songRemove.set_sensitive(true);
+		songRemove.set_label("Remove Station");
 	}
 	
 	public void buildUI() {
@@ -383,22 +308,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		LinkedList<TreeViewColumn> to_use = new LinkedList<TreeViewColumn>();
 		LinkedList<TreeViewColumn> originalOrder = new LinkedList<TreeViewColumn>();
 		LinkedList<string> correctStringOrder = new LinkedList<string>();
-		
-		if(get_hint() == ViewWrapper.Hint.MUSIC)
-			to_use = lm.music_setup.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.SIMILAR)
-			to_use = lm.similar_setup.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.QUEUE)
-			to_use = lm.queue_setup.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.HISTORY)
-			to_use = lm.history_setup.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.PLAYLIST)
-			to_use = lm.playlist_from_id(relative_id).tvs.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)
-			to_use = lm.smart_playlist_from_id(relative_id).tvs.get_columns();
-		else {
-			to_use = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, get_hint()).get_columns();
-		}
+		to_use = lm.station_setup.get_columns();
 		
 		/* put them in the order for treemodel */
 		foreach(var tvc in to_use) {
@@ -409,38 +319,15 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		int index = 0;
 		foreach(TreeViewColumn tvc in originalOrder) {
 			if(!(tvc.title == " " || tvc.title == "id")) {
-				if(tvc.title == "Bitrate")
-					view.insert_column_with_data_func(-1, tvc.title, cellBitrate, cellHelper.bitrateTreeViewFiller);
-				else if(tvc.title == "Length")
-					view.insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.lengthTreeViewFiller);
-				else if(tvc.title == "Date Added")
-					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
-				else if(tvc.title == "Last Played")
-					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
-				else if(tvc.title == "Rating")
+				if(tvc.title == "Rating")
 					view.insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
-				else if(tvc.title == "Year")
-					view.insert_column_with_data_func(-1, tvc.title, cellYear, cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "#")
-					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "Track")
-					view.insert_column_with_data_func(-1, tvc.title, cellTrack, cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "Plays")
-					view.insert_column_with_data_func(-1, tvc.title, cellPlays, cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "Skips")
-					view.insert_column_with_data_func(-1, tvc.title, cellSkips, cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "Title")
-					view.insert_column_with_data_func(-1, tvc.title, cellTitle, cellHelper.stringTreeViewFiller);
-				else if(tvc.title == "Artist")
-					view.insert_column_with_data_func(-1, tvc.title, cellArtist, cellHelper.stringTreeViewFiller);
-				else if(tvc.title == "Album")
-					view.insert_column_with_data_func(-1, tvc.title, cellAlbum, cellHelper.stringTreeViewFiller);
+				else if(tvc.title == "Station")
+					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Genre")
-					view.insert_column_with_data_func(-1, tvc.title, cellGenre, cellHelper.stringTreeViewFiller);
-				else if(tvc.title == "BPM")
-					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
-				else
+					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+				else {
 					view.insert_column(tvc, index);
+				}
 				
 				
 				view.get_column(index).resizable = true;
@@ -487,16 +374,16 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
-		music_model = new MusicTreeModel(lm, get_column_strings(), render_icon("audio-volume-high", IconSize.MENU, null));
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context());
+		radio_model = new RadioTreeModel(lm, get_column_strings(), now_playing_icon);
 		
-		music_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
+		radio_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
-		view.set_model(music_model);
+		view.set_model(radio_model);
 		view.set_headers_clickable(true);
 		view.set_fixed_height_mode(true);
 		view.rules_hint = true;
 		view.set_reorderable(false);
-		//view.enable_grid_lines = TreeViewGridLines.VERTICAL; // will require special theming to work properly
 		
 		view.row_activated.connect(viewDoubleClick);
 		view.button_press_event.connect(viewClick);
@@ -515,83 +402,31 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		// column chooser menu
 		columnChooserMenu = new Menu();
-		columnNumber = new CheckMenuItem.with_label("#");
-		columnTrack = new CheckMenuItem.with_label("Track");
-		columnTitle = new CheckMenuItem.with_label("Title");
-		columnLength = new CheckMenuItem.with_label("Length");
-		columnArtist = new CheckMenuItem.with_label("Artist");
-		columnAlbum = new CheckMenuItem.with_label("Album");
+		columnStation = new CheckMenuItem.with_label("Station");
 		columnGenre = new CheckMenuItem.with_label("Genre");
-		columnYear = new CheckMenuItem.with_label("Year");
-		columnBitRate = new CheckMenuItem.with_label("Bitrate");
 		columnRating = new CheckMenuItem.with_label("Rating");
-		columnPlayCount = new CheckMenuItem.with_label("Plays");
-		columnSkipCount = new CheckMenuItem.with_label("Skips");
-		columnDateAdded = new CheckMenuItem.with_label("Date Added");
-		columnLastPlayed = new CheckMenuItem.with_label("Last Played");
-		columnBPM = new CheckMenuItem.with_label("BPM");
 		updateColumnVisibilities();
-		columnChooserMenu.append(columnNumber);
-		columnChooserMenu.append(columnTrack);
-		columnChooserMenu.append(columnTitle);
-		columnChooserMenu.append(columnLength);
-		columnChooserMenu.append(columnArtist);
-		columnChooserMenu.append(columnAlbum);
+		columnChooserMenu.append(columnStation);
 		columnChooserMenu.append(columnGenre);
-		columnChooserMenu.append(columnYear);
-		columnChooserMenu.append(columnBitRate);
 		columnChooserMenu.append(columnRating);
-		columnChooserMenu.append(columnPlayCount);
-		columnChooserMenu.append(columnSkipCount);
-		columnChooserMenu.append(columnDateAdded);
-		columnChooserMenu.append(columnLastPlayed);
-		columnChooserMenu.append(columnBPM);
-		columnNumber.toggled.connect(columnMenuToggled);
-		columnTrack.toggled.connect(columnMenuToggled);
-		columnTitle.toggled.connect(columnMenuToggled);
-		columnLength.toggled.connect(columnMenuToggled);
-		columnArtist.toggled.connect(columnMenuToggled);
-		columnAlbum.toggled.connect(columnMenuToggled);
+		columnStation.toggled.connect(columnMenuToggled);
 		columnGenre.toggled.connect(columnMenuToggled);
-		columnYear.toggled.connect(columnMenuToggled);
-		columnBitRate.toggled.connect(columnMenuToggled);
 		columnRating.toggled.connect(columnMenuToggled);
-		columnPlayCount.toggled.connect(columnMenuToggled);
-		columnSkipCount.toggled.connect(columnMenuToggled);
-		columnDateAdded.toggled.connect(columnMenuToggled);
-		columnLastPlayed.toggled.connect(columnMenuToggled);
-		columnBPM.toggled.connect(columnMenuToggled);
 		columnChooserMenu.show_all();
 		
 		
 		//song list right click menu
 		songMenuActionMenu = new Menu();
-		songEditSong = new MenuItem.with_label("Edit Song Info");
-		songFileBrowse = new MenuItem.with_label("Show in File Browser");
-		songMenuQueue = new MenuItem.with_label("Queue");
-		songMenuNewPlaylist = new MenuItem.with_label("New Playlist");
-		songMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
-		songRemove = new MenuItem.with_label("Remove song");
-		//songRateSongMenu = new Menu();
-		//songRateSong = new MenuItem.with_label("Rate Song");
+		songEditSong = new MenuItem.with_label("Edit Station");
+		songRemove = new MenuItem.with_label("Remove Station");
 		rating_item = new RatingWidgetMenu();
 		songMenuActionMenu.append(songEditSong);
-		songMenuActionMenu.append(songFileBrowse);
-		
 		songMenuActionMenu.append(rating_item);
-		
-		songMenuActionMenu.append(new SeparatorMenuItem());
-		songMenuActionMenu.append(songMenuQueue);
-		songMenuActionMenu.append(songMenuNewPlaylist);
-		songMenuActionMenu.append(songMenuAddToPlaylist);
 		songMenuActionMenu.append(new SeparatorMenuItem());
 		songMenuActionMenu.append(songRemove);
 		songEditSong.activate.connect(songMenuEditClicked);
-		songFileBrowse.activate.connect(songFileBrowseClicked);
-		songMenuQueue.activate.connect(songMenuQueueClicked);
-		songMenuNewPlaylist.activate.connect(songMenuNewPlaylistClicked);
 		songRemove.activate.connect(songRemoveClicked);
-		rating_item.activate.connect(songRateSongClicked);
+		rating_item.activate.connect(songRateSong0Clicked);
 		//songMenuActionMenu.show_all();
 		
 		updateSensitivities();
@@ -600,8 +435,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		this.add(view);
 		
-		this.music_model.rows_reordered.connect(modelRowsReordered);
-		this.music_model.sort_column_changed.connect(sortColumnChanged);
+		this.radio_model.rows_reordered.connect(modelRowsReordered);
+		this.radio_model.sort_column_changed.connect(sortColumnChanged);
 		this.view.drag_begin.connect(onDragBegin);
         this.view.drag_data_get.connect(onDragDataGet);
         this.view.drag_end.connect(onDragEnd);
@@ -644,7 +479,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	public void cellTitleEdited(string path, string new_text) {
 		/*int rowid;
 		stdout.printf("done!\n");
-		if((rowid = music_model.getRowidFromPath(path)) != 0) {
+		if((rowid = radio_model.getRowidFromPath(path)) != 0) {
 			lm.song_from_id(rowid).title = new_text;
 			
 			lm.update_song(lm.song_from_id(rowid), true);
@@ -661,9 +496,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			lm.clear_queue();
 			
 			TreeIter item;
-			for(int i = 0; music_model.get_iter_from_string(out item, i.to_string()); ++i) {
+			for(int i = 0; radio_model.get_iter_from_string(out item, i.to_string()); ++i) {
 				int id;
-				music_model.get(item, 0, out id);
+				radio_model.get(item, 0, out id);
 				
 				lm.queue_song_by_id(id);
 			}
@@ -679,8 +514,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	public virtual void viewColumnsChanged() {
-		if((int)(view.get_columns().length()) != lm.music_setup.MUSIC_COLUMN_COUNT)
+		if((int)(view.get_columns().length()) != lm.podcast_setup.RADIO_COLUMN_COUNT) {
 			return;
+		}
 		
 		_columns.clear();
 		foreach(TreeViewColumn tvc in view.get_columns()) {
@@ -693,36 +529,12 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	public void updateColumnVisibilities() {
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
-			if(tvc.title == "#")
-				columnNumber.active = view.get_column(index).visible;
-			else if(tvc.title == "Track")
-				columnTrack.active = view.get_column(index).visible;
-			else if(tvc.title == "Title")
-				columnTitle.active = view.get_column(index).visible;
-			else if(tvc.title == "Length")
-				columnLength.active = view.get_column(index).visible;
-			else if(tvc.title == "Artist")
-				columnArtist.active = view.get_column(index).visible;
-			else if(tvc.title == "Album")
-				columnAlbum.active = view.get_column(index).visible;
+			if(tvc.title == "Station")
+				columnStation.active = view.get_column(index).visible;
 			else if(tvc.title == "Genre")
 				columnGenre.active = view.get_column(index).visible;
-			else if(tvc.title == "Year")
-				columnYear.active = view.get_column(index).visible;
-			else if(tvc.title == "Bitrate")
-				columnBitRate.active = view.get_column(index).visible;
 			else if(tvc.title == "Rating")
 				columnRating.active = view.get_column(index).visible;
-			else if(tvc.title == "Plays")
-				columnPlayCount.active = view.get_column(index).visible;
-			else if(tvc.title == "Skips")
-				columnSkipCount.active = view.get_column(index).visible;
-			else if(tvc.title == "Date Added")
-				columnDateAdded.active = view.get_column(index).visible;
-			else if(tvc.title == "Last Played")
-				columnLastPlayed.active = view.get_column(index).visible;
-			else if(tvc.title == "BPM")
-				columnBPM.active = view.get_column(index).visible;
 			
 			++index;
 		}
@@ -732,21 +544,21 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		set_is_current(false);
 		
 		if(lm.song_info.song != null)
-			music_model.updateSong(lm.song_info.song.rowid, get_is_current());
+			radio_model.updateSong(lm.song_info.song.rowid, get_is_current());
 	}
 	
 	
 	public virtual void song_played(int id, int old) {
 		if(old != -1) {
-			music_model.updateSong(old, get_is_current());
-			music_model.turnOffPixbuf(old);
+			radio_model.updateSong(old, get_is_current());
+			radio_model.turnOffPixbuf(old);
 		}
 		
 		if(!scrolled_recently) {
 			scrollToCurrent();
 		}
 		
-		music_model.updateSong(id, get_is_current());
+		radio_model.updateSong(id, get_is_current());
 		
 		if(get_hint() == ViewWrapper.Hint.QUEUE) {
 			_show_next = lm.queue();
@@ -756,7 +568,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	
 	void playback_stopped(int was_playing) {
 		if(was_playing >= 1) {
-			music_model.turnOffPixbuf(was_playing);
+			radio_model.turnOffPixbuf(was_playing);
 		}
 	}
 	
@@ -765,15 +577,15 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	void songs_updated(Collection<int> ids) {
-		music_model.updateSongs(ids, get_is_current());
+		radio_model.updateSongs(ids, get_is_current());
 		
-		//since a song may have changed location, reset current
+		//since a song may have changed order, reset current
 		if(get_is_current())
 			set_as_current_list(0, false);
 	}
 	
 	void songs_removed(LinkedList<int> ids) {
-		music_model.removeSongs(ids);
+		radio_model.removeSongs(ids);
 		//_showing_songs.remove_all(ids);
 		//_show_next.remove_all(ids);
 	}
@@ -782,14 +594,14 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		TreeIter item;
 		
 		// get db's rowid of row clicked
-		music_model.get_iter(out item, path);
+		radio_model.get_iter(out item, path);
 		Value id;
-		music_model.get_value(item, 0, out id);
+		radio_model.get_value(item, 0, out id);
+		
+		set_as_current_list(id.get_int(), !_is_current);
 		
 		// play the song
 		lm.playSong(id.get_int());
-		
-		set_as_current_list(id.get_int(), true);
 		
 		if(!lm.playing) {
 			lw.playClicked();
@@ -808,33 +620,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	/* button_press_event */
 	bool viewClick(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
-			/* create add to playlist menu */
-			Menu addToPlaylistMenu = new Menu();
-			foreach(Playlist p in lm.playlists()) {
-				MenuItem playlist = new MenuItem.with_label(p.name);
-				addToPlaylistMenu.append(playlist);
-				
-				playlist.activate.connect( () => {
-					TreeModel temp;
-					foreach(TreePath path in view.get_selection().get_selected_rows(out temp)) {
-						TreeIter item;
-						temp.get_iter(out item, path);
-						
-						int id;
-						temp.get(item, 0, out id);
-						p.addSong(id);
-					}
-				});
-			}
-			
-			addToPlaylistMenu.show_all();
-			songMenuAddToPlaylist.submenu = addToPlaylistMenu;
-			
-			if(lm.playlists().size == 0)
-				songMenuAddToPlaylist.set_sensitive(false);
-			else
-				songMenuAddToPlaylist.set_sensitive(true);
-			
 			songMenuActionMenu.show_all();
 			
 			int set_rating = -1;
@@ -873,7 +658,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			
 			view.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
 			
-			if(!music_model.get_iter(out iter, path))
+			if(!radio_model.get_iter(out iter, path))
 				return false;
 			
 			/* don't unselect everything if multiple selected until button release
@@ -942,37 +727,21 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	void updateTreeViewSetup() {
-		if(music_model == null || !(music_model is TreeSortable)) {
+		if(radio_model == null || !(radio_model is TreeSortable) || _columns.size == 0) {
 			return;
 		}
 		
-		TreeViewSetup tvs;
-			
-		if(get_hint() == ViewWrapper.Hint.MUSIC)
-			tvs = lm.music_setup;
-		else if(get_hint() == ViewWrapper.Hint.SIMILAR)
-			tvs = lm.similar_setup;
-		else if(get_hint() == ViewWrapper.Hint.QUEUE)
-			tvs = lm.queue_setup;
-		else if(get_hint() == ViewWrapper.Hint.HISTORY)
-			tvs = lm.history_setup;
-		else if(get_hint() == ViewWrapper.Hint.PLAYLIST)
-			tvs = lm.playlist_from_id(relative_id).tvs;
-		else if(get_hint() == ViewWrapper.Hint.CDROM || get_hint() == ViewWrapper.Hint.DEVICE_AUDIO || 
-		get_hint() == ViewWrapper.Hint.DEVICE_AUDIOBOOK || get_hint() == ViewWrapper.Hint.DEVICE_PODCAST)
-			return;
-		else/* if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)*/
-			tvs = lm.smart_playlist_from_id(relative_id).tvs;
+		TreeViewSetup tvs = lm.station_setup;
 			
 		if(tvs == null)
 			return;
 		
-		int sort_id = 7;
+		int sort_id = 2;
 		SortType sort_dir = Gtk.SortType.ASCENDING;
-		music_model.get_sort_column_id(out sort_id, out sort_dir);
+		radio_model.get_sort_column_id(out sort_id, out sort_dir);
 		
 		if(sort_id <= 0)
-			sort_id = 7;
+			sort_id = 2;
 		
 		sort_column = _columns.get(sort_id);
 		sort_direction = sort_dir;
@@ -996,52 +765,17 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	public virtual void columnMenuToggled() {
 		int index = 0;
 		foreach(TreeViewColumn tvc in view.get_columns()) {
-			if(tvc.title == "Track")
-				view.get_column(index).visible = columnTrack.active;
-			else if(tvc.title == "#")
-				view.get_column(index).visible = columnNumber.active;
-			else if(tvc.title == "Title")
-				view.get_column(index).visible = columnTitle.active;
-			else if(tvc.title == "Length")
-				view.get_column(index).visible = columnLength.active;
-			else if(tvc.title == "Artist")
-				view.get_column(index).visible = columnArtist.active;
-			else if(tvc.title == "Album")
-				view.get_column(index).visible = columnAlbum.active;
+			if(tvc.title == "Station")
+				view.get_column(index).visible = columnStation.active;
 			else if(tvc.title == "Genre")
 				view.get_column(index).visible = columnGenre.active;
-			else if(tvc.title == "Year")
-				view.get_column(index).visible = columnYear.active;
-			else if(tvc.title == "Bitrate")
-				view.get_column(index).visible = columnBitRate.active;
 			else if(tvc.title == "Rating")
 				view.get_column(index).visible = columnRating.active;
-			else if(tvc.title == "Plays")
-				view.get_column(index).visible = columnPlayCount.active;
-			else if(tvc.title == "Skips")
-				view.get_column(index).visible = columnSkipCount.active;
-			else if(tvc.title == "Date Added")
-				view.get_column(index).visible = columnDateAdded.active;
-			else if(tvc.title == "Last Played")
-				view.get_column(index).visible = columnLastPlayed.active;//add bpm, file size, file path
-			else if(tvc.title == "BPM")
-				view.get_column(index).visible = columnBPM.active;
 			
 			++index;
 		}
 		
-		if(get_hint() == ViewWrapper.Hint.MUSIC)
-			lm.music_setup.set_columns(get_columns());
-		else if(get_hint() == ViewWrapper.Hint.SIMILAR)
-			lm.similar_setup.set_columns(get_columns());
-		else if(get_hint() == ViewWrapper.Hint.QUEUE)
-			lm.queue_setup.set_columns(get_columns());
-		else if(get_hint() == ViewWrapper.Hint.HISTORY)
-			lm.history_setup.set_columns(get_columns());
-		else if(get_hint() == ViewWrapper.Hint.PLAYLIST)
-			lm.playlist_from_id(relative_id).tvs.set_columns(get_columns());
-		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)
-			lm.smart_playlist_from_id(relative_id).tvs.set_columns(get_columns());
+		lm.station_setup.set_columns(get_columns());
 	}
 	
 	/** song menu popup clicks **/
@@ -1053,17 +787,17 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		//tempSongs.clear();
 		var to_edit = new LinkedList<int>();
 		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			int id = music_model.getRowidFromPath(path.to_string());
+			int id = radio_model.getRowidFromPath(path.to_string());
 			
 			to_edit.add(id);
 		}
 		
 		/*if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
-			song_from_id(id).unique_status_image = lw.render_icon("process-error-symbolic", Gtk.IconSize.MENU, null);
+			song_from_id(id).unique_status_image = lm.icons.process_error_icon;
 			lw.song_not_found(id);
 		}
 		else {*/
-			SongEditor se = new SongEditor(lm, music_model.getOrderedSongs(), to_edit);
+			SongEditor se = new SongEditor(lm, radio_model.getOrderedSongs(), to_edit);
 			se.songs_saved.connect(songEditorSaved);
 		//}
 	}
@@ -1073,77 +807,12 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		foreach(int i in songs)
 			toUpdate.add(lm.song_from_id(i));
 		
-		// could have edited rating, so record_time is true
+		// user could have edited rating, so record time
 		lm.update_songs(toUpdate, true, true);
 		
 		if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
 			// make sure these songs still belongs here
 		}
-	}
-	
-	public virtual void songFileBrowseClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel temp;
-		
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			TreeIter item;
-			temp.get_iter(out item, path);
-			
-			int id;
-			temp.get(item, 0, out id);
-			Song s = lm.song_from_id(id);
-			
-			try {
-				var file = File.new_for_path(s.file);
-				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not browse song %s: %s\n", s.file, err.message);
-			}
-			
-			return;
-		}
-	}
-	
-	public virtual void songMenuQueueClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		
-		TreeModel model;
-		
-		foreach(TreePath path in selected.get_selected_rows(out model)) {
-			TreeIter item;
-			model.get_iter(out item, path);
-			
-			int id;
-			model.get(item, 0, out id);
-			
-			lm.queue_song_by_id(id);
-		}
-	}
-	
-	public virtual void songMenuNewPlaylistClicked() {
-		Playlist p = new Playlist();
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		
-		TreeModel temp;
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			TreeIter item;
-			music_model.get_iter(out item, path);
-			
-			Value id;
-			music_model.get_value(item, 0, out id);
-			
-			p.addSong(id.get_int());
-		}
-		
-		PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
-		pnw.playlist_saved.connect( (newP) => { 
-			lm.add_playlist(p);
-			lw.addSideListItem(p); 
-		});
 	}
 	
 	public virtual void songRemoveClicked() {
@@ -1162,43 +831,16 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			temp.get(item, 0, out id);
 			Song s = lm.song_from_id(id);
 			
-			toRemoveIDs.add(id);
-			
-			if(get_hint() == ViewWrapper.Hint.QUEUE) {
-				lm.unqueue_song_by_id(s.rowid);
-			}
-			else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-				lm.playlist_from_id(relative_id).removeSong(id);
-			}
-			else if(get_hint() == ViewWrapper.Hint.MUSIC) {
-				toRemove.add(s);
-			}
+			toRemove.add(s);
 		}
 		
-		if(get_hint() == ViewWrapper.Hint.MUSIC) {
-
-			RemoveFromLibraryDialog dialog = new RemoveFromLibraryDialog (lm.lw, toRemove.size);
-			
-			dialog.ok_button_pressed.connect ( (delete_files) => {
-				lm.remove_songs (toRemove, delete_files);
-				music_model.removeSongs(toRemoveIDs);
-				
-				lw.miller.populateColumns("", music_model.getOrderedSongs());
-			});
-		}
+		lm.remove_songs(toRemove, false);
 		
-		if(get_hint() == ViewWrapper.Hint.PLAYLIST || get_hint() == ViewWrapper.Hint.QUEUE) {
-			lm.save_playlists();
-			
-			music_model.removeSongs(toRemoveIDs);
-
-			// in case all the songs from certain miller items were removed, update miller
-			lw.miller.populateColumns("", music_model.getOrderedSongs());
-		}
-
+		// in case all the songs from certain miller items were removed, update miller
+		lw.miller.populateColumns("", radio_model.getOrderedSongs());
 	}
 	
-	public virtual void songRateSongClicked() {
+	public virtual void songRateSong0Clicked() {
 		TreeSelection selected = view.get_selection();
 		selected.set_mode(SelectionMode.MULTIPLE);
 		TreeModel l_model;
@@ -1220,16 +862,33 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		lm.update_songs(los, false, true);
 	}
 	
+	/*public void update_rating_menu() {
+		TreeSelection selected = view.get_selection();
+		selected.set_mode(SelectionMode.MULTIPLE);
+		TreeModel l_model;
+
+		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
+			TreeIter item;
+			l_model.get_iter(out item, path);
+			
+			int id;
+			l_model.get(item, 0, out id);
+			Song s = lm.song_from_id(id);
+			
+			rating_item.rating_value = (int)s.rating;
+		}
+	}*/
+	
 	public void scrollToCurrent() {
 		if(!get_is_current() || lm.song_info.song == null)
 			return;
 		
 		TreeIter iter;
-		for(int i = 0; music_model.get_iter_from_string(out iter, i.to_string()); ++i) {
+		for(int i = 0; radio_model.get_iter_from_string(out iter, i.to_string()); ++i) {
 			Value id;
-			music_model.get_value(iter, 0, out id);
+			radio_model.get_value(iter, 0, out id);
 
-			if(id.get_int() == lm.song_info.song.rowid) {
+			if(view is TreeView && id.get_int() == lm.song_info.song.rowid) {
 				view.scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
 				scrolled_recently = false;
 				

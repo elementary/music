@@ -43,7 +43,7 @@ public class BeatBox.RatingWidget : EventBox {
 		
 		// i hate doing this but it is a must
 		starred = BeatBox.Beatbox._program.lm.icons.starred_icon.render (IconSize.MENU, null);
-		not_starred = BeatBox.Beatbox._program.lm.icons.not_starred_icon.render (IconSize.MENU, null);
+		not_starred = BeatBox.Beatbox._program.lm.icons.not_starred_icon.render (IconSize.MENU, null);;
 		
 		width_request  = starred.width * 5;
 		height_request = starred.height;

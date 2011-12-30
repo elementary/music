@@ -26,6 +26,7 @@ namespace ElementaryWidgets {
 	public class TopDisplay : HBox {
 		BeatBox.LibraryManager lm;
 		Label label;
+		Label secondary_label;
 		HBox scaleBox;
 		Label leftTime;
 		Label rightTime;
@@ -39,6 +40,7 @@ namespace ElementaryWidgets {
 			this.lm = lmm;
 			
 			label = new Label("");
+			secondary_label = new Label("");
 			scale = new HScale.with_range(0, 1, 1);
 			leftTime = new Label("0:00");
 			rightTime = new Label("0:00");
@@ -53,12 +55,11 @@ namespace ElementaryWidgets {
 			scale.set_draw_value(false);
 			
 			label.set_justify(Justification.CENTER);
-			label.set_single_line_mode(true);
+			label.set_single_line_mode(false);
 			label.ellipsize = Pango.EllipsizeMode.END;
 			
-			var top_display_style = this.get_style_context ();
-			var process_stop_icon = lmm.icons.process_stop_icon.render (IconSize.MENU, top_display_style);
-			
+			//label.set_markup("<b></b>");
+			var process_stop_icon = lm.icons.process_stop_icon.render (IconSize.MENU, get_style_context()); 
 			cancelButton.set_image(new Image.from_pixbuf(process_stop_icon));
 			
 			cancelButton.set_relief(Gtk.ReliefStyle.NONE);
@@ -217,6 +218,7 @@ namespace ElementaryWidgets {
 			scaleBox.show();
 			progressbar.hide();
 			cancelButton.hide();
+			//secondary_label.hide();
 			
 			cancelButton.set_size_request(0,0);
 			progressbar.set_size_request(-1, 0);
@@ -226,8 +228,16 @@ namespace ElementaryWidgets {
 			progressbar.show();
 			scaleBox.hide();
 			cancelButton.show();
+			//secondary_label.hide();
 			
 			cancelButton.set_size_request(12, 12);
+		}
+		
+		public void hide_scale_and_progressbar() {
+			scaleBox.hide();
+			progressbar.hide();
+			cancelButton.hide();
+			//secondary_label.show();
 		}
 		
 		public virtual void player_position_update(int64 position) {

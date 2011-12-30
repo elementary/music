@@ -252,8 +252,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	
 	void songs_removed(LinkedList<int> ids) {
 		model.removeSongs(ids);
-		_showing_songs.remove_all(ids);
-		_show_next.remove_all(ids);
+		//_showing_songs.remove_all(ids);
+		//_show_next.remove_all(ids);
 	}
 	
 	public void scrollToCurrent() {

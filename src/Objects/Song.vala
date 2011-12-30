@@ -31,11 +31,11 @@ public class BeatBox.Song : GLib.Object{
 	public int mediatype { get; set; default = 0; } // 0 = song, 1 = podcast, 2 = audiobook
 	
 	//tags
-	public string title { get; set; default = "Unkown Title"; }
+	public string title { get; set; default = "Unknown Title"; }
 	public string composer { get; set; default = ""; }
-	public string artist { get; set; default = "Unkown Artist"; }
+	public string artist { get; set; default = "Unknown Artist"; }
 	public string album_artist { get; set; default = ""; }
-	public string album { get; set; default = "Unkown Album"; }
+	public string album { get; set; default = "Unknown Album"; }
 	public string grouping { get; set; default = ""; }
 	public string genre { get; set; default = ""; }
 	public string comment { get; set; default = ""; }

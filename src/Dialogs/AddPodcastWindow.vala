@@ -71,11 +71,6 @@ public class BeatBox.AddPodcastWindow : Window {
 		valid = lw.lm.icons.process_completed_icon.render (IconSize.MENU, null);
 		not_valid = lw.lm.icons.process_error_icon.render (IconSize.MENU, null);
 		
-		if(valid == null)
-			valid = render_icon(Gtk.Stock.YES, IconSize.MENU, null);
-		if(not_valid == null)
-			not_valid = render_icon(Gtk.Stock.NO, IconSize.MENU, null);
-		
 		/* start out by creating all category labels */
 		Label sourceLabel = new Label("Podcast RSS Source");
 		_source = new Granite.Widgets.HintedEntry("Podcast Source...");

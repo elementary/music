@@ -127,10 +127,53 @@ public class BeatBox.Streamer : GLib.Object {
 				dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
 			}
 			break;
+		case MessageType.TAG:
+            Gst.TagList tag_list;
+            stdout.printf ("taglist found\n");
+            message.parse_tag (out tag_list);
+            if(tag_list != null) {
+				if(tag_list.get_tag_size(TAG_TITLE) > 0) {
+					string title = "";
+					tag_list.get_string(TAG_TITLE, out title);
+					
+					if(lm.song_info.song.mediatype == 3 && title != "") { // is radio
+						stdout.printf("title: %s\n", title);
+						string[] pieces = title.split("-", 0);
+						
+						if(pieces.length >= 2) {
+							lm.song_info.song.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
+							lm.song_info.song.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
+							lw.song_played(lm.song_info.song.rowid, lm.song_info.song.rowid); // pretend as if song changed
+						}
+						else {
+							lm.song_info.song.artist = "Unknown Artist";
+							lm.song_info.song.title = title;
+							// if the title doesn't follow the general title - artist format, probably not a song change and instead an advert
+							lw.updateInfoLabel();
+						}
+						
+					}
+				}
+				
+			}
+            break;
 		default:
 			break;
 		}
  
 		return true;
 	}
+	
+	private void foreach_tag (Gst.TagList list, string tag) {
+		stdout.printf("%s\n", tag);
+		switch (tag) {
+        case "title":
+            string tag_string;
+            list.get_string (tag, out tag_string);
+            stdout.printf ("tag: %s = %s\n", tag, tag_string);
+            break;
+        default:
+            break;
+        }
+    }
 }

@@ -117,6 +117,17 @@ public class BeatBox.Icon : GLib.Object {
 		bool is_symbolic = this.name.contains ("-symbolic");
 		int width = 16, height = 16;
 
+		if (file_type == IconFileType.PNG && backup != null && size == null) {
+			try {
+				rv = new Gdk.Pixbuf.from_file(backup);
+			}
+			catch(Error err) {
+				stdout.printf("Could not load PNG image: %s\n", err.message);
+			}
+			
+			return rv;
+		}
+
 		if (this.size != null) {
 			width = this.size;
 			height = this.size;
@@ -130,7 +141,7 @@ public class BeatBox.Icon : GLib.Object {
 				rv = IconTheme.get_default().load_icon(this.name, height, IconLookupFlags.GENERIC_FALLBACK);
 			}
 			catch (Error err) {
-				stderr.printf("Default theme does not have icon for '%s', falling back to BeatBox default.\n", this.name);
+				stdout.printf("Default theme does not have icon for '%s', falling back to BeatBox default.\n", this.name);
 			}
 		}
 
@@ -139,7 +150,7 @@ public class BeatBox.Icon : GLib.Object {
 				rv = new Gdk.Pixbuf.from_file_at_size (this.backup, width, height);
 			}
 			catch (Error err) {
-				stderr.printf("Couldn't load backup icon for '%s'\n", this.name);
+				stdout.printf("Couldn't load backup icon for '%s'\n", this.name);
 			}
 		}
 
@@ -151,7 +162,7 @@ public class BeatBox.Icon : GLib.Object {
 					rv = icon_info.load_symbolic_for_context (context);
 			}
 			catch (Error err) {
-				stderr.printf ("\nCould not load symbolic icon: %s\n", this.name);
+				stdout.printf ("\nCould not load symbolic icon: %s\n", this.name);
 			}
 		}
 
@@ -167,6 +178,7 @@ public class BeatBox.Icons : GLib.Object {
 	public Icon drop_album;
 
 	public Icon beatbox_icon;
+	public Icon radio_icon;
 	public Icon music_icon;
 	public Icon podcast_icon;
 	public Icon audiobook_icon;
@@ -211,6 +223,7 @@ public class BeatBox.Icons : GLib.Object {
 		
 		// 16 x 16
 		beatbox_icon = new Icon ("beatbox", 16, Icon.IconType.APP, null, true);
+		radio_icon = new Icon ("internet-radio", 16, Icon.IconType.MIMETYPE, null, true);
 		music_icon = new Icon ("library-music", 16, Icon.IconType.MIMETYPE, null, true);
 		podcast_icon = new Icon ("library-podcast", 16, Icon.IconType.MIMETYPE, null, true);
 		//audiobook_icon = new Icon ("library-audiobook", 16, Icon.IconType.MIMETYPE, null, true);

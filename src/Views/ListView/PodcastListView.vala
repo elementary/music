@@ -194,7 +194,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		podcast_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, this.get_style_context ());
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context());
 		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon);
 		podcast_model.is_current = _is_current;
 		
@@ -473,7 +473,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
-		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, this.get_style_context ());
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context());
 		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon);
 		
 		podcast_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
@@ -729,8 +729,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	
 	void songs_removed(LinkedList<int> ids) {
 		podcast_model.removeSongs(ids);
-		_showing_songs.remove_all(ids);
-		_show_next.remove_all(ids);
+		//_showing_songs.remove_all(ids);
+		//_show_next.remove_all(ids);
 	}
 	
 	void viewDoubleClick(TreePath path, TreeViewColumn column) {
