@@ -113,6 +113,12 @@ public class BeatBox.Song : GLib.Object{
 		return rv;
 	}
 	
+	public string pretty_podcast_date() {
+		var t = Time.local(podcast_date);
+		string rv = t.format("%m/%e/%Y %l:%M %p");
+		return rv;
+	}
+	
 	public Song copy() {
 		Song rv = new Song(_file);
 		rv.file_size = file_size;

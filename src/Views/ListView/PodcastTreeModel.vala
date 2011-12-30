@@ -28,6 +28,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	LibraryManager lm;
 	int stamp; // all iters must match this
 	Gdk.Pixbuf _playing;
+	Gdk.Pixbuf _saved_locally;
 	public bool is_current;
 	
     /* data storage variables */
@@ -51,6 +52,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		this.lm = lm;
 		_columns = column_types;
 		_playing = playing;
+		_saved_locally = lm.lw.render_icon(Gtk.Stock.SAVE, IconSize.MENU, null);
 		removing_songs = false;
 
 		rows = new Sequence<int>();
@@ -67,11 +69,11 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(_columns[col] == " ") {
 			return typeof(Gdk.Pixbuf);
 		}
-		else if(_columns[col] == "Name" || _columns[col] == "Artist" || _columns[col] == "Comment" || _columns[col] == "Category") {
-			return typeof(string);
+		else if(col == 0 || _columns[col] == "Rating" || col == 10) {
+			return typeof(int);
 		}
 		else {
-			return typeof(int);
+			return typeof(string);
 		}
 	}
 
@@ -119,6 +121,10 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
 			Song s = lm.song_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
+			if(s == null) {
+				val = Value(get_column_type(column));
+				return;
+			}
 			
 			if(column == 0)
 				val = (int)s.rowid;
@@ -127,19 +133,21 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 					val = s.unique_status_image;
 				else if(lm.song_info.song != null && lm.song_info.song.rowid == s.rowid && is_current)
 					val = _playing;
+				else if(!s.file.has_prefix("http://"))
+					val = _saved_locally;
 				else
 					val = Value(typeof(Gdk.Pixbuf));
 			}
 			else if(column == 2)
-				val = (int)s.track;
+				val = (s.track == 0) ? "" : s.track.to_string();
 			else if(column == 3)
 				val = s.title;
 			else if(column == 4)
-				val = (int)s.length;
+				val = s.pretty_length();
 			else if(column == 5)
 				val = s.artist; 
 			else if(column == 6)
-				val = (int)s.podcast_date;
+				val = s.pretty_podcast_date();
 			else if(column == 7)
 				val = s.genre; // category
 			else if(column == 8)
@@ -148,6 +156,10 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 				val = (int)s.rating;
 			else if(column == 10)
 				val = (int)s.pulseProgress;
+				
+			// bold here
+			if(s.last_played == 0 && get_column_type(column) == typeof(string))
+				val = "<b>" + val.get_string() + "</b>";
 		}
 	}
 

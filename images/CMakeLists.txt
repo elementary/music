@@ -28,6 +28,7 @@ install(FILES icons/22x22/actions/document-open-recent.svg DESTINATION share/bea
 
 # shuffle and repeat
 install(FILES icons/16x16/status/media-playlist-repeat-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
+install(FILES icons/16x16/status/media-playlist-repeat-one-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-no-repeat-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-shuffle-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-no-shuffle-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
@@ -40,8 +41,8 @@ install(FILES icons/16x16/status/starred.svg DESTINATION share/beat-box/icons/hi
 install(FILES icons/16x16/status/not-starred.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 
 # playlist icons
-install(FILES icons/22x22/mimetypes/playlist.svg DESTINATION share/beat-box/icons/hicolor/22x22/mimetypes)
-install(FILES icons/22x22/mimetypes/playlist-automatic.svg DESTINATION share/beat-box/icons/hicolor/22x22/mimetypes)
+install(FILES icons/16x16/mimetypes/playlist.svg DESTINATION share/beat-box/icons/hicolor/16x16/mimetypes)
+install(FILES icons/16x16/mimetypes/playlist-automatic.svg DESTINATION share/beat-box/icons/hicolor/16x16/mimetypes)
 
 # process-completed and error
 install(FILES icons/16x16/mimetypes/process-completed-symbolic.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)

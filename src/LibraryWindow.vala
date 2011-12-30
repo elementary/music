@@ -214,7 +214,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusBar = new HBox(false, 0);
 		statusBarLabel = new Label("");
 		
-		
 		var statusBarStyle = statusBar.get_style_context ();
 
 		var shuffle_on_icon = lm.icons.shuffle_on_icon.render (IconSize.MENU, statusBarStyle);
@@ -310,7 +309,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		searchFieldBin.add(searchField);
 		
 		topDisplayBin.set_expand(true);
-				var viewSelectorStyle = viewSelector.get_style_context ();
+		
+		var viewSelectorStyle = viewSelector.get_style_context ();
 		
 		var view_column_icon = lm.icons.view_column_icon.render (IconSize.MENU, viewSelectorStyle);
 		var view_details_icon = lm.icons.view_details_icon.render (IconSize.MENU, viewSelectorStyle);
@@ -321,7 +321,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector.append(new Image.from_pixbuf(view_details_icon));
 		viewSelector.append(new Image.from_pixbuf(view_column_icon));
 		//viewSelector.append(new Image.from_pixbuf(view_video_icon));
-		
 		
 		topControls.insert(previousButton, 0);
 		topControls.insert(playButton, 1);
@@ -942,7 +941,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			lm.update_song(lm.song_info.song, false, false);
 		}
 		
-		int next_id = lm.getNext(true);
+		int next_id;
+		if(lm.next_gapless_id != 0) {
+			next_id = lm.next_gapless_id;
+			lm.playSong(lm.next_gapless_id);
+		}
+		else
+			next_id = lm.getNext(true);
 		
 		/* test to stop playback/reached end */
 		if(next_id == 0) {
@@ -1109,8 +1114,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			notification.close();
 			if(!has_toplevel_focus) {
 				notification.update("Import Complete", "BeatBox has imported your library", "beatbox");
+				
 				var beatbox_icon = lm.icons.beatbox_icon.render (IconSize.DIALOG, null);
 				notification.set_image_from_pixbuf(beatbox_icon);
+				
 				notification.show();
 				notification.set_timeout(5000);
 			}

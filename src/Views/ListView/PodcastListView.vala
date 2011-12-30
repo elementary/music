@@ -194,7 +194,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		podcast_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context());
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
 		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon);
 		podcast_model.is_current = _is_current;
 		
@@ -409,13 +409,13 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		foreach(TreeViewColumn tvc in originalOrder) {
 			if(!(tvc.title == " " || tvc.title == "id")) {
 				if(tvc.title == "Length")
-					view.insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.lengthTreeViewFiller);
+					view.insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Rating")
 					view.insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
 				else if(tvc.title == "Date")
-					view.insert_column_with_data_func(-1, tvc.title, cellYear, cellHelper.dateTreeViewFiller);
+					view.insert_column_with_data_func(-1, tvc.title, cellYear, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Episode")
-					view.insert_column_with_data_func(-1, tvc.title, cellTrack, cellHelper.intelligentTreeViewFiller);
+					view.insert_column_with_data_func(-1, tvc.title, cellTrack, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Name")
 					view.insert_column_with_data_func(-1, tvc.title, cellTitle, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Artist")
@@ -473,7 +473,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
-		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context());
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
 		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon);
 		
 		podcast_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
@@ -578,9 +578,14 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	
 	public void iconDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
 		Value? id;
+		bool showIndicator = false;
 		model.get_value(iter, 0, out id);
 		
-		bool showIndicator = lm.song_from_id(id.get_int()).showIndicator;
+		Song s = lm.song_from_id(id.get_int());
+		if(s == null)
+			return;
+		else
+			showIndicator = s.showIndicator;
 		
 		if(renderer is CellRendererPixbuf) {
 			renderer.visible = !showIndicator;

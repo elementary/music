@@ -1,4 +1,5 @@
 using Gst;
+using Gtk;
 
 public class BeatBox.Streamer : GLib.Object {
 	LibraryManager lm;
@@ -7,7 +8,7 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	InstallGstreamerPluginsDialog dialog;
 	
-	 /** signals **/
+	/** signals **/
 	public signal void end_of_stream();
 	public signal void current_position_update(int64 position);
 	public signal void song_not_found();
@@ -21,6 +22,7 @@ public class BeatBox.Streamer : GLib.Object {
 		pipe = new BeatBox.Pipeline();
 		
 		pipe.bus.add_watch(busCallback);
+		pipe.playbin.about_to_finish.connect(about_to_finish);
 		
 		Timeout.add(500, doPositionUpdate);
 	}
@@ -119,15 +121,50 @@ public class BeatBox.Streamer : GLib.Object {
 			stdout.printf ("Error: %s\n", err.message);
 			
 			break;
-		case Gst.MessageType.EOS:
-			end_of_stream();
-			break;
 		case Gst.MessageType.ELEMENT:
 			if(message.get_structure() != null && is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
 				dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
 			}
 			break;
-		case MessageType.TAG:
+		case Gst.MessageType.EOS:
+			end_of_stream();
+			break;
+		case Gst.MessageType.STATE_CHANGED:
+			Gst.State oldstate;
+            Gst.State newstate;
+            Gst.State pending;
+            message.parse_state_changed (out oldstate, out newstate,
+                                         out pending);
+            stdout.printf ("state changed: %s->%s:%s\n",
+                           oldstate.to_string (), newstate.to_string (),
+                           pending.to_string ());
+                           
+            if(newstate != Gst.State.PLAYING)
+				break;
+			
+			if(pipe.videoStreamCount() > 0) {
+				stdout.printf("turning on video\n");
+				if(lw.viewSelector.get_children().length() != 4) {
+					var viewSelectorStyle = lw.viewSelector.get_style_context ();
+					var view_video_icon = lm.icons.view_video_icon.render (Gtk.IconSize.MENU, viewSelectorStyle);
+					lw.viewSelector.append(new Gtk.Image.from_pixbuf(view_video_icon));
+					lw.viewSelector.selected = 3;
+				}
+			}
+			else {
+				stdout.printf("turning off video\n");
+				if(lw.viewSelector.selected == 3) {
+					lw.viewSelector.selected = 1; // show list
+				}
+				
+				if(lw.viewSelector.get_children().length() == 4) {
+					lw.viewSelector.remove(3);
+				}
+			}
+			
+			
+			break;
+		case Gst.MessageType.TAG:
             Gst.TagList tag_list;
             stdout.printf ("taglist found\n");
             message.parse_tag (out tag_list);
@@ -141,9 +178,13 @@ public class BeatBox.Streamer : GLib.Object {
 						string[] pieces = title.split("-", 0);
 						
 						if(pieces.length >= 2) {
+							string old_title = lm.song_info.song.title;
+							string old_artist = lm.song_info.song.artist;
 							lm.song_info.song.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
 							lm.song_info.song.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
-							lw.song_played(lm.song_info.song.rowid, lm.song_info.song.rowid); // pretend as if song changed
+							
+							if(old_title != lm.song_info.song.title || old_artist != lm.song_info.song.artist)
+								lw.song_played(lm.song_info.song.rowid, lm.song_info.song.rowid); // pretend as if song changed
 						}
 						else {
 							lm.song_info.song.artist = "Unknown Artist";
@@ -164,16 +205,22 @@ public class BeatBox.Streamer : GLib.Object {
 		return true;
 	}
 	
-	private void foreach_tag (Gst.TagList list, string tag) {
-		stdout.printf("%s\n", tag);
-		switch (tag) {
-        case "title":
-            string tag_string;
-            list.get_string (tag, out tag_string);
-            stdout.printf ("tag: %s = %s\n", tag, tag_string);
-            break;
-        default:
-            break;
-        }
-    }
+	void about_to_finish() {
+		int i = lm.getNext(false);
+		if(lm.song_from_id(i) != null) {
+			Song s = lm.song_from_id(i);
+			
+			if(!s.isPreview && !s.file.contains("cdda://") && !s.file.contains("http://")) // normal file
+				pipe.playbin.uri = "file://" + s.file;
+			else
+				pipe.playbin.uri = s.file; // probably cdda
+		}
+		
+		lm.next_gapless_id = i;
+		Idle.add( () => {
+			end_of_stream();
+			
+			return false;
+		});
+	}
 }

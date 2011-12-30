@@ -120,6 +120,10 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
 			Song s = lm.song_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
+			if(s == null) {
+				val = Value(get_column_type(column));
+				return;
+			}
 			
 			if(column == 0)
 				val = (int)s.rowid;

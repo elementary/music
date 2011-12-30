@@ -55,7 +55,7 @@ public class BeatBox.Icon : GLib.Object {
 		this.file_type = file_type;
 
 		/**
-		 * The following code creates a backup string for the icon.
+		 * The following code creates a backup path for the icon.
 		 * This ensures consistency in the way we store icons in the
 		 * 'images' folder.
 		 **/
@@ -199,6 +199,7 @@ public class BeatBox.Icons : GLib.Object {
 	public Icon shuffle_on_icon;
 	public Icon shuffle_off_icon;
 	public Icon repeat_on_icon;
+	public Icon repeat_once_icon;
 	public Icon repeat_off_icon;
 	public Icon view_column_icon;
 	public Icon view_details_icon;
@@ -218,8 +219,6 @@ public class BeatBox.Icons : GLib.Object {
 		
 		// 22 x 22
 		history_icon = new Icon ("document-open-recent", 22, Icon.IconType.ACTION, null, true);
-		playlist_icon = new Icon ("playlist", 22, Icon.IconType.MIMETYPE, null, true);
-		smart_playlist_icon = new Icon ("playlist-automatic", 22, Icon.IconType.MIMETYPE, null, true);
 		
 		// 16 x 16
 		beatbox_icon = new Icon ("beatbox", 16, Icon.IconType.APP, null, true);
@@ -227,6 +226,8 @@ public class BeatBox.Icons : GLib.Object {
 		music_icon = new Icon ("library-music", 16, Icon.IconType.MIMETYPE, null, true);
 		podcast_icon = new Icon ("library-podcast", 16, Icon.IconType.MIMETYPE, null, true);
 		//audiobook_icon = new Icon ("library-audiobook", 16, Icon.IconType.MIMETYPE, null, true);
+		playlist_icon = new Icon ("playlist", 16, Icon.IconType.MIMETYPE, null, true);
+		smart_playlist_icon = new Icon ("playlist-automatic", 16, Icon.IconType.MIMETYPE, null, true);
 		lastfm_love_icon = new Icon ("lastfm-love", 16, Icon.IconType.ACTION, null, true);
 		lastfm_ban_icon = new Icon ("lastfm-ban", 16, Icon.IconType.ACTION, null, true);
 		starred_icon = new Icon ("starred", 16, Icon.IconType.STATUS, null, true);
@@ -241,6 +242,7 @@ public class BeatBox.Icons : GLib.Object {
 		shuffle_on_icon = new Icon ("media-playlist-shuffle-symbolic", 16, Icon.IconType.STATUS, null, true);
 		shuffle_off_icon = new Icon ("media-playlist-no-shuffle-symbolic", 16, Icon.IconType.STATUS, null, true);
 		repeat_on_icon = new Icon ("media-playlist-repeat-symbolic", 16, Icon.IconType.STATUS, null, true);
+		repeat_once_icon = new Icon ("media-playlist-repeat-one-symbolic", 16, Icon.IconType.STATUS, null, true);
 		repeat_off_icon = new Icon ("media-playlist-no-repeat-symbolic", 16, Icon.IconType.STATUS, null, true);
 		view_column_icon = new Icon ("view-list-column-symbolic", 16, Icon.IconType.ACTION, null, true);
 		view_details_icon =new Icon ("view-list-details-symbolic", 16, Icon.IconType.ACTION, null, true);

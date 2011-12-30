@@ -209,7 +209,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		radio_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context());
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
 		radio_model = new RadioTreeModel(lm, get_column_strings(), now_playing_icon);
 		radio_model.is_current = _is_current;
 		
@@ -374,7 +374,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
-		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context());
+		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
 		radio_model = new RadioTreeModel(lm, get_column_strings(), now_playing_icon);
 		
 		radio_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
@@ -445,9 +445,14 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	
 	public void iconDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
 		Value? id;
+		bool showIndicator = false;
 		model.get_value(iter, 0, out id);
 		
-		bool showIndicator = lm.song_from_id(id.get_int()).showIndicator;
+		Song s = lm.song_from_id(id.get_int());
+		if(s == null)
+			return;
+		else
+			showIndicator = s.showIndicator;
 		
 		if(renderer is CellRendererPixbuf) {
 			renderer.visible = !showIndicator;

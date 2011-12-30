@@ -156,7 +156,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		var podcast_icon = lm.icons.podcast_icon.render (IconSize.MENU, null);
 		var history_icon = lm.icons.history_icon.render (IconSize.MENU, null);
 		var smart_playlist_icon = lm.icons.smart_playlist_icon.render (IconSize.MENU, null);
-		
+	
 		if(name == "Music" && parent == library_iter) {
 			library_music_iter = addItem(parent, o, w, music_icon, name, null);
 			return library_music_iter;
@@ -166,15 +166,14 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return library_podcasts_iter;
 		}
 		else if(name == "Audiobooks" && parent == library_iter) {
-			// FIXME: add this icon and uncomment it in Objects/Icons.vala
+			// FIXME: add icon
 			var audiobook_icon = lm.icons.audiobook_icon.render (IconSize.MENU, null);
-			
 			library_audiobooks_iter = addItem(parent, o, w, audiobook_icon, name, null);
 			return library_audiobooks_iter;
 		}
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
-			
+			// TODO: Install and load these icons using the Icons module
 			if(d.getContentType() == "cdrom")
 				return addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "ipod-new")
@@ -261,7 +260,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			
 			var playlist_icon = lm.icons.playlist_icon.render (IconSize.MENU, null);
 			tree.set(item, 0, o, 1, w, 2, true, 3, playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
-			
 			if(visible) {
 				TreeIter? filterItem = convertToFilter(item);
 				if(filterItem != null)
