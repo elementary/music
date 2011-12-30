@@ -443,9 +443,14 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	
 	public void iconDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
 		Value? id;
+		bool showIndicator = false;
 		model.get_value(iter, 0, out id);
 		
-		bool showIndicator = lm.song_from_id(id.get_int()).showIndicator;
+		Song s = lm.song_from_id(id.get_int());
+		if(s == null)
+			return;
+		else
+			showIndicator = s.showIndicator;
 		
 		if(renderer is CellRendererPixbuf) {
 			renderer.visible = !showIndicator;

@@ -41,16 +41,16 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
 		if(val.get_int() <= 0)
-			((CellRendererText)cell).text = "";
+			((CellRendererText)cell).markup = "";
 		else
-			((CellRendererText)cell).text = val.get_int().to_string();
+			((CellRendererText)cell).markup = val.get_int().to_string().replace("&", "&amp;");
 	}
 	
 	public void stringTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
-		((CellRendererText)cell).text = val.get_string();
+		((CellRendererText)cell).markup = val.get_string().replace("&", "&amp;");
 	}
 	
 	// for Bitrate. Append 'kbps'
@@ -59,9 +59,9 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
 		if(val.get_int() <= 0)
-			((CellRendererText)cell).text = "";
+			((CellRendererText)cell).markup = "";
 		else
-			((CellRendererText)cell).text = val.get_int().to_string() + " kbps";
+			((CellRendererText)cell).markup = val.get_int().to_string() + " kbps";
 	}
 	
 	// turns int of seconds into pretty length mm:ss format
@@ -70,9 +70,9 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
 		if(val.get_int() <= 0)
-			((CellRendererText)cell).text = "";
+			((CellRendererText)cell).markup = "";
 		else
-			((CellRendererText)cell).text = (val.get_int() / 60).to_string() + ":" + (((val.get_int() % 60) >= 10) ? (val.get_int() % 60).to_string() : ("0" + (val.get_int() % 60).to_string()));
+			((CellRendererText)cell).markup = (val.get_int() / 60).to_string() + ":" + (((val.get_int() % 60) >= 10) ? (val.get_int() % 60).to_string() : ("0" + (val.get_int() % 60).to_string()));
 	}
 	
 	// turns seconds since Jan 1, 1970 into date format
@@ -81,11 +81,11 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
 		if(val.get_int() <= 0)
-			((CellRendererText)cell).text = "";
+			((CellRendererText)cell).markup = "";
 		else {
 			var t = Time.local(val.get_int());
 			string rv = t.format("%m/%e/%Y %l:%M %p");
-			((CellRendererText)cell).text = rv;
+			((CellRendererText)cell).markup = rv;
 		}
 	}
 	
