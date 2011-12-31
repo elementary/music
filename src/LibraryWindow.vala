@@ -269,13 +269,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		editEqualizer.activate.connect(editEqualizerClick);
 		editPreferences.activate.connect(editPreferencesClick);
 		
-		// make the background white
 		EventBox statusEventBox = new EventBox();
 		statusEventBox.add(statusBar);
 		
-		Gdk.Color c = Gdk.Color();
-		Gdk.Color.parse("#FFFFFF", out c);
-		statusEventBox.modify_bg(Gtk.StateType.NORMAL, sideTree.style.base[Gtk.StateType.NORMAL]);
+		// make the background white
+		Gdk.RGBA statusbar_bg = Gdk.RGBA ();
+		statusbar_bg.parse ("rgb(255,255,255)");
+		statusEventBox.override_background_color (StateFlags.NORMAL, statusbar_bg);
 		
 		repeatChooser.appendItem("Off");
 		repeatChooser.appendItem("Song");

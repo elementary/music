@@ -18,8 +18,8 @@ END LICENSE
 	
 namespace ElementaryWidgets {
 
-    public class Welcome : Gtk.VBox {
-    
+    public class Welcome : Gtk.EventBox {
+
         // Signals
         public signal void activated (int index);
 
@@ -27,24 +27,34 @@ namespace ElementaryWidgets {
         protected Gtk.VBox options;
 		
 		public Welcome (string title_text, string subtitle_text) {
-		
+			
+			Gtk.Box content = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+			
+			// Set theming
+			this.get_style_context().add_class ("welcome-screen");
+			
 		    // VBox properties
-			this.spacing = 5;
-			this.homogeneous = false;
+			content.spacing = 5;
+			content.homogeneous = false;
+			
+			// Make the background white.
+			Gdk.RGBA bg_color = Gdk.RGBA ();
+			bg_color.parse ("rgb(255,255,255)");
+			this.override_background_color (Gtk.StateFlags.NORMAL, bg_color);
 			
 			// Top spacer
-			this.pack_start (new Gtk.HBox (false, 0), true, true, 0);
+			content.pack_start (new Gtk.HBox (false, 0), true, true, 0);
 			
 			// Labels
 			var title = new Gtk.Label ("<span weight='heavy' size='15000'>" + title_text + "</span>");
 			title.use_markup = true;
 			title.set_justify (Gtk.Justification.CENTER);
-			this.pack_start (title, false, true, 0);
+			content.pack_start (title, false, true, 0);
 			
 			var subtitle = new Gtk.Label (subtitle_text);
 			subtitle.sensitive = false;
 			subtitle.set_justify (Gtk.Justification.CENTER);
-			this.pack_start (subtitle, false, true, 6);
+			content.pack_start (subtitle, false, true, 6);
 			
 			// Options wrapper
 			this.options = new Gtk.VBox (false, 6);
@@ -54,12 +64,12 @@ namespace ElementaryWidgets {
 			options_wrapper.pack_start (this.options, false, false, 0); // actual options
 			options_wrapper.pack_end (new Gtk.HBox (false, 0), true, true, 0); // right padding
 			
-			this.pack_start (options_wrapper, false, false, 0);
-			
+			content.pack_start (options_wrapper, false, false, 0);
+
 			// Bottom spacer
-			this.pack_end (new Gtk.HBox (false, 0), true, true, 0);
-			
-			
+			content.pack_end (new Gtk.HBox (false, 0), true, true, 0);
+
+			add (content);
 		}
 		
 		public void set_sensitivity(uint index, bool val) {
@@ -103,7 +113,7 @@ namespace ElementaryWidgets {
 			
 			button.add (hbox);
 			this.children.append (button);
-			this.options.pack_start (button, false, false, 0);
+			options.pack_start (button, false, false, 0);
 			
 			button.button_release_event.connect ( () => {
 			    int index = this.children.index (button);

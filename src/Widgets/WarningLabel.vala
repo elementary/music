@@ -2,8 +2,6 @@ using Gtk;
 
 public class BeatBox.WarningLabel : EventBox {
 
-	private Box content;
-
 	private Label errorLabel;
 	private Image warningIcon;
 
@@ -21,30 +19,43 @@ public class BeatBox.WarningLabel : EventBox {
 		errorLabel = new Label("");
 		warningIcon = new Image.from_stock (Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 		
-		content = new Box (Orientation.VERTICAL, 10);
+		var content = new Box (Orientation.HORIZONTAL, 10);
+		var content_wrapper = new Box (Orientation.HORIZONTAL, 0);
 		var outer_box = new Box (Orientation.VERTICAL, 0);
 		var top_padding = new Box (Orientation.VERTICAL, 0);
 		var bottom_padding = new Box (Orientation.VERTICAL, 0);
+		var left_padding = new Box (Orientation.HORIZONTAL, 0);
+		var right_padding = new Box (Orientation.HORIZONTAL, 0);
 
 		content.pack_start (warningIcon, false, false, 10);
 		content.pack_start (errorLabel, false, true, 0);
 
+		content_wrapper.pack_start (left_padding, true, true, 0);
+		content_wrapper.pack_start (content, false, true, 0);
+		content_wrapper.pack_start (right_padding, true, true, 0);
+
 		outer_box.pack_start (top_padding, true, true, 0);
-		outer_box.pack_start (content, false, true, 10);
+		outer_box.pack_start (content_wrapper, false, true, 10);
 		outer_box.pack_start (bottom_padding, true, true, 0);
 
 		add(outer_box);
 		
-		Gdk.Color c = Gdk.Color();
-		Gdk.Color.parse("#FFFFFF", out c);
-		modify_bg(StateType.NORMAL, c);
+		// Make background white.
+		Gdk.RGBA bg_color = Gdk.RGBA ();
+		bg_color.parse ("rgb(255,255,255)");
+		override_background_color (Gtk.StateFlags.NORMAL, bg_color);
 		
 		errorLabel.xalign = 0.5f;
 		errorLabel.set_justify(Justification.CENTER);
 		errorLabel.ellipsize = Pango.EllipsizeMode.END;
 	}
 	
-	public void setWarning(string warning) {
+	public void setWarning(string warning, Gtk.Justification? jst) {
+		if (jst == null)
+			errorLabel.set_justify(Gtk.Justification.CENTER);
+		else
+			errorLabel.set_justify(jst);
+
 		errorLabel.set_markup(warning);
 	}
 }
