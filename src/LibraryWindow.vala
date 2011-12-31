@@ -302,9 +302,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// Ugly workaround to make the view-mode button smaller
 		var viewSelectorContainer = new Box (Orientation.VERTICAL, 0);
 		var viewSelectorInnerContainer = new Box (Orientation.HORIZONTAL, 0);
-		viewSelectorInnerContainer.pack_start (new Box (Orientation.HORIZONTAL, 8), true, true, 0);
+		viewSelectorInnerContainer.pack_start (new Box (Orientation.HORIZONTAL, 10), true, true, 0);
 		viewSelectorInnerContainer.pack_start (viewSelector, false, false, 0);
-		viewSelectorInnerContainer.pack_end (new Box (Orientation.HORIZONTAL, 8), true, true, 0);
+		viewSelectorInnerContainer.pack_end (new Box (Orientation.HORIZONTAL, 10), true, true, 0);
 		viewSelectorContainer.pack_start (new Box (Orientation.VERTICAL, 5), true, true, 0);
 		viewSelectorContainer.pack_start (viewSelectorInnerContainer, false, false, 0);
 		viewSelectorContainer.pack_end (new Box (Orientation.VERTICAL, 5), true, true, 0);
@@ -359,6 +359,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		millerPane.pack2(mainViews, true, true);
 		
 		contentBox.pack_start(millerPane, true, true, 0);
+
 		contentBox.pack_start(statusEventBox, false, true, 0);
 		
 		songsToInfo.pack1(contentBox, true, true);
@@ -599,6 +600,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mainViews.set_visible(haveSongs);
 		miller.set_visible(haveSongs && viewSelector.selected == 2 && showingSongList);
 		welcomeScreen.set_visible(!haveSongs);
+		millerPane.set_visible(haveSongs);
 		welcomeScreen.set_sensitivity(0, !doingOps);
 		statusBar.set_visible(haveSongs);
 		
