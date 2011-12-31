@@ -153,6 +153,17 @@ public class BeatBox.Beatbox : Granite.Application {
 			return false;
 		});
 		
+		// a test
+		try {
+			NetworkAddress.parse_uri("http://www.google.com", 22);
+			stdout.printf("success! hi google!\n");
+		}
+		catch(Error err) {
+			stdout.printf("could not reach google\n");
+		}
+		
+		// finish test
+		
 		if(Option.to_play != null) {
 			stdout.printf("not null\n");
 			File f = File.new_for_uri(Option.to_play);
