@@ -298,16 +298,26 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		verticalBox.pack_start(topControls, false, true, 0);
 		verticalBox.pack_start(videoArea, true, true, 0);
 		verticalBox.pack_start(sourcesToSongs, true, true, 0);
-		
+
+		// Ugly workaround to make the view-mode button smaller
+		var viewSelectorContainer = new Box (Orientation.VERTICAL, 0);
+		var viewSelectorInnerContainer = new Box (Orientation.HORIZONTAL, 0);
+		viewSelectorInnerContainer.pack_start (new Box (Orientation.HORIZONTAL, 8), true, true, 0);
+		viewSelectorInnerContainer.pack_start (viewSelector, false, false, 0);
+		viewSelectorInnerContainer.pack_end (new Box (Orientation.HORIZONTAL, 8), true, true, 0);
+		viewSelectorContainer.pack_start (new Box (Orientation.VERTICAL, 5), true, true, 0);
+		viewSelectorContainer.pack_start (viewSelectorInnerContainer, false, false, 0);
+		viewSelectorContainer.pack_end (new Box (Orientation.VERTICAL, 5), true, true, 0);
+
 		ToolItem topDisplayBin = new ToolItem();
 		ToolItem viewSelectorBin = new ToolItem();
 		ToolItem searchFieldBin = new ToolItem();
 		topDisplayBin.add(topDisplay);
 		topDisplayBin.set_border_width(1);
-		viewSelectorBin.add(viewSelector);
+		viewSelectorBin.add(viewSelectorContainer);
 		viewSelectorBin.set_border_width(3);
 		searchFieldBin.add(searchField);
-		
+
 		topDisplayBin.set_expand(true);
 		
 		var viewSelectorStyle = viewSelector.get_style_context ();
@@ -332,19 +342,18 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// for consistency
 		topControls.set_size_request(-1, 45);
-		//viewSelector.set_size_request(-1, 20);
 		
 		viewSelector.get_style_context().add_class("raised");
 		topControls.get_style_context().add_class("primary-toolbar");
 		
 		//set the name for elementary theming
-		//sourcesToSongs.name = "SidebarHandleLeft";
-		//sideTree.name = "SidebarContent";
 		sourcesToSongs.get_style_context().add_class("sidebar-pane-separator");
 		sideTree.get_style_context().add_class("sidebar");
 		
 		contentBox.pack_start(welcomeScreen, true, true, 0);
-		welcomeScreen.append("library-music", "Set Music Folder", "Select your music folder and build your library.");
+		
+		var music_folder_icon = lm.icons.music_folder.render (IconSize.DIALOG, null);
+		welcomeScreen.append(music_folder_icon, "Set Music Folder", "Select your music folder and build your library.");
 		
 		millerPane.pack1(miller, false, true);
 		millerPane.pack2(mainViews, true, true);

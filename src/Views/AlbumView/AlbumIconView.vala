@@ -278,7 +278,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	
 	public bool on_focus_out () {
 		// Make sure that the search entry is not selected before grabbing focus
-		if (lw.searchField.has_focus)
+		if (!lw.searchField.has_focus)
 			this.grab_focus ();
 
 		return true;

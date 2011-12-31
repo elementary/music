@@ -294,15 +294,16 @@ public class BeatBox.SongEditor : Window {
 	}
 	
 	public void lyricsFetched(Lyrics lyrics) {
-		Song s = _lm.song_from_id(_songs.get(0));
-
 		lyricsInfobarLabel.set_text ("");
+		lyricsInfobar.hide();
 
+		/* FIXME: Verify that the lyrics correspond to the current song.
+		Song s = _lm.song_from_id(_songs.get(0));
 		if (!(lyrics.artist == s.artist || lyrics.artist == s.album_artist) && lyrics.title != s.title)
 			return;
+		*/
 
 		if (!is_white_space (lyrics.content)) {
-			lyricsInfobar.hide();
 			lyricsText.get_buffer().text = lyrics.content;
 		}
 		else {

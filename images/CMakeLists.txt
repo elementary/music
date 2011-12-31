@@ -23,6 +23,9 @@ install(FILES icons/16x16/mimetypes/internet-radio.svg DESTINATION share/beat-bo
 install(FILES icons/128x128/mimetypes/media-audio.png DESTINATION share/beat-box/icons/hicolor/128x128/mimetypes)
 install(FILES icons/128x128/mimetypes/drop-album.svg DESTINATION share/beat-box/icons/hicolor/128x128/mimetypes)
 
+# folder icon
+install(FILES icons/128x128/mimetypes/folder-music.svg DESTINATION share/beat-box/icons/hicolor/128x128/mimetypes)
+
 # history icon
 install(FILES icons/22x22/actions/document-open-recent.svg DESTINATION share/beat-box/icons/hicolor/22x22/actions)
 

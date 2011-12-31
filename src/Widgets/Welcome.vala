@@ -18,13 +18,13 @@ END LICENSE
 	
 namespace ElementaryWidgets {
 
-    public class Welcome : Gtk.EventBox {
+	public class Welcome : Gtk.EventBox {
 
-        // Signals
-        public signal void activated (int index);
+		// Signals
+		public signal void activated (int index);
 
-        protected new GLib.List<Gtk.Button> children = new GLib.List<Gtk.Button> ();
-        protected Gtk.VBox options;
+		protected new GLib.List<Gtk.Button> children = new GLib.List<Gtk.Button> ();
+		protected Gtk.VBox options;
 		
 		public Welcome (string title_text, string subtitle_text) {
 			
@@ -33,7 +33,7 @@ namespace ElementaryWidgets {
 			// Set theming
 			this.get_style_context().add_class ("welcome-screen");
 			
-		    // VBox properties
+			// VBox properties
 			content.spacing = 5;
 			content.homogeneous = false;
 			
@@ -77,26 +77,27 @@ namespace ElementaryWidgets {
 				children.nth_data(index).set_sensitive(val);
 		}
 		
-		public void append (string icon_name, string label_text, string description_text) {
-	        
-	        // Button
-	        var button = new Gtk.Button ();
-	        button.set_relief (Gtk.ReliefStyle.NONE);
-	        
-	        // HBox wrapper
-	        var hbox = new Gtk.HBox (false, 6);
-	        
-	        // Add left image
-	        var icon = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.DIALOG);
-	        hbox.pack_start (icon, false, true, 6);
-	        
-	        // Add right vbox
-	        var vbox = new Gtk.VBox (false, 0);
-	        
-	        vbox.pack_start (new Gtk.HBox (false, 0), true, true, 0); // top spacing
-	        
-	        // Option label
-	        var label = new Gtk.Label ("<span weight='medium' size='12500'>" + label_text + "</span>");
+		public void append (Gdk.Pixbuf? icon, string label_text, string description_text) {
+			
+			// Button
+			var button = new Gtk.Button ();
+			button.set_relief (Gtk.ReliefStyle.NONE);
+			
+			// HBox wrapper
+			var hbox = new Gtk.HBox (false, 6);
+			
+			// Add left image
+			if (icon != null) {
+				var image = new Gtk.Image.from_pixbuf (icon);
+				hbox.pack_start (image, false, true, 6);
+			}
+			// Add right vbox
+			var vbox = new Gtk.VBox (false, 0);
+			
+			vbox.pack_start (new Gtk.HBox (false, 0), true, true, 0); // top spacing
+			
+			// Option label
+			var label = new Gtk.Label ("<span weight='medium' size='12500'>" + label_text + "</span>");
 			label.use_markup = true;
 			label.set_alignment(0.0f, 0.5f);
 			vbox.pack_start (label, false, false, 0);
@@ -116,12 +117,12 @@ namespace ElementaryWidgets {
 			options.pack_start (button, false, false, 0);
 			
 			button.button_release_event.connect ( () => {
-			    int index = this.children.index (button);
-			    this.activated (index); // send signal
-			    
-			    return false;
+				int index = this.children.index (button);
+				this.activated (index); // send signal
+				
+				return false;
 			} );
-	        
+			
 		}
 			
 	}
