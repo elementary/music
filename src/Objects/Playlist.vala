@@ -250,7 +250,7 @@ public class BeatBox.Playlist : Object {
 				s.mediatype = 3;
 				s.album_artist = titles.get(entry.key);
 				
-				if(s.title == null)
+				if(s.album_artist == null)
 					s.album_artist = "Radio Station";
 				
 				stations.add(s);

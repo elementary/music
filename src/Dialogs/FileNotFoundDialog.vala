@@ -52,7 +52,7 @@ public class BeatBox.FileNotFoundDialog : Window {
 		info.set_line_wrap(false);
 		info.set_markup("The music file for <b>" + s.title.replace("&", "&amp;") + "</b> by <b>" + s.artist.replace("&", "&amp;") + "</b> could not be found. What would you like to do?");
 		
-		rescanLibrary.set_sensitive(!lm.doing_file_operations);
+		rescanLibrary.set_sensitive(!lm.doing_file_operations());
 		
 		/* set up controls layout */
 		HBox information = new HBox(false, 0);
@@ -79,7 +79,6 @@ public class BeatBox.FileNotFoundDialog : Window {
 		locateSong.clicked.connect(locateSongClicked);
 		rescanLibrary.clicked.connect(rescanLibraryClicked);
 		doNothing.clicked.connect( () => { 
-			lm.getNext(true);
 			this.destroy(); 
 		});
 		
@@ -138,7 +137,6 @@ public class BeatBox.FileNotFoundDialog : Window {
 		if(file != "") {
 			lm.song_from_id(song_id).file = file;
 			lm.update_song(lm.song_from_id(song_id), false, false);
-			lm.getNext(true);
 			
 			this.destroy();
 		}
@@ -146,7 +144,6 @@ public class BeatBox.FileNotFoundDialog : Window {
 	
 	public void rescanLibraryClicked() {
 		lw.fileRescanMusicFolderClick();
-		lm.getNext(true);
 		
 		this.destroy();
 	}

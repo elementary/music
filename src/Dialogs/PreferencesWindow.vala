@@ -33,6 +33,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 	
 	CheckButton organizeFolders;
 	CheckButton copyImportedMusic;
+	CheckButton downloadNewPodcasts;
 	
 	Button lastfmLogin;
 	Button saveChanges;
@@ -72,6 +73,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		var managementLabel = new Label("Library Management");
 		organizeFolders = new CheckButton.with_label("Keep Music folder organized");
 		copyImportedMusic = new CheckButton.with_label("Copy files to Music folder when added to Library");
+		downloadNewPodcasts = new CheckButton.with_label("Automatically download new Podcast episodes");
 		
 		var lastfmLabel = new Label("Last FM Integration");
 		var lastfmInfo = new Granite.Widgets.WrapLabel("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
@@ -96,7 +98,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		// file chooser stuff
 		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
 		
-		if (_lm.doing_file_operations) {
+		if (_lm.doing_file_operations()) {
 			fileChooser.set_sensitive(false);
 			fileChooser.set_tooltip_text("You must wait until previous file operations finish before setting your music folder");
 		}
@@ -104,6 +106,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		// initialize library management settings
 		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
 		copyImportedMusic.set_active(_lm.settings.getCopyImportedMusic());
+		downloadNewPodcasts.set_active(_lm.settings.getDownloadNewPodcasts());
 		
 		lastfmInfo.set_line_wrap(true);
 		
@@ -118,6 +121,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		content.pack_start(managementLabel, false, true, 0);
 		content.pack_start(wrap_alignment(organizeFolders, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(wrap_alignment(copyImportedMusic, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(wrap_alignment(downloadNewPodcasts, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(lastfmLabel, false, true, 0);
 		content.pack_start(wrap_alignment(lastfmInfo, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(wrap_alignment(lastfmLogin, 0, 0, 0, 10), false, true, 0);
@@ -196,6 +200,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
 		_lm.settings.setCopyImportedMusic(copyImportedMusic.get_active());
+		_lm.settings.setDownloadNewPodcasts(downloadNewPodcasts.get_active());
 		
 		destroy();
 	}

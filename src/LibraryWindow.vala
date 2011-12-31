@@ -557,7 +557,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		bool folderSet = (lm.settings.getMusicFolder() != "");
 		bool haveSongs = lm.song_count() > 0;
-		bool doingOps = lm.doing_file_operations;
+		bool doingOps = lm.doing_file_operations();
 		bool nullSong = (lm.song_info.song == null);
 		bool showMore = lm.settings.getMoreVisible();
 		
@@ -651,7 +651,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void updateInfoLabel() {
-		if(lm.doing_file_operations) {
+		if(lm.doing_file_operations()) {
 			stdout.printf("doing file operations, returning null in updateInfoLabel\n");
 			return;
 		}
@@ -884,7 +884,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void previousClicked () {
-		if(lm.player.getPosition() < 5000000000) {
+		if(lm.player.getPosition() < 5000000000 || (lm.song_info.song != null && lm.song_info.song.mediatype == 3)) {
 			int prev_id = lm.getPrevious(true);
 			
 			/* test to stop playback/reached end */
@@ -1014,7 +1014,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void fileImportMusicClick() {
-		if(!lm.doing_file_operations) {
+		if(!lm.doing_file_operations()) {
 			/*if(!(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists() && lm.settings.getCopyImportedMusic())) {
 				var dialog = new MessageDialog(this, DialogFlags.DESTROY_WITH_PARENT, MessageType.ERROR, ButtonsType.OK, 
 				"Before importing, you must mount your music folder.");
@@ -1051,7 +1051,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void fileRescanMusicFolderClick() {
-		if(!lm.doing_file_operations) {
+		if(!lm.doing_file_operations()) {
 			if(GLib.File.new_for_path(this.settings.getMusicFolder()).query_exists()) {
 				topDisplay.set_label_markup("<b>Rescanning music folder for changes</b>");
 				topDisplay.show_progressbar();
@@ -1177,7 +1177,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void setMusicFolder(string folder) {
-		if(lm.doing_file_operations)
+		if(lm.doing_file_operations())
 			return;
 		
 		if(lm.song_count() > 0 || lm.playlist_count() > 0) {
@@ -1296,19 +1296,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void welcomeScreenActivated(int index) {
-		if(!lm.doing_file_operations && index == 0) {
-			string folder = "";
-			var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
-									  FileChooserAction.SELECT_FOLDER,
-									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
-									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
-			if (file_chooser.run () == ResponseType.ACCEPT) {
-				folder = file_chooser.get_filename();
-			}
-			file_chooser.destroy ();
-			
-			if(folder != "" && (folder != settings.getMusicFolder() || lm.song_count() == 0)) {
-				setMusicFolder(folder);
+		if(index == 0) {
+			if(!lm.doing_file_operations()) {
+				string folder = "";
+				var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+										  FileChooserAction.SELECT_FOLDER,
+										  Gtk.Stock.CANCEL, ResponseType.CANCEL,
+										  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+				if (file_chooser.run () == ResponseType.ACCEPT) {
+					folder = file_chooser.get_filename();
+				}
+				file_chooser.destroy ();
+				
+				if(folder != "" && (folder != settings.getMusicFolder() || lm.song_count() == 0)) {
+					setMusicFolder(folder);
+				}
 			}
 		}
 	}

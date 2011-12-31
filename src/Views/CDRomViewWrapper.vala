@@ -45,7 +45,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 			return;
 		}
 		
-		if(lm.doing_file_operations) {
+		if(lm.doing_file_operations()) {
 			lw.doAlert("BeatBox is already doing an import", "Please wait until BeatBox is finished with the current import before importing the CD.");
 			return;
 		}
@@ -75,10 +75,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 		ripper.ripSong(1, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", s);
 		
 		var update = "Ripping track 1: <b>" + s.title.replace("&", "&amp;") + "</b>" + ((s.artist != "Unknown Artist") ? " by " : "") + "<b>" + s.artist.replace("&", "&amp;") + "</b>" + ((s.album != "Unknown Album") ? " on " : "") + "<b>" + s.album.replace("&", "&amp;") + "</b>";
-		lw.progressNotification(update, 0.0);
-		
-		
-		lm.doing_file_operations = true;
+		lm.start_file_operations(update);
 		lw.updateSensitivities();
 		
 		// this refreshes so that the spinner shows
@@ -160,15 +157,9 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 			lw.progressNotification(update, 0.0);
 		}
 		else {
-			lm.doing_file_operations = false;
 			song_being_ripped = null;
 			
-			if(lm.song_info.song != null) {
-				var song_label = "<b>" + lm.song_info.song.title.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.artist != "") ? " by " : "") + "<b>" + lm.song_info.song.artist.replace("&", "&amp;") + "</b>" + ((lm.song_info.song.album != "") ? " on " : "") + "<b>" + lm.song_info.song.album.replace("&", "&amp;") + "</b>";
-				lw.topDisplay.set_label_markup(song_label);
-			}
-			
-			lw.updateSensitivities();
+			lm.finish_file_operations();
 			
 			/* Show notification that song ripping has finished */
 			// TODO: ..^

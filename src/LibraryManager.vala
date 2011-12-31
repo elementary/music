@@ -78,7 +78,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	private string temp_add_folder;
 	private LinkedList<string> temp_add_files;
-	public bool doing_file_operations;
+	bool _doing_file_operations;
+	public bool have_fetched_new_podcasts;
 	
 	public signal void music_counted(int count);
 	public signal void music_added(LinkedList<string> not_imported);
@@ -168,7 +169,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		else if(repeatValue == 4)
 			repeat = LibraryManager.Repeat.ALL;
 		
-		doing_file_operations = false;
+		_doing_file_operations = false;
+		have_fetched_new_podcasts = false;
 		
 		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
 		podcast_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PODCAST);
@@ -278,51 +280,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public bool doProgressNotificationWithTimeout() {
-		if(doing_file_operations)
+		if(_doing_file_operations)
 			progress_notification(null, (double)((double)fo.index)/((double)fo.item_count));
 		
-		if(fo.index < fo.item_count && doing_file_operations) {
+		if(fo.index < fo.item_count && _doing_file_operations) {
 			return true;
 		}
 		
 		return false;
 	}
 	
-	/* warning! this sets the music folder in the process */
-	public void count_music_files(GLib.File folder) {
-		if(!doing_file_operations) {
-			doing_file_operations = true;
-			settings.setMusicFolder(folder.get_path());
-			
-			try {
-				Thread.create<void*>(count_files_thread_function, false);
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not create thread to count music files: %s\n", err.message);
-			}
-		}
-	}
-	
-	public void* count_files_thread_function () {
-		var file = GLib.File.new_for_path(settings.getMusicFolder());
-		
-		fo.index = 0;
-		var items = fo.count_music_files(file);
-		
-		Idle.add( () => {
-			doing_file_operations = false;
-			music_counted(items);
-			return false;
-		});
-		
-		file_operations_done();
-		return null;
-	}
-	
 	public void set_music_folder(string folder) {
-		if(!doing_file_operations) {
-			doing_file_operations = true;
-			progress_notification("Importing music from <b>" + folder + "</b>...", 0.0);
+		if(start_file_operations("Importing music from <b>" + folder + "</b>...")) {
 			
 			lw.sideTree.removeAllStaticPlaylists();
 			lw.resetSideTree();
@@ -355,33 +324,21 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		fo.get_music_files_set(file, ref new_songs, ref not_imported);
 		
-		add_songs(new_songs, true);
-		
 		Idle.add( () => { 
-			doing_file_operations = false;
-			
+			add_songs(new_songs, true);
 			music_added(not_imported);
-			
-			try {
-				Thread.create<void*>(fetch_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
-			}
+			finish_file_operations();
 			
 			return false;
 		});
 		
-		file_operations_done();
 		return null;
 	}
 	
 	public void add_files_to_library(LinkedList<string> files) {
-		if(!doing_file_operations) {
-			doing_file_operations = true;
-			progress_notification("Adding files to library...", 0.0);
-			
+		if(start_file_operations("Adding files to library...")) {
 			temp_add_files = files;
+			
 			try {
 				Thread.create<void*>(add_files_to_library_thread, false);
 			}
@@ -416,31 +373,20 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		Idle.add( () => { 
 			add_songs(new_songs, true);
-			
-			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
 			update_songs(new_songs, false, false);
-			
-			try {
-				Thread.create<void*>(fetch_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
-			}
+			finish_file_operations();
 			
 			return false; 
 		});
 		
-		file_operations_done();
 		return null;
 	}
 	
 	public void add_folder_to_library(string folder) {
-		if(!doing_file_operations) {
-			doing_file_operations = true;
-			progress_notification("Adding music from <b>" + folder + "</b> to library. This may take a while...", 0.0);
-			
+		if(start_file_operations("Adding music from <b>" + folder + "</b> to library...")) {
 			temp_add_folder = folder;
+			
 			try {
 				Thread.create<void*>(add_folder_to_library_thread, false);
 			}
@@ -477,30 +423,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		Idle.add( () => { 
 			add_songs(new_songs, true);
-			
-			doing_file_operations = false;
 			music_imported(new_songs, not_imported);
 			update_songs(new_songs, false, false);
-			
-			try {
-				Thread.create<void*>(fetch_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
-			}
+			finish_file_operations();
 			
 			return false; 
 		});
 		
-		file_operations_done();
 		return null;
 	}
     
 	public void rescan_music_folder() {
-		if(!doing_file_operations) {
-			doing_file_operations = true;
-			progress_notification("Rescanning music for changes. This may take a while...", 0.0);
-			
+		if(start_file_operations("Rescanning music for changes. This may take a while...")) {
 			try {
 					Thread.create<void*>(rescan_music_thread_function, false);
 			}
@@ -526,9 +460,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var not_imported = new LinkedList<string>();
 		var new_songs = new LinkedList<Song>();
 		fo.rescan_music(GLib.File.new_for_path(music_folder), ref paths, ref not_imported, ref new_songs);
+		stdout.printf("rescan after\n");
 		
 		// all songs remaining are no longer in folder hierarchy
-		lock(_songs) {
+		if(!fo.cancelled) {
 			foreach(Song s in _songs.values) {
 				foreach(string path in paths) {
 					if(s.file == path && !s.isTemporary && !s.isPreview && s.file.has_prefix(music_folder)) {
@@ -536,34 +471,25 @@ public class BeatBox.LibraryManager : GLib.Object {
 					}
 				}
 			}
+		
+			dbm.remove_songs(paths);
 		}
-		
-		dbm.remove_songs(paths);
-		
 		foreach(Song s in new_songs) {
 			if(settings.getCopyImportedMusic())
 				fo.update_file_hierarchy(s, false, false);
 		}
 		
 		Idle.add( () => {
-			remove_songs(removed, false);
+			if(!fo.cancelled)	remove_songs(removed, false);
 			add_songs(new_songs, true);
-			
-			doing_file_operations = false;
 			music_rescanned(new_songs, not_imported); 
 			update_songs(new_songs, false, false);
 			
-			try {
-				Thread.create<void*>(fetch_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
-			}
+			finish_file_operations();
 			
 			return false; 
 		});
 		
-		file_operations_done();
 		return null;
 	}
 	
@@ -1377,7 +1303,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
 			song_from_id(id).unique_status_image = icons.process_error_icon.render (IconSize.MENU, null);
 			lw.song_not_found(id);
-			stopPlayback();
+			getNext(true);
 			return;
 		}
 		else {
@@ -1701,6 +1627,38 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 	}
 	
-	/** Radio stations **/
+	public bool start_file_operations(string? message) {
+		if(_doing_file_operations)
+			return false;
+		
+		progress_notification(message, 0.0);
+		_doing_file_operations = true;
+		return true;
+	}
+	
+	public bool doing_file_operations() {
+		return _doing_file_operations;
+	}
+	
+	public void finish_file_operations() {
+		_doing_file_operations = false;
+		stdout.printf("file operations finished or cancelled\n");
+		
+		if(!have_fetched_new_podcasts) {
+			pm.find_new_podcasts();
+		}
+		else {
+			try {
+				Thread.create<void*>(fetch_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+			}
+			
+			lw.updateSensitivities();
+			lw.updateInfoLabel();
+			file_operations_done();
+		}
+	}
 	
 }

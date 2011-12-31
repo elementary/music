@@ -4,6 +4,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 	LibraryManager lm;
 	LibraryWindow lw;
 	bool fetching;
+	bool user_cancelled;
 	bool saving_locally;
 	
 	int index;
@@ -18,21 +19,30 @@ public class BeatBox.PodcastManager : GLib.Object {
 		this.lm = lm;
 		this.lw = lw;
 		fetching = saving_locally = false;
+		user_cancelled = false;
 		index = total = 0;
+		
+		lm.progress_cancel_clicked.connect( () => { 
+			user_cancelled = true;
+			current_operation = "<b>Cancelling</b> remaining downloads...";
+		} );
 	}
 	
 	public void find_new_podcasts() {
-		if(fetching) {
+		if(fetching || lm.doing_file_operations()) {
 			stdout.printf("Not going to find new podcasts, already fetching\n");
 			return;
 		}
 		
+		lm.start_file_operations("Fetching new Podcast Episodes");
 		try {
 			Thread.create<void*>(find_new_podcasts_thread, false);
 		}
 		catch(GLib.ThreadError err) {
 			stdout.printf("ERROR: Could not create thread to fetch new podcasts: %s \n", err.message);
 		}
+		
+		lm.have_fetched_new_podcasts = true;
 	}
 		
 	public void* find_new_podcasts_thread () {
@@ -51,15 +61,17 @@ public class BeatBox.PodcastManager : GLib.Object {
 		index = 0;
 		total = 10 * rss_urls.size;
 		current_operation = "Looking for new episodes";
-		lm.doing_file_operations = true;
 		fetching = true;
+		user_cancelled = false;
 		Timeout.add(500, doProgressNotificationWithTimeout);
 		
 		LinkedList<Song> new_podcasts = new LinkedList<Song>();
 		var rss_index = 0;
 		foreach(string rss in rss_urls) {
-			stdout.printf("podcast_rss: %s\n", rss);
-			current_operation = "Fetching new <b>" + rss_names.get(rss).replace("&", "&amp;") + "</b> podcast episodes...";
+			if(user_cancelled)
+				break;
+			
+			current_operation = "Searching for new <b>" + rss_names.get(rss).replace("&", "&amp;") + "</b> podcast episodes...";
 			
 			// create an HTTP session to twitter
 			var session = new Soup.SessionSync();
@@ -79,12 +91,20 @@ public class BeatBox.PodcastManager : GLib.Object {
 		
 		index = total + 1;
 		fetching = false;
-		lm.doing_file_operations = false;
 		
 		Idle.add( () => {
 			lm.add_songs(new_podcasts, true);
 			lw.updateSensitivities();
 			lm.lw.updateInfoLabel();
+			lm.finish_file_operations();
+			
+			if(lm.settings.getDownloadNewPodcasts()) {
+				var new_podcast_ids = new LinkedList<int>();
+				foreach(var s in new_podcasts)
+					new_podcast_ids.add(s.rowid);
+				
+				save_episodes_locally(new_podcast_ids);
+			}
 			
 			return false;
 		});
@@ -109,11 +129,13 @@ public class BeatBox.PodcastManager : GLib.Object {
 	}
 	
 	public bool parse_new_rss(string rss) {
+		if(!lm.start_file_operations("Fetching podcast from <b>" + rss + "</b>"))
+			return false;
+		
 		fetching = true;
 		index = 0;
 		total = 10;
 		current_operation = "Fetching podcast from <b>" + rss + "</b>";
-		lm.doing_file_operations = true;
 		Timeout.add(500, doProgressNotificationWithTimeout);
 		
 		stdout.printf("podcast_rss: %s\n", rss);
@@ -144,11 +166,9 @@ public class BeatBox.PodcastManager : GLib.Object {
 		
 		index = 11;
 		fetching = false;
-		lm.doing_file_operations = false;
 		
 		lm.add_songs(new_podcasts, true);
-		lw.updateSensitivities();
-		lm.lw.updateInfoLabel();
+		lm.finish_file_operations();
 		
 		return new_podcasts.size > 0;
 	}
@@ -294,7 +314,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			stdout.printf("Not going to save episodes locally. Must wait to finish fetching.\n");
 			return;
 		}
-		else if(lm.doing_file_operations) {
+		else if(lm.doing_file_operations()) {
 			stdout.printf("Can't save episodes locally. Already doing file operations.\n");
 			return;
 		}
@@ -317,16 +337,20 @@ public class BeatBox.PodcastManager : GLib.Object {
 		if(save_locally_ids == null || save_locally_ids.size == 0)
 			return null;
 		
+		lm.start_file_operations(null);
 		saving_locally = true;
-		lm.doing_file_operations = true;
+		user_cancelled = false;
 		index = 0;
 		total = save_locally_ids.size;
 		Timeout.add(500, doProgressNotificationWithTimeoutSaveLocally);
 		
 		foreach(var i in save_locally_ids) {
+			if(user_cancelled)
+				break;
+			
 			// first, transfer it to local thread
 			// then, set i.file to the new location
-			current_operation = "Saving episode <b>" + lm.song_from_id(i).title + "</b> to file system";
+			current_operation = "Downloading <b>" + lm.song_from_id(i).title + "</b> (" + (index + 1).to_string() + " of " + save_locally_ids.size.to_string() + ")";
 			online_size = File.new_for_uri(lm.song_from_id(i).podcast_url).query_info("*", FileQueryInfoFlags.NONE).get_size();
 			new_dest = lm.fo.get_new_destination(lm.song_from_id(i));
 			lm.fo.update_file_hierarchy(lm.song_from_id(i), false, true);
@@ -337,9 +361,9 @@ public class BeatBox.PodcastManager : GLib.Object {
 		index = total + 1;
 		
 		Idle.add( () => {
-			lm.doing_file_operations = false;
 			lm.lw.updateInfoLabel();
 			//lm.lw.searchField.changed();
+			lm.finish_file_operations();
 			saving_locally = false;
 			
 			return false;
@@ -366,7 +390,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 		
 		lw.progressNotification(current_operation.replace("&", "&amp;"), (double)(((double)index + (double)((double)current_local_size/(double)online_size))/((double)total)));
 		
-		if(index < total && lm.doing_file_operations) {
+		if(index < total && lm.doing_file_operations()) {
 			return true;
 		}
 		

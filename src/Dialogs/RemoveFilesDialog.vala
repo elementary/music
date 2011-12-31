@@ -1,4 +1,4 @@
-using Gtk;
+/*using Gtk;
 using Gee;
 
 public class BeatBox.RemoveFilesDialog : Window {
@@ -52,9 +52,9 @@ public class BeatBox.RemoveFilesDialog : Window {
 		info.set_line_wrap(false);
 		info.set_markup("The music file for <b>" + s.title.replace("&", "&amp;") + "</b> by <b>" + s.artist.replace("&", "&amp;") + "</b> could not be found. What would you like to do?");
 		
-		rescanLibrary.set_sensitive(!lm.doing_file_operations);
+		rescanLibrary.set_sensitive(!lm.doing_file_operations());
 		
-		/* set up controls layout */
+		// set up controls layout 
 		HBox information = new HBox(false, 0);
 		VBox information_text = new VBox(false, 0);
 		information.pack_start(warning, false, false, 10);
@@ -140,4 +140,4 @@ public class BeatBox.RemoveFilesDialog : Window {
 		rescanLibrary.set_sensitive(false);
 	}
 	
-}
+}*/

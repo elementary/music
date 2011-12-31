@@ -277,7 +277,6 @@ public class BeatBox.FileOperator : Object {
 		if(cancelled) {
 			return;
 		}
-			
 		
 		int songs_added = 0;
 		try {

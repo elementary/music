@@ -882,6 +882,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	void playlistImportClicked() {
+		if(lm.doing_file_operations())
+			return;
+		
 		string file = "";
 		string name = "";
 		var file_chooser = new FileChooserDialog ("Import Playlist", lw,
@@ -928,8 +931,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		if(success) {
 			if(paths.size > 0) {
 				try {
-					lm.doing_file_operations = true;
-					lm.progress_notification("Importing <b>" + name + "</b> to Library...", 0.0);
+					lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
 					lw.updateSensitivities();
 					
 					stdout.printf("stv 900\n");
@@ -945,21 +947,13 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 						Idle.add( () => {
 							stdout.printf("stv 904\n");
 							
-							lm.doing_file_operations = false;
 							lm.music_imported(new_songs, not_imported);
-							
 							lm.update_songs(new_songs, false, false);
+							lm.finish_file_operations();
 							
 							if(p != null) {
 								PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
 								pnw.playlist_saved.connect(playlistNameWindowSaved);
-							}
-							
-							try {
-								Thread.create<void*>(lm.fetch_thread_function, false);
-							}
-							catch(GLib.ThreadError err) {
-								stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
 							}
 							
 							return false;

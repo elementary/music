@@ -145,7 +145,7 @@ public class BeatBox.Streamer : GLib.Object {
 			Idle.add( () => {
 				if(pipe.videoStreamCount() > 0) {
 					if(lw.viewSelector.get_children().length() != 4) {
-						stdout.printf("turning on video\n");
+						//stdout.printf("turning on video\n");
 						var viewSelectorStyle = lw.viewSelector.get_style_context ();
 						var view_video_icon = lm.icons.view_video_icon.render (Gtk.IconSize.MENU, viewSelectorStyle);
 						lw.viewSelector.append(new Gtk.Image.from_pixbuf(view_video_icon));
@@ -153,7 +153,7 @@ public class BeatBox.Streamer : GLib.Object {
 					}
 				}
 				else if(getPosition() > 0 && lw.viewSelector.get_children().length() == 4) {
-					stdout.printf("turning off video\n");
+					//stdout.printf("turning off video\n");
 					if(lw.viewSelector.selected == 3) {
 						lw.viewSelector.selected = 1; // show list
 					}

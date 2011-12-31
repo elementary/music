@@ -39,6 +39,7 @@ install(FILES icons/16x16/status/audio-volume-high-symbolic.svg DESTINATION shar
 # starred and not-starrred icons
 install(FILES icons/16x16/status/starred.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/not-starred.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
+install(FILES icons/16x16/status/podcast-new.svg DESTINATION share/beat-box/icons/hicolor/16x16/status)
 
 # playlist icons
 install(FILES icons/16x16/mimetypes/playlist.svg DESTINATION share/beat-box/icons/hicolor/16x16/mimetypes)

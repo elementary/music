@@ -24,6 +24,11 @@
       <summary>Whether or not to copy imported files to music folder</summary>
       <description>Whether or not to copy imported files to music folder</description>
     </key>
+    <key type="b" name="download-new-podcasts">
+      <default>false</default>
+      <summary>Whether or not to automatically download new podcasts</summary>
+      <description>Whether or not to automatically download new podcasts</description>
+    </key>
     <key type="i" name="last-song-playing">
       <default>0</default>
       <summary>ID of last song playing</summary>

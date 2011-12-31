@@ -272,7 +272,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			stdout.printf("Tried to sync when already syncing\n");
 			return false;
 		}
-		else if(lm.doing_file_operations) {
+		else if(lm.doing_file_operations()) {
 			stdout.printf("Can't sync. Already doing file operations\n");
 			return false;
 		}
@@ -283,6 +283,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			return false;
 		}
 		
+		lm.start_file_operations("Syncing <b>" + getDisplayName() + "</b>...");
+		current_operation = "Syncing <b>" + getDisplayName() + "</b>...";
 		this.list = list;
 		
 		try {
@@ -314,9 +316,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	void* sync_songs_thread() {
-		current_operation = "Syncing <b>" + getDisplayName() + "</b>...";
 		currently_syncing = true;
-		lm.doing_file_operations = true;
 		bool error_occurred = false;
 		index = 0;
 		int sub_index = 0;
@@ -461,14 +461,11 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			lm.update_songs(temps, false, true);
 			pref.last_sync_time = (int)time_t();
 			lm.save_device_preferences();
-		
-			lm.doing_file_operations = false;
-			lm.lw.topDisplay.show_scale();
-			lm.lw.updateInfoLabel();
 			lm.lw.searchField.changed();
 			currently_syncing = false;
 			
 			sync_finished(!sync_cancelled);
+			lm.finish_file_operations();
 			
 			return false;
 		});

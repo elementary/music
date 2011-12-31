@@ -33,6 +33,7 @@ public class BeatBox.Settings : Object {
 	public static const string MUSIC_FOLDER = "music-folder";
 	public static const string UPDATE_FOLDER_HIERARCHY = "update-folder-hierarchy";
 	public static const string COPY_IMPORTED_MUSIC = "copy-imported-music";
+	public static const string DOWNLOAD_NEW_PODCASTS = "download-new-podcasts";
 	public static const string LAST_SONG_PLAYING = "last-song-playing";
 	public static const string LAST_SONG_POSITION = "last-song-position";
 	public static const string SHUFFLE_MODE = "shuffle-mode";
@@ -77,6 +78,7 @@ public class BeatBox.Settings : Object {
 		music_settings.add(MUSIC_FOLDER);
 		music_settings.add(UPDATE_FOLDER_HIERARCHY);
 		music_settings.add(COPY_IMPORTED_MUSIC);
+		music_settings.add(DOWNLOAD_NEW_PODCASTS);
 		music_settings.add(LAST_SONG_PLAYING);
 		music_settings.add(LAST_SONG_POSITION);
 		music_settings.add(SHUFFLE_MODE);
@@ -282,6 +284,10 @@ public class BeatBox.Settings : Object {
 		return getBool(COPY_IMPORTED_MUSIC, false);
 	}
 	
+	public bool getDownloadNewPodcasts() {
+		return getBool(DOWNLOAD_NEW_PODCASTS, false);
+	}
+	
 	public int getLastSongPlaying() {
 		return getInt(LAST_SONG_PLAYING, 0);
 	}
@@ -425,6 +431,10 @@ public class BeatBox.Settings : Object {
 	
 	public void setCopyImportedMusic(bool val) {
 		setBool(COPY_IMPORTED_MUSIC, val);
+	}
+	
+	public void setDownloadNewPodcasts(bool val) {
+		setBool(DOWNLOAD_NEW_PODCASTS, val);
 	}
 	
 	public void setLastSongPlaying(int val) {

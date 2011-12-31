@@ -29,6 +29,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	int stamp; // all iters must match this
 	Gdk.Pixbuf _playing;
 	Gdk.Pixbuf _saved_locally;
+	Gdk.Pixbuf _new_podcast;
 	public bool is_current;
 	
     /* data storage variables */
@@ -53,6 +54,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		_columns = column_types;
 		_playing = playing;
 		_saved_locally = lm.lw.render_icon(Gtk.Stock.SAVE, IconSize.MENU, null);
+		_new_podcast = lm.icons.new_podcast_icon.render(IconSize.MENU, null);
 		removing_songs = false;
 
 		rows = new Sequence<int>();
@@ -133,6 +135,8 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 					val = s.unique_status_image;
 				else if(lm.song_info.song != null && lm.song_info.song.rowid == s.rowid && is_current)
 					val = _playing;
+				else if(s.last_played == 0)
+					val = _new_podcast;
 				else if(!s.file.has_prefix("http://"))
 					val = _saved_locally;
 				else
@@ -156,10 +160,6 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 				val = (int)s.rating;
 			else if(column == 10)
 				val = (int)s.pulseProgress;
-				
-			// bold here
-			if(s.last_played == 0 && get_column_type(column) == typeof(string))
-				val = "<b>" + val.get_string() + "</b>";
 		}
 	}
 
