@@ -63,6 +63,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		//icons.button_press_event.connect(buttonPressEvent);
 		icons.item_activated.connect(itemActivated);
 		this.size_allocate.connect(resized);
+		this.focus_out_event.connect(on_focus_out);
+		
+		this.grab_focus ();
 	}
 	
 	public void set_is_current(bool val) {
@@ -271,5 +274,13 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				return;
 			}
 		}
+	}
+	
+	public bool on_focus_out () {
+		// Make sure that the search entry is not selected before grabbing focus
+		if (!lw.searchField.has_focus)
+			this.grab_focus ();
+
+		return true;
 	}
 }

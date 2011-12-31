@@ -41,11 +41,23 @@ public class BeatBox.Icon : GLib.Object {
 		PNG
 	}
 
-	public string name;
-	public string? backup;
-	public int? size;
-	public IconType? type;
-	public IconFileType? file_type;
+	public string icon_name {
+		get {
+			return this.name;
+		}
+	}
+
+	public bool has_backup {
+		get {
+			return (this.backup != null);
+		}
+	}
+
+	private string name;
+	private string? backup;
+	private int? size;
+	private IconType? type;
+	private IconFileType? file_type;
 
 	public Icon (string name, int? size, IconType? type, IconFileType? file_type, bool has_backup) {
 
@@ -177,6 +189,8 @@ public class BeatBox.Icons : GLib.Object {
 	public Icon default_album_art;
 	public Icon drop_album;
 
+	public Icon music_folder;
+
 	public Icon beatbox_icon;
 	public Icon radio_icon;
 	public Icon music_icon;
@@ -217,6 +231,7 @@ public class BeatBox.Icons : GLib.Object {
 		// 128 x 128
 		default_album_art = new Icon ("media-audio", 128, Icon.IconType.MIMETYPE, Icon.IconFileType.PNG, true);
 		drop_album = new Icon ("drop-album", 128, Icon.IconType.MIMETYPE, null, true);
+		music_folder = new Icon ("folder-music", 128, Icon.IconType.MIMETYPE, null, true);
 		
 		// 22 x 22
 		history_icon = new Icon ("document-open-recent", 22, Icon.IconType.ACTION, null, true);

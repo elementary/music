@@ -36,10 +36,10 @@ public class BeatBox.SongEditor : Window {
 	private HBox padding;
 	Widgets.StaticNotebook notebook;
 	
-	private VBox vert; // seperates editors with buttons and other stuff
-	private HBox horiz; // seperates text with numerical editors
-	private VBox textVert; // seperates text editors
-	private VBox numerVert; // seperates numerical editors
+	private VBox vert; // separates editors with buttons and other stuff
+	private HBox horiz; // separates text with numerical editors
+	private VBox textVert; // separates text editors
+	private VBox numerVert; // separates numerical editors
 	
 	private VBox lyricsContent;
 	
@@ -93,8 +93,8 @@ public class BeatBox.SongEditor : Window {
 		content.pack_start(wrap_alignment(notebook, 10, 0, 0, 0), true, true, 0);
 		content.pack_start(wrap_alignment(buttonSep, 0, 0, 10, 0), false, true, 0);
 		
-		((Gtk.ButtonBox)buttonSep).set_child_secondary(_next, true);
-		((Gtk.ButtonBox)buttonSep).set_child_secondary(_previous, true);
+		(buttonSep as Gtk.ButtonBox).set_child_secondary(_next, true);
+		(buttonSep as Gtk.ButtonBox).set_child_secondary(_previous, true);
 		
 		padding.pack_start(content, true, true, 10);
 		add(padding);
@@ -233,7 +233,7 @@ public class BeatBox.SongEditor : Window {
 		lyricsInfobar.add_buttons("Try again", Gtk.ResponseType.OK);
 		lyricsInfobar.set_message_type (Gtk.MessageType.WARNING);
 		
-		((Gtk.Container)lyricsInfobar.get_content_area()).add(lyricsInfobarLabel);
+		(lyricsInfobar.get_content_area() as Gtk.Container).add (lyricsInfobarLabel);
 
 		lyricsInfobar.response.connect(fetchLyricsClicked);
 		
@@ -268,26 +268,24 @@ public class BeatBox.SongEditor : Window {
 	}
 	
 	private void fetch_lyrics (bool overwrite) {
+		lyricsInfobar.hide();
 		Song s = _lm.song_from_id(_songs.get(0));
 
 		// fetch lyrics here
 		if (!(!is_white_space (s.lyrics) && !overwrite))
 			lf.fetch_lyrics(s.artist, s.album_artist, s.title);
-		else
-			lyricsInfobar.hide();
-
 	}
 	
 	private bool is_white_space (string? text) {
-
 		int white_space = 0;
-
+		unichar c;
+		
 		if (text == null)
 			return true;
 
-		for (int i = 0; i < text.length; ++i)
-			if (text[i] == ' ' || text[i] == '\t' || text[i] == '\n')
-				white_space ++;
+		for (int i = 0; text.get_next_char (ref i, out c);)
+			if (c == ' ' || c == '\n' || c == '\t')
+				++white_space;
 
 		if (white_space == text.length)
 			return true;
@@ -295,11 +293,18 @@ public class BeatBox.SongEditor : Window {
 			return false;
 	}
 	
-	public void lyricsFetched(string fetchedLyrics) {
-		if(fetchedLyrics != null && !is_white_space (fetchedLyrics)) {
-			lyricsInfobar.hide();
-			lyricsInfobarLabel.set_text ("");
-			lyricsText.get_buffer().text = fetchedLyrics;
+	public void lyricsFetched(Lyrics lyrics) {
+		lyricsInfobarLabel.set_text ("");
+		lyricsInfobar.hide();
+
+		/* FIXME: Verify that the lyrics correspond to the current song.
+		Song s = _lm.song_from_id(_songs.get(0));
+		if (!(lyrics.artist == s.artist || lyrics.artist == s.album_artist) && lyrics.title != s.title)
+			return;
+		*/
+
+		if (!is_white_space (lyrics.content)) {
+			lyricsText.get_buffer().text = lyrics.content;
 		}
 		else {
 			lyricsInfobar.show_all();
@@ -381,7 +386,6 @@ public class BeatBox.SongEditor : Window {
 		
 		if(lyricsText == null) {
 			var lyrics = createLyricsViewport();
-			
 			notebook.append_page(lyrics, new Label("Lyrics"));
 			lyrics.show_all();
 		}
@@ -423,8 +427,11 @@ public class BeatBox.SongEditor : Window {
 				s.rating = int.parse(fields.get("Rating").get_value());
 				
 			// save lyrics
-			if(lyricsText != null)
-				s.lyrics = lyricsText.get_buffer().text;
+			if(lyricsText != null) {
+				var lyrics = lyricsText.get_buffer().text;
+				if (!is_white_space (lyrics))
+					s.lyrics = lyrics;
+			}
 		}
 		
 		songs_saved(_songs);
