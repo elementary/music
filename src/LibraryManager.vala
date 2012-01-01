@@ -452,6 +452,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Song s in _songs.values) {
 			if(!s.isTemporary && !s.isPreview && s.file.has_prefix(music_folder))
 				paths.add(s.file);
+			if(s.file.has_prefix(music_folder) && !File.new_for_path(s.file).query_exists())
+				removed.add(s);
 		}
 		
 		fo.resetProgress(paths.size);
@@ -460,24 +462,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var not_imported = new LinkedList<string>();
 		var new_songs = new LinkedList<Song>();
 		fo.rescan_music(GLib.File.new_for_path(music_folder), ref paths, ref not_imported, ref new_songs);
-		stdout.printf("rescan after\n");
-		
-		// all songs remaining are no longer in folder hierarchy
-		if(!fo.cancelled) {
-			foreach(Song s in _songs.values) {
-				foreach(string path in paths) {
-					if(s.file == path && !s.isTemporary && !s.isPreview && s.file.has_prefix(music_folder)) {
-						removed.add(s);
-					}
-				}
-			}
-		
-			dbm.remove_songs(paths);
-		}
-		foreach(Song s in new_songs) {
-			if(settings.getCopyImportedMusic())
-				fo.update_file_hierarchy(s, false, false);
-		}
 		
 		Idle.add( () => {
 			if(!fo.cancelled)	remove_songs(removed, false);
@@ -906,13 +890,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		LinkedList<int> removedIds = new LinkedList<int>();
 		LinkedList<string> removePaths = new LinkedList<string>();
 		
-		//string file_path = song_from_id(id).file;
 		foreach(Song s in toRemove) {
 			removedIds.add(s.rowid);
 			removePaths.add(s.file);
 		}
 		
-		// TODO: Check why this is in the order it is
 		dbu.removeItem(removePaths);
 		
 		if(trash) {
@@ -1303,7 +1285,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
 			song_from_id(id).unique_status_image = icons.process_error_icon.render (IconSize.MENU, null);
 			lw.song_not_found(id);
-			getNext(true);
+			stopPlayback();
 			return;
 		}
 		else {
@@ -1315,7 +1297,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://") && !song_from_id(id).file.contains("http://")) // normal file
 				player.setURI("file://" + song_from_id(id).file);
 			else
-				player.setURI(song_from_id(id).file); // probably cdda
+				player.setURI(song_from_id(id).file); // probably cdda or internet media
 		}
 		else {
 			next_gapless_id = 0;

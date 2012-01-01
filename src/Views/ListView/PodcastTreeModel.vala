@@ -71,7 +71,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(_columns[col] == " ") {
 			return typeof(Gdk.Pixbuf);
 		}
-		else if(col == 0 || _columns[col] == "Rating" || col == 10) {
+		else if(col == 0 || _columns[col] == "Length" || _columns[col] == "Rating" || _columns[col] == "Episode" || _columns[col] == "Date" || col == 10) {
 			return typeof(int);
 		}
 		else {
@@ -143,15 +143,15 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 					val = Value(typeof(Gdk.Pixbuf));
 			}
 			else if(column == 2)
-				val = (s.track == 0) ? "" : s.track.to_string();
+				val = (int)s.track;
 			else if(column == 3)
 				val = s.title;
 			else if(column == 4)
-				val = s.pretty_length();
+				val = (int)s.length;
 			else if(column == 5)
 				val = s.artist; 
 			else if(column == 6)
-				val = s.pretty_podcast_date();
+				val = (int)s.podcast_date;
 			else if(column == 7)
 				val = s.genre; // category
 			else if(column == 8)

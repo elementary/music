@@ -94,15 +94,38 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	CellRendererText cellBitrate;
 	
 	
-	//public signal void view_being_searched(string key);
-	
-	/*public bool is_current {
-		get { return _is_current; }
-		set {
-			_is_current = value;
-			podcast_model.is_current = value;
-		}
-	}*/
+	/**
+	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
+	 */
+	public PodcastListView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
+		lm = lmm;
+		lw = lww;
+		
+		//_songs = new LinkedList<int>();
+		_showing_songs = new LinkedList<int>();
+		_columns = new LinkedList<string>();
+		
+		last_search = "";
+		timeout_search = new LinkedList<string>();
+		showing_all = true;
+		removing_songs = false;
+		
+		sort_column = sort;
+		sort_direction = dir;
+		hint = the_hint;
+		playlistSaveTimeoutAdded = false;
+		relative_id = id;
+		
+		cellHelper = new CellDataFunctionHelper(lm);
+		
+		lm.songs_updated.connect(songs_updated);
+		lm.songs_removed.connect(songs_removed);
+		lm.song_played.connect(song_played);
+		lm.playback_stopped.connect(playback_stopped);
+		lm.current_cleared.connect(current_cleared);
+		
+		buildUI();
+	}
 	
 	/* interface functions */
 	public void set_is_current(bool val) {
@@ -278,39 +301,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		return rv;
 	}
 	
-	/**
-	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
-	 */
-	public PodcastListView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
-		lm = lmm;
-		lw = lww;
-		
-		//_songs = new LinkedList<int>();
-		_showing_songs = new LinkedList<int>();
-		_columns = new LinkedList<string>();
-		
-		last_search = "";
-		timeout_search = new LinkedList<string>();
-		showing_all = true;
-		removing_songs = false;
-		
-		sort_column = sort;
-		sort_direction = dir;
-		hint = the_hint;
-		playlistSaveTimeoutAdded = false;
-		relative_id = id;
-		
-		cellHelper = new CellDataFunctionHelper(lm);
-		
-		lm.songs_updated.connect(songs_updated);
-		lm.songs_removed.connect(songs_removed);
-		lm.song_played.connect(song_played);
-		lm.playback_stopped.connect(playback_stopped);
-		lm.current_cleared.connect(current_cleared);
-		
-		buildUI();
-	}
-	
 	public void set_id(int id) {
 		relative_id = id;
 	}
@@ -409,13 +399,13 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		foreach(TreeViewColumn tvc in originalOrder) {
 			if(!(tvc.title == " " || tvc.title == "id")) {
 				if(tvc.title == "Length")
-					view.insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.stringTreeViewFiller);
+					view.insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.lengthTreeViewFiller);
 				else if(tvc.title == "Rating")
 					view.insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
 				else if(tvc.title == "Date")
-					view.insert_column_with_data_func(-1, tvc.title, cellYear, cellHelper.stringTreeViewFiller);
+					view.insert_column_with_data_func(-1, tvc.title, cellYear, cellHelper.dateTreeViewFiller);
 				else if(tvc.title == "Episode")
-					view.insert_column_with_data_func(-1, tvc.title, cellTrack, cellHelper.stringTreeViewFiller);
+					view.insert_column_with_data_func(-1, tvc.title, cellTrack, cellHelper.intelligentTreeViewFiller);
 				else if(tvc.title == "Name")
 					view.insert_column_with_data_func(-1, tvc.title, cellTitle, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Artist")
@@ -536,8 +526,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		songMenuQueue = new MenuItem.with_label("Queue");
 		songMenuNewPlaylist = new MenuItem.with_label("New Playlist");
 		songMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
-		songRemove = new MenuItem.with_label("Remove song");
-		songSaveLocally = new MenuItem.with_label("Save Locally");
+		songRemove = new MenuItem.with_label("Remove episode");
+		songSaveLocally = new MenuItem.with_label("Download");
 		//songRateSongMenu = new Menu();
 		//songRateSong = new MenuItem.with_label("Rate Song");
 		rating_item = new RatingWidgetMenu();
@@ -794,6 +784,35 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				songMenuAddToPlaylist.set_sensitive(false);
 			else
 				songMenuAddToPlaylist.set_sensitive(true);
+				
+			// if all songs are downloaded already, desensitize.
+			// if half and half, change text to 'Download %external of %total'
+			int external_count = 0;
+			int total_count = 0;
+			string music_folder = lm.settings.getMusicFolder();
+			TreeModel temp_model;
+			foreach(TreePath path in view.get_selection().get_selected_rows(out temp_model)) {
+				TreeIter item;
+				temp_model.get_iter(out item, path);
+				
+				int id;
+				temp_model.get(item, 0, out id);
+				
+				if(!lm.song_from_id(id).file.has_prefix(music_folder))
+					++external_count;
+				
+				++total_count;
+			}
+			
+			if(external_count == 0)
+				songSaveLocally.set_sensitive(false);
+			else {
+				songSaveLocally.set_sensitive(true);
+				if(external_count != total_count)
+					songSaveLocally.label = "Download " + external_count.to_string() + " of " + total_count.to_string() + " selected episodes";
+				else
+					songSaveLocally.label = "Download" + ((external_count > 1) ? (" " + external_count.to_string() + " episodes") : "");
+			}
 			
 			songMenuActionMenu.show_all();
 			

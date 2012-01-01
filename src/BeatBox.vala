@@ -154,14 +154,14 @@ public class BeatBox.Beatbox : Granite.Application {
 		});
 		
 		// a test
+		/*bool connected = false;
 		try {
-			NetworkAddress.parse_uri("http://www.google.com", 22);
-			stdout.printf("success! hi google!\n");
+			connected = File.new_for_uri("http://www.google.com").query_exists();
 		}
 		catch(Error err) {
-			stdout.printf("could not reach google\n");
+			connected = false;
 		}
-		
+		stdout.printf("connected is %d\n", connected ? 1 : 0);*/
 		// finish test
 		
 		if(Option.to_play != null) {

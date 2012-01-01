@@ -310,7 +310,7 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare("DELETE FROM `songs` WHERE file=:file");
 			
-			foreach(string s in songs) {
+			foreach(var s in songs) {
 				query.set_string(":file", s);
 				query.execute();
 			}

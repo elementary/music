@@ -26,7 +26,6 @@ namespace ElementaryWidgets {
 	public class TopDisplay : HBox {
 		BeatBox.LibraryManager lm;
 		Label label;
-		Label secondary_label;
 		HBox scaleBox;
 		Label leftTime;
 		Label rightTime;
@@ -40,7 +39,6 @@ namespace ElementaryWidgets {
 			this.lm = lmm;
 			
 			label = new Label("");
-			secondary_label = new Label("");
 			scale = new HScale.with_range(0, 1, 1);
 			leftTime = new Label("0:00");
 			rightTime = new Label("0:00");
@@ -218,7 +216,6 @@ namespace ElementaryWidgets {
 			scaleBox.show();
 			progressbar.hide();
 			cancelButton.hide();
-			//secondary_label.hide();
 			
 			cancelButton.set_size_request(0,0);
 			progressbar.set_size_request(-1, 0);
@@ -228,7 +225,6 @@ namespace ElementaryWidgets {
 			progressbar.show();
 			scaleBox.hide();
 			cancelButton.show();
-			//secondary_label.hide();
 			
 			cancelButton.set_size_request(12, 12);
 		}
@@ -237,7 +233,6 @@ namespace ElementaryWidgets {
 			scaleBox.hide();
 			progressbar.hide();
 			cancelButton.hide();
-			//secondary_label.show();
 		}
 		
 		public virtual void player_position_update(int64 position) {

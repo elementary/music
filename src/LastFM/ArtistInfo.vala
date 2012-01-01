@@ -91,10 +91,9 @@ public class LastFM.ArtistInfo : Object {
             return;
         }
 
-        // Get the root node. notice the dereferencing operator -> instead of .
+        // Get the root node.
         Xml.Node* root = doc->get_root_element ();
         if (root == null) {
-            // Free the document manually before returning
             delete doc;
             return;
         }

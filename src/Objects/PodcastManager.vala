@@ -295,7 +295,6 @@ public class BeatBox.PodcastManager : GLib.Object {
 					new_p.album = pod_title;
 					//new_p.album = ??
 					if(new_p.comment == "")			new_p.comment = summary;
-					if(new_p.podcast_date == 0)		new_p.podcast_date = (int)time_t();
 					
 					found.add(new_p);
 				}
@@ -311,15 +310,15 @@ public class BeatBox.PodcastManager : GLib.Object {
 	
 	public void save_episodes_locally(Collection<int> ids) {
 		if(fetching) {
-			stdout.printf("Not going to save episodes locally. Must wait to finish fetching.\n");
+			stdout.printf("Not going to download episodes. Must wait to finish fetching.\n");
 			return;
 		}
 		else if(lm.doing_file_operations()) {
-			stdout.printf("Can't save episodes locally. Already doing file operations.\n");
+			stdout.printf("Can't download episodes. Already doing file operations.\n");
 			return;
 		}
 		else if(!File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
-			lw.doAlert("Could not save locally", "The music folder could not be found. It may need to be mounted");
+			//lw.doAlert("Could not save locally", "The music folder could not be found. It may need to be mounted");
 			return;
 		}
 		
@@ -348,21 +347,24 @@ public class BeatBox.PodcastManager : GLib.Object {
 			if(user_cancelled)
 				break;
 			
-			// first, transfer it to local thread
-			// then, set i.file to the new location
-			current_operation = "Downloading <b>" + lm.song_from_id(i).title + "</b> (" + (index + 1).to_string() + " of " + save_locally_ids.size.to_string() + ")";
-			online_size = File.new_for_uri(lm.song_from_id(i).podcast_url).query_info("*", FileQueryInfoFlags.NONE).get_size();
-			new_dest = lm.fo.get_new_destination(lm.song_from_id(i));
-			lm.fo.update_file_hierarchy(lm.song_from_id(i), false, true);
-			lm.song_from_id(i).file_size = (int)(new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size() / 1000000);
+			Song s = lm.song_from_id(i);
+			var online_file = File.new_for_uri(s.podcast_url);
+			if(online_file.query_exists() && s.file != s.podcast_url) {
+				current_operation = "Downloading <b>" + s.title + "</b> (" + (index + 1).to_string() + " of " + save_locally_ids.size.to_string() + ")";
+				online_size = online_file.query_info("*", FileQueryInfoFlags.NONE).get_size();
+				new_dest = lm.fo.get_new_destination(s);
+				lm.fo.update_file_hierarchy(s, false, true);
+				s.file_size = (int)(new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size() / 1000000);
+			}
+			else {
+				stdout.printf("Skipped downloading podcast %s. Either not connected to internet, or is already saved locally.\n", s.title);
+			}
 			++index;
 		}
 		
 		index = total + 1;
 		
 		Idle.add( () => {
-			lm.lw.updateInfoLabel();
-			//lm.lw.searchField.changed();
 			lm.finish_file_operations();
 			saving_locally = false;
 			
