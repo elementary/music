@@ -345,7 +345,7 @@ public class BeatBox.FileOperator : Object {
 	
 	public Song? import_song(string file_path) {
 		
-		/*
+		
 		Song s = new Song(file_path);
 		TagLib.File tag_file;
 		
@@ -382,9 +382,10 @@ public class BeatBox.FileOperator : Object {
 		}
 		else {
 			return null;
-		}*/
+		}
 		
-		return tagger.import_song(GLib.File.new_for_path(file_path));
+		return s;
+		//return tagger.import_song(GLib.File.new_for_path(file_path));
 	}
 	
 	public void save_album(Song s, string uri) {

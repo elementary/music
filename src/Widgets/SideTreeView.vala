@@ -378,7 +378,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			Widget w = getWidget(iter);
 			if(w is ViewWrapper) {
 				((ViewWrapper)w).list.set_as_current_list(0, true);
-				((ViewWrapper)w).set_statusbar_text();
 			}
 		}
 		
@@ -651,7 +650,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					lw.addSideListItem(p);
 					
 					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.songs_from_playlist(p.rowid), true, false);
-					lm.save_playlists();
 					
 					break;
 				}

@@ -38,7 +38,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	ViewWrapper.Hint hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	string sort_column;
 	SortType sort_direction;
-	bool playlistSaveTimeoutAdded;
 	bool removing_songs;
 	
 	bool _is_current_view;
@@ -99,16 +98,37 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	CellRendererText cellPlays;
 	CellRendererText cellBitrate;
 	
-	
-	//public signal void view_being_searched(string key);
-	
-	/*public bool is_current {
-		get { return _is_current; }
-		set {
-			_is_current = value;
-			music_model.is_current = value;
-		}
-	}*/
+	/**
+	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
+	 */
+	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
+		lm = lmm;
+		lw = lww;
+		
+		//_songs = new LinkedList<int>();
+		_showing_songs = new LinkedList<int>();
+		_columns = new LinkedList<string>();
+		
+		last_search = "";
+		timeout_search = new LinkedList<string>();
+		showing_all = true;
+		removing_songs = false;
+		
+		sort_column = sort;
+		sort_direction = dir;
+		hint = the_hint;
+		relative_id = id;
+		
+		cellHelper = new CellDataFunctionHelper(lm);
+		
+		lm.songs_updated.connect(songs_updated);
+		lm.songs_removed.connect(songs_removed);
+		lm.song_played.connect(song_played);
+		lm.playback_stopped.connect(playback_stopped);
+		lm.current_cleared.connect(current_cleared);
+		
+		buildUI();
+	}
 	
 	/* interface functions */
 	public void set_is_current(bool val) {
@@ -283,39 +303,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			rv.add(tvc.title);
 		
 		return rv;
-	}
-	
-	/**
-	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
-	 */
-	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
-		lm = lmm;
-		lw = lww;
-		
-		//_songs = new LinkedList<int>();
-		_showing_songs = new LinkedList<int>();
-		_columns = new LinkedList<string>();
-		
-		last_search = "";
-		timeout_search = new LinkedList<string>();
-		showing_all = true;
-		removing_songs = false;
-		
-		sort_column = sort;
-		sort_direction = dir;
-		hint = the_hint;
-		playlistSaveTimeoutAdded = false;
-		relative_id = id;
-		
-		cellHelper = new CellDataFunctionHelper(lm);
-		
-		lm.songs_updated.connect(songs_updated);
-		lm.songs_removed.connect(songs_removed);
-		lm.song_played.connect(song_played);
-		lm.playback_stopped.connect(playback_stopped);
-		lm.current_cleared.connect(current_cleared);
-		
-		buildUI();
 	}
 	
 	public void set_id(int id) {
@@ -987,16 +974,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		tvs.set_columns(get_columns());
 		tvs.sort_column = _columns.get(sort_id);
 		tvs.sort_direction = sort_dir;
-		
-		if(!playlistSaveTimeoutAdded) {
-			playlistSaveTimeoutAdded = true;
-			Timeout.add(2000, () => {
-				lm.save_playlists(); 
-				playlistSaveTimeoutAdded = false;
-				
-				return false; 
-			});
-		}
 	}
 	
 	/** When the column chooser popup menu has a change/toggle **/
@@ -1195,8 +1172,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		}
 		
 		if(get_hint() == ViewWrapper.Hint.PLAYLIST || get_hint() == ViewWrapper.Hint.QUEUE) {
-			lm.save_playlists();
-			
 			music_model.removeSongs(toRemoveIDs);
 
 			// in case all the songs from certain miller items were removed, update miller

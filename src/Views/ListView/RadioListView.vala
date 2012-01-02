@@ -38,7 +38,6 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	ViewWrapper.Hint hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	string sort_column;
 	SortType sort_direction;
-	bool playlistSaveTimeoutAdded;
 	bool removing_songs;
 	
 	bool _is_current_view;
@@ -105,7 +104,6 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		sort_column = sort;
 		sort_direction = dir;
 		hint = the_hint;
-		playlistSaveTimeoutAdded = false;
 		relative_id = id;
 		
 		cellHelper = new CellDataFunctionHelper(lm);
@@ -754,16 +752,6 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		tvs.set_columns(get_columns());
 		tvs.sort_column = _columns.get(sort_id);
 		tvs.sort_direction = sort_dir;
-		
-		if(!playlistSaveTimeoutAdded) {
-			playlistSaveTimeoutAdded = true;
-			Timeout.add(2000, () => {
-				lm.save_playlists(); 
-				playlistSaveTimeoutAdded = false;
-				
-				return false; 
-			});
-		}
 	}
 	
 	/** When the column chooser popup menu has a change/toggle **/

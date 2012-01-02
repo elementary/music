@@ -393,6 +393,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector.mode_changed.connect(updateMillerColumns);
 		viewSelector.mode_changed.connect( () => { updateSensitivities(); } );
 		millerPane.get_child1().size_allocate.connect(millerResized);
+		miller.changed.connect(millerChanged);
+		searchField.changed.connect(searchFieldChanged);
 		searchField.activate.connect(searchFieldActivate);
 		
 		/* set up drag dest stuff */
@@ -1079,11 +1081,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	public void resetSideTree(/*bool clear_views*/) {
+	public void resetSideTree(bool clear_views) {
 		sideTree.resetView();
 		
 		// clear all other playlists, reset to Music, populate music
-		/*if(clear_views) {
+		if(clear_views) {
 			mainViews.get_children().foreach( (w) => {
 				if(w is ViewWrapper && !(w is CDRomViewWrapper) && !(w is DeviceViewWrapper)) {
 					ViewWrapper vw = (ViewWrapper)w;
@@ -1091,7 +1093,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 			});
 		}
-		searchField.changed();*/
+		searchField.changed();
 		
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
 		vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
@@ -1114,7 +1116,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree();
+		resetSideTree(false);
 		//var init = searchField.get_text();
 		//searchField.set_text("up");
 		
@@ -1151,7 +1153,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree();
+		resetSideTree(false);
 		//searchField.changed();
 		
 		updateSensitivities();
@@ -1164,7 +1166,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree();
+		resetSideTree(false);
 		//searchField.changed();
 		stdout.printf("music Rescanned\n");
 		updateSensitivities();
@@ -1398,6 +1400,39 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			miller.populateColumns("", vw.songs);
 		}*/
+	}
+	
+	// create a thread to update ALL non-visible views
+	void searchFieldChanged() {
+		if(initializationFinished && searchField.get_text().length != 1) {
+			try {
+				Thread.create<void*>(update_views_thread, false);
+			}
+			catch(GLib.ThreadError err) {
+				
+			}
+		}
+	}
+	void millerChanged() {
+		if(initializationFinished) {
+			// start thread to prepare for when it is current
+			try {
+				Thread.create<void*>(update_views_thread, false);
+			}
+			catch(GLib.ThreadError err) {
+				
+			}
+		}
+	}
+	void* update_views_thread () {
+		mainViews.get_children().foreach( (w) => {
+			if(w is ViewWrapper && !(w is CDRomViewWrapper) && !(w is DeviceViewWrapper)) {
+				ViewWrapper vw = (ViewWrapper)w;
+				vw.doUpdate(vw.currentView, vw.songs, false, false);
+			}
+		});
+		
+		return null;	
 	}
 	
 	public void searchFieldActivate() {

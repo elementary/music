@@ -441,24 +441,50 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		}
 	}
 	
-	public void update_playlist(Playlist p) {
+	public void add_playlist(Playlist p) {
+		try {
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `songs`, 'sort_column', 'sort_direction', 'columns') 
+												VALUES (:name, :songs, :sort_column, :sort_direction, :columns);""");
+			
+			//foreach(Playlist p in playlists) {
+				query.set_string(":name", p.name);
+				query.set_string(":songs", p.songs_to_string(lm));
+				query.set_string(":sort_column", p.tvs.sort_column);
+				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
+				query.set_string(":columns", p.tvs.columns_to_string());
+				
+				query.execute();
+			//}
+			
+			transaction.commit();
+		}
+		catch(SQLHeavy.Error err) {
+			stdout.printf("Could not add playlists: %s \n", err.message);
+		}
+	}
+	
+	/*public void update_playlists(LinkedList<Playlist> playlists) {
 		try {
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare("UPDATE `playlists` SET name=:name, songs=:songs, sort_column=:sort_column, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
 			
-			query.set_string(":name", p.name);
-			query.set_string(":songs", p.songs_to_string(lm));
-			query.set_string(":sort_column", p.tvs.sort_column);
-			query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
-			query.set_string(":columns", p.tvs.columns_to_string());
-				
-			query.execute();
+			foreach(Playlist p in playlists) {
+				query.set_string(":name", p.name);
+				query.set_string(":songs", p.songs_to_string(lm));
+				query.set_string(":sort_column", p.tvs.sort_column);
+				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
+				query.set_string(":columns", p.tvs.columns_to_string());
+					
+				query.execute();
+			}
+			
 			transaction.commit();
 		}
 		catch(SQLHeavy.Error err) {
 			stdout.printf("Could not update playlist: %s \n", err.message);
 		}
-	}
+	}*/
 	
 	public void remove_playlist(Playlist p) {
 		try {

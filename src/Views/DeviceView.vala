@@ -86,6 +86,7 @@ public class BeatBox.DeviceView : VBox {
 					vw.set_is_current_view(vw.visible);
 					if(vw.visible) {
 						vw.doUpdate(vw.getView(), vw.songs, true, false);
+						vw.set_statusbar_text();
 					}
 					
 					// no millers in device view's for now. it looks weird.
@@ -94,7 +95,6 @@ public class BeatBox.DeviceView : VBox {
 						lw.miller.populateColumns("device", vw.songs);
 					}
 					lw.updateMillerColumns();*/
-					vw.set_statusbar_text();
 				}
 				else {
 					//lw.updateMillerColumns();

@@ -325,15 +325,6 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			list.set_statusbar_text();
 		}
-		else if(lw.initializationFinished) {
-			// start thread to prepare for when it is current
-			try {
-				Thread.create<void*>(update_view_thread, false);
-			}
-			catch(GLib.ThreadError err) {
-				
-			}
-		}
 	}
 	
 	public virtual void searchFieldChanged() {
@@ -357,20 +348,5 @@ public class BeatBox.ViewWrapper : VBox {
 				return false;
 			});
 		}
-		else if(lw.initializationFinished && lw.searchField.get_text().length != 1){
-			// start thread to prepare for when it is current
-			try {
-				Thread.create<void*>(update_view_thread, false);
-			}
-			catch(GLib.ThreadError err) {
-				
-			}
-		}
-	}
-	
-	public void* update_view_thread () {
-		doUpdate(this.currentView, songs, false, false);
-		
-		return null;	
 	}
 }

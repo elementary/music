@@ -26,23 +26,52 @@
 using Gee;
 
 public class BeatBox.DataBaseUpdater : GLib.Object {
+	private LibraryManager lm;
 	private BeatBox.DataBaseManager dbm;
+	
+	LinkedList<Song> song_updates;
 	
 	LinkedList<GLib.Object> toUpdate; // a queue of things to update
 	LinkedList<GLib.Object> toRemove;
 	bool inThread;
+	bool do_periodic_save;
 	
-	public DataBaseUpdater(BeatBox.DataBaseManager databm) {
+	public DataBaseUpdater(LibraryManager lm, BeatBox.DataBaseManager databm) {
+		this.lm = lm;
 		dbm = databm;
 		
+		song_updates = new LinkedList<Song>();
 		toUpdate = new LinkedList<GLib.Object>();
 		toRemove = new LinkedList<GLib.Object>();
 		inThread = false;
+		
+		Timeout.add(10000, periodic_save);
 	}
 	
-	public void updateItem(GLib.Object item) {
+	bool periodic_save() {
+		do_periodic_save = true;
+		
+		return true;
+	}
+	
+	public void update_item(GLib.Object item) {
 		if(!(toUpdate.contains(item)))
 			toUpdate.offer(item);
+		
+		if(!inThread) {
+			try {
+				inThread = true;
+				Thread.create<void*>(update_db_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				stdout.printf("Could not create thread to update database: %s \n", err.message);
+			}
+		}
+	}
+	
+	public void update_song(Song s) {
+		if(!(song_updates.contains(s)))
+			song_updates.offer(s);
 		
 		if(!inThread) {
 			try {
@@ -73,11 +102,12 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	public void* update_db_thread_function () {
 		while(true) {
 			GLib.Object next;
-			if((next = toUpdate.poll()) != null) {
-				if(next is LinkedList<Song>) {
-					dbm.update_songs(((LinkedList<Song>)next));
-				}
-				else if(next is Playlist) {
+			if(song_updates.size > 0) {
+				dbm.update_songs(song_updates);
+				song_updates.clear();
+			}
+			else if((next = toUpdate.poll()) != null) {
+				if(next is Playlist) {
 					//dbm.update_playlist((Playlist)next);
 				}
 				else if(next is SmartPlaylist) {
@@ -95,11 +125,61 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 					dbm.remove_smart_playlist((SmartPlaylist)next);
 				}
 			}
+			else if(do_periodic_save) {
+				do_periodic_save = false;
+				save_others();
+			}
 			else {
 				inThread = false;
 				return null;
 			}
 		}
 
+	}
+	
+	void save_others() {
+		var playlists_and_queue = new LinkedList<Playlist>();
+		playlists_and_queue.add_all(lm.playlists());
+		
+		Playlist p_queue = new Playlist();
+		p_queue.name = "autosaved_queue";
+		foreach(int i in lm.queue()) {
+			p_queue.addSong(i);
+		}
+		p_queue.tvs = lm.queue_setup;
+		
+		Playlist p_history = new Playlist();
+		p_history.name = "autosaved_history";
+		p_history.tvs = lm.history_setup;
+		
+		Playlist p_similar = new Playlist();
+		p_similar.name = "autosaved_similar";
+		p_similar.tvs = lm.similar_setup;
+		
+		Playlist p_music = new Playlist();
+		p_music.name = "autosaved_music";
+		p_music.tvs = lm.music_setup;
+		
+		Playlist p_podcast = new Playlist();
+		p_podcast.name = "autosaved_podcast";
+		p_podcast.tvs = lm.podcast_setup;
+		
+		Playlist p_station = new Playlist();
+		p_station.name = "autosaved_station";
+		p_station.tvs = lm.station_setup;
+		
+		playlists_and_queue.add(p_queue);
+		playlists_and_queue.add(p_history);
+		playlists_and_queue.add(p_similar);
+		playlists_and_queue.add(p_music);
+		playlists_and_queue.add(p_podcast);
+		playlists_and_queue.add(p_station);
+		
+		dbm.save_playlists(playlists_and_queue);
+		dbm.save_smart_playlists(lm.smart_playlists());
+		dbm.save_artists(lm.artists());
+		dbm.save_albums(lm.albums());
+		dbm.save_tracks(lm.tracks());
+		dbm.save_devices(lm.device_preferences());
 	}
 }

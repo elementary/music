@@ -119,7 +119,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		this.settings = sett;
 		
 		this.dbm = new DataBaseManager(this);
-		this.dbu = new DataBaseUpdater(dbm);
+		this.dbu = new DataBaseUpdater(this, dbm);
 		this.fo = new BeatBox.FileOperator(this, settings);
 		this.pm = new PodcastManager(this, lw);
 		
@@ -294,10 +294,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(start_file_operations("Importing music from <b>" + folder + "</b>...")) {
 			stdout.printf("a\n");
 			lw.sideTree.removeAllStaticPlaylists();
+			lw.resetSideTree(true);
 			stdout.printf("a\n");
 			clear_songs();
-			_queue.clear();
-			lw.resetSideTree();stdout.printf("a\n");
+			_queue.clear();stdout.printf("a\n");
 			lw.updateSensitivities();stdout.printf("a\n");
 			
 			settings.setMusicFolder(folder);
@@ -491,61 +491,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _playlists;
 	}
 	
-	public void save_playlists() {
-		stdout.printf("trying to save playlists\n");
-		if(!lw.initializationFinished)
-			return;
-		stdout.printf("actually saving playlists\n");
-		try {
-			lock(_playlists) {
-				Thread.create<void*>( () => {
-					var playlists_and_queue = new LinkedList<Playlist>();
-					playlists_and_queue.add_all(_playlists.values);
-					
-					Playlist p_queue = new Playlist();
-					p_queue.name = "autosaved_queue";
-					foreach(int i in _queue) {
-						p_queue.addSong(i);
-					}
-					p_queue.tvs = queue_setup;
-					
-					Playlist p_history = new Playlist();
-					p_history.name = "autosaved_history";
-					p_history.tvs = history_setup;
-					
-					Playlist p_similar = new Playlist();
-					p_similar.name = "autosaved_similar";
-					p_similar.tvs = similar_setup;
-					
-					Playlist p_music = new Playlist();
-					p_music.name = "autosaved_music";
-					p_music.tvs = music_setup;
-					
-					Playlist p_podcast = new Playlist();
-					p_podcast.name = "autosaved_podcast";
-					p_podcast.tvs = podcast_setup;
-					
-					Playlist p_station = new Playlist();
-					p_station.name = "autosaved_station";
-					p_station.tvs = station_setup;
-					
-					playlists_and_queue.add(p_queue);
-					playlists_and_queue.add(p_history);
-					playlists_and_queue.add(p_similar);
-					playlists_and_queue.add(p_music);
-					playlists_and_queue.add(p_podcast);
-					playlists_and_queue.add(p_station);
-					
-					dbm.save_playlists(playlists_and_queue);
-					return null; 
-				}, false);
-			}
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not create thread to save playlists: %s\n", err.message);
-		}
-	}
-	
 	public Playlist playlist_from_id(int id) {
 		return _playlists.get(id);
 	}
@@ -563,7 +508,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		p.rowid = _playlists.size + 1;
 		_playlists.set(p.rowid, p);
 		
-		save_playlists();
+		dbm.add_playlist(p);
 		
 		return p.rowid;
 	}
@@ -707,7 +652,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(updateMeta)
 			fo.save_songs(updates);
 		
-		dbu.updateItem(updates);
+		foreach(Song s in updates)
+			dbu.update_song(s);
 		
 		// mark all smart playlists as not up to date
 		//foreach(SmartPlaylist sp in _smart_playlists.values) {
@@ -1401,6 +1347,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/************* Last FM Artist Stuff ************/
+	public Collection<LastFM.ArtistInfo> artists() {
+		return _artists.values;
+	}
+	
 	public void save_artist(LastFM.ArtistInfo artist) {
 		_artists.set(artist.name, artist);
 		
@@ -1408,7 +1358,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void save_artists() {
-		try {
+		/*try {
 			Thread.create<void*>( () => { 
 				lock(_artists) {
 					dbm.save_artists(_artists.values);
@@ -1419,7 +1369,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to save last fm artists: %s\n", err.message);
-		}
+		}*/
 	}
 	
 	public bool artist_info_exists(string artist_key) {
@@ -1434,6 +1384,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/************** LastFM Album stuff **************/
+	public Collection<LastFM.AlbumInfo> albums() {
+		return _albums.values;
+	}
+	
 	public void save_album(LastFM.AlbumInfo album) {
 		_albums.set(album.name + " by " + album.artist, album);
 		
@@ -1441,7 +1395,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void save_albums() {
-		try {
+		/*try {
 			Thread.create<void*>( () => { 
 				lock(_albums) {
 					dbm.save_albums(_albums.values);
@@ -1452,7 +1406,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to save last fm albums: %s\n", err.message);
-		}
+		}*/
 	}
 	
 	public bool album_info_exists(string album_key) {
@@ -1467,6 +1421,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/************** Last FM Track Stuff ***************/
+	public Collection<LastFM.TrackInfo> tracks() {
+		return _tracks.values;
+	}
+	
 	public void save_track(LastFM.TrackInfo track) {
 		_tracks.set(track.name + " by " + track.artist, track);
 		
@@ -1474,7 +1432,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void save_tracks() {
-		try {
+		/*try {
 			Thread.create<void*>( () => { 
 				lock(_tracks) {
 					dbm.save_tracks(_tracks.values);
@@ -1485,7 +1443,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to save last fm albums: %s\n", err.message);
-		}
+		}*/
 	}
 	
 	public bool track_info_exists(string track_key) {
@@ -1586,6 +1544,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/* Device Preferences */
+	public Collection<DevicePreferences> device_preferences() {
+		return _device_preferences.values;
+	}
+	
 	public DevicePreferences? get_device_preferences(string id) {
 		return _device_preferences.get(id);
 	}
@@ -1596,7 +1558,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void save_device_preferences() {
-		try {
+		/*try {
 			Thread.create<void*>( () => { 
 				lock(_device_preferences) {
 					dbm.save_devices(_device_preferences.values);
@@ -1607,7 +1569,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not create thread to save device preferences: %s\n", err.message);
-		}
+		}*/
 	}
 	
 	public bool start_file_operations(string? message) {
