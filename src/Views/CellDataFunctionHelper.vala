@@ -50,6 +50,9 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
+		if(val.get_string() == null)
+			return;
+		
 		((CellRendererText)cell).markup = val.get_string().replace("&", "&amp;");
 	}
 	

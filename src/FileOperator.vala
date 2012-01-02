@@ -27,6 +27,7 @@ using Gee;
 public class BeatBox.FileOperator : Object {
 	private BeatBox.LibraryManager lm;
 	private BeatBox.Settings settings;
+	GStreamerTagger tagger;
 	
 	bool inThread;
 	LinkedList<Song> toSave;
@@ -47,6 +48,7 @@ public class BeatBox.FileOperator : Object {
 		toSave = new LinkedList<Song>();
 		cancelled = false;
 		cancelSent = false;
+		tagger = new GStreamerTagger();
 		
 		lm.progress_cancel_clicked.connect( () => { cancelled = true; } );
 	}
@@ -342,6 +344,8 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	public Song? import_song(string file_path) {
+		
+		/*
 		Song s = new Song(file_path);
 		TagLib.File tag_file;
 		
@@ -361,7 +365,7 @@ public class BeatBox.FileOperator : Object {
 				s.samplerate = tag_file.audioproperties.samplerate;
 				s.date_added = (int)time_t();
 				
-				/* get the size and convert to MB */
+				// get the size and convert to MB
 				s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
 				
 			}
@@ -378,9 +382,9 @@ public class BeatBox.FileOperator : Object {
 		}
 		else {
 			return null;
-		}
+		}*/
 		
-		return s;
+		return tagger.import_song(GLib.File.new_for_path(file_path));
 	}
 	
 	public void save_album(Song s, string uri) {

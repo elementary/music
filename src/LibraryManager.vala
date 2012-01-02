@@ -292,13 +292,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void set_music_folder(string folder) {
 		if(start_file_operations("Importing music from <b>" + folder + "</b>...")) {
-			
+			stdout.printf("a\n");
 			lw.sideTree.removeAllStaticPlaylists();
-			lw.resetSideTree();
+			stdout.printf("a\n");
 			clear_songs();
 			_queue.clear();
-			dbm.clear_songs();
-			lw.updateSensitivities();
+			lw.resetSideTree();stdout.printf("a\n");
+			lw.updateSensitivities();stdout.printf("a\n");
 			
 			settings.setMusicFolder(folder);
 			
@@ -312,6 +312,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void* set_music_thread_function () {
+		stdout.printf("b\n");
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
 		
 		var items = fo.count_music_files(file);

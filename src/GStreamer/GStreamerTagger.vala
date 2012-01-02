@@ -1,14 +1,84 @@
-/*using Gst;
+using Gst;
+using Gee;
 
-public class BeatBox.GstreamerTagger : GLib.Object {
+public class BeatBox.GStreamerTagger : GLib.Object {
+	//LinkedList<Song> new_songs;
 	private Gst.Discoverer disc;
 	DiscovererInfo info;
 	
-	public GstreamerTagger() {
+	/*dynamic Element playbin;
+	dynamic Element audiosink;
+	dynamic Element videosink;*/
+	
+	public GStreamerTagger() {
 		disc = new Discoverer((ClockTime)(10*Gst.SECOND));
+		/*playbin = ElementFactory.make("playbin2", "playbin");
+		
+		audiosink = ElementFactory.make("fakesink", "audiosink");
+		videosink = ElementFactory.make("fakesink", "videosink");
+		playbin.set("audio-sink", audiosink); 
+		playbin.set("video-sink", videosink);
+		var bus = playbin.get_bus();
+		bus.add_watch(busCallback);*/
 	}
 	
+	private bool busCallback(Gst.Bus bus, Gst.Message message) {
+		switch (message.type) {
+		case Gst.MessageType.ERROR:
+			GLib.Error err;
+			string debug;
+			message.parse_error (out err, out debug);
+			stdout.printf ("Error importing song: %s\n", err.message);
+			
+			break;
+		/*case Gst.MessageType.ELEMENT:
+			if(message.get_structure() != null && is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
+				dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
+			}
+			break;*/
+		case Gst.MessageType.TAG:
+            Gst.TagList tag_list;
+            stdout.printf("got tag_list\n");
+            message.parse_tag (out tag_list);
+            if(tag_list != null) {
+				string title = "";
+				string album = "";
+				string artist = "";
+				string album_artist = "";
+				if(tag_list.get_tag_size(TAG_TITLE) > 0) {
+					tag_list.get_string(TAG_TITLE, out title);
+				}
+				else if(tag_list.get_tag_size(TAG_ARTIST) > 0) {
+					tag_list.get_string(TAG_ARTIST, out artist);
+				}
+				else if(tag_list.get_tag_size(TAG_ALBUM) > 0) {
+					tag_list.get_string(TAG_ALBUM, out album);
+				}
+				else if(tag_list.get_tag_size(TAG_ALBUM_ARTIST) > 0) {
+					tag_list.get_string(TAG_ALBUM_ARTIST, out album_artist);
+				}
+				
+				stdout.printf("tags: %s, %s, %s, %s\n", title, album, artist, album_artist);
+			}
+            break;
+		default:
+			break;
+		}
+ 
+		return true;
+	}
+	
+	private void foreach_tag (Gst.TagList list, string tag) {
+		string tag_string;
+		if(list.get_string (tag, out tag_string))
+            stdout.printf ("tag: %s = %s\n", tag, tag_string);
+    }
+	
 	public Song? import_song(GLib.File file) {
+		//playbin.uri = file.get_uri();
+		//playbin.set_state(State.PAUSED);
+		
+		
 		Song s = new Song(file.get_path());
 		stdout.printf("importing %s\n", file.get_path());
 		
@@ -88,7 +158,7 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 					s.samplerate = info.get_audio_streams().nth_data(0).get_sample_rate();
 				
 				// get length
-				s.length = (uint)info.get_duration()/1000000000;
+				s.length = (uint)info.get_duration()/100000;
 				
 				// see if it has an image data
 				Gst.Buffer buf;
@@ -106,7 +176,7 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 					string[] paths = file.get_path().split("/", 0);
 					s.title = paths[paths.length - 1];
 				}
-				if(s.artist == null || s.artist == "") s.artist = "Unknown";
+				if(s.artist == null || s.artist == "") s.artist = "Unknown Artist";
 			}
 		}
 		else {
@@ -114,6 +184,7 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 		}
 		
 		return s;
+		//return null;
 	}
 	
 	public Gdk.Pixbuf? get_embedded_art(Song s) {
@@ -188,8 +259,8 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 		
 		/* fetch date, set new year to s.year, set date */
 		
-		/* now find a tag setter interface and use it *
-		Gst.Iterator iter;
+		// now find a tag setter interface and use it
+		/*Gst.Iterator iter;
 		bool done;
 
 		iter = ((Gst.Bin)pipeline).iterate_all_by_interface(typeof(Gst.TagSetter));
@@ -215,11 +286,11 @@ public class BeatBox.GstreamerTagger : GLib.Object {
 			  }
 		}
 		
-		return rv;	*
+		return rv;	*/
 	}
 	
 	public bool save_embedded_art(Gdk.Pixbuf pix) {
 		
 		return false;
 	}
-} */
+}
