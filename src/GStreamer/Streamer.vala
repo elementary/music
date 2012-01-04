@@ -8,6 +8,9 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	InstallGstreamerPluginsDialog dialog;
 	
+	public bool checked_video;
+	public bool set_resume_pos;
+	
 	/** signals **/
 	public signal void end_of_stream();
 	public signal void current_position_update(int64 position);
@@ -33,9 +36,7 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	public bool doPositionUpdate() {
 		current_position_update(getPosition());
-		Timeout.add(500, doPositionUpdate);
-		
-		return false;
+		return true;
 	}
 	
 	/* Basic playback functions */
@@ -63,6 +64,10 @@ public class BeatBox.Streamer : GLib.Object {
 		setState(State.PLAYING);
 		
 		play();
+		/*if(lm.song_info.song.mediatype == 1 || lm.song_info.song.mediatype == 2) {
+			lw.topDisplay.change_value(Gtk.ScrollType.NONE, lm.song_info.song.resume_pos);
+			stdout.printf("setting song position to %d\n", lm.song_info.song.resume_pos);
+		}*/
 	}
 	
 	public void setPosition(int64 pos) {
@@ -142,29 +147,32 @@ public class BeatBox.Streamer : GLib.Object {
             if(newstate != Gst.State.PLAYING)
 				break;
 			
-			Idle.add( () => {
-				if(pipe.videoStreamCount() > 0) {
-					if(lw.viewSelector.get_children().length() != 4) {
-						//stdout.printf("turning on video\n");
-						var viewSelectorStyle = lw.viewSelector.get_style_context ();
-						var view_video_icon = lm.icons.view_video_icon.render (Gtk.IconSize.MENU, viewSelectorStyle);
-						lw.viewSelector.append(new Gtk.Image.from_pixbuf(view_video_icon));
-						lw.viewSelector.selected = 3;
+			if(!checked_video) {
+				Idle.add( () => {
+					checked_video = true;
+					if(pipe.videoStreamCount() > 0) {
+						if(lw.viewSelector.get_children().length() != 4) {
+							//stdout.printf("turning on video\n");
+							var viewSelectorStyle = lw.viewSelector.get_style_context ();
+							var view_video_icon = lm.icons.view_video_icon.render (Gtk.IconSize.MENU, viewSelectorStyle);
+							lw.viewSelector.append(new Gtk.Image.from_pixbuf(view_video_icon));
+							lw.viewSelector.selected = 3;
+						}
 					}
-				}
-				else if(getPosition() > 0 && lw.viewSelector.get_children().length() == 4) {
-					//stdout.printf("turning off video\n");
-					if(lw.viewSelector.selected == 3) {
-						lw.viewSelector.selected = 1; // show list
+					else if(getPosition() > 0 && lw.viewSelector.get_children().length() == 4) {
+						//stdout.printf("turning off video\n");
+						if(lw.viewSelector.selected == 3) {
+							lw.viewSelector.selected = 1; // show list
+						}
+						
+						if(lw.viewSelector.get_children().length() == 4) {
+							lw.viewSelector.remove(3);
+						}
 					}
 					
-					if(lw.viewSelector.get_children().length() == 4) {
-						lw.viewSelector.remove(3);
-					}
-				}
-				
-				return false;
-			});
+					return false;
+				});
+			}
 			
 			
 			break;

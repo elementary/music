@@ -519,7 +519,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		//song list right click menu
 		songMenuActionMenu = new Menu();
-		songEditSong = new MenuItem.with_label("Edit Song Info");
+		songEditSong = new MenuItem.with_label("Edit Podcast");
 		songFileBrowse = new MenuItem.with_label("Show in File Browser");
 		songMenuQueue = new MenuItem.with_label("Queue");
 		songMenuNewPlaylist = new MenuItem.with_label("New Playlist");
@@ -995,22 +995,18 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			lw.song_not_found(id);
 		}
 		else {*/
-			SongEditor se = new SongEditor(lm, podcast_model.getOrderedSongs(), to_edit);
-			se.songs_saved.connect(songEditorSaved);
+			PodcastEditor pe = new PodcastEditor(lm, podcast_model.getOrderedSongs(), to_edit);
+			pe.podcasts_saved.connect(podcastEditorSaved);
 		//}
 	}
 	
-	public virtual void songEditorSaved(LinkedList<int> songs) {
+	public virtual void podcastEditorSaved(LinkedList<int> songs) {
 		LinkedList<Song> toUpdate = new LinkedList<Song>();
 		foreach(int i in songs)
 			toUpdate.add(lm.song_from_id(i));
 		
 		// user could have edited rating, so record time
 		lm.update_songs(toUpdate, true, true);
-		
-		if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
-			// make sure these songs still belongs here
-		}
 	}
 	
 	public virtual void songFileBrowseClicked() {

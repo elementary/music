@@ -299,11 +299,11 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		/* add entire library options */
 		musicList.append(out iter);
-		musicList.set(iter, 0, null, 1, "All Music", 2, lm.icons.music_icon);
+		musicList.set(iter, 0, null, 1, "All Music", 2, lm.icons.music_icon.render(IconSize.MENU, musicDropdown.get_style_context()));
 		podcastList.append(out iter);
-		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.icons.podcast_icon);
+		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.icons.podcast_icon.render(IconSize.MENU, podcastDropdown.get_style_context()));
 		audiobookList.append(out iter);
-		audiobookList.set(iter, 0, null, 1, "All Audiobooks", 2, lm.icons.audiobook_icon);
+		audiobookList.set(iter, 0, null, 1, "All Audiobooks", 2, lm.icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
 		
 		/* add separator */
 		musicList.append(out iter);
@@ -314,21 +314,23 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		audiobookList.set(iter, 0, null, 1, "<separator_item_unique_name>");
 		
 		/* add all playlists */
+		var smart_playlist_pix = lm.icons.smart_playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
+		var playlist_pix = lm.icons.playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
 		foreach(var p in lm.smart_playlists()) {
 			musicList.append(out iter);
-			musicList.set(iter, 0, p, 1, p.name, 2, lm.icons.smart_playlist_icon);
+			musicList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
 			podcastList.append(out iter);
-			podcastList.set(iter, 0, p, 1, p.name, 2, lm.icons.smart_playlist_icon);
+			podcastList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
 			audiobookList.append(out iter);
-			audiobookList.set(iter, 0, p, 1, p.name, 2, lm.icons.smart_playlist_icon);
+			audiobookList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
 		}
 		foreach(var p in lm.playlists()) {
 			musicList.append(out iter);
-			musicList.set(iter, 0, p, 1, p.name, 2, lm.icons.playlist_icon);
+			musicList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
 			podcastList.append(out iter);
-			podcastList.set(iter, 0, p, 1, p.name, 2, lm.icons.playlist_icon);
+			podcastList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
 			audiobookList.append(out iter);
-			audiobookList.set(iter, 0, p, 1, p.name, 2, lm.icons.playlist_icon);
+			audiobookList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
 		}
 		
 		if(!musicDropdown.set_active_id(musicString))

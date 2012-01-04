@@ -293,8 +293,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void set_music_folder(string folder) {
 		if(start_file_operations("Importing music from <b>" + folder + "</b>...")) {
 			stdout.printf("a\n");
-			lw.sideTree.removeAllStaticPlaylists();
 			lw.resetSideTree(true);
+			lw.sideTree.removeAllStaticPlaylists();
 			stdout.printf("a\n");
 			clear_songs();
 			_queue.clear();stdout.printf("a\n");
@@ -1239,6 +1239,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			song_from_id(id).unique_status_image = null;
 		}
 		
+		player.checked_video = false;
+		player.set_resume_pos = false;
+		
 		// actually play the song asap
 		if(next_gapless_id == 0) {
 			if(!song_from_id(id).isPreview && !song_from_id(id).file.contains("cdda://") && !song_from_id(id).file.contains("http://")) // normal file
@@ -1270,8 +1273,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 		/* if same song 1 second later...
 		 * check for embedded art if need be (not loaded from on file) and use that
 		 * check that the s.getAlbumArtPath() exists, if not set to "" and call updateCurrentSong
+		 * save old song's resume_pos
 		 */
 		Timeout.add(1000, () => {
+			
+			Song old_song = song_from_id(old_id);
+			if(old_song != null && (old_song.mediatype == 1 || old_song.mediatype == 2) ) {
+				old_song.resume_pos = (int)((double)player.getPosition()/1000000000);
+				update_song(old_song, false, false);
+			}
 			
 			if(song_info.song.rowid == id) {
 				if(!File.new_for_path(song_info.song.getAlbumArtPath()).query_exists()) {

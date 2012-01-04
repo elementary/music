@@ -790,12 +790,12 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 			lw.song_not_found(id);
 		}
 		else {*/
-			SongEditor se = new SongEditor(lm, radio_model.getOrderedSongs(), to_edit);
-			se.songs_saved.connect(songEditorSaved);
+			StationEditor se = new StationEditor(lm, radio_model.getOrderedSongs(), to_edit);
+			se.stations_saved.connect(stationEditorSaved);
 		//}
 	}
 	
-	public virtual void songEditorSaved(LinkedList<int> songs) {
+	public virtual void stationEditorSaved(LinkedList<int> songs) {
 		LinkedList<Song> toUpdate = new LinkedList<Song>();
 		foreach(int i in songs)
 			toUpdate.add(lm.song_from_id(i));

@@ -408,8 +408,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		resize(settings.getWindowWidth(), this.default_height);
 		viewSelector.selected = settings.getViewMode();
 		
-		sideTree.resetView();
-		
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
 		miller.updateColumnVisibilities(genreV, artistV, albumV);
@@ -417,27 +415,25 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		int i = settings.getLastSongPlaying();
 		if(i != 0) {
-			/* time out works because... monkeys eat bananas */
 			int position = (int)settings.getLastSongPosition();
 			//Timeout.add(250, () => {
-				lm.playSong(i);
-				
-				((ViewWrapper)sideTree.getWidget(sideTree.library_music_iter)).list.set_as_current_list(0, true);
-				if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
-					lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
-				}
-				
-				searchField.set_text(lm.settings.getSearchString());
-				
-				topDisplay.change_value(ScrollType.NONE, position);
-					
-				//return false;
-			//});
+			lm.playSong(i);
+			topDisplay.change_value(ScrollType.NONE, position);
 		}
 		else {
 			/* don't show info panel if nothing playing */
 			infoPanel.set_visible(false);
 		}
+		
+		sideTree.resetView();
+		if(lm.song_info.song != null) {
+			((ViewWrapper)sideTree.getSelectedWidget()).list.set_as_current_list(0, true);
+			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
+				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
+			}
+		}
+		
+		searchField.set_text(lm.settings.getSearchString());
 		
 		initializationFinished = true;
 		updateSensitivities();
@@ -713,11 +709,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_scale_range(0.0, lm.song_info.song.length);
 		
 		if(lm.song_from_id(i).mediatype == 1 || lm.song_from_id(i).mediatype == 2) {
-			stdout.printf("setting position to resume_pos which is %d\n", lm.song_from_id(i).resume_pos );
+			/*stdout.printf("setting position to resume_pos which is %d\n", lm.song_from_id(i).resume_pos );
 			Timeout.add(250, () => {
 				topDisplay.change_value(ScrollType.NONE, lm.song_from_id(i).resume_pos);
 				return false;
-			});
+			});*/
 		}
 		else {
 			topDisplay.change_value(ScrollType.NONE, 0);
@@ -1021,6 +1017,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void on_quit() {
 		stdout.printf("Stopping playback\n");
 		lm.settings.setLastSongPosition((int)((double)lm.player.getPosition()/1000000000));
+		if(lm.song_info.song != null) {
+			lm.song_info.song.resume_pos = (int)((double)lm.player.getPosition()/1000000000);
+			lm.update_song(lm.song_info.song, false, false);
+		}
 		lm.player.pause();
 		
 		stdout.printf("TODO: Clean up play queue\n");
@@ -1093,14 +1093,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 			});
 		}
-		searchField.changed();
-		
-		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-		vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
-		miller.populateColumns("", lm.song_ids());
-		
-		vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
-		vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true);
+		else {
+			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
+			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
+			miller.populateColumns("", lm.song_ids());
+			
+			vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
+			vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true);
+			searchField.changed();
+		}
 	}
 	
 	public virtual void musicCounted(int count) {
@@ -1217,10 +1218,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		double sec = 0.0;
 		if(lm.song_info.song != null) {
 			sec = ((double)position/1000000000);
-			
-			// if podcast or audiobook, and song is considered played, remember position
-			if(lm.song_info.song.mediatype == 1 || lm.song_info.song.mediatype == 2 && song_considered_played)
-				lm.song_info.song.resume_pos = (int)sec;
 			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {

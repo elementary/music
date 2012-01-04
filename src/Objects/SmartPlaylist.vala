@@ -136,7 +136,6 @@ public class BeatBox.SmartPlaylist : Object {
 		//}
 		
 		LinkedList<int> rv = new LinkedList<int>();
-		
 		foreach(Song s in lm.songs()) {
 			int match_count = 0; //if OR must be greather than 0. if AND must = queries.size.
 			

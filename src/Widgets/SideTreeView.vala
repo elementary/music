@@ -406,7 +406,17 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void resetView() {
-		setSelectedIter(convertToFilter(library_music_iter));
+		if(lm.song_info.song == null || lm.song_info.song.mediatype == 0)
+			setSelectedIter(convertToFilter(library_music_iter));
+		else if(lm.song_info.song.mediatype == 1)
+			setSelectedIter(convertToFilter(library_podcasts_iter));
+		else if(lm.song_info.song.mediatype == 2) {
+			setSelectedIter(convertToFilter(library_music_iter));
+			stdout.printf("TODO: Set current list to audiobooks when resetting if current media is audiobook\n");
+		}
+		else if(lm.song_info.song.mediatype == 3)
+			setSelectedIter(convertToFilter(network_radio_iter));
+		
 		tree.foreach(updateView);
 	}
 	
