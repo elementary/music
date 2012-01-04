@@ -833,6 +833,27 @@ public class BeatBox.LibraryManager : GLib.Object {
 		});
 	}
 	
+	public void convert_temp_to_permanent(int i) {
+		var temps = new LinkedList<int>();
+		temps.add(i);
+		convert_temps_to_permanents(temps);
+	}
+	
+	public void convert_temps_to_permanents(LinkedList<int> temps) {
+		LinkedList<Song> temps_songs = new LinkedList<Song>();
+		foreach(int i in temps) {
+			if(song_from_id(i).isTemporary)
+				temps_songs.add(song_from_id(i));
+		}
+		
+		foreach(var s in temps_songs) {
+			s.isTemporary = false;
+			_locals.add(s.rowid);
+		}
+		
+		dbm.add_songs(temps_songs);
+	}
+	
 	public void remove_songs(LinkedList<Song> toRemove, bool trash) {
 		LinkedList<int> removedIds = new LinkedList<int>();
 		LinkedList<string> removePaths = new LinkedList<string>();

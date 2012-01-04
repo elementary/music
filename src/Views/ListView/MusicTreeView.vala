@@ -81,6 +81,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	//Menu songRateSongMenu;
 	RatingWidgetMenu rating_item;
 	MenuItem songRemove;
+	MenuItem importToLibrary;
 	
 	Gdk.Pixbuf starred;
 	Gdk.Pixbuf not_starred;
@@ -310,32 +311,43 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	void updateSensitivities() {
+		songMenuActionMenu.show_all();
+		
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {
 			songRemove.set_sensitive(true);
 			songRemove.set_label("Remove from Library");
 			columnNumber.set_active(false);
 			columnNumber.set_visible(false);
+			importToLibrary.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.SIMILAR) {
 			songRemove.set_sensitive(false);
+			importToLibrary.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.QUEUE) {
 			songRemove.set_sensitive(true);
 			songRemove.set_label("Remove from Queue");
 			songMenuQueue.set_sensitive(false);
+			importToLibrary.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.HISTORY) {
 			songRemove.set_sensitive(false);
+			importToLibrary.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
 			songRemove.set_sensitive(true);
+			importToLibrary.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
 			songRemove.set_sensitive(false);
+			importToLibrary.set_visible(false);
 		}
-		else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO || get_hint() == ViewWrapper.Hint.DEVICE_AUDIOBOOK || get_hint() == ViewWrapper.Hint.DEVICE_PODCAST) {
-			songRemove.set_sensitive(false);
+		else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
+			songRemove.set_visible(false);
 			songRemove.set_label("TODO: Remove from device");
+			importToLibrary.set_visible(true);
+			songMenuAddToPlaylist.set_visible(false);
+			songMenuNewPlaylist.set_visible(false);
 		}
 		else {
 			songRemove.set_sensitive(false);
@@ -561,6 +573,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		songMenuNewPlaylist = new MenuItem.with_label("New Playlist");
 		songMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
 		songRemove = new MenuItem.with_label("Remove song");
+		importToLibrary = new MenuItem.with_label("Import to Library");
 		//songRateSongMenu = new Menu();
 		//songRateSong = new MenuItem.with_label("Rate Song");
 		rating_item = new RatingWidgetMenu();
@@ -575,12 +588,14 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		songMenuActionMenu.append(songMenuAddToPlaylist);
 		songMenuActionMenu.append(new SeparatorMenuItem());
 		songMenuActionMenu.append(songRemove);
+		songMenuActionMenu.append(importToLibrary);
 		songEditSong.activate.connect(songMenuEditClicked);
 		songFileBrowse.activate.connect(songFileBrowseClicked);
 		songMenuQueue.activate.connect(songMenuQueueClicked);
 		songMenuNewPlaylist.activate.connect(songMenuNewPlaylistClicked);
 		songRemove.activate.connect(songRemoveClicked);
 		rating_item.activate.connect(songRateSongClicked);
+		importToLibrary.activate.connect(importToLibraryClicked);
 		//songMenuActionMenu.show_all();
 		
 		updateSensitivities();
@@ -829,7 +844,33 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			else
 				songMenuAddToPlaylist.set_sensitive(true);
 			
-			songMenuActionMenu.show_all();
+			// if all songs are downloaded already, desensitize.
+			// if half and half, change text to 'Download %external of %total'
+			int temporary_count = 0;
+			int total_count = 0;
+			TreeModel temp_model;
+			foreach(TreePath path in view.get_selection().get_selected_rows(out temp_model)) {
+				TreeIter item;
+				temp_model.get_iter(out item, path);
+				
+				int id;
+				temp_model.get(item, 0, out id);
+				
+				if(lm.song_from_id(id).isTemporary)
+					++temporary_count;
+				
+				++total_count;
+			}
+			
+			if(temporary_count == 0)
+				importToLibrary.set_sensitive(false);
+			else {
+				importToLibrary.set_sensitive(true);
+				if(temporary_count != total_count)
+					importToLibrary.label = "Import " + temporary_count.to_string() + " of " + total_count.to_string() + " selected songs";
+				else
+					importToLibrary.label = "Import" + ((temporary_count > 1) ? (" " + temporary_count.to_string() + " songs") : "");
+			}
 			
 			int set_rating = -1;
 			TreeModel temp;
@@ -1178,6 +1219,25 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			lw.miller.populateColumns("", music_model.getOrderedSongs());
 		}
 
+	}
+	
+	void importToLibraryClicked() {
+		TreeSelection selected = view.get_selection();
+		selected.set_mode(SelectionMode.MULTIPLE);
+		TreeModel temp;
+		
+		var to_import = new LinkedList<int>();
+		foreach(TreePath path in selected.get_selected_rows(out temp)) {
+			TreeIter item;
+			temp.get_iter(out item, path);
+			
+			int id;
+			temp.get(item, 0, out id);
+			
+			to_import.add(id);
+		}
+		
+		import_requested(to_import);
 	}
 	
 	public virtual void songRateSongClicked() {

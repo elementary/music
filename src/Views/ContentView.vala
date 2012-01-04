@@ -2,6 +2,8 @@ using Gee;
 
 public interface BeatBox.ContentView : Gtk.ScrolledWindow {
 	
+	public signal void import_requested(LinkedList<int> to_import);
+	
 	public abstract void set_hint(ViewWrapper.Hint hint);
 	public abstract ViewWrapper.Hint get_hint();
 	public abstract void set_relative_id(int id);

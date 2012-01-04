@@ -125,11 +125,23 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 		return false;
 	}
 	
+	public bool transfer_to_library(LinkedList<int> list) {
+		return false;
+	}
+	
 	public bool is_syncing() {
 		return false;
 	}
 	
+	public bool is_transferring() {
+		return false;
+	}
+	
 	public void cancel_sync() {
+		
+	}
+	
+	public void cancel_transfer() {
 		
 	}
 }

@@ -8,7 +8,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	Mount mount;
 	GLib.Icon icon;
 	bool currently_syncing;
+	bool currently_transferring;
 	bool sync_cancelled;
+	bool transfer_cancelled;
 	LinkedList<int> list; // used to pass data to thread
 	int index = 0;
 	int total = 0;
@@ -34,7 +36,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		icon = mount.get_icon();
 		currently_syncing = false;
+		currently_transferring = false;
 		sync_cancelled = false;
+		transfer_cancelled = false;
 		
 		index = 0;
 		total = 0;
@@ -302,8 +306,16 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		return currently_syncing;
 	}
 	
+	public bool is_transferring() {
+		return currently_transferring;
+	}
+	
 	public void cancel_sync() {
 		sync_cancelled = true;
+	}
+	
+	public void cancel_transfer() {
+		transfer_cancelled = true;
 	}
 	
 	public bool will_fit(LinkedList<int> list) {
@@ -578,7 +590,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	public bool doProgressNotificationWithTimeout() {
 		progress_notification(current_operation.replace("&", "&amp;"), (double)((double)index)/((double)total));
 		
-		if(index < total && is_syncing()) {
+		if(index < total && (is_syncing() || is_transferring())) {
 			return true;
 		}
 		
@@ -635,5 +647,70 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		index = 90;
 		db.spl_update_live();
 		index = 95;
+	}
+	
+	public bool transfer_to_library(LinkedList<int> list) {
+		if(currently_transferring) {
+			stdout.printf("Tried to sync when already syncing\n");
+			return false;
+		}
+		else if(lm.doing_file_operations()) {
+			stdout.printf("Can't sync. Already doing file operations\n");
+			return false;
+		}
+		
+		lm.start_file_operations("Importing <b>" + ((list.size > 1) ? list.size.to_string() : (lm.song_from_id(list.get(0)).title)) + "</b> to library...");
+		current_operation = "Importing <b>" + ((list.size > 1) ? list.size.to_string() : (lm.song_from_id(list.get(0)).title)) + "</b> items to library...";
+		this.list = list;
+		
+		try {
+			Thread.create<void*>(transfer_songs_thread, false);
+		}
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: Could not create thread to transfer songs: %s \n", err.message);
+			return false;
+		}
+		
+		return true;
+	}
+	
+	void* transfer_songs_thread() {
+		if(this.list == null || this.list.size == 0)
+			return null;
+		
+		lm.start_file_operations(null);
+		currently_transferring = true;
+		transfer_cancelled = false;
+		index = 0;
+		total = list.size;
+		Timeout.add(500, doProgressNotificationWithTimeout);
+		
+		foreach(var i in list) {
+			if(transfer_cancelled)
+				break;
+			
+			Song s = lm.song_from_id(i);
+			if(File.new_for_path(s.file).query_exists() && s.file.has_prefix(get_path())) {
+				current_operation = "Importing <b>" + s.title + "</b> to library";
+				lm.fo.update_file_hierarchy(s, false, false);
+				lm.convert_temp_to_permanent(s.rowid);
+			}
+			else {
+				stdout.printf("Skipped transferring song %s. Either already in library, or has invalid file path to ipod.\n", s.title);
+			}
+			
+			++index;
+		}
+		
+		index = total + 1;
+		
+		Idle.add( () => {
+			lm.finish_file_operations();
+			currently_transferring = false;
+			
+			return false;
+		});
+		
+		return null;
 	}
 }

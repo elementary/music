@@ -23,8 +23,12 @@ public class BeatBox.DeviceView : VBox {
 		
 		ulong connector = lm.progress_cancel_clicked.connect( () => {
 			if(d.is_syncing()) {
-				lw.doAlert("Cancelling Sync", "Device Sync has been cancelled. Importing will stop after this song.");
+				lw.doAlert("Cancelling Sync", "Device Sync has been cancelled. Operation will stop after this song.");
 				d.cancel_sync();
+			}
+			if(d.is_transferring()) {
+				lw.doAlert("Cancelling Import", "Import from device has been cancelled. Operation will stop after this song.");
+				d.cancel_transfer();
 			}
 		});
 		d.device_unmounted.connect( () => {
@@ -42,10 +46,12 @@ public class BeatBox.DeviceView : VBox {
 		
 		music_list = new DeviceViewWrapper(lm, lw, d.get_songs(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
 		tabs.append_page(music_list, new Label("Music"));
+		music_list.import_requested.connect(import_requested);
 		
 		if(d.supports_podcasts()) {
 			podcast_list = new DeviceViewWrapper(lm, lw, d.get_podcasts(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
 			tabs.append_page(podcast_list, new Label("Podcasts"));
+			podcast_list.import_requested.connect(import_requested);
 		}
 		if(d.supports_audiobooks()) {
 			
@@ -112,7 +118,23 @@ public class BeatBox.DeviceView : VBox {
 		return tabs.page;
 	}
 	
-	void syncClicked() {
+	public void showImportDialog() {
+		// ask the user if they want to import songs from device that they don't have in their library (if any)
+		if(!lm.doing_file_operations() && lm.settings.getMusicFolder() != "") {
+			var externals = new LinkedList<int>();
+			foreach(var i in d.get_songs()) {
+				if(lm.song_from_id(i).isTemporary)
+					externals.add(i);
+			}
+			
+			if(externals.size > 0) {
+				TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(lw, d, externals);
+				tfdd.show();
+			}
+		}
+	}
+	
+	public void syncClicked() {
 		LinkedList<int> list = new LinkedList<int>();
 		
 		if(summary.allSongsSelected()) {
@@ -144,6 +166,10 @@ public class BeatBox.DeviceView : VBox {
 		else {
 			d.sync_songs(list);
 		}
+	}
+	
+	void import_requested(LinkedList<int> to_import) {
+		d.transfer_to_library(to_import);
 	}
 	
 	void deviceProgress(string? message, double progress) {

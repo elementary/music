@@ -75,6 +75,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	RatingWidgetMenu rating_item;
 	MenuItem songRemove;
 	MenuItem songSaveLocally;
+	MenuItem importToLibrary;
 	
 	Gdk.Pixbuf starred;
 	Gdk.Pixbuf not_starred;
@@ -304,39 +305,24 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	}
 	
 	void updateSensitivities() {
-		songRemove.set_sensitive(true);
-		songRemove.set_label("Remove from Library");
+		songMenuActionMenu.show_all();
 		
-		/*if(get_hint() == ViewWrapper.Hint.MUSIC) {
+		if(get_hint() == ViewWrapper.Hint.PODCAST) {
 			songRemove.set_sensitive(true);
 			songRemove.set_label("Remove from Library");
-			columnNumber.set_active(false);
-			columnNumber.set_visible(false);
+			importToLibrary.set_visible(false);
 		}
-		else if(get_hint() == ViewWrapper.Hint.SIMILAR) {
-			songRemove.set_sensitive(false);
-		}
-		else if(get_hint() == ViewWrapper.Hint.QUEUE) {
-			songRemove.set_sensitive(true);
-			songRemove.set_label("Remove from Queue");
-			songMenuQueue.set_sensitive(false);
-		}
-		else if(get_hint() == ViewWrapper.Hint.HISTORY) {
-			songRemove.set_sensitive(false);
-		}
-		else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-			songRemove.set_sensitive(true);
-		}
-		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
-			songRemove.set_sensitive(false);
-		}
-		else if(get_hint() == ViewWrapper.Hint.DEVICE) {
-			songRemove.set_sensitive(false);
+		else if(get_hint() == ViewWrapper.Hint.DEVICE_PODCAST) {
+			songRemove.set_visible(false);
 			songRemove.set_label("TODO: Remove from device");
+			importToLibrary.set_visible(true);
+			songSaveLocally.set_visible(false);
+			songMenuAddToPlaylist.set_visible(false);
+			songMenuNewPlaylist.set_visible(false);
 		}
 		else {
 			songRemove.set_sensitive(false);
-		}*/
+		}
 	}
 	
 	public void buildUI() {
@@ -526,6 +512,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		songMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
 		songRemove = new MenuItem.with_label("Remove episode");
 		songSaveLocally = new MenuItem.with_label("Download");
+		importToLibrary = new MenuItem.with_label("Import to Library");
 		//songRateSongMenu = new Menu();
 		//songRateSong = new MenuItem.with_label("Rate Song");
 		rating_item = new RatingWidgetMenu();
@@ -541,6 +528,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		songMenuActionMenu.append(songMenuAddToPlaylist);
 		songMenuActionMenu.append(new SeparatorMenuItem());
 		songMenuActionMenu.append(songRemove);
+		songMenuActionMenu.append(importToLibrary);
 		songEditSong.activate.connect(songMenuEditClicked);
 		songFileBrowse.activate.connect(songFileBrowseClicked);
 		songSaveLocally.activate.connect(songSaveLocallyClicked);
@@ -548,6 +536,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		songMenuNewPlaylist.activate.connect(songMenuNewPlaylistClicked);
 		songRemove.activate.connect(songRemoveClicked);
 		rating_item.activate.connect(songRateSong0Clicked);
+		importToLibrary.activate.connect(importToLibraryClicked);
 		//songMenuActionMenu.show_all();
 		
 		updateSensitivities();
@@ -786,6 +775,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			// if all songs are downloaded already, desensitize.
 			// if half and half, change text to 'Download %external of %total'
 			int external_count = 0;
+			int temporary_count = 0;
 			int total_count = 0;
 			string music_folder = lm.settings.getMusicFolder();
 			TreeModel temp_model;
@@ -798,6 +788,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				
 				if(!lm.song_from_id(id).file.has_prefix(music_folder))
 					++external_count;
+				if(lm.song_from_id(id).isTemporary)
+					++temporary_count;
 				
 				++total_count;
 			}
@@ -812,7 +804,17 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 					songSaveLocally.label = "Download" + ((external_count > 1) ? (" " + external_count.to_string() + " episodes") : "");
 			}
 			
-			songMenuActionMenu.show_all();
+			if(temporary_count == 0)
+				importToLibrary.set_sensitive(false);
+			else {
+				importToLibrary.set_sensitive(true);
+				if(temporary_count != total_count)
+					importToLibrary.label = "Import " + temporary_count.to_string() + " of " + total_count.to_string() + " selected episodes";
+				else
+					importToLibrary.label = "Import" + ((temporary_count > 1) ? (" " + temporary_count.to_string() + " episodes") : "");
+			}
+			
+			//songMenuActionMenu.show_all();
 			
 			int set_rating = -1;
 			TreeModel temp;
@@ -1050,7 +1052,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			
 			int id;
 			temp.get(item, 0, out id);
-			Song s = lm.song_from_id(id);
 			
 			toSave.add(id);
 		}
@@ -1135,6 +1136,25 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		// in case all the songs from certain miller items were removed, update miller
 		lw.miller.populateColumns("", podcast_model.getOrderedSongs());
+	}
+	
+	void importToLibraryClicked() {
+		TreeSelection selected = view.get_selection();
+		selected.set_mode(SelectionMode.MULTIPLE);
+		TreeModel temp;
+		
+		var to_import = new LinkedList<int>();
+		foreach(TreePath path in selected.get_selected_rows(out temp)) {
+			TreeIter item;
+			temp.get_iter(out item, path);
+			
+			int id;
+			temp.get(item, 0, out id);
+			
+			to_import.add(id);
+		}
+		
+		import_requested(to_import);
 	}
 	
 	public virtual void songRateSong0Clicked() {

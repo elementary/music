@@ -188,6 +188,7 @@ vala_precompile(VALA_C
     Dialogs/AddPodcastWindow.vala
     Dialogs/RemoveFromLibraryDialog.vala
     Dialogs/SetMusicFolderConfirmation.vala
+    Dialogs/TransferFromDeviceDialog.vala
     ${CMAKE_SOURCE_DIR}/src/config.vapi
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi

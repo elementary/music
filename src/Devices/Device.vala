@@ -55,6 +55,9 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract bool is_syncing();
 	public abstract void cancel_sync();
 	public abstract bool will_fit(LinkedList<int> list);
+	public abstract bool is_transferring();
+	public abstract void cancel_transfer();
+	public abstract bool transfer_to_library(LinkedList<int> list);
 	
 	public string get_unique_identifier() {
 		Mount m = get_mount();

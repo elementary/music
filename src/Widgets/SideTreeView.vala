@@ -54,6 +54,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	MenuItem CDimportToLibrary;
 	MenuItem CDeject;
 	
+	//for device right click
+	Menu deviceMenu;
+	MenuItem deviceImportToLibrary;
+	MenuItem deviceSync;
+	
 	//for playlist right click
 	Menu playlistMenu;
 	MenuItem playlistNew;
@@ -81,6 +86,15 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void buildUI() {
+		deviceMenu = new Menu();
+		deviceImportToLibrary = new MenuItem.with_label("Import from Device");
+		deviceSync = new MenuItem.with_label("Sync");
+		deviceMenu.append(deviceImportToLibrary);
+		deviceMenu.append(deviceSync);
+		deviceImportToLibrary.activate.connect(deviceImportToLibraryClicked);
+		deviceSync.activate.connect(deviceSyncClicked);
+		deviceMenu.show_all();
+		
 		podcastMenu = new Menu();
 		podcastAdd = new MenuItem.with_label("Add Podcast");
 		podcastRefresh = new MenuItem.with_label("Download new Episodes");
@@ -347,6 +361,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				else if(o is Device && ((Device)o).getContentType() == "cdrom") {
 					CDMenu.popup(null, null, null, 3, get_current_event_time());
 				}
+				else if(o is Device) {
+					deviceMenu.popup(null, null, null, 3, get_current_event_time());
+				}
 			}
 			else {
 				if(iter == convertToFilter(playlists_iter)) {
@@ -597,6 +614,31 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		
 		if(o is Device && ((Device)o).getContentType() == "cdrom") {
 			((Device)o).unmount();
+		}
+	}
+	
+	// device menu
+	void deviceImportToLibraryClicked() {
+		TreeIter iter = getSelectedIter();
+		Widget w = getSelectedWidget();
+		
+		GLib.Object o;
+		filter.get(iter, 0, out o);
+		
+		if(o is Device) {
+			((DeviceView)w).showImportDialog();
+		}
+	}
+	
+	void deviceSyncClicked() {
+		TreeIter iter = getSelectedIter();
+		Widget w = getSelectedWidget();
+		
+		GLib.Object o;
+		filter.get(iter, 0, out o);
+		
+		if(o is Device) {
+			((DeviceView)w).syncClicked();
 		}
 	}
 	
