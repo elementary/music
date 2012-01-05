@@ -154,7 +154,8 @@ public class BeatBox.DeviceView : VBox {
 				list = lm.songs_from_smart_playlist(((SmartPlaylist)p).rowid);
 			}*/
 		}
-			
+		
+		
 		
 		bool fits = d.will_fit(list);
 		if(!fits) {

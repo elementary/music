@@ -22,6 +22,10 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 	SpaceWidget spaceWidget;
 	Button syncButton;
 	
+	int music_index;
+	int podcast_index;
+	int audiobook_index;
+	
 	public DeviceSummaryWidget(LibraryManager lm, LibraryWindow lw, Device d) {
 		this.lm = lm;
 		this.lw = lw;
@@ -45,7 +49,8 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		audiobookList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
 		
 		deviceImage = new Gtk.Image.from_gicon(dev.get_icon(), IconSize.DIALOG);
-		spaceWidget = new SpaceWidget((double)dev.get_capacity());
+		var spaceWidgetScroll = new ScrolledWindow(null, null);
+		spaceWidget = new SpaceWidget((double)dev.get_capacity()/1000000);
 		syncButton = new Button.with_label("Sync");
 		
 		Label deviceNameLabel = new Label("Device Name:");
@@ -55,6 +60,14 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		var content = new VBox(false, 10);
 		
 		setupLists();
+		
+		spaceWidgetScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER); 
+		spaceWidgetScroll.add_with_viewport(spaceWidget);
+		
+		music_index = spaceWidget.add_item("Music", 0.0, SpaceWidget.ItemColor.BLUE);
+		podcast_index = spaceWidget.add_item("Podcasts", 0.0, SpaceWidget.ItemColor.PURPLE);
+		audiobook_index = spaceWidget.add_item("Audiobooks", 0.0, SpaceWidget.ItemColor.GREEN);
+		stdout.printf("index's are %d %d %d\n", music_index, podcast_index, audiobook_index);
 		
 		refreshSpaceWidget();
 		
@@ -98,8 +111,8 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		//syncBox.pack_end(syncButton, false, false, 0);
 		
 		var bottomBox = new HBox(false, 0);
-		bottomBox.pack_start(deviceImage, false, true, 0);
-		bottomBox.pack_start(spaceWidget, true, true, 0);
+		//bottomBox.pack_start(deviceImage, false, true, 0);
+		bottomBox.pack_start(spaceWidgetScroll, true, true, 0);
 		bottomBox.pack_start(syncButtonBox, false, false, 0);
 		
 		// put it all together
@@ -184,26 +197,23 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 	}
 	
 	void refreshSpaceWidget() {
-		spaceWidget.remove_item(0);
-		spaceWidget.remove_item(1);
-		spaceWidget.remove_item(2);
-		
+		stdout.printf("refreshing space widget...\n");
 		double song_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
 		
 		foreach(int i in dev.get_songs()) {
-			song_size += (double)(lm.song_from_id(i).file_size * 1000000);
+			song_size += (double)(lm.song_from_id(i).file_size);
 		}
 		foreach(int i in dev.get_podcasts()) {
-			podcast_size += (double)(lm.song_from_id(i).file_size * 1000000);
+			podcast_size += (double)(lm.song_from_id(i).file_size);
 		}
 		foreach(int i in dev.get_audiobooks()) {
-			audiobook_size += (double)(lm.song_from_id(i).file_size * 1000000);
+			audiobook_size += (double)(lm.song_from_id(i).file_size);
 		}
 		
-		spaceWidget.add_item("Songs", song_size, 0, 0, 128);
-		spaceWidget.add_item("Podcasts", podcast_size, 255, 165, 0);
-		spaceWidget.add_item("Audiobooks", audiobook_size, 255, 0, 0);
-		spaceWidget.queue_draw();
+		stdout.printf("asdlfj;sldfj index's are %d %d %d\n", music_index, podcast_index, audiobook_index);
+		spaceWidget.update_item_size(music_index, song_size);
+		spaceWidget.update_item_size(podcast_index, podcast_size);
+		spaceWidget.update_item_size(audiobook_index, audiobook_size);
 	}
 	
 	void setupLists() {
@@ -317,12 +327,21 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		var smart_playlist_pix = lm.icons.smart_playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
 		var playlist_pix = lm.icons.playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
 		foreach(var p in lm.smart_playlists()) {
-			musicList.append(out iter);
-			musicList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
-			podcastList.append(out iter);
-			podcastList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
-			audiobookList.append(out iter);
-			audiobookList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+			bool music, podcasts, audiobooks;
+			test_media_types(lm.songs_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
+			
+			if(music) {
+				musicList.append(out iter);
+				musicList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+			}
+			if(podcasts) {
+				podcastList.append(out iter);
+				podcastList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+			}
+			if(audiobooks) {
+				audiobookList.append(out iter);
+				audiobookList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+			}
 		}
 		foreach(var p in lm.playlists()) {
 			musicList.append(out iter);
@@ -339,6 +358,21 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 			podcastDropdown.set_active(0);
 		if(!audiobookDropdown.set_active_id(audiobookString))
 			audiobookDropdown.set_active(0);
+	}
+	
+	void test_media_types(Gee.Collection<int> items, out bool music, out bool podcasts, out bool audiobooks) {
+		music = false;
+		podcasts = false;
+		audiobooks = false;
+		
+		foreach(int i in items) {
+			if(!music && lm.song_from_id(i).mediatype == 0)
+				music = true;
+			else if(!podcasts && lm.song_from_id(i).mediatype == 1)
+				podcasts = true;
+			else if(!audiobooks && lm.song_from_id(i).mediatype == 2)
+				audiobooks = true;
+		}
 	}
 	
 	void sync_finished(bool success) {
