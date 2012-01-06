@@ -52,7 +52,7 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 		title.xalign = 0.0f;
 		title.set_markup("<span weight=\"bold\" size=\"larger\">Set Music Folder?</span>");
 		info.xalign = 0.0f;
-		info.set_line_wrap(false);
+		info.set_line_wrap(true);
 		info.set_markup("Are you sure you want to set the music folder to <b>" + path.replace("&", "&amp;") + "</b>? This will reset your library and remove static playlists.");
 		
 		/* set up controls layout */

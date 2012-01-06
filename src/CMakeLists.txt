@@ -189,6 +189,7 @@ vala_precompile(VALA_C
     Dialogs/RemoveFromLibraryDialog.vala
     Dialogs/SetMusicFolderConfirmation.vala
     Dialogs/TransferFromDeviceDialog.vala
+    Dialogs/SyncWarningDialog.vala
     ${CMAKE_SOURCE_DIR}/src/config.vapi
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi

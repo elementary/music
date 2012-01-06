@@ -197,7 +197,6 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 	}
 	
 	void refreshSpaceWidget() {
-		stdout.printf("refreshing space widget...\n");
 		double song_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
 		
 		foreach(int i in dev.get_songs()) {
@@ -210,7 +209,6 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 			audiobook_size += (double)(lm.song_from_id(i).file_size);
 		}
 		
-		stdout.printf("asdlfj;sldfj index's are %d %d %d\n", music_index, podcast_index, audiobook_index);
 		spaceWidget.update_item_size(music_index, song_size);
 		spaceWidget.update_item_size(podcast_index, podcast_size);
 		spaceWidget.update_item_size(audiobook_index, audiobook_size);
@@ -327,29 +325,38 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		var smart_playlist_pix = lm.icons.smart_playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
 		var playlist_pix = lm.icons.playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
 		foreach(var p in lm.smart_playlists()) {
-			bool music, podcasts, audiobooks;
-			test_media_types(lm.songs_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
+			//bool music, podcasts, audiobooks;
+			//test_media_types(lm.songs_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
 			
-			if(music) {
+			//if(music) {
 				musicList.append(out iter);
 				musicList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
-			}
-			if(podcasts) {
+			//}
+			//if(podcasts) {
 				podcastList.append(out iter);
 				podcastList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
-			}
-			if(audiobooks) {
+			//}
+			//if(audiobooks) {
 				audiobookList.append(out iter);
 				audiobookList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
-			}
+			//}
 		}
 		foreach(var p in lm.playlists()) {
-			musicList.append(out iter);
-			musicList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
-			podcastList.append(out iter);
-			podcastList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
-			audiobookList.append(out iter);
-			audiobookList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+			//bool music, podcasts, audiobooks;
+			//test_media_types(lm.songs_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
+			
+			//if(music) {
+				musicList.append(out iter);
+				musicList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+			//}
+			//if(podcasts) {
+				podcastList.append(out iter);
+				podcastList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+			//}
+			//if(audiobooks) {
+				audiobookList.append(out iter);
+				audiobookList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+			//}
 		}
 		
 		if(!musicDropdown.set_active_id(musicString))
@@ -360,20 +367,25 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 			audiobookDropdown.set_active(0);
 	}
 	
-	void test_media_types(Gee.Collection<int> items, out bool music, out bool podcasts, out bool audiobooks) {
+	/*void test_media_types(Gee.Collection<int> items, out bool music, out bool podcasts, out bool audiobooks) {
 		music = false;
 		podcasts = false;
 		audiobooks = false;
 		
+		if(items.size == 0) {
+			music = true; podcasts = true; audiobooks = true;
+			return;
+		}
+		
 		foreach(int i in items) {
 			if(!music && lm.song_from_id(i).mediatype == 0)
 				music = true;
-			else if(!podcasts && lm.song_from_id(i).mediatype == 1)
+			if(!podcasts && lm.song_from_id(i).mediatype == 1)
 				podcasts = true;
-			else if(!audiobooks && lm.song_from_id(i).mediatype == 2)
+			if(!audiobooks && lm.song_from_id(i).mediatype == 2)
 				audiobooks = true;
 		}
-	}
+	}*/
 	
 	void sync_finished(bool success) {
 		refreshSpaceWidget();
@@ -498,8 +510,20 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 			lw.doAlert("Cannot Sync", "Device is already being synced.");
 		}
 		else {
-			syncButton.sensitive = false;
-			dev.sync_songs(list);
+			var to_remove = new Gee.LinkedList<int>();
+			foreach(int i in dev.get_songs()) {
+				if(!list.contains(i))
+					to_remove.add(i);
+			}
+			
+			if(to_remove.size > 0) { // hand control over to SWD
+				SyncWarningDialog swd = new SyncWarningDialog(lm, lw, dev, list, to_remove);
+				swd.show();
+			}
+			else {
+				syncButton.sensitive = false;
+				dev.sync_songs(list);
+			}
 		}
 	}
 }

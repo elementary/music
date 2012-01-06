@@ -77,7 +77,7 @@ public class BeatBox.FileOperator : Object {
 				typeDown.has_suffix(".png"));
 	}
 	
-	public int count_music_files(GLib.File music_folder) {
+	public int count_music_files(GLib.File music_folder, ref LinkedList<string> files) {
 		GLib.FileInfo file_info = null;
 		
 		try {
@@ -87,6 +87,7 @@ public class BeatBox.FileOperator : Object {
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					index++;
+					files.add(file_path);
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY) {
 					count_music_files(GLib.File.new_for_path(file_path));

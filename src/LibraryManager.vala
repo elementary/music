@@ -314,8 +314,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void* set_music_thread_function () {
 		stdout.printf("b\n");
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
+		LinkedList<string> files = new LinkedList<string>();
 		
-		var items = fo.count_music_files(file);
+		var items = fo.count_music_files(file, ref files);
 		
 		fo.resetProgress(items);
 		Timeout.add(100, doProgressNotificationWithTimeout);
@@ -323,7 +324,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var new_songs = new LinkedList<Song>();
 		var not_imported = new LinkedList<string>();
 		
-		fo.get_music_files_set(file, ref new_songs, ref not_imported);
+		fo.get_music_files_set(files, ref new_songs, ref not_imported);
 		
 		Idle.add( () => { 
 			add_songs(new_songs, true);
@@ -1609,6 +1610,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		progress_notification(message, 0.0);
 		_doing_file_operations = true;
+		file_operations_started();
 		return true;
 	}
 	
