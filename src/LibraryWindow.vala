@@ -564,12 +564,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			return;
 		
 		bool folderSet = (lm.settings.getMusicFolder() != "");
-		bool haveSongs = lm.song_count() > 0;
+		bool haveSongs = lm.local_ids().size > 0;
 		bool doingOps = lm.doing_file_operations();
 		bool nullSong = (lm.song_info.song == null);
 		bool showMore = lm.settings.getMoreVisible();
 		
 		bool showingSongList = (sideTree.getSelectedWidget() is ViewWrapper);
+		bool showingMusicList = sideTree.convertToChild(sideTree.getSelectedIter()) == sideTree.library_music_iter;
+		bool showMainViews = (haveSongs || !showingMusicList);
 		
 		fileSetMusicFolder.set_sensitive(!doingOps);
 		fileImportMusic.set_sensitive(!doingOps && folderSet);
@@ -592,18 +594,18 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton.set_sensitive(haveSongs);
 		playButton.set_sensitive(haveSongs);
 		nextButton.set_sensitive(haveSongs);
-		searchField.set_sensitive(haveSongs);
-		viewSelector.set_sensitive(haveSongs);
+		searchField.set_sensitive(showMainViews);
+		viewSelector.set_sensitive(showMainViews);
 		
-		mainViews.set_visible(haveSongs);
-		miller.set_visible(haveSongs && viewSelector.selected == 2 && showingSongList);
-		welcomeScreen.set_visible(!haveSongs);
-		millerPane.set_visible(haveSongs);
+		mainViews.set_visible(showMainViews);
+		miller.set_visible((showMainViews) && viewSelector.selected == 2 && showingSongList);
+		welcomeScreen.set_visible(!showMainViews);
+		millerPane.set_visible(showMainViews);
 		welcomeScreen.set_sensitivity(0, !doingOps);
-		statusBar.set_visible(haveSongs);
+		statusBar.set_visible(showMainViews);
 		
-		infoPanel.set_visible(haveSongs && showMore && !nullSong);
-		infoPanelChooser.set_visible(haveSongs && !nullSong);
+		infoPanel.set_visible(showMainViews && showMore && !nullSong);
+		infoPanelChooser.set_visible(showMainViews && !nullSong);
 		coverArt.set_visible(!nullSong);
 		
 		// hide playlists when song list is empty

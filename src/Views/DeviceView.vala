@@ -59,6 +59,10 @@ public class BeatBox.DeviceView : VBox {
 		
 		pack_start(tabs, true, true, 0);
 		
+		var spaceWidget = new SpaceWidget((double)d.get_capacity()/1000000);
+		
+		pack_end(spaceWidget, false, true, 0);
+		
 		show_all();
 		bar_option_changed(0);
 		
@@ -135,38 +139,7 @@ public class BeatBox.DeviceView : VBox {
 	}
 	
 	public void syncClicked() {
-		LinkedList<int> list = new LinkedList<int>();
-		
-		if(summary.allSongsSelected()) {
-			foreach(var s in lm.songs())
-				list.add(s.rowid);
-		}
-		else {
-			/*GLib.Object p = summary.selected_playlist();
-			
-			if(p == null) {
-				lw.doAlert("Cannot Sync", "You must either select a playlist to sync, or select to sync all your songs");
-			}
-			else if(p is Playlist) {
-				list = lm.songs_from_playlist(((Playlist)p).rowid);
-			}
-			else if(p is SmartPlaylist) {
-				list = lm.songs_from_smart_playlist(((SmartPlaylist)p).rowid);
-			}*/
-		}
-		
-		
-		
-		bool fits = d.will_fit(list);
-		if(!fits) {
-			lw.doAlert("Cannot Sync", "Cannot Sync Device with selected songs. Not enough space on disk\n");
-		}
-		else if(d.is_syncing()) {
-			lw.doAlert("Cannot Sync", "Device is already being synced.");
-		}
-		else {
-			d.sync_songs(list);
-		}
+		summary.syncClicked();
 	}
 	
 	void import_requested(LinkedList<int> to_import) {

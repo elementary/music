@@ -1,6 +1,6 @@
 using Gtk;
 
-public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
+public class BeatBox.DeviceSummaryWidget : VBox {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device dev;
@@ -51,7 +51,6 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		deviceImage = new Gtk.Image.from_gicon(dev.get_icon(), IconSize.DIALOG);
 		var spaceWidgetScroll = new ScrolledWindow(null, null);
 		spaceWidget = new SpaceWidget((double)dev.get_capacity()/1000000);
-		syncButton = new Button.with_label("Sync");
 		
 		Label deviceNameLabel = new Label("Device Name:");
 		Label autoSyncLabel = new Label("Automatically sync when plugged in:");
@@ -62,7 +61,11 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		setupLists();
 		
 		spaceWidgetScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER); 
-		spaceWidgetScroll.add_with_viewport(spaceWidget);
+		spaceWidgetScroll.set_border_width(0);
+		var viewport = new Viewport(null, null);
+		//viewport.add(spaceWidget);
+		viewport.set_shadow_type(Gtk.ShadowType.NONE);
+		spaceWidgetScroll.add(viewport);
 		
 		music_index = spaceWidget.add_item("Music", 0.0, SpaceWidget.ItemColor.BLUE);
 		podcast_index = spaceWidget.add_item("Podcasts", 0.0, SpaceWidget.ItemColor.PURPLE);
@@ -105,23 +108,37 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		
 		// create bottom section
 		//var syncBox = new VBox(false, 0);
-		var syncButtonBox = new VButtonBox();
-		syncButtonBox.set_layout(ButtonBoxStyle.END);
-		syncButtonBox.pack_end(syncButton, false, false, 0);
+		//var syncButtonBox = new VButtonBox();
+		//syncButtonBox.set_layout(ButtonBoxStyle.END);
+		//syncButtonBox.pack_end(syncButton, false, false, 0);
 		//syncBox.pack_end(syncButton, false, false, 0);
 		
-		var bottomBox = new HBox(false, 0);
+		//var bottomBox = new HBox(false, 0);
 		//bottomBox.pack_start(deviceImage, false, true, 0);
-		bottomBox.pack_start(spaceWidgetScroll, true, true, 0);
-		bottomBox.pack_start(syncButtonBox, false, false, 0);
+		//bottomBox.pack_start(spaceWidgetScroll, true, true, 0);
+		//bottomBox.pack_start(syncButtonBox, false, false, 0);
 		
 		// put it all together
 		content.pack_start(deviceNameBox, false, true, 0);
 		content.pack_start(autoSyncBox, false, true, 0);
 		content.pack_start(syncHBox, false, true, 0);
-		content.pack_end(bottomBox, false, true, 0);
 		
-		add_with_viewport(wrap_alignment(content, 15, 10, 10, 10));
+		/* put it in event box so we can color background white */
+		EventBox eb = new EventBox();
+		
+		// make the background white
+		Gdk.Color c = Gdk.Color();
+		Gdk.Color.parse("#FFFFFF", out c);
+		eb.modify_bg(StateType.NORMAL, c);
+		eb.add(new Label("test"));
+		
+		//var content_plus_spacewidget = new Box(Orientation.VERTICAL, 0);
+		this.set_border_width(0);
+		this.pack_start(wrap_alignment(content, 15, 10, 10, 10), true, true, 0);
+		this.pack_end(spaceWidget, false, true, 0);
+		//this.pack_end(eb, false, true, 0);
+		
+		//add_with_viewport(content_plus_spacewidget);//wrap_alignment(content, 15, 10, 10, 10));
 		
 		deviceNameLabel.xalign = 1.0f;
 		deviceName.halign = Align.START;
@@ -135,8 +152,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		syncOptionsLabel.xalign = 1.0f;
 		syncOptionsBox.halign = Align.START;
 		
-		set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
-		spaceWidget.set_size_request(-1, 20);
+		//set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
 		
 		refreshLists();
 		
@@ -392,7 +408,7 @@ public class BeatBox.DeviceSummaryWidget : ScrolledWindow {
 		syncButton.sensitive = true;
 	}
 	
-	void syncClicked() {
+	public void syncClicked() {
 		Gee.LinkedList<int> list = new Gee.LinkedList<int>();
 		var pref = dev.get_preferences();
 		

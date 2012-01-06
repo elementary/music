@@ -90,7 +90,7 @@ public class BeatBox.FileOperator : Object {
 					files.add(file_path);
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY) {
-					count_music_files(GLib.File.new_for_path(file_path));
+					count_music_files(GLib.File.new_for_path(file_path), ref files);
 				}
 			}
 		}
@@ -101,8 +101,75 @@ public class BeatBox.FileOperator : Object {
         return index;
 	}
 	
-	public void get_music_files_set(GLib.File music_folder, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
+	public string get_best_album_art_file(GLib.File song_file) {
+		string artPath = "";
 		GLib.FileInfo file_info = null;
+		var album_folder = song_file.get_parent();
+		
+		/* get a list of all images in folder as potential album art choices */
+		var image_list = new LinkedList<string>();
+		var enumerator = album_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+		while ((file_info = enumerator.next_file ()) != null) {
+			
+			if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
+				image_list.add(file_info.get_name());
+			}
+		}
+		
+		/* now choose one based on priorities */
+		foreach(string sU in image_list) {
+			var s = sU.down();
+			if(s.contains("folder.")) {
+				artPath = album_folder.get_path() + "/" + sU;
+				break;
+			}
+			else if(s.contains("cover."))
+				artPath = album_folder.get_path() + "/" + sU;
+			else if(!artPath.contains("cover.") && s.contains("album."))
+				artPath = album_folder.get_path() + "/" + sU;
+			else if(artPath == "")
+				artPath = album_folder.get_path() + "/" + sU;
+		}
+		
+		return artPath;
+	}
+	
+	public void get_music_files_set(LinkedList<string> files, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
+		HashMap<string, string> album_art = new HashMap<string, string>(); // album folder, album art file path
+		
+		// go through the file list that we got from count_music_files. can assume has proper extension type
+		while(!cancelled && files.size > 0) {
+			string file_path = files.poll();
+			var file = GLib.File.new_for_path(file_path);
+			
+			if(index % 100 == 0)
+				tagger = new GStreamerTagger(); // gst.discoverer slows down after ~500 songs. create a new instance.
+			
+			string art_path = "";
+			if( (art_path = album_art.get(file.get_parent().get_path())) == null)
+				art_path = get_best_album_art_file(file);
+			
+			Song s = import_song(file_path);
+					
+			if(s != null) {
+				songs.add(s);
+				
+				if(songs.size % 500 == 0) {
+					lm.add_songs(songs, true); // give user some feedback
+					songs.clear();
+				}
+				
+				s.setAlbumArtPath(art_path);
+			}
+			else
+				not_imported.add(file_path);
+			
+			++index;
+		}
+		
+		
+		
+		/*GLib.FileInfo file_info = null;
 		string artPath = "";
 		
 		if(cancelled) {
@@ -110,7 +177,7 @@ public class BeatBox.FileOperator : Object {
 		}
 		
 		try {
-			/* get a list of all images in folder as potential album art choices */
+			// get a list of all images in folder as potential album art choices
 			var image_list = new LinkedList<string>();
 			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
@@ -120,7 +187,7 @@ public class BeatBox.FileOperator : Object {
 				}
 			}
 			
-			/* now choose one based on priorities */
+			// now choose one based on priorities
 			foreach(string sU in image_list) {
 				var s = sU.down();
 				if(s.contains("folder.")) {
@@ -165,7 +232,7 @@ public class BeatBox.FileOperator : Object {
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not get music: %s\n", err.message);
-		}
+		}*/
 	}
 	
 	public void get_music_files_folder(GLib.File music_folder, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
@@ -616,7 +683,8 @@ public class BeatBox.FileOperator : Object {
 			
 			/* if we are supposed to delete the old, make sure there are no items left in folder if we do */
 			if(delete_old) {
-				var old_folder_items = count_music_files(original.get_parent());
+				var dummy = new LinkedList<string>();
+				var old_folder_items = count_music_files(original.get_parent(), ref dummy);
 				// must check for .jpg's as well.
 				
 				if(old_folder_items == 0) {
@@ -631,19 +699,20 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	public void remove_songs(Collection<string> toRemove) {
+		var dummy_list = new LinkedList<string>();
 		foreach(string s in toRemove) {
 			try {
 				var file = GLib.File.new_for_path(s);
 				file.trash();
 				
-				var old_folder_items = count_music_files(file.get_parent());
+				var old_folder_items = count_music_files(file.get_parent(), ref dummy_list);
 					
 				//TODO: COPY ALBUM AND IMAGE ARTWORK
 				if(old_folder_items == 0) {
 					stdout.printf("going to delete %s because no files are in it\n", file.get_parent().get_path());
 					//original.get_parent().delete();
 					
-					var old_folder_parent_items = count_music_files(file.get_parent().get_parent());
+					var old_folder_parent_items = count_music_files(file.get_parent().get_parent(), ref dummy_list);
 					
 					if(old_folder_parent_items == 0) {
 						stdout.printf("going to delete %s because no files are in it\n", file.get_parent().get_parent().get_path());

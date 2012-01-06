@@ -23,11 +23,12 @@
 using Gtk;
 using Gee;
 
-public class SpaceWidget : Gtk.EventBox {
+public class SpaceWidget : Gtk.ScrolledWindow {
+
+    public signal void sync_clicked();
+    public signal void cancel_clicked();
 
     public static CssProvider style_provider;
-
-    public signal void cancel_clicked();
 
     public enum ItemColor {
         BLUE,
@@ -38,22 +39,21 @@ public class SpaceWidget : Gtk.EventBox {
         GREY
     }
 
-    public enum ItemPosition {
+    private enum ItemPosition {
         START,
         END
     }
 
     private const string WIDGET_STYLE = """
         .SpaceWidgetBase {
-            background-image: -gtk-gradient (linear,
-                                             left top, left bottom,
+            background-image: -gtk-gradient (linear, left top, left bottom,
                                              from (shade (#e6e6e6, 0.96)),
                                              color-stop (0.5, alpha (shade (#e6e6e6, 1.1) , 0.7)),
                                              to (shade (#f7f7f7, 1.04)));
-
-            border-top-color  : shade (#e6e6e6, 0.88);
-            border-style      : solid;
-            border-width      : 1 0 0 0;
+            border-width: 0;
+            border-style: none;
+            border-radius: 0;
+            padding: 0;
         }
 
         .SpaceBarItem,
@@ -114,15 +114,6 @@ public class SpaceWidget : Gtk.EventBox {
                                              left top, left bottom,
                                              from (shade (#4b91dd, 1.10) ),
                                              to (#4b91dd));
-            /*
-            -unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
-                                                   from (alpha (shade (#4b91dd, 1.3), 0.9)),
-                                                   to (alpha (shade (#4b91dd, 1.0), 0.5)));
-
-            -unico-outer-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
-                                                         from (alpha (shade (#4b91dd, 0.8), 0.9)),
-                                                         to (alpha (shade (#4b91dd, 0.7), 0.5)));
-            */
         }
 
         .orange {
@@ -162,41 +153,52 @@ public class SpaceWidget : Gtk.EventBox {
 
     """;
 
-    private HashMap<int, SpaceWidgetItem> items;
+    private const int DEFAULT_HEIGHT = 200;
+    private const int DEFAULT_WIDTH = 450;
+    private const int DEFAULT_PADDING = 10;
 
-    private int HEIGHT = 100;
-    private int DEFAULT_PADDING = 10;
+    private HashMap<int, SpaceWidgetItem> items;
 
     private double total_size;
     private double free_space_size;
 
     private bool single_item_visible;
 
+    private EventBox widget;
+
     private Box legend_wrapper;
     private Box bar_wrapper;
     private Box full_bar_wrapper;
-
     private SpaceWidgetBarFullItem full_bar_item;
-    
-    bool already_drawing;
+
+    private Button action_button;
+    private const string SYNC_BUTTON_TEXT = "Sync";
+    private const string CANCEL_BUTTON_TEXT = "Cancel";
 
     public SpaceWidget (double size) {
-		already_drawing = false;
+        // Wrapper properties
+        this.set_shadow_type(Gtk.ShadowType.NONE);
+        this.min_content_width = DEFAULT_WIDTH;
+        this.min_content_height = DEFAULT_HEIGHT;
+
+        widget = new Gtk.EventBox();
+
+        this.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
+        this.add_with_viewport(widget);
+
         style_provider = new CssProvider();
 
         try  {
             style_provider.load_from_data (WIDGET_STYLE, -1);
         } catch (Error e) {
-            stderr.printf ("\nSpaceWidget: Couldn't load style provider");
+            stderr.printf ("\nSpaceWidget: Couldn't load style provider.\n");
         }
 
-        this.get_style_context().add_class("SpaceWidgetBase");
-        this.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
+        widget.get_style_context().add_class("SpaceWidgetBase");
+        widget.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         var padding = new Box (Orientation.VERTICAL, 0);
-
         legend_wrapper = new Box (Orientation.HORIZONTAL, 5);
-
         var top_box = new Box (Orientation.HORIZONTAL, 0);
 
         // Adding left and right spacing
@@ -225,31 +227,66 @@ public class SpaceWidget : Gtk.EventBox {
         left_box.pack_start (top_box, true, false, 0);
         left_box.pack_end (bottom_box, true, false, 0);
 
+        action_button = new Button.with_label (SYNC_BUTTON_TEXT);
+        action_button.set_size_request (90, -1);
+
+        action_button.clicked.connect ( ()=> {
+            switch (action_button.get_label()) {
+                case CANCEL_BUTTON_TEXT:
+                    reset_action_button();
+                    cancel_clicked();
+                    break;
+                case SYNC_BUTTON_TEXT:
+                    sync_clicked();
+                    action_button.set_label (CANCEL_BUTTON_TEXT);
+                    break;
+                default:
+                    reset_action_button();
+                    break;
+            }
+        });
+
+        var right_box = new Box (Orientation.VERTICAL, 3);
+        right_box.pack_end (action_button, false, true, 0);
+
+        var right_box_padding = new Box (Orientation.VERTICAL, 0);
+        right_box_padding.pack_start (new Box (Orientation.VERTICAL, 0), true, true, 0);
+        right_box_padding.pack_start (right_box, true, true, 0);
+        right_box_padding.pack_end (new Box (Orientation.VERTICAL, 0), true, true, 0);
+
         var wrapper = new Box (Orientation.HORIZONTAL, 0);
         wrapper.pack_start (new Box (Orientation.HORIZONTAL, 0), false, true, DEFAULT_PADDING);
         wrapper.pack_end (new Box (Orientation.HORIZONTAL, 0), false, true, DEFAULT_PADDING);
         wrapper.pack_start (left_box, true, true, 4);
         wrapper.pack_start (new Box (Orientation.HORIZONTAL, 0), false, true, DEFAULT_PADDING);
+        wrapper.pack_end (right_box_padding, false, true, DEFAULT_PADDING);
 
         padding.pack_start (wrapper, true, true, DEFAULT_PADDING);
 
-        add (padding);
+        widget.add (padding);
 
         items = new HashMap<int, SpaceWidgetItem>();
         set_size (size);
 
-        set_size_request (-1, HEIGHT);
-
         /** Adding free-space element **/
         add_item_at_pos ("Free", size, ItemColor.GREY, ItemPosition.END);
-        
-        this.draw.connect(draw_called);
+    }
+
+    public void reset_action_button () {
+        action_button.set_label (SYNC_BUTTON_TEXT);
     }
 
     public void set_size (double size) {
+        double used_space = total_size - free_space_size;
+        if (size < used_space) {
+            stdout.printf("\nERROR: SpaceWidget: new total size is smaller than used size.\n");
+            return;
+        }
+
         total_size = size;
         free_space_size = size;
-        update_bar_item_sizes (false);
+
+        update_bar_item_sizes();
     }
 
     public int add_item (string name, double size, ItemColor color) {
@@ -257,14 +294,15 @@ public class SpaceWidget : Gtk.EventBox {
     }
 
     private int add_item_at_pos (string name, double size, ItemColor color, ItemPosition pos) {
+        if (size > free_space_size) {
+            stdout.printf("\nERROR: SpaceWidget: Couldn't add item %s. Not enough free space.\n", name);
+            return -1; // ERROR
+        }
 
-        if (size > free_space_size)
-            return -1;
+        int index = items.size;
 
-        var item = new SpaceWidgetItem (items.size, name, size, color);
-		item.size_changed.connect (update_bar_item_sizes);
-
-        items.set(items.size, item);
+        var item = new SpaceWidgetItem (index, name, size, color);
+        items.set(index, item);
 
         if (pos == ItemPosition.END) {
             bar_wrapper.pack_end (item.bar_item, false, false, 0);
@@ -274,42 +312,31 @@ public class SpaceWidget : Gtk.EventBox {
             legend_wrapper.pack_start (item.legend, true, true, 0);
         }
 
-        if (items.size > 0)
-            update_bar_item_sizes (items.size < 1);
-
-        return items.size;
+        update_bar_item_sizes();
+        return index;
     }
-
 
     public void update_item_size (int index, double size) {
-        items.get(index).set_size (size);
-        update_bar_item_sizes (index < 1);
+        SpaceWidgetItem? item = items.get(index);
+
+        // Checking if there's enough freespace for the change
+        if (item != null && (item.size + free_space_size) >= size) {
+            item.set_size(size);
+            update_bar_item_sizes();
+        }
     }
 
-    public void remove_item(int index) {
-        if (items.size <= 1)
-            return;
-
-        var item = items.get(index);
-        item.destroy();
-        items.unset(index);
-        update_bar_item_sizes(false);
-    }
-
-    private void update_bar_item_sizes (bool is_free_space) {
+    private void update_bar_item_sizes () {
         int item_list_size = items.size;
-
         int actual_width = get_allocated_width ();
-        int bar_width = actual_width * 7 / 10;
-        
-        stdout.printf("actual width %d, bar width %d\n", actual_width, bar_width);
+        int bar_width = actual_width * 8 / 10;
 
         if (item_list_size < 1)
             return;
 
         int total_visible_items = item_list_size;
-
         int last_visible_id = 0;
+
         foreach (var item in items) {
             if (item.size <= 0.0)
                 total_visible_items --;
@@ -318,14 +345,9 @@ public class SpaceWidget : Gtk.EventBox {
         }
 
         if (total_visible_items == 1) {
-
             if (single_item_visible) {
-                //update the size of the bar
-                stdout.printf("a\n");
                 full_bar_item.set_size (bar_width);
             } else {
-                // show a nice rounded bar
-                stdout.printf("b\n");
                 show_full_bar_item (true, items.get(last_visible_id).color);
                 full_bar_item.show();
                 full_bar_item.set_size (bar_width);
@@ -334,39 +356,30 @@ public class SpaceWidget : Gtk.EventBox {
             return;
         }
         else if (single_item_visible) {
-			stdout.printf("c\n");
-                show_full_bar_item (false, null);
+            show_full_bar_item (false, null);
         }
 
-        var free_space_item = items.get(0);
-
-        if (is_free_space) {
-            int width = (int) ((free_space_item.size/total_size) * bar_width);
-            stdout.printf("is_free_space width is %d\n", width);
-            free_space_item.bar_item.set_size (width);
-            return;
-
-        }
-
+        // Resizing items and calculating free space
         free_space_size = total_size;
-
-        //free_space_item.bar_item.set_size (0);
 
         foreach (var item in items) {
             if (item.ID > 0) {
                 int width = (int) ((item.size/total_size) * bar_width);
                 free_space_size -= item.size;
                 item.bar_item.set_size (width);
-
                 item.show ();
             }
         }
 
+        // Resizing free space item:
+        var free_space_item = items.get(0);
         free_space_item.set_size (free_space_size);
+        int width = (int) ((free_space_item.size/total_size) * bar_width);
+        free_space_item.bar_item.set_size (width);
     }
 
     private void show_full_bar_item (bool show_item, ItemColor? color) {
-        if (show_item) {
+        if (show_item && color != null) {
             bar_wrapper.hide ();
             bar_wrapper.set_no_show_all (true);
             full_bar_wrapper.set_no_show_all (false);
@@ -382,29 +395,9 @@ public class SpaceWidget : Gtk.EventBox {
         }
     }
 
-    /**
-     * This method gets called by GTK+ when the actual size is known
-     * and the widget is told how much space could actually be allocated.
-     * It is called every time the widget size changes, for example when the
-     * user resizes the window.
-     **/
-	bool draw_called(Cairo.Context c) {
-		if(already_drawing)
-			return false;
-		stdout.printf("draw_called\n");
-        // The base method will save the allocation and move/resize the
-        // widget's GDK window if the widget is already realized.
-        // FIXME: Don't let the widget increase its height
-        // FIXME: Apply the new size inmediatly
-        //stdout.printf("size is now %d\n", allocation.width);
-        already_drawing = true;
-        update_bar_item_sizes (false);
-        already_drawing = false;
-        //base.size_allocate (allocation);
-        //stdout.printf("size is still %d\n", allocation.width);
-        //Move/resize other realized windows if necessary
-        
-        return false;
+    public override void size_allocate (Gtk.Allocation allocation) {
+        base.size_allocate (allocation);
+        update_bar_item_sizes ();
     }
 }
 
@@ -412,7 +405,7 @@ private class SpaceWidgetBarItem : Gtk.Button {
     public SpaceWidget.ItemColor color;
     public int hsize = 0;
 
-    private const int BAR_HEIGHT = 23; // FIXME: Find a better size
+    private const int BAR_DEFAULT_HEIGHT = 23;
 
     public SpaceWidgetBarItem (SpaceWidget.ItemColor color, int hsize) {
         this.color = color;
@@ -446,24 +439,24 @@ private class SpaceWidgetBarItem : Gtk.Button {
         style.add_class ("SpaceBarItem");
         style.add_provider (SpaceWidget.style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-        this.set_size_request (0, BAR_HEIGHT);
+        this.set_size_request (0, BAR_DEFAULT_HEIGHT);
     }
 
     public void set_size (int size) {
-		if(size == hsize)
-			return;
-		stdout.printf("setting hsize %d in bar item to %d\n", hsize, size);
+        if(size == hsize)
+            return;
+
         this.hsize = size;
 
-        if (size < 1) {
+        this.set_size_request (hsize, BAR_DEFAULT_HEIGHT);
+
+        if (size < 1 && this.visible) {
             this.hide ();
-        } else {
+        } else if (!this.visible) {
             this.show ();
-            this.width_request = hsize;
         }
     }
 }
-
 
 private class SpaceWidgetBarFullItem : SpaceWidgetBarItem {
     public SpaceWidgetBarFullItem (SpaceWidget.ItemColor color, int hsize) {
@@ -477,7 +470,6 @@ private class SpaceWidgetBarFullItem : SpaceWidgetBarItem {
 }
 
 private class LegendItem : Gtk.Button {
-
     public SpaceWidget.ItemColor color;
 
     private const int DIAMETER = 20;
@@ -522,8 +514,6 @@ private class LegendItem : Gtk.Button {
 }
 
 private class SpaceWidgetItem : GLib.Object {
-    public signal void size_changed (bool is_free_space);
-
     public int ID;
     public string name;
     public double size;
@@ -551,7 +541,6 @@ private class SpaceWidgetItem : GLib.Object {
         // set size data
         this.set_size (size);
 
-        /** Create legend **/
         var legend_icon = new LegendItem (color);
 
         var legend_icon_wrapper = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -565,7 +554,7 @@ private class SpaceWidgetItem : GLib.Object {
 
         legend.pack_start (legend_icon_wrapper, true, true, 0);
 
-        this.title_label = new Gtk.Label ("<span weight='medium' size='10700'>" + name + "</span>");
+        title_label = new Gtk.Label ("<span weight='medium' size='10700'>" + name + "</span>");
         title_label.use_markup = true;
 
         var label_wrapper = new Gtk.Box (Gtk.Orientation.VERTICAL, 2);
@@ -574,18 +563,11 @@ private class SpaceWidgetItem : GLib.Object {
 
         legend.pack_start (label_wrapper, true, true, 7);
 
-        /** Create bar item **/
         bar_item = new SpaceWidgetBarItem (color, 0);
     }
 
     public void set_size (double s) {
-		if(size == s)
-			return;
-			
         size = s;
-
-        /** Updating size label **/
-
         var size_text = new StringBuilder();
 
         if (size <= GB) {
@@ -603,8 +585,6 @@ private class SpaceWidgetItem : GLib.Object {
             size_label = new Label (size_text.str);
         else
             size_label.set_text (size_text.str);
-
-        size_changed (this.ID < 1);
     }
 
     public void show () {
@@ -621,24 +601,23 @@ private class SpaceWidgetItem : GLib.Object {
 
     /** These functions shouldn't be called directly **/
     public void hide_bar_item () {
-        this.bar_item.hide ();
+        if (bar_item.visible)
+            bar_item.hide ();
     }
 
     public void show_bar_item () {
-        this.bar_item.show ();
+        if (!bar_item.visible)
+            bar_item.show ();
     }
 
     public void hide_legend () {
-        legend.hide ();
+        if (legend.visible)
+            legend.hide ();
     }
 
     public void show_legend () {
-        legend.show_all ();
+        if (!legend.visible)
+            legend.show_all ();
     }
 
-    public void destroy () {
-        bar_item.destroy();
-        legend.destroy();
-    }
 }
-

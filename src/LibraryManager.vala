@@ -400,8 +400,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void* add_folder_to_library_thread () {
 		var file = GLib.File.new_for_path(temp_add_folder);
-		
-		var items = fo.count_music_files(file);
+		var files = new LinkedList<string>();
+		var items = fo.count_music_files(file, ref files);
 		//music_counted(items);
 		fo.resetProgress(items);
 		Timeout.add(100, doProgressNotificationWithTimeout);
@@ -609,6 +609,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public Collection<int> song_ids() {
 		return _songs.keys;
+	}
+	
+	public Collection<int> local_ids() {
+		return _locals;
 	}
 	
 	public Collection<int> podcast_ids() {
@@ -1251,7 +1255,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		song_info.song = song_from_id(id);
 		
 		// check that the file exists
-		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && song_from_id(id).file.contains(settings.getMusicFolder())) {
+		if(!GLib.File.new_for_path(song_from_id(id).file).query_exists() && (settings.getMusicFolder() != "" && song_from_id(id).file.contains(settings.getMusicFolder()))) {
 			song_from_id(id).unique_status_image = icons.process_error_icon.render (IconSize.MENU, null);
 			lw.song_not_found(id);
 			stopPlayback();
