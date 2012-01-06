@@ -4,22 +4,22 @@ using Gee;
 public class BeatBox.RemoveFilesDialog : Window {
 	LibraryManager lm;
 	LibraryWindow lw;
-	int song_id;
+	int media_id;
 	
 	private VBox content;
 	private HBox padding;
 	
-	Button removeSong;
-	Button locateSong;
+	Button removeMedia;
+	Button locateMedia;
 	Button rescanLibrary;
 	Button doNothing;
 	
 	public RemoveFilesDialog(LibraryManager lm, LibraryWindow lw, int id) {
 		this.lm = lm;
 		this.lw = lw;
-		song_id = id;
+		media_id = id;
 		
-		Song s = lm.song_from_id(song_id);
+		Media s = lm.media_from_id(media_id);
 		
 		this.set_title("BeatBox");
 		
@@ -40,8 +40,8 @@ public class BeatBox.RemoveFilesDialog : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		removeSong = new Button.with_label("Remove Song");
-		locateSong = new Button.with_label("Locate Song");
+		removeMedia = new Button.with_label("Remove Media");
+		locateMedia = new Button.with_label("Locate Media");
 		rescanLibrary = new Button.with_label("Rescan Library");
 		doNothing = new Button.with_label("Do Nothing");
 		
@@ -64,9 +64,9 @@ public class BeatBox.RemoveFilesDialog : Window {
 		
 		HButtonBox bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
-		bottomButtons.pack_end(removeSong, false, false, 0);
+		bottomButtons.pack_end(removeMedia, false, false, 0);
 		bottomButtons.pack_end(rescanLibrary, false, false, 0);
-		bottomButtons.pack_end(locateSong, false, false, 0);
+		bottomButtons.pack_end(locateMedia, false, false, 0);
 		bottomButtons.pack_end(doNothing, false, false, 10);
 		bottomButtons.set_spacing(10);
 		
@@ -75,8 +75,8 @@ public class BeatBox.RemoveFilesDialog : Window {
 		
 		padding.pack_start(content, true, true, 10);
 		
-		removeSong.clicked.connect(removeSongClicked);
-		locateSong.clicked.connect(locateSongClicked);
+		removeMedia.clicked.connect(removeMediaClicked);
+		locateMedia.clicked.connect(locateMediaClicked);
 		rescanLibrary.clicked.connect(rescanLibraryClicked);
 		doNothing.clicked.connect( () => { this.destroy(); });
 		
@@ -98,16 +98,16 @@ public class BeatBox.RemoveFilesDialog : Window {
 		return alignment;
 	}
 	
-	public void removeSongClicked() {
-		var temp = new LinkedList<Song>();
-		temp.add(lm.song_from_id(song_id));
-		//lm.remove_songs(temp);
-		//lm.remove_songs(temp);
+	public void removeMediaClicked() {
+		var temp = new LinkedList<Media>();
+		temp.add(lm.media_from_id(media_id));
+		//lm.remove_medias(temp);
+		//lm.remove_medias(temp);
 		
 		this.destroy();
 	}
 	
-	public void locateSongClicked() {
+	public void locateMediaClicked() {
 		string file = "";
 		var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
 								  FileChooserAction.OPEN,
@@ -120,7 +120,7 @@ public class BeatBox.RemoveFilesDialog : Window {
 		file_chooser.destroy ();
 		
 		if(file != "") {
-			lm.song_from_id(song_id).file = file;
+			lm.media_from_id(media_id).file = file;
 			
 			this.destroy();
 		}

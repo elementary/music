@@ -23,18 +23,18 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.SimilarSongsView : TreeView {
+public class BeatBox.SimilarMediasView : TreeView {
 	private BeatBox.LibraryManager _lm;
 	private BeatBox.LibraryWindow _lw;
 	private new ListStore model;
-	private LinkedList<Song> songs;
+	private LinkedList<Media> medias;
 	
 	private LinkedList<string> urlsToOpen;//queue for opening urls
 	
-	public SimilarSongsView(BeatBox.LibraryManager lm, BeatBox.LibraryWindow lw) {
+	public SimilarMediasView(BeatBox.LibraryManager lm, BeatBox.LibraryWindow lw) {
 		_lm = lm;
 		_lw = lw;
-		songs = new LinkedList<Song>();
+		medias = new LinkedList<Media>();
 		urlsToOpen = new LinkedList<string>();
 		
 		/* id is always first and is stored as an int. Then the rest are (1)
@@ -42,14 +42,14 @@ public class BeatBox.SimilarSongsView : TreeView {
 		 * #, track, title, artist, album, genre, comment, year, rating, (9)
 		 * bitrate, play count, last played, date added, file name, (5)
 		 * bpm, length, file size, (3) */
-		model = new ListStore(2, typeof(BeatBox.Song), typeof(string), -1);
+		model = new ListStore(2, typeof(BeatBox.Media), typeof(string), -1);
 		
 		TreeViewColumn col = new TreeViewColumn();
-		col.title = "song";
+		col.title = "media";
 		col.visible = false;
 		insert_column(col, 0);
 		
-		insert_column_with_attributes(-1, "Similar Songs", new CellRendererText(), "markup", 1, null);
+		insert_column_with_attributes(-1, "Similar Medias", new CellRendererText(), "markup", 1, null);
 		get_column(1).sizing = Gtk.TreeViewColumnSizing.FIXED;
 		get_column(1).set_alignment((float)0.5);
 		
@@ -59,13 +59,13 @@ public class BeatBox.SimilarSongsView : TreeView {
 		row_activated.connect(viewDoubleClick);
 	}
 	
-	public void populateView(Collection<Song> nSongs) {
-		songs.clear();
+	public void populateView(Collection<Media> nMedias) {
+		medias.clear();
 		model.clear();
 		
 		int count = 0;
-		foreach(Song s in nSongs) {
-			songs.add(s);
+		foreach(Media s in nMedias) {
+			medias.add(s);
 			
 			TreeIter iter;
 			model.append(out iter);
@@ -93,7 +93,7 @@ public class BeatBox.SimilarSongsView : TreeView {
 	public void* take_action () {
 		TreeIter iter;
 		TreeModel mo;
-		Song s;
+		Media s;
 		
 		get_selection().get_selected(out mo, out iter);
 		mo.get(iter, 0, out s);
@@ -119,7 +119,7 @@ public class BeatBox.SimilarSongsView : TreeView {
 				GLib.AppInfo.launch_default_for_uri (s.lastfm_url, null);
 			}
 			catch(Error err) {
-				stdout.printf("Couldn't open the similar song's last fm page: %s\n", err.message);
+				stdout.printf("Couldn't open the similar media's last fm page: %s\n", err.message);
 			}
 		}
 		

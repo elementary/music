@@ -34,8 +34,8 @@ public class BeatBox.Settings : Object {
 	public static const string UPDATE_FOLDER_HIERARCHY = "update-folder-hierarchy";
 	public static const string COPY_IMPORTED_MUSIC = "copy-imported-music";
 	public static const string DOWNLOAD_NEW_PODCASTS = "download-new-podcasts";
-	public static const string LAST_SONG_PLAYING = "last-song-playing";
-	public static const string LAST_SONG_POSITION = "last-song-position";
+	public static const string LAST_MEDIA_PLAYING = "last-media-playing";
+	public static const string LAST_MEDIA_POSITION = "last-media-position";
 	public static const string SHUFFLE_MODE = "shuffle-mode";
 	public static const string REPEAT_MODE = "repeat-mode";
 	public static const string SEARCH_STRING = "search-string";
@@ -79,8 +79,8 @@ public class BeatBox.Settings : Object {
 		music_settings.add(UPDATE_FOLDER_HIERARCHY);
 		music_settings.add(COPY_IMPORTED_MUSIC);
 		music_settings.add(DOWNLOAD_NEW_PODCASTS);
-		music_settings.add(LAST_SONG_PLAYING);
-		music_settings.add(LAST_SONG_POSITION);
+		music_settings.add(LAST_MEDIA_PLAYING);
+		music_settings.add(LAST_MEDIA_POSITION);
 		music_settings.add(SHUFFLE_MODE);
 		music_settings.add(REPEAT_MODE);
 		music_settings.add(SEARCH_STRING);
@@ -288,12 +288,12 @@ public class BeatBox.Settings : Object {
 		return getBool(DOWNLOAD_NEW_PODCASTS, false);
 	}
 	
-	public int getLastSongPlaying() {
-		return getInt(LAST_SONG_PLAYING, 0);
+	public int getLastMediaPlaying() {
+		return getInt(LAST_MEDIA_PLAYING, 0);
 	}
 	
-	public int getLastSongPosition() {
-		return getInt(LAST_SONG_POSITION, 0);
+	public int getLastMediaPosition() {
+		return getInt(LAST_MEDIA_POSITION, 0);
 	}
 	
 	public int getShuffleMode() {
@@ -437,12 +437,12 @@ public class BeatBox.Settings : Object {
 		setBool(DOWNLOAD_NEW_PODCASTS, val);
 	}
 	
-	public void setLastSongPlaying(int val) {
-		setInt(LAST_SONG_PLAYING, val);
+	public void setLastMediaPlaying(int val) {
+		setInt(LAST_MEDIA_PLAYING, val);
 	}
 	
-	public void setLastSongPosition(int val) {
-		setInt(LAST_SONG_POSITION, val);
+	public void setLastMediaPosition(int val) {
+		setInt(LAST_MEDIA_POSITION, val);
 	}
 	
 	public void setShuffleMode(int val) {

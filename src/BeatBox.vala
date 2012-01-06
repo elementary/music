@@ -169,12 +169,12 @@ public class BeatBox.Beatbox : Granite.Application {
 			File f = File.new_for_uri(Option.to_play);
 			if(f.query_exists()) {
 				stdout.printf("query exists\n");
-				Song temp = _program.lm.fo.import_song(f.get_path());
+				Media temp = _program.lm.fo.import_media(f.get_path());
 				
 				temp.isTemporary = true;
-				_program.lm.add_song(temp, false);
-				_program.lm.playSong(temp.rowid);
-				stdout.printf("song played %s %s %d\n", temp.title, temp.artist, temp.rowid);
+				_program.lm.add_media(temp, false);
+				_program.lm.playMedia(temp.rowid);
+				stdout.printf("media played %s %s %d\n", temp.title, temp.artist, temp.rowid);
 			}
 		}
 		else if(Option.to_add.length > 0) {

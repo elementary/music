@@ -83,7 +83,7 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 		
 		padding.pack_start(content, true, true, 10);
 		
-		savePlaylists.set_sensitive(lm.song_count() > 0 && lm.playlist_count() > 0);
+		savePlaylists.set_sensitive(lm.media_count() > 0 && lm.playlist_count() > 0);
 		
 		savePlaylists.clicked.connect(savePlaylistsClicked);
 		cancel.clicked.connect(cancel_clicked);

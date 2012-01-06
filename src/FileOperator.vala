@@ -30,7 +30,7 @@ public class BeatBox.FileOperator : Object {
 	GStreamerTagger tagger;
 	
 	bool inThread;
-	LinkedList<Song> toSave;
+	LinkedList<Media> toSave;
 	
 	public int index;
 	public int item_count;
@@ -45,7 +45,7 @@ public class BeatBox.FileOperator : Object {
 		lm = lmm;
 		settings = sett;
 		inThread = false;
-		toSave = new LinkedList<Song>();
+		toSave = new LinkedList<Media>();
 		cancelled = false;
 		cancelSent = false;
 		tagger = new GStreamerTagger();
@@ -101,10 +101,10 @@ public class BeatBox.FileOperator : Object {
         return index;
 	}
 	
-	public string get_best_album_art_file(GLib.File song_file) {
+	public string get_best_album_art_file(GLib.File media_file) {
 		string artPath = "";
 		GLib.FileInfo file_info = null;
-		var album_folder = song_file.get_parent();
+		var album_folder = media_file.get_parent();
 		
 		/* get a list of all images in folder as potential album art choices */
 		var image_list = new LinkedList<string>();
@@ -134,7 +134,7 @@ public class BeatBox.FileOperator : Object {
 		return artPath;
 	}
 	
-	public void get_music_files_set(LinkedList<string> files, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
+	public void get_music_files_set(LinkedList<string> files, ref LinkedList<Media> medias, ref LinkedList<string> not_imported) {
 		HashMap<string, string> album_art = new HashMap<string, string>(); // album folder, album art file path
 		
 		// go through the file list that we got from count_music_files. can assume has proper extension type
@@ -143,20 +143,20 @@ public class BeatBox.FileOperator : Object {
 			var file = GLib.File.new_for_path(file_path);
 			
 			if(index % 100 == 0)
-				tagger = new GStreamerTagger(); // gst.discoverer slows down after ~500 songs. create a new instance.
+				tagger = new GStreamerTagger(); // gst.discoverer slows down after ~500 medias. create a new instance.
 			
 			string art_path = "";
 			if( (art_path = album_art.get(file.get_parent().get_path())) == null)
 				art_path = get_best_album_art_file(file);
 			
-			Song s = import_song(file_path);
+			Media s = import_media(file_path);
 					
 			if(s != null) {
-				songs.add(s);
+				medias.add(s);
 				
-				if(songs.size % 500 == 0) {
-					lm.add_songs(songs, true); // give user some feedback
-					songs.clear();
+				if(medias.size % 500 == 0) {
+					lm.add_medias(medias, true); // give user some feedback
+					medias.clear();
 				}
 				
 				s.setAlbumArtPath(art_path);
@@ -209,15 +209,15 @@ public class BeatBox.FileOperator : Object {
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					++index;
 					
-					Song s = import_song(file_path);
+					Media s = import_media(file_path);
 					
 					if(s != null) {
-						songs.add(s);
+						medias.add(s);
 						
-						if(songs.size % 500 == 0) {
-							lm.add_songs(songs, true);
+						if(medias.size % 500 == 0) {
+							lm.add_medias(medias, true);
 							
-							songs.clear();
+							medias.clear();
 						}
 						
 						s.setAlbumArtPath(artPath);
@@ -226,7 +226,7 @@ public class BeatBox.FileOperator : Object {
 						not_imported.add(file_path);
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					get_music_files_set(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
+					get_music_files_set(GLib.File.new_for_path(file_path), ref medias, ref not_imported);
 				}
 			}
 		}
@@ -235,7 +235,7 @@ public class BeatBox.FileOperator : Object {
 		}*/
 	}
 	
-	public void get_music_files_folder(GLib.File music_folder, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
+	public void get_music_files_folder(GLib.File music_folder, ref LinkedList<Media> medias, ref LinkedList<string> not_imported) {
 		GLib.FileInfo file_info = null;
 		string artPath = "";
 		
@@ -276,17 +276,17 @@ public class BeatBox.FileOperator : Object {
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					++index;
 					
-					Song s = import_song(file_path);
+					Media s = import_media(file_path);
 					
 					if(s != null) {
-						songs.add(s);
+						medias.add(s);
 						s.setAlbumArtPath(artPath);
 					}
 					else
 						not_imported.add(file_path);
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					get_music_files_folder(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
+					get_music_files_folder(GLib.File.new_for_path(file_path), ref medias, ref not_imported);
 				}
 			}
 		}
@@ -295,7 +295,7 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
-	public void get_music_files_individually(LinkedList<string> paths, ref LinkedList<Song> songs, ref LinkedList<string> not_imported) {
+	public void get_music_files_individually(LinkedList<string> paths, ref LinkedList<Media> medias, ref LinkedList<string> not_imported) {
 		foreach(string file in paths) {
 			
 			if(cancelled) {
@@ -310,35 +310,35 @@ public class BeatBox.FileOperator : Object {
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
 					++index;
 					
-					Song s = import_song(file_path);
+					Media s = import_media(file_path);
 					
 					if(s != null) {
-						songs.add(s);
+						medias.add(s);
 					}
 					else
 						not_imported.add(file_path);
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					get_music_files_folder(GLib.File.new_for_path(file_path), ref songs, ref not_imported);
+					get_music_files_folder(GLib.File.new_for_path(file_path), ref medias, ref not_imported);
 				}
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not get song %s: %s\n", file, err.message);
+				stdout.printf("Could not get media %s: %s\n", file, err.message);
 			}
 		}
 	}
         
 	/** rescans the music folder to update the db to the folder situation.
-	 * If song is in folder, and in db, re-add
-	 * If song is not in folder and in db,remove
-	 * If song is in both, do nothing.
+	 * If media is in folder, and in db, re-add
+	 * If media is not in folder and in db,remove
+	 * If media is in both, do nothing.
 	 * @param music_folder The folder to rescan
-	 * @param current_song_paths Paths of files already in db. once file
-	 * is re-added, set string to "ADDED". at end, remove all songs that
+	 * @param current_media_paths Paths of files already in db. once file
+	 * is re-added, set string to "ADDED". at end, remove all medias that
 	 * are not re-added.
-	 * @return file paths of songs no longer available. TODO: should out that
+	 * @return file paths of medias no longer available. TODO: should out that
 	 */
-	public void rescan_music(GLib.File music_folder, ref LinkedList<string> current_song_paths, ref LinkedList<string> not_imported, ref LinkedList<Song> new_songs) {
+	public void rescan_music(GLib.File music_folder, ref LinkedList<string> current_media_paths, ref LinkedList<string> not_imported, ref LinkedList<Media> new_medias) {
 		GLib.FileInfo file_info = null;
 		string current_artist = "";
 		string current_album = ""; // these are purposely reset on recursive call
@@ -348,7 +348,7 @@ public class BeatBox.FileOperator : Object {
 			return;
 		}
 		
-		int songs_added = 0;
+		int medias_added = 0;
 		try {
 			/* get a list of all images in folder as potential album art choices */
 			var image_list = new LinkedList<string>();
@@ -380,16 +380,16 @@ public class BeatBox.FileOperator : Object {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
-					if(current_song_paths.contains(file_path)) {
-						current_song_paths.remove(file_path);
+					if(current_media_paths.contains(file_path)) {
+						current_media_paths.remove(file_path);
 						
 						++index;
 					}
-					else if(!current_song_paths.contains(file_path)) {
-						Song s = import_song(file_path);
+					else if(!current_media_paths.contains(file_path)) {
+						Media s = import_media(file_path);
 						
 						if(s != null) {
-							new_songs.add(s);
+							new_medias.add(s);
 							current_artist = s.artist;
 							current_album = s.album;
 							
@@ -398,11 +398,11 @@ public class BeatBox.FileOperator : Object {
 						else
 							not_imported.add(file_path);
 						
-						++songs_added;
+						++medias_added;
 					}
 				}
 				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					rescan_music(GLib.File.new_for_path(file_path), ref current_song_paths, ref not_imported, ref new_songs);
+					rescan_music(GLib.File.new_for_path(file_path), ref current_media_paths, ref not_imported, ref new_medias);
 				}
 			}
 		}
@@ -411,10 +411,10 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
-	public Song? import_song(string file_path) {
+	public Media? import_media(string file_path) {
 		
 		
-		/*Song s = new Song(file_path);
+		/*Media s = new Media(file_path);
 		TagLib.File tag_file;
 		
 		tag_file = new TagLib.File(file_path);
@@ -453,10 +453,10 @@ public class BeatBox.FileOperator : Object {
 		}
 		
 		return s;*/
-		return tagger.import_song(GLib.File.new_for_path(file_path));
+		return tagger.import_media(GLib.File.new_for_path(file_path));
 	}
 	
-	public void save_album(Song s, string uri) {
+	public void save_album(Media s, string uri) {
 		if(uri == null || uri == "") {
 			return;
 		}
@@ -475,27 +475,27 @@ public class BeatBox.FileOperator : Object {
 			var dest = Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg");
 			rv.save(dest, "jpeg");
 			
-			Gee.LinkedList<Song> updated_songs = new Gee.LinkedList<Song>();
-			foreach(int i in lm.song_ids()) {
-				if(lm.song_from_id(i).artist == s.artist && lm.song_from_id(i).album == s.album) { 
-					stdout.printf("setting album art for %s by %s\n", lm.song_from_id(i).title, lm.song_from_id(i).artist);
-					lm.song_from_id(i).setAlbumArtPath(dest);
-					updated_songs.add(lm.song_from_id(i));
+			Gee.LinkedList<Media> updated_medias = new Gee.LinkedList<Media>();
+			foreach(int i in lm.media_ids()) {
+				if(lm.media_from_id(i).artist == s.artist && lm.media_from_id(i).album == s.album) { 
+					stdout.printf("setting album art for %s by %s\n", lm.media_from_id(i).title, lm.media_from_id(i).artist);
+					lm.media_from_id(i).setAlbumArtPath(dest);
+					updated_medias.add(lm.media_from_id(i));
 				}
 			}
 			
-			lm.update_songs(updated_songs, false, false);
+			lm.update_medias(updated_medias, false, false);
 			
 			// for sound menu (dbus doesn't like linked lists)
-			if(updated_songs.contains(lm.song_info.song))
-				lm.update_song(lm.song_info.song, false, false);
+			if(updated_medias.contains(lm.media_info.media))
+				lm.update_media(lm.media_info.media, false, false);
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not save album to file: %s\n", err.message);
 		}
 	}
 	
-	public Gdk.Pixbuf? save_artist_image(Song s, string uri) {
+	public Gdk.Pixbuf? save_artist_image(Media s, string uri) {
 		Gdk.Pixbuf rv;
 		
 		if(uri == null || uri == "") {
@@ -517,8 +517,8 @@ public class BeatBox.FileOperator : Object {
 		return rv;
 	}
 	
-	public void save_songs(Collection<Song> to_save) {
-		foreach(Song s in to_save) {
+	public void save_medias(Collection<Media> to_save) {
+		foreach(Media s in to_save) {
 			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview && s.file.has_prefix(lm.settings.getMusicFolder()))
 				toSave.offer(s);
 		}
@@ -526,7 +526,7 @@ public class BeatBox.FileOperator : Object {
 		if(!inThread) {
 			try {
 				inThread = true;
-				Thread.create<void*>(save_song_thread, false);
+				Thread.create<void*>(save_media_thread, false);
 			}
 			catch(GLib.Error err) {
 				stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
@@ -534,9 +534,9 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
         
-	public void* save_song_thread () {
+	public void* save_media_thread () {
 		while(true) {
-			Song s = toSave.poll();
+			Media s = toSave.poll();
 			
 			if(s == null) {
 				inThread = false;
@@ -572,7 +572,7 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
-	public GLib.File get_new_destination(Song s) {
+	public GLib.File get_new_destination(Media s) {
 		GLib.File dest;
 		
 		try {
@@ -629,7 +629,7 @@ public class BeatBox.FileOperator : Object {
 		return dest;
 	}
 	
-	public void update_file_hierarchy(Song s, bool delete_old, bool emit_update) {
+	public void update_file_hierarchy(Media s, bool delete_old, bool emit_update) {
 		try {
 			GLib.File dest = get_new_destination(s);
 			
@@ -659,27 +659,27 @@ public class BeatBox.FileOperator : Object {
 				stdout.printf("success copying file\n");
 				s.file = dest.get_path();
 				
-				// wait to update song when out of thread
+				// wait to update media when out of thread
 				if(emit_update) {
 					Idle.add( () => {
-						lm.update_song(s, false, false); return false;
+						lm.update_media(s, false, false); return false;
 					});
 				}
 				
 				if(original.get_uri().has_prefix("file://") && original.get_parent().get_path() != null &&
 				s.getAlbumArtPath().contains(original.get_parent().get_path())) {
-					var songFile = GLib.File.new_for_path(s.getAlbumArtPath());
+					var mediaFile = GLib.File.new_for_path(s.getAlbumArtPath());
 					var albumArtDest = Path.build_path("/", dest.get_parent().get_path(), "Album.jpg");
 					
-					if(!GLib.File.new_for_path(albumArtDest).query_exists() && songFile.query_exists() &&
-					songFile.copy(GLib.File.new_for_path(albumArtDest), FileCopyFlags.NONE, null, null)) {
+					if(!GLib.File.new_for_path(albumArtDest).query_exists() && mediaFile.query_exists() &&
+					mediaFile.copy(GLib.File.new_for_path(albumArtDest), FileCopyFlags.NONE, null, null)) {
 						stdout.printf("Copying album art to %s\n", albumArtDest);
 						s.setAlbumArtPath(albumArtDest);
 					}
 				}
 			}
 			else
-				stdout.printf("Failure: Could not copy imported song %s to media folder %s\n", s.file, dest.get_path());
+				stdout.printf("Failure: Could not copy imported media %s to media folder %s\n", s.file, dest.get_path());
 			
 			/* if we are supposed to delete the old, make sure there are no items left in folder if we do */
 			if(delete_old) {
@@ -694,11 +694,11 @@ public class BeatBox.FileOperator : Object {
 			}
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not copy imported song %s to media folder: %s\n", s.file, err.message);
+			stdout.printf("Could not copy imported media %s to media folder: %s\n", s.file, err.message);
 		}
 	}
 	
-	public void remove_songs(Collection<string> toRemove) {
+	public void remove_medias(Collection<string> toRemove) {
 		var dummy_list = new LinkedList<string>();
 		foreach(string s in toRemove) {
 			try {
@@ -756,14 +756,14 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	/* should be called from thread */
-	public Playlist import_from_playlist_file_info(string name, LinkedList<string> paths, ref LinkedList<Song> new_songs, ref LinkedList<string> not_imported) {
+	public Playlist import_from_playlist_file_info(string name, LinkedList<string> paths, ref LinkedList<Media> new_medias, ref LinkedList<string> not_imported) {
 		Playlist rv = new Playlist();
 		var internals = new LinkedList<int>();
 		var externals = new LinkedList<string>();
 		
 		foreach(string path in paths) {
-			Song s;
-			if( (s = lm.song_from_file(path)) != null)
+			Media s;
+			if( (s = lm.media_from_file(path)) != null)
 				internals.add(s.rowid);
 			else
 				externals.add(path);
@@ -771,7 +771,7 @@ public class BeatBox.FileOperator : Object {
 		
 		rv.name = name;
 		foreach(int i in internals)
-			rv.addSong(i);
+			rv.addMedia(i);
 		
 		/* this is pretty much copied from lm.import_files_individually */
 		// first get the files
@@ -779,21 +779,21 @@ public class BeatBox.FileOperator : Object {
 		resetProgress(externals.size - 1);
 		Timeout.add(500, lm.doProgressNotificationWithTimeout);
 		
-		get_music_files_individually(externals, ref new_songs, ref not_imported);
+		get_music_files_individually(externals, ref new_medias, ref not_imported);
 		
 		//add to library
-		lm.add_songs(new_songs, true);
-		foreach(var s in new_songs)
-			rv.addSong(s.rowid);
+		lm.add_medias(new_medias, true);
+		foreach(var s in new_medias)
+			rv.addMedia(s.rowid);
 		
 		// now copy them into the library (if settings say to)
-		resetProgress(new_songs.size);
+		resetProgress(new_medias.size);
 		if(settings.getCopyImportedMusic())
 			lm.progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 		
 		Timeout.add(500, lm.doProgressNotificationWithTimeout);
 		
-		foreach(Song s in new_songs) {
+		foreach(Media s in new_medias) {
 			if(settings.getCopyImportedMusic() && !was_cancelled)
 				update_file_hierarchy(s, false, false);
 			

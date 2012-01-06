@@ -95,7 +95,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		return false;
 	}
 	
-	public Collection<int> get_songs() {
+	public Collection<int> get_medias() {
 		return new LinkedList<int>();
 	}
 	
@@ -115,7 +115,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		return new LinkedList<int>();
 	}
 	
-	public bool sync_songs(LinkedList<int> list) {
+	public bool sync_medias(LinkedList<int> list) {
 		return false;
 	}
 	

@@ -213,19 +213,19 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	}
 	
 	void refreshSpaceWidget() {
-		double song_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
+		double media_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
 		
-		foreach(int i in dev.get_songs()) {
-			song_size += (double)(lm.song_from_id(i).file_size);
+		foreach(int i in dev.get_medias()) {
+			media_size += (double)(lm.media_from_id(i).file_size);
 		}
 		foreach(int i in dev.get_podcasts()) {
-			podcast_size += (double)(lm.song_from_id(i).file_size);
+			podcast_size += (double)(lm.media_from_id(i).file_size);
 		}
 		foreach(int i in dev.get_audiobooks()) {
-			audiobook_size += (double)(lm.song_from_id(i).file_size);
+			audiobook_size += (double)(lm.media_from_id(i).file_size);
 		}
 		
-		spaceWidget.update_item_size(music_index, song_size);
+		spaceWidget.update_item_size(music_index, media_size);
 		spaceWidget.update_item_size(podcast_index, podcast_size);
 		spaceWidget.update_item_size(audiobook_index, audiobook_size);
 	}
@@ -306,7 +306,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		lm.save_device_preferences();
 	}
 	
-	public bool allSongsSelected() {
+	public bool allMediasSelected() {
 		return false;
 	}
 	
@@ -342,7 +342,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		var playlist_pix = lm.icons.playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
 		foreach(var p in lm.smart_playlists()) {
 			//bool music, podcasts, audiobooks;
-			//test_media_types(lm.songs_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
+			//test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
 			
 			//if(music) {
 				musicList.append(out iter);
@@ -359,7 +359,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		}
 		foreach(var p in lm.playlists()) {
 			//bool music, podcasts, audiobooks;
-			//test_media_types(lm.songs_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
+			//test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
 			
 			//if(music) {
 				musicList.append(out iter);
@@ -394,11 +394,11 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		}
 		
 		foreach(int i in items) {
-			if(!music && lm.song_from_id(i).mediatype == 0)
+			if(!music && lm.media_from_id(i).mediatype == 0)
 				music = true;
-			if(!podcasts && lm.song_from_id(i).mediatype == 1)
+			if(!podcasts && lm.media_from_id(i).mediatype == 1)
 				podcasts = true;
-			if(!audiobooks && lm.song_from_id(i).mediatype == 2)
+			if(!audiobooks && lm.media_from_id(i).mediatype == 2)
 				audiobooks = true;
 		}
 	}*/
@@ -414,7 +414,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		
 		if(pref.sync_music) {
 			if(pref.sync_all_music) {
-				foreach(var s in lm.songs()) {
+				foreach(var s in lm.media()) {
 					if(s.mediatype == 0)
 						list.add(s.rowid);
 				}
@@ -426,14 +426,14 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				
 				if(p != null) {
 					if(p is Playlist) {
-						foreach(int i in ((Playlist)p).songs()) {
-							if(lm.song_from_id(i).mediatype == 0)
+						foreach(int i in ((Playlist)p).medias()) {
+							if(lm.media_from_id(i).mediatype == 0)
 								list.add(i);
 						}
 					}
 					else {
 						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
-							if(lm.song_from_id(i).mediatype == 0)
+							if(lm.media_from_id(i).mediatype == 0)
 								list.add(i);
 						}
 					}
@@ -449,7 +449,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		}
 		if(pref.sync_podcasts) {
 			if(pref.sync_all_podcasts) {
-				foreach(var s in lm.songs()) {
+				foreach(var s in lm.media()) {
 					if(s.mediatype == 1)
 						list.add(s.rowid);
 				}
@@ -461,14 +461,14 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				
 				if(p != null) {
 					if(p is Playlist) {
-						foreach(int i in ((Playlist)p).songs()) {
-							if(lm.song_from_id(i).mediatype == 1 && !lm.song_from_id(i).file.has_prefix("http://"))
+						foreach(int i in ((Playlist)p).medias()) {
+							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).file.has_prefix("http://"))
 								list.add(i);
 						}
 					}
 					else {
 						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
-							if(lm.song_from_id(i).mediatype == 1 && !lm.song_from_id(i).file.has_prefix("http://"))
+							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).file.has_prefix("http://"))
 								list.add(i);
 						}
 					}
@@ -484,7 +484,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		}
 		if(pref.sync_audiobooks) {
 			if(pref.sync_all_audiobooks) {
-				foreach(var s in lm.songs()) {
+				foreach(var s in lm.media()) {
 					if(s.mediatype == 2)
 						list.add(s.rowid);
 				}
@@ -496,14 +496,14 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				
 				if(p != null) {
 					if(p is Playlist) {
-						foreach(int i in ((Playlist)p).songs()) {
-							if(lm.song_from_id(i).mediatype == 2)
+						foreach(int i in ((Playlist)p).medias()) {
+							if(lm.media_from_id(i).mediatype == 2)
 								list.add(i);
 						}
 					}
 					else {
 						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
-							if(lm.song_from_id(i).mediatype == 2)
+							if(lm.media_from_id(i).mediatype == 2)
 								list.add(i);
 						}
 					}
@@ -527,7 +527,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		}
 		else {
 			var to_remove = new Gee.LinkedList<int>();
-			foreach(int i in dev.get_songs()) {
+			foreach(int i in dev.get_medias()) {
 				if(!list.contains(i))
 					to_remove.add(i);
 			}
@@ -538,7 +538,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 			}
 			else {
 				syncButton.sensitive = false;
-				dev.sync_songs(list);
+				dev.sync_medias(list);
 			}
 		}
 	}

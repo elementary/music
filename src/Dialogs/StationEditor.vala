@@ -100,11 +100,11 @@ public class BeatBox.StationEditor : Window {
 	public Viewport createBasicViewport() {
 		Viewport rv = new Viewport(null, null);
 		fields = new HashMap<string, FieldEditor>();
-		Song sum = _lm.song_from_id(_stations.get(0)).copy();
+		Media sum = _lm.media_from_id(_stations.get(0)).copy();
 		
 		/** find what these stations have what common, and keep those values **/
 		foreach(int i in _stations) {
-			Song s = _lm.song_from_id(i);
+			Media s = _lm.media_from_id(i);
 			
 			if(s.album_artist != sum.album_artist) // station name
 				sum.album_artist = "";
@@ -161,8 +161,8 @@ public class BeatBox.StationEditor : Window {
 	public void previousClicked() {
 		save_stations();
 		
-		// now fetch the next song on current_view
-		int i = 0; // will hold next song to edit
+		// now fetch the next media on current_view
+		int i = 0; // will hold next media to edit
 		int indexOfCurrentFirst = _allstations.index_of(_stations.get(0));
 		
 		if(indexOfCurrentFirst == 0)
@@ -170,18 +170,18 @@ public class BeatBox.StationEditor : Window {
 		else
 			i = _allstations.get(indexOfCurrentFirst - 1);
 		
-		// now fetch the previous song on current_view
+		// now fetch the previous media on current_view
 		var newstations = new LinkedList<int>();
 		newstations.add(i);
 		
-		change_song(newstations);
+		change_media(newstations);
 	}
 	
 	public void nextClicked() {
 		save_stations();
 		
-		// now fetch the next song on current_view
-		int i = 0; // will hold next song to edit
+		// now fetch the next media on current_view
+		int i = 0; // will hold next media to edit
 		int indexOfCurrentLast = _allstations.index_of(_stations.get(_stations.size - 1));
 		
 		if(indexOfCurrentLast == _allstations.size - 1)
@@ -192,17 +192,17 @@ public class BeatBox.StationEditor : Window {
 		var newstations = new LinkedList<int>();
 		newstations.add(i);
 		
-		change_song(newstations);
+		change_media(newstations);
 	}
 	
-	public void change_song(LinkedList<int> newstations) {
+	public void change_media(LinkedList<int> newstations) {
 		_stations = newstations;
 		
-		Song sum = _lm.song_from_id(newstations.get(0));
+		Media sum = _lm.media_from_id(newstations.get(0));
 		
 		title = "Editing " + sum.title;
 		
-		/* do not show check boxes for 1 song */
+		/* do not show check boxes for 1 media */
 		foreach(FieldEditor fe in fields.values)
 			fe.set_check_visible(false);
 		
@@ -213,7 +213,7 @@ public class BeatBox.StationEditor : Window {
 	
 	public void save_stations() {
 		foreach(int i in _stations) {
-			Song s = _lm.song_from_id(i);
+			Media s = _lm.media_from_id(i);
 			
 			if(fields.get("Station").checked())
 				s.album_artist = fields.get("Station").get_value();

@@ -166,9 +166,9 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 		iter.user_data = added;
 	}
 	
-	/** convenience method to insert songs into the model. No iters returned. **/
-    public void append_items(Collection<string> songs, bool emit) {
-		foreach(string s in songs) {
+	/** convenience method to insert medias into the model. No iters returned. **/
+    public void append_items(Collection<string> medias, bool emit) {
+		foreach(string s in medias) {
 			
 			SequenceIter<string> added = rows.append(s);
 			

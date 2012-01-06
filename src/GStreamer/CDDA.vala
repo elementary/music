@@ -9,8 +9,8 @@ public class BeatBox.CDDA : GLib.Object {
 		//GLib.Signal.connect(playbin, "notify::source", (GLib.Callback)notifySourceCallback, this);
 	}
 	
-	public static LinkedList<Song> getSongList(string device_uri) {
-		var rv = new LinkedList<Song>();
+	public static LinkedList<Media> getMediaList(string device_uri) {
+		var rv = new LinkedList<Media>();
 		File device_file;
 		FileInfo device_info;
 		string album_name;
@@ -43,7 +43,7 @@ public class BeatBox.CDDA : GLib.Object {
 		
 			int index = 1;
 			for (device_info = enumerator.next_file(); device_info != null; device_info = enumerator.next_file()) {
-				Song s = new Song("cdda://" + index.to_string());
+				Media s = new Media("cdda://" + index.to_string());
 				s.isTemporary = true;
 				
 				var title = device_info.get_attribute_string("xattr::org.gnome.audio.title");

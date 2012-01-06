@@ -23,11 +23,11 @@ public class BeatBox.DeviceView : VBox {
 		
 		ulong connector = lm.progress_cancel_clicked.connect( () => {
 			if(d.is_syncing()) {
-				lw.doAlert("Cancelling Sync", "Device Sync has been cancelled. Operation will stop after this song.");
+				lw.doAlert("Cancelling Sync", "Device Sync has been cancelled. Operation will stop after this media.");
 				d.cancel_sync();
 			}
 			if(d.is_transferring()) {
-				lw.doAlert("Cancelling Import", "Import from device has been cancelled. Operation will stop after this song.");
+				lw.doAlert("Cancelling Import", "Import from device has been cancelled. Operation will stop after this media.");
 				d.cancel_transfer();
 			}
 		});
@@ -44,7 +44,7 @@ public class BeatBox.DeviceView : VBox {
 		summary = new DeviceSummaryWidget(lm, lw, d);
 		tabs.append_page(summary, new Label("General"));
 		
-		music_list = new DeviceViewWrapper(lm, lw, d.get_songs(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
+		music_list = new DeviceViewWrapper(lm, lw, d.get_medias(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
 		tabs.append_page(music_list, new Label("Music"));
 		music_list.import_requested.connect(import_requested);
 		
@@ -72,10 +72,10 @@ public class BeatBox.DeviceView : VBox {
 	
 	public void updateChildren() {
 		summary.refreshLists();
-		music_list.doUpdate(music_list.getView(), music_list.songs, true, false);
+		music_list.doUpdate(music_list.getView(), music_list.medias, true, false);
 		
 		if(d.supports_podcasts())
-			podcast_list.doUpdate(podcast_list.getView(), podcast_list.songs, true, false);
+			podcast_list.doUpdate(podcast_list.getView(), podcast_list.medias, true, false);
 		if(d.supports_audiobooks())
 			stdout.printf("will update audiobook list in future\n");
 	}
@@ -95,14 +95,14 @@ public class BeatBox.DeviceView : VBox {
 					
 					vw.set_is_current_view(vw.visible);
 					if(vw.visible) {
-						vw.doUpdate(vw.getView(), vw.songs, true, false);
+						vw.doUpdate(vw.getView(), vw.medias, true, false);
 						vw.set_statusbar_text();
 					}
 					
 					// no millers in device view's for now. it looks weird.
 					/*if(lw.initializationFinished && (lw.viewSelector.selected == 2)) {
 						stdout.printf("doing miller update from device view\n");
-						lw.miller.populateColumns("device", vw.songs);
+						lw.miller.populateColumns("device", vw.medias);
 					}
 					lw.updateMillerColumns();*/
 				}
@@ -123,11 +123,11 @@ public class BeatBox.DeviceView : VBox {
 	}
 	
 	public void showImportDialog() {
-		// ask the user if they want to import songs from device that they don't have in their library (if any)
+		// ask the user if they want to import medias from device that they don't have in their library (if any)
 		if(!lm.doing_file_operations() && lm.settings.getMusicFolder() != "") {
 			var externals = new LinkedList<int>();
-			foreach(var i in d.get_songs()) {
-				if(lm.song_from_id(i).isTemporary)
+			foreach(var i in d.get_medias()) {
+				if(lm.media_from_id(i).isTemporary)
 					externals.add(i);
 			}
 			

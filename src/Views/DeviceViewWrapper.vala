@@ -6,8 +6,8 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	
 	public signal void import_requested(LinkedList<int> to_import);
 	
-	public DeviceViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
-		base(lmm, lww, songs, sort, dir, the_hint, id);
+	public DeviceViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> medias, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
+		base(lmm, lww, medias, sort, dir, the_hint, id);
 		
 		list.hide();
 		albumView.hide();
@@ -48,12 +48,12 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	
 	
 	public bool pulser() {
-		/*if(song_being_ripped != null) {
-			song_being_ripped.pulseProgress++;
+		/*if(media_being_ripped != null) {
+			media_being_ripped.pulseProgress++;
 			
 			var updated = new LinkedList<int>();
-			updated.add(song_being_ripped.rowid);
-			list.songs_updated(updated);
+			updated.add(media_being_ripped.rowid);
+			list.medias_updated(updated);
 			
 			return true;
 		}

@@ -5,20 +5,20 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 	Device d;
 	CDRipper ripper;
 	
-	Song song_being_ripped;
-	Song previous_song;
+	Media media_being_ripped;
+	Media previous_media;
 	
 	bool cancelled;
 	
-	public CDRomViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> songs, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
-		base(lmm, lww, songs, sort, dir, the_hint, id);
+	public CDRomViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> medias, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
+		base(lmm, lww, medias, sort, dir, the_hint, id);
 		this.d = d;
 		cancelled = false;
 		
-		song_being_ripped = null;
-		previous_song = null;
+		media_being_ripped = null;
+		previous_media = null;
 		
-		// in thread get song list
+		// in thread get media list
 		try {
 			if(d.getContentType() == "cdrom")
 				Thread.create<void*>(prepare_cdrom_list, false);
@@ -29,14 +29,14 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 		
 		ulong connector = lm.progress_cancel_clicked.connect( () => { 
 			cancelled = true;
-			lw.doAlert("Cancelling Import", "CD Import has been cancelled. Importing will stop after this song.");
+			lw.doAlert("Cancelling Import", "CD Import has been cancelled. Importing will stop after this media.");
 		});
 		d.device_unmounted.connect( () => {
 			d.disconnect(connector);
 		});
 	}
 	
-	public void ripSongs() {
+	public void ripMedias() {
 		if(d.getContentType() != "cdrom")
 			return;
 			
@@ -50,7 +50,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 			return;
 		}
 		
-		ripper = new CDRipper(d.get_path(), songs.size);
+		ripper = new CDRipper(d.get_path(), medias.size);
 		cancelled = false;
 		ripper.progress_notification.connect( (progress) => {
 			
@@ -63,35 +63,35 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 			return;
 		}
 		
-		ripper.song_ripped.connect(songRipped);
+		ripper.media_ripped.connect(mediaRipped);
 		ripper.error.connect(ripperError);
 		
-		Song s = lm.song_from_id(songs.to_array()[0]);
-		song_being_ripped = s;
+		Media s = lm.media_from_id(medias.to_array()[0]);
+		media_being_ripped = s;
 		
 		s.showIndicator = true;
-		lm.update_song(s, false, false);
+		lm.update_media(s, false, false);
 		
-		ripper.ripSong(1, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", s);
+		ripper.ripMedia(1, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", s);
 		
 		var update = "Ripping track 1: <b>" + s.title.replace("&", "&amp;") + "</b>" + ((s.artist != "Unknown Artist") ? " by " : "") + "<b>" + s.artist.replace("&", "&amp;") + "</b>" + ((s.album != "Unknown Album") ? " on " : "") + "<b>" + s.album.replace("&", "&amp;") + "</b>";
 		lm.start_file_operations(update);
 		lw.updateSensitivities();
 		
 		// this refreshes so that the spinner shows
-		doUpdate(currentView, songs, true, true);
+		doUpdate(currentView, medias, true, true);
 		
-		// this spins the spinner for the current song being imported
+		// this spins the spinner for the current media being imported
 		Timeout.add(100, pulser);
 	}
 	
 	public bool pulser() {
-		if(song_being_ripped != null) {
-			song_being_ripped.pulseProgress++;
+		if(media_being_ripped != null) {
+			media_being_ripped.pulseProgress++;
 			
 			var updated = new LinkedList<int>();
-			updated.add(song_being_ripped.rowid);
-			list.update_songs(updated);
+			updated.add(media_being_ripped.rowid);
+			list.update_medias(updated);
 			
 			return true;
 		}
@@ -100,12 +100,12 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 		}
 	}
 	
-	public void songRipped(Song s) {
-		// when this song was added to the library before, it was added temporarily
+	public void mediaRipped(Media s) {
+		// when this media was added to the library before, it was added temporarily
 		// remove and re-add permanently this time
 		s.file = lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3";
 		
-		// set the song's date_added and file size
+		// set the media's date_added and file size
 		s.date_added = (int)time_t();
 		
 		if(GLib.File.new_for_path(s.file).query_exists()) {
@@ -114,7 +114,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 			}
 			catch(Error err) {
 				s.file_size = 5; // best guess
-				stdout.printf("Could not ripped song's file_size: %s\n", err.message);
+				stdout.printf("Could not ripped media's file_size: %s\n", err.message);
 			}
 		}
 		else {
@@ -125,67 +125,67 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 		s.showIndicator = false;
 		
 		// then save the metadata to the file
-		var temp = new LinkedList<Song>();
+		var temp = new LinkedList<Media>();
 		temp.add(s);
-		lm.add_songs(temp, true);
+		lm.add_medias(temp, true);
 		
 		// now we have to find the right location for it
-		previous_song = s.copy();
+		previous_media = s.copy();
 		lm.fo.update_file_hierarchy(s, true, false);
 		/*try {
 			Thread.create<void*>(update_file_location_thread, false);
 		}
 		catch(GLib.ThreadError err) {
-			stdout.printf("ERROR: Could not create thread to move the song: %s \n", err.message);
+			stdout.printf("ERROR: Could not create thread to move the media: %s \n", err.message);
 			
-			if(previous_song != null)
-				lm.fo.update_file_hierarchy(previous_song, true);
+			if(previous_media != null)
+				lm.fo.update_file_hierarchy(previous_media, true);
 		}*/
 		
 		// now we have to find the right location for it
 		s.unique_status_image = render_icon("process-completed-symbolic", Gtk.IconSize.MENU, null);
 		// do it again on next track
 		if(s.track < ripper.track_count && !cancelled) {
-			Song next = lm.song_from_id(songs.to_array()[s.track]);
-			song_being_ripped = next;
-			ripper.ripSong(next.track, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", next);
+			Media next = lm.media_from_id(medias.to_array()[s.track]);
+			media_being_ripped = next;
+			ripper.ripMedia(next.track, lm.settings.getMusicFolder() + "/beatbox_temp_cd_rip_location.mp3", next);
 			
 			next.showIndicator = true;
-			lm.update_song(next, false, false);
+			lm.update_media(next, false, false);
 			
 			var update = "<b>Importing</b> track " + next.track.to_string() + ": <b>" + next.title.replace("&", "&amp;") + "</b>" + ((next.artist != "Unknown Artist") ? " by " : "") + "<b>" + next.artist.replace("&", "&amp;") + "</b>" + ((next.album != "Unknown Album") ? " on " : "") + "<b>" + next.album.replace("&", "&amp;") + "</b>";
 			lw.progressNotification(update, 0.0);
 		}
 		else {
-			song_being_ripped = null;
+			media_being_ripped = null;
 			
 			lm.finish_file_operations();
 			
-			/* Show notification that song ripping has finished */
+			/* Show notification that media ripping has finished */
 			// TODO: ..^
 		}
 	}
 	
 	public void* update_file_location_thread() {
-		if(previous_song != null)
-			lm.fo.update_file_hierarchy(previous_song, true, false);
+		if(previous_media != null)
+			lm.fo.update_file_hierarchy(previous_media, true, false);
 		
 		return null;
 	}
 	
 	public void* prepare_cdrom_list () {
-		var tSongs = CDDA.getSongList(d.get_path());
+		var tMedias = CDDA.getMediaList(d.get_path());
 		
-		lm.add_songs(tSongs, false);
+		lm.add_medias(tMedias, false);
 		
 		var ids = new LinkedList<int>();
-		foreach(var s in tSongs)
+		foreach(var s in tMedias)
 			ids.add(s.rowid);
 			
 		d.device_unmounted.connect( () => {
-			foreach(Song s in tSongs) {
+			foreach(Media s in tMedias) {
 				s.unique_status_image = null;
-				lm.update_songs(tSongs, false, false);
+				lm.update_medias(tMedias, false, false);
 			}
 		});
 		

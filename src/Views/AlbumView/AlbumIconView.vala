@@ -4,10 +4,10 @@ using Gee;
 public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	LibraryManager lm;
 	LibraryWindow lw;
-	Collection<int> songs;
+	Collection<int> medias;
 	
 	private Collection<int> _show_next; // these are populated if necessary when user opens this view.
-	private Collection<int> _showing_songs;
+	private Collection<int> _showing_medias;
 	private string last_search;
 	LinkedList<string> timeout_search;
 	
@@ -22,13 +22,13 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	
 	public signal void itemClicked(string artist, string album);
 	
-	/* songs should be mutable, as we will be sorting it */
-	public AlbumView(LibraryManager lmm, LibraryWindow lww, Collection<int> ssongs) {
+	/* medias should be mutable, as we will be sorting it */
+	public AlbumView(LibraryManager lmm, LibraryWindow lww, Collection<int> smedias) {
 		lm = lmm;
 		lw = lww;
-		songs = ssongs;
+		medias = smedias;
 		
-		_showing_songs = new LinkedList<int>();
+		_showing_medias = new LinkedList<int>();
 		last_search = "";
 		timeout_search = new LinkedList<string>();
 		
@@ -36,7 +36,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		
 		buildUI();
 		
-		lm.songs_removed.connect(songs_removed);
+		lm.medias_removed.connect(medias_removed);
 	}
 	
 	public void buildUI() {
@@ -93,8 +93,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return ViewWrapper.Hint.MUSIC;
 	}
 	
-	public void set_show_next(Collection<int> songs) {
-		_show_next = songs;
+	public void set_show_next(Collection<int> medias) {
+		_show_next = medias;
 	}
 	
 	public void set_relative_id(int id) {
@@ -105,15 +105,15 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return 0;
 	}
 	
-	public Collection<int> get_songs() {
-		return songs;
+	public Collection<int> get_medias() {
+		return medias;
 	}
 	
-	public Collection<int> get_showing_songs() {
-		return _showing_songs;
+	public Collection<int> get_showing_medias() {
+		return _showing_medias;
 	}
 	
-	public void set_as_current_list(int song_id, bool is_initial) {
+	public void set_as_current_list(int media_id, bool is_initial) {
 		set_is_current(true);
 	}
 	
@@ -122,10 +122,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		uint total_time = 0;
 		uint total_mbs = 0;
 		
-		foreach(int id in _showing_songs) {
+		foreach(int id in _showing_medias) {
 			++count;
-			total_time += lm.song_from_id(id).length;
-			total_mbs += lm.song_from_id(id).file_size;
+			total_time += lm.media_from_id(id).length;
+			total_mbs += lm.media_from_id(id).file_size;
 		}
 		
 		string fancy = "";
@@ -148,8 +148,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		lw.set_statusbar_text(count.to_string() + " items, " + fancy + ", " + fancy_size);
 	}
 	
-	/*public void set_songs(Collection<int> new_songs) {
-		songs = new_songs;
+	/*public void set_medias(Collection<int> new_medias) {
+		medias = new_medias;
 	}*/
 	
 	public void resized(Allocation alloc) {
@@ -161,23 +161,23 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	 * shown
 	*/
 	public void populate_view() {
-		if(_show_next == _showing_songs) {
+		if(_show_next == _showing_medias) {
 			return;
 		}
 		
-		_showing_songs = _show_next;
+		_showing_medias = _show_next;
 		
-        var toShowS = new LinkedList<Song>();
-        foreach(int i in _showing_songs)
-			toShowS.add(lm.song_from_id(i));
+        var toShowS = new LinkedList<Media>();
+        foreach(int i in _showing_medias)
+			toShowS.add(lm.media_from_id(i));
         
-        // first sort the songs so we know they are grouped by artists, then albums
-		toShowS.sort((CompareFunc)songCompareFunc);
+        // first sort the medias so we know they are grouped by artists, then albums
+		toShowS.sort((CompareFunc)mediaCompareFunc);
 		
 		LinkedList<int> albs = new LinkedList<int>();
 		string previousAlbum = "";
 		
-		foreach(Song s in toShowS) {
+		foreach(Media s in toShowS) {
 			if(s.album != previousAlbum) {
 				albs.add(s.rowid);
 				
@@ -188,7 +188,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		var hPos = this.vadjustment.get_value();
 		
 		model = new AlbumViewModel(lm, defaultPix);
-		model.appendSongs(albs, false);
+		model.appendMedias(albs, false);
 		icons.set_model(model);
 		
 		move_focus_out(DirectionType.UP);
@@ -199,7 +199,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			//icons.unselect_all();
 		}
 		
-		if(get_is_current() && lm.song_info.song != null)
+		if(get_is_current() && lm.media_info.media != null)
 			scrollToCurrent();
 		else
 			this.vadjustment.set_value((int)hPos);
@@ -207,11 +207,11 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		needsUpdate = false;
 	}
 	
-	public void update_songs(Collection<int> songs) {
+	public void update_medias(Collection<int> medias) {
 		// nothing to do
 	}
 	
-	public static int songCompareFunc(Song a, Song b) {
+	public static int mediaCompareFunc(Media a, Media b) {
 		return (a.album > b.album) ? 1 : -1;
 	}
 	
@@ -253,14 +253,14 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		itemClicked(pieces[0], pieces[1]);
 	}
 	
-	void songs_removed(LinkedList<int> ids) {
-		model.removeSongs(ids);
-		//_showing_songs.remove_all(ids);
+	void medias_removed(LinkedList<int> ids) {
+		model.removeMedias(ids);
+		//_showing_medias.remove_all(ids);
 		//_show_next.remove_all(ids);
 	}
 	
 	public void scrollToCurrent() {
-		if(!get_is_current() || lm.song_info.song == null)
+		if(!get_is_current() || lm.media_info.media == null)
 			return;
 		
 		TreeIter iter;
@@ -268,7 +268,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			Value vs;
 			model.get_value(iter, 2, out vs);
 
-			if(icons is IconView && ((Song)vs).album == lm.song_info.song.album) {
+			if(icons is IconView && ((Media)vs).album == lm.media_info.media.album) {
 				icons.scroll_to_path(new TreePath.from_string(i.to_string()), false, 0.0f, 0.0f);
 				
 				return;

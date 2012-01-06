@@ -35,7 +35,7 @@ public class BeatBox.SmartPlaylist : Object {
 	
 	private bool _is_up_to_date;
 	public bool viewWrapper_is_up_to_date;
-	LinkedList<int> songs;
+	LinkedList<int> medias;
 	
 	public SmartPlaylist() {
 		_name = "";
@@ -132,15 +132,15 @@ public class BeatBox.SmartPlaylist : Object {
 	
 	public LinkedList<int> analyze(LibraryManager lm) {
 		//if(is_up_to_date) {
-		//	return songs;
+		//	return medias;
 		//}
 		
 		LinkedList<int> rv = new LinkedList<int>();
-		foreach(Song s in lm.songs()) {
+		foreach(Media s in lm.media()) {
 			int match_count = 0; //if OR must be greather than 0. if AND must = queries.size.
 			
 			foreach(SmartQuery q in _queries) {
-				if(song_matches_query(q, s))
+				if(media_matches_query(q, s))
 					match_count++;
 			}
 			
@@ -152,12 +152,12 @@ public class BeatBox.SmartPlaylist : Object {
 		}
 		
 		is_up_to_date = true;
-		songs = rv;
+		medias = rv;
 		
 		return rv;
 	}
 	
-	public bool song_matches_query(SmartQuery q, Song s) {
+	public bool media_matches_query(SmartQuery q, Media s) {
 		if(q.field == "Album") { //strings
 			if(q.comparator == "is")
 				return q.value.down() == s.album.down();

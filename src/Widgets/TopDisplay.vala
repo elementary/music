@@ -76,7 +76,7 @@ namespace ElementaryWidgets {
 			this.scale.value_changed.connect(value_changed);
 			this.scale.change_value.connect(change_value);
 			this.lm.player.current_position_update.connect(player_position_update);
-			this.lm.song_updated.connect(song_updated);
+			this.lm.media_updated.connect(media_updated);
 			show_all();
 		}
 		
@@ -160,10 +160,10 @@ namespace ElementaryWidgets {
 				scale.get_pointer(out point_x, out point_y);
 				scale.get_allocation(out extents);
 				
-				// get seconds of song
-				double songtime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
+				// get seconds of media
+				double mediatime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
 				
-				change_value(ScrollType.NONE, songtime);
+				change_value(ScrollType.NONE, mediatime);
 			}
 			
 			return false;
@@ -191,7 +191,7 @@ namespace ElementaryWidgets {
 			
 			//make pretty remaining time
 			minute = 0;
-			seconds = (int)lm.song_info.song.length - (int)scale.get_value();
+			seconds = (int)lm.media_info.media.length - (int)scale.get_value();
 			
 			while(seconds >= 60) {
 				++minute;
@@ -238,7 +238,7 @@ namespace ElementaryWidgets {
 		
 		public virtual void player_position_update(int64 position) {
 			double sec = 0.0;
-			if(lm.song_info.song != null) {
+			if(lm.media_info.media != null) {
 				sec = ((double)position/1000000000);
 				set_scale_value(sec);
 			}
@@ -248,9 +248,9 @@ namespace ElementaryWidgets {
 			lm.cancel_operations();
 		}
 		
-		void song_updated(int id) {
-			if(lm.song_info.song != null && id == lm.song_info.song.rowid) {
-				set_scale_range(0.0, (double)lm.song_info.song.length);
+		void media_updated(int id) {
+			if(lm.media_info.media != null && id == lm.media_info.media.rowid) {
+				set_scale_range(0.0, (double)lm.media_info.media.length);
 			}
 		}
 	}

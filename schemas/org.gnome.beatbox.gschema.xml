@@ -29,15 +29,15 @@
       <summary>Whether or not to automatically download new podcasts</summary>
       <description>Whether or not to automatically download new podcasts</description>
     </key>
-    <key type="i" name="last-song-playing">
+    <key type="i" name="last-media-playing">
       <default>0</default>
-      <summary>ID of last song playing</summary>
-      <description>ID of last song playing</description>
+      <summary>ID of last media playing</summary>
+      <description>ID of last media playing</description>
     </key>
-    <key type="i" name="last-song-position">
+    <key type="i" name="last-media-position">
       <default>0</default>
-      <summary>Position, in seconds, of song</summary>
-      <description>Position, in seconds, of song when BeatBox last closed</description>
+      <summary>Position, in seconds, of media</summary>
+      <description>Position, in seconds, of media when BeatBox last closed</description>
     </key>
     <key type="i" name="shuffle-mode">
       <default>0</default>

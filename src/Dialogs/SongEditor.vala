@@ -24,12 +24,12 @@ using Gtk;
 using Gee;
 using Granite;
 
-public class BeatBox.SongEditor : Window {
+public class BeatBox.MediaEditor : Window {
 	LibraryManager _lm;
 	LyricFetcher lf;
 	
-	LinkedList<int> _allSongs;
-	LinkedList<int> _songs;
+	LinkedList<int> _allMedias;
+	LinkedList<int> _medias;
 	
 	//for padding around notebook mostly
 	private VBox content;
@@ -53,9 +53,9 @@ public class BeatBox.SongEditor : Window {
 	private InfoBar lyricsInfobar;
 	private Label lyricsInfobarLabel;
 	
-	public signal void songs_saved(LinkedList<int> songs);
+	public signal void medias_saved(LinkedList<int> medias);
 	
-	public SongEditor(LibraryManager lm, LinkedList<int> allSongs, LinkedList<int> songs) {
+	public MediaEditor(LibraryManager lm, LinkedList<int> allMedias, LinkedList<int> medias) {
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
 		this.set_modal(true);
@@ -70,12 +70,12 @@ public class BeatBox.SongEditor : Window {
 		
 		_lm = lm;
 		
-		_allSongs = allSongs;
-		_songs = songs;
+		_allMedias = allMedias;
+		_medias = medias;
 		
 		notebook = new Granite.Widgets.StaticNotebook();
 		notebook.append_page(createBasicViewport(), new Label("Metadata"));
-		if(_songs.size == 1)
+		if(_medias.size == 1)
 			notebook.append_page(createLyricsViewport(), new Label("Lyrics"));
 		else
 			lyricsText = null;
@@ -101,10 +101,10 @@ public class BeatBox.SongEditor : Window {
 		
 		show_all();
 		
-		_next.sensitive = allSongs.size > 1;
-		_previous.sensitive = allSongs.size > 1;
+		_next.sensitive = allMedias.size > 1;
+		_previous.sensitive = allMedias.size > 1;
 		
-		if(_songs.size == 1) {
+		if(_medias.size == 1) {
 			foreach(FieldEditor fe in fields.values)
 				fe.set_check_visible(false);
 				
@@ -119,11 +119,11 @@ public class BeatBox.SongEditor : Window {
 	public Viewport createBasicViewport() {
 		Viewport rv = new Viewport(null, null);
 		fields = new HashMap<string, FieldEditor>();
-		Song sum = _lm.song_from_id(_songs.get(0)).copy();
+		Media sum = _lm.media_from_id(_medias.get(0)).copy();
 		
-		/** find what these songs have what common, and keep those values **/
-		foreach(int i in _songs) {
-			Song s = _lm.song_from_id(i);
+		/** find what these medias have what common, and keep those values **/
+		foreach(int i in _medias) {
+			Media s = _lm.media_from_id(i);
 			
 			if(s.track != sum.track)
 				sum.track = 0;
@@ -162,11 +162,11 @@ public class BeatBox.SongEditor : Window {
 			//last_played = 0;
 		}
 		
-		if(_songs.size == 1) {
+		if(_medias.size == 1) {
 			title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
 		}
 		else {
-			title = "Editing " + _songs.size.to_string() + " songs";
+			title = "Editing " + _medias.size.to_string() + " medias";
 		}
 		
 		if(sum.year == -1)
@@ -205,7 +205,7 @@ public class BeatBox.SongEditor : Window {
 		numerVert.pack_start(fields.get("Grouping"), false, true, 5);
 		numerVert.pack_start(fields.get("Year"), false, true, 5);
 		numerVert.pack_start(fields.get("Rating"), false, true, 5);
-		//if(songs.size == 1)
+		//if(medias.size == 1)
 			//numerVert.pack_start(stats, false, true, 5);
 		
 		horiz.pack_start(wrap_alignment(textVert, 0, 30, 0, 0), false, true, 0);
@@ -239,7 +239,7 @@ public class BeatBox.SongEditor : Window {
 		
 		lyricsText = new TextView();
 		lyricsText.set_wrap_mode(WrapMode.WORD_CHAR);
-		lyricsText.get_buffer().text = _lm.song_from_id(_songs.get(0)).lyrics;
+		lyricsText.get_buffer().text = _lm.media_from_id(_medias.get(0)).lyrics;
 		
 		ScrolledWindow scroll = new ScrolledWindow(null, null);
 		Viewport viewport = new Viewport(null, null);
@@ -269,7 +269,7 @@ public class BeatBox.SongEditor : Window {
 	
 	private void fetch_lyrics (bool overwrite) {
 		lyricsInfobar.hide();
-		Song s = _lm.song_from_id(_songs.get(0));
+		Media s = _lm.media_from_id(_medias.get(0));
 
 		// fetch lyrics here
 		if (!(!is_white_space (s.lyrics) && !overwrite))
@@ -297,8 +297,8 @@ public class BeatBox.SongEditor : Window {
 		lyricsInfobarLabel.set_text ("");
 		lyricsInfobar.hide();
 
-		/* FIXME: Verify that the lyrics correspond to the current song.
-		Song s = _lm.song_from_id(_songs.get(0));
+		/* FIXME: Verify that the lyrics correspond to the current media.
+		Media s = _lm.media_from_id(_medias.get(0));
 		if (!(lyrics.artist == s.artist || lyrics.artist == s.album_artist) && lyrics.title != s.title)
 			return;
 		*/
@@ -324,50 +324,50 @@ public class BeatBox.SongEditor : Window {
 	}
 	
 	public void previousClicked() {
-		save_songs();
+		save_medias();
 		
-		// now fetch the next song on current_view
-		int i = 0; // will hold next song to edit
-		int indexOfCurrentFirst = _allSongs.index_of(_songs.get(0));
+		// now fetch the next media on current_view
+		int i = 0; // will hold next media to edit
+		int indexOfCurrentFirst = _allMedias.index_of(_medias.get(0));
 		
 		if(indexOfCurrentFirst == 0)
-			i = _allSongs.get(_allSongs.size - 1);
+			i = _allMedias.get(_allMedias.size - 1);
 		else
-			i = _allSongs.get(indexOfCurrentFirst - 1);
+			i = _allMedias.get(indexOfCurrentFirst - 1);
 		
-		// now fetch the previous song on current_view
-		var newSongs = new LinkedList<int>();
-		newSongs.add(i);
+		// now fetch the previous media on current_view
+		var newMedias = new LinkedList<int>();
+		newMedias.add(i);
 		
-		change_song(newSongs);
+		change_media(newMedias);
 	}
 	
 	public void nextClicked() {
-		save_songs();
+		save_medias();
 		
-		// now fetch the next song on current_view
-		int i = 0; // will hold next song to edit
-		int indexOfCurrentLast = _allSongs.index_of(_songs.get(_songs.size - 1));
+		// now fetch the next media on current_view
+		int i = 0; // will hold next media to edit
+		int indexOfCurrentLast = _allMedias.index_of(_medias.get(_medias.size - 1));
 		
-		if(indexOfCurrentLast == _allSongs.size - 1)
-			i = _allSongs.get(0);
+		if(indexOfCurrentLast == _allMedias.size - 1)
+			i = _allMedias.get(0);
 		else
-			i = _allSongs.get(indexOfCurrentLast + 1);
+			i = _allMedias.get(indexOfCurrentLast + 1);
 		
-		var newSongs = new LinkedList<int>();
-		newSongs.add(i);
+		var newMedias = new LinkedList<int>();
+		newMedias.add(i);
 		
-		change_song(newSongs);
+		change_media(newMedias);
 	}
 	
-	public void change_song(LinkedList<int> newSongs) {
-		_songs = newSongs;
+	public void change_media(LinkedList<int> newMedias) {
+		_medias = newMedias;
 		
-		Song sum = _lm.song_from_id(newSongs.get(0));
+		Media sum = _lm.media_from_id(newMedias.get(0));
 		
 		title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
 		
-		/* do not show check boxes for 1 song */
+		/* do not show check boxes for 1 media */
 		foreach(FieldEditor fe in fields.values)
 			fe.set_check_visible(false);
 		
@@ -396,9 +396,9 @@ public class BeatBox.SongEditor : Window {
 		fetch_lyrics (false);
 	}
 	
-	public void save_songs() {
-		foreach(int i in _songs) {
-			Song s = _lm.song_from_id(i);
+	public void save_medias() {
+		foreach(int i in _medias) {
+			Media s = _lm.media_from_id(i);
 			
 			if(fields.get("Title").checked())
 				s.title = fields.get("Title").get_value();
@@ -434,11 +434,11 @@ public class BeatBox.SongEditor : Window {
 			}
 		}
 		
-		songs_saved(_songs);
+		medias_saved(_medias);
 	}
 	
 	public virtual void saveClicked() {
-		save_songs();
+		save_medias();
 		
 		this.destroy();
 	}

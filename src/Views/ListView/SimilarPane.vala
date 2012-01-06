@@ -26,10 +26,10 @@ using Gee;
 public class BeatBox.SimilarPane : MusicTreeView {
 	//BeatBox.LibraryManager lm;
 	//BeatBox.LibraryWindow lw;
-	public Song _base;
-	public Song _next;
+	public Media _base;
+	public Media _next;
 	
-	public LinkedList<int> _have; // this is updated EVERY song play. does not necessarily represent what is showing
+	public LinkedList<int> _have; // this is updated EVERY media play. does not necessarily represent what is showing
 	
 	public signal void playlist_saved(Playlist p);
 	
@@ -50,7 +50,7 @@ public class BeatBox.SimilarPane : MusicTreeView {
 		
 		errorLabel.xalign = 0.5f;
 		errorLabel.justify = Justification.CENTER;
-		errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Song View</span>\nIn this view, BeatBox will automatically find songs similar to the one you are playing.\nYou can then start playing those songs, or save them for later.");
+		errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Media View</span>\nIn this view, BeatBox will automatically find medias similar to the one you are playing.\nYou can then start playing those medias, or save them for later.");
 		*/
 		/* set up toolbar */
 		
@@ -60,18 +60,18 @@ public class BeatBox.SimilarPane : MusicTreeView {
 		show_all();
 		
 		
-		lm.song_played.connect(songPlayed);
+		lm.media_played.connect(mediaPlayed);
 	}
 	
 	public void initializeView() {
 		//errorBox.show();
 	}
 	
-	public void songPlayed(int id, int old) {
+	public void mediaPlayed(int id, int old) {
 
 	}
 	
-	public void updateSongs(Song la, LinkedList<int> have) {
+	public void updateMedias(Media la, LinkedList<int> have) {
 		_next = la;
 		_have = have;
 		
@@ -86,7 +86,7 @@ public class BeatBox.SimilarPane : MusicTreeView {
 			do_transfer = true;
 		
 		if(_have.size < 10) {
-			//errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">No Similar Songs</span>\nBeatBox could not find songs similar to " + _next.title.replace("&", "&amp;") + " by " + _next.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
+			//errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">No Similar Medias</span>\nBeatBox could not find medias similar to " + _next.title.replace("&", "&amp;") + " by " + _next.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
 			//errorBox.show();
 		}
 		else {
@@ -101,8 +101,8 @@ public class BeatBox.SimilarPane : MusicTreeView {
 		if(do_transfer)
 			transferPlaybackClicked();
 		
-		//if(lm.song_info.song != null)
-			//similars.updateSong(lm.song_info.song.rowid);
+		//if(lm.media_info.media != null)
+			//similars.updateMedia(lm.media_info.media.rowid);
 	}
 	
 	public virtual void refreshClicked() {
@@ -110,7 +110,7 @@ public class BeatBox.SimilarPane : MusicTreeView {
 	}
 	
 	public virtual void transferPlaybackClicked() {
-		//set the similar songs to current, hide button, set current_index
+		//set the similar medias to current, hide button, set current_index
 		set_as_current_list(0, true);
 		
 		//transferPlayback.hide();
@@ -121,8 +121,8 @@ public class BeatBox.SimilarPane : MusicTreeView {
 		
 		p.name = "Similar to " + _base.title;
 		
-		foreach(int id in get_songs()) {
-			p.addSong(id);
+		foreach(int id in get_medias()) {
+			p.addMedia(id);
 		}
 		
 		lm.add_playlist(p);

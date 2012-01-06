@@ -26,7 +26,7 @@ using Gee;
 public class BeatBox.MillerColumns : HBox {
 	public LibraryManager lm;
 	public LibraryWindow lw;
-	public Collection<int> songs;
+	public Collection<int> medias;
 	
 	public MillerColumn genres;
 	public MillerColumn artists;
@@ -71,7 +71,7 @@ public class BeatBox.MillerColumns : HBox {
 		albums.setColumnVisibilities(genreV, artistV, albumV);
 		
 		lm.settings.setMillerColumnVisibilities(genreV, artistV, albumV);
-		populateColumns("", songs);
+		populateColumns("", medias);
 	}
 	
 	public void resetColumns() {
@@ -82,12 +82,12 @@ public class BeatBox.MillerColumns : HBox {
 	
 	public virtual void searchFieldChanged() {
 		if(visible) {
-			populateColumns("dont care", songs);
+			populateColumns("dont care", medias);
 		}
 	}
 	
-	public void populateColumns(string trigger, Collection<int> songs) {
-		this.songs = songs;
+	public void populateColumns(string trigger, Collection<int> medias) {
+		this.medias = medias;
 		
 		Widget w = lw.sideTree.getSelectedWidget();
 		ViewWrapper.Hint hint = ViewWrapper.Hint.MUSIC;
@@ -100,20 +100,20 @@ public class BeatBox.MillerColumns : HBox {
 			return;
 		}
 		
-		Collection<int> searched_songs = new LinkedList<int>();
-		Collection<int> searched_songs_albums = new LinkedList<int>();
+		Collection<int> searched_medias = new LinkedList<int>();
+		Collection<int> searched_medias_albums = new LinkedList<int>();
 		lm.do_search(lw.searchField.get_text(), hint,
 					"All Genres", "All Artists", "All Albums",
-					songs, ref searched_songs, ref searched_songs_albums);
+					medias, ref searched_medias, ref searched_medias_albums);
 		
 		var artistsSet = new HashSet<string>();
 		var albumsSet = new HashSet<string>();
 		var genresSet = new HashSet<string>();
 		
-		foreach(int id in searched_songs) {
-			artistsSet.add(lm.song_from_id(id).artist);
-			albumsSet.add(lm.song_from_id(id).album);
-			genresSet.add(lm.song_from_id(id).genre);
+		foreach(int id in searched_medias) {
+			artistsSet.add(lm.media_from_id(id).artist);
+			albumsSet.add(lm.media_from_id(id).album);
+			genresSet.add(lm.media_from_id(id).genre);
 		}
 		
 		genres.populate(genresSet);
@@ -142,18 +142,18 @@ public class BeatBox.MillerColumns : HBox {
 			return;
 		}
 		
-		Collection<int> searched_songs = new LinkedList<int>();
-		Collection<int> searched_songs_album = new LinkedList<int>();
+		Collection<int> searched_medias = new LinkedList<int>();
+		Collection<int> searched_medias_album = new LinkedList<int>();
 		lm.do_search(lw.searchField.get_text(), hint,
 					genres.get_selected(), artists.get_selected(), albums.get_selected(),
-					songs, ref searched_songs, ref searched_songs_album);
+					medias, ref searched_medias, ref searched_medias_album);
 		
 		var artistsSet = new HashSet<string>();
 		var albumsSet = new HashSet<string>();
 		
-		foreach(int id in searched_songs) {
-			artistsSet.add(lm.song_from_id(id).artist);
-			albumsSet.add(lm.song_from_id(id).album);
+		foreach(int id in searched_medias) {
+			artistsSet.add(lm.media_from_id(id).artist);
+			albumsSet.add(lm.media_from_id(id).album);
 		}
 		
 		artists.populate(artistsSet);
@@ -173,16 +173,16 @@ public class BeatBox.MillerColumns : HBox {
 			return;
 		}
 		
-		Collection<int> searched_songs = new LinkedList<int>();
-		Collection<int> searched_songs_album = new LinkedList<int>();
+		Collection<int> searched_medias = new LinkedList<int>();
+		Collection<int> searched_medias_album = new LinkedList<int>();
 		lm.do_search(lw.searchField.get_text(), hint,
 					genres.get_selected(), artists.get_selected(), albums.get_selected(),
-					songs, ref searched_songs, ref searched_songs_album);
+					medias, ref searched_medias, ref searched_medias_album);
 		
 		var albumsSet = new HashSet<string>();
 		
-		foreach(int id in searched_songs) {
-			albumsSet.add(lm.song_from_id(id).album);
+		foreach(int id in searched_medias) {
+			albumsSet.add(lm.media_from_id(id).album);
 		}
 		
 		albums.populate(albumsSet);

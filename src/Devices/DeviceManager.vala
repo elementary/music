@@ -112,24 +112,24 @@ public class BeatBox.DeviceManager : GLib.Object {
 				devices.remove(dev);
 				device_removed(dev);
 				
-				// removing temp songs
-				var toRemove = new LinkedList<Song>();
-				foreach(int i in dev.get_songs()) {
-					Song s = lm.song_from_id(i);
+				// removing temp medias
+				var toRemove = new LinkedList<Media>();
+				foreach(int i in dev.get_medias()) {
+					Media s = lm.media_from_id(i);
 					if(s.isTemporary)
 						toRemove.add(s);
 				}
 				foreach(int i in dev.get_podcasts()) {
-					Song s = lm.song_from_id(i);
+					Media s = lm.media_from_id(i);
 					if(s.isTemporary)
 						toRemove.add(s);
 				}
 				foreach(int i in dev.get_audiobooks()) {
-					Song s = lm.song_from_id(i);
+					Media s = lm.media_from_id(i);
 					if(s.isTemporary)
 						toRemove.add(s);
 				}
-				lm.remove_songs(toRemove, false);
+				lm.remove_medias(toRemove, false);
 				
 				return;
 			}

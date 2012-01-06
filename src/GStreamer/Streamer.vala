@@ -14,7 +14,7 @@ public class BeatBox.Streamer : GLib.Object {
 	/** signals **/
 	public signal void end_of_stream();
 	public signal void current_position_update(int64 position);
-	public signal void song_not_found();
+	public signal void media_not_found();
 	
 	public Streamer(LibraryManager lm, LibraryWindow lw, string[] args) {
 		Gst.init(ref args);
@@ -30,7 +30,7 @@ public class BeatBox.Streamer : GLib.Object {
 		Timeout.add(500, doPositionUpdate);
 	}
 	
-	public void songRipped(Song s) {
+	public void mediaRipped(Media s) {
 		setURI("file://" + s.file);
 	}
 	
@@ -64,9 +64,9 @@ public class BeatBox.Streamer : GLib.Object {
 		setState(State.PLAYING);
 		
 		play();
-		/*if(lm.song_info.song.mediatype == 1 || lm.song_info.song.mediatype == 2) {
-			lw.topDisplay.change_value(Gtk.ScrollType.NONE, lm.song_info.song.resume_pos);
-			stdout.printf("setting song position to %d\n", lm.song_info.song.resume_pos);
+		/*if(lm.media_info.media.mediatype == 1 || lm.media_info.media.mediatype == 2) {
+			lw.topDisplay.change_value(Gtk.ScrollType.NONE, lm.media_info.media.resume_pos);
+			stdout.printf("setting media position to %d\n", lm.media_info.media.resume_pos);
 		}*/
 	}
 	
@@ -185,21 +185,21 @@ public class BeatBox.Streamer : GLib.Object {
 					string title = "";
 					tag_list.get_string(TAG_TITLE, out title);
 					
-					if(lm.song_info.song.mediatype == 3 && title != "") { // is radio
+					if(lm.media_info.media.mediatype == 3 && title != "") { // is radio
 						string[] pieces = title.split("-", 0);
 						
 						if(pieces.length >= 2) {
-							string old_title = lm.song_info.song.title;
-							string old_artist = lm.song_info.song.artist;
-							lm.song_info.song.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
-							lm.song_info.song.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
+							string old_title = lm.media_info.media.title;
+							string old_artist = lm.media_info.media.artist;
+							lm.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
+							lm.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
 							
-							if(old_title != lm.song_info.song.title || old_artist != lm.song_info.song.artist)
-								lw.song_played(lm.song_info.song.rowid, lm.song_info.song.rowid); // pretend as if song changed
+							if(old_title != lm.media_info.media.title || old_artist != lm.media_info.media.artist)
+								lw.media_played(lm.media_info.media.rowid, lm.media_info.media.rowid); // pretend as if media changed
 						}
 						else {
-							// if the title doesn't follow the general title - artist format, probably not a song change and instead an advert
-							lw.topDisplay.set_label_markup(lm.song_info.song.album_artist + "\n" + title);
+							// if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
+							lw.topDisplay.set_label_markup(lm.media_info.media.album_artist + "\n" + title);
 						}
 						
 					}
@@ -216,7 +216,7 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	void about_to_finish() {
 		int i = lm.getNext(false);
-		Song s = lm.song_from_id(i);
+		Media s = lm.media_from_id(i);
 		if(s != null && s.mediatype != 3) { // don't do this with radio stations
 			if(!s.isPreview && !s.file.contains("cdda://") && !s.file.contains("http://")) // normal file
 				pipe.playbin.uri = "file://" + s.file;

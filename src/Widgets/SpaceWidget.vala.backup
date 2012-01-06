@@ -37,8 +37,8 @@ public class BeatBox.SpaceWidget : Gtk.DrawingArea {
         double y = height - 20;
         double x = BAR_SIDE_RADIUS;
         
-        double song_right = (song_size / total_size) * width;
-        double podcast_right = song_right + ((podcast_size / total_size) * width);
+        double media_right = (media_size / total_size) * width;
+        double podcast_right = media_right + ((podcast_size / total_size) * width);
         double audiobook_right = podcast_right + ((audiobook_size / total_size) * width);
         
         // start with rounded left side

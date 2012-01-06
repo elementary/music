@@ -201,8 +201,8 @@ public class MprisPlayer : GLib.Object {
 		this.conn = conn;
 		_metadata = new HashTable<string,Variant>(str_hash, str_equal);
 		
-		BeatBox.Beatbox._program.lm.song_played.connect(songPlayed);
-		BeatBox.Beatbox._program.lm.song_updated.connect(songPlayed);
+		BeatBox.Beatbox._program.lm.media_played.connect(mediaPlayed);
+		BeatBox.Beatbox._program.lm.media_updated.connect(mediaPlayed);
 		BeatBox.Beatbox._program.playPauseChanged.connect(playingChanged);
 	}
 	
@@ -225,10 +225,10 @@ public class MprisPlayer : GLib.Object {
 		});
 	}
 	
-	public virtual void songPlayed(int id) {
-		BeatBox.Song s = BeatBox.Beatbox._program.lm.song_from_id(id);
+	public virtual void mediaPlayed(int id) {
+		BeatBox.Media s = BeatBox.Beatbox._program.lm.media_from_id(id);
 		
-		if(s.rowid != BeatBox.Beatbox._program.lm.song_info.song.rowid)
+		if(s.rowid != BeatBox.Beatbox._program.lm.media_info.media.rowid)
 			return;
 		
 		string[] artistArray = {};
@@ -297,7 +297,7 @@ public class MprisPlayer : GLib.Object {
 		owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
 			if(BeatBox.Beatbox._program.lm.playing)
 				return "Playing";
-			else if(!BeatBox.Beatbox._program.lm.playing && BeatBox.Beatbox._program.lm.song_info.song == null)
+			else if(!BeatBox.Beatbox._program.lm.playing && BeatBox.Beatbox._program.lm.media_info.media == null)
 				return "Stopped";
 			else if(!BeatBox.Beatbox._program.lm.playing)
 				return "Paused";
@@ -311,7 +311,7 @@ public class MprisPlayer : GLib.Object {
 			switch(BeatBox.Beatbox._program.lm.repeat) {
 				case(BeatBox.LibraryManager.Repeat.OFF):
 					return "None";
-				case(BeatBox.LibraryManager.Repeat.SONG):
+				case(BeatBox.LibraryManager.Repeat.MEDIA):
 					return "Track";
 				case(BeatBox.LibraryManager.Repeat.ALBUM):
 				case(BeatBox.LibraryManager.Repeat.ARTIST):
@@ -327,7 +327,7 @@ public class MprisPlayer : GLib.Object {
 					BeatBox.Beatbox._program.lm.repeat = BeatBox.LibraryManager.Repeat.OFF;
 					break;
 				case("Track"):
-					BeatBox.Beatbox._program.lm.repeat = BeatBox.LibraryManager.Repeat.SONG;
+					BeatBox.Beatbox._program.lm.repeat = BeatBox.LibraryManager.Repeat.MEDIA;
 					break;
 				case("Playlist"):
 					BeatBox.Beatbox._program.lm.repeat = BeatBox.LibraryManager.Repeat.ALL;

@@ -21,29 +21,29 @@
  */
 
 /* Merely a place holder for multiple pieces of information regarding
- * the current song playing. Mostly here because of dependence. */
+ * the current media playing. Mostly here because of dependence. */
 
 using Xml;
 
-public class LastFM.SimilarSongs : Object {
+public class LastFM.SimilarMedias : Object {
 	public static const int MAX_FETCHED = 20;
 	
 	BeatBox.LibraryManager _lm;
-	BeatBox.Song _base;
+	BeatBox.Media _base;
 	bool working;
 	
-	Gee.LinkedList<BeatBox.Song> similar;
+	Gee.LinkedList<BeatBox.Media> similar;
 	
-	BeatBox.Song similarToAdd;
+	BeatBox.Media similarToAdd;
 	
-	public signal void similar_retrieved(Gee.LinkedList<int> similarIDs, Gee.LinkedList<BeatBox.Song> similarDont);
+	public signal void similar_retrieved(Gee.LinkedList<int> similarIDs, Gee.LinkedList<BeatBox.Media> similarDont);
 	
-	public class SimilarSongs(BeatBox.LibraryManager lm) {
+	public class SimilarMedias(BeatBox.LibraryManager lm) {
 		_lm = lm;
 		working = false;
 	}
 	
-	public virtual void queryForSimilar(BeatBox.Song s) {
+	public virtual void queryForSimilar(BeatBox.Media s) {
 		_base = s;
 		
 		if(!working) {
@@ -59,13 +59,13 @@ public class LastFM.SimilarSongs : Object {
 	}
 	
 	public void* similar_thread_function () {	
-		similar = new Gee.LinkedList<BeatBox.Song>();
+		similar = new Gee.LinkedList<BeatBox.Media>();
 		var similarIDs = new Gee.LinkedList<int>();
-		var similarDont = new Gee.LinkedList<BeatBox.Song>();
+		var similarDont = new Gee.LinkedList<BeatBox.Media>();
 		
 		getSimilarTracks(_base.title, _base.artist);
-		foreach(BeatBox.Song sim in similar) {
-			BeatBox.Song s = _lm.song_from_name(sim.title, sim.artist);
+		foreach(BeatBox.Media sim in similar) {
+			BeatBox.Media s = _lm.media_from_name(sim.title, sim.artist);
 			if(s.rowid != 0) {
 				similarIDs.add(s.rowid);
 			}
@@ -86,10 +86,10 @@ public class LastFM.SimilarSongs : Object {
 		return null;	
     }
 	
-	/** Gets similar songs
-	 * @param artist The artist of song to get similar to
-	 * @param title The title of song to get similar to
-	 * @return The songs that are similar
+	/** Gets similar medias
+	 * @param artist The artist of media to get similar to
+	 * @param title The title of media to get similar to
+	 * @return The medias that are similar
 	 */
 	public void getSimilarTracks(string title, string artist) {
 		var artist_fixed = LastFM.Core.fix_for_url(artist);
@@ -137,7 +137,7 @@ public class LastFM.SimilarSongs : Object {
 						similar.add(similarToAdd);
 					}
 					
-					similarToAdd = new BeatBox.Song("");
+					similarToAdd = new BeatBox.Media("");
 					similarToAdd.title = node_content;
 				}
 				else if(node_name == "url") {

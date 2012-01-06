@@ -67,17 +67,17 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 	}
 	
 	public void showNotification(int i) {
-		if(lm.song_from_id(i) == null)
+		if(lm.media_from_id(i) == null)
 			return;
 		
 		if(!lw.has_toplevel_focus) {
 			try {
 				lw.notification.set_timeout(1);
-				lw.notification.update(lm.song_from_id(i).title, lm.song_from_id(i).artist + "\n" + lm.song_from_id(i).album, "");
+				lw.notification.update(lm.media_from_id(i).title, lm.media_from_id(i).artist + "\n" + lm.media_from_id(i).album, "");
 				
 				Gdk.Pixbuf notify_pix;
-				if(File.new_for_path(lm.song_from_id(i).getAlbumArtPath()).query_exists())
-					notify_pix = new Gdk.Pixbuf.from_file(lm.song_from_id(i).getAlbumArtPath());
+				if(File.new_for_path(lm.media_from_id(i).getAlbumArtPath()).query_exists())
+					notify_pix = new Gdk.Pixbuf.from_file(lm.media_from_id(i).getAlbumArtPath());
 				else
 					notify_pix = lw.render_icon("beatbox", Gtk.IconSize.DIALOG, null);
 				
@@ -106,24 +106,24 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 		if(key == "Previous") {
 			lw.previousClicked();
 			
-			if(lm.song_info.song != null)
-				showNotification(lm.song_info.song.rowid);
+			if(lm.media_info.media != null)
+				showNotification(lm.media_info.media.rowid);
 		}
 		else if(key == "Play") {
 			lw.playClicked();
 			
 			var elapsed = (int)time_t() - last_pause_time;
 			
-			if(lm.song_info.song != null && lm.playing && (elapsed > 60))
-				showNotification(lm.song_info.song.rowid);
+			if(lm.media_info.media != null && lm.playing && (elapsed > 60))
+				showNotification(lm.media_info.media.rowid);
 			else if(!lm.playing)
 				last_pause_time = (int)time_t();
 		}
 		else if(key == "Next") {
 			lw.nextClicked();
 			
-			if(lm.song_info.song != null)
-				showNotification(lm.song_info.song.rowid);
+			if(lm.media_info.media != null)
+				showNotification(lm.media_info.media.rowid);
 		}
 		else {
 			stdout.printf("Unused key pressed: %s\n", key);

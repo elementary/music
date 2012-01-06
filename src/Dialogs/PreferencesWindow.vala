@@ -21,7 +21,7 @@
  */
 
 /* Merely a place holder for multiple pieces of information regarding
- * the current song playing. Mostly here because of dependence. */
+ * the current media playing. Mostly here because of dependence. */
 
 using Gtk;
 
@@ -194,7 +194,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		
 	void saveClicked() {
 	
-		if(fileChooser.get_current_folder() != _lm.settings.getMusicFolder() || _lm.song_count() == 0) {
+		if(fileChooser.get_current_folder() != _lm.settings.getMusicFolder() || _lm.media_count() == 0) {
 			changed(fileChooser.get_current_folder());
 		}
 		

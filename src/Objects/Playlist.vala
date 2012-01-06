@@ -26,16 +26,16 @@ public class BeatBox.Playlist : Object {
 	private string _name;
 	public TreeViewSetup tvs;
 	private int _rowid;
-	private Gee.LinkedList<int> _songs;
+	private Gee.LinkedList<int> _medias;
 	
 	public Playlist() {
 		_name = "New Playlist";
 		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
-		_songs = new Gee.LinkedList<int>();
+		_medias = new Gee.LinkedList<int>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
-		_songs = new Gee.LinkedList<int>();
+		_medias = new Gee.LinkedList<int>();
 		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_rowid = rowid;
 		_name = name;
@@ -51,38 +51,38 @@ public class BeatBox.Playlist : Object {
 		set {_name = value; }
 	}
 	
-	public Gee.LinkedList<int> songs() {
-		return _songs;
+	public Gee.LinkedList<int> medias() {
+		return _medias;
 	}
 	
-	public void addSong(int id) {
-		//if(!contains_song(id))
-			_songs.add(id);
+	public void addMedia(int id) {
+		//if(!contains_media(id))
+			_medias.add(id);
 	}
 	
-	public void removeSong(int id) {
-		_songs.remove(id);
+	public void removeMedia(int id) {
+		_medias.remove(id);
 	}
 	
 	public void clear() {
-		_songs.clear();
+		_medias.clear();
 	}
 	
-	public void songs_from_string(string songs, LibraryManager lm) {
-		string[] song_strings = songs.split(",", 0);
+	public void medias_from_string(string medias, LibraryManager lm) {
+		string[] media_strings = medias.split(",", 0);
 		
 		int index;
-		for(index = 0; index < song_strings.length - 1; ++index) {
-			int id = int.parse(song_strings[index]);
+		for(index = 0; index < media_strings.length - 1; ++index) {
+			int id = int.parse(media_strings[index]);
 			
-			addSong(id);
+			addMedia(id);
 		}
 	}
 	
-	public string songs_to_string(LibraryManager lm) {
+	public string medias_to_string(LibraryManager lm) {
 		string rv = "";
 		
-		foreach(int id in _songs) {
+		foreach(int id in _medias) {
 			rv += id.to_string() + ",";
 		}
 		
@@ -90,11 +90,11 @@ public class BeatBox.Playlist : Object {
 	}
 	
 	public Gee.LinkedList<int> analyze(LibraryManager lm) {
-		return _songs;
+		return _medias;
 	}
 	
-	public bool contains_song(int i) {
-		return _songs.contains(i);
+	public bool contains_media(int i) {
+		return _medias.contains(i);
 	}
 	
 	public GPod.Playlist get_gpod_playlist() {
@@ -110,8 +110,8 @@ public class BeatBox.Playlist : Object {
 		bool rv = false;
 		string to_save = "#EXTM3U";
 		
-		foreach(int i in _songs) {
-			Song s = lm.song_from_id(i);
+		foreach(int i in _medias) {
+			Media s = lm.media_from_id(i);
 			
 			to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + s.file;
 		}
@@ -140,11 +140,11 @@ public class BeatBox.Playlist : Object {
 	
 	public bool save_playlist_pls(LibraryManager lm, string folder) {
 		bool rv = false;
-		string to_save = "[playlist]\n\nNumberOfEntries=" + _songs.size.to_string() + "\nVersion=2";
+		string to_save = "[playlist]\n\nNumberOfEntries=" + _medias.size.to_string() + "\nVersion=2";
 		
 		int index = 1;
-		foreach(int i in _songs) {
-			Song s = lm.song_from_id(i);
+		foreach(int i in _medias) {
+			Media s = lm.media_from_id(i);
 			
 			to_save += "\n\nFile" + index.to_string() + "=" + s.file + "\nTitle" + index.to_string() + "=" + s.title + "\nLength" + index.to_string() + "=" + s.length.to_string();
 			++index;
@@ -172,9 +172,9 @@ public class BeatBox.Playlist : Object {
 		return rv;
 	}
 	
-	public static bool parse_paths_from_m3u(LibraryManager lm, string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Song> stations) {
+	public static bool parse_paths_from_m3u(LibraryManager lm, string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Media> stations) {
 		// now try and load m3u file
-		// if some files are not found by song_from_file(), ask at end if user would like to import the file to library
+		// if some files are not found by media_from_file(), ask at end if user would like to import the file to library
 		// if so, just do import_individual_files
 		// if not, do nothing and accept that music files are scattered.
 		
@@ -189,7 +189,7 @@ public class BeatBox.Playlist : Object {
 			
 			while ((line = dis.read_line(null)) != null) {
 				if(line.has_prefix("http:/")) {
-					Song s = new Song(line);
+					Media s = new Media(line);
 					s.mediatype = 3;
 					
 					s.album_artist = "Radio Station";
@@ -214,7 +214,7 @@ public class BeatBox.Playlist : Object {
 		return true;
 	}
 	
-	public static bool parse_paths_from_pls(LibraryManager lm, string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Song> stations) {
+	public static bool parse_paths_from_pls(LibraryManager lm, string path, ref Gee.LinkedList<string> locals, ref Gee.LinkedList<Media> stations) {
 		var files = new HashMap<int, string>();
 		var titles = new HashMap<int, string>();
 		var lengths = new HashMap<int, string>();
@@ -246,7 +246,7 @@ public class BeatBox.Playlist : Object {
 		
 		foreach(var entry in files.entries) {
 			if(entry.value.has_prefix("http:/")/* && lengths.get(entry.key) != null && int.parse(lengths.get(entry.key)) <= 0*/)  {
-				Song s = new Song(entry.value);
+				Media s = new Media(entry.value);
 				s.mediatype = 3;
 				s.album_artist = titles.get(entry.key);
 				

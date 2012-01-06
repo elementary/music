@@ -29,13 +29,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public BeatBox.LibraryManager lm;
 	BeatBox.Settings settings;
-	LastFM.SimilarSongs similarSongs;
+	LastFM.SimilarMedias similarMedias;
 	BeatBox.MediaKeyListener mkl;
 	
-	bool queriedlastfm; // whether or not we have queried last fm for the current song info
-	bool song_considered_played; //whether or not we have updated last played and added to already played list
-	bool added_to_play_count; // whether or not we have added one to play count on playing song
-	bool tested_for_video; // whether or not we have tested if song is video and shown video
+	bool queriedlastfm; // whether or not we have queried last fm for the current media info
+	bool media_considered_played; //whether or not we have updated last played and added to already played list
+	bool added_to_play_count; // whether or not we have added one to play count on playing media
+	bool tested_for_video; // whether or not we have tested if media is video and shown video
 	bool scrobbled_track;
 	LinkedList<string> timeout_search;//stops from doing useless search
 	string last_search;//stops from searching same thing multiple times
@@ -52,13 +52,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	VPaned millerPane;
 	ElementaryWidgets.Welcome welcomeScreen;
 	public DrawingArea videoArea;
-	HPaned sourcesToSongs; //allows for draggable
-	HPaned songsToInfo; // song info pane
+	HPaned sourcesToMedias; //allows for draggable
+	HPaned mediasToInfo; // media info pane
 	ScrolledWindow sideTreeScroll;
 	VBox sideBar;
 	VBox contentBox;
 	public SideTreeView sideTree;
-	ScrolledWindow songInfoScroll;
+	ScrolledWindow mediaInfoScroll;
 	ScrolledWindow pandoraScroll;
 	ScrolledWindow grooveSharkScroll;
 	InfoPanel infoPanel;
@@ -99,7 +99,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		lm = new BeatBox.LibraryManager(settings, this, args);
 		
 		//various objects
-		similarSongs = new LastFM.SimilarSongs(lm);
+		similarMedias = new LastFM.SimilarMedias(lm);
 		timeout_search = new LinkedList<string>();
 		mkl = new MediaKeyListener(lm, this);
 		last_search = "";
@@ -116,24 +116,24 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		this.lm.player.end_of_stream.connect(end_of_stream);
 		this.lm.player.current_position_update.connect(current_position_update);
-		//this.lm.player.song_not_found.connect(song_not_found);
+		//this.lm.player.media_not_found.connect(media_not_found);
 		this.lm.music_counted.connect(musicCounted);
 		this.lm.music_added.connect(musicAdded);
 		this.lm.music_imported.connect(musicImported);
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
-		this.lm.songs_removed.connect(songs_removed);
-		this.lm.song_played.connect(song_played);
+		this.lm.medias_removed.connect(medias_removed);
+		this.lm.media_played.connect(media_played);
 		this.lm.playback_stopped.connect(playback_stopped);
-		this.lm.songs_updated.connect(songs_updated);
+		this.lm.medias_updated.connect(medias_updated);
 		
-		this.similarSongs.similar_retrieved.connect(similarRetrieved);
+		this.similarMedias.similar_retrieved.connect(similarRetrieved);
 		
 		destroy.connect (on_quit);
 		check_resize.connect(on_resize);
 		this.destroy.connect (Gtk.main_quit);
 		
-		if(lm.song_count() == 0 && settings.getMusicFolder() == "") {
+		if(lm.media_count() == 0 && settings.getMusicFolder() == "") {
 			stdout.printf("First run.\n");
 			
 		}
@@ -142,11 +142,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			//((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).set_as_current_list("0");
 			
 			// make sure we don't re-count stats
-			if((int)settings.getLastSongPosition() > 5)
+			if((int)settings.getLastMediaPosition() > 5)
 				queriedlastfm = true;
-			if((int)settings.getLastSongPosition() > 30)
-				song_considered_played = true;
-			if(lm.song_info.song != null && (double)((int)settings.getLastSongPosition()/(double)lm.song_info.song.length) > 0.90)
+			if((int)settings.getLastMediaPosition() > 30)
+				media_considered_played = true;
+			if(lm.media_info.media != null && (double)((int)settings.getLastMediaPosition()/(double)lm.media_info.media.length) > 0.90)
 				added_to_play_count = true;
 			
 			// rescan on startup
@@ -180,8 +180,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		/* Initialize all components */
 		verticalBox = new VBox(false, 0);
-		sourcesToSongs = new HPaned();
-		songsToInfo = new HPaned();
+		sourcesToMedias = new HPaned();
+		mediasToInfo = new HPaned();
 		contentBox = new VBox(false, 0);
 		millerPane = new VPaned();
 		mainViews = new VBox(false, 0);
@@ -206,7 +206,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		viewSelector = new Granite.Widgets.ModeButton();
 		searchField = new Granite.Widgets.SearchBar("Search...");
 		miller = new MillerColumns(lm, this); //miller must be below search for it to work properly
-		songInfoScroll = new ScrolledWindow(null, null);
+		mediaInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
 		grooveSharkScroll = new ScrolledWindow(null, null);
 		infoPanel = new InfoPanel(lm, this);
@@ -231,13 +231,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 						"body", "Artist\nAlbum");
 		
 		/* Set properties of various controls */
-		sourcesToSongs.set_position(settings.getSidebarWidth());
-		songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
+		sourcesToMedias.set_position(settings.getSidebarWidth());
+		mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 		
 		//for setting maximum size for setting hpane position max size
 		//sideBar.set_geometry_hints(
 		
-		miller.populateColumns("", lm.song_ids());
+		miller.populateColumns("", lm.media_ids());
 		buildSideTree();
 		
 		sideTreeScroll = new ScrolledWindow(null, null);
@@ -278,7 +278,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusEventBox.override_background_color (StateFlags.NORMAL, statusbar_bg);
 		
 		repeatChooser.appendItem("Off");
-		repeatChooser.appendItem("Song");
+		repeatChooser.appendItem("Media");
 		repeatChooser.appendItem("Album");
 		repeatChooser.appendItem("Artist");
 		repeatChooser.appendItem("All");
@@ -297,7 +297,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		add(verticalBox);
 		verticalBox.pack_start(topControls, false, true, 0);
 		verticalBox.pack_start(videoArea, true, true, 0);
-		verticalBox.pack_start(sourcesToSongs, true, true, 0);
+		verticalBox.pack_start(sourcesToMedias, true, true, 0);
 
 		// Ugly workaround to make the view-mode button smaller
 		var viewSelectorContainer = new Box (Orientation.VERTICAL, 0);
@@ -347,7 +347,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topControls.get_style_context().add_class("primary-toolbar");
 		
 		//set the name for elementary theming
-		sourcesToSongs.get_style_context().add_class("sidebar-pane-separator");
+		sourcesToMedias.get_style_context().add_class("sidebar-pane-separator");
 		sideTree.get_style_context().add_class("sidebar");
 		
 		contentBox.pack_start(welcomeScreen, true, true, 0);
@@ -362,11 +362,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		contentBox.pack_start(statusEventBox, false, true, 0);
 		
-		songsToInfo.pack1(contentBox, true, true);
-		songsToInfo.pack2(infoPanel, false, false);
+		mediasToInfo.pack1(contentBox, true, true);
+		mediasToInfo.pack2(infoPanel, false, false);
 		
-		sourcesToSongs.pack1(sideBar, false, true);
-		sourcesToSongs.pack2(songsToInfo, true, true);
+		sourcesToMedias.pack1(sideBar, false, true);
+		sourcesToMedias.pack2(mediasToInfo, true, true);
 		
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
 		sideBar.pack_end(coverArt, false, true, 0);
@@ -380,7 +380,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		lm.dm.loadPreExistingMounts();
 		
 		/* Connect events to functions */
-		sourcesToSongs.get_child1().size_allocate.connect(sourcesToSongsHandleSet);
+		sourcesToMedias.get_child1().size_allocate.connect(sourcesToMediasHandleSet);
 		welcomeScreen.activated.connect(welcomeScreenActivated);
 		//sideTree.row_activated.connect(sideListDoubleClick);
 		previousButton.clicked.connect(previousClicked);
@@ -413,11 +413,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		miller.updateColumnVisibilities(genreV, artistV, albumV);
 		stdout.printf("User interface has been built\n");
 		
-		int i = settings.getLastSongPlaying();
+		int i = settings.getLastMediaPlaying();
 		if(i != 0) {
-			int position = (int)settings.getLastSongPosition();
+			int position = (int)settings.getLastMediaPosition();
 			//Timeout.add(250, () => {
-			lm.playSong(i);
+			lm.playMedia(i);
 			topDisplay.change_value(ScrollType.NONE, position);
 		}
 		else {
@@ -426,7 +426,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		sideTree.resetView();
-		if(lm.song_info.song != null) {
+		if(lm.media_info.media != null) {
 			((ViewWrapper)sideTree.getSelectedWidget()).list.set_as_current_list(0, true);
 			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
 				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
@@ -477,7 +477,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "History");
 		mainViews.pack_start(vw, true, true, 0);
 		
-		vw = new ViewWrapper(lm, this, lm.song_ids(), lm.music_setup.sort_column, lm.music_setup.sort_direction, ViewWrapper.Hint.MUSIC, -1);
+		vw = new ViewWrapper(lm, this, lm.media_ids(), lm.music_setup.sort_column, lm.music_setup.sort_direction, ViewWrapper.Hint.MUSIC, -1);
 		sideTree.addSideItem(sideTree.library_iter, null, vw, "Music");
 		mainViews.pack_start(vw, true, true, 0);
 		
@@ -517,14 +517,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(o is Playlist) {
 			Playlist p = (Playlist)o;
 			
-			vw = new ViewWrapper(lm, this, lm.songs_from_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, ViewWrapper.Hint.PLAYLIST, p.rowid);
+			vw = new ViewWrapper(lm, this, lm.medias_from_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, ViewWrapper.Hint.PLAYLIST, p.rowid);
 			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
 			mainViews.pack_start(vw, true, true, 0);
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 			
-			vw = new ViewWrapper(lm, this, lm.songs_from_smart_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, ViewWrapper.Hint.SMART_PLAYLIST, p.rowid);
+			vw = new ViewWrapper(lm, this, lm.medias_from_smart_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, ViewWrapper.Hint.SMART_PLAYLIST, p.rowid);
 			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
 			mainViews.pack_start(vw, true, true, 0);
 		}
@@ -537,9 +537,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				mainViews.pack_start(vw, true, true, 0);
 			}
 			else {
-				stdout.printf("adding ipod device view with %d\n", d.get_songs().size);
+				stdout.printf("adding ipod device view with %d\n", d.get_medias().size);
 				DeviceView dv = new DeviceView(lm, d);
-				//vw = new DeviceViewWrapper(lm, this, d.get_songs(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE, -1, d);
+				//vw = new DeviceViewWrapper(lm, this, d.get_medias(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE, -1, d);
 				item = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName());
 				mainViews.pack_start(dv, true, true, 0);
 			}
@@ -564,12 +564,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			return;
 		
 		bool folderSet = (lm.settings.getMusicFolder() != "");
-		bool haveSongs = lm.local_ids().size > 0;
+		bool haveMedias = lm.media_count() > 0;
+		bool haveSongs = lm.song_ids().size > 0;
 		bool doingOps = lm.doing_file_operations();
-		bool nullSong = (lm.song_info.song == null);
+		bool nullMedia = (lm.media_info.media == null);
 		bool showMore = lm.settings.getMoreVisible();
 		
-		bool showingSongList = (sideTree.getSelectedWidget() is ViewWrapper);
+		bool showingMediaList = (sideTree.getSelectedWidget() is ViewWrapper);
 		bool showingMusicList = sideTree.convertToChild(sideTree.getSelectedIter()) == sideTree.library_music_iter;
 		bool showMainViews = (haveSongs || !showingMusicList);
 		
@@ -579,39 +580,39 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		if(doingOps)
 			topDisplay.show_progressbar();
-		else if(!nullSong && lm.song_info.song.mediatype == 3) {
+		else if(!nullMedia && lm.media_info.media.mediatype == 3) {
 			topDisplay.hide_scale_and_progressbar();
 		}
 		else
 			topDisplay.show_scale();
 		
-		sourcesToSongs.set_visible(viewSelector.selected != 3);
+		sourcesToMedias.set_visible(viewSelector.selected != 3);
 		videoArea.set_visible(viewSelector.selected == 3);
 		
-		topDisplay.set_visible(!nullSong || doingOps);
-		topDisplay.set_scale_sensitivity(!nullSong);
+		topDisplay.set_visible(!nullMedia || doingOps);
+		topDisplay.set_scale_sensitivity(!nullMedia);
 		
-		previousButton.set_sensitive(haveSongs);
-		playButton.set_sensitive(haveSongs);
-		nextButton.set_sensitive(haveSongs);
+		previousButton.set_sensitive(haveMedias);
+		playButton.set_sensitive(haveMedias);
+		nextButton.set_sensitive(haveMedias);
 		searchField.set_sensitive(showMainViews);
 		viewSelector.set_sensitive(showMainViews);
 		
 		mainViews.set_visible(showMainViews);
-		miller.set_visible((showMainViews) && viewSelector.selected == 2 && showingSongList);
+		miller.set_visible((showMainViews) && viewSelector.selected == 2 && showingMediaList);
 		welcomeScreen.set_visible(!showMainViews);
 		millerPane.set_visible(showMainViews);
 		welcomeScreen.set_sensitivity(0, !doingOps);
 		statusBar.set_visible(showMainViews);
 		
-		infoPanel.set_visible(showMainViews && showMore && !nullSong);
-		infoPanelChooser.set_visible(showMainViews && !nullSong);
-		coverArt.set_visible(!nullSong);
+		infoPanel.set_visible(showMainViews && showMore && !nullMedia);
+		infoPanelChooser.set_visible(showMainViews && !nullMedia);
+		coverArt.set_visible(!nullMedia);
 		
-		// hide playlists when song list is empty
-		sideTree.setVisibility(sideTree.playlists_iter, haveSongs);
+		// hide playlists when media list is empty
+		sideTree.setVisibility(sideTree.playlists_iter, haveMedias);
 		
-		if(lm.song_info.song == null || haveSongs && !lm.playing) {
+		if(lm.media_info.media == null || haveMedias && !lm.playing) {
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 		}
 	}
@@ -622,35 +623,35 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		topDisplay.set_progress_value(progress);
 		
-		// if we are adding songs, refresh periodically
+		// if we are adding medias, refresh periodically
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-		if(lm.songs().size - vw.song_count >= 500) {
+		if(lm.media().size - vw.media_count >= 500) {
 			
-			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
-			miller.populateColumns("", lm.song_ids());
+			vw.doUpdate(vw.currentView, lm.media_ids(), true, true);
+			miller.populateColumns("", lm.media_ids());
 			
 			updateSensitivities();
 		}
 	}
 	
-	public bool updateCurrentSong() {
-		//loop through all musictreeviews and call updatecurrentsong
+	public bool updateCurrentMedia() {
+		//loop through all musictreeviews and call updatecurrentmedia
 		
-		if(lm.song_info.song != null) {
-			string file = lm.song_info.song.getAlbumArtPath();
+		if(lm.media_info.media != null) {
+			string file = lm.media_info.media.getAlbumArtPath();
 			if(file.contains(settings.getMusicFolder())) {
 				try {
-					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(file, sourcesToSongs.position, sourcesToSongs.position));
+					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(file, sourcesToMedias.position, sourcesToMedias.position));
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not set image art: %s\n", err.message);
-					lm.song_info.song.setAlbumArtPath("");
+					lm.media_info.media.setAlbumArtPath("");
 				}
 			}
 			else {
 				try {
 					var dropAlbum = GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "128x128", "mimetypes", "drop-album.svg");
-					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(dropAlbum, sourcesToSongs.position, sourcesToSongs.position));
+					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(dropAlbum, sourcesToMedias.position, sourcesToMedias.position));
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not set image art: %s\n", err.message);
@@ -667,37 +668,37 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			return;
 		}
 			
-		if(lm.song_info.song == null) {
+		if(lm.media_info.media == null) {
 			topDisplay.set_label_markup("");
 			stdout.printf("setting info label as ''\n");
 			return;
 		}
 		
 		string beg = "";
-		if(lm.song_info.song.mediatype == 3) // radio
-			beg = "<b>" + lm.song_info.song.album_artist.replace("\n", "") + "</b>\n";
+		if(lm.media_info.media.mediatype == 3) // radio
+			beg = "<b>" + lm.media_info.media.album_artist.replace("\n", "") + "</b>\n";
 		
 		//set the title
-		Song s = lm.song_info.song;
+		Media s = lm.media_info.media;
 		var title = "<b>" + s.title.replace("&", "&amp;") + "</b>";
 		var artist = ((s.artist != "" && s.artist != "Unknown Artist") ? (" by " + "<b>" + s.artist.replace("&", "&amp;") + "</b>") : "");
 		var album = ((s.album != "" && s.album != "Unknown Album") ? (" on " + "<b>" + s.album.replace("&", "&amp;") + "</b>") : "");
 		
-		var song_label = beg + title + artist + album;
-		topDisplay.set_label_markup(song_label);
+		var media_label = beg + title + artist + album;
+		topDisplay.set_label_markup(media_label);
 	}
 	
-	/** This should be used whenever a call to play a new song is made
-	 * @param s The song that is now playing
+	/** This should be used whenever a call to play a new media is made
+	 * @param s The media that is now playing
 	 */
-	public virtual void song_played(int i, int old) {
+	public virtual void media_played(int i, int old) {
 		/*if(old == -2 && i != -2) { // -2 is id reserved for previews
-			Song s = settings.getLastSongPlaying();
-			s = lm.song_from_name(s.title, s.artist);
+			Media s = settings.getLastMediaPlaying();
+			s = lm.media_from_name(s.title, s.artist);
 			
 			if(s.rowid != 0) {
-				lm.playSong(s.rowid);
-				int position = (int)settings.getLastSongPosition();
+				lm.playMedia(s.rowid);
+				int position = (int)settings.getLastMediaPosition();
 				topDisplay.change_value(ScrollType.NONE, position);
 			}
 			
@@ -706,14 +707,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		updateInfoLabel();
 		
-		//reset the song position
+		//reset the media position
 		topDisplay.set_scale_sensitivity(true);
-		topDisplay.set_scale_range(0.0, lm.song_info.song.length);
+		topDisplay.set_scale_range(0.0, lm.media_info.media.length);
 		
-		if(lm.song_from_id(i).mediatype == 1 || lm.song_from_id(i).mediatype == 2) {
-			/*stdout.printf("setting position to resume_pos which is %d\n", lm.song_from_id(i).resume_pos );
+		if(lm.media_from_id(i).mediatype == 1 || lm.media_from_id(i).mediatype == 2) {
+			/*stdout.printf("setting position to resume_pos which is %d\n", lm.media_from_id(i).resume_pos );
 			Timeout.add(250, () => {
-				topDisplay.change_value(ScrollType.NONE, lm.song_from_id(i).resume_pos);
+				topDisplay.change_value(ScrollType.NONE, lm.media_from_id(i).resume_pos);
 				return false;
 			});*/
 		}
@@ -721,20 +722,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			topDisplay.change_value(ScrollType.NONE, 0);
 		}
 		
-		//if(!songPosition.get_sensitive())
-		//	songPosition.set_sensitive(true);
+		//if(!mediaPosition.get_sensitive())
+		//	mediaPosition.set_sensitive(true);
 		
 		//reset some booleans
 		tested_for_video = false;
 		queriedlastfm = false;
-		song_considered_played = false;
+		media_considered_played = false;
 		added_to_play_count = false;
 		scrobbled_track = false;
 		
-		if(!lm.song_info.song.isPreview) {
-			updateCurrentSong();
+		if(!lm.media_info.media.isPreview) {
+			updateCurrentMedia();
 			
-			infoPanel.updateSong(lm.song_info.song.rowid);
+			infoPanel.updateMedia(lm.media_info.media.rowid);
 			if(settings.getMoreVisible())
 				infoPanel.set_visible(true);
 			
@@ -744,9 +745,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 		
 		// if radio, we can't depend on current_position_update. do that stuff now.
-		if(lm.song_info.song.mediatype == 3) {
+		if(lm.media_info.media.mediatype == 3) {
 			queriedlastfm = true;
-			similarSongs.queryForSimilar(lm.song_info.song);
+			similarMedias.queryForSimilar(lm.media_info.media);
 			
 			try {
 				Thread.create<void*>(lastfm_track_thread_function, false);
@@ -758,8 +759,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
 			}
 			
-			// always show notifications for the radio, since user likely does not know song
-			mkl.showNotification(lm.song_info.song.rowid);
+			// always show notifications for the radio, since user likely does not know media
+			mkl.showNotification(lm.media_info.media.rowid);
 		}
 	}
 	
@@ -767,19 +768,19 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//reset some booleans
 		tested_for_video = false;
 		queriedlastfm = false;
-		song_considered_played = false;
+		media_considered_played = false;
 		added_to_play_count = false;
 		
 		// this will hide album cover art
-		updateCurrentSong();
+		updateCurrentMedia();
 		
 		updateSensitivities();
 		
 		stdout.printf("stopped\n");
 	}
 	
-	public virtual void songs_updated(Collection<int> ids) {
-		if(lm.song_info.song != null && ids.contains(lm.song_info.song.rowid)) {
+	public virtual void medias_updated(Collection<int> ids) {
+		if(lm.media_info.media != null && ids.contains(lm.media_info.media.rowid)) {
 			updateInfoLabel();
 		}
 	}
@@ -787,8 +788,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public void* lastfm_track_thread_function () {
 		LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
 		
-		string artist_s = lm.song_info.song.artist;
-		string track_s = lm.song_info.song.title;
+		string artist_s = lm.media_info.media.artist;
+		string track_s = lm.media_info.media.title;
 		
 		/* first fetch track info since that is most likely to change */
 		if(!lm.track_info_exists(track_s + " by " + artist_s)) {
@@ -797,8 +798,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(track != null)
 				lm.save_track(track);
 			
-			if(track_s == lm.song_info.song.title && artist_s == lm.song_info.song.artist)
-				lm.song_info.track = track;
+			if(track_s == lm.media_info.media.title && artist_s == lm.media_info.media.artist)
+				lm.media_info.track = track;
 		}
 		
 		return null;
@@ -807,30 +808,30 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public void* lastfm_album_thread_function () {
 		LastFM.AlbumInfo album = new LastFM.AlbumInfo.basic();
 		
-		string artist_s = lm.song_info.song.artist;
-		string album_s = lm.song_info.song.album;
+		string artist_s = lm.media_info.media.artist;
+		string album_s = lm.media_info.media.album;
 		
-		/* fetch album info now. only save if still on current song */
-		if(!lm.album_info_exists(album_s + " by " + artist_s) || lm.get_album_art(lm.song_info.song.rowid) == null) {
+		/* fetch album info now. only save if still on current media */
+		if(!lm.album_info_exists(album_s + " by " + artist_s) || lm.get_album_art(lm.media_info.media.rowid) == null) {
 			album = new LastFM.AlbumInfo.with_info(artist_s, album_s);
 			
 			if(album != null)
 				lm.save_album(album);
 			
-			/* make sure we save image to right location (user hasn't changed songs) */
-			if(lm.song_info.song != null && album != null && album_s == lm.song_info.song.album &&
-			artist_s == lm.song_info.song.artist && lm.song_info.song.getAlbumArtPath().contains("media-audio.png")) {
-				lm.song_info.album = album;
+			/* make sure we save image to right location (user hasn't changed medias) */
+			if(lm.media_info.media != null && album != null && album_s == lm.media_info.media.album &&
+			artist_s == lm.media_info.media.artist && lm.media_info.media.getAlbumArtPath().contains("media-audio.png")) {
+				lm.media_info.album = album;
 			
 				if (album.url_image.url != null && lm.settings.getUpdateFolderHierarchy()) {
-					lm.save_album_locally(lm.song_info.song.rowid, album.url_image.url);
+					lm.save_album_locally(lm.media_info.media.rowid, album.url_image.url);
 					
-					// start thread to load all the songs pixbuf's
+					// start thread to load all the medias pixbuf's
 					try {
 						Thread.create<void*>(lm.fetch_thread_function, false);
 					}
 					catch(GLib.ThreadError err) {
-						stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+						stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
 					}
 				}
 			}
@@ -839,7 +840,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		
-		Idle.add(updateCurrentSong);
+		Idle.add(updateCurrentMedia);
 		
 		return null;
 	}
@@ -847,9 +848,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public void* lastfm_artist_thread_function () {
 		LastFM.ArtistInfo artist = new LastFM.ArtistInfo.basic();
 		
-		string artist_s = lm.song_info.song.artist;
+		string artist_s = lm.media_info.media.artist;
 		
-		/* fetch artist info now. save only if still on current song */
+		/* fetch artist info now. save only if still on current media */
 		if(!lm.artist_info_exists(artist_s)) {
 			artist = new LastFM.ArtistInfo.with_artist(artist_s);
 			
@@ -857,9 +858,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				lm.save_artist(artist);
 			
 			//try to save artist art locally
-			if(lm.song_info.song != null && artist != null && artist_s == lm.song_info.song.artist &&
-			!File.new_for_path(lm.song_info.song.getArtistImagePath()).query_exists()) {
-				lm.song_info.artist = artist;
+			if(lm.media_info.media != null && artist != null && artist_s == lm.media_info.media.artist &&
+			!File.new_for_path(lm.media_info.media.getArtistImagePath()).query_exists()) {
+				lm.media_info.artist = artist;
 				
 			}
 			else {
@@ -873,29 +874,29 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public void* lastfm_update_nowplaying_thread_function() {
-		if(lm.song_info.song != null) {
-			lm.lfm.updateNowPlaying(lm.song_info.song.title, lm.song_info.song.artist);
+		if(lm.media_info.media != null) {
+			lm.lfm.updateNowPlaying(lm.media_info.media.title, lm.media_info.media.artist);
 		}
 		
 		return null;
 	}
 	
 	public void* lastfm_scrobble_thread_function () {
-		if(lm.song_info.song != null) {
-			lm.lfm.scrobbleTrack(lm.song_info.song.title, lm.song_info.song.artist);
+		if(lm.media_info.media != null) {
+			lm.lfm.scrobbleTrack(lm.media_info.media.title, lm.media_info.media.artist);
 		}
 		
 		return null;
 	}
 	
-	public bool updateSongInfo() {
-		infoPanel.updateSong(lm.song_info.song.rowid);
+	public bool updateMediaInfo() {
+		infoPanel.updateMedia(lm.media_info.media.rowid);
 		
 		return false;
 	}
 	
 	public virtual void previousClicked () {
-		if(lm.player.getPosition() < 5000000000 || (lm.song_info.song != null && lm.song_info.song.mediatype == 3)) {
+		if(lm.player.getPosition() < 5000000000 || (lm.media_info.media != null && lm.media_info.media.mediatype == 3)) {
 			int prev_id = lm.getPrevious(true);
 			
 			/* test to stop playback/reached end */
@@ -911,9 +912,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void playClicked () {
-		if(lm.song_info.song == null) {
-			stdout.printf("No song is currently playing. Starting from the top\n");
-			//set current songs by current view
+		if(lm.media_info.media == null) {
+			stdout.printf("No media is currently playing. Starting from the top\n");
+			//set current medias by current view
 			Widget w = sideTree.getSelectedWidget();
 			if(w is ViewWrapper) {
 				((ViewWrapper)w).list.set_as_current_list(1, true);
@@ -926,14 +927,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			lm.getNext(true);
 			
 			lm.playing = true;
-			playButton.set_stock_id((lm.song_info.song.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
+			playButton.set_stock_id((lm.media_info.media.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
 			lm.player.play();
 		}
 		else {
 			if(lm.playing) {
 				lm.playing = false;
 				
-				if(lm.song_info.song.mediatype != 3)
+				if(lm.media_info.media.mediatype != 3)
 					lm.player.pause();
 				else
 					lm.stopPlayback();
@@ -943,7 +944,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			else {
 				lm.playing = true;
 				lm.player.play();
-				playButton.set_stock_id((lm.song_info.song.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
+				playButton.set_stock_id((lm.media_info.media.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
 			}
 		}
 		
@@ -953,14 +954,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void nextClicked() {
 		// if not 90% done, skip it
 		if(!added_to_play_count) {
-			lm.song_info.song.skip_count++;
-			lm.update_song(lm.song_info.song, false, false);
+			lm.media_info.media.skip_count++;
+			lm.update_media(lm.media_info.media, false, false);
 		}
 		
 		int next_id;
 		if(lm.next_gapless_id != 0) {
 			next_id = lm.next_gapless_id;
-			lm.playSong(lm.next_gapless_id);
+			lm.playMedia(lm.next_gapless_id);
 		}
 		else
 			next_id = lm.getNext(true);
@@ -975,11 +976,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void loveButtonClicked() {
-		lm.lfm.loveTrack(lm.song_info.song.title, lm.song_info.song.artist);
+		lm.lfm.loveTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
 	
 	public virtual void banButtonClicked() {
-		lm.lfm.banTrack(lm.song_info.song.title, lm.song_info.song.artist);
+		lm.lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
 	
 	public virtual void searchFieldIconPressed(EntryIconPosition p0, Gdk.Event p1) {
@@ -993,17 +994,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	public virtual void sourcesToSongsHandleSet(Allocation rectangle) {
+	public virtual void sourcesToMediasHandleSet(Allocation rectangle) {
 		int height, width;
 		get_size(out width, out height);
 		
 		if(rectangle.width > height/2) {
-			sourcesToSongs.set_position(height/2);
+			sourcesToMedias.set_position(height/2);
 			return;
 		}
 		
 		if(settings.getSidebarWidth() != rectangle.width) {
-			updateCurrentSong();
+			updateCurrentMedia();
 			settings.setSidebarWidth(rectangle.width);
 		}
 	}
@@ -1018,10 +1019,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	public virtual void on_quit() {
 		stdout.printf("Stopping playback\n");
-		lm.settings.setLastSongPosition((int)((double)lm.player.getPosition()/1000000000));
-		if(lm.song_info.song != null) {
-			lm.song_info.song.resume_pos = (int)((double)lm.player.getPosition()/1000000000);
-			lm.update_song(lm.song_info.song, false, false);
+		lm.settings.setLastMediaPosition((int)((double)lm.player.getPosition()/1000000000));
+		if(lm.media_info.media != null) {
+			lm.media_info.media.resume_pos = (int)((double)lm.player.getPosition()/1000000000);
+			lm.update_media(lm.media_info.media, false, false);
 		}
 		lm.player.pause();
 		
@@ -1097,8 +1098,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		else {
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
-			miller.populateColumns("", lm.song_ids());
+			vw.doUpdate(vw.currentView, lm.media_ids(), true, true);
+			miller.populateColumns("", lm.media_ids());
 			
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
 			vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true);
@@ -1107,13 +1108,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void musicCounted(int count) {
-		stdout.printf("found %d songs, importing.\n", count);
+		stdout.printf("found %d medias, importing.\n", count);
 	}
 	
 	/* this is after setting the music library */
 	public virtual void musicAdded(LinkedList<string> not_imported) {
 		
-		if(lm.song_info.song != null) {
+		if(lm.media_info.media != null) {
 			updateInfoLabel();
 		}
 		else
@@ -1149,8 +1150,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	/* this is when you import music from a foreign location into the library */
-	public virtual void musicImported(LinkedList<Song> new_songs, LinkedList<string> not_imported) {
-		if(lm.song_info.song != null) {
+	public virtual void musicImported(LinkedList<Media> new_medias, LinkedList<string> not_imported) {
+		if(lm.media_info.media != null) {
 			updateInfoLabel();	
 		}
 		else
@@ -1162,8 +1163,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 	}
 	
-	public virtual void musicRescanned(LinkedList<Song> new_songs, LinkedList<string> not_imported) {
-		if(lm.song_info.song != null) {
+	public virtual void musicRescanned(LinkedList<Media> new_medias, LinkedList<string> not_imported) {
+		if(lm.media_info.media != null) {
 			updateInfoLabel();
 		}
 		else
@@ -1175,7 +1176,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		updateSensitivities();
 	}
 	
-	public virtual void songs_removed(LinkedList<int> removed) {
+	public virtual void medias_removed(LinkedList<int> removed) {
 		updateSensitivities();
 	}
 	
@@ -1196,7 +1197,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(lm.doing_file_operations())
 			return;
 		
-		if(lm.song_count() > 0 || lm.playlist_count() > 0) {
+		if(lm.media_count() > 0 || lm.playlist_count() > 0) {
 			var smfc = new SetMusicFolderConfirmation(lm, this, folder);
 			smfc.finished.connect( (cont) => {
 				if(cont) {
@@ -1214,18 +1215,18 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void current_position_update(int64 position) {
-		if(lm.song_info.song != null && lm.song_info.song.rowid == -2) // is preview
+		if(lm.media_info.media != null && lm.media_info.media.rowid == -2) // is preview
 			return;
 		
 		double sec = 0.0;
-		if(lm.song_info.song != null) {
+		if(lm.media_info.media != null) {
 			sec = ((double)position/1000000000);
 			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {
 				queriedlastfm = true;
 				
-				similarSongs.queryForSimilar(lm.song_info.song);
+				similarMedias.queryForSimilar(lm.media_info.media);
 				
 				try {
 					Thread.create<void*>(lastfm_track_thread_function, false);
@@ -1238,30 +1239,30 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 			}
 			
-			//at 30 seconds in, we consider the song as played
-			if(position > 30000000000 && !song_considered_played) {
-				song_considered_played = true;
+			//at 30 seconds in, we consider the media as played
+			if(position > 30000000000 && !media_considered_played) {
+				media_considered_played = true;
 				
-				lm.song_info.song.last_played = (int)time_t();
-				lm.update_song(lm.song_info.song, false, false);
+				lm.media_info.media.last_played = (int)time_t();
+				lm.update_media(lm.media_info.media, false, false);
 				
 				// add to the already played list
-				lm.add_already_played(lm.song_info.song.rowid);
+				lm.add_already_played(lm.media_info.media.rowid);
 				sideTree.updateAlreadyPlayed();
 				
 #if HAVE_ZEITGEIST
 				var event = new Zeitgeist.Event.full(Zeitgeist.ZG_ACCESS_EVENT,
 					Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://beatbox.desktop",
 					new Zeitgeist.Subject.full(
-					GLib.File.new_for_path(lm.song_info.song.file).get_uri(),
+					GLib.File.new_for_path(lm.media_info.media.file).get_uri(),
 					Zeitgeist.NFO_AUDIO, Zeitgeist.NFO_FILE_DATA_OBJECT,
-					"text/plain", "", lm.song_info.song.title, ""));
+					"text/plain", "", lm.media_info.media.title, ""));
 				new Zeitgeist.Log ().insert_events_no_reply(event);
 #endif
 			}
 			
 			// at halfway, scrobble
-			if((double)(sec/(double)lm.song_info.song.length) > 0.50 && !scrobbled_track) {
+			if((double)(sec/(double)lm.media_info.media.length) > 0.50 && !scrobbled_track) {
 				scrobbled_track = true;
 				try {
 					Thread.create<void*>(lastfm_scrobble_thread_function, false);
@@ -1271,11 +1272,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 			}
 			
-			// at 90% done with song, add 1 to play count
-			if((double)(sec/(double)lm.song_info.song.length) > 0.90 && !added_to_play_count) {
+			// at 90% done with media, add 1 to play count
+			if((double)(sec/(double)lm.media_info.media.length) > 0.90 && !added_to_play_count) {
 				added_to_play_count = true;
-				lm.song_info.song.play_count++;
-				lm.update_song(lm.song_info.song, false, false);
+				lm.media_info.media.play_count++;
+				lm.update_media(lm.media_info.media, false, false);
 			}
 			
 		}
@@ -1284,21 +1285,21 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 	
-	public void song_not_found(int id) {
+	public void media_not_found(int id) {
 		var not_found = new FileNotFoundDialog(lm, this, id);
 		not_found.show();
 	}
 	
-	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Song> similarDont) {
+	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Media> similarDont) {
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 		
 		((ViewWrapper)w).similarsFetched = true;
 		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true, true);
 		
-		infoPanel.updateSongList(similarDont);
+		infoPanel.updateMediaList(similarDont);
 		
 		if(((ViewWrapper)w).isCurrentView && !((ViewWrapper)w).list.get_is_current()) {
-			miller.populateColumns("", ((ViewWrapper)w).list.get_songs());
+			miller.populateColumns("", ((ViewWrapper)w).list.get_medias());
 			updateMillerColumns();
 		}
 	}
@@ -1320,7 +1321,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 				file_chooser.destroy ();
 				
-				if(folder != "" && (folder != settings.getMusicFolder() || lm.song_count() == 0)) {
+				if(folder != "" && (folder != settings.getMusicFolder() || lm.media_count() == 0)) {
 					setMusicFolder(folder);
 				}
 			}
@@ -1331,18 +1332,18 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		int height, width;
 		get_size(out width, out height);
 		
-		if(sourcesToSongs.get_position() > height/2)
+		if(sourcesToMedias.get_position() > height/2)
 			return;
 		
-		//songsToInfo.max_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300;
-		//songsToInfo.min_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150;
+		//mediasToInfo.max_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300;
+		//mediasToInfo.min_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150;
 		
-		if(songsToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300) { // this is max size
-			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300);
+		if(mediasToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300) { // this is max size
+			mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300);
 			return;
 		}
-		else if(songsToInfo.get_position() > (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150) { // this is min size
-			songsToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150);
+		else if(mediasToInfo.get_position() > (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150) { // this is min size
+			mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150);
 			return;
 		}
 		
@@ -1357,7 +1358,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(val == 0)
 			lm.repeat = LibraryManager.Repeat.OFF;
 		else if(val == 1)
-			lm.repeat = LibraryManager.Repeat.SONG;
+			lm.repeat = LibraryManager.Repeat.MEDIA;
 		else if(val == 2)
 			lm.repeat = LibraryManager.Repeat.ALBUM;
 		else if(val == 3)
@@ -1388,16 +1389,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool isCdrom = sideTree.getSelectedWidget() is CDRomViewWrapper;
 		bool isDeviceView = sideTree.getSelectedWidget() is DeviceView/* && ((DeviceView)sideTree.getSelectedWidget()).currentViewIndex() == 0*/;
 		bool storecheck = (sideTree.getSelectedWidget() is Store.StoreView);
-		bool haveSongs = (lm.song_count() != 0);
+		bool haveMedias = (lm.media_count() != 0);
 		
-		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck && !isCdrom && !isDeviceView && haveSongs);
+		miller.set_visible(viewSelector.selected == 2 && !similarcheck && !storecheck && !isCdrom && !isDeviceView && haveMedias);
 		millerVisible = (viewSelector.selected == 0); // used for when an album is clicked from icon view
 		
 		// populate if selected == 2 (miller columns)
 		/*if(initializationFinished && viewSelector.selected == 2 && sideTree.getSelectedWidget() is ViewWrapper && miller.visible) {
 			ViewWrapper vw = (ViewWrapper)sideTree.getSelectedWidget();
 			
-			miller.populateColumns("", vw.songs);
+			miller.populateColumns("", vw.medias);
 		}*/
 	}
 	
@@ -1427,7 +1428,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		mainViews.get_children().foreach( (w) => {
 			if(w is ViewWrapper && !(w is CDRomViewWrapper) && !(w is DeviceViewWrapper)) {
 				ViewWrapper vw = (ViewWrapper)w;
-				vw.doUpdate(vw.currentView, vw.songs, false, false);
+				vw.doUpdate(vw.currentView, vw.medias, false, false);
 			}
 		});
 		
@@ -1442,7 +1443,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			vw.list.set_as_current_list(1, !vw.list.get_is_current());
 			lm.current_index = 0;
-			lm.playSong(lm.songFromCurrentIndex(0));
+			lm.playMedia(lm.mediaFromCurrentIndex(0));
 			
 			if(!lm.playing)
 				playClicked();

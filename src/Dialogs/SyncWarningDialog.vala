@@ -11,7 +11,7 @@ public class BeatBox.SyncWarningDialog : Window {
 	private VBox content;
 	private HBox padding;
 	
-	Button importSongs;
+	Button importMedias;
 	Button sync;
 	Button cancel;
 	
@@ -41,18 +41,18 @@ public class BeatBox.SyncWarningDialog : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		importSongs = new Button.with_label("Import songs to Library");
+		importMedias = new Button.with_label("Import medias to Library");
 		sync = new Button.with_label("Continue Syncing");
 		cancel = new Button.with_label("Stop Syncing");
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Sync will remove " + to_remove.size.to_string() + " songs from " + d.getDisplayName() + "</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">Sync will remove " + to_remove.size.to_string() + " medias from " + d.getDisplayName() + "</span>");
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
-		info.set_markup("If you continue to sync, songs will be removed from " + d.getDisplayName() + " since they are not on the sync list. Would you like to import them to your library first?");
+		info.set_markup("If you continue to sync, medias will be removed from " + d.getDisplayName() + " since they are not on the sync list. Would you like to import them to your library first?");
 		
-		importSongs.set_sensitive(!lm.doing_file_operations());
+		importMedias.set_sensitive(!lm.doing_file_operations());
 		sync.set_sensitive(!lm.doing_file_operations());
 		
 		/* set up controls layout */
@@ -65,7 +65,7 @@ public class BeatBox.SyncWarningDialog : Window {
 		
 		HButtonBox bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
-		bottomButtons.pack_end(importSongs, false, false, 0);
+		bottomButtons.pack_end(importMedias, false, false, 0);
 		bottomButtons.pack_end(sync, false, false, 0);
 		bottomButtons.pack_end(cancel, false, false, 10);
 		bottomButtons.set_spacing(10);
@@ -75,7 +75,7 @@ public class BeatBox.SyncWarningDialog : Window {
 		
 		padding.pack_start(content, true, true, 10);
 		
-		importSongs.clicked.connect(importSongsClicked);
+		importMedias.clicked.connect(importMediasClicked);
 		sync.clicked.connect(syncClicked);
 		cancel.clicked.connect( () => { 
 			this.destroy(); 
@@ -99,7 +99,7 @@ public class BeatBox.SyncWarningDialog : Window {
 		return alignment;
 	}
 	
-	public void importSongsClicked() {
+	public void importMediasClicked() {
 		d.transfer_to_library(to_remove);
 		// TODO: After transfer, do sync
 		
@@ -107,18 +107,18 @@ public class BeatBox.SyncWarningDialog : Window {
 	}
 	
 	public void syncClicked() {
-		d.sync_songs(to_sync);
+		d.sync_medias(to_sync);
 		
 		this.destroy();
 	}
 	
 	public void file_operations_done() {
-		importSongs.set_sensitive(true);
+		importMedias.set_sensitive(true);
 		sync.set_sensitive(true);
 	}
 	
 	public void file_operations_started() {
-		importSongs.set_sensitive(false);
+		importMedias.set_sensitive(false);
 		sync.set_sensitive(false);
 	}
 	

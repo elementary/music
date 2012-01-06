@@ -29,7 +29,7 @@ public class BeatBox.ExternalViewWrapper : VBox {
 	public ExternalExternalMusicTreeView list;
 	public ExternalAlbumView albumView;
 	private WarningLabel errorBox;
-	public Collection<Song> songs;
+	public Collection<Media> medias;
 	
 	public ViewType currentView;
 	public bool isCurrentView;
@@ -42,10 +42,10 @@ public class BeatBox.ExternalViewWrapper : VBox {
 		FILTER_VIEW
 	}
 	
-	public ViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<Song> songs, string sort, Gtk.SortType dir, ExternalMusicTreeView.Hint the_hint, int id) {
+	public ViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<Media> medias, string sort, Gtk.SortType dir, ExternalMusicTreeView.Hint the_hint, int id) {
 		lm = lmm;
 		lw = lww;
-		this.songs = songs;
+		this.medias = medias;
 		
 		if(the_hint != ExternalMusicTreeView.Hint.SIMILAR)
 			list = new ExternalMusicTreeView(lm, lw, sort, dir, the_hint, id);
@@ -54,8 +54,8 @@ public class BeatBox.ExternalViewWrapper : VBox {
 			errorBox = new WarningLabel();
 		}
 		
-		//list.populateView(songs, false);
-		albumView = new ExternalAlbumView(lm, lw, songs);
+		//list.populateView(medias, false);
+		albumView = new ExternalAlbumView(lm, lw, medias);
 		
 		pack_start(list, true, true, 0);
 		pack_start(albumView, true, true, 0);
@@ -67,21 +67,21 @@ public class BeatBox.ExternalViewWrapper : VBox {
 		list.needsUpdate = true;
 		
 		if(the_hint == ExternalMusicTreeView.Hint.MUSIC)
-			doUpdate(ViewType.LIST, songs, true);
+			doUpdate(ViewType.LIST, medias, true);
 		
 		albumView.itemClicked.connect(filterViewItemClicked);
 		lw.viewSelector.notify["selected"].connect(selectorViewChanged);
-		lm.song_played.connect(songPlayed);
+		lm.media_played.connect(mediaPlayed);
 	}
 	
 	public virtual void selectorViewChanged() {
 		switch(lw.viewSelector.selected) {
 			case 0:
-				doUpdate(ViewWrapper.ViewType.FILTER_VIEW, songs, false);
+				doUpdate(ViewWrapper.ViewType.FILTER_VIEW, medias, false);
 				break;
 			case 1:
 			case 2:
-				doUpdate(ViewWrapper.ViewType.LIST, songs, false);
+				doUpdate(ViewWrapper.ViewType.LIST, medias, false);
 				break;
 		}
 	}
@@ -94,7 +94,7 @@ public class BeatBox.ExternalViewWrapper : VBox {
 			albumView.isCurrentView = false;
 		}
 		else {
-			doUpdate(currentView, songs, false);
+			doUpdate(currentView, medias, false);
 		}
 	}
 	
@@ -102,14 +102,14 @@ public class BeatBox.ExternalViewWrapper : VBox {
 		return currentView;
 	}
 	
-	public void songPlayed(int id, int old) {
+	public void mediaPlayed(int id, int old) {
 		if(list.hint != ExternalMusicTreeView.Hint.SIMILAR)
 			return;
 			
-		if(!(lm.current_songs().size == list.get_songs().size && lm.current_songs().contains_all(list.get_songs()))) {
-			/* a new song is played. don't show list until songs have loaded */
+		if(!(lm.current_medias().size == list.get_medias().size && lm.current_medias().contains_all(list.get_medias()))) {
+			/* a new media is played. don't show list until medias have loaded */
 			
-			errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\nBeatBox is loading songs similar to " + lm.song_from_id(id).title.replace("&", "&amp;") + " by " + lm.song_from_id(id).artist.replace("&", "&amp;") + "...");
+			errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar medias</span>\nBeatBox is loading medias similar to " + lm.media_from_id(id).title.replace("&", "&amp;") + " by " + lm.media_from_id(id).artist.replace("&", "&amp;") + "...");
 			errorBox.show();
 			list.hide();
 			albumView.hide();
@@ -118,19 +118,19 @@ public class BeatBox.ExternalViewWrapper : VBox {
 	}
 	
 	public void clear() {
-		var empty = new LinkedList<Song>();
+		var empty = new LinkedList<Media>();
 		
-		this.songs = empty;
+		this.medias = empty;
 		
-		list.set_songs(empty);
+		list.set_medias(empty);
 		list.populateView(empty, false, false);
 		
-		albumView.set_songs(empty);
+		albumView.set_medias(empty);
 		albumView.generateHTML(empty, false);
 	}
 	
-	public void doUpdate(ViewType type, Collection<Song> songs, bool force) {
-		this.songs = songs;
+	public void doUpdate(ViewType type, Collection<Media> medias, bool force) {
+		this.medias = medias;
 		currentView = type;
 		
 		if(type == ViewType.LIST) {
@@ -139,7 +139,7 @@ public class BeatBox.ExternalViewWrapper : VBox {
 			
 			if(isCurrentView) {
 				list.is_current_view = true;
-				list.populateView(songs, false, force);
+				list.populateView(medias, false, force);
 			}
 			else
 				list.is_current_view = false;
@@ -150,7 +150,7 @@ public class BeatBox.ExternalViewWrapper : VBox {
 			
 			if(isCurrentView) {
 				albumView.isCurrentView = true;
-				albumView.generateHTML(songs, force);
+				albumView.generateHTML(medias, force);
 			}
 			else
 				albumView.isCurrentView = false;

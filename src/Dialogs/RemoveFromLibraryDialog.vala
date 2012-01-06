@@ -35,7 +35,7 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
     private CheckButton check_button;
 
 
-    public RemoveFromLibraryDialog (LibraryWindow library_window, int number_of_songs) {
+    public RemoveFromLibraryDialog (LibraryWindow library_window, int number_of_medias) {
 
         this.lw = library_window;
 
@@ -55,17 +55,17 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 
         string question_text;
 
-	if (number_of_songs > 1)
-        	question_text = "Remove " + number_of_songs.to_string () + " Songs From Library?";
+	if (number_of_medias > 1)
+        	question_text = "Remove " + number_of_medias.to_string () + " Medias From Library?";
         else
-        	question_text = "Remove Song From Library?";
+        	question_text = "Remove Media From Library?";
 
         Label title = new Label (question_text);
 
         ok_button = new Button.with_label ("OK");
         cancel_button = new Button.with_label ("Cancel");
 
-        string checkbox_text = "Move file" + ((number_of_songs > 1)? "s": "") + " to the trash";
+        string checkbox_text = "Move file" + ((number_of_medias > 1)? "s": "") + " to the trash";
 
         check_button = new CheckButton.with_label (checkbox_text);
         check_button.set_active (false);

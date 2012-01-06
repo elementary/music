@@ -35,7 +35,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
     /* threaded pixbuf fetching */
     public TreeIter start_visible;
     public TreeIter end_visible;
-    bool removing_songs;
+    bool removing_medias;
     
     /* custom signals for custom treeview. for speed */
     public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
@@ -46,7 +46,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	public AlbumViewModel(LibraryManager lm, Gdk.Pixbuf defaultImage) {
 		this.lm = lm;
 		this.defaultImage = defaultImage;
-		removing_songs = false;
+		removing_medias = false;
 
 		rows = new Sequence<int>();
        
@@ -60,7 +60,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		else if(col == 1)
 			return typeof(string);
 		else
-			return typeof(Song);
+			return typeof(Media);
 		
 	}
 
@@ -101,13 +101,13 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		if(iter.stamp != this.stamp || column < 0 || column >= 2)
 			return;
 			
-		if(removing_songs) {
+		if(removing_medias) {
 			val = Value(get_column_type(column));
 			return;
 		}
 		
-		if(!((SequenceIter<Song>)iter.user_data).is_end()) {
-			Song s = lm.song_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
+		if(!((SequenceIter<Media>)iter.user_data).is_end()) {
+			Media s = lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
 			
 			if(column == 0) {
 				
@@ -190,8 +190,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		iter.user_data = added;
 	}
 	
-	/** convenience method to insert songs into the model. No iters returned. **/
-    public void appendSongs(Collection<int> albums, bool emit) {
+	/** convenience method to insert medias into the model. No iters returned. **/
+    public void appendMedias(Collection<int> albums, bool emit) {
 		foreach(var album in albums) {
 			SequenceIter<int> added = rows.append(album);
 			
@@ -211,13 +211,13 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	 * @albumOld the old album name
 	 * @album the new album object to use
 	*/
-	public void updateAlbum(string artistOld, string albumOld, Song album) {
+	public void updateAlbum(string artistOld, string albumOld, Media album) {
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
-			if(lm.song_from_id(rows.get(s_iter)).artist == artistOld && lm.song_from_id(rows.get(s_iter)).album == albumOld) {
+			if(lm.media_from_id(rows.get(s_iter)).artist == artistOld && lm.media_from_id(rows.get(s_iter)).album == albumOld) {
 				rows.set(s_iter, album.rowid);
 				
 				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
@@ -257,8 +257,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		row_deleted(path);
 	}
 	
-	public void removeSongs(Collection<int> rowids) {
-		removing_songs = true;
+	public void removeMedias(Collection<int> rowids) {
+		removing_medias = true;
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -276,11 +276,11 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			}
 			
 			if(rowids.size <= 0) {
-				removing_songs = false;
+				removing_medias = false;
 				return;
 			}
 		}
 		
-		removing_songs = false;
+		removing_medias = false;
 	}
 }

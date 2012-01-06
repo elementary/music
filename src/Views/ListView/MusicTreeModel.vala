@@ -47,7 +47,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
     private SortType sort_direction;
     private unowned TreeIterCompareFunc default_sort_func;
     private HashMap<int, CompareFuncHolder> column_sorts;
-    bool removing_songs;
+    bool removing_medias;
     
     /* custom signals for custom treeview. for speed */
     public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
@@ -59,7 +59,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		this.lm = lm;
 		_columns = column_types;
 		_playing = playing;
-		removing_songs = false;
+		removing_medias = false;
 
 		rows = new Sequence<int>();
        
@@ -120,13 +120,13 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size)
 			return;
 			
-		if(removing_songs) {
+		if(removing_medias) {
 			val = Value(get_column_type(column));
 			return;
 		}
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
-			Song s = lm.song_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
+			Media s = lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
 			if(s == null) {
 				val = Value(get_column_type(column));
 				return;
@@ -137,7 +137,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			else if(column == 1) {
 				if(s.unique_status_image != null)
 					val = s.unique_status_image;
-				else if(lm.song_info.song != null && lm.song_info.song.rowid == s.rowid && is_current && _playing != null)
+				else if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current && _playing != null)
 					val = _playing;
 				else
 					val = Value(typeof(Gdk.Pixbuf));
@@ -278,10 +278,10 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		iter.user_data = added;
 	}
 	
-	/** convenience method to insert songs into the model. No iters returned. **/
-    public void append_songs(Collection<int> songs, bool emit) {
-		foreach(int id in songs) {
-			if(lm.song_ids().contains(id)) {
+	/** convenience method to insert medias into the model. No iters returned. **/
+    public void append_medias(Collection<int> medias, bool emit) {
+		foreach(int id in medias) {
+			if(lm.media_ids().contains(id)) {
 				SequenceIter<int> added = rows.append(id);
 			
 				if(emit) {
@@ -317,13 +317,13 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	// just a convenience function
-	public void updateSong(int id, bool is_current) {
+	public void updateMedia(int id, bool is_current) {
 		ArrayList<int> temp = new ArrayList<int>();
 		temp.add(id);
-		updateSongs(temp, is_current);
+		updateMedias(temp, is_current);
 	}
 	
-	public void updateSongs(owned Collection<int> rowids, bool is_current) {
+	public void updateMedias(owned Collection<int> rowids, bool is_current) {
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -370,7 +370,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			else {
 				stdout.printf("set oh hi\n");
 				int val = args.arg();
-				((SequenceIter<Song>)iter.user_data).get().get_nth(col).set_int(val);
+				((SequenceIter<Media>)iter.user_data).get().get_nth(col).set_int(val);
 			}*/
 		}
 	}
@@ -384,8 +384,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		row_deleted(path);
 	}
 	
-	public void removeSongs(Collection<int> rowids) {
-		removing_songs = true;
+	public void removeMedias(Collection<int> rowids) {
+		removing_medias = true;
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -403,15 +403,15 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			}
 			
 			if(rowids.size <= 0) {
-				removing_songs = false;
+				removing_medias = false;
 				return;
 			}
 		}
 		
-		removing_songs = false;
+		removing_medias = false;
 	}
 	
-	public LinkedList<int> getOrderedSongs() {
+	public LinkedList<int> getOrderedMedias() {
 		var rv = new LinkedList<int>();
 		SequenceIter s_iter = rows.get_begin_iter();
 		
@@ -471,76 +471,76 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(sort_column_id < 0)
 			return 0;
 		
-		Song a_song = lm.song_from_id(rows.get(a));
-		Song b_song = lm.song_from_id(rows.get(b));
+		Media a_media = lm.media_from_id(rows.get(a));
+		Media b_media = lm.media_from_id(rows.get(b));
 		
 		if(_columns.get(sort_column_id) == "Artist") {
-			if(a_song.album_artist.down() == b_song.album_artist.down()) {
-				if(a_song.album.down() == b_song.album.down()) {
-					if(a_song.album_number == b_song.album_number)
-						rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_song.track - b_song.track) : (int)(b_song.track - a_song.track));
+			if(a_media.album_artist.down() == b_media.album_artist.down()) {
+				if(a_media.album.down() == b_media.album.down()) {
+					if(a_media.album_number == b_media.album_number)
+						rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_media.track - b_media.track) : (int)(b_media.track - a_media.track));
 					else
-						rv = (int)((int)a_song.album_number - (int)b_song.album_number);
+						rv = (int)((int)a_media.album_number - (int)b_media.album_number);
 				}
 				else
-					rv = advancedStringCompare(a_song.album.down(), b_song.album.down());
+					rv = advancedStringCompare(a_media.album.down(), b_media.album.down());
 			}
 			else
-				rv = advancedStringCompare(a_song.album_artist.down(), b_song.album_artist.down());
+				rv = advancedStringCompare(a_media.album_artist.down(), b_media.album_artist.down());
 		}
 		else if(_columns.get(sort_column_id) == "Album") {
-			if(a_song.album.down() == b_song.album.down()) {
-				if(a_song.album_number == b_song.album_number)
-					rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_song.track - b_song.track) : (int)(b_song.track - a_song.track));
+			if(a_media.album.down() == b_media.album.down()) {
+				if(a_media.album_number == b_media.album_number)
+					rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_media.track - b_media.track) : (int)(b_media.track - a_media.track));
 				else
-					rv = (int)((int)a_song.album_number - (int)b_song.album_number);
+					rv = (int)((int)a_media.album_number - (int)b_media.album_number);
 				
 			}
 			else {
-				if(a_song.album == "")
+				if(a_media.album == "")
 					rv = 1;
 				else
-					rv = advancedStringCompare(a_song.album.down(), b_song.album.down());
+					rv = advancedStringCompare(a_media.album.down(), b_media.album.down());
 			}
 		}
 		else if(_columns.get(sort_column_id) == "#") {
 			rv = a.get_position() - b.get_position();
 		}
 		else if(_columns.get(sort_column_id) == "Track") {
-			rv = (int)(a_song.track - b_song.track);
+			rv = (int)(a_media.track - b_media.track);
 		}
 		else if(_columns.get(sort_column_id) == "Title") {
-			rv = advancedStringCompare(a_song.title.down(), b_song.title.down());
+			rv = advancedStringCompare(a_media.title.down(), b_media.title.down());
 		}
 		else if(_columns.get(sort_column_id) == "Length") {
-			rv = (int)(a_song.length - b_song.length);
+			rv = (int)(a_media.length - b_media.length);
 		}
 		else if(_columns.get(sort_column_id) == "Genre") {
-			rv = advancedStringCompare(a_song.genre.down(), b_song.genre.down());
+			rv = advancedStringCompare(a_media.genre.down(), b_media.genre.down());
 		}
 		else if(_columns.get(sort_column_id) == "Year") {
-			rv = (int)(a_song.year - b_song.year);
+			rv = (int)(a_media.year - b_media.year);
 		}
 		else if(_columns.get(sort_column_id) == "Bitrate") {
-			rv = (int)(a_song.bitrate - b_song.bitrate);
+			rv = (int)(a_media.bitrate - b_media.bitrate);
 		}
 		else if(_columns.get(sort_column_id) == "Rating") {
-			rv = (int)(a_song.rating - b_song.rating);
+			rv = (int)(a_media.rating - b_media.rating);
 		}
 		else if(_columns.get(sort_column_id) == "Last Played") {
-			rv = (int)(a_song.last_played - b_song.last_played);
+			rv = (int)(a_media.last_played - b_media.last_played);
 		}
 		else if(_columns.get(sort_column_id) == "Date Added") {
-			rv = (int)(a_song.date_added - b_song.date_added);
+			rv = (int)(a_media.date_added - b_media.date_added);
 		}
 		else if(_columns.get(sort_column_id) == "Plays") {
-			rv = (int)(a_song.play_count - b_song.play_count);
+			rv = (int)(a_media.play_count - b_media.play_count);
 		}
 		else if(_columns.get(sort_column_id) == "Skips") {
-			rv = (int)(a_song.skip_count - b_song.skip_count);
+			rv = (int)(a_media.skip_count - b_media.skip_count);
 		}
 		else if(_columns.get(sort_column_id) == "BPM") {
-			rv = (int)(a_song.bpm - b_song.bpm);
+			rv = (int)(a_media.bpm - b_media.bpm);
 		}
 		else {
 			rv = 1;

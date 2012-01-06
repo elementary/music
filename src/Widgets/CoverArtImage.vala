@@ -51,7 +51,7 @@ public class BeatBox.CoverArtImage : Image {
 			
 			if(is_valid_image_type(singleUri)) {
 				var original = File.new_for_uri(singleUri);
-				var playingPath = File.new_for_path(lm.song_info.song.file); // used to get dest
+				var playingPath = File.new_for_path(lm.media_info.media.file); // used to get dest
 				var dest = File.new_for_path(Path.build_path("/", playingPath.get_parent().get_path(), "Album.jpg"));
 				var destTemp = File.new_for_path(Path.build_path("/", playingPath.get_parent().get_path(), "AlbumTemporaryPathToEnsureNoProtection.jpg"));
 				
@@ -83,28 +83,28 @@ public class BeatBox.CoverArtImage : Image {
 						stdout.printf("Could not move to destination\n");
 					}
 					
-					Gee.LinkedList<Song> updated_songs = new Gee.LinkedList<Song>();
-					foreach(int id in lm.song_ids()) {
-						if(lm.song_from_id(id).artist == lm.song_info.song.artist && lm.song_from_id(id).album == lm.song_info.song.album)
-							lm.song_from_id(id).setAlbumArtPath(dest.get_path());
-							updated_songs.add(lm.song_from_id(id));
+					Gee.LinkedList<Media> updated_medias = new Gee.LinkedList<Media>();
+					foreach(int id in lm.media_ids()) {
+						if(lm.media_from_id(id).artist == lm.media_info.media.artist && lm.media_from_id(id).album == lm.media_info.media.album)
+							lm.media_from_id(id).setAlbumArtPath(dest.get_path());
+							updated_medias.add(lm.media_from_id(id));
 					}
 					
-					// wait for everything to finish up and then update the songs
+					// wait for everything to finish up and then update the medias
 					Timeout.add(2000, () => {
 						
 						try {
 							Thread.create<void*>(lm.fetch_thread_function, false);
 						}
 						catch(GLib.ThreadError err) {
-							stdout.printf("Could not create thread to load song pixbuf's: %s \n", err.message);
+							stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
 						}
 						
-						lm.update_songs(updated_songs, false, false);
+						lm.update_medias(updated_medias, false, false);
 						
 						// for sound menu (dbus doesn't like linked lists)
-						if(updated_songs.contains(lm.song_info.song))
-							lm.update_song(lm.song_info.song, false, false);
+						if(updated_medias.contains(lm.media_info.media))
+							lm.update_media(lm.media_info.media, false, false);
 						
 						return false;
 					});
@@ -112,7 +112,7 @@ public class BeatBox.CoverArtImage : Image {
 				}
 			}
 			
-			lw.updateCurrentSong();
+			lw.updateCurrentMedia();
 			Gtk.drag_finish (context, success, false, timestamp);
 			return;
 		}

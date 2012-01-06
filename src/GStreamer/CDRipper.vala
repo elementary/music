@@ -7,12 +7,12 @@ public class BeatBox.CDRipper : GLib.Object {
 	public dynamic Gst.Element filter;
 	public dynamic Gst.Element sink;
 	
-	Song current_song; // song currently being processed/ripped
+	Media current_media; // media currently being processed/ripped
 	private string _device;
 	public int track_count;
 	private Format _format;
 	
-	public signal void song_ripped(Song s);
+	public signal void media_ripped(Media s);
 	public signal void progress_notification(double progress);
 	public signal void error(string err, Message message);
 	
@@ -110,7 +110,7 @@ public class BeatBox.CDRipper : GLib.Object {
 				break;
 			case Gst.MessageType.EOS:
 				pipeline.set_state(Gst.State.NULL);
-				song_ripped(current_song);
+				media_ripped(current_media);
 				
 				break;
 			default:
@@ -120,13 +120,13 @@ public class BeatBox.CDRipper : GLib.Object {
         return true;
     }
     
-    public void ripSong(uint track, string path, Song s) {
+    public void ripMedia(uint track, string path, Media s) {
 		sink.set_state(Gst.State.NULL);
 		stdout.printf("1\n");
 		sink.set("location", path);
 		stdout.printf("2\n");
 		src.set("track", track);
-		current_song = s;
+		current_media = s;
 		stdout.printf("3\n");
 		/*Iterator<Gst.Element> tagger = ((Gst.Bin)converter).iterate_all_by_interface(typeof(TagSetter));
 		tagger.foreach( (el) => {

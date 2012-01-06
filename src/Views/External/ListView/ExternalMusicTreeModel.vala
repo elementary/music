@@ -39,7 +39,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public bool is_current;
 	
     /* data storage variables */
-    Sequence<Song> rows;
+    Sequence<Media> rows;
     private LinkedList<string> _columns;
     
     /* treesortable stuff */
@@ -60,9 +60,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		_playing = playing;
 
 #if VALA_0_14
-		rows = new Sequence<Song>();
+		rows = new Sequence<Media>();
 #else
-		rows = new Sequence<Song>(null);
+		rows = new Sequence<Media>(null);
 #endif
        
        sort_column_id = -2;
@@ -127,12 +127,12 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			return;
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
-			Song s = rows.get(((SequenceIter<Song>)iter.user_data));
+			Media s = rows.get(((SequenceIter<Media>)iter.user_data));
 			
 			if(column == 0)
 				val = s.rowid;
 			else if(column == 1) {
-				if(lm.song_info.song != null && lm.song_info.song.rowid == s.rowid && is_current)
+				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current)
 					val = _playing;
 				else
 					val = Value(typeof(Gdk.Pixbuf));
@@ -249,7 +249,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(iter.stamp != this.stamp || ((SequenceIter)iter.user_data).is_end())
 			return 0;
 		
-		return rows.get(((SequenceIter<Song>)iter.user_data)).rowid;
+		return rows.get(((SequenceIter<Media>)iter.user_data)).rowid;
 	}
     
     public int getRowidFromPath(string path) {
@@ -266,17 +266,17 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
-		SequenceIter<Song> added = rows.append(new Song(""));
+		SequenceIter<Media> added = rows.append(new Media(""));
 		iter.stamp = this.stamp;
 		iter.user_data = added;
 	}
 	
-	/** convenience method to insert songs into the model. No iters returned. **/
-    public void append_songs(Collection<int> songs, bool emit) {
-		foreach(int id in songs) {
-			Song s = lm.song_from_id(id);
+	/** convenience method to insert medias into the model. No iters returned. **/
+    public void append_medias(Collection<int> medias, bool emit) {
+		foreach(int id in medias) {
+			Media s = lm.media_from_id(id);
 			
-			SequenceIter<Song> added = rows.append(s);
+			SequenceIter<Media> added = rows.append(s);
 			
 			if(emit) {
 				TreePath path = new TreePath.from_string(added.get_position().to_string());
@@ -312,22 +312,22 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	// just a convenience function
-	public void updateSong(int id, bool is_current) {
+	public void updateMedia(int id, bool is_current) {
 		ArrayList<int> temp = new ArrayList<int>();
 		temp.add(id);
-		updateSongs(temp, is_current);
+		updateMedias(temp, is_current);
 	}
 	
-	public void updateSongs(owned Collection<int> rowids, bool is_current) {
+	public void updateMedias(owned Collection<int> rowids, bool is_current) {
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
 			if(rowids.contains(rows.get(s_iter).rowid)) {
-				rows.set(s_iter, lm.song_from_id(rows.get(s_iter).rowid));
+				rows.set(s_iter, lm.media_from_id(rows.get(s_iter).rowid));
 				
-				//if(rowid == lm.song_info.song.rowid) {
+				//if(rowid == lm.media_info.media.rowid) {
 					TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
 				
 					TreeIter iter = TreeIter();
@@ -369,7 +369,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			else {
 				stdout.printf("set oh hi\n");
 				int val = args.arg();
-				((SequenceIter<Song>)iter.user_data).get().get_nth(col).set_int(val);
+				((SequenceIter<Media>)iter.user_data).get().get_nth(col).set_int(val);
 			}*/
 		}
 	}
@@ -379,11 +379,11 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			return;
 			
 		var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
-		rows.remove((SequenceIter<Song>)iter.user_data);
+		rows.remove((SequenceIter<Media>)iter.user_data);
 		row_deleted(path);
 	}
 	
-	public void removeSongs(Collection<int> rowids) {
+	public void removeMedias(Collection<int> rowids) {
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -405,8 +405,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		}
 	}
 	
-	/*public LinkedList<Song> getOrderedSongs() {
-		var rv = new LinkedList<Song>();
+	/*public LinkedList<Media> getOrderedMedias() {
+		var rv = new LinkedList<Media>();
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -466,36 +466,36 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	/** Custom function to use built in sort in GLib.Sequence to our advantage **/
-	public int sequenceIterCompareFunc(SequenceIter<Song> a, SequenceIter<Song> b) {
+	public int sequenceIterCompareFunc(SequenceIter<Media> a, SequenceIter<Media> b) {
 		int rv;
 		
 		if(sort_column_id < 0)
 			return 0;
 		
 		if(_columns.get(sort_column_id) == "Artist") {
-			Song a_song = rows.get(a);
-			Song b_song = rows.get(b);
+			Media a_media = rows.get(a);
+			Media b_media = rows.get(b);
 			
-			if(a_song.artist.down() == b_song.artist.down()) {
-				if(a_song.album.down() == b_song.album.down())
-					rv = (sort_direction == SortType.ASCENDING) ? a_song.track - b_song.track : b_song.track - a_song.track;
+			if(a_media.artist.down() == b_media.artist.down()) {
+				if(a_media.album.down() == b_media.album.down())
+					rv = (sort_direction == SortType.ASCENDING) ? a_media.track - b_media.track : b_media.track - a_media.track;
 				else
-					rv = advancedStringCompare(a_song.album.down(), b_song.album.down());
+					rv = advancedStringCompare(a_media.album.down(), b_media.album.down());
 			}
 			else
-				rv = advancedStringCompare(a_song.artist.down(), b_song.artist.down());
+				rv = advancedStringCompare(a_media.artist.down(), b_media.artist.down());
 		}
 		else if(_columns.get(sort_column_id) == "Album") {
-			Song a_song = rows.get(a);
-			Song b_song = rows.get(b);
+			Media a_media = rows.get(a);
+			Media b_media = rows.get(b);
 			
-			if(a_song.album.down() == b_song.album.down())
-				rv = (sort_direction == SortType.ASCENDING) ? a_song.track - b_song.track : b_song.track - a_song.track;
+			if(a_media.album.down() == b_media.album.down())
+				rv = (sort_direction == SortType.ASCENDING) ? a_media.track - b_media.track : b_media.track - a_media.track;
 			else {
-				if(a_song.album == "")
+				if(a_media.album == "")
 					rv = 1;
 				else
-					rv = advancedStringCompare(a_song.album.down(), b_song.album.down());
+					rv = advancedStringCompare(a_media.album.down(), b_media.album.down());
 			}
 		}
 		else if(_columns.get(sort_column_id) == "#") {

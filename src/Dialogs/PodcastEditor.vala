@@ -100,11 +100,11 @@ public class BeatBox.PodcastEditor : Window {
 	public Viewport createBasicViewport() {
 		Viewport rv = new Viewport(null, null);
 		fields = new HashMap<string, FieldEditor>();
-		Song sum = _lm.song_from_id(_podcasts.get(0)).copy();
+		Media sum = _lm.media_from_id(_podcasts.get(0)).copy();
 		stdout.printf("podcasteditor cbv\n");
 		/** find what these podcasts have what common, and keep those values **/
 		foreach(int i in _podcasts) {
-			Song s = _lm.song_from_id(i);
+			Media s = _lm.media_from_id(i);
 			
 			if(s.track != sum.track) // episode
 				sum.track = 0;
@@ -179,8 +179,8 @@ public class BeatBox.PodcastEditor : Window {
 	public void previousClicked() {
 		save_podcasts();
 		
-		// now fetch the next song on current_view
-		int i = 0; // will hold next song to edit
+		// now fetch the next media on current_view
+		int i = 0; // will hold next media to edit
 		int indexOfCurrentFirst = _allPodcasts.index_of(_podcasts.get(0));
 		
 		if(indexOfCurrentFirst == 0)
@@ -188,18 +188,18 @@ public class BeatBox.PodcastEditor : Window {
 		else
 			i = _allPodcasts.get(indexOfCurrentFirst - 1);
 		
-		// now fetch the previous song on current_view
+		// now fetch the previous media on current_view
 		var newpodcasts = new LinkedList<int>();
 		newpodcasts.add(i);
 		
-		change_song(newpodcasts);
+		change_media(newpodcasts);
 	}
 	
 	public void nextClicked() {
 		save_podcasts();
 		
-		// now fetch the next song on current_view
-		int i = 0; // will hold next song to edit
+		// now fetch the next media on current_view
+		int i = 0; // will hold next media to edit
 		int indexOfCurrentLast = _allPodcasts.index_of(_podcasts.get(_podcasts.size - 1));
 		
 		if(indexOfCurrentLast == _allPodcasts.size - 1)
@@ -210,17 +210,17 @@ public class BeatBox.PodcastEditor : Window {
 		var newpodcasts = new LinkedList<int>();
 		newpodcasts.add(i);
 		
-		change_song(newpodcasts);
+		change_media(newpodcasts);
 	}
 	
-	public void change_song(LinkedList<int> newpodcasts) {
+	public void change_media(LinkedList<int> newpodcasts) {
 		_podcasts = newpodcasts;
 		
-		Song sum = _lm.song_from_id(newpodcasts.get(0));
+		Media sum = _lm.media_from_id(newpodcasts.get(0));
 		
 		title = "Editing " + sum.title;
 		
-		/* do not show check boxes for 1 song */
+		/* do not show check boxes for 1 media */
 		foreach(FieldEditor fe in fields.values)
 			fe.set_check_visible(false);
 		
@@ -235,7 +235,7 @@ public class BeatBox.PodcastEditor : Window {
 	
 	public void save_podcasts() {
 		foreach(int i in _podcasts) {
-			Song s = _lm.song_from_id(i);
+			Media s = _lm.media_from_id(i);
 			
 			if(fields.get("Title").checked())
 				s.title = fields.get("Title").get_value();

@@ -21,7 +21,7 @@
  */
 
 /* Merely a place holder for multiple pieces of information regarding
- * the current song playing. Mostly here because of dependence. */
+ * the current media playing. Mostly here because of dependence. */
 
 using SQLHeavy;
 using TagLib;
@@ -76,10 +76,10 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	
 		if(need_create) {
 			try {
-				_db.execute("CREATE TABLE playlists (`name` TEXT, `songs` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
+				_db.execute("CREATE TABLE playlists (`name` TEXT, `medias` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
 				_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
 				
-				_db.execute("""CREATE TABLE songs (`file` TEXT, 'file_size' INT, `title` TEXT,`artist` TEXT, 'composer' TEXT, 'album_artist' TEXT,
+				_db.execute("""CREATE TABLE medias (`file` TEXT, 'file_size' INT, `title` TEXT,`artist` TEXT, 'composer' TEXT, 'album_artist' TEXT,
 				`album` TEXT, 'grouping' TEXT, `genre` TEXT,`comment` TEXT, 'lyrics' TEXT, 'album_path' TEXT, 'has_embedded' INT, 
 				`year` INT, `track` INT, 'track_count' INT, 'album_number' INT, 'album_count' INT, `bitrate` INT, `length` INT, `samplerate` INT, 
 				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'lastmodified' INT, 'mediatype' INT, 
@@ -101,15 +101,15 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		 * Whenever field is added, do check here and add above as well 
 		*/
 		/*stdout.printf("Doing database checks\n");
-		var fieldCount = _db.get_table("songs").field_count;
+		var fieldCount = _db.get_table("medias").field_count;
 		if(fieldCount == 18) {
 			stdout.printf("Could not find album_path field, adding it\n");
-			_db.execute("ALTER TABLE songs ADD album_path TEXT");
+			_db.execute("ALTER TABLE medias ADD album_path TEXT");
 		}
 		else if(fieldCount == 17) {
 			stdout.printf("Could not find lyric field or album_path field, adding both\n");
-			_db.execute("ALTER TABLE songs ADD lyrics TEXT");
-			_db.execute("ALTER TABLE songs ADD album_path TEXT");
+			_db.execute("ALTER TABLE medias ADD lyrics TEXT");
+			_db.execute("ALTER TABLE medias ADD album_path TEXT");
 		}
 		stdout.printf("finished checks\n");*/
 		
@@ -129,24 +129,24 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	}
 	
 	/** SONGS **
-	 * load_songs() loads songs from db
+	 * load_medias() loads medias from db
 	 * 
-	 * songs_from_search() loads songs from db using a simple LIKE %search%
+	 * medias_from_search() loads medias from db using a simple LIKE %search%
 	 * search. It compares the search to artist, album, title and genre.
 	 * If it matches either, it will be included in the search
 	 * 
-	 * songs_from_artist() loads all songs given an artist name
+	 * medias_from_artist() loads all medias given an artist name
 	 */
-	public ArrayList<Song> load_songs() {
-		var rv = new ArrayList<Song>();
+	public ArrayList<Media> load_medias() {
+		var rv = new ArrayList<Media>();
 		
 		try {
-			string script = "SELECT rowid,* FROM `songs`";
+			string script = "SELECT rowid,* FROM `medias`";
 			Query query = new Query(_db, script);
 			
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				
-				Song s = new Song(results.fetch_string(1));
+				Media s = new Media(results.fetch_string(1));
 				s.rowid = results.fetch_int(0);
 				s.file_size = (uint)results.fetch_int(2);
 				s.title = results.fetch_string(3);
@@ -185,19 +185,19 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not load songs from db: %s\n", err.message);
+			stdout.printf("Could not load medias from db: %s\n", err.message);
 		}
 		
 		return rv;
 	}
 	
-	/*public void save_songs(Collection<Song> songs) {
+	/*public void save_medias(Collection<Media> medias) {
 		try {
-			_db.execute("DELETE FROM `songs`");
+			_db.execute("DELETE FROM `medias`");
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("INSERT INTO `songs` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size', 'lyrics', 'album_path') VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size, :lyrics, :album_path);");
+			Query query = transaction.prepare ("INSERT INTO `medias` (`file`, `title`, `artist`, `album`, `genre`, `comment`, `year`, `track`, `bitrate`, `length`, `samplerate`, `rating`, `playcount`, 'skipcount', `dateadded`, `lastplayed`, 'file_size', 'lyrics', 'album_path') VALUES (:file, :title, :artist, :album, :genre, :comment, :year, :track, :bitrate, :length, :samplerate, :rating, :playcount, :skipcount, :dateadded, :lastplayed, :file_size, :lyrics, :album_path);");
 			
-			foreach(Song s in songs) {
+			foreach(Media s in medias) {
 				if(s.rowid > 0) {
 					query.set_string(":file", s.file);
 					query.set_string(":title", s.title);
@@ -226,24 +226,24 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			transaction.commit();
 		}
 		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not save songs: %s \n", err.message);
+			stdout.printf("Could not save medias: %s \n", err.message);
 		}
 	}*/
 	
-	public void clear_songs() {
+	public void clear_medias() {
 		try {
-			_db.execute("DELETE FROM `songs`");
+			_db.execute("DELETE FROM `medias`");
 		}
 		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not clear songs: %s \n", err.message);
+			stdout.printf("Could not clear medias: %s \n", err.message);
 		}
 	}
 	
-	public void add_songs(Collection<Song> songs) {
+	public void add_medias(Collection<Media> medias) {
 		try {
-			//_db.execute("DELETE FROM `songs`");
+			//_db.execute("DELETE FROM `medias`");
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("""INSERT INTO 'songs' ('rowid', 'file', 'file_size', 'title', 'artist', 'composer', 'album_artist',
+			Query query = transaction.prepare ("""INSERT INTO 'medias' ('rowid', 'file', 'file_size', 'title', 'artist', 'composer', 'album_artist',
 'album', 'grouping', 'genre', 'comment', 'lyrics', 'album_path', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
 'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified', 'mediatype', 'podcast_rss',
 'podcast_url', 'podcast_date', 'is_new_podcast', 'resume_pos') 
@@ -252,7 +252,7 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 :rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :mediatype, :podcast_rss, :podcast_url, :podcast_date, :is_new_podcast,
 :resume_pos);""");
 			
-			foreach(Song s in songs) {
+			foreach(Media s in medias) {
 				if(s.rowid > 0) {
 					query.set_int(":rowid", (int)s.rowid);
 					query.set_string(":file", s.file);
@@ -296,21 +296,21 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 			transaction.commit();
 		}
 		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not save songs: %s \n", err.message);
+			stdout.printf("Could not save medias: %s \n", err.message);
 		}
 	}
 	
-	/** Saves a song in the database during finding music to add. Only use with add_music. if id == 0, create new entry. Else
+	/** Saves a media in the database during finding music to add. Only use with add_music. if id == 0, create new entry. Else
 	 * update its information
 	 * @param id The rowid to update
-	 * @param s The song to save
+	 * @param s The media to save
 	 */
-	public void remove_songs(Collection<string> songs) {
+	public void remove_medias(Collection<string> medias) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("DELETE FROM `songs` WHERE file=:file");
+			Query query = transaction.prepare("DELETE FROM `medias` WHERE file=:file");
 			
-			foreach(var s in songs) {
+			foreach(var s in medias) {
 				query.set_string(":file", s);
 				query.execute();
 			}
@@ -318,21 +318,21 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 			transaction.commit();
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not remove songs from db: %s\n", err.message);
+			stdout.printf("Could not remove medias from db: %s\n", err.message);
 		}
 	}
 	
-	public void update_songs(Gee.Collection<Song> songs) {
+	public void update_medias(Gee.Collection<Media> medias) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("""UPDATE `songs` SET file=:file, file_size=:file_size, title=:title, artist=:artist,
+			Query query = transaction.prepare("""UPDATE `medias` SET file=:file, file_size=:file_size, title=:title, artist=:artist,
 composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics, 
 album_path=:album_path, has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number, 
 album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, 
 dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediatype=:mediatype, podcast_rss=:podcast_rss, podcast_url=:podcast_url,
 podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_pos WHERE rowid=:rowid""");
 			
-			foreach(Song s in songs) {
+			foreach(Media s in medias) {
 				if(s.rowid != -2 && s.rowid > 0) {
 					
 					query.set_int(":rowid", (int)s.rowid);
@@ -377,7 +377,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			transaction.commit();
 		}
 		catch(SQLHeavy.Error err) {
-			stdout.printf("Could not update songs: %s \n", err.message);
+			stdout.printf("Could not update medias: %s \n", err.message);
 		}
 	}
 	
@@ -397,7 +397,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				Playlist p = new Playlist.with_info(results.fetch_int(0), results.fetch_string(1));
-				p.songs_from_string(results.fetch_string(2), lm);
+				p.medias_from_string(results.fetch_string(2), lm);
 				p.tvs.sort_column = results.fetch_string(3);
 				p.tvs.set_sort_direction_from_string(results.fetch_string(4));
 				
@@ -422,11 +422,11 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		try {
 			_db.execute("DELETE FROM `playlists`");
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `songs`, 'sort_column', 'sort_direction', 'columns') VALUES (:name, :songs, :sort_column, :sort_direction, :columns);");
+			Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `medias`, 'sort_column', 'sort_direction', 'columns') VALUES (:name, :medias, :sort_column, :sort_direction, :columns);");
 			
 			foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
-				query.set_string(":songs", p.songs_to_string(lm));
+				query.set_string(":medias", p.medias_to_string(lm));
 				query.set_string(":sort_column", p.tvs.sort_column);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());
@@ -444,12 +444,12 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 	public void add_playlist(Playlist p) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `songs`, 'sort_column', 'sort_direction', 'columns') 
-												VALUES (:name, :songs, :sort_column, :sort_direction, :columns);""");
+			Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `medias`, 'sort_column', 'sort_direction', 'columns') 
+												VALUES (:name, :medias, :sort_column, :sort_direction, :columns);""");
 			
 			//foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
-				query.set_string(":songs", p.songs_to_string(lm));
+				query.set_string(":medias", p.medias_to_string(lm));
 				query.set_string(":sort_column", p.tvs.sort_column);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());
@@ -467,11 +467,11 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 	/*public void update_playlists(LinkedList<Playlist> playlists) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `playlists` SET name=:name, songs=:songs, sort_column=:sort_column, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
+			Query query = transaction.prepare("UPDATE `playlists` SET name=:name, medias=:medias, sort_column=:sort_column, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
 			
 			foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
-				query.set_string(":songs", p.songs_to_string(lm));
+				query.set_string(":medias", p.medias_to_string(lm));
 				query.set_string(":sort_column", p.tvs.sort_column);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());

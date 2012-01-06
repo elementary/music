@@ -21,7 +21,7 @@
  */
 
 /* Merely a place holder for multiple pieces of information regarding
- * the current song playing. Mostly here because of dependence. */
+ * the current media playing. Mostly here because of dependence. */
 
 using Gtk;
 
@@ -110,7 +110,7 @@ public class BeatBox.AddPodcastWindow : Window {
 		
 		existing_rss = new Gee.HashSet<string>();
 		foreach(int i in lw.lm.podcast_ids()) {
-			var pod = lw.lm.song_from_id(i);
+			var pod = lw.lm.media_from_id(i);
 			existing_rss.add(pod.podcast_rss);
 		}
 		

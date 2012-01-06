@@ -21,7 +21,7 @@
  */
 
 /* Merely a place holder for multiple pieces of information regarding
- * the current song playing. Mostly here because of dependence. */
+ * the current media playing. Mostly here because of dependence. */
 
 using Gee;
 
@@ -29,7 +29,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	private LibraryManager lm;
 	private BeatBox.DataBaseManager dbm;
 	
-	LinkedList<Song> song_updates;
+	LinkedList<Media> media_updates;
 	
 	LinkedList<GLib.Object> toUpdate; // a queue of things to update
 	LinkedList<GLib.Object> toRemove;
@@ -40,7 +40,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		this.lm = lm;
 		dbm = databm;
 		
-		song_updates = new LinkedList<Song>();
+		media_updates = new LinkedList<Media>();
 		toUpdate = new LinkedList<GLib.Object>();
 		toRemove = new LinkedList<GLib.Object>();
 		inThread = false;
@@ -69,9 +69,9 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		}
 	}
 	
-	public void update_song(Song s) {
-		if(!(song_updates.contains(s)))
-			song_updates.offer(s);
+	public void update_media(Media s) {
+		if(!(media_updates.contains(s)))
+			media_updates.offer(s);
 		
 		if(!inThread) {
 			try {
@@ -102,9 +102,9 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	public void* update_db_thread_function () {
 		while(true) {
 			GLib.Object next;
-			if(song_updates.size > 0) {
-				dbm.update_songs(song_updates);
-				song_updates.clear();
+			if(media_updates.size > 0) {
+				dbm.update_medias(media_updates);
+				media_updates.clear();
 			}
 			else if((next = toUpdate.poll()) != null) {
 				if(next is Playlist) {
@@ -116,7 +116,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 			}
 			else if((next = toRemove.poll()) != null) {
 				if(next is LinkedList<string>) {
-					dbm.remove_songs((LinkedList<string>)next);
+					dbm.remove_medias((LinkedList<string>)next);
 				}
 				else if(next is Playlist) {
 					dbm.remove_playlist((Playlist)next);
@@ -144,7 +144,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		Playlist p_queue = new Playlist();
 		p_queue.name = "autosaved_queue";
 		foreach(int i in lm.queue()) {
-			p_queue.addSong(i);
+			p_queue.addMedia(i);
 		}
 		p_queue.tvs = lm.queue_setup;
 		

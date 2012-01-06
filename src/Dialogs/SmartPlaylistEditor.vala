@@ -21,7 +21,7 @@
  */
 
 /* Merely a place holder for multiple pieces of information regarding
- * the current song playing. Mostly here because of dependence. */
+ * the current media playing. Mostly here because of dependence. */
 
 using Gtk;
 using Gee;
@@ -42,8 +42,8 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	VBox vertQueries;
 	Gee.ArrayList<SmartPlaylistEditorQuery> spQueries;
 	Button addButton;
-	CheckButton limitSongs;
-	SpinButton songLimit;
+	CheckButton limitMedias;
+	SpinButton mediaLimit;
 	Button save;
 	
 	public signal void playlist_saved(SmartPlaylist sp);
@@ -118,16 +118,16 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		addButton.clicked.connect(addButtonClick);
 		
 		/* create extra option: limiter */
-		limitSongs = new CheckButton.with_label("Limit to");
-		songLimit = new SpinButton.with_range(0, 500, 10);
-		Label limiterLabel = new Label("songs");
+		limitMedias = new CheckButton.with_label("Limit to");
+		mediaLimit = new SpinButton.with_range(0, 500, 10);
+		Label limiterLabel = new Label("medias");
 		
-		limitSongs.set_active(_sp.limit);
-		songLimit.set_value((double)_sp.limit_amount);
+		limitMedias.set_active(_sp.limit);
+		mediaLimit.set_value((double)_sp.limit_amount);
 		
 		HBox limiterBox = new HBox(false, 2);
-		limiterBox.pack_start(limitSongs, false, false, 0);
-		limiterBox.pack_start(songLimit, false, false, 0);
+		limiterBox.pack_start(limitMedias, false, false, 0);
+		limiterBox.pack_start(mediaLimit, false, false, 0);
 		limiterBox.pack_start(limiterLabel, false, false, 0);
 		
 		/* add the Done button on bottom */
@@ -208,8 +208,8 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		
 		_sp.name = _name.text;
 		_sp.conditional = comboMatch.get_active_text();
-		_sp.limit = limitSongs.get_active();
-		_sp.limit_amount = (int)songLimit.get_value();
+		_sp.limit = limitMedias.get_active();
+		_sp.limit_amount = (int)mediaLimit.get_value();
 		
 		playlist_saved(_sp);
 		
@@ -291,7 +291,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			_value.text = q.value;
 		}
 		else if(q.field == "Media Type") {
-			_valueOption.append_text("Song");
+			_valueOption.append_text("Media");
 			_valueOption.append_text("Podcast");
 			_valueOption.append_text("Audiobook");
 			_valueOption.set_active(int.parse(q.value));
@@ -357,7 +357,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			
 			// upate valueOption 
 			_valueOption.remove_all();
-			_valueOption.append_text("Song");
+			_valueOption.append_text("Media");
 			_valueOption.append_text("Podcast");
 			_valueOption.append_text("Audiobook");
 			_valueOption.set_active(int.parse(_q.value));

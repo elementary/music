@@ -2,7 +2,7 @@ using Gst;
 using Gee;
 
 public class BeatBox.GStreamerTagger : GLib.Object {
-	//LinkedList<Song> new_songs;
+	//LinkedList<Media> new_medias;
 	private Gst.Discoverer disc;
 	DiscovererInfo info;
 	
@@ -28,7 +28,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			GLib.Error err;
 			string debug;
 			message.parse_error (out err, out debug);
-			stdout.printf ("Error importing song: %s\n", err.message);
+			stdout.printf ("Error importing media: %s\n", err.message);
 			
 			break;
 		/*case Gst.MessageType.ELEMENT:
@@ -74,12 +74,12 @@ public class BeatBox.GStreamerTagger : GLib.Object {
             stdout.printf ("tag: %s = %s\n", tag, tag_string);
     }
 	
-	public Song? import_song(GLib.File file) {
+	public Media? import_media(GLib.File file) {
 		//playbin.uri = file.get_uri();
 		//playbin.set_state(State.PAUSED);
 		
 		
-		Song s = new Song(file.get_path());
+		Media s = new Media(file.get_path());
 		stdout.printf("importing %s\n", file.get_path());
 		
 		if(Gst.uri_is_valid (file.get_uri())) {
@@ -91,7 +91,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 					return null;
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not read song's metadata\n");
+				stdout.printf("Could not read media's metadata\n");
 				return null;
 			}
 		}
@@ -187,13 +187,13 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		//return null;
 	}
 	
-	public Gdk.Pixbuf? get_embedded_art(Song s) {
+	public Gdk.Pixbuf? get_embedded_art(Media s) {
 		
 		
 		return null;
 	}
 	
-	public bool save_song(Song s) {
+	public bool save_media(Media s) {
 		return false;
 		
 		/*Gst.Pipeline pipe = new Pipeline("pipe");
@@ -276,7 +276,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 					iter.resync();
 					break;
 			  case GST_ITERATOR_ERROR:
-					stdout.printf("Could not update metadata on song\n");
+					stdout.printf("Could not update metadata on media\n");
 					rv = false;
 					done = true;
 					break;
