@@ -80,6 +80,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private string temp_add_folder;
 	private LinkedList<string> temp_add_files;
 	bool _doing_file_operations;
+	bool in_fetch_thread;
 	public bool have_fetched_new_podcasts;
 	
 	public signal void music_counted(int count);
@@ -1525,7 +1526,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	/* at the start, load all the pixbufs */
 	public void* fetch_thread_function () {
+		if(in_fetch_thread)
+			return null;
+		
+		in_fetch_thread = true;
 		GStreamerTagger tagger = new GStreamerTagger();
+		HashMap<string, Gdk.Pixbuf> to_set = new HashMap<string, Gdk.Pixbuf>();
+		
 		var toShowS = new LinkedList<Media>();
         foreach(var s in _media.values)
 			toShowS.add(s);
@@ -1540,16 +1547,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 				if(_album_art.get(s.artist+s.album) == null) {
 					Gdk.Pixbuf? pix = tagger.get_embedded_art(s);
 					
-					/*if(!s.getAlbumArtPath().contains("/usr/share/") && pix == null) {
+					if(!s.getAlbumArtPath().contains("/usr/share/") && pix == null) {
 						try {
 							pix = new Gdk.Pixbuf.from_file(s.getAlbumArtPath());
 						}
 						catch(GLib.Error err) {}
-					}*/
+					}
 					
 					if(pix != null) {
-						stdout.printf("album art for %s %s set\n", s.artist, s.album);
-						_album_art.set(s.artist+s.album, pix);
+						to_set.set(s.artist+s.album, pix);
 					}
 						
 					previousAlbum = s.album;
@@ -1557,8 +1563,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		
+		_album_art.set_all(to_set);
+		
+		in_fetch_thread = false;
 		return null;
-
 	}
 	
 	public static int mediaCompareFunc(Media a, Media b) {
