@@ -638,20 +638,26 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//loop through all musictreeviews and call updatecurrentmedia
 		
 		if(lm.media_info.media != null) {
-			string file = lm.media_info.media.getAlbumArtPath();
-			if(file.contains(settings.getMusicFolder())) {
+			/*string file = lm.media_info.media.getAlbumArtPath();
+			Gdk.Pixbuf pix = lm.fo.tagger.get_embedded_art(lm.media_info.media);
+			if(pix != null) {
+				coverArt.set_from_pixbuf(pix.scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
+				stdout.printf("used embedded!\n");
+			}
+			else if(file.contains(settings.getMusicFolder()) && settings.getMusicFolder() != "") {
 				try {
 					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(file, sourcesToMedias.position, sourcesToMedias.position));
 				}
 				catch(GLib.Error err) {
-					stdout.printf("Could not set image art: %s\n", err.message);
+					stdout.printf("Could not set image art from song artPath: %s\n", err.message);
 					lm.media_info.media.setAlbumArtPath("");
 				}
-			}
+			}*/
+			if(lm.get_album_art(lm.media_info.media.rowid) != null)
+				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
 			else {
 				try {
-					var dropAlbum = GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", "128x128", "mimetypes", "drop-album.svg");
-					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(dropAlbum, sourcesToMedias.position, sourcesToMedias.position));
+					coverArt.set_from_pixbuf(lm.icons.drop_album.render(IconSize.DIALOG, null));
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not set image art: %s\n", err.message);

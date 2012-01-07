@@ -112,7 +112,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			if(column == 0) {
 				
 				if(lm.get_album_art(s.rowid) != null) {
-					val = lm.get_album_art(s.rowid);
+					val = lm.get_album_art(s.rowid).scale_simple(128, 128, Gdk.InterpType.BILINEAR);
 				}
 				else {
 					val = defaultImage;

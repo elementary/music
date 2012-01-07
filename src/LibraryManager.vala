@@ -1525,7 +1525,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	/* at the start, load all the pixbufs */
 	public void* fetch_thread_function () {
-		
+		GStreamerTagger tagger = new GStreamerTagger();
 		var toShowS = new LinkedList<Media>();
         foreach(var s in _media.values)
 			toShowS.add(s);
@@ -1537,16 +1537,23 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Media s in toShowS) {
 			if(s.album != previousAlbum) {
 				
-				if(!s.getAlbumArtPath().contains("/usr/share/") && _album_art.get(s.artist+s.album) == null) {
-					try {
-						_album_art.set(s.artist+s.album, new Gdk.Pixbuf.from_file_at_size(s.getAlbumArtPath(), 128, 128));
+				if(_album_art.get(s.artist+s.album) == null) {
+					Gdk.Pixbuf? pix = tagger.get_embedded_art(s);
+					
+					/*if(!s.getAlbumArtPath().contains("/usr/share/") && pix == null) {
+						try {
+							pix = new Gdk.Pixbuf.from_file(s.getAlbumArtPath());
+						}
+						catch(GLib.Error err) {}
+					}*/
+					
+					if(pix != null) {
+						stdout.printf("album art for %s %s set\n", s.artist, s.album);
+						_album_art.set(s.artist+s.album, pix);
 					}
-					catch(GLib.Error err) {}
+						
+					previousAlbum = s.album;
 				}
-				
-				// also try loading from metadata
-				
-				previousAlbum = s.album;
 			}
 		}
 		

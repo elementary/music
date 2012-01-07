@@ -29,20 +29,20 @@ public class BeatBox.Pipeline : GLib.Object {
 		ripper = new Ripper();
 		
 		pipe = new Gst.Pipeline("pipeline");
-		playbin = ElementFactory.make("playbin2", "playbin");
+		playbin = ElementFactory.make("playbin2", null);
 		
-		audiosink = ElementFactory.make("autoaudiosink", "audiosink");
+		audiosink = ElementFactory.make("autoaudiosink", null);
 		//audiosink.set("profile", 1); // says we handle music and movies
 		
 		audiobin = new Gst.Bin("audiobin"); // this holds the real primary sink
 		
-		audiotee = ElementFactory.make("tee", "audiotee");
-		audiosinkqueue = ElementFactory.make("queue", "audiosinkqueue");
+		audiotee = ElementFactory.make("tee", null);
+		audiosinkqueue = ElementFactory.make("queue", null);
 		
 		eq = new Equalizer();
 		if(eq.element != null) {
-			eq_audioconvert = ElementFactory.make("audioconvert", "audioconvert");
-			eq_audioconvert2 = ElementFactory.make("audioconvert", "audioconvert2");
+			eq_audioconvert = ElementFactory.make("audioconvert", null);
+			eq_audioconvert2 = ElementFactory.make("audioconvert", null);
 			preamp = ElementFactory.make("volume", "preamp");
 			
 			((Gst.Bin)audiobin).add_many(eq.element, eq_audioconvert, eq_audioconvert2, preamp);

@@ -27,7 +27,7 @@ using Gee;
 public class BeatBox.FileOperator : Object {
 	private BeatBox.LibraryManager lm;
 	private BeatBox.Settings settings;
-	GStreamerTagger tagger;
+	public GStreamerTagger tagger;
 	
 	bool inThread;
 	LinkedList<Media> toSave;
@@ -142,19 +142,22 @@ public class BeatBox.FileOperator : Object {
 			string file_path = files.poll();
 			var file = GLib.File.new_for_path(file_path);
 			
-			if(index % 100 == 0)
-				tagger = new GStreamerTagger(); // gst.discoverer slows down after ~500 medias. create a new instance.
+			//if(index % 100 == 0)
+			//	tagger = new GStreamerTagger(); // gst.discoverer slows down after ~500 medias. create a new instance.
 			
 			string art_path = "";
 			if( (art_path = album_art.get(file.get_parent().get_path())) == null)
 				art_path = get_best_album_art_file(file);
 			
+			stdout.printf("importing song...\n");
 			Media s = import_media(file_path);
-					
+			stdout.printf("song imported\n");
+			
 			if(s != null) {
 				medias.add(s);
 				
 				if(medias.size % 500 == 0) {
+					stdout.printf("adding medias\n");
 					lm.add_medias(medias, true); // give user some feedback
 					medias.clear();
 				}
@@ -453,7 +456,12 @@ public class BeatBox.FileOperator : Object {
 		}
 		
 		return s;*/
-		return tagger.import_media(GLib.File.new_for_path(file_path));
+		var s = tagger.playbin_import_media(file_path);
+		
+		if(s != null)
+			s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+			
+		return s;
 	}
 	
 	public void save_album(Media s, string uri) {
