@@ -118,16 +118,22 @@ public class BeatBox.DeviceManager : GLib.Object {
 					Media s = lm.media_from_id(i);
 					if(s.isTemporary)
 						toRemove.add(s);
+					else
+						s.unique_status_image = null;
 				}
 				foreach(int i in dev.get_podcasts()) {
 					Media s = lm.media_from_id(i);
 					if(s.isTemporary)
 						toRemove.add(s);
+					else
+						s.unique_status_image = null;
 				}
 				foreach(int i in dev.get_audiobooks()) {
 					Media s = lm.media_from_id(i);
 					if(s.isTemporary)
 						toRemove.add(s);
+					else
+						s.unique_status_image = null;
 				}
 				lm.remove_medias(toRemove, false);
 				

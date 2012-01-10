@@ -43,12 +43,14 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 	
 	public void finish_initialization() {
 		device_unmounted.connect( () => {
+			stdout.printf("unmount in cdromdevice..\n");
 			foreach(int i in medias) {
 				Media m = lm.media_from_id(i);
-				
+				stdout.printf("blah\n");
 				m.unique_status_image = null;
 				lm.update_media(m, false, false);
 			}
+			stdout.printf("unmount finished\n");
 		});
 		
 		lm.progress_cancel_clicked.connect(cancel_transfer);
@@ -199,7 +201,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			return false;
 		}
 		
-		ripper = new CDRipper(lm, get_uri(), list.size);
+		ripper = new CDRipper(lm, get_uri(), medias.size);
 		if(!ripper.initialize()) {
 			stdout.printf("Could not create CD Ripper\n");
 			return false;
@@ -262,7 +264,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		lm.update_media(s, true, true);
 		
 		// do it again on next track
-		if(s.track < ripper.track_count && !user_cancelled) {
+		if(current_list_index < (list.size - 1) && !user_cancelled) {
 			++current_list_index;
 			Media next = lm.media_from_id(list.get(current_list_index));
 			media_being_ripped = next;
@@ -279,8 +281,21 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			media_being_ripped = null;
 			_is_transferring = false;
 			
-			/* Show notification that media ripping has finished */
-			// TODO: ..^
+			if(!lw.has_toplevel_focus) {
+				try {
+					lm.lw.notification.close();
+					lm.lw.notification.update("Import Complete", "BeatBox has finished importing " + list.size.to_string() + " songs from Audio CD", "beatbox");
+					
+					var beatbox_icon = lm.icons.beatbox_icon.render(Gtk.IconSize.DIALOG, null);
+					lm.lw.notification.set_image_from_pixbuf(beatbox_icon);
+					
+					lm.lw.notification.show();
+					lm.lw.notification.set_timeout(5000);
+				}
+				catch(GLib.Error err) {
+					stderr.printf("Could not show notification: %s\n", err.message);
+				}
+			}
 		}
 	}
 	

@@ -47,6 +47,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private HashMap<int, Media> _stations;
 	private LinkedList<int> _permanents; // list of all local medias
 	private HashMap<string, DevicePreferences> _device_preferences;
+	int local_song_count;
 	
 	private HashMap<int, int> _current; // id, media of current medias.
 	private HashMap<int, int> _current_shuffled;//list of id's yet to be played while on shuffle
@@ -186,6 +187,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Media s in dbm.load_medias()) {
 			_media.set(s.rowid, s);
 			_permanents.add(s.rowid);
+			
+			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+				++local_song_count;
 			
 			if(s.mediatype == 0)
 				_songs.set(s.rowid, s);
@@ -608,6 +612,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
+			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+				--local_song_count;
+			
 			if(s.mediatype == 0)
 				_songs.unset(s.rowid);
 			else if(s.mediatype == 1)
@@ -849,11 +856,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 				s.rowid = ++top_index;
 			
 			added.add(s.rowid);
-			stdout.printf("added %s at %d\n", s.title, s.rowid);
 			_media.set(s.rowid, s);
 			
 			if(permanent && !s.isTemporary)
 				_permanents.add(s.rowid);
+				
+			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+				++local_song_count;
 			
 			if(s.mediatype == 0)
 				_songs.set(s.rowid, s);
@@ -893,6 +902,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			s.isTemporary = false;
 			s.date_added = (int)time_t();
 			_permanents.add(s.rowid);
+			
+			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+				++local_song_count;
 		}
 		
 		dbm.add_medias(temps_medias);
@@ -917,6 +929,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
+			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+				--local_song_count;
+			
 			if(s.mediatype == 0)
 				_songs.unset(s.rowid);
 			else if(s.mediatype == 1)
@@ -937,6 +952,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 			settings.setMusicFolder("");
 		
 		lw.updateSensitivities();
+	}
+	
+	public int get_local_song_count() {
+		return local_song_count;
 	}
 	
 	/**************** Queue Stuff **************************/

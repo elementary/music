@@ -566,7 +566,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		bool folderSet = (lm.settings.getMusicFolder() != "");
 		bool haveMedias = lm.media_count() > 0;
-		bool haveSongs = (lm.permanent_ids().size - lm.podcast_ids().size - lm.station_ids().size - lm.audiobook_ids().size) > 0;
+		bool haveSongs = lm.get_local_song_count() > 0;
 		bool doingOps = lm.doing_file_operations();
 		bool nullMedia = (lm.media_info.media == null);
 		bool showMore = lm.settings.getMoreVisible();
