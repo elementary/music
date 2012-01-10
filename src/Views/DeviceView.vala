@@ -35,6 +35,9 @@ public class BeatBox.DeviceView : VBox {
 			stdout.printf("device unmounted\n");
 			d.disconnect(connector);
 		});
+		
+		if(d.get_preferences().sync_when_mounted)
+			syncClicked();
 	}
 	
 	void buildUI() {
@@ -58,10 +61,6 @@ public class BeatBox.DeviceView : VBox {
 		}
 		
 		pack_start(tabs, true, true, 0);
-		
-		var spaceWidget = new SpaceWidget((double)d.get_capacity()/1000000);
-		
-		pack_end(spaceWidget, false, true, 0);
 		
 		show_all();
 		bar_option_changed(0);

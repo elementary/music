@@ -229,7 +229,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		ripper.error.connect(ripperError);
 		
 		// start process
-		ripper.ripMedia(1, s);
+		ripper.ripMedia(s.track, s);
 		
 		// this refreshes so that the spinner shows
 		ViewWrapper vw = ((ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
@@ -326,7 +326,6 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public bool doProgressNotificationWithTimeout() {
-		stdout.printf("progrssNotification %d %d\n", index, total);
 		lw.progressNotification(current_operation.replace("&", "&amp;"), (double)(((double)index + current_song_progress)/((double)total)));
 		
 		if(index < total && (is_transferring())) {
