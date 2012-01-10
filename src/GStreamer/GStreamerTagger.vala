@@ -18,9 +18,9 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	bool fetching_album_art;
 	
 	public GStreamerTagger() {
-		disc = new Discoverer((ClockTime)(10*Gst.SECOND));
+		disc = new Discoverer((ClockTime)(30*Gst.SECOND));
 		
-		import_playbin = ElementFactory.make("playbin2", null);
+		/*import_playbin = ElementFactory.make("playbin2", null);
 		import_audiosink = ElementFactory.make("fakesink", null);
 		import_videosink = ElementFactory.make("fakesink", null);
 		import_playbin.set("audio-sink", import_audiosink); 
@@ -32,13 +32,16 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		artwork_videosink = ElementFactory.make("fakesink", null);
 		artwork_playbin.set("audio-sink", artwork_audiosink); 
 		artwork_playbin.set("video-sink", artwork_videosink);
-		artwork_bus = artwork_playbin.get_bus();
+		artwork_bus = artwork_playbin.get_bus();*/
 	}
 	
 	public Media? playbin_import_media(string path) {
-		import_playbin.set_state(State.READY);
-		import_playbin.uri = "file://" + path;
-		import_playbin.set_state(State.PAUSED);
+		stdout.printf("playbin beg current is %s\n", import_playbin.current_state.to_string());
+		var statechangereturn = import_playbin.set_state(State.READY);
+		stdout.printf("statechangereturn is %s\n", statechangereturn.to_string());
+		import_playbin.uri = "file://" + path;stdout.printf("playbin beg c current is %s\n", import_playbin.current_state.to_string());
+		statechangereturn = import_playbin.set_state(State.PAUSED);
+		stdout.printf("statechangereturn is %s\n", statechangereturn.to_string());
 		
 		Media s = new Media(path);
 		
@@ -50,11 +53,11 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			if(m != null) {
 				switch (m.type) {
 				case Gst.MessageType.ERROR:
-					done = true;
+					//done = true;
 					
 					break;
 				case Gst.MessageType.ASYNC_DONE:
-					done = true;
+					//done = true;
 					
 					break;
 				case Gst.MessageType.TAG:
@@ -119,13 +122,15 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 						//	s.samplerate = info.get_audio_streams().nth_data(0).get_sample_rate();
 						
 						// get length
-						if(tag_list.get_uint64(TAG_DURATION, out duration))
+						if(tag_list.get_uint64(TAG_DURATION, out duration)) {
+							stdout.printf("length is %d\n", (int)duration);
 							s.length = (uint)(duration/10000000);
+						}
 						
 						// see if it has an image data
-						Gst.Buffer buf;
-						if(tag_list.get_buffer(TAG_IMAGE, out buf))
-							s.has_embedded = true;
+						//Gst.Buffer buf;
+						//if(tag_list.get_buffer(TAG_IMAGE, out buf))
+						//	s.has_embedded = true;
 						
 						s.date_added = (int)time_t();
 						
@@ -142,15 +147,22 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			else {
 				done = true;
 			}
+			
+			stdout.printf("end of loop\n");
 		}
 		
+		stdout.printf("out of loop\n");
 		// check if we should use taglib, the backup
 		if(error_only) {
-			import_playbin.set_state(State.NULL);
+			stdout.printf("setting to null current is %s\n", import_playbin.current_state.to_string());
+			statechangereturn = import_playbin.set_state(State.NULL);
+			stdout.printf("statechangereturn is %s\n", statechangereturn.to_string());
 			s = taglib_import_media(path);
 		}
 		
-		import_playbin.set_state(State.NULL);
+		stdout.printf("setting to null current is %s\n", import_playbin.current_state.to_string());
+		statechangereturn = import_playbin.set_state(State.NULL);
+		stdout.printf("statechangereturn is %s\n", statechangereturn.to_string());
 		return s;
 	}
 	
@@ -196,10 +208,10 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		return s;
 	}
 	
-	public Media? discoverer_import_media(GLib.File file) {
-		if(Gst.uri_is_valid (file.get_uri())) {
+	public Media? discoverer_import_media(string file_path) {
+		if(Gst.uri_is_valid ("file://" + file_path)) {
 			try {
-				info = disc.discover_uri(file.get_uri());
+				info = disc.discover_uri("file://" + file_path);
 				if(info == null)
 					return null;
 			}
@@ -213,8 +225,8 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			return null;
 		}
 		
-		Media s = new Media(file.get_path());
-		stdout.printf("importing %s\n", file.get_path());
+		Media s = new Media(file_path);
+		stdout.printf("importing %s\n", file_path);
 		if(info != null && info.get_tags() != null) {
 			try {
 				string title, artist, composer, album_artist, album, grouping, genre, comment, lyrics;
@@ -282,12 +294,12 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				
 				s.date_added = (int)time_t();
 				// get the size and convert to MB
-				s.file_size = (int)(file.query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+				//s.file_size = (int)(file.query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
 				
 			}
 			finally {
 				if(s.title == null || s.title == "") {
-					string[] paths = file.get_path().split("/", 0);
+					string[] paths = file_path.split("/", 0);
 					s.title = paths[paths.length - 1];
 				}
 				if(s.artist == null || s.artist == "") s.artist = "Unknown Artist";
@@ -302,6 +314,8 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	}
 	
 	public Gdk.Pixbuf? get_embedded_art(Media s) {
+		return null;
+		
 		if(fetching_album_art) {
 			stdout.printf("user is trying to get album art twice at once\n");
 			return null;

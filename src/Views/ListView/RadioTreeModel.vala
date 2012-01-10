@@ -128,10 +128,10 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 			if(column == 0)
 				val = (int)s.rowid;
 			else if(column == 1) {
-				if(s.unique_status_image != null)
-					val = s.unique_status_image;
-				else if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current)
+				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current)
 					val = _playing;
+				else if(s.unique_status_image != null)
+					val = s.unique_status_image;
 				else
 					val = Value(typeof(Gdk.Pixbuf));
 			}

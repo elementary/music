@@ -1,6 +1,7 @@
 using Gst;
 
 public class BeatBox.CDRipper : GLib.Object {
+	LibraryManager lm;
 	public dynamic Gst.Pipeline pipeline;
 	public dynamic Gst.Element src;
 	public dynamic Gst.Element queue;
@@ -12,11 +13,12 @@ public class BeatBox.CDRipper : GLib.Object {
 	public int track_count;
 	private Format _format;
 	
-	public signal void media_ripped(Media s);
+	public signal void media_ripped(Media s, bool success);
 	public signal void progress_notification(double progress);
 	public signal void error(string err, Message message);
 	
-	public CDRipper(string device, int count) {
+	public CDRipper(LibraryManager lm, string device, int count) {
+		this.lm = lm;
 		_device = device;
 		track_count = count;
 	}
@@ -110,7 +112,8 @@ public class BeatBox.CDRipper : GLib.Object {
 				break;
 			case Gst.MessageType.EOS:
 				pipeline.set_state(Gst.State.NULL);
-				media_ripped(current_media);
+				current_media.file = sink.location;
+				media_ripped(current_media, true);
 				
 				break;
 			default:
@@ -120,14 +123,14 @@ public class BeatBox.CDRipper : GLib.Object {
         return true;
     }
     
-    public void ripMedia(uint track, string path, Media s) {
+    public void ripMedia(uint track, Media s) {
+		var f = lm.fo.get_new_destination(s);
+		
 		sink.set_state(Gst.State.NULL);
-		stdout.printf("1\n");
-		sink.set("location", path);
-		stdout.printf("2\n");
+		sink.set("location", f.get_path());
 		src.set("track", track);
 		current_media = s;
-		stdout.printf("3\n");
+		
 		/*Iterator<Gst.Element> tagger = ((Gst.Bin)converter).iterate_all_by_interface(typeof(TagSetter));
 		tagger.foreach( (el) => {
 			
@@ -136,7 +139,6 @@ public class BeatBox.CDRipper : GLib.Object {
 			
 		});*/
 		
-		stdout.printf("4\n");
 		pipeline.set_state(Gst.State.PLAYING);
 	}
 }

@@ -72,7 +72,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		
         // disable synchronized commits for performance reasons ... this is not vital
         _db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
-        //_db.sql_executed.connect ((sql) => { GLib.debug ("SQL: %s \n", sql); });
+        //_db.sql_executed.connect ((sql) => { stdout.printf("SQL: %s \n", sql); });
 	
 		if(need_create) {
 			try {
@@ -83,7 +83,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				`album` TEXT, 'grouping' TEXT, `genre` TEXT,`comment` TEXT, 'lyrics' TEXT, 'album_path' TEXT, 'has_embedded' INT, 
 				`year` INT, `track` INT, 'track_count' INT, 'album_number' INT, 'album_count' INT, `bitrate` INT, `length` INT, `samplerate` INT, 
 				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'lastmodified' INT, 'mediatype' INT, 
-				'podcast_rss' TEXT, 'podcast_url' TEXT, 'podcast_date' INT, 'is_new_podcast' INT, 'resume_pos', INT)""");
+				'podcast_rss' TEXT, 'podcast_url' TEXT, 'podcast_date' INT, 'is_new_podcast' INT, 'resume_pos' INT)""");
 				
 				_db.execute("CREATE TABLE devices ('unique_id' TEXT, 'sync_when_mounted' INT,'sync_music' INT, 'sync_podcasts' INT, 'sync_audiobooks' INT, 'sync_all_music' INT, 'sync_all_podcasts' INT, 'sync_all_audiobooks' INT, 'music_playlist' STRING, 'podcast_playlist' STRING, 'audiobook_playlist' STRING, 'last_sync_time' INT)");
 				
@@ -319,6 +319,21 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 		}
 		catch (SQLHeavy.Error err) {
 			stdout.printf("Could not remove medias from db: %s\n", err.message);
+		}
+	}
+	
+	public void clear_songs() {
+		try {
+			transaction = _db.begin_transaction();
+			Query query = transaction.prepare("DELETE FROM `medias` WHERE mediatype=:mediatype");
+			
+			query.set_int(":mediatype", 0);
+			query.execute();
+			
+			transaction.commit();
+		}
+		catch (SQLHeavy.Error err) {
+			stdout.printf("Could not clear songs from db: %s\n", err.message);
 		}
 	}
 	

@@ -266,10 +266,11 @@ public class BeatBox.ViewWrapper : VBox {
 			Collection<int> potentialShowing = new LinkedList<int>();
 			Collection<int> potentialShowingAlbum = new LinkedList<int>();
 			
+			stdout.printf("seraching to populate\n");
 			lm.do_search(lw.searchField.get_text(), hint,
 					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
 					medias, ref potentialShowing, ref potentialShowingAlbum);
-			
+			stdout.printf("seraching done\n");
 			list.set_show_next(potentialShowing);
 			albumView.set_show_next(potentialShowingAlbum);
 			showingMedias = potentialShowing;

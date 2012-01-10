@@ -131,10 +131,10 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 			if(column == 0)
 				val = (int)s.rowid;
 			else if(column == 1) {
-				if(s.unique_status_image != null)
-					val = s.unique_status_image;
-				else if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current)
+				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current)
 					val = _playing;
+				else if(s.unique_status_image != null)
+					val = s.unique_status_image;
 				else if(s.last_played == 0)
 					val = _new_podcast;
 				else if(!s.file.has_prefix("http://"))

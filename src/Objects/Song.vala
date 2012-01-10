@@ -77,6 +77,7 @@ public class BeatBox.Media : GLib.Object{
 	
 	public bool isPreview { get; set; default = false; }
 	public bool isTemporary { get; set; default = false; }
+	public bool location_unknown { get; set; default = false; }
 	
 	public Gdk.Pixbuf? unique_status_image;
 	public bool showIndicator;
@@ -152,6 +153,7 @@ public class BeatBox.Media : GLib.Object{
 		rv.pulseProgress = pulseProgress;
 		rv.showIndicator = showIndicator;
 		rv.unique_status_image = unique_status_image;
+		rv.location_unknown = location_unknown;
 		
 		// added for podcasts/audiobooks
 		rv.mediatype = mediatype;

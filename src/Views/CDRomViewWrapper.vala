@@ -1,4 +1,4 @@
-using Gee;
+/*using Gee;
 
 public class BeatBox.CDRomViewWrapper : ViewWrapper {
 	//DeviceView dv;
@@ -140,7 +140,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 			
 			if(previous_media != null)
 				lm.fo.update_file_hierarchy(previous_media, true);
-		}*/
+		}*
 		
 		// now we have to find the right location for it
 		s.unique_status_image = render_icon("process-completed-symbolic", Gtk.IconSize.MENU, null);
@@ -161,7 +161,7 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 			
 			lm.finish_file_operations();
 			
-			/* Show notification that media ripping has finished */
+			/* Show notification that media ripping has finished *
 			// TODO: ..^
 		}
 	}
@@ -206,4 +206,4 @@ public class BeatBox.CDRomViewWrapper : ViewWrapper {
 				}
 		}
 	}
-}
+}*/

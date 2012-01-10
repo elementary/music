@@ -140,14 +140,17 @@ public class BeatBox.FileOperator : Object {
 		// go through the file list that we got from count_music_files. can assume has proper extension type
 		while(!cancelled && files.size > 0) {
 			string file_path = files.poll();
+			
+			stdout.printf("getting glib file\n");
 			var file = GLib.File.new_for_path(file_path);
+			stdout.printf("got glib file\n");
 			
 			//if(index % 100 == 0)
-			//	tagger = new GStreamerTagger(); // gst.discoverer slows down after ~500 medias. create a new instance.
+				tagger = new GStreamerTagger(); // gst.discoverer slows down after ~500 medias. create a new instance.
 			
 			string art_path = "";
-			if( (art_path = album_art.get(file.get_parent().get_path())) == null)
-				art_path = get_best_album_art_file(file);
+			//if( (art_path = album_art.get(file.get_parent().get_path())) == null)
+			//	art_path = get_best_album_art_file(file);
 			
 			stdout.printf("importing song...\n");
 			Media s = import_media(file_path);
@@ -159,6 +162,7 @@ public class BeatBox.FileOperator : Object {
 				if(medias.size % 500 == 0) {
 					stdout.printf("adding medias\n");
 					lm.add_medias(medias, true); // give user some feedback
+					stdout.printf("media added\n");
 					medias.clear();
 				}
 				
@@ -417,49 +421,11 @@ public class BeatBox.FileOperator : Object {
 	public Media? import_media(string file_path) {
 		
 		
-		/*Media s = new Media(file_path);
-		TagLib.File tag_file;
 		
-		tag_file = new TagLib.File(file_path);
+		var s = tagger.discoverer_import_media(file_path);
 		
-		if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
-			try {
-				s.title = tag_file.tag.title;
-				s.artist = tag_file.tag.artist;
-				s.album = tag_file.tag.album;
-				s.genre = tag_file.tag.genre;
-				s.comment = tag_file.tag.comment;
-				s.year = (int)tag_file.tag.year;
-				s.track = (int)tag_file.tag.track;
-				s.bitrate = tag_file.audioproperties.bitrate;
-				s.length = tag_file.audioproperties.length;
-				s.samplerate = tag_file.audioproperties.samplerate;
-				s.date_added = (int)time_t();
-				
-				// get the size and convert to MB
-				s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
-				
-			}
-			finally {
-				if(s.title == null || s.title == "") {
-					string[] paths = file_path.split("/", 0);
-					s.title = paths[paths.length - 1];
-				}
-				if(s.artist == null || s.artist == "") s.artist = "Unknown Artist";
-				
-				s.album_artist = s.artist;
-				s.album_number = 1;
-			}
-		}
-		else {
-			return null;
-		}
-		
-		return s;*/
-		var s = tagger.playbin_import_media(file_path);
-		
-		if(s != null)
-			s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+		//if(s != null)
+			//s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
 			
 		return s;
 	}
@@ -586,12 +552,16 @@ public class BeatBox.FileOperator : Object {
 		try {
 			/* initialize file objects */
 			GLib.File original;
-			if(s.file.has_prefix("http://"))
+			if(s.file.has_prefix("http://") || s.file.has_prefix("cdda://"))
 				original = GLib.File.new_for_uri(s.file);
 			else
 				original = GLib.File.new_for_path(s.file);
 			
-			var ext = get_extension(s.file);
+			var ext = "";
+			if(s.file.has_prefix("cdda://"))
+				ext = ".mp3";
+			else
+				ext = get_extension(s.file);
 			
 			dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + ext));
 			
@@ -606,7 +576,9 @@ public class BeatBox.FileOperator : Object {
 			}
 			
 			/* make sure that the parent folders exist */
-			if(!dest.get_parent().get_parent().query_exists()) {
+			if(!dest.get_parent().query_exists())
+				dest.get_parent().make_directory_with_parents(null);
+			/*if(!dest.get_parent().get_parent().query_exists()) {
 				stdout.printf("artist folder %s does not exist\n", dest.get_parent().get_parent().get_path());
 				
 				try {
@@ -628,7 +600,7 @@ public class BeatBox.FileOperator : Object {
 					stdout.printf("Could not create folder to copy to: %s\n", err.message);
 					// does it make sense to return here?
 				}
-			}
+			}*/
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not find new destination!: %s\n", err.message);

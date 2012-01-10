@@ -23,6 +23,10 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	
 	void propogate_import_request(LinkedList<int> to_import) {
 		import_requested(to_import);
+		
+		if(hint == ViewWrapper.Hint.CDROM) {
+			d.transfer_to_library(to_import);
+		}
 	}
 	
 	/*void devicebar_changed(int option) {

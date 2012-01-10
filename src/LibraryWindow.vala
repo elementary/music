@@ -126,7 +126,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.lm.media_played.connect(media_played);
 		this.lm.playback_stopped.connect(playback_stopped);
 		this.lm.medias_updated.connect(medias_updated);
-		
+		this.lm.dm.device_added.connect(device_added);
+		this.lm.dm.device_removed.connect(device_removed);
 		this.similarMedias.similar_retrieved.connect(similarRetrieved);
 		
 		destroy.connect (on_quit);
@@ -532,7 +533,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Device d = (Device)o;
 			
 			if(d.getContentType() == "cdrom") {
-				vw = new CDRomViewWrapper(lm, this, new Gee.LinkedList<int>(), "Track", Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM, -1, d);
+				vw = new DeviceViewWrapper(lm, this, d.get_medias(), "Track", Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM, -1, d);
 				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName());
 				mainViews.pack_start(vw, true, true, 0);
 			}
@@ -565,14 +566,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		bool folderSet = (lm.settings.getMusicFolder() != "");
 		bool haveMedias = lm.media_count() > 0;
-		bool haveSongs = lm.song_ids().size > 0;
+		bool haveSongs = (lm.permanent_ids().size - lm.podcast_ids().size - lm.station_ids().size - lm.audiobook_ids().size) > 0;
 		bool doingOps = lm.doing_file_operations();
 		bool nullMedia = (lm.media_info.media == null);
 		bool showMore = lm.settings.getMoreVisible();
 		
 		bool showingMediaList = (sideTree.getSelectedWidget() is ViewWrapper);
 		bool showingMusicList = sideTree.convertToChild(sideTree.getSelectedIter()) == sideTree.library_music_iter;
-		bool showMainViews = (haveSongs || !showingMusicList);
+		bool showMainViews = (haveSongs || (haveMedias &&!showingMusicList));
 		
 		fileSetMusicFolder.set_sensitive(!doingOps);
 		fileImportMusic.set_sensitive(!doingOps && folderSet);
@@ -626,11 +627,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// if we are adding medias, refresh periodically
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
 		if(lm.media().size - vw.media_count >= 500) {
-			
+			stdout.printf("doing update!\n");
 			vw.doUpdate(vw.currentView, lm.media_ids(), true, true);
+			stdout.printf("doing update!\n");
 			miller.populateColumns("", lm.media_ids());
-			
+			stdout.printf("doing update!\n");
 			updateSensitivities();
+			stdout.printf("doing update!\n");
 		}
 	}
 	
@@ -1095,12 +1098,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		// clear all other playlists, reset to Music, populate music
 		if(clear_views) {
+			stdout.printf("clearing all views...\n");
 			mainViews.get_children().foreach( (w) => {
-				if(w is ViewWrapper && !(w is CDRomViewWrapper) && !(w is DeviceViewWrapper)) {
+				if(w is ViewWrapper/* && !(w is CDRomViewWrapper)*/ && !(w is DeviceViewWrapper)) {
 					ViewWrapper vw = (ViewWrapper)w;
+					stdout.printf("doing clear\n");
 					vw.doUpdate(vw.currentView, new LinkedList<int>(), true, true);
+					stdout.printf("cleared\n");
 				}
 			});
+			stdout.printf("all cleared\n");
 		}
 		else {
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
@@ -1392,7 +1399,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		bool similarcheck = sideTree.getSelectedWidget() is ViewWrapper  && 
 							((ViewWrapper)sideTree.getSelectedWidget()).errorBox != null && 
 							((ViewWrapper)sideTree.getSelectedWidget()).errorBox.visible;
-		bool isCdrom = sideTree.getSelectedWidget() is CDRomViewWrapper;
+		bool isCdrom = sideTree.getSelectedObject() is Device && ((Device)sideTree.getSelectedObject()).getContentType() == "cdrom";
 		bool isDeviceView = sideTree.getSelectedWidget() is DeviceView/* && ((DeviceView)sideTree.getSelectedWidget()).currentViewIndex() == 0*/;
 		bool storecheck = (sideTree.getSelectedWidget() is Store.StoreView);
 		bool haveMedias = (lm.media_count() != 0);
@@ -1432,7 +1439,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	void* update_views_thread () {
 		mainViews.get_children().foreach( (w) => {
-			if(w is ViewWrapper && !(w is CDRomViewWrapper) && !(w is DeviceViewWrapper)) {
+			if(w is ViewWrapper/* && !(w is CDRomViewWrapper)*/ && !(w is DeviceViewWrapper)) {
 				ViewWrapper vw = (ViewWrapper)w;
 				vw.doUpdate(vw.currentView, vw.medias, false, false);
 			}
@@ -1479,5 +1486,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				
 		dialog.run();
 		dialog.destroy();
+	}
+	
+	/* device stuff for welcome screen */
+    public void device_added(Device d) {
+		// add option to import in welcome screen
+	}
+	
+	public void device_removed(Device d) {
+		// remove option to import from welcome screen
 	}
 }

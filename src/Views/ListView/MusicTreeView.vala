@@ -349,6 +349,13 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			mediaMenuAddToPlaylist.set_visible(false);
 			mediaMenuNewPlaylist.set_visible(false);
 		}
+		else if(get_hint() == ViewWrapper.Hint.CDROM) {
+			mediaRemove.set_visible(false);
+			mediaRemove.set_label("TODO: Remove from device");
+			importToLibrary.set_visible(true);
+			mediaMenuAddToPlaylist.set_visible(false);
+			mediaMenuNewPlaylist.set_visible(false);
+		}
 		else {
 			mediaRemove.set_sensitive(false);
 		}

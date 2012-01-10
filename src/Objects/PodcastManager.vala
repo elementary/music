@@ -76,6 +76,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			// create an HTTP session to twitter
 			var session = new Soup.SessionSync();
 			var message = new Soup.Message ("GET", rss);
+			stdout.printf("TODO: Set timeout for soup message\n");
 			
 			// send the HTTP request
 			session.send_message(message);
@@ -143,6 +144,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 		// create an HTTP session to twitter
 		var session = new Soup.SessionSync();
 		var message = new Soup.Message ("GET", rss);
+		stdout.printf("TODO: Set timeout for soup message\n");
 		
 		// send the HTTP request
 		session.send_message(message);

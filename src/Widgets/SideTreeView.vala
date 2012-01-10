@@ -188,8 +188,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
 			// TODO: Install and load these icons using the Icons module
-			if(d.getContentType() == "cdrom")
-				return addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
+			if(d.getContentType() == "cdrom") {
+				devices_cdrom_iter = addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
+				return devices_cdrom_iter;
+			}
 			else if(d.getContentType() == "ipod-new")
 				return addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "ipod-old")
@@ -537,7 +539,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 								lm.medias_from_playlist(((Playlist)o).rowid), true, false);
 				}
 				else if(o is Device && ((Device)o).getContentType() == "cdrom") {
-					CDRomViewWrapper vw = (CDRomViewWrapper)w;
+					DeviceViewWrapper vw = (DeviceViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								vw.medias, true, false);
@@ -602,7 +604,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		filter.get(iter, 0, out o);
 		
 		if(o is Device && ((Device)o).getContentType() == "cdrom") {
-			((CDRomViewWrapper)w).ripMedias();
+			var to_transfer = new LinkedList<int>();
+			foreach(int i in ((Device)o).get_medias())
+				to_transfer.add(i);
+			
+			((Device)o).transfer_to_library(to_transfer);
 		}
 	}
 	

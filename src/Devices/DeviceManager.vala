@@ -57,8 +57,8 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 		
 		Device added;
-		if(mount.get_default_location().get_path().has_prefix("cdda://")) {
-			added = new CDRomDevice(mount);
+		if(mount.get_default_location().get_uri().has_prefix("cdda://")) {
+			added = new CDRomDevice(lm, mount);
 		}
 		else if(File.new_for_path(mount.get_default_location().get_path() + "/iTunes_Control").query_exists() ||
 				File.new_for_path(mount.get_default_location().get_path() + "/iPod_Control").query_exists() ||
@@ -93,7 +93,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	void deviceInitialized(Device d) {
-		d.get_unique_identifier();
+		stdout.printf("adding device\n");
 		device_added(d);
 		lm.lw.updateSensitivities();
 	}
