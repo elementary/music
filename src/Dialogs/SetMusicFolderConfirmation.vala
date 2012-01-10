@@ -43,8 +43,8 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 		Label title = new Label("");
 		Label info = new Label("");
 		savePlaylists = new Button.with_label("Export Playlists");
-		ok = new Button.with_label("Yes");
-		cancel = new Button.with_label("No");
+		ok = new Button.with_label("Set Music Folder");
+		cancel = new Button.with_label("Cancel");
 		is_finished = new Gtk.Image();
 		is_working = new Gtk.Spinner();
 		
