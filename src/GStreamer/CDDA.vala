@@ -19,7 +19,7 @@ public class BeatBox.CDDA : GLib.Object {
 		
 		device_file = File.new_for_uri(device_uri);
 		if(!device_file.query_exists()) {
-			stdout.printf("could not locate device file\n");
+			stdout.printf("could not locate device file at %s\n", device_uri);
 			return rv;
 		}
 		

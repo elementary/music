@@ -206,7 +206,8 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		audiobookDropdown.changed.connect(savePreferences);
 		
 		deviceName.changed.connect(deviceNameChanged);
-		syncButton.clicked.connect(syncClicked);
+		spaceWidget.sync_clicked.connect(syncClicked);
+		spaceWidget.cancel_clicked.connect(cancelClicked);
 		dev.sync_finished.connect(sync_finished);
 		
 		show_all();
@@ -408,6 +409,10 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		syncButton.sensitive = true;
 	}
 	
+	public void cancelClicked() {
+		dev.cancel_sync();
+	}
+	
 	public void syncClicked() {
 		Gee.LinkedList<int> list = new Gee.LinkedList<int>();
 		var pref = dev.get_preferences();
@@ -415,7 +420,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		if(pref.sync_music) {
 			if(pref.sync_all_music) {
 				foreach(var s in lm.media()) {
-					if(s.mediatype == 0)
+					if(s.mediatype == 0 && !s.isTemporary)
 						list.add(s.rowid);
 				}
 			}
@@ -450,7 +455,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		if(pref.sync_podcasts) {
 			if(pref.sync_all_podcasts) {
 				foreach(var s in lm.media()) {
-					if(s.mediatype == 1)
+					if(s.mediatype == 1 && !s.isTemporary)
 						list.add(s.rowid);
 				}
 			}
@@ -485,7 +490,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		if(pref.sync_audiobooks) {
 			if(pref.sync_all_audiobooks) {
 				foreach(var s in lm.media()) {
-					if(s.mediatype == 2)
+					if(s.mediatype == 2 && !s.isTemporary)
 						list.add(s.rowid);
 				}
 			}

@@ -289,6 +289,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		lm.start_file_operations("Syncing <b>" + getDisplayName() + "</b>...");
 		current_operation = "Syncing <b>" + getDisplayName() + "</b>...";
+		lm.lw.updateSensitivities();
 		this.list = list;
 		
 		try {
@@ -678,7 +679,6 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		if(this.list == null || this.list.size == 0)
 			return null;
 		
-		lm.start_file_operations(null);
 		currently_transferring = true;
 		transfer_cancelled = false;
 		index = 0;

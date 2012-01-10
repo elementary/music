@@ -1693,6 +1693,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		progress_notification(message, 0.0);
 		_doing_file_operations = true;
+		lw.updateSensitivities();
 		file_operations_started();
 		return true;
 	}

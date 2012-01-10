@@ -604,7 +604,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		welcomeScreen.set_visible(!showMainViews);
 		millerPane.set_visible(showMainViews);
 		welcomeScreen.set_sensitivity(0, !doingOps);
-		statusBar.set_visible(showMainViews);
+		statusBar.set_visible(showMainViews && showingMediaList);
 		
 		infoPanel.set_visible(showMainViews && showMore && !nullMedia);
 		infoPanelChooser.set_visible(showMainViews && !nullMedia);
@@ -1210,7 +1210,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(lm.doing_file_operations())
 			return;
 		
-		if(lm.media_count() > 0 || lm.playlist_count() > 0) {
+		if(lm.get_local_song_count() > 0 || lm.playlist_count() > 0) {
 			var smfc = new SetMusicFolderConfirmation(lm, this, folder);
 			smfc.finished.connect( (cont) => {
 				if(cont) {
