@@ -410,7 +410,7 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
-	public static void guess_content_type(GLib.File root, ref int audio, ref int other) {
+	/*public static void guess_content_type(GLib.File root, ref int audio, ref int other) {
 		GLib.FileInfo file_info = null;
 		
 		try {
@@ -431,7 +431,7 @@ public class BeatBox.FileOperator : Object {
 		catch(GLib.Error err) {
 			stdout.printf("Could not guess content types: %s\n", err.message);
 		}
-	}
+	}*/
 	
 	public string get_extension(string name) {
 		return name.slice(name.last_index_of(".", 0), name.length);
@@ -464,7 +464,13 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	public void import_files(LinkedList<string> files, ImportType type) {
+		foreach(string s in files)
+			stdout.printf("import_files: %s\n", s);
+		
+		tagger = new GStreamerTagger();
 		all_new_imports = new LinkedList<Media>();
+		new_imports.clear();
+		import_errors.clear();
 		import_type = type;
 		tagger.discoverer_import_medias(files);
 	}

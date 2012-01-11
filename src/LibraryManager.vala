@@ -48,6 +48,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private LinkedList<int> _permanents; // list of all local medias
 	private HashMap<string, DevicePreferences> _device_preferences;
 	int local_song_count;
+	public int current_view_size;
 	
 	private HashMap<int, int> _current; // id, media of current medias.
 	private HashMap<int, int> _current_shuffled;//list of id's yet to be played while on shuffle

@@ -549,8 +549,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					stdout.printf("doing miller update\n");
 					lw.miller.populateColumns( (o is Device) ? "device" : "", ((ViewWrapper)w).medias);
 				}
+				
 				lw.updateMillerColumns();
 				((ViewWrapper)w).set_statusbar_text();
+				lm.current_view_size = ((ViewWrapper)w).media_count;
 			}
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(true);

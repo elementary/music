@@ -456,13 +456,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	 * @param view The side tree to build it on
 	 */
 	private void buildSideTree() {
-		//var newRockReleases = store.newReleasesByTag("rock", 1);
-		//var la = store.getReleasesInRange("20110601", null, 1);
-		//var topTracks = store.topTracks("month", null, 1);
-		/*foreach(var artist in store.topArtists("week", null, null, 1)) {
-			stdout.printf("%s\n", artist.name);
-		}*/
-		
 		ViewWrapper vw;
 		
 		sideTree.addBasicItems();
@@ -594,10 +587,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_visible(!nullMedia || doingOps);
 		topDisplay.set_scale_sensitivity(!nullMedia);
 		
-		previousButton.set_sensitive(haveMedias);
-		playButton.set_sensitive(haveMedias);
-		nextButton.set_sensitive(haveMedias);
-		searchField.set_sensitive(showMainViews);
+		previousButton.set_sensitive(!nullMedia || lm.current_view_size > 0);
+		playButton.set_sensitive(!nullMedia || lm.current_view_size > 0);
+		nextButton.set_sensitive(!nullMedia || lm.current_view_size > 0);
+		searchField.set_sensitive(showMainViews && lm.current_view_size > 0);
 		viewSelector.set_sensitive(showMainViews);
 		
 		mainViews.set_visible(showMainViews);
@@ -1482,7 +1475,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		var files_dragged = new LinkedList<string>();
 		stdout.printf("dragged\n");
 		foreach (string uri in data.get_uris ()) {
-			files_dragged.add(uri);
+			files_dragged.add(File.new_for_uri(uri).get_path());
 		}
 		
 		lm.add_files_to_library(files_dragged);

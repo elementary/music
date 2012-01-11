@@ -11,8 +11,8 @@ public interface BeatBox.ContentView : Gtk.ScrolledWindow {
 	
 	public abstract void set_show_next(Collection<int> medias);
 	public abstract void populate_view();
-	public abstract void append_medias(LinkedList<int> new_medias);
-	public abstract void remove_medias(LinkedList<int> to_remove);
+	public abstract void append_medias(Collection<int> new_medias);
+	public abstract void remove_medias(Collection<int> to_remove);
 	public abstract void set_as_current_list(int media_id, bool is_initial);
 	public abstract void set_statusbar_text();
 	

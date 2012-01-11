@@ -184,13 +184,13 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
 	
-	public void append_medias(LinkedList<int> new_medias) {
+	public void append_medias(Collection<int> new_medias) {
 		radio_model.append_medias(new_medias, false);
 		radio_model.resort();
 		queue_draw();
 	}
 	
-	public void remove_medias(LinkedList<int> to_remove) {
+	public void remove_medias(Collection<int> to_remove) {
 		
 	}
 	

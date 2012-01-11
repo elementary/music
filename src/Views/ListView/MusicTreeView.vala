@@ -198,13 +198,13 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
 	
-	public void append_medias(LinkedList<int> new_medias) {
+	public void append_medias(Collection<int> new_medias) {
 		music_model.append_medias(new_medias, true);
 		music_model.resort();
 		queue_draw();
 	}
 	
-	public void remove_medias(LinkedList<int> to_remove) {
+	public void remove_medias(Collection<int> to_remove) {
 		
 	}
 	
@@ -356,8 +356,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			mediaRemove.set_visible(false);
 			mediaRemove.set_label("TODO: Remove from device");
 			importToLibrary.set_visible(true);
-			mediaMenuAddToPlaylist.set_visible(false);
-			mediaMenuNewPlaylist.set_visible(false);
+			//mediaMenuAddToPlaylist.set_visible(false);
+			//mediaMenuNewPlaylist.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.CDROM) {
 			mediaRemove.set_visible(false);

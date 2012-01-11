@@ -164,13 +164,18 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	
 	public uint get_length(string file_path) {
 		uint rv = 0;
-		TagLib.File tag_file = new TagLib.File(file_path);
+		TagLib.File tag_file;
+		
+		try {
+			tag_file = new TagLib.File(file_path);
+		}
+		catch {}
 		
 		if(tag_file != null && tag_file.audioproperties != null) {
 			try {
 				rv = tag_file.audioproperties.length;
 			}
-			finally { }
+			catch {}
 		}
 		
 		return rv;

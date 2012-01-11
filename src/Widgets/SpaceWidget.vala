@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski and Victor Eduardo for
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -26,7 +26,6 @@ using Gee;
 public class SpaceWidget : Gtk.ScrolledWindow {
 
     public signal void sync_clicked();
-    public signal void cancel_clicked();
 
     public static CssProvider style_provider;
 
@@ -39,12 +38,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         GREY
     }
 
-    private enum ItemPosition {
-        START,
-        END
-    }
-
-    private const string WIDGET_STYLE = """
+    private const string WIDGET_STYLESHEET = """
         .SpaceWidgetBase {
             background-image: -gtk-gradient (linear, left top, left bottom,
                                              from (shade (#e6e6e6, 0.96)),
@@ -151,10 +145,16 @@ public class SpaceWidget : Gtk.ScrolledWindow {
                                                to (#d5d3d1));
         }
 
+
     """;
 
-    private const int DEFAULT_HEIGHT = 200;
-    private const int DEFAULT_WIDTH = 450;
+    private enum ItemPosition {
+        START,
+        END
+    }
+
+    private const int MIN_HEIGHT = 120;
+    private const int MIN_WIDTH = 400;
     private const int DEFAULT_PADDING = 10;
 
     private HashMap<int, SpaceWidgetItem> items;
@@ -166,36 +166,42 @@ public class SpaceWidget : Gtk.ScrolledWindow {
 
     private EventBox widget;
 
+    private Box left_box;
     private Box legend_wrapper;
     private Box bar_wrapper;
     private Box full_bar_wrapper;
     private SpaceWidgetBarFullItem full_bar_item;
 
-    private Button action_button;
-    private const string SYNC_BUTTON_TEXT = "Sync";
-    private const string CANCEL_BUTTON_TEXT = "Cancel";
+    private Button sync_button;
+
+    private Label status_label;
 
     public SpaceWidget (double size) {
         // Wrapper properties
         this.set_shadow_type(Gtk.ShadowType.NONE);
-        this.min_content_width = DEFAULT_WIDTH;
-        this.min_content_height = DEFAULT_HEIGHT;
+        this.min_content_width = MIN_WIDTH;
+        this.min_content_height = MIN_HEIGHT;
+        this.set_border_width(0);
 
         widget = new Gtk.EventBox();
 
-        this.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
+        this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
         this.add_with_viewport(widget);
 
         style_provider = new CssProvider();
 
         try  {
-            style_provider.load_from_data (WIDGET_STYLE, -1);
+            style_provider.load_from_data (WIDGET_STYLESHEET, -1);
         } catch (Error e) {
             stderr.printf ("\nSpaceWidget: Couldn't load style provider.\n");
         }
 
         widget.get_style_context().add_class("SpaceWidgetBase");
         widget.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+        status_label = new Label ("");
+        status_label.use_markup = true;
+        status_label.halign = Gtk.Align.CENTER;
 
         var padding = new Box (Orientation.VERTICAL, 0);
         legend_wrapper = new Box (Orientation.HORIZONTAL, 5);
@@ -210,8 +216,6 @@ public class SpaceWidget : Gtk.ScrolledWindow {
 
         bar_wrapper = new Box (Orientation.HORIZONTAL, 0);
         full_bar_wrapper = new Box (Orientation.HORIZONTAL, 0);
-        full_bar_wrapper.set_no_show_all (true);
-        full_bar_wrapper.hide ();
 
         var bottom_box = new Box (Orientation.HORIZONTAL, 0);
 
@@ -223,31 +227,22 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         bottom_box.pack_start (bar_wrapper, false, true, 0);
         bottom_box.pack_start (full_bar_wrapper, false, true, 0);
 
-        var left_box = new Box (Orientation.VERTICAL, 3);
+        left_box = new Box (Orientation.VERTICAL, 3);
         left_box.pack_start (top_box, true, false, 0);
-        left_box.pack_end (bottom_box, true, false, 0);
+        //left_box.pack_end (bottom_box, true, false, 0);
+        left_box.pack_start (bottom_box, true, false, 0);
+        left_box.pack_end (status_label, false, false, 5);
 
-        action_button = new Button.with_label (SYNC_BUTTON_TEXT);
-        action_button.set_size_request (90, -1);
+        /** SYNC BUTTON **/
+        sync_button = new Button.with_label ("Sync");
+        sync_button.set_size_request (80, -1);
 
-        action_button.clicked.connect ( ()=> {
-            switch (action_button.get_label()) {
-                case CANCEL_BUTTON_TEXT:
-                    reset_action_button();
-                    cancel_clicked();
-                    break;
-                case SYNC_BUTTON_TEXT:
-                    sync_clicked();
-                    action_button.set_label (CANCEL_BUTTON_TEXT);
-                    break;
-                default:
-                    reset_action_button();
-                    break;
-            }
+        sync_button.clicked.connect ( ()=> {
+            sync_clicked();
         });
 
         var right_box = new Box (Orientation.VERTICAL, 3);
-        right_box.pack_end (action_button, false, true, 0);
+        right_box.pack_end (sync_button, false, true, 0);
 
         var right_box_padding = new Box (Orientation.VERTICAL, 0);
         right_box_padding.pack_start (new Box (Orientation.VERTICAL, 0), true, true, 0);
@@ -272,8 +267,8 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         add_item_at_pos ("Free", size, ItemColor.GREY, ItemPosition.END);
     }
 
-    public void reset_action_button () {
-        action_button.set_label (SYNC_BUTTON_TEXT);
+    public void set_sync_button_sensitive (bool val) {
+        sync_button.sensitive = val;
     }
 
     public void set_size (double size) {
@@ -293,9 +288,21 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         return add_item_at_pos (name, size, color, ItemPosition.START);
     }
 
+    public void update_item_size (int index, double size) {
+        SpaceWidgetItem? item = items.get(index);
+
+        // Checking if there's enough freespace for the change
+        if (item != null && (item.size + free_space_size) >= size) {
+            item.set_size(size);
+            update_bar_item_sizes();
+        } else {
+            stdout.printf("\nERROR: SpaceWidget: Couldn't update item [index = %d]. Not enough free space.\n", index);
+        }
+    }
+
     private int add_item_at_pos (string name, double size, ItemColor color, ItemPosition pos) {
         if (size > free_space_size) {
-            stdout.printf("\nERROR: SpaceWidget: Couldn't add item %s. Not enough free space.\n", name);
+            stdout.printf("\nERROR: SpaceWidget: Couldn't add '%s' item. Not enough free space.\n", name);
             return -1; // ERROR
         }
 
@@ -316,20 +323,10 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         return index;
     }
 
-    public void update_item_size (int index, double size) {
-        SpaceWidgetItem? item = items.get(index);
-
-        // Checking if there's enough freespace for the change
-        if (item != null && (item.size + free_space_size) >= size) {
-            item.set_size(size);
-            update_bar_item_sizes();
-        }
-    }
-
     private void update_bar_item_sizes () {
         int item_list_size = items.size;
-        int actual_width = get_allocated_width ();
-        int bar_width = actual_width * 8 / 10;
+        int actual_width = left_box.get_allocated_width ();
+        int bar_width = (actual_width * 7) / 10;
 
         if (item_list_size < 1)
             return;
@@ -376,6 +373,11 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         free_space_item.set_size (free_space_size);
         int width = (int) ((free_space_item.size/total_size) * bar_width);
         free_space_item.bar_item.set_size (width);
+
+        // Setting bottom label text
+        double used = total_size - free_space_size;
+        double p = used / total_size * 100.0;
+        status_label.set_text("Using %.1f of %.1f GB (%.0f%)".printf(used/1000.0, total_size/1000.0, p));
     }
 
     private void show_full_bar_item (bool show_item, ItemColor? color) {
@@ -405,7 +407,7 @@ private class SpaceWidgetBarItem : Gtk.Button {
     public SpaceWidget.ItemColor color;
     public int hsize = 0;
 
-    private const int BAR_DEFAULT_HEIGHT = 23;
+    private const int BAR_HEIGHT = 23;
 
     public SpaceWidgetBarItem (SpaceWidget.ItemColor color, int hsize) {
         this.color = color;
@@ -435,11 +437,11 @@ private class SpaceWidgetBarItem : Gtk.Button {
                 break;
         }
 
-        this.sensitive = false;
+        //this.sensitive = false;
         style.add_class ("SpaceBarItem");
         style.add_provider (SpaceWidget.style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-        this.set_size_request (0, BAR_DEFAULT_HEIGHT);
+        this.set_size_request (0, BAR_HEIGHT);
     }
 
     public void set_size (int size) {
@@ -448,7 +450,7 @@ private class SpaceWidgetBarItem : Gtk.Button {
 
         this.hsize = size;
 
-        this.set_size_request (hsize, BAR_DEFAULT_HEIGHT);
+        this.set_size_request (hsize, BAR_HEIGHT);
 
         if (size < 1 && this.visible) {
             this.hide ();
@@ -472,7 +474,7 @@ private class SpaceWidgetBarFullItem : SpaceWidgetBarItem {
 private class LegendItem : Gtk.Button {
     public SpaceWidget.ItemColor color;
 
-    private const int DIAMETER = 20;
+    private const int DEFAULT_DIAMETER = 20;
 
     public LegendItem (SpaceWidget.ItemColor color) {
         this.color = color;
@@ -505,7 +507,7 @@ private class LegendItem : Gtk.Button {
         style.add_class ("LegendItem");
         style.add_provider (SpaceWidget.style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
         this.sensitive = false;
-        this.set_diameter (DIAMETER);
+        this.set_diameter (DEFAULT_DIAMETER);
     }
 
     public void set_diameter (int diameter) {
@@ -526,7 +528,7 @@ private class SpaceWidgetItem : GLib.Object {
     private Gtk.Label size_label;
 
     /** Base Unit: Megabytes (MB) **/
-    const double MULT = 1024;
+    const double MULT = 1000;
     const double MB = 1;
     const double GB = MULT * MB;
     const double TB = MULT * GB;

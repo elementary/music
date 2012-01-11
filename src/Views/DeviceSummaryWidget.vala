@@ -20,7 +20,6 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	
 	Gtk.Image deviceImage;
 	SpaceWidget spaceWidget;
-	Button syncButton;
 	
 	int music_index;
 	int podcast_index;
@@ -207,7 +206,6 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		
 		deviceName.changed.connect(deviceNameChanged);
 		spaceWidget.sync_clicked.connect(syncClicked);
-		spaceWidget.cancel_clicked.connect(cancelClicked);
 		dev.sync_finished.connect(sync_finished);
 		
 		show_all();
@@ -406,11 +404,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	
 	void sync_finished(bool success) {
 		refreshSpaceWidget();
-		syncButton.sensitive = true;
-	}
-	
-	public void cancelClicked() {
-		dev.cancel_sync();
+		spaceWidget.set_sync_button_sensitive(true);
 	}
 	
 	public void syncClicked() {
@@ -542,7 +536,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				swd.show();
 			}
 			else {
-				syncButton.sensitive = false;
+				spaceWidget.set_sync_button_sensitive(false);
 				dev.sync_medias(list);
 			}
 		}

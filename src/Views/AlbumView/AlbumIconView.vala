@@ -156,15 +156,33 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.set_columns((alloc.width - (icons.margin * 2))/( icons.get_item_width()));
 	}
 	
-	public void append_medias(LinkedList<int> new_medias) {
-		/*radio_model.append_medias(new_medias, false);
-		radio_model.set_sort_column_id(sort_col, sort_dir);
+	public void append_medias(Collection<int> new_medias) {
+		_showing_medias.add_all(new_medias);
 		
-		if(lm.media_info.media != null)
-			radio_model.updateMedia(lm.media_info.media.rowid, get_is_current());*/
+		var toShowS = new LinkedList<Media>();
+        foreach(int i in new_medias)
+			toShowS.add(lm.media_from_id(i));
+        
+        // first sort the medias so we know they are grouped by artists, then albums
+		toShowS.sort((CompareFunc)mediaCompareFunc);
+		
+		LinkedList<int> albs = new LinkedList<int>();
+		string previousAlbum = "";
+		
+		foreach(Media s in toShowS) {
+			if(s.album != previousAlbum) {
+				albs.add(s.rowid);
+				
+				previousAlbum = s.album;
+			}
+		}
+		
+		model.appendMedias(albs, false);
+		//model.resort();
+		queue_draw();
 	}
 	
-	public void remove_medias(LinkedList<int> to_remove) {
+	public void remove_medias(Collection<int> to_remove) {
 		
 	}
 	

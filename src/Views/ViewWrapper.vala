@@ -214,8 +214,14 @@ public class BeatBox.ViewWrapper : VBox {
 		this.medias = all_medias;
 		media_count = medias.size;
 		
-		list.append_medias(new_medias);
-		albumView.append_medias(new_medias);
+		Collection<int> potentialShowing = new LinkedList<int>();
+		Collection<int> potentialShowingAlbum = new LinkedList<int>();
+		lm.do_search(lw.searchField.get_text(), hint,
+				lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
+				new_medias, ref potentialShowing, ref potentialShowingAlbum);
+		
+		list.append_medias(potentialShowing);
+		albumView.append_medias(potentialShowingAlbum);
 			
 	}
 	

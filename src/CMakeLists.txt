@@ -5,9 +5,9 @@ include(ValaPrecompile)
 
 
 set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
-set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/beat-box")
-set(ICON_FOLDER "${CMAKE_INSTALL_PREFIX}/share/beat-box/icons")
-set(GETTEXT_PACKAGE "beat-box")
+set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/beatbox")
+set(ICON_FOLDER "${CMAKE_INSTALL_PREFIX}/share/beatbox/icons")
+set(GETTEXT_PACKAGE "beatbox")
 set(RELEASE_NAME "Acolyte")
 set(VERSION "0.3")
 set(VERSION_INFO "Pre-Release")
