@@ -335,15 +335,16 @@ public class BeatBox.LibraryManager : GLib.Object {
 		fo.resetProgress(items);
 		Timeout.add(100, doProgressNotificationWithTimeout);
 		
-		var new_medias = new LinkedList<Media>();
-		var not_imported = new LinkedList<string>();
+		//var new_medias = new LinkedList<Media>();
+		//var not_imported = new LinkedList<string>();
 		
-		fo.get_music_files_set(files, ref new_medias, ref not_imported);
+		//fo.get_music_files_set(files, ref new_medias, ref not_imported);
+		fo.worker.import_files(files);
 		
 		Idle.add( () => { 
-			add_medias(new_medias, true);
-			music_added(not_imported);
-			finish_file_operations();
+			//add_medias(new_medias, true);
+			//music_added(not_imported);
+			//finish_file_operations();
 			
 			return false;
 		});
@@ -1596,7 +1597,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(s.album != previousAlbum) {
 				
 				if(_album_art.get(s.artist+s.album) == null) {
-					Gdk.Pixbuf? pix = tagger.get_embedded_art(s);
+					Gdk.Pixbuf? pix = null;//tagger.get_embedded_art(s);
 					
 					if(!s.getAlbumArtPath().contains("/usr/share/") && pix == null) {
 						try {

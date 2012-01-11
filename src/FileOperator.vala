@@ -28,6 +28,7 @@ public class BeatBox.FileOperator : Object {
 	private BeatBox.LibraryManager lm;
 	private BeatBox.Settings settings;
 	public GStreamerTagger tagger;
+	public MetadataWorker worker;
 	
 	bool inThread;
 	LinkedList<Media> toSave;
@@ -48,7 +49,7 @@ public class BeatBox.FileOperator : Object {
 		toSave = new LinkedList<Media>();
 		cancelled = false;
 		cancelSent = false;
-		tagger = new GStreamerTagger();
+		worker = new MetadataWorker(lm, settings);
 		
 		lm.progress_cancel_clicked.connect( () => { cancelled = true; } );
 	}
@@ -422,7 +423,7 @@ public class BeatBox.FileOperator : Object {
 		
 		
 		
-		var s = tagger.discoverer_import_media(file_path);
+		var s = new Media("");//tagger.taglib_import_media(file_path);
 		
 		//if(s != null)
 			//s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
@@ -783,5 +784,80 @@ public class BeatBox.FileOperator : Object {
 		lm.file_operations_done();
 		
 		return rv;
+	}
+}
+
+public class BeatBox.MetadataJob : Object {
+	public enum JobType {
+		IMPORT,
+		ART_FETCH
+	}
+	
+	public MetadataJob(string path, JobType type) {
+		this.path = path;
+		this.job_type = type;
+	}
+	
+	public string path { get; set; default=""; }
+	public JobType job_type { get; set; default=JobType.IMPORT; }
+}
+
+public class BeatBox.MetadataWorker : Object {
+	private BeatBox.LibraryManager lm;
+	public GStreamerTagger tagger;
+	
+	LinkedList<Media> new_imports;
+	LinkedList<string> import_errors;
+	HashMap<string, MetadataJob> jobs;
+	MetadataJob current_job;
+	Media being_imported;
+	
+	public MetadataWorker(BeatBox.LibraryManager lmm, BeatBox.Settings sett) {
+		lm = lmm;
+		tagger = new GStreamerTagger();
+		new_imports = new LinkedList<Media>();
+		import_errors = new LinkedList<string>();
+		jobs = new HashMap<string, MetadataJob>();
+		
+		tagger.media_imported.connect(media_imported);
+		tagger.import_error.connect(import_error);
+		tagger.queue_finished.connect(queue_finished);
+	}
+	
+	public void import_files(LinkedList<string> files) {
+		tagger.discoverer_import_medias(files);
+		
+		/*foreach(string s in files) {
+			if(jobs.get(s) == null) {
+				stdout.printf("queued %s\n", s);
+				MetadataJob j = new MetadataJob(s, MetadataJob.JobType.IMPORT);
+				tagger.discoverer_import_media(s);
+			}
+			else {
+				stdout.printf("Not going to import %s: already queued\n", s);
+			}
+		}*/
+	}
+	
+	void media_imported(Media m) {
+		new_imports.add(m);
+		++lm.fo.index;
+		
+		if(new_imports.size >= 500) {
+			stdout.printf("adding medias\n");
+			lm.add_medias(new_imports, true); // give user some feedback
+			stdout.printf("media added\n");
+			new_imports.clear();
+		}
+	}
+	
+	void import_error(string file) {
+		import_errors.add(file);
+	}
+	
+	void queue_finished() {
+		lm.add_medias(new_imports, true);
+		lm.music_added(import_errors);
+		lm.finish_file_operations();
 	}
 }
