@@ -17,6 +17,7 @@ add_definitions(-include config.h)
 
 find_package(PkgConfig)
 pkg_check_modules(DEPS
+    REQUIRED
     glib-2.0
     gtk+-3.0
     gdk-x11-3.0
