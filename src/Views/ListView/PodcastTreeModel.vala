@@ -444,6 +444,11 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		}
 	}
 	
+	public void resort() {
+		rows.sort_iter(sequenceIterCompareFunc);
+		sort_column_changed();
+	}
+	
 	/** Sets the comparison function used when sorting to be sort_func. **/
 	public void set_sort_func(int sort_column_id, owned TreeIterCompareFunc sort_func) {
 		column_sorts.set(sort_column_id, new CompareFuncHolder(sort_func));

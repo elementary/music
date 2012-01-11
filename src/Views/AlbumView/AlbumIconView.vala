@@ -156,6 +156,18 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.set_columns((alloc.width - (icons.margin * 2))/( icons.get_item_width()));
 	}
 	
+	public void append_medias(LinkedList<int> new_medias) {
+		/*radio_model.append_medias(new_medias, false);
+		radio_model.set_sort_column_id(sort_col, sort_dir);
+		
+		if(lm.media_info.media != null)
+			radio_model.updateMedia(lm.media_info.media.rowid, get_is_current());*/
+	}
+	
+	public void remove_medias(LinkedList<int> to_remove) {
+		
+	}
+	
 	/** Goes through the hashmap and generates html. If artist,album, or genre
 	 * is set, makes sure that only items that fit those filters are
 	 * shown

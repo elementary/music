@@ -175,7 +175,7 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	void medias_added(LinkedList<int> ids) {
-		bool refreshPod = hint == ViewWrapper.Hint.PODCAST;
+		/*bool refreshPod = hint == ViewWrapper.Hint.PODCAST;
 		bool refreshMusic = hint == ViewWrapper.Hint.MUSIC;
 		
 		foreach(int i in ids) {
@@ -185,7 +185,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		if(refreshPod)
 			doUpdate(currentView, lm.podcast_ids(), true, true);
-		/*else if(refreshMusic)
+		else if(refreshMusic)
 			doUpdate(currentView, lm.media_ids(), true, true);*/
 	}
 	
@@ -204,6 +204,19 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		albumView.set_show_next(empty);
 		albumView.populate_view();
+	}
+	
+	public void add_medias(LinkedList<int> new_medias) {
+		var all_medias = new LinkedList<int>();
+		all_medias.add_all(medias);
+		all_medias.add_all(new_medias);
+		
+		this.medias = all_medias;
+		media_count = medias.size;
+		
+		list.append_medias(new_medias);
+		albumView.append_medias(new_medias);
+			
 	}
 	
 	/** Updates the displayed view and its content

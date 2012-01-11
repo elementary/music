@@ -122,10 +122,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.lm.music_imported.connect(musicImported);
 		this.lm.music_rescanned.connect(musicRescanned);
 		this.lm.progress_notification.connect(progressNotification);
+		this.lm.medias_added.connect(medias_added);
+		this.lm.medias_updated.connect(medias_updated);
 		this.lm.medias_removed.connect(medias_removed);
 		this.lm.media_played.connect(media_played);
 		this.lm.playback_stopped.connect(playback_stopped);
-		this.lm.medias_updated.connect(medias_updated);
 		this.lm.dm.device_added.connect(device_added);
 		this.lm.dm.device_removed.connect(device_removed);
 		this.similarMedias.similar_retrieved.connect(similarRetrieved);
@@ -623,18 +624,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			topDisplay.set_label_markup(message);
 		
 		topDisplay.set_progress_value(progress);
-		
-		// if we are adding medias, refresh periodically
-		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-		if(lm.media().size - vw.media_count >= 500) {
-			stdout.printf("doing update!\n");
-			vw.doUpdate(vw.currentView, lm.media_ids(), true, true);
-			stdout.printf("doing update!\n");
-			miller.populateColumns("", lm.media_ids());
-			stdout.printf("doing update!\n");
-			updateSensitivities();
-			stdout.printf("doing update!\n");
-		}
 	}
 	
 	public bool updateCurrentMedia() {
@@ -792,6 +781,29 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(lm.media_info.media != null && ids.contains(lm.media_info.media.rowid)) {
 			updateInfoLabel();
 		}
+	}
+	
+	void medias_added(LinkedList<int> ids) {
+		var new_songs = new LinkedList<int>();
+		var new_podcasts = new LinkedList<int>();
+		
+		foreach(int i in ids) {
+			if(lm.media_from_id(i).mediatype == 0)
+				new_songs.add(i);
+			else if(lm.media_from_id(i).mediatype == 1)
+				new_podcasts.add(i);
+		}
+		
+		stdout.printf("appending...\n");
+		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
+		vw.add_medias(new_songs);
+		
+		vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
+		vw.add_medias(new_podcasts);
+		stdout.printf("appended\n");
+		
+		miller.populateColumns("", lm.media_ids());
+		updateSensitivities();
 	}
 	
 	public void* lastfm_track_thread_function () {

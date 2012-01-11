@@ -988,35 +988,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			if(paths.size > 0) {
 				try {
 					lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
+					lm.fo.import_from_playlist_file_info(name, paths);
 					lw.updateSensitivities();
-					
-					stdout.printf("stv 900\n");
-					Thread.create<void*>( () => {
-						
-						stdout.printf("stv 901\n");
-						var new_medias = new LinkedList<Media>();
-						var not_imported = new LinkedList<string>();
-						stdout.printf("stv 902\n");
-						Playlist p = lm.fo.import_from_playlist_file_info(name, paths, ref new_medias, ref not_imported);
-						stdout.printf("stv 903\n");
-						
-						Idle.add( () => {
-							stdout.printf("stv 904\n");
-							
-							lm.music_imported(new_medias, not_imported);
-							lm.update_medias(new_medias, false, false);
-							lm.finish_file_operations();
-							
-							if(p != null) {
-								PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
-								pnw.playlist_saved.connect(playlistNameWindowSaved);
-							}
-							
-							return false;
-						});
-						
-						return null;
-					}, false);
 				}
 				catch(Error err) {
 					stdout.printf("Could not create thread to import playlist: %s\n", err.message);

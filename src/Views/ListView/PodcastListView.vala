@@ -193,6 +193,16 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
 	
+	public void append_medias(LinkedList<int> new_medias) {
+		podcast_model.append_medias(new_medias, false);
+		podcast_model.resort();
+		queue_draw();
+	}
+	
+	public void remove_medias(LinkedList<int> to_remove) {
+		
+	}
+	
 	public void populate_view() {
 		/** NOTE: This could have a bad effect if user coincidentally
 		 * searches for something that has same number of results as 

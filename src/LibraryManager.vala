@@ -304,15 +304,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void set_music_folder(string folder) {
 		if(start_file_operations("Importing music from <b>" + folder + "</b>...")) {
-			stdout.printf("a\n");
 			lw.resetSideTree(true);
 			lw.sideTree.removeAllStaticPlaylists();
-			stdout.printf("a\n");
 			clear_medias();
 			_queue.clear();
-			stdout.printf("a\n");
 			lw.updateSensitivities();
-			stdout.printf("a\n");
 			
 			settings.setMusicFolder(folder);
 			
@@ -326,28 +322,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void* set_music_thread_function () {
-		stdout.printf("b\n");
 		var file = GLib.File.new_for_path(settings.getMusicFolder());
 		LinkedList<string> files = new LinkedList<string>();
 		
 		var items = fo.count_music_files(file, ref files);
 		stdout.printf("found %d items to import\n", items);
+		
 		fo.resetProgress(items);
 		Timeout.add(100, doProgressNotificationWithTimeout);
-		
-		//var new_medias = new LinkedList<Media>();
-		//var not_imported = new LinkedList<string>();
-		
-		//fo.get_music_files_set(files, ref new_medias, ref not_imported);
-		fo.worker.import_files(files);
-		
-		Idle.add( () => { 
-			//add_medias(new_medias, true);
-			//music_added(not_imported);
-			//finish_file_operations();
-			
-			return false;
-		});
+		fo.import_files(files, FileOperator.ImportType.SET);
 		
 		return null;
 	}
@@ -366,36 +349,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void* add_files_to_library_thread () {
-		//music_counted(temp_add_files.size);
 		fo.resetProgress(temp_add_files.size - 1);
 		Timeout.add(100, doProgressNotificationWithTimeout);
-		
-		var new_medias = new LinkedList<Media>();
-		var not_imported = new LinkedList<string>();
-		fo.get_music_files_individually(temp_add_files, ref new_medias, ref not_imported);
-		
-		bool was_cancelled = fo.cancelled;
-		fo.resetProgress(new_medias.size);
-		if(settings.getCopyImportedMusic())
-			progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
-		
-		Timeout.add(100, doProgressNotificationWithTimeout);
-		
-		foreach(Media s in new_medias) {
-			if(settings.getCopyImportedMusic() && !was_cancelled)
-				fo.update_file_hierarchy(s, false, false);
-			
-			fo.index++;
-		}
-		
-		Idle.add( () => { 
-			add_medias(new_medias, true);
-			music_imported(new_medias, not_imported);
-			update_medias(new_medias, false, false);
-			finish_file_operations();
-			
-			return false; 
-		});
+		fo.import_files(temp_add_files, FileOperator.ImportType.IMPORT);
 		
 		return null;
 	}
@@ -416,36 +372,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void* add_folder_to_library_thread () {
 		var file = GLib.File.new_for_path(temp_add_folder);
 		var files = new LinkedList<string>();
+		
 		var items = fo.count_music_files(file, ref files);
-		//music_counted(items);
 		fo.resetProgress(items);
 		Timeout.add(100, doProgressNotificationWithTimeout);
-		
-		var new_medias = new LinkedList<Media>();
-		var not_imported = new LinkedList<string>();
-		fo.get_music_files_folder(file, ref new_medias, ref not_imported);
-		
-		bool was_cancelled = fo.cancelled;
-		fo.resetProgress(new_medias.size);
-		Timeout.add(100, doProgressNotificationWithTimeout);
-		
-		progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
-		
-		foreach(Media s in new_medias) {
-			if(settings.getCopyImportedMusic() && !was_cancelled)
-				fo.update_file_hierarchy(s, false, false);
-			
-			fo.index++;
-		}
-		
-		Idle.add( () => { 
-			add_medias(new_medias, true);
-			music_imported(new_medias, not_imported);
-			update_medias(new_medias, false, false);
-			finish_file_operations();
-			
-			return false; 
-		});
+		fo.import_files(files, FileOperator.ImportType.IMPORT);
 		
 		return null;
 	}
@@ -463,30 +394,43 @@ public class BeatBox.LibraryManager : GLib.Object {
         
 	public void* rescan_music_thread_function () {
 		LinkedList<string> paths = new LinkedList<string>();
-		LinkedList<Media> removed = new LinkedList<Media>();
+		LinkedList<Media> to_remove = new LinkedList<Media>();
+		LinkedList<string> to_import = new LinkedList<string>();
+		fo.resetProgress(100);
 		
 		string music_folder = settings.getMusicFolder();
 		foreach(Media s in _media.values) {
 			if(!s.isTemporary && !s.isPreview && s.file.has_prefix(music_folder))
 				paths.add(s.file);
+				
 			if(s.file.has_prefix(music_folder) && !File.new_for_path(s.file).query_exists())
-				removed.add(s);
+				to_remove.add(s);
+		}
+		fo.index = 5;
+		
+		// get a list of the current files
+		var files = new LinkedList<string>();
+		var items = fo.count_music_files(File.new_for_path(music_folder), ref files);
+		fo.index = 10;
+		
+		foreach(string s in files) {
+			if(!paths.contains(s))
+				to_import.add(s);
 		}
 		
-		fo.resetProgress(paths.size);
-		Timeout.add(100, doProgressNotificationWithTimeout);
-		
-		var not_imported = new LinkedList<string>();
-		var new_medias = new LinkedList<Media>();
-		fo.rescan_music(GLib.File.new_for_path(music_folder), ref paths, ref not_imported, ref new_medias);
-		
+		if(to_import.size > 0) {
+			fo.resetProgress(to_import.size);
+			Timeout.add(100, doProgressNotificationWithTimeout);
+			fo.import_files(to_import, FileOperator.ImportType.RESCAN);
+		}
+		else {
+			fo.index = 90;
+		}
 		Idle.add( () => {
-			if(!fo.cancelled)	remove_medias(removed, false);
-			add_medias(new_medias, true);
-			music_rescanned(new_medias, not_imported); 
-			update_medias(new_medias, false, false);
-			
-			finish_file_operations();
+			if(!fo.cancelled)	remove_medias(to_remove, false);
+			if(to_import.size == 0) {
+				finish_file_operations();
+			}
 			
 			return false; 
 		});
@@ -1318,7 +1262,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// check that the file exists
 		if(!GLib.File.new_for_path(m.file).query_exists() && (settings.getMusicFolder() != "" && m.file.contains(settings.getMusicFolder()))) {
-			m.unique_status_image = icons.process_error_icon.render(IconSize.MENU, lw.sideTree.getWidget(lw.sideTree.library_music_iter).get_style_context());
+			m.unique_status_image = icons.process_error_icon.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list.get_style_context());
 			m.location_unknown = true;
 			lw.media_not_found(id);
 			stopPlayback();

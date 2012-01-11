@@ -28,7 +28,6 @@ public class BeatBox.FileOperator : Object {
 	private BeatBox.LibraryManager lm;
 	private BeatBox.Settings settings;
 	public GStreamerTagger tagger;
-	public MetadataWorker worker;
 	
 	bool inThread;
 	LinkedList<Media> toSave;
@@ -42,6 +41,19 @@ public class BeatBox.FileOperator : Object {
 	public bool cancelled; // set to true if user cancels
 	bool cancelSent; // needed to not send cancel signal twice (in recursive function)
 	
+	ImportType import_type;
+	Playlist new_playlist;
+	LinkedList<Media> new_imports;
+	LinkedList<Media> all_new_imports;
+	LinkedList<string> import_errors;
+	
+	public enum ImportType  {
+		SET,
+		RESCAN,
+		PLAYLIST,
+		IMPORT
+	}
+	
 	public FileOperator(BeatBox.LibraryManager lmm, BeatBox.Settings sett) {
 		lm = lmm;
 		settings = sett;
@@ -49,9 +61,17 @@ public class BeatBox.FileOperator : Object {
 		toSave = new LinkedList<Media>();
 		cancelled = false;
 		cancelSent = false;
-		worker = new MetadataWorker(lm, settings);
+		new_imports = new LinkedList<Media>();
+		import_errors = new LinkedList<string>();
+		tagger = new GStreamerTagger();
 		
-		lm.progress_cancel_clicked.connect( () => { cancelled = true; } );
+		tagger.media_imported.connect(media_imported);
+		tagger.import_error.connect(import_error);
+		tagger.queue_finished.connect(queue_finished);
+		lm.progress_cancel_clicked.connect( () => { 
+			cancelled = true;
+			tagger.cancel_operations();
+		} );
 	}
 	
 	public void resetProgress(int items) {
@@ -133,302 +153,6 @@ public class BeatBox.FileOperator : Object {
 		}
 		
 		return artPath;
-	}
-	
-	public void get_music_files_set(LinkedList<string> files, ref LinkedList<Media> medias, ref LinkedList<string> not_imported) {
-		HashMap<string, string> album_art = new HashMap<string, string>(); // album folder, album art file path
-		
-		// go through the file list that we got from count_music_files. can assume has proper extension type
-		while(!cancelled && files.size > 0) {
-			string file_path = files.poll();
-			
-			stdout.printf("getting glib file\n");
-			var file = GLib.File.new_for_path(file_path);
-			stdout.printf("got glib file\n");
-			
-			//if(index % 100 == 0)
-				tagger = new GStreamerTagger(); // gst.discoverer slows down after ~500 medias. create a new instance.
-			
-			string art_path = "";
-			//if( (art_path = album_art.get(file.get_parent().get_path())) == null)
-			//	art_path = get_best_album_art_file(file);
-			
-			stdout.printf("importing song...\n");
-			Media s = import_media(file_path);
-			stdout.printf("song imported\n");
-			
-			if(s != null) {
-				medias.add(s);
-				
-				if(medias.size % 500 == 0) {
-					stdout.printf("adding medias\n");
-					lm.add_medias(medias, true); // give user some feedback
-					stdout.printf("media added\n");
-					medias.clear();
-				}
-				
-				s.setAlbumArtPath(art_path);
-			}
-			else
-				not_imported.add(file_path);
-			
-			++index;
-		}
-		
-		
-		
-		/*GLib.FileInfo file_info = null;
-		string artPath = "";
-		
-		if(cancelled) {
-			return;
-		}
-		
-		try {
-			// get a list of all images in folder as potential album art choices
-			var image_list = new LinkedList<string>();
-			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-			while ((file_info = enumerator.next_file ()) != null) {
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
-					image_list.add(file_info.get_name());
-				}
-			}
-			
-			// now choose one based on priorities
-			foreach(string sU in image_list) {
-				var s = sU.down();
-				if(s.contains("folder.")) {
-					artPath = music_folder.get_path() + "/" + sU;
-					break;
-				}
-				else if(s.contains("cover."))
-					artPath = music_folder.get_path() + "/" + sU;
-				else if(!artPath.contains("cover.") && s.contains("album."))
-					artPath = music_folder.get_path() + "/" + sU;
-				else if(artPath == "")
-					artPath = music_folder.get_path() + "/" + sU;
-			}
-			
-			enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-			while ((file_info = enumerator.next_file ()) != null) {
-				var file_path = music_folder.get_path() + "/" + file_info.get_name();
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
-					++index;
-					
-					Media s = import_media(file_path);
-					
-					if(s != null) {
-						medias.add(s);
-						
-						if(medias.size % 500 == 0) {
-							lm.add_medias(medias, true);
-							
-							medias.clear();
-						}
-						
-						s.setAlbumArtPath(artPath);
-					}
-					else
-						not_imported.add(file_path);
-				}
-				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					get_music_files_set(GLib.File.new_for_path(file_path), ref medias, ref not_imported);
-				}
-			}
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not get music: %s\n", err.message);
-		}*/
-	}
-	
-	public void get_music_files_folder(GLib.File music_folder, ref LinkedList<Media> medias, ref LinkedList<string> not_imported) {
-		GLib.FileInfo file_info = null;
-		string artPath = "";
-		
-		if(cancelled) {
-			return;
-		}
-		
-		try {
-			/* get a list of all images in folder as potential album art choices */
-			var image_list = new LinkedList<string>();
-			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-			while ((file_info = enumerator.next_file ()) != null) {
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
-					image_list.add(file_info.get_name());
-				}
-			}
-			
-			/* now choose one based on priorities */
-			foreach(string sU in image_list) {
-				var s = sU.down();
-				if(s.contains("folder.")) {
-					artPath = music_folder.get_path() + "/" + sU;
-					break;
-				}
-				else if(s.contains("cover."))
-					artPath = music_folder.get_path() + "/" + sU;
-				else if(!artPath.contains("cover.") && s.contains("album."))
-					artPath = music_folder.get_path() + "/" + sU;
-				else if(artPath == "")
-					artPath = music_folder.get_path() + "/" + sU;
-			}
-				
-			enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-			while ((file_info = enumerator.next_file ()) != null) {
-				var file_path = music_folder.get_path() + "/" + file_info.get_name();
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
-					++index;
-					
-					Media s = import_media(file_path);
-					
-					if(s != null) {
-						medias.add(s);
-						s.setAlbumArtPath(artPath);
-					}
-					else
-						not_imported.add(file_path);
-				}
-				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					get_music_files_folder(GLib.File.new_for_path(file_path), ref medias, ref not_imported);
-				}
-			}
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not get music: %s\n", err.message);
-		}
-	}
-	
-	public void get_music_files_individually(LinkedList<string> paths, ref LinkedList<Media> medias, ref LinkedList<string> not_imported) {
-		foreach(string file in paths) {
-			
-			if(cancelled) {
-				return;
-			}
-			
-			try {
-				GLib.File gio_file = GLib.File.new_for_path(file);
-				FileInfo file_info = gio_file.query_info("*", FileQueryInfoFlags.NONE);
-				string file_path = gio_file.get_path();
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
-					++index;
-					
-					Media s = import_media(file_path);
-					
-					if(s != null) {
-						medias.add(s);
-					}
-					else
-						not_imported.add(file_path);
-				}
-				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					get_music_files_folder(GLib.File.new_for_path(file_path), ref medias, ref not_imported);
-				}
-			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not get media %s: %s\n", file, err.message);
-			}
-		}
-	}
-        
-	/** rescans the music folder to update the db to the folder situation.
-	 * If media is in folder, and in db, re-add
-	 * If media is not in folder and in db,remove
-	 * If media is in both, do nothing.
-	 * @param music_folder The folder to rescan
-	 * @param current_media_paths Paths of files already in db. once file
-	 * is re-added, set string to "ADDED". at end, remove all medias that
-	 * are not re-added.
-	 * @return file paths of medias no longer available. TODO: should out that
-	 */
-	public void rescan_music(GLib.File music_folder, ref LinkedList<string> current_media_paths, ref LinkedList<string> not_imported, ref LinkedList<Media> new_medias) {
-		GLib.FileInfo file_info = null;
-		string current_artist = "";
-		string current_album = ""; // these are purposely reset on recursive call
-		string artPath = "";
-		
-		if(cancelled) {
-			return;
-		}
-		
-		int medias_added = 0;
-		try {
-			/* get a list of all images in folder as potential album art choices */
-			var image_list = new LinkedList<string>();
-			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-			while ((file_info = enumerator.next_file ()) != null) {
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
-					image_list.add(file_info.get_name());
-				}
-			}
-			
-			/* now choose one based on priorities */
-			foreach(string sU in image_list) {
-				var s = sU.down();
-				if(s.contains("folder.")) {
-					artPath = music_folder.get_path() + "/" + sU;
-					break;
-				}
-				else if(s.contains("cover."))
-					artPath = music_folder.get_path() + "/" + sU;
-				else if(!artPath.contains("cover.") && s.contains("album."))
-					artPath = music_folder.get_path() + "/" + sU;
-				else if(artPath == "")
-					artPath = music_folder.get_path() + "/" + sU;
-			}
-				
-			enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-			while ((file_info = enumerator.next_file ()) != null) {
-				var file_path = music_folder.get_path() + "/" + file_info.get_name();
-				
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_file_type(file_info.get_name())) {
-					if(current_media_paths.contains(file_path)) {
-						current_media_paths.remove(file_path);
-						
-						++index;
-					}
-					else if(!current_media_paths.contains(file_path)) {
-						Media s = import_media(file_path);
-						
-						if(s != null) {
-							new_medias.add(s);
-							current_artist = s.artist;
-							current_album = s.album;
-							
-							s.setAlbumArtPath(artPath);
-						}
-						else
-							not_imported.add(file_path);
-						
-						++medias_added;
-					}
-				}
-				else if(file_info.get_file_type() == GLib.FileType.DIRECTORY){
-					rescan_music(GLib.File.new_for_path(file_path), ref current_media_paths, ref not_imported, ref new_medias);
-				}
-			}
-		}
-		catch(GLib.Error err) {
-			stdout.printf("Could not rescan music folder: %s\n", err.message);
-		}
-	}
-	
-	public Media? import_media(string file_path) {
-		
-		
-		
-		var s = new Media("");//tagger.taglib_import_media(file_path);
-		
-		//if(s != null)
-			//s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
-			
-		return s;
 	}
 	
 	public void save_album(Media s, string uri) {
@@ -579,29 +303,6 @@ public class BeatBox.FileOperator : Object {
 			/* make sure that the parent folders exist */
 			if(!dest.get_parent().query_exists())
 				dest.get_parent().make_directory_with_parents(null);
-			/*if(!dest.get_parent().get_parent().query_exists()) {
-				stdout.printf("artist folder %s does not exist\n", dest.get_parent().get_parent().get_path());
-				
-				try {
-					dest.get_parent().get_parent().make_directory(null);
-					dest.get_parent().make_directory(null);
-				}
-				catch(GLib.Error err) {
-					stdout.printf("Could not create folder to copy to: %s\n", err.message);
-					// does it make sense to return here?
-				}
-			}
-			else if(!dest.get_parent().query_exists()) {
-				stdout.printf("album folder %s does not exist\n", dest.get_parent().get_path());
-				
-				try {
-					dest.get_parent().make_directory(null);
-				}
-				catch(GLib.Error err) {
-					stdout.printf("Could not create folder to copy to: %s\n", err.message);
-					// does it make sense to return here?
-				}
-			}*/
 		}
 		catch(GLib.Error err) {
 			stdout.printf("Could not find new destination!: %s\n", err.message);
@@ -737,8 +438,8 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	/* should be called from thread */
-	public Playlist import_from_playlist_file_info(string name, LinkedList<string> paths, ref LinkedList<Media> new_medias, ref LinkedList<string> not_imported) {
-		Playlist rv = new Playlist();
+	public void import_from_playlist_file_info(string name, LinkedList<string> paths) {
+		new_playlist = new Playlist();
 		var internals = new LinkedList<int>();
 		var externals = new LinkedList<string>();
 		
@@ -750,103 +451,31 @@ public class BeatBox.FileOperator : Object {
 				externals.add(path);
 		}
 		
-		rv.name = name;
+		new_playlist.name = name;
 		foreach(int i in internals)
-			rv.addMedia(i);
+			new_playlist.addMedia(i);
 		
 		/* this is pretty much copied from lm.import_files_individually */
 		// first get the files
 		bool was_cancelled = cancelled;
 		resetProgress(externals.size - 1);
 		Timeout.add(500, lm.doProgressNotificationWithTimeout);
-		
-		get_music_files_individually(externals, ref new_medias, ref not_imported);
-		
-		//add to library
-		lm.add_medias(new_medias, true);
-		foreach(var s in new_medias)
-			rv.addMedia(s.rowid);
-		
-		// now copy them into the library (if settings say to)
-		resetProgress(new_medias.size);
-		if(settings.getCopyImportedMusic())
-			lm.progress_notification("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
-		
-		Timeout.add(500, lm.doProgressNotificationWithTimeout);
-		
-		foreach(Media s in new_medias) {
-			if(settings.getCopyImportedMusic() && !was_cancelled)
-				update_file_hierarchy(s, false, false);
-			
-			index++;
-		}
-		
-		lm.file_operations_done();
-		
-		return rv;
-	}
-}
-
-public class BeatBox.MetadataJob : Object {
-	public enum JobType {
-		IMPORT,
-		ART_FETCH
+		import_files(externals, ImportType.PLAYLIST);
 	}
 	
-	public MetadataJob(string path, JobType type) {
-		this.path = path;
-		this.job_type = type;
-	}
-	
-	public string path { get; set; default=""; }
-	public JobType job_type { get; set; default=JobType.IMPORT; }
-}
-
-public class BeatBox.MetadataWorker : Object {
-	private BeatBox.LibraryManager lm;
-	public GStreamerTagger tagger;
-	
-	LinkedList<Media> new_imports;
-	LinkedList<string> import_errors;
-	HashMap<string, MetadataJob> jobs;
-	MetadataJob current_job;
-	Media being_imported;
-	
-	public MetadataWorker(BeatBox.LibraryManager lmm, BeatBox.Settings sett) {
-		lm = lmm;
-		tagger = new GStreamerTagger();
-		new_imports = new LinkedList<Media>();
-		import_errors = new LinkedList<string>();
-		jobs = new HashMap<string, MetadataJob>();
-		
-		tagger.media_imported.connect(media_imported);
-		tagger.import_error.connect(import_error);
-		tagger.queue_finished.connect(queue_finished);
-	}
-	
-	public void import_files(LinkedList<string> files) {
+	public void import_files(LinkedList<string> files, ImportType type) {
+		all_new_imports = new LinkedList<Media>();
+		import_type = type;
 		tagger.discoverer_import_medias(files);
-		
-		/*foreach(string s in files) {
-			if(jobs.get(s) == null) {
-				stdout.printf("queued %s\n", s);
-				MetadataJob j = new MetadataJob(s, MetadataJob.JobType.IMPORT);
-				tagger.discoverer_import_media(s);
-			}
-			else {
-				stdout.printf("Not going to import %s: already queued\n", s);
-			}
-		}*/
 	}
 	
 	void media_imported(Media m) {
 		new_imports.add(m);
-		++lm.fo.index;
+		all_new_imports.add(m);
+		++index;
 		
-		if(new_imports.size >= 500) {
-			stdout.printf("adding medias\n");
+		if(new_imports.size >= 50) {
 			lm.add_medias(new_imports, true); // give user some feedback
-			stdout.printf("media added\n");
 			new_imports.clear();
 		}
 	}
@@ -857,7 +486,50 @@ public class BeatBox.MetadataWorker : Object {
 	
 	void queue_finished() {
 		lm.add_medias(new_imports, true);
-		lm.music_added(import_errors);
-		lm.finish_file_operations();
+		
+		if(import_type == ImportType.PLAYLIST) {
+			foreach(var s in all_new_imports)
+				new_playlist.addMedia(s.rowid);
+				
+			lm.add_playlist(new_playlist);
+		}
+		
+		// if doing import and copy to music folder is enabled, do copy here
+		if((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && settings.getCopyImportedMusic()) {
+			fo_progress("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
+			
+			try {
+				Thread.create<void*>(copy_imports_thread, false);
+			}
+			catch(GLib.Error err) {
+				stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+			}
+		}
+		else {
+			lm.music_added(import_errors);
+			lm.finish_file_operations();
+		}
+	}
+	
+	public void* copy_imports_thread() {
+		resetProgress(all_new_imports.size);
+		
+		foreach(Media s in all_new_imports) {
+			if(!cancelled) {
+				//current_operation = "<b>Copying " + s.title + "</b> to <b>Music Folder</b>";
+				update_file_hierarchy(s, false, false);
+			}
+			
+			++index;
+		}
+		
+		Idle.add( () => {
+			lm.music_added(import_errors);
+			lm.finish_file_operations();
+			
+			return false;
+		});
+		
+		return null;
 	}
 }

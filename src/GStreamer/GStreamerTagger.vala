@@ -2,12 +2,15 @@ using Gst;
 using Gee;
 
 public class BeatBox.GStreamerTagger : GLib.Object {
+	static int DISCOVER_SET_SIZE = 100;
 	Gst.Discoverer d;
 	LinkedList<string> path_queue;
 	
 	public signal void media_imported(Media m);
 	public signal void import_error(string file);
 	public signal void queue_finished();
+	
+	bool cancelled;
 	
 	public GStreamerTagger() {
 		d = new Discoverer((ClockTime)(10*Gst.SECOND));
@@ -17,14 +20,13 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	}
 	
 	void finished() {
-		if(path_queue.size > 0) {
-			stdout.printf("discovering 100 more..\n");
+		if(!cancelled && path_queue.size > 0) {
 			d = new Discoverer((ClockTime)(10*Gst.SECOND));
 			d.discovered.connect(import_media);
 			d.finished.connect(finished);
 			
 			d.start();
-			for(int i = 0; i < 100 && i < path_queue.size; ++i) {
+			for(int i = 0; i < DISCOVER_SET_SIZE && i < path_queue.size; ++i) {
 				d.discover_uri_async("file://" + path_queue.get(i));
 			}
 		}
@@ -34,13 +36,21 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		}
 	}
 	
+	public void cancel_operations() {
+		d.stop();
+		queue_finished();
+		cancelled = true;
+	}
+	
 	public void discoverer_import_medias(LinkedList<string> files) {
 		int size = 0;
+		cancelled = false;
+		
 		foreach(string s in files) {
 			path_queue.add(s);
 			
 			d.start();
-			if(size < 100) {
+			if(size < DISCOVER_SET_SIZE) {
 				++size;
 				d.discover_uri_async("file://" + s);
 			}
@@ -61,7 +71,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				string title, artist, composer, album_artist, album, grouping, genre, comment, lyrics;
 				uint track, track_count, album_number, album_count, bitrate, rating;
 				double bpm;
-				int64 duration;
+				uint64 duration;
 				GLib.Date? date = new GLib.Date();
 				
 				// get title, artist, album artist, album, genre, comment, lyrics strings
@@ -114,7 +124,12 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 					s.samplerate = info.get_audio_streams().nth_data(0).get_sample_rate();
 				
 				// get length
-				//s.length = (uint)info.get_duration()/10000000;
+				//if(info.get_tags().get_uint64(TAG_DURATION, out duration)) {
+				//	s.length = (uint)(duration/10000000);
+				//}
+				//else {
+					s.length = get_length(s.file);
+				//}
 				
 				// see if it has an image data
 				//Gst.Buffer buf;
@@ -138,8 +153,69 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			media_imported(s);
 		}
 		else {
-			import_error(info.get_uri().replace("file://", ""));
+			Media s = taglib_import_media(info.get_uri().replace("file://", ""));
+			
+			if(s == null)
+				import_error(info.get_uri().replace("file://", ""));
+			else
+				media_imported(s);
 		}
+	}
+	
+	public uint get_length(string file_path) {
+		uint rv = 0;
+		TagLib.File tag_file = new TagLib.File(file_path);
+		
+		if(tag_file != null && tag_file.audioproperties != null) {
+			try {
+				rv = tag_file.audioproperties.length;
+			}
+			finally { }
+		}
+		
+		return rv;
+	}
+	
+	public Media? taglib_import_media(string file_path) {
+		Media s = new Media(file_path);
+		TagLib.File tag_file;
+		
+		tag_file = new TagLib.File(file_path);
+		
+		if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
+			try {
+				s.title = tag_file.tag.title;
+				s.artist = tag_file.tag.artist;
+				s.album = tag_file.tag.album;
+				s.genre = tag_file.tag.genre;
+				s.comment = tag_file.tag.comment;
+				s.year = (int)tag_file.tag.year;
+				s.track = (int)tag_file.tag.track;
+				s.bitrate = tag_file.audioproperties.bitrate;
+				s.length = tag_file.audioproperties.length;
+				s.samplerate = tag_file.audioproperties.samplerate;
+				s.date_added = (int)time_t();
+				
+				// get the size and convert to MB
+				//s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+				
+			}
+			finally {
+				if(s.title == null || s.title == "") {
+					string[] paths = file_path.split("/", 0);
+					s.title = paths[paths.length - 1];
+				}
+				if(s.artist == null || s.artist == "") s.artist = "Unknown Artist";
+				
+				s.album_artist = s.artist;
+				s.album_number = 1;
+			}
+		}
+		else {
+			return null;
+		}
+		
+		return s;
 	}
 	
 	/*oid import_art(DiscovererInfo info) {

@@ -198,6 +198,16 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
 	
+	public void append_medias(LinkedList<int> new_medias) {
+		music_model.append_medias(new_medias, true);
+		music_model.resort();
+		queue_draw();
+	}
+	
+	public void remove_medias(LinkedList<int> to_remove) {
+		
+	}
+	
 	public void populate_view() {
 		/** NOTE: This could have a bad effect if user coincidentally
 		 * searches for something that has same number of results as 
@@ -244,7 +254,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		//else
 		//	this.view.scroll_to_point(0, (int)hPos);
 		
-		set_statusbar_text();
+		//set_statusbar_text();
 		
 		/*if(get_is_current())
 			set_as_current_list(0);*/
