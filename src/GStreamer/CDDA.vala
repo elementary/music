@@ -9,19 +9,19 @@ public class BeatBox.CDDA : GLib.Object {
 		//GLib.Signal.connect(playbin, "notify::source", (GLib.Callback)notifySourceCallback, this);
 	}
 	
-	public static LinkedList<Media> getMediaList(string device_uri) {
+	public static LinkedList<Media> getMediaList(File device_file) {
 		var rv = new LinkedList<Media>();
-		File device_file;
+		//File device_file;
 		FileInfo device_info;
 		string album_name;
 		string album_artist;
 		string album_genre;
 		
-		device_file = File.new_for_uri(device_uri);
-		if(!device_file.query_exists()) {
-			stdout.printf("could not locate device file at %s\n", device_uri);
-			return rv;
-		}
+		//device_file = File.new_for_path(device_uri);
+		//if(!device_file.query_exists()) {
+		//	stdout.printf("could not locate device file at %s\n", device_uri);
+			//return rv;
+		//}
 		
 		try {
 			device_info = device_file.query_info("xattr::*", FileQueryInfoFlags.NONE);

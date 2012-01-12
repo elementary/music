@@ -64,7 +64,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	void* finish_initialization_thread() {
-		var tMedias = CDDA.getMediaList(get_uri());
+		var tMedias = CDDA.getMediaList(mount.get_default_location());
 		lm.add_medias(tMedias, false);
 		foreach(var s in tMedias)
 			medias.add(s.rowid);
