@@ -40,10 +40,8 @@ public class BeatBox.WarningLabel : EventBox {
 
 		add(outer_box);
 		
-		// Make background white.
-		Gdk.RGBA bg_color = Gdk.RGBA ();
-		bg_color.parse ("rgb(255,255,255)");
-		override_background_color (Gtk.StateFlags.NORMAL, bg_color);
+		// Change background color.
+		override_background_color (Gtk.StateFlags.NORMAL, LibraryWindow.base_color);
 		
 		errorLabel.xalign = 0.5f;
 		errorLabel.set_justify(Justification.CENTER);

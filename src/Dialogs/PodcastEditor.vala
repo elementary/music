@@ -138,7 +138,7 @@ public class BeatBox.PodcastEditor : Window {
 		fields.set("Genre", new FieldEditor("Genre", sum.genre, new Entry()));
 		fields.set("Comment", new FieldEditor("Comment", sum.comment, new TextView()));
 		fields.set("Episode", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
-		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false, false)));
+		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false)));
 		stdout.printf("podcasteditor cbv\n");
 		
 		padding = new HBox(false, 10);

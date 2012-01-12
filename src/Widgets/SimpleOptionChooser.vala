@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011	   Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -49,10 +49,9 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		clicked_index = 0;
 		previous_index = 0;
 		
-		// make the background white
-		Gdk.Color c = Gdk.Color();
-		Gdk.Color.parse("#FFFFFF", out c);
-		modify_bg(StateType.NORMAL, c);
+		// make the event box transparent
+		set_above_child(true);
+		set_visible_window(false);
 		
 		button_press_event.connect(buttonPress);
 		draw.connect(exposeEvent);

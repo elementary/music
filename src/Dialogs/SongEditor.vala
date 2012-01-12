@@ -183,7 +183,7 @@ public class BeatBox.MediaEditor : Window {
 		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Disc", new FieldEditor("Disc", sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(0, 9999, 1)));
-		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false, false)));
+		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false)));
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 10);
@@ -297,18 +297,19 @@ public class BeatBox.MediaEditor : Window {
 		lyricsInfobarLabel.set_text ("");
 		lyricsInfobar.hide();
 
-		/* FIXME: Verify that the lyrics correspond to the current media.
-		Media s = _lm.media_from_id(_medias.get(0));
-		if (!(lyrics.artist == s.artist || lyrics.artist == s.album_artist) && lyrics.title != s.title)
+		string song_title = fields["Title"].get_value();
+		string song_artist = fields["Artist"].get_value();
+
+		// FIXME: Verify that the lyrics correspond to the current media.
+		if (lyrics.title != song_title)
 			return;
-		*/
 
 		if (!is_white_space (lyrics.content)) {
 			lyricsText.get_buffer().text = lyrics.content;
 		}
 		else {
 			lyricsInfobar.show_all();
-			lyricsInfobarLabel.set_text ("Lyrics not found for " + fields["Title"].get_value() + " by " + fields["Artist"].get_value());
+			lyricsInfobarLabel.set_text ("Lyrics not found for " + song_title + " by " + song_artist);
 		}
 	}
 	

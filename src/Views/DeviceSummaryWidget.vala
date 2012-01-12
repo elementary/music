@@ -125,10 +125,8 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		/* put it in event box so we can color background white */
 		EventBox eb = new EventBox();
 		
-		// make the background white
-		Gdk.Color c = Gdk.Color();
-		Gdk.Color.parse("#FFFFFF", out c);
-		eb.modify_bg(StateType.NORMAL, c);
+		// paint the background color
+		eb.override_background_color (StateFlags.NORMAL, lw.base_color);
 		eb.add(new Label("test"));
 		
 		//var content_plus_spacewidget = new Box(Orientation.VERTICAL, 0);

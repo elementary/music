@@ -53,17 +53,15 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		/* put it in event box so we can color background white */
 		EventBox eb = new EventBox();
 		
-		// make the background white
-		Gdk.Color c = Gdk.Color();
-		Gdk.Color.parse("#FFFFFF", out c);
-		eb.modify_bg(StateType.NORMAL, c);
+		// paint the background color
+		eb.override_background_color (StateFlags.NORMAL, lw.base_color);
 		
 		title = new Label("Title");
 		artist = new Label("Artist");
 		loveMedia = new Button();
 		banMedia = new Button();
 		artistImage = new Image();
-		rating = new RatingWidget(c, true, false);
+		rating = new RatingWidget(null, true);
 		album = new Label("Album");
 		year = new Label("Year");
 		ssv = new SimilarMediasView(lm, lw);
@@ -101,7 +99,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		artistImageScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
 		imageVP.set_shadow_type(ShadowType.NONE);
 		imageVP.add(artistImage);
-		imageVP.modify_bg(StateType.NORMAL, c);
+		imageVP.override_background_color (StateFlags.NORMAL, lw.base_color);
 		artistImageScroll.add(imageVP);
 		
 		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
