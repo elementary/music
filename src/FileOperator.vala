@@ -464,10 +464,6 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	public void import_files(LinkedList<string> files, ImportType type) {
-		foreach(string s in files)
-			stdout.printf("import_files: %s\n", s);
-		
-		tagger = new GStreamerTagger();
 		all_new_imports = new LinkedList<Media>();
 		new_imports.clear();
 		import_errors.clear();

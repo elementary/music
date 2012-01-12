@@ -94,13 +94,19 @@ public class BeatBox.ViewWrapper : VBox {
 			list = new MusicTreeView(lm, lw, sort, dir, the_hint, id);
 		}
 		
+		if(the_hint == ViewWrapper.Hint.CDROM) {
+			errorBox = new WarningLabel();
+			errorBox.show_icon = false;
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">Audio CD Invalid</span>\n\nBeatBox could not read the contents of this Audio CD.", null);
+		}
+		
 		//list.populate_view(medias, false);
 		albumView = new AlbumView(lm, lw, medias);
 		
 		pack_end(list, true, true, 0);
 		pack_end(albumView, true, true, 0);
 		
-		if(list.get_hint() == ViewWrapper.Hint.SIMILAR)
+		if(hint == ViewWrapper.Hint.SIMILAR || hint == ViewWrapper.Hint.CDROM)
 			pack_start(errorBox, true, true, 0);
 		
 		//albumView.needsUpdate = true;
@@ -240,6 +246,22 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		currentView = type;
 		
+		if(hint == ViewWrapper.Hint.CDROM && this.visible) {
+			stdout.printf("updating cd with %d\n", media_count);
+			if(media_count == 0) {
+				errorBox.show_icon = true;
+				errorBox.show();
+				list.hide();
+				albumView.hide();
+				
+				return;
+			}
+			else {
+				errorBox.hide();
+				list.show();
+				albumView.show();
+			}
+		}
 		/* BEGIN special case for similar medias */
 		if(list.get_hint() == ViewWrapper.Hint.SIMILAR && this.visible) {
 			SimilarPane sp = (SimilarPane)(list);

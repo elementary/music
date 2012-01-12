@@ -70,10 +70,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			medias.add(s.rowid);
 		
 		Idle.add( () => {
-			if(medias.size > 0)
-				initialized(this);
-			else
-				lw.doAlert("No music on CD", "No songs were found on audio CD.");
+			initialized(this);
 			
 			return false;
 		});
