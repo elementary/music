@@ -29,8 +29,8 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 
 	public signal void remove_media (bool trash_files);
 
-	private VBox content;
-	private HBox padding;
+	private Box content;
+	private Box padding;
 	private Button remove_button;
 	private Button trash_button;
 	private Button cancel_button;
@@ -48,8 +48,8 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 
 		set_size_request (200, -1);
 
-		content = new VBox(false, 10);
-		padding = new HBox(false, 20);
+		content = new Box (Orientation.VERTICAL, 10);
+		padding = new Box (Orientation.HORIZONTAL, 20);
 
 		string media_str = "";
 		switch (media_type) {
@@ -66,9 +66,6 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 				media_str = "Station";
 				break;
 		}
-
-		// FIXME: don't use stock icon names
-		Image icon = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 
 		bool multiple_media = to_remove.size > 1;
 
@@ -97,17 +94,23 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 		remove_button = new Button.with_label ("Remove from BeatBox");
 		cancel_button = new Button.with_label ("Cancel");
 
+        var warning_icon = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
+
 		/* set up controls layout */
-		HBox content_area = new HBox (false, 0);
-		VBox info_wrapper = new VBox (false, 0);
+		var content_area = new Box (Orientation.HORIZONTAL, 0);
+		var info_wrapper = new Box (Orientation.VERTICAL, 0);
+        var icon_wrapper = new Box (Orientation.VERTICAL, 0);
+
+        icon_wrapper.pack_start (warning_icon, false, false, 0);
+        icon_wrapper.pack_end (new Box (Orientation.VERTICAL, 0), true, true, 0);
 
 		info_wrapper.pack_start (title, false, true, 0);
 		info_wrapper.pack_start (info, false, true, 0);
 
-		content_area.pack_start (icon, false, false, 10);
+		content_area.pack_start (icon_wrapper, false, false, 10);
 		content_area.pack_start (info_wrapper, true, true, 10);
 
-		HButtonBox bottom_buttons = new HButtonBox ();
+		var bottom_buttons = new ButtonBox (Orientation.HORIZONTAL);
 
 		bottom_buttons.set_layout (ButtonBoxStyle.END);
 		bottom_buttons.pack_start (trash_button, false, false, 0);
@@ -115,10 +118,10 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 		bottom_buttons.pack_end (remove_button, false, false, 0);
 		bottom_buttons.set_spacing (10);
 
-		content.pack_start (content_area, true, true, 0);
+		content.pack_start (content_area, true, true, 10);
 		content.pack_start (bottom_buttons, false, true, 10);
 
-		padding.pack_start (content, true, true, 10);
+		padding.pack_start (content, true, true, 12);
 
 		trash_button.clicked.connect ( () => {
 			remove_media (true);
@@ -135,22 +138,8 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 		});
 
 		add(padding);
-
 		show_all();
-
 		cancel_button.grab_focus ();
-	}
-
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-
-		alignment.add (widget);
-
-		return alignment;
 	}
 }
 

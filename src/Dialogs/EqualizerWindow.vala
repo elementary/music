@@ -107,7 +107,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		for (int index = 0; index < 10; ++index) {
 			VBox holder = new VBox(false, 0);
-			VScale v = new VScale.with_range(-80, 80, 2);
+			VScale v = new VScale.with_range(-80, 80, 1);
 			v.add_mark(0, PositionType.LEFT, null);
 			v.draw_value = false;
 			v.inverted = true;
@@ -146,7 +146,8 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		new_preset_entry = new Entry();
 		new_preset_entry.set_size_request(165, -1);
-		new_preset_entry.set_icon_from_stock(Gtk.EntryIconPosition.SECONDARY, Gtk.Stock.OK);
+		var ok_icon = lm.icons.ok_icon.render(IconSize.MENU, null);
+		new_preset_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.SECONDARY, ok_icon);
 		new_preset_entry.set_icon_tooltip_text(Gtk.EntryIconPosition.SECONDARY, "Save this preset");
 
 		new_preset_field = new ToolItem();
