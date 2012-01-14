@@ -37,6 +37,17 @@ pkg_check_modules(DEPS
     granite
     libgpod-1.0)
 
+# Check if we have sqlheavy-0.2
+pkg_check_modules(SQLHEAVY sqlheavy-0.2)
+if(${SQLHEAVY_FOUND})
+    set(ADD_PKG ${ADD_PKG} sqlheavy-0.2)
+    message("-- Will use sqlheavy-0.2")
+else()
+    set(ADD_PKG ${ADD_PKG} sqlheavy-0.1)
+    pkg_check_modules(SQLHEAVY sqlheavy-0.1)
+    message("-- Will use sqlheavy-0.1")
+endif()
+
 pkg_check_modules(ZEITGEIST zeitgeist-1.0)
 if(${ZEITGEIST_FOUND})
     set(ADD_PKG ${ADD_PKG}
@@ -206,7 +217,6 @@ PACKAGES
     gstreamer-cdda-0.10
     taglib_c
     gio-2.0
-    sqlheavy-0.1
     libxml-2.0
     libnotify
     libsoup-2.4
@@ -218,8 +228,8 @@ PACKAGES
 )
 
 add_executable(beatbox ${VALA_C})
-link_directories(${ZEITGEIST_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
-add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS})
-target_link_libraries(beatbox ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${INDICATE_LIBRARIES})
+link_directories(${ZEITGEIST_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
+add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS})
+target_link_libraries(beatbox ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
 
 install(TARGETS beatbox RUNTIME DESTINATION bin)
