@@ -23,6 +23,8 @@ class BeatBox.Albums.Sidebar : Gtk.Grid
         attach(widget, 0, 1, 1, 1);
         content = widget;
     }
+    
+    public Gtk.Widget get_content() { return content; }
 }
 
 public class BeatBox.Albums.IconView : Gtk.IconView
@@ -46,7 +48,11 @@ public class BeatBox.Albums.IconView : Gtk.IconView
 	    TreeIter iter;
 	
 	    if(!model.get_iter(out iter, path))
-		    return;
+	    {
+            collapse_widget();
+            print("here\n");
+	        return;
+	    }
 	
 	    Media s = ((AlbumViewModel)model).get_media(iter);
 	    Gdk.Pixbuf pix;
@@ -107,8 +113,15 @@ public class BeatBox.Albums.IconView : Gtk.IconView
     int track = 1;
     bool on_button_press(Gdk.EventButton event)
     {
-        collapse_widget();
-        return false;
+        base.button_press_event(event);
+        var selection = get_selected_items();
+        if(selection.length() == 0)
+            collapse_widget();
+        else
+        {
+            on_activate(selection.nth_data(0));
+        }
+        return true;
     }
 
 }
@@ -118,8 +131,10 @@ class BeatBox.Albums.View : GtkClutter.Embed
     Clutter.Container stage;
     GtkClutter.Actor icon_view;
     GtkClutter.Actor expand_view;
+    GtkClutter.Actor old_expand_view;
     IconView icon_view_widget;
     Sidebar sidebar;
+    Sidebar old_sidebar;
 
     Clutter.CairoTexture shadow;
 
@@ -138,6 +153,11 @@ class BeatBox.Albums.View : GtkClutter.Embed
         expand_view = new GtkClutter.Actor();
         stage.add_actor(expand_view);
 
+        old_expand_view = new GtkClutter.Actor();
+        stage.add_actor(old_expand_view);
+        old_sidebar = new Sidebar();
+        (old_expand_view.get_widget() as Gtk.Bin).add(old_sidebar);
+    
         shadow = new Clutter.CairoTexture(10, height_request);
         shadow.draw.connect((cr) => {
             var lg1 = new Cairo.Pattern.linear(4.0, 0.0, 10.0, 0.0);
@@ -169,6 +189,7 @@ class BeatBox.Albums.View : GtkClutter.Embed
         icon_view.width = alloc.width;
         shadow.height = alloc.height;
         expand_view.height = alloc.height;
+        old_expand_view.height = alloc.height;
         if(!expanded) {
             shadow.x = alloc.width;
             expand_view.x = alloc.width + 10;
@@ -205,18 +226,34 @@ class BeatBox.Albums.View : GtkClutter.Embed
 
     void on_expand(Gtk.Widget label, int width)
     {
+        if(expanded) {
+            var w = sidebar.get_content();
+            sidebar.set_content(label);
+            old_sidebar.set_content(w);
+            old_sidebar.show_all();
+            old_expand_view.x = get_allocated_width() - expand_width;
+            old_expand_view.opacity = 255;
+            old_expand_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:0);
+            Timeout.add(400, () => {
+                old_expand_view.x = - expand_width;
+                return false;
+            }); /* and hide it */
+        }
+        else {
+            expand_width = width;
+            expand_view.x = get_allocated_width() + 10;
+            shadow.x = get_allocated_width();
+            shadow.opacity = 255;
+            expand_view.width = width;
+            double x = get_allocated_width() - width;
+            double x2 = get_allocated_width() - width - 10;
+            expand_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x);
+            shadow.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
+            icon_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:120);
+            sidebar.set_content(label);
+        }
         expanded = true;
-        expand_width = width;
-        expand_view.x = get_allocated_width() + 10;
-        shadow.x = get_allocated_width();
-        shadow.opacity = 255;
-        expand_view.width = width;
-        double x = get_allocated_width() - width;
-        double x2 = get_allocated_width() - width - 10;
-        expand_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x);
-        shadow.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
-        icon_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:50);
-        sidebar.set_content(label); 
+
         sidebar.show_all();
     }
 }
