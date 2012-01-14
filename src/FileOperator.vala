@@ -272,7 +272,7 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
-	public GLib.File get_new_destination(Media s) {
+	public GLib.File? get_new_destination(Media s) {
 		GLib.File dest;
 		
 		try {

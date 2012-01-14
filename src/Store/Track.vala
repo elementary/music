@@ -52,7 +52,7 @@ public class Store.Track : Store.SearchResult {
 		return minute.to_string() + ":" + ((seconds < 10 ) ? "0" + seconds.to_string() : seconds.to_string());
 	}
 	
-	public string getPreviewLink() {
+	public string? getPreviewLink() {
 		var rv = "";
 		
 		string url = Store.store.api + "track/preview" + "?trackid=" + trackID.to_string() + 
