@@ -274,7 +274,7 @@ public class BeatBox.ViewWrapper : VBox {
 				
 				return;
 			}
-			else if(!list.get_is_current()) { // not currently playing list and have fetched
+			else {
 				if(medias.size < 10) { // say we could not find similar medias
 					errorBox.show_icon = true;
 					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No similar songs found\n</span>\nBeatBox could not find songs similar to <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\nMake sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches.", Justification.LEFT);
@@ -291,10 +291,8 @@ public class BeatBox.ViewWrapper : VBox {
 					sp._base = lm.media_info.media;
 				}
 			}
-			/* this stops similar from refreshing when a media from that list is playing. add !set_medias to make sure to update when
-			 * the user searches
-			 * */
-			else if(lm.current_medias().size == sp.get_medias().size && lm.current_medias().contains_all(sp.get_medias()) && similarsFetched && list.get_is_current()) { // needs update, but won't because not worthy
+			
+			if(list.get_is_current()) { // don't update, user is playing current list
 				stdout.printf("3\n");
 				return;
 			}

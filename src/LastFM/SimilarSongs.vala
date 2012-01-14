@@ -64,16 +64,7 @@ public class LastFM.SimilarMedias : Object {
 		var similarDont = new Gee.LinkedList<BeatBox.Media>();
 		
 		getSimilarTracks(_base.title, _base.artist);
-		foreach(BeatBox.Media sim in similar) {
-			BeatBox.Media s = _lm.media_from_name(sim.title, sim.artist);
-			if(s.rowid != 0) {
-				similarIDs.add(s.rowid);
-			}
-			else {
-				similarDont.add(sim);
-			}
-		}
-		
+		_lm.medias_from_name(similar, ref similarIDs, ref similarDont);
 		similarIDs.offer_head(_base.rowid);
 		
 		Idle.add( () => {

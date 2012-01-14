@@ -157,7 +157,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public void append_medias(Collection<int> new_medias) {
-		_showing_medias.add_all(new_medias);
+		/*_showing_medias.add_all(new_medias);
 		
 		var toShowS = new LinkedList<Media>();
         foreach(int i in new_medias)
@@ -175,9 +175,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				
 				previousAlbum = s.album;
 			}
-		}
+		}*/
 		
-		model.appendMedias(albs, false);
+		//model.appendMedias(albs, false);
 		//model.resort();
 		queue_draw();
 	}
