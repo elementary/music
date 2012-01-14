@@ -41,7 +41,7 @@ public class BeatBox.Welcome : Gtk.EventBox {
         Gtk.Box content = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
         // Set theming
-        this.get_style_context().add_class ("GraniteWelcomeScreen");
+        this.get_style_context().add_class ("WelcomeScreen");
 
         // Box properties
         content.homogeneous = false;
