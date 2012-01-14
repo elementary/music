@@ -48,7 +48,6 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		audiobookList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
 		
 		deviceImage = new Gtk.Image.from_gicon(dev.get_icon(), IconSize.DIALOG);
-		var spaceWidgetScroll = new ScrolledWindow(null, null);
 		spaceWidget = new SpaceWidget((double)dev.get_capacity()/1000000);
 		
 		Label deviceNameLabel = new Label("Device Name:");
@@ -58,14 +57,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		var content = new VBox(false, 10);
 		
 		setupLists();
-		
-		spaceWidgetScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER); 
-		spaceWidgetScroll.set_border_width(0);
-		var viewport = new Viewport(null, null);
-		//viewport.add(spaceWidget);
-		viewport.set_shadow_type(Gtk.ShadowType.NONE);
-		spaceWidgetScroll.add(viewport);
-		
+
 		music_index = spaceWidget.add_item("Music", 0.0, SpaceWidget.ItemColor.BLUE);
 		podcast_index = spaceWidget.add_item("Podcasts", 0.0, SpaceWidget.ItemColor.PURPLE);
 		audiobook_index = spaceWidget.add_item("Audiobooks", 0.0, SpaceWidget.ItemColor.GREEN);

@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011	   Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -37,7 +37,6 @@ public class BeatBox.LyricFetcher : GLib.Object {
 	}
 	
 	public void fetch_lyrics(string artist, string album_artist, string title) {
-		
 		this.artist = artist;
 		this.album_artist = album_artist;
 		this.title = title;
@@ -86,7 +85,9 @@ public class Lyrics : Object {
 	}
 }
 
-class AZLyricsFetcher : Object {
+/** LYRIC SOURCES **/
+
+private class AZLyricsFetcher : Object {
 
 	private const string URL_FORMAT = "http://www.azlyrics.com/lyrics/%s/%s.html";
 
@@ -140,16 +141,18 @@ class AZLyricsFetcher : Object {
 	
 	private string fix_string (string? str) {
 		if (str == null)
-		return "";
+			return "";
 
 		var fixed_string = new StringBuilder ();
 		unichar c;
-
-		for (int i = 0; str.get_next_char (ref i, out c);)
-			if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || ('0' <= c && c <= '9'))
+		
+		for (int i = 0; str.get_next_char (ref i, out c);) {
+			c = c.tolower();
+			if (('a' <= c && c <= 'z') || ('0' <= c && c <= '9'))
 				fixed_string.append_unichar (c);
+		}
 
-		return  (string) fixed_string.str.down ().to_utf8 ();
+		return fixed_string.str;
 	}
 
 	private string parse_lyrics (uint8[] uintcontent) {
@@ -173,3 +176,4 @@ class AZLyricsFetcher : Object {
 		return rv.str;
 	}
 }
+

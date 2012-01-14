@@ -451,7 +451,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		unichar c;
 		for (int i = 0; preset_name.get_next_char (ref i, out c);)
-		    if (c == ' ')
+		    if (c.isspace())
 		    	++white_space;
 
 		if (white_space == str_length)

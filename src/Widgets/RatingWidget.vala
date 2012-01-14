@@ -41,6 +41,8 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
             menuItem = context.has_class (Gtk.STYLE_CLASS_MENUITEM);
             Gdk.RGBA color = context.get_background_color(Gtk.StateFlags.NORMAL);
             override_background_color (Gtk.StateFlags.NORMAL, color);
+            override_background_color (Gtk.StateFlags.ACTIVE, color);
+            override_background_color (Gtk.StateFlags.PRELIGHT, color);
         } else {
             menuItem = false;
             // Make the eventbox transparent
