@@ -114,11 +114,11 @@ public class BeatBox.Albums.IconView : Gtk.IconView
     public bool expanded = false;
     bool on_button_press(Gdk.EventButton event)
     {
-        if(expanded)
+        /*if(expanded)
         {
             collapse_widget();
             return true;
-        }
+        }*/
         base.button_press_event(event);
         var selection = get_selected_items();
         if(selection.length() == 0)
