@@ -1219,9 +1219,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {
 
-			RemoveFromLibraryDialog dialog = new RemoveFromLibraryDialog (lm.lw, toRemove.size);
+			var dialog = new RemoveFromLibraryDialog (lm.lw, toRemove, get_hint());
 			
-			dialog.ok_button_pressed.connect ( (delete_files) => {
+			dialog.remove_media.connect ( (delete_files) => {
 				lm.remove_medias (toRemove, delete_files);
 				music_model.removeMedias(toRemoveIDs);
 				

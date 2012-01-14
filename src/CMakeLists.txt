@@ -101,7 +101,6 @@ vala_precompile(VALA_C
     Objects/Playlist.vala
     Objects/PodcastManager.vala
     Objects/Icons.vala
-    Widgets/Welcome.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarSongsView.vala
     Widgets/ScrollingLabel.vala
@@ -119,6 +118,7 @@ vala_precompile(VALA_C
     Widgets/AppMenu.vala
     Widgets/DeviceBar.vala
     Widgets/SpaceWidget.vala
+    Widgets/Welcome.vala
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
     Store/Price.vala

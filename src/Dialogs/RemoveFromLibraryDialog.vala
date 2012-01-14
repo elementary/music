@@ -21,105 +21,125 @@
  */
 
 using Gtk;
+using Gee;
 
 public class BeatBox.RemoveFromLibraryDialog : Window {
 
-    private LibraryWindow lw;
+	private LibraryWindow lw;
 
-    public signal void ok_button_pressed (bool delete_files);
+	public signal void remove_media (bool trash_files);
 
-    private VBox content;
-    private HBox padding;
-    private Button ok_button;
-    private Button cancel_button;
-    private CheckButton check_button;
+	private Box content;
+	private Box padding;
+	private Button remove_button;
+	private Button trash_button;
+	private Button cancel_button;
 
+	public RemoveFromLibraryDialog (LibraryWindow lw, LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
+		this.lw = lw;
+		this.set_title("");
+		this.window_position = WindowPosition.CENTER;
+		this.type_hint = Gdk.WindowTypeHint.DIALOG;
+		this.set_modal(true);
+		this.set_transient_for(lw);
+		this.destroy_with_parent = true;
+		this.resizable = false;
+		this.deletable = false;
 
-    public RemoveFromLibraryDialog (LibraryWindow library_window, int number_of_medias) {
+		set_size_request (200, -1);
 
-        this.lw = library_window;
+		content = new Box (Orientation.VERTICAL, 10);
+		padding = new Box (Orientation.HORIZONTAL, 20);
 
-        this.set_title("");
-        this.window_position = WindowPosition.CENTER;
-        this.type_hint = Gdk.WindowTypeHint.DIALOG;
-        this.set_modal(true);
-        this.set_transient_for(lw);
-        this.destroy_with_parent = true;
-        this.resizable = false;
-        this.deletable = false;
+		string media_str = "";
+		switch (media_type) {
+			case ViewWrapper.Hint.MUSIC:
+				media_str = "Song";
+				break;
+			case ViewWrapper.Hint.PODCAST:
+				media_str = "Podcast";
+				break;
+			case ViewWrapper.Hint.AUDIOBOOK:
+				media_str = "Audiobook";
+				break;
+			case ViewWrapper.Hint.STATION:
+				media_str = "Station";
+				break;
+		}
 
-        content = new VBox(false, 10);
-        padding = new HBox(false, 20);
+		bool multiple_media = to_remove.size > 1;
 
-        Image question = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
+		string title_text = "";
 
-        string question_text;
+		if (multiple_media) {
+			title_text = "Remove %d %ss from BeatBox?".printf(to_remove.size, media_str);
+		}
+		else {
+  			Media m = to_remove.get(0);
+			title_text = "Remove \"%s\" From BeatBox?".printf(m.title);
+		}
 
-	if (number_of_medias > 1)
-        	question_text = "Remove " + number_of_medias.to_string () + " Medias From Library?";
-        else
-        	question_text = "Remove Media From Library?";
+		Label title = new Label ("<span weight=\"bold\" size=\"larger\">" + title_text + "</span>");
+		title.use_markup = true;
+		title.halign = Gtk.Align.START;
+		title.set_line_wrap(true);
 
-        Label title = new Label (question_text);
+		string info_text = "\nThis will remove the %s%s from your library and from any device that automatically syncs with BeatBox.".printf(media_str.down(), (multiple_media)? "s" : ""/*, (multiple_media)? "s" : ""*/);
 
-        ok_button = new Button.with_label ("OK");
-        cancel_button = new Button.with_label ("Cancel");
+		Label info = new Label (info_text);
+		info.set_line_wrap(true);
+		info.halign = Gtk.Align.START;
 
-        string checkbox_text = "Move file" + ((number_of_medias > 1)? "s": "") + " to the trash";
+		trash_button = new Button.with_label ("Move to Trash");
+		remove_button = new Button.with_label ("Remove from BeatBox");
+		cancel_button = new Button.with_label ("Cancel");
 
-        check_button = new CheckButton.with_label (checkbox_text);
-        check_button.set_active (false);
+        var warning_icon = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 
-        title.xalign = 0.0f;
-        title.set_line_wrap(false);
-        title.set_markup("<span weight=\"bold\" size=\"larger\">" + question_text + "</span>");
+		/* set up controls layout */
+		var content_area = new Box (Orientation.HORIZONTAL, 0);
+		var info_wrapper = new Box (Orientation.VERTICAL, 0);
+        var icon_wrapper = new Box (Orientation.VERTICAL, 0);
 
-        /* set up controls layout */
-        HBox information = new HBox (false, 0);
-        VBox information_text = new VBox (false, 0);
+        icon_wrapper.pack_start (warning_icon, false, false, 0);
+        icon_wrapper.pack_end (new Box (Orientation.VERTICAL, 0), true, true, 0);
 
-        information.pack_start (question, false, false, 10);
-        information_text.pack_start (title, false, true, 12);
-        information_text.pack_start (check_button, false, true, 5);
-        information.pack_start (information_text, true, true, 5);
+		info_wrapper.pack_start (title, false, true, 0);
+		info_wrapper.pack_start (info, false, true, 0);
 
-        HButtonBox bottom_buttons = new HButtonBox ();
+		content_area.pack_start (icon_wrapper, false, false, 0);
+		content_area.pack_start (info_wrapper, true, true, 0);
 
-        bottom_buttons.set_layout (ButtonBoxStyle.END);
-        bottom_buttons.pack_end (cancel_button, false, false, 0);
-        bottom_buttons.pack_end (ok_button, false, false, 0);
-        bottom_buttons.set_spacing (10);
+		var bottom_buttons = new ButtonBox (Orientation.HORIZONTAL);
 
-        content.pack_start (information, false, true, 0);
-        content.pack_start (bottom_buttons, false, true, 10);
+		bottom_buttons.set_layout (ButtonBoxStyle.END);
+		bottom_buttons.pack_start (trash_button, false, false, 0);
+		bottom_buttons.pack_start (cancel_button, false, false, 0);
+		bottom_buttons.pack_end (remove_button, false, false, 0);
+		bottom_buttons.set_spacing (10);
 
-        padding.pack_start (content, true, true, 10);
+		content.pack_start (content_area, true, true, 10);
+		content.pack_start (bottom_buttons, false, true, 10);
 
-        ok_button.clicked.connect (ok_button_clicked);
-        cancel_button.clicked.connect ( () => { destroy (); });
+		padding.pack_start (content, true, true, 12);
 
-        add(padding);
+		trash_button.clicked.connect ( () => {
+			remove_media (true);
+			destroy ();
+		});
 
-	cancel_button.grab_focus ();
+		remove_button.clicked.connect ( () => {
+			remove_media (false);
+			destroy ();
+		});
 
-        show_all();
-    }
+		cancel_button.clicked.connect ( () => {
+			destroy ();
+		});
 
-    public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-        var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-        alignment.top_padding = top;
-        alignment.right_padding = right;
-        alignment.bottom_padding = bottom;
-        alignment.left_padding = left;
-
-        alignment.add (widget);
-        
-        return alignment;
-    }
-
-    void ok_button_clicked () {
-        ok_button_pressed (check_button.get_active ());
-        destroy ();
-    }
+		add(padding);
+		show_all();
+		cancel_button.grab_focus ();
+	}
 }
 

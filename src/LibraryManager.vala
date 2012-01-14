@@ -189,7 +189,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_media.set(s.rowid, s);
 			_permanents.add(s.rowid);
 			
-			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+			if(s.file.has_prefix(settings.getMusicFolder()))
 				++local_song_count;
 			
 			if(s.mediatype == 0)
@@ -203,7 +203,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		if(_media.size == 0)
-			settings.setMusicFolder("");
+			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 		
 		foreach(SmartPlaylist p in dbm.load_smart_playlists()) {
 			_smart_playlists.set(p.rowid, p);
@@ -323,10 +323,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void* set_music_thread_function () {
-		var file = GLib.File.new_for_path(settings.getMusicFolder());
+		var music_folder = GLib.File.new_for_path(settings.getMusicFolder());
 		LinkedList<string> files = new LinkedList<string>();
 		
-		var items = fo.count_music_files(file, ref files);
+		var items = fo.count_music_files(music_folder, ref files);
 		stdout.printf("found %d items to import\n", items);
 		
 		fo.resetProgress(items);
@@ -636,12 +636,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		medias_updated(rv);
-		stdout.printf("rowid err\n");
 		if(updates.size == 1)
 			media_updated(updates.to_array()[0].rowid);
-		stdout.printf("rowid err end\n");
 		
-		/* now do background work */
+		/* now do background work. even if updateMeta is true, so must user preferences */
 		if(updateMeta)
 			fo.save_medias(updates);
 		
@@ -895,7 +893,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		medias_removed(removedIds);
 		
 		if(_media.size == 0)
-			settings.setMusicFolder("");
+			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 		
 		lw.updateSensitivities();
 	}

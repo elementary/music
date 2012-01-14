@@ -205,6 +205,7 @@ public class BeatBox.Icons : GLib.Object {
 	public Icon not_starred_icon;
 	public Icon info_icon;
 	public Icon new_podcast_icon;
+	public Icon ok_icon;
 	
 	/** Symbolic icons **/
 	public Icon now_playing_icon;
@@ -250,6 +251,8 @@ public class BeatBox.Icons : GLib.Object {
 		not_starred_icon = new Icon ("not-starred", 16, Icon.IconType.STATUS, null, true);		
 		info_icon = new Icon ("help-info", 16, Icon.IconType.STATUS, null, true);
 		new_podcast_icon = new Icon ("podcast-new", 16, Icon.IconType.STATUS, null, true);
+		
+		ok_icon = new Icon ("dialog-ok", 16, Icon.IconType.ACTION, null, false);
 		
 		// SYMBOLIC ICONS
 		process_completed_icon = new Icon ("process-completed-symbolic", 16, Icon.IconType.STATUS, null, true);

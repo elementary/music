@@ -18,10 +18,10 @@ public class BeatBox.CDDA : GLib.Object {
 		string album_genre;
 		
 		//device_file = File.new_for_path(device_uri);
-		//if(!device_file.query_exists()) {
-		//	stdout.printf("could not locate device file at %s\n", device_uri);
-			//return rv;
-		//}
+		if(!device_file.query_exists()) {
+			stdout.printf("could not locate device file at %s\n", device_file.get_uri());
+			return rv;
+		}
 		
 		try {
 			device_info = device_file.query_info("xattr::*", FileQueryInfoFlags.NONE);

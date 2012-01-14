@@ -242,28 +242,29 @@ public class BeatBox.FileOperator : Object {
 				return null;
 			}
 			
-			TagLib.File tag_file;
-			
-			tag_file = new TagLib.File(s.file);
-			
-			if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
-				try {
-					tag_file.tag.title = s.title;
-					tag_file.tag.artist = s.artist;
-					tag_file.tag.album = s.album;
-					tag_file.tag.genre = s.genre;
-					tag_file.tag.comment = s.comment;
-					tag_file.tag.year = s.year;
-					tag_file.tag.track  = s.track;
-					
-					tag_file.save();
+			if(settings.getWriteMetadataToFile()) {
+				TagLib.File tag_file;
+				tag_file = new TagLib.File(s.file);
+				
+				if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
+					try {
+						tag_file.tag.title = s.title;
+						tag_file.tag.artist = s.artist;
+						tag_file.tag.album = s.album;
+						tag_file.tag.genre = s.genre;
+						tag_file.tag.comment = s.comment;
+						tag_file.tag.year = s.year;
+						tag_file.tag.track  = s.track;
+						
+						tag_file.save();
+					}
+					finally {
+						
+					}
 				}
-				finally {
-					
+				else {
+					stdout.printf("Could not save %s.\n", s.file);
 				}
-			}
-			else {
-				stdout.printf("Could not save %s.\n", s.file);
 			}
 			
 			if(settings.getUpdateFolderHierarchy())
@@ -475,6 +476,10 @@ public class BeatBox.FileOperator : Object {
 		new_imports.add(m);
 		all_new_imports.add(m);
 		++index;
+		
+		// check if we should guess as a podcast
+		if(m.genre.contains("Podcast") || m.length > 9000) // OVER 9000!!!!! aka 15 minutes
+			m.mediatype = 1;
 		
 		if(new_imports.size >= 50) {
 			lm.add_medias(new_imports, true); // give user some feedback

@@ -552,7 +552,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				
 				lw.updateMillerColumns();
 				((ViewWrapper)w).set_statusbar_text();
-				lm.current_view_size = ((ViewWrapper)w).media_count;
 			}
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(true);

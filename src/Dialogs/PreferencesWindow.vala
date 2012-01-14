@@ -32,6 +32,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 	FileChooserButton fileChooser;
 	
 	CheckButton organizeFolders;
+	CheckButton writeMetadataToFile;
 	CheckButton copyImportedMusic;
 	CheckButton downloadNewPodcasts;
 	
@@ -71,9 +72,10 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		fileChooser = new FileChooserButton("Music Folder", FileChooserAction.SELECT_FOLDER);
 		
 		var managementLabel = new Label("Library Management");
-		organizeFolders = new CheckButton.with_label("Keep Music folder organized");
-		copyImportedMusic = new CheckButton.with_label("Copy files to Music folder when added to Library");
-		downloadNewPodcasts = new CheckButton.with_label("Automatically download new Podcast episodes");
+		organizeFolders = new CheckButton.with_label("Keep music folder organized");
+		writeMetadataToFile = new CheckButton.with_label("Write metadata to file");
+		copyImportedMusic = new CheckButton.with_label("Copy files to music folder when added to library");
+		downloadNewPodcasts = new CheckButton.with_label("Automatically download new podcast episodes");
 		
 		var lastfmLabel = new Label("Last FM Integration");
 		var lastfmInfo = new Granite.Widgets.WrapLabel("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
@@ -105,6 +107,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		
 		// initialize library management settings
 		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
+		writeMetadataToFile.set_active(_lm.settings.getWriteMetadataToFile());
 		copyImportedMusic.set_active(_lm.settings.getCopyImportedMusic());
 		downloadNewPodcasts.set_active(_lm.settings.getDownloadNewPodcasts());
 		
@@ -120,6 +123,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		content.pack_start(wrap_alignment(fileChooser, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(managementLabel, false, true, 0);
 		content.pack_start(wrap_alignment(organizeFolders, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(wrap_alignment(writeMetadataToFile, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(wrap_alignment(copyImportedMusic, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(wrap_alignment(downloadNewPodcasts, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(lastfmLabel, false, true, 0);
@@ -199,6 +203,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		}
 		
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
+		_lm.settings.setWriteMetadataToFile(writeMetadataToFile.get_active());
 		_lm.settings.setCopyImportedMusic(copyImportedMusic.get_active());
 		_lm.settings.setDownloadNewPodcasts(downloadNewPodcasts.get_active());
 		

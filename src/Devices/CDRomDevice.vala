@@ -284,7 +284,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			if(!lw.has_toplevel_focus) {
 				try {
 					lm.lw.notification.close();
-					lm.lw.notification.update("Import Complete", "BeatBox has finished importing " + list.size.to_string() + " songs from Audio CD", "beatbox");
+					lm.lw.notification.update("Import Complete", "BeatBox has finished importing " + (current_list_index + 1).to_string() + " songs from Audio CD", "beatbox");
 					
 					var beatbox_icon = lm.icons.beatbox_icon.render(Gtk.IconSize.DIALOG, null);
 					lm.lw.notification.set_image_from_pixbuf(beatbox_icon);

@@ -49,10 +49,9 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		clicked_index = 0;
 		previous_index = 0;
 		
-		// make the background white
-		Gdk.Color c = Gdk.Color();
-		Gdk.Color.parse("#FFFFFF", out c);
-		modify_bg(StateType.NORMAL, c);
+		// make the event box transparent
+		set_above_child(true);
+		set_visible_window(false);
 		
 		button_press_event.connect(buttonPress);
 		draw.connect(exposeEvent);
