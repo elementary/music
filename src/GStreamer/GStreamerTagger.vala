@@ -72,7 +72,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				uint track, track_count, album_number, album_count, bitrate, rating;
 				double bpm;
 				uint64 duration;
-				GLib.Date? date = new GLib.Date();
+				GLib.Date? date = GLib.Date();
 				
 				// get title, artist, album artist, album, genre, comment, lyrics strings
 				if(info.get_tags().get_string(TAG_TITLE, out title))

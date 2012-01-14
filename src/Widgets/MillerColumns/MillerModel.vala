@@ -61,6 +61,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to a valid iterator pointing to path **/
 	public bool get_iter (out TreeIter iter, TreePath path) {
+	    iter = TreeIter();
 		int path_index = path.get_indices()[0];
 		
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
