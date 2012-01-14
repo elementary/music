@@ -64,7 +64,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	void* finish_initialization_thread() {
-		var tMedias = CDDA.getMediaList(get_uri());
+		var tMedias = CDDA.getMediaList(mount.get_default_location());
 		lm.add_medias(tMedias, false);
 		foreach(var s in tMedias)
 			medias.add(s.rowid);
@@ -284,7 +284,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			if(!lw.has_toplevel_focus) {
 				try {
 					lm.lw.notification.close();
-					lm.lw.notification.update("Import Complete", "BeatBox has finished importing " + list.size.to_string() + " songs from Audio CD", "beatbox");
+					lm.lw.notification.update("Import Complete", "BeatBox has finished importing " + (current_list_index + 1).to_string() + " songs from Audio CD", "beatbox");
 					
 					var beatbox_icon = lm.icons.beatbox_icon.render(Gtk.IconSize.DIALOG, null);
 					lm.lw.notification.set_image_from_pixbuf(beatbox_icon);

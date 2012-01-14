@@ -156,7 +156,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		else {
 			bool success = musicDropdown.set_active_id(dev.get_preferences().music_playlist);
 			if(!success) {
-				lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+				//lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
 				dev.get_preferences().music_playlist = "";
 				dev.get_preferences().sync_all_music = true;
 				musicDropdown.set_active(0);
@@ -167,7 +167,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		else {
 			bool success = podcastDropdown.set_active_id(dev.get_preferences().podcast_playlist);
 			if(!success) {
-				lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().podcast_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+				//lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().podcast_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
 				dev.get_preferences().podcast_playlist = "";
 				dev.get_preferences().sync_all_podcasts = true;
 				podcastDropdown.set_active(0);
@@ -178,7 +178,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		else {
 			bool success = audiobookDropdown.set_active_id(dev.get_preferences().audiobook_playlist);
 			if(!success) {
-				lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+				//lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
 				dev.get_preferences().audiobook_playlist = "";
 				dev.get_preferences().sync_all_audiobooks = true;
 				audiobookDropdown.set_active(0);

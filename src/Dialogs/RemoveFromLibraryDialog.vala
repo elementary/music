@@ -34,10 +34,10 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 	private Button cancel_button;
 
 	public RemoveFromLibraryDialog (LibraryWindow lw, LinkedList<Media> to_remove,
-	                                 ViewWrapper.Hint media_type)
+									 ViewWrapper.Hint media_type)
 	{
 		this.lw = lw;
-		
+
 		set_title("");
 		window_position = WindowPosition.CENTER;
 		type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -90,7 +90,7 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 		var info = new Label (info_text);
 		info.halign = Gtk.Align.START;
 
-        var warning_icon = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
+		var warning_icon = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 
 		trash_button = new Button.with_label ("Move to Trash");
 		remove_button = new Button.with_label ("Remove from BeatBox");
@@ -102,16 +102,16 @@ public class BeatBox.RemoveFromLibraryDialog : Window {
 
 		var content_area = new Box (Orientation.HORIZONTAL, 0);
 		var info_wrapper = new Box (Orientation.VERTICAL, 0);
-        var icon_wrapper = new Box (Orientation.VERTICAL, 0);
+		var icon_wrapper = new Box (Orientation.VERTICAL, 0);
 
-        icon_wrapper.pack_start (warning_icon, false, false, 0);
-        icon_wrapper.pack_end (new Box (Orientation.VERTICAL, 0), true, true, 0);
+		icon_wrapper.pack_start (warning_icon, false, false, 0);
+		icon_wrapper.pack_end (new Box (Orientation.VERTICAL, 0), true, true, 0);
 
 		info_wrapper.pack_start (title, false, true, 0);
 		info_wrapper.pack_start (info, false, true, 0);
 
-		content_area.pack_start (icon_wrapper, false, false, 10);
-		content_area.pack_start (info_wrapper, true, true, 10);
+		content_area.pack_start (icon_wrapper, false, false, 0);
+		content_area.pack_start (info_wrapper, true, true, 0);
 
 		var bottom_buttons = new ButtonBox (Orientation.HORIZONTAL);
 

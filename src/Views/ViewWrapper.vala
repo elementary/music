@@ -378,7 +378,7 @@ public class BeatBox.ViewWrapper : VBox {
 				if(to_search != lw.searchField.get_text() || to_search == last_search)
 					return false;
 				
-				stdout.printf("search field changed\n");
+				//stdout.printf("search field changed\n");
 				doUpdate(this.currentView, medias, false, true);
 					
 				last_search = to_search;

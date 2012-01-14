@@ -8,16 +8,26 @@
     </key>
   </schema>
   
-  <schema path="/apps/beatbox/music/" id="org.gnome.beatbox.music">
+  <schema path="/apps/beatbox/library/" id="org.gnome.beatbox.library">
     <key type="s" name="music-folder">
       <default>''</default>
       <summary>Path to music folder</summary>
       <description>Where music is copied to, saved, and managed</description>
     </key>
+    <key type="s" name="podcast-folder">
+      <default>''</default>
+      <summary>Path to podcast folder</summary>
+      <description>Where podcasts are copied to, saved, and managed</description>
+    </key>
     <key type="b" name="update-folder-hierarchy">
       <default>false</default>
       <summary>Whether or not to auto-organize folders and rename files</summary>
       <description>Whether or not to auto-organize folders and rename files</description>
+    </key>
+    <key type="b" name="write-metadata-to-file">
+      <default>false</default>
+      <summary>Whether or not to write metadata to file</summary>
+      <description>Whether or not to write metadata to file</description>
     </key>
     <key type="b" name="copy-imported-music">
       <default>false</default>

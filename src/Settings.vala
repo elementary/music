@@ -25,13 +25,14 @@ using Gee;
 public class BeatBox.Settings : Object {
 	GLib.Settings lastfm;
 	GLib.Settings ui;
-	GLib.Settings music;
+	GLib.Settings library;
 	GLib.Settings equalizer;
 	
 	public static const string LASTFM_SESSION_KEY = "session-key";
 	
 	public static const string MUSIC_FOLDER = "music-folder";
 	public static const string UPDATE_FOLDER_HIERARCHY = "update-folder-hierarchy";
+	public static const string WRITE_METADATA_TO_FILE = "write-metadata-to-file";
 	public static const string COPY_IMPORTED_MUSIC = "copy-imported-music";
 	public static const string DOWNLOAD_NEW_PODCASTS = "download-new-podcasts";
 	public static const string LAST_MEDIA_PLAYING = "last-media-playing";
@@ -59,31 +60,34 @@ public class BeatBox.Settings : Object {
 	
 	LinkedList<string> lastfm_settings;
 	LinkedList<string> ui_settings;
-	LinkedList<string> music_settings;
+	LinkedList<string> library_settings;
 	LinkedList<string> equalizer_settings;
+	
+	string music_folder;
 	
 	public Settings() {
 		lastfm = new GLib.Settings("org.gnome.beatbox.lastfm");
 		ui = new GLib.Settings("org.gnome.beatbox.ui");
-		music = new GLib.Settings("org.gnome.beatbox.music");
+		library = new GLib.Settings("org.gnome.beatbox.library");
 		equalizer = new GLib.Settings("org.gnome.beatbox.equalizer");
 		
 		lastfm_settings = new LinkedList<string>();
 		ui_settings = new LinkedList<string>();
-		music_settings = new LinkedList<string>();
+		library_settings = new LinkedList<string>();
 		equalizer_settings = new LinkedList<string>();
 		
 		lastfm_settings.add(LASTFM_SESSION_KEY);
 		
-		music_settings.add(MUSIC_FOLDER);
-		music_settings.add(UPDATE_FOLDER_HIERARCHY);
-		music_settings.add(COPY_IMPORTED_MUSIC);
-		music_settings.add(DOWNLOAD_NEW_PODCASTS);
-		music_settings.add(LAST_MEDIA_PLAYING);
-		music_settings.add(LAST_MEDIA_POSITION);
-		music_settings.add(SHUFFLE_MODE);
-		music_settings.add(REPEAT_MODE);
-		music_settings.add(SEARCH_STRING);
+		library_settings.add(MUSIC_FOLDER);
+		library_settings.add(UPDATE_FOLDER_HIERARCHY);
+		library_settings.add(WRITE_METADATA_TO_FILE);
+		library_settings.add(COPY_IMPORTED_MUSIC);
+		library_settings.add(DOWNLOAD_NEW_PODCASTS);
+		library_settings.add(LAST_MEDIA_PLAYING);
+		library_settings.add(LAST_MEDIA_POSITION);
+		library_settings.add(SHUFFLE_MODE);
+		library_settings.add(REPEAT_MODE);
+		library_settings.add(SEARCH_STRING);
 		
 		ui_settings.add(WINDOW_MAXIMIZED);
 		ui_settings.add(WINDOW_WIDTH);
@@ -101,6 +105,8 @@ public class BeatBox.Settings : Object {
 		equalizer_settings.add(DEFAULT_PRESETS);
 		equalizer_settings.add(AUTO_SWITCH_PRESET);
 		equalizer_settings.add(VOLUME);
+		
+		//music_folder = getMusicFolder();
 	}
 	
 	private bool getBool(string path, bool def) {
@@ -112,8 +118,8 @@ public class BeatBox.Settings : Object {
 		else if(ui_settings.contains(path)) {
 			rv = ui.get_boolean(path);
 		}
-		else if(music_settings.contains(path)) {
-			rv = music.get_boolean(path);
+		else if(library_settings.contains(path)) {
+			rv = library.get_boolean(path);
 		}
 		else if(equalizer_settings.contains(path)) {
 			rv = equalizer.get_boolean(path);
@@ -135,8 +141,8 @@ public class BeatBox.Settings : Object {
 		else if(ui_settings.contains(path)) {
 			rv = ui.get_string(path);
 		}
-		else if(music_settings.contains(path)) {
-			rv = music.get_string(path);
+		else if(library_settings.contains(path)) {
+			rv = library.get_string(path);
 		}
 		else if(equalizer_settings.contains(path)) {
 			rv = equalizer.get_string(path);
@@ -158,8 +164,8 @@ public class BeatBox.Settings : Object {
 		else if(ui_settings.contains(path)) {
 			rv = ui.get_int(path);
 		}
-		else if(music_settings.contains(path)) {
-			rv = music.get_int(path);
+		else if(library_settings.contains(path)) {
+			rv = library.get_int(path);
 		}
 		else if(equalizer_settings.contains(path)) {
 			rv = equalizer.get_int(path);
@@ -179,8 +185,8 @@ public class BeatBox.Settings : Object {
 		else if(ui_settings.contains(path)) {
 			ui.set_boolean(path, val);
 		}
-		else if(music_settings.contains(path)) {
-			music.set_boolean(path, val);
+		else if(library_settings.contains(path)) {
+			library.set_boolean(path, val);
 		}
 		else if(equalizer_settings.contains(path)) {
 			equalizer.set_boolean(path, val);
@@ -197,8 +203,8 @@ public class BeatBox.Settings : Object {
 		else if(ui_settings.contains(path)) {
 			ui.set_string(path, val);
 		}
-		else if(music_settings.contains(path)) {
-			music.set_string(path, val);
+		else if(library_settings.contains(path)) {
+			library.set_string(path, val);
 		}
 		else if(equalizer_settings.contains(path)) {
 			equalizer.set_string(path, val);
@@ -206,6 +212,9 @@ public class BeatBox.Settings : Object {
 		else {
 			stdout.printf("could not find int for %s\n", path);
 		}
+		
+		if(path == MUSIC_FOLDER)
+			music_folder = val;
 	}
 	
 	private void setInt(string path, int val) {
@@ -215,8 +224,8 @@ public class BeatBox.Settings : Object {
 		else if(ui_settings.contains(path)) {
 			ui.set_int(path, val);
 		}
-		else if(music_settings.contains(path)) {
-			music.set_int(path, val);
+		else if(library_settings.contains(path)) {
+			library.set_int(path, val);
 		}
 		else if(equalizer_settings.contains(path)) {
 			equalizer.set_int(path, val);
@@ -229,7 +238,12 @@ public class BeatBox.Settings : Object {
 
 	/** Get values **/
 	public string getMusicFolder() {
-		return getString(MUSIC_FOLDER, "");
+		string rv = getString(MUSIC_FOLDER, "");
+		
+		if(rv == "")
+			rv = Environment.get_user_special_dir(UserDirectory.MUSIC);
+			
+		return rv;
 	}
 	
 	public bool getWindowMaximized() {
@@ -278,6 +292,10 @@ public class BeatBox.Settings : Object {
 	
 	public bool getUpdateFolderHierarchy() {
 		return getBool(UPDATE_FOLDER_HIERARCHY, false);
+	}
+	
+	public bool getWriteMetadataToFile() {
+		return getBool(WRITE_METADATA_TO_FILE, false);
 	}
 	
 	public bool getCopyImportedMusic() {
@@ -427,6 +445,10 @@ public class BeatBox.Settings : Object {
 	
 	public void setUpdateFolderHierarchy(bool val) {
 		setBool(UPDATE_FOLDER_HIERARCHY, val);
+	}
+	
+	public void setWriteMetadataToFile(bool val) {
+		setBool(WRITE_METADATA_TO_FILE, val);
 	}
 	
 	public void setCopyImportedMusic(bool val) {
