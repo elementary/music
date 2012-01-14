@@ -211,13 +211,11 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		/*if(lw.searchField.get_text() == "" && _showing_medias.size == medias.size && ViewWrapper.Hint != ViewWrapper.Hint.HISTORY && ViewWrapper.Hint != ViewWrapper.Hint.QUEUE && !force) {
 			return;
 		}*/
-		if(_show_next == _showing_medias) {
-			return;
-		}
 		
-		if(_show_next != _showing_medias) {
-			_showing_medias = _show_next;
-		}
+		if(_show_next == _showing_medias)
+			return;
+		
+		_showing_medias = _show_next;
 		
 		view.freeze_child_notify();
 		view.set_model(null);

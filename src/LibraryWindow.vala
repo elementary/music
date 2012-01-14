@@ -1230,7 +1230,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(lm.doing_file_operations())
 			return;
 		
-		if(lm.get_local_song_count() > 0 || lm.playlist_count() > 0) {
+		if(lm.song_ids().size > 0 || lm.playlist_count() > 0) {
 			var smfc = new SetMusicFolderConfirmation(lm, this, folder);
 			smfc.finished.connect( (cont) => {
 				if(cont) {

@@ -216,10 +216,10 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		/*if(lw.searchField.get_text() == "" && _showing_medias.size == medias.size && ViewWrapper.Hint != ViewWrapper.Hint.HISTORY && ViewWrapper.Hint != ViewWrapper.Hint.QUEUE && !force) {
 			return;
 		}*/
-		if(_show_next == _showing_medias) {
-			return;
-		}
 		
+		if(_show_next == _showing_medias)
+			return;
+			
 		_showing_medias = _show_next;
 		
 		view.freeze_child_notify();
@@ -241,7 +241,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		if(lm.media_info.media != null)
 			music_model.updateMedia(lm.media_info.media.rowid, get_is_current());
-		
 		view.set_model(music_model);
 		view.thaw_child_notify();
 		
