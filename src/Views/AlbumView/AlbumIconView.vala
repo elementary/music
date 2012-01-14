@@ -31,33 +31,14 @@ public class BeatBox.Albums.IconView : Gtk.IconView
 	internal LibraryWindow lw;
     public signal void expand_widget(Gtk.Widget widget, int size);
     public signal void collapse_widget();
-    Gtk.ListStore album_list;
     public IconView(AlbumViewModel model)
     {
         set_model(model);
-        album_list = new Gtk.ListStore(2, typeof(string), typeof(string), null);
-        add_title("L'Effet Papillion");
-        add_title("Allez !");
-        add_title("Les Numéros");
-        add_title("Malgré Tout");
-        add_title("Tout Vu Tout Lu");
-        add_title("Pas Du Tout");
-        add_title("Ou T'Etais Passé");
-        add_title("Voir Sans Etre Vu");
-        add_title("A La Campagne");
-        add_title("Infréquentable");
 
         item_activated.connect(on_activate);
         button_press_event.connect(on_button_press);
     }
 
-    void add_title(string title) {
-        Gtk.TreeIter iter = Gtk.TreeIter();
-        album_list.append(out iter);
-        album_list.set(iter, 1, title, 0, track.to_string());
-        track++;
-    }
-    
     void on_activate (Gtk.TreePath path) {
         
         /* Get the name and the author */
@@ -72,8 +53,12 @@ public class BeatBox.Albums.IconView : Gtk.IconView
 	    model.get(iter, 0, out pix);
         
         var grid = new Gtk.Grid();
-        var title = new Gtk.Label(s.album);
-        var author = new Gtk.Label(s.artist);
+        var title = new Granite.Widgets.WrapLabel(s.album);
+        title.set_alignment(0.5f, 0.5f);
+        title.set_justify(Gtk.Justification.CENTER);
+        var author = new Granite.Widgets.WrapLabel(s.artist);
+        author.set_alignment(0.5f, 0.5f);
+        author.set_justify(Gtk.Justification.CENTER);
         var image = new Gtk.Image.from_pixbuf(pix);
         author.sensitive = false;
         grid.attach(image, 0, 0, 1, 1);
@@ -142,8 +127,7 @@ class BeatBox.Albums.View : GtkClutter.Embed
     {
         stage = get_stage() as Clutter.Container;
 
-        height_request = 600;
-        width_request = 800;
+        height_request = width_request = 50;
 
         icon_view = new GtkClutter.Actor();
         icon_view.opacity = 255;
