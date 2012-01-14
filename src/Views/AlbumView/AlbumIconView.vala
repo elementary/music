@@ -111,8 +111,14 @@ public class BeatBox.Albums.IconView : Gtk.IconView
     }
 
     int track = 1;
+    public bool expanded = false;
     bool on_button_press(Gdk.EventButton event)
     {
+        if(expanded)
+        {
+            collapse_widget();
+            return true;
+        }
         base.button_press_event(event);
         var selection = get_selected_items();
         if(selection.length() == 0)
@@ -215,6 +221,7 @@ class BeatBox.Albums.View : GtkClutter.Embed
     void on_collapse()
     {
         expanded = false;
+        icon_view_widget.expanded = false;
         double x = get_allocated_width() + 10;
         double x2 = get_allocated_width();
         expand_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x);
@@ -253,6 +260,7 @@ class BeatBox.Albums.View : GtkClutter.Embed
             sidebar.set_content(label);
         }
         expanded = true;
+        icon_view_widget.expanded = true;
 
         sidebar.show_all();
     }
