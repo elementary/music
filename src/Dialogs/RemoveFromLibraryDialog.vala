@@ -25,78 +25,81 @@ using Gee;
 
 public class BeatBox.RemoveFromLibraryDialog : Window {
 
-	private LibraryWindow lw;
-
 	public signal void remove_media (bool trash_files);
 
-	private Box content;
-	private Box padding;
+	private LibraryWindow lw;
+
 	private Button remove_button;
 	private Button trash_button;
 	private Button cancel_button;
 
-	public RemoveFromLibraryDialog (LibraryWindow lw, LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
+	public RemoveFromLibraryDialog (LibraryWindow lw, LinkedList<Media> to_remove,
+	                                 ViewWrapper.Hint media_type)
+	{
 		this.lw = lw;
-		this.set_title("");
-		this.window_position = WindowPosition.CENTER;
-		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.set_modal(true);
-		this.set_transient_for(lw);
-		this.destroy_with_parent = true;
-		this.resizable = false;
-		this.deletable = false;
-
+		
+		set_title("");
+		window_position = WindowPosition.CENTER;
+		type_hint = Gdk.WindowTypeHint.DIALOG;
+		set_modal(true);
+		set_transient_for(lw);
+		destroy_with_parent = true;
+		resizable = false;
+		deletable = false;
 		set_size_request (200, -1);
 
-		content = new Box (Orientation.VERTICAL, 10);
-		padding = new Box (Orientation.HORIZONTAL, 20);
+		bool multiple_media = to_remove.size > 1;
 
-		string media_str = "";
+		var media_text = new StringBuilder();
 		switch (media_type) {
 			case ViewWrapper.Hint.MUSIC:
-				media_str = "Song";
+				media_text.append("Song");
 				break;
 			case ViewWrapper.Hint.PODCAST:
-				media_str = "Podcast";
+				media_text.append("Podcast");
 				break;
 			case ViewWrapper.Hint.AUDIOBOOK:
-				media_str = "Audiobook";
+				media_text.append("Audiobook");
 				break;
 			case ViewWrapper.Hint.STATION:
-				media_str = "Station";
+				media_text.append("Station");
 				break;
 		}
-
-		bool multiple_media = to_remove.size > 1;
 
 		string title_text = "";
 
 		if (multiple_media) {
-			title_text = "Remove %d %ss from BeatBox?".printf(to_remove.size, media_str);
+			media_text.append_unichar('s'); // Plural form
+			title_text = "Remove %d %s from BeatBox?".printf(to_remove.size, media_text.str);
 		}
 		else {
   			Media m = to_remove.get(0);
-			title_text = "Remove \"%s\" From BeatBox?".printf(m.title);
+			title_text = "Remove \"%s\" From BeatBox?".printf(m.title.replace("&", "&amp;"));
 		}
 
-		Label title = new Label ("<span weight=\"bold\" size=\"larger\">" + title_text + "</span>");
+		const string TITLE_MARKUP_START = "<span weight=\"bold\" size=\"larger\">";
+		const string TITLE_MARKUP_END = "</span>";
+
+		Label title = new Label (TITLE_MARKUP_START + title_text + TITLE_MARKUP_END);
 		title.use_markup = true;
 		title.halign = Gtk.Align.START;
 		title.set_line_wrap(true);
 
-		string info_text = "\nThis will remove the %s%s from your library and from\nany device that automatically syncs with BeatBox.\n\nWould you also like to move the file%s to the trash?".printf(media_str.down(), (multiple_media)? "s" : "", (multiple_media)? "s" : "");
+		string info_text = "\nThis will remove the %s from your library and from any device that automatically syncs with BeatBox.\n\nWould you also like to move the file%s to the trash?".printf(media_text.str.down(), (multiple_media)? "s" : "");
 
-		Label info = new Label (info_text);
-		info.set_line_wrap(true);
+		var info = new Label (info_text);
 		info.halign = Gtk.Align.START;
+
+        var warning_icon = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 
 		trash_button = new Button.with_label ("Move to Trash");
 		remove_button = new Button.with_label ("Remove from BeatBox");
 		cancel_button = new Button.with_label ("Cancel");
 
-        var warning_icon = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
-
 		/* set up controls layout */
+		var content = new Box (Orientation.VERTICAL, 10);
+		var padding = new Box (Orientation.HORIZONTAL, 20);
+
 		var content_area = new Box (Orientation.HORIZONTAL, 0);
 		var info_wrapper = new Box (Orientation.VERTICAL, 0);
         var icon_wrapper = new Box (Orientation.VERTICAL, 0);

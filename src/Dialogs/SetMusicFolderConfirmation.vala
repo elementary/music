@@ -95,17 +95,6 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 		is_working.hide();
 	}
 	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
-	}
-	
 	public void savePlaylistsClicked() {
 		string folder = "";
 		var file_chooser = new FileChooserDialog ("Choose Music Folder", this,

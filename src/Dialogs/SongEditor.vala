@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011	   Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originaly Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -284,13 +284,13 @@ public class BeatBox.MediaEditor : Window {
 			return true;
 
 		for (int i = 0; text.get_next_char (ref i, out c);)
-			if (c == ' ' || c == '\n' || c == '\t')
+			if (c.isspace() || c == '\n')
 				++white_space;
 
 		if (white_space == text.length)
 			return true;
-		else
-			return false;
+
+		return false;
 	}
 	
 	public void lyricsFetched(Lyrics lyrics) {
@@ -300,7 +300,6 @@ public class BeatBox.MediaEditor : Window {
 		string song_title = fields["Title"].get_value();
 		string song_artist = fields["Artist"].get_value();
 
-		// FIXME: Verify that the lyrics correspond to the current media.
 		if (lyrics.title != song_title)
 			return;
 
@@ -393,7 +392,7 @@ public class BeatBox.MediaEditor : Window {
 		else {
 			lyricsText.get_buffer().text = sum.lyrics;
 		}
-		
+
 		fetch_lyrics (false);
 	}
 	

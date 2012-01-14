@@ -57,9 +57,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		var content = new VBox(false, 10);
 		
 		setupLists();
-		
-		viewport.set_shadow_type(Gtk.ShadowType.NONE);
-		
+
 		music_index = spaceWidget.add_item("Music", 0.0, SpaceWidget.ItemColor.BLUE);
 		podcast_index = spaceWidget.add_item("Podcasts", 0.0, SpaceWidget.ItemColor.PURPLE);
 		audiobook_index = spaceWidget.add_item("Audiobooks", 0.0, SpaceWidget.ItemColor.GREEN);
