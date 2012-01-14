@@ -91,6 +91,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		Gdk.threads_enter();
 		Gtk.init(ref args);
 		Gdk.threads_leave();
+		GtkClutter.init(ref args);
 		
 		Notify.init("beatbox");
 		add_stock_images();

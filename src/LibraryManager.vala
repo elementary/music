@@ -736,6 +736,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void do_search(string search, ViewWrapper.Hint hint,string genre, string artist, string album,
 	Collection<int> to_search, ref Collection<int> results, ref Collection<int> album_results) {
+	    print("album %s artist %s genre %s search %s\n", album, artist, genre, search);
 		string l_search = search.down();
 		int mediatype = 0;
 		bool include_temps = (hint == ViewWrapper.Hint.CDROM || hint == ViewWrapper.Hint.DEVICE_AUDIO || 

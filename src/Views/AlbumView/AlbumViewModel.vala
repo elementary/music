@@ -126,6 +126,10 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			}
 		}
 	}
+	
+	public Media get_media(Gtk.TreeIter iter) {
+	    return lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
+	}
 
 	/** Sets iter to point to the first child of parent. **/
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
