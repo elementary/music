@@ -811,7 +811,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		vw.add_medias(new_podcasts);
 		stdout.printf("appended\n");*/
 		
-		miller.populateColumns("", lm.media_ids());
+		var w = sideTree.getSelectedWidget();
+		if(w is ViewWrapper) {
+			miller.populateColumns("", ((ViewWrapper)w).medias);
+		}
+		
 		updateSensitivities();
 	}
 	

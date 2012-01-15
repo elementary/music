@@ -10,20 +10,20 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	
 	CheckButton syncMusic;
 	CheckButton syncPodcasts;
-	CheckButton syncAudiobooks;
+	//CheckButton syncAudiobooks;
 	ComboBox musicDropdown;
 	ComboBox podcastDropdown;
-	ComboBox audiobookDropdown;
+	//ComboBox audiobookDropdown;
 	ListStore musicList;
 	ListStore podcastList;
-	ListStore audiobookList;
+	//ListStore audiobookList;
 	
 	Gtk.Image deviceImage;
 	SpaceWidget spaceWidget;
 	
 	int music_index;
 	int podcast_index;
-	int audiobook_index;
+	//int audiobook_index;
 	
 	public DeviceSummaryWidget(LibraryManager lm, LibraryWindow lw, Device d) {
 		this.lm = lm;
@@ -39,13 +39,13 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		syncAtStart = new Gtk.Switch();
 		syncMusic = new CheckButton();
 		syncPodcasts = new CheckButton();
-		syncAudiobooks = new CheckButton();
+		//syncAudiobooks = new CheckButton();
 		musicDropdown = new ComboBox();
 		podcastDropdown = new ComboBox();
-		audiobookDropdown = new ComboBox();
+		//audiobookDropdown = new ComboBox();
 		musicList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
 		podcastList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
-		audiobookList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
+		//audiobookList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
 		
 		deviceImage = new Gtk.Image.from_gicon(dev.get_icon(), IconSize.DIALOG);
 		spaceWidget = new SpaceWidget((double)dev.get_capacity()/1000000);
@@ -60,8 +60,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 
 		music_index = spaceWidget.add_item("Music", 0.0, SpaceWidget.ItemColor.BLUE);
 		podcast_index = spaceWidget.add_item("Podcasts", 0.0, SpaceWidget.ItemColor.PURPLE);
-		audiobook_index = spaceWidget.add_item("Audiobooks", 0.0, SpaceWidget.ItemColor.GREEN);
-		stdout.printf("index's are %d %d %d\n", music_index, podcast_index, audiobook_index);
+		//audiobook_index = spaceWidget.add_item("Audiobooks", 0.0, SpaceWidget.ItemColor.GREEN);
 		
 		refreshSpaceWidget();
 		
@@ -84,14 +83,14 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		podcastBox.pack_start(syncPodcasts, false, false, 0);
 		podcastBox.pack_start(podcastDropdown, false, false, 0);
 		
-		var audiobookBox = new HBox(false, 6);
-		audiobookBox.pack_start(syncAudiobooks, false, false, 0);
-		audiobookBox.pack_start(audiobookDropdown, false, false, 0);
+		//var audiobookBox = new HBox(false, 6);
+		//audiobookBox.pack_start(syncAudiobooks, false, false, 0);
+		//audiobookBox.pack_start(audiobookDropdown, false, false, 0);
 		
 		var syncOptionsBox = new VBox(false, 0);
 		syncOptionsBox.pack_start(musicBox, false, false, 0);
 		if(dev.supports_podcasts()) 	syncOptionsBox.pack_start(podcastBox, false, false, 0);
-		if(dev.supports_audiobooks() && false) 	syncOptionsBox.pack_start(audiobookBox, false, false, 0);
+		//if(dev.supports_audiobooks()) 	syncOptionsBox.pack_start(audiobookBox, false, false, 0);
 		
 		var syncHBox = new HBox(true, 6);
 		syncHBox.pack_start(syncOptionsLabel, false, true, 0);
@@ -149,7 +148,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		syncAtStart.active = dev.get_preferences().sync_when_mounted;
 		syncMusic.active = dev.get_preferences().sync_music;
 		syncPodcasts.active = dev.get_preferences().sync_podcasts;
-		syncAudiobooks.active = dev.get_preferences().sync_audiobooks;
+		//syncAudiobooks.active = dev.get_preferences().sync_audiobooks;
 		
 		if(dev.get_preferences().sync_all_music)
 			musicDropdown.set_active(0);
@@ -173,7 +172,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				podcastDropdown.set_active(0);
 			}
 		}
-		if(dev.get_preferences().sync_all_audiobooks)
+		/*if(dev.get_preferences().sync_all_audiobooks)
 			audiobookDropdown.set_active(0);
 		else {
 			bool success = audiobookDropdown.set_active_id(dev.get_preferences().audiobook_playlist);
@@ -183,16 +182,16 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				dev.get_preferences().sync_all_audiobooks = true;
 				audiobookDropdown.set_active(0);
 			}
-		}
+		}*/
 		
 		// hop onto signals to save preferences
 		syncAtStart.notify["active"].connect(savePreferences);
 		syncMusic.toggled.connect(savePreferences);
 		syncPodcasts.toggled.connect(savePreferences);
-		syncAudiobooks.toggled.connect(savePreferences);
+		//syncAudiobooks.toggled.connect(savePreferences);
 		musicDropdown.changed.connect(savePreferences);
 		podcastDropdown.changed.connect(savePreferences);
-		audiobookDropdown.changed.connect(savePreferences);
+		//audiobookDropdown.changed.connect(savePreferences);
 		
 		deviceName.changed.connect(deviceNameChanged);
 		spaceWidget.sync_clicked.connect(syncClicked);
@@ -210,35 +209,35 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		foreach(int i in dev.get_podcasts()) {
 			podcast_size += (double)(lm.media_from_id(i).file_size);
 		}
-		foreach(int i in dev.get_audiobooks()) {
-			audiobook_size += (double)(lm.media_from_id(i).file_size);
-		}
+		//foreach(int i in dev.get_audiobooks()) {
+		//	audiobook_size += (double)(lm.media_from_id(i).file_size);
+		//}
 		
 		spaceWidget.update_item_size(music_index, media_size);
 		spaceWidget.update_item_size(podcast_index, podcast_size);
-		spaceWidget.update_item_size(audiobook_index, audiobook_size);
+		//spaceWidget.update_item_size(audiobook_index, audiobook_size);
 	}
 	
 	void setupLists() {
 		musicDropdown.set_model(musicList);
 		podcastDropdown.set_model(podcastList);
-		audiobookDropdown.set_model(audiobookList);
+		//audiobookDropdown.set_model(audiobookList);
 		
 		musicDropdown.set_id_column(1);
 		podcastDropdown.set_id_column(1);
-		audiobookDropdown.set_id_column(1);
+		//audiobookDropdown.set_id_column(1);
 		
 		musicDropdown.set_row_separator_func(rowSeparatorFunc);
 		podcastDropdown.set_row_separator_func(rowSeparatorFunc);
-		audiobookDropdown.set_row_separator_func(rowSeparatorFunc);
+		//audiobookDropdown.set_row_separator_func(rowSeparatorFunc);
 		
 		var music_cell = new CellRendererPixbuf();
 		musicDropdown.pack_start(music_cell, false);
 		musicDropdown.add_attribute(music_cell, "pixbuf", 2);
 		podcastDropdown.pack_start(music_cell, false);
 		podcastDropdown.add_attribute(music_cell, "pixbuf", 2);
-		audiobookDropdown.pack_start(music_cell, false);
-		audiobookDropdown.add_attribute(music_cell, "pixbuf", 2);
+		//audiobookDropdown.pack_start(music_cell, false);
+		//audiobookDropdown.add_attribute(music_cell, "pixbuf", 2);
 		
 		var cell = new CellRendererText();
 		cell.ellipsize = Pango.EllipsizeMode.END;
@@ -246,16 +245,16 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		musicDropdown.add_attribute(cell, "text", 1);
 		podcastDropdown.pack_start(cell, true);
 		podcastDropdown.add_attribute(cell, "text", 1);
-		audiobookDropdown.pack_start(cell, true);
-		audiobookDropdown.add_attribute(cell, "text", 1);
+		//audiobookDropdown.pack_start(cell, true);
+		//audiobookDropdown.add_attribute(cell, "text", 1);
 		
 		musicDropdown.popup.connect(refreshLists);
 		podcastDropdown.popup.connect(refreshLists);
-		audiobookDropdown.popup.connect(refreshLists);
+		//audiobookDropdown.popup.connect(refreshLists);
 		
 		musicDropdown.set_button_sensitivity(SensitivityType.ON);
 		podcastDropdown.set_button_sensitivity(SensitivityType.ON);
-		audiobookDropdown.set_button_sensitivity(SensitivityType.ON);
+		//audiobookDropdown.set_button_sensitivity(SensitivityType.ON);
 	}
 	
 	bool rowSeparatorFunc(TreeModel model, TreeIter iter) {
@@ -286,19 +285,19 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		pref.sync_when_mounted = syncAtStart.active;
 		pref.sync_music = syncMusic.active;
 		pref.sync_podcasts = syncPodcasts.active;
-		pref.sync_audiobooks = syncAudiobooks.active;
+		//pref.sync_audiobooks = syncAudiobooks.active;
 		
 		pref.sync_all_music = musicDropdown.get_active() == 0;
 		pref.sync_all_podcasts = podcastDropdown.get_active() == 0;
-		pref.sync_all_audiobooks = audiobookDropdown.get_active() == 0;
+		//pref.sync_all_audiobooks = audiobookDropdown.get_active() == 0;
 		
 		pref.music_playlist = musicDropdown.get_active_id();
 		pref.podcast_playlist = podcastDropdown.get_active_id();
-		pref.audiobook_playlist = audiobookDropdown.get_active_id();
+		//pref.audiobook_playlist = audiobookDropdown.get_active_id();
 		
 		musicDropdown.sensitive = syncMusic.active;
 		podcastDropdown.sensitive = syncPodcasts.active;
-		audiobookDropdown.sensitive = syncAudiobooks.active;
+		//audiobookDropdown.sensitive = syncAudiobooks.active;
 		
 		lm.save_device_preferences();
 	}
@@ -311,28 +310,28 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		stdout.printf("refreshing lists\n");
 		string musicString = musicDropdown.get_active_id();
 		string podcastString = podcastDropdown.get_active_id();
-		string audiobookString = audiobookDropdown.get_active_id();
+		//string audiobookString = audiobookDropdown.get_active_id();
 		
 		TreeIter iter;
 		musicList.clear();
 		podcastList.clear();
-		audiobookList.clear();
+		//audiobookList.clear();
 		
 		/* add entire library options */
 		musicList.append(out iter);
 		musicList.set(iter, 0, null, 1, "All Music", 2, lm.icons.music_icon.render(IconSize.MENU, musicDropdown.get_style_context()));
 		podcastList.append(out iter);
 		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.icons.podcast_icon.render(IconSize.MENU, podcastDropdown.get_style_context()));
-		audiobookList.append(out iter);
-		//audiobookList.set(iter, 0, null, 1, "All Audiobooks", 2, lm.icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
+		//audiobookList.append(out iter);
+		//audiobookList.set(iter, 0, null, 1, "All Audiobooks");//, 2, lm.icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
 		
 		/* add separator */
 		musicList.append(out iter);
 		musicList.set(iter, 0, null, 1, "<separator_item_unique_name>");
 		podcastList.append(out iter);
 		podcastList.set(iter, 0, null, 1, "<separator_item_unique_name>");
-		audiobookList.append(out iter);
-		audiobookList.set(iter, 0, null, 1, "<separator_item_unique_name>");
+		//audiobookList.append(out iter);
+		//audiobookList.set(iter, 0, null, 1, "<separator_item_unique_name>");
 		
 		/* add all playlists */
 		var smart_playlist_pix = lm.icons.smart_playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
@@ -350,8 +349,8 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				podcastList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
 			//}
 			//if(audiobooks) {
-				audiobookList.append(out iter);
-				audiobookList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+				//audiobookList.append(out iter);
+				//audiobookList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
 			//}
 		}
 		foreach(var p in lm.playlists()) {
@@ -367,8 +366,8 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				podcastList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
 			//}
 			//if(audiobooks) {
-				audiobookList.append(out iter);
-				audiobookList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+				//audiobookList.append(out iter);
+				//audiobookList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
 			//}
 		}
 		
@@ -376,14 +375,13 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 			musicDropdown.set_active(0);
 		if(!podcastDropdown.set_active_id(podcastString))
 			podcastDropdown.set_active(0);
-		if(!audiobookDropdown.set_active_id(audiobookString))
-			audiobookDropdown.set_active(0);
+		//if(!audiobookDropdown.set_active_id(audiobookString))
+		//	audiobookDropdown.set_active(0);
 		
 		stdout.printf("setting sensitivity\n");
 		musicDropdown.sensitive = dev.get_preferences().sync_music;
 		podcastDropdown.sensitive = dev.get_preferences().sync_podcasts;
-		audiobookDropdown.sensitive = dev.get_preferences().sync_audiobooks;
-		stdout.printf("set to %d %d %d\n", musicDropdown.sensitive ? 1 : 0, podcastDropdown.sensitive ? 1 : 0, audiobookDropdown.sensitive ? 1 : 0);
+		//audiobookDropdown.sensitive = dev.get_preferences().sync_audiobooks;
 	}
 	
 	/*void test_media_types(Gee.Collection<int> items, out bool music, out bool podcasts, out bool audiobooks) {
@@ -485,7 +483,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				}
 			}
 		}
-		if(pref.sync_audiobooks) {
+		/*if(pref.sync_audiobooks) {
 			if(pref.sync_all_audiobooks) {
 				foreach(var s in lm.media()) {
 					if(s.mediatype == 2 && !s.isTemporary)
@@ -519,7 +517,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 					return;
 				}
 			}
-		}
+		}*/
 		
 		bool fits = dev.will_fit(list);
 		if(!fits) {
