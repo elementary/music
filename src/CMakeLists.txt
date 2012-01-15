@@ -35,8 +35,7 @@ pkg_check_modules(DEPS
     json-glib-1.0
     gio-unix-2.0
     granite
-    libgpod-1.0
-    clutter-gtk-1.0)
+    libgpod-1.0)
 
 # Check if we have sqlheavy-0.2
 #pkg_check_modules(SQLHEAVY sqlheavy-0.2)
