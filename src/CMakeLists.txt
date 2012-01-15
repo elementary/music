@@ -39,15 +39,15 @@ pkg_check_modules(DEPS
     clutter-gtk-1.0)
 
 # Check if we have sqlheavy-0.2
-#pkg_check_modules(SQLHEAVY sqlheavy-0.2)
-#if(${SQLHEAVY_FOUND})
-#    set(ADD_PKG ${ADD_PKG} sqlheavy-0.2)
-#    message("-- Will use sqlheavy-0.2")
-#else()
+if(${SQLHEAVY_USE_2})
+    pkg_check_modules(SQLHEAVY sqlheavy-0.2)
+    set(ADD_PKG ${ADD_PKG} sqlheavy-0.2)
+    message("-- Will use sqlheavy-0.2")
+else()
     set(ADD_PKG ${ADD_PKG} sqlheavy-0.1)
     pkg_check_modules(SQLHEAVY sqlheavy-0.1)
     message("-- Will use sqlheavy-0.1")
-#endif()
+endif()
 
 pkg_check_modules(ZEITGEIST zeitgeist-1.0)
 if(${ZEITGEIST_FOUND})
