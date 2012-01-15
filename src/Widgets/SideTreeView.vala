@@ -545,12 +545,14 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 								vw.medias, true, false);
 				}
 				
-				if(lw.initializationFinished && (lw.viewSelector.selected == 2)) {
+				if(lw.viewSelector.selected == 2) {
 					stdout.printf("doing miller update\n");
 					lw.miller.populateColumns( (o is Device) ? "device" : "", ((ViewWrapper)w).medias);
 				}
 				
 				lw.updateMillerColumns();
+				
+				stdout.printf("setting status bar text\n");
 				((ViewWrapper)w).set_statusbar_text();
 			}
 			else if(w is Store.StoreView) {

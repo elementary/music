@@ -185,6 +185,11 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	}
 	
 	public void append_medias(Collection<int> new_medias) {
+		var all_medias = new LinkedList<int>();
+		all_medias.add_all(_showing_medias);
+		all_medias.add_all(new_medias);
+		this._showing_medias = all_medias;
+		
 		radio_model.append_medias(new_medias, false);
 		radio_model.resort();
 		queue_draw();
@@ -234,7 +239,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		else
 			this.view.scroll_to_point(0, (int)hPos);
 		
-		set_statusbar_text();
+		//set_statusbar_text();
 		
 		// just because a user searches, doesn't mean we want to update the playing list
 		/*if(get_is_current())

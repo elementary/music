@@ -111,8 +111,8 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		//albumView.needsUpdate = true;
 		//list.needsUpdate = true;
-		albumView.set_show_next(medias);
-		list.set_show_next(medias);
+		//albumView.set_show_next(medias);
+		//list.set_show_next(medias);
 		
 		
 		if(the_hint == ViewWrapper.Hint.MUSIC)
@@ -181,6 +181,7 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	void medias_added(LinkedList<int> ids) {
+		add_medias(ids);
 		/*bool refreshPod = hint == ViewWrapper.Hint.PODCAST;
 		bool refreshMusic = hint == ViewWrapper.Hint.MUSIC;
 		
@@ -213,22 +214,29 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public void add_medias(LinkedList<int> new_medias) {
-		var all_medias = new LinkedList<int>();
-		all_medias.add_all(medias);
-		all_medias.add_all(new_medias);
-		
-		this.medias = all_medias;
-		media_count = medias.size;
-		
-		Collection<int> potentialShowing = new LinkedList<int>();
-		Collection<int> potentialShowingAlbum = new LinkedList<int>();
-		lm.do_search(lw.searchField.get_text(), hint,
-				lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
-				new_medias, ref potentialShowing, ref potentialShowingAlbum);
-		
-		list.append_medias(potentialShowing);
-		albumView.append_medias(potentialShowingAlbum);
+		if(hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.STATION) {
+			var all_medias = new LinkedList<int>();
+			all_medias.add_all(medias);
+			all_medias.add_all(new_medias);
 			
+			this.medias = all_medias;
+			media_count = medias.size;
+			
+			LinkedList<int> potentialShowing = new LinkedList<int>();
+			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
+			lm.do_search(lw.searchField.get_text(), hint,
+					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
+					new_medias, ref potentialShowing, ref potentialShowingAlbum);
+			
+			list.append_medias(potentialShowing);
+			albumView.append_medias(potentialShowingAlbum);
+			
+			if(isCurrentView)
+				set_statusbar_text();
+		}
+		else {
+			
+		}
 	}
 	
 	/** Updates the displayed view and its content
@@ -302,8 +310,8 @@ public class BeatBox.ViewWrapper : VBox {
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
 		if(!this.visible || force) {
 			//stdout.printf("searching..\n");
-			Collection<int> potentialShowing = new LinkedList<int>();
-			Collection<int> potentialShowingAlbum = new LinkedList<int>();
+			LinkedList<int> potentialShowing = new LinkedList<int>();
+			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 			
 			stdout.printf("seraching to populate\n");
 			lm.do_search(lw.searchField.get_text(), hint,

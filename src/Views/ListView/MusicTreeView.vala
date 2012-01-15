@@ -199,6 +199,11 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	public void append_medias(Collection<int> new_medias) {
+		var all_medias = new LinkedList<int>();
+		all_medias.add_all(_showing_medias);
+		all_medias.add_all(new_medias);
+		_showing_medias = all_medias;
+		
 		music_model.append_medias(new_medias, true);
 		music_model.resort();
 		queue_draw();
@@ -230,7 +235,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		music_model.get_sort_column_id(out sort_col, out sort_dir);
 		
 		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
-		music_model = new MusicTreeModel(lm, get_column_strings(), now_playing_icon);
+		music_model = new MusicTreeModel(lm, get_column_strings(), now_playing_icon, get_hint(), view);
 		music_model.is_current = _is_current;
 		
 		var hPos = this.vadjustment.get_value();
@@ -504,7 +509,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
 		
-		music_model = new MusicTreeModel(lm, get_column_strings(), now_playing_icon);
+		music_model = new MusicTreeModel(lm, get_column_strings(), now_playing_icon, get_hint(), view);
 		
 		music_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		

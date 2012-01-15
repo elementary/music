@@ -260,7 +260,6 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			//s.file_size = 5; // best guess
 		}
 		
-		s.unique_status_image = lm.icons.process_completed_icon.render(Gtk.IconSize.MENU, ((DeviceViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter)).list.get_style_context());
 		lm.update_media(s, true, true);
 		
 		// do it again on next track

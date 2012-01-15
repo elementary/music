@@ -100,8 +100,8 @@ public class BeatBox.MillerColumns : HBox {
 			return;
 		}
 		
-		Collection<int> searched_medias = new LinkedList<int>();
-		Collection<int> searched_medias_albums = new LinkedList<int>();
+		LinkedList<int> searched_medias = new LinkedList<int>();
+		LinkedList<int> searched_medias_albums = new LinkedList<int>();
 		lm.do_search(lw.searchField.get_text(), hint,
 					"All Genres", "All Artists", "All Albums",
 					medias, ref searched_medias, ref searched_medias_albums);
@@ -142,8 +142,8 @@ public class BeatBox.MillerColumns : HBox {
 			return;
 		}
 		
-		Collection<int> searched_medias = new LinkedList<int>();
-		Collection<int> searched_medias_album = new LinkedList<int>();
+		LinkedList<int> searched_medias = new LinkedList<int>();
+		LinkedList<int> searched_medias_album = new LinkedList<int>();
 		lm.do_search(lw.searchField.get_text(), hint,
 					genres.get_selected(), artists.get_selected(), albums.get_selected(),
 					medias, ref searched_medias, ref searched_medias_album);
@@ -173,8 +173,8 @@ public class BeatBox.MillerColumns : HBox {
 			return;
 		}
 		
-		Collection<int> searched_medias = new LinkedList<int>();
-		Collection<int> searched_medias_album = new LinkedList<int>();
+		LinkedList<int> searched_medias = new LinkedList<int>();
+		LinkedList<int> searched_medias_album = new LinkedList<int>();
 		lm.do_search(lw.searchField.get_text(), hint,
 					genres.get_selected(), artists.get_selected(), albums.get_selected(),
 					medias, ref searched_medias, ref searched_medias_album);
