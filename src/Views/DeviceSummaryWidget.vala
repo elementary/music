@@ -91,7 +91,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		var syncOptionsBox = new VBox(false, 0);
 		syncOptionsBox.pack_start(musicBox, false, false, 0);
 		if(dev.supports_podcasts()) 	syncOptionsBox.pack_start(podcastBox, false, false, 0);
-		if(dev.supports_audiobooks()) 	syncOptionsBox.pack_start(audiobookBox, false, false, 0);
+		if(dev.supports_audiobooks() && false) 	syncOptionsBox.pack_start(audiobookBox, false, false, 0);
 		
 		var syncHBox = new HBox(true, 6);
 		syncHBox.pack_start(syncOptionsLabel, false, true, 0);
@@ -252,6 +252,10 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		musicDropdown.popup.connect(refreshLists);
 		podcastDropdown.popup.connect(refreshLists);
 		audiobookDropdown.popup.connect(refreshLists);
+		
+		musicDropdown.set_button_sensitivity(SensitivityType.ON);
+		podcastDropdown.set_button_sensitivity(SensitivityType.ON);
+		audiobookDropdown.set_button_sensitivity(SensitivityType.ON);
 	}
 	
 	bool rowSeparatorFunc(TreeModel model, TreeIter iter) {
@@ -292,6 +296,10 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		pref.podcast_playlist = podcastDropdown.get_active_id();
 		pref.audiobook_playlist = audiobookDropdown.get_active_id();
 		
+		musicDropdown.sensitive = syncMusic.active;
+		podcastDropdown.sensitive = syncPodcasts.active;
+		audiobookDropdown.sensitive = syncAudiobooks.active;
+		
 		lm.save_device_preferences();
 	}
 	
@@ -316,7 +324,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		podcastList.append(out iter);
 		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.icons.podcast_icon.render(IconSize.MENU, podcastDropdown.get_style_context()));
 		audiobookList.append(out iter);
-		audiobookList.set(iter, 0, null, 1, "All Audiobooks", 2, lm.icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
+		//audiobookList.set(iter, 0, null, 1, "All Audiobooks", 2, lm.icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
 		
 		/* add separator */
 		musicList.append(out iter);
@@ -370,6 +378,12 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 			podcastDropdown.set_active(0);
 		if(!audiobookDropdown.set_active_id(audiobookString))
 			audiobookDropdown.set_active(0);
+		
+		stdout.printf("setting sensitivity\n");
+		musicDropdown.sensitive = dev.get_preferences().sync_music;
+		podcastDropdown.sensitive = dev.get_preferences().sync_podcasts;
+		audiobookDropdown.sensitive = dev.get_preferences().sync_audiobooks;
+		stdout.printf("set to %d %d %d\n", musicDropdown.sensitive ? 1 : 0, podcastDropdown.sensitive ? 1 : 0, audiobookDropdown.sensitive ? 1 : 0);
 	}
 	
 	/*void test_media_types(Gee.Collection<int> items, out bool music, out bool podcasts, out bool audiobooks) {

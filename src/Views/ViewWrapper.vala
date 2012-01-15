@@ -112,8 +112,8 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		//albumView.needsUpdate = true;
 		//list.needsUpdate = true;
-		//albumView.set_show_next(medias);
-		//list.set_show_next(medias);
+		albumView.set_show_next(medias);
+		list.set_show_next(medias);
 		
 		
 		if(the_hint == ViewWrapper.Hint.MUSIC)
@@ -200,6 +200,9 @@ public class BeatBox.ViewWrapper : VBox {
 	void medias_removed(LinkedList<int> ids) {
 		//medias.remove_all(ids);
 		showingMedias.remove_all(ids);
+		list.remove_medias(ids);
+		albumView.remove_medias(ids);
+		
 		needs_update = true;
 	}
 	
@@ -332,10 +335,8 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		if(this.visible || force) {
 			if(type == ViewType.LIST) {
-				//stdout.printf("populating\n");
 				list.populate_view();
-				//stdout.printf("populated\n");
-				list.show();
+				list.show_all();
 				albumView.hide();
 				
 				if(!isCurrentView)
@@ -344,7 +345,7 @@ public class BeatBox.ViewWrapper : VBox {
 			else {
 				albumView.populate_view();
 				list.hide();
-				albumView.show();
+				albumView.show_all();
 				
 				if(!isCurrentView)
 					albumView.set_is_current_view(false);

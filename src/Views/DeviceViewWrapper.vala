@@ -9,8 +9,8 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	public DeviceViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> medias, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
 		base(lmm, lww, medias, sort, dir, the_hint, id);
 		
-		list.hide();
-		albumView.hide();
+		//list.hide();
+		//albumView.hide();
 		
 		list.import_requested.connect(propogate_import_request);
 		albumView.import_requested.connect(propogate_import_request);

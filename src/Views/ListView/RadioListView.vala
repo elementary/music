@@ -190,13 +190,19 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		all_medias.add_all(new_medias);
 		this._showing_medias = all_medias;
 		
-		radio_model.append_medias(new_medias, false);
+		radio_model.append_medias(new_medias, true);
 		radio_model.resort();
 		queue_draw();
 	}
 	
 	public void remove_medias(Collection<int> to_remove) {
+		var all_medias = new LinkedList<int>();
+		all_medias.add_all(_showing_medias);
+		all_medias.remove_all(to_remove);
+		_showing_medias = all_medias;
 		
+		radio_model.removeMedias(to_remove);
+		queue_draw();
 	}
 	
 	public void populate_view() {
@@ -599,7 +605,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	}
 	
 	void medias_removed(LinkedList<int> ids) {
-		radio_model.removeMedias(ids);
+		//radio_model.removeMedias(ids);
 		//_showing_medias.remove_all(ids);
 		//_show_next.remove_all(ids);
 	}
@@ -835,10 +841,23 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 			temp.get(item, 0, out id);
 			Media s = lm.media_from_id(id);
 			
-			toRemove.add(s);
+			toRemoveIDs.add(id);
+			
+			if(get_hint() == ViewWrapper.Hint.STATION) {
+				toRemove.add(s);
+			}
 		}
 		
-		lm.remove_medias(toRemove, false);
+		if(get_hint() == ViewWrapper.Hint.STATION) {
+			var dialog = new RemoveFilesDialog (lm.lw, toRemove, get_hint());
+			
+			dialog.remove_media.connect ( (delete_files) => {
+				lm.remove_medias (toRemove, delete_files);
+				//music_model.removeMedias(toRemoveIDs);
+				
+				lw.miller.populateColumns("", radio_model.getOrderedMedias());
+			});
+		}
 		
 		// in case all the medias from certain miller items were removed, update miller
 		lw.miller.populateColumns("", radio_model.getOrderedMedias());

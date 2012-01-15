@@ -187,19 +187,37 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		}
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
+			TreeIter? rv;
 			// TODO: Install and load these icons using the Icons module
 			if(d.getContentType() == "cdrom") {
 				devices_cdrom_iter = addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
 				return devices_cdrom_iter;
 			}
 			else if(d.getContentType() == "ipod-new")
-				return addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
+				rv = addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "ipod-old")
-				return addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
+				rv = addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "android")
-				return addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
+				rv = addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
 			else
-				return addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
+				rv = addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
+				
+			var dvw = new DeviceViewWrapper(lm, lw, d.get_medias(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
+			addItem(rv, o, dvw, music_icon, "Music", null);
+			lw.mainViews.pack_start(dvw, true, true, 0);
+			
+			if(d.supports_podcasts()) {
+				dvw = new DeviceViewWrapper(lm, lw, d.get_podcasts(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
+				addItem(rv, o, dvw, podcast_icon, "Podcasts", null);
+				lw.mainViews.pack_start(dvw, true, true, 0);
+			}
+			if(d.supports_audiobooks() && false) {
+				//dvw = new DeviceViewWrapper(lm, lm.lw, d.get_podcasts(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIOBOOK, -1, d);
+				//addItem(rv, o, dvw, audiobook_icon, "Audiobooks", null);
+				//lw.mainViews.pack_start(dvw, true, true, 0);
+			}
+			
+			return rv;
 		}
 		else if(name == "Music Store" && parent == network_iter) {
 			network_store_iter = addItem(parent, o, w, music_icon, name, null);
@@ -538,9 +556,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.medias_from_playlist(((Playlist)o).rowid), true, false);
 				}
-				else if(o is Device && ((Device)o).getContentType() == "cdrom") {
+				else if(o is Device) {
 					DeviceViewWrapper vw = (DeviceViewWrapper)w;
-					
+					stdout.printf("o is device\n");
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								vw.medias, true, false);
 				}
@@ -559,17 +577,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				((Store.StoreView)w).setIsCurrentView(true);
 			}
 			else if(w is DeviceView) {
-				stdout.printf("o is device\n");
 				DeviceView dv = (DeviceView)w;
-				
-				dv.updateChildren();
-				
-				if(lw.initializationFinished && (lw.viewSelector.selected == 2)) {
-					stdout.printf("doing miller update\n");
-					lw.miller.populateColumns( (o is Device) ? "device" : "", ((DeviceView)w).music_list.medias);
-				}
-				lw.updateMillerColumns();
-				((DeviceView)w).music_list.set_statusbar_text();
+				dv.set_is_current_view(true);
 			}
 		}
 		else {
@@ -989,6 +998,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		
 		if(success) {
 			if(paths.size > 0) {
+				stdout.printf("paths size is %d\n", paths.size);
 				try {
 					lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
 					lm.fo.import_from_playlist_file_info(name, paths);
@@ -999,10 +1009,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 			}
 			if(stations.size > 0) {
+				stdout.printf("stations size is %d\n", stations.size);
 				lm.add_medias(stations, true);
 				
-				Widget w = getWidget(network_radio_iter);
-				((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.station_ids(), true, true);
+				//Widget w = getWidget(network_radio_iter);
+				//((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.station_ids(), true, true);
 			}
 		}
 	}

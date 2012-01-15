@@ -210,7 +210,13 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	public void remove_medias(Collection<int> to_remove) {
+		var all_medias = new LinkedList<int>();
+		all_medias.add_all(_showing_medias);
+		all_medias.remove_all(to_remove);
+		_showing_medias = all_medias;
 		
+		music_model.removeMedias(to_remove);
+		queue_draw();
 	}
 	
 	public void populate_view() {
@@ -265,6 +271,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	public void set_statusbar_text() {
+		if(_showing_medias == null)
+			return;
+		
 		uint count = 0;
 		uint total_time = 0;
 		uint total_mbs = 0;
@@ -803,7 +812,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	void medias_removed(LinkedList<int> ids) {
-		music_model.removeMedias(ids);
+		//music_model.removeMedias(ids);
 		//_showing_medias.remove_all(ids);
 		//_show_next.remove_all(ids);
 	}
@@ -1223,11 +1232,11 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {
 
-			var dialog = new RemoveFromLibraryDialog (lm.lw, toRemove, get_hint());
+			var dialog = new RemoveFilesDialog (lm.lw, toRemove, get_hint());
 			
 			dialog.remove_media.connect ( (delete_files) => {
 				lm.remove_medias (toRemove, delete_files);
-				music_model.removeMedias(toRemoveIDs);
+				//music_model.removeMedias(toRemoveIDs);
 				
 				lw.miller.populateColumns("", music_model.getOrderedMedias());
 			});

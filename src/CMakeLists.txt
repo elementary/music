@@ -200,6 +200,7 @@ vala_precompile(VALA_C
     Dialogs/NotImportedWindow.vala
     Dialogs/AddPodcastWindow.vala
     Dialogs/RemoveFromLibraryDialog.vala
+    #Dialogs/RemoveFilesDialog.vala
     Dialogs/SetMusicFolderConfirmation.vala
     Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala
