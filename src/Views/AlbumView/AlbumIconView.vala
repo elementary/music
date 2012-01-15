@@ -81,13 +81,13 @@ public class BeatBox.Albums.IconView : Gtk.IconView
 		rv.add("Artist");
 		rv.add("Artist");
 		
-		Collection<int> songs = new LinkedList<int>();
-		Collection<int> albums = new LinkedList<int>();
-		var tree_model = new MusicTreeModel (lm, rv, lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context()));
+		LinkedList<int> songs = new LinkedList<int>();
+		LinkedList<int> albums = new LinkedList<int>();
+		var tree_view = new Gtk.TreeView();
+		var tree_model = new MusicTreeModel (lm, rv, lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context()), ViewWrapper.Hint.MUSIC, tree_view);
 		lm.do_search("", ViewWrapper.Hint.MUSIC, "All Genres", s.artist, s.album, lm.media_ids(), ref songs, ref albums);
 		tree_model.append_medias(songs, false);
 		
-		var tree_view = new Gtk.TreeView();
 		tree_view.set_model(tree_model);
         tree_view.append_column(new Gtk.TreeViewColumn.with_attributes("Tracks", new Gtk.CellRendererPixbuf(), "pixbuf", 1, null));
         tree_view.append_column(new Gtk.TreeViewColumn.with_attributes("Tracks", new Gtk.CellRendererText(), "text", 4, null));
@@ -469,6 +469,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		_showing_medias = _show_next;
 		
         var toShowS = new LinkedList<Media>();
+
         foreach(int i in _showing_medias)
 			toShowS.add(lm.media_from_id(i));
         

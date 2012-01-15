@@ -45,13 +45,25 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 	/** Initialize data storage, columns, etc. **/
 	public AlbumViewModel(LibraryManager lm, Gdk.Pixbuf defaultImage) {
 		this.lm = lm;
-		this.defaultImage = defaultImage;
+		this.defaultImage = get_cover_shadow(defaultImage);
 		removing_medias = false;
 
 		rows = new Sequence<int>();
        
        stamp = (int)GLib.Random.next_int();
 	}
+    const int shadow_size = 5;
+    Gdk.Pixbuf get_cover_shadow(Gdk.Pixbuf pixbuf)
+    {
+        var buffer_surface = new Granite.Drawing.BufferSurface(128, 128);
+        buffer_surface.context.rectangle(shadow_size, shadow_size, 128 - 2*shadow_size, 128-2*shadow_size);
+        buffer_surface.context.set_source_rgba(0,0,0,0.8);
+        buffer_surface.context.fill();
+        buffer_surface.gaussian_blur(shadow_size);
+        Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple(128-2*shadow_size, 128-2*shadow_size, Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
+        buffer_surface.context.paint();
+        return buffer_surface.load_to_pixbuf();
+    }
 	
 	/** Returns Type of column at index_ **/
 	public Type get_column_type (int col) {
@@ -112,7 +124,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			if(column == 0) {
 				
 				if(lm.get_album_art(s.rowid) != null) {
-					val = lm.get_album_art(s.rowid).scale_simple(128, 128, Gdk.InterpType.BILINEAR);
+					val = lm.get_cover_album_art(s.rowid);
 				}
 				else {
 					val = defaultImage;
