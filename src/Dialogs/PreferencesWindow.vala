@@ -99,6 +99,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		
 		// file chooser stuff
 		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
+		fileChooser.set_local_only(true);
 		
 		if (_lm.doing_file_operations()) {
 			fileChooser.set_sensitive(false);

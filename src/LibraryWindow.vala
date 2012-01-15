@@ -1080,6 +1080,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 									  FileChooserAction.SELECT_FOLDER,
 									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+			fileChooser.set_local_only(true);
+			
 			if (file_chooser.run () == ResponseType.ACCEPT) {
 				folder = file_chooser.get_filename();
 			}
