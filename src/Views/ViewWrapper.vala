@@ -32,6 +32,7 @@ public class BeatBox.ViewWrapper : VBox {
 	public Collection<int> medias;
 	public Collection<int> showingMedias;
 	public int media_count;
+	bool needs_update;
 	
 	public ViewWrapper.Hint hint;
 	public ViewType currentView;
@@ -199,6 +200,7 @@ public class BeatBox.ViewWrapper : VBox {
 	void medias_removed(LinkedList<int> ids) {
 		//medias.remove_all(ids);
 		showingMedias.remove_all(ids);
+		needs_update = true;
 	}
 	
 	public void clear() {
@@ -230,12 +232,14 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			list.append_medias(potentialShowing);
 			albumView.append_medias(potentialShowingAlbum);
+			needs_update = true;
+			showingMedias = potentialShowing;
 			
 			if(isCurrentView)
 				set_statusbar_text();
 		}
 		else {
-			
+			needs_update = true;
 		}
 	}
 	
@@ -300,20 +304,20 @@ public class BeatBox.ViewWrapper : VBox {
 				}
 			}
 			
-			if(list.get_is_current()) { // don't update, user is playing current list
+			/*if(list.get_is_current()) { // don't update, user is playing current list
 				stdout.printf("3\n");
 				return;
-			}
+			}*/
 		}
 		/* END special case */
 		
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
-		if(!this.visible || force) {
+		if(!this.visible || force || needs_update) {
 			//stdout.printf("searching..\n");
 			LinkedList<int> potentialShowing = new LinkedList<int>();
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 			
-			stdout.printf("seraching to populate\n");
+			stdout.printf("seraching to populate with %d medias\n", medias.size);
 			lm.do_search(lw.searchField.get_text(), hint,
 					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
 					medias, ref potentialShowing, ref potentialShowingAlbum);
@@ -321,6 +325,8 @@ public class BeatBox.ViewWrapper : VBox {
 			list.set_show_next(potentialShowing);
 			albumView.set_show_next(potentialShowingAlbum);
 			showingMedias = potentialShowing;
+			
+			needs_update = false;
 			//stdout.printf("searched\n");
 		}
 		

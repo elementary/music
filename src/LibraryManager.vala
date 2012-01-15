@@ -733,15 +733,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 		mutex.unlock();
 		
 		foreach(Media test in tests) {
+			bool found_match = false;
 			for(int i = 0; i < searchable.length; ++i) {
 				Media s = searchable[i];
 				if(test.title.down() == s.title.down() && test.artist.down() == s.artist.down()) {
 					found.add(s.rowid);
+					found_match = true;
 					break;
 				}
 			}
 			
-			not_found.add(test);
+			if(!found_match)
+				not_found.add(test);
 		}
 	}
 	
