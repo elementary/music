@@ -194,6 +194,11 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	}
 	
 	public void append_medias(Collection<int> new_medias) {
+		var all_medias = new LinkedList<int>();
+		all_medias.add_all(_showing_medias);
+		all_medias.add_all(new_medias);
+		this._showing_medias = all_medias;
+		
 		podcast_model.append_medias(new_medias, false);
 		podcast_model.resort();
 		queue_draw();
@@ -211,13 +216,11 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		/*if(lw.searchField.get_text() == "" && _showing_medias.size == medias.size && ViewWrapper.Hint != ViewWrapper.Hint.HISTORY && ViewWrapper.Hint != ViewWrapper.Hint.QUEUE && !force) {
 			return;
 		}*/
-		if(_show_next == _showing_medias) {
-			return;
-		}
 		
-		if(_show_next != _showing_medias) {
-			_showing_medias = _show_next;
-		}
+		if(_show_next == _showing_medias)
+			return;
+		
+		_showing_medias = _show_next;
 		
 		view.freeze_child_notify();
 		view.set_model(null);
@@ -247,7 +250,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		else
 			this.view.scroll_to_point(0, (int)hPos);
 		
-		set_statusbar_text();
+		//set_statusbar_text();
 		
 		// just because a user searches, doesn't mean we want to update the playing list
 		/*if(get_is_current())

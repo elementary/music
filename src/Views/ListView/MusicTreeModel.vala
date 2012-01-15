@@ -36,6 +36,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	LibraryManager lm;
 	int stamp; // all iters must match this
 	Gdk.Pixbuf _playing;
+	Gdk.Pixbuf _completed;
+	ViewWrapper.Hint hint;
 	public bool is_current;
 	
     /* data storage variables */
@@ -55,10 +57,12 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 	
 	/** Initialize data storage, columns, etc. **/
-	public MusicTreeModel(LibraryManager lm, LinkedList<string> column_types, Gdk.Pixbuf playing) {
+	public MusicTreeModel(LibraryManager lm, LinkedList<string> column_types, Gdk.Pixbuf playing, ViewWrapper.Hint hint, TreeView parent) {
 		this.lm = lm;
 		_columns = column_types;
 		_playing = playing;
+		_completed = lm.icons.process_completed_icon.render(Gtk.IconSize.MENU, parent.get_style_context());
+		this.hint = hint;
 		removing_medias = false;
 
 		rows = new Sequence<int>();
@@ -137,6 +141,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			else if(column == 1) {
 				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current && _playing != null)
 					val = _playing;
+				else if(hint == ViewWrapper.Hint.CDROM && !s.isTemporary)
+					val = _completed;
 				else if(s.unique_status_image != null)
 					val = s.unique_status_image;
 				else
@@ -281,7 +287,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	/** convenience method to insert medias into the model. No iters returned. **/
     public void append_medias(Collection<int> medias, bool emit) {
 		foreach(int id in medias) {
-			if(lm.media_ids().contains(id)) {
+			//if(lm.media_ids().contains(id)) {
 				SequenceIter<int> added = rows.append(id);
 			
 				if(emit) {
@@ -293,7 +299,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 					
 					row_inserted(path, iter);
 				}
-			}
+			//}
 		}
 	}
 	

@@ -437,6 +437,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			infoPanel.set_visible(false);
 		}
 		
+		initializationFinished = true;
+		
 		sideTree.resetView();
 		if(lm.media_info.media != null) {
 			((ViewWrapper)sideTree.getSelectedWidget()).list.set_as_current_list(0, true);
@@ -447,7 +449,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		searchField.set_text(lm.settings.getSearchString());
 		
-		initializationFinished = true;
 		updateSensitivities();
 	}
 	
@@ -657,7 +658,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
 			else {
 				try {
-					coverArt.set_from_pixbuf(lm.icons.drop_album.render(IconSize.DIALOG, null));
+					coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not set image art: %s\n", err.message);
@@ -792,7 +793,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	void medias_added(LinkedList<int> ids) {
-		var new_songs = new LinkedList<int>();
+		/*var new_songs = new LinkedList<int>();
 		var new_podcasts = new LinkedList<int>();
 		
 		foreach(int i in ids) {
@@ -808,7 +809,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
 		vw.add_medias(new_podcasts);
-		stdout.printf("appended\n");
+		stdout.printf("appended\n");*/
 		
 		miller.populateColumns("", lm.media_ids());
 		updateSensitivities();
@@ -1230,7 +1231,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(lm.doing_file_operations())
 			return;
 		
-		if(lm.get_local_song_count() > 0 || lm.playlist_count() > 0) {
+		if(lm.song_ids().size > 0 || lm.playlist_count() > 0) {
 			var smfc = new SetMusicFolderConfirmation(lm, this, folder);
 			smfc.finished.connect( (cont) => {
 				if(cont) {
@@ -1366,6 +1367,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Device d = welcome_screen_keys.get(index);
 			
 			if(d.getContentType() == "cdrom") {
+				sideTree.expandItem(sideTree.convertToFilter(sideTree.devices_iter), true);
+				sideTree.setSelectedIter(sideTree.convertToFilter(sideTree.devices_cdrom_iter));
+				sideTree.sideListSelectionChange();
+				
 				var to_transfer = new LinkedList<int>();
 				foreach(int i in d.get_medias())
 					to_transfer.add(i);

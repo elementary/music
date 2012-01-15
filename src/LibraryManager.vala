@@ -103,6 +103,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void media_played(int id, int old_id);
 	public signal void playback_stopped(int was_playing);
 	
+	private Mutex mutex = new Mutex();
+	
 	public enum Shuffle {
 		OFF,
 		ALL;
@@ -710,9 +712,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		rv.artist = artist;
 		Media[] searchable;
 		
-		lock(_media) {
-			searchable = _media.values.to_array();
-		}
+		mutex.lock();
+		searchable = _media.values.to_array();
+		mutex.unlock();
 		
 		for(int i = 0; i < searchable.length; ++i) {
 			Media s = searchable[i];
@@ -721,6 +723,26 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		return rv;
+	}
+	
+	public void medias_from_name(LinkedList<Media> tests, ref LinkedList<int> found, ref LinkedList<Media> not_found) {
+		Media[] searchable;
+		
+		mutex.lock();
+		searchable = _media.values.to_array();
+		mutex.unlock();
+		
+		foreach(Media test in tests) {
+			for(int i = 0; i < searchable.length; ++i) {
+				Media s = searchable[i];
+				if(test.title.down() == s.title.down() && test.artist.down() == s.artist.down()) {
+					found.add(s.rowid);
+					break;
+				}
+			}
+			
+			not_found.add(test);
+		}
 	}
 	
 	public Media? media_from_file(string file) {
@@ -735,8 +757,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void do_search(string search, ViewWrapper.Hint hint,string genre, string artist, string album,
-	Collection<int> to_search, ref Collection<int> results, ref Collection<int> album_results) {
-	    print("album %s artist %s genre %s search %s\n", album, artist, genre, search);
+	Collection<int> to_search, ref LinkedList<int> results, ref LinkedList<int> album_results) {
 		string l_search = search.down();
 		int mediatype = 0;
 		bool include_temps = (hint == ViewWrapper.Hint.CDROM || hint == ViewWrapper.Hint.DEVICE_AUDIO || 
@@ -1526,7 +1547,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return null;
 		
 		in_fetch_thread = true;
-		GStreamerTagger tagger = new GStreamerTagger();
+		GStreamerTagger tagger = new GStreamerTagger(this);
 		HashMap<string, Gdk.Pixbuf> to_set = new HashMap<string, Gdk.Pixbuf>();
 		
 		var toShowS = new LinkedList<Media>();
@@ -1537,21 +1558,26 @@ public class BeatBox.LibraryManager : GLib.Object {
 		toShowS.sort((CompareFunc)mediaCompareFunc);
 		
 		string previousAlbum = "";
+		
+		// first get from file
 		foreach(Media s in toShowS) {
-			if(s.album != previousAlbum) {
+			if(s.album != previousAlbum && s.mediatype == 0) {
 				
 				if(_album_art.get(s.artist+s.album) == null) {
 					Gdk.Pixbuf? pix = null;//tagger.get_embedded_art(s);
 					
-					if(!s.getAlbumArtPath().contains("/usr/share/") && pix == null) {
+					string path = "";
+					if( (path = fo.get_best_album_art_file(s)) != null && path != "") {
+						s.setAlbumArtPath(path);
+						
 						try {
-							pix = new Gdk.Pixbuf.from_file(s.getAlbumArtPath());
+							pix = new Gdk.Pixbuf.from_file(path);
 						}
 						catch(GLib.Error err) {}
 					}
 					
 					if(pix != null) {
-						to_set.set(s.artist+s.album, pix);
+						_album_art.set(s.artist+s.album, pix);
 					}
 						
 					previousAlbum = s.album;
@@ -1559,7 +1585,17 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		
-		_album_art.set_all(to_set);
+		// now queue failures to fetch from embedded art
+		previousAlbum = "";
+		var to_check_art = new LinkedList<int>();
+		foreach(Media s in toShowS) {
+			if(_album_art.get(s.artist+s.album) == null)
+				to_check_art.add(s.rowid);
+		}
+		
+		tagger.fetch_art(to_check_art);
+		
+		//_album_art.set_all(to_set);
 		
 		in_fetch_thread = false;
 		return null;
@@ -1601,6 +1637,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return null;
 		
 		return _album_art.get(s.artist+s.album);
+	}
+	
+	public void set_album_art(int id, Gdk.Pixbuf pix) {
+		Media s = media_from_id(id);
+		
+		_album_art.set(s.artist+s.album, pix);
 	}
 	
 	/* Device Preferences */
@@ -1667,5 +1709,4 @@ public class BeatBox.LibraryManager : GLib.Object {
 			file_operations_done();
 		}
 	}
-	
 }

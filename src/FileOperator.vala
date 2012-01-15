@@ -47,6 +47,8 @@ public class BeatBox.FileOperator : Object {
 	LinkedList<Media> all_new_imports;
 	LinkedList<string> import_errors;
 	
+	HashMap<string, string> art_locations = new HashMap<string, string>();
+	
 	public enum ImportType  {
 		SET,
 		RESCAN,
@@ -63,7 +65,7 @@ public class BeatBox.FileOperator : Object {
 		cancelSent = false;
 		new_imports = new LinkedList<Media>();
 		import_errors = new LinkedList<string>();
-		tagger = new GStreamerTagger();
+		tagger = new GStreamerTagger(lm);
 		
 		tagger.media_imported.connect(media_imported);
 		tagger.import_error.connect(import_error);
@@ -122,10 +124,17 @@ public class BeatBox.FileOperator : Object {
         return index;
 	}
 	
-	public string get_best_album_art_file(GLib.File media_file) {
+	public string get_best_album_art_file(Media m) {
+		GLib.File media_file = GLib.File.new_for_path(m.file);
+		
 		string artPath = "";
 		GLib.FileInfo file_info = null;
 		var album_folder = media_file.get_parent();
+		
+		if( (artPath = art_locations.get(album_folder.get_path())) != null)
+			return artPath;
+			
+		artPath = "";
 		
 		/* get a list of all images in folder as potential album art choices */
 		var image_list = new LinkedList<string>();
@@ -139,19 +148,20 @@ public class BeatBox.FileOperator : Object {
 		
 		/* now choose one based on priorities */
 		foreach(string sU in image_list) {
-			var s = sU.down();
-			if(s.contains("folder.")) {
+			var sD = sU.down();
+			if(sD.contains("folder.")) {
 				artPath = album_folder.get_path() + "/" + sU;
 				break;
 			}
-			else if(s.contains("cover."))
+			else if(sD.contains("cover."))
 				artPath = album_folder.get_path() + "/" + sU;
-			else if(!artPath.contains("cover.") && s.contains("album."))
+			else if(!artPath.contains("cover.") && sD.contains("album."))
 				artPath = album_folder.get_path() + "/" + sU;
 			else if(artPath == "")
 				artPath = album_folder.get_path() + "/" + sU;
 		}
 		
+		art_locations.set(album_folder.get_path(), artPath);
 		return artPath;
 	}
 	

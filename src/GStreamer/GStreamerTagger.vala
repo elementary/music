@@ -2,8 +2,11 @@ using Gst;
 using Gee;
 
 public class BeatBox.GStreamerTagger : GLib.Object {
+	LibraryManager lm;
 	static int DISCOVER_SET_SIZE = 100;
 	Gst.Discoverer d;
+	Gst.Discoverer art_d;
+	HashMap<string, int> uri_to_id;
 	LinkedList<string> path_queue;
 	
 	public signal void media_imported(Media m);
@@ -12,10 +15,17 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	
 	bool cancelled;
 	
-	public GStreamerTagger() {
+	public GStreamerTagger(LibraryManager lm) {
+		this.lm = lm;
 		d = new Discoverer((ClockTime)(10*Gst.SECOND));
 		d.discovered.connect(import_media);
 		d.finished.connect(finished);
+		
+		art_d = new Discoverer((ClockTime)(10*Gst.SECOND));
+		art_d.discovered.connect(import_art);
+		art_d.finished.connect(art_finished);
+		
+		uri_to_id = new HashMap<string, int>();
 		path_queue = new LinkedList<string>();
 	}
 	
@@ -36,6 +46,23 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		}
 	}
 	
+	void art_finished() {
+		stdout.printf("art finished %d %s\n", path_queue.size, cancelled? "true":"False");
+		if(!cancelled && path_queue.size > 0) {
+			art_d = new Discoverer((ClockTime)(10*Gst.SECOND));
+			art_d.discovered.connect(import_art);
+			art_d.finished.connect(art_finished);
+			
+			art_d.start();
+			for(int i = 0; i < DISCOVER_SET_SIZE && i < path_queue.size; ++i) {
+				art_d.discover_uri_async(path_queue.get(i));
+			}
+		}
+		else {
+			stdout.printf("art queue finished\n");
+		}
+	}
+	
 	public void cancel_operations() {
 		d.stop();
 		queue_finished();
@@ -53,6 +80,28 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			if(size < DISCOVER_SET_SIZE) {
 				++size;
 				d.discover_uri_async("file://" + s);
+			}
+		}
+	}
+	
+	public void fetch_art(LinkedList<int> files) {
+		return;
+		
+		
+		int size = 0;
+		//cancelled = false;
+		stdout.printf("gstreamer tagger fetching art for %d\n", files.size);
+		
+		uri_to_id.clear();
+		foreach(int i in files) {
+			string uri = "file://" + lm.media_from_id(i).file;
+			path_queue.add(uri);
+			uri_to_id.set(uri, i);
+			
+			art_d.start();
+			if(size < DISCOVER_SET_SIZE) {
+				++size;
+				art_d.discover_uri_async(uri);
 			}
 		}
 	}
@@ -223,7 +272,9 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		return s;
 	}
 	
-	/*oid import_art(DiscovererInfo info) {
+	void import_art(DiscovererInfo info) {
+		path_queue.remove(info.get_uri());
+		stdout.printf("discovered %s\n", info.get_uri());
 		if(info != null && info.get_tags() != null) {
 			try {
 				Gst.Buffer buf = null;
@@ -296,16 +347,14 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				catch(Error err) {}
 				
 				rv = loader.get_pixbuf();
-				
-				//fetching_album_art = false;
-				
-				stdout.printf("TODO: Notify of imported embedded art\n");
+				int id = uri_to_id.get(info.get_uri());
+				lm.set_album_art(id, rv);
 			}
 			catch(Error err) {
 				stdout.printf("Failed to import album art from %s\n", info.get_uri());
 			}
 		}
-	}*/
+	}
 	
 	public bool save_media(Media s) {
 		return false;
@@ -403,7 +452,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		return rv;	*/
 	}
 	
-	public bool save_embedded_art(Gdk.Pixbuf pix) {
+	public bool save_embeddeart_d(Gdk.Pixbuf pix) {
 		
 		return false;
 	}

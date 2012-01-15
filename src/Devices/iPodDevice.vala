@@ -83,40 +83,56 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	void* finish_initialization_thread() {
 		var toAdd = new HashMap<unowned GPod.Track, Media>();
+		
+		var all = new LinkedList<Media>();
+		var temps = new LinkedList<Media>();
+		var perms = new LinkedList<int>();
+		
+		// get all songs first
 		for(int i = 0; i < db.tracks.length(); ++i) {
 			unowned GPod.Track t = db.tracks.nth_data(i);
 			//stdout.printf("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
 			var s = Media.from_track(get_path(), t);
-			s.isTemporary = true;
 			
-			var existing = lm.media_from_name(s.title, s.artist);
-			
-			if(existing.rowid > 0) {
-				//stdout.printf("found match for %s\n", s.title);
-				this.media.set(t, existing.rowid);
-				
-				if(t.mediatype == GPod.MediaType.AUDIO)
-					this.medias.set(t, existing.rowid);
-				else if(t.mediatype == GPod.MediaType.PODCAST)
-					this.podcasts.set(t, existing.rowid);
-				else if(t.mediatype == GPod.MediaType.AUDIOBOOK)
-					this.audiobooks.set(t, existing.rowid);
-			}
-			else {
-				toAdd.set(t, s);
-			}
+			all.add(s);
 		}
 		
-		lm.add_medias(toAdd.values, false);
-		foreach(var e in toAdd.entries) {
-			this.media.set(e.key, e.value.rowid);
+		// search for existing, not existing. add temps.
+		lm.medias_from_name(all, ref perms, ref temps);
+		lm.add_medias(temps, false);
+		
+		all.clear();
+		foreach(int i in perms)
+			all.add(lm.media_from_id(i));
+		foreach(var m in temps)
+			all.add(m);
+		
+		// set hashmaps
+		for(int i = 0; i < db.tracks.length(); ++i) {
+			unowned GPod.Track t = db.tracks.nth_data(i);
 			
-			if(e.key.mediatype == GPod.MediaType.AUDIO)
-				this.medias.set(e.key, e.value.rowid);
-			else if(e.key.mediatype == GPod.MediaType.PODCAST)
-				this.podcasts.set(e.key, e.value.rowid);
-			else if(e.key.mediatype == GPod.MediaType.AUDIOBOOK)
-				this.audiobooks.set(e.key, e.value.rowid);
+			int match = 0;
+			foreach(var m in all) {
+				if(m.title.down() == t.title.down() && m.artist.down() == t.artist.down()) {
+					match = m.rowid;
+					break;
+				}
+			}
+			
+			if(match != 0) {
+				this.media.set(t, match);
+				if(t.mediatype == GPod.MediaType.AUDIO)
+					this.medias.set(t, match);
+				else if(t.mediatype == GPod.MediaType.PODCAST)
+					this.podcasts.set(t, match);
+				else if(t.mediatype == GPod.MediaType.AUDIOBOOK)
+					this.audiobooks.set(t, match);
+					
+				all.remove(lm.media_from_id(match));
+			}
+			else {
+				stdout.printf("wtf no match man\n");
+			}
 		}
 		
 		//lock(lm._medias) {
