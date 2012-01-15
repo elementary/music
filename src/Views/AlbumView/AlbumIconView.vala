@@ -209,6 +209,7 @@ class BeatBox.Albums.View : GtkClutter.Embed
     public void set_icon_view(IconView icon_view_wi)
     {
         var scrolled = new Gtk.ScrolledWindow(null, null);
+        scrolled.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
         scrolled.add_with_viewport(icon_view_wi);
         icon_view_widget = icon_view_wi;
         icon_view_widget.expand_widget.connect(on_expand);
@@ -462,7 +463,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	 * shown
 	*/
 	public void populate_view() {
-		if(_show_next == _showing_medias) {
+		if(_show_next == _showing_medias || _show_next == null) {
 			return;
 		}
 		

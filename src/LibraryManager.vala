@@ -291,15 +291,15 @@ public class BeatBox.LibraryManager : GLib.Object {
 
     Gdk.Pixbuf get_cover_shadow(Gdk.Pixbuf pixbuf)
     {
-        return pixbuf;
         var buffer_surface = new Granite.Drawing.BufferSurface(128, 128);
         buffer_surface.context.rectangle(shadow_size, shadow_size, 128 - 2*shadow_size, 128-2*shadow_size);
         buffer_surface.context.set_source_rgba(0,0,0,0.8);
         buffer_surface.context.fill();
-        buffer_surface.gaussian_blur(shadow_size);
+        buffer_surface.fast_blur(2, 3);
         Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple(128-2*shadow_size, 128-2*shadow_size, Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
         buffer_surface.context.paint();
-        return buffer_surface.load_to_pixbuf();
+        var pix = buffer_surface.load_to_pixbuf();
+        return pix;
     }
 	
 	/************ Library/Collection management stuff ************/
