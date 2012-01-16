@@ -749,15 +749,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 		mutex.unlock();
 		
 		foreach(Media test in tests) {
+			bool found_match = false;
 			for(int i = 0; i < searchable.length; ++i) {
 				Media s = searchable[i];
 				if(test.title.down() == s.title.down() && test.artist.down() == s.artist.down()) {
 					found.add(s.rowid);
+					found_match = true;
 					break;
 				}
 			}
 			
-			not_found.add(test);
+			if(!found_match)
+				not_found.add(test);
 		}
 	}
 	
@@ -797,7 +800,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(int i in to_search) {
 			Media s = media_from_id(i);
 			if(s != null && (s.mediatype == mediatype || mediatype == -1) && (!s.isTemporary || include_temps) &&
-			(l_search in s.title.down() || l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
+			(l_search in s.title.down() || l_search in s.album_artist.down() || 
+			l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
 				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist))
 					if(album == "All Albums" || s.album == album) {
 						results.add(i);

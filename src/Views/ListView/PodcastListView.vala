@@ -199,13 +199,19 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		all_medias.add_all(new_medias);
 		this._showing_medias = all_medias;
 		
-		podcast_model.append_medias(new_medias, false);
+		podcast_model.append_medias(new_medias, true);
 		podcast_model.resort();
 		queue_draw();
 	}
 	
 	public void remove_medias(Collection<int> to_remove) {
+		var all_medias = new LinkedList<int>();
+		all_medias.add_all(_showing_medias);
+		all_medias.remove_all(to_remove);
+		_showing_medias = all_medias;
 		
+		podcast_model.removeMedias(to_remove);
+		queue_draw();
 	}
 	
 	public void populate_view() {
@@ -723,7 +729,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	}
 	
 	void medias_removed(LinkedList<int> ids) {
-		podcast_model.removeMedias(ids);
+		//podcast_model.removeMedias(ids);
 		//_showing_medias.remove_all(ids);
 		//_show_next.remove_all(ids);
 	}
@@ -1136,15 +1142,14 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		}
 		
 		if(get_hint() == ViewWrapper.Hint.PODCAST) {
-			Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Would you like to move any episodes you saved locally to the trash?");
-			md.title = "Move to Trash";
+			var dialog = new RemoveFilesDialog (lm.lw, toRemove, get_hint());
 			
-			if(md.run() == ResponseType.YES)
-				lm.remove_medias(toRemove, true);
-			else
-				lm.remove_medias(toRemove, false);
-			
-			md.destroy();
+			dialog.remove_media.connect ( (delete_files) => {
+				lm.remove_medias (toRemove, delete_files);
+				//music_model.removeMedias(toRemoveIDs);
+				
+				lw.miller.populateColumns("", podcast_model.getOrderedMedias());
+			});
 		}
 		
 		// in case all the medias from certain miller items were removed, update miller

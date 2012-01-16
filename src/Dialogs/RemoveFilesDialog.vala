@@ -1,25 +1,20 @@
-/*using Gtk;
+using Gtk;
 using Gee;
 
 public class BeatBox.RemoveFilesDialog : Window {
-	LibraryManager lm;
 	LibraryWindow lw;
-	int media_id;
 	
 	private VBox content;
 	private HBox padding;
 	
-	Button removeMedia;
-	Button locateMedia;
-	Button rescanLibrary;
-	Button doNothing;
+	private Button remove_button;
+	private Button trash_button;
+	private Button cancel_button;
 	
-	public RemoveFilesDialog(LibraryManager lm, LibraryWindow lw, int id) {
-		this.lm = lm;
+	public signal void remove_media(bool response);
+	
+	public RemoveFilesDialog (LibraryWindow lw, LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
 		this.lw = lw;
-		media_id = id;
-		
-		Media s = lm.media_from_id(media_id);
 		
 		this.set_title("BeatBox");
 		
@@ -29,32 +24,68 @@ public class BeatBox.RemoveFilesDialog : Window {
 		this.set_modal(true);
 		this.set_transient_for(lw);
 		this.destroy_with_parent = true;
-		
-		set_default_size(475, -1);
 		resizable = false;
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 20);
 		
 		// initialize controls
-		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
+		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		removeMedia = new Button.with_label("Remove Media");
-		locateMedia = new Button.with_label("Locate Media");
-		rescanLibrary = new Button.with_label("Rescan Library");
-		doNothing = new Button.with_label("Do Nothing");
+		trash_button = new Button.with_label ("Move to Trash");
+		remove_button = new Button.with_label ("Remove from BeatBox");
+		cancel_button = new Button.with_label ("Cancel");
 		
-		// pretty up labels
+		bool multiple_media = to_remove.size > 1;
+		var media_text = new StringBuilder();
+		switch (media_type) {
+			case ViewWrapper.Hint.MUSIC:
+				media_text.append("Song");
+				break;
+			case ViewWrapper.Hint.PODCAST:
+				media_text.append("Podcast");
+				break;
+			case ViewWrapper.Hint.AUDIOBOOK:
+				media_text.append("Audiobook");
+				break;
+			case ViewWrapper.Hint.STATION:
+				media_text.append("Station");
+				break;
+		}
+		
+		// set title text
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Could not find music file</span>");
+		string title_text = "";
+		if (multiple_media) {
+			media_text.append_unichar('s'); // Plural form
+			title_text = "Remove %d %s from BeatBox?".printf(to_remove.size, media_text.str);
+		}
+		else {
+  			Media m = to_remove.get(0);
+  			
+  			if(m.mediatype != 3)
+				title_text = "Remove \"%s\" From BeatBox?".printf(m.title.replace("&", "&amp;"));
+			else
+				title_text = "Remove \"%s\" From BeatBox?".printf(m.album_artist.replace("&", "&amp;"));
+		}
+		title.set_markup("<span weight=\"bold\" size=\"larger\">" + title_text + "</span>");
+		
+		// set info text
 		info.xalign = 0.0f;
-		info.set_line_wrap(false);
-		info.set_markup("The music file for <b>" + s.title.replace("&", "&amp;") + "</b> by <b>" + s.artist.replace("&", "&amp;") + "</b> could not be found. What would you like to do?");
+		info.set_line_wrap(true);
+		string info_text = "This will remove the %s from your library and from any device that automatically syncs with BeatBox.".printf(media_text.str.down());
+		info.set_markup(info_text);
 		
-		rescanLibrary.set_sensitive(!lm.doing_file_operations());
+		// decide if we need the trash button
+		bool need_trash = false;
+		foreach(var m in to_remove) {
+			if(!m.file.has_prefix("http:/") && !m.file.has_prefix("cdda:/") && m.mediatype != 3) {
+				need_trash = true;
+			}
+		}
 		
-		// set up controls layout 
+		/* set up controls layout */
 		HBox information = new HBox(false, 0);
 		VBox information_text = new VBox(false, 0);
 		information.pack_start(warning, false, false, 10);
@@ -64,10 +95,9 @@ public class BeatBox.RemoveFilesDialog : Window {
 		
 		HButtonBox bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
-		bottomButtons.pack_end(removeMedia, false, false, 0);
-		bottomButtons.pack_end(rescanLibrary, false, false, 0);
-		bottomButtons.pack_end(locateMedia, false, false, 0);
-		bottomButtons.pack_end(doNothing, false, false, 10);
+		if(need_trash)	bottomButtons.pack_end(trash_button, false, false, 0);
+		bottomButtons.pack_end(cancel_button, false, false, 0);
+		bottomButtons.pack_end(remove_button, false, false, 0);
 		bottomButtons.set_spacing(10);
 		
 		content.pack_start(information, false, true, 0);
@@ -75,69 +105,21 @@ public class BeatBox.RemoveFilesDialog : Window {
 		
 		padding.pack_start(content, true, true, 10);
 		
-		removeMedia.clicked.connect(removeMediaClicked);
-		locateMedia.clicked.connect(locateMediaClicked);
-		rescanLibrary.clicked.connect(rescanLibraryClicked);
-		doNothing.clicked.connect( () => { this.destroy(); });
-		
-		lm.file_operations_started.connect(file_operations_started);
-		lm.file_operations_done.connect(file_operations_done);
+		trash_button.clicked.connect ( () => {
+			remove_media (true);
+			destroy ();
+		});
+
+		remove_button.clicked.connect ( () => {
+			remove_media (false);
+			destroy ();
+		});
+
+		cancel_button.clicked.connect ( () => {
+			destroy ();
+		});
 		
 		add(padding);
 		show_all();
 	}
-	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
-	}
-	
-	public void removeMediaClicked() {
-		var temp = new LinkedList<Media>();
-		temp.add(lm.media_from_id(media_id));
-		//lm.remove_medias(temp);
-		//lm.remove_medias(temp);
-		
-		this.destroy();
-	}
-	
-	public void locateMediaClicked() {
-		string file = "";
-		var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
-								  FileChooserAction.OPEN,
-								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
-								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
-		if (file_chooser.run () == ResponseType.ACCEPT) {
-			file = file_chooser.get_filename();
-		}
-		
-		file_chooser.destroy ();
-		
-		if(file != "") {
-			lm.media_from_id(media_id).file = file;
-			
-			this.destroy();
-		}
-	}
-	
-	public void rescanLibraryClicked() {
-		lw.fileRescanMusicFolderClick();
-		
-		this.destroy();
-	}
-	
-	public void file_operations_done() {
-		rescanLibrary.set_sensitive(true);
-	}
-	
-	public void file_operations_started() {
-		rescanLibrary.set_sensitive(false);
-	}
-	
-}*/
+}

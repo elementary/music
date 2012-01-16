@@ -35,8 +35,7 @@ pkg_check_modules(DEPS
     json-glib-1.0
     gio-unix-2.0
     granite
-    libgpod-1.0
-    clutter-gtk-1.0)
+    libgpod-1.0)
 
 # Check if we have sqlheavy-0.2
 if(${SQLHEAVY_USE_2})
@@ -200,6 +199,7 @@ vala_precompile(VALA_C
     Dialogs/NotImportedWindow.vala
     Dialogs/AddPodcastWindow.vala
     Dialogs/RemoveFromLibraryDialog.vala
+    #Dialogs/RemoveFilesDialog.vala
     Dialogs/SetMusicFolderConfirmation.vala
     Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala

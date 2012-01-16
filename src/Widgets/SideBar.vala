@@ -69,6 +69,7 @@ namespace ElementaryWidgets {
 		public TreeModelFilter filter;
 		
 		CellRendererText spacer;
+		CellRendererText secondary_spacer;
 		CellRendererPixbuf pix_cell;
 		CellRendererText text_cell;
 		CellRendererPixbuf clickable_cell;
@@ -108,6 +109,12 @@ namespace ElementaryWidgets {
 			col.pack_start(spacer, false);
 			col.set_cell_data_func(spacer, spacerDataFunc);
 			spacer.xpad = 8;
+			
+			// secondary spacer
+			secondary_spacer = new CellRendererText();
+			col.pack_start(secondary_spacer, false);
+			col.set_cell_data_func(secondary_spacer, secondarySpacerDataFunc);
+			secondary_spacer.xpad = 8;
 			
 			// add pixbuf
 			pix_cell = new CellRendererPixbuf();
@@ -155,6 +162,14 @@ namespace ElementaryWidgets {
 			int depth = path.get_depth();
 			
 			renderer.visible = (depth > 1);
+			renderer.xpad = (depth > 1) ? 8 : 0;
+		}
+		
+		public void secondarySpacerDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
+			TreePath path = model.get_path(iter);
+			int depth = path.get_depth();
+			
+			renderer.visible = (depth > 2);
 			renderer.xpad = (depth > 1) ? 8 : 0;
 		}
 		

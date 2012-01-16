@@ -27,7 +27,7 @@ public class BeatBox.WarningLabel : EventBox {
 		var left_padding = new Box (Orientation.HORIZONTAL, 0);
 		var right_padding = new Box (Orientation.HORIZONTAL, 0);
 
-		content.pack_start (warningIcon, false, false, 10);
+		content.pack_start (wrap_alignment(warningIcon, 0, 10, 10, 10), false, false, 0);
 		content.pack_start (errorLabel, false, true, 0);
 
 		content_wrapper.pack_start (left_padding, true, true, 0);
@@ -46,6 +46,18 @@ public class BeatBox.WarningLabel : EventBox {
 		errorLabel.xalign = 0.5f;
 		errorLabel.set_justify(Justification.CENTER);
 		errorLabel.ellipsize = Pango.EllipsizeMode.END;
+	}
+	
+	static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+	
+		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+		alignment.top_padding = top;
+		alignment.right_padding = right;
+		alignment.bottom_padding = bottom;
+		alignment.left_padding = left;
+		
+		alignment.add(widget);
+		return alignment;
 	}
 	
 	public void setWarning(string warning, Gtk.Justification? jst) {

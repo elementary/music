@@ -811,7 +811,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		vw.add_medias(new_podcasts);
 		stdout.printf("appended\n");*/
 		
-		miller.populateColumns("", lm.media_ids());
+		var w = sideTree.getSelectedWidget();
+		if(w is ViewWrapper) {
+			miller.populateColumns("", ((ViewWrapper)w).medias);
+		}
+		
 		updateSensitivities();
 	}
 	
@@ -1076,6 +1080,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 									  FileChooserAction.SELECT_FOLDER,
 									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+			fileChooser.set_local_only(true);
+			
 			if (file_chooser.run () == ResponseType.ACCEPT) {
 				folder = file_chooser.get_filename();
 			}
@@ -1350,6 +1356,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 										  FileChooserAction.SELECT_FOLDER,
 										  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 										  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+				file_chooser.set_local_only(true);
 				if (file_chooser.run () == ResponseType.ACCEPT) {
 					folder = file_chooser.get_filename();
 				}

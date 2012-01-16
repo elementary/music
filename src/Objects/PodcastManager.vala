@@ -70,6 +70,9 @@ public class BeatBox.PodcastManager : GLib.Object {
 		foreach(string rss in rss_urls) {
 			if(user_cancelled)
 				break;
+				
+			if(rss == null || rss == "")
+				continue;
 			
 			current_operation = "Searching for new <b>" + rss_names.get(rss).replace("&", "&amp;") + "</b> podcast episodes...";
 			
