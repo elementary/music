@@ -1,6 +1,9 @@
 using Gtk;
 using Gee;
 
+namespace BeatBox {
+    bool clutter_usable = false;
+}
 /**
  * The Widget in the Clutter.Actor of a HoverView. It contains some content
  * and a X to close it.
@@ -218,11 +221,11 @@ class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
         stage = get_stage() as Clutter.Container;
 
         /* To avoid bugs. FIXME: really needed? */
-        height_request = width_request = 50;
+        //height_request = width_request = 50;
 
         /* Define a group and several Actors to show the sidebar shadow */
         shadow = new Clutter.Group();
-        shadow_left = new Clutter.CairoTexture(shadow_size*3, height_request);
+        shadow_left = new Clutter.CairoTexture(shadow_size*3, 50);
         shadow.add(shadow_left);
         shadow_top = new Clutter.CairoTexture(20, shadow_size*2);
         shadow_top.x = 3*shadow_size + 1;
@@ -442,7 +445,10 @@ public class BeatBox.AlbumView : ContentView, Grid {
 		/*Viewport v = new Viewport(null, null);*/
 		
         /*set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);*/
-        view = new BeatBox.HoverViewClutter();
+        if(clutter_usable)
+            view = new BeatBox.HoverViewClutter();
+        else
+            view = new BeatBox.HoverViewFallback();
 		
 		/*v.set_shadow_type(ShadowType.NONE);*/
 		model = new AlbumViewModel(lm, defaultPix);
@@ -459,7 +465,8 @@ public class BeatBox.AlbumView : ContentView, Grid {
 		icons.lw = lw;
 		//v.add(icons);
 		
-		add(view);		
+		add(view);
+        view.vexpand = view.hexpand = true;
 		show_all();
 		
 		//icons.button_press_event.connect(buttonPressEvent);
