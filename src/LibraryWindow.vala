@@ -334,7 +334,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplayBin.set_expand(true);
 
 		// Set theming
-		viewSelector.get_style_context().add_class("raised");
+		//viewSelector.get_style_context().add_class("raised");
 		topControls.get_style_context().add_class("primary-toolbar");		
 		sourcesToMedias.get_style_context().add_class("sidebar-pane-separator");
 		sideTree.get_style_context().add_class("sidebar");		

@@ -56,6 +56,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private LinkedList<int> _queue; // rowid, Media of queue
 	private LinkedList<int> _already_played; // Media of already played
 	private HashMap<string, Gdk.Pixbuf> _album_art; // All album art
+	private HashMap<string, Gdk.Pixbuf> _cover_album_art; // All album art
+    const int shadow_size = 5;
 	
 	public LastFM.Core lfm;
 	private HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
@@ -148,6 +150,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_queue = new LinkedList<int>();
 		_already_played = new LinkedList<int>();
 		_album_art = new HashMap<string, Gdk.Pixbuf>();
+		_cover_album_art = new HashMap<string, Gdk.Pixbuf>();
 		
 		icons = new Icons(this, lw);
 		icons.load_icons();
@@ -282,6 +285,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 			stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
 		}
 	}
+
+    Gdk.Pixbuf get_cover_shadow(Gdk.Pixbuf pixbuf)
+    {
+        var buffer_surface = new Granite.Drawing.BufferSurface(128, 128);
+        buffer_surface.context.rectangle(shadow_size, shadow_size, 128 - 2*shadow_size, 128-2*shadow_size);
+        buffer_surface.context.set_source_rgba(0,0,0,0.8);
+        buffer_surface.context.fill();
+        buffer_surface.fast_blur(2, 3);
+        Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple(128-2*shadow_size, 128-2*shadow_size, Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
+        buffer_surface.context.paint();
+        var pix = buffer_surface.load_to_pixbuf();
+        return pix;
+    }
 	
 	/************ Library/Collection management stuff ************/
 	public virtual void dbProgress(string? message, double progress) {
@@ -1582,6 +1598,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 					
 					if(pix != null) {
 						_album_art.set(s.artist+s.album, pix);
+                        if(!_cover_album_art.has_key(s.artist + s.album))
+                        _cover_album_art.set(s.artist+s.album, get_cover_shadow(pix));
 					}
 						
 					previousAlbum = s.album;
@@ -1643,10 +1661,21 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _album_art.get(s.artist+s.album);
 	}
 	
+    public Gdk.Pixbuf? get_cover_album_art(int id) {
+		Media s = _media.get(id);
+		
+		if(s == null)
+			return null;
+		
+		return _cover_album_art.get(s.artist+s.album);
+	}
+	
 	public void set_album_art(int id, Gdk.Pixbuf pix) {
 		Media s = media_from_id(id);
 		
 		_album_art.set(s.artist+s.album, pix);
+		
+        _cover_album_art.set(s.file, get_cover_shadow(pix));
 	}
 	
 	/* Device Preferences */
