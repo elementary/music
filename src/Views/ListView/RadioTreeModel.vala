@@ -353,7 +353,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 	
 	public void removeMedias(Collection<int> rowids) {
 		removing_medias = true;
-		stdout.printf("removeMedias start\n");
+		
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -375,7 +375,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 				return;
 			}
 		}
-		stdout.printf("removeMedias finished\n");
+		
 		removing_medias = false;
 	}
 	

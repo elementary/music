@@ -3,6 +3,7 @@ Type=Application
 Version=0.2 (beta)
 Name=BeatBox
 GenericName=Music Player
+Comment=Listen to music and podcasts
 Exec=beatbox
 Icon=beatbox
 Terminal=false

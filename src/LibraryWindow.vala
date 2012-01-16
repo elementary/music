@@ -365,7 +365,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 		
 		var music_folder_icon = lm.icons.music_folder.render (IconSize.DIALOG, null);
-		welcomeScreen.append_with_pixbuf(music_folder_icon, "Locate", "Choose your music folder.");
+		welcomeScreen.append_with_pixbuf(music_folder_icon, "Locate", "Change your music folder.");
 		
 		millerPane.pack1(miller, false, true);
 		millerPane.pack2(mainViews, true, true);
@@ -450,6 +450,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		searchField.set_text(lm.settings.getSearchString());
 		
 		updateSensitivities();
+		
+		if(lm.song_ids().size == 0)
+			setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -571,7 +574,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		bool folderSet = (lm.settings.getMusicFolder() != "");
 		bool haveMedias = lm.media_count() > 0;
-		bool haveSongs = lm.get_local_song_count() > 0;
+		bool haveSongs = lm.song_ids().size > 0;
 		bool doingOps = lm.doing_file_operations();
 		bool nullMedia = (lm.media_info.media == null);
 		bool showMore = lm.settings.getMoreVisible();
@@ -1076,11 +1079,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}*/
 			
 			string folder = "";
-			var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+			var file_chooser = new FileChooserDialog ("Import Music", this,
 									  FileChooserAction.SELECT_FOLDER,
 									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
-			fileChooser.set_local_only(true);
+			file_chooser.set_local_only(true);
 			
 			if (file_chooser.run () == ResponseType.ACCEPT) {
 				folder = file_chooser.get_filename();
@@ -1138,12 +1141,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		else {
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-			vw.doUpdate(vw.currentView, lm.media_ids(), true, true);
-			miller.populateColumns("", lm.media_ids());
+			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
+			miller.populateColumns("", lm.song_ids());
 			
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
 			vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true);
-			searchField.changed();
+			
+			//vw = (ViewWrapper)sideTree.getWidget(sideTree.library_audiobooks_iter);
+			//vw.doUpdate(vw.currentView, lm.audiobook_ids(), true, true);
+			
+			vw = (ViewWrapper)sideTree.getWidget(sideTree.network_radio_iter);
+			vw.doUpdate(vw.currentView, lm.station_ids(), true, true);
 		}
 	}
 	
@@ -1160,7 +1168,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree(false);
+		//resetSideTree(false);
 		//var init = searchField.get_text();
 		//searchField.set_text("up");
 		

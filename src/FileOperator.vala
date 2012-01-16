@@ -491,7 +491,7 @@ public class BeatBox.FileOperator : Object {
 		if(m.genre.contains("Podcast") || m.length > 9000) // OVER 9000!!!!! aka 15 minutes
 			m.mediatype = 1;
 		
-		if(new_imports.size >= 50) {
+		if(new_imports.size >= 200) {
 			lm.add_medias(new_imports, true); // give user some feedback
 			new_imports.clear();
 		}
@@ -503,6 +503,7 @@ public class BeatBox.FileOperator : Object {
 	
 	void queue_finished() {
 		lm.add_medias(new_imports, true);
+		new_imports.clear();
 		
 		if(import_type == ImportType.PLAYLIST) {
 			foreach(var s in all_new_imports)

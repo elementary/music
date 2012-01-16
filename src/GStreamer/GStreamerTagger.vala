@@ -3,7 +3,7 @@ using Gee;
 
 public class BeatBox.GStreamerTagger : GLib.Object {
 	LibraryManager lm;
-	static int DISCOVER_SET_SIZE = 100;
+	static int DISCOVER_SET_SIZE = 50;
 	Gst.Discoverer d;
 	Gst.Discoverer art_d;
 	HashMap<string, int> uri_to_id;
@@ -64,14 +64,15 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	}
 	
 	public void cancel_operations() {
-		d.stop();
-		queue_finished();
+		//d.stop();
+		//queue_finished();
 		cancelled = true;
 	}
 	
 	public void discoverer_import_medias(LinkedList<string> files) {
 		int size = 0;
 		cancelled = false;
+		path_queue.clear();
 		
 		foreach(string s in files) {
 			path_queue.add(s);

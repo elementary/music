@@ -204,9 +204,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 				_stations.set(s.rowid, s);
 		}
 		
-		if(_media.size == 0)
-			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
-		
 		foreach(SmartPlaylist p in dbm.load_smart_playlists()) {
 			_smart_playlists.set(p.rowid, p);
 		}
@@ -311,6 +308,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 			lw.sideTree.removeAllStaticPlaylists();
 			clear_medias();
 			_queue.clear();
+			_already_played.clear();
+			lw.resetSideTree(false);
 			lw.updateSensitivities();
 			
 			settings.setMusicFolder(folder);
@@ -963,7 +962,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void add_already_played(int i) {
-		_already_played.offer_tail(i);
+		if(!_already_played.contains(i))
+			_already_played.offer_tail(i);
 	}
 	
 	public LinkedList<int> already_played() {

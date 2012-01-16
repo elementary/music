@@ -287,19 +287,17 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	/** convenience method to insert medias into the model. No iters returned. **/
     public void append_medias(Collection<int> medias, bool emit) {
 		foreach(int id in medias) {
-			//if(lm.media_ids().contains(id)) {
-				SequenceIter<int> added = rows.append(id);
+			SequenceIter<int> added = rows.append(id);
+		
+			if(emit) {
+				TreePath path = new TreePath.from_string(added.get_position().to_string());
 			
-				if(emit) {
-					TreePath path = new TreePath.from_string(added.get_position().to_string());
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = added;
 				
-					TreeIter iter = TreeIter();
-					iter.stamp = this.stamp;
-					iter.user_data = added;
-					
-					row_inserted(path, iter);
-				}
-			//}
+				row_inserted(path, iter);
+			}
 		}
 	}
 	
@@ -389,6 +387,19 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		rows.remove((SequenceIter<int>)iter.user_data);
 		row_deleted(path);
 	}
+	
+	/*public void remove_iters(Collection<TreeIter?> iters, bool emit) {
+		foreach(TreeIter iter in iters) {
+			if(iter.stamp != this.stamp)
+				return;
+				
+			var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
+			rows.remove((SequenceIter<int>)iter.user_data);
+			
+			if(emit)
+				row_deleted(path);
+		}
+	}*/
 	
 	public void removeMedias(Collection<int> rowids) {
 		removing_medias = true;

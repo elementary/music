@@ -182,6 +182,7 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	void medias_added(LinkedList<int> ids) {
+		stdout.printf("view wrapper adding %d ids\n", ids.size);
 		add_medias(ids);
 		/*bool refreshPod = hint == ViewWrapper.Hint.PODCAST;
 		bool refreshMusic = hint == ViewWrapper.Hint.MUSIC;
@@ -320,11 +321,11 @@ public class BeatBox.ViewWrapper : VBox {
 			LinkedList<int> potentialShowing = new LinkedList<int>();
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 			
-			stdout.printf("seraching to populate with %d medias\n", medias.size);
+			//stdout.printf("seraching to populate with %d medias\n", medias.size);
 			lm.do_search(lw.searchField.get_text(), hint,
 					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
 					medias, ref potentialShowing, ref potentialShowingAlbum);
-			stdout.printf("seraching done\n");
+			//stdout.printf("seraching done\n");
 			list.set_show_next(potentialShowing);
 			albumView.set_show_next(potentialShowingAlbum);
 			showingMedias = potentialShowing;

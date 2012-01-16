@@ -201,7 +201,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		podcast_model.append_medias(new_medias, true);
 		podcast_model.resort();
-		queue_draw();
+		if(visible)	queue_draw();
 	}
 	
 	public void remove_medias(Collection<int> to_remove) {
@@ -211,7 +211,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		_showing_medias = all_medias;
 		
 		podcast_model.removeMedias(to_remove);
-		queue_draw();
+		if(visible)	queue_draw();
 	}
 	
 	public void populate_view() {
