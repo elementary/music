@@ -50,7 +50,6 @@ public class BeatBox.Albums.IconView : Gtk.IconView
 	    if(!model.get_iter(out iter, path))
 	    {
             collapse_widget();
-            print("here\n");
 	        return;
 	    }
 	
@@ -142,13 +141,45 @@ class BeatBox.Albums.View : GtkClutter.Embed
     Sidebar sidebar;
     Sidebar old_sidebar;
 
-    Clutter.CairoTexture shadow;
+    Clutter.Group shadow;
+    Clutter.CairoTexture shadow_left;
+    Clutter.CairoTexture shadow_top;
+    Clutter.CairoTexture shadow_bottom;
+    
 
     public View()
     {
         stage = get_stage() as Clutter.Container;
 
         height_request = width_request = 50;
+        shadow = new Clutter.Group();
+        shadow_left = new Clutter.CairoTexture(shadow_size*3, height_request);
+        shadow.add(shadow_left);
+        shadow_top = new Clutter.CairoTexture(20, shadow_size*2);
+        shadow_top.x = 3*shadow_size + 1;
+        shadow_bottom = new Clutter.CairoTexture(20, shadow_size*2);
+        shadow.add(shadow_bottom);
+        shadow_bottom.x = 3*shadow_size + 1;
+        shadow.add(shadow_top);
+        shadow.y = margin_top - shadow_size;
+        stage.add_actor(shadow);
+        
+        shadow_left.draw.connect((cr) => {
+            cr.set_source_surface(buffer_shadow.surface, 0, 0);
+            cr.paint();
+            return false;
+        });
+        shadow_left.auto_resize = true;
+        shadow_top.draw.connect((cr) => {
+            cr.set_source_surface(buffer_shadow.surface, -2*shadow_size, 0);
+            cr.paint();
+            return false;
+        });
+        shadow_bottom.draw.connect((cr) => {
+            cr.set_source_surface(buffer_shadow.surface, -2*shadow_size, - buffer_shadow.height + 2*shadow_size);
+            cr.paint();
+            return false;
+        });
 
         icon_view = new GtkClutter.Actor();
         icon_view.opacity = 255;
@@ -164,27 +195,26 @@ class BeatBox.Albums.View : GtkClutter.Embed
         old_sidebar = new Sidebar();
         (old_expand_view.get_widget() as Gtk.Bin).add(old_sidebar);
     
-        shadow = new Clutter.CairoTexture(10, height_request);
-        shadow.draw.connect((cr) => {
-            var lg1 = new Cairo.Pattern.linear(4.0, 0.0, 10.0, 0.0);
-           
-            lg1.add_color_stop_rgba(0, 0.3, 0.3, 0.3, 0);
-            lg1.add_color_stop_rgba(1, 0.3, 0.3, 0.3, 0.3);
-
-
-            cr.rectangle(4, 0, 6.0, height_request);
-            cr.set_source(lg1);
-            cr.fill();
-            return false;
-        });
-        shadow.invalidate();
-        stage.add_actor(shadow);
         shadow.x = get_allocated_width();
         sidebar = new Sidebar();
         (expand_view.get_widget() as Gtk.Bin).add(sidebar);
         sidebar.close.connect(on_collapse);
         
         size_allocate.connect(on_size_allocate);
+    }
+    
+    const int shadow_size = 5;
+    const int margin_top = 30;
+
+    Granite.Drawing.BufferSurface buffer_shadow;
+    void update_shadow_surface(int? height = null)
+    {
+        height = height ?? get_allocated_height();
+        buffer_shadow = new Granite.Drawing.BufferSurface(expand_width + shadow_size, height - 2*margin_top + 2*shadow_size);
+        buffer_shadow.context.rectangle(shadow_size, shadow_size, expand_width, height - 2*margin_top);
+        buffer_shadow.context.set_source_rgb(0,0,0);
+        buffer_shadow.context.fill();
+        buffer_shadow.fast_blur(2, 2);
     }
     
     bool expanded = false;
@@ -194,20 +224,26 @@ class BeatBox.Albums.View : GtkClutter.Embed
         icon_view.height = alloc.height;
         icon_view.width = alloc.width;
         shadow.height = alloc.height;
-        expand_view.height = alloc.height;
-        old_expand_view.height = alloc.height;
+        shadow_bottom.y =  shadow.height - 2*margin_top - 1;
+        expand_view.height = alloc.height - 2*margin_top - 1;
+        old_expand_view.height = alloc.height - 2*margin_top - 1;
+        expand_view.y = margin_top;
+        old_expand_view.y = margin_top;
         if(!expanded) {
             shadow.x = alloc.width;
-            expand_view.x = alloc.width + 10;
+            expand_view.x = alloc.width + shadow_size;
         }
         else {
-            shadow.x = alloc.width - expand_width - 10;
+            shadow.x = alloc.width - expand_width - shadow_size;
             expand_view.x = alloc.width - expand_width;
+        }
+        if(expanded) {
+            update_shadow_surface(alloc.height);
+            shadow_left.height = alloc.height - margin_top - shadow_size;
         }
     }
 
-    public void set_icon_view(IconView icon_view_wi)
-    {
+    public void set_icon_view(IconView icon_view_wi) {
         var scrolled = new Gtk.ScrolledWindow(null, null);
         scrolled.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
         scrolled.add_with_viewport(icon_view_wi);
@@ -219,8 +255,7 @@ class BeatBox.Albums.View : GtkClutter.Embed
         scrolled.show_all();
     }
 
-    void on_collapse()
-    {
+    void on_collapse() {
         expanded = false;
         icon_view_widget.expanded = false;
         double x = get_allocated_width() + 10;
@@ -228,12 +263,13 @@ class BeatBox.Albums.View : GtkClutter.Embed
         expand_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x);
         shadow.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
         icon_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:255);
+        
     }
     
     int expand_width = 0;
 
-    void on_expand(Gtk.Widget label, int width)
-    {
+    bool first = false;
+    void on_expand(Gtk.Widget label, int width) {
         if(expanded) {
             var w = sidebar.get_content();
             sidebar.set_content(label);
@@ -249,12 +285,21 @@ class BeatBox.Albums.View : GtkClutter.Embed
         }
         else {
             expand_width = width;
+            update_shadow_surface();
+            shadow_bottom.width = shadow_top.width = expand_width - shadow_size;
+            if(!first) {
+                shadow_top.invalidate();
+                shadow_bottom.invalidate();
+                first = true;
+            }
+            shadow_left.height = get_allocated_height() - margin_top - shadow_size;
             expand_view.x = get_allocated_width() + 10;
             shadow.x = get_allocated_width();
+            shadow.width = expand_width + 5;
             shadow.opacity = 255;
             expand_view.width = width;
             double x = get_allocated_width() - width;
-            double x2 = get_allocated_width() - width - 10;
+            double x2 = get_allocated_width() - width - shadow_size;
             expand_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x);
             shadow.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, x:x2);
             icon_view.animate(Clutter.AnimationMode.EASE_OUT_QUAD, 400, opacity:120);
