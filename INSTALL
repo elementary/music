@@ -1,1 +1,17 @@
-To Be Updated
+--------------------------------------------------------------------------------
+OPTIONAL
+--------------------------------------------------------------------------------
+sudo add-apt-repository ppa:nemequ/sqlheavy
+sudo add-apt-repository ppa:elementary-os/daily
+sudo apt-get build-dep beatbox
+
+--------------------------------------------------------------------------------
+BUILDING
+--------------------------------------------------------------------------------
+bzr branch lp:beat-box
+cd beat-box
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
