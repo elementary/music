@@ -200,7 +200,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		millerPane = new VPaned();
 		mainViews = new VBox(false, 0);
 		videoArea = new DrawingArea();
-		welcomeScreen = new Welcome("Get Some Tunes.", "BeatBox can't seem to find your music.");
+		welcomeScreen = new Welcome(_("Get Some Tunes."), _("BeatBox can't seem to find your music."));
 
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);
@@ -208,7 +208,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
 		libraryOperationsMenu = new Menu();
 		fileSetMusicFolder = new MenuItem.with_label(_("Set Music Folder"));
-		fileImportMusic = new MenuItem.with_label("Import to Library");
+		fileImportMusic = new MenuItem.with_label(_("Import to Library"));
 		fileRescanMusicFolder = new MenuItem.with_label(_("Rescan Music Folder"));
 		editEqualizer = new MenuItem.with_label(_("Equalizer"));
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
@@ -219,7 +219,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
 		viewSelector = new Granite.Widgets.ModeButton();
-		searchField = new Granite.Widgets.SearchBar("Search...");
+		searchField = new Granite.Widgets.SearchBar(_("Search..."));
 		miller = new MillerColumns(lm, this); //miller must be below search for it to work properly
 		mediaInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
@@ -242,8 +242,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
-						"summary", "Title",
-						"body", "Artist\nAlbum");
+						"summary", _("Title"),
+						"body", "%s\n%s".printf(_("Artist"), _("Album")));
 		
 		/* Set properties of various controls */
 		sourcesToMedias.set_position(settings.getSidebarWidth());
@@ -296,11 +296,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		repeatChooser.appendItem(_("Artist"));
 		repeatChooser.appendItem(_("All"));
 		
-		shuffleChooser.appendItem("Off");
-		shuffleChooser.appendItem("All");
+		shuffleChooser.appendItem(_("Off"));
+		shuffleChooser.appendItem(_("All"));
 		
-		infoPanelChooser.appendItem("Hide");
-		infoPanelChooser.appendItem("Show");
+		infoPanelChooser.appendItem(_("Hide"));
+		infoPanelChooser.appendItem(_("Show"));
 		
 		repeatChooser.setOption(settings.getRepeatMode());
 		shuffleChooser.setOption(settings.getShuffleMode());
@@ -365,7 +365,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 		
 		var music_folder_icon = lm.icons.music_folder.render (IconSize.DIALOG, null);
-		welcomeScreen.append_with_pixbuf(music_folder_icon, "Locate", "Change your music folder.");
+		welcomeScreen.append_with_pixbuf(music_folder_icon, _("Locate"), _("Change your music folder."));
 		
 		millerPane.pack1(miller, false, true);
 		millerPane.pack2(mainViews, true, true);
@@ -475,32 +475,32 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addBasicItems();
 		
 		vw = new ViewWrapper(lm, this, new LinkedList<int>(), lm.similar_setup.sort_column, lm.similar_setup.sort_direction, ViewWrapper.Hint.SIMILAR, -1);
-		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "Similar");
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("Similar"));
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.queue(), lm.queue_setup.sort_column, lm.queue_setup.sort_direction, ViewWrapper.Hint.QUEUE, -1);
-		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "Queue");
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("Queue"));
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.already_played(), lm.history_setup.sort_column, lm.history_setup.sort_direction, ViewWrapper.Hint.HISTORY, -1);
-		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "History");
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("History"));
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.media_ids(), lm.music_setup.sort_column, lm.music_setup.sort_direction, ViewWrapper.Hint.MUSIC, -1);
-		sideTree.addSideItem(sideTree.library_iter, null, vw, "Music");
+		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Music"));
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.podcast_ids(), lm.podcast_setup.sort_column, lm.podcast_setup.sort_direction, ViewWrapper.Hint.PODCAST, -1);
-		sideTree.addSideItem(sideTree.library_iter, null, vw, "Podcasts");
+		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Podcasts"));
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.station_ids(), lm.station_setup.sort_column, lm.station_setup.sort_direction, ViewWrapper.Hint.STATION, -1);
-		sideTree.addSideItem(sideTree.network_iter, null, vw, "Internet Radio");
+		sideTree.addSideItem(sideTree.network_iter, null, vw, _("Internet Radio"));
 		mainViews.pack_start(vw, true, true, 0);
 		
 		if(BeatBox.Beatbox.enableStore) {
 			Store.StoreView storeView = new Store.StoreView(lm, this);
-			sideTree.addSideItem(sideTree.network_iter, null, storeView, "Music Store");
+			sideTree.addSideItem(sideTree.network_iter, null, storeView, _("Music Store"));
 			mainViews.pack_start(storeView, true, true, 0);
 		}
 		
@@ -691,8 +691,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//set the title
 		Media s = lm.media_info.media;
 		var title = "<b>" + s.title.replace("&", "&amp;") + "</b>";
-		var artist = ((s.artist != "" && s.artist != "Unknown Artist") ? (" by " + "<b>" + s.artist.replace("&", "&amp;") + "</b>") : "");
-		var album = ((s.album != "" && s.album != "Unknown Album") ? (" on " + "<b>" + s.album.replace("&", "&amp;") + "</b>") : "");
+		var artist = ((s.artist != "" && s.artist != _("Unknown Artist")) ? (_(" by ") + "<b>" + s.artist.replace("&", "&amp;") + "</b>") : "");
+		var album = ((s.album != "" && s.album != _("Unknown Album")) ? (_(" on ") + "<b>" + s.album.replace("&", "&amp;") + "</b>") : "");
 		
 		var media_label = beg + title + artist + album;
 		topDisplay.set_label_markup(media_label);
@@ -1079,7 +1079,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}*/
 			
 			string folder = "";
-			var file_chooser = new FileChooserDialog ("Import Music", this,
+			var file_chooser = new FileChooserDialog (_("Import Music"), this,
 									  FileChooserAction.SELECT_FOLDER,
 									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
@@ -1092,7 +1092,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			if(folder != "" && folder != settings.getMusicFolder()) {
 				if(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
-					topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b> to library.");
+					topDisplay.set_label_markup(_("<b>Importing</b> music from <b>%s</b> to library.").printf(folder));
 					topDisplay.show_progressbar();
 					
 					lm.add_folder_to_library(folder);
@@ -1108,14 +1108,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void fileRescanMusicFolderClick() {
 		if(!lm.doing_file_operations()) {
 			if(GLib.File.new_for_path(this.settings.getMusicFolder()).query_exists()) {
-				topDisplay.set_label_markup("<b>Rescanning music folder for changes</b>");
+				topDisplay.set_label_markup("<b>" + _("Rescanning music folder for changes") + "</b>");
 				topDisplay.show_progressbar();
 				
 				lm.rescan_music_folder();
 				updateSensitivities();
 			}
 			else {
-				doAlert("Could not find Music Folder", "Please make sure that your music folder is accessible and mounted.");
+				doAlert(_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted."));
 			}
 		}
 		else {
@@ -1183,7 +1183,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		try {
 			notification.close();
 			if(!has_toplevel_focus) {
-				notification.update("Import Complete", "BeatBox has imported your library", "beatbox");
+				notification.update(_("Import Complete"), _("BeatBox has imported your library."), "beatbox");
 				
 				var beatbox_icon = lm.icons.beatbox_icon.render (IconSize.DIALOG, null);
 				notification.set_image_from_pixbuf(beatbox_icon);
@@ -1360,7 +1360,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(index == 0) {
 			if(!lm.doing_file_operations()) {
 				string folder = "";
-				var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+				var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
 										  FileChooserAction.SELECT_FOLDER,
 										  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 										  Gtk.Stock.OPEN, ResponseType.ACCEPT);
@@ -1558,7 +1558,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	/* device stuff for welcome screen */
 	public void device_added(Device d) {
 		// add option to import in welcome screen
-		string secondary = (d.getContentType() == "cdrom") ? "Import songs from audio CD" : "Imort media from device";
+		string secondary = (d.getContentType() == "cdrom") ? _("Import songs from audio CD") : _("Imort media from device");
 		int key = welcomeScreen.append_with_image( new Image.from_gicon(d.get_icon(), Gtk.IconSize.DIALOG), d.getDisplayName(), secondary);
 		welcome_screen_keys.set(key, d);
 	}
