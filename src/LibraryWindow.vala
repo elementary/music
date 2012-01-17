@@ -207,10 +207,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		coverArt = new CoverArtImage(lm, this);	
 		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
 		libraryOperationsMenu = new Menu();
-		fileSetMusicFolder = new MenuItem.with_label("Set Music Folder");
+		fileSetMusicFolder = new MenuItem.with_label(_("Set Music Folder"));
 		fileImportMusic = new MenuItem.with_label("Import to Library");
-		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
-		editEqualizer = new MenuItem.with_label("Equalizer");
+		fileRescanMusicFolder = new MenuItem.with_label(_("Rescan Music Folder"));
+		editEqualizer = new MenuItem.with_label(_("Equalizer"));
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
 		settingsMenu = new Menu();
 		topControls = new Toolbar();
@@ -268,7 +268,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		libraryOperationsMenu.append(fileImportMusic);
 		libraryOperationsMenu.append(fileRescanMusicFolder);
 		libraryOperations.submenu = libraryOperationsMenu;
-		libraryOperations.set_label("Library");
+		libraryOperations.set_label(_("Library"));
 		
 		settingsMenu.append(libraryOperations);
 		settingsMenu.append(new SeparatorMenuItem());
@@ -279,7 +279,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 		
-		editPreferences.set_label("Preferences");
+		editPreferences.set_label(_("Preferences"));
 		
 		editEqualizer.activate.connect(editEqualizerClick);
 		editPreferences.activate.connect(editPreferencesClick);
@@ -290,11 +290,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// paint the background
 		statusEventBox.override_background_color (StateFlags.NORMAL, base_color);
 		
-		repeatChooser.appendItem("Off");
-		repeatChooser.appendItem("Media");
-		repeatChooser.appendItem("Album");
-		repeatChooser.appendItem("Artist");
-		repeatChooser.appendItem("All");
+		repeatChooser.appendItem(_("Off"));
+		repeatChooser.appendItem(_("Media"));
+		repeatChooser.appendItem(_("Album"));
+		repeatChooser.appendItem(_("Artist"));
+		repeatChooser.appendItem(_("All"));
 		
 		shuffleChooser.appendItem("Off");
 		shuffleChooser.appendItem("All");
