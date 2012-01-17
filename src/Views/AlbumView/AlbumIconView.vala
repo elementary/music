@@ -417,7 +417,7 @@ public class BeatBox.AlbumView : ContentView, Grid {
 		/*Viewport v = new Viewport(null, null);*/
 		
         /*set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);*/
-        if(clutter_usable)
+        if(clutter_usable && Environment.get_variable("BEATBOX_NO_CLUTTER") == null)
             view = new BeatBox.HoverViewClutter();
         else
             view = new BeatBox.HoverViewFallback();
