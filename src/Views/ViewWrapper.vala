@@ -63,7 +63,8 @@ public class BeatBox.ViewWrapper : VBox {
 		CDROM,
 		DEVICE_AUDIO,
 		DEVICE_PODCAST,
-		DEVICE_AUDIOBOOK;
+		DEVICE_AUDIOBOOK,
+		ALBUM_LIST;
 	}
 	
 	public ViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> medias, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {

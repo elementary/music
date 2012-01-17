@@ -139,7 +139,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 			if(column == 0)
 				val = s.rowid;
 			else if(column == 1) {
-				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current && _playing != null)
+				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && (is_current || hint == ViewWrapper.Hint.ALBUM_LIST) && _playing != null)
 					val = _playing;
 				else if(hint == ViewWrapper.Hint.CDROM && !s.isTemporary)
 					val = _completed;

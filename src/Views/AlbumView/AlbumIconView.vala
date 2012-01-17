@@ -79,39 +79,14 @@ class BeatBox.Albums.IconView : Gtk.IconView, HoverBackgroundWidget {
         grid.attach(author, 0, 2, 1, 1);
 
         /* Fake list view */
-		var rv = new LinkedList<string>();
-		rv.add("Title");
-		rv.add("Album");
-		rv.add("Artist");
-		rv.add("Artist");
-		rv.add("Artist");
-		
-		LinkedList<int> songs = new LinkedList<int>();
-		LinkedList<int> albums = new LinkedList<int>();
-		var tree_view = new Gtk.TreeView();
-		var tree_model = new MusicTreeModel (lm, rv, lm.icons.now_playing_icon.render (IconSize.MENU, get_style_context()), ViewWrapper.Hint.MUSIC, tree_view);
-		lm.do_search("", ViewWrapper.Hint.MUSIC, "All Genres", s.artist, s.album, lm.media_ids(), ref songs, ref albums);
-		tree_model.append_medias(songs, false);
-		
-		tree_view.set_model(tree_model);
-        tree_view.append_column(new Gtk.TreeViewColumn.with_attributes("Tracks", new Gtk.CellRendererPixbuf(), "pixbuf", 1, null));
-        var text_renderer = new Gtk.CellRendererText();
-        text_renderer.ellipsize = Pango.EllipsizeMode.END;
-        tree_view.append_column(new Gtk.TreeViewColumn.with_attributes("Tracks", text_renderer, "text", 4, null));
-        tree_view.headers_visible = false;
-        tree_view.row_activated.connect( (path, c) => {
-            Gtk.TreeIter tree_iter;
-            tree_model.get_iter(out tree_iter, path);
-            int id;
-            tree_model.get(tree_iter, 0, out id);
-		    lm.playMedia(id);
-        });
+        var tree_view = new MusicTreeView(lm, lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
+		var songs = new LinkedList<int>();
+		var albums = new LinkedList<int>();
+        lm.do_search("", tree_view.get_hint(), "All Genres", s.album_artist, s.album, lm.media_ids(), ref songs, ref albums);
+		tree_view.append_medias(songs);
+		tree_view.vexpand = true;
         
-        var scrolled = new Gtk.ScrolledWindow(null, null);
-        scrolled.add(tree_view);
-        scrolled.vexpand = true;
-
-        grid.attach(scrolled, 0, 3, 1, 1);
+        grid.attach(tree_view, 0, 3, 1, 1);
         expand_widget(grid, (int)(get_allocated_width()*0.3));
 
         grid.margin_right= grid.margin_left = grid.margin_top = grid.margin_bottom = 10;
@@ -219,9 +194,6 @@ class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
     public HoverViewClutter()
     {
         stage = get_stage() as Clutter.Container;
-
-        /* To avoid bugs. FIXME: really needed? */
-        //height_request = width_request = 50;
 
         /* Define a group and several Actors to show the sidebar shadow */
         shadow = new Clutter.Group();
@@ -588,7 +560,8 @@ public class BeatBox.AlbumView : ContentView, Grid {
 	}
 	
 	public void remove_medias(Collection<int> to_remove) {
-		
+		//model.removeMedias(to_remove);
+		//queue_draw();
 	}
 	
 	/** Goes through the hashmap and generates html. If artist,album, or genre
@@ -648,7 +621,10 @@ public class BeatBox.AlbumView : ContentView, Grid {
 	}
 	
 	public static int mediaCompareFunc(Media a, Media b) {
-		return (a.album > b.album) ? 1 : -1;
+		if(a.album_artist == b.album_artist)
+			return (a.album > b.album) ? 1 : -1;
+			
+		return a.album_artist > b.album_artist ? 1 : -1;
 	}
 	
 	public bool buttonPressEvent(Gdk.EventButton ev) {

@@ -425,6 +425,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			to_use = lm.playlist_from_id(relative_id).tvs.get_columns();
 		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)
 			to_use = lm.smart_playlist_from_id(relative_id).tvs.get_columns();
+		else if(get_hint() == ViewWrapper.Hint.ALBUM_LIST)
+			to_use = new TreeViewSetup("Track", Gtk.SortType.ASCENDING, get_hint()).get_columns();
 		else {
 			to_use = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, get_hint()).get_columns();
 		}
@@ -524,6 +526,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		view.set_model(music_model);
 		view.set_headers_clickable(true);
+		view.set_headers_visible(get_hint() != ViewWrapper.Hint.ALBUM_LIST);
 		view.set_fixed_height_mode(true);
 		view.rules_hint = true;
 		view.set_reorderable(false);
@@ -1007,7 +1010,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	void updateTreeViewSetup() {
-		if(music_model == null || !(music_model is TreeSortable)) {
+		if(music_model == null || !(music_model is TreeSortable) || get_hint() == ViewWrapper.Hint.ALBUM_LIST) {
 			return;
 		}
 		

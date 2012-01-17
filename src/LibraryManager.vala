@@ -70,6 +70,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public TreeViewSetup similar_setup;
 	public TreeViewSetup queue_setup;
 	public TreeViewSetup history_setup;
+	public TreeViewSetup album_list_setup;
 	
 	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new medias play, this goes with it
 	public int _current_index;
@@ -188,6 +189,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		similar_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.SIMILAR);
 		queue_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.QUEUE);
 		history_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.HISTORY);
+		album_list_setup = new TreeViewSetup("Track", Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
 		
 		//load all medias from db
 		foreach(Media s in dbm.load_medias()) {
@@ -286,9 +288,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 	}
 
-    Gdk.Pixbuf get_cover_shadow(Gdk.Pixbuf pixbuf)
-    {
+    public Gdk.Pixbuf get_cover_shadow(Gdk.Pixbuf pixbuf) {
         var buffer_surface = new Granite.Drawing.BufferSurface(128, 128);
+        
         buffer_surface.context.rectangle(shadow_size, shadow_size, 128 - 2*shadow_size, 128-2*shadow_size);
         buffer_surface.context.set_source_rgba(0,0,0,0.8);
         buffer_surface.context.fill();
@@ -296,6 +298,7 @@ public class BeatBox.LibraryManager : GLib.Object {
         Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple(128-2*shadow_size, 128-2*shadow_size, Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
         buffer_surface.context.paint();
         var pix = buffer_surface.load_to_pixbuf();
+        
         return pix;
     }
 	
@@ -774,13 +777,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return null;
 	}
 	
-	public void do_search(string search, ViewWrapper.Hint hint,string genre, string artist, string album,
+	public void do_search(string search, ViewWrapper.Hint hint,string genre, string album_artist, string album,
 	Collection<int> to_search, ref LinkedList<int> results, ref LinkedList<int> album_results) {
 		string l_search = search.down();
 		int mediatype = 0;
 		bool include_temps = (hint == ViewWrapper.Hint.CDROM || hint == ViewWrapper.Hint.DEVICE_AUDIO || 
 						hint == ViewWrapper.Hint.DEVICE_PODCAST || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK ||
-						hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY);
+						hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY || hint == ViewWrapper.Hint.ALBUM_LIST);
 		
 		if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 			mediatype = 1;
@@ -792,7 +795,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 			mediatype = 3;
 		}
 		else if(hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY ||
-		hint == ViewWrapper.Hint.PLAYLIST || hint == ViewWrapper.Hint.SMART_PLAYLIST) {
+		hint == ViewWrapper.Hint.PLAYLIST || hint == ViewWrapper.Hint.SMART_PLAYLIST ||
+		hint == ViewWrapper.Hint.ALBUM_LIST) {
 			mediatype = -1; // some lists should be able to have ALL media types
 		}
 		
@@ -801,7 +805,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(s != null && (s.mediatype == mediatype || mediatype == -1) && (!s.isTemporary || include_temps) &&
 			(l_search in s.title.down() || l_search in s.album_artist.down() || 
 			l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
-				if((genre == "All Genres" || s.genre == genre) && (artist == "All Artists" || s.artist == artist))
+				if((genre == "All Genres" || s.genre == genre) && (album_artist == "All Artists" || s.album_artist == album_artist))
 					if(album == "All Albums" || s.album == album) {
 						results.add(i);
 					}
@@ -1671,10 +1675,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void set_album_art(int id, Gdk.Pixbuf pix) {
+		if(pix == null)
+			return;
+		
 		Media s = media_from_id(id);
 		
 		_album_art.set(s.artist+s.album, pix);
-		
         _cover_album_art.set(s.file, get_cover_shadow(pix));
 	}
 	

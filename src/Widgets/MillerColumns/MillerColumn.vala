@@ -111,7 +111,7 @@ public class BeatBox.MillerColumns : HBox {
 		var genresSet = new HashSet<string>();
 		
 		foreach(int id in searched_medias) {
-			artistsSet.add(lm.media_from_id(id).artist);
+			artistsSet.add(lm.media_from_id(id).album_artist);
 			albumsSet.add(lm.media_from_id(id).album);
 			genresSet.add(lm.media_from_id(id).genre);
 		}
@@ -152,7 +152,7 @@ public class BeatBox.MillerColumns : HBox {
 		var albumsSet = new HashSet<string>();
 		
 		foreach(int id in searched_medias) {
-			artistsSet.add(lm.media_from_id(id).artist);
+			artistsSet.add(lm.media_from_id(id).album_artist);
 			albumsSet.add(lm.media_from_id(id).album);
 		}
 		
