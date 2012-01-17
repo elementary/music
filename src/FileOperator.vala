@@ -127,6 +127,9 @@ public class BeatBox.FileOperator : Object {
 	public string get_best_album_art_file(Media m) {
 		GLib.File media_file = GLib.File.new_for_path(m.file);
 		
+		if(!media_file.query_exists())
+			return "";
+		
 		string artPath = "";
 		GLib.FileInfo file_info = null;
 		var album_folder = media_file.get_parent();

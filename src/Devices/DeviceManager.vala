@@ -17,6 +17,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 		vm.mount_changed.connect(mount_changed);
 		vm.mount_pre_unmount.connect(mount_pre_unmount);
 		vm.mount_removed.connect(mount_removed);
+		vm.volume_added.connect(volume_added);
 	}
 	
 	public void loadPreExistingMounts() {
@@ -32,9 +33,14 @@ public class BeatBox.DeviceManager : GLib.Object {
 	
 	public void* get_pre_existing_mounts () {
 		var mounts = new LinkedList<Mount>();
+		var volumes = new LinkedList<Volume>();
 		
 		foreach(var m in vm.get_mounts()) {
 			mounts.add(m);
+		}
+		
+		foreach(var v in vm.get_volumes()) {
+			volumes.add(v);
 		}
 		
 		Idle.add( () => {
@@ -43,13 +49,30 @@ public class BeatBox.DeviceManager : GLib.Object {
 				mount_added(m);
 			}
 			
+			foreach(var v in volumes) {
+				volume_added(v);
+			}
+			
 			return false;
 		});
 		
 		return null;
 	}
 	
+	void volume_added(Volume volume) {
+		stdout.printf("adding vfolume at %s\n", volume.get_name());//volume.get_mount().get_default_location().get_path());
+		if(lm.settings.getMusicFolder().contains(volume.get_activation_root().get_path())) {
+			stdout.printf("mounting because is music folder\n");
+			volume.mount(MountMountFlags.NONE, null, null);
+		}
+	}
+	
+	void finish_mount(Object? source_object, AsyncResult res) {
+		
+	}
+	
 	public virtual void mount_added (Mount mount) {
+		stdout.printf("found mount at %s\n", mount.get_default_location().get_path());
 		foreach(var dev in devices) {
 			if(dev.get_path() == mount.get_default_location().get_path()) {
 				return;
@@ -70,6 +93,17 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 		else if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists()) {
 			added = new AndroidDevice(mount);
+		}
+		else if(lm.settings.getMusicFolder().contains(mount.get_default_location().get_path())) {
+			// user mounted music folder, rescan for images
+			try {
+				Thread.create<void*>(lm.fetch_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
+			}
+			
+			return;
 		}
 		else { // not a music player, ignore it
 			return;

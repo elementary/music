@@ -278,6 +278,20 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// set the volume
 		player.setVolume(settings.getVolume());
 		
+		// check that music folder is mounted
+		/*stdout.printf("mounting\n");
+		string folder = settings.getMusicFolder();
+		var file = File.new_for_path(folder);
+		if(!file.query_exists()) {
+			try {
+				file.mount_enclosing_volume(MountMountFlags.NONE, null, null);
+			}
+			catch(Error err) {
+				stdout.printf("could not mount music folder: %s\n" ,err.message);
+			}
+		}
+		stdout.printf("mounted\n");*/
+		
 		// start thread to load all the medias pixbuf's
 		try {
 			Thread.create<void*>(fetch_thread_function, false);
