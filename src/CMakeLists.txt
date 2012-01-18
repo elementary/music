@@ -181,6 +181,7 @@ vala_precompile(VALA_C
     Views/DeviceSummaryWidget.vala
     Views/AlbumView/AlbumViewModel.vala
     Views/AlbumView/AlbumIconView.vala
+    Views/AlbumView/AlbumListView.vala
     #    Views/External/ListView/ExternalMusicTreeView.vala
     #    Views/External/ListView/ExternalMusicTreeModel.vala
     #    Views/External/ExternalViewWrapper.vala

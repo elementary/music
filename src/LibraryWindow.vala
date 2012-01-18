@@ -448,6 +448,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		searchField.set_text(lm.settings.getSearchString());
+		searchField.grab_focus();
 		
 		updateSensitivities();
 		
