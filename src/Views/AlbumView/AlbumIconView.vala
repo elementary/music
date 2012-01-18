@@ -249,7 +249,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public static int mediaCompareFunc(Media a, Media b) {
-		return (a.album > b.album) ? 1 : -1;
+		if(a.album_artist == b.album_artist)
+			return (a.album > b.album) ? 1 : -1;
+			
+		return a.album_artist > b.album_artist ? 1 : -1;
 	}
 	
 	public bool buttonReleaseEvent(Gdk.EventButton ev) {
@@ -267,14 +270,15 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				return false;
 			}
 			
+			icons.select_path(path);
+			
 			stdout.printf("showing!\n");
 			Media s = ((AlbumViewModel)model).get_media(iter);
 			
 			alv.set_songs_from_media(s);
 			alv.move_to_coords((int)ev.x_root, (int)ev.y_root);
-			alv.focus_list();
-			//icons.unselect_all();
-			//alv.present();
+			alv.show_all();
+			alv.present();
 		}
 		
 		return false;
