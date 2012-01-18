@@ -1559,7 +1559,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	/* device stuff for welcome screen */
 	public void device_added(Device d) {
 		// add option to import in welcome screen
-		string secondary = (d.getContentType() == "cdrom") ? _("Import songs from audio CD") : _("Imort media from device");
+		string secondary = (d.getContentType() == "cdrom") ? _("Import songs from audio CD") : _("Import media from device");
 		int key = welcomeScreen.append_with_image( new Image.from_gicon(d.get_icon(), Gtk.IconSize.DIALOG), d.getDisplayName(), secondary);
 		welcome_screen_keys.set(key, d);
 	}
