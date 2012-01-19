@@ -252,8 +252,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//for setting maximum size for setting hpane position max size
 		//sideBar.set_geometry_hints(
 		
+		stdout.printf("populating millers\n");
 		miller.populateColumns("", lm.media_ids());
+		stdout.printf("building side tree\n");
 		buildSideTree();
+		stdout.printf("done with side tree\n");
 		
 		sideTreeScroll = new ScrolledWindow(null, null);
 		sideTreeScroll.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
@@ -414,8 +417,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Gtk.drag_dest_add_uri_targets(this);
 		drag_data_received.connect(dragReceived);
 		
+		stdout.printf("showing all\n");
 		show_all();
-		
+		stdout.printf("shown\n");
 		// nowthat everything is added, resize to proper height
 		resize(settings.getWindowWidth(), this.default_height);
 		viewSelector.selected = settings.getViewMode();

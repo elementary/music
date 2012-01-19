@@ -228,7 +228,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		model.appendMedias(albs, false);
 		icons.set_model(model);
 		
-		move_focus_out(DirectionType.UP);
+		grab_focus();
 		
 		/* this is required to make the iconview initially scrollable */
 		if(albs.size > 0) {

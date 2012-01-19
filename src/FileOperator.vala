@@ -483,7 +483,7 @@ public class BeatBox.FileOperator : Object {
 		++index;
 		
 		// check if we should guess as a podcast
-		if(m.genre.contains("Podcast") || m.length > 9000) // OVER 9000!!!!! aka 15 minutes
+		if(m.genre.down().contains("podcast") || m.length > 9000) // OVER 9000!!!!! aka 15 minutes
 			m.mediatype = 1;
 		
 		if(new_imports.size >= 200) {
