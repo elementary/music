@@ -17,169 +17,169 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-01-18 05:14+0000\n"
 "X-Generator: Launchpad (build 14681)\n"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
+#: ../src//LibraryWindow.vala:203
 msgid "Get Some Tunes."
 msgstr "Holen Sie sich ein paar Songs."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
+#: ../src//LibraryWindow.vala:203
 msgid "BeatBox can't seem to find your music."
 msgstr "BeatBox scheint Ihre Musik nicht zu finden."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
+#: ../src//LibraryWindow.vala:210
 msgid "Set Music Folder"
 msgstr "Musikordner auswählen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:211
+#: ../src//LibraryWindow.vala:211
 msgid "Import to Library"
 msgstr "In die Bibliothek importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:212
+#: ../src//LibraryWindow.vala:212
 msgid "Rescan Music Folder"
 msgstr "Musikordner neu einlesen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:213
+#: ../src//LibraryWindow.vala:213
 msgid "Equalizer"
 msgstr "Equalizer"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:222
+#: ../src//LibraryWindow.vala:222
 msgid "Search..."
 msgstr "Suchen..."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:245
+#: ../src//LibraryWindow.vala:245
 msgid "Title"
 msgstr "Titel"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:296
+#: ../src//LibraryWindow.vala:246
+#: ../src//LibraryWindow.vala:296
 #, c-format
 msgid "Artist"
 msgstr "Interpret"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:295
+#: ../src//LibraryWindow.vala:246
+#: ../src//LibraryWindow.vala:295
 msgid "Album"
 msgstr "Album"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:271
+#: ../src//LibraryWindow.vala:271
 msgid "Library"
 msgstr "Bibliothek"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:282
+#: ../src//LibraryWindow.vala:282
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:293
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:299
+#: ../src//LibraryWindow.vala:293
+#: ../src//LibraryWindow.vala:299
 msgid "Off"
 msgstr "Aus"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:294
+#: ../src//LibraryWindow.vala:294
 msgid "Media"
 msgstr "Medien"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:297
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:300
+#: ../src//LibraryWindow.vala:297
+#: ../src//LibraryWindow.vala:300
 msgid "All"
 msgstr "Alle"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:302
+#: ../src//LibraryWindow.vala:302
 msgid "Hide"
 msgstr "Verbergen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:303
+#: ../src//LibraryWindow.vala:303
 msgid "Show"
 msgstr "Anzeigen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
+#: ../src//LibraryWindow.vala:368
 msgid "Locate"
 msgstr "Festlegen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
+#: ../src//LibraryWindow.vala:368
 msgid "Change your music folder."
 msgstr "Ändern Sie Ihren Musikordner."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:478
+#: ../src//LibraryWindow.vala:478
 msgid "Similar"
 msgstr "Ähnliches"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:482
+#: ../src//LibraryWindow.vala:482
 msgid "Queue"
 msgstr "Warteschlange"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:486
+#: ../src//LibraryWindow.vala:486
 msgid "History"
 msgstr "Verlauf"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:490
+#: ../src//LibraryWindow.vala:490
 msgid "Music"
 msgstr "Musik"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:494
+#: ../src//LibraryWindow.vala:494
 msgid "Podcasts"
 msgstr "Podcasts"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:498
+#: ../src//LibraryWindow.vala:498
 msgid "Internet Radio"
 msgstr "Internetradio"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:503
+#: ../src//LibraryWindow.vala:503
 msgid "Music Store"
 msgstr "Music Store"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
+#: ../src//LibraryWindow.vala:694
 msgid "Unknown Artist"
 msgstr "Unbekannter Interpret"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
+#: ../src//LibraryWindow.vala:694
 msgid " by "
 msgstr " von "
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
+#: ../src//LibraryWindow.vala:695
 msgid "Unknown Album"
 msgstr "Unbekanntes Album"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
+#: ../src//LibraryWindow.vala:695
 msgid " on "
 msgstr " auf "
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1082
+#: ../src//LibraryWindow.vala:1082
 msgid "Import Music"
 msgstr "Musik importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1095
+#: ../src//LibraryWindow.vala:1095
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importiere</b> Musik aus <b>%s</b> in die Bibliothek."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1111
+#: ../src//LibraryWindow.vala:1111
 msgid "Rescanning music folder for changes"
 msgstr "Überprüfe den Musikordner auf Veränderungen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1118
+#: ../src//LibraryWindow.vala:1118
 msgid "Could not find Music Folder"
 msgstr "Der Musikordner konnte nicht gefunden werden"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1118
+#: ../src//LibraryWindow.vala:1118
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Bitte stellen Sie sicher, dass Ihr Musikordner erreichbar und eingehängt ist."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1186
+#: ../src//LibraryWindow.vala:1186
 msgid "Import Complete"
 msgstr "Import abgeschlossen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1186
+#: ../src//LibraryWindow.vala:1186
 msgid "BeatBox has imported your library."
 msgstr "BeatBox hat Ihre Bibliothek importiert."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1363
+#: ../src//LibraryWindow.vala:1363
 msgid "Choose Music Folder"
 msgstr "Musikordner auswählen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1561
+#: ../src//LibraryWindow.vala:1561
 msgid "Import songs from audio CD"
 msgstr "Titel von einer Audio-CD importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1561
+#: ../src//LibraryWindow.vala:1561
 msgid "Imort media from device"
 msgstr "Medien von einem Gerät importieren"
