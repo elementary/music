@@ -463,13 +463,13 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				if(p != null) {
 					if(p is Playlist) {
 						foreach(int i in ((Playlist)p).medias()) {
-							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).file.has_prefix("http://"))
+							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).uri.has_prefix("http:/"))
 								list.add(i);
 						}
 					}
 					else {
 						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
-							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).file.has_prefix("http://"))
+							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).uri.has_prefix("http:/"))
 								list.add(i);
 						}
 					}

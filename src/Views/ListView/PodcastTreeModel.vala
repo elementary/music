@@ -137,7 +137,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 					val = s.unique_status_image;
 				else if(s.last_played == 0)
 					val = _new_podcast;
-				else if(!s.file.has_prefix("http://"))
+				else if(!s.uri.has_prefix("http://"))
 					val = _saved_locally;
 				else
 					val = Value(typeof(Gdk.Pixbuf));

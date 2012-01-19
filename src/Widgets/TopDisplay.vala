@@ -72,6 +72,7 @@ namespace ElementaryWidgets {
 			
 			this.cancelButton.clicked.connect(cancel_clicked);
 			this.scale.button_press_event.connect(scale_button_press);
+			this.scale.button_release_event.connect(scale_button_release);
 			this.scale.value_changed.connect(value_changed);
 			this.scale.change_value.connect(change_value);
 			this.lm.player.current_position_update.connect(player_position_update);
@@ -149,26 +150,34 @@ namespace ElementaryWidgets {
 		}
 		
 		public virtual bool scale_button_press(Gdk.EventButton event) {
-			if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-				//seek to right position
-				//calculate percentage to go to based on location
-				Gtk.Allocation extents;
-				int point_x = 0;
-				int point_y = 0;
-				
-				scale.get_pointer(out point_x, out point_y);
-				scale.get_allocation(out extents);
-				
-				// get seconds of media
-				double mediatime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
-				
-				change_value(ScrollType.NONE, mediatime);
-			}
+			//calculate percentage to go to based on location
+			Gtk.Allocation extents;
+			int point_x = 0;
+			int point_y = 0;
+			
+			scale.get_pointer(out point_x, out point_y);
+			scale.get_allocation(out extents);
+			
+			// get seconds of media
+			double mediatime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
+			
+			change_value(ScrollType.NONE, mediatime);
 			
 			return false;
 		}
 		
 		public virtual bool scale_button_release(Gdk.EventButton event) {
+			Gtk.Allocation extents;
+			int point_x = 0;
+			int point_y = 0;
+			
+			scale.get_pointer(out point_x, out point_y);
+			scale.get_allocation(out extents);
+			
+			// get seconds of media
+			double mediatime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
+			
+			change_value(ScrollType.NONE, mediatime);
 			
 			return false;
 		}
@@ -206,7 +215,6 @@ namespace ElementaryWidgets {
 			scale_value_changed(scroll, val);
 			this.lm.player.current_position_update.connect(player_position_update);
 			lm.player.setPosition((int64)(val * 1000000000));
-			stdout.printf("change_value %d\n", (int)val);
 			
 			return false;
 		}
@@ -235,8 +243,7 @@ namespace ElementaryWidgets {
 			cancelButton.hide();
 		}
 		
-		public virtual void player_position_update(int64 position) {
-			double sec = 0.0;
+		public virtual void player_position_update(int64 position) {double sec = 0.0;
 			if(lm.media_info.media != null) {
 				sec = ((double)position/1000000000);
 				set_scale_value(sec);

@@ -61,18 +61,13 @@ public class BeatBox.DeviceManager : GLib.Object {
 	
 	void volume_added(Volume volume) {
 		stdout.printf("adding vfolume at %s\n", volume.get_name());//volume.get_mount().get_default_location().get_path());
-		if(lm.settings.getMusicFolder().contains(volume.get_activation_root().get_path())) {
-			stdout.printf("mounting because is music folder\n");
+		if(lm.settings.getMusicMountName() == volume.get_name()) {
+			stdout.printf("mounting %s because it is believed to be the music folder\n", volume.get_name());
 			volume.mount(MountMountFlags.NONE, null, null);
 		}
 	}
 	
-	void finish_mount(Object? source_object, AsyncResult res) {
-		
-	}
-	
 	public virtual void mount_added (Mount mount) {
-		stdout.printf("found mount at %s\n", mount.get_default_location().get_path());
 		foreach(var dev in devices) {
 			if(dev.get_path() == mount.get_default_location().get_path()) {
 				return;
@@ -96,6 +91,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 		else if(lm.settings.getMusicFolder().contains(mount.get_default_location().get_path())) {
 			// user mounted music folder, rescan for images
+			lm.settings.setMusicMountName(mount.get_volume().get_name());
 			try {
 				Thread.create<void*>(lm.fetch_thread_function, false);
 			}

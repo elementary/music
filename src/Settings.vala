@@ -31,6 +31,7 @@ public class BeatBox.Settings : Object {
 	public static const string LASTFM_SESSION_KEY = "session-key";
 	
 	public static const string MUSIC_FOLDER = "music-folder";
+	public static const string MUSIC_MOUNT_NAME  = "music-mount-name";
 	public static const string UPDATE_FOLDER_HIERARCHY = "update-folder-hierarchy";
 	public static const string WRITE_METADATA_TO_FILE = "write-metadata-to-file";
 	public static const string COPY_IMPORTED_MUSIC = "copy-imported-music";
@@ -79,6 +80,7 @@ public class BeatBox.Settings : Object {
 		lastfm_settings.add(LASTFM_SESSION_KEY);
 		
 		library_settings.add(MUSIC_FOLDER);
+		library_settings.add(MUSIC_MOUNT_NAME);
 		library_settings.add(UPDATE_FOLDER_HIERARCHY);
 		library_settings.add(WRITE_METADATA_TO_FILE);
 		library_settings.add(COPY_IMPORTED_MUSIC);
@@ -246,6 +248,10 @@ public class BeatBox.Settings : Object {
 		return rv;
 	}
 	
+	public string getMusicMountName() {
+		return getString(MUSIC_MOUNT_NAME, "");
+	}
+	
 	public bool getWindowMaximized() {
 		return getBool(WINDOW_MAXIMIZED, false);
 	}
@@ -396,6 +402,10 @@ public class BeatBox.Settings : Object {
 	/** Set Values **/
 	public void setMusicFolder(string path) {
 		setString(MUSIC_FOLDER, path);
+	}
+	
+	public void setMusicMountName(string path) {
+		setString(MUSIC_MOUNT_NAME, path);
 	}
 	
 	public void setWindowMaximized(bool val) {

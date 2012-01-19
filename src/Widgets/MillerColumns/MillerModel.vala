@@ -265,7 +265,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 			else if(bS == "All " + category)
 				rv = 1;
 			else
-				rv = ((aS > bS) ? 1 : -1);
+				rv = ((aS.down() > bS.down()) ? 1 : -1);
 		}
 		
 		

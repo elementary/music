@@ -808,6 +808,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	
 	void medias_updated(Collection<int> ids) {
 		music_model.updateMedias(ids, get_is_current());
+		music_model.resort();
 		
 		//since a media may have changed location, reset current
 		if(get_is_current())
@@ -1153,11 +1154,11 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			Media s = lm.media_from_id(id);
 			
 			try {
-				var file = File.new_for_path(s.file);
+				var file = File.new_for_uri(s.uri);
 				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not browse media %s: %s\n", s.file, err.message);
+				stdout.printf("Could not browse media %s: %s\n", s.uri, err.message);
 			}
 			
 			return;
@@ -1357,8 +1358,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
             
 			int id;
 			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).file);
-			uris += ("file://" + lm.media_from_id(id).file);
+			stdout.printf("adding %s\n", lm.media_from_id(id).uri);
+			uris += (lm.media_from_id(id).uri);
 		}
 		
         if (uris != null)

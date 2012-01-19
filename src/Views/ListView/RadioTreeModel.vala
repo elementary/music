@@ -449,7 +449,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		if(_columns.get(sort_column_id) == "Station") {
 			if(a_media.album_artist.down() == b_media.album_artist.down()) {
-				rv = advancedStringCompare(b_media.file, a_media.file);
+				rv = advancedStringCompare(b_media.uri, a_media.uri);
 			}
 			else
 				rv = advancedStringCompare(a_media.album_artist.down(), b_media.album_artist.down());
@@ -457,7 +457,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 		else if(_columns.get(sort_column_id) == "Genre") {
 			if(a_media.genre.down() == b_media.genre.down()) {
 				if(a_media.album_artist.down() == b_media.album_artist.down()) {
-					rv = advancedStringCompare(b_media.file, a_media.file);
+					rv = advancedStringCompare(b_media.uri, a_media.uri);
 				}
 				else {
 					rv = advancedStringCompare(a_media.album_artist.down(), b_media.album_artist.down());

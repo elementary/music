@@ -25,7 +25,7 @@ using Gtk;
 
 public class BeatBox.Media : GLib.Object{
 	//core info
-	public string file { get; set; default = ""; }
+	public string uri { get; set; default = ""; }
 	public uint file_size { get; set; default = 0; }
 	public int rowid { get; construct set; default = 0; }
 	public int mediatype { get; set; default = 0; } // 0 = media, 1 = podcast, 2 = audiobook
@@ -84,8 +84,8 @@ public class BeatBox.Media : GLib.Object{
 	public int pulseProgress;
 	
 	//core stuff
-	public Media(string file) {
-		this.file = file;
+	public Media(string uri) {
+		this.uri = uri;
 	}
 	
 	//audioproperties
@@ -120,7 +120,7 @@ public class BeatBox.Media : GLib.Object{
 	}
 	
 	public Media copy() {
-		Media rv = new Media(_file);
+		Media rv = new Media(uri);
 		rv.file_size = file_size;
 		rv.rowid = rowid;
 		rv.track = track;
@@ -178,11 +178,12 @@ public class BeatBox.Media : GLib.Object{
 	}
 	
 	public string getArtistImagePath() {
-		return Path.build_path("/", file.substring(0, _file.substring(0, _file.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
+		stdout.printf("fix getArtistImagePath\n");
+		return "";//Path.build_path("/", file.substring(0, _file.substring(0, _file.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
 	}
 	
 	public static Media from_track(string root, GPod.Track track) {
-		Media rv = new Media(Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
+		Media rv = new Media(File.new_for_path(Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path))).get_uri());
 		
 		rv.isTemporary = true;
 		if(track.title != null) {			rv.title = track.title; }

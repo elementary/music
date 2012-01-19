@@ -496,6 +496,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		Media a_media = lm.media_from_id(rows.get(a));
 		Media b_media = lm.media_from_id(rows.get(b));
 		
+		if(a_media == null || b_media == null)
+			return 1;
+		
 		if(_columns.get(sort_column_id) == "Artist") {
 			if(a_media.album_artist.down() == b_media.album_artist.down()) {
 				if(a_media.album.down() == b_media.album.down()) {

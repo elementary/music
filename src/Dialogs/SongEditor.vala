@@ -155,6 +155,8 @@ public class BeatBox.MediaEditor : Window {
 				sum.bpm = -1;
 			if(s.rating != sum.rating)
 				sum.rating = -1;
+			if(s.mediatype != sum.mediatype)
+				sum.mediatype = -1;
 			//score = 0;
 			//play_count = 0;
 			//skip_count = 0;
@@ -184,6 +186,7 @@ public class BeatBox.MediaEditor : Window {
 		fields.set("Disc", new FieldEditor("Disc", sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(0, 9999, 1)));
 		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false)));
+		fields.set("Media Type", new FieldEditor("Media Type", sum.mediatype.to_string(), new ComboBoxText()));
 		
 		content = new VBox(false, 10);
 		padding = new HBox(false, 10);
@@ -205,6 +208,7 @@ public class BeatBox.MediaEditor : Window {
 		numerVert.pack_start(fields.get("Grouping"), false, true, 5);
 		numerVert.pack_start(fields.get("Year"), false, true, 5);
 		numerVert.pack_start(fields.get("Rating"), false, true, 5);
+		numerVert.pack_start(fields.get("Media Type"), false, true, 5);
 		//if(medias.size == 1)
 			//numerVert.pack_start(stats, false, true, 5);
 		
@@ -383,6 +387,7 @@ public class BeatBox.MediaEditor : Window {
 		fields.get("Rating").set_value(sum.rating.to_string());
 		fields.get("Composer").set_value(sum.composer);
 		fields.get("Grouping").set_value(sum.grouping);
+		fields.get("Media Type").set_value(sum.mediatype.to_string());
 		
 		if(lyricsText == null) {
 			var lyrics = createLyricsViewport();
@@ -425,6 +430,8 @@ public class BeatBox.MediaEditor : Window {
 				s.year = int.parse(fields.get("Year").get_value());
 			if(fields.get("Rating").checked())
 				s.rating = int.parse(fields.get("Rating").get_value());
+			if(fields.get("Media Type").checked())
+				s.mediatype = int.parse(fields.get("Media Type").get_value());
 				
 			// save lyrics
 			if(lyricsText != null) {
@@ -457,6 +464,7 @@ public class BeatBox.FieldEditor : VBox {
 	private SpinButton spinButton;
 	private RatingWidget ratingWidget;
 	private Image image;
+	private ComboBoxText comboBox;
 	//private DoubleSpinButton doubleSpinButton;
 
 	public FieldEditor(string name, string original, Widget w) {
@@ -515,7 +523,7 @@ public class BeatBox.FieldEditor : VBox {
 			this.pack_start(scroll, true, true, 0);
 		}
 		else if(w is SpinButton) {
-			check.set_active(original != "0");
+			check.set_active(original != "-1");
 			
 			spinButton = (SpinButton)w;
 			spinButton.set_size_request(100, -1);
@@ -533,13 +541,24 @@ public class BeatBox.FieldEditor : VBox {
 			this.pack_start(image, true, true, 0);
 		}
 		else if(w is RatingWidget) {
-			check.set_active(original != "");
+			check.set_active(original != "-1");
 			
 			ratingWidget = (RatingWidget)w;
 			ratingWidget.set_rating(int.parse(original));
 			ratingWidget.rating_changed.connect(ratingChanged);
 			
 			this.pack_start(ratingWidget, true, true, 0);
+		}
+		else if(w is ComboBoxText) {
+			check.set_active(original != "-1");
+			
+			comboBox = (ComboBoxText)w;
+			comboBox.append_text("Song");
+			comboBox.append_text("Podcast");
+			comboBox.set_active(int.parse(original));
+			comboBox.changed.connect(comboChanged);
+			
+			this.pack_start(comboBox, true, true, 0);
 		}
 		/*else if(w is BeatBox.DoubleSpinButton) {
 			doubleSpinButton = (DoubleSpinButton)w;
@@ -583,6 +602,13 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(false);
 	}
 	
+	public virtual void comboChanged() {
+		if(comboBox.get_active() != int.parse(_original))
+			check.set_active(true);
+		else
+			check.set_active(false);
+	}
+	
 	public bool checked() {
 		return check.get_active();
 	}
@@ -603,6 +629,9 @@ public class BeatBox.FieldEditor : VBox {
 		else if(ratingWidget != null) {
 			ratingWidget.set_rating(int.parse(_original));
 		}
+		else if(comboBox != null) {
+			comboBox.set_active(int.parse(_original));
+		}
 	}
 	
 	public string get_value() {
@@ -620,6 +649,9 @@ public class BeatBox.FieldEditor : VBox {
 		}
 		else if(ratingWidget != null) {
 			return ratingWidget.get_rating().to_string();
+		}
+		else if(comboBox != null) {
+			return comboBox.get_active().to_string();
 		}
 		
 		return "";
@@ -640,6 +672,9 @@ public class BeatBox.FieldEditor : VBox {
 		}
 		else if(ratingWidget != null) {
 			ratingWidget.set_rating(int.parse(val));
+		}
+		else if(comboBox != null) {
+			comboBox.set_active(int.parse(val));
 		}
 	}
 }

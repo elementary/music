@@ -118,7 +118,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		
 		if(the_hint == ViewWrapper.Hint.MUSIC)
-			doUpdate(ViewType.LIST, medias, true, true);
+			doUpdate(ViewType.LIST, medias, true, true, false);
 		
 		if(albumView is AlbumView)
 			((AlbumView)albumView).itemClicked.connect(filterViewItemClicked);
@@ -138,13 +138,13 @@ public class BeatBox.ViewWrapper : VBox {
 	public virtual void selectorViewChanged() {
 		switch(lw.viewSelector.selected) {
 			case 0:
-				doUpdate(ViewWrapper.ViewType.FILTER_VIEW, medias, false, false);
+				doUpdate(ViewWrapper.ViewType.FILTER_VIEW, medias, false, false, false);
 				break;
 			case 1:
-				doUpdate(ViewWrapper.ViewType.LIST, medias, false, false);
+				doUpdate(ViewWrapper.ViewType.LIST, medias, false, false, false);
 				break;
 			case 2:
-				doUpdate(ViewWrapper.ViewType.LIST, medias, false, false);
+				doUpdate(ViewWrapper.ViewType.LIST, medias, false, false, false);
 				
 				if(isCurrentView) {
 					stdout.printf("populating millers\n");
@@ -194,9 +194,9 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		
 		if(refreshPod)
-			doUpdate(currentView, lm.podcast_ids(), true, true);
+			doUpdate(currentView, lm.podcast_ids(), true, true, false);
 		else if(refreshMusic)
-			doUpdate(currentView, lm.media_ids(), true, true);*/
+			doUpdate(currentView, lm.media_ids(), true, true, false);*/
 	}
 	
 	void medias_removed(LinkedList<int> ids) {
@@ -255,7 +255,7 @@ public class BeatBox.ViewWrapper : VBox {
 	 * @param set_medias whether or not to set the medias
 	 * @param do_visual If true, visually populate as well
 	*/
-	public void doUpdate(ViewType type, Collection<int> medias, bool set_medias, bool force) {
+	public void doUpdate(ViewType type, Collection<int> medias, bool set_medias, bool force, bool in_thread) {
 		if(set_medias) {
 			this.medias = medias;
 			media_count = medias.size;
@@ -263,7 +263,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		currentView = type;
 		
-		if(hint == ViewWrapper.Hint.CDROM && this.visible) {
+		if(!in_thread && hint == ViewWrapper.Hint.CDROM && this.visible) {
 			stdout.printf("updating cd with %d\n", media_count);
 			if(media_count == 0) {
 				errorBox.show_icon = true;
@@ -280,7 +280,7 @@ public class BeatBox.ViewWrapper : VBox {
 			}
 		}
 		/* BEGIN special case for similar medias */
-		if(list.get_hint() == ViewWrapper.Hint.SIMILAR && this.visible) {
+		if(!in_thread && list.get_hint() == ViewWrapper.Hint.SIMILAR && this.visible) {
 			SimilarPane sp = (SimilarPane)(list);
 			
 			if(!similarsFetched) { // still fetching similar medias
@@ -335,7 +335,7 @@ public class BeatBox.ViewWrapper : VBox {
 			//stdout.printf("searched\n");
 		}
 		
-		if(this.visible || force) {
+		if(!in_thread && (this.visible || force)) {
 			if(type == ViewType.LIST) {
 				list.populate_view();
 				list.show_all();
@@ -376,7 +376,7 @@ public class BeatBox.ViewWrapper : VBox {
 	public void millerChanged() {
 		if(lw.initializationFinished && isCurrentView) {
 			stdout.printf("miller changed\n");
-			doUpdate(this.currentView, medias, false, true);
+			doUpdate(this.currentView, medias, false, true, false);
 			
 			showing_all = (showingMedias.size == medias.size);
 			
@@ -394,7 +394,7 @@ public class BeatBox.ViewWrapper : VBox {
 					return false;
 				
 				//stdout.printf("search field changed\n");
-				doUpdate(this.currentView, medias, false, true);
+				doUpdate(this.currentView, medias, false, true, false);
 					
 				last_search = to_search;
 				showing_all = (showingMedias.size == medias.size);

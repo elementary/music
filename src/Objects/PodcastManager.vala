@@ -259,7 +259,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 							
 							if(attr_name == "url") {
 								new_p.podcast_url = attr_content;
-								new_p.file = attr_content;
+								new_p.uri = attr_content;
 							}
 						}
 					}
@@ -354,7 +354,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			
 			Media s = lm.media_from_id(i);
 			var online_file = File.new_for_uri(s.podcast_url);
-			if(online_file.query_exists() && s.file == s.podcast_url) {
+			if(online_file.query_exists() && s.uri == s.uri) {
 				current_operation = "Downloading <b>" + s.title + "</b> (" + (index + 1).to_string() + " of " + save_locally_ids.size.to_string() + ")";
 				online_size = online_file.query_info("*", FileQueryInfoFlags.NONE).get_size();
 				new_dest = lm.fo.get_new_destination(s);

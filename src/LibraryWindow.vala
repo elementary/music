@@ -558,6 +558,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(vw == null || vw.list == null || vw.albumView == null)
 			return;
 		
+		if(!initializationFinished)
+			return;
+		
 		vw.show_all();
 		if(viewSelector.selected == 0) {
 			vw.albumView.show();
@@ -1134,7 +1137,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				if(w is ViewWrapper/* && !(w is CDRomViewWrapper)*/ && !(w is DeviceViewWrapper)) {
 					ViewWrapper vw = (ViewWrapper)w;
 					stdout.printf("doing clear\n");
-					vw.doUpdate(vw.currentView, new LinkedList<int>(), true, true);
+					vw.doUpdate(vw.currentView, new LinkedList<int>(), true, true, false);
 					stdout.printf("cleared\n");
 				}
 			});
@@ -1142,17 +1145,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		else {
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-			vw.doUpdate(vw.currentView, lm.song_ids(), true, true);
+			vw.doUpdate(vw.currentView, lm.song_ids(), true, true, false);
 			miller.populateColumns("", lm.song_ids());
 			
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
-			vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true);
+			vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true, false);
 			
 			//vw = (ViewWrapper)sideTree.getWidget(sideTree.library_audiobooks_iter);
-			//vw.doUpdate(vw.currentView, lm.audiobook_ids(), true, true);
+			//vw.doUpdate(vw.currentView, lm.audiobook_ids(), true, true, false);
 			
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.network_radio_iter);
-			vw.doUpdate(vw.currentView, lm.station_ids(), true, true);
+			vw.doUpdate(vw.currentView, lm.station_ids(), true, true, false);
 		}
 	}
 	
@@ -1303,7 +1306,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				var event = new Zeitgeist.Event.full(Zeitgeist.ZG_ACCESS_EVENT,
 					Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://beatbox.desktop",
 					new Zeitgeist.Subject.full(
-					GLib.File.new_for_path(lm.media_info.media.file).get_uri(),
+					lm.media_info.media.uri,
 					Zeitgeist.NFO_AUDIO, Zeitgeist.NFO_FILE_DATA_OBJECT,
 					"text/plain", "", lm.media_info.media.title, ""));
 				new Zeitgeist.Log ().insert_events_no_reply(event);
@@ -1343,7 +1346,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 		
 		((ViewWrapper)w).similarsFetched = true;
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true, true);
+		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true, true, false);
 		
 		infoPanel.updateMediaList(similarDont);
 		
@@ -1487,7 +1490,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	void searchFieldChanged() {
 		if(initializationFinished && searchField.get_text().length != 1) {
 			try {
-				Thread.create<void*>(update_views_thread, false);
+				Thread.create<void*>(lm.update_views_thread, false);
 			}
 			catch(GLib.ThreadError err) {
 				
@@ -1498,23 +1501,23 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(initializationFinished) {
 			// start thread to prepare for when it is current
 			try {
-				Thread.create<void*>(update_views_thread, false);
+				Thread.create<void*>(lm.update_views_thread, false);
 			}
 			catch(GLib.ThreadError err) {
 				
 			}
 		}
 	}
-	void* update_views_thread () {
+	/*void* update_views_thread () {
 		mainViews.get_children().foreach( (w) => {
-			if(w is ViewWrapper/* && !(w is CDRomViewWrapper)*/ && !(w is DeviceViewWrapper)) {
+			if(w is ViewWrapper/* && !(w is CDRomViewWrapper)* && !(w is DeviceViewWrapper)) {
 				ViewWrapper vw = (ViewWrapper)w;
-				vw.doUpdate(vw.currentView, vw.medias, false, false);
+				vw.doUpdate(vw.currentView, vw.medias, false, false, true);
 			}
 		});
 		
 		return null;	
-	}
+	}*/
 	
 	public void searchFieldActivate() {
 		Widget w = sideTree.getSelectedWidget();

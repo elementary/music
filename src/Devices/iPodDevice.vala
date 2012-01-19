@@ -445,6 +445,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		if(!sync_cancelled) {
 			// sync playlists
+			index = 78;
 			sync_playlists();
 			sync_podcasts();
 			
@@ -534,7 +535,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}*/
 		
 		stdout.printf("copying track to ipod\n");
-		if(db.cp_track_to_ipod(added, s.file)) {
+		if(db.cp_track_to_ipod(added, s.uri.replace("file://", ""))) {
 			media.set(added, i);
 			
 			if(added.mediatype == GPod.MediaType.AUDIO)
@@ -706,7 +707,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 				break;
 			
 			Media s = lm.media_from_id(i);
-			if(File.new_for_path(s.file).query_exists() && s.file.has_prefix(get_path())) {
+			if(File.new_for_uri(s.uri).query_exists() && s.uri.has_prefix("file://" + get_path())) {
 				current_operation = "Importing <b>" + s.title + "</b> to library";
 				lm.fo.update_file_hierarchy(s, false, false);
 				lm.convert_temp_to_permanent(s.rowid);

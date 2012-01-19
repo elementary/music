@@ -959,14 +959,14 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
         var rows = view.get_selection().get_selected_rows(out temp_model);
         string[] uris = null;
         
-        foreach(TreePath path in rows) {
+        /*foreach(TreePath path in rows) {
             temp_model.get_iter_from_string (out iter, path.to_string ());
             
 			int id;
 			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).file);
-			uris += ("file://" + lm.media_from_id(id).file);
-		}
+			stdout.printf("adding %s\n", lm.media_from_id(id).uri);
+			uris += (lm.media_from_id(id).uri);
+		}*/
 		
         if (uris != null)
             selection_data.set_uris(uris);
