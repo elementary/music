@@ -1,7 +1,7 @@
 # German translation for beat-box
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # This file is distributed under the same license as the beat-box package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# Alexander Wilms <alexander.wilms@zoho.com>, 2012.
 #
 msgid ""
 msgstr ""
@@ -23,7 +23,7 @@ msgstr "Holen Sie sich ein paar Songs."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
 msgid "BeatBox can't seem to find your music."
-msgstr "BeatBox scheint Ihre Musik nicht finden zu können."
+msgstr "BeatBox scheint Ihre Musik nicht zu finden."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "Set Music Folder"
@@ -43,7 +43,7 @@ msgstr "Equalizer"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:222
 msgid "Search..."
-msgstr "Suchen…"
+msgstr "Suchen..."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:245
 msgid "Title"
@@ -149,7 +149,7 @@ msgstr "Musik importieren"
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1095
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "<b>Importiere</b> Musik aus <b>%s</b> in die Bibliothek"
+msgstr "<b>Importiere</b> Musik aus <b>%s</b> in die Bibliothek."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1111
 msgid "Rescanning music folder for changes"
