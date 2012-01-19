@@ -125,7 +125,7 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	public string get_best_album_art_file(Media m) {
-		GLib.File media_file = GLib.File.new_for_path(m.file);
+		GLib.File media_file = GLib.File.new_for_uri(m.uri);
 		
 		if(!media_file.query_exists())
 			return "";
@@ -184,7 +184,7 @@ public class BeatBox.FileOperator : Object {
 			Gdk.Pixbuf rv;
 			filestream = file.read(null);
 			rv = new Gdk.Pixbuf.from_stream(filestream, null);
-			var dest = Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_path(), "Album.jpg");
+			var dest = Path.build_path("/", GLib.File.new_for_uri(s.uri).get_parent().get_path(), "Album.jpg");
 			rv.save(dest, "jpeg");
 			
 			Gee.LinkedList<Media> updated_medias = new Gee.LinkedList<Media>();
@@ -220,7 +220,7 @@ public class BeatBox.FileOperator : Object {
 		try {
 			filestream = file.read(null);
 			rv = new Gdk.Pixbuf.from_stream(filestream, null);
-			rv.save(Path.build_path("/", GLib.File.new_for_path(s.file).get_parent().get_parent().get_path(), "Artist.jpg"), "jpeg");
+			rv.save(Path.build_path("/", GLib.File.new_for_uri(s.uri).get_parent().get_parent().get_path(), "Artist.jpg"), "jpeg");
 		}
 		catch(GLib.Error err) {
 			rv = null;
@@ -231,7 +231,7 @@ public class BeatBox.FileOperator : Object {
 	
 	public void save_medias(Collection<Media> to_save) {
 		foreach(Media s in to_save) {
-			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview && s.file.has_prefix(lm.settings.getMusicFolder()))
+			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview && s.uri.has_prefix("file://" + lm.settings.getMusicFolder()))
 				toSave.offer(s);
 		}
 		
@@ -257,7 +257,7 @@ public class BeatBox.FileOperator : Object {
 			
 			if(settings.getWriteMetadataToFile()) {
 				TagLib.File tag_file;
-				tag_file = new TagLib.File(s.file);
+				tag_file = new TagLib.File(s.uri.replace("file://",""));
 				
 				if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
 					try {
@@ -276,7 +276,7 @@ public class BeatBox.FileOperator : Object {
 					}
 				}
 				else {
-					stdout.printf("Could not save %s.\n", s.file);
+					stdout.printf("Could not save %s.\n", s.uri);
 				}
 			}
 			
@@ -290,17 +290,13 @@ public class BeatBox.FileOperator : Object {
 		
 		try {
 			/* initialize file objects */
-			GLib.File original;
-			if(s.file.has_prefix("http://") || s.file.has_prefix("cdda://"))
-				original = GLib.File.new_for_uri(s.file);
-			else
-				original = GLib.File.new_for_path(s.file);
+			GLib.File original = GLib.File.new_for_uri(s.uri);
 			
 			var ext = "";
-			if(s.file.has_prefix("cdda://"))
+			if(s.uri.has_prefix("cdda://"))
 				ext = ".mp3";
 			else
-				ext = get_extension(s.file);
+				ext = get_extension(s.uri);
 			
 			dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + ext));
 			
@@ -332,28 +328,24 @@ public class BeatBox.FileOperator : Object {
 			if(dest == null)
 				return;
 			
-			GLib.File original;
-			if(s.file.has_prefix("http://"))
-				original = GLib.File.new_for_uri(s.file);
-			else
-				original = GLib.File.new_for_path(s.file);
+			GLib.File original = GLib.File.new_for_uri(s.uri);
 			
-			var ext = get_extension(s.file);
+			var ext = get_extension(s.uri);
 			
 			/* copy the file over */
 			bool success = false;
 			if(!delete_old) {
-				stdout.printf("Copying %s to %s\n", s.file, dest.get_path());
+				stdout.printf("Copying %s to %s\n", s.uri, dest.get_path());
 				success = original.copy(dest, FileCopyFlags.NONE, null, null);
 			}
 			else {
-				stdout.printf("Moving %s to %s\n", s.file, dest.get_path());
+				stdout.printf("Moving %s to %s\n", s.uri, dest.get_path());
 				success = original.move(dest, FileCopyFlags.NONE, null, null);
 			}
 			
 			if(success) {
 				stdout.printf("success copying file\n");
-				s.file = dest.get_path();
+				s.uri = dest.get_uri();
 				
 				// wait to update media when out of thread
 				if(emit_update) {
@@ -375,7 +367,7 @@ public class BeatBox.FileOperator : Object {
 				}
 			}
 			else
-				stdout.printf("Failure: Could not copy imported media %s to media folder %s\n", s.file, dest.get_path());
+				stdout.printf("Failure: Could not copy imported media %s to media folder %s\n", s.uri, dest.get_path());
 			
 			/* if we are supposed to delete the old, make sure there are no items left in folder if we do */
 			if(delete_old) {
@@ -390,7 +382,7 @@ public class BeatBox.FileOperator : Object {
 			}
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not copy imported media %s to media folder: %s\n", s.file, err.message);
+			stdout.printf("Could not copy imported media %s to media folder: %s\n", s.uri, err.message);
 		}
 	}
 	
@@ -511,8 +503,14 @@ public class BeatBox.FileOperator : Object {
 		if(import_type == ImportType.PLAYLIST) {
 			foreach(var s in all_new_imports)
 				new_playlist.addMedia(s.rowid);
-				
+			
+			string extra = "";
+			while(lm.playlist_from_name(new_playlist.name + extra) != null)
+				extra += "_";
+			
+			new_playlist.name = new_playlist.name + extra;
 			lm.add_playlist(new_playlist);
+			lm.lw.addSideListItem(new_playlist);
 		}
 		
 		// if doing import and copy to music folder is enabled, do copy here

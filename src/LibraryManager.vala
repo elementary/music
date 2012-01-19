@@ -196,7 +196,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_media.set(s.rowid, s);
 			_permanents.add(s.rowid);
 			
-			if(s.file.has_prefix(settings.getMusicFolder()))
+			if(s.uri.has_prefix("file://" + settings.getMusicFolder()))
 				++local_song_count;
 			
 			if(s.mediatype == 0)
@@ -345,6 +345,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			lw.resetSideTree(false);
 			lw.updateSensitivities();
 			
+			settings.setMusicMountName("");
 			settings.setMusicFolder(folder);
 			
 			try {
@@ -428,31 +429,33 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
         
 	public void* rescan_music_thread_function () {
-		LinkedList<string> paths = new LinkedList<string>();
+		HashMap<string, Media> paths = new HashMap<string, Media>();
 		LinkedList<Media> to_remove = new LinkedList<Media>();
 		LinkedList<string> to_import = new LinkedList<string>();
-		fo.resetProgress(100);
 		
+		fo.resetProgress(100);
+		Timeout.add(100, doProgressNotificationWithTimeout);
+		stdout.printf("going through current songs\n");
 		string music_folder = settings.getMusicFolder();
 		foreach(Media s in _media.values) {
-			if(!s.isTemporary && !s.isPreview && s.file.has_prefix(music_folder))
-				paths.add(s.file);
+			if(!s.isTemporary && !s.isPreview && s.uri.has_prefix("file://" + music_folder))
+				paths.set(s.uri, s);
 				
-			if(s.file.has_prefix(music_folder) && !File.new_for_path(s.file).query_exists())
+			if(s.uri.has_prefix("file://" + music_folder) && !File.new_for_uri(s.uri).query_exists())
 				to_remove.add(s);
 		}
 		fo.index = 5;
-		
+		stdout.printf("finding all music in music folder\n");
 		// get a list of the current files
 		var files = new LinkedList<string>();
 		var items = fo.count_music_files(File.new_for_path(music_folder), ref files);
 		fo.index = 10;
-		
+		stdout.printf("finding new songs\n");
 		foreach(string s in files) {
-			if(!paths.contains(s))
+			if(paths.get(s) == null)
 				to_import.add(s);
 		}
-		
+		stdout.printf("importing new songs\n");
 		if(to_import.size > 0) {
 			fo.resetProgress(to_import.size);
 			Timeout.add(100, doProgressNotificationWithTimeout);
@@ -464,6 +467,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Idle.add( () => {
 			if(!fo.cancelled)	remove_medias(to_remove, false);
 			if(to_import.size == 0) {
+				stdout.printf("rescan finished\n");
 				finish_file_operations();
 			}
 			
@@ -578,9 +582,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		var unset = new LinkedList<Media>();//HashMap<int, Media>();
 		foreach(int i in _media.keys) {
 			Media s = _media.get(i);
-			if(!(s.isTemporary || s.isPreview || s.file.has_prefix("http://"))) {
+			if(!(s.isTemporary || s.isPreview || s.uri.has_prefix("http://"))) {
 				if( (s.mediatype == 1 && s.podcast_url != null && s.podcast_url.has_prefix("http://")) || s.mediatype == 3) {
-					s.file = s.podcast_url;
+					s.uri = s.podcast_url;
 				}
 				else {
 					unset.add(s);
@@ -592,7 +596,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
-			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+			if(s.uri.has_prefix("file://" + settings.getMusicFolder()))
 				--local_song_count;
 			
 			if(s.mediatype == 0)
@@ -685,14 +689,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 		//	sp.is_up_to_date = false;
 		//}
 		
-		foreach(Widget w in lw.mainViews.get_children()) {
+		/*foreach(Widget w in lw.mainViews.get_children()) {
 			if(w.visible && w is ViewWrapper && ((ViewWrapper)w).isCurrentView) {
 				ViewWrapper vw = (ViewWrapper)w;
 				
 				if(vw.list.get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)
 					vw.doUpdate(vw.currentView, medias_from_smart_playlist(vw.list.get_relative_id()), false, true);
 			}
-		}
+		}*/
 		
 		// now update all non-showing views
 		try {
@@ -708,7 +712,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Widget w in lw.mainViews.get_children()) {
 			if(!w.visible && w is ViewWrapper) {
 				ViewWrapper vw = (ViewWrapper)w;
-				vw.doUpdate(vw.currentView, vw.medias, false, false);
+				vw.doUpdate(vw.currentView, vw.medias, false, false, true);
 			}
 		}
 		
@@ -780,10 +784,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 	}
 	
-	public Media? media_from_file(string file) {
+	public Media? media_from_file(string uri) {
 		lock(_media) {
 			foreach(Media s in _media.values) {
-				if(s.file == file)
+				if(s.uri == uri)
 					return s;
 			}
 		}
@@ -864,7 +868,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(permanent && !s.isTemporary)
 				_permanents.add(s.rowid);
 				
-			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+			if(settings.getMusicFolder() != "" && s.uri.has_prefix(File.new_for_path(settings.getMusicFolder()).get_uri()))
 				++local_song_count;
 			
 			if(s.mediatype == 0)
@@ -906,7 +910,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			s.date_added = (int)time_t();
 			_permanents.add(s.rowid);
 			
-			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+			if(s.uri.has_prefix("file://" + settings.getMusicFolder()))
 				++local_song_count;
 		}
 		
@@ -915,24 +919,24 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void remove_medias(LinkedList<Media> toRemove, bool trash) {
 		LinkedList<int> removedIds = new LinkedList<int>();
-		LinkedList<string> removePaths = new LinkedList<string>();
+		LinkedList<string> removeURIs = new LinkedList<string>();
 		
 		foreach(Media s in toRemove) {
 			removedIds.add(s.rowid);
-			removePaths.add(s.file);
+			removeURIs.add(s.uri);
 		}
 		
-		dbu.removeItem(removePaths);
+		dbu.removeItem(removeURIs);
 		
 		if(trash) {
-			fo.remove_medias(removePaths);
+			fo.remove_medias(removeURIs);
 		}
 		
 		foreach(Media s in toRemove) {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
-			if(settings.getMusicFolder() != "" && s.file.has_prefix(settings.getMusicFolder()))
+			if(settings.getMusicFolder() != "" && s.uri.has_prefix("file://" + settings.getMusicFolder()))
 				--local_song_count;
 			
 			if(s.mediatype == 0)
@@ -1320,7 +1324,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Media m = media_from_id(id);
 		
 		// check that the file exists
-		if(!GLib.File.new_for_path(m.file).query_exists() && (settings.getMusicFolder() != "" && m.file.contains(settings.getMusicFolder()))) {
+		if(!GLib.File.new_for_uri(m.uri).query_exists() && (settings.getMusicFolder() != "" && m.uri.contains("file://" + settings.getMusicFolder()))) {
 			m.unique_status_image = icons.process_error_icon.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list.get_style_context());
 			m.location_unknown = true;
 			lw.media_not_found(id);
@@ -1339,10 +1343,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// actually play the media asap
 		if(next_gapless_id == 0) {
-			if(!m.isPreview && !m.file.contains("cdda://") && !m.file.contains("http://")) // normal file
-				player.setURI("file://" + m.file);
-			else
-				player.setURI(m.file); // probably cdda or internet media
+			player.setURI(m.uri);
 		}
 		else {
 			next_gapless_id = 0;
@@ -1616,8 +1617,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 					
 					if(pix != null) {
 						_album_art.set(s.artist+s.album, pix);
+						
                         if(!_cover_album_art.has_key(s.artist + s.album))
-                        _cover_album_art.set(s.artist+s.album, get_cover_shadow(pix));
+							_cover_album_art.set(s.artist+s.album, get_cover_shadow(pix));
 					}
 						
 					previousAlbum = s.album;
@@ -1695,7 +1697,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Media s = media_from_id(id);
 		
 		_album_art.set(s.artist+s.album, pix);
-        _cover_album_art.set(s.file, get_cover_shadow(pix));
+        _cover_album_art.set(s.artist+s.album, get_cover_shadow(pix));
 	}
 	
 	/* Device Preferences */

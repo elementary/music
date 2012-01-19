@@ -95,7 +95,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		
 		uri_to_id.clear();
 		foreach(int i in files) {
-			string uri = "file://" + lm.media_from_id(i).file;
+			string uri = lm.media_from_id(i).uri;
 			path_queue.add(uri);
 			uri_to_id.set(uri, i);
 			
@@ -115,10 +115,11 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		path_queue.remove(info.get_uri().replace("file://",""));
 		
 		if(info != null && info.get_tags() != null) {
-			Media s = new Media(info.get_uri().replace("file://",""));
+			Media s = new Media(info.get_uri());
 			
 			try {
-				string title, artist, composer, album_artist, album, grouping, genre, comment, lyrics;
+				string title = "";
+				string artist, composer, album_artist, album, grouping, genre, comment, lyrics;
 				uint track, track_count, album_number, album_count, bitrate, rating;
 				double bpm;
 				uint64 duration;
@@ -178,7 +179,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				//	s.length = (uint)(duration/10000000);
 				//}
 				//else {
-					s.length = get_length(s.file);
+					s.length = get_length(s.uri);
 				//}
 				
 				// see if it has an image data
@@ -203,7 +204,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			media_imported(s);
 		}
 		else {
-			Media s = taglib_import_media(info.get_uri().replace("file://", ""));
+			Media s = taglib_import_media(info.get_uri());
 			
 			if(s == null)
 				import_error(info.get_uri().replace("file://", ""));
@@ -212,12 +213,12 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		}
 	}
 	
-	public uint get_length(string file_path) {
+	public uint get_length(string uri) {
 		uint rv = 0;
 		TagLib.File tag_file;
 		
 		try {
-			tag_file = new TagLib.File(file_path);
+			tag_file = new TagLib.File(uri.replace("file://",""));
 		}
 		catch {}
 		
@@ -231,11 +232,11 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		return rv;
 	}
 	
-	public Media? taglib_import_media(string file_path) {
-		Media s = new Media(file_path);
+	public Media? taglib_import_media(string uri) {
+		Media s = new Media(uri);
 		TagLib.File tag_file;
 		
-		tag_file = new TagLib.File(file_path);
+		tag_file = new TagLib.File(uri.replace("file://",""));
 		
 		if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
 			try {
@@ -257,7 +258,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			}
 			finally {
 				if(s.title == null || s.title == "") {
-					string[] paths = file_path.split("/", 0);
+					string[] paths = uri.split("/", 0);
 					s.title = paths[paths.length - 1];
 				}
 				if(s.artist == null || s.artist == "") s.artist = "Unknown Artist";
@@ -274,6 +275,8 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	}
 	
 	void import_art(DiscovererInfo info) {
+		return;
+		
 		path_queue.remove(info.get_uri());
 		stdout.printf("discovered %s\n", info.get_uri());
 		if(info != null && info.get_tags() != null) {

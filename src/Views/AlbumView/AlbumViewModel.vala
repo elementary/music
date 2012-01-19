@@ -60,7 +60,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		else if(col == 1)
 			return typeof(string);
 		else
-			return typeof(Media);
+			return typeof(int);
 		
 	}
 
@@ -98,7 +98,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column >= 2)
+		if(iter.stamp != this.stamp || column < 0 || column > 2)
 			return;
 			
 		if(removing_medias) {
@@ -122,13 +122,13 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			else if(column == 1)
 				val = s.album.replace("&", "&amp;") + "\n" + "<span foreground=\"#999\">" + s.album_artist.replace("&", "&amp;") + "</span>";
 			else if(column == 2) {
-				val = s;
+				val = s.rowid;
 			}
 		}
 	}
 	
-	public Media get_media(Gtk.TreeIter iter) {
-	    return lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
+	public int get_media_id(Gtk.TreeIter iter) {
+	    return rows.get(((SequenceIter<int>)iter.user_data));
 	}
 
 	/** Sets iter to point to the first child of parent. **/

@@ -25,14 +25,14 @@ public class BeatBox.Streamer : GLib.Object {
 		pipe = new BeatBox.Pipeline();
 		
 		pipe.bus.add_watch(busCallback);
-		pipe.playbin.about_to_finish.connect(about_to_finish);
+		//pipe.playbin.about_to_finish.connect(about_to_finish);
 		
 		Timeout.add(500, doPositionUpdate);
 	}
 	
-	public void mediaRipped(Media s) {
-		setURI("file://" + s.file);
-	}
+	/*public void mediaRipped(Media s) {
+		setURI(s.uri);
+	}*/
 	
 	public bool doPositionUpdate() {
 		current_position_update(getPosition());
@@ -214,14 +214,15 @@ public class BeatBox.Streamer : GLib.Object {
 		return true;
 	}
 	
+	// no longer used since it would cause bugs
 	void about_to_finish() {
 		int i = lm.getNext(false);
 		Media s = lm.media_from_id(i);
 		if(s != null && s.mediatype != 3) { // don't do this with radio stations
-			if(!s.isPreview && !s.file.contains("cdda://") && !s.file.contains("http://")) // normal file
-				pipe.playbin.uri = "file://" + s.file;
-			else
-				pipe.playbin.uri = s.file; // probably cdda
+			pipe.playbin.uri = s.uri; // probably cdda
+		}
+		else {
+			stdout.printf("not doing gapless in streamer because no next song\n");
 		}
 		
 		lm.next_gapless_id = i;

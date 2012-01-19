@@ -269,7 +269,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					setSelectedIter(filterItem);
 			}
 			
-			//sideListSelectionChange();
+			sideListSelectionChange();
 			return item;
 		}
 		else if(o is Playlist) {
@@ -300,7 +300,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					setSelectedIter(filterItem);
 			}
 			
-			//sideListSelectionChange();
+			sideListSelectionChange();
 			return item;
 		}
 		else {
@@ -312,13 +312,13 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public void updatePlayQueue() {
 		Widget w;
 		filter.get(convertToFilter(playlists_queue_iter), 1, out w);
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.queue(), true, true);
+		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.queue(), true, true, false);
 	}
 	
 	public void updateAlreadyPlayed() {
 		Widget w;
 		filter.get(convertToFilter(playlists_history_iter), 1, out w);
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.already_played(), true, true);
+		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.already_played(), true, true, false);
 	}
 	
 	public virtual void sideListSelectionChange() {
@@ -470,7 +470,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			ViewWrapper vw = (ViewWrapper)w;
 			
 			vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-						lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, true);
+						lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, true, false);
 		}
 		
 		return false;
@@ -503,19 +503,19 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.media_ids(), false, false);
+								lm.media_ids(), false, false, false);
 				}
 				else if(iter == library_podcasts_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.podcast_ids(), false, false);
+								lm.podcast_ids(), false, false, false);
 				}
 				else if(iter == network_radio_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.station_ids(), false, false);
+								lm.station_ids(), false, false, false);
 				}
 				else if(iter == network_store_iter) {
 					Store.StoreView sv = (Store.StoreView)w;
@@ -530,37 +530,37 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					lw.updateMillerColumns(); // don't show millers if showing warning label
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								vw.medias, true, false);
+								vw.medias, true, false, false);
 				}
 				else if(iter == playlists_queue_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.queue(), true, false);
+								lm.queue(), true, false, false);
 				}
 				else if(iter == playlists_history_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.already_played(), true, false);
+								lm.already_played(), true, false, false);
 				}
 				else if(o is SmartPlaylist && !((SmartPlaylist)o).viewWrapper_is_up_to_date) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, false);
+								lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, false, false);
 				}
 				else if(o is Playlist) {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.medias_from_playlist(((Playlist)o).rowid), true, false);
+								lm.medias_from_playlist(((Playlist)o).rowid), true, false, false);
 				}
 				else if(o is Device) {
 					DeviceViewWrapper vw = (DeviceViewWrapper)w;
 					stdout.printf("o is device\n");
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								vw.medias, true, false);
+								vw.medias, true, false, false);
 				}
 				
 				if(lw.viewSelector.selected == 2) {
@@ -683,7 +683,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					removeItem(pivot);
 					lw.addSideListItem(sp);
 					
-					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.medias_from_smart_playlist(sp.rowid), true, false);
+					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.medias_from_smart_playlist(sp.rowid), true, false, false);
 					lm.save_smart_playlists();
 					
 					break;
@@ -719,7 +719,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					removeItem(pivot);
 					lw.addSideListItem(p);
 					
-					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.medias_from_playlist(p.rowid), true, false);
+					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.medias_from_playlist(p.rowid), true, false, false);
 					
 					break;
 				}
@@ -1013,7 +1013,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				lm.add_medias(stations, true);
 				
 				//Widget w = getWidget(network_radio_iter);
-				//((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.station_ids(), true, true);
+				//((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.station_ids(), true, true, false);
 			}
 		}
 	}

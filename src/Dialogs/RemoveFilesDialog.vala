@@ -80,7 +80,7 @@ public class BeatBox.RemoveFilesDialog : Window {
 		// decide if we need the trash button
 		bool need_trash = false;
 		foreach(var m in to_remove) {
-			if(!m.file.has_prefix("http:/") && !m.file.has_prefix("cdda:/") && m.mediatype != 3) {
+			if(m.uri.has_prefix("file:/")) {
 				need_trash = true;
 			}
 		}

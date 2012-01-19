@@ -161,11 +161,19 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	}
 	
 	public void set_as_current_list(int media_id, bool is_initial) {
+		var ordered_songs = radio_model.getOrderedMedias();
+		
+		if(media_id == 0 && lm.media_info.media != null &&
+		!ordered_songs.contains(lm.media_info.media.rowid))
+			return;
+		else if(media_id != 0 && !ordered_songs.contains(media_id))
+			return;
+		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
 		int i = 0;
-		foreach(int id in radio_model.getOrderedMedias()) {
+		foreach(int id in ordered_songs) {
 			lm.addToCurrent(id);
 			
 			if(!shuffle && lm.media_info.media != null && lm.media_info.media.rowid == id && media_id == 0)
@@ -959,14 +967,14 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
         var rows = view.get_selection().get_selected_rows(out temp_model);
         string[] uris = null;
         
-        foreach(TreePath path in rows) {
+        /*foreach(TreePath path in rows) {
             temp_model.get_iter_from_string (out iter, path.to_string ());
             
 			int id;
 			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).file);
-			uris += ("file://" + lm.media_from_id(id).file);
-		}
+			stdout.printf("adding %s\n", lm.media_from_id(id).uri);
+			uris += (lm.media_from_id(id).uri);
+		}*/
 		
         if (uris != null)
             selection_data.set_uris(uris);

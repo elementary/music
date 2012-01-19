@@ -49,9 +49,9 @@ public class BeatBox.CoverArtImage : Image {
 		
 		foreach(string singleUri in data.get_uris()) {
 			
-			if(is_valid_image_type(singleUri)) {
+			if(is_valid_image_type(singleUri) && lm.media_info.media != null) {
 				var original = File.new_for_uri(singleUri);
-				var playingPath = File.new_for_path(lm.media_info.media.file); // used to get dest
+				var playingPath = File.new_for_uri(lm.media_info.media.uri); // used to get dest
 				var dest = File.new_for_path(Path.build_path("/", playingPath.get_parent().get_path(), "Album.jpg"));
 				var destTemp = File.new_for_path(Path.build_path("/", playingPath.get_parent().get_path(), "AlbumTemporaryPathToEnsureNoProtection.jpg"));
 				

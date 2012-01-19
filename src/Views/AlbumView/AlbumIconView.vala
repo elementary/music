@@ -74,7 +74,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	
 	public void set_is_current(bool val) {
 		_is_current = val;
-		//model.is_current = val;
+		stdout.printf("album icon view is no %d\n", val ? 1 : 0);
 	}
 	
 	public bool get_is_current() {
@@ -236,7 +236,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			//icons.unselect_all();
 		}
 		
-		if(get_is_current() && lm.media_info.media != null)
+		//if(visible)
+		//	stdout.printf("get_is_current(): %d\n", get_is_current() ? 1 : 0);
+		
+		if(visible && lm.media_info.media != null)
 			scrollToCurrent();
 		else
 			this.vadjustment.set_value((int)hPos);
@@ -249,10 +252,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public static int mediaCompareFunc(Media a, Media b) {
-		if(a.album_artist == b.album_artist)
+		if(a.album_artist.down() == b.album_artist.down())
 			return (a.album > b.album) ? 1 : -1;
 			
-		return a.album_artist > b.album_artist ? 1 : -1;
+		return a.album_artist.down() > b.album_artist.down() ? 1 : -1;
 	}
 	
 	public bool buttonReleaseEvent(Gdk.EventButton ev) {
@@ -273,7 +276,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			icons.select_path(path);
 			
 			stdout.printf("showing!\n");
-			Media s = ((AlbumViewModel)model).get_media(iter);
+			Media s = lm.media_from_id(((AlbumViewModel)model).get_media_id(iter));
 			
 			alv.set_songs_from_media(s);
 			alv.move_to_coords((int)ev.x_root, (int)ev.y_root);
@@ -305,16 +308,19 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public void scrollToCurrent() {
-		if(!get_is_current() || lm.media_info.media == null)
+		if(!visible || lm.media_info.media == null)
 			return;
+			
+		stdout.printf("scrolling to current\n");
 		
 		TreeIter iter;
-		for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
+		model.iter_nth_child(out iter, null, 0);
+		while(model.iter_next(ref iter)) {
 			Value vs;
 			model.get_value(iter, 2, out vs);
 
-			if(icons is IconView && ((Media)vs).album == lm.media_info.media.album) {
-				icons.scroll_to_path(new TreePath.from_string(i.to_string()), false, 0.0f, 0.0f);
+			if(icons is IconView && lm.media_from_id(vs.get_int()).album == lm.media_info.media.album) {
+				icons.scroll_to_path(model.get_path(iter), false, 0.0f, 0.0f);
 				
 				return;
 			}

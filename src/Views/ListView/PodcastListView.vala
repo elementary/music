@@ -170,11 +170,19 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	}
 	
 	public void set_as_current_list(int media_id, bool is_initial) {
+		var ordered_songs = podcast_model.getOrderedMedias();
+		
+		if(media_id == 0 && lm.media_info.media != null &&
+		!ordered_songs.contains(lm.media_info.media.rowid))
+			return;
+		else if(media_id != 0 && !ordered_songs.contains(media_id))
+			return;
+		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
 		int i = 0;
-		foreach(int id in podcast_model.getOrderedMedias()) {
+		foreach(int id in ordered_songs) {
 			lm.addToCurrent(id);
 			
 			if(!shuffle && lm.media_info.media != null && lm.media_info.media.rowid == id && media_id == 0)
@@ -805,7 +813,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				int id;
 				temp_model.get(item, 0, out id);
 				
-				if(!lm.media_from_id(id).file.has_prefix(music_folder))
+				if(!lm.media_from_id(id).uri.has_prefix("file://" + music_folder))
 					++external_count;
 				if(lm.media_from_id(id).isTemporary)
 					++temporary_count;
@@ -1045,11 +1053,11 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			Media s = lm.media_from_id(id);
 			
 			try {
-				var file = File.new_for_path(s.file);
+				var file = File.new_for_uri(s.uri);
 				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not browse media %s: %s\n", s.file, err.message);
+				stdout.printf("Could not browse media %s: %s\n", s.uri, err.message);
 			}
 			
 			if(count > 10) {
@@ -1276,8 +1284,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
             
 			int id;
 			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).file);
-			uris += ("file://" + lm.media_from_id(id).file);
+			stdout.printf("adding %s\n", lm.media_from_id(id).uri);
+			uris += (lm.media_from_id(id).uri);
 		}
 		
         if (uris != null)

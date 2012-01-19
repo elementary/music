@@ -175,11 +175,19 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	public void set_as_current_list(int media_id, bool is_initial) {
+		var ordered_songs = music_model.getOrderedMedias();
+		
+		if(media_id == 0 && lm.media_info.media != null &&
+		!ordered_songs.contains(lm.media_info.media.rowid))
+			return;
+		else if(media_id != 0 && !ordered_songs.contains(media_id))
+			return;
+		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
 		int i = 0;
-		foreach(int id in music_model.getOrderedMedias()) {
+		foreach(int id in ordered_songs) {
 			lm.addToCurrent(id);
 			
 			if(!shuffle && lm.media_info.media != null && lm.media_info.media.rowid == id && media_id == 0)
@@ -808,10 +816,12 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	
 	void medias_updated(Collection<int> ids) {
 		music_model.updateMedias(ids, get_is_current());
+		music_model.resort();
 		
 		//since a media may have changed location, reset current
-		if(get_is_current())
+		if(get_is_current()) {
 			set_as_current_list(0, false);
+		}
 	}
 	
 	void medias_removed(LinkedList<int> ids) {
@@ -1153,11 +1163,11 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			Media s = lm.media_from_id(id);
 			
 			try {
-				var file = File.new_for_path(s.file);
+				var file = File.new_for_uri(s.uri);
 				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not browse media %s: %s\n", s.file, err.message);
+				stdout.printf("Could not browse media %s: %s\n", s.uri, err.message);
 			}
 			
 			return;
@@ -1357,8 +1367,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
             
 			int id;
 			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).file);
-			uris += ("file://" + lm.media_from_id(id).file);
+			stdout.printf("adding %s\n", lm.media_from_id(id).uri);
+			uris += (lm.media_from_id(id).uri);
 		}
 		
         if (uris != null)
