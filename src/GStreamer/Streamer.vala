@@ -25,7 +25,7 @@ public class BeatBox.Streamer : GLib.Object {
 		pipe = new BeatBox.Pipeline();
 		
 		pipe.bus.add_watch(busCallback);
-		pipe.playbin.about_to_finish.connect(about_to_finish);
+		//pipe.playbin.about_to_finish.connect(about_to_finish);
 		
 		Timeout.add(500, doPositionUpdate);
 	}
@@ -214,6 +214,7 @@ public class BeatBox.Streamer : GLib.Object {
 		return true;
 	}
 	
+	// no longer used since it would cause bugs
 	void about_to_finish() {
 		int i = lm.getNext(false);
 		Media s = lm.media_from_id(i);
