@@ -342,7 +342,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 				
 				row_changed(path, iter);
 				
-				rowids.remove(rows.get(s_iter));
+				// can't do this. rowids must be read only
+				//rowids.remove(rows.get(s_iter));
 			}
 			
 			if(rowids.size <= 0)

@@ -674,6 +674,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				s.last_modified = (int)time_t();
 		}
 		
+		stdout.printf("%d medias updated from lm.update_medias 677\n", rv.size);
 		medias_updated(rv);
 		if(updates.size == 1)
 			media_updated(updates.to_array()[0].rowid);
@@ -699,13 +700,31 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}*/
 		
+		if(!lw.initializationFinished)
+			return;
+		
 		// now update all non-showing views
-		try {
-			Thread.create<void*>(update_views_thread, false);
+		/*try {
+			Thread.create<void*>( () => {
+				stdout.printf("thread created\n");
+				// update them
+				foreach(Widget w in lw.mainViews.get_children()) {
+					stdout.printf("widget la\n");
+					if(!w.visible && w is ViewWrapper) {
+						ViewWrapper vw = (ViewWrapper)w;
+						stdout.printf("updating viewwrapper\n");
+						vw.medias_updated(rv);
+						stdout.printf("viewwrapper updated\n");
+					}
+				}
+				stdout.printf("done with foreach\n");
+				
+				return null;
+			}, false);
 		} 
 		catch(GLib.ThreadError err) {
 			stdout.printf("ERROR: Could not create thread to update hidden views: %s \n", err.message);
-		}
+		}*/
 	}
 	
 	public void* update_views_thread () {
@@ -713,7 +732,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Widget w in lw.mainViews.get_children()) {
 			if(!w.visible && w is ViewWrapper) {
 				ViewWrapper vw = (ViewWrapper)w;
-				vw.doUpdate(vw.currentView, vw.medias, false, false, true);
+				vw.doUpdate(vw.currentView, vw.get_media_ids(), false, false, true);
 			}
 		}
 		

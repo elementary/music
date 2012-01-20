@@ -60,8 +60,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	void volume_added(Volume volume) {
-		stdout.printf("adding vfolume at %s\n", volume.get_name());//volume.get_mount().get_default_location().get_path());
-		if(lm.settings.getMusicMountName() == volume.get_name()) {
+		if(lm.settings.getMusicMountName() == volume.get_name() && volume.get_mount() == null) {
 			stdout.printf("mounting %s because it is believed to be the music folder\n", volume.get_name());
 			volume.mount(MountMountFlags.NONE, null, null);
 		}

@@ -503,7 +503,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					ViewWrapper vw = (ViewWrapper)w;
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.media_ids(), false, false, false);
+								lm.song_ids(), false, false, false);
 				}
 				else if(iter == library_podcasts_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
@@ -530,7 +530,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					lw.updateMillerColumns(); // don't show millers if showing warning label
 					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								vw.medias, true, false, false);
+								vw.get_media_ids(), true, false, false);
 				}
 				else if(iter == playlists_queue_iter) {
 					ViewWrapper vw = (ViewWrapper)w;
@@ -560,12 +560,12 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					DeviceViewWrapper vw = (DeviceViewWrapper)w;
 					stdout.printf("o is device\n");
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								vw.medias, true, false, false);
+								vw.get_media_ids(), true, false, false);
 				}
 				
 				if(lw.viewSelector.selected == 2) {
 					stdout.printf("doing miller update\n");
-					lw.miller.populateColumns( (o is Device) ? "device" : "", ((ViewWrapper)w).medias);
+					lw.miller.populateColumns( (o is Device) ? "device" : "", ((ViewWrapper)w).get_media_ids());
 				}
 				
 				lw.updateMillerColumns();
@@ -845,7 +845,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				p.name = ((SmartPlaylist)o).name;
 			}
 			else {
-				foreach(int i in ((ViewWrapper)w).medias)
+				foreach(int i in ((ViewWrapper)w).get_media_ids())
 					p.addMedia(i);
 				
 				if(iter == playlists_similar_iter)

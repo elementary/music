@@ -421,6 +421,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// nowthat everything is added, resize to proper height
 		resize(settings.getWindowWidth(), this.default_height);
 		viewSelector.selected = settings.getViewMode();
+		stdout.printf("set selected\n");
 		
 		bool genreV, artistV, albumV;
 		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
@@ -451,7 +452,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		
 		searchField.set_text(lm.settings.getSearchString());
-		searchField.grab_focus();
+		//searchField.grab_focus();
 		
 		updateSensitivities();
 		
@@ -823,7 +824,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		var w = sideTree.getSelectedWidget();
 		if(w is ViewWrapper) {
-			miller.populateColumns("", ((ViewWrapper)w).medias);
+			miller.populateColumns("", ((ViewWrapper)w).get_media_ids());
 		}
 		
 		updateSensitivities();

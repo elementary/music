@@ -181,11 +181,11 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	}
 	
 	public void updateArtistImage(bool is_initial) {
-		if(lm.media_from_id(id) == null)
+		//if(lm.media_from_id(id) == null)
 			return;
 		
 		string file = lm.media_from_id(id).getArtistImagePath();
-		if(GLib.File.new_for_path(file).query_exists()) {
+		if(file != "" && GLib.File.new_for_path(file).query_exists()) {
 			artistImage.show();
 			try {
 				var pixbuf = new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 10, lm.settings.getMoreWidth() - 10, true);
