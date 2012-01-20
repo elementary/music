@@ -819,9 +819,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		music_model.resort();
 		
 		//since a media may have changed location, reset current
-		// THIS IS BAD if song is a queued song AND in this list, it will 
-		// go to there now instead of leaving off wehere we were outside of queue
-		if(get_is_current()) {
+		if(get_is_current() && !lm.playing_queued_song()) {
 			set_as_current_list(0, false);
 		}
 	}

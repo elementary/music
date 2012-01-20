@@ -69,7 +69,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		this.size_allocate.connect(resized);
 		this.focus_out_event.connect(on_focus_out);
 		
-		this.grab_focus ();
+		//this.grab_focus ();
 	}
 	
 	public void set_is_current(bool val) {
@@ -228,7 +228,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		model.appendMedias(albs, false);
 		icons.set_model(model);
 		
-		grab_focus();
+		//grab_focus();
 		
 		/* this is required to make the iconview initially scrollable */
 		if(albs.size > 0) {
@@ -259,7 +259,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public bool buttonReleaseEvent(Gdk.EventButton ev) {
-		stdout.printf("button was pressed\n");
+		stdout.printf("button was released\n");
 		if(ev.type == Gdk.EventType.BUTTON_RELEASE && ev.button == 1) {
 			TreePath path;
 			TreeIter iter;

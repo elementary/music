@@ -78,6 +78,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.MediaInfo media_info;
 	
 	public bool playing;
+	bool _playing_queued_song;
 	public Repeat repeat;
 	public Shuffle shuffle;
 	public int next_gapless_id;
@@ -1009,6 +1010,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/************ Current medialist stuff ***************/
+	public bool playing_queued_song() {
+		return _playing_queued_song;
+	}
+	
 	public bool is_shuffled() {
 		return _current_shuffled.size > 0;
 	}
@@ -1115,8 +1120,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// next check if user has queued medias
 		if(!queue_empty()) {
 			rv = poll_queue();
+			_playing_queued_song = true;
 		}
 		else if(_current_shuffled.size != 0) {
+			_playing_queued_song = false;
+			
 			if(media_info.media == null) {
 				_current_shuffled_index = 0;
 				rv = _current_shuffled.get(0);
@@ -1169,6 +1177,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		else {
+			_playing_queued_song = false;
+			
 			if(media_info.media == null) {
 				_current_index = 0;
 				rv = _current.get(0);
@@ -1221,6 +1231,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		int rv;
 		
 		if(_current_shuffled.size != 0) {
+			_playing_queued_song = false;
+			
 			if(media_info.media == null) {
 				_current_shuffled_index = _current_shuffled.size - 1;
 				rv = _current_shuffled.get(_current_shuffled_index);
@@ -1262,6 +1274,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		}
 		else {
+			_playing_queued_song = false;
+			
 			if(media_info.media == null) {
 				_current_index = _current.size - 1;
 				rv = _current.get(_current_index);
@@ -1324,7 +1338,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Media m = media_from_id(id);
 		
 		// check that the file exists
-		if(!GLib.File.new_for_uri(m.uri).query_exists() && (settings.getMusicFolder() != "" && m.uri.contains("file://" + settings.getMusicFolder()))) {
+		if((settings.getMusicFolder() != "" && m.uri.contains("file://" + settings.getMusicFolder())) && !GLib.File.new_for_uri(m.uri).query_exists()) {
 			m.unique_status_image = icons.process_error_icon.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list.get_style_context());
 			m.location_unknown = true;
 			lw.media_not_found(id);
@@ -1339,7 +1353,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		player.checked_video = false;
-		player.set_resume_pos = false;
+		
+		if(m.mediatype == 1 || m.mediatype == 2)
+			player.set_resume_pos = false;
 		
 		// actually play the media asap
 		if(next_gapless_id == 0) {
@@ -1372,13 +1388,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		 * save old media's resume_pos
 		 */
 		Timeout.add(1000, () => {
-			
-			Media old_media = media_from_id(old_id);
-			if(old_media != null && (old_media.mediatype == 1 || old_media.mediatype == 2) ) {
-				old_media.resume_pos = (int)((double)player.getPosition()/1000000000);
-				update_media(old_media, false, false);
-			}
-			
 			if(media_info.media.rowid == id) {
 				if(!File.new_for_path(media_info.media.getAlbumArtPath()).query_exists()) {
 					media_info.media.setAlbumArtPath("");

@@ -252,8 +252,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//for setting maximum size for setting hpane position max size
 		//sideBar.set_geometry_hints(
 		
-		stdout.printf("populating millers\n");
-		miller.populateColumns("", lm.media_ids());
 		stdout.printf("building side tree\n");
 		buildSideTree();
 		stdout.printf("done with side tree\n");
@@ -433,6 +431,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(i != 0) {
 			int position = (int)settings.getLastMediaPosition();
 			//Timeout.add(250, () => {
+			lm.media_from_id(i).resume_pos = position;
 			lm.playMedia(i);
 			topDisplay.change_value(ScrollType.NONE, position);
 		}
@@ -972,24 +971,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			lm.getNext(true);
 			
 			lm.playing = true;
-			playButton.set_stock_id((lm.media_info.media.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
+			playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			lm.player.play();
 		}
 		else {
 			if(lm.playing) {
 				lm.playing = false;
-				
-				if(lm.media_info.media.mediatype != 3)
-					lm.player.pause();
-				else
-					lm.stopPlayback();
+				lm.player.pause();
 				
 				playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 			}
 			else {
 				lm.playing = true;
 				lm.player.play();
-				playButton.set_stock_id((lm.media_info.media.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
+				playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			}
 		}
 		
@@ -1000,7 +995,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// if not 90% done, skip it
 		if(!added_to_play_count) {
 			lm.media_info.media.skip_count++;
-			lm.update_media(lm.media_info.media, false, false);
+			
+			// don't update, it will be updated eventually
+			//lm.update_media(lm.media_info.media, false, false);
 		}
 		
 		int next_id;
@@ -1277,6 +1274,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		double sec = 0.0;
 		if(lm.media_info.media != null) {
 			sec = ((double)position/1000000000);
+			
+			if(lm.player.set_resume_pos) {
+				lm.media_info.media.resume_pos = (int)sec;
+			}
 			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {

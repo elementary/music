@@ -23,7 +23,7 @@ public class BeatBox.AlbumListView : Granite.Widgets.PopOver {
 		
 		mtv = new MusicTreeView(lm, lm.lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
 		mtv.vexpand = true;
-		mtv.set_size_request(300, 200);
+		mtv.set_size_request(325, 300);
 		
 		var all_area = get_content_area () as Gtk.Box;
 		all_area.pack_start(close, false, true, 0);

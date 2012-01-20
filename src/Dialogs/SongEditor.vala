@@ -208,7 +208,7 @@ public class BeatBox.MediaEditor : Window {
 		numerVert.pack_start(fields.get("Grouping"), false, true, 5);
 		numerVert.pack_start(fields.get("Year"), false, true, 5);
 		numerVert.pack_start(fields.get("Rating"), false, true, 5);
-		numerVert.pack_start(fields.get("Media Type"), false, true, 5);
+		numerVert.pack_end(fields.get("Media Type"), false, true, 5);
 		//if(medias.size == 1)
 			//numerVert.pack_start(stats, false, true, 5);
 		

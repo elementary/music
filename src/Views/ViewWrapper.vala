@@ -126,6 +126,7 @@ public class BeatBox.ViewWrapper : VBox {
 		lw.viewSelector.mode_changed.connect(selectorViewChanged);
 		lm.media_played.connect(mediaPlayed);
 		lm.medias_added.connect(medias_added);
+		lm.medias_updated.connect(medias_updated);
 		lm.medias_removed.connect(medias_removed);
 		
 		lw.searchField.changed.connect(searchFieldChanged);
@@ -197,6 +198,11 @@ public class BeatBox.ViewWrapper : VBox {
 			doUpdate(currentView, lm.podcast_ids(), true, true, false);
 		else if(refreshMusic)
 			doUpdate(currentView, lm.media_ids(), true, true, false);*/
+	}
+	
+	// do search to find which ones should be added, removed from this particular view
+	void medias_updated(LinkedList<int> ids) {
+		
 	}
 	
 	void medias_removed(LinkedList<int> ids) {

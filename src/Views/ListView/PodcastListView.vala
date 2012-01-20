@@ -732,7 +732,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		podcast_model.updateMedias(ids, get_is_current());
 		
 		//since a media may have changed order, reset current
-		if(get_is_current())
+		if(get_is_current() && !lm.playing_queued_song())
 			set_as_current_list(0, false);
 	}
 	

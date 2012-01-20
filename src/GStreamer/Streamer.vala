@@ -35,7 +35,14 @@ public class BeatBox.Streamer : GLib.Object {
 	}*/
 	
 	public bool doPositionUpdate() {
-		current_position_update(getPosition());
+		if(set_resume_pos || getPosition() >= (int64)(lm.media_info.media.resume_pos - 1) * 1000000000) {
+			set_resume_pos = true;
+			current_position_update(getPosition());
+		}
+		else {
+			pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
+		}
+		
 		return true;
 	}
 	
@@ -62,6 +69,9 @@ public class BeatBox.Streamer : GLib.Object {
 		}
 		
 		setState(State.PLAYING);
+		
+		stdout.printf("setURI seeking to %d\n", lm.media_info.media.resume_pos);
+		pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
 		
 		play();
 		/*if(lm.media_info.media.mediatype == 1 || lm.media_info.media.mediatype == 2) {
@@ -146,6 +156,17 @@ public class BeatBox.Streamer : GLib.Object {
                            
             if(newstate != Gst.State.PLAYING)
 				break;
+			
+			//if(getPosition() < (lm.media_info.media.resume_pos * 1000000000)) {
+				//stdout.printf("!!!!!!!!trying to resume at %d\n", lm.media_info.media.resume_pos);
+				//set_resume_pos = true;
+				//pipe.playbin.seek(1.0, Gst.Format.TIME, SeekType.FLUSH | SeekType.SKIP, lm.media_info.media.resume_pos * 1000000000, Gst.SeekType.NONE, getDuration());
+				//setPosition(lm.media_info.media.resume_pos * 1000000000);
+				//current_position_update(lm.media_info.media.resume_pos * 1000000000);
+			//}
+			//else {
+			//	set_resume_pos = true;
+			//}
 			
 			if(!checked_video) {
 				Idle.add( () => {
