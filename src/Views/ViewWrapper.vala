@@ -35,6 +35,7 @@ public class BeatBox.ViewWrapper : VBox {
 	bool needs_update;
 	
 	public ViewWrapper.Hint hint;
+	public int relative_id;
 	public ViewType currentView;
 	public bool isCurrentView;
 	
@@ -130,7 +131,7 @@ public class BeatBox.ViewWrapper : VBox {
 		lw.viewSelector.mode_changed.connect(selectorViewChanged);
 		lm.media_played.connect(mediaPlayed);
 		lm.medias_added.connect(medias_added);
-		//lm.medias_updated.connect(medias_updated);
+		lm.medias_updated.connect(medias_updated);
 		lm.medias_removed.connect(medias_removed);
 		
 		lw.searchField.changed.connect(searchFieldChanged);
@@ -199,6 +200,7 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	// do search to find which ones should be added, removed from this particular view
+	// does not re-anaylyze smart playlists or playlists
 	public void medias_updated(LinkedList<int> ids) {
 		if(in_update)
 			return;
@@ -206,7 +208,7 @@ public class BeatBox.ViewWrapper : VBox {
 		in_update = true;
 		needs_update = true;
 		
-		//if(isCurrentView) {
+		if(isCurrentView) {
 			// find which medias belong here
 			var shouldShow = new LinkedList<int>();
 			var shouldShowAlbum = new LinkedList<int>();
@@ -267,7 +269,10 @@ public class BeatBox.ViewWrapper : VBox {
 					return false;
 				});
 			}
-		//}
+		}
+		else {
+			needs_update = true;
+		}
 		
 		in_update = false;
 	}

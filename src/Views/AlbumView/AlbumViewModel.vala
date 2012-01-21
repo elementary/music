@@ -24,15 +24,20 @@ using Gtk;
 using Gee;
 using GLib;
 
-public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
+public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	LibraryManager lm;
 	int stamp; // all iters must match this
 	Gdk.Pixbuf defaultImage;
 	
     /* data storage variables */
-    Sequence<int> rows;
+    Sequence<Media> rows;
     
     /* threaded pixbuf fetching */
+    private int sort_column_id;
+    private SortType sort_direction;
+    private unowned TreeIterCompareFunc default_sort_func;
+    private HashMap<int, CompareFuncHolder> column_sorts;
+    
     public TreeIter start_visible;
     public TreeIter end_visible;
     bool removing_medias;
@@ -48,7 +53,11 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		this.defaultImage = lm.get_cover_shadow(defaultImage);
 		removing_medias = false;
 
-		rows = new Sequence<int>();
+		rows = new Sequence<Media>();
+		
+		sort_column_id = -2;
+		sort_direction = SortType.ASCENDING;
+		column_sorts = new HashMap<int, CompareFuncHolder>();
        
 		stamp = (int)GLib.Random.next_int();
 	}
@@ -60,7 +69,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		else if(col == 1)
 			return typeof(string);
 		else
-			return typeof(int);
+			return typeof(Media);
 		
 	}
 
@@ -107,12 +116,11 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		}
 		
 		if(!((SequenceIter<Media>)iter.user_data).is_end()) {
-			Media s = lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
+			Media s = rows.get(((SequenceIter<Media>)iter.user_data));
 			
 			if(column == 0) {
-				
-				if(lm.get_album_art(s.rowid) != null) {
-					val = lm.get_cover_album_art(s.rowid);
+				if(lm.get_cover_album_art_from_key(s.album_artist, s.album) != null) {
+					val = lm.get_cover_album_art_from_key(s.album_artist, s.album);
 				}
 				else {
 					val = defaultImage;
@@ -122,13 +130,13 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			else if(column == 1)
 				val = s.album.replace("&", "&amp;") + "\n" + "<span foreground=\"#999\">" + s.album_artist.replace("&", "&amp;") + "</span>";
 			else if(column == 2) {
-				val = s.rowid;
+				val = s;
 			}
 		}
 	}
 	
-	public int get_media_id(Gtk.TreeIter iter) {
-	    return rows.get(((SequenceIter<int>)iter.user_data));
+	public Media get_media_representation(Gtk.TreeIter iter) {
+	    return rows.get(((SequenceIter<Media>)iter.user_data));
 	}
 
 	/** Sets iter to point to the first child of parent. **/
@@ -189,15 +197,15 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
-		SequenceIter<int> added = rows.append(0);
+		SequenceIter<Media> added = rows.append(new Media(""));
 		iter.stamp = this.stamp;
 		iter.user_data = added;
 	}
 	
 	/** convenience method to insert medias into the model. No iters returned. **/
-    public void appendMedias(Collection<int> albums, bool emit) {
+    public void appendMedias(Collection<Media> albums, bool emit) {
 		foreach(var album in albums) {
-			SequenceIter<int> added = rows.append(album);
+			SequenceIter<Media> added = rows.append(album);
 			
 			if(emit) {
 				TreePath path = new TreePath.from_string(added.get_position().to_string());
@@ -221,8 +229,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
-			if(lm.media_from_id(rows.get(s_iter)).artist == artistOld && lm.media_from_id(rows.get(s_iter)).album == albumOld) {
-				rows.set(s_iter, album.rowid);
+			if(rows.get(s_iter).artist == artistOld && rows.get(s_iter).album == albumOld) {
+				rows.set(s_iter, album);
 				
 				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
 				
@@ -257,34 +265,112 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel {
 			return;
 			
 		var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
-		rows.remove((SequenceIter<int>)iter.user_data);
+		rows.remove((SequenceIter<Media>)iter.user_data);
 		row_deleted(path);
 	}
 	
-	public void removeMedias(Collection<int> rowids) {
+	public void removeMedias(Collection<Media> rowids, bool emit) {
 		removing_medias = true;
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
 			s_iter = rows.get_iter_at_pos(index);
 			
-			if(rowids.contains(rows.get(s_iter))) {
-				int rowid = rows.get(s_iter);
-				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+			foreach(var m in rowids) {
+				if(m.album_artist == rows.get(s_iter).album_artist && m.album == rows.get(s_iter).album) {
+					TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+						
+					rows.remove(s_iter);
 					
-				rows.remove(s_iter);
+					if(emit)
+						row_deleted(path);
 					
-				row_deleted(path);
-				rowids.remove(rowid);
-				--index;
-			}
-			
-			if(rowids.size <= 0) {
-				removing_medias = false;
-				return;
+					--index;
+				}
+				
+				if(rowids.size <= 0) {
+					removing_medias = false;
+					return;
+				}
 			}
 		}
 		
 		removing_medias = false;
+	}
+	
+	/** Fills in sort_column_id and order with the current sort column and the order. **/
+	public bool get_sort_column_id(out int sort_column_id, out SortType order) {
+		sort_column_id = this.sort_column_id;
+		order = sort_direction;
+		
+		return true;
+	}
+	
+	/** Returns true if the model has a default sort function. **/
+	public bool has_default_sort_func() {
+		return (default_sort_func != null);
+	}
+	
+	/** Sets the default comparison function used when sorting to be sort_func. **/
+	public void set_default_sort_func(owned TreeIterCompareFunc sort_func) {
+		default_sort_func = sort_func;
+	}
+	
+	/** Sets the current sort column to be sort_column_id. **/
+	public void set_sort_column_id(int sort_column_id, SortType order) {
+		bool changed = (this.sort_column_id != sort_column_id || order != sort_direction);
+		
+		this.sort_column_id = sort_column_id;
+		sort_direction = order;
+		
+		if(changed && sort_column_id >= 0) {
+			/* do the sort for reals */
+			rows.sort_iter(sequenceIterCompareFunc);
+			
+			sort_column_changed();
+		}
+	}
+	
+	public void resort() {
+		rows.sort_iter(sequenceIterCompareFunc);
+		sort_column_changed();
+	}
+	
+	/** Sets the comparison function used when sorting to be sort_func. **/
+	public void set_sort_func(int sort_column_id, owned TreeIterCompareFunc sort_func) {
+		column_sorts.set(sort_column_id, new CompareFuncHolder(sort_func));
+	}
+	
+	/** Custom function to use built in sort in GLib.Sequence to our advantage **/
+	public int sequenceIterCompareFunc(SequenceIter<Media> a, SequenceIter<Media> b) {
+		int rv;
+		
+		if(sort_column_id < 0)
+			return 0;
+		
+		Media a_media = rows.get(a);
+		Media b_media = rows.get(b);
+		
+		if(a_media == null || b_media == null)
+			return 1;
+		
+		if(a_media.album.down() == b_media.album.down())
+			rv = advancedStringCompare(a_media.album.down(), b_media.album.down());
+		else
+			rv = advancedStringCompare(a_media.album_artist.down(), b_media.album_artist.down());
+		
+		if(sort_direction == SortType.DESCENDING)
+			rv = (rv > 0) ? -1 : 1;
+		
+		return rv;
+	}
+	
+	private int advancedStringCompare(string a, string b) {
+		if(a == "" && b != "")
+			return 1;
+		else if(a != "" && b == "")
+			return -1;
+		
+		return (a > b) ? 1 : -1;
 	}
 }

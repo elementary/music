@@ -704,27 +704,34 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return;
 		
 		// now update all non-showing views
-		/*try {
-			Thread.create<void*>( () => {
-				stdout.printf("thread created\n");
-				// update them
-				foreach(Widget w in lw.mainViews.get_children()) {
-					stdout.printf("widget la\n");
-					if(!w.visible && w is ViewWrapper) {
-						ViewWrapper vw = (ViewWrapper)w;
-						stdout.printf("updating viewwrapper\n");
-						vw.medias_updated(rv);
-						stdout.printf("viewwrapper updated\n");
+		/*Timeout.add(250, () => {
+			try {
+				Thread.create<void*>( () => {
+					stdout.printf("thread created\n");
+					// update them
+					if(lw.mainViews == null)
+						return null;
+					
+					foreach(Widget w in lw.mainViews.get_children()) {
+						stdout.printf("widget la\n");
+						if(!w.visible && w is ViewWrapper) {
+							ViewWrapper vw = (ViewWrapper)w;
+							stdout.printf("updating viewwrapper\n");
+							vw.medias_updated(rv);
+							stdout.printf("viewwrapper updated\n");
+						}
 					}
-				}
-				stdout.printf("done with foreach\n");
-				
-				return null;
-			}, false);
-		} 
-		catch(GLib.ThreadError err) {
-			stdout.printf("ERROR: Could not create thread to update hidden views: %s \n", err.message);
-		}*/
+					stdout.printf("done with foreach\n");
+					
+					return null;
+				}, false);
+			} 
+			catch(GLib.ThreadError err) {
+				stdout.printf("ERROR: Could not create thread to update hidden views: %s \n", err.message);
+			}
+			
+			return false;
+		});*/
 	}
 	
 	public void* update_views_thread () {
@@ -1716,6 +1723,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return null;
 		
 		return _cover_album_art.get(s.artist+s.album);
+	}
+	
+	public Gdk.Pixbuf? get_cover_album_art_from_key(string album_artist, string album) {
+		return _cover_album_art.get(album_artist+album);
 	}
 	
 	public void set_album_art(int id, Gdk.Pixbuf pix) {
