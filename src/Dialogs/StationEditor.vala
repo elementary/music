@@ -111,7 +111,7 @@ public class BeatBox.StationEditor : Window {
 			if(s.genre != sum.genre) // category
 				sum.genre = "";
 			if(s.rating != sum.rating)
-				sum.rating = -1;
+				sum.rating = 0;
 		}
 		
 		if(_stations.size == 1) {

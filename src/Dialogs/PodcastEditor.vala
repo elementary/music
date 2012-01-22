@@ -119,9 +119,9 @@ public class BeatBox.PodcastEditor : Window {
 			if(s.comment != sum.comment)
 				sum.comment = "";
 			if(s.rating != sum.rating)
-				sum.rating = -1;
+				sum.rating = 0;
 			if(s.mediatype != sum.mediatype)
-				sum.mediatype = -1;
+				sum.mediatype = 0;
 		}
 		
 		if(_podcasts.size == 1) {

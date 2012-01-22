@@ -184,7 +184,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				medias.set(key, new LinkedList<int>());
 			if(_showing_medias.get(key) == null) {
 				_showing_medias.set(key, new LinkedList<int>());
-				
+				stdout.printf("going to append album %s\n", s.album);
 				Media alb = new Media("");
 				alb.album_artist = s.album_artist;
 				alb.album = s.album;
@@ -195,7 +195,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			medias.get(key).add(i);
 		}
 		
-		model.appendMedias(to_append, false);
+		model.appendMedias(to_append, true);
 		model.resort();
 		queue_draw();
 	}
@@ -216,7 +216,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				_showing_medias.get(key).remove(i);
 				if(medias.get(key).size == 0) {
 					medias.unset(key);
-					
+					stdout.printf("going to remove album %s\n", s.album);
 					Media alb = new Media("");
 					alb.album_artist = s.album_artist;
 					alb.album = s.album;
@@ -225,7 +225,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			}
 		}
 		
-		model.removeMedias(medias_remove, false);
+		model.removeMedias(medias_remove, true);
 		queue_draw();
 	}
 	

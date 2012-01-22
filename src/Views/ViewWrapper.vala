@@ -360,8 +360,8 @@ public class BeatBox.ViewWrapper : VBox {
 		if(in_update)
 			return;
 			
-		if(!force && !set_medias && !needs_update && (type == currentView))
-			return;
+		//if(!force && !set_medias && !needs_update && (type == currentView))
+		//	return;
 		
 		in_update = true;
 		
@@ -373,7 +373,7 @@ public class BeatBox.ViewWrapper : VBox {
 			media_count = medias.size;
 		}
 		
-		stdout.printf("in_thread: %d\n", in_thread ? 1 : 0);
+		//stdout.printf("in_thread: %d\n", in_thread ? 1 : 0);
 		currentView = type;
 		
 		if(!in_thread && hint == ViewWrapper.Hint.CDROM && this.visible) {
@@ -439,7 +439,7 @@ public class BeatBox.ViewWrapper : VBox {
 			LinkedList<int> potentialShowing = new LinkedList<int>();
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 			
-			stdout.printf("seraching to populate with %d medias\n", medias.size);
+			//stdout.printf("seraching to populate with %d medias\n", medias.size);
 			lm.do_search(lw.searchField.get_text(), hint,
 					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
 					get_media_ids(), ref potentialShowing, ref potentialShowingAlbum);
@@ -452,10 +452,10 @@ public class BeatBox.ViewWrapper : VBox {
 				showingMedias.set(i, 1);
 			
 			needs_update = false;
-			stdout.printf("searched\n");
+			//stdout.printf("searched\n");
 		}
 		
-		stdout.printf("populating\n");
+		//stdout.printf("populating\n");
 		if(!in_thread && (this.visible || force)) {
 			if(type == ViewType.LIST) {
 				list.populate_view();
@@ -476,7 +476,7 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		
 		in_update = false;
-		stdout.printf("populated\n");
+		//stdout.printf("populated\n");
 	}
 	
 	public void set_statusbar_text() {
@@ -494,7 +494,7 @@ public class BeatBox.ViewWrapper : VBox {
 	
 	public void millerChanged() {
 		if(lw.initializationFinished && isCurrentView) {
-			stdout.printf("miller changed\n");
+			//stdout.printf("miller changed\n");
 			doUpdate(this.currentView, medias.keys, false, true, false);
 			
 			showing_all = (showingMedias.size == medias.size);

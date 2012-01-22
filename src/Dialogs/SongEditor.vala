@@ -142,9 +142,9 @@ public class BeatBox.MediaEditor : Window {
 			if(s.comment != sum.comment)
 				sum.comment = "";
 			if(s.year != sum.year)
-				sum.year = -1;
+				sum.year = 0;
 			if(s.bitrate != sum.bitrate)
-				sum.bitrate = -1;
+				sum.bitrate = 0;
 			if(s.composer != sum.composer)
 				sum.composer = "";
 			if(s.grouping != sum.grouping)
@@ -152,11 +152,11 @@ public class BeatBox.MediaEditor : Window {
 			//length = 0;
 			//samplerate = 0;
 			if(s.bpm != sum.bpm)
-				sum.bpm = -1;
+				sum.bpm = 0;
 			if(s.rating != sum.rating)
-				sum.rating = -1;
+				sum.rating = 0;
 			if(s.mediatype != sum.mediatype)
-				sum.mediatype = -1;
+				sum.mediatype = 0;
 			//score = 0;
 			//play_count = 0;
 			//skip_count = 0;
@@ -523,7 +523,7 @@ public class BeatBox.FieldEditor : VBox {
 			this.pack_start(scroll, true, true, 0);
 		}
 		else if(w is SpinButton) {
-			check.set_active(original != "-1");
+			check.set_active(original != "0");
 			
 			spinButton = (SpinButton)w;
 			spinButton.set_size_request(100, -1);
@@ -541,7 +541,7 @@ public class BeatBox.FieldEditor : VBox {
 			this.pack_start(image, true, true, 0);
 		}
 		else if(w is RatingWidget) {
-			check.set_active(original != "-1");
+			check.set_active(original != "0");
 			
 			ratingWidget = (RatingWidget)w;
 			ratingWidget.set_rating(int.parse(original));
@@ -550,7 +550,7 @@ public class BeatBox.FieldEditor : VBox {
 			this.pack_start(ratingWidget, true, true, 0);
 		}
 		else if(w is ComboBoxText) {
-			check.set_active(original != "-1");
+			check.set_active(original != "0");
 			
 			comboBox = (ComboBoxText)w;
 			comboBox.append_text("Song");
