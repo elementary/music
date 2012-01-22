@@ -499,6 +499,7 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	void import_error(string file) {
+		++index;
 		import_errors.add(file);
 	}
 	

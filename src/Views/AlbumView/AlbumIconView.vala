@@ -204,35 +204,24 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		var medias_remove = new LinkedList<Media>();
 		
 		foreach(int i in to_remove) {
-			stdout.printf("1\n");
 			Media s = lm.media_from_id(i);
-			stdout.printf("2\n");
-			string key = s.album_artist + s.album;
-			
-			if(key == null) {
-				stdout.printf("key is null, returning\n");
+			if(s == null)
 				continue;
-			}
 			
-			stdout.printf("a\n");
+			string key = s.album_artist + s.album;
+			if(key == null)
+				continue;
+			
 			if(medias.get(key) != null) {
-				stdout.printf("b\n");
 				medias.get(key).remove(i);
-				stdout.printf("c\n");
 				if(medias.get(key).size == 0)
 					medias.unset(key);
-				stdout.printf("d\n");
 			}
-			stdout.printf("e\n");
 			if(_showing_medias.get(key) != null) {
-				stdout.printf("f\n");
 				_showing_medias.get(key).remove(i);
-				stdout.printf("g\n");
 				if(_showing_medias.get(key).size == 0) {
-					stdout.printf("d\n");
 					medias.unset(key);
-					stdout.printf("e\n");
-					stdout.printf("going to remove album %s\n", s.album);
+					
 					Media alb = new Media("");
 					alb.album_artist = s.album_artist;
 					alb.album = s.album;

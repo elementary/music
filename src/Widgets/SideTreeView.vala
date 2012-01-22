@@ -355,12 +355,18 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				filter.get(parent, 4, out parent_name);
 				
 				if(iter == convertToFilter(library_podcasts_iter)) {
+					podcastRefresh.set_sensitive(!lm.doing_file_operations());
+					podcastAdd.set_sensitive(!lm.doing_file_operations());
 					podcastMenu.popup (null, null, null, 3, get_current_event_time());
 				}
 				else if(iter == convertToFilter(network_radio_iter)) {
+					radioImportStations.set_sensitive(!lm.doing_file_operations());
 					radioMenu.popup(null, null, null, 3, get_current_event_time());
 				}
 				else if(parent == convertToFilter(playlists_iter)) {
+					playlistExport.set_sensitive(!lm.doing_file_operations());
+					playlistImport.set_sensitive(!lm.doing_file_operations());
+					
 					if(iter == convertToFilter(playlists_similar_iter)) {
 						playlistSave.visible = true;
 						playlistMenu.popup (null, null, null, 3, get_current_event_time());

@@ -200,7 +200,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		millerPane = new VPaned();
 		mainViews = new VBox(false, 0);
 		videoArea = new DrawingArea();
-		welcomeScreen = new Welcome(_("Get Some Tunes."), _("BeatBox can't seem to find your music."));
+		welcomeScreen = new Welcome(_("Get Some Tunes"), _("BeatBox can't seem to find your music."));
 
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);

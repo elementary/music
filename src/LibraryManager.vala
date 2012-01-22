@@ -422,10 +422,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		string music_folder = settings.getMusicFolder();
 		foreach(Media s in _media.values) {
-			if(!s.isTemporary && !s.isPreview && s.uri.has_prefix(File.new_for_path(music_folder).get_uri()))
+			if(!s.isTemporary && !s.isPreview && s.uri.contains(music_folder))
 				paths.set(s.uri, s);
 				
-			if(s.uri.has_prefix(File.new_for_path(music_folder).get_uri()) && !File.new_for_uri(s.uri).query_exists())
+			if(s.uri.contains(music_folder) && !File.new_for_uri(s.uri).query_exists())
 				to_remove.add(s);
 		}
 		fo.index = 5;
