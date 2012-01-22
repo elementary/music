@@ -37,6 +37,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	int stamp; // all iters must match this
 	Gdk.Pixbuf _playing;
 	Gdk.Pixbuf _completed;
+	Gdk.Pixbuf _saved_locally;
+	Gdk.Pixbuf _new_podcast;
 	ViewWrapper.Hint hint;
 	public bool is_current;
 	
@@ -62,6 +64,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		_columns = column_types;
 		_playing = playing;
 		_completed = lm.icons.process_completed_icon.render(Gtk.IconSize.MENU, parent.get_style_context());
+		_saved_locally = lm.lw.render_icon(Gtk.Stock.SAVE, IconSize.MENU, null);
+		_new_podcast = lm.icons.new_podcast_icon.render(IconSize.MENU, parent.get_style_context());
 		this.hint = hint;
 		removing_medias = false;
 
@@ -145,6 +149,10 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 					val = _completed;
 				else if(s.unique_status_image != null)
 					val = s.unique_status_image;
+				else if(s.mediatype == 1 && s.last_played == 0)
+					val = _new_podcast;
+				else if(s.mediatype == 1 && !s.uri.has_prefix("http://"))
+					val = _saved_locally;
 				else
 					val = Value(typeof(Gdk.Pixbuf));
 			}

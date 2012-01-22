@@ -291,9 +291,10 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			_value.text = q.value;
 		}
 		else if(q.field == "Media Type") {
-			_valueOption.append_text("Media");
+			_valueOption.append_text("Song");
 			_valueOption.append_text("Podcast");
 			_valueOption.append_text("Audiobook");
+			_valueOption.append_text("Radio Station");
 			_valueOption.set_active(int.parse(q.value));
 		}
 		else {
@@ -357,9 +358,10 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			
 			// upate valueOption 
 			_valueOption.remove_all();
-			_valueOption.append_text("Media");
+			_valueOption.append_text("Song");
 			_valueOption.append_text("Podcast");
 			_valueOption.append_text("Audiobook");
+			_valueOption.append_text("Radio Station");
 			_valueOption.set_active(int.parse(_q.value));
 			
 			_comparator.remove_all();

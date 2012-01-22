@@ -244,7 +244,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		podcast_model.get_sort_column_id(out sort_col, out sort_dir);
 		
 		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon);
+		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon, view);
 		podcast_model.is_current = _is_current;
 		
 		var hPos = this.vadjustment.get_value();
@@ -475,7 +475,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		viewColumnsChanged();
 		
 		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon);
+		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon, view);
 		
 		podcast_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		

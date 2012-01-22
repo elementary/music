@@ -123,7 +123,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public LibraryManager(BeatBox.Settings sett, BeatBox.LibraryWindow lww, string[] args) {
-		stdout.printf("test\n");
 		this.lw = lww;
 		this.player = new Streamer(this, lw, args);
 		this.settings = sett;
@@ -217,7 +216,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		//load all playlists from db
 		var playlists_added = new LinkedList<string>();
 		foreach(Playlist p in dbm.load_playlists()) {
-			stdout.printf("adding playlist %s\n", p.name);
 			if(!playlists_added.contains(p.name)) { // sometimes we get duplicates. don't add duplicates
 				_playlists.set(p.rowid, p);
 			
@@ -279,27 +277,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		// set the volume
 		player.setVolume(settings.getVolume());
 		
-		// check that music folder is mounted
-		/*stdout.printf("mounting\n");
-		string folder = settings.getMusicFolder();
-		var file = File.new_for_path(folder);
-		if(!file.query_exists()) {
-			try {
-				file.mount_enclosing_volume(MountMountFlags.NONE, null, null);
-			}
-			catch(Error err) {
-				stdout.printf("could not mount music folder: %s\n" ,err.message);
-			}
-		}
-		stdout.printf("mounted\n");*/
-		
 		// start thread to load all the medias pixbuf's
 		try {
 			Thread.create<void*>(fetch_thread_function, false);
-			//Thread.create<void*>(update_playlists_thread, false);
 		}
 		catch(GLib.ThreadError err) {
-			stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
+			error("Could not create thread to load media pixbuf's: %s \n", err.message);
 		}
 	}
 
@@ -353,7 +336,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Thread.create<void*>(set_music_thread_function, false);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not create thread to set music folder: %s\n", err.message);
+				error("Could not create thread to set music folder: %s\n", err.message);
 			}
 		}
 	}
@@ -380,7 +363,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Thread.create<void*>(add_files_to_library_thread, false);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not create thread to add music files: %s\n", err.message);
+				error("Could not create thread to add music files: %s\n", err.message);
 			}
 		}
 	}
@@ -401,7 +384,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Thread.create<void*>(add_folder_to_library_thread, false);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not create thread to add music folder: %s\n", err.message);
+				error("Could not create thread to add music folder: %s\n", err.message);
 			}
 		}
 	}
@@ -424,7 +407,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 					Thread.create<void*>(rescan_music_thread_function, false);
 			}
 			catch(GLib.Error err) {
-					stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+				error("Could not create thread to rescan music folder: %s\n", err.message);
 			}
 		}
 	}
@@ -436,7 +419,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		fo.resetProgress(100);
 		Timeout.add(100, doProgressNotificationWithTimeout);
-		stdout.printf("going through current songs\n");
+		
 		string music_folder = settings.getMusicFolder();
 		foreach(Media s in _media.values) {
 			if(!s.isTemporary && !s.isPreview && s.uri.has_prefix(File.new_for_path(music_folder).get_uri()))
@@ -446,18 +429,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 				to_remove.add(s);
 		}
 		fo.index = 5;
-		stdout.printf("finding all music in music folder\n");
+		
 		// get a list of the current files
 		var files = new LinkedList<string>();
 		var items = fo.count_music_files(File.new_for_path(music_folder), ref files);
 		fo.index = 10;
-		stdout.printf("finding new songs\n");
+		
 		foreach(string s in files) {
-			stdout.printf("testing %s\n", s);
 			if(paths.get("file://" + s) == null)
 				to_import.add(s);
 		}
-		stdout.printf("importing %d new songs\n", to_import.size);
+		
+		stdout.printf("Importing %d new songs\n", to_import.size);
 		if(to_import.size > 0) {
 			fo.resetProgress(to_import.size);
 			Timeout.add(100, doProgressNotificationWithTimeout);
@@ -469,7 +452,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Idle.add( () => {
 			if(!fo.cancelled)	remove_medias(to_remove, false);
 			if(to_import.size == 0) {
-				stdout.printf("rescan finished\n");
 				finish_file_operations();
 			}
 			
@@ -876,6 +858,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void add_medias(Collection<Media> new_media, bool permanent) {
+		if(new_media.size == 0) // happens more often than you would think
+			return;
+		
 		int top_index = 0;
 		
 		lock(_media) {
@@ -943,6 +928,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		dbm.add_medias(temps_medias);
+		warning("TODO: call media_added signal afterconvert_temps_to_permanents\n");
 	}
 	
 	public void remove_medias(LinkedList<Media> toRemove, bool trash) {
@@ -1057,7 +1043,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(_current_shuffled.size == 0)
 				_current_index = value;
 			else {
-				stdout.printf("just set _current_shuffled_index to %d\n", value);
 				_current_shuffled_index = value;
 			}
 		}

@@ -1312,6 +1312,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				media_considered_played = true;
 				
 				lm.media_info.media.last_played = (int)time_t();
+				if(lm.media_info.media.mediatype == 1) { //podcast
+					added_to_play_count = true;
+					++lm.media_info.media.play_count;
+				}
 				lm.update_media(lm.media_info.media, false, false);
 				
 				// add to the already played list

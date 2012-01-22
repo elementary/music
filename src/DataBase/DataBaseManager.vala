@@ -59,7 +59,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		
-		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_450.db"));
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_473.db"));
 		if(!db_file.query_exists())
 			need_create = true;
 		
@@ -529,9 +529,19 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
 			
-			query.set_string(":name", "Favorites");
-			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_string(":name", "Favorite Songs");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", "Rating");
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Favorite Stations");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>3<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_string(":sort_column", "Rating");
@@ -561,7 +571,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			
 			query.set_string(":name", "Recent Favorites");
 			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Last Played<value_seperator>is within<value_seperator>7<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Last Played<value_seperator>is within<value_seperator>7<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_string(":sort_column", "Rating");
@@ -570,8 +580,18 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 			
 			query.set_string(":name", "Never Played");
-			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", "Artist");
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Unheard Podcasts");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>1<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_string(":sort_column", "Artist");
@@ -580,8 +600,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 			
 			query.set_string(":name", "Over Played");
-			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Playcount<value_seperator>is at least<value_seperator>10<query_seperator>");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Playcount<value_seperator>is at least<value_seperator>10<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_string(":sort_column", "Plays");

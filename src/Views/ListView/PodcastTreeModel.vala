@@ -49,12 +49,12 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 	
 	/** Initialize data storage, columns, etc. **/
-	public PodcastTreeModel(LibraryManager lm, LinkedList<string> column_types, Gdk.Pixbuf playing) {
+	public PodcastTreeModel(LibraryManager lm, LinkedList<string> column_types, Gdk.Pixbuf playing, TreeView parent) {
 		this.lm = lm;
 		_columns = column_types;
 		_playing = playing;
 		_saved_locally = lm.lw.render_icon(Gtk.Stock.SAVE, IconSize.MENU, null);
-		_new_podcast = lm.icons.new_podcast_icon.render(IconSize.MENU, null);
+		_new_podcast = lm.icons.new_podcast_icon.render(IconSize.MENU, parent.get_style_context());
 		removing_medias = false;
 
 		rows = new Sequence<int>();
