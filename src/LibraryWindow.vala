@@ -246,6 +246,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 						"body", "%s\n%s".printf(_("Artist"), _("Album")));
 		
 		/* Set properties of various controls */
+		//sideBar.set_size_request(200, -1);
 		sourcesToMedias.set_position(settings.getSidebarWidth());
 		mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 		
@@ -525,9 +526,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		foreach(Playlist p in lm.playlists()) {
 			addSideListItem(p);
 		}
-		
-		sideTree.expand_all();
-		sideTree.resetView();
 	}
 	
 	public void addSideListItem(GLib.Object o) {
@@ -672,10 +670,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 			}*/
 			if(lm.get_album_art(lm.media_info.media.rowid) != null)
-				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
+				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position - 1, sourcesToMedias.position - 1, Gdk.InterpType.BILINEAR));
 			else {
 				try {
-					coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
+					coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position - 1, sourcesToMedias.position - 1, Gdk.InterpType.BILINEAR));
 				}
 				catch(GLib.Error err) {
 					stdout.printf("Could not set image art: %s\n", err.message);
@@ -1048,14 +1046,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		get_size(out width, out height);
 		
 		if(rectangle.width > height/2) {
+			stdout.printf("too big\n");
 			sourcesToMedias.set_position(height/2);
 			return;
 		}
-		else if(rectangle.width < 100) {
-			sourcesToMedias.set_position(100);
+		else if(sideBar.get_allocated_width() <= 200) {
+			stdout.printf("too small\n");
+			sourcesToMedias.set_position(200);
 			return;
 		}
-		
+		stdout.printf("ok fine\n");
 		if(settings.getSidebarWidth() != rectangle.width) {
 			updateCurrentMedia();
 			settings.setSidebarWidth(rectangle.width);

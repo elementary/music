@@ -439,10 +439,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		stdout.printf("going through current songs\n");
 		string music_folder = settings.getMusicFolder();
 		foreach(Media s in _media.values) {
-			if(!s.isTemporary && !s.isPreview && s.uri.has_prefix("file://" + music_folder))
+			if(!s.isTemporary && !s.isPreview && s.uri.has_prefix(File.new_for_path(music_folder).get_uri()))
 				paths.set(s.uri, s);
 				
-			if(s.uri.has_prefix("file://" + music_folder) && !File.new_for_uri(s.uri).query_exists())
+			if(s.uri.has_prefix(File.new_for_path(music_folder).get_uri()) && !File.new_for_uri(s.uri).query_exists())
 				to_remove.add(s);
 		}
 		fo.index = 5;
@@ -453,10 +453,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		fo.index = 10;
 		stdout.printf("finding new songs\n");
 		foreach(string s in files) {
-			if(paths.get(s) == null)
+			stdout.printf("testing %s\n", s);
+			if(paths.get("file://" + s) == null)
 				to_import.add(s);
 		}
-		stdout.printf("importing new songs\n");
+		stdout.printf("importing %d new songs\n", to_import.size);
 		if(to_import.size > 0) {
 			fo.resetProgress(to_import.size);
 			Timeout.add(100, doProgressNotificationWithTimeout);
@@ -865,7 +866,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public LinkedList<int> medias_from_smart_playlist(int id) {
-		return _smart_playlists.get(id).analyze(this);
+		return _smart_playlists.get(id).analyze(this, media_ids());
 	}
 	
 	public void add_media(Media s, bool permanent) {

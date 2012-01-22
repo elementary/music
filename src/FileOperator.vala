@@ -474,7 +474,13 @@ public class BeatBox.FileOperator : Object {
 		new_imports.clear();
 		import_errors.clear();
 		import_type = type;
-		tagger.discoverer_import_medias(files);
+		
+		if(files.size == 0) {
+			queue_finished();
+		}
+		else {
+			tagger.discoverer_import_medias(files);
+		}
 	}
 	
 	void media_imported(Media m) {
@@ -525,7 +531,7 @@ public class BeatBox.FileOperator : Object {
 			}
 		}
 		else {
-			lm.music_added(import_errors);
+			lm.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
 			lm.finish_file_operations();
 		}
 	}

@@ -81,6 +81,7 @@ public class BeatBox.ViewWrapper : VBox {
 		showingMedias = new HashMap<int, int>();
 		timeout_search = new LinkedList<string>();
 		
+		relative_id = id;
 		hint = the_hint;
 		
 		if(the_hint == ViewWrapper.Hint.SIMILAR) {
@@ -117,9 +118,8 @@ public class BeatBox.ViewWrapper : VBox {
 		if(hint == ViewWrapper.Hint.SIMILAR || hint == ViewWrapper.Hint.CDROM)
 			pack_start(errorBox, true, true, 0);
 		
-		needs_update = true;
-		albumView.set_show_next(get_media_ids());
-		list.set_show_next(get_media_ids());
+		//needs_update = true;
+		doUpdate(currentView, get_media_ids(), false, false, false);
 		
 		
 		//if(the_hint == ViewWrapper.Hint.MUSIC)
@@ -217,12 +217,18 @@ public class BeatBox.ViewWrapper : VBox {
 			var shouldBe = new LinkedList<int>();
 			var shouldBeAlbum = new LinkedList<int>();
 			
+			LinkedList<int> to_search = new LinkedList<int>();
+			if(hint == ViewWrapper.Hint.SMART_PLAYLIST)
+				to_search = lm.smart_playlist_from_id(relative_id).analyze(lm, ids);
+			else
+				to_search = ids;
+			
 			lm.do_search(lw.searchField.get_text(), hint,
 					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
-					ids, ref shouldShow, ref shouldShowAlbum);
+					to_search, ref shouldShow, ref shouldShowAlbum);
 			lm.do_search("", hint,
 					"All Genres", "All Artists", "All Albums",
-					ids, ref shouldBe, ref shouldBeAlbum);
+					to_search, ref shouldBe, ref shouldBeAlbum);
 			
 			stdout.printf("of %d ids, %d should stay, %d should show\n", ids.size, shouldBe.size, shouldShow.size);
 			
@@ -305,6 +311,7 @@ public class BeatBox.ViewWrapper : VBox {
 		var empty = new HashMap<int, int>();
 		
 		this.medias = empty;
+		showingMedias = empty;
 		
 		list.set_show_next(get_media_ids());
 		list.populate_view();
@@ -339,7 +346,6 @@ public class BeatBox.ViewWrapper : VBox {
 			list.append_medias(potentialShowing);
 			albumView.append_medias(potentialShowingAlbum);
 			
-			showingMedias.clear();
 			foreach(int i in potentialShowing)
 				showingMedias.set(i, 1);
 			
@@ -400,7 +406,7 @@ public class BeatBox.ViewWrapper : VBox {
 			SimilarPane sp = (SimilarPane)(list);
 			
 			if(!similarsFetched) { // still fetching similar medias
-				errorBox.show();
+				errorBox.show_all();
 				list.hide();
 				albumView.hide();
 				stdout.printf("1\n");
@@ -412,7 +418,7 @@ public class BeatBox.ViewWrapper : VBox {
 				if(medias.size < 10) { // say we could not find similar medias
 					errorBox.show_icon = true;
 					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No similar songs found\n</span>\nBeatBox could not find songs similar to <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\nMake sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches.", Justification.LEFT);
-					errorBox.show();
+					errorBox.show_all();
 					list.hide();
 					albumView.hide();
 					stdout.printf("2\n");

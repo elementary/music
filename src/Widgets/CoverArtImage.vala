@@ -22,15 +22,20 @@
  
 using Gtk;
 
-public class BeatBox.CoverArtImage : Image {
+public class BeatBox.CoverArtImage : ScrolledWindow {
 	LibraryManager lm;
 	LibraryWindow lw;
 	
 	public Gdk.Pixbuf defaultImage;
+	Gtk.Image the_image;
 	
 	public CoverArtImage(LibraryManager lmm, LibraryWindow lww) {
 		lm = lmm;
 		lw = lww;
+		
+		the_image = new Image();
+		this.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
+		add_with_viewport(the_image);
 		
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
@@ -42,6 +47,10 @@ public class BeatBox.CoverArtImage : Image {
 		
 		return (typeDown.has_suffix(".jpg") || typeDown.has_suffix(".jpeg") ||
 				typeDown.has_suffix(".png"));
+	}
+	
+	public void set_from_pixbuf(Gdk.Pixbuf buf) {
+		the_image.set_from_pixbuf(buf);
 	}
 	
 	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {

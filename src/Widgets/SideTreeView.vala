@@ -839,7 +839,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			p = new Playlist();
 			
 			if(o is SmartPlaylist) {
-				foreach(int i in ((SmartPlaylist)o).analyze(lm))
+				foreach(int i in ((SmartPlaylist)o).analyze(lm, lm.media_ids()))
 					p.addMedia(i);
 					
 				p.name = ((SmartPlaylist)o).name;

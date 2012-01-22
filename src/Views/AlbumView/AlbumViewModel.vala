@@ -277,7 +277,9 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 			s_iter = rows.get_iter_at_pos(index);
 			
 			foreach(var m in rowids) {
-				if(m.album_artist == rows.get(s_iter).album_artist && m.album == rows.get(s_iter).album) {
+				Media test = rows.get(s_iter);
+				
+				if(test == null || m.album_artist == test.album_artist && m.album == test.album) {
 					TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
 						
 					rows.remove(s_iter);

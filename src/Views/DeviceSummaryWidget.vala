@@ -433,7 +433,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 						}
 					}
 					else {
-						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
+						foreach(int i in ((SmartPlaylist)p).analyze(lm, lm.media_ids())) {
 							if(lm.media_from_id(i).mediatype == 0)
 								list.add(i);
 						}
@@ -468,7 +468,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 						}
 					}
 					else {
-						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
+						foreach(int i in ((SmartPlaylist)p).analyze(lm, lm.media_ids())) {
 							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).uri.has_prefix("http:/"))
 								list.add(i);
 						}
