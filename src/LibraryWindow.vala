@@ -415,45 +415,51 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Gtk.drag_dest_add_uri_targets(this);
 		drag_data_received.connect(dragReceived);
 		
+		viewSelector.selected = settings.getViewMode();
+		stdout.printf("set selected\n");
+		
+		//Timeout.add(1000, () => {
+			bool genreV, artistV, albumV;
+			lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
+			miller.updateColumnVisibilities(genreV, artistV, albumV);
+			stdout.printf("User interface has been built\n");
+			
+			int i = settings.getLastMediaPlaying();
+			if(i != 0) {
+				int position = (int)settings.getLastMediaPosition();
+				//Timeout.add(250, () => {
+				lm.media_from_id(i).resume_pos = position;
+				lm.playMedia(i);
+				topDisplay.change_value(ScrollType.NONE, position);
+			}
+			else {
+				// don't show info panel if nothing playing
+				infoPanel.set_visible(false);
+			}
+			
+			initializationFinished = true;
+			stdout.printf("setting current list/shuffle\n");
+			var vw = (ViewWrapper)sideTree.getSelectedWidget();
+			if(lm.media_info.media != null) {
+				vw.list.set_as_current_list(0, true);
+				if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
+					lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
+				}
+			}
+			stdout.printf("setting serach and doing updated\n");
+			searchField.set_text(lm.settings.getSearchString());
+			vw.doUpdate(vw.currentView, vw.get_media_ids(), false, true, false);
+			
+		//	return false;
+		//});
+		
 		stdout.printf("showing all\n");
 		show_all();
 		stdout.printf("shown\n");
 		// nowthat everything is added, resize to proper height
 		resize(settings.getWindowWidth(), this.default_height);
-		viewSelector.selected = settings.getViewMode();
-		stdout.printf("set selected\n");
-		
-		bool genreV, artistV, albumV;
-		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
-		miller.updateColumnVisibilities(genreV, artistV, albumV);
-		stdout.printf("User interface has been built\n");
-		
-		int i = settings.getLastMediaPlaying();
-		if(i != 0) {
-			int position = (int)settings.getLastMediaPosition();
-			//Timeout.add(250, () => {
-			lm.media_from_id(i).resume_pos = position;
-			lm.playMedia(i);
-			topDisplay.change_value(ScrollType.NONE, position);
-		}
-		else {
-			/* don't show info panel if nothing playing */
-			infoPanel.set_visible(false);
-		}
-		
-		initializationFinished = true;
 		
 		sideTree.resetView();
-		if(lm.media_info.media != null) {
-			((ViewWrapper)sideTree.getSelectedWidget()).list.set_as_current_list(0, true);
-			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
-				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
-			}
-		}
-		
-		searchField.set_text(lm.settings.getSearchString());
-		//searchField.grab_focus();
-		
 		updateSensitivities();
 		
 		if(lm.song_ids().size == 0)
@@ -1045,6 +1051,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			sourcesToMedias.set_position(height/2);
 			return;
 		}
+		else if(rectangle.width < 100) {
+			sourcesToMedias.set_position(100);
+			return;
+		}
 		
 		if(settings.getSidebarWidth() != rectangle.width) {
 			updateCurrentMedia();
@@ -1424,9 +1434,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		if(sourcesToMedias.get_position() > height/2)
 			return;
-		
-		//mediasToInfo.max_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300;
-		//mediasToInfo.min_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150;
 		
 		if(mediasToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300) { // this is max size
 			mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300);

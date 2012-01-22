@@ -128,6 +128,8 @@ public class BeatBox.ViewWrapper : VBox {
 		if(albumView is AlbumView)
 			((AlbumView)albumView).itemClicked.connect(filterViewItemClicked);
 		
+		no_show_all = true;
+		
 		lw.viewSelector.mode_changed.connect(selectorViewChanged);
 		lm.media_played.connect(mediaPlayed);
 		lm.medias_added.connect(medias_added);
