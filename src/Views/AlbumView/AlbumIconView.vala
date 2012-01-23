@@ -67,7 +67,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.item_padding = 0;
 		icons.spacing = 2;
 		icons.margin = 20;
-		add_with_viewport(icons);
+		add(icons);
 		
 		//add(v);
 		
@@ -239,8 +239,11 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	 * shown
 	*/
 	public void populate_view() {
-		_showing_medias.clear();
 		
+		icons.freeze_child_notify();
+		icons.set_model(null);
+		
+		_showing_medias.clear();
         var to_append = new LinkedList<Media>();
 		foreach(int i in _show_next) {
 			Media s = lm.media_from_id(i);
@@ -265,8 +268,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		model.appendMedias(to_append, false);
 		model.set_sort_column_id(0, SortType.ASCENDING);
 		icons.set_model(model);
+		icons.thaw_child_notify();
 		
-		icons.grab_focus();
+		//icons.realize();
+		//realize();
 		
 		/* this is required to make the iconview initially scrollable */
 		if(to_append.size > 0) {
