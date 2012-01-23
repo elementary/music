@@ -138,11 +138,11 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 											"visible", false));
 			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", "Title", 
-											"fixed_width", 220,
+											"fixed_width", 275,
 											"visible", true));
 			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", "Length", 
-											"fixed_width", 75,
+											"fixed_width", 50,
 											"visible", true));
 			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", "Artist", 

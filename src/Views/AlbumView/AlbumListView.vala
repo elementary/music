@@ -8,6 +8,7 @@ public class BeatBox.AlbumListView : Window {
 	Label artist_label;
 	RatingWidget rating;
 	MusicTreeView mtv;
+	bool setting_songs;
 	
 	 private const string WIDGET_STYLESHEET = """
         .AlbumListDialogBase {
@@ -115,6 +116,7 @@ public class BeatBox.AlbumListView : Window {
 	}
 	
 	public void set_songs_from_media(Media m) {
+		setting_songs = true;
 		album_label.set_markup("<span size=\"large\" color=\"#ffffff\"><b>" + m.album.replace("&", "&amp;") + "</b></span>");
 		artist_label.set_markup("<span color=\"#ffffff\"><b>" + m.album_artist.replace("&", "&amp;") + "</b></span>");
 		
@@ -136,9 +138,13 @@ public class BeatBox.AlbumListView : Window {
         
 		mtv.set_show_next(songs);
 		mtv.populate_view();
+		setting_songs = false;
 	}
 	
 	void rating_changed(int new_rating) {
+		if(setting_songs)
+			return;
+		
 		var updated = new LinkedList<Media>();
 		foreach(int i in mtv.get_medias()) {
 			lm.media_from_id(i).rating = new_rating;
@@ -149,9 +155,7 @@ public class BeatBox.AlbumListView : Window {
 	}
 	
 	bool focus_out(Gdk.EventFocus event) {
-		stdout.printf("focused out\n");
-		//if(!this.has_toplevel_focus)
-			this.hide();
+		this.hide();
 		
 		return false;
 	}
