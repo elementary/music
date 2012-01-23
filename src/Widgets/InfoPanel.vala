@@ -61,7 +61,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		loveMedia = new Button();
 		banMedia = new Button();
 		artistImage = new Image();
-		rating = new RatingWidget(null, true);
+		rating = new RatingWidget(null, true, IconSize.MENU);
 		album = new Label("Album");
 		year = new Label("Year");
 		ssv = new SimilarMediasView(lm, lw);

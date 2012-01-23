@@ -427,11 +427,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			int i = settings.getLastMediaPlaying();
 			if(i != 0) {
-				int position = (int)settings.getLastMediaPosition();
-				//Timeout.add(250, () => {
-				lm.media_from_id(i).resume_pos = position;
-				lm.playMedia(i);
-				topDisplay.change_value(ScrollType.NONE, position);
+				lm.media_from_id(i).resume_pos;
+				lm.playMedia(i, true);
 			}
 			else {
 				// don't show info panel if nothing playing
@@ -1008,7 +1005,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		int next_id;
 		if(lm.next_gapless_id != 0) {
 			next_id = lm.next_gapless_id;
-			lm.playMedia(lm.next_gapless_id);
+			lm.playMedia(lm.next_gapless_id, false);
 		}
 		else
 			next_id = lm.getNext(true);
@@ -1544,7 +1541,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			vw.list.set_as_current_list(1, !vw.list.get_is_current());
 			lm.current_index = 0;
-			lm.playMedia(lm.mediaFromCurrentIndex(0));
+			lm.playMedia(lm.mediaFromCurrentIndex(0), false);
 			
 			if(!lm.playing)
 				playClicked();

@@ -1234,7 +1234,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		if(play)
-			playMedia(rv);
+			playMedia(rv, false);
 		
 		return rv;
 	}
@@ -1330,12 +1330,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		if(play)
-			playMedia(rv);
+			playMedia(rv, false);
 		
 		return rv;
 	}
 	
-	public void playMedia(int id) {
+	public void playMedia(int id, bool use_resume_pos) {
 		int old_id = -1;
 		
 		if(id == 0 || media_from_id(id) == null)
@@ -1366,7 +1366,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		player.checked_video = false;
 		
-		if(m.mediatype == 1 || m.mediatype == 2)
+		if(m.mediatype == 1 || m.mediatype == 2 || use_resume_pos)
 			player.set_resume_pos = false;
 		
 		// actually play the media asap
@@ -1453,7 +1453,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		temps.add(s);
 		add_medias(temps, false);
 		
-		playMedia(-2);
+		playMedia(-2, false);
 		
 		if(!playing) {
 			lw.playClicked();

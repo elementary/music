@@ -140,7 +140,7 @@ public class BeatBox.PodcastEditor : Window {
 		fields.set("Genre", new FieldEditor("Genre", sum.genre, new Entry()));
 		fields.set("Comment", new FieldEditor("Comment", sum.comment, new TextView()));
 		fields.set("Episode", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
-		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false)));
+		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false, IconSize.MENU)));
 		fields.set("Media Type", new FieldEditor("Media Type", sum.mediatype.to_string(), new ComboBoxText()));
 		
 		padding = new HBox(false, 10);

@@ -440,7 +440,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		if(w is ViewWrapper) {
 			((ViewWrapper)w).list.set_as_current_list(1, true);
 			
-			lm.playMedia(lm.mediaFromCurrentIndex(0));
+			lm.playMedia(lm.mediaFromCurrentIndex(0), false);
 			lm.player.play();
 			
 			if(!lm.playing)

@@ -753,7 +753,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		set_as_current_list(id.get_int(), !_is_current);
 		
 		// play the media
-		lm.playMedia(id.get_int());
+		lm.playMedia(id.get_int(), false);
 		
 		if(!lm.playing) {
 			lw.playClicked();

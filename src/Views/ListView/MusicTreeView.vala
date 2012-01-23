@@ -839,7 +839,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		music_model.get_value(item, 0, out id);
 		
 		// play the media
-		lm.playMedia(id.get_int());
+		lm.playMedia(id.get_int(), false);
 		
 		set_as_current_list(id.get_int(), true);
 		
@@ -1388,5 +1388,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		                  Gdk.DragAction.COPY|
 		                  Gdk.DragAction.MOVE
 		                  );
+	}
+	
+	public void apply_style_to_view(CssProvider style) {
+		view.get_style_context().add_provider(style, STYLE_PROVIDER_PRIORITY_APPLICATION);
 	}
 }

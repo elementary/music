@@ -322,7 +322,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			alv.set_songs_from_media(s);
 			//lw.miller.albums.set_selected(s.album);
 			
-			alv.move_to_coords((int)ev.x_root, (int)ev.y_root);
+			//alv.move_to_coords((int)ev.x_root, (int)ev.y_root);
 			alv.show_all();
 			alv.present();
 		}
