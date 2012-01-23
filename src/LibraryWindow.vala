@@ -53,7 +53,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	VPaned millerPane;
 	BeatBox.Welcome welcomeScreen;
 	public DrawingArea videoArea;
-	HPaned sourcesToMedias; //allows for draggable
+	public HPaned sourcesToMedias; //allows for draggable
 	HPaned mediasToInfo; // media info pane
 	ScrolledWindow sideTreeScroll;
 	VBox sideBar;

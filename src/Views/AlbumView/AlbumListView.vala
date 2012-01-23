@@ -65,6 +65,7 @@ public class BeatBox.AlbumListView : Window {
 		//set_keep_above(true);
 		set_decorated(false);
 		set_has_resize_grip(false);
+		set_resizable(false);
 		this.destroy_with_parent = true;
 		set_title("Album List");
 		set_size_request(350, 400);

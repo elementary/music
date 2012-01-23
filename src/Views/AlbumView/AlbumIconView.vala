@@ -52,12 +52,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public void buildUI() {
-		Viewport v = new Viewport(null, null);
+		//Viewport v = new Viewport(null, null);
 		alv = new AlbumListView(lm);
 		
         set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		
-		v.set_shadow_type(ShadowType.NONE);
+		//v.set_shadow_type(ShadowType.NONE);
 		icons = new IconView();
 		model = new AlbumViewModel(lm, defaultPix);
 		
@@ -67,9 +67,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.item_padding = 0;
 		icons.spacing = 2;
 		icons.margin = 20;
-		v.add(icons);
+		add_with_viewport(icons);
 		
-		add(v);
+		//add(v);
 		
 		show_all();
 		
@@ -266,7 +266,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		model.set_sort_column_id(0, SortType.ASCENDING);
 		icons.set_model(model);
 		
-		//grab_focus();
+		icons.grab_focus();
 		
 		/* this is required to make the iconview initially scrollable */
 		if(to_append.size > 0) {
@@ -322,7 +322,21 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			alv.set_songs_from_media(s);
 			//lw.miller.albums.set_selected(s.album);
 			
-			//alv.move_to_coords((int)ev.x_root, (int)ev.y_root);
+			// find window's location
+			int x, y;
+			Gtk.Allocation alloc;
+			lm.lw.get_position(out x, out y);
+			get_allocation(out alloc);
+			
+			// move down to icon view's allocation
+			x += lm.lw.sourcesToMedias.get_position();
+			y += alloc.y;
+			
+			// center it on this icon view
+			x += (alloc.width/2) - 175;
+			y += (alloc.height/2) - 100;
+			alv.move(x, y);
+			
 			alv.show_all();
 			alv.present();
 		}
