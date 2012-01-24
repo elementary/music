@@ -123,6 +123,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public LibraryManager(BeatBox.Settings sett, BeatBox.LibraryWindow lww, string[] args) {
+		stdout.printf("revision #480\n");
 		this.lw = lww;
 		this.player = new Streamer(this, lw, args);
 		this.settings = sett;

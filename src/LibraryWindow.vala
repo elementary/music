@@ -293,7 +293,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusEventBox.override_background_color (StateFlags.NORMAL, base_color);
 		
 		repeatChooser.appendItem(_("Off"));
-		repeatChooser.appendItem(_("Media"));
+		repeatChooser.appendItem(_("Song"));
 		repeatChooser.appendItem(_("Album"));
 		repeatChooser.appendItem(_("Artist"));
 		repeatChooser.appendItem(_("All"));
@@ -396,7 +396,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		/* Connect events to functions */
 		sourcesToMedias.get_child1().size_allocate.connect(sourcesToMediasHandleSet);
 		welcomeScreen.activated.connect(welcomeScreenActivated);
-		//sideTree.row_activated.connect(sideListDoubleClick);
 		previousButton.clicked.connect(previousClicked);
 		playButton.clicked.connect(playClicked);
 		nextButton.clicked.connect(nextClicked);
@@ -417,44 +416,36 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		drag_data_received.connect(dragReceived);
 		
 		viewSelector.selected = settings.getViewMode();
-		stdout.printf("set selected\n");
 		
-		//Timeout.add(1000, () => {
-			bool genreV, artistV, albumV;
-			lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
-			miller.updateColumnVisibilities(genreV, artistV, albumV);
-			stdout.printf("User interface has been built\n");
-			
-			int i = settings.getLastMediaPlaying();
-			if(i != 0) {
-				lm.media_from_id(i).resume_pos;
-				lm.playMedia(i, true);
-			}
-			else {
-				// don't show info panel if nothing playing
-				infoPanel.set_visible(false);
-			}
-			
-			initializationFinished = true;
-			stdout.printf("setting current list/shuffle\n");
-			var vw = (ViewWrapper)sideTree.getSelectedWidget();
-			if(lm.media_info.media != null) {
-				vw.list.set_as_current_list(0, true);
-				if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
-					lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
-				}
-			}
-			stdout.printf("setting serach and doing updated\n");
-			searchField.set_text(lm.settings.getSearchString());
-			vw.doUpdate(vw.currentView, vw.get_media_ids(), false, true, false);
-			
-		//	return false;
-		//});
+		bool genreV, artistV, albumV;
+		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
+		miller.updateColumnVisibilities(genreV, artistV, albumV);
+		stdout.printf("User interface has been built\n");
 		
-		stdout.printf("showing all\n");
+		int i = settings.getLastMediaPlaying();
+		if(i != 0) {
+			lm.media_from_id(i).resume_pos;
+			lm.playMedia(i, true);
+		}
+		else {
+			// don't show info panel if nothing playing
+			infoPanel.set_visible(false);
+		}
+		
+		initializationFinished = true;
+		
+		var vw = (ViewWrapper)sideTree.getSelectedWidget();
+		if(lm.media_info.media != null) {
+			vw.list.set_as_current_list(0, true);
+			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
+				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
+			}
+		}
+		
+		searchField.set_text(lm.settings.getSearchString());
+		vw.doUpdate(vw.currentView, vw.get_media_ids(), false, true, false);
+		
 		show_all();
-		stdout.printf("shown\n");
-		// nowthat everything is added, resize to proper height
 		resize(settings.getWindowWidth(), this.default_height);
 		
 		sideTree.resetView();

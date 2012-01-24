@@ -365,7 +365,7 @@ public class BeatBox.ViewWrapper : VBox {
 	 * @param do_visual If true, visually populate as well
 	*/
 	public void doUpdate(ViewType type, Collection<int> up_medias, bool set_medias, bool force, bool in_thread) {
-		if(in_update)
+		if(in_update || in_thread)
 			return;
 			
 		//if(!force && !set_medias && !needs_update && (type == currentView))
