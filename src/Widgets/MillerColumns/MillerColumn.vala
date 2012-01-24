@@ -71,7 +71,7 @@ public class BeatBox.MillerColumns : HBox {
 		albums.setColumnVisibilities(genreV, artistV, albumV);
 		
 		lm.settings.setMillerColumnVisibilities(genreV, artistV, albumV);
-		populateColumns("", medias);
+		if (medias != null) populateColumns("", medias);
 	}
 	
 	public void resetColumns() {
