@@ -53,7 +53,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	CellDataFunctionHelper cellHelper;
 	
 	//for header column chooser
-	Menu columnChooserMenu;
+	Gtk.Menu columnChooserMenu;
 	CheckMenuItem columnEpisode; // episode
 	CheckMenuItem columnName; // name
 	CheckMenuItem columnLength;
@@ -64,18 +64,18 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	CheckMenuItem columnCategory;
 	
 	//for media list right click
-	Menu mediaMenuActionMenu;
-	MenuItem mediaEditMedia;
-	MenuItem mediaFileBrowse;
-	MenuItem mediaMenuQueue;
-	MenuItem mediaMenuNewPlaylist;
-	MenuItem mediaMenuAddToPlaylist; // make menu on fly
+	Gtk.Menu mediaMenuActionMenu;
+	Gtk.MenuItem mediaEditMedia;
+	Gtk.MenuItem mediaFileBrowse;
+	Gtk.MenuItem mediaMenuQueue;
+	Gtk.MenuItem mediaMenuNewPlaylist;
+	Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
 	//MenuItem mediaRateMedia;
 	//Menu mediaRateMediaMenu;
 	RatingWidgetMenu rating_item;
-	MenuItem mediaRemove;
-	MenuItem mediaSaveLocally;
-	MenuItem importToLibrary;
+	Gtk.MenuItem mediaRemove;
+	Gtk.MenuItem mediaSaveLocally;
+	Gtk.MenuItem importToLibrary;
 	
 	Gdk.Pixbuf starred;
 	Gdk.Pixbuf not_starred;
@@ -501,7 +501,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		Gtk.drag_source_add_uri_targets(view);
 		
 		// column chooser menu
-		columnChooserMenu = new Menu();
+		columnChooserMenu = new Gtk.Menu();
 		columnEpisode = new CheckMenuItem.with_label("Episode");
 		columnName = new CheckMenuItem.with_label("Name");
 		columnLength = new CheckMenuItem.with_label("Length");
@@ -531,17 +531,17 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		
 		//media list right click menu
-		mediaMenuActionMenu = new Menu();
-		mediaEditMedia = new MenuItem.with_label("Edit Podcast");
-		mediaFileBrowse = new MenuItem.with_label("Show in File Browser");
-		mediaMenuQueue = new MenuItem.with_label("Queue");
-		mediaMenuNewPlaylist = new MenuItem.with_label("New Playlist");
-		mediaMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
-		mediaRemove = new MenuItem.with_label("Remove episode");
-		mediaSaveLocally = new MenuItem.with_label("Download");
-		importToLibrary = new MenuItem.with_label("Import to Library");
-		//mediaRateMediaMenu = new Menu();
-		//mediaRateMedia = new MenuItem.with_label("Rate Media");
+		mediaMenuActionMenu = new Gtk.Menu();
+		mediaEditMedia = new Gtk.MenuItem.with_label("Edit Podcast");
+		mediaFileBrowse = new Gtk.MenuItem.with_label("Show in File Browser");
+		mediaMenuQueue = new Gtk.MenuItem.with_label("Queue");
+		mediaMenuNewPlaylist = new Gtk.MenuItem.with_label("New Playlist");
+		mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label("Add to Playlist");
+		mediaRemove = new Gtk.MenuItem.with_label("Remove episode");
+		mediaSaveLocally = new Gtk.MenuItem.with_label("Download");
+		importToLibrary = new Gtk.MenuItem.with_label("Import to Library");
+		//mediaRateMediaMenu = new Gtk.Menu();
+		//mediaRateMedia = new Gtk.MenuItem.with_label("Rate Media");
 		rating_item = new RatingWidgetMenu();
 		mediaMenuActionMenu.append(mediaEditMedia);
 		mediaMenuActionMenu.append(mediaFileBrowse);
@@ -773,9 +773,9 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	bool viewClick(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
 			/* create add to playlist menu */
-			Menu addToPlaylistMenu = new Menu();
+			Gtk.Menu addToPlaylistMenu = new Gtk.Menu();
 			foreach(Playlist p in lm.playlists()) {
-				MenuItem playlist = new MenuItem.with_label(p.name);
+				Gtk.MenuItem playlist = new Gtk.MenuItem.with_label(p.name);
 				addToPlaylistMenu.append(playlist);
 				
 				playlist.activate.connect( () => {

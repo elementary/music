@@ -116,7 +116,6 @@ vala_precompile(VALA_C
     Widgets/TopDisplay.vala
     Widgets/SimilarSongsView.vala
     Widgets/ScrollingLabel.vala
-    Widgets/ToolButtonWithMenu.vala
     Widgets/InfoPanel.vala
     Widgets/WarningLabel.vala
     Widgets/SimpleOptionChooser.vala
@@ -127,7 +126,6 @@ vala_precompile(VALA_C
     Widgets/MillerColumns/MillerModel.vala
     Widgets/MillerColumns/MillerColumn.vala
     Widgets/RatingWidget.vala
-    Widgets/AppMenu.vala
     Widgets/DeviceBar.vala
     Widgets/SpaceWidget.vala
     Widgets/Welcome.vala

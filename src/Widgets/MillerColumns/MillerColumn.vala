@@ -208,7 +208,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	
 	string _selected;
 	
-	Menu columnChooserMenu;
+	Gtk.Menu columnChooserMenu;
 	CheckMenuItem columnGenres;
 	CheckMenuItem columnArtists;
 	CheckMenuItem columnAlbums;
@@ -242,7 +242,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		view.get_column(0).set_alignment((float)0.5);
 		view.get_column(0).sizing = Gtk.TreeViewColumnSizing.FIXED;
 		
-		columnChooserMenu = new Menu();
+		columnChooserMenu = new Gtk.Menu();
 		columnGenres = new CheckMenuItem.with_label("Genres");
 		columnArtists = new CheckMenuItem.with_label("Artists");
 		columnAlbums = new CheckMenuItem.with_label("Albums");
