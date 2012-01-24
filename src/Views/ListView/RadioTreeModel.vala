@@ -148,6 +148,8 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to point to the first child of parent. **/
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
+        iter = TreeIter ();
+        critical ("Function not implemented.");
 		
 		return false;
 	}
@@ -181,8 +183,11 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
-		if(n < 0 || n >= rows.get_length() || parent != null)
+        iter = TreeIter ();
+		if(n < 0 || n >= rows.get_length() || parent != null) {
+            critical ("Couldn't get this nth iter.");
 			return false;
+        }
 		
 		iter.stamp = this.stamp;
 		iter.user_data = rows.get_iter_at_pos(n);
@@ -192,6 +197,8 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
+        iter = TreeIter ();
+        critical ("Function not implemented");
 		
 		return false;
 	}
@@ -242,6 +249,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
+        iter = TreeIter ();
 		SequenceIter<int> added = rows.append(0);
 		iter.stamp = this.stamp;
 		iter.user_data = added;

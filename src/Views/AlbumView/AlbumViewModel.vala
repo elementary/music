@@ -81,6 +81,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	/** Sets iter to a valid iterator pointing to path **/
 	public bool get_iter (out TreeIter iter, TreePath path) {
 		int path_index = path.get_indices()[0];
+        iter = TreeIter ();
 		
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
 			return false;
@@ -107,8 +108,10 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column > 2)
+		if(iter.stamp != this.stamp || column < 0 || column > 2) {
+            val = Value(get_column_type(column));
 			return;
+        }
 			
 		if(removing_medias) {
 			val = Value(get_column_type(column));
@@ -132,7 +135,15 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 			else if(column == 2) {
 				val = s;
 			}
+            else {
+                val = Value(get_column_type(column));
+                critical ("Bad column?");
+            }
 		}
+        else {
+            val = Value(get_column_type(column));
+            critical ("No data for this path.");
+        }
 	}
 	
 	public Media get_media_representation(Gtk.TreeIter iter) {
@@ -141,6 +152,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to point to the first child of parent. **/
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
+        iter = TreeIter ();
+        critical ("Function not implemented");
 		
 		return false;
 	}
@@ -174,6 +187,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
+        iter = TreeIter ();
 		if(n < 0 || n >= rows.get_length() || parent != null)
 			return false;
 		
@@ -185,7 +199,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
-		
+        iter = TreeIter ();
+
 		return false;
 	}
 
@@ -197,6 +212,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
+        iter = TreeIter ();
 		SequenceIter<Media> added = rows.append(new Media(""));
 		iter.stamp = this.stamp;
 		iter.user_data = added;

@@ -201,7 +201,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	}
 	
 	void refreshSpaceWidget() {
-		double media_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
+		double media_size = 0.0; double podcast_size = 0.0; /*double audiobook_size = 0.0;*/
 		
 		foreach(int i in dev.get_medias()) {
 			media_size += (double)(lm.media_from_id(i).file_size);
