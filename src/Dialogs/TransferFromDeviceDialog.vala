@@ -41,10 +41,10 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 	ListStore mediasModel;
 	Button transfer;
 	
-	Menu viewMenu;
-	MenuItem selectItem;
-	MenuItem selectAlbum;
-	MenuItem selectArtist;
+	Gtk.Menu viewMenu;
+	Gtk.MenuItem selectItem;
+	Gtk.MenuItem selectAlbum;
+	Gtk.MenuItem selectArtist;
 	
 	LinkedList<int> to_transfer;
 	
@@ -175,10 +175,10 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		
 		padding.pack_start(content, true, true, 10);
 		
-		viewMenu = new Menu();
-		selectItem = new MenuItem.with_label("Check Item");
-		selectAlbum = new MenuItem.with_label("Check Album");
-		selectArtist = new MenuItem.with_label("Check Artist");
+		viewMenu = new Gtk.Menu();
+		selectItem = new Gtk.MenuItem.with_label("Check Item");
+		selectAlbum = new Gtk.MenuItem.with_label("Check Album");
+		selectArtist = new Gtk.MenuItem.with_label("Check Artist");
 		
 		transfer.clicked.connect(transferClick);
 		transferAll.toggled.connect(transferAllToggled);

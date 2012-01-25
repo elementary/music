@@ -79,17 +79,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	// basic file stuff
 	ImageMenuItem libraryOperations;
-	Menu libraryOperationsMenu;
-	MenuItem fileSetMusicFolder;
-	MenuItem fileImportMusic;
-	MenuItem fileRescanMusicFolder;
-	MenuItem editEqualizer;
+	Gtk.Menu libraryOperationsMenu;
+	Gtk.MenuItem fileSetMusicFolder;
+	Gtk.MenuItem fileImportMusic;
+	Gtk.MenuItem fileRescanMusicFolder;
+	Gtk.MenuItem editEqualizer;
 	ImageMenuItem editPreferences;
 	
 	// Base color
 	public static Gdk.RGBA base_color;
 
-	Menu settingsMenu;
+    Gtk.Menu settingsMenu;
 	
 	public Notify.Notification notification;
 	
@@ -206,13 +206,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTreeScroll = new ScrolledWindow(null, null);
 		coverArt = new CoverArtImage(lm, this);	
 		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
-		libraryOperationsMenu = new Menu();
-		fileSetMusicFolder = new MenuItem.with_label(_("Set Music Folder"));
-		fileImportMusic = new MenuItem.with_label(_("Import to Library"));
-		fileRescanMusicFolder = new MenuItem.with_label(_("Rescan Music Folder"));
-		editEqualizer = new MenuItem.with_label(_("Equalizer"));
+		libraryOperationsMenu = new Gtk.Menu();
+		fileSetMusicFolder = new Gtk.MenuItem.with_label(_("Set Music Folder"));
+		fileImportMusic = new Gtk.MenuItem.with_label(_("Import to Library"));
+		fileRescanMusicFolder = new Gtk.MenuItem.with_label(_("Rescan Music Folder"));
+		editEqualizer = new Gtk.MenuItem.with_label(_("Equalizer"));
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
-		settingsMenu = new Menu();
+		settingsMenu = new Gtk.Menu();
 		topControls = new Toolbar();
 		previousButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PREVIOUS);
 		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);

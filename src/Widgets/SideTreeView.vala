@@ -45,33 +45,33 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public TreeIter playlists_similar_iter;
 	
 	//for podcast right click
-	Menu podcastMenu;
-	MenuItem podcastAdd;
-	MenuItem podcastRefresh;
+	Gtk.Menu podcastMenu;
+	Gtk.MenuItem podcastAdd;
+	Gtk.MenuItem podcastRefresh;
 	
 	//for cdrom right click
-	Menu CDMenu;
-	MenuItem CDimportToLibrary;
-	MenuItem CDeject;
+	Gtk.Menu CDMenu;
+	Gtk.MenuItem CDimportToLibrary;
+	Gtk.MenuItem CDeject;
 	
 	//for device right click
-	Menu deviceMenu;
-	MenuItem deviceImportToLibrary;
-	MenuItem deviceSync;
+	Gtk.Menu deviceMenu;
+	Gtk.MenuItem deviceImportToLibrary;
+	Gtk.MenuItem deviceSync;
 	
 	//for playlist right click
-	Menu playlistMenu;
-	MenuItem playlistNew;
-	MenuItem smartPlaylistNew;
-	MenuItem playlistEdit;
-	MenuItem playlistRemove;
-	MenuItem playlistSave;
-	MenuItem playlistExport;
-	MenuItem playlistImport;
+	Gtk.Menu playlistMenu;
+	Gtk.MenuItem playlistNew;
+	Gtk.MenuItem smartPlaylistNew;
+	Gtk.MenuItem playlistEdit;
+	Gtk.MenuItem playlistRemove;
+	Gtk.MenuItem playlistSave;
+	Gtk.MenuItem playlistExport;
+	Gtk.MenuItem playlistImport;
 	
 	//for radio station right click
-	Menu radioMenu;
-	MenuItem radioImportStations;
+	Gtk.Menu radioMenu;
+	Gtk.MenuItem radioImportStations;
 	
 	Widget current_widget;
 	
@@ -86,48 +86,48 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void buildUI() {
-		deviceMenu = new Menu();
-		deviceImportToLibrary = new MenuItem.with_label("Import from Device");
-		deviceSync = new MenuItem.with_label("Sync");
+		deviceMenu = new Gtk.Menu();
+		deviceImportToLibrary = new Gtk.MenuItem.with_label("Import from Device");
+		deviceSync = new Gtk.MenuItem.with_label("Sync");
 		deviceMenu.append(deviceImportToLibrary);
 		deviceMenu.append(deviceSync);
 		deviceImportToLibrary.activate.connect(deviceImportToLibraryClicked);
 		deviceSync.activate.connect(deviceSyncClicked);
 		deviceMenu.show_all();
 		
-		podcastMenu = new Menu();
-		podcastAdd = new MenuItem.with_label("Add Podcast");
-		podcastRefresh = new MenuItem.with_label("Download new Episodes");
+		podcastMenu = new Gtk.Menu();
+		podcastAdd = new Gtk.MenuItem.with_label("Add Podcast");
+		podcastRefresh = new Gtk.MenuItem.with_label("Download new Episodes");
 		podcastMenu.append(podcastAdd);
 		podcastMenu.append(podcastRefresh);
 		podcastAdd.activate.connect(podcastAddClicked);
 		podcastRefresh.activate.connect(podcastRefreshClicked);
 		podcastMenu.show_all();
 		
-		CDMenu = new Menu();
-		CDimportToLibrary = new MenuItem.with_label("Import to Library");
-		CDeject = new MenuItem.with_label("Eject");
+		CDMenu = new Gtk.Menu();
+		CDimportToLibrary = new Gtk.MenuItem.with_label("Import to Library");
+		CDeject = new Gtk.MenuItem.with_label("Eject");
 		CDMenu.append(CDimportToLibrary);
 		//CDMenu.append(CDeject);
 		CDimportToLibrary.activate.connect(CDimportToLibraryClicked);
 		CDeject.activate.connect(CDejectClicked);
 		CDMenu.show_all();
 		
-		radioMenu = new Menu();
-		radioImportStations = new MenuItem.with_label("Import Station");
+		radioMenu = new Gtk.Menu();
+		radioImportStations = new Gtk.MenuItem.with_label("Import Station");
 		radioMenu.append(radioImportStations);
 		radioImportStations.activate.connect(playlistImportClicked);
 		radioMenu.show_all();
 		
 		//playlist right click menu
-		playlistMenu = new Menu();
-		playlistNew = new MenuItem.with_label("New Playlist");
-		smartPlaylistNew = new MenuItem.with_label("New Smart Playlist");
-		playlistEdit = new MenuItem.with_label("Edit");
-		playlistRemove = new MenuItem.with_label("Remove");
-		playlistSave = new MenuItem.with_label("Save as Playlist");
-		playlistExport = new MenuItem.with_label("Export...");
-		playlistImport = new MenuItem.with_label("Import Playlist");
+		playlistMenu = new Gtk.Menu();
+		playlistNew = new Gtk.MenuItem.with_label("New Playlist");
+		smartPlaylistNew = new Gtk.MenuItem.with_label("New Smart Playlist");
+		playlistEdit = new Gtk.MenuItem.with_label("Edit");
+		playlistRemove = new Gtk.MenuItem.with_label("Remove");
+		playlistSave = new Gtk.MenuItem.with_label("Save as Playlist");
+		playlistExport = new Gtk.MenuItem.with_label("Export...");
+		playlistImport = new Gtk.MenuItem.with_label("Import Playlist");
 		playlistMenu.append(playlistNew);
 		playlistMenu.append(smartPlaylistNew);
 		playlistMenu.append(playlistEdit);
@@ -202,13 +202,13 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			else
 				rv = addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
 				
-			var dvw = new DeviceViewWrapper(lm, lw, d.get_medias(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
-			addItem(rv, o, dvw, music_icon, "Music", null);
+			var dvw = new DeviceViewWrapper(lm, lw, d.get_medias(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
+			addItem(rv, o, dvw, music_icon, _("Music"), null);
 			lw.mainViews.pack_start(dvw, true, true, 0);
 			
 			if(d.supports_podcasts()) {
-				dvw = new DeviceViewWrapper(lm, lw, d.get_podcasts(), "Artist", SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
-				addItem(rv, o, dvw, podcast_icon, "Podcasts", null);
+				dvw = new DeviceViewWrapper(lm, lw, d.get_podcasts(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
+				addItem(rv, o, dvw, podcast_icon, _("Podcasts"), null);
 				lw.mainViews.pack_start(dvw, true, true, 0);
 			}
 			if(d.supports_audiobooks() && false) {
@@ -219,10 +219,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			
 			return rv;
 		}
-		else if(name == "Music Store" && parent == network_iter) {
+		/*else if(name == "Music Store" && parent == network_iter) {
 			network_store_iter = addItem(parent, o, w, music_icon, name, null);
 			return network_store_iter;
-		}
+		}*/
 		else if(hint == ViewWrapper.Hint.STATION && parent == network_iter) {
 			var radio_icon = lm.icons.radio_icon.render (IconSize.MENU, null);
 			network_radio_iter = addItem(parent, o, w, radio_icon, name, null);
@@ -449,16 +449,24 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void resetView() {
-		if(lm.media_info.media == null || lm.media_info.media.mediatype == 0)
-			setSelectedIter(convertToFilter(library_music_iter));
+        /* e can't just put setSelectedIter directly, we have to check that this iter is not null */
+        TreeIter? selected_iter = null;
+        if(lm.media_info.media == null || lm.media_info.media.mediatype == 0)
+			selected_iter = convertToFilter(library_music_iter);
 		else if(lm.media_info.media.mediatype == 1)
-			setSelectedIter(convertToFilter(library_podcasts_iter));
+			selected_iter = convertToFilter(library_podcasts_iter);
 		else if(lm.media_info.media.mediatype == 2) {
-			setSelectedIter(convertToFilter(library_music_iter));
+			selected_iter = convertToFilter(library_music_iter);
 			stdout.printf("TODO: Set current list to audiobooks when resetting if current media is audiobook\n");
 		}
 		else if(lm.media_info.media.mediatype == 3)
-			setSelectedIter(convertToFilter(network_radio_iter));
+			selected_iter = convertToFilter(network_radio_iter);
+
+        if (selected_iter != null) {
+            setSelectedIter (selected_iter);
+        }
+        else
+            critical ("Couldn't select the good iter for the sidebar. Is it still under construction?");
 		
 		tree.foreach(updateView);
 	}

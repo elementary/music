@@ -25,7 +25,7 @@ using Gdk;
 using Gee;
 
 public class BeatBox.SimpleOptionChooser : EventBox {
-	Menu menu;
+	Gtk.Menu menu;
 	LinkedList<CheckMenuItem> items;
 	Pixbuf enabled;
 	Pixbuf disabled;
@@ -39,7 +39,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 	public SimpleOptionChooser(Pixbuf enabled, Pixbuf disabled) {
 		this.enabled = enabled;
 		this.disabled = disabled;
-		menu = new Menu();
+		menu = new Gtk.Menu();
 		items = new LinkedList<CheckMenuItem>();
 		toggling = false;
 		

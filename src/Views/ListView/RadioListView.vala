@@ -53,23 +53,23 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	CellDataFunctionHelper cellHelper;
 	
 	//for header column chooser
-	Menu columnChooserMenu;
+	Gtk.Menu columnChooserMenu;
 	CheckMenuItem columnRating;
 	CheckMenuItem columnStation;
 	CheckMenuItem columnGenre;
 	
 	//for media list right click
-	Menu mediaMenuActionMenu;
-	MenuItem mediaEditMedia;
-	MenuItem mediaFileBrowse;
-	MenuItem mediaMenuQueue;
-	MenuItem mediaMenuNewPlaylist;
-	MenuItem mediaMenuAddToPlaylist; // make menu on fly
+	Gtk.Menu mediaMenuActionMenu;
+	Gtk.MenuItem mediaEditMedia;
+	Gtk.MenuItem mediaFileBrowse;
+	Gtk.MenuItem mediaMenuQueue;
+	Gtk.MenuItem mediaMenuNewPlaylist;
+	Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
 	//MenuItem mediaRateMedia;
 	//Menu mediaRateMediaMenu;
 	RatingWidgetMenu rating_item;
-	MenuItem mediaRemove;
-	MenuItem mediaSaveLocally;
+	Gtk.MenuItem mediaRemove;
+	Gtk.MenuItem mediaSaveLocally;
 	
 	Gdk.Pixbuf starred;
 	Gdk.Pixbuf not_starred;
@@ -424,7 +424,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		Gtk.drag_source_add_uri_targets(view);
 		
 		// column chooser menu
-		columnChooserMenu = new Menu();
+		columnChooserMenu = new Gtk.Menu();
 		columnStation = new CheckMenuItem.with_label("Station");
 		columnGenre = new CheckMenuItem.with_label("Genre");
 		columnRating = new CheckMenuItem.with_label("Rating");
@@ -439,9 +439,9 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		
 		
 		//media list right click menu
-		mediaMenuActionMenu = new Menu();
-		mediaEditMedia = new MenuItem.with_label("Edit Station");
-		mediaRemove = new MenuItem.with_label("Remove Station");
+		mediaMenuActionMenu = new Gtk.Menu();
+		mediaEditMedia = new Gtk.MenuItem.with_label("Edit Station");
+		mediaRemove = new Gtk.MenuItem.with_label("Remove Station");
 		rating_item = new RatingWidgetMenu();
 		mediaMenuActionMenu.append(mediaEditMedia);
 		mediaMenuActionMenu.append(rating_item);
