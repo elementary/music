@@ -32,7 +32,7 @@ public class BeatBox.ViewWrapper : VBox {
 	HashMap<int, int> medias;
 	public HashMap<int, int> showingMedias;
 	public int media_count;
-	bool needs_update;
+	public bool needs_update;
 	
 	public ViewWrapper.Hint hint;
 	public int relative_id;
@@ -53,6 +53,7 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public enum Hint {
+		NONE,
 		MUSIC,
 		PODCAST,
 		AUDIOBOOK,
@@ -208,7 +209,6 @@ public class BeatBox.ViewWrapper : VBox {
 			return;
 		
 		in_update = true;
-		needs_update = true;
 		
 		if(isCurrentView) {
 			// find which medias belong here
@@ -304,7 +304,6 @@ public class BeatBox.ViewWrapper : VBox {
 		albumView.remove_medias(to_remove);
 		
 		in_update = false;
-		needs_update = true;
 	}
 	
 	public void clear() {
@@ -354,7 +353,6 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		
 		in_update = false;
-		needs_update = true;
 	}
 	
 	/** Updates the displayed view and its content

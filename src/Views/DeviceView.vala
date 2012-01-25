@@ -59,13 +59,16 @@ public class BeatBox.DeviceView : VBox {
 		if(!lm.doing_file_operations() && lm.settings.getMusicFolder() != "") {
 			var externals = new LinkedList<int>();
 			foreach(var i in d.get_medias()) {
-				if(lm.media_from_id(i).isTemporary)
+				if(lm.match_media_to_list(i, lm.media_ids()) == 0)
 					externals.add(i);
 			}
 			
 			if(externals.size > 0) {
 				TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(lw, d, externals);
 				tfdd.show();
+			}
+			else {
+				lw.doAlert("No External Songs", "There were no songs found on this device that are not in your library.");
 			}
 		}
 	}

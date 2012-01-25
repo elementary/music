@@ -165,21 +165,21 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		playlists_iter = addItem(null, null, null, null, "Playlists", null);
 	}
 	
-	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name) {
+	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name, ViewWrapper.Hint hint) {
 		var music_icon = lm.icons.music_icon.render (IconSize.MENU, null);
 		var podcast_icon = lm.icons.podcast_icon.render (IconSize.MENU, null);
 		var history_icon = lm.icons.history_icon.render (IconSize.MENU, null);
 		var smart_playlist_icon = lm.icons.smart_playlist_icon.render (IconSize.MENU, null);
 	
-		if(name == "Music" && parent == library_iter) {
+		if(hint == ViewWrapper.Hint.MUSIC && parent == library_iter) {
 			library_music_iter = addItem(parent, o, w, music_icon, name, null);
 			return library_music_iter;
 		}
-		else if(name == "Podcasts" && parent == library_iter) {
+		else if(hint == ViewWrapper.Hint.PODCAST && parent == library_iter) {
 			library_podcasts_iter = addItem(parent, o, w, podcast_icon, name, null);
 			return library_podcasts_iter;
 		}
-		else if(name == "Audiobooks" && parent == library_iter) {
+		else if(hint == ViewWrapper.Hint.AUDIOBOOK && parent == library_iter) {
 			// FIXME: add icon
 			var audiobook_icon = lm.icons.audiobook_icon.render (IconSize.MENU, null);
 			library_audiobooks_iter = addItem(parent, o, w, audiobook_icon, name, null);
@@ -223,20 +223,20 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			network_store_iter = addItem(parent, o, w, music_icon, name, null);
 			return network_store_iter;
 		}
-		else if(name == "Internet Radio" && parent == network_iter) {
+		else if(hint == ViewWrapper.Hint.STATION && parent == network_iter) {
 			var radio_icon = lm.icons.radio_icon.render (IconSize.MENU, null);
 			network_radio_iter = addItem(parent, o, w, radio_icon, name, null);
 			return network_radio_iter;
 		}
-		else if(name == "Similar" && parent == playlists_iter) {
+		else if(hint == ViewWrapper.Hint.SIMILAR && parent == playlists_iter) {
 			playlists_similar_iter = addItem(parent, o, w, smart_playlist_icon, name, null);
 			return playlists_similar_iter;
 		}
-		else if(name == "Queue" && parent == playlists_iter) {
+		else if(hint == ViewWrapper.Hint.QUEUE && parent == playlists_iter) {
 			playlists_queue_iter = addItem(parent, o, w, music_icon, name, null);
 			return playlists_queue_iter;
 		}
-		else if(name == "History" && parent == playlists_iter) {
+		else if(hint == ViewWrapper.Hint.HISTORY && parent == playlists_iter) {
 			playlists_history_iter = addItem(parent, o, w, history_icon, name, null);
 			return playlists_history_iter;
 		}

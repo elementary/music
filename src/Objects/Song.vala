@@ -158,6 +158,7 @@ public class BeatBox.Media : GLib.Object{
 		// added for podcasts/audiobooks
 		rv.mediatype = mediatype;
 		rv.podcast_url = podcast_url;
+		rv.podcast_rss = podcast_rss;
 		rv.is_new_podcast = is_new_podcast;
 		rv.resume_pos = resume_pos;
 		rv.podcast_date = podcast_date;

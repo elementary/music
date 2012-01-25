@@ -53,9 +53,11 @@ public class BeatBox.PodcastManager : GLib.Object {
 		foreach(int i in lm.podcast_ids()) {
 			var pod = lm.media_from_id(i);
 			
-			rss_urls.add(pod.podcast_rss);
-			mp3_urls.add(pod.podcast_url);
-			rss_names.set(pod.podcast_rss, pod.artist);
+			if(!pod.isTemporary) {
+				if(pod.podcast_rss != null)	rss_urls.add(pod.podcast_rss);
+				if(pod.podcast_url != null)	mp3_urls.add(pod.podcast_url);
+				if(pod.podcast_rss != null) rss_names.set(pod.podcast_rss, pod.artist);
+			}
 		}
 		
 		index = 0;
@@ -79,7 +81,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 			// create an HTTP session to twitter
 			var session = new Soup.SessionSync();
 			var message = new Soup.Message ("GET", rss);
-			stdout.printf("TODO: Set timeout for soup message\n");
+			session.timeout = 30;
 			
 			// send the HTTP request
 			session.send_message(message);
@@ -147,7 +149,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 		// create an HTTP session to twitter
 		var session = new Soup.SessionSync();
 		var message = new Soup.Message ("GET", rss);
-		stdout.printf("TODO: Set timeout for soup message\n");
+		session.timeout = 30;
 		
 		// send the HTTP request
 		session.send_message(message);

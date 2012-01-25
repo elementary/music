@@ -97,6 +97,10 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 		return new LinkedList<int>();
 	}
 	
+	public Collection<int> get_songs() {
+		return new LinkedList<int>();
+	}
+	
 	public Collection<int> get_podcasts() {
 		return new LinkedList<int>();
 	}

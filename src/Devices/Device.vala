@@ -47,6 +47,7 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract bool supports_podcasts();
 	public abstract bool supports_audiobooks();
 	public abstract Collection<int> get_medias();
+	public abstract Collection<int> get_songs();
 	public abstract Collection<int> get_podcasts();
 	public abstract Collection<int> get_audiobooks();
 	public abstract Collection<int> get_playlists();

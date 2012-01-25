@@ -4,8 +4,6 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	Device d;
 	bool cancelled;
 	
-	public signal void import_requested(LinkedList<int> to_import);
-	
 	public DeviceViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> medias, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
 		base(lmm, lww, medias, sort, dir, the_hint, id);
 		
@@ -19,14 +17,17 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		
 		
 		this.d = d;
+		d.sync_finished.connect(sync_finished);
 	}
 	
 	void propogate_import_request(LinkedList<int> to_import) {
-		import_requested(to_import);
-		
-		if(hint == ViewWrapper.Hint.CDROM) {
+		if(!lm.doing_file_operations()) {
 			d.transfer_to_library(to_import);
 		}
+	}
+	
+	void sync_finished(bool success) {
+		needs_update = true;
 	}
 	
 	/*void devicebar_changed(int option) {

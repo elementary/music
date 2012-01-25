@@ -753,6 +753,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _media.get(id);
 	}
 	
+	public int match_media_to_list(int id, Collection<int> to_match) {
+		Media m = media_from_id(id);
+		
+		foreach(int i in to_match) {
+			Media test = media_from_id(i);
+			if(test.title.down() == m.title.down() && test.artist.down() == m.artist.down()) {
+				return i;
+			}
+		}
+		
+		return 0;
+	}
+	
 	public Media media_from_name(string title, string artist) {
 		Media rv = new Media("");
 		rv.title = title;

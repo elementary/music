@@ -475,32 +475,32 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addBasicItems();
 		
 		vw = new ViewWrapper(lm, this, new LinkedList<int>(), lm.similar_setup.sort_column, lm.similar_setup.sort_direction, ViewWrapper.Hint.SIMILAR, -1);
-		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("Similar"));
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("Similar"), ViewWrapper.Hint.SIMILAR);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.queue(), lm.queue_setup.sort_column, lm.queue_setup.sort_direction, ViewWrapper.Hint.QUEUE, -1);
-		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("Queue"));
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("Queue"), ViewWrapper.Hint.QUEUE);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.already_played(), lm.history_setup.sort_column, lm.history_setup.sort_direction, ViewWrapper.Hint.HISTORY, -1);
-		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("History"));
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("History"), ViewWrapper.Hint.HISTORY);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.media_ids(), lm.music_setup.sort_column, lm.music_setup.sort_direction, ViewWrapper.Hint.MUSIC, -1);
-		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Music"));
+		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Music"), ViewWrapper.Hint.MUSIC);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.podcast_ids(), lm.podcast_setup.sort_column, lm.podcast_setup.sort_direction, ViewWrapper.Hint.PODCAST, -1);
-		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Podcasts"));
+		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Podcasts"), ViewWrapper.Hint.PODCAST);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.station_ids(), lm.station_setup.sort_column, lm.station_setup.sort_direction, ViewWrapper.Hint.STATION, -1);
-		sideTree.addSideItem(sideTree.network_iter, null, vw, _("Internet Radio"));
+		sideTree.addSideItem(sideTree.network_iter, null, vw, _("Internet Radio"), ViewWrapper.Hint.STATION);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		if(BeatBox.Beatbox.enableStore) {
 			Store.StoreView storeView = new Store.StoreView(lm, this);
-			sideTree.addSideItem(sideTree.network_iter, null, storeView, _("Music Store"));
+			sideTree.addSideItem(sideTree.network_iter, null, storeView, _("Music Store"), ViewWrapper.Hint.NONE);
 			mainViews.pack_start(storeView, true, true, 0);
 		}
 		
@@ -524,14 +524,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Playlist p = (Playlist)o;
 			
 			vw = new ViewWrapper(lm, this, lm.medias_from_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, ViewWrapper.Hint.PLAYLIST, p.rowid);
-			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
+			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name, ViewWrapper.Hint.PLAYLIST);
 			mainViews.pack_start(vw, true, true, 0);
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 			
 			vw = new ViewWrapper(lm, this, lm.medias_from_smart_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, ViewWrapper.Hint.SMART_PLAYLIST, p.rowid);
-			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
+			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name, ViewWrapper.Hint.SMART_PLAYLIST);
 			mainViews.pack_start(vw, true, true, 0);
 		}
 		else if(o is Device) {
@@ -539,14 +539,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			if(d.getContentType() == "cdrom") {
 				vw = new DeviceViewWrapper(lm, this, d.get_medias(), "Track", Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM, -1, d);
-				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName());
+				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
 				mainViews.pack_start(vw, true, true, 0);
 			}
 			else {
 				stdout.printf("adding ipod device view with %d\n", d.get_medias().size);
 				DeviceView dv = new DeviceView(lm, d);
 				//vw = new DeviceViewWrapper(lm, this, d.get_medias(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE, -1, d);
-				item = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName());
+				item = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName(), ViewWrapper.Hint.NONE);
 				mainViews.pack_start(dv, true, true, 0);
 			}
 		}
