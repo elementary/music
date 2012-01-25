@@ -433,7 +433,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// get a list of the current files
 		var files = new LinkedList<string>();
-		var items = fo.count_music_files(File.new_for_path(music_folder), ref files);
+		fo.count_music_files(File.new_for_path(music_folder), ref files);
 		fo.index = 10;
 		
 		foreach(string s in files) {
@@ -1622,7 +1622,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		in_fetch_thread = true;
 		GStreamerTagger tagger = new GStreamerTagger(this);
-		HashMap<string, Gdk.Pixbuf> to_set = new HashMap<string, Gdk.Pixbuf>();
 		
 		var toShowS = new LinkedList<Media>();
         foreach(var s in _media.values)

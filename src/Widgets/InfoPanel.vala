@@ -184,7 +184,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		//if(lm.media_from_id(id) == null)
 			return;
 		
-		string file = lm.media_from_id(id).getArtistImagePath();
+		/*string file = lm.media_from_id(id).getArtistImagePath();
 		if(file != "" && GLib.File.new_for_path(file).query_exists()) {
 			artistImage.show();
 			try {
@@ -202,7 +202,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 			}
 		}
 		else
-			artistImage.hide();
+			artistImage.hide();*/
 	}
 	
 	public void updateMediaList(Collection<Media> medias) {

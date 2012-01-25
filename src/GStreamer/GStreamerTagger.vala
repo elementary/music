@@ -17,11 +17,21 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	
 	public GStreamerTagger(LibraryManager lm) {
 		this.lm = lm;
-		d = new Discoverer((ClockTime)(10*Gst.SECOND));
+		try {
+			d = new Discoverer((ClockTime)(10*Gst.SECOND));
+		}
+		catch(Error err) {
+			critical("Metadata reader could not create discoverer object: %s\n", err.message);
+		}
 		d.discovered.connect(import_media);
 		d.finished.connect(finished);
 		
-		art_d = new Discoverer((ClockTime)(10*Gst.SECOND));
+		try {
+			art_d = new Discoverer((ClockTime)(10*Gst.SECOND));
+		}
+		catch(Error err) {
+			critical("Metadata reader could not create discoverer object: %s\n", err.message);
+		}
 		art_d.discovered.connect(import_art);
 		art_d.finished.connect(art_finished);
 		
@@ -31,7 +41,12 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	
 	void finished() {
 		if(!cancelled && path_queue.size > 0) {
-			d = new Discoverer((ClockTime)(10*Gst.SECOND));
+			try {
+				d = new Discoverer((ClockTime)(10*Gst.SECOND));
+			}
+			catch(Error err) {
+				critical("Metadata reader could not create discoverer object: %s\n", err.message);
+			}
 			d.discovered.connect(import_media);
 			d.finished.connect(finished);
 			
@@ -49,7 +64,12 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	void art_finished() {
 		stdout.printf("art finished %d %s\n", path_queue.size, cancelled? "true":"False");
 		if(!cancelled && path_queue.size > 0) {
-			art_d = new Discoverer((ClockTime)(10*Gst.SECOND));
+			try {
+				art_d = new Discoverer((ClockTime)(10*Gst.SECOND));
+			}
+			catch(Error err) {
+				critical("Metadata reader could not create discoverer object: %s\n", err.message);
+			}
 			art_d.discovered.connect(import_art);
 			art_d.finished.connect(art_finished);
 			
@@ -89,7 +109,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		return;
 		
 		
-		int size = 0;
+		/*int size = 0;
 		//cancelled = false;
 		stdout.printf("gstreamer tagger fetching art for %d\n", files.size);
 		
@@ -104,7 +124,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				++size;
 				art_d.discover_uri_async(uri);
 			}
-		}
+		}*/
 	}
 	
 	/*public bool discoverer_get_art(Media s) {
@@ -122,7 +142,6 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				string artist, composer, album_artist, album, grouping, genre, comment, lyrics;
 				uint track, track_count, album_number, album_count, bitrate, rating;
 				double bpm;
-				uint64 duration;
 				GLib.Date? date = GLib.Date();
 				
 				// get title, artist, album artist, album, genre, comment, lyrics strings
@@ -215,18 +234,10 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	
 	public uint get_length(string uri) {
 		uint rv = 0;
-		TagLib.File tag_file;
-		
-		try {
-			tag_file = new TagLib.File(uri.replace("file://",""));
-		}
-		catch {}
+		TagLib.File tag_file = new TagLib.File(uri.replace("file://",""));
 		
 		if(tag_file != null && tag_file.audioproperties != null) {
-			try {
-				rv = tag_file.audioproperties.length;
-			}
-			catch {}
+			rv = tag_file.audioproperties.length;
 		}
 		
 		return rv;
@@ -277,7 +288,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 	void import_art(DiscovererInfo info) {
 		return;
 		
-		path_queue.remove(info.get_uri());
+		/*path_queue.remove(info.get_uri());
 		stdout.printf("discovered %s\n", info.get_uri());
 		if(info != null && info.get_tags() != null) {
 			try {
@@ -357,7 +368,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			catch(Error err) {
 				stdout.printf("Failed to import album art from %s\n", info.get_uri());
 			}
-		}
+		}*/
 	}
 	
 	public bool save_media(Media s) {

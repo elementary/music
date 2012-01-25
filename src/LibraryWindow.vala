@@ -113,6 +113,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 #if HAVE_DBUSMENU
 		stdout.printf("Initializing MPRIS and sound menu\n");
 		var mpris = new BeatBox.MPRIS(lm, this);
+		mpris.initialize();
 #endif
 #endif
 		
@@ -346,12 +347,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		var view_column_icon = lm.icons.view_column_icon.render (IconSize.MENU, viewSelectorStyle);
 		var view_details_icon = lm.icons.view_details_icon.render (IconSize.MENU, viewSelectorStyle);
 		var view_icons_icon = lm.icons.view_icons_icon.render (IconSize.MENU, viewSelectorStyle);
-		var view_video_icon = lm.icons.view_video_icon.render (IconSize.MENU, viewSelectorStyle);
 
 		viewSelector.append(new Image.from_pixbuf(view_icons_icon));
 		viewSelector.append(new Image.from_pixbuf(view_details_icon));
 		viewSelector.append(new Image.from_pixbuf(view_column_icon));
-		//viewSelector.append(new Image.from_pixbuf(view_video_icon));
 		
 		topControls.insert(previousButton, 0);
 		topControls.insert(playButton, 1);
@@ -660,12 +659,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(lm.get_album_art(lm.media_info.media.rowid) != null)
 				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position - 1, sourcesToMedias.position - 1, Gdk.InterpType.BILINEAR));
 			else {
-				try {
-					coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position - 1, sourcesToMedias.position - 1, Gdk.InterpType.BILINEAR));
-				}
-				catch(GLib.Error err) {
-					stdout.printf("Could not set image art: %s\n", err.message);
-				}
+				coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position - 1, sourcesToMedias.position - 1, Gdk.InterpType.BILINEAR));
 			}
 		}
 		
@@ -1584,7 +1578,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		if(key != 0) {
 			welcome_screen_keys.unset(key);
-			welcomeScreen.remove(key);
+			welcomeScreen.remove_with_key(key);
 		}
 	}
 }

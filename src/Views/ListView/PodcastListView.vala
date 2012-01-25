@@ -77,9 +77,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	Gtk.MenuItem mediaSaveLocally;
 	Gtk.MenuItem importToLibrary;
 	
-	Gdk.Pixbuf starred;
-	Gdk.Pixbuf not_starred;
-	
 	// for editing cells in-treeview
 	CellRendererText cellTrack;
 	CellRendererText cellTitle;

@@ -73,8 +73,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	Gtk.Menu radioMenu;
 	Gtk.MenuItem radioImportStations;
 	
-	Widget current_widget;
-	
 	public SideTreeView(LibraryManager lmm, LibraryWindow lww) {
 		this.lm = lmm;
 		this.lw = lww;
@@ -624,7 +622,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	// cd rom context menu
 	public void CDimportToLibraryClicked() {
 		TreeIter iter = getSelectedIter();
-		Widget w = getSelectedWidget();
 		
 		GLib.Object o;
 		filter.get(iter, 0, out o);
@@ -1013,14 +1010,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		if(success) {
 			if(paths.size > 0) {
 				stdout.printf("paths size is %d\n", paths.size);
-				try {
-					lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
-					lm.fo.import_from_playlist_file_info(name, paths);
-					lw.updateSensitivities();
-				}
-				catch(Error err) {
-					stdout.printf("Could not create thread to import playlist: %s\n", err.message);
-				}
+				lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
+				lm.fo.import_from_playlist_file_info(name, paths);
+				lw.updateSensitivities();
 			}
 			if(stations.size > 0) {
 				stdout.printf("stations size is %d\n", stations.size);

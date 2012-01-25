@@ -32,7 +32,9 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 	public SoundMenuIntegration(LibraryManager lmm, LibraryWindow lww) {
 		lm = lmm;
 		lw = lww;
-		
+	}
+	
+	public void initialize() {
 		watch = Bus.watch_name(BusType.SESSION,
 		                      "org.ayatana.indicator.sound",
 		                      BusNameWatcherFlags.NONE,

@@ -324,13 +324,10 @@ public class BeatBox.FileOperator : Object {
 	public void update_file_hierarchy(Media s, bool delete_old, bool emit_update) {
 		try {
 			GLib.File dest = get_new_destination(s);
-			
 			if(dest == null)
 				return;
 			
 			GLib.File original = GLib.File.new_for_uri(s.uri);
-			
-			var ext = get_extension(s.uri);
 			
 			/* copy the file over */
 			bool success = false;
@@ -461,9 +458,6 @@ public class BeatBox.FileOperator : Object {
 		foreach(int i in internals)
 			new_playlist.addMedia(i);
 		
-		/* this is pretty much copied from lm.import_files_individually */
-		// first get the files
-		bool was_cancelled = cancelled;
 		resetProgress(externals.size - 1);
 		Timeout.add(500, lm.doProgressNotificationWithTimeout);
 		import_files(externals, ImportType.PLAYLIST);

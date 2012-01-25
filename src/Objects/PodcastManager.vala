@@ -358,10 +358,26 @@ public class BeatBox.PodcastManager : GLib.Object {
 			var online_file = File.new_for_uri(s.podcast_url);
 			if(online_file.query_exists() && s.uri == s.uri) {
 				current_operation = "Downloading <b>" + s.title + "</b> (" + (index + 1).to_string() + " of " + save_locally_ids.size.to_string() + ")";
-				online_size = online_file.query_info("*", FileQueryInfoFlags.NONE).get_size();
+				
+				try {
+					online_size = online_file.query_info("*", FileQueryInfoFlags.NONE).get_size();
+				}
+				catch(Error err) {
+					error("Could not read online podcast file's size for progress notification: %s\n", err.message);
+				}
+				
 				new_dest = lm.fo.get_new_destination(s);
 				lm.fo.update_file_hierarchy(s, false, true);
-				s.file_size = (int)(new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size() / 1000000);
+				
+				int file_size = 5; // 5 is sane backup
+				try {
+					file_size = (int)(new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size() / 1000000);
+				}
+				catch(Error err) {
+					error("Could not calculate downloaded podcast's file size: %s\n", err.message);
+				}
+				
+				s.file_size = file_size;
 			}
 			else {
 				stdout.printf("Skipped downloading podcast %s. Either not connected to internet, or is already saved locally.\n", s.title);
@@ -394,8 +410,14 @@ public class BeatBox.PodcastManager : GLib.Object {
 	
 	public bool doProgressNotificationWithTimeoutSaveLocally() {
 		int64 current_local_size = 0;
-		if(new_dest.query_exists())
-			current_local_size = new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size();
+		if(new_dest.query_exists()) {
+			try {
+				current_local_size = new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size();
+			}
+			catch(Error err) {
+				error("Error reading current size of downloaded podcast: %s\n", err.message);
+			}
+		}
 		
 		lw.progressNotification(current_operation.replace("&", "&amp;"), (double)(((double)index + (double)((double)current_local_size/(double)online_size))/((double)total)));
 		

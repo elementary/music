@@ -159,7 +159,7 @@ public class BeatBox.Welcome : Gtk.EventBox {
         return index;
     }
     
-    public void remove (int key) {
+    public void remove_with_key (int key) {
 		if(children.get (key) != null && children.get (key) is Gtk.Widget) {
 			children.get (key).destroy();
 			children.remove (key);

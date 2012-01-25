@@ -101,7 +101,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		app.flags = ApplicationFlags.FLAGS_NONE;
 		//((Beatbox)app).args = args;
 		
-		app.command_line.connect(command_line);
+		app.command_line.connect(command_line_event);
 		
 		// passing any args will crash app
 		string[] fake = {};
@@ -136,7 +136,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
 	}
 	
-	public static int command_line() {
+	public static int command_line_event() {
 		return 0;
 	}
     

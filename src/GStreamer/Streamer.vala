@@ -236,7 +236,7 @@ public class BeatBox.Streamer : GLib.Object {
 	}
 	
 	// no longer used since it would cause bugs
-	void about_to_finish() {
+	/*void about_to_finish() {
 		int i = lm.getNext(false);
 		Media s = lm.media_from_id(i);
 		if(s != null && s.mediatype != 3) { // don't do this with radio stations
@@ -252,5 +252,5 @@ public class BeatBox.Streamer : GLib.Object {
 			
 			return false;
 		});
-	}
+	}*/
 }

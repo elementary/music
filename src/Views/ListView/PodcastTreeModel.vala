@@ -86,6 +86,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to a valid iterator pointing to path **/
 	public bool get_iter (out TreeIter iter, TreePath path) {
+		iter = TreeIter();
 		int path_index = path.get_indices()[0];
 		
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
@@ -113,20 +114,14 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size)
+		val = Value(get_column_type(column));
+		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size || removing_medias)
 			return;
-			
-		if(removing_medias) {
-			val = Value(get_column_type(column));
-			return;
-		}
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
 			Media s = lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
-			if(s == null) {
-				val = Value(get_column_type(column));
+			if(s == null)
 				return;
-			}
 			
 			if(column == 0)
 				val = (int)s.rowid;
@@ -165,6 +160,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to point to the first child of parent. **/
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
+		iter = TreeIter();
 		
 		return false;
 	}
@@ -198,6 +194,8 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
+		iter = TreeIter();
+		
 		if(n < 0 || n >= rows.get_length() || parent != null)
 			return false;
 		
@@ -209,6 +207,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
+		iter = TreeIter();
 		
 		return false;
 	}
@@ -259,6 +258,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
+		iter = TreeIter();
 		SequenceIter<int> added = rows.append(0);
 		iter.stamp = this.stamp;
 		iter.user_data = added;

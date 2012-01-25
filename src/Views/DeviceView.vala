@@ -5,13 +5,7 @@ public class BeatBox.DeviceView : VBox {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device d;
-	
-	//DeviceBar bar;
-	Granite.Widgets.StaticNotebook tabs;
 	DeviceSummaryWidget summary;
-	public DeviceViewWrapper music_list;
-	DeviceViewWrapper podcast_list;
-	DeviceViewWrapper audiobook_list;
 	
 	public DeviceView(LibraryManager lm, Device d) {
 		this.lm = lm;
@@ -75,10 +69,6 @@ public class BeatBox.DeviceView : VBox {
 	
 	public void syncClicked() {
 		summary.syncClicked();
-	}
-	
-	void import_requested(LinkedList<int> to_import) {
-		d.transfer_to_library(to_import);
 	}
 	
 	void deviceProgress(string? message, double progress) {

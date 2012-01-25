@@ -83,9 +83,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	Gtk.MenuItem mediaRemove;
 	Gtk.MenuItem importToLibrary;
 	
-	Gdk.Pixbuf starred;
-	Gdk.Pixbuf not_starred;
-	
 	// for editing cells in-treeview
 	CellRendererText cellTrack;
 	CellRendererText cellTitle;
@@ -266,11 +263,10 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		if(get_is_current() && lm.media_info.media != null)
 			scrollToCurrent();
 		
-		// FIXME: assertion `gtk_widget_get_realized (GTK_WIDGET (tree_view))' failed
-		//        PLEASE NOTE THAT THE WIDGET MUST BE REALIZED BEFORE USING scroll_to_point() !
-		
-		//else
-		//	this.view.scroll_to_point(0, (int)hPos);
+		if(get_is_current() && lm.media_info.media != null)
+			scrollToCurrent();
+		else
+			this.view.scroll_to_point(0, (int)hPos);
 		
 		//set_statusbar_text();
 		

@@ -218,8 +218,17 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public uint64 get_capacity() {
-		var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
-		return file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
+		uint64 rv = 0;
+		
+		try {
+			var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
+		}
+		catch(Error err) {
+			error("Error calculating capacity of iPod: %s\n", err.message);
+		}
+		
+		return rv;
 	}
 	
 	public string get_fancy_capacity() {
@@ -231,8 +240,17 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public uint64 get_free_space() {
-		var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
-		return file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_FREE);
+		uint64 rv = 0;
+		
+		try {
+			var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_FREE);
+		}
+		catch(Error err) {
+			error("Error calculating free space on iPod: %s\n", err.message);
+		}
+		
+		return rv;
 	}
 	
 	public void unmount() {
@@ -452,7 +470,12 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		else {
 			current_operation = "Cancelling Sync...";
-			db.write();
+			try {
+				db.write();
+			}
+			catch(Error err) {
+				critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
+			}
 			db.stop_sync();
 			index = total + 1;
 			sync_cancelled = false;
@@ -546,11 +569,16 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			var file = File.new_for_path(path);
 			
 			if(file.query_exists()) {
-				file.delete();
-				stdout.printf("Successfully removed music file %s from iPod Disk\n", path);
+				try {
+					file.delete();
+					stdout.printf("Successfully removed music file %s from iPod Disk\n", path);
+				}
+				catch(Error err) {
+					stdout.printf("Could not delete iPod File at %s. Unused file will remain on iPod: %s\n", path, err.message);
+				}
 			}
 			else {
-				stdout.printf("Could not delete iPod File at %s. Unused file on iPod\n", path);
+				stdout.printf("File not found, could not delete iPod File at %s. File may already be deletedd\n", path);
 			}
 		}
 		
@@ -620,7 +648,6 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		index = 78;
 		
-		var to_sync = new LinkedList<unowned GPod.Playlist>();
 		int sub_index = 0;
 		foreach(var playlist in lm.playlists()) {
 			GPod.Playlist p = playlist.get_gpod_playlist();

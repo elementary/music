@@ -61,18 +61,8 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	//for media list right click
 	Gtk.Menu mediaMenuActionMenu;
 	Gtk.MenuItem mediaEditMedia;
-	Gtk.MenuItem mediaFileBrowse;
-	Gtk.MenuItem mediaMenuQueue;
-	Gtk.MenuItem mediaMenuNewPlaylist;
-	Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
-	//MenuItem mediaRateMedia;
-	//Menu mediaRateMediaMenu;
 	RatingWidgetMenu rating_item;
 	Gtk.MenuItem mediaRemove;
-	Gtk.MenuItem mediaSaveLocally;
-	
-	Gdk.Pixbuf starred;
-	Gdk.Pixbuf not_starred;
 	
 	// for editing cells in-treeview
 	CellRendererText cellTrack;
@@ -961,23 +951,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	}
 	
 	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
-        Gtk.TreeIter iter;
-        Gtk.TreeModel temp_model;
-        
-        var rows = view.get_selection().get_selected_rows(out temp_model);
-        string[] uris = null;
-        
-        /*foreach(TreePath path in rows) {
-            temp_model.get_iter_from_string (out iter, path.to_string ());
-            
-			int id;
-			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).uri);
-			uris += (lm.media_from_id(id).uri);
-		}*/
-		
-        if (uris != null)
-            selection_data.set_uris(uris);
+        error("User trying to drag from internet radio list, but is not implemented\n");
     }
     
     public virtual void onDragEnd(Gtk.Widget sender, Gdk.DragContext context) {

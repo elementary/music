@@ -1,4 +1,4 @@
-using Gtk;
+/*using Gtk;
 
 public class BeatBox.DeviceBar : Gtk.HBox {
 	LibraryManager lm;
@@ -66,4 +66,4 @@ public class BeatBox.DeviceBar : Gtk.HBox {
 	public int currentPage() {
 		return tabs.page;
 	}
-}
+}*/

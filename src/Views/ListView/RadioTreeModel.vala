@@ -82,6 +82,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to a valid iterator pointing to path **/
 	public bool get_iter (out TreeIter iter, TreePath path) {
+		iter = TreeIter();
 		int path_index = path.get_indices()[0];
 		
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
@@ -109,21 +110,14 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size) {
+		val = Value(get_column_type(column));
+		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size || removing_medias)
 			return;
-		}
-			
-		if(removing_medias) {
-			val = Value(get_column_type(column));
-			return;
-		}
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
 			Media s = lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
-			if(s == null) {
-				val = Value(get_column_type(column));
+			if(s == null)
 				return;
-			}
 			
 			if(column == 0)
 				val = (int)s.rowid;
@@ -185,7 +179,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
         iter = TreeIter ();
 		if(n < 0 || n >= rows.get_length() || parent != null) {
-            critical ("Couldn't get this nth iter.");
+            critical ("Invalid child number %d", n);
 			return false;
         }
 		
@@ -198,7 +192,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
         iter = TreeIter ();
-        critical ("Function not implemented");
+        critical ("Function not allowed on list-only view");
 		
 		return false;
 	}
