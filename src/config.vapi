@@ -7,4 +7,5 @@ namespace Build {
 	public const string VERSION;
 	public const string VERSION_INFO;
 	public const string ICON_FOLDER;
+	public const string CMAKE_INSTALL_PREFIX;
 }

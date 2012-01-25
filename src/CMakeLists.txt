@@ -36,7 +36,8 @@ pkg_check_modules(DEPS
     gio-unix-2.0
     granite
     libgpod-1.0
-    clutter-gtk-1.0)
+    libpeas-gtk-1.0
+    libpeas-1.0)
 
 # Check if we have sqlheavy-0.2
 if(${SQLHEAVY_USE_2})
@@ -206,6 +207,7 @@ vala_precompile(VALA_C
     ${CMAKE_SOURCE_DIR}/src/config.vapi
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
+    --vapidir=${CMAKE_BINARY_DIR}/core/
     ${ADD_OPTIONS}
 PACKAGES
     glib-2.0
@@ -225,13 +227,17 @@ PACKAGES
     gio-unix-2.0
     granite
     libgpod-1.0
-    clutter-gtk-1.0
+    libpeas-1.0
+    beatbox-core
     ${ADD_PKG}
 )
 
+include_directories(${CMAKE_BINARY_DIR}/core)
 add_executable(beatbox ${VALA_C})
 link_directories(${ZEITGEIST_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
 add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS})
 target_link_libraries(beatbox ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
+
+target_link_libraries(beatbox beatbox-core)
 
 install(TARGETS beatbox RUNTIME DESTINATION bin)
