@@ -168,7 +168,6 @@ public class Store.SearchList : Gtk.ScrolledWindow {
 		alreadyResized = true;
 		
 		int width = rectangle.width;
-		int height = rectangle.height;
 		
 		int others; // total of other widths combined
 		

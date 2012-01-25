@@ -34,7 +34,12 @@ public class Store.IconView : Gtk.ScrolledWindow {
 	public IconView(Store.StoreView view) {
 		storeView = view;
 		
-		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
+        try {
+		    defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
+        }
+        catch (Error e) {
+            warning ("Couldn't load default pix for albums: %s", e.message);
+        }
 		
 		buildUI();
 	}
