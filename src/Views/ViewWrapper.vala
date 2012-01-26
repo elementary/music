@@ -123,7 +123,7 @@ public class BeatBox.ViewWrapper : VBox {
 		doUpdate(currentView, get_media_ids(), false, false, false);
 		
 		
-		//if(the_hint == ViewWrapper.Hint.MUSIC)
+		//if(the_hint == ViewWrapper.Hint.MUSIC || the_hint == ViewWrapper.Hint.PODCAST || the_hint == ViewWrapper.Hint.STATION)
 		//	doUpdate(ViewType.LIST, get_media_ids(), true, true, false);
 		
 		if(albumView is AlbumView)
@@ -132,7 +132,7 @@ public class BeatBox.ViewWrapper : VBox {
 		no_show_all = true;
 		
 		lw.viewSelector.mode_changed.connect(selectorViewChanged);
-		lm.media_played.connect(mediaPlayed);
+		//lm.media_played.connect(mediaPlayed);
 		lm.medias_added.connect(medias_added);
 		lm.medias_updated.connect(medias_updated);
 		lm.medias_removed.connect(medias_removed);
@@ -183,19 +183,16 @@ public class BeatBox.ViewWrapper : VBox {
 		return currentView;
 	}
 	
-	public void mediaPlayed(int id, int old) {
-		if(list.get_hint() != ViewWrapper.Hint.SIMILAR)
+	public void show_retrieving_similars() {
+		if(hint != ViewWrapper.Hint.SIMILAR || lm.media_info.media == null)
 			return;
 			
-		if(!(lm.current_medias().size == list.get_medias().size && lm.current_medias().contains_all(list.get_medias()))) {
-			/* a new media is played. don't show list until medias have loaded */
-			errorBox.show_icon = false;
-			errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\n\nBeatBox is loading songs similar to <b>" + lm.media_from_id(id).title.replace("&", "&amp;") + "</b> by <b>" + lm.media_from_id(id).artist.replace("&", "&amp;") + "</b> ...", null);
-			errorBox.show();
-			list.hide();
-			albumView.hide();
-			similarsFetched = false;
-		}
+		errorBox.show_icon = false;
+		errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\n\nBeatBox is loading songs similar to <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> ...", null);
+		errorBox.show();
+		list.hide();
+		albumView.hide();
+		similarsFetched = false;
 	}
 	
 	void medias_added(LinkedList<int> ids) {
@@ -303,6 +300,7 @@ public class BeatBox.ViewWrapper : VBox {
 		list.remove_medias(to_remove);
 		albumView.remove_medias(to_remove);
 		
+		needs_update = true;
 		in_update = false;
 	}
 	
@@ -352,6 +350,7 @@ public class BeatBox.ViewWrapper : VBox {
 				set_statusbar_text();
 		}
 		
+		needs_update = true;
 		in_update = false;
 	}
 	
@@ -363,7 +362,7 @@ public class BeatBox.ViewWrapper : VBox {
 	 * @param do_visual If true, visually populate as well
 	*/
 	public void doUpdate(ViewType type, Collection<int> up_medias, bool set_medias, bool force, bool in_thread) {
-		if(in_update || in_thread)
+		if(in_update)
 			return;
 			
 		//if(!force && !set_medias && !needs_update && (type == currentView))
@@ -432,7 +431,7 @@ public class BeatBox.ViewWrapper : VBox {
 				}
 			}
 			
-			/*if(list.get_is_current()) { // don't update, user is playing current list
+			/*if(lm.current_medias().size == list.get_medias().size && lm.current_medias().contains_all(list.get_medias())) { // don't update, user is playing current list
 				stdout.printf("3\n");
 				return;
 			}*/

@@ -447,7 +447,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void resetView() {
-        /* e can't just put setSelectedIter directly, we have to check that this iter is not null */
+        /* We can't just put setSelectedIter directly, we have to check that this iter is not null */
         TreeIter? selected_iter = null;
         if(lm.media_info.media == null || lm.media_info.media.mediatype == 0)
 			selected_iter = convertToFilter(library_music_iter);

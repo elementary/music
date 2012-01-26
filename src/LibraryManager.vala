@@ -329,6 +329,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_already_played.clear();
 			lw.resetSideTree(false);
 			lw.updateSensitivities();
+			stopPlayback();
 			
 			settings.setMusicMountName("");
 			settings.setMusicFolder(folder);
@@ -758,7 +759,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		foreach(int i in to_match) {
 			Media test = media_from_id(i);
-			if(test.title.down() == m.title.down() && test.artist.down() == m.artist.down()) {
+			if(id != i && test.title.down() == m.title.down() && test.artist.down() == m.artist.down()) {
 				return i;
 			}
 		}

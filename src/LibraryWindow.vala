@@ -77,6 +77,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	SimpleOptionChooser repeatChooser;
 	SimpleOptionChooser infoPanelChooser;
 	
+	// we use one album list view popup for the whole app
+	public AlbumListView alv;
+	
 	// basic file stuff
 	ImageMenuItem libraryOperations;
 	Gtk.Menu libraryOperationsMenu;
@@ -229,6 +232,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideBar = new VBox(false, 0);
 		statusBar = new HBox(false, 0);
 		statusBarLabel = new Label("");
+		alv = new AlbumListView(lm);
 		
 		var statusBarStyle = statusBar.get_style_context ();
 
@@ -433,21 +437,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		initializationFinished = true;
 		
+		sideTree.resetView();
 		var vw = (ViewWrapper)sideTree.getSelectedWidget();
 		if(lm.media_info.media != null) {
 			vw.list.set_as_current_list(0, true);
+			stdout.printf("set a view as current list\n");
 			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
 				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
 			}
 		}
 		
 		searchField.set_text(lm.settings.getSearchString());
-		vw.doUpdate(vw.currentView, vw.get_media_ids(), false, true, false);
+		//vw.doUpdate(vw.currentView, vw.get_media_ids(), false, true, false);
 		
 		show_all();
 		resize(settings.getWindowWidth(), this.default_height);
 		
-		sideTree.resetView();
 		updateSensitivities();
 		
 		if(lm.song_ids().size == 0)
@@ -657,9 +662,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 			}*/
 			if(lm.get_album_art(lm.media_info.media.rowid) != null)
-				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position - 1, sourcesToMedias.position - 1, Gdk.InterpType.BILINEAR));
+				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sideTree.get_allocated_width(), sideTree.get_allocated_width(), Gdk.InterpType.BILINEAR));
 			else {
-				coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position - 1, sourcesToMedias.position - 1, Gdk.InterpType.BILINEAR));
+				coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sideTree.get_allocated_width(), sideTree.get_allocated_width(), Gdk.InterpType.BILINEAR));
 			}
 		}
 		
@@ -1034,7 +1039,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		else if(sideBar.get_allocated_width() <= 200) {
 			stdout.printf("too small\n");
-			sourcesToMedias.set_position(200);
+			//sourcesToMedias.set_position(200);
 			return;
 		}
 		stdout.printf("ok fine\n");
@@ -1272,11 +1277,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				lm.media_info.media.resume_pos = (int)sec;
 			}
 			
-			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
-			if(position > 5000000000 && !queriedlastfm) {
+			// at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
+			if(position > 3000000000 && !queriedlastfm) {
 				queriedlastfm = true;
 				
-				similarMedias.queryForSimilar(lm.media_info.media);
+				ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.playlists_similar_iter);
+				if(!vw.list.get_is_current()) {
+					vw.show_retrieving_similars();
+					similarMedias.queryForSimilar(lm.media_info.media);
+				}
 				
 				try {
 					Thread.create<void*>(lastfm_track_thread_function, false);
