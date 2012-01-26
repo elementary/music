@@ -8,65 +8,65 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-01-17 20:24+0100\n"
-"PO-Revision-Date: 2012-01-22 11:58+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2012-01-24 12:08+0000\n"
+"Last-Translator: David Bengtsson <Unknown>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-24 06:57+0000\n"
-"X-Generator: Launchpad (build 14713)\n"
+"X-Launchpad-Export-Date: 2012-01-25 05:40+0000\n"
+"X-Generator: Launchpad (build 14719)\n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
 msgid "Get Some Tunes."
-msgstr ""
+msgstr "Införskaffa några låtar."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
 msgid "BeatBox can't seem to find your music."
-msgstr ""
+msgstr "BeatBox tycks inte hitta din musik."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "Set Music Folder"
-msgstr ""
+msgstr "Välj musikmapp"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:211
 msgid "Import to Library"
-msgstr ""
+msgstr "Importera till biblioteket"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:212
 msgid "Rescan Music Folder"
-msgstr ""
+msgstr "Sök igenom musikmappen igen"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:213
 msgid "Equalizer"
-msgstr ""
+msgstr "Equalizer"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:222
 msgid "Search..."
-msgstr ""
+msgstr "Sök..."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:245
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:296
 #, c-format
 msgid "Artist"
-msgstr ""
+msgstr "Artist"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:295
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:271
 msgid "Library"
-msgstr ""
+msgstr "Bibliotek"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:282
 msgid "Preferences"
-msgstr ""
+msgstr "Inställningar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:293
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:299
@@ -92,35 +92,35 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
 msgid "Locate"
-msgstr ""
+msgstr "Lokalisera"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
 msgid "Change your music folder."
-msgstr ""
+msgstr "Ändra din musikmapp."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:478
 msgid "Similar"
-msgstr ""
+msgstr "Liknande"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:482
 msgid "Queue"
-msgstr ""
+msgstr "Kö"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:486
 msgid "History"
-msgstr ""
+msgstr "Historik"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:490
 msgid "Music"
-msgstr ""
+msgstr "Musik"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:494
 msgid "Podcasts"
-msgstr ""
+msgstr "Poddsändningar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:498
 msgid "Internet Radio"
-msgstr ""
+msgstr "Internetradio"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:503
 msgid "Music Store"
@@ -128,19 +128,19 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
 msgid "Unknown Artist"
-msgstr ""
+msgstr "Okänd artist"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
 msgid " by "
-msgstr ""
+msgstr " av "
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
 msgid "Unknown Album"
-msgstr ""
+msgstr "Okänt album"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
 msgid " on "
-msgstr ""
+msgstr " från "
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1082
 msgid "Import Music"
@@ -157,11 +157,11 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1118
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "Musikmappen hittades inte"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1118
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
+msgstr "Försäkra dig om att din musikmapp är tillgänglig och monterad."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1186
 msgid "Import Complete"

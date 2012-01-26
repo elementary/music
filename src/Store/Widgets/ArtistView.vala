@@ -45,8 +45,13 @@ public class Store.ArtistView : ScrolledWindow {
 		artist = a;
 		topTracksList = new LinkedList<Store.Track>();
 		releasesList = new LinkedList<Store.Release>();
-		
-		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
+	
+        try {
+		    defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
+        }
+        catch (Error e) {
+            warning ("Couldn't load default pix for albums: %s", e.message);
+        }
 				
 		buildUI();
 		
@@ -57,7 +62,6 @@ public class Store.ArtistView : ScrolledWindow {
 		VBox allDetails = new VBox(false, 0);
 		HBox topRow = new HBox(false, 0);
 		VBox topInfo = new VBox(false, 0);
-		VBox topFlags = new VBox(false, 0);
 		artistImage = new Image();
 		artistName = new Gtk.Label("");
 		upDown = new Gtk.Label("");

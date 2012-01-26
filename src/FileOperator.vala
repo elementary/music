@@ -141,13 +141,18 @@ public class BeatBox.FileOperator : Object {
 		
 		/* get a list of all images in folder as potential album art choices */
 		var image_list = new LinkedList<string>();
-		var enumerator = album_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-		while ((file_info = enumerator.next_file ()) != null) {
-			
-			if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
-				image_list.add(file_info.get_name());
-			}
-		}
+        try {
+            var enumerator = album_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+            while ((file_info = enumerator.next_file ()) != null) {
+                
+                if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
+                    image_list.add(file_info.get_name());
+                }
+            }
+        }
+        catch (Error e) {
+            warning ("Error while looking for covers: %s", e.message);
+        }
 		
 		/* now choose one based on priorities */
 		foreach(string sU in image_list) {
