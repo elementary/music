@@ -40,7 +40,7 @@ public class BeatBox.PresetList : ComboBox {
 	}
 
 	public bool default_presets_changed;
-	
+
 	public EqualizerPreset last_selected_preset;
 
 	public signal void preset_selected(EqualizerPreset p);
@@ -53,7 +53,7 @@ public class BeatBox.PresetList : ComboBox {
 
 	private bool modifying_list;
 	private bool automatic_selected;
-	
+
 	private const string SEPARATOR_NAME = "<separator_item_unique_name>";
 
 	private const string ADD_NEW_PRESET = "Add New";
@@ -68,44 +68,44 @@ public class BeatBox.PresetList : ComboBox {
 		ncustompresets = 0;
 		modifying_list = false;
 		automatic_selected = false;
-		
+
 		buildUI();
 	}
-	
+
 	public void buildUI() {
 		store = new ListStore(2, typeof(GLib.Object), typeof(string));
 		this.set_model(store);
-		
+
 		this.set_id_column(1);
 		this.set_row_separator_func( (model, iter) => {
 			string content = "";
 			model.get(iter, 1, out content);
-			
+
 			return content == SEPARATOR_NAME;
 		});
-		
+
 		var cell = new CellRendererText();
 		cell.ellipsize = Pango.EllipsizeMode.END;
 		this.pack_start(cell, true);
 		this.add_attribute(cell, "text", 1);
-		
+
 		this.changed.connect(listSelectionChange);
-		
+
 		this.show_all();
 	}
-	
+
 	public void clearList() {
 		store.clear();
 	}
-	
+
 	public void addTopOptions() {
 		TreeIter iter;
 
 		store.append(out iter);
 		store.set(iter, 0, null, 1, AUTOMATIC_MODE);
-		
+
 		addSeparator ();
-		
+
 		if(ndefaultpresets < 1) {
 			store.append(out iter);
 			store.set(iter, 0, null, 1, ADD_NEW_PRESET);
@@ -117,13 +117,13 @@ public class BeatBox.PresetList : ComboBox {
 			addSeparator ();
 		}
 	}
-	
+
 	public void addSeparator () {
 		TreeIter iter;
 		store.append(out iter);
 		store.set(iter, 0, null, 1, SEPARATOR_NAME);
 	}
-	
+
 	public void addPreset(EqualizerPreset ep) {
 		modifying_list = true;
 
@@ -148,10 +148,10 @@ public class BeatBox.PresetList : ComboBox {
 
 		modifying_list = false;
 		automatic_selected = false;
-		
+
 		set_active_iter(iter);
 	}
-	
+
 	public void removeCurrentPreset() {
 		modifying_list = true;
 
@@ -165,7 +165,7 @@ public class BeatBox.PresetList : ComboBox {
 		for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
 			GLib.Object o;
 			store.get(iter, 0, out o);
-			
+
 			if(o != null && o is EqualizerPreset && ((EqualizerPreset)o) == last_selected_preset) {
 				if (((EqualizerPreset)o).is_default) {
 					ndefaultpresets--;
@@ -173,7 +173,7 @@ public class BeatBox.PresetList : ComboBox {
 				} else {
 					ncustompresets--;
 				}
-				
+
 				store.remove(iter);
 				break;
 			}
@@ -193,48 +193,38 @@ public class BeatBox.PresetList : ComboBox {
 			// Update the top options to include 'Add New'
 			clearList ();
 			addTopOptions ();
-			
+
 			foreach (EqualizerPreset p in presets) {
 				store.append (out iter);
 				store.set (iter, 0, p, 1, p.name);
 			}
 		}
 		else if (!last_selected_preset.is_default && ncustompresets < 1 && ndefaultpresets > 0) {
-			remove_preset_separator ();
+			remove_separator_item (-1);
 		}
 
 		modifying_list = false;
-		
+
 		selectAutomaticPreset ();
 	}
 
-	private void remove_preset_separator () {
-		TreeIter iter;		
-		for(int i = store.iter_n_children(null) - 1; store.get_iter_from_string(out iter, i.to_string()); --i) {
-			string text;
-			store.get(iter, 1, out text);
-
-			if(text != null && text == SEPARATOR_NAME) {
-				store.remove(iter);
-				break;
-			}
-		}
-			
-	}
-	
 	public virtual void listSelectionChange() {
 		if (modifying_list)
 			return;
 
 		TreeIter it;
 		get_active_iter (out it);
-		
+
 		GLib.Object o;
 		store.get (it, 0, out o);
 
 		if (o != null && o is EqualizerPreset) {
 			set_title ((o as EqualizerPreset).name);
 			last_selected_preset = o as EqualizerPreset;
+
+			if (automatic_selected)
+				add_delete_preset_option();
+
 			automatic_selected = false;
 			preset_selected(o as EqualizerPreset);
 			return;
@@ -248,6 +238,7 @@ public class BeatBox.PresetList : ComboBox {
 			{
 				case AUTOMATIC_MODE:
 					automatic_selected = true;
+					remove_delete_option();
 					automatic_preset_chosen();
 					break;
 				case ADD_NEW_PRESET:
@@ -258,13 +249,13 @@ public class BeatBox.PresetList : ComboBox {
 					break;
 			}
 	}
-	
+
 	public void selectAutomaticPreset() {
 		automatic_selected = true;
 		automatic_preset_chosen ();
 		set_active(0);
 	}
-	
+
 	public void selectPreset(string? preset_name) {
 
 		if (!(preset_name == null || preset_name.length < 1)) {
@@ -281,14 +272,14 @@ public class BeatBox.PresetList : ComboBox {
 				}
 			}
 		}
-		
+
 		selectAutomaticPreset ();
 	}
-	
+
 	public EqualizerPreset? getSelectedPreset() {
 		TreeIter it;
 		get_active_iter(out it);
-		
+
 		GLib.Object o;
 		store.get(it, 0, out o);
 
@@ -297,21 +288,72 @@ public class BeatBox.PresetList : ComboBox {
 		else
 			return null;
 	}
-	
+
 	public Gee.Collection<EqualizerPreset> getPresets() {
-		
+
 		var rv = new Gee.LinkedList<EqualizerPreset>();
-		
+
 		TreeIter iter;
 		for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
 			GLib.Object o;
 			store.get(iter, 0, out o);
-			
+
 			if(o != null && o is EqualizerPreset)
 				rv.add(o as EqualizerPreset);
 		}
-		
+
 		return rv;
+	}
+
+	private void remove_delete_option () {
+		TreeIter iter;
+		for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
+			string text;
+			store.get(iter, 1, out text);
+
+			if(text != null && text == DELETE_PRESET) {
+				store.remove(iter);
+				// Also remove the separator ...
+				remove_separator_item(1);
+			}
+		}
+	}
+
+	private void remove_separator_item (int index) {
+		int count = 0, nitems = store.iter_n_children(null);
+		TreeIter iter;
+
+		for(int i = nitems - 1; store.get_iter_from_string(out iter, i.to_string()); --i) {
+			count++;
+			string text;
+			store.get(iter, 1, out text);
+
+			if((nitems - index == count || index == -1) && text != null && text == SEPARATOR_NAME) {
+				store.remove(iter);
+				break;
+			}
+		}
+	}
+
+	private void add_delete_preset_option () {
+		TreeIter last_iter, new_iter;
+		for(int i = 0; store.get_iter_from_string(out last_iter, i.to_string()); ++i) {
+			string text;
+			store.get(last_iter, 1, out text);
+
+			if(text != null && text == SEPARATOR_NAME)
+				break;
+		}
+
+		// Add option
+		store.insert_after(out new_iter, last_iter);
+		store.set(new_iter, 0, null, 1, DELETE_PRESET);
+
+		last_iter = new_iter;
+
+		// Add separator
+		store.insert_after(out new_iter, last_iter);
+		store.set(new_iter, 0, null, 1, SEPARATOR_NAME);
 	}
 }
 
