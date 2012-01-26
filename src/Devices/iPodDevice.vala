@@ -718,16 +718,20 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			if(transfer_cancelled)
 				break;
 			
-			Media s = lm.media_from_id(i).copy();
-			s.rowid = 0;
-			lm.add_media(s, true);
-			stdout.printf("checking %s\n", s.uri);
-			if(File.new_for_uri(s.uri).query_exists() && s.uri.has_prefix("file://" + get_path())) {
+			Media temp = lm.media_from_id(i);
+			stdout.printf("checking %s\n", temp.uri);
+			if(File.new_for_uri(temp.uri).query_exists() && temp.isTemporary) {
+				Media s = temp.copy();
+				s.rowid = 0;
+				s.isTemporary = false;
+				s.date_added = (int)time_t();
+				lm.add_media(s, true);
+				
 				current_operation = "Importing <b>" + s.title + "</b> to library";
 				lm.fo.update_file_hierarchy(s, false, false);
 			}
 			else {
-				stdout.printf("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", s.title);
+				stdout.printf("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", temp.title);
 			}
 			
 			++index;

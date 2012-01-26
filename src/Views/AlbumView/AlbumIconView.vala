@@ -305,7 +305,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		stdout.printf("button was released\n");
 		if(ev.type == Gdk.EventType.BUTTON_RELEASE && ev.button == 1) {
 			TreePath path;
-			TreeIter iter;
 			CellRenderer cell;
 				
 			icons.get_item_at_pos((int)ev.x, (int)ev.y, out path, out cell);

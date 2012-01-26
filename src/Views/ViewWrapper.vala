@@ -120,7 +120,7 @@ public class BeatBox.ViewWrapper : VBox {
 			pack_start(errorBox, true, true, 0);
 		
 		//needs_update = true;
-		//doUpdate(currentView, get_media_ids(), false, false, false);
+		doUpdate(currentView, get_media_ids(), false, false, false);
 		
 		
 		//if(the_hint == ViewWrapper.Hint.MUSIC || the_hint == ViewWrapper.Hint.PODCAST || the_hint == ViewWrapper.Hint.STATION)
@@ -303,6 +303,7 @@ public class BeatBox.ViewWrapper : VBox {
 		list.remove_medias(to_remove);
 		albumView.remove_medias(to_remove);
 		
+		needs_update = true;
 		in_update = false;
 	}
 	
@@ -352,6 +353,7 @@ public class BeatBox.ViewWrapper : VBox {
 				set_statusbar_text();
 		}
 		
+		needs_update = true;
 		in_update = false;
 	}
 	

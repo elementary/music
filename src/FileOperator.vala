@@ -392,7 +392,7 @@ public class BeatBox.FileOperator : Object {
 		var dummy_list = new LinkedList<string>();
 		foreach(string s in toRemove) {
 			try {
-				var file = GLib.File.new_for_path(s);
+				var file = GLib.File.new_for_uri(s);
 				file.trash();
 				
 				var old_folder_items = count_music_files(file.get_parent(), ref dummy_list);
