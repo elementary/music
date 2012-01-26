@@ -153,12 +153,6 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	public void set_as_current_list(int media_id, bool is_initial) {
 		var ordered_songs = radio_model.getOrderedMedias();
 		
-		if(media_id == 0 && lm.media_info.media != null &&
-		!ordered_songs.contains(lm.media_info.media.rowid))
-			return;
-		else if(media_id != 0 && !ordered_songs.contains(media_id))
-			return;
-		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();

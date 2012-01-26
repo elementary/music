@@ -173,17 +173,13 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	
 	public void set_as_current_list(int media_id, bool is_initial) {
 		var ordered_songs = music_model.getOrderedMedias();
-		
-		if(media_id == 0 && lm.media_info.media != null &&
-		!ordered_songs.contains(lm.media_info.media.rowid))
-			return;
-		else if(media_id != 0 && !ordered_songs.contains(media_id))
-			return;
+		stdout.printf("there are %d ordered songs\n", ordered_songs.size);
 		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
 		int i = 0;
+		lm.current_index = 0;
 		foreach(int id in ordered_songs) {
 			lm.addToCurrent(id);
 			
@@ -199,7 +195,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		if(lm.media_info.media != null)
 			music_model.updateMedia(lm.media_info.media.rowid, get_is_current());
-		
+		stdout.printf("current list is %d and index %d\n", lm.current_medias().size, lm.current_index);
 		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
 	

@@ -81,7 +81,13 @@ public class BeatBox.AlbumListView : Window {
 
         get_style_context().add_class("AlbumListDialogBase");
         get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
-		
+        
+        // set maximum size
+        Gdk.Geometry geom = new Gdk.Geometry();
+        geom.max_width = 350;
+        geom.max_height = 400;
+        set_geometry_hints(null, geom, (Gdk.WindowHints.MAX_SIZE | Gdk.WindowHints.BASE_SIZE));
+        		
 		// add close button
 		var close = new Gtk.Button ();
         close.set_image (new Gtk.Image.from_stock ("gtk-close", Gtk.IconSize.MENU));
@@ -93,6 +99,8 @@ public class BeatBox.AlbumListView : Window {
 		// add album artist/album labels
 		album_label = new Label("Album");
 		artist_label = new Label("Artist");
+		album_label.ellipsize = Pango.EllipsizeMode.END;
+		artist_label.ellipsize = Pango.EllipsizeMode.END;
 		
 		// add actual list
 		mtv = new MusicTreeView(lm, lm.lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);

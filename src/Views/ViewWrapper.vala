@@ -120,10 +120,10 @@ public class BeatBox.ViewWrapper : VBox {
 			pack_start(errorBox, true, true, 0);
 		
 		//needs_update = true;
-		doUpdate(currentView, get_media_ids(), false, false, false);
+		//doUpdate(currentView, get_media_ids(), false, false, false);
 		
 		
-		//if(the_hint == ViewWrapper.Hint.MUSIC)
+		//if(the_hint == ViewWrapper.Hint.MUSIC || the_hint == ViewWrapper.Hint.PODCAST || the_hint == ViewWrapper.Hint.STATION)
 		//	doUpdate(ViewType.LIST, get_media_ids(), true, true, false);
 		
 		if(albumView is AlbumView)
@@ -363,7 +363,7 @@ public class BeatBox.ViewWrapper : VBox {
 	 * @param do_visual If true, visually populate as well
 	*/
 	public void doUpdate(ViewType type, Collection<int> up_medias, bool set_medias, bool force, bool in_thread) {
-		if(in_update || in_thread)
+		if(in_update)
 			return;
 			
 		//if(!force && !set_medias && !needs_update && (type == currentView))
@@ -432,10 +432,10 @@ public class BeatBox.ViewWrapper : VBox {
 				}
 			}
 			
-			/*if(list.get_is_current()) { // don't update, user is playing current list
+			if(lm.current_medias().size == list.get_medias().size && lm.current_medias().contains_all(list.get_medias())) { // don't update, user is playing current list
 				stdout.printf("3\n");
 				return;
-			}*/
+			}
 		}
 		/* END special case */
 		

@@ -433,21 +433,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		initializationFinished = true;
 		
+		sideTree.resetView();
 		var vw = (ViewWrapper)sideTree.getSelectedWidget();
 		if(lm.media_info.media != null) {
 			vw.list.set_as_current_list(0, true);
+			stdout.printf("set a view as current list\n");
 			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
 				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
 			}
 		}
 		
 		searchField.set_text(lm.settings.getSearchString());
-		vw.doUpdate(vw.currentView, vw.get_media_ids(), false, true, false);
+		//vw.doUpdate(vw.currentView, vw.get_media_ids(), false, true, false);
 		
 		show_all();
 		resize(settings.getWindowWidth(), this.default_height);
 		
-		sideTree.resetView();
 		updateSensitivities();
 		
 		if(lm.song_ids().size == 0)

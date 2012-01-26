@@ -30,6 +30,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		lw = lww;
 		
 		medias = new HashMap<string, LinkedList<int>>();
+		_show_next = new LinkedList<int>();
 		foreach(int i in smedias) {
 			Media s = lm.media_from_id(i);
 			string key = s.album_artist + s.album;
@@ -75,7 +76,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		
 		icons.button_release_event.connect(buttonReleaseEvent);
 		icons.button_press_event.connect(buttonReleaseEvent);
-		//icons.item_activated.connect(itemActivated);
+		icons.item_activated.connect(itemActivated);
 		this.size_allocate.connect(resized);
 		this.focus_out_event.connect(on_focus_out);
 		
@@ -239,7 +240,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	 * shown
 	*/
 	public void populate_view() {
-		
 		icons.freeze_child_notify();
 		icons.set_model(null);
 		
@@ -312,55 +312,45 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			
 			if(path == null)
 				return false;
-				
-			if(!model.get_iter(out iter, path)) {
-				alv.hide();
-				stdout.printf("could not get iter from path\n");
-				return false;
-			}
 			
-			icons.select_path(path);
-			
-			stdout.printf("showing!\n");
-			Media s = ((AlbumViewModel)model).get_media_representation(iter);
-			
-			alv.set_songs_from_media(s);
-			//lw.miller.albums.set_selected(s.album);
-			
-			// find window's location
-			int x, y;
-			Gtk.Allocation alloc;
-			lm.lw.get_position(out x, out y);
-			get_allocation(out alloc);
-			
-			// move down to icon view's allocation
-			x += lm.lw.sourcesToMedias.get_position();
-			y += alloc.y;
-			
-			// center it on this icon view
-			x += (alloc.width/2) - 175;
-			y += (alloc.height/2) - 100;
-			alv.move(x, y);
-			
-			alv.show_all();
-			alv.present();
+			itemActivated(path);
 		}
 		
 		return false;
 	}
 	
-	public virtual void itemActivated(TreePath path) {
+	void itemActivated(TreePath path) {
 		TreeIter iter;
 		
-		if(!model.get_iter(out iter, path))
+		if(!model.get_iter(out iter, path)) {
+			alv.hide();
+			stdout.printf("could not get iter from path\n");
 			return;
+		}
 		
-		string s;
-		model.get(iter, 1, out s);
+		stdout.printf("showing!\n");
+		Media s = ((AlbumViewModel)model).get_media_representation(iter);
 		
-		string[] pieces = s.split("\n", 0);
+		alv.set_songs_from_media(s);
+		//lw.miller.albums.set_selected(s.album);
 		
-		itemClicked(pieces[0], pieces[1]);
+		// find window's location
+		int x, y;
+		Gtk.Allocation alloc;
+		lm.lw.get_position(out x, out y);
+		get_allocation(out alloc);
+		
+		// move down to icon view's allocation
+		x += lm.lw.sourcesToMedias.get_position();
+		y += alloc.y;
+		
+		// center it on this icon view
+		x += (alloc.width/2) - 175;
+		y += (alloc.height/2) - 100;
+		alv.move(x, y);
+		
+		alv.show_all();
+		alv.present();
 	}
 	
 	void medias_removed(LinkedList<int> ids) {
