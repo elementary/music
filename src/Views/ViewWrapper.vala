@@ -132,7 +132,7 @@ public class BeatBox.ViewWrapper : VBox {
 		no_show_all = true;
 		
 		lw.viewSelector.mode_changed.connect(selectorViewChanged);
-		lm.media_played.connect(mediaPlayed);
+		//lm.media_played.connect(mediaPlayed);
 		lm.medias_added.connect(medias_added);
 		lm.medias_updated.connect(medias_updated);
 		lm.medias_removed.connect(medias_removed);
@@ -183,19 +183,16 @@ public class BeatBox.ViewWrapper : VBox {
 		return currentView;
 	}
 	
-	public void mediaPlayed(int id, int old) {
-		if(list.get_hint() != ViewWrapper.Hint.SIMILAR)
+	public void show_retrieving_similars() {
+		if(hint != ViewWrapper.Hint.SIMILAR || lm.media_info.media == null)
 			return;
 			
-		if(!(lm.current_medias().size == list.get_medias().size && lm.current_medias().contains_all(list.get_medias()))) {
-			/* a new media is played. don't show list until medias have loaded */
-			errorBox.show_icon = false;
-			errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\n\nBeatBox is loading songs similar to <b>" + lm.media_from_id(id).title.replace("&", "&amp;") + "</b> by <b>" + lm.media_from_id(id).artist.replace("&", "&amp;") + "</b> ...", null);
-			errorBox.show();
-			list.hide();
-			albumView.hide();
-			similarsFetched = false;
-		}
+		errorBox.show_icon = false;
+		errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\n\nBeatBox is loading songs similar to <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> ...", null);
+		errorBox.show();
+		list.hide();
+		albumView.hide();
+		similarsFetched = false;
 	}
 	
 	void medias_added(LinkedList<int> ids) {
@@ -434,10 +431,10 @@ public class BeatBox.ViewWrapper : VBox {
 				}
 			}
 			
-			if(lm.current_medias().size == list.get_medias().size && lm.current_medias().contains_all(list.get_medias())) { // don't update, user is playing current list
+			/*if(lm.current_medias().size == list.get_medias().size && lm.current_medias().contains_all(list.get_medias())) { // don't update, user is playing current list
 				stdout.printf("3\n");
 				return;
-			}
+			}*/
 		}
 		/* END special case */
 		

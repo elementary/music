@@ -20,8 +20,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	bool _is_current_view;
 	bool needsUpdate;
 	
-	AlbumListView alv;
-	
 	public signal void itemClicked(string artist, string album);
 	
 	/* medias should be mutable, as we will be sorting it */
@@ -53,12 +51,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public void buildUI() {
-		//Viewport v = new Viewport(null, null);
-		alv = new AlbumListView(lm);
+		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		
-        set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-		
-		//v.set_shadow_type(ShadowType.NONE);
 		icons = new IconView();
 		model = new AlbumViewModel(lm, defaultPix);
 		
@@ -69,8 +63,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.spacing = 2;
 		icons.margin = 20;
 		add(icons);
-		
-		//add(v);
 		
 		show_all();
 		
@@ -96,7 +88,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		_is_current_view = val;
 		
 		if(!val)
-			alv.hide();
+			lw.alv.hide();
 	}
 	
 	public bool get_is_current_view() {
@@ -322,7 +314,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		TreeIter iter;
 		
 		if(!model.get_iter(out iter, path)) {
-			alv.hide();
+			lw.alv.hide();
 			stdout.printf("could not get iter from path\n");
 			return;
 		}
@@ -330,7 +322,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		stdout.printf("showing!\n");
 		Media s = ((AlbumViewModel)model).get_media_representation(iter);
 		
-		alv.set_songs_from_media(s);
+		lw.alv.set_songs_from_media(s);
 		//lw.miller.albums.set_selected(s.album);
 		
 		// find window's location
@@ -346,10 +338,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		// center it on this icon view
 		x += (alloc.width/2) - 175;
 		y += (alloc.height/2) - 100;
-		alv.move(x, y);
+		lw.alv.move(x, y);
 		
-		alv.show_all();
-		alv.present();
+		lw.alv.show_all();
+		lw.alv.present();
 	}
 	
 	void medias_removed(LinkedList<int> ids) {

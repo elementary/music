@@ -329,6 +329,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_already_played.clear();
 			lw.resetSideTree(false);
 			lw.updateSensitivities();
+			stopPlayback();
 			
 			settings.setMusicMountName("");
 			settings.setMusicFolder(folder);
