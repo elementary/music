@@ -46,8 +46,8 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
         } else {
             menuItem = false;
             // Make the eventbox transparent
-            this.set_above_child(true);
-            this.set_visible_window(false);
+            this.set_above_child (true);
+            this.set_visible_window (false);
         }
 
         starred = BeatBox.Beatbox._program.lm.icons.starred_icon.render (size, null);
@@ -94,14 +94,14 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
         Allocation al;
         get_allocation(out al);
 
-        int buffer = 0;
+        int offset = 0;
         if(centered)
-            buffer = (al.width - width_request) / 2;
+            offset = (al.width - width_request) / 2;
         else if(menuItem)
-            buffer = 32;
+            offset = (4 * starred.width) / 3;
 
-        if(event.x - buffer > 5)
-            new_rating = (int)((event.x - buffer + 18) / 18);
+        if(event.x - offset > 5)
+            new_rating = (int)((event.x - offset + 18) / 18);
         else
             new_rating = 0;
 
@@ -117,15 +117,15 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
         Allocation al;
         get_allocation(out al);
 
-        // buffer for !centered off for new menu problems
-        int buffer = 0;
+        // offset for !centered off for new menu problems
+        int offset = 0;
         if(centered)
-            buffer = (al.width - width_request) / 2;
+            offset = (al.width - width_request) / 2;
         else if(menuItem)
-            buffer = 32;
+            offset = 32;
 
-        if(event.x - buffer > 5)
-            new_rating = (int)((event.x - buffer + 18) / 18);
+        if(event.x - offset > 5)
+            new_rating = (int)((event.x - offset + 18) / 18);
         else
             new_rating = 0;
 
