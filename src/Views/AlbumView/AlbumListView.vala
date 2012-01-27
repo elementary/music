@@ -128,7 +128,7 @@ public class BeatBox.AlbumListView : Window {
 		
 		var songs = new LinkedList<int>();
 		var albums = new LinkedList<int>();
-        lm.do_search("", mtv.get_hint(), "All Genres", m.album_artist, m.album, lm.media_ids(), ref songs, ref albums);
+        lm.do_search("", mtv.get_hint(), "All Genres", m.album_artist, m.album, ((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).get_media_ids(), ref songs, ref albums);
         
         // decide rating. unless all are equal, show 0.
 		int overall_rating = -1;
@@ -161,7 +161,7 @@ public class BeatBox.AlbumListView : Window {
 	}
 	
 	bool focus_out(Gdk.EventFocus event) {
-		this.hide();
+		//this.hide();
 		
 		return false;
 	}

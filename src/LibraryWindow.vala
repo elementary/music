@@ -426,7 +426,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("User interface has been built\n");
 		
 		int i = settings.getLastMediaPlaying();
-		if(i != 0) {
+		if(i != 0 && lm.media_from_id(i) != null && File.new_for_uri(lm.media_from_id(i).uri).query_exists()) {
 			lm.media_from_id(i).resume_pos;
 			lm.playMedia(i, true);
 		}
