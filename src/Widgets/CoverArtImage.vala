@@ -21,25 +21,30 @@
  */
  
 using Gtk;
+using Gdk;
 
-public class BeatBox.CoverArtImage : ScrolledWindow {
+public class BeatBox.CoverArtImage : Gtk.EventBox {
 	LibraryManager lm;
 	LibraryWindow lw;
 	
 	public Gdk.Pixbuf defaultImage;
-	Gtk.Image the_image;
+	Gdk.Pixbuf image;
+	
+	int width;
+	int height;
 	
 	public CoverArtImage(LibraryManager lmm, LibraryWindow lww) {
 		lm = lmm;
 		lw = lww;
 		
-		the_image = new Image();
-		this.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
-		add_with_viewport(the_image);
+		width_request  = 100;
+        height_request = 100;
 		
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
 		this.drag_data_received.connect(dragReceived);
+		
+		draw.connect(draw_event);
 	}
 	
 	private bool is_valid_image_type(string type) {
@@ -50,8 +55,24 @@ public class BeatBox.CoverArtImage : ScrolledWindow {
 	}
 	
 	public void set_from_pixbuf(Gdk.Pixbuf buf) {
-		the_image.set_from_pixbuf(buf);
+		image = buf;
+		queue_draw();
 	}
+	
+	public void update_allocated_space(int size) {
+		width_request = size - 1;
+		height_request = size - 1;
+	}
+	
+    public virtual bool draw_event(Cairo.Context cairo) {
+        Allocation al;
+        get_allocation(out al);
+        
+        Gdk.cairo_set_source_pixbuf(cairo, image.scale_simple(al.width, al.width, Gdk.InterpType.BILINEAR), 0, 0);
+        cairo.paint();
+
+        return true;
+    }
 	
 	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
 		bool success = false;

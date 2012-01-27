@@ -263,8 +263,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		stdout.printf("done with side tree\n");
 		
 		sideTreeScroll = new ScrolledWindow(null, null);
-		sideTreeScroll.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
+		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		sideTreeScroll.add(sideTree);
+		
+		var coverArtScroll = new ScrolledWindow(null, null);
+		coverArtScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.NEVER);
+		coverArtScroll.add_with_viewport(coverArt);
 		
 		millerPane.set_position(settings.getMillerHeight());
 		
@@ -386,7 +390,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToMedias.pack2(mediasToInfo, true, true);
 		
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
-		sideBar.pack_end(coverArt, false, true, 0);
+		sideBar.pack_end(coverArtScroll, false, true, 0);
 		
 		statusBar.pack_start(shuffleChooser, false, false, 2);
 		statusBar.pack_start(repeatChooser, false, false, 2);
@@ -646,26 +650,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//loop through all musictreeviews and call updatecurrentmedia
 		
 		if(lm.media_info.media != null) {
-			/*string file = lm.media_info.media.getAlbumArtPath();
-			Gdk.Pixbuf pix = lm.fo.tagger.get_embedded_art(lm.media_info.media);
-			if(pix != null) {
-				coverArt.set_from_pixbuf(pix.scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
-				stdout.printf("used embedded!\n");
-			}
-			else if(file.contains(settings.getMusicFolder()) && settings.getMusicFolder() != "") {
-				try {
-					coverArt.set_from_pixbuf(new Gdk.Pixbuf.from_file_at_size(file, sourcesToMedias.position, sourcesToMedias.position));
-				}
-				catch(GLib.Error err) {
-					stdout.printf("Could not set image art from song artPath: %s\n", err.message);
-					lm.media_info.media.setAlbumArtPath("");
-				}
-			}*/
 			if(lm.get_album_art(lm.media_info.media.rowid) != null)
-				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
+				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid));
 			else {
-				coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
+				coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null));
 			}
+			
+			coverArt.update_allocated_space(sourcesToMedias.position);
 		}
 		
 		return false;
@@ -1029,22 +1020,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void sourcesToMediasHandleSet(Allocation rectangle) {
-		int height, width;
-		get_size(out width, out height);
+		updateCurrentMedia();
 		
-		if(rectangle.width > height/2) {
-			stdout.printf("too big\n");
-			sourcesToMedias.set_position(height/2);
-			return;
-		}
-		else if(sideBar.get_allocated_width() <= 200) {
-			stdout.printf("too small\n");
-			//sourcesToMedias.set_position(200);
-			return;
-		}
-		stdout.printf("ok fine\n");
 		if(settings.getSidebarWidth() != rectangle.width) {
-			updateCurrentMedia();
 			settings.setSidebarWidth(rectangle.width);
 		}
 	}
