@@ -77,7 +77,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	
 	public void set_is_current(bool val) {
 		_is_current = val;
-		stdout.printf("album icon view is no %d\n", val ? 1 : 0);
 	}
 	
 	public bool get_is_current() {
@@ -177,7 +176,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				medias.set(key, new LinkedList<int>());
 			if(_showing_medias.get(key) == null) {
 				_showing_medias.set(key, new LinkedList<int>());
-				stdout.printf("going to append album %s\n", s.album);
+				
 				Media alb = new Media("");
 				alb.album_artist = s.album_artist;
 				alb.album = s.album;
@@ -294,7 +293,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public bool buttonReleaseEvent(Gdk.EventButton ev) {
-		stdout.printf("button was released\n");
 		if(ev.type == Gdk.EventType.BUTTON_RELEASE && ev.button == 1) {
 			TreePath path;
 			CellRenderer cell;
@@ -315,15 +313,13 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		
 		if(!model.get_iter(out iter, path)) {
 			lw.alv.hide();
-			stdout.printf("could not get iter from path\n");
+			
 			return;
 		}
 		
-		stdout.printf("showing!\n");
 		Media s = ((AlbumViewModel)model).get_media_representation(iter);
 		
 		lw.alv.set_songs_from_media(s);
-		//lw.miller.albums.set_selected(s.album);
 		
 		// find window's location
 		int x, y;

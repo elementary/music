@@ -1036,15 +1036,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 	
 	public virtual void on_quit() {
-		stdout.printf("Stopping playback\n");
 		lm.settings.setLastMediaPosition((int)((double)lm.player.getPosition()/1000000000));
 		if(lm.media_info.media != null) {
 			lm.media_info.media.resume_pos = (int)((double)lm.player.getPosition()/1000000000);
 			lm.update_media(lm.media_info.media, false, false);
 		}
 		lm.player.pause();
-		
-		stdout.printf("TODO: Clean up play queue\n");
 	}
 	
 	public virtual void fileImportMusicClick() {

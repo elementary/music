@@ -719,7 +719,6 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 				break;
 			
 			Media temp = lm.media_from_id(i);
-			stdout.printf("checking %s\n", temp.uri);
 			if(File.new_for_uri(temp.uri).query_exists() && temp.isTemporary) {
 				Media s = temp.copy();
 				s.rowid = 0;

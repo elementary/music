@@ -89,7 +89,7 @@ public class BeatBox.ViewWrapper : VBox {
 			list = new SimilarPane(lm, lw);
 			errorBox = new WarningLabel();
 			errorBox.show_icon = false;
-			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">Similar Media View</span>\n\nIn this view, BeatBox will automatically find medias similar to the one you are playing.\nYou can then start playing those medias, or save them for later.", null);
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find medias similar to the one you are playing.") + "\n" + _("You can then start playing those medias, or save them for later."), null);
 		}
 		else if(the_hint == ViewWrapper.Hint.PODCAST || the_hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 			list = new PodcastListView(lm, lw, sort, dir, the_hint, id);
@@ -107,7 +107,19 @@ public class BeatBox.ViewWrapper : VBox {
 		if(the_hint == ViewWrapper.Hint.CDROM) {
 			errorBox = new WarningLabel();
 			errorBox.show_icon = false;
-			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">Audio CD Invalid</span>\n\nBeatBox could not read the contents of this Audio CD.", null);
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Audio CD Invalid") + "</span>\n\n" + _("BeatBox could not read the contents of this Audio CD."), null);
+		}
+		
+		if(the_hint == ViewWrapper.Hint.PODCAST) {
+			errorBox = new WarningLabel();
+			errorBox.show_icon = false;
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."), null);
+		}
+		
+		if(the_hint == ViewWrapper.Hint.STATION) {
+			errorBox = new WarningLabel();
+			errorBox.show_icon = false;
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Internet Radio Stations Found") + "</span>\n\n" + _("To add a station, visit a website such as SomaFM to find PLS or M3U files.") + "\n" + _("You can then import the file to add the station."), null);
 		}
 		
 		//list.populate_view(medias, false);
@@ -116,7 +128,8 @@ public class BeatBox.ViewWrapper : VBox {
 		pack_end(list, true, true, 0);
 		pack_end(albumView, true, true, 0);
 		
-		if(hint == ViewWrapper.Hint.SIMILAR || hint == ViewWrapper.Hint.CDROM)
+		if(hint == ViewWrapper.Hint.SIMILAR || hint == ViewWrapper.Hint.CDROM ||
+		hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.STATION)
 			pack_start(errorBox, true, true, 0);
 		
 		//needs_update = true;
@@ -188,7 +201,7 @@ public class BeatBox.ViewWrapper : VBox {
 			return;
 			
 		errorBox.show_icon = false;
-		errorBox.setWarning("<span weight=\"bold\" size=\"larger\">Loading similar songs</span>\n\nBeatBox is loading songs similar to <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> ...", null);
+		errorBox.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Loading similar songs") + "</span>\n\n" + _("BeatBox is loading songs similar to") + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> " + _("..."), null);
 		errorBox.show();
 		list.hide();
 		albumView.hide();
@@ -227,8 +240,6 @@ public class BeatBox.ViewWrapper : VBox {
 					"All Genres", "All Artists", "All Albums",
 					to_search, ref shouldBe, ref shouldBeAlbum);
 			
-			stdout.printf("of %d ids, %d should stay, %d should show\n", ids.size, shouldBe.size, shouldShow.size);
-			
 			var to_add = new LinkedList<int>();
 			var to_remove = new LinkedList<int>();
 			var to_remove_show = new LinkedList<int>();
@@ -261,7 +272,6 @@ public class BeatBox.ViewWrapper : VBox {
 				}
 			}
 			
-			stdout.printf("removing %d adding %d\n", to_remove_show.size, to_add.size);
 			if(isCurrentView) {
 				Idle.add( () => {
 					list.append_medias(to_add);
@@ -269,8 +279,10 @@ public class BeatBox.ViewWrapper : VBox {
 					
 					list.remove_medias(to_remove_show);
 					albumView.remove_medias(to_remove_show);
+					
 					set_statusbar_text();
-				
+					check_show_error_box();
+					
 					return false;
 				});
 			}
@@ -299,6 +311,8 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		list.remove_medias(to_remove);
 		albumView.remove_medias(to_remove);
+		
+		check_show_error_box();
 		
 		needs_update = true;
 		in_update = false;
@@ -346,12 +360,58 @@ public class BeatBox.ViewWrapper : VBox {
 			foreach(int i in potentialShowing)
 				showingMedias.set(i, 1);
 			
-			if(isCurrentView)
+			if(isCurrentView) {
 				set_statusbar_text();
+				check_show_error_box();
+			}
 		}
 		
 		needs_update = true;
 		in_update = false;
+	}
+	
+	bool check_show_error_box() {
+		if((hint == ViewWrapper.Hint.CDROM || hint == ViewWrapper.Hint.PODCAST ||
+		hint == ViewWrapper.Hint.STATION) && this.visible) {
+			int size_check = media_count;
+			if(hint == ViewWrapper.Hint.PODCAST) {
+				size_check = 0;
+				foreach(int i in lm.podcast_ids()) {
+					if(!lm.media_from_id(i).isTemporary)
+						++size_check;
+				}
+			}
+			if(hint == ViewWrapper.Hint.STATION) {
+				size_check = 0;
+				foreach(int i in lm.station_ids()) {
+					if(lm.media_from_id(i) != null)
+						++size_check;
+				}
+			}
+			
+			if(size_check == 0) {
+				errorBox.show_icon = (hint == ViewWrapper.Hint.CDROM);
+				errorBox.show_all();
+				list.hide();
+				albumView.hide();
+				
+				return true;
+			}
+			else {
+				errorBox.hide();
+				
+				if(currentView == ViewType.LIST) {
+					list.show_all();
+					albumView.hide();
+				}
+				else {
+					list.hide();
+					albumView.show_all();
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 	/** Updates the displayed view and its content
@@ -378,26 +438,13 @@ public class BeatBox.ViewWrapper : VBox {
 			media_count = medias.size;
 		}
 		
-		//stdout.printf("in_thread: %d\n", in_thread ? 1 : 0);
 		currentView = type;
 		
-		if(!in_thread && hint == ViewWrapper.Hint.CDROM && this.visible) {
-			stdout.printf("updating cd with %d\n", media_count);
-			if(media_count == 0) {
-				errorBox.show_icon = true;
-				errorBox.show();
-				list.hide();
-				albumView.hide();
-				
-				in_update = false;
-				return;
-			}
-			else {
-				errorBox.hide();
-				list.show();
-				albumView.show();
-			}
+		if(!in_thread && check_show_error_box()) {
+			in_update = false;
+			return;
 		}
+		
 		/* BEGIN special case for similar medias */
 		if(!in_thread && list.get_hint() == ViewWrapper.Hint.SIMILAR && this.visible) {
 			SimilarPane sp = (SimilarPane)(list);
@@ -414,7 +461,7 @@ public class BeatBox.ViewWrapper : VBox {
 			else {
 				if(medias.size < 10) { // say we could not find similar medias
 					errorBox.show_icon = true;
-					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">No similar songs found\n</span>\nBeatBox could not find songs similar to <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\nMake sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches.", Justification.LEFT);
+					errorBox.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to") + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\n" + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."), Justification.LEFT);
 					errorBox.show_all();
 					list.hide();
 					albumView.hide();
@@ -462,6 +509,8 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		//stdout.printf("populating\n");
 		if(!in_thread && (this.visible || force)) {
+			errorBox.hide();
+			
 			if(type == ViewType.LIST) {
 				list.populate_view();
 				list.show_all();
