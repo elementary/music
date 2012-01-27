@@ -101,7 +101,7 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
             offset = (4 * starred.width) / 3;
 
         if(event.x - offset > 5)
-            new_rating = (int)((event.x - offset + 18) / 18);
+            new_rating = (int)((event.x - offset + 12) / starred.width);
         else
             new_rating = 0;
 
@@ -117,7 +117,6 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
         Allocation al;
         get_allocation(out al);
 
-        // offset for !centered off for new menu problems
         int offset = 0;
         if(centered)
             offset = (al.width - width_request) / 2;
@@ -125,7 +124,7 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
             offset = 32;
 
         if(event.x - offset > 5)
-            new_rating = (int)((event.x - offset + 18) / 18);
+            new_rating = (int)((event.x - offset + 12) / starred.width);
         else
             new_rating = 0;
 

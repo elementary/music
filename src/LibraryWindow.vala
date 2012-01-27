@@ -662,9 +662,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 			}*/
 			if(lm.get_album_art(lm.media_info.media.rowid) != null)
-				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sideTree.get_allocated_width(), sideTree.get_allocated_width(), Gdk.InterpType.BILINEAR));
+				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
 			else {
-				coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sideTree.get_allocated_width(), sideTree.get_allocated_width(), Gdk.InterpType.BILINEAR));
+				coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
 			}
 		}
 		
