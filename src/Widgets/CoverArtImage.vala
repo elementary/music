@@ -30,9 +30,6 @@ public class BeatBox.CoverArtImage : Gtk.EventBox {
 	public Gdk.Pixbuf defaultImage;
 	Gdk.Pixbuf image;
 	
-	int width;
-	int height;
-	
 	public CoverArtImage(LibraryManager lmm, LibraryWindow lww) {
 		lm = lmm;
 		lw = lww;
@@ -60,8 +57,11 @@ public class BeatBox.CoverArtImage : Gtk.EventBox {
 	}
 	
 	public void update_allocated_space(int size) {
-		width_request = size - 1;
-		height_request = size - 1;
+		if(size <= 120)
+			return;
+		
+		width_request = size - 10;
+		height_request = size - 10;
 	}
 	
     public virtual bool draw_event(Cairo.Context cairo) {

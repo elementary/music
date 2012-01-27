@@ -179,8 +179,11 @@ public class BeatBox.Media : GLib.Object{
 	}
 	
 	public string getArtistImagePath() {
-		stdout.printf("fix getArtistImagePath\n");
-		return "";//Path.build_path("/", file.substring(0, _file.substring(0, _file.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
+		if(isTemporary)
+			return "";
+		
+		var path = File.new_for_uri(uri).get_path();
+		return Path.build_path("/", path.substring(0, path.substring(0, path.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
 	}
 	
 	public static Media from_track(string root, GPod.Track track) {
