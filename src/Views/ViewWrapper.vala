@@ -85,9 +85,9 @@ public class BeatBox.ViewWrapper : VBox {
 		relative_id = id;
 		hint = the_hint;
 		
+		errorBox = new WarningLabel();
 		if(the_hint == ViewWrapper.Hint.SIMILAR) {
 			list = new SimilarPane(lm, lw);
-			errorBox = new WarningLabel();
 			errorBox.show_icon = false;
 			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find medias similar to the one you are playing.") + "\n" + _("You can then start playing those medias, or save them for later."), null);
 		}
@@ -105,19 +105,16 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		
 		if(the_hint == ViewWrapper.Hint.CDROM) {
-			errorBox = new WarningLabel();
 			errorBox.show_icon = false;
 			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Audio CD Invalid") + "</span>\n\n" + _("BeatBox could not read the contents of this Audio CD."), null);
 		}
 		
 		if(the_hint == ViewWrapper.Hint.PODCAST) {
-			errorBox = new WarningLabel();
 			errorBox.show_icon = false;
 			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."), null);
 		}
 		
 		if(the_hint == ViewWrapper.Hint.STATION) {
-			errorBox = new WarningLabel();
 			errorBox.show_icon = false;
 			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Internet Radio Stations Found") + "</span>\n\n" + _("To add a station, visit a website such as SomaFM to find PLS or M3U files.") + "\n" + _("You can then import the file to add the station."), null);
 		}

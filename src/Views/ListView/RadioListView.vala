@@ -365,14 +365,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 				view.insert_column(tvc, index);
 			}
 			
-			// add this widget crap so we can get right clicks
-			view.get_column(index).widget = new Gtk.Label(tvc.title);
-			view.get_column(index).widget.show();
-			view.get_column(index).set_sort_indicator(false);
-			Gtk.Widget ancestor = view.get_column(index).widget.get_ancestor(typeof(Gtk.Button));
-			GLib.assert(ancestor != null);
-			
-			ancestor.button_press_event.connect(viewHeaderClick);
+			view.get_column(index).get_button().button_press_event.connect(viewHeaderClick);
 			view.get_column(index).notify["width"].connect(viewHeadersResized);
 			
 			++index;
