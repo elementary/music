@@ -6,180 +6,606 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-01-17 20:24+0100\n"
-"PO-Revision-Date: 2012-01-22 12:55+0000\n"
-"Last-Translator: Alexander Wilms <Unknown>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-28 20:18+0100\n"
+"PO-Revision-Date: 2012-01-28 20:18+0100\n"
+"Last-Translator: Alexander Wilms <alexander.wilms@zoho.com>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-01-28 05:16+0000\n"
 "X-Generator: Launchpad (build 14727)\n"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
-msgid "Get Some Tunes."
-msgstr "Hol dir ein paar Songs"
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:88
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr "Medien von einem Gerät importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
-msgid "BeatBox can't seem to find your music."
-msgstr "BeatBox findet deine Musik nicht."
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:89
+msgid "Sync"
+msgstr "Synchronisation"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
-msgid "Set Music Folder"
-msgstr "Wähle deinen Musikordner"
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:97
+msgid "Add Podcast"
+msgstr "Podcast hinzufügen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:211
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:98
+msgid "Download new Episodes"
+msgstr "Neue Episoden herunterladen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:106
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:215
 msgid "Import to Library"
 msgstr "In die Bibliothek importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:212
-msgid "Rescan Music Folder"
-msgstr "Musikordner neu einlesen"
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:107
+msgid "Eject"
+msgstr "Auswerfen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:213
-msgid "Equalizer"
-msgstr "Equalizer"
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:115
+msgid "Import Station"
+msgstr "Radiosender importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:222
-msgid "Search..."
-msgstr "Suchen..."
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:122
+msgid "New Playlist"
+msgstr "Neue Wiedergabeliste"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:245
-msgid "Title"
-msgstr "Titel"
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:123
+msgid "New Smart Playlist"
+msgstr "Neue intelligente Wiedergabeliste"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:296
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:124
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:125
+msgid "Remove"
+msgstr "Entfernen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:126
+msgid "Save as Playlist"
+msgstr "Als Wiedergabeliste speichern"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:127
+msgid "Export..."
+msgstr "Exportieren..."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:128
+msgid "Import Playlist"
+msgstr "Wiedergabeliste importieren"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:160
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:282
+msgid "Library"
+msgstr "Bibliothek"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:161
+msgid "Devices"
+msgstr "Geräte"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:162
+msgid "Network"
+msgstr "Netzwerk"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:163
+msgid "Playlists"
+msgstr "Wiedergabelisten"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:203
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:208
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:269
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:549
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:251
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:307
 #, c-format
 msgid "Artist"
 msgstr "Interpret"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:295
-msgid "Album"
-msgstr "Album"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:271
-msgid "Library"
-msgstr "Bibliothek"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:282
-msgid "Preferences"
-msgstr "Einstellungen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:293
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:299
-msgid "Off"
-msgstr "Aus"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:294
-msgid "Media"
-msgstr "Medien"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:297
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:300
-msgid "All"
-msgstr "Alle"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:302
-msgid "Hide"
-msgstr "Verbergen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:303
-msgid "Show"
-msgstr "Anzeigen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
-msgid "Locate"
-msgstr "Festlegen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
-msgid "Change your music folder."
-msgstr "Ändere deinen Musikordner."
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:478
-msgid "Similar"
-msgstr "Ähnliches"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:482
-msgid "Queue"
-msgstr "Warteschlange"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:486
-msgid "History"
-msgstr "Verlauf"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:490
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:204
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:498
 msgid "Music"
 msgstr "Musik"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:494
+#: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:209
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:502
 msgid "Podcasts"
 msgstr "Podcasts"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:498
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all medias"
+msgstr "Alle Medien importieren"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+msgid "Import"
+msgstr "Importieren"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "Nicht importieren"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/TransferFromDeviceDialog.vala:161
+msgid "Select individual medias to import:"
+msgstr "Wähle einzelne medien zum Import aus"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/TransferFromDeviceDialog.vala:179
+msgid "Check Item"
+msgstr "Eintrag überprüfen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/TransferFromDeviceDialog.vala:180
+msgid "Check Album"
+msgstr "Album überprüfen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/TransferFromDeviceDialog.vala:181
+msgid "Check Artist"
+msgstr "Interpret überprüfen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SetMusicFolderConfirmation.vala:45
+msgid "Export Playlists"
+msgstr "Wiedergabelisten exportieren"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SetMusicFolderConfirmation.vala:46
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:214
+msgid "Set Music Folder"
+msgstr "Musikordner wählen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SetMusicFolderConfirmation.vala:53
+msgid "<span weight=\"bold\" size=\"larger\">Set Music Folder?</span>"
+msgstr "<span weight=\"bold\" size=\"larger\">Musikordner festlegen?</span>"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:68
+msgid "Name of Playlist"
+msgstr "Name der Wiedergabeliste"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:69
+msgid "Rules"
+msgstr "Regeln"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:70
+msgid "Options"
+msgstr "Optionen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+msgid "<b>Name of Playlist</b>"
+msgstr "Name der Wiedergabeliste"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:77
+msgid "<b>Rules</b>"
+msgstr "<b>Regeln</b>"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:78
+msgid "<b>Options</b>"
+msgstr "<b>Optionen</b>"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:81
+msgid "Playlist Title"
+msgstr "Wiedergabeliste"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:91
+msgid "of the following:"
+msgstr "der folgenden"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:116
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:121
+msgid "Limit to"
+msgstr "Begrenzen auf"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:123
+msgid "medias"
+msgstr "Medien"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:135
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/StationEditor.vala:70
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SongEditor.vala:87
+msgid "Done"
+msgstr "Fertig"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:268
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:550
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:251
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:306
+msgid "Album"
+msgstr "Album"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:270
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:553
+msgid "Bitrate"
+msgstr "Bitrate"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:271
+msgid "Comment"
+msgstr "Kommentar"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:272
+msgid "Composer"
+msgstr "Komponist"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:273
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:557
+msgid "Date Added"
+msgstr "Hinzugefügt"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:274
+msgid "Date Released"
+msgstr "Veröffentlichungsdatum"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:275
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:551
+msgid "Genre"
+msgstr "Genre"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:276
+msgid "Grouping"
+msgstr ""
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:277
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:558
+msgid "Last Played"
+msgstr "Zuletzt gespielt"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:278
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:548
+msgid "Length"
+msgstr "Dauer"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:279
+msgid "Media Type"
+msgstr "Medientyp"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:280
+msgid "Playcount"
+msgstr "Wiedergabeanzahl"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:281
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:554
+msgid "Rating"
+msgstr "Bewertung"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:282
+msgid "Skipcount"
+msgstr "Überspringanzahl"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:283
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:547
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:250
+msgid "Title"
+msgstr "Titel"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:284
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:552
+msgid "Year"
+msgstr "Jahr"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:294
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:361
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SongEditor.vala:556
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:305
+msgid "Song"
+msgstr "Song"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:295
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:362
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SongEditor.vala:557
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:296
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+msgid "Audiobook"
+msgstr "Hörbuch"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:297
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:364
+msgid "Radio Station"
+msgstr "Radiosender"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:345
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:369
+msgid "is"
+msgstr "ist"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:346
+msgid "contains"
+msgstr "enthält"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:347
+msgid "does not contain"
+msgstr "enthält nicht"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:370
+msgid "is not"
+msgstr "ist nicht"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:383
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:394
+msgid "is exactly"
+msgstr "ist genau"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:384
+msgid "is at most"
+msgstr "ist maximal"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:385
+msgid "is at least"
+msgstr "ist mindestens"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:395
+msgid "is within"
+msgstr "ist in"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:396
+msgid "is before"
+msgstr "ist vor"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:409
+msgid "seconds"
+msgstr "Sekunden"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:417
+msgid "kbps"
+msgstr "kbps"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SyncWarningDialog.vala:44
+msgid "Import medias to Library"
+msgstr "Medien in die Bibliothek importieren"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SyncWarningDialog.vala:45
+msgid "Continue Syncing"
+msgstr "Synchronisation fortführen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SyncWarningDialog.vala:46
+msgid "Stop Syncing"
+msgstr "Synchronisation anhalten"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/StationEditor.vala:68
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SongEditor.vala:85
+msgid "Previous"
+msgstr "Vorheriger"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/StationEditor.vala:69
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SongEditor.vala:86
+msgid "Next"
+msgstr "Nächster"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:92
+msgid "Similar Media View"
+msgstr "Ähnliche Medien"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:92
+msgid "In this view, BeatBox will automatically find medias similar to the one you are playing."
+msgstr "In dieser Ansicht wird BeatBox automatisch Medien finden, welche Ähnlichkeit mit den gerade Gespielten haben."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:92
+msgid "You can then start playing those medias, or save them for later."
+msgstr "Dann kannst du diese Medien abspielen oder sie für später speichern."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:109
+msgid "Audio CD Invalid"
+msgstr "Audio CD fehlerhaft"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:109
+msgid "BeatBox could not read the contents of this Audio CD."
+msgstr "BeatBox kann den Inhalt dieser Audio CD nicht lesen."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:114
+msgid "No Podcasts Found"
+msgstr "Es wurden keine Podcasts gefunden"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:114
+msgid "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
+msgstr "Um einen Podcast hinzuzufügen besuche eine Webseite wie Miro um RSS-Feeds zu finden."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:114
+msgid "You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."
+msgstr "Du kannst dann den Feed kopieren und im \"Podcast hinzufügen\"-Fenster einfügen, indem du auf \"Podcasts\" rechtsklickst."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:119
+msgid "No Internet Radio Stations Found"
+msgstr "Es wurde kein Radiosender gefunden"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:119
+msgid "To add a station, visit a website such as SomaFM to find PLS or M3U files."
+msgstr "Um einen Sender hinzuzufügen besuche eine Webseite wie SomaFM um PLS oder M3U Dateien zu finden."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:119
+msgid "You can then import the file to add the station."
+msgstr "Du kannst dann die Datei importieren, um den Sender hinzuzufügen."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:201
+msgid "Loading similar songs"
+msgstr "Lade ähnliche Titel"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:201
+msgid "BeatBox is loading songs similar to"
+msgstr "BeatBox läd "
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:201
+msgid "..."
+msgstr "..."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:461
+msgid "No similar songs found"
+msgstr "Es wurden keine ähnlichen Titel gefunden"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:461
+msgid "BeatBox could not find songs similar to"
+msgstr "BeatBox konnte keine"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ViewWrapper.vala:461
+msgid ""
+"Make sure all song info is correct and you are connected to the Internet.\n"
+"Some songs may not have matches."
+msgstr ""
+"Stelle sicher, dass alle Titelinformationen korrekt sind und du mit dem Internet verbunden bist. \n"
+"Manche Titel könnten keine Treffer liefern."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:545
+msgid "#"
+msgstr "#"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:546
+msgid "Track"
+msgstr "Track"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:555
+msgid "Plays"
+msgstr "Wiedergabeanzahl"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:556
+msgid "Skips"
+msgstr "Überspringanzahl"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:559
+msgid "BPM"
+msgstr "BPM"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:207
+msgid "Get Some Tunes"
+msgstr "Hol dir ein paar Songs"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:207
+msgid "BeatBox can't seem to find your music."
+msgstr "BeatBox kann deine Musik nicht finden."
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:216
+msgid "Rescan Music Folder"
+msgstr "Musikordner neu einlesen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:217
+msgid "Equalizer"
+msgstr "Equalizer"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:226
+msgid "Search..."
+msgstr "Suchen..."
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:293
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:304
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:310
+msgid "Off"
+msgstr "Aus"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:308
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:311
+msgid "All"
+msgstr "Alle"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:313
+msgid "Hide"
+msgstr "Verbergen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:314
+msgid "Show"
+msgstr "Anzeigen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:377
+msgid "Locate"
+msgstr "Festlegen"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:377
+msgid "Change your music folder."
+msgstr "Ändere deinen Musikordner."
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:486
+msgid "Similar"
+msgstr "Ähnliches"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:490
+msgid "Queue"
+msgstr "Warteschlange"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:494
+msgid "History"
+msgstr "Verlauf"
+
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:506
 msgid "Internet Radio"
 msgstr "Internetradio"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:503
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:511
 msgid "Music Store"
 msgstr "Music Store"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:684
 msgid "Unknown Artist"
 msgstr "Unbekannter Interpret"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:684
 msgid " by "
 msgstr " von "
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:685
 msgid "Unknown Album"
 msgstr "Unbekanntes Album"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:685
 msgid " on "
 msgstr " auf "
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1082
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1060
 msgid "Import Music"
 msgstr "Musik importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1095
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1073
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importiere</b> Musik aus <b>%s</b> in die Bibliothek."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1111
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1089
 msgid "Rescanning music folder for changes"
 msgstr "Überprüfe den Musikordner auf Veränderungen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1118
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1096
 msgid "Could not find Music Folder"
 msgstr "Der Musikordner konnte nicht gefunden werden"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1118
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1096
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
-"Bitte stelle sicher, dass dein Musikordner erreichbar und eingehängt ist."
+msgstr "Bitte stelle sicher, dass dein Musikordner erreichbar und eingehängt ist."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1186
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1164
 msgid "Import Complete"
 msgstr "Import abgeschlossen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1186
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1164
 msgid "BeatBox has imported your library."
 msgstr "BeatBox hat deine Bibliothek importiert."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1363
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1353
 msgid "Choose Music Folder"
 msgstr "Musikordner auswählen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1561
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1548
 msgid "Import songs from audio CD"
 msgstr "Titel von einer Audio-CD importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1561
-msgid "Imort media from device"
+#: /home/alexander/beat-box-translation-de/po/../src//LibraryWindow.vala:1548
+msgid "Import media from device"
 msgstr "Medien von einem Gerät importieren"
+
+#, fuzzy
+#~ msgid "Import medias from "
+#~ msgstr "Medien von einem Gerät importieren"
+
+#~ msgid "Edit Media Info"
+#~ msgstr "Titelinformationen bearbeiten"
+
+#~ msgid "Show in File Browser"
+#~ msgstr "Im Dateimanager anzeigen"
+
+#~ msgid "Add to Playlist"
+#~ msgstr "Zur Wiedergabeliste hinzufügen"
+
+#~ msgid "Remove media"
+#~ msgstr "Entfernen"

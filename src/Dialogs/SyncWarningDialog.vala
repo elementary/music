@@ -41,9 +41,9 @@ public class BeatBox.SyncWarningDialog : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		importMedias = new Button.with_label("Import medias to Library");
-		sync = new Button.with_label("Continue Syncing");
-		cancel = new Button.with_label("Stop Syncing");
+		importMedias = new Button.with_label(_("Import medias to Library"));
+		sync = new Button.with_label(_("Continue Syncing"));
+		cancel = new Button.with_label(_("Stop Syncing"));
 		
 		// pretty up labels
 		title.xalign = 0.0f;

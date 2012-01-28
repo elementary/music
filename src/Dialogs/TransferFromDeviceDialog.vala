@@ -55,7 +55,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		
 		to_transfer = new LinkedList<int>();
 		
-		this.set_title("Import from Device");
+		this.set_title(_("Import from Device"));
 		
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
@@ -74,13 +74,13 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_QUESTION, Gtk.IconSize.DIALOG);
 		Label title = new Label("Import medias from " + d.getDisplayName());
 		Label info = new Label("The following files were found on " + d.getDisplayName() + ", but are not in your library. Check all files you would like to import.");
-		transferAll = new CheckButton.with_label("Import all medias");
+		transferAll = new CheckButton.with_label(_("Import all medias"));
 		mediasScroll = new ScrolledWindow(null, null);
 		mediasView = new TreeView();
 		mediasModel = new ListStore(5, typeof(bool), typeof(int), typeof(string), typeof(string), typeof(string));
 		mediasView.set_model(mediasModel);
-		transfer = new Button.with_label("Import");
-		Button cancel = new Button.with_label("Don't Import");
+		transfer = new Button.with_label(_("Import"));
+		Button cancel = new Button.with_label(_("Don't Import"));
 		
 		// pretty up labels
 		title.xalign = 0.0f;
@@ -158,7 +158,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		VBox listBox = new VBox(false, 0);
 		listBox.pack_start(mediasScroll, true, true, 5);
 		
-		Expander exp = new Expander("Select individual medias to import:");
+		Expander exp = new Expander(_("Select individual medias to import:"));
 		exp.add(listBox);
 		exp.expanded = false;
 		
@@ -176,9 +176,9 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		padding.pack_start(content, true, true, 10);
 		
 		viewMenu = new Gtk.Menu();
-		selectItem = new Gtk.MenuItem.with_label("Check Item");
-		selectAlbum = new Gtk.MenuItem.with_label("Check Album");
-		selectArtist = new Gtk.MenuItem.with_label("Check Artist");
+		selectItem = new Gtk.MenuItem.with_label(_("Check Item"));
+		selectAlbum = new Gtk.MenuItem.with_label(_("Check Album"));
+		selectArtist = new Gtk.MenuItem.with_label(_("Check Artist"));
 		
 		transfer.clicked.connect(transferClick);
 		transferAll.toggled.connect(transferAllToggled);

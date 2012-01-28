@@ -542,21 +542,21 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		// column chooser menu
 		columnChooserMenu = new Gtk.Menu();
-		columnNumber = new CheckMenuItem.with_label("#");
-		columnTrack = new CheckMenuItem.with_label("Track");
-		columnTitle = new CheckMenuItem.with_label("Title");
-		columnLength = new CheckMenuItem.with_label("Length");
-		columnArtist = new CheckMenuItem.with_label("Artist");
-		columnAlbum = new CheckMenuItem.with_label("Album");
-		columnGenre = new CheckMenuItem.with_label("Genre");
-		columnYear = new CheckMenuItem.with_label("Year");
-		columnBitRate = new CheckMenuItem.with_label("Bitrate");
-		columnRating = new CheckMenuItem.with_label("Rating");
-		columnPlayCount = new CheckMenuItem.with_label("Plays");
-		columnSkipCount = new CheckMenuItem.with_label("Skips");
-		columnDateAdded = new CheckMenuItem.with_label("Date Added");
-		columnLastPlayed = new CheckMenuItem.with_label("Last Played");
-		columnBPM = new CheckMenuItem.with_label("BPM");
+		columnNumber = new CheckMenuItem.with_label(_("#"));
+		columnTrack = new CheckMenuItem.with_label(_("Track"));
+		columnTitle = new CheckMenuItem.with_label(_("Title"));
+		columnLength = new CheckMenuItem.with_label(_("Length"));
+		columnArtist = new CheckMenuItem.with_label(_("Artist"));
+		columnAlbum = new CheckMenuItem.with_label(_("Album"));
+		columnGenre = new CheckMenuItem.with_label(_("Genre"));
+		columnYear = new CheckMenuItem.with_label(_("Year"));
+		columnBitRate = new CheckMenuItem.with_label(_("Bitrate"));
+		columnRating = new CheckMenuItem.with_label(_("Rating"));
+		columnPlayCount = new CheckMenuItem.with_label(_("Plays"));
+		columnSkipCount = new CheckMenuItem.with_label(_("Skips"));
+		columnDateAdded = new CheckMenuItem.with_label(_("Date Added"));
+		columnLastPlayed = new CheckMenuItem.with_label(_("Last Played"));
+		columnBPM = new CheckMenuItem.with_label(_("BPM"));
 		updateColumnVisibilities();
 		columnChooserMenu.append(columnNumber);
 		columnChooserMenu.append(columnTrack);

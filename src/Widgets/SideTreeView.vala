@@ -85,8 +85,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	
 	public void buildUI() {
 		deviceMenu = new Gtk.Menu();
-		deviceImportToLibrary = new Gtk.MenuItem.with_label("Import from Device");
-		deviceSync = new Gtk.MenuItem.with_label("Sync");
+		deviceImportToLibrary = new Gtk.MenuItem.with_label(_("Import from Device"));
+		deviceSync = new Gtk.MenuItem.with_label(_("Sync"));
 		deviceMenu.append(deviceImportToLibrary);
 		deviceMenu.append(deviceSync);
 		deviceImportToLibrary.activate.connect(deviceImportToLibraryClicked);
@@ -94,8 +94,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		deviceMenu.show_all();
 		
 		podcastMenu = new Gtk.Menu();
-		podcastAdd = new Gtk.MenuItem.with_label("Add Podcast");
-		podcastRefresh = new Gtk.MenuItem.with_label("Download new Episodes");
+		podcastAdd = new Gtk.MenuItem.with_label(_("Add Podcast"));
+		podcastRefresh = new Gtk.MenuItem.with_label(_("Download new Episodes"));
 		podcastMenu.append(podcastAdd);
 		podcastMenu.append(podcastRefresh);
 		podcastAdd.activate.connect(podcastAddClicked);
@@ -103,8 +103,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		podcastMenu.show_all();
 		
 		CDMenu = new Gtk.Menu();
-		CDimportToLibrary = new Gtk.MenuItem.with_label("Import to Library");
-		CDeject = new Gtk.MenuItem.with_label("Eject");
+		CDimportToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
+		CDeject = new Gtk.MenuItem.with_label(_("Eject"));
 		CDMenu.append(CDimportToLibrary);
 		//CDMenu.append(CDeject);
 		CDimportToLibrary.activate.connect(CDimportToLibraryClicked);
@@ -112,20 +112,20 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		CDMenu.show_all();
 		
 		radioMenu = new Gtk.Menu();
-		radioImportStations = new Gtk.MenuItem.with_label("Import Station");
+		radioImportStations = new Gtk.MenuItem.with_label(_("Import Station"));
 		radioMenu.append(radioImportStations);
 		radioImportStations.activate.connect(playlistImportClicked);
 		radioMenu.show_all();
 		
 		//playlist right click menu
 		playlistMenu = new Gtk.Menu();
-		playlistNew = new Gtk.MenuItem.with_label("New Playlist");
-		smartPlaylistNew = new Gtk.MenuItem.with_label("New Smart Playlist");
-		playlistEdit = new Gtk.MenuItem.with_label("Edit");
-		playlistRemove = new Gtk.MenuItem.with_label("Remove");
-		playlistSave = new Gtk.MenuItem.with_label("Save as Playlist");
-		playlistExport = new Gtk.MenuItem.with_label("Export...");
-		playlistImport = new Gtk.MenuItem.with_label("Import Playlist");
+		playlistNew = new Gtk.MenuItem.with_label(_("New Playlist"));
+		smartPlaylistNew = new Gtk.MenuItem.with_label(_("New Smart Playlist"));
+		playlistEdit = new Gtk.MenuItem.with_label(_("Edit"));
+		playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
+		playlistSave = new Gtk.MenuItem.with_label(_("Save as Playlist"));
+		playlistExport = new Gtk.MenuItem.with_label(_("Export..."));
+		playlistImport = new Gtk.MenuItem.with_label(_("Import Playlist"));
 		playlistMenu.append(playlistNew);
 		playlistMenu.append(smartPlaylistNew);
 		playlistMenu.append(playlistEdit);
