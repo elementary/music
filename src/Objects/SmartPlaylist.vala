@@ -328,6 +328,9 @@ public class BeatBox.SmartPlaylist : Object {
 		stdout.printf("playlist is %s\n", name);
 		
 		foreach(var sq in _queries) {
+			//if(sq.field == "Media Type")
+				//continue;
+			
 			rv.splr_add_new(-1);
 			
 			unowned GPod.SPLRule? rule = rv.splrules.rules.nth_data(rv.splrules.rules.length() - 1);
@@ -343,7 +346,6 @@ public class BeatBox.SmartPlaylist : Object {
 			else if(field == "Artist") {
 				rule.field = GPod.SPLField.ARTIST;
 				rule.@string = value;
-				stdout.printf("hi at artist\n");
 			}
 			else if(field == "Composer") {
 				rule.field = GPod.SPLField.COMPOSER;
@@ -400,6 +402,7 @@ public class BeatBox.SmartPlaylist : Object {
 				rule.fromunits = 1;
 			}
 			else if(field == "Rating") {
+				stdout.printf("rating rule is %s\n", value);
 				rule.field = GPod.SPLField.RATING;
 				rule.fromvalue = uint64.parse(value) * 20;
 				rule.tovalue = uint64.parse(value) * 20;
@@ -426,25 +429,33 @@ public class BeatBox.SmartPlaylist : Object {
 			else if(field == "Media Type") {
 				rule.field = GPod.SPLField.VIDEO_KIND;
 				if(value == "0") {
-					rule.fromvalue = (uint64)GPod.MediaType.AUDIO;
-					rule.tovalue = (uint64)GPod.MediaType.AUDIO;
+					stdout.printf("must be song\n");
+					rule.fromvalue = 0x00000001;
+					rule.tovalue = 0x00000001;;
 				}
 				else if(value == "1") {
-					rule.fromvalue = (uint64)GPod.MediaType.PODCAST;
-					rule.tovalue = (uint64)GPod.MediaType.PODCAST;
+					rule.fromvalue = 0x00000006;
+					rule.tovalue = 0x00000006;
+					stdout.printf("must be podcast\n");
 				}
 				else if(value == "2") {
-					rule.fromvalue = (uint64)GPod.MediaType.AUDIOBOOK;
-					rule.tovalue = (uint64)GPod.MediaType.AUDIOBOOK;
+					rule.fromvalue = 0x00000008;
+					rule.tovalue = 0x00000008;
 				}
 			}
 			
 			// set action type
 			if(comparator == "is") {
-				rule.action = GPod.SPLAction.IS_STRING;
+				if(field == "Media Type")
+					rule.action = GPod.SPLAction.BINARY_AND;
+				else
+					rule.action = GPod.SPLAction.IS_STRING;
 			}
 			else if(comparator == "is not") {
-				rule.action = GPod.SPLAction.IS_NOT_INT;
+				if(field == "Media Type")
+					rule.action = GPod.SPLAction.NOT_BINARY_AND;
+				else
+					rule.action = GPod.SPLAction.IS_NOT_INT;
 			}
 			else if(comparator == "contains") {
 				rule.action = GPod.SPLAction.CONTAINS;
