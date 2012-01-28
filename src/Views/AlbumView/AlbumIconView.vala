@@ -350,7 +350,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		if(!visible || lm.media_info.media == null)
 			return;
 			
-		stdout.printf("scrolling to current\n");
+		debug ("scrolling to current\n");
 		
 		TreeIter iter;
 		model.iter_nth_child(out iter, null, 0);
