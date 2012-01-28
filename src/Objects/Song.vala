@@ -220,7 +220,7 @@ public class BeatBox.Media : GLib.Object{
 		
 		if(track.mediatype == GPod.MediaType.AUDIO)
 			rv.mediatype = 0;
-		else if(track.mediatype == GPod.MediaType.PODCAST)
+		else if(track.mediatype == GPod.MediaType.PODCAST || track.mediatype == 0x00000006)
 			rv.mediatype = 1;
 		else if(track.mediatype == GPod.MediaType.AUDIOBOOK)
 			rv.mediatype = 2;

@@ -111,7 +111,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 				this.medias.set(t, match);
 				if(t.mediatype == GPod.MediaType.AUDIO)
 					this.songs.set(t, match);
-				else if(t.mediatype == GPod.MediaType.PODCAST)
+				else if(t.mediatype == GPod.MediaType.PODCAST || t.mediatype == 0x00000006) // 0x00000006 = video podcast
 					this.podcasts.set(t, match);
 				else if(t.mediatype == GPod.MediaType.AUDIOBOOK)
 					this.audiobooks.set(t, match);
