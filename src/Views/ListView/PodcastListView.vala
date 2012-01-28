@@ -169,12 +169,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	public void set_as_current_list(int media_id, bool is_initial) {
 		var ordered_songs = podcast_model.getOrderedMedias();
 		
-		if(media_id == 0 && lm.media_info.media != null &&
-		!ordered_songs.contains(lm.media_info.media.rowid))
-			return;
-		else if(media_id != 0 && !ordered_songs.contains(media_id))
-			return;
-		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
@@ -455,14 +449,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				view.insert_column(tvc, index);
 			}
 			
-			// add this widget crap so we can get right clicks
-			view.get_column(index).widget = new Gtk.Label(tvc.title);
-			view.get_column(index).widget.show();
-			view.get_column(index).set_sort_indicator(false);
-			Gtk.Widget ancestor = view.get_column(index).widget.get_ancestor(typeof(Gtk.Button));
-			GLib.assert(ancestor != null);
-			
-			ancestor.button_press_event.connect(viewHeaderClick);
+			view.get_column(index).get_button().button_press_event.connect(viewHeaderClick);
 			view.get_column(index).notify["width"].connect(viewHeadersResized);
 			
 			++index;
@@ -810,7 +797,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				int id;
 				temp_model.get(item, 0, out id);
 				
-				if(!lm.media_from_id(id).uri.has_prefix("file://" + music_folder))
+				if(!File.new_for_uri(lm.media_from_id(id).uri).get_path().has_prefix(music_folder))
 					++external_count;
 				if(lm.media_from_id(id).isTemporary)
 					++temporary_count;

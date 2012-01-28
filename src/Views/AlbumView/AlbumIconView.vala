@@ -20,8 +20,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	bool _is_current_view;
 	bool needsUpdate;
 	
-	AlbumListView alv;
-	
 	public signal void itemClicked(string artist, string album);
 	
 	/* medias should be mutable, as we will be sorting it */
@@ -30,6 +28,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		lw = lww;
 		
 		medias = new HashMap<string, LinkedList<int>>();
+		_show_next = new LinkedList<int>();
 		foreach(int i in smedias) {
 			Media s = lm.media_from_id(i);
 			string key = s.album_artist + s.album;
@@ -52,12 +51,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public void buildUI() {
-		//Viewport v = new Viewport(null, null);
-		alv = new AlbumListView(lm);
+		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		
-        set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-		
-		//v.set_shadow_type(ShadowType.NONE);
 		icons = new IconView();
 		model = new AlbumViewModel(lm, defaultPix);
 		
@@ -69,13 +64,11 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.margin = 20;
 		add(icons);
 		
-		//add(v);
-		
 		show_all();
 		
 		icons.button_release_event.connect(buttonReleaseEvent);
 		icons.button_press_event.connect(buttonReleaseEvent);
-		//icons.item_activated.connect(itemActivated);
+		icons.item_activated.connect(itemActivated);
 		this.size_allocate.connect(resized);
 		this.focus_out_event.connect(on_focus_out);
 		
@@ -84,7 +77,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	
 	public void set_is_current(bool val) {
 		_is_current = val;
-		stdout.printf("album icon view is no %d\n", val ? 1 : 0);
 	}
 	
 	public bool get_is_current() {
@@ -95,7 +87,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		_is_current_view = val;
 		
 		if(!val)
-			alv.hide();
+			lw.alv.hide();
 	}
 	
 	public bool get_is_current_view() {
@@ -184,7 +176,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				medias.set(key, new LinkedList<int>());
 			if(_showing_medias.get(key) == null) {
 				_showing_medias.set(key, new LinkedList<int>());
-				stdout.printf("going to append album %s\n", s.album);
+				
 				Media alb = new Media("");
 				alb.album_artist = s.album_artist;
 				alb.album = s.album;
@@ -239,7 +231,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	 * shown
 	*/
 	public void populate_view() {
-		
 		icons.freeze_child_notify();
 		icons.set_model(null);
 		
@@ -302,65 +293,51 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 	
 	public bool buttonReleaseEvent(Gdk.EventButton ev) {
-		stdout.printf("button was released\n");
 		if(ev.type == Gdk.EventType.BUTTON_RELEASE && ev.button == 1) {
 			TreePath path;
-			TreeIter iter;
 			CellRenderer cell;
 				
 			icons.get_item_at_pos((int)ev.x, (int)ev.y, out path, out cell);
 			
 			if(path == null)
 				return false;
-				
-			if(!model.get_iter(out iter, path)) {
-				alv.hide();
-				stdout.printf("could not get iter from path\n");
-				return false;
-			}
 			
-			icons.select_path(path);
-			
-			stdout.printf("showing!\n");
-			Media s = ((AlbumViewModel)model).get_media_representation(iter);
-			
-			alv.set_songs_from_media(s);
-			//lw.miller.albums.set_selected(s.album);
-			
-			// find window's location
-			int x, y;
-			Gtk.Allocation alloc;
-			lm.lw.get_position(out x, out y);
-			get_allocation(out alloc);
-			
-			// move down to icon view's allocation
-			x += lm.lw.sourcesToMedias.get_position();
-			y += alloc.y;
-			
-			// center it on this icon view
-			x += (alloc.width/2) - 175;
-			y += (alloc.height/2) - 100;
-			alv.move(x, y);
-			
-			alv.show_all();
-			alv.present();
+			itemActivated(path);
 		}
 		
 		return false;
 	}
 	
-	public virtual void itemActivated(TreePath path) {
+	void itemActivated(TreePath path) {
 		TreeIter iter;
 		
-		if(!model.get_iter(out iter, path))
+		if(!model.get_iter(out iter, path)) {
+			lw.alv.hide();
+			
 			return;
+		}
 		
-		string s;
-		model.get(iter, 1, out s);
+		Media s = ((AlbumViewModel)model).get_media_representation(iter);
 		
-		string[] pieces = s.split("\n", 0);
+		lw.alv.set_songs_from_media(s);
 		
-		itemClicked(pieces[0], pieces[1]);
+		// find window's location
+		int x, y;
+		Gtk.Allocation alloc;
+		lm.lw.get_position(out x, out y);
+		get_allocation(out alloc);
+		
+		// move down to icon view's allocation
+		x += lm.lw.sourcesToMedias.get_position();
+		y += alloc.y;
+		
+		// center it on this icon view
+		x += (alloc.width/2) - 175;
+		y += (alloc.height/2) - 100;
+		lw.alv.move(x, y);
+		
+		lw.alv.show_all();
+		lw.alv.present();
 	}
 	
 	void medias_removed(LinkedList<int> ids) {
@@ -373,7 +350,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		if(!visible || lm.media_info.media == null)
 			return;
 			
-		stdout.printf("scrolling to current\n");
+		debug ("scrolling to current\n");
 		
 		TreeIter iter;
 		model.iter_nth_child(out iter, null, 0);

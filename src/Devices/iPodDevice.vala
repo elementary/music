@@ -536,22 +536,23 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		stdout.printf("copying track to ipod\n");
 		bool success = false;
 		try {
-			success = db.cp_track_to_ipod(added, s.uri.replace("file://", ""));
+			success = db.cp_track_to_ipod(added, File.new_for_uri(s.uri).get_path());
 		}
 		catch(Error err) {
 			stdout.printf("Error adding/copying song %s to iPod: %s\n", s.title, err.message);
 		}
 		
 		if(success) {
-			//make copy
-			medias.set(added, i);
+			Media on_ipod = Media.from_track(get_path(), added);
+			lm.add_media(on_ipod, false);
 			
+			medias.set(added, on_ipod.rowid);
 			if(added.mediatype == GPod.MediaType.AUDIO)
-				this.songs.set(added, i);
+				this.songs.set(added, on_ipod.rowid);
 			else if(added.mediatype == GPod.MediaType.PODCAST)
-				this.podcasts.set(added, i);
+				this.podcasts.set(added, on_ipod.rowid);
 			else if(added.mediatype == GPod.MediaType.AUDIOBOOK)
-				this.audiobooks.set(added, i);
+				this.audiobooks.set(added, on_ipod.rowid);
 		}
 		else {
 			stdout.printf("Failed to copy track %s to iPod. Removing it from database.\n", added.title);
@@ -718,16 +719,19 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			if(transfer_cancelled)
 				break;
 			
-			Media s = lm.media_from_id(i).copy();
-			s.rowid = 0;
-			lm.add_media(s, true);
-			stdout.printf("checking %s\n", s.uri);
-			if(File.new_for_uri(s.uri).query_exists() && s.uri.has_prefix("file://" + get_path())) {
+			Media temp = lm.media_from_id(i);
+			if(File.new_for_uri(temp.uri).query_exists() && temp.isTemporary) {
+				Media s = temp.copy();
+				s.rowid = 0;
+				s.isTemporary = false;
+				s.date_added = (int)time_t();
+				lm.add_media(s, true);
+				
 				current_operation = "Importing <b>" + s.title + "</b> to library";
 				lm.fo.update_file_hierarchy(s, false, false);
 			}
 			else {
-				stdout.printf("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", s.title);
+				stdout.printf("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", temp.title);
 			}
 			
 			++index;

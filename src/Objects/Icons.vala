@@ -71,10 +71,9 @@ public class BeatBox.Icon : GLib.Object {
 		 * This ensures consistency in the way we store icons in the
 		 * 'images' folder.
 		 **/
-
 		if (has_backup && type != null && size != null) {
 			string size_folder, type_folder, actual_icon_name;
-			
+
 			if (size != null)
 				size_folder = size.to_string() + "x" + size.to_string();
 			else
@@ -117,6 +116,8 @@ public class BeatBox.Icon : GLib.Object {
 				actual_icon_name = name + ".svg";
 			}
 
+            var icon_path = GLib.Path.build_path("/", Build.ICON_FOLDER, "hicolor", size_folder, type_folder);
+			IconTheme.get_default().append_search_path (icon_path);
 			this.backup = GLib.Path.build_filename("/", Build.ICON_FOLDER, "hicolor", size_folder, type_folder, actual_icon_name);
 		}
 		else {
@@ -126,9 +127,10 @@ public class BeatBox.Icon : GLib.Object {
 
 	public Gdk.Pixbuf? render (Gtk.IconSize? size, StyleContext? context) {
 		Gdk.Pixbuf? rv = null;
-		bool is_symbolic = this.name.contains ("-symbolic");
 		int width = 16, height = 16;
 
+        // Don't load the image as a regular icon if it's a PNG and belongs
+        // to the project's folder.
 		if (file_type == IconFileType.PNG && backup != null && size == null) {
 			try {
 				rv = new Gdk.Pixbuf.from_file(backup);
@@ -136,10 +138,11 @@ public class BeatBox.Icon : GLib.Object {
 			catch(Error err) {
 				stdout.printf("Could not load PNG image: %s\n", err.message);
 			}
-			
+
 			return rv;
 		}
 
+        // If a null size was passed, use the original size
 		if (this.size != null) {
 			width = this.size;
 			height = this.size;
@@ -148,12 +151,20 @@ public class BeatBox.Icon : GLib.Object {
 		if (size != null)
 			icon_size_lookup (size, out width, out height);
 
+        // Try to load the icon from the icon theme
 		if (IconTheme.get_default().has_icon(this.name)) {
 			try {
-				rv = IconTheme.get_default().load_icon(this.name, height, IconLookupFlags.GENERIC_FALLBACK);
+				var themed_icon = new GLib.ThemedIcon.with_default_fallbacks (this.name);
+				Gtk.IconInfo? icon_info = IconTheme.get_default().lookup_by_gicon (themed_icon as GLib.Icon, height, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+				if (icon_info != null) {
+					if (context != null)
+						rv = icon_info.load_symbolic_for_context (context);
+					else
+						rv = icon_info.load_icon ();
+				}
 			}
 			catch (Error err) {
-				stdout.printf("Default theme does not have icon for '%s', falling back to BeatBox default.\n", this.name);
+				warning ("%s, falling back to BeatBox default.", err.message);
 			}
 		}
 
@@ -162,19 +173,7 @@ public class BeatBox.Icon : GLib.Object {
 				rv = new Gdk.Pixbuf.from_file_at_size (this.backup, width, height);
 			}
 			catch (Error err) {
-				stdout.printf("Couldn't load backup icon for '%s'\n", this.name);
-			}
-		}
-
-		if (rv != null && is_symbolic && context != null) {
-			try {
-				var themed_icon = new GLib.ThemedIcon.with_default_fallbacks (this.name);
-				Gtk.IconInfo? icon_info = IconTheme.get_default().lookup_by_gicon (themed_icon as GLib.Icon, height, Gtk.IconLookupFlags.GENERIC_FALLBACK);
-				if (icon_info != null)
-					rv = icon_info.load_symbolic_for_context (context);
-			}
-			catch (Error err) {
-				stdout.printf ("\nCould not load symbolic icon: %s\n", this.name);
+				warning ("Couldn't load backup icon: %s", err.message);
 			}
 		}
 
@@ -206,7 +205,7 @@ public class BeatBox.Icons : GLib.Object {
 	public Icon info_icon;
 	public Icon new_podcast_icon;
 	public Icon ok_icon;
-	
+
 	/** Symbolic icons **/
 	public Icon now_playing_icon;
 	public Icon process_stop_icon;
@@ -233,10 +232,10 @@ public class BeatBox.Icons : GLib.Object {
 		default_album_art = new Icon ("media-audio", 128, Icon.IconType.MIMETYPE, Icon.IconFileType.PNG, true);
 		drop_album = new Icon ("drop-album", 128, Icon.IconType.MIMETYPE, null, true);
 		music_folder = new Icon ("folder-music", 128, Icon.IconType.MIMETYPE, null, true);
-		
+
 		// 22 x 22
 		history_icon = new Icon ("document-open-recent", 22, Icon.IconType.ACTION, null, true);
-		
+
 		// 16 x 16
 		beatbox_icon = new Icon ("beatbox", 16, Icon.IconType.APP, null, true);
 		radio_icon = new Icon ("internet-radio", 16, Icon.IconType.MIMETYPE, null, true);
@@ -248,12 +247,12 @@ public class BeatBox.Icons : GLib.Object {
 		lastfm_love_icon = new Icon ("lastfm-love", 16, Icon.IconType.ACTION, null, true);
 		lastfm_ban_icon = new Icon ("lastfm-ban", 16, Icon.IconType.ACTION, null, true);
 		starred_icon = new Icon ("starred", 16, Icon.IconType.STATUS, null, true);
-		not_starred_icon = new Icon ("not-starred", 16, Icon.IconType.STATUS, null, true);		
+		not_starred_icon = new Icon ("not-starred", 16, Icon.IconType.STATUS, null, true);
 		info_icon = new Icon ("help-info", 16, Icon.IconType.STATUS, null, true);
 		new_podcast_icon = new Icon ("podcast-new", 16, Icon.IconType.STATUS, null, true);
-		
+
 		ok_icon = new Icon ("dialog-ok", 16, Icon.IconType.ACTION, null, false);
-		
+
 		// SYMBOLIC ICONS
 		process_completed_icon = new Icon ("process-completed-symbolic", 16, Icon.IconType.STATUS, null, true);
 		process_error_icon = new Icon ("process-error-symbolic", 16, Icon.IconType.STATUS, null, true);

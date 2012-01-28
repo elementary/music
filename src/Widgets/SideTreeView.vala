@@ -157,10 +157,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void addBasicItems() {
-		library_iter = addItem(null, null, null, null, "Library", null);
-		devices_iter = addItem(null, null, null, null, "Devices", null);
-		network_iter = addItem(null, null, null, null, "Network", null);
-		playlists_iter = addItem(null, null, null, null, "Playlists", null);
+		library_iter = addItem(null, null, null, null, _("Library"), null);
+		devices_iter = addItem(null, null, null, null, _("Devices"), null);
+		network_iter = addItem(null, null, null, null, _("Network"), null);
+		playlists_iter = addItem(null, null, null, null, _("Playlists"), null);
 	}
 	
 	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name, ViewWrapper.Hint hint) {
@@ -447,7 +447,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void resetView() {
-        /* e can't just put setSelectedIter directly, we have to check that this iter is not null */
+        /* We can't just put setSelectedIter directly, we have to check that this iter is not null */
         TreeIter? selected_iter = null;
         if(lm.media_info.media == null || lm.media_info.media.mediatype == 0)
 			selected_iter = convertToFilter(library_music_iter);
@@ -570,19 +570,17 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 				else if(o is Device) {
 					DeviceViewWrapper vw = (DeviceViewWrapper)w;
-					stdout.printf("o is device\n");
+					
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								vw.get_media_ids(), true, false, false);
 				}
 				
 				if(lw.viewSelector.selected == 2) {
-					stdout.printf("doing miller update\n");
 					lw.miller.populateColumns( (o is Device) ? "device" : "", ((ViewWrapper)w).get_media_ids());
 				}
 				
 				lw.updateMillerColumns();
 				
-				stdout.printf("setting status bar text\n");
 				((ViewWrapper)w).set_statusbar_text();
 			}
 			else if(w is Store.StoreView) {

@@ -179,12 +179,19 @@ public class BeatBox.Media : GLib.Object{
 	}
 	
 	public string getArtistImagePath() {
-		stdout.printf("fix getArtistImagePath\n");
-		return "";//Path.build_path("/", file.substring(0, _file.substring(0, _file.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
+		if(isTemporary || mediatype != 0)
+			return "";
+		
+		var path_file = File.new_for_uri(uri);
+		if(!path_file.query_exists())
+			return "";
+		
+		var path = path_file.get_path();
+		return Path.build_path("/", path.substring(0, path.substring(0, path.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
 	}
 	
 	public static Media from_track(string root, GPod.Track track) {
-		Media rv = new Media(File.new_for_path(Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path))).get_uri());
+		Media rv = new Media("file://" + Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
 		
 		rv.isTemporary = true;
 		if(track.title != null) {			rv.title = track.title; }

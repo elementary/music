@@ -181,10 +181,10 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	}
 	
 	public void updateArtistImage(bool is_initial) {
-		//if(lm.media_from_id(id) == null)
+		if(lm.media_from_id(id) == null)
 			return;
 		
-		/*string file = lm.media_from_id(id).getArtistImagePath();
+		string file = lm.media_from_id(id).getArtistImagePath();
 		if(file != "" && GLib.File.new_for_path(file).query_exists()) {
 			artistImage.show();
 			try {
@@ -195,14 +195,13 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 					pixbuf = pixbuf.scale_simple(pixbuf.width - 5, pixbuf.height - 5, Gdk.InterpType.BILINEAR);
 				}
 				artistImage.set_from_pixbuf(pixbuf);
-				//artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file(file));
 			}
 			catch(GLib.Error err) {
 				stdout.printf("Could not set info panel image art: %s\n", err.message);
 			}
 		}
 		else
-			artistImage.hide();*/
+			artistImage.hide();
 	}
 	
 	public void updateMediaList(Collection<Media> medias) {

@@ -253,7 +253,7 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 :resume_pos);""");
 			
 			foreach(Media s in medias) {
-				if(s.rowid > 0) {
+				if(s.rowid > 0 && !s.isTemporary) {
 					query.set_int(":rowid", (int)s.rowid);
 					query.set_string(":uri", s.uri);
 					query.set_int(":file_size", (int)s.file_size);
