@@ -521,7 +521,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		
 		bool fits = dev.will_fit(list);
 		if(!fits) {
-			lw.doAlert("Cannot Sync", "Cannot Sync Device with selected sync settings. Not enough space on disk\n");
+			lw.doAlert("Cannot Sync", "Cannot sync device with selected sync settings. Not enough space on disk\n");
 		}
 		else if(dev.is_syncing()) {
 			lw.doAlert("Cannot Sync", "Device is already being synced.");

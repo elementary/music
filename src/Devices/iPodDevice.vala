@@ -225,7 +225,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 		}
 		catch(Error err) {
-			error("Error calculating capacity of iPod: %s\n", err.message);
+			stdout.printf("Error calculating capacity of iPod: %s\n", err.message);
 		}
 		
 		return rv;
@@ -247,7 +247,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_FREE);
 		}
 		catch(Error err) {
-			error("Error calculating free space on iPod: %s\n", err.message);
+			stdout.printf("Error calculating free space on iPod: %s\n", err.message);
 		}
 		
 		return rv;

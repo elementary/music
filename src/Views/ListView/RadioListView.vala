@@ -938,7 +938,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	}
 	
 	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
-        error("User trying to drag from internet radio list, but is not implemented\n");
+        stdout.printf("User trying to drag from internet radio list, but is not implemented\n");
     }
     
     public virtual void onDragEnd(Gtk.Widget sender, Gdk.DragContext context) {

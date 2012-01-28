@@ -363,7 +363,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 					online_size = online_file.query_info("*", FileQueryInfoFlags.NONE).get_size();
 				}
 				catch(Error err) {
-					error("Could not read online podcast file's size for progress notification: %s\n", err.message);
+					stdout.printf("Could not read online podcast file's size for progress notification: %s\n", err.message);
 				}
 				
 				new_dest = lm.fo.get_new_destination(s);
@@ -374,7 +374,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 					file_size = (int)(new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size() / 1000000);
 				}
 				catch(Error err) {
-					error("Could not calculate downloaded podcast's file size: %s\n", err.message);
+					stdout.printf("Could not calculate downloaded podcast's file size: %s\n", err.message);
 				}
 				
 				s.file_size = file_size;
@@ -415,7 +415,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 				current_local_size = new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size();
 			}
 			catch(Error err) {
-				error("Error reading current size of downloaded podcast: %s\n", err.message);
+				stdout.printf("Error reading current size of downloaded podcast: %s\n", err.message);
 			}
 		}
 		

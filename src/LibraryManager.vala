@@ -282,7 +282,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			Thread.create<void*>(fetch_thread_function, false);
 		}
 		catch(GLib.ThreadError err) {
-			error("Could not create thread to load media pixbuf's: %s \n", err.message);
+			stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
 		}
 	}
 
@@ -337,7 +337,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Thread.create<void*>(set_music_thread_function, false);
 			}
 			catch(GLib.Error err) {
-				error("Could not create thread to set music folder: %s\n", err.message);
+				stdout.printf("Could not create thread to set music folder: %s\n", err.message);
 			}
 		}
 	}
@@ -364,7 +364,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Thread.create<void*>(add_files_to_library_thread, false);
 			}
 			catch(GLib.Error err) {
-				error("Could not create thread to add music files: %s\n", err.message);
+				stdout.printf("Could not create thread to add music files: %s\n", err.message);
 			}
 		}
 	}
@@ -385,7 +385,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Thread.create<void*>(add_folder_to_library_thread, false);
 			}
 			catch(GLib.Error err) {
-				error("Could not create thread to add music folder: %s\n", err.message);
+				stdout.printf("Could not create thread to add music folder: %s\n", err.message);
 			}
 		}
 	}
@@ -408,7 +408,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 					Thread.create<void*>(rescan_music_thread_function, false);
 			}
 			catch(GLib.Error err) {
-				error("Could not create thread to rescan music folder: %s\n", err.message);
+				stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
 			}
 		}
 	}
