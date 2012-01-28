@@ -1,22 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Polish translation for beat-box
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the beat-box package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: beatbox 0.1\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: beat-box\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-01-17 20:24+0100\n"
-"PO-Revision-Date: 2012-01-17 21:12+0000\n"
-"Last-Translator: xapantu <Unknown>\n"
-"Language-Team: Fr <LL@li.org>\n"
+"PO-Revision-Date: 2012-01-26 12:34+0000\n"
+"Last-Translator: Adrian Widerski <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-01-27 05:40+0000\n"
 "X-Generator: Launchpad (build 14727)\n"
-"Language: \n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
 msgid "Get Some Tunes."
@@ -24,15 +23,15 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
 msgid "BeatBox can't seem to find your music."
-msgstr "BeatBox ne trouve pas votre musique."
+msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "Set Music Folder"
-msgstr "Changer le dossier musique"
+msgstr "Ustal folder z muzyką"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:211
 msgid "Import to Library"
-msgstr "Importer dans la bibliothèque"
+msgstr "Zaimportuj do kolekcji"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:212
 msgid "Rescan Music Folder"
@@ -40,21 +39,21 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:213
 msgid "Equalizer"
-msgstr ""
+msgstr "Korektor graficzny"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:222
 msgid "Search..."
-msgstr "Rechercher..."
+msgstr "Szukaj..."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:245
 msgid "Title"
-msgstr "Titre"
+msgstr "Tytuł"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:296
 #, c-format
 msgid "Artist"
-msgstr "Artiste"
+msgstr "Wykonawca"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:295
@@ -63,65 +62,65 @@ msgstr "Album"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:271
 msgid "Library"
-msgstr "Bibliothèque"
+msgstr "Biblioteka"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:282
 msgid "Preferences"
-msgstr "Préférences"
+msgstr "Preferencje"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:293
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:299
 msgid "Off"
-msgstr "Désactivé"
+msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:294
 msgid "Media"
-msgstr "Multimédia"
+msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:297
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:300
 msgid "All"
-msgstr "Tous"
+msgstr "Wszystko"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:302
 msgid "Hide"
-msgstr "Masquer"
+msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:303
 msgid "Show"
-msgstr "Afficher"
+msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
 msgid "Locate"
-msgstr "Localiser"
+msgstr "Zlokalizuj"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
 msgid "Change your music folder."
-msgstr "Changer votre dossier musique."
+msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:478
 msgid "Similar"
-msgstr "Similaire"
+msgstr "Podobne"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:482
 msgid "Queue"
-msgstr "File D'Attente"
+msgstr "Kolejka"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:486
 msgid "History"
-msgstr "Historique"
+msgstr "Historia"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:490
 msgid "Music"
-msgstr "Musique"
+msgstr "Muzyka"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:494
 msgid "Podcasts"
-msgstr "Podcasts"
+msgstr "Podcasty"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:498
 msgid "Internet Radio"
-msgstr "Radio internet"
+msgstr "Radio internetowe"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:503
 msgid "Music Store"
@@ -129,23 +128,23 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
 msgid "Unknown Artist"
-msgstr "Artiste inconnu"
+msgstr "Nieznany wykonawca"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
 msgid " by "
-msgstr " par "
+msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
 msgid "Unknown Album"
-msgstr "Album inconnu"
+msgstr "Nieznany album"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
 msgid " on "
-msgstr " dans "
+msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1082
 msgid "Import Music"
-msgstr ""
+msgstr "Zaimportuj muzykę"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1095
 #, c-format
@@ -166,7 +165,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1186
 msgid "Import Complete"
-msgstr "Importation achevée"
+msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1186
 msgid "BeatBox has imported your library."
