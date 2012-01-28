@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-01-17 20:24+0100\n"
-"PO-Revision-Date: 2012-01-26 12:34+0000\n"
+"PO-Revision-Date: 2012-01-28 01:43+0000\n"
 "Last-Translator: Adrian Widerski <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-27 05:40+0000\n"
+"X-Launchpad-Export-Date: 2012-01-28 05:16+0000\n"
 "X-Generator: Launchpad (build 14727)\n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
@@ -75,7 +75,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:294
 msgid "Media"
-msgstr ""
+msgstr "Multimedia"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:297
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:300
@@ -84,11 +84,11 @@ msgstr "Wszystko"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:302
 msgid "Hide"
-msgstr ""
+msgstr "Ukryj"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:303
 msgid "Show"
-msgstr ""
+msgstr "Pokaż"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
 msgid "Locate"
@@ -124,7 +124,7 @@ msgstr "Radio internetowe"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:503
 msgid "Music Store"
-msgstr ""
+msgstr "Sklep muzyczny"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
 msgid "Unknown Artist"
@@ -149,7 +149,7 @@ msgstr "Zaimportuj muzykę"
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1095
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr ""
+msgstr "<b>Importowanie</b> muzyki z <b>%s</b> do biblioteki."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1111
 msgid "Rescanning music folder for changes"
