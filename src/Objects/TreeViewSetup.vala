@@ -119,6 +119,80 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 											"fixed_width", 40,
 											"visible", false));
 		}
+		else if(hint == ViewWrapper.Hint.ALBUM_LIST) { // same as normal music list, but most are hidden
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "id", 
+											"fixed_width", 10,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", " ", 
+											"fixed_width", 24,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "#", 
+											"fixed_width", 40,
+											"visible", (hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY || hint == ViewWrapper.Hint.PLAYLIST)));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Track", 
+											"fixed_width", 60,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Title", 
+											"fixed_width", 275,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Length", 
+											"fixed_width", 50,
+											"visible", true));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Artist", 
+											"fixed_width", 110,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Album", 
+											"fixed_width", 200,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Genre", 
+											"fixed_width", 70,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Year", 
+											"fixed_width", 50,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Bitrate", 
+											"fixed_width", 70,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Rating", 
+											"fixed_width", 90,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Plays", 
+											"fixed_width", 40,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Skips", 
+											"fixed_width", 40,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Date Added", 
+											"fixed_width", 130,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Last Played", 
+											"fixed_width", 130,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "BPM", 
+											"fixed_width", 40,
+											"visible", false));
+			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
+											"title", "Pulser", 
+											"fixed_width", 40,
+											"visible", false));
+		}
 		else {
 			_columns.add((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", "id", 

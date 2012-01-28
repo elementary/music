@@ -53,7 +53,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	CellDataFunctionHelper cellHelper;
 	
 	//for header column chooser
-	Menu columnChooserMenu;
+	Gtk.Menu columnChooserMenu;
 	CheckMenuItem columnEpisode; // episode
 	CheckMenuItem columnName; // name
 	CheckMenuItem columnLength;
@@ -64,21 +64,18 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	CheckMenuItem columnCategory;
 	
 	//for media list right click
-	Menu mediaMenuActionMenu;
-	MenuItem mediaEditMedia;
-	MenuItem mediaFileBrowse;
-	MenuItem mediaMenuQueue;
-	MenuItem mediaMenuNewPlaylist;
-	MenuItem mediaMenuAddToPlaylist; // make menu on fly
+	Gtk.Menu mediaMenuActionMenu;
+	Gtk.MenuItem mediaEditMedia;
+	Gtk.MenuItem mediaFileBrowse;
+	Gtk.MenuItem mediaMenuQueue;
+	Gtk.MenuItem mediaMenuNewPlaylist;
+	Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
 	//MenuItem mediaRateMedia;
 	//Menu mediaRateMediaMenu;
 	RatingWidgetMenu rating_item;
-	MenuItem mediaRemove;
-	MenuItem mediaSaveLocally;
-	MenuItem importToLibrary;
-	
-	Gdk.Pixbuf starred;
-	Gdk.Pixbuf not_starred;
+	Gtk.MenuItem mediaRemove;
+	Gtk.MenuItem mediaSaveLocally;
+	Gtk.MenuItem importToLibrary;
 	
 	// for editing cells in-treeview
 	CellRendererText cellTrack;
@@ -170,11 +167,19 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	}
 	
 	public void set_as_current_list(int media_id, bool is_initial) {
+		var ordered_songs = podcast_model.getOrderedMedias();
+		
+		if(media_id == 0 && lm.media_info.media != null &&
+		!ordered_songs.contains(lm.media_info.media.rowid))
+			return;
+		else if(media_id != 0 && !ordered_songs.contains(media_id))
+			return;
+		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
 		int i = 0;
-		foreach(int id in podcast_model.getOrderedMedias()) {
+		foreach(int id in ordered_songs) {
 			lm.addToCurrent(id);
 			
 			if(!shuffle && lm.media_info.media != null && lm.media_info.media.rowid == id && media_id == 0)
@@ -201,7 +206,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		podcast_model.append_medias(new_medias, true);
 		podcast_model.resort();
-		queue_draw();
+		if(visible)	queue_draw();
 	}
 	
 	public void remove_medias(Collection<int> to_remove) {
@@ -211,7 +216,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		_showing_medias = all_medias;
 		
 		podcast_model.removeMedias(to_remove);
-		queue_draw();
+		if(visible)	queue_draw();
 	}
 	
 	public void populate_view() {
@@ -236,7 +241,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		podcast_model.get_sort_column_id(out sort_col, out sort_dir);
 		
 		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon);
+		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon, view);
 		podcast_model.is_current = _is_current;
 		
 		var hPos = this.vadjustment.get_value();
@@ -467,7 +472,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		viewColumnsChanged();
 		
 		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon);
+		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon, view);
 		
 		podcast_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
@@ -493,7 +498,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		Gtk.drag_source_add_uri_targets(view);
 		
 		// column chooser menu
-		columnChooserMenu = new Menu();
+		columnChooserMenu = new Gtk.Menu();
 		columnEpisode = new CheckMenuItem.with_label("Episode");
 		columnName = new CheckMenuItem.with_label("Name");
 		columnLength = new CheckMenuItem.with_label("Length");
@@ -523,17 +528,17 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		
 		//media list right click menu
-		mediaMenuActionMenu = new Menu();
-		mediaEditMedia = new MenuItem.with_label("Edit Podcast");
-		mediaFileBrowse = new MenuItem.with_label("Show in File Browser");
-		mediaMenuQueue = new MenuItem.with_label("Queue");
-		mediaMenuNewPlaylist = new MenuItem.with_label("New Playlist");
-		mediaMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
-		mediaRemove = new MenuItem.with_label("Remove episode");
-		mediaSaveLocally = new MenuItem.with_label("Download");
-		importToLibrary = new MenuItem.with_label("Import to Library");
-		//mediaRateMediaMenu = new Menu();
-		//mediaRateMedia = new MenuItem.with_label("Rate Media");
+		mediaMenuActionMenu = new Gtk.Menu();
+		mediaEditMedia = new Gtk.MenuItem.with_label("Edit Podcast");
+		mediaFileBrowse = new Gtk.MenuItem.with_label("Show in File Browser");
+		mediaMenuQueue = new Gtk.MenuItem.with_label("Queue");
+		mediaMenuNewPlaylist = new Gtk.MenuItem.with_label("New Playlist");
+		mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label("Add to Playlist");
+		mediaRemove = new Gtk.MenuItem.with_label("Remove episode");
+		mediaSaveLocally = new Gtk.MenuItem.with_label("Download");
+		importToLibrary = new Gtk.MenuItem.with_label("Import to Library");
+		//mediaRateMediaMenu = new Gtk.Menu();
+		//mediaRateMedia = new Gtk.MenuItem.with_label("Rate Media");
 		rating_item = new RatingWidgetMenu();
 		mediaMenuActionMenu.append(mediaEditMedia);
 		mediaMenuActionMenu.append(mediaFileBrowse);
@@ -724,7 +729,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		podcast_model.updateMedias(ids, get_is_current());
 		
 		//since a media may have changed order, reset current
-		if(get_is_current())
+		if(get_is_current() && !lm.playing_queued_song())
 			set_as_current_list(0, false);
 	}
 	
@@ -745,7 +750,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		set_as_current_list(id.get_int(), !_is_current);
 		
 		// play the media
-		lm.playMedia(id.get_int());
+		lm.playMedia(id.get_int(), false);
 		
 		if(!lm.playing) {
 			lw.playClicked();
@@ -765,9 +770,9 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	bool viewClick(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
 			/* create add to playlist menu */
-			Menu addToPlaylistMenu = new Menu();
+			Gtk.Menu addToPlaylistMenu = new Gtk.Menu();
 			foreach(Playlist p in lm.playlists()) {
-				MenuItem playlist = new MenuItem.with_label(p.name);
+				Gtk.MenuItem playlist = new Gtk.MenuItem.with_label(p.name);
 				addToPlaylistMenu.append(playlist);
 				
 				playlist.activate.connect( () => {
@@ -805,7 +810,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				int id;
 				temp_model.get(item, 0, out id);
 				
-				if(!lm.media_from_id(id).file.has_prefix(music_folder))
+				if(!lm.media_from_id(id).uri.has_prefix("file://" + music_folder))
 					++external_count;
 				if(lm.media_from_id(id).isTemporary)
 					++temporary_count;
@@ -1045,11 +1050,11 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			Media s = lm.media_from_id(id);
 			
 			try {
-				var file = File.new_for_path(s.file);
+				var file = File.new_for_uri(s.uri);
 				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not browse media %s: %s\n", s.file, err.message);
+				stdout.printf("Could not browse media %s: %s\n", s.uri, err.message);
 			}
 			
 			if(count > 10) {
@@ -1276,8 +1281,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
             
 			int id;
 			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).file);
-			uris += ("file://" + lm.media_from_id(id).file);
+			stdout.printf("adding %s\n", lm.media_from_id(id).uri);
+			uris += (lm.media_from_id(id).uri);
 		}
 		
         if (uris != null)

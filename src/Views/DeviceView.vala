@@ -5,13 +5,7 @@ public class BeatBox.DeviceView : VBox {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device d;
-	
-	//DeviceBar bar;
-	Granite.Widgets.StaticNotebook tabs;
 	DeviceSummaryWidget summary;
-	public DeviceViewWrapper music_list;
-	DeviceViewWrapper podcast_list;
-	DeviceViewWrapper audiobook_list;
 	
 	public DeviceView(LibraryManager lm, Device d) {
 		this.lm = lm;
@@ -59,7 +53,7 @@ public class BeatBox.DeviceView : VBox {
 		if(!lm.doing_file_operations() && lm.settings.getMusicFolder() != "") {
 			var externals = new LinkedList<int>();
 			foreach(var i in d.get_medias()) {
-				if(lm.media_from_id(i).isTemporary)
+				if(lm.match_media_to_list(i, lm.media_ids()) == 0)
 					externals.add(i);
 			}
 			
@@ -67,15 +61,14 @@ public class BeatBox.DeviceView : VBox {
 				TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(lw, d, externals);
 				tfdd.show();
 			}
+			else {
+				lw.doAlert("No External Songs", "There were no songs found on this device that are not in your library.");
+			}
 		}
 	}
 	
 	public void syncClicked() {
 		summary.syncClicked();
-	}
-	
-	void import_requested(LinkedList<int> to_import) {
-		d.transfer_to_library(to_import);
 	}
 	
 	void deviceProgress(string? message, double progress) {

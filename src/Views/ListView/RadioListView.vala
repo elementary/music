@@ -53,26 +53,16 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	CellDataFunctionHelper cellHelper;
 	
 	//for header column chooser
-	Menu columnChooserMenu;
+	Gtk.Menu columnChooserMenu;
 	CheckMenuItem columnRating;
 	CheckMenuItem columnStation;
 	CheckMenuItem columnGenre;
 	
 	//for media list right click
-	Menu mediaMenuActionMenu;
-	MenuItem mediaEditMedia;
-	MenuItem mediaFileBrowse;
-	MenuItem mediaMenuQueue;
-	MenuItem mediaMenuNewPlaylist;
-	MenuItem mediaMenuAddToPlaylist; // make menu on fly
-	//MenuItem mediaRateMedia;
-	//Menu mediaRateMediaMenu;
+	Gtk.Menu mediaMenuActionMenu;
+	Gtk.MenuItem mediaEditMedia;
 	RatingWidgetMenu rating_item;
-	MenuItem mediaRemove;
-	MenuItem mediaSaveLocally;
-	
-	Gdk.Pixbuf starred;
-	Gdk.Pixbuf not_starred;
+	Gtk.MenuItem mediaRemove;
 	
 	// for editing cells in-treeview
 	CellRendererText cellTrack;
@@ -161,11 +151,19 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	}
 	
 	public void set_as_current_list(int media_id, bool is_initial) {
+		var ordered_songs = radio_model.getOrderedMedias();
+		
+		if(media_id == 0 && lm.media_info.media != null &&
+		!ordered_songs.contains(lm.media_info.media.rowid))
+			return;
+		else if(media_id != 0 && !ordered_songs.contains(media_id))
+			return;
+		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
 		int i = 0;
-		foreach(int id in radio_model.getOrderedMedias()) {
+		foreach(int id in ordered_songs) {
 			lm.addToCurrent(id);
 			
 			if(!shuffle && lm.media_info.media != null && lm.media_info.media.rowid == id && media_id == 0)
@@ -192,7 +190,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		
 		radio_model.append_medias(new_medias, true);
 		radio_model.resort();
-		queue_draw();
+		if(visible)	queue_draw();
 	}
 	
 	public void remove_medias(Collection<int> to_remove) {
@@ -202,7 +200,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		_showing_medias = all_medias;
 		
 		radio_model.removeMedias(to_remove);
-		queue_draw();
+		if(visible)	queue_draw();
 	}
 	
 	public void populate_view() {
@@ -416,7 +414,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		Gtk.drag_source_add_uri_targets(view);
 		
 		// column chooser menu
-		columnChooserMenu = new Menu();
+		columnChooserMenu = new Gtk.Menu();
 		columnStation = new CheckMenuItem.with_label("Station");
 		columnGenre = new CheckMenuItem.with_label("Genre");
 		columnRating = new CheckMenuItem.with_label("Rating");
@@ -431,9 +429,9 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		
 		
 		//media list right click menu
-		mediaMenuActionMenu = new Menu();
-		mediaEditMedia = new MenuItem.with_label("Edit Station");
-		mediaRemove = new MenuItem.with_label("Remove Station");
+		mediaMenuActionMenu = new Gtk.Menu();
+		mediaEditMedia = new Gtk.MenuItem.with_label("Edit Station");
+		mediaRemove = new Gtk.MenuItem.with_label("Remove Station");
 		rating_item = new RatingWidgetMenu();
 		mediaMenuActionMenu.append(mediaEditMedia);
 		mediaMenuActionMenu.append(rating_item);
@@ -600,7 +598,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		radio_model.updateMedias(ids, get_is_current());
 		
 		//since a media may have changed order, reset current
-		if(get_is_current())
+		if(get_is_current() && !lm.playing_queued_song())
 			set_as_current_list(0, false);
 	}
 	
@@ -621,7 +619,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		set_as_current_list(id.get_int(), !_is_current);
 		
 		// play the media
-		lm.playMedia(id.get_int());
+		lm.playMedia(id.get_int(), false);
 		
 		if(!lm.playing) {
 			lw.playClicked();
@@ -953,23 +951,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	}
 	
 	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
-        Gtk.TreeIter iter;
-        Gtk.TreeModel temp_model;
-        
-        var rows = view.get_selection().get_selected_rows(out temp_model);
-        string[] uris = null;
-        
-        foreach(TreePath path in rows) {
-            temp_model.get_iter_from_string (out iter, path.to_string ());
-            
-			int id;
-			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).file);
-			uris += ("file://" + lm.media_from_id(id).file);
-		}
-		
-        if (uris != null)
-            selection_data.set_uris(uris);
+        error("User trying to drag from internet radio list, but is not implemented\n");
     }
     
     public virtual void onDragEnd(Gtk.Widget sender, Gdk.DragContext context) {

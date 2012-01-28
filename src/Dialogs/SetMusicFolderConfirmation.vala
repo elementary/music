@@ -4,7 +4,7 @@ using Gee;
 public class BeatBox.SetMusicFolderConfirmation : Window {
 	LibraryManager lm;
 	LibraryWindow lw;
-	string path;
+	string folder_path;
 	
 	private VBox content;
 	private HBox padding;
@@ -21,7 +21,7 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 	public SetMusicFolderConfirmation(LibraryManager lm, LibraryWindow lw, string path) {
 		this.lm = lm;
 		this.lw = lw;
-		this.path = path;
+		folder_path = path;
 		
 		this.set_title("BeatBox");
 		

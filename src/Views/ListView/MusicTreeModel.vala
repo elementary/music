@@ -37,6 +37,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	int stamp; // all iters must match this
 	Gdk.Pixbuf _playing;
 	Gdk.Pixbuf _completed;
+	Gdk.Pixbuf _saved_locally;
+	Gdk.Pixbuf _new_podcast;
 	ViewWrapper.Hint hint;
 	public bool is_current;
 	
@@ -62,6 +64,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		_columns = column_types;
 		_playing = playing;
 		_completed = lm.icons.process_completed_icon.render(Gtk.IconSize.MENU, parent.get_style_context());
+		_saved_locally = lm.lw.render_icon(Gtk.Stock.SAVE, IconSize.MENU, null);
+		_new_podcast = lm.icons.new_podcast_icon.render(IconSize.MENU, parent.get_style_context());
 		this.hint = hint;
 		removing_medias = false;
 
@@ -94,6 +98,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to a valid iterator pointing to path **/
 	public bool get_iter (out TreeIter iter, TreePath path) {
+		iter = TreeIter();
 		int path_index = path.get_indices()[0];
 		
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
@@ -121,20 +126,14 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size)
+		val = Value(get_column_type(column));
+		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size || removing_medias)
 			return;
-			
-		if(removing_medias) {
-			val = Value(get_column_type(column));
-			return;
-		}
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
 			Media s = lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
-			if(s == null) {
-				val = Value(get_column_type(column));
+			if(s == null)
 				return;
-			}
 			
 			if(column == 0)
 				val = s.rowid;
@@ -145,6 +144,10 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 					val = _completed;
 				else if(s.unique_status_image != null)
 					val = s.unique_status_image;
+				else if(s.mediatype == 1 && s.last_played == 0)
+					val = _new_podcast;
+				else if(s.mediatype == 1 && !s.uri.has_prefix("http://"))
+					val = _saved_locally;
 				else
 					val = Value(typeof(Gdk.Pixbuf));
 			}
@@ -185,7 +188,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to point to the first child of parent. **/
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
-		
+		iter = TreeIter();
 		return false;
 	}
 
@@ -218,6 +221,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
+		iter = TreeIter();
+		
 		if(n < 0 || n >= rows.get_length() || parent != null)
 			return false;
 		
@@ -229,6 +234,7 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
+		iter = TreeIter();
 		
 		return false;
 	}
@@ -279,6 +285,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
+		iter = TreeIter();
+		
 		SequenceIter<int> added = rows.append(0);
 		iter.stamp = this.stamp;
 		iter.user_data = added;
@@ -287,19 +295,17 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	/** convenience method to insert medias into the model. No iters returned. **/
     public void append_medias(Collection<int> medias, bool emit) {
 		foreach(int id in medias) {
-			//if(lm.media_ids().contains(id)) {
-				SequenceIter<int> added = rows.append(id);
+			SequenceIter<int> added = rows.append(id);
+		
+			if(emit) {
+				TreePath path = new TreePath.from_string(added.get_position().to_string());
 			
-				if(emit) {
-					TreePath path = new TreePath.from_string(added.get_position().to_string());
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = added;
 				
-					TreeIter iter = TreeIter();
-					iter.stamp = this.stamp;
-					iter.user_data = added;
-					
-					row_inserted(path, iter);
-				}
-			//}
+				row_inserted(path, iter);
+			}
 		}
 	}
 	
@@ -344,7 +350,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 				
 				row_changed(path, iter);
 				
-				rowids.remove(rows.get(s_iter));
+				// can't do this. rowids must be read only
+				//rowids.remove(rows.get(s_iter));
 			}
 			
 			if(rowids.size <= 0)
@@ -389,6 +396,19 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		rows.remove((SequenceIter<int>)iter.user_data);
 		row_deleted(path);
 	}
+	
+	/*public void remove_iters(Collection<TreeIter?> iters, bool emit) {
+		foreach(TreeIter iter in iters) {
+			if(iter.stamp != this.stamp)
+				return;
+				
+			var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
+			rows.remove((SequenceIter<int>)iter.user_data);
+			
+			if(emit)
+				row_deleted(path);
+		}
+	}*/
 	
 	public void removeMedias(Collection<int> rowids) {
 		removing_medias = true;
@@ -485,6 +505,9 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		Media a_media = lm.media_from_id(rows.get(a));
 		Media b_media = lm.media_from_id(rows.get(b));
 		
+		if(a_media == null || b_media == null)
+			return 1;
+		
 		if(_columns.get(sort_column_id) == "Artist") {
 			if(a_media.album_artist.down() == b_media.album_artist.down()) {
 				if(a_media.album.down() == b_media.album.down()) {
@@ -564,8 +587,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	private int advancedStringCompare(string a, string b) {
-		if(a == null || b == null)
-			stdout.printf("a or b is null\n");
 		if(a == "" && b != "")
 			return 1;
 		else if(a != "" && b == "")

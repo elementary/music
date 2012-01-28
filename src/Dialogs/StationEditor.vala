@@ -111,7 +111,7 @@ public class BeatBox.StationEditor : Window {
 			if(s.genre != sum.genre) // category
 				sum.genre = "";
 			if(s.rating != sum.rating)
-				sum.rating = -1;
+				sum.rating = 0;
 		}
 		
 		if(_stations.size == 1) {
@@ -126,7 +126,7 @@ public class BeatBox.StationEditor : Window {
 		
 		fields.set("Station", new FieldEditor("Station", sum.album_artist, new Entry()));
 		fields.set("Genre", new FieldEditor("Genre", sum.genre, new Entry()));
-		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false)));
+		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false, IconSize.MENU)));
 		
 		padding = new HBox(false, 10);
 		vert = new VBox(false, 0);

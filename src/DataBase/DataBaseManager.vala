@@ -59,7 +59,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		
-		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_389.db"));
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_473.db"));
 		if(!db_file.query_exists())
 			need_create = true;
 		
@@ -79,7 +79,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				_db.execute("CREATE TABLE playlists (`name` TEXT, `medias` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
 				_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
 				
-				_db.execute("""CREATE TABLE medias (`file` TEXT, 'file_size' INT, `title` TEXT,`artist` TEXT, 'composer' TEXT, 'album_artist' TEXT,
+				_db.execute("""CREATE TABLE medias (`uri` TEXT, 'file_size' INT, `title` TEXT,`artist` TEXT, 'composer' TEXT, 'album_artist' TEXT,
 				`album` TEXT, 'grouping' TEXT, `genre` TEXT,`comment` TEXT, 'lyrics' TEXT, 'album_path' TEXT, 'has_embedded' INT, 
 				`year` INT, `track` INT, 'track_count' INT, 'album_number' INT, 'album_count' INT, `bitrate` INT, `length` INT, `samplerate` INT, 
 				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'lastmodified' INT, 'mediatype' INT, 
@@ -243,11 +243,11 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		try {
 			//_db.execute("DELETE FROM `medias`");
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("""INSERT INTO 'medias' ('rowid', 'file', 'file_size', 'title', 'artist', 'composer', 'album_artist',
+			Query query = transaction.prepare ("""INSERT INTO 'medias' ('rowid', 'uri', 'file_size', 'title', 'artist', 'composer', 'album_artist',
 'album', 'grouping', 'genre', 'comment', 'lyrics', 'album_path', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
 'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified', 'mediatype', 'podcast_rss',
 'podcast_url', 'podcast_date', 'is_new_podcast', 'resume_pos') 
-VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping, 
+VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping, 
 :genre, :comment, :lyrics, :album_path, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate, 
 :rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :mediatype, :podcast_rss, :podcast_url, :podcast_date, :is_new_podcast,
 :resume_pos);""");
@@ -255,7 +255,7 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 			foreach(Media s in medias) {
 				if(s.rowid > 0) {
 					query.set_int(":rowid", (int)s.rowid);
-					query.set_string(":file", s.file);
+					query.set_string(":uri", s.uri);
 					query.set_int(":file_size", (int)s.file_size);
 					query.set_string(":title", s.title);
 					query.set_string(":artist", s.artist);
@@ -308,10 +308,10 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 	public void remove_medias(Collection<string> medias) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("DELETE FROM `medias` WHERE file=:file");
+			Query query = transaction.prepare("DELETE FROM `medias` WHERE uri=:uri");
 			
 			foreach(var s in medias) {
-				query.set_string(":file", s);
+				query.set_string(":uri", s);
 				query.execute();
 			}
 			
@@ -340,7 +340,7 @@ VALUES (:rowid, :file, :file_size, :title, :artist, :composer, :album_artist, :a
 	public void update_medias(Gee.Collection<Media> medias) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("""UPDATE `medias` SET file=:file, file_size=:file_size, title=:title, artist=:artist,
+			Query query = transaction.prepare("""UPDATE `medias` SET uri=:uri, file_size=:file_size, title=:title, artist=:artist,
 composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics, 
 album_path=:album_path, has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number, 
 album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount, 
@@ -351,7 +351,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				if(s.rowid != -2 && s.rowid > 0) {
 					
 					query.set_int(":rowid", (int)s.rowid);
-					query.set_string(":file", s.file);
+					query.set_string(":uri", s.uri);
 					query.set_int(":file_size", (int)s.file_size);
 					query.set_string(":title", s.title);
 					query.set_string(":artist", s.artist);
@@ -529,9 +529,19 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			transaction = _db.begin_transaction();
 			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
 			
-			query.set_string(":name", "Favorites");
-			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_string(":name", "Favorite Songs");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", "Rating");
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Favorite Stations");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>3<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_string(":sort_column", "Rating");
@@ -561,7 +571,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			
 			query.set_string(":name", "Recent Favorites");
 			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Last Played<value_seperator>is within<value_seperator>7<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Last Played<value_seperator>is within<value_seperator>7<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_string(":sort_column", "Rating");
@@ -570,8 +580,18 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 			
 			query.set_string(":name", "Never Played");
-			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
+			query.set_int(":limit", 0);
+			query.set_int(":limit_amount", 50);
+			query.set_string(":sort_column", "Artist");
+			query.set_string(":sort_direction", tvs.sort_direction_to_string());
+			query.set_string(":columns", tvs.columns_to_string());
+			query.execute();
+			
+			query.set_string(":name", "Unheard Podcasts");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>1<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_string(":sort_column", "Artist");
@@ -580,8 +600,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 			
 			query.set_string(":name", "Over Played");
-			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Playcount<value_seperator>is at least<value_seperator>10<query_seperator>");
+			query.set_string(":and_or", "all");
+			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Playcount<value_seperator>is at least<value_seperator>10<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_string(":sort_column", "Plays");

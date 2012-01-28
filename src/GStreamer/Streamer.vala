@@ -25,17 +25,24 @@ public class BeatBox.Streamer : GLib.Object {
 		pipe = new BeatBox.Pipeline();
 		
 		pipe.bus.add_watch(busCallback);
-		pipe.playbin.about_to_finish.connect(about_to_finish);
+		//pipe.playbin.about_to_finish.connect(about_to_finish);
 		
 		Timeout.add(500, doPositionUpdate);
 	}
 	
-	public void mediaRipped(Media s) {
-		setURI("file://" + s.file);
-	}
+	/*public void mediaRipped(Media s) {
+		setURI(s.uri);
+	}*/
 	
 	public bool doPositionUpdate() {
-		current_position_update(getPosition());
+		if(set_resume_pos || getPosition() >= (int64)(lm.media_info.media.resume_pos - 1) * 1000000000) {
+			set_resume_pos = true;
+			current_position_update(getPosition());
+		}
+		else {
+			pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
+		}
+		
 		return true;
 	}
 	
@@ -56,12 +63,15 @@ public class BeatBox.Streamer : GLib.Object {
 		setState(State.READY);
 		pipe.playbin.uri = uri.replace("#", "%23");
 		
-		if(pipe.video.element != null) {
+		if(lw.initializationFinished && pipe.video.element != null) {
 			var xoverlay = pipe.video.element as XOverlay;
 			xoverlay.set_xwindow_id(Gdk.X11Window.get_xid(lw.videoArea.get_window ()));
 		}
 		
 		setState(State.PLAYING);
+		
+		stdout.printf("setURI seeking to %d\n", lm.media_info.media.resume_pos);
+		pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
 		
 		play();
 		/*if(lm.media_info.media.mediatype == 1 || lm.media_info.media.mediatype == 2) {
@@ -147,6 +157,17 @@ public class BeatBox.Streamer : GLib.Object {
             if(newstate != Gst.State.PLAYING)
 				break;
 			
+			//if(getPosition() < (lm.media_info.media.resume_pos * 1000000000)) {
+				//stdout.printf("!!!!!!!!trying to resume at %d\n", lm.media_info.media.resume_pos);
+				//set_resume_pos = true;
+				//pipe.playbin.seek(1.0, Gst.Format.TIME, SeekType.FLUSH | SeekType.SKIP, lm.media_info.media.resume_pos * 1000000000, Gst.SeekType.NONE, getDuration());
+				//setPosition(lm.media_info.media.resume_pos * 1000000000);
+				//current_position_update(lm.media_info.media.resume_pos * 1000000000);
+			//}
+			//else {
+			//	set_resume_pos = true;
+			//}
+			
 			if(!checked_video) {
 				Idle.add( () => {
 					checked_video = true;
@@ -214,14 +235,15 @@ public class BeatBox.Streamer : GLib.Object {
 		return true;
 	}
 	
-	void about_to_finish() {
+	// no longer used since it would cause bugs
+	/*void about_to_finish() {
 		int i = lm.getNext(false);
 		Media s = lm.media_from_id(i);
 		if(s != null && s.mediatype != 3) { // don't do this with radio stations
-			if(!s.isPreview && !s.file.contains("cdda://") && !s.file.contains("http://")) // normal file
-				pipe.playbin.uri = "file://" + s.file;
-			else
-				pipe.playbin.uri = s.file; // probably cdda
+			pipe.playbin.uri = s.uri; // probably cdda
+		}
+		else {
+			stdout.printf("not doing gapless in streamer because no next song\n");
 		}
 		
 		lm.next_gapless_id = i;
@@ -230,5 +252,5 @@ public class BeatBox.Streamer : GLib.Object {
 			
 			return false;
 		});
-	}
+	}*/
 }

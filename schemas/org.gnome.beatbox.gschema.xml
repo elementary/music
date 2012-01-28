@@ -14,6 +14,11 @@
       <summary>Path to music folder</summary>
       <description>Where music is copied to, saved, and managed</description>
     </key>
+    <key type="s" name="music-mount-name">
+      <default>''</default>
+      <summary>Name of mount volume</summary>
+      <description>Used to attempt to automount the music folder when BeatBox starts if it already isn't.</description>
+    </key>
     <key type="s" name="podcast-folder">
       <default>''</default>
       <summary>Path to podcast folder</summary>

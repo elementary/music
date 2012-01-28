@@ -116,7 +116,7 @@ public class BeatBox.FileNotFoundDialog : Window {
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
 		
 		// try and help user by setting a sane default folder
-		var invalid_file = File.new_for_path(lm.media_from_id(media_id).file);
+		var invalid_file = File.new_for_uri(lm.media_from_id(media_id).uri);
 		
 		if(invalid_file.get_parent().query_exists())
 			file_chooser.set_current_folder(invalid_file.get_parent().get_path());
@@ -135,7 +135,7 @@ public class BeatBox.FileNotFoundDialog : Window {
 		file_chooser.destroy ();
 		
 		if(file != "") {
-			lm.media_from_id(media_id).file = file;
+			lm.media_from_id(media_id).uri = File.new_for_path(file).get_uri();
 			lm.update_media(lm.media_from_id(media_id), false, false);
 			
 			this.destroy();

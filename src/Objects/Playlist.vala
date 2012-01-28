@@ -113,7 +113,7 @@ public class BeatBox.Playlist : Object {
 		foreach(int i in _medias) {
 			Media s = lm.media_from_id(i);
 			
-			to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + s.file;
+			to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + File.new_for_uri(s.uri).get_path();
 		}
 		
 		File dest = GLib.File.new_for_path(Path.build_path("/", folder, name.replace("/", "_") + ".m3u"));
@@ -146,7 +146,7 @@ public class BeatBox.Playlist : Object {
 		foreach(int i in _medias) {
 			Media s = lm.media_from_id(i);
 			
-			to_save += "\n\nFile" + index.to_string() + "=" + s.file + "\nTitle" + index.to_string() + "=" + s.title + "\nLength" + index.to_string() + "=" + s.length.to_string();
+			to_save += "\n\nFile" + index.to_string() + "=" + File.new_for_uri(s.uri).get_path() + "\nTitle" + index.to_string() + "=" + s.title + "\nLength" + index.to_string() + "=" + s.length.to_string();
 			++index;
 		}
 		
@@ -199,7 +199,7 @@ public class BeatBox.Playlist : Object {
 					else
 						locals.add(line);
 				}
-				else if(line[0] != '#') {
+				else if(line[0] != '#' && line.replace(" ", "").length > 0) {
 					locals.add(line);
 				}
 				

@@ -41,17 +41,13 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	public MillerModel(string category) {
 		this.category = category;
 		
-#if VALA_0_14
 		rows = new Sequence<string>();
-#else
-		rows = new Sequence<string>(null);
-#endif
        
-       sort_column_id = -2;
-       sort_direction = SortType.ASCENDING;
-       column_sorts = new HashMap<int, CompareFuncHolder>();
+		sort_column_id = -2;
+		sort_direction = SortType.ASCENDING;
+		column_sorts = new HashMap<int, CompareFuncHolder>();
        
-       stamp = (int)GLib.Random.next_int();
+		stamp = (int)GLib.Random.next_int();
 	}
 	
 	/** Returns a set of flags supported by this interface **/
@@ -87,16 +83,13 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	}
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
-#if VALA_0_14
 	public TreePath? get_path (TreeIter iter) {
-#else
-	public TreePath get_path (TreeIter iter) {
-#endif
 		return new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
 	}
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
+		val = Value(typeof(string));
 		if(iter.stamp != this.stamp || column < 0 || column >= 1)
 			return;
 		
@@ -106,6 +99,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to point to the first child of parent. **/
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
+		iter = TreeIter();
 		
 		return false;
 	}
@@ -139,6 +133,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
+		iter = TreeIter();
 		if(n < 0 || n >= rows.get_length() || parent != null)
 			return false;
 		
@@ -150,6 +145,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
+		iter = TreeIter();
 		
 		return false;
 	}
@@ -162,6 +158,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
+		iter = TreeIter();
 		SequenceIter<string> added = rows.append("");
 		iter.stamp = this.stamp;
 		iter.user_data = added;
@@ -265,7 +262,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 			else if(bS == "All " + category)
 				rv = 1;
 			else
-				rv = ((aS > bS) ? 1 : -1);
+				rv = ((aS.down() > bS.down()) ? 1 : -1);
 		}
 		
 		

@@ -82,6 +82,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to a valid iterator pointing to path **/
 	public bool get_iter (out TreeIter iter, TreePath path) {
+		iter = TreeIter();
 		int path_index = path.get_indices()[0];
 		
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
@@ -109,21 +110,14 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size) {
+		val = Value(get_column_type(column));
+		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size || removing_medias)
 			return;
-		}
-			
-		if(removing_medias) {
-			val = Value(get_column_type(column));
-			return;
-		}
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
 			Media s = lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
-			if(s == null) {
-				val = Value(get_column_type(column));
+			if(s == null)
 				return;
-			}
 			
 			if(column == 0)
 				val = (int)s.rowid;
@@ -148,6 +142,8 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to point to the first child of parent. **/
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
+        iter = TreeIter ();
+        critical ("Function not implemented.");
 		
 		return false;
 	}
@@ -181,8 +177,11 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
-		if(n < 0 || n >= rows.get_length() || parent != null)
+        iter = TreeIter ();
+		if(n < 0 || n >= rows.get_length() || parent != null) {
+            critical ("Invalid child number %d", n);
 			return false;
+        }
 		
 		iter.stamp = this.stamp;
 		iter.user_data = rows.get_iter_at_pos(n);
@@ -192,6 +191,8 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
+        iter = TreeIter ();
+        critical ("Function not allowed on list-only view");
 		
 		return false;
 	}
@@ -242,6 +243,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
+        iter = TreeIter ();
 		SequenceIter<int> added = rows.append(0);
 		iter.stamp = this.stamp;
 		iter.user_data = added;
@@ -305,7 +307,8 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 				
 				row_changed(path, iter);
 				
-				rowids.remove(rows.get(s_iter));
+				// can't do this. rowids must be read only
+				//rowids.remove(rows.get(s_iter));
 			}
 			
 			if(rowids.size <= 0)
@@ -353,7 +356,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 	
 	public void removeMedias(Collection<int> rowids) {
 		removing_medias = true;
-		stdout.printf("removeMedias start\n");
+		
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -375,7 +378,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 				return;
 			}
 		}
-		stdout.printf("removeMedias finished\n");
+		
 		removing_medias = false;
 	}
 	
@@ -449,7 +452,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		if(_columns.get(sort_column_id) == "Station") {
 			if(a_media.album_artist.down() == b_media.album_artist.down()) {
-				rv = advancedStringCompare(b_media.file, a_media.file);
+				rv = advancedStringCompare(b_media.uri, a_media.uri);
 			}
 			else
 				rv = advancedStringCompare(a_media.album_artist.down(), b_media.album_artist.down());
@@ -457,7 +460,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 		else if(_columns.get(sort_column_id) == "Genre") {
 			if(a_media.genre.down() == b_media.genre.down()) {
 				if(a_media.album_artist.down() == b_media.album_artist.down()) {
-					rv = advancedStringCompare(b_media.file, a_media.file);
+					rv = advancedStringCompare(b_media.uri, a_media.uri);
 				}
 				else {
 					rv = advancedStringCompare(a_media.album_artist.down(), b_media.album_artist.down());

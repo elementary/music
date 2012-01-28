@@ -53,7 +53,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	VPaned millerPane;
 	BeatBox.Welcome welcomeScreen;
 	public DrawingArea videoArea;
-	HPaned sourcesToMedias; //allows for draggable
+	public HPaned sourcesToMedias; //allows for draggable
 	HPaned mediasToInfo; // media info pane
 	ScrolledWindow sideTreeScroll;
 	VBox sideBar;
@@ -79,17 +79,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	
 	// basic file stuff
 	ImageMenuItem libraryOperations;
-	Menu libraryOperationsMenu;
-	MenuItem fileSetMusicFolder;
-	MenuItem fileImportMusic;
-	MenuItem fileRescanMusicFolder;
-	MenuItem editEqualizer;
+	Gtk.Menu libraryOperationsMenu;
+	Gtk.MenuItem fileSetMusicFolder;
+	Gtk.MenuItem fileImportMusic;
+	Gtk.MenuItem fileRescanMusicFolder;
+	Gtk.MenuItem editEqualizer;
 	ImageMenuItem editPreferences;
 	
 	// Base color
 	public static Gdk.RGBA base_color;
 
-	Menu settingsMenu;
+    Gtk.Menu settingsMenu;
 	
 	public Notify.Notification notification;
 	
@@ -113,6 +113,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 #if HAVE_DBUSMENU
 		stdout.printf("Initializing MPRIS and sound menu\n");
 		var mpris = new BeatBox.MPRIS(lm, this);
+		mpris.initialize();
 #endif
 #endif
 		
@@ -200,26 +201,26 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		millerPane = new VPaned();
 		mainViews = new VBox(false, 0);
 		videoArea = new DrawingArea();
-		welcomeScreen = new Welcome("Get Some Tunes.", "BeatBox can't seem to find your music.");
+		welcomeScreen = new Welcome(_("Get Some Tunes"), _("BeatBox can't seem to find your music."));
 
 		sideTree = new SideTreeView(lm, this);	
 		sideTreeScroll = new ScrolledWindow(null, null);
 		coverArt = new CoverArtImage(lm, this);	
 		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
-		libraryOperationsMenu = new Menu();
-		fileSetMusicFolder = new MenuItem.with_label("Set Music Folder");
-		fileImportMusic = new MenuItem.with_label("Import to Library");
-		fileRescanMusicFolder = new MenuItem.with_label("Rescan Music Folder");
-		editEqualizer = new MenuItem.with_label("Equalizer");
+		libraryOperationsMenu = new Gtk.Menu();
+		fileSetMusicFolder = new Gtk.MenuItem.with_label(_("Set Music Folder"));
+		fileImportMusic = new Gtk.MenuItem.with_label(_("Import to Library"));
+		fileRescanMusicFolder = new Gtk.MenuItem.with_label(_("Rescan Music Folder"));
+		editEqualizer = new Gtk.MenuItem.with_label(_("Equalizer"));
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
-		settingsMenu = new Menu();
+		settingsMenu = new Gtk.Menu();
 		topControls = new Toolbar();
 		previousButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PREVIOUS);
 		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
 		topDisplay = new ElementaryWidgets.TopDisplay(lm);
 		viewSelector = new Granite.Widgets.ModeButton();
-		searchField = new Granite.Widgets.SearchBar("Search...");
+		searchField = new Granite.Widgets.SearchBar(_("Search..."));
 		miller = new MillerColumns(lm, this); //miller must be below search for it to work properly
 		mediaInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
@@ -242,18 +243,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
-						"summary", "Title",
-						"body", "Artist\nAlbum");
+						"summary", _("Title"),
+						"body", "%s\n%s".printf(_("Artist"), _("Album")));
 		
 		/* Set properties of various controls */
+		//sideBar.set_size_request(200, -1);
 		sourcesToMedias.set_position(settings.getSidebarWidth());
 		mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 		
 		//for setting maximum size for setting hpane position max size
 		//sideBar.set_geometry_hints(
 		
-		miller.populateColumns("", lm.media_ids());
+		stdout.printf("building side tree\n");
 		buildSideTree();
+		stdout.printf("done with side tree\n");
 		
 		sideTreeScroll = new ScrolledWindow(null, null);
 		sideTreeScroll.set_policy (PolicyType.NEVER, PolicyType.AUTOMATIC);
@@ -268,7 +271,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		libraryOperationsMenu.append(fileImportMusic);
 		libraryOperationsMenu.append(fileRescanMusicFolder);
 		libraryOperations.submenu = libraryOperationsMenu;
-		libraryOperations.set_label("Library");
+		libraryOperations.set_label(_("Library"));
 		
 		settingsMenu.append(libraryOperations);
 		settingsMenu.append(new SeparatorMenuItem());
@@ -279,7 +282,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 		
-		editPreferences.set_label("Preferences");
+		editPreferences.set_label(_("Preferences"));
 		
 		editEqualizer.activate.connect(editEqualizerClick);
 		editPreferences.activate.connect(editPreferencesClick);
@@ -290,17 +293,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// paint the background
 		statusEventBox.override_background_color (StateFlags.NORMAL, base_color);
 		
-		repeatChooser.appendItem("Off");
-		repeatChooser.appendItem("Media");
-		repeatChooser.appendItem("Album");
-		repeatChooser.appendItem("Artist");
-		repeatChooser.appendItem("All");
+		repeatChooser.appendItem(_("Off"));
+		repeatChooser.appendItem(_("Song"));
+		repeatChooser.appendItem(_("Album"));
+		repeatChooser.appendItem(_("Artist"));
+		repeatChooser.appendItem(_("All"));
 		
-		shuffleChooser.appendItem("Off");
-		shuffleChooser.appendItem("All");
+		shuffleChooser.appendItem(_("Off"));
+		shuffleChooser.appendItem(_("All"));
 		
-		infoPanelChooser.appendItem("Hide");
-		infoPanelChooser.appendItem("Show");
+		infoPanelChooser.appendItem(_("Hide"));
+		infoPanelChooser.appendItem(_("Show"));
 		
 		repeatChooser.setOption(settings.getRepeatMode());
 		shuffleChooser.setOption(settings.getShuffleMode());
@@ -334,7 +337,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplayBin.set_expand(true);
 
 		// Set theming
-		viewSelector.get_style_context().add_class("raised");
+		//viewSelector.get_style_context().add_class("raised");
 		topControls.get_style_context().add_class("primary-toolbar");		
 		sourcesToMedias.get_style_context().add_class("sidebar-pane-separator");
 		sideTree.get_style_context().add_class("sidebar");		
@@ -344,12 +347,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		var view_column_icon = lm.icons.view_column_icon.render (IconSize.MENU, viewSelectorStyle);
 		var view_details_icon = lm.icons.view_details_icon.render (IconSize.MENU, viewSelectorStyle);
 		var view_icons_icon = lm.icons.view_icons_icon.render (IconSize.MENU, viewSelectorStyle);
-		var view_video_icon = lm.icons.view_video_icon.render (IconSize.MENU, viewSelectorStyle);
 
 		viewSelector.append(new Image.from_pixbuf(view_icons_icon));
 		viewSelector.append(new Image.from_pixbuf(view_details_icon));
 		viewSelector.append(new Image.from_pixbuf(view_column_icon));
-		//viewSelector.append(new Image.from_pixbuf(view_video_icon));
 		
 		topControls.insert(previousButton, 0);
 		topControls.insert(playButton, 1);
@@ -365,7 +366,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 		
 		var music_folder_icon = lm.icons.music_folder.render (IconSize.DIALOG, null);
-		welcomeScreen.append_with_pixbuf(music_folder_icon, "Locate", "Choose your music folder.");
+		welcomeScreen.append_with_pixbuf(music_folder_icon, _("Locate"), _("Change your music folder."));
 		
 		millerPane.pack1(miller, false, true);
 		millerPane.pack2(mainViews, true, true);
@@ -394,7 +395,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		/* Connect events to functions */
 		sourcesToMedias.get_child1().size_allocate.connect(sourcesToMediasHandleSet);
 		welcomeScreen.activated.connect(welcomeScreenActivated);
-		//sideTree.row_activated.connect(sideListDoubleClick);
 		previousButton.clicked.connect(previousClicked);
 		playButton.clicked.connect(playClicked);
 		nextButton.clicked.connect(nextClicked);
@@ -414,10 +414,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Gtk.drag_dest_add_uri_targets(this);
 		drag_data_received.connect(dragReceived);
 		
-		show_all();
-		
-		// nowthat everything is added, resize to proper height
-		resize(settings.getWindowWidth(), this.default_height);
 		viewSelector.selected = settings.getViewMode();
 		
 		bool genreV, artistV, albumV;
@@ -427,29 +423,35 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		int i = settings.getLastMediaPlaying();
 		if(i != 0) {
-			int position = (int)settings.getLastMediaPosition();
-			//Timeout.add(250, () => {
-			lm.playMedia(i);
-			topDisplay.change_value(ScrollType.NONE, position);
+			lm.media_from_id(i).resume_pos;
+			lm.playMedia(i, true);
 		}
 		else {
-			/* don't show info panel if nothing playing */
+			// don't show info panel if nothing playing
 			infoPanel.set_visible(false);
 		}
 		
 		initializationFinished = true;
 		
-		sideTree.resetView();
+		var vw = (ViewWrapper)sideTree.getSelectedWidget();
 		if(lm.media_info.media != null) {
-			((ViewWrapper)sideTree.getSelectedWidget()).list.set_as_current_list(0, true);
+			vw.list.set_as_current_list(0, true);
 			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
 				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
 			}
 		}
 		
 		searchField.set_text(lm.settings.getSearchString());
+		vw.doUpdate(vw.currentView, vw.get_media_ids(), false, true, false);
 		
+		show_all();
+		resize(settings.getWindowWidth(), this.default_height);
+		
+		sideTree.resetView();
 		updateSensitivities();
+		
+		if(lm.song_ids().size == 0)
+			setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -472,32 +474,32 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addBasicItems();
 		
 		vw = new ViewWrapper(lm, this, new LinkedList<int>(), lm.similar_setup.sort_column, lm.similar_setup.sort_direction, ViewWrapper.Hint.SIMILAR, -1);
-		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "Similar");
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("Similar"), ViewWrapper.Hint.SIMILAR);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.queue(), lm.queue_setup.sort_column, lm.queue_setup.sort_direction, ViewWrapper.Hint.QUEUE, -1);
-		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "Queue");
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("Queue"), ViewWrapper.Hint.QUEUE);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.already_played(), lm.history_setup.sort_column, lm.history_setup.sort_direction, ViewWrapper.Hint.HISTORY, -1);
-		sideTree.addSideItem(sideTree.playlists_iter, null, vw, "History");
+		sideTree.addSideItem(sideTree.playlists_iter, null, vw, _("History"), ViewWrapper.Hint.HISTORY);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.media_ids(), lm.music_setup.sort_column, lm.music_setup.sort_direction, ViewWrapper.Hint.MUSIC, -1);
-		sideTree.addSideItem(sideTree.library_iter, null, vw, "Music");
+		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Music"), ViewWrapper.Hint.MUSIC);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.podcast_ids(), lm.podcast_setup.sort_column, lm.podcast_setup.sort_direction, ViewWrapper.Hint.PODCAST, -1);
-		sideTree.addSideItem(sideTree.library_iter, null, vw, "Podcasts");
+		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Podcasts"), ViewWrapper.Hint.PODCAST);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		vw = new ViewWrapper(lm, this, lm.station_ids(), lm.station_setup.sort_column, lm.station_setup.sort_direction, ViewWrapper.Hint.STATION, -1);
-		sideTree.addSideItem(sideTree.network_iter, null, vw, "Internet Radio");
+		sideTree.addSideItem(sideTree.network_iter, null, vw, _("Internet Radio"), ViewWrapper.Hint.STATION);
 		mainViews.pack_start(vw, true, true, 0);
 		
 		if(BeatBox.Beatbox.enableStore) {
 			Store.StoreView storeView = new Store.StoreView(lm, this);
-			sideTree.addSideItem(sideTree.network_iter, null, storeView, "Music Store");
+			sideTree.addSideItem(sideTree.network_iter, null, storeView, _("Music Store"), ViewWrapper.Hint.NONE);
 			mainViews.pack_start(storeView, true, true, 0);
 		}
 		
@@ -511,9 +513,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		foreach(Playlist p in lm.playlists()) {
 			addSideListItem(p);
 		}
-		
-		sideTree.expand_all();
-		sideTree.resetView();
 	}
 	
 	public void addSideListItem(GLib.Object o) {
@@ -524,14 +523,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			Playlist p = (Playlist)o;
 			
 			vw = new ViewWrapper(lm, this, lm.medias_from_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, ViewWrapper.Hint.PLAYLIST, p.rowid);
-			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
+			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name, ViewWrapper.Hint.PLAYLIST);
 			mainViews.pack_start(vw, true, true, 0);
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 			
 			vw = new ViewWrapper(lm, this, lm.medias_from_smart_playlist(p.rowid), p.tvs.sort_column, p.tvs.sort_direction, ViewWrapper.Hint.SMART_PLAYLIST, p.rowid);
-			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name);
+			item = sideTree.addSideItem(sideTree.playlists_iter, p, vw, p.name, ViewWrapper.Hint.SMART_PLAYLIST);
 			mainViews.pack_start(vw, true, true, 0);
 		}
 		else if(o is Device) {
@@ -539,19 +538,22 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			if(d.getContentType() == "cdrom") {
 				vw = new DeviceViewWrapper(lm, this, d.get_medias(), "Track", Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM, -1, d);
-				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName());
+				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
 				mainViews.pack_start(vw, true, true, 0);
 			}
 			else {
 				stdout.printf("adding ipod device view with %d\n", d.get_medias().size);
 				DeviceView dv = new DeviceView(lm, d);
 				//vw = new DeviceViewWrapper(lm, this, d.get_medias(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE, -1, d);
-				item = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName());
+				item = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName(), ViewWrapper.Hint.NONE);
 				mainViews.pack_start(dv, true, true, 0);
 			}
 		}
 		
 		if(vw == null || vw.list == null || vw.albumView == null)
+			return;
+		
+		if(!initializationFinished)
 			return;
 		
 		vw.show_all();
@@ -571,7 +573,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		bool folderSet = (lm.settings.getMusicFolder() != "");
 		bool haveMedias = lm.media_count() > 0;
-		bool haveSongs = lm.get_local_song_count() > 0;
+		bool haveSongs = lm.song_ids().size > 0;
 		bool doingOps = lm.doing_file_operations();
 		bool nullMedia = (lm.media_info.media == null);
 		bool showMore = lm.settings.getMoreVisible();
@@ -655,14 +657,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				}
 			}*/
 			if(lm.get_album_art(lm.media_info.media.rowid) != null)
-				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
+				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid).scale_simple(sourcesToMedias.position - 1, sourcesToMedias.position - 1, Gdk.InterpType.BILINEAR));
 			else {
-				try {
-					coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position, sourcesToMedias.position, Gdk.InterpType.BILINEAR));
-				}
-				catch(GLib.Error err) {
-					stdout.printf("Could not set image art: %s\n", err.message);
-				}
+				coverArt.set_from_pixbuf(lm.icons.drop_album.render(null, null).scale_simple(sourcesToMedias.position - 1, sourcesToMedias.position - 1, Gdk.InterpType.BILINEAR));
 			}
 		}
 		
@@ -688,8 +685,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//set the title
 		Media s = lm.media_info.media;
 		var title = "<b>" + s.title.replace("&", "&amp;") + "</b>";
-		var artist = ((s.artist != "" && s.artist != "Unknown Artist") ? (" by " + "<b>" + s.artist.replace("&", "&amp;") + "</b>") : "");
-		var album = ((s.album != "" && s.album != "Unknown Album") ? (" on " + "<b>" + s.album.replace("&", "&amp;") + "</b>") : "");
+		var artist = ((s.artist != "" && s.artist != _("Unknown Artist")) ? (_(" by ") + "<b>" + s.artist.replace("&", "&amp;") + "</b>") : "");
+		var album = ((s.album != "" && s.album != _("Unknown Album")) ? (_(" on ") + "<b>" + s.album.replace("&", "&amp;") + "</b>") : "");
 		
 		var media_label = beg + title + artist + album;
 		topDisplay.set_label_markup(media_label);
@@ -813,7 +810,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		var w = sideTree.getSelectedWidget();
 		if(w is ViewWrapper) {
-			miller.populateColumns("", ((ViewWrapper)w).medias);
+			miller.populateColumns("", ((ViewWrapper)w).get_media_ids());
 		}
 		
 		updateSensitivities();
@@ -961,24 +958,20 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			lm.getNext(true);
 			
 			lm.playing = true;
-			playButton.set_stock_id((lm.media_info.media.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
+			playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			lm.player.play();
 		}
 		else {
 			if(lm.playing) {
 				lm.playing = false;
-				
-				if(lm.media_info.media.mediatype != 3)
-					lm.player.pause();
-				else
-					lm.stopPlayback();
+				lm.player.pause();
 				
 				playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 			}
 			else {
 				lm.playing = true;
 				lm.player.play();
-				playButton.set_stock_id((lm.media_info.media.mediatype == 3) ? Gtk.Stock.MEDIA_STOP : Gtk.Stock.MEDIA_PAUSE);
+				playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			}
 		}
 		
@@ -989,13 +982,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// if not 90% done, skip it
 		if(!added_to_play_count) {
 			lm.media_info.media.skip_count++;
-			lm.update_media(lm.media_info.media, false, false);
+			
+			// don't update, it will be updated eventually
+			//lm.update_media(lm.media_info.media, false, false);
 		}
 		
 		int next_id;
 		if(lm.next_gapless_id != 0) {
 			next_id = lm.next_gapless_id;
-			lm.playMedia(lm.next_gapless_id);
+			lm.playMedia(lm.next_gapless_id, false);
 		}
 		else
 			next_id = lm.getNext(true);
@@ -1033,10 +1028,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		get_size(out width, out height);
 		
 		if(rectangle.width > height/2) {
+			stdout.printf("too big\n");
 			sourcesToMedias.set_position(height/2);
 			return;
 		}
-		
+		else if(sideBar.get_allocated_width() <= 200) {
+			stdout.printf("too small\n");
+			sourcesToMedias.set_position(200);
+			return;
+		}
+		stdout.printf("ok fine\n");
 		if(settings.getSidebarWidth() != rectangle.width) {
 			updateCurrentMedia();
 			settings.setSidebarWidth(rectangle.width);
@@ -1076,7 +1077,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}*/
 			
 			string folder = "";
-			var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+			var file_chooser = new FileChooserDialog (_("Import Music"), this,
 									  FileChooserAction.SELECT_FOLDER,
 									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
@@ -1089,7 +1090,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			if(folder != "" && folder != settings.getMusicFolder()) {
 				if(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
-					topDisplay.set_label_markup("<b>Importing</b> music from <b>" + folder + "</b> to library.");
+					topDisplay.set_label_markup(_("<b>Importing</b> music from <b>%s</b> to library.").printf(folder));
 					topDisplay.show_progressbar();
 					
 					lm.add_folder_to_library(folder);
@@ -1105,14 +1106,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	public virtual void fileRescanMusicFolderClick() {
 		if(!lm.doing_file_operations()) {
 			if(GLib.File.new_for_path(this.settings.getMusicFolder()).query_exists()) {
-				topDisplay.set_label_markup("<b>Rescanning music folder for changes</b>");
+				topDisplay.set_label_markup("<b>" + _("Rescanning music folder for changes") + "</b>");
 				topDisplay.show_progressbar();
 				
 				lm.rescan_music_folder();
 				updateSensitivities();
 			}
 			else {
-				doAlert("Could not find Music Folder", "Please make sure that your music folder is accessible and mounted.");
+				doAlert(_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted."));
 			}
 		}
 		else {
@@ -1130,7 +1131,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				if(w is ViewWrapper/* && !(w is CDRomViewWrapper)*/ && !(w is DeviceViewWrapper)) {
 					ViewWrapper vw = (ViewWrapper)w;
 					stdout.printf("doing clear\n");
-					vw.doUpdate(vw.currentView, new LinkedList<int>(), true, true);
+					vw.doUpdate(vw.currentView, new LinkedList<int>(), true, true, false);
 					stdout.printf("cleared\n");
 				}
 			});
@@ -1138,12 +1139,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 		else {
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-			vw.doUpdate(vw.currentView, lm.media_ids(), true, true);
-			miller.populateColumns("", lm.media_ids());
+			vw.doUpdate(vw.currentView, lm.song_ids(), true, true, false);
+			miller.populateColumns("", lm.song_ids());
 			
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
-			vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true);
-			searchField.changed();
+			vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true, false);
+			
+			//vw = (ViewWrapper)sideTree.getWidget(sideTree.library_audiobooks_iter);
+			//vw.doUpdate(vw.currentView, lm.audiobook_ids(), true, true, false);
+			
+			vw = (ViewWrapper)sideTree.getWidget(sideTree.network_radio_iter);
+			vw.doUpdate(vw.currentView, lm.station_ids(), true, true, false);
 		}
 	}
 	
@@ -1160,7 +1166,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		else
 			topDisplay.set_label_text("");
 		
-		resetSideTree(false);
+		//resetSideTree(false);
 		//var init = searchField.get_text();
 		//searchField.set_text("up");
 		
@@ -1175,7 +1181,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		try {
 			notification.close();
 			if(!has_toplevel_focus) {
-				notification.update("Import Complete", "BeatBox has imported your library", "beatbox");
+				notification.update(_("Import Complete"), _("BeatBox has imported your library."), "beatbox");
 				
 				var beatbox_icon = lm.icons.beatbox_icon.render (IconSize.DIALOG, null);
 				notification.set_image_from_pixbuf(beatbox_icon);
@@ -1262,6 +1268,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(lm.media_info.media != null) {
 			sec = ((double)position/1000000000);
 			
+			if(lm.player.set_resume_pos) {
+				lm.media_info.media.resume_pos = (int)sec;
+			}
+			
 			// at about 5 seconds, update last fm. we wait to avoid excessive querying last.fm for info
 			if(position > 5000000000 && !queriedlastfm) {
 				queriedlastfm = true;
@@ -1284,6 +1294,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				media_considered_played = true;
 				
 				lm.media_info.media.last_played = (int)time_t();
+				if(lm.media_info.media.mediatype == 1) { //podcast
+					added_to_play_count = true;
+					++lm.media_info.media.play_count;
+				}
 				lm.update_media(lm.media_info.media, false, false);
 				
 				// add to the already played list
@@ -1294,7 +1308,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				var event = new Zeitgeist.Event.full(Zeitgeist.ZG_ACCESS_EVENT,
 					Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://beatbox.desktop",
 					new Zeitgeist.Subject.full(
-					GLib.File.new_for_path(lm.media_info.media.file).get_uri(),
+					lm.media_info.media.uri,
 					Zeitgeist.NFO_AUDIO, Zeitgeist.NFO_FILE_DATA_OBJECT,
 					"text/plain", "", lm.media_info.media.title, ""));
 				new Zeitgeist.Log ().insert_events_no_reply(event);
@@ -1334,7 +1348,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 		
 		((ViewWrapper)w).similarsFetched = true;
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true, true);
+		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, similarIDs, true, true, false);
 		
 		infoPanel.updateMediaList(similarDont);
 		
@@ -1352,7 +1366,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(index == 0) {
 			if(!lm.doing_file_operations()) {
 				string folder = "";
-				var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+				var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
 										  FileChooserAction.SELECT_FOLDER,
 										  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 										  Gtk.Stock.OPEN, ResponseType.ACCEPT);
@@ -1406,9 +1420,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		if(sourcesToMedias.get_position() > height/2)
 			return;
-		
-		//mediasToInfo.max_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300;
-		//mediasToInfo.min_position = (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 150;
 		
 		if(mediasToInfo.get_position() < (lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300) { // this is max size
 			mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - 300);
@@ -1478,7 +1489,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	void searchFieldChanged() {
 		if(initializationFinished && searchField.get_text().length != 1) {
 			try {
-				Thread.create<void*>(update_views_thread, false);
+				Thread.create<void*>(lm.update_views_thread, false);
 			}
 			catch(GLib.ThreadError err) {
 				
@@ -1489,23 +1500,23 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		if(initializationFinished) {
 			// start thread to prepare for when it is current
 			try {
-				Thread.create<void*>(update_views_thread, false);
+				Thread.create<void*>(lm.update_views_thread, false);
 			}
 			catch(GLib.ThreadError err) {
 				
 			}
 		}
 	}
-	void* update_views_thread () {
+	/*void* update_views_thread () {
 		mainViews.get_children().foreach( (w) => {
-			if(w is ViewWrapper/* && !(w is CDRomViewWrapper)*/ && !(w is DeviceViewWrapper)) {
+			if(w is ViewWrapper/* && !(w is CDRomViewWrapper)* && !(w is DeviceViewWrapper)) {
 				ViewWrapper vw = (ViewWrapper)w;
-				vw.doUpdate(vw.currentView, vw.medias, false, false);
+				vw.doUpdate(vw.currentView, vw.medias, false, false, true);
 			}
 		});
 		
 		return null;	
-	}
+	}*/
 	
 	public void searchFieldActivate() {
 		Widget w = sideTree.getSelectedWidget();
@@ -1515,7 +1526,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			
 			vw.list.set_as_current_list(1, !vw.list.get_is_current());
 			lm.current_index = 0;
-			lm.playMedia(lm.mediaFromCurrentIndex(0));
+			lm.playMedia(lm.mediaFromCurrentIndex(0), false);
 			
 			if(!lm.playing)
 				playClicked();
@@ -1550,7 +1561,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	/* device stuff for welcome screen */
 	public void device_added(Device d) {
 		// add option to import in welcome screen
-		string secondary = (d.getContentType() == "cdrom") ? "Import songs from audio CD" : "Imort media from device";
+		string secondary = (d.getContentType() == "cdrom") ? _("Import songs from audio CD") : _("Import media from device");
 		int key = welcomeScreen.append_with_image( new Image.from_gicon(d.get_icon(), Gtk.IconSize.DIALOG), d.getDisplayName(), secondary);
 		welcome_screen_keys.set(key, d);
 	}
@@ -1567,7 +1578,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		if(key != 0) {
 			welcome_screen_keys.unset(key);
-			welcomeScreen.remove(key);
+			welcomeScreen.remove_with_key(key);
 		}
 	}
 }

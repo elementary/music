@@ -130,22 +130,23 @@ public class BeatBox.SmartPlaylist : Object {
 		return rv;
 	}
 	
-	public LinkedList<int> analyze(LibraryManager lm) {
+	public LinkedList<int> analyze(LibraryManager lm, Collection<int> to_test) {
 		//if(is_up_to_date) {
 		//	return medias;
 		//}
 		
 		LinkedList<int> rv = new LinkedList<int>();
-		foreach(Media s in lm.media()) {
+		foreach(int i in to_test) {
+			Media m = lm.media_from_id(i);
 			int match_count = 0; //if OR must be greather than 0. if AND must = queries.size.
 			
 			foreach(SmartQuery q in _queries) {
-				if(media_matches_query(q, s))
+				if(media_matches_query(q, m))
 					match_count++;
 			}
 			
-			if(((conditional == "all" && match_count == _queries.size) || (conditional == "any" && match_count >= 1)) && !s.isTemporary)
-				rv.add(s.rowid);
+			if(((conditional == "all" && match_count == _queries.size) || (conditional == "any" && match_count >= 1)) && !m.isTemporary)
+				rv.add(m.rowid);
 				
 			if(_limit && _limit_amount <= rv.size)
 				return rv;

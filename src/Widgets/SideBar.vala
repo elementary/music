@@ -248,6 +248,16 @@ namespace ElementaryWidgets {
 			tree.get(iter, SideBarColumn.COLUMN_WIDGET, out w);
 			w.destroy();
 			
+			// destroy child row widgets as well
+			TreeIter current;
+			if(tree.iter_children(out current, iter)) {
+				do {
+					tree.get(current, SideBarColumn.COLUMN_WIDGET, out w);
+					w.destroy();
+				}
+				while(tree.iter_next(ref current));
+			}
+			
 			return tree.remove(iter);
 		}
 		

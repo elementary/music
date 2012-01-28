@@ -16,8 +16,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	int total = 0;
 	string current_operation;
 	
-	HashMap<unowned GPod.Track, int> media;
 	HashMap<unowned GPod.Track, int> medias;
+	HashMap<unowned GPod.Track, int> songs;
 	HashMap<unowned GPod.Track, int> podcasts;
 	HashMap<unowned GPod.Track, int> audiobooks;
 	HashMap<unowned GPod.Playlist, int> playlists;
@@ -44,8 +44,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		total = 0;
 		current_operation = "";
 		
-		media = new HashMap<unowned GPod.Track, int>();
 		medias = new HashMap<unowned GPod.Track, int>();
+		songs = new HashMap<unowned GPod.Track, int>();
 		podcasts = new HashMap<unowned GPod.Track, int>();
 		audiobooks = new HashMap<unowned GPod.Track, int>();
 		playlists = new HashMap<unowned GPod.Playlist, int>();
@@ -82,11 +82,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	void* finish_initialization_thread() {
-		var toAdd = new HashMap<unowned GPod.Track, Media>();
-		
 		var all = new LinkedList<Media>();
-		var temps = new LinkedList<Media>();
-		var perms = new LinkedList<int>();
 		
 		// get all songs first
 		for(int i = 0; i < db.tracks.length(); ++i) {
@@ -97,15 +93,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			all.add(s);
 		}
 		
-		// search for existing, not existing. add temps.
-		lm.medias_from_name(all, ref perms, ref temps);
-		lm.add_medias(temps, false);
-		
-		all.clear();
-		foreach(int i in perms)
-			all.add(lm.media_from_id(i));
-		foreach(var m in temps)
-			all.add(m);
+		lm.add_medias(all, false);
 		
 		// set hashmaps
 		for(int i = 0; i < db.tracks.length(); ++i) {
@@ -120,9 +108,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			}
 			
 			if(match != 0) {
-				this.media.set(t, match);
+				this.medias.set(t, match);
 				if(t.mediatype == GPod.MediaType.AUDIO)
-					this.medias.set(t, match);
+					this.songs.set(t, match);
 				else if(t.mediatype == GPod.MediaType.PODCAST)
 					this.podcasts.set(t, match);
 				else if(t.mediatype == GPod.MediaType.AUDIOBOOK)
@@ -230,8 +218,17 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public uint64 get_capacity() {
-		var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
-		return file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
+		uint64 rv = 0;
+		
+		try {
+			var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
+		}
+		catch(Error err) {
+			error("Error calculating capacity of iPod: %s\n", err.message);
+		}
+		
+		return rv;
 	}
 	
 	public string get_fancy_capacity() {
@@ -243,8 +240,17 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public uint64 get_free_space() {
-		var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
-		return file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_FREE);
+		uint64 rv = 0;
+		
+		try {
+			var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
+			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_FREE);
+		}
+		catch(Error err) {
+			error("Error calculating free space on iPod: %s\n", err.message);
+		}
+		
+		return rv;
 	}
 	
 	public void unmount() {
@@ -269,6 +275,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	public Collection<int> get_medias() {
 		return medias.values;
+	}
+	
+	public Collection<int> get_songs() {
+		return songs.values;
 	}
 	
 	public Collection<int> get_podcasts() {
@@ -354,87 +364,69 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		db.start_sync();
 		
-		// sync local files with new info
-		foreach(unowned GPod.Track t in media.keys) {
-			Media s = lm.media_from_id(media.get(t));
-			
-			if(!s.isTemporary) {
-				// update the media with data from device
-				//stdout.printf("t.rating is %d, s.rating is %d\n", (int)t.rating, (int)s.rating);
-				if(pref.last_sync_time >= s.last_modified) { // media has not been modified since last sync
-					if(t.rating > 0)
-						stdout.printf("%s rating %d\n", t.title, (int)t.rating);
-					s.rating = t.rating / 20;
-				}
-				
-				s.play_count += t.recent_playcount;
-				s.skip_count += t.recent_skipcount;
-				s.last_played = (s.last_played > (int)t.time_played) ? s.last_played : (int)t.time_played;
-			}
-		}
-		
-		/* first remove removed medias */
+		// for each song that is on device, but not in this.list, remove
 		current_operation = "Removing old medias from iPod and updating current ones";
 		var removed = new HashMap<unowned GPod.Track, int>();
-		foreach(var entry in media.entries) {
+		foreach(var e in medias.entries) {
 			if(!sync_cancelled) {
-				if(!list.contains(entry.value)) {
-					unowned GPod.Track t = entry.key;
+				int match = lm.match_media_to_list(e.value, list);
+				
+				if(match == 0) {
+					unowned GPod.Track t = e.key;
 					
 					if(t != null) {
 						remove_media(t);
-						removed.set(t, entry.value);
+						removed.set(t, e.value);
 					}
-				}
-				else if(entry.key.ipod_path == null || entry.key.ipod_path == "" || !File.new_for_path(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(entry.key.ipod_path))).query_exists()) {
-					remove_media(entry.key);
-					removed.set(entry.key, entry.value);
 				}
 			}
 			
 			++sub_index;
 			index = (int)(15.0 * (double)((double)sub_index/(double)medias.size));
 		}
-		media.unset_all(removed);
 		medias.unset_all(removed);
+		songs.unset_all(removed);
 		podcasts.unset_all(removed);
 		audiobooks.unset_all(removed);
 		
-		// no matter where index is, set it to 1/3 now
-		//index = total/4;
-		
 		stdout.printf("Updating existing tracks...\n");
 		sub_index = 0;
-		/* anything left will be synced. update medias that are already on list */
-		foreach(var entry in media.entries) {
+		// anything left will be synced. update medias that are already on list
+		foreach(var entry in medias.entries) {
 			if(!sync_cancelled) {
-				Media s = lm.media_from_id(entry.value);
-				
-				unowned GPod.Track t = entry.key;
-				s.update_track(ref t);
-				
-				if(lm.get_album_art(s.rowid) != null)
-					t.set_thumbnails_from_pixbuf(lm.get_album_art(s.rowid));
+				int i = lm.match_media_to_list(entry.value, this.list);
+				if(i != 0) {
+					Media m = lm.media_from_id(i);
+					
+					unowned GPod.Track t = entry.key;
+					m.update_track(ref t);
+					
+					if(lm.get_album_art(m.rowid) != null)
+						t.set_thumbnails_from_pixbuf(lm.get_album_art(m.rowid));
+				}
+				else {
+					stdout.printf("Could not update %s, no match in sync list\n", entry.key.title);
+				}
 			}
 			
 			index = (int)(15.0 + (double)(10.0 * (double)((double)sub_index /(double)medias.size)));
 		}
 		
-		//index = total/2;
-		
 		stdout.printf("Adding new medias...\n");
-		/* now add all in list that weren't in medias */
+		// now add all in list that weren't in medias
 		current_operation = "Adding new medias to iPod...";
 		sub_index = 0;
 		int new_media_size = 0;
 		foreach(var i in list) {
-			if(!media.values.contains(i)) {
+			int match = lm.match_media_to_list(i, medias.values);
+			if(match == 0) {
 				new_media_size++;
 			}
 		}
 		foreach(var i in list) {
 			if(!sync_cancelled) {
-				if(!media.values.contains(i)) {
+				int match = lm.match_media_to_list(i, medias.values);
+				if(match == 0) {
 					add_media(i);
 					++sub_index;
 				}
@@ -443,9 +435,12 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			index = (int)(25.0 + (double)(50.0 * (double)((double)sub_index/(double)new_media_size)));
 		}
 		
+		stdout.printf("finished adding\n");
+		
 		if(!sync_cancelled) {
 			// sync playlists
-			sync_playlists();
+			index = 78;
+			//sync_playlists();
 			sync_podcasts();
 			
 			current_operation = "Finishing sync process...";
@@ -464,7 +459,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			stdout.printf("Cleaning up iPod File System\n");
 			var music_folder = File.new_for_path(GPod.Device.get_music_dir(get_path()));
 			var used_paths = new LinkedList<string>();
-			foreach(unowned GPod.Track t in media.keys) {
+			foreach(unowned GPod.Track t in medias.keys) {
 				used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
 			}
 			cleanup_files(music_folder, used_paths);
@@ -475,7 +470,12 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		else {
 			current_operation = "Cancelling Sync...";
-			db.write();
+			try {
+				db.write();
+			}
+			catch(Error err) {
+				critical("Error when writing iPod database. iPod contents may be incorrect: %s\n", err.message);
+			}
 			db.stop_sync();
 			index = total + 1;
 			sync_cancelled = false;
@@ -483,7 +483,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		Idle.add( () => {
 			LinkedList<Media> temps = new LinkedList<Media>();
-			foreach(int i in media.values)
+			foreach(int i in medias.values)
 				temps.add(lm.media_from_id(i));
 			
 			// update medias before we set last_sync_time
@@ -534,11 +534,20 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}*/
 		
 		stdout.printf("copying track to ipod\n");
-		if(db.cp_track_to_ipod(added, s.file)) {
-			media.set(added, i);
+		bool success = false;
+		try {
+			success = db.cp_track_to_ipod(added, s.uri.replace("file://", ""));
+		}
+		catch(Error err) {
+			stdout.printf("Error adding/copying song %s to iPod: %s\n", s.title, err.message);
+		}
+		
+		if(success) {
+			//make copy
+			medias.set(added, i);
 			
 			if(added.mediatype == GPod.MediaType.AUDIO)
-				this.medias.set(added, i);
+				this.songs.set(added, i);
 			else if(added.mediatype == GPod.MediaType.PODCAST)
 				this.podcasts.set(added, i);
 			else if(added.mediatype == GPod.MediaType.AUDIOBOOK)
@@ -560,11 +569,16 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			var file = File.new_for_path(path);
 			
 			if(file.query_exists()) {
-				file.delete();
-				stdout.printf("Successfully removed music file %s from iPod Disk\n", path);
+				try {
+					file.delete();
+					stdout.printf("Successfully removed music file %s from iPod Disk\n", path);
+				}
+				catch(Error err) {
+					stdout.printf("Could not delete iPod File at %s. Unused file will remain on iPod: %s\n", path, err.message);
+				}
 			}
 			else {
-				stdout.printf("Could not delete iPod File at %s. Unused file on iPod\n", path);
+				stdout.printf("File not found, could not delete iPod File at %s. File may already be deletedd\n", path);
 			}
 		}
 		
@@ -634,7 +648,6 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		index = 78;
 		
-		var to_sync = new LinkedList<unowned GPod.Playlist>();
 		int sub_index = 0;
 		foreach(var playlist in lm.playlists()) {
 			GPod.Playlist p = playlist.get_gpod_playlist();
@@ -705,11 +718,13 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			if(transfer_cancelled)
 				break;
 			
-			Media s = lm.media_from_id(i);
-			if(File.new_for_path(s.file).query_exists() && s.file.has_prefix(get_path())) {
+			Media s = lm.media_from_id(i).copy();
+			s.rowid = 0;
+			lm.add_media(s, true);
+			stdout.printf("checking %s\n", s.uri);
+			if(File.new_for_uri(s.uri).query_exists() && s.uri.has_prefix("file://" + get_path())) {
 				current_operation = "Importing <b>" + s.title + "</b> to library";
 				lm.fo.update_file_hierarchy(s, false, false);
-				lm.convert_temp_to_permanent(s.rowid);
 			}
 			else {
 				stdout.printf("Skipped transferring media %s. Either already in library, or has invalid file path to ipod.\n", s.title);

@@ -158,6 +158,10 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		return medias;
 	}
 	
+	public Collection<int> get_songs() {
+		return new LinkedList<int>();
+	}
+	
 	public Collection<int> get_podcasts() {
 		return new LinkedList<int>();
 	}
@@ -235,7 +239,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		
 		// this refreshes so that the spinner shows
 		ViewWrapper vw = ((ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
-		vw.doUpdate(vw.currentView, medias, true, true);
+		vw.doUpdate(vw.currentView, medias, true, true, false);
 		
 		// this spins the spinner for the current media being imported
 		Timeout.add(100, pulser);
@@ -246,9 +250,9 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		s.showIndicator = false;
 		lm.convert_temp_to_permanent(s.rowid);
 		
-		if(GLib.File.new_for_path(s.file).query_exists()) {
+		if(GLib.File.new_for_uri(s.uri).query_exists()) {
 			try {
-				s.file_size = (int)(GLib.File.new_for_path(s.file).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+				s.file_size = (int)(GLib.File.new_for_uri(s.uri).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
 			}
 			catch(Error err) {
 				s.file_size = 5; // best guess
@@ -256,7 +260,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			}
 		}
 		else {
-			stderr.printf("Just-imported song from CD could not be found at %s\n", s.file);
+			stderr.printf("Just-imported song from CD could not be found at %s\n", s.uri);
 			//s.file_size = 5; // best guess
 		}
 		

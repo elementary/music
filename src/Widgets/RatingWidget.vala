@@ -34,7 +34,7 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
 
     public signal void rating_changed(int new_rating);
 
-    public RatingWidget(Gtk.StyleContext? context, bool centered) {
+    public RatingWidget(Gtk.StyleContext? context, bool centered, IconSize size) {
         this.centered = centered;
 
         if (context != null)  {
@@ -50,8 +50,8 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
             this.set_visible_window(false);
         }
 
-        starred = BeatBox.Beatbox._program.lm.icons.starred_icon.render (IconSize.MENU, null);
-        not_starred = BeatBox.Beatbox._program.lm.icons.not_starred_icon.render (IconSize.MENU, null);
+        starred = BeatBox.Beatbox._program.lm.icons.starred_icon.render (size, null);
+        not_starred = BeatBox.Beatbox._program.lm.icons.not_starred_icon.render (size, null);
 
         width_request  = starred.width * 5;
         height_request = starred.height;
@@ -184,7 +184,7 @@ public class BeatBox.RatingWidgetMenu : Gtk.MenuItem {
 
     public RatingWidgetMenu() {
         get_style_context().add_class(Gtk.STYLE_CLASS_MENU);
-        rating = new RatingWidget(get_style_context(), false);
+        rating = new RatingWidget(get_style_context(), false, IconSize.MENU);
         add(rating);
     }
 

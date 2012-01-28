@@ -53,7 +53,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	CellDataFunctionHelper cellHelper;
 	
 	//for header column chooser
-	Menu columnChooserMenu;
+	Gtk.Menu columnChooserMenu;
 	CheckMenuItem columnNumber;
 	CheckMenuItem columnTrack;
 	CheckMenuItem columnTitle;
@@ -71,20 +71,17 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	CheckMenuItem columnBPM;
 	
 	//for media list right click
-	Menu mediaMenuActionMenu;
-	MenuItem mediaEditMedia;
-	MenuItem mediaFileBrowse;
-	MenuItem mediaMenuQueue;
-	MenuItem mediaMenuNewPlaylist;
-	MenuItem mediaMenuAddToPlaylist; // make menu on fly
+	Gtk.Menu mediaMenuActionMenu;
+	Gtk.MenuItem mediaEditMedia;
+	Gtk.MenuItem mediaFileBrowse;
+	Gtk.MenuItem mediaMenuQueue;
+	Gtk.MenuItem mediaMenuNewPlaylist;
+	Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
 	//MenuItem mediaRateMedia;
 	//Menu mediaRateMediaMenu;
 	RatingWidgetMenu rating_item;
-	MenuItem mediaRemove;
-	MenuItem importToLibrary;
-	
-	Gdk.Pixbuf starred;
-	Gdk.Pixbuf not_starred;
+	Gtk.MenuItem mediaRemove;
+	Gtk.MenuItem importToLibrary;
 	
 	// for editing cells in-treeview
 	CellRendererText cellTrack;
@@ -175,11 +172,19 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	public void set_as_current_list(int media_id, bool is_initial) {
+		var ordered_songs = music_model.getOrderedMedias();
+		
+		if(media_id == 0 && lm.media_info.media != null &&
+		!ordered_songs.contains(lm.media_info.media.rowid))
+			return;
+		else if(media_id != 0 && !ordered_songs.contains(media_id))
+			return;
+		
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 		
 		lm.clearCurrent();
 		int i = 0;
-		foreach(int id in music_model.getOrderedMedias()) {
+		foreach(int id in ordered_songs) {
 			lm.addToCurrent(id);
 			
 			if(!shuffle && lm.media_info.media != null && lm.media_info.media.rowid == id && media_id == 0)
@@ -206,7 +211,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		music_model.append_medias(new_medias, true);
 		music_model.resort();
-		queue_draw();
+		if(visible)	queue_draw();
 	}
 	
 	public void remove_medias(Collection<int> to_remove) {
@@ -216,7 +221,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		_showing_medias = all_medias;
 		
 		music_model.removeMedias(to_remove);
-		queue_draw();
+		if(visible)	queue_draw();
 	}
 	
 	public void populate_view() {
@@ -258,11 +263,10 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		if(get_is_current() && lm.media_info.media != null)
 			scrollToCurrent();
 		
-		// FIXME: assertion `gtk_widget_get_realized (GTK_WIDGET (tree_view))' failed
-		//        PLEASE NOTE THAT THE WIDGET MUST BE REALIZED BEFORE USING scroll_to_point() !
-		
-		//else
-		//	this.view.scroll_to_point(0, (int)hPos);
+		if(get_is_current() && lm.media_info.media != null)
+			scrollToCurrent();
+		else
+			this.view.scroll_to_point(0, (int)hPos);
 		
 		//set_statusbar_text();
 		
@@ -425,6 +429,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			to_use = lm.playlist_from_id(relative_id).tvs.get_columns();
 		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)
 			to_use = lm.smart_playlist_from_id(relative_id).tvs.get_columns();
+		else if(get_hint() == ViewWrapper.Hint.ALBUM_LIST)
+			to_use = new TreeViewSetup("Track", Gtk.SortType.ASCENDING, get_hint()).get_columns();
 		else {
 			to_use = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, get_hint()).get_columns();
 		}
@@ -524,6 +530,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		view.set_model(music_model);
 		view.set_headers_clickable(true);
+		view.set_headers_visible(get_hint() != ViewWrapper.Hint.ALBUM_LIST);
 		view.set_fixed_height_mode(true);
 		view.rules_hint = true;
 		view.set_reorderable(false);
@@ -545,7 +552,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		Gtk.drag_source_add_uri_targets(view);
 		
 		// column chooser menu
-		columnChooserMenu = new Menu();
+		columnChooserMenu = new Gtk.Menu();
 		columnNumber = new CheckMenuItem.with_label("#");
 		columnTrack = new CheckMenuItem.with_label("Track");
 		columnTitle = new CheckMenuItem.with_label("Title");
@@ -596,16 +603,16 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		
 		
 		//media list right click menu
-		mediaMenuActionMenu = new Menu();
-		mediaEditMedia = new MenuItem.with_label("Edit Media Info");
-		mediaFileBrowse = new MenuItem.with_label("Show in File Browser");
-		mediaMenuQueue = new MenuItem.with_label("Queue");
-		mediaMenuNewPlaylist = new MenuItem.with_label("New Playlist");
-		mediaMenuAddToPlaylist = new MenuItem.with_label("Add to Playlist");
-		mediaRemove = new MenuItem.with_label("Remove media");
-		importToLibrary = new MenuItem.with_label("Import to Library");
-		//mediaRateMediaMenu = new Menu();
-		//mediaRateMedia = new MenuItem.with_label("Rate Media");
+		mediaMenuActionMenu = new Gtk.Menu();
+		mediaEditMedia = new Gtk.MenuItem.with_label("Edit Media Info");
+		mediaFileBrowse = new Gtk.MenuItem.with_label("Show in File Browser");
+		mediaMenuQueue = new Gtk.MenuItem.with_label("Queue");
+		mediaMenuNewPlaylist = new Gtk.MenuItem.with_label("New Playlist");
+		mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label("Add to Playlist");
+		mediaRemove = new Gtk.MenuItem.with_label("Remove media");
+		importToLibrary = new Gtk.MenuItem.with_label("Import to Library");
+		//mediaRateMediaMenu = new Gtk.Menu();
+		//mediaRateMedia = new Gtk.MenuItem.with_label("Rate Media");
 		rating_item = new RatingWidgetMenu();
 		mediaMenuActionMenu.append(mediaEditMedia);
 		mediaMenuActionMenu.append(mediaFileBrowse);
@@ -805,10 +812,12 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	
 	void medias_updated(Collection<int> ids) {
 		music_model.updateMedias(ids, get_is_current());
+		music_model.resort();
 		
 		//since a media may have changed location, reset current
-		if(get_is_current())
+		if(get_is_current() && !lm.playing_queued_song()) {
 			set_as_current_list(0, false);
+		}
 	}
 	
 	void medias_removed(LinkedList<int> ids) {
@@ -826,7 +835,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		music_model.get_value(item, 0, out id);
 		
 		// play the media
-		lm.playMedia(id.get_int());
+		lm.playMedia(id.get_int(), false);
 		
 		set_as_current_list(id.get_int(), true);
 		
@@ -848,9 +857,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	bool viewClick(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
 			/* create add to playlist menu */
-			Menu addToPlaylistMenu = new Menu();
+			Gtk.Menu addToPlaylistMenu = new Gtk.Menu();
 			foreach(Playlist p in lm.playlists()) {
-				MenuItem playlist = new MenuItem.with_label(p.name);
+				Gtk.MenuItem playlist = new Gtk.MenuItem.with_label(p.name);
 				addToPlaylistMenu.append(playlist);
 				
 				playlist.activate.connect( () => {
@@ -1007,7 +1016,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	}
 	
 	void updateTreeViewSetup() {
-		if(music_model == null || !(music_model is TreeSortable)) {
+		if(music_model == null || !(music_model is TreeSortable) || get_hint() == ViewWrapper.Hint.ALBUM_LIST) {
 			return;
 		}
 		
@@ -1150,11 +1159,11 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			Media s = lm.media_from_id(id);
 			
 			try {
-				var file = File.new_for_path(s.file);
+				var file = File.new_for_uri(s.uri);
 				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not browse media %s: %s\n", s.file, err.message);
+				stdout.printf("Could not browse media %s: %s\n", s.uri, err.message);
 			}
 			
 			return;
@@ -1354,8 +1363,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
             
 			int id;
 			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).file);
-			uris += ("file://" + lm.media_from_id(id).file);
+			stdout.printf("adding %s\n", lm.media_from_id(id).uri);
+			uris += (lm.media_from_id(id).uri);
 		}
 		
         if (uris != null)
@@ -1375,5 +1384,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		                  Gdk.DragAction.COPY|
 		                  Gdk.DragAction.MOVE
 		                  );
+	}
+	
+	public void apply_style_to_view(CssProvider style) {
+		view.get_style_context().add_provider(style, STYLE_PROVIDER_PRIORITY_APPLICATION);
 	}
 }

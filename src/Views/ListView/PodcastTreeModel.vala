@@ -49,12 +49,12 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 	
 	/** Initialize data storage, columns, etc. **/
-	public PodcastTreeModel(LibraryManager lm, LinkedList<string> column_types, Gdk.Pixbuf playing) {
+	public PodcastTreeModel(LibraryManager lm, LinkedList<string> column_types, Gdk.Pixbuf playing, TreeView parent) {
 		this.lm = lm;
 		_columns = column_types;
 		_playing = playing;
 		_saved_locally = lm.lw.render_icon(Gtk.Stock.SAVE, IconSize.MENU, null);
-		_new_podcast = lm.icons.new_podcast_icon.render(IconSize.MENU, null);
+		_new_podcast = lm.icons.new_podcast_icon.render(IconSize.MENU, parent.get_style_context());
 		removing_medias = false;
 
 		rows = new Sequence<int>();
@@ -86,6 +86,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to a valid iterator pointing to path **/
 	public bool get_iter (out TreeIter iter, TreePath path) {
+		iter = TreeIter();
 		int path_index = path.get_indices()[0];
 		
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
@@ -113,20 +114,14 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size)
+		val = Value(get_column_type(column));
+		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size || removing_medias)
 			return;
-			
-		if(removing_medias) {
-			val = Value(get_column_type(column));
-			return;
-		}
 		
 		if(!((SequenceIter<ValueArray>)iter.user_data).is_end()) {
 			Media s = lm.media_from_id(rows.get(((SequenceIter<int>)iter.user_data)));
-			if(s == null) {
-				val = Value(get_column_type(column));
+			if(s == null)
 				return;
-			}
 			
 			if(column == 0)
 				val = (int)s.rowid;
@@ -137,7 +132,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 					val = s.unique_status_image;
 				else if(s.last_played == 0)
 					val = _new_podcast;
-				else if(!s.file.has_prefix("http://"))
+				else if(!s.uri.has_prefix("http://"))
 					val = _saved_locally;
 				else
 					val = Value(typeof(Gdk.Pixbuf));
@@ -165,6 +160,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to point to the first child of parent. **/
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
+		iter = TreeIter();
 		
 		return false;
 	}
@@ -198,6 +194,8 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
+		iter = TreeIter();
+		
 		if(n < 0 || n >= rows.get_length() || parent != null)
 			return false;
 		
@@ -209,6 +207,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
+		iter = TreeIter();
 		
 		return false;
 	}
@@ -259,6 +258,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
     
     /** simply adds iter to the model **/
     public void append(out TreeIter iter) {
+		iter = TreeIter();
 		SequenceIter<int> added = rows.append(0);
 		iter.stamp = this.stamp;
 		iter.user_data = added;
@@ -322,7 +322,8 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 				
 				row_changed(path, iter);
 				
-				rowids.remove(rows.get(s_iter));
+				// can't do this. rowids must be read only
+				//rowids.remove(rows.get(s_iter));
 			}
 			
 			if(rowids.size <= 0)
@@ -370,7 +371,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	
 	public void removeMedias(Collection<int> rowids) {
 		removing_medias = true;
-		stdout.printf("removeMedias start\n");
+		
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -392,7 +393,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 				return;
 			}
 		}
-		stdout.printf("removeMedias finished\n");
+		
 		removing_medias = false;
 	}
 	

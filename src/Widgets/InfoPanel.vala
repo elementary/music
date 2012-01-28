@@ -61,7 +61,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		loveMedia = new Button();
 		banMedia = new Button();
 		artistImage = new Image();
-		rating = new RatingWidget(null, true);
+		rating = new RatingWidget(null, true, IconSize.MENU);
 		album = new Label("Album");
 		year = new Label("Year");
 		ssv = new SimilarMediasView(lm, lw);
@@ -181,11 +181,11 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	}
 	
 	public void updateArtistImage(bool is_initial) {
-		if(lm.media_from_id(id) == null)
+		//if(lm.media_from_id(id) == null)
 			return;
 		
-		string file = lm.media_from_id(id).getArtistImagePath();
-		if(GLib.File.new_for_path(file).query_exists()) {
+		/*string file = lm.media_from_id(id).getArtistImagePath();
+		if(file != "" && GLib.File.new_for_path(file).query_exists()) {
 			artistImage.show();
 			try {
 				var pixbuf = new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 10, lm.settings.getMoreWidth() - 10, true);
@@ -202,7 +202,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 			}
 		}
 		else
-			artistImage.hide();
+			artistImage.hide();*/
 	}
 	
 	public void updateMediaList(Collection<Media> medias) {

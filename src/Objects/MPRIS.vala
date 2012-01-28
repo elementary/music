@@ -35,7 +35,9 @@ public class BeatBox.MPRIS : GLib.Object {
 	public MPRIS(LibraryManager lmm, LibraryWindow lww) {
 		lm = lmm;
 		lw = lww;
-		
+	}
+	
+	public void initialize() {
 		owner_id = Bus.own_name(BusType.SESSION,
 								"org.mpris.MediaPlayer2.beatbox",
 								GLib.BusNameOwnerFlags.NONE,
@@ -47,7 +49,8 @@ public class BeatBox.MPRIS : GLib.Object {
 			stdout.printf("Could not initialize MPRIS session.\n");
 		}
 		else {
-			var soundMenu = new SoundMenuIntegration(lmm, lww);
+			var soundMenu = new SoundMenuIntegration(lm, lw);
+			soundMenu.initialize();
 		}
 	}
 	

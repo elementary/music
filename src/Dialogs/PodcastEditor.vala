@@ -59,7 +59,7 @@ public class BeatBox.PodcastEditor : Window {
 		resizable = false;
 		
 		_lm = lm;
-		stdout.printf("podcasteditor\n");
+		
 		_allPodcasts = allPodcasts;
 		_podcasts = podcasts;
 		
@@ -72,10 +72,10 @@ public class BeatBox.PodcastEditor : Window {
 		buttonSep.pack_start(_previous, false, false, 0);
 		buttonSep.pack_start(_next, false, false, 0);
 		buttonSep.pack_end(_save, false, false, 0);
-		stdout.printf("podcasteditor\n");
+		
 		content.pack_start(wrap_alignment(createBasicViewport(), 10, 0, 0, 0), true, true, 0);
 		content.pack_start(wrap_alignment(buttonSep, 0, 0, 10, 0), false, true, 0);
-		stdout.printf("podcasteditor\n");
+		
 		(buttonSep as Gtk.ButtonBox).set_child_secondary(_next, true);
 		(buttonSep as Gtk.ButtonBox).set_child_secondary(_previous, true);
 		
@@ -83,7 +83,7 @@ public class BeatBox.PodcastEditor : Window {
 		add(padding);
 		
 		show_all();
-		stdout.printf("podcasteditor\n");
+		
 		_next.sensitive = allPodcasts.size > 1;
 		_previous.sensitive = allPodcasts.size > 1;
 		
@@ -101,7 +101,7 @@ public class BeatBox.PodcastEditor : Window {
 		Viewport rv = new Viewport(null, null);
 		fields = new HashMap<string, FieldEditor>();
 		Media sum = _lm.media_from_id(_podcasts.get(0)).copy();
-		stdout.printf("podcasteditor cbv\n");
+		
 		/** find what these podcasts have what common, and keep those values **/
 		foreach(int i in _podcasts) {
 			Media s = _lm.media_from_id(i);
@@ -119,16 +119,18 @@ public class BeatBox.PodcastEditor : Window {
 			if(s.comment != sum.comment)
 				sum.comment = "";
 			if(s.rating != sum.rating)
-				sum.rating = -1;
+				sum.rating = 0;
+			if(s.mediatype != sum.mediatype)
+				sum.mediatype = 0;
 		}
-		stdout.printf("podcasteditor cbv\n");
+		
 		if(_podcasts.size == 1) {
 			title = "Editing " + sum.title;
 		}
 		else {
 			title = "Editing " + _podcasts.size.to_string() + " podcasts";
 		}
-		stdout.printf("podcasteditor cbv\n");
+		
 		if(sum.year == -1)
 			sum.year = Time().year;
 		
@@ -138,8 +140,8 @@ public class BeatBox.PodcastEditor : Window {
 		fields.set("Genre", new FieldEditor("Genre", sum.genre, new Entry()));
 		fields.set("Comment", new FieldEditor("Comment", sum.comment, new TextView()));
 		fields.set("Episode", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
-		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false)));
-		stdout.printf("podcasteditor cbv\n");
+		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false, IconSize.MENU)));
+		fields.set("Media Type", new FieldEditor("Media Type", sum.mediatype.to_string(), new ComboBoxText()));
 		
 		padding = new HBox(false, 10);
 		vert = new VBox(false, 0);
@@ -155,13 +157,14 @@ public class BeatBox.PodcastEditor : Window {
 		numerVert.pack_start(fields.get("Episode"), false, true, 0);
 		numerVert.pack_start(fields.get("Genre"), false, true, 5);
 		numerVert.pack_start(fields.get("Rating"), false, true, 5);
-		stdout.printf("podcasteditor cbv\n");
+		numerVert.pack_end(fields.get("Media Type"), false, true, 5);
+		
 		horiz.pack_start(wrap_alignment(textVert, 0, 30, 0, 0), false, true, 0);
 		horiz.pack_end(numerVert, false, true, 0);
 		vert.pack_start(horiz, true, true, 0);
 		
 		rv.add(vert);
-		stdout.printf("podcasteditor cbv\n");
+		
 		return rv;
 	}
 	
@@ -231,6 +234,7 @@ public class BeatBox.PodcastEditor : Window {
 		fields.get("Comment").set_value(sum.comment);
 		fields.get("Episode").set_value(sum.track.to_string());
 		fields.get("Rating").set_value(sum.rating.to_string());
+		fields.get("Media Type").set_value(sum.mediatype.to_string());
 	}
 	
 	public void save_podcasts() {
@@ -254,6 +258,8 @@ public class BeatBox.PodcastEditor : Window {
 				s.track = int.parse(fields.get("Episode").get_value());
 			if(fields.get("Rating").checked())
 				s.rating = int.parse(fields.get("Rating").get_value());
+			if(fields.get("Media Type").checked())
+				s.mediatype = int.parse(fields.get("Media Type").get_value());
 		}
 		
 		podcasts_saved(_podcasts);

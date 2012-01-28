@@ -38,7 +38,6 @@ public class Store.AlbumView : ScrolledWindow {
 	private Gtk.Label producer;
 	private HBox priceFlags;
 	private VBox rightButtons;
-	private VBox middleLeft;
 	private Gtk.Label description;
 	private HBox tags; 
 	private Store.TrackList trackList;
@@ -53,7 +52,12 @@ public class Store.AlbumView : ScrolledWindow {
 		tracksListList = new LinkedList<Store.Track>();
 		similarReleasesList = new LinkedList<Store.Release>();
 		
-		defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
+        try {
+		    defaultPix = new Gdk.Pixbuf.from_file_at_size(GLib.Path.build_filename("/usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.svg", null), 100, 100);
+        }
+        catch (Error e) {
+            warning ("Couldn't load default pix for albums: %s", e.message);
+        }
 		
 		buildUI();
 		
@@ -72,7 +76,6 @@ public class Store.AlbumView : ScrolledWindow {
 		VBox allDetails = new VBox(false, 0);
 		HBox topRow = new HBox(false, 0);
 		VBox topInfo = new VBox(false, 0);
-		VBox topFlags = new VBox(false, 0);
 		
 		albumArt = new Image();
 		albumName = new Gtk.Label("");
@@ -194,7 +197,12 @@ public class Store.AlbumView : ScrolledWindow {
 			setAlbum(r); 
 			++storeView.index;
 			
-			Thread.create<void*>(gettaglabels_thread_function, false);
+            try {
+			    Thread.create<void*>(gettaglabels_thread_function, false);
+            }
+            catch (Error e) {
+                critical ("Couldn't get tags: %s", e.message);
+            }
 			
 			return false; 
 		});

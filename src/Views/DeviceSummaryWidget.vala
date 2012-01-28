@@ -201,9 +201,9 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	}
 	
 	void refreshSpaceWidget() {
-		double media_size = 0.0; double podcast_size = 0.0; double audiobook_size = 0.0;
+		double media_size = 0.0; double podcast_size = 0.0; /*double audiobook_size = 0.0;*/
 		
-		foreach(int i in dev.get_medias()) {
+		foreach(int i in dev.get_songs()) {
 			media_size += (double)(lm.media_from_id(i).file_size);
 		}
 		foreach(int i in dev.get_podcasts()) {
@@ -433,7 +433,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 						}
 					}
 					else {
-						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
+						foreach(int i in ((SmartPlaylist)p).analyze(lm, lm.media_ids())) {
 							if(lm.media_from_id(i).mediatype == 0)
 								list.add(i);
 						}
@@ -463,13 +463,13 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				if(p != null) {
 					if(p is Playlist) {
 						foreach(int i in ((Playlist)p).medias()) {
-							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).file.has_prefix("http://"))
+							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).uri.has_prefix("http:/"))
 								list.add(i);
 						}
 					}
 					else {
-						foreach(int i in ((SmartPlaylist)p).analyze(lm)) {
-							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).file.has_prefix("http://"))
+						foreach(int i in ((SmartPlaylist)p).analyze(lm, lm.media_ids())) {
+							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).uri.has_prefix("http:/"))
 								list.add(i);
 						}
 					}
@@ -529,7 +529,8 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		else {
 			var to_remove = new Gee.LinkedList<int>();
 			foreach(int i in dev.get_medias()) {
-				if(!list.contains(i))
+				int match = lm.match_media_to_list(i, lm.media_ids());
+				if(match == 0)
 					to_remove.add(i);
 			}
 			
