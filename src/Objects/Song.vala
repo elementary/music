@@ -187,7 +187,7 @@ public class BeatBox.Media : GLib.Object{
 	}
 	
 	public static Media from_track(string root, GPod.Track track) {
-		Media rv = new Media(File.new_for_path(Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path))).get_uri());
+		Media rv = new Media("file://" + Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
 		
 		rv.isTemporary = true;
 		if(track.title != null) {			rv.title = track.title; }

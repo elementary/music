@@ -236,7 +236,7 @@ public class BeatBox.FileOperator : Object {
 	
 	public void save_medias(Collection<Media> to_save) {
 		foreach(Media s in to_save) {
-			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview && s.uri.has_prefix("file://" + lm.settings.getMusicFolder()))
+			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview && GLib.File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
 				toSave.offer(s);
 		}
 		
@@ -337,11 +337,11 @@ public class BeatBox.FileOperator : Object {
 			/* copy the file over */
 			bool success = false;
 			if(!delete_old) {
-				stdout.printf("Copying %s to %s\n", s.uri, dest.get_path());
+				stdout.printf("Copying %s to %s\n", s.uri, dest.get_uri());
 				success = original.copy(dest, FileCopyFlags.NONE, null, null);
 			}
 			else {
-				stdout.printf("Moving %s to %s\n", s.uri, dest.get_path());
+				stdout.printf("Moving %s to %s\n", s.uri, dest.get_uri());
 				success = original.move(dest, FileCopyFlags.NONE, null, null);
 			}
 			

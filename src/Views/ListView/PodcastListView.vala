@@ -797,7 +797,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				int id;
 				temp_model.get(item, 0, out id);
 				
-				if(!lm.media_from_id(id).uri.has_prefix("file://" + music_folder))
+				if(!File.new_for_uri(lm.media_from_id(id).uri).get_path().has_prefix(music_folder))
 					++external_count;
 				if(lm.media_from_id(id).isTemporary)
 					++temporary_count;

@@ -536,22 +536,23 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		stdout.printf("copying track to ipod\n");
 		bool success = false;
 		try {
-			success = db.cp_track_to_ipod(added, s.uri.replace("file://", ""));
+			success = db.cp_track_to_ipod(added, File.new_for_uri(s.uri).get_path());
 		}
 		catch(Error err) {
 			stdout.printf("Error adding/copying song %s to iPod: %s\n", s.title, err.message);
 		}
 		
 		if(success) {
-			//make copy
-			medias.set(added, i);
+			Media on_ipod = Media.from_track(get_path(), added);
+			lm.add_media(on_ipod, false);
 			
+			medias.set(added, on_ipod.rowid);
 			if(added.mediatype == GPod.MediaType.AUDIO)
-				this.songs.set(added, i);
+				this.songs.set(added, on_ipod.rowid);
 			else if(added.mediatype == GPod.MediaType.PODCAST)
-				this.podcasts.set(added, i);
+				this.podcasts.set(added, on_ipod.rowid);
 			else if(added.mediatype == GPod.MediaType.AUDIOBOOK)
-				this.audiobooks.set(added, i);
+				this.audiobooks.set(added, on_ipod.rowid);
 		}
 		else {
 			stdout.printf("Failed to copy track %s to iPod. Removing it from database.\n", added.title);

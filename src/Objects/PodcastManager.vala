@@ -410,7 +410,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 	
 	public bool doProgressNotificationWithTimeoutSaveLocally() {
 		int64 current_local_size = 0;
-		if(new_dest.query_exists()) {
+		if(new_dest != null && new_dest.query_exists()) {
 			try {
 				current_local_size = new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size();
 			}

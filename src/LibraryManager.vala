@@ -196,7 +196,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_media.set(s.rowid, s);
 			_permanents.add(s.rowid);
 			
-			if(s.uri.has_prefix("file://" + settings.getMusicFolder()))
+			if(File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
 				++local_song_count;
 			
 			if(s.mediatype == 0)
@@ -581,7 +581,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
-			if(s.uri.has_prefix("file://" + settings.getMusicFolder()))
+			if(File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
 				--local_song_count;
 			
 			if(s.mediatype == 0)
@@ -937,7 +937,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			s.date_added = (int)time_t();
 			_permanents.add(s.rowid);
 			
-			if(s.uri.has_prefix("file://" + settings.getMusicFolder()))
+			if(File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
 				++local_song_count;
 		}
 		
@@ -964,7 +964,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
-			if(settings.getMusicFolder() != "" && s.uri.has_prefix("file://" + settings.getMusicFolder()))
+			if(settings.getMusicFolder() != "" && File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
 				--local_song_count;
 			
 			if(s.mediatype == 0)
@@ -1364,7 +1364,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Media m = media_from_id(id);
 		
 		// check that the file exists
-		if((settings.getMusicFolder() != "" && m.uri.contains("file://" + settings.getMusicFolder())) && !GLib.File.new_for_uri(m.uri).query_exists()) {
+		if((settings.getMusicFolder() != "" && File.new_for_uri(m.uri).get_path().has_prefix(settings.getMusicFolder()) && !GLib.File.new_for_uri(m.uri).query_exists())) {
 			m.unique_status_image = icons.process_error_icon.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list.get_style_context());
 			m.location_unknown = true;
 			lw.media_not_found(id);
