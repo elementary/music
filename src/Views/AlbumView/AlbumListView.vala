@@ -55,6 +55,18 @@ public class BeatBox.AlbumListView : Window {
             background-color: #4D4D4D;
         }
         
+		.AlbumListDialogClose {
+			background-image: -gtk-gradient (linear,
+				left top,
+				left bottom,
+				from (shade (@bg_color, 1.15)),
+				to (shade (@bg_color, 1.03)));
+			
+			-unico-border-gradient: -gtk-gradient (linear,
+				left top, left bottom,
+				from (shade (@bg_color, 0.78)),
+				to (shade (@bg_color, 0.60)));
+		}
      """;
 	
 	public AlbumListView(LibraryManager lm) {
@@ -66,6 +78,7 @@ public class BeatBox.AlbumListView : Window {
 		set_decorated(false);
 		set_has_resize_grip(false);
 		set_resizable(false);
+		set_skip_taskbar_hint(true);
 		this.destroy_with_parent = true;
 		set_title("Album List");
 		set_size_request(350, 400);
@@ -86,6 +99,7 @@ public class BeatBox.AlbumListView : Window {
 		// add close button
 		var close = new Gtk.Button ();
         close.set_image (new Gtk.Image.from_stock ("gtk-close", Gtk.IconSize.MENU));
+        close.get_style_context().add_class("AlbumListDialogClose");
 		close.hexpand = close.vexpand = false;
 		close.halign = Gtk.Align.START;
 		close.set_relief(Gtk.ReliefStyle.NONE);

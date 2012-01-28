@@ -184,7 +184,7 @@ public class BeatBox.Media : GLib.Object{
 		
 		var path_file = File.new_for_uri(uri);
 		if(!path_file.query_exists())
-			return;
+			return "";
 		
 		var path = path_file.get_path();
 		return Path.build_path("/", path.substring(0, path.substring(0, path.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
