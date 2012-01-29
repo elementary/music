@@ -640,10 +640,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		bool showIndicator = false;
 		model.get_value(iter, 0, out id);
 
-        /* XXX:
-           [WARNING] [GLib-GObject] unable to set property `pixbuf' of type `GdkPixbuf' from value of type `GIcon'
-        */
-
 		Media s = lm.media_from_id(id.get_int());
 		if(s == null)
 			return;
@@ -651,6 +647,8 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			showIndicator = s.showIndicator;
 
 		if(renderer is CellRendererPixbuf) {
+			layout.clear_attributes (renderer);
+			
 			Value? icon;
 			model.get_value (iter, 1, out icon);
 

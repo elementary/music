@@ -53,6 +53,9 @@ public class BeatBox.Icon : GLib.Object {
 	private const string STATUS_FOLDER = "status";
 	private const string APPS_FOLDER = "apps";
 
+	private const string PNG_EXT = ".png";
+	private const string SVG_EXT = ".svg";
+
 	private string name;
 	private string? backup;
 	private int? size;
@@ -102,18 +105,18 @@ public class BeatBox.Icon : GLib.Object {
 				switch (file_type)
 				{
 					case IconFileType.SVG:
-						actual_icon_name = this.name + ".svg";
+						actual_icon_name = this.name + SVG_EXT;
 						break;
 					case IconFileType.PNG:
-						actual_icon_name = this.name + ".png";
+						actual_icon_name = this.name + PNG_EXT;
 						break;
 					default:
-						actual_icon_name = this.name + ".svg";
+						actual_icon_name = this.name + SVG_EXT;
 						break;
 				}
 			}
 			else {
-				actual_icon_name = name + ".svg";
+				actual_icon_name = name + SVG_EXT;
 			}
 
 			var icon_path = GLib.Path.build_path("/", Build.ICON_FOLDER, size_folder, type_folder);
@@ -135,7 +138,7 @@ public class BeatBox.Icon : GLib.Object {
 		return icon_theme.lookup_by_gicon (get_gicon(), size, lookup_flags);
 	}
 
-	public Gdk.Pixbuf? render (Gtk.IconSize? size, StyleContext? context) {
+	public Gdk.Pixbuf? render (Gtk.IconSize? size, StyleContext? context = null) {
 		Gdk.Pixbuf? rv = null;
 		int width = 16, height = 16;
 
@@ -143,7 +146,7 @@ public class BeatBox.Icon : GLib.Object {
 		// to the project's folder.
 		if (file_type == IconFileType.PNG && backup != null && size == null) {
 			try {
-				warning ("Loading unscaled PNG image: %s", this.name);
+				warning ("Rendering unscaled PNG image: %s", this.name);
 				rv = new Gdk.Pixbuf.from_file(backup);
 			}
 			catch(Error err) {
@@ -252,7 +255,7 @@ public class BeatBox.Icons : GLib.Object {
 	public Icon STARRED_ICON;
 	public Icon NOT_STARRED_ICON;
 	public Icon INFO_ICON;
-	public Icon new_PODCAST_ICON;
+	public Icon NEW_PODCAST_ICON;
 
 	/** Symbolic icons **/
 	public Icon NOW_PLAYING_ICON;
@@ -299,7 +302,7 @@ public class BeatBox.Icons : GLib.Object {
 		STARRED_ICON = new Icon ("starred", 16, Icon.IconType.STATUS, null, true);
 		NOT_STARRED_ICON = new Icon ("not-starred", 16, Icon.IconType.STATUS, null, true);
 		INFO_ICON = new Icon ("help-info", 16, Icon.IconType.STATUS, null, true);
-		new_PODCAST_ICON = new Icon ("podcast-new", 16, Icon.IconType.STATUS, null, true);
+		NEW_PODCAST_ICON = new Icon ("podcast-new", 16, Icon.IconType.STATUS, null, true);
 
 		// SYMBOLIC ICONS
 		PROCESS_COMPLETED_ICON = new Icon ("process-completed-symbolic", 16, Icon.IconType.STATUS, null, true);

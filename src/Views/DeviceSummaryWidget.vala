@@ -319,9 +319,9 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		
 		/* add entire library options */
 		musicList.append(out iter);
-		musicList.set(iter, 0, null, 1, "All Music", 2, lm.icons.music_icon.render(IconSize.MENU, musicDropdown.get_style_context()));
+		musicList.set(iter, 0, null, 1, "All Music", 2, lm.icons.MUSIC_ICON.render(IconSize.MENU));
 		podcastList.append(out iter);
-		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.icons.podcast_icon.render(IconSize.MENU, podcastDropdown.get_style_context()));
+		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.icons.PODCAST_ICON.render(IconSize.MENU));
 		//audiobookList.append(out iter);
 		//audiobookList.set(iter, 0, null, 1, "All Audiobooks");//, 2, lm.icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
 		
@@ -334,8 +334,8 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		//audiobookList.set(iter, 0, null, 1, "<separator_item_unique_name>");
 		
 		/* add all playlists */
-		var smart_playlist_pix = lm.icons.smart_playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
-		var playlist_pix = lm.icons.playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
+		var smart_playlist_pix = lm.icons.SMART_PLAYLIST_ICON.render(IconSize.MENU, null);
+		var playlist_pix = lm.icons.PLAYLIST_ICON.render(IconSize.MENU, null);
 		foreach(var p in lm.smart_playlists()) {
 			//bool music, podcasts, audiobooks;
 			//test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);

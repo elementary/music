@@ -147,7 +147,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		new_preset_entry = new Entry();
 		new_preset_entry.set_size_request(165, -1);
 
-		var entry_icon = lm.icons.render_icon (Gtk.Stock.OK, IconSize.MENU);
+		var entry_icon = lm.icons.render_icon ("dialog-apply", IconSize.MENU);
 		new_preset_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.SECONDARY, entry_icon);
 		new_preset_entry.set_icon_tooltip_text(Gtk.EntryIconPosition.SECONDARY, "Save preset");
 

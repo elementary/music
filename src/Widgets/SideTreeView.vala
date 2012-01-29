@@ -164,7 +164,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name, ViewWrapper.Hint hint) {
-		var music_icon = lm.icons.MUSIC_ICON.render_image (IconSize.MENU, null); // FIXME: REMOVE NULL
+		var music_icon = lm.icons.MUSIC_ICON.render (IconSize.MENU, null);
 		var podcast_icon = lm.icons.PODCAST_ICON.render (IconSize.MENU, null);
 		var history_icon = lm.icons.HISTORY_ICON.render (IconSize.MENU, null);
 		var smart_playlist_icon = lm.icons.SMART_PLAYLIST_ICON.render (IconSize.MENU, null);
@@ -200,7 +200,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			else
 			    device_icon = lm.icons.render_icon("multimedia-player", IconSize.MENU);
 
-			rv = addItem(parent, o, w, icon, name, null);
+			rv = addItem(parent, o, w, device_icon, name, null);
 
 			var dvw = new DeviceViewWrapper(lm, lw, d.get_medias(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
 			addItem(rv, o, dvw, music_icon, _("Music"), null);

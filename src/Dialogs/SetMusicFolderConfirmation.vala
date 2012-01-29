@@ -121,8 +121,8 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 			is_working.hide();
 			is_finished.show();
 			
-			var process_completed_icon = lm.icons.process_completed_icon.render (IconSize.MENU, null);
-			var process_error_icon = lm.icons.process_error_icon.render (IconSize.MENU, null);
+			var process_completed_icon = lm.icons.PROCESS_COMPLETED_ICON.render (IconSize.MENU);
+			var process_error_icon = lm.icons.PROCESS_ERROR_ICON.render (IconSize.MENU);
 			
 			is_finished.set_from_pixbuf(success ? process_completed_icon : process_error_icon);
 		}

@@ -63,10 +63,10 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		this.lm = lm;
 		_columns = column_types;
 
-		_playing = lm.icons.now_playing_icon.get_gicon ();
-		_completed = lm.icons.process_completed_icon.get_gicon ();
+		_playing = lm.icons.NOW_PLAYING_ICON.get_gicon ();
+		_completed = lm.icons.PROCESS_COMPLETED_ICON.get_gicon ();
 		_saved_locally = new GLib.ThemedIcon.with_default_fallbacks (Gtk.Stock.SAVE);
-		_new_podcast = lm.icons.new_podcast_icon.get_gicon ();
+		_new_podcast = lm.icons.NEW_PODCAST_ICON.get_gicon ();
 
 		this.hint = hint;
 		removing_medias = false;

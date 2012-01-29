@@ -26,6 +26,8 @@ using Gdk;
 public class BeatBox.RatingWidget : Gtk.EventBox {
     internal int rating;
 
+    private int hover_rating;
+
     private bool centered;
     private bool menuItem;
     private Pixbuf _canvas;
@@ -78,7 +80,7 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
         if(rating == new_rating)
             return;
 
-        rating = new_rating;
+        rating = (new_rating > 5)? 5 : new_rating;
         updateRating(rating);
         rating_changed(rating);
     }
@@ -89,47 +91,14 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
 
     /** just draw new rating **/
     public override bool motion_notify_event(EventMotion event) {
-        int new_rating = 0;
-
-        Allocation al;
-        get_allocation(out al);
-
-        int offset = 0;
-        if(centered)
-            offset = (al.width - width_request) / 2;
-        else if(menuItem)
-            offset = (4 * starred.width) / 3;
-
-        if(event.x - offset > 5)
-            new_rating = (int)((event.x - offset + 12) / starred.width);
-        else
-            new_rating = 0;
-
-        updateRating(new_rating);
-
+        hover_rating = get_new_rating(event.x);
+        updateRating(hover_rating);
         return true;
     }
 
     /** draw new rating AND update rating **/
     public virtual bool buttonPress(Gdk.EventButton event) {
-        int new_rating = 0;
-
-        Allocation al;
-        get_allocation(out al);
-
-        int offset = 0;
-        if(centered)
-            offset = (al.width - width_request) / 2;
-        else if(menuItem)
-            offset = (4 * starred.width) / 3;
-
-        if(event.x - offset > 5)
-            new_rating = (int)((event.x - offset + 12) / starred.width);
-        else
-            new_rating = 0;
-
-        set_rating(new_rating);
-
+        set_rating(hover_rating);
         return true;
     }
 
@@ -166,11 +135,26 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
 
         return true;
     }
-    /*
-    private int get_new_rating (Gdk.Event event) {
-    
+
+    private int get_new_rating(double x) {
+        int new_rating = 0;
+
+        Allocation al;
+        get_allocation(out al);
+
+        int offset = 0;
+        if(centered)
+            offset = (al.width - width_request) / 2;
+        else if(menuItem)
+            offset = (4 * starred.width) / 3;
+
+        if((int)x - offset > 5)
+            new_rating = ((int)x - offset + 12) / starred.width;
+        else
+            new_rating = 0;
+
+        return new_rating;
     }
-    */
 }
 
 public class BeatBox.RatingWidgetMenu : Gtk.MenuItem {
@@ -199,10 +183,11 @@ public class BeatBox.RatingWidgetMenu : Gtk.MenuItem {
     }
 
     public override bool draw(Cairo.Context context) {
+        /*
         if(already_drawn) {
             //rating.exposeEvent(context);
         }
-
+        */
         already_drawn = true;
         return false;
     }
