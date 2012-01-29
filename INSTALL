@@ -1,1 +1,48 @@
-To Be Updated
+--------------------------------------------------------------------------------
+OPTIONAL
+--------------------------------------------------------------------------------
+sudo add-apt-repository ppa:elementary-os/daily
+sudo apt-get build-dep beatbox
+
+--------------------------------------------------------------------------------
+REQUIRED
+--------------------------------------------------------------------------------
+sudo add-apt-repository ppa:nemequ/sqlheavy
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+debhelper (>= 7.0.50~)
+valac (>= 0.13.0)
+cmake (>= 2.6)
+libgtk-3-dev (>= 3.0)
+libgee-dev (>= 0.5.3)
+libgstreamer0.10-dev (>= 0.10)
+libtagc0-dev (>= 1.6.3)
+libsqlheavy0.1-dev (>= 0.0)
+libglib2.0-dev	
+libxml2-dev (>= 2.7.7)
+libnotify-dev (>= 0.5.0)
+libsoup2.4-dev (>= 2.25.2)
+libjson-glib-dev (>= 0.10)
+libdbus-glib-1-dev	
+libzeitgeist-dev
+libwebkitgtk-dev
+libindicate-dev (>= 0.5)
+libclutter-gtk-1.0-dev
+libdbusmenu-glib-dev (>= 0.4)
+libgstreamer-plugins-base0.10-dev (>= 0.10)
+libdbusmenu-gtk3-dev
+libgpod-dev
+libgranite-dev
+
+--------------------------------------------------------------------------------
+BUILDING
+--------------------------------------------------------------------------------
+bzr branch lp:beat-box
+cd beat-box
+mkdir build
+cd build
+cmake ..
+make
+sudo make install

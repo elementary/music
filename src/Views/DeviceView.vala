@@ -53,9 +53,7 @@ public class BeatBox.DeviceView : VBox {
 		if(!lm.doing_file_operations() && lm.settings.getMusicFolder() != "") {
 			var externals = new LinkedList<int>();
 			foreach(var i in d.get_medias()) {
-				stdout.printf("testing %s %s\n", lm.media_from_id(i).title, lm.media_from_id(i).artist);
 				if(lm.match_media_to_list(i, lm.media_ids()) == 0) {
-					stdout.printf("no match found\n");
 					externals.add(i);
 				}
 			}
