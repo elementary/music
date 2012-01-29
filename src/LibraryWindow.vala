@@ -326,7 +326,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		var viewSelectorContainer = new Box (Orientation.VERTICAL, 0);
 		var viewSelectorInnerContainer = new Box (Orientation.HORIZONTAL, 0);
 		viewSelectorInnerContainer.pack_start (new Box (Orientation.HORIZONTAL, 10), true, true, 0);
-		viewSelectorInnerContainer.pack_start (viewSelector, false, false, 0);
+
+		viewSelectorInnerContainer.pack_start (viewSelector, false, false, 0); // VIEW SELECTOR
+
 		viewSelectorInnerContainer.pack_end (new Box (Orientation.HORIZONTAL, 10), true, true, 0);
 		viewSelectorContainer.pack_start (new Box (Orientation.VERTICAL, 5), true, true, 0);
 		viewSelectorContainer.pack_start (viewSelectorInnerContainer, false, false, 0);
@@ -348,9 +350,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToMedias.get_style_context().add_class("sidebar-pane-separator");
 		sideTree.get_style_context().add_class("sidebar");
 
-		viewSelector.append(lm.icons.VIEW_COLUMN_ICON.render_image (IconSize.MENU));
-		viewSelector.append(lm.icons.VIEW_DETAILS_ICON.render_image (IconSize.MENU));
 		viewSelector.append(lm.icons.VIEW_ICONS_ICON.render_image (IconSize.MENU));
+		viewSelector.append(lm.icons.VIEW_DETAILS_ICON.render_image (IconSize.MENU));
+		viewSelector.append(lm.icons.VIEW_COLUMN_ICON.render_image (IconSize.MENU));
 
 		topControls.insert(previousButton, 0);
 		topControls.insert(playButton, 1);
