@@ -194,7 +194,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		set_title("BeatBox");
 
 		// set the icon
-		set_icon(lm.icons.beatbox_icon.render (IconSize.MENU, null));
+		set_icon(lm.icons.BEATBOX_ICON.render (IconSize.MENU, null));
 
 		/* Initialize all components */
 		verticalBox = new VBox(false, 0);
@@ -365,7 +365,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 
-		var music_folder_icon = lm.icons.music_folder.render (IconSize.DIALOG, null);
+		var music_folder_icon = lm.icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
 		welcomeScreen.append_with_pixbuf(music_folder_icon, _("Locate"), _("Change your music folder."));
 
 		millerPane.pack1(miller, false, true);
@@ -1155,7 +1155,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(!has_toplevel_focus) {
 				notification.update(_("Import Complete"), _("BeatBox has imported your library."), "beatbox");
 
-				var beatbox_icon = lm.icons.beatbox_icon.render (IconSize.DIALOG, null);
+				var beatbox_icon = lm.icons.BEATBOX_ICON.render (IconSize.DIALOG, null);
 				notification.set_image_from_pixbuf(beatbox_icon);
 
 				notification.show();

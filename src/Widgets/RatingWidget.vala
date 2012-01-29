@@ -50,8 +50,8 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
             this.set_visible_window (false);
         }
 
-        starred = BeatBox.Beatbox._program.lm.icons.starred_icon.render (size, null);
-        not_starred = BeatBox.Beatbox._program.lm.icons.not_starred_icon.render (size, null);
+        starred = BeatBox.Beatbox._program.lm.icons.STARRED_ICON.render (size, null);
+        not_starred = BeatBox.Beatbox._program.lm.icons.NOT_STARRED_ICON.render (size, null);
 
         width_request  = starred.width * 5;
         height_request = starred.height;
@@ -121,7 +121,7 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
         if(centered)
             offset = (al.width - width_request) / 2;
         else if(menuItem)
-            offset = 32;
+            offset = (4 * starred.width) / 3;
 
         if(event.x - offset > 5)
             new_rating = (int)((event.x - offset + 12) / starred.width);
@@ -166,6 +166,11 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
 
         return true;
     }
+    /*
+    private int get_new_rating (Gdk.Event event) {
+    
+    }
+    */
 }
 
 public class BeatBox.RatingWidgetMenu : Gtk.MenuItem {

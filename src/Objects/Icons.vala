@@ -139,7 +139,7 @@ public class BeatBox.Icon : GLib.Object {
 		Gdk.Pixbuf? rv = null;
 		int width = 16, height = 16;
 
-		// Don't load the image as a regular icon if it's a PNG and belongs
+		// Don't load image as a regular icon if it's a PNG and belongs
 		// to the project's folder.
 		if (file_type == IconFileType.PNG && backup != null && size == null) {
 			try {
@@ -147,13 +147,13 @@ public class BeatBox.Icon : GLib.Object {
 				rv = new Gdk.Pixbuf.from_file(backup);
 			}
 			catch(Error err) {
-				critical ("Could not load PNG image: %s\n", err.message);
+				warning ("Could not load PNG image: %s\n", err.message);
 			}
 
 			return rv;
 		}
 
-		// If a null size was passed, use the original size
+		// If a null size was passed, use original size
 		if (size != null) {
 			icon_size_lookup (size, out width, out height);
 		}
@@ -162,7 +162,7 @@ public class BeatBox.Icon : GLib.Object {
 			height = this.size;
 		}
 
-		// Try to load the icon from the icon theme
+		// Try to load icon from theme
 		if (IconTheme.get_default().has_icon(this.name)) {
 			try {
 				var icon_info = get_icon_info (height);
@@ -178,7 +178,7 @@ public class BeatBox.Icon : GLib.Object {
 			}
 		}
 
-		// If the above failed, use the available backup
+		// If the above failed, use available backup
 		if (rv == null && this.backup != null) {
 			try {
 				warning ("Loading backup icon for %s", this.name);
@@ -209,7 +209,7 @@ public class BeatBox.Icon : GLib.Object {
 		}
 
 		if (IconTheme.get_default().has_icon (this.name) && size != null) {
-			// Try to load the icon from the icon theme
+			// Try to load icon from theme
 			rv = new Image.from_icon_name (this.name, size);
 		} else if (this.backup != null) {
 			// If the icon theme doesn't contain the icon, load backup
@@ -221,7 +221,7 @@ public class BeatBox.Icon : GLib.Object {
 			rv = new Image.from_pixbuf (this.render (size, ctx));
 		}
 
-		// Resize the image
+		// Resize image if necessary
 		if (rv.get_pixel_size () != height)
 			rv.set_pixel_size (height);
 
@@ -233,34 +233,32 @@ public class BeatBox.Icons : GLib.Object {
 	LibraryManager lm;
 	LibraryWindow lw;
 
-	/* TODO: CAPITALIZE icon names */
-
-	public Icon default_album_art;
+	public Icon DEFAULT_ALBUM_ART;
 	public Icon DROP_ALBUM;
 
-	public Icon music_folder;
+	public Icon MUSIC_FOLDER;
 
-	public Icon beatbox_icon;
-	public Icon radio_icon;
-	public Icon music_icon;
-	public Icon podcast_icon;
-	public Icon audiobook_icon;
+	public Icon BEATBOX_ICON;
+	public Icon RADIO_ICON;
+	public Icon MUSIC_ICON;
+	public Icon PODCAST_ICON;
+	public Icon AUDIOBOOK_ICON;
 	public Icon AUDIO_CD_ICON;
-	public Icon history_icon;
-	public Icon playlist_icon;
-	public Icon smart_playlist_icon;
-	public Icon lastfm_love_icon;
-	public Icon lastfm_ban_icon;
-	public Icon starred_icon;
-	public Icon not_starred_icon;
+	public Icon HISTORY_ICON;
+	public Icon PLAYLIST_ICON;
+	public Icon SMART_PLAYLIST_ICON;
+	public Icon LASTFM_LOVE_ICON;
+	public Icon LASTFM_BAN_ICON;
+	public Icon STARRED_ICON;
+	public Icon NOT_STARRED_ICON;
 	public Icon INFO_ICON;
-	public Icon new_podcast_icon;
+	public Icon new_PODCAST_ICON;
 
 	/** Symbolic icons **/
-	public Icon now_playing_icon;
-	public Icon process_stop_icon;
-	public Icon process_completed_icon;
-	public Icon process_error_icon;
+	public Icon NOW_PLAYING_ICON;
+	public Icon PROCESS_STOP_ICON;
+	public Icon PROCESS_COMPLETED_ICON;
+	public Icon PROCESS_ERROR_ICON;
 	public Icon SHUFFLE_ON_ICON;
 	public Icon SHUFFLE_OFF_ICON;
 	public Icon REPEAT_ON_ICON;
@@ -280,34 +278,34 @@ public class BeatBox.Icons : GLib.Object {
 	public void load_icons () {
 
 		// 128 x 128
-		default_album_art = new Icon ("media-audio", 128, Icon.IconType.MIMETYPE, Icon.IconFileType.PNG, true);
+		DEFAULT_ALBUM_ART = new Icon ("media-audio", 128, Icon.IconType.MIMETYPE, Icon.IconFileType.PNG, true);
 		DROP_ALBUM = new Icon ("drop-album", 128, Icon.IconType.MIMETYPE, null, true);
-		music_folder = new Icon ("folder-music", 128, Icon.IconType.MIMETYPE, null, true);
+		MUSIC_FOLDER = new Icon ("folder-music", 128, Icon.IconType.MIMETYPE, null, true);
 
 		// 22 x 22
-		history_icon = new Icon ("document-open-recent", 22, Icon.IconType.ACTION, null, true);
+		HISTORY_ICON = new Icon ("document-open-recent", 22, Icon.IconType.ACTION, null, true);
 
 		// 16 x 16
-		beatbox_icon = new Icon ("beatbox", 16, Icon.IconType.APP, null, true);
-		radio_icon = new Icon ("internet-radio", 16, Icon.IconType.MIMETYPE, null, true);
-		music_icon = new Icon ("library-music", 16, Icon.IconType.MIMETYPE, null, true);
-		podcast_icon = new Icon ("library-podcast", 16, Icon.IconType.MIMETYPE, null, true);
-		//audiobook_icon = new Icon ("library-audiobook", 16, Icon.IconType.MIMETYPE, null, true);
+		BEATBOX_ICON = new Icon ("beatbox", 16, Icon.IconType.APP, null, true);
+		RADIO_ICON = new Icon ("internet-radio", 16, Icon.IconType.MIMETYPE, null, true);
+		MUSIC_ICON = new Icon ("library-music", 16, Icon.IconType.MIMETYPE, null, true);
+		PODCAST_ICON = new Icon ("library-podcast", 16, Icon.IconType.MIMETYPE, null, true);
+		//AUDIOBOOK_ICON = new Icon ("library-audiobook", 16, Icon.IconType.MIMETYPE, null, true);
 		AUDIO_CD_ICON = new Icon ("media-cdrom-audio", 16, Icon.IconType.MIMETYPE, null, true);
-		playlist_icon = new Icon ("playlist", 16, Icon.IconType.MIMETYPE, null, true);
-		smart_playlist_icon = new Icon ("playlist-automatic", 16, Icon.IconType.MIMETYPE, null, true);
-		lastfm_love_icon = new Icon ("lastfm-love", 16, Icon.IconType.ACTION, null, true);
-		lastfm_ban_icon = new Icon ("lastfm-ban", 16, Icon.IconType.ACTION, null, true);
-		starred_icon = new Icon ("starred", 16, Icon.IconType.STATUS, null, true);
-		not_starred_icon = new Icon ("not-starred", 16, Icon.IconType.STATUS, null, true);
+		PLAYLIST_ICON = new Icon ("playlist", 16, Icon.IconType.MIMETYPE, null, true);
+		SMART_PLAYLIST_ICON = new Icon ("playlist-automatic", 16, Icon.IconType.MIMETYPE, null, true);
+		LASTFM_LOVE_ICON = new Icon ("lastfm-love", 16, Icon.IconType.ACTION, null, true);
+		LASTFM_BAN_ICON = new Icon ("lastfm-ban", 16, Icon.IconType.ACTION, null, true);
+		STARRED_ICON = new Icon ("starred", 16, Icon.IconType.STATUS, null, true);
+		NOT_STARRED_ICON = new Icon ("not-starred", 16, Icon.IconType.STATUS, null, true);
 		INFO_ICON = new Icon ("help-info", 16, Icon.IconType.STATUS, null, true);
-		new_podcast_icon = new Icon ("podcast-new", 16, Icon.IconType.STATUS, null, true);
+		new_PODCAST_ICON = new Icon ("podcast-new", 16, Icon.IconType.STATUS, null, true);
 
 		// SYMBOLIC ICONS
-		process_completed_icon = new Icon ("process-completed-symbolic", 16, Icon.IconType.STATUS, null, true);
-		process_error_icon = new Icon ("process-error-symbolic", 16, Icon.IconType.STATUS, null, true);
-		now_playing_icon = new Icon ("audio-volume-high-symbolic", 16, Icon.IconType.STATUS, null, true);
-		process_stop_icon = new Icon ("process-stop-symbolic", 16, Icon.IconType.ACTION, null, true);
+		PROCESS_COMPLETED_ICON = new Icon ("process-completed-symbolic", 16, Icon.IconType.STATUS, null, true);
+		PROCESS_ERROR_ICON = new Icon ("process-error-symbolic", 16, Icon.IconType.STATUS, null, true);
+		NOW_PLAYING_ICON = new Icon ("audio-volume-high-symbolic", 16, Icon.IconType.STATUS, null, true);
+		PROCESS_STOP_ICON = new Icon ("process-stop-symbolic", 16, Icon.IconType.ACTION, null, true);
 		SHUFFLE_ON_ICON = new Icon ("media-playlist-shuffle-symbolic", 16, Icon.IconType.STATUS, null, true);
 		SHUFFLE_OFF_ICON = new Icon ("media-playlist-no-shuffle-symbolic", 16, Icon.IconType.STATUS, null, true);
 		REPEAT_ON_ICON = new Icon ("media-playlist-repeat-symbolic", 16, Icon.IconType.STATUS, null, true);
@@ -322,7 +320,6 @@ public class BeatBox.Icons : GLib.Object {
 	/**
 	 * These methods are useful for rendering non-loaded icons (Stock icons, etc.)
 	 **/
-
 	public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
 		var icon = new Icon (icon_name, null, null, null, false);
 		return icon.render (size, context);
