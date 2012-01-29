@@ -284,7 +284,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	
 	void updateSensitivities() {
 		mediaRemove.set_sensitive(true);
-		mediaRemove.set_label("Remove Station");
+		mediaRemove.set_label(_("Remove Station"));
 	}
 	
 	public void buildUI() {

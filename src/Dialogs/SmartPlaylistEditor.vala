@@ -84,7 +84,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		
 		/* create match checkbox/combo combination */
 		HBox matchBox = new HBox(false, 2);
-		Label tMatch = new Label("Match");
+		Label tMatch = new Label(_("Match"));
 		comboMatch = new ComboBoxText();
 		comboMatch.insert_text(0, "any");
 		comboMatch.insert_text(1, "all");
@@ -263,7 +263,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_value = new Entry();
 		_valueNumerical = new SpinButton.with_range(0, 9999, 1);
 		_valueOption = new ComboBoxText();
-		_remove = new Button.with_label("Remove");
+		_remove = new Button.with_label(_("Remove"));
 		
 		_field.append_text(_("Album"));
 		_field.append_text(_("Artist"));

@@ -50,7 +50,7 @@ public class BeatBox.AddPodcastWindow : Window {
 		already_validating = false;
 		next = "";
 		
-		title = "Add Podcast";
+		title = (_("Add Podcast"));
 		
 		//set_default_size(400, -1);
 		set_size_request(400, -1);
@@ -77,15 +77,15 @@ public class BeatBox.AddPodcastWindow : Window {
 			not_valid = render_icon(Gtk.Stock.NO, IconSize.MENU, null);
 		
 		/* start out by creating all category labels */
-		Label sourceLabel = new Label("Podcast RSS Source");
-		_source = new Granite.Widgets.HintedEntry("Podcast Source...");
+		Label sourceLabel = new Label(_("Podcast RSS Source"));
+		_source = new Granite.Widgets.HintedEntry(_("Podcast Source..."));
 		_is_valid = new Gtk.Image.from_pixbuf(not_valid);
 		_is_working = new Gtk.Spinner();
-		_save = new Button.with_label("Add");
+		_save = new Button.with_label(_("Add"));
 		
 		/* set up controls */
 		sourceLabel.xalign = 0.0f;
-		sourceLabel.set_markup("<b>Podcast RSS Source</b>");
+		sourceLabel.set_markup(_("<b>Podcast RSS Source</b>"));
 		
 		_is_working.start();
 		

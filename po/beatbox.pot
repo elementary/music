@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-28 20:18+0100\n"
+"POT-Creation-Date: 2012-01-29 16:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,7 @@ msgid "Sync"
 msgstr ""
 
 #: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:97
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:53
 msgid "Add Podcast"
 msgstr ""
 
@@ -60,6 +61,7 @@ msgid "Edit"
 msgstr ""
 
 #: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:125
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Remove"
 msgstr ""
 
@@ -158,6 +160,7 @@ msgid "<span weight=\"bold\" size=\"larger\">Set Music Folder?</span>"
 msgstr ""
 
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:68
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/PlaylistNameWindow.vala:58
 msgid "Name of Playlist"
 msgstr ""
 
@@ -170,6 +173,7 @@ msgid "Options"
 msgstr ""
 
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/PlaylistNameWindow.vala:64
 msgid "<b>Name of Playlist</b>"
 msgstr ""
 
@@ -185,11 +189,16 @@ msgstr ""
 msgid "Playlist Title"
 msgstr ""
 
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Match"
+msgstr ""
+
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
 msgstr ""
 
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:116
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:84
 msgid "Add"
 msgstr ""
 
@@ -204,6 +213,7 @@ msgstr ""
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/StationEditor.vala:70
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SongEditor.vala:87
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/PlaylistNameWindow.vala:60
 msgid "Done"
 msgstr ""
 
@@ -352,6 +362,18 @@ msgstr ""
 msgid "kbps"
 msgstr ""
 
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:80
+msgid "Podcast RSS Source"
+msgstr ""
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:81
+msgid "Podcast Source..."
+msgstr ""
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:88
+msgid "<b>Podcast RSS Source</b>"
+msgstr ""
+
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SyncWarningDialog.vala:44
 msgid "Import medias to Library"
 msgstr ""
@@ -447,6 +469,10 @@ msgstr ""
 msgid ""
 "Make sure all song info is correct and you are connected to the Internet.\n"
 "Some songs may not have matches."
+msgstr ""
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/RadioListView.vala:287
+msgid "Remove Station"
 msgstr ""
 
 #: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:545

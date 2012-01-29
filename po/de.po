@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-28 20:18+0100\n"
-"PO-Revision-Date: 2012-01-28 20:18+0100\n"
+"POT-Creation-Date: 2012-01-29 16:26+0100\n"
+"PO-Revision-Date: 2012-01-29 16:27+0100\n"
 "Last-Translator: Alexander Wilms <alexander.wilms@zoho.com>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -28,6 +28,7 @@ msgid "Sync"
 msgstr "Synchronisation"
 
 #: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:97
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:53
 msgid "Add Podcast"
 msgstr "Podcast hinzufügen"
 
@@ -61,6 +62,7 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #: /home/alexander/beat-box-translation-de/po/../src//Widgets/SideTreeView.vala:125
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -159,6 +161,7 @@ msgid "<span weight=\"bold\" size=\"larger\">Set Music Folder?</span>"
 msgstr "<span weight=\"bold\" size=\"larger\">Musikordner festlegen?</span>"
 
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:68
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/PlaylistNameWindow.vala:58
 msgid "Name of Playlist"
 msgstr "Name der Wiedergabeliste"
 
@@ -171,6 +174,7 @@ msgid "Options"
 msgstr "Optionen"
 
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/PlaylistNameWindow.vala:64
 msgid "<b>Name of Playlist</b>"
 msgstr "Name der Wiedergabeliste"
 
@@ -186,11 +190,17 @@ msgstr "<b>Optionen</b>"
 msgid "Playlist Title"
 msgstr "Wiedergabeliste"
 
+# Übersetzung taucht nicht in der GUI auf. Warum?
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Match"
+msgstr "Erfülle"
+
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
-msgstr "der folgenden"
+msgstr "der folgenden Bedingungen:"
 
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:116
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:84
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -205,6 +215,7 @@ msgstr "Medien"
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/StationEditor.vala:70
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SongEditor.vala:87
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/PlaylistNameWindow.vala:60
 msgid "Done"
 msgstr "Fertig"
 
@@ -244,7 +255,7 @@ msgstr "Genre"
 
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:276
 msgid "Grouping"
-msgstr ""
+msgstr "Musikgruppe"
 
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SmartPlaylistEditor.vala:277
 #: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:558
@@ -353,6 +364,18 @@ msgstr "Sekunden"
 msgid "kbps"
 msgstr "kbps"
 
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:80
+msgid "Podcast RSS Source"
+msgstr "Podcast RSS-Quelle"
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:81
+msgid "Podcast Source..."
+msgstr "Podcast-Quelle..."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Dialogs/AddPodcastWindow.vala:88
+msgid "<b>Podcast RSS Source</b>"
+msgstr "<b>Podcast RSS-Quelle</b>"
+
 #: /home/alexander/beat-box-translation-de/po/../src//Dialogs/SyncWarningDialog.vala:44
 msgid "Import medias to Library"
 msgstr "Medien in die Bibliothek importieren"
@@ -446,6 +469,10 @@ msgid ""
 msgstr ""
 "Stelle sicher, dass alle Titelinformationen korrekt sind und du mit dem Internet verbunden bist. \n"
 "Manche Titel könnten keine Treffer liefern."
+
+#: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/RadioListView.vala:287
+msgid "Remove Station"
+msgstr "Radiosender entfernen"
 
 #: /home/alexander/beat-box-translation-de/po/../src//Views/ListView/MusicTreeView.vala:545
 msgid "#"
@@ -594,18 +621,3 @@ msgstr "Titel von einer Audio-CD importieren"
 msgid "Import media from device"
 msgstr "Medien von einem Gerät importieren"
 
-#, fuzzy
-#~ msgid "Import medias from "
-#~ msgstr "Medien von einem Gerät importieren"
-
-#~ msgid "Edit Media Info"
-#~ msgstr "Titelinformationen bearbeiten"
-
-#~ msgid "Show in File Browser"
-#~ msgstr "Im Dateimanager anzeigen"
-
-#~ msgid "Add to Playlist"
-#~ msgstr "Zur Wiedergabeliste hinzufügen"
-
-#~ msgid "Remove media"
-#~ msgstr "Entfernen"
