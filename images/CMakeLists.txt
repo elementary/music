@@ -19,6 +19,9 @@ install(FILES icons/16x16/mimetypes/library-podcast.svg DESTINATION share/beatbo
 # radio icon
 install(FILES icons/16x16/mimetypes/internet-radio.svg DESTINATION share/beatbox/icons/hicolor/16x16/mimetypes)
 
+# CD icon
+install(FILES icons/16x16/mimetypes/media-cdrom-audio.svg DESTINATION share/beatbox/icons/hicolor/16x16/mimetypes)
+
 # media-audio for default album image
 install(FILES icons/128x128/mimetypes/media-audio.png DESTINATION share/beatbox/icons/hicolor/128x128/mimetypes)
 install(FILES icons/128x128/mimetypes/drop-album.svg DESTINATION share/beatbox/icons/hicolor/128x128/mimetypes)

@@ -186,11 +186,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
 			TreeIter? rv;
-			// TODO: Install and load these icons using the Icons module
 			if(d.getContentType() == "cdrom") {
-				devices_cdrom_iter = addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
+				devices_cdrom_iter = addItem(parent, o, w, lm.icons.AUDIO_CD_ICON.render(IconSize.MENU, null), name, null);
 				return devices_cdrom_iter;
-			}
+			} // TODO: Install and load these icons using the Icons module
 			else if(d.getContentType() == "ipod-new")
 				rv = addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
 			else if(d.getContentType() == "ipod-old")
