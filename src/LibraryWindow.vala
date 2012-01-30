@@ -646,7 +646,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(lm.get_album_art(lm.media_info.media.rowid) != null)
 				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid));
 			else {
-				coverArt.set_from_pixbuf(lm.icons.DROP_ALBUM.render (null, null));
+				coverArt.set_from_pixbuf(lm.icons.DROP_ALBUM.render (null, null, 600));
 			}
 
 			coverArt.update_allocated_space(sourcesToMedias.position);

@@ -20,6 +20,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	bool _is_current_view;
 	bool needsUpdate;
 	
+	private const int ITEM_WIDTH = 134;
+	
 	public signal void itemClicked(string artist, string album);
 	
 	/* medias should be mutable, as we will be sorting it */
@@ -43,7 +45,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		last_search = "";
 		timeout_search = new LinkedList<string>();
 		
-		defaultPix = lm.icons.DEFAULT_ALBUM_ART.render (null);
+		defaultPix = lm.icons.DEFAULT_ALBUM_ART.render (null, null, ITEM_WIDTH);
 		
 		buildUI();
 		
@@ -58,7 +60,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		
 		icons.set_pixbuf_column(0);
 		icons.set_markup_column(1);
-		icons.set_item_width(134);
+		icons.set_item_width(ITEM_WIDTH);
 		icons.item_padding = 0;
 		icons.spacing = 2;
 		icons.margin = 20;

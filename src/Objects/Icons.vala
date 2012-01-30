@@ -138,7 +138,7 @@ public class BeatBox.Icon : GLib.Object {
 		return icon_theme.lookup_by_gicon (get_gicon(), size, lookup_flags);
 	}
 
-	public Gdk.Pixbuf? render (Gtk.IconSize? size, StyleContext? context = null) {
+	public Gdk.Pixbuf? render (Gtk.IconSize? size, StyleContext? context = null, int px_size = 0) {
 		Gdk.Pixbuf? rv = null;
 		int width = 16, height = 16;
 
@@ -146,7 +146,6 @@ public class BeatBox.Icon : GLib.Object {
 		// to the project's folder.
 		if (file_type == IconFileType.PNG && backup != null && size == null) {
 			try {
-				warning ("Rendering unscaled PNG image: %s", this.name);
 				rv = new Gdk.Pixbuf.from_file(backup);
 			}
 			catch(Error err) {
@@ -160,9 +159,13 @@ public class BeatBox.Icon : GLib.Object {
 		if (size != null) {
 			icon_size_lookup (size, out width, out height);
 		}
+		else if (px_size > 0) {
+			width = px_size;
+			height = px_size;
+		}
 		else if (this.size != null) {
 			width = this.size;
-			height = this.size;
+			height = width;
 		}
 
 		// Try to load icon from theme
@@ -198,17 +201,21 @@ public class BeatBox.Icon : GLib.Object {
 	/**
 	 * Use this method for loading symbolic icons. They will follow every state.
 	 **/
-	public Gtk.Image? render_image (Gtk.IconSize? size, Gtk.StyleContext? ctx = null) {
+	public Gtk.Image? render_image (Gtk.IconSize? size, Gtk.StyleContext? ctx = null, int px_size = 0) {
 		Gtk.Image? rv = null;
 		int width = 16, height = 16;
 
-		// If a null size was passed, use the original size
+		// If a null size was passed, use original size
 		if (size != null) {
 			icon_size_lookup (size, out width, out height);
 		}
+		else if (px_size > 0) {
+			width = px_size;
+			height = px_size;
+		}
 		else if (this.size != null) {
 			width = this.size;
-			height = this.size;
+			height = width;
 		}
 
 		if (IconTheme.get_default().has_icon (this.name) && size != null) {
