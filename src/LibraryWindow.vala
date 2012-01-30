@@ -469,7 +469,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 
 	/** Builds the side tree on TreeView view
-	 * @param view The side tree to build it on
+	 * @param view The side tree to build it on : TODO
 	 */
 	private void buildSideTree() {
 		ViewWrapper vw;
@@ -505,7 +505,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			sideTree.addSideItem(sideTree.network_iter, null, storeView, _("Music Store"), ViewWrapper.Hint.NONE);
 			mainViews.pack_start(storeView, true, true, 0);
 		}
-
 
 		// load smart playlists
 		foreach(SmartPlaylist p in lm.smart_playlists()) {
@@ -1560,3 +1559,4 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 }
+
