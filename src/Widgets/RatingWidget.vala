@@ -36,24 +36,26 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
 
     public signal void rating_changed(int new_rating);
 
-    public RatingWidget(Gtk.StyleContext? context, bool centered, IconSize size) {
+    public RatingWidget(Gtk.StyleContext? context, bool centered, IconSize size, bool symbolic = false) {
         this.centered = centered;
 
         if (context != null)  {
             menuItem = context.has_class (Gtk.STYLE_CLASS_MENUITEM);
             Gdk.RGBA color = context.get_background_color(Gtk.StateFlags.NORMAL);
-            override_background_color (Gtk.StateFlags.NORMAL, color);
-            override_background_color (Gtk.StateFlags.ACTIVE, color);
-            override_background_color (Gtk.StateFlags.PRELIGHT, color);
+            set_background_color (color);
         } else {
             menuItem = false;
-            // Make the eventbox transparent
-            this.set_above_child (true);
-            this.set_visible_window (false);
+            set_transparent (true);
         }
 
-        starred = BeatBox.Beatbox._program.lm.icons.STARRED_ICON.render (size, null);
-        not_starred = BeatBox.Beatbox._program.lm.icons.NOT_STARRED_ICON.render (size, null);
+        if (symbolic) {
+            starred = BeatBox.Beatbox._program.lm.icons.STARRED_SYMBOLIC_ICON.render (size, context);
+            not_starred = BeatBox.Beatbox._program.lm.icons.NOT_STARRED_SYMBOLIC_ICON.render (size, context);
+        }
+        else {
+            starred = BeatBox.Beatbox._program.lm.icons.STARRED_ICON.render (size, null);
+            not_starred = BeatBox.Beatbox._program.lm.icons.NOT_STARRED_ICON.render (size, null);
+        }
 
         width_request  = starred.width * 5;
         height_request = starred.height;
@@ -70,6 +72,18 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
         button_press_event.connect(buttonPress);
         draw.connect(exposeEvent);
     }
+
+    public void set_background_color (Gdk.RGBA color) {
+        override_background_color (Gtk.StateFlags.NORMAL, color);
+        override_background_color (Gtk.StateFlags.ACTIVE, color);
+        override_background_color (Gtk.StateFlags.PRELIGHT, color);
+    }
+
+	public void set_transparent (bool val) {
+		// Make the eventbox transparent
+        this.set_above_child (val);
+        this.set_visible_window (!val);
+	}
 
     public override bool leave_notify_event(Gdk.EventCrossing ev) {
         updateRating(rating);

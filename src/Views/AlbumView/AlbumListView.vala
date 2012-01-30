@@ -47,7 +47,7 @@ public class BeatBox.AlbumListView : Window {
 			padding: 0;
 		}
 
-		.label {
+		*, .label {
 			color: #ffffff;
 		}
 
@@ -144,7 +144,8 @@ public class BeatBox.AlbumListView : Window {
 		mtv.vexpand = true;
 
 		// add rating
-		rating = new RatingWidget(null, true, IconSize.BUTTON);
+		rating = new RatingWidget(get_style_context(), true, IconSize.BUTTON, true);
+		rating.set_transparent (true);
 
 		var all_area = new Box(Orientation.VERTICAL, 0);
 		all_area.pack_start(close, false, false, 0);

@@ -259,6 +259,8 @@ public class BeatBox.Icons : GLib.Object {
 
 	/** Symbolic icons **/
 	public Icon NOW_PLAYING_ICON;
+	public Icon MEDIA_PLAY_SYMBOLIC_ICON; // TODO
+	public Icon MEDIA_STOP_SYMBOLIC_ICON; // TODO
 	public Icon PROCESS_STOP_ICON;
 	public Icon PROCESS_COMPLETED_ICON;
 	public Icon PROCESS_ERROR_ICON;
@@ -267,6 +269,9 @@ public class BeatBox.Icons : GLib.Object {
 	public Icon REPEAT_ON_ICON;
 	public Icon REPEAT_ONCE_ICON;
 	public Icon REPEAT_OFF_ICON;
+
+	public Icon STARRED_SYMBOLIC_ICON;
+	public Icon NOT_STARRED_SYMBOLIC_ICON;
 
 	public Icon VIEW_COLUMN_ICON;
 	public Icon VIEW_DETAILS_ICON;
@@ -305,6 +310,8 @@ public class BeatBox.Icons : GLib.Object {
 		NEW_PODCAST_ICON = new Icon ("podcast-new", 16, Icon.IconType.STATUS, null, true);
 
 		// SYMBOLIC ICONS
+		STARRED_SYMBOLIC_ICON = new Icon ("starred-symbolic", 16, Icon.IconType.STATUS, null, true);
+		NOT_STARRED_SYMBOLIC_ICON = new Icon ("non-starred-symbolic", 16, Icon.IconType.STATUS, null, true);
 		PROCESS_COMPLETED_ICON = new Icon ("process-completed-symbolic", 16, Icon.IconType.STATUS, null, true);
 		PROCESS_ERROR_ICON = new Icon ("process-error-symbolic", 16, Icon.IconType.STATUS, null, true);
 		NOW_PLAYING_ICON = new Icon ("audio-volume-high-symbolic", 16, Icon.IconType.STATUS, null, true);
