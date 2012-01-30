@@ -424,11 +424,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		viewSelector.selected = settings.getViewMode();
 		
-		bool genreV, artistV, albumV;
-		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
-		miller.updateColumnVisibilities(genreV, artistV, albumV);
-		stdout.printf("User interface has been built\n");
-		
 		int i = settings.getLastMediaPlaying();
 		if(i != 0 && lm.media_from_id(i) != null && File.new_for_uri(lm.media_from_id(i).uri).query_exists()) {
 			lm.media_from_id(i).resume_pos;
@@ -456,6 +451,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		
 		show_all();
 		resize(settings.getWindowWidth(), this.default_height);
+		
+		bool genreV, artistV, albumV;
+		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
+		miller.updateColumnVisibilities(genreV, artistV, albumV);
 		
 		updateSensitivities();
 		
