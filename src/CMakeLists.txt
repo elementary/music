@@ -112,6 +112,7 @@ vala_precompile(VALA_C
     Objects/MPRIS.vala
     Objects/Playlist.vala
     Objects/PodcastManager.vala
+    Objects/Icon.vala
     Objects/Icons.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarSongsView.vala
