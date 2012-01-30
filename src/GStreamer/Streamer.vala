@@ -175,7 +175,7 @@ public class BeatBox.Streamer : GLib.Object {
 					if(pipe.videoStreamCount() > 0) {
 						if(lw.viewSelector.get_children().length() != 4) {
 							//stdout.printf("turning on video\n");
-							lw.viewSelector.append(lm.icons.VIEW_VIDEO_ICON.render_image (Gtk.IconSize.MENU));
+							lw.viewSelector.append(Icons.VIEW_VIDEO_ICON.render_image (Gtk.IconSize.MENU));
 							lw.viewSelector.selected = 3;
 						}
 					}

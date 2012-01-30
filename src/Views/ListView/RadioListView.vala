@@ -795,7 +795,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 		}
 		
 		/*if(!GLib.File.new_for_path(media_from_id(id).file).query_exists() && media_from_id(id).file.contains(settings.getMusicFolder())) {
-			media_from_id(id).unique_status_image = lm.icons.process_error_icon;
+			media_from_id(id).unique_status_image = Icons.process_error_icon;
 			lw.media_not_found(id);
 		}
 		else {*/

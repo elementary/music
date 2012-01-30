@@ -36,7 +36,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.Streamer player;
 	public BeatBox.DeviceManager dm;
 	public BeatBox.PodcastManager pm;
-	public BeatBox.Icons icons;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	public HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
@@ -152,9 +151,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_already_played = new LinkedList<int>();
 		_album_art = new HashMap<string, Gdk.Pixbuf>();
 		_cover_album_art = new HashMap<string, Gdk.Pixbuf>();
-		
-		icons = new Icons(this, lw);
-		icons.load_icons();
 		
 		lfm = new LastFM.Core(this);
 		_artists = new HashMap<string, LastFM.ArtistInfo>();
@@ -1365,7 +1361,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// check that the file exists
 		if((settings.getMusicFolder() != "" && File.new_for_uri(m.uri).get_path().has_prefix(settings.getMusicFolder()) && !GLib.File.new_for_uri(m.uri).query_exists())) {
-			m.unique_status_image = icons.PROCESS_ERROR_ICON.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list.get_style_context());
+			m.unique_status_image = Icons.PROCESS_ERROR_ICON.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list.get_style_context());
 			m.location_unknown = true;
 			lw.media_not_found(id);
 			stopPlayback();

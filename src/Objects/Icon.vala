@@ -20,21 +20,15 @@
  * Boston, MA 02111-1307, USA.
  */
 
+/*
+ * TODO:
+ * - Add built-in icons.
+ * - Improve code in some areas
+ */
+
 using Gtk;
 
 public class BeatBox.Icon : GLib.Object {
-
-	public enum IconType {
-		MIMETYPE,
-		ACTION,
-		STATUS,
-		APP
-	}
-
-	public enum IconFileType {
-		SVG,
-		PNG
-	}
 
 	public string name {get; private set;}
 
@@ -44,20 +38,12 @@ public class BeatBox.Icon : GLib.Object {
 		}
 	}
 
-	private const string MIMETYPES_FOLDER = "mimetypes";
-	private const string ACTIONS_FOLDER = "actions";
-	private const string STATUS_FOLDER = "status";
-	private const string APPS_FOLDER = "apps";
-
-	private const string PNG_EXT = ".png";
-	private const string SVG_EXT = ".svg";
-
 	private string? backup;
 	private int? size;
-	private IconType? type;
-	private IconFileType? file_type;
+	private Icons.IconType? type;
+	private Icons.IconFileType? file_type;
 
-	public Icon (string name, int? size, IconType? type, IconFileType? file_type, bool has_backup) {
+	public Icon (string name, int? size, Icons.IconType? type, Icons.IconFileType? file_type, bool has_backup) {
 
 		this.name = name;
 		this.size = size;
@@ -79,17 +65,17 @@ public class BeatBox.Icon : GLib.Object {
 
 			switch (type)
 			{
-				case IconType.MIMETYPE:
-					type_folder = MIMETYPES_FOLDER;
+				case Icons.IconType.MIMETYPE:
+					type_folder = Icons.MIMETYPES_FOLDER;
 					break;
-				case IconType.ACTION:
-					type_folder = ACTIONS_FOLDER;
+				case Icons.IconType.ACTION:
+					type_folder = Icons.ACTIONS_FOLDER;
 					break;
-				case IconType.STATUS:
-					type_folder = STATUS_FOLDER;
+				case Icons.IconType.STATUS:
+					type_folder = Icons.STATUS_FOLDER;
 					break;
-				case IconType.APP:
-					type_folder = APPS_FOLDER;
+				case Icons.IconType.APP:
+					type_folder = Icons.APPS_FOLDER;
 					break;
 				default:
 					type_folder = "";
@@ -99,19 +85,19 @@ public class BeatBox.Icon : GLib.Object {
 			if (file_type != null) {
 				switch (file_type)
 				{
-					case IconFileType.SVG:
-						actual_icon_name = this.name + SVG_EXT;
+					case Icons.IconFileType.SVG:
+						actual_icon_name = this.name + Icons.SVG_EXT;
 						break;
-					case IconFileType.PNG:
-						actual_icon_name = this.name + PNG_EXT;
+					case Icons.IconFileType.PNG:
+						actual_icon_name = this.name + Icons.PNG_EXT;
 						break;
 					default:
-						actual_icon_name = this.name + SVG_EXT;
+						actual_icon_name = this.name + Icons.SVG_EXT;
 						break;
 				}
 			}
 			else {
-				actual_icon_name = name + SVG_EXT;
+				actual_icon_name = name + Icons.SVG_EXT;
 			}
 
 			var icon_path = GLib.Path.build_path("/", Build.ICON_FOLDER, size_folder, type_folder);
@@ -139,7 +125,7 @@ public class BeatBox.Icon : GLib.Object {
 
 		// Don't load image as a regular icon if it's a PNG and belongs
 		// to the project's folder.
-		if (file_type == IconFileType.PNG && backup != null && size == null) {
+		if (file_type == Icons.IconFileType.PNG && backup != null && size == null) {
 			try {
 				rv = new Gdk.Pixbuf.from_file(backup);
 			}

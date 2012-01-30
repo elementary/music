@@ -68,13 +68,13 @@ public class BeatBox.AddPodcastWindow : Window {
 		padding = new HBox(false, 10);
 		
 		/* get pixbufs */
-		valid = lw.lm.icons.PROCESS_COMPLETED_ICON.render (IconSize.MENU);
-		not_valid = lw.lm.icons.PROCESS_ERROR_ICON.render (IconSize.MENU);
+		valid = Icons.PROCESS_COMPLETED_ICON.render (IconSize.MENU);
+		not_valid = Icons.PROCESS_ERROR_ICON.render (IconSize.MENU);
 		
 		if(valid == null)
-			valid = lw.lm.icons.render_icon(Gtk.Stock.YES, IconSize.MENU);
+			valid = Icons.render_icon(Gtk.Stock.YES, IconSize.MENU);
 		if(not_valid == null)
-			not_valid = lw.lm.icons.render_icon(Gtk.Stock.NO, IconSize.MENU);
+			not_valid = Icons.render_icon(Gtk.Stock.NO, IconSize.MENU);
 		
 		/* start out by creating all category labels */
 		Label sourceLabel = new Label("Podcast RSS Source");

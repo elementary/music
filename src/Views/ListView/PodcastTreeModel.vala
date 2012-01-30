@@ -52,9 +52,9 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public PodcastTreeModel(LibraryManager lm, LinkedList<string> column_types, TreeView parent) {
 		this.lm = lm;
 		_columns = column_types;
-		_playing = lm.icons.NOW_PLAYING_ICON.get_gicon ();
+		_playing = Icons.NOW_PLAYING_ICON.get_gicon ();
 		_saved_locally = new GLib.ThemedIcon.with_default_fallbacks (Gtk.Stock.SAVE);
-		_new_podcast = lm.icons.NEW_PODCAST_ICON.get_gicon();
+		_new_podcast = Icons.NEW_PODCAST_ICON.get_gicon();
 		removing_medias = false;
 
 		rows = new Sequence<int>();

@@ -173,6 +173,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		// simple message to terminal
 		stdout.printf ("Building user interface\n");
 
+		// Load icon information
+		Icons.load ();
+
 		// Setup base color
 		var unused_icon_view = new IconView();
 		var base_style = unused_icon_view.get_style_context();
@@ -194,7 +197,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		set_title("BeatBox");
 
 		// set the icon
-		set_icon(lm.icons.BEATBOX_ICON.render (IconSize.MENU, null));
+		set_icon(Icons.BEATBOX_ICON.render (IconSize.MENU, null));
 
 		/* Initialize all components */
 		verticalBox = new VBox(false, 0);
@@ -234,11 +237,11 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusBarLabel = new Label("");
 		alv = new AlbumListView(lm);
 
-		var shuffle_on_image = lm.icons.SHUFFLE_ON_ICON.render_image (IconSize.MENU);
-		var shuffle_off_image = lm.icons.SHUFFLE_OFF_ICON.render_image (IconSize.MENU);
-		var repeat_on_image = lm.icons.REPEAT_ON_ICON.render_image (IconSize.MENU);
-		var repeat_off_image = lm.icons.REPEAT_OFF_ICON.render_image (IconSize.MENU);
-        var info_image = lm.icons.INFO_ICON.render_image (IconSize.MENU);
+		var shuffle_on_image = Icons.SHUFFLE_ON_ICON.render_image (IconSize.MENU);
+		var shuffle_off_image = Icons.SHUFFLE_OFF_ICON.render_image (IconSize.MENU);
+		var repeat_on_image = Icons.REPEAT_ON_ICON.render_image (IconSize.MENU);
+		var repeat_off_image = Icons.REPEAT_OFF_ICON.render_image (IconSize.MENU);
+        var info_image = Icons.INFO_ICON.render_image (IconSize.MENU);
 
 		shuffleChooser = new SimpleOptionChooser.from_image (shuffle_on_image, shuffle_off_image);
 		repeatChooser = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
@@ -350,9 +353,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToMedias.get_style_context().add_class("sidebar-pane-separator");
 		sideTree.get_style_context().add_class("sidebar");
 
-		viewSelector.append(lm.icons.VIEW_ICONS_ICON.render_image (IconSize.MENU));
-		viewSelector.append(lm.icons.VIEW_DETAILS_ICON.render_image (IconSize.MENU));
-		viewSelector.append(lm.icons.VIEW_COLUMN_ICON.render_image (IconSize.MENU));
+		viewSelector.append(Icons.VIEW_ICONS_ICON.render_image (IconSize.MENU));
+		viewSelector.append(Icons.VIEW_DETAILS_ICON.render_image (IconSize.MENU));
+		viewSelector.append(Icons.VIEW_COLUMN_ICON.render_image (IconSize.MENU));
 
 		topControls.insert(previousButton, 0);
 		topControls.insert(playButton, 1);
@@ -367,7 +370,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 
-		var music_folder_icon = lm.icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
+		var music_folder_icon = Icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
 		welcomeScreen.append_with_pixbuf(music_folder_icon, _("Locate"), _("Change your music folder."));
 
 		millerPane.pack1(miller, false, true);
@@ -646,7 +649,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(lm.get_album_art(lm.media_info.media.rowid) != null)
 				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid));
 			else {
-				coverArt.set_from_pixbuf(lm.icons.DROP_ALBUM.render (null, null, 600));
+				coverArt.set_from_pixbuf(Icons.DROP_ALBUM.render (null, null, 600));
 			}
 
 			coverArt.update_allocated_space(sourcesToMedias.position);
@@ -1156,7 +1159,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(!has_toplevel_focus) {
 				notification.update(_("Import Complete"), _("BeatBox has imported your library."), "beatbox");
 
-				var beatbox_icon = lm.icons.BEATBOX_ICON.render (IconSize.DIALOG, null);
+				var beatbox_icon = Icons.BEATBOX_ICON.render (IconSize.DIALOG, null);
 				notification.set_image_from_pixbuf(beatbox_icon);
 
 				notification.show();
