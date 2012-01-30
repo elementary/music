@@ -98,6 +98,7 @@ vala_precompile(VALA_C
     Devices/AndroidDevice.vala
     Devices/CDRomDevice.vala
     Devices/DevicePreferences.vala
+    Icons.vala
     LibraryWindow.vala
     LibraryManager.vala
     Objects/TreeViewSetup.vala
@@ -113,7 +114,6 @@ vala_precompile(VALA_C
     Objects/Playlist.vala
     Objects/PodcastManager.vala
     Objects/Icon.vala
-    Objects/Icons.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarSongsView.vala
     Widgets/ScrollingLabel.vala

@@ -42,10 +42,6 @@ namespace Icons {
 	public const string PNG_EXT = ".png";
 	public const string SVG_EXT = ".svg";
 
-	// TODO
-	//public BeatBox.Icon MEDIA_PLAY_SYMBOLIC_ICON;
-	//public BeatBox.Icon MEDIA_STOP_SYMBOLIC_ICON;
-
 	// 128 x 128
 	public BeatBox.Icon DEFAULT_ALBUM_ART;
 	public BeatBox.Icon DROP_ALBUM;
@@ -71,8 +67,8 @@ namespace Icons {
 	public BeatBox.Icon NEW_PODCAST_ICON;
 
 	// SYMBOLIC ICONS
-	public BeatBox.Icon MEDIA_PLAY_SYMBOLIC; // TODO: Add image; Add to cmake
-	public BeatBox.Icon MEDIA_STOP_SYMBOLIC; // TODO: Add image; Add to cmake
+	public BeatBox.Icon MEDIA_PLAY_SYMBOLIC;
+	public BeatBox.Icon MEDIA_STOP_SYMBOLIC;
 	public BeatBox.Icon STARRED_SYMBOLIC_ICON;
 	public BeatBox.Icon NOT_STARRED_SYMBOLIC_ICON;
 	public BeatBox.Icon PROCESS_COMPLETED_ICON;
@@ -102,7 +98,9 @@ namespace Icons {
 		return icon.render_image (size);
 	}
 
-	/** Loads icon information **/
+	/**
+	 * Loads icon information
+	 **/
 	public void load () {
 
 		// 128 x 128
