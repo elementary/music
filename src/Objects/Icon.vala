@@ -40,10 +40,10 @@ public class BeatBox.Icon : GLib.Object {
 
 	private string? backup;
 	private int? size;
-	private Icons.IconType? type;
-	private Icons.IconFileType? file_type;
+	private Icons.Type? type;
+	private Icons.FileType? file_type;
 
-	public Icon (string name, int? size, Icons.IconType? type, Icons.IconFileType? file_type, bool has_backup) {
+	public Icon (string name, int? size, Icons.Type? type, Icons.FileType? file_type, bool has_backup) {
 
 		this.name = name;
 		this.size = size;
@@ -65,16 +65,16 @@ public class BeatBox.Icon : GLib.Object {
 
 			switch (type)
 			{
-				case Icons.IconType.MIMETYPE:
+				case Icons.Type.MIMETYPE:
 					type_folder = Icons.MIMETYPES_FOLDER;
 					break;
-				case Icons.IconType.ACTION:
+				case Icons.Type.ACTION:
 					type_folder = Icons.ACTIONS_FOLDER;
 					break;
-				case Icons.IconType.STATUS:
+				case Icons.Type.STATUS:
 					type_folder = Icons.STATUS_FOLDER;
 					break;
-				case Icons.IconType.APP:
+				case Icons.Type.APP:
 					type_folder = Icons.APPS_FOLDER;
 					break;
 				default:
@@ -85,10 +85,10 @@ public class BeatBox.Icon : GLib.Object {
 			if (file_type != null) {
 				switch (file_type)
 				{
-					case Icons.IconFileType.SVG:
+					case Icons.FileType.SVG:
 						actual_icon_name = this.name + Icons.SVG_EXT;
 						break;
-					case Icons.IconFileType.PNG:
+					case Icons.FileType.PNG:
 						actual_icon_name = this.name + Icons.PNG_EXT;
 						break;
 					default:
@@ -125,7 +125,7 @@ public class BeatBox.Icon : GLib.Object {
 
 		// Don't load image as a regular icon if it's a PNG and belongs
 		// to the project's folder.
-		if (file_type == Icons.IconFileType.PNG && backup != null && size == null) {
+		if (file_type == Icons.FileType.PNG && backup != null && size == null) {
 			try {
 				rv = new Gdk.Pixbuf.from_file(backup);
 			}

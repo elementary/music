@@ -20,7 +20,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	bool _is_current_view;
 	bool needsUpdate;
 	
-	private const int ITEM_WIDTH = 134;
+	private const int BORDER_WIDTH = 6;
+	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE + BORDER_WIDTH;
 	
 	public signal void itemClicked(string artist, string album);
 	
@@ -44,9 +45,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		_showing_medias = new HashMap<string, LinkedList<int>>();
 		last_search = "";
 		timeout_search = new LinkedList<string>();
-		
-		defaultPix = Icons.DEFAULT_ALBUM_ART.render (null, null, ITEM_WIDTH);
-		
+
+		defaultPix = Icons.DEFAULT_ALBUM_ART_PIXBUF;
+
 		buildUI();
 		
 		lm.medias_removed.connect(medias_removed);

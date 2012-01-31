@@ -50,7 +50,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 	public RadioTreeModel(LibraryManager lm, LinkedList<string> column_types) {
 		this.lm = lm;
 		_columns = column_types;
-		_playing = Icons.NOW_PLAYING_ICON.get_gicon ();
+		_playing = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
 		removing_medias = false;
 
 		rows = new Sequence<int>();

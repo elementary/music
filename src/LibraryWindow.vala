@@ -649,7 +649,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(lm.get_album_art(lm.media_info.media.rowid) != null)
 				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid));
 			else {
-				coverArt.set_from_pixbuf(Icons.DROP_ALBUM.render (null, null, 600));
+				coverArt.set_from_pixbuf(Icons.DROP_ALBUM_PIXBUF);
 			}
 
 			coverArt.update_allocated_space(sourcesToMedias.position);
@@ -1159,8 +1159,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			if(!has_toplevel_focus) {
 				notification.update(_("Import Complete"), _("BeatBox has imported your library."), "beatbox");
 
-				var beatbox_icon = Icons.BEATBOX_ICON.render (IconSize.DIALOG, null);
-				notification.set_image_from_pixbuf(beatbox_icon);
+				notification.set_image_from_pixbuf(Icons.BEATBOX_DIALOG_PIXBUF);
 
 				notification.show();
 				notification.set_timeout(5000);
