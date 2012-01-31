@@ -6,7 +6,7 @@ include(ValaPrecompile)
 
 set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/beatbox")
-set(ICON_FOLDER "${CMAKE_INSTALL_PREFIX}/share/beatbox/icons")
+set(ICON_FOLDER "${CMAKE_INSTALL_PREFIX}/share/beatbox/icons/hicolor")
 set(GETTEXT_PACKAGE "beatbox")
 set(RELEASE_NAME "Acolyte")
 set(VERSION "0.3")
@@ -98,6 +98,7 @@ vala_precompile(VALA_C
     Devices/AndroidDevice.vala
     Devices/CDRomDevice.vala
     Devices/DevicePreferences.vala
+    Icons.vala
     LibraryWindow.vala
     LibraryManager.vala
     Objects/TreeViewSetup.vala
@@ -112,7 +113,7 @@ vala_precompile(VALA_C
     Objects/MPRIS.vala
     Objects/Playlist.vala
     Objects/PodcastManager.vala
-    Objects/Icons.vala
+    Objects/Icon.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarSongsView.vala
     Widgets/ScrollingLabel.vala

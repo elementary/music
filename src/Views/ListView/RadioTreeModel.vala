@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011           Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -27,45 +27,45 @@ using GLib;
 public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 	LibraryManager lm;
 	int stamp; // all iters must match this
-	Gdk.Pixbuf _playing;
+	GLib.Icon _playing;
 	public bool is_current;
 	
-    /* data storage variables */
-    Sequence<int> rows;
-    private LinkedList<string> _columns;
-    
-    /* treesortable stuff */
-    private int sort_column_id;
-    private SortType sort_direction;
-    private unowned TreeIterCompareFunc default_sort_func;
-    private HashMap<int, CompareFuncHolder> column_sorts;
-    bool removing_medias;
-    
-    /* custom signals for custom treeview. for speed */
-    public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
-    public signal void rows_deleted (LinkedList<TreePath> paths);
+	/* data storage variables */
+	Sequence<int> rows;
+	private LinkedList<string> _columns;
+	
+	/* treesortable stuff */
+	private int sort_column_id;
+	private SortType sort_direction;
+	private unowned TreeIterCompareFunc default_sort_func;
+	private HashMap<int, CompareFuncHolder> column_sorts;
+	bool removing_medias;
+	
+	/* custom signals for custom treeview. for speed */
+	public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
+	public signal void rows_deleted (LinkedList<TreePath> paths);
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 	
 	/** Initialize data storage, columns, etc. **/
-	public RadioTreeModel(LibraryManager lm, LinkedList<string> column_types, Gdk.Pixbuf playing) {
+	public RadioTreeModel(LibraryManager lm, LinkedList<string> column_types) {
 		this.lm = lm;
 		_columns = column_types;
-		_playing = playing;
+		_playing = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
 		removing_medias = false;
 
 		rows = new Sequence<int>();
-       
-       sort_column_id = -2;
-       sort_direction = SortType.ASCENDING;
-       column_sorts = new HashMap<int, CompareFuncHolder>();
-       
-       stamp = (int)GLib.Random.next_int();
+	
+		sort_column_id = -2;
+		sort_direction = SortType.ASCENDING;
+		column_sorts = new HashMap<int, CompareFuncHolder>();
+	
+		stamp = (int)GLib.Random.next_int();
 	}
 	
 	/** Returns Type of column at index_ **/
 	public Type get_column_type (int col) {
 		if(_columns[col] == " ") {
-			return typeof(Gdk.Pixbuf);
+			return typeof(GLib.Icon);
 		}
 		else if(_columns[col] == "Station" || _columns[col] == "Genre") {
 			return typeof(string);
@@ -88,13 +88,13 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
 			return false;
 		
-        var seq_iter = rows.get_iter_at_pos(path_index);
-        if(seq_iter == null)
+	var seq_iter = rows.get_iter_at_pos(path_index);
+	if(seq_iter == null)
 			return false;
-        
+	
 		iter.stamp = this.stamp;
 		iter.user_data = seq_iter;
-        
+	
 		return true;
 	}
 	
@@ -127,7 +127,7 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 				else if(s.unique_status_image != null)
 					val = s.unique_status_image;
 				else
-					val = Value(typeof(Gdk.Pixbuf));
+					val = Value(typeof(GLib.Icon));
 			}
 			else if(column == 2)
 				val = s.album_artist;
@@ -142,8 +142,8 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to point to the first child of parent. **/
 	public bool iter_children (out TreeIter iter, TreeIter? parent) {
-        iter = TreeIter ();
-        critical ("Function not implemented.");
+	iter = TreeIter ();
+	critical ("Function not implemented.");
 		
 		return false;
 	}
@@ -177,11 +177,11 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the child of parent, using the given index. **/
 	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
-        iter = TreeIter ();
+	iter = TreeIter ();
 		if(n < 0 || n >= rows.get_length() || parent != null) {
-            critical ("Invalid child number %d", n);
+		critical ("Invalid child number %d", n);
 			return false;
-        }
+	}
 		
 		iter.stamp = this.stamp;
 		iter.user_data = rows.get_iter_at_pos(n);
@@ -191,8 +191,8 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Sets iter to be the parent of child. **/
 	public bool iter_parent (out TreeIter iter, TreeIter child) {
-        iter = TreeIter ();
-        critical ("Function not allowed on list-only view");
+	iter = TreeIter ();
+	critical ("Function not allowed on list-only view");
 		
 		return false;
 	}
@@ -202,9 +202,9 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Lets the tree unref the node. **/
 	public void unref_node (TreeIter iter) {}
-    
-    /** Some actual functions to use this model **/
-    public TreeIter? getIterFromRowid(int id) {
+	
+	/** Some actual functions to use this model **/
+	public TreeIter? getIterFromRowid(int id) {
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -228,8 +228,8 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		return rows.get(((SequenceIter<int>)iter.user_data));
 	}
-    
-    public int getRowidFromPath(string path) {
+	
+	public int getRowidFromPath(string path) {
 		if(int.parse(path) < 0 || int.parse(path) >= rows.get_length())
 			return 0;
 		
@@ -240,17 +240,17 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		return rows.get(s_iter);
 	}
-    
-    /** simply adds iter to the model **/
-    public void append(out TreeIter iter) {
-        iter = TreeIter ();
+	
+	/** simply adds iter to the model **/
+	public void append(out TreeIter iter) {
+	iter = TreeIter ();
 		SequenceIter<int> added = rows.append(0);
 		iter.stamp = this.stamp;
 		iter.user_data = added;
 	}
 	
 	/** convenience method to insert medias into the model. No iters returned. **/
-    public void append_medias(Collection<int> medias, bool emit) {
+	public void append_medias(Collection<int> medias, bool emit) {
 		foreach(int id in medias) {
 			SequenceIter<int> added = rows.append(id);
 			

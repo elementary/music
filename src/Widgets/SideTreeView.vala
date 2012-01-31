@@ -164,11 +164,11 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name, ViewWrapper.Hint hint) {
-		var music_icon = lm.icons.music_icon.render (IconSize.MENU, null);
-		var podcast_icon = lm.icons.podcast_icon.render (IconSize.MENU, null);
-		var history_icon = lm.icons.history_icon.render (IconSize.MENU, null);
-		var smart_playlist_icon = lm.icons.smart_playlist_icon.render (IconSize.MENU, null);
-	
+		var music_icon = Icons.MUSIC_ICON.render (IconSize.MENU, null);
+		var podcast_icon = Icons.PODCAST_ICON.render (IconSize.MENU, null);
+		var history_icon = Icons.HISTORY_ICON.render (IconSize.MENU, null);
+		var smart_playlist_icon = Icons.SMART_PLAYLIST_ICON.render (IconSize.MENU, null);
+
 		if(hint == ViewWrapper.Hint.MUSIC && parent == library_iter) {
 			library_music_iter = addItem(parent, o, w, music_icon, name, null);
 			return library_music_iter;
@@ -179,27 +179,29 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		}
 		else if(hint == ViewWrapper.Hint.AUDIOBOOK && parent == library_iter) {
 			// FIXME: add icon
-			var audiobook_icon = lm.icons.audiobook_icon.render (IconSize.MENU, null);
+			var audiobook_icon = Icons.AUDIOBOOK_ICON.render (IconSize.MENU, null);
 			library_audiobooks_iter = addItem(parent, o, w, audiobook_icon, name, null);
 			return library_audiobooks_iter;
 		}
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
 			TreeIter? rv;
-			// TODO: Install and load these icons using the Icons module
+			Gdk.Pixbuf? device_icon;
 			if(d.getContentType() == "cdrom") {
-				devices_cdrom_iter = addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
+				devices_cdrom_iter = addItem(parent, o, w, Icons.AUDIO_CD_ICON.render(IconSize.MENU, null), name, null);
 				return devices_cdrom_iter;
 			}
 			else if(d.getContentType() == "ipod-new")
-				rv = addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
+			    device_icon = Icons.render_icon ("phone", IconSize.MENU);
 			else if(d.getContentType() == "ipod-old")
-				rv = addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
+			    device_icon = Icons.render_icon("multimedia-player", IconSize.MENU);
 			else if(d.getContentType() == "android")
-				rv = addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
+				device_icon = Icons.render_icon("phone", IconSize.MENU);
 			else
-				rv = addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
-				
+			    device_icon = Icons.render_icon("multimedia-player", IconSize.MENU);
+
+			rv = addItem(parent, o, w, device_icon, name, null);
+
 			var dvw = new DeviceViewWrapper(lm, lw, d.get_medias(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
 			addItem(rv, o, dvw, music_icon, _("Music"), null);
 			lw.mainViews.pack_start(dvw, true, true, 0);
@@ -222,7 +224,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return network_store_iter;
 		}*/
 		else if(hint == ViewWrapper.Hint.STATION && parent == network_iter) {
-			var radio_icon = lm.icons.radio_icon.render (IconSize.MENU, null);
+			var radio_icon = Icons.RADIO_ICON.render (IconSize.MENU, null);
 			network_radio_iter = addItem(parent, o, w, radio_icon, name, null);
 			return network_radio_iter;
 		}
@@ -290,7 +292,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 			} while(true);
 			
-			var playlist_icon = lm.icons.playlist_icon.render (IconSize.MENU, null);
+			var playlist_icon = Icons.PLAYLIST_ICON.render (IconSize.MENU, null);
 			tree.set(item, 0, o, 1, w, 2, true, 3, playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
 			if(visible) {
 				TreeIter? filterItem = convertToFilter(item);

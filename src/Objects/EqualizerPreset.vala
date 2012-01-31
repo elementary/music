@@ -27,16 +27,7 @@ public class BeatBox.EqualizerPreset : Object {
 	public string name;
 	public ArrayList<int> gains;
 
-	private bool _default_preset = false;
-
-	public bool is_default {
-		get {
-			return _default_preset;
-		}
-		set {
-			_default_preset = value;
-		}
-	}
+	public bool is_default { get; set;}
 
 	public EqualizerPreset.basic(string name) {
 		this.name = name;

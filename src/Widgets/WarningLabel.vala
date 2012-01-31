@@ -14,11 +14,11 @@ public class BeatBox.WarningLabel : EventBox {
 			warningIcon.set_visible (value);
 		}
 	}
-	
+
 	public WarningLabel() {
 		errorLabel = new Label("");
-		warningIcon = new Image.from_stock (Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
-		
+		warningIcon = Icons.render_image (Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
+
 		var content = new Box (Orientation.HORIZONTAL, 10);
 		var content_wrapper = new Box (Orientation.HORIZONTAL, 0);
 		var outer_box = new Box (Orientation.VERTICAL, 0);
@@ -39,27 +39,27 @@ public class BeatBox.WarningLabel : EventBox {
 		outer_box.pack_start (bottom_padding, true, true, 0);
 
 		add(outer_box);
-		
+
 		// Change background color.
 		override_background_color (Gtk.StateFlags.NORMAL, LibraryWindow.base_color);
-		
+
 		errorLabel.xalign = 0.5f;
 		errorLabel.set_justify(Justification.CENTER);
 		errorLabel.ellipsize = Pango.EllipsizeMode.END;
 	}
-	
+
 	static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-	
+
 		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
 		alignment.top_padding = top;
 		alignment.right_padding = right;
 		alignment.bottom_padding = bottom;
 		alignment.left_padding = left;
-		
+
 		alignment.add(widget);
 		return alignment;
 	}
-	
+
 	public void setWarning(string warning, Gtk.Justification? jst) {
 		if (jst == null)
 			errorLabel.set_justify(Gtk.Justification.CENTER);

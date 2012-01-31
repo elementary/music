@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011	   Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -27,77 +27,97 @@ using Gee;
 public class BeatBox.SimpleOptionChooser : EventBox {
 	Gtk.Menu menu;
 	LinkedList<CheckMenuItem> items;
-	Pixbuf enabled;
-	Pixbuf disabled;
-	
+	Gtk.Image enabled;
+	Gtk.Image disabled;
+
+	// Margin added at each side of the icon
+	private const int BORDER_WIDTH = 3; //px
+
 	int clicked_index;
 	int previous_index; // for left click
 	bool toggling;
-	
+
 	public signal void option_changed(int index);
-	
-	public SimpleOptionChooser(Pixbuf enabled, Pixbuf disabled) {
+
+	public SimpleOptionChooser.from_pixbuf (Pixbuf enabled, Pixbuf disabled) {
+		this.enabled = new Image.from_pixbuf (enabled);
+		this.disabled = new Image.from_pixbuf (disabled);
+
+		initialize ();
+	}
+
+	public SimpleOptionChooser.from_image (Gtk.Image enabled, Gtk.Image disabled) {
 		this.enabled = enabled;
 		this.disabled = disabled;
+
+		initialize ();
+	}
+
+	private void initialize () {
 		menu = new Gtk.Menu();
 		items = new LinkedList<CheckMenuItem>();
 		toggling = false;
-		
-		width_request  = (enabled.width > disabled.width) ? enabled.width : disabled.width;
-		height_request = (enabled.height > disabled.height) ? enabled.height : disabled.height;
-		
+
 		clicked_index = 0;
 		previous_index = 0;
-		
+
+		int enabled_size = enabled.get_pixel_size ();
+		int disabled_size = disabled.get_pixel_size ();
+		int size = (enabled_size > disabled_size) ? enabled_size : disabled_size;
+
+		width_request = size + BORDER_WIDTH;
+		height_request = width_request;
+
 		// make the event box transparent
 		set_above_child(true);
 		set_visible_window(false);
-		
+
 		button_press_event.connect(buttonPress);
-		draw.connect(exposeEvent);
+
+		set_image ();
 	}
-	
+
 	public void setOption(int index) {
 		if(index >= items.size)
 			return;
-		
+
 		for(int i = 0;i < items.size; ++i) {
 			if(i == index)
 				items.get(i).set_active(true);
 			else
 				items.get(i).set_active(false);
 		}
-		
+
 		clicked_index = index;
 		option_changed(index);
-		
-		queue_draw();
+
+		set_image ();
 	}
-	
+
 	public int appendItem(string text) {
 		var item = new CheckMenuItem.with_label(text);
 		items.add(item);
 		menu.append(item);
-		
+
 		item.toggled.connect( () => {
 			if(!toggling) {
 				toggling = true;
-				
+
 				if(clicked_index != items.index_of(item))
 					setOption(items.index_of(item));
 				else
 					setOption(0);
-				
+
 				toggling = false;
 			}
 		});
-		
+
 		item.show();
 		previous_index = items.size - 1; // my lazy way of making sure the bottom item is the default on/off on click
-		
+
 		return items.size - 1;
 	}
-	
+
 	public virtual bool buttonPress(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
 			if(clicked_index == 0)
@@ -110,14 +130,20 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) {
 			menu.popup (null, null, null, 3, get_current_event_time());
 		}
-		
+
 		return false;
 	}
-	
-	public virtual bool exposeEvent(Cairo.Context context) {
-		Gdk.cairo_set_source_pixbuf(context, (clicked_index != 0) ? enabled : disabled, 0, 0);
-		context.paint();
-		
-		return true;
+
+	public void set_image () {
+		if (get_child () != null)
+			remove (get_child ());
+
+		if (clicked_index != 0)
+			add (enabled);
+		else
+			add (disabled);
+
+		show_all ();
 	}
 }
+
