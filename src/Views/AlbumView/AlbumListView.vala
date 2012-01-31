@@ -34,12 +34,11 @@ public class BeatBox.AlbumListView : Window {
 	MusicTreeView mtv;
 	bool setting_songs;
 
-	 private const string WIDGET_STYLESHEET = """
+	private const string WIDGET_STYLESHEET = """
 		.AlbumListDialogBase {
-			background-color: none;
 			background-image: -gtk-gradient (radial, center center, 0,
 											 center center, 1,
-											 from (shade (#404040, 1.0)),
+											 from (shade (#404040, 1.1)),
 											 to (shade (#232323, 1.0)));
 			border-width: 0;
 			border-style: none;
@@ -47,7 +46,7 @@ public class BeatBox.AlbumListView : Window {
 			padding: 0;
 		}
 
-		*, .label {
+		* {
 			color: #ffffff;
 		}
 
@@ -58,7 +57,6 @@ public class BeatBox.AlbumListView : Window {
 
 		GtkTreeView row {
 			border-width: 0;
-			border-style: none;
 			border-radius: 0;
 			padding: 0;
 		}
@@ -91,14 +89,13 @@ public class BeatBox.AlbumListView : Window {
 				from (shade (@bg_color, 0.78)),
 				to (shade (@bg_color, 0.60)));
 		}
-	 """;
+	""";
 
 	public AlbumListView(LibraryManager lm) {
 		this.lm = lm;
 
 		set_transient_for(lm.lw);
 		window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
-		//set_keep_above(true);
 		set_decorated(false);
 		set_has_resize_grip(false);
 		set_resizable(false);
@@ -114,7 +111,7 @@ public class BeatBox.AlbumListView : Window {
 		try  {
 			style_provider.load_from_data (WIDGET_STYLESHEET, -1);
 		} catch (Error e) {
-			stderr.printf ("\nAlbumListView: Couldn't load style provider.\n");
+			warning ("AlbumListView: %s", e.message);
 		}
 
 		get_style_context().add_class("AlbumListDialogBase");

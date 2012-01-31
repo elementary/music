@@ -244,8 +244,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		music_model = new MusicTreeModel(lm, get_column_strings(), get_hint());
 		music_model.is_current = _is_current;
 
-		var hPos = this.vadjustment.get_value();
-
 		music_model.append_medias(_showing_medias, false);
 
 		music_model.set_sort_column_id(sort_col, sort_dir);
@@ -255,13 +253,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		view.set_model(music_model);
 		view.thaw_child_notify();
 
-		if(get_is_current() && lm.media_info.media != null)
-			scrollToCurrent();
-
-		if(get_is_current() && lm.media_info.media != null)
-			scrollToCurrent();
-		else
-			this.view.scroll_to_point(0, (int)hPos);
+		scrollToCurrent();
 
 		//set_statusbar_text();
 
