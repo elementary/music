@@ -1,29 +1,53 @@
+/*-
+ * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ *
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * BeatBox Music Player: http://www.launchpad.net/beat-box
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 using Gtk;
 using Gee;
 
 public class BeatBox.AlbumView : ContentView, ScrolledWindow {
-	LibraryManager lm;
-	LibraryWindow lw;
-	HashMap<string, LinkedList<int>> medias; // album+album_artist, list of related songs
-	
-	Collection<int> _show_next; // these are populated if necessary when user opens this view.
-	HashMap<string, LinkedList<int>> _showing_medias;
-	private string last_search;
-	LinkedList<string> timeout_search;
-	
+
+	public signal void itemClicked(string artist, string album);
+
 	public IconView icons;
-	AlbumViewModel model;
+
+	private LibraryManager lm;
+	private LibraryWindow lw;
+	private HashMap<string, LinkedList<int>> medias; // album+album_artist, list of related songs
+
+	private Collection<int> _show_next; // these are populated if necessary when user opens this view.
+	private HashMap<string, LinkedList<int>> _showing_medias;
+	private string last_search;
+	private LinkedList<string> timeout_search;
+
+	private AlbumViewModel model;
 	
-	Gdk.Pixbuf defaultPix;
+	private Gdk.Pixbuf defaultPix;
 	
-	bool _is_current;
-	bool _is_current_view;
-	bool needsUpdate;
+	private bool _is_current;
+	private bool _is_current_view;
+	private bool needsUpdate;
 	
 	private const int BORDER_WIDTH = 6;
 	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE + BORDER_WIDTH;
-	
-	public signal void itemClicked(string artist, string album);
 	
 	/* medias should be mutable, as we will be sorting it */
 	public AlbumView(LibraryManager lmm, LibraryWindow lww, Collection<int> smedias) {
