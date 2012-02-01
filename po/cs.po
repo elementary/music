@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-01-17 20:24+0100\n"
-"PO-Revision-Date: 2012-01-25 22:58+0000\n"
+"PO-Revision-Date: 2012-01-28 16:36+0000\n"
 "Last-Translator: Jakub Jezbera <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-28 05:16+0000\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Launchpad-Export-Date: 2012-02-01 05:18+0000\n"
+"X-Generator: Launchpad (build 14734)\n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
 msgid "Get Some Tunes."
@@ -27,7 +27,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "Set Music Folder"
-msgstr ""
+msgstr "Vyber složku s hudbou"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:211
 msgid "Import to Library"
@@ -96,7 +96,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
 msgid "Change your music folder."
-msgstr ""
+msgstr "Změnit svou složku s hudbou"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:478
 msgid "Similar"

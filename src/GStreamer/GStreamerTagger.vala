@@ -212,6 +212,9 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				s.file_size = (int)(File.new_for_uri(info.get_uri()).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
 				
 			}
+			catch (Error e) {
+				warning ("GStreamerTagger: %s", e.message);
+			}
 			finally {
 				if(s.title == null || s.title == "") {
 					string[] paths = info.get_uri().split("/", 0);

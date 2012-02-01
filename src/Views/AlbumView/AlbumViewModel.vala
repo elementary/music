@@ -25,6 +25,12 @@ using Gee;
 using GLib;
 
 public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
+
+    /* custom signals for custom treeview. for speed */
+    public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
+    public signal void rows_deleted (LinkedList<TreePath> paths);
+	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
+
 	LibraryManager lm;
 	int stamp; // all iters must match this
 	Gdk.Pixbuf defaultImage;
@@ -41,16 +47,13 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
     public TreeIter start_visible;
     public TreeIter end_visible;
     bool removing_medias;
-    
-    /* custom signals for custom treeview. for speed */
-    public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
-    public signal void rows_deleted (LinkedList<TreePath> paths);
-	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
-	
+
+	string TEXT_MARKUP = "<span weight='medium' size='10500'> %s\n</span><span foreground=\"#999\">%s</span>"; 
+
 	/** Initialize data storage, columns, etc. **/
 	public AlbumViewModel(LibraryManager lm, Gdk.Pixbuf defaultImage) {
 		this.lm = lm;
-		this.defaultImage = lm.get_cover_shadow(defaultImage);
+		this.defaultImage = Icons.get_pixbuf_shadow(defaultImage);
 		removing_medias = false;
 
 		rows = new Sequence<Media>();
@@ -58,7 +61,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 		sort_column_id = -2;
 		sort_direction = SortType.ASCENDING;
 		column_sorts = new HashMap<int, CompareFuncHolder>();
-       
+
 		stamp = (int)GLib.Random.next_int();
 	}
 	
@@ -81,12 +84,12 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	/** Sets iter to a valid iterator pointing to path **/
 	public bool get_iter (out TreeIter iter, TreePath path) {
 		int path_index = path.get_indices()[0];
-        iter = TreeIter ();
+		iter = TreeIter ();
 		
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
 			return false;
 		
-        var seq_iter = rows.get_iter_at_pos(path_index);
+		var seq_iter = rows.get_iter_at_pos(path_index);
         if(seq_iter == null)
 			return false;
         
@@ -130,8 +133,9 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 				}
 				
 			}
-			else if(column == 1)
-				val = s.album.replace("&", "&amp;") + "\n" + "<span foreground=\"#999\">" + s.album_artist.replace("&", "&amp;") + "</span>";
+			else if(column == 1) {
+				val = TEXT_MARKUP.printf(s.album.replace("&", "&amp;"), s.album_artist.replace("&", "&amp;"));
+			}
 			else if(column == 2) {
 				val = s;
 			}

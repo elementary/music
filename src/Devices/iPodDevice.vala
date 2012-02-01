@@ -111,7 +111,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 				this.medias.set(t, match);
 				if(t.mediatype == GPod.MediaType.AUDIO)
 					this.songs.set(t, match);
-				else if(t.mediatype == GPod.MediaType.PODCAST)
+				else if(t.mediatype == GPod.MediaType.PODCAST || t.mediatype == 0x00000006) // 0x00000006 = video podcast
 					this.podcasts.set(t, match);
 				else if(t.mediatype == GPod.MediaType.AUDIOBOOK)
 					this.audiobooks.set(t, match);
@@ -225,7 +225,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 		}
 		catch(Error err) {
-			error("Error calculating capacity of iPod: %s\n", err.message);
+			stdout.printf("Error calculating capacity of iPod: %s\n", err.message);
 		}
 		
 		return rv;
@@ -247,7 +247,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_FREE);
 		}
 		catch(Error err) {
-			error("Error calculating free space on iPod: %s\n", err.message);
+			stdout.printf("Error calculating free space on iPod: %s\n", err.message);
 		}
 		
 		return rv;
@@ -400,6 +400,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 					
 					unowned GPod.Track t = entry.key;
 					m.update_track(ref t);
+					stdout.printf("updated trac and its rating is %d\n", (int)t.rating);
 					
 					if(lm.get_album_art(m.rowid) != null)
 						t.set_thumbnails_from_pixbuf(lm.get_album_art(m.rowid));
@@ -440,7 +441,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		if(!sync_cancelled) {
 			// sync playlists
 			index = 78;
-			//sync_playlists();
+			sync_playlists();
 			sync_podcasts();
 			
 			current_operation = "Finishing sync process...";
@@ -656,7 +657,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			
 			unowned GPod.Playlist added = db.playlists.nth_data(db.playlists.length() - 1);
 			foreach(var entry in medias.entries) {
-				if(playlist.contains_media(entry.value)) {
+				int match = lm.match_media_to_list(entry.value, lm.medias_from_playlist(playlist.rowid));
+				if(match != 0) {
 					added.add_track(entry.key, -1);
 					++sub_index;
 					index = (int)(78.0 + (double)(7.0 * (double)((double)sub_index/(double)lm.playlists().size)));

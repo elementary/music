@@ -34,7 +34,8 @@ public class BeatBox.Beatbox : Granite.Application {
 	public static LibraryWindow _program;
 	public static bool enableStore;
 	public static unowned string[] args;
-	
+
+/*
 	const Gtk.StockItem[] stock_items = {
 		{ "beatbox", null, 0, 0 },
 		{ "library-music", null, 0, 0 },
@@ -64,10 +65,10 @@ public class BeatBox.Beatbox : Granite.Application {
 		{ "multimedia-player", null, 0, 0},
 		{ "media-eject", null, 0, 0 },
 		{ "process-completed-symbolic", null, 0, 0},
-		{ "process-error-symbolic", null, 0, 0}
-		
+		{ "process-error-symbolic", null, 0, 0}	
     };
-	
+*/
+
 	static const OptionEntry[] my_options = {
 		{ "add-to-library", 'a', 0, OptionArg.FILENAME_ARRAY, ref Option.to_add, "Adds the list of files to the BeatBox library", "FILE1 FILE2 ..." },
 		{ "play-uri", 'p', 0, OptionArg.STRING, ref Option.to_play, "Plays given uri", "URI" },
@@ -94,7 +95,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		//BeatBox.clutter_usable = GtkClutter.init(ref args) == Clutter.InitError.SUCCESS;
 		
 		Notify.init("beatbox");
-		add_stock_images();
+		//add_stock_images();
 		
 		app = new Beatbox();
 		app.set_application_id("net.launchpad.beatbox");
@@ -188,7 +189,8 @@ public class BeatBox.Beatbox : Granite.Application {
 		
 		_program.set_application(this);
 	}
-	
+
+/*
 	public static void add_stock_images() {
 		var iFactory = new Gtk.IconFactory();
 		
@@ -210,4 +212,5 @@ public class BeatBox.Beatbox : Granite.Application {
 		Gtk.Stock.add(stock_items);
 		iFactory.add_default();
 	}
+*/	
 }

@@ -36,7 +36,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.Streamer player;
 	public BeatBox.DeviceManager dm;
 	public BeatBox.PodcastManager pm;
-	public BeatBox.Icons icons;
 	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	public HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
@@ -57,7 +56,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private LinkedList<int> _already_played; // Media of already played
 	private HashMap<string, Gdk.Pixbuf> _album_art; // All album art
 	private HashMap<string, Gdk.Pixbuf> _cover_album_art; // All album art
-    const int shadow_size = 5;
 	
 	public LastFM.Core lfm;
 	private HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
@@ -152,9 +150,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_already_played = new LinkedList<int>();
 		_album_art = new HashMap<string, Gdk.Pixbuf>();
 		_cover_album_art = new HashMap<string, Gdk.Pixbuf>();
-		
-		icons = new Icons(this, lw);
-		icons.load_icons();
 		
 		lfm = new LastFM.Core(this);
 		_artists = new HashMap<string, LastFM.ArtistInfo>();
@@ -282,24 +277,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 			Thread.create<void*>(fetch_thread_function, false);
 		}
 		catch(GLib.ThreadError err) {
-			error("Could not create thread to load media pixbuf's: %s \n", err.message);
+			stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
 		}
 	}
 
-    public Gdk.Pixbuf get_cover_shadow(Gdk.Pixbuf pixbuf) {
-        var buffer_surface = new Granite.Drawing.BufferSurface(128, 128);
-        
-        buffer_surface.context.rectangle(shadow_size, shadow_size, 128 - 2*shadow_size, 128-2*shadow_size);
-        buffer_surface.context.set_source_rgba(0,0,0,0.8);
-        buffer_surface.context.fill();
-        buffer_surface.fast_blur(2, 3);
-        Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple(128-2*shadow_size, 128-2*shadow_size, Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
-        buffer_surface.context.paint();
-        var pix = buffer_surface.load_to_pixbuf();
-        
-        return pix;
-    }
-	
 	/************ Library/Collection management stuff ************/
 	public virtual void dbProgress(string? message, double progress) {
 		progress_notification(message, progress);
@@ -337,7 +318,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Thread.create<void*>(set_music_thread_function, false);
 			}
 			catch(GLib.Error err) {
-				error("Could not create thread to set music folder: %s\n", err.message);
+				stdout.printf("Could not create thread to set music folder: %s\n", err.message);
 			}
 		}
 	}
@@ -364,7 +345,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Thread.create<void*>(add_files_to_library_thread, false);
 			}
 			catch(GLib.Error err) {
-				error("Could not create thread to add music files: %s\n", err.message);
+				stdout.printf("Could not create thread to add music files: %s\n", err.message);
 			}
 		}
 	}
@@ -385,7 +366,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				Thread.create<void*>(add_folder_to_library_thread, false);
 			}
 			catch(GLib.Error err) {
-				error("Could not create thread to add music folder: %s\n", err.message);
+				stdout.printf("Could not create thread to add music folder: %s\n", err.message);
 			}
 		}
 	}
@@ -408,7 +389,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 					Thread.create<void*>(rescan_music_thread_function, false);
 			}
 			catch(GLib.Error err) {
-				error("Could not create thread to rescan music folder: %s\n", err.message);
+				stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
 			}
 		}
 	}
@@ -1365,7 +1346,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		// check that the file exists
 		if((settings.getMusicFolder() != "" && File.new_for_uri(m.uri).get_path().has_prefix(settings.getMusicFolder()) && !GLib.File.new_for_uri(m.uri).query_exists())) {
-			m.unique_status_image = icons.process_error_icon.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list.get_style_context());
+			m.unique_status_image = Icons.PROCESS_ERROR_ICON.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list.get_style_context());
 			m.location_unknown = true;
 			lw.media_not_found(id);
 			stopPlayback();
@@ -1653,7 +1634,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 						_album_art.set(s.artist+s.album, pix);
 						
                         if(!_cover_album_art.has_key(s.artist + s.album))
-							_cover_album_art.set(s.artist+s.album, get_cover_shadow(pix));
+							_cover_album_art.set(s.artist+s.album, Icons.get_pixbuf_shadow(pix));
 					}
 						
 					previousAlbum = s.album;
@@ -1721,11 +1702,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(s == null)
 			return null;
 		
-		return _cover_album_art.get(s.artist+s.album);
+		return _cover_album_art.get(s.artist + s.album);
 	}
 	
 	public Gdk.Pixbuf? get_cover_album_art_from_key(string album_artist, string album) {
-		return _cover_album_art.get(album_artist+album);
+		return _cover_album_art.get(album_artist + album);
 	}
 	
 	public void set_album_art(int id, Gdk.Pixbuf pix) {
@@ -1734,8 +1715,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		Media s = media_from_id(id);
 		
-		_album_art.set(s.artist+s.album, pix);
-        _cover_album_art.set(s.artist+s.album, get_cover_shadow(pix));
+		_album_art.set(s.artist + s.album, pix);
+        _cover_album_art.set(s.artist + s.album, Icons.get_pixbuf_shadow(pix));
 	}
 	
 	/* Device Preferences */
@@ -1803,3 +1784,4 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 	}
 }
+

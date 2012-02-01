@@ -234,11 +234,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		podcast_model.get_sort_column_id(out sort_col, out sort_dir);
 		
-		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon, view);
+		podcast_model = new PodcastTreeModel(lm, get_column_strings(), view);
 		podcast_model.is_current = _is_current;
-		
-		var hPos = this.vadjustment.get_value();
 		
 		podcast_model.append_medias(_showing_medias, false);
 		
@@ -252,9 +249,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		if(get_is_current() && lm.media_info.media != null)
 			scrollToCurrent();
-		else
-			this.view.scroll_to_point(0, (int)hPos);
-		
+
 		//set_statusbar_text();
 		
 		// just because a user searches, doesn't mean we want to update the playing list
@@ -458,9 +453,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 		
-		var now_playing_icon = lm.icons.now_playing_icon.render (IconSize.MENU, view.get_style_context());
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), now_playing_icon, view);
-		
+		podcast_model = new PodcastTreeModel(lm, get_column_strings(), view);
+
 		podcast_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
 		
 		view.set_model(podcast_model);
@@ -576,6 +570,15 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			showIndicator = s.showIndicator;
 		
 		if(renderer is CellRendererPixbuf) {
+			layout.clear_attributes (renderer);
+
+			Value? icon;
+			model.get_value (iter, 1, out icon);
+
+			/* Themed icon */
+			(renderer as CellRendererPixbuf).follow_state = true;
+			(renderer as CellRendererPixbuf).gicon = icon as GLib.Icon;
+
 			renderer.visible = !showIndicator;
 			renderer.width = showIndicator ? 0 : 16;
 		}
@@ -1004,7 +1007,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		}
 		
 		/*if(!GLib.File.new_for_path(media_from_id(id).file).query_exists() && media_from_id(id).file.contains(settings.getMusicFolder())) {
-			media_from_id(id).unique_status_image = lm.icons.process_error_icon;
+			media_from_id(id).unique_status_image = Icons.process_error_icon;
 			lw.media_not_found(id);
 		}
 		else {*/
