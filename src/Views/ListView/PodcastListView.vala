@@ -237,8 +237,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		podcast_model = new PodcastTreeModel(lm, get_column_strings(), view);
 		podcast_model.is_current = _is_current;
 		
-		var hPos = this.vadjustment.get_value();
-		
 		podcast_model.append_medias(_showing_medias, false);
 		
 		podcast_model.set_sort_column_id(sort_col, sort_dir);
@@ -251,9 +249,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		
 		if(get_is_current() && lm.media_info.media != null)
 			scrollToCurrent();
-		else
-			this.view.scroll_to_point(0, (int)hPos);
-		
+
 		//set_statusbar_text();
 		
 		// just because a user searches, doesn't mean we want to update the playing list

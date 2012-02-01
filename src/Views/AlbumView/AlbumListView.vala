@@ -23,8 +23,6 @@
 using Gee;
 using Gtk;
 
-/* TODO: Make the entire window draggable */
-
 public class BeatBox.AlbumListView : Window {
 	LibraryManager lm;
 
@@ -34,71 +32,78 @@ public class BeatBox.AlbumListView : Window {
 	MusicTreeView mtv;
 	bool setting_songs;
 
-	 private const string WIDGET_STYLESHEET = """
+	private const string WIDGET_STYLESHEET = """
 		.AlbumListDialogBase {
-			background-color: none;
 			background-image: -gtk-gradient (radial, center center, 0,
-											 center center, 1,
-											 from (shade (#404040, 1.0)),
-											 to (shade (#232323, 1.0)));
+                                             center center, 1,
+			                                 from (#404040),
+			                                 color-stop (0.9, alpha (shade (#454545, 1.1), 0.9)),
+			                                 to (#404040));
 			border-width: 0;
 			border-style: none;
 			border-radius: 0;
 			padding: 0;
 		}
 
-		*, .label {
-			color: #ffffff;
+		* {
+			color: @selected_fg_color;
 		}
 
 		GtkTreeView {
-			color: #ffffff;
-			background-color: #3a3a3a;
+			background-color: shade (#414141, 1.01);
 		}
 
 		GtkTreeView row {
 			border-width: 0;
-			border-style: none;
 			border-radius: 0;
 			padding: 0;
 		}
 
+		GtkTreeView row:nth-child(even) {
+			background-color: shade (#3b3b3b, 0.97);
+		}
+
 		GtkTreeView row:selected {
 				background-image: -gtk-gradient (linear,
-					left top,
-					left bottom,
-					from (shade (@selected_bg_color, 1.30)),
-					to (shade (@selected_bg_color, 0.98)));
+		                                         left top,
+					                             left bottom,
+					                             from (shade (@selected_bg_color, 1.30)),
+					                             to (shade (@selected_bg_color, 0.98)));
 		}
 
-		GtkTreeView row:nth-child(even) {
-			background-color: #3a3a3a;
-		}
-
-		GtkTreeView row:nth-child(odd) {
-			background-color: #4D4D4D;
-		}
-
-		.AlbumListDialogClose {
+		.AlbumListDialogClose:hover {
 			background-image: -gtk-gradient (linear,
-				left top,
-				left bottom,
-				from (shade (@bg_color, 1.15)),
-				to (shade (@bg_color, 1.03)));
+			                                 left top,
+			                                 left bottom,
+			                                 from (shade (#454545, 1.15)),
+			                                 to (shade (#454545, 1.03)));
 
 			-unico-border-gradient: -gtk-gradient (linear,
-				left top, left bottom,
-				from (shade (@bg_color, 0.78)),
-				to (shade (@bg_color, 0.60)));
+			                                       left top, left bottom,
+			                                       from (shade (#454545, 0.78)),
+			                                       to (shade (#454545, 0.60)));
 		}
-	 """;
+
+		.button:active,
+		.button:active:hover {
+			background-image: -gtk-gradient (linear,
+			                                 left top,
+			                                 left bottom,
+			                                 from (shade (#404040, 0.95)),
+			                                 to (shade (#404040, 1.13)));
+
+			-unico-border-gradient: -gtk-gradient (linear,
+			                                       left top, left bottom,
+			                                       from (shade (#404040, 0.78)),
+			                                       to (shade (#454545, 0.60)));
+		}
+	""";
 
 	public AlbumListView(LibraryManager lm) {
 		this.lm = lm;
 
 		set_transient_for(lm.lw);
 		window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
-		//set_keep_above(true);
 		set_decorated(false);
 		set_has_resize_grip(false);
 		set_resizable(false);
@@ -114,7 +119,7 @@ public class BeatBox.AlbumListView : Window {
 		try  {
 			style_provider.load_from_data (WIDGET_STYLESHEET, -1);
 		} catch (Error e) {
-			stderr.printf ("\nAlbumListView: Couldn't load style provider.\n");
+			warning ("AlbumListView: %s", e.message);
 		}
 
 		get_style_context().add_class("AlbumListDialogBase");
@@ -123,7 +128,6 @@ public class BeatBox.AlbumListView : Window {
 		// add close button
 		var close = new Gtk.Button ();
 		close.set_image (Icons.render_image ("gtk-close", Gtk.IconSize.MENU));
-		close.get_style_context().add_class("AlbumListDialogClose");
 		close.hexpand = close.vexpand = false;
 		close.halign = Gtk.Align.START;
 		close.set_relief(Gtk.ReliefStyle.NONE);
