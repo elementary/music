@@ -6,9 +6,7 @@ install(FILES icons/32x32/apps/beatbox.svg DESTINATION share/icons/hicolor/32x32
 install(FILES icons/48x48/apps/beatbox.svg DESTINATION share/icons/hicolor/48x48/apps)
 install(FILES icons/64x64/apps/beatbox.svg DESTINATION share/icons/hicolor/64x64/apps)
 install(FILES icons/128x128/apps/beatbox.svg DESTINATION share/icons/hicolor/128x128/apps)
-
 install(FILES icons/128x128/apps/beatbox.svg DESTINATION share/icons/hicolor/scalable/apps)
-install(FILES icons/128x128/apps/beatbox.svg DESTINATION share/icons/hicolor/128x128/apps)
 
 # library icons
 install(FILES icons/16x16/mimetypes/library-music.svg DESTINATION share/beatbox/icons/hicolor/16x16/mimetypes)
