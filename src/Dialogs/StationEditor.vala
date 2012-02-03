@@ -65,9 +65,9 @@ public class BeatBox.StationEditor : Window {
 		
 		HButtonBox buttonSep = new HButtonBox();
 		buttonSep.set_layout(ButtonBoxStyle.END);
-		_previous = new Button.with_label("Previous");
-		_next = new Button.with_label("Next");
-		_save = new Button.with_label("Done");
+		_previous = new Button.with_label(_("Previous"));
+		_next = new Button.with_label(_("Next"));
+		_save = new Button.with_label(_("Done"));
 		
 		buttonSep.pack_start(_previous, false, false, 0);
 		buttonSep.pack_start(_next, false, false, 0);

@@ -42,15 +42,15 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		savePlaylists = new Button.with_label("Export Playlists");
-		ok = new Button.with_label("Set Music Folder");
-		cancel = new Button.with_label("Cancel");
+		savePlaylists = new Button.with_label(_("Export Playlists"));
+		ok = new Button.with_label(_("Set Music Folder"));
+		cancel = new Button.with_label(_("Cancel"));
 		is_finished = new Gtk.Image();
 		is_working = new Gtk.Spinner();
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Set Music Folder?</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">%s</span>".printf(_("Set Music Folder?")));
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
 		info.set_markup("Are you sure you want to set the music folder to <b>" + path.replace("&", "&amp;") + "</b>? This will reset your library and remove static playlists.");
