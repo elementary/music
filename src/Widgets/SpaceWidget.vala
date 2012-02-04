@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski and Victor Eduardo for
  * BeatBox Music Player: http://www.launchpad.net/beat-box
