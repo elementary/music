@@ -34,8 +34,8 @@ public class BeatBox.CoverArtImage : Gtk.EventBox {
 		lm = lmm;
 		lw = lww;
 		
-		width_request  = 100;
-        height_request = 100;
+		width_request  = 128;
+        height_request = 128;
 		
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
@@ -54,14 +54,6 @@ public class BeatBox.CoverArtImage : Gtk.EventBox {
 	public void set_from_pixbuf(Gdk.Pixbuf buf) {
 		image = buf;
 		queue_draw();
-	}
-	
-	public void update_allocated_space(int size) {
-		if(size <= 120)
-			return;
-		
-		width_request = size - 10;
-		height_request = size - 10;
 	}
 	
     public virtual bool draw_event(Cairo.Context cairo) {
@@ -142,7 +134,6 @@ public class BeatBox.CoverArtImage : Gtk.EventBox {
 				}
 			}
 			
-			lw.updateCurrentMedia();
 			Gtk.drag_finish (context, success, false, timestamp);
 			return;
 		}

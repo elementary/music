@@ -424,8 +424,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 					m.update_track(ref t);
 					stdout.printf("updated trac and its rating is %d\n", (int)t.rating);
 					
-					if(lm.get_album_art(m.rowid) != null)
-						t.set_thumbnails_from_pixbuf(lm.get_album_art(m.rowid));
+					var pix_from_file = lm.get_album_art_from_file(m.rowid);
+					if(pix_from_file != null)
+						t.set_thumbnails_from_pixbuf(pix_from_file);
 				}
 				else {
 					stdout.printf("Could not update %s, no match in sync list\n", entry.key.title);
@@ -530,8 +531,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		Media s = lm.media_from_id(i);
 		GPod.Track t = s.track_from_media();
 		
-		if(lm.get_album_art(s.rowid) != null)
-			t.set_thumbnails_from_pixbuf(lm.get_album_art(s.rowid));
+		var pix_from_file = lm.get_album_art_from_file(s.rowid);
+		if(pix_from_file != null)
+			t.set_thumbnails_from_pixbuf(pix_from_file);
 		
 		current_operation = "Adding media <b>" + t.title + "</b> by <b>" + t.artist + "</b> to iPod";
 		stdout.printf("Adding media %s by %s\n", t.title, t.artist);

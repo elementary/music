@@ -54,7 +54,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private HashMap<int, int> _current_view; // id, media of currently showing medias
 	private LinkedList<int> _queue; // rowid, Media of queue
 	private LinkedList<int> _already_played; // Media of already played
-	private HashMap<string, Gdk.Pixbuf> _album_art; // All album art
 	private HashMap<string, Gdk.Pixbuf> _cover_album_art; // All album art
 	
 	public LastFM.Core lfm;
@@ -148,7 +147,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_current_view = new HashMap<int, int>();
 		_queue = new LinkedList<int>();
 		_already_played = new LinkedList<int>();
-		_album_art = new HashMap<string, Gdk.Pixbuf>();
 		_cover_album_art = new HashMap<string, Gdk.Pixbuf>();
 		
 		lfm = new LastFM.Core(this);
@@ -1398,7 +1396,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(media_info.media.rowid == id) {
 				if(!File.new_for_path(media_info.media.getAlbumArtPath()).query_exists()) {
 					media_info.media.setAlbumArtPath("");
-					lw.updateCurrentMedia();
 				}
 				
 				// potentially fix media length
@@ -1602,7 +1599,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return null;
 		
 		in_fetch_thread = true;
-		GStreamerTagger tagger = new GStreamerTagger(this);
+		//GStreamerTagger tagger = new GStreamerTagger(this);
 		
 		var toShowS = new LinkedList<Media>();
         foreach(var s in _media.values)
@@ -1617,7 +1614,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach(Media s in toShowS) {
 			if(s.album != previousAlbum && s.mediatype == 0) {
 				
-				if(_album_art.get(s.artist+s.album) == null) {
+				string key = s.artist+s.album;
+				if(key != null && _cover_album_art.get(key) == null) {
 					Gdk.Pixbuf? pix = null;//tagger.get_embedded_art(s);
 					
 					string path = "";
@@ -1631,10 +1629,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 					}
 					
 					if(pix != null) {
-						_album_art.set(s.artist+s.album, pix);
-						
-                        if(!_cover_album_art.has_key(s.artist + s.album))
-							_cover_album_art.set(s.artist+s.album, Icons.get_pixbuf_shadow(pix));
+						_cover_album_art.set(key, Icons.get_pixbuf_shadow(pix));
 					}
 						
 					previousAlbum = s.album;
@@ -1643,14 +1638,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// now queue failures to fetch from embedded art
-		previousAlbum = "";
+		/*previousAlbum = "";
 		var to_check_art = new LinkedList<int>();
 		foreach(Media s in toShowS) {
 			if(_album_art.get(s.artist+s.album) == null)
 				to_check_art.add(s.rowid);
 		}
-		
-		tagger.fetch_art(to_check_art);
+		tagger.fetch_art(to_check_art);*/
 		
 		//_album_art.set_all(to_set);
 		
@@ -1686,14 +1680,26 @@ public class BeatBox.LibraryManager : GLib.Object {
 				player.setEqualizerGain(i, 0);
 		}
 	}
-
-	public Gdk.Pixbuf? get_album_art(int id) {
+	
+	public Gdk.Pixbuf? get_album_art_from_file(int id) {
 		Media s = _media.get(id);
 		
 		if(s == null)
 			return null;
+			
+		string path = "";
+		if(s.getAlbumArtPath().contains("/usr/share") &&
+		(path = fo.get_best_album_art_file(s)) != null && path != "") {
+			s.setAlbumArtPath(path);
+		}
 		
-		return _album_art.get(s.artist+s.album);
+		Gdk.Pixbuf? pix = null;
+		try {
+			pix = new Gdk.Pixbuf.from_file(path);
+		}
+		catch(GLib.Error err) {}
+		
+		return pix;
 	}
 	
     public Gdk.Pixbuf? get_cover_album_art(int id) {
@@ -1714,9 +1720,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 			return;
 		
 		Media s = media_from_id(id);
+		string key = s.artist+s.album;
 		
-		_album_art.set(s.artist + s.album, pix);
-        _cover_album_art.set(s.artist + s.album, Icons.get_pixbuf_shadow(pix));
+		if(key != null)
+			_cover_album_art.set(key, Icons.get_pixbuf_shadow(pix));
 	}
 	
 	/* Device Preferences */

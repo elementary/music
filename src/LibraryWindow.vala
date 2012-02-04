@@ -63,7 +63,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ScrolledWindow pandoraScroll;
 	ScrolledWindow grooveSharkScroll;
 	InfoPanel infoPanel;
-	CoverArtImage coverArt;
 	Toolbar topControls;
 	ToolButton previousButton;
 	ToolButton playButton;
@@ -211,7 +210,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		sideTree = new SideTreeView(lm, this);
 		sideTreeScroll = new ScrolledWindow(null, null);
-		coverArt = new CoverArtImage(lm, this);
 		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
 		libraryOperationsMenu = new Gtk.Menu();
 		fileSetMusicFolder = new Gtk.MenuItem.with_label(_("Set Music Folder"));
@@ -267,10 +265,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTreeScroll = new ScrolledWindow(null, null);
 		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		sideTreeScroll.add(sideTree);
-
-		var coverArtScroll = new ScrolledWindow(null, null);
-		coverArtScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.NEVER);
-		coverArtScroll.add_with_viewport(coverArt);
 
 		millerPane.set_position(settings.getMillerHeight());
 
@@ -387,7 +381,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToMedias.pack2(mediasToInfo, true, true);
 
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
-		sideBar.pack_end(coverArtScroll, false, true, 0);
 
 		statusBar.pack_start(shuffleChooser, false, false, 2);
 		statusBar.pack_start(repeatChooser, false, false, 2);
@@ -623,7 +616,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		infoPanel.set_visible(showMainViews && showMore && !nullMedia);
 		infoPanelChooser.set_visible(showMainViews && !nullMedia);
-		coverArt.set_visible(!nullMedia);
 
 		// hide playlists when media list is empty
 		sideTree.setVisibility(sideTree.playlists_iter, haveMedias);
@@ -638,22 +630,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			topDisplay.set_label_markup(message);
 
 		topDisplay.set_progress_value(progress);
-	}
-
-	public bool updateCurrentMedia() {
-		//loop through all musictreeviews and call updatecurrentmedia
-
-		if(lm.media_info.media != null) {
-			if(lm.get_album_art(lm.media_info.media.rowid) != null)
-				coverArt.set_from_pixbuf(lm.get_album_art(lm.media_info.media.rowid));
-			else {
-				coverArt.set_from_pixbuf(Icons.DROP_ALBUM_PIXBUF);
-			}
-
-			coverArt.update_allocated_space(sourcesToMedias.position);
-		}
-
-		return false;
 	}
 
 	public void updateInfoLabel() {
@@ -727,8 +703,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		scrobbled_track = false;
 
 		if(!lm.media_info.media.isPreview) {
-			updateCurrentMedia();
-
 			infoPanel.updateMedia(lm.media_info.media.rowid);
 			if(settings.getMoreVisible())
 				infoPanel.set_visible(true);
@@ -764,9 +738,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		queriedlastfm = false;
 		media_considered_played = false;
 		added_to_play_count = false;
-
-		// this will hide album cover art
-		updateCurrentMedia();
 
 		updateSensitivities();
 
@@ -833,7 +804,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		string album_s = lm.media_info.media.album;
 
 		/* fetch album info now. only save if still on current media */
-		if(!lm.album_info_exists(album_s + " by " + artist_s) || lm.get_album_art(lm.media_info.media.rowid) == null) {
+		if(!lm.album_info_exists(album_s + " by " + artist_s) || lm.get_cover_album_art(lm.media_info.media.rowid) == null) {
 			album = new LastFM.AlbumInfo.with_info(artist_s, album_s);
 
 			if(album != null)
@@ -860,8 +831,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				return null;
 			}
 		}
-
-		Idle.add(updateCurrentMedia);
 
 		return null;
 	}
@@ -1014,8 +983,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 
 	public virtual void sourcesToMediasHandleSet(Allocation rectangle) {
-		updateCurrentMedia();
-
 		if(settings.getSidebarWidth() != rectangle.width) {
 			settings.setSidebarWidth(rectangle.width);
 		}

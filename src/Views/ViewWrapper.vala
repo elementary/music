@@ -255,6 +255,7 @@ public class BeatBox.ViewWrapper : VBox {
 			}
 			
 			// remove elements
+			// TODO: contains is slow
 			foreach(int i in ids) {
 				if(!shouldBe.contains(i)) {
 					to_remove.add(i);

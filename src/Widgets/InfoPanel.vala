@@ -60,7 +60,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		artist = new Label("Artist");
 		loveMedia = new Button();
 		banMedia = new Button();
-		artistImage = new Image();
+		artistImage = new Gtk.Image();
 		rating = new RatingWidget(null, true, IconSize.MENU);
 		album = new Label("Album");
 		year = new Label("Year");
@@ -130,6 +130,10 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		//title.button_press_event.connect(titleClicked);
 		loveMedia.clicked.connect(loveButtonClicked);
 		banMedia.clicked.connect(banButtonClicked);
+		
+		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
+		Gtk.drag_dest_add_uri_targets(this);
+		this.drag_data_received.connect(dragReceived);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -184,21 +188,15 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		if(lm.media_from_id(id) == null)
 			return;
 		
-		string file = lm.media_from_id(id).getArtistImagePath();
-		if(file != "" && GLib.File.new_for_path(file).query_exists()) {
+		if(lm.get_cover_album_art(id) != null) {
 			artistImage.show();
-			try {
-				var pixbuf = new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 10, lm.settings.getMoreWidth() - 10, true);
-				var max_width = artistImageScroll.get_allocated_width();
+			var pixbuf = lm.get_cover_album_art(id);
+			var max_width = artistImageScroll.get_allocated_width();
 				
-				while(pixbuf.width > max_width) {
-					pixbuf = pixbuf.scale_simple(pixbuf.width - 5, pixbuf.height - 5, Gdk.InterpType.BILINEAR);
-				}
-				artistImage.set_from_pixbuf(pixbuf);
+			while(pixbuf != null && pixbuf.width >= max_width - 5) {
+				pixbuf = pixbuf.scale_simple(pixbuf.width - 5, pixbuf.height - 5, Gdk.InterpType.BILINEAR);
 			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not set info panel image art: %s\n", err.message);
-			}
+			artistImage.set_from_pixbuf(pixbuf);
 		}
 		else
 			artistImage.hide();
@@ -258,4 +256,84 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	public virtual void banButtonClicked() {
 		lm.lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
+	
+	private bool is_valid_image_type(string type) {
+		var typeDown = type.down();
+		
+		return (typeDown.has_suffix(".jpg") || typeDown.has_suffix(".jpeg") ||
+				typeDown.has_suffix(".png"));
+	}
+	
+	void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
+		stdout.printf("drag received\n");
+		bool success = true;
+		
+		foreach(string singleUri in data.get_uris()) {
+			
+			if(is_valid_image_type(singleUri) && lm.media_info.media != null) {
+				var original = File.new_for_uri(singleUri);
+				var playingPath = File.new_for_uri(lm.media_info.media.uri); // used to get dest
+				var dest = File.new_for_path(Path.build_path("/", playingPath.get_parent().get_path(), "Album.jpg"));
+				
+				// test successful, no block on copy
+				if(dest.query_exists()) {
+					try {
+						dest.delete();
+					}
+					catch(Error err) {
+						stdout.printf("Could not delete previous file\n");
+					}
+				}
+				
+				try {
+					original.copy(dest, FileCopyFlags.NONE, null, null);
+				}
+				catch(Error err) {
+					success = false;
+					stdout.printf("Could not copy album art to destination\n");
+				}
+				
+				if(success) {
+					// save new pixbuf in memory
+					Gdk.Pixbuf? pix = null;
+					try {
+						pix = new Gdk.Pixbuf.from_file(dest.get_path());
+					}
+					catch(GLib.Error err) {}
+					lm.set_album_art(lm.media_info.media.rowid, pix);
+					
+					Gee.LinkedList<Media> updated_medias = new Gee.LinkedList<Media>();
+					foreach(int id in lm.media_ids()) {
+						if(lm.media_from_id(id).artist == lm.media_info.media.artist && lm.media_from_id(id).album == lm.media_info.media.album) {
+							lm.media_from_id(id).setAlbumArtPath(dest.get_path());
+							updated_medias.add(lm.media_from_id(id));
+						}
+					}
+					
+					// wait for everything to finish up and then update the medias
+					Timeout.add(2000, () => {
+						
+						try {
+							Thread.create<void*>(lm.fetch_thread_function, false);
+						}
+						catch(GLib.ThreadError err) {
+							stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
+						}
+						
+						lm.update_medias(updated_medias, false, false);
+						
+						// for sound menu (dbus doesn't like linked lists)
+						if(updated_medias.contains(lm.media_info.media))
+							lm.update_media(lm.media_info.media, false, false);
+						
+						return false;
+					});
+				}
+			}
+			
+			updateArtistImage(true);
+			Gtk.drag_finish (context, success, false, timestamp);
+			return;
+		}
+    }
 }
