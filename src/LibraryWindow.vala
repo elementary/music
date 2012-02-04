@@ -50,7 +50,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	VBox verticalBox;
 	public VBox mainViews;
 	public MillerColumns miller;
-	VPaned millerPane;
+	HBox millerPane;
 	BeatBox.Welcome welcomeScreen;
 	public DrawingArea videoArea;
 	public HPaned sourcesToMedias; //allows for draggable
@@ -203,7 +203,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToMedias = new HPaned();
 		mediasToInfo = new HPaned();
 		contentBox = new VBox(false, 0);
-		millerPane = new VPaned();
+		millerPane = new HBox(false, 0);
 		mainViews = new VBox(false, 0);
 		videoArea = new DrawingArea();
 		welcomeScreen = new Welcome(_("Get Some Tunes"), _("BeatBox can't seem to find your music."));
@@ -266,7 +266,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		sideTreeScroll.add(sideTree);
 
-		millerPane.set_position(settings.getMillerHeight());
+		//millerPane.set_position(settings.getMillerHeight());
 
 		updateSensitivities();
 
@@ -361,14 +361,15 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		// for consistency
 		topControls.set_size_request(-1, 45);
+		miller.set_size_request(170, -1);
 
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 
 		var music_folder_icon = Icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
 		welcomeScreen.append_with_pixbuf(music_folder_icon, _("Locate"), _("Change your music folder."));
 
-		millerPane.pack1(miller, false, true);
-		millerPane.pack2(mainViews, true, true);
+		millerPane.pack_start(miller, false, true);
+		millerPane.pack_end(mainViews, true, true);
 
 		contentBox.pack_start(millerPane, true, true, 0);
 
@@ -402,7 +403,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
 		viewSelector.mode_changed.connect(updateMillerColumns);
 		viewSelector.mode_changed.connect( () => { updateSensitivities(); } );
-		millerPane.get_child1().size_allocate.connect(millerResized);
+		//millerPane.get_child1().size_allocate.connect(millerResized);
 		miller.changed.connect(millerChanged);
 		searchField.changed.connect(searchFieldChanged);
 		searchField.activate.connect(searchFieldActivate);
@@ -442,9 +443,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		show_all();
 		resize(settings.getWindowWidth(), this.default_height);
 		
-		bool genreV, artistV, albumV;
-		lm.settings.getMillerVisibilities(out genreV, out artistV, out albumV);
-		miller.updateColumnVisibilities(genreV, artistV, albumV);
 		updateSensitivities();
 
 		if(lm.song_ids().size == 0)

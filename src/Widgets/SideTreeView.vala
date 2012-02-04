@@ -513,23 +513,18 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 				
 				/* update the lists if we need to */
-				if(iter == library_music_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				ViewWrapper vw = (ViewWrapper)w;
+				if(iter == library_music_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.song_ids(), false, false, false);
+								lm.song_ids(), true, false, false);
 				}
-				else if(iter == library_podcasts_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(iter == library_podcasts_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.podcast_ids(), false, false, false);
+								lm.podcast_ids(), true, false, false);
 				}
-				else if(iter == network_radio_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(iter == network_radio_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.station_ids(), false, false, false);
+								lm.station_ids(), true, false, false);
 				}
 				else if(iter == network_store_iter) {
 					Store.StoreView sv = (Store.StoreView)w;
@@ -540,41 +535,31 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					}
 				}
 				else if(iter == playlists_similar_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
 					lw.updateMillerColumns(); // don't show millers if showing warning label
-					
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								vw.get_media_ids(), true, false, false);
+					//vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+					//			vw.get_media_ids(), true, false, false);
 				}
-				else if(iter == playlists_queue_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(iter == playlists_queue_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.queue(), true, false, false);
 				}
-				else if(iter == playlists_history_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(iter == playlists_history_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.already_played(), true, false, false);
 				}
-				else if(o is SmartPlaylist && !((SmartPlaylist)o).viewWrapper_is_up_to_date) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(o is SmartPlaylist && !((SmartPlaylist)o).viewWrapper_is_up_to_date && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, false, false);
 				}
-				else if(o is Playlist) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(o is Playlist && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.medias_from_playlist(((Playlist)o).rowid), true, false, false);
 				}
-				else if(o is Device) {
-					DeviceViewWrapper vw = (DeviceViewWrapper)w;
+				else if(o is Device && vw.needs_update) {
+					DeviceViewWrapper dvw = (DeviceViewWrapper)w;
 					
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								vw.get_media_ids(), true, false, false);
+					dvw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								dvw.get_media_ids(), true, false, false);
 				}
 				
 				if(lw.viewSelector.selected == 2) {

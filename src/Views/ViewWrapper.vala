@@ -132,7 +132,7 @@ public class BeatBox.ViewWrapper : VBox {
 		hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.STATION)
 			pack_start(errorBox, true, true, 0);
 		
-		doUpdate(currentView, get_media_ids(), false, false, false);
+		//doUpdate(currentView, get_media_ids(), false, false, false);
 		needs_update = true;
 		no_show_all = true;
 		
@@ -488,7 +488,7 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			//stdout.printf("seraching to populate with %d medias\n", medias.size);
 			lm.do_search(last_search, hint,
-					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
+					"All Genres", lw.miller.artists.get_selected(), "All Albums",
 					get_media_ids(), ref potentialShowing, ref potentialShowingAlbum);
 			//stdout.printf("seraching done\n");
 			list.set_show_next(potentialShowing);
@@ -555,16 +555,16 @@ public class BeatBox.ViewWrapper : VBox {
 	public virtual void searchFieldChanged() {
 		if(!setting_search && lw.initializationFinished && isCurrentView && lw.searchField.get_text().length != 1 && this.visible) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
-			Timeout.add(100, () => {
+			Timeout.add(200, () => {
 				
 				string to_search = timeout_search.poll_tail();
 				if(to_search != lw.searchField.get_text() || to_search == last_search)
 					return false;
 				
-				doUpdate(this.currentView, medias.keys, false, true, false);
-				
 				if(!setting_search && isCurrentView)
 					last_search = to_search;
+				
+				doUpdate(this.currentView, medias.keys, false, true, false);
 				
 				showing_all = (showingMedias.size == medias.size);
 				
