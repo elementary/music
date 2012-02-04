@@ -1431,17 +1431,17 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 	// create a thread to update ALL non-visible views
 	void searchFieldChanged() {
-		if(initializationFinished && searchField.get_text().length != 1) {
+		/*if(initializationFinished && searchField.get_text().length != 1) {
 			try {
 				Thread.create<void*>(lm.update_views_thread, false);
 			}
 			catch(GLib.ThreadError err) {
 
 			}
-		}
+		}*/
 	}
 	void millerChanged() {
-		if(initializationFinished) {
+		/*if(initializationFinished) {
 			// start thread to prepare for when it is current
 			try {
 				Thread.create<void*>(lm.update_views_thread, false);
@@ -1449,19 +1449,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			catch(GLib.ThreadError err) {
 
 			}
-		}
+		}*/
 	}
-	/*void* update_views_thread () {
-		mainViews.get_children().foreach( (w) => {
-			if(w is ViewWrapper/* && !(w is CDRomViewWrapper)* && !(w is DeviceViewWrapper)) {
-				ViewWrapper vw = (ViewWrapper)w;
-				vw.doUpdate(vw.currentView, vw.medias, false, false, true);
-			}
-		});
-
-		return null;
-	}*/
-
+	
 	public void searchFieldActivate() {
 		Widget w = sideTree.getSelectedWidget();
 

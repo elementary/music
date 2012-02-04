@@ -42,6 +42,7 @@ public class BeatBox.ViewWrapper : VBox {
 	LinkedList<string> timeout_search;//stops from doing useless search (timeout)
 	string last_search;//stops from searching same thing multiple times
 	bool showing_all; // stops from searching unnecesarilly when changing b/w 0 words and search get_hint().
+	bool setting_search;
 	
 	// for Hint.SIMILAR only
 	public bool similarsFetched;
@@ -80,7 +81,9 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		media_count = medias.size;
 		showingMedias = new HashMap<int, int>();
+		last_search = "";
 		timeout_search = new LinkedList<string>();
+		setting_search = false;
 		
 		relative_id = id;
 		hint = the_hint;
@@ -129,16 +132,8 @@ public class BeatBox.ViewWrapper : VBox {
 		hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.STATION)
 			pack_start(errorBox, true, true, 0);
 		
-		//needs_update = true;
 		doUpdate(currentView, get_media_ids(), false, false, false);
-		
-		
-		//if(the_hint == ViewWrapper.Hint.MUSIC || the_hint == ViewWrapper.Hint.PODCAST || the_hint == ViewWrapper.Hint.STATION)
-		//	doUpdate(ViewType.LIST, get_media_ids(), true, true, false);
-		
-		if(albumView is AlbumView)
-			((AlbumView)albumView).itemClicked.connect(filterViewItemClicked);
-		
+		needs_update = true;
 		no_show_all = true;
 		
 		lw.viewSelector.mode_changed.connect(selectorViewChanged);
@@ -149,9 +144,6 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		lw.searchField.changed.connect(searchFieldChanged);
 		lw.miller.changed.connect(millerChanged);
-		
-		// initialize in thread
-		searchFieldChanged();
 	}
 	
 	public Collection<int> get_media_ids() {
@@ -183,10 +175,15 @@ public class BeatBox.ViewWrapper : VBox {
 	public void set_is_current_view(bool isIt) {
 		isCurrentView = isIt;
 		
+		setting_search = true;
 		if(!isIt) {
 			list.set_is_current_view(false);
 			albumView.set_is_current_view(false);
 		}
+		else {
+			lw.searchField.set_text(last_search);
+		}
+		setting_search = false;
 	}
 	
 	public ViewType getView() {
@@ -490,7 +487,7 @@ public class BeatBox.ViewWrapper : VBox {
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 			
 			//stdout.printf("seraching to populate with %d medias\n", medias.size);
-			lm.do_search(lw.searchField.get_text(), hint,
+			lm.do_search(last_search, hint,
 					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
 					get_media_ids(), ref potentialShowing, ref potentialShowingAlbum);
 			//stdout.printf("seraching done\n");
@@ -556,7 +553,7 @@ public class BeatBox.ViewWrapper : VBox {
 	}
 	
 	public virtual void searchFieldChanged() {
-		if(lw.initializationFinished && isCurrentView && lw.searchField.get_text().length != 1 && this.visible) {
+		if(!setting_search && lw.initializationFinished && isCurrentView && lw.searchField.get_text().length != 1 && this.visible) {
 			timeout_search.offer_head(lw.searchField.get_text().down());
 			Timeout.add(100, () => {
 				
@@ -564,10 +561,11 @@ public class BeatBox.ViewWrapper : VBox {
 				if(to_search != lw.searchField.get_text() || to_search == last_search)
 					return false;
 				
-				//stdout.printf("search field changed\n");
 				doUpdate(this.currentView, medias.keys, false, true, false);
-					
-				last_search = to_search;
+				
+				if(!setting_search && isCurrentView)
+					last_search = to_search;
+				
 				showing_all = (showingMedias.size == medias.size);
 				
 				lm.settings.setSearchString(to_search);
