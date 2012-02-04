@@ -858,7 +858,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 
-		Idle.add( () => { infoPanel.updateArtistImage(true); return false;});
+		Idle.add( () => { infoPanel.updateCoverArt(true); return false;});
 
 		return null;
 	}

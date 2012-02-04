@@ -32,8 +32,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	private Label artist;
 	private Button loveMedia;
 	private Button banMedia;
-	private ScrolledWindow artistImageScroll;
-	private Gtk.Image artistImage;
+	private ScrolledWindow coverArtScroll;
+	private Gtk.Image coverArt;
 	private RatingWidget rating; // need to make custom widget in future
 	private Label album;
 	private Label year;
@@ -60,7 +60,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		artist = new Label("Artist");
 		loveMedia = new Button();
 		banMedia = new Button();
-		artistImage = new Gtk.Image();
+		coverArt = new Gtk.Image();
 		rating = new RatingWidget(null, true, IconSize.MENU);
 		album = new Label("Album");
 		year = new Label("Year");
@@ -94,18 +94,18 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		buttons.pack_end(new Label(""), true, true, 0);
 		buttons.pack_end(banMedia, false, false, 0);
 		
-		artistImageScroll = new ScrolledWindow(null, null);
+		coverArtScroll = new ScrolledWindow(null, null);
 		Viewport imageVP = new Viewport(null, null);
-		artistImageScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
+		coverArtScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
 		imageVP.set_shadow_type(ShadowType.NONE);
-		imageVP.add(artistImage);
+		imageVP.add(coverArt);
 		imageVP.override_background_color (StateFlags.NORMAL, lw.base_color);
-		artistImageScroll.add(imageVP);
+		coverArtScroll.add(imageVP);
 		
 		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(artist, 2, 0, 0, 5), false, true, 0);
 		content.pack_start(buttons, false, true, 0);
-		content.pack_start(wrap_alignment(artistImageScroll, 5, 5, 0, 5), false, true, 0);
+		content.pack_start(wrap_alignment(coverArtScroll, 5, 5, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(rating, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(album, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(year, 0, 0, 20, 5), false, true, 0);
@@ -178,28 +178,28 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		else
 			year.set_markup("");
 		
-		updateArtistImage(false);
+		updateCoverArt(false);
 		ssv.hide();
 		
 		setVisibilities();
 	}
 	
-	public void updateArtistImage(bool is_initial) {
+	public void updateCoverArt(bool is_initial) {
 		if(lm.media_from_id(id) == null)
 			return;
 		
 		if(lm.get_cover_album_art(id) != null) {
-			artistImage.show();
+			coverArt.show();
 			var pixbuf = lm.get_cover_album_art(id);
-			var max_width = artistImageScroll.get_allocated_width();
+			var max_width = coverArtScroll.get_allocated_width();
 				
 			while(pixbuf != null && pixbuf.width >= max_width - 5) {
 				pixbuf = pixbuf.scale_simple(pixbuf.width - 5, pixbuf.height - 5, Gdk.InterpType.BILINEAR);
 			}
-			artistImage.set_from_pixbuf(pixbuf);
+			coverArt.set_from_pixbuf(pixbuf);
 		}
 		else
-			artistImage.hide();
+			coverArt.hide();
 	}
 	
 	public void updateMediaList(Collection<Media> medias) {
@@ -224,8 +224,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	
 	public virtual void resized(Allocation rectangle) {
 		// resize the image to fit
-		//artistImage.icon_size = rectangle.width - 10;
-		updateArtistImage(false);
+		//coverArt.icon_size = rectangle.width - 10;
+		updateCoverArt(false);
 	}
 	
 	public virtual bool titleClicked(Gdk.EventButton event) {
@@ -331,7 +331,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 				}
 			}
 			
-			updateArtistImage(true);
+			updateCoverArt(true);
 			Gtk.drag_finish (context, success, false, timestamp);
 			return;
 		}
