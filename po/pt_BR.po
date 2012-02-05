@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-03 22:16+0100\n"
-"PO-Revision-Date: 2012-02-04 01:40+0000\n"
-"Last-Translator: DavyS <Unknown>\n"
+"PO-Revision-Date: 2012-02-04 18:09+0000\n"
+"Last-Translator: Diego Ponciano <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-04 06:05+0000\n"
+"X-Launchpad-Export-Date: 2012-02-05 05:08+0000\n"
 "X-Generator: Launchpad (build 14738)\n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:88
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr "Importar de dispositivo"
+msgstr "Importar de Dispositivo"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:89
 msgid "Sync"
@@ -33,12 +33,12 @@ msgstr "Adicionar Podcast"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:98
 msgid "Download new Episodes"
-msgstr "Baixar novos episódios"
+msgstr "Baixar novos Episódios"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:106
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:218
 msgid "Import to Library"
-msgstr "Importar para biblioteca"
+msgstr "Importar para Biblioteca"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:107
 msgid "Eject"
@@ -46,15 +46,15 @@ msgstr "Ejetar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:115
 msgid "Import Station"
-msgstr "Importar estação"
+msgstr "Importar Estação"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:122
 msgid "New Playlist"
-msgstr "Nova lista de reprodução"
+msgstr "Nova Lista de Reprodução"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:123
 msgid "New Smart Playlist"
-msgstr "Nova lista de reprodução inteligente"
+msgstr "Nova Lista de Reprodução Inteligente"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:124
 msgid "Edit"
@@ -67,7 +67,7 @@ msgstr "Excluir"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:126
 msgid "Save as Playlist"
-msgstr "Salvar como lista de reprodução"
+msgstr "Salvar como Lista de Reprodução"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:127
 msgid "Export..."
@@ -75,7 +75,7 @@ msgstr "Exportar..."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:128
 msgid "Import Playlist"
-msgstr "Importar lista de reprodução"
+msgstr "Importar Lista de Reprodução"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:160
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:284
@@ -162,11 +162,11 @@ msgstr "Pulos"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:546
 msgid "Date Added"
-msgstr "Data de adição"
+msgstr "Data de Adição"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:547
 msgid "Last Played"
-msgstr "Última reprodução"
+msgstr "Última Reprodução"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:548
 msgid "BPM"
@@ -174,11 +174,11 @@ msgstr "BPM"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/RadioListView.vala:282
 msgid "Remove Station"
-msgstr "Remover estação"
+msgstr "Remover Estação"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
 msgid "Similar Media View"
-msgstr "Visualização de mídia similar"
+msgstr "Visualização de Mídia Similar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
 msgid ""
@@ -195,7 +195,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
 msgid "Audio CD Invalid"
-msgstr "CD de áudio invalido"
+msgstr "CD de Áudio Invalido"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
 msgid "BeatBox could not read the contents of this Audio CD."
@@ -203,7 +203,7 @@ msgstr "BeatBox não conseguiu ler o conteúdo deste CD de áudio."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
 msgid "No Podcasts Found"
-msgstr "Nenhum Podcast encontrado"
+msgstr "Nenhum Podcast Encontrado"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
 msgid ""
@@ -222,7 +222,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
 msgid "No Internet Radio Stations Found"
-msgstr "Nenhuma Estação de Rádio encontrada"
+msgstr "Nenhuma Estação de Rádio Encontrada"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
 msgid ""
@@ -292,12 +292,12 @@ msgstr "Podcast"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:45
 msgid "Export Playlists"
-msgstr "Exportar listas de reprodução"
+msgstr "Exportar Listas de Reprodução"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:46
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:217
 msgid "Set Music Folder"
-msgstr "Selecionar pasta de música"
+msgstr "Selecionar Pasta de Música"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Cancel"
@@ -306,7 +306,7 @@ msgstr "Cancelar"
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:53
 #, c-format
 msgid "Set Music Folder?"
-msgstr "Selecionar pasta de música?"
+msgstr "Selecionar Pasta de Música?"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:44
 msgid "Import medias to Library"
@@ -398,7 +398,7 @@ msgstr "Preferências</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:81
 msgid "Playlist Title"
-msgstr "Título da lista de reprodução"
+msgstr "Título da Lista de Reprodução"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
@@ -443,7 +443,7 @@ msgstr "kbps"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "Get Some Tunes"
-msgstr "Obter algumas músicas"
+msgstr "Obter Algumas Músicas"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "BeatBox can't seem to find your music."
@@ -451,7 +451,7 @@ msgstr "Beatbox não conseguiu encontrar suas músicas."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:219
 msgid "Rescan Music Folder"
-msgstr "Re-escanear a pasta de músicas"
+msgstr "Re-escanear a Pasta de Músicas"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:220
 msgid "Equalizer"
@@ -550,7 +550,7 @@ msgstr "Por favor verifique se a pasta de músicas está acessível."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1158
 msgid "Import Complete"
-msgstr "Importação concluída"
+msgstr "Importação Concluída"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1158
 msgid "BeatBox has imported your library."
