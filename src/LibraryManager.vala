@@ -798,7 +798,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return null;
 	}
 	
-	public void do_search(string search, ViewWrapper.Hint hint,string genre, string album_artist, string album,
+	public void do_search(string search, ViewWrapper.Hint hint, string album_artist,
 	Collection<int> to_search, ref LinkedList<int> results, ref LinkedList<int> album_results) {
 		string l_search = search.down();
 		int mediatype = 0;
@@ -826,12 +826,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(s != null && (s.mediatype == mediatype || mediatype == -1) && (!s.isTemporary || include_temps) &&
 			(l_search in s.title.down() || l_search in s.album_artist.down() || 
 			l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
-				if((genre == "All Genres" || s.genre == genre) && (album_artist == "All Artists" || s.album_artist == album_artist))
-					if(album == "All Albums" || s.album == album) {
-						results.add(i);
-					}
-					
+				if(album_artist == "All Artists" || s.album_artist == album_artist) {
+					results.add(i);
 					album_results.add(i);
+				}
 			}
 		}
 	}

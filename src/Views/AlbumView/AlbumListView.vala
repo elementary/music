@@ -171,7 +171,8 @@ public class BeatBox.AlbumListView : Window {
 
 		var songs = new LinkedList<int>();
 		var albums = new LinkedList<int>();
-		lm.do_search("", ((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).hint, "All Genres", m.album_artist, m.album, ((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).get_media_ids(), ref songs, ref albums);
+		lm.do_search("", ((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).hint, m.album_artist,
+		((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).get_media_ids(), ref songs, ref albums);
 
 		// decide rating. unless all are equal, show 0.
 		int overall_rating = -1;

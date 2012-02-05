@@ -97,20 +97,15 @@
       <summary>Whether or not the right panel is showing</summary>
       <description>Whether or not the right panel is showing</description>
     </key>
-    <key type="i" name="miller-height">
-      <default>250</default>
-      <summary>Miller columns height</summary>
-      <description>Miller columns height</description>
+    <key type="i" name="miller-width">
+      <default>200</default>
+      <summary>Miller column width</summary>
+      <description>Miller column width</description>
     </key>
     <key type="b" name="window-maximized">
       <default>false</default>
       <summary>Whether or not the window is maximized</summary>
       <description>Whether or not the window is maximized</description>
-    </key>
-    <key type="s" name="miller-column-visibilities">
-      <default>'GenreArtistAlbum'</default>
-      <summary>A string that is 'decoded' to represent which miller columns to show</summary>
-      <description>A string that is 'decoded' to represent which miller columns to show</description>
     </key>
     <key type="i" name="view-mode">
       <default>1</default>

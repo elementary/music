@@ -266,7 +266,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		sideTreeScroll.add(sideTree);
 
-		millerPane.set_position(settings.getMillerHeight());
+		millerPane.set_position(settings.getMillerWidth());
 
 		updateSensitivities();
 
@@ -975,7 +975,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 	public virtual void millerResized(Allocation rectangle) {
 		if(viewSelector.selected == 2) {
-			settings.setMillerHeight(rectangle.width);
+			settings.setMillerWidth(rectangle.width);
 		}
 	}
 

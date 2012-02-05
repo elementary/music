@@ -28,9 +28,7 @@ public class BeatBox.MillerColumns : HBox {
 	public LibraryWindow lw;
 	public Collection<int> medias;
 	
-	public MillerColumn genres;
 	public MillerColumn artists;
-	public MillerColumn albums;
 	
 	public signal void changed();
 	
@@ -74,8 +72,7 @@ public class BeatBox.MillerColumns : HBox {
 		
 		LinkedList<int> searched_medias = new LinkedList<int>();
 		LinkedList<int> searched_medias_albums = new LinkedList<int>();
-		lm.do_search(lw.searchField.get_text(), hint,
-					"All Genres", "All Artists", "All Albums",
+		lm.do_search(lw.searchField.get_text(), hint, "All Artists",
 					medias, ref searched_medias, ref searched_medias_albums);
 		
 		var artistSet = new HashMap<string, int>();

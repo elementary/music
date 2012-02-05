@@ -227,11 +227,9 @@ public class BeatBox.ViewWrapper : VBox {
 			else
 				to_search = ids;
 			
-			lm.do_search(lw.searchField.get_text(), hint,
-					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
+			lm.do_search(lw.searchField.get_text(), hint, lw.miller.artists.get_selected(),
 					to_search, ref shouldShow, ref shouldShowAlbum);
-			lm.do_search("", hint,
-					"All Genres", "All Artists", "All Albums",
+			lm.do_search("", hint, "All Artists",
 					to_search, ref shouldBe, ref shouldBeAlbum);
 			
 			var to_add = new LinkedList<int>();
@@ -345,8 +343,7 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			LinkedList<int> potentialShowing = new LinkedList<int>();
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
-			lm.do_search(lw.searchField.get_text(), hint,
-					lw.miller.genres.get_selected(), lw.miller.artists.get_selected(), lw.miller.albums.get_selected(),
+			lm.do_search(lw.searchField.get_text(), hint, lw.miller.artists.get_selected(),
 					to_add, ref potentialShowing, ref potentialShowingAlbum);
 			
 			list.append_medias(potentialShowing);
@@ -487,8 +484,7 @@ public class BeatBox.ViewWrapper : VBox {
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 			
 			//stdout.printf("seraching to populate with %d medias\n", medias.size);
-			lm.do_search(last_search, hint,
-					"All Genres", lw.miller.artists.get_selected(), "All Albums",
+			lm.do_search(last_search, hint, lw.miller.artists.get_selected(),
 					get_media_ids(), ref potentialShowing, ref potentialShowingAlbum);
 			//stdout.printf("seraching done\n");
 			list.set_show_next(potentialShowing);
@@ -535,10 +531,6 @@ public class BeatBox.ViewWrapper : VBox {
 				list.set_statusbar_text();
 				break;
 		}
-	}
-	
-	public virtual void filterViewItemClicked(string album, string artist) {
-		lw.miller.albums.set_selected(album);
 	}
 	
 	public void millerChanged() {

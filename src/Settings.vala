@@ -49,8 +49,7 @@ public class BeatBox.Settings : Object {
 	public static const string MORE_WIDTH = "more-width";
 	public static const string MORE_VISIBLE = "more-visible";
 	public static const string VIEW_MODE = "view-mode";
-	public static const string MILLER_HEIGHT = "miller-height";
-	public static const string MILLER_COLUMN_VISIBILITIES = "miller-column-visibilities";
+	public static const string MILLER_WIDTH = "miller-width";
 	
 	public static const string EQUALIZER_ENABLED = "equalizer-enabled";
 	public static const string SELECTED_PRESET = "selected-preset";
@@ -98,8 +97,7 @@ public class BeatBox.Settings : Object {
 		ui_settings.add(MORE_VISIBLE);
 		ui_settings.add(MORE_WIDTH);
 		ui_settings.add(VIEW_MODE);
-		ui_settings.add(MILLER_HEIGHT);
-		ui_settings.add(MILLER_COLUMN_VISIBILITIES);
+		ui_settings.add(MILLER_WIDTH);
 		
 		equalizer_settings.add(EQUALIZER_ENABLED);
 		equalizer_settings.add(SELECTED_PRESET);
@@ -280,16 +278,8 @@ public class BeatBox.Settings : Object {
 		return getInt(VIEW_MODE, 1);
 	}
 	
-	public int getMillerHeight() {
-		return getInt(MILLER_HEIGHT, 250);
-	}
-	
-	public void getMillerVisibilities(out bool genre, out bool artist, out bool album) {
-		string vis = getString(MILLER_COLUMN_VISIBILITIES, "GenreArtistAlbum");
-		
-		genre = vis.contains("Genre");
-		artist = vis.contains("Artist");
-		album = vis.contains("Album");
+	public int getMillerWidth() {
+		return getInt(MILLER_WIDTH, 200);
 	}
 	
 	public string getSearchString() {
@@ -436,17 +426,8 @@ public class BeatBox.Settings : Object {
 		setInt(VIEW_MODE, val);
 	}
 	
-	public void setMillerHeight(int val) {
-		setInt(MILLER_HEIGHT, val);
-	}
-	
-	public void setMillerColumnVisibilities(bool genre, bool artist, bool album) {
-		string vis = "";
-		if(genre)	vis += "Genre";
-		if(artist)	vis += "Artist";
-		if(album)	vis += "Album";
-			
-		setString(MILLER_COLUMN_VISIBILITIES, vis);
+	public void setMillerWidth(int val) {
+		setInt(MILLER_WIDTH, val);
 	}
 	
 	public void setSearchString(string val) {
