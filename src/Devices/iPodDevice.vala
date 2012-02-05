@@ -45,6 +45,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	HashMap<unowned GPod.Playlist, int> playlists;
 	HashMap<unowned GPod.Playlist, int> smart_playlists;
 	
+	HashMap<Media, unowned GPod.Track> to_add; // used to add all new songs at the end when idle
 	
 	public iPodDevice(LibraryManager lm, Mount mount) {
 		this.lm = lm;
@@ -72,6 +73,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		audiobooks = new HashMap<unowned GPod.Track, int>();
 		playlists = new HashMap<unowned GPod.Playlist, int>();
 		smart_playlists = new HashMap<unowned GPod.Playlist, int>();
+		to_add = new HashMap<Media, unowned GPod.Track>();
 	}
 	
 	public DevicePreferences get_preferences() {
@@ -338,6 +340,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		lm.start_file_operations("Syncing <b>" + getDisplayName() + "</b>...");
 		current_operation = "Syncing <b>" + getDisplayName() + "</b>...";
 		lm.lw.updateSensitivities();
+		to_add = new HashMap<Media, unowned GPod.Track>();
 		this.list = list;
 		
 		try {
@@ -486,6 +489,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			foreach(unowned GPod.Track t in medias.keys) {
 				used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
 			}
+			foreach(unowned GPod.Track t in to_add.values) {
+				used_paths.add(Path.build_path("/", get_path(), GPod.iTunesDB.filename_ipod2fs(t.ipod_path)));
+			}
 			cleanup_files(music_folder, used_paths);
 			
 			index = 101;
@@ -506,6 +512,19 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		
 		Idle.add( () => {
+			lm.add_medias(to_add.keys, false);
+			foreach(var e in to_add.entries) {
+				unowned GPod.Track added = e.value;
+				var on_ipod = e.key;
+				medias.set(added, on_ipod.rowid);
+				if(added.mediatype == GPod.MediaType.AUDIO)
+					this.songs.set(added, on_ipod.rowid);
+				else if(added.mediatype == GPod.MediaType.PODCAST)
+					this.podcasts.set(added, on_ipod.rowid);
+				else if(added.mediatype == GPod.MediaType.AUDIOBOOK)
+					this.audiobooks.set(added, on_ipod.rowid);
+			}
+			
 			LinkedList<Media> temps = new LinkedList<Media>();
 			foreach(int i in medias.values)
 				temps.add(lm.media_from_id(i));
@@ -514,7 +533,6 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			lm.update_medias(temps, false, true);
 			pref.last_sync_time = (int)time_t();
 			lm.save_device_preferences();
-			lm.lw.searchField.changed();
 			currently_syncing = false;
 			
 			sync_finished(!sync_cancelled);
@@ -569,15 +587,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		if(success) {
 			Media on_ipod = Media.from_track(get_path(), added);
-			lm.add_media(on_ipod, false);
-			
-			medias.set(added, on_ipod.rowid);
-			if(added.mediatype == GPod.MediaType.AUDIO)
-				this.songs.set(added, on_ipod.rowid);
-			else if(added.mediatype == GPod.MediaType.PODCAST)
-				this.podcasts.set(added, on_ipod.rowid);
-			else if(added.mediatype == GPod.MediaType.AUDIOBOOK)
-				this.audiobooks.set(added, on_ipod.rowid);
+			to_add.set(on_ipod, added);
 		}
 		else {
 			stdout.printf("Failed to copy track %s to iPod. Removing it from database.\n", added.title);

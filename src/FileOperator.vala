@@ -262,7 +262,7 @@ public class BeatBox.FileOperator : Object {
 			
 			if(settings.getWriteMetadataToFile()) {
 				TagLib.File tag_file;
-				tag_file = new TagLib.File(s.uri.replace("file://",""));
+				tag_file = new TagLib.File(File.new_for_uri(s.uri).get_path());
 				
 				if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
 					try {

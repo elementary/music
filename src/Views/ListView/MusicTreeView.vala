@@ -526,7 +526,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		view.get_selection().set_mode(SelectionMode.MULTIPLE);
 
 		// drag source
-		drag_source_set(view, Gdk.ModifierType.BUTTON1_MASK, {}, Gdk.DragAction.MOVE);
+		drag_source_set(view, Gdk.ModifierType.BUTTON1_MASK, {}, Gdk.DragAction.COPY);
 		Gtk.drag_source_add_uri_targets(view);
 
 		// column chooser menu
