@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-03 22:16+0100\n"
-"PO-Revision-Date: 2012-02-04 15:45+0000\n"
+"PO-Revision-Date: 2012-02-06 00:07+0000\n"
 "Last-Translator: Marc Demierre <Unknown>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-05 05:08+0000\n"
-"X-Generator: Launchpad (build 14738)\n"
+"X-Launchpad-Export-Date: 2012-02-06 05:04+0000\n"
+"X-Generator: Launchpad (build 14747)\n"
 "Language: \n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:88
@@ -404,11 +404,11 @@ msgstr "Titre de la liste de lecture"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
-msgstr ""
+msgstr "Correspondance"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
-msgstr ""
+msgstr "parmi les suivantes:"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:121
 msgid "Limit to"
@@ -445,7 +445,7 @@ msgstr "ko/s"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "Obtenez de la musique"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "BeatBox can't seem to find your music."
@@ -453,7 +453,7 @@ msgstr "BeatBox ne trouve pas votre musique."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:219
 msgid "Rescan Music Folder"
-msgstr ""
+msgstr "Scanner à nouveau le dossier Musique"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:220
 msgid "Equalizer"
@@ -511,7 +511,7 @@ msgstr "Radio Internet"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:506
 msgid "Music Store"
-msgstr ""
+msgstr "Magasin de musique"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:678
 msgid "Unknown Artist"
@@ -536,15 +536,15 @@ msgstr "Importer de la musique"
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1067
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr ""
+msgstr "<b>Importation</b> de musique depuis <b>%s</b> dans la bibliothèque."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1083
 msgid "Rescanning music folder for changes"
-msgstr ""
+msgstr "Scan des changements dans le dossier Musique"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1090
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "Impossible de trouver le dossier de musique"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1090
 msgid "Please make sure that your music folder is accessible and mounted."
@@ -569,4 +569,4 @@ msgstr "Importer des chansons depuis un CD audio"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1541
 msgid "Import media from device"
-msgstr ""
+msgstr "Importer des médias depuis un périphérique"

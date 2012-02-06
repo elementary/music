@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-03 22:16+0100\n"
-"PO-Revision-Date: 2012-02-04 11:46+0000\n"
+"PO-Revision-Date: 2012-02-05 12:12+0000\n"
 "Last-Translator: Codrin Mihai Enea <codrin.enea@yahoo.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-05 05:08+0000\n"
-"X-Generator: Launchpad (build 14738)\n"
+"X-Launchpad-Export-Date: 2012-02-06 05:04+0000\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:88
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
@@ -166,7 +166,7 @@ msgstr "Data adăugării"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:547
 msgid "Last Played"
-msgstr "Ultima redare"
+msgstr "Ultima redată"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:548
 msgid "BPM"
@@ -174,11 +174,11 @@ msgstr "BPM"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/RadioListView.vala:282
 msgid "Remove Station"
-msgstr "Elimină stație"
+msgstr "Elimină post radio"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
 msgid "Similar Media View"
-msgstr "Vedere Similar Media"
+msgstr "Vedere similar media"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
 msgid ""
@@ -196,7 +196,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
 msgid "Audio CD Invalid"
-msgstr "Audio CD Invalid"
+msgstr "CD audio invalid"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
 msgid "BeatBox could not read the contents of this Audio CD."
@@ -204,13 +204,13 @@ msgstr "BeatBox nu a putut citi conținutul acestui CD audio."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
 msgid "No Podcasts Found"
-msgstr "Nici un Podcast găsit"
+msgstr "Nici un podcast găsit"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
 msgid ""
 "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
 msgstr ""
-"Pentru a adăuga un Podcast, vizitează un website precum Miro Guide pentru a "
+"Pentru a adăuga un podcast, vizitează un website precum Miro Guide pentru a "
 "găsi RSS feed-uri."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
@@ -263,7 +263,7 @@ msgid ""
 "Some songs may not have matches."
 msgstr ""
 "Asigurați-vă ca toate informațiile melodiei sunt corecte și că sunteți "
-"conectat la internet. \n"
+"conectat la internet.\n"
 "Unele melodii nu au potriviri."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:68
@@ -294,12 +294,12 @@ msgstr "Podcast"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:45
 msgid "Export Playlists"
-msgstr "Exportă Liste de redare"
+msgstr "Exportă liste de redare"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:46
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:217
 msgid "Set Music Folder"
-msgstr "Setează Dosarul cu Muzică"
+msgstr "Setează dosarul cu muzică"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Cancel"
@@ -331,11 +331,11 @@ msgstr "Numele listei de redare"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:80
 msgid "Podcast RSS Source"
-msgstr "Sursa RSS a Podcast-ului"
+msgstr "Sursa RSS a podcast-ului"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:81
 msgid "Podcast Source..."
-msgstr "Sursa Podcast-ului"
+msgstr "Sursa podcast-ului"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:84
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:116
@@ -345,7 +345,7 @@ msgstr "Adaugă"
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:88
 #, c-format
 msgid "Podcast RSS Source</b>"
-msgstr "Sursa RSS a Podcast-ului</b>"
+msgstr "Sursa RSS a podcast-ului</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all medias"
@@ -386,12 +386,12 @@ msgstr "Opţiuni"
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 #, c-format
 msgid "<b>Name of Playlist</b>"
-msgstr "<b>Numele Listei de redare</b>"
+msgstr "<b>Numele listei de redare</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:77
 #, c-format
 msgid "<b>Rules</b>"
-msgstr "<b>Regului</b>"
+msgstr "<b>Reguli</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:78
 #, c-format
@@ -400,7 +400,7 @@ msgstr "Opțiuni</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:81
 msgid "Playlist Title"
-msgstr "Titlul Listei de redare"
+msgstr "Titlul listei de redare"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
@@ -416,7 +416,7 @@ msgstr "Limitează la"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 msgid "medias"
-msgstr "Fișiere"
+msgstr "fișiere"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:394
@@ -536,7 +536,7 @@ msgstr "Importă muzică"
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1067
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "<b>Se importă</b>muzică din <b>%s</b>in bibliotecă."
+msgstr "<b>Se importă</b> muzică din <b>%s</b>in bibliotecă."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1083
 msgid "Rescanning music folder for changes"
@@ -544,7 +544,7 @@ msgstr "Se verifică dosarul cu muzică pentru schimbari"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1090
 msgid "Could not find Music Folder"
-msgstr "Nu s-a găsit Dosarul cu Muzică"
+msgstr "Nu s-a găsit dosarul cu muzică"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1090
 msgid "Please make sure that your music folder is accessible and mounted."
@@ -561,11 +561,11 @@ msgstr "BeatBox a importat biblioteca dumneavoastră."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1346
 msgid "Choose Music Folder"
-msgstr "Alege Dosarul de muzică"
+msgstr "Alege dosarul de muzică"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1541
 msgid "Import songs from audio CD"
-msgstr "Importa melodii de pe CD Audio"
+msgstr "Importa melodii de pe CD audio"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1541
 msgid "Import media from device"
