@@ -91,6 +91,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.margin = 20;
 		add(icons);
 		
+		icons.set_tooltip_column(2);
+		
 		show_all();
 		
 		icons.button_release_event.connect(buttonReleaseEvent);
@@ -98,6 +100,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.item_activated.connect(itemActivated);
 		this.size_allocate.connect(resized);
 		this.focus_out_event.connect(on_focus_out);
+		
 		
 		//this.grab_focus ();
 	}

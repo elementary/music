@@ -148,7 +148,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 				val = TEXT_MARKUP.printf(album.replace("&", "&amp;"), album_artist.replace("&", "&amp;"));
 			}
 			else if(column == 2) {
-				val = s;
+//				val = s;
+				val = s.album + "\n" + s.album_artist;
 			}
             else {
                 val = Value(get_column_type(column));
