@@ -161,9 +161,7 @@ public class BeatBox.PresetList : ComboBox {
 			set_title ((o as EqualizerPreset).name);
 			last_selected_preset = o as EqualizerPreset;
 
-			if (automatic_selected)
-				add_delete_preset_option();
-			else if (!(o as EqualizerPreset).is_default)
+			if (!(o as EqualizerPreset).is_default)
 				add_delete_preset_option();
 			else
 				remove_delete_option();
@@ -276,14 +274,27 @@ public class BeatBox.PresetList : ComboBox {
 	}
 
 	private void add_delete_preset_option () {
+		bool already_added = false;
 		TreeIter last_iter, new_iter;
+
 		for(int i = 0; store.get_iter_from_string(out last_iter, i.to_string()); ++i) {
 			string text;
 			store.get(last_iter, 1, out text);
 
-			if(text != null && text == SEPARATOR_NAME)
+			if(text != null && text == SEPARATOR_NAME) {
+				new_iter = last_iter;
+
+				if (store.iter_next(ref new_iter)) {
+					store.get(new_iter, 1, out text);
+					already_added = (text == DELETE_PRESET);				
+				}
+			
 				break;
+			}
 		}
+
+		if (already_added)
+			return;
 
 		// Add option
 		store.insert_after(out new_iter, last_iter);
