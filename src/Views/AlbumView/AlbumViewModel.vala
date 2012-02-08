@@ -71,6 +71,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 			return typeof(Gdk.Pixbuf);
 		else if(col == 1)
 			return typeof(string);
+		else if(col == 2)
+			return typeof(string);
 		else
 			return typeof(Media);
 		
@@ -149,7 +151,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 			}
 			else if(column == 2) {
 //				val = s;
-				val = s.album + "\n" + s.album_artist;
+				val = TEXT_MARKUP.printf ("<b>" + s.album.replace("&", "&amp;") + "</b>" , " " + s.album_artist.replace("&", "&amp;"));
 			}
             else {
                 val = Value(get_column_type(column));
