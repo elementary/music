@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-03 22:16+0100\n"
-"PO-Revision-Date: 2012-02-04 10:47+0000\n"
+"PO-Revision-Date: 2012-02-07 17:09+0000\n"
 "Last-Translator: Satchit Bhogle <Unknown>\n"
 "Language-Team: Hindi <hi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-06 05:04+0000\n"
+"X-Launchpad-Export-Date: 2012-02-08 07:51+0000\n"
 "X-Generator: Launchpad (build 14747)\n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:88
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr "साधन से आयात करें"
+msgstr "उपकरण से आयात करें"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:89
 msgid "Sync"
@@ -54,7 +54,7 @@ msgstr "नया प्लेलिस्ट"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:123
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "नया बुध्दिमान प्लेलिस्ट"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:124
 msgid "Edit"
@@ -189,7 +189,7 @@ msgstr ""
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
 msgid "You can then start playing those medias, or save them for later."
 msgstr ""
-"आप उन गानों को फिर बजाना शुरु कर सकतें हैं या कभी और बजाने के लिए सेव कर "
+"आप उन गानों को फिर बजाना शुरु कर सकतें हैं या कभी और बजाने के लिए सहेज कर "
 "सकते है."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
@@ -198,7 +198,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
 msgid "BeatBox could not read the contents of this Audio CD."
-msgstr ""
+msgstr "बीटबाक्स इस संगीत CD की सामग्री को पढ नही पाया."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
 msgid "No Podcasts Found"
@@ -231,11 +231,11 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
 msgid "Loading similar songs"
-msgstr ""
+msgstr "समान गानों को लोड कर रहा है"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
 msgid "BeatBox is loading songs similar to"
-msgstr ""
+msgstr "बीटबाक्स इस गाने के समान गानों को लोड कर रहा है:"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
 msgid "..."
@@ -247,13 +247,15 @@ msgstr "कोई समान गाने नहीं मिले"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
 msgid "BeatBox could not find songs similar to"
-msgstr ""
+msgstr "बीटबाक्स इस गाने के समान गाने नहीं ढूँढ पाया."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
 msgid ""
 "Make sure all song info is correct and you are connected to the Internet.\n"
 "Some songs may not have matches."
 msgstr ""
+"सुनिश्चित करें कि गानों की जानकारी सही है और आप इंटरनेट से सम्पर्क कर सकते "
+"हैं."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:68
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:85
@@ -288,16 +290,16 @@ msgstr "पोडकास्ट निर्यात करें"
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:46
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:217
 msgid "Set Music Folder"
-msgstr ""
+msgstr "संगीत फोल्डर को सेट करे"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करें"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:53
 #, c-format
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "इसे संगीत फोल्डर बनाएँ?"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:44
 msgid "Import medias to Library"
@@ -338,7 +340,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all medias"
-msgstr ""
+msgstr "सभी गानों को आयात करें"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
@@ -358,11 +360,11 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:180
 msgid "Check Album"
-msgstr ""
+msgstr "एल्बम को जाँचें"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:181
 msgid "Check Artist"
-msgstr ""
+msgstr "संगीतकार को जाँचें"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 msgid "Rules"
@@ -370,22 +372,22 @@ msgstr "नियम"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:70
 msgid "Options"
-msgstr "विकल्‍प"
+msgstr "पसंद"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 #, c-format
 msgid "<b>Name of Playlist</b>"
-msgstr ""
+msgstr "<b>प्लेलिस्ट का नाम</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:77
 #, c-format
 msgid "<b>Rules</b>"
-msgstr ""
+msgstr "<b>नियम</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:78
 #, c-format
 msgid "Options</b>"
-msgstr ""
+msgstr "पसंद</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:81
 msgid "Playlist Title"
@@ -414,11 +416,11 @@ msgstr "है"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "contains"
-msgstr ""
+msgstr "में हैं"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "does not contain"
-msgstr ""
+msgstr "में नहीं हैं"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:395
 msgid "is not"
@@ -426,7 +428,7 @@ msgstr "नहीं है"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:437
 msgid "seconds"
-msgstr "सेकेंड"
+msgstr "सेकंड"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:445
 msgid "kbps"
@@ -438,7 +440,7 @@ msgstr "गाने पाइए"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "BeatBox can't seem to find your music."
-msgstr ""
+msgstr "बीटबाक्स आपके गानों को ढूँढ नहीं पा रहा है."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:219
 msgid "Rescan Music Folder"
@@ -525,7 +527,7 @@ msgstr "संगीत आयात करें"
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1067
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr ""
+msgstr "<b>%s</b> से लाइब्ररी में संगीत <b>आयात</b> कर रहा है."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1083
 msgid "Rescanning music folder for changes"
@@ -541,20 +543,20 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1158
 msgid "Import Complete"
-msgstr ""
+msgstr "आयात पूर्ण"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1158
 msgid "BeatBox has imported your library."
-msgstr ""
+msgstr "बीटबाक्स ने आपकी लाइब्ररी को आयात किया है."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1346
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "संगीत फोल्डर को चुनिएँ"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1541
 msgid "Import songs from audio CD"
-msgstr ""
+msgstr "संगीत CD से आयात करें"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1541
 msgid "Import media from device"
-msgstr ""
+msgstr "उपकरण से गाने आयात करें"
