@@ -24,6 +24,10 @@ using Gee;
 using Gtk;
 
 public class BeatBox.AlbumListView : Window {
+
+	public const int WIDTH = 350;
+	public const int HEIGHT = 400; 
+
 	LibraryManager lm;
 
 	Label album_label;
@@ -33,7 +37,7 @@ public class BeatBox.AlbumListView : Window {
 	bool setting_songs;
 
 	private const string WIDGET_STYLESHEET = """
-		.AlbumListDialogBase {
+		.BeatBoxAlbumList {
 			background-image: -gtk-gradient (radial, center center, 0,
                                              center center, 1,
 			                                 from (#404040),
@@ -64,14 +68,14 @@ public class BeatBox.AlbumListView : Window {
 		}
 
 		GtkTreeView row:selected {
-				background-image: -gtk-gradient (linear,
-		                                         left top,
-					                             left bottom,
-					                             from (shade (@selected_bg_color, 1.30)),
-					                             to (shade (@selected_bg_color, 0.98)));
+			background-image: -gtk-gradient (linear,
+			                                 left top,
+			                                 left bottom,
+			                                 from (shade (@selected_bg_color, 1.30)),
+			                                 to (shade (@selected_bg_color, 0.98)));
 		}
 
-		.AlbumListDialogClose:hover {
+		.button:hover {
 			background-image: -gtk-gradient (linear,
 			                                 left top,
 			                                 left bottom,
@@ -110,8 +114,8 @@ public class BeatBox.AlbumListView : Window {
 		set_skip_taskbar_hint(true);
 		this.destroy_with_parent = true;
 		set_title("Album List");
-		set_size_request(350, 400);
-		set_default_size(350, 400);
+		set_size_request(WIDTH, HEIGHT);
+		set_default_size(WIDTH, HEIGHT);
 
 		// apply css styling
 		var style_provider = new CssProvider();
@@ -122,8 +126,8 @@ public class BeatBox.AlbumListView : Window {
 			warning ("AlbumListView: %s", e.message);
 		}
 
-		get_style_context().add_class("AlbumListDialogBase");
-		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
+		get_style_context().add_class("BeatBoxAlbumList");
+		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
 
 		// add close button
 		var close = new Gtk.Button ();
@@ -210,3 +214,4 @@ public class BeatBox.AlbumListView : Window {
 		return false;
 	}
 }
+

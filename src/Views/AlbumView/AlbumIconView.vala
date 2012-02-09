@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012	   Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -362,8 +362,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		y += alloc.y;
 
 		// center it on this icon view
-		x += (alloc.width/2) - 175;
-		y += (alloc.height/2) - 100;
+		x += (alloc.width - lw.alv.WIDTH) / 2;
+		y += (alloc.height - lw.alv.HEIGHT + 75) / 2;
+
 		lw.alv.move(x, y);
 
 		lw.alv.show_all();
