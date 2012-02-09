@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012	   Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -91,7 +91,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	// Base color
 	public static Gdk.RGBA base_color;
 
-    Gtk.Menu settingsMenu;
+	Gtk.Menu settingsMenu;
 
 	public Notify.Notification notification;
 
@@ -239,7 +239,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		var shuffle_off_image = Icons.SHUFFLE_OFF_ICON.render_image (IconSize.MENU);
 		var repeat_on_image = Icons.REPEAT_ON_ICON.render_image (IconSize.MENU);
 		var repeat_off_image = Icons.REPEAT_OFF_ICON.render_image (IconSize.MENU);
-        var info_image = Icons.INFO_ICON.render_image (IconSize.MENU);
+		var info_image = Icons.INFO_ICON.render_image (IconSize.MENU);
 
 		shuffleChooser = new SimpleOptionChooser.from_image (shuffle_on_image, shuffle_off_image);
 		repeatChooser = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
@@ -336,14 +336,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		ToolItem searchFieldBin = new ToolItem();
 		topDisplayBin.add(topDisplay);
 		topDisplayBin.set_border_width(1);
-        topDisplayBin.margin_left = 12;
+		topDisplayBin.margin_left = 12;
 		viewSelectorBin.add(viewSelectorContainer);
 		viewSelectorBin.set_border_width(3);
 		viewSelectorBin.margin_left = 12;
 		searchFieldBin.add(searchField);
-        searchFieldBin.margin_left = 12;
-        searchFieldBin.margin_right = 12;
-		
+		searchFieldBin.margin_left = 12;
+		searchFieldBin.margin_right = 12;
+
 		topDisplayBin.set_expand(true);
 
 		// Set theming
@@ -386,8 +386,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
 
-        shuffleChooser.margin_left = 12;
-        
+		shuffleChooser.margin_left = 12;
+
 		statusBar.pack_start(shuffleChooser, false, false, 2);
 		statusBar.pack_start(repeatChooser, false, false, 2);
 		statusBar.pack_start(statusBarLabel, true, true, 0);
@@ -419,7 +419,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		drag_data_received.connect(dragReceived);
 
 		viewSelector.selected = settings.getViewMode();
-		
+
 		int i = settings.getLastMediaPlaying();
 		if(i != 0 && lm.media_from_id(i) != null && File.new_for_uri(lm.media_from_id(i).uri).query_exists()) {
 			lm.media_from_id(i).resume_pos;
@@ -447,7 +447,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		show_all();
 		resize(settings.getWindowWidth(), this.default_height);
-		
+
 		updateSensitivities();
 
 		if(lm.song_ids().size == 0)
@@ -1454,7 +1454,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}*/
 	}
-	
+
 	public void searchFieldActivate() {
 		Widget w = sideTree.getSelectedWidget();
 

@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012	   Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -49,7 +49,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	bool removing_medias;
 
 	string TEXT_MARKUP = "<span weight='medium' size='10500'>%s\n</span><span foreground=\"#999\">%s</span>";
-	string TOOLTIP_MARKUP = "<span weight='medium' size='10500'>%s</span>\n%s";
+	string TOOLTIP_MARKUP = "<span weight='bold' size='10500'>%s</span>\n%s";
 
 	/** Initialize data storage, columns, etc. **/
 	public AlbumViewModel(LibraryManager lm, Gdk.Pixbuf defaultImage) {
@@ -70,10 +70,10 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	public Type get_column_type (int col) {
 		if(col == 0)
 			return typeof(Gdk.Pixbuf);
-		else if (col == 2)
-			return typeof(Media);
-		else
+		else if (col == 1 || col == 3)
 			return typeof(string);
+		else
+			return typeof(Media);
 	}
 
 	/** Returns a set of flags supported by this interface **/
@@ -111,7 +111,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column > 2) {
+		if(iter.stamp != this.stamp || column < 0 || column > 3) {
 			val = Value(get_column_type(column));
 			return;
 		}
