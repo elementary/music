@@ -336,10 +336,14 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		ToolItem searchFieldBin = new ToolItem();
 		topDisplayBin.add(topDisplay);
 		topDisplayBin.set_border_width(1);
+        topDisplayBin.margin_left = 12;
 		viewSelectorBin.add(viewSelectorContainer);
 		viewSelectorBin.set_border_width(3);
+		viewSelectorBin.margin_left = 12;
 		searchFieldBin.add(searchField);
-
+        searchFieldBin.margin_left = 12;
+        searchFieldBin.margin_right = 12;
+		
 		topDisplayBin.set_expand(true);
 
 		// Set theming
@@ -382,6 +386,8 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
 
+        shuffleChooser.margin_left = 12;
+        
 		statusBar.pack_start(shuffleChooser, false, false, 2);
 		statusBar.pack_start(repeatChooser, false, false, 2);
 		statusBar.pack_start(statusBarLabel, true, true, 0);
