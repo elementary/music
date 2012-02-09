@@ -199,6 +199,7 @@ public class BeatBox.ViewWrapper : VBox {
 		errorBox.show();
 		list.hide();
 		albumView.hide();
+		lw.alv.hide ();
 		similarsFetched = false;
 	}
 	
@@ -386,6 +387,7 @@ public class BeatBox.ViewWrapper : VBox {
 				errorBox.show_all();
 				list.hide();
 				albumView.hide();
+				lw.alv.hide ();
 				
 				return true;
 			}
@@ -395,6 +397,7 @@ public class BeatBox.ViewWrapper : VBox {
 				if(currentView == ViewType.LIST) {
 					list.show_all();
 					albumView.hide();
+					lw.alv.hide ();
 				}
 				else {
 					list.hide();
@@ -445,6 +448,7 @@ public class BeatBox.ViewWrapper : VBox {
 				errorBox.show_all();
 				list.hide();
 				albumView.hide();
+				lw.alv.hide ();
 				stdout.printf("1\n");
 				
 				in_update = false;
@@ -457,6 +461,7 @@ public class BeatBox.ViewWrapper : VBox {
 					errorBox.show_all();
 					list.hide();
 					albumView.hide();
+					lw.alv.hide ();
 					stdout.printf("2\n");
 					
 					in_update = false;
@@ -506,6 +511,7 @@ public class BeatBox.ViewWrapper : VBox {
 				list.populate_view();
 				list.show_all();
 				albumView.hide();
+				lw.alv.hide ();
 				
 				if(!isCurrentView)
 					list.set_is_current_view(false);
