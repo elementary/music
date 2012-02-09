@@ -42,7 +42,7 @@ install(FILES icons/16x16/actions/media-playback-pause-symbolic.svg DESTINATION 
 
 # starred and not-starrred icons
 install(FILES icons/16x16/status/starred.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
-install(FILES icons/16x16/status/not-starred.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
+install(FILES icons/16x16/status/non-starred.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/starred-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/non-starred-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 

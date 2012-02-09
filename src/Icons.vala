@@ -20,9 +20,9 @@
  * Boston, MA 02111-1307, USA.
  */
 
+
 /**
- * Here we store the icon information, Gdk.Pixbuf-related functions and even
- * preloaded pixbufs.
+ * Here is where the icon information, functions and pixbufs are stored.
  */
 
 namespace Icons {
@@ -109,9 +109,7 @@ namespace Icons {
 	public Gdk.Pixbuf DEFAULT_ALBUM_ART_PIXBUF;
 	public Gdk.Pixbuf BEATBOX_DIALOG_PIXBUF; // Used in the notifications from LibraryWindow.vala
 
-	/**
-	 * These methods are useful for rendering non-loaded icons (Stock icons, etc.)
-	 **/
+
 	public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
 		var icon = new BeatBox.Icon (icon_name, null, null, null, false);
 		return icon.render (size, context);
@@ -123,7 +121,7 @@ namespace Icons {
 	}
 
 	/**
-	 * @param surface_size the size of the new pixbuf. Set a value of 0 to use the pixbuf's natural size.
+	 * @param surface_size size of the new pixbuf. Set a value of 0 to use the pixbuf's natural size.
 	 **/
 	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size = ALBUM_VIEW_IMAGE_SIZE,
 	                                      int shadow_size = 5, double alpha = 0.8) {
@@ -169,7 +167,7 @@ namespace Icons {
 		LASTFM_LOVE_ICON = new BeatBox.Icon ("lastfm-love", 16, Type.ACTION, null, true);
 		LASTFM_BAN_ICON = new BeatBox.Icon ("lastfm-ban", 16, Type.ACTION, null, true);
 		STARRED_ICON = new BeatBox.Icon ("starred", 16, Type.STATUS, null, true);
-		NOT_STARRED_ICON = new BeatBox.Icon ("not-starred", 16, Type.STATUS, null, true);
+		NOT_STARRED_ICON = new BeatBox.Icon ("non-starred", 16, Type.STATUS, null, true);
 		INFO_ICON = new BeatBox.Icon ("help-info", 16, Type.STATUS, null, true);
 		NEW_PODCAST_ICON = new BeatBox.Icon ("podcast-new", 16, Type.STATUS, null, true);
 
