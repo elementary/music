@@ -85,7 +85,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		icons.set_pixbuf_column(0);
 		icons.set_markup_column(1);
-		icons.set_tooltip_column(2);
+		icons.set_tooltip_column(3);
 
 		icons.set_item_width(ITEM_WIDTH);
 		icons.item_padding = 0;

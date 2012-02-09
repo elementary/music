@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012	   Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -483,6 +483,9 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 				tvc.resizable = false;
 				tvc.reorderable = false;
 
+				tvc.clear_attributes (tvc.get_cells().nth_data(0));
+				tvc.clear_attributes (tvc.get_cells().nth_data(1));
+
 				tvc.set_cell_data_func(tvc.get_cells().nth_data(0), iconDataFunc);
 				tvc.set_cell_data_func(tvc.get_cells().nth_data(1), iconDataFunc);
 			}
@@ -639,8 +642,6 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 			showIndicator = s.showIndicator;
 
 		if(renderer is CellRendererPixbuf) {
-			layout.clear_attributes (renderer);
-			
 			Value? icon;
 			model.get_value (iter, 1, out icon);
 
@@ -1378,3 +1379,4 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		view.get_style_context().add_provider(style, STYLE_PROVIDER_PRIORITY_APPLICATION);
 	}
 }
+

@@ -48,7 +48,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	public TreeIter end_visible;
 	bool removing_medias;
 
-	string TEXT_MARKUP = "<span weight='medium' size='10500'> %s\n</span><span foreground=\"#999\">%s</span>";
+	string TEXT_MARKUP = "<span weight='medium' size='10500'>%s\n</span><span foreground=\"#999\">%s</span>";
+	string TOOLTIP_MARKUP = "<span weight='medium' size='10500'>%s</span>\n%s";
 
 	/** Initialize data storage, columns, etc. **/
 	public AlbumViewModel(LibraryManager lm, Gdk.Pixbuf defaultImage) {
@@ -69,11 +70,10 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	public Type get_column_type (int col) {
 		if(col == 0)
 			return typeof(Gdk.Pixbuf);
-		else if(col == 1 || col == 2)
-			return typeof(string);
-		else
+		else if (col == 2)
 			return typeof(Media);
-
+		else
+			return typeof(string);
 	}
 
 	/** Returns a set of flags supported by this interface **/
@@ -148,7 +148,10 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 				val = TEXT_MARKUP.printf(album.replace("&", "&amp;"), album_artist.replace("&", "&amp;"));
 			}
 			else if(column == 2) {
-				val = TEXT_MARKUP.printf ("<b>" + s.album.replace("&", "&amp;") + "</b>" , " " + s.album_artist.replace("&", "&amp;"));
+				val = s;
+			}
+			else if(column == 3) {
+				val = TOOLTIP_MARKUP.printf (s.album.replace("&", "&amp;"), s.album_artist.replace("&", "&amp;"));
 			}
 			else {
 				val = Value(get_column_type(column));
