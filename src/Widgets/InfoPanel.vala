@@ -61,6 +61,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		loveMedia = new Button();
 		banMedia = new Button();
 		coverArt = new Gtk.Image();
+		coverArt.set_size_request (140, 140);
 		rating = new RatingWidget(null, true, IconSize.MENU);
 		album = new Label("Album");
 		year = new Label("Year");
@@ -96,7 +97,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		coverArtScroll = new ScrolledWindow(null, null);
 		Viewport imageVP = new Viewport(null, null);
-		coverArtScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
+		coverArtScroll.set_policy(PolicyType.NEVER, PolicyType.NEVER);
 		imageVP.set_shadow_type(ShadowType.NONE);
 		imageVP.add(coverArt);
 		imageVP.override_background_color (StateFlags.NORMAL, lw.base_color);
