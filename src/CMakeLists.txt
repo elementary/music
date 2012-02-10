@@ -90,7 +90,7 @@ vala_precompile(VALA_C
     LastFM/Tag.vala
     LastFM/TrackInfo.vala
     LastFM/ArtistInfo.vala
-    LastFM/SimilarSongs.vala
+    LastFM/SimilarMedia.vala
     BeatBox.vala
     Devices/DeviceManager.vala
     Devices/Device.vala
@@ -104,18 +104,18 @@ vala_precompile(VALA_C
     Objects/TreeViewSetup.vala
     Objects/SmartQuery.vala
     Objects/EqualizerPreset.vala
-    Objects/SongInfo.vala
+    Objects/MediaInfo.vala
     Objects/SmartPlaylist.vala
     Objects/LyricFetcher.vala
     Objects/SoundMenuIntegration.vala
-    Objects/Song.vala
+    Objects/Media.vala
     Objects/MediaKeyListener.vala
     Objects/MPRIS.vala
     Objects/Playlist.vala
     Objects/PodcastManager.vala
     Objects/Icon.vala
     Widgets/TopDisplay.vala
-    Widgets/SimilarSongsView.vala
+    Widgets/SimilarMediaView.vala
     Widgets/ScrollingLabel.vala
     Widgets/InfoPanel.vala
     Widgets/WarningLabel.vala
