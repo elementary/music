@@ -54,14 +54,14 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		EventBox eb = new EventBox();
 		
 		// paint the background color
-		eb.override_background_color (StateFlags.NORMAL, lw.base_color);
+		eb.override_background_color (StateFlags.NORMAL, lw.BASE_COLOR);
 		
 		title = new Label("Title");
 		artist = new Label("Artist");
 		loveMedia = new Button();
 		banMedia = new Button();
 		coverArt = new Gtk.Image();
-		coverArt.set_size_request (140, 140);
+		coverArt.set_size_request (40, 40);
 		rating = new RatingWidget(null, true, IconSize.MENU);
 		album = new Label("Album");
 		year = new Label("Year");
@@ -100,7 +100,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		coverArtScroll.set_policy(PolicyType.NEVER, PolicyType.NEVER);
 		imageVP.set_shadow_type(ShadowType.NONE);
 		imageVP.add(coverArt);
-		imageVP.override_background_color (StateFlags.NORMAL, lw.base_color);
+		imageVP.override_background_color (StateFlags.NORMAL, lw.BASE_COLOR);
 		coverArtScroll.add(imageVP);
 		
 		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
@@ -236,14 +236,14 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 					GLib.AppInfo.launch_default_for_uri (lm.media_info.track.url, null);
 				}
 				catch(GLib.Error err) {
-					stdout.printf("Could not open url in Last FM: %s\n", err.message);
+					message("Could not open url in Last FM: %s\n", err.message);
 				}
 				
 				return null;
 			}, false);
 		}
 		catch(GLib.ThreadError err) {
-			stdout.printf("Could not create thread to open title:%s\n", err.message);
+			message("Could not create thread to open title:%s\n", err.message);
 			
 		}
 		
@@ -266,7 +266,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	}
 	
 	void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
-		stdout.printf("drag received\n");
+		message("drag received\n");
 		bool success = true;
 		
 		foreach(string singleUri in data.get_uris()) {
@@ -282,7 +282,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 						dest.delete();
 					}
 					catch(Error err) {
-						stdout.printf("Could not delete previous file\n");
+						message("Could not delete previous file\n");
 					}
 				}
 				
@@ -291,7 +291,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 				}
 				catch(Error err) {
 					success = false;
-					stdout.printf("Could not copy album art to destination\n");
+					message("Could not copy album art to destination\n");
 				}
 				
 				if(success) {
@@ -318,7 +318,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 							Thread.create<void*>(lm.fetch_thread_function, false);
 						}
 						catch(GLib.ThreadError err) {
-							stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
+							message("Could not create thread to load media pixbuf's: %s \n", err.message);
 						}
 						
 						lm.update_medias(updated_medias, false, false);

@@ -89,7 +89,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ImageMenuItem editPreferences;
 
 	// Base color
-	public static Gdk.RGBA base_color;
+	public static Gdk.RGBA BASE_COLOR;
 
 	Gtk.Menu settingsMenu;
 
@@ -113,7 +113,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 #if HAVE_INDICATE
 #if HAVE_DBUSMENU
-		stdout.printf("Initializing MPRIS and sound menu\n");
+		message("Initializing MPRIS and sound menu\n");
 		var mpris = new BeatBox.MPRIS(lm, this);
 		mpris.initialize();
 #endif
@@ -144,8 +144,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		this.destroy.connect (Gtk.main_quit);
 
 		if(lm.media_count() == 0 && settings.getMusicFolder() == "") {
-			stdout.printf("First run.\n");
-
+			message("First run.\n");
 		}
 		else {
 			lm.clearCurrent();
@@ -170,7 +169,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 	public void build_ui() {
 		// simple message to terminal
-		stdout.printf ("Building user interface\n");
+		message ("Building user interface\n");
 
 		// Load icon information
 		Icons.load ();
@@ -179,7 +178,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		var unused_icon_view = new IconView();
 		var base_style = unused_icon_view.get_style_context();
 		base_style.add_class (Gtk.STYLE_CLASS_VIEW);
-		base_color = base_style.get_background_color(StateFlags.NORMAL);
+		BASE_COLOR = base_style.get_background_color(StateFlags.NORMAL);
 		unused_icon_view.destroy();
 
 		// set the size based on saved gconf settings
@@ -258,9 +257,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		//for setting maximum size for setting hpane position max size
 		//sideBar.set_geometry_hints(
 
-		stdout.printf ("building side tree\n");
+		debug ("building side tree\n");
 		buildSideTree();
-		stdout.printf ("done with side tree\n");
+		debug ("done with side tree\n");
 
 		sideTreeScroll = new ScrolledWindow(null, null);
 		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -295,7 +294,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		statusEventBox.add(statusBar);
 
 		// paint the background
-		statusEventBox.override_background_color (StateFlags.NORMAL, base_color);
+		statusEventBox.override_background_color (StateFlags.NORMAL, BASE_COLOR);
 
 		repeatChooser.appendItem(_("Off"));
 		repeatChooser.appendItem(_("Song"));
@@ -319,27 +318,29 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		verticalBox.pack_start(videoArea, true, true, 0);
 		verticalBox.pack_start(sourcesToMedias, true, true, 0);
 
+		ToolItem topDisplayBin = new ToolItem();
+		ToolItem viewSelectorBin = new ToolItem();
+		ToolItem searchFieldBin = new ToolItem();
+
+
+
 		// FIXME: Ugly workaround to make the view-mode button smaller
 		var viewSelectorContainer = new Box (Orientation.VERTICAL, 0);
 		var viewSelectorInnerContainer = new Box (Orientation.HORIZONTAL, 0);
 		viewSelectorInnerContainer.pack_start (new Box (Orientation.HORIZONTAL, 10), true, true, 0);
-
 		viewSelectorInnerContainer.pack_start (viewSelector, false, false, 0); // VIEW SELECTOR
-
 		viewSelectorInnerContainer.pack_end (new Box (Orientation.HORIZONTAL, 10), true, true, 0);
 		viewSelectorContainer.pack_start (new Box (Orientation.VERTICAL, 5), true, true, 0);
 		viewSelectorContainer.pack_start (viewSelectorInnerContainer, false, false, 0);
 		viewSelectorContainer.pack_end (new Box (Orientation.VERTICAL, 5), true, true, 0);
 
-		ToolItem topDisplayBin = new ToolItem();
-		ToolItem viewSelectorBin = new ToolItem();
-		ToolItem searchFieldBin = new ToolItem();
 		topDisplayBin.add(topDisplay);
 		topDisplayBin.set_border_width(1);
 		topDisplayBin.margin_left = 12;
+
 		viewSelectorBin.add(viewSelectorContainer);
-		viewSelectorBin.set_border_width(3);
 		viewSelectorBin.margin_left = 12;
+
 		searchFieldBin.add(searchField);
 		searchFieldBin.margin_left = 12;
 		searchFieldBin.margin_right = 12;
@@ -436,7 +437,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		var vw = (ViewWrapper)sideTree.getSelectedWidget();
 		if(lm.media_info.media != null) {
 			vw.list.set_as_current_list(0, true);
-			stdout.printf ("set a view as current list\n");
+			debug ("set a view as current list\n");
 			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
 				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
 			}
@@ -541,7 +542,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				mainViews.pack_start(vw, true, true, 0);
 			}
 			else {
-				stdout.printf("adding ipod device view with %d\n", d.get_medias().size);
+				debug ("adding ipod device view with %d\n", d.get_medias().size);
 				DeviceView dv = new DeviceView(lm, d);
 				//vw = new DeviceViewWrapper(lm, this, d.get_medias(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE, -1, d);
 				item = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName(), ViewWrapper.Hint.NONE);
@@ -637,13 +638,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 	public void updateInfoLabel() {
 		if(lm.doing_file_operations()) {
-			stdout.printf("doing file operations, returning null in updateInfoLabel\n");
+			debug ("doing file operations, returning null in updateInfoLabel\n");
 			return;
 		}
 
 		if(lm.media_info.media == null) {
 			topDisplay.set_label_markup("");
-			stdout.printf("setting info label as ''\n");
+			debug ("setting info label as ''\n");
 			return;
 		}
 
@@ -685,7 +686,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		topDisplay.set_scale_range(0.0, lm.media_info.media.length);
 
 		if(lm.media_from_id(i).mediatype == 1 || lm.media_from_id(i).mediatype == 2) {
-			/*stdout.printf("setting position to resume_pos which is %d\n", lm.media_from_id(i).resume_pos );
+			/*message("setting position to resume_pos which is %d\n", lm.media_from_id(i).resume_pos );
 			Timeout.add(250, () => {
 				topDisplay.change_value(ScrollType.NONE, lm.media_from_id(i).resume_pos);
 				return false;
@@ -727,7 +728,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				Thread.create<void*>(lastfm_update_nowplaying_thread_function, false);
 			}
 			catch(GLib.ThreadError err) {
-				stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
+				warning ("ERROR: Could not create last fm thread: %s \n", err.message);
 			}
 
 			// always show notifications for the radio, since user likely does not know media
@@ -744,7 +745,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		updateSensitivities();
 
-		stdout.printf("stopped\n");
+		debug ("stopped\n");
 	}
 
 	public virtual void medias_updated(Collection<int> ids) {
@@ -764,13 +765,13 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 				new_podcasts.add(i);
 		}
 
-		stdout.printf("appending...\n");
+		message("appending...\n");
 		ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
 		vw.add_medias(new_songs);
 
 		vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
 		vw.add_medias(new_podcasts);
-		stdout.printf("appended\n");*/
+		message("appended\n");*/
 
 		var w = sideTree.getSelectedWidget();
 		if(w is ViewWrapper) {
@@ -826,7 +827,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 						Thread.create<void*>(lm.fetch_thread_function, false);
 					}
 					catch(GLib.ThreadError err) {
-						stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
+						warning("Could not create thread to load media pixbuf's: %s \n", err.message);
 					}
 				}
 			}
@@ -906,7 +907,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 	public virtual void playClicked () {
 		if(lm.media_info.media == null) {
-			stdout.printf("No media is currently playing. Starting from the top\n");
+			debug("No media is currently playing. Starting from the top\n");
 			//set current medias by current view
 			Widget w = sideTree.getSelectedWidget();
 			if(w is ViewWrapper) {
@@ -1043,7 +1044,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		else {
-			stdout.printf("Can't add to library.. already doing file operations\n");
+			debug("Can't add to library.. already doing file operations\n");
 		}
 	}
 
@@ -1061,7 +1062,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			}
 		}
 		else {
-			stdout.printf("Can't rescan.. doing file operations already\n");
+			debug("Can't rescan.. doing file operations already\n");
 		}
 	}
 
@@ -1070,16 +1071,16 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		// clear all other playlists, reset to Music, populate music
 		if(clear_views) {
-			stdout.printf("clearing all views...\n");
+			debug("clearing all views...\n");
 			mainViews.get_children().foreach( (w) => {
 				if(w is ViewWrapper/* && !(w is CDRomViewWrapper)*/ && !(w is DeviceViewWrapper)) {
 					ViewWrapper vw = (ViewWrapper)w;
-					stdout.printf("doing clear\n");
+					debug("doing clear\n");
 					vw.doUpdate(vw.currentView, new LinkedList<int>(), true, true, false);
-					stdout.printf("cleared\n");
+					debug("cleared\n");
 				}
 			});
-			stdout.printf("all cleared\n");
+			debug("all cleared\n");
 		}
 		else {
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
@@ -1098,7 +1099,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	}
 
 	public virtual void musicCounted(int count) {
-		stdout.printf("found %d medias, importing.\n", count);
+		debug ("found %d medias, importing.\n", count);
 	}
 
 	/* this is after setting the music library */
@@ -1161,7 +1162,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		resetSideTree(false);
 		//searchField.changed();
-		stdout.printf("music Rescanned\n");
+		debug("music Rescanned\n");
 		updateSensitivities();
 	}
 
@@ -1232,7 +1233,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					Thread.create<void*>(lastfm_update_nowplaying_thread_function, false);
 				}
 				catch(GLib.ThreadError err) {
-					stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
+					warning("ERROR: Could not create last fm thread: %s \n", err.message);
 				}
 			}
 
@@ -1269,7 +1270,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 					Thread.create<void*>(lastfm_scrobble_thread_function, false);
 				}
 				catch(GLib.ThreadError err) {
-					stdout.printf("ERROR: Could not create last fm thread: %s \n", err.message);
+					warning("ERROR: Could not create last fm thread: %s \n", err.message);
 				}
 			}
 
@@ -1475,7 +1476,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 			return;
 
 		var files_dragged = new LinkedList<string>();
-		stdout.printf("dragged\n");
+		debug("dragged\n");
 		foreach (string uri in data.get_uris ()) {
 			files_dragged.add(File.new_for_uri(uri).get_path());
 		}

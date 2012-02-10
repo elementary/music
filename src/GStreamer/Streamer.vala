@@ -83,7 +83,7 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	public void setURI(string uri) {
 		setState(State.READY);
-		stdout.printf("set uri to %s\n", uri);
+		debug("set uri to %s\n", uri);
 		pipe.playbin.uri = uri.replace("#", "%23");
 		
 		if(lw.initializationFinished && pipe.video.element != null) {
@@ -93,7 +93,7 @@ public class BeatBox.Streamer : GLib.Object {
 		
 		setState(State.PLAYING);
 		
-		stdout.printf("setURI seeking to %d\n", lm.media_info.media.resume_pos);
+		debug("setURI seeking to %d\n", lm.media_info.media.resume_pos);
 		pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
 		
 		play();
@@ -156,7 +156,7 @@ public class BeatBox.Streamer : GLib.Object {
 			GLib.Error err;
 			string debug;
 			message.parse_error (out err, out debug);
-			stdout.printf ("Error: %s\n", err.message);
+			warning ("Error: %s\n", err.message);
 			
 			break;
 		case Gst.MessageType.ELEMENT:

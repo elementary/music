@@ -473,12 +473,12 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 
 	public void rearrangeColumns(LinkedList<string> correctOrder) {
 		view.move_column_after(view.get_column(6), view.get_column(7));
-		//stdout.printf("correctOrder.length = %d, view.get_columns.length() = %d\n", correctOrder.size, (int)view.get_columns().length());
+		//debug("correctOrder.length = %d, view.get_columns.length() = %d\n", correctOrder.size, (int)view.get_columns().length());
 		/* iterate through view.get_columns and if a column is not in the
 		 * same location as correctOrder, move it there.
 		*/
 		for(int index = 0; index < view.get_columns().length(); ++index) {
-			//stdout.printf("on index %d column %s originally moving to %d\n", index, view.get_column(index).title, correctOrder.index_of(view.get_column(index).title));
+			//debug("on index %d column %s originally moving to %d\n", index, view.get_column(index).title, correctOrder.index_of(view.get_column(index).title));
 			if(view.get_column(index).title != correctOrder.get(index)) {
 				view.move_column_after(view.get_column(index), view.get_column(correctOrder.index_of(view.get_column(index).title)));
 			}
@@ -487,7 +487,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 
 	public void cellTitleEdited(string path, string new_text) {
 		/*int rowid;
-		stdout.printf("done!\n");
+		debug("done!\n");
 		if((rowid = radio_model.getRowidFromPath(path)) != 0) {
 			lm.media_from_id(rowid).title = new_text;
 
@@ -926,7 +926,7 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	public virtual void onDragBegin(Gtk.Widget sender, Gdk.DragContext context) {
 		dragging = true;
 		lw.dragging_from_music = true;
-		stdout.printf("drag begin\n");
+		debug("drag begin\n");
 
 		Gdk.drag_abort(context, Gtk.get_current_event_time());
 
@@ -942,14 +942,14 @@ public class BeatBox.RadioListView : ContentView, ScrolledWindow {
 	}
 
 	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
-		stdout.printf("User trying to drag from internet radio list, but is not implemented\n");
+		debug("User trying to drag from internet radio list, but is not implemented\n");
 	}
 
 	public virtual void onDragEnd(Gtk.Widget sender, Gdk.DragContext context) {
 		dragging = false;
 		lw.dragging_from_music = false;
 
-		stdout.printf("drag end\n");
+		debug("drag end\n");
 
 		//unset_rows_drag_dest();
 		Gtk.drag_dest_set(this,

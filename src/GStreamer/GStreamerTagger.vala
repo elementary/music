@@ -78,13 +78,13 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			}
 		}
 		else {
-			stdout.printf("queue finished\n");
+			debug("queue finished\n");
 			queue_finished();
 		}
 	}
 	
 	void art_finished() {
-		stdout.printf("art finished %d %s\n", path_queue.size, cancelled? "true":"False");
+		debug("art finished %d %s\n", path_queue.size, cancelled? "true":"False");
 		if(!cancelled && path_queue.size > 0) {
 			try {
 				art_d = new Discoverer((ClockTime)(10*Gst.SECOND));
@@ -101,7 +101,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 			}
 		}
 		else {
-			stdout.printf("art queue finished\n");
+			debug("art queue finished\n");
 		}
 	}
 	

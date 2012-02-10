@@ -39,7 +39,7 @@ public class BeatBox.WarningLabel : EventBox {
 
 	public WarningLabel() {
 		errorLabel = new Label("");
-		warningIcon = Icons.render_image (Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
+		warningIcon = Icons.render_image ("dialog-warning", Gtk.IconSize.DIALOG);
 
 		var content = new Box (Orientation.HORIZONTAL, 10);
 		var content_wrapper = new Box (Orientation.HORIZONTAL, 0);
@@ -63,7 +63,7 @@ public class BeatBox.WarningLabel : EventBox {
 		add(outer_box);
 
 		// Change background color.
-		override_background_color (Gtk.StateFlags.NORMAL, LibraryWindow.base_color);
+		override_background_color (Gtk.StateFlags.NORMAL, LibraryWindow.BASE_COLOR);
 
 		errorLabel.xalign = 0.5f;
 		errorLabel.set_justify(Justification.CENTER);
@@ -82,11 +82,11 @@ public class BeatBox.WarningLabel : EventBox {
 		return alignment;
 	}
 
-	public void setWarning(string warning, Gtk.Justification? jst) {
-		if (jst == null)
+	public void setWarning(string warning, Gtk.Justification? justification) {
+		if (justification == null)
 			errorLabel.set_justify(Gtk.Justification.CENTER);
 		else
-			errorLabel.set_justify(jst);
+			errorLabel.set_justify(justification);
 
 		errorLabel.set_markup(warning);
 	}

@@ -173,7 +173,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 
 	public void set_as_current_list(int media_id, bool is_initial) {
 		var ordered_songs = music_model.getOrderedMedias();
-		stdout.printf("there are %d ordered songs\n", ordered_songs.size);
+		debug("there are %d ordered songs\n", ordered_songs.size);
 
 		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
 
@@ -195,7 +195,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 
 		if(lm.media_info.media != null)
 			music_model.updateMedia(lm.media_info.media.rowid, get_is_current());
-		stdout.printf("current list is %d and index %d\n", lm.current_medias().size, lm.current_index);
+		debug("current list is %d and index %d\n", lm.current_medias().size, lm.current_index);
 		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
 
@@ -664,12 +664,12 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 
 	public void rearrangeColumns(LinkedList<string> correctOrder) {
 		view.move_column_after(view.get_column(6), view.get_column(7));
-		//stdout.printf("correctOrder.length = %d, view.get_columns.length() = %d\n", correctOrder.size, (int)view.get_columns().length());
+		//debug("correctOrder.length = %d, view.get_columns.length() = %d\n", correctOrder.size, (int)view.get_columns().length());
 		/* iterate through view.get_columns and if a column is not in the
 		 * same location as correctOrder, move it there.
 		*/
 		for(int index = 0; index < view.get_columns().length(); ++index) {
-			//stdout.printf("on index %d column %s originally moving to %d\n", index, view.get_column(index).title, correctOrder.index_of(view.get_column(index).title));
+			//debug("on index %d column %s originally moving to %d\n", index, view.get_column(index).title, correctOrder.index_of(view.get_column(index).title));
 			if(view.get_column(index).title != correctOrder.get(index)) {
 				view.move_column_after(view.get_column(index), view.get_column(correctOrder.index_of(view.get_column(index).title)));
 			}
@@ -678,7 +678,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 
 	public void cellTitleEdited(string path, string new_text) {
 		/*int rowid;
-		stdout.printf("done!\n");
+		debug("done!\n");
 		if((rowid = music_model.getRowidFromPath(path)) != 0) {
 			lm.media_from_id(rowid).title = new_text;
 
@@ -1152,7 +1152,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not browse media %s: %s\n", s.uri, err.message);
+				debug("Could not browse media %s: %s\n", s.uri, err.message);
 			}
 
 			return;
@@ -1325,7 +1325,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 	public virtual void onDragBegin(Gtk.Widget sender, Gdk.DragContext context) {
 		dragging = true;
 		lw.dragging_from_music = true;
-		stdout.printf("drag begin\n");
+		debug("drag begin\n");
 
 		Gdk.drag_abort(context, Gtk.get_current_event_time());
 
@@ -1352,7 +1352,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 
 			int id;
 			temp_model.get (iter, 0, out id);
-			stdout.printf("adding %s\n", lm.media_from_id(id).uri);
+			debug("adding %s\n", lm.media_from_id(id).uri);
 			uris += (lm.media_from_id(id).uri);
 		}
 
@@ -1364,7 +1364,7 @@ public class BeatBox.MusicTreeView : ContentView, ScrolledWindow {
 		dragging = false;
 		lw.dragging_from_music = false;
 
-		stdout.printf("drag end\n");
+		debug("drag end\n");
 
 		//unset_rows_drag_dest();
 		Gtk.drag_dest_set(this,

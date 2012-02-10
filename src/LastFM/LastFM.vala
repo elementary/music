@@ -105,7 +105,7 @@ public class LastFM.Core : Object {
 		var sig = generate_getsession_signature(token);
 		var url = "http://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=" + api + "&api_sig=" + sig + "&token=" + token;
 		
-		stdout.printf("url: %s\n", url);
+		message("url: %s\n", url);
 		
 		Xml.Doc* doc = Parser.parse_file (url);
 		if(doc == null) return null;
@@ -127,7 +127,7 @@ public class LastFM.Core : Object {
 	
 	public bool loveTrack(string title, string artist) {
 		if(session_key == null || session_key == "") {
-			stdout.printf("User tried to ban a track, but is not logged into Last FM\n");
+			message("User tried to ban a track, but is not logged into Last FM\n");
 			return false;
 		}
 		
@@ -157,7 +157,7 @@ public class LastFM.Core : Object {
 	
 	public bool banTrack(string title, string artist) {
 		if(session_key == null || session_key == "") {
-			stdout.printf("User tried to ban a track, but is not logged into Last FM\n");
+			message("User tried to ban a track, but is not logged into Last FM\n");
 			return false;
 		}
 		

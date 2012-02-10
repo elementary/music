@@ -328,17 +328,17 @@ public class BeatBox.RadioTreeModel : GLib.Object, TreeModel, TreeSortable {
 				return;
 			
 			/*else if(_columns[col] == " ") {
-				stdout.printf("set oh hi3\n");
+				debug("set oh hi3\n");
 				Gdk.Pixbuf val = args.arg();
 				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_object(val);
 			}
 			else if(_columns[col] == "Title" || _columns[col] == "Artist" || _columns[col] == "Album" || _columns[col] == "Genre") {
-				stdout.printf("set oh hi2\n");
+				debug("set oh hi2\n");
 				string val = args.arg();
 				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_string(val);
 			}
 			else {
-				stdout.printf("set oh hi\n");
+				debug("set oh hi\n");
 				int val = args.arg();
 				((SequenceIter<Media>)iter.user_data).get().get_nth(col).set_int(val);
 			}*/

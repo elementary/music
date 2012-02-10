@@ -20,12 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/*
- * TODO:
- * - Add built-in icons.
- * - Improve code in some areas
- */
-
 using Gtk;
 
 public class BeatBox.Icon : GLib.Object {
@@ -130,7 +124,7 @@ public class BeatBox.Icon : GLib.Object {
 				rv = new Gdk.Pixbuf.from_file(backup);
 			}
 			catch(Error err) {
-				warning ("Could not load PNG image: %s\n", err.message);
+				message ("Could not load PNG image: %s\n", err.message);
 			}
 
 			return rv;
@@ -161,18 +155,18 @@ public class BeatBox.Icon : GLib.Object {
 				}
 			}
 			catch (Error err) {
-				warning ("%s, falling back to BeatBox default.", err.message);
+				message ("%s, falling back to BeatBox default.", err.message);
 			}
 		}
 
 		// If the above failed, use available backup
 		if (rv == null && this.backup != null) {
 			try {
-				warning ("Loading backup icon for %s", this.name);
+				message ("Loading backup icon for %s", this.name);
 				rv = new Gdk.Pixbuf.from_file_at_size (this.backup, width, height);
 			}
 			catch (Error err) {
-				warning ("Couldn't load backup icon: %s", err.message);
+				message ("Couldn't load backup icon: %s", err.message);
 			}
 		}
 
@@ -204,11 +198,11 @@ public class BeatBox.Icon : GLib.Object {
 			rv = new Image.from_icon_name (this.name, size);
 		} else if (this.backup != null) {
 			// If the icon theme doesn't contain the icon, load backup
-			warning ("Loading %s from backup", this.name);
+			message ("Loading %s from backup", this.name);
 			rv = new Image.from_file (this.backup);
 		} else {
 			// And if there was no backup, use the default method
-			warning ("Loading %s using default method", this.name);
+			message ("Loading %s using default method", this.name);
 			rv = new Image.from_pixbuf (this.render (size, ctx));
 		}
 

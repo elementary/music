@@ -165,7 +165,7 @@ public class BeatBox.ViewWrapper : VBox {
 				doUpdate(ViewWrapper.ViewType.LIST, get_media_ids(), false, false, false);
 				
 				if(isCurrentView) {
-					stdout.printf("populating millers\n");
+					debug("populating millers\n");
 					lw.miller.populateColumns("", medias.keys);
 				}
 				break;
@@ -449,7 +449,7 @@ public class BeatBox.ViewWrapper : VBox {
 				list.hide();
 				albumView.hide();
 				lw.alv.hide ();
-				stdout.printf("1\n");
+				debug("1\n");
 				
 				in_update = false;
 				return;
@@ -462,13 +462,13 @@ public class BeatBox.ViewWrapper : VBox {
 					list.hide();
 					albumView.hide();
 					lw.alv.hide ();
-					stdout.printf("2\n");
+					debug("2\n");
 					
 					in_update = false;
 					return;
 				}
 				else {
-					stdout.printf("2.5\n");
+					debug("2.5\n");
 					errorBox.hide();
 					
 					sp._base = lm.media_info.media;
@@ -476,7 +476,7 @@ public class BeatBox.ViewWrapper : VBox {
 			}
 			
 			/*if(lm.current_medias().size == list.get_medias().size && lm.current_medias().contains_all(list.get_medias())) { // don't update, user is playing current list
-				stdout.printf("3\n");
+				debug("3\n");
 				return;
 			}*/
 		}
@@ -484,14 +484,14 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
 		if(!this.visible || force || needs_update) {
-			//stdout.printf("searching..\n");
+			//debug("searching..\n");
 			LinkedList<int> potentialShowing = new LinkedList<int>();
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 			
-			stdout.printf("seraching to populate with %d medias\n", medias.size);
+			debug("searching to populate with %d medias\n", medias.size);
 			lm.do_search(last_search, hint, lw.miller.artists.get_selected(), "All Albums",
 					get_media_ids(), ref potentialShowing, ref potentialShowingAlbum);
-			//stdout.printf("seraching done\n");
+			//debug("seraching done\n");
 			list.set_show_next(potentialShowing);
 			albumView.set_show_next(potentialShowingAlbum);
 			
@@ -500,10 +500,10 @@ public class BeatBox.ViewWrapper : VBox {
 				showingMedias.set(i, 1);
 			
 			needs_update = false;
-			//stdout.printf("searched\n");
+			//debug("searched\n");
 		}
 		
-		//stdout.printf("populating\n");
+		//debug("populating\n");
 		if(!in_thread && (this.visible || force)) {
 			errorBox.hide();
 			
@@ -527,7 +527,7 @@ public class BeatBox.ViewWrapper : VBox {
 		}
 		
 		in_update = false;
-		//stdout.printf("populated\n");
+		//debug("populated\n");
 	}
 	
 	public void set_statusbar_text() {
@@ -541,7 +541,7 @@ public class BeatBox.ViewWrapper : VBox {
 	
 	public void millerChanged() {
 		if(lw.initializationFinished && isCurrentView) {
-			//stdout.printf("miller changed\n");
+			//debug("miller changed\n");
 			doUpdate(this.currentView, medias.keys, false, true, false);
 			
 			showing_all = (showingMedias.size == medias.size);

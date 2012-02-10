@@ -97,7 +97,7 @@ public class LastFM.Image : Object {
 			rv = new Gdk.Pixbuf.from_stream_at_scale(filestream, _size[0], _size[1], true, null);
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not fetch album art from %s: %s\n", url, err.message);
+			warning("Could not fetch album art from %s: %s\n", url, err.message);
 			rv = null;
 		}
 		
