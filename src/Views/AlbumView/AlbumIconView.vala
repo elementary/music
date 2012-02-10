@@ -46,8 +46,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	private bool _is_current_view;
 	private bool needsUpdate;
 
-	private const int BORDER_WIDTH = 6;
-	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE + BORDER_WIDTH;
+	private const int ITEM_PADDING = 3;
+	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
+	private const int SPACING = 12;
 
 	/* medias should be mutable, as we will be sorting it */
 	public AlbumView(LibraryManager lmm, LibraryWindow lww, Collection<int> smedias) {
@@ -83,14 +84,17 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons = new IconView();
 		model = new AlbumViewModel(lm, defaultPix);
 
+		icons.set_columns(-1);
+
 		icons.set_pixbuf_column(0);
 		icons.set_markup_column(1);
 		icons.set_tooltip_column(3);
 
-		icons.set_item_width(ITEM_WIDTH);
-		icons.item_padding = 0;
+		icons.item_width = ITEM_WIDTH;
+		icons.item_padding = ITEM_PADDING;
 		icons.spacing = 2;
-		icons.margin = 20;
+        icons.margin = 12;
+
 		add(icons);
 
 		show_all();
@@ -98,11 +102,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.button_release_event.connect(buttonReleaseEvent);
 		icons.button_press_event.connect(buttonReleaseEvent);
 		icons.item_activated.connect(itemActivated);
-		this.size_allocate.connect(resized);
-		this.focus_out_event.connect(on_focus_out);
-
-
-		//this.grab_focus ();
 	}
 
 	public void set_is_current(bool val) {
@@ -157,7 +156,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 
 	public void set_statusbar_text() {
-		/*uint count = 0;
+		/* TODO:
+		uint count = 0;
 		uint total_time = 0;
 		uint total_mbs = 0;
 
@@ -185,14 +185,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
 
 		lw.set_statusbar_text(count.to_string() + " items, " + fancy + ", " + fancy_size);*/
-	}
-
-	/*public void set_medias(Collection<int> new_medias) {
-		medias = new_medias;
-	}*/
-
-	public void resized(Allocation alloc) {
-		icons.set_columns((alloc.width - (icons.margin * 2))/( icons.get_item_width()));
 	}
 
 	public void append_medias(Collection<int> new_medias) {
@@ -256,10 +248,11 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		queue_draw();
 	}
 
-	/** Goes through the hashmap and generates html. If artist,album, or genre
+	/**
+	 * Goes through the hashmap and generates html. If artist,album, or genre
 	 * is set, makes sure that only items that fit those filters are
 	 * shown
-	*/
+	 **/
 	public void populate_view() {
 		icons.freeze_child_notify();
 		icons.set_model(null);
@@ -291,22 +284,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.set_model(model);
 		icons.thaw_child_notify();
 
-		//icons.realize();
-		//realize();
-
-		/* this is required to make the iconview initially scrollable */
-		if(to_append.size > 0) {
-			//icons.select_path(new TreePath.from_string((albs.size - 1).to_string()));
-			//icons.unselect_all();
-		}
-
-		//if(visible)
-		//	stdout.printf("get_is_current(): %d\n", get_is_current() ? 1 : 0);
-
 		if(visible && lm.media_info.media != null)
 			scrollToCurrent();
-		//else
-		//	this.vadjustment.set_value((int)hPos);
 
 		needsUpdate = false;
 	}
@@ -372,6 +351,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 
 	void medias_removed(LinkedList<int> ids) {
+		// TODO:
 		//model.removeMedias(ids, false);
 		//_showing_medias.remove_all(ids);
 		//_show_next.remove_all(ids);
@@ -395,14 +375,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				return;
 			}
 		}
-	}
-
-	public bool on_focus_out () {
-		// Make sure that the search entry is not selected before grabbing focus
-		if (!lw.searchField.has_focus)
-			this.grab_focus ();
-
-		return true;
 	}
 }
 

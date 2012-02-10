@@ -50,7 +50,7 @@ namespace Icons {
 	/**
 	 * Size of the cover art used in the album view
 	 **/
-	public const int ALBUM_VIEW_IMAGE_SIZE = 128;
+	public const int ALBUM_VIEW_IMAGE_SIZE = 138;
 
 	/**
 	 * ICON INFORMATION
@@ -192,7 +192,6 @@ namespace Icons {
 		VIEW_VIDEO_ICON = new BeatBox.Icon ("view-list-video-symbolic", 16, Type.ACTION, null, true);
 
 		/* Render Pixbufs */
-		DROP_ALBUM_PIXBUF = DROP_ALBUM.render (null, null, 250);
 		DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null, null, 150);
 
 		BEATBOX_DIALOG_PIXBUF = BEATBOX_ICON.render (Gtk.IconSize.DIALOG);

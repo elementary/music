@@ -45,11 +45,11 @@ public class BeatBox.SimilarMediasView : TreeView {
 		model = new ListStore(2, typeof(BeatBox.Media), typeof(string), -1);
 		
 		TreeViewColumn col = new TreeViewColumn();
-		col.title = "media";
+		col.title = _("media");
 		col.visible = false;
 		insert_column(col, 0);
 		
-		insert_column_with_attributes(-1, "Similar Medias", new CellRendererText(), "markup", 1, null);
+		insert_column_with_attributes(-1, _("Similar Media"), new CellRendererText(), "markup", 1, null);
 		get_column(1).sizing = Gtk.TreeViewColumnSizing.FIXED;
 		get_column(1).set_alignment((float)0.5);
 		

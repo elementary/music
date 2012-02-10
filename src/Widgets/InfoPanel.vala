@@ -68,8 +68,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		ssv = new SimilarMediasView(lm, lw);
 		
 		/* use markup */
-		title.set_markup("<span size=\"large\"><b>Title</b></span>");
-		year.set_markup("<span size=\"x-small\">Year</span>");
+		title.set_markup("<span size=\"large\"><b>%s</b></span>".printf(_("Title")));
+		year.set_markup("<span size=\"x-small\">%s</span>".printf(_("Year")));
 		
 		/* ellipsize */
 		title.ellipsize = Pango.EllipsizeMode.END;

@@ -148,7 +148,6 @@ public class BeatBox.AlbumListView : Window {
 		// add actual list
 		mtv = new MusicTreeView(lm, lm.lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
 		mtv.apply_style_to_view(style_provider);
-		//mtv.get_style_context().add_class("ListView");
 		mtv.vexpand = true;
 
 		// add rating
@@ -165,7 +164,6 @@ public class BeatBox.AlbumListView : Window {
 		add(all_area);
 
 		rating.rating_changed.connect(rating_changed);
-		this.focus_out_event.connect(focus_out);
 	}
 
 	public void set_songs_from_media(Media m) {
@@ -206,12 +204,6 @@ public class BeatBox.AlbumListView : Window {
 		}
 
 		lm.update_medias(updated, false, true);
-	}
-
-	bool focus_out(Gdk.EventFocus event) {
-		//this.hide();
-
-		return false;
 	}
 }
 
