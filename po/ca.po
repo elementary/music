@@ -7,178 +7,551 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-01-17 20:24+0100\n"
-"PO-Revision-Date: 2012-01-20 18:39+0000\n"
+"POT-Creation-Date: 2012-02-03 22:16+0100\n"
+"PO-Revision-Date: 2012-02-07 13:29+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-25 05:40+0000\n"
-"X-Generator: Launchpad (build 14719)\n"
+"X-Launchpad-Export-Date: 2012-02-08 07:51+0000\n"
+"X-Generator: Launchpad (build 14747)\n"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
-msgid "Get Some Tunes."
-msgstr "Obteniu algunes cançons."
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:88
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr ""
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:203
-msgid "BeatBox can't seem to find your music."
-msgstr "Sembla que el BeatBox no ha pogut trobar la vostra música."
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:89
+msgid "Sync"
+msgstr "Sincronitza"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
-msgid "Set Music Folder"
-msgstr "Establir carpeta de música"
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:97
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:53
+msgid "Add Podcast"
+msgstr "Afegeix un podcast"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:211
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:98
+msgid "Download new Episodes"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:106
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:218
 msgid "Import to Library"
 msgstr "Importa a la biblioteca"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:212
-msgid "Rescan Music Folder"
-msgstr "Torna a examinar la carpeta de música"
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:107
+msgid "Eject"
+msgstr "Expulsa"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:213
-msgid "Equalizer"
-msgstr "Equalitzador"
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:115
+msgid "Import Station"
+msgstr ""
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:222
-msgid "Search..."
-msgstr "Cerca..."
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:122
+msgid "New Playlist"
+msgstr "Llista de reproducció nova"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:245
-msgid "Title"
-msgstr "Títol"
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:123
+msgid "New Smart Playlist"
+msgstr "Llista de reproducció intel·ligent nova"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:296
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:124
+msgid "Edit"
+msgstr "Edita"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:125
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+msgid "Remove"
+msgstr "Elimina"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:126
+msgid "Save as Playlist"
+msgstr "Desa com a una llista de reproducció"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:127
+msgid "Export..."
+msgstr "Exporta..."
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:128
+msgid "Import Playlist"
+msgstr "Importa la llista de reproducció"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:160
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:284
+msgid "Library"
+msgstr "Biblioteca"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:161
+msgid "Devices"
+msgstr "Dispositius"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:162
+msgid "Network"
+msgstr "Xarxa"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:163
+msgid "Playlists"
+msgstr "Llistes de reproducció"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:205
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:210
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:538
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:253
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:309
 #, c-format
 msgid "Artist"
 msgstr "Artista"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:246
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:295
-msgid "Album"
-msgstr "Àlbum"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:271
-msgid "Library"
-msgstr "Biblioteca"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:282
-msgid "Preferences"
-msgstr "Preferències"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:293
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:299
-msgid "Off"
-msgstr "Inactiu"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:294
-msgid "Media"
-msgstr "Suports"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:297
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:300
-msgid "All"
-msgstr "Tot"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:302
-msgid "Hide"
-msgstr "Amaga"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:303
-msgid "Show"
-msgstr "Mostra"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
-msgid "Locate"
-msgstr "Localitza"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:368
-msgid "Change your music folder."
-msgstr "Canvia la carpeta de música."
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:478
-msgid "Similar"
-msgstr "Similars"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:482
-msgid "Queue"
-msgstr "Cua"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:486
-msgid "History"
-msgstr "Historial"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:490
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:206
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:493
 msgid "Music"
 msgstr "Música"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:494
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:211
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:497
 msgid "Podcasts"
 msgstr "Podcasts"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:498
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:534
+msgid "#"
+msgstr "Núm."
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:535
+msgid "Track"
+msgstr "Pista"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:536
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:252
+msgid "Title"
+msgstr "Títol"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:537
+msgid "Length"
+msgstr "Durada"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:539
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:253
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:308
+msgid "Album"
+msgstr "Àlbum"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:540
+msgid "Genre"
+msgstr "Gènere"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:541
+msgid "Year"
+msgstr "Any"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:542
+msgid "Bitrate"
+msgstr "Taxa de bits"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:543
+msgid "Rating"
+msgstr "Valoració"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:544
+msgid "Plays"
+msgstr "Reproduccions"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:545
+msgid "Skips"
+msgstr "Omissions"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:546
+msgid "Date Added"
+msgstr "Data d'addició"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:547
+msgid "Last Played"
+msgstr "Reproduït per última vegada"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:548
+msgid "BPM"
+msgstr "BPM"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/RadioListView.vala:282
+msgid "Remove Station"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
+msgid "Similar Media View"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
+msgid ""
+"In this view, BeatBox will automatically find medias similar to the one you "
+"are playing."
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
+msgid "You can then start playing those medias, or save them for later."
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
+msgid "Audio CD Invalid"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
+msgid "BeatBox could not read the contents of this Audio CD."
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
+msgid "No Podcasts Found"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
+msgid ""
+"To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
+msgid ""
+"You can then copy and paste the feed into the \"Add Podcast\" window by "
+"right clicking on \"Podcasts\"."
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
+msgid "No Internet Radio Stations Found"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
+msgid ""
+"To add a station, visit a website such as SomaFM to find PLS or M3U files."
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
+msgid "You can then import the file to add the station."
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
+msgid "Loading similar songs"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
+msgid "BeatBox is loading songs similar to"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
+msgid "..."
+msgstr "..."
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
+msgid "No similar songs found"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
+msgid "BeatBox could not find songs similar to"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
+msgid ""
+"Make sure all song info is correct and you are connected to the Internet.\n"
+"Some songs may not have matches."
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:68
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:85
+msgid "Previous"
+msgstr "Anterior"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:69
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:86
+msgid "Next"
+msgstr "Següent"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:70
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:87
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/PlaylistNameWindow.vala:60
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:135
+msgid "Done"
+msgstr "Fet"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:556
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:307
+msgid "Song"
+msgstr "Cançó"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:557
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:45
+msgid "Export Playlists"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:46
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:217
+msgid "Set Music Folder"
+msgstr "Establir carpeta de música"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:53
+#, c-format
+msgid "Set Music Folder?"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:44
+msgid "Import medias to Library"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:45
+msgid "Continue Syncing"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:46
+msgid "Stop Syncing"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/PlaylistNameWindow.vala:58
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/PlaylistNameWindow.vala:64
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:68
+#, c-format
+msgid "Name of Playlist"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:80
+msgid "Podcast RSS Source"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:81
+msgid "Podcast Source..."
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:84
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:116
+msgid "Add"
+msgstr "Afegeix"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:88
+#, c-format
+msgid "Podcast RSS Source</b>"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all medias"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+msgid "Import"
+msgstr "Importa"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:161
+msgid "Select individual medias to import:"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:179
+msgid "Check Item"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:180
+msgid "Check Album"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:181
+msgid "Check Artist"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:69
+msgid "Rules"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:70
+msgid "Options"
+msgstr "Opcions"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#, c-format
+msgid "<b>Name of Playlist</b>"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:77
+#, c-format
+msgid "<b>Rules</b>"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:78
+#, c-format
+msgid "Options</b>"
+msgstr "Opcions</b>"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:81
+msgid "Playlist Title"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Match"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:91
+msgid "of the following:"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:121
+msgid "Limit to"
+msgstr "Limita a"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:123
+msgid "medias"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:366
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:394
+msgid "is"
+msgstr "és"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+msgid "contains"
+msgstr "conté"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+msgid "does not contain"
+msgstr "no conté"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:395
+msgid "is not"
+msgstr "no és"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:437
+msgid "seconds"
+msgstr "segons"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:445
+msgid "kbps"
+msgstr "kbps"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
+msgid "Get Some Tunes"
+msgstr ""
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
+msgid "BeatBox can't seem to find your music."
+msgstr "Sembla que el BeatBox no ha pogut trobar la vostra música."
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:219
+msgid "Rescan Music Folder"
+msgstr "Torna a examinar la carpeta de música"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:220
+msgid "Equalizer"
+msgstr "Equalitzador"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:229
+msgid "Search..."
+msgstr "Cerca..."
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:295
+msgid "Preferences"
+msgstr "Preferències"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:306
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:312
+msgid "Off"
+msgstr "Inactiu"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:310
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:313
+msgid "All"
+msgstr "Tot"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:315
+msgid "Hide"
+msgstr "Amaga"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:316
+msgid "Show"
+msgstr "Mostra"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:374
+msgid "Locate"
+msgstr "Localitza"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:374
+msgid "Change your music folder."
+msgstr "Canvia la carpeta de música."
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:481
+msgid "Similar"
+msgstr "Similars"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:485
+msgid "Queue"
+msgstr "Cua"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:489
+msgid "History"
+msgstr "Historial"
+
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:501
 msgid "Internet Radio"
 msgstr "Ràdio per Internet"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:503
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:506
 msgid "Music Store"
 msgstr "Botiga de música"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:678
 msgid "Unknown Artist"
 msgstr "Artista desconegut"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:694
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:678
 msgid " by "
 msgstr " per "
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:679
 msgid "Unknown Album"
 msgstr "Àlbum desconegut"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:695
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:679
 msgid " on "
 msgstr " a "
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1082
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1054
 msgid "Import Music"
 msgstr "Importa música"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1095
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1067
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>S'està important</b> música des de <b>%s</b> a la biblioteca."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1111
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1083
 msgid "Rescanning music folder for changes"
 msgstr "S'estan cercant canvis a la carpeta de música"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1118
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1090
 msgid "Could not find Music Folder"
 msgstr "No s'ha pogut trobat la carpeta de música"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1118
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1090
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Assegureu-vos que la carpeta de música sigui accessible i muntada."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1186
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1158
 msgid "Import Complete"
 msgstr "S'ha completat la importació"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1186
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1158
 msgid "BeatBox has imported your library."
 msgstr "El BeatBox ha importat la vostra biblioteca."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1363
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1346
 msgid "Choose Music Folder"
 msgstr "Escolliu la carpeta de música"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1561
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1541
 msgid "Import songs from audio CD"
 msgstr "Importa cançons des d'un CD d'àudio"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1561
-msgid "Imort media from device"
-msgstr "Importa fitxers multimèdia des d'un dispositiu"
+#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1541
+msgid "Import media from device"
+msgstr ""

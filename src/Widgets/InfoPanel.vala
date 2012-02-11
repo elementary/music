@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -32,8 +32,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	private Label artist;
 	private Button loveMedia;
 	private Button banMedia;
-	private ScrolledWindow artistImageScroll;
-	private Gtk.Image artistImage;
+	private ScrolledWindow coverArtScroll;
+	private Gtk.Image coverArt;
 	private RatingWidget rating; // need to make custom widget in future
 	private Label album;
 	private Label year;
@@ -54,21 +54,22 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		EventBox eb = new EventBox();
 		
 		// paint the background color
-		eb.override_background_color (StateFlags.NORMAL, lw.base_color);
+		eb.override_background_color (StateFlags.NORMAL, lw.BASE_COLOR);
 		
 		title = new Label("Title");
 		artist = new Label("Artist");
 		loveMedia = new Button();
 		banMedia = new Button();
-		artistImage = new Image();
+		coverArt = new Gtk.Image();
+		coverArt.set_size_request (40, 40);
 		rating = new RatingWidget(null, true, IconSize.MENU);
 		album = new Label("Album");
 		year = new Label("Year");
 		ssv = new SimilarMediasView(lm, lw);
 		
 		/* use markup */
-		title.set_markup("<span size=\"large\"><b>Title</b></span>");
-		year.set_markup("<span size=\"x-small\">Year</span>");
+		title.set_markup("<span size=\"large\"><b>%s</b></span>".printf(_("Title")));
+		year.set_markup("<span size=\"x-small\">%s</span>".printf(_("Year")));
 		
 		/* ellipsize */
 		title.ellipsize = Pango.EllipsizeMode.END;
@@ -79,8 +80,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		loveMedia.relief = ReliefStyle.NONE;
 		banMedia.relief = ReliefStyle.NONE;
 		
-		var lastfm_love_icon = lm.icons.lastfm_love_icon.render (IconSize.MENU, null);
-		var lastfm_ban_icon = lm.icons.lastfm_ban_icon.render (IconSize.MENU, null);
+		var lastfm_love_icon = Icons.LASTFM_LOVE_ICON.render (IconSize.MENU);
+		var lastfm_ban_icon = Icons.LASTFM_BAN_ICON.render (IconSize.MENU);
 		
 		loveMedia.set_image(new Image.from_pixbuf(lastfm_love_icon));
 		banMedia.set_image(new Image.from_pixbuf(lastfm_ban_icon));
@@ -94,18 +95,18 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		buttons.pack_end(new Label(""), true, true, 0);
 		buttons.pack_end(banMedia, false, false, 0);
 		
-		artistImageScroll = new ScrolledWindow(null, null);
+		coverArtScroll = new ScrolledWindow(null, null);
 		Viewport imageVP = new Viewport(null, null);
-		artistImageScroll.set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
+		coverArtScroll.set_policy(PolicyType.NEVER, PolicyType.NEVER);
 		imageVP.set_shadow_type(ShadowType.NONE);
-		imageVP.add(artistImage);
-		imageVP.override_background_color (StateFlags.NORMAL, lw.base_color);
-		artistImageScroll.add(imageVP);
+		imageVP.add(coverArt);
+		imageVP.override_background_color (StateFlags.NORMAL, lw.BASE_COLOR);
+		coverArtScroll.add(imageVP);
 		
 		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(artist, 2, 0, 0, 5), false, true, 0);
 		content.pack_start(buttons, false, true, 0);
-		content.pack_start(wrap_alignment(artistImageScroll, 5, 5, 0, 5), false, true, 0);
+		content.pack_start(wrap_alignment(coverArtScroll, 5, 5, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(rating, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(album, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(year, 0, 0, 20, 5), false, true, 0);
@@ -130,6 +131,10 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		//title.button_press_event.connect(titleClicked);
 		loveMedia.clicked.connect(loveButtonClicked);
 		banMedia.clicked.connect(banButtonClicked);
+		
+		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
+		Gtk.drag_dest_add_uri_targets(this);
+		this.drag_data_received.connect(dragReceived);
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -174,35 +179,28 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		else
 			year.set_markup("");
 		
-		updateArtistImage(false);
+		updateCoverArt(false);
 		ssv.hide();
 		
 		setVisibilities();
 	}
 	
-	public void updateArtistImage(bool is_initial) {
-		//if(lm.media_from_id(id) == null)
+	public void updateCoverArt(bool is_initial) {
+		if(lm.media_from_id(id) == null)
 			return;
 		
-		/*string file = lm.media_from_id(id).getArtistImagePath();
-		if(file != "" && GLib.File.new_for_path(file).query_exists()) {
-			artistImage.show();
-			try {
-				var pixbuf = new Gdk.Pixbuf.from_file_at_scale(file, lm.settings.getMoreWidth() - 10, lm.settings.getMoreWidth() - 10, true);
-				var max_width = artistImageScroll.get_allocated_width();
+		if(lm.get_cover_album_art(id) != null) {
+			coverArt.show();
+			var pixbuf = lm.get_cover_album_art(id);
+			var max_width = coverArtScroll.get_allocated_width();
 				
-				while(pixbuf.width > max_width) {
-					pixbuf = pixbuf.scale_simple(pixbuf.width - 5, pixbuf.height - 5, Gdk.InterpType.BILINEAR);
-				}
-				artistImage.set_from_pixbuf(pixbuf);
-				//artistImage.set_from_pixbuf(new Gdk.Pixbuf.from_file(file));
+			while(pixbuf != null && pixbuf.width >= max_width - 5) {
+				pixbuf = pixbuf.scale_simple(pixbuf.width - 5, pixbuf.height - 5, Gdk.InterpType.BILINEAR);
 			}
-			catch(GLib.Error err) {
-				stdout.printf("Could not set info panel image art: %s\n", err.message);
-			}
+			coverArt.set_from_pixbuf(pixbuf);
 		}
 		else
-			artistImage.hide();*/
+			coverArt.hide();
 	}
 	
 	public void updateMediaList(Collection<Media> medias) {
@@ -227,8 +225,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	
 	public virtual void resized(Allocation rectangle) {
 		// resize the image to fit
-		//artistImage.icon_size = rectangle.width - 10;
-		updateArtistImage(false);
+		//coverArt.icon_size = rectangle.width - 10;
+		updateCoverArt(false);
 	}
 	
 	public virtual bool titleClicked(Gdk.EventButton event) {
@@ -238,14 +236,14 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 					GLib.AppInfo.launch_default_for_uri (lm.media_info.track.url, null);
 				}
 				catch(GLib.Error err) {
-					stdout.printf("Could not open url in Last FM: %s\n", err.message);
+					message("Could not open url in Last FM: %s\n", err.message);
 				}
 				
 				return null;
 			}, false);
 		}
 		catch(GLib.ThreadError err) {
-			stdout.printf("Could not create thread to open title:%s\n", err.message);
+			message("Could not create thread to open title:%s\n", err.message);
 			
 		}
 		
@@ -259,4 +257,84 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	public virtual void banButtonClicked() {
 		lm.lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
+	
+	private bool is_valid_image_type(string type) {
+		var typeDown = type.down();
+		
+		return (typeDown.has_suffix(".jpg") || typeDown.has_suffix(".jpeg") ||
+				typeDown.has_suffix(".png"));
+	}
+	
+	void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
+		message("drag received\n");
+		bool success = true;
+		
+		foreach(string singleUri in data.get_uris()) {
+			
+			if(is_valid_image_type(singleUri) && lm.media_info.media != null) {
+				var original = File.new_for_uri(singleUri);
+				var playingPath = File.new_for_uri(lm.media_info.media.uri); // used to get dest
+				var dest = File.new_for_path(Path.build_path("/", playingPath.get_parent().get_path(), "Album.jpg"));
+				
+				// test successful, no block on copy
+				if(dest.query_exists()) {
+					try {
+						dest.delete();
+					}
+					catch(Error err) {
+						message("Could not delete previous file\n");
+					}
+				}
+				
+				try {
+					original.copy(dest, FileCopyFlags.NONE, null, null);
+				}
+				catch(Error err) {
+					success = false;
+					message("Could not copy album art to destination\n");
+				}
+				
+				if(success) {
+					// save new pixbuf in memory
+					Gdk.Pixbuf? pix = null;
+					try {
+						pix = new Gdk.Pixbuf.from_file(dest.get_path());
+					}
+					catch(GLib.Error err) {}
+					lm.set_album_art(lm.media_info.media.rowid, pix);
+					
+					Gee.LinkedList<Media> updated_medias = new Gee.LinkedList<Media>();
+					foreach(int id in lm.media_ids()) {
+						if(lm.media_from_id(id).artist == lm.media_info.media.artist && lm.media_from_id(id).album == lm.media_info.media.album) {
+							lm.media_from_id(id).setAlbumArtPath(dest.get_path());
+							updated_medias.add(lm.media_from_id(id));
+						}
+					}
+					
+					// wait for everything to finish up and then update the medias
+					Timeout.add(2000, () => {
+						
+						try {
+							Thread.create<void*>(lm.fetch_thread_function, false);
+						}
+						catch(GLib.ThreadError err) {
+							message("Could not create thread to load media pixbuf's: %s \n", err.message);
+						}
+						
+						lm.update_medias(updated_medias, false, false);
+						
+						// for sound menu (dbus doesn't like linked lists)
+						if(updated_medias.contains(lm.media_info.media))
+							lm.update_media(lm.media_info.media, false, false);
+						
+						return false;
+					});
+				}
+			}
+			
+			updateCoverArt(true);
+			Gtk.drag_finish (context, success, false, timestamp);
+			return;
+		}
+    }
 }

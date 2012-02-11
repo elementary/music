@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originaly Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -55,13 +55,13 @@ public class BeatBox.PlaylistNameWindow : Window {
 		padding = new HBox(false, 10);
 		
 		/* start out by creating all category labels */
-		Label nameLabel = new Label("Name of Playlist");
+		Label nameLabel = new Label(_("Name of Playlist"));
 		_name = new Entry();
-		_save = new Button.with_label("Done");
+		_save = new Button.with_label(_("Done"));
 		
 		/* set up controls */
 		nameLabel.xalign = 0.0f;
-		nameLabel.set_markup("<b>Name of Playlist</b>");
+		nameLabel.set_markup("<b>%s</b>".printf(_("Name of Playlist")));
 		
 		_name.text = original.name;
 		

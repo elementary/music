@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originaly Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -50,7 +50,7 @@ public class BeatBox.AddPodcastWindow : Window {
 		already_validating = false;
 		next = "";
 		
-		title = "Add Podcast";
+		title = (_("Add Podcast"));
 		
 		//set_default_size(400, -1);
 		set_size_request(400, -1);
@@ -68,24 +68,24 @@ public class BeatBox.AddPodcastWindow : Window {
 		padding = new HBox(false, 10);
 		
 		/* get pixbufs */
-		valid = lw.lm.icons.process_completed_icon.render (IconSize.MENU, null);
-		not_valid = lw.lm.icons.process_error_icon.render (IconSize.MENU, null);
+		valid = Icons.PROCESS_COMPLETED_ICON.render (IconSize.MENU);
+		not_valid = Icons.PROCESS_ERROR_ICON.render (IconSize.MENU);
 		
 		if(valid == null)
-			valid = render_icon(Gtk.Stock.YES, IconSize.MENU, null);
+			valid = Icons.render_icon(Gtk.Stock.YES, IconSize.MENU);
 		if(not_valid == null)
-			not_valid = render_icon(Gtk.Stock.NO, IconSize.MENU, null);
+			not_valid = Icons.render_icon(Gtk.Stock.NO, IconSize.MENU);
 		
 		/* start out by creating all category labels */
-		Label sourceLabel = new Label("Podcast RSS Source");
-		_source = new Granite.Widgets.HintedEntry("Podcast Source...");
+		Label sourceLabel = new Label(_("Podcast RSS Source"));
+		_source = new Granite.Widgets.HintedEntry(_("Podcast Source..."));
 		_is_valid = new Gtk.Image.from_pixbuf(not_valid);
 		_is_working = new Gtk.Spinner();
-		_save = new Button.with_label("Add");
+		_save = new Button.with_label(_("Add"));
 		
 		/* set up controls */
 		sourceLabel.xalign = 0.0f;
-		sourceLabel.set_markup("<b>Podcast RSS Source</b>");
+		sourceLabel.set_markup("<b>%s</b>".printf(_("Podcast RSS Source</b>")));
 		
 		_is_working.start();
 		

@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player and Granite Library
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -50,8 +50,14 @@ namespace ElementaryWidgets {
 			else
 				widget.get_style_context().set_state(StateFlags.NORMAL);
 			
+			// this is for vala 0.14
 			Gtk.render_expander(widget.get_style_context(), context,
-								cell_area.x + 8 / 2, cell_area.y + 8 / 2, 8.0, 8.0);//expanded ? ExpanderStyle.EXPANDED : ExpanderStyle.COLLAPSED);
+                                cell_area.x + 8 / 2, cell_area.y + 8 / 2, 8.0, 8.0);//expanded ? ExpanderStyle.EXPANDED : ExpanderStyle.COLLAPSED);
+			
+			// this is for newer vala versions
+			//widget.get_style_context().render_expander(context, cell_area.x + 8 / 2,
+			//                                           cell_area.y + 8 / 2, 8.0, 8.0);
+			                         //expanded ? ExpanderStyle.EXPANDED : ExpanderStyle.COLLAPSED);
 		}
 	}
 	

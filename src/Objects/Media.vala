@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -179,12 +179,19 @@ public class BeatBox.Media : GLib.Object{
 	}
 	
 	public string getArtistImagePath() {
-		stdout.printf("fix getArtistImagePath\n");
-		return "";//Path.build_path("/", file.substring(0, _file.substring(0, _file.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
+		if(isTemporary || mediatype != 0)
+			return "";
+		
+		var path_file = File.new_for_uri(uri);
+		if(!path_file.query_exists())
+			return "";
+		
+		var path = path_file.get_path();
+		return Path.build_path("/", path.substring(0, path.substring(0, path.last_index_of("/", 0)).last_index_of("/", 0)), "Artist.jpg");
 	}
 	
 	public static Media from_track(string root, GPod.Track track) {
-		Media rv = new Media(File.new_for_path(Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path))).get_uri());
+		Media rv = new Media("file://" + Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
 		
 		rv.isTemporary = true;
 		if(track.title != null) {			rv.title = track.title; }
@@ -204,7 +211,7 @@ public class BeatBox.Media : GLib.Object{
 		rv.date_added = (int)track.time_added;
 		rv.last_modified = (int)track.time_modified;
 		rv.last_played = (int)track.time_played;
-		rv.rating = track.rating;
+		rv.rating = track.rating * 20;
 		rv.play_count = track.playcount;
 		rv.bpm = track.BPM;
 		rv.skip_count = track.skipcount;
@@ -213,7 +220,7 @@ public class BeatBox.Media : GLib.Object{
 		
 		if(track.mediatype == GPod.MediaType.AUDIO)
 			rv.mediatype = 0;
-		else if(track.mediatype == GPod.MediaType.PODCAST)
+		else if(track.mediatype == GPod.MediaType.PODCAST || track.mediatype == 0x00000006)
 			rv.mediatype = 1;
 		else if(track.mediatype == GPod.MediaType.AUDIOBOOK)
 			rv.mediatype = 2;
@@ -251,23 +258,23 @@ public class BeatBox.Media : GLib.Object{
 		t.year = (int)year;
 		t.time_modified = (time_t)last_modified;
 		t.time_played = (time_t)last_played;
-		t.rating = rating;
+		t.rating = rating * 20;
 		t.playcount = play_count;
 		t.recent_playcount = play_count;
 		t.BPM = (uint16)bpm;
 		t.skipcount = skip_count;
 		t.tracklen = (int)length * 1000;
 		t.size = file_size * 1000000;
-		t.mediatype = 1;
+		t.mediatype = 0x00000001;
 		t.lyrics_flag = 1;
 		t.description = lyrics;
 		
 		if(mediatype == 0)
-			t.mediatype = GPod.MediaType.AUDIO;
+			t.mediatype = 0x00000001;
 		else if(mediatype == 1)
-			t.mediatype = GPod.MediaType.PODCAST;
+			t.mediatype = 0x00000006;
 		else if(mediatype == 2)
-			t.mediatype = GPod.MediaType.AUDIOBOOK;
+			t.mediatype = 0x00000008;
 		
 		t.podcasturl = podcast_url;
 		t.mark_unplayed = (play_count == 0) ? 1 : 0;
@@ -307,16 +314,16 @@ public class BeatBox.Media : GLib.Object{
 		t.skipcount = skip_count;
 		t.tracklen = (int)length * 1000;
 		t.size = file_size * 1000000;
-		t.mediatype = 1;
+		t.mediatype = 0x00000001;
 		t.lyrics_flag = 1;
 		t.description = lyrics;
 		
 		if(mediatype == 0)
-			t.mediatype = GPod.MediaType.AUDIO;
+			t.mediatype = 0x00000001;
 		else if(mediatype == 1)
-			t.mediatype = GPod.MediaType.PODCAST;
+			t.mediatype = 0x00000006;
 		else if(mediatype == 2)
-			t.mediatype = GPod.MediaType.AUDIOBOOK;
+			t.mediatype = 0x00000008;
 		
 		t.podcasturl = podcast_url;
 		t.mark_unplayed = (play_count == 0) ? 1 : 0;

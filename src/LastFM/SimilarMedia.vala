@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -53,7 +53,7 @@ public class LastFM.SimilarMedias : Object {
 				Thread.create<void*>(similar_thread_function, false);
 			}
 			catch(GLib.ThreadError err) {
-				stdout.printf("ERROR: Could not create similar thread: %s \n", err.message);
+				warning("ERROR: Could not create similar thread: %s \n", err.message);
 			}
 		}
 	}
@@ -98,11 +98,11 @@ public class LastFM.SimilarMedias : Object {
 		Xml.Doc* doc = Xml.Parser.parse_memory((string)message.response_body.data, (int)message.response_body.length);
 		
 		if(doc == null)
-			stdout.printf("Could not load similar artist information for %s by %s\n", title, artist);
+			GLib.message("Could not load similar artist information for %s by %s\n", title, artist);
 		else if(doc->get_root_element() == null)
-			stdout.printf("Oddly, similar artist information was invalid\n");
+			GLib.message("Oddly, similar artist information was invalid\n");
 		else {
-			//stdout.printf("Getting similar tracks with %s... \n", url);
+			//message("Getting similar tracks with %s... \n", url);
 			similarToAdd = null;
 			
 			parse_similar_nodes(doc->get_root_element(), "");

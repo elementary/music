@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012           Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -27,49 +27,49 @@ using GLib;
 public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	LibraryManager lm;
 	int stamp; // all iters must match this
-	Gdk.Pixbuf _playing;
-	Gdk.Pixbuf _saved_locally;
-	Gdk.Pixbuf _new_podcast;
+	GLib.Icon _playing;
+	GLib.Icon _saved_locally;
+	GLib.Icon _new_podcast;
 	public bool is_current;
 	
-    /* data storage variables */
-    Sequence<int> rows;
-    private LinkedList<string> _columns;
-    
-    /* treesortable stuff */
-    private int sort_column_id;
-    private SortType sort_direction;
-    private unowned TreeIterCompareFunc default_sort_func;
-    private HashMap<int, CompareFuncHolder> column_sorts;
-    bool removing_medias;
-    
-    /* custom signals for custom treeview. for speed */
-    public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
-    public signal void rows_deleted (LinkedList<TreePath> paths);
+	/* data storage variables */
+	Sequence<int> rows;
+	private LinkedList<string> _columns;
+
+	/* treesortable stuff */
+	private int sort_column_id;
+	private SortType sort_direction;
+	private unowned TreeIterCompareFunc default_sort_func;
+	private HashMap<int, CompareFuncHolder> column_sorts;
+	bool removing_medias;
+
+	/* custom signals for custom treeview. for speed */
+	public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
+	public signal void rows_deleted (LinkedList<TreePath> paths);
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 	
 	/** Initialize data storage, columns, etc. **/
-	public PodcastTreeModel(LibraryManager lm, LinkedList<string> column_types, Gdk.Pixbuf playing, TreeView parent) {
+	public PodcastTreeModel(LibraryManager lm, LinkedList<string> column_types, TreeView parent) {
 		this.lm = lm;
 		_columns = column_types;
-		_playing = playing;
-		_saved_locally = lm.lw.render_icon(Gtk.Stock.SAVE, IconSize.MENU, null);
-		_new_podcast = lm.icons.new_podcast_icon.render(IconSize.MENU, parent.get_style_context());
+		_playing = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
+		_saved_locally = new GLib.ThemedIcon.with_default_fallbacks (Gtk.Stock.SAVE);
+		_new_podcast = Icons.NEW_PODCAST_ICON.get_gicon();
 		removing_medias = false;
 
 		rows = new Sequence<int>();
-       
-       sort_column_id = -2;
-       sort_direction = SortType.ASCENDING;
-       column_sorts = new HashMap<int, CompareFuncHolder>();
-       
-       stamp = (int)GLib.Random.next_int();
+
+		sort_column_id = -2;
+		sort_direction = SortType.ASCENDING;
+		column_sorts = new HashMap<int, CompareFuncHolder>();
+
+		stamp = (int)GLib.Random.next_int();
 	}
 	
 	/** Returns Type of column at index_ **/
 	public Type get_column_type (int col) {
 		if(_columns[col] == " ") {
-			return typeof(Gdk.Pixbuf);
+			return typeof(GLib.Icon);
 		}
 		else if(col == 0 || _columns[col] == "Length" || _columns[col] == "Rating" || _columns[col] == "Episode" || _columns[col] == "Date" || col == 10) {
 			return typeof(int);
@@ -92,13 +92,13 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
 			return false;
 		
-        var seq_iter = rows.get_iter_at_pos(path_index);
-        if(seq_iter == null)
+	var seq_iter = rows.get_iter_at_pos(path_index);
+	if(seq_iter == null)
 			return false;
-        
+	
 		iter.stamp = this.stamp;
 		iter.user_data = seq_iter;
-        
+	
 		return true;
 	}
 	
@@ -135,7 +135,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 				else if(!s.uri.has_prefix("http://"))
 					val = _saved_locally;
 				else
-					val = Value(typeof(Gdk.Pixbuf));
+					val = Value(typeof(GLib.Icon));
 			}
 			else if(column == 2)
 				val = (int)s.track;
@@ -217,9 +217,9 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Lets the tree unref the node. **/
 	public void unref_node (TreeIter iter) {}
-    
-    /** Some actual functions to use this model **/
-    public TreeIter? getIterFromRowid(int id) {
+	
+	/** Some actual functions to use this model **/
+	public TreeIter? getIterFromRowid(int id) {
 		SequenceIter s_iter = rows.get_begin_iter();
 		
 		for(int index = 0; index < rows.get_length(); ++index) {
@@ -243,8 +243,8 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		return rows.get(((SequenceIter<int>)iter.user_data));
 	}
-    
-    public int getRowidFromPath(string path) {
+	
+	public int getRowidFromPath(string path) {
 		if(int.parse(path) < 0 || int.parse(path) >= rows.get_length())
 			return 0;
 		
@@ -255,9 +255,9 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 		
 		return rows.get(s_iter);
 	}
-    
-    /** simply adds iter to the model **/
-    public void append(out TreeIter iter) {
+	
+	/** simply adds iter to the model **/
+	public void append(out TreeIter iter) {
 		iter = TreeIter();
 		SequenceIter<int> added = rows.append(0);
 		iter.stamp = this.stamp;
@@ -265,7 +265,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	}
 	
 	/** convenience method to insert medias into the model. No iters returned. **/
-    public void append_medias(Collection<int> medias, bool emit) {
+	public void append_medias(Collection<int> medias, bool emit) {
 		foreach(int id in medias) {
 			SequenceIter<int> added = rows.append(id);
 			
@@ -343,17 +343,17 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 				return;
 			
 			/*else if(_columns[col] == " ") {
-				stdout.printf("set oh hi3\n");
+				debug("set oh hi3\n");
 				Gdk.Pixbuf val = args.arg();
 				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_object(val);
 			}
 			else if(_columns[col] == "Title" || _columns[col] == "Artist" || _columns[col] == "Album" || _columns[col] == "Genre") {
-				stdout.printf("set oh hi2\n");
+				debug("set oh hi2\n");
 				string val = args.arg();
 				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_string(val);
 			}
 			else {
-				stdout.printf("set oh hi\n");
+				debug("set oh hi\n");
 				int val = args.arg();
 				((SequenceIter<Media>)iter.user_data).get().get_nth(col).set_int(val);
 			}*/
@@ -502,7 +502,7 @@ public class BeatBox.PodcastTreeModel : GLib.Object, TreeModel, TreeSortable {
 	
 	private int advancedStringCompare(string a, string b) {
 		if(a == null || b == null)
-			stdout.printf("a or b is null\n");
+			debug("a or b is null\n");
 		if(a == "" && b != "")
 			return 1;
 		else if(a != "" && b == "")

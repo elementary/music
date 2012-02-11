@@ -1,3 +1,25 @@
+/*-
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ *
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * BeatBox Music Player: http://www.launchpad.net/beat-box
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 using Gtk;
 
 public class BeatBox.DeviceSummaryWidget : VBox {
@@ -35,7 +57,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	
 	public void buildUI() {
 		// options at top
-		deviceName = new Granite.Widgets.HintedEntry("Device Name");
+		deviceName = new Granite.Widgets.HintedEntry(_("Device Name"));
 		syncAtStart = new Gtk.Switch();
 		syncMusic = new CheckButton();
 		syncPodcasts = new CheckButton();
@@ -50,16 +72,16 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		deviceImage = new Gtk.Image.from_gicon(dev.get_icon(), IconSize.DIALOG);
 		spaceWidget = new SpaceWidget((double)dev.get_capacity()/1000000);
 		
-		Label deviceNameLabel = new Label("Device Name:");
-		Label autoSyncLabel = new Label("Automatically sync when plugged in:");
-		Label syncOptionsLabel = new Label("Sync:");
+		Label deviceNameLabel = new Label(_("Device Name:"));
+		Label autoSyncLabel = new Label(_("Automatically sync when plugged in:"));
+		Label syncOptionsLabel = new Label(_("Sync:"));
 		
 		var content = new VBox(false, 10);
 		
 		setupLists();
 
-		music_index = spaceWidget.add_item("Music", 0.0, SpaceWidget.ItemColor.BLUE);
-		podcast_index = spaceWidget.add_item("Podcasts", 0.0, SpaceWidget.ItemColor.PURPLE);
+		music_index = spaceWidget.add_item(_("Music"), 0.0, SpaceWidget.ItemColor.BLUE);
+		podcast_index = spaceWidget.add_item(_("Podcasts"), 0.0, SpaceWidget.ItemColor.PURPLE);
 		//audiobook_index = spaceWidget.add_item("Audiobooks", 0.0, SpaceWidget.ItemColor.GREEN);
 		
 		refreshSpaceWidget();
@@ -117,7 +139,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		EventBox eb = new EventBox();
 		
 		// paint the background color
-		eb.override_background_color (StateFlags.NORMAL, lw.base_color);
+		eb.override_background_color (StateFlags.NORMAL, lw.BASE_COLOR);
 		eb.add(new Label("test"));
 		
 		//var content_plus_spacewidget = new Box(Orientation.VERTICAL, 0);
@@ -307,7 +329,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	}
 	
 	public void refreshLists() {
-		stdout.printf("refreshing lists\n");
+		message("refreshing lists\n");
 		string musicString = musicDropdown.get_active_id();
 		string podcastString = podcastDropdown.get_active_id();
 		//string audiobookString = audiobookDropdown.get_active_id();
@@ -319,11 +341,11 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		
 		/* add entire library options */
 		musicList.append(out iter);
-		musicList.set(iter, 0, null, 1, "All Music", 2, lm.icons.music_icon.render(IconSize.MENU, musicDropdown.get_style_context()));
+		musicList.set(iter, 0, null, 1, _("All Music"), 2, Icons.MUSIC_ICON.render(IconSize.MENU));
 		podcastList.append(out iter);
-		podcastList.set(iter, 0, null, 1, "All Podcasts", 2, lm.icons.podcast_icon.render(IconSize.MENU, podcastDropdown.get_style_context()));
+		podcastList.set(iter, 0, null, 1, _("All Podcasts"), 2, Icons.PODCAST_ICON.render(IconSize.MENU));
 		//audiobookList.append(out iter);
-		//audiobookList.set(iter, 0, null, 1, "All Audiobooks");//, 2, lm.icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
+		//audiobookList.set(iter, 0, null, 1, "All Audiobooks");//, 2, Icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
 		
 		/* add separator */
 		musicList.append(out iter);
@@ -334,8 +356,8 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		//audiobookList.set(iter, 0, null, 1, "<separator_item_unique_name>");
 		
 		/* add all playlists */
-		var smart_playlist_pix = lm.icons.smart_playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
-		var playlist_pix = lm.icons.playlist_icon.render(IconSize.MENU, musicDropdown.get_style_context());
+		var smart_playlist_pix = Icons.SMART_PLAYLIST_ICON.render(IconSize.MENU, null);
+		var playlist_pix = Icons.PLAYLIST_ICON.render(IconSize.MENU, null);
 		foreach(var p in lm.smart_playlists()) {
 			//bool music, podcasts, audiobooks;
 			//test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
@@ -378,7 +400,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		//if(!audiobookDropdown.set_active_id(audiobookString))
 		//	audiobookDropdown.set_active(0);
 		
-		stdout.printf("setting sensitivity\n");
+		message("setting sensitivity\n");
 		musicDropdown.sensitive = dev.get_preferences().sync_music;
 		podcastDropdown.sensitive = dev.get_preferences().sync_podcasts;
 		//audiobookDropdown.sensitive = dev.get_preferences().sync_audiobooks;
@@ -440,7 +462,8 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 					}
 				}
 				else {
-					lw.doAlert("Sync Failed", "The playlist named <b>" + pref.music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+					lw.doAlert(_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.music_playlist + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
+					
 					pref.music_playlist = "";
 					pref.sync_all_music = true;
 					musicDropdown.set_active(0);
@@ -475,7 +498,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 					}
 				}
 				else {
-					lw.doAlert("Sync Failed", "The playlist named <b>" + pref.podcast_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
+					lw.doAlert(_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.podcast_playlist + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
 					pref.podcast_playlist = "";
 					pref.sync_all_podcasts = true;
 					musicDropdown.set_active(0);
@@ -521,10 +544,10 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		
 		bool fits = dev.will_fit(list);
 		if(!fits) {
-			lw.doAlert("Cannot Sync", "Cannot Sync Device with selected sync settings. Not enough space on disk\n");
+			lw.doAlert(_("Cannot Sync"), _("Cannot sync device with selected sync settings. Not enough space on disk") +"\n");
 		}
 		else if(dev.is_syncing()) {
-			lw.doAlert("Cannot Sync", "Device is already being synced.");
+			lw.doAlert(_("Cannot Sync"), _("Device is already being synced."));
 		}
 		else {
 			var to_remove = new Gee.LinkedList<int>();

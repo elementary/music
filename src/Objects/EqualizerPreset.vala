@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -27,16 +27,7 @@ public class BeatBox.EqualizerPreset : Object {
 	public string name;
 	public ArrayList<int> gains;
 
-	private bool _default_preset = false;
-
-	public bool is_default {
-		get {
-			return _default_preset;
-		}
-		set {
-			_default_preset = value;
-		}
-	}
+	public bool is_default { get; set;}
 
 	public EqualizerPreset.basic(string name) {
 		this.name = name;

@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -118,7 +118,7 @@ public class BeatBox.FileOperator : Object {
 			}
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
+			warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
 		}
         
         return index;
@@ -195,7 +195,7 @@ public class BeatBox.FileOperator : Object {
 			Gee.LinkedList<Media> updated_medias = new Gee.LinkedList<Media>();
 			foreach(int i in lm.media_ids()) {
 				if(lm.media_from_id(i).artist == s.artist && lm.media_from_id(i).album == s.album) { 
-					stdout.printf("setting album art for %s by %s\n", lm.media_from_id(i).title, lm.media_from_id(i).artist);
+					debug("setting album art for %s by %s\n", lm.media_from_id(i).title, lm.media_from_id(i).artist);
 					lm.media_from_id(i).setAlbumArtPath(dest);
 					updated_medias.add(lm.media_from_id(i));
 				}
@@ -208,7 +208,7 @@ public class BeatBox.FileOperator : Object {
 				lm.update_media(lm.media_info.media, false, false);
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not save album to file: %s\n", err.message);
+			debug("Could not save album to file: %s\n", err.message);
 		}
 	}
 	
@@ -236,7 +236,7 @@ public class BeatBox.FileOperator : Object {
 	
 	public void save_medias(Collection<Media> to_save) {
 		foreach(Media s in to_save) {
-			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview && s.uri.has_prefix("file://" + lm.settings.getMusicFolder()))
+			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview && GLib.File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
 				toSave.offer(s);
 		}
 		
@@ -246,7 +246,7 @@ public class BeatBox.FileOperator : Object {
 				Thread.create<void*>(save_media_thread, false);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+				warning ("Could not create thread to rescan music folder: %s\n", err.message);
 			}
 		}
 	}
@@ -262,7 +262,7 @@ public class BeatBox.FileOperator : Object {
 			
 			if(settings.getWriteMetadataToFile()) {
 				TagLib.File tag_file;
-				tag_file = new TagLib.File(s.uri.replace("file://",""));
+				tag_file = new TagLib.File(GLib.File.new_for_uri(s.uri).get_path());
 				
 				if(tag_file != null && tag_file.tag != null && tag_file.audioproperties != null) {
 					try {
@@ -281,7 +281,7 @@ public class BeatBox.FileOperator : Object {
 					}
 				}
 				else {
-					stdout.printf("Could not save %s.\n", s.uri);
+					debug ("Could not save %s.\n", s.uri);
 				}
 			}
 			
@@ -306,7 +306,7 @@ public class BeatBox.FileOperator : Object {
 			dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + ext));
 			
 			if(original.get_path() == dest.get_path()) {
-				stdout.printf("File is already in correct location\n");
+				debug("File is already in correct location\n");
 				return null;
 			}
 			
@@ -320,7 +320,7 @@ public class BeatBox.FileOperator : Object {
 				dest.get_parent().make_directory_with_parents(null);
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not find new destination!: %s\n", err.message);
+			debug("Could not find new destination!: %s\n", err.message);
 		}
 		
 		return dest;
@@ -337,16 +337,16 @@ public class BeatBox.FileOperator : Object {
 			/* copy the file over */
 			bool success = false;
 			if(!delete_old) {
-				stdout.printf("Copying %s to %s\n", s.uri, dest.get_path());
+				debug("Copying %s to %s\n", s.uri, dest.get_uri());
 				success = original.copy(dest, FileCopyFlags.NONE, null, null);
 			}
 			else {
-				stdout.printf("Moving %s to %s\n", s.uri, dest.get_path());
+				debug("Moving %s to %s\n", s.uri, dest.get_uri());
 				success = original.move(dest, FileCopyFlags.NONE, null, null);
 			}
 			
 			if(success) {
-				stdout.printf("success copying file\n");
+				debug("success copying file\n");
 				s.uri = dest.get_uri();
 				
 				// wait to update media when out of thread
@@ -363,13 +363,13 @@ public class BeatBox.FileOperator : Object {
 					
 					if(!GLib.File.new_for_path(albumArtDest).query_exists() && mediaFile.query_exists() &&
 					mediaFile.copy(GLib.File.new_for_path(albumArtDest), FileCopyFlags.NONE, null, null)) {
-						stdout.printf("Copying album art to %s\n", albumArtDest);
+						debug("Copying album art to %s\n", albumArtDest);
 						s.setAlbumArtPath(albumArtDest);
 					}
 				}
 			}
-			else
-				stdout.printf("Failure: Could not copy imported media %s to media folder %s\n", s.uri, dest.get_path());
+			else // FIXME: use warning() here?
+				debug("Failure: Could not copy imported media %s to media folder %s\n", s.uri, dest.get_path());
 			
 			/* if we are supposed to delete the old, make sure there are no items left in folder if we do */
 			if(delete_old) {
@@ -378,13 +378,13 @@ public class BeatBox.FileOperator : Object {
 				// must check for .jpg's as well.
 				
 				if(old_folder_items == 0) {
-					stdout.printf("going to delete %s because no files are in it\n", original.get_parent().get_path());
+					debug("going to delete %s because no files are in it\n", original.get_parent().get_path());
 					original.get_parent().delete();
 				}
 			}
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not copy imported media %s to media folder: %s\n", s.uri, err.message);
+			warning("Could not copy imported media %s to media folder: %s\n", s.uri, err.message);
 		}
 	}
 	
@@ -392,25 +392,25 @@ public class BeatBox.FileOperator : Object {
 		var dummy_list = new LinkedList<string>();
 		foreach(string s in toRemove) {
 			try {
-				var file = GLib.File.new_for_path(s);
+				var file = GLib.File.new_for_uri(s);
 				file.trash();
 				
 				var old_folder_items = count_music_files(file.get_parent(), ref dummy_list);
 					
 				//TODO: COPY ALBUM AND IMAGE ARTWORK
 				if(old_folder_items == 0) {
-					stdout.printf("going to delete %s because no files are in it\n", file.get_parent().get_path());
+					debug("going to delete %s because no files are in it\n", file.get_parent().get_path());
 					//original.get_parent().delete();
 					
 					var old_folder_parent_items = count_music_files(file.get_parent().get_parent(), ref dummy_list);
 					
 					if(old_folder_parent_items == 0) {
-						stdout.printf("going to delete %s because no files are in it\n", file.get_parent().get_parent().get_path());
+						debug("going to delete %s because no files are in it\n", file.get_parent().get_parent().get_path());
 					}
 				}
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s, err.message);
+				warning("Could not move file %s to trash: %s (you could be using a file system which is not supported)\n", s, err.message);
 				
 				//tell the user the file could not be moved and ask if they'd like to delete permanently instead.
 				//Gtk.MessageDialog md = new Gtk.MessageDialog(lm.lw, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, "Could not trash file %s, would you like to permanently delete it? You cannot undo these changes.", s);
@@ -437,7 +437,7 @@ public class BeatBox.FileOperator : Object {
 			}
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not guess content types: %s\n", err.message);
+			message("Could not guess content types: %s\n", err.message);
 		}
 	}*/
 	
@@ -527,7 +527,7 @@ public class BeatBox.FileOperator : Object {
 				Thread.create<void*>(copy_imports_thread, false);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not create thread to rescan music folder: %s\n", err.message);
+				warning("Could not create thread to rescan music folder: %s\n", err.message);
 			}
 		}
 		else {

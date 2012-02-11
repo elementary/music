@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011	   Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012	   Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originaly Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -82,9 +82,9 @@ public class BeatBox.MediaEditor : Window {
 		
 		HButtonBox buttonSep = new HButtonBox();
 		buttonSep.set_layout(ButtonBoxStyle.END);
-		_previous = new Button.with_label("Previous");
-		_next = new Button.with_label("Next");
-		_save = new Button.with_label("Done");
+		_previous = new Button.with_label(_("Previous"));
+		_next = new Button.with_label(_("Next"));
+		_save = new Button.with_label(_("Done"));
 		
 		buttonSep.pack_start(_previous, false, false, 0);
 		buttonSep.pack_start(_next, false, false, 0);
@@ -553,8 +553,8 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(original != "0");
 			
 			comboBox = (ComboBoxText)w;
-			comboBox.append_text("Song");
-			comboBox.append_text("Podcast");
+			comboBox.append_text(_("Song"));
+			comboBox.append_text(_("Podcast"));
 			comboBox.set_active(int.parse(original));
 			comboBox.changed.connect(comboChanged);
 			

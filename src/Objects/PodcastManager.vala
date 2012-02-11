@@ -1,3 +1,25 @@
+/*-
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ *
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * BeatBox Music Player: http://www.launchpad.net/beat-box
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 using Gee;
 
 public class BeatBox.PodcastManager : GLib.Object {
@@ -363,7 +385,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 					online_size = online_file.query_info("*", FileQueryInfoFlags.NONE).get_size();
 				}
 				catch(Error err) {
-					error("Could not read online podcast file's size for progress notification: %s\n", err.message);
+					stdout.printf("Could not read online podcast file's size for progress notification: %s\n", err.message);
 				}
 				
 				new_dest = lm.fo.get_new_destination(s);
@@ -374,7 +396,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 					file_size = (int)(new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size() / 1000000);
 				}
 				catch(Error err) {
-					error("Could not calculate downloaded podcast's file size: %s\n", err.message);
+					stdout.printf("Could not calculate downloaded podcast's file size: %s\n", err.message);
 				}
 				
 				s.file_size = file_size;
@@ -410,12 +432,12 @@ public class BeatBox.PodcastManager : GLib.Object {
 	
 	public bool doProgressNotificationWithTimeoutSaveLocally() {
 		int64 current_local_size = 0;
-		if(new_dest.query_exists()) {
+		if(new_dest != null && new_dest.query_exists()) {
 			try {
 				current_local_size = new_dest.query_info("*", FileQueryInfoFlags.NONE).get_size();
 			}
 			catch(Error err) {
-				error("Error reading current size of downloaded podcast: %s\n", err.message);
+				stdout.printf("Error reading current size of downloaded podcast: %s\n", err.message);
 			}
 		}
 		

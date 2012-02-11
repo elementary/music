@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -85,8 +85,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	
 	public void buildUI() {
 		deviceMenu = new Gtk.Menu();
-		deviceImportToLibrary = new Gtk.MenuItem.with_label("Import from Device");
-		deviceSync = new Gtk.MenuItem.with_label("Sync");
+		deviceImportToLibrary = new Gtk.MenuItem.with_label(_("Import from Device"));
+		deviceSync = new Gtk.MenuItem.with_label(_("Sync"));
 		deviceMenu.append(deviceImportToLibrary);
 		deviceMenu.append(deviceSync);
 		deviceImportToLibrary.activate.connect(deviceImportToLibraryClicked);
@@ -94,8 +94,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		deviceMenu.show_all();
 		
 		podcastMenu = new Gtk.Menu();
-		podcastAdd = new Gtk.MenuItem.with_label("Add Podcast");
-		podcastRefresh = new Gtk.MenuItem.with_label("Download new Episodes");
+		podcastAdd = new Gtk.MenuItem.with_label(_("Add Podcast"));
+		podcastRefresh = new Gtk.MenuItem.with_label(_("Download new Episodes"));
 		podcastMenu.append(podcastAdd);
 		podcastMenu.append(podcastRefresh);
 		podcastAdd.activate.connect(podcastAddClicked);
@@ -103,8 +103,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		podcastMenu.show_all();
 		
 		CDMenu = new Gtk.Menu();
-		CDimportToLibrary = new Gtk.MenuItem.with_label("Import to Library");
-		CDeject = new Gtk.MenuItem.with_label("Eject");
+		CDimportToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
+		CDeject = new Gtk.MenuItem.with_label(_("Eject"));
 		CDMenu.append(CDimportToLibrary);
 		//CDMenu.append(CDeject);
 		CDimportToLibrary.activate.connect(CDimportToLibraryClicked);
@@ -112,20 +112,20 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		CDMenu.show_all();
 		
 		radioMenu = new Gtk.Menu();
-		radioImportStations = new Gtk.MenuItem.with_label("Import Station");
+		radioImportStations = new Gtk.MenuItem.with_label(_("Import Station"));
 		radioMenu.append(radioImportStations);
 		radioImportStations.activate.connect(playlistImportClicked);
 		radioMenu.show_all();
 		
 		//playlist right click menu
 		playlistMenu = new Gtk.Menu();
-		playlistNew = new Gtk.MenuItem.with_label("New Playlist");
-		smartPlaylistNew = new Gtk.MenuItem.with_label("New Smart Playlist");
-		playlistEdit = new Gtk.MenuItem.with_label("Edit");
-		playlistRemove = new Gtk.MenuItem.with_label("Remove");
-		playlistSave = new Gtk.MenuItem.with_label("Save as Playlist");
-		playlistExport = new Gtk.MenuItem.with_label("Export...");
-		playlistImport = new Gtk.MenuItem.with_label("Import Playlist");
+		playlistNew = new Gtk.MenuItem.with_label(_("New Playlist"));
+		smartPlaylistNew = new Gtk.MenuItem.with_label(_("New Smart Playlist"));
+		playlistEdit = new Gtk.MenuItem.with_label(_("Edit"));
+		playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
+		playlistSave = new Gtk.MenuItem.with_label(_("Save as Playlist"));
+		playlistExport = new Gtk.MenuItem.with_label(_("Export..."));
+		playlistImport = new Gtk.MenuItem.with_label(_("Import Playlist"));
 		playlistMenu.append(playlistNew);
 		playlistMenu.append(smartPlaylistNew);
 		playlistMenu.append(playlistEdit);
@@ -157,18 +157,18 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void addBasicItems() {
-		library_iter = addItem(null, null, null, null, "Library", null);
-		devices_iter = addItem(null, null, null, null, "Devices", null);
-		network_iter = addItem(null, null, null, null, "Network", null);
-		playlists_iter = addItem(null, null, null, null, "Playlists", null);
+		library_iter = addItem(null, null, null, null, _("Library"), null);
+		devices_iter = addItem(null, null, null, null, _("Devices"), null);
+		network_iter = addItem(null, null, null, null, _("Network"), null);
+		playlists_iter = addItem(null, null, null, null, _("Playlists"), null);
 	}
 	
 	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name, ViewWrapper.Hint hint) {
-		var music_icon = lm.icons.music_icon.render (IconSize.MENU, null);
-		var podcast_icon = lm.icons.podcast_icon.render (IconSize.MENU, null);
-		var history_icon = lm.icons.history_icon.render (IconSize.MENU, null);
-		var smart_playlist_icon = lm.icons.smart_playlist_icon.render (IconSize.MENU, null);
-	
+		var music_icon = Icons.MUSIC_ICON.render (IconSize.MENU, null);
+		var podcast_icon = Icons.PODCAST_ICON.render (IconSize.MENU, null);
+		var history_icon = Icons.HISTORY_ICON.render (IconSize.MENU, null);
+		var smart_playlist_icon = Icons.SMART_PLAYLIST_ICON.render (IconSize.MENU, null);
+
 		if(hint == ViewWrapper.Hint.MUSIC && parent == library_iter) {
 			library_music_iter = addItem(parent, o, w, music_icon, name, null);
 			return library_music_iter;
@@ -179,27 +179,29 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		}
 		else if(hint == ViewWrapper.Hint.AUDIOBOOK && parent == library_iter) {
 			// FIXME: add icon
-			var audiobook_icon = lm.icons.audiobook_icon.render (IconSize.MENU, null);
+			var audiobook_icon = Icons.AUDIOBOOK_ICON.render (IconSize.MENU, null);
 			library_audiobooks_iter = addItem(parent, o, w, audiobook_icon, name, null);
 			return library_audiobooks_iter;
 		}
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
 			TreeIter? rv;
-			// TODO: Install and load these icons using the Icons module
+			Gdk.Pixbuf? device_icon;
 			if(d.getContentType() == "cdrom") {
-				devices_cdrom_iter = addItem(parent, o, w, render_icon("media-optical-audio", IconSize.MENU, null), name, null);
+				devices_cdrom_iter = addItem(parent, o, w, Icons.AUDIO_CD_ICON.render(IconSize.MENU, null), name, null);
 				return devices_cdrom_iter;
 			}
 			else if(d.getContentType() == "ipod-new")
-				rv = addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
+			    device_icon = Icons.render_icon ("phone", IconSize.MENU);
 			else if(d.getContentType() == "ipod-old")
-				rv = addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
+			    device_icon = Icons.render_icon("multimedia-player", IconSize.MENU);
 			else if(d.getContentType() == "android")
-				rv = addItem(parent, o, w, render_icon("phone", IconSize.MENU, null), name, null);
+				device_icon = Icons.render_icon("phone", IconSize.MENU);
 			else
-				rv = addItem(parent, o, w, render_icon("multimedia-player", IconSize.MENU, null), name, null);
-				
+			    device_icon = Icons.render_icon("multimedia-player", IconSize.MENU);
+
+			rv = addItem(parent, o, w, device_icon, name, null);
+
 			var dvw = new DeviceViewWrapper(lm, lw, d.get_medias(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
 			addItem(rv, o, dvw, music_icon, _("Music"), null);
 			lw.mainViews.pack_start(dvw, true, true, 0);
@@ -222,7 +224,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return network_store_iter;
 		}*/
 		else if(hint == ViewWrapper.Hint.STATION && parent == network_iter) {
-			var radio_icon = lm.icons.radio_icon.render (IconSize.MENU, null);
+			var radio_icon = Icons.RADIO_ICON.render (IconSize.MENU, null);
 			network_radio_iter = addItem(parent, o, w, radio_icon, name, null);
 			return network_radio_iter;
 		}
@@ -290,7 +292,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 			} while(true);
 			
-			var playlist_icon = lm.icons.playlist_icon.render (IconSize.MENU, null);
+			var playlist_icon = Icons.PLAYLIST_ICON.render (IconSize.MENU, null);
 			tree.set(item, 0, o, 1, w, 2, true, 3, playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
 			if(visible) {
 				TreeIter? filterItem = convertToFilter(item);
@@ -447,7 +449,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	}
 	
 	public void resetView() {
-        /* e can't just put setSelectedIter directly, we have to check that this iter is not null */
+        /* We can't just put setSelectedIter directly, we have to check that this iter is not null */
         TreeIter? selected_iter = null;
         if(lm.media_info.media == null || lm.media_info.media.mediatype == 0)
 			selected_iter = convertToFilter(library_music_iter);
@@ -511,23 +513,18 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 				
 				/* update the lists if we need to */
-				if(iter == library_music_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				ViewWrapper vw = (ViewWrapper)w;
+				if(iter == library_music_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.song_ids(), false, false, false);
+								lm.song_ids(), true, false, false);
 				}
-				else if(iter == library_podcasts_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(iter == library_podcasts_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.podcast_ids(), false, false, false);
+								lm.podcast_ids(), true, false, false);
 				}
-				else if(iter == network_radio_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(iter == network_radio_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.station_ids(), false, false, false);
+								lm.station_ids(), true, false, false);
 				}
 				else if(iter == network_store_iter) {
 					Store.StoreView sv = (Store.StoreView)w;
@@ -538,51 +535,39 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					}
 				}
 				else if(iter == playlists_similar_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
 					lw.updateMillerColumns(); // don't show millers if showing warning label
-					
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								vw.get_media_ids(), true, false, false);
+					//vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+					//			vw.get_media_ids(), true, false, false);
 				}
-				else if(iter == playlists_queue_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(iter == playlists_queue_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.queue(), true, false, false);
 				}
-				else if(iter == playlists_history_iter) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(iter == playlists_history_iter && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.already_played(), true, false, false);
 				}
-				else if(o is SmartPlaylist && !((SmartPlaylist)o).viewWrapper_is_up_to_date) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(o is SmartPlaylist && !((SmartPlaylist)o).viewWrapper_is_up_to_date && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, false, false);
 				}
-				else if(o is Playlist) {
-					ViewWrapper vw = (ViewWrapper)w;
-					
+				else if(o is Playlist && vw.needs_update) {
 					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
 								lm.medias_from_playlist(((Playlist)o).rowid), true, false, false);
 				}
-				else if(o is Device) {
-					DeviceViewWrapper vw = (DeviceViewWrapper)w;
-					stdout.printf("o is device\n");
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								vw.get_media_ids(), true, false, false);
+				else if(o is Device && vw.needs_update) {
+					DeviceViewWrapper dvw = (DeviceViewWrapper)w;
+					
+					dvw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+								dvw.get_media_ids(), true, false, false);
 				}
 				
 				if(lw.viewSelector.selected == 2) {
-					stdout.printf("doing miller update\n");
 					lw.miller.populateColumns( (o is Device) ? "device" : "", ((ViewWrapper)w).get_media_ids());
 				}
 				
 				lw.updateMillerColumns();
 				
-				stdout.printf("setting status bar text\n");
 				((ViewWrapper)w).set_statusbar_text();
 			}
 			else if(w is Store.StoreView) {

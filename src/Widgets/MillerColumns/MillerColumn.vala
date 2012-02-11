@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -28,9 +28,7 @@ public class BeatBox.MillerColumns : HBox {
 	public LibraryWindow lw;
 	public Collection<int> medias;
 	
-	public MillerColumn genres;
 	public MillerColumn artists;
-	public MillerColumn albums;
 	
 	public signal void changed();
 	
@@ -39,45 +37,17 @@ public class BeatBox.MillerColumns : HBox {
 		lw = lww;
 		
 		artists = new MillerColumn(this, "Artists");
-		albums = new MillerColumn(this, "Albums");
-		genres = new MillerColumn(this, "Genres");
 		
-		pack_start(genres, true, true, 1);
 		pack_start(artists, true, true, 1);
-		pack_start(albums, true, true, 1);
 		
-		genres.selectedChanged.connect(genreSelected);
 		artists.selectedChanged.connect(artistSelected);
-		albums.selectedChanged.connect(albumSelected);
-		
-		genres.resetRequested.connect(resetColumns);
 		artists.resetRequested.connect(resetColumns);
-		albums.resetRequested.connect(resetColumns);
-		
-		genres.columnVisibilityUpdate.connect(updateColumnVisibilities);
-		artists.columnVisibilityUpdate.connect(updateColumnVisibilities);
-		albums.columnVisibilityUpdate.connect(updateColumnVisibilities);
 		
 		lw.searchField.changed.connect(searchFieldChanged);
 	}
 	
-	public void updateColumnVisibilities(bool genreV, bool artistV, bool albumV) {
-		genres.set_visible(genreV);
-		artists.set_visible(artistV);
-		albums.set_visible(albumV);
-		
-		genres.setColumnVisibilities(genreV, artistV, albumV);
-		artists.setColumnVisibilities(genreV, artistV, albumV);
-		albums.setColumnVisibilities(genreV, artistV, albumV);
-		
-		lm.settings.setMillerColumnVisibilities(genreV, artistV, albumV);
-		if (medias != null) populateColumns("", medias);
-	}
-	
 	public void resetColumns() {
 		artists.set_selected("All Artists");
-		albums.set_selected("All Albums");
-		genres.set_selected("All Genres");
 	}
 	
 	public virtual void searchFieldChanged() {
@@ -102,95 +72,19 @@ public class BeatBox.MillerColumns : HBox {
 		
 		LinkedList<int> searched_medias = new LinkedList<int>();
 		LinkedList<int> searched_medias_albums = new LinkedList<int>();
-		lm.do_search(lw.searchField.get_text(), hint,
-					"All Genres", "All Artists", "All Albums",
+		lm.do_search(lw.searchField.get_text(), hint, "All Artists", "All Albums",
 					medias, ref searched_medias, ref searched_medias_albums);
 		
-		var artistsSet = new HashSet<string>();
-		var albumsSet = new HashSet<string>();
-		var genresSet = new HashSet<string>();
+		var artistSet = new HashMap<string, int>();
 		
 		foreach(int id in searched_medias) {
-			artistsSet.add(lm.media_from_id(id).album_artist);
-			albumsSet.add(lm.media_from_id(id).album);
-			genresSet.add(lm.media_from_id(id).genre);
+			artistSet.set(lm.media_from_id(id).album_artist, 1);
 		}
 		
-		genres.populate(genresSet);
-		if(genres.get_selected() == "All Genres") {
-			artists.populate(artistsSet);
-			
-			if(artists.get_selected() == "All Artists")
-				albums.populate(albumsSet);
-			else
-				artistSelected("Artists", artists.get_selected());
-		}
-		else {
-			genreSelected("Genres", genres.get_selected());
-		}
+		artists.populate(artistSet);
 	}
 	
-	public virtual void genreSelected(string cat, string text) {
-		Widget w = lw.sideTree.getSelectedWidget();
-		ViewWrapper.Hint hint = ViewWrapper.Hint.MUSIC;
-		
-		if(w is ViewWrapper) {
-			hint = ((ViewWrapper)w).hint;
-		}
-		else {
-			// no need to populate if not viewing viewwrapper
-			return;
-		}
-		
-		LinkedList<int> searched_medias = new LinkedList<int>();
-		LinkedList<int> searched_medias_album = new LinkedList<int>();
-		lm.do_search(lw.searchField.get_text(), hint,
-					genres.get_selected(), artists.get_selected(), albums.get_selected(),
-					medias, ref searched_medias, ref searched_medias_album);
-		
-		var artistsSet = new HashSet<string>();
-		var albumsSet = new HashSet<string>();
-		
-		foreach(int id in searched_medias) {
-			artistsSet.add(lm.media_from_id(id).album_artist);
-			albumsSet.add(lm.media_from_id(id).album);
-		}
-		
-		artists.populate(artistsSet);
-		albums.populate(albumsSet);
-		
-		changed();
-	}
 	public virtual void artistSelected(string cat, string text) {
-		Widget w = lw.sideTree.getSelectedWidget();
-		ViewWrapper.Hint hint = ViewWrapper.Hint.MUSIC;
-		
-		if(w is ViewWrapper) {
-			hint = ((ViewWrapper)w).hint;
-		}
-		else {
-			// no need to populate if not viewing viewwrapper
-			return;
-		}
-		
-		LinkedList<int> searched_medias = new LinkedList<int>();
-		LinkedList<int> searched_medias_album = new LinkedList<int>();
-		lm.do_search(lw.searchField.get_text(), hint,
-					genres.get_selected(), artists.get_selected(), albums.get_selected(),
-					medias, ref searched_medias, ref searched_medias_album);
-		
-		var albumsSet = new HashSet<string>();
-		
-		foreach(int id in searched_medias) {
-			albumsSet.add(lm.media_from_id(id).album);
-		}
-		
-		albums.populate(albumsSet);
-		
-		changed();
-	}
-	public virtual void albumSelected(string cat, string text) {
-		
 		changed();
 	}
 }
@@ -208,14 +102,8 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	
 	string _selected;
 	
-	Gtk.Menu columnChooserMenu;
-	CheckMenuItem columnGenres;
-	CheckMenuItem columnArtists;
-	CheckMenuItem columnAlbums;
-	
-	public signal void selectedChanged(string category, string selected);
+	public signal void selectedChanged(string cat, string val);
 	public signal void resetRequested();
-	public signal void columnVisibilityUpdate(bool genres, bool artists, bool albums);
 	
 	public MillerColumn(MillerColumns parent, string categ) {
 		this.millerParent = parent;
@@ -229,34 +117,9 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		cell.ellipsize = Pango.EllipsizeMode.END;
 		view.insert_column_with_attributes(-1, category, cell, "text", 0, null);
 		
-		// add this widget crap so we can get right clicks
-		view.get_column(0).clickable = true;
-		view.get_column(0).widget = new Gtk.Label(category);
-		view.get_column(0).widget.show();
-		view.get_column(0).set_sort_indicator(false);
-		Gtk.Widget ancestor = view.get_column(0).widget.get_ancestor(typeof(Gtk.Button));
-		GLib.assert(ancestor != null);
-		ancestor.button_press_event.connect(viewHeaderClick);
-		
-		//view.set_headers_visible(false);
-		view.get_column(0).set_alignment((float)0.5);
-		view.get_column(0).sizing = Gtk.TreeViewColumnSizing.FIXED;
-		
-		columnChooserMenu = new Gtk.Menu();
-		columnGenres = new CheckMenuItem.with_label("Genres");
-		columnArtists = new CheckMenuItem.with_label("Artists");
-		columnAlbums = new CheckMenuItem.with_label("Albums");
-		columnChooserMenu.append(columnGenres);
-		columnChooserMenu.append(columnArtists);
-		columnChooserMenu.append(columnAlbums);
-		columnGenres.toggled.connect(columnMenuToggled);
-		columnArtists.toggled.connect(columnMenuToggled);
-		columnAlbums.toggled.connect(columnMenuToggled);
-		columnChooserMenu.show_all();
+		view.set_headers_visible(false);
 		
 		add(view);
-		
-		//set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
 		
 		view.get_selection().changed.connect(selectionChanged);
 		view.row_activated.connect(viewDoubleClick);
@@ -290,40 +153,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		return true;
 	}
 	
-	public virtual void columnMenuToggled() {
-		columnVisibilityUpdate(columnGenres.active, columnArtists.active, columnAlbums.active);
-	}
-	
-	public void setColumnVisibilities(bool genres, bool artists, bool albums) {
-		columnGenres.active = genres;
-		columnArtists.active = artists;
-		columnAlbums.active = albums;
-		
-		if(!genres && !artists) {
-			columnAlbums.set_sensitive(false);
-		}
-		else if(!genres && !albums) {
-			columnArtists.set_sensitive(false);
-		}
-		else if(!artists && !albums) {
-			columnGenres.set_sensitive(false);
-		}
-		else {
-			columnGenres.set_sensitive(true);
-			columnArtists.set_sensitive(true);
-			columnAlbums.set_sensitive(true);
-		}
-	}
-	
-	private bool viewHeaderClick(Gtk.Widget w, Gdk.EventButton e) {
-		if(e.button == 3) {
-			columnChooserMenu.popup(null, null, null, 3, get_current_event_time());
-			return true;
-		}
-		
-		return false;
-	}
-	
 	public virtual void selectionChanged() {
 		TreeModel tempModel;
 		TreeIter iter;
@@ -345,20 +174,20 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 			resetRequested();
 	}
 	
-	public void populate(HashSet<string> items) {
+	public void populate(HashMap<string, int> items) {
 		if(items.size == model.iter_n_children(null))
 			return;
 		
-		items.remove("");
-		items.add("All " + category);
+		items.unset("");
+		items.set("All " + category, 1);
 		
-		if(!(items.contains(get_selected()))) {
+		if(items.get(get_selected()) == 0) {
 			_selected = "All " + category;
 			selectedChanged(category, _selected);
 		}
 		
 		model = new MillerModel(category);
-		model.append_items(items, true);
+		model.append_items(items.keys, false);
 		model.set_sort_column_id(0, Gtk.SortType.ASCENDING);
 		view.set_model(model);
 		

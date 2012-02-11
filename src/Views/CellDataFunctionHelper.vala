@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -29,8 +29,8 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 	private Pixbuf starred;
 	
 	public CellDataFunctionHelper(LibraryManager lm) {
-		this.starred = lm.icons.starred_icon.render (IconSize.MENU, null);
-		this.not_starred = lm.icons.not_starred_icon.render (IconSize.MENU, null);
+		this.starred = Icons.STARRED_ICON.render (IconSize.MENU, null);
+		this.not_starred = Icons.NOT_STARRED_ICON.render (IconSize.MENU, null);
 		
 		_canvas = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, starred.width * 5, starred.height);
 	}

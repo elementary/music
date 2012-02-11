@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -97,7 +97,7 @@ public class LastFM.Image : Object {
 			rv = new Gdk.Pixbuf.from_stream_at_scale(filestream, _size[0], _size[1], true, null);
 		}
 		catch(GLib.Error err) {
-			stdout.printf("Could not fetch album art from %s: %s\n", url, err.message);
+			warning("Could not fetch album art from %s: %s\n", url, err.message);
 			rv = null;
 		}
 		

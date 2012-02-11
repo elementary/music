@@ -1,3 +1,25 @@
+/*-
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ *
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * BeatBox Music Player: http://www.launchpad.net/beat-box
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 using Gtk;
 using Gee;
 
@@ -42,15 +64,15 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		savePlaylists = new Button.with_label("Export Playlists");
-		ok = new Button.with_label("Set Music Folder");
-		cancel = new Button.with_label("Cancel");
+		savePlaylists = new Button.with_label(_("Export Playlists"));
+		ok = new Button.with_label(_("Set Music Folder"));
+		cancel = new Button.with_label(_("Cancel"));
 		is_finished = new Gtk.Image();
 		is_working = new Gtk.Spinner();
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Set Music Folder?</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">%s</span>".printf(_("Set Music Folder?")));
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
 		info.set_markup("Are you sure you want to set the music folder to <b>" + path.replace("&", "&amp;") + "</b>? This will reset your library and remove static playlists.");
@@ -121,8 +143,8 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 			is_working.hide();
 			is_finished.show();
 			
-			var process_completed_icon = lm.icons.process_completed_icon.render (IconSize.MENU, null);
-			var process_error_icon = lm.icons.process_error_icon.render (IconSize.MENU, null);
+			var process_completed_icon = Icons.PROCESS_COMPLETED_ICON.render (IconSize.MENU);
+			var process_error_icon = Icons.PROCESS_ERROR_ICON.render (IconSize.MENU);
 			
 			is_finished.set_from_pixbuf(success ? process_completed_icon : process_error_icon);
 		}

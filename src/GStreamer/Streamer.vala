@@ -1,3 +1,25 @@
+/*-
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ *
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * BeatBox Music Player: http://www.launchpad.net/beat-box
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 using Gst;
 using Gtk;
 
@@ -61,6 +83,7 @@ public class BeatBox.Streamer : GLib.Object {
 	
 	public void setURI(string uri) {
 		setState(State.READY);
+		debug("set uri to %s\n", uri);
 		pipe.playbin.uri = uri.replace("#", "%23");
 		
 		if(lw.initializationFinished && pipe.video.element != null) {
@@ -70,7 +93,7 @@ public class BeatBox.Streamer : GLib.Object {
 		
 		setState(State.PLAYING);
 		
-		stdout.printf("setURI seeking to %d\n", lm.media_info.media.resume_pos);
+		debug("setURI seeking to %d\n", lm.media_info.media.resume_pos);
 		pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
 		
 		play();
@@ -133,7 +156,7 @@ public class BeatBox.Streamer : GLib.Object {
 			GLib.Error err;
 			string debug;
 			message.parse_error (out err, out debug);
-			stdout.printf ("Error: %s\n", err.message);
+			warning ("Error: %s\n", err.message);
 			
 			break;
 		case Gst.MessageType.ELEMENT:
@@ -174,9 +197,7 @@ public class BeatBox.Streamer : GLib.Object {
 					if(pipe.videoStreamCount() > 0) {
 						if(lw.viewSelector.get_children().length() != 4) {
 							//stdout.printf("turning on video\n");
-							var viewSelectorStyle = lw.viewSelector.get_style_context ();
-							var view_video_icon = lm.icons.view_video_icon.render (Gtk.IconSize.MENU, viewSelectorStyle);
-							lw.viewSelector.append(new Gtk.Image.from_pixbuf(view_video_icon));
+							lw.viewSelector.append(Icons.VIEW_VIDEO_ICON.render_image (Gtk.IconSize.MENU));
 							lw.viewSelector.selected = 3;
 						}
 					}

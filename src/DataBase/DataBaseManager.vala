@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -253,7 +253,7 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 :resume_pos);""");
 			
 			foreach(Media s in medias) {
-				if(s.rowid > 0) {
+				if(s.rowid > 0 && !s.isTemporary) {
 					query.set_int(":rowid", (int)s.rowid);
 					query.set_string(":uri", s.uri);
 					query.set_int(":file_size", (int)s.file_size);

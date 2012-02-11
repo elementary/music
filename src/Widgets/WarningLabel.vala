@@ -1,3 +1,25 @@
+/*-
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ *
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * BeatBox Music Player: http://www.launchpad.net/beat-box
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 using Gtk;
 
 public class BeatBox.WarningLabel : EventBox {
@@ -14,11 +36,11 @@ public class BeatBox.WarningLabel : EventBox {
 			warningIcon.set_visible (value);
 		}
 	}
-	
+
 	public WarningLabel() {
 		errorLabel = new Label("");
-		warningIcon = new Image.from_stock (Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
-		
+		warningIcon = Icons.render_image ("dialog-warning", Gtk.IconSize.DIALOG);
+
 		var content = new Box (Orientation.HORIZONTAL, 10);
 		var content_wrapper = new Box (Orientation.HORIZONTAL, 0);
 		var outer_box = new Box (Orientation.VERTICAL, 0);
@@ -39,32 +61,32 @@ public class BeatBox.WarningLabel : EventBox {
 		outer_box.pack_start (bottom_padding, true, true, 0);
 
 		add(outer_box);
-		
+
 		// Change background color.
-		override_background_color (Gtk.StateFlags.NORMAL, LibraryWindow.base_color);
-		
+		override_background_color (Gtk.StateFlags.NORMAL, LibraryWindow.BASE_COLOR);
+
 		errorLabel.xalign = 0.5f;
 		errorLabel.set_justify(Justification.CENTER);
 		errorLabel.ellipsize = Pango.EllipsizeMode.END;
 	}
-	
+
 	static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-	
+
 		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
 		alignment.top_padding = top;
 		alignment.right_padding = right;
 		alignment.bottom_padding = bottom;
 		alignment.left_padding = left;
-		
+
 		alignment.add(widget);
 		return alignment;
 	}
-	
-	public void setWarning(string warning, Gtk.Justification? jst) {
-		if (jst == null)
+
+	public void setWarning(string warning, Gtk.Justification? justification) {
+		if (justification == null)
 			errorLabel.set_justify(Gtk.Justification.CENTER);
 		else
-			errorLabel.set_justify(jst);
+			errorLabel.set_justify(justification);
 
 		errorLabel.set_markup(warning);
 	}
