@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-03 22:16+0100\n"
-"PO-Revision-Date: 2012-02-06 00:07+0000\n"
+"PO-Revision-Date: 2012-02-10 17:08+0000\n"
 "Last-Translator: Marc Demierre <Unknown>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-07 05:05+0000\n"
-"X-Generator: Launchpad (build 14747)\n"
+"X-Launchpad-Export-Date: 2012-02-11 05:46+0000\n"
+"X-Generator: Launchpad (build 14771)\n"
 "Language: \n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:88
@@ -151,7 +151,7 @@ msgstr "Débit"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:543
 msgid "Rating"
-msgstr "Évaluation"
+msgstr "Classement"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:544
 msgid "Plays"
@@ -186,8 +186,8 @@ msgid ""
 "In this view, BeatBox will automatically find medias similar to the one you "
 "are playing."
 msgstr ""
-"Dans cette vue, BeatBox trouve automatiquement les morceaux ressemblant à "
-"celui que vous êtes en train d'écouter."
+"Dans cette vue, BeatBox trouvera automatiquement des médias similaires à "
+"celui que vous écoutez."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
 msgid "You can then start playing those medias, or save them for later."
@@ -224,7 +224,7 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
 msgid "No Internet Radio Stations Found"
-msgstr "Pas de stations internet radio trouvée"
+msgstr "Aucune station radio internet trouvée"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
 msgid ""
@@ -441,7 +441,7 @@ msgstr "secondes"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:445
 msgid "kbps"
-msgstr "ko/s"
+msgstr "kb/s"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "Get Some Tunes"

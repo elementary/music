@@ -8,32 +8,33 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-02-03 22:16+0100\n"
-"PO-Revision-Date: 2012-02-03 17:59+0000\n"
+"PO-Revision-Date: 2012-02-11 02:06+0000\n"
 "Last-Translator: David Bengtsson <Unknown>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-04 06:05+0000\n"
-"X-Generator: Launchpad (build 14738)\n"
+"X-Launchpad-Export-Date: 2012-02-11 05:46+0000\n"
+"X-Generator: Launchpad (build 14771)\n"
+"X-Poedit-Language: Swedish\n"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:88
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr ""
+msgstr "Importera från enheten"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:89
 msgid "Sync"
-msgstr ""
+msgstr "Synkronisera"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:97
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:53
 msgid "Add Podcast"
-msgstr ""
+msgstr "Lägg till poddsändning"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:98
 msgid "Download new Episodes"
-msgstr ""
+msgstr "Hämta nya avsnitt"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:106
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:218
@@ -42,40 +43,40 @@ msgstr "Importera till biblioteket"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:107
 msgid "Eject"
-msgstr ""
+msgstr "Mata ut"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:115
 msgid "Import Station"
-msgstr ""
+msgstr "Importera station"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:122
 msgid "New Playlist"
-msgstr ""
+msgstr "Ny spellista"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:123
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "Ny smart spellista"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:124
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:125
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Remove"
-msgstr ""
+msgstr "Ta bort"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:126
 msgid "Save as Playlist"
-msgstr ""
+msgstr "Spara som spellista"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:127
 msgid "Export..."
-msgstr ""
+msgstr "Exportera..."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:128
 msgid "Import Playlist"
-msgstr ""
+msgstr "Importera spellista"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:160
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:284
@@ -84,15 +85,15 @@ msgstr "Bibliotek"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:161
 msgid "Devices"
-msgstr ""
+msgstr "Enheter"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:162
 msgid "Network"
-msgstr ""
+msgstr "Nätverk"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:163
 msgid "Playlists"
-msgstr ""
+msgstr "Spellistor"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:205
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:210
@@ -115,11 +116,11 @@ msgstr "Poddsändningar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:534
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:535
 msgid "Track"
-msgstr ""
+msgstr "Spår"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:536
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:252
@@ -128,7 +129,7 @@ msgstr "Titel"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:537
 msgid "Length"
-msgstr ""
+msgstr "Speltid"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:539
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:253
@@ -138,149 +139,160 @@ msgstr "Album"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:540
 msgid "Genre"
-msgstr ""
+msgstr "Genre"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:541
 msgid "Year"
-msgstr ""
+msgstr "År"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:542
 msgid "Bitrate"
-msgstr ""
+msgstr "Bitfrekvens"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:543
 msgid "Rating"
-msgstr ""
+msgstr "Betyg"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:544
 msgid "Plays"
-msgstr ""
+msgstr "Uppspelningar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:545
 msgid "Skips"
-msgstr ""
+msgstr "Överhoppanden"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:546
 msgid "Date Added"
-msgstr ""
+msgstr "Datum tillagd"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:547
 msgid "Last Played"
-msgstr ""
+msgstr "Senast spelad"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:548
 msgid "BPM"
-msgstr ""
+msgstr "Taktslag/min"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/RadioListView.vala:282
 msgid "Remove Station"
-msgstr ""
+msgstr "Ta bort stationen"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
 msgid "Similar Media View"
-msgstr ""
+msgstr "Vy för liknande mediefiler"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
 msgid ""
 "In this view, BeatBox will automatically find medias similar to the one you "
 "are playing."
 msgstr ""
+"I denna vy kommer BeatBox automatiskt att hitta mediefiler som liknar det du "
+"spelar."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
 msgid "You can then start playing those medias, or save them for later."
-msgstr ""
+msgstr "Du kan sedan spela upp dessa mediefiler eller spara dem till senare."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "Ogiltig ljudskiva"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
 msgid "BeatBox could not read the contents of this Audio CD."
-msgstr ""
+msgstr "BeatBox kunde inte läsa innehållet på denna ljudskiva."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
 msgid "No Podcasts Found"
-msgstr ""
+msgstr "Inga poddsändningar hittades"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
 msgid ""
 "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
 msgstr ""
+"För att lägga till en poddsändning, besök en webbplats såsom Miro Guide för "
+"att hitta RSS-kanaler."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
 msgid ""
 "You can then copy and paste the feed into the \"Add Podcast\" window by "
 "right clicking on \"Podcasts\"."
 msgstr ""
+"Du kan sedan kopiera och klistra in kanalen i \"Lägg till poddsändning\"-"
+"fönstret genom att högerklicka på \"Poddsändningar\"."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
 msgid "No Internet Radio Stations Found"
-msgstr ""
+msgstr "Inga internetradiostationer hittades"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
 msgid ""
 "To add a station, visit a website such as SomaFM to find PLS or M3U files."
 msgstr ""
+"För att lägga till en station, besök en webbplats såsom SomaFM för att hitta "
+"PLS- eller M3U-filer."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
 msgid "You can then import the file to add the station."
-msgstr ""
+msgstr "Du kan sedan importera filen för att lägga till stationen."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
 msgid "Loading similar songs"
-msgstr ""
+msgstr "Läser in liknande låtar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
 msgid "BeatBox is loading songs similar to"
-msgstr ""
+msgstr "BeatBox läser in låtar som liknar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
 msgid "No similar songs found"
-msgstr ""
+msgstr "Inga liknande låtar hittades"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
 msgid "BeatBox could not find songs similar to"
-msgstr ""
+msgstr "BeatBox kunde inte hitta låtar som liknar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
 msgid ""
 "Make sure all song info is correct and you are connected to the Internet.\n"
 "Some songs may not have matches."
 msgstr ""
+"Se till att all låtinformation är korrekt och att du är ansluten till "
+"internet.\n"
+"Vissa låtar kan sakna träffar."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:68
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:85
 msgid "Previous"
-msgstr ""
+msgstr "Föregående"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:69
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:86
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:70
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:87
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/PlaylistNameWindow.vala:60
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 msgid "Done"
-msgstr ""
+msgstr "Färdigställ"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:556
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:307
 msgid "Song"
-msgstr ""
+msgstr "Låt"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:557
 msgid "Podcast"
-msgstr ""
+msgstr "Poddsändning"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:45
 msgid "Export Playlists"
-msgstr ""
+msgstr "Exportera spellistor"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:46
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:217
@@ -289,44 +301,44 @@ msgstr "Välj musikmapp"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:53
 #, c-format
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "Ställa in som musikmapp?"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:44
 msgid "Import medias to Library"
-msgstr ""
+msgstr "Importera mediefilerna till biblioteket"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:45
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Fortsätt att synkronisera"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:46
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Synkronisera inte"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/PlaylistNameWindow.vala:58
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/PlaylistNameWindow.vala:64
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #, c-format
 msgid "Name of Playlist"
-msgstr ""
+msgstr "Spellistans namn"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:80
 msgid "Podcast RSS Source"
-msgstr ""
+msgstr "RSS-källa för poddsändning"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:81
 msgid "Podcast Source..."
-msgstr ""
+msgstr "Poddsändningskälla..."
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:84
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:116
 msgid "Add"
-msgstr ""
+msgstr "Lägg till"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:88
 #, c-format
@@ -335,19 +347,19 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all medias"
-msgstr ""
+msgstr "Importera alla mediefiler"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
-msgstr ""
+msgstr "Importera"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr ""
+msgstr "Importera inte"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:161
 msgid "Select individual medias to import:"
-msgstr ""
+msgstr "Välj enskilda mediefiler att importera:"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:179
 msgid "Check Item"
@@ -363,21 +375,21 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 msgid "Rules"
-msgstr ""
+msgstr "Regler"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:70
 msgid "Options"
-msgstr ""
+msgstr "Alternativ"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 #, c-format
 msgid "<b>Name of Playlist</b>"
-msgstr ""
+msgstr "<b>Spellistans namn</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:77
 #, c-format
 msgid "<b>Rules</b>"
-msgstr ""
+msgstr "<b>Regler</b>"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:78
 #, c-format
@@ -386,52 +398,52 @@ msgstr ""
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:81
 msgid "Playlist Title"
-msgstr ""
+msgstr "Spellistans titel"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
-msgstr ""
+msgstr "Matcha"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
-msgstr ""
+msgstr "av följande:"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:121
 msgid "Limit to"
-msgstr ""
+msgstr "Begränsa till"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 msgid "medias"
-msgstr ""
+msgstr "mediefiler"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:394
 msgid "is"
-msgstr ""
+msgstr "är"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "contains"
-msgstr ""
+msgstr "innehåller"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "does not contain"
-msgstr ""
+msgstr "innehåller inte"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:395
 msgid "is not"
-msgstr ""
+msgstr "är inte"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:437
 msgid "seconds"
-msgstr ""
+msgstr "sekunder"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:445
 msgid "kbps"
-msgstr ""
+msgstr "kbit/s"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "Införskaffa några låtar"
 
 #: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
 msgid "BeatBox can't seem to find your music."
