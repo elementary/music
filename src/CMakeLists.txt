@@ -116,7 +116,6 @@ vala_precompile(VALA_C
     Objects/Icon.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarMediaView.vala
-    Widgets/ScrollingLabel.vala
     Widgets/InfoPanel.vala
     Widgets/WarningLabel.vala
     Widgets/SimpleOptionChooser.vala
@@ -184,7 +183,6 @@ vala_precompile(VALA_C
     #    Views/External/ListView/ExternalMusicTreeView.vala
     #    Views/External/ListView/ExternalMusicTreeModel.vala
     #    Views/External/ExternalViewWrapper.vala
-    Views/CellRendererRating.vala
     Settings.vala
     Dialogs/EqualizerWindow.vala
     Dialogs/PresetNameWindow.vala

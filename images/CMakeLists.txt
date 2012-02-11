@@ -21,30 +21,14 @@ install(FILES icons/16x16/mimetypes/media-cdrom-audio.svg DESTINATION share/beat
 
 # media-audio for default album image
 install(FILES icons/128x128/mimetypes/media-audio.png DESTINATION share/beatbox/icons/hicolor/128x128/mimetypes)
-install(FILES icons/128x128/mimetypes/drop-album.svg DESTINATION share/beatbox/icons/hicolor/128x128/mimetypes)
 
 # folder icon
 install(FILES icons/128x128/mimetypes/folder-music.svg DESTINATION share/beatbox/icons/hicolor/128x128/mimetypes)
 
-# history icon
-install(FILES icons/22x22/actions/document-open-recent.svg DESTINATION share/beatbox/icons/hicolor/22x22/actions)
-
 # shuffle and repeat
-install(FILES icons/16x16/status/media-playlist-repeat-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-repeat-one-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-no-repeat-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
-install(FILES icons/16x16/status/media-playlist-shuffle-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-no-shuffle-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
-
-# now-playing icon
-install(FILES icons/16x16/actions/media-playback-start-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/actions)
-install(FILES icons/16x16/actions/media-playback-pause-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/actions)
-
-# starred and not-starrred icons
-install(FILES icons/16x16/status/starred.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
-install(FILES icons/16x16/status/non-starred.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
-install(FILES icons/16x16/status/starred-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
-install(FILES icons/16x16/status/non-starred-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 
 # new podcast icon
 install(FILES icons/16x16/status/podcast-new.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
@@ -57,19 +41,7 @@ install(FILES icons/16x16/mimetypes/playlist-automatic.svg DESTINATION share/bea
 install(FILES icons/16x16/mimetypes/process-completed-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 install(FILES icons/16x16/mimetypes/process-error-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 
-# process stop
-install(FILES icons/16x16/actions/process-stop-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/actions)
-
 # last fm
 install(FILES icons/16x16/actions/lastfm-love.svg DESTINATION share/beatbox/icons/hicolor/16x16/actions)
 install(FILES icons/16x16/actions/lastfm-ban.svg DESTINATION share/beatbox/icons/hicolor/16x16/actions)
-
-# view mode icons
-install(FILES icons/16x16/actions/view-list-column-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/actions)
-install(FILES icons/16x16/actions/view-list-details-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/actions)
-install(FILES icons/16x16/actions/view-list-icons-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/actions)
-install(FILES icons/16x16/actions/view-list-video-symbolic.svg DESTINATION share/beatbox/icons/hicolor/16x16/actions)
-
-# info icon
-install(FILES icons/16x16/status/help-info.svg DESTINATION share/beatbox/icons/hicolor/16x16/status)
 

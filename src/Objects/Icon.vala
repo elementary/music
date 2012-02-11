@@ -119,7 +119,7 @@ public class BeatBox.Icon : GLib.Object {
 
 		// Don't load image as a regular icon if it's a PNG and belongs
 		// to the project's folder.
-		if (file_type == Icons.FileType.PNG && backup != null && size == null) {
+		if (file_type == Icons.FileType.PNG && has_backup && size == null) {
 			try {
 				rv = new Gdk.Pixbuf.from_file(backup);
 			}
@@ -160,7 +160,7 @@ public class BeatBox.Icon : GLib.Object {
 		}
 
 		// If the above failed, use available backup
-		if (rv == null && this.backup != null) {
+		if (rv == null && has_backup) {
 			try {
 				message ("Loading backup icon for %s", this.name);
 				rv = new Gdk.Pixbuf.from_file_at_size (this.backup, width, height);
@@ -196,7 +196,7 @@ public class BeatBox.Icon : GLib.Object {
 		if (IconTheme.get_default().has_icon (this.name) && size != null) {
 			// Try to load icon from theme
 			rv = new Image.from_icon_name (this.name, size);
-		} else if (this.backup != null) {
+		} else if (has_backup) {
 			// If the icon theme doesn't contain the icon, load backup
 			message ("Loading %s from backup", this.name);
 			rv = new Image.from_file (this.backup);

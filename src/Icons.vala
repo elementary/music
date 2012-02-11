@@ -22,7 +22,7 @@
 
 
 /**
- * Here is where the icon information, functions and pixbufs are stored.
+ * Here is where the icon information, related functions and pixbufs are stored.
  */
 
 namespace Icons {
@@ -59,7 +59,6 @@ namespace Icons {
 
 	// 128 x 128
 	public BeatBox.Icon DEFAULT_ALBUM_ART;
-	public BeatBox.Icon DROP_ALBUM;
 	public BeatBox.Icon MUSIC_FOLDER;
 
 	// 22 x 22
@@ -150,10 +149,10 @@ namespace Icons {
 
 		// 128 x 128
 		DEFAULT_ALBUM_ART = new BeatBox.Icon ("media-audio", 128, Type.MIMETYPE, FileType.PNG, true);
-		DROP_ALBUM = new BeatBox.Icon ("drop-album", 128, Type.MIMETYPE, null, true);
 		MUSIC_FOLDER = new BeatBox.Icon ("folder-music", 128, Type.MIMETYPE, null, true);
 
-		HISTORY_ICON = new BeatBox.Icon ("document-open-recent", 22, Type.ACTION, null, true);
+		// 22 x 22
+		HISTORY_ICON = new BeatBox.Icon ("document-open-recent", 22, Type.ACTION, null, false);
 
 		// 16 x 16
 		BEATBOX_ICON = new BeatBox.Icon ("beatbox", 16, Type.APP, null, true);
@@ -168,32 +167,31 @@ namespace Icons {
 		LASTFM_BAN_ICON = new BeatBox.Icon ("lastfm-ban", 16, Type.ACTION, null, true);
 		STARRED_ICON = new BeatBox.Icon ("starred", 16, Type.STATUS, null, true);
 		NOT_STARRED_ICON = new BeatBox.Icon ("non-starred", 16, Type.STATUS, null, true);
-		INFO_ICON = new BeatBox.Icon ("help-info", 16, Type.STATUS, null, true);
+		INFO_ICON = new BeatBox.Icon ("help-info", 16, Type.STATUS, null, false);
 		NEW_PODCAST_ICON = new BeatBox.Icon ("podcast-new", 16, Type.STATUS, null, true);
 
-		// SYMBOLIC ICONS
+		// SYMBOLIC ICONS (16 x 16)
 
-		MEDIA_PLAY_SYMBOLIC = new BeatBox.Icon ("media-playback-start-symbolic", 16, Type.ACTION, null, true);
-		MEDIA_PAUSE_SYMBOLIC = new BeatBox.Icon ("media-playback-pause-symbolic", 16, Type.ACTION, null, true);
+		MEDIA_PLAY_SYMBOLIC = new BeatBox.Icon ("media-playback-start-symbolic", 16, Type.ACTION, null, false);
+		MEDIA_PAUSE_SYMBOLIC = new BeatBox.Icon ("media-playback-pause-symbolic", 16, Type.ACTION, null, false);
 
-		STARRED_SYMBOLIC_ICON = new BeatBox.Icon ("starred-symbolic", 16, Type.STATUS, null, true);
-		NOT_STARRED_SYMBOLIC_ICON = new BeatBox.Icon ("non-starred-symbolic", 16, Type.STATUS, null, true);
-		PROCESS_COMPLETED_ICON = new BeatBox.Icon ("process-completed-symbolic", 16, Type.STATUS, null, true);
-		PROCESS_ERROR_ICON = new BeatBox.Icon ("process-error-symbolic", 16, Type.STATUS, null, true);
-		PROCESS_STOP_ICON = new BeatBox.Icon ("process-stop-symbolic", 16, Type.ACTION, null, true);
-		SHUFFLE_ON_ICON = new BeatBox.Icon ("media-playlist-shuffle-symbolic", 16, Type.STATUS, null, true);
+		STARRED_SYMBOLIC_ICON = new BeatBox.Icon ("starred-symbolic", 16, Type.STATUS, null, false);
+		NOT_STARRED_SYMBOLIC_ICON = new BeatBox.Icon ("non-starred-symbolic", 16, Type.STATUS, null, false);
+		PROCESS_COMPLETED_ICON = new BeatBox.Icon ("process-completed-symbolic", 16, Type.STATUS, null, false);
+		PROCESS_ERROR_ICON = new BeatBox.Icon ("process-error-symbolic", 16, Type.STATUS, null, false);
+		PROCESS_STOP_ICON = new BeatBox.Icon ("process-stop-symbolic", 16, Type.ACTION, null, false);
+		SHUFFLE_ON_ICON = new BeatBox.Icon ("media-playlist-shuffle-symbolic", 16, Type.STATUS, null, false);
 		SHUFFLE_OFF_ICON = new BeatBox.Icon ("media-playlist-no-shuffle-symbolic", 16, Type.STATUS, null, true);
-		REPEAT_ON_ICON = new BeatBox.Icon ("media-playlist-repeat-symbolic", 16, Type.STATUS, null, true);
+		REPEAT_ON_ICON = new BeatBox.Icon ("media-playlist-repeat-symbolic", 16, Type.STATUS, null, false);
 		REPEAT_ONCE_ICON = new BeatBox.Icon ("media-playlist-repeat-one-symbolic", 16, Type.STATUS, null, true);
 		REPEAT_OFF_ICON = new BeatBox.Icon ("media-playlist-no-repeat-symbolic", 16, Type.STATUS, null, true);
-		VIEW_COLUMN_ICON = new BeatBox.Icon ("view-list-column-symbolic", 16, Type.ACTION, null, true);
-		VIEW_DETAILS_ICON =new BeatBox.Icon ("view-list-details-symbolic", 16, Type.ACTION, null, true);
-		VIEW_ICONS_ICON = new BeatBox.Icon ("view-list-icons-symbolic", 16, Type.ACTION, null, true);
-		VIEW_VIDEO_ICON = new BeatBox.Icon ("view-list-video-symbolic", 16, Type.ACTION, null, true);
+		VIEW_COLUMN_ICON = new BeatBox.Icon ("view-list-column-symbolic", 16, Type.ACTION, null, false);
+		VIEW_DETAILS_ICON =new BeatBox.Icon ("view-list-details-symbolic", 16, Type.ACTION, null, false);
+		VIEW_ICONS_ICON = new BeatBox.Icon ("view-list-icons-symbolic", 16, Type.ACTION, null, false);
+		VIEW_VIDEO_ICON = new BeatBox.Icon ("view-list-video-symbolic", 16, Type.ACTION, null, false);
 
 		/* Render Pixbufs */
-		DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null, null, 150);
-
+		DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null);
 		BEATBOX_DIALOG_PIXBUF = BEATBOX_ICON.render (Gtk.IconSize.DIALOG);
 	}
 }
