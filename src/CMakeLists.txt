@@ -185,7 +185,6 @@ vala_precompile(VALA_C
     #    Views/External/ExternalViewWrapper.vala
     Settings.vala
     Dialogs/EqualizerWindow.vala
-    Dialogs/PresetNameWindow.vala
     Dialogs/SmartPlaylistEditor.vala
     Dialogs/PreferencesWindow.vala
     Dialogs/InstallGstreamerPluginsDialog.vala
