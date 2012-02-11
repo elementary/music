@@ -2,8 +2,6 @@ find_package(Vala REQUIRED)
 include(ValaVersion)
 ensure_vala_version("0.14.0" MINIMUM)
 include(ValaPrecompile)
-
-
 set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/beatbox")
 set(ICON_FOLDER "${CMAKE_INSTALL_PREFIX}/share/beatbox/icons/hicolor")
@@ -11,10 +9,8 @@ set(GETTEXT_PACKAGE "beatbox")
 set(RELEASE_NAME "Acolyte")
 set(VERSION "0.3")
 set(VERSION_INFO "Pre-Release")
-
 configure_file(${CMAKE_SOURCE_DIR}/src/config.h.cmake ${CMAKE_BINARY_DIR}/src/config.h)
 add_definitions(-include config.h)
-
 find_package(PkgConfig)
 pkg_check_modules(DEPS
     REQUIRED
@@ -38,51 +34,47 @@ pkg_check_modules(DEPS
     libgpod-1.0
     libpeas-gtk-1.0
     libpeas-1.0)
-
 # Check if we have sqlheavy-0.2
-if(${SQLHEAVY_USE_2})
-    pkg_check_modules(SQLHEAVY sqlheavy-0.2)
-    set(ADD_PKG ${ADD_PKG} sqlheavy-0.2)
-    message("-- Will use sqlheavy-0.2")
-else()
-    set(ADD_PKG ${ADD_PKG} sqlheavy-0.1)
-    pkg_check_modules(SQLHEAVY sqlheavy-0.1)
-    message("-- Will use sqlheavy-0.1")
-endif()
 
+if(${SQLHEAVY_USE_2})
+pkg_check_modules(SQLHEAVY sqlheavy-0.2)
+set(ADD_PKG ${ADD_PKG} sqlheavy-0.2)
+message("-- Will use sqlheavy-0.2")
+else()
+set(ADD_PKG ${ADD_PKG} sqlheavy-0.1)
+pkg_check_modules(SQLHEAVY sqlheavy-0.1)
+message("-- Will use sqlheavy-0.1")
+endif()
 pkg_check_modules(ZEITGEIST zeitgeist-1.0)
 if(${ZEITGEIST_FOUND})
-    set(ADD_PKG ${ADD_PKG}
+set(ADD_PKG ${ADD_PKG}
                 zeitgeist-1.0)
-    set(ADD_OPTIONS ${ADD_OPTIONS}
+set(ADD_OPTIONS ${ADD_OPTIONS}
         --define=HAVE_ZEITGEIST)
-    message("-- Zeitgeist enabled")
+message("-- Zeitgeist enabled")
 else()
-    message("-- Zeitgeist disabled")
+message("-- Zeitgeist disabled")
 endif()
-
 pkg_check_modules(DBUS_MENU dbusmenu-glib-0.4)
 if(${DBUS_MENU_FOUND})
-    set(ADD_PKG ${ADD_PKG}
+set(ADD_PKG ${ADD_PKG}
         Dbusmenu-0.4)
-    set(ADD_OPTIONS ${ADD_OPTIONS}
+set(ADD_OPTIONS ${ADD_OPTIONS}
         --define=HAVE_DBUSMENU)
-    message("-- DBus Menu enabled")
+message("-- DBus Menu enabled")
 else()
-    message("-- DBus Menu disabled")
+message("-- DBus Menu disabled")
 endif()
-
 pkg_check_modules(INDICATE indicate-0.6)
 if(${INDICATE_FOUND})
-    set(ADD_PKG ${ADD_PKG}
+set(ADD_PKG ${ADD_PKG}
         Indicate-0.6)
-    set(ADD_OPTIONS ${ADD_OPTIONS}
+set(ADD_OPTIONS ${ADD_OPTIONS}
         --define=HAVE_INDICATE)
-    message("-- Indicate enabled")
+message("-- Indicate enabled")
 else()
-    message("-- Indicate disabled")
+message("-- Indicate disabled")
 endif()
-
 vala_precompile(VALA_C
     FileOperator.vala
     LastFM/LastFM.vala
@@ -181,9 +173,9 @@ vala_precompile(VALA_C
     Views/AlbumView/AlbumViewModel.vala
     Views/AlbumView/AlbumIconView.vala
     Views/AlbumView/AlbumListView.vala
-    #    Views/External/ListView/ExternalMusicTreeView.vala
-    #    Views/External/ListView/ExternalMusicTreeModel.vala
-    #    Views/External/ExternalViewWrapper.vala
+    #Views/External/ListView/ExternalMusicTreeView.vala
+    #Views/External/ListView/ExternalMusicTreeModel.vala
+    #Views/External/ExternalViewWrapper.vala
     Settings.vala
     Dialogs/EqualizerWindow.vala
     Dialogs/SmartPlaylistEditor.vala
@@ -203,10 +195,8 @@ vala_precompile(VALA_C
     Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala
     ${CMAKE_SOURCE_DIR}/src/config.vapi
-OPTIONS
-    --vapidir=${CMAKE_SOURCE_DIR}/vapi
-    --vapidir=${CMAKE_BINARY_DIR}/core/
-    ${ADD_OPTIONS}
+    Views/ListView/BaseListView.vala
+    Views/ListView/BaseListModel.vala
 PACKAGES
     glib-2.0
     gtk+-3.0
@@ -228,14 +218,15 @@ PACKAGES
     libpeas-1.0
     beatbox-core
     ${ADD_PKG}
+OPTIONS
+    --vapidir=${CMAKE_SOURCE_DIR}/vapi
+    --vapidir=${CMAKE_BINARY_DIR}/core/
+    ${ADD_OPTIONS}
 )
-
 include_directories(${CMAKE_BINARY_DIR}/core)
 add_executable(beatbox ${VALA_C})
 link_directories(${ZEITGEIST_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
 add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS})
 target_link_libraries(beatbox ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
-
 target_link_libraries(beatbox beatbox-core)
-
 install(TARGETS beatbox RUNTIME DESTINATION bin)

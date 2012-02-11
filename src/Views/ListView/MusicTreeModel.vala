@@ -32,9 +32,8 @@ public class BeatBox.CompareFuncHolder : GLib.Object {
 	}
 }
 
-public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
+public class BeatBox.MusicTreeModel : BaseTreeModel {
 	LibraryManager lm;
-	int stamp; // all iters must match this
 	GLib.Icon _playing;
 	GLib.Icon _completed;
 	GLib.Icon _saved_locally;
@@ -42,15 +41,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 	ViewWrapper.Hint hint;
 	public bool is_current;
 
-	/* data storage variables */
-	Sequence<int> rows;
-	private LinkedList<string> _columns;
-
-	/* treesortable stuff */
-	private int sort_column_id;
-	private SortType sort_direction;
-	private unowned TreeIterCompareFunc default_sort_func;
-	private HashMap<int, CompareFuncHolder> column_sorts;
 	bool removing_medias;
 
 	/* custom signals for custom treeview. for speed */
@@ -80,54 +70,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		stamp = (int)GLib.Random.next_int();
 	}
 
-	/** Returns Type of column at index_ **/
-	public Type get_column_type (int col) {
-		if(_columns[col] == " ") {
-			return typeof(GLib.Icon);
-		}
-		else if(_columns[col] == "Title" || _columns[col] == "Artist" || _columns[col] == "Album" || _columns[col] == "Genre") {
-			return typeof(string);
-		}
-		else {
-			return typeof(int);
-		}
-	}
-
-	/** Returns a set of flags supported by this interface **/
-	public TreeModelFlags get_flags () {
-		return TreeModelFlags.LIST_ONLY;
-	}
-
-	/** Sets iter to a valid iterator pointing to path **/
-	public bool get_iter (out TreeIter iter, TreePath path) {
-		iter = TreeIter();
-		int path_index = path.get_indices()[0];
-
-		if(rows.get_length() == 0 || path_index < 0 || path_index >= rows.get_length())
-			return false;
-
-		var seq_iter = rows.get_iter_at_pos(path_index);
-		if(seq_iter == null)
-			return false;
-
-		iter.stamp = this.stamp;
-		iter.user_data = seq_iter;
-
-		return true;
-	}
-
-	/** Returns the number of columns supported by tree_model. **/
-	public int get_n_columns () {
-		return _columns.size;
-	}
-
-	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
-	public TreePath? get_path (TreeIter iter) {
-		return new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
-	}
-
 	/** Initializes and sets value to that at column. **/
-	public void get_value (TreeIter iter, int column, out Value val) {
+	public override void get_value_impl (TreeIter iter, int column, out Value val) {
 		val = Value(get_column_type(column));
 		if(iter.stamp != this.stamp || column < 0 || column >= _columns.size || removing_medias)
 			return;
@@ -187,65 +131,6 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 				val = (int)s.pulseProgress;
 		}
 	}
-
-	/** Sets iter to point to the first child of parent. **/
-	public bool iter_children (out TreeIter iter, TreeIter? parent) {
-		iter = TreeIter();
-		return false;
-	}
-
-	/** Returns true if iter has children, false otherwise. **/
-	public bool iter_has_child (TreeIter iter) {
-
-		return false;
-	}
-
-	/** Returns the number of children that iter has. **/
-	public int iter_n_children (TreeIter? iter) {
-		if(iter == null)
-			return rows.get_length();
-
-		return 0;
-	}
-
-	/** Sets iter to point to the node following it at the current level. **/
-	public bool iter_next (ref TreeIter iter) {
-		if(iter.stamp != this.stamp)
-			return false;
-
-		iter.user_data = ((SequenceIter)iter.user_data).next();
-
-		if(((SequenceIter)iter.user_data).is_end())
-			return false;
-
-		return true;
-	}
-
-	/** Sets iter to be the child of parent, using the given index. **/
-	public bool iter_nth_child (out TreeIter iter, TreeIter? parent, int n) {
-		iter = TreeIter();
-
-		if(n < 0 || n >= rows.get_length() || parent != null)
-			return false;
-
-		iter.stamp = this.stamp;
-		iter.user_data = rows.get_iter_at_pos(n);
-
-		return true;
-	}
-
-	/** Sets iter to be the parent of child. **/
-	public bool iter_parent (out TreeIter iter, TreeIter child) {
-		iter = TreeIter();
-
-		return false;
-	}
-
-	/** Lets the tree ref the node. **/
-	public void ref_node (TreeIter iter) {}
-
-	/** Lets the tree unref the node. **/
-	public void unref_node (TreeIter iter) {}
 
 	/** Some actual functions to use this model **/
 	public TreeIter? getIterFromRowid(int id) {
@@ -454,51 +339,8 @@ public class BeatBox.MusicTreeModel : GLib.Object, TreeModel, TreeSortable {
 		return rv;
 	}
 
-	/** Fills in sort_column_id and order with the current sort column and the order. **/
-	public bool get_sort_column_id(out int sort_column_id, out SortType order) {
-		sort_column_id = this.sort_column_id;
-		order = sort_direction;
-
-		return true;
-	}
-
-	/** Returns true if the model has a default sort function. **/
-	public bool has_default_sort_func() {
-		return (default_sort_func != null);
-	}
-
-	/** Sets the default comparison function used when sorting to be sort_func. **/
-	public void set_default_sort_func(owned TreeIterCompareFunc sort_func) {
-		default_sort_func = sort_func;
-	}
-
-	/** Sets the current sort column to be sort_column_id. **/
-	public void set_sort_column_id(int sort_column_id, SortType order) {
-		bool changed = (this.sort_column_id != sort_column_id || order != sort_direction);
-
-		this.sort_column_id = sort_column_id;
-		sort_direction = order;
-
-		if(changed && sort_column_id >= 0) {
-			/* do the sort for reals */
-			rows.sort_iter(sequenceIterCompareFunc);
-
-			sort_column_changed();
-		}
-	}
-
-	public void resort() {
-		rows.sort_iter(sequenceIterCompareFunc);
-		sort_column_changed();
-	}
-
-	/** Sets the comparison function used when sorting to be sort_func. **/
-	public void set_sort_func(int sort_column_id, owned TreeIterCompareFunc sort_func) {
-		column_sorts.set(sort_column_id, new CompareFuncHolder(sort_func));
-	}
-
 	/** Custom function to use built in sort in GLib.Sequence to our advantage **/
-	public int sequenceIterCompareFunc(SequenceIter<int> a, SequenceIter<int> b) {
+	public override int sequence_iter_compare_func(SequenceIter<int> a, SequenceIter<int> b) {
 		int rv;
 
 		if(sort_column_id < 0)
