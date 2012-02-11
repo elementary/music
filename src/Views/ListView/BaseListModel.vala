@@ -36,6 +36,7 @@ public abstract class BeatBox.BaseTreeModel : GLib.Object, TreeModel, TreeSortab
 	protected SortType sort_direction;
 	protected unowned TreeIterCompareFunc default_sort_func;
 	protected HashMap<int, CompareFuncHolder> column_sorts;
+	protected bool removing_medias = false;
 	
 	/** Returns Type of column at index_ **/
 	public Type get_column_type (int col) {
@@ -198,4 +199,201 @@ public abstract class BeatBox.BaseTreeModel : GLib.Object, TreeModel, TreeSortab
 	
 		return true;
 	}
+	
+	
+	/** convenience method to insert medias into the model. No iters returned. **/
+	public void append_medias(Collection<int> medias, bool emit) {
+		foreach(int id in medias) {
+			SequenceIter<int> added = rows.append(id);
+			
+			if(emit) {
+				TreePath path = new TreePath.from_string(added.get_position().to_string());
+			
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = added;
+				
+				row_inserted(path, iter);
+			}
+		}
+	}
+	
+	public void turnOffPixbuf(int id) {
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(id == rows.get(s_iter)) {
+				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+				
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = s_iter;
+				
+				row_changed(path, iter);
+				return;
+			}
+		}
+	}
+	
+	// just a convenience function
+	public void updateMedia(int id, bool is_current) {
+		ArrayList<int> temp = new ArrayList<int>();
+		temp.add(id);
+		updateMedias(temp, is_current);
+	}
+	
+	/** Some actual functions to use this model **/
+	public TreeIter? getIterFromRowid(int id) {
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(id == rows.get(s_iter)) {
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = s_iter;
+				
+				return iter;
+			}
+		}
+		
+		return null;
+	}
+	
+	public int getRowidFromIter(TreeIter iter) {
+		if(iter.stamp != this.stamp || ((SequenceIter)iter.user_data).is_end())
+			return 0;
+		
+		return rows.get(((SequenceIter<int>)iter.user_data));
+	}
+	
+	public int getRowidFromPath(string path) {
+		if(int.parse(path) < 0 || int.parse(path) >= rows.get_length())
+			return 0;
+		
+		SequenceIter s_iter = rows.get_iter_at_pos(int.parse(path));
+		
+		if(s_iter.is_end())
+			return 0;
+		
+		return rows.get(s_iter);
+	}
+	
+	/** simply adds iter to the model **/
+	public void append(out TreeIter iter) {
+	    iter = TreeIter ();
+		SequenceIter<int> added = rows.append(0);
+		iter.stamp = this.stamp;
+		iter.user_data = added;
+	}
+	
+	
+	public void updateMedias(owned Collection<int> rowids, bool is_current) {
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(rowids.contains(rows.get(s_iter))) {
+				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+			
+				TreeIter iter = TreeIter();
+				iter.stamp = this.stamp;
+				iter.user_data = s_iter;
+				
+				row_changed(path, iter);
+				
+				// can't do this. rowids must be read only
+				//rowids.remove(rows.get(s_iter));
+			}
+			
+			if(rowids.size <= 0)
+				return;
+		}
+	}
+	
+	public new void set(TreeIter iter, ...) {
+		if(iter.stamp != this.stamp)
+			return;
+		
+		var args = va_list(); // now call args.arg() to poll
+		
+		while(true) {
+			int col = args.arg();
+			if(col < 0 || col >= _columns.size)
+				return;
+			
+			/*else if(_columns[col] == " ") {
+				debug("set oh hi3\n");
+				Gdk.Pixbuf val = args.arg();
+				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_object(val);
+			}
+			else if(_columns[col] == "Title" || _columns[col] == "Artist" || _columns[col] == "Album" || _columns[col] == "Genre") {
+				debug("set oh hi2\n");
+				string val = args.arg();
+				((SequenceIter<ValueArray>)iter.user_data).get().get_nth(col).set_string(val);
+			}
+			else {
+				debug("set oh hi\n");
+				int val = args.arg();
+				((SequenceIter<Media>)iter.user_data).get().get_nth(col).set_int(val);
+			}*/
+		}
+	}
+	
+	public void remove(TreeIter iter) {
+		if(iter.stamp != this.stamp)
+			return;
+			
+		var path = new TreePath.from_string(((SequenceIter)iter.user_data).get_position().to_string());
+		rows.remove((SequenceIter<int>)iter.user_data);
+		row_deleted(path);
+	}
+	
+	public void removeMedias(Collection<int> rowids) {
+		removing_medias = true;
+		
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			if(rowids.contains(rows.get(s_iter))) {
+				int rowid = rows.get(s_iter);
+				TreePath path = new TreePath.from_string(s_iter.get_position().to_string());
+					
+				rows.remove(s_iter);
+					
+				row_deleted(path);
+				rowids.remove(rowid);
+				--index;
+			}
+			
+			if(rowids.size <= 0) {
+				removing_medias = false;
+				return;
+			}
+		}
+		
+		removing_medias = false;
+	}
+	
+	public LinkedList<int> getOrderedMedias() {
+		var rv = new LinkedList<int>();
+		SequenceIter s_iter = rows.get_begin_iter();
+		
+		for(int index = 0; index < rows.get_length(); ++index) {
+			s_iter = rows.get_iter_at_pos(index);
+			
+			int rowid = rows.get(s_iter);
+			
+			rv.add(rowid);
+		}
+		
+		return rv;
+	}
+
 }
