@@ -77,6 +77,11 @@
       <summary>Window width</summary>
       <description>Window width</description>
     </key>
+    <key type="as" name="plugins-enabled">
+      <default>['scratchcontractor']</default>
+      <summary>Enabled Plugins</summary>
+      <description>Enabled Plugins</description>
+    </key>
     <key type="i" name="window-height">
       <default>600</default>
       <summary>Window height</summary>

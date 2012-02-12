@@ -110,6 +110,12 @@ public class BeatBox.Beatbox : Granite.Application {
 		return 0;
 	}
 
+    Plugins.Manager plugins_manager;
+
+    public Beatbox () {
+        plugins_manager = new Plugins.Manager (new GLib.Settings ("org.gnomes.beatbox.ui"),  "plugins-enabled", Build.CMAKE_INSTALL_PREFIX + "/lib/beatbox/", null);
+    }
+    
 	protected override void activate () {
 		if (_program != null) {
 			_program.present (); // present window if app is already open
@@ -126,6 +132,7 @@ public class BeatBox.Beatbox : Granite.Application {
 
 		_program = new BeatBox.LibraryWindow(this, args);
 		_program.build_ui();
+        plugins_manager.hook_new_window (_program);
 		Timeout.add(15000, () => {
 			if(!_program.lm.have_fetched_new_podcasts) {
 				_program.lm.pm.find_new_podcasts();
