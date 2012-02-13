@@ -23,34 +23,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
-	public BeatBox.LibraryManager lm;
-	public BeatBox.LibraryWindow lw;
-	TreeView view;
-	PodcastTreeModel podcast_model;
-
-	Collection<int> _show_next; // these are populated if necessary when user opens this view.
-	//private Collection<int> _medias;
-	Collection<int> _showing_medias;
-	LinkedList<string> _columns;
-
-	int relative_id;// if playlist, smart playlist, etc.
-	ViewWrapper.Hint hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
-	string sort_column;
-	SortType sort_direction;
-	bool removing_medias;
-
-	bool _is_current_view;
-	bool _is_current;
-	bool dragging;
-
-	LinkedList<string> timeout_search;//stops from doing useless search (timeout)
-	string last_search;//stops from searching same thing multiple times
-	bool showing_all; // stops from searching unnecesarilly when changing b/w 0 words and search ViewWrapper.Hint, etc.
-
-	bool scrolled_recently;
-
-	CellDataFunctionHelper cellHelper;
+public class BeatBox.PodcastListView : BaseListView {
 
 	//for header column chooser
 	Gtk.Menu columnChooserMenu;
@@ -72,7 +45,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
 	//MenuItem mediaRateMedia;
 	//Menu mediaRateMediaMenu;
-	RatingWidgetMenu rating_item;
 	Gtk.MenuItem mediaRemove;
 	Gtk.MenuItem mediaSaveLocally;
 	Gtk.MenuItem importToLibrary;
@@ -95,12 +67,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
 	 */
 	public PodcastListView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
-		lm = lmm;
-		lw = lww;
-
-		//_medias = new LinkedList<int>();
-		_showing_medias = new LinkedList<int>();
-		_columns = new LinkedList<string>();
+		
+		base (lmm, lww);
 
 		last_search = "";
 		timeout_search = new LinkedList<string>();
@@ -112,212 +80,10 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		hint = the_hint;
 		relative_id = id;
 
-		cellHelper = new CellDataFunctionHelper(lm);
-
-		lm.medias_updated.connect(medias_updated);
-		lm.medias_removed.connect(medias_removed);
-		lm.media_played.connect(media_played);
-		lm.playback_stopped.connect(playback_stopped);
-		lm.current_cleared.connect(current_cleared);
-
 		buildUI();
 	}
 
-	/* interface functions */
-	public void set_is_current(bool val) {
-		_is_current = val;
-		podcast_model.is_current = val;
-	}
-
-	public bool get_is_current() {
-		return _is_current;
-	}
-
-	public void set_is_current_view(bool val) {
-		_is_current_view = val;
-	}
-
-	public bool get_is_current_view() {
-		return _is_current_view;
-	}
-
-	public void set_hint(ViewWrapper.Hint the_hint) {
-		hint = the_hint;
-		updateSensitivities();
-	}
-
-	public ViewWrapper.Hint get_hint() {
-		return hint;
-	}
-
-	public void set_relative_id(int id) {
-		relative_id = id;
-	}
-
-	public int get_relative_id() {
-		return relative_id;
-	}
-
-	public void set_show_next(Collection<int> medias) {
-		_show_next = medias;
-	}
-
-	public Collection<int> get_medias() {
-		return podcast_model.getOrderedMedias();
-	}
-
-	public void set_as_current_list(int media_id, bool is_initial) {
-		var ordered_songs = podcast_model.getOrderedMedias();
-
-		bool shuffle = (lm.shuffle == LibraryManager.Shuffle.ALL);
-
-		lm.clearCurrent();
-		int i = 0;
-		foreach(int id in ordered_songs) {
-			lm.addToCurrent(id);
-
-			if(!shuffle && lm.media_info.media != null && lm.media_info.media.rowid == id && media_id == 0)
-				lm.current_index = i;
-			else if(!shuffle && lm.media_info.media != null && media_id == id)
-				lm.current_index = i;
-
-			++i;
-		}
-
-		set_is_current(true);
-
-		if(lm.media_info.media != null)
-			podcast_model.updateMedia(lm.media_info.media.rowid, get_is_current());
-
-		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
-	}
-
-	public void append_medias(Collection<int> new_medias) {
-		var all_medias = new LinkedList<int>();
-		all_medias.add_all(_showing_medias);
-		all_medias.add_all(new_medias);
-		this._showing_medias = all_medias;
-
-		podcast_model.append_medias(new_medias, true);
-		podcast_model.resort();
-		if(visible)	queue_draw();
-	}
-
-	public void remove_medias(Collection<int> to_remove) {
-		var all_medias = new LinkedList<int>();
-		all_medias.add_all(_showing_medias);
-		all_medias.remove_all(to_remove);
-		_showing_medias = all_medias;
-
-		podcast_model.removeMedias(to_remove);
-		if(visible)	queue_draw();
-	}
-
-	public void populate_view() {
-		/** NOTE: This could have a bad effect if user coincidentally
-		 * searches for something that has same number of results as
-		 * a different search. However, this cuts lots of unecessary
-		 * loading of lists/icon lists */
-		/*if(lw.searchField.get_text() == "" && _showing_medias.size == medias.size && ViewWrapper.Hint != ViewWrapper.Hint.HISTORY && ViewWrapper.Hint != ViewWrapper.Hint.QUEUE && !force) {
-			return;
-		}*/
-
-		if(_show_next == _showing_medias)
-			return;
-
-		_showing_medias = _show_next;
-
-		view.freeze_child_notify();
-		view.set_model(null);
-
-		int sort_col;
-		SortType sort_dir;
-		podcast_model.get_sort_column_id(out sort_col, out sort_dir);
-
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), view);
-		podcast_model.is_current = _is_current;
-
-		podcast_model.append_medias(_showing_medias, false);
-
-		podcast_model.set_sort_column_id(sort_col, sort_dir);
-
-		if(lm.media_info.media != null)
-			podcast_model.updateMedia(lm.media_info.media.rowid, get_is_current());
-
-		view.set_model(podcast_model);
-		view.thaw_child_notify();
-
-		if(get_is_current() && lm.media_info.media != null)
-			scrollToCurrent();
-
-		//set_statusbar_text();
-
-		// just because a user searches, doesn't mean we want to update the playing list
-		/*if(get_is_current())
-			set_as_current_list(0, false);*/
-	}
-
-	public void set_statusbar_text() {
-		uint count = 0;
-		uint total_time = 0;
-		uint total_mbs = 0;
-
-		foreach(int id in _showing_medias) {
-			if(lm.media_ids().contains(id)) {
-				++count;
-				total_time += lm.media_from_id(id).length;
-				total_mbs += lm.media_from_id(id).file_size;
-			}
-		}
-
-		string fancy = "";
-		if(total_time < 3600) { // less than 1 hour show in minute units
-			fancy = (total_time/60).to_string() + " minutes";
-		}
-		else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
-			fancy = (total_time/3600).to_string() + " hours";
-		}
-		else { // units in days
-			fancy = (total_time/(24 * 3600)).to_string() + " days";
-		}
-
-		string fancy_size = "";
-		if(total_mbs < 1000)
-			fancy_size = ((float)(total_mbs)).to_string() + " MB";
-		else
-			fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
-
-		lw.set_statusbar_text(count.to_string() + " episodes, " + fancy + ", " + fancy_size);
-	}
-
-	/* music tree view specific functions */
-	public Collection<int> get_showing_medias() {
-		return podcast_model.getOrderedMedias();
-	}
-
-	public LinkedList<TreeViewColumn> get_columns() {
-		var rv = new LinkedList<TreeViewColumn>();
-
-		foreach(TreeViewColumn tvc in view.get_columns())
-			rv.add(tvc);
-
-		return rv;
-	}
-
-	public LinkedList<string> get_column_strings() {
-		var rv = new LinkedList<string>();
-
-		foreach(TreeViewColumn tvc in view.get_columns())
-			rv.add(tvc.title);
-
-		return rv;
-	}
-
-	public void set_id(int id) {
-		relative_id = id;
-	}
-
-	void updateSensitivities() {
+	protected override void updateSensitivities() {
 		mediaMenuActionMenu.show_all();
 
 		if(get_hint() == ViewWrapper.Hint.PODCAST) {
@@ -338,7 +104,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		}
 	}
 
-	public void buildUI() {
+    public override void buildUI() {
 		view = new TreeView();
 
 		cellTrack = new CellRendererText();
@@ -456,17 +222,9 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 
-		podcast_model = new PodcastTreeModel(lm, get_column_strings(), view);
+		list_model = new PodcastTreeModel(lm, get_column_strings(), view);
 
-		podcast_model.set_sort_column_id(_columns.index_of(sort_column), sort_direction);
-
-		view.set_model(podcast_model);
-		view.set_headers_clickable(true);
-		view.set_fixed_height_mode(true);
-		view.rules_hint = true;
-		view.set_reorderable(false);
-
-		view.row_activated.connect(viewDoubleClick);
+		base.buildUI ();
 		view.button_press_event.connect(viewClick);
 
 		//view.cursor_changed.connect_after(() => { update_rating_menu(); });
@@ -543,7 +301,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		mediaMenuQueue.activate.connect(mediaMenuQueueClicked);
 		mediaMenuNewPlaylist.activate.connect(mediaMenuNewPlaylistClicked);
 		mediaRemove.activate.connect(mediaRemoveClicked);
-		rating_item.activate.connect(mediaRateMedia0Clicked);
+		rating_item.activate.connect(mediaRateMediaClicked);
 		importToLibrary.activate.connect(importToLibraryClicked);
 		//mediaMenuActionMenu.show_all();
 
@@ -553,8 +311,8 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 
 		this.add(view);
 
-		this.podcast_model.rows_reordered.connect(modelRowsReordered);
-		this.podcast_model.sort_column_changed.connect(sortColumnChanged);
+		this.list_model.rows_reordered.connect(modelRowsReordered);
+		this.list_model.sort_column_changed.connect(sortColumnChanged);
 		this.view.drag_begin.connect(onDragBegin);
 		this.view.drag_data_get.connect(onDragDataGet);
 		this.view.drag_end.connect(onDragEnd);
@@ -609,7 +367,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	public void cellTitleEdited(string path, string new_text) {
 		/*int rowid;
 		debug("done!\n");
-		if((rowid = podcast_model.getRowidFromPath(path)) != 0) {
+		if((rowid = list_model.getRowidFromPath(path)) != 0) {
 			lm.media_from_id(rowid).title = new_text;
 
 			lm.update_media(lm.media_from_id(rowid), true);
@@ -626,9 +384,9 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			lm.clear_queue();
 
 			TreeIter item;
-			for(int i = 0; podcast_model.get_iter_from_string(out item, i.to_string()); ++i) {
+			for(int i = 0; list_model.get_iter_from_string(out item, i.to_string()); ++i) {
 				int id;
-				podcast_model.get(item, 0, out id);
+				list_model.get(item, 0, out id);
 
 				lm.queue_media_by_id(id);
 			}
@@ -677,74 +435,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				columnCategory.active = view.get_column(index).visible;
 
 			++index;
-		}
-	}
-
-	public virtual void current_cleared() {
-		set_is_current(false);
-
-		if(lm.media_info.media != null)
-			podcast_model.updateMedia(lm.media_info.media.rowid, get_is_current());
-	}
-
-
-	public virtual void media_played(int id, int old) {
-		if(old != -1) {
-			podcast_model.updateMedia(old, get_is_current());
-			podcast_model.turnOffPixbuf(old);
-		}
-
-		if(!scrolled_recently) {
-			scrollToCurrent();
-		}
-
-		podcast_model.updateMedia(id, get_is_current());
-
-		if(get_hint() == ViewWrapper.Hint.QUEUE) {
-			_show_next = lm.queue();
-			populate_view();
-		}
-	}
-
-	void playback_stopped(int was_playing) {
-		if(was_playing >= 1) {
-			podcast_model.turnOffPixbuf(was_playing);
-		}
-	}
-
-	public void update_medias(Collection<int> medias) {
-		medias_updated(medias);
-	}
-
-	void medias_updated(Collection<int> ids) {
-		podcast_model.updateMedias(ids, get_is_current());
-
-		//since a media may have changed order, reset current
-		if(get_is_current() && !lm.playing_queued_song())
-			set_as_current_list(0, false);
-	}
-
-	void medias_removed(LinkedList<int> ids) {
-		//podcast_model.removeMedias(ids);
-		//_showing_medias.remove_all(ids);
-		//_show_next.remove_all(ids);
-	}
-
-	void viewDoubleClick(TreePath path, TreeViewColumn column) {
-		TreeIter item;
-
-		// get db's rowid of row clicked
-		podcast_model.get_iter(out item, path);
-		Value id;
-		podcast_model.get_value(item, 0, out id);
-
-		set_as_current_list(id.get_int(), !_is_current);
-
-		// play the media
-		lm.playMedia(id.get_int(), false);
-
-		if(!lm.playing) {
-			lw.playClicked();
 		}
 	}
 
@@ -867,7 +557,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 
 			view.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
 
-			if(!podcast_model.get_iter(out iter, path))
+			if(!list_model.get_iter(out iter, path))
 				return false;
 
 			/* don't unselect everything if multiple selected until button release
@@ -936,7 +626,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 	}
 
 	void updateTreeViewSetup() {
-		if(podcast_model == null || !(podcast_model is TreeSortable)) {
+		if(list_model == null || !(list_model is TreeSortable)) {
 			return;
 		}
 
@@ -952,7 +642,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 
 		int sort_id = 5;
 		SortType sort_dir = Gtk.SortType.ASCENDING;
-		podcast_model.get_sort_column_id(out sort_id, out sort_dir);
+		list_model.get_sort_column_id(out sort_id, out sort_dir);
 
 		if(sort_id <= 0)
 			sort_id = 5;
@@ -1002,7 +692,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		//tempMedias.clear();
 		var to_edit = new LinkedList<int>();
 		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			int id = podcast_model.getRowidFromPath(path.to_string());
+			int id = list_model.getRowidFromPath(path.to_string());
 
 			to_edit.add(id);
 		}
@@ -1012,7 +702,7 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 			lw.media_not_found(id);
 		}
 		else {*/
-			PodcastEditor pe = new PodcastEditor(lm, podcast_model.getOrderedMedias(), to_edit);
+			PodcastEditor pe = new PodcastEditor(lm, list_model.getOrderedMedias(), to_edit);
 			pe.podcasts_saved.connect(podcastEditorSaved);
 		//}
 	}
@@ -1099,10 +789,10 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		TreeModel temp;
 		foreach(TreePath path in selected.get_selected_rows(out temp)) {
 			TreeIter item;
-			podcast_model.get_iter(out item, path);
+			list_model.get_iter(out item, path);
 
 			Value id;
-			podcast_model.get_value(item, 0, out id);
+			list_model.get_value(item, 0, out id);
 
 			p.addMedia(id.get_int());
 		}
@@ -1144,12 +834,12 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 				lm.remove_medias (toRemove, delete_files);
 				//music_model.removeMedias(toRemoveIDs);
 
-				lw.miller.populateColumns("", podcast_model.getOrderedMedias());
+				lw.miller.populateColumns("", list_model.getOrderedMedias());
 			});
 		}
 
 		// in case all the medias from certain miller items were removed, update miller
-		lw.miller.populateColumns("", podcast_model.getOrderedMedias());
+		lw.miller.populateColumns("", list_model.getOrderedMedias());
 	}
 
 	void importToLibraryClicked() {
@@ -1171,95 +861,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 		import_requested(to_import);
 	}
 
-	public virtual void mediaRateMedia0Clicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel l_model;
-
-		var los = new LinkedList<Media>();
-		int new_rating = rating_item.rating_value;
-		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
-			TreeIter item;
-			l_model.get_iter(out item, path);
-
-			int id;
-			l_model.get(item, 0, out id);
-			Media s = lm.media_from_id(id);
-
-			s.rating = new_rating;
-			los.add(s);
-		}
-
-		lm.update_medias(los, false, true);
-	}
-
-	/*public void update_rating_menu() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel l_model;
-
-		foreach(TreePath path in selected.get_selected_rows(out l_model)) {
-			TreeIter item;
-			l_model.get_iter(out item, path);
-
-			int id;
-			l_model.get(item, 0, out id);
-			Media s = lm.media_from_id(id);
-
-			rating_item.rating_value = (int)s.rating;
-		}
-	}*/
-
-	public void scrollToCurrent() {
-		if(!get_is_current() || lm.media_info.media == null)
-			return;
-
-		TreeIter iter;
-		for(int i = 0; podcast_model.get_iter_from_string(out iter, i.to_string()); ++i) {
-			Value id;
-			podcast_model.get_value(iter, 0, out id);
-
-			if(view is TreeView && id.get_int() == lm.media_info.media.rowid) {
-				view.scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
-				scrolled_recently = false;
-
-				return;
-			}
-		}
-
-		scrolled_recently = false;
-	}
-
-	public virtual void viewScroll() {
-		if(!scrolled_recently && get_is_current()) {
-			Timeout.add(30000, () => {
-				scrolled_recently = false;
-
-				return false;
-			});
-
-			scrolled_recently = true;
-		}
-	}
-
-	public virtual void onDragBegin(Gtk.Widget sender, Gdk.DragContext context) {
-		dragging = true;
-		lw.dragging_from_music = true;
-		debug("drag begin\n");
-
-		Gdk.drag_abort(context, Gtk.get_current_event_time());
-
-		if(view.get_selection().count_selected_rows() == 1) {
-			drag_source_set_icon_stock(this, Gtk.Stock.DND);
-		}
-		else if(view.get_selection().count_selected_rows() > 1) {
-			drag_source_set_icon_stock(this, Gtk.Stock.DND_MULTIPLE);
-		}
-		else {
-			return;
-		}
-	}
-
 	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
 		Gtk.TreeIter iter;
 		Gtk.TreeModel temp_model;
@@ -1278,21 +879,6 @@ public class BeatBox.PodcastListView : ContentView, ScrolledWindow {
 
 		if (uris != null)
 			selection_data.set_uris(uris);
-	}
-
-	public virtual void onDragEnd(Gtk.Widget sender, Gdk.DragContext context) {
-		dragging = false;
-		lw.dragging_from_music = false;
-
-		debug("drag end\n");
-
-		//unset_rows_drag_dest();
-		Gtk.drag_dest_set(this,
-						  Gtk.DestDefaults.ALL,
-						  {},
-						  Gdk.DragAction.COPY|
-						  Gdk.DragAction.MOVE
-						  );
 	}
 }
 

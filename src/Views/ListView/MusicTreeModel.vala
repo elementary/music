@@ -39,7 +39,6 @@ public class BeatBox.MusicTreeModel : BaseTreeModel {
 	GLib.Icon _saved_locally;
 	GLib.Icon _new_podcast;
 	ViewWrapper.Hint hint;
-	public bool is_current;
 
 	/* custom signals for custom treeview. for speed */
 	public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);

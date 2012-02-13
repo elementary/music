@@ -27,7 +27,6 @@ using GLib;
 public class BeatBox.RadioTreeModel : BaseTreeModel {
 	LibraryManager lm;
 	GLib.Icon _playing;
-	public bool is_current;
 	
 	
 	
