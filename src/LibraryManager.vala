@@ -81,6 +81,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public int next_gapless_id;
 	
 	private string temp_add_folder;
+	private string[] temp_add_other_folders;
+	private int other_folders_added;
 	private LinkedList<string> temp_add_files;
 	bool _doing_file_operations;
 	bool in_fetch_thread;
@@ -277,6 +279,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 		catch(GLib.ThreadError err) {
 			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
 		}
+		
+		other_folders_added = 0;
+		file_operations_done.connect ( ()=> {
+		    if (temp_add_other_folders != null) {
+    	        other_folders_added++;
+	            add_folder_to_library (temp_add_other_folders[other_folders_added-1]);
+	            if (other_folders_added == temp_add_other_folders.length) {
+	                other_folders_added = 0;
+	                temp_add_other_folders = null;
+	            }
+            }
+	    });
 	}
 
 	/************ Library/Collection management stuff ************/
@@ -356,7 +370,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return null;
 	}
 	
-	public void add_folder_to_library(string folder) {
+	public void add_folder_to_library(string folder, string[]? other_folders = null) {
+	    if (other_folders != null)
+	        temp_add_other_folders = other_folders;
+	        
 		if(start_file_operations("Adding music from <b>" + folder + "</b> to library...")) {
 			temp_add_folder = folder;
 			
@@ -377,7 +394,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		fo.resetProgress(items);
 		Timeout.add(100, doProgressNotificationWithTimeout);
 		fo.import_files(files, FileOperator.ImportType.IMPORT);
-		
+
 		return null;
 	}
     
