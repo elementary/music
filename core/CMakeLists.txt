@@ -16,3 +16,5 @@ add_definitions(${DEPS_CFLAGS})
 link_directories(${LIB_PATHS})
 add_library(beatbox-core SHARED ${VALA_C})
 target_link_libraries(beatbox-core ${DEPS_LIBRARIES})
+
+install (TARGETS beatbox-core DESTINATION lib)
