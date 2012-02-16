@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 7.0.50~), valac (>= 0.13.0), cmake (>= 2.6),
  libzeitgeist-dev, libwebkitgtk-dev, libindicate-dev (>= 0.6),
  libclutter-gtk-1.0-dev,
  libdbusmenu-glib-dev (>= 0.4), libgstreamer-plugins-base0.10-dev (>= 0.10),
- libdbusmenu-gtk3-dev, libgpod-dev, libgranite-dev, libpease-dev
+ libdbusmenu-gtk3-dev, libgpod-dev, libgranite-dev, libpeas-dev
 Standards-Version: 3.9.2
 Homepage: https://launchpad.net/beat-box
 
