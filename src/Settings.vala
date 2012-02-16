@@ -23,11 +23,12 @@
 using Gee;
 
 public class BeatBox.Settings : Object {
-	GLib.Settings lastfm;
-	GLib.Settings ui;
-	GLib.Settings library;
-	GLib.Settings equalizer;
-	
+	public GLib.Settings lastfm {get; private set;}
+	public GLib.Settings ui {get; private set;}
+	public GLib.Settings library {get; private set;}
+	public GLib.Settings equalizer {get; private set;}
+	public GLib.Settings plugins {get; private set;}
+
 	public static const string LASTFM_SESSION_KEY = "session-key";
 	
 	public static const string MUSIC_FOLDER = "music-folder";
@@ -57,7 +58,9 @@ public class BeatBox.Settings : Object {
 	public static const string DEFAULT_PRESETS = "default-presets";
 	public static const string AUTO_SWITCH_PRESET = "auto-switch-preset";
 	public static const string VOLUME = "volume";
-	
+
+	public static const string ENABLED_PLUGINS = "enabled-plugins";
+
 	LinkedList<string> lastfm_settings;
 	LinkedList<string> ui_settings;
 	LinkedList<string> library_settings;
@@ -66,10 +69,11 @@ public class BeatBox.Settings : Object {
 	string music_folder;
 	
 	public Settings() {
-		lastfm = new GLib.Settings("org.gnome.beatbox.lastfm");
-		ui = new GLib.Settings("org.gnome.beatbox.ui");
-		library = new GLib.Settings("org.gnome.beatbox.library");
-		equalizer = new GLib.Settings("org.gnome.beatbox.equalizer");
+		lastfm = new GLib.Settings("org.elementary.beatbox.lastfm");
+		ui = new GLib.Settings("org.elementary.beatbox.ui");
+		library = new GLib.Settings("org.elementary.beatbox.library");
+		equalizer = new GLib.Settings("org.elementary.beatbox.equalizer");
+		plugins = new GLib.Settings("org.elementary.beatbox.plugins");
 		
 		lastfm_settings = new LinkedList<string>();
 		ui_settings = new LinkedList<string>();
@@ -105,7 +109,7 @@ public class BeatBox.Settings : Object {
 		equalizer_settings.add(DEFAULT_PRESETS);
 		equalizer_settings.add(AUTO_SWITCH_PRESET);
 		equalizer_settings.add(VOLUME);
-		
+
 		//music_folder = getMusicFolder();
 	}
 	

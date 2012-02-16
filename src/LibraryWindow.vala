@@ -97,9 +97,9 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 	public signal void playPauseChanged();
 
-	public LibraryWindow(Granite.Application app, string[] args) {
+	public LibraryWindow(Granite.Application app, BeatBox.Settings settings, string[] args) {
 		this.app = app;
-		settings = new BeatBox.Settings();
+		this.settings = settings;
 
 		//this is used by many objects, is the media backend
 		lm = new BeatBox.LibraryManager(settings, this, args);
@@ -498,7 +498,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addSideItem(sideTree.network_iter, null, vw, _("Internet Radio"), ViewWrapper.Hint.STATION);
 		mainViews.pack_start(vw, true, true, 0);
 
-		if(BeatBox.Beatbox.enableStore) {
+		if(Option.enable_store) {
 			Store.StoreView storeView = new Store.StoreView(lm, this);
 			sideTree.addSideItem(sideTree.network_iter, null, storeView, _("Music Store"), ViewWrapper.Hint.NONE);
 			mainViews.pack_start(storeView, true, true, 0);

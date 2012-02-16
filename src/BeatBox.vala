@@ -26,17 +26,17 @@ using Granite.Services;
 namespace Option {
 		[CCode (array_length = false, array_null_terminated = true)]
 		static string[] to_add;
-
 		static string to_play;
-
+		static bool enable_store = false;
 		static bool debug = false;
 }
 
 public class BeatBox.Beatbox : Granite.Application {
 	public static Granite.Application app;
-	public static LibraryWindow _program;
-	public static bool enableStore;
-	public static unowned string[] args;
+
+	LibraryWindow _program;
+	unowned string[] args;
+	BeatBox.Settings settings;
 
 	static const OptionEntry[] my_options = {
 		{ "debug", 'd', 0, OptionArg.NONE, ref Option.debug, "Enable debug logging", null },
@@ -73,7 +73,7 @@ public class BeatBox.Beatbox : Granite.Application {
 
 		app.command_line.connect(command_line_event);
 
-		// passing any args will crash app
+		// FIXME: passing any args will crash app
 		string[] fake = {};
 		unowned string[] fake_u = fake;
 		return app.run(fake_u);
@@ -112,10 +112,13 @@ public class BeatBox.Beatbox : Granite.Application {
 
     Plugins.Manager plugins_manager;
 
-    public Beatbox () {
-        plugins_manager = new Plugins.Manager (new GLib.Settings ("org.gnomes.beatbox.ui"),  "plugins-enabled", Build.CMAKE_INSTALL_PREFIX + "/lib/beatbox/", null);
-    }
-    
+	public Beatbox () {
+		// Load settings
+		settings = new BeatBox.Settings ();
+		plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS,
+		                                       Build.CMAKE_INSTALL_PREFIX + "/lib/beatbox/");
+	}
+
 	protected override void activate () {
 		if (_program != null) {
 			_program.present (); // present window if app is already open
@@ -123,14 +126,14 @@ public class BeatBox.Beatbox : Granite.Application {
 			return;
 		}
 
-		// Set up debugger
+		// Setup debugger
 		if (Option.debug)
 			Logger.DisplayLevel = LogLevel.DEBUG;
 		else
 			Logger.DisplayLevel = LogLevel.INFO;
 
 
-		_program = new BeatBox.LibraryWindow(this, args);
+		_program = new BeatBox.LibraryWindow(this, settings, args);
 		_program.build_ui();
         plugins_manager.hook_new_window (_program);
 		Timeout.add(15000, () => {

@@ -98,7 +98,7 @@ public class BeatBox.Plugins.Manager : Object
 
         /* Let's load the builtin ones */
 
-        settings.bind("plugins-enabled", engine, "loaded-plugins", SettingsBindFlags.DEFAULT);
+        settings.bind(settings_field, engine, "loaded-plugins", SettingsBindFlags.DEFAULT);
 
         /* Our extension set */
         Parameter param = Parameter();
@@ -116,13 +116,13 @@ public class BeatBox.Plugins.Manager : Object
             engine_core = new Peas.Engine ();
             engine_core.enable_loader ("python");
             engine_core.enable_loader ("gjs");
-            engine_core.add_search_path (d + "/" + e + "/", null);
+            engine_core.add_search_path (GLib.Path.build_path ("/", d, e), null);
 
             var core_list = engine_core.get_plugin_list ().copy ();
             string[] core_plugins = new string[core_list.length()];
+
             for (int i = 0; i < core_list.length(); i++) {
                 core_plugins[i] = core_list.nth_data (i).get_module_name ();
-                
             }
             engine_core.loaded_plugins = core_plugins;
 
