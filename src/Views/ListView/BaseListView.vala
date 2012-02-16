@@ -29,6 +29,14 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	public BeatBox.LibraryManager lm;
 	public BeatBox.LibraryWindow lw;
 	
+	public bool has_grid_lines {
+		get {
+			return view.enable_grid_lines == TreeViewGridLines.HORIZONTAL;
+		}
+		set {
+			view.set_grid_lines (value? TreeViewGridLines.HORIZONTAL : TreeViewGridLines.NONE);
+		}
+	}
 	
 	protected TreeView view;
 	protected BaseTreeModel list_model;

@@ -94,7 +94,7 @@ public class BeatBox.Plugins.Manager : Object
         engine.enable_loader ("python");
         engine.enable_loader ("gjs");
         engine.add_search_path (d, null);
-        engine.loaded_plugins = settings.get_strv(settings_field);
+//        engine.loaded_plugins = settings.get_strv(settings_field);
 
         /* Let's load the builtin ones */
 

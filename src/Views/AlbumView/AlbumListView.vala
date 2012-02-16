@@ -38,11 +38,12 @@ public class BeatBox.AlbumListView : Window {
 
 	private const string WIDGET_STYLESHEET = """
 		.BeatBoxAlbumList {
-			background-image: -gtk-gradient (radial, center center, 0,
-                                             center center, 1,
-			                                 from (#404040),
-			                                 color-stop (0.9, alpha (shade (#454545, 1.1), 0.9)),
-			                                 to (#404040));
+			background-image: -gtk-gradient (linear,
+			                                 right bottom,
+			                                 left bottom,
+			                                 from (shade (#1e1e1e, 0.9)),
+			                                 color-stop (0.5, shade (#1e1e1e, 1.23)),
+			                                 to (shade (#1e1e1e, 0.9)));
 			border-width: 0;
 			border-style: none;
 			border-radius: 0;
@@ -54,7 +55,12 @@ public class BeatBox.AlbumListView : Window {
 		}
 
 		GtkTreeView {
-			background-color: shade (#414141, 1.01);
+			background-image: -gtk-gradient (linear,
+			                                 right bottom,
+			                                 left bottom,
+			                                 from (shade (#1e1e1e, 0.9)),
+			                                 color-stop (0.5, shade (#1e1e1e, 1.23)),
+			                                 to (shade (#1e1e1e, 0.9)));
 		}
 
 		GtkTreeView row {
@@ -64,7 +70,12 @@ public class BeatBox.AlbumListView : Window {
 		}
 
 		GtkTreeView row:nth-child(even) {
-			background-color: shade (#3b3b3b, 0.97);
+			background-image: -gtk-gradient (linear,
+			                                 right bottom,
+			                                 left bottom,
+			                                 from (shade (#1e1e1e, 0.8)),
+			                                 color-stop (0.5, #1e1e1e),
+			                                 to (shade (#1e1e1e, 0.8)));
 		}
 
 		GtkTreeView row:selected {
@@ -75,31 +86,17 @@ public class BeatBox.AlbumListView : Window {
 			                                 to (shade (@selected_bg_color, 0.98)));
 		}
 
-		.button:hover {
-			background-image: -gtk-gradient (linear,
-			                                 left top,
-			                                 left bottom,
-			                                 from (shade (#454545, 1.15)),
-			                                 to (shade (#454545, 1.03)));
-
-			-unico-border-gradient: -gtk-gradient (linear,
-			                                       left top, left bottom,
-			                                       from (shade (#454545, 0.78)),
-			                                       to (shade (#454545, 0.60)));
-		}
-
+		.button,
+		.button:hover,
 		.button:active,
 		.button:active:hover {
-			background-image: -gtk-gradient (linear,
-			                                 left top,
-			                                 left bottom,
-			                                 from (shade (#404040, 0.95)),
-			                                 to (shade (#404040, 1.13)));
+			background-color: alpha (#000, 0.0);;
 
-			-unico-border-gradient: -gtk-gradient (linear,
-			                                       left top, left bottom,
-			                                       from (shade (#404040, 0.78)),
-			                                       to (shade (#454545, 0.60)));
+			-unico-border-width: 0;
+			-unico-outer-stroke-width: 0;
+			-unico-inner-stroke-width: 0;
+			border-width: 1px;
+			border-color: @selected_fg_color;
 		}
 	""";
 
@@ -123,7 +120,7 @@ public class BeatBox.AlbumListView : Window {
 		try  {
 			style_provider.load_from_data (WIDGET_STYLESHEET, -1);
 		} catch (Error e) {
-			warning ("AlbumListView: %s", e.message);
+			warning (e.message);
 		}
 
 		get_style_context().add_class("BeatBoxAlbumList");
@@ -131,6 +128,7 @@ public class BeatBox.AlbumListView : Window {
 
 		// add close button
 		var close = new Gtk.Button ();
+		close.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
 		close.set_image (Icons.render_image ("gtk-close", Gtk.IconSize.MENU));
 		close.hexpand = close.vexpand = false;
 		close.halign = Gtk.Align.START;
@@ -142,12 +140,13 @@ public class BeatBox.AlbumListView : Window {
 		artist_label = new Label("Artist");
 		album_label.ellipsize = Pango.EllipsizeMode.END;
 		artist_label.ellipsize = Pango.EllipsizeMode.END;
-		album_label.set_max_width_chars(35);
-		artist_label.set_max_width_chars(35);
+		album_label.set_max_width_chars(10);
+		artist_label.set_max_width_chars(10);
 
 		// add actual list
 		mtv = new MusicTreeView(lm, lm.lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
 		mtv.apply_style_to_view(style_provider);
+		mtv.has_grid_lines = true;
 		mtv.vexpand = true;
 
 		// add rating

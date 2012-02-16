@@ -93,7 +93,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.item_width = ITEM_WIDTH;
 		icons.item_padding = ITEM_PADDING;
 		icons.spacing = 2;
-        icons.margin = 12;
+        icons.margin = SPACING;
+        icons.row_spacing = SPACING;
+        icons.column_spacing = SPACING;
 
 		add(icons);
 

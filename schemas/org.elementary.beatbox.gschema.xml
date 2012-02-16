@@ -150,7 +150,7 @@
 
   <schema path="/apps/beatbox/plugins/" id="org.elementary.beatbox.plugins">
     <key type="as" name="enabled-plugins">
-      <default>['scratchcontractor']</default>
+      <default>['dummy-plugin']</default>
       <summary>List of enabled plugins</summary>
       <description>BeatBox will load these modules during startup</description>
     </key>
