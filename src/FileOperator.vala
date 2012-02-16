@@ -46,6 +46,9 @@ public class BeatBox.FileOperator : Object {
 	LinkedList<Media> new_imports;
 	LinkedList<Media> all_new_imports;
 	LinkedList<string> import_errors;
+	private string[] other_names_list = {};
+	private LinkedList<string>[] other_paths_list;
+	private int other_playlists_added = 0;
 	
 	HashMap<string, string> art_locations = new HashMap<string, string>();
 	
@@ -446,10 +449,16 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	/* should be called from thread */
-	public void import_from_playlist_file_info(string name, LinkedList<string> paths) {
+	public void import_from_playlist_file_info(string name, LinkedList<string> paths, string[] other_names = {}, LinkedList<string>[] other_paths = {}) {
 		new_playlist = new Playlist();
+		if (other_names.length != 0) {
+    		other_names_list = other_names;
+	    	other_paths_list = other_paths;
+		}
 		var internals = new LinkedList<int>();
 		var externals = new LinkedList<string>();
+		
+		lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
 		
 		foreach(string path in paths) {
 			Media s;
@@ -533,6 +542,12 @@ public class BeatBox.FileOperator : Object {
 		else {
 			lm.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
 			lm.finish_file_operations();
+		}
+		if (other_names_list.length > 0) {
+		    import_from_playlist_file_info(other_names_list[other_playlists_added], other_paths_list[other_playlists_added]);
+		    other_playlists_added++;
+		    if (other_playlists_added == other_names_list.length)
+		        other_names_list = {};
 		}
 	}
 	

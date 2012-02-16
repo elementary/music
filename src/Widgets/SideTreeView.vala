@@ -949,12 +949,13 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		if(lm.doing_file_operations())
 			return;
 		
-		string file = "";
-		string name = "";
+		var files = new SList<string> ();
+		string[] names = {};
 		var file_chooser = new FileChooserDialog ("Import Playlist", lw,
 								  FileChooserAction.OPEN,
 								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+		file_chooser.set_select_multiple (true);
 		
 		// filters for .m3u and .pls
 		var m3u_filter = new FileFilter();
@@ -968,45 +969,50 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		file_chooser.add_filter(pls_filter);
 		
 		if (file_chooser.run () == ResponseType.ACCEPT) {
-			file = file_chooser.get_filename();
-			name = file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
+			files = file_chooser.get_filenames();
+			files.foreach ( (file)=> {
+			    names += file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
+			});
 		}
 		
 		file_chooser.destroy ();
 		
-		var paths = new LinkedList<string>();
+		var path = new LinkedList<string> ();
+		LinkedList<string>[] paths = {};
 		var stations = new LinkedList<Media>();
 		bool success = false;
+		int i = 0;
 		
-		if(file != "") {
-			if(file.has_suffix(".m3u")) {
-				success = Playlist.parse_paths_from_m3u(lm, file, ref paths, ref stations);
-			}
-			else if(file.has_suffix(".pls")) {
-				success = Playlist.parse_paths_from_pls(lm, file, ref paths, ref stations);
-			}
-			else {
-				success = false;
-				lw.doAlert("Invalid Playlist", "Unrecognized playlist file. Import failed.");
-				return;
-			}
-		}
+		files.foreach ( (file)=> {
+	    	if(file != "") {
+		    	if(file.has_suffix(".m3u")) {
+		    	    path = new LinkedList<string> ();
+		    		success = Playlist.parse_paths_from_m3u(lm, file, ref path, ref stations);
+		    		paths += path;
+		    	}
+		    	else if(file.has_suffix(".pls")) {
+		    		success = Playlist.parse_paths_from_pls(lm, file, ref paths[i], ref stations);
+		    	}
+		    	else {
+		    		success = false;
+		    		lw.doAlert("Invalid Playlist", "Unrecognized playlist file. Import failed.");
+		    		return;
+		    	}
+		    }
+		    i++;
+		});
 		
 		if(success) {
-			if(paths.size > 0) {
-				stdout.printf("paths size is %d\n", paths.size);
-				lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
-				lm.fo.import_from_playlist_file_info(name, paths);
-				lw.updateSensitivities();
+	        if(paths.length > 0) {
+		    	stdout.printf("paths size is %d\n", paths.size);
+			   	lm.fo.import_from_playlist_file_info(names[0], paths[0], names[1:names.length], paths[1:paths.length]);
+		    	lw.updateSensitivities();
+		    }
+		    if(stations.size > 0) {
+		        stdout.printf("stations size is %d\n", stations.size);
+			    lm.add_medias(stations, true);
 			}
-			if(stations.size > 0) {
-				stdout.printf("stations size is %d\n", stations.size);
-				lm.add_medias(stations, true);
-				
-				//Widget w = getWidget(network_radio_iter);
-				//((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.station_ids(), true, true, false);
-			}
-		}
+    	}
 	}
 	
 	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
