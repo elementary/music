@@ -847,9 +847,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				if(iter == playlists_similar_iter)
 					p.name = (lm.media_info.media != null) ? ("Similar to " + lm.media_info.media.title) : "Similar list";
 				else if(iter == playlists_queue_iter)
-					p.name = Time.local(time_t()).format("%m/%e/%Y %l:%M %p") + " play queue";
+					p.name = Time.local(time_t()).format("%Y-%b-%e %l:%M %p") + " play queue";
 				else if(iter == playlists_history_iter)
-					p.name = Time.local(time_t()).format("%m/%e/%Y %l:%M %p") + " play history";
+					p.name = Time.local(time_t()).format("%Y-%b-%e %l:%M %p") + " play history";
 				else
 					p.name = "Unkown playlist";
 			}
