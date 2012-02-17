@@ -96,7 +96,6 @@ vala_precompile(VALA_C
     LibraryManager.vala
     Objects/TreeViewSetup.vala
     Objects/SmartQuery.vala
-    Objects/EqualizerPreset.vala
     Objects/MediaInfo.vala
     Objects/SmartPlaylist.vala
     Objects/LyricFetcher.vala
@@ -177,7 +176,6 @@ vala_precompile(VALA_C
     #Views/External/ListView/ExternalMusicTreeView.vala
     #Views/External/ListView/ExternalMusicTreeModel.vala
     #Views/External/ExternalViewWrapper.vala
-    Settings.vala
     Dialogs/EqualizerWindow.vala
     Dialogs/SmartPlaylistEditor.vala
     Dialogs/PreferencesWindow.vala
