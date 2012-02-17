@@ -146,6 +146,65 @@ public class BeatBox.ViewWrapper : VBox {
 		lw.miller.changed.connect(millerChanged);
 	}
 	
+	public ViewWrapper.with_view (LibraryManager lmm, LibraryWindow lww, Collection<int> the_medias, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, BaseListView view) {
+		lm = lmm;
+		lw = lww;
+		
+		medias = new HashMap<int, int>();
+		foreach(int i in the_medias)
+			medias.set(i, 1);
+		
+		media_count = medias.size;
+		showingMedias = new HashMap<int, int>();
+		last_search = "";
+		timeout_search = new LinkedList<string>();
+		setting_search = false;
+		
+		relative_id = id;
+		hint = the_hint;
+		
+		errorBox = new WarningLabel();
+		list = view;
+		
+		if(the_hint == ViewWrapper.Hint.CDROM) {
+			errorBox.show_icon = false;
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Audio CD Invalid") + "</span>\n\n" + _("BeatBox could not read the contents of this Audio CD."), null);
+		}
+		
+		if(the_hint == ViewWrapper.Hint.PODCAST) {
+			errorBox.show_icon = false;
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."), null);
+		}
+		
+		if(the_hint == ViewWrapper.Hint.STATION) {
+			errorBox.show_icon = false;
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Internet Radio Stations Found") + "</span>\n\n" + _("To add a station, visit a website such as SomaFM to find PLS or M3U files.") + "\n" + _("You can then import the file to add the station."), null);
+		}
+		
+		//list.populate_view(medias, false);
+		albumView = new AlbumView(lm, lw, get_media_ids());
+		
+		pack_end(list, true, true, 0);
+		pack_end(albumView, true, true, 0);
+		
+		if(hint == ViewWrapper.Hint.SIMILAR || hint == ViewWrapper.Hint.CDROM ||
+		hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.STATION)
+			pack_start(errorBox, true, true, 0);
+		
+		//doUpdate(currentView, get_media_ids(), false, false, false);
+		needs_update = true;
+		no_show_all = true;
+		
+		lw.viewSelector.mode_changed.connect(selectorViewChanged);
+		//lm.media_played.connect(mediaPlayed);
+		lm.medias_added.connect(medias_added);
+		lm.medias_updated.connect(medias_updated);
+		lm.medias_removed.connect(medias_removed);
+		
+		lw.searchField.changed.connect(searchFieldChanged);
+		lw.miller.changed.connect(millerChanged);
+	}
+	
 	public Collection<int> get_media_ids() {
 		return medias.keys;
 	}

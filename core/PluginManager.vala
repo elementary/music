@@ -57,8 +57,8 @@ public class BeatBox.Plugins.Iface : Object {
     }
 }
 
-public interface BeatBox.Plugins.Activatable {
-    public abstract Interface plugins_iface { private set; owned get; }
+public interface BeatBox.Plugins.Activatable : Object {
+    public abstract Iface object { set; owned get; }
     public abstract void activate ();
     public abstract void deactivate ();
 }
@@ -98,18 +98,24 @@ public class BeatBox.Plugins.Manager : Object
 
         /* Let's load the builtin ones */
 
-        settings.bind(settings_field, engine, "loaded-plugins", SettingsBindFlags.DEFAULT);
+        //settings.bind(settings_field, engine, "loaded-plugins", SettingsBindFlags.DEFAULT);
 
         /* Our extension set */
-        Parameter param = Parameter();
-        param.value = plugin_iface;
-        param.name = "object";
-        exts = new Peas.ExtensionSet (engine, typeof(Activatable), "object", plugin_iface, null);
+        exts = new Peas.ExtensionSet (engine, typeof(Activatable), null);
 
         exts.extension_added.connect(on_extension_added);
         exts.extension_removed.connect(on_extension_removed);
         peas_extension_set_foreach(exts, on_extension_added, null);
+            
+        var core_list = engine.get_plugin_list ().copy ();
+        string[] core_plugins = new string[core_list.length()];
 
+        for (int i = 0; i < core_list.length(); i++) {
+            core_plugins[i] = core_list.nth_data (i).get_module_name ();
+        }
+        engine.loaded_plugins = core_plugins;
+
+#if 0
         
         if (e != null) {
             /* The core now */
@@ -131,6 +137,7 @@ public class BeatBox.Plugins.Manager : Object
 
             peas_extension_set_foreach(exts_core, on_extension_added, null);
         }
+#endif
     }
 
     public Gtk.Widget get_view () {
@@ -143,10 +150,12 @@ public class BeatBox.Plugins.Manager : Object
     }
 
     void on_extension_added(Peas.PluginInfo info, Object extension) {
-        ((Peas.Activatable)extension).activate();
+        ((Activatable)extension).object = new Iface ();
+        plugin_iface.register_iface (((Activatable)extension).object);
+        ((Activatable)extension).activate();
     }
     void on_extension_removed(Peas.PluginInfo info, Object extension) {
-        ((Peas.Activatable)extension).deactivate();
+        ((Activatable)extension).deactivate();
     }
 }
 

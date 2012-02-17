@@ -116,7 +116,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		// Load settings
 		settings = new BeatBox.Settings ();
 		plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS,
-		                                       Build.CMAKE_INSTALL_PREFIX + "/lib/beatbox/");
+		                                       Build.CMAKE_INSTALL_PREFIX + "/lib/beatbox/plugins/");
 	}
 
 	protected override void activate () {

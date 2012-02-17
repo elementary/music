@@ -1,0 +1,10 @@
+[Plugin]
+Module=beatbox-podcasts
+Loader=C
+IAge=2
+Name=Podcasts
+BuiltIn=true
+Description=Download Podcasts.
+Authors=BeatBox Developers
+Copyright=Copyright © 2012 BeatBox Developers
+Website=http://launchpad.net/beat-box

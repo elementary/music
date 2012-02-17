@@ -11,70 +11,7 @@ set(VERSION "0.3")
 set(VERSION_INFO "Pre-Release")
 configure_file(${CMAKE_SOURCE_DIR}/src/config.h.cmake ${CMAKE_BINARY_DIR}/src/config.h)
 add_definitions(-include config.h)
-find_package(PkgConfig)
-pkg_check_modules(DEPS
-    REQUIRED
-    glib-2.0
-    gtk+-3.0
-    gdk-x11-3.0
-    gee-1.0
-    gstreamer-0.10
-    gstreamer-interfaces-0.10
-    gstreamer-pbutils-0.10
-    gstreamer-cdda-0.10
-    taglib_c
-    gio-2.0
-    sqlheavy-0.1
-    libxml-2.0
-    libnotify
-    libsoup-2.4
-    json-glib-1.0
-    gio-unix-2.0
-    granite
-    libgpod-1.0
-    libpeas-gtk-1.0
-    libpeas-1.0)
-# Check if we have sqlheavy-0.2
 
-if(${SQLHEAVY_USE_2})
-pkg_check_modules(SQLHEAVY sqlheavy-0.2)
-set(ADD_PKG ${ADD_PKG} sqlheavy-0.2)
-message("-- Will use sqlheavy-0.2")
-else()
-set(ADD_PKG ${ADD_PKG} sqlheavy-0.1)
-pkg_check_modules(SQLHEAVY sqlheavy-0.1)
-message("-- Will use sqlheavy-0.1")
-endif()
-pkg_check_modules(ZEITGEIST zeitgeist-1.0)
-if(${ZEITGEIST_FOUND})
-set(ADD_PKG ${ADD_PKG}
-                zeitgeist-1.0)
-set(ADD_OPTIONS ${ADD_OPTIONS}
-        --define=HAVE_ZEITGEIST)
-message("-- Zeitgeist enabled")
-else()
-message("-- Zeitgeist disabled")
-endif()
-pkg_check_modules(DBUS_MENU dbusmenu-glib-0.4)
-if(${DBUS_MENU_FOUND})
-set(ADD_PKG ${ADD_PKG}
-        Dbusmenu-0.4)
-set(ADD_OPTIONS ${ADD_OPTIONS}
-        --define=HAVE_DBUSMENU)
-message("-- DBus Menu enabled")
-else()
-message("-- DBus Menu disabled")
-endif()
-pkg_check_modules(INDICATE indicate-0.6)
-if(${INDICATE_FOUND})
-set(ADD_PKG ${ADD_PKG}
-        Indicate-0.6)
-set(ADD_OPTIONS ${ADD_OPTIONS}
-        --define=HAVE_INDICATE)
-message("-- Indicate enabled")
-else()
-message("-- Indicate disabled")
-endif()
 vala_precompile(VALA_C
     FileOperator.vala
     LastFM/LastFM.vala
@@ -221,6 +158,10 @@ OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/core/
     ${ADD_OPTIONS}
+GENERATE_VAPI
+    beatbox
+GENERATE_HEADER
+    beatbox
 )
 include_directories(${CMAKE_BINARY_DIR}/core)
 add_executable(beatbox ${VALA_C})
