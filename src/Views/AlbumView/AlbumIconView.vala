@@ -193,7 +193,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		set_is_current(true);
 	}
 
-	public void set_statusbar_text() {
+	public void set_statusbar_info() {
 		/* TODO:
 		uint count = 0;
 		uint total_time = 0;

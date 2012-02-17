@@ -277,7 +277,7 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 		if(visible)	queue_draw();
 	}
 
-	public void set_statusbar_text() {
+	public void set_statusbar_info() {
 		if(_showing_medias == null)
 			return;
 
@@ -293,24 +293,7 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 			}
 		}
 
-		string fancy = "";
-		if(total_time < 3600) { // less than 1 hour show in minute units
-			fancy = (total_time/60).to_string() + " minutes";
-		}
-		else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
-			fancy = (total_time/3600).to_string() + " hours";
-		}
-		else { // units in days
-			fancy = (total_time/(24 * 3600)).to_string() + " days";
-		}
-
-		string fancy_size = "";
-		if(total_mbs < 1000)
-			fancy_size = ((float)(total_mbs)).to_string() + " MB";
-		else
-			fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
-
-		lw.set_statusbar_text(count.to_string() + " songs, " + fancy + ", " + fancy_size);
+		lw.set_statusbar_info(hint, count, total_mbs, total_time);
 	}
 
 	public LinkedList<TreeViewColumn> get_columns() {

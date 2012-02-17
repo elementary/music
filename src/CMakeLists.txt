@@ -122,6 +122,7 @@ vala_precompile(VALA_C
     Widgets/DeviceBar.vala
     Widgets/SpaceWidget.vala
     Widgets/Welcome.vala
+    Widgets/StatusBar.vala
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
     Store/Price.vala

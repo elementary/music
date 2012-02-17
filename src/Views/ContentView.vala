@@ -36,7 +36,7 @@ public interface BeatBox.ContentView : Gtk.Container {
 	public abstract void append_medias(Collection<int> new_medias);
 	public abstract void remove_medias(Collection<int> to_remove);
 	public abstract void set_as_current_list(int media_id, bool is_initial);
-	public abstract void set_statusbar_text();
+	public abstract void set_statusbar_info();
 	
 	public abstract void set_is_current(bool val);
 	public abstract bool get_is_current();

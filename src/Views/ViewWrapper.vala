@@ -274,7 +274,7 @@ public class BeatBox.ViewWrapper : VBox {
 					list.remove_medias(to_remove_show);
 					albumView.remove_medias(to_remove_show);
 					
-					set_statusbar_text();
+					set_statusbar_info();
 					check_show_error_box();
 					
 					return false;
@@ -354,7 +354,7 @@ public class BeatBox.ViewWrapper : VBox {
 				showingMedias.set(i, 1);
 			
 			if(isCurrentView) {
-				set_statusbar_text();
+				set_statusbar_info();
 				check_show_error_box();
 			}
 		}
@@ -530,11 +530,11 @@ public class BeatBox.ViewWrapper : VBox {
 		//debug("populated\n");
 	}
 	
-	public void set_statusbar_text() {
+	public void set_statusbar_info() {
 		switch(currentView) {
 			case ViewType.FILTER_VIEW:
 			case ViewType.LIST:
-				list.set_statusbar_text();
+				list.set_statusbar_info();
 				break;
 		}
 	}
@@ -546,7 +546,7 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			showing_all = (showingMedias.size == medias.size);
 			
-			list.set_statusbar_text();
+			list.set_statusbar_info();
 		}
 	}
 	
@@ -567,7 +567,7 @@ public class BeatBox.ViewWrapper : VBox {
 				showing_all = (showingMedias.size == medias.size);
 				
 				lm.settings.setSearchString(to_search);
-				list.set_statusbar_text();
+				list.set_statusbar_info();
 				
 				return false;
 			});

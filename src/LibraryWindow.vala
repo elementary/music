@@ -67,11 +67,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 	ToolButton previousButton;
 	ToolButton playButton;
 	ToolButton nextButton;
-	public ElementaryWidgets.TopDisplay topDisplay;
+	public TopDisplay topDisplay;
 	public Granite.Widgets.ModeButton viewSelector;
 	public Granite.Widgets.SearchBar searchField;
-	HBox statusBar;
-	Label statusBarLabel;
+
+	StatusBar statusBar;
+
 	SimpleOptionChooser shuffleChooser;
 	SimpleOptionChooser repeatChooser;
 	SimpleOptionChooser infoPanelChooser;
@@ -221,7 +222,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		previousButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PREVIOUS);
 		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
-		topDisplay = new ElementaryWidgets.TopDisplay(lm);
+		topDisplay = new TopDisplay(lm);
 		viewSelector = new Granite.Widgets.ModeButton();
 		searchField = new Granite.Widgets.SearchBar(_("Search..."));
 		miller = new MillerColumns(lm, this); //miller must be below search for it to work properly
@@ -230,8 +231,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		grooveSharkScroll = new ScrolledWindow(null, null);
 		infoPanel = new InfoPanel(lm, this);
 		sideBar = new VBox(false, 0);
-		statusBar = new HBox(false, 0);
-		statusBarLabel = new Label("");
+		statusBar = new StatusBar();
 		alv = new AlbumListView(lm);
 
 		var shuffle_on_image = Icons.SHUFFLE_ON_ICON.render_image (IconSize.MENU);
@@ -243,6 +243,10 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		shuffleChooser = new SimpleOptionChooser.from_image (shuffle_on_image, shuffle_off_image);
 		repeatChooser = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
 		infoPanelChooser = new SimpleOptionChooser.from_image (info_image, info_image);
+
+        statusBar.insert_widget (shuffleChooser as Gtk.Widget, true);
+        statusBar.insert_widget (repeatChooser as Gtk.Widget, true);
+        statusBar.insert_widget (infoPanelChooser as Gtk.Widget);
 
 		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
@@ -290,12 +294,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		editEqualizer.activate.connect(editEqualizerClick);
 		editPreferences.activate.connect(editPreferencesClick);
 
-		EventBox statusEventBox = new EventBox();
-		statusEventBox.add(statusBar);
-
-		// paint the background
-		statusEventBox.override_background_color (StateFlags.NORMAL, BASE_COLOR);
-
 		repeatChooser.appendItem(_("Off"));
 		repeatChooser.appendItem(_("Song"));
 		repeatChooser.appendItem(_("Album"));
@@ -317,6 +315,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		verticalBox.pack_start(topControls, false, true, 0);
 		verticalBox.pack_start(videoArea, true, true, 0);
 		verticalBox.pack_start(sourcesToMedias, true, true, 0);
+		verticalBox.pack_end(statusBar, false, true, 0);
 
 		ToolItem topDisplayBin = new ToolItem();
 		ToolItem viewSelectorBin = new ToolItem();
@@ -377,8 +376,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 
 		contentBox.pack_start(millerPane, true, true, 0);
 
-		contentBox.pack_start(statusEventBox, false, true, 0);
-
 		mediasToInfo.pack1(contentBox, true, true);
 		mediasToInfo.pack2(infoPanel, false, false);
 
@@ -386,13 +383,6 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sourcesToMedias.pack2(mediasToInfo, true, true);
 
 		sideBar.pack_start(sideTreeScroll, true, true, 0);
-
-		shuffleChooser.margin_left = 12;
-
-		statusBar.pack_start(shuffleChooser, false, false, 2);
-		statusBar.pack_start(repeatChooser, false, false, 2);
-		statusBar.pack_start(statusBarLabel, true, true, 0);
-		statusBar.pack_start(wrap_alignment(infoPanelChooser, 0, 10, 0, 0), false, false, 2);
 
 		// add mounts to side tree view
 		lm.dm.loadPreExistingMounts();
@@ -1306,8 +1296,12 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		}
 	}
 
-	public void set_statusbar_text(string text) {
-		statusBarLabel.set_text(text);
+	public void set_statusbar_info (ViewWrapper.Hint media_type, uint total_medias,
+	                                 uint total_mbs, uint total_seconds)
+	{
+		statusBar.set_total_medias (total_medias, media_type);
+		statusBar.set_files_size (total_mbs);
+		statusBar.set_total_time (total_seconds);
 	}
 
 	public void welcomeScreenActivated(int index) {

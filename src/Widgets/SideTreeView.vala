@@ -568,7 +568,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				
 				lw.updateMillerColumns();
 				
-				((ViewWrapper)w).set_statusbar_text();
+				((ViewWrapper)w).set_statusbar_info();
 			}
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(true);
