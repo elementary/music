@@ -2,6 +2,7 @@ vala_precompile(VALA_C
     PluginManager.vala
     Settings.vala
     EqualizerPreset.vala
+    LibraryWindowInterface.vala
 PACKAGES
     gtk+-3.0
     libpeas-1.0

@@ -24,7 +24,7 @@ using Gtk;
 using Gee;
 using Notify;
 
-public class BeatBox.LibraryWindow : Gtk.Window {
+public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	public static Granite.Application app { get; private set; }
 
 	public BeatBox.LibraryManager lm;

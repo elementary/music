@@ -24,7 +24,7 @@ using Gee;
 
 public class BeatBox.PodcastManager : GLib.Object {
 	LibraryManager lm;
-	LibraryWindow lw;
+	LibraryWindowInterface lw;
 	bool fetching;
 	bool user_cancelled;
 	bool saving_locally;
@@ -37,7 +37,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 	
 	Collection<int> save_locally_ids;
 	
-	public PodcastManager(LibraryManager lm, LibraryWindow lw) {
+	public PodcastManager(LibraryManager lm, LibraryWindowInterface lw) {
 		this.lm = lm;
 		this.lw = lw;
 		fetching = saving_locally = false;
@@ -123,7 +123,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 		Idle.add( () => {
 			lm.add_medias(new_podcasts, true);
 			lw.updateSensitivities();
-			lm.lw.updateInfoLabel();
+			lw.updateInfoLabel();
 			lm.finish_file_operations();
 			
 			if(lm.settings.getDownloadNewPodcasts()) {
