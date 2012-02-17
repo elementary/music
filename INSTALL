@@ -35,6 +35,7 @@ libgstreamer-plugins-base0.10-dev (>= 0.10)
 libdbusmenu-gtk3-dev
 libgpod-dev
 libgranite-dev
+libpeas-dev
 
 --------------------------------------------------------------------------------
 BUILDING
@@ -43,6 +44,6 @@ bzr branch lp:beat-box
 cd beat-box
 mkdir build
 cd build
-cmake ..
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 make
 sudo make install
