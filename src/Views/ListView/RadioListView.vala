@@ -305,7 +305,7 @@ public class BeatBox.RadioListView : BaseListView {
 	}
 
 	public virtual void viewColumnsChanged() {
-		if((int)(view.get_columns().length()) != lm.podcast_setup.RADIO_COLUMN_COUNT) {
+		if((int)(view.get_columns().length()) != lm.station_setup.RADIO_COLUMN_COUNT) {
 			return;
 		}
 

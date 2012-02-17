@@ -24,6 +24,9 @@ using Gee;
 using Gtk;
 
 public class BeatBox.PodcastListView : BaseListView {
+    
+    
+	public TreeViewSetup podcast_setup { set; get; }
 
 	//for header column chooser
 	Gtk.Menu columnChooserMenu;
@@ -66,19 +69,20 @@ public class BeatBox.PodcastListView : BaseListView {
 	/**
 	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
 	 */
-	public PodcastListView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
+	public PodcastListView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww) {
 		
 		base (lmm, lww);
+		
+		podcast_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PODCAST);
 
 		last_search = "";
 		timeout_search = new LinkedList<string>();
 		showing_all = true;
 		removing_medias = false;
 
-		sort_column = sort;
-		sort_direction = dir;
-		hint = the_hint;
-		relative_id = id;
+		sort_column = podcast_setup.sort_column;
+		sort_direction = podcast_setup.sort_direction;
+		hint = ViewWrapper.Hint.PODCAST;
 
 		buildUI();
 	}
@@ -146,7 +150,7 @@ public class BeatBox.PodcastListView : BaseListView {
 		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)
 			to_use = lm.smart_playlist_from_id(relative_id).tvs.get_columns();*/
 		if(get_hint() == ViewWrapper.Hint.PODCAST) {
-			to_use = lm.podcast_setup.get_columns();
+			to_use = podcast_setup.get_columns();
 		}
 		else if(get_hint() == ViewWrapper.Hint.DEVICE_PODCAST) {
 			to_use = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST).get_columns();
@@ -402,7 +406,7 @@ public class BeatBox.PodcastListView : BaseListView {
 	}
 
 	public virtual void viewColumnsChanged() {
-		if((int)(view.get_columns().length()) != lm.podcast_setup.PODCAST_COLUMN_COUNT) {
+		if((int)(view.get_columns().length()) != podcast_setup.PODCAST_COLUMN_COUNT) {
 			return;
 		}
 
@@ -633,7 +637,7 @@ public class BeatBox.PodcastListView : BaseListView {
 		TreeViewSetup tvs;
 
 		if(get_hint() == ViewWrapper.Hint.PODCAST)
-			tvs = lm.podcast_setup;
+			tvs = podcast_setup;
 		else // is PODCAST_DEVICE
 			return;
 
@@ -680,7 +684,7 @@ public class BeatBox.PodcastListView : BaseListView {
 		}
 
 		if(get_hint() == ViewWrapper.Hint.PODCAST)
-			lm.podcast_setup.set_columns(get_columns());
+			podcast_setup.set_columns(get_columns());
 	}
 
 	/** media menu popup clicks **/

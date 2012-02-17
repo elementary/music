@@ -45,6 +45,8 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		toRemove = new LinkedList<GLib.Object>();
 		inThread = false;
 		
+		tree_view_setups = new GLib.List<TreeViewSetup>();
+		
 		Timeout.add(10000, periodic_save);
 	}
 	
@@ -137,6 +139,13 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 
 	}
 	
+	GLib.List<TreeViewSetup> tree_view_setups;
+	
+    public void register_autosaved_column (string name, TreeViewSetup setup) {
+        setup.set_data<string>("name", name);
+        tree_view_setups.append (setup);
+    }
+	
 	void save_others() {
 		var playlists_and_queue = new LinkedList<Playlist>();
 		playlists_and_queue.add_all(lm.playlists());
@@ -160,9 +169,12 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		p_music.name = "autosaved_music";
 		p_music.tvs = lm.music_setup;
 		
-		Playlist p_podcast = new Playlist();
+		/* FIXME: need to reimplement this */
+		/*Playlist p_podcast = new Playlist();
 		p_podcast.name = "autosaved_podcast";
-		p_podcast.tvs = lm.podcast_setup;
+		p_podcast.tvs = lm.podcast_setup;*/
+		
+		print("SETUP\n\n\n");
 		
 		Playlist p_station = new Playlist();
 		p_station.name = "autosaved_station";
@@ -172,7 +184,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		playlists_and_queue.add(p_history);
 		playlists_and_queue.add(p_similar);
 		playlists_and_queue.add(p_music);
-		playlists_and_queue.add(p_podcast);
+		//playlists_and_queue.add(p_podcast);
 		playlists_and_queue.add(p_station);
 		
 		dbm.save_playlists(playlists_and_queue);

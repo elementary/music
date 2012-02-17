@@ -23,11 +23,65 @@
 using Gee;
 using Gtk;
 
+#if 0
+public interface BeatBox.LibraryModel {
+	public signal void music_counted(int count);
+	public signal void music_added(LinkedList<string> not_imported);
+	public signal void music_imported(LinkedList<Media> new_medias, LinkedList<string> not_imported);
+	public signal void music_rescanned(LinkedList<Media> new_medias, LinkedList<string> not_imported);
+	public signal void progress_notification(string? message, double progress);
+	public signal void file_operations_started();
+	public signal void file_operations_done();
+	public signal void progress_cancel_clicked();
+	
+	public signal void current_cleared();
+	public signal void media_updated(int id);
+	public signal void medias_added(LinkedList<int> ids);
+	public signal void medias_updated(LinkedList<int> ids);
+	public signal void medias_removed(LinkedList<int> ids);
+	public signal void media_queued(int id);
+	public signal void media_played(int id, int old_id);
+	public signal void playback_stopped(int was_playing);
+	
+	public abstract bool playing_queued_song();
+	
+	public abstract Shuffle shuffle { set; get; }
+	
+	public abstract BeatBox.MediaInfo media_info { set; get; }
+	
+	/* FIXME: this should be clear_current to follow style guidelines */
+	public abstract void clearCurrent();
+	public abstract void addToCurrent(int i);
+	public abstract Collection<int> current_medias();
+	/* FIXME: style guidelines */
+	public abstract void setShuffleMode(LibraryModel.Shuffle mode, bool reshuffle);
+	public abstract Media media_from_id(int id);
+	public abstract Collection<int> queue();
+	public abstract void remove_medias(LinkedList<Media> toRemove, bool trash);
+	public abstract void playMedia(int id, bool use_resume_pos);
+	
+	public abstract int current_index { set; get; }
+	
+	public enum Shuffle {
+		OFF,
+		ALL;
+	}
+	
+	public enum Repeat {
+		OFF,
+		MEDIA,
+		ALBUM,
+		ARTIST,
+		ALL;
+	}
+}
+#endif
+
 /** This is where all the media stuff happens. Here, medias are retrieved
  * from the db, added to the queue, sorted, and more. LibraryWindow is
  * the visual representation of this class
  */
-public class BeatBox.LibraryManager : GLib.Object {
+public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public BeatBox.LibraryWindow lw;
 	public BeatBox.Settings settings;
 	public BeatBox.DataBaseManager dbm;
@@ -61,24 +115,37 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private HashMap<string, LastFM.AlbumInfo> _albums;//key:artist<sep>album
 	private HashMap<string, LastFM.TrackInfo> _tracks;//key:artist<sep>album<sep>track
 	
-	public TreeViewSetup music_setup;
-	public TreeViewSetup podcast_setup;
-	public TreeViewSetup station_setup;
-	public TreeViewSetup similar_setup;
-	public TreeViewSetup queue_setup;
-	public TreeViewSetup history_setup;
-	public TreeViewSetup album_list_setup;
+	public TreeViewSetup music_setup { set; get; }
+	public TreeViewSetup station_setup  { set; get; }
+	public TreeViewSetup similar_setup  { set; get; }
+	public TreeViewSetup queue_setup  { set; get; }
+	public TreeViewSetup history_setup  { set; get; }
+	public TreeViewSetup album_list_setup  { set; get; }
 	
 	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new medias play, this goes with it
 	public int _current_index;
 	public int _current_shuffled_index;
-	public BeatBox.MediaInfo media_info;
+	public BeatBox.MediaInfo media_info { set; get; }
 	
 	public bool playing;
 	bool _playing_queued_song;
-	public Repeat repeat;
-	public Shuffle shuffle;
+	public Repeat repeat { set; get; }
+	public Shuffle shuffle { set; get; }
 	public int next_gapless_id;
+	
+	
+	public enum Shuffle {
+		OFF,
+		ALL;
+	}
+	
+	public enum Repeat {
+		OFF,
+		MEDIA,
+		ALBUM,
+		ARTIST,
+		ALL;
+	}
 	
 	private string temp_add_folder;
 	private LinkedList<string> temp_add_files;
@@ -105,19 +172,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void playback_stopped(int was_playing);
 	
 	private Mutex mutex = new Mutex();
-	
-	public enum Shuffle {
-		OFF,
-		ALL;
-	}
-	
-	public enum Repeat {
-		OFF,
-		MEDIA,
-		ALBUM,
-		ARTIST,
-		ALL;
-	}
 	
 	public LibraryManager(BeatBox.Settings sett, BeatBox.LibraryWindow lww, string[] args) {
 		this.lw = lww;
@@ -177,7 +231,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		have_fetched_new_podcasts = false;
 		
 		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
-		podcast_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PODCAST);
 		station_setup = new TreeViewSetup("Genre", Gtk.SortType.ASCENDING, ViewWrapper.Hint.STATION);
 		similar_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.SIMILAR);
 		queue_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.QUEUE);
@@ -217,7 +270,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 					_playlists.unset(p.rowid);
 				}
 				else if(p.name == "autosaved_podcast") {
-					podcast_setup = p.tvs;
+				    critical("Need reimplementation");
+					//podcast_setup = p.tvs;
 					_playlists.unset(p.rowid);
 				}
 				else if(p.name == "autosaved_station") {
@@ -1008,6 +1062,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		else
 			return _current.values;
 	}
+	
 	
 	public void clearCurrent() {
 		current_cleared();

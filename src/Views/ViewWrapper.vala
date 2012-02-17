@@ -95,7 +95,7 @@ public class BeatBox.ViewWrapper : VBox {
 			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find medias similar to the one you are playing.") + "\n" + _("You can then start playing those medias, or save them for later."), null);
 		}
 		else if(the_hint == ViewWrapper.Hint.PODCAST || the_hint == ViewWrapper.Hint.DEVICE_PODCAST) {
-			list = new PodcastListView(lm, lw, sort, dir, the_hint, id);
+			list = new PodcastListView(lm, lw);
 		}
 		else if(the_hint == ViewWrapper.Hint.STATION) {
 			list = new RadioListView(lm, lw, sort, dir, the_hint, id);

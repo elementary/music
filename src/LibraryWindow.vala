@@ -480,7 +480,7 @@ public class BeatBox.LibraryWindow : Gtk.Window {
 		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Music"), ViewWrapper.Hint.MUSIC);
 		mainViews.pack_start(vw, true, true, 0);
 
-		vw = new ViewWrapper(lm, this, lm.podcast_ids(), lm.podcast_setup.sort_column, lm.podcast_setup.sort_direction, ViewWrapper.Hint.PODCAST, -1);
+		vw = new ViewWrapper(lm, this, lm.podcast_ids(), "", 0, ViewWrapper.Hint.PODCAST, -1);
 		sideTree.addSideItem(sideTree.library_iter, null, vw, _("Podcasts"), ViewWrapper.Hint.PODCAST);
 		mainViews.pack_start(vw, true, true, 0);
 

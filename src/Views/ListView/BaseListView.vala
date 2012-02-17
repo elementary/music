@@ -46,6 +46,9 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	protected Collection<int> _showing_medias;
 	protected LinkedList<string> _columns;
 
+    /**
+     * @deprecated
+     **/
 	protected int relative_id;// if playlist, smart playlist, etc.
 	protected ViewWrapper.Hint hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	protected string sort_column;
@@ -71,7 +74,7 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 
 		_showing_medias = new LinkedList<int>();
 		_columns = new LinkedList<string>();
-		cellHelper = new CellDataFunctionHelper(lm);
+		cellHelper = new CellDataFunctionHelper((BeatBox.LibraryManager)lm);
 
 		lm.medias_updated.connect(medias_updated);
 		lm.media_played.connect(media_played);
