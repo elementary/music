@@ -112,7 +112,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		CDMenu.show_all();
 		
 		radioMenu = new Gtk.Menu();
-		radioImportStations = new Gtk.MenuItem.with_label(_("Import Station"));
+		radioImportStations = new Gtk.MenuItem.with_label(_("Import Stations"));
 		radioMenu.append(radioImportStations);
 		radioImportStations.activate.connect(playlistImportClicked);
 		radioMenu.show_all();
@@ -125,7 +125,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
 		playlistSave = new Gtk.MenuItem.with_label(_("Save as Playlist"));
 		playlistExport = new Gtk.MenuItem.with_label(_("Export..."));
-		playlistImport = new Gtk.MenuItem.with_label(_("Import Playlist"));
+		playlistImport = new Gtk.MenuItem.with_label(_("Import Playlists"));
 		playlistMenu.append(playlistNew);
 		playlistMenu.append(smartPlaylistNew);
 		playlistMenu.append(playlistEdit);
@@ -951,7 +951,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		
 		var files = new SList<string> ();
 		string[] names = {};
-		var file_chooser = new FileChooserDialog ("Import Playlist", lw,
+		var file_chooser = new FileChooserDialog ("Import Playlists", lw,
 								  FileChooserAction.OPEN,
 								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
@@ -978,20 +978,21 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		file_chooser.destroy ();
 		
 		var path = new LinkedList<string> ();
+		var stations = new LinkedList<Media> ();
 		LinkedList<string>[] paths = {};
-		var stations = new LinkedList<Media>();
 		bool success = false;
 		int i = 0;
 		
 		files.foreach ( (file)=> {
 	    	if(file != "") {
+	    	    path = new LinkedList<string> ();
 		    	if(file.has_suffix(".m3u")) {
-		    	    path = new LinkedList<string> ();
 		    		success = Playlist.parse_paths_from_m3u(lm, file, ref path, ref stations);
 		    		paths += path;
 		    	}
 		    	else if(file.has_suffix(".pls")) {
-		    		success = Playlist.parse_paths_from_pls(lm, file, ref paths[i], ref stations);
+		    		success = Playlist.parse_paths_from_pls(lm, file, ref path, ref stations);
+		    		paths += path;
 		    	}
 		    	else {
 		    		success = false;
@@ -1003,9 +1004,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		});
 		
 		if(success) {
-	        if(paths.length > 0) {
-		    	stdout.printf("paths size is %d\n", paths.size);
-			   	lm.fo.import_from_playlist_file_info(names[0], paths[0], names[1:names.length], paths[1:paths.length]);
+	        if(paths[0].size > 0) {
+		    	stdout.printf("paths size is %d\n", paths[0].size);
+			   	lm.fo.import_from_playlist_file_info(names, paths);
 		    	lw.updateSensitivities();
 		    }
 		    if(stations.size > 0) {

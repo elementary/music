@@ -449,18 +449,18 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	/* should be called from thread */
-	public void import_from_playlist_file_info(string name, LinkedList<string> paths, string[] other_names = {}, LinkedList<string>[] other_paths = {}) {
+	public void import_from_playlist_file_info(string[] names = {}, LinkedList<string>[] paths = {}) {
 		new_playlist = new Playlist();
-		if (other_names.length != 0) {
-    		other_names_list = other_names;
-	    	other_paths_list = other_paths;
+		if (names.length > 1) {
+    		other_names_list = names[1:paths.length];
+	    	other_paths_list = paths[1:paths.length];
 		}
 		var internals = new LinkedList<int>();
 		var externals = new LinkedList<string>();
 		
-		lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
+		lm.start_file_operations("Importing <b>" + names[0] + "</b> to Library...");
 		
-		foreach(string path in paths) {
+		foreach(string path in paths[0]) {
 			Media s;
 			if( (s = lm.media_from_file(path)) != null)
 				internals.add(s.rowid);
@@ -468,7 +468,7 @@ public class BeatBox.FileOperator : Object {
 				externals.add(path);
 		}
 		
-		new_playlist.name = name;
+		new_playlist.name = names[0];
 		foreach(int i in internals)
 			new_playlist.addMedia(i);
 		
@@ -544,7 +544,7 @@ public class BeatBox.FileOperator : Object {
 			lm.finish_file_operations();
 		}
 		if (other_names_list.length > 0) {
-		    import_from_playlist_file_info(other_names_list[other_playlists_added], other_paths_list[other_playlists_added]);
+		    import_from_playlist_file_info({other_names_list[other_playlists_added]}, {other_paths_list[other_playlists_added]});
 		    other_playlists_added++;
 		    if (other_playlists_added == other_names_list.length)
 		        other_names_list = {};
