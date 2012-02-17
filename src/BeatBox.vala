@@ -34,7 +34,7 @@ namespace Option {
 public class BeatBox.Beatbox : Granite.Application {
 	public static Granite.Application app;
 
-	LibraryWindow _program;
+	public static LibraryWindow _program;
 	unowned string[] args;
 	BeatBox.Settings settings;
 
