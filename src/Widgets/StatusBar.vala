@@ -26,6 +26,8 @@ public class BeatBox.StatusBar : Gtk.Statusbar {
     public string size_text {get; private set;}
     public string time_text {get; private set;}
 
+    bool no_media = false;
+
     Label status_label;
     Box left_box;
     Box right_box;
@@ -35,9 +37,9 @@ public class BeatBox.StatusBar : Gtk.Statusbar {
     public StatusBar () {
         // Get rid of the default statusbar items
         foreach (Gtk.Widget widget in get_children ()) {
-		    widget.set_no_show_all (true);
-		    widget.set_visible (false);
-		}
+            widget.set_no_show_all (true);
+            widget.set_visible (false);
+        }
 
         status_label = new Label ("");
         status_label.set_justify (Justification.CENTER);
@@ -46,9 +48,7 @@ public class BeatBox.StatusBar : Gtk.Statusbar {
         right_box = new Box (Orientation.HORIZONTAL, 3);
 
         this.pack_start(left_box, false, false, 2);
-        //this.pack_start(new Box (Orientation.HORIZONTAL, 0), true, true, 0);
         this.pack_start(status_label, true, true, 12);
-        //this.pack_start(new Box (Orientation.HORIZONTAL, 0), true, true, 0);
         this.pack_end(right_box, false, false, 2);
     }
 
@@ -60,29 +60,30 @@ public class BeatBox.StatusBar : Gtk.Statusbar {
     }
 
     public void set_files_size (uint total_mbs) {
-           if(total_mbs < 1000)
-            size_text = ((float)(total_mbs)).to_string() + " " + _("MB");
+        if(total_mbs < 1000)
+            size_text = _("%i MB").printf (total_mbs);
         else
-            size_text = ((float)(total_mbs/1000.0f)).to_string() + " " + _("GB");
+            size_text = _("%.2f GB").printf ((float)(total_mbs/1000.0f));
 
         update_label ();
     }
 
     public void set_total_time (uint total_time) {
         if(total_time < 3600) { // less than 1 hour show in minute units
-            time_text = (total_time/60).to_string() + _(" minutes");
+            time_text = _("%s minutes").printf ((total_time/60).to_string());
         }
         else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
-            time_text = (total_time/3600).to_string() + _(" hours");
+            time_text = _("%s hours").printf ((total_time/3600).to_string());
         }
         else { // units in days
-            time_text = (total_time/(24 * 3600)).to_string() + _(" days");
+            time_text = _("%s days").printf ((total_time/(24 * 3600)).to_string());
         }
 
         update_label ();
     }
 
     public void set_total_medias (uint total_medias, ViewWrapper.Hint media_type) {
+        no_media = total_medias == 0;
         string media_d = "";
 
         switch (media_type) {
@@ -111,6 +112,9 @@ public class BeatBox.StatusBar : Gtk.Statusbar {
     }
 
     private void update_label () {
-        status_label.set_text (STATUSBAR_FORMAT.printf (medias_text, time_text, size_text));
+        if (no_media)
+            status_label.set_text ("");
+        else
+            status_label.set_text (STATUSBAR_FORMAT.printf (medias_text, time_text, size_text));
     }
 }

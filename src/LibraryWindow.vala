@@ -51,7 +51,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	public VBox mainViews;
 	public MillerColumns miller;
 	HPaned millerPane;
-	BeatBox.Welcome welcomeScreen;
+	Granite.Widgets.Welcome welcomeScreen;
 	public DrawingArea videoArea;
 	public HPaned sourcesToMedias; //allows for draggable
 	HPaned mediasToInfo; // media info pane
@@ -207,7 +207,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		millerPane = new HPaned();
 		mainViews = new VBox(false, 0);
 		videoArea = new DrawingArea();
-		welcomeScreen = new Welcome(_("Get Some Tunes"), _("BeatBox can't seem to find your music."));
+		welcomeScreen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("BeatBox can't seem to find your music."));
 
 		sideTree = new SideTreeView(lm, this);
 		sideTreeScroll = new ScrolledWindow(null, null);
@@ -612,9 +612,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		welcomeScreen.set_visible(!showMainViews);
 		millerPane.set_visible(showMainViews);
 
-		welcomeScreen.set_sensitivity(0, !doingOps);
+		welcomeScreen.set_item_sensitivity(0, !doingOps);
 		foreach(int key in welcome_screen_keys.keys)
-			welcomeScreen.set_sensitivity(key, !doingOps);
+			welcomeScreen.set_item_sensitivity(key, !doingOps);
 
 		statusBar.set_visible(showMainViews && showingMediaList);
 
@@ -1529,7 +1529,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		if(key != 0) {
 			welcome_screen_keys.unset(key);
-			welcomeScreen.remove_with_key(key);
+			welcomeScreen.remove_item(key);
 		}
 	}
 }
