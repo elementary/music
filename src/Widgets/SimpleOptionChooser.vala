@@ -25,7 +25,7 @@ using Gdk;
 using Gee;
 
 public class BeatBox.SimpleOptionChooser : EventBox {
-	Gtk.Menu menu;
+	Gtk.Menu? menu = null;
 	LinkedList<CheckMenuItem> items;
 	Gtk.Image enabled;
 	Gtk.Image disabled;
@@ -54,7 +54,6 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 	}
 
 	private void initialize () {
-		menu = new Gtk.Menu();
 		items = new LinkedList<CheckMenuItem>();
 		toggling = false;
 
@@ -100,6 +99,9 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 	}
 
 	public int appendItem(string text) {
+		if (menu == null)
+			menu = new Gtk.Menu();
+
 		var item = new CheckMenuItem.with_label(text);
 		items.add(item);
 		menu.append(item);
@@ -124,16 +126,19 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 	}
 
 	public virtual bool buttonPress(Gdk.EventButton event) {
-		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-			if(clicked_index == 0)
-				setOption(previous_index);
-			else {
-				previous_index = clicked_index;
-				setOption(0);
+		if (event.type == Gdk.EventType.BUTTON_PRESS) {
+			if(event.button == 1) {
+				if(clicked_index == 0) {
+					setOption(previous_index);
+				}
+				else {
+					previous_index = clicked_index;
+					setOption(0);
+				}
 			}
-		}
-		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) {
-			menu.popup (null, null, null, 3, get_current_event_time());
+			else if(event.button == 3 && menu != null) {
+				menu.popup (null, null, null, 3, get_current_event_time());
+			}
 		}
 
 		return false;

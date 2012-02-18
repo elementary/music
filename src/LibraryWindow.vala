@@ -1409,9 +1409,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
 	}
 
-	public virtual bool addPlaylistChooserOptionClicked() {
-		sideTree.playlistMenuNewClicked();
-		return true;
+	public virtual bool addPlaylistChooserOptionClicked(Gdk.EventButton event) {
+		if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
+			sideTree.playlistMenuNewClicked();
+			return true;
+		}
+
+		return false;
 	}
 
 	public virtual void infoPanelChooserOptionChanged(int val) {
