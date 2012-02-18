@@ -55,13 +55,15 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		// paint the background color
 		eb.override_background_color (StateFlags.NORMAL, lw.BASE_COLOR);
-		
+
+		eb.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE + 6, -1);
+
 		title = new Label("Title");
 		artist = new Label("Artist");
 		loveMedia = new Button();
 		banMedia = new Button();
 		coverArt = new Gtk.Image();
-		coverArt.set_size_request (40, 40);
+		coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
 		rating = new RatingWidget(null, true, IconSize.MENU);
 		album = new Label("Album");
 		year = new Label("Year");
@@ -188,19 +190,14 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	public void updateCoverArt(bool is_initial) {
 		if(lm.media_from_id(id) == null)
 			return;
-		
+
 		if(lm.get_cover_album_art(id) != null) {
 			coverArt.show();
-			var pixbuf = lm.get_cover_album_art(id);
-			var max_width = coverArtScroll.get_allocated_width();
-				
-			while(pixbuf != null && pixbuf.width >= max_width - 5) {
-				pixbuf = pixbuf.scale_simple(pixbuf.width - 5, pixbuf.height - 5, Gdk.InterpType.BILINEAR);
-			}
-			coverArt.set_from_pixbuf(pixbuf);
+			coverArt.set_from_pixbuf(lm.get_cover_album_art(id));
 		}
-		else
+		else {
 			coverArt.hide();
+		}
 	}
 	
 	public void updateMediaList(Collection<Media> medias) {

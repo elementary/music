@@ -73,6 +73,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	StatusBar statusBar;
 
+	SimpleOptionChooser addPlaylistChooser;
 	SimpleOptionChooser shuffleChooser;
 	SimpleOptionChooser repeatChooser;
 	SimpleOptionChooser infoPanelChooser;
@@ -234,19 +235,27 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		statusBar = new StatusBar();
 		alv = new AlbumListView(lm);
 
+		var add_playlist_image = Icons.render_image ("list-add-symbolic", IconSize.MENU);
 		var shuffle_on_image = Icons.SHUFFLE_ON_ICON.render_image (IconSize.MENU);
 		var shuffle_off_image = Icons.SHUFFLE_OFF_ICON.render_image (IconSize.MENU);
 		var repeat_on_image = Icons.REPEAT_ON_ICON.render_image (IconSize.MENU);
 		var repeat_off_image = Icons.REPEAT_OFF_ICON.render_image (IconSize.MENU);
-		var info_image = Icons.INFO_ICON.render_image (IconSize.MENU);
+		var info_panel_show = Icons.PANE_SHOW_SYMBOLIC.render_image (IconSize.MENU);
+		var info_panel_hide = Icons.PANE_HIDE_SYMBOLIC.render_image (IconSize.MENU);
 
+		addPlaylistChooser = new SimpleOptionChooser.from_image (add_playlist_image);
 		shuffleChooser = new SimpleOptionChooser.from_image (shuffle_on_image, shuffle_off_image);
 		repeatChooser = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
-		infoPanelChooser = new SimpleOptionChooser.from_image (info_image, info_image);
+		infoPanelChooser = new SimpleOptionChooser.from_image (info_panel_hide, info_panel_show);
 
-        statusBar.insert_widget (shuffleChooser as Gtk.Widget, true);
-        statusBar.insert_widget (repeatChooser as Gtk.Widget, true);
-        statusBar.insert_widget (infoPanelChooser as Gtk.Widget);
+		infoPanelChooser.setTooltip (_("Hide Info Panel"), _("Show Info Panel"));
+		addPlaylistChooser.setTooltip (_("Add Playlist"));
+
+		statusBar.insert_widget (addPlaylistChooser as Gtk.Widget, true);
+		statusBar.insert_widget (new Gtk.Box (Orientation.HORIZONTAL, 12), true);
+		statusBar.insert_widget (shuffleChooser as Gtk.Widget, true);
+		statusBar.insert_widget (repeatChooser as Gtk.Widget, true);
+		statusBar.insert_widget (infoPanelChooser as Gtk.Widget);
 
 		notification = (Notify.Notification)GLib.Object.new (
 						typeof (Notify.Notification),
@@ -321,8 +330,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		ToolItem viewSelectorBin = new ToolItem();
 		ToolItem searchFieldBin = new ToolItem();
 
-
-
 		// FIXME: Ugly workaround to make the view-mode button smaller
 		var viewSelectorContainer = new Box (Orientation.VERTICAL, 0);
 		var viewSelectorInnerContainer = new Box (Orientation.HORIZONTAL, 0);
@@ -394,9 +401,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		playButton.clicked.connect(playClicked);
 		nextButton.clicked.connect(nextClicked);
 		infoPanel.size_allocate.connect(infoPanelResized);
+
+		addPlaylistChooser.button_press_event.connect(addPlaylistChooserOptionClicked);
 		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
+
 		viewSelector.mode_changed.connect(updateMillerColumns);
 		viewSelector.mode_changed.connect( () => { updateSensitivities(); } );
 		millerPane.get_child1().size_allocate.connect(millerResized);
@@ -1297,7 +1307,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 	public void set_statusbar_info (ViewWrapper.Hint media_type, uint total_medias,
-	                                 uint total_mbs, uint total_seconds)
+									 uint total_mbs, uint total_seconds)
 	{
 		statusBar.set_total_medias (total_medias, media_type);
 		statusBar.set_files_size (total_mbs);
@@ -1397,6 +1407,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			lm.setShuffleMode(LibraryManager.Shuffle.OFF, true);
 		else if(val == 1)
 			lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
+	}
+
+	public virtual bool addPlaylistChooserOptionClicked() {
+		sideTree.playlistMenuNewClicked();
+		return true;
 	}
 
 	public virtual void infoPanelChooserOptionChanged(int val) {

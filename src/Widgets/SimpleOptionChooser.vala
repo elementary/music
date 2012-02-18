@@ -39,16 +39,16 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 
 	public signal void option_changed(int index);
 
-	public SimpleOptionChooser.from_pixbuf (Pixbuf enabled, Pixbuf disabled) {
+	public SimpleOptionChooser.from_pixbuf (Pixbuf enabled, Pixbuf? disabled = null) {
 		this.enabled = new Image.from_pixbuf (enabled);
-		this.disabled = new Image.from_pixbuf (disabled);
+		this.disabled = new Image.from_pixbuf (disabled ?? enabled);
 
 		initialize ();
 	}
 
-	public SimpleOptionChooser.from_image (Gtk.Image enabled, Gtk.Image disabled) {
+	public SimpleOptionChooser.from_image (Gtk.Image enabled, Gtk.Image? disabled = null) {
 		this.enabled = enabled;
-		this.disabled = disabled;
+		this.disabled = disabled ?? enabled;
 
 		initialize ();
 	}
@@ -75,6 +75,11 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		button_press_event.connect(buttonPress);
 
 		set_image ();
+	}
+
+	public void setTooltip (string enabled_tooltip, string? disabled_tooltip = null) {
+		enabled.set_tooltip_text (enabled_tooltip);
+		disabled.set_tooltip_text (disabled_tooltip ?? enabled_tooltip);
 	}
 
 	public void setOption(int index) {
@@ -134,7 +139,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		return false;
 	}
 
-	public void set_image () {
+	private void set_image () {
 		if (get_child () != null)
 			remove (get_child ());
 
