@@ -20,7 +20,7 @@
 
 using Gtk;
 
-public class BeatBox.StatusBar : Gtk.EventBox {
+public class BeatBox.StatusBar : Gtk.Statusbar {
 
     public string medias_text {get; private set;}
     public string size_text {get; private set;}
@@ -33,18 +33,23 @@ public class BeatBox.StatusBar : Gtk.EventBox {
     string STATUSBAR_FORMAT = _("%s, %s, %s");
 
     public StatusBar () {
+        // Get rid of the default statusbar items
+        foreach (Gtk.Widget widget in get_children ()) {
+		    widget.set_no_show_all (true);
+		    widget.set_visible (false);
+		}
+
         status_label = new Label ("");
         status_label.set_justify (Justification.CENTER);
 
-        var wrapper_box = new Box (Orientation.HORIZONTAL, 3);
         left_box = new Box (Orientation.HORIZONTAL, 3);
         right_box = new Box (Orientation.HORIZONTAL, 3);
 
-        wrapper_box.pack_start(left_box, false, false, 2);
-        wrapper_box.pack_start(status_label, true, true, 12);
-        wrapper_box.pack_end(right_box, false, false, 2);
-
-        add (wrapper_box);
+        this.pack_start(left_box, false, false, 2);
+        //this.pack_start(new Box (Orientation.HORIZONTAL, 0), true, true, 0);
+        this.pack_start(status_label, true, true, 12);
+        //this.pack_start(new Box (Orientation.HORIZONTAL, 0), true, true, 0);
+        this.pack_end(right_box, false, false, 2);
     }
 
     public void insert_widget (Gtk.Widget widget, bool? use_left_side = false) {
