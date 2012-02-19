@@ -330,21 +330,18 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		ToolItem viewSelectorBin = new ToolItem();
 		ToolItem searchFieldBin = new ToolItem();
 
-		// FIXME: Ugly workaround to make the view-mode button smaller
-		var viewSelectorContainer = new Box (Orientation.VERTICAL, 0);
-		var viewSelectorInnerContainer = new Box (Orientation.HORIZONTAL, 0);
-		viewSelectorInnerContainer.pack_start (new Box (Orientation.HORIZONTAL, 10), true, true, 0);
-		viewSelectorInnerContainer.pack_start (viewSelector, false, false, 0); // VIEW SELECTOR
-		viewSelectorInnerContainer.pack_end (new Box (Orientation.HORIZONTAL, 10), true, true, 0);
-		viewSelectorContainer.pack_start (new Box (Orientation.VERTICAL, 5), true, true, 0);
-		viewSelectorContainer.pack_start (viewSelectorInnerContainer, false, false, 0);
-		viewSelectorContainer.pack_end (new Box (Orientation.VERTICAL, 5), true, true, 0);
+		// Tweak view selector's size
+		var viewSelectorBox = new ButtonBox (Orientation.HORIZONTAL); 
+		viewSelectorBox.set_spacing (6);
+    	viewSelectorBox.set_layout (ButtonBoxStyle.START);
+
+		viewSelectorBox.pack_start (viewSelector, false, false, 0);
 
 		topDisplayBin.add(topDisplay);
 		topDisplayBin.set_border_width(1);
 		topDisplayBin.margin_left = 12;
 
-		viewSelectorBin.add(viewSelectorContainer);
+		viewSelectorBin.add(viewSelectorBox);
 		viewSelectorBin.margin_left = 12;
 
 		searchFieldBin.add(searchField);
@@ -354,13 +351,17 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		topDisplayBin.set_expand(true);
 
 		// Set theming
-		topControls.get_style_context().add_class("primary-toolbar");
+		topControls.get_style_context().add_class(STYLE_CLASS_PRIMARY_TOOLBAR);
 		sourcesToMedias.get_style_context().add_class("sidebar-pane-separator");
-		sideTree.get_style_context().add_class("sidebar");
+		sideTree.get_style_context().add_class(STYLE_CLASS_SIDEBAR);
 
 		viewSelector.append(Icons.VIEW_ICONS_ICON.render_image (IconSize.MENU));
 		viewSelector.append(Icons.VIEW_DETAILS_ICON.render_image (IconSize.MENU));
 		viewSelector.append(Icons.VIEW_COLUMN_ICON.render_image (IconSize.MENU));
+
+		topControls.set_icon_size (IconSize.LARGE_TOOLBAR);
+		topControls.set_vexpand (false);
+		topControls.set_hexpand (true);
 
 		topControls.insert(previousButton, 0);
 		topControls.insert(playButton, 1);
@@ -369,9 +370,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		topControls.insert(topDisplayBin, 4);
 		topControls.insert(searchFieldBin, 5);
 		topControls.insert(app.create_appmenu(settingsMenu), 6);
-
-		// for consistency
-		topControls.set_size_request(-1, 45);
 
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 
