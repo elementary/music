@@ -28,7 +28,6 @@ public class BeatBox.Pipeline : GLib.Object {
 	public CDDA cdda;
 	public ReplayGain gapless;
 	public Video video;
-	public Ripper ripper;
 	
 	public dynamic Gst.Bus bus;
 	//Pad teepad;
@@ -48,7 +47,6 @@ public class BeatBox.Pipeline : GLib.Object {
 	
 	public Pipeline() {
 		gapless = new ReplayGain();
-		ripper = new Ripper();
 		
 		pipe = new Gst.Pipeline("pipeline");
 		playbin = ElementFactory.make("playbin2", null);

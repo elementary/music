@@ -38,7 +38,7 @@ public class BeatBox.RemoveFilesDialog : Window {
 	public RemoveFilesDialog (LibraryWindow lw, LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
 		this.lw = lw;
 		
-		this.set_title("BeatBox");
+		this.set_title("");
 		
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;

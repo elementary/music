@@ -32,7 +32,6 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	private Label artist;
 	private Button loveMedia;
 	private Button banMedia;
-	private ScrolledWindow coverArtScroll;
 	private Gtk.Image coverArt;
 	private RatingWidget rating; // need to make custom widget in future
 	private Label album;
@@ -97,18 +96,10 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		buttons.pack_end(new Label(""), true, true, 0);
 		buttons.pack_end(banMedia, false, false, 0);
 		
-		coverArtScroll = new ScrolledWindow(null, null);
-		Viewport imageVP = new Viewport(null, null);
-		coverArtScroll.set_policy(PolicyType.NEVER, PolicyType.NEVER);
-		imageVP.set_shadow_type(ShadowType.NONE);
-		imageVP.add(coverArt);
-		imageVP.override_background_color (StateFlags.NORMAL, lw.BASE_COLOR);
-		coverArtScroll.add(imageVP);
-		
 		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(artist, 2, 0, 0, 5), false, true, 0);
 		content.pack_start(buttons, false, true, 0);
-		content.pack_start(wrap_alignment(coverArtScroll, 5, 5, 0, 5), false, true, 0);
+		content.pack_start(wrap_alignment(coverArt, 5, 5, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(rating, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(album, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(wrap_alignment(year, 0, 0, 20, 5), false, true, 0);

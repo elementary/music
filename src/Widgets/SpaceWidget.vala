@@ -71,22 +71,22 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         }
 
         .SpaceBarFullItem {
-            border-radius: 300 300 300 300;
+            border-radius: 300px 300px 300px 300px;
         }
 
         .SpaceBarItem:nth-child(first) {
-            border-radius: 300 0 0 300;
+            border-radius: 300px 0 0 300px;
         }
 
         .SpaceBarItem:nth-child(last) {
-            border-radius: 0 300 300 0;
+            border-radius: 0 300px 300px 0;
         }
 
         .LegendItem {
             border-radius: 100 100 100 100;
 
             -unico-inner-stroke-width: 0;
-            -unico-outer-stroke-width: 1;
+            -unico-outer-stroke-width: 1px;
 
             -GtkButton-default-border           : 0;
             -GtkButton-image-spacing            : 0;

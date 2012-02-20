@@ -49,15 +49,12 @@ vala_precompile(VALA_C
     Widgets/WarningLabel.vala
     Widgets/SimpleOptionChooser.vala
     Widgets/PresetList.vala
-    Widgets/CoverArtImage.vala
     Widgets/SideBar.vala
     Widgets/SideTreeView.vala
     Widgets/MillerColumns/MillerModel.vala
     Widgets/MillerColumns/MillerColumn.vala
     Widgets/RatingWidget.vala
-    Widgets/DeviceBar.vala
     Widgets/SpaceWidget.vala
-    Widgets/Welcome.vala
     Widgets/StatusBar.vala
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
@@ -86,7 +83,6 @@ vala_precompile(VALA_C
     Store/Track.vala
     GStreamer/CDDA.vala
     GStreamer/Video.vala
-    GStreamer/Ripper.vala
     GStreamer/Equalizer.vala
     GStreamer/Pipeline.vala
     GStreamer/CDRipper.vala
@@ -94,7 +90,6 @@ vala_precompile(VALA_C
     GStreamer/ReplayGain.vala
     GStreamer/Streamer.vala
     Views/ViewWrapper.vala
-    Views/CDRomViewWrapper.vala
     Views/DeviceViewWrapper.vala
     Views/DeviceView.vala
     Views/ContentView.vala
@@ -110,9 +105,6 @@ vala_precompile(VALA_C
     Views/AlbumView/AlbumViewModel.vala
     Views/AlbumView/AlbumIconView.vala
     Views/AlbumView/AlbumListView.vala
-    #Views/External/ListView/ExternalMusicTreeView.vala
-    #Views/External/ListView/ExternalMusicTreeModel.vala
-    #Views/External/ExternalViewWrapper.vala
     Dialogs/EqualizerWindow.vala
     Dialogs/SmartPlaylistEditor.vala
     Dialogs/PreferencesWindow.vala
@@ -125,8 +117,6 @@ vala_precompile(VALA_C
     Dialogs/RemoveFilesDialog.vala
     Dialogs/NotImportedWindow.vala
     Dialogs/AddPodcastWindow.vala
-    Dialogs/RemoveFromLibraryDialog.vala
-    #Dialogs/RemoveFilesDialog.vala
     Dialogs/SetMusicFolderConfirmation.vala
     Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala

@@ -228,7 +228,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			if(!preset_combo.automatic_chosen) {
 				EqualizerPreset? selected_preset = preset_combo.getSelectedPreset();
 
-				if (selected_preset != null) { // FIXME:preset_combo.preset_list_size > 0
+				if (selected_preset != null) {
 					for(int i = 0; i < 10; ++i)
 						lm.player.setEqualizerGain(i, selected_preset.getGain(i));
 				}

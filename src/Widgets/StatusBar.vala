@@ -88,22 +88,19 @@ public class BeatBox.StatusBar : Gtk.Statusbar {
 
         switch (media_type) {
             case ViewWrapper.Hint.MUSIC:
-                media_d = _("songs");
+                media_d = total_medias > 1 ? _("songs") : _("song");
                 break;
             case ViewWrapper.Hint.PODCAST:
-                media_d = _("podcasts");
+                media_d = total_medias > 1 ? _("podcasts") : _("podcast");
                 break;
             case ViewWrapper.Hint.AUDIOBOOK:
-                media_d = _("audiobooks");
+                media_d = total_medias > 1 ? _("audiobooks") : _("audiobook");
                 break;
             case ViewWrapper.Hint.STATION:
-                media_d = _("stations");
-                break;
-            case ViewWrapper.Hint.SIMILAR:
-                media_d = _("songs");
+                media_d = total_medias > 1 ? _("stations") : _("station");
                 break;
             default:
-                media_d = _("items");
+                media_d = total_medias > 1 ? _("items") : _("item");
                 break;
         }
 
