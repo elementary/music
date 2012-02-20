@@ -263,7 +263,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 						"body", "%s\n%s".printf(_("Artist"), _("Album")));
 
 		/* Set properties of various controls */
-		//sideBar.set_size_request(200, -1);
 		sourcesToMedias.set_position(settings.getSidebarWidth());
 		mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 
@@ -333,16 +332,19 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// Tweak view selector's size
 		var viewSelectorBox = new ButtonBox (Orientation.HORIZONTAL); 
 		viewSelectorBox.set_spacing (6);
+		viewSelector.margin_top = 6;
+		viewSelector.margin_bottom = 6;
+		viewSelectorBin.margin_left = 12;
+		viewSelectorBin.margin_right = 12;
+
     	viewSelectorBox.set_layout (ButtonBoxStyle.START);
 
 		viewSelectorBox.pack_start (viewSelector, false, false, 0);
 
 		topDisplayBin.add(topDisplay);
-		topDisplayBin.set_border_width(1);
-		topDisplayBin.margin_left = 12;
+		//topDisplayBin.margin_left = 12;
 
 		viewSelectorBin.add(viewSelectorBox);
-		viewSelectorBin.margin_left = 12;
 
 		searchFieldBin.add(searchField);
 		searchFieldBin.margin_left = 12;
@@ -359,7 +361,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		viewSelector.append(Icons.VIEW_DETAILS_ICON.render_image (IconSize.MENU));
 		viewSelector.append(Icons.VIEW_COLUMN_ICON.render_image (IconSize.MENU));
 
-		topControls.set_icon_size (IconSize.LARGE_TOOLBAR);
 		topControls.set_vexpand (false);
 		topControls.set_hexpand (true);
 

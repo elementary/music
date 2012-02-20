@@ -380,7 +380,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		// center it on this icon view
 		x += (alloc.width - lw.alv.WIDTH) / 2;
-		y += (alloc.height - lw.alv.HEIGHT + 75) / 2;
+		y += (alloc.height - lw.alv.HEIGHT) / 2 + 60;
 
 		lw.alv.move(x, y);
 
