@@ -37,12 +37,13 @@ public class BeatBox.AlbumListView : Window {
 	bool setting_songs;
 
 	private const string WIDGET_STYLESHEET = """
-		.BeatBoxAlbumList {
-			background-image: -gtk-gradient (radial, center center, 0,
-                                             center center, 1,
-			                                 from (#404040),
-			                                 color-stop (0.9, alpha (shade (#454545, 1.1), 0.9)),
-			                                 to (#404040));
+		BeatBoxAlbumListView {
+			background-image: -gtk-gradient (linear,
+			                                 right bottom,
+			                                 left bottom,
+			                                 from (shade (#1e1e1e, 0.9)),
+			                                 color-stop (0.5, shade (#1e1e1e, 1.23)),
+			                                 to (shade (#1e1e1e, 0.9)));
 			border-width: 0;
 			border-style: none;
 			border-radius: 0;
@@ -53,21 +54,33 @@ public class BeatBox.AlbumListView : Window {
 			color: @selected_fg_color;
 		}
 
-		GtkTreeView {
-			background-color: shade (#414141, 1.01);
+		BeatBoxAlbumListView GtkTreeView {
+			background-image: -gtk-gradient (linear,
+			                                 right bottom,
+			                                 left bottom,
+			                                 from (shade (#1e1e1e, 0.9)),
+			                                 color-stop (0.5, shade (#1e1e1e, 1.23)),
+			                                 to (shade (#1e1e1e, 0.9)));
+
+			-GtkTreeView-tree-line-pattern: "\001\002";
 		}
 
-		GtkTreeView row {
+		BeatBoxAlbumListView GtkTreeView row {
 			border-width: 0;
 			border-radius: 0;
 			padding: 0;
 		}
 
-		GtkTreeView row:nth-child(even) {
-			background-color: shade (#3b3b3b, 0.97);
+		BeatBoxAlbumListView GtkTreeView row:nth-child(even) {
+			background-image: -gtk-gradient (linear,
+			                                 right bottom,
+			                                 left bottom,
+			                                 from (shade (#1e1e1e, 0.8)),
+			                                 color-stop (0.5, #1e1e1e),
+			                                 to (shade (#1e1e1e, 0.8)));
 		}
 
-		GtkTreeView row:selected {
+		BeatBoxAlbumListView GtkTreeView row:selected {
 			background-image: -gtk-gradient (linear,
 			                                 left top,
 			                                 left bottom,
@@ -75,31 +88,19 @@ public class BeatBox.AlbumListView : Window {
 			                                 to (shade (@selected_bg_color, 0.98)));
 		}
 
-		.button:hover {
-			background-image: -gtk-gradient (linear,
-			                                 left top,
-			                                 left bottom,
-			                                 from (shade (#454545, 1.15)),
-			                                 to (shade (#454545, 1.03)));
+		BeatBoxAlbumListView .close-button,
+		BeatBoxAlbumListView .close-button:hover,
+		BeatBoxAlbumListView .close-button:active,
+		BeatBoxAlbumListView .close-button:active:hover {
+			background-color: #000;
+			background-image: none;
 
-			-unico-border-gradient: -gtk-gradient (linear,
-			                                       left top, left bottom,
-			                                       from (shade (#454545, 0.78)),
-			                                       to (shade (#454545, 0.60)));
-		}
+			border-width: 1px;
+			border-color: #3c3b37;
 
-		.button:active,
-		.button:active:hover {
-			background-image: -gtk-gradient (linear,
-			                                 left top,
-			                                 left bottom,
-			                                 from (shade (#404040, 0.95)),
-			                                 to (shade (#404040, 1.13)));
-
-			-unico-border-gradient: -gtk-gradient (linear,
-			                                       left top, left bottom,
-			                                       from (shade (#404040, 0.78)),
-			                                       to (shade (#454545, 0.60)));
+			-unico-border-width: 0;
+			-unico-outer-stroke-width: 0;
+			-unico-inner-stroke-width: 0;
 		}
 	""";
 
@@ -113,7 +114,6 @@ public class BeatBox.AlbumListView : Window {
 		set_resizable(false);
 		set_skip_taskbar_hint(true);
 		this.destroy_with_parent = true;
-		set_title("Album List");
 		set_size_request(WIDTH, HEIGHT);
 		set_default_size(WIDTH, HEIGHT);
 
@@ -123,15 +123,20 @@ public class BeatBox.AlbumListView : Window {
 		try  {
 			style_provider.load_from_data (WIDGET_STYLESHEET, -1);
 		} catch (Error e) {
-			warning ("AlbumListView: %s", e.message);
+			warning (e.message);
 		}
 
-		get_style_context().add_class("BeatBoxAlbumList");
 		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
 
 		// add close button
 		var close = new Gtk.Button ();
+
+		close.get_style_context().add_class("close-button");
+
+		close.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
+
 		close.set_image (Icons.render_image ("gtk-close", Gtk.IconSize.MENU));
+
 		close.hexpand = close.vexpand = false;
 		close.halign = Gtk.Align.START;
 		close.set_relief(Gtk.ReliefStyle.NONE);
@@ -140,14 +145,30 @@ public class BeatBox.AlbumListView : Window {
 		// add album artist/album labels
 		album_label = new Label("Album");
 		artist_label = new Label("Artist");
+
 		album_label.ellipsize = Pango.EllipsizeMode.END;
 		artist_label.ellipsize = Pango.EllipsizeMode.END;
-		album_label.set_max_width_chars(35);
-		artist_label.set_max_width_chars(35);
+
+		album_label.set_max_width_chars (30);
+		artist_label.set_max_width_chars (30);
+
+		// Label wrapper
+		var label_wrapper = new Box (Orientation.HORIZONTAL, 0);
+		var label_box = new Box (Orientation.VERTICAL, 0);
+
+		label_box.pack_start (album_label, false, true, 0);
+		label_box.pack_start (artist_label, false, true, 8);
+
+		// left and right label padding
+		label_wrapper.pack_start (new Box (Orientation.VERTICAL, 0), false, false, 12);
+		label_wrapper.pack_end (new Box (Orientation.VERTICAL, 0), false, false, 12);
+
+		label_wrapper.pack_start (label_box, true, true, 0);
 
 		// add actual list
 		mtv = new MusicTreeView(lm, lm.lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
 		mtv.apply_style_to_view(style_provider);
+		mtv.has_grid_lines = true;
 		mtv.vexpand = true;
 
 		// add rating
@@ -156,8 +177,7 @@ public class BeatBox.AlbumListView : Window {
 
 		var all_area = new Box(Orientation.VERTICAL, 0);
 		all_area.pack_start(close, false, false, 0);
-		all_area.pack_start(album_label, false, true, 0);
-		all_area.pack_start(artist_label, false, true, 3);
+		all_area.pack_start(label_wrapper, false, true, 0);
 		all_area.pack_start(mtv, true, true, 6);
 		all_area.pack_start(rating, false, true, 12);
 
@@ -168,6 +188,9 @@ public class BeatBox.AlbumListView : Window {
 
 	public void set_songs_from_media(Media m) {
 		setting_songs = true;
+
+		set_title (m.album + " by " + m.album_artist);
+
 		album_label.set_markup("<span size=\"large\" color=\"#ffffff\"><b>" + m.album.replace("&", "&amp;") + "</b></span>");
 		artist_label.set_markup("<span color=\"#ffffff\"><b>" + m.album_artist.replace("&", "&amp;") + "</b></span>");
 
@@ -176,16 +199,22 @@ public class BeatBox.AlbumListView : Window {
 		lm.do_search("", ((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).hint, m.album_artist, m.album,
 		((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).get_media_ids(), ref songs, ref albums);
 
-		// decide rating. unless all are equal, show 0.
-		int overall_rating = -1;
+		// decide rating. unless all are equal, show the lowest.
+		// TODO: listen to song rating changes
+		int overall_rating = -1, lowest_rating = 0;
 		foreach(int i in songs) {
-			if(overall_rating == -1)
-				overall_rating = (int)lm.media_from_id(i).rating;
-			else if(lm.media_from_id(i).rating != overall_rating) {
-				overall_rating = 0;
-				break;
+			int song_rating = (int)lm.media_from_id(i).rating;
+
+			if(overall_rating == -1) {
+				overall_rating = song_rating;
+				lowest_rating = overall_rating;
+			} else if(song_rating != overall_rating) {
+				if (song_rating < lowest_rating)
+					lowest_rating = song_rating;
+				overall_rating = lowest_rating;
 			}
 		}
+
 		rating.set_rating(overall_rating);
 
 		mtv.set_show_next(songs);

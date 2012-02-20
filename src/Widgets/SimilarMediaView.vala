@@ -98,7 +98,7 @@ public class BeatBox.SimilarMediasView : TreeView {
 		get_selection().get_selected(out mo, out iter);
 		mo.get(iter, 0, out s);
 		
-		if(BeatBox.Beatbox.enableStore) {
+		if(Option.enable_store) {
 			Store.store store = new Store.store();
 			
 			for(int i = 0; i < 3; ++i) {

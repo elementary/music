@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/apps/beatbox/lastfm/" id="org.gnome.beatbox.lastfm">
+  <schema path="/apps/beatbox/lastfm/" id="org.elementary.beatbox.lastfm">
     <key type="s" name="session-key">
       <default>''</default>
       <summary>Unique session key</summary>
       <description>Used to login to Last.FM</description>
     </key>
   </schema>
-  
-  <schema path="/apps/beatbox/library/" id="org.gnome.beatbox.library">
+
+  <schema path="/apps/beatbox/library/" id="org.elementary.beatbox.library">
     <key type="s" name="music-folder">
       <default>''</default>
       <summary>Path to music folder</summary>
@@ -71,7 +71,7 @@
     </key>
   </schema>
   
-  <schema path="/apps/beatbox/ui/" id="org.gnome.beatbox.ui">
+  <schema path="/apps/beatbox/ui/" id="org.elementary.beatbox.ui">
     <key type="i" name="window-width">
       <default>1100</default>
       <summary>Window width</summary>
@@ -114,7 +114,7 @@
     </key>
   </schema>
   
-  <schema path="/apps/beatbox/equalizer/" id="org.gnome.beatbox.equalizer">
+  <schema path="/apps/beatbox/equalizer/" id="org.elementary.beatbox.equalizer">
     <key type="b" name="equalizer-enabled">
       <default>false</default>
       <summary>Whether or not the equalizer is enabled</summary>
@@ -145,6 +145,14 @@
       <range min="0" max="100"/>
       <summary>BeatBox's volume from 0-100</summary>
       <description>BeatBox's volume from 0-100</description>
+    </key>
+  </schema>
+
+  <schema path="/apps/beatbox/plugins/" id="org.elementary.beatbox.plugins">
+    <key type="as" name="enabled-plugins">
+      <default>['dummy-plugin']</default>
+      <summary>List of enabled plugins</summary>
+      <description>BeatBox will load these modules during startup</description>
     </key>
   </schema>
 </schemalist>

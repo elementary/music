@@ -50,6 +50,31 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
 	private const int SPACING = 12;
 
+	private const string ALBUM_VIEW_STYLESHEET = """
+		GtkIconView.view.cell:selected,
+		GtkIconView.view.cell:selected:focused {
+
+			background-color: alpha (#000, 0.05);
+    		background-image: none;
+
+			color: @text_color;
+
+			border-radius: 4px;
+			border-style: solid;
+			border-width: 1px;
+
+			-unico-border-gradient: -gtk-gradient (linear,
+			                 left top, left bottom,
+			                 from (shade (@base_color, 0.74)),
+			                 to (shade (@base_color, 0.74)));
+
+			-unico-inner-stroke-gradient: -gtk-gradient (linear,
+			                left top, left bottom,
+			                from (alpha (#000, 0.07)),
+			                to (alpha (#000, 0.03)));
+		}
+	""";
+
 	/* medias should be mutable, as we will be sorting it */
 	public AlbumView(LibraryManager lmm, LibraryWindow lww, Collection<int> smedias) {
 		lm = lmm;
@@ -84,6 +109,17 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons = new IconView();
 		model = new AlbumViewModel(lm, defaultPix);
 
+		// apply css styling
+		var style_provider = new CssProvider();
+
+		try  {
+			style_provider.load_from_data (ALBUM_VIEW_STYLESHEET, -1);
+		} catch (Error e) {
+			warning (e.message);
+		}
+
+		icons.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
+
 		icons.set_columns(-1);
 
 		icons.set_pixbuf_column(0);
@@ -93,7 +129,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.item_width = ITEM_WIDTH;
 		icons.item_padding = ITEM_PADDING;
 		icons.spacing = 2;
-        icons.margin = 12;
+        icons.margin = SPACING + ITEM_PADDING;
+        icons.row_spacing = SPACING;
+        icons.column_spacing = SPACING;
 
 		add(icons);
 
@@ -155,7 +193,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		set_is_current(true);
 	}
 
-	public void set_statusbar_text() {
+	public void set_statusbar_info() {
 		/* TODO:
 		uint count = 0;
 		uint total_time = 0;

@@ -449,7 +449,7 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	/* should be called from thread */
-	public void import_from_playlist_file_info(string[] names = {}, LinkedList<string>[] paths = {}) {
+	public void import_from_playlist_file_info(string[] names, LinkedList<string>[] paths) {
 		new_playlist = new Playlist();
 		if (names.length > 1) {
     		other_names_list = names[1:paths.length];

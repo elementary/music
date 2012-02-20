@@ -665,53 +665,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		foreach(Media s in updates)
 			dbu.update_media(s);
-		
-		// mark all smart playlists as not up to date
-		//foreach(SmartPlaylist sp in _smart_playlists.values) {
-		//	sp.is_up_to_date = false;
-		//}
-		
-		/*foreach(Widget w in lw.mainViews.get_children()) {
-			if(w.visible && w is ViewWrapper && ((ViewWrapper)w).isCurrentView) {
-				ViewWrapper vw = (ViewWrapper)w;
-				
-				if(vw.list.get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)
-					vw.doUpdate(vw.currentView, medias_from_smart_playlist(vw.list.get_relative_id()), false, true);
-			}
-		}*/
-		
-		if(!lw.initializationFinished)
-			return;
-		
-		// now update all non-showing views
-		/*Timeout.add(250, () => {
-			try {
-				Thread.create<void*>( () => {
-					message("thread created\n");
-					// update them
-					if(lw.mainViews == null)
-						return null;
-					
-					foreach(Widget w in lw.mainViews.get_children()) {
-						message("widget la\n");
-						if(!w.visible && w is ViewWrapper) {
-							ViewWrapper vw = (ViewWrapper)w;
-							message("updating viewwrapper\n");
-							vw.medias_updated(rv);
-							message("viewwrapper updated\n");
-						}
-					}
-					message("done with foreach\n");
-					
-					return null;
-				}, false);
-			} 
-			catch(GLib.ThreadError err) {
-				message("ERROR: Could not create thread to update hidden views: %s \n", err.message);
-			}
-			
-			return false;
-		});*/
 	}
 	
 	public void* update_views_thread () {

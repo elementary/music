@@ -85,7 +85,7 @@ public class BeatBox.AddPodcastWindow : Window {
 		
 		/* set up controls */
 		sourceLabel.xalign = 0.0f;
-		sourceLabel.set_markup("<b>%s</b>".printf(_("Podcast RSS Source</b>")));
+		sourceLabel.set_markup("<b>%s</b>".printf(_("Podcast RSS Source")));
 		
 		_is_working.start();
 		

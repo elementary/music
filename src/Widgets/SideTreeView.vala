@@ -114,7 +114,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		radioMenu = new Gtk.Menu();
 		radioImportStations = new Gtk.MenuItem.with_label(_("Import Stations"));
 		radioMenu.append(radioImportStations);
-		radioImportStations.activate.connect(playlistImportClicked);
+		radioImportStations.activate.connect(()=> {playlistImportClicked ("Station");});
 		radioMenu.show_all();
 		
 		//playlist right click menu
@@ -139,7 +139,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		playlistRemove.activate.connect(playlistMenuRemoveClicked);
 		playlistSave.activate.connect(playlistSaveClicked);
 		playlistExport.activate.connect(playlistExportClicked);
-		playlistImport.activate.connect(playlistImportClicked);
+		playlistImport.activate.connect(()=>{playlistImportClicked ();});
 		playlistMenu.show_all();
 		
 		this.button_press_event.connect(sideListClick);
@@ -568,7 +568,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				
 				lw.updateMillerColumns();
 				
-				((ViewWrapper)w).set_statusbar_text();
+				((ViewWrapper)w).set_statusbar_info();
 			}
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(true);
@@ -847,9 +847,9 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				if(iter == playlists_similar_iter)
 					p.name = (lm.media_info.media != null) ? ("Similar to " + lm.media_info.media.title) : "Similar list";
 				else if(iter == playlists_queue_iter)
-					p.name = Time.local(time_t()).format("%m/%e/%Y %l:%M %p") + " play queue";
+					p.name = Time.local(time_t()).format("%Y-%b-%e %l:%M %p") + " play queue";
 				else if(iter == playlists_history_iter)
-					p.name = Time.local(time_t()).format("%m/%e/%Y %l:%M %p") + " play history";
+					p.name = Time.local(time_t()).format("%Y-%b-%e %l:%M %p") + " play history";
 				else
 					p.name = "Unkown playlist";
 			}
@@ -945,13 +945,20 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		p.name = original_name;
 	}
 	
-	void playlistImportClicked() {
+	void playlistImportClicked(string title = "Playlist") {
+        var files = new SList<string> ();
+		string[] names = {};	
+		var path = new LinkedList<string> ();
+		var stations = new LinkedList<Media> ();
+		LinkedList<string>[] paths = {};
+		LinkedList<string>[] filtered_paths = {};
+		bool success = false;
+		int i = 0;
+		
 		if(lm.doing_file_operations())
 			return;
-		
-		var files = new SList<string> ();
-		string[] names = {};
-		var file_chooser = new FileChooserDialog ("Import Playlists", lw,
+
+		var file_chooser = new FileChooserDialog ("Import " + title, lw,
 								  FileChooserAction.OPEN,
 								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
@@ -977,12 +984,6 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		
 		file_chooser.destroy ();
 		
-		var path = new LinkedList<string> ();
-		var stations = new LinkedList<Media> ();
-		LinkedList<string>[] paths = {};
-		bool success = false;
-		int i = 0;
-		
 		files.foreach ( (file)=> {
 	    	if(file != "") {
 	    	    path = new LinkedList<string> ();
@@ -1003,10 +1004,14 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		    i++;
 		});
 		
+		foreach (LinkedList l in paths)
+		    if (l.size > 0)
+		        filtered_paths += l;
+		
 		if(success) {
-	        if(paths[0].size > 0) {
-		    	stdout.printf("paths size is %d\n", paths[0].size);
-			   	lm.fo.import_from_playlist_file_info(names, paths);
+	        if(filtered_paths.length > 0) {
+	            print ("I was called");
+			   	lm.fo.import_from_playlist_file_info(names, filtered_paths);
 		    	lw.updateSensitivities();
 		    }
 		    if(stations.size > 0) {
