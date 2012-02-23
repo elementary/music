@@ -125,13 +125,13 @@
       <summary>Contains the name of the user-selected preset</summary>
       <description>Contains information regarding the user-selected preset</description>
     </key>
-    <key type="s" name="custom-presets">
-      <default>''</default>
+    <key type="as" name="custom-presets">
+      <default>[]</default>
       <summary>Custom Equalizer Presets</summary>
       <description>Contains the list of presets added by the user. Gain values are between -80 and 80</description>
     </key>
-    <key type="s" name="default-presets">
-      <default>'Flat,0,0,0,0,0,0,0,0,0,0/Classical,0,0,0,0,0,0,-40,-40,-40,-50/Club,0,0,20,30,30,30,20,0,0,0/Dance,50,35,10,0,0,-30,-40,-40,0,0/Full Bass,70,70,70,40,20,-45,-50,-55,-55,-55/Full Treble,-50,-50,-50,-25,15,55,80,80,80,80/Full Bass + Treble,35,30,0,-40,-25,10,45,55,60,60/Laptop/Headphones,25,50,25,-20,0,-30,-40,-40,0,0/Large Hall,50,50,30,30,0,-25,-25,-25,0,0/Live,-25,0,20,25,30,30,20,15,15,10/Party,35,35,0,0,0,0,0,0,35,35/Pop,-10,25,35,40,25,-5,-15,-15,-10,-10/Reggae,0,0,-5,-30,0,-35,-35,0,0,0/Rock,40,25,-30,-40,-20,20,45,55,55,55/Soft,25,10,-5,-15,-5,20,45,50,55,60/Ska,-15,-25,-25,-5,20,30,45,50,55,50/Soft Rock,20,20,10,-5,-25,-30,-20,-5,15,45/Techno,40,30,0,-30,-25,0,40,50,50,45/'</default>
+    <key type="as" name="default-presets">
+      <default>['Flat/0/0/0/0/0/0/0/0/0/0', 'Classical/0/0/0/0/0/0/-40/-40/-40/-50', 'Club/0/0/20/30/30/30/20/0/0/0', 'Dance/50/35/10/0/0/-30/-40/-40/0/0', 'Full Bass/70/70/70/40/20/-45/-50/-55/-55/-55', 'Full Treble/-50/-50/-50/-25/15/55/80/80/80/80', 'Full Bass + Treble/35/30/0/-40/-25/10/45/55/60/60', 'Headphones/25/50/25/-20/0/-30/-40/-40/0/0', 'Large Hall/50/50/30/30/0/-25/-25/-25/0/0', 'Live/-25/0/20/25/30/30/20/15/15/10', 'Party/35/35/0/0/0/0/0/0/35/35', 'Pop/-10/25/35/40/25/-5/-15/-15/-10/-10', 'Reggae/0/0/-5/-30/0/-35/-35/0/0/0', 'Rock/40/25/-30/-40/-20/20/45/55/55/55', 'Soft/25/10/-5/-15/-5/20/45/50/55/60', 'Ska/-15/-25/-25/-5/20/30/45/50/55/50', 'Soft Rock/20/20/10/-5/-25/-30/-20/-5/15/45', 'Techno/40/30/0/-30/-25/0/40/50/50/45']</default>
       <summary>Default Equalizer Presets</summary>
       <description>Contains the list of default presets. Gain values are between -80 and 80</description>
     </key>
@@ -150,7 +150,7 @@
 
   <schema path="/apps/beatbox/plugins/" id="org.elementary.beatbox.plugins">
     <key type="as" name="enabled-plugins">
-      <default>['dummy-plugin']</default>
+      <default>[]</default>
       <summary>List of enabled plugins</summary>
       <description>BeatBox will load these modules during startup</description>
     </key>

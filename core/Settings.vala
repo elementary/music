@@ -135,7 +135,27 @@ public class BeatBox.Settings : Object {
 		
 		return rv;
 	}
-	
+
+	private string[] getStrings(string path) {
+		if(lastfm_settings.contains(path)) {
+			return lastfm.get_strv(path);
+		}
+		else if(ui_settings.contains(path)) {
+			return ui.get_strv(path);
+		}
+		else if(library_settings.contains(path)) {
+			return library.get_strv(path);
+		}
+		else if(equalizer_settings.contains(path)) {
+			return equalizer.get_strv(path);
+		}
+		else {
+			warning("could not find strings for %s\n", path);
+		}
+
+		return new string[0];
+	}
+
 	private string getString(string path, string def) {
 		string rv = def;
 		
@@ -196,7 +216,7 @@ public class BeatBox.Settings : Object {
 			equalizer.set_boolean(path, val);
 		}
 		else {
-			stdout.printf("could not find int for %s\n", path);
+			stdout.printf("could not find bool for %s\n", path);
 		}
 	}
 	
@@ -214,13 +234,32 @@ public class BeatBox.Settings : Object {
 			equalizer.set_string(path, val);
 		}
 		else {
-			stdout.printf("could not find int for %s\n", path);
+			stdout.printf("could not find string for %s\n", path);
 		}
 		
 		if(path == MUSIC_FOLDER)
 			music_folder = val;
 	}
-	
+
+	private void setStrings(string path, string[] val) {
+
+		if(lastfm_settings.contains(path)) {
+			lastfm.set_strv(path, val);
+		}
+		else if(ui_settings.contains(path)) {
+			ui.set_strv(path, val);
+		}
+		else if(library_settings.contains(path)) {
+			library.set_strv(path, val);
+		}
+		else if(equalizer_settings.contains(path)) {
+			equalizer.set_strv(path, val);
+		}
+		else {
+			warning("could not find strings for %s\n", path);
+		}
+	}
+
 	private void setInt(string path, int val) {
 		if(lastfm_settings.contains(path)) {
 			lastfm.set_int(path, val);
@@ -341,43 +380,28 @@ public class BeatBox.Settings : Object {
 	
 	public Gee.Collection<EqualizerPreset> getDefaultPresets() {
 
-		return getPresets(DEFAULT_PRESETS);
+		return getPresets(getStrings(DEFAULT_PRESETS));
 	
 	}
 	
 	public Gee.Collection<EqualizerPreset> getCustomPresets() {
 	
-		return getPresets(CUSTOM_PRESETS);
+		return getPresets(getStrings(CUSTOM_PRESETS));
 	
 	}
 
-	public Gee.Collection<EqualizerPreset> getPresets(string? type) {
+	private Gee.Collection<EqualizerPreset> getPresets(string[] presets) {
 		var rv = new Gee.LinkedList<EqualizerPreset>();
 
-		string list;
-
-		if(type == DEFAULT_PRESETS)
-			list = getString(DEFAULT_PRESETS, "");
-		else if(type == CUSTOM_PRESETS)
-			list = getString(CUSTOM_PRESETS, "");
-		else
-			list = getString(DEFAULT_PRESETS, "") + getString(CUSTOM_PRESETS, "");
-
-		string[] presets = list.split("/", 0);
-		
-		if(presets.length == 0)
-			return rv;
-		
-		int index;
-		for(index = 0; index < presets.length - 1; ++index) {
-			string[] vals = presets[index].split(",", 0);
+		for (int index = 0; index < presets.length; index++) {
+			string[] vals = presets[index].split("/", 0);
 			
 			var p = new EqualizerPreset.basic(vals[0]);
-			
+
 			for(int i = 1; i < vals.length; ++i) {
 				p.setGain(i - 1, int.parse(vals[i]));
 			}
-			
+
 			rv.add(p);
 		}
 		
@@ -483,22 +507,24 @@ public class BeatBox.Settings : Object {
 	}
 
 	public void setPresets(Gee.Collection<EqualizerPreset> presets, string type) {
-		string rv = "";
-		
-		foreach(var p in presets) {
-			rv += p.name;
-			
+		//var preset_list = new Gee.LinkedList<string> ();
+		string[] vals = new string[presets.size];
+
+		int index = 0;
+		foreach (var p in presets) {
+			string preset = p.name;
+
 			for(int i = 0; i < 10; ++i) {
-				rv += "," + p.getGain(i).to_string();
+				preset += "/" + p.getGain(i).to_string();
 			}
-			
-			rv += "/";
+
+			vals[index++] = preset;
 		}
 		
 		if (type == CUSTOM_PRESETS)
-			setString(CUSTOM_PRESETS, rv);
+			setStrings(CUSTOM_PRESETS, vals);
 		else if (type == DEFAULT_PRESETS)
-			setString(DEFAULT_PRESETS, rv);
+			setStrings(DEFAULT_PRESETS, vals);
 	}
 
 	public void setAutoSwitchPreset(bool val) {

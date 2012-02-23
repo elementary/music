@@ -1421,7 +1421,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 	public void* change_gains_thread () {
 		if(settings.getAutoSwitchPreset() && settings.getEqualizerEnabled()) {
-			foreach(var p in settings.getPresets(null)) {
+			foreach(var p in settings.getDefaultPresets ()) {
 				if(p != null && media_info.media != null)  {
 					var preset_genre = p.name.down ();
 					var media_genre = media_info.media.genre.down();
@@ -1434,6 +1434,21 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					}
 				}
 			}
+			
+			foreach(var p in settings.getCustomPresets ()) {
+				if(p != null && media_info.media != null)  {
+					var preset_genre = p.name.down ();
+					var media_genre = media_info.media.genre.down();
+
+					if ((preset_genre in media_genre) || (media_genre in preset_genre)) {
+						for(int i = 0; i < 10; ++i)
+							player.setEqualizerGain(i, p.getGain(i));
+					
+						return null;
+					}
+				}
+			}
+			
 
 			set_equalizer_gains ();
 		}
@@ -1672,15 +1687,23 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		progress_cancel_clicked();
 	}
 	
+	// FIXME: Get rid of this function. A minor change in change_gains_thread() will do the work
 	public void set_equalizer_gains () {
 		if(settings.getEqualizerEnabled() && !settings.getAutoSwitchPreset()) {
 			string selected_preset = settings.getSelectedPreset();
 			if(selected_preset != null) {
-				foreach (EqualizerPreset p in settings.getPresets(null)) {
+				foreach (EqualizerPreset p in settings.getDefaultPresets()) {
 					if(p.name == selected_preset) {
 						for(int i = 0; i < 10; ++i)
 							player.setEqualizerGain(i, p.getGain(i));
-						break;
+						return;
+					}
+				}
+				foreach (EqualizerPreset p in settings.getCustomPresets()) {
+					if(p.name == selected_preset) {
+						for(int i = 0; i < 10; ++i)
+							player.setEqualizerGain(i, p.getGain(i));
+						return;
 					}
 				}
 			}
