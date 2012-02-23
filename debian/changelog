@@ -1,3 +1,9 @@
+beatbox (1.0-0) precise; urgency=low
+
+  * New upstream release
+
+ -- Sergey "Shnatsel" Davidoff <shnatsel@gmail.com>  Wed, 22 Feb 2012 18:18:59 +0400
+
 beatbox (0.1-0) oneiric; urgency=low
 
   * Initial release
