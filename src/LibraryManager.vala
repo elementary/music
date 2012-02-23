@@ -311,9 +311,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			_tracks.set(t.name + " by " + t.artist, t);
 		}
 		
-		// set the equalizer
-		set_equalizer_gains ();
-				
 		// pre-load devices and their preferences
 		foreach(DevicePreferences dp in dbm.load_devices()) {
 			_device_preferences.set(dp.id, dp);
@@ -1420,13 +1417,20 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public void* change_gains_thread () {
-		if(settings.getAutoSwitchPreset() && settings.getEqualizerEnabled()) {
+		if(settings.getEqualizerEnabled()) {
+			bool automatic_enabled = settings.getAutoSwitchPreset();
+			string selected_preset = settings.getSelectedPreset();
+
 			foreach(var p in settings.getDefaultPresets ()) {
 				if(p != null && media_info.media != null)  {
-					var preset_genre = p.name.down ();
+					var preset_name = p.name.down ();
 					var media_genre = media_info.media.genre.down();
 
-					if ((preset_genre in media_genre) || (media_genre in preset_genre)) {
+					bool match_genre = (preset_name in media_genre) || (media_genre in preset_name);
+
+					if ( (automatic_enabled && match_genre) ||
+					     (!automatic_enabled && p.name == selected_preset))
+					{
 						for(int i = 0; i < 10; ++i)
 							player.setEqualizerGain(i, p.getGain(i));
 					
@@ -1434,13 +1438,17 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					}
 				}
 			}
-			
+
 			foreach(var p in settings.getCustomPresets ()) {
 				if(p != null && media_info.media != null)  {
-					var preset_genre = p.name.down ();
+					var preset_name = p.name.down ();
 					var media_genre = media_info.media.genre.down();
 
-					if ((preset_genre in media_genre) || (media_genre in preset_genre)) {
+					bool match_genre = (preset_name in media_genre) || (media_genre in preset_name);
+
+					if ( (automatic_enabled && match_genre) ||
+					     (!automatic_enabled && p.name == selected_preset))
+					{
 						for(int i = 0; i < 10; ++i)
 							player.setEqualizerGain(i, p.getGain(i));
 					
@@ -1448,10 +1456,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					}
 				}
 			}
-			
-
-			set_equalizer_gains ();
 		}
+
+		for (int i = 0; i < 10; ++i)
+			player.setEqualizerGain(i, 0);		
 		
 		return null;
 	}
@@ -1685,32 +1693,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 	public void cancel_operations() {
 		progress_cancel_clicked();
-	}
-	
-	// FIXME: Get rid of this function. A minor change in change_gains_thread() will do the work
-	public void set_equalizer_gains () {
-		if(settings.getEqualizerEnabled() && !settings.getAutoSwitchPreset()) {
-			string selected_preset = settings.getSelectedPreset();
-			if(selected_preset != null) {
-				foreach (EqualizerPreset p in settings.getDefaultPresets()) {
-					if(p.name == selected_preset) {
-						for(int i = 0; i < 10; ++i)
-							player.setEqualizerGain(i, p.getGain(i));
-						return;
-					}
-				}
-				foreach (EqualizerPreset p in settings.getCustomPresets()) {
-					if(p.name == selected_preset) {
-						for(int i = 0; i < 10; ++i)
-							player.setEqualizerGain(i, p.getGain(i));
-						return;
-					}
-				}
-			}
-		} else {
-			for (int i = 0; i < 10; ++i)
-				player.setEqualizerGain(i, 0);
-		}
 	}
 	
 	public Gdk.Pixbuf? get_album_art_from_file(int id) {
