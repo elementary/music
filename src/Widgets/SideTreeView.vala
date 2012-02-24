@@ -114,7 +114,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		radioMenu = new Gtk.Menu();
 		radioImportStations = new Gtk.MenuItem.with_label(_("Import Station"));
 		radioMenu.append(radioImportStations);
-		radioImportStations.activate.connect(playlistImportClicked);
+		radioImportStations.activate.connect(()=> {playlistImportClicked ("Station");});
 		radioMenu.show_all();
 		
 		//playlist right click menu
@@ -139,7 +139,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		playlistRemove.activate.connect(playlistMenuRemoveClicked);
 		playlistSave.activate.connect(playlistSaveClicked);
 		playlistExport.activate.connect(playlistExportClicked);
-		playlistImport.activate.connect(playlistImportClicked);
+		playlistImport.activate.connect(()=>{playlistImportClicked ();});
 		playlistMenu.show_all();
 		
 		this.button_press_event.connect(sideListClick);
@@ -945,13 +945,13 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		p.name = original_name;
 	}
 	
-	void playlistImportClicked() {
+	void playlistImportClicked(string title = "Playlist") {
 		if(lm.doing_file_operations())
 			return;
 		
 		string file = "";
 		string name = "";
-		var file_chooser = new FileChooserDialog ("Import Playlist", lw,
+		var file_chooser = new FileChooserDialog ("Import " + title, lw,
 								  FileChooserAction.OPEN,
 								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
