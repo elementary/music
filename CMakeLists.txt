@@ -59,10 +59,10 @@ message("-- DBus Menu enabled")
 else()
 message("-- DBus Menu disabled")
 endif()
-pkg_check_modules(INDICATE indicate-0.6)
+pkg_check_modules(INDICATE indicate-0.7)
 if(${INDICATE_FOUND})
 set(ADD_PKG ${ADD_PKG}
-        Indicate-0.6)
+        Indicate-0.7)
 set(ADD_OPTIONS ${ADD_OPTIONS}
         --define=HAVE_INDICATE)
 message("-- Indicate enabled")
