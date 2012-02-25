@@ -22,33 +22,30 @@ using Gtk;
 
 public class BeatBox.StatusBar : Gtk.Toolbar {
 
-    public string medias_text {get; private set;}
-    public string size_text {get; private set;}
-    public string time_text {get; private set;}
+    public uint total_items {get; private set; default = 0;}
+    public uint total_mbs {get; private set; default = 0;}
+    public uint total_secs {get; private set; default = 0;}
+    public ViewWrapper.Hint media_type {get; private set;}
 
-    bool no_media = false;
-
-    Label status_label;
-    Box left_box;
-    Box right_box;
+    private Label status_label;
+    private Box left_box;
+    private Box right_box;
 
     string STATUSBAR_FORMAT = _("%s, %s, %s");
-
-    private const string BASE_STYLESHEET = """
-        BeatBoxStatusBar {
-            -GtkToolbar-button-relief: GTK_RELIEF_NONE;
-        }
-    """;
 
     private const string STYLESHEET = """
         BeatBoxStatusBar {
             padding: 1px;
-            -GtkWidget-window-dragging: false;
+            border-radius: 0;
+            border-left-width: 0;
+            border-right-width: 0;
+            border-bottom-width: 0;
+
+            -GtkWidget-window-dragging: false;            
         }
     """;
 
     public StatusBar () {
-        var base_style_provider = new CssProvider ();
         var style_provider = new CssProvider ();
 
         try {
@@ -58,17 +55,8 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
             warning (err.message);
         }
 
-        try {
-            base_style_provider.load_from_data (BASE_STYLESHEET, -1);
-        }
-        catch (Error err) {
-            warning (err.message);
-        }
-
         this.get_style_context ().add_provider (style_provider, STYLE_PROVIDER_PRIORITY_THEME);
         this.get_style_context ().remove_class (STYLE_CLASS_TOOLBAR);
-
-        this.get_style_context ().add_provider (base_style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         status_label = new Label ("");
         status_label.set_justify (Justification.CENTER);
@@ -99,58 +87,64 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
     }
 
     public void set_files_size (uint total_mbs) {
-        if(total_mbs < 1000)
-            size_text = _("%i MB").printf (total_mbs);
-        else
-            size_text = _("%.2f GB").printf ((float)(total_mbs/1000.0f));
-
+        this.total_mbs = total_mbs;
         update_label ();
     }
 
-    public void set_total_time (uint total_time) {
-        if(total_time < 3600) { // less than 1 hour show in minute units
-            time_text = _("%s minutes").printf ((total_time/60).to_string());
-        }
-        else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
-            time_text = _("%s hours").printf ((total_time/3600).to_string());
-        }
-        else { // units in days
-            time_text = _("%s days").printf ((total_time/(24 * 3600)).to_string());
-        }
-
+    public void set_total_time (uint total_secs) {
+        this.total_secs = total_secs;
         update_label ();
     }
 
     public void set_total_medias (uint total_medias, ViewWrapper.Hint media_type) {
-        no_media = total_medias == 0;
-        string media_d = "";
-
-        switch (media_type) {
-            case ViewWrapper.Hint.MUSIC:
-                media_d = total_medias > 1 ? _("songs") : _("song");
-                break;
-            case ViewWrapper.Hint.PODCAST:
-                media_d = total_medias > 1 ? _("podcasts") : _("podcast");
-                break;
-            case ViewWrapper.Hint.AUDIOBOOK:
-                media_d = total_medias > 1 ? _("audiobooks") : _("audiobook");
-                break;
-            case ViewWrapper.Hint.STATION:
-                media_d = total_medias > 1 ? _("stations") : _("station");
-                break;
-            default:
-                media_d = total_medias > 1 ? _("items") : _("item");
-                break;
-        }
-
-        medias_text = "%i %s".printf ((int)total_medias, media_d);
+        this.total_items = total_medias;
+        this.media_type = media_type;
         update_label ();
     }
 
     private void update_label () {
-        if (no_media)
+        if (total_items == 0) {
             status_label.set_text ("");
+            return;
+        }
+
+        string time_text = "", media_description = "", medias_text = "", size_text = "";
+
+        if(total_secs < 3600) { // less than 1 hour show in minute units
+            time_text = _("%s minutes").printf ((total_secs/60).to_string());
+        }
+        else if(total_secs < (24 * 3600)) { // less than 1 day show in hour units
+            time_text = _("%s hours").printf ((total_secs/3600).to_string());
+        }
+        else { // units in days
+            time_text = _("%s days").printf ((total_secs/(24 * 3600)).to_string());
+        }
+
+        if (total_mbs < 1000)
+            size_text = _("%i MB").printf (total_mbs);
         else
-            status_label.set_text (STATUSBAR_FORMAT.printf (medias_text, time_text, size_text));
+            size_text = _("%.2f GB").printf ((float)(total_mbs/1000.0f));
+
+        switch (media_type) {
+            case ViewWrapper.Hint.MUSIC:
+                media_description = total_items > 1 ? _("songs") : _("song");
+                break;
+            case ViewWrapper.Hint.PODCAST:
+                media_description = total_items > 1 ? _("podcasts") : _("podcast");
+                break;
+            case ViewWrapper.Hint.AUDIOBOOK:
+                media_description = total_items > 1 ? _("audiobooks") : _("audiobook");
+                break;
+            case ViewWrapper.Hint.STATION:
+                media_description = total_items > 1 ? _("stations") : _("station");
+                break;
+            default:
+                media_description = total_items > 1 ? _("items") : _("item");
+                break;
+        }
+
+        medias_text = "%i %s".printf ((int)total_items, media_description);
+
+        status_label.set_text (STATUSBAR_FORMAT.printf (medias_text, time_text, size_text));
     }
 }
