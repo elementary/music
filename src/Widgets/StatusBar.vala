@@ -20,7 +20,7 @@
 
 using Gtk;
 
-public class BeatBox.StatusBar : Gtk.Statusbar {
+public class BeatBox.StatusBar : Gtk.Toolbar {
 
     public string medias_text {get; private set;}
     public string size_text {get; private set;}
@@ -34,22 +34,61 @@ public class BeatBox.StatusBar : Gtk.Statusbar {
 
     string STATUSBAR_FORMAT = _("%s, %s, %s");
 
-    public StatusBar () {
-        // Get rid of the default statusbar items
-        foreach (Gtk.Widget widget in get_children ()) {
-            widget.set_no_show_all (true);
-            widget.set_visible (false);
+    private const string BASE_STYLESHEET = """
+        BeatBoxStatusBar {
+            -GtkToolbar-button-relief: GTK_RELIEF_NONE;
         }
+    """;
+
+    private const string STYLESHEET = """
+        BeatBoxStatusBar {
+            padding: 1px;
+            -GtkWidget-window-dragging: false;
+        }
+    """;
+
+    public StatusBar () {
+        var base_style_provider = new CssProvider ();
+        var style_provider = new CssProvider ();
+
+        try {
+            style_provider.load_from_data (STYLESHEET, -1);
+        }
+        catch (Error err) {
+            warning (err.message);
+        }
+
+        try {
+            base_style_provider.load_from_data (BASE_STYLESHEET, -1);
+        }
+        catch (Error err) {
+            warning (err.message);
+        }
+
+        this.get_style_context ().add_provider (style_provider, STYLE_PROVIDER_PRIORITY_THEME);
+        this.get_style_context ().remove_class (STYLE_CLASS_TOOLBAR);
+
+        this.get_style_context ().add_provider (base_style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         status_label = new Label ("");
         status_label.set_justify (Justification.CENTER);
 
-        left_box = new Box (Orientation.HORIZONTAL, 3);
-        right_box = new Box (Orientation.HORIZONTAL, 3);
+        left_box = new Box (Orientation.HORIZONTAL, 0);
+        right_box = new Box (Orientation.HORIZONTAL, 0);
 
-        this.pack_start(left_box, false, false, 2);
-        this.pack_start(status_label, true, true, 12);
-        this.pack_end(right_box, false, false, 2);
+        var left_item = new ToolItem ();
+        var status_label_item = new ToolItem ();
+        var right_item = new ToolItem ();
+
+        left_item.add (left_box);
+        status_label_item.add (status_label);
+        right_item.add (right_box);
+
+        status_label_item.set_expand (true);
+
+        this.insert (left_item, 0);
+        this.insert (status_label_item, 1);
+        this.insert (right_item, 2);
     }
 
     public void insert_widget (Gtk.Widget widget, bool? use_left_side = false) {
