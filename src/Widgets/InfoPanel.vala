@@ -148,12 +148,14 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	}
 
 	public void setVisibilities() {
-		var buttons_visible = lm.settings.getLastFMSessionKey() != "";
+		var lastfm_elements_visible = lm.settings.getLastFMSessionKey() != "";
 
-		loveMedia.set_no_show_all (!buttons_visible);
-		banMedia.set_no_show_all (!buttons_visible);
-		loveMedia.set_visible(buttons_visible);
-		banMedia.set_visible(buttons_visible);
+		loveMedia.set_no_show_all (!lastfm_elements_visible);
+		banMedia.set_no_show_all (!lastfm_elements_visible);
+		ssv.set_no_show_all (!lastfm_elements_visible);
+		loveMedia.set_visible(lastfm_elements_visible);
+		banMedia.set_visible(lastfm_elements_visible);
+		ssv.set_visible(lastfm_elements_visible);
 	}
 	
 	public void updateMedia(int new_id) {
