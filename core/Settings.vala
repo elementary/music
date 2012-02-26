@@ -289,6 +289,14 @@ public class BeatBox.Settings : Object {
 		return rv;
 	}
 	
+	public string get_album_art_cache_dir () {
+		return GLib.Path.build_path ("/", get_cache_dir (), "album-art");
+	}
+
+	public string get_cache_dir () {
+		return GLib.Path.build_path ("/", Environment.get_user_cache_dir(), "beatbox");
+	}
+	
 	public string getMusicMountName() {
 		return getString(MUSIC_MOUNT_NAME, "");
 	}

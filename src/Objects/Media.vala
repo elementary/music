@@ -173,7 +173,7 @@ public class BeatBox.Media : GLib.Object{
 	
 	public string getAlbumArtPath() {
 		if(_album_path == "" || _album_path == null)
-			return GLib.Path.build_filename("/", "usr", "share", "icons", "hicolor", "128x128", "mimetypes", "media-audio.png", null);
+			return Icons.DEFAULT_ALBUM_ART.backup_filename;
 		else
 			return _album_path;
 	}

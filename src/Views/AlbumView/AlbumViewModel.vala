@@ -125,8 +125,9 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 			Media s = rows.get(((SequenceIter<Media>)iter.user_data));
 
 			if(column == 0) {
-				if(lm.get_cover_album_art_from_key(s.album_artist, s.album) != null) {
-					val = lm.get_cover_album_art_from_key(s.album_artist, s.album);
+				var cover_art = lm.get_cover_album_art_from_key(s.album_artist, s.album);
+				if(cover_art != null) {
+					val = cover_art;
 				}
 				else {
 					val = defaultImage;

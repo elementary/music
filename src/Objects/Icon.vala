@@ -32,6 +32,15 @@ public class BeatBox.Icon : GLib.Object {
 		}
 	}
 
+	public string backup_filename {
+		get {
+			if (backup == null)
+				return "";
+
+			return backup;
+		}
+	}
+
 	private string? backup;
 	private int? size;
 	private Icons.Type? type;

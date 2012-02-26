@@ -74,6 +74,19 @@ public class BeatBox.FileOperator : Object {
 			cancelled = true;
 			tagger.cancel_operations();
 		} );
+
+		/* Create album-art cache dir */
+		var beatbox_cache_dir = GLib.File.new_for_path(settings.get_cache_dir ());
+		var album_art_folder = GLib.File.new_for_path(settings.get_album_art_cache_dir ());
+		if(!album_art_folder.query_exists()) {
+			try {
+				beatbox_cache_dir.make_directory(null);
+				album_art_folder.make_directory(null);
+			}
+			catch(GLib.Error err) {
+				warning ("Could not create folder in cache directory: %s\n", err.message);
+			}
+		}	
 	}
 	
 	public void resetProgress(int items) {
@@ -141,14 +154,14 @@ public class BeatBox.FileOperator : Object {
 		
 		/* get a list of all images in folder as potential album art choices */
 		var image_list = new LinkedList<string>();
-        try {
-            var enumerator = album_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
-            while ((file_info = enumerator.next_file ()) != null) {
-                
-                if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
-                    image_list.add(file_info.get_name());
-                }
-            }
+
+		try {
+			var enumerator = album_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
+					image_list.add(file_info.get_name());
+				}
+			}
         }
         catch (Error e) {
             warning ("Error while looking for covers: %s", e.message);
@@ -212,6 +225,43 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
+	public void save_album_art_in_cache (string key, Gdk.Pixbuf? pixbuf) {
+		if (key == "" || pixbuf == null)
+			return;
+
+		string uri = GLib.Path.build_filename (settings.get_album_art_cache_dir (), key + ".jpg");
+
+		debug ("Saving cached album-art for %s", key);
+
+		try {
+			pixbuf.save (uri, "jpeg");
+		} catch (Error err) {
+			warning (err.message);
+		}
+	}
+
+	public Gdk.Pixbuf? get_cached_album_art (string key, out string uri) {
+		Gdk.Pixbuf? rv = null;
+		uri = get_cached_album_art_path (key);
+
+		try {
+			rv = new Gdk.Pixbuf.from_file (uri);
+		} catch (Error err) {
+			//debug (err.message);
+		}
+
+		if (rv == null)
+			uri = "";
+
+		debug ("Requested cached album-art for %s: %s", key, rv != null ? " FOUND." : " NOT FOUND.");
+
+		return rv;
+	}
+
+	public string get_cached_album_art_path (string key) {
+		return GLib.Path.build_filename (settings.get_album_art_cache_dir (), key + ".jpg");
+	}
+
 	public Gdk.Pixbuf? save_artist_image(Media s, string uri) {
 		Gdk.Pixbuf rv;
 		

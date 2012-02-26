@@ -108,7 +108,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	private HashMap<int, int> _current_view; // id, media of currently showing medias
 	private LinkedList<int> _queue; // rowid, Media of queue
 	private LinkedList<int> _already_played; // Media of already played
-	private HashMap<string, Gdk.Pixbuf> _cover_album_art; // All album art
+	private HashMap<string, Gdk.Pixbuf> cover_album_art; // All album art
 	
 	public LastFM.Core lfm;
 	private HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
@@ -201,7 +201,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_current_view = new HashMap<int, int>();
 		_queue = new LinkedList<int>();
 		_already_played = new LinkedList<int>();
-		_cover_album_art = new HashMap<string, Gdk.Pixbuf>();
+		cover_album_art = new HashMap<string, Gdk.Pixbuf>();
 		
 		lfm = new LastFM.Core(this);
 		_artists = new HashMap<string, LastFM.ArtistInfo>();
@@ -1633,40 +1633,45 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		in_fetch_thread = true;
 		//GStreamerTagger tagger = new GStreamerTagger(this);
 		
-		var toShowS = new LinkedList<Media>();
-        foreach(var s in _media.values)
-			toShowS.add(s);
-        
-        // first sort the medias so we know they are grouped by album artist, album
-		toShowS.sort((CompareFunc)mediaCompareFunc);
-		
-		string previousAlbum = "";
-		
 		// first get from file
-		foreach(Media s in toShowS) {
-			if(s.album != previousAlbum && s.mediatype == 0) {
+		foreach(var s in _media.values) {
+			string key = get_media_coverart_key (s), path = "";
+
+			if(!cover_album_art.has_key (key) && s.mediatype == 0) {
 				
-				string key = s.artist+s.album;
-				if(key != null && _cover_album_art.get(key) == null) {
-					Gdk.Pixbuf? pix = null;//tagger.get_embedded_art(s);
-					
-					string path = "";
-					if( (path = fo.get_best_album_art_file(s)) != null && path != "") {
-						s.setAlbumArtPath(path);
-						
-						try {
-							pix = new Gdk.Pixbuf.from_file(path);
+				if(key != null) {
+					Gdk.Pixbuf? coverart_pixbuf = fo.get_cached_album_art (key, out path);
+					Gdk.Pixbuf? pix = null;
+
+					// try to get image from cache (faster)					
+					if (coverart_pixbuf != null) {
+						pix = Icons.get_pixbuf_shadow (coverart_pixbuf);
+					}
+					else {
+						/* TODO: Get image from the tagger object (i.e. song metadata) */
+						//coverart_pixbuf = tagger.get_embedded_art(s);
+
+						if ((path = fo.get_best_album_art_file(s)) != null && path != "") {
+							try {
+								coverart_pixbuf = new Gdk.Pixbuf.from_file (path);
+								pix = Icons.get_pixbuf_shadow (coverart_pixbuf);
+								
+								// Add image to cache
+								fo.save_album_art_in_cache (key, coverart_pixbuf);
+							}
+							catch(GLib.Error err) {
+								warning (err.message);
+							}
 						}
-						catch(GLib.Error err) {}
 					}
-					
-					if(pix != null) {
-						_cover_album_art.set(key, Icons.get_pixbuf_shadow(pix));
-					}
-						
-					previousAlbum = s.album;
+
+					if(pix != null)
+						cover_album_art.set(key, pix);
 				}
 			}
+			
+			if (cover_album_art.has_key (key))
+				s.setAlbumArtPath (fo.get_cached_album_art_path (key));
 		}
 		
 		// now queue failures to fetch from embedded art
@@ -1716,17 +1721,22 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return pix;
 	}
 	
-    public Gdk.Pixbuf? get_cover_album_art(int id) {
+	public Gdk.Pixbuf? get_cover_album_art(int id) {
 		Media s = _media.get(id);
 		
 		if(s == null)
 			return null;
 		
-		return _cover_album_art.get(s.artist + s.album);
+		return cover_album_art.get(get_media_coverart_key (s));
+	}
+	
+	// Returns a key to get a coverart from the cover_album_art hashmap
+	private string get_media_coverart_key (Media s) {
+		return s.album_artist + " - " + s.album;
 	}
 	
 	public Gdk.Pixbuf? get_cover_album_art_from_key(string album_artist, string album) {
-		return _cover_album_art.get(album_artist + album);
+		return cover_album_art.get(album_artist + " - " + album);
 	}
 	
 	public void set_album_art(int id, Gdk.Pixbuf pix) {
@@ -1734,10 +1744,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			return;
 		
 		Media s = media_from_id(id);
-		string key = s.artist+s.album;
+		string key = get_media_coverart_key (s);
 		
 		if(key != null)
-			_cover_album_art.set(key, Icons.get_pixbuf_shadow(pix));
+			cover_album_art.set(key, Icons.get_pixbuf_shadow(pix));
 	}
 	
 	/* Device Preferences */

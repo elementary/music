@@ -135,7 +135,7 @@ public class BeatBox.Beatbox : Granite.Application {
 
 		_program = new BeatBox.LibraryWindow(this, settings, args);
 		_program.build_ui();
-        plugins_manager.hook_new_window (_program);
+		plugins_manager.hook_new_window (_program);
 		Timeout.add(15000, () => {
 			if(!_program.lm.have_fetched_new_podcasts) {
 				_program.lm.pm.find_new_podcasts();

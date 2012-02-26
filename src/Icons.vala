@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012		Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012 BeatBox developers
  *
  * Originally Written by Scott Ringwelski and Victor Eduardo for
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -18,6 +18,10 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Victor Eduardo <victoreduardm@gmail.com>
+ *              Lucas Baudin <xapantu@gmail.com>
  */
 
 
@@ -124,7 +128,8 @@ namespace Icons {
 	 * @param surface_size size of the new pixbuf. Set a value of 0 to use the pixbuf's natural size.
 	 **/
 	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size = ALBUM_VIEW_IMAGE_SIZE,
-	                                      int shadow_size = 5, double alpha = 0.8) {
+	                                      int shadow_size = 5, double alpha = 0.8)
+	{
 		int S_WIDTH = (surface_size > 0)? surface_size : pixbuf.width;
 		int S_HEIGHT = (surface_size > 0)? surface_size : pixbuf.height;
 

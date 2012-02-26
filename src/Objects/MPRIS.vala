@@ -1,7 +1,7 @@
-/*-Original Authors: 	Andreas Obergrusberger
- * 						Jörn Magens
+/*-Original Authors: Andreas Obergrusberger
+ *                   Jörn Magens
  * 
- * Edited by:			Scott Ringwelski
+ * Edited by: Scott Ringwelski
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,7 +18,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  */
- #if HAVE_INDICATE
+#if HAVE_INDICATE
 #if HAVE_DBUSMENU
 using Gee;
  
@@ -39,14 +39,14 @@ public class BeatBox.MPRIS : GLib.Object {
 	
 	public void initialize() {
 		owner_id = Bus.own_name(BusType.SESSION,
-								"org.mpris.MediaPlayer2.beatbox",
-								GLib.BusNameOwnerFlags.NONE,
-								on_bus_acquired,
-								on_name_acquired,
-								on_name_lost);
-								
+		                        "org.mpris.MediaPlayer2.beatbox",
+		                        GLib.BusNameOwnerFlags.NONE,
+                        		on_bus_acquired,
+                        		on_name_acquired,
+                        		on_name_lost);
+
 		if(owner_id == 0) {
-			stdout.printf("Could not initialize MPRIS session.\n");
+			warning("Could not initialize MPRIS session.\n");
 		}
 		else {
 			var soundMenu = new SoundMenuIntegration(lm, lw);
@@ -64,7 +64,7 @@ public class BeatBox.MPRIS : GLib.Object {
 			connection.register_object("/org/mpris/MediaPlayer2", player);
 		} 
 		catch(IOError e) {
-			print("could not create MPRIS player: %s\n", e.message);
+			warning("could not create MPRIS player: %s\n", e.message);
 		}
 	}
 
@@ -473,7 +473,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public void Seek(int64 Offset) {
 		//BeatBox.Beatbox._program.lm.player.setPosition(Position/ 1000);
-		stdout.printf("Must seek!\n");
+		debug("Must seek!\n");
 	}
 	
 	public void SetPosition(string dobj, int64 Position) {

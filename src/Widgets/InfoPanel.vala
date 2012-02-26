@@ -182,9 +182,11 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		if(lm.media_from_id(id) == null)
 			return;
 
-		if(lm.get_cover_album_art(id) != null) {
+		var coverart_pixbuf = lm.get_cover_album_art(id);
+
+		if(coverart_pixbuf != null) {
 			coverArt.show();
-			coverArt.set_from_pixbuf(lm.get_cover_album_art(id));
+			coverArt.set_from_pixbuf(coverart_pixbuf);
 		}
 		else {
 			coverArt.hide();
