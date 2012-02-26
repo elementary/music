@@ -128,6 +128,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
 		this.drag_data_received.connect(dragReceived);
+
+		setVisibilities();
 	}
 	
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -144,16 +146,14 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	public void logged_in_to_lastfm() {
 		setVisibilities();
 	}
-	
+
 	public void setVisibilities() {
-		if(lm.settings.getLastFMSessionKey() != "") {
-			loveMedia.set_visible(true);
-			banMedia.set_visible(true);
-		}
-		else {
-			loveMedia.set_visible(false);
-			banMedia.set_visible(false);
-		}
+		var buttons_visible = lm.settings.getLastFMSessionKey() != "";
+
+		loveMedia.set_no_show_all (!buttons_visible);
+		banMedia.set_no_show_all (!buttons_visible);
+		loveMedia.set_visible(buttons_visible);
+		banMedia.set_visible(buttons_visible);
 	}
 	
 	public void updateMedia(int new_id) {
