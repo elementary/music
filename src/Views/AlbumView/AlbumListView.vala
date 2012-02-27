@@ -194,10 +194,12 @@ public class BeatBox.AlbumListView : Window {
 		album_label.set_markup("<span size=\"large\" color=\"#ffffff\"><b>" + m.album.replace("&", "&amp;") + "</b></span>");
 		artist_label.set_markup("<span color=\"#ffffff\"><b>" + m.album_artist.replace("&", "&amp;") + "</b></span>");
 
-		var songs = new LinkedList<int>();
-		var albums = new LinkedList<int>();
-		lm.do_search("", ((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).hint, m.album_artist, m.album,
-		((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).get_media_ids(), ref songs, ref albums);
+		LinkedList<int> songs, albums;
+
+		lm.do_search (((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).get_media_ids(),
+		              out songs, out albums, null, null, null,
+		              ((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).hint,
+		              "", m.album_artist, m.album);
 
 		// decide rating. unless all are equal, show the lowest.
 		// TODO: listen to song rating changes

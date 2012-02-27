@@ -70,10 +70,10 @@ public class BeatBox.MillerColumns : HBox {
 			return;
 		}
 		
-		LinkedList<int> searched_medias = new LinkedList<int>();
-		LinkedList<int> searched_medias_albums = new LinkedList<int>();
-		lm.do_search(lw.searchField.get_text(), hint, "All Artists", "All Albums",
-					medias, ref searched_medias, ref searched_medias_albums);
+		LinkedList<int> searched_medias, searched_medias_albums;
+
+		lm.do_search(medias, out searched_medias, out searched_medias_albums, null, null, null,
+		             hint, lw.searchField.get_text());
 		
 		var artistSet = new HashMap<string, int>();
 		

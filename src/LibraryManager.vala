@@ -801,15 +801,42 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		return null;
 	}
-	
-	public void do_search(string search, ViewWrapper.Hint hint, string album_artist, string album,
-	Collection<int> to_search, ref LinkedList<int> results, ref LinkedList<int> album_results) {
+
+	/**
+	 * Search function
+	 */
+	public void do_search (Collection<int> to_search,
+	                        out LinkedList<int> ? results,
+	                        out LinkedList<int> ? album_results,
+	                        out LinkedList<int> ? genre_results,
+	                        out LinkedList<int> ? year_results,
+	                        out LinkedList<int> ? rating_results,
+	                        ViewWrapper.Hint hint,
+	                        string search = "", // Search string
+	                        string album_artist = "All Artists",
+	                        string album = "All Albums",
+	                        string genre = "All Genres",
+	                        int year = -1, // All years
+	                        int rating = -1 // All ratings
+	                        )
+	{
+		results = new LinkedList<int>();
+		album_results = new LinkedList<int>();
+		genre_results = new LinkedList<int>();
+		year_results = new LinkedList<int>();
+		rating_results = new LinkedList<int>();
+
 		string l_search = search.down();
 		int mediatype = 0;
-		bool include_temps = (hint == ViewWrapper.Hint.CDROM || hint == ViewWrapper.Hint.DEVICE_AUDIO || 
-						hint == ViewWrapper.Hint.DEVICE_PODCAST || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK ||
-						hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY || hint == ViewWrapper.Hint.ALBUM_LIST);
-		
+
+		bool include_temps = hint == ViewWrapper.Hint.CDROM ||
+		                     hint == ViewWrapper.Hint.DEVICE_AUDIO || 
+		                     hint == ViewWrapper.Hint.DEVICE_PODCAST ||
+		                     hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK ||
+		                     hint == ViewWrapper.Hint.QUEUE ||
+		                     hint == ViewWrapper.Hint.HISTORY ||
+		                     hint == ViewWrapper.Hint.ALBUM_LIST;
+
 		if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 			mediatype = 1;
 		}
@@ -820,22 +847,50 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			mediatype = 3;
 		}
 		else if(hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY ||
-		hint == ViewWrapper.Hint.PLAYLIST || hint == ViewWrapper.Hint.SMART_PLAYLIST ||
-		hint == ViewWrapper.Hint.ALBUM_LIST) {
+		         hint == ViewWrapper.Hint.PLAYLIST || hint == ViewWrapper.Hint.SMART_PLAYLIST ||
+		         hint == ViewWrapper.Hint.ALBUM_LIST)
+		{
 			mediatype = -1; // some lists should be able to have ALL media types
 		}
 		
 		foreach(int i in to_search) {
 			Media s = media_from_id(i);
-			if(s != null && (s.mediatype == mediatype || mediatype == -1) && (!s.isTemporary || include_temps) &&
-			(l_search in s.title.down() || l_search in s.album_artist.down() || 
-			l_search in s.artist.down() || l_search in s.album.down() || l_search in s.genre.down())) {
-				if(album_artist == "All Artists" || s.album_artist == album_artist) {
-					if(album == "All Albums" || s.album == album) {
-						results.add(i);
-					}
+
+			bool valid_song =   s != null &&
+			                  ( s.mediatype == mediatype || mediatype == -1 ) &&
+			                  ( !s.isTemporary || include_temps ) &&
+			                  ( l_search in s.title.down() ||
+			                    l_search in s.album_artist.down() ||
+			                    l_search in s.artist.down() ||
+			                    l_search in s.album.down() ||
+			                    l_search in s.genre.down() ||
+			                    l_search == s.year.to_string()); // We want full match here
+
+			if (valid_song)
+			{
+				if (rating == -1 || (int)s.rating == rating)
+				{
+					if (year == -1 || (int)s.year == year)
+					{
+						if (album_artist == "All Artists" || s.album_artist == album_artist)
+						{
+							if (genre == "All Genres" || s.genre == genre)
+							{
+								if (album == "All Albums" || s.album == album)
+								{
+									results.add (i);
+								}
+
+								genre_results.add (i);
+							}
 					
-					album_results.add(i);
+							album_results.add (i);
+						}
+
+						year_results.add (i);
+					}
+
+					rating_results.add (i);
 				}
 			}
 		}

@@ -276,22 +276,20 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		if(isCurrentView) {
 			// find which medias belong here
-			var shouldShow = new LinkedList<int>();
-			var shouldShowAlbum = new LinkedList<int>();
-			var shouldBe = new LinkedList<int>();
-			var shouldBeAlbum = new LinkedList<int>();
+			LinkedList<int> shouldShow, shouldShowAlbum, shouldBe, shouldBeAlbum;
 			
 			LinkedList<int> to_search = new LinkedList<int>();
+
 			if(hint == ViewWrapper.Hint.SMART_PLAYLIST)
 				to_search = lm.smart_playlist_from_id(relative_id).analyze(lm, ids);
 			else
 				to_search = ids;
 			
-			lm.do_search(lw.searchField.get_text(), hint, lw.miller.artists.get_selected(), "All Albums",
-					to_search, ref shouldShow, ref shouldShowAlbum);
-			lm.do_search("", hint, "All Artists", "All Albums",
-					to_search, ref shouldBe, ref shouldBeAlbum);
-			
+			lm.do_search (to_search, out shouldShow, out shouldShowAlbum, null, null, null,
+			              hint, lw.searchField.get_text (), lw.miller.artists.get_selected ());
+
+			lm.do_search (to_search, out shouldBe, out shouldBeAlbum, null, null, null, hint);
+
 			var to_add = new LinkedList<int>();
 			var to_remove = new LinkedList<int>();
 			var to_remove_show = new LinkedList<int>();
@@ -403,8 +401,10 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			LinkedList<int> potentialShowing = new LinkedList<int>();
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
-			lm.do_search(lw.searchField.get_text(), hint, lw.miller.artists.get_selected(), "All Albums",
-					to_add, ref potentialShowing, ref potentialShowingAlbum);
+
+
+			lm.do_search(to_add, out potentialShowing, out potentialShowingAlbum, null, null, null,
+			             hint, lw.searchField.get_text(), lw.miller.artists.get_selected());
 			
 			list.append_medias(potentialShowing);
 			albumView.append_medias(potentialShowingAlbum);
@@ -548,9 +548,11 @@ public class BeatBox.ViewWrapper : VBox {
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 			
 			debug("searching to populate with %d medias\n", medias.size);
-			lm.do_search(last_search, hint, lw.miller.artists.get_selected(), "All Albums",
-					get_media_ids(), ref potentialShowing, ref potentialShowingAlbum);
-			//debug("seraching done\n");
+
+			lm.do_search(get_media_ids(), out potentialShowing, out potentialShowingAlbum, null, null, null,
+			             hint, last_search, lw.miller.artists.get_selected());
+			
+			//debug("searching done\n");
 			list.set_show_next(potentialShowing);
 			albumView.set_show_next(potentialShowingAlbum);
 			
