@@ -1,6 +1,6 @@
 find_package(Vala REQUIRED)
 include(ValaVersion)
-ensure_vala_version("0.14.0" MINIMUM)
+ensure_vala_version("0.14.2" MINIMUM)
 include(ValaPrecompile)
 set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/beatbox")
