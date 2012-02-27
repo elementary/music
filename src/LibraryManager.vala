@@ -1636,12 +1636,12 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		// first get from file
 		foreach(var s in _media.values) {
 			string key = get_media_coverart_key (s), path = "";
+			Gdk.Pixbuf? pix = null;
 
 			if(!cover_album_art.has_key (key) && s.mediatype == 0) {
 				
 				if(key != null) {
 					Gdk.Pixbuf? coverart_pixbuf = fo.get_cached_album_art (key, out path);
-					Gdk.Pixbuf? pix = null;
 
 					// try to get image from cache (faster)					
 					if (coverart_pixbuf != null) {
@@ -1654,6 +1654,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 						if ((path = fo.get_best_album_art_file(s)) != null && path != "") {
 							try {
 								coverart_pixbuf = new Gdk.Pixbuf.from_file (path);
+								//coverart_pixbuf = _pix.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
 								pix = Icons.get_pixbuf_shadow (coverart_pixbuf);
 								
 								// Add image to cache
@@ -1665,13 +1666,14 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 						}
 					}
 
-					if(pix != null)
-						cover_album_art.set(key, pix);
+					cover_album_art.set(key, pix);
 				}
 			}
 			
-			if (cover_album_art.has_key (key))
+			if (cover_album_art.get (key) != null)
 				s.setAlbumArtPath (fo.get_cached_album_art_path (key));
+			else
+				s.setAlbumArtPath (Icons.DEFAULT_ALBUM_ART.backup_filename);
 		}
 		
 		// now queue failures to fetch from embedded art

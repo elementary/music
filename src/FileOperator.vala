@@ -229,7 +229,7 @@ public class BeatBox.FileOperator : Object {
 		if (key == "" || pixbuf == null)
 			return;
 
-		string uri = GLib.Path.build_filename (settings.get_album_art_cache_dir (), key + ".jpg");
+		string uri = get_cached_album_art_path (key);
 
 		debug ("Saving cached album-art for %s", key);
 
