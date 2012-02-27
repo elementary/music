@@ -103,6 +103,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		this.app = app;
 		this.settings = settings;
 
+		// Init LibNotify
+		Notify.init ("beatbox");
+
 		//this is used by many objects, is the media backend
 		lm = new BeatBox.LibraryManager(settings, this, args);
 
@@ -257,10 +260,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		statusBar.insert_widget (repeatChooser as Gtk.Widget, true);
 		statusBar.insert_widget (infoPanelChooser as Gtk.Widget);
 
-		notification = (Notify.Notification)GLib.Object.new (
-						typeof (Notify.Notification),
-						"summary", _("Title"),
-						"body", "%s\n%s".printf(_("Artist"), _("Album")));
+		notification = new Notify.Notification ("", null, null);
 
 		/* Set properties of various controls */
 		sourcesToMedias.set_position(settings.getSidebarWidth());
@@ -1006,6 +1006,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			lm.update_media(lm.media_info.media, false, false);
 		}
 		lm.player.pause();
+
+		// Terminate Libnotify
+		Notify.uninit ();
 	}
 
 	public virtual void fileImportMusicClick() {
@@ -1123,14 +1126,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		//now notify user
 		try {
-			notification.close();
-			if(!has_toplevel_focus) {
+			if (Notify.is_initted ()) {
+				notification.close();
 				notification.update(_("Import Complete"), _("BeatBox has imported your library."), "beatbox");
-
-				notification.set_image_from_pixbuf(Icons.BEATBOX_DIALOG_PIXBUF);
-
+				notification.set_image_from_pixbuf(Icons.BEATBOX_ICON.render (Gtk.IconSize.DIALOG));
+				notification.set_timeout (Notify.EXPIRES_DEFAULT);
+				notification.set_urgency (Notify.Urgency.NORMAL);
 				notification.show();
-				notification.set_timeout(5000);
 			}
 		}
 		catch(GLib.Error err) {

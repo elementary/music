@@ -109,9 +109,7 @@ namespace Icons {
 	 * to be rendered many times should be a preloaded pixbuf. They are loaded
 	 * in the load() function.
 	 */
-	public Gdk.Pixbuf DROP_ALBUM_PIXBUF;
 	public Gdk.Pixbuf DEFAULT_ALBUM_ART_PIXBUF;
-	public Gdk.Pixbuf BEATBOX_DIALOG_PIXBUF; // Used in the notifications from LibraryWindow.vala
 
 
 	public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
@@ -199,7 +197,6 @@ namespace Icons {
 
 		/* Render Pixbufs */
 		DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null);
-		BEATBOX_DIALOG_PIXBUF = BEATBOX_ICON.render (Gtk.IconSize.DIALOG);
 	}
 }
 

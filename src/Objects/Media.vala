@@ -28,7 +28,7 @@ public class BeatBox.Media : GLib.Object{
 	public string uri { get; set; default = ""; }
 	public uint file_size { get; set; default = 0; }
 	public int rowid { get; construct set; default = 0; }
-	public int mediatype { get; set; default = 0; } // 0 = media, 1 = podcast, 2 = audiobook
+	public int mediatype { get; set; default = 0; } // 0 = song, 1 = podcast, 2 = audiobook, 3 = radio
 	
 	//tags
 	public string title { get; set; default = "Unknown Title"; }

@@ -67,31 +67,35 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 	}
 	
 	public void showNotification(int i) {
-		if(lm.media_from_id(i) == null)
+		if(lm.media_from_id(i) == null || !Notify.is_initted ())
 			return;
-		
+
 		if(!lw.has_toplevel_focus) {
 			try {
-				lw.notification.set_timeout(1);
+				lw.notification.close();
+				//lw.notification.set_category (""); TODO: Find a suitable category
+				lw.notification.set_timeout(Notify.EXPIRES_DEFAULT);
+				lw.notification.set_urgency (Notify.Urgency.LOW);
 				lw.notification.update(lm.media_from_id(i).title, lm.media_from_id(i).artist + "\n" + lm.media_from_id(i).album, "");
 				
 				Gdk.Pixbuf notify_pix;
 				if(File.new_for_path(lm.media_from_id(i).getAlbumArtPath()).query_exists())
 					notify_pix = new Gdk.Pixbuf.from_file(lm.media_from_id(i).getAlbumArtPath());
 				else
-					notify_pix = lw.render_icon("beatbox", Gtk.IconSize.DIALOG, null);
+					notify_pix = Icons.BEATBOX_ICON.render(Gtk.IconSize.DIALOG);
 				
-				if(notify_pix != null)
+				if(notify_pix != null) {
 					lw.notification.set_image_from_pixbuf(notify_pix);
-				else {
+				}
+				//else {
 					/* create blank pixbuf so we don't show old album art */
 					/*Gdk.Pixbuf blank = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, 2, 2);
 					blank.fill((uint) 0xffffff00);
 					notification.set_image_from_pixbuf(blank);*/
-				}
-				
+				//}
+
 				lw.notification.show();
-				lw.notification.set_timeout(5000);
+				
 			}
 			catch(GLib.Error err) {
 				stderr.printf("Could not show notification: %s\n", err.message);
