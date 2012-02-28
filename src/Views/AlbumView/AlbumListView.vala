@@ -201,26 +201,37 @@ public class BeatBox.AlbumListView : Window {
 		              ((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).hint,
 		              "", m.album_artist, m.album);
 
+		mtv.set_show_next(songs);
+		mtv.populate_view();
+
+		setting_songs = false;
+
+		// Set rating
+		update_album_rating ();
+		lm.medias_updated.connect (update_album_rating);
+	}
+
+	void update_album_rating () {
+		if(setting_songs)
+			return;
+
+		setting_songs = true;
+
 		// decide rating. unless all are equal, show the lowest.
-		// TODO: listen to song rating changes
-		int overall_rating = -1, lowest_rating = 0;
-		foreach(int i in songs) {
+		int overall_rating = -1;
+		foreach(int i in mtv.get_medias()) {
 			int song_rating = (int)lm.media_from_id(i).rating;
 
 			if(overall_rating == -1) {
 				overall_rating = song_rating;
-				lowest_rating = overall_rating;
 			} else if(song_rating != overall_rating) {
-				if (song_rating < lowest_rating)
-					lowest_rating = song_rating;
-				overall_rating = lowest_rating;
+				if (song_rating < overall_rating)
+					overall_rating = song_rating;
 			}
 		}
 
 		rating.set_rating(overall_rating);
 
-		mtv.set_show_next(songs);
-		mtv.populate_view();
 		setting_songs = false;
 	}
 
