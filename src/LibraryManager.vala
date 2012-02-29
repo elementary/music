@@ -813,9 +813,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	                        out LinkedList<int> ? rating_results,
 	                        ViewWrapper.Hint hint,
 	                        string search = "", // Search string
-	                        string album_artist = "All Artists",
-	                        string album = "All Albums",
-	                        string genre = "All Genres",
+	                        string album_artist = "",
+	                        string album = "",
+	                        string genre = "",
 	                        int year = -1, // All years
 	                        int rating = -1 // All ratings
 	                        )
@@ -872,11 +872,11 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				{
 					if (year == -1 || (int)s.year == year)
 					{
-						if (album_artist == "All Artists" || s.album_artist == album_artist)
+						if (album_artist == "" || s.album_artist == album_artist)
 						{
-							if (genre == "All Genres" || s.genre == genre)
+							if (genre == "" || s.genre == genre)
 							{
-								if (album == "All Albums" || s.album == album)
+								if (album == "" || s.album == album)
 								{
 									results.add (i);
 								}
