@@ -13,6 +13,10 @@ configure_file(${CMAKE_SOURCE_DIR}/src/config.h.cmake ${CMAKE_BINARY_DIR}/src/co
 add_definitions(-include config.h)
 
 vala_precompile(VALA_C
+    ${CMAKE_SOURCE_DIR}/src/config.vapi
+    Icons.vala
+    LibraryWindow.vala
+    LibraryManager.vala
     FileOperator.vala
     LastFM/LastFM.vala
     LastFM/AlbumInfo.vala
@@ -28,9 +32,6 @@ vala_precompile(VALA_C
     Devices/AndroidDevice.vala
     Devices/CDRomDevice.vala
     Devices/DevicePreferences.vala
-    Icons.vala
-    LibraryWindow.vala
-    LibraryManager.vala
     Objects/TreeViewSetup.vala
     Objects/SmartQuery.vala
     Objects/MediaInfo.vala
@@ -93,6 +94,8 @@ vala_precompile(VALA_C
     Views/DeviceViewWrapper.vala
     Views/DeviceView.vala
     Views/ContentView.vala
+    Views/ListView/BaseListView.vala
+    Views/ListView/BaseListModel.vala
     Views/ListView/SimilarPane.vala
     Views/ListView/MusicTreeModel.vala
     Views/ListView/MusicTreeView.vala
@@ -120,9 +123,6 @@ vala_precompile(VALA_C
     Dialogs/SetMusicFolderConfirmation.vala
     Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala
-    ${CMAKE_SOURCE_DIR}/src/config.vapi
-    Views/ListView/BaseListView.vala
-    Views/ListView/BaseListModel.vala
 PACKAGES
     glib-2.0
     gtk+-3.0
