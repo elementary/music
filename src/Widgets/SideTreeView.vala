@@ -563,7 +563,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				}
 				
 				if(lw.viewSelector.selected == 2) {
-					lw.miller.populateColumns( (o is Device) ? "device" : "", ((ViewWrapper)w).get_media_ids());
+					lw.miller.populate_columns( (o is Device) ? "device" : "", ((ViewWrapper)w).get_media_ids());
 				}
 				
 				lw.updateMillerColumns();

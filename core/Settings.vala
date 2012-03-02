@@ -51,6 +51,8 @@ public class BeatBox.Settings : Object {
 	public static const string MORE_VISIBLE = "more-visible";
 	public static const string VIEW_MODE = "view-mode";
 	public static const string MILLER_WIDTH = "miller-width";
+	public static const string MILLER_VISIBLE_COLUMNS = "miller-visible-columns";
+	public static const string MILLER_COLUMNS_POSITION = "miller-columns-position";
 	
 	public static const string EQUALIZER_ENABLED = "equalizer-enabled";
 	public static const string SELECTED_PRESET = "selected-preset";
@@ -102,6 +104,8 @@ public class BeatBox.Settings : Object {
 		ui_settings.add(MORE_WIDTH);
 		ui_settings.add(VIEW_MODE);
 		ui_settings.add(MILLER_WIDTH);
+		ui_settings.add(MILLER_VISIBLE_COLUMNS);
+		ui_settings.add(MILLER_COLUMNS_POSITION);
 		
 		equalizer_settings.add(EQUALIZER_ENABLED);
 		equalizer_settings.add(SELECTED_PRESET);
@@ -129,7 +133,7 @@ public class BeatBox.Settings : Object {
 			rv = equalizer.get_boolean(path);
 		}
 		else {
-			stdout.printf("could not find bool for %s\n", path);
+			warning ("could not find bool for %s\n", path);
 			rv = def;
 		}
 		
@@ -172,8 +176,30 @@ public class BeatBox.Settings : Object {
 			rv = equalizer.get_string(path);
 		}
 		else {
-			stdout.printf("could not find string for %s\n", path);
+			warning ("could not find string for %s\n", path);
 			rv = def;
+		}
+		
+		return rv;
+	}
+
+	private int get_enum (string path) {
+		int rv = 0;
+		
+		if(lastfm_settings.contains (path)) {
+			rv = lastfm.get_enum (path);
+		}
+		else if(ui_settings.contains (path)) {
+			rv = ui.get_enum (path);
+		}
+		else if(library_settings.contains (path)) {
+			rv = library.get_enum (path);
+		}
+		else if(equalizer_settings.contains (path)) {
+			rv = equalizer.get_enum (path);
+		}
+		else {
+			warning ("could not find string for %s\n", path);
 		}
 		
 		return rv;
@@ -195,7 +221,7 @@ public class BeatBox.Settings : Object {
 			rv = equalizer.get_int(path);
 		}
 		else {
-			stdout.printf("could not find int for %s\n", path);
+			warning ("could not find int for %s\n", path);
 			rv = def;
 		}
 		
@@ -216,7 +242,7 @@ public class BeatBox.Settings : Object {
 			equalizer.set_boolean(path, val);
 		}
 		else {
-			stdout.printf("could not find bool for %s\n", path);
+			warning ("could not find bool for %s\n", path);
 		}
 	}
 	
@@ -234,7 +260,7 @@ public class BeatBox.Settings : Object {
 			equalizer.set_string(path, val);
 		}
 		else {
-			stdout.printf("could not find string for %s\n", path);
+			warning ("could not find string for %s\n", path);
 		}
 		
 		if(path == MUSIC_FOLDER)
@@ -260,6 +286,24 @@ public class BeatBox.Settings : Object {
 		}
 	}
 
+	private void set_enum (string path, int val) {
+		if(lastfm_settings.contains (path)) {
+			lastfm.set_enum (path, val);
+		}
+		else if(ui_settings.contains (path)) {
+			ui.set_enum (path, val);
+		}
+		else if(library_settings.contains (path)) {
+			library.set_enum (path, val);
+		}
+		else if(equalizer_settings.contains (path)) {
+			equalizer.set_enum (path, val);
+		}
+		else {
+			warning ("could not find int for %s\n", path);
+		}	
+	}
+
 	private void setInt(string path, int val) {
 		if(lastfm_settings.contains(path)) {
 			lastfm.set_int(path, val);
@@ -274,7 +318,7 @@ public class BeatBox.Settings : Object {
 			equalizer.set_int(path, val);
 		}
 		else {
-			stdout.printf("could not find int for %s\n", path);
+			warning ("could not find int for %s\n", path);
 		}
 	}
 
@@ -332,7 +376,23 @@ public class BeatBox.Settings : Object {
 	public int getMillerWidth() {
 		return getInt(MILLER_WIDTH, 200);
 	}
-	
+
+	public int get_miller_columns_position () {
+		return get_enum (MILLER_COLUMNS_POSITION);
+	}
+
+	public Gee.Collection<string> get_miller_visible_columns () {
+		var rv = new Gee.LinkedList<string>();
+
+		var visible_columns = getStrings (MILLER_VISIBLE_COLUMNS);
+
+		for (int index = 0; index < visible_columns.length; index++) {
+			rv.add (visible_columns[index]);
+		}
+
+		return rv;
+	}
+
 	public string getSearchString() {
 		return getString(SEARCH_STRING, "");
 	}
@@ -465,6 +525,22 @@ public class BeatBox.Settings : Object {
 	public void setMillerWidth(int val) {
 		setInt(MILLER_WIDTH, val);
 	}
+
+	public void set_miller_columns_position (int val) {
+		set_enum (MILLER_COLUMNS_POSITION, val);
+	}
+
+	public void set_miller_visible_columns (Gee.Collection<string> columns) {
+		string[] vals = new string[columns.size];
+		int index = 0;
+
+		foreach (var col in columns) {
+			vals[index++] = col;
+		}
+
+		setStrings (MILLER_VISIBLE_COLUMNS, vals);
+	}
+
 	
 	public void setSearchString(string val) {
 		setString(SEARCH_STRING, val);
@@ -515,7 +591,6 @@ public class BeatBox.Settings : Object {
 	}
 
 	public void setPresets(Gee.Collection<EqualizerPreset> presets, string type) {
-		//var preset_list = new Gee.LinkedList<string> ();
 		string[] vals = new string[presets.size];
 
 		int index = 0;

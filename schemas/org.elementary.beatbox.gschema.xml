@@ -71,6 +71,12 @@
     </key>
   </schema>
   
+  <enum id="miller-columns-position-type">
+    <value nick="Automatic" value="0" />
+    <value nick="Top" value="1" />
+    <value nick="Left" value="2" />
+  </enum>
+  
   <schema path="/apps/beatbox/ui/" id="org.elementary.beatbox.ui">
     <key type="i" name="window-width">
       <default>1100</default>
@@ -97,10 +103,20 @@
       <summary>Whether or not the right panel is showing</summary>
       <description>Whether or not the right panel is showing</description>
     </key>
+    <key type="as" name="miller-visible-columns">
+      <default>['2', '3', '4']</default>
+      <summary>Enabled miller columns</summary>
+      <description>Enabled miller columns</description>
+    </key>
     <key type="i" name="miller-width">
       <default>200</default>
       <summary>Miller column width</summary>
       <description>Miller column width</description>
+    </key>
+    <key name="miller-columns-position" enum="miller-columns-position-type">
+      <default>"Automatic"</default>
+      <summary>Miller columns position</summary>
+      <description>Miller columns position</description>
     </key>
     <key type="b" name="window-maximized">
       <default>false</default>

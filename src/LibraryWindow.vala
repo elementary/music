@@ -229,7 +229,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		topDisplay = new TopDisplay(lm);
 		viewSelector = new Granite.Widgets.ModeButton();
 		searchField = new Granite.Widgets.SearchBar(_("Search..."));
-		miller = new MillerColumns(lm, this); //miller must be below search for it to work properly
+		miller = new MillerColumns(this); //miller must be below search for it to work properly
 		mediaInfoScroll = new ScrolledWindow(null, null);
 		pandoraScroll = new ScrolledWindow(null, null);
 		grooveSharkScroll = new ScrolledWindow(null, null);
@@ -774,7 +774,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		var w = sideTree.getSelectedWidget();
 		if(w is ViewWrapper) {
-			miller.populateColumns("", ((ViewWrapper)w).get_media_ids());
+			miller.populate_columns("", ((ViewWrapper)w).get_media_ids());
 		}
 
 		updateSensitivities();
@@ -1087,7 +1087,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		else {
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
 			vw.doUpdate(vw.currentView, lm.song_ids(), true, true, false);
-			miller.populateColumns("", lm.song_ids());
+			miller.populate_columns("", lm.song_ids());
 
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
 			vw.doUpdate(vw.currentView, lm.podcast_ids(), true, true, false);
@@ -1302,7 +1302,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		infoPanel.updateMediaList(similarDont);
 
 		if(((ViewWrapper)w).isCurrentView && !((ViewWrapper)w).list.get_is_current()) {
-			miller.populateColumns("", ((ViewWrapper)w).list.get_medias());
+			miller.populate_columns("", ((ViewWrapper)w).list.get_medias());
 			updateMillerColumns();
 		}
 	}
@@ -1443,7 +1443,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		/*if(initializationFinished && viewSelector.selected == 2 && sideTree.getSelectedWidget() is ViewWrapper && miller.visible) {
 			ViewWrapper vw = (ViewWrapper)sideTree.getSelectedWidget();
 
-			miller.populateColumns("", vw.medias);
+			miller.populate_columns("", vw.medias);
 		}*/
 	}
 

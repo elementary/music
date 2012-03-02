@@ -225,7 +225,7 @@ public class BeatBox.ViewWrapper : VBox {
 				
 				if(isCurrentView) {
 					debug("populating millers\n");
-					lw.miller.populateColumns("", medias.keys);
+					lw.miller.populate_columns("", medias.keys);
 				}
 				break;
 		}
@@ -285,8 +285,10 @@ public class BeatBox.ViewWrapper : VBox {
 			else
 				to_search = ids;
 			
+			var selected_miller_artist = lw.miller.get_column (MillerColumn.Category.ARTIST).get_selected ();
+			
 			lm.do_search (to_search, out shouldShow, out shouldShowAlbum, null, null, null,
-			              hint, lw.searchField.get_text (), lw.miller.artists.get_selected ());
+			              hint, lw.searchField.get_text (), selected_miller_artist);
 
 			lm.do_search (to_search, out shouldBe, out shouldBeAlbum, null, null, null, hint);
 
@@ -402,9 +404,11 @@ public class BeatBox.ViewWrapper : VBox {
 			LinkedList<int> potentialShowing = new LinkedList<int>();
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 
+			
+			var selected_miller_artist = lw.miller.get_column (MillerColumn.Category.ARTIST).get_selected ();
 
 			lm.do_search(to_add, out potentialShowing, out potentialShowingAlbum, null, null, null,
-			             hint, lw.searchField.get_text(), lw.miller.artists.get_selected());
+			             hint, lw.searchField.get_text(), selected_miller_artist);
 			
 			list.append_medias(potentialShowing);
 			albumView.append_medias(potentialShowingAlbum);
@@ -549,8 +553,11 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			debug("searching to populate with %d medias\n", medias.size);
 
+			
+			var selected_miller_artist = lw.miller.get_column (MillerColumn.Category.ARTIST).get_selected ();
+
 			lm.do_search(get_media_ids(), out potentialShowing, out potentialShowingAlbum, null, null, null,
-			             hint, last_search, lw.miller.artists.get_selected());
+			             hint, last_search, selected_miller_artist);
 			
 			//debug("searching done\n");
 			list.set_show_next(potentialShowing);

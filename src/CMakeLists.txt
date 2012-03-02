@@ -52,8 +52,6 @@ vala_precompile(VALA_C
     Widgets/PresetList.vala
     Widgets/SideBar.vala
     Widgets/SideTreeView.vala
-    Widgets/MillerColumns/MillerModel.vala
-    Widgets/MillerColumns/MillerColumn.vala
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
     Widgets/StatusBar.vala
@@ -96,6 +94,8 @@ vala_precompile(VALA_C
     Views/ContentView.vala
     Views/ListView/BaseListView.vala
     Views/ListView/BaseListModel.vala
+    Views/ListView/MillerColumns/MillerModel.vala
+    Views/ListView/MillerColumns/MillerColumn.vala
     Views/ListView/SimilarPane.vala
     Views/ListView/MusicTreeModel.vala
     Views/ListView/MusicTreeView.vala

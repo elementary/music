@@ -919,7 +919,7 @@ public class BeatBox.MusicTreeView : BaseListView {
 				lm.remove_medias (toRemove, delete_files);
 				//list_model.removeMedias(toRemoveIDs);
 
-				lw.miller.populateColumns("", list_model.getOrderedMedias());
+				lw.miller.populate_columns("", list_model.getOrderedMedias());
 			});
 		}
 
@@ -927,7 +927,7 @@ public class BeatBox.MusicTreeView : BaseListView {
 			list_model.removeMedias(toRemoveIDs);
 
 			// in case all the medias from certain miller items were removed, update miller
-			lw.miller.populateColumns("", list_model.getOrderedMedias());
+			lw.miller.populate_columns("", list_model.getOrderedMedias());
 		}
 
 	}
