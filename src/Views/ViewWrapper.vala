@@ -276,7 +276,7 @@ public class BeatBox.ViewWrapper : VBox {
 		
 		if(isCurrentView) {
 			// find which medias belong here
-			LinkedList<int> shouldShow, shouldShowAlbum, shouldBe, shouldBeAlbum;
+			LinkedList<int> shouldBe; // shouldShow;
 			
 			LinkedList<int> to_search = new LinkedList<int>();
 
@@ -285,12 +285,14 @@ public class BeatBox.ViewWrapper : VBox {
 			else
 				to_search = ids;
 			
+			/* We performed this search in the miller. Don't do it again here
 			var selected_miller_artist = lw.miller.get_column (MillerColumn.Category.ARTIST).get_selected ();
 			
 			lm.do_search (to_search, out shouldShow, out shouldShowAlbum, null, null, null,
 			              hint, lw.searchField.get_text (), selected_miller_artist);
+			*/
 
-			lm.do_search (to_search, out shouldBe, out shouldBeAlbum, null, null, null, hint);
+			lm.do_search (to_search, out shouldBe, null, null, null, null, hint);
 
 			var to_add = new LinkedList<int>();
 			var to_remove = new LinkedList<int>();
@@ -302,7 +304,7 @@ public class BeatBox.ViewWrapper : VBox {
 			}
 			
 			// add elements that should show
-			foreach(int i in shouldShow) {
+			foreach(int i in lw.miller.media_results) {
 				if(showingMedias.get(i) == 0)
 					to_add.add(i);
 				
@@ -310,7 +312,7 @@ public class BeatBox.ViewWrapper : VBox {
 			}
 			
 			// remove elements
-			// TODO: contains is slow
+			// FIXME: contains is slow
 			foreach(int i in ids) {
 				if(!shouldBe.contains(i)) {
 					to_remove.add(i);
@@ -319,7 +321,7 @@ public class BeatBox.ViewWrapper : VBox {
 			}
 			
 			foreach(int i in ids) {
-				if(!shouldShow.contains(i)) {
+				if(!lw.miller.media_results.contains(i)) {
 					to_remove_show.add(i);
 					showingMedias.unset(i);
 				}
@@ -401,6 +403,7 @@ public class BeatBox.ViewWrapper : VBox {
 			
 			media_count = medias.size;
 			
+			/*
 			LinkedList<int> potentialShowing = new LinkedList<int>();
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 
@@ -409,11 +412,12 @@ public class BeatBox.ViewWrapper : VBox {
 
 			lm.do_search(to_add, out potentialShowing, out potentialShowingAlbum, null, null, null,
 			             hint, lw.searchField.get_text(), selected_miller_artist);
+			*/
+
+			list.append_medias(lw.miller.media_results);
+			albumView.append_medias(lw.miller.album_results);
 			
-			list.append_medias(potentialShowing);
-			albumView.append_medias(potentialShowingAlbum);
-			
-			foreach(int i in potentialShowing)
+			foreach(int i in lw.miller.media_results)
 				showingMedias.set(i, 1);
 			
 			if(isCurrentView) {
@@ -548,6 +552,7 @@ public class BeatBox.ViewWrapper : VBox {
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
 		if(!this.visible || force || needs_update) {
 			//debug("searching..\n");
+			/*
 			LinkedList<int> potentialShowing = new LinkedList<int>();
 			LinkedList<int> potentialShowingAlbum = new LinkedList<int>();
 			
@@ -562,9 +567,15 @@ public class BeatBox.ViewWrapper : VBox {
 			//debug("searching done\n");
 			list.set_show_next(potentialShowing);
 			albumView.set_show_next(potentialShowingAlbum);
+			*/
 			
+			list.set_show_next(lw.miller.media_results);
+			albumView.set_show_next(lw.miller.album_results);
+			
+			// FIXME: Avoid duplication!
+			// this should be unnecessary. media_results should be a hasmap from the beginning
 			showingMedias = new HashMap<int, int>();
-			foreach(int i in potentialShowing)
+			foreach(int i in lw.miller.media_results)
 				showingMedias.set(i, 1);
 			
 			needs_update = false;

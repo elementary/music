@@ -38,13 +38,18 @@ public class BeatBox.MillerColumns : Box {
 		TOP       = 1
 	}
 
-	public Position position {get; private set; default = Position.AUTOMATIC;}
+	// All the medias
+	public Collection<int> medias {get; private set;}
+
+	// Displayed medias (search results)
+	public LinkedList<int> media_results;
+	public LinkedList<int> album_results;
 
 	public LibraryManager lm {get; private set;}
 	public LibraryWindow lw {get; private set;}
 
 	public ViewWrapper.Hint view_type {get; private set;}
-	public Collection<int> medias {get; private set;}
+	public Position position {get; private set; default = Position.AUTOMATIC;}
 	public LinkedList<unowned MillerColumn> columns {get; private set;}
 
 	private Gtk.Menu column_chooser_menu;
@@ -196,31 +201,44 @@ public class BeatBox.MillerColumns : Box {
 
 		foreach (var col in columns) {
 			// Higher hierarchical levels (parent columns)
-			if (col.category <= category) {
+			if (col.category < category) {
 				if (col.category == MillerColumn.Category.GENRE) {
-					search_genre = (col.category == category) ? val : col.get_selected ();
+					search_genre = col.get_selected ();
 				}
 				else if (col.category == MillerColumn.Category.ARTIST) {
-					search_artist = (col.category == category) ? val : col.get_selected ();
+					search_artist = col.get_selected ();
 				}
 				else if (col.category == MillerColumn.Category.ALBUM) {
-					search_album = (col.category == category) ? val : col.get_selected ();
+					search_album = col.get_selected ();
 				}
 				else if (col.category == MillerColumn.Category.YEAR) {
-					var year = (col.category == category) ? val : col.get_selected ();
-					search_year = (year == "") ? -1 : int.parse (year);
+					search_year = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
 				}
 				else if (col.category == MillerColumn.Category.RATING) {
-					var rating = (col.category == category) ? val : col.get_selected ();
-					search_rating = (rating == "") ? -1 : int.parse (rating);
+					search_rating = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
+				}
+			} else if (col.category == category) {
+				if (col.category == MillerColumn.Category.GENRE) {
+					search_genre = val;
+				}
+				else if (col.category == MillerColumn.Category.ARTIST) {
+					search_artist = val;
+				}
+				else if (col.category == MillerColumn.Category.ALBUM) {
+					search_album = val;
+				}
+				else if (col.category == MillerColumn.Category.YEAR) {
+					search_year = (val == "") ? -1 : int.parse (val);
+				}
+				else if (col.category == MillerColumn.Category.RATING) {
+					search_rating = (val == "") ? -1 : int.parse (val);
 				}
 			}
 		}
 
 		// Perform search
-		LinkedList<int> search_results;
 
-		lm.do_search (medias, out search_results, null, null, null, null, hint,
+		lm.do_search (medias, out media_results, out album_results, null, null, null, hint,
 		              lw.searchField.get_text (),
 		              search_artist, search_album, search_genre, search_year, search_rating);
 
@@ -230,7 +248,7 @@ public class BeatBox.MillerColumns : Box {
 			if (column.category > category) {
 				var column_set = new HashMap<string, int> ();
 
-				foreach(int id in search_results) {
+				foreach(int id in media_results) {
 					var media = lm.media_from_id(id);
 					string _val = "";
 
@@ -289,15 +307,13 @@ public class BeatBox.MillerColumns : Box {
 		}
 		// </to_remove>
 
-		LinkedList<int> searched_medias, searched_medias_albums;
-
-		lm.do_search (medias, out searched_medias, out searched_medias_albums, null, null, null,
+		lm.do_search (medias, out media_results, out album_results, null, null, null,
 		              hint, lw.searchField.get_text ());
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();
 
-			foreach (int id in searched_medias) {
+			foreach (int id in media_results) {
 				var media = lm.media_from_id (id);
 				string val = "";
 
