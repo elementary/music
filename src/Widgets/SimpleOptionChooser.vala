@@ -30,9 +30,6 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 	Gtk.Image enabled;
 	Gtk.Image disabled;
 
-	// Margin added at each side of the icon
-	private const int BORDER_WIDTH = 3; //px
-
 	int clicked_index;
 	int previous_index; // for left click
 	bool toggling;
@@ -59,13 +56,6 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 
 		clicked_index = 0;
 		previous_index = 0;
-
-		int enabled_size = enabled.get_pixel_size ();
-		int disabled_size = disabled.get_pixel_size ();
-		int size = (enabled_size > disabled_size) ? enabled_size : disabled_size;
-
-		width_request = size + BORDER_WIDTH;
-		height_request = width_request;
 
 		// make the event box transparent
 		set_above_child(true);

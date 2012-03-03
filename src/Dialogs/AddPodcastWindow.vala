@@ -88,7 +88,7 @@ public class BeatBox.AddPodcastWindow : Window {
 		/* add controls to form */
 		HButtonBox bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
-		bottomButtons.set_spacing (10);
+		bottomButtons.set_spacing (6);
 		bottomButtons.pack_start(_cancel, false, false, 0);
 		bottomButtons.pack_end(_save, false, false, 0);
 

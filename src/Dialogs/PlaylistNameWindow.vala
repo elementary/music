@@ -69,7 +69,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 		
 		/* add controls to form */
 		HButtonBox bottomButtons = new HButtonBox();
-		bottomButtons.set_spacing (10);
+		bottomButtons.set_spacing (6);
 		bottomButtons.set_layout(ButtonBoxStyle.END);
 		bottomButtons.pack_end(_cancel, false, false, 0);
 		bottomButtons.pack_end(_save, false, false, 0);
