@@ -29,9 +29,10 @@ public class BeatBox.PlaylistNameWindow : Window {
 	VBox content;
 	HBox padding;
 	
-	public Entry _name;
-	public Button _save;
-	
+	public Entry _name {get; private set;}
+	public Button _save {get; private set;}
+	public Button _cancel {get; private set;}
+
 	public signal void playlist_saved(Playlist p);
 	
 	public PlaylistNameWindow(LibraryWindow lw, Playlist original) {
@@ -51,14 +52,15 @@ public class BeatBox.PlaylistNameWindow : Window {
 		
 		_original = original;
 		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 10);
+		content = new VBox(false, 12);
+		padding = new HBox(false, 12);
 		
 		/* start out by creating all category labels */
 		Label nameLabel = new Label(_("Name of Playlist"));
 		_name = new Entry();
 		_save = new Button.with_label(_("Done"));
-		
+		_cancel = new Button.with_label (_("Cancel"));
+
 		/* set up controls */
 		nameLabel.xalign = 0.0f;
 		nameLabel.set_markup("<b>%s</b>".printf(_("Name of Playlist")));
@@ -67,24 +69,31 @@ public class BeatBox.PlaylistNameWindow : Window {
 		
 		/* add controls to form */
 		HButtonBox bottomButtons = new HButtonBox();
+		bottomButtons.set_spacing (10);
 		bottomButtons.set_layout(ButtonBoxStyle.END);
+		bottomButtons.pack_end(_cancel, false, false, 0);
 		bottomButtons.pack_end(_save, false, false, 0);
 		
-		content.pack_start(wrap_alignment(nameLabel, 10, 0, 0, 0), false, true, 0);
-		content.pack_start(wrap_alignment(_name, 0, 10, 0, 10), false, true, 0);
-		content.pack_start(bottomButtons, false, false, 10);
+		content.pack_start(wrap_alignment(nameLabel, 12, 0, 0, 0), false, true, 0);
+		content.pack_start(wrap_alignment(_name, 0, 12, 0, 12), false, true, 0);
+		content.pack_start(bottomButtons, false, false, 12);
 		
-		padding.pack_start(content, true, true, 10);
+		padding.pack_start(content, true, true, 12);
 		
 		add(padding);
 		
 		show_all();
-		
+
 		_save.clicked.connect(saveClicked);
+		_cancel.clicked.connect (cancel_clicked);
 		_name.activate.connect(nameActivate);
 		_name.changed.connect(nameChanged);
 	}
-	
+
+	void cancel_clicked () {
+		destroy ();
+	}
+
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
 		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
 		alignment.top_padding = top;

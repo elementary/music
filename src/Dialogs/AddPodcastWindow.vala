@@ -20,9 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* Merely a place holder for multiple pieces of information regarding
- * the current media playing. Mostly here because of dependence. */
-
 using Gtk;
 
 public class BeatBox.AddPodcastWindow : Window {
@@ -35,6 +32,7 @@ public class BeatBox.AddPodcastWindow : Window {
 	Gtk.Image _is_valid;
 	Gtk.Spinner _is_working;
 	Button _save;
+	Button _cancel;
 	
 	Gdk.Pixbuf not_valid;
 	Gdk.Pixbuf valid;
@@ -52,9 +50,7 @@ public class BeatBox.AddPodcastWindow : Window {
 		
 		title = (_("Add Podcast"));
 		
-		//set_default_size(400, -1);
 		set_size_request(400, -1);
-		//resize(400, -1);
 		
 		this.resizable = false;
 		
@@ -64,8 +60,8 @@ public class BeatBox.AddPodcastWindow : Window {
 		this.set_transient_for(lw);
 		this.destroy_with_parent = true;
 		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 10);
+		content = new VBox(false, 12);
+		padding = new HBox(false, 12);
 		
 		/* get pixbufs */
 		valid = Icons.PROCESS_COMPLETED_ICON.render (IconSize.MENU);
@@ -82,7 +78,7 @@ public class BeatBox.AddPodcastWindow : Window {
 		_is_valid = new Gtk.Image.from_pixbuf(not_valid);
 		_is_working = new Gtk.Spinner();
 		_save = new Button.with_label(_("Add"));
-		
+		_cancel = new Button.with_label(_("Cancel"));
 		/* set up controls */
 		sourceLabel.xalign = 0.0f;
 		sourceLabel.set_markup("<b>%s</b>".printf(_("Podcast RSS Source")));
@@ -92,19 +88,21 @@ public class BeatBox.AddPodcastWindow : Window {
 		/* add controls to form */
 		HButtonBox bottomButtons = new HButtonBox();
 		bottomButtons.set_layout(ButtonBoxStyle.END);
+		bottomButtons.set_spacing (10);
+		bottomButtons.pack_start(_cancel, false, false, 0);
 		bottomButtons.pack_end(_save, false, false, 0);
-		
+
 		/* source vbox */
 		HBox sourceBox = new HBox(false, 6);
 		sourceBox.pack_start(_source, true, true, 0);
 		sourceBox.pack_end(_is_valid, false, false, 0);
 		sourceBox.pack_end(_is_working, false, false, 0);
 		
-		content.pack_start(wrap_alignment(sourceLabel, 10, 0, 0, 0), false, true, 0);
-		content.pack_start(wrap_alignment(sourceBox, 0, 10, 0, 0), false, true, 0);
-		content.pack_start(bottomButtons, false, false, 10);
+		content.pack_start(wrap_alignment(sourceLabel, 12, 0, 0, 0), false, true, 0);
+		content.pack_start(wrap_alignment(sourceBox, 0, 12, 0, 0), false, true, 0);
+		content.pack_start(bottomButtons, false, false, 12);
 		
-		padding.pack_start(content, true, true, 10);
+		padding.pack_start(content, true, true, 12);
 		
 		add(padding);
 		
@@ -118,6 +116,7 @@ public class BeatBox.AddPodcastWindow : Window {
 		sourceChanged();
 		
 		_save.clicked.connect(saveClicked);
+		_cancel.clicked.connect(cancel_clicked);
 		_source.activate.connect(sourceActivate);
 		_source.changed.connect(sourceChanged);
 	}
@@ -132,14 +131,18 @@ public class BeatBox.AddPodcastWindow : Window {
 		alignment.add(widget);
 		return alignment;
 	}
-	
+
+	void cancel_clicked () {
+		destroy ();
+	}
+
 	void saveClicked() {
 		var success = lw.lm.pm.parse_new_rss(_source.get_text());
 		
 		if(success)
 			this.destroy();
 		else {
-			lw.doAlert("No Podcasts Found", "The provided source is invalid. Make sure you are entering an RSS feed in XML format.");
+			lw.doAlert(_("No Podcasts Found"), _("The provided source is invalid. Make sure you are entering an RSS feed in XML format."));
 		}
 	}
 	
