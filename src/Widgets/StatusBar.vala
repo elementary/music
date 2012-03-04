@@ -39,7 +39,7 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
     private string STATUS_TEXT_FORMAT = _("%s, %s, %s");
 
     private const string STATUSBAR_STYLESHEET = """
-        BeatBoxStatusBar.toolbar {
+        BeatBoxStatusBar {
             border-bottom-width: 0;
             border-right-width: 0;
             border-left-width: 0;
@@ -47,7 +47,8 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
             -GtkWidget-window-dragging: false;
         }
 
-        BeatBoxStatusBar.toolbar .button {
+        /* This prevents the huge vertical padding */
+        BeatBoxStatusBar .button {
             padding: 0px;
         }
     """;
@@ -62,6 +63,10 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
         catch (Error err) {
             warning (err.message);
         }
+
+        /* Get rid of the "toolbar" class to avoid inheriting its style,
+           since we want the widget to look more like a normal statusbar. */
+        get_style_context ().remove_class (STYLE_CLASS_TOOLBAR);
 
         context = new StyleContext ();
         context.add_provider_for_screen (get_screen (), style_provider, STYLE_PROVIDER_PRIORITY_THEME);
