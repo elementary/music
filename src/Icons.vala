@@ -149,7 +149,7 @@ namespace Icons {
 	/**
 	 * Loads icon information and renders [preloaded] pixbufs
 	 **/
-	public void load () {
+	public void init () {
 
 		// 128 x 128
 		DEFAULT_ALBUM_ART = new BeatBox.Icon ("media-audio", 128, Type.MIMETYPE, FileType.PNG, true);

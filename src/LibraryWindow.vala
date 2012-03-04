@@ -106,6 +106,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// Init LibNotify
 		Notify.init ("beatbox");
 
+		// Load icon information
+		Icons.init ();
+
 		//this is used by many objects, is the media backend
 		lm = new BeatBox.LibraryManager(settings, this, args);
 
@@ -175,9 +178,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	public void build_ui() {
 		// simple message to terminal
 		message ("Building user interface\n");
-
-		// Load icon information
-		Icons.load ();
 
 		// Setup base color
 		var unused_icon_view = new IconView();
