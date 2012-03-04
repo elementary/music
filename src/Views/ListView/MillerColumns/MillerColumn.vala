@@ -67,6 +67,9 @@ public class BeatBox.MillerColumns : Box {
 
 		columns = new LinkedList<unowned MillerColumn> ();
 
+		_media_results = new LinkedList<int> ();
+		_album_results = new LinkedList<int> ();
+
 		column_chooser_menu = new Gtk.Menu ();
 
 		// Inserting columns

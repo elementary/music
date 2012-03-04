@@ -83,6 +83,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	// basic file stuff
 	ImageMenuItem libraryOperations;
+	Gtk.Menu settingsMenu;
 	Gtk.Menu libraryOperationsMenu;
 	Gtk.MenuItem fileSetMusicFolder;
 	Gtk.MenuItem fileImportMusic;
@@ -92,8 +93,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	// Base color
 	public static Gdk.RGBA BASE_COLOR;
-
-	Gtk.Menu settingsMenu;
 
 	public Notify.Notification notification;
 
