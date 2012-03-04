@@ -81,8 +81,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		loveMedia.relief = ReliefStyle.NONE;
 		banMedia.relief = ReliefStyle.NONE;
 		
-		var lastfm_love_icon = Icons.LASTFM_LOVE_ICON.render (IconSize.MENU);
-		var lastfm_ban_icon = Icons.LASTFM_BAN_ICON.render (IconSize.MENU);
+		var lastfm_love_icon = Icons.LASTFM_LOVE.render (IconSize.MENU);
+		var lastfm_ban_icon = Icons.LASTFM_BAN.render (IconSize.MENU);
 		
 		loveMedia.set_image(new Image.from_pixbuf(lastfm_love_icon));
 		banMedia.set_image(new Image.from_pixbuf(lastfm_ban_icon));

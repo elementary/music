@@ -64,8 +64,8 @@ public class BeatBox.AddPodcastWindow : Window {
 		padding = new HBox(false, 12);
 		
 		/* get pixbufs */
-		valid = Icons.PROCESS_COMPLETED_ICON.render (IconSize.MENU);
-		not_valid = Icons.PROCESS_ERROR_ICON.render (IconSize.MENU);
+		valid = Icons.PROCESS_COMPLETED.render (IconSize.MENU);
+		not_valid = Icons.PROCESS_ERROR.render (IconSize.MENU);
 		
 		if(valid == null)
 			valid = Icons.render_icon(Gtk.Stock.YES, IconSize.MENU);

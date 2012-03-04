@@ -82,7 +82,7 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 				if(File.new_for_path(lm.media_from_id(i).getAlbumArtPath()).query_exists())
 					notify_pix = new Gdk.Pixbuf.from_file(lm.media_from_id(i).getAlbumArtPath());
 				else
-					notify_pix = Icons.BEATBOX_ICON.render(Gtk.IconSize.DIALOG);
+					notify_pix = Icons.BEATBOX.render(Gtk.IconSize.DIALOG);
 				
 				if(notify_pix != null) {
 					lw.notification.set_image_from_pixbuf(notify_pix);
