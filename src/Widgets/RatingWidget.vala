@@ -49,12 +49,12 @@ public class BeatBox.RatingWidget : Gtk.EventBox {
         }
 
         if (symbolic) {
-            starred = Icons.STARRED_SYMBOLIC_ICON.render (size, context);
-            not_starred = Icons.NOT_STARRED_SYMBOLIC_ICON.render (size, context);
+            starred = Icons.STARRED_SYMBOLIC.render (size, context);
+            not_starred = Icons.NOT_STARRED_SYMBOLIC.render (size, context);
         }
         else {
-            starred = Icons.STARRED_ICON.render (size, null);
-            not_starred = Icons.NOT_STARRED_ICON.render (size, null);
+            starred = Icons.STARRED.render (size, null);
+            not_starred = Icons.NOT_STARRED.render (size, null);
         }
 
         width_request  = starred.width * 5;

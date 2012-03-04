@@ -57,7 +57,7 @@ public class TopDisplay : Box {
 		label.set_single_line_mode(false);
 		label.ellipsize = Pango.EllipsizeMode.END;
 		
-		cancelButton.set_image(Icons.PROCESS_STOP_ICON.render_image (IconSize.MENU));
+		cancelButton.set_image(Icons.PROCESS_STOP.render_image (IconSize.MENU));
 		
 		cancelButton.set_relief(Gtk.ReliefStyle.NONE);
 

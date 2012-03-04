@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 Victor Eduardo <victoreduardm@gmail.com>
+ * Copyright (c) 2012 BeatBox Developers
  *
  * This is a free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License as
@@ -16,6 +16,8 @@
  * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
+ * Authored by: Victor Eduardo <victoreduardm@gmail.com>
+ *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
 using Gtk;
@@ -31,32 +33,43 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
     private Box left_box;
     private Box right_box;
 
-    string STATUSBAR_FORMAT = _("%s, %s, %s");
+    private CssProvider style_provider;
+    private StyleContext context;
 
-    private const string STYLESHEET = """
+    private string STATUS_TEXT_FORMAT = _("%s, %s, %s");
+
+    private const string STATUSBAR_STYLESHEET = """
         BeatBoxStatusBar {
-            padding: 1px;
-            border-radius: 0;
-            border-left-width: 0;
-            border-right-width: 0;
             border-bottom-width: 0;
+            border-right-width: 0;
+            border-left-width: 0;
 
-            -GtkWidget-window-dragging: false;            
+            -GtkWidget-window-dragging: false;
+        }
+
+        /* This prevents the huge vertical padding */
+        BeatBoxStatusBar .button {
+            padding: 0px;
         }
     """;
 
     public StatusBar () {
-        var style_provider = new CssProvider ();
+
+        style_provider = new CssProvider ();
 
         try {
-            style_provider.load_from_data (STYLESHEET, -1);
+            style_provider.load_from_data (STATUSBAR_STYLESHEET, -1);
         }
         catch (Error err) {
             warning (err.message);
         }
 
-        this.get_style_context ().add_provider (style_provider, STYLE_PROVIDER_PRIORITY_THEME);
-        this.get_style_context ().remove_class (STYLE_CLASS_TOOLBAR);
+        /* Get rid of the "toolbar" class to avoid inheriting its style,
+           since we want the widget to look more like a normal statusbar. */
+        get_style_context ().remove_class (STYLE_CLASS_TOOLBAR);
+
+        context = new StyleContext ();
+        context.add_provider_for_screen (get_screen (), style_provider, STYLE_PROVIDER_PRIORITY_THEME);
 
         status_label = new Label ("");
         status_label.set_justify (Justification.CENTER);
@@ -123,7 +136,7 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
         if (total_mbs < 1000)
             size_text = _("%i MB").printf (total_mbs);
         else
-            size_text = _("%.2f GB").printf ((float)(total_mbs/1000.0f));
+            size_text = _("%.2f GB").printf ((double)total_mbs/1000.0);
 
         switch (media_type) {
             case ViewWrapper.Hint.MUSIC:
@@ -145,6 +158,7 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
 
         medias_text = "%i %s".printf ((int)total_items, media_description);
 
-        status_label.set_text (STATUSBAR_FORMAT.printf (medias_text, time_text, size_text));
+        status_label.set_text (STATUS_TEXT_FORMAT.printf (medias_text, time_text, size_text));
     }
 }
+

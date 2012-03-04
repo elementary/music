@@ -66,42 +66,42 @@ namespace Icons {
 	public BeatBox.Icon MUSIC_FOLDER;
 
 	// 22 x 22
-	public BeatBox.Icon HISTORY_ICON;
+	public BeatBox.Icon HISTORY;
 
 	// 16 x 16
-	public BeatBox.Icon BEATBOX_ICON;
-	public BeatBox.Icon RADIO_ICON;
-	public BeatBox.Icon MUSIC_ICON;
-	public BeatBox.Icon PODCAST_ICON;
-	public BeatBox.Icon AUDIOBOOK_ICON;
-	public BeatBox.Icon AUDIO_CD_ICON;
-	public BeatBox.Icon PLAYLIST_ICON;
-	public BeatBox.Icon SMART_PLAYLIST_ICON;
-	public BeatBox.Icon LASTFM_LOVE_ICON;
-	public BeatBox.Icon LASTFM_BAN_ICON;
-	public BeatBox.Icon STARRED_ICON;
-	public BeatBox.Icon NOT_STARRED_ICON;
-	public BeatBox.Icon NEW_PODCAST_ICON;
+	public BeatBox.Icon BEATBOX;
+	public BeatBox.Icon RADIO;
+	public BeatBox.Icon MUSIC;
+	public BeatBox.Icon PODCAST;
+	public BeatBox.Icon AUDIOBOOK;
+	public BeatBox.Icon AUDIO_CD;
+	public BeatBox.Icon PLAYLIST;
+	public BeatBox.Icon SMART_PLAYLIST;
+	public BeatBox.Icon LASTFM_LOVE;
+	public BeatBox.Icon LASTFM_BAN;
+	public BeatBox.Icon STARRED;
+	public BeatBox.Icon NOT_STARRED;
+	public BeatBox.Icon NEW_PODCAST;
 
 	// SYMBOLIC ICONS
 	public BeatBox.Icon PANE_HIDE_SYMBOLIC;
 	public BeatBox.Icon PANE_SHOW_SYMBOLIC;
 	public BeatBox.Icon MEDIA_PLAY_SYMBOLIC;
 	public BeatBox.Icon MEDIA_PAUSE_SYMBOLIC;
-	public BeatBox.Icon STARRED_SYMBOLIC_ICON;
-	public BeatBox.Icon NOT_STARRED_SYMBOLIC_ICON;
-	public BeatBox.Icon PROCESS_COMPLETED_ICON;
-	public BeatBox.Icon PROCESS_ERROR_ICON;
-	public BeatBox.Icon PROCESS_STOP_ICON;
-	public BeatBox.Icon SHUFFLE_ON_ICON;
-	public BeatBox.Icon SHUFFLE_OFF_ICON;
-	public BeatBox.Icon REPEAT_ON_ICON;
-	public BeatBox.Icon REPEAT_ONCE_ICON;
-	public BeatBox.Icon REPEAT_OFF_ICON;
-	public BeatBox.Icon VIEW_COLUMN_ICON;
-	public BeatBox.Icon VIEW_DETAILS_ICON;
-	public BeatBox.Icon VIEW_ICONS_ICON;
-	public BeatBox.Icon VIEW_VIDEO_ICON;
+	public BeatBox.Icon STARRED_SYMBOLIC;
+	public BeatBox.Icon NOT_STARRED_SYMBOLIC;
+	public BeatBox.Icon PROCESS_COMPLETED;
+	public BeatBox.Icon PROCESS_ERROR;
+	public BeatBox.Icon PROCESS_STOP;
+	public BeatBox.Icon SHUFFLE_ON;
+	public BeatBox.Icon SHUFFLE_OFF;
+	public BeatBox.Icon REPEAT_ON;
+	public BeatBox.Icon REPEAT_ONCE;
+	public BeatBox.Icon REPEAT_OFF;
+	public BeatBox.Icon VIEW_COLUMN;
+	public BeatBox.Icon VIEW_DETAILS;
+	public BeatBox.Icon VIEWS;
+	public BeatBox.Icon VIEW_VIDEO;
 
 	/**
 	 * RENDERED ICONS.
@@ -149,51 +149,51 @@ namespace Icons {
 	/**
 	 * Loads icon information and renders [preloaded] pixbufs
 	 **/
-	public void load () {
+	public void init () {
 
 		// 128 x 128
 		DEFAULT_ALBUM_ART = new BeatBox.Icon ("media-audio", 128, Type.MIMETYPE, FileType.PNG, true);
 		MUSIC_FOLDER = new BeatBox.Icon ("folder-music", 128, Type.MIMETYPE, null, true);
 
 		// 22 x 22
-		HISTORY_ICON = new BeatBox.Icon ("document-open-recent", 22, Type.ACTION, null, false);
+		HISTORY = new BeatBox.Icon ("document-open-recent", 22, Type.ACTION, null, false);
 
 		// 16 x 16
-		BEATBOX_ICON = new BeatBox.Icon ("beatbox", 16, Type.APP, null, true);
-		RADIO_ICON = new BeatBox.Icon ("internet-radio", 16, Type.MIMETYPE, null, true);
-		MUSIC_ICON = new BeatBox.Icon ("library-music", 16, Type.MIMETYPE, null, true);
-		PODCAST_ICON = new BeatBox.Icon ("library-podcast", 16, Type.MIMETYPE, null, true);
-		AUDIOBOOK_ICON = new BeatBox.Icon ("library-audiobook", 16, Type.MIMETYPE, null, true);
-		AUDIO_CD_ICON = new BeatBox.Icon ("media-cdrom-audio", 16, Type.MIMETYPE, null, true);
-		PLAYLIST_ICON = new BeatBox.Icon ("playlist", 16, Type.MIMETYPE, null, true);
-		SMART_PLAYLIST_ICON = new BeatBox.Icon ("playlist-automatic", 16, Type.MIMETYPE, null, true);
-		LASTFM_LOVE_ICON = new BeatBox.Icon ("lastfm-love", 16, Type.ACTION, null, true);
-		LASTFM_BAN_ICON = new BeatBox.Icon ("lastfm-ban", 16, Type.ACTION, null, true);
-		STARRED_ICON = new BeatBox.Icon ("starred", 16, Type.STATUS, null, true);
-		NOT_STARRED_ICON = new BeatBox.Icon ("non-starred", 16, Type.STATUS, null, true);
-		NEW_PODCAST_ICON = new BeatBox.Icon ("podcast-new", 16, Type.STATUS, null, true);
+		BEATBOX = new BeatBox.Icon ("beatbox", 16, Type.APP, null, true);
+		RADIO = new BeatBox.Icon ("internet-radio", 16, Type.MIMETYPE, null, true);
+		MUSIC = new BeatBox.Icon ("library-music", 16, Type.MIMETYPE, null, true);
+		PODCAST = new BeatBox.Icon ("library-podcast", 16, Type.MIMETYPE, null, true);
+		AUDIOBOOK = new BeatBox.Icon ("library-audiobook", 16, Type.MIMETYPE, null, true);
+		AUDIO_CD = new BeatBox.Icon ("media-cdrom-audio", 16, Type.MIMETYPE, null, true);
+		PLAYLIST = new BeatBox.Icon ("playlist", 16, Type.MIMETYPE, null, true);
+		SMART_PLAYLIST = new BeatBox.Icon ("playlist-automatic", 16, Type.MIMETYPE, null, true);
+		LASTFM_LOVE = new BeatBox.Icon ("lastfm-love", 16, Type.ACTION, null, true);
+		LASTFM_BAN = new BeatBox.Icon ("lastfm-ban", 16, Type.ACTION, null, true);
+		STARRED = new BeatBox.Icon ("starred", 16, Type.STATUS, null, true);
+		NOT_STARRED = new BeatBox.Icon ("non-starred", 16, Type.STATUS, null, true);
+		NEW_PODCAST = new BeatBox.Icon ("podcast-new", 16, Type.STATUS, null, true);
 
 		// SYMBOLIC ICONS (16 x 16)
 
 		PANE_SHOW_SYMBOLIC = new BeatBox.Icon ("pane-show-symbolic", 16, Type.ACTION, null, true);
 		PANE_HIDE_SYMBOLIC = new BeatBox.Icon ("pane-hide-symbolic", 16, Type.ACTION, null, true);
-		REPEAT_ONCE_ICON = new BeatBox.Icon ("media-playlist-repeat-one-symbolic", 16, Type.STATUS, null, true);
-		REPEAT_OFF_ICON = new BeatBox.Icon ("media-playlist-no-repeat-symbolic", 16, Type.STATUS, null, true);
-		SHUFFLE_OFF_ICON = new BeatBox.Icon ("media-playlist-no-shuffle-symbolic", 16, Type.STATUS, null, true);
+		REPEAT_ONCE = new BeatBox.Icon ("media-playlist-repeat-one-symbolic", 16, Type.STATUS, null, true);
+		REPEAT_OFF = new BeatBox.Icon ("media-playlist-no-repeat-symbolic", 16, Type.STATUS, null, true);
+		SHUFFLE_OFF = new BeatBox.Icon ("media-playlist-no-shuffle-symbolic", 16, Type.STATUS, null, true);
 
 		MEDIA_PLAY_SYMBOLIC = new BeatBox.Icon ("media-playback-start-symbolic", 16, Type.ACTION, null, false);
 		MEDIA_PAUSE_SYMBOLIC = new BeatBox.Icon ("media-playback-pause-symbolic", 16, Type.ACTION, null, false);
-		STARRED_SYMBOLIC_ICON = new BeatBox.Icon ("starred-symbolic", 16, Type.STATUS, null, false);
-		NOT_STARRED_SYMBOLIC_ICON = new BeatBox.Icon ("non-starred-symbolic", 16, Type.STATUS, null, false);
-		PROCESS_COMPLETED_ICON = new BeatBox.Icon ("process-completed-symbolic", 16, Type.STATUS, null, false);
-		PROCESS_ERROR_ICON = new BeatBox.Icon ("process-error-symbolic", 16, Type.STATUS, null, false);
-		PROCESS_STOP_ICON = new BeatBox.Icon ("process-stop-symbolic", 16, Type.ACTION, null, false);
-		SHUFFLE_ON_ICON = new BeatBox.Icon ("media-playlist-shuffle-symbolic", 16, Type.STATUS, null, false);
-		REPEAT_ON_ICON = new BeatBox.Icon ("media-playlist-repeat-symbolic", 16, Type.STATUS, null, false);
-		VIEW_COLUMN_ICON = new BeatBox.Icon ("view-list-column-symbolic", 16, Type.ACTION, null, false);
-		VIEW_DETAILS_ICON =new BeatBox.Icon ("view-list-details-symbolic", 16, Type.ACTION, null, false);
-		VIEW_ICONS_ICON = new BeatBox.Icon ("view-list-icons-symbolic", 16, Type.ACTION, null, false);
-		VIEW_VIDEO_ICON = new BeatBox.Icon ("view-list-video-symbolic", 16, Type.ACTION, null, false);
+		STARRED_SYMBOLIC = new BeatBox.Icon ("starred-symbolic", 16, Type.STATUS, null, false);
+		NOT_STARRED_SYMBOLIC = new BeatBox.Icon ("non-starred-symbolic", 16, Type.STATUS, null, false);
+		PROCESS_COMPLETED = new BeatBox.Icon ("process-completed-symbolic", 16, Type.STATUS, null, false);
+		PROCESS_ERROR = new BeatBox.Icon ("process-error-symbolic", 16, Type.STATUS, null, false);
+		PROCESS_STOP = new BeatBox.Icon ("process-stop-symbolic", 16, Type.ACTION, null, false);
+		SHUFFLE_ON = new BeatBox.Icon ("media-playlist-shuffle-symbolic", 16, Type.STATUS, null, false);
+		REPEAT_ON = new BeatBox.Icon ("media-playlist-repeat-symbolic", 16, Type.STATUS, null, false);
+		VIEW_COLUMN = new BeatBox.Icon ("view-list-column-symbolic", 16, Type.ACTION, null, false);
+		VIEW_DETAILS =new BeatBox.Icon ("view-list-details-symbolic", 16, Type.ACTION, null, false);
+		VIEWS = new BeatBox.Icon ("view-list-icons-symbolic", 16, Type.ACTION, null, false);
+		VIEW_VIDEO = new BeatBox.Icon ("view-list-video-symbolic", 16, Type.ACTION, null, false);
 
 		/* Render Pixbufs */
 		DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null);

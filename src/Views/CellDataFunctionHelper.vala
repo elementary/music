@@ -29,8 +29,8 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 	private Pixbuf starred;
 	
 	public CellDataFunctionHelper(LibraryManager lm) {
-		this.starred = Icons.STARRED_ICON.render (IconSize.MENU, null);
-		this.not_starred = Icons.NOT_STARRED_ICON.render (IconSize.MENU, null);
+		this.starred = Icons.STARRED.render (IconSize.MENU, null);
+		this.not_starred = Icons.NOT_STARRED.render (IconSize.MENU, null);
 		
 		_canvas = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, starred.width * 5, starred.height);
 	}

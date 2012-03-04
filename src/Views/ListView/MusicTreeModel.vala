@@ -51,9 +51,9 @@ public class BeatBox.MusicTreeModel : BaseTreeModel {
 		_columns = column_types;
 
 		_playing = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
-		_completed = Icons.PROCESS_COMPLETED_ICON.get_gicon ();
+		_completed = Icons.PROCESS_COMPLETED.get_gicon ();
 		_saved_locally = new GLib.ThemedIcon.with_default_fallbacks (Gtk.Stock.SAVE);
-		_new_podcast = Icons.NEW_PODCAST_ICON.get_gicon ();
+		_new_podcast = Icons.NEW_PODCAST.get_gicon ();
 
 		this.hint = hint;
 
