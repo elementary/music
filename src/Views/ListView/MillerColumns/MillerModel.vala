@@ -206,7 +206,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 		if (n_items > 1)
 			first_item_label = _("All %i %s").printf (n_items, category_text);
 		else
-			first_item_label = _("All");
+			first_item_label = _("All %s").printf (category_text);
 
 		rows.set ((SequenceIter<string>)first_iter.user_data, first_item_label);
 	}

@@ -1,7 +1,6 @@
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012 BeatBox Developers
  *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or
@@ -41,15 +40,20 @@ public class BeatBox.MillerColumns : Box {
 	// All the medias
 	public Collection<int> medias {get; private set;}
 
-	// Displayed medias (search results)
-	public LinkedList<int> media_results;
-	public LinkedList<int> album_results;
+	// Search results
+	private LinkedList<int> _media_results;
+	private LinkedList<int> _album_results;
+
+	// Filtered media results. We provide the data. No need to search again outside
+	public LinkedList<int> media_results { get {return _media_results;} }
+	public LinkedList<int> album_results { get {return _album_results;} }
 
 	public LibraryManager lm {get; private set;}
 	public LibraryWindow lw {get; private set;}
 
 	public ViewWrapper.Hint view_type {get; private set;}
 	public Position position {get; private set; default = Position.AUTOMATIC;}
+
 	public LinkedList<unowned MillerColumn> columns {get; private set;}
 
 	private Gtk.Menu column_chooser_menu;
@@ -98,15 +102,15 @@ public class BeatBox.MillerColumns : Box {
 		top_menu_item = new RadioMenuItem.with_label (left_menu_item.get_group (), _("Top"));
 
 		(automatic_menu_item as CheckMenuItem).toggled.connect ( () => {
-			set_columns_position (Position.AUTOMATIC);		
+			set_columns_position (Position.AUTOMATIC);
 		});
 
 		(left_menu_item as CheckMenuItem).toggled.connect ( () => {
-			set_columns_position (Position.LEFT);		
+			set_columns_position (Position.LEFT);
 		});
 
 		(top_menu_item as CheckMenuItem).toggled.connect ( () => {
-			set_columns_position (Position.TOP);		
+			set_columns_position (Position.TOP);
 		});
 
 		switch (position) {
@@ -134,7 +138,7 @@ public class BeatBox.MillerColumns : Box {
 	public void set_columns_position (Position pos) {
 		position = pos;
 
-		debug ("selected_position = %i", (int) position);
+		debug ("selected_position = %s", position.to_string ());
 
 		lm.settings.set_miller_columns_position ((int) position);
 
@@ -149,6 +153,7 @@ public class BeatBox.MillerColumns : Box {
 			}
 		}
 
+		critical ("Couldn't find column %s", type.to_string ());
 		return null;
 	}
 
@@ -176,8 +181,14 @@ public class BeatBox.MillerColumns : Box {
 	}
 
 	private void column_selection_changed (MillerColumn.Category category, string val) {
+		debug (">>> COLUMN '%s' SELECTION CHANGED. RE-POPULATING MILLERS", category.to_string ());
 
-		/* FIXME: remove this code. See explanation below in populate_columns() */
+		// FIXME: remove this code. Each ViewWrapper will have its own MillerColumns object
+		// and thus we'll use this.view_type instead (of couse it's something that has to
+		// be fixed in ViewWrapper.vala and LibraryWindow.vala). There are serious performance
+		// issues with the current method (re-populating the same miller object).
+
+		/* @deprecated */
 		Widget w = lw.sideTree.getSelectedWidget();
 		ViewWrapper.Hint hint = ViewWrapper.Hint.MUSIC;
 
@@ -185,11 +196,12 @@ public class BeatBox.MillerColumns : Box {
 			hint = ((ViewWrapper)w).hint;
 		}
 		else {
-			return; // no need to populate if not viewing viewwrapper
-		}
+			// no need to populate if not viewing viewwrapper
+			return;
+		} /* end */
 
 		/**
-		 * Since the columns follow a hierarchical model, we have to re-populate all the columns
+		 * Since the columns follow a tree model, we have to re-populate all the columns
 		 * that have a lower hierarchical level.
 		 */
 
@@ -198,6 +210,8 @@ public class BeatBox.MillerColumns : Box {
 		var search_genre  = ""; // ~ All
 		var search_artist = ""; // ~ All
 		var search_album  = ""; // ~ All
+
+		debug (">> Getting search info from parent columns");
 
 		foreach (var col in columns) {
 			// Higher hierarchical levels (parent columns)
@@ -217,7 +231,8 @@ public class BeatBox.MillerColumns : Box {
 				else if (col.category == MillerColumn.Category.RATING) {
 					search_rating = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
 				}
-			} else if (col.category == category) {
+			}
+			else if (col.category == category) {
 				if (col.category == MillerColumn.Category.GENRE) {
 					search_genre = val;
 				}
@@ -238,17 +253,20 @@ public class BeatBox.MillerColumns : Box {
 
 		// Perform search
 
-		lm.do_search (medias, out media_results, out album_results, null, null, null, hint,
-		              lw.searchField.get_text (),
-		              search_artist, search_album, search_genre, search_year, search_rating);
+		lm.do_search (medias, out _media_results, out _album_results, null, null, null, hint,
+					  lw.searchField.get_text (),
+					  search_artist, search_album, search_genre, search_year, search_rating);
 
 		// Now re-populate the child columns
+
 		foreach (var column in columns) {
 			// Child columns
 			if (column.category > category) {
+
+				debug (">> Populating child column %s", column.category.to_string ());
 				var column_set = new HashMap<string, int> ();
 
-				foreach(int id in media_results) {
+				foreach(int id in _media_results) {
 					var media = lm.media_from_id(id);
 					string _val = "";
 
@@ -271,7 +289,7 @@ public class BeatBox.MillerColumns : Box {
 			}
 		}
 
-		// Now that we've re-populated the columns, emit the 'changed' signal
+		// Notify others about the change
 		changed ();
 	}
 
@@ -307,13 +325,13 @@ public class BeatBox.MillerColumns : Box {
 		}
 		// </to_remove>
 
-		lm.do_search (medias, out media_results, out album_results, null, null, null,
-		              hint, lw.searchField.get_text ());
+		lm.do_search (medias, out _media_results, out _album_results, null, null, null,
+					  hint, lw.searchField.get_text ());
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();
 
-			foreach (int id in media_results) {
+			foreach (int id in _media_results) {
 				var media = lm.media_from_id (id);
 				string val = "";
 
@@ -410,7 +428,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 		menu_item.toggled.connect (on_menu_item_toggled);
 		view.get_column (0).get_button ().button_press_event.connect (on_header_clicked);
-		view.get_selection ().changed.connect (selected_item_changed);
 		view.row_activated.connect (view_double_click);
 		view.key_press_event.connect (key_pressed);
 	}
@@ -432,7 +449,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 			visible_columns ++;
 		else
 			visible_columns --;
-
 
 		// Save settings
 		var visible_columns_list = new LinkedList<string> ();
@@ -476,9 +492,8 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 	// selects "All ..."
-	public void select_first_item () {
-		set_selected (null, get_selected () != "");
-		selection_changed (category, get_selected ()); // This will send "" as selected item
+	public void select_first_item (bool? notify = null) {
+		set_selected (null, true);
 	}
 
 	private bool on_header_clicked (Widget w, EventButton e) {
@@ -505,7 +520,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 	public void set_selected (string? val, bool notify = false) {
-		if (!lw.initializationFinished || !this.visible || val == _selected)
+		if (!lw.initializationFinished || val == _selected)
 			return;
 
 		_selected = val;
@@ -560,10 +575,12 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		if (items.size == model.iter_n_children (null))
 			return;
 
+		view.get_selection ().changed.disconnect (selected_item_changed);
+
 		items.unset ("");
 
 		if (items.get(get_selected()) == 0) {
-			select_first_item ();
+			select_first_item (false); // Don't notify
 		}
 
 		model = new MillerModel (get_category_text ());
@@ -573,7 +590,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		view.set_model (model);
 
 		// select selected item
-		view.get_selection ().changed.disconnect (selected_item_changed);
 		model.foreach (select_proper_string);
 		view.get_selection ().changed.connect (selected_item_changed);
 	}
