@@ -1023,26 +1023,38 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 				return;
 			}*/
 
-			string folder = "";
+			string folders_list = "";
+			string[] folders = {};
+			var _folders = new SList<string> ();
 			var file_chooser = new FileChooserDialog (_("Import Music"), this,
 									  FileChooserAction.SELECT_FOLDER,
 									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+			file_chooser.set_select_multiple (true);
 			file_chooser.set_local_only(true);
 
 			if (file_chooser.run () == ResponseType.ACCEPT) {
-				folder = file_chooser.get_filename();
+				_folders = file_chooser.get_filenames();
 			}
 			file_chooser.destroy ();
+			
+			for (int i=0;i< (int)(_folders.length ());i++) {
+                folders += _folders.nth_data (i);
+            }
 
-			if(folder != "" && folder != settings.getMusicFolder()) {
-				if(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
-					topDisplay.set_label_markup(_("<b>Importing</b> music from <b>%s</b> to library.").printf(folder));
-					topDisplay.show_progressbar();
+            for (int i=0;i<folders.length;i++) {
+			    if(folders[i] == "" || folders[i] != settings.getMusicFolder()) {
+			        folders_list += folders[i];
+			        if (i + 1 != folders.length)
+			            folders_list += ", ";
+			    }
+			}
+			if(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
+				topDisplay.set_label_markup(_("<b>Importing</b> music from <b>%s</b> to library.").printf(folders_list));
+				topDisplay.show_progressbar();
 
-					lm.add_folder_to_library(folder);
-					updateSensitivities();
-				}
+				lm.add_folder_to_library(folders[0], folders[1:folders.length]);
+				updateSensitivities();
 			}
 		}
 		else {
