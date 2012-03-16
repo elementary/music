@@ -251,6 +251,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		repeatChooser = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
 		infoPanelChooser = new SimpleOptionChooser.from_image (info_panel_hide, info_panel_show);
 
+		repeatChooser.setTooltip (_("Disable Repeat"), _("Enable Repeat"));
+		shuffleChooser.setTooltip (_("Disable Shuffle"), _("Enable Shuffle"));
 		infoPanelChooser.setTooltip (_("Hide Info Panel"), _("Show Info Panel"));
 		addPlaylistChooser.setTooltip (_("Add Playlist"));
 
