@@ -81,7 +81,7 @@ public class BeatBox.MusicTreeModel : BaseTreeModel {
 			if(column == 0)
 				val = s.rowid;
 			else if(column == 1) {
-				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid /* && is_current */ && _playing != null)
+				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current && _playing != null)
 					val = _playing;
 				else if(hint == ViewWrapper.Hint.CDROM && !s.isTemporary)
 					val = _completed;

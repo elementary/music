@@ -31,11 +31,8 @@ using Gee;
 
    TODO:
     - Sync media playing across all the views
-    - Implement hide and show methods and handle the view switcher and statusbar states from them
 
    FIXME:
-    - Fix similar treeview not being shown
-    - Fix treeviews not beign shown on empty libraries
     - Slow performance
 */
 
