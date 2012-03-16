@@ -52,8 +52,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		/* put it in event box so we can color background white */
 		EventBox eb = new EventBox();
 		
-		// paint the background color
-		eb.override_background_color (StateFlags.NORMAL, lw.BASE_COLOR);
+		// add View class
+		eb.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
 		eb.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE + 6, -1);
 
@@ -221,6 +221,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		updateCoverArt(false);
 	}
 	
+	/* FIXME: unused code
 	public virtual bool titleClicked(Gdk.EventButton event) {
 		try {
 			Thread.create<void*>(() => {
@@ -241,7 +242,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		return false;
 	}
-	
+	*/
 	public virtual void loveButtonClicked() {
 		lm.lfm.loveTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}

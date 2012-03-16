@@ -37,9 +37,9 @@ public class BeatBox.WarningLabel : EventBox {
 		}
 	}
 
-	public WarningLabel() {
+	public WarningLabel(string icon_name = "dialog-warning") {
 		errorLabel = new Label("");
-		warningIcon = Icons.render_image ("dialog-warning", Gtk.IconSize.DIALOG);
+		warningIcon = Icons.render_image (icon_name, Gtk.IconSize.DIALOG);
 
 		var content = new Box (Orientation.HORIZONTAL, 10);
 		var content_wrapper = new Box (Orientation.HORIZONTAL, 0);
@@ -62,8 +62,8 @@ public class BeatBox.WarningLabel : EventBox {
 
 		add(outer_box);
 
-		// Change background color.
-		override_background_color (Gtk.StateFlags.NORMAL, LibraryWindow.BASE_COLOR);
+		// Add view-like theming
+		get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
 		errorLabel.xalign = 0.5f;
 		errorLabel.set_justify(Justification.CENTER);
@@ -91,3 +91,4 @@ public class BeatBox.WarningLabel : EventBox {
 		errorLabel.set_markup(warning);
 	}
 }
+

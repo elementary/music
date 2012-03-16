@@ -26,6 +26,10 @@ using Gdk;
 using Gtk;
 using Gee;
 
+// FIXME: We've picked the wrong data structure here.
+// TODO: Switch to HashMaps.
+// TODO: Improve translations here and in the view model because the current system is too English-specific.
+
 public class BeatBox.MillerColumns : Box {
 
 	public signal void changed ();
@@ -40,35 +44,38 @@ public class BeatBox.MillerColumns : Box {
 	// All the medias
 	public Collection<int> medias {get; private set;}
 
+	public bool populated { get { return medias != null; } }
+
 	// Search results
 	private LinkedList<int> _media_results;
-	private LinkedList<int> _album_results;
+	//private LinkedList<int> _album_results;
 
 	// Filtered media results. We provide the data. No need to search again outside
 	public LinkedList<int> media_results { get {return _media_results;} }
-	public LinkedList<int> album_results { get {return _album_results;} }
+	//public LinkedList<int> album_results { get {return _album_results;} }
 
 	public LibraryManager lm {get; private set;}
 	public LibraryWindow lw {get; private set;}
 
 	public ViewWrapper.Hint view_type {get; private set;}
 	public Position position {get; private set; default = Position.AUTOMATIC;}
+	public Position actual_position {get; set; default = Position.LEFT;}
 
 	public LinkedList<unowned MillerColumn> columns {get; private set;}
 
 	private Gtk.Menu column_chooser_menu;
 
-	public MillerColumns(LibraryWindow lw, ViewWrapper.Hint view_type = ViewWrapper.Hint.MUSIC) {
-		this.lm = lw.lm;
-		this.lw = lw;
-		this.view_type = view_type;
+	public MillerColumns(ViewWrapper view_wrapper) {
+		this.lm = view_wrapper.lm;
+		this.lw = view_wrapper.lw;
+		this.view_type = view_wrapper.hint;
 
 		orientation = Orientation.HORIZONTAL;
 
 		columns = new LinkedList<unowned MillerColumn> ();
 
 		_media_results = new LinkedList<int> ();
-		_album_results = new LinkedList<int> ();
+		//_album_results = new LinkedList<int> ();
 
 		column_chooser_menu = new Gtk.Menu ();
 
@@ -101,8 +108,8 @@ public class BeatBox.MillerColumns : Box {
 		RadioMenuItem top_menu_item;
 
 		automatic_menu_item = new RadioMenuItem.with_label ((SList<RadioMenuItem>) null, _("Automatic"));
-		left_menu_item = new RadioMenuItem.with_label (automatic_menu_item.get_group (), _("Left"));
-		top_menu_item = new RadioMenuItem.with_label (left_menu_item.get_group (), _("Top"));
+		left_menu_item = new RadioMenuItem.with_label (automatic_menu_item.get_group (), _("On Left"));
+		top_menu_item = new RadioMenuItem.with_label (left_menu_item.get_group (), _("On Top"));
 
 		(automatic_menu_item as CheckMenuItem).toggled.connect ( () => {
 			set_columns_position (Position.AUTOMATIC);
@@ -186,23 +193,6 @@ public class BeatBox.MillerColumns : Box {
 	private void column_selection_changed (MillerColumn.Category category, string val) {
 		debug (">>> COLUMN '%s' SELECTION CHANGED. RE-POPULATING MILLERS", category.to_string ());
 
-		// FIXME: remove this code. Each ViewWrapper will have its own MillerColumns object
-		// and thus we'll use this.view_type instead (of couse it's something that has to
-		// be fixed in ViewWrapper.vala and LibraryWindow.vala). There are serious performance
-		// issues with the current method (re-populating the same miller object).
-
-		/* @deprecated */
-		Widget w = lw.sideTree.getSelectedWidget();
-		ViewWrapper.Hint hint = ViewWrapper.Hint.MUSIC;
-
-		if(w is ViewWrapper) {
-			hint = ((ViewWrapper)w).hint;
-		}
-		else {
-			// no need to populate if not viewing viewwrapper
-			return;
-		} /* end */
-
 		/**
 		 * Since the columns follow a tree model, we have to re-populate all the columns
 		 * that have a lower hierarchical level.
@@ -213,8 +203,6 @@ public class BeatBox.MillerColumns : Box {
 		var search_genre  = ""; // ~ All
 		var search_artist = ""; // ~ All
 		var search_album  = ""; // ~ All
-
-		debug (">> Getting search info from parent columns");
 
 		foreach (var col in columns) {
 			// Higher hierarchical levels (parent columns)
@@ -256,9 +244,9 @@ public class BeatBox.MillerColumns : Box {
 
 		// Perform search
 
-		lm.do_search (medias, out _media_results, out _album_results, null, null, null, hint,
-					  lw.searchField.get_text (),
-					  search_artist, search_album, search_genre, search_year, search_rating);
+		lm.do_search (medias, out _media_results, /*out _album_results*/ null, null, null, null, view_type,
+		              lw.searchField.get_text (),
+		              search_artist, search_album, search_genre, search_year, search_rating);
 
 		// Now re-populate the child columns
 
@@ -270,19 +258,19 @@ public class BeatBox.MillerColumns : Box {
 				var column_set = new HashMap<string, int> ();
 
 				foreach(int id in _media_results) {
-					var media = lm.media_from_id(id);
+					var _media = lm.media_from_id(id);
 					string _val = "";
 
 					if (column.category == MillerColumn.Category.GENRE)
-						_val = media.genre;
+						_val = _media.genre;
 					else if (column.category == MillerColumn.Category.ARTIST)
-						_val = media.album_artist;
+						_val = _media.album_artist;
 					else if (column.category == MillerColumn.Category.ALBUM)
-						_val = media.album;
+						_val = _media.album;
 					else if (column.category == MillerColumn.Category.YEAR)
-						_val = media.year.to_string ();
+						_val = _media.year.to_string ();
 					else if (column.category == MillerColumn.Category.RATING)
-						_val = media.rating.to_string ();
+						_val = _media.rating.to_string ();
 
 					column_set.set (_val, 1);
 				}
@@ -304,50 +292,33 @@ public class BeatBox.MillerColumns : Box {
 
 	public virtual void on_search_field_changed () {
 		if (visible) {
-			populate_columns("", medias);
+			populate(medias);
 		}
 	}
 
-	public void populate_columns (string s, Collection<int> medias) {
-		this.medias = medias;
+	public void populate(Collection<int> media, string? search = null) {
+		this.medias = media;
 
-		// FIXME: remove this code. Each ViewWrapper will have its own MillerColumns object
-		// and thus we'll use this.view_type instead (of couse it's something that has to
-		// be fixed in ViewWrapper.vala and LibraryWindow.vala). There are serious performance
-		// issues with the current method (re-populating the same miller object).
-
-		// <to_remove>
-		Widget w = lw.sideTree.getSelectedWidget();
-		ViewWrapper.Hint hint = ViewWrapper.Hint.MUSIC;
-
-		if (w is ViewWrapper) {
-			hint = ((ViewWrapper)w).hint;
-		}
-		else {
-			return; // no need to populate if not viewing viewwrapper
-		}
-		// </to_remove>
-
-		lm.do_search (medias, out _media_results, out _album_results, null, null, null,
-					  hint, lw.searchField.get_text ());
+		lm.do_search (media, out _media_results, /*out _album_results*/ null, null, null, null,
+		              view_type, search ?? lw.searchField.get_text ());
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();
 
 			foreach (int id in _media_results) {
-				var media = lm.media_from_id (id);
+				var _media = lm.media_from_id (id);
 				string val = "";
 
 				if (column.category == MillerColumn.Category.GENRE)
-					val = media.genre;
+					val = _media.genre;
 				else if (column.category == MillerColumn.Category.ARTIST)
-					val = media.album_artist;
+					val = _media.album_artist;
 				else if (column.category == MillerColumn.Category.ALBUM)
-					val = media.album;
+					val = _media.album;
 				else if (column.category == MillerColumn.Category.YEAR)
-					val = media.year.to_string ();
+					val = _media.year.to_string ();
 				else if (column.category == MillerColumn.Category.RATING)
-					val = media.rating.to_string ();
+					val = _media.rating.to_string ();
 
 				column_set.set (val, 1);
 			}

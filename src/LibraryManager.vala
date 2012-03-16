@@ -125,14 +125,17 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new medias play, this goes with it
 	public int _current_index;
 	public int _current_shuffled_index;
-	public BeatBox.MediaInfo media_info { set; get; }
+	public BeatBox.MediaInfo media_info { private set; get; }
+	
+	// Whether or not a media is being played. Returns true even if the media is paused
+	public bool media_active { get { return media_info.media != null; } }
 	
 	public bool playing;
 	bool _playing_queued_song;
-	public Repeat repeat { set; get; }
-	public Shuffle shuffle { set; get; }
+	public Repeat repeat;
+	public Shuffle shuffle;
 	public int next_gapless_id;
-	
+
 	
 	public enum Shuffle {
 		OFF,
@@ -270,7 +273,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					_playlists.unset(p.rowid);
 				}
 				else if(p.name == "autosaved_podcast") {
-				    critical("Need reimplementation");
+					// XXX: critical("Need reimplementation");
 					//podcast_setup = p.tvs;
 					_playlists.unset(p.rowid);
 				}
@@ -706,7 +709,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		foreach(Widget w in lw.mainViews.get_children()) {
 			if(!w.visible && w is ViewWrapper) {
 				ViewWrapper vw = (ViewWrapper)w;
-				vw.doUpdate(vw.currentView, vw.get_media_ids(), false, false, true);
+				vw.do_update(vw.current_view, vw.get_media_ids(), false, false, true);
 			}
 		}
 		
@@ -1405,7 +1408,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		// check that the file exists
 		if((settings.getMusicFolder() != "" && File.new_for_uri(m.uri).get_path().has_prefix(settings.getMusicFolder()) && !GLib.File.new_for_uri(m.uri).query_exists())) {
-			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list.get_style_context());
+			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
 			lw.media_not_found(id);
 			stopPlayback();

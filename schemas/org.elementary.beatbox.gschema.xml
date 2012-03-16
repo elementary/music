@@ -113,6 +113,11 @@
       <summary>Miller column width</summary>
       <description>Miller column width</description>
     </key>
+    <key type="i" name="miller-height">
+      <default>200</default>
+      <summary>Miller column height</summary>
+      <description>Miller column height</description>
+    </key>
     <key name="miller-columns-position" enum="miller-columns-position-type">
       <default>"Automatic"</default>
       <summary>Miller columns position</summary>

@@ -65,7 +65,7 @@ public class BeatBox.DeviceView : VBox {
 	}
 	
 	
-	public void set_is_current_view(bool val) {
+	public void set_as_current_view(bool val) {
 		if(val)
 			summary.refreshLists();
 	}

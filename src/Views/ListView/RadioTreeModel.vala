@@ -36,8 +36,10 @@ public class BeatBox.RadioTreeModel : BaseTreeModel {
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 	
 	/** Initialize data storage, columns, etc. **/
-	public RadioTreeModel(LibraryManager lm, LinkedList<string> column_types) {
-		this.lm = lm;
+	public RadioTreeModel(BaseListView rlv, LinkedList<string> column_types) {
+		this.lm = rlv.lm;
+		list_view = rlv;
+
 		_columns = column_types;
 		_playing = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
 

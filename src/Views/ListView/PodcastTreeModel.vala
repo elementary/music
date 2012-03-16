@@ -36,8 +36,10 @@ public class BeatBox.PodcastTreeModel : BaseTreeModel {
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 	
 	/** Initialize data storage, columns, etc. **/
-	public PodcastTreeModel(LibraryManager lm, LinkedList<string> column_types, TreeView parent) {
-		this.lm = lm;
+	public PodcastTreeModel(BaseListView plv, LinkedList<string> column_types, TreeView parent) {
+		this.lm = plv.lm;
+		list_view = plv;
+		
 		_columns = column_types;
 		_playing = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
 		_saved_locally = new GLib.ThemedIcon.with_default_fallbacks (Gtk.Stock.SAVE);

@@ -23,26 +23,26 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
+public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	LibraryManager lm;
 	LibraryWindow lw;
 	
-	public TreeIter library_iter;
-	public TreeIter library_music_iter;
-	public TreeIter library_podcasts_iter;
-	public TreeIter library_audiobooks_iter;
+	public TreeIter library_iter {get; private set;}
+	public TreeIter library_music_iter {get; private set;}
+	public TreeIter library_podcasts_iter {get; private set;}
+	public TreeIter library_audiobooks_iter {get; private set;}
+
+	public TreeIter devices_iter {get; private set;}
+	public TreeIter devices_cdrom_iter {get; private set;}
 	
-	public TreeIter devices_iter;
-	public TreeIter devices_cdrom_iter;
+	public TreeIter network_iter {get; private set;}
+	public TreeIter network_radio_iter {get; private set;}
+	public TreeIter network_store_iter {get; private set;}
 	
-	public TreeIter network_iter;
-	public TreeIter network_radio_iter;
-	public TreeIter network_store_iter;
-	
-	public TreeIter playlists_iter;
-	public TreeIter playlists_queue_iter;
-	public TreeIter playlists_history_iter;
-	public TreeIter playlists_similar_iter;
+	public TreeIter playlists_iter {get; private set;}
+	public TreeIter playlists_queue_iter {get; private set;}
+	public TreeIter playlists_history_iter {get; private set;}
+	public TreeIter playlists_similar_iter {get; private set;}
 	
 	//for podcast right click
 	Gtk.Menu podcastMenu;
@@ -76,7 +76,10 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public SideTreeView(LibraryManager lmm, LibraryWindow lww) {
 		this.lm = lmm;
 		this.lw = lww;
-		
+
+		// Setup theming
+		get_style_context().add_class (STYLE_CLASS_SIDEBAR);
+
 		lm.dm.device_added.connect(deviceAdded);
 		lm.dm.device_removed.connect(deviceRemoved);
 		
@@ -152,28 +155,72 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
 		this.drag_data_received.connect(dragReceived);
-		
-		this.show_all();
+
+		addBasicItems ();
+
+		//this.show_all();
 	}
-	
-	public void addBasicItems() {
+
+	/**
+	 * Adds the different sidebar categories.
+	 */
+	private void addBasicItems() {
 		library_iter = addItem(null, null, null, null, _("Library"), null);
 		devices_iter = addItem(null, null, null, null, _("Devices"), null);
 		network_iter = addItem(null, null, null, null, _("Network"), null);
 		playlists_iter = addItem(null, null, null, null, _("Playlists"), null);
 	}
-	
+
+	/**
+	 * Adds an item to the sidebar for the ViewWrapper object.
+	 * It chooses the appropiate category based on the object's hint property.
+	 *
+	 * FIXME: Add option to pass an icon (needed by the plugins).
+	 */
+	public TreeIter? add_item (ViewWrapper view_wrapper, string name) {
+		TreeIter? sidebar_category_iter = null;
+
+		// Decide which category to use
+		switch (view_wrapper.hint) {
+			case ViewWrapper.Hint.SIMILAR:
+			case ViewWrapper.Hint.QUEUE:
+			case ViewWrapper.Hint.HISTORY:
+				sidebar_category_iter = playlists_iter;
+				break;
+			case ViewWrapper.Hint.MUSIC:
+			case ViewWrapper.Hint.PODCAST:
+				sidebar_category_iter = library_iter;
+				break;
+			case ViewWrapper.Hint.STATION:
+			case ViewWrapper.Hint.NONE:
+				sidebar_category_iter = network_iter;
+				break;
+			case ViewWrapper.Hint.DEVICE_AUDIO:
+			case ViewWrapper.Hint.DEVICE_PODCAST:
+			case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
+				sidebar_category_iter = devices_iter;
+				break;
+			default:
+				sidebar_category_iter = playlists_iter;
+				break;
+		}
+
+		return addSideItem (sidebar_category_iter, null, view_wrapper, name, view_wrapper.hint);
+	}
+
+	/**
+	 * Adds an item to the sidebar. Unless you need a very exotic view, you shouldn't
+	 * use this method directly.
+	 */
 	public TreeIter? addSideItem(TreeIter? parent, GLib.Object? o, Widget w, string name, ViewWrapper.Hint hint) {
-		var music_icon = Icons.MUSIC.render (IconSize.MENU, null);
-		var podcast_icon = Icons.PODCAST.render (IconSize.MENU, null);
-		var history_icon = Icons.HISTORY.render (IconSize.MENU, null);
-		var smart_playlist_icon = Icons.SMART_PLAYLIST.render (IconSize.MENU, null);
 
 		if(hint == ViewWrapper.Hint.MUSIC && parent == library_iter) {
+			var music_icon = Icons.MUSIC.render (IconSize.MENU, null);
 			library_music_iter = addItem(parent, o, w, music_icon, name, null);
 			return library_music_iter;
 		}
 		else if(hint == ViewWrapper.Hint.PODCAST && parent == library_iter) {
+			var podcast_icon = Icons.PODCAST.render (IconSize.MENU, null);
 			library_podcasts_iter = addItem(parent, o, w, podcast_icon, name, null);
 			return library_podcasts_iter;
 		}
@@ -202,13 +249,13 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 
 			rv = addItem(parent, o, w, device_icon, name, null);
 
-			var dvw = new DeviceViewWrapper(lm, lw, d.get_medias(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
-			addItem(rv, o, dvw, music_icon, _("Music"), null);
+			var dvw = new DeviceViewWrapper(lw, d.get_medias(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
+			addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
 			lw.mainViews.pack_start(dvw, true, true, 0);
 			
 			if(d.supports_podcasts()) {
-				dvw = new DeviceViewWrapper(lm, lw, d.get_podcasts(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
-				addItem(rv, o, dvw, podcast_icon, _("Podcasts"), null);
+				dvw = new DeviceViewWrapper(lw, d.get_podcasts(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
+				addItem(rv, o, dvw, Icons.PODCAST.render (IconSize.MENU, null), _("Podcasts"), null);
 				lw.mainViews.pack_start(dvw, true, true, 0);
 			}
 			if(d.supports_audiobooks() && false) {
@@ -229,79 +276,29 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			return network_radio_iter;
 		}
 		else if(hint == ViewWrapper.Hint.SIMILAR && parent == playlists_iter) {
+			var smart_playlist_icon = Icons.SMART_PLAYLIST.render (IconSize.MENU, null);
 			playlists_similar_iter = addItem(parent, o, w, smart_playlist_icon, name, null);
 			return playlists_similar_iter;
 		}
 		else if(hint == ViewWrapper.Hint.QUEUE && parent == playlists_iter) {
+			var music_icon = Icons.MUSIC.render (IconSize.MENU, null);
 			playlists_queue_iter = addItem(parent, o, w, music_icon, name, null);
 			return playlists_queue_iter;
 		}
 		else if(hint == ViewWrapper.Hint.HISTORY && parent == playlists_iter) {
+			var history_icon = Icons.HISTORY.render (IconSize.MENU, null);
 			playlists_history_iter = addItem(parent, o, w, history_icon, name, null);
 			return playlists_history_iter;
 		}
-		else if(o is SmartPlaylist) {
-			TreeIter item;
-			TreeIter pivot;
-			tree.iter_children(out pivot, playlists_iter);
-			
-			do {
-				string tempName;
-				GLib.Object tempO;
-				tree.get(pivot, 0, out tempO, 4, out tempName);
-				
-				if(tempO != null && ((tempO is Playlist) || tempName > name)) {
-					tree.insert_before(out item, playlists_iter, pivot);
-					break;
-				}
-				else if(!tree.iter_next(ref pivot)) {
-					tree.append(out item, parent);
-					break;
-				}
-				
-			} while(true);
-			
-			tree.set(item, 0, o, 1, w, 2, true, 3, smart_playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
-			
-			if(visible) {
-				TreeIter? filterItem = convertToFilter(item);
-				if(filterItem != null)
-					setSelectedIter(filterItem);
-			}
-			
-			sideListSelectionChange();
-			return item;
+		else if(hint == ViewWrapper.Hint.SMART_PLAYLIST && parent == playlists_iter) {
+			var smart_playlist_icon = Icons.SMART_PLAYLIST.render (IconSize.MENU, null);
+			TreeIter smart_playlist_iter = addItem (parent, o, w, smart_playlist_icon, name, null);
+			return smart_playlist_iter;
 		}
-		else if(o is Playlist) {
-			TreeIter item;
-			TreeIter pivot;
-			tree.iter_children(out pivot, playlists_iter);
-			
-			do {
-				string tempName;
-				GLib.Object tempO;
-				tree.get(pivot, 0, out tempO, 4, out tempName);
-				
-				if(tempO != null && tempO is Playlist && tempName > name) {
-					tree.insert_before(out item, playlists_iter, pivot);
-					break;
-				}
-				else if(!tree.iter_next(ref pivot)) {
-					tree.append(out item, parent);
-					break;
-				}
-			} while(true);
-			
+		else if(hint == ViewWrapper.Hint.PLAYLIST && parent == playlists_iter) {
 			var playlist_icon = Icons.PLAYLIST.render (IconSize.MENU, null);
-			tree.set(item, 0, o, 1, w, 2, true, 3, playlist_icon, 4, name.replace("&", "&amp;"), 5, null);
-			if(visible) {
-				TreeIter? filterItem = convertToFilter(item);
-				if(filterItem != null)
-					setSelectedIter(filterItem);
-			}
-			
-			sideListSelectionChange();
-			return item;
+			TreeIter playlist_iter = addItem (parent, o, w, playlist_icon, name, null);
+			return playlist_iter;
 		}
 		else {
 			sideListSelectionChange();
@@ -312,20 +309,22 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 	public void updatePlayQueue() {
 		Widget w;
 		filter.get(convertToFilter(playlists_queue_iter), 1, out w);
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.queue(), true, true, false);
+		((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.queue(), true, true, false);
 	}
 	
 	public void updateAlreadyPlayed() {
 		Widget w;
 		filter.get(convertToFilter(playlists_history_iter), 1, out w);
-		((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.already_played(), true, true, false);
+		((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.already_played(), true, true, false);
 	}
 	
 	public virtual void sideListSelectionChange() {
 		if(lw.initializationFinished) {
-			tree.foreach(updateView);
+			tree.foreach(hide_inactive_views);
+			update_selected_view ();
 		}
 		
+		/* XXX: should not be needed (ViewWrapper stuff) */
 		lw.updateSensitivities();
 	}
 	
@@ -420,7 +419,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			
 			Widget w = getWidget(iter);
 			if(w is ViewWrapper) {
-				((ViewWrapper)w).list.set_as_current_list(0, true);
+				((ViewWrapper)w).list_view.set_as_current_list(0, true);
 			}
 		}
 		
@@ -438,7 +437,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			
 		Widget w = getWidget(iter);
 		if(w is ViewWrapper) {
-			((ViewWrapper)w).list.set_as_current_list(1, true);
+			((ViewWrapper)w).list_view.set_as_current_list(1, true);
 			
 			lm.playMedia(lm.mediaFromCurrentIndex(0), false);
 			lm.player.play();
@@ -468,7 +467,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
         else
             critical ("Couldn't select the good iter for the sidebar. Is it still under construction?");
 		
-		tree.foreach(updateView);
+		tree.foreach(hide_inactive_views);
+		update_selected_view ();
 	}
 	
 	// currently not used
@@ -483,117 +483,120 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		if(!w.visible && o is SmartPlaylist) {
 			ViewWrapper vw = (ViewWrapper)w;
 			
-			vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
+			vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
 						lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, true, false);
 		}
 		
 		return false;
 	}
-	
-	public bool updateView(TreeModel model, TreePath path, TreeIter iter) {
+
+	/* HIDES all the views but the selected */
+	public bool hide_inactive_views(TreeModel model, TreePath path, TreeIter iter) {
 		Widget w;
 		GLib.Object o;
 		model.get(iter, 0, out o, 1, out w);
 		
-		if(w == null)
+		if (w == null)
 			return false;
 		
-		if(w == getSelectedWidget()) {
-			bool showing = w.visible;
-			w.show();
-			
-			if(showing)
-				return false;
-			
+		if (w != getSelectedWidget ()) {
 			if(w is ViewWrapper) {
-				((ViewWrapper)w).set_is_current_view(true);
-				
-				if(!lw.initializationFinished) {
-					return false;
-				}
-				
-				/* update the lists if we need to */
-				ViewWrapper vw = (ViewWrapper)w;
-				if(iter == library_music_iter && vw.needs_update) {
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.song_ids(), true, false, false);
-				}
-				else if(iter == library_podcasts_iter && vw.needs_update) {
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.podcast_ids(), true, false, false);
-				}
-				else if(iter == network_radio_iter && vw.needs_update) {
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.station_ids(), true, false, false);
-				}
-				else if(iter == network_store_iter) {
-					Store.StoreView sv = (Store.StoreView)w;
-					if(!sv.isInitialized) {
-						sv.homeView.populate();
-						sv.isInitialized = true;
-						lw.updateMillerColumns();
-					}
-				}
-				else if(iter == playlists_similar_iter) {
-					lw.updateMillerColumns(); // don't show millers if showing warning label
-					//vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-					//			vw.get_media_ids(), true, false, false);
-				}
-				else if(iter == playlists_queue_iter && vw.needs_update) {
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.queue(), true, false, false);
-				}
-				else if(iter == playlists_history_iter && vw.needs_update) {
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.already_played(), true, false, false);
-				}
-				else if(o is SmartPlaylist && !((SmartPlaylist)o).viewWrapper_is_up_to_date && vw.needs_update) {
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, false, false);
-				}
-				else if(o is Playlist && vw.needs_update) {
-					vw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								lm.medias_from_playlist(((Playlist)o).rowid), true, false, false);
-				}
-				else if(o is Device && vw.needs_update) {
-					DeviceViewWrapper dvw = (DeviceViewWrapper)w;
-					
-					dvw.doUpdate((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER_VIEW : ViewWrapper.ViewType.LIST,
-								dvw.get_media_ids(), true, false, false);
-				}
-				
-				if(lw.viewSelector.selected == 2) {
-					lw.miller.populate_columns( (o is Device) ? "device" : "", ((ViewWrapper)w).get_media_ids());
-				}
-				
-				lw.updateMillerColumns();
-				
-				((ViewWrapper)w).set_statusbar_info();
-			}
-			else if(w is Store.StoreView) {
-				((Store.StoreView)w).setIsCurrentView(true);
-			}
-			else if(w is DeviceView) {
-				DeviceView dv = (DeviceView)w;
-				dv.set_is_current_view(true);
-			}
-		}
-		else {
-			w.hide();
-			
-			if(w is ViewWrapper) {
-				((ViewWrapper)w).set_is_current_view(false);
+				((ViewWrapper)w).set_as_current_view(false);
 			}
 			else if(w is Store.StoreView) {
 				((Store.StoreView)w).setIsCurrentView(false);
 			}
 			else if(w is DeviceView) {
-				((DeviceView)w).set_is_current_view(false);
+				((DeviceView)w).set_as_current_view(false);
 			}
 		}
+
 		return false;
 	}
-	
+
+	public void update_selected_view () {
+		var w = getSelectedWidget ();
+		
+		if ((w as ViewWrapper).is_current_view)
+			return;
+			
+		if (w is ViewWrapper) {
+			((ViewWrapper)w).set_as_current_view(true);
+				
+			if(!lw.initializationFinished) {
+				return;
+			}
+			
+				
+			/* update the lists if we need to @deprecated: this code is not needed */
+			/*
+			ViewWrapper vw = (ViewWrapper)w;
+			if(iter == library_music_iter && vw.needs_update) {
+				vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
+							lm.song_ids(), true, false, false);
+			}
+			else if(iter == library_podcasts_iter && vw.needs_update) {
+				vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
+							lm.podcast_ids(), true, false, false);
+			}
+			else if(iter == network_radio_iter && vw.needs_update) {
+				vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
+							lm.station_ids(), true, false, false);
+			}
+			else if(iter == network_store_iter) {
+				Store.StoreView sv = (Store.StoreView)w;
+				if(!sv.isInitialized) {
+					sv.homeView.populate();
+					sv.isInitialized = true;
+					//FIXME: lw.update_miller_columns();
+				}
+			}
+			else if(iter == playlists_similar_iter) {
+				// FIXME: lw.update_miller_columns(); // don't show millers if showing warning label
+				//vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
+				//			vw.get_media_ids(), true, false, false);
+			}
+			else if(iter == playlists_queue_iter && vw.needs_update) {
+				vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
+							lm.queue(), true, false, false);
+			}
+			else if(iter == playlists_history_iter && vw.needs_update) {
+				vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
+							lm.already_played(), true, false, false);
+			}
+			else if(o is SmartPlaylist && !((SmartPlaylist)o).viewWrapper_is_up_to_date && vw.needs_update) {
+				vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
+							lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, false, false);
+			}
+			else if(o is Playlist && vw.needs_update) {
+				vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
+							lm.medias_from_playlist(((Playlist)o).rowid), true, false, false);
+			}
+			else if(o is Device && vw.needs_update) {
+				DeviceViewWrapper dvw = (DeviceViewWrapper)w;
+					
+				dvw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
+							dvw.get_media_ids(), true, false, false);
+			}
+				
+			if(lw.viewSelector.selected == 2) {
+				// FIXME: lw.miller.populate ( (o is Device) ? "device" : "", ((ViewWrapper)w).get_media_ids());
+			}
+				
+			//FIXME: lw.update_miller_columns();
+				
+			((ViewWrapper)w).set_statusbar_info();
+			*/
+		}
+		else if(w is Store.StoreView) {
+			((Store.StoreView)w).setIsCurrentView(true);
+		}
+		else if(w is DeviceView) {
+			DeviceView dv = (DeviceView)w;
+			dv.set_as_current_view(true);
+		}	
+	}
+
 	// podcast context menu
 	void podcastAddClicked() {
 		AddPodcastWindow apw = new AddPodcastWindow(lw);
@@ -679,7 +682,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					removeItem(pivot);
 					lw.addSideListItem(sp);
 					
-					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.medias_from_smart_playlist(sp.rowid), true, false, false);
+					((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.medias_from_smart_playlist(sp.rowid), true, false, false);
 					lm.save_smart_playlists();
 					
 					break;
@@ -715,7 +718,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 					removeItem(pivot);
 					lw.addSideListItem(p);
 					
-					((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.medias_from_playlist(p.rowid), true, false, false);
+					((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.medias_from_playlist(p.rowid), true, false, false);
 					
 					break;
 				}
@@ -808,8 +811,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 		Widget w;
 		filter.get(iter, 1, out w);
 		
-		if(w is ViewWrapper && ((ViewWrapper)w).list is SimilarPane) {
-			SimilarPane sp = (SimilarPane)(((ViewWrapper)w).list);
+		if(w is ViewWrapper && ((ViewWrapper)w).list_view is SimilarPane) {
+			SimilarPane sp = (SimilarPane)(((ViewWrapper)w).list_view);
 			sp.savePlaylist();
 		}
 	}
@@ -1004,7 +1007,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 				lm.add_medias(stations, true);
 				
 				//Widget w = getWidget(network_radio_iter);
-				//((ViewWrapper)w).doUpdate(((ViewWrapper)w).currentView, lm.station_ids(), true, true, false);
+				//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.station_ids(), true, true, false);
 			}
 		}
 	}
@@ -1044,7 +1047,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			}
 			
 			ViewWrapper vw = (ViewWrapper)w;
-			vw.millerChanged();
+			vw.miller_columns_changed(); //FIXME
 		}
 		else if(o is Playlist) {
 			Playlist p = (Playlist)o;
@@ -1062,7 +1065,7 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
 			}
 			
 			ViewWrapper vw = (ViewWrapper)w;
-			vw.millerChanged();
+			vw.miller_columns_changed(); //FIXME
 			
 		}
 		
@@ -1072,7 +1075,8 @@ public class BeatBox.SideTreeView : ElementaryWidgets.SideBar {
     /* device stuff */
     public void deviceAdded(Device d) {
 		lw.addSideListItem(d);
-		tree.foreach(updateView);
+		tree.foreach(hide_inactive_views);
+		update_selected_view ();
 	}
 	
 	public void deviceRemoved(Device d) {

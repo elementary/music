@@ -25,11 +25,14 @@ using Gee;
 public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	Device d;
 	
-	public DeviceViewWrapper(LibraryManager lmm, LibraryWindow lww, Collection<int> medias, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
-		base(lmm, lww, medias, sort, dir, the_hint, id);
+	public DeviceViewWrapper(LibraryWindow lww, Collection<int> medias, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
+		base(lww, medias, sort, dir, the_hint, id);
 		
-		list.import_requested.connect(import_request);
-		albumView.import_requested.connect(import_request);
+		if (have_list_view)
+			list_view.import_requested.connect(import_request);
+		
+		if (have_album_view)
+			album_view.import_requested.connect(import_request);
 		
 		this.d = d;
 		d.sync_finished.connect(sync_finished);
@@ -45,3 +48,4 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 		needs_update = true;
 	}
 }
+

@@ -46,8 +46,9 @@ public class BeatBox.MusicTreeModel : BaseTreeModel {
 	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
 
 	/** Initialize data storage, columns, etc. **/
-	public MusicTreeModel(LibraryManager lm, LinkedList<string> column_types, ViewWrapper.Hint hint) {
-		this.lm = lm;
+	public MusicTreeModel(BaseListView mtv, LinkedList<string> column_types, ViewWrapper.Hint hint) {
+		this.lm = mtv.lm;
+		list_view = mtv;
 		_columns = column_types;
 
 		_playing = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
@@ -80,7 +81,7 @@ public class BeatBox.MusicTreeModel : BaseTreeModel {
 			if(column == 0)
 				val = s.rowid;
 			else if(column == 1) {
-				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid && is_current && _playing != null)
+				if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid /* && is_current */ && _playing != null)
 					val = _playing;
 				else if(hint == ViewWrapper.Hint.CDROM && !s.isTemporary)
 					val = _completed;

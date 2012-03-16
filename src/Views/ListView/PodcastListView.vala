@@ -66,12 +66,9 @@ public class BeatBox.PodcastListView : BaseListView {
 	CellRendererText cellBitrate;
 
 
-	/**
-	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
-	 */
-	public PodcastListView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww) {
+	public PodcastListView(ViewWrapper view_wrapper) {
 		
-		base (lmm, lww);
+		base (view_wrapper);
 		
 		podcast_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PODCAST);
 
@@ -226,7 +223,7 @@ public class BeatBox.PodcastListView : BaseListView {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 
-		list_model = new PodcastTreeModel(lm, get_column_strings(), view);
+		list_model = new PodcastTreeModel(this, get_column_strings(), view);
 
 		base.buildUI ();
 		view.button_press_event.connect(viewClick);
@@ -280,7 +277,7 @@ public class BeatBox.PodcastListView : BaseListView {
 		mediaMenuQueue = new Gtk.MenuItem.with_label("Queue");
 		mediaMenuNewPlaylist = new Gtk.MenuItem.with_label("New Playlist");
 		mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label("Add to Playlist");
-		mediaRemove = new Gtk.MenuItem.with_label("Remove episode");
+		mediaRemove = new Gtk.MenuItem.with_label("Remove Episode");
 		mediaSaveLocally = new Gtk.MenuItem.with_label("Download");
 		importToLibrary = new Gtk.MenuItem.with_label("Import to Library");
 		//mediaRateMediaMenu = new Gtk.Menu();
@@ -396,7 +393,7 @@ public class BeatBox.PodcastListView : BaseListView {
 			}
 		}*/
 
-		if(get_is_current()) {
+		if(is_current_view) {
 			set_as_current_list(0, false);
 		}
 
@@ -838,12 +835,12 @@ public class BeatBox.PodcastListView : BaseListView {
 				lm.remove_medias (toRemove, delete_files);
 				//music_model.removeMedias(toRemoveIDs);
 
-				lw.miller.populate_columns("", list_model.getOrderedMedias());
+				//view_wrapper.populate_miller_columns (list_model.getOrderedMedias());
 			});
 		}
 
 		// in case all the medias from certain miller items were removed, update miller
-		lw.miller.populate_columns("", list_model.getOrderedMedias());
+		//view_wrapper.populate_miller_columns (list_model.getOrderedMedias());
 	}
 
 	void importToLibraryClicked() {

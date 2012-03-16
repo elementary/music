@@ -26,7 +26,7 @@
 
 
 /**
- * Here is where the icon information, related functions and pixbufs are stored.
+ * A place to store icon information and pixbufs.
  */
 
 namespace Icons {
@@ -107,10 +107,9 @@ namespace Icons {
 	 * RENDERED ICONS.
 	 * These are pre-rendered pixbufs. Any static image which otherwise would need
 	 * to be rendered many times should be a preloaded pixbuf. They are loaded
-	 * in the load() function.
+	 * in the init() function.
 	 */
 	public Gdk.Pixbuf DEFAULT_ALBUM_ART_PIXBUF;
-
 
 	public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
 		var icon = new BeatBox.Icon (icon_name, null, null, null, false);
@@ -123,7 +122,7 @@ namespace Icons {
 	}
 
 	/**
-	 * @param surface_size size of the new pixbuf. Set a value of 0 to use the pixbuf's natural size.
+	 * @param surface_size size of the new pixbuf. Set a value of 0 to use the pixbuf's default size.
 	 **/
 	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size = ALBUM_VIEW_IMAGE_SIZE,
 	                                      int shadow_size = 5, double alpha = 0.8)
@@ -131,7 +130,7 @@ namespace Icons {
 		int S_WIDTH = (surface_size > 0)? surface_size : pixbuf.width;
 		int S_HEIGHT = (surface_size > 0)? surface_size : pixbuf.height;
 
-		var buffer_surface = new Granite.Drawing.BufferSurface(S_WIDTH, S_HEIGHT);
+		var buffer_surface = new Granite.Drawing.BufferSurface (S_WIDTH, S_HEIGHT);
 
 		S_WIDTH -= 2 * shadow_size;
 		S_HEIGHT -= 2 * shadow_size;

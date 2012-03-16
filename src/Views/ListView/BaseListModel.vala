@@ -26,7 +26,10 @@ using Gee;
 /* This file contains the default list model */
 
 public abstract class BeatBox.BaseTreeModel : GLib.Object, TreeModel, TreeSortable {
-	public bool is_current;
+	public bool is_current { get { return list_view.is_current_view; } }
+
+	public BaseListView list_view;
+
 	protected LinkedList<string> _columns;
 	/* data storage variables */
 	protected Sequence<int> rows;

@@ -28,7 +28,9 @@ using Gtk;
 public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	public BeatBox.LibraryManager lm;
 	public BeatBox.LibraryWindow lw;
-	
+
+	public ViewWrapper view_wrapper;
+
 	public bool has_grid_lines {
 		get {
 			return view.enable_grid_lines == TreeViewGridLines.HORIZONTAL;
@@ -46,17 +48,19 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	protected Collection<int> _showing_medias;
 	protected LinkedList<string> _columns;
 
-    /**
-     * @deprecated
-     **/
+	public bool is_current_view { get { return this.visible; } }
+
+
+
+	/**
+	 * @deprecated
+	 **/
 	protected int relative_id;// if playlist, smart playlist, etc.
 	protected ViewWrapper.Hint hint; // playlist, queue, smart_playlist, etc. changes how it behaves.
 	protected string sort_column;
 	protected SortType sort_direction;
 	protected bool removing_medias;
 
-	protected bool _is_current_view;
-	protected bool _is_current;
 	protected bool dragging;
 
 	protected LinkedList<string> timeout_search;//stops from doing useless search (timeout)
@@ -68,9 +72,11 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	protected CellDataFunctionHelper cellHelper;
 	protected RatingWidgetMenu rating_item;
 	
-	public BaseListView (BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww) {
-		lm = lmm;
-		lw = lww;
+	public BaseListView (ViewWrapper view_wrapper) {
+		this.lm = view_wrapper.lm;
+		this.lw = view_wrapper.lw;
+
+		this.view_wrapper = view_wrapper;
 
 		_showing_medias = new LinkedList<int>();
 		_columns = new LinkedList<string>();
@@ -109,7 +115,7 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 		Value id;
 		list_model.get_value(item, 0, out id);
 
-		set_as_current_list(id.get_int(), !_is_current);
+		set_as_current_list(id.get_int(), !is_current_view);
 
 		// play the media
 		lm.playMedia(id.get_int(), false);
@@ -120,15 +126,13 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	}
 	
 	public virtual void current_cleared() {
-		set_is_current(false);
-
 		if(lm.media_info.media != null)
-			list_model.updateMedia(lm.media_info.media.rowid, get_is_current());
+			list_model.updateMedia(lm.media_info.media.rowid, is_current_view);
 	}
 
 	public virtual void media_played(int id, int old) {
 		if(old != -1) {
-			list_model.updateMedia(old, get_is_current());
+			list_model.updateMedia(old, is_current_view);
 			list_model.turnOffPixbuf(old);
 		}
 
@@ -136,7 +140,7 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 			scrollToCurrent();
 		}
 
-		list_model.updateMedia(id, get_is_current());
+		list_model.updateMedia(id, is_current_view);
 
 		if(get_hint() == ViewWrapper.Hint.QUEUE) {
 			_show_next = lm.queue();
@@ -177,34 +181,18 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	}
 	
 	protected void medias_updated(Collection<int> ids) {
-		list_model.updateMedias(ids, get_is_current());
+		list_model.updateMedias(ids, is_current_view);
 		//list_model.resort();
 
 		//since a media may have changed location, reset current
-		if(get_is_current() && !lm.playing_queued_song()) {
+		if(is_current_view && !lm.playing_queued_song()) {
 			set_as_current_list(0, false);
 		}
 	}
 
-    protected abstract void updateSensitivities ();
+	protected abstract void updateSensitivities ();
 
 	/* interface functions */
-	public void set_is_current(bool val) {
-		_is_current = val;
-		list_model.is_current = val;
-	}
-
-	public bool get_is_current() {
-		return _is_current;
-	}
-
-	public void set_is_current_view(bool val) {
-		_is_current_view = val;
-	}
-
-	public bool get_is_current_view() {
-		return _is_current_view;
-	}
 
 	public void set_hint(ViewWrapper.Hint the_hint) {
 		hint = the_hint;
@@ -231,7 +219,7 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 		return list_model.getOrderedMedias();
 	}
 	
-	public void set_as_current_list(int media_id, bool is_initial) {
+	public void set_as_current_list(int media_id, bool is_initial = false) {
 		var ordered_songs = list_model.getOrderedMedias();
 		debug("there are %d ordered songs\n", ordered_songs.size);
 
@@ -251,10 +239,8 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 			++i;
 		}
 
-		set_is_current(true);
-
 		if(lm.media_info.media != null)
-			list_model.updateMedia(lm.media_info.media.rowid, get_is_current());
+			list_model.updateMedia(lm.media_info.media.rowid, is_current_view);
 		debug("current list is %d and index %d\n", lm.current_medias().size, lm.current_index);
 		lm.setShuffleMode(lm.shuffle, shuffle && is_initial);
 	}
@@ -281,22 +267,7 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	}
 
 	public void set_statusbar_info() {
-		if(_showing_medias == null)
-			return;
-
-		uint count = 0;
-		uint total_time = 0;
-		uint total_mbs = 0;
-
-		foreach(int id in _showing_medias) {
-			if(lm.media_ids().contains(id)) {
-				++count;
-				total_time += lm.media_from_id(id).length;
-				total_mbs += lm.media_from_id(id).file_size;
-			}
-		}
-
-		lw.set_statusbar_info(hint, count, total_mbs, total_time);
+		view_wrapper.set_statusbar_info ();
 	}
 
 	public LinkedList<TreeViewColumn> get_columns() {
@@ -342,29 +313,28 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		list_model.get_sort_column_id(out sort_col, out sort_dir);
 
-        if (this is RadioListView)
-    		list_model = new RadioTreeModel(lm, get_column_strings());
-        else if (this is PodcastListView)
-    		list_model = new PodcastTreeModel(lm, get_column_strings(), view);
-        else if (this is MusicTreeView)
-    		list_model = new MusicTreeModel(lm, get_column_strings(), get_hint ());
-		list_model.is_current = _is_current;
+		if (this is RadioListView)
+			list_model = new RadioTreeModel(this, get_column_strings());
+		else if (this is PodcastListView)
+			list_model = new PodcastTreeModel(this, get_column_strings(), view);
+		else if (this is MusicTreeView)
+			list_model = new MusicTreeModel(this, get_column_strings(), get_hint ());
 
 		list_model.append_medias(_showing_medias, false);
 
 		list_model.set_sort_column_id(sort_col, sort_dir);
 
 		if(lm.media_info.media != null)
-			list_model.updateMedia(lm.media_info.media.rowid, get_is_current());
+			list_model.updateMedia(lm.media_info.media.rowid, is_current_view);
 		view.set_model(list_model);
 		view.thaw_child_notify();
 
-		if(get_is_current() && lm.media_info.media != null)
+		if(is_current_view && lm.media_info.media != null)
 			scrollToCurrent();
 	}
 
 	public virtual void viewScroll() {
-		if(!scrolled_recently && get_is_current()) {
+		if(!scrolled_recently && is_current_view) {
 			Timeout.add(30000, () => {
 				scrolled_recently = false;
 
@@ -376,7 +346,7 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	}
 
 	public void scrollToCurrent() {
-		if(!get_is_current() || lm.media_info.media == null)
+		if(!is_current_view || lm.media_info.media == null)
 			return;
 
 		TreeIter iter;

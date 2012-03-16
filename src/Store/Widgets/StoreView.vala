@@ -36,7 +36,7 @@ public class Store.StoreView : VBox {
 	
 	public Store.HomeView homeView;
 	Store.SearchResultsView searchPage;
-	Widget currentView;
+	Widget current_view;
 	
 	Toolbar topPanel;
 	ToolButton homeButton;
@@ -152,9 +152,9 @@ public class Store.StoreView : VBox {
 	}
 	
 	public void setView(Widget w) {
-		currentView.destroy();
-		currentView = w;
-		container.add(currentView);
+		current_view.destroy();
+		current_view = w;
+		container.add(current_view);
 	}
 	
 	public bool progressNotification() {

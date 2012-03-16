@@ -27,6 +27,11 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	public signal void itemClicked(string artist, string album);
 
+	// The window used to present album contents
+	public AlbumListView album_list_view {get; private set;}
+
+	public ViewWrapper parent_view_wrapper {get; private set;}
+
 	public IconView icons;
 
 	private LibraryManager lm;
@@ -40,10 +45,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	private AlbumViewModel model;
 
+	public bool is_current_view { get { return this.visible; } }
+
 	private Gdk.Pixbuf defaultPix;
 
-	private bool _is_current;
-	private bool _is_current_view;
 	private bool needsUpdate;
 
 	private const int ITEM_PADDING = 3;
@@ -54,7 +59,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		GtkIconView.view.cell:selected,
 		GtkIconView.view.cell:selected:focused {
 
-			background-color: alpha (#000, 0.05);
+		background-color: alpha (#000, 0.05);
     		background-image: none;
 
 			color: @text_color;
@@ -76,9 +81,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	""";
 
 	/* medias should be mutable, as we will be sorting it */
-	public AlbumView(LibraryManager lmm, LibraryWindow lww, Collection<int> smedias) {
-		lm = lmm;
-		lw = lww;
+	public AlbumView(ViewWrapper view_wrapper, Collection<int> smedias) {
+		lm = view_wrapper.lm;
+		lw = view_wrapper.lw;
+
+		parent_view_wrapper = view_wrapper;
+		album_list_view = new AlbumListView(this);
 
 		medias = new HashMap<string, LinkedList<int>>();
 		_show_next = new LinkedList<int>();
@@ -101,7 +109,28 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		buildUI();
 
 		lm.medias_removed.connect(medias_removed);
+		
+		//parent_view_wrapper.size_allocate.connect (resized);
 	}
+
+	/*
+	public void resized (Allocation alloc) {
+		
+		if (!visible)
+			return;
+
+		int n, total_width = lw.mediasToInfo.position; //alloc.width;
+		int total_item_width = ITEM_WIDTH + 2 * ITEM_PADDING;
+
+		// Calculate the number of columns
+		n = (total_width - SPACING) / (total_item_width + SPACING);
+
+		debug("ALBUM_VIEW_N_COLS = %i", n);
+
+		if (n > 0)
+			icons.set_columns (n);
+	}
+	*/
 
 	public void buildUI() {
 		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -129,9 +158,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.item_width = ITEM_WIDTH;
 		icons.item_padding = ITEM_PADDING;
 		icons.spacing = 2;
-        icons.margin = SPACING + ITEM_PADDING;
-        icons.row_spacing = SPACING;
-        icons.column_spacing = SPACING;
+		icons.margin = SPACING + ITEM_PADDING;
+		icons.row_spacing = SPACING;
+		icons.column_spacing = SPACING;
 
 		add(icons);
 
@@ -140,25 +169,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.button_release_event.connect(buttonReleaseEvent);
 		icons.button_press_event.connect(buttonReleaseEvent);
 		icons.item_activated.connect(itemActivated);
-	}
-
-	public void set_is_current(bool val) {
-		_is_current = val;
-	}
-
-	public bool get_is_current() {
-		return _is_current;
-	}
-
-	public void set_is_current_view(bool val) {
-		_is_current_view = val;
-
-		if(!val)
-			lw.alv.hide();
-	}
-
-	public bool get_is_current_view() {
-		return _is_current_view;
 	}
 
 	public void set_hint(ViewWrapper.Hint hint) {
@@ -189,40 +199,13 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return _showing_medias.keys;
 	}
 
-	public void set_as_current_list(int media_id, bool is_initial) {
-		set_is_current(true);
+	// Unused. Doesn't apply
+	public void set_as_current_list(int media_id, bool is_initial = false) {
+		//nothing to do
 	}
 
 	public void set_statusbar_info() {
-		/* TODO:
-		uint count = 0;
-		uint total_time = 0;
-		uint total_mbs = 0;
-
-		foreach(int id in _showing_medias) {
-			++count;
-			total_time += lm.media_from_id(id).length;
-			total_mbs += lm.media_from_id(id).file_size;
-		}
-
-		string fancy = "";
-		if(total_time < 3600) { // less than 1 hour show in minute units
-			fancy = (total_time/60).to_string() + " minutes";
-		}
-		else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
-			fancy = (total_time/3600).to_string() + " hours";
-		}
-		else { // units in days
-			fancy = (total_time/(24 * 3600)).to_string() + " days";
-		}
-
-		string fancy_size = "";
-		if(total_mbs < 1000)
-			fancy_size = ((float)(total_mbs)).to_string() + " MB";
-		else
-			fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
-
-		lw.set_statusbar_text(count.to_string() + " items, " + fancy + ", " + fancy_size);*/
+		parent_view_wrapper.set_statusbar_info ();
 	}
 
 	public void append_medias(Collection<int> new_medias) {
@@ -359,14 +342,14 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		TreeIter iter;
 
 		if(!model.get_iter(out iter, path)) {
-			lw.alv.hide();
+			album_list_view.hide();
 
 			return;
 		}
 
 		Media s = ((AlbumViewModel)model).get_media_representation(iter);
 
-		lw.alv.set_songs_from_media(s);
+		album_list_view.set_songs_from_media(s);
 
 		// find window's location
 		int x, y;
@@ -379,13 +362,20 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		y += alloc.y;
 
 		// center it on this icon view
-		x += (alloc.width - lw.alv.WIDTH) / 2;
-		y += (alloc.height - lw.alv.HEIGHT) / 2 + 60;
+		x += (alloc.width - album_list_view.WIDTH) / 2;
+		y += (alloc.height - album_list_view.HEIGHT) / 2 + 60;
 
-		lw.alv.move(x, y);
+		album_list_view.move(x, y);
 
-		lw.alv.show_all();
-		lw.alv.present();
+		album_list_view.show_all();
+		album_list_view.present();
+	}
+
+	public new void hide () {
+		// make sure that the album list view is hidden as well
+		album_list_view.hide ();
+		
+		base.hide ();
 	}
 
 	void medias_removed(LinkedList<int> ids) {

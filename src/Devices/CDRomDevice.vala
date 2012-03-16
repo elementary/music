@@ -261,7 +261,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		
 		// this refreshes so that the spinner shows
 		ViewWrapper vw = ((ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
-		vw.doUpdate(vw.currentView, medias, true, true, false);
+		vw.do_update(vw.current_view, medias, true, true, false);
 		
 		// this spins the spinner for the current media being imported
 		Timeout.add(100, pulser);
@@ -330,7 +330,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			
 			var updated = new LinkedList<int>();
 			updated.add(media_being_ripped.rowid);
-			((DeviceViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter)).list.update_medias(updated);
+			((DeviceViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter)).list_view.update_medias(updated);
 			
 			return true;
 		}

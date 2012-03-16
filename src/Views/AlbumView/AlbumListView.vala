@@ -29,12 +29,14 @@ public class BeatBox.AlbumListView : Window {
 	public const int HEIGHT = 400; 
 
 	LibraryManager lm;
+	ViewWrapper view_wrapper;
 
 	Label album_label;
 	Label artist_label;
 	RatingWidget rating;
 	MusicTreeView mtv;
 	bool setting_songs;
+
 
 	private const string WIDGET_STYLESHEET = """
 		BeatBoxAlbumListView {
@@ -104,8 +106,9 @@ public class BeatBox.AlbumListView : Window {
 		}
 	""";
 
-	public AlbumListView(LibraryManager lm) {
-		this.lm = lm;
+	public AlbumListView(AlbumView album_view) {
+		this.view_wrapper = album_view.parent_view_wrapper;
+		this.lm = view_wrapper.lm;
 
 		set_transient_for(lm.lw);
 		window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
@@ -166,7 +169,7 @@ public class BeatBox.AlbumListView : Window {
 		label_wrapper.pack_start (label_box, true, true, 0);
 
 		// add actual list
-		mtv = new MusicTreeView(lm, lm.lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
+		mtv = new MusicTreeView(view_wrapper, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
 		mtv.apply_style_to_view(style_provider);
 		mtv.has_grid_lines = true;
 		mtv.vexpand = true;
@@ -196,9 +199,7 @@ public class BeatBox.AlbumListView : Window {
 
 		LinkedList<int> songs, albums;
 
-		lm.do_search (((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).get_media_ids(),
-		              out songs, out albums, null, null, null,
-		              ((ViewWrapper)lm.lw.sideTree.getSelectedWidget()).hint,
+		lm.do_search (view_wrapper.get_media_ids(), out songs, out albums, null, null, null, view_wrapper.hint,
 		              "", m.album_artist, m.album);
 
 		mtv.set_show_next(songs);

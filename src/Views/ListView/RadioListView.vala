@@ -49,10 +49,13 @@ public class BeatBox.RadioListView : BaseListView {
 	CellRendererText cellPlays;
 	CellRendererText cellBitrate;
 
-
-	public RadioListView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
+	/**
+	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
+	 */
+	// FIXME: View.Wrapper.Hint the_hint is no longer necessary
+	public RadioListView(ViewWrapper view_wrapper, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
 		
-		base (lmm, lww);
+		base (view_wrapper);
 
 		last_search = "";
 		timeout_search = new LinkedList<string>();
@@ -162,7 +165,7 @@ public class BeatBox.RadioListView : BaseListView {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 
-		list_model = new RadioTreeModel(lm, get_column_strings());
+		list_model = new RadioTreeModel(this, get_column_strings());
 
 		base.buildUI ();
 		view.button_press_event.connect(viewClick);
@@ -295,7 +298,7 @@ public class BeatBox.RadioListView : BaseListView {
 			}
 		}*/
 
-		if(get_is_current()) {
+		if(is_current_view) {
 			set_as_current_list(0, false);
 		}
 
@@ -558,12 +561,12 @@ public class BeatBox.RadioListView : BaseListView {
 				lm.remove_medias (toRemove, delete_files);
 				//music_model.removeMedias(toRemoveIDs);
 
-				lw.miller.populate_columns("", list_model.getOrderedMedias());
+				//view_wrapper.populate_miller_columns (list_model.getOrderedMedias());
 			});
 		}
 
 		// in case all the medias from certain miller items were removed, update miller
-		lw.miller.populate_columns("", list_model.getOrderedMedias());
+		//view_wrapper.populate_miller_columns (list_model.getOrderedMedias());
 	}
 
 	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {

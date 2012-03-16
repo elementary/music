@@ -71,21 +71,23 @@ public class BeatBox.MusicTreeView : BaseListView {
 	/**
 	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
 	 */
-	public MusicTreeView(BeatBox.LibraryManager lmm, BeatBox.LibraryWindow lww, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
-
-		base (lmm, lww);
+	// FIXME: View.Wrapper.Hint the_hint is no longer necessary
+	public MusicTreeView(ViewWrapper view_wrapper, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {		
+		base (view_wrapper);
 
 		last_search = "";
 		timeout_search = new LinkedList<string>();
 		showing_all = true;
 		removing_medias = false;
 
+		hint = the_hint;
+
 		sort_column = sort;
 		sort_direction = dir;
-		hint = the_hint;
 		relative_id = id;
 
 		buildUI();
+
 	}
 
 	protected override void updateSensitivities() {
@@ -269,10 +271,11 @@ public class BeatBox.MusicTreeView : BaseListView {
 		//rearrangeColumns(correctStringOrder);
 		viewColumnsChanged();
 
-		list_model = new MusicTreeModel(lm, get_column_strings(), get_hint());
+		list_model = new MusicTreeModel(this, get_column_strings(), get_hint());
 		//view.enable_grid_lines = TreeViewGridLines.VERTICAL; // will require special theming to work properly
 
-        base.buildUI ();
+		base.buildUI ();
+
 		view.button_press_event.connect(viewClick);
 
 		//view.cursor_changed.connect_after(() => { update_rating_menu(); });
@@ -340,12 +343,12 @@ public class BeatBox.MusicTreeView : BaseListView {
 
 		//media list right click menu
 		mediaMenuActionMenu = new Gtk.Menu();
-		mediaEditMedia = new Gtk.MenuItem.with_label("Edit Media Info");
+		mediaEditMedia = new Gtk.MenuItem.with_label("Edit Song Info");
 		mediaFileBrowse = new Gtk.MenuItem.with_label("Show in File Browser");
 		mediaMenuQueue = new Gtk.MenuItem.with_label("Queue");
 		mediaMenuNewPlaylist = new Gtk.MenuItem.with_label("New Playlist");
 		mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label("Add to Playlist");
-		mediaRemove = new Gtk.MenuItem.with_label("Remove media");
+		mediaRemove = new Gtk.MenuItem.with_label("Remove Song");
 		importToLibrary = new Gtk.MenuItem.with_label("Import to Library");
 		rating_item = new RatingWidgetMenu();
 		mediaMenuActionMenu.append(mediaEditMedia);
@@ -457,7 +460,7 @@ public class BeatBox.MusicTreeView : BaseListView {
 			}
 		}*/
 
-		if(get_is_current()) {
+		if(is_current_view) {
 			set_as_current_list(0, false);
 		}
 
@@ -919,7 +922,7 @@ public class BeatBox.MusicTreeView : BaseListView {
 				lm.remove_medias (toRemove, delete_files);
 				//list_model.removeMedias(toRemoveIDs);
 
-				lw.miller.populate_columns("", list_model.getOrderedMedias());
+				//view_wrapper.populate_miller_columns (list_model.getOrderedMedias());
 			});
 		}
 
@@ -927,7 +930,7 @@ public class BeatBox.MusicTreeView : BaseListView {
 			list_model.removeMedias(toRemoveIDs);
 
 			// in case all the medias from certain miller items were removed, update miller
-			lw.miller.populate_columns("", list_model.getOrderedMedias());
+			//view_wrapper.populate_miller_columns (list_model.getOrderedMedias());
 		}
 
 	}
