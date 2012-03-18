@@ -84,7 +84,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	// basic file stuff
 	ImageMenuItem libraryOperations;
 	Gtk.Menu libraryOperationsMenu;
-	Gtk.MenuItem fileSetMusicFolder;
 	Gtk.MenuItem fileImportMusic;
 	Gtk.MenuItem fileRescanMusicFolder;
 	Gtk.MenuItem editEqualizer;
@@ -216,7 +215,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		sideTreeScroll = new ScrolledWindow(null, null);
 		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
 		libraryOperationsMenu = new Gtk.Menu();
-		fileSetMusicFolder = new Gtk.MenuItem.with_label(_("Set Music Folder"));
 		fileImportMusic = new Gtk.MenuItem.with_label(_("Import to Library"));
 		fileRescanMusicFolder = new Gtk.MenuItem.with_label(_("Rescan Music Folder"));
 		editEqualizer = new Gtk.MenuItem.with_label(_("Equalizer"));
@@ -284,7 +282,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		updateSensitivities();
 
 		/* create appmenu menu */
-		libraryOperationsMenu.append(fileSetMusicFolder);
 		libraryOperationsMenu.append(fileImportMusic);
 		libraryOperationsMenu.append(fileRescanMusicFolder);
 		libraryOperations.submenu = libraryOperationsMenu;
@@ -295,7 +292,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		settingsMenu.append(editEqualizer);
 		settingsMenu.append(editPreferences);
 
-		fileSetMusicFolder.activate.connect(editPreferencesClick);
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 
@@ -584,7 +580,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		bool showingMusicList = sideTree.convertToChild(sideTree.getSelectedIter()) == sideTree.library_music_iter;
 		bool showMainViews = (haveSongs || (haveMedias &&!showingMusicList));
 
-		fileSetMusicFolder.set_sensitive(!doingOps);
 		fileImportMusic.set_sensitive(!doingOps && folderSet);
 		fileRescanMusicFolder.set_sensitive(!doingOps && folderSet);
 
