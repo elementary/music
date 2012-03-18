@@ -333,10 +333,10 @@ public class BeatBox.ViewWrapper : Box {
 				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find medias similar to the one you are playing.") + "\n" + _("You can then start playing those medias, or save them for later."), null);
 				break;
 			case Hint.PODCAST:
-				/* list view and column view */
-
+				/* list view, album and column view */
 				list_view = new PodcastListView (this);
 				miller_columns = new MillerColumns (this);
+				album_view = new AlbumView (this, get_media_ids());
 
 				/* Add welcome screen */
 				//FIXME: welcome_screen = new Welcome ("Test", "Fixme");
@@ -347,9 +347,10 @@ public class BeatBox.ViewWrapper : Box {
 
 				break;
 			case Hint.DEVICE_PODCAST:
-				/* list view and column view */
+				/* list view, album and column view */
 				list_view = new PodcastListView (this);
 				miller_columns = new MillerColumns (this);
+				album_view = new AlbumView (this, get_media_ids());
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -370,18 +371,20 @@ public class BeatBox.ViewWrapper : Box {
 
 				break;
 			case Hint.AUDIOBOOK:
-				/* list view and column view */
+				/* list view, album and column view */
 				list_view = new MusicTreeView(this, sort, dir, the_hint, id);
 				miller_columns = new MillerColumns (this);
+				album_view = new AlbumView (this, get_media_ids());
 
 				/* Add welcome screen */
 				//welcome_screen = new Welcome ("Test", "Fixme");
 
 				break;
 			case Hint.DEVICE_AUDIOBOOK:
-				/* list view and column view */
+				/* list view, album and column view */
 				list_view = new MusicTreeView(this, sort, dir, the_hint, id);
 				miller_columns = new MillerColumns (this);
+				album_view = new AlbumView (this, get_media_ids());
 
 				/* Add welcome screen */
 				//welcome_screen = new Welcome ("Test", "Fixme");
@@ -399,10 +402,15 @@ public class BeatBox.ViewWrapper : Box {
 
 				break;
 			default:
-				/* list view only */
-				list_view = new MusicTreeView(this, sort, dir, the_hint, id);
+				/* list, album and column views */
+				album_view = new AlbumView (this, get_media_ids());
+				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
+				miller_columns = new MillerColumns (this);
+
 				break;
 		}
+
+		/* Now setup the view wrapper based on the available widgets */
 
 		if (have_list_view) {
 			list_view_paned = new Paned (Orientation.HORIZONTAL);
@@ -687,12 +695,10 @@ public class BeatBox.ViewWrapper : Box {
 	 * @return a collection with all the media that should be shown
 	 */
 	public Collection<int> get_showing_media_ids () {
-		/*
 		// Dont search again if we already populated millers
-		
+
 		if (miller_columns_visible && initialized)
 			return miller_columns.media_results;
-		*/
 
 		// Perform search
 		LinkedList<int> _search_results;
@@ -1156,7 +1162,7 @@ public class BeatBox.ViewWrapper : Box {
 
 	public void miller_columns_changed () {
 		if(lw.initializationFinished) {
-			do_update(this.current_view, null, false, false, false);
+			do_update(ViewType.FILTER, null, false, false, false);
 		}
 	}
 

@@ -84,18 +84,23 @@ public class BeatBox.MillerColumns : Box {
 		add_column (MillerColumn.Category.YEAR);
 		add_column (MillerColumn.Category.GENRE);
 
-		// These columns only make sense for songs
-		if (view_type == ViewWrapper.Hint.MUSIC) {
+		// These columns only make sense for songs. Not sure about HISTORY and QUEUE
+		if (view_type == ViewWrapper.Hint.MUSIC || view_type == ViewWrapper.Hint.DEVICE_AUDIO ||
+		    view_type == ViewWrapper.Hint.SMART_PLAYLIST || view_type == ViewWrapper.Hint.PLAYLIST ||
+		    view_type == ViewWrapper.Hint.HISTORY || view_type == ViewWrapper.Hint.CDROM ||
+		    view_type == ViewWrapper.Hint.QUEUE)
+		{
 			add_column (MillerColumn.Category.ARTIST);
 			add_column (MillerColumn.Category.ALBUM);
-		}
-
-		// Read visible columns from settings
-		foreach (var col_n in lm.settings.get_miller_visible_columns ()) {
-			foreach (var column in columns) {
-				if (column.category == int.parse (col_n)) {
-					column.visible = true;
-					break;
+			
+			// FIXME: DO THIS FOR OTHER TYPES OF VIEW WRAPPERS AS WELL
+			// Read visible columns from settings
+			foreach (var col_n in lm.settings.get_miller_visible_columns ()) {
+				foreach (var column in columns) {
+					if (column.category == int.parse (col_n)) {
+						column.visible = true;
+						break;
+					}
 				}
 			}
 		}
