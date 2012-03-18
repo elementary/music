@@ -77,14 +77,14 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		copyImportedMusic = new CheckButton.with_label("Copy files to music folder when added to library");
 		downloadNewPodcasts = new CheckButton.with_label("Automatically download new podcast episodes");
 		
-		var lastfmLabel = new Label("Last FM Integration");
-		var lastfmInfo = new Granite.Widgets.WrapLabel("To allow for Last FM integration, you must give permission to BeatBox. You only need to do this once.");
+		var lastfmLabel = new Label("Last.fm Integration");
+		var lastfmInfo = new Granite.Widgets.WrapLabel("To allow for Last.fm integration, you must give permission to BeatBox. You only need to do this once.");
 		
 		if(_lm.settings.getLastFMSessionKey() == null || _lm.settings.getLastFMSessionKey() == "")
 			lastfmLogin = new Button.with_label("Enable Scrobbling");
 		else {
 			lastfmLogin = new Button.with_label("Scrobbling already Enabled");
-			lastfmLogin.set_tooltip_text("Click to redo the Last FM Login Process");
+			lastfmLogin.set_tooltip_text("Click to redo the Last.fm Login Process");
 		}
 		
 		saveChanges = new Button.with_label("Close");
@@ -95,7 +95,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		lastfmLabel.xalign = 0.0f;
 		musicLabel.set_markup("<b>Music Folder Location</b>");
 		managementLabel.set_markup("<b>Library Management</b>");
-		lastfmLabel.set_markup("<b>Last FM Integration</b>");
+		lastfmLabel.set_markup("<b>Last.fm Integration</b>");
 		
 		// file chooser stuff
 		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
@@ -167,7 +167,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 					GLib.AppInfo.launch_default_for_uri (auth_uri, null);
 				}
 				catch(GLib.Error err) {
-					stdout.printf("Could not open Last FM website to authorize: %s\n", err.message);
+					stdout.printf("Could not open Last.fm website to authorize: %s\n", err.message);
 				}
 				
 				//set button text. we are done this time around. next time we get session key
@@ -183,7 +183,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 				var sk = _lm.lfm.getSessionKey(lastfm_token);
 				if(sk == null) {
 					lastfmLogin.set_label("Unsuccessful. Click to try again.");
-					stdout.printf("Could not get Last FM session key\n");
+					stdout.printf("Could not get Last.fm session key\n");
 				}
 				else {
 					_lm.settings.setLastFMSessionKey(sk);
