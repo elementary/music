@@ -121,7 +121,7 @@ public class BeatBox.MediaEditor : Window {
 		fields = new HashMap<string, FieldEditor>();
 		Media sum = _lm.media_from_id(_medias.get(0)).copy();
 		
-		/** find what these medias have what common, and keep those values **/
+		/** find what these media have what common, and keep those values **/
 		foreach(int i in _medias) {
 			Media s = _lm.media_from_id(i);
 			
@@ -168,7 +168,7 @@ public class BeatBox.MediaEditor : Window {
 			title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
 		}
 		else {
-			title = "Editing " + _medias.size.to_string() + " medias";
+			title = "Editing " + _medias.size.to_string() + " media";
 		}
 		
 		if(sum.year == -1)

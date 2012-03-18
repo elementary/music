@@ -578,9 +578,9 @@ public class BeatBox.MusicTreeView : BaseListView {
 			else {
 				importToLibrary.set_sensitive(true);
 				if(temporary_count != total_count)
-					importToLibrary.label = "Import " + temporary_count.to_string() + " of " + total_count.to_string() + " selected medias";
+					importToLibrary.label = "Import " + temporary_count.to_string() + " of " + total_count.to_string() + " selected songs";
 				else
-					importToLibrary.label = "Import" + ((temporary_count > 1) ? (" " + temporary_count.to_string() + " medias") : "");
+					importToLibrary.label = "Import" + ((temporary_count > 1) ? (" " + temporary_count.to_string() + " songs") : "");
 			}
 
 			int set_rating = -1;

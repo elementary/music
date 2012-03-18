@@ -75,7 +75,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		}
 	""";
 
-	/* medias should be mutable, as we will be sorting it */
+	/* media should be mutable, as we will be sorting it */
 	public AlbumView(LibraryManager lmm, LibraryWindow lww, Collection<int> smedias) {
 		lm = lmm;
 		lw = lww;

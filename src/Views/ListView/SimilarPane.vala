@@ -50,7 +50,7 @@ public class BeatBox.SimilarPane : MusicTreeView {
 		
 		errorLabel.xalign = 0.5f;
 		errorLabel.justify = Justification.CENTER;
-		errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Media View</span>\nIn this view, BeatBox will automatically find medias similar to the one you are playing.\nYou can then start playing those medias, or save them for later.");
+		errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">Similar Media View</span>\nIn this view, BeatBox will automatically find songs similar to the one you are playing.\nYou can then start playing those songs, or save them for later.");
 		*/
 		/* set up toolbar */
 		
@@ -86,7 +86,7 @@ public class BeatBox.SimilarPane : MusicTreeView {
 			do_transfer = true;
 		
 		if(_have.size < 10) {
-			//errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">No Similar Medias</span>\nBeatBox could not find medias similar to " + _next.title.replace("&", "&amp;") + " by " + _next.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
+			//errorLabel.set_markup("<span weight=\"bold\" size=\"larger\">No Similar Media</span>\nBeatBox could not find songs similar to " + _next.title.replace("&", "&amp;") + " by " + _next.artist.replace("&", "&amp;") + ".\nYou could have incorrect data, no internet connection, or non-mainstream music.");
 			//errorBox.show();
 		}
 		else {

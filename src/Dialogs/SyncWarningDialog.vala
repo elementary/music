@@ -63,16 +63,16 @@ public class BeatBox.SyncWarningDialog : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		importMedias = new Button.with_label(_("Import medias to Library"));
+		importMedias = new Button.with_label(_("Import media to Library"));
 		sync = new Button.with_label(_("Continue Syncing"));
 		cancel = new Button.with_label(_("Stop Syncing"));
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Sync will remove " + to_remove.size.to_string() + " medias from " + d.getDisplayName() + "</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">Sync will remove " + to_remove.size.to_string() + " media from " + d.getDisplayName() + "</span>");
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
-		info.set_markup("If you continue to sync, medias will be removed from " + d.getDisplayName() + " since they are not on the sync list. Would you like to import them to your library first?");
+		info.set_markup("If you continue to sync, media will be removed from " + d.getDisplayName() + " since they are not on the sync list. Would you like to import them to your library first?");
 		
 		importMedias.set_sensitive(!lm.doing_file_operations());
 		sync.set_sensitive(!lm.doing_file_operations());

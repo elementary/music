@@ -743,7 +743,7 @@ public class BeatBox.PodcastListView : BaseListView {
 			}
 
 			if(count > 10) {
-				lw.doAlert("Stopping File Browse", "Too many medias have already been opened in File Browser. Stopping any more openings.");
+				lw.doAlert("Stopping File Browse", "Too many podcasts have already been opened in File Browser. Stopping any more openings.");
 				return;
 			}
 		}

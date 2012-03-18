@@ -92,7 +92,7 @@ public class BeatBox.ViewWrapper : VBox {
 		if(the_hint == ViewWrapper.Hint.SIMILAR) {
 			list = new SimilarPane(lm, lw);
 			errorBox.show_icon = false;
-			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find medias similar to the one you are playing.") + "\n" + _("You can then start playing those medias, or save them for later."), null);
+			errorBox.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find songs similar to the one you are playing.") + "\n" + _("You can then start playing those songs, or save them for later."), null);
 		}
 		else if(the_hint == ViewWrapper.Hint.PODCAST || the_hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 			list = new PodcastListView(lm, lw);

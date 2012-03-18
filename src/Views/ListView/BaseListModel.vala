@@ -202,7 +202,7 @@ public abstract class BeatBox.BaseTreeModel : GLib.Object, TreeModel, TreeSortab
 	}
 	
 	
-	/** convenience method to insert medias into the model. No iters returned. **/
+	/** convenience method to insert media into the model. No iters returned. **/
 	public void append_medias(Collection<int> medias, bool emit) {
 		foreach(int id in medias) {
 			SequenceIter<int> added = rows.append(id);

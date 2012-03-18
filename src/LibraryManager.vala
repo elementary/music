@@ -705,7 +705,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				s.last_modified = (int)time_t();
 		}
 		
-		debug ("%d medias updated from lm.update_medias 677\n", rv.size);
+		debug ("%d media updated from lm.update_medias 677\n", rv.size);
 		medias_updated(rv);
 		if(updates.size == 1)
 			media_updated(updates.to_array()[0].rowid);

@@ -1115,7 +1115,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 	public virtual void musicCounted(int count) {
-		debug ("found %d medias, importing.\n", count);
+		debug ("found %d media, importing.\n", count);
 	}
 
 	/* this is after setting the music library */
