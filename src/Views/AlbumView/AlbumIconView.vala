@@ -45,7 +45,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	private AlbumViewModel model;
 
-	public bool is_current_view { get { return this.visible; } }
+	public bool is_current_view { get { return parent_view_wrapper.current_view == ViewWrapper.ViewType.ALBUM; } }
 
 	private Gdk.Pixbuf defaultPix;
 

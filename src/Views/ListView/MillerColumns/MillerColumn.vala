@@ -57,7 +57,8 @@ public class BeatBox.MillerColumns : Box {
 	public LibraryManager lm {get; private set;}
 	public LibraryWindow lw {get; private set;}
 
-	public ViewWrapper.Hint view_type {get; private set;}
+	public ViewWrapper view_wrapper { get; private set; }
+	public ViewWrapper.Hint view_type { get { return view_wrapper.hint; } }
 	public Position position {get; private set; default = Position.AUTOMATIC;}
 	public Position actual_position {get; set; default = Position.LEFT;}
 
@@ -68,7 +69,7 @@ public class BeatBox.MillerColumns : Box {
 	public MillerColumns(ViewWrapper view_wrapper) {
 		this.lm = view_wrapper.lm;
 		this.lw = view_wrapper.lw;
-		this.view_type = view_wrapper.hint;
+		this.view_wrapper = view_wrapper;
 
 		orientation = Orientation.HORIZONTAL;
 
@@ -80,15 +81,12 @@ public class BeatBox.MillerColumns : Box {
 		column_chooser_menu = new Gtk.Menu ();
 
 		// Inserting columns
-		add_column (MillerColumn.Category.RATING);
-		add_column (MillerColumn.Category.YEAR);
-		add_column (MillerColumn.Category.GENRE);
+		var rating_col = add_column (MillerColumn.Category.RATING);
+		var year_col = add_column (MillerColumn.Category.YEAR);
+		var genre_col = add_column (MillerColumn.Category.GENRE);
 
-		// These columns only make sense for songs. Not sure about HISTORY and QUEUE
-		if (view_type == ViewWrapper.Hint.MUSIC || view_type == ViewWrapper.Hint.DEVICE_AUDIO ||
-		    view_type == ViewWrapper.Hint.SMART_PLAYLIST || view_type == ViewWrapper.Hint.PLAYLIST ||
-		    view_type == ViewWrapper.Hint.HISTORY || view_type == ViewWrapper.Hint.CDROM ||
-		    view_type == ViewWrapper.Hint.QUEUE)
+		// These columns only make sense for songs.
+		if (view_type == ViewWrapper.Hint.MUSIC || view_type == ViewWrapper.Hint.DEVICE_AUDIO || view_type == ViewWrapper.Hint.CDROM)
 		{
 			add_column (MillerColumn.Category.ARTIST);
 			add_column (MillerColumn.Category.ALBUM);
@@ -103,6 +101,11 @@ public class BeatBox.MillerColumns : Box {
 					}
 				}
 			}
+		} else {
+			// FIXME: Read this from settings
+			rating_col.visible = true;
+			year_col.visible = true;
+			genre_col.visible = true;
 		}
 
 		// Position stuff
@@ -172,7 +175,7 @@ public class BeatBox.MillerColumns : Box {
 		return null;
 	}
 
-	private void add_column (MillerColumn.Category type) {
+	private MillerColumn add_column (MillerColumn.Category type) {
 		// Setup column and connect signals
 		var column = new MillerColumn (this, type);
 
@@ -189,6 +192,8 @@ public class BeatBox.MillerColumns : Box {
 
 		column.row_activated.connect (column_row_activated);
 		column.header_clicked.connect (column_header_clicked);
+		
+		return column;
 	}
 
 	private void column_row_activated () {
@@ -250,7 +255,7 @@ public class BeatBox.MillerColumns : Box {
 		// Perform search
 
 		lm.do_search (medias, out _media_results, /*out _album_results*/ null, null, null, null, view_type,
-		              lw.searchField.get_text (),
+		              view_wrapper.get_search_string(),
 		              search_artist, search_album, search_genre, search_year, search_rating);
 
 		// Now re-populate the child columns
@@ -296,7 +301,7 @@ public class BeatBox.MillerColumns : Box {
 	}
 
 	public virtual void on_search_field_changed () {
-		if (visible) {
+		if (view_wrapper.is_current_wrapper) {
 			populate(medias);
 		}
 	}
@@ -305,7 +310,7 @@ public class BeatBox.MillerColumns : Box {
 		this.medias = media;
 
 		lm.do_search (media, out _media_results, /*out _album_results*/ null, null, null, null,
-		              view_type, search ?? lw.searchField.get_text ());
+		              view_type, search ?? view_wrapper.get_search_string());
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();

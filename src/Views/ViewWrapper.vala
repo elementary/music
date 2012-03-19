@@ -18,6 +18,9 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
 using Gtk;
@@ -31,16 +34,15 @@ using Gee;
 
    TODO:
     - Sync media playing across all the views
+    - Set preferred view from settings
+    - Store separate settings for each view wrapper. Probably using something similar
+      to TreeViewSetup.vala
 
-   FIXME:
-    - Slow performance
+  --
+  Victor E.
 */
 
 public class BeatBox.ViewWrapper : Box {
-
-	/* SIDEBAR ITER (We just hold a reference here) */
-	public TreeIter sidebar_tree_iter { get; set; }
-
 	public LibraryManager lm { get; private set; }
 	public LibraryWindow  lw { get; private set; }
 
@@ -53,20 +55,37 @@ public class BeatBox.ViewWrapper : Box {
 
 	private Paned list_view_paned; // Wrapper for the list view and miller columns
 
+	private Notebook view_container; // Wraps all the internal views for super fast switching
+
 	/**
 	 * Type of visual representation of the media.
 	 *
 	 * IMPORTANT: Values _must_ match the index of the respective view in the view selector.
 	 */
 	public enum ViewType {
-		ALBUM  = 0, // Matches index 0 of the view in lw.viewSelector
-		LIST   = 1, // Matches index 1 of the view in lw.viewSelector
-		FILTER = 2  // Matches index 2 of the view in lw.viewSelector
+		ALBUM   = 0, // Matches index 0 of the view in lw.viewSelector
+		LIST    = 1, // Matches index 1 of the view in lw.viewSelector
+		FILTER  = 2, // Matches index 2 of the view in lw.viewSelector
+		ERROR   = 3, // For error boxes
+		WELCOME = 4, // For welcome screens
+		NONE    = 5  // Custom views
 	}
 
 
 	public ViewType current_view { get; private set; }
-	public bool is_current_view { get { return this.visible; } }
+
+	public int index { get { return lw.mainViews.page_num(this); } }
+
+	public bool is_current_wrapper {
+		get {
+			int _index = index;
+			if (_index == -1)
+				return false;
+			bool is_current = (_index == lw.mainViews.get_current_page());
+			debug ("%s\t:: is_current_wrapper = %s", hint.to_string(), is_current.to_string());
+			return is_current;
+		}
+	}
 
 
 	/**
@@ -136,127 +155,6 @@ public class BeatBox.ViewWrapper : Box {
 	public bool have_media { get { return media_count > 0; } }
 
 
-	/**
-	 * WIDGET VISIBILITY PROPERTIES.
-	 *
-	 * NOTE: These properties are private because the view wrapper is the only object supposed to
-	 * handle (internal) widget visibility.
-	 *
-	 * No external work should be done in this regard.
-	 **/
-
-
-	private bool list_view_paned_visible {
-		get {
-			if (list_view_paned == null)
-				return false;
-
-			return list_view_paned.visible;
-		}
-		set {
-			if (list_view_paned != null) {
-				list_view_paned.set_no_show_all (!value);
-
-				if (value)
-					list_view_paned.show_all ();
-				else
-					list_view_paned.hide ();
-			}
-		}
-	}
-
-	private bool miller_columns_visible {
-		get {
-			if (!have_column_view)
-				return false;
-
-			return miller_columns.visible;
-		}
-		set {
-			if (have_column_view) {
-				miller_columns.set_no_show_all (!value);
-
-				if (value)
-					miller_columns.show_all ();
-				else
-					miller_columns.hide ();
-			}
-		}
-	}
-
-	private bool list_view_visible {
-		get {
-			if (!have_list_view)
-				return false;
-
-			return list_view.visible;
-		}
-		set {
-			if (have_list_view) {
-				list_view.set_no_show_all (!value);
-
-				if (value)
-					list_view.show_all ();
-				else
-					list_view.hide ();
-			}
-		}
-	}
-
-	private bool album_view_visible {
-		get {
-			if (!have_album_view)
-				return false;
-
-			return album_view.visible;
-		}
-		set {
-			if (have_album_view) {
-				album_view.set_no_show_all (!value);
-
-				if (value)
-					album_view.show_all ();
-				else {
-					(album_view as AlbumView).album_list_view.hide ();
-					album_view.hide ();
-				}
-			}
-		}
-	}
-
-	private bool error_box_visible {
-		get {
-			if (!have_error_box)
-				return false;
-
-			return error_box.visible;
-		}
-		set {
-			if (have_error_box) {
-				error_box.set_no_show_all (!value);
-
-				if (value)
-					error_box.show_all ();
-				else
-					error_box.hide ();
-			}
-		}
-	}
-
-	private bool welcome_screen_visible {
-		get {
-			if (!have_welcome_screen)
-				return false;
-
-			return welcome_screen.visible;
-		}
-		set {
-			if (have_welcome_screen) {
-				welcome_screen.set_no_show_all (!value);
-				welcome_screen.set_visible (value);
-			}
-		}
-	}
 
 	/**
 	 * MEDIA DATA
@@ -276,16 +174,22 @@ public class BeatBox.ViewWrapper : Box {
 	private LinkedList<string> timeout_search;
 
 	// Stops from searching same thing multiple times
-	private string last_search { get; set; default = ""; }
+	private string _last_search = "";
+
+	public string get_search_string () {
+		if (is_current_wrapper)
+			return lw.searchField.get_text ();
+		return _last_search;
+	}
 
 	// Stops from searching unnecesarilly when changing b/w 0 words and search get_hint().
 	private bool showing_all { get { return showing_media_count == media_count; } }
 
 	public int showing_media_count { get { return (showing_medias != null) ? showing_medias.size : 0; } }
 
-	private bool setting_search {get; set; default = false; }
+	private bool setting_search = false;
 
-	public bool needs_update { get; set; }
+	public bool needs_update;
 
 
 	// for Hint.SIMILAR only
@@ -312,6 +216,12 @@ public class BeatBox.ViewWrapper : Box {
 
 		foreach(int i in the_medias)
 			medias.set(i, 1);
+
+		// Setup view container
+		view_container = new Notebook ();
+		view_container.show_tabs = false;
+		view_container.show_border = false;
+		this.pack_start (view_container, true, true, 0);
 
 		switch (the_hint) {
 			case Hint.MUSIC:
@@ -410,15 +320,26 @@ public class BeatBox.ViewWrapper : Box {
 				break;
 		}
 
-		/* Now setup the view wrapper based on the available widgets */
+		/* Now setup the view wrapper based on available widgets */
+
+
+		if (have_error_box) {
+			view_container.append_page (error_box);
+			set_active_view (ViewType.ERROR);
+		}
+
+		if (have_welcome_screen) {
+			view_container.append_page (welcome_screen);
+			set_active_view (ViewType.WELCOME);
+		}
 
 		if (have_list_view) {
 			list_view_paned = new Paned (Orientation.HORIZONTAL);
-			
-			this.pack_start (list_view_paned, true, true, 0);
+
+			view_container.append_page (list_view_paned);
 
 			//XXX:
-			current_view = ViewType.LIST;
+			set_active_view (ViewType.LIST);
 			do_update (current_view, null, false, true, false);
 
 			list_view_paned.pack2 (list_view, true, true);
@@ -433,7 +354,7 @@ public class BeatBox.ViewWrapper : Box {
 			miller_columns.position_changed.connect (set_miller_columns_position);
 
 			//XXX:
-			current_view = ViewType.FILTER;
+			set_active_view (ViewType.FILTER);
 			update_miller_columns ();
 
 			miller_columns.size_allocate.connect ( () => {
@@ -455,23 +376,14 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		if (have_album_view) {
-			pack_end (album_view, true, true, 0);
+			view_container.append_page (album_view);
 
 			//XXX:
-			current_view = ViewType.ALBUM;
+			set_active_view (ViewType.ALBUM);
 			do_update (current_view, null, false, true, false);
 		}
 
-		if (have_error_box)
-			pack_end (error_box, true, true, 0);
-
-		if (have_welcome_screen)
-			pack_end (welcome_screen, true, true, 0);
-
 		needs_update = true;
-
-		// Don't set this view rapper as the current view by default
-		set_as_current_view (false);
 
 		lw.viewSelector.mode_changed.connect (view_selector_changed);
 
@@ -481,22 +393,21 @@ public class BeatBox.ViewWrapper : Box {
 
 		lw.searchField.changed.connect (search_field_changed);
 
-		update_items_visibility ();
-		
+		show_all ();
+
 		initialized = true;
 	}
 
-
 	public ViewWrapper.with_view (Gtk.Widget view) {
-		pack_start (view, true, true, 0);
+		view_container.append_page (view);
 
 		this.hint = Hint.NONE;
+		set_active_view (ViewType.NONE);
 
 		show_all ();
 
-		update_toolbar_widgets_state ();
+		update_library_window_widgets ();
 	}
-
 
 
 	private void set_miller_columns_position (MillerColumns.Position position) {
@@ -531,98 +442,52 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	/**
-	 * Convenient visibility methods
+	 * Convenient visibility method
 	 */
+	private bool set_active_view (ViewType type) {
+		int view_index = -1;
 
-	public void show_album_view () {
-		if (!have_album_view)
-			return;
+		// Find position in notebook
+		switch (type) {
+			// LIST and FILTER share the same page because they are in the same GtkPaned widget.
+			case ViewType.LIST:
+			case ViewType.FILTER:
+				view_index = view_container.page_num (list_view_paned);
+				if (have_column_view) {
+					if (type == ViewType.LIST) {
+						current_view = type;
+						miller_columns.hide ();
+					}
+					else {
+						miller_columns.show_all ();
+					}
+				}
+				break;
+			case ViewType.ALBUM:
+				view_index = view_container.page_num (album_view);
+				break;
+			case ViewType.ERROR:
+				view_index = view_container.page_num (error_box);
+				break;
+			case ViewType.WELCOME:
+				view_index = view_container.page_num (welcome_screen);
+				break;
+		}
 
-	 	// Hide other visible stuff
-		list_view_paned_visible = false;
-		error_box_visible = false;
-		welcome_screen_visible = false;
+		// i.e. we're not switching the view if it is not available
+		if (view_index < 0) {
+			warning ("Cannot set %s as the active view", type.to_string());
+			return false;
+		}
 
-		// Now show the album view
-		album_view_visible = true;
+		// Set view as current
+		current_view = type;
+		view_container.set_current_page (view_index);
 
-		update_toolbar_widgets_state ();
-	}
+		// Update BeatBox's toolbar widgets
+		update_library_window_widgets ();
 
-	public void show_list_view () {
-		if (!have_list_view)
-			return;
-
-		list_view_paned_visible = true;
-
-		// Hide other visible stuff
-		miller_columns_visible = false;
-		album_view_visible = false;
-
-		error_box_visible = false;
-		welcome_screen_visible = false;
-
-		// Now show the list view
-	 	list_view_visible = true;
-
-		update_toolbar_widgets_state ();
-	}
-
-
-	public void show_column_view () {
-		if (!have_column_view)
-			return;
-
-		list_view_paned_visible = true;
-
-		// Hide other visible stuff
-		album_view_visible = false;
-
-		error_box_visible = false;
-		welcome_screen_visible = false;
-
-		// Now show the column view
-		list_view_visible = true;
-	 	miller_columns_visible = true;
-
-		update_toolbar_widgets_state ();
-	}
-
-	public void show_error_box () {
-		if (!have_error_box)
-			return;
-
-		// Hide other visible stuff
-		list_view_paned_visible = false;
-
-		list_view_visible = false;
-		album_view_visible = false;
-		miller_columns_visible = false;
-
-		welcome_screen_visible = false;
-
-		// Now show the error box
-		error_box_visible = true;
-
-		update_toolbar_widgets_state ();
-	}
-
-	public void show_welcome_screen () {
-		if (!have_welcome_screen)
-			return;
-
-		// Hide other visible stuff
-		list_view_paned_visible = false;
-		list_view_visible = false;
-		miller_columns_visible = false;
-		album_view_visible = false;
-
-		error_box_visible = false;
-
-		// Now show the welcome screen
-	 	welcome_screen_visible = true;
-
-		update_toolbar_widgets_state ();
+		return true;
 	}
 
 
@@ -630,36 +495,30 @@ public class BeatBox.ViewWrapper : Box {
 	 * This method ensures that the view switcher and search box are sensitive/insensitive when they have to.
 	 * It also selects the proper view switcher item based on the current view.
 	 */
-	private void update_toolbar_widgets_state () {
-		if (!is_current_view)
+	private void update_library_window_widgets () {
+		if (!is_current_wrapper)
 			return;
 
-		// select the right view in the view selector
-		if (lw.viewSelector.selected != (int)current_view)
+		debug ("Updating LibraryWindow widgets for %s", hint.to_string());
+
+		// select the right view in the view selector if it's one of the three views
+		if (lw.viewSelector.selected != (int)current_view && (int)current_view <= 3)
 			lw.viewSelector.set_active ((int)current_view);
 
 		// Restore this view wrapper's search string
-		lw.searchField.set_text (last_search);
-
-		// Make the view switcher and search box insensitive if the current item
-		// is either the error box or welcome screen
-		if (error_box_visible || welcome_screen_visible) {
-			lw.viewSelector.set_sensitive (false);
-			lw.searchField.set_sensitive (false);
-		}
-		else {
-			lw.viewSelector.set_sensitive (true);
-			lw.searchField.set_sensitive (have_media);
-		}
+		// NOTE: get_search_string() wouldn't work here since it'd return what the
+		//       search field already contains (remember that we already set this as
+		//       the current view).
+		lw.searchField.set_text (_last_search);
 
 
-		// Deactivate unsupported views in the view selector:
-
+		// Deactivate unsupported views in the view selector: FIXME
+		/*
 		var view_selector_items = lw.viewSelector.get_children();
 		int visible_items = 0, total_items = (int)view_selector_items.length ();
 
 		for (int i = 0; i < total_items; ++i) {
-			var button_item = view_selector_items.nth_data ((int)ViewType.LIST);
+			var button_item = view_selector_items.nth_data (i);
 			if (button_item != null) {
 				if (i == ViewType.LIST) {
 					button_item.set_sensitive (have_list_view);
@@ -678,10 +537,25 @@ public class BeatBox.ViewWrapper : Box {
 				}
 			}
 		}
+		*/
+		bool view_selector_sensitive = true, search_field_sensitive = true;
+
+		// Make the view switcher and search box insensitive if the current item
+		// is either the error box or welcome screen
+		if (current_view == ViewType.ERROR || current_view == ViewType.WELCOME) {
+			view_selector_sensitive = false;
+			search_field_sensitive = false;
+		}
+
+		lw.viewSelector.set_sensitive (view_selector_sensitive);
+		lw.searchField.set_sensitive (search_field_sensitive && have_media);
+
 
 		// Check whether there's at least a pair of views to switch between
-		bool view_selector_sensitive = lw.viewSelector.sensitive && (total_items - visible_items < 2);
-		lw.viewSelector.set_sensitive (view_selector_sensitive);
+		lw.viewSelector.set_sensitive (view_selector_sensitive /*&& (total_items - visible_items >= 2)*/);
+
+		// Update statusbar
+		set_statusbar_info ();
 	}
 
 	/**
@@ -697,14 +571,14 @@ public class BeatBox.ViewWrapper : Box {
 	public Collection<int> get_showing_media_ids () {
 		// Dont search again if we already populated millers
 
-		if (miller_columns_visible && initialized)
+		if (current_view == ViewType.FILTER && initialized)
 			return miller_columns.media_results;
 
 		// Perform search
 		LinkedList<int> _search_results;
 
 		lm.do_search (get_media_ids (), out _search_results, null, null, null, null,
-		              hint, lw.searchField.get_text ());
+		              hint, get_search_string());
 
 		foreach (int i in _search_results)
 			showing_medias.set (i, 1);
@@ -714,7 +588,7 @@ public class BeatBox.ViewWrapper : Box {
 
 	public virtual void view_selector_changed () {
 		// don't do anything if the view is not visible
-		if (!lw.initializationFinished || !is_current_view || (int)current_view == lw.viewSelector.selected)
+		if (!lw.initializationFinished || !is_current_wrapper /* || (int)current_view == lw.viewSelector.selected*/)
 			return;
 
 		var selected_view = (ViewType) lw.viewSelector.selected;
@@ -724,69 +598,23 @@ public class BeatBox.ViewWrapper : Box {
 		                    (selected_view != ViewType.FILTER) ||
 		                    (showing_media_count < 1);
 
-		switch (selected_view) {
-			case ViewType.FILTER: // MILLER VIEW
-				if (have_column_view)
-					current_view = selected_view;
-				break;
-			case ViewType.LIST: // LIST VIEW
-				if (have_list_view)
-					current_view = selected_view;
-				break;
-			case ViewType.ALBUM: // ALBUM VIEW
-				if (have_album_view)
-					current_view = selected_view;
-				break;
-		}
+		bool successful = set_active_view (selected_view);
 
-		if (update_data) {
+		// Hide album view
+		if (have_album_view)
+			(album_view as AlbumView).album_list_view.hide ();
+
+		if (successful && update_data) {
 			// We need to do this since some views are filtered (i.e. column view) and others not
 			do_update (current_view, null, false, false, false);
-		}
-
-		update_items_visibility ();
-	}
-
-
-	public void update_items_visibility () {
-		if (have_media || (!have_error_box && !have_welcome_screen)) {
-			switch (current_view) {
-				case ViewType.LIST:
-					show_list_view ();
-					break;
-				case ViewType.FILTER:
-					show_column_view ();
-					break;
-				case ViewType.ALBUM:
-					show_album_view ();
-					break;
-			}
-		}
-		else {
-			/* FIXME:
-			 * The error box and welcome screen visibilities should be mutually exclusive.
-			 * We need to tell the view wrapper who will handle the no-media user case or
-			 * maybe pass it as a parameter to this method.
-			 */
-			if (have_error_box)
-				show_error_box ();
-			else if (have_welcome_screen)
-				show_welcome_screen ();
 		}
 	}
 
 	/**
 	 * Sets whether this view wrapper is the current displayed view or not.
-	 * It has the same effect of the visible property.
 	 */
-	public void set_as_current_view (bool is_current_view) {
-		set_no_show_all (!is_current_view);
-		set_visible (is_current_view);
-
-		if (is_current_view)
-			update_toolbar_widgets_state ();
-		else if (have_album_view)
-			(album_view as AlbumView).album_list_view.hide ();
+	public void set_as_current_view () {
+		update_library_window_widgets ();
 	}
 
 	public void show_retrieving_similars() {
@@ -796,7 +624,9 @@ public class BeatBox.ViewWrapper : Box {
 		if (have_error_box) {
 			error_box.show_icon = false;
 			error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Loading similar songs") + "</span>\n\n" + _("BeatBox is loading songs similar to") + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> " + _("..."), null);
-			show_error_box ();
+
+			// Show the error box
+			set_active_view (ViewType.ERROR);
 		}
 
 		similarsFetched = false;
@@ -823,7 +653,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		in_update = true;
 
-		if(is_current_view) {
+		if(is_current_wrapper) {
 			// find which medias belong here
 			LinkedList<int> shouldBe, shouldShow;
 
@@ -835,7 +665,7 @@ public class BeatBox.ViewWrapper : Box {
 				to_search = ids;
 
 			lm.do_search (to_search, out shouldShow, null, null, null, null,
-			              hint, lw.searchField.get_text ());
+			              hint, get_search_string());
 
 			lm.do_search (to_search, out shouldBe, null, null, null, null, hint);
 
@@ -886,7 +716,7 @@ public class BeatBox.ViewWrapper : Box {
 				update_miller_columns ();
 
 				set_statusbar_info();
-				
+
 				check_show_error_box();
 
 				return false;
@@ -926,7 +756,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		needs_update = true;
 		in_update = false;
-		
+
 		set_statusbar_info ();
 	}
 
@@ -959,7 +789,7 @@ public class BeatBox.ViewWrapper : Box {
 			LinkedList<int> potential_showing;
 
 			lm.do_search(to_add, out potential_showing, null, null, null, null,
-			             hint, lw.searchField.get_text());
+			             hint, get_search_string());
 
 			if (have_list_view)
 				list_view.append_medias(potential_showing);
@@ -978,7 +808,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		needs_update = true;
 		in_update = false;
-		
+
 		set_statusbar_info ();
 	}
 
@@ -1018,18 +848,6 @@ public class BeatBox.ViewWrapper : Box {
 				medias.set(i, 1);
 		}
 
-		/* If the view IS NOT filtered, all the media is shown, as long as it matches what the
-		 * user has typed on the search entry. Otherwise it only shows the media which matches the
-		 * filter.
-		 *
-		 * Filtered views:
-		 * - Column view (miller columns)
-		 *
-		 * Not-filtered views:
-		 * - Album View
-		 * - List View
-		 */
-
 		var new_media = get_showing_media_ids ();
 
 		if(!in_thread && check_show_error_box()) {
@@ -1038,11 +856,12 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		/* BEGIN special case for similar medias */
-		if(!in_thread && have_list_view && list_view.get_hint() == Hint.SIMILAR && is_current_view) {
+		if(!in_thread && have_list_view && list_view.get_hint() == Hint.SIMILAR && is_current_wrapper) {
 			SimilarPane sp = (SimilarPane)(list_view);
 
 			if(!similarsFetched) { // still fetching similar medias
-				show_error_box ();
+				// Show the error box
+				set_active_view (ViewType.ERROR);
 
 				in_update = false;
 				return;
@@ -1052,7 +871,8 @@ public class BeatBox.ViewWrapper : Box {
 					if (have_error_box) {
 						error_box.show_icon = true;
 						error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."), Justification.LEFT);
-						show_error_box ();
+						// Show the error box
+						set_active_view (ViewType.ERROR);
 					}
 
 					in_update = false;
@@ -1066,7 +886,7 @@ public class BeatBox.ViewWrapper : Box {
 		/* END special case */
 
 		/* Even if it's a non-visual update, prepare the view's for the visual update */
-		if(!is_current_view || force || needs_update) {
+		if(!is_current_wrapper || force || needs_update) {
 			if (have_list_view) {
 				list_view.set_show_next(new_media);
 			}
@@ -1077,7 +897,7 @@ public class BeatBox.ViewWrapper : Box {
 			needs_update = false;
 		}
 
-		if(!in_thread && (is_current_view || force)) {
+		if(!in_thread && (is_current_wrapper || force)) {
 			if(have_list_view && type == ViewType.LIST || type == ViewType.FILTER)
 				list_view.populate_view();
 			else if (have_album_view && type == ViewType.ALBUM)
@@ -1095,7 +915,7 @@ public class BeatBox.ViewWrapper : Box {
 			return false;
 
 		if((hint == Hint.CDROM || hint == Hint.PODCAST ||
-		    hint == Hint.STATION) && is_current_view)
+		    hint == Hint.STATION) && is_current_wrapper)
 		{
 			int size_check = media_count;
 
@@ -1117,17 +937,21 @@ public class BeatBox.ViewWrapper : Box {
 
 			if(size_check == 0) {
 				error_box.show_icon = (hint == Hint.CDROM);
-				show_error_box ();
+
+				// Show error box
+				set_active_view (ViewType.ERROR);
 
 				return true;
 			}
 			// FIXME: these lines are not needed:
 			else {
 				if(have_list_view && current_view == ViewType.LIST) {
-					show_list_view ();
+					// Show list view
+					set_active_view (ViewType.LIST);
 				}
 				else {
-					show_album_view ();
+					// Show album view
+					set_active_view (ViewType.ALBUM);
 				}
 			}
 		}
@@ -1136,7 +960,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	public void set_statusbar_info() {
-		if (!is_current_view)
+		if (!is_current_wrapper)
 			return;
 
 		if(showing_media_count < 1) {
@@ -1148,7 +972,7 @@ public class BeatBox.ViewWrapper : Box {
 		uint total_time = 0;
 		uint total_mbs = 0;
 
-		foreach(int id in showing_medias) {
+		foreach(int id in get_showing_media_ids ()) {
 			var media = lm.media_from_id (id);
 			if (media != null) {
 				count ++;
@@ -1162,21 +986,25 @@ public class BeatBox.ViewWrapper : Box {
 
 	public void miller_columns_changed () {
 		if(lw.initializationFinished) {
+			needs_update = true;
 			do_update(ViewType.FILTER, null, false, false, false);
 		}
 	}
 
 	public virtual void search_field_changed() {
+		if (!is_current_wrapper)
+			return;
+		
 		/*
 		// validate search string: no white space, etc.
 		bool is_valid_string = false;
 		int white_space = 0;
 
-		string search_string = lw.searchField.get_text();
-		int str_length = search_string.length;
+		string get_search_string() = get_search_string();
+		int str_length = get_search_string().length;
 
 		unichar c;
-		for (int i = 0; search_string.get_next_char (ref i, out c);)
+		for (int i = 0; get_search_string().get_next_char (ref i, out c);)
 			if (c.isspace())
 				++ white_space;
 
@@ -1187,16 +1015,16 @@ public class BeatBox.ViewWrapper : Box {
 		}
 		*/
 
-		if(!setting_search && lw.initializationFinished && is_current_view) {
-			timeout_search.offer_head(lw.searchField.get_text().down());
+		if(!setting_search && lw.initializationFinished) {
+			timeout_search.offer_head(_last_search.down());
 			Timeout.add(200, () => {
 
 				string to_search = timeout_search.poll_tail();
-				if(to_search != lw.searchField.get_text() || to_search == last_search)
+				if(to_search != _last_search || to_search == _last_search)
 					return false;
 
-				if(!setting_search && is_current_view)
-					last_search = to_search;
+				if(!setting_search && is_current_wrapper)
+					_last_search = to_search;
 
 				do_update(this.current_view, null, false, true, false);
 

@@ -48,9 +48,12 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	protected Collection<int> _showing_medias;
 	protected LinkedList<string> _columns;
 
-	public bool is_current_view { get { return this.visible; } }
-
-
+	public bool is_current_view {
+		get {
+			return view_wrapper.current_view == ViewWrapper.ViewType.LIST ||
+			        view_wrapper.current_view == ViewWrapper.ViewType.FILTER;
+		}
+	}
 
 	/**
 	 * @deprecated

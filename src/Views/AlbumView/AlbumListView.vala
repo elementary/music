@@ -219,6 +219,7 @@ public class BeatBox.AlbumListView : Window {
 		setting_songs = true;
 
 		// decide rating. unless all are equal, show the lowest.
+		// FIXME: Use the average rating
 		int overall_rating = -1;
 		foreach(int i in mtv.get_medias()) {
 			int song_rating = (int)lm.media_from_id(i).rating;
