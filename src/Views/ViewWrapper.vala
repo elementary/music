@@ -33,7 +33,6 @@ using Gee;
  STATUS:
 
    TODO:
-    - Sync media playing across all the views
     - Set preferred view from settings
     - Store separate settings for each view wrapper. Probably using something similar
       to TreeViewSetup.vala

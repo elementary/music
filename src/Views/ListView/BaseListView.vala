@@ -51,7 +51,9 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 	public bool is_current_view {
 		get {
 			return view_wrapper.current_view == ViewWrapper.ViewType.LIST ||
-			        view_wrapper.current_view == ViewWrapper.ViewType.FILTER;
+			        view_wrapper.current_view == ViewWrapper.ViewType.FILTER ||
+			        (view_wrapper.current_view == ViewWrapper.ViewType.ALBUM &&
+			         view_wrapper.have_album_view); // Sync media in album view as well
 		}
 	}
 
