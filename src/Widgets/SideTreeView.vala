@@ -428,13 +428,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			
 		Widget w = getWidget(iter);
 		if(w is ViewWrapper) {
-			((ViewWrapper)w).list_view.set_as_current_list(1, true);
-			
-			lm.playMedia(lm.mediaFromCurrentIndex(0), false);
-			lm.player.play();
-			
-			if(!lm.playing)
-				lw.playClicked();
+			(w as ViewWrapper).play_first_media ();
 		}
 	}
 	

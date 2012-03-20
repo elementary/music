@@ -197,7 +197,8 @@ public class BeatBox.MillerColumns : Box {
 	}
 
 	private void column_row_activated () {
-		// TODO: Start playing the first song in the media treeview
+		// Start playing the first media
+		view_wrapper.play_first_media ();
 	}
 
 	private void column_selection_changed (MillerColumn.Category category, string val) {

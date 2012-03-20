@@ -728,6 +728,19 @@ public class BeatBox.ViewWrapper : Box {
 		in_update = false;
 	}
 
+	public void play_first_media () {
+		if (have_list_view)
+			list_view.set_as_current_list(1, true);
+		else
+			return;
+
+		lm.playMedia (lm.mediaFromCurrentIndex(0), false);
+		lm.player.play ();
+
+		if(!lm.playing)
+			lw.playClicked();
+	}
+
 	void medias_removed(LinkedList<int> ids) {
 		if(in_update)
 			return;
