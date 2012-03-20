@@ -703,19 +703,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		foreach(Media s in updates)
 			dbu.update_media(s);
 	}
-	
-	public void* update_views_thread () {
-		// update them
-		foreach(Widget w in lw.mainViews.get_children()) {
-			if(!w.visible && w is ViewWrapper) {
-				ViewWrapper vw = (ViewWrapper)w;
-				vw.do_update(vw.current_view, vw.get_media_ids(), false, false, true);
-			}
-		}
-		
-		return null;
-	}
-	
+
 	public void save_media() {
 		try {
 			Thread.create<void*>( () => { 
