@@ -194,7 +194,7 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	// for Hint.SIMILAR only
-	public bool similarsFetched { get; set; }
+	public bool similarsFetched;
 	private bool in_update;
 	private bool initialized;
 
@@ -448,6 +448,9 @@ public class BeatBox.ViewWrapper : Box {
 		show_all ();
 
 		update_library_window_widgets ();
+		
+		// FIXME: not needed. Update statusbar
+		set_statusbar_info ();
 	}
 
 
@@ -500,7 +503,7 @@ public class BeatBox.ViewWrapper : Box {
 	/**
 	 * Convenient visibility method
 	 */
-	private bool set_active_view (ViewType type) {
+	private void set_active_view (ViewType type, out bool successful = null) {
 		int view_index = -1;
 
 		// Find position in notebook
@@ -533,7 +536,8 @@ public class BeatBox.ViewWrapper : Box {
 		// i.e. we're not switching the view if it is not available
 		if (view_index < 0) {
 			warning ("Cannot set %s as the active view", type.to_string());
-			return false;
+			successful = false;
+			return;
 		}
 
 		// Set view as current
@@ -543,9 +547,11 @@ public class BeatBox.ViewWrapper : Box {
 		// Update BeatBox's toolbar widgets
 		update_library_window_widgets ();
 
-		return true;
-	}
+		// FIXME: not needed, since do_update should do it. Update statusbar
+		// set_statusbar_info ();
 
+		successful = true;
+	}
 
 	/**
 	 * This method ensures that the view switcher and search box are sensitive/insensitive when they have to.
@@ -608,10 +614,7 @@ public class BeatBox.ViewWrapper : Box {
 
 
 		// Check whether there's at least a pair of views to switch between
-		lw.viewSelector.set_sensitive (view_selector_sensitive /*&& (total_items - visible_items >= 2)*/);
-
-		// Update statusbar
-		set_statusbar_info ();
+		//lw.viewSelector.set_sensitive (view_selector_sensitive /*&& (total_items - visible_items >= 2)*/);
 	}
 
 	/**
@@ -625,7 +628,7 @@ public class BeatBox.ViewWrapper : Box {
 	 * @return a collection with all the media that should be shown
 	 */
 	public Collection<int> get_showing_media_ids () {
-		// Dont search again if we already populated millers
+		// FIXME: Dont search again if we already populated millers
 
 		if (current_view == ViewType.FILTER && initialized)
 			return miller_columns.media_results;
@@ -643,24 +646,25 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	public virtual void view_selector_changed () {
-		// don't do anything if the view is not visible
-		if (!lw.initializationFinished || !is_current_wrapper /* || (int)current_view == lw.viewSelector.selected*/)
+		if (!lw.initializationFinished /* || !is_current_wrapper*/ || (int)current_view == lw.viewSelector.selected)
 			return;
 
 		var selected_view = (ViewType) lw.viewSelector.selected;
 
 		// Only update data when switching between a filtered - non-filtered view
-		bool update_data = (current_view == ViewType.FILTER) ||
+		bool update_data = ((current_view == ViewType.FILTER) ||
 		                    (selected_view != ViewType.FILTER) ||
-		                    (showing_media_count < 1);
+		                    (showing_media_count < 1)) &&
+		                    is_current_wrapper;
 
-		bool successful = set_active_view (selected_view);
-
-		// Hide album view
-		if (have_album_view)
-			(album_view as AlbumView).album_list_view.hide ();
+		bool successful;
+		set_active_view (selected_view, out successful);
 
 		if (successful && update_data) {
+			// Hide album view
+			if (have_album_view)
+				(album_view as AlbumView).album_list_view.hide ();
+
 			// We need to do this since some views are filtered (i.e. column view) and others not
 			do_update (current_view, null, false, false, false);
 		}
@@ -671,6 +675,9 @@ public class BeatBox.ViewWrapper : Box {
 	 */
 	public void set_as_current_view () {
 		update_library_window_widgets ();
+		
+		// Update statusbar
+		set_statusbar_info ();
 	}
 
 	public void show_retrieving_similars() {

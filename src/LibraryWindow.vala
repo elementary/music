@@ -685,6 +685,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	 * This is handled more carefully inside each ViewWrapper object.
 	 */
 	public void updateSensitivities() {
+		// FIXME: TopDisplay's internal widgets and WelcomeScreen sensitivities shouldn't be set here
 		
 		if(!initializationFinished)
 			return;
@@ -724,7 +725,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		nextButton.set_sensitive(mediaActive || songsInList);
 
 		mainViews.set_visible(showMainViews);
-		welcomeScreen.set_visible(!showMainViews);
+		welcomeScreen.set_visible(!showMainViews); // FIXME
 
 		welcomeScreen.set_item_sensitivity(0, !doingOps);
 		foreach(int key in welcome_screen_keys.keys)
