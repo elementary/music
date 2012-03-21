@@ -41,7 +41,7 @@ public class BeatBox.MillerColumns : Box {
 		TOP       = 1
 	}
 
-	public const int MIN_COLUMN_WIDTH = 80;
+	public const int MIN_COLUMN_WIDTH = 100;
 	public const int MIN_COLUMN_HEIGHT = 70;
 
 

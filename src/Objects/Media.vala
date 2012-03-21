@@ -23,7 +23,10 @@
 //using Gst;
 using Gtk;
 
-public class BeatBox.Media : GLib.Object{
+public class BeatBox.Media : GLib.Object {
+	// TODO: Define more constants or even enum values
+	public const int PREVIEW_ROWID = -2;
+
 	//core info
 	public string uri { get; set; default = ""; }
 	public uint file_size { get; set; default = 0; }

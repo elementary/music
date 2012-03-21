@@ -1287,85 +1287,82 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 	public virtual void current_position_update(int64 position) {
-		if(lm.media_active && lm.media_info.media.rowid == -2) // is preview
+		if (!lm.media_active)
 			return;
 
-		double sec = 0.0;
-		if(lm.media_active) {
-			sec = ((double)position/1000000000);
+		if (lm.media_info.media.rowid == Media.PREVIEW_ROWID) // is preview
+			return;
 
-			if(lm.player.set_resume_pos) {
-				lm.media_info.media.resume_pos = (int)sec;
+		double sec = ((double)position/1000000000);
+
+		if(lm.player.set_resume_pos)
+			lm.media_info.media.resume_pos = (int)sec;
+
+		// at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
+		if(position > 3000000000 && !queriedlastfm) {
+			queriedlastfm = true;
+
+			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.playlists_similar_iter);
+			if(vw.have_list_view && !(vw.list_view as BaseListView).is_current_view) {
+				vw.show_retrieving_similars();
+				similarMedias.queryForSimilar(lm.media_info.media);
 			}
 
-			// at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
-			if(position > 3000000000 && !queriedlastfm) {
-				queriedlastfm = true;
+			try {
+				Thread.create<void*>(lastfm_track_thread_function, false);
+				Thread.create<void*>(lastfm_album_thread_function, false);
+				Thread.create<void*>(lastfm_artist_thread_function, false);
+				Thread.create<void*>(lastfm_update_nowplaying_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				warning("ERROR: Could not create last fm thread: %s \n", err.message);
+			}
+		}
 
-				ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.playlists_similar_iter);
-				if(vw.have_list_view /* && !vw.list_view.get_is_current() */) {
-					vw.show_retrieving_similars();
-					similarMedias.queryForSimilar(lm.media_info.media);
-				}
+		//at 30 seconds in, we consider the media as played
+		if(position > 30000000000 && !media_considered_played) {
+			media_considered_played = true;
+			lm.media_info.media.last_played = (int)time_t();
 
-				try {
-					Thread.create<void*>(lastfm_track_thread_function, false);
-					Thread.create<void*>(lastfm_album_thread_function, false);
-					Thread.create<void*>(lastfm_artist_thread_function, false);
-					Thread.create<void*>(lastfm_update_nowplaying_thread_function, false);
-				}
-				catch(GLib.ThreadError err) {
-					warning("ERROR: Could not create last fm thread: %s \n", err.message);
-				}
+			if(lm.media_info.media.mediatype == 1) { //podcast
+				added_to_play_count = true;
+				++lm.media_info.media.play_count;
 			}
 
-			//at 30 seconds in, we consider the media as played
-			if(position > 30000000000 && !media_considered_played) {
-				media_considered_played = true;
+			lm.update_media(lm.media_info.media, false, false);
 
-				lm.media_info.media.last_played = (int)time_t();
-				if(lm.media_info.media.mediatype == 1) { //podcast
-					added_to_play_count = true;
-					++lm.media_info.media.play_count;
-				}
-				lm.update_media(lm.media_info.media, false, false);
-
-				// add to the already played list
-				lm.add_already_played(lm.media_info.media.rowid);
-				sideTree.updateAlreadyPlayed();
+			// add to the already played list
+			lm.add_already_played(lm.media_info.media.rowid);
+			sideTree.updateAlreadyPlayed();
 
 #if HAVE_ZEITGEIST
-				var event = new Zeitgeist.Event.full(Zeitgeist.ZG_ACCESS_EVENT,
-					Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://beatbox.desktop",
-					new Zeitgeist.Subject.full(
-					lm.media_info.media.uri,
-					Zeitgeist.NFO_AUDIO, Zeitgeist.NFO_FILE_DATA_OBJECT,
-					"text/plain", "", lm.media_info.media.title, ""));
-				new Zeitgeist.Log ().insert_events_no_reply(event);
+			var event = new Zeitgeist.Event.full (Zeitgeist.ZG_ACCESS_EVENT,
+			                                       Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://beatbox.desktop",
+			                                       new Zeitgeist.Subject.full(lm.media_info.media.uri,
+			                                                                   Zeitgeist.NFO_AUDIO,
+			                                                                   Zeitgeist.NFO_FILE_DATA_OBJECT,
+			                                                                   "text/plain", "",
+			                                                                   lm.media_info.media.title, ""));
+			new Zeitgeist.Log ().insert_events_no_reply(event);
 #endif
-			}
-
-			// at halfway, scrobble
-			if((double)(sec/(double)lm.media_info.media.length) > 0.50 && !scrobbled_track) {
-				scrobbled_track = true;
-				try {
-					Thread.create<void*>(lastfm_scrobble_thread_function, false);
-				}
-				catch(GLib.ThreadError err) {
-					warning("ERROR: Could not create last fm thread: %s \n", err.message);
-				}
-			}
-
-			// at 90% done with media, add 1 to play count
-			if((double)(sec/(double)lm.media_info.media.length) > 0.90 && !added_to_play_count) {
-				added_to_play_count = true;
-				lm.media_info.media.play_count++;
-				lm.update_media(lm.media_info.media, false, false);
-			}
-
 		}
-		else {
 
+		// at halfway, scrobble
+		if((double)(sec/(double)lm.media_info.media.length) > 0.50 && !scrobbled_track) {
+			scrobbled_track = true;
+			try {
+				Thread.create<void*>(lastfm_scrobble_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				warning("ERROR: Could not create last fm thread: %s \n", err.message);
+			}
+		}
+
+		// at 80% done with media, add 1 to play count
+		if((double)(sec/(double)lm.media_info.media.length) > 0.80 && !added_to_play_count) {
+			added_to_play_count = true;
+			lm.media_info.media.play_count++;
+			lm.update_media(lm.media_info.media, false, false);
 		}
 	}
 
@@ -1516,11 +1513,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		Widget w = sideTree.getSelectedWidget();
 
 		if(w is ViewWrapper) {
-			/*
 			ViewWrapper vw = (ViewWrapper)w;
 
 			if (((ViewWrapper)w).have_list_view)
-				vw.list_view.set_as_current_list(1, !vw.list_view.get_is_current()); */
+				vw.list_view.set_as_current_list(1, !(vw.list_view as BaseListView).is_current_view);
 
 			lm.current_index = 0;
 			lm.playMedia(lm.mediaFromCurrentIndex(0), false);

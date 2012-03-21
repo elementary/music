@@ -323,7 +323,6 @@ public class BeatBox.ViewWrapper : Box {
 
 		/* Now setup the view wrapper based on available widgets */
 
-
 		if (have_error_box) {
 			view_container.append_page (error_box);
 			set_active_view (ViewType.ERROR);
@@ -346,7 +345,6 @@ public class BeatBox.ViewWrapper : Box {
 
 			// Add hpaned (the most-external wrapper) to the view container
 			view_container.append_page (list_view_hpaned);
-
 
 			//list_view_hpaned.set_position(lw.settings.get_miller_columns_width());
 
@@ -542,6 +540,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		// Set view as current
 		current_view = type;
+
 		view_container.set_current_page (view_index);
 
 		// Update BeatBox's toolbar widgets
@@ -646,7 +645,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	public virtual void view_selector_changed () {
-		if (!lw.initializationFinished /* || !is_current_wrapper*/ || (int)current_view == lw.viewSelector.selected)
+		if (!lw.initializationFinished || (int)current_view == lw.viewSelector.selected || current_view == ViewType.ERROR || current_view == ViewType.WELCOME)
 			return;
 
 		var selected_view = (ViewType) lw.viewSelector.selected;
@@ -681,16 +680,14 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	public void show_retrieving_similars() {
-		if(hint != Hint.SIMILAR || lm.media_info.media == null)
+		if(hint != Hint.SIMILAR || !have_error_box || lm.media_info.media == null)
 			return;
 
-		if (have_error_box) {
-			error_box.show_icon = false;
-			error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Loading similar songs") + "</span>\n\n" + _("BeatBox is loading songs similar to") + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> " + _("..."), null);
+		error_box.show_icon = false;
+		error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Loading similar songs") + "</span>\n\n" + _("BeatBox is loading songs similar to") + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> " + _("..."), null);
 
-			// Show the error box
-			set_active_view (ViewType.ERROR);
-		}
+		// Show the error box
+		set_active_view (ViewType.ERROR);
 
 		similarsFetched = false;
 	}
