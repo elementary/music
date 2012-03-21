@@ -52,7 +52,9 @@ public class BeatBox.ViewWrapper : Box {
 	public WarningLabel  error_box      { get; private set; }
 	public Welcome       welcome_screen { get; private set; }
 
-	private Paned list_view_paned; // Wrapper for the list view and miller columns
+	// Wrapper for the list view and miller columns
+	private Paned list_view_hpaned; // for left mode
+	private Paned list_view_vpaned; // for top mode
 
 	private Notebook view_container; // Wraps all the internal views for super fast switching
 
@@ -333,20 +335,33 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		if (have_list_view) {
-			list_view_paned = new Paned (Orientation.HORIZONTAL);
+			list_view_hpaned = new Paned (Orientation.HORIZONTAL);
+			list_view_vpaned = new Paned (Orientation.VERTICAL);
+			
+			// Fix theming
+			list_view_hpaned.get_style_context().add_class (Gtk.STYLE_CLASS_HORIZONTAL);
+			list_view_vpaned.get_style_context().add_class (Gtk.STYLE_CLASS_VERTICAL);
 
-			view_container.append_page (list_view_paned);
+			list_view_hpaned.pack2(list_view_vpaned, true, false);
+
+			// Add hpaned (the most-external wrapper) to the view container
+			view_container.append_page (list_view_hpaned);
+
+
+			//list_view_hpaned.set_position(lw.settings.get_miller_columns_width());
+
+			do_update (ViewType.LIST, null, false, true, false);
 
 			//XXX:
 			set_active_view (ViewType.LIST);
 			do_update (current_view, null, false, true, false);
 
-			list_view_paned.pack2 (list_view, true, true);
+			// Now pack the list view
+			list_view_vpaned.pack2(list_view, true, true);
 		}
 
 		if (have_column_view) {
-			list_view_paned.pack1 (miller_columns, true, true);
-			list_view_paned.set_position(lw.settings.get_miller_columns_width());
+			list_view_hpaned.pack1(miller_columns, true, false);
 
 			set_miller_columns_position (miller_columns.position);
 
@@ -356,20 +371,47 @@ public class BeatBox.ViewWrapper : Box {
 			set_active_view (ViewType.FILTER);
 			update_miller_columns ();
 
-			miller_columns.size_allocate.connect ( () => {
-				if (current_view == ViewType.FILTER) {
-					if (miller_columns.actual_position == MillerColumns.Position.LEFT)
-						lw.settings.set_miller_columns_width(list_view_paned.position);
-					else if (miller_columns.actual_position == MillerColumns.Position.TOP)
-						lw.settings.set_miller_columns_height(list_view_paned.position);
+			miller_columns.size_allocate.connect ( (allocation) => {
+				if (current_view == ViewType.FILTER && lw.initializationFinished && lw.visible) {
+					if (miller_columns.actual_position == MillerColumns.Position.LEFT) {
+						lw.settings.set_miller_columns_width(list_view_hpaned.position);
+						lw.miller_columns_size_change (allocation.width);
+					}
+					else if (miller_columns.actual_position == MillerColumns.Position.TOP) {
+						lw.settings.set_miller_columns_height(list_view_vpaned.position);
+						lw.miller_columns_size_change (allocation.height);
+					}
 				}
 			});
 
+			// For automatic position stuff
 			this.size_allocate.connect ( () => {
+				if (!lw.initializationFinished)
+					return;
+				
 				if (miller_columns.position == MillerColumns.Position.AUTOMATIC)
 					set_miller_columns_position (MillerColumns.Position.AUTOMATIC);
 			});
 
+
+			// Sync with the other views
+			/*
+			lw.miller_columns_position_change.connect ( (position) => {
+				if (position != miller_columns.actual_position && lw.initializationFinished && lw.visible)
+					set_miller_columns_position (position);
+			});
+
+			lw.miller_columns_size_change.connect ( (size) => {
+				if (!(lw.initializationFinished && lw.visible))
+					return;
+			
+				if (miller_columns.actual_position == MillerColumns.Position.LEFT)
+					list_view_hpaned.set_position (size);
+				else if (miller_columns.actual_position == MillerColumns.Position.TOP)
+					list_view_vpaned.set_position (size);
+			});
+			*/
+			
 			// Connect data signals
 			miller_columns.changed.connect (miller_columns_changed);
 		}
@@ -416,7 +458,7 @@ public class BeatBox.ViewWrapper : Box {
 			// Decide what orientation to use based on the view area size
 
 			int view_width = this.get_allocated_width ();
-			const int MIN_COLUMN_WIDTH = 127, MIN_TREEVIEW_WIDTH = 300;
+			const int MIN_TREEVIEW_WIDTH = 300;
 
 			int visible_columns = 0;
 			foreach (var column in miller_columns.columns) {
@@ -424,7 +466,7 @@ public class BeatBox.ViewWrapper : Box {
 					++ visible_columns;
 			}
 
-			int required_width = MIN_COLUMN_WIDTH * visible_columns;
+			int required_width = miller_columns.MIN_COLUMN_WIDTH * visible_columns;
 			if (view_width - required_width < MIN_TREEVIEW_WIDTH)
 				actual_position = MillerColumns.Position.TOP;
 			else
@@ -433,10 +475,25 @@ public class BeatBox.ViewWrapper : Box {
 
 		miller_columns.actual_position = actual_position;
 
-		if (actual_position == MillerColumns.Position.LEFT)
-			list_view_paned.set_orientation (Orientation.HORIZONTAL);
-		else if (actual_position == MillerColumns.Position.TOP)
-			list_view_paned.set_orientation (Orientation.VERTICAL);
+		if (actual_position == MillerColumns.Position.LEFT) {
+			if (list_view_hpaned.get_child1() == null && list_view_vpaned.get_child1() == miller_columns) {
+				list_view_vpaned.remove (miller_columns);
+				list_view_hpaned.pack1 (miller_columns, true, false);
+				list_view_hpaned.set_position (lw.settings.get_miller_columns_width());
+			}
+		}
+		else if (actual_position == MillerColumns.Position.TOP) {
+			if (list_view_vpaned.get_child1() == null && list_view_hpaned.get_child1() == miller_columns) {
+				list_view_hpaned.remove (miller_columns);
+				list_view_vpaned.pack1 (miller_columns, true, false);
+				list_view_vpaned.set_position (lw.settings.get_miller_columns_height());
+			}
+		}
+
+		// emit the miller_columns_position_change signal so that other views can
+		// use the new position. We sync the views using this method
+		if (lw.initializationFinished && lw.visible)
+			lw.miller_columns_position_change (miller_columns.actual_position);
 	}
 
 
@@ -451,7 +508,7 @@ public class BeatBox.ViewWrapper : Box {
 			// LIST and FILTER share the same page because they are in the same GtkPaned widget.
 			case ViewType.LIST:
 			case ViewType.FILTER:
-				view_index = view_container.page_num (list_view_paned);
+				view_index = view_container.page_num (list_view_hpaned);
 				if (have_column_view) {
 					if (type == ViewType.LIST) {
 						current_view = type;

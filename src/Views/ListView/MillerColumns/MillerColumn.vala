@@ -41,6 +41,10 @@ public class BeatBox.MillerColumns : Box {
 		TOP       = 1
 	}
 
+	public const int MIN_COLUMN_WIDTH = 80;
+	public const int MIN_COLUMN_HEIGHT = 70;
+
+
 	// All the medias
 	public Collection<int> medias {get; private set;}
 
@@ -145,8 +149,8 @@ public class BeatBox.MillerColumns : Box {
 
 		column_chooser_menu.add (new SeparatorMenuItem ());
 		column_chooser_menu.append (automatic_menu_item);
-		column_chooser_menu.append (left_menu_item);
 		column_chooser_menu.append (top_menu_item);
+		column_chooser_menu.append (left_menu_item);
 
 		column_chooser_menu.show_all ();
 
@@ -181,6 +185,9 @@ public class BeatBox.MillerColumns : Box {
 
 		column.selection_changed.connect (column_selection_changed);
 
+		// Set minimun size
+		column.set_size_request (MIN_COLUMN_WIDTH, MIN_COLUMN_HEIGHT);
+
 		column.reset_requested.connect ( () => {
 			column.select_first_item ();
 		});
@@ -192,7 +199,7 @@ public class BeatBox.MillerColumns : Box {
 
 		column.row_activated.connect (column_row_activated);
 		column.header_clicked.connect (column_header_clicked);
-		
+				
 		return column;
 	}
 

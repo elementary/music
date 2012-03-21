@@ -29,6 +29,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	// signals
 	public signal void playPauseChanged ();
 
+	// These signals are here to help us sync the miller columns across different views.
+	public signal void miller_columns_position_change (MillerColumns.Position position);
+	public signal void miller_columns_size_change (int size);
+
 	public static Granite.Application app { get; private set; }
 
 	public BeatBox.LibraryManager lm { get; private set; }
