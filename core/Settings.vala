@@ -52,7 +52,8 @@ public class BeatBox.Settings : Object {
 	public static const string VIEW_MODE = "view-mode";
 	public static const string MILLER_WIDTH = "miller-width";
 	public static const string MILLER_HEIGHT = "miller-height";
-	public static const string MILLER_VISIBLE_COLUMNS = "miller-visible-columns";
+	public static const string MUSIC_MILLER_VISIBLE_COLUMNS = "music-miller-visible-columns";
+	public static const string GENERIC_MILLER_VISIBLE_COLUMNS = "generic-miller-visible-columns";
 	public static const string MILLER_COLUMNS_POSITION = "miller-columns-position";
 	
 	public static const string EQUALIZER_ENABLED = "equalizer-enabled";
@@ -106,7 +107,8 @@ public class BeatBox.Settings : Object {
 		ui_settings.add(VIEW_MODE);
 		ui_settings.add(MILLER_WIDTH);
 		ui_settings.add(MILLER_HEIGHT);
-		ui_settings.add(MILLER_VISIBLE_COLUMNS);
+		ui_settings.add(MUSIC_MILLER_VISIBLE_COLUMNS);
+		ui_settings.add(GENERIC_MILLER_VISIBLE_COLUMNS);
 		ui_settings.add(MILLER_COLUMNS_POSITION);
 		
 		equalizer_settings.add(EQUALIZER_ENABLED);
@@ -388,10 +390,22 @@ public class BeatBox.Settings : Object {
 		return get_enum (MILLER_COLUMNS_POSITION);
 	}
 
-	public Gee.Collection<string> get_miller_visible_columns () {
+	public Gee.Collection<string> get_music_miller_visible_columns () {
 		var rv = new Gee.LinkedList<string>();
 
-		var visible_columns = getStrings (MILLER_VISIBLE_COLUMNS);
+		var visible_columns = getStrings (MUSIC_MILLER_VISIBLE_COLUMNS);
+
+		for (int index = 0; index < visible_columns.length; index++) {
+			rv.add (visible_columns[index]);
+		}
+
+		return rv;
+	}
+
+	public Gee.Collection<string> get_generic_miller_visible_columns () {
+		var rv = new Gee.LinkedList<string>();
+
+		var visible_columns = getStrings (GENERIC_MILLER_VISIBLE_COLUMNS);
 
 		for (int index = 0; index < visible_columns.length; index++) {
 			rv.add (visible_columns[index]);
@@ -541,7 +555,7 @@ public class BeatBox.Settings : Object {
 		set_enum (MILLER_COLUMNS_POSITION, val);
 	}
 
-	public void set_miller_visible_columns (Gee.Collection<string> columns) {
+	public void set_music_miller_visible_columns (Gee.Collection<string> columns) {
 		string[] vals = new string[columns.size];
 		int index = 0;
 
@@ -549,10 +563,20 @@ public class BeatBox.Settings : Object {
 			vals[index++] = col;
 		}
 
-		setStrings (MILLER_VISIBLE_COLUMNS, vals);
+		setStrings (MUSIC_MILLER_VISIBLE_COLUMNS, vals);
 	}
 
-	
+	public void set_generic_miller_visible_columns (Gee.Collection<string> columns) {
+		string[] vals = new string[columns.size];
+		int index = 0;
+
+		foreach (var col in columns) {
+			vals[index++] = col;
+		}
+
+		setStrings (GENERIC_MILLER_VISIBLE_COLUMNS, vals);
+	}
+
 	public void setSearchString(string val) {
 		setString(SEARCH_STRING, val);
 	}

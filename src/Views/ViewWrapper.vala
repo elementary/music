@@ -55,6 +55,8 @@ public class BeatBox.ViewWrapper : Box {
 	// Wrapper for the list view and miller columns
 	private Paned list_view_hpaned; // for left mode
 	private Paned list_view_vpaned; // for top mode
+	private int   list_view_hpaned_position = -1;
+	private int   list_view_vpaned_position = -1;
 
 	private Notebook view_container; // Wraps all the internal views for super fast switching
 
@@ -361,6 +363,13 @@ public class BeatBox.ViewWrapper : Box {
 		if (have_column_view) {
 			list_view_hpaned.pack1(miller_columns, true, false);
 
+			// Read Paned position from settings
+			list_view_hpaned_position = lw.settings.get_miller_columns_width ();
+			list_view_vpaned_position = lw.settings.get_miller_columns_height ();
+
+			list_view_hpaned.position = list_view_hpaned_position;
+			list_view_vpaned.position = list_view_vpaned_position;
+
 			set_miller_columns_position (miller_columns.position);
 
 			miller_columns.position_changed.connect (set_miller_columns_position);
@@ -369,15 +378,13 @@ public class BeatBox.ViewWrapper : Box {
 			set_active_view (ViewType.FILTER);
 			update_miller_columns ();
 
-			miller_columns.size_allocate.connect ( (allocation) => {
+			miller_columns.size_allocate.connect ( () => {
 				if (current_view == ViewType.FILTER && lw.initializationFinished && lw.visible) {
 					if (miller_columns.actual_position == MillerColumns.Position.LEFT) {
-						lw.settings.set_miller_columns_width(list_view_hpaned.position);
-						lw.miller_columns_size_change (allocation.width);
+						lw.miller_columns_size_change (list_view_hpaned.position);
 					}
 					else if (miller_columns.actual_position == MillerColumns.Position.TOP) {
-						lw.settings.set_miller_columns_height(list_view_vpaned.position);
-						lw.miller_columns_size_change (allocation.height);
+						lw.miller_columns_size_change (list_view_vpaned.position);
 					}
 				}
 			});
@@ -393,22 +400,25 @@ public class BeatBox.ViewWrapper : Box {
 
 
 			// Sync with the other views
-			/*
 			lw.miller_columns_position_change.connect ( (position) => {
 				if (position != miller_columns.actual_position && lw.initializationFinished && lw.visible)
 					set_miller_columns_position (position);
 			});
 
 			lw.miller_columns_size_change.connect ( (size) => {
-				if (!(lw.initializationFinished && lw.visible))
-					return;
-			
-				if (miller_columns.actual_position == MillerColumns.Position.LEFT)
-					list_view_hpaned.set_position (size);
-				else if (miller_columns.actual_position == MillerColumns.Position.TOP)
-					list_view_vpaned.set_position (size);
+				// If we had many view wrappers in the entire app, it would be very slow to set
+				// the position of the miller columns in all of these wrappers at once, so we only
+				// store the value and apply it when switching to this view wrapper.
+				//
+				// See set_as_current_view() to see how this value is actually used.
+				
+				if (miller_columns.actual_position == MillerColumns.Position.LEFT) {
+					list_view_hpaned_position = size;
+				}
+				else if (miller_columns.actual_position == MillerColumns.Position.TOP) {
+					list_view_vpaned_position = size;
+				}
 			});
-			*/
 			
 			// Connect data signals
 			miller_columns.changed.connect (miller_columns_changed);
@@ -432,7 +442,11 @@ public class BeatBox.ViewWrapper : Box {
 
 		lw.searchField.changed.connect (search_field_changed);
 
-		show_all ();
+		// We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
+		// disk access to write settings.
+		destroy.connect (on_quit);
+
+		//show_all ();
 
 		initialized = true;
 	}
@@ -443,12 +457,23 @@ public class BeatBox.ViewWrapper : Box {
 		this.hint = Hint.NONE;
 		set_active_view (ViewType.NONE);
 
-		show_all ();
+		//show_all ();
 
 		update_library_window_widgets ();
 		
 		// FIXME: not needed. Update statusbar
 		set_statusbar_info ();
+	}
+
+
+	private void on_quit () {
+		// Save all the relevant stuff, such as list_view_hpaned and list_view_vpaned positions, etc.
+		if (have_column_view) {
+			if (miller_columns.actual_position == MillerColumns.Position.LEFT)
+				lw.settings.set_miller_columns_width(list_view_hpaned.position);
+			else if (miller_columns.actual_position == MillerColumns.Position.TOP)
+				lw.settings.set_miller_columns_height(list_view_vpaned.position);
+		}
 	}
 
 
@@ -480,14 +505,16 @@ public class BeatBox.ViewWrapper : Box {
 			if (list_view_hpaned.get_child1() == null && list_view_vpaned.get_child1() == miller_columns) {
 				list_view_vpaned.remove (miller_columns);
 				list_view_hpaned.pack1 (miller_columns, true, false);
-				list_view_hpaned.set_position (lw.settings.get_miller_columns_width());
+				
+				list_view_hpaned.set_position (list_view_hpaned_position);
 			}
 		}
 		else if (actual_position == MillerColumns.Position.TOP) {
 			if (list_view_vpaned.get_child1() == null && list_view_hpaned.get_child1() == miller_columns) {
 				list_view_hpaned.remove (miller_columns);
 				list_view_vpaned.pack1 (miller_columns, true, false);
-				list_view_vpaned.set_position (lw.settings.get_miller_columns_height());
+				
+				list_view_vpaned.set_position (list_view_vpaned_position);
 			}
 		}
 
@@ -656,7 +683,7 @@ public class BeatBox.ViewWrapper : Box {
 		                    (showing_media_count < 1)) &&
 		                    is_current_wrapper;
 
-		bool successful;
+		bool successful; // whether the view was available or not
 		set_active_view (selected_view, out successful);
 
 		if (successful && update_data) {
@@ -670,11 +697,25 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	/**
-	 * Sets whether this view wrapper is the current displayed view or not.
+	 * This handles updating all the shared stuff outside the view area.
+	 *
+	 * You should only call this method on the respective ViewWrapper whenever the sidebar's
+	 * selected view changes.
+	 *
+	 * Note: The sidebar-item selection and other stuff is handled automatically by the LibraryWindow
+	 *       by request of SideTreeView. See LibraryManager :: set_active_view() for more details. 
 	 */
 	public void set_as_current_view () {
 		update_library_window_widgets ();
 		
+		// Update List View paned position to use the same position as the miller columns in other view wrappers
+		if (have_column_view) {
+			if (miller_columns.actual_position == MillerColumns.Position.LEFT && list_view_hpaned_position != -1)
+				list_view_hpaned.set_position (list_view_hpaned_position);
+			else if (miller_columns.actual_position == MillerColumns.Position.TOP && list_view_vpaned_position != -1)
+				list_view_vpaned.set_position (list_view_vpaned_position);
+		}
+
 		// Update statusbar
 		set_statusbar_info ();
 	}

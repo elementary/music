@@ -44,6 +44,7 @@ public class BeatBox.MillerColumns : Box {
 	public const int MIN_COLUMN_WIDTH = 100;
 	public const int MIN_COLUMN_HEIGHT = 70;
 
+	public bool is_music_miller { get { return view_type == ViewWrapper.Hint.MUSIC || view_type == ViewWrapper.Hint.DEVICE_AUDIO || view_type == ViewWrapper.Hint.CDROM; } }
 
 	// All the medias
 	public Collection<int> medias {get; private set;}
@@ -90,14 +91,13 @@ public class BeatBox.MillerColumns : Box {
 		var genre_col = add_column (MillerColumn.Category.GENRE);
 
 		// These columns only make sense for songs.
-		if (view_type == ViewWrapper.Hint.MUSIC || view_type == ViewWrapper.Hint.DEVICE_AUDIO || view_type == ViewWrapper.Hint.CDROM)
+		if (is_music_miller)
 		{
 			add_column (MillerColumn.Category.ARTIST);
 			add_column (MillerColumn.Category.ALBUM);
-			
-			// FIXME: DO THIS FOR OTHER TYPES OF VIEW WRAPPERS AS WELL
+
 			// Read visible columns from settings
-			foreach (var col_n in lm.settings.get_miller_visible_columns ()) {
+			foreach (var col_n in lm.settings.get_music_miller_visible_columns ()) {
 				foreach (var column in columns) {
 					if (column.category == int.parse (col_n)) {
 						column.visible = true;
@@ -105,7 +105,19 @@ public class BeatBox.MillerColumns : Box {
 					}
 				}
 			}
-		} else {
+		}
+		else {
+		
+			// Read visible columns from settings
+			foreach (var col_n in lm.settings.get_generic_miller_visible_columns ()) {
+				foreach (var column in columns) {
+					if (column.category == int.parse (col_n)) {
+						column.visible = true;
+						break;
+					}
+				}
+			}
+
 			// FIXME: Read this from settings
 			rating_col.visible = true;
 			year_col.visible = true;
@@ -453,7 +465,10 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 			}
 		}
 
-		lm.settings.set_miller_visible_columns (visible_columns_list);
+		if (miller_parent.is_music_miller) 
+			lm.settings.set_music_miller_visible_columns (visible_columns_list);
+		else
+			lm.settings.set_generic_miller_visible_columns (visible_columns_list);
 	}
 
 	public string get_category_text (bool singular = false, bool lower_case = false) {
