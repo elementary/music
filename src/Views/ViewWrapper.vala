@@ -27,20 +27,6 @@ using Gtk;
 using Granite.Widgets;
 using Gee;
 
-/*
- This is a work in progress.
-
- STATUS:
-
-   TODO:
-    - Set preferred view from settings
-    - Store separate settings for each view wrapper. Probably using something similar
-      to TreeViewSetup.vala
-
-  --
-  Victor E.
-*/
-
 public class BeatBox.ViewWrapper : Box {
 	public LibraryManager lm { get; private set; }
 	public LibraryWindow  lw { get; private set; }
@@ -48,15 +34,15 @@ public class BeatBox.ViewWrapper : Box {
 	/* MAIN WIDGETS (VIEWS) */
 	public ContentView   list_view      { get; private set; }
 	public ContentView   album_view     { get; private set; }
-	public MillerColumns miller_columns { get; private set; }
+	public MillerColumns column_browser { get; private set; }
 	public WarningLabel  error_box      { get; private set; }
 	public Welcome       welcome_screen { get; private set; }
 
 	// Wrapper for the list view and miller columns
-	private Paned list_view_hpaned; // for left mode
-	private Paned list_view_vpaned; // for top mode
-	private int   list_view_hpaned_position = -1;
-	private int   list_view_vpaned_position = -1;
+	private Paned column_browser_hpaned; // for left mode
+	private Paned column_browser_vpaned; // for top mode
+	private int   column_browser_hpaned_position = -1;
+	private int   column_browser_vpaned_position = -1;
 
 	private Notebook view_container; // Wraps all the internal views for super fast switching
 
@@ -68,12 +54,10 @@ public class BeatBox.ViewWrapper : Box {
 	public enum ViewType {
 		ALBUM   = 0, // Matches index 0 of the view in lw.viewSelector
 		LIST    = 1, // Matches index 1 of the view in lw.viewSelector
-		FILTER  = 2, // Matches index 2 of the view in lw.viewSelector
-		ERROR   = 3, // For error boxes
-		WELCOME = 4, // For welcome screens
-		NONE    = 5  // Custom views
+		ERROR   = 2, // For error boxes
+		WELCOME = 3, // For welcome screens
+		NONE    = 4  // Custom views
 	}
-
 
 	public ViewType current_view { get; private set; }
 
@@ -131,11 +115,9 @@ public class BeatBox.ViewWrapper : Box {
 		}
 	}
 
-	// This property depends on %have_list_view. By design, we can't have miller columns
-	// without the list view
-	public bool have_column_view {
+	public bool have_column_browser {
 		get {
-			return (have_list_view && miller_columns != null);
+			return column_browser != null;
 		}
 	}
 
@@ -224,14 +206,13 @@ public class BeatBox.ViewWrapper : Box {
 		view_container = new Notebook ();
 		view_container.show_tabs = false;
 		view_container.show_border = false;
-		this.pack_start (view_container, true, true, 0);
 
 		switch (the_hint) {
 			case Hint.MUSIC:
 				/* list, album and column views */
 				album_view = new AlbumView (this, get_media_ids());
 				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
-				miller_columns = new MillerColumns (this);
+				column_browser = new MillerColumns (this);
 
 				/* Add welcome screen */
 				//FIXME: welcome_screen = new Welcome ("Test", "Fixme");
@@ -248,7 +229,7 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.PODCAST:
 				/* list view, album and column view */
 				list_view = new PodcastListView (this);
-				miller_columns = new MillerColumns (this);
+				column_browser = new MillerColumns (this);
 				album_view = new AlbumView (this, get_media_ids());
 
 				/* Add welcome screen */
@@ -262,7 +243,7 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.DEVICE_PODCAST:
 				/* list view, album and column view */
 				list_view = new PodcastListView (this);
-				miller_columns = new MillerColumns (this);
+				column_browser = new MillerColumns (this);
 				album_view = new AlbumView (this, get_media_ids());
 
 				error_box = new WarningLabel();
@@ -273,7 +254,7 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.STATION:
 				/* list view and column view */
 				list_view = new RadioListView(this, sort, dir, the_hint, id);
-				miller_columns = new MillerColumns (this);
+				column_browser = new MillerColumns (this);
 
 				/* Add welcome screen */
 				//welcome_screen = new Welcome ("Test", "Fixme");
@@ -286,7 +267,7 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.AUDIOBOOK:
 				/* list view, album and column view */
 				list_view = new MusicTreeView(this, sort, dir, the_hint, id);
-				miller_columns = new MillerColumns (this);
+				column_browser = new MillerColumns (this);
 				album_view = new AlbumView (this, get_media_ids());
 
 				/* Add welcome screen */
@@ -296,7 +277,7 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.DEVICE_AUDIOBOOK:
 				/* list view, album and column view */
 				list_view = new MusicTreeView(this, sort, dir, the_hint, id);
-				miller_columns = new MillerColumns (this);
+				column_browser = new MillerColumns (this);
 				album_view = new AlbumView (this, get_media_ids());
 
 				/* Add welcome screen */
@@ -318,7 +299,7 @@ public class BeatBox.ViewWrapper : Box {
 				/* list, album and column views */
 				album_view = new AlbumView (this, get_media_ids());
 				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
-				miller_columns = new MillerColumns (this);
+				column_browser = new MillerColumns (this);
 
 				break;
 		}
@@ -335,56 +316,66 @@ public class BeatBox.ViewWrapper : Box {
 			set_active_view (ViewType.WELCOME);
 		}
 
+
+		if (have_album_view) {
+			view_container.append_page (album_view);
+
+			//XXX:
+			set_active_view (ViewType.ALBUM);
+			do_update (current_view, null, false, true, false);
+		}
+
 		if (have_list_view) {
-			list_view_hpaned = new Paned (Orientation.HORIZONTAL);
-			list_view_vpaned = new Paned (Orientation.VERTICAL);
-			
-			// Fix theming
-			list_view_hpaned.get_style_context().add_class (Gtk.STYLE_CLASS_HORIZONTAL);
-			list_view_vpaned.get_style_context().add_class (Gtk.STYLE_CLASS_VERTICAL);
-
-			list_view_hpaned.pack2(list_view_vpaned, true, false);
-
-			// Add hpaned (the most-external wrapper) to the view container
-			view_container.append_page (list_view_hpaned);
-
-			//list_view_hpaned.set_position(lw.settings.get_miller_columns_width());
-
-			do_update (ViewType.LIST, null, false, true, false);
+			view_container.append_page (list_view);
 
 			//XXX:
 			set_active_view (ViewType.LIST);
 			do_update (current_view, null, false, true, false);
-
-			// Now pack the list view
-			list_view_vpaned.pack2(list_view, true, true);
 		}
 
-		if (have_column_view) {
-			list_view_hpaned.pack1(miller_columns, true, false);
+		if (have_column_browser) {
+			// Pack the views (notebook) inside GtkPaned widgets. This allows repositioning.
+			
+			column_browser_hpaned = new Paned (Orientation.HORIZONTAL);
+			column_browser_vpaned = new Paned (Orientation.VERTICAL);
+			
+			// Fix theming
+			column_browser_hpaned.get_style_context().add_class (Gtk.STYLE_CLASS_HORIZONTAL);
+			column_browser_vpaned.get_style_context().add_class (Gtk.STYLE_CLASS_VERTICAL);
+
+			column_browser_hpaned.pack2(column_browser_vpaned, true, false);
+
+			// Add hpaned (the most-external wrapper) to the view container
+			this.pack_start (column_browser_hpaned, true, true, 0);
+
+			//column_browser_hpaned.set_position(lw.settings.get_miller_columns_width());
+
+			// Now pack the list view
+			column_browser_vpaned.pack2(view_container, true, true);
+
+			column_browser_hpaned.pack1(column_browser, true, true);
 
 			// Read Paned position from settings
-			list_view_hpaned_position = lw.settings.get_miller_columns_width ();
-			list_view_vpaned_position = lw.settings.get_miller_columns_height ();
+			column_browser_hpaned_position = lw.settings.get_miller_columns_width ();
+			column_browser_vpaned_position = lw.settings.get_miller_columns_height ();
 
-			list_view_hpaned.position = list_view_hpaned_position;
-			list_view_vpaned.position = list_view_vpaned_position;
+			column_browser_hpaned.position = column_browser_hpaned_position;
+			column_browser_vpaned.position = column_browser_vpaned_position;
 
-			set_miller_columns_position (miller_columns.position);
+			set_miller_columns_position (column_browser.position);
 
-			miller_columns.position_changed.connect (set_miller_columns_position);
+			column_browser.position_changed.connect (set_miller_columns_position);
 
-			//XXX:
-			set_active_view (ViewType.FILTER);
-			update_miller_columns ();
+			// XXX
+			update_column_browser ();
 
-			miller_columns.size_allocate.connect ( () => {
-				if (current_view == ViewType.FILTER && lw.initializationFinished && lw.visible) {
-					if (miller_columns.actual_position == MillerColumns.Position.LEFT) {
-						lw.miller_columns_size_change (list_view_hpaned.position);
+			column_browser.size_allocate.connect ( () => {
+				if (lw.initializationFinished && lw.visible) {
+					if (column_browser.actual_position == MillerColumns.Position.LEFT) {
+						lw.column_browser_size_change (column_browser_hpaned.position);
 					}
-					else if (miller_columns.actual_position == MillerColumns.Position.TOP) {
-						lw.miller_columns_size_change (list_view_vpaned.position);
+					else if (column_browser.actual_position == MillerColumns.Position.TOP) {
+						lw.column_browser_size_change (column_browser_vpaned.position);
 					}
 				}
 			});
@@ -394,42 +385,50 @@ public class BeatBox.ViewWrapper : Box {
 				if (!lw.initializationFinished)
 					return;
 				
-				if (miller_columns.position == MillerColumns.Position.AUTOMATIC)
+				if (column_browser.position == MillerColumns.Position.AUTOMATIC)
 					set_miller_columns_position (MillerColumns.Position.AUTOMATIC);
 			});
 
 
 			// Sync with the other views
-			lw.miller_columns_position_change.connect ( (position) => {
-				if (position != miller_columns.actual_position && lw.initializationFinished && lw.visible)
+			lw.column_browser_position_change.connect ( (position) => {
+				if (position != column_browser.actual_position && lw.initializationFinished && lw.visible)
 					set_miller_columns_position (position);
 			});
 
-			lw.miller_columns_size_change.connect ( (size) => {
+			lw.column_browser_size_change.connect ( (size) => {
 				// If we had many view wrappers in the entire app, it would be very slow to set
 				// the position of the miller columns in all of these wrappers at once, so we only
 				// store the value and apply it when switching to this view wrapper.
 				//
 				// See set_as_current_view() to see how this value is actually used.
 				
-				if (miller_columns.actual_position == MillerColumns.Position.LEFT) {
-					list_view_hpaned_position = size;
+				if (column_browser.actual_position == MillerColumns.Position.LEFT) {
+					column_browser_hpaned_position = size;
 				}
-				else if (miller_columns.actual_position == MillerColumns.Position.TOP) {
-					list_view_vpaned_position = size;
+				else if (column_browser.actual_position == MillerColumns.Position.TOP) {
+					column_browser_vpaned_position = size;
 				}
 			});
 			
+			
+			// ENABLED/DISABLED
+			lw.column_browser_enabled.connect ( () => {
+				column_browser.set_no_show_all (false);
+				column_browser.show_all ();
+			});
+			
+			lw.column_browser_disabled.connect ( () => {
+				column_browser.set_no_show_all (true);
+				column_browser.hide ();
+			});
+			
 			// Connect data signals
-			miller_columns.changed.connect (miller_columns_changed);
+			column_browser.changed.connect (column_browser_changed);
 		}
-
-		if (have_album_view) {
-			view_container.append_page (album_view);
-
-			//XXX:
-			set_active_view (ViewType.ALBUM);
-			do_update (current_view, null, false, true, false);
+		else {
+			// Just pack the view container
+			this.pack_start (view_container, true, true, 0);
 		}
 
 		needs_update = true;
@@ -467,12 +466,12 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	private void on_quit () {
-		// Save all the relevant stuff, such as list_view_hpaned and list_view_vpaned positions, etc.
-		if (have_column_view) {
-			if (miller_columns.actual_position == MillerColumns.Position.LEFT)
-				lw.settings.set_miller_columns_width(list_view_hpaned.position);
-			else if (miller_columns.actual_position == MillerColumns.Position.TOP)
-				lw.settings.set_miller_columns_height(list_view_vpaned.position);
+		// Save all the relevant stuff, such as column_browser_hpaned and column_browser_vpaned positions, etc.
+		if (have_column_browser) {
+			if (column_browser.actual_position == MillerColumns.Position.LEFT)
+				lw.settings.set_miller_columns_width(column_browser_hpaned.position);
+			else if (column_browser.actual_position == MillerColumns.Position.TOP)
+				lw.settings.set_miller_columns_height(column_browser_vpaned.position);
 		}
 	}
 
@@ -487,41 +486,41 @@ public class BeatBox.ViewWrapper : Box {
 			const int MIN_TREEVIEW_WIDTH = 300;
 
 			int visible_columns = 0;
-			foreach (var column in miller_columns.columns) {
+			foreach (var column in column_browser.columns) {
 				if (column.visible)
 					++ visible_columns;
 			}
 
-			int required_width = miller_columns.MIN_COLUMN_WIDTH * visible_columns;
+			int required_width = column_browser.MIN_COLUMN_WIDTH * visible_columns;
 			if (view_width - required_width < MIN_TREEVIEW_WIDTH)
 				actual_position = MillerColumns.Position.TOP;
 			else
 				actual_position = MillerColumns.Position.LEFT;
 		}
 
-		miller_columns.actual_position = actual_position;
+		column_browser.actual_position = actual_position;
 
 		if (actual_position == MillerColumns.Position.LEFT) {
-			if (list_view_hpaned.get_child1() == null && list_view_vpaned.get_child1() == miller_columns) {
-				list_view_vpaned.remove (miller_columns);
-				list_view_hpaned.pack1 (miller_columns, true, false);
+			if (column_browser_hpaned.get_child1() == null && column_browser_vpaned.get_child1() == column_browser) {
+				column_browser_vpaned.remove (column_browser);
+				column_browser_hpaned.pack1 (column_browser, true, true);
 				
-				list_view_hpaned.set_position (list_view_hpaned_position);
+				column_browser_hpaned.set_position (column_browser_hpaned_position);
 			}
 		}
 		else if (actual_position == MillerColumns.Position.TOP) {
-			if (list_view_vpaned.get_child1() == null && list_view_hpaned.get_child1() == miller_columns) {
-				list_view_hpaned.remove (miller_columns);
-				list_view_vpaned.pack1 (miller_columns, true, false);
+			if (column_browser_vpaned.get_child1() == null && column_browser_hpaned.get_child1() == column_browser) {
+				column_browser_hpaned.remove (column_browser);
+				column_browser_vpaned.pack1 (column_browser, true, true);
 				
-				list_view_vpaned.set_position (list_view_vpaned_position);
+				column_browser_vpaned.set_position (column_browser_vpaned_position);
 			}
 		}
 
-		// emit the miller_columns_position_change signal so that other views can
+		// emit the column_browser_position_change signal so that other views can
 		// use the new position. We sync the views using this method
 		if (lw.initializationFinished && lw.visible)
-			lw.miller_columns_position_change (miller_columns.actual_position);
+			lw.column_browser_position_change (column_browser.actual_position);
 	}
 
 
@@ -533,19 +532,8 @@ public class BeatBox.ViewWrapper : Box {
 
 		// Find position in notebook
 		switch (type) {
-			// LIST and FILTER share the same page because they are in the same GtkPaned widget.
 			case ViewType.LIST:
-			case ViewType.FILTER:
-				view_index = view_container.page_num (list_view_hpaned);
-				if (have_column_view) {
-					if (type == ViewType.LIST) {
-						current_view = type;
-						miller_columns.hide ();
-					}
-					else {
-						miller_columns.show_all ();
-					}
-				}
+				view_index = view_container.page_num (list_view);
 				break;
 			case ViewType.ALBUM:
 				view_index = view_container.page_num (album_view);
@@ -560,7 +548,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		// i.e. we're not switching the view if it is not available
 		if (view_index < 0) {
-			warning ("Cannot set %s as the active view", type.to_string());
+			critical ("Cannot set %s as the active view", type.to_string());
 			successful = false;
 			return;
 		}
@@ -599,48 +587,20 @@ public class BeatBox.ViewWrapper : Box {
 		//       the current view).
 		lw.searchField.set_text (_last_search);
 
+		bool view_selector_sensitive = (current_view != ViewType.ERROR ||
+		                                current_view != ViewType.WELCOME) &&
+		                                have_media &&
+		                                have_list_view &&
+		                                have_album_view;
 
-		// Deactivate unsupported views in the view selector: FIXME
-		/*
-		var view_selector_items = lw.viewSelector.get_children();
-		int visible_items = 0, total_items = (int)view_selector_items.length ();
-
-		for (int i = 0; i < total_items; ++i) {
-			var button_item = view_selector_items.nth_data (i);
-			if (button_item != null) {
-				if (i == ViewType.LIST) {
-					button_item.set_sensitive (have_list_view);
-					if (have_list_view)
-						visible_items ++;
-				}
-				else if (i == ViewType.FILTER) {
-					button_item.set_sensitive (have_column_view);
-					if (have_column_view)
-						visible_items ++;
-				}
-				else if (i == ViewType.ALBUM) {
-					button_item.set_sensitive (have_album_view);
-					if (have_album_view)
-						visible_items ++;
-				}
-			}
-		}
-		*/
-		bool view_selector_sensitive = true, search_field_sensitive = true;
-
-		// Make the view switcher and search box insensitive if the current item
-		// is either the error box or welcome screen
-		if (current_view == ViewType.ERROR || current_view == ViewType.WELCOME) {
-			view_selector_sensitive = false;
-			search_field_sensitive = false;
-		}
+		bool search_field_sensitive = (current_view != ViewType.ERROR ||
+		                               current_view != ViewType.WELCOME) &&
+		                               have_media &&
+		                               (have_list_view || have_album_view);
 
 		lw.viewSelector.set_sensitive (view_selector_sensitive);
-		lw.searchField.set_sensitive (search_field_sensitive && have_media);
-
-
-		// Check whether there's at least a pair of views to switch between
-		//lw.viewSelector.set_sensitive (view_selector_sensitive /*&& (total_items - visible_items >= 2)*/);
+		lw.column_browser_toggle.set_sensitive (view_selector_sensitive);
+		lw.searchField.set_sensitive (search_field_sensitive);
 	}
 
 	/**
@@ -650,14 +610,14 @@ public class BeatBox.ViewWrapper : Box {
 		return medias.keys;
 	}
 
-	/*
+	/**
 	 * @return a collection with all the media that should be shown
 	 */
 	public Collection<int> get_showing_media_ids () {
 		// FIXME: Dont search again if we already populated millers
 
-		if (current_view == ViewType.FILTER && initialized)
-			return miller_columns.media_results;
+		if (have_column_browser && column_browser.visible && initialized)
+			return column_browser.media_results;
 
 		// Perform search
 		LinkedList<int> _search_results;
@@ -678,21 +638,23 @@ public class BeatBox.ViewWrapper : Box {
 		var selected_view = (ViewType) lw.viewSelector.selected;
 
 		// Only update data when switching between a filtered - non-filtered view
+		/* NO LONGER NECESSARY
 		bool update_data = ((current_view == ViewType.FILTER) ||
 		                    (selected_view != ViewType.FILTER) ||
 		                    (showing_media_count < 1)) &&
 		                    is_current_wrapper;
+		*/
 
 		bool successful; // whether the view was available or not
 		set_active_view (selected_view, out successful);
 
-		if (successful && update_data) {
+		if (successful /* && update_data*/) {
 			// Hide album view
 			if (have_album_view)
 				(album_view as AlbumView).album_list_view.hide ();
 
 			// We need to do this since some views are filtered (i.e. column view) and others not
-			do_update (current_view, null, false, false, false);
+			//do_update (current_view, null, false, false, false);
 		}
 	}
 
@@ -709,11 +671,11 @@ public class BeatBox.ViewWrapper : Box {
 		update_library_window_widgets ();
 		
 		// Update List View paned position to use the same position as the miller columns in other view wrappers
-		if (have_column_view) {
-			if (miller_columns.actual_position == MillerColumns.Position.LEFT && list_view_hpaned_position != -1)
-				list_view_hpaned.set_position (list_view_hpaned_position);
-			else if (miller_columns.actual_position == MillerColumns.Position.TOP && list_view_vpaned_position != -1)
-				list_view_vpaned.set_position (list_view_vpaned_position);
+		if (have_column_browser) {
+			if (column_browser.actual_position == MillerColumns.Position.LEFT && column_browser_hpaned_position != -1)
+				column_browser_hpaned.set_position (column_browser_hpaned_position);
+			else if (column_browser.actual_position == MillerColumns.Position.TOP && column_browser_vpaned_position != -1)
+				column_browser_vpaned.set_position (column_browser_vpaned_position);
 		}
 
 		// Update statusbar
@@ -814,7 +776,7 @@ public class BeatBox.ViewWrapper : Box {
 					album_view.remove_medias(to_remove_show);
 				}
 
-				update_miller_columns ();
+				update_column_browser ();
 
 				set_statusbar_info();
 
@@ -864,7 +826,7 @@ public class BeatBox.ViewWrapper : Box {
 		if (have_album_view)
 			album_view.remove_medias(to_remove);
 
-		update_miller_columns ();
+		update_column_browser ();
 
 		check_show_error_box();
 
@@ -881,7 +843,10 @@ public class BeatBox.ViewWrapper : Box {
 		// Now reset the views
 		do_update (ViewType.LIST, null, false, false, false);
 		do_update (ViewType.ALBUM, null, false, false, false);
-		do_update (ViewType.FILTER, null, false, false, false);
+		//do_update (ViewType.FILTER, null, false, false, false);
+		
+		if (have_column_browser)
+			update_column_browser ();
 	}
 
 	public void add_medias(LinkedList<int> new_medias) {
@@ -911,7 +876,7 @@ public class BeatBox.ViewWrapper : Box {
 			if (have_album_view)
 				album_view.append_medias(potential_showing);
 
-			update_miller_columns ();
+			update_column_browser ();
 
 			foreach(int i in potential_showing)
 				showing_medias.set(i, 1);
@@ -927,12 +892,12 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	private void update_miller_columns () {
-		if (!have_column_view)
+	private void update_column_browser () {
+		if (!have_column_browser)
 			return;
 
 		if(lw.initializationFinished)
-			miller_columns.populate (get_media_ids ());
+			column_browser.populate (get_media_ids ());
 	}
 
 
@@ -943,15 +908,12 @@ public class BeatBox.ViewWrapper : Box {
 	 * @param view the view to show/update
 	 * @param medias If set_medias is true, then set this.medias = medias
 	 * @param set_medias whether or not to set the medias
-	 *
-	 * Please note that some views, like the album and list views, are not filtered.
 	 */
 	public void do_update(ViewType type, Collection<int>? up_medias, bool set_medias, bool force, bool in_thread) {
 		if (in_update)
 			return;
 
-		if ((type == ViewType.LIST && !have_list_view) || (type == ViewType.FILTER && !have_column_view) ||
-		    (type == ViewType.ALBUM && !have_album_view))
+		if ((type == ViewType.LIST && !have_list_view) || (type == ViewType.ALBUM && !have_album_view))
 			return;
 
 		in_update = true;
@@ -1012,7 +974,7 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		if(!in_thread && (is_current_wrapper || force)) {
-			if(have_list_view && type == ViewType.LIST || type == ViewType.FILTER)
+			if(have_list_view && type == ViewType.LIST)
 				list_view.populate_view();
 			else if (have_album_view && type == ViewType.ALBUM)
 				album_view.populate_view();
@@ -1098,11 +1060,9 @@ public class BeatBox.ViewWrapper : Box {
 		lw.set_statusbar_info(hint, count, total_mbs, total_time);
 	}
 
-	public void miller_columns_changed () {
-		if(lw.initializationFinished) {
+	public void column_browser_changed () {
+		if(lw.initializationFinished)
 			needs_update = true;
-			do_update(ViewType.FILTER, null, false, false, false);
-		}
 	}
 
 	public virtual void search_field_changed() {

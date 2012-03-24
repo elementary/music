@@ -198,7 +198,7 @@ public class BeatBox.MillerColumns : Box {
 		column.selection_changed.connect (column_selection_changed);
 
 		// Set minimun size
-		column.set_size_request (MIN_COLUMN_WIDTH, MIN_COLUMN_HEIGHT);
+		//column.set_size_request (MIN_COLUMN_WIDTH, MIN_COLUMN_HEIGHT);
 
 		column.reset_requested.connect ( () => {
 			column.select_first_item ();

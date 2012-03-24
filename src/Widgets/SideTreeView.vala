@@ -455,6 +455,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	}
 	
 	// currently not used
+	/*
 	public bool updateAllSmartPlaylists(TreeModel model, TreePath path, TreeIter iter) {
 		Widget w;
 		GLib.Object o;
@@ -466,12 +467,14 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		if(!w.visible && o is SmartPlaylist) {
 			ViewWrapper vw = (ViewWrapper)w;
 			
+			// FIXME Probably something like vw.update_media() would be useful?
 			vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
 						lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, true, false);
 		}
 		
 		return false;
 	}
+	*/
 
 	// Sets the current sidebar item as the active view
 	public void sideListSelectionChange () {
@@ -931,7 +934,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			}
 			
 			ViewWrapper vw = (ViewWrapper)w;
-			vw.miller_columns_changed(); //FIXME
+			vw.column_browser_changed(); //FIXME
 		}
 		else if(o is Playlist) {
 			Playlist p = (Playlist)o;
@@ -949,7 +952,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			}
 			
 			ViewWrapper vw = (ViewWrapper)w;
-			vw.miller_columns_changed(); //FIXME
+			vw.column_browser_changed(); //FIXME
 			
 		}
 		
