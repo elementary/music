@@ -455,6 +455,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	}
 	
 	// currently not used
+	/*
 	public bool updateAllSmartPlaylists(TreeModel model, TreePath path, TreeIter iter) {
 		Widget w;
 		GLib.Object o;
@@ -472,6 +473,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		
 		return false;
 	}
+	*/
 
 	// Sets the current sidebar item as the active view
 	public void sideListSelectionChange () {
@@ -931,7 +933,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			}
 			
 			ViewWrapper vw = (ViewWrapper)w;
-			vw.miller_columns_changed(); //FIXME
+			vw.column_browser_changed(); //FIXME
 		}
 		else if(o is Playlist) {
 			Playlist p = (Playlist)o;
@@ -949,7 +951,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			}
 			
 			ViewWrapper vw = (ViewWrapper)w;
-			vw.miller_columns_changed(); //FIXME
+			vw.column_browser_changed(); //FIXME
 			
 		}
 		

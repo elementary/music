@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012	   Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -30,8 +30,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	public signal void playPauseChanged ();
 
 	// These signals are here to help us sync the miller columns across different views.
-	public signal void miller_columns_position_change (MillerColumns.Position position);
-	public signal void miller_columns_size_change (int size);
+	public signal void column_browser_position_change (MillerColumns.Position position);
+	public signal void column_browser_size_change (int size);
 
 	public static Granite.Application app { get; private set; }
 
@@ -83,6 +83,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	private ToolButton previousButton;
 	private ToolButton playButton;
 	private ToolButton nextButton;
+
+	public ToggleButton column_browser_toggle { get; private set; }
 
 	public TopDisplay topDisplay { get; private set; }
 
@@ -228,6 +230,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
 		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
 		topDisplay = new TopDisplay(lm);
+		
+		column_browser_toggle = new ToggleButton ();
 		viewSelector = new Granite.Widgets.ModeButton();
 		searchField = new Granite.Widgets.SearchBar(_("Search..."));
 
@@ -333,47 +337,58 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		ToolItem viewSelectorBin = new ToolItem();
 		ToolItem searchFieldBin = new ToolItem();
 
+		viewSelector.append(Icons.VIEWS.render_image (IconSize.MENU));
+		viewSelector.append(Icons.VIEW_DETAILS.render_image (IconSize.MENU));
+		
 		// Tweak view selector's size
+		viewSelector.margin_left = 12;
+		viewSelector.margin_right = 12;
+
 		var viewSelectorBox = new ButtonBox (Orientation.HORIZONTAL); 
-		viewSelectorBox.set_spacing (6);
-		viewSelector.margin_top = 6;
-		viewSelector.margin_bottom = 6;
-		viewSelectorBin.margin_left = 12;
-		viewSelectorBin.margin_right = 12;
-
-		viewSelectorBox.set_layout (ButtonBoxStyle.START);
-
+		//viewSelectorBox.set_spacing (6);
+		viewSelectorBox.margin_top = 5;
+		viewSelectorBox.margin_bottom = 5;
 		viewSelectorBox.pack_start (viewSelector, false, false, 0);
+		viewSelectorBin.add(viewSelectorBox);
 
 		topDisplayBin.add(topDisplay);
-		//topDisplayBin.margin_left = 12;
-
-		viewSelectorBin.add(viewSelectorBox);
+		topDisplayBin.set_expand(true);
 
 		searchFieldBin.add(searchField);
 		searchFieldBin.margin_left = 12;
 		searchFieldBin.margin_right = 12;
 
-		topDisplayBin.set_expand(true);
-
 		// Set theming
 		topControls.get_style_context().add_class(STYLE_CLASS_PRIMARY_TOOLBAR);
 		sourcesToMedias.get_style_context().add_class ("sidebar-pane-separator");
 
-		viewSelector.append(Icons.VIEWS.render_image (IconSize.MENU));
-		viewSelector.append(Icons.VIEW_DETAILS.render_image (IconSize.MENU));
-		viewSelector.append(Icons.VIEW_COLUMN.render_image (IconSize.MENU));
+
+		column_browser_toggle.set_image (Icons.VIEW_COLUMN.render_image (IconSize.MENU));
+		column_browser_toggle.set_active (false);
+		column_browser_toggle.margin_right = 12;
+
+		var column_browser_toggle_box = new ButtonBox (Orientation.HORIZONTAL);
+		column_browser_toggle_box.pack_start (column_browser_toggle, false, false, 0);
+		//column_browser_toggle_box.set_spacing (6);
+		//column_browser_toggle_box.margin_top = 6;
+		//column_browser_toggle_box.margin_bottom = 6;
+		
+		var column_browser_toggle_bin = new ToolItem();
+		column_browser_toggle_bin.add (column_browser_toggle_box);
+
+		//column_browser_toggle.set_size_request (12, -1);
 
 		topControls.set_vexpand (false);
 		topControls.set_hexpand (true);
 
-		topControls.insert(previousButton, 0);
-		topControls.insert(playButton, 1);
-		topControls.insert(nextButton, 2);
-		topControls.insert(viewSelectorBin, 3);
-		topControls.insert(topDisplayBin, 4);
-		topControls.insert(searchFieldBin, 5);
-		topControls.insert(app.create_appmenu(settingsMenu), 6);
+		topControls.insert(previousButton, -1);
+		topControls.insert(playButton, -1);
+		topControls.insert(nextButton, -1);
+		topControls.insert(viewSelectorBin, -1);
+		topControls.insert(column_browser_toggle_bin, -1);
+		topControls.insert(topDisplayBin, -1);
+		topControls.insert(searchFieldBin, -1);
+		topControls.insert(app.create_appmenu(settingsMenu), -1);
 
 		contentBox.pack_start(welcomeScreen, true, true, 0);
 
@@ -826,7 +841,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			if(settings.getMoreVisible())
 				infoPanel.set_visible(true);
 
-			// FIXME: Handle this in ViewWrapper.vala update_miller_columns();
+			// FIXME: Handle this in ViewWrapper.vala update_column_browser();
 		}
 
 		updateSensitivities();
@@ -1171,7 +1186,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		else {
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
 			vw.do_update(vw.current_view, lm.song_ids(), true, true, false);
-			vw.miller_columns.populate (lm.song_ids());
+			vw.column_browser.populate (lm.song_ids());
 
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
 			vw.do_update(vw.current_view, lm.podcast_ids(), true, true, false);

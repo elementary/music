@@ -64,8 +64,26 @@ public class BeatBox.MillerColumns : Box {
 
 	public ViewWrapper view_wrapper { get; private set; }
 	public ViewWrapper.Hint view_type { get { return view_wrapper.hint; } }
-	public Position position {get; private set; default = Position.AUTOMATIC;}
+/*
+	TODO: if the column position is changed, update the selected item in column_chooser_menu
+
+	private Position _position;
+	private Position _actual_position;
+
+	public Position position {
+		get {
+			return _position;
+		}
+		set {
+			if (value != _position) {
+				
+			}
+		};}
 	public Position actual_position {get; set; default = Position.LEFT;}
+*/
+
+	public Position position { get; private set; default = Position.AUTOMATIC; }
+	public Position actual_position { get; set; default = Position.LEFT; }
 
 	public LinkedList<unowned MillerColumn> columns {get; private set;}
 
@@ -86,9 +104,9 @@ public class BeatBox.MillerColumns : Box {
 		column_chooser_menu = new Gtk.Menu ();
 
 		// Inserting columns
-		var rating_col = add_column (MillerColumn.Category.RATING);
-		var year_col = add_column (MillerColumn.Category.YEAR);
-		var genre_col = add_column (MillerColumn.Category.GENRE);
+		add_column (MillerColumn.Category.RATING);
+		add_column (MillerColumn.Category.YEAR);
+		add_column (MillerColumn.Category.GENRE);
 
 		// These columns only make sense for songs.
 		if (is_music_miller)
@@ -107,7 +125,6 @@ public class BeatBox.MillerColumns : Box {
 			}
 		}
 		else {
-		
 			// Read visible columns from settings
 			foreach (var col_n in lm.settings.get_generic_miller_visible_columns ()) {
 				foreach (var column in columns) {
@@ -117,11 +134,6 @@ public class BeatBox.MillerColumns : Box {
 					}
 				}
 			}
-
-			// FIXME: Read this from settings
-			rating_col.visible = true;
-			year_col.visible = true;
-			genre_col.visible = true;
 		}
 
 		// Position stuff
@@ -198,7 +210,7 @@ public class BeatBox.MillerColumns : Box {
 		column.selection_changed.connect (column_selection_changed);
 
 		// Set minimun size
-		column.set_size_request (MIN_COLUMN_WIDTH, MIN_COLUMN_HEIGHT);
+		//column.set_size_request (MIN_COLUMN_WIDTH, MIN_COLUMN_HEIGHT);
 
 		column.reset_requested.connect ( () => {
 			column.select_first_item ();

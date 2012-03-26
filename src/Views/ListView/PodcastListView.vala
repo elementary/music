@@ -835,12 +835,12 @@ public class BeatBox.PodcastListView : BaseListView {
 				lm.remove_medias (toRemove, delete_files);
 				//music_model.removeMedias(toRemoveIDs);
 
-				//view_wrapper.populate_miller_columns (list_model.getOrderedMedias());
+				//view_wrapper.populate_column_browser (list_model.getOrderedMedias());
 			});
 		}
 
 		// in case all the medias from certain miller items were removed, update miller
-		//view_wrapper.populate_miller_columns (list_model.getOrderedMedias());
+		//view_wrapper.populate_column_browser (list_model.getOrderedMedias());
 	}
 
 	void importToLibraryClicked() {
