@@ -341,10 +341,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		viewSelector.margin_right = 12;
 
 		var viewSelectorBox = new ButtonBox (Orientation.HORIZONTAL); 
-		//viewSelectorBox.set_spacing (6);
+		viewSelectorBox.set_spacing (6);
 		viewSelectorBox.margin_top = 5;
 		viewSelectorBox.margin_bottom = 5;
+
 		viewSelectorBox.pack_start (viewSelector, false, false, 0);
+		viewSelectorBox.pack_start (column_browser_toggle, false, false, 0);
+
 		viewSelectorBin.add(viewSelectorBox);
 
 		topDisplayBin.add(topDisplay);
@@ -358,21 +361,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		topControls.get_style_context().add_class(STYLE_CLASS_PRIMARY_TOOLBAR);
 		sourcesToMedias.get_style_context().add_class ("sidebar-pane-separator");
 
-
 		column_browser_toggle.set_image (Icons.VIEW_COLUMN.render_image (IconSize.MENU));
-		column_browser_toggle.set_active (false);
 		column_browser_toggle.margin_right = 12;
-
-		var column_browser_toggle_box = new ButtonBox (Orientation.HORIZONTAL);
-		column_browser_toggle_box.pack_start (column_browser_toggle, false, false, 0);
-		//column_browser_toggle_box.set_spacing (6);
-		//column_browser_toggle_box.margin_top = 6;
-		//column_browser_toggle_box.margin_bottom = 6;
-		
-		var column_browser_toggle_bin = new ToolItem();
-		column_browser_toggle_bin.add (column_browser_toggle_box);
-
-		//column_browser_toggle.set_size_request (12, -1);
 
 		topControls.set_vexpand (false);
 		topControls.set_hexpand (true);
@@ -381,7 +371,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		topControls.insert(playButton, -1);
 		topControls.insert(nextButton, -1);
 		topControls.insert(viewSelectorBin, -1);
-		topControls.insert(column_browser_toggle_bin, -1);
 		topControls.insert(topDisplayBin, -1);
 		topControls.insert(searchFieldBin, -1);
 		topControls.insert(app.create_appmenu(settingsMenu), -1);

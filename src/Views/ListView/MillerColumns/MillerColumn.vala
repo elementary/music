@@ -46,41 +46,22 @@ public class BeatBox.MillerColumns : Box {
 
 	public bool is_music_miller { get { return view_type == ViewWrapper.Hint.MUSIC || view_type == ViewWrapper.Hint.DEVICE_AUDIO || view_type == ViewWrapper.Hint.CDROM; } }
 
-	// All the medias
+	// All the media
 	public Collection<int> medias {get; private set;}
 
 	public bool populated { get { return medias != null; } }
 
 	// Search results
 	private LinkedList<int> _media_results;
-	//private LinkedList<int> _album_results;
 
 	// Filtered media results. We provide the data. No need to search again outside
 	public LinkedList<int> media_results { get {return _media_results;} }
-	//public LinkedList<int> album_results { get {return _album_results;} }
 
 	public LibraryManager lm {get; private set;}
 	public LibraryWindow lw {get; private set;}
 
 	public ViewWrapper view_wrapper { get; private set; }
 	public ViewWrapper.Hint view_type { get { return view_wrapper.hint; } }
-/*
-	TODO: if the column position is changed, update the selected item in column_chooser_menu
-
-	private Position _position;
-	private Position _actual_position;
-
-	public Position position {
-		get {
-			return _position;
-		}
-		set {
-			if (value != _position) {
-				
-			}
-		};}
-	public Position actual_position {get; set; default = Position.LEFT;}
-*/
 
 	public Position position { get; private set; default = Position.AUTOMATIC; }
 	public Position actual_position { get; set; default = Position.LEFT; }
@@ -96,10 +77,9 @@ public class BeatBox.MillerColumns : Box {
 
 		orientation = Orientation.HORIZONTAL;
 
-		columns = new LinkedList<unowned MillerColumn> ();
-
 		_media_results = new LinkedList<int> ();
-		//_album_results = new LinkedList<int> ();
+
+		columns = new LinkedList<unowned MillerColumn> ();
 
 		column_chooser_menu = new Gtk.Menu ();
 
@@ -115,7 +95,7 @@ public class BeatBox.MillerColumns : Box {
 			add_column (MillerColumn.Category.ALBUM);
 
 			// Read visible columns from settings
-			foreach (var col_n in lm.settings.get_music_miller_visible_columns ()) {
+			foreach (var col_n in lw.settings.get_music_miller_visible_columns ()) {
 				foreach (var column in columns) {
 					if (column.category == int.parse (col_n)) {
 						column.visible = true;
@@ -126,7 +106,7 @@ public class BeatBox.MillerColumns : Box {
 		}
 		else {
 			// Read visible columns from settings
-			foreach (var col_n in lm.settings.get_generic_miller_visible_columns ()) {
+			foreach (var col_n in lw.settings.get_generic_miller_visible_columns ()) {
 				foreach (var column in columns) {
 					if (column.category == int.parse (col_n)) {
 						column.visible = true;
@@ -137,7 +117,7 @@ public class BeatBox.MillerColumns : Box {
 		}
 
 		// Position stuff
-		position = (Position) lm.settings.get_miller_columns_position ();
+		position = (Position) lw.settings.get_miller_columns_position ();
 
 		RadioMenuItem automatic_menu_item;
 		RadioMenuItem left_menu_item;
@@ -177,8 +157,6 @@ public class BeatBox.MillerColumns : Box {
 		column_chooser_menu.append (left_menu_item);
 
 		column_chooser_menu.show_all ();
-
-		lw.searchField.changed.connect (on_search_field_changed);
 	}
 
 	public void set_columns_position (Position pos) {
@@ -186,7 +164,7 @@ public class BeatBox.MillerColumns : Box {
 
 		debug ("selected_position = %s", position.to_string ());
 
-		lm.settings.set_miller_columns_position ((int) position);
+		lw.settings.set_miller_columns_position ((int) position);
 
 		// Emit signal
 		position_changed (position);
@@ -286,7 +264,7 @@ public class BeatBox.MillerColumns : Box {
 
 		// Perform search
 
-		lm.do_search (medias, out _media_results, /*out _album_results*/ null, null, null, null, view_type,
+		lm.do_search (medias, out _media_results, null, null, null, null, view_type,
 		              view_wrapper.get_search_string(),
 		              search_artist, search_album, search_genre, search_year, search_rating);
 
@@ -329,12 +307,6 @@ public class BeatBox.MillerColumns : Box {
 	private void column_header_clicked (Gdk.EventButton e) {
 		if (e.button == 3) { // secondary button
 			column_chooser_menu.popup (null, null, null, 3, get_current_event_time ());
-		}
-	}
-
-	public virtual void on_search_field_changed () {
-		if (view_wrapper.is_current_wrapper) {
-			populate(medias);
 		}
 	}
 
@@ -478,9 +450,9 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		}
 
 		if (miller_parent.is_music_miller) 
-			lm.settings.set_music_miller_visible_columns (visible_columns_list);
+			lw.settings.set_music_miller_visible_columns (visible_columns_list);
 		else
-			lm.settings.set_generic_miller_visible_columns (visible_columns_list);
+			lw.settings.set_generic_miller_visible_columns (visible_columns_list);
 	}
 
 	public string get_category_text (bool singular = false, bool lower_case = false) {
@@ -532,7 +504,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	 * to represent "All" in LibraryManager.do_search()
 	 */
 	public string get_selected () {
-		if (_selected == null || !this.visible || miller_parent.lw.viewSelector.selected != 2)
+		if (_selected == null || !this.visible)
 			return "";
 
 		return _selected;

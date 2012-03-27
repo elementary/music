@@ -40,6 +40,7 @@ public class BeatBox.ViewWrapper : Box {
 	public Welcome       welcome_screen { get; private set; }
 
 	// Wrapper for the list view and miller columns
+	private Box   list_view_container;
 	private Paned list_view_hpaned; // for left mode
 	private Paned list_view_vpaned; // for top mode
 	private int   list_view_hpaned_position = -1;
@@ -339,73 +340,83 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		if (have_list_view) {
-			list_view_hpaned = new Paned (Orientation.HORIZONTAL);
-			list_view_vpaned = new Paned (Orientation.VERTICAL);
+			list_view_container = new Box (Orientation.HORIZONTAL, 0);
 			
-			// Fix theming
-			list_view_hpaned.get_style_context().add_class (Gtk.STYLE_CLASS_HORIZONTAL);
-			list_view_vpaned.get_style_context().add_class (Gtk.STYLE_CLASS_VERTICAL);
+			if (have_column_browser) {
+				list_view_hpaned = new Paned (Orientation.HORIZONTAL);
+				list_view_vpaned = new Paned (Orientation.VERTICAL);
 
-			list_view_hpaned.pack2(list_view_vpaned, true, false);
+				// Fix theming
+				list_view_hpaned.get_style_context().add_class (Gtk.STYLE_CLASS_HORIZONTAL);
+				list_view_vpaned.get_style_context().add_class (Gtk.STYLE_CLASS_VERTICAL);
 
-			// Add hpaned (the most-external wrapper) to the view container
-			view_container.append_page (list_view_hpaned);
+				list_view_hpaned.pack2(list_view_vpaned, true, false);
 
-			//list_view_hpaned.set_position(lw.settings.get_column_browser_width());
+				// Add hpaned (the most-external wrapper) to the view container
+				list_view_container.pack_start (list_view_hpaned, true, true, 0);
 
-			do_update (ViewType.LIST, null, false, true, false);
+				//XXX:
+				set_active_view (ViewType.LIST);
+				do_update (current_view, null, false, true, false);
 
-			//XXX:
-			set_active_view (ViewType.LIST);
-			do_update (current_view, null, false, true, false);
+				// Now pack the list view
+				list_view_vpaned.pack2(list_view, true, true);
 
-			// Now pack the list view
-			list_view_vpaned.pack2(list_view, true, true);
+				list_view_hpaned.pack1(column_browser, true, true);
+
+				set_column_browser_position (column_browser.position);
+		
+				//XXX:
+				update_column_browser ();
+	
+				// For automatic position stuff
+				this.size_allocate.connect ( () => {
+					if (!lw.initializationFinished)
+						return;
+					
+					if (column_browser.position == MillerColumns.Position.AUTOMATIC)
+						set_column_browser_position (MillerColumns.Position.AUTOMATIC);
+				});
+	
+				column_browser.size_allocate.connect ( () => {
+					if (!lw.initializationFinished)
+						return;
+					
+					if (column_browser.actual_position == MillerColumns.Position.LEFT) {
+						if (list_view_hpaned.position > 0)
+							list_view_hpaned_position = list_view_hpaned.position;
+					}
+					else if (column_browser.actual_position == MillerColumns.Position.TOP) {
+						if (list_view_vpaned.position > 0)
+							list_view_vpaned_position = list_view_vpaned.position;
+					}
+				});
+	
+				lw.column_browser_toggle.toggled.connect ( () => {
+					if (current_view == ViewType.LIST)
+						column_browser_enabled = lw.column_browser_toggle.get_active();
+				});
+
+				column_browser.position_changed.connect (set_column_browser_position);
+
+	
+				// Read Paned position from settings
+				list_view_hpaned_position = lw.settings.get_miller_columns_width ();
+				list_view_vpaned_position = lw.settings.get_miller_columns_height ();
+
+				list_view_hpaned.position = list_view_hpaned_position;
+				list_view_vpaned.position = list_view_vpaned_position;
+
+				// Connect data signals
+				column_browser.changed.connect (column_browser_changed);
+			}
+			else {
+				list_view_container.pack_start (list_view, true, true, 0);
+			}
+			
+			view_container.append_page (list_view_container);
 		}
 
-		if (have_column_browser) {
-			list_view_hpaned.pack1(column_browser, true, true);
-
-			// Read Paned position from settings
-			list_view_hpaned_position = lw.settings.get_miller_columns_width ();
-			list_view_vpaned_position = lw.settings.get_miller_columns_height ();
-
-			list_view_hpaned.position = list_view_hpaned_position;
-			list_view_vpaned.position = list_view_vpaned_position;
-
-			set_column_browser_position (column_browser.position);
-
-			column_browser.position_changed.connect (set_column_browser_position);
-
-			//XXX:
-			update_column_browser ();
-
-			// For automatic position stuff
-			this.size_allocate.connect ( () => {
-				if (!lw.initializationFinished)
-					return;
-				
-				if (column_browser.position == MillerColumns.Position.AUTOMATIC)
-					set_column_browser_position (MillerColumns.Position.AUTOMATIC);
-			});
-
-			column_browser.size_allocate.connect ( () => {
-				if (column_browser.actual_position == MillerColumns.Position.LEFT) {
-					list_view_hpaned_position = list_view_hpaned.position;
-				}
-				else if (column_browser.actual_position == MillerColumns.Position.TOP) {
-					list_view_vpaned_position = list_view_vpaned.position;
-				}
-			});
-
-			lw.column_browser_toggle.toggled.connect ( () => {
-				if (current_view == ViewType.LIST)
-					column_browser_enabled = lw.column_browser_toggle.get_active();
-			});
-
-			// Connect data signals
-			column_browser.changed.connect (column_browser_changed);
-		}
 
 		if (have_album_view) {
 			view_container.append_page (album_view);
@@ -431,8 +442,6 @@ public class BeatBox.ViewWrapper : Box {
 		// disk access to write settings.
 		destroy.connect (on_quit);
 
-		//show_all ();
-
 		initialized = true;
 	}
 
@@ -442,8 +451,6 @@ public class BeatBox.ViewWrapper : Box {
 		this.hint = Hint.NONE;
 		set_active_view (ViewType.NONE);
 
-		show_all ();
-
 		update_library_window_widgets ();
 		
 		// FIXME: not needed. Update statusbar
@@ -452,13 +459,14 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	private void on_quit () {
+		if (!have_column_browser)
+			return;
+
 		// Save all the relevant stuff, such as list_view_hpaned and list_view_vpaned positions, etc.
-		if (have_column_browser) {
-			if (column_browser.actual_position == MillerColumns.Position.LEFT)
-				lw.settings.set_miller_columns_width(list_view_hpaned.position);
-			else if (column_browser.actual_position == MillerColumns.Position.TOP)
-				lw.settings.set_miller_columns_height(list_view_vpaned.position);
-		}
+		if (column_browser.actual_position == MillerColumns.Position.LEFT)
+			lw.settings.set_miller_columns_width(list_view_hpaned.position);
+		else if (column_browser.actual_position == MillerColumns.Position.TOP)
+			lw.settings.set_miller_columns_height(list_view_vpaned.position);
 	}
 
 
@@ -514,7 +522,7 @@ public class BeatBox.ViewWrapper : Box {
 		// Find position in notebook
 		switch (type) {
 			case ViewType.LIST:
-				view_index = view_container.page_num (list_view_hpaned);
+				view_index = view_container.page_num (list_view_container);
 				break;
 			case ViewType.ALBUM:
 				view_index = view_container.page_num (album_view);
@@ -1056,26 +1064,24 @@ public class BeatBox.ViewWrapper : Box {
 	public virtual void search_field_changed() {
 		if (!is_current_wrapper)
 			return;
-		
-		/*
+
 		// validate search string: no white space, etc.
 		bool is_valid_string = false;
 		int white_space = 0;
 
-		string get_search_string() = get_search_string();
-		int str_length = get_search_string().length;
+		string _string = get_search_string();
+		int str_length = _string.length;
 
 		unichar c;
-		for (int i = 0; get_search_string().get_next_char (ref i, out c);)
+		for (int i = 0; _string.get_next_char (ref i, out c);)
 			if (c.isspace())
 				++ white_space;
 
 		if (white_space == str_length) {
 			is_valid_string = true;
-			debug ("detected white space");
+			debug ("SEARCH STRING IS WHITESPACE");
 			return;
 		}
-		*/
 
 		if(!setting_search && lw.initializationFinished) {
 			timeout_search.offer_head(_last_search.down());
