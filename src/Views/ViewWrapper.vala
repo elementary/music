@@ -322,7 +322,6 @@ public class BeatBox.ViewWrapper : Box {
 				/* list, album and column views */
 				album_view = new AlbumView (this, get_media_ids());
 				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
-				column_browser = new MillerColumns (this);
 
 				break;
 		}
