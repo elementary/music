@@ -467,6 +467,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		if(!w.visible && o is SmartPlaylist) {
 			ViewWrapper vw = (ViewWrapper)w;
 			
+			// FIXME Probably something like vw.update_media() would be useful?
 			vw.do_update((lw.viewSelector.selected == 0) ? ViewWrapper.ViewType.FILTER : ViewWrapper.ViewType.LIST,
 						lm.medias_from_smart_playlist(((SmartPlaylist)o).rowid), true, true, false);
 		}
