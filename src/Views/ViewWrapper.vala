@@ -381,20 +381,6 @@ public class BeatBox.ViewWrapper : Box {
 			//XXX:
 			update_column_browser ();
 
-			column_browser.size_allocate.connect ( () => {
-				if (!is_current_wrapper)
-					return;
-				
-				if (column_browser_enabled && lw.initializationFinished && lw.visible) {
-					if (column_browser.actual_position == MillerColumns.Position.LEFT) {
-						lw.column_browser_size_change (list_view_hpaned.position);
-					}
-					else if (column_browser.actual_position == MillerColumns.Position.TOP) {
-						lw.column_browser_size_change (list_view_vpaned.position);
-					}
-				}
-			});
-
 			// For automatic position stuff
 			this.size_allocate.connect ( () => {
 				if (!lw.initializationFinished)
@@ -404,25 +390,12 @@ public class BeatBox.ViewWrapper : Box {
 					set_column_browser_position (MillerColumns.Position.AUTOMATIC);
 			});
 
-
-			// Sync with the other views
-			lw.column_browser_position_change.connect ( (position) => {
-				if (lw.initializationFinished && lw.visible && !is_current_wrapper)
-					set_column_browser_position (position);
-			});
-
-			lw.column_browser_size_change.connect ( (size) => {
-				// If we had many view wrappers in the entire app, it would be very slow to set
-				// the position of the miller columns in all of these wrappers at once, so we only
-				// store the value and apply it when switching to this view wrapper.
-				//
-				// See set_as_current_view() to see how this value is actually used.
-				
+			column_browser.size_allocate.connect ( () => {
 				if (column_browser.actual_position == MillerColumns.Position.LEFT) {
-					list_view_hpaned_position = size;
+					list_view_hpaned_position = list_view_hpaned.position;
 				}
 				else if (column_browser.actual_position == MillerColumns.Position.TOP) {
-					list_view_vpaned_position = size;
+					list_view_vpaned_position = list_view_vpaned.position;
 				}
 			});
 
@@ -530,11 +503,6 @@ public class BeatBox.ViewWrapper : Box {
 				list_view_vpaned.set_position (list_view_vpaned_position);
 			}
 		}
-
-		// emit the column_browser_position_change signal so that other views can
-		// use the new position. We sync the views using this method
-		if (lw.initializationFinished && is_current_wrapper && lw.visible)
-			lw.column_browser_position_change (column_browser.actual_position);
 	}
 
 
