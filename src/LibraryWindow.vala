@@ -527,7 +527,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 
 		// GtkNotebooks don't show hidden widgets. Make sure we show the view just in case ...
-		view.set_visible (true);
+		view.show_all ();
 
 		// We need to set this view as the current page before even attempting to call
 		// the set_as_current_view() method.
