@@ -561,12 +561,11 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			TreeIter pivot = playlists_history_iter;
 				
 			do {
-				GLib.Object o;
-				tree.get(pivot, 0, out o);
-				if(o is SmartPlaylist && ((SmartPlaylist)o).rowid == sp.rowid) {
+				Widget w;
+				tree.get(pivot, 1, out w);
+				if(w is ViewWrapper && (lm.smart_playlist_from_id((w as ViewWrapper).relative_id).rowid == sp.rowid)) {
 					string name;
-					Widget w;
-					tree.get(pivot, 1, out w, 4, out name);
+					tree.get(pivot, 4, out name);
 					
 					removeItem(pivot);
 					lw.addSideListItem(sp);
@@ -597,19 +596,18 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			TreeIter pivot = playlists_history_iter;
 			
 			do {
-				GLib.Object o;
+				Widget o;
 				
-				tree.get(pivot, 0, out o);
-				if(o is Playlist && ((Playlist)o).rowid == p.rowid) {
+				tree.get(pivot, 1, out o);
+				if(o is ViewWrapper && (o as ViewWrapper).hint == ViewWrapper.Hint.PLAYLIST && lm.playlist_from_id ((o as ViewWrapper).relative_id).rowid == p.rowid) {
 					string name;
-					Widget w;
-					tree.get(pivot, 1, out w, 4, out name);
+					tree.get(pivot, 4, out name);
 					
 					removeItem(pivot);
 					lw.addSideListItem(p);
 					
 					//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.medias_from_playlist(p.rowid), true, false, false);
-					(w as ViewWrapper).set_media (lm.medias_from_playlist(p.rowid));
+					(o as ViewWrapper).set_media (lm.medias_from_playlist(p.rowid));
 					
 					break;
 				}
@@ -629,16 +627,20 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		TreeIter iter;
 		selected.get_selected (out model, out iter);
 		
-		GLib.Object o;
-		filter.get(iter, 0, out o);
+		Widget o;
+		filter.get(iter, 1, out o);
 		
-		if(o is Playlist) {
-			PlaylistNameWindow pnw = new PlaylistNameWindow(lw, ((Playlist)o));
-			pnw.playlist_saved.connect(playlistNameWindowSaved);
-		}
-		else if(o is SmartPlaylist) {
-			SmartPlaylistEditor spe = new SmartPlaylistEditor(lw, (SmartPlaylist)o);
-			spe.playlist_saved.connect(smartPlaylistEditorSaved);
+		if (o is ViewWrapper) {
+			var vw = o as ViewWrapper;
+		
+			if(vw.hint == ViewWrapper.Hint.PLAYLIST) {
+				PlaylistNameWindow pnw = new PlaylistNameWindow(lw, lm.playlist_from_id (vw.relative_id));
+				pnw.playlist_saved.connect(playlistNameWindowSaved);
+			}
+			else if(vw.hint == ViewWrapper.Hint.SMART_PLAYLIST) {
+				SmartPlaylistEditor spe = new SmartPlaylistEditor(lw, lm.smart_playlist_from_id (vw.relative_id));
+				spe.playlist_saved.connect(smartPlaylistEditorSaved);
+			}
 		}
 	}
 	
@@ -649,14 +651,19 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		TreeModel model;
 		selected.get_selected (out model, out iter_f);
 		
-		GLib.Object o;
+		//GLib.Object o;
 		Widget w;
-		filter.get(iter_f, 0, out o, 1, out w);
+		//filter.get(iter_f, 0, out o, 1, out w);
+		filter.get(iter_f, 1, out w);
+
+		if (w is ViewWrapper) {
+			var vw = w as ViewWrapper;
 		
-		if(o is Playlist)
-			lm.remove_playlist(((Playlist)o).rowid);
-		else if(o is SmartPlaylist)
-			lm.remove_smart_playlist(((SmartPlaylist)o).rowid);
+			if(vw.hint == ViewWrapper.Hint.PLAYLIST)
+				lm.remove_playlist (vw.relative_id);
+			else if(vw.hint == ViewWrapper.Hint.SMART_PLAYLIST)
+				lm.remove_smart_playlist (vw.relative_id);
+		}
 		
 		iter = convertToChild(iter_f);
 		
@@ -673,11 +680,11 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		tree.iter_nth_child(out pivot, playlists_iter, tree.iter_n_children(playlists_iter) - 1);
 		
 		do {
-			GLib.Object o;
+			Widget o;
 			
-			tree.get(pivot, 0, out o);
-			if(o is Playlist) {
-				toRemove.add(((Playlist)o).rowid);
+			tree.get(pivot, 1, out o);
+			if(o is ViewWrapper && (o as ViewWrapper).hint == ViewWrapper.Hint.PLAYLIST) {
+				toRemove.add((o as ViewWrapper).relative_id);
 				removeItem(pivot);
 			}
 			else {
@@ -715,27 +722,28 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		TreeModel model;
 		selected.get_selected (out model, out iter_f);
 		
-		GLib.Object o;
-		Widget w;
-		filter.get(iter_f, 0, out o, 1, out w);
+		Widget o;
+		filter.get(iter_f, 1, out o);
 		
 		iter = convertToChild(iter_f);
 		
 		Playlist p;
-		if(o is Playlist) {
-			p = (Playlist)o;
+		if(o is ViewWrapper && (o as ViewWrapper).hint == ViewWrapper.Hint.PLAYLIST) {
+			p = lm.playlist_from_id ((o as ViewWrapper).relative_id);
 		}
 		else {
 			p = new Playlist();
 			
-			if(o is SmartPlaylist) {
-				foreach(int i in ((SmartPlaylist)o).analyze(lm, lm.media_ids()))
+			if(o is ViewWrapper && (o as ViewWrapper).hint == ViewWrapper.Hint.SMART_PLAYLIST) {
+				var smart_playlist = lm.smart_playlist_from_id ((o as ViewWrapper).relative_id);
+				
+				foreach(int i in (smart_playlist.analyze(lm, lm.media_ids())))
 					p.addMedia(i);
 					
-				p.name = ((SmartPlaylist)o).name;
+				p.name = smart_playlist.name;
 			}
 			else {
-				foreach(int i in ((ViewWrapper)w).get_media_ids())
+				foreach(int i in ((ViewWrapper)o).get_media_ids())
 					p.addMedia(i);
 				
 				if(iter == playlists_similar_iter)
@@ -918,10 +926,9 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			return;
 		}
 		
-		GLib.Object o;
 		Widget w;
 		string name;
-		filter.get(iter, 0, out o, 1, out w, 4, out name);
+		filter.get(iter, 1, out w, 4, out name);
 		
 		/* make sure it is either queue or normal playlist */
 		if(name == "Queue") {
@@ -940,8 +947,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			//ViewWrapper vw = (ViewWrapper)w;
 			//vw.column_browser_changed(); //FIXME
 		}
-		else if(o is Playlist) {
-			Playlist p = (Playlist)o;
+		else if(w is ViewWrapper && (w as ViewWrapper).hint == ViewWrapper.Hint.PLAYLIST) {
+			var p = lm.playlist_from_id (((ViewWrapper)w).relative_id);
 			
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);

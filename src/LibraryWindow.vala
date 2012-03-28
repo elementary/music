@@ -648,7 +648,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			SmartPlaylist p = (SmartPlaylist)o;
 
 			add_view (null, ViewWrapper.Hint.SMART_PLAYLIST, p.name, lm.medias_from_smart_playlist(p.rowid),
-			           p.tvs.sort_column, p.tvs.sort_direction, p.rowid);
+			          p.tvs.sort_column, p.tvs.sort_direction, p.rowid);
 		}
 		/* XXX: Migrate this code to the new API */
 		else if(o is Device) {
