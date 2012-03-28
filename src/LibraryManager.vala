@@ -1132,7 +1132,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_current_shuffled_index = 0;
 		
 		if(mode == Shuffle.OFF) {
-			if(media_info.media != null) {
+			if(media_active) {
 				//make sure we continue playing where we left off
 				for(int i = 0; i < _current.size; ++i) {
 					if(_current.get(i) == media_info.media.rowid) {
@@ -1159,7 +1159,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				int random = GLib.Random.int_range(0, temp.size);
 				
 				//if(temp.get(random) != media_info.media.rowid) {
-				if(media_info.media != null && temp.get(random) == media_info.media.rowid) {
+				if(media_active && temp.get(random) == media_info.media.rowid) {
 					_current_shuffled.set(0, media_info.media.rowid);
 					--i;
 				}
@@ -1387,14 +1387,14 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			return;
 		
 		// save previous media's id
-		if(media_info.media != null)
+		if(media_active)
 			old_id = media_info.media.rowid;
 		
 		// set the current media
 		media_info.media = media_from_id(id);
 		Media m = media_from_id(id);
 		
-		// check that the file exists
+		// check that the file exists FIXME: Avoid reading settings everytime a song is played
 		if((settings.getMusicFolder() != "" && File.new_for_uri(m.uri).get_path().has_prefix(settings.getMusicFolder()) && !GLib.File.new_for_uri(m.uri).query_exists())) {
 			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
@@ -1462,13 +1462,14 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		});
 	}
 	
+	// FIXME: Slow. Don't read eq. presets from settings.
 	public void* change_gains_thread () {
 		if(settings.getEqualizerEnabled()) {
 			bool automatic_enabled = settings.getAutoSwitchPreset();
 			string selected_preset = settings.getSelectedPreset();
 
 			foreach(var p in settings.getDefaultPresets ()) {
-				if(p != null && media_info.media != null)  {
+				if(p != null && media_active)  {
 					var preset_name = p.name.down ();
 					var media_genre = media_info.media.genre.down();
 
@@ -1486,7 +1487,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			}
 
 			foreach(var p in settings.getCustomPresets ()) {
-				if(p != null && media_info.media != null)  {
+				if(p != null && media_active)  {
 					var preset_name = p.name.down ();
 					var media_genre = media_info.media.genre.down();
 
@@ -1534,7 +1535,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		player.pause();
 		
 		int was_playing = 0;
-		if(media_info.media != null)
+		if(media_active)
 			was_playing = media_info.media.rowid;
 		
 		settings.setLastMediaPlaying(0);

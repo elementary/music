@@ -410,7 +410,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
 
-		viewSelector.mode_changed.connect( () => { updateSensitivities(); } );
+		viewSelector.mode_changed.connect( () => {
+			if (viewSelector.sensitive)
+				settings.setViewMode(viewSelector.selected);
+			updateSensitivities();
+		});
+
 		searchField.changed.connect(searchFieldChanged);
 		searchField.activate.connect(searchFieldActivate);
 
@@ -418,8 +423,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
 		drag_data_received.connect(dragReceived);
-
-		viewSelector.selected = settings.getViewMode();
 
 		int i = settings.getLastMediaPlaying();
 		if(i != 0 && lm.media_from_id(i) != null && File.new_for_uri(lm.media_from_id(i).uri).query_exists()) {
@@ -434,7 +437,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		initializationFinished = true;
 
 		sideTree.resetView();
-		/*var vw = (ViewWrapper)sideTree.getSelectedWidget();*/
+		/*var vw = (ViewWrapper)mainViews.get_nth_page (mainViews.get_current_page());*/
 		if(lm.media_active) {
 			//vw.list_view.set_as_current_list(0, true);
 			//debug ("set a view as current list\n");
@@ -446,8 +449,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		searchField.set_text(lm.settings.getSearchString());
 		//vw.do_update(vw.current_view, vw.get_media_ids(), false, true, false);
 
-		show_all();
 		resize(settings.getWindowWidth(), this.default_height);
+		show_all();
+
+		// Now set the selected view
+		viewSelector.selected = settings.getViewMode();
+
 
 		updateSensitivities();
 
@@ -498,7 +505,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 	/**
-	 * Selects the given view as the active item
+	 * Sets the given view as the active item
 	 */
 	public void set_active_view (Gtk.Widget view) {
 		int view_index = mainViews.page_num (view);
@@ -554,8 +561,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	 * @param widget Widget containing the custom view
 	 * @param tree The sidebar tree to build it on [if NULL is passed it uses the default tree]
 	 *
-	 * TODO: add a plugin hook and update LibraryWindowInterface.
-	 * TODO: Add option to pass an icon (needed by the plugins).
+	 * TODO: add plugin hook and update LibraryWindowInterface.
+	 * TODO: Add option to pass an icon (needed by plugins).
 	 *
 	 * IMPORTANT: Currently every item added through this method will be put under the Network category
 	 */
@@ -697,8 +704,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		bool mediaActive = lm.media_active;
 		bool showMore = lm.settings.getMoreVisible();
 
-		bool showingMediaList = (sideTree.getSelectedWidget() is ViewWrapper);
-		bool songsInList = showingMediaList ? (sideTree.getSelectedWidget() as ViewWrapper).have_media : false;
+		bool showingMediaList = (mainViews.get_nth_page (mainViews.get_current_page()) is ViewWrapper);
+		bool songsInList = showingMediaList ? (mainViews.get_nth_page (mainViews.get_current_page()) as ViewWrapper).have_media : false;
 		bool showingMusicList = sideTree.convertToChild(sideTree.getSelectedIter()) == sideTree.library_music_iter;
 		bool showMainViews = (haveSongs || (haveMedias && !showingMusicList));
 
@@ -997,7 +1004,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		if(!lm.media_active) {
 			debug("No media is currently playing. Starting from the top\n");
 			//set current medias by current view
-			Widget w = sideTree.getSelectedWidget();
+			Widget w = mainViews.get_nth_page (mainViews.get_current_page());
 			
 			if(w is ViewWrapper) {
 				((ViewWrapper)w).list_view.set_as_current_list(1, true);
@@ -1065,7 +1072,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 	public virtual void searchFieldIconPressed(EntryIconPosition p0, Gdk.Event p1) {
-		Widget w = sideTree.getSelectedWidget();
+		Widget w = mainViews.get_nth_page (mainViews.get_current_page());
 		w.focus(DirectionType.UP);
 	}
 
@@ -1162,7 +1169,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 				if(w is ViewWrapper && !(w is DeviceViewWrapper)) {
 					ViewWrapper vw = (ViewWrapper)w;
 					debug("doing clear\n");
-					vw.do_update(vw.current_view, new LinkedList<int>(), true, true, false);
+					//vw.do_update(vw.current_view, new LinkedList<int>(), true, true, false);
+					vw.set_media(new LinkedList<int>());
 					debug("cleared\n");
 				}
 			});
@@ -1170,14 +1178,17 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 		else {
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-			vw.do_update(vw.current_view, lm.song_ids(), true, true, false);
-			vw.column_browser.populate (lm.song_ids());
+			//vw.do_update(vw.current_view, lm.song_ids(), true, true, false);
+			//vw.column_browser.populate (lm.song_ids());
+			vw.set_media(lm.song_ids());
 
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
-			vw.do_update(vw.current_view, lm.podcast_ids(), true, true, false);
+			//vw.do_update(vw.current_view, lm.podcast_ids(), true, true, false);
+			vw.set_media(lm.podcast_ids());
 
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.network_radio_iter);
-			vw.do_update(vw.current_view, lm.station_ids(), true, true, false);
+			//vw.do_update(vw.current_view, lm.station_ids(), true, true, false);
+			vw.set_media(lm.station_ids());
 		}
 	}
 
@@ -1375,7 +1386,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 
 		((ViewWrapper)w).similarsFetched = true;
-		((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, similarIDs, true, true, false);
+		//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, similarIDs, true, true, false);
+		((ViewWrapper)w).set_media (similarIDs);
 
 		infoPanel.updateMediaList(similarDont);
 	}
@@ -1510,7 +1522,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 	public void searchFieldActivate() {
-		Widget w = sideTree.getSelectedWidget();
+		Widget w = mainViews.get_nth_page (mainViews.get_current_page());
 
 		if(w is ViewWrapper) {
 			ViewWrapper vw = (ViewWrapper)w;

@@ -41,27 +41,29 @@ public class BeatBox.MillerColumns : Box {
 		TOP       = 1
 	}
 
+	public LibraryManager lm {get; private set;}
+	public LibraryWindow lw {get; private set;}
+	public ViewWrapper view_wrapper { get; private set; }
+
+
 	public const int MIN_COLUMN_WIDTH = 100;
 	public const int MIN_COLUMN_HEIGHT = 70;
 
-	public bool is_music_miller { get { return view_type == ViewWrapper.Hint.MUSIC || view_type == ViewWrapper.Hint.DEVICE_AUDIO || view_type == ViewWrapper.Hint.CDROM; } }
+	public bool is_music_miller {
+		get {
+			return view_wrapper.hint == ViewWrapper.Hint.MUSIC || view_wrapper.hint == ViewWrapper.Hint.DEVICE_AUDIO ||
+			        view_wrapper.hint == ViewWrapper.Hint.CDROM;
+		}
+	}
 
 	// All the media
 	public Collection<int> medias {get; private set;}
-
-	public bool populated { get { return medias != null; } }
 
 	// Search results
 	private LinkedList<int> _media_results;
 
 	// Filtered media results. We provide the data. No need to search again outside
 	public LinkedList<int> media_results { get {return _media_results;} }
-
-	public LibraryManager lm {get; private set;}
-	public LibraryWindow lw {get; private set;}
-
-	public ViewWrapper view_wrapper { get; private set; }
-	public ViewWrapper.Hint view_type { get { return view_wrapper.hint; } }
 
 	public Position position { get; private set; default = Position.AUTOMATIC; }
 	public Position actual_position { get; set; default = Position.LEFT; }
@@ -159,10 +161,16 @@ public class BeatBox.MillerColumns : Box {
 		column_chooser_menu.show_all ();
 	}
 
+	/**
+	 * Sets all the filters to "All ..."
+	 */
+	public void reset_filters () {
+		foreach (var col in columns)
+			col.select_first_item();	
+	}
+
 	public void set_columns_position (Position pos) {
 		position = pos;
-
-		debug ("selected_position = %s", position.to_string ());
 
 		lw.settings.set_miller_columns_position ((int) position);
 
@@ -211,8 +219,6 @@ public class BeatBox.MillerColumns : Box {
 	}
 
 	private void column_selection_changed (MillerColumn.Category category, string val) {
-		debug (">>> COLUMN '%s' SELECTION CHANGED. RE-POPULATING MILLERS", category.to_string ());
-
 		/**
 		 * Since the columns follow a tree model, we have to re-populate all the columns
 		 * that have a lower hierarchical level.
@@ -263,18 +269,14 @@ public class BeatBox.MillerColumns : Box {
 		}
 
 		// Perform search
-
-		lm.do_search (medias, out _media_results, null, null, null, null, view_type,
-		              view_wrapper.get_search_string(),
-		              search_artist, search_album, search_genre, search_year, search_rating);
+		lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
+		              "", search_artist, search_album, search_genre, search_year, search_rating);
 
 		// Now re-populate the child columns
 
 		foreach (var column in columns) {
 			// Child columns
 			if (column.category > category) {
-
-				debug (">> Populating child column %s", column.category.to_string ());
 				var column_set = new HashMap<string, int> ();
 
 				foreach(int id in _media_results) {
@@ -314,7 +316,7 @@ public class BeatBox.MillerColumns : Box {
 		this.medias = media;
 
 		lm.do_search (media, out _media_results, /*out _album_results*/ null, null, null, null,
-		              view_type, search ?? view_wrapper.get_search_string());
+		              view_wrapper.hint, search ?? "");
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();
@@ -339,6 +341,9 @@ public class BeatBox.MillerColumns : Box {
 
 			column.populate (column_set);
 		}
+		
+		// FIXME: notify about the change here?
+		changed();
 	}
 }
 

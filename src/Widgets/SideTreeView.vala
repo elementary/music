@@ -309,13 +309,15 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	public void updatePlayQueue() {
 		Widget w;
 		filter.get(convertToFilter(playlists_queue_iter), 1, out w);
-		((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.queue(), true, true, false);
+		//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.queue(), true, true, false);
+		((ViewWrapper)w).set_media (lm.queue());
 	}
 	
 	public void updateAlreadyPlayed() {
 		Widget w;
 		filter.get(convertToFilter(playlists_history_iter), 1, out w);
-		((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.already_played(), true, true, false);
+		//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.already_played(), true, true, false);
+		((ViewWrapper)w).set_media (lm.already_played());
 	}
 	
 	public virtual bool sideListClick(Gdk.EventButton event) {
@@ -569,7 +571,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 					removeItem(pivot);
 					lw.addSideListItem(sp);
 					
-					((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.medias_from_smart_playlist(sp.rowid), true, false, false);
+					//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.medias_from_smart_playlist(sp.rowid), true, false, false);
+					((ViewWrapper)w).set_media (lm.medias_from_smart_playlist(sp.rowid));
 					lm.save_smart_playlists();
 					
 					break;
@@ -605,7 +608,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 					removeItem(pivot);
 					lw.addSideListItem(p);
 					
-					((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.medias_from_playlist(p.rowid), true, false, false);
+					//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.medias_from_playlist(p.rowid), true, false, false);
+					(w as ViewWrapper).set_media (lm.medias_from_playlist(p.rowid));
 					
 					break;
 				}
@@ -933,8 +937,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				}
 			}
 			
-			ViewWrapper vw = (ViewWrapper)w;
-			vw.column_browser_changed(); //FIXME
+			//ViewWrapper vw = (ViewWrapper)w;
+			//vw.column_browser_changed(); //FIXME
 		}
 		else if(o is Playlist) {
 			Playlist p = (Playlist)o;
@@ -951,9 +955,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				}
 			}
 			
-			ViewWrapper vw = (ViewWrapper)w;
-			vw.column_browser_changed(); //FIXME
-			
+			//ViewWrapper vw = (ViewWrapper)w;
+			//vw.column_browser_changed(); //FIXME
 		}
 		
 		Gtk.drag_finish (context, success, false, timestamp);

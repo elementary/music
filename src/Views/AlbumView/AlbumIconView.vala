@@ -176,7 +176,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 
 	public ViewWrapper.Hint get_hint() {
-		return ViewWrapper.Hint.MUSIC;
+		return parent_view_wrapper.hint;
 	}
 
 	public void set_show_next(Collection<int> medias) {
