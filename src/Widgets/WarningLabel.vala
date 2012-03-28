@@ -41,6 +41,7 @@ public class BeatBox.WarningLabel : EventBox {
 		errorLabel = new Label("");
 		warningIcon = Icons.render_image (icon_name, Gtk.IconSize.DIALOG);
 
+		//FIXME: use margins
 		var content = new Box (Orientation.HORIZONTAL, 10);
 		var content_wrapper = new Box (Orientation.HORIZONTAL, 0);
 		var outer_box = new Box (Orientation.VERTICAL, 0);
@@ -82,8 +83,9 @@ public class BeatBox.WarningLabel : EventBox {
 		return alignment;
 	}
 
-	public void setWarning(string warning, Gtk.Justification? justification) {
-		if (justification == null)
+	// We force our HIG here. Whenever show_icon is true, the title has to be left-aligned.
+	public void setWarning(string warning, Gtk.Justification? justification = Gtk.Justification.LEFT) {
+		if (!show_icon)
 			errorLabel.set_justify(Gtk.Justification.CENTER);
 		else
 			errorLabel.set_justify(justification);

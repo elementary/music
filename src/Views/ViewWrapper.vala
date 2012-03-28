@@ -168,7 +168,6 @@ public class BeatBox.ViewWrapper : Box {
 
 	public bool needs_update;
 
-
 	// for Hint.SIMILAR only
 	public bool similarsFetched;
 	private bool in_update;
@@ -215,7 +214,7 @@ public class BeatBox.ViewWrapper : Box {
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find medias similar to the one you are playing.") + "\n" + _("You can then start playing those medias, or save them for later."), null);
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find medias similar to the one you are playing.") + "\n" + _("You can then start playing those medias, or save them for later."));
 				break;
 			case Hint.PODCAST:
 				// list, album and column views
@@ -225,7 +224,7 @@ public class BeatBox.ViewWrapper : Box {
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."), null);
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."));
 
 				break;
 			case Hint.DEVICE_PODCAST:
@@ -236,7 +235,7 @@ public class BeatBox.ViewWrapper : Box {
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."), null);
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."));
 
 				break;
 			case Hint.STATION:
@@ -246,7 +245,7 @@ public class BeatBox.ViewWrapper : Box {
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Internet Radio Stations Found") + "</span>\n\n" + _("To add a station, visit a website such as SomaFM to find PLS or M3U files.") + "\n" + _("You can then import the file to add the station."), null);
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Internet Radio Stations Found") + "</span>\n\n" + _("To add a station, visit a website such as SomaFM to find PLS or M3U files.") + "\n" + _("You can then import the file to add the station."));
 
 				break;
 			case Hint.AUDIOBOOK:
@@ -268,8 +267,8 @@ public class BeatBox.ViewWrapper : Box {
 				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
 
 				error_box = new WarningLabel();
-				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Audio CD Invalid") + "</span>\n\n" + _("BeatBox could not read the contents of this Audio CD."), null);
+				error_box.show_icon = true;
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Audio CD Invalid") + "</span>\n\n" + _("BeatBox could not read the contents of this Audio CD."));
 
 				break;
 			default:
@@ -381,8 +380,7 @@ public class BeatBox.ViewWrapper : Box {
 		destroy.connect (on_quit);
 
 		// Populate views
-		needs_update = true;
-		//update_showing_media ();
+		needs_update = true; // set_as_current_view() will populate the views later...
 
 		initialized = true;
 	}
@@ -407,6 +405,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	// We only check for white space at the moment
+	/*
 	private bool get_is_valid_search_string (string s) {
 		if (s.length < 1)
 			return true;
@@ -425,6 +424,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		return false;
 	}
+	*/
 
 	private void set_column_browser_position (MillerColumns.Position position) {
 		MillerColumns.Position actual_position = position; //position that will be actually applied
@@ -590,7 +590,7 @@ public class BeatBox.ViewWrapper : Box {
 			return;
 
 		error_box.show_icon = false;
-		error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Loading similar songs") + "</span>\n\n" + _("BeatBox is loading songs similar to") + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> " + _("..."), null);
+		error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Loading similar songs") + "</span>\n\n" + _("BeatBox is loading songs similar to") + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> " + _("..."));
 
 		// Show the error box
 		set_active_view (ViewType.ERROR);
@@ -665,13 +665,13 @@ public class BeatBox.ViewWrapper : Box {
 		if (get_is_valid_search_string (get_search_string()))
 			return;
 		*/
-
+		/*
 		if(!setting_search && lw.initializationFinished) {
 			timeout_search.offer_head(_last_search.down());
 			Timeout.add(200, () => {
 
 				string to_search = timeout_search.poll_tail();
-				if(to_search != _last_search || to_search == _last_search)
+				if(to_search != lw || to_search == _last_search)
 					return false;
 
 				if(!setting_search && is_current_wrapper)
@@ -682,6 +682,31 @@ public class BeatBox.ViewWrapper : Box {
 				// SAVE STRING TO SETTINGS
 				lm.settings.setSearchString(to_search);
 
+				return false;
+			});
+		}*/
+		
+		if(!setting_search && lw.initializationFinished && is_current_wrapper && lw.searchField.get_text().length != 1 && this.visible) {
+			timeout_search.offer_head(lw.searchField.get_text().down());
+			Timeout.add(200, () => {
+				
+				string to_search = timeout_search.poll_tail();
+				if(to_search != lw.searchField.get_text() || to_search == _last_search)
+					return false;
+				
+				if(!setting_search && is_current_wrapper)
+					_last_search = to_search;
+				/*
+				doUpdate(this.currentView, medias.keys, false, true, false);
+				
+				showing_all = (showingMedias.size == medias.size);
+				
+				lm.settings.setSearchString(to_search);
+				list.set_statusbar_info();
+				*/
+				
+				update_showing_media();
+				
 				return false;
 			});
 		}
@@ -811,14 +836,14 @@ public class BeatBox.ViewWrapper : Box {
 			}
 
 			Idle.add( () => {
-				if (column_browser_enabled) {
+				/*if (column_browser_enabled) {
 					// This will emit the changed() signal and then column_browser_changed will be called.
 					// We can't avoid re-populating the entire column browser and then the list view
 					// for performance reasons. We don't guarantee persistent selections if the column
 					// browser is enabled.
 					column_browser.populate (get_showing_media_ids());
 				}
-				else if (have_list_view) {
+				else*/ if (have_list_view) {
 					list_view.append_medias(to_add);
 					list_view.remove_medias(to_remove_show);
 				}
@@ -980,7 +1005,7 @@ public class BeatBox.ViewWrapper : Box {
 				if(media_count < 10) { // say we could not find similar media
 					if (have_error_box) {
 						error_box.show_icon = true;
-						error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."), Justification.LEFT);
+						error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."));
 						// Show the error box
 						set_active_view (ViewType.ERROR);
 					}
@@ -1090,6 +1115,7 @@ public class BeatBox.ViewWrapper : Box {
 	*/
 
 	// FIXME: hmmm....
+	/*
 	bool check_show_error_box() {
 		if (!have_error_box)
 			return false;
@@ -1138,5 +1164,5 @@ public class BeatBox.ViewWrapper : Box {
 
 		return false;
 	}
-	
+	*/
 }
