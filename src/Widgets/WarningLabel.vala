@@ -24,7 +24,7 @@ using Gtk;
 
 public class BeatBox.WarningLabel : EventBox {
 
-	private Label errorLabel;
+	private Label errorLabel; // FIXME: Use Granite.Widgets.WrapLabel
 	private Image warningIcon;
 
 	public bool show_icon {
@@ -83,7 +83,10 @@ public class BeatBox.WarningLabel : EventBox {
 		return alignment;
 	}
 
+	
 	// We force our HIG here. Whenever show_icon is true, the title has to be left-aligned.
+
+	// FIXME: this should be: set_warning (string primary_text, string secondary_text, bool show_icon = true, ...)
 	public void setWarning(string warning, Gtk.Justification? justification = Gtk.Justification.LEFT) {
 		if (!show_icon)
 			errorLabel.set_justify(Gtk.Justification.CENTER);
