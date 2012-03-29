@@ -235,8 +235,9 @@ public class BeatBox.MillerColumns : Box {
 
 		// If the user selects "All ..." in a any column, it results obvious that
 		// whatever the child columns had previously selected still applies, since we're
-		// going from a small to a global set. "All" is represented differently depending
-		// on the column type. For integers it's -1 and for text "".
+		// going from a small to a global set.
+		// "All" is represented differently depending on the column type. For integers
+		// it's -1 and for text "".
 
 		if (category == MillerColumn.Category.GENRE) {
 			search_genre = val;
@@ -261,7 +262,7 @@ public class BeatBox.MillerColumns : Box {
 
 		foreach (var col in columns) {
 			// Higher hierarchical levels (parent columns)
-			if (col.category < category || (include_child_columns && col.category > category)) {
+			if (col.category < category) {
 				if (col.category == MillerColumn.Category.GENRE) {
 					search_genre = col.get_selected ();
 				}
@@ -280,20 +281,11 @@ public class BeatBox.MillerColumns : Box {
 			}
 		}
 
-		debug ("----------------------------------");
-		debug(search_rating.to_string());
-		debug(search_year.to_string());
-		debug(search_genre);
-		debug(search_artist);
-		debug(search_album);
-		debug ("----------------------------------");
-
 		// Perform search
 		lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
 		              "", search_artist, search_album, search_genre, search_year, search_rating);
 
 		// Now re-populate the child columns
-
 		foreach (var column in columns) {
 			// Child columns
 			if (column.category > category) {
@@ -322,6 +314,32 @@ public class BeatBox.MillerColumns : Box {
 			}
 		}
 
+		// if include_child_columns is true, the search results are different. Do search again
+		// for the proper results.
+		if (include_child_columns) {
+			foreach (var col in columns) {
+				if (col.category == MillerColumn.Category.GENRE) {
+					search_genre = col.get_selected ();
+				}
+				else if (col.category == MillerColumn.Category.ARTIST) {
+					search_artist = col.get_selected ();
+				}
+				else if (col.category == MillerColumn.Category.ALBUM) {
+					search_album = col.get_selected ();
+				}
+				else if (col.category == MillerColumn.Category.YEAR) {
+					search_year = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
+				}
+				else if (col.category == MillerColumn.Category.RATING) {
+					search_rating = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
+				}
+			}
+
+			// Perform search
+			lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
+			              "", search_artist, search_album, search_genre, search_year, search_rating);
+		}
+	
 		// Notify others about the change
 		changed ();
 	}

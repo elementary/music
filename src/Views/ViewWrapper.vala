@@ -185,7 +185,7 @@ public class BeatBox.ViewWrapper : Box {
 	public ViewWrapper (LibraryWindow lw, Collection<int> the_medias, string sort, Gtk.SortType dir,
 	                     Hint the_hint, int id)
 	{
-		debug ("BUILDING %s", hint.to_string());
+		debug ("BUILDING %s", the_hint.to_string());
 
 		orientation = Orientation.VERTICAL;
 		initialized = false;
@@ -346,8 +346,11 @@ public class BeatBox.ViewWrapper : Box {
 				});
 
 				lw.column_browser_toggle.toggled.connect ( () => {
-					if (current_view == ViewType.LIST)
-						column_browser_enabled = lw.column_browser_toggle.get_active();
+					if (current_view == ViewType.LIST && lw.column_browser_toggle.sensitive) {
+						bool enabled = lw.column_browser_toggle.get_active();
+						if (enabled != column_browser_enabled)
+							column_browser_enabled = enabled;
+					}
 				});
 
 				column_browser.position_changed.connect (set_column_browser_position);
