@@ -230,9 +230,38 @@ public class BeatBox.MillerColumns : Box {
 		var search_artist = ""; // ~ All
 		var search_album  = ""; // ~ All
 
+		// whether or not we'll take into account child columns before searching
+		bool include_child_columns = false;
+
+		// If the user selects "All ..." in a any column, it results obvious that
+		// whatever the child columns had previously selected still applies, since we're
+		// going from a small to a global set. "All" is represented differently depending
+		// on the column type. For integers it's -1 and for text "".
+
+		if (category == MillerColumn.Category.GENRE) {
+			search_genre = val;
+			include_child_columns = (search_genre == "");
+		}
+		else if (category == MillerColumn.Category.ARTIST) {
+			search_artist = val;
+			include_child_columns = (search_artist == "");
+		}
+		else if (category == MillerColumn.Category.ALBUM) {
+			search_album = val;
+			include_child_columns = (search_album == "");
+		}
+		else if (category == MillerColumn.Category.YEAR) {
+			search_year = (val == "") ? -1 : int.parse (val);
+			include_child_columns = (search_year == -1);
+		}
+		else if (category == MillerColumn.Category.RATING) {
+			search_rating = (val == "") ? -1 : int.parse (val);
+			include_child_columns = (search_rating == -1);
+		}
+
 		foreach (var col in columns) {
 			// Higher hierarchical levels (parent columns)
-			if (col.category < category) {
+			if (col.category < category || (include_child_columns && col.category > category)) {
 				if (col.category == MillerColumn.Category.GENRE) {
 					search_genre = col.get_selected ();
 				}
@@ -249,24 +278,15 @@ public class BeatBox.MillerColumns : Box {
 					search_rating = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
 				}
 			}
-			else if (col.category == category) {
-				if (col.category == MillerColumn.Category.GENRE) {
-					search_genre = val;
-				}
-				else if (col.category == MillerColumn.Category.ARTIST) {
-					search_artist = val;
-				}
-				else if (col.category == MillerColumn.Category.ALBUM) {
-					search_album = val;
-				}
-				else if (col.category == MillerColumn.Category.YEAR) {
-					search_year = (val == "") ? -1 : int.parse (val);
-				}
-				else if (col.category == MillerColumn.Category.RATING) {
-					search_rating = (val == "") ? -1 : int.parse (val);
-				}
-			}
 		}
+
+		debug ("----------------------------------");
+		debug(search_rating.to_string());
+		debug(search_year.to_string());
+		debug(search_genre);
+		debug(search_artist);
+		debug(search_album);
+		debug ("----------------------------------");
 
 		// Perform search
 		lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
@@ -342,7 +362,7 @@ public class BeatBox.MillerColumns : Box {
 			column.populate (column_set);
 		}
 		
-		// FIXME: notify about the change here?
+		// FIXME: notify about the change here? so far we depend on this in ViewWrapper.vala
 		changed();
 	}
 }
@@ -509,6 +529,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	 * to represent "All" in LibraryManager.do_search()
 	 */
 	public string get_selected () {
+		// FIXME: checking for visibility may cause problems. Why is it necessary?
 		if (_selected == null || !this.visible)
 			return "";
 
