@@ -371,7 +371,7 @@ public class BeatBox.ViewWrapper : Box {
 		});
 
 		column_browser.size_allocate.connect ( () => {
-			if (!lw.visible)
+			if (!lw.visible || !column_browser_enabled)
 				return;
 
 			if (column_browser.actual_position == MillerColumns.Position.LEFT) {
@@ -406,11 +406,16 @@ public class BeatBox.ViewWrapper : Box {
 		if (!have_column_browser)
 			return;
 
-		// Save all the relevant stuff, such as list_view_hpaned and list_view_vpaned positions, etc.
-		if (column_browser.actual_position == MillerColumns.Position.LEFT)
-			lw.settings.set_miller_columns_width(list_view_hpaned.position);
-		else if (column_browser.actual_position == MillerColumns.Position.TOP)
-			lw.settings.set_miller_columns_height(list_view_vpaned.position);
+		if (is_current_wrapper)
+			lw.settings.setSearchString (get_search_string());
+
+		// Need to add a proper fix later ...
+		if (column_browser_enabled) {
+			if (column_browser.actual_position == MillerColumns.Position.LEFT)
+				lw.settings.set_miller_columns_width(list_view_hpaned_position);
+			else if (column_browser.actual_position == MillerColumns.Position.TOP)
+				lw.settings.set_miller_columns_height(list_view_vpaned_position);
+		}
 	}
 
 	// We only check for white space at the moment

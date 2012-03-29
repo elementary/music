@@ -26,8 +26,7 @@ using Gdk;
 using Gtk;
 using Gee;
 
-// FIXME: We've picked the wrong data structure here.
-// TODO: Switch to HashMaps.
+// FIXME: We've picked the wrong data structure here. Switch to HashMaps.
 // TODO: Improve translations here and in the view model because the current system is too English-specific.
 
 public class BeatBox.MillerColumns : Box {
@@ -46,7 +45,7 @@ public class BeatBox.MillerColumns : Box {
 	public ViewWrapper view_wrapper { get; private set; }
 
 
-	public const int MIN_COLUMN_WIDTH = 100;
+	public const int MIN_COLUMN_WIDTH = 200;
 	public const int MIN_COLUMN_HEIGHT = 70;
 
 	public bool is_music_miller {

@@ -410,12 +410,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
 
-		viewSelector.mode_changed.connect( () => {
-			if (viewSelector.sensitive)
-				settings.setViewMode(viewSelector.selected);
-			updateSensitivities();
-		});
-
 		searchField.changed.connect(searchFieldChanged);
 		searchField.activate.connect(searchFieldActivate);
 
@@ -455,8 +449,15 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// Now set the selected view
 		viewSelector.selected = settings.getViewMode();
 
-
 		updateSensitivities();
+
+
+		viewSelector.mode_changed.connect( () => {
+			if (viewSelector.sensitive)
+				settings.setViewMode(viewSelector.selected);
+			updateSensitivities();
+		});
+
 
 		if(lm.song_ids().size == 0)
 			setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
