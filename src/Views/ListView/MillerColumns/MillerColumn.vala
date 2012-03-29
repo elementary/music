@@ -41,8 +41,8 @@ public class BeatBox.MillerColumns : Box {
 		TOP       = 1
 	}
 
-	public LibraryManager lm {get; private set;}
-	public LibraryWindow lw {get; private set;}
+	public LibraryManager lm { get; private set; }
+	public LibraryWindow  lw { get; private set; }
 	public ViewWrapper view_wrapper { get; private set; }
 
 

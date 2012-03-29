@@ -113,10 +113,19 @@ public class BeatBox.ViewWrapper : Box {
 		private set {
 			if (have_column_browser) {
 				column_browser.set_no_show_all (!value);
-				if (value)
+				if (value) {
+					// Populate column browser
+					column_browser_changed ();
+					
 					column_browser.show_all ();
-				else
+				}
+				else {
+					// Before hiding, reset the filters to "All..."
+					// We want all the media to be shown as soon as the user disables
+					// the browser 
+					column_browser.reset_filters ();
 					column_browser.hide ();
+				}
 			}
 		}
 	}
