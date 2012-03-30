@@ -475,7 +475,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 	private void on_menu_item_toggled () {
-		if (!menu_item.sensitive || menu_item.active == visible || !lw.visible)
+		if (!menu_item.sensitive || menu_item.active == visible || !lw.initializationFinished)
 			return;
 
 		int visible_columns = 0;

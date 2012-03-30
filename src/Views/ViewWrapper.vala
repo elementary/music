@@ -406,11 +406,8 @@ public class BeatBox.ViewWrapper : Box {
 		if (!have_column_browser)
 			return;
 
-		if (is_current_wrapper)
-			lw.settings.setSearchString (get_search_string());
-
 		// Need to add a proper fix later ...
-		if (column_browser_enabled) {
+		if (is_current_wrapper) {
 			if (column_browser.actual_position == MillerColumns.Position.LEFT)
 				lw.settings.set_miller_columns_width(list_view_hpaned_position);
 			else if (column_browser.actual_position == MillerColumns.Position.TOP)
