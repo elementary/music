@@ -52,6 +52,7 @@ public class BeatBox.Settings : Object {
 	public static const string VIEW_MODE = "view-mode";
 	public static const string MILLER_WIDTH = "miller-width";
 	public static const string MILLER_HEIGHT = "miller-height";
+	public static const string MILLER_COLUMNS_ENABLED = "miller-columns-enabled";
 	public static const string MUSIC_MILLER_VISIBLE_COLUMNS = "music-miller-visible-columns";
 	public static const string GENERIC_MILLER_VISIBLE_COLUMNS = "generic-miller-visible-columns";
 	public static const string MILLER_COLUMNS_POSITION = "miller-columns-position";
@@ -110,6 +111,7 @@ public class BeatBox.Settings : Object {
 		ui_settings.add(MUSIC_MILLER_VISIBLE_COLUMNS);
 		ui_settings.add(GENERIC_MILLER_VISIBLE_COLUMNS);
 		ui_settings.add(MILLER_COLUMNS_POSITION);
+		ui_settings.add(MILLER_COLUMNS_ENABLED);
 		
 		equalizer_settings.add(EQUALIZER_ENABLED);
 		equalizer_settings.add(SELECTED_PRESET);
@@ -376,11 +378,14 @@ public class BeatBox.Settings : Object {
 	public int getViewMode() {
 		return getInt(VIEW_MODE, 1);
 	}
+
+	public bool get_miller_columns_enabled () {
+		return getBool(MILLER_COLUMNS_ENABLED, false);
+	}
 	
 	public int get_miller_columns_width () {
 		return getInt(MILLER_WIDTH, 200);
 	}
-
 	
 	public int get_miller_columns_height () {
 		return getInt(MILLER_HEIGHT, 200);
@@ -542,7 +547,11 @@ public class BeatBox.Settings : Object {
 	public void setViewMode(int val) {
 		setInt(VIEW_MODE, val);
 	}
-	
+
+	public void set_miller_columns_enabled (bool val) {
+		setBool(MILLER_COLUMNS_ENABLED, val);
+	}
+
 	public void set_miller_columns_width (int val) {
 		setInt(MILLER_WIDTH, val);
 	}

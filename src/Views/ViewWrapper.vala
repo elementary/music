@@ -319,6 +319,8 @@ public class BeatBox.ViewWrapper : Box {
 
 				this.realize.connect (connect_column_browser_ui_signals);
 
+				column_browser_enabled = lw.settings.get_miller_columns_enabled();
+
 				// Connect data signals
 				column_browser.changed.connect (column_browser_changed);
 			}
@@ -403,15 +405,17 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	private void on_quit () {
-		if (!have_column_browser)
-			return;
-
 		// Need to add a proper fix later ...
-		if (is_current_wrapper) {
-			if (column_browser.actual_position == MillerColumns.Position.LEFT)
-				lw.settings.set_miller_columns_width(list_view_hpaned_position);
-			else if (column_browser.actual_position == MillerColumns.Position.TOP)
-				lw.settings.set_miller_columns_height(list_view_vpaned_position);
+		if (have_column_browser) {
+			if (is_current_wrapper) {
+				if (column_browser.visible) {
+					if (column_browser.actual_position == MillerColumns.Position.LEFT)
+						lw.settings.set_miller_columns_width(list_view_hpaned_position);
+					else if (column_browser.actual_position == MillerColumns.Position.TOP)
+						lw.settings.set_miller_columns_height(list_view_vpaned_position);
+				}
+				lw.settings.set_miller_columns_enabled (column_browser_enabled);
+			}
 		}
 	}
 

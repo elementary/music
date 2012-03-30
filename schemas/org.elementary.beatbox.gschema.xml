@@ -98,6 +98,11 @@
       <summary>Right panel width</summary>
       <description>Right panel width</description>
     </key>
+    <key type="b" name="miller-columns-enabled">
+      <default>false</default>
+      <summary>Whether or not the column browser is enabled</summary>
+      <description>Whether or not the column browser is enabled</description>
+    </key>
     <key type="b" name="more-visible">
       <default>false</default>
       <summary>Whether or not the right panel is showing</summary>
