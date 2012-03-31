@@ -186,7 +186,9 @@ public class BeatBox.MillerColumns : Box {
 	}
 
 	private void on_destroy () {
-		// Save settings
+		// Save settings. If you add the column browser to more view wrappers later,
+		// make sure that you remove this code from this class. Otherwise the same
+		// settings (in case you're syncinc the browsers) will be written a billion times.
 
 		var visible_columns_list = new LinkedList<string> ();
 
@@ -195,7 +197,7 @@ public class BeatBox.MillerColumns : Box {
 				visible_columns_list.add (((int)col.category).to_string ());
 		}		
 
-		if (is_music_miller) 
+		if (is_music_miller)
 			lw.settings.set_music_miller_visible_columns (visible_columns_list);
 		else
 			lw.settings.set_generic_miller_visible_columns (visible_columns_list);

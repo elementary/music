@@ -116,7 +116,7 @@ public class BeatBox.ViewWrapper : Box {
 				if (value) {
 					// Populate column browser
 					column_browser.show_all ();
-					
+
 					if (column_browser.medias == null)
 						column_browser.populate (get_showing_media_ids());
 				}
@@ -156,10 +156,10 @@ public class BeatBox.ViewWrapper : Box {
 	private LinkedList<string> timeout_search;
 
 	// Stops from searching same thing multiple times
-	private string _last_search = "";
+	private string last_search = "";
 
 	public string get_search_string () {
-		return _last_search;
+		return last_search;
 	}
 
 	// Stops from searching unnecesarilly when changing b/w 0 words and search.
@@ -294,6 +294,9 @@ public class BeatBox.ViewWrapper : Box {
 			current_view = ViewType.WELCOME;
 		}
 
+		if (have_album_view)
+			view_container.append_page (album_view);
+
 		if (have_list_view) {
 			list_view_container = new Box (Orientation.HORIZONTAL, 0);
 
@@ -312,7 +315,6 @@ public class BeatBox.ViewWrapper : Box {
 
 				// Now pack the list view
 				list_view_vpaned.pack2(list_view, true, true);
-
 				list_view_hpaned.pack1(column_browser, true, true);
 
 				set_column_browser_position (column_browser.position);
@@ -331,11 +333,6 @@ public class BeatBox.ViewWrapper : Box {
 			view_container.append_page (list_view_container);
 		}
 
-
-		if (have_album_view) {
-			view_container.append_page (album_view);
-		}
-
 		lm.medias_updated.connect (medias_updated);
 		lm.medias_added.connect (medias_added);
 		lm.medias_removed.connect (medias_removed);
@@ -343,13 +340,12 @@ public class BeatBox.ViewWrapper : Box {
 		lw.searchField.changed.connect (search_field_changed);
 		lw.viewSelector.mode_changed.connect (view_selector_changed);
 
+		// Populate views
+		needs_update = true; // set_as_current_view() will populate the views later...
 
 		// We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
 		// disk access to write settings.
 		destroy.connect (on_quit);
-
-		// Populate views
-		needs_update = true; // set_as_current_view() will populate the views later...
 
 		initialized = true;
 	}
@@ -363,6 +359,9 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	private void connect_column_browser_ui_signals () {
+		if (!have_column_browser)
+			return;
+
 		// For automatic position stuff
 		this.size_allocate.connect ( () => {
 			if (!lw.initializationFinished)
@@ -399,7 +398,7 @@ public class BeatBox.ViewWrapper : Box {
 		// Read Paned position from settings
 		list_view_hpaned_position = lw.settings.get_miller_columns_width ();
 		list_view_vpaned_position = lw.settings.get_miller_columns_height ();
-	
+
 		list_view_hpaned.position = list_view_hpaned_position;
 		list_view_vpaned.position = list_view_vpaned_position;
 	}
@@ -419,6 +418,7 @@ public class BeatBox.ViewWrapper : Box {
 		}
 	}
 
+
 	// We only check for white space at the moment
 	private bool get_is_valid_search_string (string s) {
 		if (s.length < 1)
@@ -431,15 +431,17 @@ public class BeatBox.ViewWrapper : Box {
 			if (c.isspace())
 				++ white_space;
 
-		if (white_space == s.length) {
-			debug ("STRING '%s' IS WHITESPACE", s);
-			return false;
-		}
+		if (white_space == s.length)
+			return false; // white space. Invalid string
 
-		return true;
+		return true; // Passed our tests. Valid string
 	}
 
+
 	private void set_column_browser_position (MillerColumns.Position position) {
+		if (!have_column_browser)
+			return;
+
 		MillerColumns.Position actual_position = position; //position that will be actually applied
 
 		if (actual_position == MillerColumns.Position.AUTOMATIC) {
@@ -525,6 +527,7 @@ public class BeatBox.ViewWrapper : Box {
 		successful = true;
 	}
 
+
 	/**
 	 * This method ensures that the view switcher and search box are sensitive/insensitive when they have to.
 	 * It also selects the proper view switcher item based on the current view.
@@ -545,7 +548,7 @@ public class BeatBox.ViewWrapper : Box {
 		if (current_view == ViewType.ERROR || current_view == ViewType.WELCOME) {
 			lw.viewSelector.set_sensitive (false);
 			lw.searchField.set_sensitive (false);
-			
+
 			lw.column_browser_toggle.set_sensitive (false);
 			lw.column_browser_toggle.set_active (false);
 		}
@@ -627,7 +630,7 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		// Update the views if needed
-		if (needs_update)
+		if (needs_update && lw.initializationFinished)
 			update_showing_media ();
 			//populate_views ();
 		else // Update statusbar
@@ -676,17 +679,17 @@ public class BeatBox.ViewWrapper : Box {
 			timeout_search.offer_head(new_search.down());
 
 			Timeout.add(200, () => {
-				
+
 				string to_search = timeout_search.poll_tail();
-				if(to_search != new_search || to_search == _last_search)
+				if(to_search != new_search || to_search == last_search)
 					return false;
-				
+
 				if(!setting_search && is_current_wrapper)
-					_last_search = to_search;
+					last_search = to_search;
 
 				// Do the actual search and show results....
 				update_showing_media();
-				
+
 				return false;
 			});
 		}
@@ -698,6 +701,9 @@ public class BeatBox.ViewWrapper : Box {
 	 * For performance reasons, this process should be delayed until the user switches to this view wrapper.
 	 */
 	public void populate_views () {
+		if (check_show_error_box())
+			return;
+
 		if (have_album_view)
 			album_view.populate_view ();
 
@@ -718,12 +724,11 @@ public class BeatBox.ViewWrapper : Box {
 		needs_update = false;
 	}
 
-
 	private void column_browser_changed () {
 		// This method is only called if the column browser is available.
 		// For performance reasons we won't update showing_medias to match
 		// the results of the miller columns.
-		
+
 		if(lw.initializationFinished && have_list_view) {
 			list_view.set_show_next (column_browser.media_results);
 			list_view.populate_view();
@@ -738,12 +743,14 @@ public class BeatBox.ViewWrapper : Box {
 	============================================================================
 	*/
 
+
 	/**
 	 * @return a collection containing ALL the media
 	 */
 	public Collection<int> get_media_ids () {
 		return medias.keys;
 	}
+
 
 	/**
 	 * @return a collection containing all the media that should be shown
@@ -753,9 +760,136 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
+	/**
+	 * Description:
+	 * Updates the data in showing_media and re-populates all the views.
+	 * Primarily used for searches
+	 */
+	public void update_showing_media (bool _populate_views = true) {
+		if(in_update)
+			return;
+
+		in_update = true;
+
+		showing_medias = new HashMap<int, int>();
+
+		// Perform search
+		LinkedList<int> search_results;
+
+		lm.do_search (get_media_ids (), out search_results, null, null, null, null, hint, get_search_string());
+
+		foreach (int i in search_results)
+			showing_medias.set (i, 1);
+
+		if (have_album_view)
+			album_view.set_show_next (search_results);
+
+		if (!column_browser_enabled && have_list_view)
+			list_view.set_show_next (search_results);
+
+		// Now update the views to reflect the change
+		if (_populate_views)
+			populate_views ();
+
+		in_update = false;
+	}
+
+
+	public void set_media (Collection<int>? new_media, bool in_thread = false) {
+		if (new_media == null)
+			return;
+
+		medias = new HashMap <int, int>();
+
+		foreach (int i in new_media)
+			medias.set (i, 1);
+
+		// BEGIN special case for similar media
+		if(!in_thread && have_list_view && hint == Hint.SIMILAR && is_current_wrapper) {
+			SimilarPane sp = (SimilarPane)(list_view);
+
+			if (check_show_error_box())
+				return;
+
+			if(!similarsFetched) { // still fetching similar media
+				// Show the error box
+				set_active_view (ViewType.ERROR);
+
+				in_update = false;
+				return;
+			}
+			else {
+				if(media_count < 10) { // say we could not find similar media
+					if (have_error_box) {
+						error_box.show_icon = true;
+						error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."));
+						// Show the error box
+						set_active_view (ViewType.ERROR);
+					}
+
+					in_update = false;
+					return;
+				}
+				else {
+					sp._base = lm.media_info.media;
+					set_active_view (ViewType.LIST);
+				}
+			}
+		}
+		// END special case
+
+		// update showing media. Don't update the views if inside a thread
+		if (!is_current_wrapper || in_thread)
+			needs_update = true; //delay the update until the user switches to this view
+	}
+
 	void medias_added(LinkedList<int> ids) {
 		add_medias(ids);
 	}
+
+
+	private bool check_show_error_box () {
+		// Check if we should show the error box or welcome screen here
+		// FIXME: we could do better here. We should be able to set what kind of view we
+		//         want to handle the no-media case and maybe just emit a signal here.
+		if (have_error_box || have_welcome_screen) {
+			int size_check;
+
+			if (hint == Hint.PODCAST) {
+				size_check = 0;
+				foreach (int i in lm.podcast_ids()) {
+					if (!lm.media_from_id(i).isTemporary)
+						++size_check;
+				}
+			}
+			else if (hint == Hint.STATION) {
+				size_check = 0;
+				foreach (int i in lm.station_ids()) {
+					if (lm.media_from_id(i) != null)
+						++size_check;
+				}
+			} else {
+				size_check = media_count;
+			}
+
+			if (size_check < 1) { // no media
+				if (have_error_box)
+					set_active_view (ViewType.ERROR);
+				else if (have_welcome_screen)
+					set_active_view (ViewType.WELCOME);
+
+				return true;
+			}
+
+			var new_view = (ViewType) lw.viewSelector.selected;
+			
+			if (current_view != new_view && (new_view == ViewType.LIST && have_list_view) || (new_view == ViewType.ALBUM && have_album_view))
+				set_active_view (new_view);
+		}
+
+		return false;
+	}
+
 
 	/**
 	 * Do search to find which ones should be added, removed from this particular view
@@ -813,6 +947,9 @@ public class BeatBox.ViewWrapper : Box {
 			}
 
 			Idle.add( () => {
+				if (check_show_error_box())
+					return false;
+			
 				if (column_browser_enabled) {
 					// FIXME: not doing anything for now. Things that should be done
 					// 1) update the column browser without repopulating the list-view
@@ -867,6 +1004,9 @@ public class BeatBox.ViewWrapper : Box {
 			showing_medias.unset(i);
 		}
 
+		if (check_show_error_box())
+			return;
+
 		// Now update the views to reflect the changes
 
 		if (have_album_view)
@@ -909,6 +1049,9 @@ public class BeatBox.ViewWrapper : Box {
 			foreach(int i in to_show)
 				showing_medias.set(i, 1);
 
+			if (check_show_error_box())
+				return;
+
 			if (have_album_view)
 				album_view.append_medias (to_add);
 
@@ -929,225 +1072,5 @@ public class BeatBox.ViewWrapper : Box {
 
 		in_update = false;
 	}
-
-	/**
-	 * Description:
-	 * Updates the data in showing_media and re-populates all the views.
-	 * Primarily used for searches
-	 */
-	public void update_showing_media (bool _populate_views = true) {
-		if(in_update)
-			return;
-
-		in_update = true;
-
-		showing_medias = new HashMap<int, int>();
-
-		// Perform search
-		LinkedList<int> search_results;
-
-		lm.do_search (get_media_ids (), out search_results, null, null, null, null, hint, get_search_string());
-
-		foreach (int i in search_results)
-			showing_medias.set (i, 1);
-
-		if (have_album_view)
-			album_view.set_show_next (search_results);
-
-		if (!column_browser_enabled && have_list_view)
-			list_view.set_show_next (search_results);
-
-		// Now update the views to reflect the change
-		if (_populate_views)
-			populate_views ();
-
-		in_update = false;
-	}
-
-
-	public void set_media (Collection<int>? new_media, bool in_thread = false) {
-		if (new_media == null)
-			return;
-
-		medias = new HashMap <int, int>();
-
-		foreach (int i in new_media)
-			medias.set (i, 1);
-
-
-		// BEGIN special case for similar media
-		if(!in_thread && have_list_view && hint == Hint.SIMILAR && is_current_wrapper) {
-			SimilarPane sp = (SimilarPane)(list_view);
-
-			if(!similarsFetched) { // still fetching similar media
-				// Show the error box
-				set_active_view (ViewType.ERROR);
-
-				in_update = false;
-				return;
-			}
-			else {
-				if(media_count < 10) { // say we could not find similar media
-					if (have_error_box) {
-						error_box.show_icon = true;
-						error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."));
-						// Show the error box
-						set_active_view (ViewType.ERROR);
-					}
-
-					in_update = false;
-					return;
-				}
-				else {
-					sp._base = lm.media_info.media;
-					set_active_view (ViewType.LIST);
-				}
-			}
-		}
-		// END special case
-
-		// update showing media. Don't update the views if inside a thread
-		if (!is_current_wrapper || in_thread)
-			needs_update = true; //delay the update until the user switches to this view
-	}
-
-
-	/**
-	 * Updates the displayed view and its content
-	 *
-	 * @param view the view to show/update
-	 * @param medias If set_medias is true, then set this.medias = medias
-	 * @param set_medias whether or not to set the medias
-	 *
-	 * @deprecated. Use set_media()
-	 */
-	 /*
-	public void do_update(ViewType type, Collection<int>? up_medias, bool set_medias, bool force, bool in_thread) {
-		if (in_update)
-			return;
-
-		if ((type == ViewType.LIST && !have_list_view) || (type == ViewType.ALBUM && !have_album_view))
-			return;
-
-		in_update = true;
-
-		if(set_medias && up_medias != null) {
-			medias = new HashMap<int, int>();
-			foreach(int i in up_medias)
-				medias.set(i, 1);
-		}
-
-		var new_media = get_showing_media_ids ();
-
-		if(!in_thread && check_show_error_box()) {
-			in_update = false;
-			return;
-		}
-
-		// BEGIN special case for similar medias
-		if(!in_thread && have_list_view && list_view.get_hint() == Hint.SIMILAR && is_current_wrapper) {
-			SimilarPane sp = (SimilarPane)(list_view);
-
-			if(!similarsFetched) { // still fetching similar medias
-				// Show the error box
-				set_active_view (ViewType.ERROR);
-
-				in_update = false;
-				return;
-			}
-			else {
-				if(media_count < 10) { // say we could not find similar medias
-					if (have_error_box) {
-						error_box.show_icon = true;
-						error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."), Justification.LEFT);
-						// Show the error box
-						set_active_view (ViewType.ERROR);
-					}
-
-					in_update = false;
-					return;
-				}
-				else {
-					sp._base = lm.media_info.media;
-				}
-			}
-		}
-		// END special case
-
-		// Even if it's a non-visual update, prepare the view's for the visual update
-		if(!is_current_wrapper || force || needs_update) {
-			if (have_list_view) {
-				list_view.set_show_next(new_media);
-			}
-
-			if (have_album_view)
-				album_view.set_show_next(new_media);
-
-			needs_update = false;
-		}
-
-		if(!in_thread && (is_current_wrapper || force)) {
-			if(have_list_view && type == ViewType.LIST)
-				list_view.populate_view();
-			else if (have_album_view && type == ViewType.ALBUM)
-				album_view.populate_view();
-		}
-
-		in_update = false;
-
-		set_statusbar_info ();
-	}
-	*/
-
-	// FIXME: hmmm....
-	/*
-	bool check_show_error_box() {
-		if (!have_error_box)
-			return false;
-
-		if((hint == Hint.CDROM || hint == Hint.PODCAST ||
-		    hint == Hint.STATION) && is_current_wrapper)
-		{
-			int size_check = media_count;
-
-			if(hint == Hint.PODCAST) {
-				size_check = 0;
-				foreach(int i in lm.podcast_ids()) {
-					if(!lm.media_from_id(i).isTemporary)
-						++size_check;
-				}
-			}
-
-			if(hint == Hint.STATION) {
-				size_check = 0;
-				foreach(int i in lm.station_ids()) {
-					if(lm.media_from_id(i) != null)
-						++size_check;
-				}
-			}
-
-			if(size_check == 0) {
-				error_box.show_icon = (hint == Hint.CDROM);
-
-				// Show error box
-				set_active_view (ViewType.ERROR);
-
-				return true;
-			}
-			// FIXME: these lines are not needed:
-			else {
-				if(have_list_view && current_view == ViewType.LIST) {
-					// Show list view
-					set_active_view (ViewType.LIST);
-				}
-				else {
-					// Show album view
-					set_active_view (ViewType.ALBUM);
-				}
-			}
-		}
-
-		return false;
-	}
-	*/
 }
+
