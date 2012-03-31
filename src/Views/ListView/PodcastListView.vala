@@ -459,14 +459,17 @@ public class BeatBox.PodcastListView : BaseListView {
 
 				playlist.activate.connect( () => {
 					TreeModel temp;
+					var to_add = new LinkedList<int>();
 					foreach(TreePath path in view.get_selection().get_selected_rows(out temp)) {
 						TreeIter item;
 						temp.get_iter(out item, path);
 
 						int id;
 						temp.get(item, 0, out id);
-						p.addMedia(id);
+						to_add.add (id);
 					}
+					
+					p.addMedia (to_add);
 				});
 			}
 
@@ -788,6 +791,7 @@ public class BeatBox.PodcastListView : BaseListView {
 		selected.set_mode(SelectionMode.MULTIPLE);
 
 		TreeModel temp;
+		var to_add = new LinkedList<int>();
 		foreach(TreePath path in selected.get_selected_rows(out temp)) {
 			TreeIter item;
 			list_model.get_iter(out item, path);
@@ -795,13 +799,14 @@ public class BeatBox.PodcastListView : BaseListView {
 			Value id;
 			list_model.get_value(item, 0, out id);
 
-			p.addMedia(id.get_int());
+			to_add.add (id.get_int());
 		}
 
 		PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
 		pnw.playlist_saved.connect( (newP) => {
 			lm.add_playlist(p);
 			lw.addSideListItem(p);
+			p.addMedia(to_add);
 		});
 	}
 

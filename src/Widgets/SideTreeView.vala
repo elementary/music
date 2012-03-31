@@ -737,14 +737,12 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			if(o is ViewWrapper && (o as ViewWrapper).hint == ViewWrapper.Hint.SMART_PLAYLIST) {
 				var smart_playlist = lm.smart_playlist_from_id ((o as ViewWrapper).relative_id);
 				
-				foreach(int i in (smart_playlist.analyze(lm, lm.media_ids())))
-					p.addMedia(i);
+				p.addMedia (smart_playlist.analyze(lm, lm.media_ids()));
 					
 				p.name = smart_playlist.name;
 			}
 			else {
-				foreach(int i in ((ViewWrapper)o).get_media_ids())
-					p.addMedia(i);
+				p.addMedia(((ViewWrapper)o).get_media_ids());
 				
 				if(iter == playlists_similar_iter)
 					p.name = (lm.media_info.media != null) ? ("Similar to " + lm.media_info.media.title) : "Similar list";
@@ -950,17 +948,21 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		else if(w is ViewWrapper && (w as ViewWrapper).hint == ViewWrapper.Hint.PLAYLIST) {
 			var p = lm.playlist_from_id (((ViewWrapper)w).relative_id);
 			
+			var to_add = new LinkedList<int>();
+			
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
 					Media add = lm.media_from_file(file.get_path());
 					
 					if(add != null) {
-						p.addMedia(add.rowid);
+						to_add.add (add.rowid);
 						success = true;
 					}
 				}
 			}
+			
+			p.addMedia (to_add);
 			
 			//ViewWrapper vw = (ViewWrapper)w;
 			//vw.column_browser_changed(); //FIXME

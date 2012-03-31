@@ -152,9 +152,8 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		
 		Playlist p_queue = new Playlist();
 		p_queue.name = "autosaved_queue";
-		foreach(int i in lm.queue()) {
-			p_queue.addMedia(i);
-		}
+		p_queue.addMedia(lm.queue());
+
 		p_queue.tvs = lm.queue_setup;
 		
 		Playlist p_history = new Playlist();

@@ -36,7 +36,20 @@ public class BeatBox.SmartPlaylist : Object {
 	private bool _is_up_to_date;
 	public bool viewWrapper_is_up_to_date;
 	LinkedList<int> medias;
-	
+
+
+	private ViewWrapper _view_wrapper;
+	public ViewWrapper view_wrapper {
+		get {
+			return _view_wrapper;
+		}
+		set {
+			if (_view_wrapper == null)
+				_view_wrapper = value;
+		}
+	}
+
+
 	public SmartPlaylist() {
 		_name = "";
 		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);

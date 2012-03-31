@@ -539,14 +539,17 @@ public class BeatBox.MusicTreeView : BaseListView {
 
 				playlist.activate.connect( () => {
 					TreeModel temp;
+					var to_add = new LinkedList<int>();
 					foreach(TreePath path in view.get_selection().get_selected_rows(out temp)) {
 						TreeIter item;
 						temp.get_iter(out item, path);
 
 						int id;
 						temp.get(item, 0, out id);
-						p.addMedia(id);
+						to_add.add(id);
 					}
+					
+					p.addMedia (to_add);
 				});
 			}
 
@@ -867,6 +870,7 @@ public class BeatBox.MusicTreeView : BaseListView {
 		TreeSelection selected = view.get_selection();
 		selected.set_mode(SelectionMode.MULTIPLE);
 
+		var to_add = new LinkedList<int>();
 		TreeModel temp;
 		foreach(TreePath path in selected.get_selected_rows(out temp)) {
 			TreeIter item;
@@ -875,13 +879,14 @@ public class BeatBox.MusicTreeView : BaseListView {
 			Value id;
 			list_model.get_value(item, 0, out id);
 
-			p.addMedia(id.get_int());
+			to_add.add (id.get_int());
 		}
 
 		PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
 		pnw.playlist_saved.connect( (newP) => {
 			lm.add_playlist(p);
 			lw.addSideListItem(p);
+			p.addMedia (to_add);
 		});
 	}
 
@@ -906,12 +911,13 @@ public class BeatBox.MusicTreeView : BaseListView {
 			if(get_hint() == ViewWrapper.Hint.QUEUE) {
 				lm.unqueue_media_by_id(s.rowid);
 			}
-			else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-				lm.playlist_from_id(relative_id).removeMedia(id);
-			}
 			else if(get_hint() == ViewWrapper.Hint.MUSIC) {
 				toRemove.add(s);
 			}
+		}
+
+		if (get_hint() == ViewWrapper.Hint.PLAYLIST) {
+			lm.playlist_from_id(relative_id).removeMedia(toRemoveIDs);
 		}
 
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {

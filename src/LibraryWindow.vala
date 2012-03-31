@@ -621,16 +621,18 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		TreeIter item = sideTree.library_music_iter; //just a default
 		ViewWrapper vw = null;
 
+		// p.view_wrapper = add_view... is something that we should probably bake inside
+		// BeatBox.Playlist and BeatBox.SmartPlaylist's constructors.
 		if(o is Playlist) {
 			Playlist p = (Playlist)o;
 
-			add_view (null, ViewWrapper.Hint.PLAYLIST, p.name, lm.medias_from_playlist(p.rowid),
+			p.view_wrapper = add_view (null, ViewWrapper.Hint.PLAYLIST, p.name, lm.medias_from_playlist(p.rowid),
 			           p.tvs.sort_column, p.tvs.sort_direction, p.rowid);
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 
-			add_view (null, ViewWrapper.Hint.SMART_PLAYLIST, p.name, lm.medias_from_smart_playlist(p.rowid),
+			p.view_wrapper = add_view (null, ViewWrapper.Hint.SMART_PLAYLIST, p.name, lm.medias_from_smart_playlist(p.rowid),
 			          p.tvs.sort_column, p.tvs.sort_direction, p.rowid);
 		}
 		/* XXX: Migrate this code to the new API */

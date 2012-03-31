@@ -27,7 +27,18 @@ public class BeatBox.Playlist : Object {
 	public TreeViewSetup tvs;
 	private int _rowid;
 	private Gee.LinkedList<int> _medias;
-	
+
+	private ViewWrapper _view_wrapper;
+	public ViewWrapper view_wrapper {
+		get {
+			return _view_wrapper;
+		}
+		set {
+			if (_view_wrapper == null)
+				_view_wrapper = value;
+		}
+	}
+
 	public Playlist() {
 		_name = "New Playlist";
 		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
@@ -55,28 +66,42 @@ public class BeatBox.Playlist : Object {
 		return _medias;
 	}
 	
-	public void addMedia(int id) {
+	public void addMedia(Collection<int> ids) {
 		//if(!contains_media(id))
+		foreach (int id in ids)
 			_medias.add(id);
+
+		if (view_wrapper != null)
+			view_wrapper.add_media (ids);
 	}
 	
-	public void removeMedia(int id) {
-		_medias.remove(id);
+	public void removeMedia(Collection<int> ids) {
+		foreach (int id in ids)
+			_medias.remove(id);
+
+		if (view_wrapper != null)
+			view_wrapper.remove_media (ids);
 	}
 	
 	public void clear() {
 		_medias.clear();
+		
+		if (view_wrapper != null)
+			view_wrapper.set_media (_medias);
 	}
 	
 	public void medias_from_string(string medias, LibraryManager lm) {
 		string[] media_strings = medias.split(",", 0);
 		
 		int index;
+		var to_add = new LinkedList<int>();
 		for(index = 0; index < media_strings.length - 1; ++index) {
 			int id = int.parse(media_strings[index]);
 			
-			addMedia(id);
+			to_add.add (id);
 		}
+
+		addMedia (to_add);
 	}
 	
 	public string medias_to_string(LibraryManager lm) {

@@ -79,12 +79,11 @@ public class BeatBox.SimilarPane : MusicTreeView {
 
 		p.name = _("Similar to %s").printf (_base.title);
 
-		foreach(int id in get_medias()) {
-			p.addMedia(id);
-		}
-		
 		lm.add_playlist(p);
 		lw.addSideListItem(p);
+		
+		p.addMedia(get_medias());
+		
 		lw.sideTree.sideListSelectionChange();
 	}
 }

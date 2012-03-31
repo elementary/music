@@ -627,7 +627,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				_stations.unset(s.rowid);
 				
 			foreach(var p in _playlists.values) {
-				p.removeMedia(s.rowid);
+				var to_remove = new LinkedList<int>();
+				to_remove.add (s.rowid);
+				p.removeMedia (to_remove);
 			}
 		}
 		
@@ -1007,7 +1009,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				_stations.unset(s.rowid);
 				
 			foreach(var p in _playlists.values) {
-				p.removeMedia(s.rowid);
+				var to_remove = new LinkedList<int>();
+				to_remove.add (s.rowid);
+				p.removeMedia (to_remove);
 			}
 		}
 		
@@ -1034,8 +1038,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 	public void queue_media_by_id(int id) {
 		_queue.offer_tail(id);
+		media_queued (id);		
 	}
-	
+
 	public void unqueue_media_by_id(int id) {
 		_queue.remove(id);
 	}

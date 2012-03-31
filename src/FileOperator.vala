@@ -510,8 +510,7 @@ public class BeatBox.FileOperator : Object {
 		}
 		
 		new_playlist.name = name;
-		foreach(int i in internals)
-			new_playlist.addMedia(i);
+		new_playlist.addMedia(internals);
 		
 		resetProgress(externals.size - 1);
 		Timeout.add(500, lm.doProgressNotificationWithTimeout);
@@ -557,8 +556,10 @@ public class BeatBox.FileOperator : Object {
 		new_imports.clear();
 		
 		if(import_type == ImportType.PLAYLIST) {
+			var to_add = new LinkedList<int>();
 			foreach(var s in all_new_imports)
-				new_playlist.addMedia(s.rowid);
+				to_add.add (s.rowid);
+			new_playlist.addMedia(to_add);
 			
 			string extra = "";
 			while(lm.playlist_from_name(new_playlist.name + extra) != null)

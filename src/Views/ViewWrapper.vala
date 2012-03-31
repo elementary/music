@@ -333,9 +333,19 @@ public class BeatBox.ViewWrapper : Box {
 			view_container.append_page (list_view_container);
 		}
 
-		lm.medias_updated.connect (medias_updated);
-		lm.medias_added.connect (medias_added);
-		lm.medias_removed.connect (medias_removed);
+		lm.medias_updated.connect ((list) => { update_media (list); });
+		
+		if (hint != Hint.CDROM)
+			lm.medias_removed.connect ((list) => { remove_media (list); });
+
+		if (hint == Hint.QUEUE)
+			lm.media_queued.connect ( (media_id) => {
+				var list = new LinkedList<int>();
+				list.add (media_id);
+				add_media (list);
+			});
+		else if (hint != Hint.CDROM)
+			lm.medias_added.connect ((list) => { add_media (list); });
 
 		lw.searchField.changed.connect (search_field_changed);
 		lw.viewSelector.mode_changed.connect (view_selector_changed);
@@ -789,7 +799,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		// Now update the views to reflect the change
 		if (_populate_views)
-			populate_views ();
+			populate_views (); // this also updates the statusbar
 
 		in_update = false;
 	}
@@ -841,10 +851,8 @@ public class BeatBox.ViewWrapper : Box {
 		// update showing media. Don't update the views if inside a thread
 		if (!is_current_wrapper || in_thread)
 			needs_update = true; //delay the update until the user switches to this view
-	}
-
-	void medias_added(LinkedList<int> ids) {
-		add_medias(ids);
+		else
+			update_showing_media ();
 	}
 
 
@@ -895,7 +903,7 @@ public class BeatBox.ViewWrapper : Box {
 	 * Do search to find which ones should be added, removed from this particular view
 	 * does not re-anaylyze smart playlist_views or playlist_views.
 	 */
-	public void medias_updated(LinkedList<int> ids) {
+	public void update_media (Collection<int> ids) {
 		if (in_update)
 			return;
 
@@ -905,7 +913,7 @@ public class BeatBox.ViewWrapper : Box {
 			// find which media belong here
 			LinkedList<int> should_be, should_show;
 
-			LinkedList<int> to_search;
+			Collection<int> to_search;
 
 			if(hint == Hint.SMART_PLAYLIST)
 				to_search = lm.smart_playlist_from_id(relative_id).analyze(lm, ids);
@@ -975,6 +983,8 @@ public class BeatBox.ViewWrapper : Box {
 					album_view.remove_medias(to_remove_show);
 				}
 
+				set_statusbar_info ();
+
 				return false;
 			});
 		}
@@ -986,7 +996,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	void medias_removed(LinkedList<int> ids) {
+	public void remove_media (Collection<int> ids) {
 		if(in_update)
 			return;
 
@@ -1021,11 +1031,13 @@ public class BeatBox.ViewWrapper : Box {
 		else if (have_list_view)
 			list_view.remove_medias (to_remove);
 
+		set_statusbar_info ();
+
 		in_update = false;
 	}
 
 
-	public void add_medias(LinkedList<int> new_medias) {
+	public void add_media (Collection<int> new_media) {
 		if(in_update)
 			return;
 
@@ -1034,7 +1046,7 @@ public class BeatBox.ViewWrapper : Box {
 		if(hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.STATION) { //FIXME DEVICE_?
 			// find which media to add and update Media
 			var to_add = new LinkedList<int>();
-			foreach(int i in new_medias) {
+			foreach(int i in new_media) {
 				if(medias.get(i) == 0) {
 					medias.set(i, 1);
 					to_add.add(i);
