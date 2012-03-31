@@ -171,10 +171,17 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	public void append_items (Collection<string> medias, bool emit) {
 		add_first_element ();
 
-		foreach (string s in medias) {
-			/* Some data validation :) */
-			
+		// We do some data validation for numeric values later
+		bool numeric_values = false;
 
+		if (category == MillerColumn.Category.YEAR || category == MillerColumn.Category.RATING)
+			numeric_values = true;
+
+		foreach (string s in medias) {
+			// Data validation
+			if (numeric_values && int.parse (s) < 1) // i.e. don't show 0 years or unrated stuff
+				continue;
+			
 			SequenceIter<string> added = rows.append (s);
 
 			if (emit) {
