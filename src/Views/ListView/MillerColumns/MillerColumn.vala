@@ -26,7 +26,7 @@ using Gdk;
 using Gtk;
 using Gee;
 
-// FIXME: We've picked the wrong data structure here. Switch to HashMaps.
+//FIXME Wrong data structure here. Switch to HashMaps.
 
 public class BeatBox.MillerColumns : Box {
 
@@ -101,6 +101,9 @@ public class BeatBox.MillerColumns : Box {
 		add_column (MillerColumn.Category.YEAR);
 		add_column (MillerColumn.Category.GENRE);
 
+		// just in case some crazy user disabled all the columns from the settings
+		bool no_column_enabled = true;
+
 		// These columns only make sense for songs.
 		if (is_music_miller)
 		{
@@ -112,6 +115,7 @@ public class BeatBox.MillerColumns : Box {
 				foreach (var column in columns) {
 					if (column.category == int.parse (col_n)) {
 						column.visible = true;
+						no_column_enabled = false;
 						break;
 					}
 				}
@@ -123,10 +127,17 @@ public class BeatBox.MillerColumns : Box {
 				foreach (var column in columns) {
 					if (column.category == int.parse (col_n)) {
 						column.visible = true;
+						no_column_enabled = false;
 						break;
 					}
 				}
 			}
+		}
+
+		if (no_column_enabled) {
+			// Enable all the columns
+			foreach (var column in columns)
+				column.visible = true;
 		}
 
 		// Position stuff
@@ -170,7 +181,27 @@ public class BeatBox.MillerColumns : Box {
 		column_chooser_menu.append (left_menu_item);
 
 		column_chooser_menu.show_all ();
+		
+		this.destroy.connect (on_destroy);
 	}
+
+	private void on_destroy () {
+		// Save settings
+
+		var visible_columns_list = new LinkedList<string> ();
+
+		foreach (var col in columns) {
+			if (col.visible)
+				visible_columns_list.add (((int)col.category).to_string ());
+		}		
+
+		if (is_music_miller) 
+			lw.settings.set_music_miller_visible_columns (visible_columns_list);
+		else
+			lw.settings.set_generic_miller_visible_columns (visible_columns_list);
+		
+		lw.settings.set_miller_columns_position ((int) position);
+	} 
 
 	/**
 	 * Sets all the filters to "All ..."
@@ -185,8 +216,6 @@ public class BeatBox.MillerColumns : Box {
 
 	public void set_columns_position (Position pos) {
 		position = pos;
-
-		lw.settings.set_miller_columns_position ((int) position);
 
 		// Emit signal
 		position_changed (position);
@@ -476,8 +505,10 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 	private void on_menu_item_toggled () {
-		if (!menu_item.sensitive || menu_item.active == visible || !lw.initializationFinished)
+		if (!this.menu_item.sensitive || this.menu_item.active == visible)
 			return;
+
+		this.menu_item.toggled.disconnect (on_menu_item_toggled);
 
 		int visible_columns = 0;
 
@@ -486,28 +517,21 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 				visible_columns ++;
 		}
 
-		this.visible = menu_item.active;
-
-		if (this.visible)
+		if (menu_item.active)
 			visible_columns ++;
 		else
 			visible_columns --;
 
-		// Save settings
-		var visible_columns_list = new LinkedList<string> ();
+		this.visible = this.menu_item.active;
 
 		foreach (var col in miller_parent.columns) {
 			if (col.visible) {
-				visible_columns_list.add (((int)col.category).to_string ());
 				// don't allow disabling an element if it's the last visible column.
 				col.menu_item.set_sensitive (visible_columns > 1);
 			}
 		}
 
-		if (miller_parent.is_music_miller) 
-			lw.settings.set_music_miller_visible_columns (visible_columns_list);
-		else
-			lw.settings.set_generic_miller_visible_columns (visible_columns_list);
+		this.menu_item.toggled.connect (on_menu_item_toggled);
 	}
 
 	public string get_category_text () {
