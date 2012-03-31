@@ -28,6 +28,8 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	/* all iters must match this */
 	public int stamp {get; private set; default = (int)GLib.Random.next_int();}
 
+	public int n_items { get { return rows.get_length () - 1; } } // Doesn't count the first ("All..") item
+
 	/* data storage variables */
 	private Sequence<string> rows;
 
@@ -172,16 +174,27 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 		add_first_element ();
 
 		// We do some data validation for numeric values later
-		bool numeric_values = false;
+		bool is_rating = false, is_year = false;
 
-		if (category == MillerColumn.Category.YEAR || category == MillerColumn.Category.RATING)
-			numeric_values = true;
+		if (category == MillerColumn.Category.RATING)
+			is_rating = true;
+		else if (category == MillerColumn.Category.YEAR)
+			is_year = true;
+
 
 		foreach (string s in medias) {
-			// Data validation
-			if (numeric_values && int.parse (s) < 1) // i.e. don't show 0 years or unrated stuff
+			// if it is rating column, add "Stars" after the number
+			if (is_rating) {
+				if (int.parse(s) < 1)
+					s = _("Unrated");
+				else
+					s = _("%s Stars").printf(s);
+			}
+			else if (is_year && int.parse(s) < 1) {
+				// Don't add '0'
 				continue;
-			
+			}
+
 			SequenceIter<string> added = rows.append (s);
 
 			if (emit) {
@@ -210,13 +223,12 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 
 	/* Updates the "All" item */
 	private void update_first_item () {
-		int n_items = rows.get_length () - 1;
 		rows.set ((SequenceIter<string>)first_iter.user_data, get_first_item_text (n_items));
 	}
 
 
 	// The text to use for the first item.
-	public string get_first_item_text (int n_items) {
+	private string get_first_item_text (int n_items) {
 		string rv = "";
 
 		// Exposing that %i could lead to many potential errors, but there's no other

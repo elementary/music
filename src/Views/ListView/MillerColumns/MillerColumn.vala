@@ -416,11 +416,13 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 			return !this.get_no_show_all ();
 		}
 		set {
-			this.menu_item.set_active (value);
-			this.set_no_show_all (!value);
-			this.set_visible (value);
+			bool show_column = value;
 
-			if (value)
+			this.menu_item.set_active (show_column);
+			this.set_no_show_all (!show_column);
+			this.set_visible (show_column);
+
+			if (show_column)
 				show_all ();
 			else // if the column is being hidden, make sure we select "All ..."
 				select_first_item ();
