@@ -40,13 +40,13 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	private unowned TreeIterCompareFunc default_sort_func;
 	private HashMap<int, CompareFuncHolder> column_sorts;
 
-	private string category_text;
+	private MillerColumn.Category category;
 
 	/** Initialize data storage, columns, etc. **/
-	public MillerModel (string category_text = "") {
+	public MillerModel (MillerColumn.Category category) {
 		rows = new Sequence<string> ();
 
-		this.category_text = category_text;
+		this.category = category;
 
 		sort_column_id = -2;
 		sort_direction = SortType.ASCENDING;
@@ -172,6 +172,9 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 		add_first_element ();
 
 		foreach (string s in medias) {
+			/* Some data validation :) */
+			
+
 			SequenceIter<string> added = rows.append (s);
 
 			if (emit) {
@@ -200,18 +203,63 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 
 	/* Updates the "All" item */
 	private void update_first_item () {
-		string first_item_label = "";
 		int n_items = rows.get_length () - 1;
-
-		if (n_items > 1)
-			first_item_label = _("All %i %s").printf (n_items, category_text);
-		else if (n_items == 1)
-			first_item_label = _("All %s").printf (category_text);
-		else
-			first_item_label = _("No %s").printf (category_text);
-
-		rows.set ((SequenceIter<string>)first_iter.user_data, first_item_label);
+		rows.set ((SequenceIter<string>)first_iter.user_data, get_first_item_text (n_items));
 	}
+
+
+	// The text to use for the first item.
+	public string get_first_item_text (int n_items) {
+		string rv = "";
+
+		// Exposing that %i could lead to many potential errors, but there's no other
+		// way to allow correct grammar in other languages without doing it.
+		switch (category) {
+			case MillerColumn.Category.GENRE:
+				if (n_items == 1)
+					rv = _("All Genres");
+				else if (n_items > 1)
+					rv = _("All %i Genres").printf (n_items);
+				else
+					rv = _("No Genres");
+			break;
+			case MillerColumn.Category.ARTIST:
+				if (n_items == 1)
+					rv = _("All Artists");
+				else if (n_items > 1)
+					rv = _("All %i Artists").printf (n_items);
+				else
+					rv = _("No Artists");
+			break;
+			case MillerColumn.Category.ALBUM:
+				if (n_items == 1)
+					rv = _("All Albums");
+				else if (n_items > 1)
+					rv = _("All %i Albums").printf (n_items);
+				else
+					rv = _("No Albums");
+			break;
+			case MillerColumn.Category.YEAR:
+				if (n_items == 1)
+					rv = _("All Years");
+				else if (n_items > 1)
+					rv = _("All %i Years").printf (n_items);
+				else
+					rv = _("No Years");
+			break;
+			case MillerColumn.Category.RATING:
+				if (n_items == 1)
+					rv = _("All Ratings");
+				else if (n_items > 1)
+					rv = _("All %i Ratings").printf (n_items);
+				else
+					rv = _("No Ratings");
+			break;
+		}
+
+		return rv;
+	}
+
 
 	public new void set (TreeIter iter, ...) {
 		if (iter.stamp != this.stamp)

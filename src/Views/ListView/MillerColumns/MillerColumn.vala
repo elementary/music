@@ -27,7 +27,6 @@ using Gtk;
 using Gee;
 
 // FIXME: We've picked the wrong data structure here. Switch to HashMaps.
-// TODO: Improve translations here and in the view model because the current system is too English-specific.
 
 public class BeatBox.MillerColumns : Box {
 
@@ -56,8 +55,8 @@ public class BeatBox.MillerColumns : Box {
 	}
 
 	// Whether the columns are filtered or not based on the current selection
-	// Yes, I know (medias.size == _media_results.size) would produce a similar results, but here
-	// we want to know if the "All ..." filter is present in ALL the columns.
+	// Yes, I know (medias.size == _media_results.size) would produce a similar result, but here
+	// we want to know if the "All ..." filter is selected in ALL the columns.
 	public bool filtered {
 		get {
 			foreach (var col in columns)
@@ -455,7 +454,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		this.visible = false; // Make the column initially hidden
 
 		view = new TreeView ();
-		model = new MillerModel ();
+		model = new MillerModel (category);
 
 		var cell = new CellRendererText ();
 		cell.ellipsize = Pango.EllipsizeMode.END;
@@ -509,29 +508,26 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 			lw.settings.set_generic_miller_visible_columns (visible_columns_list);
 	}
 
-	public string get_category_text (bool singular = false, bool lower_case = false) {
+	public string get_category_text () {
 		string category_text = "";
 
 		switch (category) {
 			case Category.GENRE:
-				category_text = (singular) ? _("Genre") : _("Genres");
+				category_text = _("Genres");
 				break;
 			case Category.ARTIST:
-				category_text = (singular) ? _("Artist") : _("Artists");
+				category_text = _("Artists");
 				break;
 			case Category.ALBUM:
-				category_text = (singular) ? _("Album") : _("Albums");
+				category_text = _("Albums");
 				break;
 			case Category.YEAR:
-				category_text = (singular) ? _("Year") : _("Years");
+				category_text = _("Years");
 				break;
 			case Category.RATING:
-				category_text = (singular) ? _("Rating") : _("Ratings");
+				category_text = _("Ratings");
 				break;
 		}
-
-		if (lower_case)
-			category_text = category_text.down ();
 
 		return category_text;
 	}
@@ -629,7 +625,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 			select_first_item (false); // Don't notify
 		}
 
-		model = new MillerModel (get_category_text ());
+		model = new MillerModel (category);
 
 		model.append_items (items.keys, false);
 		model.set_sort_column_id (0, Gtk.SortType.ASCENDING);
