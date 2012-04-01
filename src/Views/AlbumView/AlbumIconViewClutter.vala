@@ -1,35 +1,50 @@
-/*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+/*
+ * Copyright (c) 2012 BeatBox Developers
  *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * This is a free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
+ * This is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this program; see the file COPYING.  If not,
+ * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Lucas Baudin <xapantu@gmail.com>
+ *
  */
 
-/*using Gtk;
+/**
+ * /!\ NOTE: Currently not used.
+ *
+ * This is an awesome Clutter-based Album View written by Lucas Baudin. We keep this file
+ * in case someone wants to re-take the idea in the future and continue its development.
+ *
+ * Things to consider:
+ * - The functional part of the widget is deprecated. We need to update this file to
+ *   use the new [internal] ViewWrapper functions. This should be easy to do since
+ *   AlbumView implements the ContentView interface. Looking at what's changed there
+ *   is a good place to start. Another option would be copying the interface implementation
+ *   from AlbumIconView.vala and leaving the rest of the code unmodified.
+ */
+
+using Gtk;
 using Gee;
 
 namespace BeatBox {
     bool clutter_usable = false;
 }
+
 /**
  * The Widget in the Clutter.Actor of a HoverView. It contains some content
  * and a X to close it.
- **
+ **/
 class BeatBox.HoverSidebar : Gtk.Grid {
     Gtk.Widget? content;
     public signal void close ();
@@ -59,8 +74,8 @@ class BeatBox.HoverSidebar : Gtk.Grid {
 }
 
 class BeatBox.Albums.IconView : Gtk.IconView, HoverBackgroundWidget {
-	internal LibraryManager lm;
-	internal LibraryWindow lw;
+    internal LibraryManager lm;
+    internal LibraryWindow lw;
 
     public IconView(AlbumViewModel model) {
         set_model(model);
@@ -73,17 +88,17 @@ class BeatBox.Albums.IconView : Gtk.IconView, HoverBackgroundWidget {
         
         // Get the name and the author
         
-	    TreeIter iter;
-	
-	    if(!model.get_iter(out iter, path))
-	    {
+        TreeIter iter;
+    
+        if(!model.get_iter(out iter, path))
+        {
             collapse_widget();
-	        return;
-	    }
-	
-	    Media s = ((AlbumViewModel)model).get_media(iter);
-	    Gdk.Pixbuf pix;
-	    model.get(iter, 0, out pix);
+            return;
+        }
+    
+        Media s = ((AlbumViewModel)model).get_media(iter);
+        Gdk.Pixbuf pix;
+        model.get(iter, 0, out pix);
         
         var grid = new Gtk.Grid();
         var title = new Granite.Widgets.WrapLabel(s.album);
@@ -102,11 +117,11 @@ class BeatBox.Albums.IconView : Gtk.IconView, HoverBackgroundWidget {
 
         // Fake list view
         var tree_view = new MusicTreeView(lm, lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
-		var songs = new LinkedList<int>();
-		var albums = new LinkedList<int>();
+        var songs = new LinkedList<int>();
+        var albums = new LinkedList<int>();
         lm.do_search("", tree_view.get_hint(), "All Genres", s.album_artist, s.album, lm.media_ids(), ref songs, ref albums);
-		tree_view.append_medias(songs);
-		tree_view.vexpand = true;
+        tree_view.append_medias(songs);
+        tree_view.vexpand = true;
         
         grid.attach(tree_view, 0, 3, 1, 1);
         expand_widget(grid, (int)(get_allocated_width()*0.3));
@@ -234,7 +249,7 @@ class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
         /* We only need an auto_resize for the left part, which mustn't scale corners.
          * For the others, we do'nt care, we just need a good height, the width can
          * be scaled since it is only a linear gradient. (and it is faster)
-         *
+         */
         shadow_left.auto_resize = true;
         
         // Shadow drawing
@@ -282,7 +297,7 @@ class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
      *
      * @param height the height of the widget (not the height of the shadow). If null is
      * passed, then we'll use get_allocated_height().
-     **
+     **/
     void update_shadow_surface(int? height = null) {
         height = height ?? get_allocated_height();
 
@@ -300,7 +315,7 @@ class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
         background_view.height = alloc.height;
         background_view.width = alloc.width;
         shadow.height = alloc.height;
-        /* FIXME: What are those -1 ? -.- *
+        /* FIXME: What are those -1 ? -.- */
         shadow_bottom.y =  shadow.height - 2*margin_top - 1;
         expand_view.height = alloc.height - 2*margin_top - 1;
         old_expand_view.height = alloc.height - 2*margin_top - 1;
@@ -349,13 +364,13 @@ class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
      *
      * @param label the widget to put in the sidebar
      * @param width thre requested width for the sidebar
-     **
+     **/
     void on_expand(Gtk.Widget label, int width) {
         if(expanded) {
             var w = sidebar.get_content();
             sidebar.set_content(label);
 
-            /* We must set up a fading effect if there is already a sidebar shown *
+            /* We must set up a fading effect if there is already a sidebar shown */
             old_sidebar.set_content(w);
             old_sidebar.show_all();
             old_expand_view.x = get_allocated_width() - sidebar_width;
@@ -364,7 +379,7 @@ class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
             Timeout.add(400, () => {
                 old_expand_view.x = - sidebar_width;
                 return false;
-            }); /* and hide it *
+            }); /* and hide it */
         }
 
         else {
@@ -397,324 +412,325 @@ class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
 }
 
 public class BeatBox.AlbumView : ContentView, Grid {
-	LibraryManager lm;
-	LibraryWindow lw;
-	Collection<int> medias;
-	
-	private Collection<int> _show_next; // these are populated if necessary when user opens this view.
-	private Collection<int> _showing_medias;
-	private string last_search;
-	LinkedList<string> timeout_search;
-	
-	BeatBox.Albums.IconView icons;
-	AlbumViewModel model;
-	
-	Gdk.Pixbuf defaultPix;
-	
-	bool _is_current;
-	bool _is_current_view;
-	bool needsUpdate;
-	//BeatBox.HoverView view;
-	
-	public signal void itemClicked(string artist, string album);
-	
-	/* medias should be mutable, as we will be sorting it *
-	public AlbumView(LibraryManager lmm, LibraryWindow lww, Collection<int> smedias) {
-		lm = lmm;
-		lw = lww;
-		medias = smedias;
-		
-		_showing_medias = new LinkedList<int>();
-		last_search = "";
-		timeout_search = new LinkedList<string>();
-		
-		defaultPix = lm.icons.default_album_art.render (null, null);
-		
-		buildUI();
-		
-		lm.medias_removed.connect(medias_removed);
-	}
-	
-	public void buildUI() {
-		/*Viewport v = new Viewport(null, null);*
-		
-        /*set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);*
+    LibraryManager lm;
+    LibraryWindow lw;
+    Collection<int> medias;
+    
+    private Collection<int> _show_next; // these are populated if necessary when user opens this view.
+    private Collection<int> _showing_medias;
+    private string last_search;
+    LinkedList<string> timeout_search;
+    
+    BeatBox.Albums.IconView icons;
+    AlbumViewModel model;
+    
+    Gdk.Pixbuf defaultPix;
+    
+    bool _is_current;
+    bool _is_current_view;
+    bool needsUpdate;
+    //BeatBox.HoverView view;
+    
+    public signal void itemClicked(string artist, string album);
+    
+    /* medias should be mutable, as we will be sorting it */
+    public AlbumView(LibraryManager lmm, LibraryWindow lww, Collection<int> smedias) {
+        lm = lmm;
+        lw = lww;
+        medias = smedias;
+        
+        _showing_medias = new LinkedList<int>();
+        last_search = "";
+        timeout_search = new LinkedList<string>();
+        
+        defaultPix = lm.icons.default_album_art.render (null, null);
+        
+        buildUI();
+        
+        lm.medias_removed.connect(medias_removed);
+    }
+    
+    public void buildUI() {
+        /*Viewport v = new Viewport(null, null);*/
+        
+        /*set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);*/
         if(clutter_usable && Environment.get_variable("BEATBOX_NO_CLUTTER") == null)
             view = new BeatBox.HoverViewClutter();
         else
             view = new BeatBox.HoverViewFallback();
-		
-		/*v.set_shadow_type(ShadowType.NONE);*
-		model = new AlbumViewModel(lm, defaultPix);
-		//icons = new BeatBox.Albums.IconView(model);
-		//view.set_background_widget(icons);
-		
-		icons.set_pixbuf_column(0);
-		icons.set_markup_column(1);
-		icons.set_item_width(134);
-		icons.item_padding = 0;
-		icons.spacing = 2;
-		icons.margin = 20;
-		icons.lm = lm;
-		icons.lw = lw;
-		//v.add(icons);
-		
-		add(view);
+        
+        /*v.set_shadow_type(ShadowType.NONE);*/
+        model = new AlbumViewModel(lm, defaultPix);
+        //icons = new BeatBox.Albums.IconView(model);
+        //view.set_background_widget(icons);
+        
+        icons.set_pixbuf_column(0);
+        icons.set_markup_column(1);
+        icons.set_item_width(134);
+        icons.item_padding = 0;
+        icons.spacing = 2;
+        icons.margin = 20;
+        icons.lm = lm;
+        icons.lw = lw;
+        //v.add(icons);
+        
+        add(view);
         //view.vexpand = view.hexpand = true;
-		show_all();
-		
-		//icons.button_press_event.connect(buttonPressEvent);
-		//icons.item_activated.connect(itemActivated);
-		this.focus_out_event.connect(on_focus_out);
-		
-		this.grab_focus ();
-	}
-	
-	public void set_is_current(bool val) {
-		_is_current = val;
-		//model.is_current = val;
-	}
-	
-	public bool get_is_current() {
-		return _is_current;
-	}
-	
-	public void set_is_current_view(bool val) {
-		_is_current_view = val;
-	}
-	
-	public bool get_is_current_view() {
-		return _is_current_view;
-	}
-	
-	public void set_hint(ViewWrapper.Hint hint) {
-		// nothing
-	}
-	
-	public ViewWrapper.Hint get_hint() {
-		return ViewWrapper.Hint.MUSIC;
-	}
-	
-	public void set_show_next(Collection<int> medias) {
-		_show_next = medias;
-	}
-	
-	public void set_relative_id(int id) {
-		// do nothing
-	}
-	
-	public int get_relative_id() {
-		return 0;
-	}
-	
-	public Collection<int> get_medias() {
-		return medias;
-	}
-	
-	public Collection<int> get_showing_medias() {
-		return _showing_medias;
-	}
-	
-	public void set_as_current_list(int media_id, bool is_initial) {
-		set_is_current(true);
-	}
-	
-	public void set_statusbar_text() {
-		uint count = 0;
-		uint total_time = 0;
-		uint total_mbs = 0;
-		
-		foreach(int id in _showing_medias) {
-			++count;
-			total_time += lm.media_from_id(id).length;
-			total_mbs += lm.media_from_id(id).file_size;
-		}
-		
-		string fancy = "";
-		if(total_time < 3600) { // less than 1 hour show in minute units
-			fancy = (total_time/60).to_string() + " minutes";
-		}
-		else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
-			fancy = (total_time/3600).to_string() + " hours";
-		}
-		else { // units in days
-			fancy = (total_time/(24 * 3600)).to_string() + " days";
-		}
-		
-		string fancy_size = "";
-		if(total_mbs < 1000)
-			fancy_size = ((float)(total_mbs)).to_string() + " MB";
-		else 
-			fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
-		
-		lw.set_statusbar_text(count.to_string() + " items, " + fancy + ", " + fancy_size);
-	}
-	
-	/*public void set_medias(Collection<int> new_medias) {
-		medias = new_medias;
-	}*
-	
-	public void append_medias(Collection<int> new_medias) {
-	    
-		/*_showing_medias.add_all(new_medias);
-		
-		var toShowS = new LinkedList<Media>();
+        show_all();
+        
+        //icons.button_press_event.connect(buttonPressEvent);
+        //icons.item_activated.connect(itemActivated);
+        this.focus_out_event.connect(on_focus_out);
+        
+        this.grab_focus ();
+    }
+    
+    public void set_is_current(bool val) {
+        _is_current = val;
+        //model.is_current = val;
+    }
+    
+    public bool get_is_current() {
+        return _is_current;
+    }
+    
+    public void set_is_current_view(bool val) {
+        _is_current_view = val;
+    }
+    
+    public bool get_is_current_view() {
+        return _is_current_view;
+    }
+    
+    public void set_hint(ViewWrapper.Hint hint) {
+        // nothing
+    }
+    
+    public ViewWrapper.Hint get_hint() {
+        return ViewWrapper.Hint.MUSIC;
+    }
+    
+    public void set_show_next(Collection<int> medias) {
+        _show_next = medias;
+    }
+    
+    public void set_relative_id(int id) {
+        // do nothing
+    }
+    
+    public int get_relative_id() {
+        return 0;
+    }
+    
+    public Collection<int> get_medias() {
+        return medias;
+    }
+    
+    public Collection<int> get_showing_medias() {
+        return _showing_medias;
+    }
+    
+    public void set_as_current_list(int media_id, bool is_initial) {
+        set_is_current(true);
+    }
+    
+    public void set_statusbar_text() {
+        uint count = 0;
+        uint total_time = 0;
+        uint total_mbs = 0;
+        
+        foreach(int id in _showing_medias) {
+            ++count;
+            total_time += lm.media_from_id(id).length;
+            total_mbs += lm.media_from_id(id).file_size;
+        }
+        
+        string fancy = "";
+        if(total_time < 3600) { // less than 1 hour show in minute units
+            fancy = (total_time/60).to_string() + " minutes";
+        }
+        else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
+            fancy = (total_time/3600).to_string() + " hours";
+        }
+        else { // units in days
+            fancy = (total_time/(24 * 3600)).to_string() + " days";
+        }
+        
+        string fancy_size = "";
+        if(total_mbs < 1000)
+            fancy_size = ((float)(total_mbs)).to_string() + " MB";
+        else 
+            fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
+        
+        lw.set_statusbar_text(count.to_string() + " items, " + fancy + ", " + fancy_size);
+    }
+    
+    /*public void set_medias(Collection<int> new_medias) {
+        medias = new_medias;
+    }*/
+    
+    public void append_medias(Collection<int> new_medias) {
+        
+        /*_showing_medias.add_all(new_medias);
+        
+        var toShowS = new LinkedList<Media>();
         foreach(int i in new_medias)
-			toShowS.add(lm.media_from_id(i));
+            toShowS.add(lm.media_from_id(i));
         
         // first sort the medias so we know they are grouped by artists, then albums
-		toShowS.sort((CompareFunc)mediaCompareFunc);
-		
-		LinkedList<int> albs = new LinkedList<int>();
-		string previousAlbum = "";
-		
-		foreach(Media s in toShowS) {
-			if(s.album != previousAlbum) {
-				albs.add(s.rowid);
-				
-				previousAlbum = s.album;
-			}
-		}*
-		
-		//model.appendMedias(albs, false);
-		//model.resort();
-		queue_draw();
-	}
-	
-	public void remove_medias(Collection<int> to_remove) {
-		//model.removeMedias(to_remove);
-		//queue_draw();
-	}
-	
-	/** Goes through the hashmap and generates html. If artist,album, or genre
-	 * is set, makes sure that only items that fit those filters are
-	 * shown
-	*
-	public void populate_view() {
-		if(_show_next == _showing_medias || _show_next == null) {
-			return;
-		}
-		
-		_showing_medias = _show_next;
-		
+        toShowS.sort((CompareFunc)mediaCompareFunc);
+        
+        LinkedList<int> albs = new LinkedList<int>();
+        string previousAlbum = "";
+        
+        foreach(Media s in toShowS) {
+            if(s.album != previousAlbum) {
+                albs.add(s.rowid);
+                
+                previousAlbum = s.album;
+            }
+        }*/
+        
+        //model.appendMedias(albs, false);
+        //model.resort();
+        queue_draw();
+    }
+    
+    public void remove_medias(Collection<int> to_remove) {
+        //model.removeMedias(to_remove);
+        //queue_draw();
+    }
+    
+    /** Goes through the hashmap and generates html. If artist,album, or genre
+     * is set, makes sure that only items that fit those filters are
+     * shown
+    */
+    public void populate_view() {
+        if(_show_next == _showing_medias || _show_next == null) {
+            return;
+        }
+        
+        _showing_medias = _show_next;
+        
         var toShowS = new LinkedList<Media>();
 
         foreach(int i in _showing_medias)
-			toShowS.add(lm.media_from_id(i));
+            toShowS.add(lm.media_from_id(i));
         
         // first sort the medias so we know they are grouped by artists, then albums
-		toShowS.sort((CompareFunc)mediaCompareFunc);
-		
-		LinkedList<int> albs = new LinkedList<int>();
-		string previousAlbum = "";
-		
-		foreach(Media s in toShowS) {
-			if(s.album != previousAlbum) {
-				albs.add(s.rowid);
-				
-				previousAlbum = s.album;
-			}
-		}
-		
-		//var hPos = this.vadjustment.get_value();
-		
-		model = new AlbumViewModel(lm, defaultPix);
-		model.appendMedias(albs, false);
-		icons.set_model(model);
-		
-		//move_focus_out(DirectionType.UP);
-		
-		/* this is required to make the iconview initially scrollable *
-		if(albs.size > 0) {
-			//icons.select_path(new TreePath.from_string((albs.size - 1).to_string()));
-			//icons.unselect_all();
-		}
-		
-		/*if(get_is_current() && lm.media_info.media != null)
-			scrollToCurrent();
-		else
-			this.vadjustment.set_value((int)hPos);*
-		
-		needsUpdate = false;
-	}
-	
-	public void update_medias(Collection<int> medias) {
-		// nothing to do
-	}
-	
-	public static int mediaCompareFunc(Media a, Media b) {
-		if(a.album_artist == b.album_artist)
-			return (a.album > b.album) ? 1 : -1;
-			
-		return a.album_artist > b.album_artist ? 1 : -1;
-	}
-	
-	public bool buttonPressEvent(Gdk.EventButton ev) {
-		stdout.printf("button was pressed\n");
-		if(ev.type == Gdk.EventType.BUTTON_PRESS && ev.button == 1) {
-			// select one based on mouse position
-			TreeIter iter;
-			TreePath path;
-			CellRenderer cell;
-			
-			icons.get_item_at_pos((int)ev.x, (int)ev.y, out path, out cell);
-			
-			if(!model.get_iter(out iter, path))
-				return false;
-			
-			string s;
-			model.get(iter, 1, out s);
-			
-			string[] pieces = s.split("\n", 0);
-		
-			itemClicked(pieces[0], pieces[1]);
-		}
-		
-		return false;
-	}
-	
-	public virtual void itemActivated(TreePath path) {
-		TreeIter iter;
-		
-		if(!model.get_iter(out iter, path))
-			return;
-		
-		string s;
-		model.get(iter, 1, out s);
-		
-		string[] pieces = s.split("\n", 0);
-		
-		itemClicked(pieces[0], pieces[1]);
-	}
-	
-	void medias_removed(LinkedList<int> ids) {
-		model.removeMedias(ids);
-		//_showing_medias.remove_all(ids);
-		//_show_next.remove_all(ids);
-	}
-	
-	public void scrollToCurrent() {
-		if(!get_is_current() || lm.media_info.media == null)
-			return;
-		
-		TreeIter iter;
-		for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
-			Value vs;
-			model.get_value(iter, 2, out vs);
+        toShowS.sort((CompareFunc)mediaCompareFunc);
+        
+        LinkedList<int> albs = new LinkedList<int>();
+        string previousAlbum = "";
+        
+        foreach(Media s in toShowS) {
+            if(s.album != previousAlbum) {
+                albs.add(s.rowid);
+                
+                previousAlbum = s.album;
+            }
+        }
+        
+        //var hPos = this.vadjustment.get_value();
+        
+        model = new AlbumViewModel(lm, defaultPix);
+        model.appendMedias(albs, false);
+        icons.set_model(model);
+        
+        //move_focus_out(DirectionType.UP);
+        
+        /* this is required to make the iconview initially scrollable */
+        if(albs.size > 0) {
+            //icons.select_path(new TreePath.from_string((albs.size - 1).to_string()));
+            //icons.unselect_all();
+        }
+        
+        /*if(get_is_current() && lm.media_info.media != null)
+            scrollToCurrent();
+        else
+            this.vadjustment.set_value((int)hPos);*/
+        
+        needsUpdate = false;
+    }
+    
+    public void update_medias(Collection<int> medias) {
+        // nothing to do
+    }
+    
+    public static int mediaCompareFunc(Media a, Media b) {
+        if(a.album_artist == b.album_artist)
+            return (a.album > b.album) ? 1 : -1;
+            
+        return a.album_artist > b.album_artist ? 1 : -1;
+    }
+    
+    public bool buttonPressEvent(Gdk.EventButton ev) {
+        stdout.printf("button was pressed\n");
+        if(ev.type == Gdk.EventType.BUTTON_PRESS && ev.button == 1) {
+            // select one based on mouse position
+            TreeIter iter;
+            TreePath path;
+            CellRenderer cell;
+            
+            icons.get_item_at_pos((int)ev.x, (int)ev.y, out path, out cell);
+            
+            if(!model.get_iter(out iter, path))
+                return false;
+            
+            string s;
+            model.get(iter, 1, out s);
+            
+            string[] pieces = s.split("\n", 0);
+        
+            itemClicked(pieces[0], pieces[1]);
+        }
+        
+        return false;
+    }
+    
+    public virtual void itemActivated(TreePath path) {
+        TreeIter iter;
+        
+        if(!model.get_iter(out iter, path))
+            return;
+        
+        string s;
+        model.get(iter, 1, out s);
+        
+        string[] pieces = s.split("\n", 0);
+        
+        itemClicked(pieces[0], pieces[1]);
+    }
+    
+    void medias_removed(LinkedList<int> ids) {
+        model.removeMedias(ids);
+        //_showing_medias.remove_all(ids);
+        //_show_next.remove_all(ids);
+    }
+    
+    public void scrollToCurrent() {
+        if(!get_is_current() || lm.media_info.media == null)
+            return;
+        
+        TreeIter iter;
+        for(int i = 0; model.get_iter_from_string(out iter, i.to_string()); ++i) {
+            Value vs;
+            model.get_value(iter, 2, out vs);
 
-			if(icons is IconView && ((Media)vs).album == lm.media_info.media.album) {
-				icons.scroll_to_path(new TreePath.from_string(i.to_string()), false, 0.0f, 0.0f);
-				
-				return;
-			}
-		}
-	}
-	
-	public bool on_focus_out () {
-		// Make sure that the search entry is not selected before grabbing focus
-		if (!lw.searchField.has_focus)
-			this.grab_focus ();
+            if(icons is IconView && ((Media)vs).album == lm.media_info.media.album) {
+                icons.scroll_to_path(new TreePath.from_string(i.to_string()), false, 0.0f, 0.0f);
+                
+                return;
+            }
+        }
+    }
+    
+    public bool on_focus_out () {
+        // Make sure that the search entry is not selected before grabbing focus
+        if (!lw.searchField.has_focus)
+            this.grab_focus ();
 
-		return true;
-	}
-}*/
+        return true;
+    }
+}
+
