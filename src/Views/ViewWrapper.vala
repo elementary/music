@@ -222,7 +222,7 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.PODCAST:
 				// list, album and column views
 				list_view = new PodcastListView (this);
-				column_browser = new MillerColumns (this);
+				//column_browser = new MillerColumns (this);
 				album_view = new AlbumView (this, get_media_ids());
 
 				error_box = new WarningLabel();
@@ -233,7 +233,7 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.DEVICE_PODCAST:
 				// list, album and column views
 				list_view = new PodcastListView (this);
-				column_browser = new MillerColumns (this);
+				//column_browser = new MillerColumns (this);
 				album_view = new AlbumView (this, get_media_ids());
 
 				error_box = new WarningLabel();
@@ -416,15 +416,13 @@ public class BeatBox.ViewWrapper : Box {
 	private void on_quit () {
 		// Need to add a proper fix later ...
 		if (have_column_browser) {
-			if (is_current_wrapper) {
-				if (column_browser.visible) {
-					if (column_browser.actual_position == MillerColumns.Position.LEFT)
-						lw.settings.set_miller_columns_width(list_view_hpaned_position);
-					else if (column_browser.actual_position == MillerColumns.Position.TOP)
-						lw.settings.set_miller_columns_height(list_view_vpaned_position);
-				}
-				lw.settings.set_miller_columns_enabled (column_browser_enabled);
+			if (column_browser.visible) {
+				if (column_browser.actual_position == MillerColumns.Position.LEFT)
+					lw.settings.set_miller_columns_width(list_view_hpaned_position);
+				else if (column_browser.actual_position == MillerColumns.Position.TOP)
+					lw.settings.set_miller_columns_height(list_view_vpaned_position);
 			}
+			lw.settings.set_miller_columns_enabled (column_browser_enabled);
 		}
 	}
 
