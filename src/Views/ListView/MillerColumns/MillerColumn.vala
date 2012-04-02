@@ -26,7 +26,19 @@ using Gdk;
 using Gtk;
 using Gee;
 
-//FIXME Wrong data structure here. Switch to HashMaps.
+/**
+ * FIXME:
+ * Wrong data structure here. Switch to HashMaps.
+ *
+ * TODO: Implement (needed by ViewWrapper:update_media):
+ * - add_media (Gee.Collection<int> to_add): Updates the column browser to include new media.
+ *                                           If all the media already belongs to a filter, it's not added.
+ *
+ * - remove_media (Gee.Collection<int> to_remove): Updates the column browser to remove these media files.
+ *
+ * NOTE: The new media is added/removed in a way that honors the current filters. In case all the media
+ *       belonging to a selected filter is deleted, the "All..." item should be selected on that column.
+ */
 
 public class BeatBox.MillerColumns : Box {
 
@@ -565,21 +577,22 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		return category_text;
 	}
 
-	// selects "All ..."
-	public void select_first_item (bool? notify = null) {
-		set_selected (null, true);
+
+	public void add_item (string text) {
+		TreeIter iter;
+
+		model.append (out iter);
+		model.set (iter, 0, text);
 	}
 
-	private bool on_header_clicked (Widget w, EventButton e) {
-		 // Scroll to top (select 'All') if the primary button is clicked
-		if (e.button == 1) {
-			select_first_item ();
-		}
 
-		// emit signal
-		header_clicked (e);
-
-		return true;
+	// selects "All ..."
+	public void select_first_item () {
+		
+		if (!first_item_selected)
+			set_selected (null, true); // always notify
+		else if (this.visible && lw.initializationFinished) // just scroll to the cell
+			view.scroll_to_cell (new TreePath.first(), null, false, 0.0f, 0.0f);
 	}
 
 	/**
@@ -594,6 +607,38 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		return _selected;
 	}
 
+
+	public void populate (HashMap<string, int> items) {
+		// After initialization, ignore any attempt to populate the column if it's hidden.
+		// This will boost performance when some columns are hidden.
+		if (!this.visible && !lw.initializationFinished)
+			return;
+	
+		//if (items.size == model.iter_n_children (null)) // /!\ WARNING. Potential failure point!
+		//	return;
+
+		view.get_selection ().changed.disconnect (selected_item_changed);
+
+		items.unset ("");
+
+		// This check whether we can keep the current selected item selected in the column.
+		// /!\ NOTE: This check is currently disabled for performance and behavioral issues.
+		//           see the related note above in MillerColumns : column_selection_changed() 
+		//if (items.get(get_selected()) == 0) {
+			select_first_item ();
+		//}
+
+		model = new MillerModel (category);
+
+		model.append_items (items.keys, false);
+		model.set_sort_column_id (0, Gtk.SortType.ASCENDING);
+		view.set_model (model);
+
+		// select selected item
+		model.foreach (select_proper_string);
+		view.get_selection ().changed.connect (selected_item_changed);
+	}
+
 	public void set_selected (string? val, bool notify = false) {
 		if (!lw.initializationFinished || val == _selected)
 			return;
@@ -606,7 +651,19 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		model.foreach (select_proper_string);
 	}
 
-	public bool key_pressed (Gdk.EventKey event) {
+	private bool on_header_clicked (Widget w, EventButton e) {
+		 // Scroll to top (select 'All') if the primary button is clicked
+		if (e.button == 1) {
+			select_first_item ();
+		}
+
+		// emit signal
+		header_clicked (e);
+
+		return true;
+	}
+
+	private bool key_pressed (Gdk.EventKey event) {
 		if (Regex.match_simple ("[a-zA-Z0-9]", event.str)) {
 			miller_parent.lw.searchField.grab_focus ();
 			miller_parent.lw.searchField.insert_at_cursor (event.str);
@@ -646,40 +703,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		}
 	}
 
-	public void populate (HashMap<string, int> items) {
-		if (items.size == model.iter_n_children (null))
-			return;
-
-		view.get_selection ().changed.disconnect (selected_item_changed);
-
-		items.unset ("");
-
-		// This check whether we can keep the current selected item selected in the column.
-		// /!\ NOTE: This check is currently disabled for performance and behavioral issues.
-		//           see the related note above in MillerColumns : column_selection_changed() 
-		//if (items.get(get_selected()) == 0) {
-			select_first_item (false); // Don't notify
-		//}
-
-		model = new MillerModel (category);
-
-		model.append_items (items.keys, false);
-		model.set_sort_column_id (0, Gtk.SortType.ASCENDING);
-		view.set_model (model);
-
-		// select selected item
-		model.foreach (select_proper_string);
-		view.get_selection ().changed.connect (selected_item_changed);
-	}
-
-	public void add_item (string text) {
-		TreeIter iter;
-
-		model.append (out iter);
-		model.set (iter, 0, text);
-	}
-
-	public bool select_proper_string (TreeModel tmodel, TreePath path, TreeIter item) {
+	private bool select_proper_string (TreeModel tmodel, TreePath path, TreeIter item) {
 		string s;
 		tmodel.get (item, 0, out s);
 
