@@ -279,7 +279,7 @@ public class BeatBox.MillerColumns : Box {
 		// If the user selects "All ..." in a any column, it results obvious that
 		// whatever the child columns had previously selected still applies, since we're
 		// going from a small to a global set.
-		bool include_child_columns = (val == "");
+		//bool include_child_columns = (val == "");
 
 		// "All" is represented differently depending on the column type. For integers it's -1 and for text "".
 
@@ -355,6 +355,10 @@ public class BeatBox.MillerColumns : Box {
 
 		// if include_child_columns is true, the search results are different. Do search again
 		// for the proper results.
+		// /!\ Not used at the moment for performance/behavioral issues. We don't want unstable
+		//     code right now. Also, this feature doesn't seem to be really useful. When a user selects
+		//     "All ..." in a column, they probably want to get rid of the child column filters as well.
+		/*
 		if (include_child_columns) {
 			foreach (var col in columns) {
 				if (col.category > category) { // Child columns
@@ -380,6 +384,7 @@ public class BeatBox.MillerColumns : Box {
 			lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
 			              "", search_artist, search_album, search_genre, search_year, search_rating);
 		}
+		*/
 	
 		// Notify others about the change
 		changed ();
@@ -649,9 +654,12 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 		items.unset ("");
 
-		if (items.get(get_selected()) == 0) {
+		// This check whether we can keep the current selected item selected in the column.
+		// /!\ NOTE: This check is currently disabled for performance and behavioral issues.
+		//           see the related note above in MillerColumns : column_selection_changed() 
+		//if (items.get(get_selected()) == 0) {
 			select_first_item (false); // Don't notify
-		}
+		//}
 
 		model = new MillerModel (category);
 
