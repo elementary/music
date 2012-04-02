@@ -89,7 +89,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	private Gtk.Menu settingsMenu;
 	private Gtk.Menu libraryOperationsMenu;
 	private ImageMenuItem libraryOperations;
-	private Gtk.MenuItem fileSetMusicFolder;
 	private Gtk.MenuItem fileImportMusic;
 	private Gtk.MenuItem fileRescanMusicFolder;
 	private Gtk.MenuItem editEqualizer;
@@ -201,7 +200,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		sideTreeScroll = new ScrolledWindow(null, null);
 		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
 		libraryOperationsMenu = new Gtk.Menu();
-		fileSetMusicFolder = new Gtk.MenuItem.with_label(_("Set Music Folder"));
 		fileImportMusic = new Gtk.MenuItem.with_label(_("Import to Library"));
 		fileRescanMusicFolder = new Gtk.MenuItem.with_label(_("Rescan Music Folder"));
 		editEqualizer = new Gtk.MenuItem.with_label(_("Equalizer"));
@@ -233,6 +231,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		repeatChooser = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
 		infoPanelChooser = new SimpleOptionChooser.from_image (info_panel_hide, info_panel_show);
 
+		repeatChooser.setTooltip (_("Disable Repeat"), _("Enable Repeat"));
+		shuffleChooser.setTooltip (_("Disable Shuffle"), _("Enable Shuffle"));
 		infoPanelChooser.setTooltip (_("Hide Info Panel"), _("Show Info Panel"));
 		addPlaylistChooser.setTooltip (_("Add Playlist"));
 
@@ -265,7 +265,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		updateSensitivities();
 
 		/* create appmenu menu */
-		libraryOperationsMenu.append(fileSetMusicFolder);
 		libraryOperationsMenu.append(fileImportMusic);
 		libraryOperationsMenu.append(fileRescanMusicFolder);
 		libraryOperations.submenu = libraryOperationsMenu;
@@ -276,7 +275,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		settingsMenu.append(editEqualizer);
 		settingsMenu.append(editPreferences);
 
-		fileSetMusicFolder.activate.connect(editPreferencesClick);
 		fileImportMusic.activate.connect(fileImportMusicClick);
 		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
 
@@ -689,7 +687,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		bool showingMusicList = sideTree.convertToChild(sideTree.getSelectedIter()) == sideTree.library_music_iter;
 		bool showMainViews = (haveSongs || (haveMedias && !showingMusicList));
 
-		fileSetMusicFolder.set_sensitive(!doingOps);
 		fileImportMusic.set_sensitive(!doingOps && folderSet);
 		fileRescanMusicFolder.set_sensitive(!doingOps && folderSet);
 
@@ -1090,26 +1087,38 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 				return;
 			}*/
 
-			string folder = "";
+			string folders_list = "";
+			string[] folders = {};
+			var _folders = new SList<string> ();
 			var file_chooser = new FileChooserDialog (_("Import Music"), this,
 									  FileChooserAction.SELECT_FOLDER,
 									  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 									  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+			file_chooser.set_select_multiple (true);
 			file_chooser.set_local_only(true);
 
 			if (file_chooser.run () == ResponseType.ACCEPT) {
-				folder = file_chooser.get_filename();
+				_folders = file_chooser.get_filenames();
 			}
 			file_chooser.destroy ();
+			
+			for (int i=0;i< (int)(_folders.length ());i++) {
+                folders += _folders.nth_data (i);
+            }
 
-			if(folder != "" && folder != settings.getMusicFolder()) {
-				if(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
-					topDisplay.set_label_markup(_("<b>Importing</b> music from <b>%s</b> to library.").printf(folder));
-					topDisplay.show_progressbar();
+            for (int i=0;i<folders.length;i++) {
+			    if(folders[i] == "" || folders[i] != settings.getMusicFolder()) {
+			        folders_list += folders[i];
+			        if (i + 1 != folders.length)
+			            folders_list += ", ";
+			    }
+			}
+			if(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists()) {
+				topDisplay.set_label_markup(_("<b>Importing</b> music from <b>%s</b> to library.").printf(folders_list));
+				topDisplay.show_progressbar();
 
-					lm.add_folder_to_library(folder);
-					updateSensitivities();
-				}
+				lm.add_folder_to_library(folders[0], folders[1:folders.length]);
+				updateSensitivities();
 			}
 		}
 		else {
@@ -1169,7 +1178,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 	public virtual void musicCounted(int count) {
-		debug ("found %d medias, importing.\n", count);
+		debug ("found %d media, importing.\n", count);
 	}
 
 	/* this is after setting the music library */

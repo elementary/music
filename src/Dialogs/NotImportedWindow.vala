@@ -61,8 +61,8 @@ public class BeatBox.NotImportedWindow : Window{
 		
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
-		Label title = new Label("Unable to import " + files.size.to_string() + "medias from " + music_folder);
-		Label info = new Label("BeatBox was unable to import " + files.size.to_string() + " medias. The files may be damaged.");
+		Label title = new Label("Unable to import " + files.size.to_string() + "media from " + music_folder);
+		Label info = new Label("BeatBox was unable to import " + files.size.to_string() + " media. The files may be damaged.");
 		trashAll = new CheckButton.with_label("Move all corrupted files to trash");
 		filesScroll = new ScrolledWindow(null, null);
 		filesView = new TreeView();
@@ -73,7 +73,7 @@ public class BeatBox.NotImportedWindow : Window{
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Unable to import " + files.size.to_string() + " medias from " + music_folder + "</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">Unable to import " + files.size.to_string() + " media from " + music_folder + "</span>");
 		info.xalign = 0.0f;
 		info.set_line_wrap(false);
 		

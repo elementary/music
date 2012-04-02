@@ -115,7 +115,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		CDMenu.show_all();
 		
 		radioMenu = new Gtk.Menu();
-		radioImportStations = new Gtk.MenuItem.with_label(_("Import Station"));
+		radioImportStations = new Gtk.MenuItem.with_label(_("Import Stations"));
 		radioMenu.append(radioImportStations);
 		radioImportStations.activate.connect(()=> {playlistImportClicked ("Station");});
 		radioMenu.show_all();
@@ -128,7 +128,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
 		playlistSave = new Gtk.MenuItem.with_label(_("Save as Playlist"));
 		playlistExport = new Gtk.MenuItem.with_label(_("Export..."));
-		playlistImport = new Gtk.MenuItem.with_label(_("Import Playlist"));
+		playlistImport = new Gtk.MenuItem.with_label(_("Import Playlists"));
 		playlistMenu.append(playlistNew);
 		playlistMenu.append(smartPlaylistNew);
 		playlistMenu.append(playlistEdit);
@@ -846,15 +846,23 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	}
 	
 	void playlistImportClicked(string title = "Playlist") {
+        var files = new SList<string> ();
+		string[] names = {};	
+		var path = new LinkedList<string> ();
+		var stations = new LinkedList<Media> ();
+		LinkedList<string>[] paths = {};
+		LinkedList<string>[] filtered_paths = {};
+		bool success = false;
+		int i = 0;
+		
 		if(lm.doing_file_operations())
 			return;
-		
-		string file = "";
-		string name = "";
+
 		var file_chooser = new FileChooserDialog ("Import " + title, lw,
 								  FileChooserAction.OPEN,
 								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+		file_chooser.set_select_multiple (true);
 		
 		// filters for .m3u and .pls
 		var m3u_filter = new FileFilter();
@@ -868,31 +876,40 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		file_chooser.add_filter(pls_filter);
 		
 		if (file_chooser.run () == ResponseType.ACCEPT) {
-			file = file_chooser.get_filename();
-			name = file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
+			files = file_chooser.get_filenames();
+			files.foreach ( (file)=> {
+			    names += file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
+			});
 		}
 		
 		file_chooser.destroy ();
 		
-		var paths = new LinkedList<string>();
-		var stations = new LinkedList<Media>();
-		bool success = false;
+		files.foreach ( (file)=> {
+	    	if(file != "") {
+	    	    path = new LinkedList<string> ();
+		    	if(file.has_suffix(".m3u")) {
+		    		success = Playlist.parse_paths_from_m3u(lm, file, ref path, ref stations);
+		    		paths += path;
+		    	}
+		    	else if(file.has_suffix(".pls")) {
+		    		success = Playlist.parse_paths_from_pls(lm, file, ref path, ref stations);
+		    		paths += path;
+		    	}
+		    	else {
+		    		success = false;
+		    		lw.doAlert("Invalid Playlist", "Unrecognized playlist file. Import failed.");
+		    		return;
+		    	}
+		    }
+		    i++;
+		});
 		
-		if(file != "") {
-			if(file.has_suffix(".m3u")) {
-				success = Playlist.parse_paths_from_m3u(lm, file, ref paths, ref stations);
-			}
-			else if(file.has_suffix(".pls")) {
-				success = Playlist.parse_paths_from_pls(lm, file, ref paths, ref stations);
-			}
-			else {
-				success = false;
-				lw.doAlert("Invalid Playlist", "Unrecognized playlist file. Import failed.");
-				return;
-			}
-		}
+		foreach (LinkedList l in paths)
+		    if (l.size > 0)
+		        filtered_paths += l;
 		
 		if(success) {
+/*<<<<<<< TREE
 			if(paths.size > 0) {
 				stdout.printf("paths size is %d\n", paths.size);
 				lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
@@ -907,6 +924,19 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.station_ids(), true, true, false);
 			}
 		}
+=======*/
+			if(filtered_paths.length > 0) {
+				debug ("I was called");
+				lm.fo.import_from_playlist_file_info(names, filtered_paths);
+		    		lw.updateSensitivities();
+		    	}
+
+			if(stations.size > 0) {
+				stdout.printf("stations size is %d\n", stations.size);
+				lm.add_medias(stations, true);
+			}
+		}
+//>>>>>>> MERGE-SOURCE
 	}
 	
 	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {

@@ -185,7 +185,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not load medias from db: %s\n", err.message);
+			stdout.printf("Could not load media from db: %s\n", err.message);
 		}
 		
 		return rv;
@@ -318,7 +318,7 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 			transaction.commit();
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not remove medias from db: %s\n", err.message);
+			stdout.printf("Could not remove media from db: %s\n", err.message);
 		}
 	}
 	

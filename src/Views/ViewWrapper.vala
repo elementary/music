@@ -335,6 +335,8 @@ public class BeatBox.ViewWrapper : Box {
 
 		lm.medias_updated.connect ((list) => { update_media (list); });
 		
+		
+		//XXX
 		if (hint != Hint.CDROM)
 			lm.medias_removed.connect ((list) => { remove_media (list); });
 
@@ -601,7 +603,6 @@ public class BeatBox.ViewWrapper : Box {
 		if(!lm.playing)
 			lw.playClicked();
 	}
-
 
 	public void show_retrieving_similars() {
 		if(hint != Hint.SIMILAR || !have_error_box || !lm.media_active)

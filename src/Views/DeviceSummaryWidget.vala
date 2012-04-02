@@ -139,6 +139,9 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		EventBox eb = new EventBox();
 		
 		eb.add(new Label("test"));
+
+		// add content-view styling
+		eb.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 		
 		//var content_plus_spacewidget = new Box(Orientation.VERTICAL, 0);
 		this.set_border_width(0);

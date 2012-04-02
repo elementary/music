@@ -80,7 +80,7 @@ public class LastFM.SimilarMedias : Object {
 	/** Gets similar medias
 	 * @param artist The artist of media to get similar to
 	 * @param title The title of media to get similar to
-	 * @return The medias that are similar
+	 * @return The media that are similar
 	 */
 	public void getSimilarTracks(string title, string artist) {
 		var artist_fixed = LastFM.Core.fix_for_url(artist);

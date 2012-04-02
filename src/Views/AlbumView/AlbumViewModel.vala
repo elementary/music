@@ -237,7 +237,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 		iter.user_data = added;
 	}
 
-	/** convenience method to insert medias into the model. No iters returned. **/
+	/** convenience method to insert media into the model. No iters returned. **/
 	public void appendMedias(Collection<Media> albums, bool emit) {
 		foreach(var album in albums) {
 			SequenceIter<Media> added = rows.append(album);

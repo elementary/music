@@ -72,9 +72,9 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_QUESTION, Gtk.IconSize.DIALOG);
-		Label title = new Label("Import medias from " + d.getDisplayName());
+		Label title = new Label("Import media from " + d.getDisplayName());
 		Label info = new Label("The following files were found on " + d.getDisplayName() + ", but are not in your library. Check all files you would like to import.");
-		transferAll = new CheckButton.with_label(_("Import all medias"));
+		transferAll = new CheckButton.with_label(_("Import all media"));
 		mediasScroll = new ScrolledWindow(null, null);
 		mediasView = new TreeView();
 		mediasModel = new ListStore(5, typeof(bool), typeof(int), typeof(string), typeof(string), typeof(string));
@@ -84,7 +84,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Import " + ((medias.size > 1) ? (medias.size.to_string() + " medias") : (lm.media_from_id(medias.get(0)).title)) + " from " + d.getDisplayName() + "</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">Import " + ((medias.size > 1) ? (medias.size.to_string() + " media") : (lm.media_from_id(medias.get(0)).title)) + " from " + d.getDisplayName() + "</span>");
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
 		
@@ -158,7 +158,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		VBox listBox = new VBox(false, 0);
 		listBox.pack_start(mediasScroll, true, true, 5);
 		
-		Expander exp = new Expander(_("Select individual medias to import:"));
+		Expander exp = new Expander(_("Select individual media to import:"));
 		exp.add(listBox);
 		exp.expanded = false;
 		
