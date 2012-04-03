@@ -157,6 +157,7 @@ public class BeatBox.ViewWrapper : Box {
 
 	// Stops from searching same thing multiple times
 	private string last_search = "";
+	private string actual_search_string = ""; // what the user actually typed in the search box.
 
 	public string get_search_string () {
 		return last_search;
@@ -459,21 +460,63 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	// We only check for white space at the moment
-	private bool get_is_valid_search_string (string s) {
+	/**
+	 * Description:
+	 * Receives a string and returns a valid search string.
+	 * This method can be used as a parser.
+	 *
+	 * Examples:
+	 *
+	 * INPUT:           OUTPUT:
+	 * "     Foo Bar "  "Foo Bar" --> Removes trailing spaces from beginning and end
+	 * "             "  ""        --> Converts white space into a void string
+	 * "Foo Bar"       "Foo Bar"  --> Doesn't change middle spaces.
+	 */
+	private string get_valid_search_string (string s) {
 		if (s.length < 1)
-			return true;
+			return "";
 
-		int white_space = 0;
+		bool found_valid_char = false;
+		int white_space = 0, first_char_position = 0;
 		unichar c;
 
-		for (int i = 0; s.get_next_char (ref i, out c);)
-			if (c.isspace())
+		// WHITESPACE CHECK
+		for (int i = 0; s.get_next_char (ref i, out c);) {
+			if (c.isspace()) {
 				++ white_space;
+			}
+			else {
+				found_valid_char = true;
+				first_char_position = i; // position of the first valid character
+				break; // no need to keep looping
+			}
+		}
 
 		if (white_space == s.length)
-			return false; // white space. Invalid string
+			return "";
 
-		return true; // Passed our tests. Valid string
+		if (found_valid_char) {
+			// Remove trailing spaces
+			var rv = new StringBuilder();
+
+			// From beginning
+			int last_char_position = 0;
+			for (int i = first_char_position - 1; s.get_next_char (ref i, out c);) {
+				if (!c.isspace()) {
+					last_char_position = i;
+				}
+			}
+			
+			// Remove trailing spaces. In fact we just don't copy chars out of [first_valid_char, last_valid_char]
+			for (int i = first_char_position - 1; s.get_next_char (ref i, out c) && i <= last_char_position;) {
+					// Append char
+					rv.append_unichar (c);
+			}
+
+			return rv.str;
+		}
+
+		return "";
 	}
 
 
@@ -579,8 +622,10 @@ public class BeatBox.ViewWrapper : Box {
 		if (lw.viewSelector.selected != (int)current_view && (int)current_view <= 2)
 			lw.viewSelector.set_active ((int)current_view);
 
+		setting_search = true;
 		// Restore this view wrapper's search string
-		lw.searchField.set_text (get_search_string());
+		lw.searchField.set_text (actual_search_string);
+		setting_search = false;
 
 		// Make the view switcher and search box insensitive if the current item
 		// is either the error box or welcome screen
@@ -708,16 +753,14 @@ public class BeatBox.ViewWrapper : Box {
 		if (!is_current_wrapper)
 			return;
 
-		var new_search = lw.searchField.get_text();
-
-		if (!get_is_valid_search_string (new_search))
-			return;
+		actual_search_string = lw.searchField.get_text();
+		var new_search = get_valid_search_string (actual_search_string);
+		debug ("NEW SEARCH is '%s'", new_search);
 
 		if(!setting_search && lw.initializationFinished && is_current_wrapper && new_search.length != 1 && this.visible) {
 			timeout_search.offer_head(new_search.down());
 
 			Timeout.add(200, () => {
-
 				string to_search = timeout_search.poll_tail();
 				if(to_search != new_search || to_search == last_search)
 					return false;
