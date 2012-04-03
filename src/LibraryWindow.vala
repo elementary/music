@@ -436,6 +436,16 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		if(lm.song_ids().size == 0)
 			setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
+		
+		// Redirect key presses to the search box. If it causes problems, move inside ViewWrapper.vala
+		this.key_press_event.connect( (event) => {
+			if(Regex.match_simple("[a-zA-Z0-9]", event.str) && searchField.sensitive && !searchField.has_focus) {
+				searchField.grab_focus();
+				// not needed since this is the main widget
+				//searchField.insert_at_cursor(event.str);
+			}
+			return false;
+		});
 	}
 
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {

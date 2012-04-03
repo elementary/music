@@ -520,7 +520,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		menu_item.toggled.connect (on_menu_item_toggled);
 		view.get_column (0).get_button ().button_press_event.connect (on_header_clicked);
 		view.row_activated.connect (view_double_click);
-		view.key_press_event.connect (key_pressed);
 	}
 
 	private void on_menu_item_toggled () {
@@ -659,15 +658,6 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 		// emit signal
 		header_clicked (e);
-
-		return true;
-	}
-
-	private bool key_pressed (Gdk.EventKey event) {
-		if (Regex.match_simple ("[a-zA-Z0-9]", event.str)) {
-			miller_parent.lw.searchField.grab_focus ();
-			miller_parent.lw.searchField.insert_at_cursor (event.str);
-		}
 
 		return true;
 	}
