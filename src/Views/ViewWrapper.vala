@@ -211,6 +211,35 @@ public class BeatBox.ViewWrapper : Box {
 				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
 				column_browser = new MillerColumns (this);
 				break;
+			case Hint.HISTORY:
+			case Hint.QUEUE:
+				//list view only				
+				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
+
+				error_box = new WarningLabel();
+				error_box.show_icon = false;
+				
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Empty Playlist") + "</span>\n\n" + _("..."));
+				break;
+			case Hint.PLAYLIST:
+			case Hint.SMART_PLAYLIST:
+				// list, album and column views
+				album_view = new AlbumView (this, get_media_ids());
+				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
+			
+				// No column browser for now
+				//column_browser = new MillerColumns (this);
+				
+				error_box = new WarningLabel();
+				error_box.show_icon = false;
+				
+				if (the_hint == Hint.PLAYLIST)
+					error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Empty Playlist") + "</span>\n\n" + _("..."));
+				else
+					error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Empty Playlist") + "</span>\n\n" + _("..."));
+
+				
+				break;
 			case Hint.SIMILAR:
 				// list view only
 				list_view = new SimilarPane(this);
@@ -275,10 +304,10 @@ public class BeatBox.ViewWrapper : Box {
 
 				break;
 			default:
-				// list and album views
-				album_view = new AlbumView (this, get_media_ids());
-				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
-
+				// nothing but an error box
+				error_box = new WarningLabel ();
+				error_box.show_icon = true;
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("WARNING: Default View Wrapper!"));
 				break;
 		}
 
@@ -799,6 +828,9 @@ public class BeatBox.ViewWrapper : Box {
 		// Now update the views to reflect the change
 		if (_populate_views)
 			populate_views (); // this also updates the statusbar
+
+		// Check whether we should show the error box in case there's no media
+		check_show_error_box ();
 
 		in_update = false;
 	}
