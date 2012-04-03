@@ -504,7 +504,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// Hide album list view if there's one
 		var selected_view = get_current_view_wrapper ();
 		if (selected_view is ViewWrapper) {
-			if ((selected_view as ViewWrapper).have_album_view)
+			if ((selected_view as ViewWrapper).has_album_view)
 				((selected_view as ViewWrapper).album_view as AlbumView).album_list_view.hide();
 		}
 
@@ -693,7 +693,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		bool showMore = lm.settings.getMoreVisible();
 
 		bool showingMediaList = (get_current_view_wrapper () is ViewWrapper);
-		bool songsInList = showingMediaList ? (get_current_view_wrapper () as ViewWrapper).have_media : false;
+		bool songsInList = showingMediaList ? (get_current_view_wrapper () as ViewWrapper).has_media : false;
 		bool showingMusicList = sideTree.convertToChild(sideTree.getSelectedIter()) == sideTree.library_music_iter;
 		bool showMainViews = (haveSongs || (haveMedias && !showingMusicList));
 
@@ -1309,7 +1309,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			queriedlastfm = true;
 
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.playlists_similar_iter);
-			if(vw.have_list_view && !(vw.list_view as BaseListView).is_current_view) {
+			if(vw.has_list_view && !(vw.list_view as BaseListView).is_current_view) {
 				vw.show_retrieving_similars();
 				similarMedias.queryForSimilar(lm.media_info.media);
 			}
@@ -1493,7 +1493,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		if(w is ViewWrapper) {
 			ViewWrapper vw = (ViewWrapper)w;
 
-			if (((ViewWrapper)w).have_list_view)
+			if (((ViewWrapper)w).has_list_view)
 				vw.list_view.set_as_current_list(1, !(vw.list_view as BaseListView).is_current_view);
 
 			lm.current_index = 0;

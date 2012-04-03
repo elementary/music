@@ -100,18 +100,18 @@ public class BeatBox.ViewWrapper : Box {
 
 	/* UI PROPERTIES */
 
-	public bool have_album_view      { get { return album_view != null;     } }
-	public bool have_list_view       { get { return list_view != null;      } }
-	public bool have_column_browser  { get { return column_browser != null; } }
-	public bool have_error_box       { get { return error_box != null;      } }
-	public bool have_welcome_screen  { get { return welcome_screen != null; } }
+	public bool has_album_view      { get { return album_view != null;     } }
+	public bool has_list_view       { get { return list_view != null;      } }
+	public bool has_column_browser  { get { return column_browser != null; } }
+	public bool has_error_box       { get { return error_box != null;      } }
+	public bool has_welcome_screen  { get { return welcome_screen != null; } }
 
 	public bool column_browser_enabled {
 		get {
-			return (have_column_browser) ? !column_browser.no_show_all : false;
+			return (has_column_browser) ? !column_browser.no_show_all : false;
 		}
 		private set {
-			if (have_column_browser) {
+			if (has_column_browser) {
 				column_browser.set_no_show_all (!value);
 				if (value) {
 					// Populate column browser
@@ -131,11 +131,7 @@ public class BeatBox.ViewWrapper : Box {
 		}
 	}
 
-	/**
-	 * This boolean is extremely important. It defines whether we show the views or not,
-	 * and also other widgets, like the error box or welcome screen.
-	 */
-	public bool have_media { get { return media_count > 0; } }
+	public bool has_media { get { return media_count > 0; } }
 
 
 	/**
@@ -314,23 +310,23 @@ public class BeatBox.ViewWrapper : Box {
 
 		// Now setup the view wrapper based on available widgets
 
-		if (have_error_box) {
+		if (has_error_box) {
 			view_container.append_page (error_box);
 			current_view = ViewType.ERROR;
 		}
 
-		if (have_welcome_screen) {
+		if (has_welcome_screen) {
 			view_container.append_page (welcome_screen);
 			current_view = ViewType.WELCOME;
 		}
 
-		if (have_album_view)
+		if (has_album_view)
 			view_container.append_page (album_view);
 
-		if (have_list_view) {
+		if (has_list_view) {
 			list_view_container = new Box (Orientation.HORIZONTAL, 0);
 
-			if (have_column_browser) {
+			if (has_column_browser) {
 				list_view_hpaned = new Paned (Orientation.HORIZONTAL);
 				list_view_vpaned = new Paned (Orientation.VERTICAL);
 
@@ -401,7 +397,7 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	private void connect_column_browser_ui_signals () {
-		if (!have_column_browser)
+		if (!has_column_browser)
 			return;
 
 		// For automatic position stuff
@@ -447,7 +443,7 @@ public class BeatBox.ViewWrapper : Box {
 
 	private void on_quit () {
 		// Need to add a proper fix later ...
-		if (have_column_browser) {
+		if (has_column_browser) {
 			if (column_browser.visible) {
 				if (column_browser.actual_position == MillerColumns.Position.LEFT)
 					lw.settings.set_miller_columns_width(list_view_hpaned_position);
@@ -521,7 +517,7 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	private void set_column_browser_position (MillerColumns.Position position) {
-		if (!have_column_browser)
+		if (!has_column_browser)
 			return;
 
 		MillerColumns.Position actual_position = position; //position that will be actually applied
@@ -575,19 +571,19 @@ public class BeatBox.ViewWrapper : Box {
 		// Find position in notebook
 		switch (type) {
 			case ViewType.LIST:
-				if (have_list_view)
+				if (has_list_view)
 					view_index = view_container.page_num (list_view_container);
 				break;
 			case ViewType.ALBUM:
-				if (have_album_view)
+				if (has_album_view)
 					view_index = view_container.page_num (album_view);
 				break;
 			case ViewType.ERROR:
-				if (have_error_box)
+				if (has_error_box)
 					view_index = view_container.page_num (error_box);
 				break;
 			case ViewType.WELCOME:
-				if (have_welcome_screen)
+				if (has_welcome_screen)
 					view_index = view_container.page_num (welcome_screen);
 				break;
 		}
@@ -638,13 +634,13 @@ public class BeatBox.ViewWrapper : Box {
 		}
 		else {
 			// the view selector will only be sensitive if both views are available
-			lw.viewSelector.set_sensitive (have_album_view && have_list_view);
+			lw.viewSelector.set_sensitive (has_album_view && has_list_view);
 
 			// Insensitive if there's no media to search
-			lw.searchField.set_sensitive (have_media);
+			lw.searchField.set_sensitive (has_media);
 
 			// Sensitive only if the column browser is available and the current view type is LIST
-			bool column_browser_available = (have_column_browser && current_view == ViewType.LIST);
+			bool column_browser_available = (has_column_browser && current_view == ViewType.LIST);
 			lw.column_browser_toggle.set_sensitive (column_browser_available);
 			lw.column_browser_toggle.set_active ((column_browser_available) ? column_browser.visible : false);
 		}
@@ -660,13 +656,13 @@ public class BeatBox.ViewWrapper : Box {
 		set_active_view (selected_view, out successful);
 
 		// Hide album list view
-		if (successful && have_album_view)
+		if (successful && has_album_view)
 			(album_view as AlbumView).album_list_view.hide ();
 	}
 
 
 	public void play_first_media () {
-		if (have_list_view)
+		if (has_list_view)
 			list_view.set_as_current_list(1, true);
 		else
 			return;
@@ -679,7 +675,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	public void show_retrieving_similars() {
-		if(hint != Hint.SIMILAR || !have_error_box || !lm.media_active)
+		if(hint != Hint.SIMILAR || !has_error_box || !lm.media_active)
 			return;
 
 		error_box.show_icon = false;
@@ -705,7 +701,7 @@ public class BeatBox.ViewWrapper : Box {
 		update_library_window_widgets ();
 
 		// Update List View paned position to use the same position as the miller columns in other view wrappers
-		if (have_column_browser) {
+		if (has_column_browser) {
 			if (column_browser.actual_position == MillerColumns.Position.LEFT && list_view_hpaned_position != -1)
 				list_view_hpaned.set_position (list_view_hpaned_position);
 			else if (column_browser.actual_position == MillerColumns.Position.TOP && list_view_vpaned_position != -1)
@@ -785,7 +781,7 @@ public class BeatBox.ViewWrapper : Box {
 		if (check_show_error_box())
 			return;
 
-		if (have_album_view)
+		if (has_album_view)
 			album_view.populate_view ();
 
 		if (column_browser_enabled)
@@ -794,7 +790,7 @@ public class BeatBox.ViewWrapper : Box {
 			// for performance reasons. We don't guarantee persistent selections if the column
 			// browser is enabled.
 			column_browser.populate (get_showing_media_ids());
-		else if (have_list_view)
+		else if (has_list_view)
 			list_view.populate_view ();
 
 		// Update statusbar ...
@@ -810,7 +806,7 @@ public class BeatBox.ViewWrapper : Box {
 		// For performance reasons we won't update showing_medias to match
 		// the results of the miller columns.
 
-		if(lw.initializationFinished && have_list_view) {
+		if(lw.initializationFinished && has_list_view) {
 			list_view.set_show_next (column_browser.media_results);
 			list_view.populate_view();
 			set_statusbar_info();
@@ -862,10 +858,10 @@ public class BeatBox.ViewWrapper : Box {
 		foreach (int i in search_results)
 			showing_medias.set (i, 1);
 
-		if (have_album_view)
+		if (has_album_view)
 			album_view.set_show_next (search_results);
 
-		if (!column_browser_enabled && have_list_view)
+		if (!column_browser_enabled && has_list_view)
 			list_view.set_show_next (search_results);
 
 		// Now update the views to reflect the change
@@ -889,7 +885,7 @@ public class BeatBox.ViewWrapper : Box {
 			medias.set (i, 1);
 
 		// BEGIN special case for similar media
-		if(!in_thread && have_list_view && hint == Hint.SIMILAR && is_current_wrapper) {
+		if(!in_thread && has_list_view && hint == Hint.SIMILAR && is_current_wrapper) {
 			SimilarPane sp = (SimilarPane)(list_view);
 
 			if (check_show_error_box())
@@ -904,7 +900,7 @@ public class BeatBox.ViewWrapper : Box {
 			}
 			else {
 				if(media_count < 10) { // say we could not find similar media
-					if (have_error_box) {
+					if (has_error_box) {
 						error_box.show_icon = true;
 						error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."));
 						// Show the error box
@@ -934,7 +930,7 @@ public class BeatBox.ViewWrapper : Box {
 		// Check if we should show the error box or welcome screen here
 		// FIXME: we could do better here. We should be able to set what kind of view we
 		//         want to handle the no-media case and maybe just emit a signal here.
-		if (have_error_box || have_welcome_screen) {
+		if (has_error_box || has_welcome_screen) {
 			int size_check;
 
 			if (hint == Hint.PODCAST) {
@@ -955,9 +951,9 @@ public class BeatBox.ViewWrapper : Box {
 			}
 
 			if (size_check < 1) { // no media
-				if (have_error_box)
+				if (has_error_box)
 					set_active_view (ViewType.ERROR);
-				else if (have_welcome_screen)
+				else if (has_welcome_screen)
 					set_active_view (ViewType.WELCOME);
 
 				return true;
@@ -965,7 +961,7 @@ public class BeatBox.ViewWrapper : Box {
 
 			var new_view = (ViewType) lw.viewSelector.selected;
 			
-			if (current_view != new_view && (new_view == ViewType.LIST && have_list_view) || (new_view == ViewType.ALBUM && have_album_view))
+			if (current_view != new_view && (new_view == ViewType.LIST && has_list_view) || (new_view == ViewType.ALBUM && has_album_view))
 				set_active_view (new_view);
 		}
 
@@ -1047,12 +1043,12 @@ public class BeatBox.ViewWrapper : Box {
 					// browser is enabled.
 					//column_browser.populate (get_showing_media_ids());
 				}
-				else if (have_list_view) {
+				else if (has_list_view) {
 					list_view.append_medias(to_add);
 					list_view.remove_medias(to_remove_show);
 				}
 
-				if (have_album_view) {
+				if (has_album_view) {
 					album_view.append_medias(to_add);
 					album_view.remove_medias(to_remove_show);
 				}
@@ -1093,7 +1089,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		// Now update the views to reflect the changes
 
-		if (have_album_view)
+		if (has_album_view)
 			album_view.remove_medias (to_remove);
 
 		if (column_browser_enabled)
@@ -1102,7 +1098,7 @@ public class BeatBox.ViewWrapper : Box {
 			// for performance reasons. We don't guarantee persistent selections if the column
 			// browser is enabled.
 			column_browser.populate (get_showing_media_ids());
-		else if (have_list_view)
+		else if (has_list_view)
 			list_view.remove_medias (to_remove);
 
 		set_statusbar_info ();
@@ -1138,7 +1134,7 @@ public class BeatBox.ViewWrapper : Box {
 			if (check_show_error_box())
 				return;
 
-			if (have_album_view)
+			if (has_album_view)
 				album_view.append_medias (to_add);
 
 			if (column_browser_enabled) {
@@ -1148,7 +1144,7 @@ public class BeatBox.ViewWrapper : Box {
 				// browser is enabled.
 				column_browser.populate (get_showing_media_ids());
 			}
-			else if (have_list_view) {
+			else if (has_list_view) {
 				list_view.append_medias (to_add);
 			}
 		}

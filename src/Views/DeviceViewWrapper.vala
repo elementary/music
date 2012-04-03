@@ -28,10 +28,10 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	public DeviceViewWrapper(LibraryWindow lww, Collection<int> medias, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id, Device d) {
 		base(lww, medias, sort, dir, the_hint, id);
 		
-		if (have_list_view)
+		if (has_list_view)
 			list_view.import_requested.connect(import_request);
 		
-		if (have_album_view)
+		if (has_album_view)
 			album_view.import_requested.connect(import_request);
 		
 		this.d = d;
