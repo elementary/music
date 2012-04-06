@@ -2,7 +2,7 @@ NULL=
 
 desktopdir       = $(datadir)/applications
 desktop_DATA     = $(desktop_in_files:.desktop.in=.desktop)
-desktop_in_files = beatbox.desktop.in				
+desktop_in_files = noise.desktop.in				
 @INTLTOOL_DESKTOP_RULE@
 
 EXTRA_DIST = \

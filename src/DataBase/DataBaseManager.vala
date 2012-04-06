@@ -49,17 +49,17 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		GLib.File beatbox_folder;
 		GLib.File db_file;
 		
-		beatbox_folder = GLib.File.new_for_path(GLib.Path.build_filename(Environment.get_user_data_dir(), "/beatbox"));
+		beatbox_folder = GLib.File.new_for_path(GLib.Path.build_filename(Environment.get_user_data_dir(), "/noise"));
 		if(!beatbox_folder.query_exists()) {
 			try {
 				beatbox_folder.make_directory(null);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("CRITICAL: Could not create beatbox folder in data directory: %s\n", err.message);
+				stdout.printf("CRITICAL: Could not create 'noise' folder in data directory: %s\n", err.message);
 			}
 		}
 		
-		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_473.db"));
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/noise_database.db"));
 		if(!db_file.query_exists())
 			need_create = true;
 		

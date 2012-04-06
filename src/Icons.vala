@@ -158,7 +158,7 @@ namespace Icons {
 		HISTORY = new BeatBox.Icon ("document-open-recent", 22, Type.ACTION, null, false);
 
 		// 16 x 16
-		BEATBOX = new BeatBox.Icon ("beatbox", 16, Type.APP, null, true);
+		BEATBOX = new BeatBox.Icon ("noise", 16, Type.APP, null, true);
 		RADIO = new BeatBox.Icon ("internet-radio", 16, Type.MIMETYPE, null, true);
 		MUSIC = new BeatBox.Icon ("library-music", 16, Type.MIMETYPE, null, true);
 		PODCAST = new BeatBox.Icon ("library-podcast", 16, Type.MIMETYPE, null, true);

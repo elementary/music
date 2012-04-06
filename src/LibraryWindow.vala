@@ -100,9 +100,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		this.app = app;
 		this.settings = settings;
 
-		// Init LibNotify
-		Notify.init ("beatbox");
-
 		// Load icon information
 		Icons.init ();
 
@@ -147,7 +144,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 		else {
 			lm.clearCurrent();
-			//((MusicTreeView)sideTree.getWidget(sideTree.library_music_iter)).set_as_current_list("0");
 
 			// make sure we don't re-count stats
 			if((int)settings.getLastMediaPosition() > 5)
@@ -170,19 +166,18 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// simple message to terminal
 		message ("Building user interface\n");
 
-
-		// set the size based on saved gconf settings
-		set_default_size(settings.getWindowWidth(), settings.getWindowHeight());
-		resize(settings.getWindowWidth(), settings.getWindowHeight());
-
 		// set window min/max
 		Gdk.Geometry geo = Gdk.Geometry();
 		geo.min_width = 700;
 		geo.min_height = 400;
 		set_geometry_hints(this, geo, Gdk.WindowHints.MIN_SIZE);
 
+		// set the size based on saved gconf settings
+		set_default_size(settings.getWindowWidth(), settings.getWindowHeight());
+		
+
 		// set the title
-		set_title("BeatBox");
+		set_title("Noise");
 
 		// set the icon
 		set_icon(Icons.BEATBOX.render (IconSize.MENU, null));
@@ -194,7 +189,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		contentBox = new VBox(false, 0);
 		mainViews = new Notebook ();
 		videoArea = new DrawingArea();
-		welcomeScreen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("BeatBox can't seem to find your music."));
+		welcomeScreen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("Noise can't seem to find your music."));
 
 		sideTree = new SideTreeView(lm, this);
 		sideTreeScroll = new ScrolledWindow(null, null);
@@ -261,8 +256,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		//FIXME: don't scroll horizontally
 		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 		sideTreeScroll.add(sideTree);
-
-		updateSensitivities();
 
 		/* create appmenu menu */
 		libraryOperationsMenu.append(fileImportMusic);
@@ -404,28 +397,20 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		sideTree.resetView();
 
-		/*var vw = (ViewWrapper)get_current_view_wrapper ();*/
-
 		if(lm.media_active) {
-			//vw.list_view.set_as_current_list(0, true);
-			//debug ("set a view as current list\n");
 			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
 				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
 			}
 		}
 
-		//vw.do_update(vw.current_view, vw.get_media_ids(), false, true, false);
-
-		resize(settings.getWindowWidth(), this.default_height);
 
 		show_all();
+		updateSensitivities();
 
 		// Now set the selected view
 		viewSelector.selected = settings.getViewMode();
 
 		searchField.set_text(lm.settings.getSearchString());
-
-		updateSensitivities();
 
 		viewSelector.mode_changed.connect( () => {
 			if (viewSelector.sensitive)
@@ -441,8 +426,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		this.key_press_event.connect( (event) => {
 			if(Regex.match_simple("[a-zA-Z0-9]", event.str) && searchField.sensitive && !searchField.has_focus) {
 				searchField.grab_focus();
-				// not needed since this is the main widget
-				//searchField.insert_at_cursor(event.str);
 			}
 			return false;
 		});
@@ -485,7 +468,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		/* Pack view wrapper into the main views */
 		if (add_to_main_views(view_wrapper) == -1)
-			critical ("Failed to append view '%s' to BeatBox's main views", view_name);
+			critical ("Failed to append view '%s' to Noise's main views", view_name);
 
 		return view_wrapper;
 	}
@@ -564,13 +547,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		int view_index = add_to_main_views (view_wrapper);
 
 		if (view_index == -1)
-			critical ("Failed to append view '%s' to BeatBox's main views", name);
+			critical ("Failed to append view '%s' to Noise's main views", name);
 
 		return view_wrapper;
 	}
 
 	/**
-	 * Builds and sets up the default BeatBox views. That includes main sidebar elements
+	 * Builds and sets up the default Noise views. That includes main sidebar elements
 	 * and categories, which at the same time wrap treeviews, icon views, welcome screens, etc.
 	 */
 	private void build_main_views () {
@@ -656,7 +639,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			}
 		}
 
-		/* FIXME @deprecated. These are view wrapper internals
+		/* DELETE THIS: @deprecated. These are view wrapper internals
 
 		if(vw == null || vw.list_view == null || vw.album_view == null)
 			return;
@@ -708,10 +691,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		else
 			topDisplay.show_scale();
 
-		sourcesToMedias.set_visible(viewSelector.selected != 3);
-		videoArea.set_visible(viewSelector.selected == 3);
+		// HIDE SIDEBAR WHEN PLAYING VIDEOS ...
+		sourcesToMedias.set_visible(viewSelector.selected != 2);
+		videoArea.set_visible(viewSelector.selected == 2);
 
-		topDisplay.set_visible(mediaActive || doingOps);
+		bool show_top_display = mediaActive || doingOps;
+		topDisplay.set_visible (show_top_display);
+
 		topDisplay.set_scale_sensitivity(mediaActive);
 
 		previousButton.set_sensitive(mediaActive || songsInList);
@@ -719,16 +705,21 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		nextButton.set_sensitive(mediaActive || songsInList);
 
 		mainViews.set_visible(showMainViews);
+
 		welcomeScreen.set_visible(!showMainViews); // FIXME
 
 		welcomeScreen.set_item_sensitivity(0, !doingOps);
 		foreach(int key in welcome_screen_keys.keys)
 			welcomeScreen.set_item_sensitivity(key, !doingOps);
 
-		statusBar.set_visible(showMainViews && showingMediaList);
+		bool show_statusbar = showMainViews && showingMediaList;
+		statusBar.set_visible(show_statusbar);
 
-		infoPanel.set_visible(showMainViews && showMore && mediaActive);
-		infoPanelChooser.set_visible(showMainViews && mediaActive);
+		bool show_info_panel = showMainViews && showMore && mediaActive;
+		infoPanel.set_visible(show_info_panel);
+		
+		bool show_info_panel_chooser = showMainViews && mediaActive;
+		infoPanelChooser.set_visible(show_info_panel_chooser);
 
 		// hide playlists when media list is empty
 		sideTree.setVisibility(sideTree.playlists_iter, haveMedias);
@@ -1215,7 +1206,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		try {
 			if (Notify.is_initted ()) {
 				notification.close();
-				notification.update(_("Import Complete"), _("BeatBox has imported your library."), "beatbox");
+				notification.update(_("Import Complete"), _("Noise has imported your library."), "beatbox");
 				notification.set_image_from_pixbuf(Icons.BEATBOX.render (Gtk.IconSize.DIALOG));
 				notification.set_timeout (Notify.EXPIRES_DEFAULT);
 				notification.set_urgency (Notify.Urgency.NORMAL);
@@ -1249,7 +1240,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			topDisplay.set_label_text("");
 
 		resetSideTree(false);
-		//searchField.changed();
 		debug("music Rescanned\n");
 		updateSensitivities();
 	}
@@ -1381,7 +1371,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
 
 		((ViewWrapper)w).similarsFetched = true;
-		//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, similarIDs, true, true, false);
 		((ViewWrapper)w).set_media (similarIDs);
 
 		infoPanel.updateMediaList(similarDont);
@@ -1521,7 +1510,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		var dialog = new MessageDialog(this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK,
 				title);
 
-		dialog.title = "BeatBox";
+		dialog.title = "Noise";
 		dialog.secondary_text = message;
 		dialog.secondary_use_markup = true;
 

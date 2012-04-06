@@ -1,11 +1,11 @@
 [Desktop Entry]
 Type=Application
-Version=0.2 (beta)
-Name=BeatBox
+Version=1.0
+Name=Noise
 GenericName=Music Player
-Comment=Listen to music and podcasts
-Exec=beatbox
-Icon=beatbox
+Comment=Listen to music
+Exec=noise
+Icon=noise
 Terminal=false
 Categories=GNOME;Audio;Music;Player;AudioVideo;
 MimeType=x-content/audio-player;

@@ -1,5 +1,5 @@
 [Plugin]
-Module=beatbox-podcasts
+Module=noise-podcasts
 Loader=C
 IAge=2
 Name=Podcasts

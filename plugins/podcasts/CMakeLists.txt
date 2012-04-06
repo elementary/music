@@ -5,8 +5,8 @@ vala_precompile(VALA_C
         Podcasts.vala
     PACKAGES
         granite
-        beatbox
-        beatbox-core
+        noise
+        noise-core
         libxml-2.0
         gee-1.0
         gstreamer-0.10
@@ -22,9 +22,9 @@ vala_precompile(VALA_C
         --vapidir=${CMAKE_BINARY_DIR}/core/
         --vapidir=${CMAKE_BINARY_DIR}/src/
     )
-add_library(beatbox-podcasts MODULE ${VALA_C})
+add_library(noise-podcasts MODULE ${VALA_C})
 
-target_link_libraries (beatbox-podcasts ${NORMAL_LIBRARIES})
-install(TARGETS beatbox-podcasts DESTINATION lib/beatbox/plugins/podcasts/)
-install(FILES podcasts.plugin DESTINATION lib/beatbox/plugins/podcasts/)
-add_dependencies(beatbox-podcasts beatbox)
+target_link_libraries (noise-podcasts ${NORMAL_LIBRARIES})
+install(TARGETS noise-podcasts DESTINATION lib/noise/plugins/podcasts/)
+install(FILES podcasts.plugin DESTINATION lib/noise/plugins/podcasts/)
+add_dependencies(noise-podcasts noise)

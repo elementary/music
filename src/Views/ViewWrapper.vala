@@ -366,14 +366,17 @@ public class BeatBox.ViewWrapper : Box {
 		if (hint != Hint.CDROM)
 			lm.medias_removed.connect ((list) => { remove_media (list); });
 
-		if (hint == Hint.QUEUE)
+		if (hint == Hint.QUEUE) {
 			lm.media_queued.connect ( (media_id) => {
 				var list = new LinkedList<int>();
 				list.add (media_id);
+				debug ("Adding %s to play queue ...", lm.media_from_id(media_id).title);
 				add_media (list);
 			});
-		else if (hint != Hint.CDROM)
+		} // XXX This won't populate playlists. This could be bad for smart playlists
+		else if (hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.AUDIOBOOK) {
 			lm.medias_added.connect ((list) => { add_media (list); });
+		}
 
 		lw.searchField.changed.connect (search_field_changed);
 		lw.viewSelector.mode_changed.connect (view_selector_changed);
@@ -410,7 +413,7 @@ public class BeatBox.ViewWrapper : Box {
 		});
 
 		column_browser.size_allocate.connect ( () => {
-			if (!lw.visible || !column_browser_enabled)
+			if (!lw.initializationFinished || !column_browser_enabled)
 				return;
 
 			if (column_browser.actual_position == MillerColumns.Position.LEFT) {
@@ -647,7 +650,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	public virtual void view_selector_changed () {
-		if (!lw.initializationFinished || (lw.visible && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ERROR || current_view == ViewType.WELCOME)
+		if (!lw.initializationFinished || (lw.initializationFinished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ERROR || current_view == ViewType.WELCOME)
 			return;
 
 		var selected_view = (ViewType) lw.viewSelector.selected;
@@ -778,8 +781,10 @@ public class BeatBox.ViewWrapper : Box {
 	 * For performance reasons, this process should be delayed until the user switches to this view wrapper.
 	 */
 	public void populate_views () {
-		if (check_show_error_box())
+		if (check_show_error_box()) {
+			needs_update = false;
 			return;
+		}
 
 		if (has_album_view)
 			album_view.populate_view ();
@@ -1025,8 +1030,10 @@ public class BeatBox.ViewWrapper : Box {
 			}
 
 			Idle.add( () => {
-				if (check_show_error_box())
+				if (check_show_error_box()) {
+					in_update = false;
 					return false;
+				}
 			
 				if (column_browser_enabled) {
 					// FIXME: not doing anything for now. Things that should be done
@@ -1042,6 +1049,19 @@ public class BeatBox.ViewWrapper : Box {
 					// for performance reasons. We don't guarantee persistent selections if the column
 					// browser is enabled.
 					//column_browser.populate (get_showing_media_ids());
+					
+					// let's see which media items match the current filter
+					//var to_remove_filtered = to_remove_show.copy();
+					//var to_add_filtered = to_add.copy();
+					
+					//foreach (var id in to_add)
+					//	if (!(id in column_browser.media_results))
+					//		to_add_filtered.remove (id);
+					
+					//foreach (var id in to_add)
+					//	if (!(id in column_browser.media_results))
+					//		to_remove_filtered.remove (id);
+						
 				}
 				else if (has_list_view) {
 					list_view.append_medias(to_add);
@@ -1084,8 +1104,10 @@ public class BeatBox.ViewWrapper : Box {
 			showing_medias.unset(i);
 		}
 
-		if (check_show_error_box())
+		if (check_show_error_box()) {
+			in_update = false;
 			return;
+		}	
 
 		// Now update the views to reflect the changes
 
@@ -1108,12 +1130,15 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	public void add_media (Collection<int> new_media) {
-		if(in_update)
+		if(in_update) {
+			debug ("%s: Already in update... returning", hint.to_string());
 			return;
+		}
 
 		in_update = true;
 
-		if(hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.STATION) { //FIXME DEVICE_?
+		//if(hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.STATION) { //FIXME DEVICE_?
+		if (is_current_wrapper) {
 			// find which media to add and update Media
 			var to_add = new LinkedList<int>();
 			foreach(int i in new_media) {
@@ -1131,8 +1156,10 @@ public class BeatBox.ViewWrapper : Box {
 			foreach(int i in to_show)
 				showing_medias.set(i, 1);
 
-			if (check_show_error_box())
+			if (check_show_error_box()) {
+				in_update = false;
 				return;
+			}
 
 			if (has_album_view)
 				album_view.append_medias (to_add);

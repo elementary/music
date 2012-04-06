@@ -49,7 +49,7 @@ public class BeatBox.MediaKeyListener : GLib.Object {
         if(media_object != null) {
             media_object.MediaPlayerKeyPressed.connect(mediaKeyPressed);
             try {
-				media_object.GrabMediaPlayerKeys("beatbox", (uint32)0);
+				media_object.GrabMediaPlayerKeys("noise", (uint32)0);
 			}
 			catch(IOError err) {
 				stdout.printf("Could not grab media player keys: %s\n", err.message);
@@ -59,7 +59,7 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 	
 	public void releaseMediaKeys() {
 		try {
-			media_object.ReleaseMediaPlayerKeys("beatbox");
+			media_object.ReleaseMediaPlayerKeys("noise");
 		}
 		catch(IOError err) {
 			stdout.printf("Could not release media player keys: %s\n", err.message);
@@ -104,7 +104,7 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 	}
 	
 	private void mediaKeyPressed(dynamic Object bus, string application, string key) {
-		if(application != "beatbox")
+		if(application != "noise")
 			return;
 		
 		if(key == "Previous") {

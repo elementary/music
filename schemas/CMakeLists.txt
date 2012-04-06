@@ -1,2 +1,2 @@
 include(GSettings)
-add_schema("org.elementary.beatbox.gschema.xml")
+add_schema("org.elementary.noise.gschema.xml")

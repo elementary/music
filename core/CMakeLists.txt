@@ -12,12 +12,12 @@ OPTIONS
     --thread
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     GENERATE_VAPI
-    beatbox-core
+    noise-core
     GENERATE_HEADER
-    beatbox-core
+    noise-core
 )
 add_definitions(${DEPS_CFLAGS})
 link_directories(${LIB_PATHS})
-add_library(beatbox-core SHARED ${VALA_C})
-target_link_libraries(beatbox-core ${DEPS_LIBRARIES})
-install (TARGETS beatbox-core DESTINATION lib)
+add_library(noise-core SHARED ${VALA_C})
+target_link_libraries(noise-core ${DEPS_LIBRARIES})
+install (TARGETS noise-core DESTINATION lib)

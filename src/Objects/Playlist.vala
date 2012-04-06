@@ -31,6 +31,8 @@ public class BeatBox.Playlist : Object {
 	private ViewWrapper _view_wrapper;
 	public ViewWrapper view_wrapper {
 		get {
+			if (_view_wrapper == null)
+				debug (@"Playlist '$name' does not have a ViewWrapper");
 			return _view_wrapper;
 		}
 		set {
@@ -71,23 +73,29 @@ public class BeatBox.Playlist : Object {
 		foreach (int id in ids)
 			_medias.add(id);
 
-		if (view_wrapper != null)
+		if (view_wrapper != null) {
+			debug (@"Adding $(ids.size) media items to playlist (ViewWrapper): $name");
 			view_wrapper.add_media (ids);
+		}
 	}
 	
 	public void removeMedia(Collection<int> ids) {
 		foreach (int id in ids)
 			_medias.remove(id);
 
-		if (view_wrapper != null)
+		if (view_wrapper != null) {
 			view_wrapper.remove_media (ids);
+			debug (@"Removing $(ids.size) media items from playlist (ViewWrapper): $name");
+		}
 	}
 	
 	public void clear() {
 		_medias.clear();
 		
-		if (view_wrapper != null)
+		if (view_wrapper != null) {
 			view_wrapper.set_media (_medias);
+			debug (@"Clearing playlist (ViewWrapper): $name");
+		}
 	}
 	
 	public void medias_from_string(string medias, LibraryManager lm) {
@@ -157,7 +165,7 @@ public class BeatBox.Playlist : Object {
 			rv = true;
 		}
 		catch(Error err) {
-			stdout.printf("Could not save playlist %s to m3u file %s: %s\n", name, dest.get_path(), err.message);
+			warning("Could not save playlist %s to m3u file %s: %s\n", name, dest.get_path(), err.message);
 		}
 		
 		return rv;
@@ -191,7 +199,7 @@ public class BeatBox.Playlist : Object {
 			rv = true;
 		}
 		catch(Error err) {
-			stdout.printf("Could not save playlist %s to pls file %s: %s\n", name, dest.get_path(), err.message);
+			warning("Could not save playlist %s to pls file %s: %s\n", name, dest.get_path(), err.message);
 		}
 		
 		return rv;
@@ -232,7 +240,7 @@ public class BeatBox.Playlist : Object {
 			}
 		}
 		catch(Error err) {
-			stdout.printf("Could not load m3u file at %s: %s\n", path, err.message);
+			warning("Could not load m3u file at %s: %s\n", path, err.message);
 			return false;
 		}
 		
@@ -265,7 +273,7 @@ public class BeatBox.Playlist : Object {
 			}
 		}
 		catch(Error err) {
-			stdout.printf("Could not load m3u file at %s: %s\n", path, err.message);
+			warning("Could not load m3u file at %s: %s\n", path, err.message);
 			return false;
 		}
 		

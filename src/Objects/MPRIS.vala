@@ -39,7 +39,7 @@ public class BeatBox.MPRIS : GLib.Object {
 	
 	public void initialize() {
 		owner_id = Bus.own_name(BusType.SESSION,
-		                        "org.mpris.MediaPlayer2.beatbox",
+		                        "org.mpris.MediaPlayer2.noise",
 		                        GLib.BusNameOwnerFlags.NONE,
                         		on_bus_acquired,
                         		on_name_acquired,
@@ -103,13 +103,13 @@ public class MprisRoot : GLib.Object {
 	}
 	public string DesktopEntry { 
 		owned get {
-			return "beatbox";
+			return "noise";
 		} 
 	}
 	
 	public string Identity {
 		owned get {
-			return "BeatBox";
+			return "Noise";
 		}
 	}
 	
@@ -266,7 +266,7 @@ public class MprisPlayer : GLib.Object {
 		changed_properties = null;
 		
 		try {
-			conn.emit_signal("org.mpris.MediaPlayer2.beatbox",
+			conn.emit_signal("org.mpris.MediaPlayer2.noise",
 			                 "/org/mpris/MediaPlayer2", 
 			                 "org.freedesktop.DBus.Properties", 
 			                 "PropertiesChanged", 

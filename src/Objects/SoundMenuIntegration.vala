@@ -43,10 +43,10 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 	}
 	
 	private void on_name_appeared(DBusConnection conn, string name) {
-		/* set up the server to connect to music.beatbox dbus */
+		/* set up the server to connect to music.noise dbus */
 		server = Indicate.Server.ref_default();
-		server.set("type", "music.beatbox");
-		server.set_desktop_file(GLib.Path.build_filename("/usr", "share", "applications", "beatbox.desktop", null));
+		server.set("type", "music.noise");
+		server.set_desktop_file(GLib.Path.build_filename("/usr", "share", "applications", "noise.desktop", null));
 		server.show();
 	}
 	

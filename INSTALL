@@ -2,7 +2,7 @@
 OPTIONAL
 --------------------------------------------------------------------------------
 sudo add-apt-repository ppa:elementary-os/daily
-sudo apt-get build-dep beatbox
+sudo apt-get build-dep noise
 
 --------------------------------------------------------------------------------
 REQUIRED
@@ -40,8 +40,8 @@ libpeas-dev
 --------------------------------------------------------------------------------
 BUILDING
 --------------------------------------------------------------------------------
-bzr branch lp:beat-box
-cd beat-box
+bzr branch lp:noise
+cd noise
 mkdir build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr

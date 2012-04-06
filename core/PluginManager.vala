@@ -73,9 +73,9 @@ public class BeatBox.Plugins.Manager : Object
     
     Peas.Engine engine_core;
     Peas.ExtensionSet exts_core;
-
+	/*
     [CCode (cheader_filename = "libpeas/libpeas.h", cname = "peas_extension_set_foreach")]
-    extern static void peas_extension_set_foreach (Peas.ExtensionSet extset, Peas.ExtensionSetForeachFunc option, void* data);
+    extern static void peas_extension_set_foreach (Peas.ExtensionSet extset, Peas.ExtensionSetForeachFunc option, void* data); */
 
     GLib.Settings settings;
     string settings_field;
@@ -105,7 +105,7 @@ public class BeatBox.Plugins.Manager : Object
 
         exts.extension_added.connect(on_extension_added);
         exts.extension_removed.connect(on_extension_removed);
-        peas_extension_set_foreach(exts, on_extension_added, null);
+        exts.foreach(exts_foreach_function);
             
         var core_list = engine.get_plugin_list ().copy ();
         string[] core_plugins = new string[core_list.length()];
@@ -149,6 +149,12 @@ public class BeatBox.Plugins.Manager : Object
         return view;
     }
 
+    void exts_foreach_function (Peas.ExtensionSet ext_set, Peas.PluginInfo info, Peas.Extension exten) {
+        ((Activatable)exten).object = new Iface ();
+        plugin_iface.register_iface (((Activatable)exten).object);
+        ((Activatable)exten).activate();
+    }
+
     void on_extension_added(Peas.PluginInfo info, Object extension) {
         ((Activatable)extension).object = new Iface ();
         plugin_iface.register_iface (((Activatable)extension).object);
@@ -158,4 +164,5 @@ public class BeatBox.Plugins.Manager : Object
         ((Activatable)extension).deactivate();
     }
 }
+
 

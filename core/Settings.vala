@@ -74,11 +74,11 @@ public class BeatBox.Settings : Object {
 	string music_folder;
 	
 	public Settings() {
-		lastfm = new GLib.Settings("org.elementary.beatbox.lastfm");
-		ui = new GLib.Settings("org.elementary.beatbox.ui");
-		library = new GLib.Settings("org.elementary.beatbox.library");
-		equalizer = new GLib.Settings("org.elementary.beatbox.equalizer");
-		plugins = new GLib.Settings("org.elementary.beatbox.plugins");
+		lastfm = new GLib.Settings("org.elementary.noise.lastfm");
+		ui = new GLib.Settings("org.elementary.noise.ui");
+		library = new GLib.Settings("org.elementary.noise.library");
+		equalizer = new GLib.Settings("org.elementary.noise.equalizer");
+		plugins = new GLib.Settings("org.elementary.noise.plugins");
 		
 		lastfm_settings = new LinkedList<string>();
 		ui_settings = new LinkedList<string>();
@@ -344,7 +344,7 @@ public class BeatBox.Settings : Object {
 	}
 
 	public string get_cache_dir () {
-		return GLib.Path.build_path ("/", Environment.get_user_cache_dir(), "beatbox");
+		return GLib.Path.build_path ("/", Environment.get_user_cache_dir(), "noise");
 	}
 	
 	public string getMusicMountName() {

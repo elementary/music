@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/apps/beatbox/lastfm/" id="org.elementary.beatbox.lastfm">
+  <schema path="/apps/noise/lastfm/" id="org.elementary.noise.lastfm">
     <key type="s" name="session-key">
       <default>''</default>
       <summary>Unique session key</summary>
@@ -8,7 +8,7 @@
     </key>
   </schema>
 
-  <schema path="/apps/beatbox/library/" id="org.elementary.beatbox.library">
+  <schema path="/apps/noise/library/" id="org.elementary.noise.library">
     <key type="s" name="music-folder">
       <default>''</default>
       <summary>Path to music folder</summary>
@@ -17,7 +17,7 @@
     <key type="s" name="music-mount-name">
       <default>''</default>
       <summary>Name of mount volume</summary>
-      <description>Used to attempt to automount the music folder when BeatBox starts if it already isn't.</description>
+      <description>Used to attempt to automount the music folder when noise starts if it already isn't.</description>
     </key>
     <key type="s" name="podcast-folder">
       <default>''</default>
@@ -52,7 +52,7 @@
     <key type="i" name="last-media-position">
       <default>0</default>
       <summary>Position, in seconds, of media</summary>
-      <description>Position, in seconds, of media when BeatBox last closed</description>
+      <description>Position, in seconds, of media when noise last closed</description>
     </key>
     <key type="i" name="shuffle-mode">
       <default>0</default>
@@ -71,13 +71,13 @@
     </key>
   </schema>
   
-  <enum id="miller-columns-position-type">
+  <enum id="noise-miller-columns-position-type">
     <value nick="Automatic" value="0" />
     <value nick="Top" value="1" />
     <value nick="Left" value="2" />
   </enum>
   
-  <schema path="/apps/beatbox/ui/" id="org.elementary.beatbox.ui">
+  <schema path="/apps/noise/ui/" id="org.elementary.noise.ui">
     <key type="i" name="window-width">
       <default>1100</default>
       <summary>Window width</summary>
@@ -128,7 +128,7 @@
       <summary>Miller column height</summary>
       <description>Miller column height</description>
     </key>
-    <key name="miller-columns-position" enum="miller-columns-position-type">
+    <key name="miller-columns-position" enum="noise-miller-columns-position-type">
       <default>"Automatic"</default>
       <summary>Miller columns position</summary>
       <description>Miller columns position</description>
@@ -145,7 +145,7 @@
     </key>
   </schema>
   
-  <schema path="/apps/beatbox/equalizer/" id="org.elementary.beatbox.equalizer">
+  <schema path="/apps/noise/equalizer/" id="org.elementary.noise.equalizer">
     <key type="b" name="equalizer-enabled">
       <default>false</default>
       <summary>Whether or not the equalizer is enabled</summary>
@@ -174,16 +174,16 @@
     <key type="i" name="volume">
       <default>100</default>
       <range min="0" max="100"/>
-      <summary>BeatBox's volume from 0-100</summary>
-      <description>BeatBox's volume from 0-100</description>
+      <summary>noise's volume from 0-100</summary>
+      <description>noise's volume from 0-100</description>
     </key>
   </schema>
 
-  <schema path="/apps/beatbox/plugins/" id="org.elementary.beatbox.plugins">
+  <schema path="/apps/noise/plugins/" id="org.elementary.noise.plugins">
     <key type="as" name="enabled-plugins">
       <default>[]</default>
       <summary>List of enabled plugins</summary>
-      <description>BeatBox will load these modules during startup</description>
+      <description>noise will load these modules during startup</description>
     </key>
   </schema>
 </schemalist>

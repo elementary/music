@@ -46,9 +46,9 @@ public class BeatBox.Beatbox : Granite.Application {
 	};
 
 	public static int main(string[] args) {
-		var opt_context = new OptionContext("- BeatBox help page.");
+		var opt_context = new OptionContext("- Noise help page.");
 		opt_context.set_help_enabled(true);
-		opt_context.add_main_entries(my_options, "beatbox");
+		opt_context.add_main_entries(my_options, "noise");
 		opt_context.add_group(Gtk.get_option_group(true));
 
 		try {
@@ -64,10 +64,10 @@ public class BeatBox.Beatbox : Granite.Application {
 		Gdk.threads_leave();
 		//BeatBox.clutter_usable = GtkClutter.init(ref args) == Clutter.InitError.SUCCESS;
 
-		Notify.init("beatbox");
+		Notify.init("noise");
 
 		app = new Beatbox();
-		app.set_application_id("net.launchpad.beatbox");
+		app.set_application_id("net.launchpad.noise");
 		app.flags = ApplicationFlags.FLAGS_NONE;
 		//((Beatbox)app).args = args;
 
@@ -87,19 +87,19 @@ public class BeatBox.Beatbox : Granite.Application {
 		build_version = Build.VERSION;
 		build_version_info = Build.VERSION_INFO;
 
-		program_name = "BeatBox";
-		exec_name = "beatbox";
+		program_name = "Noise";
+		exec_name = "noise";
 
-		app_copyright = "2011";
-		application_id = "net.launchpad.beatbox";
-		app_icon = "beatbox";
-		app_launcher = "beatbox.desktop";
+		app_copyright = "2012";
+		application_id = "net.launchpad.noise";
+		app_icon = "noise";
+		app_launcher = "noise.desktop";
 		app_years = "2010-2011";
 
-		main_url = "https://launchpad.net/beat-box";
-		bug_url = "https://bugs.launchpad.net/beat-box/+filebug";
-		help_url = "https://answers.launchpad.net/beat-box";
-		translate_url = "https://translations.launchpad.net/beat-box";
+		//main_url = "https://launchpad.net/beat-box";
+		//bug_url = "https://bugs.launchpad.net/beat-box/+filebug";
+		//help_url = "https://answers.launchpad.net/beat-box";
+		//translate_url = "https://translations.launchpad.net/beat-box";
 
 		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>", null};
 
@@ -116,7 +116,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		// Load settings
 		settings = new BeatBox.Settings ();
 		plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS,
-		                                       Build.CMAKE_INSTALL_PREFIX + "/lib/beatbox/plugins/");
+		                                       Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/");
 	}
 
 	protected override void activate () {

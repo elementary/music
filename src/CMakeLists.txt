@@ -1,13 +1,13 @@
 find_package(Vala REQUIRED)
 include(ValaVersion)
-ensure_vala_version("0.14.2" MINIMUM)
+ensure_vala_version("0.16.0" MINIMUM)
 include(ValaPrecompile)
 set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
-set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/beatbox")
-set(ICON_FOLDER "${CMAKE_INSTALL_PREFIX}/share/beatbox/icons/hicolor")
-set(GETTEXT_PACKAGE "beatbox")
-set(RELEASE_NAME "Acolyte")
-set(VERSION "0.3")
+set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/noise")
+set(ICON_FOLDER "${CMAKE_INSTALL_PREFIX}/share/noise/icons/hicolor")
+set(GETTEXT_PACKAGE "noise")
+set(RELEASE_NAME "Luna")
+set(VERSION "1.0")
 set(VERSION_INFO "Pre-Release")
 configure_file(${CMAKE_SOURCE_DIR}/src/config.h.cmake ${CMAKE_BINARY_DIR}/src/config.h)
 add_definitions(-include config.h)
@@ -25,7 +25,7 @@ vala_precompile(VALA_C
     LastFM/TrackInfo.vala
     LastFM/ArtistInfo.vala
     LastFM/SimilarMedia.vala
-    BeatBox.vala
+    Noise.vala
     Devices/DeviceManager.vala
     Devices/Device.vala
     Devices/iPodDevice.vala
@@ -142,21 +142,21 @@ PACKAGES
     granite
     libgpod-1.0
     libpeas-1.0
-    beatbox-core
+    noise-core
     ${ADD_PKG}
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/core/
     ${ADD_OPTIONS}
 GENERATE_VAPI
-    beatbox
+    noise
 GENERATE_HEADER
-    beatbox
+    noise
 )
 include_directories(${CMAKE_BINARY_DIR}/core)
-add_executable(beatbox ${VALA_C})
+add_executable(noise ${VALA_C})
 link_directories(${ZEITGEIST_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
 add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS})
-target_link_libraries(beatbox ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
-target_link_libraries(beatbox beatbox-core)
-install(TARGETS beatbox RUNTIME DESTINATION bin)
+target_link_libraries(noise ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
+target_link_libraries(noise noise-core)
+install(TARGETS noise RUNTIME DESTINATION bin)
