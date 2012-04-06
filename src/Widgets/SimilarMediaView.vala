@@ -97,7 +97,8 @@ public class BeatBox.SimilarMediasView : TreeView {
 		
 		get_selection().get_selected(out mo, out iter);
 		mo.get(iter, 0, out s);
-		
+
+#if HAVE_STORE
 		if(Option.enable_store) {
 			Store.store store = new Store.store();
 			
@@ -112,6 +113,7 @@ public class BeatBox.SimilarMediasView : TreeView {
 				}
 			}
 		}
+#endif
 		
 		// fall back to just opening the last fm page
 		if(s != null && s.lastfm_url != null && s.lastfm_url != "") {

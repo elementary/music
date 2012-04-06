@@ -1532,7 +1532,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		return null;
 	}
-	
+
+#if HAVE_STORE
 	public void playTrackPreview(Store.Track track, string uri) {
 		Media s = new Media(uri);
 		s.isPreview = true;
@@ -1552,6 +1553,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			lw.playClicked();
 		}
 	}
+#endif
 	
 	public void stopPlayback() {
 		player.pause();

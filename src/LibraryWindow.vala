@@ -100,6 +100,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		this.app = app;
 		this.settings = settings;
 
+		// Init libnotify
+		Notify.init ("noise");
+
 		// Load icon information
 		Icons.init ();
 
@@ -249,8 +252,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// ADD PLAYLIST VIEWS
 		load_playlists ();
 
+#if HAVE_STORE
 		// LOAD MUSIC STORE VIEW
 		load_default_store ();
+#endif
 
 		sideTreeScroll = new ScrolledWindow(null, null);
 		//FIXME: don't scroll horizontally
@@ -504,9 +509,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 			((ViewWrapper)view).set_as_current_view();
 		}
+#if HAVE_STORE
 		else if(view is Store.StoreView) {
 			((Store.StoreView)view).setIsCurrentView(true);
 		}
+#endif
 		else if(view is DeviceView) {
 			DeviceView dv = (DeviceView)view;
 			dv.set_as_current_view ();
@@ -596,12 +603,14 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		debug ("Finished loading playlists");
 	}
 
+#if HAVE_STORE
 	private void load_default_store () {
-		if (Option.enable_store) {
+		if (Option.HAVE_STORE) {
 			var storeView = new Store.StoreView(lm, this);
 			add_custom_view (_("Music Store"), storeView);
 		}
 	}
+#endif
 
 	public void addSideListItem(GLib.Object o) {
 		TreeIter item = sideTree.library_music_iter; //just a default

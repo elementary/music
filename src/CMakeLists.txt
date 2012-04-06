@@ -12,8 +12,44 @@ set(VERSION_INFO "Pre-Release")
 configure_file(${CMAKE_SOURCE_DIR}/src/config.h.cmake ${CMAKE_BINARY_DIR}/src/config.h)
 add_definitions(-include config.h)
 
+
+if(${ENABLE_STORE})
+     set(DEFAULT_STORE
+        Store/Price.vala
+        Store/Release.vala
+        Store/SearchResult.vala
+        Store/Store.vala
+        Store/FormatTag.vala
+        Store/Widgets/ArtistView.vala
+        Store/Widgets/IconView.vala
+        Store/Widgets/SearchResultsPage.vala
+        Store/Widgets/TrackList.vala
+        Store/Widgets/ReleaseRotator.vala
+        Store/Widgets/TagLabel.vala
+        Store/Widgets/StoreView.vala
+        Store/Widgets/AlbumView.vala
+        Store/Widgets/ObjectList.vala
+        Store/Widgets/SearchList.vala
+        Store/Widgets/HomeView.vala
+        Store/Widgets/TagGroup.vala
+        Store/BasketItem.vala
+        Store/XMLParser.vala
+        Store/Label.vala
+        Store/Basket.vala
+        Store/Artist.vala
+        Store/Track.vala
+    )
+
+   set(ADD_OPTIONS ${ADD_OPTIONS} --define=HAVE_STORE)
+
+   message("-- STORE ENABLED")
+else()
+   message("-- STORE DISABLED")
+endif()
+
 vala_precompile(VALA_C
     ${CMAKE_SOURCE_DIR}/src/config.vapi
+    ${DEFAULT_STORE}
     Icons.vala
     LibraryWindow.vala
     LibraryManager.vala
@@ -57,29 +93,6 @@ vala_precompile(VALA_C
     Widgets/StatusBar.vala
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
-    Store/Price.vala
-    Store/Release.vala
-    Store/SearchResult.vala
-    Store/Store.vala
-    Store/FormatTag.vala
-    Store/Widgets/ArtistView.vala
-    Store/Widgets/IconView.vala
-    Store/Widgets/SearchResultsPage.vala
-    Store/Widgets/TrackList.vala
-    Store/Widgets/ReleaseRotator.vala
-    Store/Widgets/TagLabel.vala
-    Store/Widgets/StoreView.vala
-    Store/Widgets/AlbumView.vala
-    Store/Widgets/ObjectList.vala
-    Store/Widgets/SearchList.vala
-    Store/Widgets/HomeView.vala
-    Store/Widgets/TagGroup.vala
-    Store/BasketItem.vala
-    Store/XMLParser.vala
-    Store/Label.vala
-    Store/Basket.vala
-    Store/Artist.vala
-    Store/Track.vala
     GStreamer/CDDA.vala
     GStreamer/Video.vala
     GStreamer/Equalizer.vala
