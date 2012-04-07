@@ -249,6 +249,7 @@ public class BeatBox.ViewWrapper : Box {
 				error_box.show_icon = false;
 				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find medias similar to the one you are playing.") + "\n" + _("You can then start playing those medias, or save them for later."));
 				break;
+#if HAVE_PODCASTS
 			case Hint.PODCAST:
 				// list, album and column views
 				list_view = new PodcastListView (this);
@@ -271,6 +272,7 @@ public class BeatBox.ViewWrapper : Box {
 				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."));
 
 				break;
+#endif
 			case Hint.STATION:
 				// list and column view
 				list_view = new RadioListView(this, sort, dir, the_hint, id);
@@ -951,6 +953,7 @@ public class BeatBox.ViewWrapper : Box {
 		if (has_error_box || has_welcome_screen) {
 			int size_check;
 
+#if HAVE_PODCASTS
 			if (hint == Hint.PODCAST) {
 				size_check = 0;
 				foreach (int i in lm.podcast_ids()) {
@@ -958,7 +961,9 @@ public class BeatBox.ViewWrapper : Box {
 						++size_check;
 				}
 			}
-			else if (hint == Hint.STATION) {
+			else
+#endif
+			if (hint == Hint.STATION) {
 				size_check = 0;
 				foreach (int i in lm.station_ids()) {
 					if (lm.media_from_id(i) != null)

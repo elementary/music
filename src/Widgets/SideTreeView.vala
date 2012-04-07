@@ -29,7 +29,9 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	
 	public TreeIter library_iter {get; private set;}
 	public TreeIter library_music_iter {get; private set;}
+#if HAVE_PODCASTS
 	public TreeIter library_podcasts_iter {get; private set;}
+#endif
 	public TreeIter library_audiobooks_iter {get; private set;}
 
 	public TreeIter devices_iter {get; private set;}
@@ -43,11 +45,13 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	public TreeIter playlists_queue_iter {get; private set;}
 	public TreeIter playlists_history_iter {get; private set;}
 	public TreeIter playlists_similar_iter {get; private set;}
-	
+
+#if HAVE_PODCASTS
 	//for podcast right click
 	Gtk.Menu podcastMenu;
 	Gtk.MenuItem podcastAdd;
 	Gtk.MenuItem podcastRefresh;
+#endif
 	
 	//for cdrom right click
 	Gtk.Menu CDMenu;
@@ -95,7 +99,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		deviceImportToLibrary.activate.connect(deviceImportToLibraryClicked);
 		deviceSync.activate.connect(deviceSyncClicked);
 		deviceMenu.show_all();
-		
+
+#if HAVE_PODCASTS
 		podcastMenu = new Gtk.Menu();
 		podcastAdd = new Gtk.MenuItem.with_label(_("Add Podcast"));
 		podcastRefresh = new Gtk.MenuItem.with_label(_("Download new Episodes"));
@@ -104,6 +109,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		podcastAdd.activate.connect(podcastAddClicked);
 		podcastRefresh.activate.connect(podcastRefreshClicked);
 		podcastMenu.show_all();
+#endif
 		
 		CDMenu = new Gtk.Menu();
 		CDimportToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
@@ -219,11 +225,13 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			library_music_iter = addItem(parent, o, w, music_icon, name, null);
 			return library_music_iter;
 		}
+#if HAVE_PODCASTS
 		else if(hint == ViewWrapper.Hint.PODCAST && parent == library_iter) {
 			var podcast_icon = Icons.PODCAST.render (IconSize.MENU, null);
 			library_podcasts_iter = addItem(parent, o, w, podcast_icon, name, null);
 			return library_podcasts_iter;
 		}
+#endif
 		else if(hint == ViewWrapper.Hint.AUDIOBOOK && parent == library_iter) {
 			// FIXME: add icon
 			var audiobook_icon = Icons.AUDIOBOOK.render (IconSize.MENU, null);
@@ -252,12 +260,15 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			var dvw = new DeviceViewWrapper(lw, d.get_medias(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
 			addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
 			lw.add_to_main_views(dvw);
-			
+
+#if HAVE_PODCASTS			
 			if(d.supports_podcasts()) {
 				dvw = new DeviceViewWrapper(lw, d.get_podcasts(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
 				addItem(rv, o, dvw, Icons.PODCAST.render (IconSize.MENU, null), _("Podcasts"), null);
 				lw.add_to_main_views(dvw);
 			}
+#endif
+
 			if(d.supports_audiobooks() && false) {
 				//dvw = new DeviceViewWrapper(lm, lm.lw, d.get_podcasts(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIOBOOK, -1, d);
 				//addItem(rv, o, dvw, audiobook_icon, "Audiobooks", null);
@@ -344,13 +355,15 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				
 				string parent_name;
 				filter.get(parent, 4, out parent_name);
-				
+#if HAVE_PODCASTS			
 				if(iter == convertToFilter(library_podcasts_iter)) {
 					podcastRefresh.set_sensitive(!lm.doing_file_operations());
 					podcastAdd.set_sensitive(!lm.doing_file_operations());
 					podcastMenu.popup (null, null, null, 3, get_current_event_time());
 				}
-				else if(iter == convertToFilter(network_radio_iter)) {
+				else
+#endif
+				if(iter == convertToFilter(network_radio_iter)) {
 					radioImportStations.set_sensitive(!lm.doing_file_operations());
 					radioMenu.popup(null, null, null, 3, get_current_event_time());
 				}
@@ -435,12 +448,15 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	}
 	
 	public void resetView() {
-        /* We can't just put setSelectedIter directly, we have to check that this iter is not null */
-        TreeIter? selected_iter = null;
-        if(lm.media_info.media == null || lm.media_info.media.mediatype == 0)
+		/* We can't just put setSelectedIter directly, we have to check that this iter is not null */
+		TreeIter? selected_iter = null;
+
+		if(lm.media_info.media == null || lm.media_info.media.mediatype == 0)
 			selected_iter = convertToFilter(library_music_iter);
+#if HAVE_PODCASTS
 		else if(lm.media_info.media.mediatype == 1)
 			selected_iter = convertToFilter(library_podcasts_iter);
+#endif
 		else if(lm.media_info.media.mediatype == 2) {
 			selected_iter = convertToFilter(library_music_iter);
 			stdout.printf("TODO: Set current list to audiobooks when resetting if current media is audiobook\n");
@@ -486,6 +502,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		lw.set_active_view (w);
 	}
 
+#if HAVE_PODCASTS
 	// podcast context menu
 	void podcastAddClicked() {
 		AddPodcastWindow apw = new AddPodcastWindow(lw);
@@ -495,7 +512,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	void podcastRefreshClicked() {
 		lm.pm.find_new_podcasts();
 	}
-	
+#endif
+
 	// cd rom context menu
 	public void CDimportToLibraryClicked() {
 		TreeIter iter = getSelectedIter();

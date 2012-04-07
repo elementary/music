@@ -110,7 +110,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		return 0;
 	}
 
-    Plugins.Manager plugins_manager;
+	Plugins.Manager plugins_manager;
 
 	public Beatbox () {
 		// Load settings
@@ -136,6 +136,8 @@ public class BeatBox.Beatbox : Granite.Application {
 		_program = new BeatBox.LibraryWindow(this, settings, args);
 		_program.build_ui();
 		plugins_manager.hook_new_window (_program);
+
+#if HAVE_PODCASTS
 		Timeout.add(15000, () => {
 			if(!_program.lm.have_fetched_new_podcasts) {
 				_program.lm.pm.find_new_podcasts();
@@ -143,6 +145,7 @@ public class BeatBox.Beatbox : Granite.Application {
 
 			return false;
 		});
+#endif
 
 		// a test
 		/*bool connected = false;

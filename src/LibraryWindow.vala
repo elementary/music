@@ -42,7 +42,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	/* Core views. Some will be probably split into plugins in future versions */
 	private ViewWrapper music_library_view;
+
+#if HAVE_PODCASTS
 	private ViewWrapper podcast_library_view;
+#endif
+
 	private ViewWrapper radio_library_view;
 
 
@@ -572,8 +576,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// Add Music Library View
 		music_library_view = add_view (null, ViewWrapper.Hint.MUSIC, _("Music"), lm.media_ids (), lm.music_setup.sort_column, lm.music_setup.sort_direction);
 
+#if HAVE_PODCASTS
 		// Add Podcast Library View
 		podcast_library_view = add_view (null, ViewWrapper.Hint.PODCAST, _("Podcasts"), lm.podcast_ids ());
+#endif
 
 		// Add Internet Radio View
 		radio_library_view = add_view (null, ViewWrapper.Hint.STATION, _("Internet Radio"), lm.station_ids(), lm.station_setup.sort_column, lm.station_setup.sort_direction);
@@ -664,7 +670,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		bool folder_set = (lm.music_folder_dir != "");
 		bool have_media = lm.media_count() > 0;
-		bool have_songs = lm.song_ids().size > 0;
+		//bool have_songs = lm.song_ids().size > 0;
 		bool doing_ops = lm.doing_file_operations();
 		bool media_active = lm.media_active;
 
@@ -1150,9 +1156,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			//vw.column_browser.populate (lm.song_ids());
 			vw.set_media(lm.song_ids());
 
+#if HAVE_PODCASTS
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.library_podcasts_iter);
 			//vw.do_update(vw.current_view, lm.podcast_ids(), true, true, false);
 			vw.set_media(lm.podcast_ids());
+#endif
 
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.network_radio_iter);
 			//vw.do_update(vw.current_view, lm.station_ids(), true, true, false);
@@ -1298,10 +1306,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			media_considered_played = true;
 			lm.media_info.media.last_played = (int)time_t();
 
+#if HAVE_PODCASTS
 			if(lm.media_info.media.mediatype == 1) { //podcast
 				added_to_play_count = true;
 				++lm.media_info.media.play_count;
 			}
+#endif
 
 			lm.update_media(lm.media_info.media, false, false);
 

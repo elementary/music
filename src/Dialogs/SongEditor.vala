@@ -554,7 +554,9 @@ public class BeatBox.FieldEditor : VBox {
 			
 			comboBox = (ComboBoxText)w;
 			comboBox.append_text(_("Song"));
+#if HAVE_PODCASTS
 			comboBox.append_text(_("Podcast"));
+#endif
 			comboBox.set_active(int.parse(original));
 			comboBox.changed.connect(comboChanged);
 			

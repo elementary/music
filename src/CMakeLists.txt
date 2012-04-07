@@ -47,9 +47,27 @@ else()
    message("-- STORE DISABLED")
 endif()
 
+
+if(${ENABLE_PODCASTS})
+     set(PODCASTS
+        Dialogs/AddPodcastWindow.vala
+        Views/ListView/PodcastTreeModel.vala
+        Views/ListView/PodcastListView.vala
+        Dialogs/PodcastEditor.vala
+        Objects/PodcastManager.vala
+    )
+
+   set(ADD_OPTIONS ${ADD_OPTIONS} --define=HAVE_PODCASTS)
+   message("-- PODCASTS ENABLED")
+else()
+   message("-- PODCASTS DISABLED")
+endif()
+
+
 vala_precompile(VALA_C
     ${CMAKE_SOURCE_DIR}/src/config.vapi
     ${DEFAULT_STORE}
+    ${PODCASTS}
     Icons.vala
     LibraryWindow.vala
     LibraryManager.vala
@@ -78,7 +96,6 @@ vala_precompile(VALA_C
     Objects/MediaKeyListener.vala
     Objects/MPRIS.vala
     Objects/Playlist.vala
-    Objects/PodcastManager.vala
     Objects/Icon.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarMediaView.vala
@@ -112,8 +129,6 @@ vala_precompile(VALA_C
     Views/ListView/SimilarPane.vala
     Views/ListView/MusicTreeModel.vala
     Views/ListView/MusicTreeView.vala
-    Views/ListView/PodcastTreeModel.vala
-    Views/ListView/PodcastListView.vala
     Views/ListView/RadioListView.vala
     Views/ListView/RadioTreeModel.vala
     Views/CellDataFunctionHelper.vala
@@ -126,13 +141,11 @@ vala_precompile(VALA_C
     Dialogs/PreferencesWindow.vala
     Dialogs/InstallGstreamerPluginsDialog.vala
     Dialogs/SongEditor.vala
-    Dialogs/PodcastEditor.vala
     Dialogs/StationEditor.vala
     Dialogs/PlaylistNameWindow.vala
     Dialogs/FileNotFoundDialog.vala
     Dialogs/RemoveFilesDialog.vala
     Dialogs/NotImportedWindow.vala
-    Dialogs/AddPodcastWindow.vala
     Dialogs/SetMusicFolderConfirmation.vala
     Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala

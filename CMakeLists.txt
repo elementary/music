@@ -81,4 +81,7 @@ add_subdirectory(images)
 add_subdirectory(schemas)
 add_subdirectory(po)
 add_subdirectory(core)
-add_subdirectory(plugins)
+
+if(${ENABLE_PLUGINS})
+	add_subdirectory(plugins)
+endif()
