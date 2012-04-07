@@ -136,6 +136,22 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public Shuffle shuffle;
 	public int next_gapless_id;
 
+	// for performance reasons...
+	// (we access this property quite often)
+	private string? _music_folder_dir = null;
+	public string music_folder_dir {
+		owned get {
+			if (_music_folder_dir == null)
+				 _music_folder_dir = settings.getMusicFolder();
+			return _music_folder_dir;
+		}
+		private set {
+			if (value != null) {
+				_music_folder_dir = value;
+				settings.setMusicFolder(value);
+			}
+		}
+	}
 	
 	public enum Shuffle {
 		OFF,
@@ -368,17 +384,19 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 	public void set_music_folder(string folder) {
 		if(start_file_operations("Importing music from <b>" + folder + "</b>...")) {
+
 			lw.resetSideTree(true);
 			lw.sideTree.removeAllStaticPlaylists();
 			clear_medias();
 			_queue.clear();
 			_already_played.clear();
 			lw.resetSideTree(false);
-			lw.updateSensitivities();
+			lw.update_sensitivities();
 			stopPlayback();
-			
+
+			this.music_folder_dir = folder;
+
 			settings.setMusicMountName("");
-			settings.setMusicFolder(folder);
 			
 			try {
 				Thread.create<void*>(set_music_thread_function, false);
@@ -390,10 +408,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public void* set_music_thread_function () {
-		var music_folder = GLib.File.new_for_path(settings.getMusicFolder());
+		var music_folder_file = GLib.File.new_for_path(this.music_folder_dir);
 		LinkedList<string> files = new LinkedList<string>();
 		
-		var items = fo.count_music_files(music_folder, ref files);
+		var items = fo.count_music_files(music_folder_file, ref files);
 		debug ("found %d items to import\n", items);
 		
 		fo.resetProgress(items);
@@ -471,19 +489,18 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		fo.resetProgress(100);
 		Timeout.add(100, doProgressNotificationWithTimeout);
 		
-		string music_folder = settings.getMusicFolder();
 		foreach(Media s in _media.values) {
-			if(!s.isTemporary && !s.isPreview && s.uri.contains(music_folder))
+			if(!s.isTemporary && !s.isPreview && s.uri.contains(this.music_folder_dir))
 				paths.set(s.uri, s);
 				
-			if(s.uri.contains(music_folder) && !File.new_for_uri(s.uri).query_exists())
+			if(s.uri.contains(this.music_folder_dir) && !File.new_for_uri(s.uri).query_exists())
 				to_remove.add(s);
 		}
 		fo.index = 5;
 		
 		// get a list of the current files
 		var files = new LinkedList<string>();
-		fo.count_music_files(File.new_for_path(music_folder), ref files);
+		fo.count_music_files(File.new_for_path(this.music_folder_dir), ref files);
 		fo.index = 10;
 		
 		foreach(string s in files) {
@@ -1037,7 +1054,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		if(_media.size == 0)
 			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 		
-		lw.updateSensitivities();
+		lw.update_sensitivities();
 	}
 	
 	public int get_local_song_count() {
@@ -1858,7 +1875,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		progress_notification(message, 0.0);
 		_doing_file_operations = true;
-		lw.updateSensitivities();
+		lw.update_sensitivities();
 		file_operations_started();
 		return true;
 	}
@@ -1882,7 +1899,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				warning("Could not create thread to load media pixbuf's: %s \n", err.message);
 			}
 			
-			lw.updateSensitivities();
+			lw.update_sensitivities();
 			lw.updateInfoLabel();
 			file_operations_done();
 		}

@@ -56,7 +56,7 @@ public class BeatBox.RemoveFilesDialog : Window {
 		Label title = new Label("");
 		Label info = new Label("");
 		trash_button = new Button.with_label ("Move to Trash");
-		remove_button = new Button.with_label ("Remove from BeatBox");
+		remove_button = new Button.with_label ("Remove from Noise");
 		cancel_button = new Button.with_label ("Cancel");
 		
 		bool multiple_media = to_remove.size > 1;
@@ -81,22 +81,22 @@ public class BeatBox.RemoveFilesDialog : Window {
 		string title_text = "";
 		if (multiple_media) {
 			media_text.append_unichar('s'); // Plural form
-			title_text = "Remove %d %s from BeatBox?".printf(to_remove.size, media_text.str);
+			title_text = "Remove %d %s from Noise?".printf(to_remove.size, media_text.str);
 		}
 		else {
   			Media m = to_remove.get(0);
   			
   			if(m.mediatype != 3)
-				title_text = "Remove \"%s\" From BeatBox?".printf(m.title.replace("&", "&amp;"));
+				title_text = "Remove \"%s\" From Noise?".printf(m.title.replace("&", "&amp;"));
 			else
-				title_text = "Remove \"%s\" From BeatBox?".printf(m.album_artist.replace("&", "&amp;"));
+				title_text = "Remove \"%s\" From Noise?".printf(m.album_artist.replace("&", "&amp;"));
 		}
 		title.set_markup("<span weight=\"bold\" size=\"larger\">" + title_text + "</span>");
 		
 		// set info text
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
-		string info_text = "This will remove the %s from your library and from any device that automatically syncs with BeatBox.".printf(media_text.str.down());
+		string info_text = "This will remove the %s from your library and from any device that automatically syncs with Noise.".printf(media_text.str.down());
 		info.set_markup(info_text);
 		
 		// decide if we need the trash button

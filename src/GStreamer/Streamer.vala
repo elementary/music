@@ -49,7 +49,7 @@ public class BeatBox.Streamer : GLib.Object {
 		pipe.bus.add_watch(busCallback);
 		//pipe.playbin.about_to_finish.connect(about_to_finish);
 		
-		Timeout.add(500, doPositionUpdate);
+		Timeout.add(200, doPositionUpdate); // do this 5 times per second
 	}
 	
 	/*public void mediaRipped(Media s) {

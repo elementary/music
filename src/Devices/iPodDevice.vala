@@ -339,7 +339,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		lm.start_file_operations("Syncing <b>" + getDisplayName() + "</b>...");
 		current_operation = "Syncing <b>" + getDisplayName() + "</b>...";
-		lm.lw.updateSensitivities();
+		lm.lw.update_sensitivities();
 		to_add = new HashMap<Media, unowned GPod.Track>();
 		this.list = list;
 		

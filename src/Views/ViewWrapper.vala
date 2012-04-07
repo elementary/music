@@ -207,6 +207,10 @@ public class BeatBox.ViewWrapper : Box {
 				album_view = new AlbumView (this, get_media_ids());
 				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
 				column_browser = new MillerColumns (this);
+				
+				// Welcome screen
+				welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("Noise can't seem to find your music."));
+				
 				break;
 			case Hint.HISTORY:
 			case Hint.QUEUE:
@@ -617,6 +621,13 @@ public class BeatBox.ViewWrapper : Box {
 		if (!is_current_wrapper)
 			return;
 
+		// Play, pause, ...
+		bool media_active = lm.media_active;
+		bool media_visible = (showing_media_count > 0);
+		lw.previousButton.set_sensitive(media_active || media_visible);
+		lw.playButton.set_sensitive(media_active || media_visible);
+		lw.nextButton.set_sensitive(media_active || media_visible);
+
 		// select the right view in the view selector if it's one of the three views
 		if (lw.viewSelector.selected != (int)current_view && (int)current_view <= 2)
 			lw.viewSelector.set_active ((int)current_view);
@@ -801,6 +812,8 @@ public class BeatBox.ViewWrapper : Box {
 		// Update statusbar ...
 		if (!column_browser_enabled) // column_browser_changed already does this...
 			set_statusbar_info ();
+
+		update_library_window_widgets ();
 
 		// Okay, everything is updated now
 		needs_update = false;
@@ -1123,6 +1136,7 @@ public class BeatBox.ViewWrapper : Box {
 		else if (has_list_view)
 			list_view.remove_medias (to_remove);
 
+		update_library_window_widgets ();
 		set_statusbar_info ();
 
 		in_update = false;

@@ -94,7 +94,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		application_id = "net.launchpad.noise";
 		app_icon = "noise";
 		app_launcher = "noise.desktop";
-		app_years = "2010-2011";
+		app_years = "2012";
 
 		//main_url = "https://launchpad.net/beat-box";
 		//bug_url = "https://bugs.launchpad.net/beat-box/+filebug";

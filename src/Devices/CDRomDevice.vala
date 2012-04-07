@@ -245,7 +245,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		current_operation = "Ripping track 1: <b>" + s.title.replace("&", "&amp;") + "</b>" + ((s.artist != "Unknown Artist") ? " by " : "") + "<b>" + s.artist.replace("&", "&amp;") + "</b>" + ((s.album != "Unknown Album") ? " on " : "") + "<b>" + s.album.replace("&", "&amp;") + "</b>";
 		_is_transferring = true;
 		lm.start_file_operations(current_operation);
-		lw.updateSensitivities();
+		lw.update_sensitivities();
 		Timeout.add(500, doProgressNotificationWithTimeout);
 		user_cancelled = false;
 		ripper.progress_notification.connect( (progress) => {

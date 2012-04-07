@@ -146,7 +146,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 	void deviceInitialized(Device d) {
 		stdout.printf("adding device\n");
 		device_added(d);
-		lm.lw.updateSensitivities();
+		lm.lw.update_sensitivities();
 	}
 	
 	public virtual void mount_changed (Mount mount) {

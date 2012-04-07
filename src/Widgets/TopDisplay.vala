@@ -47,6 +47,9 @@ public class TopDisplay : Box {
 		cancelButton = new Button();
 		
 		scaleBox = new HBox(false, 0);
+
+		leftTime.margin_right = rightTime.margin_left = 3;
+
 		scaleBox.pack_start(leftTime, false, false, 0);
 		scaleBox.pack_start(scale, true, true, 0);
 		scaleBox.pack_start(rightTime, false, false, 0);
@@ -58,36 +61,27 @@ public class TopDisplay : Box {
 		label.ellipsize = Pango.EllipsizeMode.END;
 		
 		cancelButton.set_image(Icons.PROCESS_STOP.render_image (IconSize.MENU));
-		
 		cancelButton.set_relief(Gtk.ReliefStyle.NONE);
+		cancelButton.halign = cancelButton.valign = Gtk.Align.CENTER;
 
 		// all but cancel
 		VBox info = new VBox(false, 0);
 		info.pack_start(label, false, true, 0);
-		info.pack_start(wrap_alignment(progressbar, 0, 5, 0, 5), false, true, 0);
-		info.pack_start(wrap_alignment(scaleBox, 0, 5, 0, 5), false, true, 0);
+		info.pack_start(progressbar, false, true, 0);
+		info.pack_start(scaleBox, false, true, 0);
 		
 		this.pack_start(info, true, true, 0);
-		this.pack_end(wrap_alignment(cancelButton, 0, 2, 0, 2), false, false, 0);
+		this.pack_end(cancelButton, false, false, 0);
 		
 		this.cancelButton.clicked.connect(cancel_clicked);
+
 		this.scale.button_press_event.connect(scale_button_press);
 		this.scale.button_release_event.connect(scale_button_release);
 		this.scale.value_changed.connect(value_changed);
 		this.scale.change_value.connect(change_value);
+
 		this.lm.player.current_position_update.connect(player_position_update);
 		this.lm.media_updated.connect(media_updated);
-	}
-	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
 	}
 	
 	/** label functions **/
@@ -183,7 +177,7 @@ public class TopDisplay : Box {
 	
 	public virtual void value_changed() {
 		if(!scale.visible)
-		return;
+			return;
 		
 		//make pretty current time
 		int minute = 0;
@@ -220,26 +214,36 @@ public class TopDisplay : Box {
 	
 	/** other functions **/
 	public void show_scale() {
-		scaleBox.show();
-		progressbar.hide();
-		cancelButton.hide();
-		
-		cancelButton.set_size_request(0,0);
-		progressbar.set_size_request(-1, 0);
+		scaleBox.set_no_show_all (false);
+		scaleBox.show_all ();
+
+		progressbar.set_no_show_all (true);
+		progressbar.hide ();
+				
+		cancelButton.set_no_show_all (true);
+		cancelButton.hide ();
 	}
 	
 	public void show_progressbar() {
-		progressbar.show();
+		scaleBox.set_no_show_all (true);
 		scaleBox.hide();
-		cancelButton.show();
-		
-		cancelButton.set_size_request(12, 12);
+
+		progressbar.set_no_show_all (false);
+		progressbar.show_all ();
+				
+		cancelButton.set_no_show_all (false);
+		cancelButton.show_all ();
 	}
-	
+
 	public void hide_scale_and_progressbar() {
+		scaleBox.set_no_show_all (true);
 		scaleBox.hide();
-		progressbar.hide();
-		cancelButton.hide();
+
+		progressbar.set_no_show_all (true);
+		progressbar.hide ();
+				
+		cancelButton.set_no_show_all (true);
+		cancelButton.hide ();
 	}
 	
 	public virtual void player_position_update(int64 position) {double sec = 0.0;

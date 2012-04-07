@@ -122,7 +122,7 @@ public class BeatBox.PodcastManager : GLib.Object {
 		
 		Idle.add( () => {
 			lm.add_medias(new_podcasts, true);
-			lw.updateSensitivities();
+			lw.update_sensitivities();
 			lw.updateInfoLabel();
 			lm.finish_file_operations();
 			

@@ -21,7 +21,7 @@
  */
 
 public interface BeatBox.LibraryWindowInterface : Object {
-    public abstract void updateSensitivities ();
+    public abstract void update_sensitivities ();
     public abstract void updateInfoLabel ();
     public abstract void progressNotification(string? message, double progress);
 }

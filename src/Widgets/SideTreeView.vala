@@ -914,7 +914,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				stdout.printf("paths size is %d\n", paths.size);
 				lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
 				lm.fo.import_from_playlist_file_info(name, paths);
-				lw.updateSensitivities();
+				lw.update_sensitivities();
 			}
 			if(stations.size > 0) {
 				stdout.printf("stations size is %d\n", stations.size);
@@ -928,7 +928,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			if(filtered_paths.length > 0) {
 				debug ("I was called");
 				lm.fo.import_from_playlist_file_info(names, filtered_paths);
-		    		lw.updateSensitivities();
+		    		lw.update_sensitivities();
 		    	}
 
 			if(stations.size > 0) {
