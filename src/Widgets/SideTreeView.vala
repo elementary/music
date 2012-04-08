@@ -173,8 +173,6 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		this.drag_data_received.connect(dragReceived);
 
 		addBasicItems ();
-
-		//this.show_all();
 	}
 
 	/**

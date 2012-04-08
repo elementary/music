@@ -590,7 +590,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		
 		if (!first_item_selected)
 			set_selected (null, true); // always notify
-		else if (this.visible && lw.initializationFinished) // just scroll to the cell
+		else if (this.visible && lw.initialization_finished) // just scroll to the cell
 			view.scroll_to_cell (new TreePath.first(), null, false, 0.0f, 0.0f);
 	}
 
@@ -610,7 +610,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	public void populate (HashMap<string, int> items) {
 		// After initialization, ignore any attempt to populate the column if it's hidden.
 		// This will boost performance when some columns are hidden.
-		if (!this.visible && !lw.initializationFinished)
+		if (!this.visible && !lw.initialization_finished)
 			return;
 	
 		//if (items.size == model.iter_n_children (null)) // /!\ WARNING. Potential failure point!
@@ -639,7 +639,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 	public void set_selected (string? val, bool notify = false) {
-		if (!lw.initializationFinished || val == _selected)
+		if (!lw.initialization_finished || val == _selected)
 			return;
 
 		_selected = val;

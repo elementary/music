@@ -93,7 +93,7 @@ public class BeatBox.ViewWrapper : Box {
 
 	public bool is_current_wrapper {
 		get {
-			return (lw.initializationFinished ? (index == lw.mainViews.get_current_page()) : false);
+			return (lw.initialization_finished ? (index == lw.mainViews.get_current_page()) : false);
 		}
 	}
 
@@ -171,7 +171,6 @@ public class BeatBox.ViewWrapper : Box {
 	// for Hint.SIMILAR only
 	public bool similarsFetched;
 	private bool in_update;
-	private bool initialized;
 
 
 	public ViewWrapper (LibraryWindow lw, Collection<int> the_medias, string sort, Gtk.SortType dir,
@@ -180,7 +179,6 @@ public class BeatBox.ViewWrapper : Box {
 		debug ("BUILDING %s", the_hint.to_string());
 
 		orientation = Orientation.VERTICAL;
-		initialized = false;
 
 		this.lm = lw.lm;
 		this.lw = lw;
@@ -395,8 +393,6 @@ public class BeatBox.ViewWrapper : Box {
 		// We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
 		// disk access to write settings.
 		destroy.connect (on_quit);
-
-		initialized = true;
 	}
 
 	public ViewWrapper.with_view (Gtk.Widget view) {
@@ -413,7 +409,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		// For automatic position stuff
 		this.size_allocate.connect ( () => {
-			if (!lw.initializationFinished)
+			if (!lw.initialization_finished)
 				return;
 
 			if (column_browser.position == MillerColumns.Position.AUTOMATIC)
@@ -421,7 +417,7 @@ public class BeatBox.ViewWrapper : Box {
 		});
 
 		column_browser.size_allocate.connect ( () => {
-			if (!lw.initializationFinished || !column_browser_enabled)
+			if (!lw.initialization_finished || !column_browser_enabled)
 				return;
 
 			if (column_browser.actual_position == MillerColumns.Position.LEFT) {
@@ -665,7 +661,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 	public virtual void view_selector_changed () {
-		if (!lw.initializationFinished || (lw.initializationFinished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ERROR || current_view == ViewType.WELCOME)
+		if (!lw.initialization_finished || (lw.initialization_finished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ERROR || current_view == ViewType.WELCOME)
 			return;
 
 		var selected_view = (ViewType) lw.viewSelector.selected;
@@ -680,10 +676,11 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	public void play_first_media () {
-		if (has_list_view)
-			list_view.set_as_current_list(1, true);
-		else
+		if (!has_list_view)
 			return;
+
+		list_view.set_as_current_list(1, true);
+
 
 		lm.playMedia (lm.mediaFromCurrentIndex(0), false);
 		lm.player.play ();
@@ -716,6 +713,9 @@ public class BeatBox.ViewWrapper : Box {
 	 *       by request of SideTreeView. See LibraryManager :: set_active_view() for more details.
 	 */
 	public void set_as_current_view () {
+		if (!lw.initialization_finished)
+			return;
+
 		update_library_window_widgets ();
 
 		// Update List View paned position to use the same position as the miller columns in other view wrappers
@@ -727,7 +727,7 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		// Update the views if needed
-		if (needs_update && lw.initializationFinished)
+		if (needs_update && lw.initialization_finished)
 			update_showing_media ();
 			//populate_views ();
 		else // Update statusbar
@@ -736,7 +736,7 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	public void set_statusbar_info() {
-		if (!is_current_wrapper)
+		if (!is_current_wrapper || !lw.initialization_finished)
 			return;
 
 		if(showing_media_count < 1) {
@@ -764,14 +764,14 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	public virtual void search_field_changed() {
-		if (!is_current_wrapper)
+		if (!is_current_wrapper || !lw.initialization_finished)
 			return;
 
 		actual_search_string = lw.searchField.get_text();
 		var new_search = get_valid_search_string (actual_search_string);
 		debug ("NEW SEARCH is '%s'", new_search);
 
-		if(!setting_search && lw.initializationFinished && is_current_wrapper && new_search.length != 1 && this.visible) {
+		if(!setting_search && lw.initialization_finished && is_current_wrapper && new_search.length != 1 && this.visible) {
 			timeout_search.offer_head(new_search.down());
 
 			Timeout.add(200, () => {
@@ -796,6 +796,9 @@ public class BeatBox.ViewWrapper : Box {
 	 * For performance reasons, this process should be delayed until the user switches to this view wrapper.
 	 */
 	public void populate_views () {
+		if (!lw.initialization_finished)
+			return;
+		
 		if (check_show_error_box()) {
 			needs_update = false;
 			return;
@@ -828,7 +831,7 @@ public class BeatBox.ViewWrapper : Box {
 		// For performance reasons we won't update showing_medias to match
 		// the results of the miller columns.
 
-		if(lw.initializationFinished && has_list_view) {
+		if(lw.initialization_finished && has_list_view) {
 			list_view.set_show_next (column_browser.media_results);
 			list_view.populate_view();
 			set_statusbar_info();
@@ -973,7 +976,8 @@ public class BeatBox.ViewWrapper : Box {
 					if (lm.media_from_id(i) != null)
 						++size_check;
 				}
-			} else {
+			}
+			else {
 #endif
 
 				size_check = media_count;

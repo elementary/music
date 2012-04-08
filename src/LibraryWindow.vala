@@ -59,7 +59,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	public bool dragging_from_music { get; set; }
 
-	public bool initializationFinished { get; private set; }
+	public bool initialization_finished { get; private set; }
 
 	private VBox verticalBox;
 
@@ -400,7 +400,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		Gtk.drag_dest_add_uri_targets(this);
 		drag_data_received.connect(dragReceived);
 
-		initializationFinished = true;
+
+		initialization_finished = true;
 
 		sideTree.resetView();
 
@@ -411,11 +412,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 
 
-		show_all();
-
 		infoPanel.set_visible (lm.settings.getMoreVisible());
 
-		update_sensitivities();
 
 		// Now set the selected view
 		viewSelector.selected = settings.getViewMode();
@@ -431,6 +429,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 				update_sensitivities();
 		});
 
+		update_sensitivities();
+		show_all();
 
 		if(lm.song_ids().size == 0)
 			setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
@@ -490,6 +490,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	 * Sets the given view as the active item
 	 */
 	public void set_active_view (Gtk.Widget view) {
+		if (!initialization_finished)
+			return;
+		
 		int view_index = mainViews.page_num (view);
 		
 		if (view_index < 0) {
@@ -512,7 +515,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		mainViews.set_current_page (view_index);
 
 		if (view is ViewWrapper) {
-			if(!initializationFinished)
+			if(!initialization_finished)
 				return;
 
 			((ViewWrapper)view).set_as_current_view();
@@ -666,7 +669,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	 * This is handled more carefully inside each ViewWrapper object.
 	 */
 	public void update_sensitivities() {
-		if(!initializationFinished)
+		if(!initialization_finished)
 			return;
 
 		debug ("UPDATE SENSITIVITIES");
@@ -693,6 +696,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		// HIDE SIDEBAR AND VIEWS WHEN PLAYING VIDEOS ...
 		sourcesToMedias.set_visible(viewSelector.selected != 2);
+		videoArea.set_no_show_all (viewSelector.selected != 2);
 		videoArea.set_visible(viewSelector.selected == 2);
 
 		bool show_top_display = media_active || doing_ops;
@@ -705,6 +709,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			music_library_view.welcome_screen.set_item_sensitivity(key, !doing_ops);
 
 		statusBar.set_visible(have_media);
+		infoPanel.set_visible(have_media);
 
 		//bool show_info_panel = show_more && media_active;
 		//infoPanel.set_visible(show_info_panel);
