@@ -51,9 +51,9 @@ endif()
 if(${ENABLE_PODCASTS})
      set(PODCASTS
         Dialogs/AddPodcastWindow.vala
+        Dialogs/PodcastEditor.vala
         Views/ListView/PodcastTreeModel.vala
         Views/ListView/PodcastListView.vala
-        Dialogs/PodcastEditor.vala
         Objects/PodcastManager.vala
     )
 
@@ -64,10 +64,26 @@ else()
 endif()
 
 
+if(${ENABLE_INTERNET_RADIO})
+    set(INTERNET_RADIO
+         Dialogs/StationEditor.vala
+         Views/ListView/RadioListView.vala
+         Views/ListView/RadioTreeModel.vala
+    )
+
+   set(ADD_OPTIONS ${ADD_OPTIONS} --define=HAVE_INTERNET_RADIO)
+   message("-- INTERNET RADIO ENABLED")
+else()
+   message("-- INTERNET RADIO DISABLED")
+endif()
+
+
+
 vala_precompile(VALA_C
     ${CMAKE_SOURCE_DIR}/src/config.vapi
     ${DEFAULT_STORE}
     ${PODCASTS}
+    ${INTERNET_RADIO}
     Icons.vala
     LibraryWindow.vala
     LibraryManager.vala
@@ -129,8 +145,6 @@ vala_precompile(VALA_C
     Views/ListView/SimilarPane.vala
     Views/ListView/MusicTreeModel.vala
     Views/ListView/MusicTreeView.vala
-    Views/ListView/RadioListView.vala
-    Views/ListView/RadioTreeModel.vala
     Views/CellDataFunctionHelper.vala
     Views/DeviceSummaryWidget.vala
     Views/AlbumView/AlbumViewModel.vala
@@ -141,7 +155,6 @@ vala_precompile(VALA_C
     Dialogs/PreferencesWindow.vala
     Dialogs/InstallGstreamerPluginsDialog.vala
     Dialogs/SongEditor.vala
-    Dialogs/StationEditor.vala
     Dialogs/PlaylistNameWindow.vala
     Dialogs/FileNotFoundDialog.vala
     Dialogs/RemoveFilesDialog.vala

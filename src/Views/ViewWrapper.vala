@@ -273,6 +273,7 @@ public class BeatBox.ViewWrapper : Box {
 
 				break;
 #endif
+#if HAVE_INTERNET_RADIO
 			case Hint.STATION:
 				// list and column view
 				list_view = new RadioListView(this, sort, dir, the_hint, id);
@@ -283,6 +284,7 @@ public class BeatBox.ViewWrapper : Box {
 				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Internet Radio Stations Found") + "</span>\n\n" + _("To add a station, visit a website such as SomaFM to find PLS or M3U files.") + "\n" + _("You can then import the file to add the station."));
 
 				break;
+#endif
 			case Hint.AUDIOBOOK:
 				// list, album and column views
 				list_view = new MusicTreeView(this, sort, dir, the_hint, id);
@@ -963,6 +965,8 @@ public class BeatBox.ViewWrapper : Box {
 			}
 			else
 #endif
+
+#if HAVE_INTERNET_RADIO
 			if (hint == Hint.STATION) {
 				size_check = 0;
 				foreach (int i in lm.station_ids()) {
@@ -970,8 +974,12 @@ public class BeatBox.ViewWrapper : Box {
 						++size_check;
 				}
 			} else {
+#endif
+
 				size_check = media_count;
+#if HAVE_INTERNET_RADIO
 			}
+#endif
 
 			if (size_check < 1) { // no media
 				if (has_error_box)

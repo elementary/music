@@ -315,14 +315,17 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 		SortType sort_dir;
 		list_model.get_sort_column_id(out sort_col, out sort_dir);
 
-		if (this is RadioListView)
+		if (this is MusicTreeView)
+			list_model = new MusicTreeModel(this, get_column_strings(), get_hint ());
+#if HAVE_INTERNET_RADIO
+		else if (this is RadioListView)
 			list_model = new RadioTreeModel(this, get_column_strings());
+#endif
 #if HAVE_PODCASTS
 		else if (this is PodcastListView)
 			list_model = new PodcastTreeModel(this, get_column_strings(), view);
 #endif
-		else if (this is MusicTreeView)
-			list_model = new MusicTreeModel(this, get_column_strings(), get_hint ());
+
 
 		list_model.append_medias(_showing_medias, false);
 

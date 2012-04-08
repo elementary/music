@@ -38,9 +38,15 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	public TreeIter devices_cdrom_iter {get; private set;}
 	
 	public TreeIter network_iter {get; private set;}
+
+#if HAVE_INTERNET_RADIO
 	public TreeIter network_radio_iter {get; private set;}
+#endif
+
+#if HAVE_STORE
 	public TreeIter network_store_iter {get; private set;}
-	
+#endif
+
 	public TreeIter playlists_iter {get; private set;}
 	public TreeIter playlists_queue_iter {get; private set;}
 	public TreeIter playlists_history_iter {get; private set;}
@@ -72,10 +78,12 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	Gtk.MenuItem playlistSave;
 	Gtk.MenuItem playlistExport;
 	Gtk.MenuItem playlistImport;
-	
+
+#if HAVE_INTERNET_RADIO
 	//for radio station right click
 	Gtk.Menu radioMenu;
 	Gtk.MenuItem radioImportStations;
+#endif
 	
 	public SideTreeView(LibraryManager lmm, LibraryWindow lww) {
 		this.lm = lmm;
@@ -119,12 +127,14 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		CDimportToLibrary.activate.connect(CDimportToLibraryClicked);
 		CDeject.activate.connect(CDejectClicked);
 		CDMenu.show_all();
-		
+
+#if HAVE_INTERNET_RADIO
 		radioMenu = new Gtk.Menu();
 		radioImportStations = new Gtk.MenuItem.with_label(_("Import Stations"));
 		radioMenu.append(radioImportStations);
 		radioImportStations.activate.connect(()=> {playlistImportClicked ("Station");});
 		radioMenu.show_all();
+#endif
 		
 		//playlist right click menu
 		playlistMenu = new Gtk.Menu();
@@ -281,11 +291,13 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			network_store_iter = addItem(parent, o, w, music_icon, name, null);
 			return network_store_iter;
 		}*/
+#if HAVE_INTERNET_RADIO
 		else if(hint == ViewWrapper.Hint.STATION && parent == network_iter) {
 			var radio_icon = Icons.RADIO.render (IconSize.MENU, null);
 			network_radio_iter = addItem(parent, o, w, radio_icon, name, null);
 			return network_radio_iter;
 		}
+#endif
 		else if(hint == ViewWrapper.Hint.SIMILAR && parent == playlists_iter) {
 			var smart_playlist_icon = Icons.SMART_PLAYLIST.render (IconSize.MENU, null);
 			playlists_similar_iter = addItem(parent, o, w, smart_playlist_icon, name, null);
@@ -355,19 +367,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				
 				string parent_name;
 				filter.get(parent, 4, out parent_name);
-#if HAVE_PODCASTS			
-				if(iter == convertToFilter(library_podcasts_iter)) {
-					podcastRefresh.set_sensitive(!lm.doing_file_operations());
-					podcastAdd.set_sensitive(!lm.doing_file_operations());
-					podcastMenu.popup (null, null, null, 3, get_current_event_time());
-				}
-				else
-#endif
-				if(iter == convertToFilter(network_radio_iter)) {
-					radioImportStations.set_sensitive(!lm.doing_file_operations());
-					radioMenu.popup(null, null, null, 3, get_current_event_time());
-				}
-				else if(parent == convertToFilter(playlists_iter)) {
+
+				if(parent == convertToFilter(playlists_iter)) {
 					playlistExport.set_sensitive(!lm.doing_file_operations());
 					playlistImport.set_sensitive(!lm.doing_file_operations());
 					
@@ -395,6 +396,19 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				else if(o is Device) {
 					deviceMenu.popup(null, null, null, 3, get_current_event_time());
 				}
+#if HAVE_PODCASTS			
+				else if(iter == convertToFilter(library_podcasts_iter)) {
+					podcastRefresh.set_sensitive(!lm.doing_file_operations());
+					podcastAdd.set_sensitive(!lm.doing_file_operations());
+					podcastMenu.popup (null, null, null, 3, get_current_event_time());
+				}
+#endif
+#if HAVE_INTERNET_RADIO
+				else if(iter == convertToFilter(network_radio_iter)) {
+					radioImportStations.set_sensitive(!lm.doing_file_operations());
+					radioMenu.popup(null, null, null, 3, get_current_event_time());
+				}
+#endif
 			}
 			else {
 				if(iter == convertToFilter(playlists_iter)) {
@@ -461,8 +475,10 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			selected_iter = convertToFilter(library_music_iter);
 			stdout.printf("TODO: Set current list to audiobooks when resetting if current media is audiobook\n");
 		}
+#if HAVE_INTERNET_RADIO
 		else if(lm.media_info.media.mediatype == 3)
 			selected_iter = convertToFilter(network_radio_iter);
+#endif
 
         if (selected_iter != null) {
             setSelectedIter (selected_iter);

@@ -102,7 +102,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	private HashMap<int, Media> _podcasts;
 #endif
 	private HashMap<int, Media> _audiobooks;
+#if HAVE_INTERNET_RADIO
 	private HashMap<int, Media> _stations;
+#endif
 	private LinkedList<int> _permanents; // list of all local medias
 	private HashMap<string, DevicePreferences> _device_preferences;
 	int local_song_count;
@@ -121,7 +123,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	private HashMap<string, LastFM.TrackInfo> _tracks;//key:artist<sep>album<sep>track
 	
 	public TreeViewSetup music_setup { set; get; }
+
+#if HAVE_INTERNET_RADIO
 	public TreeViewSetup station_setup  { set; get; }
+#endif
 	public TreeViewSetup similar_setup  { set; get; }
 	public TreeViewSetup queue_setup  { set; get; }
 	public TreeViewSetup history_setup  { set; get; }
@@ -225,7 +230,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_podcasts = new HashMap<int, Media>(); // subset of _medias
 #endif
 		_audiobooks = new HashMap<int, Media>(); // subset of _medias
+#if HAVE_INTERNET_RADIO
 		_stations = new HashMap<int, Media>(); // subset of _medias
+#endif
 		_permanents = new LinkedList<int>();
 		_device_preferences = new HashMap<string, DevicePreferences>();
 		
@@ -263,7 +270,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_doing_file_operations = false;
 		
 		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
+#if HAVE_INTERNET_RADIO
 		station_setup = new TreeViewSetup("Genre", Gtk.SortType.ASCENDING, ViewWrapper.Hint.STATION);
+#endif
 		similar_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.SIMILAR);
 		queue_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.QUEUE);
 		history_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.HISTORY);
@@ -274,7 +283,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			_media.set(s.rowid, s);
 			_permanents.add(s.rowid);
 			
-			if(File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
+			if(File.new_for_uri(s.uri).get_path().has_prefix(this.music_folder_dir))
 				++local_song_count;
 			
 			if(s.mediatype == 0)
@@ -285,8 +294,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 #endif
 			else if(s.mediatype == 2)
 				_audiobooks.set(s.rowid, s);
+#if HAVE_INTERNET_RADIO
 			else if(s.mediatype == 3)
 				_stations.set(s.rowid, s);
+#endif
 		}
 		
 		foreach(SmartPlaylist p in dbm.load_smart_playlists()) {
@@ -310,10 +321,12 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					_playlists.unset(p.rowid);
 				}
 #endif
+#if HAVE_INTERNET_RADIO
 				else if(p.name == "autosaved_station") {
 					station_setup = p.tvs;
 					_playlists.unset(p.rowid);
 				}
+#endif
 				else if(p.name == "autosaved_similar") {
 					similar_setup = p.tvs;
 					_playlists.unset(p.rowid);				
@@ -649,25 +662,25 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		var unset = new LinkedList<Media>();//HashMap<int, Media>();
 		foreach(int i in _media.keys) {
 			Media s = _media.get(i);
-#if HAVE_PODCASTS
 			if(!(s.isTemporary || s.isPreview || s.uri.has_prefix("http://"))) {
+#if HAVE_PODCASTS
 				if( (s.mediatype == 1 && s.podcast_url != null && s.podcast_url.has_prefix("http://")) || s.mediatype == 3) {
 					s.uri = s.podcast_url;
 				}
 				else {
 					unset.add(s);
 				}
-			}
 #else
-			unset.add(s);
+				unset.add(s); //XXX This could break things if podcasts are not enabled
 #endif
+			}
 		}
 		
 		foreach(Media s in unset) {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
-			if(File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
+			if(File.new_for_uri(s.uri).get_path().has_prefix(this.music_folder_dir))
 				--local_song_count;
 			
 			if(s.mediatype == 0)
@@ -678,8 +691,11 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 #endif
 			else if(s.mediatype == 2)
 				_audiobooks.unset(s.rowid);
+
 			else if(s.mediatype == 3)
+#if HAVE_INTERNET_RADIO
 				_stations.unset(s.rowid);
+#endif
 				
 			foreach(var p in _playlists.values) {
 				var to_remove = new LinkedList<int>();
@@ -722,9 +738,11 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return _audiobooks.keys;
 	}
 	
+#if HAVE_INTERNET_RADIO
 	public Collection<int> station_ids() {
 		return _stations.keys;
 	}
+#endif
 	
 	public HashMap<int, Media> media_hash() {
 		return _media;
@@ -982,7 +1000,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			if(permanent && !s.isTemporary)
 				_permanents.add(s.rowid);
 				
-			if(settings.getMusicFolder() != "" && s.uri.has_prefix(File.new_for_path(settings.getMusicFolder()).get_uri()))
+			if(this.music_folder_dir != "" && s.uri.has_prefix(File.new_for_path(this.music_folder_dir).get_uri()))
 				++local_song_count;
 			
 			if(s.mediatype == 0)
@@ -993,8 +1011,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 #endif
 			else if(s.mediatype == 2)
 				_audiobooks.set(s.rowid, s);
+#if HAVE_INTERNET_RADIO
 			else if(s.mediatype == 3)
 				_stations.set(s.rowid, s);
+#endif
 		}
 		
 		if(new_media.size > 0 && new_media.to_array()[0].rowid != -2 && permanent) {
@@ -1026,7 +1046,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			s.date_added = (int)time_t();
 			_permanents.add(s.rowid);
 			
-			if(File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
+			if(File.new_for_uri(s.uri).get_path().has_prefix(this.music_folder_dir))
 				++local_song_count;
 		}
 		
@@ -1053,7 +1073,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
-			if(settings.getMusicFolder() != "" && File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
+			if(this.music_folder_dir != "" && File.new_for_uri(s.uri).get_path().has_prefix(this.music_folder_dir))
 				--local_song_count;
 			
 			if(s.mediatype == 0)
@@ -1064,8 +1084,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 #endif
 			else if(s.mediatype == 2)
 				_audiobooks.unset(s.rowid);
+#if HAVE_INTERNET_RADIO
 			else if(s.mediatype == 3)
 				_stations.unset(s.rowid);
+#endif
 				
 			foreach(var p in _playlists.values) {
 				var to_remove = new LinkedList<int>();
@@ -1459,7 +1481,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		Media m = media_from_id(id);
 		
 		// check that the file exists FIXME: Avoid reading settings everytime a song is played
-		if((settings.getMusicFolder() != "" && File.new_for_uri(m.uri).get_path().has_prefix(settings.getMusicFolder()) && !GLib.File.new_for_uri(m.uri).query_exists())) {
+		if((this.music_folder_dir != "" && File.new_for_uri(m.uri).get_path().has_prefix(this.music_folder_dir) && !GLib.File.new_for_uri(m.uri).query_exists())) {
 			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
 			lw.media_not_found(id);
@@ -1929,6 +1951,17 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			lw.updateInfoLabel();
 			file_operations_done();
 		}
+#else
+		try {
+			Thread.create<void*>(fetch_thread_function, false);
+		}
+		catch(GLib.ThreadError err) {
+			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
+		}
+		
+		lw.update_sensitivities();
+		lw.updateInfoLabel();
+		file_operations_done();
 #endif
 	}
 }

@@ -47,8 +47,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	private ViewWrapper podcast_library_view;
 #endif
 
+#if HAVE_INTERNET_RADIO
 	private ViewWrapper radio_library_view;
-
+#endif
 
 	private bool queriedlastfm; // whether or not we have queried last fm for the current media info
 	private bool media_considered_played; // whether or not we have updated last played and added to already played list
@@ -581,8 +582,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		podcast_library_view = add_view (null, ViewWrapper.Hint.PODCAST, _("Podcasts"), lm.podcast_ids ());
 #endif
 
+#if HAVE_INTERNET_RADIO
 		// Add Internet Radio View
 		radio_library_view = add_view (null, ViewWrapper.Hint.STATION, _("Internet Radio"), lm.station_ids(), lm.station_setup.sort_column, lm.station_setup.sort_direction);
+#endif
 
 		// Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future
 		add_view (null, ViewWrapper.Hint.SIMILAR, _("Similar"), new LinkedList<int>(), lm.similar_setup.sort_column, lm.similar_setup.sort_direction);
@@ -737,6 +740,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 
 		string beg = "";
+
 		if(lm.media_info.media.mediatype == 3) // radio
 			beg = "<b>" + lm.media_info.media.album_artist.replace("\n", "") + "</b>\n";
 
@@ -803,7 +807,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 
 		update_sensitivities();
-
+#if HAVE_INTERNET_RADIO
 		// if radio, we can't depend on current_position_update. do that stuff now.
 		if(lm.media_info.media.mediatype == 3) {
 			queriedlastfm = true;
@@ -822,6 +826,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			// always show notifications for the radio, since user likely does not know media
 			mkl.showNotification(lm.media_info.media.rowid);
 		}
+#endif
 	}
 
 	public virtual void playback_stopped(int was_playing) {
@@ -1162,9 +1167,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			vw.set_media(lm.podcast_ids());
 #endif
 
+#if HAVE_INTERNET_RADIO
 			vw = (ViewWrapper)sideTree.getWidget(sideTree.network_radio_iter);
 			//vw.do_update(vw.current_view, lm.station_ids(), true, true, false);
 			vw.set_media(lm.station_ids());
+#endif
 		}
 	}
 

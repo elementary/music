@@ -34,7 +34,9 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 	CheckButton organizeFolders;
 	CheckButton writeMetadataToFile;
 	CheckButton copyImportedMusic;
+#if HAVE_PODCASTS
 	CheckButton downloadNewPodcasts;
+#endif
 	
 	Button lastfmLogin;
 	Button saveChanges;
@@ -75,7 +77,9 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		organizeFolders = new CheckButton.with_label("Keep music folder organized");
 		writeMetadataToFile = new CheckButton.with_label("Write metadata to file");
 		copyImportedMusic = new CheckButton.with_label("Copy files to music folder when added to library");
+#if HAVE_PODCASTS
 		downloadNewPodcasts = new CheckButton.with_label("Automatically download new podcast episodes");
+#endif
 		
 		var lastfmLabel = new Label("Last.fm Integration");
 		var lastfmInfo = new Granite.Widgets.WrapLabel("To allow for Last.fm integration, you must give permission to BeatBox. You only need to do this once.");
@@ -110,7 +114,9 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
 		writeMetadataToFile.set_active(_lm.settings.getWriteMetadataToFile());
 		copyImportedMusic.set_active(_lm.settings.getCopyImportedMusic());
+#if HAVE_PODCASTS
 		downloadNewPodcasts.set_active(_lm.settings.getDownloadNewPodcasts());
+#endif
 		
 		lastfmInfo.set_line_wrap(true);
 		
@@ -126,7 +132,9 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		content.pack_start(wrap_alignment(organizeFolders, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(wrap_alignment(writeMetadataToFile, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(wrap_alignment(copyImportedMusic, 0, 0, 0, 10), false, true, 0);
+#if HAVE_PODCASTS
 		content.pack_start(wrap_alignment(downloadNewPodcasts, 0, 0, 0, 10), false, true, 0);
+#endif
 		content.pack_start(lastfmLabel, false, true, 0);
 		content.pack_start(wrap_alignment(lastfmInfo, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(wrap_alignment(lastfmLogin, 0, 0, 0, 10), false, true, 0);
@@ -206,7 +214,9 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
 		_lm.settings.setWriteMetadataToFile(writeMetadataToFile.get_active());
 		_lm.settings.setCopyImportedMusic(copyImportedMusic.get_active());
+#if HAVE_PODCASTS
 		_lm.settings.setDownloadNewPodcasts(downloadNewPodcasts.get_active());
+#endif
 		
 		destroy();
 	}
