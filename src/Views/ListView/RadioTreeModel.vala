@@ -41,7 +41,7 @@ public class BeatBox.RadioTreeModel : BaseTreeModel {
 		list_view = rlv;
 
 		_columns = column_types;
-		_playing = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
+		_playing = Icons.NOW_PLAYING_SYMBOLIC.get_gicon ();
 
 		rows = new Sequence<int>();
 	

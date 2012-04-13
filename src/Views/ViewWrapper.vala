@@ -89,11 +89,11 @@ public class BeatBox.ViewWrapper : Box {
 	public int relative_id { get; private set; }
 
 
-	public int index { get { return lw.mainViews.page_num(this); } }
+	public int index { get { return lw.main_views.page_num(this); } }
 
 	public bool is_current_wrapper {
 		get {
-			return (lw.initialization_finished ? (index == lw.mainViews.get_current_page()) : false);
+			return (lw.initialization_finished ? (index == lw.main_views.get_current_page()) : false);
 		}
 	}
 
@@ -462,7 +462,6 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	// We only check for white space at the moment
 	/**
 	 * Description:
 	 * Receives a string and returns a valid search string.
@@ -471,11 +470,12 @@ public class BeatBox.ViewWrapper : Box {
 	 * Examples:
 	 *
 	 * INPUT:           OUTPUT:
-	 * "     Foo Bar "  "Foo Bar" --> Removes trailing spaces from beginning and end
-	 * "             "  ""        --> Converts white space into a void string
-	 * "Foo Bar"       "Foo Bar"  --> Doesn't change middle spaces.
+	 * "     Foo Bar "  "Foo Bar"     --> Removes trailing spaces from beginning and end
+	 * "             "  ""            --> Converts white space into a void string
+	 * "Foo   Bar"      "Foo    Bar"  --> Doesn't change middle spaces.
 	 */
 	private string get_valid_search_string (string s) {
+
 		if (s.length < 1)
 			return "";
 
@@ -658,6 +658,13 @@ public class BeatBox.ViewWrapper : Box {
 			lw.column_browser_toggle.set_sensitive (column_browser_available);
 			lw.column_browser_toggle.set_active ((column_browser_available) ? column_browser.visible : false);
 		}
+		
+		/* XXX
+		   /!\ WARNING: NOT ENTERELY NECESSARY.
+		   It's here to avoid potential issues. Should be removed
+		   if it impacts performance.
+		*/
+		//lw.update_sensitivities();
 	}
 
 	public virtual void view_selector_changed () {
@@ -710,7 +717,7 @@ public class BeatBox.ViewWrapper : Box {
 	 * selected view changes.
 	 *
 	 * Note: The sidebar-item selection and other stuff is handled automatically by the LibraryWindow
-	 *       by request of SideTreeView. See LibraryManager :: set_active_view() for more details.
+	 *       by request of SideTreeView. See LibraryWindow :: set_active_view() for more details.
 	 */
 	public void set_as_current_view () {
 		if (!lw.initialization_finished)
@@ -772,11 +779,12 @@ public class BeatBox.ViewWrapper : Box {
 		debug ("NEW SEARCH is '%s'", new_search);
 
 		if(!setting_search && lw.initialization_finished && is_current_wrapper && new_search.length != 1 && this.visible) {
-			timeout_search.offer_head(new_search.down());
+			timeout_search.offer_head (new_search.down());
 
-			Timeout.add(200, () => {
+			Timeout.add (200, () => {
 				string to_search = timeout_search.poll_tail();
-				if(to_search != new_search || to_search == last_search)
+
+				if (to_search != new_search || to_search == last_search)
 					return false;
 
 				if(!setting_search && is_current_wrapper)

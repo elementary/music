@@ -24,7 +24,7 @@ using Gtk;
 
 public class BeatBox.Icon : GLib.Object {
 
-	public string name {get; private set;}
+	public string name { get; private set; }
 
 	public bool has_backup {
 		get {
@@ -46,7 +46,17 @@ public class BeatBox.Icon : GLib.Object {
 	private Icons.Type? type;
 	private Icons.FileType? file_type;
 
-	public Icon (string name, int? size, Icons.Type? type, Icons.FileType? file_type, bool has_backup) {
+	/**
+	 * @param name icon name
+	 *
+	 * The following parameters are only necessary if has_backup is true.
+	 * @param size pixel-size of the backup icon
+	 * @param type Icon category
+	 * @param file_type Icon type (SVG or PNG)
+	 * FIXME deprecate has_backup
+	 * @param has_backup whether a backup exists or not. It will be deprecated in the future since it's redundant
+	 */
+	public Icon (string name, int? size = 16, Icons.Type? type = Icons.Type.ACTION, Icons.FileType? file_type = Icons.FileType.SVG, bool has_backup = false) {
 
 		this.name = name;
 		this.size = size;

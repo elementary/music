@@ -28,11 +28,13 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	public signal void itemClicked(string artist, string album);
 
 	// The window used to present album contents
-	public AlbumListView album_list_view {get; private set;}
+	public AlbumListView album_list_view { get; private set; }
 
-	public ViewWrapper parent_view_wrapper {get; private set;}
+	public ViewWrapper parent_view_wrapper { get; private set; }
 
-	public IconView icons;
+	public IconView icons { get; private set; }
+	private EventBox vpadding_box;
+	private EventBox hpadding_box;
 
 	private LibraryManager lm;
 	private LibraryWindow lw;
@@ -53,7 +55,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	private const int ITEM_PADDING = 3;
 	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
-	private const int SPACING = 12;
+	private const int MIN_SPACING = 12;
 
 	private const string ALBUM_VIEW_STYLESHEET = """
 		GtkIconView.view.cell:selected,
@@ -109,31 +111,19 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		buildUI();
 
 		lm.medias_removed.connect(medias_removed);
-		
-		//parent_view_wrapper.size_allocate.connect (resized);
 	}
-
-	/*
-	public void resized (Allocation alloc) {
-		
-		if (!visible)
-			return;
-
-		int n, total_width = lw.mediasToInfo.position; //alloc.width;
-		int total_item_width = ITEM_WIDTH + 2 * ITEM_PADDING;
-
-		// Calculate the number of columns
-		n = (total_width - SPACING) / (total_item_width + SPACING);
-
-		debug("ALBUM_VIEW_N_COLS = %i", n);
-
-		if (n > 0)
-			icons.set_columns (n);
-	}
-	*/
 
 	public void buildUI() {
 		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+
+		var wrapper_vbox = new Box (Orientation.VERTICAL, 0);
+		var wrapper_hbox = new Box (Orientation.HORIZONTAL, 0);
+
+		var wrapper_viewport = new Viewport (null, null);
+		wrapper_viewport.shadow_type = Gtk.ShadowType.NONE;
+		
+		vpadding_box = new EventBox();
+		hpadding_box = new EventBox();
 
 		icons = new IconView();
 		model = new AlbumViewModel(lm, defaultPix);
@@ -148,6 +138,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		}
 
 		icons.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
+		vpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+		hpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+		this.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
 
 		icons.set_columns(-1);
 
@@ -158,17 +151,65 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.item_width = ITEM_WIDTH;
 		icons.item_padding = ITEM_PADDING;
 		icons.spacing = 2;
-		icons.margin = SPACING + ITEM_PADDING;
-		icons.row_spacing = SPACING;
-		icons.column_spacing = SPACING;
+		icons.margin = 0;
+		icons.row_spacing = MIN_SPACING;
+		icons.column_spacing = MIN_SPACING;
 
-		add(icons);
+		vpadding_box.set_size_request (-1, MIN_SPACING + ITEM_PADDING);
+		hpadding_box.set_size_request (MIN_SPACING + ITEM_PADDING, -1);
+
+		wrapper_vbox.pack_start (vpadding_box, false, false, 0);
+		wrapper_vbox.pack_start (wrapper_hbox, true, true, 0);
+		wrapper_hbox.pack_start (hpadding_box, false, false, 0);
+		wrapper_hbox.pack_start (icons, true, true, 0);
+
+		wrapper_viewport.add (wrapper_vbox);
+
+		add (wrapper_viewport);
 
 		show_all();
 
 		icons.button_release_event.connect(buttonReleaseEvent);
 		icons.button_press_event.connect(buttonReleaseEvent);
 		icons.item_activated.connect(itemActivated);
+
+		// for smart spacing stuff
+		int MIN_N_ITEMS = 2; // we will allocate horizontal space for at least two items
+		int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;
+		int TOTAL_MARGIN = MIN_N_ITEMS * (MIN_SPACING + ITEM_PADDING);
+		int MIDDLE_SPACE = MIN_N_ITEMS * MIN_SPACING;
+
+		parent_view_wrapper.set_size_request (MIN_N_ITEMS * TOTAL_ITEM_WIDTH + TOTAL_MARGIN + MIDDLE_SPACE, -1);
+		parent_view_wrapper.size_allocate.connect (on_resize);
+	}
+
+	// smart spacing ...
+	private void on_resize (Allocation alloc) {
+		if (!visible)
+			return;
+
+		int n_columns = 1;
+		int new_spacing = 0;
+
+		int TOTAL_WIDTH = alloc.width;
+		int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;
+
+		// Calculate the number of columns
+		n_columns = (TOTAL_WIDTH - MIN_SPACING) / (TOTAL_ITEM_WIDTH + MIN_SPACING);
+
+		// We don't want to adjust the spacing if the row is not full
+		// This also means that the layout won't change while searching
+		if (medias.size < n_columns)
+			return;
+
+		new_spacing = (TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (n_columns + 1);
+
+		vpadding_box.set_size_request (-1, new_spacing);
+		hpadding_box.set_size_request (new_spacing - n_columns / 2, -1);
+
+		icons.set_columns (n_columns);
+		icons.set_column_spacing (new_spacing);
+		icons.set_row_spacing (new_spacing);
 	}
 
 	public void set_hint(ViewWrapper.Hint hint) {

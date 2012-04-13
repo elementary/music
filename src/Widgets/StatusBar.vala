@@ -130,7 +130,7 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
             time_text = _("%s hours").printf ((total_secs/3600).to_string());
         }
         else { // units in days
-            time_text = _("%s days").printf ((total_secs/(24 * 3600)).to_string());
+            time_text = _("%.1f days").printf ((float) (total_secs/(24 * 3600)));
         }
 
         if (total_mbs < 1000)

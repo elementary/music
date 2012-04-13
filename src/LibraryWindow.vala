@@ -63,7 +63,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	private VBox verticalBox;
 
-	public Notebook mainViews { get; private set; }
+	public Notebook main_views { get; private set; }
 
 	public DrawingArea videoArea  { get; private set; }
 	public HPaned sourcesToMedias { get; private set; } //allows for draggable
@@ -197,7 +197,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		verticalBox = new VBox(false, 0);
 		sourcesToMedias = new HPaned();
 		mediasToInfo = new HPaned();
-		mainViews = new Notebook ();
+		main_views = new Notebook ();
 		videoArea = new DrawingArea();
 
 		sideTree = new SideTreeView(lm, this);
@@ -316,7 +316,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		var viewSelectorBin = new ToolItem();
 		var searchFieldBin = new ToolItem();
 
-		viewSelector.append(Icons.VIEWS.render_image (IconSize.MENU));
+		viewSelector.append(Icons.VIEW_ICONS.render_image (IconSize.MENU));
 		viewSelector.append(Icons.VIEW_DETAILS.render_image (IconSize.MENU));
 
 		column_browser_toggle.set_image (Icons.VIEW_COLUMN.render_image (IconSize.MENU));
@@ -360,10 +360,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		music_library_view.welcome_screen.append_with_pixbuf(music_folder_icon, _("Locate"), _("Change your music folder."));
 
 		// Hide notebook tabs and border
-		mainViews.show_tabs = false;
-		mainViews.show_border = false;
+		main_views.show_tabs = false;
+		main_views.show_border = false;
 		
-		mediasToInfo.pack1(mainViews, true, true);
+		mediasToInfo.pack1(main_views, true, false);
 		mediasToInfo.pack2(infoPanel, false, false);
 
 		sourcesToMedias.pack1(sideTreeScroll, false, true);
@@ -403,6 +403,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		initialization_finished = true;
 
+		show_all();
+		update_sensitivities();
+
 		sideTree.resetView();
 
 		if(lm.media_active) {
@@ -428,9 +431,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			if (viewSelector.selected == 2) // Video
 				update_sensitivities();
 		});
-
-		update_sensitivities();
-		show_all();
 
 		if(lm.song_ids().size == 0)
 			setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
@@ -493,7 +493,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		if (!initialization_finished)
 			return;
 		
-		int view_index = mainViews.page_num (view);
+		int view_index = main_views.page_num (view);
 		
 		if (view_index < 0) {
 			critical ("Cannot set " + view.name + " as the active view");
@@ -511,13 +511,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		view.show_all ();
 
 		// We need to set this view as the current page before even attempting to call
-		// the set_as_current_view() method.
-		mainViews.set_current_page (view_index);
+		// the set_as_current_view() method. This also makes the switching faster ;)
+		main_views.set_current_page (view_index);
 
 		if (view is ViewWrapper) {
-			if(!initialization_finished)
-				return;
-
 			((ViewWrapper)view).set_as_current_view();
 		}
 #if HAVE_STORE
@@ -534,10 +531,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	/**
 	 * Appends a widget to the main views.
 	 *
-	 * WARNING: Don't use this method directly.
+	 * WARNING: Don't use this method directly. add_view() and add_custom_view() are meant for that.
+	 *
+	 * @return the index of the view in the view container
 	 */
 	public int add_to_main_views (Gtk.Widget view) {
-		return mainViews.append_page (view);
+		return main_views.append_page (view);
 	}
 
 	/**
@@ -632,7 +631,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		ViewWrapper vw = null;
 
 		// p.view_wrapper = add_view... is something that we should probably bake inside
-		// BeatBox.Playlist and BeatBox.SmartPlaylist's constructors.
+		// BeatBox.Playlist and BeatBox.SmartPlaylist's constructors. It should be
+		// optional though.
 		if(o is Playlist) {
 			Playlist p = (Playlist)o;
 
@@ -645,7 +645,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			p.view_wrapper = add_view (null, ViewWrapper.Hint.SMART_PLAYLIST, p.name, lm.medias_from_smart_playlist(p.rowid),
 			          p.tvs.sort_column, p.tvs.sort_direction, p.rowid);
 		}
-		/* XXX: Migrate this code to the new API */
+		/* XXX: Migrate this code to the new API
+		 * Definitely not doing this for 1.0
+		 */
 		else if(o is Device) {
 			Device d = (Device)o;
 
@@ -676,10 +678,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		bool folder_set = (lm.music_folder_dir != "");
 		bool have_media = lm.media_count() > 0;
-		//bool have_songs = lm.song_ids().size > 0;
 		bool doing_ops = lm.doing_file_operations();
 		bool media_active = lm.media_active;
-
 
 		fileImportMusic.set_sensitive(!doing_ops && folder_set);
 		fileRescanMusicFolder.set_sensitive(!doing_ops && folder_set);
@@ -696,7 +696,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		// HIDE SIDEBAR AND VIEWS WHEN PLAYING VIDEOS ...
 		sourcesToMedias.set_visible(viewSelector.selected != 2);
-		videoArea.set_no_show_all (viewSelector.selected != 2);
+		// Disabled due to a bug in GDK (version 3.4)
+		//videoArea.set_no_show_all (viewSelector.selected != 2);
 		videoArea.set_visible(viewSelector.selected == 2);
 
 		bool show_top_display = media_active || doing_ops;
@@ -704,17 +705,19 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		topDisplay.set_scale_sensitivity(media_active);
 
-		music_library_view.welcome_screen.set_item_sensitivity(0, !doing_ops);
-		foreach(int key in music_welcome_screen_keys.keys)
-			music_library_view.welcome_screen.set_item_sensitivity(key, !doing_ops);
+		if (music_library_view.current_view == ViewWrapper.ViewType.WELCOME) {
+			music_library_view.welcome_screen.set_item_sensitivity(0, !doing_ops);
+			foreach(int key in music_welcome_screen_keys.keys)
+				music_library_view.welcome_screen.set_item_sensitivity(key, !doing_ops);
+		}
 
 		statusBar.set_visible(have_media);
-		infoPanel.set_visible(have_media);
+		//infoPanel.set_visible(have_media);
 
 		//bool show_info_panel = show_more && media_active;
 		//infoPanel.set_visible(show_info_panel);
 		
-		//bool show_info_panel_chooser = showMainViews && mediaActive;
+		//bool show_info_panel_chooser = showmain_views && mediaActive;
 		//infoPanelChooser.set_visible(show_info_panel_chooser);
 
 		// hide playlists when media list is empty
@@ -1149,7 +1152,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// clear all other playlists, reset to Music, populate music
 		if(clear_views) {
 			message("clearing all views...\n");
-			mainViews.get_children().foreach( (w) => {
+			main_views.get_children().foreach( (w) => {
 				if(w is ViewWrapper && !(w is DeviceViewWrapper)) {
 					ViewWrapper vw = (ViewWrapper)w;
 					debug("doing clear\n");
@@ -1473,7 +1476,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 	public Widget? get_current_view_wrapper () {
-		return mainViews.get_nth_page (mainViews.get_current_page());
+		return main_views.get_nth_page (main_views.get_current_page());
 	}
 
 	public void searchFieldActivate() {

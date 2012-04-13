@@ -48,6 +48,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	public TreeIter end_visible;
 	bool removing_medias;
 
+	const int MAX_ALBUM_NAME_LENGTH = (int) (20.0 * ((double) Icons.ALBUM_VIEW_IMAGE_SIZE) / 138.0);
+
 	string TEXT_MARKUP = "<span weight='medium' size='10500'>%s\n</span><span foreground=\"#999\">%s</span>";
 	string TOOLTIP_MARKUP = "<span weight='bold' size='10500'>%s</span>\n%s";
 
@@ -136,8 +138,8 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 			}
 			else if(column == 1) {
 				string album, album_artist;
-				if(s.album.length > 30)
-					album = s.album.substring(0, 27) + "...";
+				if(s.album.length > MAX_ALBUM_NAME_LENGTH)
+					album = s.album.substring(0, MAX_ALBUM_NAME_LENGTH - 3) + "...";
 				else
 					album = s.album;
 

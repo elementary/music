@@ -41,7 +41,7 @@ public class BeatBox.PodcastTreeModel : BaseTreeModel {
 		list_view = plv;
 		
 		_columns = column_types;
-		_playing = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
+		_playing = Icons.NOW_PLAYING_SYMBOLIC.get_gicon ();
 		_saved_locally = new GLib.ThemedIcon.with_default_fallbacks (Gtk.Stock.SAVE);
 		_new_podcast = Icons.NEW_PODCAST.get_gicon();
 

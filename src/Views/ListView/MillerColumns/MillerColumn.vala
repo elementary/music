@@ -260,7 +260,8 @@ public class BeatBox.MillerColumns : Box {
 		});
 
 		columns.add (column);
-		pack_start (column, true, true, 1);
+
+		pack_start (column, true, true, 0);
 
 		column_chooser_menu.append (column.menu_item);
 
@@ -402,6 +403,22 @@ public class BeatBox.MillerColumns : Box {
 		changed ();
 	}
 
+	public void update_column_separators (int visible_columns) {
+		if (visible_columns <= 0)
+			return;
+
+		foreach (var col in columns) {
+			// Every column has 0px on the left. The space is always added on the right side.
+			col.margin_left = 0;
+
+			// adding right space (separator line)
+			if (col.category == MillerColumn.Category.ALBUM || visible_columns == 1)
+				col.margin_right = 0;
+			else
+				col.margin_right = 1;
+		}
+	}
+
 	private void column_header_clicked (Gdk.EventButton e) {
 		if (e.button == 3) { // secondary button
 			column_chooser_menu.popup (null, null, null, 3, get_current_event_time ());
@@ -493,12 +510,12 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	// This will be NULL whenever the first element "All" is selected.
 	private string? _selected;
 
-	public MillerColumn (MillerColumns parent, Category category) {
-		this.miller_parent = parent;
+	public MillerColumn (MillerColumns miller_parent, Category category) {
+		this.miller_parent = miller_parent;
 		this.category = category;
 
-		lw = parent.lw;
-		lm = parent.lm;
+		lw = miller_parent.lw;
+		lm = miller_parent.lm;
 
 		menu_item = new CheckMenuItem.with_label (get_category_text());
 		this.visible = false; // Make the column initially hidden
@@ -548,6 +565,9 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 				col.menu_item.set_sensitive (visible_columns > 1);
 			}
 		}
+
+		// let's update the separators in case there's only one visible column, etc.
+		miller_parent.update_column_separators (visible_columns);
 
 		this.menu_item.toggled.connect (on_menu_item_toggled);
 	}

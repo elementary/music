@@ -538,7 +538,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-			
+
+#if HAVE_INTERNET_RADIO
 			query.set_string(":name", "Favorite Stations");
 			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>3<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
@@ -548,7 +549,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-			
+#endif
+
 			query.set_string(":name", "Recently Added");
 			query.set_string(":and_or", "any");
 			query.set_string(":queries", "Date Added<value_seperator>is within<value_seperator>7<query_seperator>");
@@ -588,7 +590,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-			
+
+#if HAVE_PODCASTS
 			query.set_string(":name", "Unheard Podcasts");
 			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>1<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
@@ -598,6 +601,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
+#endif
 			
 			query.set_string(":name", "Over Played");
 			query.set_string(":and_or", "all");

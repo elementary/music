@@ -180,6 +180,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	private string[] temp_add_other_folders;
 	private int other_folders_added;
 	private LinkedList<string> temp_add_files;
+
+	// FIXME use mutex
 	bool _doing_file_operations;
 	bool in_fetch_thread;
 
