@@ -93,6 +93,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	private SimpleOptionChooser shuffleChooser;
 	private SimpleOptionChooser repeatChooser;
 	private SimpleOptionChooser infoPanelChooser;
+	private SimpleOptionChooser eq_option_chooser;
 
 	// basic file stuff
 	private Gtk.Menu settingsMenu;
@@ -229,22 +230,26 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		var repeat_off_image = Icons.REPEAT_OFF.render_image (IconSize.MENU);
 		var info_panel_show = Icons.PANE_SHOW_SYMBOLIC.render_image (IconSize.MENU);
 		var info_panel_hide = Icons.PANE_HIDE_SYMBOLIC.render_image (IconSize.MENU);
+		var eq_show_image = Icons.render_image ("document-properties-symbolic", IconSize.MENU);
 
 		addPlaylistChooser = new SimpleOptionChooser.from_image (add_playlist_image);
 		shuffleChooser = new SimpleOptionChooser.from_image (shuffle_on_image, shuffle_off_image);
 		repeatChooser = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
 		infoPanelChooser = new SimpleOptionChooser.from_image (info_panel_hide, info_panel_show);
+		eq_option_chooser = new SimpleOptionChooser.from_image (eq_show_image);
 
 		repeatChooser.setTooltip (_("Disable Repeat"), _("Enable Repeat"));
 		shuffleChooser.setTooltip (_("Disable Shuffle"), _("Enable Shuffle"));
 		infoPanelChooser.setTooltip (_("Hide Info Panel"), _("Show Info Panel"));
 		addPlaylistChooser.setTooltip (_("Add Playlist"));
+		eq_option_chooser.setTooltip (_("Show Equalizer"));
 
-		statusBar.insert_widget (addPlaylistChooser as Gtk.Widget, true);
+		statusBar.insert_widget (addPlaylistChooser, true);
 		statusBar.insert_widget (new Gtk.Box (Orientation.HORIZONTAL, 12), true);
-		statusBar.insert_widget (shuffleChooser as Gtk.Widget, true);
-		statusBar.insert_widget (repeatChooser as Gtk.Widget, true);
-		statusBar.insert_widget (infoPanelChooser as Gtk.Widget);
+		statusBar.insert_widget (shuffleChooser, true);
+		statusBar.insert_widget (repeatChooser, true);
+		statusBar.insert_widget (eq_option_chooser);
+		statusBar.insert_widget (infoPanelChooser);
 
 		notification = new Notify.Notification ("", null, null);
 
@@ -389,6 +394,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		nextButton.clicked.connect(nextClicked);
 
 		addPlaylistChooser.button_press_event.connect(addPlaylistChooserOptionClicked);
+		eq_option_chooser.button_press_event.connect(eq_option_chooser_clicked);
+
 		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
 		infoPanelChooser.option_changed.connect(infoPanelChooserOptionChanged);
@@ -399,7 +406,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
 		drag_data_received.connect(dragReceived);
-
 
 		initialization_finished = true;
 
@@ -1250,8 +1256,17 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 	public void editEqualizerClick() {
-		EqualizerWindow ew = new EqualizerWindow(lm, this);
-		ew.show();
+		var pop = new EqualizerWindow(lm, this);
+
+		pop.set_parent_pop (this);
+		pop.move_to_widget(eq_option_chooser);
+
+		pop.show_all();
+
+		pop.present();
+		pop.run ();
+
+		pop.destroy ();
 	}
 
 	public void editPreferencesClick() {
@@ -1469,6 +1484,16 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		return false;
 	}
+
+	public virtual bool eq_option_chooser_clicked(Gdk.EventButton event) {
+		if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
+			editEqualizerClick();
+			return true;
+		}
+
+		return false;
+	}
+
 
 	public virtual void infoPanelChooserOptionChanged(int val) {
 		infoPanel.set_visible(val == 1);
