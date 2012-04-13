@@ -278,7 +278,7 @@ public class BeatBox.MillerColumns : Box {
 
 	private void column_selection_changed (MillerColumn.Category category, string val) {
 		/**
-		 * Since the columns follow a tree model, we have to re-populate all the columns
+		 * Since the columns follow a tree model, we need to re-populate all the columns
 		 * that have a lower hierarchical level.
 		 */
 
@@ -407,6 +407,8 @@ public class BeatBox.MillerColumns : Box {
 		if (visible_columns <= 0)
 			return;
 
+		const int SEPARATOR_WIDTH = 1; // px
+
 		foreach (var col in columns) {
 			// Every column has 0px on the left. The space is always added on the right side.
 			col.margin_left = 0;
@@ -415,7 +417,7 @@ public class BeatBox.MillerColumns : Box {
 			if (col.category == MillerColumn.Category.ALBUM || visible_columns == 1)
 				col.margin_right = 0;
 			else
-				col.margin_right = 1;
+				col.margin_right = SEPARATOR_WIDTH;
 		}
 	}
 
