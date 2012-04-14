@@ -173,6 +173,11 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.button_press_event.connect(buttonReleaseEvent);
 		icons.item_activated.connect(itemActivated);
 
+		// hide floating window when switching to another view
+		lw.viewSelector.mode_changed.connect ( () => {
+			album_list_view.hide ();
+		});
+
 		// for smart spacing stuff
 		int MIN_N_ITEMS = 2; // we will allocate horizontal space for at least two items
 		int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;

@@ -22,6 +22,8 @@
 
 using Gtk;
 
+// FIXME: Improve how we display total time.
+
 public class BeatBox.StatusBar : Gtk.Toolbar {
 
     public uint total_items {get; private set; default = 0;}

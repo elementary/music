@@ -268,10 +268,6 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 		if(visible)	queue_draw();
 	}
 
-	public void set_statusbar_info() {
-		view_wrapper.set_statusbar_info ();
-	}
-
 	public LinkedList<TreeViewColumn> get_columns() {
 		var rv = new LinkedList<TreeViewColumn>();
 

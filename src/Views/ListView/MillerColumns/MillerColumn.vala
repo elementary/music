@@ -55,9 +55,8 @@ public class BeatBox.MillerColumns : Box {
 	public LibraryWindow  lw { get; private set; }
 	public ViewWrapper view_wrapper { get; private set; }
 
-
-	public const int MIN_COLUMN_WIDTH = 200;
-	public const int MIN_COLUMN_HEIGHT = 70;
+	public const int MIN_COLUMN_WIDTH = 138; // used for LEFT mode
+	public const int MIN_COLUMN_HEIGHT = 70; // used for TOP mode
 
 	public bool is_music_miller {
 		get {
@@ -67,8 +66,8 @@ public class BeatBox.MillerColumns : Box {
 	}
 
 	// Whether the columns are filtered or not based on the current selection
-	// Yes, I know (medias.size == _media_results.size) would produce a similar result, but here
-	// we want to know if the "All ..." filter is selected in ALL the columns.
+	// Although 'medias.size == _media_results.size' would produce a similar result, here
+	// we want to know if the "All ..." filter is selected in every the columns.
 	public bool filtered {
 		get {
 			foreach (var col in columns)
@@ -78,15 +77,12 @@ public class BeatBox.MillerColumns : Box {
 		}
 	}
 
-
 	// All the media
-	public Collection<int> medias {get; private set;}
-
-	// Search results
-	private LinkedList<int> _media_results;
+	public Collection<int> medias { get; private set; }
 
 	// Filtered media results. We provide the data. No need to search again outside
-	public LinkedList<int> media_results { get {return _media_results;} }
+	private LinkedList<int> _media_results;
+	public LinkedList<int> media_results { get { return _media_results; } }
 
 	public Position position { get; private set; default = Position.AUTOMATIC; }
 	public Position actual_position { get; set; default = Position.LEFT; }
@@ -113,7 +109,7 @@ public class BeatBox.MillerColumns : Box {
 		add_column (MillerColumn.Category.YEAR);
 		add_column (MillerColumn.Category.GENRE);
 
-		// just in case some crazy user disabled all the columns from the settings
+		// just in case a user disabled all the columns from the settings
 		bool no_column_enabled = true;
 
 		// These columns only make sense for songs.
@@ -253,7 +249,7 @@ public class BeatBox.MillerColumns : Box {
 		column.selection_changed.connect (column_selection_changed);
 
 		// Set minimun size
-		//column.set_size_request (MIN_COLUMN_WIDTH, MIN_COLUMN_HEIGHT);
+		column.set_size_request (MIN_COLUMN_WIDTH, MIN_COLUMN_HEIGHT);
 
 		column.reset_requested.connect ( () => {
 			column.select_first_item ();

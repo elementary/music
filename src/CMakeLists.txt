@@ -81,13 +81,17 @@ endif()
 
 vala_precompile(VALA_C
     ${CMAKE_SOURCE_DIR}/src/config.vapi
+
     ${DEFAULT_STORE}
     ${PODCASTS}
     ${INTERNET_RADIO}
+
+    Utils.vala
     Icons.vala
     LibraryWindow.vala
     LibraryManager.vala
     FileOperator.vala
+
     LastFM/LastFM.vala
     LastFM/AlbumInfo.vala
     LastFM/Image.vala
@@ -95,13 +99,16 @@ vala_precompile(VALA_C
     LastFM/TrackInfo.vala
     LastFM/ArtistInfo.vala
     LastFM/SimilarMedia.vala
+
     Noise.vala
+
     Devices/DeviceManager.vala
     Devices/Device.vala
     Devices/iPodDevice.vala
     Devices/AndroidDevice.vala
     Devices/CDRomDevice.vala
     Devices/DevicePreferences.vala
+
     Objects/TreeViewSetup.vala
     Objects/SmartQuery.vala
     Objects/MediaInfo.vala
@@ -113,6 +120,7 @@ vala_precompile(VALA_C
     Objects/MPRIS.vala
     Objects/Playlist.vala
     Objects/Icon.vala
+
     Widgets/TopDisplay.vala
     Widgets/SimilarMediaView.vala
     Widgets/InfoPanel.vala
@@ -124,8 +132,10 @@ vala_precompile(VALA_C
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
     Widgets/StatusBar.vala
+
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
+
     GStreamer/CDDA.vala
     GStreamer/Video.vala
     GStreamer/Equalizer.vala
@@ -134,10 +144,12 @@ vala_precompile(VALA_C
     GStreamer/GStreamerTagger.vala
     GStreamer/ReplayGain.vala
     GStreamer/Streamer.vala
+
     Views/ViewWrapper.vala
     Views/DeviceViewWrapper.vala
     Views/DeviceView.vala
     Views/ContentView.vala
+    Views/ListView/ListView.vala
     Views/ListView/BaseListView.vala
     Views/ListView/BaseListModel.vala
     Views/ListView/MillerColumns/MillerModel.vala
@@ -150,6 +162,7 @@ vala_precompile(VALA_C
     Views/AlbumView/AlbumViewModel.vala
     Views/AlbumView/AlbumIconView.vala
     Views/AlbumView/AlbumListView.vala
+
     Dialogs/EqualizerWindow.vala
     Dialogs/SmartPlaylistEditor.vala
     Dialogs/PreferencesWindow.vala
@@ -162,6 +175,7 @@ vala_precompile(VALA_C
     Dialogs/SetMusicFolderConfirmation.vala
     Dialogs/TransferFromDeviceDialog.vala
     Dialogs/SyncWarningDialog.vala
+
 PACKAGES
     glib-2.0
     gtk+-3.0
@@ -199,3 +213,4 @@ add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MEN
 target_link_libraries(noise ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
 target_link_libraries(noise noise-core)
 install(TARGETS noise RUNTIME DESTINATION bin)
+

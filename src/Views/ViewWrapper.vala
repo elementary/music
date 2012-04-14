@@ -35,16 +35,8 @@ public class BeatBox.ViewWrapper : Box {
 	/* MAIN WIDGETS (VIEWS) */
 	public ContentView   list_view      { get; private set; }
 	public ContentView   album_view     { get; private set; }
-	public MillerColumns column_browser { get; private set; }
 	public WarningLabel  error_box      { get; private set; }
 	public Welcome       welcome_screen { get; private set; }
-
-	// Wrapper for the list view and miller columns
-	private Box   list_view_container;
-	private Paned list_view_hpaned; // for left mode
-	private Paned list_view_vpaned; // for top mode
-	private int   list_view_hpaned_position = -1;
-	private int   list_view_vpaned_position = -1;
 
 	private Notebook view_container; // Wraps all the internal views for super fast switching
 
@@ -88,7 +80,6 @@ public class BeatBox.ViewWrapper : Box {
 	public Hint hint { get; private set; }
 	public int relative_id { get; private set; }
 
-
 	public int index { get { return lw.main_views.page_num(this); } }
 
 	public bool is_current_wrapper {
@@ -97,39 +88,12 @@ public class BeatBox.ViewWrapper : Box {
 		}
 	}
 
-
 	/* UI PROPERTIES */
 
 	public bool has_album_view      { get { return album_view != null;     } }
 	public bool has_list_view       { get { return list_view != null;      } }
-	public bool has_column_browser  { get { return column_browser != null; } }
 	public bool has_error_box       { get { return error_box != null;      } }
 	public bool has_welcome_screen  { get { return welcome_screen != null; } }
-
-	public bool column_browser_enabled {
-		get {
-			return (has_column_browser) ? !column_browser.no_show_all : false;
-		}
-		private set {
-			if (has_column_browser) {
-				column_browser.set_no_show_all (!value);
-				if (value) {
-					// Populate column browser
-					column_browser.show_all ();
-
-					if (column_browser.medias == null)
-						column_browser.populate (get_showing_media_ids());
-				}
-				else {
-					// Before hiding, reset the filters to "All..."
-					// We want all the media to be shown as soon as the user disables
-					// the column browser
-					column_browser.hide ();
-					column_browser.reset_filters ();
-				}
-			}
-		}
-	}
 
 	public bool has_media { get { return media_count > 0; } }
 
@@ -178,8 +142,6 @@ public class BeatBox.ViewWrapper : Box {
 	{
 		debug ("BUILDING %s", the_hint.to_string());
 
-		orientation = Orientation.VERTICAL;
-
 		this.lm = lw.lm;
 		this.lw = lw;
 
@@ -199,13 +161,16 @@ public class BeatBox.ViewWrapper : Box {
 		view_container.show_border = false;
 		this.pack_start (view_container, true, true, 0);
 
+		// FIXME: Get error boxes' text out of here. It must be set within
+		//         a different method, so that we can use them to handle different
+		//         cases, like "No media", "No media found. Did you mean '...' ", etc.
+
 		switch (the_hint) {
 			case Hint.MUSIC:
-				// list, album and column views
+				// list and album view
 				album_view = new AlbumView (this, get_media_ids());
-				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
-				column_browser = new MillerColumns (this);
-				
+				list_view = new ListView (this, sort, dir, id);
+
 				// Welcome screen
 				welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("Noise can't seem to find your music."));
 				
@@ -213,7 +178,7 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.HISTORY:
 			case Hint.QUEUE:
 				//list view only				
-				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
+				list_view = new ListView (this, sort, dir, id);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -222,13 +187,10 @@ public class BeatBox.ViewWrapper : Box {
 				break;
 			case Hint.PLAYLIST:
 			case Hint.SMART_PLAYLIST:
-				// list, album and column views
+				// list and album view
 				album_view = new AlbumView (this, get_media_ids());
-				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
-			
-				// No column browser for now
-				//column_browser = new MillerColumns (this);
-				
+				list_view = new ListView (this, sort, dir, id);
+
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
 				
@@ -241,7 +203,7 @@ public class BeatBox.ViewWrapper : Box {
 				break;
 			case Hint.SIMILAR:
 				// list view only
-				list_view = new SimilarPane(this);
+				list_view = new ListView (this);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -249,9 +211,8 @@ public class BeatBox.ViewWrapper : Box {
 				break;
 #if HAVE_PODCASTS
 			case Hint.PODCAST:
-				// list, album and column views
-				list_view = new PodcastListView (this);
-				//column_browser = new MillerColumns (this);
+				// list and album view
+				list_view = new ListView (this);
 				album_view = new AlbumView (this, get_media_ids());
 
 				error_box = new WarningLabel();
@@ -260,9 +221,8 @@ public class BeatBox.ViewWrapper : Box {
 
 				break;
 			case Hint.DEVICE_PODCAST:
-				// list, album and column views
-				list_view = new PodcastListView (this);
-				//column_browser = new MillerColumns (this);
+				// list and album view
+				list_view = new ListView (this);
 				album_view = new AlbumView (this, get_media_ids());
 
 				error_box = new WarningLabel();
@@ -273,9 +233,8 @@ public class BeatBox.ViewWrapper : Box {
 #endif
 #if HAVE_INTERNET_RADIO
 			case Hint.STATION:
-				// list and column view
-				list_view = new RadioListView(this, sort, dir, the_hint, id);
-				column_browser = new MillerColumns (this);
+				// list view
+				list_view = new ListView (this, sort, dir, id);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -284,22 +243,20 @@ public class BeatBox.ViewWrapper : Box {
 				break;
 #endif
 			case Hint.AUDIOBOOK:
-				// list, album and column views
-				list_view = new MusicTreeView(this, sort, dir, the_hint, id);
-				column_browser = new MillerColumns (this);
+				// list and album view
+				list_view = new ListView (this, sort, dir, id);
 				album_view = new AlbumView (this, get_media_ids());
 
 				break;
 			case Hint.DEVICE_AUDIOBOOK:
-				// list, album and column views
-				list_view = new MusicTreeView(this, sort, dir, the_hint, id);
-				column_browser = new MillerColumns (this);
+				// list and album views
+				list_view = new ListView(this, sort, dir, id);
 				album_view = new AlbumView (this, get_media_ids());
 
 				break;
 			case Hint.CDROM:
 				// list view only
-				list_view = new MusicTreeView (this, sort, dir, the_hint, id);
+				list_view = new ListView (this, sort, dir, id);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = true;
@@ -329,44 +286,13 @@ public class BeatBox.ViewWrapper : Box {
 		if (has_album_view)
 			view_container.append_page (album_view);
 
-		if (has_list_view) {
-			list_view_container = new Box (Orientation.HORIZONTAL, 0);
+		if (has_list_view)
+			view_container.append_page (list_view);
 
-			if (has_column_browser) {
-				list_view_hpaned = new Paned (Orientation.HORIZONTAL);
-				list_view_vpaned = new Paned (Orientation.VERTICAL);
 
-				// Fix theming
-				list_view_hpaned.get_style_context().add_class (Gtk.STYLE_CLASS_HORIZONTAL);
-				list_view_vpaned.get_style_context().add_class (Gtk.STYLE_CLASS_VERTICAL);
+		// Connect data signals
 
-				list_view_hpaned.pack2(list_view_vpaned, true, false);
-
-				// Add hpaned (the most-external wrapper) to the view container
-				list_view_container.pack_start (list_view_hpaned, true, true, 0);
-
-				// Now pack the list view
-				list_view_vpaned.pack2(list_view, true, true);
-				list_view_hpaned.pack1(column_browser, true, true);
-
-				set_column_browser_position (column_browser.position);
-
-				this.realize.connect (connect_column_browser_ui_signals);
-
-				column_browser_enabled = lw.settings.get_miller_columns_enabled();
-
-				// Connect data signals
-				column_browser.changed.connect (column_browser_changed);
-			}
-			else {
-				list_view_container.pack_start (list_view, true, true, 0);
-			}
-
-			view_container.append_page (list_view_container);
-		}
-
-		lm.medias_updated.connect ((list) => { update_media (list); });
-		
+		lm.medias_updated.connect ((list) => { update_media (list); });		
 		
 		//XXX
 		if (hint != Hint.CDROM)
@@ -390,9 +316,6 @@ public class BeatBox.ViewWrapper : Box {
 		// Populate views
 		needs_update = true; // set_as_current_view() will populate the views later...
 
-		// We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
-		// disk access to write settings.
-		destroy.connect (on_quit);
 	}
 
 	public ViewWrapper.with_view (Gtk.Widget view) {
@@ -401,173 +324,6 @@ public class BeatBox.ViewWrapper : Box {
 		set_active_view (ViewType.NONE);
 		update_library_window_widgets ();
 	}
-
-
-	private void connect_column_browser_ui_signals () {
-		if (!has_column_browser)
-			return;
-
-		// For automatic position stuff
-		this.size_allocate.connect ( () => {
-			if (!lw.initialization_finished)
-				return;
-
-			if (column_browser.position == MillerColumns.Position.AUTOMATIC)
-				set_column_browser_position (MillerColumns.Position.AUTOMATIC);
-		});
-
-		column_browser.size_allocate.connect ( () => {
-			if (!lw.initialization_finished || !column_browser_enabled)
-				return;
-
-			if (column_browser.actual_position == MillerColumns.Position.LEFT) {
-				if (list_view_hpaned.position > 0)
-					list_view_hpaned_position = list_view_hpaned.position;
-			}
-			else if (column_browser.actual_position == MillerColumns.Position.TOP) {
-				if (list_view_vpaned.position > 0)
-					list_view_vpaned_position = list_view_vpaned.position;
-			}
-		});
-
-		lw.column_browser_toggle.toggled.connect ( () => {
-			if (current_view == ViewType.LIST && lw.column_browser_toggle.sensitive) {
-				bool enabled = lw.column_browser_toggle.get_active();
-				if (enabled != column_browser_enabled)
-					column_browser_enabled = enabled;
-			}
-		});
-
-		column_browser.position_changed.connect (set_column_browser_position);
-
-		// Read Paned position from settings
-		list_view_hpaned_position = lw.settings.get_miller_columns_width ();
-		list_view_vpaned_position = lw.settings.get_miller_columns_height ();
-
-		list_view_hpaned.position = list_view_hpaned_position;
-		list_view_vpaned.position = list_view_vpaned_position;
-	}
-
-	private void on_quit () {
-		// Need to add a proper fix later ...
-		if (has_column_browser) {
-			if (column_browser.visible) {
-				if (column_browser.actual_position == MillerColumns.Position.LEFT)
-					lw.settings.set_miller_columns_width(list_view_hpaned_position);
-				else if (column_browser.actual_position == MillerColumns.Position.TOP)
-					lw.settings.set_miller_columns_height(list_view_vpaned_position);
-			}
-			lw.settings.set_miller_columns_enabled (column_browser_enabled);
-		}
-	}
-
-
-	/**
-	 * Description:
-	 * Receives a string and returns a valid search string.
-	 * This method can be used as a parser.
-	 *
-	 * Examples:
-	 *
-	 * INPUT:           OUTPUT:
-	 * "     Foo Bar "  "Foo Bar"     --> Removes trailing spaces from beginning and end
-	 * "             "  ""            --> Converts white space into a void string
-	 * "Foo   Bar"      "Foo    Bar"  --> Doesn't change middle spaces.
-	 */
-	private string get_valid_search_string (string s) {
-
-		if (s.length < 1)
-			return "";
-
-		bool found_valid_char = false;
-		int white_space = 0, first_char_position = 0;
-		unichar c;
-
-		// WHITESPACE CHECK
-		for (int i = 0; s.get_next_char (ref i, out c);) {
-			if (c.isspace()) {
-				++ white_space;
-			}
-			else {
-				found_valid_char = true;
-				first_char_position = i; // position of the first valid character
-				break; // no need to keep looping
-			}
-		}
-
-		if (white_space == s.length)
-			return "";
-
-		if (found_valid_char) {
-			// Remove trailing spaces
-			var rv = new StringBuilder();
-
-			// From beginning
-			int last_char_position = 0;
-			for (int i = first_char_position - 1; s.get_next_char (ref i, out c);) {
-				if (!c.isspace()) {
-					last_char_position = i;
-				}
-			}
-			
-			// Remove trailing spaces. In fact we just don't copy chars out of [first_valid_char, last_valid_char]
-			for (int i = first_char_position - 1; s.get_next_char (ref i, out c) && i <= last_char_position;) {
-					// Append char
-					rv.append_unichar (c);
-			}
-
-			return rv.str;
-		}
-
-		return "";
-	}
-
-
-	private void set_column_browser_position (MillerColumns.Position position) {
-		if (!has_column_browser)
-			return;
-
-		MillerColumns.Position actual_position = position; //position that will be actually applied
-
-		if (actual_position == MillerColumns.Position.AUTOMATIC) {
-			// Decide what orientation to use based on the view area size
-
-			int view_width = this.get_allocated_width ();
-			const int MIN_TREEVIEW_WIDTH = 300;
-
-			int visible_columns = 0;
-			foreach (var column in column_browser.columns) {
-				if (column.visible)
-					++ visible_columns;
-			}
-
-			int required_width = column_browser.MIN_COLUMN_WIDTH * visible_columns;
-			if (view_width - required_width < MIN_TREEVIEW_WIDTH)
-				actual_position = MillerColumns.Position.TOP;
-			else
-				actual_position = MillerColumns.Position.LEFT;
-		}
-
-		column_browser.actual_position = actual_position;
-
-		if (actual_position == MillerColumns.Position.LEFT) {
-			if (list_view_hpaned.get_child1() == null && list_view_vpaned.get_child1() == column_browser) {
-				list_view_vpaned.remove (column_browser);
-				list_view_hpaned.pack1 (column_browser, true, true);
-
-				list_view_hpaned.set_position (list_view_hpaned_position);
-			}
-		}
-		else if (actual_position == MillerColumns.Position.TOP) {
-			if (list_view_vpaned.get_child1() == null && list_view_hpaned.get_child1() == column_browser) {
-				list_view_hpaned.remove (column_browser);
-				list_view_vpaned.pack1 (column_browser, true, true);
-
-				list_view_vpaned.set_position (list_view_vpaned_position);
-			}
-		}
-	}
-
 
 	/**
 	 * Convenient visibility method
@@ -579,7 +335,7 @@ public class BeatBox.ViewWrapper : Box {
 		switch (type) {
 			case ViewType.LIST:
 				if (has_list_view)
-					view_index = view_container.page_num (list_view_container);
+					view_index = view_container.page_num (list_view);
 				break;
 			case ViewType.ALBUM:
 				if (has_album_view)
@@ -653,10 +409,21 @@ public class BeatBox.ViewWrapper : Box {
 			// Insensitive if there's no media to search
 			lw.searchField.set_sensitive (has_media);
 
+			bool column_browser_available = false;
+			bool column_browser_visible = false;
+
 			// Sensitive only if the column browser is available and the current view type is LIST
-			bool column_browser_available = (has_column_browser && current_view == ViewType.LIST);
+			if (has_list_view) {
+				var lv = list_view as ListView;
+			
+				column_browser_available = (lv.has_column_browser && current_view == ViewType.LIST);
+
+				if (column_browser_available)
+					column_browser_visible = lv.column_browser.visible;
+			}
+
 			lw.column_browser_toggle.set_sensitive (column_browser_available);
-			lw.column_browser_toggle.set_active ((column_browser_available) ? column_browser.visible : false);
+			lw.column_browser_toggle.set_active (column_browser_visible);
 		}
 		
 		/* XXX
@@ -667,27 +434,22 @@ public class BeatBox.ViewWrapper : Box {
 		//lw.update_sensitivities();
 	}
 
+
 	public virtual void view_selector_changed () {
 		if (!lw.initialization_finished || (lw.initialization_finished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ERROR || current_view == ViewType.WELCOME)
 			return;
 
 		var selected_view = (ViewType) lw.viewSelector.selected;
 
-		bool successful; // whether the view was available or not
-		set_active_view (selected_view, out successful);
-
-		// Hide album list view
-		if (successful && has_album_view)
-			(album_view as AlbumView).album_list_view.hide ();
+		set_active_view (selected_view);
 	}
 
-
+	// FIXME: this shouldn't depend on the list view
 	public void play_first_media () {
 		if (!has_list_view)
 			return;
 
 		list_view.set_as_current_list(1, true);
-
 
 		lm.playMedia (lm.mediaFromCurrentIndex(0), false);
 		lm.player.play ();
@@ -695,6 +457,7 @@ public class BeatBox.ViewWrapper : Box {
 		if(!lm.playing)
 			lw.playClicked();
 	}
+
 
 	public void show_retrieving_similars() {
 		if(hint != Hint.SIMILAR || !has_error_box || !lm.media_active)
@@ -708,7 +471,6 @@ public class BeatBox.ViewWrapper : Box {
 
 		similarsFetched = false;
 	}
-
 
 	/**
 	 * This handles updating all the shared stuff outside the view area.
@@ -724,14 +486,6 @@ public class BeatBox.ViewWrapper : Box {
 			return;
 
 		update_library_window_widgets ();
-
-		// Update List View paned position to use the same position as the miller columns in other view wrappers
-		if (has_column_browser) {
-			if (column_browser.actual_position == MillerColumns.Position.LEFT && list_view_hpaned_position != -1)
-				list_view_hpaned.set_position (list_view_hpaned_position);
-			else if (column_browser.actual_position == MillerColumns.Position.TOP && list_view_vpaned_position != -1)
-				list_view_vpaned.set_position (list_view_vpaned_position);
-		}
 
 		// Update the views if needed
 		if (needs_update && lw.initialization_finished)
@@ -751,7 +505,9 @@ public class BeatBox.ViewWrapper : Box {
 			return;
 		}
 
-		var visible_media = (current_view == ViewType.LIST && column_browser_enabled) ? column_browser.media_results : get_showing_media_ids();
+		bool column_browser_enabled = (has_list_view) ? (list_view as ListView).column_browser_enabled : false;
+
+		var visible_media = (current_view == ViewType.LIST && column_browser_enabled) ? list_view.get_showing_medias () : get_showing_media_ids();
 
 		uint count = 0;
 		uint total_time = 0;
@@ -775,7 +531,7 @@ public class BeatBox.ViewWrapper : Box {
 			return;
 
 		actual_search_string = lw.searchField.get_text();
-		var new_search = get_valid_search_string (actual_search_string);
+		var new_search = Utils.get_valid_search_string (actual_search_string);
 		debug ("NEW SEARCH is '%s'", new_search);
 
 		if(!setting_search && lw.initialization_finished && is_current_wrapper && new_search.length != 1 && this.visible) {
@@ -815,18 +571,11 @@ public class BeatBox.ViewWrapper : Box {
 		if (has_album_view)
 			album_view.populate_view ();
 
-		if (column_browser_enabled)
-			// This will emit the changed() signal and then column_browser_changed will be called.
-			// We can't avoid re-populating the entire column browser and then the list view
-			// for performance reasons. We don't guarantee persistent selections if the column
-			// browser is enabled.
-			column_browser.populate (get_showing_media_ids());
-		else if (has_list_view)
+		if (has_list_view)
 			list_view.populate_view ();
 
-		// Update statusbar ...
-		if (!column_browser_enabled) // column_browser_changed already does this...
-			set_statusbar_info ();
+		// FIXME: column_browser_changed already does this when ListView :: column_browser_enabled is TRUE
+		set_statusbar_info ();
 
 		update_library_window_widgets ();
 
@@ -834,25 +583,11 @@ public class BeatBox.ViewWrapper : Box {
 		needs_update = false;
 	}
 
-	private void column_browser_changed () {
-		// This method is only called if the column browser is available.
-		// For performance reasons we won't update showing_medias to match
-		// the results of the miller columns.
-
-		if(lw.initialization_finished && has_list_view) {
-			list_view.set_show_next (column_browser.media_results);
-			list_view.populate_view();
-			set_statusbar_info();
-		}
-	}
-
-
 	/**
 	============================================================================
 	                                  DATA STUFF
 	============================================================================
 	*/
-
 
 	/**
 	 * @return a collection containing ALL the media
@@ -894,7 +629,7 @@ public class BeatBox.ViewWrapper : Box {
 		if (has_album_view)
 			album_view.set_show_next (search_results);
 
-		if (!column_browser_enabled && has_list_view)
+		if (has_list_view)
 			list_view.set_show_next (search_results);
 
 		// Now update the views to reflect the change
@@ -1068,43 +803,12 @@ public class BeatBox.ViewWrapper : Box {
 			}
 
 			Idle.add( () => {
-				if (check_show_error_box()) {
-					in_update = false;
-					return false;
-				}
-			
-				if (column_browser_enabled) {
-					// FIXME: not doing anything for now. Things that should be done
-					// 1) update the column browser without repopulating the list-view
-					//    after every change. Duration is missing from songs very often and
-					//    when BeatBox fixes them, medias_updated() is emmited, calling this
-					//    method. Enabling the following lines would make BeatBox re-populate
-					//    the list view and column browser almost everytime a media with missing
-					//    duration is played!
-					//
-					// This will emit the changed() signal and then column_browser_changed will be called.
-					// We can't avoid re-populating the entire column browser and then the list view
-					// for performance reasons. We don't guarantee persistent selections if the column
-					// browser is enabled.
-					//column_browser.populate (get_showing_media_ids());
-					
-					// let's see which media items match the current filter
-					//var to_remove_filtered = to_remove_show.copy();
-					//var to_add_filtered = to_add.copy();
-					
-					//foreach (var id in to_add)
-					//	if (!(id in column_browser.media_results))
-					//		to_add_filtered.remove (id);
-					
-					//foreach (var id in to_add)
-					//	if (!(id in column_browser.media_results))
-					//		to_remove_filtered.remove (id);
-						
-				}
-				else if (has_list_view) {
+				/* FIXME XXX
+				if (has_list_view) {
 					list_view.append_medias(to_add);
 					list_view.remove_medias(to_remove_show);
 				}
+				*/
 
 				if (has_album_view) {
 					album_view.append_medias(to_add);
@@ -1152,13 +856,7 @@ public class BeatBox.ViewWrapper : Box {
 		if (has_album_view)
 			album_view.remove_medias (to_remove);
 
-		if (column_browser_enabled)
-			// This will emit the changed() signal and then column_browser_changed will be called.
-			// We can't avoid re-populating the entire column browser and then the list view
-			// for performance reasons. We don't guarantee persistent selections if the column
-			// browser is enabled.
-			column_browser.populate (get_showing_media_ids());
-		else if (has_list_view)
+		if (has_list_view)
 			list_view.remove_medias (to_remove);
 
 		update_library_window_widgets ();
@@ -1203,16 +901,8 @@ public class BeatBox.ViewWrapper : Box {
 			if (has_album_view)
 				album_view.append_medias (to_add);
 
-			if (column_browser_enabled) {
-				// This will emit the changed() signal and then column_browser_changed will be called.
-				// We can't avoid re-populating the entire column browser and then the list view
-				// for performance reasons. We don't guarantee persistent selections if the column
-				// browser is enabled.
-				column_browser.populate (get_showing_media_ids());
-			}
-			else if (has_list_view) {
+			if (has_list_view)
 				list_view.append_medias (to_add);
-			}
 		}
 		else {
 			needs_update = true; //not sure about this
