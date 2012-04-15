@@ -84,6 +84,8 @@ public abstract class BeatBox.BaseListView : ContentView, ScrolledWindow {
 		_columns = new LinkedList<string>();
 		cellHelper = new CellDataFunctionHelper((BeatBox.LibraryManager)lm);
 
+		this.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
+
 		lm.medias_updated.connect(medias_updated);
 		lm.media_played.connect(media_played);
 		lm.playback_stopped.connect(playback_stopped);

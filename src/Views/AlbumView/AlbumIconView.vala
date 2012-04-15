@@ -188,7 +188,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		parent_view_wrapper.size_allocate.connect (on_resize);
 	}
 
-	// smart spacing ...
+	// Smart Spacing !
 	private void on_resize (Allocation alloc) {
 		if (!visible)
 			return;

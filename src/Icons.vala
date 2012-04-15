@@ -54,7 +54,7 @@ namespace Icons {
 	/**
 	 * Size of the cover art used in the album view
 	 **/
-	public const int ALBUM_VIEW_IMAGE_SIZE = 148;
+	public const int ALBUM_VIEW_IMAGE_SIZE = 168;
 
 	/**
 	 * ICON INFORMATION
@@ -135,8 +135,9 @@ namespace Icons {
 	/**
 	 * @param surface_size size of the new pixbuf. Set a value of 0 to use the pixbuf's default size.
 	 **/
-	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size = ALBUM_VIEW_IMAGE_SIZE,
-	                                      int shadow_size = 5, double alpha = 0.8)
+	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pixbuf, bool fast = false,
+	                                      int surface_size = ALBUM_VIEW_IMAGE_SIZE,
+	                                      int shadow_size = 15, double alpha = 0.6)
 	{
 		int S_WIDTH = (surface_size > 0)? surface_size : pixbuf.width;
 		int S_HEIGHT = (surface_size > 0)? surface_size : pixbuf.height;
@@ -149,7 +150,12 @@ namespace Icons {
 		buffer_surface.context.rectangle (shadow_size, shadow_size, S_WIDTH, S_HEIGHT);
 		buffer_surface.context.set_source_rgba (0, 0, 0, alpha);
 		buffer_surface.context.fill();
-		buffer_surface.fast_blur(2, 3);
+
+		if (fast)
+			buffer_surface.fast_blur(3, 4); // originally 2, 3
+		else
+			buffer_surface.gaussian_blur (shadow_size);
+
 		Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
 		buffer_surface.context.paint();
 

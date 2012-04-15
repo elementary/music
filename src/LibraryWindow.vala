@@ -683,7 +683,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		debug ("UPDATE SENSITIVITIES");
 
 		bool folder_set = (lm.music_folder_dir != "");
-		bool have_media = lm.media_count() > 0;
+		//bool have_media = lm.media_count() > 0;
 		bool doing_ops = lm.doing_file_operations();
 		bool media_active = lm.media_active;
 
@@ -717,7 +717,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 				music_library_view.welcome_screen.set_item_sensitivity(key, !doing_ops);
 		}
 
-		statusBar.set_visible(have_media);
+		// FIXME: revert this back to set_visible(have_media) after L+1
+		statusBar.set_visible (folder_set);
+		//statusBar.set_visible(have_media);
 		//infoPanel.set_visible(have_media);
 
 		//bool show_info_panel = show_more && media_active;
@@ -727,9 +729,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		//infoPanelChooser.set_visible(show_info_panel_chooser);
 
 		// hide playlists when media list is empty
-		sideTree.setVisibility(sideTree.playlists_iter, have_media);
 
-		if(!lm.media_active || have_media && !lm.playing) {
+		// FIXME: revert this back to set_visible(have_media) after L+1
+		sideTree.setVisibility(sideTree.playlists_iter, folder_set);
+		//sideTree.setVisibility(sideTree.playlists_iter, have_media);
+
+		// FIXME: revert this back to set_visible(have_media) after L+1
+		if(!lm.media_active || folder_set /*have_media*/ && !lm.playing) {
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 		}
 	}
@@ -1474,31 +1480,19 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	private Gtk.Window? equalizer_window = null;
 
-	public virtual void eq_option_chooser_clicked(int val) {
-	/*
-		if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-			if (equalizer_window != null) {
-				equalizer_window.destroy();
-				equalizer_window = null;
-			}
-			else {
-				equalizer_window = new EqualizerWindow(lm, this);
-				equalizer_window.show_all ();
-			}
-			return true;
-		}
-	*/
-
+	public virtual void eq_option_chooser_clicked (int val) {
 		if (equalizer_window == null && val == 1) {
-			equalizer_window = new EqualizerWindow(lm, this);
+			equalizer_window = new EqualizerWindow (lm, this);
 			equalizer_window.show_all ();
+			equalizer_window.destroy.connect ( () => {
+				// revert the option to "Hide equalizer after the window is destroyed"
+				eq_option_chooser.setOption (0);
+			});
 		}
-		else if (val == 0) {
-			equalizer_window.destroy();
+		else if (val == 0 && equalizer_window != null) {
+			equalizer_window.destroy ();
 			equalizer_window = null;
 		}
-
-		//return false;
 	}
 
 
