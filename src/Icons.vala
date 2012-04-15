@@ -137,36 +137,29 @@ namespace Icons {
 	}
 
 	/**
-	 * @return a shadowed pixbuf for the album view and other uses.
+	 * @param pixbuf original image
+	 * @param stretch whether to strech the image inside the square or keep the original dimensions
+	 * @return original pixbuf + drop shadow
 	 **/
-	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pixbuf, bool scale = true)
+	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pixbuf, bool stretch = true)
 	{
 		const int SURFACE_SIZE = ALBUM_VIEW_IMAGE_SIZE;
 		const int SHADOW_SIZE = 15;
 
-		int S_WIDTH = (scale)? SURFACE_SIZE: pixbuf.width;
-		int S_HEIGHT = (scale)? SURFACE_SIZE : pixbuf.height;
+		int S_WIDTH = (stretch)? SURFACE_SIZE: pixbuf.width;
+		int S_HEIGHT = (stretch)? SURFACE_SIZE : pixbuf.height;
 
 		var buffer_surface = new Granite.Drawing.BufferSurface (S_WIDTH, S_HEIGHT);
 
+		// paint shadow
 		buffer_surface.context.rectangle (0, 0, S_WIDTH, S_HEIGHT);
 		Gdk.cairo_set_source_pixbuf(buffer_surface.context, DEFAULT_ALBUM_SHADOW_PIXBUF.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), 0, 0);
-		buffer_surface.context.fill(); //paint?
-
+		buffer_surface.context.paint();
 
 		S_WIDTH -= 2 * SHADOW_SIZE;
 		S_HEIGHT -= 2 * SHADOW_SIZE;
 
-
-		//buffer_surface.context.rectangle (SHADOW_SIZE, SHADOW_SIZE, S_WIDTH, S_HEIGHT);
-		//buffer_surface.context.set_source_rgba (0, 0, 0, alpha);
-		//buffer_surface.context.fill();
-
-		// High-quality results, but too slow
-		//buffer_surface.gaussian_blur (SHADOW_SIZE);
-		//buffer_surface.fast_blur(2, 3);
-		//buffer_surface.exponential_blur (3);
-
+		// paint original pixbuf
 		Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), SHADOW_SIZE, SHADOW_SIZE);
 		buffer_surface.context.paint();
 
@@ -258,7 +251,8 @@ namespace Icons {
 		VIEW_ICONS = new BeatBox.Icon ("view-list-icons-symbolic");
 		VIEW_VIDEO = new BeatBox.Icon ("view-list-video-symbolic");
 
-		// Render Pixbufs
+		// Render Pixbufs ...
+
 		DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null);
 
 		var shadow_icon = new BeatBox.Icon ("albumart-shadow", 168, Type.OTHER, null, true);

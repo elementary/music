@@ -14,20 +14,16 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="albumart-shadow.svg">
   <defs
      id="defs4">
     <filter
        inkscape:collect="always"
-       id="filter3899"
-       x="-0.15583511"
-       width="1.3116702"
-       y="-0.15616664"
-       height="1.3123333">
+       id="filter3898">
       <feGaussianBlur
          inkscape:collect="always"
-         stdDeviation="8.3692354"
-         id="feGaussianBlur3901" />
+         stdDeviation="5.1502903"
+         id="feGaussianBlur3900" />
     </filter>
   </defs>
   <sodipodi:namedview
@@ -37,9 +33,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="54.571106"
-     inkscape:cy="121.81571"
+     inkscape:zoom="2"
+     inkscape:cx="55.638653"
+     inkscape:cy="77.463442"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -56,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -66,12 +62,12 @@
      id="layer1"
      transform="translate(0,-884.36218)">
     <rect
-       style="opacity:0.60714285;fill:#000000;fill-rule:evenodd;stroke:none;filter:url(#filter3899)"
+       style="opacity:0.46;fill:#000000;fill-rule:evenodd;stroke:none;filter:url(#filter3898)"
        id="rect2985"
        width="128.89371"
        height="128.62007"
        x="17.177719"
        y="907.67072"
-       transform="matrix(1.0464893,0,0,1.0423174,-1.2946706,-44.703136)" />
+       transform="matrix(1.1085909,0,0,1.1015031,-6.0689449,-101.47439)" />
   </g>
 </svg>

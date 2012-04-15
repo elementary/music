@@ -56,7 +56,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	private const int ITEM_PADDING = 3;
 	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
 	private const int MIN_SPACING = 12;
-
+/*
 	private const string ALBUM_VIEW_STYLESHEET = """
 		GtkIconView.view.cell:selected,
 		GtkIconView.view.cell:selected:focused {
@@ -81,6 +81,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			                to (alpha (#000, 0.03)));
 		}
 	""";
+*/
 
 	/* medias should be mutable, as we will be sorting it */
 	public AlbumView(ViewWrapper view_wrapper, Collection<int> smedias) {
@@ -129,6 +130,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		model = new AlbumViewModel(lm, defaultPix);
 
 		// apply css styling
+/*
 		var style_provider = new CssProvider();
 
 		try  {
@@ -138,9 +140,16 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		}
 
 		icons.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
+*/
 		vpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
 		hpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-		this.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+
+		vpadding_box.get_style_context().add_class(Granite.STYLE_CLASS_CONTENT_VIEW);
+		hpadding_box.get_style_context().add_class(Granite.STYLE_CLASS_CONTENT_VIEW);
+
+		//this.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+
+		this.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 
 		icons.set_columns(-1);
 
