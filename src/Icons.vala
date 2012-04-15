@@ -162,7 +162,7 @@ namespace Icons {
 	public void init () {
 
 		// 128 x 128
-		DEFAULT_ALBUM_ART = new BeatBox.Icon ("media-audio", 128, Type.MIMETYPE, FileType.PNG, true);
+		DEFAULT_ALBUM_ART = new BeatBox.Icon ("albumart", 138, Type.MIMETYPE, null, true);
 		MUSIC_FOLDER = new BeatBox.Icon ("folder-music", 128, Type.MIMETYPE, null, true);
 
 		// 22 x 22
