@@ -229,18 +229,19 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		var info_panel_show = Icons.PANE_SHOW_SYMBOLIC.render_image (IconSize.MENU);
 		var info_panel_hide = Icons.PANE_HIDE_SYMBOLIC.render_image (IconSize.MENU);
 		var eq_show_image = Icons.EQ_SYMBOLIC.render_image (IconSize.MENU);
+		var eq_hide_image = Icons.EQ_SYMBOLIC.render_image (IconSize.MENU);
 
 		addPlaylistChooser = new SimpleOptionChooser.from_image (add_playlist_image);
 		shuffleChooser = new SimpleOptionChooser.from_image (shuffle_on_image, shuffle_off_image);
 		repeatChooser = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
 		infoPanelChooser = new SimpleOptionChooser.from_image (info_panel_hide, info_panel_show);
-		eq_option_chooser = new SimpleOptionChooser.from_image (eq_show_image);
+		eq_option_chooser = new SimpleOptionChooser.from_image (eq_hide_image, eq_show_image);
 
 		repeatChooser.setTooltip (_("Disable Repeat"), _("Enable Repeat"));
 		shuffleChooser.setTooltip (_("Disable Shuffle"), _("Enable Shuffle"));
 		infoPanelChooser.setTooltip (_("Hide Info Panel"), _("Show Info Panel"));
 		addPlaylistChooser.setTooltip (_("Add Playlist"));
-		eq_option_chooser.setTooltip (_("Show Equalizer"));
+		eq_option_chooser.setTooltip (_("Hide Equalizer"), _("Show Equalizer"));
 
 		statusBar.insert_widget (addPlaylistChooser, true);
 		statusBar.insert_widget (new Gtk.Box (Orientation.HORIZONTAL, 12), true);
@@ -300,9 +301,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		infoPanelChooser.appendItem(_("Hide"));
 		infoPanelChooser.appendItem(_("Show"));
 
+		eq_option_chooser.appendItem(_("Hide"));
+		eq_option_chooser.appendItem(_("Show"));
+
 		repeatChooser.setOption(settings.getRepeatMode());
 		shuffleChooser.setOption(settings.getShuffleMode());
 		infoPanelChooser.setOption(settings.getMoreVisible() ? 1 : 0);
+		eq_option_chooser.setOption(0);
 
 		// Add controls to the GUI
 		add(verticalBox);
@@ -310,7 +315,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		verticalBox.pack_start(videoArea, true, true, 0);
 		verticalBox.pack_start(sourcesToMedias, true, true, 0);
 		verticalBox.pack_end(statusBar, false, true, 0);
-
 
 		var column_toggle_bin = new ToolItem();
 		var topDisplayBin = new ToolItem();
@@ -390,7 +394,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		nextButton.clicked.connect(nextClicked);
 
 		addPlaylistChooser.button_press_event.connect(addPlaylistChooserOptionClicked);
-		eq_option_chooser.button_press_event.connect(eq_option_chooser_clicked);
+		eq_option_chooser.option_changed.connect(eq_option_chooser_clicked);
 
 		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
@@ -1467,14 +1471,34 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		return false;
 	}
 
-	public virtual bool eq_option_chooser_clicked(Gdk.EventButton event) {
+
+	private Gtk.Window? equalizer_window = null;
+
+	public virtual void eq_option_chooser_clicked(int val) {
+	/*
 		if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-			var eq_window = new EqualizerWindow(lm, this);
-			eq_window.show_all ();
+			if (equalizer_window != null) {
+				equalizer_window.destroy();
+				equalizer_window = null;
+			}
+			else {
+				equalizer_window = new EqualizerWindow(lm, this);
+				equalizer_window.show_all ();
+			}
 			return true;
 		}
+	*/
 
-		return false;
+		if (equalizer_window == null && val == 1) {
+			equalizer_window = new EqualizerWindow(lm, this);
+			equalizer_window.show_all ();
+		}
+		else if (val == 0) {
+			equalizer_window.destroy();
+			equalizer_window = null;
+		}
+
+		//return false;
 	}
 
 
