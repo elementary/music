@@ -32,6 +32,9 @@ install(FILES icons/16x16/status/media-playlist-no-shuffle-symbolic.svg DESTINAT
 install(FILES icons/16x16/actions/pane-show-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
 install(FILES icons/16x16/actions/pane-hide-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
 
+# eq symbolic icon
+install(FILES icons/16x16/actions/media-eq-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
+
 # new podcast icon
 install(FILES icons/16x16/status/podcast-new.svg DESTINATION share/noise/icons/hicolor/16x16/status)
 

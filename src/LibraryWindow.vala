@@ -101,7 +101,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	private ImageMenuItem libraryOperations;
 	private Gtk.MenuItem fileImportMusic;
 	private Gtk.MenuItem fileRescanMusicFolder;
-	private Gtk.MenuItem editEqualizer;
 	private ImageMenuItem editPreferences;
 
 	public Notify.Notification notification { get; private set; }
@@ -207,7 +206,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		libraryOperationsMenu = new Gtk.Menu();
 		fileImportMusic = new Gtk.MenuItem.with_label(_("Import to Library"));
 		fileRescanMusicFolder = new Gtk.MenuItem.with_label(_("Rescan Music Folder"));
-		editEqualizer = new Gtk.MenuItem.with_label(_("Equalizer"));
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
 		settingsMenu = new Gtk.Menu();
 		topControls = new Toolbar();
@@ -230,7 +228,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		var repeat_off_image = Icons.REPEAT_OFF.render_image (IconSize.MENU);
 		var info_panel_show = Icons.PANE_SHOW_SYMBOLIC.render_image (IconSize.MENU);
 		var info_panel_hide = Icons.PANE_HIDE_SYMBOLIC.render_image (IconSize.MENU);
-		var eq_show_image = Icons.render_image ("document-properties-symbolic", IconSize.MENU);
+		var eq_show_image = Icons.EQ_SYMBOLIC.render_image (IconSize.MENU);
 
 		addPlaylistChooser = new SimpleOptionChooser.from_image (add_playlist_image);
 		shuffleChooser = new SimpleOptionChooser.from_image (shuffle_on_image, shuffle_off_image);
@@ -281,7 +279,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		settingsMenu.append(libraryOperations);
 		settingsMenu.append(new SeparatorMenuItem());
-		settingsMenu.append(editEqualizer);
 		settingsMenu.append(editPreferences);
 
 		fileImportMusic.activate.connect(fileImportMusicClick);
@@ -289,7 +286,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		editPreferences.set_label(_("Preferences"));
 
-		editEqualizer.activate.connect(editEqualizerClick);
 		editPreferences.activate.connect(editPreferencesClick);
 
 		repeatChooser.appendItem(_("Off"));
@@ -1255,20 +1251,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		update_sensitivities();
 	}
 
-	public void editEqualizerClick() {
-		var pop = new EqualizerWindow(lm, this);
-
-		pop.set_parent_pop (this);
-		pop.move_to_widget(eq_option_chooser);
-
-		pop.show_all();
-
-		pop.present();
-		pop.run ();
-
-		pop.destroy ();
-	}
-
 	public void editPreferencesClick() {
 		PreferencesWindow pw = new PreferencesWindow(lm, this);
 
@@ -1487,7 +1469,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	public virtual bool eq_option_chooser_clicked(Gdk.EventButton event) {
 		if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-			editEqualizerClick();
+			var eq_window = new EqualizerWindow(lm, this);
+			eq_window.show_all ();
 			return true;
 		}
 

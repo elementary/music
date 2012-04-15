@@ -22,7 +22,7 @@
 
 using Gtk;
 
-public class BeatBox.EqualizerWindow : Gtk.Window {
+public class BeatBox.EqualizerWindow : Granite.Widgets.PopOver {
 
 	LibraryManager lm;
 	LibraryWindow lw;
@@ -30,10 +30,8 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	private Switch eq_switch;
 	private PresetList preset_combo;
 	private Entry new_preset_entry;
-	private Toolbar bottom_toolbar;
-	private ToolItem side_list;
-	private ToolItem new_preset_field;
-	private Button close_button;
+
+	private Box action_area;
 
 	private bool apply_changes;
 	private bool initialized;
@@ -84,20 +82,16 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	void build_ui () {
 		set_title("Equalizer");
 
-		window_position = WindowPosition.CENTER;
-		type_hint = Gdk.WindowTypeHint.DIALOG;
-		set_transient_for(lw);
-		set_size_request(440, 224);
-		resizable = false;
-		set_deletable(false);
-
 		set_icon(render_icon(Gtk.Stock.PREFERENCES, IconSize.DIALOG, null));
 
-		var outer_box = new HBox(false, 10);
-		var inner_box = new VBox(false, 0);
-		var scales = new HBox(false, 0);
+		var scales = new Box(Orientation.HORIZONTAL, 0);
 
-		bottom_toolbar = new Toolbar();
+		var outer_box = new Box (Orientation.VERTICAL, 0);
+		action_area = new Box (Orientation.HORIZONTAL, 0);
+		outer_box.pack_end (action_area, false, true, 0);
+
+		get_content_area().pack_start (outer_box);
+
 		eq_switch = new Switch();
 		preset_combo = new PresetList();
 
@@ -138,44 +132,12 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		preset_combo.set_size_request(165, -1);
 
-		var eq_switch_item = new ToolItem();
-		eq_switch_item.add(eq_switch);
-
-		side_list = new ToolItem();
-		side_list.add(preset_combo);
-
 		new_preset_entry = new Entry();
 		new_preset_entry.set_size_request(165, -1);
 
 		var entry_icon = Icons.render_icon ("dialog-apply", IconSize.MENU);
 		new_preset_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.SECONDARY, entry_icon);
 		new_preset_entry.set_icon_tooltip_text(Gtk.EntryIconPosition.SECONDARY, "Save preset");
-
-		new_preset_field = new ToolItem();
-		new_preset_field.add(new_preset_entry);
-
-		var space_item = new ToolItem();
-		space_item.set_expand(true);
-
-		close_button = new Button.with_label("Close");
-		var close_button_item = new ToolItem();
-		close_button.set_size_request(120, -1);
-		close_button_item.set_expand(false);
-		close_button_item.add(close_button);
-
-		bottom_toolbar.insert(eq_switch_item, 0);
-		bottom_toolbar.insert(side_list, 1);
-		bottom_toolbar.insert(space_item, 2);
-		bottom_toolbar.insert(close_button_item, 3);
-
-		// Set the egtk bottom toolbar style.
-		bottom_toolbar.get_style_context().add_class("bottom-toolbar");
-
-		inner_box.pack_end(wrap_alignment(bottom_toolbar, 0, 0, 0, 0), false, false, 0);
-		inner_box.pack_start(wrap_alignment(scales, 0, 12, 0, 12), true, true, 10);
-
-		outer_box.pack_start(inner_box);
-		add(outer_box);
 
 		eq_switch.notify["active"].connect(on_eq_switch_toggled);
 		preset_combo.automatic_preset_chosen.connect(on_automatic_chosen);
@@ -185,10 +147,19 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		new_preset_entry.icon_press.connect (new_preset_entry_icon_pressed);
 		new_preset_entry.focus_out_event.connect (on_entry_focus_out);
 
-		close_button.clicked.connect(on_quit);
-		destroy.connect(on_quit);
+		// ADDING STUFF TO THE POPOVER
+		outer_box.pack_start(wrap_alignment(scales, 0, 0, 0, 0), true, true, 12);
+		scales.set_size_request (-1, 180);
 
-		show_all();
+		eq_switch.margin_right = eq_switch.margin_left = 6;
+
+		eq_switch.valign = preset_combo.valign = Gtk.Align.CENTER;
+		eq_switch.halign = preset_combo.halign = Gtk.Align.START;
+
+		action_area.pack_start (eq_switch, false, false, 0);
+		action_area.pack_start (preset_combo, false, false, 0);
+
+		destroy.connect(on_quit);
 	}
 
 	bool on_entry_focus_out () {
@@ -352,16 +323,16 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		adding_preset = true;
 
-		close_button.sensitive = !adding_preset;
-
-		bottom_toolbar.remove(side_list);
-		bottom_toolbar.insert(new_preset_field, 1);
+		action_area.remove(preset_combo);
+		action_area.pack_start(new_preset_entry, false, false, 0);
 
 		new_preset_name = create_new_preset_name(true);
 
 		new_preset_entry.set_text(new_preset_name);
 		eq_switch.sensitive = false;
-		bottom_toolbar.show_all();
+
+		action_area.show_all();
+
 		new_preset_entry.grab_focus();
 	}
 
@@ -394,12 +365,13 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		var new_preset = new EqualizerPreset.with_gains(new_preset_name, gains);
 		preset_combo.addPreset(new_preset);
 
-		bottom_toolbar.remove(new_preset_field);
-		bottom_toolbar.insert(side_list, 1);
-		bottom_toolbar.show_all();
+		action_area.remove (new_preset_entry);
+		action_area.pack_start (preset_combo, false, false, 0);
+
+		action_area.show_all ();
+
 		eq_switch.sensitive = true;
 		adding_preset = false;
-		close_button.sensitive = !adding_preset;
 	}
 
 	string create_new_preset_name (bool from_current) {

@@ -90,6 +90,8 @@ namespace Icons {
 	public BeatBox.Icon PANE_HIDE_SYMBOLIC;
 	public BeatBox.Icon PANE_SHOW_SYMBOLIC;
 
+	public BeatBox.Icon EQ_SYMBOLIC;
+
 	//public BeatBox.Icon MEDIA_PLAY_SYMBOLIC;
 	//public BeatBox.Icon MEDIA_PAUSE_SYMBOLIC;
 	public BeatBox.Icon NOW_PLAYING_SYMBOLIC;
@@ -184,6 +186,9 @@ namespace Icons {
 		// SYMBOLIC ICONS (16 x 16)
 		PANE_SHOW_SYMBOLIC = new BeatBox.Icon ("pane-show-symbolic", 16, Type.ACTION, null, true);
 		PANE_HIDE_SYMBOLIC = new BeatBox.Icon ("pane-hide-symbolic", 16, Type.ACTION, null, true);
+
+		EQ_SYMBOLIC = new BeatBox.Icon ("media-eq-symbolic", 16, Type.ACTION, null, true);
+
 		//REPEAT_ONCE = new BeatBox.Icon ("media-playlist-repeat-one-symbolic", 16, Type.STATUS, null, true);
 		REPEAT_OFF = new BeatBox.Icon ("media-playlist-no-repeat-symbolic", 16, Type.STATUS, null, true);
 		SHUFFLE_OFF = new BeatBox.Icon ("media-playlist-no-shuffle-symbolic", 16, Type.STATUS, null, true);
