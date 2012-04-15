@@ -103,7 +103,8 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		eq_switch.set_active(lm.settings.getEqualizerEnabled());
 
-		string[] decibels = {"32", "64", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"};
+		string[] decibels = {"60", "170", "310", "600", "1k", "3k", "6k", "12k", "14k", "16k"};
+		//string[] decibels = {"32", "64", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"};
 
 		for (int index = 0; index < 10; ++index) {
 			VBox holder = new VBox(false, 0);
