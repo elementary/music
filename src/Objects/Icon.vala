@@ -91,7 +91,7 @@ public class BeatBox.Icon : GLib.Object {
 					type_folder = Icons.APPS_FOLDER;
 					break;
 				default:
-					type_folder = "";
+					type_folder = Icons.OTHER_FOLDER;
 					break;
 			}
 

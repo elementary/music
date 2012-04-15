@@ -20,8 +20,9 @@ install(FILES icons/16x16/mimetypes/internet-radio.svg DESTINATION share/noise/i
 # CD icon
 install(FILES icons/16x16/mimetypes/media-cdrom-audio.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
 
-# media-audio for default album image
+# media-audio for default album image and album shadow
 install(FILES icons/138x138/mimetypes/albumart.svg DESTINATION share/noise/icons/hicolor/138x138/mimetypes)
+install(FILES icons/168x168/other/albumart-shadow.svg DESTINATION share/noise/icons/hicolor/168x168/other)
 
 # shuffle and repeat
 install(FILES icons/16x16/status/media-playlist-repeat-one-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/status)

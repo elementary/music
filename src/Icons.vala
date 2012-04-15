@@ -35,7 +35,8 @@ namespace Icons {
 		MIMETYPE,
 		ACTION,
 		STATUS,
-		APP
+		APP,
+		OTHER
 	}
 
 	public enum FileType {
@@ -47,6 +48,7 @@ namespace Icons {
 	private const string ACTIONS_FOLDER = "actions";
 	private const string STATUS_FOLDER = "status";
 	private const string APPS_FOLDER = "apps";
+	private const string OTHER_FOLDER = "other";
 
 	private const string PNG_EXT = ".png";
 	private const string SVG_EXT = ".svg";
@@ -54,7 +56,7 @@ namespace Icons {
 	/**
 	 * Size of the cover art used in the album view
 	 **/
-	public const int ALBUM_VIEW_IMAGE_SIZE = 148;
+	public const int ALBUM_VIEW_IMAGE_SIZE = 168;
 
 	/**
 	 * ICON INFORMATION
@@ -121,6 +123,8 @@ namespace Icons {
 	 * in the init() function.
 	 */
 	public Gdk.Pixbuf DEFAULT_ALBUM_ART_PIXBUF;
+	public Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF;
+
 
 	public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
 		var icon = new BeatBox.Icon (icon_name);
@@ -133,10 +137,49 @@ namespace Icons {
 	}
 
 	/**
+	 * @return a shadowed pixbuf for the album view and other uses.
+	 **/
+	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pixbuf, bool scale = true)
+	{
+		const int SURFACE_SIZE = ALBUM_VIEW_IMAGE_SIZE;
+		const int SHADOW_SIZE = 15;
+
+		int S_WIDTH = (scale)? SURFACE_SIZE: pixbuf.width;
+		int S_HEIGHT = (scale)? SURFACE_SIZE : pixbuf.height;
+
+		var buffer_surface = new Granite.Drawing.BufferSurface (S_WIDTH, S_HEIGHT);
+
+		buffer_surface.context.rectangle (0, 0, S_WIDTH, S_HEIGHT);
+		Gdk.cairo_set_source_pixbuf(buffer_surface.context, DEFAULT_ALBUM_SHADOW_PIXBUF.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), 0, 0);
+		buffer_surface.context.fill(); //paint?
+
+
+		S_WIDTH -= 2 * SHADOW_SIZE;
+		S_HEIGHT -= 2 * SHADOW_SIZE;
+
+
+		//buffer_surface.context.rectangle (SHADOW_SIZE, SHADOW_SIZE, S_WIDTH, S_HEIGHT);
+		//buffer_surface.context.set_source_rgba (0, 0, 0, alpha);
+		//buffer_surface.context.fill();
+
+		// High-quality results, but too slow
+		//buffer_surface.gaussian_blur (SHADOW_SIZE);
+		//buffer_surface.fast_blur(2, 3);
+		//buffer_surface.exponential_blur (3);
+
+		Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), SHADOW_SIZE, SHADOW_SIZE);
+		buffer_surface.context.paint();
+
+		return buffer_surface.load_to_pixbuf();
+	}
+
+
+
+	/**
 	 * @param surface_size size of the new pixbuf. Set a value of 0 to use the pixbuf's default size.
 	 **/
-	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size = ALBUM_VIEW_IMAGE_SIZE,
-	                                      int shadow_size = 5, double alpha = 0.8)
+	public Gdk.Pixbuf render_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size = ALBUM_VIEW_IMAGE_SIZE,
+	                                         int shadow_size = 5, double alpha = 0.75)
 	{
 		int S_WIDTH = (surface_size > 0)? surface_size : pixbuf.width;
 		int S_HEIGHT = (surface_size > 0)? surface_size : pixbuf.height;
@@ -152,6 +195,7 @@ namespace Icons {
 
 		// High-quality results, but too slow
 		//buffer_surface.gaussian_blur (shadow_size);
+
 		buffer_surface.fast_blur(2, 3);
 		//buffer_surface.exponential_blur (3);
 
@@ -160,6 +204,7 @@ namespace Icons {
 
 		return buffer_surface.load_to_pixbuf();
 	}
+
 
 	/**
 	 * Loads icon information and renders [preloaded] pixbufs
@@ -215,6 +260,9 @@ namespace Icons {
 
 		// Render Pixbufs
 		DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null);
+
+		var shadow_icon = new BeatBox.Icon ("albumart-shadow", 168, Type.OTHER, null, true);
+		DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render (null);
 	}
 }
 
