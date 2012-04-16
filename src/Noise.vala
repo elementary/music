@@ -27,7 +27,9 @@ namespace Option {
 		[CCode (array_length = false, array_null_terminated = true)]
 		static string[] to_add;
 		static string to_play;
+#if HAVE_STORE
 		static bool enable_store = false;
+#endif
 		static bool debug = false;
 }
 
@@ -96,6 +98,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		app_launcher = "noise.desktop";
 		app_years = "2012";
 
+		// XXX!!
 		//main_url = "https://launchpad.net/beat-box";
 		//bug_url = "https://bugs.launchpad.net/beat-box/+filebug";
 		//help_url = "https://answers.launchpad.net/beat-box";
@@ -116,7 +119,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		// Load settings
 		settings = new BeatBox.Settings ();
 		plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS,
-		                                       Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/");
+		                                        Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/");
 	}
 
 	protected override void activate () {
@@ -178,3 +181,4 @@ public class BeatBox.Beatbox : Granite.Application {
 		_program.set_application(this);
 	}
 }
+

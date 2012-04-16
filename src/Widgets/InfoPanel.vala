@@ -308,7 +308,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 					Timeout.add(2000, () => {
 						
 						try {
-							Thread.create<void*>(lm.fetch_thread_function, false);
+							Thread.create<void*>(lm.fetch_all_cover_art, false);
 						}
 						catch(GLib.ThreadError err) {
 							message("Could not create thread to load media pixbuf's: %s \n", err.message);

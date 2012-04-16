@@ -256,17 +256,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		sourcesToMedias.set_position(settings.getSidebarWidth());
 		mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 
-		// ADD MAIN VIEWS
-		build_main_views ();
-
-		// ADD PLAYLIST VIEWS
-		load_playlists ();
-
-#if HAVE_STORE
-		// LOAD MUSIC STORE VIEW
-		load_default_store ();
-#endif
-
 		sideTreeScroll = new ScrolledWindow(null, null);
 		//FIXME: don't scroll horizontally
 		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
@@ -361,8 +350,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		topControls.insert(searchFieldBin, -1);
 		topControls.insert(app.create_appmenu(settingsMenu), -1);
 
-		var music_folder_icon = Icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
-		music_library_view.welcome_screen.append_with_pixbuf(music_folder_icon, _("Locate"), _("Change your music folder."));
 
 		// Hide notebook tabs and border
 		main_views.show_tabs = false;
@@ -388,7 +375,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 
 		/* Connect events to functions */
-		music_library_view.welcome_screen.activated.connect(music_welcome_screen_activated);
 		previousButton.clicked.connect(previousClicked);
 		playButton.clicked.connect(playClicked);
 		nextButton.clicked.connect(nextClicked);
@@ -407,9 +393,24 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		Gtk.drag_dest_add_uri_targets(this);
 		drag_data_received.connect(dragReceived);
 
+
+
+		// ADD MAIN VIEWS
+		build_main_views ();
+
+		// ADD PLAYLIST VIEWS
+		load_playlists();
+
+#if HAVE_STORE
+		// LOAD MUSIC STORE VIEW
+		load_default_store ();
+#endif
+
+		update_sensitivities();
+		show_all ();
+
 		initialization_finished = true;
 
-		show_all();
 		update_sensitivities();
 
 		sideTree.resetView();
@@ -420,9 +421,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			}
 		}
 
-
 		infoPanel.set_visible (lm.settings.getMoreVisible());
-
 
 		// Now set the selected view
 		viewSelector.selected = settings.getViewMode();
@@ -441,13 +440,27 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		if(lm.song_ids().size == 0)
 			setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 		
-		// Redirect key presses to the search box. If it causes problems, move inside ViewWrapper.vala
+		// Redirect key presses to the search box.
 		this.key_press_event.connect( (event) => {
-			if(Regex.match_simple("[a-zA-Z0-9]", event.str) && searchField.sensitive && !searchField.has_focus) {
+			var typed_unichar = event.str.get_char ();
+			if (!typed_unichar.validate ())
+				return false;
+
+			if (typed_unichar.isalnum() && searchField.sensitive && !searchField.has_focus) {
 				searchField.grab_focus();
 			}
 			return false;
 		});
+
+
+
+		// start thread to load all the media pixbufs
+		try {
+			Thread.create<void*>(lm.fetch_cover_art_from_cache, false);
+		}
+		catch(GLib.ThreadError err) {
+			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
+		}
 	}
 
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -474,16 +487,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	 * @param sort_column column used to sort the list. Default: "" [allow-none]
 	 * @param sort_type sort type (ascending, descending, etc.) Default: 0 [allow-none]
 	 */
-	public ViewWrapper add_view (SideTreeView? tree, ViewWrapper.Hint hint, string view_name,
+	public ViewWrapper add_view (ViewWrapper.Hint hint, string view_name,
 	                              Collection<int> media, string sort_column = "",
 	                              Gtk.SortType sort_dir = 0, int id = -1)
 	{
-		if (tree == null)
-			tree = sideTree; /* if NULL is passed we use the default sidebar tree */
-
 		var view_wrapper = new ViewWrapper (this, media, sort_column, sort_dir, hint, id);
 
-		tree.add_item (view_wrapper, view_name);
+		sideTree.add_item (view_wrapper, view_name);
 
 		/* Pack view wrapper into the main views */
 		if (add_to_main_views(view_wrapper) == -1)
@@ -559,12 +569,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	 * IMPORTANT: Currently every item added through this method will be put under the Network category
 	 */
 	public ViewWrapper add_custom_view (string name, Gtk.Widget widget, SideTreeView? tree = null) {
-		if (tree == null)
-			tree = sideTree; /* if NULL is passed we use the default sidebar tree */
-
 		var view_wrapper = new ViewWrapper.with_view (widget);
 
-		tree.add_item (view_wrapper, name);
+		sideTree.add_item (view_wrapper, name);
 
 		/* Pack view wrapper into the main views */
 		int view_index = add_to_main_views (view_wrapper);
@@ -583,33 +590,41 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		debug ("Building main views ...");
 
 		// Add Music Library View
-		music_library_view = add_view (null, ViewWrapper.Hint.MUSIC, _("Music"), lm.media_ids (), lm.music_setup.sort_column, lm.music_setup.sort_direction);
+		music_library_view = add_view (ViewWrapper.Hint.MUSIC, _("Music"), lm.media_ids (), lm.music_setup.sort_column, lm.music_setup.sort_direction);
+
+		var music_folder_icon = Icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
+		music_library_view.welcome_screen.append_with_pixbuf(music_folder_icon, _("Locate"), _("Change your music folder."));
+
+		music_library_view.welcome_screen.activated.connect(music_welcome_screen_activated);
+
 
 #if HAVE_PODCASTS
 		// Add Podcast Library View
-		podcast_library_view = add_view (null, ViewWrapper.Hint.PODCAST, _("Podcasts"), lm.podcast_ids ());
+		podcast_library_view = add_view (ViewWrapper.Hint.PODCAST, _("Podcasts"), lm.podcast_ids ());
 #endif
 
 #if HAVE_INTERNET_RADIO
 		// Add Internet Radio View
-		radio_library_view = add_view (null, ViewWrapper.Hint.STATION, _("Internet Radio"), lm.station_ids(), lm.station_setup.sort_column, lm.station_setup.sort_direction);
+		radio_library_view = add_view (ViewWrapper.Hint.STATION, _("Internet Radio"), lm.station_ids(), lm.station_setup.sort_column, lm.station_setup.sort_direction);
 #endif
-
-		// Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future
-		add_view (null, ViewWrapper.Hint.SIMILAR, _("Similar"), new LinkedList<int>(), lm.similar_setup.sort_column, lm.similar_setup.sort_direction);
-
-		// Add Queue view
-		add_view (null, ViewWrapper.Hint.QUEUE, _("Queue"), lm.queue (), lm.queue_setup.sort_column, lm.queue_setup.sort_direction);
-
-		// Add History view
-		add_view (null, ViewWrapper.Hint.HISTORY, _("History"), lm.already_played (), lm.history_setup.sort_column, lm.history_setup.sort_direction);
 
 		debug ("Done with main views.");
 	}
-
-	private void load_playlists () {
+	
+	// XXX let's do it async in the future
+	private /*async*/ void load_playlists () {
 		debug ("Loading playlists");
-		
+
+
+		// Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future
+		add_view (ViewWrapper.Hint.SIMILAR, _("Similar"), new LinkedList<int>(), lm.similar_setup.sort_column, lm.similar_setup.sort_direction);
+
+		// Add Queue view
+		add_view (ViewWrapper.Hint.QUEUE, _("Queue"), lm.queue (), lm.queue_setup.sort_column, lm.queue_setup.sort_direction);
+
+		// Add History view
+		add_view (ViewWrapper.Hint.HISTORY, _("History"), lm.already_played (), lm.history_setup.sort_column, lm.history_setup.sort_direction);
+
 		// load smart playlists
 		foreach(SmartPlaylist p in lm.smart_playlists()) {
 			addSideListItem(p);
@@ -632,7 +647,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 #endif
 
-	public void addSideListItem(GLib.Object o) {
+	public async void addSideListItem(GLib.Object o) {
 		TreeIter item = sideTree.library_music_iter; //just a default
 		ViewWrapper vw = null;
 
@@ -642,13 +657,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		if(o is Playlist) {
 			Playlist p = (Playlist)o;
 
-			p.view_wrapper = add_view (null, ViewWrapper.Hint.PLAYLIST, p.name, lm.medias_from_playlist(p.rowid),
+			p.view_wrapper = add_view (ViewWrapper.Hint.PLAYLIST, p.name, lm.medias_from_playlist(p.rowid),
 			           p.tvs.sort_column, p.tvs.sort_direction, p.rowid);
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 
-			p.view_wrapper = add_view (null, ViewWrapper.Hint.SMART_PLAYLIST, p.name, lm.medias_from_smart_playlist(p.rowid),
+			p.view_wrapper = add_view (ViewWrapper.Hint.SMART_PLAYLIST, p.name, lm.medias_from_smart_playlist(p.rowid),
 			          p.tvs.sort_column, p.tvs.sort_direction, p.rowid);
 		}
 		/* XXX: Migrate this code to the new API
@@ -910,7 +925,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 					// start thread to load all the medias pixbuf's
 					try {
-						Thread.create<void*>(lm.fetch_thread_function, false);
+						Thread.create<void*>(lm.fetch_all_cover_art, false);
 					}
 					catch(GLib.ThreadError err) {
 						warning("Could not create thread to load media pixbuf's: %s \n", err.message);
@@ -1485,7 +1500,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			equalizer_window = new EqualizerWindow (lm, this);
 			equalizer_window.show_all ();
 			equalizer_window.destroy.connect ( () => {
-				// revert the option to "Hide equalizer after the window is destroyed"
+				// revert the option to "Hide equalizer" after the window is destroyed
 				eq_option_chooser.setOption (0);
 			});
 		}

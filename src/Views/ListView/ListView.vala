@@ -281,8 +281,10 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return list_view.get_showing_medias ();
 	}
 
-	// FIXME: column browser stuff?
 
+
+	// XXX: fix column browser stuff!
+	// THIS IS CRITICAL!
 
 	public void set_show_next (Collection<int> medias) {
 		// FIXME: this could lead to bad behavior

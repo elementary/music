@@ -371,15 +371,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		// set the volume
 		player.setVolume(settings.getVolume());
-		
-		// start thread to load all the medias pixbuf's
-		try {
-			Thread.create<void*>(fetch_thread_function, false);
-		}
-		catch(GLib.ThreadError err) {
-			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
-		}
-		
+
 		other_folders_added = 0;
 		file_operations_done.connect ( ()=> {
 		    if (temp_add_other_folders != null) {
@@ -1761,11 +1753,23 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public Gdk.Pixbuf? save_artist_image_locally(int id, string image) {
 		return fo.save_artist_image(_media.get(id), image);
 	}
-	
-	/* at the start, load all the pixbufs */
-	public void* fetch_thread_function () {
+
+
+
+	public void* fetch_cover_art_from_cache () {
+		fetch_cover_art (true);
+		return null;
+	}
+
+	public void* fetch_all_cover_art () {
+		fetch_cover_art (false);
+		return null;
+	}
+
+
+	private void fetch_cover_art (bool cache_only = true) {
 		if(in_fetch_thread)
-			return null;
+			return;
 		
 		in_fetch_thread = true;
 		//GStreamerTagger tagger = new GStreamerTagger(this);
@@ -1784,7 +1788,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					if (coverart_pixbuf != null) {
 						pix = Icons.get_pixbuf_shadow (coverart_pixbuf);
 					}
-					else {
+					else if (!cache_only) {
 						/* TODO: Get image from the tagger object (i.e. song metadata) */
 						//coverart_pixbuf = tagger.get_embedded_art(s);
 
@@ -1825,7 +1829,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		//_album_art.set_all(to_set);
 		
 		in_fetch_thread = false;
-		return null;
 	}
 	
 	public static int mediaCompareFunc(Media a, Media b) {
@@ -1943,7 +1946,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 		else {
 			try {
-				Thread.create<void*>(fetch_thread_function, false);
+				Thread.create<void*>(fetch_all_cover_art, false);
 			}
 			catch(GLib.ThreadError err) {
 				warning("Could not create thread to load media pixbuf's: %s \n", err.message);
@@ -1955,7 +1958,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 #else
 		try {
-			Thread.create<void*>(fetch_thread_function, false);
+			Thread.create<void*>(fetch_all_cover_art, false);
 		}
 		catch(GLib.ThreadError err) {
 			warning("Could not create thread to load media pixbuf's: %s \n", err.message);

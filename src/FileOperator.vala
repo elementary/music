@@ -305,6 +305,7 @@ public class BeatBox.FileOperator : Object {
 	}
         
 	public void* save_media_thread () {
+		debug ("SAVING MEDIA METADATA");
 		while(true) {
 			Media s = toSave.poll();
 			
@@ -326,6 +327,8 @@ public class BeatBox.FileOperator : Object {
 						tag_file.tag.comment = s.comment;
 						tag_file.tag.year = s.year;
 						tag_file.tag.track  = s.track;
+
+						debug (@"Writing metadata for $(s.title)");
 						
 						tag_file.save();
 					}

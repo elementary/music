@@ -307,8 +307,6 @@ public class BeatBox.PodcastListView : BaseListView {
 
 		updateSensitivities();
 
-		this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-
 		this.add(view);
 
 		this.list_model.rows_reordered.connect(modelRowsReordered);
