@@ -153,20 +153,23 @@ namespace Icons {
 
 		// paint shadow
 		buffer_surface.context.rectangle (0, 0, S_WIDTH, S_HEIGHT);
-		Gdk.cairo_set_source_pixbuf(buffer_surface.context, DEFAULT_ALBUM_SHADOW_PIXBUF.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), 0, 0);
+
+		if (stretch)
+			Gdk.cairo_set_source_pixbuf (buffer_surface.context, DEFAULT_ALBUM_SHADOW_PIXBUF.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), 0, 0);
+		else
+			Gdk.cairo_set_source_pixbuf (buffer_surface.context, DEFAULT_ALBUM_SHADOW_PIXBUF, 0, 0);
+
 		buffer_surface.context.paint();
 
 		S_WIDTH -= 2 * SHADOW_SIZE;
 		S_HEIGHT -= 2 * SHADOW_SIZE;
 
 		// paint original pixbuf
-		Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), SHADOW_SIZE, SHADOW_SIZE);
+		Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), SHADOW_SIZE, SHADOW_SIZE - 2); // 2px vertical offset
 		buffer_surface.context.paint();
 
 		return buffer_surface.load_to_pixbuf();
 	}
-
-
 
 	/**
 	 * @param surface_size size of the new pixbuf. Set a value of 0 to use the pixbuf's default size.
@@ -255,7 +258,8 @@ namespace Icons {
 
 		DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null);
 
-		var shadow_icon = new BeatBox.Icon ("albumart-shadow", 168, Type.OTHER, null, true);
+		// 168x168
+		var shadow_icon = new BeatBox.Icon ("albumart-shadow", 168, Type.OTHER, FileType.PNG, true);
 		DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render (null);
 	}
 }

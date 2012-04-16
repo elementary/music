@@ -22,7 +22,7 @@ install(FILES icons/16x16/mimetypes/media-cdrom-audio.svg DESTINATION share/nois
 
 # media-audio for default album image and album shadow
 install(FILES icons/138x138/mimetypes/albumart.svg DESTINATION share/noise/icons/hicolor/138x138/mimetypes)
-install(FILES icons/168x168/other/albumart-shadow.svg DESTINATION share/noise/icons/hicolor/168x168/other)
+install(FILES icons/168x168/other/albumart-shadow.png DESTINATION share/noise/icons/hicolor/168x168/other)
 
 # shuffle and repeat
 install(FILES icons/16x16/status/media-playlist-repeat-one-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/status)
