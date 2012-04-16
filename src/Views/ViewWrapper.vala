@@ -97,7 +97,6 @@ public class BeatBox.ViewWrapper : Box {
 
 	public bool has_media { get { return media_count > 0; } }
 
-
 	/**
 	 * MEDIA DATA
 	 *
@@ -136,8 +135,7 @@ public class BeatBox.ViewWrapper : Box {
 	// for Hint.SIMILAR only
 	public bool similarsFetched;
 
-	public ViewWrapper (LibraryWindow lw, Collection<int> the_medias, string sort, Gtk.SortType dir,
-	                     Hint the_hint, int id)
+	public ViewWrapper (LibraryWindow lw, Collection<int> the_media, TreeViewSetup tvs, int id)
 	{
 		debug ("BUILDING %s", the_hint.to_string());
 
@@ -151,7 +149,7 @@ public class BeatBox.ViewWrapper : Box {
 		showing_medias = new HashMap<int, int>();
 		timeout_search = new LinkedList<string>();
 
-		foreach(int i in the_medias)
+		foreach(int i in the_media)
 			medias.set(i, 1);
 
 		// Setup view container
@@ -167,8 +165,8 @@ public class BeatBox.ViewWrapper : Box {
 		switch (the_hint) {
 			case Hint.MUSIC:
 				// list and album view
-				album_view = new AlbumView (this, get_media_ids());
-				list_view = new ListView (this, sort, dir, id);
+				album_view = new AlbumView (this);
+				list_view = new ListView (this, tvs);
 
 				// Welcome screen
 				welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("Noise can't seem to find your music."));
@@ -177,7 +175,7 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.HISTORY:
 			case Hint.QUEUE:
 				//list view only				
-				list_view = new ListView (this, sort, dir, id);
+				list_view = new ListView (this, tvs);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -187,8 +185,8 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.PLAYLIST:
 			case Hint.SMART_PLAYLIST:
 				// list and album view
-				album_view = new AlbumView (this, get_media_ids());
-				list_view = new ListView (this, sort, dir, id);
+				album_view = new AlbumView (this);
+				list_view = new ListView (this, tvs);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -202,7 +200,7 @@ public class BeatBox.ViewWrapper : Box {
 				break;
 			case Hint.SIMILAR:
 				// list view only
-				list_view = new ListView (this);
+				list_view = new ListView (this, tvs);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -211,8 +209,8 @@ public class BeatBox.ViewWrapper : Box {
 #if HAVE_PODCASTS
 			case Hint.PODCAST:
 				// list and album view
-				list_view = new ListView (this);
-				album_view = new AlbumView (this, get_media_ids());
+				album_view = new AlbumView (this);
+				list_view = new ListView (this, tvs);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -221,8 +219,8 @@ public class BeatBox.ViewWrapper : Box {
 				break;
 			case Hint.DEVICE_PODCAST:
 				// list and album view
-				list_view = new ListView (this);
-				album_view = new AlbumView (this, get_media_ids());
+				album_view = new AlbumView (this);
+				list_view = new ListView (this, tvs);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -233,7 +231,7 @@ public class BeatBox.ViewWrapper : Box {
 #if HAVE_INTERNET_RADIO
 			case Hint.STATION:
 				// list view
-				list_view = new ListView (this, sort, dir, id);
+				list_view = new ListView (this, tvs);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
@@ -243,19 +241,19 @@ public class BeatBox.ViewWrapper : Box {
 #endif
 			case Hint.AUDIOBOOK:
 				// list and album view
-				list_view = new ListView (this, sort, dir, id);
-				album_view = new AlbumView (this, get_media_ids());
+				album_view = new AlbumView (this);
+				list_view = new ListView (this, tvs);
 
 				break;
 			case Hint.DEVICE_AUDIOBOOK:
 				// list and album views
-				list_view = new ListView(this, sort, dir, id);
-				album_view = new AlbumView (this, get_media_ids());
+				album_view = new AlbumView (this);
+				list_view = new ListView(this, tvs);
 
 				break;
 			case Hint.CDROM:
 				// list view only
-				list_view = new ListView (this, sort, dir, id);
+				list_view = new ListView (this, tvs);
 
 				error_box = new WarningLabel();
 				error_box.show_icon = true;
@@ -274,12 +272,12 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (has_error_box) {
 			view_container.append_page (error_box);
-			current_view = ViewType.ERROR;
+			current_view = ViewType.ERROR; ///XXX Probably  unnecessary?
 		}
 
 		if (has_welcome_screen) {
 			view_container.append_page (welcome_screen);
-			current_view = ViewType.WELCOME;
+			current_view = ViewType.WELCOME; ///XXX Probably  unnecessary?
 		}
 
 		if (has_album_view)

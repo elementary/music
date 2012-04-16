@@ -71,7 +71,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 	}
 
-	public ListView (ViewWrapper view_wrapper, string? sort = null, Gtk.SortType? dir = null, int? id = null) {
+	public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
 
 		this.view_wrapper = view_wrapper;
 		this.lm = view_wrapper.lm;
@@ -87,20 +87,18 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			case ViewWrapper.Hint.AUDIOBOOK:
 			case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
 			case ViewWrapper.Hint.CDROM:
-				list_view = new MusicTreeView (view_wrapper, sort, dir, view_wrapper.hint, id);
-				break;
 			case ViewWrapper.Hint.SIMILAR:
-				list_view = new SimilarPane(view_wrapper);
+				list_view = new MusicTreeView (view_wrapper, tvs);
 				break;
 #if HAVE_PODCASTS
 			case ViewWrapper.Hint.PODCAST:
 			case ViewWrapper.Hint.DEVICE_PODCAST:
-				list_view = new PodcastListView (view_wrapper);
+				list_view = new PodcastListView (view_wrapper, tvs);
 				break;
 #endif
 #if HAVE_INTERNET_RADIO
 			case ViewWrapper.Hint.STATION:
-				list_view = new RadioListView(view_wrapper, sort, dir, view_wrapper.hint, id);
+				list_view = new RadioListView(view_wrapper, tvs);
 				break;
 #endif
 			default:

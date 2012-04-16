@@ -159,6 +159,7 @@ vala_precompile(VALA_C
     GStreamer/Streamer.vala
 
     Views/ViewWrapper.vala
+    Views/SimilarViewWrapper.vala
     Views/DeviceViewWrapper.vala
     Views/DeviceView.vala
     Views/DeviceSummaryWidget.vala

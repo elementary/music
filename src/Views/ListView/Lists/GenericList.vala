@@ -22,13 +22,14 @@ public abstract class BeatBox.GenericView : FastView {
 	
 	public signal void import_requested(LinkedList<int> to_import);
 	
-	public GenericView(LibraryManager lm,  GLib.List<Type> types, TreeViewSetup tvs, int rel_id) {
+	public GenericView(ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
 		base(types);
 		
-		this.lm = lm;
-		this.lw = lm.lw;
+		this.parent_wrapper = view_wrapper;
+		this.lm = view_wrapper.lm;
+		this.lw = view_wrapper.lw;
 		this.tvs = tvs;
-		this.relative_id = rel_id;
+		this.relative_id = view_wrapper.relative_id;
 		
 		set_headers_clickable(true);
 		set_headers_visible(true);
@@ -206,23 +207,28 @@ public abstract class BeatBox.GenericView : FastView {
 			renderer.width = showIndicator ? 16 : 0;
 		}
 	}
-	
+
+/* --- BEGIN REMOVAL --- */
 	public void set_hint(ViewWrapper.Hint hint) {
 		tvs.set_hint(hint);
 	}
-	
+
+
 	public ViewWrapper.Hint get_hint() {
-		return tvs.get_hint();
+		return view_wrapper.get_hint();
 	}
-	
+
 	public void set_relative_id(int id) {
 		this.relative_id = id;
 	}
-	
+
+
 	public int get_relative_id() {
 		return relative_id;
 	}
-	
+
+/*  ---  END TO_REMOVE -----*/	
+
 	public bool get_is_current_list() {
 		return is_current_list;
 	}
@@ -282,7 +288,9 @@ public abstract class BeatBox.GenericView : FastView {
 		
 		return (a > b) ? 1 : -1;
 	}
-	
+
+
+	/// XXX!
 	protected void view_search_func (string search, HashTable<int, Media> table, ref HashTable<int, Media> show) {
 		int show_index = 0;
 		

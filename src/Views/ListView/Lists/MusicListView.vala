@@ -91,7 +91,7 @@ public class BeatBox.MusicTreeView : GenericView {
 	/**
 	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
 	 */
-	public MusicTreeView(LibraryManager lm, TreeViewSetup tvs, int rel_id) {
+	public MusicTreeView(ViewWrapper view_wrapper, TreeViewSetup tvs) {
 		var types = new GLib.List<Type>();
 		types.append(typeof(int)); // id
 		types.append(typeof(GLib.Icon)); // icon
@@ -111,13 +111,12 @@ public class BeatBox.MusicTreeView : GenericView {
 		types.append(typeof(int)); // last played
 		types.append(typeof(int)); // bpm
 		types.append(typeof(int)); // pulser};
-		base(lm, types, tvs, rel_id);
-		
+		base(view_wrapper, types, tvs);
+
 		//last_search = "";
 		//timeout_search = new LinkedList<string>();
 		//showing_all = true;
 		//removing_medias = false;
-
 
 		buildUI();
 	}
@@ -127,7 +126,7 @@ public class BeatBox.MusicTreeView : GenericView {
 
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {
 			mediaRemove.set_sensitive(true);
-			mediaRemove.set_label("Remove from Library");
+			mediaRemove.set_label(_("Remove from Library"));
 			columnNumber.set_active(false);
 			columnNumber.set_visible(false);
 			importToLibrary.set_visible(false);
@@ -138,7 +137,7 @@ public class BeatBox.MusicTreeView : GenericView {
 		}
 		else if(get_hint() == ViewWrapper.Hint.QUEUE) {
 			mediaRemove.set_sensitive(true);
-			mediaRemove.set_label("Remove from Queue");
+			mediaRemove.set_label(_("Remove from Queue"));
 			mediaMenuQueue.set_sensitive(false);
 			importToLibrary.set_visible(false);
 		}

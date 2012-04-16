@@ -84,15 +84,18 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 */
 
 	/* medias should be mutable, as we will be sorting it */
-	public AlbumView(ViewWrapper view_wrapper, Collection<int> smedias) {
+	public AlbumView(ViewWrapper view_wrapper /*, Collection<int> smedias */) {
 		lm = view_wrapper.lm;
 		lw = view_wrapper.lw;
 
 		parent_view_wrapper = view_wrapper;
 		album_list_view = new AlbumListView(this);
 
+
 		medias = new HashMap<string, LinkedList<int>>();
 		_show_next = new LinkedList<int>();
+
+/*
 		foreach(int i in smedias) {
 			Media s = lm.media_from_id(i);
 			string key = s.album_artist + s.album;
@@ -102,7 +105,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 			medias.get(key).add(i);
 		}
-
+*/
 		_showing_medias = new HashMap<string, LinkedList<int>>();
 		last_search = "";
 		timeout_search = new LinkedList<string>();
@@ -111,7 +114,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		buildUI();
 
-		lm.medias_removed.connect(medias_removed);
+//		lm.medias_removed.connect(medias_removed);
 	}
 
 	public void buildUI() {
