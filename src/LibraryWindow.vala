@@ -34,7 +34,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	public BeatBox.LibraryManager lm { get; private set; }
 	public BeatBox.Settings settings { get; private set; }
 
-	private LastFM.SimilarMedias similarMedias;
 	private BeatBox.MediaKeyListener mkl;
 
 	private HashMap<int, Device> music_welcome_screen_keys;
@@ -123,7 +122,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		//various objects
 		music_welcome_screen_keys = new HashMap<int, Device>();
-		similarMedias = new LastFM.SimilarMedias(lm);
 		mkl = new MediaKeyListener(lm, this);
 
 #if HAVE_INDICATE
@@ -149,7 +147,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		this.lm.playback_stopped.connect(playback_stopped);
 		this.lm.dm.device_added.connect(device_added);
 		this.lm.dm.device_removed.connect(device_removed);
-		this.similarMedias.similar_retrieved.connect(similarRetrieved);
+		lm.lfm.similar_retrieved.connect(similarRetrieved);
+
 
 		this.destroy.connect (on_quit);
 
@@ -853,17 +852,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// if radio, we can't depend on current_position_update. do that stuff now.
 		if(lm.media_info.media.mediatype == 3) {
 			queriedlastfm = true;
-			similarMedias.queryForSimilar(lm.media_info.media);
 
-			try {
-				Thread.create<void*>(lastfm_track_thread_function, false);
-				Thread.create<void*>(lastfm_album_thread_function, false);
-				Thread.create<void*>(lastfm_artist_thread_function, false);
-				Thread.create<void*>(lastfm_update_nowplaying_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				warning ("ERROR: Could not create last fm thread: %s \n", err.message);
-			}
+			similarMedias.queryForSimilar(lm.media_info.media);
+			lm.lfm.fetchCurrentSimilarSongs();
+			lm.lfm.fetchCurrentAlbumInfo();
+			lm.lfm.fetchCurrentArtistInfo();
+			lm.lfm.fetchCurrentTrackInfo();
+			lm.lfm.postNowPlaying();
 
 			// always show notifications for the radio, since user likely does not know media
 			mkl.showNotification(lm.media_info.media.rowid);
@@ -889,107 +884,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 	}
 
-	public void* lastfm_track_thread_function () {
-		LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
 
-		string artist_s = lm.media_info.media.artist;
-		string track_s = lm.media_info.media.title;
-
-		/* first fetch track info since that is most likely to change */
-		if(!lm.track_info_exists(track_s + " by " + artist_s)) {
-			track = new LastFM.TrackInfo.with_info(artist_s, track_s);
-
-			if(track != null)
-				lm.save_track(track);
-
-			if(track_s == lm.media_info.media.title && artist_s == lm.media_info.media.artist)
-				lm.media_info.track = track;
-		}
-
-		return null;
-	}
-
-	public void* lastfm_album_thread_function () {
-		LastFM.AlbumInfo album = new LastFM.AlbumInfo.basic();
-
-		string artist_s = lm.media_info.media.artist;
-		string album_s = lm.media_info.media.album;
-
-		/* fetch album info now. only save if still on current media */
-		if(!lm.album_info_exists(album_s + " by " + artist_s) || lm.get_cover_album_art(lm.media_info.media.rowid) == null) {
-			album = new LastFM.AlbumInfo.with_info(artist_s, album_s);
-
-			if(album != null)
-				lm.save_album(album);
-
-			/* make sure we save image to right location (user hasn't changed medias) */
-			if(lm.media_active && album != null && album_s == lm.media_info.media.album &&
-			artist_s == lm.media_info.media.artist && lm.media_info.media.getAlbumArtPath().contains("media-audio.png")) {
-				lm.media_info.album = album;
-
-				if (album.url_image.url != null && lm.settings.getUpdateFolderHierarchy()) {
-					lm.save_album_locally(lm.media_info.media.rowid, album.url_image.url);
-
-					// start thread to load all the medias pixbuf's
-					try {
-						Thread.create<void*>(lm.fetch_all_cover_art, false);
-					}
-					catch(GLib.ThreadError err) {
-						warning("Could not create thread to load media pixbuf's: %s \n", err.message);
-					}
-				}
-			}
-			else {
-				return null;
-			}
-		}
-
-		return null;
-	}
-
-	public void* lastfm_artist_thread_function () {
-		LastFM.ArtistInfo artist = new LastFM.ArtistInfo.basic();
-
-		string artist_s = lm.media_info.media.artist;
-
-		/* fetch artist info now. save only if still on current media */
-		if(!lm.artist_info_exists(artist_s)) {
-			artist = new LastFM.ArtistInfo.with_artist(artist_s);
-
-			if(artist != null)
-				lm.save_artist(artist);
-
-			//try to save artist art locally
-			if(lm.media_active && artist != null && artist_s == lm.media_info.media.artist &&
-			!File.new_for_path(lm.media_info.media.getArtistImagePath()).query_exists()) {
-				lm.media_info.artist = artist;
-
-			}
-			else {
-				return null;
-			}
-		}
-
-		Idle.add( () => { infoPanel.updateCoverArt(true); return false;});
-
-		return null;
-	}
-
-	public void* lastfm_update_nowplaying_thread_function() {
-		if(lm.media_active) {
-			lm.lfm.updateNowPlaying(lm.media_info.media.title, lm.media_info.media.artist);
-		}
-
-		return null;
-	}
-
-	public void* lastfm_scrobble_thread_function () {
-		if(lm.media_active) {
-			lm.lfm.scrobbleTrack(lm.media_info.media.title, lm.media_info.media.artist);
-		}
-
-		return null;
-	}
 
 	public bool updateMediaInfo() {
 		infoPanel.updateMedia(lm.media_info.media.rowid);
@@ -1328,21 +1223,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		if(position > 3000000000 && !queriedlastfm) {
 			queriedlastfm = true;
 
-			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.playlists_similar_iter);
-			if(vw.has_list_view && !vw.visible) {
-				vw.show_retrieving_similars();
-				similarMedias.queryForSimilar(lm.media_info.media);
-			}
-
-			try {
-				Thread.create<void*>(lastfm_track_thread_function, false);
-				Thread.create<void*>(lastfm_album_thread_function, false);
-				Thread.create<void*>(lastfm_artist_thread_function, false);
-				Thread.create<void*>(lastfm_update_nowplaying_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				warning("ERROR: Could not create last fm thread: %s \n", err.message);
-			}
+			lm.lfm.fetchCurrentSimilarSongs();
+			lm.lfm.fetchCurrentAlbumInfo();
+			lm.lfm.fetchCurrentArtistInfo();
+			lm.lfm.fetchCurrentTrackInfo();
+			lm.lfm.postNowPlaying();
 		}
 
 		//at 30 seconds in, we consider the media as played
@@ -1378,12 +1263,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// at halfway, scrobble
 		if((double)(sec/(double)lm.media_info.media.length) > 0.50 && !scrobbled_track) {
 			scrobbled_track = true;
-			try {
-				Thread.create<void*>(lastfm_scrobble_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				warning("ERROR: Could not create last fm thread: %s \n", err.message);
-			}
+			lm.lfm.postScrobbleTrack ();
 		}
 
 		// at 80% done with media, add 1 to play count

@@ -49,17 +49,17 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		GLib.File beatbox_folder;
 		GLib.File db_file;
 		
-		beatbox_folder = GLib.File.new_for_path(GLib.Path.build_filename(Environment.get_user_data_dir(), "/noise"));
+		beatbox_folder = GLib.File.new_for_path(GLib.Path.build_filename(Environment.get_user_data_dir(), "/beatbox"));
 		if(!beatbox_folder.query_exists()) {
 			try {
 				beatbox_folder.make_directory(null);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("CRITICAL: Could not create 'noise' folder in data directory: %s\n", err.message);
+				stdout.printf("CRITICAL: Could not create beatbox folder in data directory: %s\n", err.message);
 			}
 		}
 		
-		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/noise_database.db"));
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_520.db"));
 		if(!db_file.query_exists())
 			need_create = true;
 		
@@ -76,8 +76,8 @@ public class BeatBox.DataBaseManager : GLib.Object {
 	
 		if(need_create) {
 			try {
-				_db.execute("CREATE TABLE playlists (`name` TEXT, `medias` TEXT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
-				_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column' TEXT, 'sort_direction' TEXT, 'columns' TEXT)");
+				_db.execute("CREATE TABLE playlists (`name` TEXT, `medias` TEXT, 'sort_column_id' INT, 'sort_direction' TEXT, 'columns' TEXT)");
+				_db.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column_id' INT, 'sort_direction' TEXT, 'columns' TEXT)");
 				
 				_db.execute("""CREATE TABLE medias (`uri` TEXT, 'file_size' INT, `title` TEXT,`artist` TEXT, 'composer' TEXT, 'album_artist' TEXT,
 				`album` TEXT, 'grouping' TEXT, `genre` TEXT,`comment` TEXT, 'lyrics' TEXT, 'album_path' TEXT, 'has_embedded' INT, 
@@ -185,7 +185,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not load media from db: %s\n", err.message);
+			stdout.printf("Could not load medias from db: %s\n", err.message);
 		}
 		
 		return rv;
@@ -318,7 +318,7 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 			transaction.commit();
 		}
 		catch (SQLHeavy.Error err) {
-			stdout.printf("Could not remove media from db: %s\n", err.message);
+			stdout.printf("Could not remove medias from db: %s\n", err.message);
 		}
 	}
 	
@@ -413,13 +413,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				Playlist p = new Playlist.with_info(results.fetch_int(0), results.fetch_string(1));
 				p.medias_from_string(results.fetch_string(2), lm);
-				p.tvs.sort_column = results.fetch_string(3);
+				p.tvs.sort_column_id = results.fetch_int(3);
 				p.tvs.set_sort_direction_from_string(results.fetch_string(4));
-				
-				if(p.name == "autosaved_podcast")
-					p.tvs.hint = ViewWrapper.Hint.PODCAST;
-				else if(p.name == "autosaved_station")
-					p.tvs.hint = ViewWrapper.Hint.STATION;
 				
 				p.tvs.import_columns(results.fetch_string(5));
 				
@@ -437,12 +432,12 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		try {
 			_db.execute("DELETE FROM `playlists`");
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `medias`, 'sort_column', 'sort_direction', 'columns') VALUES (:name, :medias, :sort_column, :sort_direction, :columns);");
+			Query query = transaction.prepare ("INSERT INTO `playlists` (`name`, `medias`, 'sort_column_id', 'sort_direction', 'columns') VALUES (:name, :medias, :sort_column_id, :sort_direction, :columns);");
 			
 			foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
 				query.set_string(":medias", p.medias_to_string(lm));
-				query.set_string(":sort_column", p.tvs.sort_column);
+				query.set_int(":sort_column_id", p.tvs.sort_column_id);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());
 				
@@ -459,13 +454,13 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 	public void add_playlist(Playlist p) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `medias`, 'sort_column', 'sort_direction', 'columns') 
-												VALUES (:name, :medias, :sort_column, :sort_direction, :columns);""");
+			Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `medias`, 'sort_column_id', 'sort_direction', 'columns') 
+												VALUES (:name, :medias, :sort_column_id, :sort_direction, :columns);""");
 			
 			//foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
 				query.set_string(":medias", p.medias_to_string(lm));
-				query.set_string(":sort_column", p.tvs.sort_column);
+				query.set_int(":sort_column_id", p.tvs.sort_column_id);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());
 				
@@ -482,12 +477,12 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 	/*public void update_playlists(LinkedList<Playlist> playlists) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `playlists` SET name=:name, medias=:medias, sort_column=:sort_column, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
+			Query query = transaction.prepare("UPDATE `playlists` SET name=:name, medias=:medias, sort_column_id=:sort_column_id, sort_direction=:sort_direction, columns=:columns  WHERE name=:name");
 			
 			foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
 				query.set_string(":medias", p.medias_to_string(lm));
-				query.set_string(":sort_column", p.tvs.sort_column);
+				query.set_int(":sort_column_id", p.tvs.sort_column_id);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());
 					
@@ -525,38 +520,36 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 	 */
 	public void addDefaultSmartPlaylists() {
 		try {
-			TreeViewSetup tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
+			TreeViewSetup tvs = new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
+			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column_id', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column_id, :sort_direction, :columns);");
 			
 			query.set_string(":name", "Favorite Songs");
 			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", "Rating");
+			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.RATING);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-
-#if HAVE_INTERNET_RADIO
+			
 			query.set_string(":name", "Favorite Stations");
 			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>3<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", "Rating");
+			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.RATING);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-#endif
-
+			
 			query.set_string(":name", "Recently Added");
 			query.set_string(":and_or", "any");
 			query.set_string(":queries", "Date Added<value_seperator>is within<value_seperator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", "Artist");
+			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.ARTIST);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -566,7 +559,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Last Played<value_seperator>is within<value_seperator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", "Last Played");
+			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.LAST_PLAYED);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -576,7 +569,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Last Played<value_seperator>is within<value_seperator>7<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", "Rating");
+			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.RATING);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -586,29 +579,27 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", "Artist");
+			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.ARTIST);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-
-#if HAVE_PODCASTS
+			
 			query.set_string(":name", "Unheard Podcasts");
 			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>1<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", "Artist");
+			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.ARTIST);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-#endif
 			
 			query.set_string(":name", "Over Played");
 			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Playcount<value_seperator>is at least<value_seperator>10<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", "Plays");
+			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.PLAY_COUNT);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -618,7 +609,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Last Played<value_seperator>is before<value_seperator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_string(":sort_column", tvs.sort_column);
+			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.NUMBER);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -645,7 +636,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				p.queries_from_string(results.fetch_string(3));
 				p.limit = ( results.fetch_string(4) == "1") ? true : false;
 				p.limit_amount = results.fetch_int(5);
-				p.tvs.sort_column = results.fetch_string(6);
+				p.tvs.sort_column_id = results.fetch_int(6);
 				p.tvs.set_sort_direction_from_string(results.fetch_string(7));
 				p.tvs.import_columns(results.fetch_string(8));
 				
@@ -663,7 +654,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		try {
 			_db.execute("DELETE FROM `smart_playlists`");
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column, :sort_direction, :columns);");
+			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column_id', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column_id, :sort_direction, :columns);");
 			
 			foreach(SmartPlaylist s in smarts) {
 				query.set_string(":name", s.name);
@@ -671,7 +662,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				query.set_string(":queries", s.queries_to_string());
 				query.set_int(":limit", ( s.limit ) ? 1 : 0);
 				query.set_int(":limit_amount", s.limit_amount);
-				query.set_string(":sort_column", s.tvs.sort_column);
+				query.set_int(":sort_column_id", s.tvs.sort_column_id);
 				query.set_string(":sort_direction", s.tvs.sort_direction_to_string());
 				query.set_string(":columns", s.tvs.columns_to_string());
 				
@@ -688,14 +679,14 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 	public void update_smart_playlist(SmartPlaylist p) {
 		try {
 			transaction = _db.begin_transaction();
-			Query query = transaction.prepare("UPDATE `smart_playlists` SET name=:name, and_or=:and_or, queries=:queries, limit=:limit, limit_amount=:limit_amount, sort_column=:sort_column, sort_direction=:sort_direction, columns=:columns WHERE name=:name");
+			Query query = transaction.prepare("UPDATE `smart_playlists` SET name=:name, and_or=:and_or, queries=:queries, limit=:limit, limit_amount=:limit_amount, sort_column_id=:sort_column_id, sort_direction=:sort_direction, columns=:columns WHERE name=:name");
 			
 			query.set_string(":name", p.name);
 			query.set_string(":and_or", p.conditional);
 			query.set_string(":queries", p.queries_to_string());
 			query.set_int(":limit", ( p.limit ) ? 1 : 0);
 			query.set_int(":limit_amount", p.limit_amount);
-			query.set_string(":sort_column", p.tvs.sort_column);
+			query.set_int(":sort_column_id", p.tvs.sort_column_id);
 			query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 			query.set_string(":columns", p.tvs.columns_to_string());
 				
@@ -723,7 +714,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 	}
 	
 	/** Last FM objects **/
-	public void save_albums(Collection<LastFM.AlbumInfo> albums) {
+	public void save_albums(GLib.List<LastFM.AlbumInfo> albums) {
 		try {
 			_db.execute("DELETE FROM `albums`");
 			transaction = _db.begin_transaction();
@@ -755,8 +746,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		}
 	}
 	
-	public Collection<LastFM.AlbumInfo> load_albums() {
-		var rv = new ArrayList<LastFM.AlbumInfo>();
+	public GLib.List<LastFM.AlbumInfo> load_albums() {
+		var rv = new GLib.List<LastFM.AlbumInfo>();
 		
 		try {
 			string script = "SELECT rowid,* FROM `albums`";
@@ -793,7 +784,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				else
 					a.url_image = new LastFM.Image.basic();
 				
-				rv.add(a);
+				rv.append(a);
 			}
 		}
 		catch (SQLHeavy.Error err) {
@@ -803,8 +794,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 	
-	public Collection<LastFM.ArtistInfo> load_artists() {
-		var rv = new ArrayList<LastFM.ArtistInfo>();
+	public GLib.List<LastFM.ArtistInfo> load_artists() {
+		var rv = new GLib.List<LastFM.ArtistInfo>();
 		
 		try {
 			string script = "SELECT rowid,* FROM `artists`";
@@ -852,7 +843,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				else
 					a.url_image = new LastFM.Image.basic();
 					
-				rv.add(a);
+				rv.append(a);
 			}
 		}
 		catch (SQLHeavy.Error err) {
@@ -862,7 +853,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 	
-	public void save_artists(Collection<LastFM.ArtistInfo> artists) {
+	public void save_artists(GLib.List<LastFM.ArtistInfo> artists) {
 		try {
 			_db.execute("DELETE FROM `artists`");
 			transaction = _db.begin_transaction();
@@ -902,8 +893,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		}
 	}
 	
-	public Collection<LastFM.TrackInfo> load_tracks() {
-		var rv = new ArrayList<LastFM.TrackInfo>();
+	public GLib.List<LastFM.TrackInfo> load_tracks() {
+		var rv = new GLib.List<LastFM.TrackInfo>();
 		
 		try {
 			string script = "SELECT rowid,* FROM `tracks`";
@@ -935,7 +926,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 					t.addTag(tag);
 				}
 				
-				rv.add(t);
+				rv.append(t);
 			}
 		}
 		catch (SQLHeavy.Error err) {
@@ -945,7 +936,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 	
-	public void save_tracks(Collection<LastFM.TrackInfo> tracks) {
+	public void save_tracks(GLib.List<LastFM.TrackInfo> tracks) {
 		try {
 			_db.execute("DELETE FROM `tracks`");
 			transaction = _db.begin_transaction();
@@ -979,8 +970,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		}
 	}
 	
-	public Collection<DevicePreferences> load_devices() {
-		var rv = new LinkedList<DevicePreferences>();
+	public GLib.List<DevicePreferences> load_devices() {
+		var rv = new GLib.List<DevicePreferences>();
 		
 		try {
 			string script = "SELECT rowid,* FROM `devices`";
@@ -1001,7 +992,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				dp.audiobook_playlist = results.fetch_string(11);
 				dp.last_sync_time = results.fetch_int(12);
 				
-				rv.add(dp);
+				rv.append(dp);
 			}
 		}
 		catch (SQLHeavy.Error err) {
@@ -1011,7 +1002,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 	
-	public void save_devices(Collection<DevicePreferences> devices) {
+	public void save_devices(GLib.List<DevicePreferences> devices) {
 		try {
 			_db.execute("DELETE FROM `devices`");
 			transaction = _db.begin_transaction();

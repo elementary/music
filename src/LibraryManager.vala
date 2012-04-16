@@ -118,10 +118,26 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	private HashMap<string, Gdk.Pixbuf> cover_album_art; // All album art
 	
 	public LastFM.Core lfm;
-	private HashMap<string, LastFM.ArtistInfo> _artists;//key:artist
-	private HashMap<string, LastFM.AlbumInfo> _albums;//key:artist<sep>album
-	private HashMap<string, LastFM.TrackInfo> _tracks;//key:artist<sep>album<sep>track
+
+
+
+	Mutex _media_lock = new Mutex (); // lock for _media. use this around _media, _songs, ... _permanents
+	Mutex _songs_lock = new Mutex ();
+#if HAVE_PODCASTS
+	Mutex _podcasts_lock = new Mutex ();
+#endif
+	Mutex _audiobooks_lock = new Mutex ();
+
+#if HAVE_INTERNET_RADIO
+	Mutex _stations_lock = new Mutex ();
+#endif
+
+	Mutex _permanents_lock = new Mutex ();
+	Mutex _playlists_lock = new Mutex (); // lock for _playlists
+	Mutex _smart_playlists_lock = new Mutex (); // lock for _smart_playlists
 	
+
+
 	public TreeViewSetup music_setup { set; get; }
 
 #if HAVE_INTERNET_RADIO
@@ -246,9 +262,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		cover_album_art = new HashMap<string, Gdk.Pixbuf>();
 		
 		lfm = new LastFM.Core(this);
-		_artists = new HashMap<string, LastFM.ArtistInfo>();
-		_albums = new HashMap<string, LastFM.AlbumInfo>();
-		_tracks = new HashMap<string, LastFM.TrackInfo>();
 		
 		_played_index = 0;
 		
@@ -281,12 +294,13 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		album_list_setup = new TreeViewSetup("Track", Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
 		
 		//load all medias from db
+		_media_lock.lock ();
 		foreach(Media s in dbm.load_medias()) {
 			_media.set(s.rowid, s);
 			_permanents.add(s.rowid);
 			
 			if(File.new_for_uri(s.uri).get_path().has_prefix(this.music_folder_dir))
-				++local_song_count;
+ 				++local_song_count;
 			
 			if(s.mediatype == 0)
 				_songs.set(s.rowid, s);
@@ -301,12 +315,16 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				_stations.set(s.rowid, s);
 #endif
 		}
-		
+		_media_lock.unlock ();
+
+		_smart_playlists_lock.lock ();
 		foreach(SmartPlaylist p in dbm.load_smart_playlists()) {
 			_smart_playlists.set(p.rowid, p);
 		}
+		_smart_playlists_lock.unlock ();
 		
 		//load all playlists from db
+		_playlists_lock.lock ();
 		var playlists_added = new LinkedList<string>();
 		foreach(Playlist p in dbm.load_playlists()) {
 			if(!playlists_added.contains(p.name)) { // sometimes we get duplicates. don't add duplicates
@@ -349,19 +367,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				playlists_added.add(p.name);
 			}
 		}
+		_smart_playlists_lock.unlock ();
 		
-		foreach(LastFM.ArtistInfo a in dbm.load_artists()) {
-			_artists.set(a.name, a);
-		}
-		
-		foreach(LastFM.AlbumInfo a in dbm.load_albums()) {
-			_albums.set(a.name + " by " + a.artist, a);
-		}
-		
-		foreach(LastFM.TrackInfo t in dbm.load_tracks()) {
-			_tracks.set(t.name + " by " + t.artist, t);
-		}
-		
+
 		// pre-load devices and their preferences
 		foreach(DevicePreferences dp in dbm.load_devices()) {
 			_device_preferences.set(dp.id, dp);
@@ -569,18 +577,25 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public Playlist? playlist_from_name(string name) {
+		Playlist? rv = null;
+
+		_playlists_lock.lock ();
 		foreach(var p in _playlists.values) {
 			if(p.name == name)
-				return p;
+				rv = p;
+				break;
 		}
-		
-		return null;
+		_playlists_lock.unlock ();
+
+		return rv;
 	}
 	
 	public int add_playlist(Playlist p) {
+		_playlists_lock.lock ();
 		p.rowid = _playlists.size + 1;
 		_playlists.set(p.rowid, p);
-		
+		_playlists_lock.unlock ();
+
 		dbm.add_playlist(p);
 		
 		return p.rowid;
@@ -588,8 +603,11 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 	public void remove_playlist(int id) {
 		Playlist removed;
+
+		_playlists_lock.lock ();
 		_playlists.unset(id, out removed);
-		
+		_playlists_lock.unlock ();
+
 		dbu.removeItem(removed);
 	}
 	
@@ -611,20 +629,25 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public SmartPlaylist? smart_playlist_from_name(string name) {
+		SmartPlaylist? rv = null;
+
+		_smart_playlists_lock.lock ();
 		foreach(var p in _smart_playlists.values) {
 			if(p.name == name)
-				return p; 
+				rv = p;
+				break; 
 		}
+		_smart_playlists_lock.unlock ();
 		
-		return null;
+		return rv;
 	}
 	
 	public void save_smart_playlists() {
 		try {
 			Thread.create<void*>( () => { 
-				lock(_smart_playlists) {
-					dbm.save_smart_playlists(_smart_playlists.values);
-				}
+				_smart_playlists_lock.lock ();
+				dbm.save_smart_playlists(_smart_playlists.values);
+				_smart_playlists_lock.unlock ();
 				
 				return null; 
 			}, false);
@@ -635,8 +658,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public int add_smart_playlist(SmartPlaylist p) {
+		_smart_playlists_lock.lock ();
 		p.rowid = _smart_playlists.size + 1;// + 1 for 1-based db
 		_smart_playlists.set(p.rowid, p);
+		_smart_playlists_lock.unlock ();
 		
 		save_smart_playlists();
 		
@@ -645,7 +670,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 	public void remove_smart_playlist(int id) {
 		SmartPlaylist removed;
+		_smart_playlists_lock.lock ();
 		_smart_playlists.unset(id, out removed);
+		_smart_playlists_lock.unlock ();
 		
 		dbu.removeItem(removed);
 	}
@@ -653,6 +680,11 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	/******************** Media stuff ******************/
 	public void clear_medias() {
 		debug ("clearing...\n");
+		
+		// We really only want to clear the songs that are permanent and on the file system
+		// Dont clear podcasts that link to a url, device media, temporary media, previews, songs
+		_media_lock.lock();
+
 		var unset = new LinkedList<Media>();//HashMap<int, Media>();
 		foreach(int i in _media.keys) {
 			Media s = _media.get(i);
@@ -697,6 +729,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				p.removeMedia (to_remove);
 			}
 		}
+
+		_media_lock.unlock ();
 		
 		dbm.clear_medias();
 		dbm.add_medias(_media.values);
@@ -776,9 +810,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public void save_media() {
 		try {
 			Thread.create<void*>( () => { 
-				lock(_media) {
-					dbm.update_medias(_media.values);
-				} 
+				_media_lock.lock ();
+				dbm.update_medias(_media.values);
+				_media_lock.unlock ();
 				
 				return null; 
 			}, false);
@@ -798,13 +832,15 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 	public int match_media_to_list(int id, Collection<int> to_match) {
 		Media m = media_from_id(id);
-		
+
+		_media_lock.lock ();
 		foreach(int i in to_match) {
 			Media test = media_from_id(i);
 			if(id != i && test.title.down() == m.title.down() && test.artist.down() == m.artist.down()) {
 				return i;
 			}
 		}
+		_media_lock.unlock ();
 		
 		return 0;
 	}
@@ -815,9 +851,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		rv.artist = artist;
 		Media[] searchable;
 		
-		mutex.lock();
+		_media_lock.lock();
 		searchable = _media.values.to_array();
-		mutex.unlock();
+		_media_lock.unlock();
 		
 		for(int i = 0; i < searchable.length; ++i) {
 			Media s = searchable[i];
@@ -852,14 +888,16 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public Media? media_from_file(string uri) {
-		lock(_media) {
-			foreach(Media s in _media.values) {
-				if(s.uri == uri)
-					return s;
-			}
+		Media? rv = null;
+
+		_media_lock.lock ();
+		foreach(Media s in _media.values) {
+			if(s.uri == uri)
+				rv = s;
 		}
+		_media_lock.unlock ();
 		
-		return null;
+		return rv;
 	}
 
 	/**
@@ -976,11 +1014,11 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		int top_index = 0;
 		
-		lock(_media) {
-			foreach(int i in _media.keys) {
-				if(i > top_index)
-					top_index = i;
-			}
+		_media_lock.lock ();
+
+		foreach(int i in _media.keys) {
+			if(i > top_index)
+				top_index = i;
 		}
 		
 		var added = new LinkedList<int>();
@@ -1010,6 +1048,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				_stations.set(s.rowid, s);
 #endif
 		}
+
+		_media_lock.unlock ();
 		
 		if(new_media.size > 0 && new_media.to_array()[0].rowid != -2 && permanent) {
 			dbm.add_medias(new_media);
@@ -1051,7 +1091,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public void remove_medias(LinkedList<Media> toRemove, bool trash) {
 		LinkedList<int> removedIds = new LinkedList<int>();
 		LinkedList<string> removeURIs = new LinkedList<string>();
-		
+
+		_media_lock.lock ();		
 		foreach(Media s in toRemove) {
 			removedIds.add(s.rowid);
 			removeURIs.add(s.uri);
@@ -1089,6 +1130,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				p.removeMedia (to_remove);
 			}
 		}
+
+		_media_lock.unlock ();
 		
 		medias_removed(removedIds);
 		
@@ -1626,116 +1669,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		playback_stopped(was_playing);
 	}
 	
-	/************* Last FM Artist Stuff ************/
-	public Collection<LastFM.ArtistInfo> artists() {
-		return _artists.values;
-	}
-	
-	public void save_artist(LastFM.ArtistInfo artist) {
-		_artists.set(artist.name, artist);
-		
-		save_artists();
-	}
-	
-	public void save_artists() {
-		/*try {
-			Thread.create<void*>( () => { 
-				lock(_artists) {
-					dbm.save_artists(_artists.values);
-				}
-				
-				return null; 
-			}, false);
-		}
-		catch(GLib.Error err) {
-			warning("Could not create thread to save last fm artists: %s\n", err.message);
-		}*/
-	}
-	
-	public bool artist_info_exists(string artist_key) {
-		return _artists.has_key(artist_key);
-	}
-	
-	public LastFM.ArtistInfo? get_artist(string artist_key) {
-		if(artist_info_exists(artist_key))	
-			return _artists.get(artist_key);
-			
-		return null;
-	}
-	
-	/************** LastFM Album stuff **************/
-	public Collection<LastFM.AlbumInfo> albums() {
-		return _albums.values;
-	}
-	
-	public void save_album(LastFM.AlbumInfo album) {
-		_albums.set(album.name + " by " + album.artist, album);
-		
-		save_albums();
-	}
-	
-	public void save_albums() {
-		/*try {
-			Thread.create<void*>( () => { 
-				lock(_albums) {
-					dbm.save_albums(_albums.values);
-				}
-				
-				return null; 
-			}, false);
-		}
-		catch(GLib.Error err) {
-			warning("Could not create thread to save last fm albums: %s\n", err.message);
-		}*/
-	}
-	
-	public bool album_info_exists(string album_key) {
-		return _albums.has_key(album_key);
-	}
-	
-	public LastFM.AlbumInfo? get_album(string album_key) {
-		if(album_info_exists(album_key))	
-			return _albums.get(album_key);
-			
-		return null;
-	}
-	
-	/************** Last FM Track Stuff ***************/
-	public Collection<LastFM.TrackInfo> tracks() {
-		return _tracks.values;
-	}
-	
-	public void save_track(LastFM.TrackInfo track) {
-		_tracks.set(track.name + " by " + track.artist, track);
-		
-		save_tracks();
-	}
-	
-	public void save_tracks() {
-		/*try {
-			Thread.create<void*>( () => { 
-				lock(_tracks) {
-					dbm.save_tracks(_tracks.values);
-				}
-				
-				return null; 
-			}, false);
-		}
-		catch(GLib.Error err) {
-			warning("Could not create thread to save last fm albums: %s\n", err.message);
-		}*/
-	}
-	
-	public bool track_info_exists(string track_key) {
-		return _tracks.has_key(track_key);
-	}
-	
-	public LastFM.TrackInfo? get_track(string track_key) {
-		if(track_info_exists(track_key))	
-			return _tracks.get(track_key);
-			
-		return null;
-	}
+
 	
 	/************ Image stuff ********************/
 	public string getAlbumArtPath(int id) {
@@ -1744,6 +1678,13 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 	public void save_album_locally(int id, string album) {
 		fo.save_album(_media.get(id), album);
+		
+		// start thread to load all the medias pixbuf's
+		try {
+			Thread.create<void*>(fetch_all_cover_art, false);
+		} catch(GLib.ThreadError err) {
+			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
+		}
 	}
 	
 	public string getArtistImagePath(int id) {
