@@ -383,8 +383,6 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		podcastDropdown.sensitive = syncPodcasts.active;
 #endif
 		//audiobookDropdown.sensitive = syncAudiobooks.active;
-		
-		lm.save_device_preferences();
 	}
 	
 	public bool allMediasSelected() {

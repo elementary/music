@@ -88,7 +88,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public BeatBox.DataBaseUpdater dbu;
 	public BeatBox.FileOperator fo;
 	public BeatBox.Streamer player;
-	public BeatBox.DeviceManager dm;
+	public BeatBox.DeviceManager device_manager;
 
 #if HAVE_PODCASTS
 	public BeatBox.PodcastManager pm;
@@ -106,7 +106,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	private HashMap<int, Media> _stations;
 #endif
 	private LinkedList<int> _permanents; // list of all local medias
-	private HashMap<string, DevicePreferences> _device_preferences;
 	int local_song_count;
 	public int current_view_size;
 	
@@ -252,7 +251,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_stations = new HashMap<int, Media>(); // subset of _medias
 #endif
 		_permanents = new LinkedList<int>();
-		_device_preferences = new HashMap<string, DevicePreferences>();
 		
 		_current = new HashMap<int, int>();
 		_current_shuffled = new HashMap<int, int>();
@@ -368,14 +366,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			}
 		}
 		_smart_playlists_lock.unlock ();
-		
 
-		// pre-load devices and their preferences
-		foreach(DevicePreferences dp in dbm.load_devices()) {
-			_device_preferences.set(dp.id, dp);
-		}
-		
-		dm = new DeviceManager(this);
+		// Create device manager
+		device_manager = new DeviceManager(this);
 		
 		// set the volume
 		player.setVolume(settings.getVolume());
@@ -1686,16 +1679,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
 		}
 	}
-	
-	public string getArtistImagePath(int id) {
-		return _media.get(id).getArtistImagePath();
-	}
-	
-	public Gdk.Pixbuf? save_artist_image_locally(int id, string image) {
-		return fo.save_artist_image(_media.get(id), image);
-	}
-
-
 
 	public void* fetch_cover_art_from_cache () {
 		fetch_cover_art (true);
@@ -1832,36 +1815,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		if(key != null)
 			cover_album_art.set(key, Icons.get_pixbuf_shadow(pix));
 	}
-	
-	/* Device Preferences */
-	public Collection<DevicePreferences> device_preferences() {
-		return _device_preferences.values;
-	}
-	
-	public DevicePreferences? get_device_preferences(string id) {
-		return _device_preferences.get(id);
-	}
-	
-	public void add_device_preferences(DevicePreferences dp) {
-		_device_preferences.set(dp.id, dp);
-		save_device_preferences();
-	}
-	
-	public void save_device_preferences() {
-		/*try {
-			Thread.create<void*>( () => { 
-				lock(_device_preferences) {
-					dbm.save_devices(_device_preferences.values);
-				}
-				
-				return null; 
-			}, false);
-		}
-		catch(GLib.Error err) {
-			warning("Could not create thread to save device preferences: %s\n", err.message);
-		}*/
-	}
-	
+
 	public bool start_file_operations(string? message) {
 		if(_doing_file_operations)
 			return false;

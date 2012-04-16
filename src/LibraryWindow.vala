@@ -145,8 +145,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		this.lm.medias_updated.connect(medias_updated);
 		this.lm.media_played.connect(media_played);
 		this.lm.playback_stopped.connect(playback_stopped);
-		this.lm.dm.device_added.connect(device_added);
-		this.lm.dm.device_removed.connect(device_removed);
+		this.lm.device_manager.device_added.connect(device_added);
+		this.lm.device_manager.device_removed.connect(device_removed);
 		lm.lfm.similar_retrieved.connect(similarRetrieved);
 
 
@@ -369,7 +369,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		sourcesToMedias.pack2(mediasToInfo, true, true);
 
 		// add mounts to side tree view
-		lm.dm.loadPreExistingMounts();
+		lm.device_manager.loadPreExistingMounts();
 
 		int i = settings.getLastMediaPlaying();
 		if(i != 0 && lm.media_from_id(i) != null && File.new_for_uri(lm.media_from_id(i).uri).query_exists()) {

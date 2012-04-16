@@ -27,6 +27,9 @@ public class BeatBox.DeviceManager : GLib.Object {
 	VolumeMonitor vm;
 	LinkedList<Device> devices;
 	
+	Mutex _pref_lock;
+	HashTable<string, DevicePreferences> _device_preferences;
+	
 	public signal void device_added(Device d);
 	public signal void device_removed(Device d);
 	
@@ -34,6 +37,16 @@ public class BeatBox.DeviceManager : GLib.Object {
 		this.lm = lm;
 		vm = VolumeMonitor.get();
 		devices = new LinkedList<Device>();
+		
+		_pref_lock = new Mutex();
+		_device_preferences = new HashTable<string, DevicePreferences>(null, null);
+		
+		// pre-load devices and their preferences
+		_pref_lock.lock();
+		foreach(DevicePreferences dp in lm.dbm.load_devices()) {
+			_device_preferences.set(dp.id, dp);
+		}
+		_pref_lock.unlock();
 		
 		vm.mount_added.connect(mount_added);
 		vm.mount_changed.connect(mount_changed);
@@ -114,7 +127,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 			// user mounted music folder, rescan for images
 			lm.settings.setMusicMountName(mount.get_volume().get_name());
 			try {
-				Thread.create<void*>(lm.fetch_all_cover_art, false);
+				Thread.create<void*>(lm.fetch_thread_function, false);
 			}
 			catch(GLib.ThreadError err) {
 				stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
@@ -191,5 +204,28 @@ public class BeatBox.DeviceManager : GLib.Object {
 				return;
 			}
 		}
+	}
+	
+	/** Device Preferences **/
+	public GLib.List<DevicePreferences> device_preferences() {
+		var rv = new GLib.List<DevicePreferences>();
+		
+		_pref_lock.lock();
+		foreach(var pref in _device_preferences.get_values()) {
+			rv.append(pref);
+		}
+		_pref_lock.unlock();
+		
+		return rv;
+	}
+	
+	public DevicePreferences? get_device_preferences(string id) {
+		return _device_preferences.get(id);
+	}
+	
+	public void add_device_preferences(DevicePreferences dp) {
+		_pref_lock.lock();
+		_device_preferences.set(dp.id, dp);
+		_pref_lock.unlock();
 	}
 }

@@ -23,6 +23,7 @@
 using Gtk;
 using Gee;
 
+
 public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	LibraryManager lm;
 	LibraryWindow lw;
@@ -92,8 +93,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		// Setup theming
 		get_style_context().add_class (STYLE_CLASS_SIDEBAR);
 
-		lm.dm.device_added.connect(deviceAdded);
-		lm.dm.device_removed.connect(deviceRemoved);
+		lm.device_manager.device_added.connect(deviceAdded);
+		lm.device_manager.device_removed.connect(deviceRemoved);
 		
 		buildUI();
 	}
