@@ -70,6 +70,7 @@ namespace Utils {
             }
 
             // Remove trailing spaces. In fact we just don't copy chars out of [first_valid_char, last_valid_char]
+            // interval
             for (int i = first_char_position - 1; s.get_next_char (ref i, out c) && i <= last_char_position;) {
                     rv.append_unichar (c);
             }

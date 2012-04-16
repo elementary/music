@@ -131,11 +131,10 @@ public class BeatBox.ViewWrapper : Box {
 	private bool setting_search = false;
 
 	public bool needs_update;
+	protected Mutex in_update = new Mutex ();
 
 	// for Hint.SIMILAR only
 	public bool similarsFetched;
-	private bool in_update;
-
 
 	public ViewWrapper (LibraryWindow lw, Collection<int> the_medias, string sort, Gtk.SortType dir,
 	                     Hint the_hint, int id)
@@ -297,7 +296,7 @@ public class BeatBox.ViewWrapper : Box {
 		//XXX
 		if (hint != Hint.CDROM)
 			lm.medias_removed.connect ((list) => { remove_media (list); });
-
+/*
 		if (hint == Hint.QUEUE) {
 			lm.media_queued.connect ( (media_id) => {
 				var list = new LinkedList<int>();
@@ -306,8 +305,15 @@ public class BeatBox.ViewWrapper : Box {
 				add_media (list);
 			});
 		} // XXX This won't populate playlists. This could be bad for smart playlists
+
 		else if (hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.AUDIOBOOK) {
 			lm.medias_added.connect ((list) => { add_media (list); });
+		}
+*/
+
+		// Listen for playlist additions/removals
+		if (hint == Hint.PLAYLIST) {
+			lm.playlist_from_id (relative_id).changed.connect (playlist_changed);
 		}
 
 		lw.searchField.changed.connect (search_field_changed);
@@ -588,6 +594,13 @@ public class BeatBox.ViewWrapper : Box {
 	                                  DATA STUFF
 	============================================================================
 	*/
+
+	// For playlists
+	void playlist_changed () {
+		Playlist p = lm.playlist_from_id(relative_id);
+		
+		set_media (p.medias ());
+	}
 
 	/**
 	 * @return a collection containing ALL the media

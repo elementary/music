@@ -52,8 +52,14 @@ if(${ENABLE_PODCASTS})
      set(PODCASTS
         Dialogs/AddPodcastWindow.vala
         Dialogs/PodcastEditor.vala
-        Views/ListView/PodcastTreeModel.vala
-        Views/ListView/PodcastListView.vala
+
+        ## NEW ##
+        Views/ListView/Lists/PodcastListView.vala
+
+        ## OLD ##
+        #Views/ListView/PodcastTreeModel.vala
+        #Views/ListView/PodcastListView.vala
+
         Objects/PodcastManager.vala
     )
 
@@ -67,8 +73,13 @@ endif()
 if(${ENABLE_INTERNET_RADIO})
     set(INTERNET_RADIO
          Dialogs/StationEditor.vala
-         Views/ListView/RadioListView.vala
-         Views/ListView/RadioTreeModel.vala
+
+        ## NEW ##
+        Views/ListView/Lists/RadioListView.vala
+
+        ## OLD ##
+        #Views/ListView/RadioTreeModel.vala
+        #Views/ListView/RadioListView.vala
     )
 
    set(ADD_OPTIONS ${ADD_OPTIONS} --define=HAVE_INTERNET_RADIO)
@@ -132,6 +143,8 @@ vala_precompile(VALA_C
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
     Widgets/StatusBar.vala
+    Widgets/FastView/FastView.vala
+    Widgets/FastView/FastModel.vala
 
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
@@ -148,20 +161,30 @@ vala_precompile(VALA_C
     Views/ViewWrapper.vala
     Views/DeviceViewWrapper.vala
     Views/DeviceView.vala
+    Views/DeviceSummaryWidget.vala
     Views/ContentView.vala
+
+    # ALBUM VIEW
+    Views/AlbumView/AlbumIconView.vala
+    Views/AlbumView/AlbumViewModel.vala
+    Views/AlbumView/AlbumListView.vala
+
+    # LIST VIEW
+    Views/CellDataFunctionHelper.vala
     Views/ListView/ListView.vala
-    Views/ListView/BaseListView.vala
-    Views/ListView/BaseListModel.vala
     Views/ListView/MillerColumns/MillerModel.vala
     Views/ListView/MillerColumns/MillerColumn.vala
-    Views/ListView/SimilarPane.vala
-    Views/ListView/MusicTreeModel.vala
-    Views/ListView/MusicTreeView.vala
-    Views/CellDataFunctionHelper.vala
-    Views/DeviceSummaryWidget.vala
-    Views/AlbumView/AlbumViewModel.vala
-    Views/AlbumView/AlbumIconView.vala
-    Views/AlbumView/AlbumListView.vala
+
+    ## NEW ##
+    Views/ListView/Lists/GenericList.vala
+    Views/ListView/Lists/MusicListView.vala
+
+#   ## OLD ##
+#   Views/ListView/BaseListView.vala
+#   Views/ListView/BaseListModel.vala
+#   Views/ListView/SimilarPane.vala
+#   Views/ListView/MusicTreeModel.vala
+#   Views/ListView/MusicTreeView.vala
 
     Dialogs/EqualizerWindow.vala
     Dialogs/SmartPlaylistEditor.vala

@@ -26,19 +26,30 @@ public class BeatBox.Playlist : Object {
 	private string _name;
 	public TreeViewSetup tvs;
 	private int _rowid;
-	private Gee.HashMap<int, int> _medias; // rowid, 1
-	
-	public signal void changed ();
-	
+	private Gee.LinkedList<int> _medias;
+
+	private ViewWrapper _view_wrapper;
+	public ViewWrapper view_wrapper {
+		get {
+			if (_view_wrapper == null)
+				debug (@"Playlist '$name' does not have a ViewWrapper");
+			return _view_wrapper;
+		}
+		set {
+			if (_view_wrapper == null)
+				_view_wrapper = value;
+		}
+	}
+
 	public Playlist() {
 		_name = "New Playlist";
-		tvs = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
-		_medias = new Gee.HashMap<int, int>();
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+		_medias = new Gee.LinkedList<int>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
-		_medias = new Gee.HashMap<int, int>();
-		tvs = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+		_medias = new Gee.LinkedList<int>();
+		tvs = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_rowid = rowid;
 		_name = name;
 	}
@@ -53,57 +64,70 @@ public class BeatBox.Playlist : Object {
 		set {_name = value; }
 	}
 	
-	public Gee.Collection<int> medias() {
-		return _medias.keys;
+	public Gee.LinkedList<int> medias() {
+		return _medias;
 	}
 	
-	public void addMedias(Collection<int> ids) {
-		foreach(int i in ids)
-			_medias.set(i, 1);
-		
-		changed ();
+	public void addMedia(Collection<int> ids) {
+		//if(!contains_media(id))
+		foreach (int id in ids)
+			_medias.add(id);
+
+		if (view_wrapper != null) {
+			debug (@"Adding $(ids.size) media items to playlist (ViewWrapper): $name");
+			view_wrapper.add_media (ids);
+		}
 	}
 	
-	public void removeMedias(Collection<int> ids) {
-		foreach(int i in ids)
-			_medias.unset(i);
-		
-		changed ();
+	public void removeMedia(Collection<int> ids) {
+		foreach (int id in ids)
+			_medias.remove(id);
+
+		if (view_wrapper != null) {
+			view_wrapper.remove_media (ids);
+			debug (@"Removing $(ids.size) media items from playlist (ViewWrapper): $name");
+		}
 	}
 	
 	public void clear() {
-		_medias = new HashMap<int, int>();
+		_medias.clear();
 		
-		changed ();
+		if (view_wrapper != null) {
+			view_wrapper.set_media (_medias);
+			debug (@"Clearing playlist (ViewWrapper): $name");
+		}
 	}
 	
 	public void medias_from_string(string medias, LibraryManager lm) {
 		string[] media_strings = medias.split(",", 0);
 		
 		int index;
+		var to_add = new LinkedList<int>();
 		for(index = 0; index < media_strings.length - 1; ++index) {
 			int id = int.parse(media_strings[index]);
 			
-			_medias.set(id, 1);
+			to_add.add (id);
 		}
+
+		addMedia (to_add);
 	}
 	
 	public string medias_to_string(LibraryManager lm) {
 		string rv = "";
 		
-		foreach(int id in _medias.keys) {
+		foreach(int id in _medias) {
 			rv += id.to_string() + ",";
 		}
 		
 		return rv;
 	}
 	
-	public Gee.Collection<int> analyze(LibraryManager lm) {
-		return _medias.keys;
+	public Gee.LinkedList<int> analyze(LibraryManager lm) {
+		return _medias;
 	}
 	
 	public bool contains_media(int i) {
-		return _medias.get(i) != 1;
+		return _medias.contains(i);
 	}
 	
 	public GPod.Playlist get_gpod_playlist() {
@@ -119,7 +143,7 @@ public class BeatBox.Playlist : Object {
 		bool rv = false;
 		string to_save = "#EXTM3U";
 		
-		foreach(int i in _medias.keys) {
+		foreach(int i in _medias) {
 			Media s = lm.media_from_id(i);
 			
 			to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + File.new_for_uri(s.uri).get_path();
@@ -141,7 +165,7 @@ public class BeatBox.Playlist : Object {
 			rv = true;
 		}
 		catch(Error err) {
-			stdout.printf("Could not save playlist %s to m3u file %s: %s\n", name, dest.get_path(), err.message);
+			warning("Could not save playlist %s to m3u file %s: %s\n", name, dest.get_path(), err.message);
 		}
 		
 		return rv;
@@ -152,7 +176,7 @@ public class BeatBox.Playlist : Object {
 		string to_save = "[playlist]\n\nNumberOfEntries=" + _medias.size.to_string() + "\nVersion=2";
 		
 		int index = 1;
-		foreach(int i in _medias.keys) {
+		foreach(int i in _medias) {
 			Media s = lm.media_from_id(i);
 			
 			to_save += "\n\nFile" + index.to_string() + "=" + File.new_for_uri(s.uri).get_path() + "\nTitle" + index.to_string() + "=" + s.title + "\nLength" + index.to_string() + "=" + s.length.to_string();
@@ -175,7 +199,7 @@ public class BeatBox.Playlist : Object {
 			rv = true;
 		}
 		catch(Error err) {
-			stdout.printf("Could not save playlist %s to pls file %s: %s\n", name, dest.get_path(), err.message);
+			warning("Could not save playlist %s to pls file %s: %s\n", name, dest.get_path(), err.message);
 		}
 		
 		return rv;
@@ -216,7 +240,7 @@ public class BeatBox.Playlist : Object {
 			}
 		}
 		catch(Error err) {
-			stdout.printf("Could not load m3u file at %s: %s\n", path, err.message);
+			warning("Could not load m3u file at %s: %s\n", path, err.message);
 			return false;
 		}
 		
@@ -249,7 +273,7 @@ public class BeatBox.Playlist : Object {
 			}
 		}
 		catch(Error err) {
-			stdout.printf("Could not load m3u file at %s: %s\n", path, err.message);
+			warning("Could not load m3u file at %s: %s\n", path, err.message);
 			return false;
 		}
 		
