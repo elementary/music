@@ -260,7 +260,8 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		ripper.ripMedia(s.track, s);
 		
 		// this refreshes so that the spinner shows
-		ViewWrapper vw = ((ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
+		// TODO: FIXME: !
+		//ViewWrapper vw = ((ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
 		//vw.do_update(vw.current_view, medias, true, true, false);
 		vw.set_media (medias);
 		

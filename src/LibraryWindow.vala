@@ -65,7 +65,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	public Notebook main_views { get; private set; }
 
+#if HAVE_PODCASTS
 	public DrawingArea videoArea  { get; private set; }
+#endif
+
 	public HPaned sourcesToMedias { get; private set; } //allows for draggable
 
 	public HPaned mediasToInfo { get; private set; } // media info pane
@@ -198,7 +201,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		sourcesToMedias = new HPaned();
 		mediasToInfo = new HPaned();
 		main_views = new Notebook ();
+
+#if HAVE_PODCASTS
 		videoArea = new DrawingArea();
+#endif
 
 		sideTree = new SideTreeView(lm, this);
 		sideTreeScroll = new ScrolledWindow(null, null);
@@ -301,7 +307,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// Add controls to the GUI
 		add(verticalBox);
 		verticalBox.pack_start(topControls, false, true, 0);
+#if HAVE_PODCASTS
 		verticalBox.pack_start(videoArea, true, true, 0);
+#endif
 		verticalBox.pack_start(sourcesToMedias, true, true, 0);
 		verticalBox.pack_end(statusBar, false, true, 0);
 
@@ -405,13 +413,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// LOAD MUSIC STORE VIEW
 		load_default_store ();
 #endif
-
-		update_sensitivities();
-		show_all ();
-
 		initialization_finished = true;
 
 		update_sensitivities();
+		show_all ();
 
 		sideTree.resetView();
 
@@ -715,11 +720,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			topDisplay.show_scale();
 		}
 
+#if HAVE_PODCASTS
 		// HIDE SIDEBAR AND VIEWS WHEN PLAYING VIDEOS ...
 		sourcesToMedias.set_visible(viewSelector.selected != 2);
 		// Disabled due to a bug in GDK (version 3.4)
 		//videoArea.set_no_show_all (viewSelector.selected != 2);
 		videoArea.set_visible(viewSelector.selected == 2);
+#endif
 
 		bool show_top_display = media_active || doing_ops;
 		topDisplay.set_visible (show_top_display);
@@ -1322,7 +1329,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			queriedlastfm = true;
 
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.playlists_similar_iter);
-			if(vw.has_list_view && !(vw.list_view as BaseListView).is_current_view) {
+			if(vw.has_list_view && !vw.visible) {
 				vw.show_retrieving_similars();
 				similarMedias.queryForSimilar(lm.media_info.media);
 			}
