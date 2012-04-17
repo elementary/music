@@ -176,7 +176,7 @@ public class BeatBox.AlbumListView : Window {
 		mtv.vexpand = true;
 
 		// add rating
-		rating = new RatingWidget(get_style_context(), true, IconSize.BUTTON, true);
+		rating = new RatingWidget(get_style_context(), true, IconSize.MENU, true);
 		rating.set_transparent (true);
 
 		var all_area = new Box(Orientation.VERTICAL, 0);
