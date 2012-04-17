@@ -33,7 +33,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	private Gtk.Paned list_view_vpaned; // for top mode
 
 	public MillerColumns column_browser { get; private set; }
-	public /*ContentView*/ GenericView  list_view { get; private set; }
+	public GenericList   list_view { get; private set; }
 
 	private int list_view_hpaned_position = -1;
 	private int list_view_vpaned_position = -1;
@@ -142,6 +142,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		else {
 			this.pack_start (list_view, true, true, 0);
 		}
+
+		// Set sort data from saved session
+		list_view.set_sort_column_id(tvs.sort_column_id, tvs.sort_direction);
 
 		// We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
 		// disk access to write settings.
@@ -283,7 +286,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 
 	// XXX: fix column browser stuff!
 	// THIS IS CRITICAL!
-
+/*
 	public void set_show_next (Collection<int> medias) {
 		// FIXME: this could lead to bad behavior
 		if (!column_browser_enabled)
@@ -318,25 +321,35 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		else
 			list_view.remove_medias (to_remove);
 	}
-
+*/
 	public void set_as_current_list (int media_id, bool is_initial = false) {
 		list_view.set_as_current_list (media_id, is_initial);
 	}
-	
+/*
 	public void update_medias(Collection<int> medias) { // request to update displayed information
 		list_view.update_medias (medias);
 	}
-
+*/
 	private void column_browser_changed () {
 		// This method is only called if the column browser is available.
 		// For performance reasons we won't update showing_medias to match
 		// the results of the miller columns.
 
+		// TODO: update !
+
+		/*
 		if(lw.initialization_finished) {
 			list_view.set_show_next (column_browser.media_results);
 			list_view.populate_view();
 			view_wrapper.set_statusbar_info();
 		}
+		*/
 	}
+
+
+
+	/* ---------- NEW API --------- */
+	
+
 }
 

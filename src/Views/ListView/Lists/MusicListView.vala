@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.MusicTreeView : GenericView {
+public class BeatBox.MusicTreeView : GenericList {
 
 	//for header column chooser
 	Gtk.Menu columnChooserMenu;

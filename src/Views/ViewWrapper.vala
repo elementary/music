@@ -33,8 +33,9 @@ public class BeatBox.ViewWrapper : Box {
 	public LibraryWindow  lw { get; private set; }
 
 	/* MAIN WIDGETS (VIEWS) */
-	public ContentView   list_view      { get; private set; }
-	public ContentView   album_view     { get; private set; }
+	// XXX change this back to ContentView later on!
+	public /*ContentView*/ ListView   list_view      { get; private set; }
+	public /*ContentView*/ AlbumView  album_view     { get; private set; }
 	public WarningLabel  error_box      { get; private set; }
 	public Welcome       welcome_screen { get; private set; }
 
@@ -547,6 +548,7 @@ public class BeatBox.ViewWrapper : Box {
 	/**
 	 * Updates the views to use the new data.
 	 * For performance reasons, this process should be delayed until the user switches to this view wrapper.
+	 * FIXME: @deprecated
 	 */
 	public void populate_views () {
 		if (!lw.initialization_finished)
@@ -559,10 +561,10 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (has_album_view)
 			album_view.populate_view ();
-
+/*
 		if (has_list_view)
 			list_view.populate_view ();
-
+*/
 		// FIXME: column_browser_changed already does this when ListView :: column_browser_enabled is TRUE
 		set_statusbar_info ();
 
@@ -620,11 +622,12 @@ public class BeatBox.ViewWrapper : Box {
 		foreach (int i in search_results)
 			showing_medias.set (i, 1);
 
+		// FIXME: Use new api
 		if (has_album_view)
 			album_view.set_show_next (search_results);
 
 		if (has_list_view)
-			list_view.set_show_next (search_results);
+			list_view.set_table (showing_media);
 
 		// Now update the views to reflect the change
 		if (_populate_views)
@@ -731,6 +734,8 @@ public class BeatBox.ViewWrapper : Box {
 			var to_add = new LinkedList<int>();
 			var to_remove = new LinkedList<int>();
 			var to_remove_show = new LinkedList<int>();
+
+			// FIXME: use hashtables. mandatory in new API
 
 			// add elements that should be here
 			foreach(int i in should_be)

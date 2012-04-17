@@ -1,7 +1,7 @@
 using Gee;
 using Gtk;
 
-public abstract class BeatBox.GenericView : FastView {
+public abstract class BeatBox.GenericList : FastView {
 	protected LibraryManager lm;
 	protected LibraryWindow lw;
 	protected ViewWrapper parent_wrapper;
@@ -22,7 +22,7 @@ public abstract class BeatBox.GenericView : FastView {
 	
 	public signal void import_requested(LinkedList<int> to_import);
 	
-	public GenericView(ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
+	public GenericList(ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
 		base(types);
 		
 		this.parent_wrapper = view_wrapper;
@@ -215,7 +215,7 @@ public abstract class BeatBox.GenericView : FastView {
 
 
 	public ViewWrapper.Hint get_hint() {
-		return view_wrapper.get_hint();
+		return view_wrapper.hint;
 	}
 
 	public void set_relative_id(int id) {
