@@ -25,7 +25,7 @@ using Gtk;
 
 public class BeatBox.AlbumListView : Window {
 
-	public const int WIDTH = 350;
+	public const int WIDTH = 400;
 	public const int HEIGHT = 400; 
 
 	LibraryManager lm;
