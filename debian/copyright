@@ -1,9 +1,10 @@
 Format: http://dep.debian.net/deps/dep5
-Upstream-Name: beatbox
+Upstream-Name: noise
 Source: https://launchpad.net/beat-box
 
 Files: *
-Copyright: 2011 Scott Ringwelski <sgringwe@mtu.edu>
+Copyright: 2011-2012 Scott Ringwelski <sgringwe@mtu.edu>
+           2011-2012 Victor Eduardo <victoreduardm@gmail.com>
 License: GPL-3.0
 
 Files: src/Widgets/ElementaryEntry.vala
@@ -18,12 +19,9 @@ Files: Backup Makefiles/ltmain.sh
 Copyright: 1996-2008 Free Software Foundation, Inc
 License: GPL-2.0+
 
-Files: waf
-Copyright: 2005-2010 Thomas Nagy
-License: BSD-3-Clause
-
 Files: debian/*
 Copyright: 2011 Devid Antonio Filoni <d.filoni@ubuntu.com>
+           2012 Sergey "Shnatsel" Davidoff <shnatsel@gmail.com>
 License: GPL-2.0+
 
 License: LGPL-2.1+
