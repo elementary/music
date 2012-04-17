@@ -37,7 +37,7 @@ public class BeatBox.AlbumListView : Window {
 	MusicTreeView mtv;
 	bool setting_songs;
 
-
+/*
 	private const string WIDGET_STYLESHEET = """
 		BeatBoxAlbumListView {
 			background-image: -gtk-gradient (linear,
@@ -105,6 +105,7 @@ public class BeatBox.AlbumListView : Window {
 			-unico-inner-stroke-width: 0;
 		}
 	""";
+*/
 
 	public AlbumListView(AlbumView album_view) {
 		this.view_wrapper = album_view.parent_view_wrapper;
@@ -119,7 +120,7 @@ public class BeatBox.AlbumListView : Window {
 		this.destroy_with_parent = true;
 		set_size_request(WIDTH, HEIGHT);
 		set_default_size(WIDTH, HEIGHT);
-
+/*
 		// apply css styling
 		var style_provider = new CssProvider();
 
@@ -130,13 +131,13 @@ public class BeatBox.AlbumListView : Window {
 		}
 
 		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
-
+*/
 		// add close button
 		var close = new Gtk.Button ();
 
-		close.get_style_context().add_class("close-button");
+//		close.get_style_context().add_class("close-button");
 
-		close.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
+//		close.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
 
 		close.set_image (Icons.render_image ("gtk-close", Gtk.IconSize.MENU));
 
@@ -170,7 +171,7 @@ public class BeatBox.AlbumListView : Window {
 
 		// add actual list
 		mtv = new MusicTreeView(view_wrapper, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
-		mtv.apply_style_to_view(style_provider);
+//		mtv.apply_style_to_view(style_provider);
 		mtv.has_grid_lines = true;
 		mtv.vexpand = true;
 
