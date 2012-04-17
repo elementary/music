@@ -97,8 +97,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	// basic file stuff
 	private Gtk.Menu settingsMenu;
-	private Gtk.Menu libraryOperationsMenu;
-	private ImageMenuItem libraryOperations;
 	private Gtk.MenuItem fileImportMusic;
 	private Gtk.MenuItem fileRescanMusicFolder;
 	private ImageMenuItem editPreferences;
@@ -202,8 +200,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		sideTree = new SideTreeView(lm, this);
 		sideTreeScroll = new ScrolledWindow(null, null);
-		libraryOperations = new ImageMenuItem.from_stock("library-music", null);
-		libraryOperationsMenu = new Gtk.Menu();
 		fileImportMusic = new Gtk.MenuItem.with_label(_("Import to Library"));
 		fileRescanMusicFolder = new Gtk.MenuItem.with_label(_("Rescan Music Folder"));
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
@@ -216,7 +212,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		
 		column_browser_toggle = new ToggleButton ();
 		viewSelector = new Granite.Widgets.ModeButton();
-		searchField = new Granite.Widgets.SearchBar(_("Search..."));
+		searchField = new Granite.Widgets.SearchBar(_("Search Music"));
 
 		infoPanel = new InfoPanel(lm, this);
 		statusBar = new StatusBar();
@@ -273,12 +269,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		sideTreeScroll.add(sideTree);
 
 		/* create appmenu menu */
-		libraryOperationsMenu.append(fileImportMusic);
-		libraryOperationsMenu.append(fileRescanMusicFolder);
-		libraryOperations.submenu = libraryOperationsMenu;
-		libraryOperations.set_label(_("Library"));
 
-		settingsMenu.append(libraryOperations);
+		settingsMenu.append(fileImportMusic);
+		settingsMenu.append(fileRescanMusicFolder);
 		settingsMenu.append(new SeparatorMenuItem());
 		settingsMenu.append(editPreferences);
 

@@ -120,7 +120,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		/* create extra option: limiter */
 		limitMedias = new CheckButton.with_label(_("Limit to"));
 		mediaLimit = new SpinButton.with_range(0, 500, 10);
-		Label limiterLabel = new Label(_("media"));
+		Label limiterLabel = new Label(_("items"));
 		
 		limitMedias.set_active(_sp.limit);
 		mediaLimit.set_value((double)_sp.limit_amount);
