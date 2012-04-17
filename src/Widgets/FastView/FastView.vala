@@ -21,7 +21,7 @@
 
 using Gtk;
 
-namespace Granite.Widgets {
+namespace BeatBox {
 
 public class FastView : TreeView {
 	public static const int SHUFFLE_COLUMN_ID = -3;

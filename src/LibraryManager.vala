@@ -142,11 +142,16 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 #if HAVE_INTERNET_RADIO
 	public TreeViewSetup station_setup  { set; get; }
 #endif
+#if HAVE_PODCASTS
+	public TreeViewSetup podcast_setup { set; get; }
+#endif
 	public TreeViewSetup similar_setup  { set; get; }
 	public TreeViewSetup queue_setup  { set; get; }
 	public TreeViewSetup history_setup  { set; get; }
 	public TreeViewSetup album_list_setup  { set; get; }
-	
+
+
+
 	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new medias play, this goes with it
 	public int _current_index;
 	public int _current_shuffled_index;
@@ -282,14 +287,17 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		_doing_file_operations = false;
 		
-		music_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
-#if HAVE_INTERNET_RADIO
-		station_setup = new TreeViewSetup("Genre", Gtk.SortType.ASCENDING, ViewWrapper.Hint.STATION);
+		music_setup = new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
+#if HAVE_PODCASTS
+		podcast_setup = new TreeViewSetup(PodcastListView.PodcastColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PODCAST);
 #endif
-		similar_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.SIMILAR);
-		queue_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.QUEUE);
-		history_setup = new TreeViewSetup("#", Gtk.SortType.ASCENDING, ViewWrapper.Hint.HISTORY);
-		album_list_setup = new TreeViewSetup("Track", Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
+#if HAVE_INTERNET_RADIO
+		station_setup = new TreeViewSetup(RadioListView.RadioColumn.GENRE, Gtk.SortType.ASCENDING, ViewWrapper.Hint.STATION);
+#endif
+		similar_setup = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SIMILAR);
+		queue_setup = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.QUEUE);
+		history_setup = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.HISTORY);
+		album_list_setup = new TreeViewSetup(MusicTreeView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
 		
 		//load all medias from db
 		_media_lock.lock ();
@@ -719,7 +727,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			foreach(var p in _playlists.values) {
 				var to_remove = new LinkedList<int>();
 				to_remove.add (s.rowid);
-				p.removeMedia (to_remove);
+				p.remove_media (to_remove);
 			}
 		}
 
@@ -1120,7 +1128,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			foreach(var p in _playlists.values) {
 				var to_remove = new LinkedList<int>();
 				to_remove.add (s.rowid);
-				p.removeMedia (to_remove);
+				p.remove_media (to_remove);
 			}
 		}
 
@@ -1669,15 +1677,27 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return _media.get(id).getAlbumArtPath();
 	}
 	
-	public void save_album_locally(int id, string album) {
-		fo.save_album(_media.get(id), album);
-		
-		// start thread to load all the medias pixbuf's
-		try {
-			Thread.create<void*>(fetch_all_cover_art, false);
-		} catch(GLib.ThreadError err) {
-			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
+	public void save_album_locally(int id, string image_uri) {
+		GLib.File file = GLib.File.new_for_uri(image_uri);
+		if(file == null) {
+			stdout.printf("Could not read image_uri as file\n");
+			return;
 		}
+		
+		FileInputStream filestream;
+		Gdk.Pixbuf pix;
+		
+		try {
+			filestream = file.read(null);
+			pix = new Gdk.Pixbuf.from_stream(filestream, null);
+		} catch(GLib.Error err) {
+			error("Failed to save album art locally from %s: %s\n", image_uri, err.message);
+		}
+		
+		if(pix != null)	stdout.printf("got pix and saving it now\n");
+		fo.save_album_art_in_cache(_media.get(id), pix);
+		
+		set_album_art(id, pix);
 	}
 
 	public void* fetch_cover_art_from_cache () {
@@ -1723,7 +1743,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 								pix = Icons.get_pixbuf_shadow (coverart_pixbuf);
 								
 								// Add image to cache
-								fo.save_album_art_in_cache (key, coverart_pixbuf);
+								fo.save_album_art_in_cache (s, coverart_pixbuf);
 							}
 							catch(GLib.Error err) {
 								warning (err.message);
@@ -1797,7 +1817,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	// Returns a key to get a coverart from the cover_album_art hashmap
-	private string get_media_coverart_key (Media s) {
+	public string get_media_coverart_key (Media s) {
 		return s.album_artist + " - " + s.album;
 	}
 	

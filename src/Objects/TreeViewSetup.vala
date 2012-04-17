@@ -31,7 +31,7 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 	public static const int PODCAST_COLUMN_COUNT = 12;
 	public static const int RADIO_COLUMN_COUNT = 6;
 	
-	ViewWrapper.Hint hint;
+	public ViewWrapper.Hint hint { get; private set; }
 	public int sort_column_id; // Index of sort column
 	public Gtk.SortType sort_direction; // ASCENDING, DESCENDING
 	private GLib.List<TreeViewColumn> _columns;

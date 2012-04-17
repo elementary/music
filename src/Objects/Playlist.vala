@@ -57,14 +57,14 @@ public class BeatBox.Playlist : Object {
 		return _medias.keys;
 	}
 	
-	public void addMedias(Collection<int> ids) {
+	public void add_media(Collection<int> ids) {
 		foreach(int i in ids)
 			_medias.set(i, 1);
 		
 		changed ();
 	}
 	
-	public void removeMedias(Collection<int> ids) {
+	public void remove_media(Collection<int> ids) {
 		foreach(int i in ids)
 			_medias.unset(i);
 		

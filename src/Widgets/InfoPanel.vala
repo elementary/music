@@ -36,6 +36,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	private RatingWidget rating; // need to make custom widget in future
 	private Label album;
 	private Label year;
+	
+	bool similars_fetched;
 	private SimilarMediasView ssv;
 	
 	public InfoPanel(LibraryManager lmm, LibraryWindow lww) {
@@ -44,8 +46,11 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		buildUI();
 		
+		similars_fetched = false;
 		lm.medias_updated.connect(medias_updated);
+		lm.media_played.connect(media_played);
 		lm.lfm.logged_in.connect(logged_in_to_lastfm);
+		lm.lfm.similar_retrieved.connect(similar_retrieved);
 	}
 	
 	private void buildUI() {
@@ -120,8 +125,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		// signals here
 		rating.rating_changed.connect(ratingChanged);
-		this.size_allocate.connect(resized);
-		//title.button_press_event.connect(titleClicked);
+		title.button_press_event.connect(titleClicked);
 		loveMedia.clicked.connect(loveButtonClicked);
 		banMedia.clicked.connect(banButtonClicked);
 		
@@ -129,10 +133,10 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		Gtk.drag_dest_add_uri_targets(this);
 		this.drag_data_received.connect(dragReceived);
 
-		setVisibilities();
+		update_visibilities();
 	}
 	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+	Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
 		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
 		alignment.top_padding = top;
 		alignment.right_padding = right;
@@ -144,10 +148,10 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	}
 	
 	public void logged_in_to_lastfm() {
-		setVisibilities();
+		update_visibilities();
 	}
 
-	public void setVisibilities() {
+	public void update_visibilities() {
 		var lastfm_elements_visible = lm.settings.getLastFMSessionKey() != "";
 
 		loveMedia.set_no_show_all (!lastfm_elements_visible);
@@ -155,11 +159,31 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		ssv.set_no_show_all (!lastfm_elements_visible);
 		loveMedia.set_visible(lastfm_elements_visible);
 		banMedia.set_visible(lastfm_elements_visible);
-		ssv.set_visible(lastfm_elements_visible);
+		ssv.set_visible(similars_fetched);
 	}
 	
-	public void updateMedia(int new_id) {
-		id = new_id;
+	void media_played(int id, int old) {
+		if(lm.media_info.media.isPreview)
+			return;
+		
+		this.id = id;
+		
+		update_metadata ();
+		update_cover_art ();
+		update_visibilities ();
+		
+		similars_fetched = false;
+	}
+	
+	void medias_updated(Collection<int> ids) {
+		if(ids.contains(id)) {
+			update_metadata ();
+			update_cover_art ();
+			update_visibilities ();
+		}
+	}
+	
+	void update_metadata() {
 		Media s = lm.media_from_id(id);
 		
 		title.set_markup("<span size=\"large\"><b>" + s.title.replace("&", "&amp;") + "</b></span>");
@@ -173,14 +197,9 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 			year.set_markup("<span size=\"x-small\">" + s.year.to_string() + "</span>");
 		else
 			year.set_markup("");
-		
-		updateCoverArt(false);
-		ssv.hide();
-		
-		setVisibilities();
 	}
 	
-	public void updateCoverArt(bool is_initial) {
+	void update_cover_art() {
 		if(lm.media_from_id(id) == null)
 			return;
 
@@ -195,34 +214,25 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		}
 	}
 	
-	public void updateMediaList(Collection<Media> medias) {
-		if(medias.size > 8) {
-			ssv.show();
-			ssv.populateView(medias);
-		}
-		else {
-			ssv.hide();
-		}
+	void similar_retrieved(LinkedList<int> similar_internal, LinkedList<Media> similar_external) {
+		update_similar_list(similar_external);
 	}
 	
-	public virtual void ratingChanged(int new_rating) {
+	public void update_similar_list(Collection<Media> medias) {
+		if(medias.size > 8) {
+			similars_fetched = true;
+			ssv.populateView(medias);
+		}
+		
+		update_visibilities ();
+	}
+	
+	void ratingChanged(int new_rating) {
 		lm.media_from_id(id).rating = new_rating;
 		lm.update_media(lm.media_from_id(id), false, true);
 	}
 	
-	public virtual void medias_updated(Collection<int> ids) {
-		if(ids.contains(lm.media_info.media.rowid))
-			rating.set_rating((int)lm.media_info.media.rating);
-	}
-	
-	public virtual void resized(Allocation rectangle) {
-		// resize the image to fit
-		//coverArt.icon_size = rectangle.width - 10;
-		updateCoverArt(false);
-	}
-	
-	/* FIXME: unused code
-	public virtual bool titleClicked(Gdk.EventButton event) {
+	bool titleClicked(Gdk.EventButton event) {
 		try {
 			Thread.create<void*>(() => {
 				try {
@@ -242,16 +252,16 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		
 		return false;
 	}
-	*/
-	public virtual void loveButtonClicked() {
+	
+	void loveButtonClicked() {
 		lm.lfm.loveTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
 	
-	public virtual void banButtonClicked() {
+	void banButtonClicked() {
 		lm.lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
 	
-	private bool is_valid_image_type(string type) {
+	bool is_valid_image_type(string type) {
 		var typeDown = type.down();
 		
 		return (typeDown.has_suffix(".jpg") || typeDown.has_suffix(".jpeg") ||
@@ -259,73 +269,18 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	}
 	
 	void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
-		message("drag received\n");
 		bool success = true;
 		
-		foreach(string singleUri in data.get_uris()) {
+		foreach(string uri in data.get_uris()) {
 			
-			if(is_valid_image_type(singleUri) && lm.media_info.media != null) {
-				var original = File.new_for_uri(singleUri);
-				var playingPath = File.new_for_uri(lm.media_info.media.uri); // used to get dest
-				var dest = File.new_for_path(Path.build_path("/", playingPath.get_parent().get_path(), "Album.jpg"));
-				
-				// test successful, no block on copy
-				if(dest.query_exists()) {
-					try {
-						dest.delete();
-					}
-					catch(Error err) {
-						message("Could not delete previous file\n");
-					}
-				}
-				
-				try {
-					original.copy(dest, FileCopyFlags.NONE, null, null);
-				}
-				catch(Error err) {
-					success = false;
-					message("Could not copy album art to destination\n");
-				}
-				
-				if(success) {
-					// save new pixbuf in memory
-					Gdk.Pixbuf? pix = null;
-					try {
-						pix = new Gdk.Pixbuf.from_file(dest.get_path());
-					}
-					catch(GLib.Error err) {}
-					lm.set_album_art(lm.media_info.media.rowid, pix);
-					
-					Gee.LinkedList<Media> updated_medias = new Gee.LinkedList<Media>();
-					foreach(int id in lm.media_ids()) {
-						if(lm.media_from_id(id).artist == lm.media_info.media.artist && lm.media_from_id(id).album == lm.media_info.media.album) {
-							lm.media_from_id(id).setAlbumArtPath(dest.get_path());
-							updated_medias.add(lm.media_from_id(id));
-						}
-					}
-					
-					// wait for everything to finish up and then update the medias
-					Timeout.add(2000, () => {
-						
-						try {
-							Thread.create<void*>(lm.fetch_all_cover_art, false);
-						}
-						catch(GLib.ThreadError err) {
-							message("Could not create thread to load media pixbuf's: %s \n", err.message);
-						}
-						
-						lm.update_medias(updated_medias, false, false);
-						
-						// for sound menu (dbus doesn't like linked lists)
-						if(updated_medias.contains(lm.media_info.media))
-							lm.update_media(lm.media_info.media, false, false);
-						
-						return false;
-					});
-				}
+			if(is_valid_image_type(uri) && lm.media_info.media != null) {
+				message("Saving dragged album art as image\n");
+				lm.save_album_locally(lm.media_info.media.rowid, uri);
+			}
+			else {
+				message("Dragged album art is not valid image\n");
 			}
 			
-			updateCoverArt(true);
 			Gtk.drag_finish (context, success, false, timestamp);
 			return;
 		}

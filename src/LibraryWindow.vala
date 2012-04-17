@@ -147,8 +147,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		this.lm.playback_stopped.connect(playback_stopped);
 		this.lm.device_manager.device_added.connect(device_added);
 		this.lm.device_manager.device_removed.connect(device_removed);
-		lm.lfm.similar_retrieved.connect(similarRetrieved);
-
 
 		this.destroy.connect (on_quit);
 
@@ -832,14 +830,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		added_to_play_count = false;
 		scrobbled_track = false;
 
-		if(!lm.media_info.media.isPreview) {
-			infoPanel.updateMedia(lm.media_info.media.rowid);
-			if(settings.getMoreVisible())
-				infoPanel.set_visible(true);
-
-			// FIXME: Handle this in ViewWrapper.vala update_column_browser();
-		}
-
+		//XXX
 		update_sensitivities();
 #if HAVE_INTERNET_RADIO
 		// if radio, we can't depend on current_position_update. do that stuff now.
@@ -847,7 +838,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			queriedlastfm = true;
 
 			similarMedias.queryForSimilar(lm.media_info.media);
-			lm.lfm.fetchCurrentSimilarSongs();
 			lm.lfm.fetchCurrentAlbumInfo();
 			lm.lfm.fetchCurrentArtistInfo();
 			lm.lfm.fetchCurrentTrackInfo();
@@ -856,6 +846,24 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			// always show notifications for the radio, since user likely does not know media
 			mkl.showNotification(lm.media_info.media.rowid);
 		}
+		else {
+			Timeout.add(3000, () => {
+				if(lm.media_info.media != null && lm.media_info.media.rowid == i) {
+					lm.lfm.fetchCurrentSimilarSongs();
+				}
+				
+				return false;
+			});
+		}
+#else
+		/* NO NEED TO CHECK MEDIA TYPE AGAIN SINCE INTERNET RADIO IS DISABLED! */
+		Timeout.add(3000, () => {
+			if(lm.media_info.media != null && lm.media_info.media.rowid == i) {
+				lm.lfm.fetchCurrentSimilarSongs();
+			}
+			
+			return false;
+		});
 #endif
 	}
 
@@ -877,13 +885,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 	}
 
-
-
-	public bool updateMediaInfo() {
-		infoPanel.updateMedia(lm.media_info.media.rowid);
-
-		return false;
-	}
 
 	public virtual void previousClicked () {
 		if(lm.player.getPosition() < 5000000000 || (lm.media_active && lm.media_info.media.mediatype == 3)) {
@@ -1272,15 +1273,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		not_found.show();
 	}
 
-	public virtual void similarRetrieved(LinkedList<int> similarIDs, LinkedList<Media> similarDont) {
-		Widget w = sideTree.getWidget(sideTree.playlists_similar_iter);
-
-		((ViewWrapper)w).similarsFetched = true;
-		((ViewWrapper)w).set_media (similarIDs);
-
-		infoPanel.updateMediaList(similarDont);
-	}
-
 	public void set_statusbar_info (ViewWrapper.Hint media_type, uint total_medias,
 									 uint total_mbs, uint total_seconds)
 	{
@@ -1407,7 +1399,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			ViewWrapper vw = (ViewWrapper)w;
 
 			if (((ViewWrapper)w).has_list_view)
-				vw.list_view.set_as_current_list(1, !(vw.list_view as BaseListView).is_current_view);
+				vw.list_view.set_as_current_list(1, !vw.is_current_wrapper);
 
 			lm.current_index = 0;
 			lm.playMedia(lm.mediaFromCurrentIndex(0), false);

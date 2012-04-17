@@ -165,7 +165,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		
 		Playlist p_queue = new Playlist();
 		p_queue.name = "autosaved_queue";
-		p_queue.addMedias(lm.queue());
+		p_queue.add_media(lm.queue());
 		p_queue.tvs = lm.queue_setup;
 		
 		Playlist p_history = new Playlist();
@@ -179,21 +179,29 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		Playlist p_music = new Playlist();
 		p_music.name = "autosaved_music";
 		p_music.tvs = lm.music_setup;
-		
+
+#if HAVE_PODCASTS
 		Playlist p_podcast = new Playlist();
 		p_podcast.name = "autosaved_podcast";
 		p_podcast.tvs = lm.podcast_setup;
-		
+#endif
+
+#if HAVE_INTERNET_RADIO
 		Playlist p_station = new Playlist();
 		p_station.name = "autosaved_station";
 		p_station.tvs = lm.station_setup;
+#endif
 		
 		playlists_and_queue.add(p_queue);
 		playlists_and_queue.add(p_history);
 		playlists_and_queue.add(p_similar);
 		playlists_and_queue.add(p_music);
+#if HAVE_PODCASTS
 		playlists_and_queue.add(p_podcast);
+#endif
+#if HAVE_INTERNET_RADIO
 		playlists_and_queue.add(p_station);
+#endif
 		
 		debug("Doing periodic save\n");
 		

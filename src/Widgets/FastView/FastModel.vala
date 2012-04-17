@@ -26,7 +26,7 @@ using Gtk;
  * users here.
 **/
 
-namespace Granite.Widgets {
+namespace BeatBox {
 
 public class FastModel : GLib.Object, TreeModel, TreeSortable {
 	int stamp; // all iters must match this

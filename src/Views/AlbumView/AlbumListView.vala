@@ -129,7 +129,7 @@ public class BeatBox.AlbumListView : Window {
 			warning (e.message);
 		}
 
-		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
+		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_FALLBACK);
 
 		// add close button
 		var close = new Gtk.Button ();
@@ -213,6 +213,9 @@ public class BeatBox.AlbumListView : Window {
 	}
 
 	void update_album_rating () {
+		critical ("FIXME: NO WAY TO GET MEDIA FROM TREEVIEW");
+
+/*
 		if(setting_songs)
 			return;
 
@@ -235,9 +238,12 @@ public class BeatBox.AlbumListView : Window {
 		rating.set_rating(overall_rating);
 
 		setting_songs = false;
+*/
 	}
 
 	void rating_changed(int new_rating) {
+		critical ("FIXME: NO WAY TO GET MEDIA FROM TREEVIEW");
+		/*
 		if(setting_songs)
 			return;
 
@@ -248,6 +254,7 @@ public class BeatBox.AlbumListView : Window {
 		}
 
 		lm.update_medias(updated, false, true);
+		*/
 	}
 }
 

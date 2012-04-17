@@ -132,18 +132,16 @@ public class BeatBox.ViewWrapper : Box {
 	public bool needs_update;
 	protected Mutex in_update = new Mutex ();
 
-	// for Hint.SIMILAR only
-	public bool similarsFetched;
-
 	public ViewWrapper (LibraryWindow lw, Collection<int> the_media, TreeViewSetup tvs, int id)
 	{
-		debug ("BUILDING %s", the_hint.to_string());
 
 		this.lm = lw.lm;
 		this.lw = lw;
 
 		this.relative_id = id;
-		this.hint = the_hint;
+		this.hint = tvs.hint;
+
+		debug ("BUILDING %s", hint.to_string());
 
 		medias = new HashMap<int, int>();
 		showing_medias = new HashMap<int, int>();
@@ -162,7 +160,7 @@ public class BeatBox.ViewWrapper : Box {
 		//         a different method, so that we can use them to handle different
 		//         cases, like "No media", "No media found. Did you mean '...' ", etc.
 
-		switch (the_hint) {
+		switch (hint) {
 			case Hint.MUSIC:
 				// list and album view
 				album_view = new AlbumView (this);
@@ -191,7 +189,7 @@ public class BeatBox.ViewWrapper : Box {
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
 				
-				if (the_hint == Hint.PLAYLIST)
+				if (hint == Hint.PLAYLIST)
 					error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Empty Playlist") + "</span>\n\n" + _("..."));
 				else
 					error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Empty Playlist") + "</span>\n\n" + _("..."));
@@ -288,8 +286,8 @@ public class BeatBox.ViewWrapper : Box {
 
 
 		// Connect data signals
-
-		lm.medias_updated.connect ((list) => { update_media (list); });		
+		if (hint != Hint.SIMILAR)
+			lm.medias_updated.connect ((list) => { update_media (list); });		
 		
 		//XXX
 		if (hint != Hint.CDROM)
@@ -463,19 +461,6 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	public void show_retrieving_similars() {
-		if(hint != Hint.SIMILAR || !has_error_box || !lm.media_active)
-			return;
-
-		error_box.show_icon = false;
-		error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Loading similar songs") + "</span>\n\n" + _("BeatBox is loading songs similar to") + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b> " + _("..."));
-
-		// Show the error box
-		set_active_view (ViewType.ERROR);
-
-		similarsFetched = false;
-	}
-
 	/**
 	 * This handles updating all the shared stuff outside the view area.
 	 *
@@ -622,10 +607,8 @@ public class BeatBox.ViewWrapper : Box {
 	 * Primarily used for searches
 	 */
 	public void update_showing_media (bool _populate_views = true) {
-		if(in_update)
-			return;
 
-		in_update = true;
+		in_update.lock ();
 
 		showing_medias = new HashMap<int, int>();
 
@@ -650,7 +633,7 @@ public class BeatBox.ViewWrapper : Box {
 		// Check whether we should show the error box in case there's no media
 		check_show_error_box ();
 
-		in_update = false;
+		in_update.unlock ();
 	}
 
 
@@ -662,40 +645,6 @@ public class BeatBox.ViewWrapper : Box {
 
 		foreach (int i in new_media)
 			medias.set (i, 1);
-
-		// BEGIN special case for similar media
-		if(!in_thread && has_list_view && hint == Hint.SIMILAR && is_current_wrapper) {
-			SimilarPane sp = (SimilarPane)(list_view);
-
-			if (check_show_error_box())
-				return;
-
-			if(!similarsFetched) { // still fetching similar media
-				// Show the error box
-				set_active_view (ViewType.ERROR);
-
-				in_update = false;
-				return;
-			}
-			else {
-				if(media_count < 10) { // say we could not find similar media
-					if (has_error_box) {
-						error_box.show_icon = true;
-						error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + lm.media_info.media.title.replace("&", "&amp;") + "</b> by <b>" + lm.media_info.media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."));
-						// Show the error box
-						set_active_view (ViewType.ERROR);
-					}
-
-					in_update = false;
-					return;
-				}
-				else {
-					sp._base = lm.media_info.media;
-					set_active_view (ViewType.LIST);
-				}
-			}
-		}
-		// END special case
 
 		// update showing media. Don't update the views if inside a thread
 		if (!is_current_wrapper || in_thread)
@@ -763,10 +712,7 @@ public class BeatBox.ViewWrapper : Box {
 	 * does not re-anaylyze smart playlist_views or playlist_views.
 	 */
 	public void update_media (Collection<int> ids) {
-		if (in_update)
-			return;
-
-		in_update = true;
+		in_update.lock ();
 
 		if (is_current_wrapper) {
 			// find which media belong here
@@ -835,15 +781,12 @@ public class BeatBox.ViewWrapper : Box {
 			needs_update = true;
 		}
 
-		in_update = false;
+		in_update.unlock ();
 	}
 
 
 	public void remove_media (Collection<int> ids) {
-		if(in_update)
-			return;
-
-		in_update = true;
+		in_update.lock ();
 
 		// find which media to remove and remove it from
 		// Media and Showing Media
@@ -858,7 +801,7 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		if (check_show_error_box()) {
-			in_update = false;
+			in_update.unlock ();
 			return;
 		}	
 
@@ -873,17 +816,12 @@ public class BeatBox.ViewWrapper : Box {
 		update_library_window_widgets ();
 		set_statusbar_info ();
 
-		in_update = false;
+		in_update.unlock ();
 	}
 
 
 	public void add_media (Collection<int> new_media) {
-		if(in_update) {
-			debug ("%s: Already in update... returning", hint.to_string());
-			return;
-		}
-
-		in_update = true;
+		in_update.lock ();
 
 		//if(hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.STATION) { //FIXME DEVICE_?
 		if (is_current_wrapper) {
@@ -905,7 +843,7 @@ public class BeatBox.ViewWrapper : Box {
 				showing_medias.set(i, 1);
 
 			if (check_show_error_box()) {
-				in_update = false;
+				in_update.unlock ();
 				return;
 			}
 
@@ -919,7 +857,7 @@ public class BeatBox.ViewWrapper : Box {
 			needs_update = true; //not sure about this
 		}
 
-		in_update = false;
+		in_update.unlock ();
 	}
 }
 

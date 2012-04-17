@@ -38,7 +38,7 @@ public abstract class BeatBox.GenericView : FastView {
 		set_reorderable(false);
 		
 		cellHelper = new CellDataFunctionHelper((BeatBox.LibraryManager)lm, this);
-		playing_icon = Icons.MEDIA_PLAY_SYMBOLIC.get_gicon ();
+		playing_icon = Icons.NOW_PLAYING_SYMBOLIC.get_gicon ();
 		completed_icon = Icons.PROCESS_COMPLETED.get_gicon ();
 		saved_locally_icon = new GLib.ThemedIcon.with_default_fallbacks (Gtk.Stock.SAVE);
 		new_podcast_icon = Icons.NEW_PODCAST.get_gicon ();

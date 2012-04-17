@@ -33,7 +33,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	private Gtk.Paned list_view_vpaned; // for top mode
 
 	public MillerColumns column_browser { get; private set; }
-	public ContentView  list_view { get; private set; }
+	public /*ContentView*/ GenericView  list_view { get; private set; }
 
 	private int list_view_hpaned_position = -1;
 	private int list_view_vpaned_position = -1;

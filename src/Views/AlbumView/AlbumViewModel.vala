@@ -24,6 +24,14 @@ using Gtk;
 using Gee;
 using GLib;
 
+public class BeatBox.CompareFuncHolder : GLib.Object {
+	public unowned TreeIterCompareFunc sort_func;
+
+	public CompareFuncHolder(TreeIterCompareFunc func) {
+		sort_func = func;
+	}
+}
+
 public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 	/* custom signals for custom treeview. for speed */

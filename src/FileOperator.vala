@@ -46,9 +46,6 @@ public class BeatBox.FileOperator : Object {
 	LinkedList<Media> new_imports;
 	LinkedList<Media> all_new_imports;
 	LinkedList<string> import_errors;
-	private string[] other_names_list = {};
-	private LinkedList<string>[] other_paths_list;
-	private int other_playlists_added = 0;
 	
 	HashMap<string, string> art_locations = new HashMap<string, string>();
 	
@@ -120,7 +117,7 @@ public class BeatBox.FileOperator : Object {
 		GLib.FileInfo file_info = null;
 		
 		try {
-			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = music_folder.get_path() + "/" + file_info.get_name();
 				
@@ -150,6 +147,9 @@ public class BeatBox.FileOperator : Object {
 		GLib.FileInfo file_info = null;
 		var album_folder = media_file.get_parent();
 		
+		if(!album_folder.query_exists() || album_folder.get_path() == null)
+			return "";
+		
 		if( (artPath = art_locations.get(album_folder.get_path())) != null)
 			return artPath;
 			
@@ -159,7 +159,7 @@ public class BeatBox.FileOperator : Object {
 		var image_list = new LinkedList<string>();
 
 		try {
-			var enumerator = album_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			var enumerator = album_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
 					image_list.add(file_info.get_name());
@@ -189,57 +189,32 @@ public class BeatBox.FileOperator : Object {
 		return artPath;
 	}
 	
-	public void save_album(Media s, string uri) {
-		if(uri == null || uri == "") {
+	public void save_album_art_in_cache (Media m, Gdk.Pixbuf? pixbuf) {
+		if (m == null || pixbuf == null)
 			return;
-		}
 		
-		GLib.File file = GLib.File.new_for_uri(uri);
-		if(file == null) {
+		string key = lm.get_media_coverart_key (m);
+		if(key == "")
 			return;
-		}
 		
-		FileInputStream filestream;
-		
-		try {
-			Gdk.Pixbuf rv;
-			filestream = file.read(null);
-			rv = new Gdk.Pixbuf.from_stream(filestream, null);
-			var dest = Path.build_path("/", GLib.File.new_for_uri(s.uri).get_parent().get_path(), "Album.jpg");
-			rv.save(dest, "jpeg");
-			
-			Gee.LinkedList<Media> updated_medias = new Gee.LinkedList<Media>();
-			foreach(int i in lm.media_ids()) {
-				if(lm.media_from_id(i).artist == s.artist && lm.media_from_id(i).album == s.album) { 
-					debug("setting album art for %s by %s\n", lm.media_from_id(i).title, lm.media_from_id(i).artist);
-					lm.media_from_id(i).setAlbumArtPath(dest);
-					updated_medias.add(lm.media_from_id(i));
-				}
-			}
-			
-			lm.update_medias(updated_medias, false, false);
-			
-			// for sound menu (dbus doesn't like linked lists)
-			if(updated_medias.contains(lm.media_info.media))
-				lm.update_media(lm.media_info.media, false, false);
-		}
-		catch(GLib.Error err) {
-			debug("Could not save album to file: %s\n", err.message);
-		}
-	}
-	
-	public void save_album_art_in_cache (string key, Gdk.Pixbuf? pixbuf) {
-		if (key == "" || pixbuf == null)
-			return;
-
 		string uri = get_cached_album_art_path (key);
 
 		debug ("Saving cached album-art for %s", key);
-
+		
+		bool success = false;
 		try {
-			pixbuf.save (uri, "jpeg");
+			success = pixbuf.save (uri, "jpeg");
 		} catch (Error err) {
 			warning (err.message);
+		}
+		
+		if(success) {
+			foreach(int i in lm.media_ids()) {
+				if(lm.media_from_id(i).album_artist == m.album_artist && lm.media_from_id(i).album == m.album) {
+					debug("setting album art for %s by %s\n", lm.media_from_id(i).title, lm.media_from_id(i).artist);
+					lm.media_from_id(i).setAlbumArtPath(uri);
+				}
+			}
 		}
 	}
 
@@ -289,7 +264,7 @@ public class BeatBox.FileOperator : Object {
 	
 	public void save_medias(Collection<Media> to_save) {
 		foreach(Media s in to_save) {
-			if(!(toSave.contains(s)) && !s.isTemporary && !s.isPreview && GLib.File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
+			if(!s.isTemporary && !s.isPreview && GLib.File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
 				toSave.offer(s);
 		}
 		
@@ -305,7 +280,6 @@ public class BeatBox.FileOperator : Object {
 	}
         
 	public void* save_media_thread () {
-		debug ("SAVING MEDIA METADATA");
 		while(true) {
 			Media s = toSave.poll();
 			
@@ -327,8 +301,6 @@ public class BeatBox.FileOperator : Object {
 						tag_file.tag.comment = s.comment;
 						tag_file.tag.year = s.year;
 						tag_file.tag.track  = s.track;
-
-						debug (@"Writing metadata for $(s.title)");
 						
 						tag_file.save();
 					}
@@ -478,7 +450,7 @@ public class BeatBox.FileOperator : Object {
 		GLib.FileInfo file_info = null;
 		
 		try {
-			var enumerator = root.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			var enumerator = root.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = root.get_path() + "/" + file_info.get_name();
 				
@@ -502,18 +474,12 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	/* should be called from thread */
-	public void import_from_playlist_file_info(string[] names, LinkedList<string>[] paths) {
+	public void import_from_playlist_file_info(string name, LinkedList<string> paths) {
 		new_playlist = new Playlist();
-		if (names.length > 1) {
-    		other_names_list = names[1:paths.length];
-	    	other_paths_list = paths[1:paths.length];
-		}
 		var internals = new LinkedList<int>();
 		var externals = new LinkedList<string>();
 		
-		lm.start_file_operations("Importing <b>" + names[0] + "</b> to Library...");
-		
-		foreach(string path in paths[0]) {
+		foreach(string path in paths) {
 			Media s;
 			if( (s = lm.media_from_file(path)) != null)
 				internals.add(s.rowid);
@@ -521,8 +487,8 @@ public class BeatBox.FileOperator : Object {
 				externals.add(path);
 		}
 		
-		new_playlist.name = names[0];
-		new_playlist.addMedia(internals);
+		new_playlist.name = name;
+		new_playlist.add_media(internals);
 		
 		resetProgress(externals.size - 1);
 		Timeout.add(500, lm.doProgressNotificationWithTimeout);
@@ -570,8 +536,8 @@ public class BeatBox.FileOperator : Object {
 		if(import_type == ImportType.PLAYLIST) {
 			var to_add = new LinkedList<int>();
 			foreach(var s in all_new_imports)
-				to_add.add (s.rowid);
-			new_playlist.addMedia(to_add);
+				to_add.add(s.rowid);
+			new_playlist.add_media(to_add);
 			
 			string extra = "";
 			while(lm.playlist_from_name(new_playlist.name + extra) != null)
@@ -596,12 +562,6 @@ public class BeatBox.FileOperator : Object {
 		else {
 			lm.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
 			lm.finish_file_operations();
-		}
-		if (other_names_list.length > 0) {
-		    import_from_playlist_file_info({other_names_list[other_playlists_added]}, {other_paths_list[other_playlists_added]});
-		    other_playlists_added++;
-		    if (other_playlists_added == other_names_list.length)
-		        other_names_list = {};
 		}
 	}
 	

@@ -742,9 +742,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		Widget w;
 		filter.get(iter, 1, out w);
 		
-		if(w is ViewWrapper && ((ViewWrapper)w).list_view is SimilarPane) {
-			SimilarPane sp = (SimilarPane)(((ViewWrapper)w).list_view);
-			sp.savePlaylist();
+		if(w is SimilarViewWrapper) {
+			((SimilarViewWrapper)w).savePlaylist();
 		}
 	}
 	
@@ -770,12 +769,12 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			if(o is ViewWrapper && (o as ViewWrapper).hint == ViewWrapper.Hint.SMART_PLAYLIST) {
 				var smart_playlist = lm.smart_playlist_from_id ((o as ViewWrapper).relative_id);
 				
-				p.addMedia (smart_playlist.analyze(lm, lm.media_ids()));
+				p.add_media (smart_playlist.analyze(lm, lm.media_ids()));
 					
 				p.name = smart_playlist.name;
 			}
 			else {
-				p.addMedia(((ViewWrapper)o).get_media_ids());
+				p.add_media(((ViewWrapper)o).get_media_ids());
 				
 				if(iter == playlists_similar_iter)
 					p.name = (lm.media_info.media != null) ? ("Similar to " + lm.media_info.media.title) : "Similar list";
@@ -1025,7 +1024,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				}
 			}
 			
-			p.addMedia (to_add);
+			p.add_media (to_add);
 			
 			//ViewWrapper vw = (ViewWrapper)w;
 			//vw.column_browser_changed(); //FIXME
