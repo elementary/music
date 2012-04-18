@@ -5,7 +5,7 @@ public abstract class BeatBox.GenericList : FastView {
 	protected LibraryManager lm;
 	protected LibraryWindow lw;
 	protected ViewWrapper parent_wrapper;
-	
+
 	protected TreeViewSetup tvs;
 	protected int relative_id;
 	protected bool is_current_list;
@@ -21,6 +21,15 @@ public abstract class BeatBox.GenericList : FastView {
 	protected GLib.Icon new_podcast_icon;
 	
 	public signal void import_requested(LinkedList<int> to_import);
+
+	public bool has_grid_lines {
+		get {
+			return enable_grid_lines == TreeViewGridLines.HORIZONTAL;
+		}
+		set {
+			set_grid_lines (value? TreeViewGridLines.HORIZONTAL : TreeViewGridLines.NONE);
+		}
+	}
 	
 	public GenericList(ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
 		base(types);
@@ -134,7 +143,11 @@ public abstract class BeatBox.GenericList : FastView {
 		
 		media_played(lm.media_info.media.rowid, -1);
 	}
-	
+
+	public GLib.List<Media> get_media () {
+		return get_table().get_values();
+	}
+
 	protected GLib.List<Media> get_selected_medias() {
 		var rv = new GLib.List<Media>();
 		TreeModel temp;
@@ -215,7 +228,7 @@ public abstract class BeatBox.GenericList : FastView {
 
 
 	public ViewWrapper.Hint get_hint() {
-		return view_wrapper.hint;
+		return parent_wrapper.hint;
 	}
 
 	public void set_relative_id(int id) {
@@ -291,6 +304,7 @@ public abstract class BeatBox.GenericList : FastView {
 
 
 	/// XXX!
+/*
 	protected void view_search_func (string search, HashTable<int, Media> table, ref HashTable<int, Media> show) {
 		int show_index = 0;
 		
@@ -308,4 +322,5 @@ public abstract class BeatBox.GenericList : FastView {
 			}
 		}
 	}
+*/
 }

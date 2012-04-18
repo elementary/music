@@ -274,14 +274,15 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return list_view.get_relative_id ();
 	}
 
-	public Collection<int> get_medias () {
-		return list_view.get_medias ();	
+
+
+	public GLib.List<Media> get_media () {
+		return list_view.get_media();	
 	}
 
-	public Collection<int> get_showing_medias() {
-		return list_view.get_showing_medias ();
+	public GLib.List<Media> get_showing_medias() {
+		return get_media (); //FIXME list_view.get_showing_medias ();
 	}
-
 
 
 	// XXX: fix column browser stuff!
@@ -349,7 +350,30 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 
 
 	/* ---------- NEW API --------- */
-	
+	// remember to include column-browser stuff
+
+	public bool get_is_current_list ()  {
+		return list_view.get_is_current_list ();
+	}
+
+	public void set_table (HashTable<int, Media> media) {
+		list_view.set_table (media);
+	}
+
+	public void add_media (Collection<int> media) {
+		var to_add = new GLib.List<Media> ();
+		foreach (int id in media) {
+			var m = lm.media_from_id (id);
+			if (m != null)
+				to_add.append (m);
+		}
+		
+		list_view.add_media (to_add);
+	}
+
+	public void remove_media (HashTable<Media, int> media) {
+		list_view.remove_media (media);
+	}
 
 }
 

@@ -113,11 +113,11 @@ public class BeatBox.ViewWrapper : Box {
 	public HashMap<int, int> showing_medias { get; private set; }
 
 	// Holds the last search results (timeout). Helps to prevent useless search.
-	private LinkedList<string> timeout_search;
+	protected LinkedList<string> timeout_search;
 
 	// Stops from searching same thing multiple times
-	private string last_search = "";
-	private string actual_search_string = ""; // what the user actually typed in the search box.
+	protected string last_search = "";
+	protected string actual_search_string = ""; // what the user actually typed in the search box.
 
 	public string get_search_string () {
 		return last_search;
@@ -331,7 +331,7 @@ public class BeatBox.ViewWrapper : Box {
 	/**
 	 * Convenient visibility method
 	 */
-	private void set_active_view (ViewType type, out bool successful = null) {
+	protected void set_active_view (ViewType type, out bool successful = null) {
 		int view_index = -1;
 
 		// Find position in notebook
@@ -376,7 +376,7 @@ public class BeatBox.ViewWrapper : Box {
 	 * This method ensures that the view switcher and search box are sensitive/insensitive when they have to.
 	 * It also selects the proper view switcher item based on the current view.
 	 */
-	private void update_library_window_widgets () {
+	protected void update_library_window_widgets () {
 		if (!is_current_wrapper)
 			return;
 
@@ -497,7 +497,8 @@ public class BeatBox.ViewWrapper : Box {
 
 		bool column_browser_enabled = (has_list_view) ? (list_view as ListView).column_browser_enabled : false;
 
-		var visible_media = (current_view == ViewType.LIST && column_browser_enabled) ? list_view.get_showing_medias () : get_showing_media_ids();
+		// FIXME
+		var visible_media =/* (current_view == ViewType.LIST && column_browser_enabled) ? list_view.get_showing_medias () :*/ get_showing_media_ids();
 
 		uint count = 0;
 		uint total_time = 0;
@@ -627,7 +628,7 @@ public class BeatBox.ViewWrapper : Box {
 			album_view.set_show_next (search_results);
 
 		if (has_list_view)
-			list_view.set_table (showing_media);
+		//XXX	list_view.set_table (showing_media);
 
 		// Now update the views to reflect the change
 		if (_populate_views)
@@ -657,7 +658,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	private bool check_show_error_box () {
+	protected bool check_show_error_box () {
 		// Check if we should show the error box or welcome screen here
 		// FIXME: we could do better here. We should be able to set what kind of view we
 		//         want to handle the no-media case and maybe just emit a signal here.
@@ -815,8 +816,9 @@ public class BeatBox.ViewWrapper : Box {
 		if (has_album_view)
 			album_view.remove_medias (to_remove);
 
-		if (has_list_view)
-			list_view.remove_medias (to_remove);
+// XXX
+//		if (has_list_view)
+//			list_view.remove_medias (to_remove);
 
 		update_library_window_widgets ();
 		set_statusbar_info ();
@@ -855,8 +857,9 @@ public class BeatBox.ViewWrapper : Box {
 			if (has_album_view)
 				album_view.append_medias (to_add);
 
-			if (has_list_view)
-				list_view.append_medias (to_add);
+// XXX
+//			if (has_list_view)
+//				list_view.append_medias (to_add);
 		}
 		else {
 			needs_update = true; //not sure about this

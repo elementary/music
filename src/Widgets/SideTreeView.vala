@@ -266,18 +266,16 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 
 			rv = addItem(parent, o, w, device_icon, name, null);
 
-			var dvw = new DeviceViewWrapper(lw, d.get_medias(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
+			var dvw = new DeviceViewWrapper(lw, d.get_medias(), new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), -1, d);
 			addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
 			lw.add_to_main_views(dvw);
-
-#if HAVE_PODCASTS			
+#if HAVE_PODCASTS
 			if(d.supports_podcasts()) {
-				dvw = new DeviceViewWrapper(lw, d.get_podcasts(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
+				dvw = new DeviceViewWrapper(lw, d.get_podcasts(), new TreeViewSetup(PodcastListView.PodcastColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST), -1, d);
 				addItem(rv, o, dvw, Icons.PODCAST.render (IconSize.MENU, null), _("Podcasts"), null);
 				lw.add_to_main_views(dvw);
 			}
 #endif
-
 			if(d.supports_audiobooks() && false) {
 				//dvw = new DeviceViewWrapper(lm, lm.lw, d.get_podcasts(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIOBOOK, -1, d);
 				//addItem(rv, o, dvw, audiobook_icon, "Audiobooks", null);

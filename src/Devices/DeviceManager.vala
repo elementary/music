@@ -127,7 +127,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 			// user mounted music folder, rescan for images
 			lm.settings.setMusicMountName(mount.get_volume().get_name());
 			try {
-				Thread.create<void*>(lm.fetch_thread_function, false);
+				Thread.create<void*>(lm.fetch_all_cover_art, false);
 			}
 			catch(GLib.ThreadError err) {
 				stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);

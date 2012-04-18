@@ -275,8 +275,9 @@ public class BeatBox.MusicTreeView : GenericList {
 		}
 		
 		set_compare_func(view_compare_func);
-        set_search_func(view_search_func);
-        set_value_func(view_value_func);
+
+		//set_search_func(view_search_func);
+		set_value_func(view_value_func);
         
 		//rearrangeColumns(correctStringOrder);
 		//viewColumnsChanged();
@@ -485,7 +486,7 @@ public class BeatBox.MusicTreeView : GenericList {
 					foreach(Media m in get_selected_medias()) {
 						to_add.add(m.rowid);
 					}
-					p.addMedias(to_add);
+					p.add_media(to_add);
 				});
 			}
 
@@ -602,6 +603,7 @@ public class BeatBox.MusicTreeView : GenericList {
 			columnChooserMenu.popup (null, null, null, 3, get_current_event_time());
 			return true;
 		}
+/* XXX: delete. We don't want ot represent shuffle visually
 		else if(e.button == 1) {
 			// If the user tries to sort, then make sure that all other views
 			// become sorted (unshuffled) if they are shuffled
@@ -611,7 +613,7 @@ public class BeatBox.MusicTreeView : GenericList {
 			
 			return false;
 		}
-
+*/
 		return false;
 	}
 
@@ -738,7 +740,7 @@ public class BeatBox.MusicTreeView : GenericList {
 		foreach(Media m in get_selected_medias()) {
 			to_add.add(m.rowid);
 		}
-		p.addMedias(to_add);
+		p.add_media (to_add);
 
 		PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
 		pnw.playlist_saved.connect( (newP) => {
@@ -786,7 +788,7 @@ public class BeatBox.MusicTreeView : GenericList {
 		// MUSIC view will automatically remove the songs, but we need to for playlist
 		// TODO: Or (better), add a signal to playlist for when songs are added/removed.
 		if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-			lm.playlist_from_id(relative_id).removeMedias(toRemoveIDs);
+			lm.playlist_from_id(relative_id).remove_media (toRemoveIDs);
 		}
 	}
 

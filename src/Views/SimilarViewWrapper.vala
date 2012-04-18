@@ -27,7 +27,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 	Media base_media;
 	bool fetched;
 	public new bool have_media { get { return media_count >= REQUIRED_MEDIAS; } }
-	
+
 	public SimilarViewWrapper(LibraryWindow lw, Collection<int> the_medias, TreeViewSetup tvs, int id) {
 		base(lw, the_medias, tvs, id);
 		
@@ -61,10 +61,10 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 		p.name = _("Similar to %s").printf (base_media.title);
 		
 		var to_add = new LinkedList<int>();
-		foreach(Media m in list_view.get_table().get_values()) {
+		foreach(Media m in list_view.get_media()) {
 			to_add.add(m.rowid);
 		}
-		p.addMedias(to_add);
+		p.add_media (to_add);
 		
 		lm.add_playlist(p);
 		lw.addSideListItem(p);
@@ -101,7 +101,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 				}
 				else {
 					if(new_media.size < REQUIRED_MEDIAS) { // say we could not find similar media
-						if (have_error_box) {
+						if (has_error_box) {
 							error_box.show_icon = true;
 							error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + base_media.title.replace("&", "&amp;") + "</b> by <b>" + base_media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."));
 							// Show the error box

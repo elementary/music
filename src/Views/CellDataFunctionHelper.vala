@@ -25,12 +25,12 @@ using Gdk;
 
 public class BeatBox.CellDataFunctionHelper : GLib.Object {
 	LibraryManager lm;
-	GenericView view;
+	GenericList view;
 	private Pixbuf _canvas;
 	private Pixbuf not_starred;
 	private Pixbuf starred;
 	
-	public CellDataFunctionHelper(LibraryManager lm, GenericView view) {
+	public CellDataFunctionHelper(LibraryManager lm, GenericList view) {
 		this.lm = lm;
 		this.view = view;
 		this.starred = Icons.STARRED.render (IconSize.MENU, null);

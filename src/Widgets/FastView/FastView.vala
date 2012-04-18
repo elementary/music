@@ -97,7 +97,7 @@ public class FastView : TreeView {
 	}
 	
 	// If a Media is in objects but not in table, will just ignore
-	public void remove_medias (HashTable<Media, int> objects) {
+	public void remove_media (HashTable<Media, int> objects) {
 		int index = 0;
 		var new_table = new HashTable<int, Media>(null, null);
 		for(int i = 0; i < table.size(); ++i) {
@@ -115,7 +115,7 @@ public class FastView : TreeView {
 	}
 	
 	// Does NOT check for duplicates
-	public void add_medias (List<Media> objects) {
+	public void add_media (List<Media> objects) {
 		// skip calling set_table and just do it ourselves (faster)
 		foreach(var o in objects) {
 			table.set((int)table.size(), o);

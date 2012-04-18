@@ -46,6 +46,10 @@ public class BeatBox.FileOperator : Object {
 	LinkedList<Media> new_imports;
 	LinkedList<Media> all_new_imports;
 	LinkedList<string> import_errors;
+
+	private string[] other_names_list = {};
+	private LinkedList<string>[] other_paths_list;
+	private int other_playlists_added = 0;
 	
 	HashMap<string, string> art_locations = new HashMap<string, string>();
 	
@@ -133,8 +137,8 @@ public class BeatBox.FileOperator : Object {
 		catch(GLib.Error err) {
 			warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
 		}
-        
-        return index;
+
+		return index;
 	}
 	
 	public string get_best_album_art_file(Media m) {
@@ -165,10 +169,10 @@ public class BeatBox.FileOperator : Object {
 					image_list.add(file_info.get_name());
 				}
 			}
-        }
-        catch (Error e) {
-            warning ("Error while looking for covers: %s", e.message);
-        }
+		}
+		catch (Error e) {
+			warning ("Error while looking for covers: %s", e.message);
+		}
 		
 		/* now choose one based on priorities */
 		foreach(string sU in image_list) {
@@ -278,7 +282,7 @@ public class BeatBox.FileOperator : Object {
 			}
 		}
 	}
-        
+
 	public void* save_media_thread () {
 		while(true) {
 			Media s = toSave.poll();
@@ -474,25 +478,45 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	/* should be called from thread */
-	public void import_from_playlist_file_info(string name, LinkedList<string> paths) {
+	// FIXME: Don't show importing for the first list only. Keep looping instead showing progress
+	//        for each list
+	public void import_from_playlist_file_info(string[] names, LinkedList<string>[] paths) {
 		new_playlist = new Playlist();
+		if (names.length > 1) {
+			other_names_list = names[1:paths.length];
+			other_paths_list = paths[1:paths.length];
+		}
 		var internals = new LinkedList<int>();
 		var externals = new LinkedList<string>();
 		
-		foreach(string path in paths) {
+		lm.start_file_operations("Importing <b>" + names[0] + "</b> to Library...");
+		
+		foreach(string path in paths[0]) {
 			Media s;
 			if( (s = lm.media_from_file(path)) != null)
 				internals.add(s.rowid);
-			else
+
 				externals.add(path);
 		}
 		
-		new_playlist.name = name;
-		new_playlist.add_media(internals);
-		
-		resetProgress(externals.size - 1);
-		Timeout.add(500, lm.doProgressNotificationWithTimeout);
-		import_files(externals, ImportType.PLAYLIST);
+		new_playlist.name = names[0];
+		var to_add = new LinkedList<int>();
+		foreach(int i in internals) {
+			to_add.add (i);
+
+			// XXX: Should this be done inside the loop?
+			lm.music_added(import_type == ImportType.RESCAN ? new LinkedList<string>() : import_errors);
+			lm.finish_file_operations();
+		}
+
+		new_playlist.add_media (to_add);
+
+		if (other_names_list.length > 0) {
+			import_from_playlist_file_info({other_names_list[other_playlists_added]}, {other_paths_list[other_playlists_added]});
+			other_playlists_added++;
+			if (other_playlists_added == other_names_list.length)
+			other_names_list = {};
+		}
 	}
 	
 	public void import_files(LinkedList<string> files, ImportType type) {

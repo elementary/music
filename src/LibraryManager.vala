@@ -995,11 +995,11 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 	}
 	
-	public LinkedList<int> medias_from_playlist(int id) {
+	public Collection<int> medias_from_playlist(int id) {
 		return _playlists.get(id).analyze(this);
 	}
 	
-	public LinkedList<int> medias_from_smart_playlist(int id) {
+	public Collection<int> medias_from_smart_playlist(int id) {
 		return _smart_playlists.get(id).analyze(this, media_ids());
 	}
 	
