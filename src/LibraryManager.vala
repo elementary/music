@@ -125,7 +125,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 #if HAVE_PODCASTS
 	Mutex _podcasts_lock = new Mutex ();
 #endif
-	Mutex _audiobooks_lock = new Mutex ();
+//	Mutex _audiobooks_lock = new Mutex ();
 
 #if HAVE_INTERNET_RADIO
 	Mutex _stations_lock = new Mutex ();

@@ -52,14 +52,7 @@ if(${ENABLE_PODCASTS})
      set(PODCASTS
         Dialogs/AddPodcastWindow.vala
         Dialogs/PodcastEditor.vala
-
-        ## NEW ##
         Views/ListView/Lists/PodcastListView.vala
-
-        ## OLD ##
-        #Views/ListView/PodcastTreeModel.vala
-        #Views/ListView/PodcastListView.vala
-
         Objects/PodcastManager.vala
     )
 
@@ -72,14 +65,8 @@ endif()
 
 if(${ENABLE_INTERNET_RADIO})
     set(INTERNET_RADIO
-         Dialogs/StationEditor.vala
-
-        ## NEW ##
+        Dialogs/StationEditor.vala
         Views/ListView/Lists/RadioListView.vala
-
-        ## OLD ##
-        #Views/ListView/RadioTreeModel.vala
-        #Views/ListView/RadioListView.vala
     )
 
    set(ADD_OPTIONS ${ADD_OPTIONS} --define=HAVE_INTERNET_RADIO)
@@ -178,16 +165,8 @@ vala_precompile(VALA_C
     Views/ListView/MillerColumns/MillerModel.vala
     Views/ListView/MillerColumns/MillerColumn.vala
 
-    ## NEW ##
     Views/ListView/Lists/GenericList.vala
     Views/ListView/Lists/MusicListView.vala
-
-#   ## OLD ##
-#   Views/ListView/BaseListView.vala
-#   Views/ListView/BaseListModel.vala
-#   Views/ListView/SimilarPane.vala
-#   Views/ListView/MusicTreeModel.vala
-#   Views/ListView/MusicTreeView.vala
 
     Dialogs/EqualizerWindow.vala
     Dialogs/SmartPlaylistEditor.vala
