@@ -55,7 +55,7 @@ public class BeatBox.MillerColumns : Box {
 	public LibraryWindow  lw { get; private set; }
 	public ViewWrapper view_wrapper { get; private set; }
 
-	public const int MIN_COLUMN_WIDTH = 138; // used for LEFT mode
+	public const int MIN_COLUMN_WIDTH = 40; // Ideally should be 138; // used for LEFT mode
 	public const int MIN_COLUMN_HEIGHT = 70; // used for TOP mode
 
 	public bool is_music_miller {

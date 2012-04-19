@@ -80,6 +80,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		this.lw = view_wrapper.lw;
 
 		this.list_scrolled = new ScrolledWindow (null, null);
+		//this.list_scrolled.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
 
 		switch (tvs.get_hint()) {
 
