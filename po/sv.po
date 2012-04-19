@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-04-08 14:19-0600\n"
-"PO-Revision-Date: 2012-04-16 21:56+0000\n"
-"Last-Translator: Victor Eduardo <victoreduardm@gmail.com>\n"
+"PO-Revision-Date: 2012-04-18 19:05+0000\n"
+"Last-Translator: wonderjake <jakob.axelson@gmail.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-17 05:38+0000\n"
-"X-Generator: Launchpad (build 15099)\n"
+"X-Launchpad-Export-Date: 2012-04-19 05:04+0000\n"
+"X-Generator: Launchpad (build 15108)\n"
 "X-Poedit-Language: Swedish\n"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Import media to Library"
-msgstr ""
+msgstr "Importera media till biblioteket"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:67
 msgid "Continue Syncing"
@@ -42,7 +42,7 @@ msgstr "Spellistans namn"
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:87
 msgid "Done"
-msgstr "Färdigställ"
+msgstr "Färdig"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
@@ -854,27 +854,3 @@ msgstr ""
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1524
 msgid "Import media from device"
 msgstr ""
-
-#~ msgid "Import Station"
-#~ msgstr "Importera station"
-
-#~ msgid "Import Playlist"
-#~ msgstr "Importera spellista"
-
-#~ msgid "Import medias to Library"
-#~ msgstr "Importera mediefilerna till biblioteket"
-
-#~ msgid "Import all medias"
-#~ msgstr "Importera alla mediefiler"
-
-#~ msgid "Select individual medias to import:"
-#~ msgstr "Välj enskilda mediefiler att importera:"
-
-#~ msgid "medias"
-#~ msgstr "mediefiler"
-
-#~ msgid "BeatBox can't seem to find your music."
-#~ msgstr "BeatBox tycks inte hitta din musik."
-
-#~ msgid "BeatBox has imported your library."
-#~ msgstr "BeatBox har importerat ditt bibliotek."

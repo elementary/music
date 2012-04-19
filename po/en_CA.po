@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-04-08 14:19-0600\n"
-"PO-Revision-Date: 2012-04-17 14:31+0000\n"
+"PO-Revision-Date: 2012-04-18 15:01+0000\n"
 "Last-Translator: Shawn McTear <Unknown>\n"
 "Language-Team: English (Canada) <en_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-18 09:13+0000\n"
+"X-Launchpad-Export-Date: 2012-04-19 05:04+0000\n"
 "X-Generator: Launchpad (build 15108)\n"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:66
@@ -212,27 +212,27 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:179
 msgid "Check Item"
-msgstr ""
+msgstr "Check Item"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:180
 msgid "Check Album"
-msgstr ""
+msgstr "Check Album"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:181
 msgid "Check Artist"
-msgstr ""
+msgstr "Check Artist"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/InfoPanel.vala:72
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:296
 #, c-format
 msgid "Title"
-msgstr ""
+msgstr "Title"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/InfoPanel.vala:73
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:301
 #, c-format
 msgid "Year"
-msgstr ""
+msgstr "Year"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:39
 #, c-format
@@ -242,146 +242,146 @@ msgstr ""
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:127
 #, c-format
 msgid "%s minutes"
-msgstr ""
+msgstr "%s minutes"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:130
 #, c-format
 msgid "%s hours"
-msgstr ""
+msgstr "%s hours"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:133
 #, c-format
 msgid "%s days"
-msgstr ""
+msgstr "%s days"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:137
 #, c-format
 msgid "%i MB"
-msgstr ""
+msgstr "%i MB"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:139
 #, c-format
 msgid "%.2f GB"
-msgstr ""
+msgstr "%.2f GB"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:143
 msgid "songs"
-msgstr ""
+msgstr "songs"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:143
 msgid "song"
-msgstr ""
+msgstr "song"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:146
 msgid "podcasts"
-msgstr ""
+msgstr "podcasts"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:146
 msgid "podcast"
-msgstr ""
+msgstr "podcast"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
 msgid "audiobooks"
-msgstr ""
+msgstr "audiobooks"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
 msgid "audiobook"
-msgstr ""
+msgstr "audiobook"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:152
 msgid "stations"
-msgstr ""
+msgstr "stations"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:152
 msgid "station"
-msgstr ""
+msgstr "station"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:155
 msgid "items"
-msgstr ""
+msgstr "items"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:155
 msgid "item"
-msgstr ""
+msgstr "item"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr ""
+msgstr "Similar Media"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:104
 msgid "Sync"
-msgstr ""
+msgstr "Sync"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:114
 msgid "Download new Episodes"
-msgstr ""
+msgstr "Download new Episodes"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:123
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:207
 msgid "Import to Library"
-msgstr ""
+msgstr "Import to Library"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:124
 msgid "Eject"
-msgstr ""
+msgstr "Eject"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:133
 msgid "Import Stations"
-msgstr ""
+msgstr "Import Stations"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:141
 msgid "New Playlist"
-msgstr ""
+msgstr "New Playlist"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:142
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "New Smart Playlist"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:143
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:145
 msgid "Save as Playlist"
-msgstr ""
+msgstr "Save as Playlist"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:146
 msgid "Export..."
-msgstr ""
+msgstr "Export..."
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:147
 msgid "Import Playlists"
-msgstr ""
+msgstr "Import Playlists"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:182
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:275
 msgid "Library"
-msgstr ""
+msgstr "Library"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:183
 msgid "Devices"
-msgstr ""
+msgstr "Devices"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:184
 msgid "Network"
-msgstr ""
+msgstr "Network"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:185
 msgid "Playlists"
-msgstr ""
+msgstr "Playlists"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:268
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:274
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:298
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:293
 msgid "Artist"
-msgstr ""
+msgstr "Artist"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:97
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:581
 msgid "Music"
-msgstr ""
+msgstr "Music"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:275
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:99

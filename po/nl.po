@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-04-08 14:19-0600\n"
-"PO-Revision-Date: 2012-04-16 21:55+0000\n"
-"Last-Translator: Victor Eduardo <victoreduardm@gmail.com>\n"
+"PO-Revision-Date: 2012-04-18 19:48+0000\n"
+"Last-Translator: Niels Verploegen <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-17 05:38+0000\n"
-"X-Generator: Launchpad (build 15099)\n"
+"X-Launchpad-Export-Date: 2012-04-19 05:04+0000\n"
+"X-Generator: Launchpad (build 15108)\n"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Import media to Library"
@@ -106,7 +106,7 @@ msgstr "Beperken tot"
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 #: /home/victor/Projects/Noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
-msgstr ""
+msgstr "media"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:144
@@ -194,7 +194,7 @@ msgstr "van apparaat importeren"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr ""
+msgstr "Importeer alle media"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
@@ -206,7 +206,7 @@ msgstr "Niet importeren"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:161
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Selecteer individuele media om te importeren"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:179
 msgid "Check Item"
@@ -235,7 +235,7 @@ msgstr "Jaar"
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:39
 #, c-format
 msgid "%s, %s, %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:127
 #, c-format
@@ -245,7 +245,7 @@ msgstr ""
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:130
 #, c-format
 msgid "%s hours"
-msgstr ""
+msgstr "%s uren"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:133
 #, c-format
@@ -280,11 +280,11 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
 msgid "audiobooks"
-msgstr ""
+msgstr "luisterboeken"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
 msgid "audiobook"
-msgstr ""
+msgstr "luisterboek"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:152
 msgid "stations"
@@ -304,7 +304,7 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr ""
+msgstr "Vergelijkbare media"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:104
 msgid "Sync"
@@ -325,7 +325,7 @@ msgstr "Uitwerpen"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:133
 msgid "Import Stations"
-msgstr ""
+msgstr "Stations importeren"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:141
 msgid "New Playlist"
@@ -389,7 +389,7 @@ msgstr "Podcasts"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:162
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:163
 msgid "On Left"
@@ -417,81 +417,81 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:572
 msgid "Ratings"
-msgstr ""
+msgstr "Waardering"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:189
 msgid "Unrated"
-msgstr ""
+msgstr "Niet beoordeeld"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:191
 #, c-format
 msgid "%s Stars"
-msgstr ""
+msgstr "%s Sterren"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:239
 msgid "All Genres"
-msgstr ""
+msgstr "Alle Genres"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:241
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "Alle %i Genres"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:243
 msgid "No Genres"
-msgstr ""
+msgstr "Geen Genres"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:247
 msgid "All Artists"
-msgstr ""
+msgstr "Alle Artiesten"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:249
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "Alle %i Artiesten"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:251
 msgid "No Artists"
-msgstr ""
+msgstr "Geen Artiesten"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:255
 msgid "All Albums"
-msgstr ""
+msgstr "Alle Albums"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:257
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "Alle %i Albums"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:259
 msgid "No Albums"
-msgstr ""
+msgstr "Geen Albums"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:263
 msgid "All Years"
-msgstr ""
+msgstr "Alle Jaren"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:265
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "Alle %i Jaren"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:267
 msgid "No Years"
-msgstr ""
+msgstr "Geen Jaren"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:271
 msgid "All Ratings"
-msgstr ""
+msgstr "Alle Beoordelingen"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:273
 #, c-format
 msgid "All %i Ratings"
-msgstr ""
+msgstr "Alle %i Beoordelingen"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:275
 msgid "No Ratings"
-msgstr ""
+msgstr "Geen Beoordelingen"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/SimilarPane.vala:86
 #, c-format
@@ -557,11 +557,11 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Device Name:"
-msgstr ""
+msgstr "Apparaatnaam:"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:90
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "Automatisch synchroniseren bij aankoppelen:"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Sync:"
@@ -573,7 +573,7 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:414
 msgid "All Podcasts"
-msgstr ""
+msgstr "Alle podcasts"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:544
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:582
@@ -586,6 +586,8 @@ msgstr ""
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"De afspeellijst %s wordt gebruikt om apparaat %s te synchroniseren, maar kon "
+"niet gevonden worden."
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:630
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:633
@@ -721,11 +723,11 @@ msgstr "Zoeken..."
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:238
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Herhalen uitschakelen"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:238
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Herhalen inschakelen"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:239
 msgid "Disable Shuffle"
@@ -853,30 +855,3 @@ msgstr "Importeer liedjes van audio CD"
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1524
 msgid "Import media from device"
 msgstr "Importeer media van apparaat"
-
-#~ msgid "Import Station"
-#~ msgstr "Station importeren"
-
-#~ msgid "Import Playlist"
-#~ msgstr "Afspeellijst importeren"
-
-#~ msgid "Import medias to Library"
-#~ msgstr "Media importeren naar bibliotheek"
-
-#~ msgid "Podcast RSS Source</b>"
-#~ msgstr "Podcast RSS bron</b>"
-
-#~ msgid "Import all medias"
-#~ msgstr "Importeer alle media"
-
-#~ msgid "Select individual medias to import:"
-#~ msgstr "Selecteer individuele media om te importeren:"
-
-#~ msgid "medias"
-#~ msgstr "media"
-
-#~ msgid "BeatBox can't seem to find your music."
-#~ msgstr "BeatBox kan je muziek niet vinden."
-
-#~ msgid "BeatBox has imported your library."
-#~ msgstr "BeatBox heeft je bibliotheek geïmporteerd."
