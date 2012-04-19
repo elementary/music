@@ -58,7 +58,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	public bool dragging_from_music { get; set; }
 
-	public bool initialization_finished { get; private set; }
+	public bool initialization_finished { get; private set; default = false; }
 
 	private VBox verticalBox;
 
@@ -434,9 +434,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			if (viewSelector.sensitive)
 				settings.setViewMode(viewSelector.selected);
 
+#if HAVE_PODCASTS
 			// In case the user switched to video mode ...			
 			if (viewSelector.selected == 2) // Video
 				update_sensitivities();
+#endif
 		});
 
 		if(lm.song_ids().size == 0)
@@ -514,7 +516,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			return;
 		}
 
-		// Hide album list view if there's one
+		//FIXME: THIS CODE SHOULDN'T BE HERE! Hide album list view if there's one
 		var selected_view = get_current_view_wrapper ();
 		if (selected_view is ViewWrapper) {
 			if ((selected_view as ViewWrapper).has_album_view)
@@ -1391,16 +1393,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		Widget w = get_current_view_wrapper ();
 
 		if(w is ViewWrapper) {
-			ViewWrapper vw = (ViewWrapper)w;
-
-			if (((ViewWrapper)w).has_list_view)
-				vw.list_view.set_as_current_list(1, !vw.is_current_wrapper);
-
-			lm.current_index = 0;
-			lm.playMedia(lm.mediaFromCurrentIndex(0), false);
-
-			if(!lm.playing)
-				playClicked();
+			(w as ViewWrapper).play_first_media ();
 		}
 	}
 

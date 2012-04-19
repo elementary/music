@@ -131,7 +131,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	Mutex _stations_lock = new Mutex ();
 #endif
 
-	Mutex _permanents_lock = new Mutex ();
 	Mutex _playlists_lock = new Mutex (); // lock for _playlists
 	Mutex _smart_playlists_lock = new Mutex (); // lock for _smart_playlists
 	

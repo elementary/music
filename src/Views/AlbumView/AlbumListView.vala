@@ -36,6 +36,8 @@ public class BeatBox.AlbumListView : Window {
 	RatingWidget rating;
 	MusicTreeView mtv;
 
+	Gee.LinkedList<int> media_list;
+
 	Mutex setting_media = new Mutex ();
 
 	private const string WIDGET_STYLESHEET = """
@@ -200,8 +202,6 @@ public class BeatBox.AlbumListView : Window {
 		album_label.set_markup("<span size=\"large\" color=\"#ffffff\"><b>" + m.album.replace("&", "&amp;") + "</b></span>");
 		artist_label.set_markup("<span color=\"#ffffff\"><b>" + m.album_artist.replace("&", "&amp;") + "</b></span>");
 
-		LinkedList<int> media_list;
-
 		lm.do_search (view_wrapper.get_media_ids(), out media_list, null, null, null, null, view_wrapper.hint,
 		              "", m.album_artist, m.album);
 
@@ -229,7 +229,11 @@ public class BeatBox.AlbumListView : Window {
 		// decide rating. unless all are equal, show the lowest.
 		// FIXME: Use the average rating
 		int overall_rating = -1;
-		foreach(var media in mtv.get_media ()) {
+		foreach(var id in media_list) {
+			var media = lm.media_from_id (id);
+			if (media == null)
+				continue;
+
 			int media_rating = (int)media.rating;
 
 			if(overall_rating == -1) {
@@ -249,7 +253,11 @@ public class BeatBox.AlbumListView : Window {
 		setting_media.lock ();
 
 		var updated = new LinkedList<Media>();
-		foreach(var media in mtv.get_media ()) {
+		foreach(var id in media_list) {
+			var media = lm.media_from_id (id);
+			if (media == null)
+				continue;
+
 			media.rating = (uint)new_rating;
 			updated.add(media);
 		}

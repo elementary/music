@@ -40,7 +40,7 @@ public interface BeatBox.ContentView : Gtk.Container {
 //	public abstract void set_statusbar_info();
 
 //	public abstract Collection<int> get_media ();
-//	public abstract Collection<int> get_showing_medias ();
+//	public abstract Collection<int> get_showing_media ();
 	
 //	public abstract void update_medias(Collection<int> medias); // request to update displayed information
 }

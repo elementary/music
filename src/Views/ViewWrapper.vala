@@ -34,8 +34,8 @@ public class BeatBox.ViewWrapper : Box {
 
 	/* MAIN WIDGETS (VIEWS) */
 	// XXX change this back to ContentView later on!
-	public /*ContentView*/ ListView   list_view      { get; private set; }
-	public /*ContentView*/ AlbumView  album_view     { get; private set; }
+	public ListView      list_view      { get; private set; }
+	public AlbumView     album_view     { get; private set; }
 	public WarningLabel  error_box      { get; private set; }
 	public Welcome       welcome_screen { get; private set; }
 
@@ -423,7 +423,7 @@ public class BeatBox.ViewWrapper : Box {
 			if (has_list_view) {
 				var lv = list_view as ListView;
 			
-				column_browser_available = (lv.has_column_browser && current_view == ViewType.LIST);
+				column_browser_available = (lv.has_column_browser/* && current_view == ViewType.LIST*/);
 
 				if (column_browser_available)
 					column_browser_visible = lv.column_browser.visible;
@@ -456,7 +456,7 @@ public class BeatBox.ViewWrapper : Box {
 		if (!has_list_view)
 			return;
 
-		list_view.set_as_current_list(1, true);
+		(list_view as ListView).set_as_current_list(1, true);
 
 		lm.playMedia (lm.mediaFromCurrentIndex(0), false);
 		lm.player.play ();
