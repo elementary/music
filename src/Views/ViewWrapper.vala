@@ -140,7 +140,7 @@ public class BeatBox.ViewWrapper : Box {
 		this.lw = lw;
 
 		this.relative_id = id;
-		this.hint = tvs.hint;
+		this.hint = tvs.get_hint ();
 
 		debug ("BUILDING %s", hint.to_string());
 
@@ -309,9 +309,11 @@ public class BeatBox.ViewWrapper : Box {
 */
 
 		// Listen for playlist additions/removals
+		/*
 		if (hint == Hint.PLAYLIST) {
 			lm.playlist_from_id (relative_id).changed.connect (playlist_changed);
 		}
+		*/
 
 		lw.searchField.changed.connect (search_field_changed);
 		lw.viewSelector.mode_changed.connect (view_selector_changed);

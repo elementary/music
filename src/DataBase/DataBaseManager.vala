@@ -49,17 +49,17 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		GLib.File beatbox_folder;
 		GLib.File db_file;
 		
-		beatbox_folder = GLib.File.new_for_path(GLib.Path.build_filename(Environment.get_user_data_dir(), "/beatbox"));
+		beatbox_folder = GLib.File.new_for_path(GLib.Path.build_filename(Environment.get_user_data_dir(), "/noise"));
 		if(!beatbox_folder.query_exists()) {
 			try {
 				beatbox_folder.make_directory(null);
 			}
 			catch(GLib.Error err) {
-				stdout.printf("CRITICAL: Could not create beatbox folder in data directory: %s\n", err.message);
+				stdout.printf("CRITICAL: Could not create Noise folder in data directory: %s\n", err.message);
 			}
 		}
 		
-		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/beatbox_520.db"));
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/noise_database.db"));
 		if(!db_file.query_exists())
 			need_create = true;
 		
@@ -70,9 +70,9 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			stdout.printf("This is terrible. Could not even load database. Please report this. Message: %s", err.message);
 		}
 		
-        // disable synchronized commits for performance reasons ... this is not vital
-        _db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
-        //_db.sql_executed.connect ((sql) => { stdout.printf("SQL: %s \n", sql); });
+		// disable synchronized commits for performance reasons ... this is not vital
+		_db.synchronous = SQLHeavy.SynchronousMode.from_string("OFF");
+		//_db.sql_executed.connect ((sql) => { stdout.printf("SQL: %s \n", sql); });
 	
 		if(need_create) {
 			try {
@@ -534,6 +534,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 			
+#if HAVE_INTERNET_RADIO
 			query.set_string(":name", "Favorite Stations");
 			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>3<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
@@ -543,7 +544,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-			
+#endif
 			query.set_string(":name", "Recently Added");
 			query.set_string(":and_or", "any");
 			query.set_string(":queries", "Date Added<value_seperator>is within<value_seperator>7<query_seperator>");
@@ -583,7 +584,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-			
+#if HAVE_PODCASTS
 			query.set_string(":name", "Unheard Podcasts");
 			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>1<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
@@ -593,7 +594,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-			
+#endif			
 			query.set_string(":name", "Over Played");
 			query.set_string(":and_or", "all");
 			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Playcount<value_seperator>is at least<value_seperator>10<query_seperator>");

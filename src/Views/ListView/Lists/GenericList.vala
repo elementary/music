@@ -41,7 +41,7 @@ public abstract class BeatBox.GenericList : FastView {
 		this.relative_id = view_wrapper.relative_id;
 		
 		set_headers_clickable(true);
-		set_headers_visible(true);
+		set_headers_visible(tvs.column_headers_visible);
 		set_fixed_height_mode(true);
 		set_rules_hint(true);
 		set_reorderable(false);
@@ -221,14 +221,13 @@ public abstract class BeatBox.GenericList : FastView {
 		}
 	}
 
-/* --- BEGIN REMOVAL --- */
 	public void set_hint(ViewWrapper.Hint hint) {
 		tvs.set_hint(hint);
 	}
 
 
 	public ViewWrapper.Hint get_hint() {
-		return parent_wrapper.hint;
+		return tvs.get_hint ();
 	}
 
 	public void set_relative_id(int id) {
@@ -239,8 +238,6 @@ public abstract class BeatBox.GenericList : FastView {
 	public int get_relative_id() {
 		return relative_id;
 	}
-
-/*  ---  END TO_REMOVE -----*/	
 
 	public bool get_is_current_list() {
 		return is_current_list;

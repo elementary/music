@@ -35,6 +35,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	public MillerColumns column_browser { get; private set; }
 	public GenericList   list_view { get; private set; }
 
+	private ScrolledWindow list_scrolled;
+
 	private int list_view_hpaned_position = -1;
 	private int list_view_vpaned_position = -1;
 
@@ -77,7 +79,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		this.lm = view_wrapper.lm;
 		this.lw = view_wrapper.lw;
 
-		switch (view_wrapper.hint) {
+		this.list_scrolled = new ScrolledWindow (null, null);
+
+		switch (tvs.get_hint()) {
 
 			case ViewWrapper.Hint.MUSIC:
 			case ViewWrapper.Hint.HISTORY:
@@ -88,6 +92,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
 			case ViewWrapper.Hint.CDROM:
 			case ViewWrapper.Hint.SIMILAR:
+			//case ViewWrapper.Hint.ALBUM_LIST:
 				list_view = new MusicTreeView (view_wrapper, tvs);
 				break;
 #if HAVE_PODCASTS
@@ -102,6 +107,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 				break;
 #endif
 			default:
+				critical ("NO LIST VIEW AVAILABLE FOR HINT -> %s", tvs.get_hint().to_string());
 				// don't add anything
 				break;
 		}
@@ -110,6 +116,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		// Currently only the music-library view should have a column browser
 		if (view_wrapper.hint == ViewWrapper.Hint.MUSIC)
 			column_browser = new MillerColumns (view_wrapper);
+
+		// Put the list inside a scrolled window
+		list_scrolled.add (list_view);
 
 		if (has_column_browser) {
 			list_view_hpaned = new Paned (Orientation.HORIZONTAL);
@@ -125,7 +134,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			this.pack_start (list_view_hpaned, true, true, 0);
 
 			// Now pack the list view
-			list_view_vpaned.pack2(list_view, true, true);
+			list_view_vpaned.pack2(list_scrolled, true, true);
 			list_view_hpaned.pack1(column_browser, true, false);
 
 			set_column_browser_position (column_browser.position);
@@ -140,7 +149,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			column_browser.changed.connect (column_browser_changed);
 		}
 		else {
-			this.pack_start (list_view, true, true, 0);
+			this.pack_start (list_scrolled, true, true, 0);
 		}
 
 		// Set sort data from saved session

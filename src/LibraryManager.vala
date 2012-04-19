@@ -137,19 +137,17 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 
 
-	public TreeViewSetup music_setup { set; get; }
+	public TreeViewSetup music_setup { private set; get; }
 
 #if HAVE_INTERNET_RADIO
-	public TreeViewSetup station_setup  { set; get; }
+	public TreeViewSetup station_setup  { private set; get; }
 #endif
 #if HAVE_PODCASTS
-	public TreeViewSetup podcast_setup { set; get; }
+	public TreeViewSetup podcast_setup { private set; get; }
 #endif
-	public TreeViewSetup similar_setup  { set; get; }
-	public TreeViewSetup queue_setup  { set; get; }
-	public TreeViewSetup history_setup  { set; get; }
-	public TreeViewSetup album_list_setup  { set; get; }
-
+	public TreeViewSetup similar_setup  { private set; get; }
+	public TreeViewSetup queue_setup  { private set; get; }
+	public TreeViewSetup history_setup  { private set; get; }
 
 
 	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new medias play, this goes with it
@@ -289,6 +287,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		music_setup = new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
 #if HAVE_PODCASTS
+		have_fetched_podcasts = false;
 		podcast_setup = new TreeViewSetup(PodcastListView.PodcastColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PODCAST);
 #endif
 #if HAVE_INTERNET_RADIO
@@ -297,7 +296,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		similar_setup = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SIMILAR);
 		queue_setup = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.QUEUE);
 		history_setup = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.HISTORY);
-		album_list_setup = new TreeViewSetup(MusicTreeView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
+
 		
 		//load all medias from db
 		_media_lock.lock ();
@@ -305,9 +304,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			_media.set(s.rowid, s);
 			_permanents.add(s.rowid);
 			
-			if(File.new_for_uri(s.uri).get_path().has_prefix(this.music_folder_dir))
- 				++local_song_count;
-			
+			//stdout.printf("before\n");
+			if(File.new_for_uri(s.uri).get_path() != null && File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
+				++local_song_count;
+			//stdout.printf("after\n");
 			if(s.mediatype == 0)
 				_songs.set(s.rowid, s);
 #if HAVE_PODCASTS
@@ -321,16 +321,16 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				_stations.set(s.rowid, s);
 #endif
 		}
-		_media_lock.unlock ();
-
-		_smart_playlists_lock.lock ();
+		_media_lock.unlock();
+		
+		_smart_playlists_lock.lock();
 		foreach(SmartPlaylist p in dbm.load_smart_playlists()) {
 			_smart_playlists.set(p.rowid, p);
 		}
-		_smart_playlists_lock.unlock ();
+		_smart_playlists_lock.unlock();
 		
 		//load all playlists from db
-		_playlists_lock.lock ();
+		_playlists_lock.lock();
 		var playlists_added = new LinkedList<string>();
 		foreach(Playlist p in dbm.load_playlists()) {
 			if(!playlists_added.contains(p.name)) { // sometimes we get duplicates. don't add duplicates
@@ -338,23 +338,26 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			
 				if(p.name == "autosaved_music") {
 					music_setup = p.tvs;
+					music_setup.set_hint(ViewWrapper.Hint.MUSIC);
 					_playlists.unset(p.rowid);
 				}
 #if HAVE_PODCASTS
 				else if(p.name == "autosaved_podcast") {
-					// XXX: critical("Need reimplementation");
-					//podcast_setup = p.tvs;
+					podcast_setup = p.tvs;
+					podcast_setup.set_hint(ViewWrapper.Hint.PODCAST);
 					_playlists.unset(p.rowid);
 				}
 #endif
 #if HAVE_INTERNET_RADIO
 				else if(p.name == "autosaved_station") {
 					station_setup = p.tvs;
+					station_setup.set_hint(ViewWrapper.Hint.STATION);
 					_playlists.unset(p.rowid);
 				}
 #endif
 				else if(p.name == "autosaved_similar") {
 					similar_setup = p.tvs;
+					similar_setup.set_hint(ViewWrapper.Hint.SIMILAR);
 					_playlists.unset(p.rowid);				
 				}
 				else if(p.name == "autosaved_queue") {
@@ -363,17 +366,19 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					}
 					
 					queue_setup = p.tvs;
+					queue_setup.set_hint(ViewWrapper.Hint.QUEUE);
 					_playlists.unset(p.rowid);
 				}
 				else if(p.name == "autosaved_history") {
 					history_setup = p.tvs;
+					history_setup.set_hint(ViewWrapper.Hint.HISTORY);
 					_playlists.unset(p.rowid);
 				}
 				
 				playlists_added.add(p.name);
 			}
 		}
-		_smart_playlists_lock.unlock ();
+		_playlists_lock.unlock();
 
 		// Create device manager
 		device_manager = new DeviceManager(this);

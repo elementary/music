@@ -399,7 +399,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		drag_data_received.connect(dragReceived);
 
 
-
 		// ADD MAIN VIEWS
 		build_main_views ();
 
@@ -410,6 +409,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		// LOAD MUSIC STORE VIEW
 		load_default_store ();
 #endif
+
 		initialization_finished = true;
 
 		update_sensitivities();
@@ -482,13 +482,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	 * Description:
 	 * Builds the views (view wrapper) and adds the respective element to the sidebar TreeView.
 	 */
-	public ViewWrapper add_view (ViewWrapper.Hint hint, string view_name,
-	                              Collection<int> media, TreeViewSetup tvs, 
-	                              int id = -1)
+	public ViewWrapper add_view (string view_name, Collection<int> media, TreeViewSetup tvs, int id = -1)
 	{
 		ViewWrapper view_wrapper;
 		
-		if(hint == ViewWrapper.Hint.SIMILAR)
+		if(tvs.get_hint() == ViewWrapper.Hint.SIMILAR)
 			view_wrapper = new SimilarViewWrapper (this, media, tvs, id);
 		else
 			view_wrapper = new ViewWrapper(this, media, tvs, id);
@@ -568,7 +566,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	 *
 	 * IMPORTANT: Currently every item added through this method will be put under the Network category
 	 */
-	public ViewWrapper add_custom_view (string name, Gtk.Widget widget, SideTreeView? tree = null) {
+	public ViewWrapper add_custom_view (string name, Gtk.Widget widget) {
 		var view_wrapper = new ViewWrapper.with_view (widget);
 
 		sideTree.add_item (view_wrapper, name);
@@ -590,7 +588,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		debug ("Building main views ...");
 
 		// Add Music Library View
-		add_view (ViewWrapper.Hint.MUSIC, _("Music"), lm.song_ids (), lm.music_setup);
+		music_library_view = add_view (_("Music"), lm.song_ids (), lm.music_setup);
 
 		// Setup music welcome screen
 		var music_folder_icon = Icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
@@ -599,14 +597,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 #if HAVE_PODCASTS
 		// Add Podcast Library View
-		add_view (ViewWrapper.Hint.PODCAST, _("Podcasts"), lm.podcast_ids (), lm.podcast_setup);
+		podcast_library_view = add_view (_("Podcasts"), lm.podcast_ids (), lm.podcast_setup);
 #endif
 
 #if HAVE_INTERNET_RADIO
 		// Add Internet Radio View
-		add_view (ViewWrapper.Hint.STATION, _("Internet Radio"), lm.station_ids(), lm.station_setup);
+		radio_library_view = add_view (_("Internet Radio"), lm.station_ids(), lm.station_setup);
 #endif
-
 
 		debug ("Done with main views.");
 	}
@@ -616,13 +613,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		debug ("Loading playlists");
 
 		// Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future
-		add_view (ViewWrapper.Hint.SIMILAR, _("Similar"), new LinkedList<int>(), lm.similar_setup);
+		add_view (_("Similar"), new LinkedList<int>(), lm.similar_setup);
 
 		// Add Queue view
-		add_view (ViewWrapper.Hint.QUEUE, _("Queue"), lm.queue (), lm.queue_setup);
+		add_view (_("Queue"), lm.queue (), lm.queue_setup);
 
 		// Add History view
-		add_view (ViewWrapper.Hint.HISTORY, _("History"), lm.already_played (), lm.history_setup);
+		add_view (_("History"), lm.already_played (), lm.history_setup);
 
 		// load smart playlists
 		foreach(SmartPlaylist p in lm.smart_playlists()) {
@@ -653,14 +650,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		if(o is Playlist) {
 			Playlist p = (Playlist)o;
 
-			add_view (ViewWrapper.Hint.PLAYLIST, p.name, lm.medias_from_playlist(p.rowid),
-			           p.tvs, p.rowid);
+			add_view (p.name, lm.medias_from_playlist(p.rowid), p.tvs, p.rowid);
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 
-			add_view (ViewWrapper.Hint.SMART_PLAYLIST, p.name, lm.medias_from_smart_playlist(p.rowid),
-			          p.tvs, p.rowid);
+			add_view (p.name, lm.medias_from_smart_playlist(p.rowid), p.tvs, p.rowid);
 		}
 		/* XXX: Migrate this code to the new API */
 		else if(o is Device) {

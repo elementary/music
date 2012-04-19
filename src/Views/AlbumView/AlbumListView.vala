@@ -169,11 +169,13 @@ public class BeatBox.AlbumListView : Window {
 		label_wrapper.pack_start (label_box, true, true, 0);
 
 		// add actual list
-		var setup = new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
-		mtv = new MusicTreeView(view_wrapper, setup);
+		mtv = new MusicTreeView(view_wrapper, new TreeViewSetup(MusicTreeView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST));
 		mtv.apply_style_to_view(style_provider);
 		mtv.has_grid_lines = true;
 		mtv.vexpand = true;
+
+		var mtv_scrolled = new ScrolledWindow (null, null);
+		mtv_scrolled.add (mtv);
 
 		// add rating
 		rating = new RatingWidget(get_style_context(), true, IconSize.BUTTON, true);
@@ -182,7 +184,7 @@ public class BeatBox.AlbumListView : Window {
 		var all_area = new Box(Orientation.VERTICAL, 0);
 		all_area.pack_start(close, false, false, 0);
 		all_area.pack_start(label_wrapper, false, true, 0);
-		all_area.pack_start(mtv, true, true, 6);
+		all_area.pack_start(mtv_scrolled, true, true, 6);
 		all_area.pack_start(rating, false, true, 12);
 
 		add(all_area);
@@ -198,7 +200,7 @@ public class BeatBox.AlbumListView : Window {
 		album_label.set_markup("<span size=\"large\" color=\"#ffffff\"><b>" + m.album.replace("&", "&amp;") + "</b></span>");
 		artist_label.set_markup("<span color=\"#ffffff\"><b>" + m.album_artist.replace("&", "&amp;") + "</b></span>");
 
-		LinkedList<int> media_list, albums;
+		LinkedList<int> media_list;
 
 		lm.do_search (view_wrapper.get_media_ids(), out media_list, null, null, null, null, view_wrapper.hint,
 		              "", m.album_artist, m.album);

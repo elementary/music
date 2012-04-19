@@ -32,9 +32,10 @@ public class LastFM.Core : Object {
 	
 	/** NOTICE: These API keys and secrets are unique to BeatBox and Beatbox
 	 * only. To get your own, FREE key go to http://www.last.fm/api/account */
+	
 	public static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
 	public static const string secret = "92ba5023f6868e680a3352c71e21243d";
-	
+
 	public string token;
 	public string session_key;
 	
@@ -156,6 +157,7 @@ public class LastFM.Core : Object {
 	
 	public void save_track(LastFM.TrackInfo track) {
 		_tracks_lock.lock();
+		if (track != null && track.name != null && track.artist != null)
 		_tracks.set(track.name.down() + " by " + track.artist.down(), track);
 		_tracks_lock.unlock();
 	}
