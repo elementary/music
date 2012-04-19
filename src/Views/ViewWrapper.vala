@@ -293,7 +293,7 @@ public class BeatBox.ViewWrapper : Box {
 		//XXX
 		if (hint != Hint.CDROM)
 			lm.medias_removed.connect ((list) => { remove_media (list); });
-/*
+
 		if (hint == Hint.QUEUE) {
 			lm.media_queued.connect ( (media_id) => {
 				var list = new LinkedList<int>();
@@ -306,14 +306,14 @@ public class BeatBox.ViewWrapper : Box {
 		else if (hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.AUDIOBOOK) {
 			lm.medias_added.connect ((list) => { add_media (list); });
 		}
-*/
+
 
 		// Listen for playlist additions/removals
-		/*
+
 		if (hint == Hint.PLAYLIST) {
 			lm.playlist_from_id (relative_id).changed.connect (playlist_changed);
 		}
-		*/
+
 
 		lw.searchField.changed.connect (search_field_changed);
 		lw.viewSelector.mode_changed.connect (view_selector_changed);
@@ -369,6 +369,8 @@ public class BeatBox.ViewWrapper : Box {
 
 		// Update BeatBox's toolbar widgets
 		update_library_window_widgets ();
+
+		set_statusbar_info ();
 
 		successful = true;
 	}
@@ -482,31 +484,28 @@ public class BeatBox.ViewWrapper : Box {
 		// Update the views if needed
 		if (needs_update && lw.initialization_finished)
 			update_showing_media ();
-			//populate_views ();
 		else // Update statusbar
 			set_statusbar_info ();
 	}
 
 
-	public void set_statusbar_info() {
+	public void set_statusbar_info (Gee.Collection<int>? visible_media = null) {
 		if (!is_current_wrapper || !lw.initialization_finished)
 			return;
 
-		if(showing_media_count < 1) {
+		var media_set = visible_media ?? get_showing_media_ids ();
+
+		if (media_set.size < 1) {
 			lw.set_statusbar_info (hint, 0, 0, 0);
 			return;
 		}
-
-		bool column_browser_enabled = (has_list_view) ? (list_view as ListView).column_browser_enabled : false;
-
-		// FIXME
-		var visible_media =/* (current_view == ViewType.LIST && column_browser_enabled) ? list_view.get_showing_medias () :*/ get_showing_media_ids();
 
 		uint count = 0;
 		uint total_time = 0;
 		uint total_mbs = 0;
 
-		foreach(int id in visible_media) {
+
+		foreach(int id in media_set) {
 			var media = lm.media_from_id (id);
 			if (media != null) {
 				count ++;
@@ -515,7 +514,13 @@ public class BeatBox.ViewWrapper : Box {
 			}
 		}
 
-		lw.set_statusbar_info(hint, count, total_mbs, total_time);
+		bool is_list = !(current_view == ViewType.ALBUM && has_album_view);
+
+		if (!is_list) {
+			count = album_view.n_albums;
+		}
+
+		lw.set_statusbar_info(hint, count, total_mbs, total_time, is_list);
 	}
 
 
@@ -564,10 +569,10 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (has_album_view)
 			album_view.populate_view ();
-/*
+
 		if (has_list_view)
 			list_view.populate_view ();
-*/
+
 		// FIXME: column_browser_changed already does this when ListView :: column_browser_enabled is TRUE
 		set_statusbar_info ();
 
@@ -630,7 +635,7 @@ public class BeatBox.ViewWrapper : Box {
 			album_view.set_show_next (search_results);
 
 		if (has_list_view)
-		//XXX	list_view.set_table (showing_media);
+			list_view.set_show_next (search_results);
 
 		// Now update the views to reflect the change
 		if (_populate_views)
@@ -768,16 +773,14 @@ public class BeatBox.ViewWrapper : Box {
 			}
 
 			Idle.add( () => {
-				/* FIXME XXX
 				if (has_list_view) {
-					list_view.append_medias(to_add);
-					list_view.remove_medias(to_remove_show);
+					list_view.append_media(to_add);
+					list_view.remove_media(to_remove_show);
 				}
-				*/
 
 				if (has_album_view) {
-					album_view.append_medias(to_add);
-					album_view.remove_medias(to_remove_show);
+					album_view.append_media(to_add);
+					album_view.remove_media(to_remove_show);
 				}
 
 				set_statusbar_info ();
@@ -816,11 +819,11 @@ public class BeatBox.ViewWrapper : Box {
 		// Now update the views to reflect the changes
 
 		if (has_album_view)
-			album_view.remove_medias (to_remove);
+			album_view.remove_media (to_remove);
 
-// XXX
-//		if (has_list_view)
-//			list_view.remove_medias (to_remove);
+
+		if (has_list_view)
+			list_view.remove_media (to_remove);
 
 		update_library_window_widgets ();
 		set_statusbar_info ();
@@ -857,11 +860,10 @@ public class BeatBox.ViewWrapper : Box {
 			}
 
 			if (has_album_view)
-				album_view.append_medias (to_add);
+				album_view.append_media (to_add);
 
-// XXX
-//			if (has_list_view)
-//				list_view.append_medias (to_add);
+			if (has_list_view)
+				list_view.append_media (to_add);
 		}
 		else {
 			needs_update = true; //not sure about this

@@ -1268,10 +1268,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		not_found.show();
 	}
 
-	public void set_statusbar_info (ViewWrapper.Hint media_type, uint total_medias,
-									 uint total_mbs, uint total_seconds)
+	public void set_statusbar_info (ViewWrapper.Hint media_type, uint total_medias, uint total_mbs,
+	                                 uint total_seconds, bool is_list = true)
 	{
-		statusBar.set_total_medias (total_medias, media_type);
+		statusBar.set_total_medias (total_medias, media_type, is_list);
 		statusBar.set_files_size (total_mbs);
 		statusBar.set_total_time (total_seconds);
 	}

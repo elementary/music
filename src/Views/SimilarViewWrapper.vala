@@ -94,7 +94,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 			if(base_media != null) {
 				if(!fetched) { // still fetching similar media
 					error_box.show_icon = false;
-					error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Fetching similar songs") + "\n</span>\n" + _("BeatBox is finding songs similar to" + " <b>" + base_media.title.replace("&", "&amp;") + "</b> by <b>" + base_media.artist.replace("&", "&amp;") + "</b>.\n"));
+					error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Fetching similar songs") + "\n</span>\n" + _("Finding songs similar to" + " <b>" + base_media.title.replace("&", "&amp;") + "</b> by <b>" + base_media.artist.replace("&", "&amp;") + "</b>.\n"));
 					set_active_view (ViewType.ERROR);
 
 					return;
@@ -103,7 +103,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 					if(new_media.size < REQUIRED_MEDIAS) { // say we could not find similar media
 						if (has_error_box) {
 							error_box.show_icon = true;
-							error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("BeatBox could not find songs similar to" + " <b>" + base_media.title.replace("&", "&amp;") + "</b> by <b>" + base_media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."));
+							error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("Could not find songs similar to" + " <b>" + base_media.title.replace("&", "&amp;") + "</b> by <b>" + base_media.artist.replace("&", "&amp;") + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."));
 							// Show the error box
 							set_active_view (ViewType.ERROR);
 						}

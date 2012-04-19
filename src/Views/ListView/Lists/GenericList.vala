@@ -148,6 +148,10 @@ public abstract class BeatBox.GenericList : FastView {
 		return get_table().get_values();
 	}
 
+	public GLib.List<Media> get_showing_media () {
+		return get_visible_table ().get_values ();
+	}
+	
 	protected GLib.List<Media> get_selected_medias() {
 		var rv = new GLib.List<Media>();
 		TreeModel temp;

@@ -40,6 +40,8 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
 
     private string STATUS_TEXT_FORMAT = _("%s, %s, %s");
 
+    private bool is_list = false;
+
     private const string STATUSBAR_STYLESHEET = """
         BeatBoxStatusBar {
             border-bottom-width: 0;
@@ -111,7 +113,8 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
         update_label ();
     }
 
-    public void set_total_medias (uint total_medias, ViewWrapper.Hint media_type) {
+    public void set_total_medias (uint total_medias, ViewWrapper.Hint media_type, bool is_list = true) {
+        this.is_list = is_list;
         this.total_items = total_medias;
         this.media_type = media_type;
         update_label ();
@@ -129,10 +132,10 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
             time_text = _("%s minutes").printf ((total_secs/60).to_string());
         }
         else if(total_secs < (24 * 3600)) { // less than 1 day show in hour units
-            time_text = _("%s hours").printf ((total_secs/3600).to_string());
+            time_text = _("%.1f hours").printf ((float)total_secs / 3600.0);
         }
         else { // units in days
-            time_text = _("%.1f days").printf ((float) (total_secs/(24 * 3600)));
+            time_text = _("%.0f days").printf ((float)total_secs / (24.0 * 3600.0));
         }
 
         if (total_mbs < 1000)
@@ -142,7 +145,10 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
 
         switch (media_type) {
             case ViewWrapper.Hint.MUSIC:
-                media_description = total_items > 1 ? _("songs") : _("song");
+                if (is_list)
+                	media_description = total_items > 1 ? _("songs") : _("song");
+                else
+                	media_description = total_items > 1 ? _("albums") : _("album");
                 break;
             case ViewWrapper.Hint.PODCAST:
                 media_description = total_items > 1 ? _("podcasts") : _("podcast");
@@ -154,7 +160,10 @@ public class BeatBox.StatusBar : Gtk.Toolbar {
                 media_description = total_items > 1 ? _("stations") : _("station");
                 break;
             default:
-                media_description = total_items > 1 ? _("items") : _("item");
+                if (is_list)
+                	media_description = total_items > 1 ? _("items") : _("item");
+                else
+                	media_description = total_items > 1 ? _("albums") : _("album");
                 break;
         }
 
