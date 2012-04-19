@@ -24,9 +24,9 @@ using Gtk;
 using Granite.Services;
 
 namespace Option {
-		[CCode (array_length = false, array_null_terminated = true)]
-		static string[] to_add;
-		static string to_play;
+//		[CCode (array_length = false, array_null_terminated = true)]
+//		static string[] to_add;
+//		static string to_play;
 #if HAVE_STORE
 		static bool enable_store = false;
 #endif
@@ -42,8 +42,10 @@ public class BeatBox.Beatbox : Granite.Application {
 
 	static const OptionEntry[] my_options = {
 		{ "debug", 'd', 0, OptionArg.NONE, ref Option.debug, "Enable debug logging", null },
+/*
 		{ "add-to-library", 'a', 0, OptionArg.FILENAME_ARRAY, ref Option.to_add, "Adds the list of files to the BeatBox library", "FILE1 FILE2 ..." },
 		{ "play-uri", 'p', 0, OptionArg.STRING, ref Option.to_play, "Plays given uri", "URI" },
+*/
 		{ null }
 	};
 
@@ -150,6 +152,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		});
 #endif
 
+#if 0
 		// a test
 		/*bool connected = false;
 		try {
@@ -160,12 +163,12 @@ public class BeatBox.Beatbox : Granite.Application {
 		}
 		stdout.printf("connected is %d\n", connected ? 1 : 0);*/
 		// finish test
-
 		if(Option.to_play != null) {
 			stdout.printf("not null\n");
 			File f = File.new_for_uri(Option.to_play);
 			if(f.query_exists()) {
 				stdout.printf("query exists\n");
+
 				/*Media temp = _program.lm.fo.import_media(f.get_path());
 
 				temp.isTemporary = true;
@@ -177,6 +180,7 @@ public class BeatBox.Beatbox : Granite.Application {
 		else if(Option.to_add.length > 0) {
 
 		}
+#endif
 
 		_program.set_application(this);
 	}

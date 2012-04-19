@@ -53,11 +53,11 @@ public class BeatBox.Streamer : GLib.Object {
 	}
 	
 	public bool doPositionUpdate() {
-		if(set_resume_pos || getPosition() >= (int64)(lm.media_info.media.resume_pos - 1) * 1000000000) {
+		if(set_resume_pos || (lm.media_info != null && lm.media_info.media != null && getPosition() >= (int64)(lm.media_info.media.resume_pos - 1) * 1000000000)) {
 			set_resume_pos = true;
 			current_position_update(getPosition());
 		}
-		else {
+		else if (lm.media_info != null && lm.media_info.media != null) {
 			pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
 		}
 		

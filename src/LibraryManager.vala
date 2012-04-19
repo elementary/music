@@ -1523,7 +1523,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		media_info.media = media_from_id(id);
 		Media m = media_from_id(id);
 		
-		// check that the file exists FIXME: Avoid reading settings everytime a song is played
+		// check that the file exists
 		if((this.music_folder_dir != "" && File.new_for_uri(m.uri).get_path().has_prefix(this.music_folder_dir) && !GLib.File.new_for_uri(m.uri).query_exists())) {
 			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
@@ -1591,7 +1591,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		});
 	}
 	
-	// FIXME: Slow. Don't read eq. presets from settings.
 	public void* change_gains_thread () {
 		if(settings.getEqualizerEnabled()) {
 			bool automatic_enabled = settings.getAutoSwitchPreset();
