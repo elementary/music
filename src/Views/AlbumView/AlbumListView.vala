@@ -36,7 +36,7 @@ public class BeatBox.AlbumListView : Window {
 	RatingWidget rating;
 	MusicTreeView mtv;
 
-	Gee.LinkedList<int> media_list;
+	Gee.LinkedList<Media> media_list;
 
 	Mutex setting_media = new Mutex ();
 
@@ -202,14 +202,18 @@ public class BeatBox.AlbumListView : Window {
 		album_label.set_markup("<span size=\"large\" color=\"#ffffff\"><b>" + m.album.replace("&", "&amp;") + "</b></span>");
 		artist_label.set_markup("<span color=\"#ffffff\"><b>" + m.album_artist.replace("&", "&amp;") + "</b></span>");
 
-		lm.do_search (view_wrapper.get_media_ids(), out media_list, null, null, null, null, view_wrapper.hint,
-		              "", m.album_artist, m.album);
+		var to_search = new LinkedList<Media>();
+		foreach (int id in view_wrapper.get_media_ids ()) {
+			to_search.add (lm.media_from_id(id));
+		}
+
+		Utils.search_in_media_list (to_search, out media_list, view_wrapper.hint,
+		                            "", m.album_artist, m.album);
 
 		var media_table = new HashTable<int, Media>(null, null);
 
 		int index = 0;
-		foreach (var id in media_list) {
-			var _media = lm.media_from_id (id);
+		foreach (var _media in media_list) {
 			media_table.set (index++, _media);
 		}
 
@@ -229,8 +233,7 @@ public class BeatBox.AlbumListView : Window {
 		// decide rating. unless all are equal, show the lowest.
 		// FIXME: Use the average rating
 		int overall_rating = -1;
-		foreach(var id in media_list) {
-			var media = lm.media_from_id (id);
+		foreach(var media in media_list) {
 			if (media == null)
 				continue;
 
@@ -253,8 +256,7 @@ public class BeatBox.AlbumListView : Window {
 		setting_media.lock ();
 
 		var updated = new LinkedList<Media>();
-		foreach(var id in media_list) {
-			var media = lm.media_from_id (id);
+		foreach(var media in media_list) {
 			if (media == null)
 				continue;
 
@@ -262,8 +264,10 @@ public class BeatBox.AlbumListView : Window {
 			updated.add(media);
 		}
 
-		lm.update_medias(updated, false, true);
 		setting_media.unlock ();
+
+		lm.update_medias(updated, false, true);
 	}
 }
+
 
