@@ -100,13 +100,12 @@ public class BeatBox.Beatbox : Granite.Application {
 		app_launcher = "noise.desktop";
 		app_years = "2012";
 
-		// XXX!!
-		//main_url = "https://launchpad.net/beat-box";
-		//bug_url = "https://bugs.launchpad.net/beat-box/+filebug";
-		//help_url = "https://answers.launchpad.net/beat-box";
-		//translate_url = "https://translations.launchpad.net/beat-box";
+		main_url = "https://launchpad.net/noise";
+		bug_url = "https://bugs.launchpad.net/noise/+filebug";
+		help_url = "http://elementaryos.org/support/answers";
+		translate_url = "https://translations.launchpad.net/noise";
 
-		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>", null};
+		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>", "Victor Eduardo <victoreduardm@gmail.com>", null};
 
 		about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
 	}

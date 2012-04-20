@@ -25,7 +25,7 @@ using Gtk;
 
 public class BeatBox.AlbumListView : Window {
 
-	public const int WIDTH = 350;
+	public const int WIDTH = 400;
 	public const int HEIGHT = 400; 
 
 	LibraryManager lm;
@@ -40,6 +40,7 @@ public class BeatBox.AlbumListView : Window {
 
 	Mutex setting_media = new Mutex ();
 
+/*
 	private const string WIDGET_STYLESHEET = """
 		BeatBoxAlbumListView {
 			background-image: -gtk-gradient (linear,
@@ -107,6 +108,7 @@ public class BeatBox.AlbumListView : Window {
 			-unico-inner-stroke-width: 0;
 		}
 	""";
+*/
 
 	public AlbumListView(AlbumView album_view) {
 		this.view_wrapper = album_view.parent_view_wrapper;
@@ -121,7 +123,7 @@ public class BeatBox.AlbumListView : Window {
 		this.destroy_with_parent = true;
 		set_size_request(WIDTH, HEIGHT);
 		set_default_size(WIDTH, HEIGHT);
-
+/*
 		// apply css styling
 		var style_provider = new CssProvider();
 
@@ -132,13 +134,15 @@ public class BeatBox.AlbumListView : Window {
 		}
 
 		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_FALLBACK);
+		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
+*/
 
 		// add close button
 		var close = new Gtk.Button ();
 
-		close.get_style_context().add_class("close-button");
+//		close.get_style_context().add_class("close-button");
 
-		close.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
+//		close.get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
 
 		close.set_image (Icons.render_image ("gtk-close", Gtk.IconSize.MENU));
 
@@ -172,7 +176,10 @@ public class BeatBox.AlbumListView : Window {
 
 		// add actual list
 		mtv = new MusicTreeView(view_wrapper, new TreeViewSetup(MusicTreeView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST));
-		mtv.apply_style_to_view(style_provider);
+//		mtv.apply_style_to_view(style_provider);
+//		mtv = new MusicTreeView(view_wrapper, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
+//		mtv.apply_style_to_view(style_provider);
+
 		mtv.has_grid_lines = true;
 		mtv.vexpand = true;
 
@@ -180,7 +187,7 @@ public class BeatBox.AlbumListView : Window {
 		mtv_scrolled.add (mtv);
 
 		// add rating
-		rating = new RatingWidget(get_style_context(), true, IconSize.BUTTON, true);
+		rating = new RatingWidget(get_style_context(), true, IconSize.MENU, true);
 		rating.set_transparent (true);
 
 		var all_area = new Box(Orientation.VERTICAL, 0);

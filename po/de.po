@@ -7,181 +7,634 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-03 22:16+0100\n"
-"PO-Revision-Date: 2012-02-04 08:26+0000\n"
-"Last-Translator: Thomas Pitlik <Unknown>\n"
+"POT-Creation-Date: 2012-04-08 14:19-0600\n"
+"PO-Revision-Date: 2012-04-18 16:02+0000\n"
+"Last-Translator: Joel Hermanns <joel.hermanns@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-06 05:04+0000\n"
-"X-Generator: Launchpad (build 14747)\n"
+"X-Launchpad-Export-Date: 2012-04-19 05:04+0000\n"
+"X-Generator: Launchpad (build 15108)\n"
 "Language: de\n"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:88
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-msgid "Import from Device"
-msgstr "Medien von einem Gerät importieren"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:66
+msgid "Import media to Library"
+msgstr "Medien in Bibliothek importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:89
-msgid "Sync"
-msgstr "Synchronisation"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:67
+msgid "Continue Syncing"
+msgstr "Synchronisation fortführen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:97
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:53
-msgid "Add Podcast"
-msgstr "Podcast hinzufügen"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:68
+msgid "Stop Syncing"
+msgstr "Synchronisation anhalten"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:98
-msgid "Download new Episodes"
-msgstr "Neue Episoden herunterladen"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
+#: /home/victor/Projects/Noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
+#, c-format
+msgid "Name of Playlist"
+msgstr "Name der Wiedergabeliste"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:106
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:218
-msgid "Import to Library"
-msgstr "In die Bibliothek importieren"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
+#: /home/victor/Projects/Noise/po/../src//Dialogs/StationEditor.vala:70
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:87
+msgid "Done"
+msgstr "Fertig"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:107
-msgid "Eject"
-msgstr "Auswerfen"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
+#: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:81
+msgid "Cancel"
+msgstr "Abbrechen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:115
-msgid "Import Station"
-msgstr "Radiosender importieren"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/StationEditor.vala:68
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:85
+msgid "Previous"
+msgstr "Vorheriger"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:122
-msgid "New Playlist"
-msgstr "Neue Wiedergabeliste"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/StationEditor.vala:69
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:86
+msgid "Next"
+msgstr "Nächster"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:123
-msgid "New Smart Playlist"
-msgstr "Neue intelligente Wiedergabeliste"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
+msgid "Rules"
+msgstr "Regeln"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:124
-msgid "Edit"
-msgstr "Bearbeiten"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
+msgid "Options"
+msgstr "Optionen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:125
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#, c-format
+msgid "<b>Name of Playlist</b>"
+msgstr "<b>Name der Wiedergabeliste</b>"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
+#, c-format
+msgid "<b>Rules</b>"
+msgstr "<b>Regeln</b>"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
+#, c-format
+msgid "Options</b>"
+msgstr "Optionen</b>"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:81
+msgid "Playlist Title"
+msgstr "Titel der Wiedergabeliste"
+
+# Übersetzung taucht nicht in der GUI auf. Warum?
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Match"
+msgstr "Erfülle"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
+msgid "of the following:"
+msgstr "der folgenden Bedingungen:"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
+#: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:80
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
+msgid "Limit to"
+msgstr "Begrenzen auf"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
+#: /home/victor/Projects/Noise/po/../src//Widgets/SimilarMediaView.vala:48
+msgid "media"
+msgstr "Medien"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:144
 msgid "Remove"
 msgstr "Entfernen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:126
-msgid "Save as Playlist"
-msgstr "Als Wiedergabeliste speichern"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:394
+msgid "is"
+msgstr "ist"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:127
-msgid "Export..."
-msgstr "Exportieren..."
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
+msgid "contains"
+msgstr "enthält"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:128
-msgid "Import Playlist"
-msgstr "Wiedergabeliste importieren"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
+msgid "does not contain"
+msgstr "enthält nicht"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:160
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:284
-msgid "Library"
-msgstr "Bibliothek"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:395
+msgid "is not"
+msgstr "ist nicht"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:161
-msgid "Devices"
-msgstr "Geräte"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:437
+msgid "seconds"
+msgstr "Sekunden"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:162
-msgid "Network"
-msgstr "Netzwerk"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:445
+msgid "kbps"
+msgstr "kbps"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:163
-msgid "Playlists"
-msgstr "Wiedergabelisten"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+msgid "Export Playlists"
+msgstr "Wiedergabelisten exportieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:205
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:210
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:538
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:253
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:309
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:68
+msgid "Set Music Folder"
+msgstr "Musikordner wählen"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:75
 #, c-format
-msgid "Artist"
-msgstr "Interpret"
+msgid "Set Music Folder?"
+msgstr "Musikordner auswählen?"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:206
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:493
-msgid "Music"
-msgstr "Musik"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:51
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:113
+msgid "Add Podcast"
+msgstr "Podcast hinzufügen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Widgets/SideTreeView.vala:211
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:497
-msgid "Podcasts"
-msgstr "Podcasts"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:76
+#: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:84
+#, c-format
+msgid "Podcast RSS Source"
+msgstr "Podcast RSS-Quelle"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:534
-msgid "#"
-msgstr "#"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:77
+msgid "Podcast Source..."
+msgstr "Podcast-Quelle..."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:535
-msgid "Track"
-msgstr "Track"
+#: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:145
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:259
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:270
+msgid "No Podcasts Found"
+msgstr "Es wurden keine Podcasts gefunden"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:536
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:252
+#: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:145
+msgid ""
+"The provided source is invalid. Make sure you are entering an RSS feed in "
+"XML format."
+msgstr ""
+"Die angegebene Quelle ist ungültig. Stelle sicher, dass du einen RSS-Feed im "
+"XML-Format eingibst."
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:556
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:291
+msgid "Song"
+msgstr "Song"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:558
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:103
+msgid "Import from Device"
+msgstr "Medien von einem Gerät importieren"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all media"
+msgstr "Alle Medien importieren"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+msgid "Import"
+msgstr "Importieren"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "Nicht importieren"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:161
+msgid "Select individual media to import:"
+msgstr ""
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:179
+msgid "Check Item"
+msgstr "Eintrag überprüfen"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:180
+msgid "Check Album"
+msgstr "Album überprüfen"
+
+#: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:181
+msgid "Check Artist"
+msgstr "Interpret überprüfen"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/InfoPanel.vala:72
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:296
+#, c-format
 msgid "Title"
 msgstr "Titel"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:537
-msgid "Length"
-msgstr "Dauer"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:539
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:253
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:308
-msgid "Album"
-msgstr "Album"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:540
-msgid "Genre"
-msgstr "Genre"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:541
+#: /home/victor/Projects/Noise/po/../src//Widgets/InfoPanel.vala:73
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:301
+#, c-format
 msgid "Year"
 msgstr "Jahr"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:542
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:39
+#, c-format
+msgid "%s, %s, %s"
+msgstr "%s, %s, %s"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:127
+#, c-format
+msgid "%s minutes"
+msgstr "%s Minuten"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:130
+#, c-format
+msgid "%s hours"
+msgstr "%s Stunden"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:133
+#, c-format
+msgid "%s days"
+msgstr "%s Tage"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:137
+#, c-format
+msgid "%i MB"
+msgstr "%i MB"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:139
+#, c-format
+msgid "%.2f GB"
+msgstr "%.2f GB"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:143
+msgid "songs"
+msgstr "Titel"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:143
+msgid "song"
+msgstr "Titel"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:146
+msgid "podcasts"
+msgstr "Podcasts"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:146
+msgid "podcast"
+msgstr "Podcast"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
+msgid "audiobooks"
+msgstr "Hörbücher"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
+msgid "audiobook"
+msgstr "Hörbuch"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:152
+msgid "stations"
+msgstr "Radiosender"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:152
+msgid "station"
+msgstr "Sender"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:155
+msgid "items"
+msgstr "Elemente"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:155
+msgid "item"
+msgstr "Element"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr "Ähnliche Medien"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:104
+msgid "Sync"
+msgstr "Synchronisation"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:114
+msgid "Download new Episodes"
+msgstr "Neue Episoden herunterladen"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:123
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:207
+msgid "Import to Library"
+msgstr "In die Bibliothek importieren"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:124
+msgid "Eject"
+msgstr "Auswerfen"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:133
+msgid "Import Stations"
+msgstr "Sender importieren"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:141
+msgid "New Playlist"
+msgstr "Neue Wiedergabeliste"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:142
+msgid "New Smart Playlist"
+msgstr "Neue intelligente Wiedergabeliste"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:143
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:145
+msgid "Save as Playlist"
+msgstr "Als Wiedergabeliste speichern"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:146
+msgid "Export..."
+msgstr "Exportieren..."
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:147
+msgid "Import Playlists"
+msgstr "Wiedergabelisten importieren"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:182
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:275
+msgid "Library"
+msgstr "Bibliothek"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:183
+msgid "Devices"
+msgstr "Geräte"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:184
+msgid "Network"
+msgstr "Netzwerk"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:185
+msgid "Playlists"
+msgstr "Wiedergabelisten"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:268
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:274
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:298
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:293
+msgid "Artist"
+msgstr "Interpret"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:269
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:97
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:581
+msgid "Music"
+msgstr "Musik"
+
+#: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:275
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:99
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:585
+msgid "Podcasts"
+msgstr "Podcasts"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:162
+msgid "Automatic"
+msgstr "automatisch"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:163
+msgid "On Left"
+msgstr ""
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:164
+msgid "On Top"
+msgstr ""
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:560
+msgid "Genres"
+msgstr "Genres"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:563
+msgid "Artists"
+msgstr "Interpreten"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:566
+msgid "Albums"
+msgstr "Alben"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:569
+msgid "Years"
+msgstr "Jahre"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:572
+msgid "Ratings"
+msgstr "Bwertungen"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:189
+msgid "Unrated"
+msgstr "Nicht bewertet"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:191
+#, c-format
+msgid "%s Stars"
+msgstr "%s Sterne"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:239
+msgid "All Genres"
+msgstr "Alle Genres"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:241
+#, c-format
+msgid "All %i Genres"
+msgstr "Alle %i Genres"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:243
+msgid "No Genres"
+msgstr "Keine Genres"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:247
+msgid "All Artists"
+msgstr "Alle Interpreten"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:249
+#, c-format
+msgid "All %i Artists"
+msgstr "Alle %i Interpreten"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:251
+msgid "No Artists"
+msgstr "Keine Interpreten"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:255
+msgid "All Albums"
+msgstr "Alle Alben"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:257
+#, c-format
+msgid "All %i Albums"
+msgstr "Alle %i Alben"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:259
+msgid "No Albums"
+msgstr "Keine Alben"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:263
+msgid "All Years"
+msgstr "Alle Jahre"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:265
+#, c-format
+msgid "All %i Years"
+msgstr "Alle %i Jahre"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:267
+msgid "No Years"
+msgstr "Keine Jahre"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:271
+msgid "All Ratings"
+msgstr "Alle Bewertungen"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:273
+#, c-format
+msgid "All %i Ratings"
+msgstr "Alle %i Bewertungen"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:275
+msgid "No Ratings"
+msgstr "Keine Bewertungen"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/SimilarPane.vala:86
+#, c-format
+msgid "Similar to %s"
+msgstr "Ähnlich zu %s"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:294
+msgid "#"
+msgstr "#"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:295
+msgid "Track"
+msgstr "Track"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:297
+msgid "Length"
+msgstr "Dauer"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:299
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:292
+msgid "Album"
+msgstr "Album"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:300
+msgid "Genre"
+msgstr "Genre"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:302
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:543
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:303
 msgid "Rating"
 msgstr "Bewertung"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:544
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:304
 msgid "Plays"
 msgstr "Wiedergaben"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:545
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:305
 msgid "Skips"
 msgstr "Übersprungen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:546
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:306
 msgid "Date Added"
 msgstr "Hinzugefügt"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:547
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:307
 msgid "Last Played"
 msgstr "Zuletzt gespielt"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/MusicTreeView.vala:548
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:308
 msgid "BPM"
 msgstr "BPM"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ListView/RadioListView.vala:282
+#: /home/victor/Projects/Noise/po/../src//Views/ListView/RadioListView.vala:75
 msgid "Remove Station"
 msgstr "Radiosender entfernen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:68
+msgid "Device Name"
+msgstr "Gerätename"
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Device Name:"
+msgstr "Gerätename:"
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:90
+msgid "Automatically sync when plugged in:"
+msgstr "Synchonisiere automatisch beim Einstecken:"
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:91
+msgid "Sync:"
+msgstr "Synchronisiere:"
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:411
+msgid "All Music"
+msgstr "Gesamte Musik"
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:414
+msgid "All Podcasts"
+msgstr "Alle Podcasts"
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:544
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:582
+msgid "Sync Failed"
+msgstr "Die Synchronisation schlug fehl"
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:544
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:582
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"Die Wiedergabeliste %s wird genutzt, um das Gerät %s zu synchronisieren, "
+"konnte jedoch nicht gefunden werden."
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:630
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:633
+msgid "Cannot Sync"
+msgstr "Synchonisation nicht möglich"
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:630
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Das Gerät kann mit den ausgewählten Einstellungen nicht synchronisiert "
+"werden, da nicht genug Speicherplatz vorhanden ist."
+
+#: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:633
+msgid "Device is already being synced."
+msgstr "Das Gerät wurde bereits synchronisiert"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:210
+msgid "Get Some Tunes"
+msgstr "Hol dir ein paar Songs"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:210
+msgid "Noise can't seem to find your music."
+msgstr "Noise kann deine Musik nicht finden."
+
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:221
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:236
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:238
+msgid "Empty Playlist"
+msgstr "Wiedergabeliste leeren"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:221
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:236
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:238
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:697
+msgid "..."
+msgstr "..."
+
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:248
 msgid "Similar Media View"
 msgstr "Ähnliche Medien"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:248
 msgid ""
 "In this view, BeatBox will automatically find medias similar to the one you "
 "are playing."
@@ -189,31 +642,21 @@ msgstr ""
 "In dieser Ansicht wird BeatBox automatisch Medien finden, welche Ähnlichkeit "
 "mit den gerade Gespielten haben."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:92
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:248
 msgid "You can then start playing those medias, or save them for later."
 msgstr ""
 "Du kannst diese Medien dann abspielen, oder sie für später speichern."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
-msgid "Audio CD Invalid"
-msgstr "Audio CD fehlerhaft"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:109
-msgid "BeatBox could not read the contents of this Audio CD."
-msgstr "BeatBox kann den Inhalt dieser Audio CD nicht lesen."
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
-msgid "No Podcasts Found"
-msgstr "Es wurden keine Podcasts gefunden"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:259
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:270
 msgid ""
 "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
 msgstr ""
 "Um einen Podcast hinzuzufügen, besuche eine Webseite wie Miro um RSS-Feeds "
 "zu finden."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:114
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:259
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:270
 msgid ""
 "You can then copy and paste the feed into the \"Add Podcast\" window by "
 "right clicking on \"Podcasts\"."
@@ -221,42 +664,50 @@ msgstr ""
 "Du kannst den Feed dann kopieren und im \"Podcast hinzufügen\"-Fenster "
 "einfügen, indem du auf \"Podcasts\" rechtsklickst."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:282
 msgid "No Internet Radio Stations Found"
 msgstr "Es wurden keine Radiosender gefunden"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:282
 msgid ""
 "To add a station, visit a website such as SomaFM to find PLS or M3U files."
 msgstr ""
 "Um einen Sender hinzuzufügen, besuche eine Webseite wie SomaFM um PLS oder "
 "M3U Dateien zu finden."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:119
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:282
 msgid "You can then import the file to add the station."
 msgstr "Du kannst die Datei dann importieren, um den Sender hinzuzufügen."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:306
+msgid "Audio CD Invalid"
+msgstr "Audio CD fehlerhaft"
+
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:306
+msgid "BeatBox could not read the contents of this Audio CD."
+msgstr "BeatBox kann den Inhalt dieser Audio CD nicht lesen."
+
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:313
+msgid "WARNING: Default View Wrapper!"
+msgstr ""
+
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:697
 msgid "Loading similar songs"
 msgstr "Lade ähnliche Titel"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:697
 msgid "BeatBox is loading songs similar to"
 msgstr "BeatBox lädt Titel, die folgendem Song ähneln:"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:201
-msgid "..."
-msgstr "..."
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:930
 msgid "No similar songs found"
 msgstr "Es wurden keine ähnlichen Titel gefunden"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:930
 msgid "BeatBox could not find songs similar to"
 msgstr "BeatBox konnte keine Titel finden, die folgendem Song ähneln:"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Views/ViewWrapper.vala:461
+#: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:930
 msgid ""
 "Make sure all song info is correct and you are connected to the Internet.\n"
 "Some songs may not have matches."
@@ -265,308 +716,150 @@ msgstr ""
 "Internet verbunden bist. \n"
 "Manche Titel könnten keine Treffer liefern."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:68
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:85
-msgid "Previous"
-msgstr "Vorheriger"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:69
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:86
-msgid "Next"
-msgstr "Nächster"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/StationEditor.vala:70
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:87
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/PlaylistNameWindow.vala:60
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:135
-msgid "Done"
-msgstr "Fertig"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:556
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:307
-msgid "Song"
-msgstr "Song"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SongEditor.vala:557
-msgid "Podcast"
-msgstr "Podcast"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:45
-msgid "Export Playlists"
-msgstr "Wiedergabelisten exportieren"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:46
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:217
-msgid "Set Music Folder"
-msgstr "Musikordner wählen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:47
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SetMusicFolderConfirmation.vala:53
-#, c-format
-msgid "Set Music Folder?"
-msgstr "Musikordner auswählen?"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:44
-msgid "Import medias to Library"
-msgstr "Medien in die Bibliothek importieren"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:45
-msgid "Continue Syncing"
-msgstr "Synchronisation fortsetzen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SyncWarningDialog.vala:46
-msgid "Stop Syncing"
-msgstr "Synchronisation anhalten"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/PlaylistNameWindow.vala:58
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/PlaylistNameWindow.vala:64
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:68
-#, c-format
-msgid "Name of Playlist"
-msgstr "Name der Wiedergabeliste"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:80
-msgid "Podcast RSS Source"
-msgstr "Podcast RSS-Quelle"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:81
-msgid "Podcast Source..."
-msgstr "Podcast-Quelle..."
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:84
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:116
-msgid "Add"
-msgstr "Hinzufügen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/AddPodcastWindow.vala:88
-#, c-format
-msgid "Podcast RSS Source</b>"
-msgstr "Podcast RSS-Quelle</b>"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
-msgid "Import all medias"
-msgstr "Alle Medien importieren"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-msgid "Import"
-msgstr "Importieren"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
-msgid "Don't Import"
-msgstr "Nicht importieren"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:161
-msgid "Select individual medias to import:"
-msgstr "Wähle einzelne Medien zum Import aus:"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:179
-msgid "Check Item"
-msgstr "Eintrag überprüfen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:180
-msgid "Check Album"
-msgstr "Album überprüfen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/TransferFromDeviceDialog.vala:181
-msgid "Check Artist"
-msgstr "Interpret überprüfen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:69
-msgid "Rules"
-msgstr "Regeln"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:70
-msgid "Options"
-msgstr "Optionen"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#, c-format
-msgid "<b>Name of Playlist</b>"
-msgstr "<b>Name der Wiedergabeliste</b>"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:77
-#, c-format
-msgid "<b>Rules</b>"
-msgstr "<b>Regeln</b>"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:78
-#, c-format
-msgid "Options</b>"
-msgstr "Optionen</b>"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:81
-msgid "Playlist Title"
-msgstr "Name der Wiedergabeliste"
-
-# Übersetzung taucht nicht in der GUI auf. Warum?
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Match"
-msgstr "Erfülle"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:91
-msgid "of the following:"
-msgstr "der folgenden Bedingungen:"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:121
-msgid "Limit to"
-msgstr "Begrenzen auf"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:123
-msgid "medias"
-msgstr "Medien"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:366
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:394
-msgid "is"
-msgstr "ist"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:367
-msgid "contains"
-msgstr "enthält"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:368
-msgid "does not contain"
-msgstr "enthält nicht"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:395
-msgid "is not"
-msgstr "ist nicht"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:437
-msgid "seconds"
-msgstr "Sekunden"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//Dialogs/SmartPlaylistEditor.vala:445
-msgid "kbps"
-msgstr "kbps"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
-msgid "Get Some Tunes"
-msgstr "Hol dir ein paar Songs"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:210
-msgid "BeatBox can't seem to find your music."
-msgstr "BeatBox kann deine Musik nicht finden."
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:219
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:208
 msgid "Rescan Music Folder"
 msgstr "Musikordner neu einlesen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:220
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:209
 msgid "Equalizer"
 msgstr "Equalizer"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:229
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:220
 msgid "Search..."
 msgstr "Suchen..."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:295
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:238
+msgid "Disable Repeat"
+msgstr "Wiederholung deaktivieren"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:238
+msgid "Enable Repeat"
+msgstr "Wiederholung aktivieren"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:239
+msgid "Disable Shuffle"
+msgstr "Zufall deaktivieren"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:239
+msgid "Enable Shuffle"
+msgstr "Zufall aktivieren"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:240
+msgid "Hide Info Panel"
+msgstr "Verberge Info-Panel"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:240
+msgid "Show Info Panel"
+msgstr "Zeige Info-Panel"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:241
+msgid "Add Playlist"
+msgstr "Wiedergabeliste hinzufügen"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:285
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:306
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:312
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:290
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:296
 msgid "Off"
 msgstr "Aus"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:310
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:313
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:294
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:297
 msgid "All"
 msgstr "Alle"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:315
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:299
 msgid "Hide"
 msgstr "Verbergen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:316
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:300
 msgid "Show"
 msgstr "Anzeigen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:374
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:360
 msgid "Locate"
 msgstr "Festlegen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:374
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:360
 msgid "Change your music folder."
 msgstr "Ändere deinen Musikordner."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:481
-msgid "Similar"
-msgstr "Ähnliches"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:485
-msgid "Queue"
-msgstr "Warteschlange"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:489
-msgid "History"
-msgstr "Verlauf"
-
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:501
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:590
 msgid "Internet Radio"
 msgstr "Internetradio"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:506
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:594
+msgid "Similar"
+msgstr "Ähnliches"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:597
+msgid "Queue"
+msgstr "Warteschlange"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:600
+msgid "History"
+msgstr "Verlauf"
+
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:625
 msgid "Music Store"
 msgstr "Music Store"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:678
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:755
 msgid "Unknown Artist"
 msgstr "Unbekannter Interpret"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:678
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:755
 msgid " by "
 msgstr " von "
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:679
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:756
 msgid "Unknown Album"
 msgstr "Unbekanntes Album"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:679
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:756
 msgid " on "
 msgstr " auf "
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1054
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1092
 msgid "Import Music"
 msgstr "Musik importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1067
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1116
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importiere</b> Musik aus <b>%s</b> in die Bibliothek."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1083
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1131
 msgid "Rescanning music folder for changes"
 msgstr "Musikordner auf Änderungen überprüfen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1090
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1138
 msgid "Could not find Music Folder"
 msgstr "Der Musikordner konnte nicht gefunden werden"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1090
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1138
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Bitte stelle sicher, dass dein Musikordner erreichbar und eingehängt ist."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1158
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1211
 msgid "Import Complete"
 msgstr "Import abgeschlossen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1158
-msgid "BeatBox has imported your library."
-msgstr "BeatBox hat deine Bibliothek importiert."
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1211
+msgid "Noise has imported your library."
+msgstr "Noise hat deine Musikbibliothek importiert."
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1346
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1391
 msgid "Choose Music Folder"
 msgstr "Musikordner auswählen"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1541
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1524
 msgid "Import songs from audio CD"
 msgstr "Titel von einer Audio-CD importieren"
 
-#: /home/xapantu/Dev/beat-box/translations/po/../src//LibraryWindow.vala:1541
+#: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1524
 msgid "Import media from device"
 msgstr "Medien von einem Gerät importieren"
