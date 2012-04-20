@@ -766,10 +766,15 @@ public class BeatBox.ViewWrapper : Box {
 			}
 
 			Idle.add( () => {
+				/*
+				XXX Not doing this for now since it causes problems
+				to the column browser. A proper fix has to be added
+				to ListView.vala
 				if (has_list_view) {
 					list_view.append_media(to_add);
 					list_view.remove_media(to_remove_show);
 				}
+				*/
 
 				if (has_album_view) {
 					album_view.append_media(to_add);
@@ -777,6 +782,7 @@ public class BeatBox.ViewWrapper : Box {
 				}
 
 				set_statusbar_info ();
+				update_library_window_widgets ();
 
 				return false;
 			});
@@ -784,6 +790,7 @@ public class BeatBox.ViewWrapper : Box {
 		else {
 			needs_update = true;
 		}
+
 
 		in_update.unlock ();
 	}
@@ -862,10 +869,14 @@ public class BeatBox.ViewWrapper : Box {
 
 			if (has_list_view)
 				list_view.append_media (to_add);
+
+			set_statusbar_info ();
+			update_library_window_widgets ();
 		}
 		else {
 			needs_update = true;
 		}
+
 
 		in_update.unlock ();
 	}

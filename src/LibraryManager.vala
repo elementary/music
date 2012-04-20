@@ -121,12 +121,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 
 
 	Mutex _media_lock = new Mutex (); // lock for _media. use this around _media, _songs, ... _permanents
-	Mutex _songs_lock = new Mutex ();
 #if HAVE_PODCASTS
 	Mutex _podcasts_lock = new Mutex ();
 #endif
-//	Mutex _audiobooks_lock = new Mutex ();
-
 #if HAVE_INTERNET_RADIO
 	Mutex _stations_lock = new Mutex ();
 #endif
