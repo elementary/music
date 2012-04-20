@@ -284,13 +284,10 @@ public class BeatBox.ViewWrapper : Box {
 			view_container.append_page (list_view);
 
 
+
 		// Connect data signals
-		if (hint != Hint.SIMILAR)
+		if (hint != Hint.SIMILAR && hint != Hint.CDROM)
 			lm.medias_updated.connect ((list) => { update_media (list); });		
-		
-		//XXX
-		if (hint != Hint.CDROM)
-			lm.medias_removed.connect ((list) => { remove_media (list); });
 
 		if (hint == Hint.QUEUE) {
 			lm.media_queued.connect ( (media_id) => {
@@ -299,17 +296,18 @@ public class BeatBox.ViewWrapper : Box {
 				debug ("Adding %s to play queue ...", lm.media_from_id(media_id).title);
 				add_media (list);
 			});
-		} // XXX This won't populate playlists. This could be bad for smart playlists
-
-		else if (hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.AUDIOBOOK) {
-			lm.medias_added.connect ((list) => { add_media (list); });
 		}
 
+		else if (hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.AUDIOBOOK || hint == Hint.SMART_PLAYLIST || hint == Hint.PLAYLIST) {
+			if (hint == Hint.PLAYLIST) {
+				// Listen for playlist additions/removals
+				lm.playlist_from_id (relative_id).changed.connect (playlist_changed);
+			}
+			else {
+				lm.medias_added.connect ((list) => { add_media (list); });
+			}
 
-		// Listen for playlist additions/removals
-
-		if (hint == Hint.PLAYLIST) {
-			lm.playlist_from_id (relative_id).changed.connect (playlist_changed);
+			lm.medias_removed.connect ((list) => { remove_media (list); });
 		}
 
 

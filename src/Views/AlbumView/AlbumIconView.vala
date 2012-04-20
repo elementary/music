@@ -67,7 +67,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		parent_view_wrapper = view_wrapper;
 		album_list_view = new AlbumListView(this);
 
-
 		medias = new HashMap<string, LinkedList<int>>();
 		_show_next = new LinkedList<int>();
 
@@ -347,10 +346,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		x += (alloc.width - album_list_view.WIDTH) / 2;
 		y += (alloc.height - album_list_view.HEIGHT) / 2 + 60;
 
-		album_list_view.move(x, y);
-
 		album_list_view.show_all();
-		album_list_view.present();
+		album_list_view.move(x, y);
 	}
 
 	public void scrollToCurrent() {
