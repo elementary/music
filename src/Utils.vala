@@ -78,5 +78,118 @@ namespace Utils {
 
         return "";
     }
+
+
+    /**
+     * Search function
+     */
+    public void search_in_media_list (Collection<BeatBox.Media> to_search,
+                                       out LinkedList<BeatBox.Media> ? results,
+                                       out LinkedList<BeatBox.Media> ? album_results,
+                                       out LinkedList<BeatBox.Media> ? genre_results,
+                                       out LinkedList<BeatBox.Media> ? year_results,
+                                       out LinkedList<BeatBox.Media> ? rating_results,
+                                       BeatBox.ViewWrapper.Hint hint,
+                                       string search = "", // Search string
+                                       string album_artist = "",
+                                       string album = "",
+                                       string genre = "",
+                                       int year = -1, // All years
+                                       int rating = -1 // All ratings
+                                       )
+    {
+        bool include_results = (results != null);
+        bool include_album_results = (album_results != null);
+        bool include_genre_results = (genre_results != null);
+        bool include_year_results = (year_results != null);
+        bool include_rating_resulst = (rating_results != null);
+
+        if (include_results)
+            results = new LinkedList<BeatBox.Media>();
+
+        if (include_album_results);
+            album_results = new LinkedList<BeatBox.Media>();
+
+        if (include_genre_results)
+            genre_results = new LinkedList<BeatBox.Media>();
+
+        if (include_year_results)
+            year_results = new LinkedList<BeatBox.Media>();
+
+        if (include_rating_results)
+            rating_results = new LinkedList<BeatBox.Media>();
+
+        string l_search = search.down();
+        int mediatype = 0;
+
+        bool include_temps = hint == ViewWrapper.Hint.CDROM ||
+                             hint == ViewWrapper.Hint.DEVICE_AUDIO || 
+                             hint == ViewWrapper.Hint.DEVICE_PODCAST ||
+                             hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK ||
+                             hint == ViewWrapper.Hint.QUEUE ||
+                             hint == ViewWrapper.Hint.HISTORY ||
+                             hint == ViewWrapper.Hint.ALBUM_LIST;
+
+        if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
+            mediatype = 1;
+        }
+        else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+            mediatype = 2;
+        }
+        else if(hint == ViewWrapper.Hint.STATION) {
+            mediatype = 3;
+        }
+        else if(hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY ||
+                 hint == ViewWrapper.Hint.PLAYLIST || hint == ViewWrapper.Hint.SMART_PLAYLIST ||
+                 hint == ViewWrapper.Hint.ALBUM_LIST)
+        {
+            mediatype = -1; // some lists should be able to have ALL media types
+        }
+        
+        foreach(var media in to_search) {
+            bool valid_song =   media != null &&
+                              ( media.mediatype == mediatype || mediatype == -1 ) &&
+                              ( !media.isTemporary || include_temps ) &&
+                              ( l_search in media.title.down() ||
+                                l_search in media.album_artist.down() ||
+                                l_search in media.artist.down() ||
+                                l_search in media.album.down() ||
+                                l_search in media.genre.down() ||
+                                l_search == media.year.to_string()); // We want full match here
+
+            if (valid_song)
+            {
+                if (rating == -1 || media.rating == rating)
+                {
+                    if (year == -1 || media.year == year)
+                    {
+                        if (album_artist == "" || media.album_artist == album_artist)
+                        {
+                            if (genre == "" || media.genre == genre)
+                            {
+                                if (album == "" || media.album == album)
+                                {
+                                    if (include_results)
+                                        results.add (media);
+                                }
+
+                                if (include_genre_results)
+                                    genre_results.add (media);
+                            }
+    
+                            if (include_album_results)
+                                album_results.add (media);
+                        }
+                        
+                        if (include_year_results)
+                            year_results.add (media);
+                    }
+
+                    if (include_rating_results)
+                        rating_results.add (media);
+                }
+            }
+        }
+    }
 }
 

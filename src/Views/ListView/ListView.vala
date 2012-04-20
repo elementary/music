@@ -171,7 +171,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			// Decide what orientation to use based on the view area size
 
 			int view_width = this.get_allocated_width ();
-			const int MIN_TREEVIEW_WIDTH = 300;
+			const int MIN_RECOMMENDED_TREEVIEW_WIDTH = 300;
+			const int MIN_RECOMMENDED_COLUMN_WIDTH = 160;
 
 			int visible_columns = 0;
 			foreach (var column in column_browser.columns) {
@@ -179,8 +180,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 					++ visible_columns;
 			}
 
-			int required_width = column_browser.MIN_COLUMN_WIDTH * visible_columns;
-			if (view_width - required_width < MIN_TREEVIEW_WIDTH)
+			int required_width = MIN_RECOMMENDED_COLUMN_WIDTH * visible_columns;
+			if (view_width - required_width < MIN_RECOMMENDED_TREEVIEW_WIDTH)
 				actual_position = MillerColumns.Position.TOP;
 			else
 				actual_position = MillerColumns.Position.LEFT;
