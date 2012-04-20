@@ -290,11 +290,8 @@ public class BeatBox.ViewWrapper : Box {
 			lm.medias_updated.connect ((list) => { update_media (list); });		
 
 		if (hint == Hint.QUEUE) {
-			lm.media_queued.connect ( (media_id) => {
-				var list = new LinkedList<int>();
-				list.add (media_id);
-				debug ("Adding %s to play queue ...", lm.media_from_id(media_id).title);
-				add_media (list);
+			lm.media_queued.connect ( (media_ids) => {
+				add_media (media_ids);
 			});
 		}
 
@@ -721,7 +718,7 @@ public class BeatBox.ViewWrapper : Box {
 	public void update_media (Collection<int> ids) {
 		in_update.lock ();
 
-		if (is_current_wrapper) {
+		if (is_current_wrapper || hint == Hint.QUEUE || hint == Hint.SMART_PLAYLIST) {
 			// find which media belong here
 			LinkedList<int> should_be, should_show;
 
@@ -817,7 +814,6 @@ public class BeatBox.ViewWrapper : Box {
 		if (has_album_view)
 			album_view.remove_media (to_remove);
 
-
 		if (has_list_view)
 			list_view.remove_media (to_remove);
 
@@ -832,13 +828,19 @@ public class BeatBox.ViewWrapper : Box {
 		in_update.lock ();
 
 		//if(hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.STATION) { //FIXME DEVICE_?
-		if (is_current_wrapper) {
+		if (is_current_wrapper || hint == Hint.QUEUE || hint == Hint.SMART_PLAYLIST) {
 			// find which media to add and update Media
 			var to_add = new LinkedList<int>();
-			foreach(int i in new_media) {
-				if(medias.get(i) == 0) {
-					medias.set(i, 1);
-					to_add.add(i);
+
+			if (hint == Hint.SMART_PLAYLIST) {
+				to_add =  lm.smart_playlist_from_id(relative_id).analyze(lm, new_media);
+			}
+			else {
+				foreach(int i in new_media) {
+					if(medias.get(i) == 0) {
+						medias.set(i, 1);
+						to_add.add(i);
+					}
 				}
 			}
 
@@ -862,7 +864,7 @@ public class BeatBox.ViewWrapper : Box {
 				list_view.append_media (to_add);
 		}
 		else {
-			needs_update = true; //not sure about this
+			needs_update = true;
 		}
 
 		in_update.unlock ();

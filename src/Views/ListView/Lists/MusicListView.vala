@@ -740,9 +740,13 @@ public class BeatBox.MusicTreeView : GenericList {
 	}
 
 	public virtual void mediaMenuQueueClicked() {
+		var to_queue = new LinkedList<int>();
+
 		foreach(Media m in get_selected_medias()) {
-			lm.queue_media_by_id(m.rowid);
+			to_queue.add (m.rowid);
 		}
+
+		lm.queue_media_by_id (to_queue);
 	}
 
 	public virtual void mediaMenuNewPlaylistClicked() {

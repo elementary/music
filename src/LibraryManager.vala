@@ -220,7 +220,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public signal void medias_added(LinkedList<int> ids);
 	public signal void medias_updated(LinkedList<int> ids);
 	public signal void medias_removed(LinkedList<int> ids);
-	public signal void media_queued(int id);
+	public signal void media_queued(Gee.Collection<int> ids);
 	public signal void media_played(int id, int old_id);
 	public signal void playback_stopped(int was_playing);
 	
@@ -360,9 +360,13 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					_playlists.unset(p.rowid);				
 				}
 				else if(p.name == "autosaved_queue") {
+					var to_queue = new LinkedList<int>();
+					
 					foreach(int i in medias_from_playlist(p.rowid)) {
-						queue_media_by_id(i);
+						to_queue.add (i);
 					}
+					
+					queue_media_by_id (to_queue);
 					
 					queue_setup = p.tvs;
 					queue_setup.set_hint(ViewWrapper.Hint.QUEUE);
@@ -1159,9 +1163,13 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_queue.clear();
 	}
 	
-	public void queue_media_by_id(int id) {
-		_queue.offer_tail(id);
-		media_queued (id);		
+	public void queue_media_by_id(Collection<int> ids) {
+		if (ids.size < 1)
+			return;
+		
+		foreach (int id in ids)
+			_queue.offer_tail(id);
+		media_queued (ids);		
 	}
 
 	public void unqueue_media_by_id(int id) {

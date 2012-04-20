@@ -960,11 +960,12 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				lm.fo.import_from_playlist_file_info(names, filtered_paths);
 		    		lw.update_sensitivities();
 		    	}
-
+#if HAVE_INTERNET_RADIO
 			if(stations.size > 0) {
 				stdout.printf("stations size is %d\n", stations.size);
 				lm.add_medias(stations, true);
 			}
+#endif
 		}
 //>>>>>>> MERGE-SOURCE
 	}
@@ -990,16 +991,22 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		
 		/* make sure it is either queue or normal playlist */
 		if(name == "Queue") {
+			var to_queue = new Gee.LinkedList<int>();
+
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
 					Media add = lm.media_from_file(file.get_path());
 					
 					if(add != null) {
-						lm.queue_media_by_id(add.rowid);
-						success = true;
+						to_queue.add (add.rowid);
 					}
 				}
+			}
+			
+			if (to_queue.size > 0) {
+				lm.queue_media_by_id (to_queue);
+				success = true;
 			}
 			
 			//ViewWrapper vw = (ViewWrapper)w;
@@ -1017,13 +1024,14 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 					
 					if(add != null) {
 						to_add.add (add.rowid);
-						success = true;
 					}
 				}
 			}
 			
-			p.add_media (to_add);
-			
+			if (to_add.size > 0) {
+				p.add_media (to_add);
+				success = true;
+			}
 			//ViewWrapper vw = (ViewWrapper)w;
 			//vw.column_browser_changed(); //FIXME
 		}
