@@ -271,12 +271,10 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (has_error_box) {
 			view_container.append_page (error_box);
-			current_view = ViewType.ERROR; ///XXX Probably  unnecessary?
 		}
 
 		if (has_welcome_screen) {
 			view_container.append_page (welcome_screen);
-			current_view = ViewType.WELCOME; ///XXX Probably  unnecessary?
 		}
 
 		if (has_album_view)
@@ -423,7 +421,7 @@ public class BeatBox.ViewWrapper : Box {
 			if (has_list_view) {
 				var lv = list_view as ListView;
 			
-				column_browser_available = (lv.has_column_browser/* && current_view == ViewType.LIST*/);
+				column_browser_available = (lv.has_column_browser && current_view == ViewType.LIST);
 
 				if (column_browser_available)
 					column_browser_visible = lv.column_browser.visible;

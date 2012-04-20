@@ -266,8 +266,6 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 	}
 
-
-
 	/**
 	 * Data and ContentView interface stuff ...
 	 */
@@ -321,46 +319,17 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		/*else
 			list_view.populate_view ();*/
 	}
-/*
-	// FIXME: figure out how do this if column_browser_enabled is true
-	public void append_medias (Collection<int> new_medias) {
-		if (column_browser_enabled)
-			column_browser.populate (view_wrapper.get_showing_media_ids());
-		else
-			list_view.append_medias (new_medias);
-	}
 
-	// FIXME: figure out how do this _PROPERLY_ if column_browser_enabled is true
-	public void remove_medias (Collection<int> to_remove) {
-		if (column_browser_enabled)
-			column_browser.populate (view_wrapper.get_showing_media_ids());
-		else
-			list_view.remove_medias (to_remove);
-	}
-*/
-/*
-	public void update_medias(Collection<int> medias) { // request to update displayed information
-		list_view.update_medias (medias);
-	}
-*/
 	private void column_browser_changed () {
 		// This method is only called if the column browser is available.
 		// For performance reasons we won't update showing_medias to match
 		// the results of the miller columns.
 
-		// TODO: update !
-
 		if(lw.initialization_finished) {
-		/*	list_view.set_show_next (column_browser.media_results);
-			list_view.populate_view();
-			view_wrapper.set_statusbar_info();		
-		*/
 			set_show_next (column_browser.media_results);
 			view_wrapper.set_statusbar_info (column_browser.media_results);
 		}
 	}
-
-
 
 	/* ---------- NEW API --------- */
 	// remember to include column-browser stuff
@@ -417,8 +386,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	 * TODO: This shouldn't be here. Just added since there's no time to standarize this stuff
 	 *        right now.
 	 */
-	
+
 	public void set_table (HashTable<int, Media> table) {
 		list_view.set_table (table);
 	}
 }
+

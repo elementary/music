@@ -303,9 +303,8 @@ public abstract class BeatBox.GenericList : FastView {
 		return (a > b) ? 1 : -1;
 	}
 
+#if HAVE_BUILTIN_SEARCH
 
-	/// XXX!
-/*
 	protected void view_search_func (string search, HashTable<int, Media> table, ref HashTable<int, Media> show) {
 		int show_index = 0;
 		
@@ -323,5 +322,5 @@ public abstract class BeatBox.GenericList : FastView {
 			}
 		}
 	}
-*/
+#endif
 }

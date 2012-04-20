@@ -18,17 +18,13 @@
  *
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
-
 using Gtk;
 
 /** Since this class is not publicly facing (the FastView is public part),
  * this model is low level and optimized. We are not worried about stupid
  * users here.
 **/
-
-namespace BeatBox {
-
-public class FastModel : GLib.Object, TreeModel, TreeSortable {
+public class BeatBox.FastModel : GLib.Object, TreeModel, TreeSortable {
 	int stamp; // all iters must match this
 	
 	/* data storage variables */
@@ -220,7 +216,7 @@ public class FastModel : GLib.Object, TreeModel, TreeSortable {
 	public void set_sort_column_id (int column, SortType order) {
 		sort_column_id = column;
 		sort_direction = order;
-		stdout.printf("sort set %d %d\n", column, (int)order);
+		
 		reorder_requested(column, order);
 		sort_column_changed();
 	}
@@ -239,4 +235,3 @@ public class FastModel : GLib.Object, TreeModel, TreeSortable {
 	}
 }
 
-}

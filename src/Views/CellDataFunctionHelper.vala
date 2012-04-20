@@ -38,7 +38,8 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		
 		_canvas = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, starred.width * 5, starred.height);
 	}
-	
+
+#if HAVE_SMART_ALBUM_COLUMN
 	// for Smart album column
 	public void smartAlbumFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Media m = view.get_media_from_index((int)iter.user_data);
@@ -85,6 +86,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 			((SmartAlbumRenderer)cell).icon = null;
 		}
 	}
+#endif
 	
 	// for Track, Year, #, Plays, Skips. Simply shows nothing if less than 1.
 	public void intelligentTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {

@@ -21,10 +21,11 @@
 
 using Gtk;
 
-namespace BeatBox {
-
-public class FastView : TreeView {
+public class BeatBox.FastView : TreeView {
+#if HAVE_BUILTIN_SHUFFLE
 	public static const int SHUFFLE_COLUMN_ID = -3;
+#endif
+	public static const int OPTIMAL_COLUMN = -2;
 	FastModel fm;
 	List<Type> columns;
 	HashTable<int, Media> table; // is not the same object as showing.
@@ -36,28 +37,26 @@ public class FastView : TreeView {
 	protected SortType sort_direction;
 	private unowned SortCompareFunc compare_func;
 	
-	// For shuffle
-	bool is_shuffled;
-	protected int old_sort_col;
-	protected SortType old_sort_dir;
-	HashTable<int, Media> unshuffled_cache;
-	
+#if HAVE_BUILTIN_SEARCH
 	// search stuff
 	string last_search;
 	public delegate void ViewSearchFunc (string search, HashTable<int, Media> table, ref HashTable<int, Media> showing);
 	private unowned ViewSearchFunc search_func;
+#endif
+	
+	public signal void rows_reordered();
 	
 	public FastView (List<Type> types) {
 		columns = types.copy();
 		table = new HashTable<int, Media>(null, null);
-		unshuffled_cache = new HashTable<int, Media>(null, null);
 		showing = new HashTable<int, Media>(null, null);
 		fm = new FastModel(types);
 		
-		sort_column_id = -2;
+		sort_column_id = OPTIMAL_COLUMN;
 		sort_direction = SortType.ASCENDING;
-		is_shuffled = false;
+#if HAVE_BUILTIN_SEARCH
 		last_search = "";
+#endif
 		
 		fm.reorder_requested.connect(reorder_requested);
 		
@@ -93,10 +92,10 @@ public class FastView : TreeView {
 		if(do_resort)
 			resort(); // this also calls search
 		else
-			do_search(null);
+			do_search ();
 	}
 	
-	// If a Media is in objects but not in table, will just ignore
+	/* If a Media is in objects but not in table, will just ignore */
 	public void remove_media (HashTable<Media, int> objects) {
 		int index = 0;
 		var new_table = new HashTable<int, Media>(null, null);
@@ -114,7 +113,7 @@ public class FastView : TreeView {
 		get_selection().unselect_all();
 	}
 	
-	// Does NOT check for duplicates
+	/** Does NOT check for duplicates */
 	public void add_media (List<Media> objects) {
 		// skip calling set_table and just do it ourselves (faster)
 		foreach(var o in objects) {
@@ -124,26 +123,33 @@ public class FastView : TreeView {
 		// resort the new songs in. this will also call do_search
 		resort ();
 	}
-	
+
+#if HAVE_BUILTIN_SEARCH
 	public void set_search_func (ViewSearchFunc func) {
 		search_func = func;
 	}
+#endif
 	
-	public void do_search (string? search) {
+	public void do_search (string? search = null) {
 		var old_size = showing.size();
 		
 		showing.remove_all();
+
+#if HAVE_BUILTIN_SEARCH
 		if(search != null)
 			last_search = search;
 		
 		if(last_search == "") {
+#endif
 			for(int i = 0; i < table.size(); ++i) {
 				showing.set(i, table.get(i));
 			}
+#if HAVE_BUILTIN_SEARCH
 		}
 		else {
 			search_func(last_search, table, ref showing);
 		}
+#endif
 		
 		if(showing.size() == old_size) {
 			fm.set_table(showing);
@@ -185,7 +191,7 @@ public class FastView : TreeView {
 	 * time we repopulate/search the model
 	**/
 	public void set_sort_column_id (int sort_column_id, SortType order) {
-		reorder_requested(sort_column_id, order);
+		fm.set_sort_column_id(sort_column_id, order); // The model will then go back to us at reorder_requested
 	}
 	
 	public void get_sort_column_id (out int sort_column, out SortType order) {
@@ -195,55 +201,31 @@ public class FastView : TreeView {
 	
 	void reorder_requested (int column, Gtk.SortType direction) {
 		if(column == sort_column_id && direction == sort_direction) {
-			if(!(is_shuffled && column != SHUFFLE_COLUMN_ID))
-				return;
+			return;
 		}
 		
 		sort_column_id = column;
 		sort_direction = direction;
-		
+
+#if HAVE_BUILTIN_SHUFFLE		
 		if(column != SHUFFLE_COLUMN_ID)
 			quicksort(0, (int)(table.size() - 1));
 		else
-			toggle_shuffle(true);
-		
-		do_search(null);
-	}
-	
-	// If turning on shuffle, first create a copy of the current list
-	// and save it. This ensure we can unshuffle instantly. Then, save the
-	// current sort data for later.
-	// If turning off shuffle, use the old saved list and values to restore
-	// the unshuffled state.
-	public void toggle_shuffle(bool val) {
-		if(val) {
-			old_sort_col = sort_column_id;
-			old_sort_dir = sort_direction;
-			
-			unshuffled_cache = new HashTable<int, Media>(null, null);
-			for(int i = 0; i < table.size(); ++i) {
-				unshuffled_cache.set(i, table.get(i));
-			}
-			
 			shuffle ();
-			do_search(null);
-		}
-		else {
-			sort_column_id = old_sort_col;
-			sort_direction = old_sort_dir;
-			
-			/*table = new HashTable<int, Media>(null, null);
-			for(int i = 0; i < unshuffled_cache.size(); ++i) {
-				table.set(i, unshuffled_cache.get(i));
-			}*/
-			
-			resort();
-			//do_search(null);
-		}
+#else
+		quicksort (0, (int) (table.size() - 1));
+#endif
+		
+		do_search ();
+		
+		// Let it be known the row order changed
+		rows_reordered();
 	}
 	
 	public void resort () {
+#if HAVE_BUILTIN_SHUFFLE
 		if(sort_column_id != SHUFFLE_COLUMN_ID)
+#endif
 			quicksort(0, (int)(table.size() - 1));
 		
 		do_search (null);
@@ -253,7 +235,6 @@ public class FastView : TreeView {
 		compare_func = func;
 	}
 	
-	// TODO: Is slow.
 	void swap (int a, int b) {
 		Media temp = table.get(a);
 		table.set(a, table.get(b));
@@ -277,8 +258,11 @@ public class FastView : TreeView {
 		if(start < j)	quicksort (start, j);
 		if(i < end)		quicksort (i, end);
 	}
-	
-	void shuffle() {
+
+#if HAVE_BUILTIN_SHUFFLE
+	protected void shuffle() {
+		sort_column_id = SHUFFLE_COLUMN_ID;
+		
 		int m = (int)table.size();
 		int i;
 		
@@ -291,7 +275,9 @@ public class FastView : TreeView {
 			// And swap it with the current element.
 			swap(m, i);
 		}
+		
+		do_search ();
 	}
+#endif
 }
 
-}

@@ -605,10 +605,12 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 	// selects "All ..."
 	public void select_first_item () {
-		
+		if (model == null)
+			return;
+
 		if (!first_item_selected)
 			set_selected (null, true); // always notify
-		else if (this.visible && lw.initialization_finished) // just scroll to the cell
+		else if (model.n_items + 1 >= 1 && this.visible && lw.initialization_finished) // just scroll to the cell
 			view.scroll_to_cell (new TreePath.first(), null, false, 0.0f, 0.0f);
 	}
 
@@ -657,7 +659,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 	public void set_selected (string? val, bool notify = false) {
-		if (!lw.initialization_finished || val == _selected)
+		if (model != null && (!lw.initialization_finished || val == _selected))
 			return;
 
 		_selected = val;

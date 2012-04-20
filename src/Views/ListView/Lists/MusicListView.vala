@@ -59,7 +59,11 @@ public class BeatBox.MusicTreeView : GenericList {
 	CellRendererText cellTitle;
 	CellRendererText cellLength;
 	CellRendererText cellArtist;
+#if HAVE_SMART_ALBUM_COLUMN
 	SmartAlbumRenderer cellAlbum;
+#else
+	CellRendererText cellAlbum;
+#endif
 	CellRendererText cellGenre;
 	CellRendererText cellYear;
 	CellRendererPixbuf cellRating;
@@ -177,7 +181,11 @@ public class BeatBox.MusicTreeView : GenericList {
 		cellTitle = new CellRendererText();
 		cellLength = new CellRendererText();
 		cellArtist = new CellRendererText();
+#if HAVE_SMART_ALBUM_COLUMN
 		cellAlbum = new SmartAlbumRenderer();
+#else
+		cellAlbum = new CellRendererText();
+#endif
 		cellGenre = new CellRendererText();
 		cellYear = new CellRendererText();
 		cellRating = new CellRendererPixbuf();
@@ -228,7 +236,11 @@ public class BeatBox.MusicTreeView : GenericList {
 				else if(tvc.title == "Artist")
 					insert_column_with_data_func(-1, tvc.title, cellArtist, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Album")
+#if HAVE_SMART_ALBUM_COLUMN
 					insert_column_with_data_func(-1, tvc.title, cellAlbum, cellHelper.smartAlbumFiller);
+#else
+					insert_column_with_data_func(-1, tvc.title, cellAlbum, cellHelper.stringTreeViewFiller);
+#endif
 				else if(tvc.title == "Genre")
 					insert_column_with_data_func(-1, tvc.title, cellGenre, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "BPM")
