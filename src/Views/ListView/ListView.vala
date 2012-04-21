@@ -351,6 +351,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			media.set (index++, lm.media_from_id (id));
 		}
 
+		// Populate column browser
+		// column_browser.populate (to_show);
+		
 		list_view.set_table (media);
 	}
 

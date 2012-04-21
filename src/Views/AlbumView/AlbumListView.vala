@@ -210,7 +210,8 @@ public class BeatBox.AlbumListView : Window {
 		artist_label.set_markup("<span color=\"#ffffff\"><b>" + m.album_artist.replace("&", "&amp;") + "</b></span>");
 
 		var to_search = new LinkedList<Media>();
-		foreach (int id in view_wrapper.get_media_ids ()) {
+		// only search the media that match the search filter
+		foreach (int id in view_wrapper.get_showing_media_ids ()) {
 			to_search.add (lm.media_from_id(id));
 		}
 

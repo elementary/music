@@ -82,7 +82,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	public void buildUI() {
 		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 
-
 		icons = new IconView();
 		model = new AlbumViewModel(lm, defaultPix);
 
