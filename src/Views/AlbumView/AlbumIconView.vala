@@ -93,6 +93,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		icons = new IconView();
 		model = new AlbumViewModel(lm, defaultPix);
+		
+		icons.set_model (model);
 
 		vpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
 		hpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
@@ -198,6 +200,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		foreach(int i in new_medias) {
 			Media s = lm.media_from_id(i);
+
+			if (s == null)
+				continue;
+
 			string key = s.album_artist + s.album;
 
 			if(medias.get(key) == null)
@@ -254,11 +260,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		queue_draw();
 	}
 
-	/**
-	 * Goes through the hashmap and generates html. If artist,album, or genre
-	 * is set, makes sure that only items that fit those filters are
-	 * shown
-	 **/
 	public void populate_view() {
 		icons.freeze_child_notify();
 		icons.set_model(null);

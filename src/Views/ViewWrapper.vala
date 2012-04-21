@@ -876,7 +876,6 @@ public class BeatBox.ViewWrapper : Box {
 			needs_update = true;
 		}
 
-
 		in_update.unlock ();
 	}
 }
