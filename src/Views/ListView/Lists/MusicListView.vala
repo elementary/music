@@ -117,11 +117,6 @@ public class BeatBox.MusicTreeView : GenericList {
 		types.append(typeof(int)); // pulser};
 		base(view_wrapper, types, tvs);
 
-		//last_search = "";
-		//timeout_search = new LinkedList<string>();
-		//showing_all = true;
-		//removing_medias = false;
-
 		buildUI();
 	}
 

@@ -1,5 +1,6 @@
 /*-
  * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2012 Noise Developers
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -18,6 +19,9 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
 using Gtk;
@@ -35,31 +39,29 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	public int n_albums { get { return model.iter_n_children(null); } }
 
 	public IconView icons { get; private set; }
+
+/* Spacing Workarounds */
+#if !GTK_ICON_VIEW_BUG_IS_FIXED
 	private EventBox vpadding_box;
 	private EventBox hpadding_box;
+#endif
 
 	private LibraryManager lm;
 	private LibraryWindow lw;
-	private HashMap<string, LinkedList<int>> medias; // album+album_artist, list of related songs
 
 	private Collection<int> _show_next; // these are populated if necessary when user opens this view.
-	private HashMap<string, LinkedList<int>> _showing_medias;
-	private string last_search;
-	private LinkedList<string> timeout_search;
+	private HashMap<string, LinkedList<int>> media;
+	private HashMap<string, LinkedList<int>> _showing_media;
 
 	private AlbumViewModel model;
 
-	public bool is_current_view { get { return parent_view_wrapper.current_view == ViewWrapper.ViewType.ALBUM; } }
-
 	private Gdk.Pixbuf defaultPix;
-
-	private bool needsUpdate;
 
 	private const int ITEM_PADDING = 3;
 	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
 	private const int MIN_SPACING = 12;
 
-	/* medias should be mutable, as we will be sorting it */
+	/* media should be mutable, as we will be sorting it */
 	public AlbumView(ViewWrapper view_wrapper) {
 		lm = view_wrapper.lm;
 		lw = view_wrapper.lw;
@@ -67,12 +69,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		parent_view_wrapper = view_wrapper;
 		album_list_view = new AlbumListView(this);
 
-		medias = new HashMap<string, LinkedList<int>>();
 		_show_next = new LinkedList<int>();
 
-		_showing_medias = new HashMap<string, LinkedList<int>>();
-		last_search = "";
-		timeout_search = new LinkedList<string>();
+		media = new HashMap<string, LinkedList<int>>();
+		_showing_media = new HashMap<string, LinkedList<int>>();
 
 		defaultPix = Icons.DEFAULT_ALBUM_ART_PIXBUF;
 
@@ -82,28 +82,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	public void buildUI() {
 		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 
-		var wrapper_vbox = new Box (Orientation.VERTICAL, 0);
-		var wrapper_hbox = new Box (Orientation.HORIZONTAL, 0);
-
-		var wrapper_viewport = new Viewport (null, null);
-		wrapper_viewport.shadow_type = Gtk.ShadowType.NONE;
-		
-		vpadding_box = new EventBox();
-		hpadding_box = new EventBox();
 
 		icons = new IconView();
 		model = new AlbumViewModel(lm, defaultPix);
-		
-		icons.set_model (model);
-
-		vpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-		hpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-
-		vpadding_box.get_style_context().add_class(Granite.STYLE_CLASS_CONTENT_VIEW);
-		hpadding_box.get_style_context().add_class(Granite.STYLE_CLASS_CONTENT_VIEW);
-
-		// Use the super-awesome content-view class
-		this.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 
 		icons.set_columns(-1);
 
@@ -111,12 +92,22 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.set_markup_column(1);
 		icons.set_tooltip_column(3);
 
-		icons.item_width = ITEM_WIDTH;
-		icons.item_padding = ITEM_PADDING;
-		icons.spacing = 2;
-		icons.margin = 0;
-		icons.row_spacing = MIN_SPACING;
-		icons.column_spacing = MIN_SPACING;
+		icons.set_model (model);
+
+#if !GTK_ICON_VIEW_BUG_IS_FIXED
+		var wrapper_vbox = new Box (Orientation.VERTICAL, 0);
+		var wrapper_hbox = new Box (Orientation.HORIZONTAL, 0);
+
+		vpadding_box = new EventBox();
+		hpadding_box = new EventBox();
+
+		vpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+		hpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+		this.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+
+		vpadding_box.get_style_context().add_class(Granite.STYLE_CLASS_CONTENT_VIEW);
+		hpadding_box.get_style_context().add_class(Granite.STYLE_CLASS_CONTENT_VIEW);
+		this.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 
 		vpadding_box.set_size_request (-1, MIN_SPACING + ITEM_PADDING);
 		hpadding_box.set_size_request (MIN_SPACING + ITEM_PADDING, -1);
@@ -126,15 +117,30 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		wrapper_hbox.pack_start (hpadding_box, false, false, 0);
 		wrapper_hbox.pack_start (icons, true, true, 0);
 
-		wrapper_viewport.add (wrapper_vbox);
+		add_with_viewport (wrapper_vbox);
 
-		add (wrapper_viewport);
+		icons.margin = 0;
+#else
+		add (icons);
+		icons.margin = MIN_SPACING;
+#endif
+
+		icons.item_width = ITEM_WIDTH;
+		icons.item_padding = ITEM_PADDING;
+		icons.spacing = 2;
+		icons.row_spacing = MIN_SPACING;
+		icons.column_spacing = MIN_SPACING;
 
 		show_all();
 
 		icons.button_release_event.connect(buttonReleaseEvent);
 		icons.button_press_event.connect(buttonReleaseEvent);
 		icons.item_activated.connect(itemActivated);
+
+		// hide floating window when switching to another view
+		lw.viewSelector.mode_changed.connect ( () => {
+			album_list_view.hide ();
+		});
 
 		// for smart spacing stuff
 		int MIN_N_ITEMS = 2; // we will allocate horizontal space for at least two items
@@ -146,10 +152,61 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		parent_view_wrapper.size_allocate.connect (on_resize);
 	}
 
+
 	// Smart Spacing !
+
+/*
+ * This is the ideal implementation of the smart spacing mechanism. Currently
+ * it's being stopped by a bug in GTK+ 3 that inserts the row-spacing and column-spacing
+ * properties after the last row and column respectively, instead of just in-between
+ * them. This causes the album view to have 'margin + column-spacing' on the right
+ * and 'margin + row-spacing' on the bottom, when it should be margin and margin.
+ *
+ * /!\ Still present in GTK+ 3.4.1 -- Apr. 21, 2012
+ */
+#if GTK_ICON_VIEW_BUG_IS_FIXED
 	private void on_resize (Allocation alloc) {
-		if (!visible)
+
+		if (!visible) {
 			return;
+		}
+
+		int n_columns = 1;
+		int new_spacing = 0;
+
+		int TOTAL_WIDTH = alloc.width;
+		int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;
+
+		// Calculate the number of columns
+		n_columns = (TOTAL_WIDTH - MIN_SPACING) / (TOTAL_ITEM_WIDTH + MIN_SPACING);
+
+		// We don't want to adjust the spacing if the row is not full
+		if (media.size < n_columns || n_columns < 1) {
+			return;
+		}
+
+		new_spacing = (TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (n_columns + 1);
+		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+
+		icons.set_columns (n_columns);
+
+		icons.set_margin (new_spacing);
+		icons.set_column_spacing (new_spacing);
+		icons.set_row_spacing (new_spacing);
+
+		set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
+	}
+#else
+	/* Use workarounds */
+	Mutex setting_size = new Mutex ();
+	private void on_resize (Allocation alloc) {
+		setting_size.lock ();
+
+		if (!visible) {
+			setting_size.unlock ();
+			return;
+		}
+
 
 		int n_columns = 1;
 		int new_spacing = 0;
@@ -162,8 +219,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		// We don't want to adjust the spacing if the row is not full
 		// This also means that the layout won't change while searching
-		if (medias.size < n_columns)
+		if (media.size < n_columns || n_columns < 1) {
+			setting_size.unlock ();
 			return;
+		}
 
 		new_spacing = (TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (n_columns + 1);
 
@@ -173,43 +232,45 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.set_columns (n_columns);
 		icons.set_column_spacing (new_spacing);
 		icons.set_row_spacing (new_spacing);
+
+		setting_size.unlock ();
 	}
+#endif
 
 	public ViewWrapper.Hint get_hint() {
 		return parent_view_wrapper.hint;
 	}
 
-	public void set_show_next(Collection<int> medias) {
-		_show_next = medias;
+	public void set_show_next(Collection<int> media) {
+		_show_next = media;
 	}
 
 	public int get_relative_id() {
 		return 0;
 	}
 
-	public Collection<int> get_medias() {
-		return medias.keys;
+	public Collection<int> get_media () {
+		return media.keys;
 	}
 
-	public Collection<int> get_showing_medias() {
-		return _showing_medias.keys;
+	public Collection<int> get_showing_media() {
+		return _showing_media.keys;
 	}
 
-	public void append_media(Collection<int> new_medias) {
+	public void append_media(Collection<int> new_media) {
 		var to_append = new LinkedList<Media>();
 
-		foreach(int i in new_medias) {
+		foreach(int i in new_media) {
 			Media s = lm.media_from_id(i);
-
 			if (s == null)
 				continue;
+			
+			string key = get_key (s);
 
-			string key = s.album_artist + s.album;
-
-			if(medias.get(key) == null)
-				medias.set(key, new LinkedList<int>());
-			if(_showing_medias.get(key) == null) {
-				_showing_medias.set(key, new LinkedList<int>());
+			if(media.get(key) == null)
+				media.set(key, new LinkedList<int>());
+			if(_showing_media.get(key) == null) {
+				_showing_media.set(key, new LinkedList<int>());
 
 				Media alb = new Media("");
 				alb.album_artist = s.album_artist;
@@ -217,8 +278,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				to_append.add(alb);
 			}
 
-			_showing_medias.get(key).add(i);
-			medias.get(key).add(i);
+			_showing_media.get(key).add(i);
+			media.get(key).add(i);
 		}
 
 		model.appendMedias(to_append, true);
@@ -227,36 +288,34 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 
 	public void remove_media(Collection<int> to_remove) {
-		var medias_remove = new LinkedList<Media>();
+		var media_remove = new LinkedList<Media>();
 
 		foreach(int i in to_remove) {
 			Media s = lm.media_from_id(i);
-			if(s == null)
+			if (s == null)
 				continue;
+			
+			string key = get_key (s);
 
-			string key = s.album_artist + s.album;
-			if(key == null)
-				continue;
-
-			if(medias.get(key) != null) {
-				medias.get(key).remove(i);
-				if(medias.get(key).size == 0)
-					medias.unset(key);
+			if(media.get(key) != null) {
+				media.get(key).remove(i);
+				if(media.get(key).size == 0)
+					media.unset(key);
 			}
-			if(_showing_medias.get(key) != null) {
-				_showing_medias.get(key).remove(i);
-				if(_showing_medias.get(key).size == 0) {
-					medias.unset(key);
+			if(_showing_media.get(key) != null) {
+				_showing_media.get(key).remove(i);
+				if(_showing_media.get(key).size == 0) {
+					media.unset(key);
 
 					Media alb = new Media("");
 					alb.album_artist = s.album_artist;
 					alb.album = s.album;
-					medias_remove.add(alb);
+					media_remove.add(alb);
 				}
 			}
 		}
 
-		model.removeMedias(medias_remove, true);
+		model.removeMedias(media_remove, true);
 		queue_draw();
 	}
 
@@ -264,16 +323,19 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.freeze_child_notify();
 		icons.set_model(null);
 
-		_showing_medias.clear();
+		_showing_media.clear();
 		var to_append = new LinkedList<Media>();
 		foreach(int i in _show_next) {
 			Media s = lm.media_from_id(i);
-			string key = s.album_artist + s.album;
+			if (s == null)
+				continue;
+			
+			string key = get_key (s);
 
-			if(medias.get(key) == null)
-				medias.set(key, new LinkedList<int>());
-			if(_showing_medias.get(key) == null) {
-				_showing_medias.set(key, new LinkedList<int>());
+			if(media.get(key) == null)
+				media.set(key, new LinkedList<int>());
+			if(_showing_media.get(key) == null) {
+				_showing_media.set(key, new LinkedList<int>());
 
 				Media alb = new Media("");
 				alb.album_artist = s.album_artist;
@@ -281,8 +343,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				to_append.add(alb);
 			}
 
-			_showing_medias.get(key).add(i);
-			medias.get(key).add(i);
+			_showing_media.get(key).add(i);
+			media.get(key).add(i);
 		}
 
 		model = new AlbumViewModel(lm, defaultPix);
@@ -293,9 +355,14 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		if(visible && lm.media_info.media != null)
 			scrollToCurrent();
-
-		needsUpdate = false;
 	}
+
+	private string get_key (Media m) {
+		if (m == null)
+			return "";
+		return m.album_artist + m.album;
+	}
+
 
 	public static int mediaCompareFunc(Media a, Media b) {
 		if(a.album_artist.down() == b.album_artist.down())
