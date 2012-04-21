@@ -31,6 +31,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	public signal void itemClicked(string artist, string album);
 
+	private const int MEDIA_SET_VAL = 1;
+
 	// The window used to present album contents
 	public AlbumListView album_list_view { get; private set; }
 
@@ -50,7 +52,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	private LibraryWindow lw;
 
 	private Collection<int> _show_next; // these are populated if necessary when user opens this view.
-	private HashMap<string, int> media;
 	private HashMap<string, int> _showing_media;
 
 	private AlbumViewModel model;
@@ -70,8 +71,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		album_list_view = new AlbumListView(this);
 
 		_show_next = new LinkedList<int>();
-
-		media = new HashMap<string, int>();
 		_showing_media = new HashMap<string, int>();
 
 		defaultPix = Icons.DEFAULT_ALBUM_ART_PIXBUF;
@@ -159,7 +158,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
  * it's being stopped by a bug in GTK+ 3 that inserts the row-spacing and column-spacing
  * properties after the last row and column respectively, instead of just in-between
  * them. This causes the album view to have 'margin + column-spacing' on the right
- * and 'margin + row-spacing' on the bottom, when it should be margin and margin.
+ * and 'margin + row-spacing' on the bottom, when they should be 'margin' and 'margin'.
  *
  * /!\ Still present in GTK+ 3.4.1 -- Apr. 21, 2012
  */
@@ -180,7 +179,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		n_columns = (TOTAL_WIDTH - MIN_SPACING) / (TOTAL_ITEM_WIDTH + MIN_SPACING);
 
 		// We don't want to adjust the spacing if the row is not full
-		if (media.size < n_columns || n_columns < 1) {
+		if (_showing_media.size < n_columns || n_columns < 1) {
 			return;
 		}
 
@@ -218,7 +217,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		// We don't want to adjust the spacing if the row is not full
 		// This also means that the layout won't change while searching
-		if (media.size < n_columns || n_columns < 1) {
+		if (_showing_media.size < n_columns || n_columns < 1) {
 			setting_size.unlock ();
 			return;
 		}
@@ -248,11 +247,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return 0;
 	}
 
-	public Collection<int> get_media () {
-		return media.keys;
-	}
-
-	public Collection<int> get_showing_media() {
+	public Collection<int> get_showing_media_ids () {
 		return _showing_media.keys;
 	}
 
@@ -266,10 +261,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			
 			string key = get_key (s);
 
-			if(media.get(key) == 0)
-				media.set(key, 1);
-			if(_showing_media.get(key) == 0) {
-				_showing_media.set(key, 1);
+			if(!_showing_media.has_key(key)) {
+				_showing_media.set(key, MEDIA_SET_VAL);
 
 				Media alb = new Media("");
 				alb.album_artist = s.album_artist;
@@ -293,20 +286,14 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			
 			string key = get_key (s);
 
-			if(media.get(key) != 0) {
-				media.unset(key);
-			}
-			if(_showing_media.get(key) != 0) {
-				//_showing_media.get(key).remove(i);
+			if(_showing_media.has_key (key)) {
 				_showing_media.unset (key);
-				//if(_showing_media.get(key).size == 0) {
-					media.unset(key);
 
-					Media alb = new Media("");
-					alb.album_artist = s.album_artist;
-					alb.album = s.album;
-					media_remove.add(alb);
-				//}
+				Media alb = new Media("");
+				alb.album_artist = s.album_artist;
+				alb.album = s.album;
+
+				media_remove.add(alb);
 			}
 		}
 
@@ -327,19 +314,14 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			
 			string key = get_key (s);
 
-			if(media.get(key) == 0)
-				media.set(key, 1);
-			if(_showing_media.get(key) == 0) {
-				_showing_media.set(key, 1);
+			if(!_showing_media.has_key (key)) {
+				_showing_media.set(key, MEDIA_SET_VAL);
 
 				Media alb = new Media("");
 				alb.album_artist = s.album_artist;
 				alb.album = s.album;
 				to_append.add(alb);
 			}
-
-			//_showing_media.get(key).add(i);
-			//media.get(key).add(i);
 		}
 
 		model = new AlbumViewModel(lm, defaultPix);
@@ -414,7 +396,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 
 	public void scrollToCurrent() {
-		if(!visible || lm.media_info.media == null)
+		if(!visible || lm.media_info == null || lm.media_info.media == null)
 			return;
 
 		debug ("scrolling to current\n");
