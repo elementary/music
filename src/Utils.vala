@@ -81,8 +81,9 @@ namespace Utils {
 
 
     /**
-     * Search function
+     * Search functions
      */
+
     public void search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
                                        out Gee.LinkedList<BeatBox.Media> results,
                                        BeatBox.ViewWrapper.Hint hint,
@@ -97,52 +98,27 @@ namespace Utils {
         results = new Gee.LinkedList<BeatBox.Media>();
 
         string l_search = search.down();
-        int mediatype = 0;
-
-        bool include_temps = hint == BeatBox.ViewWrapper.Hint.CDROM ||
-                             hint == BeatBox.ViewWrapper.Hint.DEVICE_AUDIO || 
-                             hint == BeatBox.ViewWrapper.Hint.DEVICE_PODCAST ||
-                             hint == BeatBox.ViewWrapper.Hint.DEVICE_AUDIOBOOK ||
-                             hint == BeatBox.ViewWrapper.Hint.QUEUE ||
-                             hint == BeatBox.ViewWrapper.Hint.HISTORY ||
-                             hint == BeatBox.ViewWrapper.Hint.ALBUM_LIST;
-
-        if(hint == BeatBox.ViewWrapper.Hint.PODCAST || hint == BeatBox.ViewWrapper.Hint.DEVICE_PODCAST) {
-            mediatype = 1;
-        }
-        else if(hint == BeatBox.ViewWrapper.Hint.AUDIOBOOK || hint == BeatBox.ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
-            mediatype = 2;
-        }
-        else if(hint == BeatBox.ViewWrapper.Hint.STATION) {
-            mediatype = 3;
-        }
-        else if(hint == BeatBox.ViewWrapper.Hint.QUEUE || hint == BeatBox.ViewWrapper.Hint.HISTORY ||
-                 hint == BeatBox.ViewWrapper.Hint.PLAYLIST || hint == BeatBox.ViewWrapper.Hint.SMART_PLAYLIST ||
-                 hint == BeatBox.ViewWrapper.Hint.ALBUM_LIST)
-        {
-            mediatype = -1; // some lists should be able to have ALL media types
-        }
         
+        bool valid_media = false;
         foreach(var media in to_search) {
-            bool valid_song =   media != null &&
-                              ( media.mediatype == mediatype || mediatype == -1 ) &&
-                              ( !media.isTemporary || include_temps ) &&
-                              ( l_search in media.title.down() ||
-                                l_search in media.album_artist.down() ||
-                                l_search in media.artist.down() ||
-                                l_search in media.album.down() ||
-                                l_search in media.genre.down() ||
-                                l_search == media.year.to_string()); // We want full match here
+            valid_media =   media != null &&
+                          ( l_search == "" ||
+                            l_search in media.title.down() ||
+                            l_search in media.album_artist.down() ||
+                            l_search in media.artist.down() ||
+                            l_search in media.album.down() ||
+                            l_search in media.genre.down() ||
+                            l_search == media.year.to_string()); // We want full match here
 
-            if (valid_song)
+            if (valid_media)
             {
                 if (rating == -1 || media.rating == rating)
                 {
                     if (year == -1 || media.year == year)
                     {
-                        if (album_artist == "" || media.album_artist == album_artist)
+                        if (genre == "" || media.genre == genre)
                         {
-                            if (genre == "" || media.genre == genre)
+                            if (album_artist == "" || media.album_artist == album_artist)
                             {
                                 if (album == "" || media.album == album)
                                 {
@@ -150,6 +126,99 @@ namespace Utils {
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    public void search_in_media_ids (Gee.Collection<int> to_search_ids,
+                                       out Gee.LinkedList<int> results_ids,
+                                       string search = "", // Search string
+                                       string album_artist = "",
+                                       string album = "",
+                                       string genre = "",
+                                       int year = -1, // All years
+                                       int rating = -1 // All ratings
+                                       )
+    {
+        results_ids = new Gee.LinkedList<int>();
+
+        var library_manager = BeatBox.Beatbox._program.lm;
+        if (library_manager == null) {
+            critical ("Utils :: search_in_media_ids: Cannot search because LibraryManager is NULL");
+            return;
+        }
+
+        string l_search = search.down();
+        
+        bool valid_media = false;
+        foreach(int id in to_search_ids) {
+            var media = library_manager.media_from_id (id);
+            valid_media =   media != null &&
+                          ( l_search == "" ||
+                            l_search in media.title.down() ||
+                            l_search in media.album_artist.down() ||
+                            l_search in media.artist.down() ||
+                            l_search in media.album.down() ||
+                            l_search in media.genre.down() ||
+                            l_search == media.year.to_string()); // We want full match here
+
+            if (valid_media)
+            {
+                if (rating == -1 || media.rating == rating)
+                {
+                    if (year == -1 || media.year == year)
+                    {
+                        if (genre == "" || media.genre == genre)
+                        {
+                            if (album_artist == "" || media.album_artist == album_artist)
+                            {
+                                if (album == "" || media.album == album)
+                                {
+                                     results_ids.add (media.rowid);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+   /**
+    * These are optimized for certain kinds of searches
+    */
+
+   public void fast_album_search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
+                                                  out Gee.LinkedList<BeatBox.Media> results,
+                                                  string search = "", // Search string
+                                                  string album_artist = "",
+                                                  string album = ""
+                                                  )
+    {
+        results = new Gee.LinkedList<BeatBox.Media>();
+
+        string l_search = search.down();
+        
+        bool valid_media = false;
+        foreach(var media in to_search) {
+            valid_media = media != null &&
+                          ( l_search == "" ||
+                            l_search in media.title.down() ||
+                            l_search in media.album_artist.down() ||
+                            l_search in media.artist.down() ||
+                            l_search in media.album.down() ||
+                            l_search in media.genre.down() ||
+                            l_search == media.year.to_string()); // We want full match here
+
+            if (valid_media)
+            {
+                if (album_artist == "" || media.album_artist == album_artist)
+                {
+                    if (album == "" || media.album == album)
+                    {
+                         results.add (media);
                     }
                 }
             }

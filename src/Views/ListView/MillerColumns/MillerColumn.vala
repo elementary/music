@@ -426,8 +426,12 @@ public class BeatBox.MillerColumns : Box {
 	public void populate(Collection<int> media, string? search = null) {
 		this.medias = media;
 
-		lm.do_search (media, out _media_results, /*out _album_results*/ null, null, null, null,
-		              view_wrapper.hint, search ?? "");
+		// SLOW
+		//lm.do_search (media, out _media_results, /*out _album_results*/ null, null, null, null,
+		//              view_wrapper.hint, search ?? "");
+
+		// FASTER
+		Utils.search_in_media_ids (media, out _media_results, search ?? "");
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();

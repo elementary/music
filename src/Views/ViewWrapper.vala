@@ -617,7 +617,7 @@ public class BeatBox.ViewWrapper : Box {
 		// Perform search
 		LinkedList<int> search_results;
 
-		lm.do_search (get_media_ids (), out search_results, null, null, null, null, hint, get_search_string());
+		Utils.search_in_media_ids (get_media_ids (), out search_results, get_search_string());
 
 		foreach (int i in search_results)
 			showing_medias.set (i, 1);

@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012 Scott Ringwelski <sgringwe@mtu.edu>
  * Copyright (c) 2012 Noise Developers
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
@@ -86,9 +86,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		icons.set_columns(-1);
 
-		icons.set_pixbuf_column(0);
-		icons.set_markup_column(1);
-		icons.set_tooltip_column(3);
+		icons.set_pixbuf_column(model.PIXBUF_COLUMN);
+		icons.set_markup_column(model.MARKUP_COLUMN);
+		icons.set_tooltip_column(model.TOOLTIP_COLUMN);
 
 		icons.set_model (model);
 
@@ -271,7 +271,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			}
 		}
 
-		model.appendMedias(to_append, true);
+		model.append_media (to_append, true);
 		model.resort();
 		queue_draw();
 	}
@@ -297,7 +297,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			}
 		}
 
-		model.removeMedias(media_remove, true);
+		model.remove_media (media_remove, true);
 		queue_draw();
 	}
 
@@ -325,13 +325,18 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		}
 
 		model = new AlbumViewModel(lm, defaultPix);
-		model.appendMedias(to_append, false);
+		model.append_media (to_append, false);
 		model.set_sort_column_id(0, SortType.ASCENDING);
 		icons.set_model(model);
 		icons.thaw_child_notify();
 
+/* Not needed since it DOESN'T WORK when embeded inside a GtkViewport */
+#if GTK_ICON_VIEW_BUG_IS_FIXED
+
 		if(visible && lm.media_info.media != null)
 			scrollToCurrent();
+
+#endif
 	}
 
 	private string get_key (Media m) {
@@ -395,6 +400,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		album_list_view.move(x, y);
 	}
 
+/* Not needed since it DOESN'T WORK when embeded inside a GtkViewport */
+#if GTK_ICON_VIEW_BUG_IS_FIXED
 	public void scrollToCurrent() {
 		if(!visible || lm.media_info == null || lm.media_info.media == null)
 			return;
@@ -405,7 +412,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		model.iter_nth_child(out iter, null, 0);
 		while(model.iter_next(ref iter)) {
 			Value vs;
-			model.get_value(iter, 2, out vs);
+			model.get_value(iter, model.MEDIA_COLUMN, out vs);
 
 			if(icons is IconView && ((Media)vs).album == lm.media_info.media.album) {
 				icons.scroll_to_path(model.get_path(iter), false, 0.0f, 0.0f);
@@ -414,5 +421,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			}
 		}
 	}
+#endif
 }
 

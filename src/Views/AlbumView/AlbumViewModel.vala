@@ -43,6 +43,11 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	int stamp; // all iters must match this
 	Gdk.Pixbuf defaultImage;
 
+	public const int PIXBUF_COLUMN = 0;
+	public const int MARKUP_COLUMN = 1;
+	public const int TOOLTIP_COLUMN = 2;
+	public const int MEDIA_COLUMN = 3;
+
 	/* data storage variables */
 	Sequence<Media> rows;
 
@@ -78,12 +83,13 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Returns Type of column at index_ **/
 	public Type get_column_type (int col) {
-		if(col == 0)
-			return typeof(Gdk.Pixbuf);
-		else if (col == 1 || col == 3)
-			return typeof(string);
-		else
-			return typeof(Media);
+		if (col == PIXBUF_COLUMN)
+			return typeof (Gdk.Pixbuf);
+		if (col == MEDIA_COLUMN)
+			return typeof (BeatBox.Media);
+
+		// col is TOOLTIP_COLUMN or MARKUP_COLUMN ...
+		return typeof(string);
 	}
 
 	/** Returns a set of flags supported by this interface **/
@@ -111,7 +117,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Returns the number of columns supported by tree_model. **/
 	public int get_n_columns () {
-		return 4;
+		return 3;
 	}
 
 	/** Returns a newly-created Gtk.TreePath referenced by iter. **/
@@ -121,7 +127,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 	/** Initializes and sets value to that at column. **/
 	public void get_value (TreeIter iter, int column, out Value val) {
-		if(iter.stamp != this.stamp || column < 0 || column > 3) {
+		if(iter.stamp != this.stamp || column < 0 || column > get_n_columns ()) {
 			val = Value(get_column_type(column));
 			return;
 		}
@@ -134,7 +140,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 		if(!((SequenceIter<Media>)iter.user_data).is_end()) {
 			Media s = rows.get(((SequenceIter<Media>)iter.user_data));
 
-			if(column == 0) {
+			if(column == PIXBUF_COLUMN) {
 				var cover_art = lm.get_cover_album_art_from_key(s.album_artist, s.album);
 				if(cover_art != null) {
 					val = cover_art;
@@ -144,7 +150,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 				}
 
 			}
-			else if(column == 1) {
+			else if(column == MARKUP_COLUMN) {
 				string album, album_artist;
 				if(s.album.length > MAX_ALBUM_NAME_LENGTH)
 					album = s.album.substring(0, MAX_ALBUM_NAME_LENGTH - 3) + "...";
@@ -158,11 +164,11 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 
 				val = TEXT_MARKUP.printf(album.replace("&", "&amp;"), album_artist.replace("&", "&amp;"));
 			}
-			else if(column == 2) {
-				val = s;
-			}
-			else if(column == 3) {
+			else if(column == TOOLTIP_COLUMN) {
 				val = TOOLTIP_MARKUP.printf (s.album.replace("&", "&amp;"), s.album_artist.replace("&", "&amp;"));
+			}
+			else if (column == MEDIA_COLUMN) {
+				val = s;
 			}
 			else {
 				val = Value(get_column_type(column));
@@ -248,7 +254,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	}
 
 	/** convenience method to insert media into the model. No iters returned. **/
-	public void appendMedias(Collection<Media> albums, bool emit) {
+	public void append_media (Collection<Media> albums, bool emit) {
 		foreach(var album in albums) {
 			SequenceIter<Media> added = rows.append(album);
 
@@ -300,8 +306,6 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 			int col = args.arg();
 			if(col < 0 || col >= 1)
 				return;
-
-
 		}
 	}
 
@@ -314,7 +318,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 		row_deleted(path);
 	}
 
-	public void removeMedias(Collection<Media> rowids, bool emit) {
+	public void remove_media (Collection<Media> rowids, bool emit) {
 		removing_medias = true;
 		SequenceIter s_iter = rows.get_begin_iter();
 
