@@ -803,9 +803,11 @@ public class BeatBox.MusicTreeView : GenericList {
 		
 		// MUSIC view will automatically remove the songs, but we need to for playlist
 		// TODO: Or (better), add a signal to playlist for when songs are added/removed.
+		/*
 		if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
 			lm.playlist_from_id(relative_id).remove_media (toRemoveIDs);
 		}
+		*/
 	}
 
 	void importToLibraryClicked() {

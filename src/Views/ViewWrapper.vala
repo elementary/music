@@ -293,7 +293,7 @@ public class BeatBox.ViewWrapper : Box {
 			});
 		}
 
-		else if (hint != Hint.CDROM && hint != Hint.DEVICE_PODCAST && hint != Hint.DEVICE_AUDIO && hint != Hint.DEVICE_AUDIOBOOK) {
+		if (hint != Hint.CDROM && hint != Hint.DEVICE_PODCAST && hint != Hint.DEVICE_AUDIO && hint != Hint.DEVICE_AUDIOBOOK) {
 			lm.medias_updated.connect (update_media);
 			lm.medias_removed.connect (remove_media);
 
