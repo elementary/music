@@ -286,8 +286,6 @@ public class BeatBox.ViewWrapper : Box {
 
 
 		// Connect data signals
-		if (hint != Hint.SIMILAR && hint != Hint.CDROM)
-			lm.medias_updated.connect ((list) => { update_media (list); });		
 
 		if (hint == Hint.QUEUE) {
 			lm.media_queued.connect ( (media_ids) => {
@@ -295,18 +293,19 @@ public class BeatBox.ViewWrapper : Box {
 			});
 		}
 
-		else if (hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.AUDIOBOOK || hint == Hint.SMART_PLAYLIST || hint == Hint.PLAYLIST) {
+		else if (hint != Hint.CDROM && hint != Hint.DEVICE_PODCAST && hint != Hint.DEVICE_AUDIO && hint != Hint.DEVICE_AUDIOBOOK) {
+			lm.medias_updated.connect (update_media);
+			lm.medias_removed.connect (remove_media);
+
 			if (hint == Hint.PLAYLIST) {
 				// Listen for playlist additions/removals
 				lm.playlist_from_id (relative_id).changed.connect (playlist_changed);
 			}
-			else {
-				lm.medias_added.connect ((list) => { add_media (list); });
+			else if (hint != Hint.SIMILAR && hint != Hint.QUEUE) {
+				// if hint != Hint.SMART_PLAYLIST add_media() will re-analyze everything
+				lm.medias_added.connect (add_media);
 			}
-
-			lm.medias_removed.connect ((list) => { remove_media (list); });
 		}
-
 
 		lw.searchField.changed.connect (search_field_changed);
 		lw.viewSelector.mode_changed.connect (view_selector_changed);

@@ -59,7 +59,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 		
-		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/noise_database.db"));
+		db_file = GLib.File.new_for_path(GLib.Path.build_filename(beatbox_folder.get_path(), "/noise_database_beatbox_merges_branch.db"));
 		if(!db_file.query_exists())
 			need_create = true;
 		

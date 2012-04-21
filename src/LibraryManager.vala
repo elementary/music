@@ -1140,7 +1140,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_media_lock.unlock ();
 		
 		medias_removed(removedIds);
-		
+
 		if(_media.size == 0)
 			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 		
