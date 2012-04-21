@@ -50,8 +50,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	private LibraryWindow lw;
 
 	private Collection<int> _show_next; // these are populated if necessary when user opens this view.
-	private HashMap<string, LinkedList<int>> media;
-	private HashMap<string, LinkedList<int>> _showing_media;
+	private HashMap<string, int> media;
+	private HashMap<string, int> _showing_media;
 
 	private AlbumViewModel model;
 
@@ -71,8 +71,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		_show_next = new LinkedList<int>();
 
-		media = new HashMap<string, LinkedList<int>>();
-		_showing_media = new HashMap<string, LinkedList<int>>();
+		media = new HashMap<string, int>();
+		_showing_media = new HashMap<string, int>();
 
 		defaultPix = Icons.DEFAULT_ALBUM_ART_PIXBUF;
 
@@ -267,19 +267,16 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			
 			string key = get_key (s);
 
-			if(media.get(key) == null)
-				media.set(key, new LinkedList<int>());
-			if(_showing_media.get(key) == null) {
-				_showing_media.set(key, new LinkedList<int>());
+			if(media.get(key) == 0)
+				media.set(key, 1);
+			if(_showing_media.get(key) == 0) {
+				_showing_media.set(key, 1);
 
 				Media alb = new Media("");
 				alb.album_artist = s.album_artist;
 				alb.album = s.album;
-				to_append.add(alb);
+				to_append.add (alb);
 			}
-
-			_showing_media.get(key).add(i);
-			media.get(key).add(i);
 		}
 
 		model.appendMedias(to_append, true);
@@ -297,21 +294,20 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			
 			string key = get_key (s);
 
-			if(media.get(key) != null) {
-				media.get(key).remove(i);
-				if(media.get(key).size == 0)
-					media.unset(key);
+			if(media.get(key) != 0) {
+				media.unset(key);
 			}
-			if(_showing_media.get(key) != null) {
-				_showing_media.get(key).remove(i);
-				if(_showing_media.get(key).size == 0) {
+			if(_showing_media.get(key) != 0) {
+				//_showing_media.get(key).remove(i);
+				_showing_media.unset (key);
+				//if(_showing_media.get(key).size == 0) {
 					media.unset(key);
 
 					Media alb = new Media("");
 					alb.album_artist = s.album_artist;
 					alb.album = s.album;
 					media_remove.add(alb);
-				}
+				//}
 			}
 		}
 
@@ -332,10 +328,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			
 			string key = get_key (s);
 
-			if(media.get(key) == null)
-				media.set(key, new LinkedList<int>());
-			if(_showing_media.get(key) == null) {
-				_showing_media.set(key, new LinkedList<int>());
+			if(media.get(key) == 0)
+				media.set(key, 1);
+			if(_showing_media.get(key) == 0) {
+				_showing_media.set(key, 1);
 
 				Media alb = new Media("");
 				alb.album_artist = s.album_artist;
@@ -343,8 +339,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				to_append.add(alb);
 			}
 
-			_showing_media.get(key).add(i);
-			media.get(key).add(i);
+			//_showing_media.get(key).add(i);
+			//media.get(key).add(i);
 		}
 
 		model = new AlbumViewModel(lm, defaultPix);

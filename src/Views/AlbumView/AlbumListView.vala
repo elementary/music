@@ -214,8 +214,7 @@ public class BeatBox.AlbumListView : Window {
 			to_search.add (lm.media_from_id(id));
 		}
 
-		Utils.search_in_media_list (to_search, out media_list, view_wrapper.hint,
-		                            "", m.album_artist, m.album);
+		Utils.search_in_media_list (to_search, out media_list, view_wrapper.hint, "", m.album_artist, m.album);
 
 		var media_table = new HashTable<int, Media>(null, null);
 
