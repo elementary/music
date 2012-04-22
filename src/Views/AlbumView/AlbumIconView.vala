@@ -58,9 +58,15 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	private Gdk.Pixbuf defaultPix;
 
-	private const int ITEM_PADDING = 3;
+	private const int ITEM_PADDING = 0;
 	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
+
+#if GTK_ICON_VIEW_BUG_IS_FIXED
 	private const int MIN_SPACING = 12;
+#else
+	// it would be 12, but we can subtract 6 px since there's a lot of extra space in-between
+	private const int MIN_SPACING = 6;
+#endif
 
 	/* media should be mutable, as we will be sorting it */
 	public AlbumView(ViewWrapper view_wrapper) {
@@ -125,7 +131,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		icons.item_width = ITEM_WIDTH;
 		icons.item_padding = ITEM_PADDING;
-		icons.spacing = 2;
+		icons.spacing = 0;
 		icons.row_spacing = MIN_SPACING;
 		icons.column_spacing = MIN_SPACING;
 
@@ -330,13 +336,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.set_model(model);
 		icons.thaw_child_notify();
 
-/* Not needed since it DOESN'T WORK when embeded inside a GtkViewport */
-#if GTK_ICON_VIEW_BUG_IS_FIXED
-
 		if(visible && lm.media_info.media != null)
 			scrollToCurrent();
-
-#endif
 	}
 
 	private string get_key (Media m) {
@@ -400,8 +401,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		album_list_view.move(x, y);
 	}
 
-/* Not needed since it DOESN'T WORK when embeded inside a GtkViewport */
-#if GTK_ICON_VIEW_BUG_IS_FIXED
 	public void scrollToCurrent() {
 		if(!visible || lm.media_info == null || lm.media_info.media == null)
 			return;
@@ -421,6 +420,5 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			}
 		}
 	}
-#endif
 }
 
