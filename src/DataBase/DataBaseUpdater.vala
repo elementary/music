@@ -31,14 +31,19 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	
 	LinkedList<Media> media_updates;
 	
+	Mutex update_mutex;
+	Mutex remove_mutex;
+	
 	LinkedList<GLib.Object> toUpdate; // a queue of things to update
 	LinkedList<GLib.Object> toRemove;
 	bool inThread;
-	bool do_periodic_save;
 	
 	public DataBaseUpdater(LibraryManager lm, BeatBox.DataBaseManager databm) {
 		this.lm = lm;
 		dbm = databm;
+		
+		update_mutex = new Mutex();
+		remove_mutex = new Mutex();
 		
 		media_updates = new LinkedList<Media>();
 		toUpdate = new LinkedList<GLib.Object>();
@@ -51,7 +56,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	}
 	
 	bool periodic_save() {
-		do_periodic_save = true;
+		save_others();
 		
 		return true;
 	}
@@ -72,8 +77,10 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	}
 	
 	public void update_media(Media s) {
+		update_mutex.lock();
 		if(!(media_updates.contains(s)))
 			media_updates.offer(s);
+		update_mutex.unlock();
 		
 		if(!inThread) {
 			try {
@@ -87,8 +94,10 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	}
 	
 	public void removeItem(GLib.Object item) {
+		remove_mutex.lock();
 		if(!(toRemove.contains(item)))
 			toRemove.offer(item);
+		remove_mutex.unlock();
 		
 		if(!inThread) {
 			try {
@@ -104,6 +113,9 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	public void* update_db_thread_function () {
 		while(true) {
 			GLib.Object next;
+			
+			update_mutex.lock();
+			remove_mutex.lock();
 			if(media_updates.size > 0) {
 				dbm.update_medias(media_updates);
 				media_updates.clear();
@@ -117,7 +129,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 				}
 			}
 			else if((next = toRemove.poll()) != null) {
-				if(next is LinkedList<string>) {
+				if(next is LinkedList) {
 					dbm.remove_medias((LinkedList<string>)next);
 				}
 				else if(next is Playlist) {
@@ -127,14 +139,15 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 					dbm.remove_smart_playlist((SmartPlaylist)next);
 				}
 			}
-			else if(do_periodic_save) {
-				do_periodic_save = false;
-				save_others();
-			}
 			else {
 				inThread = false;
+				update_mutex.unlock();
+				remove_mutex.unlock();
 				return null;
 			}
+			
+			update_mutex.unlock();
+			remove_mutex.unlock();
 		}
 
 	}
@@ -152,8 +165,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		
 		Playlist p_queue = new Playlist();
 		p_queue.name = "autosaved_queue";
-		p_queue.addMedia(lm.queue());
-
+		p_queue.add_media(lm.queue());
 		p_queue.tvs = lm.queue_setup;
 		
 		Playlist p_history = new Playlist();
@@ -169,13 +181,10 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		p_music.tvs = lm.music_setup;
 
 #if HAVE_PODCASTS
-		/* FIXME: need to reimplement this */
-		/*Playlist p_podcast = new Playlist();
+		Playlist p_podcast = new Playlist();
 		p_podcast.name = "autosaved_podcast";
-		p_podcast.tvs = lm.podcast_setup;*/
+		p_podcast.tvs = lm.podcast_setup;
 #endif
-
-		print("SETUP\n\n\n");
 
 #if HAVE_INTERNET_RADIO
 		Playlist p_station = new Playlist();
@@ -187,17 +196,20 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		playlists_and_queue.add(p_history);
 		playlists_and_queue.add(p_similar);
 		playlists_and_queue.add(p_music);
-		//playlists_and_queue.add(p_podcast);
-
+#if HAVE_PODCASTS
+		playlists_and_queue.add(p_podcast);
+#endif
 #if HAVE_INTERNET_RADIO
 		playlists_and_queue.add(p_station);
 #endif
 		
+		debug("Doing periodic save\n");
+		
 		dbm.save_playlists(playlists_and_queue);
 		dbm.save_smart_playlists(lm.smart_playlists());
-		dbm.save_artists(lm.artists());
-		dbm.save_albums(lm.albums());
-		dbm.save_tracks(lm.tracks());
-		dbm.save_devices(lm.device_preferences());
+		dbm.save_artists(lm.lfm.artists());
+		dbm.save_albums(lm.lfm.albums());
+		dbm.save_tracks(lm.lfm.tracks());
+		dbm.save_devices(lm.device_manager.device_preferences());
 	}
 }

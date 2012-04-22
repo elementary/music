@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.PodcastListView : BaseListView {
+public class BeatBox.PodcastListView : GenericView {
     
     
 	public TreeViewSetup podcast_setup { set; get; }
@@ -34,6 +34,7 @@ public class BeatBox.PodcastListView : BaseListView {
 	CheckMenuItem columnName; // name
 	CheckMenuItem columnLength;
 	CheckMenuItem columnArtist;
+	CheckMenuItem columnPodcast;
 	CheckMenuItem columnDate;
 	CheckMenuItem columnRating;
 	CheckMenuItem columnComments;
@@ -46,8 +47,7 @@ public class BeatBox.PodcastListView : BaseListView {
 	Gtk.MenuItem mediaMenuQueue;
 	Gtk.MenuItem mediaMenuNewPlaylist;
 	Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
-	//MenuItem mediaRateMedia;
-	//Menu mediaRateMediaMenu;
+	RatingWidgetMenu mediaRateMedia;
 	Gtk.MenuItem mediaRemove;
 	Gtk.MenuItem mediaSaveLocally;
 	Gtk.MenuItem importToLibrary;
@@ -57,34 +57,54 @@ public class BeatBox.PodcastListView : BaseListView {
 	CellRendererText cellTitle;
 	CellRendererText cellLength;
 	CellRendererText cellArtist;
-	CellRendererText cellAlbum;
+	SmartAlbumRenderer cellAlbum;
 	CellRendererText cellGenre;
 	CellRendererText cellYear;
 	CellRendererPixbuf cellRating;
 	CellRendererText cellSkips;
 	CellRendererText cellPlays;
-	CellRendererText cellBitrate;
+	
+	public enum PodcastColumn {
+		ROWID,
+		ICON,
+		EPISODE,
+		NAME,
+		LENGTH,
+		ARTIST,
+		PODCAST,
+		DATE,
+		CATEGORY,
+		COMMENT,
+		RATING,
+		PULSER
+	}
 
 
-	public PodcastListView(ViewWrapper view_wrapper) {
+	public PodcastListView(LibraryManager lm, TreeViewSetup tvs, int rel_id) {
+		var types = new GLib.List<Type>();
+		types.append(typeof(int)); // id
+		types.append(typeof(GLib.Icon)); // icon
+		types.append(typeof(int)); // episode (track)
+		types.append(typeof(string)); // name (title)
+		types.append(typeof(int)); // length
+		types.append(typeof(string)); // artist
+		types.append(typeof(string)); // album
+		types.append(typeof(int)); // date
+		types.append(typeof(string)); // category (genre)
+		types.append(typeof(string)); // comment
+		types.append(typeof(int)); // rating
+		types.append(typeof(int)); // pulser
+		base(lm, types, tvs, rel_id);
 		
-		base (view_wrapper);
-		
-		podcast_setup = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.PODCAST);
-
-		last_search = "";
-		timeout_search = new LinkedList<string>();
-		showing_all = true;
-		removing_medias = false;
-
-		sort_column = podcast_setup.sort_column;
-		sort_direction = podcast_setup.sort_direction;
-		hint = ViewWrapper.Hint.PODCAST;
+		//last_search = "";
+		//timeout_search = new LinkedList<string>();
+		//showing_all = true;
+		//removing_medias = false;
 
 		buildUI();
 	}
 
-	protected override void updateSensitivities() {
+	public override void update_sensitivities() {
 		mediaMenuActionMenu.show_all();
 
 		if(get_hint() == ViewWrapper.Hint.PODCAST) {
@@ -105,20 +125,17 @@ public class BeatBox.PodcastListView : BaseListView {
 		}
 	}
 
-    public override void buildUI() {
-		view = new TreeView();
-
+    public void buildUI() {
 		cellTrack = new CellRendererText();
 		cellTitle = new CellRendererText();
 		cellLength = new CellRendererText();
 		cellArtist = new CellRendererText();
-		cellAlbum = new CellRendererText();
+		cellAlbum = new SmartAlbumRenderer();
 		cellGenre = new CellRendererText();
 		cellYear = new CellRendererText();
 		cellRating = new CellRendererPixbuf();
 		cellSkips = new CellRendererText();
 		cellPlays = new CellRendererText();
-		cellBitrate = new CellRendererText();
 
 		cellRating.xalign = 0.0f;
 
@@ -130,70 +147,54 @@ public class BeatBox.PodcastListView : BaseListView {
 		 * #, track, title, artist, album, genre, comment, year, rating, (9)
 		 * bitrate, play count, last played, date added, file name, (5)
 		 * bpm, length, file size, (3) */
-		LinkedList<TreeViewColumn> to_use = new LinkedList<TreeViewColumn>();
-		LinkedList<TreeViewColumn> originalOrder = new LinkedList<TreeViewColumn>();
-		LinkedList<string> correctStringOrder = new LinkedList<string>();
-
-		/*if(get_hint() == ViewWrapper.Hint.MUSIC)
-			to_use = lm.music_setup.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.SIMILAR)
-			to_use = lm.similar_setup.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.QUEUE)
-			to_use = lm.queue_setup.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.HISTORY)
-			to_use = lm.history_setup.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.PLAYLIST)
-			to_use = lm.playlist_from_id(relative_id).tvs.get_columns();
-		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST)
-			to_use = lm.smart_playlist_from_id(relative_id).tvs.get_columns();*/
-		if(get_hint() == ViewWrapper.Hint.PODCAST) {
-			to_use = podcast_setup.get_columns();
-		}
-		else if(get_hint() == ViewWrapper.Hint.DEVICE_PODCAST) {
-			to_use = new TreeViewSetup("Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST).get_columns();
-		}
+		var to_use = new GLib.List<TreeViewColumn>();
+		var originalOrder = new GLib.List<TreeViewColumn>();
+		var correctStringOrder = new GLib.List<string>();
+		to_use = tvs.get_columns();
 
 		/* put them in the order for treemodel */
 		foreach(var tvc in to_use) {
-			originalOrder.add(tvc);
-			correctStringOrder.add(tvc.title);
+			originalOrder.append(tvc);
+			correctStringOrder.append(tvc.title);
 		}
 
 		int index = 0;
 		foreach(TreeViewColumn tvc in originalOrder) {
 			if(!(tvc.title == " " || tvc.title == "id")) {
 				if(tvc.title == "Length")
-					view.insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.lengthTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.lengthTreeViewFiller);
 				else if(tvc.title == "Rating")
-					view.insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
 				else if(tvc.title == "Date")
-					view.insert_column_with_data_func(-1, tvc.title, cellYear, cellHelper.dateTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, cellYear, cellHelper.dateTreeViewFiller);
 				else if(tvc.title == "Episode")
-					view.insert_column_with_data_func(-1, tvc.title, cellTrack, cellHelper.intelligentTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, cellTrack, cellHelper.intelligentTreeViewFiller);
 				else if(tvc.title == "Name")
-					view.insert_column_with_data_func(-1, tvc.title, cellTitle, cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, cellTitle, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Artist")
-					view.insert_column_with_data_func(-1, tvc.title, cellArtist, cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, cellArtist, cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Comment")
-					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Category")
-					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+				else if(tvc.title == "Podcast")
+					insert_column_with_data_func(-1, tvc.title, cellAlbum, cellHelper.smartAlbumFiller);
 				else {
-					view.insert_column(tvc, index);
+					insert_column(tvc, index);
 				}
 
 
-				view.get_column(index).resizable = true;
-				view.get_column(index).reorderable = false;
-				view.get_column(index).clickable = true;
-				view.get_column(index).sort_column_id = index;
-				view.get_column(index).set_sort_indicator(false);
-				view.get_column(index).visible = tvc.visible;
-				view.get_column(index).sizing = Gtk.TreeViewColumnSizing.FIXED;
-				view.get_column(index).fixed_width = tvc.fixed_width;
+				get_column(index).resizable = true;
+				get_column(index).reorderable = false;
+				get_column(index).clickable = true;
+				get_column(index).sort_column_id = index;
+				get_column(index).set_sort_indicator(false);
+				get_column(index).visible = tvc.visible;
+				get_column(index).sizing = Gtk.TreeViewColumnSizing.FIXED;
+				get_column(index).fixed_width = tvc.fixed_width;
 			}
 			else if(tvc.title == " ") {
-				view.insert_column(tvc, index);
+				insert_column(tvc, index);
 
 				tvc.fixed_width = 24;
 				tvc.clickable = false;
@@ -208,36 +209,30 @@ public class BeatBox.PodcastListView : BaseListView {
 				tvc.set_cell_data_func(tvc.get_cells().nth_data(1), iconDataFunc);
 			}
 			else if(tvc.title == "id") {
-				view.insert_column(tvc, index);
+				insert_column(tvc, index);
 			}
 			else {
-				view.insert_column(tvc, index);
+				insert_column(tvc, index);
 			}
 
-			view.get_column(index).get_button().button_press_event.connect(viewHeaderClick);
-			view.get_column(index).notify["width"].connect(viewHeadersResized);
+			get_column(index).get_button().button_press_event.connect(viewHeaderClick);
+			get_column(index).notify["width"].connect(viewHeadersResized);
 
 			++index;
 		}
-
+		
+		set_compare_func(view_compare_func);
+        set_search_func(view_search_func);
+        set_value_func(view_value_func);
+		
 		//rearrangeColumns(correctStringOrder);
-		viewColumnsChanged();
+		//viewColumnsChanged();
 
-		list_model = new PodcastTreeModel(this, get_column_strings(), view);
+		button_press_event.connect(viewClick);
 
-		base.buildUI ();
-		view.button_press_event.connect(viewClick);
-
-		//view.cursor_changed.connect_after(() => { update_rating_menu(); });
-		view.button_release_event.connect(viewClickRelease);
-		view.columns_changed.connect(viewColumnsChanged);
-
-		// allow selecting multiple rows
-		view.get_selection().set_mode(SelectionMode.MULTIPLE);
-
-		// drag source
-		drag_source_set(view, Gdk.ModifierType.BUTTON1_MASK, {}, Gdk.DragAction.COPY);
-		Gtk.drag_source_add_uri_targets(view);
+		//cursor_changed.connect_after(() => { update_rating_menu(); });
+		button_release_event.connect(viewClickRelease);
+		//columns_changed.connect(viewColumnsChanged);
 
 		// column chooser menu
 		columnChooserMenu = new Gtk.Menu();
@@ -245,6 +240,7 @@ public class BeatBox.PodcastListView : BaseListView {
 		columnName = new CheckMenuItem.with_label("Name");
 		columnLength = new CheckMenuItem.with_label("Length");
 		columnArtist = new CheckMenuItem.with_label("Artist");
+		columnPodcast = new CheckMenuItem.with_label("Podcast");
 		columnDate = new CheckMenuItem.with_label("Date");
 		columnRating = new CheckMenuItem.with_label("Rating");
 		columnComments = new CheckMenuItem.with_label("Comment");
@@ -254,6 +250,7 @@ public class BeatBox.PodcastListView : BaseListView {
 		columnChooserMenu.append(columnName);
 		columnChooserMenu.append(columnLength);
 		columnChooserMenu.append(columnArtist);
+		columnChooserMenu.append(columnPodcast);
 		columnChooserMenu.append(columnDate);
 		columnChooserMenu.append(columnCategory);
 		columnChooserMenu.append(columnComments);
@@ -262,6 +259,7 @@ public class BeatBox.PodcastListView : BaseListView {
 		columnName.toggled.connect(columnMenuToggled);
 		columnLength.toggled.connect(columnMenuToggled);
 		columnArtist.toggled.connect(columnMenuToggled);
+		columnPodcast.toggled.connect(columnMenuToggled);
 		columnDate.toggled.connect(columnMenuToggled);
 		columnComments.toggled.connect(columnMenuToggled);
 		columnCategory.toggled.connect(columnMenuToggled);
@@ -279,14 +277,12 @@ public class BeatBox.PodcastListView : BaseListView {
 		mediaRemove = new Gtk.MenuItem.with_label("Remove Episode");
 		mediaSaveLocally = new Gtk.MenuItem.with_label("Download");
 		importToLibrary = new Gtk.MenuItem.with_label("Import to Library");
-		//mediaRateMediaMenu = new Gtk.Menu();
-		//mediaRateMedia = new Gtk.MenuItem.with_label("Rate Media");
-		rating_item = new RatingWidgetMenu();
+		mediaRateMedia = new RatingWidgetMenu();
 		mediaMenuActionMenu.append(mediaEditMedia);
 		mediaMenuActionMenu.append(mediaFileBrowse);
 		mediaMenuActionMenu.append(mediaSaveLocally);
 
-		mediaMenuActionMenu.append(rating_item);
+		mediaMenuActionMenu.append(mediaRateMedia);
 
 		mediaMenuActionMenu.append(new SeparatorMenuItem());
 		mediaMenuActionMenu.append(mediaMenuQueue);
@@ -301,65 +297,26 @@ public class BeatBox.PodcastListView : BaseListView {
 		mediaMenuQueue.activate.connect(mediaMenuQueueClicked);
 		mediaMenuNewPlaylist.activate.connect(mediaMenuNewPlaylistClicked);
 		mediaRemove.activate.connect(mediaRemoveClicked);
-		rating_item.activate.connect(mediaRateMediaClicked);
 		importToLibrary.activate.connect(importToLibraryClicked);
+		mediaRateMedia.activate.connect(mediaRateMediaClicked);
 		//mediaMenuActionMenu.show_all();
 
-		updateSensitivities();
+		update_sensitivities();
 
-		this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-
-		this.add(view);
-
-		this.list_model.rows_reordered.connect(modelRowsReordered);
-		this.list_model.sort_column_changed.connect(sortColumnChanged);
-		this.view.drag_begin.connect(onDragBegin);
-		this.view.drag_data_get.connect(onDragDataGet);
-		this.view.drag_end.connect(onDragEnd);
-		this.vadjustment.value_changed.connect(viewScroll);
+		//this.list_model.rows_reordered.connect(modelRowsReordered);
+		//this.list_model.sort_column_changed.connect(sortColumnChanged);
 	}
-
-	public void iconDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
-		Value? id;
-		bool showIndicator = false;
-		model.get_value(iter, 0, out id);
-
-		Media s = lm.media_from_id(id.get_int());
-		if(s == null)
-			return;
-		else
-			showIndicator = s.showIndicator;
-
-		if(renderer is CellRendererPixbuf) {
-			Value? icon;
-			model.get_value (iter, 1, out icon);
-
-			/* Themed icon */
-			(renderer as CellRendererPixbuf).follow_state = true;
-			(renderer as CellRendererPixbuf).gicon = icon as GLib.Icon;
-
-			renderer.visible = !showIndicator;
-			renderer.width = showIndicator ? 0 : 16;
-		}
-		if(renderer is CellRendererSpinner) {
-			if(showIndicator) {
-				((CellRendererSpinner)renderer).active = true;
-			}
-			renderer.visible = showIndicator;
-			renderer.width = showIndicator ? 16 : 0;
-		}
-	}
-
+	
 	public void rearrangeColumns(LinkedList<string> correctOrder) {
-		view.move_column_after(view.get_column(6), view.get_column(7));
-		//debug("correctOrder.length = %d, view.get_columns.length() = %d\n", correctOrder.size, (int)view.get_columns().length());
-		/* iterate through view.get_columns and if a column is not in the
+		move_column_after(get_column(6), get_column(7));
+		//debug("correctOrder.length = %d, get_columns.length() = %d\n", correctOrder.size, (int)get_columns().length());
+		/* iterate through get_columns and if a column is not in the
 		 * same location as correctOrder, move it there.
 		*/
-		for(int index = 0; index < view.get_columns().length(); ++index) {
-			//debug("on index %d column %s originally moving to %d\n", index, view.get_column(index).title, correctOrder.index_of(view.get_column(index).title));
-			if(view.get_column(index).title != correctOrder.get(index)) {
-				view.move_column_after(view.get_column(index), view.get_column(correctOrder.index_of(view.get_column(index).title)));
+		for(int index = 0; index < get_columns().length(); ++index) {
+			//debug("on index %d column %s originally moving to %d\n", index, get_column(index).title, correctOrder.index_of(get_column(index).title));
+			if(get_column(index).title != correctOrder.get(index)) {
+				move_column_after(get_column(index), get_column(correctOrder.index_of(get_column(index).title)));
 			}
 		}
 	}
@@ -392,47 +349,40 @@ public class BeatBox.PodcastListView : BaseListView {
 			}
 		}*/
 
-		if(is_current_view) {
-			set_as_current_list(0, false);
-		}
+		//if(is_current_view) {
+		//	set_as_current_list(0, false);
+		//}
 
 		if(!scrolled_recently) {
-			scrollToCurrent();
+			scroll_to_current_media();
 		}
 	}
 
 	public virtual void viewColumnsChanged() {
-		if((int)(view.get_columns().length()) != podcast_setup.PODCAST_COLUMN_COUNT) {
-			return;
-		}
-
-		_columns.clear();
-		foreach(TreeViewColumn tvc in view.get_columns()) {
-			_columns.add(tvc.title);
-		}
-
 		updateTreeViewSetup();
 	}
 
 	public void updateColumnVisibilities() {
 		int index = 0;
-		foreach(TreeViewColumn tvc in view.get_columns()) {
+		foreach(TreeViewColumn tvc in get_columns()) {
 			if(tvc.title == "Episode")
-				columnEpisode.active = view.get_column(index).visible;
+				columnEpisode.active = get_column(index).visible;
 			else if(tvc.title == "Name")
-				columnName.active = view.get_column(index).visible;
+				columnName.active = get_column(index).visible;
 			else if(tvc.title == "Length")
-				columnLength.active = view.get_column(index).visible;
+				columnLength.active = get_column(index).visible;
 			else if(tvc.title == "Artist")
-				columnArtist.active = view.get_column(index).visible;
+				columnArtist.active = get_column(index).visible;
+			else if(tvc.title == "Podcast")
+				columnPodcast.active = get_column(index).visible;
 			else if(tvc.title == "Date")
-				columnDate.active = view.get_column(index).visible;
+				columnDate.active = get_column(index).visible;
 			else if(tvc.title == "Rating")
-				columnRating.active = view.get_column(index).visible;
+				columnRating.active = get_column(index).visible;
 			else if(tvc.title == "Comment")
-				columnComments.active = view.get_column(index).visible;
+				columnComments.active = get_column(index).visible;
 			else if(tvc.title == "Category")
-				columnCategory.active = view.get_column(index).visible;
+				columnCategory.active = get_column(index).visible;
 
 			++index;
 		}
@@ -448,18 +398,12 @@ public class BeatBox.PodcastListView : BaseListView {
 				addToPlaylistMenu.append(playlist);
 
 				playlist.activate.connect( () => {
-					TreeModel temp;
 					var to_add = new LinkedList<int>();
-					foreach(TreePath path in view.get_selection().get_selected_rows(out temp)) {
-						TreeIter item;
-						temp.get_iter(out item, path);
-
-						int id;
-						temp.get(item, 0, out id);
-						to_add.add (id);
-					}
 					
-					p.addMedia (to_add);
+					foreach(Media m in get_selected_medias()) {
+						to_add.add(m.rowid);
+					}
+					p.addMedias(to_add);
 				});
 			}
 
@@ -477,17 +421,11 @@ public class BeatBox.PodcastListView : BaseListView {
 			int temporary_count = 0;
 			int total_count = 0;
 			string music_folder = lm.settings.getMusicFolder();
-			TreeModel temp_model;
-			foreach(TreePath path in view.get_selection().get_selected_rows(out temp_model)) {
-				TreeIter item;
-				temp_model.get_iter(out item, path);
-
-				int id;
-				temp_model.get(item, 0, out id);
-
-				if(!File.new_for_uri(lm.media_from_id(id).uri).get_path().has_prefix(music_folder))
+			
+			foreach(Media m in get_selected_medias()) {
+				if(!File.new_for_uri(m.uri).get_path().has_prefix(music_folder))
 					++external_count;
-				if(lm.media_from_id(id).isTemporary)
+				if(m.isTemporary)
 					++temporary_count;
 
 				++total_count;
@@ -516,26 +454,19 @@ public class BeatBox.PodcastListView : BaseListView {
 			//mediaMenuActionMenu.show_all();
 
 			int set_rating = -1;
-			TreeModel temp;
-			foreach(TreePath path in view.get_selection().get_selected_rows(out temp)) {
-				TreeIter item;
-				temp.get_iter(out item, path);
-
-				int id;
-				temp.get(item, 0, out id);
-
+			foreach(Media m in get_selected_medias()) {
 				if(set_rating == -1)
-					set_rating = (int)lm.media_from_id(id).rating;
-				else if(set_rating != lm.media_from_id(id).rating) {
+					set_rating = (int)m.rating;
+				else if(set_rating != m.rating) {
 					set_rating = 0;
 					break;
 				}
 			}
 
-			rating_item.rating_value = set_rating;
+			mediaRateMedia.rating_value = set_rating;
 			mediaMenuActionMenu.popup (null, null, null, 3, get_current_event_time());
 
-			TreeSelection selected = view.get_selection();
+			TreeSelection selected = get_selection();
 			selected.set_mode(SelectionMode.MULTIPLE);
 			if(selected.count_selected_rows() > 1)
 				return true;
@@ -543,24 +474,24 @@ public class BeatBox.PodcastListView : BaseListView {
 				return false;
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-			TreeIter iter;
+			//TreeIter iter;
 			TreePath path;
 			TreeViewColumn column;
 			int cell_x;
 			int cell_y;
 
-			view.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
+			get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
 
-			if(!list_model.get_iter(out iter, path))
-				return false;
+			//if(!list_model.get_iter(out iter, path))
+			//	return false;
 
 			/* don't unselect everything if multiple selected until button release
 			 * for drag and drop reasons */
-			if(view.get_selection().count_selected_rows() > 1) {
-				if(view.get_selection().path_is_selected(path)) {
+			if(get_selection().count_selected_rows() > 1) {
+				if(get_selection().path_is_selected(path)) {
 					if(((event.state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK)|
 						((event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK)) {
-							view.get_selection().unselect_path(path);
+							get_selection().unselect_path(path);
 					}
 					return true;
 				}
@@ -594,9 +525,9 @@ public class BeatBox.PodcastListView : BaseListView {
 			int x = (int)event.x;
 			int y = (int)event.y;
 
-			if(!(view.get_path_at_pos(x, y, out path, out tvc, out cell_x, out cell_y))) return false;
-			view.get_selection().unselect_all();
-			view.get_selection().select_path(path);
+			if(!(get_path_at_pos(x, y, out path, out tvc, out cell_x, out cell_y))) return false;
+			get_selection().unselect_all();
+			get_selection().select_path(path);
 			return false;
 		}
 	}
@@ -620,83 +551,68 @@ public class BeatBox.PodcastListView : BaseListView {
 	}
 
 	void updateTreeViewSetup() {
-		if(list_model == null || !(list_model is TreeSortable)) {
-			return;
-		}
-
-		TreeViewSetup tvs;
-
-		if(get_hint() == ViewWrapper.Hint.PODCAST)
-			tvs = podcast_setup;
-		else // is PODCAST_DEVICE
+		if(tvs == null || !visible || get_columns().length() != TreeViewSetup.PODCAST_COLUMN_COUNT)
 			return;
 
-		if(tvs == null)
-			return;
-
-		int sort_id = 5;
+		int sort_id = PodcastColumn.ARTIST;
 		SortType sort_dir = Gtk.SortType.ASCENDING;
-		list_model.get_sort_column_id(out sort_id, out sort_dir);
+		get_sort_column_id(out sort_id, out sort_dir);
 
 		if(sort_id <= 0)
-			sort_id = 5;
-
-		sort_column = _columns.get(sort_id);
-		sort_direction = sort_dir;
+			sort_id = PodcastColumn.ARTIST;
 
 		tvs.set_columns(get_columns());
-		tvs.sort_column = _columns.get(sort_id);
+		tvs.sort_column_id = sort_id;
 		tvs.sort_direction = sort_dir;
 	}
 
 	/** When the column chooser popup menu has a change/toggle **/
 	public virtual void columnMenuToggled() {
 		int index = 0;
-		foreach(TreeViewColumn tvc in view.get_columns()) {
+		foreach(TreeViewColumn tvc in get_columns()) {
 			if(tvc.title == "Episode")
-				view.get_column(index).visible = columnEpisode.active;
+				get_column(index).visible = columnEpisode.active;
 			else if(tvc.title == "Name")
-				view.get_column(index).visible = columnName.active;
+				get_column(index).visible = columnName.active;
 			else if(tvc.title == "Length")
-				view.get_column(index).visible = columnLength.active;
+				get_column(index).visible = columnLength.active;
 			else if(tvc.title == "Artist")
-				view.get_column(index).visible = columnArtist.active;
+				get_column(index).visible = columnArtist.active;
+			else if(tvc.title == "Podcast")
+				get_column(index).visible = columnPodcast.active;
 			else if(tvc.title == "Date")
-				view.get_column(index).visible = columnDate.active;
+				get_column(index).visible = columnDate.active;
 			else if(tvc.title == "Rating")
-				view.get_column(index).visible = columnRating.active;
+				get_column(index).visible = columnRating.active;
 			else if(tvc.title == "Comment")
-				view.get_column(index).visible = columnComments.active;
+				get_column(index).visible = columnComments.active;
 			else if(tvc.title == "Category")
-				view.get_column(index).visible = columnCategory.active;
+				get_column(index).visible = columnCategory.active;
 
 			++index;
 		}
 
-		if(get_hint() == ViewWrapper.Hint.PODCAST)
-			podcast_setup.set_columns(get_columns());
+		tvs.set_columns(get_columns());
 	}
 
 	/** media menu popup clicks **/
 	public virtual void mediaMenuEditClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel temp;
-
-		//tempMedias.clear();
 		var to_edit = new LinkedList<int>();
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			int id = list_model.getRowidFromPath(path.to_string());
-
-			to_edit.add(id);
+		
+		foreach(Media m in get_selected_medias()) {
+			to_edit.add(m.rowid);
 		}
-
+		
 		/*if(!GLib.File.new_for_path(media_from_id(id).file).query_exists() && media_from_id(id).file.contains(settings.getMusicFolder())) {
 			media_from_id(id).unique_status_image = Icons.process_error_icon;
 			lw.media_not_found(id);
 		}
 		else {*/
-			PodcastEditor pe = new PodcastEditor(lm, list_model.getOrderedMedias(), to_edit);
+			var list = new LinkedList<int>();
+			for(int i = 0; i < get_visible_table().size(); ++i) {
+				list.add(get_media_from_index(i).rowid);
+			}
+			PodcastEditor pe = new PodcastEditor(lm, list, to_edit);
 			pe.podcasts_saved.connect(podcastEditorSaved);
 		//}
 	}
@@ -711,115 +627,76 @@ public class BeatBox.PodcastListView : BaseListView {
 	}
 
 	public virtual void mediaFileBrowseClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel temp;
-
 		int count = 0;
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			TreeIter item;
-			temp.get_iter(out item, path);
-
-			int id;
-			temp.get(item, 0, out id);
-			Media s = lm.media_from_id(id);
-
+		foreach(Media m in get_selected_medias()) {
 			try {
-				var file = File.new_for_uri(s.uri);
+				var file = File.new_for_uri(m.uri);
 				Gtk.show_uri(null, file.get_parent().get_uri(), 0);
 			}
 			catch(GLib.Error err) {
-				debug("Could not browse media %s: %s\n", s.uri, err.message);
+				debug("Could not browse media %s: %s\n", m.uri, err.message);
 			}
 
 			if(count > 10) {
-				lw.doAlert("Stopping File Browse", "Too many podcasts have already been opened in File Browser. Stopping any more openings.");
+				lw.doAlert("Stopping File Browse", "Too many medias have already been opened in File Browser. Stopping any more openings.");
 				return;
 			}
 		}
 	}
 
 	void mediaSaveLocallyClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel temp;
-
 		var toSave = new LinkedList<int>();
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			TreeIter item;
-			temp.get_iter(out item, path);
-
-			int id;
-			temp.get(item, 0, out id);
-
-			toSave.add(id);
+		
+		foreach(Media m in get_selected_medias()) {
+			toSave.add(m.rowid);
 		}
 
 		lm.pm.save_episodes_locally(toSave);
 	}
 
 	public virtual void mediaMenuQueueClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-
-		TreeModel model;
-
-		foreach(TreePath path in selected.get_selected_rows(out model)) {
-			TreeIter item;
-			model.get_iter(out item, path);
-
-			int id;
-			model.get(item, 0, out id);
-
-			lm.queue_media_by_id(id);
+		foreach(Media m in get_selected_medias()) {
+			lm.queue_media_by_id(m.rowid);
 		}
+	}
+	
+	void mediaRateMediaClicked() {
+		var los = new LinkedList<Media>();
+		int new_rating = mediaRateMedia.rating_value;
+		
+		foreach(Media m in get_selected_medias()) {
+			m.rating = new_rating;
+			los.add(m);
+		}
+
+		lm.update_medias(los, false, true);
 	}
 
 	public virtual void mediaMenuNewPlaylistClicked() {
 		Playlist p = new Playlist();
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-
-		TreeModel temp;
+		
 		var to_add = new LinkedList<int>();
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			TreeIter item;
-			list_model.get_iter(out item, path);
-
-			Value id;
-			list_model.get_value(item, 0, out id);
-
-			to_add.add (id.get_int());
+		foreach(Media m in get_selected_medias()) {
+			to_add.add(m.rowid);
 		}
-
+		p.addMedias(to_add);
+		
 		PlaylistNameWindow pnw = new PlaylistNameWindow(lw, p);
 		pnw.playlist_saved.connect( (newP) => {
 			lm.add_playlist(p);
 			lw.addSideListItem(p);
-			p.addMedia(to_add);
 		});
 	}
 
 	public virtual void mediaRemoveClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-
 		LinkedList<Media> toRemove = new LinkedList<Media>();
 		LinkedList<int> toRemoveIDs = new LinkedList<int>();
-		TreeModel temp;
 
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			TreeIter item;
-			temp.get_iter(out item, path);
-
-			int id;
-			temp.get(item, 0, out id);
-			Media s = lm.media_from_id(id);
-
-			toRemoveIDs.add(id);
+		foreach(Media m in get_selected_medias()) {
+			toRemoveIDs.add(m.rowid);
 
 			if(get_hint() == ViewWrapper.Hint.PODCAST) {
-				toRemove.add(s);
+				toRemove.add(m);
 			}
 		}
 
@@ -828,53 +705,137 @@ public class BeatBox.PodcastListView : BaseListView {
 
 			dialog.remove_media.connect ( (delete_files) => {
 				lm.remove_medias (toRemove, delete_files);
-				//music_model.removeMedias(toRemoveIDs);
-
-				//view_wrapper.populate_column_browser (list_model.getOrderedMedias());
 			});
 		}
-
-		// in case all the medias from certain miller items were removed, update miller
-		//view_wrapper.populate_column_browser (list_model.getOrderedMedias());
 	}
 
 	void importToLibraryClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel temp;
-
 		var to_import = new LinkedList<int>();
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			TreeIter item;
-			temp.get_iter(out item, path);
-
-			int id;
-			temp.get(item, 0, out id);
-
-			to_import.add(id);
+		
+		foreach(Media m in get_selected_medias()) {
+			to_import.add(m.rowid);
 		}
 
 		import_requested(to_import);
 	}
 
 	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
-		Gtk.TreeIter iter;
-		Gtk.TreeModel temp_model;
-
-		var rows = view.get_selection().get_selected_rows(out temp_model);
 		string[] uris = null;
 
-		foreach(TreePath path in rows) {
-			temp_model.get_iter_from_string (out iter, path.to_string ());
-
-			int id;
-			temp_model.get (iter, 0, out id);
-			debug("adding %s\n", lm.media_from_id(id).uri);
-			uris += (lm.media_from_id(id).uri);
+		foreach(Media m in get_selected_medias()) {
+			debug("adding %s\n", m.uri);
+			uris += (m.uri);
 		}
 
 		if (uris != null)
 			selection_data.set_uris(uris);
+	}
+	
+	int view_compare_func (int col, Gtk.SortType dir, Media a_media, Media b_media) {
+		int rv = 0;
+		
+		if(col == PodcastColumn.EPISODE) {
+			rv = (int)(a_media.track - b_media.track);
+		}
+		else if(col == PodcastColumn.NAME) {
+			rv = advanced_string_compare(a_media.title.down(), b_media.title.down());
+		}
+		else if(col == PodcastColumn.LENGTH) {
+			rv = (int)(a_media.length - b_media.length);
+		}
+		else if(col == PodcastColumn.ARTIST) {
+			if(a_media.artist.down() == b_media.artist.down()) {
+				//if(a_media.album.down() == b_media.album.down()) {
+					if(a_media.podcast_date == b_media.podcast_date) {
+						rv = advanced_string_compare(a_media.album.down(), b_media.album.down());
+					}
+					else {
+						rv = (int)(b_media.podcast_date - a_media.podcast_date);
+					}
+				//}
+				//else
+				//	rv = advanced_string_compare(a_media.album.down(), b_media.album.down());
+			}
+			else
+				rv = advanced_string_compare(a_media.artist.down(), b_media.artist.down());
+		}
+		else if(col == PodcastColumn.PODCAST) {
+			if(a_media.album.down() == b_media.album.down()) {
+				if(a_media.artist.down() == b_media.artist.down()) {
+					if(a_media.podcast_date == b_media.podcast_date) {
+						rv = advanced_string_compare(a_media.uri, b_media.uri);
+					}
+					else {
+						rv = (int)(b_media.podcast_date - a_media.podcast_date);
+					}
+				}
+				else
+					rv = advanced_string_compare(a_media.artist.down(), b_media.artist.down());
+			}
+			else
+				rv = advanced_string_compare(a_media.album.down(), b_media.album.down());
+		}
+		else if(col == PodcastColumn.DATE) {
+			rv = (int)(a_media.podcast_date - b_media.podcast_date);
+		}
+		else if(col == PodcastColumn.CATEGORY) {
+			rv = advanced_string_compare(a_media.genre.down(), b_media.genre.down());
+		}
+		else if(col == PodcastColumn.RATING) {
+			rv = (int)(a_media.rating - b_media.rating);
+		}
+		else {
+			rv = 0;
+		}
+		
+		if(rv == 0 && col != PodcastColumn.ARTIST && col != PodcastColumn.PODCAST)
+			rv = advanced_string_compare(a_media.uri, b_media.uri);
+		
+		if(sort_direction == SortType.DESCENDING)
+			rv = (rv > 0) ? -1 : 1;
+		
+		return rv;
+	}
+	
+	Value view_value_func (int row, int column, Media s) {
+		Value val;
+		
+		if(column == PodcastColumn.ROWID)
+			val = (int)s.rowid;
+		else if(column == PodcastColumn.ICON) {
+			if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid)
+				val = playing_icon;
+			else if(s.unique_status_image != null)
+				val = s.unique_status_image;
+			else if(s.last_played == 0)
+				val = new_podcast_icon;
+			else if(!s.uri.has_prefix("http://"))
+				val = saved_locally_icon;
+			else
+				val = Value(typeof(GLib.Icon));
+		}
+		else if(column == PodcastColumn.EPISODE)
+			val = (int)s.track;
+		else if(column == PodcastColumn.NAME)
+			val = s.title;
+		else if(column == PodcastColumn.LENGTH)
+			val = (int)s.length;
+		else if(column == PodcastColumn.ARTIST)
+			val = s.artist;
+		else if(column == PodcastColumn.PODCAST)
+			val = s.album;
+		else if(column == PodcastColumn.DATE)
+			val = (int)s.podcast_date;
+		else if(column == PodcastColumn.CATEGORY)
+			val = s.genre; // category
+		else if(column == PodcastColumn.COMMENT)
+			val = s.comment;
+		else if(column == PodcastColumn.RATING)
+			val = (int)s.rating;
+		else
+			val = (int)s.pulseProgress;
+		
+		return val;
 	}
 }
 

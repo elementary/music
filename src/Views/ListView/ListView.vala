@@ -33,7 +33,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	private Gtk.Paned list_view_vpaned; // for top mode
 
 	public MillerColumns column_browser { get; private set; }
-	public ContentView  list_view { get; private set; }
+	public GenericList   list_view { get; private set; }
+
+	private ScrolledWindow list_scrolled;
 
 	private int list_view_hpaned_position = -1;
 	private int list_view_vpaned_position = -1;
@@ -71,13 +73,16 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 	}
 
-	public ListView (ViewWrapper view_wrapper, string? sort = null, Gtk.SortType? dir = null, int? id = null) {
+	public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
 
 		this.view_wrapper = view_wrapper;
 		this.lm = view_wrapper.lm;
 		this.lw = view_wrapper.lw;
 
-		switch (view_wrapper.hint) {
+		this.list_scrolled = new ScrolledWindow (null, null);
+		//this.list_scrolled.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
+
+		switch (tvs.get_hint()) {
 
 			case ViewWrapper.Hint.MUSIC:
 			case ViewWrapper.Hint.HISTORY:
@@ -87,23 +92,23 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			case ViewWrapper.Hint.AUDIOBOOK:
 			case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
 			case ViewWrapper.Hint.CDROM:
-				list_view = new MusicTreeView (view_wrapper, sort, dir, view_wrapper.hint, id);
-				break;
 			case ViewWrapper.Hint.SIMILAR:
-				list_view = new SimilarPane(view_wrapper);
+			//case ViewWrapper.Hint.ALBUM_LIST:
+				list_view = new MusicTreeView (view_wrapper, tvs);
 				break;
 #if HAVE_PODCASTS
 			case ViewWrapper.Hint.PODCAST:
 			case ViewWrapper.Hint.DEVICE_PODCAST:
-				list_view = new PodcastListView (view_wrapper);
+				list_view = new PodcastListView (view_wrapper, tvs);
 				break;
 #endif
 #if HAVE_INTERNET_RADIO
 			case ViewWrapper.Hint.STATION:
-				list_view = new RadioListView(view_wrapper, sort, dir, view_wrapper.hint, id);
+				list_view = new RadioListView(view_wrapper, tvs);
 				break;
 #endif
 			default:
+				critical ("NO LIST VIEW AVAILABLE FOR HINT -> %s", tvs.get_hint().to_string());
 				// don't add anything
 				break;
 		}
@@ -112,6 +117,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		// Currently only the music-library view should have a column browser
 		if (view_wrapper.hint == ViewWrapper.Hint.MUSIC)
 			column_browser = new MillerColumns (view_wrapper);
+
+		// Put the list inside a scrolled window
+		list_scrolled.add (list_view);
 
 		if (has_column_browser) {
 			list_view_hpaned = new Paned (Orientation.HORIZONTAL);
@@ -127,7 +135,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			this.pack_start (list_view_hpaned, true, true, 0);
 
 			// Now pack the list view
-			list_view_vpaned.pack2(list_view, true, true);
+			list_view_vpaned.pack2(list_scrolled, true, true);
 			list_view_hpaned.pack1(column_browser, true, false);
 
 			set_column_browser_position (column_browser.position);
@@ -142,8 +150,11 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			column_browser.changed.connect (column_browser_changed);
 		}
 		else {
-			this.pack_start (list_view, true, true, 0);
+			this.pack_start (list_scrolled, true, true, 0);
 		}
+
+		// Set sort data from saved session
+		list_view.set_sort_column_id(tvs.sort_column_id, tvs.sort_direction);
 
 		// We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
 		// disk access to write settings.
@@ -160,7 +171,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			// Decide what orientation to use based on the view area size
 
 			int view_width = this.get_allocated_width ();
-			const int MIN_TREEVIEW_WIDTH = 300;
+			const int MIN_RECOMMENDED_TREEVIEW_WIDTH = 300;
+			const int MIN_RECOMMENDED_COLUMN_WIDTH = 160;
 
 			int visible_columns = 0;
 			foreach (var column in column_browser.columns) {
@@ -168,8 +180,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 					++ visible_columns;
 			}
 
-			int required_width = column_browser.MIN_COLUMN_WIDTH * visible_columns;
-			if (view_width - required_width < MIN_TREEVIEW_WIDTH)
+			int required_width = MIN_RECOMMENDED_COLUMN_WIDTH * visible_columns;
+			if (view_width - required_width < MIN_RECOMMENDED_TREEVIEW_WIDTH)
 				actual_position = MillerColumns.Position.TOP;
 			else
 				actual_position = MillerColumns.Position.LEFT;
@@ -255,8 +267,6 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 	}
 
-
-
 	/**
 	 * Data and ContentView interface stuff ...
 	 */
@@ -265,30 +275,38 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return list_view.get_hint ();
 	}
 
-	public void set_relative_id (int id) {
-		list_view.set_relative_id (id);
-	}
-
 	public int get_relative_id () {
 		return list_view.get_relative_id ();
 	}
 
-	public Collection<int> get_medias () {
-		return list_view.get_medias ();	
+
+	public GLib.List<Media> get_media () {
+		return list_view.get_table().get_values ();
 	}
 
-	public Collection<int> get_showing_medias() {
-		return list_view.get_showing_medias ();
+	public GLib.List<Media> get_showing_media () {
+		return list_view.get_visible_table().get_values ();
 	}
 
-	// FIXME: column browser stuff?
 
-
-	public void set_show_next (Collection<int> medias) {
-		// FIXME: this could lead to bad behavior
-		if (!column_browser_enabled)
-			list_view.set_show_next (medias);
+	public Gee.Collection<int> get_media_ids () {
+		var rv = new Gee.LinkedList<int> ();
+		foreach (var val in list_view.get_table().get_values ()) {
+			rv.add (val.rowid);
+		}
+		return rv;
 	}
+
+	public Gee.Collection<int> get_showing_media_ids () {
+		var rv = new Gee.LinkedList<int> ();
+		foreach (var val in list_view.get_visible_table().get_values ()) {
+			rv.add (val.rowid);
+		}
+		return rv;
+	}
+	
+	// XXX: fix column browser stuff!
+	// THIS IS CRITICAL!
 
 	public void populate_view () {
 		if (column_browser_enabled)
@@ -299,32 +317,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			
 			// TODO: Try to avoid requesting information from the view wrapper in the future.
 			column_browser.populate (view_wrapper.get_showing_media_ids());
-		else
-			list_view.populate_view ();
-	}
-
-	// FIXME: figure out how do this if column_browser_enabled is true
-	public void append_medias (Collection<int> new_medias) {
-		if (column_browser_enabled)
-			column_browser.populate (view_wrapper.get_showing_media_ids());
-		else
-			list_view.append_medias (new_medias);
-	}
-
-	// FIXME: figure out how do this _PROPERLY_ if column_browser_enabled is true
-	public void remove_medias (Collection<int> to_remove) {
-		if (column_browser_enabled)
-			column_browser.populate (view_wrapper.get_showing_media_ids());
-		else
-			list_view.remove_medias (to_remove);
-	}
-
-	public void set_as_current_list (int media_id, bool is_initial = false) {
-		list_view.set_as_current_list (media_id, is_initial);
-	}
-	
-	public void update_medias(Collection<int> medias) { // request to update displayed information
-		list_view.update_medias (medias);
+		/*else
+			list_view.populate_view ();*/
 	}
 
 	private void column_browser_changed () {
@@ -333,10 +327,72 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		// the results of the miller columns.
 
 		if(lw.initialization_finished) {
-			list_view.set_show_next (column_browser.media_results);
-			list_view.populate_view();
-			view_wrapper.set_statusbar_info();
+			set_show_next (column_browser.media_results);
+			view_wrapper.set_statusbar_info (column_browser.media_results);
 		}
+	}
+
+	/* ---------- NEW API --------- */
+	// remember to include column-browser stuff
+
+	public void set_as_current_list (int media_id, bool is_initial = false) {
+		list_view.set_as_current_list (media_id, is_initial);
+	}
+
+
+	public bool get_is_current_list ()  {
+		return list_view.get_is_current_list ();
+	}
+
+	public void set_show_next (Gee.Collection<int> to_show) {
+		int index = 0;
+		var media = new HashTable<int, Media> (null, null);
+		foreach (int id in to_show) {
+			media.set (index++, lm.media_from_id (id));
+		}
+
+		// Populate column browser
+		// column_browser.populate (to_show);
+		
+		list_view.set_table (media);
+	}
+
+	public void append_media (Gee.Collection<int> media) {
+		if (column_browser_enabled)
+			column_browser.populate (view_wrapper.get_showing_media_ids());
+		else {
+			var to_add = new GLib.List<Media> ();
+			foreach (int id in media) {
+				var m = lm.media_from_id (id);
+				if (m != null)
+					to_add.append (m);
+			}
+		
+			list_view.add_media (to_add);
+		}
+	}
+
+	public void remove_media (Gee.Collection<int> media) {
+		if (column_browser_enabled)
+			column_browser.populate (view_wrapper.get_showing_media_ids());
+		else {
+			var to_remove = new HashTable<Media, int> (null, null);
+			int index = 0;
+			foreach (int id in media) {
+				to_remove.set (lm.media_from_id (id), index++);
+			}
+	
+			list_view.remove_media (to_remove);
+		}
+	}
+
+	/* EXTRA METHODS.
+	 * TODO: This shouldn't be here. Just added since there's no time to standarize this stuff
+	 *        right now.
+	 */
+
+	public void set_table (HashTable<int, Media> table) {
+		list_view.set_table (table);
 	}
 }
 

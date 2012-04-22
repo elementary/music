@@ -70,12 +70,9 @@ public class BeatBox.Plugins.Manager : Object
     
     Peas.Engine engine;
     Peas.ExtensionSet exts;
-    
-    Peas.Engine engine_core;
-    Peas.ExtensionSet exts_core;
-	/*
-    [CCode (cheader_filename = "libpeas/libpeas.h", cname = "peas_extension_set_foreach")]
-    extern static void peas_extension_set_foreach (Peas.ExtensionSet extset, Peas.ExtensionSetForeachFunc option, void* data); */
+
+    //Peas.Engine engine_core;
+    //Peas.ExtensionSet exts_core;
 
     GLib.Settings settings;
     string settings_field;

@@ -204,12 +204,24 @@ public class MprisPlayer : GLib.Object {
 		this.conn = conn;
 		_metadata = new HashTable<string,Variant>(str_hash, str_equal);
 		
-		BeatBox.Beatbox._program.lm.media_played.connect(mediaPlayed);
-		BeatBox.Beatbox._program.lm.media_updated.connect(mediaPlayed);
-		BeatBox.Beatbox._program.playPauseChanged.connect(playingChanged);
+		BeatBox.Beatbox._program.lm.media_played.connect(media_played);
+		BeatBox.Beatbox._program.lm.medias_updated.connect(medias_updated);
+		BeatBox.Beatbox._program.playPauseChanged.connect(playing_changed);
 	}
 	
-	private void playingChanged() {
+	void medias_updated(Gee.LinkedList<int> ids) {
+		if(BeatBox.Beatbox._program.lm.media_info.media == null)
+			return;
+		
+		foreach(int i in ids) {
+			if(i == BeatBox.Beatbox._program.lm.media_info.media.rowid) {
+				trigger_metadata_update();
+				return;
+			}
+		}
+	}
+	
+	private void playing_changed() {
 		trigger_metadata_update();
 	}
 	
@@ -228,7 +240,7 @@ public class MprisPlayer : GLib.Object {
 		});
 	}
 	
-	public virtual void mediaPlayed(int id) {
+	public virtual void media_played(int id) {
 		BeatBox.Media s = BeatBox.Beatbox._program.lm.media_from_id(id);
 		
 		if(s.rowid != BeatBox.Beatbox._program.lm.media_info.media.rowid)

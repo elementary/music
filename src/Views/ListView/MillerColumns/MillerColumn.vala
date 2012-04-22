@@ -55,7 +55,7 @@ public class BeatBox.MillerColumns : Box {
 	public LibraryWindow  lw { get; private set; }
 	public ViewWrapper view_wrapper { get; private set; }
 
-	public const int MIN_COLUMN_WIDTH = 138; // used for LEFT mode
+	public const int MIN_COLUMN_WIDTH = 40; // Ideally should be 138; // used for LEFT mode
 	public const int MIN_COLUMN_HEIGHT = 70; // used for TOP mode
 
 	public bool is_music_miller {
@@ -426,8 +426,12 @@ public class BeatBox.MillerColumns : Box {
 	public void populate(Collection<int> media, string? search = null) {
 		this.medias = media;
 
-		lm.do_search (media, out _media_results, /*out _album_results*/ null, null, null, null,
-		              view_wrapper.hint, search ?? "");
+		// SLOW
+		//lm.do_search (media, out _media_results, /*out _album_results*/ null, null, null, null,
+		//              view_wrapper.hint, search ?? "");
+
+		// FASTER
+		Utils.search_in_media_ids (media, out _media_results, search ?? "");
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();
@@ -605,10 +609,12 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 	// selects "All ..."
 	public void select_first_item () {
-		
+		if (model == null)
+			return;
+
 		if (!first_item_selected)
 			set_selected (null, true); // always notify
-		else if (this.visible && lw.initialization_finished) // just scroll to the cell
+		else if (model.n_items + 1 >= 1 && this.visible && lw.initialization_finished) // just scroll to the cell
 			view.scroll_to_cell (new TreePath.first(), null, false, 0.0f, 0.0f);
 	}
 
@@ -657,7 +663,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 	public void set_selected (string? val, bool notify = false) {
-		if (!lw.initialization_finished || val == _selected)
+		if (model != null && (!lw.initialization_finished || val == _selected))
 			return;
 
 		_selected = val;

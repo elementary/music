@@ -35,7 +35,10 @@ public class BeatBox.AlbumListView : Window {
 	Label artist_label;
 	RatingWidget rating;
 	MusicTreeView mtv;
-	bool setting_songs;
+
+	Gee.LinkedList<Media> media_list;
+
+	Mutex setting_media = new Mutex ();
 
 /*
 	private const string WIDGET_STYLESHEET = """
@@ -130,8 +133,10 @@ public class BeatBox.AlbumListView : Window {
 			warning (e.message);
 		}
 
+		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_FALLBACK);
 		get_style_context().add_provider(style_provider, STYLE_PROVIDER_PRIORITY_THEME);
 */
+
 		// add close button
 		var close = new Gtk.Button ();
 
@@ -170,10 +175,16 @@ public class BeatBox.AlbumListView : Window {
 		label_wrapper.pack_start (label_box, true, true, 0);
 
 		// add actual list
-		mtv = new MusicTreeView(view_wrapper, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
+		mtv = new MusicTreeView(view_wrapper, new TreeViewSetup(MusicTreeView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST));
 //		mtv.apply_style_to_view(style_provider);
+//		mtv = new MusicTreeView(view_wrapper, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
+//		mtv.apply_style_to_view(style_provider);
+
 		mtv.has_grid_lines = true;
 		mtv.vexpand = true;
+
+		var mtv_scrolled = new ScrolledWindow (null, null);
+		mtv_scrolled.add (mtv);
 
 		// add rating
 		rating = new RatingWidget(get_style_context(), true, IconSize.MENU, true);
@@ -182,7 +193,7 @@ public class BeatBox.AlbumListView : Window {
 		var all_area = new Box(Orientation.VERTICAL, 0);
 		all_area.pack_start(close, false, false, 0);
 		all_area.pack_start(label_wrapper, false, true, 0);
-		all_area.pack_start(mtv, true, true, 6);
+		all_area.pack_start(mtv_scrolled, true, true, 6);
 		all_area.pack_start(rating, false, true, 12);
 
 		add(all_area);
@@ -191,64 +202,79 @@ public class BeatBox.AlbumListView : Window {
 	}
 
 	public void set_songs_from_media(Media m) {
-		setting_songs = true;
+		setting_media.lock ();
 
 		set_title (m.album + " by " + m.album_artist);
 
 		album_label.set_markup("<span size=\"large\" color=\"#ffffff\"><b>" + m.album.replace("&", "&amp;") + "</b></span>");
 		artist_label.set_markup("<span color=\"#ffffff\"><b>" + m.album_artist.replace("&", "&amp;") + "</b></span>");
 
-		LinkedList<int> songs, albums;
+		var to_search = new LinkedList<Media>();
+		// only search the media that match the search filter
+		foreach (int id in view_wrapper.get_showing_media_ids ()) {
+			to_search.add (lm.media_from_id(id));
+		}
 
-		lm.do_search (view_wrapper.get_media_ids(), out songs, out albums, null, null, null, view_wrapper.hint,
-		              "", m.album_artist, m.album);
+		Utils.fast_album_search_in_media_list (to_search, out media_list, "", m.album_artist, m.album);
 
-		mtv.set_show_next(songs);
-		mtv.populate_view();
+		var media_table = new HashTable<int, Media>(null, null);
 
-		setting_songs = false;
+		int index = 0;
+		foreach (var _media in media_list) {
+			media_table.set (index++, _media);
+		}
+
+		mtv.set_table (media_table);
+
+		setting_media.unlock ();
 
 		// Set rating
 		update_album_rating ();
 		lm.medias_updated.connect (update_album_rating);
 	}
 
-	void update_album_rating () {
-		if(setting_songs)
-			return;
 
-		setting_songs = true;
+	void update_album_rating () {
+		setting_media.lock ();
 
 		// decide rating. unless all are equal, show the lowest.
 		// FIXME: Use the average rating
 		int overall_rating = -1;
-		foreach(int i in mtv.get_medias()) {
-			int song_rating = (int)lm.media_from_id(i).rating;
+		foreach(var media in media_list) {
+			if (media == null)
+				continue;
+
+			int media_rating = (int)media.rating;
 
 			if(overall_rating == -1) {
-				overall_rating = song_rating;
-			} else if(song_rating != overall_rating) {
-				if (song_rating < overall_rating)
-					overall_rating = song_rating;
+				overall_rating = media_rating;
+			} else if(media_rating != overall_rating) {
+				if (media_rating < overall_rating)
+					overall_rating = media_rating;
 			}
 		}
 
 		rating.set_rating(overall_rating);
 
-		setting_songs = false;
+		setting_media.unlock ();
 	}
 
 	void rating_changed(int new_rating) {
-		if(setting_songs)
-			return;
+		setting_media.lock ();
 
 		var updated = new LinkedList<Media>();
-		foreach(int i in mtv.get_medias()) {
-			lm.media_from_id(i).rating = new_rating;
-			updated.add(lm.media_from_id(i));
+		foreach(var media in media_list) {
+			if (media == null)
+				continue;
+
+			media.rating = (uint)new_rating;
+			updated.add(media);
 		}
+
+		setting_media.unlock ();
 
 		lm.update_medias(updated, false, true);
 	}
 }
+
 

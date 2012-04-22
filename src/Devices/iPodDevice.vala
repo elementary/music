@@ -51,10 +51,10 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		this.lm = lm;
 		this.mount = mount;
 		
-		pref = lm.get_device_preferences(get_unique_identifier());
+		pref = lm.device_manager.get_device_preferences(get_unique_identifier());
 		if(pref == null) {
 			pref = new DevicePreferences(get_unique_identifier());
-			lm.add_device_preferences(pref);
+			lm.device_manager.add_device_preferences(pref);
 		}
 		
 		icon = mount.get_icon();
@@ -246,7 +246,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		try {
 			var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
-			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_SIZE);
+			rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_SIZE);
 		}
 		catch(Error err) {
 			stdout.printf("Error calculating capacity of iPod: %s\n", err.message);
@@ -268,7 +268,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		try {
 			var file_info = File.new_for_path(get_path()).query_filesystem_info("filesystem::*", null);
-			rv = file_info.get_attribute_uint64(GLib.FILE_ATTRIBUTE_FILESYSTEM_FREE);
+			rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_FREE);
 		}
 		catch(Error err) {
 			stdout.printf("Error calculating free space on iPod: %s\n", err.message);
@@ -333,7 +333,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		bool fits = will_fit(list);
 		if(!fits) {
-			stdout.printf("Tried to sync media that will not fit\n");
+			stdout.printf("Tried to sync medias that will not fit\n");
 			return false;
 		}
 		
@@ -390,7 +390,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		db.start_sync();
 		
 		// for each song that is on device, but not in this.list, remove
-		current_operation = "Removing old media from iPod and updating current ones";
+		current_operation = "Removing old medias from iPod and updating current ones";
 		var removed = new HashMap<unowned GPod.Track, int>();
 		foreach(var e in medias.entries) {
 			if(!sync_cancelled) {
@@ -416,7 +416,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		stdout.printf("Updating existing tracks...\n");
 		sub_index = 0;
-		// anything left will be synced. update media that are already on list
+		// anything left will be synced. update medias that are already on list
 		foreach(var entry in medias.entries) {
 			if(!sync_cancelled) {
 				int i = lm.match_media_to_list(entry.value, this.list);
@@ -441,7 +441,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		
 		stdout.printf("Adding new medias...\n");
 		// now add all in list that weren't in medias
-		current_operation = "Adding new media to iPod...";
+		current_operation = "Adding new medias to iPod...";
 		sub_index = 0;
 		int new_media_size = 0;
 		foreach(var i in list) {
@@ -529,10 +529,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			foreach(int i in medias.values)
 				temps.add(lm.media_from_id(i));
 			
-			// update media before we set last_sync_time
+			// update medias before we set last_sync_time
 			lm.update_medias(temps, false, true);
 			pref.last_sync_time = (int)time_t();
-			lm.save_device_preferences();
 			currently_syncing = false;
 			
 			sync_finished(!sync_cancelled);
@@ -632,7 +631,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		GLib.FileInfo file_info = null;
 		
 		try {
-			var enumerator = music_folder.enumerate_children(FILE_ATTRIBUTE_STANDARD_NAME + "," + FILE_ATTRIBUTE_STANDARD_TYPE, 0);
+			var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
 			while ((file_info = enumerator.next_file ()) != null) {
 				var file_path = Path.build_path("/", music_folder.get_path(), file_info.get_name());
 				

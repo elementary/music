@@ -52,16 +52,12 @@ public class BeatBox.Streamer : GLib.Object {
 		Timeout.add(200, doPositionUpdate); // do this 5 times per second
 	}
 	
-	/*public void mediaRipped(Media s) {
-		setURI(s.uri);
-	}*/
-	
 	public bool doPositionUpdate() {
-		if(set_resume_pos || getPosition() >= (int64)(lm.media_info.media.resume_pos - 1) * 1000000000) {
+		if(set_resume_pos || (lm.media_info != null && lm.media_info.media != null && getPosition() >= (int64)(lm.media_info.media.resume_pos - 1) * 1000000000)) {
 			set_resume_pos = true;
 			current_position_update(getPosition());
 		}
-		else {
+		else if (lm.media_info != null && lm.media_info.media != null) {
 			pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
 		}
 		
@@ -85,11 +81,13 @@ public class BeatBox.Streamer : GLib.Object {
 		setState(State.READY);
 		debug("set uri to %s\n", uri);
 		pipe.playbin.uri = uri.replace("#", "%23");
-		
+
+#if HAVE_PODCASTS
 		if(lw.initialization_finished && pipe.video.element != null) {
 			var xoverlay = pipe.video.element as XOverlay;
 			xoverlay.set_xwindow_id(Gdk.X11Window.get_xid(lw.videoArea.get_window ()));
 		}
+#endif
 		
 		setState(State.PLAYING);
 		
@@ -97,10 +95,6 @@ public class BeatBox.Streamer : GLib.Object {
 		pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
 		
 		play();
-		/*if(lm.media_info.media.mediatype == 1 || lm.media_info.media.mediatype == 2) {
-			lw.topDisplay.change_value(Gtk.ScrollType.NONE, lm.media_info.media.resume_pos);
-			stdout.printf("setting media position to %d\n", lm.media_info.media.resume_pos);
-		}*/
 	}
 	
 	public void setPosition(int64 pos) {
@@ -173,43 +167,18 @@ public class BeatBox.Streamer : GLib.Object {
             Gst.State pending;
             message.parse_state_changed (out oldstate, out newstate,
                                          out pending);
-            /*stdout.printf ("state changed: %s->%s:%s\n",
-                           oldstate.to_string (), newstate.to_string (),
-                           pending.to_string ());*/
-                           
+
             if(newstate != Gst.State.PLAYING)
 				break;
-			
-			//if(getPosition() < (lm.media_info.media.resume_pos * 1000000000)) {
-				//stdout.printf("!!!!!!!!trying to resume at %d\n", lm.media_info.media.resume_pos);
-				//set_resume_pos = true;
-				//pipe.playbin.seek(1.0, Gst.Format.TIME, SeekType.FLUSH | SeekType.SKIP, lm.media_info.media.resume_pos * 1000000000, Gst.SeekType.NONE, getDuration());
-				//setPosition(lm.media_info.media.resume_pos * 1000000000);
-				//current_position_update(lm.media_info.media.resume_pos * 1000000000);
-			//}
-			//else {
-			//	set_resume_pos = true;
-			//}
 			
 			if(!checked_video) {
 				Idle.add( () => {
 					checked_video = true;
 					if(pipe.videoStreamCount() > 0) {
-						if(lw.viewSelector.get_children().length() != 4) {
-							//stdout.printf("turning on video\n");
-							lw.viewSelector.append(Icons.VIEW_VIDEO.render_image (Gtk.IconSize.MENU));
-							lw.viewSelector.selected = 3;
-						}
+						stdout.printf("Video stream found in media\n");
 					}
-					else if(getPosition() > 0 && lw.viewSelector.get_children().length() == 4) {
-						//stdout.printf("turning off video\n");
-						if(lw.viewSelector.selected == 3) {
-							lw.viewSelector.selected = 1; // show list
-						}
-						
-						if(lw.viewSelector.get_children().length() == 4) {
-							lw.viewSelector.remove(3);
-						}
+					else if(getPosition() > 0) {
+						// TODO: Hide video graphics if necessary
 					}
 					
 					return false;

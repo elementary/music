@@ -331,7 +331,9 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			
 			var updated = new LinkedList<int>();
 			updated.add(media_being_ripped.rowid);
-			((DeviceViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter)).list_view.update_medias(updated);
+			
+			// TODO: FIXME
+			//((DeviceViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter)).list_view.update_medias(updated);
 			
 			return true;
 		}

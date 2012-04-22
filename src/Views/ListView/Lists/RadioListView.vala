@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.RadioListView : BaseListView {
+public class BeatBox.RadioListView : GenericView {
 
 	//for header column chooser
 	Gtk.Menu columnChooserMenu;
@@ -35,107 +35,93 @@ public class BeatBox.RadioListView : BaseListView {
 	Gtk.Menu mediaMenuActionMenu;
 	Gtk.MenuItem mediaEditMedia;
 	Gtk.MenuItem mediaRemove;
+	RatingWidgetMenu mediaRateMedia;
 
 	// for editing cells in-treeview
-	CellRendererText cellTrack;
-	CellRendererText cellTitle;
-	CellRendererText cellLength;
-	CellRendererText cellArtist;
-	CellRendererText cellAlbum;
-	CellRendererText cellGenre;
-	CellRendererText cellYear;
 	CellRendererPixbuf cellRating;
-	CellRendererText cellSkips;
-	CellRendererText cellPlays;
-	CellRendererText cellBitrate;
+	
+	public enum RadioColumn {
+		ROWID = 0,
+		ICON = 1,
+		STATION = 2,
+		GENRE = 3,
+		RATING = 4,
+		PULSER = 5
+	}
 
 	/**
 	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
 	 */
-	// FIXME: View.Wrapper.Hint the_hint is no longer necessary
-	public RadioListView(ViewWrapper view_wrapper, string sort, Gtk.SortType dir, ViewWrapper.Hint the_hint, int id) {
+	// FIXME: Wrapper.Hint the_hint is no longer necessary
+	public RadioListView(LibraryManager lm, TreeViewSetup tvs, int rel_id) {
+		var types = new GLib.List<Type>();
+		types.append(typeof(int)); // id
+		types.append(typeof(GLib.Icon)); // icon
+		types.append(typeof(string)); // station
+		types.append(typeof(string)); // genre
+		types.append(typeof(int)); // rating
+		types.append(typeof(int)); // pulser
+		base(lm, types, tvs, rel_id);
 		
-		base (view_wrapper);
-
-		last_search = "";
-		timeout_search = new LinkedList<string>();
-		showing_all = true;
-		removing_medias = false;
-
-		sort_column = sort;
-		sort_direction = dir;
-		hint = the_hint;
-		relative_id = id;
+		//last_search = "";
+		//timeout_search = new LinkedList<string>();
+		//showing_all = true;
+		//removing_medias = false;
 
 		buildUI();
 	}
 
-	protected override void updateSensitivities() {
+	public override void update_sensitivities() {
 		mediaRemove.set_sensitive(true);
 		mediaRemove.set_label(_("Remove Station"));
 	}
 
-	public override void buildUI() {
-		view = new TreeView();
-
-		cellTrack = new CellRendererText();
-		cellTitle = new CellRendererText();
-		cellLength = new CellRendererText();
-		cellArtist = new CellRendererText();
-		cellAlbum = new CellRendererText();
-		cellGenre = new CellRendererText();
-		cellYear = new CellRendererText();
+	public void buildUI() {
 		cellRating = new CellRendererPixbuf();
-		cellSkips = new CellRendererText();
-		cellPlays = new CellRendererText();
-		cellBitrate = new CellRendererText();
 
 		cellRating.xalign = 0.0f;
-
-		//cellTitle.editable = false;
-		//cellTitle.edited.connect(cellTitleEdited);
-
+		
 		/* id is always first and is stored as an int. Then the rest are (1)
 		 * strings (for simplicity), and include:
 		 * #, track, title, artist, album, genre, comment, year, rating, (9)
 		 * bitrate, play count, last played, date added, file name, (5)
 		 * bpm, length, file size, (3) */
-		LinkedList<TreeViewColumn> to_use = new LinkedList<TreeViewColumn>();
-		LinkedList<TreeViewColumn> originalOrder = new LinkedList<TreeViewColumn>();
-		LinkedList<string> correctStringOrder = new LinkedList<string>();
-		to_use = lm.station_setup.get_columns();
+		var to_use = new GLib.List<TreeViewColumn>();
+		var originalOrder = new GLib.List<TreeViewColumn>();
+		var correctStringOrder = new GLib.List<string>();
+		to_use = tvs.get_columns();
 
 		/* put them in the order for treemodel */
 		foreach(var tvc in to_use) {
-			originalOrder.add(tvc);
-			correctStringOrder.add(tvc.title);
+			originalOrder.append(tvc);
+			correctStringOrder.append(tvc.title);
 		}
 
 		int index = 0;
 		foreach(TreeViewColumn tvc in originalOrder) {
 			if(!(tvc.title == " " || tvc.title == "id")) {
 				if(tvc.title == "Rating")
-					view.insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
 				else if(tvc.title == "Station")
-					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
 				else if(tvc.title == "Genre")
-					view.insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
 				else {
-					view.insert_column(tvc, index);
+					insert_column(tvc, index);
 				}
 
 
-				view.get_column(index).resizable = true;
-				view.get_column(index).reorderable = false;
-				view.get_column(index).clickable = true;
-				view.get_column(index).sort_column_id = index;
-				view.get_column(index).set_sort_indicator(false);
-				view.get_column(index).visible = tvc.visible;
-				view.get_column(index).sizing = Gtk.TreeViewColumnSizing.FIXED;
-				view.get_column(index).fixed_width = tvc.fixed_width;
+				get_column(index).resizable = true;
+				get_column(index).reorderable = false;
+				get_column(index).clickable = true;
+				get_column(index).sort_column_id = index;
+				get_column(index).set_sort_indicator(false);
+				get_column(index).visible = tvc.visible;
+				get_column(index).sizing = Gtk.TreeViewColumnSizing.FIXED;
+				get_column(index).fixed_width = tvc.fixed_width;
 			}
 			else if(tvc.title == " ") {
-				view.insert_column(tvc, index);
+				insert_column(tvc, index);
 
 				tvc.fixed_width = 24;
 				tvc.clickable = false;
@@ -150,36 +136,30 @@ public class BeatBox.RadioListView : BaseListView {
 				tvc.set_cell_data_func(tvc.get_cells().nth_data(1), iconDataFunc);
 			}
 			else if(tvc.title == "id") {
-				view.insert_column(tvc, index);
+				insert_column(tvc, index);
 			}
 			else {
-				view.insert_column(tvc, index);
+				insert_column(tvc, index);
 			}
 
-			view.get_column(index).get_button().button_press_event.connect(viewHeaderClick);
-			view.get_column(index).notify["width"].connect(viewHeadersResized);
+			get_column(index).get_button().button_press_event.connect(viewHeaderClick);
+			get_column(index).notify["width"].connect(viewHeadersResized);
 
 			++index;
 		}
+		
+		set_compare_func(view_compare_func);
+        set_search_func(view_search_func);
+        set_value_func(view_value_func);
 
 		//rearrangeColumns(correctStringOrder);
-		viewColumnsChanged();
+		//viewColumnsChanged();
+		
+		button_press_event.connect(viewClick);
 
-		list_model = new RadioTreeModel(this, get_column_strings());
-
-		base.buildUI ();
-		view.button_press_event.connect(viewClick);
-
-		//view.cursor_changed.connect_after(() => { update_rating_menu(); });
-		view.button_release_event.connect(viewClickRelease);
-		view.columns_changed.connect(viewColumnsChanged);
-
-		// allow selecting multiple rows
-		view.get_selection().set_mode(SelectionMode.MULTIPLE);
-
-		// drag source
-		drag_source_set(view, Gdk.ModifierType.BUTTON1_MASK, {}, Gdk.DragAction.MOVE);
-		Gtk.drag_source_add_uri_targets(view);
+		//cursor_changed.connect_after(() => { update_rating_menu(); });
+		button_release_event.connect(viewClickRelease);
+		//columns_changed.connect(viewColumnsChanged);
 
 		// column chooser menu
 		columnChooserMenu = new Gtk.Menu();
@@ -200,71 +180,32 @@ public class BeatBox.RadioListView : BaseListView {
 		mediaMenuActionMenu = new Gtk.Menu();
 		mediaEditMedia = new Gtk.MenuItem.with_label("Edit Station");
 		mediaRemove = new Gtk.MenuItem.with_label("Remove Station");
-		rating_item = new RatingWidgetMenu();
+		mediaRateMedia = new RatingWidgetMenu();
 		mediaMenuActionMenu.append(mediaEditMedia);
-		mediaMenuActionMenu.append(rating_item);
+		mediaMenuActionMenu.append(mediaRateMedia);
 		mediaMenuActionMenu.append(new SeparatorMenuItem());
 		mediaMenuActionMenu.append(mediaRemove);
 		mediaEditMedia.activate.connect(mediaMenuEditClicked);
 		mediaRemove.activate.connect(mediaRemoveClicked);
-		rating_item.activate.connect(mediaRateMediaClicked);
-		//mediaMenuActionMenu.show_all();
+		mediaRateMedia.activate.connect(mediaRateMediaClicked);
 
-		updateSensitivities();
-
-		this.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-
-		this.add(view);
-
-		this.list_model.rows_reordered.connect(modelRowsReordered);
-		this.list_model.sort_column_changed.connect(sortColumnChanged);
-		this.view.drag_begin.connect(onDragBegin);
-		this.view.drag_data_get.connect(onDragDataGet);
-		this.view.drag_end.connect(onDragEnd);
-		this.vadjustment.value_changed.connect(viewScroll);
+		update_sensitivities();
+		
+		// TODO: FIXME
+		//this.list_model.rows_reordered.connect(modelRowsReordered);
+		//this.list_model.sort_column_changed.connect(sortColumnChanged);
 	}
-
-	public void iconDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
-		Value? id;
-		bool showIndicator = false;
-		model.get_value(iter, 0, out id);
-
-		Media s = lm.media_from_id(id.get_int());
-		if(s == null)
-			return;
-		else
-			showIndicator = s.showIndicator;
-
-		if(renderer is CellRendererPixbuf) {
-			Value? icon;
-			model.get_value (iter, 1, out icon);
-
-			/* Themed icon */
-			(renderer as CellRendererPixbuf).follow_state = true;
-			(renderer as CellRendererPixbuf).gicon = icon as GLib.Icon;
-
-			renderer.visible = !showIndicator;
-			renderer.width = showIndicator ? 0 : 16;
-		}
-		if(renderer is CellRendererSpinner) {
-			if(showIndicator) {
-				((CellRendererSpinner)renderer).active = true;
-			}
-			renderer.visible = showIndicator;
-			renderer.width = showIndicator ? 16 : 0;
-		}
-	}
-
+	
 	public void rearrangeColumns(LinkedList<string> correctOrder) {
-		view.move_column_after(view.get_column(6), view.get_column(7));
-		//debug("correctOrder.length = %d, view.get_columns.length() = %d\n", correctOrder.size, (int)view.get_columns().length());
-		/* iterate through view.get_columns and if a column is not in the
+		move_column_after(get_column(6), get_column(7));
+		//debug("correctOrder.length = %d, get_columns.length() = %d\n", correctOrder.size, (int)get_columns().length());
+		/* iterate through get_columns and if a column is not in the
 		 * same location as correctOrder, move it there.
 		*/
-		for(int index = 0; index < view.get_columns().length(); ++index) {
-			//debug("on index %d column %s originally moving to %d\n", index, view.get_column(index).title, correctOrder.index_of(view.get_column(index).title));
-			if(view.get_column(index).title != correctOrder.get(index)) {
-				view.move_column_after(view.get_column(index), view.get_column(correctOrder.index_of(view.get_column(index).title)));
+		for(int index = 0; index < get_columns().length(); ++index) {
+			//debug("on index %d column %s originally moving to %d\n", index, get_column(index).title, correctOrder.index_of(get_column(index).title));
+			if(get_column(index).title != correctOrder.get(index)) {
+				move_column_after(get_column(index), get_column(correctOrder.index_of(get_column(index).title)));
 			}
 		}
 	}
@@ -296,43 +237,35 @@ public class BeatBox.RadioListView : BaseListView {
 				lm.queue_media_by_id(id);
 			}
 		}*/
-
-		if(is_current_view) {
-			set_as_current_list(0, false);
-		}
+		
+		// TODO: FIXME
+		//if(is_current_view) {
+		//	set_as_current_list(0, false);
+		//}
 
 		if(!scrolled_recently) {
-			scrollToCurrent();
+			scroll_to_current_media();
 		}
 	}
 
 	public virtual void viewColumnsChanged() {
-		if((int)(view.get_columns().length()) != lm.station_setup.RADIO_COLUMN_COUNT) {
-			return;
-		}
-
-		_columns.clear();
-		foreach(TreeViewColumn tvc in view.get_columns()) {
-			_columns.add(tvc.title);
-		}
-
 		updateTreeViewSetup();
 	}
 
 	public void updateColumnVisibilities() {
 		int index = 0;
-		foreach(TreeViewColumn tvc in view.get_columns()) {
+		foreach(TreeViewColumn tvc in get_columns()) {
 			if(tvc.title == "Station")
-				columnStation.active = view.get_column(index).visible;
+				columnStation.active = get_column(index).visible;
 			else if(tvc.title == "Genre")
-				columnGenre.active = view.get_column(index).visible;
+				columnGenre.active = get_column(index).visible;
 			else if(tvc.title == "Rating")
-				columnRating.active = view.get_column(index).visible;
+				columnRating.active = get_column(index).visible;
 
 			++index;
 		}
 	}
-
+	
 	/* button_press_event */
 	bool viewClick(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
@@ -340,7 +273,7 @@ public class BeatBox.RadioListView : BaseListView {
 
 			int set_rating = -1;
 			TreeModel temp;
-			foreach(TreePath path in view.get_selection().get_selected_rows(out temp)) {
+			foreach(TreePath path in get_selection().get_selected_rows(out temp)) {
 				TreeIter item;
 				temp.get_iter(out item, path);
 
@@ -355,10 +288,10 @@ public class BeatBox.RadioListView : BaseListView {
 				}
 			}
 
-			rating_item.rating_value = set_rating;
+			mediaRateMedia.rating_value = set_rating;
 			mediaMenuActionMenu.popup (null, null, null, 3, get_current_event_time());
 
-			TreeSelection selected = view.get_selection();
+			TreeSelection selected = get_selection();
 			selected.set_mode(SelectionMode.MULTIPLE);
 			if(selected.count_selected_rows() > 1)
 				return true;
@@ -366,24 +299,24 @@ public class BeatBox.RadioListView : BaseListView {
 				return false;
 		}
 		else if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-			TreeIter iter;
+			//TreeIter iter;
 			TreePath path;
 			TreeViewColumn column;
 			int cell_x;
 			int cell_y;
 
-			view.get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
+			get_path_at_pos((int)event.x, (int)event.y, out path, out column, out cell_x, out cell_y);
 
-			if(!list_model.get_iter(out iter, path))
-				return false;
+			//if(!list_model.get_iter(out iter, path))
+			//	return false;
 
 			/* don't unselect everything if multiple selected until button release
 			 * for drag and drop reasons */
-			if(view.get_selection().count_selected_rows() > 1) {
-				if(view.get_selection().path_is_selected(path)) {
+			if(get_selection().count_selected_rows() > 1) {
+				if(get_selection().path_is_selected(path)) {
 					if(((event.state & Gdk.ModifierType.SHIFT_MASK) == Gdk.ModifierType.SHIFT_MASK)|
 						((event.state & Gdk.ModifierType.CONTROL_MASK) == Gdk.ModifierType.CONTROL_MASK)) {
-							view.get_selection().unselect_path(path);
+							get_selection().unselect_path(path);
 					}
 					return true;
 				}
@@ -417,9 +350,9 @@ public class BeatBox.RadioListView : BaseListView {
 			int x = (int)event.x;
 			int y = (int)event.y;
 
-			if(!(view.get_path_at_pos(x, y, out path, out tvc, out cell_x, out cell_y))) return false;
-			view.get_selection().unselect_all();
-			view.get_selection().select_path(path);
+			if(!(get_path_at_pos(x, y, out path, out tvc, out cell_x, out cell_y))) return false;
+			get_selection().unselect_all();
+			get_selection().select_path(path);
 			return false;
 		}
 	}
@@ -443,40 +376,31 @@ public class BeatBox.RadioListView : BaseListView {
 	}
 
 	void updateTreeViewSetup() {
-		if(list_model == null || !(list_model is TreeSortable) || _columns.size == 0) {
-			return;
-		}
-
-		TreeViewSetup tvs = lm.station_setup;
-
-		if(tvs == null)
+		if(tvs == null || !visible || get_columns().length() != TreeViewSetup.RADIO_COLUMN_COUNT)
 			return;
 
-		int sort_id = 2;
+		int sort_id = RadioColumn.STATION;
 		SortType sort_dir = Gtk.SortType.ASCENDING;
-		list_model.get_sort_column_id(out sort_id, out sort_dir);
+		get_sort_column_id(out sort_id, out sort_dir);
 
 		if(sort_id <= 0)
-			sort_id = 2;
-
-		sort_column = _columns.get(sort_id);
-		sort_direction = sort_dir;
-
+			sort_id = RadioColumn.STATION;
+		
 		tvs.set_columns(get_columns());
-		tvs.sort_column = _columns.get(sort_id);
+		tvs.sort_column_id = sort_id;
 		tvs.sort_direction = sort_dir;
 	}
 
 	/** When the column chooser popup menu has a change/toggle **/
 	public virtual void columnMenuToggled() {
 		int index = 0;
-		foreach(TreeViewColumn tvc in view.get_columns()) {
+		foreach(TreeViewColumn tvc in get_columns()) {
 			if(tvc.title == "Station")
-				view.get_column(index).visible = columnStation.active;
+				get_column(index).visible = columnStation.active;
 			else if(tvc.title == "Genre")
-				view.get_column(index).visible = columnGenre.active;
+				get_column(index).visible = columnGenre.active;
 			else if(tvc.title == "Rating")
-				view.get_column(index).visible = columnRating.active;
+				get_column(index).visible = columnRating.active;
 
 			++index;
 		}
@@ -486,16 +410,10 @@ public class BeatBox.RadioListView : BaseListView {
 
 	/** media menu popup clicks **/
 	public virtual void mediaMenuEditClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-		TreeModel temp;
-
-		//tempMedias.clear();
 		var to_edit = new LinkedList<int>();
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			int id = list_model.getRowidFromPath(path.to_string());
-
-			to_edit.add(id);
+		
+		foreach(Media m in get_selected_medias()) {
+			to_edit.add(m.rowid);
 		}
 
 		/*if(!GLib.File.new_for_path(media_from_id(id).file).query_exists() && media_from_id(id).file.contains(settings.getMusicFolder())) {
@@ -503,9 +421,25 @@ public class BeatBox.RadioListView : BaseListView {
 			lw.media_not_found(id);
 		}
 		else {*/
-			StationEditor se = new StationEditor(lm, list_model.getOrderedMedias(), to_edit);
+			var list = new LinkedList<int>();
+			for(int i = 0; i < get_visible_table().size(); ++i) {
+				list.add(get_media_from_index(i).rowid);
+			}
+			StationEditor se = new StationEditor(lm, list, to_edit);
 			se.stations_saved.connect(stationEditorSaved);
 		//}
+	}
+	
+	void mediaRateMediaClicked() {
+		var los = new LinkedList<Media>();
+		int new_rating = mediaRateMedia.rating_value;
+		
+		foreach(Media m in get_selected_medias()) {
+			m.rating = new_rating;
+			los.add(m);
+		}
+
+		lm.update_medias(los, false, true);
 	}
 
 	public virtual void stationEditorSaved(LinkedList<int> medias) {
@@ -515,52 +449,90 @@ public class BeatBox.RadioListView : BaseListView {
 
 		// user could have edited rating, so record time
 		lm.update_medias(toUpdate, true, true);
-
-		if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
-			// make sure these medias still belongs here
-		}
 	}
 
 	public virtual void mediaRemoveClicked() {
-		TreeSelection selected = view.get_selection();
-		selected.set_mode(SelectionMode.MULTIPLE);
-
 		LinkedList<Media> toRemove = new LinkedList<Media>();
 		LinkedList<int> toRemoveIDs = new LinkedList<int>();
-		TreeModel temp;
 
-		foreach(TreePath path in selected.get_selected_rows(out temp)) {
-			TreeIter item;
-			temp.get_iter(out item, path);
-
-			int id;
-			temp.get(item, 0, out id);
-			Media s = lm.media_from_id(id);
-
-			toRemoveIDs.add(id);
+		foreach(Media m in get_selected_medias()) {
+			toRemoveIDs.add(m.rowid);
 
 			if(get_hint() == ViewWrapper.Hint.STATION) {
-				toRemove.add(s);
+				toRemove.add(m);
 			}
 		}
 
 		if(get_hint() == ViewWrapper.Hint.STATION) {
 			var dialog = new RemoveFilesDialog (lm.lw, toRemove, get_hint());
-
 			dialog.remove_media.connect ( (delete_files) => {
 				lm.remove_medias (toRemove, delete_files);
-				//music_model.removeMedias(toRemoveIDs);
-
-				//view_wrapper.populate_column_browser (list_model.getOrderedMedias());
 			});
 		}
-
-		// in case all the medias from certain miller items were removed, update miller
-		//view_wrapper.populate_column_browser (list_model.getOrderedMedias());
 	}
-
-	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
-		debug("User trying to drag from internet radio list, but is not implemented\n");
+	
+	int view_compare_func (int col, Gtk.SortType dir, Media a_media, Media b_media) {
+		int rv = 0;
+		
+		if(sort_column_id == RadioColumn.STATION) { // station
+			if(a_media.album_artist.down() == b_media.album_artist.down()) {
+				rv = advanced_string_compare(b_media.uri, a_media.uri);
+			}
+			else
+				rv = advanced_string_compare(a_media.album_artist.down(), b_media.album_artist.down());
+		}
+		else if(sort_column_id == RadioColumn.GENRE) { // genre
+			if(a_media.genre.down() == b_media.genre.down()) {
+				if(a_media.album_artist.down() == b_media.album_artist.down()) {
+					rv = advanced_string_compare(b_media.uri, a_media.uri);
+				}
+				else {
+					rv = advanced_string_compare(a_media.album_artist.down(), b_media.album_artist.down());
+				}
+			}
+			else
+				rv = advanced_string_compare(a_media.genre.down(), b_media.genre.down());
+		}
+		
+		else if(sort_column_id == RadioColumn.RATING) { // rating
+			rv = (int)(a_media.rating - b_media.rating);
+		}
+		else {
+			rv = 0;
+		}
+		
+		if(rv == 0 && col != RadioColumn.STATION && col != RadioColumn.GENRE)
+			rv = advanced_string_compare(a_media.uri, b_media.uri);
+		
+		if(sort_direction == SortType.DESCENDING)
+			rv = (rv > 0) ? -1 : 1;
+		
+		return rv;
+	}
+	
+	Value view_value_func (int row, int column, Media s) {
+		Value val;
+		
+		if(column == 0)
+			val = (int)s.rowid;
+		else if(column == 1) {
+			if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid)
+				val = playing_icon;
+			else if(s.unique_status_image != null)
+				val = s.unique_status_image;
+			else
+				val = Value(typeof(GLib.Icon));
+		}
+		else if(column == 2)
+			val = s.album_artist;
+		else if(column == 3)
+			val = s.genre;
+		else if(column == 4)
+			val = (int)s.rating;
+		else// if(column == 5)
+			val = (int)s.pulseProgress;
+		
+		return val;
 	}
 }
 

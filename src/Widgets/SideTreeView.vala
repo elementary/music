@@ -23,6 +23,7 @@
 using Gtk;
 using Gee;
 
+
 public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	LibraryManager lm;
 	LibraryWindow lw;
@@ -92,8 +93,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		// Setup theming
 		get_style_context().add_class (STYLE_CLASS_SIDEBAR);
 
-		lm.dm.device_added.connect(deviceAdded);
-		lm.dm.device_removed.connect(deviceRemoved);
+		lm.device_manager.device_added.connect(deviceAdded);
+		lm.device_manager.device_removed.connect(deviceRemoved);
 		
 		buildUI();
 	}
@@ -265,18 +266,16 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 
 			rv = addItem(parent, o, w, device_icon, name, null);
 
-			var dvw = new DeviceViewWrapper(lw, d.get_medias(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO, -1, d);
+			var dvw = new DeviceViewWrapper(lw, d.get_medias(), new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), -1, d);
 			addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
 			lw.add_to_main_views(dvw);
-
-#if HAVE_PODCASTS			
+#if HAVE_PODCASTS
 			if(d.supports_podcasts()) {
-				dvw = new DeviceViewWrapper(lw, d.get_podcasts(), _("Artist"), SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST, -1, d);
+				dvw = new DeviceViewWrapper(lw, d.get_podcasts(), new TreeViewSetup(PodcastListView.PodcastColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST), -1, d);
 				addItem(rv, o, dvw, Icons.PODCAST.render (IconSize.MENU, null), _("Podcasts"), null);
 				lw.add_to_main_views(dvw);
 			}
 #endif
-
 			if(d.supports_audiobooks() && false) {
 				//dvw = new DeviceViewWrapper(lm, lm.lw, d.get_podcasts(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIOBOOK, -1, d);
 				//addItem(rv, o, dvw, audiobook_icon, "Audiobooks", null);
@@ -741,9 +740,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		Widget w;
 		filter.get(iter, 1, out w);
 		
-		if(w is ViewWrapper && ((ViewWrapper)w).list_view is SimilarPane) {
-			SimilarPane sp = (SimilarPane)(((ViewWrapper)w).list_view);
-			sp.savePlaylist();
+		if(w is SimilarViewWrapper) {
+			((SimilarViewWrapper)w).savePlaylist();
 		}
 	}
 	
@@ -769,12 +767,12 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			if(o is ViewWrapper && (o as ViewWrapper).hint == ViewWrapper.Hint.SMART_PLAYLIST) {
 				var smart_playlist = lm.smart_playlist_from_id ((o as ViewWrapper).relative_id);
 				
-				p.addMedia (smart_playlist.analyze(lm, lm.media_ids()));
+				p.add_media (smart_playlist.analyze(lm, lm.media_ids()));
 					
 				p.name = smart_playlist.name;
 			}
 			else {
-				p.addMedia(((ViewWrapper)o).get_media_ids());
+				p.add_media(((ViewWrapper)o).get_media_ids());
 				
 				if(iter == playlists_similar_iter)
 					p.name = (lm.media_info.media != null) ? ("Similar to " + lm.media_info.media.title) : "Similar list";
@@ -962,11 +960,12 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				lm.fo.import_from_playlist_file_info(names, filtered_paths);
 		    		lw.update_sensitivities();
 		    	}
-
+#if HAVE_INTERNET_RADIO
 			if(stations.size > 0) {
 				stdout.printf("stations size is %d\n", stations.size);
 				lm.add_medias(stations, true);
 			}
+#endif
 		}
 //>>>>>>> MERGE-SOURCE
 	}
@@ -992,16 +991,22 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		
 		/* make sure it is either queue or normal playlist */
 		if(name == "Queue") {
+			var to_queue = new Gee.LinkedList<int>();
+
 			foreach (string uri in data.get_uris ()) {
 				File file = File.new_for_uri (uri);
 				if(file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.REGULAR && file.is_native ()) {
 					Media add = lm.media_from_file(file.get_path());
 					
 					if(add != null) {
-						lm.queue_media_by_id(add.rowid);
-						success = true;
+						to_queue.add (add.rowid);
 					}
 				}
+			}
+			
+			if (to_queue.size > 0) {
+				lm.queue_media_by_id (to_queue);
+				success = true;
 			}
 			
 			//ViewWrapper vw = (ViewWrapper)w;
@@ -1019,13 +1024,14 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 					
 					if(add != null) {
 						to_add.add (add.rowid);
-						success = true;
 					}
 				}
 			}
 			
-			p.addMedia (to_add);
-			
+			if (to_add.size > 0) {
+				p.add_media (to_add);
+				success = true;
+			}
 			//ViewWrapper vw = (ViewWrapper)w;
 			//vw.column_browser_changed(); //FIXME
 		}

@@ -26,21 +26,22 @@ public interface BeatBox.ContentView : Gtk.Container {
 
 	public signal void import_requested(LinkedList<int> to_import);
 	
-//	public abstract void set_hint(ViewWrapper.Hint hint);
+	//public abstract void set_hint(ViewWrapper.Hint hint);
 	public abstract ViewWrapper.Hint get_hint();
-	public abstract void set_relative_id(int id);
+	//public abstract void set_relative_id(int id);
 	public abstract int get_relative_id();
-	
+
+	// @deprecated:
 	public abstract void set_show_next(Collection<int> medias);
 	public abstract void populate_view();
-	public abstract void append_medias(Collection<int> new_medias);
-	public abstract void remove_medias(Collection<int> to_remove);
-	public abstract void set_as_current_list(int media_id, bool is_initial = false);
+	public abstract void append_media (Collection<int> new_medias);
+	public abstract void remove_media (Collection<int> to_remove);
+//	public abstract void set_as_current_list(int media_id, bool is_initial = false);
 //	public abstract void set_statusbar_info();
 
-	public abstract Collection<int> get_medias();
-	public abstract Collection<int> get_showing_medias();
+//	public abstract Collection<int> get_media ();
+//	public abstract Collection<int> get_showing_media ();
 	
-	public abstract void update_medias(Collection<int> medias); // request to update displayed information
+//	public abstract void update_medias(Collection<int> medias); // request to update displayed information
 }
 

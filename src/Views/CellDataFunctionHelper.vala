@@ -24,16 +24,69 @@ using Gtk;
 using Gdk;
 
 public class BeatBox.CellDataFunctionHelper : GLib.Object {
+	LibraryManager lm;
+	GenericList view;
 	private Pixbuf _canvas;
 	private Pixbuf not_starred;
 	private Pixbuf starred;
 	
-	public CellDataFunctionHelper(LibraryManager lm) {
+	public CellDataFunctionHelper(LibraryManager lm, GenericList view) {
+		this.lm = lm;
+		this.view = view;
 		this.starred = Icons.STARRED.render (IconSize.MENU, null);
 		this.not_starred = Icons.NOT_STARRED.render (IconSize.MENU, null);
 		
 		_canvas = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, starred.width * 5, starred.height);
 	}
+
+#if HAVE_SMART_ALBUM_COLUMN
+	// for Smart album column
+	public void smartAlbumFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+		Media m = view.get_media_from_index((int)iter.user_data);
+		
+		((SmartAlbumRenderer)cell).m = m;
+		
+		if(lm.get_cover_album_art(m.rowid) != null) {
+			int top; int bottom; int current; int range;
+			
+			current = (int)iter.user_data;
+			for(top = current; top >= 0; --top) {
+				if(view.get_media_from_index(top).album != m.album) {
+					++top;
+					break;
+				}
+				else if(top == 0) {
+					break;
+				}
+			}
+			for(bottom = current; bottom < view.get_visible_table().size(); ++bottom) {
+				if(view.get_media_from_index(bottom).album != m.album) {
+					--bottom;
+					break;
+				}
+			}
+			range = (bottom - top) + 1;
+			//stdout.printf("range is %d, top is %d, bottom is %d, current is %d\n", range, top, bottom, current);
+			
+			// We have enough space to draw art
+			if(range >= 6) {
+				((SmartAlbumRenderer)cell).icon = lm.get_cover_album_art(m.rowid);
+				((SmartAlbumRenderer)cell).top = top;
+				((SmartAlbumRenderer)cell).bottom = bottom;
+				((SmartAlbumRenderer)cell).current = current;
+				cell.xalign = 0.5f;
+			}
+			else {
+				((SmartAlbumRenderer)cell).icon = null;
+				cell.xalign = 0f;
+			}
+		}
+		else {
+			cell.xalign = 0f;
+			((SmartAlbumRenderer)cell).icon = null;
+		}
+	}
+#endif
 	
 	// for Track, Year, #, Plays, Skips. Simply shows nothing if less than 1.
 	public void intelligentTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
