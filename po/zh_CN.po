@@ -1,237 +1,236 @@
-# Finnish translation for beat-box
+# Chinese (Simplified) translation for noise
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
-# This file is distributed under the same license as the beat-box package.
+# This file is distributed under the same license as the noise package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: beat-box\n"
+"Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-04-08 14:19-0600\n"
-"PO-Revision-Date: 2012-04-21 21:25+0000\n"
-"Last-Translator: Teemu Kielinen <teemu.kielinen@gmail.com>\n"
-"Language-Team: Finnish <fi@li.org>\n"
+"PO-Revision-Date: 2012-04-22 12:26+0000\n"
+"Last-Translator: Wang Dianjin <Unknown>\n"
+"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-22 05:17+0000\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Launchpad-Export-Date: 2012-04-23 05:30+0000\n"
+"X-Generator: Launchpad (build 15135)\n"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Import media to Library"
-msgstr "Tuo kirjastoon"
+msgstr "将媒体导入到库中"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:67
 msgid "Continue Syncing"
-msgstr "Jatka synkronointia"
+msgstr "继续同步"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:68
 msgid "Stop Syncing"
-msgstr "Pysäytä synkronointi"
+msgstr "停止同步"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
 #: /home/victor/Projects/Noise/po/../src//Dialogs/PlaylistNameWindow.vala:66
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #, c-format
 msgid "Name of Playlist"
-msgstr "Soittolistan nimi"
+msgstr "播放列表名称"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
 #: /home/victor/Projects/Noise/po/../src//Dialogs/StationEditor.vala:70
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:87
 msgid "Done"
-msgstr "Valmis"
+msgstr "完成"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:69
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:81
 msgid "Cancel"
-msgstr "Peruuta"
+msgstr "取消"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/StationEditor.vala:68
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:85
 msgid "Previous"
-msgstr "Edellinen"
+msgstr "上一首"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/StationEditor.vala:69
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:86
 msgid "Next"
-msgstr "Seuraava"
+msgstr "下一首"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 msgid "Rules"
-msgstr "Säännöt"
+msgstr "规则"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
 msgid "Options"
-msgstr "Asetukset"
+msgstr "选项"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 #, c-format
 msgid "<b>Name of Playlist</b>"
-msgstr "<b>Soittolistan nimi</b>"
+msgstr "<b>播放列表名称</b>"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
 #, c-format
 msgid "<b>Rules</b>"
-msgstr "<b>Säännöt</b>"
+msgstr "<b>规则</b>"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
 #, c-format
 msgid "Options</b>"
-msgstr "Asetukset</b>"
+msgstr "选项</b>"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:81
 msgid "Playlist Title"
-msgstr "Soittolistan nimi"
+msgstr "播放列表标题"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
-msgstr "Osuma"
+msgstr "匹配"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
-msgstr "seuraavista:"
+msgstr "以下其中："
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:80
 msgid "Add"
-msgstr "Lisää"
+msgstr "添加"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
 msgid "Limit to"
-msgstr "Rajoita"
+msgstr "限制为"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 #: /home/victor/Projects/Noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
-msgstr "media"
+msgstr "媒体"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:144
 msgid "Remove"
-msgstr "Poista"
+msgstr "移除"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:394
 msgid "is"
-msgstr "on"
+msgstr "是"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "contains"
-msgstr "sisältää"
+msgstr "包含"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "does not contain"
-msgstr "ei sisällä"
+msgstr "不包含"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:395
 msgid "is not"
-msgstr "ei ole"
+msgstr "不是"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:437
 msgid "seconds"
-msgstr "sekuntia"
+msgstr "秒"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:445
 msgid "kbps"
-msgstr "kb/s"
+msgstr "kbps"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
 msgid "Export Playlists"
-msgstr "Vie soittolistoja"
+msgstr "导出播放列表"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:68
 msgid "Set Music Folder"
-msgstr "Aseta musiikkikansio"
+msgstr "设置音乐文件夹"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:75
 #, c-format
 msgid "Set Music Folder?"
-msgstr "Aseta musiikkikansio?"
+msgstr "设置音乐文件夹？"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:51
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:113
 msgid "Add Podcast"
-msgstr "Lisää podcast"
+msgstr "添加播客"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:76
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:84
 #, c-format
 msgid "Podcast RSS Source"
-msgstr "Podcastin RSS-lähde"
+msgstr "播客 RSS 源"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:77
 msgid "Podcast Source..."
-msgstr "Podcastin lähde..."
+msgstr "播客源..."
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:145
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:259
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:270
 msgid "No Podcasts Found"
-msgstr "Podcasteja ei löydetty"
+msgstr "未发现播客"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:145
 msgid ""
 "The provided source is invalid. Make sure you are entering an RSS feed in "
 "XML format."
-msgstr ""
-"Lähde ei ole kelvollinen. Varmista, että lisäämäsi RSS-syöte on XML-muodossa."
+msgstr "您提供的源无效。确保您输入的 RSS 订阅是 XML 格式。"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:556
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:291
 msgid "Song"
-msgstr "Kappale"
+msgstr "歌曲"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:558
 msgid "Podcast"
-msgstr "Podcast"
+msgstr "播客"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:103
 msgid "Import from Device"
-msgstr "Tuo laitteesta"
+msgstr "从设备中导入"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr "Tuo kaikki"
+msgstr "导入所有媒体"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
-msgstr "Tuo"
+msgstr "导入"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr "Älä tuo"
+msgstr "不导入"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:161
 msgid "Select individual media to import:"
-msgstr "Valitse tiedostot yksitellen tuontia varten:"
+msgstr "选择要导入的单个媒体："
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:179
 msgid "Check Item"
-msgstr "Valitse kohde"
+msgstr "检测条目"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:180
 msgid "Check Album"
-msgstr "Valitse Albumi"
+msgstr "检测专辑"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:181
 msgid "Check Artist"
-msgstr "Valitse Artisti"
+msgstr "检测艺术家"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/InfoPanel.vala:72
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:296
 #, c-format
 msgid "Title"
-msgstr "Nimi"
+msgstr "标题"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/InfoPanel.vala:73
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:301
 #, c-format
 msgid "Year"
-msgstr "Vuosi"
+msgstr "年代"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:39
 #, c-format
@@ -241,263 +240,263 @@ msgstr "%s, %s, %s"
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:127
 #, c-format
 msgid "%s minutes"
-msgstr "%s minuuttia"
+msgstr "%s 分钟"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:130
 #, c-format
 msgid "%s hours"
-msgstr "%s tuntia"
+msgstr "%s 小时"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:133
 #, c-format
 msgid "%s days"
-msgstr "%s päivää"
+msgstr "%s 天"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:137
 #, c-format
 msgid "%i MB"
-msgstr "%i Mt"
+msgstr "%i MB"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:139
 #, c-format
 msgid "%.2f GB"
-msgstr "%.2f Gt"
+msgstr "%.2f GB"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:143
 msgid "songs"
-msgstr "kappaletta"
+msgstr "歌曲"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:143
 msgid "song"
-msgstr "kappale"
+msgstr "歌曲"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:146
 msgid "podcasts"
-msgstr "podcastia"
+msgstr "播客"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:146
 msgid "podcast"
-msgstr "podcast"
+msgstr "播客"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
 msgid "audiobooks"
-msgstr "äänikirjaa"
+msgstr "有声读物"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
 msgid "audiobook"
-msgstr "äänikirja"
+msgstr "有声读物"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:152
 msgid "stations"
-msgstr "asemaa"
+msgstr "电台"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:152
 msgid "station"
-msgstr "asema"
+msgstr "电台"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:155
 msgid "items"
-msgstr "kohdetta"
+msgstr "条目"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:155
 msgid "item"
-msgstr "kohde"
+msgstr "条目"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr "Samankaltainen media"
+msgstr "类似媒体"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:104
 msgid "Sync"
-msgstr "Synkronoi"
+msgstr "同步"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:114
 msgid "Download new Episodes"
-msgstr "Lataa uusia jaksoja"
+msgstr "下载新的剧集"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:123
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:207
 msgid "Import to Library"
-msgstr "Tuo kirjastoon"
+msgstr "导入到库中"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:124
 msgid "Eject"
-msgstr "Irrota"
+msgstr "弹出"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:133
 msgid "Import Stations"
-msgstr "Tuo asemia"
+msgstr "导入电台"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:141
 msgid "New Playlist"
-msgstr "Uusi soittolista"
+msgstr "新建播放列表"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:142
 msgid "New Smart Playlist"
-msgstr "Uusi älykäs soittolista"
+msgstr "新建智能播放列表"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:143
 msgid "Edit"
-msgstr "Muokkaa"
+msgstr "编辑"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:145
 msgid "Save as Playlist"
-msgstr "Tallenna soittolistana"
+msgstr "保存为播放列表"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:146
 msgid "Export..."
-msgstr "Vie..."
+msgstr "导出..."
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:147
 msgid "Import Playlists"
-msgstr "Tuo soittolistoja"
+msgstr "导入播放列表"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:182
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:275
 msgid "Library"
-msgstr "Kirjasto"
+msgstr "库"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:183
 msgid "Devices"
-msgstr "Laitteet"
+msgstr "设备"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:184
 msgid "Network"
-msgstr "Verkko"
+msgstr "网络"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:185
 msgid "Playlists"
-msgstr "Soittolistat"
+msgstr "播放列表"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:268
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:274
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:298
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:293
 msgid "Artist"
-msgstr "Artisti"
+msgstr "艺术家"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:97
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:581
 msgid "Music"
-msgstr "Musiikki"
+msgstr "音乐"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:275
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:99
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:585
 msgid "Podcasts"
-msgstr "Podcastit"
+msgstr "播客"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:162
 msgid "Automatic"
-msgstr "Automaattinen"
+msgstr "自动"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:163
 msgid "On Left"
-msgstr "Vasemmalla"
+msgstr "左侧"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:164
 msgid "On Top"
-msgstr "Ylhäällä"
+msgstr "置顶"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:560
 msgid "Genres"
-msgstr "Tyylilajit"
+msgstr "流派"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:563
 msgid "Artists"
-msgstr "Artistit"
+msgstr "艺术家"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:566
 msgid "Albums"
-msgstr "Albumit"
+msgstr "专辑"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:569
 msgid "Years"
-msgstr "Vuodet"
+msgstr "年份"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:572
 msgid "Ratings"
-msgstr "Arvostelut"
+msgstr "评分"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:189
 msgid "Unrated"
-msgstr "Ei arvosteltu"
+msgstr "未评分"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:191
 #, c-format
 msgid "%s Stars"
-msgstr "%s tähteä"
+msgstr "%s 星"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:239
 msgid "All Genres"
-msgstr "Kaikki tyylilajit"
+msgstr "所有流派"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:241
 #, c-format
 msgid "All %i Genres"
-msgstr "Kaikki %i tyylilajia"
+msgstr "所有 %i 流派"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:243
 msgid "No Genres"
-msgstr "Ei tyylilajeja"
+msgstr "无流派"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:247
 msgid "All Artists"
-msgstr "Kaikki artistit"
+msgstr "所有艺术家"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:249
 #, c-format
 msgid "All %i Artists"
-msgstr "Kaikki %i artistia"
+msgstr "所有 %i 艺术家"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:251
 msgid "No Artists"
-msgstr "Ei artisteja"
+msgstr "无艺术家"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:255
 msgid "All Albums"
-msgstr "Kaikki albumit"
+msgstr "全部专辑"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:257
 #, c-format
 msgid "All %i Albums"
-msgstr "Kaikki %i albumia"
+msgstr "所有 %i 专辑"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:259
 msgid "No Albums"
-msgstr "Ei albumeita"
+msgstr "无专辑"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:263
 msgid "All Years"
-msgstr "Kaikki vuodet"
+msgstr "所有年份"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:265
 #, c-format
 msgid "All %i Years"
-msgstr "Kaikki %i vuotta"
+msgstr "所有 %i 年份"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:267
 msgid "No Years"
-msgstr "Ei vuosia"
+msgstr "无年份"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:271
 msgid "All Ratings"
-msgstr ""
+msgstr "所有评分"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:273
 #, c-format
 msgid "All %i Ratings"
-msgstr ""
+msgstr "所有 %i 评分"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:275
 msgid "No Ratings"
-msgstr ""
+msgstr "无评分"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/SimilarPane.vala:86
 #, c-format
 msgid "Similar to %s"
-msgstr ""
+msgstr "类似 %s"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:294
 msgid "#"
@@ -505,44 +504,44 @@ msgstr "#"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:295
 msgid "Track"
-msgstr "Raita"
+msgstr "音轨"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:297
 msgid "Length"
-msgstr "Kesto"
+msgstr "长度"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:299
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:292
 msgid "Album"
-msgstr "Albumi"
+msgstr "专辑"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:300
 msgid "Genre"
-msgstr "Tyylilaji"
+msgstr "流派"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:302
 msgid "Bitrate"
-msgstr "Laatu"
+msgstr "位速率"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:303
 msgid "Rating"
-msgstr "Arvostelu"
+msgstr "评分"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:304
 msgid "Plays"
-msgstr "Soittokerrat"
+msgstr "播放"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:305
 msgid "Skips"
-msgstr "Ohituskerrat"
+msgstr "跳过"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:306
 msgid "Date Added"
-msgstr "Lisäyspäivä"
+msgstr "添加的日期"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:307
 msgid "Last Played"
-msgstr "Viimeksi soitettu"
+msgstr "最近播放"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:308
 msgid "BPM"
@@ -550,75 +549,71 @@ msgstr "BPM"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/RadioListView.vala:75
 msgid "Remove Station"
-msgstr "Poista asema"
+msgstr "删除电台"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:68
 msgid "Device Name"
-msgstr "Laitteen nimi"
+msgstr "设备名称"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Device Name:"
-msgstr "Laitteen nimi:"
+msgstr "设备名称："
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:90
 msgid "Automatically sync when plugged in:"
-msgstr "Synkronoi automaattisesti liitettäessä:"
+msgstr "当插入时自动同步："
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Sync:"
-msgstr "Synkronoi:"
+msgstr "同步："
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:411
 msgid "All Music"
-msgstr "Kaikki musiikki"
+msgstr "所有音乐"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:414
 msgid "All Podcasts"
-msgstr "Kaikki podcastit"
+msgstr "所有播客"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:544
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:582
 msgid "Sync Failed"
-msgstr "Synkronointi epäonnistui"
+msgstr "同步失败"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:544
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:582
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Soittolistaa %s käytetään laitteen %s synkronoimiseen, mutta sitä ei "
-"löydetty."
+msgstr "播放列表 %s 被用来同步设备 %s，但未发现该列表。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:630
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:633
 msgid "Cannot Sync"
-msgstr "Ei voida synkronoida"
+msgstr "无法同步"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:630
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Laitetta ei voi synkronoida valituilla synkronointiasetuksilla. Levyllä ei "
-"ole tarpeeksi tilaa."
+msgstr "无法使用选中的同步设置来同步设备。磁盘无足够空间"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:633
 msgid "Device is already being synced."
-msgstr "Laitetta synkronoidaan jo."
+msgstr "设备已经在同步。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:210
 msgid "Get Some Tunes"
-msgstr "Hanki kappaleita"
+msgstr "获取曲目"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:210
 msgid "Noise can't seem to find your music."
-msgstr "Noise ei löydä musiikkiasi."
+msgstr "Noise 似乎无法找到您的音乐。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:221
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:236
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:238
 msgid "Empty Playlist"
-msgstr "Tyhjä soittolista"
+msgstr "空播放列表"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:221
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:236
@@ -629,232 +624,223 @@ msgstr "..."
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:248
 msgid "Similar Media View"
-msgstr "Samankaltainen medianäkymä"
+msgstr "相似媒体视图"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:248
 msgid ""
 "In this view, BeatBox will automatically find medias similar to the one you "
 "are playing."
-msgstr ""
-"Tässä näkymässä BeatBox etsii samankaltaisia kohteita kuin mitä nyt soitat."
+msgstr "在此视图中，BeatBox 将自动搜寻与您正在播放媒体类似媒体。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:248
 msgid "You can then start playing those medias, or save them for later."
-msgstr ""
-"Voit sitten soittaa ne kohteet, tai tallentaa ne myöhempää kuuntelua varten."
+msgstr "您可以在搜寻完成后播放或保存这些媒体，以便以后查看。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:259
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:270
 msgid ""
 "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
-msgstr ""
-"Lisätäksesi podcastin, vieraile sivuilla kuten Miro Guide löytääksesi RSS-"
-"syötteitä."
+msgstr "若想添加播客，可访问类似 Miro Guide 的网站查找 RSS 订阅。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:259
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:270
 msgid ""
 "You can then copy and paste the feed into the \"Add Podcast\" window by "
 "right clicking on \"Podcasts\"."
-msgstr ""
-"Voit sitten kopioida ja liittää syötteen Lisää podcast -ikkunaan "
-"klikkaamalla Podcastit -kohtaa oikealla hiirinäppäimellä."
+msgstr "您可以右键点击“播客”，并在“添加博客”窗口复制粘贴订阅地址。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:282
 msgid "No Internet Radio Stations Found"
-msgstr "Internetradio-asemia ei löydetty"
+msgstr "未发现网络电台"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:282
 msgid ""
 "To add a station, visit a website such as SomaFM to find PLS or M3U files."
-msgstr ""
-"Lisätäksesi aseman, vieraile sivuilla kuten SomaFM löytääksesi PLS- tai M3U-"
-"tiedostoja."
+msgstr "若想添加一个电台，可以访问类似 SomaFM 的网站来获取 PLS 或者 M3U 文件。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:282
 msgid "You can then import the file to add the station."
-msgstr "Voit sitten tuoda tiedoston lisätäksesi aseman."
+msgstr "您可以导入文件来添加电台。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:306
 msgid "Audio CD Invalid"
-msgstr "Audio CD kelvoton"
+msgstr "音频 CD 无效"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:306
 msgid "BeatBox could not read the contents of this Audio CD."
-msgstr "BeatBox ei kyennyt lukemaan audio CD:n sisältöä."
+msgstr "BeatBox 无法读取音频 CD 的内容。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:313
 msgid "WARNING: Default View Wrapper!"
-msgstr ""
+msgstr "警告：默认视图包装！"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:697
 msgid "Loading similar songs"
-msgstr "Lataa samankaltaisia kappaleita"
+msgstr "正在加载相似歌曲"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:697
 msgid "BeatBox is loading songs similar to"
-msgstr "BeatBox lataa samankaltaisia kappaleita kuin"
+msgstr "BeatBox 正在加载歌曲相似于"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:930
 msgid "No similar songs found"
-msgstr "Samankaltaisia kappaleita ei löydetty"
+msgstr "未发现相似歌曲"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:930
 msgid "BeatBox could not find songs similar to"
-msgstr ""
-"BeatBox ei kyennyt löytämään kappaleita, jotka ovat samankaltaisia kuin"
+msgstr "BeatBox 未能找到歌曲相似于"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:930
 msgid ""
 "Make sure all song info is correct and you are connected to the Internet.\n"
 "Some songs may not have matches."
 msgstr ""
-"Varmista, että kappaletiedot ovat oikein ja olet yhdistettynä internettiin.\n"
-"Joillakin kappaleilla ei välttämättä ole samankaltaisia vastineita."
+"请确认所有的歌曲信息正确，并已经连接到互联网。\n"
+"部分歌曲可能没有匹配。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:208
 msgid "Rescan Music Folder"
-msgstr "Selaa musiikkikansio uudelleen"
+msgstr "重新扫描音乐文件夹"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:209
 msgid "Equalizer"
-msgstr "Taajuuskorjain"
+msgstr "均衡器"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:220
 msgid "Search..."
-msgstr "Etsi..."
+msgstr "搜索..."
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:238
 msgid "Disable Repeat"
-msgstr ""
+msgstr "禁用重复"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:238
 msgid "Enable Repeat"
-msgstr ""
+msgstr "启用重复"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:239
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "禁用随机播放"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:239
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "启用随机播放"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:240
 msgid "Hide Info Panel"
-msgstr "Piilota tietopaneeli"
+msgstr "隐藏信息面板"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:240
 msgid "Show Info Panel"
-msgstr "Näytä tietopaneeli"
+msgstr "显示信息面板"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:241
 msgid "Add Playlist"
-msgstr "Lisää soittolista"
+msgstr "添加播放列表"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:285
 msgid "Preferences"
-msgstr "Asetukset"
+msgstr "首选项"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:290
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:296
 msgid "Off"
-msgstr "Pois"
+msgstr "关闭"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:294
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:297
 msgid "All"
-msgstr "Kaikki"
+msgstr "全部"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:299
 msgid "Hide"
-msgstr "Piilota"
+msgstr "隐藏"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:300
 msgid "Show"
-msgstr "Näytä"
+msgstr "显示"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:360
 msgid "Locate"
-msgstr "Paikallista"
+msgstr "定位"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:360
 msgid "Change your music folder."
-msgstr "Vaihda musiikkikansiotasi"
+msgstr "更改您的音乐文件夹。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:590
 msgid "Internet Radio"
-msgstr "Internet-radio"
+msgstr "网络电台"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:594
 msgid "Similar"
-msgstr "Samankaltainen"
+msgstr "相似"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:597
 msgid "Queue"
-msgstr "Laita jonoon"
+msgstr "队列"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:600
 msgid "History"
-msgstr "Historia"
+msgstr "历史"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:625
 msgid "Music Store"
-msgstr "Musiikkikauppa"
+msgstr "音乐商店"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:755
 msgid "Unknown Artist"
-msgstr "Tuntematon artisti"
+msgstr "未知艺术家"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:755
 msgid " by "
-msgstr " artistilta "
+msgstr " 艺人 "
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:756
 msgid "Unknown Album"
-msgstr "Tuntematon albumi"
+msgstr "未知专辑"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:756
 msgid " on "
-msgstr " levyltä "
+msgstr " 开 "
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1092
 msgid "Import Music"
-msgstr "Tuo musiikkia"
+msgstr "导入音乐"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1116
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "<b>Tuodaan</b> musiikkia kirjastoon kohteesta <b>%s</b>."
+msgstr "将 <b>%s</b> 中的音乐<b>导入</b>到库中。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1131
 msgid "Rescanning music folder for changes"
-msgstr "Uudelleenselataan musiikkikansiota muutosten varalta"
+msgstr "重新扫描改动的音乐文件夹"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1138
 msgid "Could not find Music Folder"
-msgstr "Musiikkikansiota ei löydetty"
+msgstr "找不到音乐文件夹"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1138
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Varmastathan, että musiikkikansiosi on saatavilla ja liitettynä."
+msgstr "请确认您的音乐文件夹已被挂载并可访问。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1211
 msgid "Import Complete"
-msgstr "Tuonti on valmis"
+msgstr "导入完成"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1211
 msgid "Noise has imported your library."
-msgstr "Noise on tuonut kirjastosi"
+msgstr "Noise 已经导入您的库。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1391
 msgid "Choose Music Folder"
-msgstr "Valitse musiikkikansio"
+msgstr "选择音乐文件夹"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1524
 msgid "Import songs from audio CD"
-msgstr "Tuo kappaleet audio-CD:ltä"
+msgstr "从音频 CD 导入歌曲"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1524
 msgid "Import media from device"
-msgstr "Tuo tiedostot laitteesta"
+msgstr "从设备导入媒体"

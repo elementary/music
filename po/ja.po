@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-04-08 14:19-0600\n"
-"PO-Revision-Date: 2012-04-20 02:48+0000\n"
-"Last-Translator: Joji Bronner <Unknown>\n"
+"PO-Revision-Date: 2012-04-22 11:54+0000\n"
+"Last-Translator: Naoki Kephart <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-21 05:29+0000\n"
-"X-Generator: Launchpad (build 15120)\n"
+"X-Launchpad-Export-Date: 2012-04-23 05:29+0000\n"
+"X-Generator: Launchpad (build 15135)\n"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Import media to Library"
-msgstr "メディアをライブラリにインポートする"
+msgstr "メディアをライブラリに取り込む"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SyncWarningDialog.vala:67
 msgid "Continue Syncing"
@@ -61,11 +61,11 @@ msgstr "次へ"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 msgid "Rules"
-msgstr ""
+msgstr "ルール"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
 msgid "Options"
-msgstr "設定"
+msgstr "オプション"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 #, c-format
@@ -75,7 +75,7 @@ msgstr "<b>プレイリストの名前</b>"
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
 #, c-format
 msgid "<b>Rules</b>"
-msgstr ""
+msgstr "<b>ルール</b>"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
 #, c-format
@@ -84,24 +84,24 @@ msgstr "設定</b>"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:81
 msgid "Playlist Title"
-msgstr ""
+msgstr "プレイリストのタイトル"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
-msgstr ""
+msgstr "次の"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
-msgstr ""
+msgstr "と一致"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:80
 msgid "Add"
-msgstr "追加する"
+msgstr "追加"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
 msgid "Limit to"
-msgstr ""
+msgstr "上限"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 #: /home/victor/Projects/Noise/po/../src//Widgets/SimilarMediaView.vala:48
@@ -111,126 +111,126 @@ msgstr "メディア"
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:144
 msgid "Remove"
-msgstr "削除する"
+msgstr "削除"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:394
 msgid "is"
-msgstr ""
+msgstr "が次である"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:367
 msgid "contains"
-msgstr ""
+msgstr "が次を含む"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:368
 msgid "does not contain"
-msgstr ""
+msgstr "が次を含まない"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:395
 msgid "is not"
-msgstr ""
+msgstr "が次ではない"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:437
 msgid "seconds"
-msgstr ""
+msgstr "秒"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SmartPlaylistEditor.vala:445
 msgid "kbps"
-msgstr ""
+msgstr "kbps"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
 msgid "Export Playlists"
-msgstr ""
+msgstr "プレイリストをエクスポート"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:68
 msgid "Set Music Folder"
-msgstr ""
+msgstr "音楽フォルダを設定"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:75
 #, c-format
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "音楽フォルダを設定しますか？"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:51
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:113
 msgid "Add Podcast"
-msgstr ""
+msgstr "ポッドキャストを追加"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:76
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:84
 #, c-format
 msgid "Podcast RSS Source"
-msgstr ""
+msgstr "ポッドキャストの RSS ソース"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:77
 msgid "Podcast Source..."
-msgstr ""
+msgstr "ポッドキャストのソース..."
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:145
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:259
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:270
 msgid "No Podcasts Found"
-msgstr ""
+msgstr "ポッドキャストが見つかりませんでした"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/AddPodcastWindow.vala:145
 msgid ""
 "The provided source is invalid. Make sure you are entering an RSS feed in "
 "XML format."
-msgstr ""
+msgstr "入力されたソースは無効です。XML形式のRSSフィードを入力しているか確認をして下さい。"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:556
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:291
 msgid "Song"
-msgstr ""
+msgstr "楽曲"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/SongEditor.vala:558
 msgid "Podcast"
-msgstr ""
+msgstr "ポッドキャスト"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:103
 msgid "Import from Device"
-msgstr ""
+msgstr "デバイスから取り込む"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr ""
+msgstr "全てのメディアを取り込む"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
-msgstr ""
+msgstr "取り込む"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr ""
+msgstr "取り込まない"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:161
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "取り込むメディアを個別に選択:"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:179
 msgid "Check Item"
-msgstr ""
+msgstr "項目を選択"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:180
 msgid "Check Album"
-msgstr ""
+msgstr "アルバムを選択"
 
 #: /home/victor/Projects/Noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:181
 msgid "Check Artist"
-msgstr ""
+msgstr "アーティストを選択"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/InfoPanel.vala:72
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:296
 #, c-format
 msgid "Title"
-msgstr ""
+msgstr "曲名"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/InfoPanel.vala:73
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:301
 #, c-format
 msgid "Year"
-msgstr ""
+msgstr "年"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:39
 #, c-format
@@ -240,263 +240,263 @@ msgstr ""
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:127
 #, c-format
 msgid "%s minutes"
-msgstr ""
+msgstr "%s 分"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:130
 #, c-format
 msgid "%s hours"
-msgstr ""
+msgstr "%s 時間"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:133
 #, c-format
 msgid "%s days"
-msgstr ""
+msgstr "%s 日"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:137
 #, c-format
 msgid "%i MB"
-msgstr ""
+msgstr "%i MB"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:139
 #, c-format
 msgid "%.2f GB"
-msgstr ""
+msgstr "%.2f GB"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:143
 msgid "songs"
-msgstr ""
+msgstr "曲"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:143
 msgid "song"
-msgstr ""
+msgstr "曲"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:146
 msgid "podcasts"
-msgstr ""
+msgstr "本のポッドキャスト"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:146
 msgid "podcast"
-msgstr ""
+msgstr "本のポッドキャスト"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
 msgid "audiobooks"
-msgstr ""
+msgstr "冊のオーディオブック"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:149
 msgid "audiobook"
-msgstr ""
+msgstr "冊のオーディオブック"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:152
 msgid "stations"
-msgstr ""
+msgstr "局"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:152
 msgid "station"
-msgstr ""
+msgstr "局"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:155
 msgid "items"
-msgstr ""
+msgstr "項目"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/StatusBar.vala:155
 msgid "item"
-msgstr ""
+msgstr "項目"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr ""
+msgstr "同様のメディア"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:104
 msgid "Sync"
-msgstr ""
+msgstr "同期"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:114
 msgid "Download new Episodes"
-msgstr ""
+msgstr "新しいエピソードをダウンロード"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:123
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:207
 msgid "Import to Library"
-msgstr ""
+msgstr "ライブラリに取り込む"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:124
 msgid "Eject"
-msgstr ""
+msgstr "取り出し"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:133
 msgid "Import Stations"
-msgstr ""
+msgstr "局を追加する"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:141
 msgid "New Playlist"
-msgstr ""
+msgstr "新規プレイリスト"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:142
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "新規スマートプレイリスト"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:143
 msgid "Edit"
-msgstr ""
+msgstr "編集"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:145
 msgid "Save as Playlist"
-msgstr ""
+msgstr "プレイリストとして保存"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:146
 msgid "Export..."
-msgstr ""
+msgstr "エクスポート..."
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:147
 msgid "Import Playlists"
-msgstr ""
+msgstr "プレイリストをインポート"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:182
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:275
 msgid "Library"
-msgstr ""
+msgstr "ライブラリ"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:183
 msgid "Devices"
-msgstr ""
+msgstr "デバイス"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:184
 msgid "Network"
-msgstr ""
+msgstr "ネットワーク"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:185
 msgid "Playlists"
-msgstr ""
+msgstr "プレイリスト"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:268
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:274
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:298
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:293
 msgid "Artist"
-msgstr ""
+msgstr "アーティスト"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:97
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:581
 msgid "Music"
-msgstr ""
+msgstr "ミュージック"
 
 #: /home/victor/Projects/Noise/po/../src//Widgets/SideTreeView.vala:275
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:99
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:585
 msgid "Podcasts"
-msgstr ""
+msgstr "ポッドキャスト"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:162
 msgid "Automatic"
-msgstr ""
+msgstr "自動"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:163
 msgid "On Left"
-msgstr ""
+msgstr "左に表示"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:164
 msgid "On Top"
-msgstr ""
+msgstr "上に表示"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:560
 msgid "Genres"
-msgstr ""
+msgstr "ジャンル"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:563
 msgid "Artists"
-msgstr ""
+msgstr "アーティスト"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:566
 msgid "Albums"
-msgstr ""
+msgstr "アルバム"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:569
 msgid "Years"
-msgstr ""
+msgstr "年"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:572
 msgid "Ratings"
-msgstr ""
+msgstr "評価"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:189
 msgid "Unrated"
-msgstr ""
+msgstr "評価なし"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:191
 #, c-format
 msgid "%s Stars"
-msgstr ""
+msgstr "%s つ星の評価"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:239
 msgid "All Genres"
-msgstr ""
+msgstr "全てのジャンル"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:241
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "全 %i ジャンル"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:243
 msgid "No Genres"
-msgstr ""
+msgstr "ジャンルなし"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:247
 msgid "All Artists"
-msgstr ""
+msgstr "全てのアーティスト"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:249
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "全 %i アーティスト"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:251
 msgid "No Artists"
-msgstr ""
+msgstr "アーティストなし"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:255
 msgid "All Albums"
-msgstr ""
+msgstr "全てのアルバム"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:257
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "全 %i アルバム"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:259
 msgid "No Albums"
-msgstr ""
+msgstr "アルバムなし"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:263
 msgid "All Years"
-msgstr ""
+msgstr "全ての年"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:265
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "全 %i 年"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:267
 msgid "No Years"
-msgstr ""
+msgstr "年なし"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:271
 msgid "All Ratings"
-msgstr ""
+msgstr "全ての評価"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:273
 #, c-format
 msgid "All %i Ratings"
-msgstr ""
+msgstr "全 %i 評価"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:275
 msgid "No Ratings"
-msgstr ""
+msgstr "評価なし"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/SimilarPane.vala:86
 #, c-format
 msgid "Similar to %s"
-msgstr ""
+msgstr "%s と同様"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:294
 msgid "#"
@@ -504,171 +504,171 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:295
 msgid "Track"
-msgstr ""
+msgstr "トラック"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:297
 msgid "Length"
-msgstr ""
+msgstr "時間"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:299
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:292
 msgid "Album"
-msgstr ""
+msgstr "アルバム"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:300
 msgid "Genre"
-msgstr ""
+msgstr "ジャンル"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:302
 msgid "Bitrate"
-msgstr ""
+msgstr "ビットレート"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:303
 msgid "Rating"
-msgstr ""
+msgstr "評価"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:304
 msgid "Plays"
-msgstr ""
+msgstr "再生回数"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:305
 msgid "Skips"
-msgstr ""
+msgstr "スキップ回数"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:306
 msgid "Date Added"
-msgstr ""
+msgstr "追加日時"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:307
 msgid "Last Played"
-msgstr ""
+msgstr "最後の再生"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/MusicTreeView.vala:308
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ListView/RadioListView.vala:75
 msgid "Remove Station"
-msgstr ""
+msgstr "局を削除"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:68
 msgid "Device Name"
-msgstr ""
+msgstr "デバイス名"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Device Name:"
-msgstr ""
+msgstr "デバイス名:"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:90
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "接続時に自動同期:"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Sync:"
-msgstr ""
+msgstr "同期:"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:411
 msgid "All Music"
-msgstr ""
+msgstr "全ての楽曲"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:414
 msgid "All Podcasts"
-msgstr ""
+msgstr "全てのポッドキャスト"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:544
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:582
 msgid "Sync Failed"
-msgstr ""
+msgstr "同期失敗"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:544
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:582
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
+msgstr "%s との同期に使われているプレイリスト %s が見つかりません。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:630
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:633
 msgid "Cannot Sync"
-msgstr ""
+msgstr "同期出来ません"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:630
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
+msgstr "ディスク容量が不足しているため、選択された設定ではデバイスと同期出来ません。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/DeviceSummaryWidget.vala:633
 msgid "Device is already being synced."
-msgstr ""
+msgstr "デバイスは既に同期されています。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:210
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "楽曲を追加"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:210
 msgid "Noise can't seem to find your music."
-msgstr ""
+msgstr "楽曲が見つかりません。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:221
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:236
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:238
 msgid "Empty Playlist"
-msgstr ""
+msgstr "空のプレイリスト"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:221
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:236
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:238
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:697
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:248
 msgid "Similar Media View"
-msgstr ""
+msgstr "同様のメディア表示"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:248
 msgid ""
 "In this view, BeatBox will automatically find medias similar to the one you "
 "are playing."
-msgstr ""
+msgstr "この表示では、現在再生されているメディアと同様のものが自動的に検索されます。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:248
 msgid "You can then start playing those medias, or save them for later."
-msgstr ""
+msgstr "検索されたメディアはすぐに再生するか、後で再生するために保存することが出来ます。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:259
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:270
 msgid ""
 "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
-msgstr ""
+msgstr "ポッドキャストを追加するには、最初にRSSフィードをMiro Guideなどのサイトで検索しコピーして下さい。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:259
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:270
 msgid ""
 "You can then copy and paste the feed into the \"Add Podcast\" window by "
 "right clicking on \"Podcasts\"."
-msgstr ""
+msgstr "次に\"ポッドキャスト\"を右クリックし、\"ポッドキャストを追加\"を選択すると表示される欄にフィードを貼り付けて下さい。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:282
 msgid "No Internet Radio Stations Found"
-msgstr ""
+msgstr "インターネットラジオ局が見つかりません"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:282
 msgid ""
 "To add a station, visit a website such as SomaFM to find PLS or M3U files."
-msgstr ""
+msgstr "局を追加するには、最初にPLSファイルやM3UファイルをSomaFMなどのサイトで入手して下さい。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:282
 msgid "You can then import the file to add the station."
-msgstr ""
+msgstr "次にそれらのファイルを取り込むことで、局を追加することが出来ます。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:306
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "無効なオーディオCD"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:306
 msgid "BeatBox could not read the contents of this Audio CD."
-msgstr ""
+msgstr "オーディオCDのコンテンツを読み込むことが出来ませんでした。"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:313
 msgid "WARNING: Default View Wrapper!"
@@ -676,119 +676,121 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:697
 msgid "Loading similar songs"
-msgstr ""
+msgstr "同様な楽曲をロード中"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:697
 msgid "BeatBox is loading songs similar to"
-msgstr ""
+msgstr "次の楽曲と同様なものをロード中"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:930
 msgid "No similar songs found"
-msgstr ""
+msgstr "同様な楽曲が見つかりません"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:930
 msgid "BeatBox could not find songs similar to"
-msgstr ""
+msgstr "次の楽曲と同様なものが見つかりません"
 
 #: /home/victor/Projects/Noise/po/../src//Views/ViewWrapper.vala:930
 msgid ""
 "Make sure all song info is correct and you are connected to the Internet.\n"
 "Some songs may not have matches."
 msgstr ""
+"インターネットに接続されており、全ての楽曲情報が正しいことを確認して下さい。\n"
+"いくつかの楽曲は一致するものが無い可能性があります。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:208
 msgid "Rescan Music Folder"
-msgstr ""
+msgstr "音楽フォルダを再スキャン"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:209
 msgid "Equalizer"
-msgstr ""
+msgstr "イコライザー"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:220
 msgid "Search..."
-msgstr ""
+msgstr "検索..."
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:238
 msgid "Disable Repeat"
-msgstr ""
+msgstr "リピートを無効にする"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:238
 msgid "Enable Repeat"
-msgstr ""
+msgstr "リピートを有効にする"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:239
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "シャッフルを無効にする"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:239
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "シャッフルを有効にする"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:240
 msgid "Hide Info Panel"
-msgstr ""
+msgstr "情報パネルを隠す"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:240
 msgid "Show Info Panel"
-msgstr ""
+msgstr "情報パネルを表示"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:241
 msgid "Add Playlist"
-msgstr ""
+msgstr "プレイリストを追加"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:285
 msgid "Preferences"
-msgstr ""
+msgstr "設定"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:290
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:296
 msgid "Off"
-msgstr ""
+msgstr "オフ"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:294
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:297
 msgid "All"
-msgstr ""
+msgstr "全て"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:299
 msgid "Hide"
-msgstr ""
+msgstr "隠す"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:300
 msgid "Show"
-msgstr ""
+msgstr "表示"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:360
 msgid "Locate"
-msgstr ""
+msgstr "見つける"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:360
 msgid "Change your music folder."
-msgstr ""
+msgstr "音楽フォルダを変更する。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:590
 msgid "Internet Radio"
-msgstr ""
+msgstr "インターネット・ラジオ"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:594
 msgid "Similar"
-msgstr ""
+msgstr "同様な楽曲"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:597
 msgid "Queue"
-msgstr ""
+msgstr "再生リスト"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:600
 msgid "History"
-msgstr ""
+msgstr "再生履歴"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:625
 msgid "Music Store"
-msgstr ""
+msgstr "ミュージック・ストア"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:755
 msgid "Unknown Artist"
-msgstr ""
+msgstr "不明なアーティスト"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:755
 msgid " by "
@@ -796,7 +798,7 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:756
 msgid "Unknown Album"
-msgstr ""
+msgstr "不明なアルバム"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:756
 msgid " on "
@@ -804,41 +806,41 @@ msgstr ""
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1092
 msgid "Import Music"
-msgstr ""
+msgstr "楽曲を取り込む"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1116
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr ""
+msgstr "<b>%s</b>から楽曲をライブラリに<b>取り込み中</b>。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1131
 msgid "Rescanning music folder for changes"
-msgstr ""
+msgstr "音楽フォルダの変更をスキャン中"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1138
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "音楽フォルダが見つかりません"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1138
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
+msgstr "音楽フォルダがマウントされており、アクセス可能である事を確認して下さい。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1211
 msgid "Import Complete"
-msgstr ""
+msgstr "取り込み完了"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1211
 msgid "Noise has imported your library."
-msgstr ""
+msgstr "ライブラリが取り込まれました。"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1391
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "音楽フォルダを選択"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1524
 msgid "Import songs from audio CD"
-msgstr ""
+msgstr "オーディオCDから楽曲を取り込む"
 
 #: /home/victor/Projects/Noise/po/../src//LibraryWindow.vala:1524
 msgid "Import media from device"
-msgstr ""
+msgstr "デバイスからメディアを取り込む"
