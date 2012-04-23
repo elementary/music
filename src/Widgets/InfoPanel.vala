@@ -33,7 +33,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	private Button loveMedia;
 	private Button banMedia;
 	private Gtk.Image coverArt;
-	private RatingWidget rating; // need to make custom widget in future
+	private Granite.Widgets.Rating rating; // need to make custom widget in future
 	private Label album;
 	private Label year;
 	
@@ -68,7 +68,7 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		banMedia = new Button();
 		coverArt = new Gtk.Image();
 		coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
-		rating = new RatingWidget(null, true, IconSize.MENU);
+		rating = new Granite.Widgets.Rating (null, true, IconSize.MENU);
 		album = new Label("Album");
 		year = new Label("Year");
 		ssv = new SimilarMediasView(lm, lw);

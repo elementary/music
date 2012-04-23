@@ -148,7 +148,8 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 	public void ratingTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
-		
+
+#if 0
 		if(val.get_int() == 0)
 			((CellRendererPixbuf)cell).pixbuf = null;
 		else {
@@ -163,5 +164,11 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 			
 			((CellRendererPixbuf)cell).pixbuf = _canvas;
 		}
+#else
+		// now let's set the rating!
+
+		(cell as Granite.Widgets.CellRendererRating).set_rating (val.get_int());
+#endif
 	}
 }
+

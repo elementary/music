@@ -50,7 +50,7 @@ public class BeatBox.MusicTreeView : GenericList {
 	Gtk.MenuItem mediaMenuQueue;
 	Gtk.MenuItem mediaMenuNewPlaylist;
 	Gtk.MenuItem mediaMenuAddToPlaylist; // make menu on fly
-	RatingWidgetMenu mediaRateMedia;
+	Granite.Widgets.RatingMenuItem mediaRateMedia;
 	Gtk.MenuItem mediaRemove;
 	Gtk.MenuItem importToLibrary;
 
@@ -66,11 +66,12 @@ public class BeatBox.MusicTreeView : GenericList {
 #endif
 	CellRendererText cellGenre;
 	CellRendererText cellYear;
-	CellRendererPixbuf cellRating;
 	CellRendererText cellSkips;
 	CellRendererText cellPlays;
 	CellRendererText cellBitrate;
 	
+	Granite.Widgets.CellRendererRating cellRating;
+
 	public enum MusicColumn {
 		ROWID,
 		ICON,
@@ -183,12 +184,12 @@ public class BeatBox.MusicTreeView : GenericList {
 #endif
 		cellGenre = new CellRendererText();
 		cellYear = new CellRendererText();
-		cellRating = new CellRendererPixbuf();
+		cellRating = new Granite.Widgets.CellRendererRating();
 		cellSkips = new CellRendererText();
 		cellPlays = new CellRendererText();
 		cellBitrate = new CellRendererText();
 
-		cellRating.xalign = 0.0f;
+		cellRating.rating_changed.connect (on_rating_cell_changed);
 
 		//cellTitle.editable = false;
 		//cellTitle.edited.connect(cellTitleEdited);
@@ -356,7 +357,7 @@ public class BeatBox.MusicTreeView : GenericList {
 		mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label("Add to Playlist");
 		mediaRemove = new Gtk.MenuItem.with_label("Remove Song");
 		importToLibrary = new Gtk.MenuItem.with_label("Import to Library");
-		mediaRateMedia = new RatingWidgetMenu();
+		mediaRateMedia = new Granite.Widgets.RatingMenuItem();
 		mediaMenuActionMenu.append(mediaEditMedia);
 		mediaMenuActionMenu.append(mediaFileBrowse);
 
@@ -396,6 +397,17 @@ public class BeatBox.MusicTreeView : GenericList {
 				move_column_after(get_column(index), get_column(correctOrder.index_of(get_column(index).title)));
 			}
 		}
+	}
+
+	// When the user clicks over a cell in the rating column, that cell renderer
+	// emits the rating_changed signal. We need to update that rating...
+	private void on_rating_cell_changed (int new_rating, Gtk.Widget widget, string path, Gtk.CellRendererState flags) {
+		Media m = get_media_from_index (int.parse (path));
+		m.rating = new_rating;
+
+		var to_update = new LinkedList<Media> ();
+		to_update.add (m);
+		lm.update_medias (to_update, true, true);
 	}
 
 	public void cellTitleEdited(string path, string new_text) {
@@ -763,7 +775,7 @@ public class BeatBox.MusicTreeView : GenericList {
 	void mediaRateMediaClicked() {
 		var los = new LinkedList<Media>();
 		int new_rating = mediaRateMedia.rating_value;
-		
+
 		foreach(Media m in get_selected_medias()) {
 			m.rating = new_rating;
 			los.add(m);

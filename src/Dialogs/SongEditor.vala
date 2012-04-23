@@ -185,7 +185,7 @@ public class BeatBox.MediaEditor : Window {
 		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Disc", new FieldEditor("Disc", sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(0, 9999, 1)));
-		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new RatingWidget(null, false, IconSize.MENU)));
+		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new Granite.Widgets.Rating(null, false, IconSize.MENU)));
 		fields.set("Media Type", new FieldEditor("Media Type", sum.mediatype.to_string(), new ComboBoxText()));
 		
 		content = new VBox(false, 10);
@@ -462,7 +462,7 @@ public class BeatBox.FieldEditor : VBox {
 	private Entry entry;
 	private TextView textView;
 	private SpinButton spinButton;
-	private RatingWidget ratingWidget;
+	private Granite.Widgets.Rating ratingWidget;
 	private Image image;
 	private ComboBoxText comboBox;
 	//private DoubleSpinButton doubleSpinButton;
@@ -540,10 +540,10 @@ public class BeatBox.FieldEditor : VBox {
 			//callback on file dialogue saved. setup here
 			this.pack_start(image, true, true, 0);
 		}
-		else if(w is RatingWidget) {
+		else if(w is Granite.Widgets.Rating) {
 			check.set_active(original != "0");
 			
-			ratingWidget = (RatingWidget)w;
+			ratingWidget = (Granite.Widgets.Rating)w;
 			ratingWidget.set_rating(int.parse(original));
 			ratingWidget.rating_changed.connect(ratingChanged);
 			
