@@ -310,6 +310,7 @@ public class RatingMenuItem : Gtk.MenuItem {
         rating = new Rating (style_context, false, Gtk.IconSize.MENU);
         add (rating);
 
+
         // These states' theming is obtrusive. This seems to be the right way to get rid of them
         this.state_flags_changed.connect ( () => {
             unset_state_flags (Gtk.StateFlags.ACTIVE);
@@ -437,14 +438,14 @@ public class CellRendererRating : Gtk.CellRendererPixbuf {
                                       Gtk.CellRendererState flags)
     {
         int new_rating = rating.get_new_rating (event.button.x - (double) cell_area.x);
-        rating.set_rating (new_rating);
 
         // Don't re-draw automatically since doing so modifies the entire treeview column.
         // Let's pass off the responsability to the rating_changed signal handler
+        // rating.set_rating (new_rating);
         //this.pixbuf = rating.get_canvas ();
 
         // emit signal
-        rating_changed (get_rating (), widget, path, flags);
+        rating_changed (new_rating, widget, path, flags);
 
         return true;
     }
