@@ -274,7 +274,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
     public void set_size (double size) {
         double used_space = total_size - free_space_size;
         if (size < used_space) {
-            stdout.printf("\nERROR: SpaceWidget: new total size is smaller than used size.\n");
+            warning("\nERROR: SpaceWidget: new total size is smaller than used size.\n");
             return;
         }
 
@@ -296,13 +296,13 @@ public class SpaceWidget : Gtk.ScrolledWindow {
             item.set_size(size);
             update_bar_item_sizes();
         } else {
-            stdout.printf("\nERROR: SpaceWidget: Couldn't update item [index = %d]. Not enough free space.\n", index);
+            warning("\nERROR: SpaceWidget: Couldn't update item [index = %d]. Not enough free space.\n", index);
         }
     }
 
     private int add_item_at_pos (string name, double size, ItemColor color, ItemPosition pos) {
         if (size > free_space_size) {
-            stdout.printf("\nERROR: SpaceWidget: Couldn't add '%s' item. Not enough free space.\n", name);
+            warning("\nERROR: SpaceWidget: Couldn't add '%s' item. Not enough free space.\n", name);
             return -1; // ERROR
         }
 
@@ -573,13 +573,13 @@ private class SpaceWidgetItem : GLib.Object {
         var size_text = new StringBuilder();
 
         if (size <= GB) {
-            size_text.append ("%.1f".printf(size/MB));
+            size_text.append ("%.2f".printf(size/MB));
             size_text.append (" MB");
         } else if (size <= TB) {
-            size_text.append ("%.1f".printf(size/GB));
+            size_text.append ("%.2f".printf(size/GB));
             size_text.append (" GB");
         } else {
-            size_text.append ("%.1f".printf(size/TB));
+            size_text.append ("%.2f".printf(size/TB));
             size_text.append (" TB");
         }
 

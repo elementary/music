@@ -49,10 +49,10 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	Gtk.Image deviceImage;
 	SpaceWidget spaceWidget;
 	
+	int files_index;
 	int music_index;
-#if HAVE_PODCASTS
 	int podcast_index;
-#endif
+
 	//int audiobook_index;
 	
 	public DeviceSummaryWidget(LibraryManager lm, LibraryWindow lw, Device d) {
@@ -85,7 +85,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		
 		deviceImage = new Gtk.Image.from_gicon(dev.get_icon(), IconSize.DIALOG);
 		spaceWidget = new SpaceWidget((double)dev.get_capacity()/1000000);
-		
+
 		Label deviceNameLabel = new Label(_("Device Name:"));
 		Label autoSyncLabel = new Label(_("Automatically sync when plugged in:"));
 		Label syncOptionsLabel = new Label(_("Sync:"));
@@ -94,10 +94,9 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		
 		setupLists();
 
+		files_index = spaceWidget.add_item(_("Other Files"), 0.0, SpaceWidget.ItemColor.GREEN);
 		music_index = spaceWidget.add_item(_("Music"), 0.0, SpaceWidget.ItemColor.BLUE);
-#if HAVE_PODCASTS
 		podcast_index = spaceWidget.add_item(_("Podcasts"), 0.0, SpaceWidget.ItemColor.PURPLE);
-#endif
 		//audiobook_index = spaceWidget.add_item("Audiobooks", 0.0, SpaceWidget.ItemColor.GREEN);
 		
 		refreshSpaceWidget();
@@ -116,7 +115,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		var musicBox = new HBox(false, 6);
 		musicBox.pack_start(syncMusic, false, false, 0);
 		musicBox.pack_start(musicDropdown, false, false, 0);
-		
+
 #if HAVE_PODCASTS
 		var podcastBox = new HBox(false, 6);
 		podcastBox.pack_start(syncPodcasts, false, false, 0);
@@ -255,28 +254,38 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 	}
 	
 	void refreshSpaceWidget() {
-		double media_size = 0.0;
+		double other_files_size = 0.0;
+		double music_size = 0.0;
 #if HAVE_PODCASTS
 		double podcast_size = 0.0;
 #endif
 		//double audiobook_size = 0.0;
-		
+
+
 		foreach(int i in dev.get_songs()) {
-			media_size += (double)(lm.media_from_id(i).file_size);
+			music_size += (double)(lm.media_from_id(i).file_size);
 		}
 #if HAVE_PODCASTS
 		foreach(int i in dev.get_podcasts()) {
 			podcast_size += (double)(lm.media_from_id(i).file_size);
 		}
 #endif
+
+#if HAVE_PODCASTS
+		// Get other used space
+		other_files_size = (double)dev.get_used_space()/1000000 - music_size - podcast_size;
+#else
+		other_files_size = (double)dev.get_used_space()/1000000 - music_size;
+#endif
 		//foreach(int i in dev.get_audiobooks()) {
 		//	audiobook_size += (double)(lm.media_from_id(i).file_size);
 		//}
 		
-		spaceWidget.update_item_size(music_index, media_size);
+		spaceWidget.update_item_size(music_index, music_size);
 #if HAVE_PODCASTS
 		spaceWidget.update_item_size(podcast_index, podcast_size);
 #endif
+		spaceWidget.update_item_size(files_index, other_files_size);
 		//spaceWidget.update_item_size(audiobook_index, audiobook_size);
 	}
 	

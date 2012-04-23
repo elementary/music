@@ -522,20 +522,19 @@ public class BeatBox.ViewWrapper : Box {
 
 		actual_search_string = lw.searchField.get_text();
 		var new_search = Utils.get_valid_search_string (actual_search_string);
-		debug ("NEW SEARCH is '%s'", new_search);
+		debug ("Searchbox has '%s'", new_search);
 
 		if(!setting_search && lw.initialization_finished && is_current_wrapper && new_search.length != 1 && this.visible) {
 			timeout_search.offer_head (new_search.down());
 
-			Timeout.add (200, () => {
+			const int T_MS = 290;
+			Timeout.add (T_MS, () => {
+				// Don't search the same stuff every 290ms
 				string to_search = timeout_search.poll_tail();
-
 				if (to_search != new_search || to_search == last_search)
 					return false;
 
-				if(!setting_search && is_current_wrapper)
-					last_search = to_search;
-
+				last_search = to_search;
 				// Do the actual search and show results....
 				update_showing_media();
 

@@ -83,18 +83,26 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract bool transfer_to_library(LinkedList<int> list);
 	
 	public string get_unique_identifier() {
-		Mount m = get_mount();
-		string uuid = m.get_uuid();
-		File root = m.get_root();
 		string rv = "";
-		stdout.printf("uuid: %s\n", uuid);
-		if(root != null && root.get_uri() != null) {
-			rv += root.get_uri();
-		}
-		if(uuid != null && uuid != "") {
-			rv += ("/" + uuid);
+
+		var m = get_mount ();
+
+		if (m != null) {
+			var root = m.get_root ();
+			if (root != null) {
+				var root_uri = root.get_uri ();
+				if (root_uri != null)
+					rv += root_uri;
+			}
+
+			var uuid = m.get_uuid();
+			if (uuid != null && uuid != "") {
+				message ("uuid: %s\n", uuid);
+				rv += ("/" + uuid);
+			}
 		}
 		
 		return rv;
 	}
 }
+

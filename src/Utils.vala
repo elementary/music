@@ -151,6 +151,8 @@ namespace Utils {
         }
 
         string l_search = search.down();
+
+        debug ("Searching '%s' in media ids", l_search);
         
         bool valid_media = false;
         foreach(int id in to_search_ids) {
