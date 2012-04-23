@@ -270,7 +270,8 @@ public class Rating : Gtk.EventBox {
         if (is_menu_item) // Workaround. Move the offset one star to the left for menuitems.
             x_offset += (item_width + spacing);
 
-        // If you want the next rating to begin at the middle between two stars, use:
+        // If you want the next rating (value, not actual star!) to begin in the middle
+        // between two stars, use:
         //    x_offset -= (int) ((double)spacing / (1.0 - 1.0 / 2.0));
         // For it to start when the cursor is 2/3 towards the next rating, use:
         //    x_offset -= (int) ((double)spacing * (1.0 - 2.0/3.0));
@@ -303,15 +304,19 @@ public class RatingMenuItem : Gtk.MenuItem {
         }
     }
 
-    public void set_parent_treeview_column (Gtk.TreeViewColumn col) {
-    
-    }
-
     public RatingMenuItem () {
         var style_context = get_style_context ();
 
         rating = new Rating (style_context, false, Gtk.IconSize.MENU);
         add (rating);
+
+        // These states' theming is obtrusive. This seems to be the right way to get rid of them
+        this.state_flags_changed.connect ( () => {
+            unset_state_flags (Gtk.StateFlags.ACTIVE);
+            unset_state_flags (Gtk.StateFlags.PRELIGHT);
+            unset_state_flags (Gtk.StateFlags.FOCUSED);
+            unset_state_flags (Gtk.StateFlags.SELECTED);
+        });
     }
 
     public void set_background_color (Gdk.RGBA color) {
@@ -430,7 +435,7 @@ public class CellRendererRating : Gtk.CellRendererPixbuf {
     public override bool activate (Gdk.Event event, Gtk.Widget widget, string path,
                                       Gdk.Rectangle background_area, Gdk.Rectangle cell_area,
                                       Gtk.CellRendererState flags)
-    {        
+    {
         int new_rating = rating.get_new_rating (event.button.x - (double) cell_area.x);
         rating.set_rating (new_rating);
 
