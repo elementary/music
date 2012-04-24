@@ -1693,19 +1693,20 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 		
 		FileInputStream filestream;
-		Gdk.Pixbuf pix;
-		
+		Gdk.Pixbuf? pix = null;
+
 		try {
 			filestream = file.read(null);
 			pix = new Gdk.Pixbuf.from_stream(filestream, null);
 		} catch(GLib.Error err) {
-			error("Failed to save album art locally from %s: %s\n", image_uri, err.message);
+			warning ("Failed to save album art locally from %s: %s\n", image_uri, err.message);
 		}
-		
-		if(pix != null)	stdout.printf("got pix and saving it now\n");
-		fo.save_album_art_in_cache(_media.get(id), pix);
-		
-		set_album_art(id, pix);
+
+		if (pix != null) {
+			debug ("got pix and saving it now\n");
+			fo.save_album_art_in_cache(_media.get(id), pix);
+			set_album_art(id, pix);
+		}
 	}
 
 	public void* fetch_cover_art_from_cache () {
