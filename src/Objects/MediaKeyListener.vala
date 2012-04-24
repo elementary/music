@@ -33,8 +33,9 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 	private LibraryManager lm;
 	private LibraryWindow lw;
 	private GnomeMediaKeys media_object;
-	
-	public int last_pause_time;
+
+	// FIXME: unused?	
+	//public int last_pause_time;
 	
 	public MediaKeyListener(LibraryManager lmm, LibraryWindow lww) {
 		lm = lmm;
@@ -43,7 +44,7 @@ public class BeatBox.MediaKeyListener : GLib.Object {
         try {
             media_object = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
         } catch (IOError e) {
-            stderr.printf ("Mediakeys error: %s\n", e.message);
+            warning ("Mediakeys error: %s\n", e.message);
         }
 		
         if(media_object != null) {
@@ -52,7 +53,7 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 				media_object.GrabMediaPlayerKeys("noise", (uint32)0);
 			}
 			catch(IOError err) {
-				stdout.printf("Could not grab media player keys: %s\n", err.message);
+				warning ("Could not grab media player keys: %s\n", err.message);
 			}
         }
 	}
@@ -62,75 +63,33 @@ public class BeatBox.MediaKeyListener : GLib.Object {
 			media_object.ReleaseMediaPlayerKeys("noise");
 		}
 		catch(IOError err) {
-			stdout.printf("Could not release media player keys: %s\n", err.message);
-		}
-	}
-	
-	public void showNotification(int i) {
-		if(lm.media_from_id(i) == null || !Notify.is_initted ())
-			return;
-
-		if(!lw.has_toplevel_focus) {
-			try {
-				lw.notification.close();
-				//lw.notification.set_category (""); TODO: Find a suitable category
-				lw.notification.set_timeout(Notify.EXPIRES_DEFAULT);
-				lw.notification.set_urgency (Notify.Urgency.LOW);
-				lw.notification.update(lm.media_from_id(i).title, lm.media_from_id(i).artist + "\n" + lm.media_from_id(i).album, "");
-				
-				Gdk.Pixbuf notify_pix;
-				if(File.new_for_path(lm.media_from_id(i).getAlbumArtPath()).query_exists())
-					notify_pix = new Gdk.Pixbuf.from_file(lm.media_from_id(i).getAlbumArtPath());
-				else
-					notify_pix = Icons.BEATBOX.render(Gtk.IconSize.DIALOG);
-				
-				if(notify_pix != null) {
-					lw.notification.set_image_from_pixbuf(notify_pix);
-				}
-				//else {
-					/* create blank pixbuf so we don't show old album art */
-					/*Gdk.Pixbuf blank = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, 2, 2);
-					blank.fill((uint) 0xffffff00);
-					notification.set_image_from_pixbuf(blank);*/
-				//}
-
-				lw.notification.show();
-				
-			}
-			catch(GLib.Error err) {
-				stderr.printf("Could not show notification: %s\n", err.message);
-			}
+			warning("Could not release media player keys: %s\n", err.message);
 		}
 	}
 	
 	private void mediaKeyPressed(dynamic Object bus, string application, string key) {
+		// FIXME: this is dangerous! use a unique id
 		if(application != "noise")
 			return;
-		
+
 		if(key == "Previous") {
 			lw.previousClicked();
-			
-			if(lm.media_info.media != null)
-				showNotification(lm.media_info.media.rowid);
 		}
 		else if(key == "Play") {
 			lw.playClicked();
 			
+			/*
 			var elapsed = (int)time_t() - last_pause_time;
-			
-			if(lm.media_info.media != null && lm.playing && (elapsed > 60))
-				showNotification(lm.media_info.media.rowid);
-			else if(!lm.playing)
+			if(!lm.playing)
 				last_pause_time = (int)time_t();
+			*/
 		}
 		else if(key == "Next") {
 			lw.nextClicked();
-			
-			if(lm.media_info.media != null)
-				showNotification(lm.media_info.media.rowid);
 		}
 		else {
-			stdout.printf("Unused key pressed: %s\n", key);
+			message ("Unused key pressed: %s\n", key);
 		}
 	}
 }
+

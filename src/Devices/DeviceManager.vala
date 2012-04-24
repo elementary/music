@@ -173,8 +173,11 @@ public class BeatBox.DeviceManager : GLib.Object {
 	public virtual void mount_removed (Mount mount) {
 		foreach(var dev in devices) {
 			if(dev.get_path() == mount.get_default_location().get_path()) {
-				devices.remove(dev);
+				// Let other objects remove device reference
 				device_removed(dev);
+				
+				// Actually remove it
+				devices.remove(dev);
 				
 				// removing temp medias
 				var toRemove = new LinkedList<Media>();

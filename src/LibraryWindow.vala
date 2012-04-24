@@ -103,14 +103,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	private Gtk.MenuItem fileRescanMusicFolder;
 	private ImageMenuItem editPreferences;
 
-	public Notify.Notification notification { get; private set; }
+	private Notify.Notification notification;
 
 	public LibraryWindow(Granite.Application app, BeatBox.Settings settings, string[] args) {
 		this.app = app;
 		this.settings = settings;
-
-		// Init libnotify
-		Notify.init ("noise");
 
 		// Load icon information
 		Icons.init ();
@@ -248,8 +245,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		statusBar.insert_widget (repeatChooser, true);
 		statusBar.insert_widget (eq_option_chooser);
 		statusBar.insert_widget (infoPanelChooser);
-
-		notification = new Notify.Notification ("", null, null);
 
 		// Set properties of various controls
 		sourcesToMedias.set_position(settings.getSidebarWidth());
@@ -472,6 +467,75 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 
+	public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, bool force = false) {
+		if (!force) {
+			// don't show a notification if the user is already viewing this application
+			bool is_current_app = is_active;
+
+			// let's find if a child window has the focus
+			if (!is_current_app)
+				is_current_app = list_toplevels ().length () > 0;
+
+			if (is_current_app)
+				return;
+		}
+
+		if (!Notify.is_initted ()) {
+			// Init libnotify
+			Notify.init ("noise");
+		}
+
+		if (notification == null)
+			notification = new Notify.Notification ("", null, null);
+
+		try {
+			notification.close();
+
+			// TODO: Find a suitable category
+			//notification.set_category ("");
+
+			notification.set_timeout (Notify.EXPIRES_DEFAULT);
+			notification.set_urgency (Notify.Urgency.LOW);
+			notification.update (primary_text, secondary_text, "");
+
+			// If the passed pixbuf is NULL, let's use the app's icon
+			var image = pixbuf;
+			if (image == null)
+				image = Icons.BEATBOX.render (IconSize.DIALOG);
+
+			notification.set_image_from_pixbuf (image);
+
+			notification.show();				
+		}
+		catch (GLib.Error err) {
+			warning ("Could not show notification: %s", err.message);
+		}
+	}
+
+	public void show_notification_from_media (Media media, bool force = false) {
+		if (media == null)
+			return;
+
+		string primary_text = media.title;
+
+		string secondary_text = _("by %s").printf (media.artist)
+		                         + "\n" + _("from %s").printf (media.album);
+
+		Gdk.Pixbuf? pixbuf = null;
+		try {
+			pixbuf = new Gdk.Pixbuf.from_file_at_size (media.getAlbumArtPath(), 48, 48);
+		}
+		catch (Error err) {
+			warning (err.message);
+		}
+
+		show_notification (primary_text, secondary_text, pixbuf, force);
+	}
+
+	public void notify_current_media () {
+		if (lm.media_info != null && lm.media_info.media != null)
+			show_notification_from_media (lm.media_info.media);
+	}
 
 	/**
 	 * Description:
@@ -876,23 +940,45 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	}
 
 
-	public virtual void previousClicked () {
-		if(lm.player.getPosition() < 5000000000 || (lm.media_active && lm.media_info.media.mediatype == 3)) {
-			int prev_id = lm.getPrevious(true);
 
-			/* test to stop playback/reached end */
-			if(prev_id == 0) {
-				lm.player.pause();
-				lm.playing = false;
-				update_sensitivities();
-				return;
-			}
-		}
-		else
-			topDisplay.change_value(ScrollType.NONE, 0);
+	public virtual void loveButtonClicked() {
+		lm.lfm.loveTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
 
+	public virtual void banButtonClicked() {
+		lm.lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
+	}
+
+	public virtual void searchFieldIconPressed(EntryIconPosition p0, Gdk.Event p1) {
+		Widget w = get_current_view_wrapper ();
+		w.focus(DirectionType.UP);
+	}
+
+
+	/**
+	 * @deprecated. Use play_media()
+	 */
 	public virtual void playClicked () {
+		play_media ();
+	}
+
+
+	/**
+	 * @deprecated. Use play_next_media()
+	 */
+	public virtual void nextClicked () {
+		play_next_media ();
+	}
+
+
+	/**
+	 * @deprecated. Use play_previous_media()
+	 */
+	public virtual void previousClicked () {
+		play_previous_media ();
+	}
+
+	public virtual void play_media (bool inhibit_notifications = false) {
 		if(!lm.media_active) {
 			debug("No media is currently playing. Starting from the top\n");
 			//set current medias by current view
@@ -911,6 +997,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			lm.playing = true;
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
 			lm.player.play();
+
+			if (!inhibit_notifications)
+				notify_current_media ();
 		}
 		else {
 			if(lm.playing) {
@@ -929,7 +1018,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		playPauseChanged();
 	}
 
-	public virtual void nextClicked() {
+	public virtual void play_next_media (bool inhibit_notifications = false) {
 		// if not 90% done, skip it
 		if(!added_to_play_count) {
 			lm.media_info.media.skip_count++;
@@ -953,20 +1042,31 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			update_sensitivities();
 			return;
 		}
+
+		if (!inhibit_notifications)
+			notify_current_media ();
 	}
 
-	public virtual void loveButtonClicked() {
-		lm.lfm.loveTrack(lm.media_info.media.title, lm.media_info.media.artist);
+	public virtual void play_previous_media (bool inhibit_notifications = false) {
+		if(lm.player.getPosition() < 5000000000 || (lm.media_active && lm.media_info.media.mediatype == 3)) {
+			bool play = true;
+			int prev_id = lm.getPrevious(true);
+
+			/* test to stop playback/reached end */
+			if(prev_id == 0) {
+				lm.player.pause();
+				lm.playing = false;
+				update_sensitivities();
+				return;
+			}
+			else if (play && !inhibit_notifications) {
+				notify_current_media ();
+			}
+		}
+		else
+			topDisplay.change_value(ScrollType.NONE, 0);
 	}
 
-	public virtual void banButtonClicked() {
-		lm.lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
-	}
-
-	public virtual void searchFieldIconPressed(EntryIconPosition p0, Gdk.Event p1) {
-		Widget w = get_current_view_wrapper ();
-		w.focus(DirectionType.UP);
-	}
 
 	public virtual void on_quit() {
 		lm.settings.setLastMediaPosition((int)((double)lm.player.getPosition()/1000000000));

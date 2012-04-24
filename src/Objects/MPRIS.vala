@@ -456,31 +456,36 @@ public class MprisPlayer : GLib.Object {
 	}
 	
 	public signal void Seeked(int64 Position);
-	
+
 	public void Next() {
-		BeatBox.Beatbox._program.nextClicked();
+		// inhibit notifications
+		BeatBox.Beatbox._program.play_next_media(true);
 	}
 	
 	public void Previous() {
-		BeatBox.Beatbox._program.previousClicked();
+		// inhibit notifications
+		BeatBox.Beatbox._program.play_previous_media(true);
 	}
 	
 	public void Pause() {
+		// inhibit notifications
 		if(BeatBox.Beatbox._program.lm.playing)
-			BeatBox.Beatbox._program.playClicked();
+			BeatBox.Beatbox._program.play_media(true);
 	}
-	
+
 	public void PlayPause() {
-		BeatBox.Beatbox._program.playClicked();
+		// inhibit notifications
+		BeatBox.Beatbox._program.play_media(true);
 	}
-	
+
 	public void Stop() {
 		BeatBox.Beatbox._program.lm.stopPlayback();
 	}
 	
 	public void Play() {
+		// inhibit notifications
 		if(!BeatBox.Beatbox._program.lm.playing)
-			BeatBox.Beatbox._program.playClicked();
+			BeatBox.Beatbox._program.play_media(true);
 	}
 	
 	public void Seek(int64 Offset) {

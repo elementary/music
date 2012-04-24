@@ -1823,7 +1823,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		return cover_album_art.get(get_media_coverart_key (s));
 	}
-	
+
 	// Returns a key to get a coverart from the cover_album_art hashmap
 	public string get_media_coverart_key (Media s) {
 		return s.album_artist + " - " + s.album;

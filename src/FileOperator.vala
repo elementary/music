@@ -222,12 +222,12 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 
-	public Gdk.Pixbuf? get_cached_album_art (string key, out string uri) {
+	public Gdk.Pixbuf? get_cached_album_art (string key, out string? uri, int width = -1, int height = -1) {
 		Gdk.Pixbuf? rv = null;
 		uri = get_cached_album_art_path (key);
 
 		try {
-			rv = new Gdk.Pixbuf.from_file (uri);
+			rv = new Gdk.Pixbuf.from_file_at_size (uri, width, height);
 		} catch (Error err) {
 			//debug (err.message);
 		}
