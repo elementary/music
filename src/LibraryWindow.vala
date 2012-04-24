@@ -468,44 +468,47 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
 	public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, bool force = false) {
-		if (!force) {
-			// don't show a notification if the user is already viewing this application
-			bool is_current_app = is_active;
+		if (!Notify.is_initted ()) {
+			if (!Notify.init ("noise")) {
+				warning ("Could not init libnotify");
+				return;
+			}
+		}
 
+		if (!force) {
+			bool is_current_app = false;
+			// don't show a notification if the user is already viewing this application
 			// let's find if a child window has the focus
-			/*
-			if (!is_current_app)
-				is_current_app = list_toplevels ().length () >= 1;
-			*/
+			foreach (var _window in list_toplevels ())
+				if (_window.is_active)
+					is_current_app = true;
 			if (is_current_app)
 				return;
 		}
 
-		if (!Notify.is_initted ()) {
-			// Init libnotify
-			Notify.init ("noise");
+		if (notification == null) {
+			notification = new Notify.Notification (primary_text, secondary_text, "");
+		}
+		else {
+			notification.clear_hints ();
+			notification.clear_actions ();
+			notification.update (primary_text, secondary_text, "");
 		}
 
-		if (notification == null)
-			notification = new Notify.Notification ("", null, null);
+		//notification.set_urgency (Notify.Urgency.LOW);
+		//notification.set_timeout (Notify.EXPIRES_DEFAULT);
+
+		// If the passed pixbuf is NULL, let's use the app's icon
+		var image = pixbuf;
+		if (image == null)
+			image = Icons.BEATBOX.render (IconSize.DIALOG);
+
+		notification.set_image_from_pixbuf (image);
+
+		// TODO: Find a suitable category
+		//notification.set_category ("");
 
 		try {
-			notification.close();
-
-			// TODO: Find a suitable category
-			//notification.set_category ("");
-
-			notification.set_timeout (Notify.EXPIRES_DEFAULT);
-			notification.set_urgency (Notify.Urgency.LOW);
-			notification.update (primary_text, secondary_text, "");
-
-			// If the passed pixbuf is NULL, let's use the app's icon
-			var image = pixbuf;
-			if (image == null)
-				image = Icons.BEATBOX.render (IconSize.DIALOG);
-
-			notification.set_image_from_pixbuf (image);
-
 			notification.show();				
 		}
 		catch (GLib.Error err) {
@@ -899,7 +902,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			lm.lfm.postNowPlaying();
 
 			// always show notifications for the radio, since user likely does not know media
-			mkl.showNotification(lm.media_info.media.rowid);
+			notify_current_media ();
 		}
 		else {
 			Timeout.add(3000, () => {
@@ -1077,9 +1080,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		}
 		lm.player.pause();
 
+
 		// Terminate Libnotify
+		if (notification != null)
+			notification.close ();
 		Notify.uninit ();
-		
+
 		// Search
 		settings.setSearchString (searchField.get_text());
 		
@@ -1222,19 +1228,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		update_sensitivities();
 
 		//now notify user
-		try {
-			if (Notify.is_initted ()) {
-				notification.close();
-				notification.update(_("Import Complete"), _("Noise has imported your library."), "beatbox");
-				notification.set_image_from_pixbuf(Icons.BEATBOX.render (Gtk.IconSize.DIALOG));
-				notification.set_timeout (Notify.EXPIRES_DEFAULT);
-				notification.set_urgency (Notify.Urgency.NORMAL);
-				notification.show();
-			}
-		}
-		catch(GLib.Error err) {
-			stderr.printf("Could not show notification: %s\n", err.message);
-		}
+		show_notification (_("Import Complete"), _("Noise has imported your library."));
 	}
 
 	/* this is when you import music from a foreign location into the library */

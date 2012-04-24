@@ -68,7 +68,7 @@ public class BeatBox.AlbumListView : Window {
 		album_label = new Label("Album");
 		artist_label = new Label("Artist");
 
-		album_label.get_style_context ().add_class ("title");
+		album_label.get_style_context ().add_class ("h1");
 		artist_label.get_style_context ().add_class ("h3");
 
 		album_label.ellipsize = Pango.EllipsizeMode.END;
