@@ -34,7 +34,14 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	private const int MEDIA_SET_VAL = 1;
 
 	// The window used to present album contents
-	public AlbumListView album_list_view { get; private set; }
+	private AlbumListView _list_view;
+	public AlbumListView album_list_view {
+		get {
+			if (_list_view == null)
+				_list_view = new AlbumListView (this);
+			return _list_view;
+		}
+	}
 
 	public ViewWrapper parent_view_wrapper { get; private set; }
 
@@ -74,7 +81,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		lw = view_wrapper.lw;
 
 		parent_view_wrapper = view_wrapper;
-		album_list_view = new AlbumListView(this);
 
 		_show_next = new LinkedList<int>();
 		_showing_media = new HashMap<string, int>();
@@ -82,6 +88,24 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		defaultPix = Icons.DEFAULT_ALBUM_ART_PIXBUF;
 
 		buildUI();
+
+		this.focus_in_event.connect ( () => {
+			album_list_view.hide ();
+			return false;
+		});
+	
+		// hide floating window when switching to another view
+		lw.viewSelector.mode_changed.connect ( () => {
+			if (lw.initialization_finished)
+				album_list_view.hide ();
+		});
+
+		// hide floating window when switching to another view
+		lw.sideTree.true_selection_change.connect ( () => {
+			if (lw.initialization_finished)
+				album_list_view.hide ();
+		});
+
 	}
 
 	public void buildUI() {
@@ -140,11 +164,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.button_release_event.connect(buttonReleaseEvent);
 		icons.button_press_event.connect(buttonReleaseEvent);
 		icons.item_activated.connect(itemActivated);
-
-		// hide floating window when switching to another view
-		lw.viewSelector.mode_changed.connect ( () => {
-			album_list_view.hide ();
-		});
 
 		// for smart spacing stuff
 		int MIN_N_ITEMS = 2; // we will allocate horizontal space for at least two items
@@ -375,7 +394,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		if(!model.get_iter(out iter, path)) {
 			album_list_view.hide();
-
 			return;
 		}
 

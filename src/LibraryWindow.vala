@@ -445,7 +445,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		});
 
 
-
+		this.map_event.connect ( () => {
 		// start thread to load all the media pixbufs
 		try {
 			Thread.create<void*>(lm.fetch_cover_art_from_cache, false);
@@ -453,6 +453,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		catch(GLib.ThreadError err) {
 			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
 		}
+		return false;
+		});
 	}
 
 	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
@@ -1073,8 +1075,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
 	public virtual void on_quit() {
-		this.hide ();
-
 		lm.settings.setLastMediaPosition((int)((double)lm.player.getPosition()/1000000000));
 		if(lm.media_active) {
 			lm.media_info.media.resume_pos = (int)((double)lm.player.getPosition()/1000000000);
