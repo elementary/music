@@ -1600,7 +1600,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			bool automatic_enabled = settings.getAutoSwitchPreset();
 			string selected_preset = settings.getSelectedPreset();
 
-			foreach(var p in settings.getDefaultPresets ()) {
+			foreach(var p in settings.getCustomPresets ()) {
 				if(p != null && media_active)  {
 					var preset_name = p.name.down ();
 					var media_genre = media_info.media.genre.down();
@@ -1618,7 +1618,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				}
 			}
 
-			foreach(var p in settings.getCustomPresets ()) {
+			foreach(var p in settings.getDefaultPresets ()) {
 				if(p != null && media_active)  {
 					var preset_name = p.name.down ();
 					var media_genre = media_info.media.genre.down();
