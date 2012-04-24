@@ -473,9 +473,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			bool is_current_app = is_active;
 
 			// let's find if a child window has the focus
+			/*
 			if (!is_current_app)
-				is_current_app = list_toplevels ().length () > 0;
-
+				is_current_app = list_toplevels ().length () >= 1;
+			*/
 			if (is_current_app)
 				return;
 		}
