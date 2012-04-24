@@ -263,7 +263,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 				customPresets.add (preset);
 		}
 
-		lm.settings.setPresets (customPresets, lm.settings.CUSTOM_PRESETS);
+		lm.settings.setPresets (customPresets);
 	}
 
 	void preset_selected (EqualizerPreset p) {

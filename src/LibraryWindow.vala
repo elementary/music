@@ -1073,6 +1073,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
 	public virtual void on_quit() {
+		this.hide ();
+
 		lm.settings.setLastMediaPosition((int)((double)lm.player.getPosition()/1000000000));
 		if(lm.media_active) {
 			lm.media_info.media.resume_pos = (int)((double)lm.player.getPosition()/1000000000);
@@ -1082,8 +1084,14 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
 		// Terminate Libnotify
-		if (notification != null)
-			notification.close ();
+		if (notification != null) {
+			try {
+				notification.close ();
+			}
+			catch (Error err) {
+				warning (err.message);
+			}
+		}
 		Notify.uninit ();
 
 		// Search
@@ -1091,7 +1099,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		
 		// Save info pane (context pane) width
 		settings.setMoreWidth(infoPanel.get_allocated_width());
-		
+
 		// Save sidebar width
 		settings.setSidebarWidth(sourcesToMedias.position);
 	}

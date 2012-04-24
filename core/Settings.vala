@@ -1,5 +1,6 @@
 /*-
- * Copyright (c) 2011-2012	   Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012 Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2012 Noise Developers
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -18,6 +19,9 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
 using Gee;
@@ -29,57 +33,71 @@ public class BeatBox.Settings : Object {
 	public GLib.Settings equalizer {get; private set;}
 	public GLib.Settings plugins {get; private set;}
 
-	public static const string LASTFM_SESSION_KEY = "session-key";
-	
-	public static const string MUSIC_FOLDER = "music-folder";
-	public static const string MUSIC_MOUNT_NAME  = "music-mount-name";
-	public static const string UPDATE_FOLDER_HIERARCHY = "update-folder-hierarchy";
-	public static const string WRITE_METADATA_TO_FILE = "write-metadata-to-file";
-	public static const string COPY_IMPORTED_MUSIC = "copy-imported-music";
-	public static const string DOWNLOAD_NEW_PODCASTS = "download-new-podcasts";
-	public static const string LAST_MEDIA_PLAYING = "last-media-playing";
-	public static const string LAST_MEDIA_POSITION = "last-media-position";
-	public static const string SHUFFLE_MODE = "shuffle-mode";
-	public static const string REPEAT_MODE = "repeat-mode";
-	public static const string SEARCH_STRING = "search-string";
-	
-	public static const string WINDOW_MAXIMIZED = "window-maximized";
-	public static const string WINDOW_WIDTH = "window-width";
-	public static const string WINDOW_HEIGHT = "window-height";
-	public static const string SIDEBAR_WIDTH = "sidebar-width";
-	public static const string MORE_WIDTH = "more-width";
-	public static const string MORE_VISIBLE = "more-visible";
-	public static const string VIEW_MODE = "view-mode";
-	public static const string MILLER_WIDTH = "miller-width";
-	public static const string MILLER_HEIGHT = "miller-height";
-	public static const string MILLER_COLUMNS_ENABLED = "miller-columns-enabled";
-	public static const string MUSIC_MILLER_VISIBLE_COLUMNS = "music-miller-visible-columns";
-	public static const string GENERIC_MILLER_VISIBLE_COLUMNS = "generic-miller-visible-columns";
-	public static const string MILLER_COLUMNS_POSITION = "miller-columns-position";
-	
-	public static const string EQUALIZER_ENABLED = "equalizer-enabled";
-	public static const string SELECTED_PRESET = "selected-preset";
-	public static const string CUSTOM_PRESETS = "custom-presets";
-	public static const string DEFAULT_PRESETS = "default-presets";
-	public static const string AUTO_SWITCH_PRESET = "auto-switch-preset";
-	public static const string VOLUME = "volume";
+	private const string LASTFM_SESSION_KEY = "session-key";
 
-	public static const string ENABLED_PLUGINS = "enabled-plugins";
+	private const string MUSIC_FOLDER = "music-folder";
+	private const string MUSIC_MOUNT_NAME  = "music-mount-name";
+	private const string UPDATE_FOLDER_HIERARCHY = "update-folder-hierarchy";
+	private const string WRITE_METADATA_TO_FILE = "write-metadata-to-file";
+	private const string COPY_IMPORTED_MUSIC = "copy-imported-music";
+	private const string DOWNLOAD_NEW_PODCASTS = "download-new-podcasts";
+	private const string LAST_MEDIA_PLAYING = "last-media-playing";
+	private const string LAST_MEDIA_POSITION = "last-media-position";
+	private const string SHUFFLE_MODE = "shuffle-mode";
+	private const string REPEAT_MODE = "repeat-mode";
+	private const string SEARCH_STRING = "search-string";
+	
+	private const string WINDOW_MAXIMIZED = "window-maximized";
+	private const string WINDOW_WIDTH = "window-width";
+	private const string WINDOW_HEIGHT = "window-height";
+	private const string SIDEBAR_WIDTH = "sidebar-width";
+	private const string MORE_WIDTH = "more-width";
+	private const string MORE_VISIBLE = "more-visible";
+	private const string VIEW_MODE = "view-mode";
+	private const string MILLER_WIDTH = "miller-width";
+	private const string MILLER_HEIGHT = "miller-height";
+	private const string MILLER_COLUMNS_ENABLED = "miller-columns-enabled";
+	private const string MUSIC_MILLER_VISIBLE_COLUMNS = "music-miller-visible-columns";
+	private const string GENERIC_MILLER_VISIBLE_COLUMNS = "generic-miller-visible-columns";
+	private const string MILLER_COLUMNS_POSITION = "miller-columns-position";
+	
+	private const string EQUALIZER_ENABLED = "equalizer-enabled";
+	private const string SELECTED_PRESET = "selected-preset";
+	private const string CUSTOM_PRESETS = "custom-presets";
+	private const string DEFAULT_PRESETS = "default-presets";
+	private const string AUTO_SWITCH_PRESET = "auto-switch-preset";
+	private const string VOLUME = "volume";
+
+	public const string ENABLED_PLUGINS = "enabled-plugins";
 
 	LinkedList<string> lastfm_settings;
 	LinkedList<string> ui_settings;
 	LinkedList<string> library_settings;
 	LinkedList<string> equalizer_settings;
-	
-	string music_folder;
-	
+
+#if HAVE_FAST_EXPERIMENTAL_MODE
+	private bool writing_settings_to_disk = false;
+#endif
+
+	HashMap<string, int> int_cache;
+	HashMap<string, int> enum_cache;
+	HashMap<string, string> string_cache;
+	HashMap<string, Gee.Collection<string>> string_array_cache;
+	HashMap<string, bool> bool_cache;
+
 	public Settings() {
 		lastfm = new GLib.Settings("org.elementary.noise.lastfm");
 		ui = new GLib.Settings("org.elementary.noise.ui");
 		library = new GLib.Settings("org.elementary.noise.library");
 		equalizer = new GLib.Settings("org.elementary.noise.equalizer");
 		plugins = new GLib.Settings("org.elementary.noise.plugins");
-		
+
+		int_cache = new HashMap<string, int> ();
+		enum_cache = new HashMap<string, int> ();
+		string_cache = new HashMap<string, string> ();
+		string_array_cache = new HashMap<string, Gee.Collection<string>> ();
+		bool_cache = new HashMap<string, bool> ();
+
 		lastfm_settings = new LinkedList<string>();
 		ui_settings = new LinkedList<string>();
 		library_settings = new LinkedList<string>();
@@ -119,13 +137,52 @@ public class BeatBox.Settings : Object {
 		equalizer_settings.add(DEFAULT_PRESETS);
 		equalizer_settings.add(AUTO_SWITCH_PRESET);
 		equalizer_settings.add(VOLUME);
-
-		//music_folder = getMusicFolder();
 	}
-	
-	private bool getBool(string path, bool def) {
-		bool rv = def;
-		
+
+#if HAVE_FAST_EXPERIMENTAL_MODE
+	public void save () {
+		writing_settings_to_disk = true;
+
+		// INTEGERS
+		foreach (var key in int_cache.keys) {
+			set_int (key, int_cache.get (key));
+		}
+
+		// ENUMS
+		foreach (var key in enum_cache.keys) {
+			set_enum (key, enum_cache.get (key));
+		}
+
+		// STRINGS
+		foreach (var key in string_cache.keys) {
+			set_string (key, string_cache.get (key));
+		}
+
+		// STRING ARRAYS
+		foreach (var key in string_array_cache.keys) {
+			set_strings (key, string_array_cache.get (key));
+		}
+
+		// BOOLEANS
+		foreach (var key in bool_cache.keys) {
+			set_bool (key, bool_cache.get (key));
+		}
+
+
+		writing_settings_to_disk = false;
+	}
+#endif
+
+	/**
+	 *  GET ...
+	 */
+
+	private bool get_bool(string path) {
+		if (bool_cache.has_key (path))
+			return bool_cache.get (path);
+
+		bool rv = false;
+
 		if(lastfm_settings.contains(path)) {
 			rv = lastfm.get_boolean(path);
 		}
@@ -140,35 +197,49 @@ public class BeatBox.Settings : Object {
 		}
 		else {
 			warning ("could not find bool for %s\n", path);
-			rv = def;
 		}
 		
 		return rv;
 	}
 
-	private string[] getStrings(string path) {
+	private Gee.Collection<string> get_strings (string path) {
+		if (string_array_cache.has_key (path))
+			return string_array_cache.get (path);
+
+		string[] ? values = null;
+		var rv = new Gee.LinkedList<string> ();
+
 		if(lastfm_settings.contains(path)) {
-			return lastfm.get_strv(path);
+			values = lastfm.get_strv(path);
 		}
 		else if(ui_settings.contains(path)) {
-			return ui.get_strv(path);
+			values = ui.get_strv(path);
 		}
 		else if(library_settings.contains(path)) {
-			return library.get_strv(path);
+			values = library.get_strv(path);
 		}
 		else if(equalizer_settings.contains(path)) {
-			return equalizer.get_strv(path);
+			values = equalizer.get_strv(path);
 		}
 		else {
 			warning("could not find strings for %s\n", path);
 		}
 
-		return new string[0];
+		if (values != null) {
+			for (int i = 0; i < values.length; i++) {
+				rv.add (values[i]);
+			}
+		}
+
+		return rv;
 	}
 
-	private string getString(string path, string def) {
-		string rv = def;
-		
+	private string get_string (string path) {
+		string rv = "";
+
+		if (string_cache.has_key (path))
+			return string_cache.get (path);
+
 		if(lastfm_settings.contains(path)) {
 			rv = lastfm.get_string(path);
 		}
@@ -183,13 +254,15 @@ public class BeatBox.Settings : Object {
 		}
 		else {
 			warning ("could not find string for %s\n", path);
-			rv = def;
 		}
 		
 		return rv;
 	}
 
 	private int get_enum (string path) {
+		if (enum_cache.has_key (path))
+			return enum_cache.get (path);
+
 		int rv = 0;
 		
 		if(lastfm_settings.contains (path)) {
@@ -211,8 +284,11 @@ public class BeatBox.Settings : Object {
 		return rv;
 	}
 	
-	private int getInt(string path, int def) {
-		int rv = def;
+	private int get_int (string path) {
+		if (int_cache.has_key (path))
+			return int_cache.get (path);
+
+		int rv = 0;
 		
 		if(lastfm_settings.contains(path)) {
 			rv = lastfm.get_int(path);
@@ -228,13 +304,24 @@ public class BeatBox.Settings : Object {
 		}
 		else {
 			warning ("could not find int for %s\n", path);
-			rv = def;
 		}
 		
 		return rv;
 	}
-	
-	private void setBool(string path, bool val) {
+
+	/**
+	 *  SET ...
+	 */
+
+	private void set_bool (string path, bool val) {
+		bool_cache.unset (path);
+		bool_cache.set (path, val);
+
+#if HAVE_FAST_EXPERIMENTAL_MODE
+		if (!writing_settings_to_disk)
+			return;
+#endif
+
 		if(lastfm_settings.contains(path)) {
 			lastfm.set_boolean(path, val);
 		}
@@ -252,7 +339,15 @@ public class BeatBox.Settings : Object {
 		}
 	}
 	
-	private void setString(string path, string val) {
+	private void set_string(string path, string val) {
+		string_cache.unset (path);
+		string_cache.set (path, val);
+
+#if HAVE_FAST_EXPERIMENTAL_MODE
+		if (!writing_settings_to_disk)
+			return;
+#endif
+
 		if(lastfm_settings.contains(path)) {
 			lastfm.set_string(path, val);
 		}
@@ -268,12 +363,26 @@ public class BeatBox.Settings : Object {
 		else {
 			warning ("could not find string for %s\n", path);
 		}
-		
-		if(path == MUSIC_FOLDER)
-			music_folder = val;
 	}
 
-	private void setStrings(string path, string[] val) {
+	private void set_strings(string path, Gee.Collection<string> vals) {
+		string_array_cache.unset (path);
+		string_array_cache.set (path, vals);
+
+		if (vals == null)
+			return;
+
+		string[] val = new string[vals.size];
+
+		int i = 0;
+		foreach (string s in vals) {
+			val[i++] = s;
+		}
+
+#if HAVE_FAST_EXPERIMENTAL_MODE
+		if (!writing_settings_to_disk)
+			return;
+#endif
 
 		if(lastfm_settings.contains(path)) {
 			lastfm.set_strv(path, val);
@@ -293,6 +402,14 @@ public class BeatBox.Settings : Object {
 	}
 
 	private void set_enum (string path, int val) {
+		enum_cache.unset (path);
+		enum_cache.set (path, val);
+
+#if HAVE_FAST_EXPERIMENTAL_MODE
+		if (!writing_settings_to_disk)
+			return;
+#endif
+
 		if(lastfm_settings.contains (path)) {
 			lastfm.set_enum (path, val);
 		}
@@ -310,7 +427,15 @@ public class BeatBox.Settings : Object {
 		}	
 	}
 
-	private void setInt(string path, int val) {
+	private void set_int(string path, int val) {
+		int_cache.unset (path);
+		int_cache.set (path, val);
+
+#if HAVE_FAST_EXPERIMENTAL_MODE
+		if (!writing_settings_to_disk)
+			return;
+#endif
+
 		if(lastfm_settings.contains(path)) {
 			lastfm.set_int(path, val);
 		}
@@ -328,14 +453,11 @@ public class BeatBox.Settings : Object {
 		}
 	}
 
-
 	/** Get values **/
 	public string getMusicFolder() {
-		string rv = getString(MUSIC_FOLDER, "");
-		
+		string rv = get_string(MUSIC_FOLDER);
 		if(rv == "")
 			rv = Environment.get_user_special_dir(UserDirectory.MUSIC);
-			
 		return rv;
 	}
 	
@@ -348,47 +470,47 @@ public class BeatBox.Settings : Object {
 	}
 	
 	public string getMusicMountName() {
-		return getString(MUSIC_MOUNT_NAME, "");
+		return get_string(MUSIC_MOUNT_NAME);
 	}
 	
 	public bool getWindowMaximized() {
-		return getBool(WINDOW_MAXIMIZED, false);
+		return get_bool(WINDOW_MAXIMIZED);
 	}
 	
 	public int getWindowWidth() {
-		return getInt(WINDOW_WIDTH, 1100);
+		return get_int(WINDOW_WIDTH);
 	}
 	
 	public int getWindowHeight() {
-		return getInt(WINDOW_HEIGHT, 600);
+		return get_int(WINDOW_HEIGHT);
 	}
 	
 	public int getSidebarWidth() {
-		return getInt(SIDEBAR_WIDTH, 200);
+		return get_int(SIDEBAR_WIDTH);
 	}
 	
 	public int getMoreWidth() {
-		return getInt(MORE_WIDTH, 150);
+		return get_int(MORE_WIDTH);
 	}
 	
 	public bool getMoreVisible() {
-		return getBool(MORE_VISIBLE, false);
+		return get_bool(MORE_VISIBLE);
 	}
 	
 	public int getViewMode() {
-		return getInt(VIEW_MODE, 1);
+		return get_int(VIEW_MODE);
 	}
 
 	public bool get_miller_columns_enabled () {
-		return getBool(MILLER_COLUMNS_ENABLED, false);
+		return get_bool(MILLER_COLUMNS_ENABLED);
 	}
 	
 	public int get_miller_columns_width () {
-		return getInt(MILLER_WIDTH, 200);
+		return get_int(MILLER_WIDTH);
 	}
 	
 	public int get_miller_columns_height () {
-		return getInt(MILLER_HEIGHT, 200);
+		return get_int(MILLER_HEIGHT);
 	}
 
 	public int get_miller_columns_position () {
@@ -396,75 +518,59 @@ public class BeatBox.Settings : Object {
 	}
 
 	public Gee.Collection<string> get_music_miller_visible_columns () {
-		var rv = new Gee.LinkedList<string>();
-
-		var visible_columns = getStrings (MUSIC_MILLER_VISIBLE_COLUMNS);
-
-		for (int index = 0; index < visible_columns.length; index++) {
-			rv.add (visible_columns[index]);
-		}
-
-		return rv;
+		return get_strings (MUSIC_MILLER_VISIBLE_COLUMNS);
 	}
 
 	public Gee.Collection<string> get_generic_miller_visible_columns () {
-		var rv = new Gee.LinkedList<string>();
-
-		var visible_columns = getStrings (GENERIC_MILLER_VISIBLE_COLUMNS);
-
-		for (int index = 0; index < visible_columns.length; index++) {
-			rv.add (visible_columns[index]);
-		}
-
-		return rv;
+		return get_strings (GENERIC_MILLER_VISIBLE_COLUMNS);
 	}
 
 	public string getSearchString() {
-		return getString(SEARCH_STRING, "");
+		return get_string(SEARCH_STRING);
 	}
 	
 	public bool getUpdateFolderHierarchy() {
-		return getBool(UPDATE_FOLDER_HIERARCHY, false);
+		return get_bool(UPDATE_FOLDER_HIERARCHY);
 	}
 	
 	public bool getWriteMetadataToFile() {
-		return getBool(WRITE_METADATA_TO_FILE, false);
+		return get_bool(WRITE_METADATA_TO_FILE);
 	}
 	
 	public bool getCopyImportedMusic() {
-		return getBool(COPY_IMPORTED_MUSIC, false);
+		return get_bool(COPY_IMPORTED_MUSIC);
 	}
 	
 	public bool getDownloadNewPodcasts() {
-		return getBool(DOWNLOAD_NEW_PODCASTS, false);
+		return get_bool(DOWNLOAD_NEW_PODCASTS);
 	}
 	
 	public int getLastMediaPlaying() {
-		return getInt(LAST_MEDIA_PLAYING, 0);
+		return get_int(LAST_MEDIA_PLAYING);
 	}
 	
 	public int getLastMediaPosition() {
-		return getInt(LAST_MEDIA_POSITION, 0);
+		return get_int(LAST_MEDIA_POSITION);
 	}
 	
 	public int getShuffleMode() {
-		return getInt(SHUFFLE_MODE, 0);
+		return get_int(SHUFFLE_MODE);
 	}
 	
 	public int getRepeatMode() {
-		return getInt(REPEAT_MODE, 0);
+		return get_int(REPEAT_MODE);
 	}
 	
 	public string getLastFMSessionKey() {
-		return getString(LASTFM_SESSION_KEY, "");
+		return get_string(LASTFM_SESSION_KEY);
 	}
 	
 	public bool getEqualizerEnabled() {
-		return getBool(EQUALIZER_ENABLED, false);
+		return get_bool(EQUALIZER_ENABLED);
 	}
 	
 	public string? getSelectedPreset() {
-		string rv = getString(SELECTED_PRESET, "");
+		string rv = get_string(SELECTED_PRESET);
 		
 		if(rv != null && rv.length == 0)
 			return null;
@@ -473,23 +579,19 @@ public class BeatBox.Settings : Object {
 	}
 	
 	public Gee.Collection<EqualizerPreset> getDefaultPresets() {
-
-		return getPresets(getStrings(DEFAULT_PRESETS));
-	
+		return getPresets(get_strings(DEFAULT_PRESETS));
 	}
 	
 	public Gee.Collection<EqualizerPreset> getCustomPresets() {
-	
-		return getPresets(getStrings(CUSTOM_PRESETS));
-	
+		return getPresets(get_strings(CUSTOM_PRESETS));
 	}
 
-	private Gee.Collection<EqualizerPreset> getPresets(string[] presets) {
+	private Gee.Collection<EqualizerPreset> getPresets(Gee.Collection<string> presets) {
 		var rv = new Gee.LinkedList<EqualizerPreset>();
 
-		for (int index = 0; index < presets.length; index++) {
-			string[] vals = presets[index].split("/", 0);
-			
+		foreach (var preset in presets) {
+			string[] vals = preset.split("/", 0);
+
 			var p = new EqualizerPreset.basic(vals[0]);
 
 			for(int i = 1; i < vals.length; ++i) {
@@ -503,61 +605,61 @@ public class BeatBox.Settings : Object {
 	}	
 
 	public bool getAutoSwitchPreset() {
-		return getBool(AUTO_SWITCH_PRESET, false);
+		return get_bool(AUTO_SWITCH_PRESET);
 	}
 	
 	public double getVolume() {
-		return (double)((double)(getInt(VOLUME, 100)) / 100.0);
+		return (double) (get_int (VOLUME)) / 100.0;
 	}
 	
 	
 	/** Set Values **/
 	public void setMusicFolder(string path) {
-		setString(MUSIC_FOLDER, path);
+		set_string(MUSIC_FOLDER, path);
 	}
 	
 	public void setMusicMountName(string path) {
-		setString(MUSIC_MOUNT_NAME, path);
+		set_string(MUSIC_MOUNT_NAME, path);
 	}
 	
 	public void setWindowMaximized(bool val) {
-		setBool(WINDOW_MAXIMIZED, val);
+		set_bool(WINDOW_MAXIMIZED, val);
 	}
 	
 	public void setWindowWidth(int val) {
-		setInt(WINDOW_WIDTH, val);
+		set_int(WINDOW_WIDTH, val);
 	}
 	
 	public void setWindowHeight(int val) {
-		setInt(WINDOW_HEIGHT, val);
+		set_int(WINDOW_HEIGHT, val);
 	}
 	
 	public void setSidebarWidth(int val) {
-		setInt(SIDEBAR_WIDTH, val);
+		set_int(SIDEBAR_WIDTH, val);
 	}
 	
 	public void setMoreWidth(int val) {
-		setInt(MORE_WIDTH, val);
+		set_int(MORE_WIDTH, val);
 	}
 	
 	public void setMoreVisible(bool val) {
-		setBool(MORE_VISIBLE, val);
+		set_bool(MORE_VISIBLE, val);
 	}
 	
 	public void setViewMode(int val) {
-		setInt(VIEW_MODE, val);
+		set_int(VIEW_MODE, val);
 	}
 
 	public void set_miller_columns_enabled (bool val) {
-		setBool(MILLER_COLUMNS_ENABLED, val);
+		set_bool(MILLER_COLUMNS_ENABLED, val);
 	}
 
 	public void set_miller_columns_width (int val) {
-		setInt(MILLER_WIDTH, val);
+		set_int(MILLER_WIDTH, val);
 	}
 
 	public void set_miller_columns_height (int val) {
-		setInt(MILLER_HEIGHT, val);
+		set_int(MILLER_HEIGHT, val);
 	}
 
 	public void set_miller_columns_position (int val) {
@@ -565,101 +667,81 @@ public class BeatBox.Settings : Object {
 	}
 
 	public void set_music_miller_visible_columns (Gee.Collection<string> columns) {
-		string[] vals = new string[columns.size];
-		int index = 0;
-
-		foreach (var col in columns) {
-			vals[index++] = col;
-		}
-
-		setStrings (MUSIC_MILLER_VISIBLE_COLUMNS, vals);
+		set_strings (MUSIC_MILLER_VISIBLE_COLUMNS, columns);
 	}
 
 	public void set_generic_miller_visible_columns (Gee.Collection<string> columns) {
-		string[] vals = new string[columns.size];
-		int index = 0;
-
-		foreach (var col in columns) {
-			vals[index++] = col;
-		}
-
-		setStrings (GENERIC_MILLER_VISIBLE_COLUMNS, vals);
+		set_strings (GENERIC_MILLER_VISIBLE_COLUMNS, columns);
 	}
 
 	public void setSearchString(string val) {
-		setString(SEARCH_STRING, val);
+		set_string(SEARCH_STRING, val);
 	}
 	
 	public void setUpdateFolderHierarchy(bool val) {
-		setBool(UPDATE_FOLDER_HIERARCHY, val);
+		set_bool(UPDATE_FOLDER_HIERARCHY, val);
 	}
 	
 	public void setWriteMetadataToFile(bool val) {
-		setBool(WRITE_METADATA_TO_FILE, val);
+		set_bool(WRITE_METADATA_TO_FILE, val);
 	}
 	
 	public void setCopyImportedMusic(bool val) {
-		setBool(COPY_IMPORTED_MUSIC, val);
+		set_bool(COPY_IMPORTED_MUSIC, val);
 	}
 	
 	public void setDownloadNewPodcasts(bool val) {
-		setBool(DOWNLOAD_NEW_PODCASTS, val);
+		set_bool(DOWNLOAD_NEW_PODCASTS, val);
 	}
 	
 	public void setLastMediaPlaying(int val) {
-		setInt(LAST_MEDIA_PLAYING, val);
+		set_int(LAST_MEDIA_PLAYING, val);
 	}
 	
 	public void setLastMediaPosition(int val) {
-		setInt(LAST_MEDIA_POSITION, val);
+		set_int(LAST_MEDIA_POSITION, val);
 	}
 	
 	public void setShuffleMode(int val) {
-		setInt(SHUFFLE_MODE, val);
+		set_int(SHUFFLE_MODE, val);
 	}
 	
 	public void setRepeatMode(int val) {
-		setInt(REPEAT_MODE, val);
+		set_int(REPEAT_MODE, val);
 	}
 	
 	public void setLastFMSessionKey(string val) {
-		setString(LASTFM_SESSION_KEY, val);
+		set_string(LASTFM_SESSION_KEY, val);
 	}
 	
 	public void setEqualizerEnabled(bool val) {
-		setBool(EQUALIZER_ENABLED, val);
+		set_bool(EQUALIZER_ENABLED, val);
 	}
 	
 	public void setSelectedPreset(EqualizerPreset? preset) {
-		setString(SELECTED_PRESET, (preset != null)? preset.name : "");
+		set_string(SELECTED_PRESET, (preset != null)? preset.name : "");
 	}
 
-	public void setPresets(Gee.Collection<EqualizerPreset> presets, string type) {
-		string[] vals = new string[presets.size];
+	public void setPresets(Gee.Collection<EqualizerPreset> presets) {
+		var vals = new Gee.LinkedList<string> ();
 
-		int index = 0;
 		foreach (var p in presets) {
 			string preset = p.name;
-
-			for(int i = 0; i < 10; ++i) {
+			for(int i = 0; i < 10; ++i)
 				preset += "/" + p.getGain(i).to_string();
-			}
-
-			vals[index++] = preset;
+			vals.add (preset);
 		}
-		
-		if (type == CUSTOM_PRESETS)
-			setStrings(CUSTOM_PRESETS, vals);
-		else if (type == DEFAULT_PRESETS)
-			setStrings(DEFAULT_PRESETS, vals);
+
+		set_strings(CUSTOM_PRESETS, vals);
 	}
 
 	public void setAutoSwitchPreset(bool val) {
-		setBool(AUTO_SWITCH_PRESET, val);
+		set_bool(AUTO_SWITCH_PRESET, val);
 	}
 	
 	public void setVolume(double val) {
-		setInt(VOLUME, (int)(val*100));
+		set_int(VOLUME, (int)(val*100));
 	}
+
 }
 
