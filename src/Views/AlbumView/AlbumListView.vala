@@ -58,7 +58,7 @@ public class BeatBox.AlbumListView : Window {
 		// close button
 		var close = new Gtk.Button ();
 		close.get_style_context().add_class("close-button");
-		close.set_image (Icons.render_image ("close-symbolic", Gtk.IconSize.MENU));
+		close.set_image (Icons.render_image ("window-close-symbolic", Gtk.IconSize.MENU));
 		close.hexpand = close.vexpand = false;
 		close.halign = Gtk.Align.START;
 		close.set_relief(Gtk.ReliefStyle.NONE);
