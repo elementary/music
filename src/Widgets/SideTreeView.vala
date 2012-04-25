@@ -508,7 +508,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	*/
 
 	// Sets the current sidebar item as the active view
-	public void sideListSelectionChange () {
+	public async void sideListSelectionChange () {
 		var w = getSelectedWidget ();
 		
 		// Switch to that view in the library window

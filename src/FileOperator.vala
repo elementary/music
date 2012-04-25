@@ -400,8 +400,8 @@ public class BeatBox.FileOperator : Object {
 					}
 				}
 			}
-			else // FIXME: use warning() here?
-				debug("Failure: Could not copy imported media %s to media folder %s\n", s.uri, dest.get_path());
+			else
+				warning("Failure: Could not copy imported media %s to media folder %s", s.uri, dest.get_path());
 			
 			/* if we are supposed to delete the old, make sure there are no items left in folder if we do */
 			if(delete_old) {
@@ -410,7 +410,7 @@ public class BeatBox.FileOperator : Object {
 				// must check for .jpg's as well.
 				
 				if(old_folder_items == 0) {
-					debug("going to delete %s because no files are in it\n", original.get_parent().get_path());
+					message ("going to delete %s because no files are in it\n", original.get_parent().get_path());
 					original.get_parent().delete();
 				}
 			}
@@ -537,11 +537,12 @@ public class BeatBox.FileOperator : Object {
 		new_imports.add(m);
 		all_new_imports.add(m);
 		++index;
-		
+
+#if HAVE_PODCASTS		
 		// check if we should guess as a podcast
 		if(m.genre.down().contains("podcast") || m.length > 9000) // OVER 9000!!!!! aka 15 minutes
 			m.mediatype = 1;
-		
+#endif
 		if(new_imports.size >= 200) {
 			lm.add_medias(new_imports, true); // give user some feedback
 			new_imports.clear();

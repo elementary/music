@@ -272,7 +272,7 @@ public class BeatBox.MillerColumns : Box {
 		view_wrapper.play_first_media ();
 	}
 
-	private void column_selection_changed (MillerColumn.Category category, string val) {
+	private async void column_selection_changed (MillerColumn.Category category, string val) {
 		/**
 		 * Since the columns follow a tree model, we need to re-populate all the columns
 		 * that have a lower hierarchical level.
@@ -330,8 +330,13 @@ public class BeatBox.MillerColumns : Box {
 		}
 
 		// Perform search
-		lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
-		              "", search_artist, search_album, search_genre, search_year, search_rating);
+
+		//SLOW: lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
+		//              "", search_artist, search_album, search_genre, search_year, search_rating);
+
+		// FASTER
+		Utils.search_in_media_ids (lm, medias, out _media_results, "", search_artist,
+		                           search_album, search_genre, search_year, search_rating);
 
 		// Now re-populate the child columns
 		foreach (var column in columns) {
@@ -423,7 +428,7 @@ public class BeatBox.MillerColumns : Box {
 		}
 	}
 
-	public void populate(Collection<int> media, string? search = null) {
+	public void populate (Collection<int> media, string? search = null) {
 		this.medias = media;
 
 		// SLOW

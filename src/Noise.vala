@@ -47,10 +47,10 @@ namespace BeatBox {
             warning ("Error parsing arguments: %s\n", err.message);
         }
 
-        Gtk.init(ref args);
+        Gtk.init (ref args);
         Gst.init (ref args);
 
-        var app = new Beatbox();
+        var app = new Beatbox ();
         return app.run (args);
     }
 
@@ -66,7 +66,7 @@ namespace BeatBox {
         public BeatBox.LibraryWindow   library_window  { get; private set; }
         public BeatBox.Plugins.Manager plugins_manager { get; private set; }
 
-	private const string PLUGINS_DIR = Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/";
+        private const string PLUGINS_DIR = Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/";
 
         public static const OptionEntry[] app_options = {
             { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, "Enable debug logging", null },
@@ -119,18 +119,21 @@ namespace BeatBox {
         }
 
         public override void open (File[] files, string hint) {
-            message ("File opening still not implemented. [hint = %s]", hint);
+            message ("File opening still not implemented. [hint = '%s']", hint);
 
             if (library_window == null || library_window.lm == null || !library_window.initialization_finished)
                 return;
 
-            // Let's add this stuff to the queue
+            // Add these files to the play queue
+#if HAVE_EXTERNAL_FILE_SUPPORT
+            var to_add = new Gee.LinkedList<string> ();
             for (int i = 0; i < files.length; i++) {
                 var file = files[i];
-                if (file != null) {
-                    message ("Adding %s to play queue", file.get_uri ());
-                }                                    
+                if (file != null)
+                    to_add.add (file.get_uri ());
             }
+            library_window.lm.add_files_and_queue (to_add);
+#endif
         }
 
         /**

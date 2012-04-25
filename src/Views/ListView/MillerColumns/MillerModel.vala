@@ -185,8 +185,11 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 		foreach (string s in medias) {
 			// if it is rating column, add "Stars" after the number
 			if (is_rating) {
-				if (int.parse(s) < 1)
+				int rating = int.parse (s);
+				if (rating < 1)
 					s = _("Unrated");
+				else if (rating == 0)
+					s = _("1 star");
 				else
 					s = _("%s Stars").printf(s);
 			}

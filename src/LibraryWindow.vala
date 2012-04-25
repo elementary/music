@@ -739,7 +739,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		debug ("UPDATE SENSITIVITIES");
 
-		bool folder_set = (lm.music_folder_dir != "");
+		bool folder_set = (settings.getMusicFolder () != "");
 		//bool have_media = lm.media_count() > 0;
 		bool doing_ops = lm.doing_file_operations();
 		bool media_active = lm.media_active;

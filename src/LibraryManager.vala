@@ -160,23 +160,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public Shuffle shuffle;
 	public int next_gapless_id;
 
-	// for performance reasons...
-	// (we access this property quite often)
-	private string? _music_folder_dir = null;
-	public string music_folder_dir {
-		owned get {
-			if (_music_folder_dir == null)
-				 _music_folder_dir = settings.getMusicFolder();
-			return _music_folder_dir;
-		}
-		private set {
-			if (value != null) {
-				_music_folder_dir = value;
-				settings.setMusicFolder(value);
-			}
-		}
-	}
-	
 	public enum Shuffle {
 		OFF,
 		ALL;
@@ -430,7 +413,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			lw.update_sensitivities();
 			stopPlayback();
 
-			this.music_folder_dir = folder;
+			settings.setMusicFolder (folder);
 
 			settings.setMusicMountName("");
 			
@@ -444,7 +427,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public void* set_music_thread_function () {
-		var music_folder_file = GLib.File.new_for_path(this.music_folder_dir);
+		var music_folder_file = GLib.File.new_for_path(settings.getMusicFolder ());
 		LinkedList<string> files = new LinkedList<string>();
 		
 		var items = fo.count_music_files(music_folder_file, ref files);
@@ -525,18 +508,19 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		fo.resetProgress(100);
 		Timeout.add(100, doProgressNotificationWithTimeout);
 		
+		var music_folder_dir = settings.getMusicFolder ();
 		foreach(Media s in _media.values) {
-			if(!s.isTemporary && !s.isPreview && s.uri.contains(this.music_folder_dir))
+			if(!s.isTemporary && !s.isPreview && s.uri.contains(music_folder_dir))
 				paths.set(s.uri, s);
 				
-			if(s.uri.contains(this.music_folder_dir) && !File.new_for_uri(s.uri).query_exists())
+			if(s.uri.contains(music_folder_dir) && !File.new_for_uri(s.uri).query_exists())
 				to_remove.add(s);
 		}
 		fo.index = 5;
 		
 		// get a list of the current files
 		var files = new LinkedList<string>();
-		fo.count_music_files(File.new_for_path(this.music_folder_dir), ref files);
+		fo.count_music_files(File.new_for_path(music_folder_dir), ref files);
 		fo.index = 10;
 		
 		foreach(string s in files) {
@@ -707,12 +691,14 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 #endif
 			}
 		}
+
+		var music_folder_dir = settings.getMusicFolder ();
 		
 		foreach(Media s in unset) {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
-			if(File.new_for_uri(s.uri).get_path().has_prefix(this.music_folder_dir))
+			if(File.new_for_uri(s.uri).get_path().has_prefix(music_folder_dir))
 				--local_song_count;
 			
 			if(s.mediatype == 0)
@@ -1028,6 +1014,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 		
 		var added = new LinkedList<int>();
+		
+		var music_folder_dir = settings.getMusicFolder ();
 		foreach(var s in new_media) {
 			if(s.rowid == 0)
 				s.rowid = ++top_index;
@@ -1038,7 +1026,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			if(permanent && !s.isTemporary)
 				_permanents.add(s.rowid);
 				
-			if(this.music_folder_dir != "" && s.uri.has_prefix(File.new_for_path(this.music_folder_dir).get_uri()))
+			if(music_folder_dir != "" && s.uri.has_prefix(File.new_for_path(music_folder_dir).get_uri()))
 				++local_song_count;
 			
 			if(s.mediatype == 0)
@@ -1080,13 +1068,14 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			if(media_from_id(i).isTemporary)
 				temps_medias.add(media_from_id(i));
 		}
-		
+
+		var music_folder_dir = settings.getMusicFolder ();
 		foreach(var s in temps_medias) {
 			s.isTemporary = false;
 			s.date_added = (int)time_t();
 			_permanents.add(s.rowid);
 			
-			if(File.new_for_uri(s.uri).get_path().has_prefix(this.music_folder_dir))
+			if(File.new_for_uri(s.uri).get_path().has_prefix(music_folder_dir))
 				++local_song_count;
 		}
 		
@@ -1109,12 +1098,13 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		if(trash) {
 			fo.remove_medias(removeURIs);
 		}
-		
+
+		var music_folder_dir = settings.getMusicFolder();		
 		foreach(Media s in toRemove) {
 			_media.unset(s.rowid);
 			_permanents.remove(s.rowid);
 			
-			if(this.music_folder_dir != "" && File.new_for_uri(s.uri).get_path().has_prefix(this.music_folder_dir))
+			if(music_folder_dir != "" && File.new_for_uri(s.uri).get_path().has_prefix(music_folder_dir))
 				--local_song_count;
 			
 			if(s.mediatype == 0)
@@ -1528,7 +1518,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		Media m = media_from_id(id);
 		
 		// check that the file exists
-		if((this.music_folder_dir != "" && File.new_for_uri(m.uri).get_path().has_prefix(this.music_folder_dir) && !GLib.File.new_for_uri(m.uri).query_exists())) {
+		var music_folder_dir = settings.getMusicFolder ();
+		if((music_folder_dir != "" && File.new_for_uri(m.uri).get_path().has_prefix(music_folder_dir) && !GLib.File.new_for_uri(m.uri).query_exists())) {
 			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
 			lw.media_not_found(id);
