@@ -1,5 +1,7 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012 Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2012 Noise Developers
  *
  * Originally Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -18,170 +20,166 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gtk;
-using Granite.Services;
 
-namespace Option {
-//		[CCode (array_length = false, array_null_terminated = true)]
-//		static string[] to_add;
-//		static string to_play;
+namespace BeatBox {
+
+    namespace Options {
 #if HAVE_STORE
-		static bool enable_store = false;
+        public bool enable_store = false;
 #endif
-		static bool debug = false;
-}
+        public bool debug = false;
+    }
 
-public class BeatBox.Beatbox : Granite.Application {
-	public static Granite.Application app;
+    public static int main (string[] args) {
+        var context = new OptionContext ("- Noise help page.");
+        context.add_main_entries (Beatbox.app_options, "noise");
+        context.add_group (Gtk.get_option_group (true));
 
-	public static LibraryWindow _program;
-	unowned string[] args;
-	BeatBox.Settings settings;
+        try {
+            context.parse (ref args);
+        }
+        catch (Error err) {
+            warning ("Error parsing arguments: %s\n", err.message);
+        }
 
-	static const OptionEntry[] my_options = {
-		{ "debug", 'd', 0, OptionArg.NONE, ref Option.debug, "Enable debug logging", null },
-/*
-		{ "add-to-library", 'a', 0, OptionArg.FILENAME_ARRAY, ref Option.to_add, "Adds the list of files to the BeatBox library", "FILE1 FILE2 ..." },
-		{ "play-uri", 'p', 0, OptionArg.STRING, ref Option.to_play, "Plays given uri", "URI" },
-*/
-		{ null }
-	};
+        Gtk.init(ref args);
+        Gst.init (ref args);
 
-	public static int main(string[] args) {
-		var opt_context = new OptionContext("- Noise help page.");
-		opt_context.set_help_enabled(true);
-		opt_context.add_main_entries(my_options, "noise");
-		opt_context.add_group(Gtk.get_option_group(true));
-
-		try {
-			opt_context.parse(ref args);
-		}
-		catch(Error err) {
-			stdout.printf("Error parsing arguments: %s\n", err.message);
-		}
-
-		Gdk.threads_init();
-		Gdk.threads_enter();
-		Gtk.init(ref args);
-		Gdk.threads_leave();
-		//BeatBox.clutter_usable = GtkClutter.init(ref args) == Clutter.InitError.SUCCESS;
-
-		Notify.init("noise");
-
-		app = new Beatbox();
-		app.set_application_id("net.launchpad.noise");
-		app.flags = ApplicationFlags.FLAGS_NONE;
-		//((Beatbox)app).args = args;
-
-		app.command_line.connect(command_line_event);
-
-		// FIXME: passing any args will crash app
-		string[] fake = {};
-		unowned string[] fake_u = fake;
-		return app.run(fake_u);
-	}
-
-	construct {
-		// App info
-		build_data_dir = Build.DATADIR;
-		build_pkg_data_dir = Build.PKG_DATADIR;
-		build_release_name = Build.RELEASE_NAME;
-		build_version = Build.VERSION;
-		build_version_info = Build.VERSION_INFO;
-
-		program_name = "Noise";
-		exec_name = "noise";
-
-		app_copyright = "2012";
-		application_id = "net.launchpad.noise";
-		app_icon = "noise";
-		app_launcher = "noise.desktop";
-		app_years = "2012";
-
-		main_url = "https://launchpad.net/noise";
-		bug_url = "https://bugs.launchpad.net/noise/+filebug";
-		help_url = "http://elementaryos.org/support/answers";
-		translate_url = "https://translations.launchpad.net/noise";
-
-		about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>", "Victor Eduardo <victoreduardm@gmail.com>", null};
-
-		about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
-	}
-
-	public static int command_line_event() {
-		return 0;
-	}
-
-	Plugins.Manager plugins_manager;
-
-	public Beatbox () {
-		// Load settings
-		settings = new BeatBox.Settings ();
-		plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS,
-		                                        Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/");
-	}
-
-	protected override void activate () {
-		if (_program != null) {
-			_program.present (); // present window if app is already open
-			//stdout.printf("to play is %s\n", Option.to_play);
-			return;
-		}
-
-		// Setup debugger
-		if (Option.debug)
-			Logger.DisplayLevel = LogLevel.DEBUG;
-		else
-			Logger.DisplayLevel = LogLevel.INFO;
+        var app = new Beatbox();
+        return app.run (args);
+    }
 
 
-		_program = new BeatBox.LibraryWindow(this, settings, args);
-		_program.build_ui();
-		plugins_manager.hook_new_window (_program);
 
-#if HAVE_PODCASTS
-		Timeout.add(15000, () => {
-			if(!_program.lm.have_fetched_new_podcasts) {
-				_program.lm.pm.find_new_podcasts();
-			}
+    /**
+     * Application class
+     */
 
-			return false;
-		});
-#endif
+    public class Beatbox : Granite.Application {
 
-#if 0
-		// a test
-		/*bool connected = false;
-		try {
-			connected = File.new_for_uri("http://www.google.com").query_exists();
-		}
-		catch(Error err) {
-			connected = false;
-		}
-		stdout.printf("connected is %d\n", connected ? 1 : 0);*/
-		// finish test
-		if(Option.to_play != null) {
-			stdout.printf("not null\n");
-			File f = File.new_for_uri(Option.to_play);
-			if(f.query_exists()) {
-				stdout.printf("query exists\n");
+        public BeatBox.Settings        settings        { get; private set; }
+        public BeatBox.LibraryWindow   library_window  { get; private set; }
+        public BeatBox.Plugins.Manager plugins_manager { get; private set; }
 
-				/*Media temp = _program.lm.fo.import_media(f.get_path());
+	private const string PLUGINS_DIR = Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/";
 
-				temp.isTemporary = true;
-				_program.lm.add_media(temp, false);
-				_program.lm.playMedia(temp.rowid);
-				stdout.printf("media played %s %s %d\n", temp.title, temp.artist, temp.rowid);*/
-			}
-		}
-		else if(Option.to_add.length > 0) {
+        public static const OptionEntry[] app_options = {
+            { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, "Enable debug logging", null },
+            { null }
+        };
 
-		}
-#endif
+        construct {
+            flags |= ApplicationFlags.HANDLES_OPEN;
 
-		_program.set_application(this);
-	}
+            // App info
+            build_data_dir = Build.DATADIR;
+            build_pkg_data_dir = Build.PKG_DATADIR;
+            build_release_name = Build.RELEASE_NAME;
+            build_version = Build.VERSION;
+            build_version_info = Build.VERSION_INFO;
+
+            program_name = "Noise";
+            exec_name = "noise";
+
+            app_copyright = "2012";
+            application_id = "net.launchpad.noise";
+            app_icon = "noise";
+            app_launcher = "noise.desktop";
+            app_years = "2012";
+
+            main_url = "https://launchpad.net/noise";
+            bug_url = "https://bugs.launchpad.net/noise/+filebug";
+            help_url = "http://elementaryos.org/support/answers";
+            translate_url = "https://translations.launchpad.net/noise";
+
+            about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>",
+                             "Victor Eduardo M. <victoreduardm@gmail.com>", null};
+
+            about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
+        }
+
+        public Beatbox () {
+            // Create settings
+            settings = new BeatBox.Settings ();
+
+            plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS, PLUGINS_DIR);
+
+            // Connect command line handler and file open handler
+            command_line.connect (command_line_event);
+        }
+
+        public int command_line_event (Application appl, ApplicationCommandLine command) {
+            message ("Received command line event. Command line interface not yet implemented");
+            return 0;
+        }
+
+        public override void open (File[] files, string hint) {
+            message ("File opening still not implemented. [hint = %s]", hint);
+
+            if (library_window == null || library_window.lm == null || !library_window.initialization_finished)
+                return;
+
+            // Let's add this stuff to the queue
+            for (int i = 0; i < files.length; i++) {
+                var file = files[i];
+                if (file != null) {
+                    message ("Adding %s to play queue", file.get_uri ());
+                }                                    
+            }
+        }
+
+        /**
+         * These methods are here to make transitioning to other Application APIs
+         * easier in the future.
+         */
+
+        /**
+         * We use this identifier to init everything inside the application.
+         * For instance: MPRIS, libnotify, etc.
+         */
+        public string get_id () {
+            return application_id;
+        }
+
+        /**
+         * Returns:
+         * the application's brand name. Should be used for anything that requires
+         * branding. For instance: Ubuntu's sound menu, dialog titles, etc.
+         */
+        public string get_name () {
+            return program_name;
+        }
+
+        /**
+         * Returns:
+         * the application's desktop file name.
+         */
+        public string get_desktop_file_name () {
+            return app_launcher;
+        }
+
+        protected override void activate () {
+            // present window if app is already open
+            if (library_window != null) {
+                library_window.present ();
+                return;
+            }
+
+            // Setup debugger
+            if (Options.debug)
+                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
+            else
+                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
+
+            library_window = new BeatBox.LibraryWindow (this);
+            library_window.build_ui ();
+            plugins_manager.hook_new_window (library_window);
+        }
+    }
 }
 

@@ -431,7 +431,7 @@ public class BeatBox.MillerColumns : Box {
 		//              view_wrapper.hint, search ?? "");
 
 		// FASTER
-		Utils.search_in_media_ids (media, out _media_results, search ?? "");
+		Utils.search_in_media_ids (lm, media, out _media_results, search ?? "");
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();

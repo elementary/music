@@ -24,14 +24,13 @@
 using Indicate;
 
 public class BeatBox.SoundMenuIntegration : GLib.Object {
-	private LibraryManager lm;
-	private LibraryWindow lw;
+	private LibraryWindow library_window;
+
 	private uint watch;
 	private Indicate.Server server;
 	
-	public SoundMenuIntegration(LibraryManager lmm, LibraryWindow lww) {
-		lm = lmm;
-		lw = lww;
+	public SoundMenuIntegration(LibraryWindow library_window) {
+		this.library_window = library_window;
 	}
 	
 	public void initialize() {
@@ -45,8 +44,8 @@ public class BeatBox.SoundMenuIntegration : GLib.Object {
 	private void on_name_appeared(DBusConnection conn, string name) {
 		/* set up the server to connect to music.noise dbus */
 		server = Indicate.Server.ref_default();
-		server.set("type", "music.noise");
-		server.set_desktop_file(GLib.Path.build_filename("/usr", "share", "applications", "noise.desktop", null));
+		server.set("type", "music" + "." + library_window.app.get_id ());
+		server.set_desktop_file(GLib.Path.build_filename (Build.DATADIR, "applications", library_window.app.get_desktop_file_name (), null));
 		server.show();
 	}
 	

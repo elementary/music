@@ -38,8 +38,7 @@ public class BeatBox.Streamer : GLib.Object {
 	public signal void current_position_update(int64 position);
 	public signal void media_not_found();
 	
-	public Streamer(LibraryManager lm, LibraryWindow lw, string[] args) {
-		Gst.init(ref args);
+	public Streamer(LibraryManager lm, LibraryWindow lw) {
 		
 		this.lm = lm;
 		this.lw = lw;

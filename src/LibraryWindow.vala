@@ -24,12 +24,12 @@ using Gtk;
 using Gee;
 using Notify;
 
-public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
+public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow {
+
+	public BeatBox.Beatbox app { get { return (application as BeatBox.Beatbox); } }
 
 	// signals
 	public signal void playPauseChanged ();
-
-	public static Granite.Application app { get; private set; }
 
 	public BeatBox.LibraryManager lm { get; private set; }
 	public BeatBox.Settings settings { get; private set; }
@@ -37,7 +37,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 	private BeatBox.MediaKeyListener mkl;
 
 	private HashMap<int, Device> music_welcome_screen_keys;
-
 
 	/* Core views. Some will be probably split into plugins in future versions */
 	private ViewWrapper music_library_view;
@@ -105,24 +104,25 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	private Notify.Notification notification;
 
-	public LibraryWindow(Granite.Application app, BeatBox.Settings settings, string[] args) {
-		this.app = app;
-		this.settings = settings;
+	public LibraryWindow (BeatBox.Beatbox app) {
+		set_application (app);
+
+		this.settings = app.settings;
 
 		// Load icon information
 		Icons.init ();
 
 		//this is used by many objects, is the media backend
-		lm = new BeatBox.LibraryManager(settings, this, args);
+		lm = new BeatBox.LibraryManager(this);
 
 		//various objects
 		music_welcome_screen_keys = new HashMap<int, Device>();
-		mkl = new MediaKeyListener(lm, this);
+		mkl = new MediaKeyListener(this);
 
 #if HAVE_INDICATE
 #if HAVE_DBUSMENU
 		message("Initializing MPRIS and sound menu\n");
-		var mpris = new BeatBox.MPRIS(lm, this);
+		var mpris = new BeatBox.MPRIS (this);
 		mpris.initialize();
 #endif
 #endif
@@ -445,15 +445,16 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		});
 
 
+		// Minor performance improvement
 		this.map_event.connect ( () => {
-		// start thread to load all the media pixbufs
-		try {
-			Thread.create<void*>(lm.fetch_cover_art_from_cache, false);
-		}
-		catch(GLib.ThreadError err) {
-			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
-		}
-		return false;
+			// start thread to load all the media pixbufs
+			try {
+				Thread.create<void*>(lm.fetch_cover_art_from_cache, false);
+			}
+			catch(GLib.ThreadError err) {
+				warning("Could not create thread to load media pixbuf's: %s \n", err.message);
+			}
+			return false;
 		});
 	}
 
@@ -471,20 +472,18 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 	public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, bool force = false) {
 		if (!Notify.is_initted ()) {
-			if (!Notify.init ("noise")) {
+			if (!Notify.init (app.get_id ())) {
 				warning ("Could not init libnotify");
 				return;
 			}
 		}
 
 		if (!force) {
-			bool is_current_app = false;
-			// don't show a notification if the user is already viewing this application
-			// let's find if a child window has the focus
-			foreach (var _window in list_toplevels ())
-				if (_window.is_active)
-					is_current_app = true;
-			if (is_current_app)
+			// don't show a notification if the user is already viewing
+			// this application. Please note that this is not perfect.
+			// 'is_active' is FALSE when a child window (i.e. a dialog, etc.)
+			// has the toplevel focus.
+			if (is_active)
 				return;
 		}
 
@@ -497,18 +496,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 			notification.update (primary_text, secondary_text, "");
 		}
 
-		//notification.set_urgency (Notify.Urgency.LOW);
-		//notification.set_timeout (Notify.EXPIRES_DEFAULT);
-
 		// If the passed pixbuf is NULL, let's use the app's icon
 		var image = pixbuf;
 		if (image == null)
 			image = Icons.BEATBOX.render (IconSize.DIALOG);
 
 		notification.set_image_from_pixbuf (image);
-
-		// TODO: Find a suitable category
-		//notification.set_category ("");
 
 		try {
 			notification.show();				
@@ -524,21 +517,22 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 		string primary_text = media.title;
 
-		string secondary_text = _("by %s").printf (media.artist)
-		                         + "\n" + _("from %s").printf (media.album);
+		string secondary_text = media.artist + "\n" + media.album;
 
 		Gdk.Pixbuf? pixbuf = null;
 		try {
 			pixbuf = new Gdk.Pixbuf.from_file_at_size (media.getAlbumArtPath(), 48, 48);
 		}
 		catch (Error err) {
-			warning (err.message);
+			// Media often doesn't have an associated album art,
+			// so we shouldn't threat this as an unexpected error.
+			message (err.message);
 		}
 
 		show_notification (primary_text, secondary_text, pixbuf, force);
 	}
 
-	public void notify_current_media () {
+	private void notify_current_media () {
 		if (lm.media_info != null && lm.media_info.media != null)
 			show_notification_from_media (lm.media_info.media);
 	}
@@ -577,13 +571,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 		if (view_index < 0) {
 			critical ("Cannot set " + view.name + " as the active view");
 			return;
-		}
-
-		//FIXME: THIS CODE SHOULDN'T BE HERE! Hide album list view if there's one
-		var selected_view = get_current_view_wrapper ();
-		if (selected_view is ViewWrapper) {
-			if ((selected_view as ViewWrapper).has_album_view)
-				((selected_view as ViewWrapper).album_view as AlbumView).album_list_view.hide();
 		}
 
 		// GtkNotebooks don't show hidden widgets. Make sure we show the view just in case ...

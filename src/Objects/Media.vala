@@ -34,11 +34,11 @@ public class BeatBox.Media : GLib.Object {
 	public int mediatype { get; set; default = 0; } // 0 = song, 1 = podcast, 2 = audiobook, 3 = radio
 	
 	//tags
-	public string title { get; set; default = "Unknown Title"; }
+	public string title { get; set; default = _("Unknown Title"); }
 	public string composer { get; set; default = ""; }
-	public string artist { get; set; default = "Unknown Artist"; }
+	public string artist { get; set; default = _("Unknown Artist"); }
 	public string album_artist { get; set; default = ""; }
-	public string album { get; set; default = "Unknown Album"; }
+	public string album { get; set; default = _("Unknown Album"); }
 	public string grouping { get; set; default = ""; }
 	public string genre { get; set; default = ""; }
 	public string comment { get; set; default = ""; }
@@ -92,6 +92,7 @@ public class BeatBox.Media : GLib.Object {
 	}
 	
 	//audioproperties
+	// TODO: Move to Utils since this is duplicated in TopDisplay
 	public string pretty_length() {
 		uint minute = 0;
 		uint seconds = length;
@@ -173,12 +174,17 @@ public class BeatBox.Media : GLib.Object {
 		if(path != null)
 			_album_path = path;
 	}
-	
+
 	public string getAlbumArtPath() {
+		/*
 		if(_album_path == "" || _album_path == null)
 			return Icons.DEFAULT_ALBUM_ART.backup_filename;
 		else
 			return _album_path;
+		*/
+		if (_album_path == null)
+			_album_path = "";
+		return _album_path;
 	}
 	
 	public string getArtistImagePath() {

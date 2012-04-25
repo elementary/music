@@ -1,3 +1,4 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*
  * Copyright (c) 2012 Noise Developers
  *
@@ -19,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace Utils {
+namespace BeatBox.Utils {
 
     /**
      * Description:
@@ -132,7 +133,8 @@ namespace Utils {
         }
     }
 
-    public void search_in_media_ids (Gee.Collection<int> to_search_ids,
+    public void search_in_media_ids (BeatBox.LibraryManager lm,
+                                       Gee.Collection<int> to_search_ids,
                                        out Gee.LinkedList<int> results_ids,
                                        string search = "", // Search string
                                        string album_artist = "",
@@ -144,7 +146,7 @@ namespace Utils {
     {
         results_ids = new Gee.LinkedList<int>();
 
-        var library_manager = BeatBox.Beatbox._program.lm;
+        var library_manager = lm;
         if (library_manager == null) {
             critical ("Utils :: search_in_media_ids: Cannot search because LibraryManager is NULL");
             return;

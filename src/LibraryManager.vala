@@ -223,10 +223,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	
 	private Mutex mutex = new Mutex();
 	
-	public LibraryManager(BeatBox.Settings sett, BeatBox.LibraryWindow lww, string[] args) {
+	public LibraryManager(BeatBox.LibraryWindow lww) {
 		this.lw = lww;
-		this.player = new Streamer(this, lw, args);
-		this.settings = sett;
+		this.player = new Streamer(this, lw);
+		this.settings = lw.settings;
 		
 		this.dbm = new DataBaseManager(this);
 		this.dbu = new DataBaseUpdater(this, dbm);
@@ -1719,7 +1719,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return null;
 	}
 
-
 	private void fetch_cover_art (bool cache_only = true) {
 		if(in_fetch_thread)
 			return;
@@ -1727,7 +1726,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		in_fetch_thread = true;
 		//GStreamerTagger tagger = new GStreamerTagger(this);
 		
-		// first get from file
 		foreach(var s in _media.values) {
 			string key = get_media_coverart_key (s), path = "";
 			Gdk.Pixbuf? pix = null;
@@ -1735,10 +1733,11 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			if(!cover_album_art.has_key (key) && s.mediatype == 0) {
 				
 				if(key != null) {
-					Gdk.Pixbuf? coverart_pixbuf = fo.get_cached_album_art (key, out path);
-
 					// try to get image from cache (faster)					
+					Gdk.Pixbuf? coverart_pixbuf = fo.get_cached_album_art (key, out path);
 					if (coverart_pixbuf != null) {
+						// get_pixbuf_shadow automatically scales the pixbuf down
+						// to Icons.ALBUM_VIEW_IMAGE_SIZE
 						pix = Icons.get_pixbuf_shadow (coverart_pixbuf);
 					}
 					else if (!cache_only) {
@@ -1760,27 +1759,16 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 						}
 					}
 
+					// we set the pixbuf even if it's null to avoid entering
+					// the loop for the same album later.
 					cover_album_art.set(key, pix);
 				}
 			}
 			
 			if (cover_album_art.get (key) != null)
 				s.setAlbumArtPath (fo.get_cached_album_art_path (key));
-			else
-				s.setAlbumArtPath (Icons.DEFAULT_ALBUM_ART.backup_filename);
 		}
-		
-		// now queue failures to fetch from embedded art
-		/*previousAlbum = "";
-		var to_check_art = new LinkedList<int>();
-		foreach(Media s in toShowS) {
-			if(_album_art.get(s.artist+s.album) == null)
-				to_check_art.add(s.rowid);
-		}
-		tagger.fetch_art(to_check_art);*/
-		
-		//_album_art.set_all(to_set);
-		
+
 		in_fetch_thread = false;
 	}
 	

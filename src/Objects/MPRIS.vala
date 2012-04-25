@@ -20,26 +20,26 @@
  */
 #if HAVE_INDICATE
 #if HAVE_DBUSMENU
+
 using Gee;
- 
+using BeatBox;
+
 public class BeatBox.MPRIS : GLib.Object {
-	LibraryManager lm;
-	LibraryWindow lw;
-	
+	internal static LibraryWindow library_window;
+
 	public MprisPlayer player = null;
 	public MprisRoot root = null;
 	
 	private unowned DBusConnection conn;
 	private uint owner_id;
 	
-	public MPRIS(LibraryManager lmm, LibraryWindow lww) {
-		lm = lmm;
-		lw = lww;
+	public MPRIS (LibraryWindow library_window) {
+		this.library_window = library_window;
 	}
-	
-	public void initialize() {
+
+	public void initialize () {
 		owner_id = Bus.own_name(BusType.SESSION,
-		                        "org.mpris.MediaPlayer2.noise",
+		                        "org.mpris.MediaPlayer2." + library_window.app.get_id (),
 		                        GLib.BusNameOwnerFlags.NONE,
                         		on_bus_acquired,
                         		on_name_acquired,
@@ -49,39 +49,40 @@ public class BeatBox.MPRIS : GLib.Object {
 			warning("Could not initialize MPRIS session.\n");
 		}
 		else {
-			var soundMenu = new SoundMenuIntegration(lm, lw);
-			soundMenu.initialize();
+			var soundMenu = new SoundMenuIntegration (library_window);
+			soundMenu.initialize ();
 		}
 	}
 	
-	private void on_bus_acquired(DBusConnection connection, string name) {
+	private void on_bus_acquired (DBusConnection connection, string name) {
 		this.conn = connection;
-		//print("bus acquired\n");
+		debug ("bus acquired");
 		try {
-			root = new MprisRoot();
-			connection.register_object("/org/mpris/MediaPlayer2", root);
-			player = new MprisPlayer(connection);
-			connection.register_object("/org/mpris/MediaPlayer2", player);
-		} 
+			root = new MprisRoot (library_window);
+			connection.register_object ("/org/mpris/MediaPlayer2", root);
+			player = new MprisPlayer (connection, library_window);
+			connection.register_object ("/org/mpris/MediaPlayer2", player);
+		}
 		catch(IOError e) {
 			warning("could not create MPRIS player: %s\n", e.message);
 		}
 	}
 
 	private void on_name_acquired(DBusConnection connection, string name) {
-		//print("name acquired\n");
+		debug ("name acquired");
 	}	
 
 	private void on_name_lost(DBusConnection connection, string name) {
-		//print("name_lost\n");
+		debug ("name_lost");
 	}
 }
 
 [DBus(name = "org.mpris.MediaPlayer2")]
 public class MprisRoot : GLib.Object {
-	
-	public MprisRoot() {
-		
+	private LibraryWindow library_window;
+
+	public MprisRoot (LibraryWindow library_window) {
+		this.library_window = library_window;
 	}
 	
 	public bool CanQuit { 
@@ -103,13 +104,13 @@ public class MprisRoot : GLib.Object {
 	}
 	public string DesktopEntry { 
 		owned get {
-			return "noise";
+			return library_window.app.get_desktop_file_name ().replace (".desktop", "");
 		} 
 	}
 	
 	public string Identity {
 		owned get {
-			return "Noise";
+			return library_window.app.get_name ();
 		}
 	}
 	
@@ -174,11 +175,11 @@ public class MprisRoot : GLib.Object {
 	}
 
 	public void Quit() {
-		BeatBox.Beatbox._program.destroy();
+		library_window.destroy();
 	}
 	
 	public void Raise() {
-		BeatBox.Beatbox._program.present();
+		library_window.present();
 	}
 }
 
@@ -186,7 +187,9 @@ public class MprisRoot : GLib.Object {
 [DBus(name = "org.mpris.MediaPlayer2.Player")]
 public class MprisPlayer : GLib.Object {
 	private unowned DBusConnection conn;
-	
+
+	private LibraryWindow library_window;
+
 	private const string INTERFACE_NAME = "org.mpris.MediaPlayer2.Player";
 	
 	private uint send_property_source = 0;
@@ -200,21 +203,22 @@ public class MprisPlayer : GLib.Object {
 		STOP
 	}
 	
-	public MprisPlayer(DBusConnection conn) {
+	public MprisPlayer(DBusConnection conn, LibraryWindow library_window) {
+		this.library_window = library_window;
 		this.conn = conn;
 		_metadata = new HashTable<string,Variant>(str_hash, str_equal);
 		
-		BeatBox.Beatbox._program.lm.media_played.connect(media_played);
-		BeatBox.Beatbox._program.lm.medias_updated.connect(medias_updated);
-		BeatBox.Beatbox._program.playPauseChanged.connect(playing_changed);
+		library_window.lm.media_played.connect(media_played);
+		library_window.lm.medias_updated.connect(medias_updated);
+		library_window.playPauseChanged.connect(playing_changed);
 	}
 	
 	void medias_updated(Gee.LinkedList<int> ids) {
-		if(BeatBox.Beatbox._program.lm.media_info.media == null)
+		if(library_window.lm.media_info.media == null)
 			return;
 		
 		foreach(int i in ids) {
-			if(i == BeatBox.Beatbox._program.lm.media_info.media.rowid) {
+			if(i == library_window.lm.media_info.media.rowid) {
 				trigger_metadata_update();
 				return;
 			}
@@ -241,9 +245,9 @@ public class MprisPlayer : GLib.Object {
 	}
 	
 	public virtual void media_played(int id) {
-		BeatBox.Media s = BeatBox.Beatbox._program.lm.media_from_id(id);
+		BeatBox.Media s = library_window.lm.media_from_id(id);
 		
-		if(s.rowid != BeatBox.Beatbox._program.lm.media_info.media.rowid)
+		if(s.rowid != library_window.lm.media_info.media.rowid)
 			return;
 		
 		string[] artistArray = {};
@@ -256,7 +260,7 @@ public class MprisPlayer : GLib.Object {
 		_metadata.insert("xesam:title", s.title);
 		_metadata.insert("sesam:genre", genreArray);
 		_metadata.insert("mpris:artUrl", "file://" + s.getAlbumArtPath());
-		_metadata.insert("mpris:length", BeatBox.Beatbox._program.lm.player.getDuration()/1000);
+		_metadata.insert("mpris:length", library_window.lm.player.getDuration()/1000);
 		_metadata.insert("xesam:userRating", s.rating);
 		
 		trigger_metadata_update();
@@ -278,7 +282,7 @@ public class MprisPlayer : GLib.Object {
 		changed_properties = null;
 		
 		try {
-			conn.emit_signal("org.mpris.MediaPlayer2.noise",
+			conn.emit_signal("org.mpris.MediaPlayer2." + library_window.app.get_id (),
 			                 "/org/mpris/MediaPlayer2", 
 			                 "org.freedesktop.DBus.Properties", 
 			                 "PropertiesChanged", 
@@ -310,11 +314,11 @@ public class MprisPlayer : GLib.Object {
 	
 	public string PlaybackStatus {
 		owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
-			if(BeatBox.Beatbox._program.lm.playing)
+			if(library_window.lm.playing)
 				return "Playing";
-			else if(!BeatBox.Beatbox._program.lm.playing && BeatBox.Beatbox._program.lm.media_info.media == null)
+			else if(!library_window.lm.playing && library_window.lm.media_info.media == null)
 				return "Stopped";
-			else if(!BeatBox.Beatbox._program.lm.playing)
+			else if(!library_window.lm.playing)
 				return "Paused";
 			else
 				return "Stopped";
@@ -323,7 +327,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public string LoopStatus {
 		owned get {
-			switch(BeatBox.Beatbox._program.lm.repeat) {
+			switch(library_window.lm.repeat) {
 				case(BeatBox.LibraryManager.Repeat.OFF):
 					return "None";
 				case(BeatBox.LibraryManager.Repeat.MEDIA):
@@ -339,16 +343,16 @@ public class MprisPlayer : GLib.Object {
 		set {
 			switch(value) {
 				case("None"):
-					BeatBox.Beatbox._program.lm.repeat = BeatBox.LibraryManager.Repeat.OFF;
+					library_window.lm.repeat = BeatBox.LibraryManager.Repeat.OFF;
 					break;
 				case("Track"):
-					BeatBox.Beatbox._program.lm.repeat = BeatBox.LibraryManager.Repeat.MEDIA;
+					library_window.lm.repeat = BeatBox.LibraryManager.Repeat.MEDIA;
 					break;
 				case("Playlist"):
-					BeatBox.Beatbox._program.lm.repeat = BeatBox.LibraryManager.Repeat.ALL;
+					library_window.lm.repeat = BeatBox.LibraryManager.Repeat.ALL;
 					break;
 				default:
-					BeatBox.Beatbox._program.lm.repeat = BeatBox.LibraryManager.Repeat.ALL;
+					library_window.lm.repeat = BeatBox.LibraryManager.Repeat.ALL;
 					break;
 			}
 			
@@ -367,16 +371,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public bool Shuffle {
 		get {
-			if(BeatBox.Beatbox._program.lm.shuffle == BeatBox.LibraryManager.Shuffle.ALL)
+			if(library_window.lm.shuffle == BeatBox.LibraryManager.Shuffle.ALL)
 				return true;
 			return false;
 		}
 		set {
 			if(value) {
-				BeatBox.Beatbox._program.lm.shuffle = BeatBox.LibraryManager.Shuffle.ALL;
+				library_window.lm.shuffle = BeatBox.LibraryManager.Shuffle.ALL;
 			}
 			else {
-				BeatBox.Beatbox._program.lm.shuffle = BeatBox.LibraryManager.Shuffle.OFF;
+				library_window.lm.shuffle = BeatBox.LibraryManager.Shuffle.OFF;
 			}
 			
 			Variant variant = value;
@@ -394,16 +398,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public double Volume {
 		get{
-			return BeatBox.Beatbox._program.lm.player.getVolume();
+			return library_window.lm.player.getVolume();
 		}
 		set {
-			BeatBox.Beatbox._program.lm.player.setVolume(value);
+			library_window.lm.player.setVolume(value);
 		}
 	}
 	
 	public int64 Position {
 		get {
-			return (BeatBox.Beatbox._program.lm.player.getPosition()/1000);
+			return (library_window.lm.player.getPosition()/1000);
 		}
 	}
 	
@@ -459,42 +463,42 @@ public class MprisPlayer : GLib.Object {
 
 	public void Next() {
 		// inhibit notifications
-		BeatBox.Beatbox._program.play_next_media(true);
+		library_window.play_next_media(true);
 	}
 	
 	public void Previous() {
 		// inhibit notifications
-		BeatBox.Beatbox._program.play_previous_media(true);
+		library_window.play_previous_media(true);
 	}
 	
 	public void Pause() {
 		// inhibit notifications
-		if(BeatBox.Beatbox._program.lm.playing)
-			BeatBox.Beatbox._program.play_media(true);
+		if(library_window.lm.playing)
+			library_window.play_media(true);
 	}
 
 	public void PlayPause() {
 		// inhibit notifications
-		BeatBox.Beatbox._program.play_media(true);
+		library_window.play_media(true);
 	}
 
 	public void Stop() {
-		BeatBox.Beatbox._program.lm.stopPlayback();
+		library_window.lm.stopPlayback();
 	}
 	
 	public void Play() {
 		// inhibit notifications
-		if(!BeatBox.Beatbox._program.lm.playing)
-			BeatBox.Beatbox._program.play_media(true);
+		if(!library_window.lm.playing)
+			library_window.play_media(true);
 	}
 	
 	public void Seek(int64 Offset) {
-		//BeatBox.Beatbox._program.lm.player.setPosition(Position/ 1000);
+		//library_window.lm.player.setPosition(Position/ 1000);
 		debug("Must seek!\n");
 	}
 	
 	public void SetPosition(string dobj, int64 Position) {
-		BeatBox.Beatbox._program.lm.player.setPosition(Position * 1000);
+		library_window.lm.player.setPosition(Position * 1000);
 	}
 	
 	public void OpenUri(string Uri) {
