@@ -37,11 +37,15 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 #if HAVE_PODCASTS
 	CheckButton downloadNewPodcasts;
 #endif
-	
+
+#if HAVE_LAST_FM
 	Button lastfmLogin;
+#endif
 	Button saveChanges;
-	
+
+#if HAVE_LAST_FM
 	string lastfm_token;
+#endif
 	
 	public signal void changed(string folder);
 	
@@ -80,7 +84,8 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 #if HAVE_PODCASTS
 		downloadNewPodcasts = new CheckButton.with_label("Automatically download new podcast episodes");
 #endif
-		
+
+#if HAVE_LAST_FM
 		var lastfmLabel = new Label("Last.fm Integration");
 		var lastfmInfo = new Granite.Widgets.WrapLabel("To allow for Last.fm integration, you must give permission to BeatBox. You only need to do this once.");
 		
@@ -90,17 +95,20 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 			lastfmLogin = new Button.with_label("Scrobbling already Enabled");
 			lastfmLogin.set_tooltip_text("Click to redo the Last.fm Login Process");
 		}
+#endif
 		
 		saveChanges = new Button.with_label("Close");
 		
 		// fancy up the category labels
 		musicLabel.xalign = 0.0f;
 		managementLabel.xalign = 0.0f;
-		lastfmLabel.xalign = 0.0f;
 		musicLabel.set_markup("<b>Music Folder Location</b>");
 		managementLabel.set_markup("<b>Library Management</b>");
+
+#if HAVE_LAST_FM
+		lastfmLabel.xalign = 0.0f;
 		lastfmLabel.set_markup("<b>Last.fm Integration</b>");
-		
+#endif		
 		// file chooser stuff
 		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
 		//fileChooser.set_local_only(true);
@@ -117,8 +125,10 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 #if HAVE_PODCASTS
 		downloadNewPodcasts.set_active(_lm.settings.getDownloadNewPodcasts());
 #endif
-		
+
+#if HAVE_LAST_FM	
 		lastfmInfo.set_line_wrap(true);
+#endif
 		
 		// Add save button
 		var bottomButtons = new HButtonBox();
@@ -135,15 +145,19 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 #if HAVE_PODCASTS
 		content.pack_start(wrap_alignment(downloadNewPodcasts, 0, 0, 0, 10), false, true, 0);
 #endif
+#if HAVE_LAST_FM
 		content.pack_start(lastfmLabel, false, true, 0);
 		content.pack_start(wrap_alignment(lastfmInfo, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(wrap_alignment(lastfmLogin, 0, 0, 0, 10), false, true, 0);
+#endif
 		content.pack_end(bottomButtons, false, true, 10);
 		
 		padding.pack_start(content, true, true, 10);
 		add(padding);
-		
+
+#if HAVE_LAST_FM		
 		lastfmLogin.clicked.connect(lastfmLoginClick);
+#endif
 		saveChanges.clicked.connect(saveClicked);
 		
 		show_all();
@@ -160,7 +174,8 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		alignment.add(widget);
 		return alignment;
 	}
-	
+
+#if HAVE_LAST_FM
 	void lastfmLoginClick() {
 	
 		if(lastfmLogin.get_label() == "Enable Scrobbling" || lastfmLogin.get_label() == "Unsuccessful. Click to try again.") {
@@ -204,6 +219,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 			}
 		}
 	}
+#endif
 		
 	void saveClicked() {
 	
