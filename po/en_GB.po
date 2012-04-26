@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-04-24 20:05-0600\n"
-"PO-Revision-Date: 2012-04-16 21:57+0000\n"
-"Last-Translator: Victor Eduardo <victoreduardm@gmail.com>\n"
+"PO-Revision-Date: 2012-04-25 08:53+0000\n"
+"Last-Translator: Sid Roberts <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-25 05:26+0000\n"
-"X-Generator: Launchpad (build 15139)\n"
+"X-Launchpad-Export-Date: 2012-04-26 05:20+0000\n"
+"X-Generator: Launchpad (build 15149)\n"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Import media to Library"
-msgstr ""
+msgstr "Import media to Library"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:67
 msgid "Continue Syncing"
@@ -106,7 +106,7 @@ msgstr "Limit to"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:164
 msgid "items"
-msgstr ""
+msgstr "items"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:145
@@ -177,6 +177,8 @@ msgid ""
 "The provided source is invalid. Make sure you are entering an RSS feed in "
 "XML format."
 msgstr ""
+"The provided source is invalid. Make sure you are entering an RSS feed in "
+"XML format."
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:556
 #: /home/victor/noise/po/../src//LibraryWindow.vala:273
@@ -194,7 +196,7 @@ msgstr "Import from Device"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr ""
+msgstr "Import all media"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
@@ -235,12 +237,12 @@ msgstr "Year"
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:41
 #, c-format
 msgid "%s, %s, %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:132
 #, c-format
 msgid "%s minutes"
-msgstr ""
+msgstr "%s minutes"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:135
 #, c-format
@@ -255,62 +257,62 @@ msgstr ""
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:142
 #, c-format
 msgid "%i MB"
-msgstr ""
+msgstr "%i MB"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:144
 #, c-format
 msgid "%.2f GB"
-msgstr ""
+msgstr "%.2f GB"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:149
 msgid "songs"
-msgstr ""
+msgstr "songs"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:149
 msgid "song"
-msgstr ""
+msgstr "song"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:151
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:166
 msgid "albums"
-msgstr ""
+msgstr "albums"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:151
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:166
 msgid "album"
-msgstr ""
+msgstr "album"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:154
 msgid "podcasts"
-msgstr ""
+msgstr "podcasts"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:154
 msgid "podcast"
-msgstr ""
+msgstr "podcast"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:157
 msgid "audiobooks"
-msgstr ""
+msgstr "audiobooks"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:157
 msgid "audiobook"
-msgstr ""
+msgstr "audiobook"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:160
 msgid "stations"
-msgstr ""
+msgstr "stations"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:160
 msgid "station"
-msgstr ""
+msgstr "station"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:164
 msgid "item"
-msgstr ""
+msgstr "item"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
-msgstr ""
+msgstr "media"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
@@ -335,7 +337,7 @@ msgstr "Eject"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:134
 msgid "Import Stations"
-msgstr ""
+msgstr "Import Stations"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:142
 msgid "New Playlist"
@@ -359,7 +361,7 @@ msgstr "Export..."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:148
 msgid "Import Playlists"
-msgstr ""
+msgstr "Import Playlists"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:183
 msgid "Library"
@@ -420,7 +422,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:158
 msgid "Automatic"
-msgstr ""
+msgstr "Automatic"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:159
 msgid "On Left"
@@ -432,36 +434,36 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:582
 msgid "Genres"
-msgstr ""
+msgstr "Genres"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:585
 msgid "Artists"
-msgstr ""
+msgstr "Artists"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:588
 msgid "Albums"
-msgstr ""
+msgstr "Albums"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:591
 msgid "Years"
-msgstr ""
+msgstr "Years"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:594
 msgid "Ratings"
-msgstr ""
+msgstr "Ratings"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:189
 msgid "Unrated"
-msgstr ""
+msgstr "Unrated"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:191
 #, c-format
 msgid "%s Stars"
-msgstr ""
+msgstr "%s Stars"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:239
 msgid "All Genres"
-msgstr ""
+msgstr "All Genres"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:241
 #, c-format
@@ -932,18 +934,3 @@ msgstr ""
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:368
 msgid "Cancelling remaining imports..."
 msgstr ""
-
-#~ msgid "Loading similar songs"
-#~ msgstr "Loading similar songs"
-
-#~ msgid "BeatBox is loading songs similar to"
-#~ msgstr "BeatBox is loading songs similar to"
-
-#~ msgid "BeatBox could not find songs similar to"
-#~ msgstr "BeatBox could not find songs similar to"
-
-#~ msgid "Equalizer"
-#~ msgstr "Equaliser"
-
-#~ msgid "Search..."
-#~ msgstr "Search…"

@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-25 05:26+0000\n"
-"X-Generator: Launchpad (build 15139)\n"
+"X-Launchpad-Export-Date: 2012-04-26 05:20+0000\n"
+"X-Generator: Launchpad (build 15149)\n"
 "Language: de\n"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
@@ -945,26 +945,3 @@ msgstr ""
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:368
 msgid "Cancelling remaining imports..."
 msgstr ""
-
-#~ msgid "Loading similar songs"
-#~ msgstr "Lade ähnliche Titel"
-
-#~ msgid "BeatBox is loading songs similar to"
-#~ msgstr "BeatBox lädt Titel, die folgendem Song ähneln:"
-
-#~ msgid "BeatBox could not find songs similar to"
-#~ msgstr "BeatBox konnte keine Titel finden, die folgendem Song ähneln:"
-
-#~ msgid "Equalizer"
-#~ msgstr "Equalizer"
-
-#~ msgid "Search..."
-#~ msgstr "Suchen..."
-
-#, c-format
-#~ msgid "%s hours"
-#~ msgstr "%s Stunden"
-
-#, c-format
-#~ msgid "%s days"
-#~ msgstr "%s Tage"

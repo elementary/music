@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-24 20:05-0600\n"
-"PO-Revision-Date: 2012-04-19 08:50+0000\n"
-"Last-Translator: Florent (LSc) <Unknown>\n"
+"PO-Revision-Date: 2012-04-25 22:19+0000\n"
+"Last-Translator: Simon <Unknown>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-25 05:26+0000\n"
-"X-Generator: Launchpad (build 15139)\n"
+"X-Launchpad-Export-Date: 2012-04-26 05:20+0000\n"
+"X-Generator: Launchpad (build 15149)\n"
 "Language: \n"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
@@ -93,7 +93,7 @@ msgstr "Correspondance"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
-msgstr "parmi les suivantes:"
+msgstr "parmi les suivantes :"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
 #: /home/victor/noise/po/../src//Dialogs/AddPodcastWindow.vala:80
@@ -137,7 +137,7 @@ msgstr "secondes"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:445
 msgid "kbps"
-msgstr "kb/s"
+msgstr "ko/s"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
 msgid "Export Playlists"
@@ -150,7 +150,7 @@ msgstr "Changer le dossier musique"
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:75
 #, c-format
 msgid "Set Music Folder?"
-msgstr "Définir le dossier de Musique ?"
+msgstr "Définir le dossier musique ?"
 
 #: /home/victor/noise/po/../src//Dialogs/AddPodcastWindow.vala:51
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:114
@@ -248,12 +248,12 @@ msgstr "%s minutes"
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:135
 #, c-format
 msgid "%.1f hours"
-msgstr ""
+msgstr "%.1f heures"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:138
 #, c-format
 msgid "%.0f days"
-msgstr ""
+msgstr "%.0f jours"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:142
 #, c-format
@@ -276,12 +276,12 @@ msgstr "morceau"
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:151
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:166
 msgid "albums"
-msgstr ""
+msgstr "albums"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:151
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:166
 msgid "album"
-msgstr ""
+msgstr "album"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:154
 msgid "podcasts"
@@ -399,11 +399,11 @@ msgstr "Ressemblant à %s"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:97
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Rechercher des chansons similaires"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:97
 msgid "Finding songs similar to"
-msgstr ""
+msgstr "Recherche de chansons similaires à"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
 msgid "No similar songs found"
@@ -411,7 +411,7 @@ msgstr "Aucune chanson similaire trouvée"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
 msgid "Could not find songs similar to"
-msgstr ""
+msgstr "Impossible de trouver des chansons similaires à"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
 msgid ""
@@ -530,11 +530,11 @@ msgstr "Sans évaluations"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove from Library"
-msgstr ""
+msgstr "Supprimer de la bibliothèque"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:140
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Supprimer de la file d'attente"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:303
 msgid "#"
@@ -612,7 +612,7 @@ msgstr "Synchroniser :"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:97
 msgid "Other Files"
-msgstr ""
+msgstr "Autres fichiers"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:418
 msgid "All Music"
@@ -740,7 +740,7 @@ msgstr "Scanner à nouveau le dossier Musique"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:215
 msgid "Search Music"
-msgstr ""
+msgstr "Rechercher une musique"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:236
 msgid "Disable Repeat"
@@ -772,11 +772,11 @@ msgstr "Ajouter une liste de lecture"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:240
 msgid "Hide Equalizer"
-msgstr ""
+msgstr "Cacher l'égaliseur"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:240
 msgid "Show Equalizer"
-msgstr ""
+msgstr "Afficher l'égaliseur"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:268
 msgid "Preferences"
@@ -893,78 +893,59 @@ msgstr "Importer des médias depuis un périphérique"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:37
 msgid "Unknown Title"
-msgstr ""
+msgstr "Titre inconnu"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"Veuillez vérifier que votre dossier musical est accessible et monté avant "
+"d'importer le CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
-msgstr ""
+msgstr "Aucune musique dans le CD"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "Noise could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"Noise n'a trouvé aucune musique dans le CD. Aucune musique n'a été importée"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:235
 msgid "Noise is already doing an import"
-msgstr ""
+msgstr "Noise est déjà en train d'importer quelque chose"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:235
 msgid ""
 "Please wait until BeatBox is finished with the current import before "
 "importing the CD."
 msgstr ""
+"Attendre la fin de l'import actuel avant d'extraire les pistes du disque."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:257
 msgid "Ripping track 1"
-msgstr ""
+msgstr "Extraction de la piste 1"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:319
 #, c-format
 msgid "Importing track %i"
-msgstr ""
+msgstr "Importation de la piste %i"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:328
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:331
 msgid "CD Import Complete"
-msgstr ""
+msgstr "Importation du CD terminé"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:328
 #, c-format
 msgid "Noise has finished importing %i songs from Audio CD."
-msgstr ""
+msgstr "Noise a terminé l'importation de %i musiques du CD audio."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:331
 msgid "Noise has finished importing a song from Audio CD."
-msgstr ""
+msgstr "Noise a terminé l'importation d'une musique du CD audio."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:368
 msgid "Cancelling remaining imports..."
-msgstr ""
-
-#~ msgid "Loading similar songs"
-#~ msgstr "Chargement de chansons similaires"
-
-#~ msgid "BeatBox is loading songs similar to"
-#~ msgstr "BeatBox charge des chansons similaires à"
-
-#~ msgid "BeatBox could not find songs similar to"
-#~ msgstr "BeatBox ne trouve pas de chanson similaires à"
-
-#~ msgid "Equalizer"
-#~ msgstr "Égaliseur"
-
-#~ msgid "Search..."
-#~ msgstr "Rechercher..."
-
-#, c-format
-#~ msgid "%s hours"
-#~ msgstr "%s heures"
-
-#, c-format
-#~ msgid "%s days"
-#~ msgstr "%s jours"
+msgstr "Annulation de l'importation restante…"

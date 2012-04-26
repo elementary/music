@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-25 05:26+0000\n"
-"X-Generator: Launchpad (build 15139)\n"
+"X-Launchpad-Export-Date: 2012-04-26 05:20+0000\n"
+"X-Generator: Launchpad (build 15149)\n"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Import media to Library"
@@ -942,26 +942,3 @@ msgstr ""
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:368
 msgid "Cancelling remaining imports..."
 msgstr ""
-
-#~ msgid "Equalizer"
-#~ msgstr "Ekualiser"
-
-#~ msgid "Search..."
-#~ msgstr "Pencarian..."
-
-#, c-format
-#~ msgid "%s hours"
-#~ msgstr "%s jam"
-
-#, c-format
-#~ msgid "%s days"
-#~ msgstr "%s hari"
-
-#~ msgid "BeatBox is loading songs similar to"
-#~ msgstr "BeatBox sedang memuat lagu-lagu yang mirip dengan"
-
-#~ msgid "Loading similar songs"
-#~ msgstr "Memuat lagu-lagu serupa."
-
-#~ msgid "BeatBox could not find songs similar to"
-#~ msgstr "BeatBox tidak menemukan lagu yang mirip dengan"
