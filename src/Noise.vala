@@ -29,10 +29,8 @@
 namespace BeatBox {
 
     namespace Options {
-#if HAVE_STORE
-        public bool enable_store = false;
-#endif
         public bool debug = false;
+        public bool disable_plugins = false;
     }
 
     public static int main (string[] args) {
@@ -55,7 +53,6 @@ namespace BeatBox {
     }
 
 
-
     /**
      * Application class
      */
@@ -68,12 +65,21 @@ namespace BeatBox {
 
         private const string PLUGINS_DIR = Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/";
 
+        public bool is_ready {
+            get {
+                return (library_window == null || library_window.lm == null ||
+                        !library_window.initialization_finished);
+            }
+        }
+
         public static const OptionEntry[] app_options = {
-            { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, "Enable debug logging", null },
+            { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, N_("Enable debug logging"), null },
+            { "no-plugins", 'n', OptionArg.NONE, ref Options.disable_plugins, N_("Disable plugins"), null},
             { null }
         };
 
         construct {
+            // This allows opening files. See the open() method below.
             flags |= ApplicationFlags.HANDLES_OPEN;
 
             // App info
@@ -107,24 +113,27 @@ namespace BeatBox {
             // Create settings
             settings = new BeatBox.Settings ();
 
-            plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS, PLUGINS_DIR);
-
-            // Connect command line handler and file open handler
-            command_line.connect (command_line_event);
-        }
-
-        public int command_line_event (Application appl, ApplicationCommandLine command) {
-            message ("Received command line event. Command line interface not yet implemented");
-            return 0;
+            if (!Options.disable_plugins)
+                plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS, PLUGINS_DIR);
         }
 
         public override void open (File[] files, string hint) {
-            message ("File opening still not implemented. [hint = '%s']", hint);
+            if (is_ready) { // Open files right away
+                open_files (files, hint);
+            }
+            else { // If the library manager is still not ready, keep trying
+                // every 100ms ...
+                Timeout.add (100, () => {
+                    if (is_ready) {
+                        open_files (files, hint);
+                        return false;
+                    }
+                    return true; // keep trying...
+                });
+            }
+        }
 
-            if (library_window == null || library_window.lm == null || !library_window.initialization_finished)
-                return;
-
-            // Add these files to the play queue
+        private void open_files (File[] files, string hint) {
 #if HAVE_EXTERNAL_FILE_SUPPORT
             var to_add = new Gee.LinkedList<string> ();
             for (int i = 0; i < files.length; i++) {
@@ -179,9 +188,11 @@ namespace BeatBox {
             else
                 Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
+            if (!Options.disable_plugins)
+                plugins_manager.hook_new_window (library_window);
+
             library_window = new BeatBox.LibraryWindow (this);
             library_window.build_ui ();
-            plugins_manager.hook_new_window (library_window);
         }
     }
 }

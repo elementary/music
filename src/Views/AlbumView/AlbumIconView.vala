@@ -88,24 +88,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		defaultPix = Icons.DEFAULT_ALBUM_ART_PIXBUF;
 
 		buildUI();
-
-		this.focus_in_event.connect ( () => {
-			album_list_view.hide ();
-			return false;
-		});
-	
-		// hide floating window when switching to another view
-		lw.viewSelector.mode_changed.connect ( () => {
-			if (lw.initialization_finished)
-				album_list_view.hide ();
-		});
-
-		// hide floating window when switching to another view
-		lw.sideTree.true_selection_change.connect ( () => {
-			if (lw.initialization_finished)
-				album_list_view.hide ();
-		});
-
 	}
 
 	public void buildUI() {
@@ -389,8 +371,15 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return false;
 	}
 
+	public bool hide_list_popover () {
+		album_list_view.hide ();
+		return false;
+	}
+
 	void itemActivated(TreePath path) {
 		TreeIter iter;
+
+		lw.focus_in_event.disconnect (hide_list_popover);
 
 		if(!model.get_iter(out iter, path)) {
 			album_list_view.hide();
@@ -417,6 +406,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		album_list_view.show_all();
 		album_list_view.move(x, y);
+
+		lw.focus_in_event.connect (hide_list_popover);
 	}
 
 	public void scrollToCurrent() {

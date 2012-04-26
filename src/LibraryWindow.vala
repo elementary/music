@@ -393,11 +393,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		// ADD PLAYLIST VIEWS
 		load_playlists();
 
-#if HAVE_STORE
-		// LOAD MUSIC STORE VIEW
-		load_default_store ();
-#endif
-
 		initialization_finished = true;
 
 		update_sensitivities();
@@ -583,11 +578,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		if (view is ViewWrapper) {
 			((ViewWrapper)view).set_as_current_view();
 		}
-#if HAVE_STORE
-		else if(view is Store.StoreView) {
-			((Store.StoreView)view).setIsCurrentView(true);
-		}
-#endif
 		else if(view is DeviceView) {
 			DeviceView dv = (DeviceView)view;
 			dv.set_as_current_view ();
@@ -685,15 +675,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		debug ("Finished loading playlists");
 	}
-
-#if HAVE_STORE
-	private void load_default_store () {
-		if (Option.HAVE_STORE) {
-			var storeView = new Store.StoreView(lm, this);
-			add_custom_view (_("Music Store"), storeView);
-		}
-	}
-#endif
 
 	public void addSideListItem(GLib.Object o) {
 		TreeIter item = sideTree.library_music_iter; //just a default

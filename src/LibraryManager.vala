@@ -283,6 +283,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			_media.set(s.rowid, s);
 			_permanents.add(s.rowid);
 			
+			// TODO: This code should be re-usable in other areas.
+			//        Split into a separate method.
 			//stdout.printf("before\n");
 			if(File.new_for_uri(s.uri).get_path() != null && File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
 				++local_song_count;

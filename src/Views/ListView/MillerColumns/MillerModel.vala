@@ -188,8 +188,8 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 				int rating = int.parse (s);
 				if (rating < 1)
 					s = _("Unrated");
-				else if (rating == 0)
-					s = _("1 star");
+				else if (rating == 1)
+					s = _("1 Star");
 				else
 					s = _("%s Stars").printf(s);
 			}
