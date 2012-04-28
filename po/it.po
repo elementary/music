@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-04-24 20:05-0600\n"
-"PO-Revision-Date: 2012-04-25 13:50+0000\n"
-"Last-Translator: Andrea Basso <voluntatefaber@gmail.com>\n"
+"PO-Revision-Date: 2012-04-27 12:41+0000\n"
+"Last-Translator: Tavecchio Luca <tavecchio.luca@tiscali.it>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-26 05:20+0000\n"
+"X-Launchpad-Export-Date: 2012-04-28 05:22+0000\n"
 "X-Generator: Launchpad (build 15149)\n"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
@@ -398,11 +398,11 @@ msgstr "Simili a %s"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:97
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Recuperando canzoni simili"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:97
 msgid "Finding songs similar to"
-msgstr ""
+msgstr "Cercando canzoni simili a"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
 msgid "No similar songs found"
@@ -495,7 +495,7 @@ msgstr "Tutti gli album"
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:257
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "Tutti %i gli Album"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:259
 msgid "No Albums"
@@ -521,7 +521,7 @@ msgstr "Tutte le valutazioni"
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:273
 #, c-format
 msgid "All %i Ratings"
-msgstr ""
+msgstr "Tutte %i le Valutazioni"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:275
 msgid "No Ratings"
@@ -529,11 +529,11 @@ msgstr "Nessuna valutazione"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:129
 msgid "Remove from Library"
-msgstr ""
+msgstr "Rimuovi dalla libreria"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:140
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Rimuovi dalla Coda"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:303
 msgid "#"
@@ -731,7 +731,7 @@ msgstr "Beatbox non è riuscito a leggere il contenuto di questo Audio CD"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:266
 msgid "WARNING: Default View Wrapper!"
-msgstr ""
+msgstr "Attenzione: Visione predefinita Copertina!"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:204
 msgid "Rescan Music Folder"
@@ -739,7 +739,7 @@ msgstr "Riscansiona la Cartella Musica"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:215
 msgid "Search Music"
-msgstr ""
+msgstr "Cerca Musica"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:236
 msgid "Disable Repeat"
@@ -904,21 +904,25 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
-msgstr ""
+msgstr "Nessuna Canzone sul CD"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "Noise could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"Noise non è riuscito trovato nessuna canzone sul CD. Nessuna canzone può "
+"essere importata"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:235
 msgid "Noise is already doing an import"
-msgstr ""
+msgstr "Noise sta già importando"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:235
 msgid ""
 "Please wait until BeatBox is finished with the current import before "
 "importing the CD."
 msgstr ""
+"Per favore aspetta che BeatBox abbia finito l'importazione corrente prima di "
+"importare il CD"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:257
 msgid "Ripping track 1"
@@ -927,22 +931,22 @@ msgstr ""
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:319
 #, c-format
 msgid "Importing track %i"
-msgstr ""
+msgstr "Importazione traccia %i"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:328
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:331
 msgid "CD Import Complete"
-msgstr ""
+msgstr "Importazione del CD Completata"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:328
 #, c-format
 msgid "Noise has finished importing %i songs from Audio CD."
-msgstr ""
+msgstr "Noise ha terminato l'importazione di %i canzoni dal CD Audio"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:331
 msgid "Noise has finished importing a song from Audio CD."
-msgstr ""
+msgstr "Noise ha finito di importare una canzone dal Cd Audio"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:368
 msgid "Cancelling remaining imports..."
-msgstr ""
+msgstr "Annullando le importazioni rimanenti"
