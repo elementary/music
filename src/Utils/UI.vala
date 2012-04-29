@@ -52,15 +52,15 @@ namespace BeatBox.UI {
 	""";
 
 	const string H1_STYLESHEET = """
-		.title { font: open sans bold 24; }
+		.h1 { font: open sans bold 24; }
 	""";
 
 	const string H2_STYLESHEET = """
-		.title { font: open sans light 18; }
+		.h2 { font: open sans light 18; }
 	""";
 
 	const string H3_STYLESHEET = """
-		.title { font: open sans bold 12; }
+		.h3 { font: open sans bold 12; }
 	""";
 
     public void apply_style_to_label (Gtk.Label label, TextStyle text_style) {
