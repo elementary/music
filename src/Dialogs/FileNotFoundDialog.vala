@@ -165,8 +165,7 @@ public class BeatBox.FileNotFoundDialog : Window {
 	}
 	
 	public void rescanLibraryClicked() {
-		lw.fileRescanMusicFolderClick();
-		
+		lw.rescan_music_folder ();
 		this.destroy();
 	}
 	

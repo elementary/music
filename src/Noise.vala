@@ -35,8 +35,9 @@ namespace BeatBox {
 
     public static int main (string[] args) {
         var context = new OptionContext ("- Noise help page.");
-        context.add_main_entries (Beatbox.app_options, "noise");
+        context.add_main_entries (Beatbox.get_option_group (), "noise");
         context.add_group (Gtk.get_option_group (true));
+        context.add_group (Gst.init_get_option_group ());
 
         try {
             context.parse (ref args);
@@ -46,7 +47,13 @@ namespace BeatBox {
         }
 
         Gtk.init (ref args);
-        Gst.init (ref args);
+
+        try {
+            Gst.init_check (ref args);
+        }
+        catch (Error err) {
+            warning ("Could not init GStreamer: %s", err.message);
+        }
 
         var app = new Beatbox ();
         return app.run (args);
@@ -65,16 +72,9 @@ namespace BeatBox {
 
         private const string PLUGINS_DIR = Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/";
 
-        public bool is_ready {
-            get {
-                return (library_window == null || library_window.lm == null ||
-                        !library_window.initialization_finished);
-            }
-        }
-
-        public static const OptionEntry[] app_options = {
+        private static const OptionEntry[] app_options = {
             { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, N_("Enable debug logging"), null },
-            { "no-plugins", 'n', OptionArg.NONE, ref Options.disable_plugins, N_("Disable plugins"), null},
+            { "no-plugins", 'n', 0, OptionArg.NONE, ref Options.disable_plugins, N_("Disable plugins"), null},
             { null }
         };
 
@@ -117,32 +117,19 @@ namespace BeatBox {
                 plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS, PLUGINS_DIR);
         }
 
-        public override void open (File[] files, string hint) {
-            if (is_ready) { // Open files right away
-                open_files (files, hint);
-            }
-            else { // If the library manager is still not ready, keep trying
-                // every 100ms ...
-                Timeout.add (100, () => {
-                    if (is_ready) {
-                        open_files (files, hint);
-                        return false;
-                    }
-                    return true; // keep trying...
-                });
-            }
+        public static OptionEntry[] get_option_group () {
+            return app_options;
         }
 
-        private void open_files (File[] files, string hint) {
-#if HAVE_EXTERNAL_FILE_SUPPORT
+        public override void open (File[] files, string hint) {
             var to_add = new Gee.LinkedList<string> ();
             for (int i = 0; i < files.length; i++) {
                 var file = files[i];
-                if (file != null)
+                if (file != null) {
                     to_add.add (file.get_uri ());
+                    message ("Adding file %s", file.get_uri ());
+                }
             }
-            library_window.lm.add_files_and_queue (to_add);
-#endif
         }
 
         /**

@@ -80,11 +80,9 @@ public class BeatBox.FileOperator : Object {
 		} );
 
 		/* Create album-art cache dir */
-		var beatbox_cache_dir = GLib.File.new_for_path(settings.get_cache_dir ());
-		var album_art_folder = GLib.File.new_for_path(settings.get_album_art_cache_dir ());
+		var album_art_folder = GLib.File.new_for_path (settings.get_album_art_cache_dir ());
 		if(!album_art_folder.query_exists()) {
 			try {
-				beatbox_cache_dir.make_directory(null);
 				album_art_folder.make_directory(null);
 			}
 			catch(GLib.Error err) {

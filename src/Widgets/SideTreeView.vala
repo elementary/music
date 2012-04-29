@@ -241,12 +241,14 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			return library_podcasts_iter;
 		}
 #endif
+/*
 		else if(hint == ViewWrapper.Hint.AUDIOBOOK && parent == library_iter) {
 			// FIXME: add icon
 			var audiobook_icon = Icons.AUDIOBOOK.render (IconSize.MENU, null);
 			library_audiobooks_iter = addItem(parent, o, w, audiobook_icon, name, null);
 			return library_audiobooks_iter;
 		}
+*/
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
 			TreeIter? rv;

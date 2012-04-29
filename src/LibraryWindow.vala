@@ -263,7 +263,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		settingsMenu.append(editPreferences);
 
 		fileImportMusic.activate.connect(fileImportMusicClick);
-		fileRescanMusicFolder.activate.connect(fileRescanMusicFolderClick);
+		fileRescanMusicFolder.activate.connect ( () => { rescan_music_folder (); });
 
 		editPreferences.set_label(_("Preferences"));
 
@@ -1124,9 +1124,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		}
 	}
 
-	public virtual void fileRescanMusicFolderClick() {
-		if(!lm.doing_file_operations()) {
-			if(GLib.File.new_for_path(this.settings.getMusicFolder()).query_exists()) {
+	public void rescan_music_folder () {
+		if (!lm.doing_file_operations ()) {
+			if (GLib.File.new_for_path (this.settings.getMusicFolder ()).query_exists()) {
 				topDisplay.set_label_markup("<b>" + _("Rescanning music folder for changes") + "</b>");
 				topDisplay.show_progressbar();
 
@@ -1138,7 +1138,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			}
 		}
 		else {
-			debug("Can't rescan.. doing file operations already\n");
+			debug ("Can't rescan.. doing file operations already\n");
 		}
 	}
 

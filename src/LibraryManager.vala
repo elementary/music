@@ -373,15 +373,15 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 
 		other_folders_added = 0;
 		file_operations_done.connect ( ()=> {
-		    if (temp_add_other_folders != null) {
-    	        other_folders_added++;
-	            add_folder_to_library (temp_add_other_folders[other_folders_added-1]);
-	            if (other_folders_added == temp_add_other_folders.length) {
-	                other_folders_added = 0;
-	                temp_add_other_folders = null;
-	            }
-            }
-	    });
+			if (temp_add_other_folders != null) {
+				other_folders_added++;
+				add_folder_to_library (temp_add_other_folders[other_folders_added-1]);
+				if (other_folders_added == temp_add_other_folders.length) {
+					other_folders_added = 0;
+					temp_add_other_folders = null;
+				}
+			}
+		});
 	}
 
 	/************ Library/Collection management stuff ************/
@@ -540,11 +540,15 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			fo.index = 90;
 		}
 		Idle.add( () => {
-			if(!fo.cancelled)	remove_medias(to_remove, false);
-			if(to_import.size == 0) {
+			if (!fo.cancelled)
+				remove_medias(to_remove, false);
+			if (to_import.size == 0) {
 				finish_file_operations();
 			}
-			
+
+			// after we're done with that, rescan album arts
+			fetch_all_cover_art ();
+
 			return false; 
 		});
 		
