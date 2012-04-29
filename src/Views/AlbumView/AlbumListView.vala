@@ -23,10 +23,18 @@
 using Gee;
 using Gtk;
 
+#if ENABLE_LIGHT_WINDOW
+public class BeatBox.AlbumListView : Granite.Widgets.DecoratedWindow {
+#else
 public class BeatBox.AlbumListView : Window {
+#endif
 
 	public const int WIDTH = 400;
 	public const int HEIGHT = 400; 
+
+	private const string TITLE_STYLESHEET = """
+		.title { font: open sans light 18; }
+	""";
 
 	LibraryManager lm;
 	ViewWrapper view_wrapper;
@@ -44,16 +52,19 @@ public class BeatBox.AlbumListView : Window {
 		this.view_wrapper = album_view.parent_view_wrapper;
 		this.lm = view_wrapper.lm;
 
-		// window stuff
-		set_transient_for(lm.lw);
+		set_size_request (WIDTH, HEIGHT);
+		set_default_size (WIDTH, HEIGHT);
+
+		set_transient_for (lm.lw);
 		window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
+		this.destroy_with_parent = true;
+		set_skip_taskbar_hint (true);
+#if !ENABLE_LIGHT_WINDOW
+		// window stuff
+
 		set_decorated(false);
 		set_has_resize_grip(false);
 		set_resizable(false);
-		set_skip_taskbar_hint(true);
-		this.destroy_with_parent = true;
-		set_size_request(WIDTH, HEIGHT);
-		set_default_size(WIDTH, HEIGHT);
 
 		// close button
 		var close = new Gtk.Button ();
@@ -63,13 +74,25 @@ public class BeatBox.AlbumListView : Window {
 		close.halign = Gtk.Align.START;
 		close.set_relief(Gtk.ReliefStyle.NONE);
 		close.clicked.connect( () =>  { this.hide(); });
+#else
+		base.get_style_context ().remove_class (Granite.STYLE_CLASS_CONTENT_VIEW);
+		base.get_style_context ().remove_class ("content-view-window");
+#endif
+
+		var title_style = new Gtk.CssProvider ();
+		try {
+			title_style.load_from_data (TITLE_STYLESHEET, -1);
+		}
+		catch (Error err) {
+			warning (err.message);
+		}
 
 		// album artist/album labels
 		album_label = new Label("Album");
 		artist_label = new Label("Artist");
 
-		album_label.get_style_context ().add_class ("h1");
-		artist_label.get_style_context ().add_class ("h3");
+		album_label.get_style_context ().add_class ("title");
+		album_label.get_style_context ().add_provider (title_style, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 		album_label.ellipsize = Pango.EllipsizeMode.END;
 		artist_label.ellipsize = Pango.EllipsizeMode.END;
@@ -80,9 +103,9 @@ public class BeatBox.AlbumListView : Window {
 		album_label.set_max_width_chars (30);
 		artist_label.set_max_width_chars (30);
 
+		album_label.margin_top = 6;
 		album_label.margin_left = album_label.margin_right = 12;
-		album_label.margin_bottom = 12;
-		artist_label.margin_bottom = 16;
+		artist_label.margin_bottom = 12;
 
 		// Music List
 		var tvs = new TreeViewSetup(MusicTreeView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
@@ -100,7 +123,9 @@ public class BeatBox.AlbumListView : Window {
 
 		// Add everything
 		var vbox = new Box(Orientation.VERTICAL, 0);
+#if !ENABLE_LIGHT_WINDOW
 		vbox.pack_start (close, false, false, 0);
+#endif
 		vbox.pack_start (album_label, false, true, 0);
 		vbox.pack_start (artist_label, false, true, 0);
 		vbox.pack_start (mtv_scrolled, true, true, 0);
@@ -109,6 +134,16 @@ public class BeatBox.AlbumListView : Window {
 		add(vbox);
 
 		rating.rating_changed.connect(rating_changed);
+
+#if !ENABLE_LIGHT_WINDOW
+		this.add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.POINTER_MOTION_MASK);
+
+		this.button_press_event.connect ( (event) => {
+			this.begin_move_drag ((int)event.button, (int)event.x_root,
+			                       (int)event.y_root, event.time);
+			return true;
+		});
+#endif
 	}
 
 	public void set_songs_from_media(Media m) {
