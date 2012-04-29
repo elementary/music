@@ -72,10 +72,7 @@ namespace Icons {
 
 	// 16 x 16
 	public BeatBox.Icon BEATBOX;
-	public BeatBox.Icon RADIO;
 	public BeatBox.Icon MUSIC;
-	public BeatBox.Icon PODCAST;
-	public BeatBox.Icon AUDIOBOOK;
 	public BeatBox.Icon AUDIO_CD;
 	public BeatBox.Icon PLAYLIST;
 	public BeatBox.Icon SMART_PLAYLIST;
@@ -86,16 +83,12 @@ namespace Icons {
 	public BeatBox.Icon STARRED;
 	public BeatBox.Icon NOT_STARRED;
 
-	public BeatBox.Icon NEW_PODCAST;
-
 	// SYMBOLIC ICONS
 	public BeatBox.Icon PANE_HIDE_SYMBOLIC;
 	public BeatBox.Icon PANE_SHOW_SYMBOLIC;
 
 	public BeatBox.Icon EQ_SYMBOLIC;
 
-	//public BeatBox.Icon MEDIA_PLAY_SYMBOLIC;
-	//public BeatBox.Icon MEDIA_PAUSE_SYMBOLIC;
 	public BeatBox.Icon NOW_PLAYING_SYMBOLIC;
 
 	public BeatBox.Icon STARRED_SYMBOLIC;
@@ -108,7 +101,6 @@ namespace Icons {
 	public BeatBox.Icon SHUFFLE_ON;
 	public BeatBox.Icon SHUFFLE_OFF;
 	public BeatBox.Icon REPEAT_ON;
-	//public BeatBox.Icon REPEAT_ONCE;
 	public BeatBox.Icon REPEAT_OFF;
 
 	public BeatBox.Icon VIEW_COLUMN;
@@ -124,17 +116,6 @@ namespace Icons {
 	 */
 	public Gdk.Pixbuf DEFAULT_ALBUM_ART_PIXBUF;
 	public Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF;
-
-
-	public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
-		var icon = new BeatBox.Icon (icon_name);
-		return icon.render (size, context);
-	}
-
-	public Gtk.Image? render_image (string icon_name, Gtk.IconSize size) {
-		var icon = new BeatBox.Icon (icon_name);
-		return icon.render_image (size);
-	}
 
 	/**
 	 * @param pixbuf original image
@@ -165,7 +146,12 @@ namespace Icons {
 		S_HEIGHT -= 2 * SHADOW_SIZE;
 
 		// paint original pixbuf
-		Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), SHADOW_SIZE, SHADOW_SIZE - 2); // 2px vertical offset
+		var source_pixbuf = pixbuf;
+		if (pixbuf.width != S_WIDTH || pixbuf.height != S_HEIGHT)
+			source_pixbuf = pixbuf.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR);
+
+		Gdk.cairo_set_source_pixbuf (buffer_surface.context, source_pixbuf,
+		                            SHADOW_SIZE, SHADOW_SIZE - 2); // 2px vertical offset
 		buffer_surface.context.paint();
 
 		return buffer_surface.load_to_pixbuf();
@@ -189,18 +175,25 @@ namespace Icons {
 		buffer_surface.context.set_source_rgba (0, 0, 0, alpha);
 		buffer_surface.context.fill();
 
-		// High-quality results, but too slow
-		//buffer_surface.gaussian_blur (shadow_size);
-
 		buffer_surface.fast_blur(2, 3);
-		//buffer_surface.exponential_blur (3);
 
-		Gdk.cairo_set_source_pixbuf(buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT, Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
+		Gdk.cairo_set_source_pixbuf (buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT,
+		                             Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
 		buffer_surface.context.paint();
 
 		return buffer_surface.load_to_pixbuf();
 	}
 
+
+	public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
+		var icon = new BeatBox.Icon (icon_name);
+		return icon.render (size, context);
+	}
+
+	public Gtk.Image? render_image (string icon_name, Gtk.IconSize size) {
+		var icon = new BeatBox.Icon (icon_name);
+		return icon.render_image (size);
+	}
 
 	/**
 	 * Loads icon information and renders [preloaded] pixbufs
@@ -216,10 +209,7 @@ namespace Icons {
 
 		// 16 x 16
 		BEATBOX = new BeatBox.Icon ("noise", 16, Type.APP, null, true);
-		RADIO = new BeatBox.Icon ("internet-radio", 16, Type.MIMETYPE, null, true);
 		MUSIC = new BeatBox.Icon ("library-music", 16, Type.MIMETYPE, null, true);
-		PODCAST = new BeatBox.Icon ("library-podcast", 16, Type.MIMETYPE, null, true);
-		AUDIOBOOK = new BeatBox.Icon ("library-audiobook", 16, Type.MIMETYPE, null, true);
 		AUDIO_CD = new BeatBox.Icon ("media-cdrom-audio", 16, Type.MIMETYPE, null, true);
 		PLAYLIST = new BeatBox.Icon ("playlist", 16, Type.MIMETYPE, null, true);
 		SMART_PLAYLIST = new BeatBox.Icon ("playlist-automatic", 16, Type.MIMETYPE, null, true);
@@ -227,20 +217,15 @@ namespace Icons {
 		LASTFM_BAN = new BeatBox.Icon ("lastfm-ban", 16, Type.ACTION, null, true);
 		STARRED = new BeatBox.Icon ("starred", 16, Type.STATUS, null, true);
 		NOT_STARRED = new BeatBox.Icon ("non-starred", 16, Type.STATUS, null, true);
-		NEW_PODCAST = new BeatBox.Icon ("podcast-new", 16, Type.STATUS, null, true);
 
 		// SYMBOLIC ICONS (16 x 16)
 		PANE_SHOW_SYMBOLIC = new BeatBox.Icon ("pane-show-symbolic", 16, Type.ACTION, null, true);
 		PANE_HIDE_SYMBOLIC = new BeatBox.Icon ("pane-hide-symbolic", 16, Type.ACTION, null, true);
-
 		EQ_SYMBOLIC = new BeatBox.Icon ("media-eq-symbolic", 16, Type.ACTION, null, true);
 
-		//REPEAT_ONCE = new BeatBox.Icon ("media-playlist-repeat-one-symbolic", 16, Type.STATUS, null, true);
 		REPEAT_OFF = new BeatBox.Icon ("media-playlist-no-repeat-symbolic", 16, Type.STATUS, null, true);
 		SHUFFLE_OFF = new BeatBox.Icon ("media-playlist-no-shuffle-symbolic", 16, Type.STATUS, null, true);
 
-		//MEDIA_PLAY_SYMBOLIC = new BeatBox.Icon ("media-playback-start-symbolic");
-		//MEDIA_PAUSE_SYMBOLIC = new BeatBox.Icon ("media-playback-pause-symbolic");
 		NOW_PLAYING_SYMBOLIC = new BeatBox.Icon ("audio-volume-high-symbolic");
 		STARRED_SYMBOLIC = new BeatBox.Icon ("starred-symbolic");
 		NOT_STARRED_SYMBOLIC = new BeatBox.Icon ("non-starred-symbolic");

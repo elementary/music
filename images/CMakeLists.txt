@@ -10,12 +10,6 @@ install(FILES icons/128x128/apps/noise.svg DESTINATION share/icons/hicolor/scala
 
 # library icons
 install(FILES icons/16x16/mimetypes/library-music.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
-install(FILES icons/16x16/mimetypes/library-podcast.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
-#install(FILES icons/16x16/mimetypes/library-audiobook.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
-
-
-# radio icon
-install(FILES icons/16x16/mimetypes/internet-radio.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
 
 # CD icon
 install(FILES icons/16x16/mimetypes/media-cdrom-audio.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
@@ -25,9 +19,12 @@ install(FILES icons/138x138/mimetypes/albumart.svg DESTINATION share/noise/icons
 install(FILES icons/168x168/other/albumart-shadow.png DESTINATION share/noise/icons/hicolor/168x168/other)
 
 # shuffle and repeat
-install(FILES icons/16x16/status/media-playlist-repeat-one-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-no-repeat-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/status)
 install(FILES icons/16x16/status/media-playlist-no-shuffle-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/status)
+
+# starred / non-starred
+install(FILES icons/16x16/status/starred.svg DESTINATION share/noise/icons/hicolor/16x16/status)
+install(FILES icons/16x16/status/non-starred.svg DESTINATION share/noise/icons/hicolor/16x16/status)
 
 # pane hide/show
 install(FILES icons/16x16/actions/pane-show-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
@@ -35,9 +32,6 @@ install(FILES icons/16x16/actions/pane-hide-symbolic.svg DESTINATION share/noise
 
 # eq symbolic icon
 install(FILES icons/16x16/actions/media-eq-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
-
-# new podcast icon
-install(FILES icons/16x16/status/podcast-new.svg DESTINATION share/noise/icons/hicolor/16x16/status)
 
 # playlist icons
 install(FILES icons/16x16/mimetypes/playlist.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
@@ -53,6 +47,5 @@ install(FILES icons/16x16/actions/lastfm-ban.svg DESTINATION share/noise/icons/h
 
 # Update icon cache
 install (CODE "message(\"Updating GTK+ icon cache (hicolor) ...\")")
-install (CODE "execute_process(COMMAND gtk-update-icon-cache -f -t ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor)
-")
+install (CODE "execute_process(COMMAND gtk-update-icon-cache -f -t ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor)")
 
