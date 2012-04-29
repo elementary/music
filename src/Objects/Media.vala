@@ -91,38 +91,18 @@ public class BeatBox.Media : GLib.Object {
 		this.uri = uri;
 	}
 	
-	//audioproperties
-	// TODO: Move to Utils since this is duplicated in TopDisplay
-	public string pretty_length() {
-		uint minute = 0;
-		uint seconds = length;
-		
-		while(seconds >= 60) {
-			++minute;
-			seconds -= 60;
-		}
-		
-		return minute.to_string() + ":" + ((seconds < 10 ) ? "0" + seconds.to_string() : seconds.to_string());
-	}
-	
 	public string pretty_last_played() {
-		var t = Time.local(last_played);
-		string rv = t.format("%m/%e/%Y %l:%M %p");
-		return rv;
+		return TimeUtils.pretty_timestamp_from_uint (last_played);
 	}
 	
 	public string pretty_date_added() {
-		var t = Time.local(date_added);
-		string rv = t.format("%m/%e/%Y %l:%M %p");
-		return rv;
+		return TimeUtils.pretty_timestamp_from_uint (date_added);
 	}
-	
+
 	public string pretty_podcast_date() {
-		var t = Time.local(podcast_date);
-		string rv = t.format("%m/%e/%Y %l:%M %p");
-		return rv;
+		return TimeUtils.pretty_timestamp_from_uint (podcast_date);
 	}
-	
+
 	public Media copy() {
 		Media rv = new Media(uri);
 		rv.file_size = file_size;

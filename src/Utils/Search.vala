@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace BeatBox.Utils {
+namespace BeatBox.Search {
 
     /**
      * Description:
@@ -34,7 +34,7 @@ namespace BeatBox.Utils {
      * "             "  ""            --> Converts white space into a void string
      * "Foo   Bar"      "Foo    Bar"  --> Doesn't change middle spaces.
      */
-    private string get_valid_search_string (string s) {
+    public inline string get_valid_search_string (string s) {
 
         if (s.length < 1)
             return "";
@@ -85,7 +85,7 @@ namespace BeatBox.Utils {
      * Search functions
      */
 
-    public void search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
+    public inline void search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
                                        out Gee.LinkedList<BeatBox.Media> results,
                                        BeatBox.ViewWrapper.Hint hint,
                                        string search = "", // Search string
@@ -133,7 +133,7 @@ namespace BeatBox.Utils {
         }
     }
 
-    public void search_in_media_ids (BeatBox.LibraryManager lm,
+    public inline void search_in_media_ids (BeatBox.LibraryManager lm,
                                        Gee.Collection<int> to_search_ids,
                                        out Gee.LinkedList<int> results_ids,
                                        string search = "", // Search string
@@ -194,7 +194,7 @@ namespace BeatBox.Utils {
     * These are optimized for certain kinds of searches
     */
 
-   public void fast_album_search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
+   public inline void fast_album_search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
                                                   out Gee.LinkedList<BeatBox.Media> results,
                                                   string search = "", // Search string
                                                   string album_artist = "",
