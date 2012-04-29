@@ -308,7 +308,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	// XXX: fix column browser stuff!
 	// THIS IS CRITICAL!
 
-	public void populate_view () {
+	public async void populate_view () {
 		if (column_browser_enabled)
 			// This will emit the changed() signal and then column_browser_changed will be called.
 			// We can't avoid re-populating the entire column browser and then the list view
@@ -321,7 +321,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			list_view.populate_view ();*/
 	}
 
-	private void column_browser_changed () {
+	private async void column_browser_changed () {
 		// This method is only called if the column browser is available.
 		// For performance reasons we won't update showing_medias to match
 		// the results of the miller columns.
@@ -344,7 +344,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return list_view.get_is_current_list ();
 	}
 
-	public void set_show_next (Gee.Collection<int> to_show) {
+	public async void set_show_next (Gee.Collection<int> to_show) {
 		int index = 0;
 		var media = new HashTable<int, Media> (null, null);
 		foreach (int id in to_show) {
@@ -357,7 +357,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		list_view.set_table (media);
 	}
 
-	public void append_media (Gee.Collection<int> media) {
+	public async void append_media (Gee.Collection<int> media) {
 		if (column_browser_enabled)
 			column_browser.populate (view_wrapper.get_showing_media_ids());
 		else {
@@ -372,7 +372,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 	}
 
-	public void remove_media (Gee.Collection<int> media) {
+	public async void remove_media (Gee.Collection<int> media) {
 		if (column_browser_enabled)
 			column_browser.populate (view_wrapper.get_showing_media_ids());
 		else {
@@ -391,7 +391,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	 *        right now.
 	 */
 
-	public void set_table (HashTable<int, Media> table) {
+	public async void set_table (HashTable<int, Media> table) {
 		list_view.set_table (table);
 	}
 }

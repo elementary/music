@@ -17,8 +17,6 @@ public abstract class BeatBox.GenericList : FastView {
 	
 	protected GLib.Icon playing_icon;
 	protected GLib.Icon completed_icon;
-	protected GLib.Icon saved_locally_icon;
-	protected GLib.Icon new_podcast_icon;
 	
 	public signal void import_requested(LinkedList<int> to_import);
 
@@ -49,8 +47,6 @@ public abstract class BeatBox.GenericList : FastView {
 		cellHelper = new CellDataFunctionHelper((BeatBox.LibraryManager)lm, this);
 		playing_icon = Icons.NOW_PLAYING_SYMBOLIC.get_gicon ();
 		completed_icon = Icons.PROCESS_COMPLETED.get_gicon ();
-		saved_locally_icon = new GLib.ThemedIcon.with_default_fallbacks (Gtk.Stock.SAVE);
-		new_podcast_icon = Icons.NEW_PODCAST.get_gicon ();
 		
 		// drag source
 		drag_source_set(this, Gdk.ModifierType.BUTTON1_MASK, {}, Gdk.DragAction.MOVE);

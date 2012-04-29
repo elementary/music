@@ -943,10 +943,6 @@ public class BeatBox.MusicTreeView : GenericList {
 				val = completed_icon;
 			else if(s.unique_status_image != null)
 				val = s.unique_status_image;
-			else if(s.mediatype == 1 && s.last_played == 0)
-				val = new_podcast_icon;
-			else if(s.mediatype == 1 && !s.uri.has_prefix("http://"))
-				val = saved_locally_icon;
 			else
 				val = Value(typeof(GLib.Icon));
 		}

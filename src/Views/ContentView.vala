@@ -32,10 +32,12 @@ public interface BeatBox.ContentView : Gtk.Container {
 	public abstract int get_relative_id();
 
 	// @deprecated:
-	public abstract void set_show_next(Collection<int> medias);
-	public abstract void populate_view();
-	public abstract void append_media (Collection<int> new_medias);
-	public abstract void remove_media (Collection<int> to_remove);
+
+	public abstract async void set_show_next(Collection<int> medias);
+	public abstract async void populate_view();
+	public abstract async void append_media (Collection<int> new_medias);
+	public abstract async void remove_media (Collection<int> to_remove);
+
 //	public abstract void set_as_current_list(int media_id, bool is_initial = false);
 //	public abstract void set_statusbar_info();
 

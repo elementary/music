@@ -246,7 +246,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return parent_view_wrapper.hint;
 	}
 
-	public void set_show_next(Collection<int> media) {
+	public async void set_show_next(Collection<int> media) {
 		_show_next = media;
 	}
 
@@ -258,7 +258,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return _showing_media.keys;
 	}
 
-	public void append_media(Collection<int> new_media) {
+	public async void append_media(Collection<int> new_media) {
 		var to_append = new LinkedList<Media>();
 
 		foreach(int i in new_media) {
@@ -283,7 +283,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		queue_draw();
 	}
 
-	public void remove_media(Collection<int> to_remove) {
+	public async void remove_media(Collection<int> to_remove) {
 		var media_remove = new LinkedList<Media>();
 
 		foreach(int i in to_remove) {
@@ -308,7 +308,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		queue_draw();
 	}
 
-	public void populate_view() {
+	public async void populate_view() {
 		icons.freeze_child_notify();
 		icons.set_model(null);
 
@@ -379,7 +379,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	void itemActivated(TreePath path) {
 		TreeIter iter;
 
-		lw.focus_in_event.disconnect (hide_list_popover);
+		//lw.focus_in_event.disconnect (hide_list_popover);
 
 		if(!model.get_iter(out iter, path)) {
 			album_list_view.hide();
@@ -407,7 +407,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		album_list_view.show_all();
 		album_list_view.move(x, y);
 
-		lw.focus_in_event.connect (hide_list_popover);
+		//lw.focus_in_event.connect (hide_list_popover);
 	}
 
 	public void scrollToCurrent() {

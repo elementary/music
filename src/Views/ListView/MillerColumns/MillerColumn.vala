@@ -81,8 +81,8 @@ public class BeatBox.MillerColumns : Box {
 	public Collection<int> medias { get; private set; }
 
 	// Filtered media results. We provide the data. No need to search again outside
-	private LinkedList<int> _media_results;
-	public LinkedList<int> media_results { get { return _media_results; } }
+	private Collection<int> _media_results;
+	public Collection<int> media_results { get { return _media_results; } }
 
 	public Position position { get; private set; default = Position.AUTOMATIC; }
 	public Position actual_position { get; set; default = Position.LEFT; }
@@ -278,65 +278,70 @@ public class BeatBox.MillerColumns : Box {
 		 * that have a lower hierarchical level.
 		 */
 
-		var search_rating = -1; // ~ All
-		var search_year   = -1; // ~ All
-		var search_genre  = ""; // ~ All
-		var search_artist = ""; // ~ All
-		var search_album  = ""; // ~ All
+		if (filtered) {
+			var search_rating = -1; // ~ All
+			var search_year   = -1; // ~ All
+			var search_genre  = ""; // ~ All
+			var search_artist = ""; // ~ All
+			var search_album  = ""; // ~ All
 
-		// Whether or not we'll take child columns into account before searching.
-		// If the user selects "All ..." in a any column, it results obvious that
-		// whatever the child columns had previously selected still applies, since we're
-		// going from a small to a global set.
-		//bool include_child_columns = (val == "");
+			// Whether or not we'll take child columns into account before searching.
+			// If the user selects "All ..." in a any column, it results obvious that
+			// whatever the child columns had previously selected still applies, since we're
+			// going from a small to a global set.
+			//bool include_child_columns = (val == "");
+			// "All" is represented differently depending on the column type. For integers
+			// it's -1 and for text "".
 
-		// "All" is represented differently depending on the column type. For integers it's -1 and for text "".
+			if (category == MillerColumn.Category.GENRE) {
+				search_genre = val;
+			}
+			else if (category == MillerColumn.Category.ARTIST) {
+				search_artist = val;
+			}
+			else if (category == MillerColumn.Category.ALBUM) {
+				search_album = val;
+			}
+			else if (category == MillerColumn.Category.YEAR) {
+				search_year = (val == "") ? -1 : int.parse (val);
+			}
+			else if (category == MillerColumn.Category.RATING) {
+				search_rating = (val == "") ? -1 : int.parse (val);
+			}
 
-		if (category == MillerColumn.Category.GENRE) {
-			search_genre = val;
-		}
-		else if (category == MillerColumn.Category.ARTIST) {
-			search_artist = val;
-		}
-		else if (category == MillerColumn.Category.ALBUM) {
-			search_album = val;
-		}
-		else if (category == MillerColumn.Category.YEAR) {
-			search_year = (val == "") ? -1 : int.parse (val);
-		}
-		else if (category == MillerColumn.Category.RATING) {
-			search_rating = (val == "") ? -1 : int.parse (val);
-		}
-
-		foreach (var col in columns) {
-			// Higher hierarchical levels (parent columns)
-			if (col.category < category) {
-				if (col.category == MillerColumn.Category.GENRE) {
-					search_genre = col.get_selected ();
-				}
-				else if (col.category == MillerColumn.Category.ARTIST) {
-					search_artist = col.get_selected ();
-				}
-				else if (col.category == MillerColumn.Category.ALBUM) {
-					search_album = col.get_selected ();
-				}
-				else if (col.category == MillerColumn.Category.YEAR) {
-					search_year = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
-				}
-				else if (col.category == MillerColumn.Category.RATING) {
-					search_rating = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
+			foreach (var col in columns) {
+				// Higher hierarchical levels (parent columns)
+				if (col.category < category) {
+					if (col.category == MillerColumn.Category.GENRE) {
+						search_genre = col.get_selected ();
+					}
+					else if (col.category == MillerColumn.Category.ARTIST) {
+						search_artist = col.get_selected ();
+					}
+					else if (col.category == MillerColumn.Category.ALBUM) {
+						search_album = col.get_selected ();
+					}
+					else if (col.category == MillerColumn.Category.YEAR) {
+						search_year = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
+					}
+					else if (col.category == MillerColumn.Category.RATING) {
+						search_rating = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
+					}
 				}
 			}
+
+			// Perform search
+
+			//SLOW: lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
+			//              "", search_artist, search_album, search_genre, search_year, search_rating);
+
+			// FASTER
+			Utils.search_in_media_ids (lm, medias, out _media_results, "", search_artist,
+			                           search_album, search_genre, search_year, search_rating);
 		}
-
-		// Perform search
-
-		//SLOW: lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
-		//              "", search_artist, search_album, search_genre, search_year, search_rating);
-
-		// FASTER
-		Utils.search_in_media_ids (lm, medias, out _media_results, "", search_artist,
-		                           search_album, search_genre, search_year, search_rating);
+		else {
+			_media_results = medias;
+		}
 
 		// Now re-populate the child columns
 		foreach (var column in columns) {
@@ -344,7 +349,7 @@ public class BeatBox.MillerColumns : Box {
 			if (column.category > category) {
 				var column_set = new HashMap<string, int> ();
 
-				foreach(int id in _media_results) {
+				foreach (int id in _media_results) {
 					var _media = lm.media_from_id(id);
 					string _val = "";
 
@@ -401,6 +406,7 @@ public class BeatBox.MillerColumns : Box {
 		*/
 	
 		// Notify others about the change
+		debug ("Column browser changed");
 		changed ();
 	}
 
@@ -619,7 +625,8 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 		if (!first_item_selected)
 			set_selected (null, true); // always notify
-		else if (model.n_items + 1 >= 1 && this.visible && lw.initialization_finished) // just scroll to the cell
+		else if (model.n_items + 1 >= 1 && this.visible && lw.initialization_finished) // FIXME: Use this.get_realized ()
+			//...just scroll to the cell
 			view.scroll_to_cell (new TreePath.first(), null, false, 0.0f, 0.0f);
 	}
 
@@ -649,11 +656,13 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 		items.unset ("");
 
+		view.set_model (null);
+
 		// This check whether we can keep the current selected item selected in the column.
 		// /!\ NOTE: This check is currently disabled for performance and behavioral issues.
 		//           see the related note above in MillerColumns : column_selection_changed() 
 		//if (items.get(get_selected()) == 0) {
-			select_first_item ();
+		//	select_first_item ();
 		//}
 
 		model = new MillerModel (category);
@@ -664,6 +673,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 		// select selected item
 		model.foreach (select_proper_string);
+
 		view.get_selection ().changed.connect (selected_item_changed);
 	}
 
@@ -673,10 +683,10 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 		_selected = val;
 
+		model.foreach (select_proper_string);
+
 		if (notify)
 			selection_changed (category, get_selected ());
-
-		model.foreach (select_proper_string);
 	}
 
 	private bool on_header_clicked (Widget w, EventButton e) {

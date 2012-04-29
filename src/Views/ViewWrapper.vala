@@ -98,6 +98,9 @@ public class BeatBox.ViewWrapper : Box {
 
 	public bool has_media { get { return media_count > 0; } }
 
+
+	const int SEARCH_TIMEOUT = 340; // ms
+
 	/**
 	 * MEDIA DATA
 	 *
@@ -527,9 +530,8 @@ public class BeatBox.ViewWrapper : Box {
 		if(!setting_search && lw.initialization_finished && is_current_wrapper && new_search.length != 1 && this.visible) {
 			timeout_search.offer_head (new_search.down());
 
-			const int T_MS = 290;
-			Timeout.add (T_MS, () => {
-				// Don't search the same stuff every 290ms
+			Timeout.add (SEARCH_TIMEOUT, () => {
+				// Don't search the same stuff every {SEARCH_TIMEOUT}ms
 				string to_search = timeout_search.poll_tail();
 				if (to_search != new_search || to_search == last_search)
 					return false;
