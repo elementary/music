@@ -24,83 +24,18 @@ using Gtk;
 
 // FIXME: Improve how we display total time.
 
-public class BeatBox.StatusBar : Gtk.Toolbar {
+public class BeatBox.StatusBar : Granite.Widgets.StatusBar {
 
     public uint total_items {get; private set; default = 0;}
     public uint total_mbs {get; private set; default = 0;}
     public uint total_secs {get; private set; default = 0;}
     public ViewWrapper.Hint media_type {get; private set;}
 
-    private Label status_label;
-    private Box left_box;
-    private Box right_box;
-
-    private CssProvider style_provider;
-    private StyleContext context;
-
     private string STATUS_TEXT_FORMAT = _("%s, %s, %s");
 
     private bool is_list = false;
 
-    private const string STATUSBAR_STYLESHEET = """
-        BeatBoxStatusBar {
-            border-bottom-width: 0;
-            border-right-width: 0;
-            border-left-width: 0;
-
-            -GtkWidget-window-dragging: false;
-        }
-
-        /* This prevents the huge vertical padding */
-        BeatBoxStatusBar .button {
-            padding: 0px;
-        }
-    """;
-
     public StatusBar () {
-
-        style_provider = new CssProvider ();
-
-        try {
-            style_provider.load_from_data (STATUSBAR_STYLESHEET, -1);
-        }
-        catch (Error err) {
-            warning (err.message);
-        }
-
-        /* Get rid of the "toolbar" class to avoid inheriting its style,
-           since we want the widget to look more like a normal statusbar. */
-        get_style_context ().remove_class (STYLE_CLASS_TOOLBAR);
-
-        context = new StyleContext ();
-        context.add_provider_for_screen (get_screen (), style_provider, STYLE_PROVIDER_PRIORITY_THEME);
-
-        status_label = new Label ("");
-        status_label.set_justify (Justification.CENTER);
-
-        left_box = new Box (Orientation.HORIZONTAL, 0);
-        right_box = new Box (Orientation.HORIZONTAL, 0);
-
-        var left_item = new ToolItem ();
-        var status_label_item = new ToolItem ();
-        var right_item = new ToolItem ();
-
-        left_item.add (left_box);
-        status_label_item.add (status_label);
-        right_item.add (right_box);
-
-        status_label_item.set_expand (true);
-
-        this.insert (left_item, 0);
-        this.insert (status_label_item, 1);
-        this.insert (right_item, 2);
-    }
-
-    public void insert_widget (Gtk.Widget widget, bool? use_left_side = false) {
-        if (use_left_side)
-            left_box.pack_start (widget, false, false, 3);
-        else
-            right_box.pack_start (widget, false, false, 3);
     }
 
     public void set_files_size (uint total_mbs) {

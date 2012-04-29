@@ -119,7 +119,7 @@ vala_precompile(VALA_C
     Objects/Playlist.vala
     Objects/Icon.vala
 
-
+    Widgets/GraniteStatusBar.vala
     Widgets/SmartAlbumRenderer.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarMediaView.vala
