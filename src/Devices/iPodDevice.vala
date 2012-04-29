@@ -47,8 +47,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	
 	HashMap<Media, unowned GPod.Track> to_add; // used to add all new songs at the end when idle
 	
-	public iPodDevice(LibraryManager lm, Mount mount) {
-		this.lm = lm;
+	public iPodDevice(LibraryManager givedlm, Mount mount) {
+		this.lm = givedlm;
 		this.mount = mount;
 		
 		pref = lm.device_manager.get_device_preferences(get_unique_identifier());

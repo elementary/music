@@ -171,6 +171,16 @@ public class BeatBox.ViewWrapper : Box {
 				welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("Noise can't seem to find your music."));
 				
 				break;
+			case Hint.DEVICE_AUDIO:
+				// list and album view
+				album_view = new AlbumView (this);
+				list_view = new ListView (this, tvs);
+
+				error_box = new WarningLabel();
+				error_box.show_icon = false;
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Music Found") + "</span>\n\n" + _("There is no music on this device.") + "\n" + _("You can start syncing music by clicking on the sync button."));
+				
+				break;
 			case Hint.HISTORY:
 			case Hint.QUEUE:
 				//list view only				
@@ -279,6 +289,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (has_album_view)
 			view_container.append_page (album_view);
+		else warning ("no album_view");
 
 		if (has_list_view)
 			view_container.append_page (list_view);
@@ -830,6 +841,7 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	public void add_media (Collection<int> new_media) {
+		debug ("add_media");
 		in_update.lock ();
 
 		//if(hint == Hint.MUSIC || hint == Hint.PODCAST || hint == Hint.STATION) { //FIXME DEVICE_?
