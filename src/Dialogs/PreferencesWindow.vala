@@ -69,7 +69,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		modal = true;
 		resizable = false;
 		set_transient_for(_lw);
-		set_size_request(400, 350);
+		set_size_request(400, -1);
 
 		var content = new VBox(false, 10);
 		var padding = new HBox(false, 10);
