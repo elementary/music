@@ -24,6 +24,7 @@ vala_precompile(VALA_C
     Utils/PixbufUtils.vala
     Utils/TimeUtils.vala
     Utils/String.vala
+    Utils/Numeric.vala
     Utils/Icon.vala
 
     LastFM/LastFM.vala
