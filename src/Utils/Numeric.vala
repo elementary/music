@@ -58,7 +58,7 @@ namespace BeatBox.Numeric {
     }
 
     /**
-     * Approximates a double to the best uint.
+     * Approximates a float to the best int.
      * Sometimes compilers do this wrong by truncating numbers rather than rounding them.
      */
     public int int_from_float (float number) {
