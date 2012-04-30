@@ -1039,17 +1039,18 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		}
 		lm.player.pause();
 
-
 		// Terminate Libnotify
-		if (notification != null) {
-			try {
-				notification.close ();
+		if (Notify.is_initted ()) {
+			if (notification != null) {
+				try {
+					notification.close ();
+				}
+				catch (Error err) {
+					warning (err.message);
+				}
 			}
-			catch (Error err) {
-				warning (err.message);
-			}
+			Notify.uninit ();
 		}
-		Notify.uninit ();
 
 		// Search
 		settings.setSearchString (searchField.get_text());
