@@ -183,7 +183,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		
 
 		// set the title
-		set_title("Noise");
+		set_title(app.get_name ());
 
 		// set the icon
 		set_icon(Icons.BEATBOX.render (IconSize.MENU, null));
@@ -606,13 +606,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		int view_index = add_to_main_views (view_wrapper);
 
 		if (view_index == -1)
-			critical ("Failed to append view '%s' to Noise's main views", name);
+			critical ("Failed to append view '%s' to %s's main views", name, app.get_name ());
 
 		return view_wrapper;
 	}
 
 	/**
-	 * Builds and sets up the default Noise views. That includes main sidebar elements
+	 * Builds and sets up the default views. That includes main sidebar elements
 	 * and categories, which at the same time wrap treeviews, icon views, welcome screens, etc.
 	 */
 	private void build_main_views () {
@@ -1193,7 +1193,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		update_sensitivities();
 
 		//now notify user
-		show_notification (_("Import Complete"), _("Noise has imported your library."));
+		show_notification (_("Import Complete"), _("%s has imported your library.").printf (app.get_name ()));
 	}
 
 	/* this is when you import music from a foreign location into the library */
@@ -1467,7 +1467,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		var dialog = new MessageDialog(this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK,
 				title);
 
-		dialog.title = "Noise";
+		dialog.title = app.get_name ();
 		dialog.secondary_text = message;
 		dialog.secondary_use_markup = true;
 

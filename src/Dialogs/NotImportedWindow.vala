@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ * Copyright (c) 2011-2012	   Scott Ringwelski <sgringwe@mtu.edu>
  *
  * Originaly Written by Scott Ringwelski for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -44,7 +44,7 @@ public class BeatBox.NotImportedWindow : Window{
 		_files = files;
 		this.music_folder = music;
 		
-		this.set_title("Not Imported Files");
+		this.set_title(_("Not Imported Files"));
 		
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
@@ -60,42 +60,42 @@ public class BeatBox.NotImportedWindow : Window{
 		padding = new HBox(false, 20);
 		
 		// initialize controls
-		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
-		Label title = new Label("Unable to import " + files.size.to_string() + "media from " + music_folder);
-		Label info = new Label("BeatBox was unable to import " + files.size.to_string() + " media. The files may be damaged.");
-		trashAll = new CheckButton.with_label("Move all corrupted files to trash");
+		var warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
+		var title = new Label(_("Unable to import %d items from %s").printf (files.size, music_folder));
+		var info = new Label(_("%s was unable to import %d items. The files may be damaged.").printf (lw.app.get_name (), files.size));
+		trashAll = new CheckButton.with_label(_("Move all corrupted files to trash"));
 		filesScroll = new ScrolledWindow(null, null);
 		filesView = new TreeView();
 		filesModel = new ListStore(2, typeof(bool), typeof(string));
 		filesView.set_model(filesModel);
-		moveToTrash = new Button.with_label("Move to Trash");
-		Button okButton = new Button.with_label("Ignore");
+		moveToTrash = new Button.with_label(_("Move to Trash"));
+		Button okButton = new Button.with_label(_("Ignore"));
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Unable to import " + files.size.to_string() + " media from " + music_folder + "</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text (_("Unable to import %d items from %s").printf (files.size, music_folder), -1) + "</span>");
 		info.xalign = 0.0f;
 		info.set_line_wrap(false);
 		
 		/* add cellrenderers to columns and columns to treeview */
 		var toggle = new CellRendererToggle ();
-        toggle.toggled.connect ((toggle, path) => {
-            var tree_path = new TreePath.from_string (path);
-            TreeIter iter;
-            filesModel.get_iter (out iter, tree_path);
-            filesModel.set (iter, 0, !toggle.active);
-            
-            moveToTrash.set_sensitive(false);
-            filesModel.foreach(updateMoveToTrashSensetivity);
-        });
+		toggle.toggled.connect ((toggle, path) => {
+			var tree_path = new TreePath.from_string (path);
+			TreeIter iter;
+			filesModel.get_iter (out iter, tree_path);
+			filesModel.set (iter, 0, !toggle.active);
+			
+			moveToTrash.set_sensitive(false);
+			filesModel.foreach(updateMoveToTrashSensetivity);
+		});
 
-        var column = new TreeViewColumn ();
-        column.title = "del";
-        column.pack_start (toggle, false);
-        column.add_attribute (toggle, "active", 0);
-        filesView.append_column (column);
+		var column = new TreeViewColumn ();
+		column.title = _("del");
+		column.pack_start (toggle, false);
+		column.add_attribute (toggle, "active", 0);
+		filesView.append_column (column);
 		
-		filesView.insert_column_with_attributes(-1, "File Location", new CellRendererText(), "text", 1, null);
+		filesView.insert_column_with_attributes(-1, _("File Location"), new CellRendererText(), "text", 1, null);
 		filesView.headers_visible = false;
 		
 		/* fill the treeview */
@@ -122,7 +122,7 @@ public class BeatBox.NotImportedWindow : Window{
 		VBox listBox = new VBox(false, 0);
 		listBox.pack_start(filesScroll, true, true, 5);
 		
-		Expander exp = new Expander("Select individual files to move to trash:");
+		Expander exp = new Expander(_("Select individual files to move to trash:"));
 		exp.add(listBox);
 		exp.expanded = false;
 		
@@ -133,8 +133,8 @@ public class BeatBox.NotImportedWindow : Window{
 		bottomButtons.set_spacing(10);
 		
 		content.pack_start(information, false, true, 0);
-		content.pack_start(wrap_alignment(trashAll, 5, 0, 0, 75), false, true, 0);
-		content.pack_start(wrap_alignment(exp, 0, 0, 0, 75), true, true, 0);
+		content.pack_start(UI.wrap_alignment (trashAll, 5, 0, 0, 75), false, true, 0);
+		content.pack_start(UI.wrap_alignment (exp, 0, 0, 0, 75), true, true, 0);
 		content.pack_start(bottomButtons, false, true, 10);
 		
 		padding.pack_start(content, true, true, 10);
@@ -155,17 +155,6 @@ public class BeatBox.NotImportedWindow : Window{
 		
 		add(padding);
 		show_all();
-	}
-	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
 	}
 	
 	public bool updateMoveToTrashSensetivity(TreeModel model, TreePath path, TreeIter iter) {

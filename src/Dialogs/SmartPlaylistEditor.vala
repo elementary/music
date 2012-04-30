@@ -51,7 +51,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	public SmartPlaylistEditor(LibraryWindow lw, SmartPlaylist sp) {
 		this.lw = lw;
 		
-		this.title = "Smart Playlist Editor";
+		this.title = _("Smart Playlist Editor");
 		
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -73,9 +73,9 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		nameLabel.xalign = 0.0f;
 		rulesLabel.xalign = 0.0f;
 		optionsLabel.xalign = 0.0f;
-		nameLabel.set_markup("<b>%s</b>".printf(_("<b>Name of Playlist</b>")));
-		rulesLabel.set_markup("<b>%s</b>".printf(_("<b>Rules</b>")));
-		optionsLabel.set_markup("<b>%s</b>".printf(_("Options</b>")));
+		nameLabel.set_markup("<b>" + Markup.escape_text (_("Name of Playlist"), -1) + "</b>");
+		rulesLabel.set_markup("<b>" + Markup.escape_text (_("Rules"), -1) + "</b>");
+		optionsLabel.set_markup("<b>" + Markup.escape_text (_("Options"), -1) + "</b>");
 		
 		/* add the name entry */
 		_name = new Granite.Widgets.HintedEntry(_("Playlist Title"));
@@ -86,8 +86,8 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		HBox matchBox = new HBox(false, 2);
 		Label tMatch = new Label(_("Match"));
 		comboMatch = new ComboBoxText();
-		comboMatch.insert_text(0, "any");
-		comboMatch.insert_text(1, "all");
+		comboMatch.insert_text(0, _("any"));
+		comboMatch.insert_text(1, _("all"));
 		Label tOfTheFollowing = new Label(_("of the following:"));
 		
 		matchBox.pack_start(tMatch, false, false, 0);
@@ -137,13 +137,13 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		bottomButtons.pack_end(save, false, false, 0);
 		
 		/* put it all together */
-		content.pack_start(wrap_alignment(nameLabel, 10, 0, 0, 0), false, true, 0);
-		content.pack_start(wrap_alignment(_name, 0, 10, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (nameLabel, 10, 0, 0, 0), false, true, 0);
+		content.pack_start(UI.wrap_alignment (_name, 0, 10, 0, 10), false, true, 0);
 		content.pack_start(rulesLabel, false, true, 0);
-		content.pack_start(wrap_alignment(matchBox, 0, 10, 0, 10) , false, true, 0);
-		content.pack_start(wrap_alignment(vertQueries, 0, 10, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (matchBox, 0, 10, 0, 10) , false, true, 0);
+		content.pack_start(UI.wrap_alignment (vertQueries, 0, 10, 0, 10), false, true, 0);
 		content.pack_start(optionsLabel, false, true, 0);
-		content.pack_start(wrap_alignment(limiterBox, 0, 10, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (limiterBox, 0, 10, 0, 10), false, true, 0);
 		content.pack_start(bottomButtons, false, false, 10);
 		
 		padding.pack_start(content, true, true, 10);
@@ -157,17 +157,6 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		
 		save.clicked.connect(saveClick);
 		_name.changed.connect(nameChanged);
-	}
-	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
 	}
 	
 	void nameChanged() {
@@ -282,23 +271,23 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.append_text(_("Skipcount"));
 		_field.append_text(_("Title"));
 		_field.append_text(_("Year"));*/
-		_field.append_text(("Album"));
-		_field.append_text(("Artist"));
-		_field.append_text(("Bitrate"));
-		_field.append_text(("Comment"));
-		_field.append_text(("Composer"));
-		_field.append_text(("Date Added"));
-		_field.append_text(("Date Released"));
-		_field.append_text(("Genre"));
-		_field.append_text(("Grouping"));
-		_field.append_text(("Last Played"));
-		_field.append_text(("Length"));
-		_field.append_text(("Media Type"));
-		_field.append_text(("Playcount"));
-		_field.append_text(("Rating"));
-		_field.append_text(("Skipcount"));
-		_field.append_text(("Title"));
-		_field.append_text(("Year"));
+		_field.append_text(_("Album"));
+		_field.append_text(_("Artist"));
+		_field.append_text(_("Bitrate"));
+		_field.append_text(_("Comment"));
+		_field.append_text(_("Composer"));
+		_field.append_text(_("Date Added"));
+		_field.append_text(_("Date Released"));
+		_field.append_text(_("Genre"));
+		_field.append_text(_("Grouping"));
+		_field.append_text(_("Last Played"));
+		_field.append_text(_("Length"));
+		_field.append_text(_("Media Type"));
+		_field.append_text(_("Playcount"));
+		_field.append_text(_("Rating"));
+		_field.append_text(_("Skipcount"));
+		_field.append_text(_("Title"));
+		_field.append_text(_("Year"));
 		
 		_field.set_active(fields.get(q.field));
 		stdout.printf("setting filed to %s\n", q.field);
@@ -312,10 +301,10 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			_valueOption.append_text(_("Podcast"));
 			_valueOption.append_text(_("Audiobook"));
 			_valueOption.append_text(_("Radio Station"));*/
-			_valueOption.append_text(("Song"));
-			_valueOption.append_text(("Podcast"));
-			_valueOption.append_text(("Audiobook"));
-			_valueOption.append_text(("Radio Station"));
+			_valueOption.append_text(_("Song"));
+			_valueOption.append_text(_("Podcast"));
+			_valueOption.append_text(_("Audiobook"));
+			_valueOption.append_text(_("Radio Station"));
 			_valueOption.set_active(int.parse(q.value));
 		}
 		else {
@@ -345,9 +334,9 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		rv.field = _field.get_active_text();
 		rv.comparator = _comparator.get_active_text();
 		
-		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Composer" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Grouping" || _field.get_active_text() == "Title")
+		if(_field.get_active_text() == _("Album") || _field.get_active_text() == _("Artist") || _field.get_active_text() == _("Comment") || _field.get_active_text() == _("Composer") || _field.get_active_text() == _("Genre") || _field.get_active_text() == _("Grouping") || _field.get_active_text() == _("Title"))
 			rv.value = _value.text;
-		else if(_field.get_active_text() == "Media Type")
+		else if(_field.get_active_text() == _("Media Type"))
 			rv.value = _valueOption.get_active().to_string();
 		else
 			rv.value = _valueNumerical.value.to_string();
@@ -356,7 +345,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 	}
 	
 	public virtual void fieldChanged() {
-		if(_field.get_active_text() == "Album" || _field.get_active_text() == "Artist" || _field.get_active_text() == "Comment" || _field.get_active_text() == "Composer" || _field.get_active_text() == "Genre" || _field.get_active_text() == "Grouping" || _field.get_active_text() == "Title") {
+		if(_field.get_active_text() == _("Album") || _field.get_active_text() == _("Artist") || _field.get_active_text() == _("Comment") || _field.get_active_text() == _("Composer") || _field.get_active_text() == _("Genre") || _field.get_active_text() == _("Grouping") || _field.get_active_text() == _("Title")) {
 			_value.show();
 			_valueNumerical.hide();
 			_valueOption.hide();
@@ -372,17 +361,17 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			
 			_comparator.set_active( (comparators.has_key(_q.comparator)) ? comparators.get(_q.comparator) : 0);
 		}
-		else if(_field.get_active_text() == "Media Type") {
+		else if(_field.get_active_text() == _("Media Type")) {
 			_value.hide();
 			_valueNumerical.hide();
 			_valueOption.show();
 			
 			// upate valueOption 
 			_valueOption.remove_all();
-			_valueOption.append_text(("Song"));
-			_valueOption.append_text(("Podcast"));
-			_valueOption.append_text(("Audiobook"));
-			_valueOption.append_text(("Radio Station"));
+			_valueOption.append_text(_("Song"));
+			_valueOption.append_text(_("Podcast"));
+			_valueOption.append_text(_("Audiobook"));
+			_valueOption.append_text(_("Radio Station"));
 			/*_valueOption.append_text(_("Song"));
 			_valueOption.append_text(_("Podcast"));
 			_valueOption.append_text(_("Audiobook"));
@@ -403,25 +392,25 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 			_value.hide();
 			_valueOption.hide();
 			
-			if(_field.get_active_text() == "Bitrate" || _field.get_active_text() == "Year" || _field.get_active_text() == "Rating" || _field.get_active_text() == "Playcount" || _field.get_active_text() == "Skipcount" || _field.get_active_text() == "Length") {
+			if(_field.get_active_text() == _("Bitrate") || _field.get_active_text() == _("Year") || _field.get_active_text() == _("Rating") || _field.get_active_text() == _("Playcount") || _field.get_active_text() == _("Skipcount") || _field.get_active_text() == _("Length")) {
 				for(int i = 0;i < 3; ++i) _comparator.remove(0);
-				_comparator.append_text(("is exactly"));
-				_comparator.append_text(("is at most"));
-				_comparator.append_text(("is at least"));
+				_comparator.append_text(_("is exactly"));
+				_comparator.append_text(_("is at most"));
+				_comparator.append_text(_("is at least"));
 				comparators.set("is exactly", 0);
 				comparators.set("is at most", 1);
 				comparators.set("is at least", 2);
 				
 				_comparator.set_active( (comparators.has_key(_q.comparator)) ? comparators.get(_q.comparator) : 0);
 			}
-			else if(_field.get_active_text() == "Date Added" || _field.get_active_text() == "Last Played" || _field.get_active_text() == "Date Released") {
+			else if(_field.get_active_text() == _("Date Added") || _field.get_active_text() == _("Last Played") || _field.get_active_text() == _("Date Released")) {
 				for(int i = 0;i < 3; ++i) _comparator.remove(0);
 				/*_comparator.append_text(_("is exactly"));
 				_comparator.append_text(_("is within"));
 				_comparator.append_text(_("is before"));*/
-				_comparator.append_text(("is exactly"));
-				_comparator.append_text(("is within"));
-				_comparator.append_text(("is before"));
+				_comparator.append_text(_("is exactly"));
+				_comparator.append_text(_("is within"));
+				_comparator.append_text(_("is before"));
 				comparators.set("is exactly", 0);
 				comparators.set("is within", 1);
 				comparators.set("is before", 2);
@@ -433,15 +422,15 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_comparator.show();
 		
 		//helper for units
-		if(_field.get_active_text() == "Length") {
+		if(_field.get_active_text() == _("Length")) {
 			_units.set_text(_("seconds"));
 			_units.show();
 		}
-		else if(_field.get_active_text() == "Last Played" || _field.get_active_text() == "Date Added" || _field.get_active_text() == "Date Released") {
-			_units.set_text("days ago");
+		else if(_field.get_active_text() == _("Last Played") || _field.get_active_text() == _("Date Added") || _field.get_active_text() == _("Date Released")) {
+			_units.set_text(_("days ago"));
 			_units.show();
 		}
-		else if(_field.get_active_text() == "Bitrate") {
+		else if(_field.get_active_text() == _("Bitrate")) {
 			_units.set_text(_("kbps"));
 			_units.show();
 		}
@@ -454,3 +443,4 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		this._box.hide();
 	}
 }
+

@@ -43,9 +43,7 @@ public class BeatBox.SyncWarningDialog : Window {
 		this.d = d;
 		this.to_sync = to_sync;
 		this.to_remove = removed;
-		
-		this.set_title("BeatBox");
-		
+
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -69,11 +67,25 @@ public class BeatBox.SyncWarningDialog : Window {
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Sync will remove " + to_remove.size.to_string() + " media from " + d.getDisplayName() + "</span>");
 		info.xalign = 0.0f;
-		info.set_line_wrap(true);
-		info.set_markup("If you continue to sync, media will be removed from " + d.getDisplayName() + " since they are not on the sync list. Would you like to import them to your library first?");
-		
+
+		info.set_line_wrap (true);
+		var info_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf (d.getDisplayName ());
+		info.set_markup (Markup.escape_text (info_text, -1));
+
+		// be a bit explicit to make translations better
+		string title_text = "";
+		string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";		
+		if (to_remove.size > 1) {
+			title_text = _("Sync will remove %i items from %s").printf (to_remove.size, d.getDisplayName ());
+		}
+		else {
+			title_text = _("Sync will remove 1 item from %s").printf (d.getDisplayName ());
+		}
+
+		var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));		
+		title.set_markup (title_string);
+
 		importMedias.set_sensitive(!lm.doing_file_operations());
 		sync.set_sensitive(!lm.doing_file_operations());
 		
@@ -109,18 +121,7 @@ public class BeatBox.SyncWarningDialog : Window {
 		add(padding);
 		show_all();
 	}
-	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
-	}
-	
+
 	public void importMediasClicked() {
 		d.transfer_to_library(to_remove);
 		// TODO: After transfer, do sync

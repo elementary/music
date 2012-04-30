@@ -206,7 +206,7 @@ public class BeatBox.ViewWrapper : Box {
 
 				error_box = new WarningLabel();
 				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, BeatBox will automatically find medias similar to the one you are playing.") + "\n" + _("You can then start playing those medias, or save them for later."));
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, %s will automatically find songs similar to the one you are playing.").printf (lw.app.get_name ()) + "\n" + _("You can then start playing those songs, or save them for later."));
 				break;
 #if HAVE_PODCASTS
 			case Hint.PODCAST:

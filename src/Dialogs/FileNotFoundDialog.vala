@@ -43,8 +43,6 @@ public class BeatBox.FileNotFoundDialog : Window {
 		
 		Media s = lm.media_from_id(media_id);
 		
-		this.set_title("BeatBox");
-		
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -62,17 +60,25 @@ public class BeatBox.FileNotFoundDialog : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		removeMedia = new Button.with_label("Remove Media");
-		locateMedia = new Button.with_label("Locate Media");
-		rescanLibrary = new Button.with_label("Rescan Library");
-		doNothing = new Button.with_label("Do Nothing");
+		removeMedia = new Button.with_label(_("Remove Media"));
+		locateMedia = new Button.with_label(_("Locate Media"));
+		rescanLibrary = new Button.with_label(_("Rescan Library"));
+		doNothing = new Button.with_label(_("Do Nothing"));
 		
 		// pretty up labels
+
+		// be a bit explicit to make translations better
+		var MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";		
+		var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (_("Could not find music file"), -1));
+		title.set_markup (title_string);
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Could not find music file</span>");
-		info.xalign = 0.0f;
+		
+		var info_text = _("The music file for \"%s\" by \" could not be found. What would you like to do?").printf (s.title, s.artist);
+		info.set_markup (Markup.escape_text (info_text, -1));
 		info.set_line_wrap(false);
-		info.set_markup("The music file for <b>" + s.title.replace("&", "&amp;") + "</b> by <b>" + s.artist.replace("&", "&amp;") + "</b> could not be found. What would you like to do?");
+		info.xalign = 0.0f;
+		
+
 		
 		rescanLibrary.set_sensitive(!lm.doing_file_operations());
 		
@@ -111,17 +117,6 @@ public class BeatBox.FileNotFoundDialog : Window {
 		show_all();
 	}
 	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
-	}
-	
 	public void removeMediaClicked() {
 		var temp = new LinkedList<Media>();
 		temp.add(lm.media_from_id(media_id));
@@ -132,7 +127,7 @@ public class BeatBox.FileNotFoundDialog : Window {
 	
 	public void locateMediaClicked() {
 		string file = "";
-		var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+		var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
 								  FileChooserAction.OPEN,
 								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);

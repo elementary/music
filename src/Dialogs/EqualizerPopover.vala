@@ -109,7 +109,7 @@ public class BeatBox.EqualizerWindow : Granite.Widgets.PopOver {
 			var label = new Label(decibels[index]);
 
 			holder.pack_start(v, true, true, 0);
-			holder.pack_end(wrap_alignment(label, 4, 0, 0, 0), false, false, 0);
+			holder.pack_end(UI.wrap_alignment (label, 4, 0, 0, 0), false, false, 0);
 
 			scales.pack_start(holder, true, true, 6);
 			scale_list.append(v);
@@ -148,7 +148,7 @@ public class BeatBox.EqualizerWindow : Granite.Widgets.PopOver {
 		new_preset_entry.focus_out_event.connect (on_entry_focus_out);
 
 		// ADDING STUFF TO THE POPOVER
-		outer_box.pack_start(wrap_alignment(scales, 0, 0, 0, 0), true, true, 12);
+		outer_box.pack_start(UI.wrap_alignment (scales, 0, 0, 0, 0), true, true, 12);
 		scales.set_size_request (-1, 180);
 
 		eq_switch.margin_right = eq_switch.margin_left = 6;
@@ -166,18 +166,6 @@ public class BeatBox.EqualizerWindow : Granite.Widgets.PopOver {
 		if (!closing)
 			new_preset_entry.grab_focus();
 		return false;
-	}
-
-	static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-
-		alignment.add(widget);
-		return alignment;
 	}
 
 	void set_sliders_sensitivity (bool sensitivity) {
@@ -399,34 +387,18 @@ public class BeatBox.EqualizerWindow : Granite.Widgets.PopOver {
 	}
 
 	public bool verify_preset_name (string preset_name) {
-
-		int white_space = 0;
-		int str_length = preset_name.length;
-		bool preset_already_exists = false;
-
-		if(preset_name == null || str_length < 1)
+		if (preset_name == null)
 			return false;
 
-		unichar c;
-		for (int i = 0; preset_name.get_next_char (ref i, out c);)
-			if (c.isspace())
-				++white_space;
-
-		if (white_space == str_length)
+		if (String.is_white_space (preset_name))
 			return false;
 
-		var current_presets = preset_combo.getPresets();
-
-		preset_already_exists = false;
-
-		foreach (EqualizerPreset preset in current_presets) {
-			if (preset_name == preset.name) {
-				preset_already_exists = true;
-				break;
-			}
+		foreach (EqualizerPreset preset in preset_combo.getPresets()) {
+			if (preset_name == preset.name)
+				return false;
 		}
 
-		return !preset_already_exists;
+		return true;
 	}
 
 	void remove_preset_clicked () {

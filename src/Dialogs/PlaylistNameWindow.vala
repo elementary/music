@@ -74,8 +74,8 @@ public class BeatBox.PlaylistNameWindow : Window {
 		bottomButtons.pack_end(_cancel, false, false, 0);
 		bottomButtons.pack_end(_save, false, false, 0);
 		
-		content.pack_start(wrap_alignment(nameLabel, 12, 0, 0, 0), false, true, 0);
-		content.pack_start(wrap_alignment(_name, 0, 12, 0, 12), false, true, 0);
+		content.pack_start(UI.wrap_alignment (nameLabel, 12, 0, 0, 0), false, true, 0);
+		content.pack_start(UI.wrap_alignment (_name, 0, 12, 0, 12), false, true, 0);
 		content.pack_start(bottomButtons, false, false, 12);
 		
 		padding.pack_start(content, true, true, 12);
@@ -94,17 +94,6 @@ public class BeatBox.PlaylistNameWindow : Window {
 		destroy ();
 	}
 
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
-	}
-	
 	void saveClicked() {
 		_original.name = _name.text;
 		playlist_saved(_original);

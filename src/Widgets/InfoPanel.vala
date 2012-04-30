@@ -116,8 +116,8 @@ public class BeatBox.InfoPanel : Gtk.Box {
 		content.pack_start(UI.wrap_alignment (title, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(UI.wrap_alignment (rating, 5, 0, 0, 5), false, true, 0);
 		content.pack_start(UI.wrap_alignment (artist, 2, 0, 0, 5), false, true, 0);
-		content.pack_start(UI.wrap_alignment (album, 5, 0, 0, 5), false, true, 0);
-		content.pack_start(UI.wrap_alignment (year, 0, 0, 20, 5), false, true, 0);
+		content.pack_start(UI.wrap_alignment (album, 2, 0, 0, 5), false, true, 0);
+		content.pack_start(UI.wrap_alignment (year, 2, 0, 20, 5), false, true, 0);
 		content.pack_start(scroll, true, true, 0);
 		
 		padding.pack_start (content, true, true, 10);

@@ -38,8 +38,6 @@ public class BeatBox.RemoveFilesDialog : Window {
 	public RemoveFilesDialog (LibraryWindow lw, LinkedList<Media> to_remove, ViewWrapper.Hint media_type) {
 		this.lw = lw;
 		
-		this.set_title("");
-		
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -55,24 +53,24 @@ public class BeatBox.RemoveFilesDialog : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		trash_button = new Button.with_label ("Move to Trash");
-		remove_button = new Button.with_label ("Remove from Noise");
-		cancel_button = new Button.with_label ("Cancel");
+		trash_button = new Button.with_label (_("Move to Trash"));
+		remove_button = new Button.with_label (_("Remove from %s").printf (lw.app.get_name ()));
+		cancel_button = new Button.with_label (_("Cancel"));
 		
 		bool multiple_media = to_remove.size > 1;
 		var media_text = new StringBuilder();
 		switch (media_type) {
 			case ViewWrapper.Hint.MUSIC:
-				media_text.append("Song");
+				media_text.append(_("Song"));
 				break;
 			case ViewWrapper.Hint.PODCAST:
-				media_text.append("Podcast");
+				media_text.append(_("Podcast"));
 				break;
 			case ViewWrapper.Hint.AUDIOBOOK:
-				media_text.append("Audiobook");
+				media_text.append(_("Audiobook"));
 				break;
 			case ViewWrapper.Hint.STATION:
-				media_text.append("Station");
+				media_text.append(_("Station"));
 				break;
 		}
 		
@@ -81,22 +79,22 @@ public class BeatBox.RemoveFilesDialog : Window {
 		string title_text = "";
 		if (multiple_media) {
 			media_text.append_unichar('s'); // Plural form
-			title_text = "Remove %d %s from Noise?".printf(to_remove.size, media_text.str);
+			title_text = _("Remove %d %s from %s?").printf(to_remove.size, media_text.str, lw.app.get_name ());
 		}
 		else {
   			Media m = to_remove.get(0);
   			
   			if(m.mediatype != 3)
-				title_text = "Remove \"%s\" From Noise?".printf(m.title.replace("&", "&amp;"));
+				title_text = _("Remove \"%s\" From Noise?").printf(m.title.replace("&", "&amp;"));
 			else
-				title_text = "Remove \"%s\" From Noise?".printf(m.album_artist.replace("&", "&amp;"));
+				title_text = _("Remove \"%s\" From Noise?").printf(m.album_artist.replace("&", "&amp;"));
 		}
 		title.set_markup("<span weight=\"bold\" size=\"larger\">" + title_text + "</span>");
 		
 		// set info text
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
-		string info_text = "This will remove the %s from your library and from any device that automatically syncs with Noise.".printf(media_text.str.down());
+		string info_text = _("This will remove the %s from your library and from any device that automatically syncs with %s.").printf(media_text.str.down(), lw.app.get_name ());
 		info.set_markup(info_text);
 		
 		// decide if we need the trash button

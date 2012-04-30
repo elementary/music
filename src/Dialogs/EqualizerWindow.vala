@@ -116,7 +116,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			var label = new Label(decibels[index]);
 
 			holder.pack_start(v, true, true, 0);
-			holder.pack_end(wrap_alignment(label, 4, 0, 0, 0), false, false, 0);
+			holder.pack_end(UI.wrap_alignment (label, 4, 0, 0, 0), false, false, 0);
 
 			scales.pack_start(holder, true, true, 6);
 			scale_list.append(v);
@@ -146,11 +146,10 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		side_list.add(preset_combo);
 
 		new_preset_entry = new Entry();
-		new_preset_entry.set_size_request(165, -1);
 
 		var entry_icon = Icons.render_icon ("dialog-apply", IconSize.MENU);
 		new_preset_entry.set_icon_from_pixbuf(Gtk.EntryIconPosition.SECONDARY, entry_icon);
-		new_preset_entry.set_icon_tooltip_text(Gtk.EntryIconPosition.SECONDARY, "Save preset");
+		new_preset_entry.set_icon_tooltip_text(Gtk.EntryIconPosition.SECONDARY, _("Save preset"));
 
 		new_preset_field = new ToolItem();
 		new_preset_field.add(new_preset_entry);
@@ -158,11 +157,19 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		var space_item = new ToolItem();
 		space_item.set_expand(true);
 
-		close_button = new Button.with_label("Close");
+		close_button = new Button.with_label(_("Close"));
 		var close_button_item = new ToolItem();
 		close_button.set_size_request(120, -1);
 		close_button_item.set_expand(false);
 		close_button_item.add(close_button);
+
+		// Set spacing stuff
+		eq_switch.valign = preset_combo.valign = close_button.valign = new_preset_entry.valign = Gtk.Align.CENTER;
+
+		// Sync size between entry and combobox
+		preset_combo.size_allocate.connect ( (alloc) => {
+			new_preset_entry.set_size_request (alloc.width, alloc.height);
+		});
 
 		bottom_toolbar.insert(eq_switch_item, 0);
 		bottom_toolbar.insert(side_list, 1);
@@ -172,8 +179,8 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		// Set the egtk bottom toolbar style.
 		bottom_toolbar.get_style_context().add_class("bottom-toolbar");
 
-		inner_box.pack_end(wrap_alignment(bottom_toolbar, 0, 0, 0, 0), false, false, 0);
-		inner_box.pack_start(wrap_alignment(scales, 0, 12, 0, 12), true, true, 10);
+		inner_box.pack_end(UI.wrap_alignment (bottom_toolbar, 0, 0, 0, 0), false, false, 0);
+		inner_box.pack_start(UI.wrap_alignment (scales, 0, 12, 0, 12), true, true, 10);
 
 		outer_box.pack_start(inner_box);
 		add(outer_box);
@@ -196,18 +203,6 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		if (!closing)
 			new_preset_entry.grab_focus();
 		return false;
-	}
-
-	static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-
-		alignment.add(widget);
-		return alignment;
 	}
 
 	void set_sliders_sensitivity (bool sensitivity) {
@@ -409,17 +404,26 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		bool is_valid = false;
 
 		string current_preset_name = (from_current)? preset_combo.getSelectedPreset().name : "";
-		string preset_name = "Custom Preset";
+		string preset_name = "...";
 
 		do
 		{
-			preset_name = (from_current)? current_preset_name + " (" : "";
-			preset_name += "Custom" + ((from_current)? "" : " Preset");
-			preset_name += (!is_valid && i > 0)? " " + i.to_string() : "";
-			preset_name += (from_current)? ")" : "";
+			debug ("preset name %s is invalid. Looping", preset_name);
+			// We have to be explicit in order to make this translatable
+			if (from_current) {
+				if (i < 1)
+					preset_name = _("%s (Custom)").printf (current_preset_name);
+				else
+					preset_name = _("%s (Custom %i)").printf (current_preset_name, i);
+			}
+			else {
+				if (i < 1)
+					preset_name = _("Custom Preset");
+				else
+					preset_name = _("Custom Preset %i").printf (i);
+			}
 
 			i++;
-
 			is_valid = verify_preset_name(preset_name);
 
 		} while (!is_valid);
@@ -428,35 +432,20 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 
 	public bool verify_preset_name (string preset_name) {
-
-		int white_space = 0;
-		int str_length = preset_name.length;
-		bool preset_already_exists = false;
-
-		if(preset_name == null || str_length < 1)
+		if (preset_name == null)
 			return false;
 
-		unichar c;
-		for (int i = 0; preset_name.get_next_char (ref i, out c);)
-			if (c.isspace())
-				++white_space;
-
-		if (white_space == str_length)
+		if (String.is_white_space (preset_name))
 			return false;
 
-		var current_presets = preset_combo.getPresets();
-
-		preset_already_exists = false;
-
-		foreach (EqualizerPreset preset in current_presets) {
-			if (preset_name == preset.name) {
-				preset_already_exists = true;
-				break;
-			}
+		foreach (EqualizerPreset preset in preset_combo.getPresets()) {
+			if (preset_name == preset.name)
+				return false;
 		}
 
-		return !preset_already_exists;
+		return true;
 	}
+
 
 	void remove_preset_clicked () {
 		preset_combo.removeCurrentPreset();

@@ -32,17 +32,8 @@ public class BeatBox.MediaEditor : Window {
 	LinkedList<int> _medias;
 	
 	//for padding around notebook mostly
-	private VBox content;
-	private HBox padding;
 	Widgets.StaticNotebook notebook;
-	
-	private VBox vert; // separates editors with buttons and other stuff
-	private HBox horiz; // separates text with numerical editors
-	private VBox textVert; // separates text editors
-	private VBox numerVert; // separates numerical editors
-	
-	private VBox lyricsContent;
-	
+
 	private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
 	private TextView lyricsText;
 	
@@ -58,7 +49,7 @@ public class BeatBox.MediaEditor : Window {
 	public MediaEditor(LibraryManager lm, LinkedList<int> allMedias, LinkedList<int> medias) {
 		this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
-		this.set_modal(true);
+		this.set_modal(false);
 		this.set_transient_for(lm.lw);
 		this.destroy_with_parent = true;
 		
@@ -74,13 +65,13 @@ public class BeatBox.MediaEditor : Window {
 		_medias = medias;
 		
 		notebook = new Granite.Widgets.StaticNotebook();
-		notebook.append_page(createBasicViewport(), new Label("Metadata"));
+		notebook.append_page(createBasicContent (), new Label(_("Metadata")));
 		if(_medias.size == 1)
-			notebook.append_page(createLyricsViewport(), new Label("Lyrics"));
+			notebook.append_page(createLyricsContent (), new Label(_("Lyrics")));
 		else
 			lyricsText = null;
 		
-		HButtonBox buttonSep = new HButtonBox();
+		var buttonSep = new HButtonBox();
 		buttonSep.set_layout(ButtonBoxStyle.END);
 		_previous = new Button.with_label(_("Previous"));
 		_next = new Button.with_label(_("Next"));
@@ -89,10 +80,14 @@ public class BeatBox.MediaEditor : Window {
 		buttonSep.pack_start(_previous, false, false, 0);
 		buttonSep.pack_start(_next, false, false, 0);
 		buttonSep.pack_end(_save, false, false, 0);
-		
-		content.pack_start(wrap_alignment(notebook, 10, 0, 0, 0), true, true, 0);
-		content.pack_start(wrap_alignment(buttonSep, 0, 0, 10, 0), false, true, 0);
-		
+
+		var content = new Gtk.Box (Orientation.VERTICAL, 0);
+		var padding = new Gtk.Box (Orientation.HORIZONTAL, 0);
+		content.pack_start (UI.wrap_alignment (notebook, 10, 0, 0, 0), true, true, 0);
+		content.pack_start (UI.wrap_alignment (buttonSep, 0, 0, 10, 0), false, true, 0);
+
+		notebook.margin_bottom = 12;
+
 		(buttonSep as Gtk.ButtonBox).set_child_secondary(_next, true);
 		(buttonSep as Gtk.ButtonBox).set_child_secondary(_previous, true);
 		
@@ -116,8 +111,7 @@ public class BeatBox.MediaEditor : Window {
 		_save.clicked.connect(saveClicked);
 	}
 	
-	public Viewport createBasicViewport() {
-		Viewport rv = new Viewport(null, null);
+	public Gtk.Box createBasicContent () {
 		fields = new HashMap<string, FieldEditor>();
 		Media sum = _lm.media_from_id(_medias.get(0)).copy();
 		
@@ -163,37 +157,41 @@ public class BeatBox.MediaEditor : Window {
 			//date_added = 0;
 			//last_played = 0;
 		}
-		
+
+		// be explicit to make translations better		
 		if(_medias.size == 1) {
-			title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
+			if (sum.artist != "")
+				title = _("Editing %s by %s").printf (sum.title, sum.artist);
+			else
+				title = _("Editing %s").printf (sum.title);
 		}
 		else {
-			title = "Editing " + _medias.size.to_string() + " media";
+			title = _("Editing %i songs").printf (_medias.size);
 		}
 		
 		if(sum.year == -1)
 			sum.year = Time().year;
 		
-		fields.set("Title", new FieldEditor("Title", sum.title, new Entry()));
-		fields.set("Artist", new FieldEditor("Artist", sum.artist, new Entry()));
-		fields.set("Album Artist", new FieldEditor("Album Artist", sum.album_artist, new Entry()));
-		fields.set("Album", new FieldEditor("Album", sum.album, new Entry()));
-		fields.set("Genre", new FieldEditor("Genre", sum.genre, new Entry()));
-		fields.set("Composer", new FieldEditor("Composer", sum.composer, new Entry()));
-		fields.set("Grouping", new FieldEditor("Grouping", sum.grouping, new Entry()));
-		fields.set("Comment", new FieldEditor("Comment", sum.comment, new TextView()));
-		fields.set("Track", new FieldEditor("Track", sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
-		fields.set("Disc", new FieldEditor("Disc", sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
-		fields.set("Year", new FieldEditor("Year", sum.year.to_string(), new SpinButton.with_range(0, 9999, 1)));
-		fields.set("Rating", new FieldEditor("Rating", sum.rating.to_string(), new Granite.Widgets.Rating(null, false, IconSize.MENU)));
-		fields.set("Media Type", new FieldEditor("Media Type", sum.mediatype.to_string(), new ComboBoxText()));
-		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 10);
-		vert = new VBox(false, 0);
-		horiz = new HBox(false, 0);
-		textVert = new VBox(false, 0);
-		numerVert = new VBox(false, 0);
+		fields.set("Title", new FieldEditor(_("Title"), sum.title, new Entry()));
+		fields.set("Artist", new FieldEditor(_("Artist"), sum.artist, new Entry()));
+		fields.set("Album Artist", new FieldEditor(_("Album Artist"), sum.album_artist, new Entry()));
+		fields.set("Album", new FieldEditor(_("Album"), sum.album, new Entry()));
+		fields.set("Genre", new FieldEditor(_("Genre"), sum.genre, new Entry()));
+		fields.set("Composer", new FieldEditor(_("Composer"), sum.composer, new Entry()));
+		fields.set("Grouping", new FieldEditor(_("Grouping"), sum.grouping, new Entry()));
+		fields.set("Comment", new FieldEditor(_("Comment"), sum.comment, new TextView()));
+		fields.set("Track", new FieldEditor(_("Track"), sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
+		fields.set("Disc", new FieldEditor(_("Disc"), sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
+		fields.set("Year", new FieldEditor(_("Year"), sum.year.to_string(), new SpinButton.with_range(0, 9999, 1)));
+		fields.set("Rating", new FieldEditor(_("Rating"), sum.rating.to_string(), new Granite.Widgets.Rating(null, false, IconSize.MENU)));
+#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
+		fields.set("Media Type", new FieldEditor(_("Media Type"), sum.mediatype.to_string(), new ComboBoxText()));
+#endif
+
+		var vert = new Box (Orientation.VERTICAL, 0); // separates editors with buttons and other stuff
+		var horiz = new Box (Orientation.HORIZONTAL, 0); // separates text with numerical editors
+		var textVert = new Box (Orientation.VERTICAL, 0); // separates text editors
+		var numerVert = new Box (Orientation.VERTICAL, 0); // separates numerical editors
 		
 		textVert.pack_start(fields.get("Title"), false, true, 0);
 		textVert.pack_start(fields.get("Artist"), false, true, 5);
@@ -211,21 +209,16 @@ public class BeatBox.MediaEditor : Window {
 		numerVert.pack_end(fields.get("Media Type"), false, true, 5);
 		//if(medias.size == 1)
 			//numerVert.pack_start(stats, false, true, 5);
-		
-		horiz.pack_start(wrap_alignment(textVert, 0, 30, 0, 0), false, true, 0);
+
+		horiz.pack_start(UI.wrap_alignment (textVert, 0, 30, 0, 0), false, true, 0);
 		horiz.pack_end(numerVert, false, true, 0);
 		vert.pack_start(horiz, true, true, 0);
-		
-		rv.add(vert);
-		
-		return rv;
+
+		return vert;
 	}
 	
-	public Viewport createLyricsViewport() {
-		Viewport rv = new Viewport(null, null);
-		
-		var padding = new VBox(false, 10);
-		lyricsContent = new VBox(false, 10);
+	public Gtk.Box createLyricsContent () {
+		var lyricsContent = new Gtk.Box (Orientation.VERTICAL, 10);
 		
 		lyricsInfobarLabel = new Label("");
 		
@@ -234,8 +227,8 @@ public class BeatBox.MediaEditor : Window {
 		lyricsInfobarLabel.ellipsize = Pango.EllipsizeMode.END;
 		
 		lyricsInfobar = new InfoBar();
-		lyricsInfobar.add_buttons("Try again", Gtk.ResponseType.OK);
-		lyricsInfobar.set_message_type (Gtk.MessageType.WARNING);
+		lyricsInfobar.add_buttons(_("Try again"), Gtk.ResponseType.OK);
+		lyricsInfobar.set_message_type (Gtk.MessageType.INFO);
 		
 		(lyricsInfobar.get_content_area() as Gtk.Container).add (lyricsInfobarLabel);
 
@@ -245,26 +238,17 @@ public class BeatBox.MediaEditor : Window {
 		lyricsText.set_wrap_mode(WrapMode.WORD_CHAR);
 		lyricsText.get_buffer().text = _lm.media_from_id(_medias.get(0)).lyrics;
 		
-		ScrolledWindow scroll = new ScrolledWindow(null, null);
-		Viewport viewport = new Viewport(null, null);
+		var text_scroll = new ScrolledWindow(null, null);		
+		text_scroll.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
 		
-		viewport.set_shadow_type(ShadowType.ETCHED_IN);
-		scroll.set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		text_scroll.add(lyricsText);
 		
-		viewport.add(lyricsText);
-		scroll.add(viewport);
-		
-		lyricsContent.pack_start(scroll, true, true, 0);
+		lyricsContent.pack_start(text_scroll, true, true, 0);
 		lyricsContent.pack_start(lyricsInfobar, false, true, 5);
 		
 		lyricsText.set_size_request(400, -1);
-		scroll.set_size_request(400, -1);
-		viewport.set_size_request(400, -1);
 		
-		padding.pack_start(lyricsContent, true, true, 0);
-		rv.add(padding);
-
-		return rv;
+		return lyricsContent;
 	}
 	
 	public void fetchLyricsClicked() {
@@ -276,27 +260,11 @@ public class BeatBox.MediaEditor : Window {
 		Media s = _lm.media_from_id(_medias.get(0));
 
 		// fetch lyrics here
-		if (!(!is_white_space (s.lyrics) && !overwrite))
+		if (!(!String.is_white_space (s.lyrics) && !overwrite))
 			lf.fetch_lyrics(s.artist, s.album_artist, s.title);
 	}
 	
-	private bool is_white_space (string? text) {
-		int white_space = 0;
-		unichar c;
-		
-		if (text == null)
-			return true;
 
-		for (int i = 0; text.get_next_char (ref i, out c);)
-			if (c.isspace() || c == '\n')
-				++white_space;
-
-		if (white_space == text.length)
-			return true;
-
-		return false;
-	}
-	
 	public void lyricsFetched(Lyrics lyrics) {
 		lyricsInfobarLabel.set_text ("");
 		lyricsInfobar.hide();
@@ -307,25 +275,15 @@ public class BeatBox.MediaEditor : Window {
 		if (lyrics.title != song_title)
 			return;
 
-		if (!is_white_space (lyrics.content)) {
+		if (!String.is_white_space (lyrics.content)) {
 			lyricsText.get_buffer().text = lyrics.content;
 		}
 		else {
 			lyricsInfobar.show_all();
-			lyricsInfobarLabel.set_text ("Lyrics not found for " + song_title + " by " + song_artist);
+			lyricsInfobarLabel.set_text (_("Lyrics not found for \"%s\" by \"%s\"").printf (song_title, song_artist));
 		}
 	}
-	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
-	}
+
 	
 	public void previousClicked() {
 		save_medias();
@@ -369,8 +327,17 @@ public class BeatBox.MediaEditor : Window {
 		
 		Media sum = _lm.media_from_id(newMedias.get(0));
 		
-		title = "Editing " + sum.title + (sum.artist != "" ? (" by " + sum.artist) : "") + (sum.album != "" ? (" on " + sum.album) : "");
-		
+		// be explicit to improve translations
+		if(_medias.size == 1) {
+			if (sum.artist != "")
+				title = _("Editing %s by %s").printf (sum.title, sum.artist);
+			else
+				title = _("Editing %s").printf (sum.title);
+		}
+		else {
+			title = _("Editing %i songs").printf (_medias.size);
+		}
+
 		/* do not show check boxes for 1 media */
 		foreach(FieldEditor fe in fields.values)
 			fe.set_check_visible(false);
@@ -390,7 +357,7 @@ public class BeatBox.MediaEditor : Window {
 		fields.get("Media Type").set_value(sum.mediatype.to_string());
 		
 		if(lyricsText == null) {
-			var lyrics = createLyricsViewport();
+			var lyrics = createLyricsContent ();
 			notebook.append_page(lyrics, new Label("Lyrics"));
 			lyrics.show_all();
 		}
@@ -436,7 +403,7 @@ public class BeatBox.MediaEditor : Window {
 			// save lyrics
 			if(lyricsText != null) {
 				var lyrics = lyricsText.get_buffer().text;
-				if (!is_white_space (lyrics))
+				if (!String.is_white_space (lyrics))
 					s.lyrics = lyrics;
 			}
 		}
@@ -464,7 +431,9 @@ public class BeatBox.FieldEditor : VBox {
 	private SpinButton spinButton;
 	private Granite.Widgets.Rating ratingWidget;
 	private Image image;
+#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 	private ComboBoxText comboBox;
+#endif
 	//private DoubleSpinButton doubleSpinButton;
 
 	public FieldEditor(string name, string original, Widget w) {
@@ -490,7 +459,7 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(original != "");
 			
 			entry = (Entry)w;
-			if(name != "Genre" && name != "Grouping")
+			if(name != _("Genre") && name != _("Grouping"))
 				entry.set_size_request(300, -1);
 			else
 				entry.set_size_request(100, -1);
@@ -508,16 +477,11 @@ public class BeatBox.FieldEditor : VBox {
 			textView.get_buffer().text = original;
 			
 			ScrolledWindow scroll = new ScrolledWindow(null, null);
-			Viewport viewport = new Viewport(null, null);
-			
-			viewport.set_shadow_type(ShadowType.ETCHED_IN);
 			scroll.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
 			
-			viewport.add(textView);
-			scroll.add(viewport);
+			scroll.add(textView);
 			
 			scroll.set_size_request(300, 100);
-			viewport.set_size_request(300, 100);
 			
 			textView.buffer.changed.connect(textViewChanged);
 			this.pack_start(scroll, true, true, 0);
@@ -549,6 +513,7 @@ public class BeatBox.FieldEditor : VBox {
 			
 			this.pack_start(ratingWidget, true, true, 0);
 		}
+#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 		else if(w is ComboBoxText) {
 			check.set_active(original != "0");
 			
@@ -562,14 +527,7 @@ public class BeatBox.FieldEditor : VBox {
 			
 			this.pack_start(comboBox, true, true, 0);
 		}
-		/*else if(w is BeatBox.DoubleSpinButton) {
-			doubleSpinButton = (DoubleSpinButton)w;
-			
-			//* values already set through constructor
-			doubleSpinButton.value_changed.connect(doubleSpinButtonChanged);
-			
-			this.pack_start(doubleSpinButton, true, true, 0);
-		}*/
+#endif
 	}
 	
 	public void set_check_visible(bool val) {
@@ -603,13 +561,14 @@ public class BeatBox.FieldEditor : VBox {
 		else
 			check.set_active(false);
 	}
-	
+#if HAVE_PODCASTS && HAVE_INTERNET_RADIO	
 	public virtual void comboChanged() {
 		if(comboBox.get_active() != int.parse(_original))
 			check.set_active(true);
 		else
 			check.set_active(false);
 	}
+#endif
 	
 	public bool checked() {
 		return check.get_active();
@@ -631,9 +590,11 @@ public class BeatBox.FieldEditor : VBox {
 		else if(ratingWidget != null) {
 			ratingWidget.set_rating(int.parse(_original));
 		}
+#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 		else if(comboBox != null) {
 			comboBox.set_active(int.parse(_original));
 		}
+#endif
 	}
 	
 	public string get_value() {
@@ -652,9 +613,11 @@ public class BeatBox.FieldEditor : VBox {
 		else if(ratingWidget != null) {
 			return ratingWidget.get_rating().to_string();
 		}
+#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 		else if(comboBox != null) {
 			return comboBox.get_active().to_string();
 		}
+#endif
 		
 		return "";
 	}
@@ -675,9 +638,11 @@ public class BeatBox.FieldEditor : VBox {
 		else if(ratingWidget != null) {
 			ratingWidget.set_rating(int.parse(val));
 		}
+#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 		else if(comboBox != null) {
 			comboBox.set_active(int.parse(val));
 		}
+#endif
 	}
 }
 

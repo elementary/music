@@ -41,8 +41,6 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 		this.message = message;
 		this.detail = Gst.missing_plugin_message_get_description(message);
 		
-		this.set_title("BeatBox");
-		
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -60,15 +58,16 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
 		Label info = new Label("");
-		installPlugin = new Button.with_label("Install Plugin");
-		doNothing = new Button.with_label("Do Nothing");
+		installPlugin = new Button.with_label(_("Install Plugin"));
+		doNothing = new Button.with_label(_("Do Nothing"));
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Required GStreamer plugin not installed</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text(_("Required GStreamer plugin not installed"), -1) + "</span>");
 		info.xalign = 0.0f;
 		info.set_line_wrap(false);
-		info.set_markup("The plugin for media type \"<b>" + detail + "</b>\" is not installed.\n What would you like to do?");
+		info.set_markup(_("The plugin for media type %s is not installed.\nWhat would you like to do?").printf ("<b>" + detail + "</b>"));
+
 		
 		/* set up controls layout */
 		HBox information = new HBox(false, 0);
@@ -96,17 +95,6 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 		show_all();
 	}
 	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
-	}
-	
 	public void installPluginClicked() {
 		var installer = Gst.missing_plugin_message_get_installer_detail(message);
 		var context = new Gst.InstallPluginsContext();
@@ -115,10 +103,10 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 		
 		this.hide();
 	}
-	
+
 	public void install_plugins_finished(Gst.InstallPluginsReturn result) {
-		stdout.printf("install of plugins finished.. updating registry\n");
+		stdout.printf ("Install of plugins finished.. updating registry");
 		Gst.update_registry();
 	}
-	
 }
+

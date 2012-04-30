@@ -175,11 +175,11 @@ namespace BeatBox {
             else
                 Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
-            if (!Options.disable_plugins)
-                plugins_manager.hook_new_window (library_window);
-
             library_window = new BeatBox.LibraryWindow (this);
             library_window.build_ui ();
+
+            if (!Options.disable_plugins)
+                plugins_manager.hook_new_window (library_window);
         }
     }
 }

@@ -28,23 +28,26 @@ using Gtk;
 public class BeatBox.PreferencesWindow : Gtk.Window {
 	BeatBox.LibraryManager _lm;
 	BeatBox.LibraryWindow _lw;
-	
+
 	FileChooserButton fileChooser;
 	
 	CheckButton organizeFolders;
 	CheckButton writeMetadataToFile;
 	CheckButton copyImportedMusic;
+
+	Button saveChanges;
+
 #if HAVE_PODCASTS
 	CheckButton downloadNewPodcasts;
 #endif
 
 #if HAVE_LAST_FM
 	Button lastfmLogin;
-#endif
-	Button saveChanges;
-
-#if HAVE_LAST_FM
 	string lastfm_token;
+
+	private string SUCCESS_MSG = _("Success!");
+	private string ENABLE_SCROBBLING_MSG = _("Enable Scrobbling");
+	private string UNSUCCESSFUL_MSG = _("Unsuccessful. Click to try again.");
 #endif
 	
 	public signal void changed(string folder);
@@ -61,7 +64,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 	
 	void build_ui () {
 	
-		set_title("Preferences");
+		set_title(_("Preferences"));
 
 		// Window properties
 		window_position = WindowPosition.CENTER;
@@ -74,40 +77,40 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		var content = new VBox(false, 10);
 		var padding = new HBox(false, 10);
 		
-		var musicLabel = new Label("Music Folder Location");
-		fileChooser = new FileChooserButton("Music Folder", FileChooserAction.SELECT_FOLDER);
+		var musicLabel = new Label("");
+		fileChooser = new FileChooserButton(_("Music Folder"), FileChooserAction.SELECT_FOLDER);
 		
-		var managementLabel = new Label("Library Management");
-		organizeFolders = new CheckButton.with_label("Keep music folder organized");
-		writeMetadataToFile = new CheckButton.with_label("Write metadata to file");
-		copyImportedMusic = new CheckButton.with_label("Copy files to music folder when added to library");
+		var managementLabel = new Label("");
+		organizeFolders = new CheckButton.with_label(_("Keep music folder organized"));
+		writeMetadataToFile = new CheckButton.with_label(_("Write metadata to file"));
+		copyImportedMusic = new CheckButton.with_label(_("Copy files to music folder when added to library"));
 #if HAVE_PODCASTS
-		downloadNewPodcasts = new CheckButton.with_label("Automatically download new podcast episodes");
+		downloadNewPodcasts = new CheckButton.with_label(_("Automatically download new podcast episodes"));
 #endif
 
 #if HAVE_LAST_FM
-		var lastfmLabel = new Label("Last.fm Integration");
-		var lastfmInfo = new Granite.Widgets.WrapLabel("To allow for Last.fm integration, you must give permission to BeatBox. You only need to do this once.");
+		var lastfmLabel = new Label("");
+		var lastfmInfo = new Granite.Widgets.WrapLabel(_("To allow for Last.fm integration, you must give permission to BeatBox. You only need to do this once."));
 		
 		if(_lm.settings.getLastFMSessionKey() == null || _lm.settings.getLastFMSessionKey() == "")
-			lastfmLogin = new Button.with_label("Enable Scrobbling");
+			lastfmLogin = new Button.with_label (ENABLE_SCROBBLING_MSG);
 		else {
-			lastfmLogin = new Button.with_label("Scrobbling already Enabled");
-			lastfmLogin.set_tooltip_text("Click to redo the Last.fm Login Process");
+			lastfmLogin = new Button.with_label (_("Scrobbling already Enabled"));
+			lastfmLogin.set_tooltip_text (_("Click to redo the Last.fm Login Process"));
 		}
 #endif
 		
-		saveChanges = new Button.with_label("Close");
+		saveChanges = new Button.with_label(_("Close"));
 		
 		// fancy up the category labels
 		musicLabel.xalign = 0.0f;
 		managementLabel.xalign = 0.0f;
-		musicLabel.set_markup("<b>Music Folder Location</b>");
-		managementLabel.set_markup("<b>Library Management</b>");
+		musicLabel.set_markup ("<b>%s</b>".printf (_("Music Folder Location")));
+		managementLabel.set_markup("<b>%s</b>".printf (_("Library Management")));
 
 #if HAVE_LAST_FM
 		lastfmLabel.xalign = 0.0f;
-		lastfmLabel.set_markup("<b>Last.fm Integration</b>");
+		lastfmLabel.set_markup("<b>%s</b>".printf (_("Last.fm Integration")));
 #endif		
 		// file chooser stuff
 		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
@@ -115,7 +118,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		
 		if (_lm.doing_file_operations()) {
 			fileChooser.set_sensitive(false);
-			fileChooser.set_tooltip_text("You must wait until previous file operations finish before setting your music folder");
+			fileChooser.set_tooltip_text(_("You must wait until previous file operations finish before setting your music folder"));
 		}
 		
 		// initialize library management settings
@@ -136,19 +139,19 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		bottomButtons.pack_end(saveChanges, false, false, 0);
 		
 		// Pack all widgets
-		content.pack_start(wrap_alignment(musicLabel, 10, 0, 0, 0), false, true, 0);
-		content.pack_start(wrap_alignment(fileChooser, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (musicLabel, 10, 0, 0, 0), false, true, 0);
+		content.pack_start(UI.wrap_alignment (fileChooser, 0, 0, 0, 10), false, true, 0);
 		content.pack_start(managementLabel, false, true, 0);
-		content.pack_start(wrap_alignment(organizeFolders, 0, 0, 0, 10), false, true, 0);
-		content.pack_start(wrap_alignment(writeMetadataToFile, 0, 0, 0, 10), false, true, 0);
-		content.pack_start(wrap_alignment(copyImportedMusic, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (organizeFolders, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (writeMetadataToFile, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (copyImportedMusic, 0, 0, 0, 10), false, true, 0);
 #if HAVE_PODCASTS
-		content.pack_start(wrap_alignment(downloadNewPodcasts, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (downloadNewPodcasts, 0, 0, 0, 10), false, true, 0);
 #endif
 #if HAVE_LAST_FM
 		content.pack_start(lastfmLabel, false, true, 0);
-		content.pack_start(wrap_alignment(lastfmInfo, 0, 0, 0, 10), false, true, 0);
-		content.pack_start(wrap_alignment(lastfmLogin, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (lastfmInfo, 0, 0, 0, 10), false, true, 0);
+		content.pack_start(UI.wrap_alignment (lastfmLogin, 0, 0, 0, 10), false, true, 0);
 #endif
 		content.pack_end(bottomButtons, false, true, 10);
 		
@@ -163,25 +166,14 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 		show_all();
 	}
 	
-	static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-	
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
-	}
 
 #if HAVE_LAST_FM
 	void lastfmLoginClick() {
 	
-		if(lastfmLogin.get_label() == "Enable Scrobbling" || lastfmLogin.get_label() == "Unsuccessful. Click to try again.") {
+		if(lastfmLogin.get_label() == ENABLE_SCROBBLING_MSG || lastfmLogin.get_label() == UNSUCCESSFUL_MSG) {
 			lastfm_token = _lm.lfm.getToken();
 			if(lastfm_token == null) {
-				lastfmLogin.set_label("Unsuccessful. Click to try again.");
+				lastfmLogin.set_label(UNSUCCESSFUL_MSG);
 				stdout.printf("Could not get a token. check internet connection\n");
 			}
 			else {
@@ -194,18 +186,18 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 				}
 				
 				//set button text. we are done this time around. next time we get session key
-				lastfmLogin.set_label("Complete login");
+				lastfmLogin.set_label(_("Complete login"));
 			}
 		}
 		else {
 			if(lastfm_token == null) {
-				lastfmLogin.set_label("Unsuccessful. Click to try again.");
+				lastfmLogin.set_label(UNSUCCESSFUL_MSG);
 				stdout.printf("Invalid token. Cannot continue\n");
 			}
 			else {
 				var sk = _lm.lfm.getSessionKey(lastfm_token);
 				if(sk == null) {
-					lastfmLogin.set_label("Unsuccessful. Click to try again.");
+					lastfmLogin.set_label(UNSUCCESSFUL_MSG);
 					stdout.printf("Could not get Last.fm session key\n");
 				}
 				else {
@@ -214,7 +206,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 					_lm.lfm.logged_in();
 					stdout.printf("Successfully obtained a sessionkey\n");
 					lastfmLogin.set_sensitive(false);
-					lastfmLogin.set_label("Success!");
+					lastfmLogin.set_label(SUCCESS_MSG);
 				}
 			}
 		}

@@ -72,8 +72,8 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_QUESTION, Gtk.IconSize.DIALOG);
-		Label title = new Label("Import media from " + d.getDisplayName());
-		Label info = new Label("The following files were found on " + d.getDisplayName() + ", but are not in your library. Check all files you would like to import.");
+		Label title = new Label(_("Import media from %s").printf (d.getDisplayName ()));
+		Label info = new Label(_("The following files were found on %s, but are not in your library. Check all the files you would like to import.").printf (d.getDisplayName ()));
 		transferAll = new CheckButton.with_label(_("Import all media"));
 		mediasScroll = new ScrolledWindow(null, null);
 		mediasView = new TreeView();
@@ -84,32 +84,45 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">Import " + ((medias.size > 1) ? (medias.size.to_string() + " media") : (lm.media_from_id(medias.get(0)).title)) + " from " + d.getDisplayName() + "</span>");
+
+		// be a bit explicit to make translations better
+		string title_text = "";
+		string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";		
+		if (medias.size > 1) {
+			title_text = _("Import %i items from %s").printf (medias.size, d.getDisplayName ());
+		}
+		else {
+			var m = lm.media_from_id (medias.get (0));
+			title_text = _("Import %s from %s").printf (m.title, d.getDisplayName ());
+		}
+		var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));
+		title.set_markup (title_string);
+		
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
 		
 		/* add cellrenderers to columns and columns to treeview */
 		var toggle = new CellRendererToggle ();
-        toggle.toggled.connect ((toggle, path) => {
-            var tree_path = new TreePath.from_string (path);
-            TreeIter iter;
-            mediasModel.get_iter (out iter, tree_path);
-            mediasModel.set (iter, 0, !toggle.active);
-            
-            transfer.set_sensitive(false);
-            mediasModel.foreach(updateTransferSensetivity);
-        });
+		toggle.toggled.connect ((toggle, path) => {
+			var tree_path = new TreePath.from_string (path);
+			TreeIter iter;
+			mediasModel.get_iter (out iter, tree_path);
+			mediasModel.set (iter, 0, !toggle.active);
+			
+			transfer.set_sensitive(false);
+			mediasModel.foreach(updateTransferSensetivity);
+		});
 
-        var column = new TreeViewColumn ();
-        column.title = "";
-        column.pack_start (toggle, false);
-        column.add_attribute (toggle, "active", 0);
-        mediasView.append_column(column);
+		var column = new TreeViewColumn ();
+		column.title = "";
+		column.pack_start (toggle, false);
+		column.add_attribute (toggle, "active", 0);
+		mediasView.append_column(column);
 		
-		mediasView.insert_column_with_attributes(-1, "id", new CellRendererText(), "text", 1, null);
-		mediasView.insert_column_with_attributes(-1, "Title", new CellRendererText(), "text", 2, null);
-		mediasView.insert_column_with_attributes(-1, "Artist", new CellRendererText(), "text", 3, null);
-		mediasView.insert_column_with_attributes(-1, "Album", new CellRendererText(), "text", 4, null);
+		mediasView.insert_column_with_attributes(-1, _("ID"), new CellRendererText(), "text", 1, null);
+		mediasView.insert_column_with_attributes(-1, _("Title"), new CellRendererText(), "text", 2, null);
+		mediasView.insert_column_with_attributes(-1, _("Artist"), new CellRendererText(), "text", 3, null);
+		mediasView.insert_column_with_attributes(-1, _("Album"), new CellRendererText(), "text", 4, null);
 		mediasView.headers_visible = true;
 		
 		for(int i = 0; i < 5; ++i) {
@@ -131,7 +144,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		
 		/* fill the treeview */
 		var medias_sorted = new LinkedList<Media>();
-        foreach(int i in medias)
+		foreach(int i in medias)
 			medias_sorted.add(lm.media_from_id(i));
 		medias_sorted.sort((CompareFunc)mediaCompareFunc);
 		
@@ -169,8 +182,8 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		bottomButtons.set_spacing(10);
 		
 		content.pack_start(information, false, true, 0);
-		content.pack_start(wrap_alignment(transferAll, 5, 0, 0, 75), false, true, 0);
-		content.pack_start(wrap_alignment(exp, 0, 0, 0, 75), true, true, 0);
+		content.pack_start(UI.wrap_alignment (transferAll, 5, 0, 0, 75), false, true, 0);
+		content.pack_start(UI.wrap_alignment (exp, 0, 0, 0, 75), true, true, 0);
 		content.pack_start(bottomButtons, false, true, 10);
 		
 		padding.pack_start(content, true, true, 10);
@@ -210,18 +223,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		else
 			return (a.artist > b.artist) ? 1 : -1;
 	}
-	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
-	}
-	
+
 	public bool updateTransferSensetivity(TreeModel model, TreePath path, TreeIter iter) {
 		bool sel = false;
 		model.get(iter, 0, out sel);
@@ -276,7 +278,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		mediasModel.foreach(createTransferList);
 		
 		if(lm.doing_file_operations()) {
-			lm.lw.doAlert("Cannot Import", "BeatBox is already doing file operations. Please wait until those finish to import from " + d.getDisplayName());
+			lm.lw.doAlert(_("Cannot Import"), _("Noise is already doing file operations. Please wait until those finish to import from %s").printf (d.getDisplayName ()));
 		}
 		else {
 			d.transfer_to_library(to_transfer);

@@ -45,8 +45,6 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 		this.lw = lw;
 		folder_path = path;
 		
-		this.set_title("BeatBox");
-		
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -72,11 +70,11 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">%s</span>".printf(_("Set Music Folder?")));
+		title.set_markup("<span weight=\"bold\" size=\"larger\">%s</span>".printf(Markup.escape_text (_("Set Music Folder?"), -1)));
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
-		info.set_markup("Are you sure you want to set the music folder to <b>" + path.replace("&", "&amp;") + "</b>? This will reset your library and remove static playlists.");
-		
+		info.set_markup(Markup.escape_text ("Are you sure you want to set the music folder to %s? This will reset your library and remove static playlists.".printf ("<b>" + path + "</b>"), -1));
+
 		/* set up controls layout */
 		HBox information = new HBox(false, 0);
 		VBox information_text = new VBox(false, 0);
@@ -119,7 +117,7 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 	
 	public void savePlaylistsClicked() {
 		string folder = "";
-		var file_chooser = new FileChooserDialog ("Choose Music Folder", this,
+		var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
 								  FileChooserAction.SELECT_FOLDER,
 								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
