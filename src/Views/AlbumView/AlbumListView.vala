@@ -24,7 +24,7 @@ using Gee;
 using Gtk;
 
 #if ENABLE_LIGHT_WINDOW
-public class BeatBox.AlbumListView : Granite.Widgets.DecoratedWindow {
+public class BeatBox.AlbumListView : Granite.Widgets.LightWindow {
 #else
 public class BeatBox.AlbumListView : Window {
 #endif
@@ -94,9 +94,8 @@ public class BeatBox.AlbumListView : Window {
 		artist_label.margin_bottom = 12;
 
 		// Music List
-		var tvs = new TreeViewSetup(MusicTreeView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
+		var tvs = new TreeViewSetup (MusicTreeView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
 		mtv = new MusicTreeView(view_wrapper, tvs);
-		mtv.has_grid_lines = true;
 
 		var mtv_scrolled = new ScrolledWindow (null, null);
 		mtv_scrolled.add (mtv);
@@ -143,7 +142,7 @@ public class BeatBox.AlbumListView : Window {
 	public void set_songs_from_media(Media m) {
 		setting_media.lock ();
 
-		set_title (m.album + " by " + m.album_artist);
+		set_title (_("%s by %s").printf (m.album, m.album_artist));
 
 		album_label.set_label (m.album);
 		artist_label.set_label (m.album_artist);
@@ -182,7 +181,7 @@ public class BeatBox.AlbumListView : Window {
 		rating.rating_changed.disconnect(rating_changed);
 
 		// Use average rating for the album
-		int overall_rating = 0, total_rating = 0, n_media = 0;
+		int total_rating = 0, n_media = 0;
 		foreach(var media in media_list) {
 			if (media == null)
 				continue;
@@ -190,9 +189,10 @@ public class BeatBox.AlbumListView : Window {
 			total_rating += (int)media.rating;
 		}
 
-		overall_rating = total_rating / n_media;
+		float average_rating = (float)total_rating / (float)n_media;
 
-		rating.set_rating(overall_rating);
+		// fix approximation and set new rating
+		rating.set_rating(Numeric.int_from_float (average_rating));
 
 		// connect again ...
 		rating.rating_changed.connect(rating_changed);
