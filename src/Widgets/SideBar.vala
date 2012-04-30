@@ -158,6 +158,9 @@ namespace Granite.Widgets {
 			filter.set_visible_column(SideBarColumn.COLUMN_VISIBLE);
 			this.set_grid_lines(TreeViewGridLines.NONE);
 			this.name = "SidebarContent";
+		
+			// Setup theming
+			this.get_style_context().add_class (STYLE_CLASS_SIDEBAR);
 			
 			this.get_selection().changed.connect(selectionChange);
 			this.button_press_event.connect(sideBarClick);

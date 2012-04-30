@@ -90,9 +90,6 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		this.lm = lmm;
 		this.lw = lww;
 
-		// Setup theming
-		get_style_context().add_class (STYLE_CLASS_SIDEBAR);
-
 		lm.device_manager.device_added.connect(deviceAdded);
 		lm.device_manager.device_removed.connect(deviceRemoved);
 		
