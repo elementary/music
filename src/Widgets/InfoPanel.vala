@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.InfoPanel : Gtk.Box {
+public class BeatBox.InfoPanel : Gtk.EventBox {
 	private LibraryManager lm;
 	private LibraryWindow lw;
 	private int id; // need this for when rating the media
@@ -45,9 +45,9 @@ public class BeatBox.InfoPanel : Gtk.Box {
 	public InfoPanel(LibraryManager lmm, LibraryWindow lww) {
 		lm = lmm;
 		lw = lww;
-		
+
 		buildUI();
-		
+
 		similars_fetched = false;
 		lm.medias_updated.connect(medias_updated);
 		lm.media_played.connect(media_played);
@@ -56,15 +56,9 @@ public class BeatBox.InfoPanel : Gtk.Box {
 	}
 	
 	private void buildUI() {
-		scroll = new ScrolledWindow (null, null);
 
-		/* put it in event box so we can color background white */
-		EventBox eb = new EventBox();
-		
 		// add View class
-		eb.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-
-		eb.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE + 6, -1);
+		this.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 
 		title = new Label("Title");
 		artist = new Label("Artist");
@@ -72,66 +66,70 @@ public class BeatBox.InfoPanel : Gtk.Box {
 		banMedia = new Button();
 		coverArt = new Gtk.Image();
 		coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
-		rating = new Granite.Widgets.Rating (null, true, IconSize.MENU);
+		rating = new Granite.Widgets.Rating (null, true, IconSize.MENU); // centered = true
 		album = new Label("Album");
 		year = new Label("Year");
 		ssv = new SimilarMediasView(lm, lw);
-		
-		/* use markup */
-		title.set_markup("<span size=\"large\"><b>%s</b></span>".printf(_("Title")));
-		year.set_markup("<span size=\"x-small\">%s</span>".printf(_("Year")));
-		
+
 		/* ellipsize */
 		title.ellipsize = Pango.EllipsizeMode.END;
 		artist.ellipsize = Pango.EllipsizeMode.END;
 		album.ellipsize = Pango.EllipsizeMode.END;
 		year.ellipsize = Pango.EllipsizeMode.END;
 		
-		loveMedia.relief = ReliefStyle.NONE;
-		banMedia.relief = ReliefStyle.NONE;
+		loveMedia.set_image (Icons.LASTFM_LOVE.render_image (IconSize.MENU));
+		banMedia.set_image (Icons.LASTFM_BAN.render_image (IconSize.MENU));
 		
-		var lastfm_love_icon = Icons.LASTFM_LOVE.render (IconSize.MENU);
-		var lastfm_ban_icon = Icons.LASTFM_BAN.render (IconSize.MENU);
-		
-		loveMedia.set_image(new Image.from_pixbuf(lastfm_love_icon));
-		banMedia.set_image(new Image.from_pixbuf(lastfm_ban_icon));
-		
-		HBox padding = new HBox(false, 10);
-		VBox content = new VBox(false, 0);
-		
-		HBox buttons = new HBox(false, 0);
-		buttons.pack_start(new Label(""), true, true, 0);
-		buttons.pack_start(loveMedia, false, false, 0);
-		buttons.pack_end(new Label(""), true, true, 0);
-		buttons.pack_end(banMedia, false, false, 0);
+		var content = new Box (Orientation.VERTICAL, 0);
+		// margins
+		content.margin_left = content.margin_right = 6;
 
+
+		var buttons = new ButtonBox (Orientation.HORIZONTAL);
+		buttons.pack_start (new Label(""), true, true, 0);
+		buttons.pack_start (loveMedia, false, false, 0);
+		buttons.pack_end (new Label(""), true, true, 0);
+		buttons.pack_end (banMedia, false, false, 0);
 
 		// put treeview inside scrolled window		
-		scroll.add(ssv);
-		scroll.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
-		scroll.set_shadow_type(ShadowType.NONE);
-		
-		content.pack_start(buttons, false, true, 0);
-		content.pack_start(UI.wrap_alignment (coverArt, 5, 5, 0, 5), false, true, 0);
-		content.pack_start(UI.wrap_alignment (title, 5, 0, 0, 5), false, true, 0);
-		content.pack_start(UI.wrap_alignment (rating, 5, 0, 0, 5), false, true, 0);
-		content.pack_start(UI.wrap_alignment (artist, 2, 0, 0, 5), false, true, 0);
-		content.pack_start(UI.wrap_alignment (album, 2, 0, 0, 5), false, true, 0);
-		content.pack_start(UI.wrap_alignment (year, 2, 0, 20, 5), false, true, 0);
-		content.pack_start(scroll, true, true, 0);
-		
-		padding.pack_start (content, true, true, 10);
-		eb.add(padding);
+		scroll = new ScrolledWindow (null, null);
+		scroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+		scroll.add (ssv);
 
-		// add event box (most external container)
-		add (eb);
-		
+		buttons.halign = coverArt.halign = Gtk.Align.CENTER;
+		title.halign = artist.halign = album.halign = year.halign = Gtk.Align.CENTER;
+
+		// expand so that the rating can be set within the whole width.
+		// The widget centers itself.
+		rating.halign = Gtk.Align.FILL;
+
+		coverArt.margin_top = 6;
+		buttons.margin_top = 0;
+		title.margin_top = 6;
+		rating.margin_top = 6;
+		artist.margin_top = 6;
+		album.margin_top = 0;
+		year.margin_top = 3;
+
+		scroll.margin_top = 12;
+
+		content.pack_start (buttons, false, true, 0);
+		content.pack_start (coverArt, false, true, 0);
+		content.pack_start (title, false, true, 0);
+		content.pack_start (rating, false, true, 0);
+		content.pack_start (artist, false, true, 0);
+		content.pack_start (album, false, true, 0);
+		content.pack_start (year, false, true, 0);
+		content.pack_start (scroll, true, true, 0);
+
+		this.add (content);
+
 		// signals here
-		rating.rating_changed.connect(ratingChanged);
-		title.button_press_event.connect(titleClicked);
-		loveMedia.clicked.connect(loveButtonClicked);
-		banMedia.clicked.connect(banButtonClicked);
-		
+		rating.rating_changed.connect (ratingChanged);
+		title.button_press_event.connect (titleClicked);
+		loveMedia.clicked.connect (lovthisuttonClicked);
+		banMedia.clicked.connect (banButtonClicked);
+
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
 		this.drag_data_received.connect(dragReceived);
@@ -149,11 +147,11 @@ public class BeatBox.InfoPanel : Gtk.Box {
 		loveMedia.set_no_show_all (!lastfm_elements_visible);
 		banMedia.set_no_show_all (!lastfm_elements_visible);
 		ssv.set_no_show_all (!lastfm_elements_visible);
-		loveMedia.set_visible(lastfm_elements_visible);
-		banMedia.set_visible(lastfm_elements_visible);
-		ssv.set_visible(similars_fetched);
+		loveMedia.set_visible (lastfm_elements_visible);
+		banMedia.set_visible (lastfm_elements_visible);
+		ssv.set_visible (similars_fetched);
 	}
-	
+
 	void media_played(int id, int old) {
 		if(lm.media_info.media.isPreview)
 			return;
@@ -178,15 +176,15 @@ public class BeatBox.InfoPanel : Gtk.Box {
 	void update_metadata() {
 		Media s = lm.media_from_id(id);
 		
-		title.set_markup("<span size=\"large\"><b>" + s.title.replace("&", "&amp;") + "</b></span>");
+		title.set_markup("<span size=\"large\"><b>" + Markup.escape_text (s.title, -1) + "</b></span>");
 		artist.set_text(s.artist);
 		album.set_text(s.album);
-		
+
 		// do rating stuff
 		rating.set_rating((int)s.rating);
-		
+
 		if(s.year > 1900)
-			year.set_markup("<span size=\"x-small\">" + s.year.to_string() + "</span>");
+			year.set_markup("<span size=\"x-small\">" + Markup.escape_text ("(%d)".printf ((int)s.year), -1) + "</span>");
 		else
 			year.set_markup("");
 	}
@@ -248,7 +246,7 @@ public class BeatBox.InfoPanel : Gtk.Box {
 		return false;
 	}
 	
-	void loveButtonClicked() {
+	void lovthisuttonClicked() {
 		lm.lfm.loveTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
 	
