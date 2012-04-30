@@ -70,7 +70,7 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	/** Initialize data storage, columns, etc. **/
 	public AlbumViewModel(LibraryManager lm, Gdk.Pixbuf defaultImage) {
 		this.lm = lm;
-		this.defaultImage = Icons.get_pixbuf_shadow(defaultImage);
+		this.defaultImage = lm.get_pixbuf_shadow (defaultImage);
 		removing_medias = false;
 
 		rows = new Sequence<Media>();

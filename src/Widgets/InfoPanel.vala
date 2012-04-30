@@ -23,23 +23,25 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.InfoPanel : ScrolledWindow {
+public class BeatBox.InfoPanel : Gtk.Box {
 	private LibraryManager lm;
 	private LibraryWindow lw;
 	private int id; // need this for when rating the media
+
+	private ScrolledWindow scroll;
 	
 	private Label title;
 	private Label artist;
 	private Button loveMedia;
 	private Button banMedia;
 	private Gtk.Image coverArt;
-	private Granite.Widgets.Rating rating; // need to make custom widget in future
+	private Granite.Widgets.Rating rating;
 	private Label album;
 	private Label year;
 	
 	bool similars_fetched;
 	private SimilarMediasView ssv;
-	
+
 	public InfoPanel(LibraryManager lmm, LibraryWindow lww) {
 		lm = lmm;
 		lw = lww;
@@ -54,6 +56,8 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 	}
 	
 	private void buildUI() {
+		scroll = new ScrolledWindow (null, null);
+
 		/* put it in event box so we can color background white */
 		EventBox eb = new EventBox();
 		
@@ -100,28 +104,27 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		buttons.pack_start(loveMedia, false, false, 0);
 		buttons.pack_end(new Label(""), true, true, 0);
 		buttons.pack_end(banMedia, false, false, 0);
+
+
+		// put treeview inside scrolled window		
+		scroll.add(ssv);
+		scroll.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
+		scroll.set_shadow_type(ShadowType.NONE);
 		
-		content.pack_start(wrap_alignment(title, 5, 0, 0, 5), false, true, 0);
-		content.pack_start(wrap_alignment(artist, 2, 0, 0, 5), false, true, 0);
 		content.pack_start(buttons, false, true, 0);
-		content.pack_start(wrap_alignment(coverArt, 5, 5, 0, 5), false, true, 0);
-		content.pack_start(wrap_alignment(rating, 5, 0, 0, 5), false, true, 0);
-		content.pack_start(wrap_alignment(album, 5, 0, 0, 5), false, true, 0);
-		content.pack_start(wrap_alignment(year, 0, 0, 20, 5), false, true, 0);
-		content.pack_start(ssv, true, true, 0);
+		content.pack_start(UI.wrap_alignment (coverArt, 5, 5, 0, 5), false, true, 0);
+		content.pack_start(UI.wrap_alignment (title, 5, 0, 0, 5), false, true, 0);
+		content.pack_start(UI.wrap_alignment (rating, 5, 0, 0, 5), false, true, 0);
+		content.pack_start(UI.wrap_alignment (artist, 2, 0, 0, 5), false, true, 0);
+		content.pack_start(UI.wrap_alignment (album, 5, 0, 0, 5), false, true, 0);
+		content.pack_start(UI.wrap_alignment (year, 0, 0, 20, 5), false, true, 0);
+		content.pack_start(scroll, true, true, 0);
 		
-		eb.add(content);
-		
-		padding.pack_start(eb, true, true, 0);
-		
-		Viewport vp = new Viewport(null, null);
-		vp.set_shadow_type(ShadowType.NONE);
-		vp.add(padding);
-		
-		add(vp);
-		
-		this.set_policy(PolicyType.NEVER, PolicyType.AUTOMATIC);
-		this.set_shadow_type(ShadowType.NONE);
+		padding.pack_start (content, true, true, 10);
+		eb.add(padding);
+
+		// add event box (most external container)
+		add (eb);
 		
 		// signals here
 		rating.rating_changed.connect(ratingChanged);
@@ -134,17 +137,6 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 		this.drag_data_received.connect(dragReceived);
 
 		update_visibilities();
-	}
-	
-	Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
 	}
 	
 	public void logged_in_to_lastfm() {
@@ -204,6 +196,9 @@ public class BeatBox.InfoPanel : ScrolledWindow {
 			return;
 
 		var coverart_pixbuf = lm.get_cover_album_art(id);
+
+		if (coverart_pixbuf == null)
+			coverart_pixbuf = lm.get_pixbuf_shadow (Icons.DEFAULT_ALBUM_ART_PIXBUF);
 
 		if(coverart_pixbuf != null) {
 			coverArt.show();

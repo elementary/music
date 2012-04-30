@@ -22,6 +22,9 @@
 
 namespace BeatBox.UI {
 
+    /**
+     * @deprecated. Since GTK+ 3.0, the align and margin properties will do the trick
+     */
     public Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
         message ("wrap_alignment is deprecated. Please don't use it in new code");
 

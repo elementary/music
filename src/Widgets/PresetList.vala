@@ -44,8 +44,8 @@ public class BeatBox.PresetList : ComboBox {
 	private ListStore store;
 
 	private const string SEPARATOR_NAME = "<separator_item_unique_name>";
-	private const string AUTOMATIC_MODE = "Automatic";
-	private const string DELETE_PRESET = "Delete Current";
+	private const string AUTOMATIC_MODE = N_("Automatic");
+	private const string DELETE_PRESET = N_("Delete Current");
 
 	public PresetList() {
 		ncustompresets = 0;

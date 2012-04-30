@@ -336,7 +336,7 @@ public class BeatBox.MillerColumns : Box {
 			//              "", search_artist, search_album, search_genre, search_year, search_rating);
 
 			// FASTER
-			Utils.search_in_media_ids (lm, medias, out _media_results, "", search_artist,
+			Search.search_in_media_ids (lm, medias, out _media_results, "", search_artist,
 			                           search_album, search_genre, search_year, search_rating);
 		}
 		else {
@@ -442,7 +442,7 @@ public class BeatBox.MillerColumns : Box {
 		//              view_wrapper.hint, search ?? "");
 
 		// FASTER
-		Utils.search_in_media_ids (lm, media, out _media_results, search ?? "");
+		Search.search_in_media_ids (lm, media, out _media_results, search ?? "");
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();
@@ -671,7 +671,8 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		model.set_sort_column_id (0, Gtk.SortType.ASCENDING);
 		view.set_model (model);
 
-		// select selected item
+		// set selected item
+		select_first_item ();
 		model.foreach (select_proper_string);
 
 		view.get_selection ().changed.connect (selected_item_changed);

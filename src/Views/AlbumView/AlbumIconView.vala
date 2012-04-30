@@ -371,11 +371,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return false;
 	}
 
-	public bool hide_list_popover () {
-		album_list_view.hide ();
-		return false;
-	}
-
 	void itemActivated(TreePath path) {
 		TreeIter iter;
 

@@ -524,7 +524,7 @@ public class BeatBox.ViewWrapper : Box {
 			return;
 
 		actual_search_string = lw.searchField.get_text();
-		var new_search = Utils.get_valid_search_string (actual_search_string);
+		var new_search = Search.get_valid_search_string (actual_search_string);
 		debug ("Searchbox has '%s'", new_search);
 
 		if(!setting_search && lw.initialization_finished && is_current_wrapper && new_search.length != 1 && this.visible) {
@@ -618,7 +618,7 @@ public class BeatBox.ViewWrapper : Box {
 		// Perform search
 		LinkedList<int> search_results;
 
-		Utils.search_in_media_ids (lm, get_media_ids (), out search_results, get_search_string());
+		Search.search_in_media_ids (lm, get_media_ids (), out search_results, get_search_string());
 
 		foreach (int i in search_results)
 			showing_medias.set (i, 1);

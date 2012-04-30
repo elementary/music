@@ -1735,7 +1735,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					if (coverart_pixbuf != null) {
 						// get_pixbuf_shadow automatically scales the pixbuf down
 						// to Icons.ALBUM_VIEW_IMAGE_SIZE
-						pix = Icons.get_pixbuf_shadow (coverart_pixbuf);
+						pix = get_pixbuf_shadow (coverart_pixbuf);
 					}
 					else if (!cache_only) {
 						/* TODO: Get image from the tagger object (i.e. song metadata) */
@@ -1745,7 +1745,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 							try {
 								coverart_pixbuf = new Gdk.Pixbuf.from_file (path);
 								//coverart_pixbuf = _pix.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
-								pix = Icons.get_pixbuf_shadow (coverart_pixbuf);
+								pix = get_pixbuf_shadow (coverart_pixbuf);
 								
 								// Add image to cache
 								fo.save_album_art_in_cache (s, coverart_pixbuf);
@@ -1827,7 +1827,11 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		string key = get_media_coverart_key (s);
 		
 		if(key != null)
-			cover_album_art.set(key, Icons.get_pixbuf_shadow(pix));
+			cover_album_art.set(key, get_pixbuf_shadow (pix));
+	}
+
+	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pix) {
+		return PixbufUtils.get_pixbuf_shadow (pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
 	}
 
 	public bool start_file_operations(string? message) {

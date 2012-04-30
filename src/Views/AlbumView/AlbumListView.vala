@@ -32,10 +32,6 @@ public class BeatBox.AlbumListView : Window {
 	public const int WIDTH = 400;
 	public const int HEIGHT = 400; 
 
-	private const string TITLE_STYLESHEET = """
-		.title { font: open sans light 18; }
-	""";
-
 	LibraryManager lm;
 	ViewWrapper view_wrapper;
 
@@ -78,21 +74,12 @@ public class BeatBox.AlbumListView : Window {
 		base.get_style_context ().remove_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 		base.get_style_context ().remove_class ("content-view-window");
 #endif
-
-		var title_style = new Gtk.CssProvider ();
-		try {
-			title_style.load_from_data (TITLE_STYLESHEET, -1);
-		}
-		catch (Error err) {
-			warning (err.message);
-		}
-
 		// album artist/album labels
 		album_label = new Label("Album");
 		artist_label = new Label("Artist");
 
-		album_label.get_style_context ().add_class ("title");
-		album_label.get_style_context ().add_provider (title_style, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+		// Apply special style: Level-2 header
+		UI.apply_style_to_label (album_label, UI.TextStyle.H2);
 
 		album_label.ellipsize = Pango.EllipsizeMode.END;
 		artist_label.ellipsize = Pango.EllipsizeMode.END;
@@ -103,7 +90,6 @@ public class BeatBox.AlbumListView : Window {
 		album_label.set_max_width_chars (30);
 		artist_label.set_max_width_chars (30);
 
-		album_label.margin_top = 6;
 		album_label.margin_left = album_label.margin_right = 12;
 		artist_label.margin_bottom = 12;
 
@@ -138,6 +124,14 @@ public class BeatBox.AlbumListView : Window {
 #if !ENABLE_LIGHT_WINDOW
 		this.add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.POINTER_MOTION_MASK);
 
+		lm.lw.viewSelector.mode_changed.connect ( () => {
+			this.hide ();
+		});
+
+		lm.lw.sideTree.true_selection_change.connect ( () => {
+			this.hide ();
+		});
+
 		this.button_press_event.connect ( (event) => {
 			this.begin_move_drag ((int)event.button, (int)event.x_root,
 			                       (int)event.y_root, event.time);
@@ -161,11 +155,13 @@ public class BeatBox.AlbumListView : Window {
 			to_search.add (lm.media_from_id(id));
 		}
 
-		Utils.fast_album_search_in_media_list (to_search, out media_list, "", m.album_artist, m.album);
+		Search.fast_album_search_in_media_list (to_search, out media_list, "", m.album_artist, m.album);
 
 		var media_table = new HashTable<int, Media>(null, null);
 
 		int index = 0;
+		// FIXME: this is ugly and can potentially disorder the songs.
+		//         This kind of implementation detail should not be relevant here!
 		foreach (var _media in media_list) {
 			media_table.set (index++, _media);
 		}

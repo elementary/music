@@ -22,7 +22,7 @@
 
 using Gtk;
 
-public class TopDisplay : Box {
+public class BeatBox.TopDisplay : Box {
 	BeatBox.LibraryManager lm;
 	Label label;
 	HBox scaleBox;
@@ -178,28 +178,14 @@ public class TopDisplay : Box {
 	public virtual void value_changed() {
 		if(!scale.visible)
 			return;
-		
+
 		//make pretty current time
-		int minute = 0;
 		int seconds = (int)scale.get_value();
-		
-		while(seconds >= 60) {
-			++minute;
-			seconds -= 60;
-		}
-		
-		leftTime.set_text(minute.to_string() + ":" + ((seconds < 10 ) ? "0" + seconds.to_string() : seconds.to_string()));
+		leftTime.set_text (TimeUtils.pretty_time_mins (seconds));
 		
 		//make pretty remaining time
-		minute = 0;
 		seconds = (int)lm.media_info.media.length - (int)scale.get_value();
-		
-		while(seconds >= 60) {
-			++minute;
-			seconds -= 60;
-		}
-		
-		rightTime.set_text(minute.to_string() + ":" + ((seconds < 10 ) ? "0" + seconds.to_string() : seconds.to_string()));
+		rightTime.set_text (TimeUtils.pretty_time_mins (seconds));
 	}
 		
 	public virtual bool change_value(ScrollType scroll, double val) {

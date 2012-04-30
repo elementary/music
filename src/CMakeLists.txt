@@ -13,82 +13,20 @@ configure_file(${CMAKE_SOURCE_DIR}/src/config.h.cmake ${CMAKE_BINARY_DIR}/src/co
 add_definitions(-include config.h)
 
 
-if(${ENABLE_STORE})
-     set(DEFAULT_STORE
-        Store/Price.vala
-        Store/Release.vala
-        Store/SearchResult.vala
-        Store/Store.vala
-        Store/FormatTag.vala
-        Store/Widgets/ArtistView.vala
-        Store/Widgets/IconView.vala
-        Store/Widgets/SearchResultsPage.vala
-        Store/Widgets/TrackList.vala
-        Store/Widgets/ReleaseRotator.vala
-        Store/Widgets/TagLabel.vala
-        Store/Widgets/StoreView.vala
-        Store/Widgets/AlbumView.vala
-        Store/Widgets/ObjectList.vala
-        Store/Widgets/SearchList.vala
-        Store/Widgets/HomeView.vala
-        Store/Widgets/TagGroup.vala
-        Store/BasketItem.vala
-        Store/XMLParser.vala
-        Store/Label.vala
-        Store/Basket.vala
-        Store/Artist.vala
-        Store/Track.vala
-    )
-
-   set(ADD_OPTIONS ${ADD_OPTIONS} --define=HAVE_STORE)
-
-   message("-- STORE ENABLED")
-else()
-   message("-- STORE DISABLED")
-endif()
-
-
-if(${ENABLE_PODCASTS})
-     set(PODCASTS
-        Dialogs/AddPodcastWindow.vala
-        Dialogs/PodcastEditor.vala
-        Views/ListView/Lists/PodcastListView.vala
-        Objects/PodcastManager.vala
-    )
-
-   set(ADD_OPTIONS ${ADD_OPTIONS} --define=HAVE_PODCASTS)
-   message("-- PODCASTS ENABLED")
-else()
-   message("-- PODCASTS DISABLED")
-endif()
-
-
-if(${ENABLE_INTERNET_RADIO})
-    set(INTERNET_RADIO
-        Dialogs/StationEditor.vala
-        Views/ListView/Lists/RadioListView.vala
-    )
-
-   set(ADD_OPTIONS ${ADD_OPTIONS} --define=HAVE_INTERNET_RADIO)
-   message("-- INTERNET RADIO ENABLED")
-else()
-   message("-- INTERNET RADIO DISABLED")
-endif()
-
-
-
 vala_precompile(VALA_C
     ${CMAKE_SOURCE_DIR}/src/config.vapi
 
-    ${DEFAULT_STORE}
-    ${PODCASTS}
-    ${INTERNET_RADIO}
-
-    Utils.vala
     Icons.vala
     LibraryWindow.vala
     LibraryManager.vala
     FileOperator.vala
+
+    Utils/UI.vala
+    Utils/Search.vala
+    Utils/PixbufUtils.vala
+    Utils/TimeUtils.vala
+    Utils/String.vala
+    Utils/Icon.vala
 
     LastFM/LastFM.vala
     LastFM/AlbumInfo.vala
@@ -117,7 +55,6 @@ vala_precompile(VALA_C
     Objects/MediaKeyListener.vala
     Objects/MPRIS.vala
     Objects/Playlist.vala
-    Objects/Icon.vala
 
     Widgets/GraniteStatusBar.vala
     Widgets/SmartAlbumRenderer.vala
