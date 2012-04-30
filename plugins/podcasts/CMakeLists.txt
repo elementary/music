@@ -25,6 +25,6 @@ vala_precompile(VALA_C
 add_library(noise-podcasts MODULE ${VALA_C})
 
 target_link_libraries (noise-podcasts ${NORMAL_LIBRARIES})
-install(TARGETS noise-podcasts DESTINATION lib/noise/plugins/podcasts/)
-install(FILES podcasts.plugin DESTINATION lib/noise/plugins/podcasts/)
+install(TARGETS noise-podcasts DESTINATION ${PLUGIN_DIR}/podcasts/)
+install(FILES podcasts.plugin DESTINATION ${PLUGIN_DIR}/podcasts/)
 add_dependencies(noise-podcasts noise)

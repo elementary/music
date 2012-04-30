@@ -70,8 +70,6 @@ namespace BeatBox {
         public BeatBox.LibraryWindow   library_window  { get; private set; }
         public BeatBox.Plugins.Manager plugins_manager { get; private set; }
 
-        private const string PLUGINS_DIR = Build.CMAKE_INSTALL_PREFIX + "/lib/noise/plugins/";
-
         private static const OptionEntry[] app_options = {
             { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, N_("Enable debug logging"), null },
             { "no-plugins", 'n', 0, OptionArg.NONE, ref Options.disable_plugins, N_("Disable plugins"), null},
@@ -114,7 +112,7 @@ namespace BeatBox {
             settings = new BeatBox.Settings ();
 
             if (!Options.disable_plugins)
-                plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS, PLUGINS_DIR);
+                plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS, Build.PLUGIN_DIR);
         }
 
         public static OptionEntry[] get_option_group () {

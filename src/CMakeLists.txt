@@ -4,14 +4,12 @@ ensure_vala_version("0.16.0" MINIMUM)
 include(ValaPrecompile)
 set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/noise")
-set(ICON_FOLDER "${CMAKE_INSTALL_PREFIX}/share/noise/icons/hicolor")
 set(GETTEXT_PACKAGE "noise")
 set(RELEASE_NAME "Luna")
 set(VERSION "1.0")
 set(VERSION_INFO "Pre-Release")
 configure_file(${CMAKE_SOURCE_DIR}/src/config.h.cmake ${CMAKE_BINARY_DIR}/src/config.h)
 add_definitions(-include config.h)
-
 
 vala_precompile(VALA_C
     ${CMAKE_SOURCE_DIR}/src/config.vapi

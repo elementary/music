@@ -113,9 +113,9 @@ public class BeatBox.Icon : GLib.Object {
 				actual_icon_name = name + Icons.SVG_EXT;
 			}
 
-			var icon_path = GLib.Path.build_path("/", Build.ICON_FOLDER, size_folder, type_folder);
+			var icon_path = GLib.Path.build_path("/", Build.ICON_DIR, size_folder, type_folder);
 			IconTheme.get_default().append_search_path (icon_path);
-			this.backup = GLib.Path.build_filename("/", Build.ICON_FOLDER, size_folder, type_folder, actual_icon_name);
+			this.backup = GLib.Path.build_filename("/", Build.ICON_DIR, size_folder, type_folder, actual_icon_name);
 		}
 		else {
 			this.backup = null;

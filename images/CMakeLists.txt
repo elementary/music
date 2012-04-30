@@ -9,41 +9,41 @@ install(FILES icons/128x128/apps/noise.svg DESTINATION share/icons/hicolor/128x1
 install(FILES icons/128x128/apps/noise.svg DESTINATION share/icons/hicolor/scalable/apps)
 
 # library icons
-install(FILES icons/16x16/mimetypes/library-music.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
+install(FILES icons/16x16/mimetypes/library-music.svg DESTINATION ${ICON_DIR}/16x16/mimetypes)
 
 # CD icon
-install(FILES icons/16x16/mimetypes/media-cdrom-audio.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
+install(FILES icons/16x16/mimetypes/media-cdrom-audio.svg DESTINATION ${ICON_DIR}/16x16/mimetypes)
 
 # media-audio for default album image and album shadow
-install(FILES icons/138x138/mimetypes/albumart.svg DESTINATION share/noise/icons/hicolor/138x138/mimetypes)
-install(FILES icons/168x168/other/albumart-shadow.png DESTINATION share/noise/icons/hicolor/168x168/other)
+install(FILES icons/138x138/mimetypes/albumart.svg DESTINATION ${ICON_DIR}/138x138/mimetypes)
+install(FILES icons/168x168/other/albumart-shadow.png DESTINATION ${ICON_DIR}/168x168/other)
 
 # shuffle and repeat
-install(FILES icons/16x16/status/media-playlist-no-repeat-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/status)
-install(FILES icons/16x16/status/media-playlist-no-shuffle-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/status)
+install(FILES icons/16x16/status/media-playlist-no-repeat-symbolic.svg DESTINATION ${ICON_DIR}/16x16/status)
+install(FILES icons/16x16/status/media-playlist-no-shuffle-symbolic.svg DESTINATION ${ICON_DIR}/16x16/status)
 
 # starred / non-starred
-install(FILES icons/16x16/status/starred.svg DESTINATION share/noise/icons/hicolor/16x16/status)
-install(FILES icons/16x16/status/non-starred.svg DESTINATION share/noise/icons/hicolor/16x16/status)
+install(FILES icons/16x16/status/starred.svg DESTINATION ${ICON_DIR}/16x16/status)
+install(FILES icons/16x16/status/non-starred.svg DESTINATION ${ICON_DIR}/16x16/status)
 
 # pane hide/show
-install(FILES icons/16x16/actions/pane-show-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
-install(FILES icons/16x16/actions/pane-hide-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
+install(FILES icons/16x16/actions/pane-show-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions)
+install(FILES icons/16x16/actions/pane-hide-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions)
 
 # eq symbolic icon
-install(FILES icons/16x16/actions/media-eq-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
+install(FILES icons/16x16/actions/media-eq-symbolic.svg DESTINATION ${ICON_DIR}/16x16/actions)
 
 # playlist icons
-install(FILES icons/16x16/mimetypes/playlist.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
-install(FILES icons/16x16/mimetypes/playlist-automatic.svg DESTINATION share/noise/icons/hicolor/16x16/mimetypes)
+install(FILES icons/16x16/mimetypes/playlist.svg DESTINATION ${ICON_DIR}/16x16/mimetypes)
+install(FILES icons/16x16/mimetypes/playlist-automatic.svg DESTINATION ${ICON_DIR}/16x16/mimetypes)
 
 # process-completed and error
-install(FILES icons/16x16/mimetypes/process-completed-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/status)
-install(FILES icons/16x16/mimetypes/process-error-symbolic.svg DESTINATION share/noise/icons/hicolor/16x16/status)
+install(FILES icons/16x16/mimetypes/process-completed-symbolic.svg DESTINATION ${ICON_DIR}/16x16/status)
+install(FILES icons/16x16/mimetypes/process-error-symbolic.svg DESTINATION ${ICON_DIR}/16x16/status)
 
 # last fm
-install(FILES icons/16x16/actions/lastfm-love.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
-install(FILES icons/16x16/actions/lastfm-ban.svg DESTINATION share/noise/icons/hicolor/16x16/actions)
+install(FILES icons/16x16/actions/lastfm-love.svg DESTINATION ${ICON_DIR}/16x16/actions)
+install(FILES icons/16x16/actions/lastfm-ban.svg DESTINATION ${ICON_DIR}/16x16/actions)
 
 # Update icon cache
 install (CODE "message(\"Updating GTK+ icon cache (hicolor) ...\")")
