@@ -27,7 +27,6 @@ namespace BeatBox.Numeric {
 
     /**
      * Approximates a double to the best uint.
-     * Sometimes compilers do this wrong by truncating numbers rather than rounding them.
      */
     public uint uint_from_double (double number) {
         // Check limits
@@ -59,7 +58,7 @@ namespace BeatBox.Numeric {
 
     /**
      * Approximates a float to the best int.
-     * Sometimes compilers do this wrong by truncating numbers rather than rounding them.
+     * Sometimes compilers do this wrongly by truncating numbers rather than rounding them.
      */
     public int int_from_float (float number) {
         // Check limits
