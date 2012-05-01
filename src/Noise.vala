@@ -137,7 +137,7 @@ namespace BeatBox {
 
         /**
          * We use this identifier to init everything inside the application.
-         * For instance: MPRIS, libnotify, etc.
+         * For instance: libnotify, etc.
          */
         public string get_id () {
             return application_id;
