@@ -115,7 +115,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 		else if(File.new_for_path(mount.get_default_location().get_path() + "/iTunes_Control").query_exists() ||
 				File.new_for_path(mount.get_default_location().get_path() + "/iPod_Control").query_exists() ||
 				File.new_for_path(mount.get_default_location().get_path() + "/iTunes/iTunes_Control").query_exists()) {
-			added = new iPodDevice(lm, mount);	
+			added = new iPodDevice(lm, mount);
 		}
 		else if(mount.get_default_location().get_parse_name().has_prefix("afc://")) {
 			added = new iPodDevice(lm, mount);

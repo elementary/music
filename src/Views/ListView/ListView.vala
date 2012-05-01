@@ -85,6 +85,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		switch (tvs.get_hint()) {
 
 			case ViewWrapper.Hint.MUSIC:
+			case ViewWrapper.Hint.DEVICE_AUDIO:
 			case ViewWrapper.Hint.HISTORY:
 			case ViewWrapper.Hint.QUEUE:
 			case ViewWrapper.Hint.PLAYLIST:
@@ -116,6 +117,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 
 		// Currently only the music-library view should have a column browser
 		if (view_wrapper.hint == ViewWrapper.Hint.MUSIC)
+			column_browser = new MillerColumns (view_wrapper);
+			
+		if (view_wrapper.hint == ViewWrapper.Hint.DEVICE_AUDIO)
 			column_browser = new MillerColumns (view_wrapper);
 
 		// Put the list inside a scrolled window
