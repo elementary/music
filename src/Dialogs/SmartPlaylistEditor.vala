@@ -282,7 +282,9 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.append_text(_("Grouping"));
 		_field.append_text(_("Last Played"));
 		_field.append_text(_("Length"));
+#if HAVE_PODCASTS || HAVE_INTERNET_RADIO
 		_field.append_text(_("Media Type"));
+#endif
 		_field.append_text(_("Playcount"));
 		_field.append_text(_("Rating"));
 		_field.append_text(_("Skipcount"));
