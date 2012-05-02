@@ -121,22 +121,12 @@ public class BeatBox.AlbumListView : Window {
 		rating.rating_changed.connect(rating_changed);
 
 #if !ENABLE_LIGHT_WINDOW
-		this.add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.POINTER_MOTION_MASK);
-
-		lm.lw.viewSelector.mode_changed.connect ( () => {
-			this.hide ();
-		});
-
-		lm.lw.sideTree.true_selection_change.connect ( () => {
-			this.hide ();
-		});
-
-		this.button_press_event.connect ( (event) => {
-			this.begin_move_drag ((int)event.button, (int)event.x_root,
-			                       (int)event.y_root, event.time);
-			return true;
-		});
+		/* Make window draggable */
+		UI.make_window_draggable (this);
 #endif
+
+		/* Close on lose focus */
+		UI.hide_on_lose_focus (this);
 	}
 
 	public void set_songs_from_media(Media m) {

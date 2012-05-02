@@ -24,6 +24,7 @@ namespace BeatBox.UI {
 
     /**
      * @deprecated. Since GTK+ 3.0, the align and margin properties will do the trick
+     * TODO: annotate deprecation
      */
     public Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
         message ("wrap_alignment is deprecated. Please don't use it in new code");
@@ -39,6 +40,37 @@ namespace BeatBox.UI {
     }
 
     /**
+     * Hides the widget when it loses focus. Backdrop is our friend here
+     */
+     public void hide_on_lose_focus (Gtk.Widget widget) {
+        widget.state_flags_changed.connect ( () => {
+            if (widget.get_state_flags () == Gtk.StateFlags.BACKDROP)
+                widget.hide ();
+        });
+     }
+
+    /**
+     * Hides the widget when it loses focus. Backdrop is our friend here
+     */
+     public void destroy_on_lose_focus (Gtk.Widget widget) {
+        widget.state_flags_changed.connect ( () => {
+            if (widget.get_state_flags () == Gtk.StateFlags.BACKDROP)
+                widget.destroy ();
+        });
+     }
+
+    /**
+     * Makes a Gtk.Window draggable
+     */
+    public void make_window_draggable (Gtk.Window window) {
+        window.add_events (Gdk.EventMask.BUTTON_PRESS_MASK | Gdk.EventMask.POINTER_MOTION_MASK);
+        window.button_press_event.connect ( (event) => {
+            window.begin_move_drag ((int)event.button, (int)event.x_root, (int)event.y_root, event.time);
+            return true;
+        });
+    }
+
+    /**
      * elementaryOS fonts
      * TODO: Add special cases for when not using elementaryOS
      */
@@ -50,21 +82,21 @@ namespace BeatBox.UI {
         H3
     }
 
-	const string TITLE_STYLESHEET = """
-		.title { font: raleway 36; }
-	""";
+    const string TITLE_STYLESHEET = """
+        .title { font: raleway 36; }
+    """;
 
-	const string H1_STYLESHEET = """
-		.h1 { font: open sans bold 24; }
-	""";
+    const string H1_STYLESHEET = """
+        .h1 { font: open sans bold 24; }
+    """;
 
-	const string H2_STYLESHEET = """
-		.h2 { font: open sans light 18; }
-	""";
+    const string H2_STYLESHEET = """
+        .h2 { font: open sans light 18; }
+    """;
 
-	const string H3_STYLESHEET = """
-		.h3 { font: open sans bold 12; }
-	""";
+    const string H3_STYLESHEET = """
+        .h3 { font: open sans bold 12; }
+    """;
 
     public void apply_style_to_label (Gtk.Label label, TextStyle text_style) {
         var style_provider = new Gtk.CssProvider ();
