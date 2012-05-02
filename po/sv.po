@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-01 06:04+0000\n"
-"X-Generator: Launchpad (build 15171)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:59+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 "X-Poedit-Language: Swedish\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
@@ -1427,31 +1427,3 @@ msgstr ""
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1482
 msgid "Import media from device"
 msgstr ""
-
-#~ msgid "Remove Station"
-#~ msgstr "Ta bort stationen"
-
-#~ msgid ""
-#~ "In this view, BeatBox will automatically find medias similar to the one you "
-#~ "are playing."
-#~ msgstr ""
-#~ "I denna vy kommer BeatBox automatiskt att hitta mediefiler som liknar det du "
-#~ "spelar."
-
-#~ msgid "You can then start playing those medias, or save them for later."
-#~ msgstr "Du kan sedan spela upp dessa mediefiler eller spara dem till senare."
-
-#, c-format
-#~ msgid "Podcast RSS Source"
-#~ msgstr "RSS-källa för poddsändning"
-
-#~ msgid "Podcast Source..."
-#~ msgstr "Poddsändningskälla..."
-
-#, c-format
-#~ msgid "<b>Name of Playlist</b>"
-#~ msgstr "<b>Spellistans namn</b>"
-
-#, c-format
-#~ msgid "<b>Rules</b>"
-#~ msgstr "<b>Regler</b>"

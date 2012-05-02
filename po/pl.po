@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-01 06:04+0000\n"
-"X-Generator: Launchpad (build 15171)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:59+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1127
@@ -1431,48 +1431,3 @@ msgstr "Zaimportuj nagrania z płyty Audio CD"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1482
 msgid "Import media from device"
 msgstr "Zaimportuj nagrania z urządzenia"
-
-#~ msgid "Remove Station"
-#~ msgstr "Usuń stację"
-
-#, c-format
-#~ msgid "Podcast RSS Source"
-#~ msgstr "Źródło RSS podcastu"
-
-#~ msgid "Podcast Source..."
-#~ msgstr "Źródło podcastu..."
-
-#, c-format
-#~ msgid "<b>Name of Playlist</b>"
-#~ msgstr "<b>Nazwa listy odtwarzania</b>"
-
-#, c-format
-#~ msgid "<b>Rules</b>"
-#~ msgstr "<b>Reguły</b>"
-
-#~ msgid "Music Store"
-#~ msgstr "Sklep muzyczny"
-
-#~ msgid ""
-#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
-#~ "XML format."
-#~ msgstr ""
-#~ "Podane źródło jest nieprawidłowe. Proszę się upewnić, że źródło RSS jest w "
-#~ "formacie XML."
-
-#, c-format
-#~ msgid "Options</b>"
-#~ msgstr "Opcje</b>"
-
-#~ msgid ""
-#~ "In this view, BeatBox will automatically find medias similar to the one you "
-#~ "are playing."
-#~ msgstr ""
-#~ "W tym widoku program automatycznie znajdzie utwory podobne do tych, które są "
-#~ "odtwarzane."
-
-#~ msgid "You can then start playing those medias, or save them for later."
-#~ msgstr "Można odtworzyć te utwory lub zapisać je na później."
-
-#~ msgid "Noise has imported your library."
-#~ msgstr "Zaimportowano kolekcję."

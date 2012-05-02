@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-01 06:04+0000\n"
-"X-Generator: Launchpad (build 15171)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:59+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1127
@@ -1420,26 +1420,3 @@ msgstr "संगीत CD से आयात करें"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1482
 msgid "Import media from device"
 msgstr "उपकरण से गाने आयात करें"
-
-#~ msgid "You can then start playing those medias, or save them for later."
-#~ msgstr ""
-#~ "आप उन गानों को फिर बजाना शुरु कर सकतें हैं या कभी और बजाने के लिए सहेज कर "
-#~ "सकते है."
-
-#~ msgid "Podcast Source..."
-#~ msgstr "पोडकास्ट का स्म्रोत"
-
-#, c-format
-#~ msgid "<b>Name of Playlist</b>"
-#~ msgstr "<b>प्लेलिस्ट का नाम</b>"
-
-#, c-format
-#~ msgid "<b>Rules</b>"
-#~ msgstr "<b>नियम</b>"
-
-#, c-format
-#~ msgid "Options</b>"
-#~ msgstr "पसंद</b>"
-
-#~ msgid "Music Store"
-#~ msgstr "संगीत स्टोर"

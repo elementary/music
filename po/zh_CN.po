@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-01 06:04+0000\n"
-"X-Generator: Launchpad (build 15171)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:59+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1127
@@ -1419,44 +1419,3 @@ msgstr "从音频 CD 导入歌曲"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1482
 msgid "Import media from device"
 msgstr "从设备导入媒体"
-
-#, c-format
-#~ msgid "Options</b>"
-#~ msgstr "选项</b>"
-
-#, c-format
-#~ msgid "<b>Name of Playlist</b>"
-#~ msgstr "<b>播放列表名称</b>"
-
-#, c-format
-#~ msgid "<b>Rules</b>"
-#~ msgstr "<b>规则</b>"
-
-#, c-format
-#~ msgid "Podcast RSS Source"
-#~ msgstr "播客 RSS 源"
-
-#~ msgid "Podcast Source..."
-#~ msgstr "播客源..."
-
-#~ msgid ""
-#~ "The provided source is invalid. Make sure you are entering an RSS feed in "
-#~ "XML format."
-#~ msgstr "您提供的源无效。确保您输入的 RSS 订阅是 XML 格式。"
-
-#~ msgid "Remove Station"
-#~ msgstr "删除电台"
-
-#~ msgid ""
-#~ "In this view, BeatBox will automatically find medias similar to the one you "
-#~ "are playing."
-#~ msgstr "在此视图中，BeatBox 将自动搜寻与您正在播放媒体类似媒体。"
-
-#~ msgid "You can then start playing those medias, or save them for later."
-#~ msgstr "您可以在搜寻完成后播放或保存这些媒体，以便以后查看。"
-
-#~ msgid "Music Store"
-#~ msgstr "音乐商店"
-
-#~ msgid "Noise has imported your library."
-#~ msgstr "Noise 已经导入您的库。"
