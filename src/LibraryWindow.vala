@@ -440,15 +440,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		});
 
 
-		// Minor performance improvement
+		// FIXME: Minor performance improvement
 		this.map_event.connect ( () => {
 			// start thread to load all the media pixbufs
-			try {
-				Thread.create<void*>(lm.fetch_cover_art_from_cache, false);
-			}
-			catch(GLib.ThreadError err) {
-				warning("Could not create thread to load media pixbuf's: %s \n", err.message);
-			}
+			lm.fetch_cover_art_from_cache_async ();
 			return false;
 		});
 	}
@@ -639,8 +634,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		debug ("Done with main views.");
 	}
 	
-	// XXX let's do it async in the future
-	private /*async*/ void load_playlists () {
+	private async void load_playlists () {
 		debug ("Loading playlists");
 
 		// Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future

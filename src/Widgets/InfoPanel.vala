@@ -228,19 +228,19 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 	
 	bool titleClicked(Gdk.EventButton event) {
 		try {
-			Thread.create<void*>(() => {
+			new Thread<void*>.try (null, () => {
 				try {
 					GLib.AppInfo.launch_default_for_uri (lm.media_info.track.url, null);
 				}
 				catch(GLib.Error err) {
-					message("Could not open url in Last FM: %s\n", err.message);
+					warning ("Could not open url in Last FM: %s\n", err.message);
 				}
 				
 				return null;
-			}, false);
+			});
 		}
-		catch(GLib.ThreadError err) {
-			message("Could not create thread to open title:%s\n", err.message);
+		catch(GLib.Error err) {
+			warning ("Could not create thread to open title:%s\n", err.message);
 			
 		}
 		
@@ -272,7 +272,7 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 				lm.save_album_locally(lm.media_info.media.rowid, uri);
 			}
 			else {
-				message("Dragged album art is not valid image\n");
+				warning ("Dragged album art is not valid image\n");
 			}
 			
 			Gtk.drag_finish (context, success, false, timestamp);

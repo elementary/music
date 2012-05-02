@@ -119,17 +119,18 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public LastFM.Core lfm;
 
 
+	private Mutex mutex;
 
-	Mutex _media_lock = new Mutex (); // lock for _media. use this around _media, _songs, ... _permanents
+	private Mutex _media_lock; // lock for _media. use this around _media, _songs, ... _permanents
 #if HAVE_PODCASTS
-	Mutex _podcasts_lock = new Mutex ();
+	private Mutex _podcasts_lock;
 #endif
 #if HAVE_INTERNET_RADIO
-	Mutex _stations_lock = new Mutex ();
+	private Mutex _stations_lock;
 #endif
 
-	Mutex _playlists_lock = new Mutex (); // lock for _playlists
-	Mutex _smart_playlists_lock = new Mutex (); // lock for _smart_playlists
+	private Mutex _playlists_lock; // lock for _playlists
+	private Mutex _smart_playlists_lock; // lock for _smart_playlists
 	
 
 
@@ -203,9 +204,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public signal void media_queued(Gee.Collection<int> ids);
 	public signal void media_played(int id, int old_id);
 	public signal void playback_stopped(int was_playing);
-	
-	private Mutex mutex = new Mutex();
-	
+		
 	public LibraryManager(BeatBox.LibraryWindow lww) {
 		this.lw = lww;
 		this.player = new Streamer(this, lw);
@@ -217,6 +216,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 #if HAVE_PODCASTS
 		this.pm = new PodcastManager(this, lw);
 #endif
+
 		
 		fo.fo_progress.connect(dbProgress);
 		dbm.db_progress.connect(dbProgress);
@@ -418,141 +418,147 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			settings.setMusicFolder (folder);
 
 			settings.setMusicMountName("");
-			
-			try {
-				Thread.create<void*>(set_music_thread_function, false);
-			}
-			catch(GLib.Error err) {
-				warning("Could not create thread to set music folder: %s\n", err.message);
-			}
+
+			set_music_folder_async ();
 		}
 	}
 	
-	public void* set_music_thread_function () {
-		var music_folder_file = GLib.File.new_for_path(settings.getMusicFolder ());
-		LinkedList<string> files = new LinkedList<string>();
+	private async void set_music_folder_async () {
+		try {
+			new Thread<void*>.try (null, () => {
+				var music_folder_file = GLib.File.new_for_path(settings.getMusicFolder ());
+				LinkedList<string> files = new LinkedList<string>();
 		
-		var items = fo.count_music_files(music_folder_file, ref files);
-		debug ("found %d items to import\n", items);
+				var items = fo.count_music_files(music_folder_file, ref files);
+				debug ("found %d items to import\n", items);
 		
-		fo.resetProgress(items);
-		Timeout.add(100, doProgressNotificationWithTimeout);
-		fo.import_files(files, FileOperator.ImportType.SET);
-		
-		return null;
+				fo.resetProgress(items);
+				Timeout.add(100, doProgressNotificationWithTimeout);
+				fo.import_files(files, FileOperator.ImportType.SET);
+
+				return null;
+			});
+		} catch (Error err) {
+			warning (err.message);
+		}
+
 	}
 	
-	public void add_files_to_library(LinkedList<string> files) {
-		if(start_file_operations("Adding files to library...")) {
+	public void add_files_to_library (LinkedList<string> files) {
+		if (start_file_operations("Adding files to library...")) {
 			temp_add_files = files;
-			
-			try {
-				Thread.create<void*>(add_files_to_library_thread, false);
-			}
-			catch(GLib.Error err) {
-				warning ("Could not create thread to add music files: %s\n", err.message);
-			}
+			add_files_to_library_async ();			
 		}
 	}
-	
-	public void* add_files_to_library_thread () {
-		fo.resetProgress(temp_add_files.size - 1);
-		Timeout.add(100, doProgressNotificationWithTimeout);
-		fo.import_files(temp_add_files, FileOperator.ImportType.IMPORT);
-		
-		return null;
+
+	private async void add_files_to_library_async () {
+
+		try {
+			new Thread<void*>.try (null, () => {
+				fo.resetProgress(temp_add_files.size - 1);
+				Timeout.add(100, doProgressNotificationWithTimeout);
+				fo.import_files(temp_add_files, FileOperator.ImportType.IMPORT);
+
+				return null;
+			});
+		} catch (Error err) {
+			warning (err.message);
+		}
 	}
-	
-	public void add_folder_to_library(string folder, string[]? other_folders = null) {
+
+	public void add_folder_to_library (string folder, string[]? other_folders = null) {
 	    if (other_folders != null)
 	        temp_add_other_folders = other_folders;
 	        
 		if(start_file_operations("Adding music from <b>" + folder + "</b> to library...")) {
 			temp_add_folder = folder;
-			
-			try {
-				Thread.create<void*>(add_folder_to_library_thread, false);
-			}
-			catch(GLib.Error err) {
-				warning ("Could not create thread to add music folder: %s\n", err.message);
-			}
+			add_folder_to_library_async ();
 		}
 	}
 	
-	public void* add_folder_to_library_thread () {
-		var file = GLib.File.new_for_path(temp_add_folder);
-		var files = new LinkedList<string>();
-		
-		var items = fo.count_music_files(file, ref files);
-		fo.resetProgress(items);
-		Timeout.add(100, doProgressNotificationWithTimeout);
-		fo.import_files(files, FileOperator.ImportType.IMPORT);
+	private async void add_folder_to_library_async () {
+		try {
+			new Thread<void*>.try (null, () => {
+				var file = GLib.File.new_for_path(temp_add_folder);
+				var files = new LinkedList<string>();
 
-		return null;
+				var items = fo.count_music_files(file, ref files);
+
+				fo.resetProgress(items);
+				Timeout.add(100, doProgressNotificationWithTimeout);
+				fo.import_files(files, FileOperator.ImportType.IMPORT);
+
+				return null;
+			});
+		} catch (Error err) {
+			warning (err.message);
+		}
 	}
     
 	public void rescan_music_folder() {
 		if(start_file_operations("Rescanning music for changes. This may take a while...")) {
-			try {
-					Thread.create<void*>(rescan_music_thread_function, false);
-			}
-			catch(GLib.Error err) {
-				warning ("Could not create thread to rescan music folder: %s\n", err.message);
-			}
+			rescan_music_folder_async ();
 		}
 	}
         
-	public void* rescan_music_thread_function () {
-		HashMap<string, Media> paths = new HashMap<string, Media>();
-		LinkedList<Media> to_remove = new LinkedList<Media>();
-		LinkedList<string> to_import = new LinkedList<string>();
-		
-		fo.resetProgress(100);
-		Timeout.add(100, doProgressNotificationWithTimeout);
-		
-		var music_folder_dir = settings.getMusicFolder ();
-		foreach(Media s in _media.values) {
-			if(!s.isTemporary && !s.isPreview && s.uri.contains(music_folder_dir))
-				paths.set(s.uri, s);
+	private async void rescan_music_folder_async () {
+		try {
+			new Thread<void*>.try (null, () => {
+				HashMap<string, Media> paths = new HashMap<string, Media>();
+				LinkedList<Media> to_remove = new LinkedList<Media>();
+				LinkedList<string> to_import = new LinkedList<string>();
+	
+				fo.resetProgress(100);
+				Timeout.add(100, doProgressNotificationWithTimeout);
+	
+				var music_folder_dir = settings.getMusicFolder ();
+				foreach(Media s in _media.values) {
+					if(!s.isTemporary && !s.isPreview && s.uri.contains(music_folder_dir))
+						paths.set(s.uri, s);
+						
+					if(s.uri.contains(music_folder_dir) && !File.new_for_uri(s.uri).query_exists())
+							to_remove.add(s);
+				}
+				fo.index = 5;
 				
-			if(s.uri.contains(music_folder_dir) && !File.new_for_uri(s.uri).query_exists())
-				to_remove.add(s);
-		}
-		fo.index = 5;
-		
-		// get a list of the current files
-		var files = new LinkedList<string>();
-		fo.count_music_files(File.new_for_path(music_folder_dir), ref files);
-		fo.index = 10;
-		
-		foreach(string s in files) {
-			if(paths.get("file://" + s) == null)
-				to_import.add(s);
-		}
-		
-		debug ("Importing %d new songs\n", to_import.size);
-		if(to_import.size > 0) {
-			fo.resetProgress(to_import.size);
-			Timeout.add(100, doProgressNotificationWithTimeout);
-			fo.import_files(to_import, FileOperator.ImportType.RESCAN);
-		}
-		else {
-			fo.index = 90;
-		}
-		Idle.add( () => {
-			if (!fo.cancelled)
-				remove_medias(to_remove, false);
-			if (to_import.size == 0) {
-				finish_file_operations();
-			}
+				// get a list of the current files
+				var files = new LinkedList<string>();
+				fo.count_music_files(File.new_for_path(music_folder_dir), ref files);
+				fo.index = 10;
+			
+				foreach(string s in files) {
+					if(paths.get("file://" + s) == null)
+						to_import.add(s);
+				}
+			
+				debug ("Importing %d new songs\n", to_import.size);
+				if(to_import.size > 0) {
+					fo.resetProgress(to_import.size);
+					Timeout.add(100, doProgressNotificationWithTimeout);
+					fo.import_files(to_import, FileOperator.ImportType.RESCAN);
+				}
+				else {
+					fo.index = 90;
+				}
 
-			// after we're done with that, rescan album arts
-			fetch_all_cover_art ();
-
-			return false; 
-		});
+				Idle.add( () => {
+					if (!fo.cancelled)
+						remove_medias(to_remove, false);
+					if (to_import.size == 0) {
+						finish_file_operations();
+					}
 		
-		return null;
+					// after we're done with that, rescan album arts
+					fetch_all_cover_art_async ();
+	
+					return false; 
+				});
+
+				return null;
+			});
+		} catch (Error err) {
+			warning (err.message);
+		}
 	}
 	
 	/************************ Playlist stuff ******************/
@@ -638,18 +644,17 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return rv;
 	}
 	
-	public void save_smart_playlists() {
+	public async void save_smart_playlists() {
 		try {
-			Thread.create<void*>( () => { 
+			new Thread<void*>.try (null, () => {
 				_smart_playlists_lock.lock ();
 				dbm.save_smart_playlists(_smart_playlists.values);
 				_smart_playlists_lock.unlock ();
-				
-				return null; 
-			}, false);
-		}
-		catch(GLib.Error err) {
-			warning ("Could not create thread to save smart playlists: %s\n", err.message);
+
+				return null;
+			});
+		} catch (Error err) {
+			warning (err.message);
 		}
 	}
 	
@@ -805,18 +810,18 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			dbu.update_media(s);
 	}
 
-	public void save_media() {
+	public async void save_media() {
+
 		try {
-			Thread.create<void*>( () => { 
+			new Thread<void*>.try (null, () => {
 				_media_lock.lock ();
 				dbm.update_medias(_media.values);
 				_media_lock.unlock ();
-				
-				return null; 
-			}, false);
-		}
-		catch(GLib.Error err) {
-			warning ("Could not create thread to save media: %s\n", err.message);
+
+				return null;
+			});
+		} catch (Error err) {
+			warning (err.message);
 		}
 	}
 	
@@ -1563,7 +1568,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		media_played(id, old_id);
 		
 		try {
-			Thread.create<void*>(change_gains_thread, false);
+			new Thread<void*>.try (null, change_gains_thread);
 		}
 		catch(GLib.Error err) {
 			warning("Could not create thread to change gains: %s\n", err.message);
@@ -1706,17 +1711,23 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 	}
 
-	public void* fetch_cover_art_from_cache () {
-		fetch_cover_art (true);
-		return null;
+	public async void fetch_cover_art_from_cache_async () {
+		try {
+			new Thread<void*>.try (null, () => { fetch_cover_art (true); return null; });
+		} catch (Error err) {
+			warning (err.message);
+		}
 	}
 
-	public void* fetch_all_cover_art () {
-		fetch_cover_art (false);
-		return null;
+	public async void fetch_all_cover_art_async () {
+		try {
+			new Thread<void*>.try (null, () => { fetch_cover_art (false); return null; });
+		} catch (Error err) {
+			warning (err.message);
+		}
 	}
 
-	private void fetch_cover_art (bool cache_only = true) {
+	private void fetch_cover_art (bool cache_only) {
 		if(in_fetch_thread)
 			return;
 		
@@ -1858,24 +1869,14 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			pm.find_new_podcasts();
 		}
 		else {
-			try {
-				Thread.create<void*>(fetch_all_cover_art, false);
-			}
-			catch(GLib.ThreadError err) {
-				warning("Could not create thread to load media pixbuf's: %s \n", err.message);
-			}
+			fetch_all_cover_art_async ();
 			
 			lw.update_sensitivities();
 			lw.updateInfoLabel();
 			file_operations_done();
 		}
 #else
-		try {
-			Thread.create<void*>(fetch_all_cover_art, false);
-		}
-		catch(GLib.ThreadError err) {
-			warning("Could not create thread to load media pixbuf's: %s \n", err.message);
-		}
+		fetch_all_cover_art_async ();
 		
 		lw.update_sensitivities();
 		lw.updateInfoLabel();

@@ -42,10 +42,10 @@ public class BeatBox.LyricFetcher : GLib.Object {
 		this.title = title;
 		
 		try {
-			Thread.create<void*> (fetch_lyrics_thread, false);
+			new Thread<void*>.try (null, fetch_lyrics_thread);
 		}
-		catch(GLib.ThreadError err) {
-			stderr.printf ("ERROR: Could not create lyrics thread: %s \n", err.message);
+		catch(GLib.Error err) {
+			warning ("ERROR: Could not create lyrics thread: %s \n", err.message);
 		}
 	}
 	
@@ -108,7 +108,7 @@ private class AZLyricsFetcher : Object {
 			rv.artist = artist;
 		}
 		catch (Error err) {
-			//stderr.printf("Could not load contents of %s : %s\n", url, err.message);
+			//warning("Could not load contents of %s : %s\n", url, err.message);
 			load_successful = false;
 		}
 
@@ -122,7 +122,7 @@ private class AZLyricsFetcher : Object {
 				load_successful = true;
 			}
 			catch (Error err) {
-				//stderr.printf ("Could not load contents of %s : %s\n", url, err.message);
+				//warning ("Could not load contents of %s : %s\n", url, err.message);
 				load_successful = false;
 			}
 		}

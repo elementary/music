@@ -78,9 +78,9 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		lm.progress_cancel_clicked.connect(cancel_transfer);
 		
 		try {
-			Thread.create<void*>(finish_initialization_thread, false);
+			new Thread<void*>.try (null, finish_initialization_thread);
 		}
-		catch(GLib.ThreadError err) {
+		catch (Error err) {
 			stdout.printf("ERROR: Could not create thread to finish ipod initialization: %s \n", err.message);
 		}
 	}

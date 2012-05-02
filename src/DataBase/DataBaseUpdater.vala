@@ -42,9 +42,6 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		this.lm = lm;
 		dbm = databm;
 		
-		update_mutex = new Mutex();
-		remove_mutex = new Mutex();
-		
 		media_updates = new LinkedList<Media>();
 		toUpdate = new LinkedList<GLib.Object>();
 		toRemove = new LinkedList<GLib.Object>();
@@ -65,15 +62,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		if(!(toUpdate.contains(item)))
 			toUpdate.offer(item);
 		
-		if(!inThread) {
-			try {
-				inThread = true;
-				Thread.create<void*>(update_db_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				stdout.printf("Could not create thread to update database: %s \n", err.message);
-			}
-		}
+		update_db_async ();
 	}
 	
 	public void update_media(Media s) {
@@ -82,13 +71,17 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 			media_updates.offer(s);
 		update_mutex.unlock();
 		
+		update_db_async ();
+	}
+
+	private async void update_db_async () {
 		if(!inThread) {
 			try {
 				inThread = true;
-				Thread.create<void*>(update_db_thread_function, false);
+				new Thread<void*>.try (null, update_db_thread_function);
 			}
-			catch(GLib.ThreadError err) {
-				stdout.printf("Could not create thread to update database: %s \n", err.message);
+			catch(Error err) {
+				warning ("Could not create thread to update database: %s \n", err.message);
 			}
 		}
 	}
@@ -99,15 +92,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 			toRemove.offer(item);
 		remove_mutex.unlock();
 		
-		if(!inThread) {
-			try {
-				inThread = true;
-				Thread.create<void*>(update_db_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				stdout.printf("Could not create thread to update database: %s \n", err.message);
-			}
-		}
+		update_db_async ();
 	}
 	
 	public void* update_db_thread_function () {

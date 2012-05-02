@@ -83,10 +83,10 @@ public class BeatBox.SimilarMediasView : TreeView {
 	
 	public virtual void viewDoubleClick(TreePath path, TreeViewColumn column) {
 		try {
-			Thread.create<void*>(take_action, false);
+			new Thread<void*>.try (null, take_action);
 		}
-		catch(GLib.ThreadError err) {
-			stdout.printf("ERROR: Could not create thread to have fun: %s \n", err.message);
+		catch (GLib.Error err) {
+			warning ("ERROR: Could not create thread to have fun: %s \n", err.message);
 		}
 	}
 	

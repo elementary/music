@@ -50,9 +50,9 @@ public class LastFM.SimilarMedias : Object {
 			working = true;
 			
 			try {
-				Thread.create<void*>(similar_thread_function, false);
+				new Thread<void*>.try (null, similar_thread_function);
 			}
-			catch(GLib.ThreadError err) {
+			catch (GLib.Error err) {
 				warning("ERROR: Could not create similar thread: %s \n", err.message);
 			}
 		}

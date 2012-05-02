@@ -203,7 +203,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 #else
 	/* Use workarounds */
-	Mutex setting_size = new Mutex ();
+	Mutex setting_size;
 	private void on_resize (Allocation alloc) {
 		setting_size.lock ();
 

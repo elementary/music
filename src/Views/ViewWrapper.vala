@@ -134,7 +134,7 @@ public class BeatBox.ViewWrapper : Box {
 	private bool setting_search = false;
 
 	public bool needs_update;
-	protected Mutex in_update = new Mutex ();
+	protected Mutex in_update;
 
 	public ViewWrapper (LibraryWindow lw, Collection<int> the_media, TreeViewSetup tvs, int id)
 	{

@@ -98,14 +98,14 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		});
 		
 		try {
-			Thread.create<void*>(finish_initialization_thread, false);
+			new Thread<void*>.try (null, finish_initialization_thread);
 		}
-		catch(GLib.ThreadError err) {
+		catch (Error err) {
 			stdout.printf("ERROR: Could not create thread to finish ipod initialization: %s \n", err.message);
 		}
 	}
 	
-	void* finish_initialization_thread() {
+	void* finish_initialization_thread () {
 		var all = new LinkedList<Media>();
 		
 		// get all songs first
@@ -344,9 +344,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		this.list = list;
 		
 		try {
-			Thread.create<void*>(sync_medias_thread, false);
+			new Thread<void*>.try (null, sync_media_thread);
 		}
-		catch(GLib.ThreadError err) {
+		catch (Error err) {
 			stdout.printf("ERROR: Could not create thread to sync medias: %s \n", err.message);
 			return false;
 		}
@@ -379,7 +379,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		return get_capacity() > list_size;
 	}
 	
-	void* sync_medias_thread() {
+	void* sync_media_thread () {
 		currently_syncing = true;
 		bool error_occurred = false;
 		index = 0;
@@ -730,9 +730,9 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		this.list = list;
 		
 		try {
-			Thread.create<void*>(transfer_medias_thread, false);
+			new Thread<void*>.try (null, transfer_media_thread);
 		}
-		catch(GLib.ThreadError err) {
+		catch (Error err) {
 			stdout.printf("ERROR: Could not create thread to transfer medias: %s \n", err.message);
 			return false;
 		}
@@ -740,7 +740,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		return true;
 	}
 	
-	void* transfer_medias_thread() {
+	void* transfer_media_thread() {
 		if(this.list == null || this.list.size == 0)
 			return null;
 		

@@ -273,7 +273,7 @@ public class BeatBox.FileOperator : Object {
 		if(!inThread) {
 			try {
 				inThread = true;
-				Thread.create<void*>(save_media_thread, false);
+				new Thread<void*>.try (null, save_media_thread);
 			}
 			catch(GLib.Error err) {
 				warning ("Could not create thread to rescan music folder: %s\n", err.message);
@@ -576,7 +576,7 @@ public class BeatBox.FileOperator : Object {
 			fo_progress("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 			
 			try {
-				Thread.create<void*>(copy_imports_thread, false);
+				new Thread<void*>.try (null, copy_imports_thread);
 			}
 			catch(GLib.Error err) {
 				warning("Could not create thread to rescan music folder: %s\n", err.message);

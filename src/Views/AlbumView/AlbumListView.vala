@@ -42,7 +42,7 @@ public class BeatBox.AlbumListView : Window {
 
 	Gee.LinkedList<Media> media_list;
 
-	Mutex setting_media = new Mutex ();
+	Mutex setting_media;
 
 	public AlbumListView(AlbumView album_view) {
 		this.view_wrapper = album_view.parent_view_wrapper;

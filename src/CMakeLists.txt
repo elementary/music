@@ -141,6 +141,7 @@ PACKAGES
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/core/
+    --target-glib=2.32
     ${ADD_OPTIONS}
 GENERATE_VAPI
     noise
