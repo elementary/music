@@ -78,6 +78,9 @@ public class BeatBox.MediaKeyListener : GLib.Object {
         else if(key == "Next") {
             lw.nextClicked();
         }
+        else if(key == "Pause") {
+            // TODO
+        }
         else {
             message ("Unused key pressed: %s\n", key);
         }

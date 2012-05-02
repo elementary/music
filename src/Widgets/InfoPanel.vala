@@ -60,15 +60,15 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		// add View class
 		this.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 
-		title = new Label("Title");
-		artist = new Label("Artist");
+		title = new Label("");
+		artist = new Label("");
 		loveMedia = new Button();
 		banMedia = new Button();
 		coverArt = new Gtk.Image();
 		coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
 		rating = new Granite.Widgets.Rating (null, true, IconSize.MENU); // centered = true
-		album = new Label("Album");
-		year = new Label("Year");
+		album = new Label("");
+		year = new Label("");
 		ssv = new SimilarMediasView(lm, lw);
 
 		/* ellipsize */
@@ -81,14 +81,12 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		banMedia.set_image (Icons.LASTFM_BAN.render_image (IconSize.MENU));
 		
 		var content = new Box (Orientation.VERTICAL, 0);
+
 		// margins
 		content.margin_left = content.margin_right = 6;
 
-
 		var buttons = new ButtonBox (Orientation.HORIZONTAL);
-		buttons.pack_start (new Label(""), true, true, 0);
 		buttons.pack_start (loveMedia, false, false, 0);
-		buttons.pack_end (new Label(""), true, true, 0);
 		buttons.pack_end (banMedia, false, false, 0);
 
 		// put treeview inside scrolled window		
@@ -120,9 +118,12 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		content.pack_start (artist, false, true, 0);
 		content.pack_start (album, false, true, 0);
 		content.pack_start (year, false, true, 0);
-		content.pack_start (scroll, true, true, 0);
 
-		this.add (content);
+		var outer_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+		outer_box.pack_start (content, false, false, 0);
+		outer_box.pack_end (scroll, true, true, 0);
+
+		this.add (outer_box);
 
 		// signals here
 		rating.rating_changed.connect (ratingChanged);
