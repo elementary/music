@@ -70,7 +70,7 @@ public class BeatBox.StatusBar : Granite.Widgets.StatusBar {
             time_text = _("%.1f hours").printf ((float)total_secs / 3600.0);
         }
         else { // units in days
-            time_text = _("%.0f days").printf ((float)total_secs / (24.0 * 3600.0));
+            time_text = _("%i days").printf ((int)total_secs / (24 * 3600));
         }
 
         if (total_mbs < 1000)
