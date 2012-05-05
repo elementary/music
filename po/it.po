@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-04-30 22:43-0600\n"
-"PO-Revision-Date: 2012-04-27 12:41+0000\n"
-"Last-Translator: Tavecchio Luca <tavecchio.luca@tiscali.it>\n"
+"PO-Revision-Date: 2012-05-04 13:13+0000\n"
+"Last-Translator: Daniele \"OpenNingia\" Simonetti <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-02 05:59+0000\n"
-"X-Generator: Launchpad (build 15177)\n"
+"X-Launchpad-Export-Date: 2012-05-05 05:50+0000\n"
+"X-Generator: Launchpad (build 15195)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1127
@@ -84,15 +84,15 @@ msgstr "Annullando le importazioni rimanenti"
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:144
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:218
 msgid "id"
-msgstr ""
+msgstr "id"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:73
 msgid "Episode"
-msgstr ""
+msgstr "Episodio"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:77
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:81
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:164
@@ -127,11 +127,11 @@ msgstr "Podcast"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:93
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:97
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:101
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:277
@@ -139,7 +139,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:348
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:182
 msgid "Comment"
-msgstr ""
+msgstr "Commento"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:105
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:134
@@ -164,7 +164,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:126
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
 msgid "Station"
-msgstr ""
+msgstr "Stazione"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:130
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:176
@@ -465,66 +465,68 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:160
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:103
 msgid "Close"
-msgstr ""
+msgstr "Chiudi"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (Personalizzazione)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:417
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (Personalizzazione %i)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:421
 msgid "Custom Preset"
-msgstr ""
+msgstr "Impostazioni personalizzate"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:423
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Impostazioni personalizzate %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
-msgstr ""
+msgstr "File non importati"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "Impossibile importare %d elementi da %s"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
+"%s non è riuscito ad importare %d elementi. I file potrebbero essere "
+"danneggati."
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Sposta tutti i file corrotti nel cestino"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "Sposta nel cestino"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr ""
+msgstr "Ignora"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
-msgstr ""
+msgstr "canc"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "Posizione del file"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "Seleziona i file da spostare nel cestino:"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -552,16 +554,16 @@ msgstr "Scegli la Cartella Musica"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr ""
+msgstr "Installa plugin"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
 msgid "Do Nothing"
-msgstr ""
+msgstr "Non fare nulla"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
-msgstr ""
+msgstr "Il plugin GStreamer è necessario ma non è installato"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
@@ -569,6 +571,8 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"Il plugin per riprodurre il contenuto %s non è installato.\n"
+"Cosa vuoi fare?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
@@ -588,20 +592,23 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Se continui la sincronizzazione, i contenuti saranno rimossi da %s dato che "
+"non sono presenti nella lista di sincronizzazione. Vuoi importarli nella "
+"libreria prima di procedere?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:80
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "La sincronizzazione rimuoverà %i elementi da %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:83
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "La sincronizzazione rimuoverà 1 elemento da %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:48
 msgid "Success!"
-msgstr ""
+msgstr "Successo!"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:49
 msgid "Enable Scrobbling"
@@ -609,7 +616,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:50
 msgid "Unsuccessful. Click to try again."
-msgstr ""
+msgstr "Fallimento. Clicca per ritentare."
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:67
 #: /home/victor/noise/po/../src//LibraryWindow.vala:268
@@ -618,15 +625,15 @@ msgstr "Preferenze"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:81
 msgid "Music Folder"
-msgstr ""
+msgstr "Cartella della musica"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Keep music folder organized"
-msgstr ""
+msgstr "Mantieni aggiornata la cartella della musica"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:85
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Scrivi i metadati su file"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:86
 msgid "Copy files to music folder when added to library"
@@ -634,7 +641,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:88
 msgid "Automatically download new podcast episodes"
-msgstr ""
+msgstr "Scarica automaticamente i nuovi episodi podcast"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:93
 msgid ""

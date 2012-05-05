@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-04-30 22:43-0600\n"
-"PO-Revision-Date: 2012-05-01 15:48+0000\n"
-"Last-Translator: Juan David Angarita <Unknown>\n"
+"PO-Revision-Date: 2012-05-04 22:11+0000\n"
+"Last-Translator: ttosttos <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-02 05:59+0000\n"
-"X-Generator: Launchpad (build 15177)\n"
+"X-Launchpad-Export-Date: 2012-05-05 05:50+0000\n"
+"X-Generator: Launchpad (build 15195)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1127
@@ -502,7 +502,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Mover todos los archivos dañados a la papelera"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
@@ -600,7 +600,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:48
 msgid "Success!"
-msgstr ""
+msgstr "Completado!"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:49
 msgid "Enable Scrobbling"
@@ -617,15 +617,15 @@ msgstr "Preferencias"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:81
 msgid "Music Folder"
-msgstr ""
+msgstr "Carpeta de música"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Keep music folder organized"
-msgstr ""
+msgstr "Mantener carpeta de música organizada"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:85
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Guardar metadatos"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:86
 msgid "Copy files to music folder when added to library"
@@ -633,7 +633,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:88
 msgid "Automatically download new podcast episodes"
-msgstr ""
+msgstr "Descargar automáticamente nuevos episodios de podcast"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:93
 msgid ""
@@ -652,23 +652,25 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:108
 #, c-format
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Ubicación de la carpeta de música"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:109
 #, c-format
 msgid "Library Management"
-msgstr ""
+msgstr "Gestión de biblioteca"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:113
 #, c-format
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Integración con Last.fm"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:121
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Las operaciónes de archivos deben concluir antes de configurar la carpeta de "
+"música"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:189
 msgid "Complete login"
@@ -780,12 +782,12 @@ msgstr "Canción"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:373
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
-msgstr ""
+msgstr "Audiolibro"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:307
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:374
 msgid "Radio Station"
-msgstr ""
+msgstr "Estación de Radio"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:355
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
@@ -807,7 +809,7 @@ msgstr "no es"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:397
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:411
 msgid "is exactly"
-msgstr ""
+msgstr "es exactamente"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:398
 msgid "is at most"
@@ -848,6 +850,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Los siguientes archivos se encontraron en %s, pero no estan en tu "
+"biblioteca.  Selecciona los archivos que quieres importar."
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -1014,11 +1018,11 @@ msgstr "Noise parece no poder encontrar tu música"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
 msgid "No Music Found"
-msgstr ""
+msgstr "No se encontró música"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
 msgid "There is no music on this device."
-msgstr ""
+msgstr "No hay música en este dispositivo"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
 msgid "You can start syncing music by clicking on the sync button."
@@ -1146,7 +1150,7 @@ msgstr "Sin puntuar"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:192
 msgid "1 Star"
-msgstr ""
+msgstr "1 estrella"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:194
 #, c-format
