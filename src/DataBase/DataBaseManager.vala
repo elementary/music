@@ -27,8 +27,6 @@ using Gee;
 public class BeatBox.DataBaseManager : GLib.Object {
 	public signal void db_progress (string? message, double progress);
 
-	private const string DATABASE_FILE_NAME = "database";
-
 	private LibraryManager lm;
 	private SQLHeavy.Database database;
 	private Transaction transaction; // the current sql transaction
@@ -54,8 +52,11 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 
+		var db_file = GLib.File.new_for_path (GLib.Path.build_filename (data_dir.get_path (), lm.lw.app.get_name (), "database.db"));
 
-		var db_file = GLib.File.new_for_path (GLib.Path.build_filename (data_dir.get_path (), DATABASE_FILE_NAME + ".db"));
+		/* we need to set this variable since 'new SQLHeavy.Database' will create the file later */
+		bool need_create = !db_file.query_exists ();
+
 		try {
 			database = new SQLHeavy.Database (db_file.get_path (), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
 		}
@@ -67,7 +68,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		database.synchronous = SQLHeavy.SynchronousMode.from_string ("OFF");
 
 		/* Create new database if it doesn't exist */
-		if (!db_file.query_exists ()) {
+		if (need_create) {
 			try {
 				database.execute("CREATE TABLE playlists (`name` TEXT, `media` TEXT, 'sort_column_id' INT, 'sort_direction' TEXT, 'columns' TEXT)");
 				database.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column_id' INT, 'sort_direction' TEXT, 'columns' TEXT)");
@@ -83,7 +84,8 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				database.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
 				database.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
 				database.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'url' TEXT, 'duration' INT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT)");
-				add_default_smart_playlists();
+
+				add_default_smart_playlists ();
 			}
 			catch (SQLHeavy.Error err) {
 				warning ("Bad news: could not create tables. Please report this. Message: %s\n", err.message);

@@ -93,7 +93,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	private SimpleOptionChooser addPlaylistChooser;
 	private SimpleOptionChooser shuffleChooser;
 	private SimpleOptionChooser repeatChooser;
-	private SimpleOptionChooser info_panelChooser;
+	private SimpleOptionChooser info_panel_chooser;
 	private SimpleOptionChooser eq_option_chooser;
 
 	// basic file stuff
@@ -230,12 +230,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		addPlaylistChooser = new SimpleOptionChooser.from_image (add_playlist_image);
 		shuffleChooser = new SimpleOptionChooser.from_image (shuffle_on_image, shuffle_off_image);
 		repeatChooser = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
-		info_panelChooser = new SimpleOptionChooser.from_image (info_panel_hide, info_panel_show);
+		info_panel_chooser = new SimpleOptionChooser.from_image (info_panel_hide, info_panel_show);
 		eq_option_chooser = new SimpleOptionChooser.from_image (eq_hide_image, eq_show_image);
 
 		repeatChooser.setTooltip (_("Disable Repeat"), _("Enable Repeat"));
 		shuffleChooser.setTooltip (_("Disable Shuffle"), _("Enable Shuffle"));
-		info_panelChooser.setTooltip (_("Hide Info Panel"), _("Show Info Panel"));
+		info_panel_chooser.setTooltip (_("Hide Info Panel"), _("Show Info Panel"));
 		addPlaylistChooser.setTooltip (_("Add Playlist"));
 		eq_option_chooser.setTooltip (_("Hide Equalizer"), _("Show Equalizer"));
 
@@ -244,7 +244,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		statusbar.insert_widget (shuffleChooser, true);
 		statusbar.insert_widget (repeatChooser, true);
 		statusbar.insert_widget (eq_option_chooser);
-		statusbar.insert_widget (info_panelChooser);
+		statusbar.insert_widget (info_panel_chooser);
 
 		// Set properties of various controls
 		sourcesToMedias.set_position(settings.getSidebarWidth());
@@ -278,15 +278,15 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		shuffleChooser.appendItem(_("Off"));
 		shuffleChooser.appendItem(_("All"));
 
-		info_panelChooser.appendItem(_("Hide"));
-		info_panelChooser.appendItem(_("Show"));
+		info_panel_chooser.appendItem(_("Hide"));
+		info_panel_chooser.appendItem(_("Show"));
 
 		eq_option_chooser.appendItem(_("Hide"));
 		eq_option_chooser.appendItem(_("Show"));
 
 		repeatChooser.setOption(settings.getRepeatMode());
 		shuffleChooser.setOption(settings.getShuffleMode());
-		info_panelChooser.setOption(settings.getMoreVisible() ? 1 : 0);
+		info_panel_chooser.setOption(settings.getMoreVisible() ? 1 : 0);
 		eq_option_chooser.setOption(0);
 
 		// Add controls to the GUI
@@ -377,7 +377,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
 		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
-		info_panelChooser.option_changed.connect(info_panelChooserOptionChanged);
+		info_panel_chooser.option_changed.connect(info_panel_chooserOptionChanged);
 
 		searchField.activate.connect(searchFieldActivate);
 
@@ -712,7 +712,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		debug ("UPDATE SENSITIVITIES");
 
 		bool folder_set = (settings.getMusicFolder () != "");
-		//bool have_media = lm.media_count() > 0;
+		bool have_media = lm.media_count() > 0;
 		bool doing_ops = lm.doing_file_operations();
 		bool media_active = lm.media_active;
 
@@ -729,14 +729,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			topDisplay.show_scale();
 		}
 
-#if HAVE_PODCASTS
-		// HIDE SIDEBAR AND VIEWS WHEN PLAYING VIDEOS ...
-		sourcesToMedias.set_visible(viewSelector.selected != 2);
-		// Disabled due to a bug in GDK (version 3.4)
-		//videoArea.set_no_show_all (viewSelector.selected != 2);
-		videoArea.set_visible(viewSelector.selected == 2);
-#endif
-
 		bool show_top_display = media_active || doing_ops;
 		topDisplay.set_visible (show_top_display);
 
@@ -748,25 +740,17 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 				music_library_view.welcome_screen.set_item_sensitivity(key, !doing_ops);
 		}
 
-		// FIXME: revert this back to set_visible(have_media) after L+1
-		statusbar.set_visible (folder_set);
-		//statusbar.set_visible(have_media);
-		//info_panel.set_visible(have_media);
+		statusbar.set_sensitive (folder_set);
 
-		//bool show_info_panel = show_more && media_active;
-		//info_panel.set_visible(show_info_panel);
-		
-		//bool show_info_panel_chooser = showmain_views && mediaActive;
-		//info_panelChooser.set_visible(show_info_panel_chooser);
+		bool show_info_panel = settings.getMoreVisible () && media_active && folder_set;
+		info_panel.set_visible (show_info_panel);
+		info_panel_chooser.set_sensitive (media_active && folder_set);
+
 
 		// hide playlists when media list is empty
+		sideTree.setVisibility(sideTree.playlists_iter, have_media);
 
-		// FIXME: revert this back to set_visible(have_media) after L+1
-		sideTree.setVisibility(sideTree.playlists_iter, folder_set);
-		//sideTree.setVisibility(sideTree.playlists_iter, have_media);
-
-		// FIXME: revert this back to set_visible(have_media) after L+1
-		if(!lm.media_active || folder_set /*have_media*/ && !lm.playing) {
+		if(!lm.media_active || have_media && !lm.playing) {
 			playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
 		}
 	}
@@ -1436,7 +1420,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	}
 
 
-	public virtual void info_panelChooserOptionChanged(int val) {
+	public virtual void info_panel_chooserOptionChanged(int val) {
 		info_panel.set_visible(val == 1);
 		lm.settings.setMoreVisible(val == 1);
 	}
