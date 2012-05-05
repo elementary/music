@@ -444,6 +444,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		this.map_event.connect ( () => {
 			// start thread to load all the media pixbufs
 			try {
+				debug ("art");
 				Thread.create<void*>(lm.fetch_cover_art_from_cache, false);
 			}
 			catch(GLib.ThreadError err) {

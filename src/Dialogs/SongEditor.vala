@@ -71,14 +71,20 @@ public class BeatBox.MediaEditor : Window {
 		else
 			lyricsText = null;
 		
-		var buttonSep = new HButtonBox();
-		buttonSep.set_layout(ButtonBoxStyle.END);
+		var buttonSep = new Box(Orientation.HORIZONTAL, 0);
+		//buttonSep.set_layout(ButtonBoxStyle.START);
+		var arrows = new Granite.Widgets.NavigationArrows ();
+		var spacer = new Label (""); // Fake label
+		spacer.hexpand = true;
 		_previous = new Button.with_label(_("Previous"));
 		_next = new Button.with_label(_("Next"));
-		_save = new Button.with_label(_("Done"));
-		
-		buttonSep.pack_start(_previous, false, false, 0);
-		buttonSep.pack_start(_next, false, false, 0);
+		_save = new Button.with_label(_("\tDone\t"));
+		_save.set_margin_right (4);
+        _save.set_margin_top (4);
+        _save.set_margin_bottom (4);
+	
+		buttonSep.pack_start(arrows, false, false, 0);
+		buttonSep.pack_start(spacer, true, true, 0);
 		buttonSep.pack_end(_save, false, false, 0);
 
 		var content = new Gtk.Box (Orientation.VERTICAL, 0);
@@ -106,8 +112,8 @@ public class BeatBox.MediaEditor : Window {
 			fetch_lyrics (false);
 		}
 
-		_previous.clicked.connect(previousClicked);
-		_next.clicked.connect(nextClicked);
+		arrows.previous_clicked.connect(previousClicked);
+		arrows.next_clicked.connect(nextClicked);
 		_save.clicked.connect(saveClicked);
 	}
 	
