@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-01 06:04+0000\n"
-"X-Generator: Launchpad (build 15171)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:59+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1127
@@ -1425,39 +1425,3 @@ msgstr "Importer songar frå lyd CD"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1482
 msgid "Import media from device"
 msgstr "Importer musikk frå ein enheit"
-
-#~ msgid "Remove Station"
-#~ msgstr "Fjern stasjonen"
-
-#~ msgid ""
-#~ "In this view, BeatBox will automatically find medias similar to the one you "
-#~ "are playing."
-#~ msgstr ""
-#~ "I denne visninga vil BeatBox automatisk finne lignande musikk som den du "
-#~ "høyrer på."
-
-#~ msgid "You can then start playing those medias, or save them for later."
-#~ msgstr ""
-#~ "Då kan dy byrje å høyre på den musikken, eller lagre den til seinare."
-
-#, c-format
-#~ msgid "Podcast RSS Source"
-#~ msgstr "Podkast RSS kjelde"
-
-#~ msgid "Podcast Source..."
-#~ msgstr "Podkast kjelde..."
-
-#, c-format
-#~ msgid "<b>Name of Playlist</b>"
-#~ msgstr "<b>Namn på spelelista</b>"
-
-#, c-format
-#~ msgid "<b>Rules</b>"
-#~ msgstr "<b>Reglar</b>"
-
-#, c-format
-#~ msgid "Options</b>"
-#~ msgstr "Innstillingar</b>"
-
-#~ msgid "Music Store"
-#~ msgstr "Musikkbutikk"

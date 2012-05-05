@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-01 06:04+0000\n"
-"X-Generator: Launchpad (build 15171)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:59+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1127
@@ -1428,40 +1428,3 @@ msgstr "Importa melodii de pe CD audio"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1482
 msgid "Import media from device"
 msgstr "Importă fișiere de pe dispozitiv"
-
-#~ msgid "Remove Station"
-#~ msgstr "Elimină post radio"
-
-#~ msgid ""
-#~ "In this view, BeatBox will automatically find medias similar to the one you "
-#~ "are playing."
-#~ msgstr ""
-#~ "În această vedere, BeatBox va căuta automat fișiere similare cu cel ce "
-#~ "rulează."
-
-#~ msgid "You can then start playing those medias, or save them for later."
-#~ msgstr ""
-#~ "Puteţi începe apoi redarea acestor fișiere, sau le puteți salva pentru mai "
-#~ "târziu."
-
-#, c-format
-#~ msgid "Podcast RSS Source"
-#~ msgstr "Sursa RSS a podcast-ului"
-
-#~ msgid "Podcast Source..."
-#~ msgstr "Sursa podcast-ului"
-
-#, c-format
-#~ msgid "<b>Name of Playlist</b>"
-#~ msgstr "<b>Numele listei de redare</b>"
-
-#, c-format
-#~ msgid "<b>Rules</b>"
-#~ msgstr "<b>Reguli</b>"
-
-#, c-format
-#~ msgid "Options</b>"
-#~ msgstr "Opțiuni</b>"
-
-#~ msgid "Music Store"
-#~ msgstr "Magazin cu muzică"
