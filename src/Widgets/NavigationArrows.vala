@@ -1,6 +1,4 @@
 //
-//  Copyright (C) 2008 Christian Hergert <chris@dronelabs.com>
-//  Copyright (C) 2011 Giulio Collura
 //  Copyright (C) 2012 Mario Guerriero <mefrio.g@gmail.com>
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -28,7 +26,7 @@ namespace Granite.Widgets {
         public signal void next_clicked ();
 
         // Style properties. Please note that style class names are for internal
-        // use only. Theme developers should use GraniteWidgetsModeButton instead.
+        // use only. Theme developers should use GraniteWidgetsNavigationArrows instead.
         internal static CssProvider style_provider;
         internal static StyleContext widget_style;
         private const int style_priority = Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION;
@@ -37,7 +35,7 @@ namespace Granite.Widgets {
         private Gtk.Button next_button;
         
         private const string STYLESHEET = """
-            .GraniteModeButton .button {
+            .GraniteNavigationArrows .button {
                 -GtkToolbar-button-relief: normal;
                 border-radius: 0 0 0 0;
                 border-style: solid;
@@ -47,19 +45,19 @@ namespace Granite.Widgets {
                 -unico-outer-stroke-radius: 0 0 0 0;
             }
 
-            .GraniteModeButton .button:active,
-            .GraniteModeButton .button:insensitive {
+            .GraniteNavigationArrows .button:active,
+            .GraniteNavigationArrows .button:insensitive {
                 -unico-outer-stroke-width: 1px 0 1px 0;
             }
 
-            .GraniteModeButton .button:first-child {
+            .GraniteNavigationArrows .button:first-child {
                 border-radius: 3px 0 0 3px;
                 border-width: 1px 0 1px 1px;
 
                 -unico-outer-stroke-width: 1px 0 1px 1px;
             }
 
-            .GraniteModeButton .button:last-child {
+            .GraniteNavigationArrows .button:last-child {
                 border-radius: 0 3px 3px 0;
                 border-width: 1px;
 
@@ -75,12 +73,12 @@ namespace Granite.Widgets {
                 try {
                     style_provider.load_from_data (STYLESHEET, -1);
                 } catch (Error e) {
-                    warning ("GraniteModeButton: %s. The widget will not look as intended", e.message);
+                    warning ("GraniteNavigationArrows: %s. The widget will not look as intended", e.message);
                 }
             }
 
             widget_style = get_style_context ();
-            widget_style.add_class ("GraniteModeButton");
+            widget_style.add_class ("GraniteNavigationArrows");
 
             homogeneous = true;
             spacing = 0;
