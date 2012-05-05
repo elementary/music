@@ -278,7 +278,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		mediasModel.foreach(createTransferList);
 		
 		if(lm.doing_file_operations()) {
-			lm.lw.doAlert(_("Cannot Import"), _("Noise is already doing file operations. Please wait until those finish to import from %s").printf (d.getDisplayName ()));
+			lm.lw.doAlert(_("Cannot Import"), _("%s is already doing file operations. Please wait until those finish to import from %s").printf (lm.lw.app.get_name (), d.getDisplayName ()));
 		}
 		else {
 			d.transfer_to_library(to_transfer);

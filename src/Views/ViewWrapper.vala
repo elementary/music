@@ -171,7 +171,7 @@ public class BeatBox.ViewWrapper : Box {
 				list_view = new ListView (this, tvs);
 
 				// Welcome screen
-				welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("Noise can't seem to find your music."));
+				welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("%s can't seem to find your music.").printf (lw.app.get_name ()));
 				
 				break;
 			case Hint.DEVICE_AUDIO:
@@ -269,7 +269,7 @@ public class BeatBox.ViewWrapper : Box {
 
 				error_box = new WarningLabel();
 				error_box.show_icon = true;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Audio CD Invalid") + "</span>\n\n" + _("BeatBox could not read the contents of this Audio CD."));
+				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Audio CD Invalid") + "</span>\n\n" + _("%s could not read the contents of this Audio CD.").printf (lw.app.get_name ()));
 
 				break;
 			default:
@@ -373,7 +373,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		view_container.set_current_page (view_index);
 
-		// Update BeatBox's toolbar widgets
+		// Update LibraryWindow toolbar widgets
 		update_library_window_widgets ();
 
 		set_statusbar_info ();

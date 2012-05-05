@@ -225,14 +225,15 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			return false;
 		}
 
+		var app_name = lw.app.get_name ();
 		if(list.size == 0) {
-			lw.doAlert(_("No songs on CD"), _("Noise could not find any songs on the CD. No songs can be imported"));
+			lw.doAlert(_("No songs on CD"), _("%s could not find any songs on the CD. No songs can be imported").printf (app_name));
 			return false;
 		}
 		
 
 		if(lm.doing_file_operations()) {
-			lw.doAlert(_("Noise is already doing an import"), _("Please wait until BeatBox is finished with the current import before importing the CD."));
+			lw.doAlert(_("%s is already doing an import").printf (app_name), _("Please wait until %s is finished with the current import before importing the CD.").printf (app_name));
 			return false;
 		}
 		
@@ -323,12 +324,13 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			media_being_ripped = null;
 			_is_transferring = false;
 			
+			var app_name = lw.app.get_name ();
 			int n_songs = current_list_index + 1;
 			if (n_songs > 1) {
-				lw.show_notification (_("CD Import Complete"), _("Noise has finished importing %i songs from Audio CD."));
+				lw.show_notification (_("CD Import Complete"), _("%s has finished importing %i songs from Audio CD.").printf (app_name));
 			}
 			else if (n_songs > 0) {
-				lw.show_notification (_("CD Import Complete"), _("Noise has finished importing a song from Audio CD."));
+				lw.show_notification (_("CD Import Complete"), _("%s has finished importing a song from Audio CD.").printf (app_name));
 			}
 
 		}

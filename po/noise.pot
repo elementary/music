@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 17:16-0600\n"
+"POT-Creation-Date: 2012-05-05 17:48-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,48 +28,52 @@ msgid ""
 "importing the CD."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:230
 msgid "No songs on CD"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
-msgid "Noise could not find any songs on the CD. No songs can be imported"
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:230
+#, c-format
+msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:235
-msgid "Noise is already doing an import"
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
+#, c-format
+msgid "%s is already doing an import"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:235
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
+#, c-format
 msgid ""
-"Please wait until BeatBox is finished with the current import before "
-"importing the CD."
+"Please wait until %s is finished with the current import before importing "
+"the CD."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:257
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:258
 msgid "Ripping track 1"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:319
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:320
 #, c-format
 msgid "Importing track %i"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:328
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:331
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:333
 msgid "CD Import Complete"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:328
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
 #, c-format
-msgid "Noise has finished importing %i songs from Audio CD."
+msgid "%s has finished importing %i songs from Audio CD."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:331
-msgid "Noise has finished importing a song from Audio CD."
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:333
+#, c-format
+msgid "%s has finished importing a song from Audio CD."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:368
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:370
 msgid "Cancelling remaining imports..."
 msgstr ""
 
@@ -597,9 +601,10 @@ msgid "Automatically download new podcast episodes"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:93
+#, c-format
 msgid ""
-"To allow for Last.fm integration, you must give permission to BeatBox. You "
-"only need to do this once."
+"To allow for Last.fm integration, you must give permission to %s. You only "
+"need to do this once."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:98
@@ -856,7 +861,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:281
 #, c-format
 msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
+"%s is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
 
@@ -936,13 +941,13 @@ msgstr ""
 msgid "Remove %d %s from %s?"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:88
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:90
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
-msgid "Remove \"%s\" From Noise?"
+msgid "Remove \"%s\" From %s?"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:97
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
 msgid ""
 "This will remove the %s from your library and from any device that "
@@ -959,7 +964,8 @@ msgid "Get Some Tunes"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:174
-msgid "Noise can't seem to find your music."
+#, c-format
+msgid "%s can't seem to find your music."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
@@ -1036,7 +1042,8 @@ msgid "Audio CD Invalid"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:272
-msgid "BeatBox could not read the contents of this Audio CD."
+#, c-format
+msgid "%s could not read the contents of this Audio CD."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:279

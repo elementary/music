@@ -84,10 +84,11 @@ public class BeatBox.RemoveFilesDialog : Window {
 		else {
   			Media m = to_remove.get(0);
   			
+  			var app_name = lw.app.get_name ();
   			if(m.mediatype != 3)
-				title_text = _("Remove \"%s\" From Noise?").printf(m.title.replace("&", "&amp;"));
+				title_text = _("Remove \"%s\" From %s?").printf (String.escape (m.title), app_name);
 			else
-				title_text = _("Remove \"%s\" From Noise?").printf(m.album_artist.replace("&", "&amp;"));
+				title_text = _("Remove \"%s\" From %s?").printf (String.escape (m.album_artist), app_name);
 		}
 		title.set_markup("<span weight=\"bold\" size=\"larger\">" + title_text + "</span>");
 		

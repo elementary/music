@@ -90,7 +90,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 
 #if HAVE_LAST_FM
 		var lastfmLabel = new Label("");
-		var lastfmInfo = new Granite.Widgets.WrapLabel(_("To allow for Last.fm integration, you must give permission to BeatBox. You only need to do this once."));
+		var lastfmInfo = new Granite.Widgets.WrapLabel(_("To allow for Last.fm integration, you must give permission to %s. You only need to do this once.").printf (lw.app.get_name ()));
 		
 		if(_lm.settings.getLastFMSessionKey() == null || _lm.settings.getLastFMSessionKey() == "")
 			lastfmLogin = new Button.with_label (ENABLE_SCROBBLING_MSG);

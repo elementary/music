@@ -22,6 +22,13 @@
 
 namespace BeatBox.String {
 
+    public string escape (string text) {
+        if (text == null || text.length < 1)
+            return "";
+
+        return Markup.escape_text (text, -1);
+    }
+
     public bool is_white_space (string text) {
         if (text == null)
             return true;

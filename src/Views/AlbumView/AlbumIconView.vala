@@ -143,6 +143,28 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		show_all();
 
+
+
+		var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
+		focus_blacklist.add (lw.viewSelector);
+		focus_blacklist.add (lw.searchField);
+		focus_blacklist.add (lw.sideTree);
+		focus_blacklist.add (lw.statusbar);
+
+		foreach (var w in focus_blacklist) {
+			w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
+			w.button_press_event.connect ( () => {
+				album_list_view.hide ();
+				return false;
+			});
+		}
+
+		album_list_view.focus_out_event.connect ( () => {
+			if (album_list_view.visible)
+				album_list_view.show_all ();
+			return false;
+		});
+
 		icons.button_release_event.connect(buttonReleaseEvent);
 		icons.button_press_event.connect(buttonReleaseEvent);
 		icons.item_activated.connect(itemActivated);
