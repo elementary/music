@@ -81,9 +81,9 @@ public class BeatBox.FileOperator : Object {
 
 		/* Create album-art cache dir */
 		var album_art_folder = GLib.File.new_for_path (settings.get_album_art_cache_dir ());
-		if(!album_art_folder.query_exists()) {
+		if (!album_art_folder.query_exists()) {
 			try {
-				album_art_folder.make_directory(null);
+				album_art_folder.make_directory_with_parents (null);
 			}
 			catch(GLib.Error err) {
 				warning ("Could not create folder in cache directory: %s\n", err.message);

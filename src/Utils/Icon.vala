@@ -212,6 +212,7 @@ public class BeatBox.Icon : GLib.Object {
 			height = width;
 		}
 
+		
 		if (IconTheme.get_default().has_icon (this.name) && size != null) {
 			// Try to load icon from theme
 			rv = new Image.from_icon_name (this.name, size);

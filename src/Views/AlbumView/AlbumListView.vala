@@ -42,8 +42,6 @@ public class BeatBox.AlbumListView : Window {
 
 	Gee.LinkedList<Media> media_list;
 
-	Mutex setting_media;
-
 	public AlbumListView(AlbumView album_view) {
 		this.view_wrapper = album_view.parent_view_wrapper;
 		this.lm = view_wrapper.lm;
@@ -75,8 +73,8 @@ public class BeatBox.AlbumListView : Window {
 		base.get_style_context ().remove_class ("content-view-window");
 #endif
 		// album artist/album labels
-		album_label = new Label("Album");
-		artist_label = new Label("Artist");
+		album_label = new Label ("");
+		artist_label = new Label ("");
 
 		// Apply special style: Level-2 header
 		UI.apply_style_to_label (album_label, UI.TextStyle.H2);
@@ -124,10 +122,10 @@ public class BeatBox.AlbumListView : Window {
 		/* Make window draggable */
 		UI.make_window_draggable (this);
 #endif
-
-		/* Close on lose focus */
-		UI.hide_on_lose_focus (this);
 	}
+
+
+	Mutex setting_media;
 
 	public void set_songs_from_media(Media m) {
 		setting_media.lock ();
@@ -146,7 +144,7 @@ public class BeatBox.AlbumListView : Window {
 
 		Search.fast_album_search_in_media_list (to_search, out media_list, "", m.album_artist, m.album);
 
-		var media_table = new HashTable<int, Media>(null, null);
+		var media_table = new HashTable<int, Media> (null, null);
 
 		int index = 0;
 		// FIXME: this is ugly and can potentially disorder the songs.
@@ -172,7 +170,7 @@ public class BeatBox.AlbumListView : Window {
 
 		// Use average rating for the album
 		int total_rating = 0, n_media = 0;
-		foreach(var media in media_list) {
+		foreach (var media in media_list) {
 			if (media == null)
 				continue;
 			n_media ++;
@@ -182,27 +180,27 @@ public class BeatBox.AlbumListView : Window {
 		float average_rating = (float)total_rating / (float)n_media;
 
 		// fix approximation and set new rating
-		rating.set_rating(Numeric.int_from_float (average_rating));
+		rating.set_rating (Numeric.int_from_float (average_rating));
 
 		// connect again ...
-		rating.rating_changed.connect(rating_changed);
+		rating.rating_changed.connect (rating_changed);
 	}
 
-	void rating_changed(int new_rating) {
+	void rating_changed (int new_rating) {
 		setting_media.lock ();
 
-		var updated = new LinkedList<Media>();
-		foreach(var media in media_list) {
+		var updated = new LinkedList<Media> ();
+		foreach (var media in media_list) {
 			if (media == null)
 				continue;
 
 			media.rating = (uint)new_rating;
-			updated.add(media);
+			updated.add (media);
 		}
 
 		setting_media.unlock ();
 
-		lm.update_medias(updated, false, true);
+		lm.update_medias (updated, false, true);
 	}
 }
 

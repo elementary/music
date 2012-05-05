@@ -550,7 +550,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 					// after we're done with that, rescan album arts
 					fetch_all_cover_art_async ();
-	
+
 					return false; 
 				});
 
@@ -1730,7 +1730,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	private void fetch_cover_art (bool cache_only) {
 		if(in_fetch_thread)
 			return;
-		
+
+		debug ("----------- READING CACHED COVERART -------------");
+
 		in_fetch_thread = true;
 		//GStreamerTagger tagger = new GStreamerTagger(this);
 		
@@ -1778,6 +1780,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 
 		in_fetch_thread = false;
+
+		debug ("----------- FINISHED LOADING CACHED COVERART -------------");
 	}
 	
 	public static int mediaCompareFunc(Media a, Media b) {

@@ -46,7 +46,9 @@ namespace BeatBox {
             warning ("Error parsing arguments: %s\n", err.message);
         }
 
+        Gdk.threads_enter ();
         Gtk.init (ref args);
+        Gdk.threads_leave ();
 
         try {
             Gst.init_check (ref args);

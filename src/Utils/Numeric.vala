@@ -20,10 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-
 namespace BeatBox.Numeric {
-
-    // If there's something similar already in glibc, please let me know!
 
     /**
      * Approximates a double to the best uint.
@@ -39,14 +36,14 @@ namespace BeatBox.Numeric {
 
 		// fix approximation
 		if ((double)rv < number) {
-			// check if the number is lower than what we expected
+			// check if the number is lower than what's expected
 			if (number - (double)rv >= 0.5) {
 				// the approximation was wrong. Increase to the next integer
 				rv ++;
 			}
 		}
 		else {
-			// check if the number is higher than what we expected
+			// check if the number is greater than expected
 			if (number - (double)rv < -0.5) {
 				// the approximation was wrong. Decrease to the previous integer
 				rv --;
@@ -58,7 +55,6 @@ namespace BeatBox.Numeric {
 
     /**
      * Approximates a float to the best int.
-     * Sometimes compilers do this wrongly by truncating numbers rather than rounding them.
      */
     public int int_from_float (float number) {
         // Check limits
@@ -71,14 +67,14 @@ namespace BeatBox.Numeric {
 
 		// fix approximation
 		if ((float)rv < number) {
-			// check if the number is lower than what we expected
+			// check if the number is lower than expected
 			if (number - (float)rv >= 0.5f) {
 				// the approximation was wrong. Increase to the next integer
 				rv ++;
 			}
 		}
 		else {
-			// check if the number is higher than what we expected
+			// check if the number is higher than what's expected
 			if (number - (float)rv < -0.5f) {
 				// the approximation was wrong. Decrease to the previous integer
 				rv --;

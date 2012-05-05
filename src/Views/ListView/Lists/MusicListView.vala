@@ -26,22 +26,8 @@ using Gtk;
 public class BeatBox.MusicTreeView : GenericList {
 
 	//for header column chooser
-	Gtk.Menu columnChooserMenu;
-	CheckMenuItem columnNumber;
-	CheckMenuItem columnTrack;
-	CheckMenuItem columnTitle;
-	CheckMenuItem columnLength;
-	CheckMenuItem columnArtist;
-	CheckMenuItem columnAlbum;
-	CheckMenuItem columnGenre;
-	CheckMenuItem columnYear;
-	CheckMenuItem columnBitRate;
-	CheckMenuItem columnRating;
-	CheckMenuItem columnPlayCount;
-	CheckMenuItem columnSkipCount;
-	CheckMenuItem columnDateAdded;
-	CheckMenuItem columnLastPlayed;
-	CheckMenuItem columnBPM;
+	Gee.HashMap<string, Gtk.CheckMenuItem> column_chooser_menu_items;
+	Gtk.Menu column_chooser_menu;
 
 	//for media list right click
 	Gtk.Menu mediaMenuActionMenu;
@@ -116,9 +102,29 @@ public class BeatBox.MusicTreeView : GenericList {
 		types.append(typeof(int)); // last played
 		types.append(typeof(int)); // bpm
 		types.append(typeof(int)); // pulser};
+
 		base(view_wrapper, types, tvs);
 
 		buildUI();
+	}
+
+	private void add_column_chooser_menu_item (TreeViewColumn tvc) {
+		var column_id = tvc.title;
+
+		if (column_chooser_menu == null)
+			column_chooser_menu = new Gtk.Menu ();
+		if (column_chooser_menu_items == null)
+			column_chooser_menu_items = new Gee.HashMap<string, Gtk.CheckMenuItem> ();
+
+		var menu_item = new Gtk.CheckMenuItem.with_label (column_id);
+		menu_item.active = tvc.visible;
+
+		column_chooser_menu.append (menu_item);
+		column_chooser_menu_items.set (column_id, menu_item);
+
+		column_chooser_menu.show_all ();
+
+		menu_item.toggled.connect (column_menu_item_toggled);
 	}
 
 	public override void update_sensitivities() {
@@ -127,6 +133,7 @@ public class BeatBox.MusicTreeView : GenericList {
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {
 			mediaRemove.set_sensitive(true);
 			mediaRemove.set_label(_("Remove from Library"));
+			var columnNumber = column_chooser_menu_items.get (TreeViewSetup.COLUMN_NUM);
 			columnNumber.set_active(false);
 			columnNumber.set_visible(false);
 			importToLibrary.set_visible(false);
@@ -162,7 +169,6 @@ public class BeatBox.MusicTreeView : GenericList {
 		}
 		else if(get_hint() == ViewWrapper.Hint.CDROM) {
 			mediaRemove.set_visible(false);
-			mediaRemove.set_label("TODO: Remove from device");
 			importToLibrary.set_visible(true);
 			mediaMenuAddToPlaylist.set_visible(false);
 			mediaMenuNewPlaylist.set_visible(false);
@@ -206,40 +212,41 @@ public class BeatBox.MusicTreeView : GenericList {
 
 		int index = 0;
 		foreach(TreeViewColumn tvc in originalOrder) {
-			if(!(tvc.title == " " || tvc.title == "id")) {
-				if(tvc.title == "Bitrate")
+			if(!(tvc.title == TreeViewSetup.COLUMN_BLANK || tvc.title == TreeViewSetup.COLUMN_ID)) {
+				if (tvc.title == TreeViewSetup.COLUMN_BITRATE) {
 					insert_column_with_data_func(-1, tvc.title, cellBitrate, cellHelper.bitrateTreeViewFiller);
-				else if(tvc.title == "Length")
+				}
+				else if (tvc.title == TreeViewSetup.COLUMN_LENGTH)
 					insert_column_with_data_func(-1, tvc.title, cellLength, cellHelper.lengthTreeViewFiller);
-				else if(tvc.title == "Date Added")
+				else if(tvc.title == TreeViewSetup.COLUMN_DATE_ADDED)
 					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
-				else if(tvc.title == "Last Played")
+				else if(tvc.title == TreeViewSetup.COLUMN_LAST_PLAYED)
 					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
-				else if(tvc.title == "Rating")
+				else if(tvc.title == TreeViewSetup.COLUMN_RATING)
 					insert_column_with_data_func(-1, tvc.title, cellRating, cellHelper.ratingTreeViewFiller);
-				else if(tvc.title == "Year")
+				else if(tvc.title == TreeViewSetup.COLUMN_YEAR)
 					insert_column_with_data_func(-1, tvc.title, cellYear, cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "#")
+				else if(tvc.title == TreeViewSetup.COLUMN_NUM)
 					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "Track")
+				else if(tvc.title == TreeViewSetup.COLUMN_TRACK)
 					insert_column_with_data_func(-1, tvc.title, cellTrack, cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "Plays")
+				else if(tvc.title == TreeViewSetup.COLUMN_PLAYS)
 					insert_column_with_data_func(-1, tvc.title, cellPlays, cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "Skips")
+				else if(tvc.title == TreeViewSetup.COLUMN_SKIPS)
 					insert_column_with_data_func(-1, tvc.title, cellSkips, cellHelper.intelligentTreeViewFiller);
-				else if(tvc.title == "Title")
+				else if(tvc.title == TreeViewSetup.COLUMN_TITLE)
 					insert_column_with_data_func(-1, tvc.title, cellTitle, cellHelper.stringTreeViewFiller);
-				else if(tvc.title == "Artist")
+				else if(tvc.title == TreeViewSetup.COLUMN_ARTIST)
 					insert_column_with_data_func(-1, tvc.title, cellArtist, cellHelper.stringTreeViewFiller);
-				else if(tvc.title == "Album")
+				else if(tvc.title == TreeViewSetup.COLUMN_ALBUM)
 #if HAVE_SMART_ALBUM_COLUMN
 					insert_column_with_data_func(-1, tvc.title, cellAlbum, cellHelper.smartAlbumFiller);
 #else
 					insert_column_with_data_func(-1, tvc.title, cellAlbum, cellHelper.stringTreeViewFiller);
 #endif
-				else if(tvc.title == "Genre")
+				else if(tvc.title == TreeViewSetup.COLUMN_GENRE)
 					insert_column_with_data_func(-1, tvc.title, cellGenre, cellHelper.stringTreeViewFiller);
-				else if(tvc.title == "BPM")
+				else if(tvc.title == TreeViewSetup.COLUMN_BPM)
 					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
 				else
 					insert_column(tvc, index);
@@ -253,8 +260,13 @@ public class BeatBox.MusicTreeView : GenericList {
 				get_column(index).visible = tvc.visible;
 				get_column(index).sizing = Gtk.TreeViewColumnSizing.FIXED;
 				get_column(index).fixed_width = tvc.fixed_width;
+
+				// Add menuitem
+				add_column_chooser_menu_item (tvc);
 			}
-			else if(tvc.title == " ") {
+			else if(tvc.title == TreeViewSetup.COLUMN_BLANK) {
+				// Icon column
+				
 				insert_column(tvc, index);
 
 				tvc.fixed_width = 24;
@@ -269,7 +281,7 @@ public class BeatBox.MusicTreeView : GenericList {
 				tvc.set_cell_data_func(tvc.get_cells().nth_data(0), iconDataFunc);
 				tvc.set_cell_data_func(tvc.get_cells().nth_data(1), iconDataFunc);
 			}
-			else if(tvc.title == "id") {
+			else if(tvc.title == TreeViewSetup.COLUMN_ID) {
 				insert_column(tvc, index);
 			}
 			else {
@@ -292,72 +304,22 @@ public class BeatBox.MusicTreeView : GenericList {
 
 		//enable_grid_lines = TreeViewGridLines.VERTICAL; // will require special theming to work properly
 
-		button_press_event.connect(viewClick);
+		button_press_event.connect(on_button_press);
 
 		//cursor_changed.connect_after(() => { update_rating_menu(); });
-		button_release_event.connect(viewClickRelease);
+		button_release_event.connect(on_button_pressRelease);
 		//columns_changed.connect(viewColumnsChanged);
-
-		// column chooser menu
-		columnChooserMenu = new Gtk.Menu();
-		columnNumber = new CheckMenuItem.with_label(_("#"));
-		columnTrack = new CheckMenuItem.with_label(_("Track"));
-		columnTitle = new CheckMenuItem.with_label(_("Title"));
-		columnLength = new CheckMenuItem.with_label(_("Length"));
-		columnArtist = new CheckMenuItem.with_label(_("Artist"));
-		columnAlbum = new CheckMenuItem.with_label(_("Album"));
-		columnGenre = new CheckMenuItem.with_label(_("Genre"));
-		columnYear = new CheckMenuItem.with_label(_("Year"));
-		columnBitRate = new CheckMenuItem.with_label(_("Bitrate"));
-		columnRating = new CheckMenuItem.with_label(_("Rating"));
-		columnPlayCount = new CheckMenuItem.with_label(_("Plays"));
-		columnSkipCount = new CheckMenuItem.with_label(_("Skips"));
-		columnDateAdded = new CheckMenuItem.with_label(_("Date Added"));
-		columnLastPlayed = new CheckMenuItem.with_label(_("Last Played"));
-		columnBPM = new CheckMenuItem.with_label(_("BPM"));
-		updateColumnVisibilities();
-		columnChooserMenu.append(columnNumber);
-		columnChooserMenu.append(columnTrack);
-		columnChooserMenu.append(columnTitle);
-		columnChooserMenu.append(columnLength);
-		columnChooserMenu.append(columnArtist);
-		columnChooserMenu.append(columnAlbum);
-		columnChooserMenu.append(columnGenre);
-		columnChooserMenu.append(columnYear);
-		columnChooserMenu.append(columnBitRate);
-		columnChooserMenu.append(columnRating);
-		columnChooserMenu.append(columnPlayCount);
-		columnChooserMenu.append(columnSkipCount);
-		columnChooserMenu.append(columnDateAdded);
-		columnChooserMenu.append(columnLastPlayed);
-		columnChooserMenu.append(columnBPM);
-		columnNumber.toggled.connect(columnMenuToggled);
-		columnTrack.toggled.connect(columnMenuToggled);
-		columnTitle.toggled.connect(columnMenuToggled);
-		columnLength.toggled.connect(columnMenuToggled);
-		columnArtist.toggled.connect(columnMenuToggled);
-		columnAlbum.toggled.connect(columnMenuToggled);
-		columnGenre.toggled.connect(columnMenuToggled);
-		columnYear.toggled.connect(columnMenuToggled);
-		columnBitRate.toggled.connect(columnMenuToggled);
-		columnRating.toggled.connect(columnMenuToggled);
-		columnPlayCount.toggled.connect(columnMenuToggled);
-		columnSkipCount.toggled.connect(columnMenuToggled);
-		columnDateAdded.toggled.connect(columnMenuToggled);
-		columnLastPlayed.toggled.connect(columnMenuToggled);
-		columnBPM.toggled.connect(columnMenuToggled);
-		columnChooserMenu.show_all();
 
 		//media list right click menu
 		mediaMenuActionMenu = new Gtk.Menu();
-		mediaEditMedia = new Gtk.MenuItem.with_label("Edit Song Info");
-		mediaFileBrowse = new Gtk.MenuItem.with_label("Show in File Browser");
-		mediaMenuQueue = new Gtk.MenuItem.with_label("Queue");
-		mediaMenuNewPlaylist = new Gtk.MenuItem.with_label("New Playlist");
-		mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label("Add to Playlist");
-		mediaRemove = new Gtk.MenuItem.with_label("Remove Song");
-		importToLibrary = new Gtk.MenuItem.with_label("Import to Library");
-		mediaRateMedia = new Granite.Widgets.RatingMenuItem();
+		mediaEditMedia = new Gtk.MenuItem.with_label (_("Edit Song Info"));
+		mediaFileBrowse = new Gtk.MenuItem.with_label (_("Show in File Browser"));
+		mediaMenuQueue = new Gtk.MenuItem.with_label (_("Queue"));
+		mediaMenuNewPlaylist = new Gtk.MenuItem.with_label (_("New Playlist"));
+		mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
+		mediaRemove = new Gtk.MenuItem.with_label (_("Remove Song"));
+		importToLibrary = new Gtk.MenuItem.with_label (_("Import to Library"));
+		mediaRateMedia = new Granite.Widgets.RatingMenuItem ();
 		mediaMenuActionMenu.append(mediaEditMedia);
 		mediaMenuActionMenu.append(mediaFileBrowse);
 
@@ -378,7 +340,8 @@ public class BeatBox.MusicTreeView : GenericList {
 		importToLibrary.activate.connect(importToLibraryClicked);
 		mediaRateMedia.activate.connect(mediaRateMediaClicked);
 
-		update_sensitivities();
+		//update_column_header_items  ();
+		update_sensitivities ();
 
 		//this.list_model.rows_reordered.connect(modelRowsReordered);
 		//this.list_model.sort_column_changed.connect(sortColumnChanged);
@@ -456,50 +419,63 @@ public class BeatBox.MusicTreeView : GenericList {
 		updateTreeViewSetup();
 	}
 
-	public void updateColumnVisibilities() {
+	public void update_column_header_items () {
 		int index = 0;
 		foreach(TreeViewColumn tvc in get_columns()) {
-			if(tvc.title == "#")
+#if 0
+			if(tvc.title == TreeViewSetup.COLUMN_NUM)
 				columnNumber.active = get_column(index).visible;
-			else if(tvc.title == "Track")
+			else if(tvc.title == TreeViewSetup.COLUMN_TRACK)
 				columnTrack.active = get_column(index).visible;
-			else if(tvc.title == "Title")
+			else if(tvc.title == TreeViewSetup.COLUMN_TITLE)
 				columnTitle.active = get_column(index).visible;
-			else if(tvc.title == "Length")
+			else if(tvc.title == TreeViewSetup.COLUMN_LENGTH)
 				columnLength.active = get_column(index).visible;
-			else if(tvc.title == "Artist")
+			else if(tvc.title == TreeViewSetup.COLUMN_ARTIST)
 				columnArtist.active = get_column(index).visible;
-			else if(tvc.title == "Album")
+			else if(tvc.title == TreeViewSetup.COLUMN_ALBUM)
 				columnAlbum.active = get_column(index).visible;
-			else if(tvc.title == "Genre")
+			else if(tvc.title == TreeViewSetup.COLUMN_GENRE)
 				columnGenre.active = get_column(index).visible;
-			else if(tvc.title == "Year")
+			else if(tvc.title == TreeViewSetup.COLUMN_YEAR)
 				columnYear.active = get_column(index).visible;
-			else if(tvc.title == "Bitrate")
+			else if(tvc.title == TreeViewSetup.COLUMN_BITRATE)
 				columnBitRate.active = get_column(index).visible;
-			else if(tvc.title == "Rating")
+			else if(tvc.title == TreeViewSetup.COLUMN_RATING)
 				columnRating.active = get_column(index).visible;
-			else if(tvc.title == "Plays")
+			else if(tvc.title == TreeViewSetup.COLUMN_PLAYS)
 				columnPlayCount.active = get_column(index).visible;
-			else if(tvc.title == "Skips")
+			else if(tvc.title == TreeViewSetup.COLUMN_SKIPS)
 				columnSkipCount.active = get_column(index).visible;
-			else if(tvc.title == "Date Added")
+			else if(tvc.title == TreeViewSetup.COLUMN_DATE_ADDED)
 				columnDateAdded.active = get_column(index).visible;
-			else if(tvc.title == "Last Played")
+			else if(tvc.title == TreeViewSetup.COLUMN_LAST_PLAYED)
 				columnLastPlayed.active = get_column(index).visible;
-			else if(tvc.title == "BPM")
+			else if(tvc.title == TreeViewSetup.COLUMN_BPM)
 				columnBPM.active = get_column(index).visible;
+#endif
+
+			// this is equivalent
+			var column_item = column_chooser_menu_items.get (tvc.title);
+			if (column_item != null)
+				column_item.active = get_column (index).visible;
+			else
+				debug ("column item '%s' is null", tvc.title);
 
 			++index;
 		}
 	}
 
 	/* button_press_event */
-	bool viewClick(Gdk.EventButton event) {
+	bool on_button_press (Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //right click
 			/* create add to playlist menu */
 			Gtk.Menu addToPlaylistMenu = new Gtk.Menu();
 			foreach(Playlist p in lm.playlists()) {
+				/* Verify that it's not this list's playlist! */
+				if (get_hint () == ViewWrapper.Hint.PLAYLIST && p.rowid == get_relative_id ())
+					continue;
+			
 				Gtk.MenuItem playlist = new Gtk.MenuItem.with_label(p.name);
 				addToPlaylistMenu.append(playlist);
 
@@ -516,7 +492,7 @@ public class BeatBox.MusicTreeView : GenericList {
 			addToPlaylistMenu.show_all();
 			mediaMenuAddToPlaylist.submenu = addToPlaylistMenu;
 
-			if(lm.playlists().size == 0)
+			if(lm.playlists().size == 0 || addToPlaylistMenu.get_children ().length () < 1)
 				mediaMenuAddToPlaylist.set_sensitive(false);
 			else
 				mediaMenuAddToPlaylist.set_sensitive(true);
@@ -537,9 +513,11 @@ public class BeatBox.MusicTreeView : GenericList {
 			else {
 				importToLibrary.set_sensitive(true);
 				if(temporary_count != total_count)
-					importToLibrary.label = "Import " + temporary_count.to_string() + " of " + total_count.to_string() + " selected medias";
-				else
-					importToLibrary.label = "Import" + ((temporary_count > 1) ? (" " + temporary_count.to_string() + " medias") : "");
+					importToLibrary.label = _("Import %d of %d selected songs").printf (temporary_count, total_count);
+				else if (temporary_count > 1)
+					importToLibrary.label = _("Import %d songs").printf (temporary_count);
+				else // 1 song
+					importToLibrary.label = _("Import");
 			}
 
 			int set_rating = -1;
@@ -597,7 +575,7 @@ public class BeatBox.MusicTreeView : GenericList {
 	}
 
 	/* button_release_event */
-	private bool viewClickRelease(Gtk.Widget sender, Gdk.EventButton event) {
+	private bool on_button_pressRelease(Gtk.Widget sender, Gdk.EventButton event) {
 		/* if we were dragging, then set dragging to false */
 		if(dragging && event.button == 1) {
 			dragging = false;
@@ -623,7 +601,7 @@ public class BeatBox.MusicTreeView : GenericList {
 
 	private bool viewHeaderClick(Gtk.Widget w, Gdk.EventButton e) {
 		if(e.button == 3) {
-			columnChooserMenu.popup (null, null, null, 3, get_current_event_time());
+			column_chooser_menu.popup (null, null, null, 3, get_current_event_time());
 			return true;
 		}
 /* XXX: delete. We don't want ot represent shuffle visually
@@ -660,44 +638,55 @@ public class BeatBox.MusicTreeView : GenericList {
 		tvs.sort_direction = sort_dir;
 	}
 
-	/** When the column chooser popup menu has a change/toggle **/
-	public virtual void columnMenuToggled() {
+	/** When the column chooser popup menu has a change/toggle
+	 * FIXME: This relies extremely in the order of the 'else if' control lines.
+	 *         Fetch columns by col_id<string>
+	 **/
+	public virtual void column_menu_item_toggled () {
 		int index = 0;
+		
 		foreach(TreeViewColumn tvc in get_columns()) {
-			if(tvc.title == "Track")
-				get_column(index).visible = columnTrack.active;
-			else if(tvc.title == "#")
-				get_column(index).visible = columnNumber.active;
-			else if(tvc.title == "Title")
-				get_column(index).visible = columnTitle.active;
-			else if(tvc.title == "Length")
-				get_column(index).visible = columnLength.active;
-			else if(tvc.title == "Artist")
-				get_column(index).visible = columnArtist.active;
-			else if(tvc.title == "Album")
-				get_column(index).visible = columnAlbum.active;
-			else if(tvc.title == "Genre")
-				get_column(index).visible = columnGenre.active;
-			else if(tvc.title == "Year")
-				get_column(index).visible = columnYear.active;
-			else if(tvc.title == "Bitrate")
-				get_column(index).visible = columnBitRate.active;
-			else if(tvc.title == "Rating")
-				get_column(index).visible = columnRating.active;
-			else if(tvc.title == "Plays")
-				get_column(index).visible = columnPlayCount.active;
-			else if(tvc.title == "Skips")
-				get_column(index).visible = columnSkipCount.active;
-			else if(tvc.title == "Date Added")
-				get_column(index).visible = columnDateAdded.active;
-			else if(tvc.title == "Last Played")
-				get_column(index).visible = columnLastPlayed.active;//add bpm, file size, file path
-			else if(tvc.title == "BPM")
-				get_column(index).visible = columnBPM.active;
+#if 0
+			if(tvc.title == TreeViewSetup.COLUMN_TRACK)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_TRACK).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_NUM)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_NUM).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_TITLE)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_TITLE).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_LENGTH)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_LENGTH).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_ARTIST)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_ARTIST).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_ALBUM)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_ALBUM).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_GENRE)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_GENRE).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_YEAR)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_YEAR).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_BITRATE)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_BITRATE).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_RATING)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_RATING).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_PLAYS)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_PLAYS).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_SKIPS)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_SKIPS).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_DATE_ADDED)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_DATE_ADDED).active;
+			else if(tvc.title == TreeViewSetup.COLUMN_LAST_PLAYED)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_LAST_PLAYED).active;//add bpm, file size, file path
+			else if(tvc.title == TreeViewSetup.COLUMN_BPM)
+				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_BPM).active;
+#endif
+
+			// this is equivalent
+			var column_item = column_chooser_menu_items.get (tvc.title);
+			if (column_item != null)
+				get_column (index).visible = column_item.active;
 
 			++index;
 		}
-		
+
 		tvs.set_columns(get_columns());
 	}
 

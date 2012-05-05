@@ -432,7 +432,7 @@ public class LastFM.Core : Object {
 	
 	void* update_nowplaying_thread_function() {
 		if(session_key == null || session_key == "") {
-			warning("Last.FM user not logged in\n");
+			message ("Last.FM user not logged in\n");
 			return null;
 		}
 		if(!lm.media_active)
@@ -477,7 +477,7 @@ public class LastFM.Core : Object {
 	
 	void* scrobble_thread_function () {
 		if(session_key == null || session_key == "") {
-			warning("Last.FM user not logged in\n");
+			message ("Last.FM user not logged in\n");
 			return null;
 		}
 		if(!lm.media_active)

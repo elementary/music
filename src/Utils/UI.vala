@@ -23,41 +23,19 @@
 namespace BeatBox.UI {
 
     /**
-     * @deprecated. Since GTK+ 3.0, the align and margin properties will do the trick
-     * TODO: annotate deprecation
+     * Sets the alignment of a widget by modifying the margin and align properties.
      */
-    public Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-        message ("wrap_alignment is deprecated. Please don't use it in new code");
+    public Gtk.Widget wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+        widget.valign = Gtk.Align.FILL;
+        widget.halign = Gtk.Align.FILL;
 
-        var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-        alignment.top_padding = top;
-        alignment.right_padding = right;
-        alignment.bottom_padding = bottom;
-        alignment.left_padding = left;
+        widget.margin_top = top;
+        widget.margin_right = right;
+        widget.margin_bottom = bottom;
+        widget.margin_left = left;
 
-        alignment.add (widget);
-        return alignment;
+        return widget;
     }
-
-    /**
-     * Hides the widget when it loses focus. Backdrop is our friend here
-     */
-     public void hide_on_lose_focus (Gtk.Widget widget) {
-        widget.state_flags_changed.connect ( () => {
-            if (widget.get_state_flags () == Gtk.StateFlags.BACKDROP)
-                widget.hide ();
-        });
-     }
-
-    /**
-     * Hides the widget when it loses focus. Backdrop is our friend here
-     */
-     public void destroy_on_lose_focus (Gtk.Widget widget) {
-        widget.state_flags_changed.connect ( () => {
-            if (widget.get_state_flags () == Gtk.StateFlags.BACKDROP)
-                widget.destroy ();
-        });
-     }
 
     /**
      * Makes a Gtk.Window draggable
@@ -72,7 +50,6 @@ namespace BeatBox.UI {
 
     /**
      * elementaryOS fonts
-     * TODO: Add special cases for when not using elementaryOS
      */
 
     public enum TextStyle {

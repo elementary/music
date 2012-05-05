@@ -29,7 +29,7 @@ namespace BeatBox.TimeUtils {
         //make pretty current time
 		uint minute = 0;
 
-        // FIXME: not efficient with large numbers. Rather make a division
+        // FIXME: not efficient with large numbers. Instead make a division
 		while (seconds >= 60) {
 			++ minute;
 			seconds -= 60;

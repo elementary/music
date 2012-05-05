@@ -20,15 +20,6 @@ public abstract class BeatBox.GenericList : FastView {
 	
 	public signal void import_requested(LinkedList<int> to_import);
 
-	public bool has_grid_lines {
-		get {
-			return enable_grid_lines == TreeViewGridLines.HORIZONTAL;
-		}
-		set {
-			set_grid_lines (value? TreeViewGridLines.HORIZONTAL : TreeViewGridLines.NONE);
-		}
-	}
-	
 	public GenericList(ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
 		base(types);
 		
@@ -37,13 +28,13 @@ public abstract class BeatBox.GenericList : FastView {
 		this.lw = view_wrapper.lw;
 		this.tvs = tvs;
 		this.relative_id = view_wrapper.relative_id;
-		
+
 		set_headers_clickable(true);
-		set_headers_visible(tvs.column_headers_visible);
+		set_headers_visible (tvs.column_headers_visible);
 		set_fixed_height_mode(true);
 		set_rules_hint(true);
 		set_reorderable(false);
-		
+
 		cellHelper = new CellDataFunctionHelper((BeatBox.LibraryManager)lm, this);
 		playing_icon = Icons.NOW_PLAYING_SYMBOLIC.get_gicon ();
 		completed_icon = Icons.PROCESS_COMPLETED.get_gicon ();

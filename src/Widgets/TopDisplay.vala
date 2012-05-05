@@ -64,6 +64,8 @@ public class BeatBox.TopDisplay : Box {
 		cancelButton.set_relief(Gtk.ReliefStyle.NONE);
 		cancelButton.halign = cancelButton.valign = Gtk.Align.CENTER;
 
+		cancelButton.set_tooltip_text (_("Cancel"));
+
 		// all but cancel
 		VBox info = new VBox(false, 0);
 		info.pack_start(label, false, true, 0);

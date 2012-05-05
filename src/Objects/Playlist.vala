@@ -23,15 +23,17 @@
 using Gee;
 
 public class BeatBox.Playlist : Object {
-	private string _name;
 	public TreeViewSetup tvs;
-	private int _rowid;
 	private Gee.HashMap<int, int> _medias; // rowid, 1
+	
+	public int rowid { get; set; }
+	public string name { get; set; }
+
 	
 	public signal void changed ();
 	
 	public Playlist() {
-		_name = "New Playlist";
+		name = _("New Playlist");
 		tvs = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_medias = new Gee.HashMap<int, int>();
 	}
@@ -39,20 +41,10 @@ public class BeatBox.Playlist : Object {
 	public Playlist.with_info(int rowid, string name) {
 		_medias = new Gee.HashMap<int, int>();
 		tvs = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
-		_rowid = rowid;
-		_name = name;
+		this.rowid = rowid;
+		this.name = name;
 	}
-	
-	public int rowid {
-		get { return _rowid; }
-		set { _rowid = value; }
-	}
-	
-	public string name {
-		get {return _name; }
-		set {_name = value; }
-	}
-	
+		
 	public Gee.Collection<int> medias() {
 		return _medias.keys;
 	}

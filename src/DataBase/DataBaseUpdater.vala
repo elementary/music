@@ -20,9 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* Merely a place holder for multiple pieces of information regarding
- * the current media playing. Mostly here because of dependence. */
-
 using Gee;
 
 public class BeatBox.DataBaseUpdater : GLib.Object {
@@ -49,6 +46,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		
 		tree_view_setups = new GLib.List<TreeViewSetup>();
 		
+		// FIXME: Only save when it's required
 		Timeout.add(10000, periodic_save);
 	}
 	

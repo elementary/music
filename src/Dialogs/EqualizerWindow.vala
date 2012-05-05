@@ -82,7 +82,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 
 	void build_ui () {
-		set_title("Equalizer");
+		set_title(_("Equalizer"));
 
 		window_position = WindowPosition.CENTER;
 		type_hint = Gdk.WindowTypeHint.DIALOG;

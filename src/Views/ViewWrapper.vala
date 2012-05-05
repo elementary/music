@@ -292,7 +292,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (has_album_view)
 			view_container.append_page (album_view);
-		else warning ("no album_view");
+		else debug ("NO ALBUM VIEW (%s)", hint.to_string());
 
 		if (has_list_view)
 			view_container.append_page (list_view);
@@ -534,12 +534,12 @@ public class BeatBox.ViewWrapper : Box {
 		if (!is_current_wrapper || !lw.initialization_finished)
 			return;
 
-		actual_search_string = lw.searchField.get_text();
-		var new_search = Search.get_valid_search_string (actual_search_string);
+		actual_search_string = lw.searchField.get_text ();
+		var new_search = Search.get_valid_search_string (actual_search_string).down ();
 		debug ("Searchbox has '%s'", new_search);
 
-		if(!setting_search && lw.initialization_finished && is_current_wrapper && new_search.length != 1 && this.visible) {
-			timeout_search.offer_head (new_search.down());
+		if (!setting_search && lw.initialization_finished && is_current_wrapper && new_search.length != 1 && this.visible) {
+			timeout_search.offer_head (new_search.down ());
 
 			Timeout.add (SEARCH_TIMEOUT, () => {
 				// Don't search the same stuff every {SEARCH_TIMEOUT}ms
@@ -548,8 +548,8 @@ public class BeatBox.ViewWrapper : Box {
 					return false;
 
 				last_search = to_search;
-				// Do the actual search and show results....
-				update_showing_media();
+				// Do the actual search and show up results....
+				update_showing_media ();
 
 				return false;
 			});
