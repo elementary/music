@@ -55,6 +55,7 @@ vala_precompile(VALA_C
     Objects/MPRIS.vala
     Objects/Playlist.vala
 
+    Widgets/NavigationArrows.vala
     Widgets/SmartAlbumRenderer.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarMediaView.vala

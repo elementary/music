@@ -740,12 +740,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 				music_library_view.welcome_screen.set_item_sensitivity(key, !doing_ops);
 		}
 
-		statusbar.set_sensitive (folder_set);
-
 		bool show_info_panel = settings.getMoreVisible () && media_active && folder_set;
 		info_panel.set_visible (show_info_panel);
-		info_panel_chooser.set_sensitive (media_active && folder_set);
-
+		
+		bool choosers_sensitive = media_active && folder_set;
+		info_panel_chooser.set_sensitive (choosers_sensitive);
+		addPlaylistChooser.set_sensitive (choosers_sensitive);
 
 		// hide playlists when media list is empty
 		sideTree.setVisibility(sideTree.playlists_iter, have_media);

@@ -127,13 +127,13 @@ public class BeatBox.AlbumListView : Window {
 
 	Mutex setting_media;
 
-	public void set_songs_from_media(Media m) {
+	public void set_songs_from_media(Media media) {
 		setting_media.lock ();
 
-		set_title (_("%s by %s").printf (m.album, m.album_artist));
+		set_title (_("%s by %s").printf (media.album, media.album_artist));
 
-		album_label.set_label (m.album);
-		artist_label.set_label (m.album_artist);
+		album_label.set_label (media.album);
+		artist_label.set_label (media.album_artist);
 
 		var to_search = new LinkedList<Media> ();
 
@@ -142,15 +142,16 @@ public class BeatBox.AlbumListView : Window {
 			to_search.add (lm.media_from_id(id));
 		}
 
-		Search.fast_album_search_in_media_list (to_search, out media_list, "", m.album_artist, m.album);
+		Search.fast_album_search_in_media_list (to_search, out media_list, "", media.album_artist, media.album);
 
 		var media_table = new HashTable<int, Media> (null, null);
 
 		int index = 0;
 		// FIXME: this is ugly and can potentially disorder the songs.
 		//         This kind of implementation detail should not be relevant here!
-		foreach (var _media in media_list) {
-			media_table.set (index++, _media);
+		foreach (var m in media_list) {
+			if (m != null)
+				media_table.set (index++, m);
 		}
 
 		mtv.set_table (media_table);

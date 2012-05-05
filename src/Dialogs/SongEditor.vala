@@ -37,8 +37,6 @@ public class BeatBox.MediaEditor : Window {
 	private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
 	private TextView lyricsText;
 	
-	private Button _previous;
-	private Button _next;
 	private Button _save;
 	
 	private InfoBar lyricsInfobar;
@@ -71,14 +69,18 @@ public class BeatBox.MediaEditor : Window {
 		else
 			lyricsText = null;
 		
-		var buttonSep = new HButtonBox();
-		buttonSep.set_layout(ButtonBoxStyle.END);
-		_previous = new Button.with_label(_("Previous"));
-		_next = new Button.with_label(_("Next"));
+		var buttonSep = new Box(Orientation.HORIZONTAL, 0);
+
+		var arrows = new Granite.Widgets.NavigationArrows ();
+		var spacer = new Label ("");
+		spacer.hexpand = true;
+
 		_save = new Button.with_label(_("Done"));
-		
-		buttonSep.pack_start(_previous, false, false, 0);
-		buttonSep.pack_start(_next, false, false, 0);
+		_save.valign = _save.halign = Gtk.Align.END;
+		_save.set_size_request (85, -1);
+
+		buttonSep.pack_start(arrows, false, false, 0);
+		buttonSep.pack_start(spacer, true, true, 0);
 		buttonSep.pack_end(_save, false, false, 0);
 
 		var content = new Gtk.Box (Orientation.VERTICAL, 0);
@@ -88,16 +90,12 @@ public class BeatBox.MediaEditor : Window {
 
 		notebook.margin_bottom = 12;
 
-		(buttonSep as Gtk.ButtonBox).set_child_secondary(_next, true);
-		(buttonSep as Gtk.ButtonBox).set_child_secondary(_previous, true);
-		
 		padding.pack_start(content, true, true, 10);
 		add(padding);
 		
 		show_all();
 		
-		_next.sensitive = allMedias.size > 1;
-		_previous.sensitive = allMedias.size > 1;
+		arrows.sensitive = allMedias.size > 1;
 		
 		if(_medias.size == 1) {
 			foreach(FieldEditor fe in fields.values)
@@ -106,8 +104,8 @@ public class BeatBox.MediaEditor : Window {
 			fetch_lyrics (false);
 		}
 
-		_previous.clicked.connect(previousClicked);
-		_next.clicked.connect(nextClicked);
+		arrows.previous_clicked.connect(previousClicked);
+		arrows.next_clicked.connect(nextClicked);
 		_save.clicked.connect(saveClicked);
 	}
 	
@@ -206,7 +204,9 @@ public class BeatBox.MediaEditor : Window {
 		numerVert.pack_start(fields.get("Grouping"), false, true, 5);
 		numerVert.pack_start(fields.get("Year"), false, true, 5);
 		numerVert.pack_start(fields.get("Rating"), false, true, 5);
+#if HAVE_PODCASTS || HAVE_INTERNET_RADIO
 		numerVert.pack_end(fields.get("Media Type"), false, true, 5);
+#endif
 		//if(medias.size == 1)
 			//numerVert.pack_start(stats, false, true, 5);
 
@@ -354,8 +354,9 @@ public class BeatBox.MediaEditor : Window {
 		fields.get("Rating").set_value(sum.rating.to_string());
 		fields.get("Composer").set_value(sum.composer);
 		fields.get("Grouping").set_value(sum.grouping);
+#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 		fields.get("Media Type").set_value(sum.mediatype.to_string());
-		
+#endif	
 		if(lyricsText == null) {
 			var lyrics = createLyricsContent ();
 			notebook.append_page(lyrics, new Label("Lyrics"));
@@ -397,8 +398,11 @@ public class BeatBox.MediaEditor : Window {
 				s.year = int.parse(fields.get("Year").get_value());
 			if(fields.get("Rating").checked())
 				s.rating = int.parse(fields.get("Rating").get_value());
+
+#if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 			if(fields.get("Media Type").checked())
 				s.mediatype = int.parse(fields.get("Media Type").get_value());
+#endif
 				
 			// save lyrics
 			if(lyricsText != null) {
