@@ -44,7 +44,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 
 	/** Creates/Reads the database file and folder **/
 	private void init_database () {
-		var data_dir = GLib.File.new_for_path (GLib.Path.build_filename (Environment.get_user_data_dir (), lm.lw.app.get_name ());
+		var data_dir = GLib.File.new_for_path (GLib.Path.build_filename (Environment.get_user_data_dir (), lm.lw.app.get_name ()));
 		if (!data_dir.query_exists ()) {
 			try {
 				data_dir.make_directory_with_parents (null);
@@ -237,21 +237,6 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 		}
 	}
 
-	public void clear_media () {
-		try {
-			transaction = database.begin_transaction ();
-			Query query = transaction.prepare ("DELETE FROM `media` WHERE mediatype=:mediatype");
-
-			query.set_int (":mediatype", 0);
-			query.execute ();
-
-			transaction.commit ();
-		}
-		catch (SQLHeavy.Error err) {
-			warning ("Could not clear media from db: %s\n", err.message);
-		}
-	}
-
 	public void update_media (Gee.Collection<Media> media) {
 		try {
 			transaction = database.begin_transaction();
@@ -326,7 +311,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				Playlist p = new Playlist.with_info(results.fetch_int(0), results.fetch_string(1));
-				p.media_from_string(results.fetch_string(2), lm);
+				p.medias_from_string(results.fetch_string(2), lm);
 				p.tvs.sort_column_id = results.fetch_int(3);
 				p.tvs.set_sort_direction_from_string(results.fetch_string(4));
 
@@ -350,7 +335,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
-				query.set_string(":media", p.media_to_string(lm));
+				query.set_string(":media", p.medias_to_string(lm));
 				query.set_int(":sort_column_id", p.tvs.sort_column_id);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());
@@ -373,7 +358,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			//foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
-				query.set_string(":media", p.media_to_string(lm));
+				query.set_string(":media", p.medias_to_string(lm));
 				query.set_int(":sort_column_id", p.tvs.sort_column_id);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());

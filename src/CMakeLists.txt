@@ -55,7 +55,6 @@ vala_precompile(VALA_C
     Objects/MPRIS.vala
     Objects/Playlist.vala
 
-    Widgets/GraniteStatusBar.vala
     Widgets/SmartAlbumRenderer.vala
     Widgets/TopDisplay.vala
     Widgets/SimilarMediaView.vala
@@ -142,6 +141,7 @@ OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/core/
     --target-glib=2.32
+
     ${ADD_OPTIONS}
 GENERATE_VAPI
     noise

@@ -100,7 +100,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 			update_mutex.lock();
 			remove_mutex.lock();
 			if(media_updates.size > 0) {
-				dbm.update_medias(media_updates);
+				dbm.update_media(media_updates);
 				media_updates.clear();
 			}
 			else if((next = toUpdate.poll()) != null) {
@@ -113,7 +113,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 			}
 			else if((next = toRemove.poll()) != null) {
 				if(next is LinkedList) {
-					dbm.remove_medias((LinkedList<string>)next);
+					dbm.remove_media((LinkedList<string>)next);
 				}
 				else if(next is Playlist) {
 					dbm.remove_playlist((Playlist)next);

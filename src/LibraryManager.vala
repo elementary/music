@@ -279,7 +279,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		//load all medias from db
 		_media_lock.lock ();
-		foreach(Media s in dbm.load_medias()) {
+		foreach(Media s in dbm.load_media ()) {
 			_media.set(s.rowid, s);
 			_permanents.add(s.rowid);
 			
@@ -735,8 +735,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 
 		_media_lock.unlock ();
 		
-		dbm.clear_medias();
-		dbm.add_medias(_media.values);
+		dbm.clear_media ();
+		dbm.add_media (_media.values);
 		//remove_medias(unset, false);
 		debug ("cleared\n");
 	}
@@ -815,7 +815,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		try {
 			new Thread<void*>.try (null, () => {
 				_media_lock.lock ();
-				dbm.update_medias(_media.values);
+				dbm.update_media (_media.values);
 				_media_lock.unlock ();
 
 				return null;
@@ -1057,7 +1057,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_media_lock.unlock ();
 		
 		if(new_media.size > 0 && new_media.to_array()[0].rowid != -2 && permanent) {
-			dbm.add_medias(new_media);
+			dbm.add_media (new_media);
 		}
 		
 		Idle.add( () => {
@@ -1090,7 +1090,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				++local_song_count;
 		}
 		
-		dbm.add_medias(temps_medias);
+		dbm.add_media (temps_medias);
 		warning("TODO: call media_added signal afterconvert_temps_to_permanents\n");
 	}
 	
