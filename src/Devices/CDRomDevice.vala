@@ -253,7 +253,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		index = 0;
 		total = list.size;
 /*
-		current_operation = "Ripping track 1: <b>" + s.title.replace("&", "&amp;") + "</b>" + ((s.artist != "Unknown Artist") ? " by " : "") + "<b>" + s.artist.replace("&", "&amp;") + "</b>" + ((s.album != "Unknown Album") ? " on " : "") + "<b>" + s.album.replace("&", "&amp;") + "</b>";
+		current_operation = "Ripping track 1: <b>" + String.escape (s.title) + "</b>" + ((s.artist != "Unknown Artist") ? " by " : "") + "<b>" + String.escape (s.artist) + "</b>" + ((s.album != "Unknown Album") ? " on " : "") + "<b>" + String.escape (s.album) + "</b>";
 */
 		current_operation = _("Ripping track 1");
 
@@ -315,7 +315,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			
 			++index;
 /*
-			current_operation = "<b>Importing</b> track " + next.track.to_string() + ": <b>" + next.title.replace("&", "&amp;") + "</b>" + ((next.artist != "Unknown Artist") ? " by " : "") + "<b>" + next.artist.replace("&", "&amp;") + "</b>" + ((next.album != "Unknown Album") ? " on " : "") + "<b>" + next.album.replace("&", "&amp;") + "</b>";
+			current_operation = "<b>Importing</b> track " + next.track.to_string() + ": <b>" + String.escape (next.title) + "</b>" + ((next.artist != "Unknown Artist") ? " by " : "") + "<b>" + String.escape (next.artist) + "</b>" + ((next.album != "Unknown Album") ? " on " : "") + "<b>" + String.escape (next.album) + "</b>";
 */
 			current_operation = _("Importing track %i").printf (next.track);
 		}
@@ -380,7 +380,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public bool doProgressNotificationWithTimeout() {
-		lw.progressNotification(current_operation.replace("&", "&amp;"), (double)(((double)index + current_song_progress)/((double)total)));
+		lw.progressNotification (String.escape (current_operation), (double)(((double)index + current_song_progress)/((double)total)));
 		
 		if(index < total && (is_transferring())) {
 			return true;

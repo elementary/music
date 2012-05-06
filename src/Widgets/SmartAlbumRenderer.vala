@@ -56,7 +56,7 @@ public class BeatBox.SmartAlbumRenderer : CellRendererText {
 				Gdk.cairo_set_source_pixbuf (ctx, slice, middle, background_area.y + ( (index == 0) ? -extra_space : 0));
 			}
 			else if(-remaining_height < background_area.height) { // first row after image
-				markup = m.album.replace("&", "&amp;");
+				markup = String.escape (m.album);
 				base.render(ctx, widget, background_area, cell_area, flags);
 			}
 			else if(-remaining_height < background_area.height * 2) { // second row after image
@@ -68,7 +68,7 @@ public class BeatBox.SmartAlbumRenderer : CellRendererText {
 			}
 		}
 		else {
-			markup = m.album.replace("&", "&amp;");
+			markup = String.escape (m.album);
 			base.render(ctx, widget, background_area, cell_area, flags);
 		}
 		

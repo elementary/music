@@ -781,9 +781,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		//set the title
 		Media s = lm.media_info.media;
-		var title = "<b>" + s.title.replace("&", "&amp;") + "</b>";
-		var artist = ((s.artist != "" && s.artist != _("Unknown Artist")) ? (_(" by ") + "<b>" + s.artist.replace("&", "&amp;") + "</b>") : "");
-		var album = ((s.album != "" && s.album != _("Unknown Album")) ? (_(" on ") + "<b>" + s.album.replace("&", "&amp;") + "</b>") : "");
+		var title = "<b>" + String.escape (s.title) + "</b>";
+		var artist = ((s.artist != "" && s.artist != _("Unknown Artist")) ? (_(" by ") + "<b>" + String.escape (s.artist) + "</b>") : "");
+		var album = ((s.album != "" && s.album != _("Unknown Album")) ? (_(" on ") + "<b>" + String.escape (s.album) + "</b>") : "");
 
 		var media_label = beg + title + artist + album;
 		topDisplay.set_label_markup(media_label);

@@ -654,7 +654,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public bool doProgressNotificationWithTimeout() {
-		progress_notification(current_operation.replace("&", "&amp;"), (double)((double)index)/((double)total));
+		progress_notification (String.escape (current_operation), (double)((double)index)/((double)total));
 		
 		if(index < total && (is_syncing() || is_transferring())) {
 			return true;

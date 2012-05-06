@@ -151,6 +151,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		focus_blacklist.add (lw.sideTree);
 		focus_blacklist.add (lw.statusbar);
 
+		lw.viewSelector.mode_changed.connect ( () => {
+			album_list_view.hide ();
+		});
+
 		foreach (var w in focus_blacklist) {
 			w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
 			w.button_press_event.connect ( () => {
@@ -396,8 +400,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	void itemActivated(TreePath path) {
 		TreeIter iter;
 
-		//lw.focus_in_event.disconnect (hide_list_popover);
-
 		if(!model.get_iter(out iter, path)) {
 			album_list_view.hide();
 			return;
@@ -423,8 +425,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		album_list_view.show_all();
 		album_list_view.move(x, y);
-
-		//lw.focus_in_event.connect (hide_list_popover);
 	}
 
 	public void scrollToCurrent() {

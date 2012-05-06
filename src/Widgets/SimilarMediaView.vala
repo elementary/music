@@ -70,8 +70,8 @@ public class BeatBox.SimilarMediasView : TreeView {
 			TreeIter iter;
 			model.append(out iter);
 			
-			var title_fixed = s.title.replace("&", "&amp;");
-			var artist_fixed = s.artist.replace("&", "&amp;");
+			var title_fixed = String.escape (s.title);
+			var artist_fixed = String.escape (s.artist);
 			
 			model.set(iter, 0, s, 1, "<b>" + title_fixed + "</b>" + " \n" + artist_fixed );
 			++count;

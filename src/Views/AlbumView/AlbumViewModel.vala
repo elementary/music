@@ -163,10 +163,10 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 				else
 					album_artist = s.album_artist;
 
-				val = TEXT_MARKUP.printf(album.replace("&", "&amp;"), album_artist.replace("&", "&amp;"));
+				val = TEXT_MARKUP.printf (String.escape (album), String.escape (album_artist));
 			}
 			else if(column == TOOLTIP_COLUMN) {
-				val = TOOLTIP_MARKUP.printf (s.album.replace("&", "&amp;"), s.album_artist.replace("&", "&amp;"));
+				val = TOOLTIP_MARKUP.printf (String.escape (s.album), String.escape (s.album_artist));
 			}
 			else if (column == MEDIA_COLUMN) {
 				val = s;

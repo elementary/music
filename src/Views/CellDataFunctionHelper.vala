@@ -96,7 +96,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		if(val.get_int() <= 0)
 			((CellRendererText)cell).markup = "";
 		else
-			((CellRendererText)cell).markup = val.get_int().to_string().replace("&", "&amp;");
+			((CellRendererText)cell).markup = String.escape (val.get_int().to_string());
 	}
 	
 	public void stringTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
@@ -106,7 +106,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		if(val.get_string() == null)
 			return;
 		
-		((CellRendererText)cell).markup = val.get_string().replace("&", "&amp;");
+		((CellRendererText)cell).markup = String.escape (val.get_string());
 	}
 	
 	// for Bitrate. Append 'kbps'
