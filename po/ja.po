@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-06 05:14+0000\n"
+"X-Launchpad-Export-Date: 2012-05-07 05:15+0000\n"
 "X-Generator: Launchpad (build 15195)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
@@ -1408,15 +1408,3 @@ msgstr "オーディオCDから楽曲を取り込む"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1468
 msgid "Import media from device"
 msgstr "デバイスからメディアを取り込む"
-
-#~ msgid "Next"
-#~ msgstr "次へ"
-
-#~ msgid "Previous"
-#~ msgstr "前へ"
-
-#~ msgid "Noise can't seem to find your music."
-#~ msgstr "楽曲が見つかりません。"
-
-#~ msgid "BeatBox could not read the contents of this Audio CD."
-#~ msgstr "オーディオCDのコンテンツを読み込むことが出来ませんでした。"

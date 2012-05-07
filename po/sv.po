@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-06 05:14+0000\n"
+"X-Launchpad-Export-Date: 2012-05-07 05:15+0000\n"
 "X-Generator: Launchpad (build 15195)\n"
 "X-Poedit-Language: Swedish\n"
 
@@ -1430,50 +1430,3 @@ msgstr ""
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1468
 msgid "Import media from device"
 msgstr ""
-
-#~ msgid "BeatBox could not read the contents of this Audio CD."
-#~ msgstr "BeatBox kunde inte läsa innehållet på denna ljudskiva."
-
-#~ msgid "Previous"
-#~ msgstr "Föregående"
-
-#~ msgid "Next"
-#~ msgstr "Nästa"
-
-#~ msgid "Noise could not find any songs on the CD. No songs can be imported"
-#~ msgstr ""
-#~ "Noise kunde inte hitta några låtar på CD:n. Inga låtar kan bli importerade"
-
-#~ msgid "Noise is already doing an import"
-#~ msgstr "Noise importerar redan låtar"
-
-#~ msgid "id"
-#~ msgstr "id"
-
-#~ msgid "Noise has finished importing a song from Audio CD."
-#~ msgstr "Nose har slutfört importeringen av låten från musik cd:n"
-
-#, c-format
-#~ msgid "%.0f days"
-#~ msgstr "%.0f dagar"
-
-#, c-format
-#~ msgid "Remove \"%s\" From Noise?"
-#~ msgstr "Ta bort \"%s\" från Noise?"
-
-#~ msgid "Noise can't seem to find your music."
-#~ msgstr "Noise verkar inte hitta din musik"
-
-#~ msgid ""
-#~ "Please wait until BeatBox is finished with the current import before "
-#~ "importing the CD."
-#~ msgstr ""
-#~ "Vänligen vänta tills BeatBox är klar med den aktuella importen innan du "
-#~ "importerar CD-skivan."
-
-#~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to BeatBox. You "
-#~ "only need to do this once."
-#~ msgstr ""
-#~ "För att möjliggöra Last.fm integration måste du ge tillåtelse för Beatbox. "
-#~ "Du behöver bara göra detta en gång."

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-06 05:13+0000\n"
+"X-Launchpad-Export-Date: 2012-05-07 05:15+0000\n"
 "X-Generator: Launchpad (build 15195)\n"
 "Language: \n"
 
@@ -1440,61 +1440,3 @@ msgstr "Importer des chansons depuis un CD audio"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1468
 msgid "Import media from device"
 msgstr "Importer des médias depuis un périphérique"
-
-#~ msgid "BeatBox could not read the contents of this Audio CD."
-#~ msgstr "BeatBox n'a pas réussi à lire le contenu de ce CD."
-
-#~ msgid "Previous"
-#~ msgstr "Précédent"
-
-#~ msgid "Next"
-#~ msgstr "Suivant"
-
-#~ msgid "Noise can't seem to find your music."
-#~ msgstr "Noise ne trouve pas votre musique"
-
-#, c-format
-#~ msgid "%.0f days"
-#~ msgstr "%.0f jours"
-
-#~ msgid "Noise could not find any songs on the CD. No songs can be imported"
-#~ msgstr ""
-#~ "Noise n'a trouvé aucune musique dans le CD. Aucune musique n'a été importée"
-
-#~ msgid "Noise is already doing an import"
-#~ msgstr "Noise est déjà en train d'importer quelque chose"
-
-#, c-format
-#~ msgid "Noise has finished importing %i songs from Audio CD."
-#~ msgstr "Noise a terminé l'importation de %i musiques du CD audio."
-
-#~ msgid "Noise has finished importing a song from Audio CD."
-#~ msgstr "Noise a terminé l'importation d'une musique du CD audio."
-
-#~ msgid ""
-#~ "Please wait until BeatBox is finished with the current import before "
-#~ "importing the CD."
-#~ msgstr ""
-#~ "Attendre la fin de l'import actuel avant d'extraire les pistes du disque."
-
-#~ msgid "id"
-#~ msgstr "id"
-
-#~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to BeatBox. You "
-#~ "only need to do this once."
-#~ msgstr ""
-#~ "Pour autoriser l'intégration avec Last.fm, vous devez donner la permission à "
-#~ "Noise. Cette action ne devra être effectuée qu'une seule fois."
-
-#, c-format
-#~ msgid ""
-#~ "Noise is already doing file operations. Please wait until those finish to "
-#~ "import from %s"
-#~ msgstr ""
-#~ "Noise est déjà en train de manipuler des fichiers. Veuillez attendre qu'il "
-#~ "ait terminé avant d'importer de %s"
-
-#, c-format
-#~ msgid "Remove \"%s\" From Noise?"
-#~ msgstr "Supprimer \"%s\" de Noise?"

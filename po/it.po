@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-06 05:14+0000\n"
+"X-Launchpad-Export-Date: 2012-05-07 05:15+0000\n"
 "X-Generator: Launchpad (build 15195)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
@@ -1429,44 +1429,3 @@ msgstr "Importa canzoni da un CD audio"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1468
 msgid "Import media from device"
 msgstr "Importa file multimediali da un dispositivo."
-
-#~ msgid "BeatBox could not read the contents of this Audio CD."
-#~ msgstr "Beatbox non è riuscito a leggere il contenuto di questo Audio CD"
-
-#~ msgid "Previous"
-#~ msgstr "Precedente"
-
-#~ msgid "Next"
-#~ msgstr "Successivo"
-
-#~ msgid "Noise can't seem to find your music."
-#~ msgstr "Sembra che Noise non riesca a trovare la tua musica."
-
-#, c-format
-#~ msgid "%.0f days"
-#~ msgstr "%.0f giorni"
-
-#~ msgid "Noise is already doing an import"
-#~ msgstr "Noise sta già importando"
-
-#~ msgid ""
-#~ "Please wait until BeatBox is finished with the current import before "
-#~ "importing the CD."
-#~ msgstr ""
-#~ "Per favore aspetta che BeatBox abbia finito l'importazione corrente prima di "
-#~ "importare il CD"
-
-#, c-format
-#~ msgid "Noise has finished importing %i songs from Audio CD."
-#~ msgstr "Noise ha terminato l'importazione di %i canzoni dal CD Audio"
-
-#~ msgid "Noise has finished importing a song from Audio CD."
-#~ msgstr "Noise ha finito di importare una canzone dal Cd Audio"
-
-#~ msgid "Noise could not find any songs on the CD. No songs can be imported"
-#~ msgstr ""
-#~ "Noise non è riuscito trovato nessuna canzone sul CD. Nessuna canzone può "
-#~ "essere importata"
-
-#~ msgid "id"
-#~ msgstr "id"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-05 17:48-0600\n"
-"PO-Revision-Date: 2012-05-02 15:49+0000\n"
-"Last-Translator: Viko Adi Rahmawan <Unknown>\n"
+"PO-Revision-Date: 2012-05-06 21:55+0000\n"
+"Last-Translator: iman <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-06 05:14+0000\n"
+"X-Launchpad-Export-Date: 2012-05-07 05:15+0000\n"
 "X-Generator: Launchpad (build 15195)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
@@ -37,11 +37,12 @@ msgstr "Tidak ada lagu di dalam CD"
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"%s tidak dapat menemukan lagu di CD. Tidak ada lagu yang dapat diimpor"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
 #, c-format
 msgid "%s is already doing an import"
-msgstr ""
+msgstr "%s sudah mulai mengimpor"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
 #, c-format
@@ -49,6 +50,7 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
+"Harap tunggu sampai %s selesai dengan impor ini sebelum mengimpor CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:258
 msgid "Ripping track 1"
@@ -67,12 +69,12 @@ msgstr "Pegimporan CD telah selesai"
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr ""
+msgstr "%s telah selesai mengimpor %i lagu dari Audio CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:333
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr ""
+msgstr "%s telah selesai mengimpor sebuah lagu dari Audio CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:370
 msgid "Cancelling remaining imports..."
@@ -183,7 +185,7 @@ msgstr "Peringkat"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:50
 msgid "Pulser"
-msgstr ""
+msgstr "Pulser"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:51
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
@@ -263,7 +265,7 @@ msgstr "%.1f jam"
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:73
 #, c-format
 msgid "%i days"
-msgstr ""
+msgstr "%i hari"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:77
 #, c-format
@@ -427,7 +429,7 @@ msgstr "Batal"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
-msgstr ""
+msgstr "Ekualiser"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
@@ -441,21 +443,21 @@ msgstr "Tutup"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (Kastom)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:417
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (Kastom %i)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:421
 msgid "Custom Preset"
-msgstr ""
+msgstr "Preset Kastom"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:423
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Preset Kastom %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -611,6 +613,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"Untuk integrasi Last.fm, Anda harus memberi izin pada %s. Anda hanya perlu "
+"melakukan ini satu kali."
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:98
 msgid "Scrobbling already Enabled"
@@ -873,6 +877,8 @@ msgid ""
 "%s is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"%s sedang melakukan operasi berkas. Harap tunggu sampai selesai mengimpor "
+"dari %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:66
 msgid "Metadata"
@@ -955,7 +961,7 @@ msgstr "Hapus %d %s dari %s?"
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "Hapus \"%s\" Dari %s?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
@@ -978,7 +984,7 @@ msgstr "Ambil Sejumlah Nada"
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:174
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "Nampaknya %s tidak dapat menemukan musik Anda."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
 msgid "No Music Found"
@@ -1066,7 +1072,7 @@ msgstr "CD Audio Tidak Valid"
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:272
 #, c-format
 msgid "%s could not read the contents of this Audio CD."
-msgstr ""
+msgstr "%s tidak dapat membaca isi dari Audio CD ini."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:279
 msgid "WARNING: Default View Wrapper!"
@@ -1082,11 +1088,11 @@ msgstr "Hapus dari Antrian."
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:315
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Ubah Info Lagu"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:316
 msgid "Show in File Browser"
-msgstr ""
+msgstr "Buka di Peramban Berkas"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:317
 #: /home/victor/noise/po/../src//LibraryWindow.vala:652
@@ -1095,21 +1101,21 @@ msgstr "Antrian"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:319
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Tambahkan ke Playlist"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:320
 msgid "Remove Song"
-msgstr ""
+msgstr "Hapus Lagu"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:516
 #, c-format
 msgid "Import %d of %d selected songs"
-msgstr ""
+msgstr "Impor %d dari %d lagu yang terpilih"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:518
 #, c-format
 msgid "Import %d songs"
-msgstr ""
+msgstr "Impor %d lagu"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:158
 msgid "Automatic"
@@ -1433,62 +1439,3 @@ msgstr "Impor beberapa lagu dari CD audio"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1468
 msgid "Import media from device"
 msgstr "Impor media dari Perangkat"
-
-#~ msgid "Previous"
-#~ msgstr "Sebelumnya"
-
-#~ msgid "Next"
-#~ msgstr "Selanjutnya"
-
-#~ msgid "Noise can't seem to find your music."
-#~ msgstr "Noise belum tahu musik-musikmu"
-
-#~ msgid "BeatBox could not read the contents of this Audio CD."
-#~ msgstr "BeatBox tidak dapat memainkan CD Audio ini."
-
-#, c-format
-#~ msgid "Noise has finished importing %i songs from Audio CD."
-#~ msgstr "Noise telah selesai mengimpor %i lagu dari CD audio."
-
-#~ msgid "Noise is already doing an import"
-#~ msgstr "Noise sedang melakukan import"
-
-#~ msgid ""
-#~ "Please wait until BeatBox is finished with the current import before "
-#~ "importing the CD."
-#~ msgstr ""
-#~ "Mohon tunggu Noise menyelesaikan impor yang sedang dilakukan sebelum "
-#~ "mengimpor lagi CD"
-
-#~ msgid "Noise has finished importing a song from Audio CD."
-#~ msgstr "Noise telah selesai mengimpor lagu dari CD audio."
-
-#~ msgid "Noise could not find any songs on the CD. No songs can be imported"
-#~ msgstr ""
-#~ "Noise tidak dapat menemukan lagu di dalam CD. Tidak ada lagu yang diimpor"
-
-#~ msgid "id"
-#~ msgstr "id"
-
-#, c-format
-#~ msgid "%.0f days"
-#~ msgstr "%.0f hari"
-
-#~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to BeatBox. You "
-#~ "only need to do this once."
-#~ msgstr ""
-#~ "Untuk memungkinkan integrasi dengan Last.fm, Anda harus memberi izin ke "
-#~ "Noise. Anda hanya perlu sekali melakukan ini."
-
-#, c-format
-#~ msgid ""
-#~ "Noise is already doing file operations. Please wait until those finish to "
-#~ "import from %s"
-#~ msgstr ""
-#~ "Noise sedang melakukan operasi berkas. Mohon Tunggu hingga selesai sebelum "
-#~ "mengimpor dari %s"
-
-#, c-format
-#~ msgid "Remove \"%s\" From Noise?"
-#~ msgstr "Hapus \"%s\" dari Noise"

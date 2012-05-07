@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-05 17:48-0600\n"
-"PO-Revision-Date: 2012-05-02 12:02+0000\n"
+"PO-Revision-Date: 2012-05-06 18:29+0000\n"
 "Last-Translator: Eduard Gotwig <eduardgotwig@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-06 05:13+0000\n"
+"X-Launchpad-Export-Date: 2012-05-07 05:15+0000\n"
 "X-Generator: Launchpad (build 15195)\n"
 "Language: de\n"
 
@@ -39,11 +39,13 @@ msgstr "Keine Titel auf CD"
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"%s konnte keine Titel auf der CD finden. Es können keine Titel importiert "
+"werden"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
 #, c-format
 msgid "%s is already doing an import"
-msgstr ""
+msgstr "%s ist bereits mit einem Importvorgang beschäftigt"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
 #, c-format
@@ -51,6 +53,8 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
+"Bitte warten Sie auf die Fertigstellung von %s bevor der CD Import gestartet "
+"werden kann."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:258
 msgid "Ripping track 1"
@@ -69,12 +73,12 @@ msgstr "CD Import abgeschlossen"
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr ""
+msgstr "%s hat %i Titel von der Audio CD importiert"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:333
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr ""
+msgstr "%s hat einen Titel von der Audio CD importiert"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:370
 msgid "Cancelling remaining imports..."
@@ -265,7 +269,7 @@ msgstr "%.1f Stunden"
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:73
 #, c-format
 msgid "%i days"
-msgstr ""
+msgstr "%i Tage"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:77
 #, c-format
@@ -429,7 +433,7 @@ msgstr "Abbrechen"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
-msgstr ""
+msgstr "Equalizer"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
@@ -617,6 +621,8 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"Um Last.FM Integration zu erlauben, müssen sie %s dazu die Berechtigung "
+"erteilen. Dieser Vorgang ist einmalig."
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:98
 msgid "Scrobbling already Enabled"
@@ -791,7 +797,7 @@ msgstr "entspricht genau"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
 msgid "is at most"
-msgstr "ist am Wahrscheinlichsten"
+msgstr "wahrscheinlich"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "is at least"
@@ -811,7 +817,7 @@ msgstr "Sekunden"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:432
 msgid "days ago"
-msgstr "vor Tagen"
+msgstr "Tagen"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:436
 msgid "kbps"
@@ -880,6 +886,8 @@ msgid ""
 "%s is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"%s ist bereits mit Dateioperationen beschäftigt. Bitte warten Sie bis diese "
+"abgeschlossen sind bevor von %s importiert wird."
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:66
 msgid "Metadata"
@@ -887,7 +895,7 @@ msgstr "Metadaten"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:68
 msgid "Lyrics"
-msgstr "Liedtexte (Danke Sascha)"
+msgstr "Liedtext"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:162
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:333
@@ -963,7 +971,7 @@ msgstr "%d %s aus %s entfernen?"
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "\"%s\" aus %s entfernen?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
@@ -986,7 +994,7 @@ msgstr "Legen Sie sich ein paar Songs zu"
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:174
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "%s scheint ihre Musik nicht finden zu können"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
 msgid "No Music Found"
@@ -1077,7 +1085,7 @@ msgstr "Audio CD fehlerhaft"
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:272
 #, c-format
 msgid "%s could not read the contents of this Audio CD."
-msgstr ""
+msgstr "%s konnte nicht die Inhalte der Audio CD einlesen."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:279
 msgid "WARNING: Default View Wrapper!"
@@ -1093,11 +1101,11 @@ msgstr "Aus Warteschlange entfernen"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:315
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Titel Information bearbeiten"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:316
 msgid "Show in File Browser"
-msgstr ""
+msgstr "Im Dateimanager anzeigen"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:317
 #: /home/victor/noise/po/../src//LibraryWindow.vala:652
@@ -1106,21 +1114,21 @@ msgstr "Warteschlange"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:319
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Zur Wiedergabeliste hinzufügen"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:320
 msgid "Remove Song"
-msgstr ""
+msgstr "Titel entfernen"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:516
 #, c-format
 msgid "Import %d of %d selected songs"
-msgstr ""
+msgstr "%d von %d ausgewählten Titeln importieren"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:518
 #, c-format
 msgid "Import %d songs"
-msgstr ""
+msgstr "%d Titel importieren"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:158
 msgid "Automatic"
@@ -1446,65 +1454,3 @@ msgstr "Titel von einer Audio-CD importieren"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1468
 msgid "Import media from device"
 msgstr "Medien von einem Gerät importieren"
-
-#~ msgid "BeatBox could not read the contents of this Audio CD."
-#~ msgstr "BeatBox kann den Inhalt dieser Audio CD nicht lesen."
-
-#~ msgid "Previous"
-#~ msgstr "Vorheriger"
-
-#~ msgid "Next"
-#~ msgstr "Nächster"
-
-#, c-format
-#~ msgid "%.0f days"
-#~ msgstr "%.0f Tage"
-
-#~ msgid "Noise could not find any songs on the CD. No songs can be imported"
-#~ msgstr ""
-#~ "Noise konnte keine Titel auf der CD finden. Es können keine Titel importiert "
-#~ "werden."
-
-#, c-format
-#~ msgid "Noise has finished importing %i songs from Audio CD."
-#~ msgstr ""
-#~ "Noise hat das Importieren von  %i Titeln von der Audio-CD abgeschlossen."
-
-#~ msgid "Noise can't seem to find your music."
-#~ msgstr "Noise kann Ihre Musik nicht finden."
-
-#~ msgid "Noise is already doing an import"
-#~ msgstr "Noise ist bereits mit einem Import beschäftigt."
-
-#~ msgid "Noise has finished importing a song from Audio CD."
-#~ msgstr ""
-#~ "Noise hat das Importieren von einem Titel von der Audio-CD abgeschlossen."
-
-#~ msgid ""
-#~ "Please wait until BeatBox is finished with the current import before "
-#~ "importing the CD."
-#~ msgstr ""
-#~ "Bitte warte bis Noise den laufenden Importvorgang beendet hat, bevor du die "
-#~ "CD importierst."
-
-#~ msgid "id"
-#~ msgstr "ID"
-
-#~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to BeatBox. You "
-#~ "only need to do this once."
-#~ msgstr ""
-#~ "Zur Zulassung von Last.fm Integration, müssen Sie Noise die Erlaubnis dazu "
-#~ "geben. Dies ist einmalig."
-
-#, c-format
-#~ msgid ""
-#~ "Noise is already doing file operations. Please wait until those finish to "
-#~ "import from %s"
-#~ msgstr ""
-#~ "Noise führt bereits Dateioperationen durch. Bitte warten Sie bis diese "
-#~ "abgeschlossen sind bevor Sie aus %s importieren möchten."
-
-#, c-format
-#~ msgid "Remove \"%s\" From Noise?"
-#~ msgstr "\"%s\" aus Noise entfernen?"

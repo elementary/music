@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-06 05:14+0000\n"
+"X-Launchpad-Export-Date: 2012-05-07 05:15+0000\n"
 "X-Generator: Launchpad (build 15195)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
@@ -1430,50 +1430,3 @@ msgstr "Importar canciones desde un CD de audio"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1468
 msgid "Import media from device"
 msgstr "Importar contenido desde un dispositivo"
-
-#~ msgid "Previous"
-#~ msgstr "Anterior"
-
-#~ msgid "Next"
-#~ msgstr "Siguiente"
-
-#~ msgid "Noise can't seem to find your music."
-#~ msgstr "Noise parece no poder encontrar tu música"
-
-#~ msgid "BeatBox could not read the contents of this Audio CD."
-#~ msgstr "Noise no pudo leer el contentido de este CD de audio."
-
-#, c-format
-#~ msgid "%.0f days"
-#~ msgstr "%.0f días"
-
-#~ msgid "Noise could not find any songs on the CD. No songs can be imported"
-#~ msgstr ""
-#~ "Noise no encontró canción alguna en el CD. No se importaron canciones."
-
-#~ msgid ""
-#~ "Please wait until BeatBox is finished with the current import before "
-#~ "importing the CD."
-#~ msgstr ""
-#~ "Por favor, espere hasta que BeatBox termine la actual importación antes de "
-#~ "importar el CD."
-
-#~ msgid "Noise is already doing an import"
-#~ msgstr "Noise está realizando una importación ahora."
-
-#~ msgid "Noise has finished importing a song from Audio CD."
-#~ msgstr "Noise ha terminado de importar una canción desde el disco de audio."
-
-#, c-format
-#~ msgid "Noise has finished importing %i songs from Audio CD."
-#~ msgstr "Noise ha terminado de importar %i desde su disco de audio."
-
-#~ msgid "id"
-#~ msgstr "id"
-
-#~ msgid ""
-#~ "To allow for Last.fm integration, you must give permission to BeatBox. You "
-#~ "only need to do this once."
-#~ msgstr ""
-#~ "Para permitir la integración de Last.fm, debes autorizar a BeatBox. Solo "
-#~ "necesitas realizarlo una vez."
