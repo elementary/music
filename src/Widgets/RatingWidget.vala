@@ -31,6 +31,9 @@ public class Rating : Gtk.EventBox {
 
     public signal void rating_changed (int new_rating);
 
+    private bool symbolic = false;
+    private Gtk.IconSize size = Gtk.IconSize.MENU;
+
     private int rating = 0;
     private int hover_rating = 0;
     private int n_stars = 5;
@@ -49,22 +52,15 @@ public class Rating : Gtk.EventBox {
 
     public Rating (Gtk.StyleContext? context, bool centered, Gtk.IconSize size, bool symbolic = false) {
         this.centered = centered;
+        this.symbolic = symbolic;
+        this.size = size;
 
         if (context != null)  {
             is_menu_item = context.has_class (Gtk.STYLE_CLASS_MENUITEM);
         }
 
         set_transparent (true);
-
-        // TODO: This needs to be icon-system-independent in order to be included in Granite.
-        if (symbolic) {
-            starred = Icons.STARRED_SYMBOLIC.render (size, context);
-            not_starred = Icons.NOT_STARRED_SYMBOLIC.render (size, context);
-        }
-        else {
-            starred = Icons.STARRED.render (size, null);
-            not_starred = Icons.NOT_STARRED.render (size, null);
-        }
+        render_stars ();
 
         // this handles size allocation and connects the draw signal as well
         set_star_spacing (3);
@@ -78,6 +74,24 @@ public class Rating : Gtk.EventBox {
                   | Gdk.EventMask.LEAVE_NOTIFY_MASK);
 
         button_press_event.connect (on_button_press);
+        this.get_style_context ().changed.connect (render_stars);
+        this.state_flags_changed.connect (render_stars);
+    }
+
+    private void render_stars () {
+        // TODO: This needs to be icon-system-independent in order to be included in Granite.
+        var context = get_style_context ();
+
+        if (symbolic) {
+            starred = Icons.STARRED_SYMBOLIC.render (size, context);
+            not_starred = Icons.NOT_STARRED_SYMBOLIC.render (size, context);
+        }
+        else {
+            starred = Icons.STARRED.render (size, null);
+            not_starred = Icons.NOT_STARRED.render (size, null);
+        }
+
+        queue_draw ();
     }
 
     public Gdk.Pixbuf get_canvas () {
