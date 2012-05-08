@@ -109,7 +109,7 @@ public class BeatBox.SmartPlaylist : Object {
 		
 		int index;
 		for(index = 0; index < queries_in_string.length - 1; index++) {
-			string[] pieces_of_query = queries_in_string[index].split("<value_seperator>", 0);
+			string[] pieces_of_query = queries_in_string[index].split("<value_separator>", 0);
 			
 			SmartQuery sq = new SmartQuery();
 			sq.field = pieces_of_query[0];
@@ -124,7 +124,7 @@ public class BeatBox.SmartPlaylist : Object {
 		string rv = "";
 		
 		foreach(SmartQuery q in queries()) {
-			rv += q.field + "<value_seperator>" + q.comparator + "<value_seperator>" + q.value + "<query_seperator>";
+			rv += q.field + "<value_separator>" + q.comparator + "<value_separator>" + q.value + "<query_seperator>";
 		}
 		
 		return rv;

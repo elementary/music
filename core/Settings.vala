@@ -460,15 +460,7 @@ public class BeatBox.Settings : Object {
 			rv = Environment.get_user_special_dir(UserDirectory.MUSIC);
 		return rv;
 	}
-	
-	public string get_album_art_cache_dir () {
-		return GLib.Path.build_path ("/", get_cache_dir (), "album-art");
-	}
 
-	public string get_cache_dir () {
-		return GLib.Path.build_path ("/", Environment.get_user_cache_dir(), "noise");
-	}
-	
 	public string getMusicMountName() {
 		return get_string(MUSIC_MOUNT_NAME);
 	}

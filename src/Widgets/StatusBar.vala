@@ -22,21 +22,19 @@
 
 using Gtk;
 
-// FIXME: Improve how we display total time.
-
 public class BeatBox.StatusBar : Granite.Widgets.StatusBar {
 
-    public uint total_items {get; private set; default = 0;}
-    public uint total_mbs {get; private set; default = 0;}
-    public uint total_secs {get; private set; default = 0;}
-    public ViewWrapper.Hint media_type {get; private set;}
+    public uint total_items { get; private set; default = 0; }
+    public uint total_mbs   { get; private set; default = 0; }
+    public uint total_secs  { get; private set; default = 0; }
+
+    public ViewWrapper.Hint media_type { get; private set; }
 
     private string STATUS_TEXT_FORMAT = _("%s, %s, %s");
 
     private bool is_list = false;
 
-    public StatusBar () {
-    }
+    public StatusBar () { }
 
     public void set_files_size (uint total_mbs) {
         this.total_mbs = total_mbs;
@@ -61,22 +59,15 @@ public class BeatBox.StatusBar : Granite.Widgets.StatusBar {
             return;
         }
 
-        string time_text = "", media_description = "", medias_text = "", size_text = "";
+        string media_description = "", medias_text = "", size_text = "";
 
-        if(total_secs < 3600) { // less than 1 hour show in minute units
-            time_text = _("%s minutes").printf ((total_secs/60).to_string());
-        }
-        else if(total_secs < (24 * 3600)) { // less than 1 day show in hour units
-            time_text = _("%.1f hours").printf ((float)total_secs / 3600.0);
-        }
-        else { // units in days
-            time_text = _("%i days").printf ((int)total_secs / (24 * 3600));
-        }
+	// TODO: Move this out of here
 
         if (total_mbs < 1000)
             size_text = _("%i MB").printf (total_mbs);
         else
             size_text = _("%.2f GB").printf ((double)total_mbs/1000.0);
+
 
         switch (media_type) {
             case ViewWrapper.Hint.MUSIC:
@@ -104,7 +95,8 @@ public class BeatBox.StatusBar : Granite.Widgets.StatusBar {
 
         medias_text = "%i %s".printf ((int)total_items, media_description);
 
-        status_label.set_text (STATUS_TEXT_FORMAT.printf (medias_text, time_text, size_text));
+	var time_text = TimeUtils.time_string_from_seconds (total_secs);
+        set_text (STATUS_TEXT_FORMAT.printf (medias_text, time_text, size_text));
     }
 }
 

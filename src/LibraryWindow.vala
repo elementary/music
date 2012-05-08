@@ -145,6 +145,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		this.destroy.connect (on_quit);
 
+		// TODO: Move this to LibraryManager
 		if(lm.media_count() == 0 && settings.getMusicFolder() == "") {
 			message("First run.\n");
 		}
@@ -169,8 +170,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	}
 
 	public void build_ui() {
-		// simple message to terminal
-		message ("Building user interface\n");
+		debug ("Building user interface");
 
 		// set window min/max
 		Gdk.Geometry geo = Gdk.Geometry();
@@ -181,14 +181,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		// set the size based on saved gconf settings
 		set_default_size(settings.getWindowWidth(), settings.getWindowHeight());
 		
-
 		// set the title
 		set_title(app.get_name ());
 
 		// set the icon
 		set_icon(Icons.BEATBOX.render (IconSize.MENU, null));
 
-		/* Initialize all components */
 		verticalBox = new VBox(false, 0);
 		sourcesToMedias = new HPaned();
 		mediasToInfo = new HPaned();
@@ -448,6 +446,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			return false;
 		});
 
+		lm.medias_added.connect (update_sensitivities);
+		lm.medias_removed.connect (update_sensitivities);
+
 		// wait a second before loading cover art
 		// TODO: this shouldn't be here!
 		Idle.add ( () => {
@@ -457,7 +458,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	}
 
 
-	public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, bool force = false) {
+	public async void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, bool force = false) {
 		if (!Notify.is_initted ()) {
 			if (!Notify.init (app.get_id ())) {
 				warning ("Could not init libnotify");
@@ -667,7 +668,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		debug ("Finished loading playlists");
 	}
 
-	public void addSideListItem(GLib.Object o) {
+	public async void addSideListItem (GLib.Object o) {
 		TreeIter item = sideTree.library_music_iter; //just a default
 		ViewWrapper vw = null;
 
@@ -743,9 +744,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		bool show_info_panel = settings.getMoreVisible () && media_active && folder_set;
 		info_panel.set_visible (show_info_panel);
 		
-		bool choosers_sensitive = media_active && folder_set;
-		info_panel_chooser.set_sensitive (choosers_sensitive);
-		addPlaylistChooser.set_sensitive (choosers_sensitive);
+		statusbar.set_sensitive (media_active && folder_set);
 
 		// hide playlists when media list is empty
 		sideTree.setVisibility(sideTree.playlists_iter, have_media);

@@ -23,8 +23,8 @@
 using Gee;
 using Gtk;
 
-#if ENABLE_LIGHT_WINDOW
-public class BeatBox.AlbumListView : Granite.Widgets.LightWindow {
+#if USE_GRANITE_DECORATED_WINDOW
+public class BeatBox.AlbumListView : Granite.Widgets.DecoratedWindow {
 #else
 public class BeatBox.AlbumListView : Window {
 #endif
@@ -50,10 +50,10 @@ public class BeatBox.AlbumListView : Window {
 		set_default_size (WIDTH, HEIGHT);
 
 		set_transient_for (lm.lw);
-		window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 		this.destroy_with_parent = true;
 		set_skip_taskbar_hint (true);
-#if !ENABLE_LIGHT_WINDOW
+#if !USE_GRANITE_DECORATED_WINDOW
+		window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 		// window stuff
 
 		set_decorated(false);
@@ -69,8 +69,8 @@ public class BeatBox.AlbumListView : Window {
 		close.set_relief(Gtk.ReliefStyle.NONE);
 		close.clicked.connect( () =>  { this.hide(); });
 #else
-		base.get_style_context ().remove_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-		base.get_style_context ().remove_class ("content-view-window");
+		box.get_style_context ().add_class ("album-list-view");
+		draw_ref.get_style_context ().add_class ("album-list-view");
 #endif
 		// album artist/album labels
 		album_label = new Label ("");
@@ -87,6 +87,10 @@ public class BeatBox.AlbumListView : Window {
 		
 		album_label.set_max_width_chars (30);
 		artist_label.set_max_width_chars (30);
+
+#if USE_GRANITE_DECORATED_WINDOW
+		album_label.margin_top = 12;
+#endif
 
 		album_label.margin_left = album_label.margin_right = 12;
 		artist_label.margin_bottom = 12;
@@ -106,7 +110,7 @@ public class BeatBox.AlbumListView : Window {
 
 		// Add everything
 		var vbox = new Box(Orientation.VERTICAL, 0);
-#if !ENABLE_LIGHT_WINDOW
+#if !USE_GRANITE_DECORATED_WINDOW
 		vbox.pack_start (close, false, false, 0);
 #endif
 		vbox.pack_start (album_label, false, true, 0);
@@ -118,7 +122,7 @@ public class BeatBox.AlbumListView : Window {
 
 		rating.rating_changed.connect(rating_changed);
 
-#if !ENABLE_LIGHT_WINDOW
+#if !USE_GRANITE_DECORATED_WINDOW
 		/* Make window draggable */
 		UI.make_window_draggable (this);
 #endif

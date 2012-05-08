@@ -1,10 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012 Scott Ringwelski <sgringwe@mtu.edu>
  * Copyright (c) 2012 Noise Developers
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -21,10 +17,8 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
- *              Victor Eduardo <victoreduardm@gmail.com>
+ * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
-
 
 namespace BeatBox {
 

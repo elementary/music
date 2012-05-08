@@ -1062,7 +1062,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		Idle.add( () => {
 			medias_added(added);
-			
 			return false;
 		});
 	}

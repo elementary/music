@@ -23,6 +23,23 @@
 namespace BeatBox.Numeric {
 
     /**
+     * Returns the lowest uint given a double.
+     * For instance:
+     * INPUT => OUTPUT
+     *  7.02 => 7
+     *  7.51 => 7
+     *  7.99 => 7
+     */
+    public uint lowest_uint_from_double (double number) {
+        uint rv = (uint)number;
+
+        if ((double)rv > number)
+            rv --;
+
+        return rv;
+    }
+
+    /**
      * Approximates a double to the best uint.
      */
     public uint uint_from_double (double number) {

@@ -24,7 +24,11 @@ using Gtk;
 using Gee;
 using Granite;
 
+#if USE_GRANITE_DECORATED_WINDOW
+public class BeatBox.MediaEditor : Granite.Widgets.LightWindow {
+#else
 public class BeatBox.MediaEditor : Window {
+#endif
 	LibraryManager _lm;
 	LyricFetcher lf;
 	

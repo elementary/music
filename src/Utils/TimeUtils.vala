@@ -23,20 +23,91 @@
 namespace BeatBox.TimeUtils {
 
     /**
+     * Receives the number of seconds and returns a string with format:
+     * "DD days, HH hours, MM minutes".
+     * FIXME: NEEDS LOCALIZATION IMPROVEMENTS. Something like "%D, %H and %M"
+     * as formatting parameter would work.
+     */
+    public inline string time_string_from_seconds (uint seconds) {
+        double secs = (double)seconds;
+
+        const double SECONDS_PER_DAY    = 86400; // 24 x SECONDS_PER_HOUR
+        const double SECONDS_PER_HOUR   = 3600;  // 60 X SECONDS_PER_MINUTE
+        const double SECONDS_PER_MINUTE = 60;
+
+        uint days = 0, hours = 0, minutes = 0;
+
+        // calculate days
+        days = Numeric.lowest_uint_from_double (secs / SECONDS_PER_DAY);
+        secs -= days * SECONDS_PER_DAY;
+
+        // calculate remaining hours
+        hours = Numeric.lowest_uint_from_double (secs / SECONDS_PER_HOUR);
+        secs -= hours * SECONDS_PER_HOUR;
+
+        // calculate remaining minutes. Now the best (and not the lowest)
+        // approximation is desired
+        minutes = Numeric.uint_from_double (secs / SECONDS_PER_MINUTE);
+
+        /**
+         * @Translators:
+         * The format to display the date. This will be turned into something like
+         * "2 days, 20 hours, 12 minutes". %D represents the place of days, %H hours
+         * and %M minutes.
+         */
+        string FORMAT = _("%D %H %M");
+        //string DATE_SEPARATOR = _(",");
+
+        string days_string = "", hours_string = "", minutes_string = "";
+
+        if (days > 0) {
+            if (days == 1)
+                days_string = _("1 day");
+            else
+                days_string = _("%i days").printf ((int)days);
+        }
+
+        if (hours > 0) {
+            // add separator
+            //if (days_string != "")
+            //    days_string += DATE_SEPARATOR;
+
+            if (hours == 1)
+                hours_string = _("1 hour");
+            else
+                hours_string = _("%i hours").printf ((int)hours);
+        }
+
+        if (minutes > 0) {
+            // add separator
+            //if (hours_string != "")
+            //    hours_string += DATE_SEPARATOR;
+            //else if (days_string != "")
+            //    days_string += DATE_SEPARATOR;
+
+            if (minutes == 1)
+                minutes_string = _("1 minute");
+            else
+                minutes_string = _("%i minutes").printf ((int)minutes);
+        }
+
+        var rv = "";
+        rv = FORMAT.replace ("%D", days_string);
+        rv = rv.replace ("%H", hours_string);
+        rv = rv.replace ("%M", minutes_string);
+
+        return String.remove_trailing_white_space (rv);
+    }
+
+    /**
      * Receives the number of seconds and returns a string with format MM:SS
      */
     public inline string pretty_time_mins (uint seconds) {
-        //make pretty current time
-		uint minute = 0;
-
-        // FIXME: not efficient with large numbers. Instead make a division
-		while (seconds >= 60) {
-			++ minute;
-			seconds -= 60;
-		}
+        uint minutes = Numeric.lowest_uint_from_double ((double)seconds / 60);
+        seconds -= minutes * 60;
 
         // Add '0' if seconds is between '0' and '9'
-        return "%s:%s".printf (@"$minute", ((seconds < 10 ) ? @"0$seconds" : @"$seconds"));
+        return "%s:%s".printf (@"$minutes", ((seconds < 10 ) ? @"0$seconds" : @"$seconds"));
     }
 
     /**

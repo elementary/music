@@ -52,9 +52,9 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 
-		var db_file = GLib.File.new_for_path (GLib.Path.build_filename (data_dir.get_path (), lm.lw.app.get_name (), "database.db"));
+		var db_file = GLib.File.new_for_path (GLib.Path.build_filename (data_dir.get_path (), "database_1_0.db"));
 
-		/* we need to set this variable since 'new SQLHeavy.Database' will create the file later */
+		/* we need to set this variable now since 'new SQLHeavy.Database' will create the file later */
 		bool need_create = !db_file.query_exists ();
 
 		try {
@@ -420,9 +420,9 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			transaction = database.begin_transaction();
 			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column_id', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column_id, :sort_direction, :columns);");
 
-			query.set_string(":name", "Favorite Songs");
+			query.set_string(":name", _("Favorite Songs"));
 			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Rating<value_separator>is at least<value_separator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.RATING);
@@ -433,7 +433,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 #if HAVE_INTERNET_RADIO
 			query.set_string(":name", "Favorite Stations");
 			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>3<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_string(":queries", "Media Type<value_separator>is<value_separator>3<query_seperator>Rating<value_separator>is at least<value_separator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.RATING);
@@ -441,9 +441,9 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 #endif
-			query.set_string(":name", "Recently Added");
+			query.set_string(":name", _("Recently Added"));
 			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Date Added<value_seperator>is within<value_seperator>7<query_seperator>");
+			query.set_string(":queries", "Date Added<value_separator>is within<value_separator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.ARTIST);
@@ -451,9 +451,9 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 
-			query.set_string(":name", "Recently Played");
+			query.set_string(":name", _("Recently Played"));
 			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Last Played<value_seperator>is within<value_seperator>7<query_seperator>");
+			query.set_string(":queries", "Last Played<value_separator>is within<value_separator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.LAST_PLAYED);
@@ -461,9 +461,9 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 
-			query.set_string(":name", "Recent Favorites");
+			query.set_string(":name", _("Recent Favorites"));
 			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Last Played<value_seperator>is within<value_seperator>7<query_seperator>Rating<value_seperator>is at least<value_seperator>4<query_seperator>");
+			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Last Played<value_separator>is within<value_separator>7<query_seperator>Rating<value_separator>is at least<value_separator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.RATING);
@@ -471,9 +471,9 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 
-			query.set_string(":name", "Never Played");
+			query.set_string(":name", _("Never Played"));
 			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
+			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Playcount<value_separator>is exactly<value_separator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.ARTIST);
@@ -481,9 +481,9 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 #if HAVE_PODCASTS
-			query.set_string(":name", "Unheard Podcasts");
+			query.set_string(":name", _("Unheard Podcasts"));
 			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>1<query_seperator>Playcount<value_seperator>is exactly<value_seperator>0<query_seperator>");
+			query.set_string(":queries", "Media Type<value_separator>is<value_separator>1<query_seperator>Playcount<value_separator>is exactly<value_separator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.ARTIST);
@@ -491,9 +491,9 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 #endif
-			query.set_string(":name", "Over Played");
+			query.set_string(":name", _("Over Played"));
 			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_seperator>is<value_seperator>0<query_seperator>Playcount<value_seperator>is at least<value_seperator>10<query_seperator>");
+			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Playcount<value_separator>is at least<value_separator>10<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.PLAY_COUNT);
@@ -501,9 +501,9 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 
-			query.set_string(":name", "Not Recently Played");
+			query.set_string(":name", _("Not Recently Played"));
 			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Last Played<value_seperator>is before<value_seperator>7<query_seperator>");
+			query.set_string(":queries", "Last Played<value_separator>is before<value_separator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.NUMBER);
@@ -628,7 +628,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 				string tags = "";
 				foreach(LastFM.Tag tag in a.tags()) {
-					tags += tag.tag + "<value_seperator>" + tag.url + "<tag_seperator>";
+					tags += tag.tag + "<value_separator>" + tag.url + "<tag_seperator>";
 				}
 
 				query.set_string(":tags", tags);
@@ -667,7 +667,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 				int index;
 				for(index = 0; index < tag_strings.length - 1; ++index) {
-					string[] tag_values = tag_strings[index].split("<value_seperator>", 0);
+					string[] tag_values = tag_strings[index].split("<value_separator>", 0);
 
 					LastFM.Tag t = new LastFM.Tag.with_string_and_url(tag_values[0], tag_values[1]);
 					a.addTag(t);
@@ -717,7 +717,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 				int index;
 				for(index = 0; index < tag_strings.length - 1; ++index) {
-					string[] tag_values = tag_strings[index].split("<value_seperator>", 0);
+					string[] tag_values = tag_strings[index].split("<value_separator>", 0);
 
 					LastFM.Tag t = new LastFM.Tag.with_string_and_url(tag_values[0], tag_values[1]);
 					a.addTag(t);
@@ -727,7 +727,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 				string[] sim_strings = sim_string.split("<similar_seperator>", 0);
 
 				for(index = 0; index < sim_strings.length - 1; ++index) {
-					string[] sim_values = sim_strings[index].split("<value_seperator>", 0);
+					string[] sim_values = sim_strings[index].split("<value_separator>", 0);
 
 					LastFM.ArtistInfo sim = new LastFM.ArtistInfo.with_artist_and_url(sim_values[0], sim_values[1]);
 					a.addSimilarArtist(sim);
@@ -769,12 +769,12 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 				string tags = "";
 				foreach(LastFM.Tag tag in a.tags()) {
-					tags += tag.tag + "<value_seperator>" + tag.url + "<tag_seperator>";
+					tags += tag.tag + "<value_separator>" + tag.url + "<tag_seperator>";
 				}
 
 				string similar = "";
 				foreach(LastFM.ArtistInfo sim in a.similarArtists()) {
-					similar += sim.name + "<value_seperator>" + sim.url + "<similar_seperator>";
+					similar += sim.name + "<value_separator>" + sim.url + "<similar_seperator>";
 				}
 
 				query.set_string(":tags", tags);
@@ -817,7 +817,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 				int index;
 				for(index = 0; index < tag_strings.length - 1; ++index) {
-					string[] tag_values = tag_strings[index].split("<value_seperator>", 0);
+					string[] tag_values = tag_strings[index].split("<value_separator>", 0);
 
 					LastFM.Tag tag = new LastFM.Tag.with_string_and_url(tag_values[0], tag_values[1]);
 					t.addTag(tag);
@@ -853,7 +853,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 				string tags = "";
 				foreach(LastFM.Tag tag in t.tags()) {
-					tags += tag.tag + "<value_seperator>" + tag.url + "<tag_seperator>";
+					tags += tag.tag + "<value_separator>" + tag.url + "<tag_seperator>";
 				}
 
 				query.set_string(":tags", tags);

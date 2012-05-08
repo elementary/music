@@ -80,7 +80,7 @@ public class BeatBox.FileOperator : Object {
 		} );
 
 		/* Create album-art cache dir */
-		var album_art_folder = GLib.File.new_for_path (settings.get_album_art_cache_dir ());
+		var album_art_folder = GLib.File.new_for_path (get_album_art_cache_dir ());
 		if (!album_art_folder.query_exists()) {
 			try {
 				album_art_folder.make_directory_with_parents (null);
@@ -90,7 +90,11 @@ public class BeatBox.FileOperator : Object {
 			}
 		}	
 	}
-	
+
+	public string get_album_art_cache_dir () {
+		return GLib.Path.build_path ("/", Environment.get_user_cache_dir (), lm.lw.app.get_name (), "album-art");
+	}
+
 	public void resetProgress(int items) {
 		index = 0;
 		item_count = items;
@@ -239,7 +243,7 @@ public class BeatBox.FileOperator : Object {
 	}
 
 	public string get_cached_album_art_path (string key) {
-		return GLib.Path.build_filename (settings.get_album_art_cache_dir (), key + ".jpg");
+		return GLib.Path.build_filename (get_album_art_cache_dir (), key + ".jpg");
 	}
 
 	public Gdk.Pixbuf? save_artist_image(Media s, string uri) {

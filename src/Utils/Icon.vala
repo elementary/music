@@ -142,8 +142,8 @@ public class BeatBox.Icon : GLib.Object {
 			try {
 				rv = new Gdk.Pixbuf.from_file(backup);
 			}
-			catch(Error err) {
-				message ("Could not load PNG image: %s\n", err.message);
+			catch (Error err) {
+				warning ("Could not load PNG image: %s\n", err.message);
 			}
 
 			return rv;
@@ -174,7 +174,7 @@ public class BeatBox.Icon : GLib.Object {
 				}
 			}
 			catch (Error err) {
-				message ("%s, falling back to BeatBox default.", err.message);
+				message ("%s, falling back to default.", err.message);
 			}
 		}
 
@@ -185,7 +185,7 @@ public class BeatBox.Icon : GLib.Object {
 				rv = new Gdk.Pixbuf.from_file_at_size (this.backup, width, height);
 			}
 			catch (Error err) {
-				message ("Couldn't load backup icon: %s", err.message);
+				warning ("Couldn't load backup icon: %s", err.message);
 			}
 		}
 
@@ -215,7 +215,7 @@ public class BeatBox.Icon : GLib.Object {
 		
 		if (IconTheme.get_default().has_icon (this.name) && size != null) {
 			// Try to load icon from theme
-			rv = new Image.from_icon_name (this.name, size);
+			rv = new Image.from_gicon (get_gicon (), size);
 		} else if (has_backup) {
 			// If the icon theme doesn't contain the icon, load backup
 			message ("Loading %s from backup", this.name);

@@ -25,59 +25,10 @@ namespace BeatBox.Search {
     /**
      * Description:
      * Receives a string and returns a valid search string.
-     * This method can be used as a parser.
-     *
-     * Examples:
-     *
-     * INPUT:           OUTPUT:
-     * "     Foo Bar "  "Foo Bar"     --> Removes trailing spaces from beginning and end
-     * "             "  ""            --> Converts white space into a void string
-     * "Foo   Bar"      "Foo    Bar"  --> Doesn't change middle spaces.
+     * This method can be used as a parser as well [TODO].
      */
     public inline string get_valid_search_string (string s) {
-
-        if (s.length < 1)
-            return "";
-
-        bool found_valid_char = false;
-        int white_space = 0, first_char_position = 0;
-        unichar c;
-
-        // WHITESPACE CHECK
-        for (int i = 0; s.get_next_char (ref i, out c);) {
-            if (c.isspace()) {
-                ++ white_space;
-            }
-            else {
-                found_valid_char = true;
-                first_char_position = i; // position of the first valid character
-                break; // no need to keep looping
-            }
-        }
-
-        if (white_space == s.length)
-            return "";
-
-        if (found_valid_char) {
-            var rv = new StringBuilder();
-
-            int last_char_position = 0;
-            for (int i = first_char_position - 1; s.get_next_char (ref i, out c);) {
-                if (!c.isspace()) {
-                    last_char_position = i;
-                }
-            }
-
-            // Remove trailing spaces. In fact we just don't copy chars outside the
-            // [first_valid_char, last_valid_char] interval.
-            for (int i = first_char_position - 1; s.get_next_char (ref i, out c) && i <= last_char_position;) {
-                    rv.append_unichar (c);
-            }
-
-            return rv.str;
-        }
-
-        return "";
+        return String.remove_trailing_white_space (s);
     }
 
 
