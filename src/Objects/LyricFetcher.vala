@@ -168,7 +168,7 @@ private class AZLyricsFetcher : Object {
 		
 		if (start != -1 && end != -1 && end > start) {
 			lyrics = content.substring (start, end - start);
-			rv.append (lyrics.replace ("<br><br>", "").replace("<br>","").replace("<i>","").replace("</i>","").strip());
+			rv.append (lyrics.replace ("<br><br>", "").replace("<br>","").replace("<i>","").replace("</i>","").replace ("<br />", "").strip());
 		}
 
 		rv.append ("\n");
