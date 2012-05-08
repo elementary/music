@@ -185,7 +185,7 @@ public class BeatBox.MediaEditor : Window {
 		fields.set("Track", new FieldEditor(_("Track"), sum.track.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Disc", new FieldEditor(_("Disc"), sum.album_number.to_string(), new SpinButton.with_range(0, 500, 1)));
 		fields.set("Year", new FieldEditor(_("Year"), sum.year.to_string(), new SpinButton.with_range(0, 9999, 1)));
-		fields.set("Rating", new FieldEditor(_("Rating"), sum.rating.to_string(), new Granite.Widgets.Rating(null, false, IconSize.MENU)));
+		fields.set("Rating", new FieldEditor(_("Rating"), sum.rating.to_string(), new Granite.Widgets.Rating(false, IconSize.MENU)));
 #if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 		fields.set("Media Type", new FieldEditor(_("Media Type"), sum.mediatype.to_string(), new ComboBoxText()));
 #endif

@@ -33,6 +33,7 @@ public class Rating : Gtk.EventBox {
 
     private bool symbolic = false;
     private Gtk.IconSize size = Gtk.IconSize.MENU;
+    private Gtk.StyleContext? context = null;
 
     private int rating = 0;
     private int hover_rating = 0;
@@ -49,15 +50,22 @@ public class Rating : Gtk.EventBox {
     private Gdk.Pixbuf not_starred;
     private Gdk.Pixbuf starred;
 
-
-    public Rating (Gtk.StyleContext? context, bool centered, Gtk.IconSize size, bool symbolic = false) {
+    /**
+     * It's not necessary to set a context. In most cases it should be 'null'.
+     */
+    public Rating (bool centered, Gtk.IconSize size, bool symbolic = false, Gtk.StyleContext? ctx = null) {
         this.centered = centered;
         this.symbolic = symbolic;
         this.size = size;
 
-        if (context != null)  {
-            is_menu_item = context.has_class (Gtk.STYLE_CLASS_MENUITEM);
-        }
+        if (ctx != null)
+            this.context = ctx;
+        else
+            this.context = get_style_context ();
+
+        this.context.changed.connect (render_stars);
+
+        this.is_menu_item = this.context.has_class (Gtk.STYLE_CLASS_MENUITEM);
 
         set_transparent (true);
         render_stars ();
@@ -66,7 +74,7 @@ public class Rating : Gtk.EventBox {
         set_star_spacing (3);
 
         // force a redraw...
-        update_rating (rating);
+        redraw ();
 
         add_events(Gdk.EventMask.BUTTON_PRESS_MASK
                   | Gdk.EventMask.BUTTON_RELEASE_MASK
@@ -74,14 +82,11 @@ public class Rating : Gtk.EventBox {
                   | Gdk.EventMask.LEAVE_NOTIFY_MASK);
 
         button_press_event.connect (on_button_press);
-        this.get_style_context ().changed.connect (render_stars);
-        this.state_flags_changed.connect (render_stars);
+        state_flags_changed.connect (render_stars);
     }
 
     private void render_stars () {
         // TODO: This needs to be icon-system-independent in order to be included in Granite.
-        var context = get_style_context ();
-
         if (symbolic) {
             starred = Icons.STARRED_SYMBOLIC.render (size, context);
             not_starred = Icons.NOT_STARRED_SYMBOLIC.render (size, context);
@@ -91,10 +96,10 @@ public class Rating : Gtk.EventBox {
             not_starred = Icons.NOT_STARRED.render (size, null);
         }
 
-        queue_draw ();
+        redraw ();
     }
 
-    public Gdk.Pixbuf get_canvas () {
+    internal Gdk.Pixbuf get_canvas () {
         return _canvas;
     }
 
@@ -102,6 +107,7 @@ public class Rating : Gtk.EventBox {
         override_background_color (Gtk.StateFlags.NORMAL, color);
         override_background_color (Gtk.StateFlags.ACTIVE, color);
         override_background_color (Gtk.StateFlags.PRELIGHT, color);
+        redraw ();
     }
 
     public void set_transparent (bool val) {
@@ -128,13 +134,17 @@ public class Rating : Gtk.EventBox {
         height_request = item_height;
 
         // Generate canvas pixbuf
-        _canvas = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, width_request, height_request);
+        _canvas = new Gdk.Pixbuf (Gdk.Colorspace.RGB, true, 8, width_request, height_request);
 
         draw.connect (on_expose_event);
 
-        update_rating (rating);
+        redraw ();
+    }
 
-        queue_draw ();
+    public void redraw () {
+        // No need to duplicate code. update_rating() does exactly this
+        // and also calls queue_draw().
+        update_rating (rating);    
     }
 
     public int get_star_spacing () {
@@ -186,7 +196,7 @@ public class Rating : Gtk.EventBox {
         // Allocate new area
         set_star_spacing (this.spacing);
 
-        queue_draw ();
+        redraw ();
     }
 
 
@@ -319,11 +329,8 @@ public class RatingMenuItem : Gtk.MenuItem {
     }
 
     public RatingMenuItem () {
-        var style_context = get_style_context ();
-
-        rating = new Rating (style_context, false, Gtk.IconSize.MENU);
+        rating = new Rating (false, Gtk.IconSize.MENU, false, get_style_context ());
         add (rating);
-
 
         // These states' theming is obtrusive. This seems to be the right way to get rid of them
         this.state_flags_changed.connect ( () => {
@@ -406,7 +413,7 @@ public class CellRendererRating : Gtk.CellRendererPixbuf {
     protected Rating? rating = null;
 
     public CellRendererRating (Gtk.IconSize icon_size = Gtk.IconSize.MENU) {
-        rating = new Rating (null, false, icon_size);
+        rating = new Rating (false, icon_size);
         this.pixbuf = rating.get_canvas ();
 
         xalign = 0.0f; // left-aligned

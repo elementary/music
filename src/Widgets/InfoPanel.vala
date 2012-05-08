@@ -66,7 +66,7 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		banMedia = new Button();
 		coverArt = new Gtk.Image();
 		coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
-		rating = new Granite.Widgets.Rating (null, true, IconSize.MENU); // centered = true
+		rating = new Granite.Widgets.Rating (true, IconSize.MENU); // centered = true
 		album = new Label("");
 		year = new Label("");
 		ssv = new SimilarMediasView(lm, lw);
@@ -177,7 +177,7 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 	void update_metadata() {
 		Media s = lm.media_from_id(id);
 		
-		title.set_markup("<span size=\"large\"><b>" + Markup.escape_text (s.title, -1) + "</b></span>");
+		title.set_markup("<span size=\"large\"><b>" + String.escape (s.title) + "</b></span>");
 		artist.set_text(s.artist);
 		album.set_text(s.album);
 
@@ -185,7 +185,7 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		rating.set_rating((int)s.rating);
 
 		if(s.year > 1900)
-			year.set_markup("<span size=\"x-small\">" + Markup.escape_text ("(%d)".printf ((int)s.year), -1) + "</span>");
+			year.set_markup("<span size=\"x-small\">" + String.escape ("(%d)".printf ((int)s.year)) + "</span>");
 		else
 			year.set_markup("");
 	}

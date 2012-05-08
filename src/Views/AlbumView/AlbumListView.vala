@@ -103,7 +103,7 @@ public class BeatBox.AlbumListView : Window {
 		mtv_scrolled.add (mtv);
 
 		// Rating widget
-		rating = new Granite.Widgets.Rating (get_style_context(), true, IconSize.MENU, true);
+		rating = new Granite.Widgets.Rating (true, IconSize.MENU, true);
 		// customize rating
 		rating.set_star_spacing (16);
 		rating.margin_top = rating.margin_bottom = 16;
@@ -166,7 +166,6 @@ public class BeatBox.AlbumListView : Window {
 		update_album_rating ();
 		lm.medias_updated.connect (update_album_rating);
 	}
-
 
 	void update_album_rating () {
 		// We don't want to set the overall_rating as each media's rating.
