@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-07 20:34-0600\n"
-"PO-Revision-Date: 2012-04-30 18:54+0000\n"
-"Last-Translator: Jakub Jezbera <Unknown>\n"
+"PO-Revision-Date: 2012-05-08 09:40+0000\n"
+"Last-Translator: Jakub Cabal <jakubcabal@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-08 05:53+0000\n"
-"X-Generator: Launchpad (build 15204)\n"
+"X-Launchpad-Export-Date: 2012-05-09 05:28+0000\n"
+"X-Generator: Launchpad (build 15213)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "Složka s hudbou nenalezena"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 msgid ""
@@ -30,7 +30,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:230
 msgid "No songs on CD"
-msgstr ""
+msgstr "Žádné skladby na CD"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:230
 #, c-format
@@ -61,7 +61,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:333
 msgid "CD Import Complete"
-msgstr ""
+msgstr "Import CD dokončen"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
 #, c-format
@@ -82,27 +82,27 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:397
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 msgid "Bitrate"
-msgstr ""
+msgstr "Datový tok"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:36
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:37
 msgid "Episode"
-msgstr ""
+msgstr "Epizoda"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:38
 msgid "Name"
-msgstr ""
+msgstr "Jméno"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:39
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:284
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:397
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:427
 msgid "Length"
-msgstr ""
+msgstr "Délka"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:40
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:291
@@ -111,7 +111,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:177
 msgid "Title"
-msgstr ""
+msgstr "Název"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:41
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:274
@@ -131,7 +131,7 @@ msgstr "Album"
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:178
 #: /home/victor/noise/po/../src//LibraryWindow.vala:273
 msgid "Artist"
-msgstr ""
+msgstr "Interpret"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:43
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
@@ -140,14 +140,14 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:181
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:470
 msgid "Genre"
-msgstr ""
+msgstr "Žánr"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:44
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:292
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:397
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:187
 msgid "Year"
-msgstr ""
+msgstr "Rok"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:45
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:307
@@ -155,15 +155,15 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:531
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
 msgid "Podcast"
-msgstr ""
+msgstr "Podcast"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:46
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:47
 msgid "Category"
-msgstr ""
+msgstr "Kategorie"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:48
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:277
@@ -171,73 +171,73 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:350
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:184
 msgid "Comment"
-msgstr ""
+msgstr "Kometář"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:49
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:289
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:397
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:188
 msgid "Rating"
-msgstr ""
+msgstr "Hodnocení"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:50
 msgid "Pulser"
-msgstr ""
+msgstr "Vysílač"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:51
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
 msgid "Station"
-msgstr ""
+msgstr "Stanice"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:52
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:408
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
 msgid "Date Added"
-msgstr ""
+msgstr "Datum přidání"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:53
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:283
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:408
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
 msgid "Last Played"
-msgstr ""
+msgstr "Naposledy přehráno"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:54
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:55
 msgid "Plays"
-msgstr ""
+msgstr "Hraje"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:56
 msgid "Skips"
-msgstr ""
+msgstr "Přeskočení"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:57
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:185
 msgid "Track"
-msgstr ""
+msgstr "Stopa"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:58
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: /home/victor/noise/po/../src//Objects/Playlist.vala:36
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:139
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:318
 msgid "New Playlist"
-msgstr ""
+msgstr "Nový playlist"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:37
 msgid "Unknown Title"
-msgstr ""
+msgstr "Neznámý název"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:39
 #: /home/victor/noise/po/../src//LibraryWindow.vala:784
 msgid "Unknown Artist"
-msgstr "Neznámý umělec"
+msgstr "Neznámý interpret"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:41
 #: /home/victor/noise/po/../src//LibraryWindow.vala:785
@@ -247,93 +247,93 @@ msgstr "Neznámé album"
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:33
 #, c-format
 msgid "%s, %s, %s"
-msgstr ""
+msgstr "%s, %s, %s"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:67
 #, c-format
 msgid "%i MB"
-msgstr ""
+msgstr "%i MB"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:69
 #, c-format
 msgid "%.2f GB"
-msgstr ""
+msgstr "%.2f GB"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:75
 msgid "songs"
-msgstr ""
+msgstr "skladeb"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:75
 msgid "song"
-msgstr ""
+msgstr "skladba"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:77
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:92
 msgid "albums"
-msgstr ""
+msgstr "alba"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:77
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:92
 msgid "album"
-msgstr ""
+msgstr "album"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:80
 msgid "podcasts"
-msgstr ""
+msgstr "podcasty"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:80
 msgid "podcast"
-msgstr ""
+msgstr "podcast"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:83
 msgid "audiobooks"
-msgstr ""
+msgstr "audioknihy"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:83
 msgid "audiobook"
-msgstr ""
+msgstr "audiokniha"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:86
 msgid "stations"
-msgstr ""
+msgstr "stanice"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:86
 msgid "station"
-msgstr ""
+msgstr "stanice"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:90
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 msgid "items"
-msgstr ""
+msgstr "položek"
 
 #: /home/victor/noise/po/../src//Widgets/StatusBar.vala:90
 msgid "item"
-msgstr ""
+msgstr "položka"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
-msgstr ""
+msgstr "média"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr ""
+msgstr "Podobná média"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:101
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr ""
+msgstr "Importovat ze zařízení"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:102
 msgid "Sync"
-msgstr ""
+msgstr "Synchronizace"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:111
 msgid "Add Podcast"
-msgstr ""
+msgstr "Přidat podcast"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:112
 msgid "Download new Episodes"
-msgstr ""
+msgstr "Stáhnout nové epizody"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:121
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:321
@@ -343,32 +343,32 @@ msgstr "Importovat do knihovny"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:122
 msgid "Eject"
-msgstr ""
+msgstr "Vyjmout"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:131
 msgid "Import Stations"
-msgstr ""
+msgstr "Importovat stanice"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:140
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "Nový chytrý seznam skladeb"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:141
 msgid "Edit"
-msgstr ""
+msgstr "Upravit"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:142
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:255
 msgid "Remove"
-msgstr ""
+msgstr "Odebrat"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:143
 msgid "Save as Playlist"
-msgstr ""
+msgstr "Uložit jako seznam Skladeb"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:144
 msgid "Export..."
-msgstr ""
+msgstr "Exportovat..."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:145
 msgid "Import Playlists"
@@ -380,15 +380,15 @@ msgstr "Knihovna"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:181
 msgid "Devices"
-msgstr ""
+msgstr "Zařízení"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:182
 msgid "Network"
-msgstr ""
+msgstr "Síť"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:183
 msgid "Playlists"
-msgstr ""
+msgstr "Seznamy skladeb"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:98
@@ -411,16 +411,16 @@ msgstr "Storno"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
-msgstr ""
+msgstr "Ekvalizér"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
-msgstr ""
+msgstr "Uložit předvolbu"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:160
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:103
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
@@ -434,7 +434,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:421
 msgid "Custom Preset"
-msgstr ""
+msgstr "Vlastní nastavení"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:423
 #, c-format
@@ -463,19 +463,19 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "Přesunout do koše"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr ""
+msgstr "Ignorovat"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
-msgstr ""
+msgstr "smazat"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "Umístění souboru"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
@@ -483,21 +483,21 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
-msgstr ""
+msgstr "Exportovat seznam skladeb"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr "Vyber složku s hudbou"
+msgstr "Vybrat složku s hudbou"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "Nastavit složku s hudbou?"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:130
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1324
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "Vybrat složku s hudbou"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
@@ -506,7 +506,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
 msgid "Do Nothing"
-msgstr ""
+msgstr "Nedělat nic"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
@@ -525,11 +525,11 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Pokračovat v synchronizaci"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Zastavit synchronizaci"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
@@ -550,7 +550,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:48
 msgid "Success!"
-msgstr ""
+msgstr "Úspěch!"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:49
 msgid "Enable Scrobbling"
@@ -567,7 +567,7 @@ msgstr "Nastavení"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:81
 msgid "Music Folder"
-msgstr ""
+msgstr "Složka s hudbou"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Keep music folder organized"
@@ -640,7 +640,7 @@ msgstr "Název playlistu"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
 msgid "Rules"
-msgstr ""
+msgstr "Pravidla"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
@@ -653,15 +653,15 @@ msgstr "Název seznamu skladeb"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
-msgstr ""
+msgstr "Shoda"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
 msgid "any"
-msgstr ""
+msgstr "cokoliv"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:90
 msgid "all"
-msgstr ""
+msgstr "vše"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
@@ -669,11 +669,11 @@ msgstr "z následujících:"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
 msgid "Add"
-msgstr ""
+msgstr "Přidat"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
 msgid "Limit to"
-msgstr ""
+msgstr "Omezit na"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:82
@@ -686,13 +686,13 @@ msgstr "Hotovo"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:350
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:182
 msgid "Composer"
-msgstr ""
+msgstr "Skladatel"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:408
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
 msgid "Date Released"
-msgstr ""
+msgstr "Datum vydání"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:282
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:339
@@ -700,19 +700,19 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:183
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:470
 msgid "Grouping"
-msgstr ""
+msgstr "Seskupení"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:286
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:341
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:190
 msgid "Media Type"
-msgstr ""
+msgstr "Typ média"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:288
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:397
 msgid "Playcount"
-msgstr ""
+msgstr "Počet přehrání"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:290
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:397
@@ -725,13 +725,13 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
 #: /home/victor/noise/po/../src//LibraryWindow.vala:271
 msgid "Song"
-msgstr ""
+msgstr "Skladba"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:308
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
-msgstr ""
+msgstr "Audiokniha"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:309
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
@@ -741,19 +741,19 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:357
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:385
 msgid "is"
-msgstr ""
+msgstr "je"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:358
 msgid "contains"
-msgstr ""
+msgstr "obsahuje"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:359
 msgid "does not contain"
-msgstr ""
+msgstr "neobsahuje"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:386
 msgid "is not"
-msgstr ""
+msgstr "není"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:413
@@ -774,11 +774,11 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
 msgid "is before"
-msgstr ""
+msgstr "je před"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:428
 msgid "seconds"
-msgstr ""
+msgstr "sekund"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:432
 msgid "days ago"
@@ -786,7 +786,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:436
 msgid "kbps"
-msgstr ""
+msgstr "kb/s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format

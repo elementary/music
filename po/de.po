@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-07 20:34-0600\n"
-"PO-Revision-Date: 2012-05-06 18:29+0000\n"
+"PO-Revision-Date: 2012-05-08 09:57+0000\n"
 "Last-Translator: Eduard Gotwig <eduardgotwig@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-08 05:53+0000\n"
-"X-Generator: Launchpad (build 15204)\n"
+"X-Launchpad-Export-Date: 2012-05-09 05:28+0000\n"
+"X-Generator: Launchpad (build 15213)\n"
 "Language: de\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
@@ -999,7 +999,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:207
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:209
 msgid "Empty Playlist"
-msgstr "Wiedergabeliste leeren"
+msgstr "Diese Wiedergabeliste ist leer"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:195
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:207
@@ -1315,35 +1315,35 @@ msgstr "Das Gerät wurde bereits synchronisiert"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:423
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Lieblingstitel"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:444
 msgid "Recently Added"
-msgstr ""
+msgstr "Kürzlich hinzugefügt"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:454
 msgid "Recently Played"
-msgstr ""
+msgstr "Zuletzt wiedergegeben"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:464
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Kürzliche Lieblingstitel"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:474
 msgid "Never Played"
-msgstr ""
+msgstr "Niemals wiedergegeben"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:484
 msgid "Unheard Podcasts"
-msgstr ""
+msgstr "Ungehörte Podcasts"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:494
 msgid "Over Played"
-msgstr ""
+msgstr "Häufig wiedergegeben"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:504
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Lange nicht wiedergegeben"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:202
 msgid "Rescan Music Folder"
@@ -1474,11 +1474,11 @@ msgstr "Medien von einem Gerät importieren"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:58
 msgid "%D %H %M"
-msgstr ""
+msgstr "%D %H %M"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
-msgstr ""
+msgstr "1 Tag"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
 #, c-format
@@ -1487,26 +1487,18 @@ msgstr "%i Tage"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:76
 msgid "1 hour"
-msgstr ""
+msgstr "1 Stunde"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
 #, c-format
 msgid "%i hours"
-msgstr ""
+msgstr "%i Stunden"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:89
 msgid "1 minute"
-msgstr ""
+msgstr "1 Minute"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
 #, c-format
 msgid "%i minutes"
-msgstr ""
-
-#, c-format
-#~ msgid "%s minutes"
-#~ msgstr "%s Minuten"
-
-#, c-format
-#~ msgid "%.1f hours"
-#~ msgstr "%.1f Stunden"
+msgstr "%i Minuten"
