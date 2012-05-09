@@ -99,7 +99,7 @@ public class BeatBox.ViewWrapper : Box {
 	public bool has_media { get { return media_count > 0; } }
 
 
-	const int SEARCH_TIMEOUT = 340; // ms
+	const int SEARCH_TIMEOUT = 1000; // ms
 
 	/**
 	 * MEDIA DATA

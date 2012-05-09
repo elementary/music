@@ -209,12 +209,12 @@ public class Rating : Gtk.EventBox {
 
     /** draw new rating AND update rating **/
     public virtual bool on_button_press (Gdk.EventButton event) {
-        set_rating(hover_rating);
+        set_rating (hover_rating);
         return true;
     }
 
     public override bool leave_notify_event (Gdk.EventCrossing ev) {
-        update_rating(rating);
+        update_rating (rating);
         return true;
     }
 
@@ -222,7 +222,7 @@ public class Rating : Gtk.EventBox {
         if (_canvas == null)
             return;
 
-        _canvas.fill((uint) 0xffffff00);
+        _canvas.fill ((uint)0xffffff00);
 
         /* generate the canvas image */
         for (int i = 0; i < n_stars; i++) {
@@ -321,10 +321,10 @@ public class RatingMenuItem : Gtk.MenuItem {
 
     public int rating_value {
         get {
-            return rating.get_rating();
+            return rating.get_rating ();
         }
         set {
-            rating.set_rating(value);
+            rating.set_rating (value);
         }
     }
 

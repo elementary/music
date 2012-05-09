@@ -172,7 +172,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		}
 
 		album_list_view.focus_out_event.connect ( () => {
-			if (album_list_view.visible) {
+			if (album_list_view.visible && lw.has_focus) {
 				album_list_view.show_all ();
 				album_list_view.present ();
 			}
@@ -452,8 +452,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		// move() is used twice as a workaround. Some windows managers
 		// ignore the given coordinates if the window is not visible.
-		album_list_view.move (x, y);
+		bool was_visible = album_list_view.visible;
+		if (!was_visible)
+			album_list_view.move (x, y);
 		album_list_view.show_all ();
+		if (!was_visible)
+			album_list_view.move (x, y);
 		album_list_view.present ();
 	}
 

@@ -320,7 +320,7 @@ public class LastFM.Core : Object {
 		try {
 			new Thread<void*>.try (null, track_thread_function);
 		} catch(GLib.Error err) {
-			warning ("ERROR: Could not create last fm thread: %s \n", err.message);
+			stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
 		}
 	}
 	
@@ -349,7 +349,7 @@ public class LastFM.Core : Object {
 		try {
 			new Thread<void*>.try (null, album_thread_function);
 		} catch(GLib.Error err) {
-			warning ("ERROR: Could not create last fm thread: %s \n", err.message);
+			stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
 		}
 	}
 	
@@ -393,7 +393,7 @@ public class LastFM.Core : Object {
 		try {
 			new Thread<void*>.try (null, artist_thread_function);
 		} catch(GLib.Error err) {
-			warning ("ERROR: Could not create last fm thread: %s \n", err.message);
+			stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
 		}
 	}
 	
@@ -426,7 +426,7 @@ public class LastFM.Core : Object {
 		try {
 			new Thread<void*>.try (null, update_nowplaying_thread_function);
 		} catch(GLib.Error err) {
-			warning ("ERROR: Could not create last fm thread: %s \n", err.message);
+			stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
 		}
 	}
 	
@@ -471,7 +471,7 @@ public class LastFM.Core : Object {
 		try {
 			new Thread<void*>.try (null, scrobble_thread_function);
 		} catch(GLib.Error err) {
-			warning ("ERROR: Could not create last fm thread: %s \n", err.message);
+			stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
 		}
 	}
 	

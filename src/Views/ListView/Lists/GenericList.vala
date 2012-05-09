@@ -47,7 +47,6 @@ public abstract class BeatBox.GenericList : FastView {
 		get_selection().set_mode(SelectionMode.MULTIPLE);
 		
 		//rating_item.activate.connect(mediaRateMediaClicked);
-		//vadjustment.value_changed.connect(view_scroll);
 		drag_begin.connect(on_drag_begin);
 		drag_data_get.connect(on_drag_data_get);
 		drag_end.connect(on_drag_end);
@@ -149,18 +148,6 @@ public abstract class BeatBox.GenericList : FastView {
 		}
 		
 		return rv;
-	}
-	
-	void view_scroll() {
-		if(!scrolled_recently) {
-			Timeout.add(30000, () => {
-				scrolled_recently = false;
-
-				return false;
-			});
-
-			scrolled_recently = true;
-		}
 	}
 	
 	public void scroll_to_current_media() {
