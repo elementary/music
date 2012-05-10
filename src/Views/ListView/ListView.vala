@@ -73,7 +73,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 	}
 
-	public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
+	public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false) {
 
 		this.view_wrapper = view_wrapper;
 		this.lm = view_wrapper.lm;
@@ -97,29 +97,13 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			//case ViewWrapper.Hint.ALBUM_LIST:
 				list_view = new MusicTreeView (view_wrapper, tvs);
 				break;
-#if HAVE_PODCASTS
-			case ViewWrapper.Hint.PODCAST:
-			case ViewWrapper.Hint.DEVICE_PODCAST:
-				list_view = new PodcastListView (view_wrapper, tvs);
-				break;
-#endif
-#if HAVE_INTERNET_RADIO
-			case ViewWrapper.Hint.STATION:
-				list_view = new RadioListView(view_wrapper, tvs);
-				break;
-#endif
 			default:
 				critical ("NO LIST VIEW AVAILABLE FOR HINT -> %s", tvs.get_hint().to_string());
 				// don't add anything
 				break;
 		}
 
-
-		// Currently only the music-library view should have a column browser
-		if (view_wrapper.hint == ViewWrapper.Hint.MUSIC)
-			column_browser = new MillerColumns (view_wrapper);
-			
-		if (view_wrapper.hint == ViewWrapper.Hint.DEVICE_AUDIO)
+		if (add_browser)
 			column_browser = new MillerColumns (view_wrapper);
 
 		// Put the list inside a scrolled window
@@ -284,6 +268,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	}
 
 
+
 	public GLib.List<Media> get_media () {
 		return list_view.get_table().get_values ();
 	}
@@ -291,7 +276,6 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	public GLib.List<Media> get_showing_media () {
 		return list_view.get_visible_table().get_values ();
 	}
-
 
 	public Gee.Collection<int> get_media_ids () {
 		var rv = new Gee.LinkedList<int> ();
@@ -308,95 +292,51 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 		return rv;
 	}
+
 	
 	// XXX: fix column browser stuff!
 	// THIS IS CRITICAL!
-
-	public async void populate_view () {
-		if (column_browser_enabled)
-			// This will emit the changed() signal and then column_browser_changed will be called.
-			// We can't avoid re-populating the entire column browser and then the list view
-			// for performance reasons. We don't guarantee persistent selections if the column
-			// browser is enabled.
-			
-			// TODO: Try to avoid requesting information from the view wrapper in the future.
-			column_browser.populate (view_wrapper.get_showing_media_ids());
-		/*else
-			list_view.populate_view ();*/
-	}
 
 	private async void column_browser_changed () {
 		// This method is only called if the column browser is available.
 		// For performance reasons we won't update showing_medias to match
 		// the results of the miller columns.
 
-		if(lw.initialization_finished) {
-			set_show_next (column_browser.media_results);
+		if (lw.initialization_finished) {
+			set_media (column_browser.media_results);
 			view_wrapper.set_statusbar_info (column_browser.media_results);
 		}
 	}
-
-	/* ---------- NEW API --------- */
-	// remember to include column-browser stuff
 
 	public void set_as_current_list (int media_id, bool is_initial = false) {
 		list_view.set_as_current_list (media_id, is_initial);
 	}
 
-
 	public bool get_is_current_list ()  {
 		return list_view.get_is_current_list ();
 	}
 
-	public async void set_show_next (Gee.Collection<int> to_show) {
-		int index = 0;
-		var media = new HashTable<int, Media> (null, null);
-		foreach (int id in to_show) {
-			media.set (index++, lm.media_from_id (id));
-		}
-
-		// Populate column browser
-		// column_browser.populate (to_show);
-		
-		list_view.set_table (media);
-	}
-
-	public async void append_media (Gee.Collection<int> media) {
+	public async void append_media (Gee.Collection<Media> to_add) {
 		if (column_browser_enabled)
 			column_browser.populate (view_wrapper.get_showing_media_ids());
 		else {
-			var to_add = new GLib.List<Media> ();
-			foreach (int id in media) {
-				var m = lm.media_from_id (id);
-				if (m != null)
-					to_add.append (m);
-			}
-		
 			list_view.add_media (to_add);
 		}
 	}
 
-	public async void remove_media (Gee.Collection<int> media) {
+	public async void remove_media (Gee.Collection<Media> to_remove) {
 		if (column_browser_enabled)
 			column_browser.populate (view_wrapper.get_showing_media_ids());
 		else {
-			var to_remove = new HashTable<Media, int> (null, null);
-			int index = 0;
-			foreach (int id in media) {
-				to_remove.set (lm.media_from_id (id), index++);
-			}
-	
 			list_view.remove_media (to_remove);
 		}
 	}
 
-	/* EXTRA METHODS.
-	 * TODO: This shouldn't be here. Just added since there's no time to standarize this stuff
-	 *        right now.
-	 */
-
-	public async void set_table (HashTable<int, Media> table) {
-		list_view.set_table (table);
+	public async void set_media (Gee.Collection<Media> media) {
+		if (column_browser_enabled)
+			column_browser.populate (view_wrapper.get_showing_media_ids());
+		else
+			list_view.set_media (media);
 	}
 }
 

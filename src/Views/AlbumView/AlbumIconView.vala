@@ -57,7 +57,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	private LibraryManager lm;
 	private LibraryWindow lw;
 
-	private Collection<int> _show_next; // these are populated if necessary when user opens this view.
+	private Collection<Media> _show_next; // these are populated if necessary when user opens this view.
 	private HashMap<string, int> _showing_media;
 
 	private AlbumViewModel model;
@@ -81,7 +81,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		parent_view_wrapper = view_wrapper;
 
-		_show_next = new LinkedList<int>();
+		_show_next = new LinkedList<Media>();
 		_showing_media = new HashMap<string, int>();
 
 		defaultPix = Icons.DEFAULT_ALBUM_ART_PIXBUF;
@@ -292,8 +292,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return parent_view_wrapper.hint;
 	}
 
-	public async void set_show_next (Collection<int> media) {
+	public async void set_media (Collection<Media> media) {
 		_show_next = media;
+		populate_view ();
 	}
 
 	public int get_relative_id () {
@@ -304,11 +305,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return _showing_media.keys;
 	}
 
-	public async void append_media (Collection<int> new_media) {
+	public async void append_media (Collection<Media> new_media) {
 		var to_append = new LinkedList<Media>();
 
-		foreach(int i in new_media) {
-			Media s = lm.media_from_id(i);
+		foreach(var s in new_media) {
 			if (s == null)
 				continue;
 			
@@ -329,11 +329,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		queue_draw();
 	}
 
-	public async void remove_media (Collection<int> to_remove) {
+	public async void remove_media (Collection<Media> to_remove) {
 		var media_remove = new LinkedList<Media> ();
 
-		foreach (int i in to_remove) {
-			Media s = lm.media_from_id (i);
+		foreach (var s in to_remove) {
 			if (s == null)
 				continue;
 
@@ -354,14 +353,13 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		queue_draw ();
 	}
 
-	public async void populate_view () {
+	private void populate_view () {
 		icons.freeze_child_notify ();
 		icons.set_model (null);
 
 		_showing_media.clear ();
 		var to_append = new LinkedList<Media> ();
-		foreach (int i in _show_next) {
-			Media s = lm.media_from_id (i);
+		foreach (var s in _show_next) {
 			if (s == null)
 				continue;
 			

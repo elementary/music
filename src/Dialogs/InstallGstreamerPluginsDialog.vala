@@ -63,10 +63,10 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text(_("Required GStreamer plugin not installed"), -1) + "</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (_("Required GStreamer plugin not installed")) + "</span>");
 		info.xalign = 0.0f;
-		info.set_line_wrap(false);
-		info.set_markup(_("The plugin for media type %s is not installed.\nWhat would you like to do?").printf ("<b>" + detail + "</b>"));
+		info.set_line_wrap(true);
+		info.set_markup(_("The plugin for media type %s is not installed.\nWhat would you like to do?").printf ("<b>" + String.escape (detail) + "</b>"));
 
 		
 		/* set up controls layout */

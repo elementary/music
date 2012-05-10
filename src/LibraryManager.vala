@@ -201,7 +201,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public signal void medias_added(LinkedList<int> ids);
 	public signal void medias_updated(LinkedList<int> ids);
 	public signal void medias_removed(LinkedList<int> ids);
+
 	public signal void media_queued(Gee.Collection<int> ids);
+	public signal void media_unqueued(Gee.Collection<int> ids);
+
 	public signal void media_played(int id, int old_id);
 	public signal void playback_stopped(int was_playing);
 		
@@ -404,7 +407,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public void set_music_folder(string folder) {
-		if(start_file_operations("Importing music from <b>" + folder + "</b>...")) {
+		if (start_file_operations (_("Importing music from %s...").printf ("<b>" + String.escape (folder) + "</b>"))) {
 
 			lw.resetSideTree(true);
 			lw.sideTree.removeAllStaticPlaylists();
@@ -445,7 +448,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public void add_files_to_library (LinkedList<string> files) {
-		if (start_file_operations("Adding files to library...")) {
+		if (start_file_operations (_("Adding files to library..."))) {
 			temp_add_files = files;
 			add_files_to_library_async ();			
 		}
@@ -470,7 +473,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	    if (other_folders != null)
 	        temp_add_other_folders = other_folders;
 	        
-		if(start_file_operations("Adding music from <b>" + folder + "</b> to library...")) {
+		if(start_file_operations (_("Adding music from %s to library...").printf ("<b>" + String.escape (folder) + "</b>"))) {
 			temp_add_folder = folder;
 			add_folder_to_library_async ();
 		}
@@ -496,7 +499,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
     
 	public void rescan_music_folder() {
-		if(start_file_operations("Rescanning music for changes. This may take a while...")) {
+		if(start_file_operations (_("Rescanning music for changes. This may take a while..."))) {
 			rescan_music_folder_async ();
 		}
 	}
@@ -1160,7 +1163,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_queue.clear();
 	}
 	
-	public void queue_media_by_id(Collection<int> ids) {
+	public void queue_media_by_id (Collection<int> ids) {
 		if (ids.size < 1)
 			return;
 		
@@ -1169,10 +1172,12 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		media_queued (ids);		
 	}
 
-	public void unqueue_media_by_id(int id) {
-		_queue.remove(id);
+	public void unqueue_media_by_id (Collection<int> ids) {
+		foreach (int id in ids)
+			_queue.remove (id);
+		media_unqueued (ids);		
 	}
-	
+
 	public int peek_queue() {
 		return _queue.peek_head();
 	}

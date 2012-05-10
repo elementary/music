@@ -47,8 +47,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
     const string PRIMARY_TEXT_MARKUP = "<span weight=\"bold\" size=\"larger\">%s</span>";
 
-    const int VERTICAL_MARGIN = 50;
-    const int HORIZONTAL_MARGIN = 80;
+    private Gtk.Box hbox;
 
     protected Gtk.Label primary_text_label;
     protected Gtk.Label secondary_text_label;
@@ -94,13 +93,22 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
         var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         hbox.halign = hbox.valign = Gtk.Align.CENTER; // center-align the content
+        hbox.margin_top = hbox.margin_bottom = 50;
 
-        hbox.margin_left = hbox.margin_right = VERTICAL_MARGIN;
-        hbox.margin_top = hbox.margin_bottom = HORIZONTAL_MARGIN;
         hbox.pack_start (image, false, false, 0);
         hbox.pack_end (message_vbox, true, true, 0);
 
+        this.size_allocate.connect (on_size_allocate);
+
         add (hbox);
+    }
+
+    private void on_size_allocate (Gtk.Allocation alloc) {
+        /* TEXT_WIDTH = (3/5)TOTAL_WIDTH
+         * HR_MARGIN  = (1/5)TOTAL_WIDTH
+         * TOTAL_WIDTH = TEXT_WIDTH + 2 * HR_MARGIN
+         */
+        hbox.margin_left = hbox.margin_right = alloc.width / 5;
     }
 
     public void set_alert (string primary_text, string secondary_text, Gtk.Action[] ? actions = null,

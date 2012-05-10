@@ -148,17 +148,7 @@ public class BeatBox.AlbumListView : Window {
 
 		Search.fast_album_search_in_media_list (to_search, out media_list, "", media.album_artist, media.album);
 
-		var media_table = new HashTable<int, Media> (null, null);
-
-		int index = 0;
-		// FIXME: this is ugly and can potentially disorder the songs.
-		//         This kind of implementation detail should not be relevant here!
-		foreach (var m in media_list) {
-			if (m != null)
-				media_table.set (index++, m);
-		}
-
-		mtv.set_table (media_table);
+		mtv.set_media (media_list);
 
 		setting_media.unlock ();
 

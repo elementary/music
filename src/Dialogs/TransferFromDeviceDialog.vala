@@ -87,7 +87,6 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 
 		// be a bit explicit to make translations better
 		string title_text = "";
-		string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";		
 		if (medias.size > 1) {
 			title_text = _("Import %i items from %s").printf (medias.size, d.getDisplayName ());
 		}
@@ -95,7 +94,9 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 			var m = lm.media_from_id (medias.get (0));
 			title_text = _("Import %s from %s").printf (m.title, d.getDisplayName ());
 		}
-		var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));
+
+		string MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";		
+		var title_string = MARKUP_TEMPLATE.printf (String.escape (title_text));
 		title.set_markup (title_string);
 		
 		info.xalign = 0.0f;

@@ -69,15 +69,14 @@ public class BeatBox.FileNotFoundDialog : Window {
 
 		// be a bit explicit to make translations better
 		var MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";		
-		var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (_("Could not find music file"), -1));
+		var title_string = MARKUP_TEMPLATE.printf (String.escape (_("Could not find music file")));
 		title.set_markup (title_string);
-		title.xalign = 0.0f;
+		title.xalign = 0.0f; //FIXME: deprecated
 		
+		info.set_line_wrap (true);
+		info.xalign = 0.0f; //FIXME: deprecated
 		var info_text = _("The music file for \"%s\" by \" could not be found. What would you like to do?").printf (s.title, s.artist);
-		info.set_markup (Markup.escape_text (info_text, -1));
-		info.set_line_wrap(false);
-		info.xalign = 0.0f;
-		
+		info.set_text (info_text);
 
 		
 		rescanLibrary.set_sensitive(!lm.doing_file_operations());

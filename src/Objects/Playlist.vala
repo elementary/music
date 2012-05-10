@@ -29,7 +29,8 @@ public class BeatBox.Playlist : Object {
 	public int rowid { get; set; }
 	public string name { get; set; }
 
-	
+	public signal void media_added (Gee.Collection<int> media);
+	public signal void media_removed (Gee.Collection<int> media);
 	public signal void changed ();
 	
 	public Playlist() {
@@ -53,19 +54,18 @@ public class BeatBox.Playlist : Object {
 		foreach(int i in ids)
 			_medias.set(i, 1);
 		
-		changed ();
+		media_added (ids);
 	}
 	
 	public void remove_media(Collection<int> ids) {
 		foreach(int i in ids)
 			_medias.unset(i);
 		
-		changed ();
+		media_removed (ids);
 	}
 	
 	public void clear() {
 		_medias = new HashMap<int, int>();
-		
 		changed ();
 	}
 	

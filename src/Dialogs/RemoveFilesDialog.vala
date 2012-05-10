@@ -90,12 +90,12 @@ public class BeatBox.RemoveFilesDialog : Window {
 			else
 				title_text = _("Remove \"%s\" From %s?").printf (String.escape (m.album_artist), app_name);
 		}
-		title.set_markup("<span weight=\"bold\" size=\"larger\">" + title_text + "</span>");
+		title.set_markup("<span weight=\"bold\" size=\"larger\">" + String.escape (title_text) + "</span>");
 		
 		// set info text
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
-		string info_text = _("This will remove the %s from your library and from any device that automatically syncs with %s.").printf(media_text.str.down(), lw.app.get_name ());
+		string info_text = _("This will remove the %s from your library and from any device that automatically syncs with %s.").printf(String.escape (media_text.str.down()), String.escape (lw.app.get_name ()));
 		info.set_markup(info_text);
 		
 		// decide if we need the trash button

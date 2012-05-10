@@ -70,10 +70,10 @@ public class BeatBox.SetMusicFolderConfirmation : Window {
 		
 		// pretty up labels
 		title.xalign = 0.0f;
-		title.set_markup("<span weight=\"bold\" size=\"larger\">%s</span>".printf(Markup.escape_text (_("Set Music Folder?"), -1)));
+		title.set_markup("<span weight=\"bold\" size=\"larger\">%s</span>".printf(String.escape (_("Set Music Folder?"))));
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
-		info.set_markup(Markup.escape_text ("Are you sure you want to set the music folder to %s? This will reset your library and remove static playlists.".printf ("<b>" + path + "</b>"), -1));
+		info.set_markup (_("Are you sure you want to set the music folder to %s? This will reset your library and remove your playlists.").printf ("<b>" + String.escape (path) + "</b>"));
 
 		/* set up controls layout */
 		HBox information = new HBox(false, 0);

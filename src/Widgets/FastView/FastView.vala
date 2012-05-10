@@ -28,8 +28,8 @@ public class BeatBox.FastView : TreeView {
 	public static const int OPTIMAL_COLUMN = -2;
 	FastModel fm;
 	List<Type> columns;
-	HashTable<int, Media> table; // is not the same object as showing.
-	HashTable<int, Media> showing; // should never point to table.
+	protected HashTable<int, Media> table; // is not the same object as showing.
+	protected HashTable<int, Media> showing; // should never point to table.
 	
 	/* sortable stuff */
 	public delegate int SortCompareFunc (int sort_column_id, Gtk.SortType sort_direction, Media a, Media b);
@@ -85,43 +85,14 @@ public class BeatBox.FastView : TreeView {
 	public void set_value_func(FastModel.ValueReturnFunc func) {
 		fm.set_value_func(func);
 	}
-	
+
 	public void set_table (HashTable<int, Media> table, bool do_resort = true) {
 		this.table = table;
 		
-		if(do_resort)
-			resort(); // this also calls search
+		if (do_resort)
+			resort (); // this also calls search
 		else
 			do_search ();
-	}
-	
-	/* If a Media is in objects but not in table, will just ignore */
-	public void remove_media (HashTable<Media, int> objects) {
-		int index = 0;
-		var new_table = new HashTable<int, Media>(null, null);
-		for(int i = 0; i < table.size(); ++i) {
-			Media o;
-			
-			// create a new table. if not in objects, and is in table, add it.
-			if((o = table.get(i)) != null && objects.get(o) != 1) {
-				new_table.set(index++, o);
-			}
-		}
-		
-		// no need to resort, just removing
-		set_table(new_table, false);
-		get_selection().unselect_all();
-	}
-	
-	/** Does NOT check for duplicates */
-	public void add_media (List<Media> objects) {
-		// skip calling set_table and just do it ourselves (faster)
-		foreach(var o in objects) {
-			table.set((int)table.size(), o);
-		}
-		
-		// resort the new songs in. this will also call do_search
-		resort ();
 	}
 
 #if HAVE_BUILTIN_SEARCH
@@ -255,8 +226,10 @@ public class BeatBox.FastView : TreeView {
 			}
 		}
 		
-		if(start < j)	quicksort (start, j);
-		if(i < end)		quicksort (i, end);
+		if(start < j)
+			quicksort (start, j);
+		if(i < end)
+			quicksort (i, end);
 	}
 
 #if HAVE_BUILTIN_SHUFFLE

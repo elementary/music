@@ -778,36 +778,34 @@ public class BeatBox.MusicTreeView : GenericList {
 	}
 
 	public virtual void mediaRemoveClicked() {
-		LinkedList<Media> toRemove = new LinkedList<Media>();
-		LinkedList<int> toRemoveIDs = new LinkedList<int>();
-		HashTable<Media, int> removeHash = new HashTable<Media, int>(null, null);
+		LinkedList<Media> to_remove = new LinkedList<Media>();
+		LinkedList<int> to_remove_ids = new LinkedList<int>();
+		
+		foreach (var m in get_selected_medias()) {
+			to_remove_ids.add (m.rowid);
 
-		foreach(Media m in get_selected_medias()) {
-			toRemoveIDs.add(m.rowid);
-			removeHash.set(m, 1);
-
-			if(get_hint() == ViewWrapper.Hint.QUEUE) {
-				lm.unqueue_media_by_id(m.rowid);
-			}
-			else if(get_hint() == ViewWrapper.Hint.MUSIC) {
-				toRemove.add(m);
+			if (get_hint() == ViewWrapper.Hint.MUSIC ||  get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
+				to_remove.add(m);
 			}
 		}
 
-		if(get_hint() == ViewWrapper.Hint.MUSIC) {
-			var dialog = new RemoveFilesDialog (lm.lw, toRemove, get_hint());
+		if (get_hint() == ViewWrapper.Hint.MUSIC) {
+			var dialog = new RemoveFilesDialog (lm.lw, to_remove, get_hint());
 			dialog.remove_media.connect ( (delete_files) => {
-				lm.remove_medias (toRemove, delete_files);
+				lm.remove_medias (to_remove, delete_files);
 			});
 		}
-		
-		// MUSIC view will automatically remove the songs, but we need to for playlist
-		// TODO: Or (better), add a signal to playlist for when songs are added/removed.
 		/*
-		if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-			lm.playlist_from_id(relative_id).remove_media (toRemoveIDs);
+		else if (get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
+			var dvw = (DeviceViewWrapper)parent_wrapper;
+			dvw.d.remove_medias(to_remove);
+		}*/
+		else if (get_hint() == ViewWrapper.Hint.QUEUE) {
+			lm.unqueue_media_by_id (to_remove_ids);
 		}
-		*/
+		else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
+			lm.playlist_from_id(relative_id).remove_media (to_remove_ids);
+		}
 	}
 
 	void importToLibraryClicked() {
@@ -854,8 +852,12 @@ public class BeatBox.MusicTreeView : GenericList {
 		else if(col == MusicColumn.ARTIST) {
 			if(a_media.album_artist.down() == b_media.album_artist.down()) {
 				if(a_media.album.down() == b_media.album.down()) {
-					if(a_media.album_number == b_media.album_number)
-						rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_media.track - b_media.track) : (int)(b_media.track - a_media.track));
+					if(a_media.album_number == b_media.album_number) {
+						//if(a_media.track == b_media.track)
+						//	rv = advanced_string_compare(a_media.uri, b_media.uri);
+						//else
+							rv = (int)((sort_direction == SortType.ASCENDING) ? (int)(a_media.track - b_media.track) : (int)(b_media.track - a_media.track));
+					}
 					else
 						rv = (int)((int)a_media.album_number - (int)b_media.album_number);
 				}

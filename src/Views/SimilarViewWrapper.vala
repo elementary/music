@@ -79,12 +79,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 			enough for it to be valid. Only populate to set 0 songs or
 			to populate with at least REQUIRED_MEDIAS songs. **/
 			if(!fetched || new_media.size >= REQUIRED_MEDIAS) {
-				var medias = new HashTable<int, Media>(null, null);
-				foreach(int i in new_media) {
-					medias.set((int)medias.size(), lm.media_from_id(i));
-				}
-				
-				list_view.set_table(medias);
+				list_view.set_media (new_media);
 			}
 			
 			set_statusbar_info ();
@@ -93,7 +88,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 			
 			if(base_media != null) {
 				if(!fetched && has_embedded_alert) { // still fetching similar media
-					embedded_alert.set_alert (_("Fetching similar songs"), _("Finding songs similar to <b>%s</b> by <b>%s</b>").printf (base_media.title, base_media.artist), null, false);
+					embedded_alert.set_alert (_("Fetching similar songs"), _("Finding songs similar to %s by %s").printf ("<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, false);
 					// Show the alert box
 					set_active_view (ViewType.ALERT);
 
@@ -102,7 +97,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 				else {
 					if(new_media.size < REQUIRED_MEDIAS) { // say we could not find similar media
 						if (has_embedded_alert) {
-							embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to <b>%s</b> by <b>%s</b>. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (lw.app.get_name (), base_media.title, base_media.artist), null, false);
+							embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, false);
 							// Show the error box
 							set_active_view (ViewType.ALERT);
 						}

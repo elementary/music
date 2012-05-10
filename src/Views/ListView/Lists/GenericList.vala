@@ -59,7 +59,51 @@ public abstract class BeatBox.GenericList : FastView {
 	public void set_parent_wrapper(ViewWrapper parent) {
 		this.parent_wrapper = parent;
 	}
+
+
+	public void set_media (Gee.Collection<Media> to_add) {
+		var new_table = new HashTable<int, Media> (null, null);
+		foreach (var m in to_add) {
+			new_table.set ((int)new_table.size(), m);
+		}
+		// set table and resort
+		set_table (new_table, true);
+	}
+
+	/* If a Media is in to_remove but not in table, will just ignore */
+	public void remove_media (Gee.Collection<Media> to_remove) {
+		var to_remove_table = new HashTable<Media, int> (null, null);
+		foreach (var m in to_remove) {
+			to_remove_table.set (m, 1);
+		}
+
+		var new_table = new HashTable<int, Media> (null, null);
+		int index = 0;
+		for(int i = 0; i < table.size(); ++i) {
+			Media? m = null;
+			// create a new table. if not in objects, and is in table, add it.
+			if ((m = table.get (i)) != null && to_remove_table.contains (m)) {
+				new_table.set(index++, m);
+			}
+		}
+		
+		// no need to resort, just removing
+		set_table(new_table, false);
+		get_selection().unselect_all();
+	}
 	
+	/** Does NOT check for duplicates */
+	public void add_media (Gee.Collection<Media> to_add) {
+		// skip calling set_table and just do it ourselves (faster)
+		foreach(var m in to_add) {
+			table.set((int)table.size(), m);
+		}
+
+		// resort the new songs in. this will also call do_search
+		resort ();
+	}
+
+
 	public abstract void update_sensitivities();
 	
 	void row_activated_signal(TreePath path, TreeViewColumn column) {
@@ -238,6 +282,7 @@ public abstract class BeatBox.GenericList : FastView {
 			return;
 		}
 	}
+
 	
 	void on_drag_data_get(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
 		string[] uris = null;
