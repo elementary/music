@@ -60,7 +60,7 @@ vala_precompile(VALA_C
     Widgets/TopDisplay.vala
     Widgets/SimilarMediaView.vala
     Widgets/InfoPanel.vala
-    Widgets/WarningLabel.vala
+    Widgets/EmbeddedAlert.vala
     Widgets/SimpleOptionChooser.vala
     Widgets/PresetList.vala
     Widgets/SideBar.vala

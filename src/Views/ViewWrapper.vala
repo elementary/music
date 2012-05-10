@@ -33,10 +33,9 @@ public class BeatBox.ViewWrapper : Box {
 	public LibraryWindow  lw { get; private set; }
 
 	/* MAIN WIDGETS (VIEWS) */
-	// XXX change this back to ContentView later on!
 	public ListView      list_view      { get; private set; }
 	public AlbumView     album_view     { get; private set; }
-	public WarningLabel  error_box      { get; private set; }
+	public EmbeddedAlert embedded_alert { get; private set; }
 	public Welcome       welcome_screen { get; private set; }
 
 	private Notebook view_container; // Wraps all the internal views for super fast switching
@@ -49,7 +48,7 @@ public class BeatBox.ViewWrapper : Box {
 	public enum ViewType {
 		ALBUM   = 0, // Matches index 0 of the view in lw.viewSelector
 		LIST    = 1, // Matches index 1 of the view in lw.viewSelector
-		ERROR   = 2, // For error boxes
+		ALERT   = 2, // For embedded alertes
 		WELCOME = 3, // For welcome screens
 		NONE    = 4  // Custom views
 	}
@@ -93,13 +92,13 @@ public class BeatBox.ViewWrapper : Box {
 
 	public bool has_album_view      { get { return album_view != null;     } }
 	public bool has_list_view       { get { return list_view != null;      } }
-	public bool has_error_box       { get { return error_box != null;      } }
+	public bool has_embedded_alert  { get { return embedded_alert != null; } }
 	public bool has_welcome_screen  { get { return welcome_screen != null; } }
 
 	public bool has_media { get { return media_count > 0; } }
 
 
-	const int SEARCH_TIMEOUT = 1000; // ms
+	const int SEARCH_TIMEOUT = 200; // ms
 
 	/**
 	 * MEDIA DATA
@@ -160,39 +159,27 @@ public class BeatBox.ViewWrapper : Box {
 		view_container.show_border = false;
 		this.pack_start (view_container, true, true, 0);
 
-		// FIXME: Get error boxes' text out of here. It must be set within
-		//         a different method, so that we can use them to handle different
-		//         cases, like "No media", "No media found. Did you mean '...' ", etc.
-
 		switch (hint) {
 			case Hint.MUSIC:
 				// list and album view
 				album_view = new AlbumView (this);
 				list_view = new ListView (this, tvs);
-
 				// Welcome screen
 				welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("%s can't seem to find your music.").printf (lw.app.get_name ()));
-				
 				break;
 			case Hint.DEVICE_AUDIO:
 				// list and album view
 				album_view = new AlbumView (this);
 				list_view = new ListView (this, tvs);
 
-				error_box = new WarningLabel();
-				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Music Found") + "</span>\n\n" + _("There is no music on this device.") + "\n" + _("You can start syncing music by clicking on the sync button."));
-				
+				embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 				break;
 			case Hint.HISTORY:
 			case Hint.QUEUE:
 				//list view only				
 				list_view = new ListView (this, tvs);
 
-				error_box = new WarningLabel();
-				error_box.show_icon = false;
-				
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Empty Playlist") + "</span>\n\n" + _("..."));
+				embedded_alert = new Granite.Widgets.EmbeddedAlert();
 				break;
 			case Hint.PLAYLIST:
 			case Hint.SMART_PLAYLIST:
@@ -200,23 +187,13 @@ public class BeatBox.ViewWrapper : Box {
 				album_view = new AlbumView (this);
 				list_view = new ListView (this, tvs);
 
-				error_box = new WarningLabel();
-				error_box.show_icon = false;
-				
-				if (hint == Hint.PLAYLIST)
-					error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Empty Playlist") + "</span>\n\n" + _("..."));
-				else
-					error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Empty Playlist") + "</span>\n\n" + _("..."));
-
-				
+				embedded_alert = new Granite.Widgets.EmbeddedAlert();
 				break;
 			case Hint.SIMILAR:
 				// list view only
 				list_view = new ListView (this, tvs);
 
-				error_box = new WarningLabel();
-				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Similar Media View") + "</span>\n\n" + _("In this view, %s will automatically find songs similar to the one you are playing.").printf (lw.app.get_name ()) + "\n" + _("You can then start playing those songs, or save them for later."));
+				embedded_alert = new Granite.Widgets.EmbeddedAlert();
 				break;
 #if HAVE_PODCASTS
 			case Hint.PODCAST:
@@ -224,20 +201,14 @@ public class BeatBox.ViewWrapper : Box {
 				album_view = new AlbumView (this);
 				list_view = new ListView (this, tvs);
 
-				error_box = new WarningLabel();
-				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."));
-
+				embedded_alert = new Granite.Widgets.EmbeddedAlert();
 				break;
 			case Hint.DEVICE_PODCAST:
 				// list and album view
 				album_view = new AlbumView (this);
 				list_view = new ListView (this, tvs);
 
-				error_box = new WarningLabel();
-				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Podcasts Found") + "</span>\n\n" + _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds.") + "\n" + _("You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."));
-
+				embedded_alert = new Granite.Widgets.EmbeddedAlert();
 				break;
 #endif
 #if HAVE_INTERNET_RADIO
@@ -245,10 +216,7 @@ public class BeatBox.ViewWrapper : Box {
 				// list view
 				list_view = new ListView (this, tvs);
 
-				error_box = new WarningLabel();
-				error_box.show_icon = false;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("No Internet Radio Stations Found") + "</span>\n\n" + _("To add a station, visit a website such as SomaFM to find PLS or M3U files.") + "\n" + _("You can then import the file to add the station."));
-
+				embedded_alert = new Granite.Widgets.EmbeddedAlert();
 				break;
 #endif
 			case Hint.AUDIOBOOK:
@@ -267,23 +235,18 @@ public class BeatBox.ViewWrapper : Box {
 				// list view only
 				list_view = new ListView (this, tvs);
 
-				error_box = new WarningLabel();
-				error_box.show_icon = true;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("Audio CD Invalid") + "</span>\n\n" + _("%s could not read the contents of this Audio CD.").printf (lw.app.get_name ()));
-
+				embedded_alert = new Granite.Widgets.EmbeddedAlert();
 				break;
 			default:
-				// nothing but an error box
-				error_box = new WarningLabel ();
-				error_box.show_icon = true;
-				error_box.setWarning ("<span weight=\"bold\" size=\"larger\">" + _("WARNING: Default View Wrapper!"));
+				// nothing but an embedded alert
+				embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 				break;
 		}
 
 		// Now setup the view wrapper based on available widgets
 
-		if (has_error_box) {
-			view_container.append_page (error_box);
+		if (has_embedded_alert) {
+			view_container.append_page (embedded_alert);
 		}
 
 		if (has_welcome_screen) {
@@ -292,7 +255,8 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (has_album_view)
 			view_container.append_page (album_view);
-		else debug ("NO ALBUM VIEW (%s)", hint.to_string());
+		else
+			debug ("NO ALBUM VIEW (%s)", hint.to_string());
 
 		if (has_list_view)
 			view_container.append_page (list_view);
@@ -352,9 +316,9 @@ public class BeatBox.ViewWrapper : Box {
 				if (has_album_view)
 					view_index = view_container.page_num (album_view);
 				break;
-			case ViewType.ERROR:
-				if (has_error_box)
-					view_index = view_container.page_num (error_box);
+			case ViewType.ALERT:
+				if (has_embedded_alert)
+					view_index = view_container.page_num (embedded_alert);
 				break;
 			case ViewType.WELCOME:
 				if (has_welcome_screen)
@@ -407,8 +371,8 @@ public class BeatBox.ViewWrapper : Box {
 		setting_search = false;
 
 		// Make the view switcher and search box insensitive if the current item
-		// is either the error box or welcome screen
-		if (current_view == ViewType.ERROR || current_view == ViewType.WELCOME) {
+		// is either the embedded alert or welcome screen
+		if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME) {
 			lw.viewSelector.set_sensitive (false);
 			lw.searchField.set_sensitive (false);
 
@@ -449,7 +413,7 @@ public class BeatBox.ViewWrapper : Box {
 
 
 	public virtual void view_selector_changed () {
-		if (!lw.initialization_finished || (lw.initialization_finished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ERROR || current_view == ViewType.WELCOME)
+		if (!lw.initialization_finished || (lw.initialization_finished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
 			return;
 
 		var selected_view = (ViewType) lw.viewSelector.selected;
@@ -566,7 +530,8 @@ public class BeatBox.ViewWrapper : Box {
 		if (!lw.initialization_finished)
 			return;
 		
-		if (check_show_error_box()) {
+		// FIXME: redundant.
+		if (check_show_embedded_alert()) {
 			needs_update = false;
 			return;
 		}
@@ -645,8 +610,8 @@ public class BeatBox.ViewWrapper : Box {
 		if (_populate_views)
 			populate_views (); // this also updates the statusbar
 
-		// Check whether we should show the error box in case there's no media
-		check_show_error_box ();
+		// Check whether we should show the embedded alert in case there's no media
+		check_show_embedded_alert ();
 
 		in_update.unlock ();
 	}
@@ -669,11 +634,11 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	protected bool check_show_error_box () {
-		// Check if we should show the error box or welcome screen here
+	protected bool check_show_embedded_alert () {
+		// Check if we should show the alert box or welcome screen here
 		// FIXME: we could do better here. We should be able to set what kind of view we
 		//         want to handle the no-media case and maybe just emit a signal here.
-		if (has_error_box || has_welcome_screen) {
+		if (has_embedded_alert || has_welcome_screen) {
 			int size_check;
 
 #if HAVE_PODCASTS
@@ -704,10 +669,12 @@ public class BeatBox.ViewWrapper : Box {
 #endif
 
 			if (size_check < 1) { // no media
-				if (has_error_box)
-					set_active_view (ViewType.ERROR);
+				if (has_embedded_alert)
+					set_active_view (ViewType.ALERT);
 				else if (has_welcome_screen)
 					set_active_view (ViewType.WELCOME);
+
+				set_default_alert ();
 
 				return true;
 			}
@@ -720,6 +687,54 @@ public class BeatBox.ViewWrapper : Box {
 
 		return false;
 	}
+
+	private void set_default_alert () {
+		if (!has_embedded_alert)
+			return;
+
+		switch (hint) {
+			case Hint.MUSIC:
+				break;
+			case Hint.SIMILAR:
+				// Leave this to SimilarViewWrapper
+				break;
+			case Hint.QUEUE:
+				embedded_alert.set_alert (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), null, true, Granite.Widgets.EmbeddedAlert.Level.INFO);
+				
+				break;
+			case Hint.HISTORY:
+				embedded_alert.set_alert (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), null, true, Granite.Widgets.EmbeddedAlert.Level.INFO);
+				
+				break;
+#if HAVE_PODCASTS
+			case Hint.PODCAST:
+			case Hint.DEVICE_PODCAST:
+				//embedded_alert.set_alert (_("No Podcasts Found"), _("To add a podcast, visit a website such as Miro Guide to find RSS Feeds. You can then copy and paste the feed into the \"Add Podcast\" window by right clicking on \"Podcasts\"."), null, true, Granite.Widgets.EmbeddedAlert.Level.INFO);
+				break;
+			case Hint.STATION:
+				//embedded_alert.set_alert (_("No Internet Radio Stations Found"), _("To add a station, visit a website such as SomaFM to find PLS or M3U files. You can then import the file to add the station."), null, true,  Granite.Widgets.EmbeddedAlert.Level.INFO);
+				break;
+#endif
+#if HAVE_AUDIOBOOKS
+			case Hint.AUDIOBOOK:
+				break;
+			case Hint.DEVICE_AUDIOBOOK:
+				break;
+#endif
+			case Hint.CDROM:
+				embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (lw.app.get_name ()), null, true, Granite.Widgets.EmbeddedAlert.Level.WARNING);
+				break;
+			case Hint.PLAYLIST:
+				embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Granite.Widgets.EmbeddedAlert.Level.INFO);
+				break;
+			case Hint.SMART_PLAYLIST:
+				embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>."), null, true, Granite.Widgets.EmbeddedAlert.Level.INFO);
+				break;
+			default:
+				break;
+		}
+	}
+
 
 
 	/**
@@ -822,7 +837,7 @@ public class BeatBox.ViewWrapper : Box {
 			showing_medias.unset(i);
 		}
 
-		if (check_show_error_box()) {
+		if (check_show_embedded_alert()) {
 			in_update.unlock ();
 			return;
 		}	
@@ -871,7 +886,7 @@ public class BeatBox.ViewWrapper : Box {
 			foreach(int i in to_show)
 				showing_medias.set(i, 1);
 
-			if (check_show_error_box()) {
+			if (check_show_embedded_alert()) {
 				in_update.unlock ();
 				return;
 			}

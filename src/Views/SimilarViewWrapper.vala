@@ -92,20 +92,19 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 			in_update.unlock ();
 			
 			if(base_media != null) {
-				if(!fetched) { // still fetching similar media
-					error_box.show_icon = false;
-					error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("Fetching similar songs") + "\n</span>\n" + _("Finding songs similar to" + " <b>" + String.escape (base_media.title) + "</b> by <b>" + String.escape (base_media.artist) + "</b>.\n"));
-					set_active_view (ViewType.ERROR);
+				if(!fetched && has_embedded_alert) { // still fetching similar media
+					embedded_alert.set_alert (_("Fetching similar songs"), _("Finding songs similar to <b>%s</b> by <b>%s</b>").printf (base_media.title, base_media.artist), null, false);
+					// Show the alert box
+					set_active_view (ViewType.ALERT);
 
 					return;
 				}
 				else {
 					if(new_media.size < REQUIRED_MEDIAS) { // say we could not find similar media
-						if (has_error_box) {
-							error_box.show_icon = true;
-							error_box.setWarning("<span weight=\"bold\" size=\"larger\">" + _("No similar songs found") + "\n</span>\n" + _("Could not find songs similar to" + " <b>" + String.escape (base_media.title) + "</b> by <b>" + String.escape (base_media.artist) + "</b>.\n") + _("Make sure all song info is correct and you are connected to the Internet.\nSome songs may not have matches."));
+						if (has_embedded_alert) {
+							embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to <b>%s</b> by <b>%s</b>. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (lw.app.get_name (), base_media.title, base_media.artist), null, false);
 							// Show the error box
-							set_active_view (ViewType.ERROR);
+							set_active_view (ViewType.ALERT);
 						}
 
 						return;

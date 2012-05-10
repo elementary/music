@@ -450,11 +450,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		x += (alloc.width - album_list_view.WIDTH) / 2;
 		y += (alloc.height - album_list_view.HEIGHT) / 2 + 60;
 
-		// move() is used twice as a workaround. Some windows managers
-		// ignore the given coordinates if the window is not visible.
 		bool was_visible = album_list_view.visible;
-		if (!was_visible)
-			album_list_view.move (x, y);
 		album_list_view.show_all ();
 		if (!was_visible)
 			album_list_view.move (x, y);
