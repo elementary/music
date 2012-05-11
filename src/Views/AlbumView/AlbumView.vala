@@ -186,23 +186,62 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return parent_view_wrapper.hint;
 	}
 
+	private string get_key (Media m) {
+		if (m == null)
+			return "";
+		return m.album_artist + m.album;
+	}
+
 	public async void set_media (Gee.Collection<Media> to_add) {
 		var new_table = new HashTable<int, Media> (null, null);
+		var to_add_ind = new Gee.HashMap<string, int> ();
+
 		foreach (var m in to_add) {
-			new_table.set ((int)new_table.size(), m);
+			if (m == null)
+				continue;
+			
+			string key = get_key (m);
+
+			if (!to_add_ind.has_key (key)) {
+				to_add_ind.set (key, 1);
+				new_table.set ((int)new_table.size(), m);
+			}
 		}
+
 		// set table and resort
 		icons.set_table (new_table, true);
 	}
 
 	public async void append_media (Gee.Collection<Media> media) {
-		icons.add_objects (media);
+		var to_append = new Gee.HashMap<string, Media> ();
+		foreach (var m in media) {
+			if (m == null)
+				continue;
+			
+			string key = get_key (m);
+
+			if (!to_append.has_key (key)) {
+				to_append.set (key, m);
+			}		
+		}
+
+		icons.add_objects (to_append.values);
 	}
 
 	public async void remove_media (Gee.Collection<Media> to_remove) {
+		var to_remove_ind = new Gee.HashMap<string, int> ();
 		var to_remove_table = new HashMap<Object, int> ();
+
 		foreach (var m in to_remove) {
-			to_remove_table.set (m, 1);
+			if (m == null)
+				continue;
+
+			string key = get_key (m);
+
+			if (!to_remove_ind.has_key (key)) {
+				to_remove_ind.set (key, 1);
+				to_remove_table.set (m, 1);
+			}
 		}
 
 		icons.remove_objects (to_remove_table);	

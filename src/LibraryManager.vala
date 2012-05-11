@@ -151,6 +151,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public signal void media_queued(Gee.Collection<int> ids);
 	public signal void media_unqueued(Gee.Collection<int> ids);
 
+	public signal void history_changed ();
+
 	public signal void media_played(int id, int old_id);
 	public signal void playback_stopped(int was_playing);
 		
@@ -1139,17 +1141,19 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	/************ Already Played Stuff **************/
 	public void reset_already_played() {
 		_already_played.clear();
+		history_changed ();
 	}
 	
 	public void add_already_played(int i) {
 		if(!_already_played.contains(i))
 			_already_played.offer_tail(i);
+		history_changed ();
 	}
 	
 	public LinkedList<int> already_played() {
 		return _already_played;
 	}
-	
+
 	/************ Current medialist stuff ***************/
 	public bool playing_queued_song() {
 		return _playing_queued_song;

@@ -59,7 +59,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 					// Populate column browser
 					column_browser.show_all ();
 
-					if (column_browser.media == null)
+					if (column_browser.media_set)
 						column_browser.set_media (get_showing_media ());
 				}
 				else {

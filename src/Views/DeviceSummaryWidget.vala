@@ -535,7 +535,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				
 				if(p != null) {
 					if(p is Playlist) {
-						foreach(int i in ((Playlist)p).medias()) {
+						foreach(int i in ((Playlist)p).media()) {
 							if(lm.media_from_id(i).mediatype == 0)
 								list.add(i);
 						}
@@ -573,7 +573,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				
 				if(p != null) {
 					if(p is Playlist) {
-						foreach(int i in ((Playlist)p).medias()) {
+						foreach(int i in ((Playlist)p).media ()) {
 							if(lm.media_from_id(i).mediatype == 1 && !lm.media_from_id(i).uri.has_prefix("http:/"))
 								list.add(i);
 						}

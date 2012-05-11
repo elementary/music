@@ -65,7 +65,9 @@ public class BeatBox.ColumnBrowser : Box {
 	}
 
 	// All the media
-	public Collection<Media> media { get; private set; }
+	protected Collection<Media> media;
+
+	public bool media_set { get { return media != null; } } 
 
 	// Filtered media results. We provide the data. No need to search again outside
 	private Collection<Media> _media_results;

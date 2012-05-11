@@ -46,7 +46,7 @@ public class BeatBox.Playlist : Object {
 		this.name = name;
 	}
 		
-	public Gee.Collection<int> medias() {
+	public Gee.Collection<int> media () {
 		return _medias.keys;
 	}
 	
