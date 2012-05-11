@@ -32,7 +32,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	private Gtk.Paned list_view_hpaned; // for left mode
 	private Gtk.Paned list_view_vpaned; // for top mode
 
-	public MillerColumns column_browser { get; private set; }
+	public ColumnBrowser column_browser { get; private set; }
 	public GenericList   list_view { get; private set; }
 
 	private ScrolledWindow list_scrolled;
@@ -59,8 +59,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 					// Populate column browser
 					column_browser.show_all ();
 
-					if (column_browser.medias == null)
-						column_browser.populate (view_wrapper.get_showing_media_ids());
+					if (column_browser.media == null)
+						column_browser.set_media (get_showing_media ());
 				}
 				else {
 					// Before hiding, reset the filters to "All..."
@@ -95,7 +95,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			case ViewWrapper.Hint.CDROM:
 			case ViewWrapper.Hint.SIMILAR:
 			//case ViewWrapper.Hint.ALBUM_LIST:
-				list_view = new MusicTreeView (view_wrapper, tvs);
+				list_view = new MusicListView (view_wrapper, tvs);
 				break;
 			default:
 				critical ("NO LIST VIEW AVAILABLE FOR HINT -> %s", tvs.get_hint().to_string());
@@ -104,7 +104,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 
 		if (add_browser)
-			column_browser = new MillerColumns (view_wrapper);
+			column_browser = new ColumnBrowser (view_wrapper);
 
 		// Put the list inside a scrolled window
 		list_scrolled.add (list_view);
@@ -142,24 +142,19 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 
 		// Set sort data from saved session
-		list_view.set_sort_column_id(tvs.sort_column_id, tvs.sort_direction);
-
-		// We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
-		// disk access to write settings.
-		destroy.connect (on_quit);
+		list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
 	}
 
-	private void set_column_browser_position (MillerColumns.Position position) {
+	private void set_column_browser_position (ColumnBrowser.Position position) {
 		if (!has_column_browser)
 			return;
 
-		MillerColumns.Position actual_position = position; //position that will be actually applied
+		ColumnBrowser.Position actual_position = position; //position that will be actually applied
 
-		if (actual_position == MillerColumns.Position.AUTOMATIC) {
+		if (actual_position == ColumnBrowser.Position.AUTOMATIC) {
 			// Decide what orientation to use based on the view area size
 
 			int view_width = this.get_allocated_width ();
-			const int MIN_RECOMMENDED_TREEVIEW_WIDTH = 300;
 			const int MIN_RECOMMENDED_COLUMN_WIDTH = 160;
 
 			int visible_columns = 0;
@@ -169,15 +164,15 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			}
 
 			int required_width = MIN_RECOMMENDED_COLUMN_WIDTH * visible_columns;
-			if (view_width - required_width < MIN_RECOMMENDED_TREEVIEW_WIDTH)
-				actual_position = MillerColumns.Position.TOP;
+			if (view_width - required_width < list_view.get_allocated_width ())
+				actual_position = ColumnBrowser.Position.TOP;
 			else
-				actual_position = MillerColumns.Position.LEFT;
+				actual_position = ColumnBrowser.Position.LEFT;
 		}
 
 		column_browser.actual_position = actual_position;
 
-		if (actual_position == MillerColumns.Position.LEFT) {
+		if (actual_position == ColumnBrowser.Position.LEFT) {
 			if (list_view_hpaned.get_child1() == null && list_view_vpaned.get_child1() == column_browser) {
 				list_view_vpaned.remove (column_browser);
 				list_view_hpaned.pack1 (column_browser, true, false);
@@ -185,7 +180,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 				list_view_hpaned.set_position (list_view_hpaned_position);
 			}
 		}
-		else if (actual_position == MillerColumns.Position.TOP) {
+		else if (actual_position == ColumnBrowser.Position.TOP) {
 			if (list_view_vpaned.get_child1() == null && list_view_hpaned.get_child1() == column_browser) {
 				list_view_hpaned.remove (column_browser);
 				list_view_vpaned.pack1 (column_browser, true, false);
@@ -194,7 +189,6 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			}
 		}
 	}
-
 
 	private void connect_column_browser_ui_signals () {
 		if (!has_column_browser)
@@ -205,19 +199,19 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			if (!lw.initialization_finished)
 				return;
 
-			if (column_browser.position == MillerColumns.Position.AUTOMATIC)
-				set_column_browser_position (MillerColumns.Position.AUTOMATIC);
+			if (column_browser.position == ColumnBrowser.Position.AUTOMATIC)
+				set_column_browser_position (ColumnBrowser.Position.AUTOMATIC);
 		});
 
 		column_browser.size_allocate.connect ( () => {
 			if (!lw.initialization_finished || !column_browser_enabled)
 				return;
 
-			if (column_browser.actual_position == MillerColumns.Position.LEFT) {
+			if (column_browser.actual_position == ColumnBrowser.Position.LEFT) {
 				if (list_view_hpaned.position > 0)
 					list_view_hpaned_position = list_view_hpaned.position;
 			}
-			else if (column_browser.actual_position == MillerColumns.Position.TOP) {
+			else if (column_browser.actual_position == ColumnBrowser.Position.TOP) {
 				if (list_view_vpaned.position > 0)
 					list_view_vpaned_position = list_view_vpaned.position;
 			}
@@ -239,15 +233,19 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 
 		list_view_hpaned.position = list_view_hpaned_position;
 		list_view_vpaned.position = list_view_vpaned_position;
+
+		// We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
+		// disk access to write settings.
+		destroy.connect (save_column_browser_settings);
 	}
 
-	private void on_quit () {
+	private void save_column_browser_settings () {
 		// Need to add a proper fix later ...
 		if (has_column_browser) {
 			if (column_browser.visible) {
-				if (column_browser.actual_position == MillerColumns.Position.LEFT)
+				if (column_browser.actual_position == ColumnBrowser.Position.LEFT)
 					lw.settings.set_miller_columns_width(list_view_hpaned_position);
-				else if (column_browser.actual_position == MillerColumns.Position.TOP)
+				else if (column_browser.actual_position == ColumnBrowser.Position.TOP)
 					lw.settings.set_miller_columns_height(list_view_vpaned_position);
 			}
 
@@ -256,7 +254,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	}
 
 	/**
-	 * Data and ContentView interface stuff ...
+	 * ContentView interface methods
 	 */
 
 	public ViewWrapper.Hint get_hint () {
@@ -267,41 +265,27 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return list_view.get_relative_id ();
 	}
 
+	public Gee.Collection<Media> get_media () {
+		var media_list = new Gee.LinkedList<Media> ();
+		foreach (var m in list_view.get_table ().get_values ())
+			media_list.add (m);
 
-
-	public GLib.List<Media> get_media () {
-		return list_view.get_table().get_values ();
+		return media_list;
 	}
 
-	public GLib.List<Media> get_showing_media () {
-		return list_view.get_visible_table().get_values ();
-	}
+	public Gee.Collection<Media> get_showing_media () {
+		var media_list = new Gee.LinkedList<Media> ();
+		foreach (var m in list_view.get_visible_table ().get_values ())
+			media_list.add (m);
 
-	public Gee.Collection<int> get_media_ids () {
-		var rv = new Gee.LinkedList<int> ();
-		foreach (var val in list_view.get_table().get_values ()) {
-			rv.add (val.rowid);
-		}
-		return rv;
+		return media_list;
 	}
-
-	public Gee.Collection<int> get_showing_media_ids () {
-		var rv = new Gee.LinkedList<int> ();
-		foreach (var val in list_view.get_visible_table().get_values ()) {
-			rv.add (val.rowid);
-		}
-		return rv;
-	}
-
-	
-	// XXX: fix column browser stuff!
-	// THIS IS CRITICAL!
 
 	private async void column_browser_changed () {
-		// This method is only called if the column browser is available.
-		// For performance reasons we won't update showing_medias to match
-		// the results of the miller columns.
-
+		/* This method is only called if the column browser is available.
+		 * For performance reasons we won't update showing_media to match
+		 * the results of the miller columns.
+		 */
 		if (lw.initialization_finished) {
 			set_media (column_browser.media_results);
 			view_wrapper.set_statusbar_info (column_browser.media_results);
@@ -318,23 +302,21 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 
 	public async void append_media (Gee.Collection<Media> to_add) {
 		if (column_browser_enabled)
-			column_browser.populate (view_wrapper.get_showing_media_ids());
-		else {
+			column_browser.add_media (to_add);
+		else
 			list_view.add_media (to_add);
-		}
 	}
 
 	public async void remove_media (Gee.Collection<Media> to_remove) {
 		if (column_browser_enabled)
-			column_browser.populate (view_wrapper.get_showing_media_ids());
-		else {
+			column_browser.remove_media (to_remove);
+		else
 			list_view.remove_media (to_remove);
-		}
 	}
 
 	public async void set_media (Gee.Collection<Media> media) {
 		if (column_browser_enabled)
-			column_browser.populate (view_wrapper.get_showing_media_ids());
+			column_browser.set_media (media);
 		else
 			list_view.set_media (media);
 	}

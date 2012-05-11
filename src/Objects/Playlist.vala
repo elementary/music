@@ -35,13 +35,13 @@ public class BeatBox.Playlist : Object {
 	
 	public Playlist() {
 		name = _("New Playlist");
-		tvs = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+		tvs = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_medias = new Gee.HashMap<int, int>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
 		_medias = new Gee.HashMap<int, int>();
-		tvs = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
+		tvs = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		this.rowid = rowid;
 		this.name = name;
 	}

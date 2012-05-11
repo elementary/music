@@ -39,7 +39,7 @@ public class BeatBox.SmartPlaylist : Object {
 	
 	public SmartPlaylist() {
 		_name = "";
-		tvs = new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
+		tvs = new TreeViewSetup(MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
 		_conditional = "all";
 		query_count = 0;
 		_queries = new Gee.ArrayList<SmartQuery>();

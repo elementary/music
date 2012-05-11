@@ -20,16 +20,14 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gee;
-
 public interface BeatBox.ContentView : Gtk.Container {
-	public signal void import_requested(LinkedList<int> to_import);
+	public signal void import_requested (Gee.LinkedList<int> to_import);
 	
 	public abstract ViewWrapper.Hint get_hint ();
 	public abstract int get_relative_id ();
 
-	public abstract async void set_media (Collection<int> new_media);
-	public abstract async void append_media (Collection<int> to_add);
-	public abstract async void remove_media (Collection<int> to_remove);
+	public abstract async void set_media    (Gee.Collection<Media> new_media);
+	public abstract async void append_media (Gee.Collection<Media> to_add);
+	public abstract async void remove_media (Gee.Collection<Media> to_remove);
 }
 

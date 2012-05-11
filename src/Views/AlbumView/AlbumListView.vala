@@ -38,7 +38,7 @@ public class BeatBox.AlbumListView : Window {
 	Label album_label;
 	Label artist_label;
 	Granite.Widgets.Rating rating;
-	MusicTreeView mtv;
+	MusicListView mtv;
 
 	Gee.LinkedList<Media> media_list;
 
@@ -96,8 +96,8 @@ public class BeatBox.AlbumListView : Window {
 		artist_label.margin_bottom = 12;
 
 		// Music List
-		var tvs = new TreeViewSetup (MusicTreeView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
-		mtv = new MusicTreeView(view_wrapper, tvs);
+		var tvs = new TreeViewSetup (MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
+		mtv = new MusicListView(view_wrapper, tvs);
 
 		var mtv_scrolled = new ScrolledWindow (null, null);
 		mtv_scrolled.add (mtv);

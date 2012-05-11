@@ -416,7 +416,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 	public void add_default_smart_playlists () {
 		try {
-			TreeViewSetup tvs = new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
+			TreeViewSetup tvs = new TreeViewSetup(MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
 			transaction = database.begin_transaction();
 			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column_id', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column_id, :sort_direction, :columns);");
 
@@ -425,7 +425,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Rating<value_separator>is at least<value_separator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.RATING);
+			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -436,7 +436,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Media Type<value_separator>is<value_separator>3<query_seperator>Rating<value_separator>is at least<value_separator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.RATING);
+			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -446,7 +446,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Date Added<value_separator>is within<value_separator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.ARTIST);
+			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -456,7 +456,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Last Played<value_separator>is within<value_separator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.LAST_PLAYED);
+			query.set_int(":sort_column_id", MusicListView.MusicColumn.LAST_PLAYED);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -466,7 +466,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Last Played<value_separator>is within<value_separator>7<query_seperator>Rating<value_separator>is at least<value_separator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.RATING);
+			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -476,7 +476,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Playcount<value_separator>is exactly<value_separator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.ARTIST);
+			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -486,7 +486,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Media Type<value_separator>is<value_separator>1<query_seperator>Playcount<value_separator>is exactly<value_separator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.ARTIST);
+			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -496,7 +496,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Playcount<value_separator>is at least<value_separator>10<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.PLAY_COUNT);
+			query.set_int(":sort_column_id", MusicListView.MusicColumn.PLAY_COUNT);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
@@ -506,7 +506,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":queries", "Last Played<value_separator>is before<value_separator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicTreeView.MusicColumn.NUMBER);
+			query.set_int(":sort_column_id", MusicListView.MusicColumn.NUMBER);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();

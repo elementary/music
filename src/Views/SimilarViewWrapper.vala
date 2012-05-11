@@ -79,7 +79,12 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 			enough for it to be valid. Only populate to set 0 songs or
 			to populate with at least REQUIRED_MEDIAS songs. **/
 			if(!fetched || new_media.size >= REQUIRED_MEDIAS) {
-				list_view.set_media (new_media);
+				var to_set = new Gee.LinkedList<Media> ();
+				foreach (var id in new_media) {
+					to_set.add (lm.media_from_id (id));
+				}
+				
+				list_view.set_media (to_set);
 			}
 			
 			set_statusbar_info ();

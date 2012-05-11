@@ -213,7 +213,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		
 		_doing_file_operations = false;
 		
-		music_setup = new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
+		music_setup = new TreeViewSetup(MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.MUSIC);
 #if HAVE_PODCASTS
 		have_fetched_podcasts = false;
 		podcast_setup = new TreeViewSetup(PodcastListView.PodcastColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PODCAST);
@@ -221,9 +221,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 #if HAVE_INTERNET_RADIO
 		station_setup = new TreeViewSetup(RadioListView.RadioColumn.GENRE, Gtk.SortType.ASCENDING, ViewWrapper.Hint.STATION);
 #endif
-		similar_setup = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SIMILAR);
-		queue_setup = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.QUEUE);
-		history_setup = new TreeViewSetup(MusicTreeView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.HISTORY);
+		similar_setup = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SIMILAR);
+		queue_setup = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.QUEUE);
+		history_setup = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.HISTORY);
 
 		
 		//load all medias from db

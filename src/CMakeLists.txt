@@ -27,7 +27,7 @@ vala_precompile(VALA_C
     Utils/Numeric.vala
     Utils/Icon.vala
 
-    LastFM/LastFM.vala
+    LastFM/Core.vala
     LastFM/AlbumInfo.vala
     LastFM/Image.vala
     LastFM/Tag.vala
@@ -93,14 +93,14 @@ vala_precompile(VALA_C
     Views/ContentView.vala
 
     # ALBUM VIEW
-    Views/AlbumView/AlbumIconView.vala
+    Views/AlbumView/AlbumView.vala
     Views/AlbumView/AlbumListView.vala
 
     # LIST VIEW
     Views/CellDataFunctionHelper.vala
     Views/ListView/ListView.vala
-    Views/ListView/MillerColumns/MillerModel.vala
-    Views/ListView/MillerColumns/MillerColumn.vala
+    Views/ListView/ColumnBrowser/ColumnBrowser.vala
+    Views/ListView/ColumnBrowser/ColumnBrowserModel.vala
 
     Views/ListView/Lists/GenericList.vala
     Views/ListView/Lists/MusicListView.vala
@@ -109,7 +109,7 @@ vala_precompile(VALA_C
     Dialogs/SmartPlaylistEditor.vala
     Dialogs/PreferencesWindow.vala
     Dialogs/InstallGstreamerPluginsDialog.vala
-    Dialogs/SongEditor.vala
+    Dialogs/MediaEditor.vala
     Dialogs/PlaylistNameWindow.vala
     Dialogs/FileNotFoundDialog.vala
     Dialogs/RemoveFilesDialog.vala

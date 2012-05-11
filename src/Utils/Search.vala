@@ -38,7 +38,6 @@ namespace BeatBox.Search {
 
     public inline void search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
                                        out Gee.LinkedList<BeatBox.Media> results,
-                                       BeatBox.ViewWrapper.Hint hint,
                                        string search = "", // Search string
                                        string album_artist = "",
                                        string album = "",

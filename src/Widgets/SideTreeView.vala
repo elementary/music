@@ -265,7 +265,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 
 			rv = addItem(parent, o, w, device_icon, name, null);
 
-			var dvw = new DeviceViewWrapper(lw, d.get_medias(), new TreeViewSetup(MusicTreeView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), -1, d);
+			var dvw = new DeviceViewWrapper(lw, d.get_medias(), new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), -1, d);
 			addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
 			lw.add_to_main_views(dvw);
 #if HAVE_PODCASTS

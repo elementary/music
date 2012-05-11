@@ -116,7 +116,7 @@ class BeatBox.Albums.IconView : Gtk.IconView, HoverBackgroundWidget {
         grid.attach(author, 0, 2, 1, 1);
 
         // Fake list view
-        var tree_view = new MusicTreeView(lm, lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
+        var tree_view = new MusicListView(lm, lw, "Artist", SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST, -1);
         var songs = new LinkedList<int>();
         var albums = new LinkedList<int>();
         lm.do_search("", tree_view.get_hint(), "All Genres", s.album_artist, s.album, lm.media_ids(), ref songs, ref albums);

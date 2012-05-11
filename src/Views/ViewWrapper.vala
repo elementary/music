@@ -423,11 +423,20 @@ public class BeatBox.ViewWrapper : Box {
 #endif
 	}
 
-	public void set_statusbar_info (Gee.Collection<int>? visible_media = null) {
+	public void set_statusbar_info (Gee.Collection<Media>? visible_media = null) {
 		if (!is_current_wrapper)
 			return;
 
-		var media_set = visible_media ?? get_showing_media_ids ();
+		Gee.Collection<Media> ? media_set = null;
+		if (visible_media != null) {
+			media_set = visible_media;
+		}
+		else {
+			media_set = new Gee.LinkedList<Media> ();
+			foreach (var id in get_showing_media_ids ()) {
+				media_set.add (lm.media_from_id (id));
+			}
+		}
 
 		if (media_set.size < 1) {
 			lw.set_statusbar_info (hint, 0, 0, 0);
@@ -439,8 +448,7 @@ public class BeatBox.ViewWrapper : Box {
 		uint total_mbs = 0;
 
 
-		foreach(int id in media_set) {
-			var media = lm.media_from_id (id);
+		foreach (var media in media_set) {
 			if (media != null) {
 				count ++;
 				total_time += media.length;

@@ -26,21 +26,7 @@ using Gdk;
 using Gtk;
 using Gee;
 
-/**
- * FIXME:
- * Wrong data structure here. Switch to HashMaps.
- *
- * TODO: Implement (needed by ViewWrapper:update_media):
- * - add_media (Gee.Collection<int> to_add): Updates the column browser to include new media.
- *                                           If all the media already belongs to a filter, it's not added.
- *
- * - remove_media (Gee.Collection<int> to_remove): Updates the column browser to remove these media files.
- *
- * NOTE: The new media is added/removed in a way that honors the current filters. In case all the media
- *       belonging to a selected filter is deleted, the "All..." item should be selected on that column.
- */
-
-public class BeatBox.MillerColumns : Box {
+public class BeatBox.ColumnBrowser : Box {
 
 	public signal void changed ();
 	public signal void position_changed (Position p);
@@ -55,18 +41,19 @@ public class BeatBox.MillerColumns : Box {
 	public LibraryWindow  lw { get; private set; }
 	public ViewWrapper view_wrapper { get; private set; }
 
-	public const int MIN_COLUMN_WIDTH = 40; // Ideally should be 138; // used for LEFT mode
+	public const int MIN_COLUMN_WIDTH  = 40; // Ideally should be 138; used for LEFT mode
 	public const int MIN_COLUMN_HEIGHT = 70; // used for TOP mode
 
 	public bool is_music_miller {
 		get {
-			return view_wrapper.hint == ViewWrapper.Hint.MUSIC || view_wrapper.hint == ViewWrapper.Hint.DEVICE_AUDIO ||
+			return view_wrapper.hint == ViewWrapper.Hint.MUSIC ||
+			        view_wrapper.hint == ViewWrapper.Hint.DEVICE_AUDIO ||
 			        view_wrapper.hint == ViewWrapper.Hint.CDROM;
 		}
 	}
 
 	// Whether the columns are filtered or not based on the current selection
-	// Although 'medias.size == _media_results.size' would produce a similar result, here
+	// Although 'media.size == _media_results.size' would produce a similar result, here
 	// we want to know if the "All ..." filter is selected in every the columns.
 	public bool filtered {
 		get {
@@ -78,11 +65,11 @@ public class BeatBox.MillerColumns : Box {
 	}
 
 	// All the media
-	public Collection<int> medias { get; private set; }
+	public Collection<Media> media { get; private set; }
 
 	// Filtered media results. We provide the data. No need to search again outside
-	private Collection<int> _media_results;
-	public Collection<int> media_results { get { return _media_results; } }
+	private Collection<Media> _media_results;
+	public Collection<Media> media_results { get { return _media_results; } }
 
 	public Position position { get; private set; default = Position.AUTOMATIC; }
 	public Position actual_position { get; set; default = Position.LEFT; }
@@ -91,14 +78,14 @@ public class BeatBox.MillerColumns : Box {
 
 	private Gtk.Menu column_chooser_menu;
 
-	public MillerColumns(ViewWrapper view_wrapper) {
+	public ColumnBrowser(ViewWrapper view_wrapper) {
 		this.lm = view_wrapper.lm;
 		this.lw = view_wrapper.lw;
 		this.view_wrapper = view_wrapper;
 
 		orientation = Orientation.HORIZONTAL;
 
-		_media_results = new LinkedList<int> ();
+		_media_results = new LinkedList<Media> ();
 
 		columns = new LinkedList<unowned MillerColumn> ();
 
@@ -331,16 +318,11 @@ public class BeatBox.MillerColumns : Box {
 			}
 
 			// Perform search
-
-			//SLOW: lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
-			//              "", search_artist, search_album, search_genre, search_year, search_rating);
-
-			// FASTER
-			Search.search_in_media_ids (lm, medias, out _media_results, "", search_artist,
-			                           search_album, search_genre, search_year, search_rating);
+			Search.search_in_media_list (media, out _media_results, "", search_artist, search_album,
+			                             search_genre, search_year, search_rating);
 		}
 		else {
-			_media_results = medias;
+			_media_results = media;
 		}
 
 		// Now re-populate the child columns
@@ -349,8 +331,7 @@ public class BeatBox.MillerColumns : Box {
 			if (column.category > category) {
 				var column_set = new HashMap<string, int> ();
 
-				foreach (int id in _media_results) {
-					var _media = lm.media_from_id(id);
+				foreach (var _media in _media_results) {
 					string _val = "";
 
 					if (column.category == MillerColumn.Category.GENRE)
@@ -400,7 +381,7 @@ public class BeatBox.MillerColumns : Box {
 			}
 
 			// Perform search [again]
-			lm.do_search (medias, out _media_results, null, null, null, null, view_wrapper.hint,
+			lm.do_search (media, out _media_results, null, null, null, null, view_wrapper.hint,
 			              "", search_artist, search_album, search_genre, search_year, search_rating);
 		}
 		*/
@@ -434,21 +415,29 @@ public class BeatBox.MillerColumns : Box {
 		}
 	}
 
-	public void populate (Collection<int> media, string? search = null) {
-		this.medias = media;
+	public void add_media (Collection<Media> to_add) {
+		message ("Implement ColumnBrowser.add_media () !!");
+		foreach (var m in to_add) {
+		//TODO
+		}
+	}
 
-		// SLOW
-		//lm.do_search (media, out _media_results, /*out _album_results*/ null, null, null, null,
-		//              view_wrapper.hint, search ?? "");
+	public void remove_media (Collection<Media> to_remove) {
+		message ("Implement ColumnBrowser.remove_media () !!");
+		foreach (var m in to_remove) {
+		// TODO
+		}		
+	}
 
-		// FASTER
-		Search.search_in_media_ids (lm, media, out _media_results, search ?? "");
+	public void set_media (Collection<Media> media, string? search = null) {
+		this.media = media;
+
+		Search.search_in_media_list (media, out _media_results, search ?? "");
 
 		foreach (var column in columns) {
 			var column_set = new HashMap<string, int>();
 
-			foreach (int id in _media_results) {
-				var _media = lm.media_from_id (id);
+			foreach (var _media in _media_results) {
 				string val = "";
 
 				if (column.category == MillerColumn.Category.GENRE)
@@ -468,8 +457,7 @@ public class BeatBox.MillerColumns : Box {
 			column.populate (column_set);
 		}
 		
-		// FIXME: notify about the change here? so far we depend on this in ViewWrapper.vala
-		changed();
+		changed ();
 	}
 }
 
@@ -513,7 +501,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 	public CheckMenuItem menu_item {get; private set;}
 
-	private MillerColumns miller_parent;
+	private ColumnBrowser miller_parent;
 	private LibraryManager lm;
 	private LibraryWindow lw;
 
@@ -523,7 +511,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	// This will be NULL whenever the first element "All" is selected.
 	private string? _selected;
 
-	public MillerColumn (MillerColumns miller_parent, Category category) {
+	public MillerColumn (ColumnBrowser miller_parent, Category category) {
 		this.miller_parent = miller_parent;
 		this.category = category;
 
@@ -643,7 +631,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 
-	public void populate (HashMap<string, int> items) {
+	public async void populate (HashMap<string, int> items) {
 		// After initialization, ignore any attempt to populate the column if it's hidden.
 		// This will boost performance when some columns are hidden.
 		if (!this.visible && !lw.initialization_finished)
@@ -660,7 +648,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 		// This check whether we can keep the current selected item selected in the column.
 		// /!\ NOTE: This check is currently disabled for performance and behavioral issues.
-		//           see the related note above in MillerColumns : column_selection_changed() 
+		//           see the related note above in ColumnBrowser : column_selection_changed() 
 		//if (items.get(get_selected()) == 0) {
 		//	select_first_item ();
 		//}

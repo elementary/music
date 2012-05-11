@@ -687,7 +687,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			Device d = (Device)o;
 
 			if(d.getContentType() == "cdrom") {
-				vw = new DeviceViewWrapper(this, d.get_medias(), new TreeViewSetup(MusicTreeView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM), -1, d);
+				vw = new DeviceViewWrapper(this, d.get_medias(), new TreeViewSetup(MusicListView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM), -1, d);
 				item = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
 				add_to_main_views (vw);
 			}

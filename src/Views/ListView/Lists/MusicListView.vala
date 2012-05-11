@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.MusicTreeView : GenericList {
+public class BeatBox.MusicListView : GenericList {
 
 	//for header column chooser
 	Gee.HashMap<string, Gtk.CheckMenuItem> column_chooser_menu_items;
@@ -79,7 +79,7 @@ public class BeatBox.MusicTreeView : GenericList {
 		PULSER
 	}
 
-	public MusicTreeView(ViewWrapper view_wrapper, TreeViewSetup tvs) {
+	public MusicListView(ViewWrapper view_wrapper, TreeViewSetup tvs) {
 		var types = new GLib.List<Type>();
 		types.append(typeof(int)); // id
 		types.append(typeof(GLib.Icon)); // icon
