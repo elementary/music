@@ -33,13 +33,8 @@ public class BeatBox.CompareFuncHolder : GLib.Object {
 }
 
 public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
-
-	/* custom signals for custom treeview. for speed */
-	public signal void rows_changed(LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
-	public signal void rows_deleted (LinkedList<TreePath> paths);
-	public signal void rows_inserted (LinkedList<TreePath> paths, LinkedList<TreeIter?> iters);
-
 	LibraryManager lm;
+
 	int stamp; // all iters must match this
 	Gdk.Pixbuf defaultImage;
 
@@ -51,7 +46,6 @@ public class BeatBox.AlbumViewModel : GLib.Object, TreeModel, TreeSortable {
 	/* data storage variables */
 	Sequence<Media> rows;
 
-	/* threaded pixbuf fetching */
 	private int sort_column_id;
 	private SortType sort_direction;
 	private unowned TreeIterCompareFunc default_sort_func;

@@ -1535,7 +1535,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		// check that the file exists
 		var music_folder_dir = settings.getMusicFolder ();
 		if((music_folder_dir != "" && File.new_for_uri(m.uri).get_path().has_prefix(music_folder_dir) && !GLib.File.new_for_uri(m.uri).query_exists())) {
-			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
+			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU);
 			m.location_unknown = true;
 			lw.media_not_found(id);
 			stopPlayback();

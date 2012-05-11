@@ -21,7 +21,7 @@
  * Boston, MA 02111-1307, USA.
  *
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
- *			  Victor Eduardo <victoreduardm@gmail.com>
+ *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
 using Gtk;
@@ -44,9 +44,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	public ViewWrapper parent_view_wrapper { get; private set; }
 
-	public int n_albums { get { return model.iter_n_children(null); } }
+	public int n_albums { get { return (int) icons.get_table ().size (); } }
 
-	public IconView icons { get; private set; }
+	public FastGrid icons { get; private set; }
 
 /* Spacing Workarounds */
 #if !GTK_ICON_VIEW_BUG_IS_FIXED
@@ -56,11 +56,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	private LibraryManager lm;
 	private LibraryWindow lw;
-
-	private Collection<Media> _show_next; // these are populated if necessary when user opens this view.
-	private HashMap<string, int> _showing_media;
-
-	private AlbumViewModel model;
 
 	private Gdk.Pixbuf defaultPix;
 
@@ -80,28 +75,19 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		lw = view_wrapper.lw;
 
 		parent_view_wrapper = view_wrapper;
-
-		_show_next = new LinkedList<Media>();
-		_showing_media = new HashMap<string, int>();
-
-		defaultPix = Icons.DEFAULT_ALBUM_ART_PIXBUF;
-
+		defaultPix = lm.get_pixbuf_shadow (Icons.DEFAULT_ALBUM_ART_PIXBUF);
 		build_ui();
 	}
 
 	public void build_ui() {
 		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 
-		icons = new IconView();
-		model = new AlbumViewModel(lm, defaultPix);
+		icons = new FastGrid ();
+
+		icons.set_compare_func(compare_func);
+		icons.set_value_func(val_func);
 
 		icons.set_columns(-1);
-
-		icons.set_pixbuf_column(model.PIXBUF_COLUMN);
-		icons.set_markup_column(model.MARKUP_COLUMN);
-		icons.set_tooltip_column(model.TOOLTIP_COLUMN);
-
-		icons.set_model (model);
 
 #if !GTK_ICON_VIEW_BUG_IS_FIXED
 		var wrapper_vbox = new Box (Orientation.VERTICAL, 0);
@@ -196,6 +182,103 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		parent_view_wrapper.size_allocate.connect (on_resize);
 	}
 
+	public ViewWrapper.Hint get_hint() {
+		return parent_view_wrapper.hint;
+	}
+
+	public async void set_media (Gee.Collection<Media> to_add) {
+		var new_table = new HashTable<int, Media> (null, null);
+		foreach (var m in to_add) {
+			new_table.set ((int)new_table.size(), m);
+		}
+		// set table and resort
+		icons.set_table (new_table, true);
+	}
+
+	public async void append_media (Gee.Collection<Media> media) {
+		icons.add_objects (media);
+	}
+
+	public async void remove_media (Gee.Collection<Media> to_remove) {
+		var to_remove_table = new HashMap<Object, int> ();
+		foreach (var m in to_remove) {
+			to_remove_table.set (m, 1);
+		}
+
+		icons.remove_objects (to_remove_table);	
+	}
+
+	public int get_relative_id () {
+		return 0;
+	}
+
+
+	private bool on_button_release (Gdk.EventButton ev) {
+		if (ev.type == Gdk.EventType.BUTTON_RELEASE && ev.button == 1) {
+			TreePath path;
+			CellRenderer cell;
+
+			icons.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
+
+			if (path == null) { // blank area
+				album_list_view.hide ();
+				return false;
+			}
+
+			item_activated (path);
+		}
+
+		return false;
+	}
+
+	private bool on_motion_notify (Gdk.EventMotion ev) {
+		TreePath path;
+		CellRenderer cell;
+
+		icons.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
+
+		if (path == null) // blank area
+			icons.get_window ().set_cursor (null);
+		else
+			icons.get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.HAND1));
+
+		return false;
+	}
+
+
+	private void item_activated (TreePath path) {
+		Media? s = (Media)icons.get_object_from_index(int.parse(path.to_string()));
+
+		if (s == null) {
+			album_list_view.hide ();
+			return;
+		}
+
+		album_list_view.set_songs_from_media (s);
+
+		// find window's location
+		int x, y;
+		Gtk.Allocation alloc;
+		lm.lw.get_position (out x, out y);
+		get_allocation (out alloc);
+
+		// move down to icon view's allocation
+		x += lm.lw.sourcesToMedias.get_position();
+		y += alloc.y;
+
+		// center it on this icon view
+		x += (alloc.width - album_list_view.WIDTH) / 2;
+		y += (alloc.height - album_list_view.HEIGHT) / 2 + 60;
+
+		bool was_visible = album_list_view.visible;
+		album_list_view.show_all ();
+		if (!was_visible)
+			album_list_view.move (x, y);
+		album_list_view.present ();
+	}
+
+
+
 	// Smart Spacing !
 
 /*
@@ -229,7 +312,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		set_columns (n_columns);
 
 		// We don't want to adjust the spacing if the row is not full
-		if (_showing_media.size < n_columns)
+		if (icons.get_table ().size () < n_columns)
 			new_spacing = MIN_SPACING;
 		else
 			new_spacing = (TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (n_columns + 1);
@@ -265,7 +348,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.set_columns (n_columns);
 
 		// We don't want to adjust the spacing if the row is not full
-		if (_showing_media.size < n_columns) {
+		if (icons.get_table ().size () < n_columns) {
 			setting_size.unlock ();
 			return;
 		}
@@ -287,192 +370,74 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 #endif
 
+	const int FONT_SIZE = 10300;
+	const int MAX_ALBUM_NAME_LENGTH = (int) (20.0 * ((double)FONT_SIZE/10500.0) * ((double) Icons.ALBUM_VIEW_IMAGE_SIZE) / 138.0);
 
-	public ViewWrapper.Hint get_hint() {
-		return parent_view_wrapper.hint;
-	}
+	string TEXT_MARKUP = @"<span weight='medium' size='$FONT_SIZE'>%s\n</span><span foreground=\"#999\">%s</span>";
+	string TOOLTIP_MARKUP = @"<span weight='bold' size='$FONT_SIZE'>%s</span>\n%s";
+	/** Initializes and sets value to that at column. **/
+	public Value val_func (int row, int column, Object o) {
+		Media s = o as Media;
+		Value? val = null;
 
-	public async void set_media (Collection<Media> media) {
-		_show_next = media;
-		populate_view ();
-	}
-
-	public int get_relative_id () {
-		return 0;
-	}
-
-	public Collection<int> get_showing_media_ids () {
-		return _showing_media.keys;
-	}
-
-	public async void append_media (Collection<Media> new_media) {
-		var to_append = new LinkedList<Media>();
-
-		foreach(var s in new_media) {
-			if (s == null)
-				continue;
-			
-			string key = get_key (s);
-
-			if(!_showing_media.has_key(key)) {
-				_showing_media.set(key, MEDIA_SET_VAL);
-
-				Media alb = new Media("");
-				alb.album_artist = s.album_artist;
-				alb.album = s.album;
-				to_append.add (alb);
+		if (column == icons.PIXBUF_COLUMN) {
+			var cover_art = lm.get_cover_album_art_from_key(s.album_artist, s.album);
+			if(cover_art != null) {
+				val = cover_art;
+			}
+			else {
+				val = defaultPix;
 			}
 		}
+		else if(column == icons.MARKUP_COLUMN) {
+			string album, album_artist;
+			if(s.album.length > MAX_ALBUM_NAME_LENGTH)
+				album = s.album.substring(0, MAX_ALBUM_NAME_LENGTH - 3) + "...";
+			else
+				album = s.album;
 
-		model.append_media (to_append, true);
-		model.resort();
-		queue_draw();
-	}
-
-	public async void remove_media (Collection<Media> to_remove) {
-		var media_remove = new LinkedList<Media> ();
-
-		foreach (var s in to_remove) {
-			if (s == null)
-				continue;
-
-			string key = get_key (s);
-
-			if (_showing_media.has_key (key)) {
-				_showing_media.unset (key);
-
-				Media alb = new Media ("");
-				alb.album_artist = s.album_artist;
-				alb.album = s.album;
-
-				media_remove.add (alb);
-			}
+			if(s.album_artist.length > 25)
+				album_artist = s.album_artist.substring(0, 22) + "...";
+			else
+				album_artist = s.album_artist;
+				val = TEXT_MARKUP.printf (String.escape (album), String.escape (album_artist));
 		}
-
-		model.remove_media (media_remove, true);
-		queue_draw ();
-	}
-
-	private void populate_view () {
-		icons.freeze_child_notify ();
-		icons.set_model (null);
-
-		_showing_media.clear ();
-		var to_append = new LinkedList<Media> ();
-		foreach (var s in _show_next) {
-			if (s == null)
-				continue;
-			
-			string key = get_key (s);
-
-			if (!_showing_media.has_key (key)) {
-				_showing_media.set (key, MEDIA_SET_VAL);
-
-				Media alb = new Media ("");
-				alb.album_artist = s.album_artist;
-				alb.album = s.album;
-				to_append.add (alb);
-			}
+		else if(column == icons.TOOLTIP_COLUMN) {
+			val = TOOLTIP_MARKUP.printf (String.escape (s.album), String.escape (s.album_artist));
 		}
-
-		model = new AlbumViewModel (lm, defaultPix);
-		model.append_media (to_append, false);
-		model.set_sort_column_id (0, SortType.ASCENDING);
-		icons.set_model (model);
-		icons.thaw_child_notify ();
-
-		if(visible && lm.media_info.media != null)
-			scroll_to_current ();
-	}
-
-	private string get_key (Media m) {
-		if (m == null)
-			return "";
-		return m.album_artist + m.album;
-	}
-
-	private bool on_button_release (Gdk.EventButton ev) {
-		if (ev.type == Gdk.EventType.BUTTON_RELEASE && ev.button == 1) {
-			TreePath path;
-			CellRenderer cell;
-
-			icons.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
-
-			if (path == null) { // blank area
-				album_list_view.hide ();
-				return false;
-			}
-
-			item_activated (path);
+		else {
+			val = s;
 		}
-
-		return false;
+		
+		return val;
 	}
 
-	private bool on_motion_notify (Gdk.EventMotion ev) {
-		TreePath path;
-		CellRenderer cell;
-
-		icons.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
-
-		if (path == null) // blank area
-			icons.get_window ().set_cursor (null);
-		else
-			icons.get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.HAND1));
-
-		return false;
-	}
-
-	private void item_activated (TreePath path) {
-		TreeIter iter;
-
-		if (!model.get_iter (out iter, path)) {
-			album_list_view.hide ();
-			return;
+	private int compare_func(GLib.Object o_a, GLib.Object o_b) {
+		Media a = o_a as Media;
+		Media b = o_b as Media;
+		
+		if(a.album_artist == b.album_artist) {
+			//if(a.album == b.album) {
+			//	return a.count() - b.count();
+			//}
+			//else {
+				return advanced_string_compare(a.album, b.album);
+			//}
 		}
-
-		var s = (model as AlbumViewModel).get_media_representation (iter);
-		album_list_view.set_songs_from_media (s);
-
-		// find window's location
-		int x, y;
-		Gtk.Allocation alloc;
-		lm.lw.get_position (out x, out y);
-		get_allocation (out alloc);
-
-		// move down to icon view's allocation
-		x += lm.lw.sourcesToMedias.get_position();
-		y += alloc.y;
-
-		// center it on this icon view
-		x += (alloc.width - album_list_view.WIDTH) / 2;
-		y += (alloc.height - album_list_view.HEIGHT) / 2 + 60;
-
-		bool was_visible = album_list_view.visible;
-		album_list_view.show_all ();
-		if (!was_visible)
-			album_list_view.move (x, y);
-		album_list_view.present ();
+		else {
+			return advanced_string_compare(a.album_artist, b.album_artist);
+		}
 	}
 
-	public void scroll_to_current () {
-		if(!visible || lm.media_info == null || lm.media_info.media == null)
-			return;
 
-		debug ("scrolling to current\n");
-
-		TreeIter iter;
-		model.iter_nth_child (out iter, null, 0);
-		while (model.iter_next (ref iter)) {
-			Value vs;
-			model.get_value(iter, model.MEDIA_COLUMN, out vs);
-
-			if(icons is IconView && ((Media)vs).album == lm.media_info.media.album) {
-				icons.scroll_to_path(model.get_path(iter), false, 0.0f, 0.0f);
-
-				return;
-			}
-		}
+	private int advanced_string_compare(string a, string b) {
+		if(a == "" && b != "")
+			return 1;
+		else if(a != "" && b == "")
+			return -1;
+		
+		return (a > b) ? 1 : -1;
 	}
 }
+
 

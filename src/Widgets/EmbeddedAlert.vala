@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012 Granite Developers (http://launchpad.net/noise)
+ * Copyright (c) 2012 Granite Developers (http://launchpad.net/granite)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,9 +22,6 @@
 
 /**
  * An alert compliant with elementary's HIG
- * TODO: add link http://elementaryos.org/...
- * FIXME: Make line wrapping work perfectly. Currently it allocates a huge size. Probably
- *         would have to be fixed inside WrapLabel
  */
 public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
@@ -47,13 +44,15 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
     const string PRIMARY_TEXT_MARKUP = "<span weight=\"bold\" size=\"larger\">%s</span>";
 
-    private Gtk.Box hbox;
+    private Gtk.Box content_hbox;
 
     protected Gtk.Label primary_text_label;
     protected Gtk.Label secondary_text_label;
     protected Gtk.Image image;
     protected Gtk.ButtonBox action_button_box;
 
+    const int MIN_HORIZONTAL_MARGIN = 120;
+    const int MIN_VERTICAL_MARGIN = 50;
 
     public EmbeddedAlert () {
         get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
@@ -91,24 +90,28 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         message_vbox.pack_start (secondary_text_label, false, false, 0);
         message_vbox.pack_end (action_button_box, false, false, 0);
 
-        var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        hbox.halign = hbox.valign = Gtk.Align.CENTER; // center-align the content
-        hbox.margin_top = hbox.margin_bottom = 50;
+        content_hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        content_hbox.halign = content_hbox.valign = Gtk.Align.CENTER; // center-align the content
+        content_hbox.margin_top = content_hbox.margin_bottom = MIN_VERTICAL_MARGIN;
+        content_hbox.margin_left = content_hbox.margin_right = MIN_HORIZONTAL_MARGIN;
 
-        hbox.pack_start (image, false, false, 0);
-        hbox.pack_end (message_vbox, true, true, 0);
+        content_hbox.pack_start (image, false, false, 0);
+        content_hbox.pack_end (message_vbox, true, true, 0);
 
         this.size_allocate.connect (on_size_allocate);
 
-        add (hbox);
+        add (content_hbox);
     }
 
     private void on_size_allocate (Gtk.Allocation alloc) {
         /* TEXT_WIDTH = (3/5)TOTAL_WIDTH
          * HR_MARGIN  = (1/5)TOTAL_WIDTH
          * TOTAL_WIDTH = TEXT_WIDTH + 2 * HR_MARGIN
+         int new_hmargin = content_hbox.margin_right = alloc.width / 5;
+         if (new_hmargin < MIN_HORIZONTAL_MARGIN)
+            new_hmargin = MIN_HORIZONTAL_MARGIN;
+         content_hbox.margin_left = new_hmargin;
          */
-        hbox.margin_left = hbox.margin_right = alloc.width / 5;
     }
 
     public void set_alert (string primary_text, string secondary_text, Gtk.Action[] ? actions = null,

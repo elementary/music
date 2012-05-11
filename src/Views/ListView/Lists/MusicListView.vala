@@ -79,9 +79,6 @@ public class BeatBox.MusicTreeView : GenericList {
 		PULSER
 	}
 
-	/**
-	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
-	 */
 	public MusicTreeView(ViewWrapper view_wrapper, TreeViewSetup tvs) {
 		var types = new GLib.List<Type>();
 		types.append(typeof(int)); // id

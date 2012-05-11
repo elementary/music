@@ -33,7 +33,6 @@ public class BeatBox.ViewWrapper : Box {
 	public LibraryWindow  lw { get; private set; }
 
 	/* MAIN WIDGETS (VIEWS) */
-	// TODO: Move back to content view
 	public ListView      list_view      { get; private set; }
 	public AlbumView     album_view     { get; private set; }
 	public EmbeddedAlert embedded_alert { get; private set; }
@@ -110,11 +109,13 @@ public class BeatBox.ViewWrapper : Box {
 
 	// ALL the media. Data source.
 	public HashMap<int, int> medias { get; private set; }
+	public HashMap<int, int> showing_medias { get; private set; }
 
 	public int media_count { get { return (medias != null) ? medias.size : 0; } }
+	public int showing_media_count { get { return (showing_medias != null) ? showing_medias.size : 0; } }
 
-	// Media that's currently showed. Only used for search results
-	public HashMap<int, int> showing_medias { get; private set; }
+	// Stops from searching unnecesarilly when changing b/w 0 words and search.
+	private bool showing_all { get { return showing_media_count == media_count; } }
 
 	// Holds the last search results (timeout). Helps to prevent useless search.
 	protected LinkedList<string> timeout_search;
@@ -127,16 +128,11 @@ public class BeatBox.ViewWrapper : Box {
 		return last_search;
 	}
 
-	// Stops from searching unnecesarilly when changing b/w 0 words and search.
-	private bool showing_all { get { return showing_media_count == media_count; } }
-
-	public int showing_media_count { get { return (showing_medias != null) ? showing_medias.size : 0; } }
 
 	protected Mutex in_update;
 
 	public ViewWrapper (LibraryWindow lw, Collection<int> the_media, TreeViewSetup tvs, int id)
 	{
-
 		this.lm = lw.lm;
 		this.lw = lw;
 
@@ -149,8 +145,8 @@ public class BeatBox.ViewWrapper : Box {
 		showing_medias = new HashMap<int, int>();
 		timeout_search = new LinkedList<string>();
 
-		foreach(int i in the_media)
-			medias.set(i, 1);
+		foreach (int i in the_media)
+			medias.set (i, 1);
 
 		// Setup view container
 		view_container = new Notebook ();
@@ -164,7 +160,7 @@ public class BeatBox.ViewWrapper : Box {
 				album_view = new AlbumView (this);
 				
 				// Currently only the music-library view should have a column browser
-				list_view = new ListView (this, tvs, true);
+				list_view = new ListView (this, tvs);
 				// Welcome screen
 				welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"), _("%s can't seem to find your music.").printf (lw.app.get_name ()));
 				break;
@@ -256,6 +252,7 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		lw.viewSelector.mode_changed.connect (view_selector_changed);
+		lw.searchField.changed.connect (search_field_changed);
 	}
 
 	public ViewWrapper.with_view (Gtk.Widget view) {
@@ -331,9 +328,9 @@ public class BeatBox.ViewWrapper : Box {
 			lw.viewSelector.set_active ((int)current_view);
 
 		// Restore this view wrapper's search string
-		lw.searchField.changed.disconnect (search_field_changed);
+		//lw.searchField.changed.disconnect (search_field_changed);
 		lw.searchField.set_text (actual_search_string);
-		lw.searchField.changed.connect (search_field_changed);
+		//lw.searchField.changed.connect (search_field_changed);
 
 		// Make the view switcher and search box insensitive if the current item
 		// is either the embedded alert or welcome screen
@@ -471,7 +468,7 @@ public class BeatBox.ViewWrapper : Box {
 		var new_search = Search.get_valid_search_string (actual_search_string).down ();
 		debug ("Searchbox has '%s'", new_search);
 
-		if (is_current_wrapper && new_search.length != 1 && this.visible) {
+		if (new_search.length != 1) {
 			timeout_search.offer_head (new_search.down ());
 
 			Timeout.add (SEARCH_TIMEOUT, () => {
@@ -726,6 +723,7 @@ public class BeatBox.ViewWrapper : Box {
 			set_statusbar_info ();
 			update_library_window_widgets ();
 		}
+#if 0
 		else {
 			Idle.add( () => {
 				if (!lw.initialization_finished)
@@ -749,7 +747,7 @@ public class BeatBox.ViewWrapper : Box {
 				return false;
 			});
 		}
-
+#endif
 		in_update.unlock ();
 	}
 
@@ -837,6 +835,7 @@ public class BeatBox.ViewWrapper : Box {
 			update_library_window_widgets ();
 
 		}
+#if 0
 		else {
 			Idle.add ( () => {
 				if (!lw.initialization_finished)
@@ -851,6 +850,7 @@ public class BeatBox.ViewWrapper : Box {
 				return false;
 			});
 		}
+#endif
 
 		in_update.unlock ();
 	}

@@ -68,8 +68,10 @@ vala_precompile(VALA_C
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
     Widgets/StatusBar.vala
-    Widgets/FastView/FastView.vala
-    Widgets/FastView/FastModel.vala
+    Widgets/FastView/FastGrid.vala
+    Widgets/FastView/FastGridModel.vala
+    Widgets/FastView/FastList.vala
+    Widgets/FastView/FastListModel.vala
 
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
@@ -92,7 +94,6 @@ vala_precompile(VALA_C
 
     # ALBUM VIEW
     Views/AlbumView/AlbumIconView.vala
-    Views/AlbumView/AlbumViewModel.vala
     Views/AlbumView/AlbumListView.vala
 
     # LIST VIEW
