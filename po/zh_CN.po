@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-10 06:04+0000\n"
-"X-Generator: Launchpad (build 15213)\n"
+"X-Launchpad-Export-Date: 2012-05-11 06:10+0000\n"
+"X-Generator: Launchpad (build 15225)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
@@ -1421,72 +1421,3 @@ msgstr "1 分钟"
 #, c-format
 msgid "%i minutes"
 msgstr "%i 分钟"
-
-#~ msgid "No Podcasts Found"
-#~ msgstr "未发现播客"
-
-#~ msgid "Similar Media View"
-#~ msgstr "相似媒体视图"
-
-#~ msgid "..."
-#~ msgstr "..."
-
-#~ msgid "Empty Playlist"
-#~ msgstr "空播放列表"
-
-#~ msgid ""
-#~ "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
-#~ msgstr "若想添加播客，可访问类似 Miro Guide 的网站查找 RSS 订阅。"
-
-#~ msgid ""
-#~ "You can then copy and paste the feed into the \"Add Podcast\" window by "
-#~ "right clicking on \"Podcasts\"."
-#~ msgstr "您可以右键点击“播客”，并在“添加博客”窗口复制粘贴订阅地址。"
-
-#~ msgid "WARNING: Default View Wrapper!"
-#~ msgstr "警告：默认视图包装！"
-
-#~ msgid "No Internet Radio Stations Found"
-#~ msgstr "未发现网络电台"
-
-#~ msgid ""
-#~ "To add a station, visit a website such as SomaFM to find PLS or M3U files."
-#~ msgstr "若想添加一个电台，可以访问类似 SomaFM 的网站来获取 PLS 或者 M3U 文件。"
-
-#~ msgid "You can then import the file to add the station."
-#~ msgstr "您可以导入文件来添加电台。"
-
-#~ msgid ""
-#~ "Make sure all song info is correct and you are connected to the Internet.\n"
-#~ "Some songs may not have matches."
-#~ msgstr ""
-#~ "请确认所有的歌曲信息正确，并已经连接到互联网。\n"
-#~ "部分歌曲可能没有匹配。"
-
-#~ msgid "You can start syncing music by clicking on the sync button."
-#~ msgstr "您可以通过点击同步按钮开始同步音乐。"
-
-#~ msgid "No Music Found"
-#~ msgstr "未发现音乐"
-
-#~ msgid "There is no music on this device."
-#~ msgstr "该设备上没有音乐。"
-
-#, c-format
-#~ msgid ""
-#~ "In this view, %s will automatically find songs similar to the one you are "
-#~ "playing."
-#~ msgstr "在该视图，%s 将自动寻找与您正在播放的音乐相似的歌曲。"
-
-#~ msgid "You can then start playing those songs, or save them for later."
-#~ msgstr "您可以接着开始播放这些歌曲，或保存稍后播放。"
-
-#, c-format
-#~ msgid "%s could not read the contents of this Audio CD."
-#~ msgstr "%s 无法读取该音频 CD 上的内容。"
-
-#~ msgid "Could not find songs similar to"
-#~ msgstr "未发现与下面类似的歌曲："
-
-#~ msgid "Finding songs similar to"
-#~ msgstr "正在查找与以下相似的歌曲："

@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-10 06:03+0000\n"
-"X-Generator: Launchpad (build 15213)\n"
+"X-Launchpad-Export-Date: 2012-05-11 06:09+0000\n"
+"X-Generator: Launchpad (build 15225)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
@@ -1419,44 +1419,3 @@ msgstr ""
 #, c-format
 msgid "%i minutes"
 msgstr ""
-
-#~ msgid "Similar Media View"
-#~ msgstr "Lignande mediavisning"
-
-#~ msgid "No Podcasts Found"
-#~ msgstr "Ingen Podkastar"
-
-#~ msgid ""
-#~ "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
-#~ msgstr ""
-#~ "For å leggje til ein Podkast, vitje nettsider som Miro Guide for å finne RSS "
-#~ "kjelda."
-
-#~ msgid ""
-#~ "You can then copy and paste the feed into the \"Add Podcast\" window by "
-#~ "right clicking on \"Podcasts\"."
-#~ msgstr ""
-#~ "Kopier og lim denne kjelda inn i \"Legg til Podkast\" vindauget ved "
-#~ "høgreklikk på \"Podkast\"."
-
-#~ msgid "No Internet Radio Stations Found"
-#~ msgstr "Fann ingen Internettradio stasjonar"
-
-#~ msgid ""
-#~ "To add a station, visit a website such as SomaFM to find PLS or M3U files."
-#~ msgstr ""
-#~ "For å leggje til ein stasjon, vitje ei nettside som SomaFM for å finne PLS "
-#~ "eller M3U filar."
-
-#~ msgid "You can then import the file to add the station."
-#~ msgstr "Så kan du importere fila for å leggje til stasjonen."
-
-#~ msgid "..."
-#~ msgstr "…"
-
-#~ msgid ""
-#~ "Make sure all song info is correct and you are connected to the Internet.\n"
-#~ "Some songs may not have matches."
-#~ msgstr ""
-#~ "Pass på at all song informasjon er korrekt og at du er kopla til internett.\n"
-#~ "Det kan hende nokon songar ikkje lignar på andre."

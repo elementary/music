@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-10 06:03+0000\n"
-"X-Generator: Launchpad (build 15213)\n"
+"X-Launchpad-Export-Date: 2012-05-11 06:09+0000\n"
+"X-Generator: Launchpad (build 15225)\n"
 "X-Poedit-Language: Swedish\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
@@ -1433,64 +1433,3 @@ msgstr ""
 #, c-format
 msgid "%i minutes"
 msgstr ""
-
-#~ msgid "Similar Media View"
-#~ msgstr "Vy för liknande mediefiler"
-
-#~ msgid "No Podcasts Found"
-#~ msgstr "Inga poddsändningar hittades"
-
-#~ msgid ""
-#~ "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
-#~ msgstr ""
-#~ "För att lägga till en poddsändning, besök en webbplats såsom Miro Guide för "
-#~ "att hitta RSS-kanaler."
-
-#~ msgid ""
-#~ "You can then copy and paste the feed into the \"Add Podcast\" window by "
-#~ "right clicking on \"Podcasts\"."
-#~ msgstr ""
-#~ "Du kan sedan kopiera och klistra in kanalen i \"Lägg till poddsändning\"-"
-#~ "fönstret genom att högerklicka på \"Poddsändningar\"."
-
-#~ msgid ""
-#~ "To add a station, visit a website such as SomaFM to find PLS or M3U files."
-#~ msgstr ""
-#~ "För att lägga till en station, besök en webbplats såsom SomaFM för att hitta "
-#~ "PLS- eller M3U-filer."
-
-#~ msgid "You can then import the file to add the station."
-#~ msgstr "Du kan sedan importera filen för att lägga till stationen."
-
-#~ msgid "..."
-#~ msgstr "..."
-
-#~ msgid ""
-#~ "Make sure all song info is correct and you are connected to the Internet.\n"
-#~ "Some songs may not have matches."
-#~ msgstr ""
-#~ "Se till att all låtinformation är korrekt och att du är ansluten till "
-#~ "internet.\n"
-#~ "Vissa låtar kan sakna träffar."
-
-#~ msgid "You can start syncing music by clicking on the sync button."
-#~ msgstr ""
-#~ "Du kan starta att synkronisera musiken genom att klicka på synk knappen"
-
-#~ msgid "No Music Found"
-#~ msgstr "Ingen musik hittades"
-
-#~ msgid "There is no music on this device."
-#~ msgstr "Det finns ingen musik på denna enheten"
-
-#~ msgid "Empty Playlist"
-#~ msgstr "Tom spellista"
-
-#~ msgid "No Internet Radio Stations Found"
-#~ msgstr "Inga radiostationer hittades"
-
-#~ msgid "Could not find songs similar to"
-#~ msgstr "Kunde inte hitta låtar som liknar"
-
-#~ msgid "Finding songs similar to"
-#~ msgstr "Letar låtar som liknar"

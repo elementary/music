@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-10 06:03+0000\n"
-"X-Generator: Launchpad (build 15213)\n"
+"X-Launchpad-Export-Date: 2012-05-11 06:09+0000\n"
+"X-Generator: Launchpad (build 15225)\n"
 "Language: \n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
@@ -1452,84 +1452,3 @@ msgstr "1 minute"
 #, c-format
 msgid "%i minutes"
 msgstr "%i minutes"
-
-#~ msgid "Similar Media View"
-#~ msgstr "Vue des morceaux similaires"
-
-#~ msgid "No Podcasts Found"
-#~ msgstr "Aucun podcast trouvé"
-
-#~ msgid ""
-#~ "To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
-#~ msgstr ""
-#~ "Pour ajouter un podcast, visitez un site web comme Miro Guide pour trouver "
-#~ "des flux RSS."
-
-#~ msgid ""
-#~ "You can then copy and paste the feed into the \"Add Podcast\" window by "
-#~ "right clicking on \"Podcasts\"."
-#~ msgstr ""
-#~ "Vous pourrez alors copier et coller le flux dans la fenêtre \"Ajouter un "
-#~ "podcast\" en cliquant droit sur \"Podcasts\"."
-
-#~ msgid "No Internet Radio Stations Found"
-#~ msgstr "Aucune station radio internet trouvée"
-
-#~ msgid ""
-#~ "To add a station, visit a website such as SomaFM to find PLS or M3U files."
-#~ msgstr ""
-#~ "Pour ajouter une station, visitez un site comme SomaFM pour trouver des "
-#~ "fichiers .pls ou .m3u."
-
-#~ msgid "You can then import the file to add the station."
-#~ msgstr "Vous pourrez alors importer le fichier pour ajouter la station."
-
-#~ msgid "..."
-#~ msgstr "…"
-
-#~ msgid ""
-#~ "Make sure all song info is correct and you are connected to the Internet.\n"
-#~ "Some songs may not have matches."
-#~ msgstr ""
-#~ "Assurez-vous que les informations de la chanson sont correctes et que vous "
-#~ "êtes connecté à Internet.\n"
-#~ "Quelques chansons pourraient ne pas correspondre."
-
-#~ msgid "Empty Playlist"
-#~ msgstr "Playlist vide"
-
-#~ msgid "WARNING: Default View Wrapper!"
-#~ msgstr "ATTENTION: Vue par défaut"
-
-#~ msgid "Could not find songs similar to"
-#~ msgstr "Impossible de trouver des chansons similaires à"
-
-#~ msgid "Finding songs similar to"
-#~ msgstr "Recherche de chansons similaires à"
-
-#~ msgid "No Music Found"
-#~ msgstr "Aucune musique n'a été trouvée"
-
-#~ msgid "There is no music on this device."
-#~ msgstr "Il n'y a pas de musique dans le périphérique"
-
-#~ msgid "You can start syncing music by clicking on the sync button."
-#~ msgstr ""
-#~ "Vous pouvez commencer à synchroniser de la musique en cliquant sur le bouton "
-#~ "synchroniser"
-
-#~ msgid "You can then start playing those songs, or save them for later."
-#~ msgstr ""
-#~ "Vous pouvez ensuite jouer ces titres ou les enregistrer pour plus tard"
-
-#, c-format
-#~ msgid ""
-#~ "In this view, %s will automatically find songs similar to the one you are "
-#~ "playing."
-#~ msgstr ""
-#~ "Dans cette vue, %s va automatiquement trouver les morceaux similaires à "
-#~ "celle que vous écoutez."
-
-#, c-format
-#~ msgid "%s could not read the contents of this Audio CD."
-#~ msgstr "%s ne peut pas lire le contenu de ce CD audio."
