@@ -39,16 +39,7 @@ set(ADD_PKG ${ADD_PKG} sqlheavy-0.1)
 pkg_check_modules(SQLHEAVY sqlheavy-0.1)
 message("-- Will use sqlheavy-0.1")
 endif()
-pkg_check_modules(ZEITGEIST zeitgeist-1.0)
-if(${ZEITGEIST_FOUND})
-set(ADD_PKG ${ADD_PKG}
-                zeitgeist-1.0)
-set(ADD_OPTIONS ${ADD_OPTIONS}
-        --define=HAVE_ZEITGEIST)
-message("-- Zeitgeist enabled")
-else()
-message("-- Zeitgeist disabled")
-endif()
+
 pkg_check_modules(DBUS_MENU dbusmenu-glib-0.4)
 if(${DBUS_MENU_FOUND})
 set(ADD_PKG ${ADD_PKG}
@@ -59,6 +50,7 @@ message("-- DBus Menu enabled")
 else()
 message("-- DBus Menu disabled")
 endif()
+
 pkg_check_modules(INDICATE indicate-0.7)
 if(${INDICATE_FOUND})
 set(ADD_PKG ${ADD_PKG}
@@ -70,10 +62,9 @@ else()
 message("-- Indicate disabled")
 endif()
 
-set (NORMAL_CFLAGS ${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS})
-set (NORMAL_LIBRARIES ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
-set (NORMAL_LINK_DIRS ${ZEITGEIST_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
-
+set (NORMAL_CFLAGS ${DEPS_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS})
+set (NORMAL_LIBRARIES ${DEPS_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
+set (NORMAL_LINK_DIRS ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
 
 set(PLUGIN_DIR "${CMAKE_INSTALL_PREFIX}/lib/noise/plugins}")
 set(ICON_DIR "${CMAKE_INSTALL_PREFIX}/share/noise/icons/hicolor")
@@ -86,6 +77,7 @@ add_subdirectory(schemas)
 add_subdirectory(po)
 add_subdirectory(core)
 
-if(${ENABLE_PLUGINS})
+if (${ENABLE_PLUGINS})
 	add_subdirectory(plugins)
-endif()
+endif ()
+

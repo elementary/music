@@ -23,60 +23,6 @@
 using Gee;
 using Gtk;
 
-#if 0
-public interface BeatBox.LibraryModel {
-	public signal void music_counted(int count);
-	public signal void music_added(LinkedList<string> not_imported);
-	public signal void music_imported(LinkedList<Media> new_medias, LinkedList<string> not_imported);
-	public signal void music_rescanned(LinkedList<Media> new_medias, LinkedList<string> not_imported);
-	public signal void progress_notification(string? message, double progress);
-	public signal void file_operations_started();
-	public signal void file_operations_done();
-	public signal void progress_cancel_clicked();
-	
-	public signal void current_cleared();
-	public signal void media_updated(int id);
-	public signal void medias_added(LinkedList<int> ids);
-	public signal void medias_updated(LinkedList<int> ids);
-	public signal void medias_removed(LinkedList<int> ids);
-	public signal void media_queued(int id);
-	public signal void media_played(int id, int old_id);
-	public signal void playback_stopped(int was_playing);
-	
-	public abstract bool playing_queued_song();
-	
-	public abstract Shuffle shuffle { set; get; }
-	
-	public abstract BeatBox.MediaInfo media_info { set; get; }
-	
-	/* FIXME: this should be clear_current to follow style guidelines */
-	public abstract void clearCurrent();
-	public abstract void addToCurrent(int i);
-	public abstract Collection<int> current_medias();
-	/* FIXME: style guidelines */
-	public abstract void setShuffleMode(LibraryModel.Shuffle mode, bool reshuffle);
-	public abstract Media media_from_id(int id);
-	public abstract Collection<int> queue();
-	public abstract void remove_medias(LinkedList<Media> toRemove, bool trash);
-	public abstract void playMedia(int id, bool use_resume_pos);
-	
-	public abstract int current_index { set; get; }
-	
-	public enum Shuffle {
-		OFF,
-		ALL;
-	}
-	
-	public enum Repeat {
-		OFF,
-		MEDIA,
-		ALBUM,
-		ARTIST,
-		ALL;
-	}
-}
-#endif
-
 /** This is where all the media stuff happens. Here, medias are retrieved
  * from the db, added to the queue, sorted, and more. LibraryWindow is
  * the visual representation of this class

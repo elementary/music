@@ -51,7 +51,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
     protected Gtk.Image image;
     protected Gtk.ButtonBox action_button_box;
 
-    const int MIN_HORIZONTAL_MARGIN = 120;
+    const int MIN_HORIZONTAL_MARGIN = 80;
     const int MIN_VERTICAL_MARGIN = 50;
 
     public EmbeddedAlert () {
