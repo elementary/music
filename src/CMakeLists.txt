@@ -67,7 +67,6 @@ vala_precompile(VALA_C
     Widgets/SideTreeView.vala
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
-    Widgets/StatusBar.vala
     Widgets/FastView/FastGrid.vala
     Widgets/FastView/FastGridModel.vala
     Widgets/FastView/FastList.vala

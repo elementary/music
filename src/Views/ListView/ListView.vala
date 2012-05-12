@@ -60,7 +60,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 					column_browser.show_all ();
 
 					if (column_browser.media_set)
-						column_browser.set_media (get_showing_media ());
+						column_browser.set_media (get_visible_media ());
 				}
 				else {
 					// Before hiding, reset the filters to "All..."
@@ -85,15 +85,15 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		switch (tvs.get_hint()) {
 
 			case ViewWrapper.Hint.MUSIC:
-			case ViewWrapper.Hint.DEVICE_AUDIO:
 			case ViewWrapper.Hint.HISTORY:
 			case ViewWrapper.Hint.QUEUE:
 			case ViewWrapper.Hint.PLAYLIST:
 			case ViewWrapper.Hint.SMART_PLAYLIST:
 			case ViewWrapper.Hint.AUDIOBOOK:
+			case ViewWrapper.Hint.SIMILAR:
+			case ViewWrapper.Hint.DEVICE_AUDIO:
 			case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
 			case ViewWrapper.Hint.CDROM:
-			case ViewWrapper.Hint.SIMILAR:
 			//case ViewWrapper.Hint.ALBUM_LIST:
 				list_view = new MusicListView (view_wrapper, tvs);
 				break;
@@ -103,11 +103,11 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 				break;
 		}
 
-		if (add_browser)
-			column_browser = new ColumnBrowser (view_wrapper);
-
 		// Put the list inside a scrolled window
 		list_scrolled.add (list_view);
+
+		if (add_browser)
+			column_browser = new ColumnBrowser (view_wrapper);
 
 		if (has_column_browser) {
 			list_view_hpaned = new Paned (Orientation.HORIZONTAL);
@@ -273,7 +273,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return media_list;
 	}
 
-	public Gee.Collection<Media> get_showing_media () {
+	public Gee.Collection<Media> get_visible_media () {
 		var media_list = new Gee.LinkedList<Media> ();
 		foreach (var m in list_view.get_visible_table ().get_values ())
 			media_list.add (m);
@@ -287,8 +287,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		 * the results of the miller columns.
 		 */
 		if (lw.initialization_finished) {
-			set_media (column_browser.media_results);
-			view_wrapper.set_statusbar_info (column_browser.media_results);
+			list_view.set_media (column_browser.media_results);
+			view_wrapper.update_statusbar_info ();
 		}
 	}
 
@@ -300,7 +300,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return list_view.get_is_current_list ();
 	}
 
-	public async void append_media (Gee.Collection<Media> to_add) {
+	public async void add_media (Gee.Collection<Media> to_add) {
 		if (column_browser_enabled)
 			column_browser.add_media (to_add);
 		else
@@ -315,10 +315,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	}
 
 	public async void set_media (Gee.Collection<Media> media) {
-		if (column_browser_enabled)
+		if (has_column_browser)
 			column_browser.set_media (media);
-		else
-			list_view.set_media (media);
+		list_view.set_media (media);
 	}
 }
 

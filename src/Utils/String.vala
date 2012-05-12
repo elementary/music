@@ -78,14 +78,13 @@ namespace BeatBox.String {
             }
             else {
                 found_valid_char = true;
-                first_char_position = i; // position of the first valid character
+                first_char_position = i; // position of the first valid (i.e. non-space) character
                 break; // no need to keep looping
             }
         }
 
-        // s was completely white space
         if (white_space == s.length)
-            return "";
+            return ""; // s was completely white space
 
         if (found_valid_char) {
             var rv = new StringBuilder();

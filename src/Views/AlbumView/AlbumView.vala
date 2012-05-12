@@ -27,24 +27,33 @@
 using Gtk;
 using Gee;
 
+namespace BeatBox {
+	// Share popover across multiple album views. For speed and memory saving
+	public AlbumListView? _shared_album_list_view = null;
+}
+
 public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
-	private const int MEDIA_SET_VAL = 1;
-
 	// The window used to present album contents
-	private AlbumListView _list_view;
 	public AlbumListView album_list_view {
 		get {
-			if (_list_view == null)
-				_list_view = new AlbumListView (this);
+			if (_shared_album_list_view == null) {
+				debug ("----> CREATING ALBUM VIEW POPOVER <----");
+				_shared_album_list_view = new AlbumListView (this);
+				_shared_album_list_view.focus_out_event.connect ( () => {
+					if (album_list_view.visible && lw.has_focus) {
+						album_list_view.show_all ();
+						album_list_view.present ();
+					}
+					return false;
+				});
+			}
 
-			return _list_view;
+			return _shared_album_list_view;
 		}
 	}
 
 	public ViewWrapper parent_view_wrapper { get; private set; }
-
-	public int n_albums { get { return (int) icons.get_table ().size (); } }
 
 	public FastGrid icons { get; private set; }
 
@@ -157,14 +166,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			});
 		}
 
-		album_list_view.focus_out_event.connect ( () => {
-			if (album_list_view.visible && lw.has_focus) {
-				album_list_view.show_all ();
-				album_list_view.present ();
-			}
-			return false;
-		});
-
 		icons.add_events (Gdk.EventMask.POINTER_MOTION_MASK);
 		icons.motion_notify_event.connect (on_motion_notify);
 
@@ -186,6 +187,23 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return parent_view_wrapper.hint;
 	}
 
+	public Gee.Collection<Media> get_media () {
+		var media_list = new Gee.LinkedList<Media> ();
+		foreach (var m in icons.get_visible_table ().get_values ())
+			media_list.add ((Media)m);
+
+		return media_list;
+	}
+
+	public Gee.Collection<Media> get_visible_media () {
+		var media_list = new Gee.LinkedList<Media> ();
+		foreach (var m in icons.get_table ().get_values ())
+			media_list.add ((Media)m);
+
+		return media_list;
+	}
+
+
 	private string get_key (Media m) {
 		if (m == null)
 			return "";
@@ -194,6 +212,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	public async void set_media (Gee.Collection<Media> to_add) {
 		var new_table = new HashTable<int, Media> (null, null);
+		// just here to check for duplicates
 		var to_add_ind = new Gee.HashMap<string, int> ();
 
 		foreach (var m in to_add) {
@@ -212,7 +231,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icons.set_table (new_table, true);
 	}
 
-	public async void append_media (Gee.Collection<Media> media) {
+	public async void add_media (Gee.Collection<Media> media) {
 		var to_append = new Gee.HashMap<string, Media> ();
 		foreach (var m in media) {
 			if (m == null)
@@ -286,6 +305,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 
 	private void item_activated (TreePath path) {
+		if (!lw.initialization_finished)
+			return;
+
 		Media? s = (Media)icons.get_object_from_index(int.parse(path.to_string()));
 
 		if (s == null) {
@@ -293,6 +315,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			return;
 		}
 
+		album_list_view.set_parent_wrapper (this.parent_view_wrapper);
 		album_list_view.set_songs_from_media (s);
 
 		// find window's location
@@ -318,7 +341,80 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 
 
-	// Smart Spacing !
+
+
+	const int FONT_SIZE = 10300;
+	const int MAX_ALBUM_NAME_LENGTH = (int) (20.0 * ((double)FONT_SIZE/10500.0) * ((double) Icons.ALBUM_VIEW_IMAGE_SIZE) / 138.0);
+
+	string TEXT_MARKUP = @"<span weight='medium' size='$FONT_SIZE'>%s\n</span><span foreground=\"#999\">%s</span>";
+	string TOOLTIP_MARKUP = @"<span weight='bold' size='$FONT_SIZE'>%s</span>\n%s";
+
+	public Value val_func (int row, int column, Object o) {
+		Media s = o as Media;
+		Value? val = null;
+
+		if (column == icons.PIXBUF_COLUMN) {
+			var cover_art = lm.get_cover_album_art_from_key(s.album_artist, s.album);
+			if(cover_art != null) {
+				val = cover_art;
+			}
+			else {
+				val = defaultPix;
+			}
+		}
+		else if(column == icons.MARKUP_COLUMN) {
+			string album, album_artist;
+			if(s.album.length > MAX_ALBUM_NAME_LENGTH)
+				album = s.album.substring(0, MAX_ALBUM_NAME_LENGTH - 3) + "...";
+			else
+				album = s.album;
+
+			if(s.album_artist.length > 25)
+				album_artist = s.album_artist.substring(0, 22) + "...";
+			else
+				album_artist = s.album_artist;
+				val = TEXT_MARKUP.printf (String.escape (album), String.escape (album_artist));
+		}
+		else if(column == icons.TOOLTIP_COLUMN) {
+			val = TOOLTIP_MARKUP.printf (String.escape (s.album), String.escape (s.album_artist));
+		}
+		else {
+			val = s;
+		}
+		
+		return val;
+	}
+
+	private int compare_func (GLib.Object o_a, GLib.Object o_b) {
+		Media a = o_a as Media;
+		Media b = o_b as Media;
+		
+		if (a.album_artist == b.album_artist) {
+#if 0
+			if (a.album == b.album) {
+				return a.count() - b.count();
+			}
+			else {
+				return advanced_string_compare (a.album, b.album);
+			}
+#else
+			return advanced_string_compare (a.album, b.album);
+#endif
+		}
+		else {
+			return advanced_string_compare (a.album_artist, b.album_artist);
+		}
+	}
+
+	private inline int advanced_string_compare (string a, string b) {
+		if (a == "" && b != "")
+			return 1;
+		else if (a != "" && b == "")
+			return -1;
+		
+		return (a > b) ? 1 : -1;
+	}
+
 
 /*
  * This is the ideal implementation of the smart spacing mechanism. Currently
@@ -408,75 +504,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		setting_size.unlock ();
 	}
 #endif
-
-	const int FONT_SIZE = 10300;
-	const int MAX_ALBUM_NAME_LENGTH = (int) (20.0 * ((double)FONT_SIZE/10500.0) * ((double) Icons.ALBUM_VIEW_IMAGE_SIZE) / 138.0);
-
-	string TEXT_MARKUP = @"<span weight='medium' size='$FONT_SIZE'>%s\n</span><span foreground=\"#999\">%s</span>";
-	string TOOLTIP_MARKUP = @"<span weight='bold' size='$FONT_SIZE'>%s</span>\n%s";
-	/** Initializes and sets value to that at column. **/
-	public Value val_func (int row, int column, Object o) {
-		Media s = o as Media;
-		Value? val = null;
-
-		if (column == icons.PIXBUF_COLUMN) {
-			var cover_art = lm.get_cover_album_art_from_key(s.album_artist, s.album);
-			if(cover_art != null) {
-				val = cover_art;
-			}
-			else {
-				val = defaultPix;
-			}
-		}
-		else if(column == icons.MARKUP_COLUMN) {
-			string album, album_artist;
-			if(s.album.length > MAX_ALBUM_NAME_LENGTH)
-				album = s.album.substring(0, MAX_ALBUM_NAME_LENGTH - 3) + "...";
-			else
-				album = s.album;
-
-			if(s.album_artist.length > 25)
-				album_artist = s.album_artist.substring(0, 22) + "...";
-			else
-				album_artist = s.album_artist;
-				val = TEXT_MARKUP.printf (String.escape (album), String.escape (album_artist));
-		}
-		else if(column == icons.TOOLTIP_COLUMN) {
-			val = TOOLTIP_MARKUP.printf (String.escape (s.album), String.escape (s.album_artist));
-		}
-		else {
-			val = s;
-		}
-		
-		return val;
-	}
-
-	private int compare_func(GLib.Object o_a, GLib.Object o_b) {
-		Media a = o_a as Media;
-		Media b = o_b as Media;
-		
-		if(a.album_artist == b.album_artist) {
-			//if(a.album == b.album) {
-			//	return a.count() - b.count();
-			//}
-			//else {
-				return advanced_string_compare(a.album, b.album);
-			//}
-		}
-		else {
-			return advanced_string_compare(a.album_artist, b.album_artist);
-		}
-	}
-
-
-	private int advanced_string_compare(string a, string b) {
-		if(a == "" && b != "")
-			return 1;
-		else if(a != "" && b == "")
-			return -1;
-		
-		return (a > b) ? 1 : -1;
-	}
 }
 
 

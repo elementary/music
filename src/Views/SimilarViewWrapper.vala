@@ -87,7 +87,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 				list_view.set_media (to_set);
 			}
 			
-			set_statusbar_info ();
+			update_statusbar_info ();
 			update_library_window_widgets ();
 			in_update.unlock ();
 			

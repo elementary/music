@@ -1813,7 +1813,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		file_operations_started();
 		return true;
 	}
-	
+
 	public bool doing_file_operations() {
 		return _doing_file_operations;
 	}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-11 11:56-0600\n"
+"POT-Creation-Date: 2012-05-12 14:10-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,72 +262,6 @@ msgstr ""
 msgid "Unknown Album"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:33
-#, c-format
-msgid "%s, %s, %s"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:67
-#, c-format
-msgid "%i MB"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:69
-#, c-format
-msgid "%.2f GB"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:75
-msgid "songs"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:75
-msgid "song"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:77
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:92
-msgid "albums"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:77
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:92
-msgid "album"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:80
-msgid "podcasts"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:80
-msgid "podcast"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:83
-msgid "audiobooks"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:83
-msgid "audiobook"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:86
-msgid "stations"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:86
-msgid "station"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:90
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
-msgid "items"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/StatusBar.vala:90
-msgid "item"
-msgstr ""
-
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
 msgstr ""
@@ -520,7 +454,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:129
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1324
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1321
 msgid "Choose Music Folder"
 msgstr ""
 
@@ -779,6 +713,10 @@ msgstr ""
 msgid "Limit to"
 msgstr ""
 
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
+msgid "items"
+msgstr ""
+
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:408
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
@@ -969,58 +907,85 @@ msgstr ""
 msgid "%s by %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:145
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:136
 msgid "Get Some Tunes"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:145
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:136
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:536
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:455
+#, c-format
+msgid "%i songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:455
+msgid "1 song"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:457
+#, c-format
+msgid "%i items"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:457
+msgid "1 item"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:460
+#, c-format
+msgid "%i albums"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:460
+msgid "1 album"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:555
 msgid "No songs in Queue"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:536
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:555
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:539
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:558
 msgid "No songs in History"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:539
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:558
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:542
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:561
 msgid "Audio CD Invalid"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:542
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:561
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:545
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:548
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:564
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:567
 msgid "No Songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:545
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:564
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:548
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:567
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1156,23 +1121,23 @@ msgstr ""
 msgid "On Top"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:583
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:581
 msgid "Genres"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:586
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:584
 msgid "Artists"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:589
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:587
 msgid "Albums"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:592
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:590
 msgid "Years"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:595
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:593
 msgid "Ratings"
 msgstr ""
 
@@ -1406,11 +1371,11 @@ msgstr ""
 msgid "%s has imported your library."
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1467
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1464
 msgid "Import songs from audio CD"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1467
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1464
 msgid "Import media from device"
 msgstr ""
 

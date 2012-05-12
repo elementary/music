@@ -88,7 +88,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	public Granite.Widgets.ModeButton viewSelector { get; private set; }
 	public Granite.Widgets.SearchBar  searchField  { get; private set; }
 
-	public StatusBar statusbar { get; private set; }
+	public Granite.Widgets.StatusBar statusbar { get; private set; }
 
 	private SimpleOptionChooser addPlaylistChooser;
 	private SimpleOptionChooser shuffleChooser;
@@ -213,7 +213,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		searchField = new Granite.Widgets.SearchBar(_("Search Music"));
 
 		info_panel = new InfoPanel(lm, this);
-		statusbar = new StatusBar();
+		statusbar = new Granite.Widgets.StatusBar();
 
 		var add_playlist_image = Icons.render_image ("list-add-symbolic", IconSize.MENU);
 		var shuffle_on_image = Icons.SHUFFLE_ON.render_image (IconSize.MENU);
@@ -1309,12 +1309,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		not_found.show();
 	}
 
-	public void set_statusbar_info (ViewWrapper.Hint media_type, uint total_medias, uint total_mbs,
-	                                 uint total_seconds, bool is_list = true)
+	public void set_statusbar_info (string message)
 	{
-		statusbar.set_total_medias (total_medias, media_type, is_list);
-		statusbar.set_files_size (total_mbs);
-		statusbar.set_total_time (total_seconds);
+		statusbar.set_text (message);
 	}
 
 	public void music_welcome_screen_activated(int index) {

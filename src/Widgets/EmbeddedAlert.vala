@@ -98,20 +98,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         content_hbox.pack_start (image, false, false, 0);
         content_hbox.pack_end (message_vbox, true, true, 0);
 
-        this.size_allocate.connect (on_size_allocate);
-
         add (content_hbox);
-    }
-
-    private void on_size_allocate (Gtk.Allocation alloc) {
-        /* TEXT_WIDTH = (3/5)TOTAL_WIDTH
-         * HR_MARGIN  = (1/5)TOTAL_WIDTH
-         * TOTAL_WIDTH = TEXT_WIDTH + 2 * HR_MARGIN
-         int new_hmargin = content_hbox.margin_right = alloc.width / 5;
-         if (new_hmargin < MIN_HORIZONTAL_MARGIN)
-            new_hmargin = MIN_HORIZONTAL_MARGIN;
-         content_hbox.margin_left = new_hmargin;
-         */
     }
 
     public void set_alert (string primary_text, string secondary_text, Gtk.Action[] ? actions = null,
@@ -129,7 +116,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         // We force the HIG here. Whenever show_icon is true, the title has to be left-aligned.
         if (show_icon) {
             primary_text_label.halign = secondary_text_label.halign = Gtk.Align.START;
-            primary_text_label.justify = secondary_text_label.justify = Gtk.Justification.LEFT;
+            primary_text_label.justify = secondary_text_label.justify = Gtk.Justification.FILL;
 
             // TODO: Unless the same icon system is added to granite, don't depend on it.
             switch (alert_level) {

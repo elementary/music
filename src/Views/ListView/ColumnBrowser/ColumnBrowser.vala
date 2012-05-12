@@ -458,8 +458,6 @@ public class BeatBox.ColumnBrowser : Box {
 
 			column.populate (column_set);
 		}
-		
-		changed ();
 	}
 }
 

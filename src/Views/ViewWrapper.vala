@@ -103,8 +103,8 @@ public class BeatBox.ViewWrapper : Box {
 	 **/
 
 	// ALL the media. Data source.
-	public HashMap<int, int> media         { get; private set; }
-	public HashMap<int, int> showing_media { get; private set; }
+	protected HashMap<int, int> media;
+	protected HashMap<int, int> showing_media;
 
 	public int media_count { get { return (media != null) ? media.size : 0; } }
 
@@ -118,9 +118,6 @@ public class BeatBox.ViewWrapper : Box {
 		this.hint = tvs.get_hint ();
 
 		debug ("BUILDING %s", hint.to_string());
-
-		showing_media = new HashMap<int, int>();
-		timeout_search = new LinkedList<string>();
 
 		// Setup view container
 		view_container = new Notebook ();
@@ -235,7 +232,7 @@ public class BeatBox.ViewWrapper : Box {
 		// Set initial media
 		set_media (initial_media);
 
-		debug ("FINISHED BUILDING %s", hint.to_string());
+		debug ("FINISHED BUILDING %s\n\n\n", hint.to_string());
 	}
 
 	public ViewWrapper.with_view (Gtk.Widget view) {
@@ -290,7 +287,7 @@ public class BeatBox.ViewWrapper : Box {
 		// Update LibraryWindow toolbar widgets
 		update_library_window_widgets ();
 
-		set_statusbar_info ();
+		update_statusbar_info ();
 
 		successful = true;
 	}
@@ -402,61 +399,83 @@ public class BeatBox.ViewWrapper : Box {
 		if (!lw.initialization_finished)
 			return;
 		debug ("%s : SETTING AS CURRENT VIEW -> set_as_current_view", hint.to_string());
-		check_show_embedded_alert ();
+		check_have_media ();
 		update_library_window_widgets ();
-		set_statusbar_info ();
+		update_statusbar_info ();
 	}
 
 
-	public async void set_statusbar_info (Gee.Collection<Media>? visible_media = null) {
+	public async void update_statusbar_info () {
 		if (!is_current_wrapper)
 			return;
 
-		debug ("%s : setting statusbar info from : %s", hint.to_string(), visible_media != null ? "passed media" : "internal media");
+		debug ("%s : updating statusbar info", hint.to_string ());
 
-		Gee.Collection<Media> ? media_set = null;
-		if (visible_media != null) {
-			media_set = visible_media;
-		}
-		else {
-			media_set = new Gee.LinkedList<Media> ();
-			foreach (var id in get_showing_media_ids ()) {
-				media_set.add (lm.media_from_id (id));
-			}
-		}
-
-		if (media_set.size < 1) {
-			lw.set_statusbar_info (hint, 0, 0, 0);
+		if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME) {
+			lw.set_statusbar_info ("");
 			return;
 		}
 
-		uint count = 0;
-		uint total_time = 0;
-		uint total_mbs = 0;
+		bool is_list = false;
 
-
-		foreach (var media in media_set) {
-			if (media != null) {
-				count ++;
-				total_time += media.length;
-				total_mbs += media.file_size;
+		Gee.Collection<Media>? media_set = null;
+		// Get data based on the current view
+		if (current_view == ViewType.LIST) {
+			is_list = true;
+			media_set = list_view.get_visible_media ();
+		}
+		else {
+			// Let's use the local data since it has no internal filter
+			media_set = new Gee.LinkedList<Media> ();
+			foreach (var id in showing_media.keys) {
+				var m = lm.media_from_id (id);
+				if (m != null)
+					media_set.add (m);
 			}
 		}
 
-		// FIXME: re-do. This works but is UGLY
+		uint total_items = 0, total_size = 0, total_time = 0;
 
-		bool is_list = !(current_view == ViewType.ALBUM && has_album_view);
-
-		if (!is_list) {
-			count = album_view.n_albums;
+		foreach (var media in media_set) {
+			if (media != null) {
+				total_items ++;
+				total_time += media.length;
+				total_size += media.file_size;
+			}
 		}
 
-		lw.set_statusbar_info(hint, count, total_mbs, total_time, is_list);
+		if (total_items == 0) {
+			lw.set_statusbar_info ("");
+		}
+
+		string media_description = "";
+
+		if (is_list) {
+			if (hint == Hint.MUSIC)
+				media_description = total_items > 1 ? _("%i songs") : _("1 song");
+			else
+				media_description = total_items > 1 ? _("%i items") : _("1 item");	
+		}
+		else {
+			media_description = total_items > 1 ? _("%i albums") : _("1 album");
+		}
+
+		// FIXME: bad workaround
+		if (current_view == ViewType.ALBUM && has_album_view) {
+			total_items = album_view.get_visible_media ().size;
+		}
+
+		string media_text = media_description.printf ((int)total_items);
+		string time_text = TimeUtils.time_string_from_seconds (total_time);
+		string size_text = format_size ((uint64)(total_size * 1000000));
+
+		lw.set_statusbar_info ("%s, %s, %s".printf (media_text, time_text, size_text));
 	}
 
 
 	// Holds the last search results (timeout). Helps to prevent useless search.
-	protected LinkedList<string> timeout_search;
+	protected LinkedList<string> timeout_search = new LinkedList<string>();
+	private int search_timeout = 100; // ms
 
 	// Stops from searching same thing multiple times
 	protected string last_search = "";
@@ -472,10 +491,9 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (new_search.length != 1) {
 			timeout_search.offer_head (new_search.down ());
-			const int SEARCH_TIMEOUT = 200; // ms
 
-			Timeout.add (SEARCH_TIMEOUT, () => {
-				// Don't search the same stuff every {SEARCH_TIMEOUT}ms
+			Timeout.add (search_timeout, () => {
+				// Don't search the same stuff every {search_timeout}ms
 				string to_search = timeout_search.poll_tail();
 				if (to_search != new_search || to_search == last_search)
 					return false;
@@ -490,8 +508,8 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	protected bool check_show_embedded_alert () {
-		debug ("%s : check_show_embedded_alert", hint.to_string());
+	protected bool check_have_media () {
+		debug ("%s : check_have_media", hint.to_string());
 
 		if (has_embedded_alert || has_welcome_screen) {
 			int size_check = media_count;
@@ -511,15 +529,18 @@ public class BeatBox.ViewWrapper : Box {
 				return true;
 			}
 
-			var new_view = (ViewType) lw.viewSelector.selected;
-			debug ("%s : showing %s", hint.to_string(), new_view.to_string ());			
-			if (current_view != new_view && (new_view == ViewType.LIST && has_list_view) || (new_view == ViewType.ALBUM && has_album_view))
-				set_active_view (new_view);
+			if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME) {
+				var new_view = (ViewType) lw.viewSelector.selected;
+				debug ("%s : showing %s", hint.to_string(), new_view.to_string ());
+				if (current_view != new_view && ((new_view == ViewType.LIST && has_list_view) || (new_view == ViewType.ALBUM && has_album_view)))
+					set_active_view (new_view);
+			}
 		}
 
 		debug ("%s : not showing any error/welcome widget", hint.to_string());
 		return false;
 	}
+
 
 	private void set_default_alert () {
 		if (!has_embedded_alert)
@@ -594,12 +615,11 @@ public class BeatBox.ViewWrapper : Box {
 
 		debug ("%s : UPDATING SHOWING MEDIA", hint.to_string());
 
+		showing_media = new HashMap<int, int>();
 		var to_search = get_search_string ();
 
 		var search_results = new Gee.LinkedList<Media> ();
 		if (to_search != "") {
-			showing_media = new HashMap<int, int>();
-
 			// Perform search
 			LinkedList<int> search_results_ids;
 			Search.search_in_media_ids (lm, get_media_ids (), out search_results_ids, to_search);
@@ -633,7 +653,7 @@ public class BeatBox.ViewWrapper : Box {
 				album_view.set_media (search_results);
 			}
 
-			set_statusbar_info ();
+			update_statusbar_info ();
 			update_library_window_widgets ();
 		}
 		else {
@@ -658,8 +678,7 @@ public class BeatBox.ViewWrapper : Box {
 		}
 
 		// Check whether we should show the embedded alert in case there's no media
-		check_show_embedded_alert ();
-
+		check_have_media ();
 	}
 
 
@@ -673,8 +692,27 @@ public class BeatBox.ViewWrapper : Box {
 
 		media = new HashMap <int, int>();
 
-		foreach (int i in new_media)
+		int media_count = 0;
+		foreach (int i in new_media) {
 			media.set (i, 1);
+			media_count ++;
+		}
+
+		// optimize searches based on the amount of media. Time in ms
+		if (media_count < 100) 
+			search_timeout = 40;
+		if (media_count < 250)
+			search_timeout = 100;
+		if (media_count < 100)
+			search_timeout = 140;
+		else if (media_count < 5000)
+			search_timeout = 200;
+		else if (media_count < 10000)
+			search_timeout = 240;
+		else if (media_count < 25000)
+			search_timeout = 300;
+		else
+			search_timeout = 500;
 
 		update_showing_media ();
 	}
@@ -735,16 +773,16 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (populate_views) { // update right away
 			if (has_list_view) {
-				list_view.append_media(to_add_show);
+				list_view.add_media(to_add_show);
 				list_view.remove_media(to_remove_show);
 			}
 
 			if (has_album_view) {
-				album_view.append_media(to_add_show);
+				album_view.add_media(to_add_show);
 				album_view.remove_media(to_remove_show);
 			}
 
-			set_statusbar_info ();
+			update_statusbar_info ();
 			update_library_window_widgets ();
 		}
 		else {
@@ -755,12 +793,12 @@ public class BeatBox.ViewWrapper : Box {
 				debug ("%s : populating views on idle", hint.to_string());
 
 				if (has_list_view) {
-					list_view.append_media(to_add_show);
+					list_view.add_media(to_add_show);
 					list_view.remove_media(to_remove_show);
 				}
 
 				if (has_album_view) {
-					album_view.append_media(to_add_show);
+					album_view.add_media(to_add_show);
 					album_view.remove_media(to_remove_show);
 				}
 
@@ -787,7 +825,7 @@ public class BeatBox.ViewWrapper : Box {
 			showing_media.unset(i);
 		}
 
-		if (check_show_embedded_alert()) {
+		if (check_have_media()) {
 			in_update.unlock ();
 			return;
 		}	
@@ -804,7 +842,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (is_current_wrapper) {
 			update_library_window_widgets ();
-			set_statusbar_info ();
+			update_statusbar_info ();
 		}
 
 	}
@@ -841,7 +879,7 @@ public class BeatBox.ViewWrapper : Box {
 			showing_media.set(i, 1);
 		}
 
-		if (check_show_embedded_alert()) {
+		if (check_have_media()) {
 			in_update.unlock ();
 			return;
 		}
@@ -850,12 +888,12 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (populate_views) {
 			if (has_album_view)
-				album_view.append_media (to_add);
+				album_view.add_media (to_add);
 
 			if (has_list_view)
-				list_view.append_media (to_add);
+				list_view.add_media (to_add);
 
-			set_statusbar_info ();
+			update_statusbar_info ();
 			update_library_window_widgets ();
 
 		}
@@ -867,10 +905,10 @@ public class BeatBox.ViewWrapper : Box {
 				debug ("%s : populating views on idle", hint.to_string());
 				
 				if (has_album_view)
-					album_view.append_media (to_add);
+					album_view.add_media (to_add);
 
 				if (has_list_view)
-					list_view.append_media (to_add);
+					list_view.add_media (to_add);
 	
 				return false;
 			});

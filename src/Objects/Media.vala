@@ -183,10 +183,19 @@ public class BeatBox.Media : GLib.Object {
 		Media rv = new Media("file://" + Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
 		
 		rv.isTemporary = true;
-		if(track.title != null) {			rv.title = track.title; }
-		if(track.artist != null) {			rv.artist = track.artist; }
-		if(track.albumartist != null) {		rv.album_artist = track.albumartist; }
-		if(track.album != null) {			rv.album = track.album; }
+
+		if (track.title != null)
+			rv.title = track.title;
+
+		if (track.artist != null)
+			rv.artist = track.artist;
+
+		if (track.albumartist != null)
+			rv.album_artist = track.albumartist;
+
+		if (track.album != null)
+			rv.album = track.album;
+
 		if(track.genre != null) {			rv.genre = track.genre; }
 		if(track.comment != null) {			rv.comment = track.comment; }
 		if(track.composer != null) {		rv.composer = track.composer; }

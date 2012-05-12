@@ -42,7 +42,7 @@ public class BeatBox.AlbumListView : Window {
 
 	Gee.LinkedList<Media> media_list;
 
-	public AlbumListView(AlbumView album_view) {
+	public AlbumListView (AlbumView album_view) {
 		this.view_wrapper = album_view.parent_view_wrapper;
 		this.lm = view_wrapper.lm;
 
@@ -97,7 +97,7 @@ public class BeatBox.AlbumListView : Window {
 
 		// Music List
 		var tvs = new TreeViewSetup (MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
-		mtv = new MusicListView(view_wrapper, tvs);
+		mtv = new MusicListView (view_wrapper, tvs);
 
 		var mtv_scrolled = new ScrolledWindow (null, null);
 		mtv_scrolled.add (mtv);
@@ -129,9 +129,14 @@ public class BeatBox.AlbumListView : Window {
 	}
 
 
+	public void set_parent_wrapper (ViewWrapper parent_wrapper) {
+		this.view_wrapper = parent_wrapper;
+		this.mtv.set_parent_wrapper (parent_wrapper);
+	}
+
 	Mutex setting_media;
 
-	public void set_songs_from_media(Media media) {
+	public async void set_songs_from_media (Media media) {
 		setting_media.lock ();
 
 		set_title (_("%s by %s").printf (media.album, media.album_artist));
