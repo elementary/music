@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-09 22:43-0600\n"
-"PO-Revision-Date: 2012-05-09 18:55+0000\n"
-"Last-Translator: Eduard Gotwig <eduardgotwig@gmail.com>\n"
+"PO-Revision-Date: 2012-05-12 09:23+0000\n"
+"Last-Translator: Anducar <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-11 06:09+0000\n"
+"X-Launchpad-Export-Date: 2012-05-13 05:04+0000\n"
 "X-Generator: Launchpad (build 15225)\n"
 "Language: de\n"
 
@@ -983,7 +983,7 @@ msgstr "%s scheint ihre Musik nicht finden zu können"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Keine Titel in der Warteschlange"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
 msgid ""
@@ -991,10 +991,14 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Um Titel zur Warteschlange hinzuzufügen benutze den <b>Rechtsklick</b> und "
+"wähle <b>Warteschlange</b>. Wenn ein Titel wiedergegeben wurde, wird der zur "
+"Wiedergabeliste hinzugefügte Titel wiedergegeben, bevor der nächste Titel "
+"der aktuellen Wiedergabeliste wiedergegeben wird."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
 msgid "No songs in History"
-msgstr ""
+msgstr "Keine Titel im Verlauf"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
 msgid ""
@@ -1002,6 +1006,10 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Nachdem ein Teil eines Titels wiedergegeben wurde, wird er zum Verlauf "
+"hinzugefügt.\n"
+"Du kannst diese Liste benutzen um einen Überblick über die wiedergegebenen "
+"Titel zu bekommen."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 msgid "Audio CD Invalid"
@@ -1010,18 +1018,21 @@ msgstr "Audio CD fehlerhaft"
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s konnte den Inhalt der Audio CD nicht lesen."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
 msgid "No Songs"
-msgstr ""
+msgstr "Keine Titel"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Um Titel zu dieser Wiedergabeliste hinzuzufügen, benutze den "
+"<b>Rechtsklick</b> auf dem entsprechenden Titel und wähle <b>Zur "
+"Wiedergabeliste hinzufügen</b>."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
 msgid ""
@@ -1029,6 +1040,9 @@ msgid ""
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
 "sidebar and click on <b>Edit</b>."
 msgstr ""
+"Diese Wiedergabeliste wird automatisch mit Titeln gefüllt, die den Regeln "
+"dieser Liste entsprechen. Um die Regeln zu bearbeiten, benutze den "
+"<b>Rechtsklick</b> in der Seitenleiste und klicke auf <b>Bearbeiten</b>."
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:135
 msgid "Remove from Library"
@@ -1191,7 +1205,7 @@ msgstr "Lade ähnliche Titel"
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:96
 #, c-format
 msgid "Finding songs similar to <b>%s</b> by <b>%s</b>"
-msgstr ""
+msgstr "Finde ähnliche Titel zu <b>%s</b> von <b>%s</b>"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:105
 msgid "No similar songs found"
@@ -1204,6 +1218,9 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s konnte keine ähnlichen Titel zu  <b>%s</b> von <b>%s</b> finden. Stelle "
+"sicher, dass alle Titelinformationen korrekt und du mit dem Internet "
+"verbunden bist. Einige Titel erzielen vielleicht keine Treffer."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:68
 msgid "Device Name"
