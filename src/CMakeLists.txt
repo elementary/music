@@ -84,6 +84,8 @@ vala_precompile(VALA_C
     GStreamer/ReplayGain.vala
     GStreamer/Streamer.vala
 
+    Views/ViewContainer.vala
+
     Views/ViewWrapper.vala
     Views/SimilarViewWrapper.vala
     Views/DeviceViewWrapper.vala

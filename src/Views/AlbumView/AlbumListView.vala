@@ -1,23 +1,24 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Victor Eduardo <victoreduardm@gmail.com>
+ *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
 using Gee;
@@ -147,8 +148,8 @@ public class BeatBox.AlbumListView : Window {
 		var to_search = new LinkedList<Media> ();
 
 		// only search media that match the search filter
-		foreach (int id in view_wrapper.get_showing_media_ids ()) {
-			to_search.add (lm.media_from_id(id));
+		foreach (var m in view_wrapper.get_visible_media_list ()) {
+			to_search.add (m);
 		}
 
 		Search.fast_album_search_in_media_list (to_search, out media_list, "", media.album_artist, media.album);
@@ -159,7 +160,7 @@ public class BeatBox.AlbumListView : Window {
 
 		// Set rating
 		update_album_rating ();
-		lm.medias_updated.connect (update_album_rating);
+		lm.media_updated.connect (update_album_rating);
 	}
 
 	void update_album_rating () {

@@ -27,6 +27,7 @@ using Gtk;
 using Granite.Widgets;
 using Gee;
 
+
 public class BeatBox.ViewWrapper : Box {
 
 	public LibraryManager lm { get; private set; }
@@ -87,11 +88,11 @@ public class BeatBox.ViewWrapper : Box {
 
 	public int relative_id { get; private set; }
 
-	public int index { get { return lw.main_views.page_num(this); } }
+	public int index { get { return lw.view_container.get_view_index (this); } }
 
 	public bool is_current_wrapper {
 		get {
-			return (lw.initialization_finished ? (index == lw.main_views.get_current_page()) : false);
+			return (lw.initialization_finished ? (index == lw.view_container.get_current_index ()) : false);
 		}
 	}
 
@@ -103,13 +104,13 @@ public class BeatBox.ViewWrapper : Box {
 	 **/
 
 	// ALL the media. Data source.
-	protected HashMap<int, int> media;
-	protected HashMap<int, int> showing_media;
+	protected HashMap<Media, int> media_table;
+	protected HashMap<Media, int> visible_media_table;
 
-	public int media_count { get { return (media != null) ? media.size : 0; } }
+	public int media_count { get { return (media_table != null) ? media_table.size : 0; } }
 
 
-	public ViewWrapper (LibraryWindow lw, Collection<int> initial_media, TreeViewSetup tvs, int id)
+	public ViewWrapper (LibraryWindow lw, TreeViewSetup tvs, int id)
 	{
 		this.lm = lw.lm;
 		this.lw = lw;
@@ -196,41 +197,58 @@ public class BeatBox.ViewWrapper : Box {
 		// Connect data signals
 
 		if (hint == Hint.QUEUE) {
-			lm.media_queued.connect (add_media);
-			lm.media_unqueued.connect (remove_media);
+			lm.media_queued.connect ( (ids) => {
+				add_media (lm.media_from_ids (ids));
+			});
+			lm.media_unqueued.connect ( (ids) => {
+				remove_media (lm.media_from_ids (ids));
+			});
 		}
 		else if (hint == Hint.HISTORY) {
 			lm.history_changed.connect ( () => {
-				set_media (lm.already_played ());
+				set_media (lm.media_from_ids (lm.already_played ()));
 			});
 		}
 		// Libraries and smart playlists should listen for additions
 		else if (hint == Hint.MUSIC || hint == Hint.SMART_PLAYLIST) {
-			lm.medias_added.connect (add_media);
+			lm.media_added.connect ( (ids) => {
+				add_media (lm.media_from_ids (ids));
+			});
 		}
 
 		// everyone but devices should listen for removals and updates
 		if (hint != Hint.CDROM && hint != Hint.DEVICE_PODCAST && hint != Hint.DEVICE_AUDIO && hint != Hint.DEVICE_AUDIOBOOK) {
-			lm.medias_updated.connect (update_media);
-			lm.medias_removed.connect (remove_media);
+			// if it's a smart playlist, re-analyze
+			lm.media_updated.connect ( (ids) => {
+				var to_update = ids;
+				if (hint == Hint.SMART_PLAYLIST)
+					to_update = lm.smart_playlist_from_id (relative_id).analyze (lm, ids);
+				update_media (lm.media_from_ids (to_update));
+			});
+			lm.media_removed.connect ( (ids) => {
+				remove_media (lm.media_from_ids (ids));
+			});
 		}
 
 		// Listen for playlist additions/removals
 		if (hint == Hint.PLAYLIST) {
 			var playlist = lm.playlist_from_id (relative_id);
-			playlist.changed.connect ( () => {
+
+			playlist.cleared.connect ( () => {
 				debug ("playlist changed");
-				set_media (playlist.media ());
+				set_media (new LinkedList<Media> ());
 			});
-			playlist.media_added.connect (add_media);
-			playlist.media_removed.connect (remove_media);
+
+			playlist.media_added.connect ( (ids) => {
+				add_media (lm.media_from_ids (ids));
+			});
+			playlist.media_removed.connect ( (ids) => {
+				remove_media (lm.media_from_ids (ids));
+			});
 		}
 
 		lw.viewSelector.mode_changed.connect (view_selector_changed);
 		lw.searchField.changed.connect (search_field_changed);
-
-		// Set initial media
-		set_media (initial_media);
 
 		debug ("FINISHED BUILDING %s\n\n\n", hint.to_string());
 	}
@@ -247,7 +265,7 @@ public class BeatBox.ViewWrapper : Box {
 	/**
 	 * Convenient visibility method
 	 */
-	protected async void set_active_view (ViewType type, out bool successful = null) {
+	protected void set_active_view (ViewType type, out bool successful = null) {
 		int view_index = -1;
 
 		// Find position in notebook
@@ -305,7 +323,7 @@ public class BeatBox.ViewWrapper : Box {
 
 		// Play, pause, ...
 		bool media_active = lm.media_active;
-		bool media_visible = (showing_media.size > 0);
+		bool media_visible = (visible_media_table.size > 0);
 		lw.previousButton.set_sensitive (media_active || media_visible);
 		lw.playButton.set_sensitive (media_active || media_visible);
 		lw.nextButton.set_sensitive (media_active || media_visible);
@@ -330,7 +348,7 @@ public class BeatBox.ViewWrapper : Box {
 			// the view selector will only be sensitive if both views are available
 			lw.viewSelector.set_sensitive (has_album_view && has_list_view);
 
-			bool has_media = media.size > 0;
+			bool has_media = media_table.size > 0;
 			// Insensitive if there's no media to search
 			lw.searchField.set_sensitive (has_media);
 
@@ -427,8 +445,7 @@ public class BeatBox.ViewWrapper : Box {
 		else {
 			// Let's use the local data since it has no internal filter
 			media_set = new Gee.LinkedList<Media> ();
-			foreach (var id in showing_media.keys) {
-				var m = lm.media_from_id (id);
+			foreach (var m in get_visible_media_list ()) {
 				if (m != null)
 					media_set.add (m);
 			}
@@ -500,7 +517,7 @@ public class BeatBox.ViewWrapper : Box {
 
 				last_search = to_search;
 				// Do the actual search and show up results....
-				update_showing_media ();
+				update_visible_media ();
 
 				return false;
 			});
@@ -552,19 +569,31 @@ public class BeatBox.ViewWrapper : Box {
 			case Hint.MUSIC:
 				break;
 			case Hint.QUEUE:
-				embedded_alert.set_alert (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), null, true, Granite.Widgets.EmbeddedAlert.Level.INFO);
+				embedded_alert.set_alert (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), null, true, Granite.AlertLevel.INFO);
 				break;
 			case Hint.HISTORY:
-				embedded_alert.set_alert (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), null, true, Granite.Widgets.EmbeddedAlert.Level.INFO);
+				embedded_alert.set_alert (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), null, true, Granite.AlertLevel.INFO);
 				break;
 			case Hint.CDROM:
-				embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (lw.app.get_name ()), null, true, Granite.Widgets.EmbeddedAlert.Level.WARNING);
+				embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (lw.app.get_name ()), null, true, Granite.AlertLevel.WARNING);
 				break;
 			case Hint.PLAYLIST:
-				embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Granite.Widgets.EmbeddedAlert.Level.INFO);
+				embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Granite.AlertLevel.INFO);
 				break;
 			case Hint.SMART_PLAYLIST:
-				embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>."), null, true, Granite.Widgets.EmbeddedAlert.Level.INFO);
+				var action = new Gtk.Action ("smart-playlist-rules-edit",
+				                              _("Edit Smart Playlist"),
+				                              _("Click on the button to edit playlist rules"),
+				                              Gtk.Stock.EDIT
+				                              );
+				// Connect to the 'activate' signal
+				action.activate.connect ( () => {
+					// Show this playlist's edit dialog
+					lw.sideTree.playlistMenuEditClicked ();
+				});
+				var actions = new Gtk.Action[1];
+				actions[0] = action;
+				embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."), actions, true, Granite.AlertLevel.INFO);
 				break;
 			default:
 				break;
@@ -592,53 +621,50 @@ public class BeatBox.ViewWrapper : Box {
 	/**
 	 * @return a collection containing ALL the media
 	 */
-	public Collection<int> get_media_ids () {
-		return media.keys;
+	public Collection<Media> get_media_list () {
+		return media_table.keys;
 	}
 
 
 	/**
 	 * @return a collection containing all the media that should be shown
 	 */
-	public Collection<int> get_showing_media_ids () {
-		return showing_media.keys;
+	public Collection<Media> get_visible_media_list () {
+		return visible_media_table.keys;
 	}
 
 
 	/**
 	 * Description:
-	 * Updates the data in showing_media and re-populates all the views.
+	 * Updates the data in visible_media and re-populates all the views.
 	 * Primarily used for searches
 	 */
-	public async void update_showing_media () {
+	public async void update_visible_media () {
 		in_update.lock ();
 
-		debug ("%s : UPDATING SHOWING MEDIA", hint.to_string());
+		debug ("%s : UPDATING SHOWING MEDIA", hint.to_string ());
 
-		showing_media = new HashMap<int, int>();
+		visible_media_table = new HashMap<Media, int> ();
 		var to_search = get_search_string ();
 
 		var search_results = new Gee.LinkedList<Media> ();
+
 		if (to_search != "") {
 			// Perform search
-			LinkedList<int> search_results_ids;
-			Search.search_in_media_ids (lm, get_media_ids (), out search_results_ids, to_search);
+			LinkedList<Media> search_results_ids;
+			Search.search_in_media_list (get_media_list (), out search_results, to_search);
 
-			foreach (int i in search_results_ids) {
-				showing_media.set (i, 1);
-				search_results.add (lm.media_from_id (i));
+			foreach (var m in search_results) {
+				visible_media_table.set (m, 1);
 			}
 		}
 		else {
 			// No need to search. Same data as media
-			foreach (var id in media.keys) {
-				search_results.add (lm.media_from_id (id));
-				showing_media.set (id, 1);
+			foreach (var m in get_media_list ()) {
+				search_results.add (m);
+				visible_media_table.set (m, 1);
 			}
 		}
-
-		if (search_results == null)
-			return;
 
 		in_update.unlock ();
 
@@ -681,8 +707,14 @@ public class BeatBox.ViewWrapper : Box {
 		check_have_media ();
 	}
 
+	public async void set_media_from_ids (Gee.Collection<int> new_media) {
+		var to_set = new Gee.LinkedList<Media> ();
+		foreach (var id in new_media)
+			to_set.add (lm.media_from_id (id));
+		set_media (to_set);
+	}
 
-	public async void set_media (Collection<int>? new_media) {
+	public async void set_media (Collection<Media> new_media) {
 		if (new_media == null) {
 			warning ("set_media: attempt to set NULL media failed");
 			return;
@@ -690,12 +722,14 @@ public class BeatBox.ViewWrapper : Box {
 
 		debug ("%s : SETTING MEDIA -> set_media", hint.to_string());
 
-		media = new HashMap <int, int>();
+		media_table = new HashMap <Media, int>();
 
 		int media_count = 0;
-		foreach (int i in new_media) {
-			media.set (i, 1);
-			media_count ++;
+		foreach (var m in new_media) {
+			if (m != null) {
+				media_table.set (m, 1);
+				media_count ++;
+			}
 		}
 
 		// optimize searches based on the amount of media. Time in ms
@@ -714,58 +748,51 @@ public class BeatBox.ViewWrapper : Box {
 		else
 			search_timeout = 500;
 
-		update_showing_media ();
+		update_visible_media ();
 	}
 
 
 	/**
 	 * Do search to find which ones should be added, removed from this particular view
 	 */
-	public async void update_media (Collection<int> ids) {
+	public async void update_media (Gee.Collection<Media> media) {
 		in_update.lock ();
 
 		debug ("%s : UPDATING media", hint.to_string());
 
 		// find which media belong here
-		LinkedList<int> should_be, should_show;
+		Gee.LinkedList<Media> should_be, should_show;
 
-		Collection<int> to_search;
+		Search.full_search_in_media_list (media, out should_be, null, null, null, null, hint);
+		Search.full_search_in_media_list (media, out should_show, null, null, null, null, hint, get_search_string ());
 
-		if(hint == Hint.SMART_PLAYLIST)
-			to_search = lm.smart_playlist_from_id(relative_id).analyze(lm, ids);
-		else
-			to_search = ids;
-
-		lm.do_search (to_search, out should_be, null, null, null, null, hint);
-		lm.do_search (to_search, out should_show, null, null, null, null, hint, get_search_string());
-
-		var to_remove = new LinkedList<int>();
+		var to_remove = new LinkedList<Media>();
 		var to_add_show = new LinkedList<Media>();
 		var to_remove_show = new LinkedList<Media>();
 
 		// add elements that should be here
-		foreach(int i in should_be)
-			media.set(i, 1);
+		foreach (var m in should_be)
+			if (!media_table.has_key (m))
+				media_table.set (m, 1);
 
 		// add elements that should show
-		foreach(int i in should_show) {
-			if(!showing_media.has_key (i))
-				to_add_show.add (lm.media_from_id (i));
-			showing_media.set(i, 1);
-		}
-
-		// remove elements
-		foreach(int i in ids) {
-			if(!should_be.contains(i)) {
-				to_remove.add(i);
-				media.unset(i);
+		foreach (var m in should_show) {
+			if (!visible_media_table.has_key (m)) {
+				to_add_show.add (m);
+				visible_media_table.set (m, 1);
 			}
 		}
 
-		foreach(int i in ids) {
-			if(!should_show.contains(i)) {
-				to_remove_show.add (lm.media_from_id (i));
-				showing_media.unset(i);
+		// remove elements
+		foreach (var m in media) {
+			if (!should_be.contains (m)) {
+				to_remove.add (m);
+				media_table.unset (m);
+			}
+
+			if (!should_show.contains (m)) {
+				to_remove_show.add (m);
+				visible_media_table.unset (m);
 			}
 		}
 
@@ -773,13 +800,13 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (populate_views) { // update right away
 			if (has_list_view) {
-				list_view.add_media(to_add_show);
-				list_view.remove_media(to_remove_show);
+				list_view.add_media (to_add_show);
+				list_view.remove_media (to_remove_show);
 			}
 
 			if (has_album_view) {
-				album_view.add_media(to_add_show);
-				album_view.remove_media(to_remove_show);
+				album_view.add_media (to_add_show);
+				album_view.remove_media (to_remove_show);
 			}
 
 			update_statusbar_info ();
@@ -793,13 +820,13 @@ public class BeatBox.ViewWrapper : Box {
 				debug ("%s : populating views on idle", hint.to_string());
 
 				if (has_list_view) {
-					list_view.add_media(to_add_show);
-					list_view.remove_media(to_remove_show);
+					list_view.add_media (to_add_show);
+					list_view.remove_media (to_remove_show);
 				}
 
 				if (has_album_view) {
-					album_view.add_media(to_add_show);
-					album_view.remove_media(to_remove_show);
+					album_view.add_media (to_add_show);
+					album_view.remove_media (to_remove_show);
 				}
 
 				return false;
@@ -808,24 +835,23 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	public void remove_media (Collection<int> ids) {
+	public async void remove_media (Collection<Media> media) {
 		in_update.lock ();
 
-		debug ("%s : REMOVING media", hint.to_string());
+		debug ("%s : REMOVING media", hint.to_string ());
 
-		// find which media to remove and remove it from
-		// Media and Showing Media
+		// find which media to remove and remove it from Media and Showing Media
 		var to_remove = new LinkedList<Media>();
-		foreach(int i in ids) {
-			media.unset(i);
+		foreach (var m in media) {
+			media_table.unset (m);
 
-			if(showing_media.has_key (i))
-				to_remove.add (lm.media_from_id (i));
-
-			showing_media.unset(i);
+			if (visible_media_table.has_key (m)) {
+				to_remove.add (m);
+				visible_media_table.unset (m);
+			}
 		}
 
-		if (check_have_media()) {
+		if (check_have_media ()) {
 			in_update.unlock ();
 			return;
 		}	
@@ -848,38 +874,32 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	public async void add_media (Collection<int> new_media) {
+	public async void add_media (Collection<Media> new_media) {
 		in_update.lock ();
 
 		debug ("%s : ADDING media", hint.to_string());
 
 		// find which media to add and update Media
-		var to_add = new LinkedList<int>();
+		var to_add = new LinkedList<Media> ();
 
-		if (hint == Hint.SMART_PLAYLIST) {
-			to_add =  lm.smart_playlist_from_id(relative_id).analyze(lm, new_media);
-		}
-		else {
-			foreach(int i in new_media) {
-				if (!media.has_key (i)) {
-					media.set(i, 1);
-					to_add.add(i);
-				}
+		foreach (var m in new_media) {
+			if (!media_table.has_key (m)) {
+				media_table.set (m, 1);
+				to_add.add (m);
 			}
 		}
 
 		// Do search since Showing Media depends on the search string
-		LinkedList<int> to_show_ids;
-		lm.do_search (to_add, out to_show_ids, null, null, null, null, hint, get_search_string());
+		LinkedList<Media> media_to_show;
+		Search.search_in_media_list (to_add, out media_to_show, get_search_string ());
 
-		var to_show = new Gee.LinkedList<Media> ();
 		// Update showing media
-		foreach (int i in to_show_ids) {
-			to_show.add (lm.media_from_id (i));
-			showing_media.set(i, 1);
+		foreach (var m in media_to_show) {
+			if (!visible_media_table.has_key (m))
+				visible_media_table.set (m, 1);
 		}
 
-		if (check_have_media()) {
+		if (check_have_media ()) {
 			in_update.unlock ();
 			return;
 		}
@@ -888,10 +908,10 @@ public class BeatBox.ViewWrapper : Box {
 
 		if (populate_views) {
 			if (has_album_view)
-				album_view.add_media (to_add);
+				album_view.add_media (media_to_show);
 
 			if (has_list_view)
-				list_view.add_media (to_add);
+				list_view.add_media (media_to_show);
 
 			update_statusbar_info ();
 			update_library_window_widgets ();
@@ -905,10 +925,10 @@ public class BeatBox.ViewWrapper : Box {
 				debug ("%s : populating views on idle", hint.to_string());
 				
 				if (has_album_view)
-					album_view.add_media (to_add);
+					album_view.add_media (media_to_show);
 
 				if (has_list_view)
-					list_view.add_media (to_add);
+					list_view.add_media (media_to_show);
 	
 				return false;
 			});

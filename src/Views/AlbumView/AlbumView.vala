@@ -71,24 +71,19 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	private const int ITEM_PADDING = 0;
 	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
 
-#if GTK_ICON_VIEW_BUG_IS_FIXED
 	private const int MIN_SPACING = 12;
-#else
-	// it should be 12, but we can subtract 6 px since there's a lot of extra space in-between
-	private const int MIN_SPACING = 6;
-#endif
 
 	/* media should be mutable, as we will be sorting it */
 	public AlbumView(ViewWrapper view_wrapper) {
 		lm = view_wrapper.lm;
 		lw = view_wrapper.lw;
-
 		parent_view_wrapper = view_wrapper;
+
 		defaultPix = lm.get_pixbuf_shadow (Icons.DEFAULT_ALBUM_ART_PIXBUF);
 		build_ui();
 	}
 
-	public void build_ui() {
+	public void build_ui () {
 		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 
 		icons = new FastGrid ();

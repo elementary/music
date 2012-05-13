@@ -95,8 +95,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		
 		buildUI();
 	}
-	
-	public void buildUI() {
+
+	private void buildUI() {
 		deviceMenu = new Gtk.Menu();
 		deviceImportToLibrary = new Gtk.MenuItem.with_label(_("Import from Device"));
 		deviceSync = new Gtk.MenuItem.with_label(_("Sync"));
@@ -187,7 +187,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	 * Adds an item to the sidebar for the ViewWrapper object.
 	 * It chooses the appropiate category based on the object's hint property.
 	 *
-	 * FIXME: Add option to pass an icon (needed by the plugins).
+	 * FIXME: Add option to pass an icon (needed by plugins).
 	 */
 	public TreeIter? add_item (ViewWrapper view_wrapper, string name) {
 		TreeIter? sidebar_category_iter = null;
@@ -325,21 +325,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		}
 	}
 	
-	public void updatePlayQueue() {
-		Widget w;
-		filter.get(convertToFilter(playlists_queue_iter), 1, out w);
-		//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.queue(), true, true, false);
-		((ViewWrapper)w).set_media (lm.queue());
-	}
-	
-	public void updateAlreadyPlayed() {
-		Widget w;
-		filter.get(convertToFilter(playlists_history_iter), 1, out w);
-		//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.already_played(), true, true, false);
-		((ViewWrapper)w).set_media (lm.already_played());
-	}
-	
-	public virtual bool sideListClick(Gdk.EventButton event) {
+	private virtual bool sideListClick(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //secondary click
 			// select one based on mouse position
 			TreeIter iter;
@@ -442,7 +428,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		return false;
 	}
 	
-	public virtual void sideListDoubleClick(TreePath path, TreeViewColumn column) {
+	private virtual void sideListDoubleClick(TreePath path, TreeViewColumn column) {
 		TreeIter iter_f;
 		TreeIter iter;
 		
@@ -507,7 +493,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	*/
 
 	// Sets the current sidebar item as the active view
-	public async void sideListSelectionChange () {
+	private async void sideListSelectionChange () {
 		var w = getSelectedWidget ();
 		
 		// Switch to that view in the library window
@@ -600,8 +586,6 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 					removeItem(pivot);
 					lw.addSideListItem(sp);
 					
-					//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.medias_from_smart_playlist(sp.rowid), true, false, false);
-					((ViewWrapper)w).set_media (lm.medias_from_smart_playlist(sp.rowid));
 					lm.save_smart_playlists();
 					
 					break;
@@ -635,9 +619,6 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 					
 					removeItem(pivot);
 					lw.addSideListItem(p);
-					
-					//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.medias_from_playlist(p.rowid), true, false, false);
-					(o as ViewWrapper).set_media (lm.medias_from_playlist(p.rowid));
 					
 					break;
 				}
@@ -969,7 +950,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 //>>>>>>> MERGE-SOURCE
 	}
 	
-	public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
+	private virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
 		bool success = false;
 		TreeIter iter;
 		TreePath path;
@@ -1039,12 +1020,12 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	}
     
 	/* device stuff */
-	public void deviceAdded(Device d) {
+	private void deviceAdded(Device d) {
 		lw.addSideListItem(d);
 		sideListSelectionChange ();
 	}
 	
-	public void deviceRemoved(Device d) {
+	private void deviceRemoved(Device d) {
 		TreeIter pivot;
 		if(!tree.iter_children(out pivot, devices_iter))
 			return;
@@ -1067,8 +1048,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		if(was_selected)
 			resetView();
 	}
-	
-	public void clickableClicked(TreeIter iter) {
+
+	private void clickableClicked(TreeIter iter) {
 		GLib.Object o;
 		filter.get(iter, 0, out o);
 		

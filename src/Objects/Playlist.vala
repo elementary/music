@@ -24,66 +24,66 @@ using Gee;
 
 public class BeatBox.Playlist : Object {
 	public TreeViewSetup tvs;
-	private Gee.HashMap<int, int> _medias; // rowid, 1
+	private Gee.HashMap<int, int> _media; // rowid, 1
 	
 	public int rowid { get; set; }
 	public string name { get; set; }
 
 	public signal void media_added (Gee.Collection<int> media);
 	public signal void media_removed (Gee.Collection<int> media);
-	public signal void changed ();
+	public signal void cleared ();
 	
 	public Playlist() {
 		name = _("New Playlist");
 		tvs = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
-		_medias = new Gee.HashMap<int, int>();
+		_media = new Gee.HashMap<int, int>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
-		_medias = new Gee.HashMap<int, int>();
+		_media = new Gee.HashMap<int, int>();
 		tvs = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		this.rowid = rowid;
 		this.name = name;
 	}
 		
 	public Gee.Collection<int> media () {
-		return _medias.keys;
+		return _media.keys;
 	}
 	
 	public void add_media(Collection<int> ids) {
 		foreach(int i in ids)
-			_medias.set(i, 1);
+			_media.set(i, 1);
 		
 		media_added (ids);
 	}
 	
 	public void remove_media(Collection<int> ids) {
 		foreach(int i in ids)
-			_medias.unset(i);
+			_media.unset(i);
 		
 		media_removed (ids);
 	}
 	
 	public void clear() {
-		_medias = new HashMap<int, int>();
-		changed ();
+		_media = new HashMap<int, int>();
+		cleared ();
 	}
 	
-	public void medias_from_string(string medias, LibraryManager lm) {
-		string[] media_strings = medias.split(",", 0);
+	public void media_from_string(string media, LibraryManager lm) {
+		string[] media_strings = media.split(",", 0);
 		
 		int index;
 		for(index = 0; index < media_strings.length - 1; ++index) {
 			int id = int.parse(media_strings[index]);
 			
-			_medias.set(id, 1);
+			_media.set(id, 1);
 		}
 	}
 	
-	public string medias_to_string(LibraryManager lm) {
+	public string media_to_string(LibraryManager lm) {
 		string rv = "";
 		
-		foreach(int id in _medias.keys) {
+		foreach(int id in _media.keys) {
 			rv += id.to_string() + ",";
 		}
 		
@@ -91,11 +91,11 @@ public class BeatBox.Playlist : Object {
 	}
 	
 	public Gee.Collection<int> analyze(LibraryManager lm) {
-		return _medias.keys;
+		return _media.keys;
 	}
 	
 	public bool contains_media(int i) {
-		return _medias.get(i) != 1;
+		return _media.get(i) != 1;
 	}
 	
 	public GPod.Playlist get_gpod_playlist() {
@@ -111,7 +111,7 @@ public class BeatBox.Playlist : Object {
 		bool rv = false;
 		string to_save = "#EXTM3U";
 		
-		foreach(int i in _medias.keys) {
+		foreach(int i in _media.keys) {
 			Media s = lm.media_from_id(i);
 			
 			to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + File.new_for_uri(s.uri).get_path();
@@ -141,10 +141,10 @@ public class BeatBox.Playlist : Object {
 	
 	public bool save_playlist_pls(LibraryManager lm, string folder) {
 		bool rv = false;
-		string to_save = "[playlist]\n\nNumberOfEntries=" + _medias.size.to_string() + "\nVersion=2";
+		string to_save = "[playlist]\n\nNumberOfEntries=" + _media.size.to_string() + "\nVersion=2";
 		
 		int index = 1;
-		foreach(int i in _medias.keys) {
+		foreach(int i in _media.keys) {
 			Media s = lm.media_from_id(i);
 			
 			to_save += "\n\nFile" + index.to_string() + "=" + File.new_for_uri(s.uri).get_path() + "\nTitle" + index.to_string() + "=" + s.title + "\nLength" + index.to_string() + "=" + s.length.to_string();

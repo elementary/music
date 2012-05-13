@@ -143,10 +143,9 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public signal void progress_cancel_clicked();
 	
 	public signal void current_cleared();
-	public signal void media_updated(int id);
-	public signal void medias_added(LinkedList<int> ids);
-	public signal void medias_updated(LinkedList<int> ids);
-	public signal void medias_removed(LinkedList<int> ids);
+	public signal void media_added(LinkedList<int> ids);
+	public signal void media_updated(LinkedList<int> ids);
+	public signal void media_removed(LinkedList<int> ids);
 
 	public signal void media_queued(Gee.Collection<int> ids);
 	public signal void media_unqueued(Gee.Collection<int> ids);
@@ -749,9 +748,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 		
 		debug ("%d media updated from lm.update_medias 677\n", rv.size);
-		medias_updated(rv);
-		if(updates.size == 1)
-			media_updated(updates.to_array()[0].rowid);
+		media_updated(rv);
 		
 		/* now do background work. even if updateMeta is true, so must user preferences */
 		if(updateMeta)
@@ -783,7 +780,19 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public Media media_from_id(int id) {
 		return _media.get(id);
 	}
-	
+
+	public Gee.Collection<Media> media_from_ids (Gee.Collection<int> ids) {
+		var media_collection = new Gee.LinkedList<Media> ();
+
+		foreach (int id in ids) {
+			var m = media_from_id (id);
+			if (m != null)
+				media_collection.add (m);
+		}
+
+		return media_collection;
+	} 
+
 	public int match_media_to_list(int id, Collection<int> to_match) {
 		Media m = media_from_id(id);
 
@@ -947,7 +956,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			}
 		}
 	}
-	
+
+
 	public Collection<int> medias_from_playlist(int id) {
 		return _playlists.get(id).analyze(this);
 	}
@@ -1012,7 +1022,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 		
 		Idle.add( () => {
-			medias_added(added);
+			media_added(added);
 			return false;
 		});
 	}
@@ -1090,7 +1100,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 
 		_media_lock.unlock ();
 		
-		medias_removed(removedIds);
+		media_removed(removedIds);
 
 		if(_media.size == 0)
 			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));

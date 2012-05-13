@@ -23,28 +23,32 @@
 using Gee;
 
 public class BeatBox.DeviceViewWrapper : ViewWrapper {
-	Device d;
+	public Device d;
 	
-	public DeviceViewWrapper(LibraryWindow lww, Collection<int> medias, TreeViewSetup tvs, int id, Device d) {
-		base(lww, medias, tvs, id);
-		
+	public DeviceViewWrapper(LibraryWindow lww, TreeViewSetup tvs, int id, Device d) {
+		base (lww, tvs, id);
+
 		// TODO: Add import_requested
 		if (has_list_view)
-			list_view.import_requested.connect(import_request);
-		
+			list_view.import_requested.connect (import_request);
+
 		this.d = d;
-		d.sync_finished.connect(sync_finished);
+		d.sync_finished.connect (sync_finished);
 	}
 	
-	void import_request(LinkedList<int> to_import) {
-		if(!lm.doing_file_operations()) {
-			d.transfer_to_library(to_import);
+	void import_request(LinkedList<Media> to_import) {
+		if (!lm.doing_file_operations()) {
+			d.transfer_to_library (to_import);
 		}
 	}
 	
 	void sync_finished(bool success) {
-		// TODO: FIXME
-		//needs_update = true;
+		if(hint == ViewWrapper.Hint.DEVICE_AUDIO)
+			set_media (d.get_songs());
+#if HAVE_PODCASTS
+		else if(hint == ViewWrapper.Hint.DEVICE_PODCAST)
+			set_media (d.get_podcasts());
+#endif
 	}
 }
 

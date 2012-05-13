@@ -53,7 +53,7 @@ public abstract class BeatBox.GenericList : FastView {
 		row_activated.connect(row_activated_signal);
 		lm.current_cleared.connect(current_cleared);
 		lm.media_played.connect(media_played);
-		lm.medias_updated.connect(medias_updated);
+		lm.media_updated.connect(medias_updated);
 	}
 	
 	public void set_parent_wrapper(ViewWrapper parent) {

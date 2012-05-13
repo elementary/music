@@ -313,7 +313,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			for (var results = query.execute(); !results.finished; results.next() ) {
 				Playlist p = new Playlist.with_info(results.fetch_int(0), results.fetch_string(1));
-				p.medias_from_string(results.fetch_string(2), lm);
+				p.media_from_string(results.fetch_string(2), lm);
 				p.tvs.sort_column_id = results.fetch_int(3);
 				p.tvs.set_sort_direction_from_string(results.fetch_string(4));
 
@@ -337,7 +337,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
-				query.set_string(":media", p.medias_to_string(lm));
+				query.set_string(":media", p.media_to_string(lm));
 				query.set_int(":sort_column_id", p.tvs.sort_column_id);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());
@@ -360,7 +360,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			//foreach(Playlist p in playlists) {
 				query.set_string(":name", p.name);
-				query.set_string(":media", p.medias_to_string(lm));
+				query.set_string(":media", p.media_to_string(lm));
 				query.set_int(":sort_column_id", p.tvs.sort_column_id);
 				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
 				query.set_string(":columns", p.tvs.columns_to_string());

@@ -49,7 +49,7 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		buildUI();
 
 		similars_fetched = false;
-		lm.medias_updated.connect(medias_updated);
+		lm.media_updated.connect(medias_updated);
 		lm.media_played.connect(media_played);
 		lm.lfm.logged_in.connect(logged_in_to_lastfm);
 		lm.lfm.similar_retrieved.connect(similar_retrieved);
@@ -79,7 +79,9 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		
 		loveMedia.set_image (Icons.LASTFM_LOVE.render_image (IconSize.MENU));
 		banMedia.set_image (Icons.LASTFM_BAN.render_image (IconSize.MENU));
-		
+
+		loveMedia.halign = banMedia.halign = Gtk.Align.CENTER;
+
 		var content = new Box (Orientation.VERTICAL, 0);
 
 		// margins

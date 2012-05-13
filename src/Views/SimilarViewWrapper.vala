@@ -28,8 +28,8 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 	bool fetched;
 	public new bool have_media { get { return media_count >= REQUIRED_MEDIAS; } }
 
-	public SimilarViewWrapper(LibraryWindow lw, Collection<int> the_medias, TreeViewSetup tvs, int id) {
-		base(lw, the_medias, tvs, id);
+	public SimilarViewWrapper(LibraryWindow lw, TreeViewSetup tvs, int id) {
+		base(lw, tvs, id);
 		
 		fetched = false;
 		lm.media_played.connect(media_played);
@@ -68,7 +68,6 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 		
 		lm.add_playlist(p);
 		lw.addSideListItem(p);
-		lw.sideTree.sideListSelectionChange();
 	}
 	
 	public new void set_media (Collection<int> new_media) {
@@ -102,7 +101,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 				else {
 					if(new_media.size < REQUIRED_MEDIAS) { // say we could not find similar media
 						if (has_embedded_alert) {
-							embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, false);
+							embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Granite.AlertLevel.INFO);
 							// Show the error box
 							set_active_view (ViewType.ALERT);
 						}

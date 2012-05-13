@@ -209,7 +209,7 @@ public class MprisPlayer : GLib.Object {
 		_metadata = new HashTable<string,Variant>(str_hash, str_equal);
 		
 		library_window.lm.media_played.connect(media_played);
-		library_window.lm.medias_updated.connect(medias_updated);
+		library_window.lm.media_updated.connect(medias_updated);
 		library_window.playPauseChanged.connect(playing_changed);
 	}
 	

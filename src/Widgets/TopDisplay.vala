@@ -245,9 +245,19 @@ public class BeatBox.TopDisplay : Box {
 		lm.cancel_operations();
 	}
 	
-	void media_updated(int id) {
-		if(lm.media_info.media != null && id == lm.media_info.media.rowid) {
-			set_scale_range(0.0, (double)lm.media_info.media.length);
+	void media_updated (Gee.Collection<int> ids) {
+		if (lm.media_info == null)
+			return;
+
+		var current_media = lm.media_info.media;
+
+		if (current_media == null)
+			return;
+
+		// update current media
+		foreach (var id in ids) {
+			if (id == current_media.rowid)
+				set_scale_range (0.0, (double)current_media.length);
 		}
 	}
 }

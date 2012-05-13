@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-12 14:10-0600\n"
+"POT-Creation-Date: 2012-05-12 16:00-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -902,7 +902,7 @@ msgid ""
 "automatically syncs with %s."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:137
+#: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:142
 #, c-format
 msgid "%s by %s"
 msgstr ""
@@ -975,7 +975,7 @@ msgid "%s could not read the contents of this Audio CD"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:564
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:567
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:579
 msgid "No Songs"
 msgstr ""
 
@@ -985,11 +985,20 @@ msgid ""
 "choose <b>Add to Playlist</b>."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:567
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:568
+msgid "Edit Smart Playlist"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:569
+msgid "Edit playlist rules"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:579
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>."
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:132

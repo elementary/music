@@ -447,7 +447,7 @@ public class BeatBox.AlbumView : ContentView, Grid {
         
         buildUI();
         
-        lm.medias_removed.connect(medias_removed);
+        lm.media_removed.connect(medias_removed);
     }
     
     public void buildUI() {

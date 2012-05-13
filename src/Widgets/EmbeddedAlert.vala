@@ -22,20 +22,19 @@
 
 /**
  * An alert compliant with elementary's HIG
+ *
+ * TODO: Add description and examples
  */
-public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
-
-    /**
-     * Returns the Gtk.Action.name of the clicked button as received by set_alert()
-     */
-    public signal void action_button_clicked (string action_name);
-
-    public enum Level {
+namespace Granite {
+    public enum AlertLevel {
         ERROR,
         WARNING,
         QUESTION,
         INFO
     }
+}
+
+public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
     const string ERROR_ICON = "dialog-error";
     const string WARNING_ICON = "dialog-warning";
@@ -51,8 +50,8 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
     protected Gtk.Image image;
     protected Gtk.ButtonBox action_button_box;
 
-    const int MIN_HORIZONTAL_MARGIN = 80;
-    const int MIN_VERTICAL_MARGIN = 50;
+    const int MIN_HORIZONTAL_MARGIN = 84;
+    const int MIN_VERTICAL_MARGIN = 48;
 
     public EmbeddedAlert () {
         get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
@@ -65,10 +64,8 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         primary_text_label.margin_bottom = 12;
 
         secondary_text_label = new Gtk.Label (null);
-        secondary_text_label.margin_bottom = 24;
+        secondary_text_label.margin_bottom = 18;
 
-        // Make sure the text is selectable
-        primary_text_label.selectable = secondary_text_label.selectable = true;
         primary_text_label.use_markup = secondary_text_label.use_markup = true;
 
         primary_text_label.wrap = secondary_text_label.wrap = true;
@@ -83,7 +80,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         image.margin_right = 12;
 
         // Init stuff
-        set_alert ("", "");
+        set_alert ("", "", null, false);
 
         var message_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         message_vbox.pack_start (primary_text_label, false, false, 0);
@@ -102,7 +99,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
     }
 
     public void set_alert (string primary_text, string secondary_text, Gtk.Action[] ? actions = null,
-                            bool show_icon = true, Level alert_level = Level.WARNING)
+                            bool show_icon = true, AlertLevel alert_level = AlertLevel.WARNING)
     {
         // Reset size request
         set_size_request (1, 1);
@@ -116,17 +113,18 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         // We force the HIG here. Whenever show_icon is true, the title has to be left-aligned.
         if (show_icon) {
             primary_text_label.halign = secondary_text_label.halign = Gtk.Align.START;
-            primary_text_label.justify = secondary_text_label.justify = Gtk.Justification.FILL;
+            primary_text_label.justify = Gtk.Justification.LEFT;
+            secondary_text_label.justify = Gtk.Justification.FILL;
 
             // TODO: Unless the same icon system is added to granite, don't depend on it.
             switch (alert_level) {
-                case Level.ERROR:
+                case AlertLevel.ERROR:
                     image.set_from_pixbuf (Icons.render_icon (ERROR_ICON, Gtk.IconSize.DIALOG));
                     break;
-                case Level.WARNING:
+                case AlertLevel.WARNING:
                     image.set_from_pixbuf (Icons.render_icon (WARNING_ICON, Gtk.IconSize.DIALOG));
                     break;
-                case Level.QUESTION:
+                case AlertLevel.QUESTION:
                     image.set_from_pixbuf (Icons.render_icon (QUESTION_ICON, Gtk.IconSize.DIALOG));
                     break;
                 default:
@@ -138,6 +136,9 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
             primary_text_label.halign = secondary_text_label.halign = Gtk.Align.CENTER;
             primary_text_label.justify = secondary_text_label.justify = Gtk.Justification.CENTER;
         }
+
+        // Make sure the text is selectable is the level is WARNING, ERROR or QUESTION
+        primary_text_label.selectable = secondary_text_label.selectable = (alert_level != AlertLevel.INFO);
 
         image.set_no_show_all (!show_icon);
         image.set_visible (show_icon);
@@ -158,7 +159,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
                         action_button_box.pack_start (action_button, false, false, 0);
 
                         action_button.button_release_event.connect ( () => {
-                            action_button_clicked (action_item.name);
+                            action_item.activate ();
                             return false;
                         });
                     }

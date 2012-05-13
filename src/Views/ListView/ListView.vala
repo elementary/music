@@ -283,7 +283,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 
 	private async void column_browser_changed () {
 		/* This method is only called if the column browser is available.
-		 * For performance reasons we won't update showing_media to match
+		 * For performance reasons we won't update visible_media to match
 		 * the results of the miller columns.
 		 */
 		if (lw.initialization_finished) {
