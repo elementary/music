@@ -60,14 +60,18 @@ public class BeatBox.ViewContainer : Gtk.Notebook {
 	public bool set_current_view (Gtk.Widget view) {
         int index = get_view_index (view);
 
-		if (index < 0)
+		if (index < 0) {
 			critical ("Cannot set " + view.name + " as the active view");
+            return false;
+        }
         else {
             // GtkNotebooks don't show hidden widgets.
             // Let's show the view just in case ...
             view.show ();
             set_current_page (index);
 		}
+
+		return true;
 	}
 }
 

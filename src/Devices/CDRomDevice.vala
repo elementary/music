@@ -223,8 +223,10 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			return false;
 		}
 		
+		var app_name = lw.app.get_name ();
+		
 		if(list.size == 0) {
-			lw.doAlert(_("No songs on CD"), _("%s could not find any songs on the CD. No songs can be imported").printf (lw.app.get_name ()));
+			lw.doAlert(_("No songs on CD"), _("%s could not find any songs on the CD. No songs can be imported").printf (app_name));
 			return false;
 		}
 		
@@ -266,11 +268,13 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		ripper.ripMedia(s.track, s);
 		
 		// this refreshes so that the spinner shows
+#if 0
 		ViewWrapper vw = ((ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
 		vw.list_view.get_column(MusicList.MusicColumn.ICON).visible = false; // this shows spinner for some reason
 		vw.list_view.get_column(MusicList.MusicColumn.ICON).visible = true; // this shows spinner for some reason
 		vw.list_view.resort();
 		vw.set_media (medias);
+#endif
 		
 		// this spins the spinner for the current media being imported
 		Timeout.add(100, pulser);
@@ -311,12 +315,13 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 			Media next = list.get(current_list_index);
 			media_being_ripped = next;
 			ripper.ripMedia(next.track, next);
-			
+
+#if 0
 			// this refreshes so that the spinner shows
 			next.showIndicator = true;
 			vw.list_view.resort();
 			vw.set_media (medias);
-			
+#endif			
 			++index;
 /*
 			current_operation = "<b>Importing</b> track " + next.track.to_string() + ": <b>" + String.escape (next.title) + "</b>" + ((next.artist != "Unknown Artist") ? " by " : "") + "<b>" + String.escape (next.artist) + "</b>" + ((next.album != "Unknown Album") ? " on " : "") + "<b>" + String.escape (next.album) + "</b>";

@@ -58,10 +58,10 @@ public class BeatBox.DeviceManager : GLib.Object {
 		
 		// this can take time if we have to rev up the cd drive
 		try {
-			Thread.create<void*>(get_pre_existing_mounts, false);
+			new Thread<void*>.try (null, get_pre_existing_mounts);
 		}
-		catch(GLib.ThreadError err) {
-			stdout.printf("ERROR: could not create mount getter thread: %s \n", err.message);
+		catch(GLib.Error err) {
+			warning ("Could not create mount getter thread: %s", err.message);
 		}
 	}
 	
@@ -127,12 +127,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 			lm.settings.setMusicMountName(mount.get_volume().get_name());
 			lm.recheck_files_not_found();
 			
-			try {
-				Thread.create<void*>(lm.fetch_thread_function, false);
-			}
-			catch(GLib.ThreadError err) {
-				stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
-			}
+			lm.fetch_all_cover_art_async ();
 			
 			return;
 		}
@@ -141,7 +136,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 		
 		if(added == null) {
-			stdout.printf("Found device at %s is invalid. Not using it\n", mount.get_default_location().get_parse_name());
+			warning ("Found device at %s is invalid. Not using it", mount.get_default_location().get_parse_name());
 			return;
 		}
 		

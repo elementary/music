@@ -165,11 +165,12 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		this.clickable_clicked.connect(clickableClicked);
 		this.expand_all();
 		
+		#if 0
 		/* set up drag dest stuff */
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
 		this.drag_data_received.connect(dragReceived);
-
+		#endif
 		addBasicItems ();
 	}
 
@@ -326,7 +327,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		}
 	}
 	
-	private virtual bool sideListClick(Gdk.EventButton event) {
+	public virtual bool sideListClick(Gdk.EventButton event) {
 		if(event.type == Gdk.EventType.BUTTON_PRESS && event.button == 3) { //secondary click
 			// select one based on mouse position
 			TreeIter iter;
@@ -429,7 +430,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		return false;
 	}
 	
-	private virtual void sideListDoubleClick(TreePath path, TreeViewColumn column) {
+	public virtual void sideListDoubleClick(TreePath path, TreeViewColumn column) {
 		TreeIter iter_f;
 		TreeIter iter;
 		
@@ -728,14 +729,14 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			
 			if(o is ViewWrapper && (o as ViewWrapper).hint == ViewWrapper.Hint.SMART_PLAYLIST) {
 				var smart_playlist = lm.smart_playlist_from_id ((o as ViewWrapper).relative_id);
-				p.add_media (smart_playlist.analyze(lm, lm.media_ids()));
+				p.add_media (smart_playlist.analyze(lm, lm.media ()));
 					
 				p.name = smart_playlist.name;
 			}
 			else {
-				var to_add = new LinkedList<int>();
-				foreach(Media m in ((ViewWrapper)o).list_view.get_table().get_values()) {
-					to_add.add(m.rowid);
+				var to_add = new LinkedList<Media>();
+				foreach(Media m in ((ViewWrapper)o).list_view.get_media ()) {
+					to_add.add (m);
 				}
 				p.add_media (to_add);
 				
@@ -840,16 +841,24 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		p.name = original_name;
 	}
 	
-	void playlistImportClicked(string title = "Playlist") {
+	void playlistImportClicked(string title = _("Playlist")) {
+        var files = new SList<string> ();
+		string[] names = {};	
+		var path = new LinkedList<string> ();
+		var stations = new LinkedList<Media> ();
+		LinkedList<string>[] paths = {};
+		LinkedList<string>[] filtered_paths = {};
+		bool success = false;
+		int i = 0;
+		
 		if(lm.doing_file_operations())
 			return;
-		
-		string file = "";
-		string name = "";
-		var file_chooser = new FileChooserDialog ("Import " + title, lw,
+
+		var file_chooser = new FileChooserDialog (_("Import %s").printf (title), lw,
 								  FileChooserAction.OPEN,
 								  Gtk.Stock.CANCEL, ResponseType.CANCEL,
 								  Gtk.Stock.OPEN, ResponseType.ACCEPT);
+		file_chooser.set_select_multiple (true);
 		
 		// filters for .m3u and .pls
 		var m3u_filter = new FileFilter();
@@ -863,31 +872,40 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		file_chooser.add_filter(pls_filter);
 		
 		if (file_chooser.run () == ResponseType.ACCEPT) {
-			file = file_chooser.get_filename();
-			name = file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
+			files = file_chooser.get_filenames();
+			files.foreach ( (file)=> {
+			    names += file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
+			});
 		}
 		
 		file_chooser.destroy ();
 		
-		var paths = new LinkedList<string>();
-		var stations = new LinkedList<Media>();
-		bool success = false;
+		files.foreach ( (file)=> {
+	    	if(file != "") {
+	    	    path = new LinkedList<string> ();
+		    	if(file.has_suffix(".m3u")) {
+		    		success = Playlist.parse_paths_from_m3u(lm, file, ref path, ref stations);
+		    		paths += path;
+		    	}
+		    	else if(file.has_suffix(".pls")) {
+		    		success = Playlist.parse_paths_from_pls(lm, file, ref path, ref stations);
+		    		paths += path;
+		    	}
+		    	else {
+		    		success = false;
+		    		lw.doAlert("Invalid Playlist", "Unrecognized playlist file. Import failed.");
+		    		return;
+		    	}
+		    }
+		    i++;
+		});
 		
-		if(file != "") {
-			if(file.has_suffix(".m3u")) {
-				success = Playlist.parse_paths_from_m3u(lm, file, ref paths, ref stations);
-			}
-			else if(file.has_suffix(".pls")) {
-				success = Playlist.parse_paths_from_pls(lm, file, ref paths, ref stations);
-			}
-			else {
-				success = false;
-				lw.doAlert("Invalid Playlist", "Unrecognized playlist file. Import failed.");
-				return;
-			}
-		}
+		foreach (LinkedList l in paths)
+		    if (l.size > 0)
+		        filtered_paths += l;
 		
 		if(success) {
+/*<<<<<<< TREE
 			if(paths.size > 0) {
 				stdout.printf("paths size is %d\n", paths.size);
 				lm.start_file_operations("Importing <b>" + name + "</b> to Library...");
@@ -896,13 +914,28 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			}
 			if(stations.size > 0) {
 				stdout.printf("stations size is %d\n", stations.size);
-				lm.add_medias(stations);
+				lm.add_medias(stations, true);
 				
 				//Widget w = getWidget(network_radio_iter);
 				//((ViewWrapper)w).do_update(((ViewWrapper)w).current_view, lm.station_ids(), true, true, false);
 			}
 		}
+=======*/
+			if(filtered_paths.length > 0) {
+				debug ("I was called");
+				lm.fo.import_from_playlist_file_info(names, filtered_paths);
+		    		lw.update_sensitivities();
+		    	}
+#if HAVE_INTERNET_RADIO
+			if(stations.size > 0) {
+				stdout.printf("stations size is %d\n", stations.size);
+				lm.add_medias(stations, true);
+			}
+#endif
+		}
+//>>>>>>> MERGE-SOURCE
 	}
+
 	
 	/* device stuff */
 	void deviceAdded(Device d) {
@@ -942,7 +975,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			((Device)o).unmount();
 		}
 	}
-	
+#if 0
 	void true_drag_received_signal(TreeIter iter, Gtk.SelectionData data) {
 		Widget w = getWidget(convertToChild(iter));
 		
@@ -999,5 +1032,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				
 				d.add_medias(to_add);
 		}
+
 	}
+#endif
 }

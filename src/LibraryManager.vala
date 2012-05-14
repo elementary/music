@@ -493,6 +493,83 @@ public class BeatBox.LibraryManager : GLib.Object {
 			warning (err.message);
 		}
 	}
+
+
+
+
+
+
+
+
+
+	public void recheck_files_not_found() {
+		try {
+			new Thread<void*>.try (null, recheck_files_not_found_thread);
+		}
+		catch(GLib.Error err) {
+			warning ("Could not create thread to check file locations: %s\n", err.message);
+		}
+	}
+	
+	public void* recheck_files_not_found_thread () {
+		message ("IMPLEMENT FILE NOT FOUND CHECK !!");
+
+#if 0
+		Media[] cache_media;
+		var not_found = new LinkedList<Media>();
+		var found = new LinkedList<Media>(); // files that location were unknown but now are found
+		var not_found_pix = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
+		
+		_media_lock.lock();
+		cache_media = _media.values.to_array();
+		_media_lock.unlock();
+		
+		for(int i = 0; i < cache_media.length; ++i) {
+			var m = cache_media[i];
+			if(m.mediatype == Media.MediaType.STATION || 
+			(m.mediatype == Media.MediaType.PODCAST && m.uri.has_prefix("http:/"))) {
+				// don't try to find this
+			}
+			else {
+				if(File.new_for_uri(m.uri).query_exists() && m.location_unknown) {
+					m.unique_status_image = null;
+					m.location_unknown = false;
+					found.add(m);
+				}
+				else if(!File.new_for_uri(m.uri).query_exists() && !m.location_unknown) {
+					m.unique_status_image = not_found_pix;
+					m.location_unknown = true;
+					not_found.add(m);
+				}
+			}
+		}
+		
+		Idle.add( () => {
+			if(not_found.size > 0) {
+				warning("Some media files could not be found and are being marked as such.\n");
+				update_medias(not_found, false, false, true);
+				foreach(var m in not_found) {
+					lw.media_not_found(m.rowid);
+				}
+			}
+			if(found.size > 0) {
+				warning("Some media files whose location were unknown were found.\n");
+				update_medias(found, false, false, true);
+				foreach(var m in found) {
+					lw.media_found(m.rowid);
+				}
+			}
+			
+			return false;
+		});
+#endif
+		return null;
+	}
+
+
+
+
+
 	
 	/************************ Playlist stuff ******************/
 	public int playlist_count() {

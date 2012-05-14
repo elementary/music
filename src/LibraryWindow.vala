@@ -337,8 +337,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		int i = settings.getLastMediaPlaying();
 		if(i != 0 && lm.media_from_id(i) != null && File.new_for_uri(lm.media_from_id(i).uri).query_exists()) {
-			lm.media_from_id(i).resume_pos;
-			lm.playMedia(i, true);
+			lm.playMedia(lm.media_from_id(i), true);
 		}
 		else {
 			// don't show info panel if nothing playing
@@ -887,19 +886,20 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			lm.media_info.media.skip_count++;
 
 			// don't update, it will be updated eventually
-			//lm.update_media(lm.media_info.media, false, false);
+			//lm.update_media_item (lm.media_info.media, false, false);
 		}
 
-		int next_id;
+		Media? m = null;
 		if(lm.next_gapless_id != 0) {
-			next_id = lm.next_gapless_id;
-			lm.playMedia(lm.next_gapless_id, false);
+			int next_id = lm.next_gapless_id;
+			m = lm.media_from_id (next_id);
+			lm.playMedia (m, false);
 		}
 		else
-			next_id = lm.getNext(true);
+			m = lm.getNext(true);
 
 		/* test to stop playback/reached end */
-		if(next_id == 0) {
+		if(m == null) {
 			lm.player.pause();
 			lm.playing = false;
 			update_sensitivities();
@@ -913,10 +913,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	public virtual void play_previous_media (bool inhibit_notifications = false) {
 		if(lm.player.getPosition() < 5000000000 || (lm.media_active && lm.media_info.media.mediatype == 3)) {
 			bool play = true;
-			int prev_id = lm.getPrevious(true);
+			var prev = lm.getPrevious(true);
 
 			/* test to stop playback/reached end */
-			if(prev_id == 0) {
+			if(prev == null) {
 				lm.player.pause();
 				lm.playing = false;
 				update_sensitivities();
@@ -935,7 +935,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		lm.settings.setLastMediaPosition((int)((double)lm.player.getPosition()/1000000000));
 		if(lm.media_active) {
 			lm.media_info.media.resume_pos = (int)((double)lm.player.getPosition()/1000000000);
-			lm.update_media(lm.media_info.media, false, false);
+			lm.update_media_item (lm.media_info.media, false, false);
 		}
 		lm.player.pause();
 
@@ -1171,7 +1171,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			}
 #endif
 
-			lm.update_media(lm.media_info.media, false, false);
+			lm.update_media_item (lm.media_info.media, false, false);
 
 			// add to the already played list
 			lm.add_already_played (lm.media_info.media);
@@ -1198,13 +1198,16 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		if((double)(sec/(double)lm.media_info.media.length) > 0.80 && !added_to_play_count) {
 			added_to_play_count = true;
 			lm.media_info.media.play_count++;
-			lm.update_media(lm.media_info.media, false, false);
+			lm.update_media_item (lm.media_info.media, false, false);
 		}
 	}
 
 	public void media_not_found(int id) {
+// XXX FIXME TODO
+#if 0
 		var not_found = new FileNotFoundDialog(lm, this, id);
 		not_found.show();
+#endif
 	}
 
 	public void set_statusbar_info (string message)

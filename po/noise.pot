@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-13 20:18-0600\n"
+"POT-Creation-Date: 2012-05-13 21:20-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,24 +48,24 @@ msgid ""
 "importing the CD."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:227
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:230
 msgid "No songs on CD"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:227
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:230
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:232
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:236
 #, c-format
 msgid "%s is already doing an import"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:232
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:236
 #, c-format
 msgid ""
@@ -73,37 +73,37 @@ msgid ""
 "the CD."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:250
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:258
 msgid "Ripping track 1"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:324
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:329
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:320
 #, c-format
 msgid "Importing track %i"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:334
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:337
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:330
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:333
 msgid "CD Import Complete"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:334
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:330
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:337
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:333
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:370
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 
@@ -272,12 +272,12 @@ msgid "Unknown Title"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid "Unknown Artist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:709
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid "Unknown Album"
 msgstr ""
 
@@ -346,31 +346,40 @@ msgstr ""
 msgid "Import Playlists"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:180
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:181
 msgid "Library"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:181
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:182
 msgid "Devices"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:182
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:183
 msgid "Network"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:183
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:184
 msgid "Playlists"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:270
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:271
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:98
-#: /home/victor/noise/po/../src//LibraryWindow.vala:562
+#: /home/victor/noise/po/../src//LibraryWindow.vala:561
 msgid "Music"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:275
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:276
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:99
 msgid "Podcasts"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:844
+msgid "Playlist"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:857
+#, c-format
+msgid "Import %s"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:67
@@ -1054,7 +1063,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:314
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:575
+#: /home/victor/noise/po/../src//LibraryWindow.vala:574
 msgid "Queue"
 msgstr ""
 
@@ -1386,19 +1395,19 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:572
+#: /home/victor/noise/po/../src//LibraryWindow.vala:571
 msgid "Similar"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:579
+#: /home/victor/noise/po/../src//LibraryWindow.vala:578
 msgid "History"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid " by "
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:709
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid " on "
 msgstr ""
 
