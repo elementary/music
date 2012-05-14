@@ -151,7 +151,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 
 	public signal void history_changed ();
 
-	public signal void media_played(Media new_media, Media? old_media);
+	public signal void media_played(BeatBox.Media new_media, BeatBox.Media? old_media);
 	public signal void playback_stopped(int was_playing);
 		
 	public LibraryManager(BeatBox.LibraryWindow lww) {
