@@ -189,6 +189,7 @@ public abstract class BeatBox.GenericList : FastView {
 				else
 					insert_column(tvc, index);
 
+				// FIXME! this can be tvc!
 
 				get_column(index).resizable = true;
 				get_column(index).reorderable = false;
@@ -227,6 +228,7 @@ public abstract class BeatBox.GenericList : FastView {
 				insert_column(tvc, index);
 			}
 
+			// FIXME! this can be tvc!
 			get_column(index).get_button().button_press_event.connect(view_header_click);
 			get_column(index).notify["width"].connect(viewHeadersResized);
 
@@ -279,6 +281,7 @@ public abstract class BeatBox.GenericList : FastView {
 			// this is equivalent
 			var column_item = column_chooser_menu_items.get (tvc.title);
 			if (column_item != null)
+				// FIXME! this can be tvc!
 				column_item.active = get_column (index).visible;
 			else
 				debug ("column item '%s' is null", tvc.title);
@@ -331,6 +334,7 @@ public abstract class BeatBox.GenericList : FastView {
 			// this is equivalent
 			var column_item = column_chooser_menu_items.get (tvc.title);
 			if (column_item != null)
+				// FIXME! this can be tvc!
 				get_column (index).visible = column_item.active;
 
 			++index;
@@ -375,28 +379,24 @@ public abstract class BeatBox.GenericList : FastView {
 			lw.playClicked();
 		}
 	}
-	
-	void media_played(Media m, Media? old) {
+
+	// FIXME: find a way to re-draw old media cells
+	void media_played(Media m) {
 		// find index of given media
-		int old_index = -1;
 		int id_index = -1;
 		for(int i = 0; i < get_visible_table().size(); ++i) {
-			if(old != null && get_visible_table().get(i) == old) {
-				old_index = i;
-				if(id_index != -1) break;
-			}
-			else if(get_visible_table().get(i) == m) {
+			if (get_visible_table().get(i) == m) {
 				id_index = i;
-				if(old_index != -1 || old == null) break;
 			}
 		}
 		
-		if(old_index != -1)		redraw_row(old_index);
-		if(id_index != -1)		redraw_row(id_index);
-
+		if(id_index != -1)
+			redraw_row(id_index);
+#if 0
 		if(!scrolled_recently) {
 			//scroll_to_current_media();
 		}
+#endif
 	}
 	
 	public void media_updated(LinkedList<int> ids) {
@@ -437,7 +437,7 @@ public abstract class BeatBox.GenericList : FastView {
 			}
 		}
 		
-		media_played(lm.media_info.media, lm.media_info.media);
+		media_played(lm.media_info.media);
 	}
 	
 	protected GLib.List<Media> get_selected_medias() {

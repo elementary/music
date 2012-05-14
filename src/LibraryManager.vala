@@ -151,7 +151,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 
 	public signal void history_changed ();
 
-	public signal void media_played(BeatBox.Media new_media, BeatBox.Media? old_media);
+	public signal void media_played (Media played_media);
 	public signal void playback_stopped(int was_playing);
 		
 	public LibraryManager(BeatBox.LibraryWindow lww) {
@@ -1609,7 +1609,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(id != PREVIEW_MEDIA_ID)
 			settings.setLastMediaPlaying(id);
 		
-		media_played(m, media_from_id(old_id));
+		if (m != null)
+			media_played (m);
 		
 		/* if same media 1 second later...
 		 * check for embedded art if need be (not loaded from on file) and use that

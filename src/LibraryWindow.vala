@@ -564,7 +564,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		debug ("Done with main views.");
 	}
 	
-	private async void load_playlists () {
+	private void load_playlists () {
 		debug ("Loading playlists");
 
 		// Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future
@@ -722,7 +722,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	/** This should be used whenever a call to play a new media is made
 	 * @param s The media that is now playing
 	 */
-	public virtual void media_played(Media m, Media? old) {
+	public virtual void media_played(Media m) {
 		/*if(old == -2 && i != -2) { // -2 is id reserved for previews
 			Media s = settings.getLastMediaPlaying();
 			s = lm.media_from_name(s.title, s.artist);

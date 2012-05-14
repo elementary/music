@@ -26,14 +26,13 @@ using Gee;
 public class BeatBox.InfoPanel : Gtk.EventBox {
 	private LibraryManager lm;
 	private LibraryWindow lw;
-	private int id; // need this for when rating the media
 
 	private ScrolledWindow scroll;
 	
 	private Label title;
 	private Label artist;
-	private Button loveMedia;
-	private Button banMedia;
+	private Button love_button;
+	private Button ban_button;
 	private Gtk.Image coverArt;
 	private Granite.Widgets.Rating rating;
 	private Label album;
@@ -49,10 +48,13 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		buildUI();
 
 		similars_fetched = false;
-		lm.media_updated.connect(medias_updated);
-		lm.media_played.connect(media_played);
-		lm.lfm.logged_in.connect(logged_in_to_lastfm);
-		lm.lfm.similar_retrieved.connect(similar_retrieved);
+
+		lm.media_updated.connect (on_media_updated);
+		lm.media_played.connect (on_media_played);
+
+		// Last.fm
+		lm.lfm.logged_in.connect (logged_in_to_lastfm);
+		lm.lfm.similar_retrieved.connect (similar_retrieved);
 	}
 	
 	private void buildUI() {
@@ -62,8 +64,8 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 
 		title = new Label("");
 		artist = new Label("");
-		loveMedia = new Button();
-		banMedia = new Button();
+		love_button = new Button();
+		ban_button = new Button();
 		coverArt = new Gtk.Image();
 		coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
 		rating = new Granite.Widgets.Rating (true, IconSize.MENU); // centered = true
@@ -77,10 +79,10 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		album.ellipsize = Pango.EllipsizeMode.END;
 		year.ellipsize = Pango.EllipsizeMode.END;
 		
-		loveMedia.set_image (Icons.LASTFM_LOVE.render_image (IconSize.MENU));
-		banMedia.set_image (Icons.LASTFM_BAN.render_image (IconSize.MENU));
+		love_button.set_image (Icons.LASTFM_LOVE.render_image (IconSize.MENU));
+		ban_button.set_image (Icons.LASTFM_BAN.render_image (IconSize.MENU));
 
-		loveMedia.halign = banMedia.halign = Gtk.Align.CENTER;
+		love_button.halign = ban_button.halign = Gtk.Align.CENTER;
 
 		var content = new Box (Orientation.VERTICAL, 0);
 
@@ -88,8 +90,8 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		content.margin_left = content.margin_right = 6;
 
 		var buttons = new ButtonBox (Orientation.HORIZONTAL);
-		buttons.pack_start (loveMedia, false, false, 0);
-		buttons.pack_end (banMedia, false, false, 0);
+		buttons.pack_start (love_button, false, false, 0);
+		buttons.pack_end (ban_button, false, false, 0);
 
 		// put treeview inside scrolled window		
 		scroll = new ScrolledWindow (null, null);
@@ -130,8 +132,8 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		// signals here
 		rating.rating_changed.connect (ratingChanged);
 		title.button_press_event.connect (titleClicked);
-		loveMedia.clicked.connect (lovthisuttonClicked);
-		banMedia.clicked.connect (banButtonClicked);
+		love_button.clicked.connect (love_button_clicked);
+		ban_button.clicked.connect (ban_button_clicked);
 
 		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
 		Gtk.drag_dest_add_uri_targets(this);
@@ -140,61 +142,61 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		update_visibilities();
 	}
 	
-	public void logged_in_to_lastfm() {
+	private void logged_in_to_lastfm() {
 		update_visibilities();
 	}
 
-	public void update_visibilities() {
+	private void update_visibilities() {
 		var lastfm_elements_visible = lm.settings.getLastFMSessionKey() != "";
 
-		loveMedia.set_no_show_all (!lastfm_elements_visible);
-		banMedia.set_no_show_all (!lastfm_elements_visible);
+		love_button.set_no_show_all (!lastfm_elements_visible);
+		ban_button.set_no_show_all (!lastfm_elements_visible);
 		ssv.set_no_show_all (!lastfm_elements_visible);
-		loveMedia.set_visible (lastfm_elements_visible);
-		banMedia.set_visible (lastfm_elements_visible);
+		love_button.set_visible (lastfm_elements_visible);
+		ban_button.set_visible (lastfm_elements_visible);
 		ssv.set_visible (similars_fetched);
 	}
 
-	void media_played (Media new_media, Media? old) {
+	private void on_media_played () {
 		update_metadata ();
 		update_cover_art ();
 		update_visibilities ();
 		similars_fetched = false;
 	}
 	
-	void medias_updated(Collection<int> ids) {
-		if(ids.contains(id)) {
-			update_metadata ();
-			update_cover_art ();
-			update_visibilities ();
-		}
+	private void on_media_updated () {
+		update_metadata ();
+		update_cover_art ();
+		update_visibilities ();
 	}
 	
-	void update_metadata() {
-		Media s = lm.media_from_id(id);
-		
-		title.set_markup("<span size=\"large\"><b>" + String.escape (s.title) + "</b></span>");
-		artist.set_text(s.artist);
-		album.set_text(s.album);
+	private void update_metadata() {
+		if (lm.media_info == null || lm.media_info.media == null)
+			return;
+
+		title.set_markup("<span size=\"large\"><b>" + String.escape (lm.media_info.media.title) + "</b></span>");
+		artist.set_text(lm.media_info.media.artist);
+		album.set_text(lm.media_info.media.album);
 
 		// do rating stuff
-		rating.set_rating((int)s.rating);
+		rating.set_rating((int)lm.media_info.media.rating);
 
-		if(s.year > 1900)
-			year.set_markup("<span size=\"x-small\">" + String.escape ("(%d)".printf ((int)s.year)) + "</span>");
+		if(lm.media_info.media.year > 1900)
+			year.set_markup("<span size=\"x-small\">" + String.escape ("(%d)".printf ((int)lm.media_info.media.year)) + "</span>");
 		else
 			year.set_markup("");
 	}
 	
-	void update_cover_art() {
-		if(lm.media_from_id(id) == null)
+	private void update_cover_art() {
+		if (lm.media_info == null || lm.media_info.media == null)
 			return;
 
-		var coverart_pixbuf = lm.get_cover_album_art(id);
+		var coverart_pixbuf = lm.get_cover_album_art (lm.media_info.media.rowid);
 
 		if (coverart_pixbuf == null)
 			coverart_pixbuf = lm.get_pixbuf_shadow (Icons.DEFAULT_ALBUM_ART_PIXBUF);
 
+		// This is not dumb. We're just checking for nullity again
 		if(coverart_pixbuf != null) {
 			coverArt.show();
 			coverArt.set_from_pixbuf(coverart_pixbuf);
@@ -204,26 +206,31 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		}
 	}
 	
-	void similar_retrieved(LinkedList<int> similar_internal, LinkedList<Media> similar_external) {
+	private void similar_retrieved (LinkedList<int> similar_internal, LinkedList<Media> similar_external) {
 		update_similar_list(similar_external);
 	}
-	
-	public void update_similar_list(Collection<Media> medias) {
-		if(medias.size > 8) {
+
+	public void update_similar_list (Collection<Media> media) {
+		if (media.size > 8) {
 			similars_fetched = true;
-			ssv.populateView(medias);
+			ssv.populateView (media);
 		}
 		
 		update_visibilities ();
 	}
 	
-	void ratingChanged(int new_rating) {
-		var m = lm.media_from_id(id);
-		m.rating = new_rating;
-		lm.update_media_item (m, false, true);
+	private void ratingChanged(int new_rating) {
+		if (lm.media_info == null || lm.media_info.media == null)
+			return;
+
+		lm.media_info.media.rating = new_rating;
+		lm.update_media_item (lm.media_info.media, false, true);
 	}
 	
-	bool titleClicked(Gdk.EventButton event) {
+	private bool titleClicked(Gdk.EventButton event) {
+		if (lm.media_info == null || lm.media_info.media == null)
+			return false;
+
 		try {
 			new Thread<void*>.try (null, () => {
 				try {
@@ -244,27 +251,37 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		return false;
 	}
 	
-	void lovthisuttonClicked() {
+	private void love_button_clicked() {
+		if (lm.media_info == null || lm.media_info.media == null)
+			return;
+
 		lm.lfm.loveTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
-	
-	void banButtonClicked() {
+
+	private void ban_button_clicked() {
+		if (lm.media_info == null || lm.media_info.media == null)
+			return;
+
 		lm.lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
 	}
 	
-	bool is_valid_image_type(string type) {
+	// FIXME: MOVE TO UTILS!
+	private bool is_valid_image_type(string type) {
 		var typeDown = type.down();
 		
 		return (typeDown.has_suffix(".jpg") || typeDown.has_suffix(".jpeg") ||
 				typeDown.has_suffix(".png"));
 	}
 	
-	void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
+	private void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
+		if (lm.media_info == null || lm.media_info.media == null)
+			return;
+
 		bool success = true;
 		
 		foreach(string uri in data.get_uris()) {
 			
-			if(is_valid_image_type(uri) && lm.media_info.media != null) {
+			if(is_valid_image_type(uri)) {
 				message("Saving dragged album art as image\n");
 				lm.save_album_locally(lm.media_info.media.rowid, uri);
 			}

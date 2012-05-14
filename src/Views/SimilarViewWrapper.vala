@@ -32,13 +32,13 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 		base(lw, tvs, id);
 		
 		fetched = false;
-		lm.media_played.connect(media_played);
+		lm.media_played.connect(on_media_played);
 		lm.lfm.similar_retrieved.connect(similar_retrieved);
 	}
 	
-	void media_played(Media new_media, Media? old) {
+	void on_media_played(Media new_media) {
 		fetched = false;
-		
+
 		if (!list_view.get_is_current_list()) {
 			base_media = new_media;
 			set_media (new LinkedList<Media>());

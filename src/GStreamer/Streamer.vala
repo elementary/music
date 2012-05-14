@@ -205,7 +205,7 @@ public class BeatBox.Streamer : GLib.Object {
 							lm.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
 							
 							if(old_title != lm.media_info.media.title || old_artist != lm.media_info.media.artist)
-								lw.media_played(lm.media_info.media, lm.media_info.media); // pretend as if media changed
+								lw.media_played(lm.media_info.media); // pretend as if media changed
 						}
 						else {
 							// if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
