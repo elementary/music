@@ -268,7 +268,7 @@ public class BeatBox.FileOperator : Object {
 		return rv;
 	}
 	
-	public void save_medias(Collection<Media> to_save) {
+	public void save_media (Collection<Media> to_save) {
 		foreach(Media s in to_save) {
 			if(!s.isTemporary && !s.isPreview && GLib.File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
 				toSave.offer(s);
@@ -386,7 +386,7 @@ public class BeatBox.FileOperator : Object {
 				// wait to update media when out of thread
 				if(emit_update) {
 					Idle.add( () => {
-						lm.update_media(s, false, false); return false;
+						lm.update_media_item (s, false, false); return false;
 					});
 				}
 				
@@ -422,7 +422,7 @@ public class BeatBox.FileOperator : Object {
 		}
 	}
 	
-	public void remove_medias(Collection<string> toRemove) {
+	public void remove_media (Collection<string> toRemove) {
 		var dummy_list = new LinkedList<string>();
 		foreach(string s in toRemove) {
 			try {
@@ -531,7 +531,7 @@ public class BeatBox.FileOperator : Object {
 			queue_finished();
 		}
 		else {
-			tagger.discoverer_import_medias(files);
+			tagger.discoverer_import_media (files);
 		}
 	}
 	
@@ -546,7 +546,7 @@ public class BeatBox.FileOperator : Object {
 			m.mediatype = 1;
 #endif
 		if(new_imports.size >= 200) {
-			lm.add_medias(new_imports, true); // give user some feedback
+			lm.add_media (new_imports); // give user some feedback
 			new_imports.clear();
 		}
 	}
@@ -557,7 +557,7 @@ public class BeatBox.FileOperator : Object {
 	}
 	
 	void queue_finished() {
-		lm.add_medias(new_imports, true);
+		lm.add_media (new_imports);
 		new_imports.clear();
 		
 		if(import_type == ImportType.PLAYLIST) {

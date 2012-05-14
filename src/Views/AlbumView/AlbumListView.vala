@@ -200,7 +200,7 @@ public class BeatBox.AlbumListView : Window {
 
 		setting_media.unlock ();
 
-		lm.update_medias (updated, false, true);
+		lm.update_media (updated, false, true);
 	}
 }
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-13 18:52-0600\n"
+"POT-Creation-Date: 2012-05-13 20:18-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,6 +33,78 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:432
 msgid "Rescanning music for changes. This may take a while..."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:224
+msgid "Could not find Music Folder"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:224
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:227
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:230
+msgid "No songs on CD"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:227
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:230
+#, c-format
+msgid "%s could not find any songs on the CD. No songs can be imported"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:232
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:236
+#, c-format
+msgid "%s is already doing an import"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:232
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:236
+#, c-format
+msgid ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:250
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:258
+msgid "Ripping track 1"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:324
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:320
+#, c-format
+msgid "Importing track %i"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:334
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:337
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:330
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:333
+msgid "CD Import Complete"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:334
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:330
+#, c-format
+msgid "%s has finished importing %i songs from Audio CD."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:337
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:333
+#, c-format
+msgid "%s has finished importing a song from Audio CD."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:370
+msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:35
@@ -184,8 +256,15 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/Playlist.vala:37
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:139
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:315
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
 msgid "New Playlist"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Objects/Playlist.vala:210
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:309
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
+msgid "Radio Station"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:45
@@ -228,7 +307,8 @@ msgid "Download new Episodes"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:121
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:157
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:318
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
 #: /home/victor/noise/po/../src//LibraryWindow.vala:185
 msgid "Import to Library"
 msgstr ""
@@ -392,7 +472,7 @@ msgid ""
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:135
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
 msgid "Choose Music Folder"
 msgstr ""
 
@@ -677,11 +757,6 @@ msgstr ""
 msgid "Audiobook"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:309
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
-msgid "Radio Station"
-msgstr ""
-
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:357
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:385
 msgid "is"
@@ -749,6 +824,7 @@ msgid "Import all media"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:517
 msgid "Import"
 msgstr ""
 
@@ -956,53 +1032,70 @@ msgstr ""
 msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:132
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
 msgid "Remove from Library"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:106
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:144
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:104
 msgid "Remove from Queue"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:125
-msgid "Remove from Device"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:312
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:313
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "Show in File Browser"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:314
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
 #: /home/victor/noise/po/../src//LibraryWindow.vala:575
 msgid "Queue"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:316
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
 msgid "Add to Playlist"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:156
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:317
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Remove Song"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:158
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:513
+#, c-format
+msgid "Import %d of %d selected songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:515
+#, c-format
+msgid "Import %d songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:123
+msgid "Remove from Device"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:156
 msgid "Scroll to Current Song"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:250
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:248
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:252
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:250
 msgid "Import this song"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:254
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:252
 #, c-format
 msgid "Import %i songs"
 msgstr ""
@@ -1323,10 +1416,6 @@ msgid "Rescanning music folder for changes"
 msgstr ""
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1027
-msgid "Could not find Music Folder"
-msgstr ""
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 
@@ -1368,4 +1457,8 @@ msgstr ""
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
 #, c-format
 msgid "%i minutes"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:370
+msgid "Cancelling remaining imports..."
 msgstr ""

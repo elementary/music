@@ -111,7 +111,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		cancelled = true;
 	}
 	
-	public void discoverer_import_medias(LinkedList<string> files) {
+	public void discoverer_import_media (LinkedList<string> files) {
 		int size = 0;
 		cancelled = false;
 		path_queue.clear();

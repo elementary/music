@@ -121,7 +121,7 @@ public class BeatBox.FileNotFoundDialog : Window {
 	}
 	
 	void removeMediaClicked() {
-		lm.remove_medias(media_list, false);
+		lm.remove_media (media_list, false);
 		
 		this.destroy();
 	}
@@ -160,7 +160,7 @@ public class BeatBox.FileNotFoundDialog : Window {
 			m.location_unknown = false;
 			m.unique_status_image = null;
 			// TODO: lm.lw.media_found(m.rowid);
-			lm.update_media(m, false, false);
+			lm.update_media_item (m, false, false);
 			
 			this.destroy();
 		}

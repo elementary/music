@@ -218,8 +218,9 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 	}
 	
 	void ratingChanged(int new_rating) {
-		lm.media_from_id(id).rating = new_rating;
-		lm.update_media(lm.media_from_id(id), false, true);
+		var m = lm.media_from_id(id);
+		m.rating = new_rating;
+		lm.update_media_item (m, false, true);
 	}
 	
 	bool titleClicked(Gdk.EventButton event) {

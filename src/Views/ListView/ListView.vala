@@ -95,7 +95,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
 			case ViewWrapper.Hint.CDROM:
 			//case ViewWrapper.Hint.ALBUM_LIST:
-				list_view = new MusicListView (lm, tvs);
+				list_view = new MusicListView (view_wrapper, tvs);
 				break;
 			default:
 				critical ("NO LIST VIEW AVAILABLE FOR HINT -> %s", tvs.get_hint().to_string());
@@ -292,8 +292,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 	}
 
+	// TODO: Since is_initial is deprecated and not used, update the external code to stop using it
 	public void set_as_current_list (int media_id, bool is_initial = false) {
-		list_view.set_as_current_list (media_id, is_initial);
+		list_view.set_as_current_list (lm.media_from_id (media_id));
 	}
 
 	public bool get_is_current_list ()  {

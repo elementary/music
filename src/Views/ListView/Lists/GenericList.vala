@@ -63,8 +63,8 @@ public abstract class BeatBox.GenericList : FastView {
 		row_activated.connect(row_activated_signal);
 		rows_reordered.connect(updateTreeViewSetup);
 		lm.current_cleared.connect(current_cleared);
-		lm.media_played.connect(media_played);
-		lm.medias_updated.connect(medias_updated);
+		lm.media_played.connect (media_played);
+		lm.media_updated.connect (media_updated);
 	}
 
 	public void set_parent_wrapper(ViewWrapper parent) {
@@ -399,7 +399,7 @@ public abstract class BeatBox.GenericList : FastView {
 		}
 	}
 	
-	public void medias_updated(LinkedList<int> ids) {
+	public void media_updated(LinkedList<int> ids) {
 		var map = new HashMap<int, int>();
 		foreach(var i in ids)
 			map.set(i, 1);

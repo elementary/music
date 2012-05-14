@@ -36,11 +36,11 @@ public class BeatBox.Playlist : Object {
 	public Playlist() {
 		name = _("New Playlist");
 		tvs = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
-		_media = new Gee.HashMap<int, int>();
+		_media = new Gee.HashMap<Media, int>();
 	}
 	
 	public Playlist.with_info(int rowid, string name) {
-		_media = new Gee.HashMap<int, int>();
+		_media = new Gee.HashMap<Media, int>();
 		tvs = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		this.rowid = rowid;
 		this.name = name;
@@ -205,9 +205,9 @@ public class BeatBox.Playlist : Object {
 			while ((line = dis.read_line(null)) != null) {
 				if(line.has_prefix("http:/")) {
 					Media s = new Media(line);
-					s.mediatype = 3;
+					s.mediatype = Media.MediaType.STATION;
 					
-					s.album_artist = "Radio Station";
+					s.album_artist = _("Radio Station");
 					
 					if(s.length <= 0)
 						stations.add(s);
@@ -262,7 +262,7 @@ public class BeatBox.Playlist : Object {
 		foreach(var entry in files.entries) {
 			if(entry.value.has_prefix("http:/")/* && lengths.get(entry.key) != null && int.parse(lengths.get(entry.key)) <= 0*/)  {
 				Media s = new Media(entry.value);
-				s.mediatype = 3;
+				s.mediatype = Media.MediaType.STATION;
 				s.album_artist = titles.get(entry.key);
 				
 				if(s.album_artist == null)

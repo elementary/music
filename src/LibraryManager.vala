@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-/** This is where all the media stuff happens. Here, medias are retrieved
+/** This is where all the media stuff happens. Here, media is retrieved
  * from the db, added to the queue, sorted, and more. LibraryWindow is
  * the visual representation of this class
  */
@@ -41,13 +41,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	public HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
-	private HashMap<int, Media> _media; // rowid, media of all medias
+	private HashMap<int, Media> _media; // rowid, media of all media
 	private HashMap<int, Media> _songs;
-	private LinkedList<int> _permanents; // list of all local medias
+	private LinkedList<int> _permanents; // list of all local media
 	int local_song_count;
 	public int current_view_size;
 	
-	// id, media of current medias.
+	// id, media of current media.
 	private HashMap<int, Media> _current = new Gee.HashMap<int, Media>();
 
 	//list of id's yet to be played while on shuffle
@@ -92,7 +92,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public TreeViewSetup history_setup  { private set; get; }
 
 
-	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new medias play, this goes with it
+	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new media play, this goes with it
 	public int _current_index;
 	public int _current_shuffled_index;
 	public BeatBox.MediaInfo media_info { private set; get; }
@@ -134,8 +134,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public signal void music_counted(int count);
 	public signal void music_added(LinkedList<string> not_imported);
-	public signal void music_imported(LinkedList<Media> new_medias, LinkedList<string> not_imported);
-	public signal void music_rescanned(LinkedList<Media> new_medias, LinkedList<string> not_imported);
+	public signal void music_imported(LinkedList<Media> new_media, LinkedList<string> not_imported);
+	public signal void music_rescanned(LinkedList<Media> new_media, LinkedList<string> not_imported);
 	public signal void progress_notification(string? message, double progress);
 	public signal void file_operations_started();
 	public signal void file_operations_done();
@@ -212,7 +212,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		history_setup = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.HISTORY);
 
 		
-		//load all medias from db
+		//load all media from db
 		_media_lock.lock ();
 		foreach(Media s in dbm.load_media ()) {
 			_media.set(s.rowid, s);
@@ -341,7 +341,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 
 			lw.resetSideTree(true);
 			lw.sideTree.removeAllStaticPlaylists();
-			clear_medias();
+			clear_media();
 			_queue.clear();
 			_already_played.clear();
 			lw.resetSideTree(false);
@@ -476,7 +476,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 
 				Idle.add( () => {
 					if (!fo.cancelled)
-						remove_medias(to_remove, false);
+						remove_media(to_remove, false);
 					if (to_import.size == 0) {
 						finish_file_operations();
 					}
@@ -612,7 +612,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	/******************** Media stuff ******************/
-	public void clear_medias() {
+	public void clear_media() {
 		debug ("clearing...\n");
 		
 		// We really only want to clear the songs that are permanent and on the file system
@@ -666,7 +666,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		dbm.clear_media ();
 		dbm.add_media (_media.values);
-		//remove_medias(unset, false);
+		//remove_media(unset, false);
 		debug ("cleared\n");
 	}
 	
@@ -705,14 +705,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _media;
 	}
 	
-	public void update_media(Media s, bool updateMeta, bool record_time) {
+	public void update_media_item (Media s, bool updateMeta, bool record_time) {
 		LinkedList<Media> one = new LinkedList<Media>();
 		one.add(s);
 		
-		update_medias(one, updateMeta, record_time);
+		update_media(one, updateMeta, record_time);
 	}
 	
-	public void update_medias(Collection<Media> updates, bool updateMeta, bool record_time) {
+	public void update_media (Collection<Media> updates, bool updateMeta, bool record_time) {
 		LinkedList<int> rv = new LinkedList<int>();
 		
 		foreach(Media s in updates) {
@@ -723,12 +723,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 				s.last_modified = (int)time_t();
 		}
 		
-		debug ("%d media updated from lm.update_medias 677\n", rv.size);
+		debug ("%d media updated from lm.update_media 677\n", rv.size);
 		media_updated(rv);
 		
 		/* now do background work. even if updateMeta is true, so must user preferences */
 		if(updateMeta)
-			fo.save_medias(updates);
+			fo.save_media(updates);
 		
 		foreach(Media s in updates)
 			dbu.update_media(s);
@@ -942,61 +942,53 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return _smart_playlists.get (id).analyze (this, media ());
 	}
 	
-	public void add_media(Media s, bool permanent) {
+	public void add_media_item (Media s) {
 		var coll = new LinkedList<Media>();
 		coll.add(s);
-		add_medias(coll, permanent);
+		add_media (coll);
 	}
 	
-	public void add_medias(Collection<Media> new_media, bool permanent) {
+	public void add_media(Collection<Media> new_media) {
 		if(new_media.size == 0) // happens more often than you would think
 			return;
 		
 		int top_index = 0;
 		
-		_media_lock.lock ();
-
+		_media_lock.lock();
 		foreach(int i in _media.keys) {
 			if(i > top_index)
 				top_index = i;
 		}
 		
 		var added = new LinkedList<int>();
-		
-		var music_folder_dir = settings.getMusicFolder ();
 		foreach(var s in new_media) {
 			if(s.rowid == 0)
 				s.rowid = ++top_index;
 			
 			added.add(s.rowid);
+			
 			_media.set(s.rowid, s);
 			
-			if(permanent && !s.isTemporary)
-				_permanents.add(s.rowid);
-				
-			if(music_folder_dir != "" && s.uri.has_prefix(File.new_for_path(music_folder_dir).get_uri()))
-				++local_song_count;
-			
-			if(s.mediatype == 0)
+			if(s.mediatype == Media.MediaType.SONG)
 				_songs.set(s.rowid, s);
-#if HAVE_PODCASTS
-			else if(s.mediatype == 1)
+#if 0
+			else if(s.mediatype == Media.MediaType.PODCAST)
 				_podcasts.set(s.rowid, s);
-#endif
-#if HAVE_INTERNET_RADIO
-			else if(s.mediatype == 3)
+			else if(s.mediatype == Media.MediaType.AUDIOBOOK)
+				_audiobooks.set(s.rowid, s);
+			else if(s.mediatype == Media.MediaType.STATION)
 				_stations.set(s.rowid, s);
 #endif
 		}
-
-		_media_lock.unlock ();
+		_media_lock.unlock();
 		
-		if(new_media.size > 0 && new_media.to_array()[0].rowid != -2 && permanent) {
-			dbm.add_media (new_media);
+		if(new_media.size > 0) {
+			dbm.add_media(new_media);
 		}
 		
 		Idle.add( () => {
 			media_added(added);
+			
 			return false;
 		});
 	}
@@ -1008,14 +1000,14 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void convert_temps_to_permanents(LinkedList<int> temps) {
-		LinkedList<Media> temps_medias = new LinkedList<Media>();
+		LinkedList<Media> temps_media = new LinkedList<Media>();
 		foreach(int i in temps) {
 			if(media_from_id(i).isTemporary)
-				temps_medias.add(media_from_id(i));
+				temps_media.add(media_from_id(i));
 		}
 
 		var music_folder_dir = settings.getMusicFolder ();
-		foreach(var s in temps_medias) {
+		foreach(var s in temps_media) {
 			s.isTemporary = false;
 			s.date_added = (int)time_t();
 			_permanents.add(s.rowid);
@@ -1024,59 +1016,58 @@ public class BeatBox.LibraryManager : GLib.Object {
 				++local_song_count;
 		}
 		
-		dbm.add_media (temps_medias);
+		dbm.add_media (temps_media);
 		warning("TODO: call media_added signal afterconvert_temps_to_permanents\n");
 	}
 	
-	public void remove_medias(LinkedList<Media> toRemove, bool trash) {
-		LinkedList<int> removedIds = new LinkedList<int>();
-		LinkedList<string> removeURIs = new LinkedList<string>();
-
-		_media_lock.lock ();		
+	public void remove_media(LinkedList<Media> toRemove, bool trash) {
+		var removedIds = new LinkedList<int>();
+		var removeURIs = new LinkedList<string>();
+		
 		foreach(Media s in toRemove) {
 			removedIds.add(s.rowid);
 			removeURIs.add(s.uri);
+			
+			if(s == media_info.media)
+				stopPlayback();
 		}
 		
 		dbu.removeItem(removeURIs);
 		
 		if(trash) {
-			fo.remove_medias(removeURIs);
+			fo.remove_media(removeURIs);
 		}
-
-		var music_folder_dir = settings.getMusicFolder();		
+		
+		// call now so that lm.media_from_id() still works
+		media_removed(removedIds);
+		
+		_media_lock.lock();
 		foreach(Media s in toRemove) {
 			_media.unset(s.rowid);
-			_permanents.remove(s.rowid);
 			
-			if(music_folder_dir != "" && File.new_for_uri(s.uri).get_path().has_prefix(music_folder_dir))
-				--local_song_count;
-			
-			if(s.mediatype == 0)
+			if(s.mediatype == Media.MediaType.SONG)
 				_songs.unset(s.rowid);
-#if HAVE_PODCASTS
-			else if(s.mediatype == 1)
+#if 0
+			else if(s.mediatype == Media.MediaType.PODCAST)
 				_podcasts.unset(s.rowid);
-#endif
-#if HAVE_INTERNET_RADIO
-			else if(s.mediatype == 3)
+			else if(s.mediatype == Media.MediaType.AUDIOBOOK)
+				_audiobooks.unset(s.rowid);
+			else if(s.mediatype == Media.MediaType.STATION)
 				_stations.unset(s.rowid);
 #endif
-				
-			foreach(var p in _playlists.values) {
-				var to_remove = new LinkedList<int>();
-				to_remove.add (s.rowid);
-				p.remove_media (to_remove);
-			}
 		}
-
-		_media_lock.unlock ();
+		_media_lock.unlock();
 		
-		media_removed(removedIds);
-
+		_playlists_lock.lock();
+		foreach(var p in _playlists.values) {
+			p.remove_media (toRemove);
+		}
+		_playlists_lock.unlock();
+		
 		if(_media.size == 0)
 			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
-		
+
+		// TODO: move away. It's called twice due to LW's internal handlers		
 		lw.update_sensitivities();
 	}
 	
@@ -1259,7 +1250,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public Media? getNext(bool play) {
 		Media? rv = null;
 		
-		// next check if user has queued medias
+		// next check if user has queued media
 		if(!queue_empty()) {
 			rv = poll_queue();
 			_playing_queued_song = true;
@@ -1551,7 +1542,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Timeout.add(1000, () => {
 			if(media_info.media == m) {
 				try {
-					Thread.create<void*>(change_gains_thread, false);
+					new Thread<void*>.try (null, change_gains_thread);
 				}
 				catch(GLib.Error err) {
 					warning("Could not create thread to change gains: %s\n", err.message);
@@ -1565,7 +1556,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				int player_duration = (int)(player.getDuration()/1000000000);
 				if(player_duration > 1 && Math.fabs((double)(player_duration - media_info.media.length)) > 3) {
 					media_info.media.length = (int)(player.getDuration()/1000000000);
-					update_media(media_info.media, false, false);
+					update_media_item (media_info.media, false, false);
 				}
 			}
 			
@@ -1635,7 +1626,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		LinkedList<Media> temps = new LinkedList<Media>();
 		temps.add(s);
-		add_medias(temps, false);
+		add_media(temps, false);
 		
 		playMedia(-2, false);
 		

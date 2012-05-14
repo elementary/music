@@ -384,7 +384,7 @@ public class BeatBox.MusicListView : GenericList {
 			toUpdate.add(lm.media_from_id(i));
 
 		// could have edited rating, so record_time is true
-		lm.update_medias(toUpdate, true, true);
+		lm.update_media (toUpdate, true, true);
 
 		if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
 			// make sure these medias still belongs here
@@ -439,7 +439,7 @@ public class BeatBox.MusicListView : GenericList {
 			m.rating = new_rating;
 			los.add(m);
 		}
-		lm.update_medias(los, false, true);
+		lm.update_media (los, false, true);
 	}
 
 	public virtual void mediaRemoveClicked() {
@@ -456,7 +456,7 @@ public class BeatBox.MusicListView : GenericList {
 		if (get_hint() == ViewWrapper.Hint.MUSIC) {
 			var dialog = new RemoveFilesDialog (lm.lw, to_remove, get_hint());
 			dialog.remove_media.connect ( (delete_files) => {
-				lm.remove_medias (to_remove, delete_files);
+				lm.remove_media (to_remove, delete_files);
 			});
 		}
 		else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
