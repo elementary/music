@@ -87,6 +87,37 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		}
 	}
 #endif
+
+	/** For spinner/unique icon on each row **/
+	public void iconDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
+		bool showIndicator = false;
+		Media s = view.get_media_from_index((int)iter.user_data);
+		
+		if(s == null)
+			return;
+		else
+			showIndicator = s.showIndicator;
+
+		if(renderer is CellRendererPixbuf) {
+			Value? icon;
+			model.get_value (iter, MusicListView.MusicColumn.ICON, out icon); // ICON column is same for all
+
+			/* Themed icon */
+			(renderer as CellRendererPixbuf).follow_state = true;
+			(renderer as CellRendererPixbuf).gicon = (icon as GLib.Icon);
+
+			renderer.visible = !showIndicator;
+			renderer.width = showIndicator ? 0 : 16;
+		}
+		if(renderer is CellRendererSpinner) {
+			if(showIndicator) {
+				((CellRendererSpinner)renderer).active = true;
+			}
+				
+			renderer.visible = showIndicator;
+			renderer.width = showIndicator ? 16 : 0;
+		}
+	}
 	
 	// for Track, Year, #, Plays, Skips. Simply shows nothing if less than 1.
 	public void intelligentTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {

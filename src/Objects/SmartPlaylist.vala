@@ -22,6 +22,8 @@
 
 using Gee;
 
+// TODO: Rewrite conditionals as enums
+
 public class BeatBox.SmartPlaylist : Object {
 	private int _rowid;
 	public TreeViewSetup tvs;
@@ -35,11 +37,11 @@ public class BeatBox.SmartPlaylist : Object {
 	
 	private bool _is_up_to_date;
 	public bool viewWrapper_is_up_to_date;
-	LinkedList<int> medias;
+	LinkedList<Media> media;
 	
 	public SmartPlaylist() {
 		_name = "";
-		tvs = new TreeViewSetup(MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
+		tvs = new TreeViewSetup (MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.SMART_PLAYLIST);
 		_conditional = "all";
 		query_count = 0;
 		_queries = new Gee.ArrayList<SmartQuery>();
@@ -129,15 +131,27 @@ public class BeatBox.SmartPlaylist : Object {
 		
 		return rv;
 	}
-	
-	public LinkedList<int> analyze(LibraryManager lm, Collection<int> to_test) {
+
+	public Gee.LinkedList<Media> analyze_ids (LibraryManager lm, Gee.Collection<int> ids) {
+		var to_analyze = new Gee.LinkedList<Media> ();
+		foreach (var id in ids) {
+			var m = lm.media_from_id (id);
+			if (m != null)
+				to_analyze.add (m);
+		}
+		return analyze (lm, to_analyze);
+	}
+
+	public Gee.LinkedList<Media> analyze (LibraryManager lm, Collection<Media> to_test) {
 		//if(is_up_to_date) {
-		//	return medias;
+		//	return media;
 		//}
 		
-		LinkedList<int> rv = new LinkedList<int>();
-		foreach(int i in to_test) {
-			Media m = lm.media_from_id(i);
+		var rv = new LinkedList<Media>();
+		foreach (var m in to_test) {
+			if (m == null)
+				continue;
+
 			int match_count = 0; //if OR must be greather than 0. if AND must = queries.size.
 			
 			foreach(SmartQuery q in _queries) {
@@ -146,14 +160,14 @@ public class BeatBox.SmartPlaylist : Object {
 			}
 			
 			if(((conditional == "all" && match_count == _queries.size) || (conditional == "any" && match_count >= 1)) && !m.isTemporary)
-				rv.add(m.rowid);
+				rv.add (m);
 				
 			if(_limit && _limit_amount <= rv.size)
 				return rv;
 		}
 		
 		is_up_to_date = true;
-		medias = rv;
+		media = rv;
 		
 		return rv;
 	}

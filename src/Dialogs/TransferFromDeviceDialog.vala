@@ -28,7 +28,7 @@ using Gtk;
 
 public class BeatBox.TransferFromDeviceDialog : Window {
 	LibraryManager lm;
-	LinkedList<int> medias;
+	LinkedList<Media> medias;
 	Device d;
 	
 	//for padding around notebook mostly
@@ -46,14 +46,14 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 	Gtk.MenuItem selectAlbum;
 	Gtk.MenuItem selectArtist;
 	
-	LinkedList<int> to_transfer;
+	LinkedList<Media> to_transfer;
 	
-	public TransferFromDeviceDialog(LibraryWindow lw, Device d, LinkedList<int> medias) {
+	public TransferFromDeviceDialog(LibraryWindow lw, Device d, LinkedList<Media> medias) {
 		this.lm = lw.lm;
 		this.medias = medias;
 		this.d = d;
 		
-		to_transfer = new LinkedList<int>();
+		to_transfer = new LinkedList<Media>();
 		
 		this.set_title(_("Import from Device"));
 		
@@ -91,7 +91,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 			title_text = _("Import %i items from %s").printf (medias.size, d.getDisplayName ());
 		}
 		else {
-			var m = lm.media_from_id (medias.get (0));
+			var m = medias.get (0);
 			title_text = _("Import %s from %s").printf (m.title, d.getDisplayName ());
 		}
 
@@ -145,8 +145,8 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		
 		/* fill the treeview */
 		var medias_sorted = new LinkedList<Media>();
-		foreach(int i in medias)
-			medias_sorted.add(lm.media_from_id(i));
+		foreach(var m in medias)
+			medias_sorted.add(m);
 		medias_sorted.sort((CompareFunc)mediaCompareFunc);
 		
 		foreach(var s in medias_sorted) {
@@ -224,7 +224,18 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		else
 			return (a.artist > b.artist) ? 1 : -1;
 	}
-
+	
+	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
+		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
+		alignment.top_padding = top;
+		alignment.right_padding = right;
+		alignment.bottom_padding = bottom;
+		alignment.left_padding = left;
+		
+		alignment.add(widget);
+		return alignment;
+	}
+	
 	public bool updateTransferSensetivity(TreeModel model, TreePath path, TreeIter iter) {
 		bool sel = false;
 		model.get(iter, 0, out sel);
@@ -263,12 +274,12 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 	}
 	
 	public bool createTransferList(TreeModel model, TreePath path, TreeIter iter) {
-		int id = 0;
+		Media? m = null;
 		bool selected = false;
-		mediasModel.get(iter, 0, out selected, 1, out id);
+		mediasModel.get(iter, 0, out selected, 1, out m);
 		
-		if(id != 0 && selected) {
-			to_transfer.add(id);
+		if(m != null && selected) {
+			to_transfer.add(m);
 		}
 		
 		return false;
@@ -279,7 +290,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		mediasModel.foreach(createTransferList);
 		
 		if(lm.doing_file_operations()) {
-			lm.lw.doAlert(_("Cannot Import"), _("%s is already doing file operations. Please wait until those finish to import from %s").printf (lm.lw.app.get_name (), d.getDisplayName ()));
+			lm.lw.doAlert("Cannot Import", "BeatBox is already doing file operations. Please wait until those finish to import from " + d.getDisplayName());
 		}
 		else {
 			d.transfer_to_library(to_transfer);

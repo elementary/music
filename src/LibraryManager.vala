@@ -27,7 +27,10 @@ using Gtk;
  * from the db, added to the queue, sorted, and more. LibraryWindow is
  * the visual representation of this class
  */
-public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
+public class BeatBox.LibraryManager : GLib.Object {
+	// FIXME: Define proper enum types in Media.vala
+	public static const int PREVIEW_MEDIA_ID = -2;
+
 	public BeatBox.LibraryWindow lw;
 	public BeatBox.Settings settings;
 	public BeatBox.DataBaseManager dbm;
@@ -36,34 +39,30 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public BeatBox.Streamer player;
 	public BeatBox.DeviceManager device_manager;
 
-#if HAVE_PODCASTS
-	public BeatBox.PodcastManager pm;
-#endif
-	
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 	public HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
 	private HashMap<int, Media> _media; // rowid, media of all medias
 	private HashMap<int, Media> _songs;
-#if HAVE_PODCASTS
-	private HashMap<int, Media> _podcasts;
-#endif
-	private HashMap<int, Media> _audiobooks;
-#if HAVE_INTERNET_RADIO
-	private HashMap<int, Media> _stations;
-#endif
 	private LinkedList<int> _permanents; // list of all local medias
 	int local_song_count;
 	public int current_view_size;
 	
-	private HashMap<int, int> _current; // id, media of current medias.
-	private HashMap<int, int> _current_shuffled;//list of id's yet to be played while on shuffle
-	private HashMap<int, int> _current_view; // id, media of currently showing medias
-	private LinkedList<int> _queue; // rowid, Media of queue
-	private LinkedList<int> _already_played; // Media of already played
-	private HashMap<string, Gdk.Pixbuf> cover_album_art; // All album art
-	
-	public LastFM.Core lfm;
+	// id, media of current medias.
+	private HashMap<int, Media> _current = new Gee.HashMap<int, Media>();
 
+	//list of id's yet to be played while on shuffle
+	private HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
+
+	// rowid, Media of queue
+	private LinkedList<Media> _queue = new Gee.LinkedList<Media>();
+
+	// Media of already played
+	private LinkedList<Media> _already_played = new Gee.LinkedList<Media>();
+
+	// All album art
+	private HashMap<string, Gdk.Pixbuf> cover_album_art = new HashMap<string, Gdk.Pixbuf> ();
+
+	public LastFM.Core lfm;
 
 	private Mutex mutex;
 
@@ -147,12 +146,12 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	public signal void media_updated(LinkedList<int> ids);
 	public signal void media_removed(LinkedList<int> ids);
 
-	public signal void media_queued(Gee.Collection<int> ids);
-	public signal void media_unqueued(Gee.Collection<int> ids);
+	public signal void media_queued(Gee.Collection<Media> queued);
+	public signal void media_unqueued(Gee.Collection<Media> unqueued);
 
 	public signal void history_changed ();
 
-	public signal void media_played(int id, int old_id);
+	public signal void media_played(Media new_media, Media? old_media);
 	public signal void playback_stopped(int was_playing);
 		
 	public LibraryManager(BeatBox.LibraryWindow lww) {
@@ -175,21 +174,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_playlists = new HashMap<int, Playlist>();
 		_media = new HashMap<int, Media>();
 		_songs = new HashMap<int, Media>(); // subset of _songs
-#if HAVE_PODCASTS
-		_podcasts = new HashMap<int, Media>(); // subset of _medias
-#endif
-		_audiobooks = new HashMap<int, Media>(); // subset of _medias
-#if HAVE_INTERNET_RADIO
-		_stations = new HashMap<int, Media>(); // subset of _medias
-#endif
 		_permanents = new LinkedList<int>();
-		
-		_current = new HashMap<int, int>();
-		_current_shuffled = new HashMap<int, int>();
-		_current_view = new HashMap<int, int>();
-		_queue = new LinkedList<int>();
-		_already_played = new LinkedList<int>();
-		cover_album_art = new HashMap<string, Gdk.Pixbuf>();
 		
 		lfm = new LastFM.Core(this);
 		
@@ -245,8 +230,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			else if(s.mediatype == 1)
 				_podcasts.set(s.rowid, s);
 #endif
-			else if(s.mediatype == 2)
-				_audiobooks.set(s.rowid, s);
 #if HAVE_INTERNET_RADIO
 			else if(s.mediatype == 3)
 				_stations.set(s.rowid, s);
@@ -292,10 +275,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					_playlists.unset(p.rowid);				
 				}
 				else if(p.name == "autosaved_queue") {
-					var to_queue = new LinkedList<int>();
+					var to_queue = new LinkedList<Media>();
 					
-					foreach(int i in medias_from_playlist(p.rowid)) {
-						to_queue.add (i);
+					foreach (var m in media_from_playlist (p.rowid)) {
+						to_queue.add (m);
 					}
 					
 					queue_media_by_id (to_queue);
@@ -306,8 +289,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				}
 				else if(p.name == "autosaved_history") {
 					history_setup = p.tvs;
-					history_setup.set_hint(ViewWrapper.Hint.HISTORY);
-					_playlists.unset(p.rowid);
+					history_setup.set_hint (ViewWrapper.Hint.HISTORY);
+					_playlists.unset (p.rowid);
 				}
 				
 				playlists_added.add(p.name);
@@ -668,10 +651,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			else if(s.mediatype == 1)
 				_podcasts.unset(s.rowid);
 #endif
-			else if(s.mediatype == 2)
-				_audiobooks.unset(s.rowid);
-
-			else if(s.mediatype == 3)
 #if HAVE_INTERNET_RADIO
 				_stations.unset(s.rowid);
 #endif
@@ -715,9 +694,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return _podcasts.keys;
 	}
 #endif	
-	public Collection<int> audiobook_ids() {
-		return _audiobooks.keys;
-	}
 	
 #if HAVE_INTERNET_RADIO
 	public Collection<int> station_ids() {
@@ -793,22 +769,21 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return media_collection;
 	} 
 
-	public int match_media_to_list(int id, Collection<int> to_match) {
-		Media m = media_from_id(id);
-
-		_media_lock.lock ();
-		foreach(int i in to_match) {
-			Media test = media_from_id(i);
-			if(id != i && test.title.down() == m.title.down() && test.artist.down() == m.artist.down()) {
-				return i;
+	public Media? match_media_to_list(Media m, Collection<Media> to_match) {
+		Media? rv = null;
+		
+		_media_lock.lock();
+		foreach(var test in to_match) {
+			if(!test.isTemporary && test != m && test.title.down() == m.title.down() && test.artist.down() == m.artist.down()) {
+				rv = test;
 			}
 		}
-		_media_lock.unlock ();
+		_media_lock.unlock();
 		
-		return 0;
+		return rv;
 	}
-	
-	public Media media_from_name(string title, string artist) {
+
+	public Media media_item_from_name(string title, string artist) {
 		Media rv = new Media("");
 		rv.title = title;
 		rv.artist = artist;
@@ -827,12 +802,12 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return rv;
 	}
 	
-	public void medias_from_name(LinkedList<Media> tests, ref LinkedList<int> found, ref LinkedList<Media> not_found) {
+	public void media_from_name(Collection<Media> tests, ref LinkedList<int> found, ref LinkedList<Media> not_found) {
 		Media[] searchable;
 		
-		mutex.lock();
+		_media_lock.lock();
 		searchable = _media.values.to_array();
-		mutex.unlock();
+		_media_lock.unlock();
 		
 		foreach(Media test in tests) {
 			bool found_match = false;
@@ -849,6 +824,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				not_found.add(test);
 		}
 	}
+	
 	
 	public Media? media_from_file(string uri) {
 		Media? rv = null;
@@ -958,12 +934,12 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 
 
-	public Collection<int> medias_from_playlist(int id) {
-		return _playlists.get(id).analyze(this);
+	public Gee.Collection<Media> media_from_playlist (int id) {
+		return _playlists.get (id).media ();
 	}
 	
-	public Collection<int> medias_from_smart_playlist(int id) {
-		return _smart_playlists.get(id).analyze(this, media_ids());
+	public Collection<Media> media_from_smart_playlist (int id) {
+		return _smart_playlists.get (id).analyze (this, media ());
 	}
 	
 	public void add_media(Media s, bool permanent) {
@@ -1007,8 +983,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			else if(s.mediatype == 1)
 				_podcasts.set(s.rowid, s);
 #endif
-			else if(s.mediatype == 2)
-				_audiobooks.set(s.rowid, s);
 #if HAVE_INTERNET_RADIO
 			else if(s.mediatype == 3)
 				_stations.set(s.rowid, s);
@@ -1084,8 +1058,6 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			else if(s.mediatype == 1)
 				_podcasts.unset(s.rowid);
 #endif
-			else if(s.mediatype == 2)
-				_audiobooks.unset(s.rowid);
 #if HAVE_INTERNET_RADIO
 			else if(s.mediatype == 3)
 				_stations.unset(s.rowid);
@@ -1122,29 +1094,44 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 	}
 	
 	public void queue_media_by_id (Collection<int> ids) {
-		if (ids.size < 1)
-			return;
-		
+		var to_queue = new Gee.LinkedList<Media> ();		
 		foreach (int id in ids)
-			_queue.offer_tail(id);
-		media_queued (ids);		
+			to_queue.add (media_from_id (id));
+		queue_media (to_queue);		
 	}
 
 	public void unqueue_media_by_id (Collection<int> ids) {
+		var to_unqueue = new Gee.LinkedList<Media> ();		
 		foreach (int id in ids)
-			_queue.remove (id);
-		media_unqueued (ids);		
+			to_unqueue.add (media_from_id (id));
+		unqueue_media (to_unqueue);		
 	}
 
-	public int peek_queue() {
+	public void queue_media (Collection<Media> to_queue) {
+		if (to_queue.size < 1)
+			return;
+		
+		foreach (var m in to_queue)
+			_queue.offer_tail (m);
+		media_queued (to_queue);
+	}
+
+	public void unqueue_media (Collection<Media> to_unqueue) {
+		foreach (var m in to_unqueue)
+			_queue.remove (m);
+		media_unqueued (to_unqueue);		
+	}
+
+
+	public Media peek_queue() {
 		return _queue.peek_head();
 	}
 	
-	public int poll_queue() {
+	public Media poll_queue() {
 		return _queue.poll_head();
 	}
 	
-	public Collection<int> queue() {
+	public Collection<Media> queue() {
 		return _queue;
 	}
 	
@@ -1153,14 +1140,14 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		_already_played.clear();
 		history_changed ();
 	}
-	
-	public void add_already_played(int i) {
-		if(!_already_played.contains(i))
-			_already_played.offer_tail(i);
+
+	public void add_already_played (Media m) {
+		if(!_already_played.contains (m))
+			_already_played.offer_tail (m);
 		history_changed ();
 	}
 	
-	public LinkedList<int> already_played() {
+	public LinkedList<Media> already_played() {
 		return _already_played;
 	}
 
@@ -1190,14 +1177,14 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 	}
 	
-	public int mediaFromCurrentIndex(int index_in_current) {
+	public Media mediaFromCurrentIndex (int index_in_current) {
 		if(shuffle == Shuffle.OFF)
 			return _current.get(index_in_current);
 		else
 			return _current_shuffled.get(index_in_current);
 	}
 	
-	public Collection<int> current_medias() {
+	public Collection<Media> current_media () {
 		if(shuffle == Shuffle.OFF)
 			return _current_shuffled.values;
 		else
@@ -1212,8 +1199,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		shuffle = Shuffle.OFF; // must manually reshuffle
 	}
 	
-	public void addToCurrent(int i) {
-		_current.set(_current.size, i);
+	public void addToCurrent (Media m) {
+		_current.set (_current.size, m);
 	}
 	
 	public void setShuffleMode(Shuffle mode, bool reshuffle) {
@@ -1233,7 +1220,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			if(media_active) {
 				//make sure we continue playing where we left off
 				for(int i = 0; i < _current.size; ++i) {
-					if(_current.get(i) == media_info.media.rowid) {
+					if(_current.get(i) == media_info.media) {
 						_current_index = i;
 						return;
 					}
@@ -1244,10 +1231,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			}
 		}
 		else if(mode == Shuffle.ALL) {
-			//create temp list of all of current's media id's
-			LinkedList<int> temp = new LinkedList<int>();
-			foreach(int i in _current.values) {
-				temp.add(i);
+			//create temp list of all of current's media
+			var temp = new LinkedList<Media>();
+			foreach(var m in _current.values) {
+				temp.add (m);
 			}
 			
 			//loop through all current media id's and pick a random one remaining
@@ -1257,8 +1244,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				int random = GLib.Random.int_range(0, temp.size);
 				
 				//if(temp.get(random) != media_info.media.rowid) {
-				if(media_active && temp.get(random) == media_info.media.rowid) {
-					_current_shuffled.set(0, media_info.media.rowid);
+				if(media_active && temp.get(random) == media_info.media) {
+					_current_shuffled.set(0, media_info.media);
 					--i;
 				}
 				else {
@@ -1269,8 +1256,8 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		}
 	}
 	
-	public int getNext(bool play) {
-		int rv;
+	public Media? getNext(bool play) {
+		Media? rv = null;
 		
 		// next check if user has queued medias
 		if(!queue_empty()) {
@@ -1301,19 +1288,19 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					if(play)
 						stopPlayback();
 					
-					return 0;
+					return null;
 				}
 				
 				rv = _current_shuffled.get(0);
 			}
 			else if(_current_shuffled_index >= 0 && _current_shuffled_index < (_current_shuffled.size - 1)){
 				// make sure we are repeating what we need to be
-				if(repeat == Repeat.ARTIST && media_from_id(_current_shuffled.get(_current_shuffled_index + 1)).artist != media_from_id(_current_shuffled.get(_current_shuffled_index)).artist) {
-					while(media_from_id(_current_shuffled.get(_current_shuffled_index - 1)).artist == media_info.media.artist)
+				if(repeat == Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index + 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
+					while(_current_shuffled.get(_current_shuffled_index - 1).artist == media_info.media.artist)
 						--_current_shuffled_index;
 				}
-				else if(repeat == Repeat.ALBUM && media_from_id(_current_shuffled.get(_current_shuffled_index + 1)).album != media_from_id(_current_shuffled.get(_current_shuffled_index)).album) {
-					while(media_from_id(_current_shuffled.get(_current_shuffled_index - 1)).album == media_info.media.album)
+				else if(repeat == Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index + 1).album != _current_shuffled.get(_current_shuffled_index).album) {
+					while(_current_shuffled.get(_current_shuffled_index - 1).album == media_info.media.album)
 						--_current_shuffled_index;
 				}
 				else {
@@ -1324,7 +1311,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			}
 			else {
 				foreach(Media s in _media.values)
-					addToCurrent(s.rowid);
+					addToCurrent(s);
 				
 				_current_shuffled_index = 0;
 				setShuffleMode(Shuffle.ALL, true);
@@ -1347,19 +1334,19 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 				else {
 					if(play)
 						stopPlayback();
-					return 0;
+					return null;
 				}
 				
 				rv = _current.get(0);
 			}
 			else if(_current_index >= 0 && _current_index < (_current.size - 1)){
 				// make sure we are repeating what we need to be
-				if(repeat == Repeat.ARTIST && media_from_id(_current.get(_current_index + 1)).artist != media_from_id(_current.get(_current_index)).artist) {
-					while(media_from_id(_current.get(_current_index - 1)).artist == media_info.media.artist)
+				if(repeat == Repeat.ARTIST && _current.get(_current_index + 1).artist != _current.get(_current_index).artist) {
+					while(_current.get(_current_index - 1).artist == media_info.media.artist)
 						--_current_index;
 				}
-				else if(repeat == Repeat.ALBUM && media_from_id(_current.get(_current_index + 1)).album != media_from_id(_current.get(_current_index)).album) {
-					while(media_from_id(_current.get(_current_index - 1)).album == media_info.media.album)
+				else if(repeat == Repeat.ALBUM && _current.get(_current_index + 1).album != _current.get(_current_index).album) {
+					while(_current.get(_current_index - 1).album == media_info.media.album)
 						--_current_index;
 				}
 				else
@@ -1369,7 +1356,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			}
 			else {
 				foreach(Media s in _media.values)
-					addToCurrent(s.rowid);
+					addToCurrent(s);
 				
 				_current_index = 0;
 				rv = _current.get(0);
@@ -1382,15 +1369,16 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return rv;
 	}
 	
-	public int getPrevious(bool play) {
-		int rv;
+	// TODO: remove code redundancy
+	public Media? getPrevious(bool play) {
+		Media? rv = null;
 		
 		if(_current_shuffled.size != 0) {
 			_playing_queued_song = false;
 			
 			if(media_info.media == null) {
 				_current_shuffled_index = _current_shuffled.size - 1;
-				rv = _current_shuffled.get(_current_shuffled_index);
+				rv = _current_shuffled.get (_current_shuffled_index);
 			}
 			else if(repeat == Repeat.MEDIA) {
 				rv = _current_shuffled.get(_current_shuffled_index);
@@ -1400,19 +1388,19 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					_current_shuffled_index = _current_shuffled.size - 1;
 				else {
 					stopPlayback();
-					return 0;
+					return null;
 				}
 				
 				rv = _current_shuffled.get(_current_shuffled_index);
 			}
 			else if(_current_shuffled_index > 0 && _current_shuffled_index < _current_shuffled.size){
 				// make sure we are repeating what we need to be
-				if(repeat == Repeat.ARTIST && media_from_id(_current_shuffled.get(_current_shuffled_index - 1)).artist != media_from_id(_current_shuffled.get(_current_shuffled_index)).artist) {
-					while(media_from_id(_current_shuffled.get(_current_shuffled_index + 1)).artist == media_info.media.artist)
+				if(repeat == Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index - 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
+					while(_current_shuffled.get(_current_shuffled_index + 1).artist == media_info.media.artist)
 						++_current_shuffled_index;
 				}
-				else if(repeat == Repeat.ALBUM && media_from_id(_current_shuffled.get(_current_shuffled_index - 1)).album != media_from_id(_current_shuffled.get(_current_shuffled_index)).album) {
-					while(media_from_id(_current_shuffled.get(_current_shuffled_index + 1)).album == media_info.media.album)
+				else if(repeat == Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index - 1).album != _current_shuffled.get(_current_shuffled_index).album) {
+					while(_current_shuffled.get(_current_shuffled_index + 1).album == media_info.media.album)
 						++_current_shuffled_index;
 				}
 				else
@@ -1422,7 +1410,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			}
 			else {
 				foreach(Media s in _media.values)
-					addToCurrent(s.rowid);
+					addToCurrent(s);
 				
 				_current_shuffled_index = _current_shuffled.size - 1;
 				rv = _current_shuffled.get(_current_shuffled_index);
@@ -1443,19 +1431,20 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 					_current_index = _current.size - 1;
 				else {
 					stopPlayback();
-					return 0;
+					return null;
 				}
 				
 				rv = _current.get(_current_index);
 			}
 			else if(_current_index > 0 && _current_index < _current.size){
 				// make sure we are repeating what we need to be
-				if(repeat == Repeat.ARTIST && media_from_id(_current.get(_current_index - 1)).artist != media_from_id(_current.get(_current_index)).artist) {
-					while(media_from_id(_current.get(_current_index + 1)).artist == media_info.media.artist)
+				
+				if(repeat == Repeat.ARTIST && _current.get(_current_index - 1).artist != _current.get(_current_index).artist) {
+					while(_current.get(_current_index + 1).artist == media_info.media.artist)
 						++_current_index;
 				}
-				else if(repeat == Repeat.ALBUM && media_from_id(_current.get(_current_index - 1)).album != media_from_id(_current.get(_current_index)).album) {
-					while(media_from_id(_current.get(_current_index + 1)).album == media_info.media.album)
+				else if(repeat == Repeat.ALBUM && _current.get(_current_index - 1).album != _current.get(_current_index).album) {
+					while(_current.get(_current_index + 1).album == media_info.media.album)
 						++_current_index;
 				}
 				else
@@ -1465,7 +1454,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			}
 			else {
 				foreach(Media s in _media.values)
-					addToCurrent(s.rowid);
+					addToCurrent(s);
 				
 				_current_index = _current.size - 1;
 				rv = _current.get(_current_index);
@@ -1478,7 +1467,18 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		return rv;
 	}
 	
-	public void playMedia(int id, bool use_resume_pos) {
+	
+	public void playMedia(Media m, bool use_resume_pos) {
+		if(m.isTemporary) {
+			_media.set(PREVIEW_MEDIA_ID, m);
+			playMediaInternal(PREVIEW_MEDIA_ID, use_resume_pos);
+		}
+		else {
+			playMediaInternal(m.rowid, use_resume_pos);
+		}
+	}
+	
+	void playMediaInternal(int id, bool use_resume_pos) {
 		int old_id = -1;
 		
 		if(id == 0 || media_from_id(id) == null)
@@ -1492,13 +1492,27 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		media_info.media = media_from_id(id);
 		Media m = media_from_id(id);
 		
-		// check that the file exists
-		var music_folder_dir = settings.getMusicFolder ();
-		if((music_folder_dir != "" && File.new_for_uri(m.uri).get_path().has_prefix(music_folder_dir) && !GLib.File.new_for_uri(m.uri).query_exists())) {
-			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU);
+		// To avoid infinite loop, if we come across a song we already know does not exist
+		// stop playback
+		if(m.location_unknown) {
+			if(File.new_for_uri(m.uri).query_exists()) { // we did not know location, but it has re-appearred
+				m.location_unknown = false;
+				m.unique_status_image = null;
+				//lw.media_found(m.rowid);
+			}
+			else { // to avoid infinite loop with repeat on, don't try to play next again
+				stopPlayback();
+				return;
+			}
+		}
+		
+		// check that the file exists FIXME: Avoid reading settings everytime a song is played
+		var music_folder_uri = File.new_for_path(settings.getMusicFolder()).get_uri();
+		if((settings.getMusicFolder() != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
+			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
-			lw.media_not_found(id);
-			stopPlayback();
+			//lw.media_not_found(id);
+			getNext(true);
 			return;
 		}
 		else {
@@ -1508,9 +1522,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			}
 		}
 		
-		player.checked_video = false;
-		
-		if(m.mediatype == 1 || m.mediatype == 2 || use_resume_pos)
+		if(m.mediatype == Media.MediaType.PODCAST || m.mediatype == Media.MediaType.AUDIOBOOK || use_resume_pos)
 			player.set_resume_pos = false;
 		
 		// actually play the media asap
@@ -1526,17 +1538,10 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			player.pause();
 		
 		//update settings
-		if(id != -2)
+		if(id != PREVIEW_MEDIA_ID)
 			settings.setLastMediaPlaying(id);
 		
-		media_played(id, old_id);
-		
-		try {
-			new Thread<void*>.try (null, change_gains_thread);
-		}
-		catch(GLib.Error err) {
-			warning("Could not create thread to change gains: %s\n", err.message);
-		}
+		media_played(m, media_from_id(old_id));
 		
 		/* if same media 1 second later...
 		 * check for embedded art if need be (not loaded from on file) and use that
@@ -1544,15 +1549,23 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 		 * save old media's resume_pos
 		 */
 		Timeout.add(1000, () => {
-			if(media_info.media.rowid == id) {
+			if(media_info.media == m) {
+				try {
+					Thread.create<void*>(change_gains_thread, false);
+				}
+				catch(GLib.Error err) {
+					warning("Could not create thread to change gains: %s\n", err.message);
+				}
+		
 				if(!File.new_for_path(media_info.media.getAlbumArtPath()).query_exists()) {
 					media_info.media.setAlbumArtPath("");
 				}
 				
 				// potentially fix media length
-				if((player.getDuration()/1000000000) > 1) {
+				int player_duration = (int)(player.getDuration()/1000000000);
+				if(player_duration > 1 && Math.fabs((double)(player_duration - media_info.media.length)) > 3) {
 					media_info.media.length = (int)(player.getDuration()/1000000000);
-					update_media(media_info.media, true, false);
+					update_media(media_info.media, false, false);
 				}
 			}
 			
@@ -1560,6 +1573,7 @@ public class BeatBox.LibraryManager : /*BeatBox.LibraryModel,*/ GLib.Object {
 			
 		});
 	}
+
 	
 	public void* change_gains_thread () {
 		if(settings.getEqualizerEnabled()) {

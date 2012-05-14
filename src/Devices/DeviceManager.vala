@@ -58,10 +58,10 @@ public class BeatBox.DeviceManager : GLib.Object {
 		
 		// this can take time if we have to rev up the cd drive
 		try {
-			new Thread<void*>.try (null, get_pre_existing_mounts);
+			Thread.create<void*>(get_pre_existing_mounts, false);
 		}
-		catch (Error err) {
-			warning("ERROR: could not create mount getter thread: %s \n", err.message);
+		catch(GLib.ThreadError err) {
+			stdout.printf("ERROR: could not create mount getter thread: %s \n", err.message);
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 	
 	void volume_added(Volume volume) {
 		if(lm.settings.getMusicMountName() == volume.get_name() && volume.get_mount() == null) {
-			debug("mounting %s because it is believed to be the music folder\n", volume.get_name());
+			stdout.printf("mounting %s because it is believed to be the music folder\n", volume.get_name());
 			volume.mount(MountMountFlags.NONE, null, null);
 		}
 	}
@@ -108,13 +108,13 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 		
 		Device added;
-		if(mount.get_default_location().get_uri().has_prefix("cdda://")) {
+		if(mount.get_default_location().get_uri().has_prefix("cdda://") && mount.get_volume() != null) {
 			added = new CDRomDevice(lm, mount);
 		}
 		else if(File.new_for_path(mount.get_default_location().get_path() + "/iTunes_Control").query_exists() ||
 				File.new_for_path(mount.get_default_location().get_path() + "/iPod_Control").query_exists() ||
 				File.new_for_path(mount.get_default_location().get_path() + "/iTunes/iTunes_Control").query_exists()) {
-			added = new iPodDevice(lm, mount);
+			added = new iPodDevice(lm, mount);	
 		}
 		else if(mount.get_default_location().get_parse_name().has_prefix("afc://")) {
 			added = new iPodDevice(lm, mount);
@@ -125,7 +125,15 @@ public class BeatBox.DeviceManager : GLib.Object {
 		else if(lm.settings.getMusicFolder().contains(mount.get_default_location().get_path())) {
 			// user mounted music folder, rescan for images
 			lm.settings.setMusicMountName(mount.get_volume().get_name());
-			lm.fetch_all_cover_art_async ();
+			lm.recheck_files_not_found();
+			
+			try {
+				Thread.create<void*>(lm.fetch_thread_function, false);
+			}
+			catch(GLib.ThreadError err) {
+				stdout.printf("Could not create thread to load media pixbuf's: %s \n", err.message);
+			}
+			
 			return;
 		}
 		else { // not a music player, ignore it
@@ -133,7 +141,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 		
 		if(added == null) {
-			debug("Found device at %s is invalid. Not using it\n", mount.get_default_location().get_parse_name());
+			stdout.printf("Found device at %s is invalid. Not using it\n", mount.get_default_location().get_parse_name());
 			return;
 		}
 		
@@ -150,17 +158,17 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	void deviceInitialized(Device d) {
-		debug("adding device\n");
+		stdout.printf("adding device\n");
 		device_added(d);
 		lm.lw.update_sensitivities();
 	}
 	
 	public virtual void mount_changed (Mount mount) {
-		//debug("mount_changed:%s\n", mount.get_uuid());
+		//stdout.printf("mount_changed:%s\n", mount.get_uuid());
 	}
 	
 	public virtual void mount_pre_unmount (Mount mount) {
-		//debug("mount_preunmount:%s\n", mount.get_uuid());
+		//stdout.printf("mount_preunmount:%s\n", mount.get_uuid());
 	}
 	
 	public virtual void mount_removed (Mount mount) {
@@ -171,31 +179,6 @@ public class BeatBox.DeviceManager : GLib.Object {
 				
 				// Actually remove it
 				devices.remove(dev);
-				
-				// removing temp medias
-				var toRemove = new LinkedList<Media>();
-				foreach(int i in dev.get_medias()) {
-					Media s = lm.media_from_id(i);
-					if(s.isTemporary)
-						toRemove.add(s);
-					else
-						s.unique_status_image = null;
-				}
-				foreach(int i in dev.get_podcasts()) {
-					Media s = lm.media_from_id(i);
-					if(s.isTemporary)
-						toRemove.add(s);
-					else
-						s.unique_status_image = null;
-				}
-				foreach(int i in dev.get_audiobooks()) {
-					Media s = lm.media_from_id(i);
-					if(s.isTemporary)
-						toRemove.add(s);
-					else
-						s.unique_status_image = null;
-				}
-				lm.remove_medias(toRemove, false);
 				
 				return;
 			}

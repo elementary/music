@@ -39,11 +39,11 @@ public class BeatBox.DeviceView : VBox {
 		
 		ulong connector = lm.progress_cancel_clicked.connect( () => {
 			if(d.is_syncing()) {
-				lw.doAlert("Cancelling Sync", "Device Sync has been cancelled. Operation will stop after this media.");
+				lw.doAlert(_("Cancelling Sync"), _("Device Sync has been cancelled. Operation will stop after this media."));
 				d.cancel_sync();
 			}
 			if(d.is_transferring()) {
-				lw.doAlert("Cancelling Import", "Import from device has been cancelled. Operation will stop after this media.");
+				lw.doAlert(_("Cancelling Import"), _("Import from device has been cancelled. Operation will stop after this media."));
 				d.cancel_transfer();
 			}
 		});
@@ -71,20 +71,18 @@ public class BeatBox.DeviceView : VBox {
 	
 	public void showImportDialog() {
 		// ask the user if they want to import medias from device that they don't have in their library (if any)
+		// this should be same as MusicViewWrapper
 		if(!lm.doing_file_operations() && lm.settings.getMusicFolder() != "") {
-			var externals = new LinkedList<int>();
-			foreach(var i in d.get_medias()) {
-				if(lm.match_media_to_list(i, lm.media_ids()) == 0) {
-					externals.add(i);
-				}
-			}
+			var found = new LinkedList<int>();
+			var not_found = new LinkedList<Media>();
+			lm.media_from_name(d.get_medias(), ref found, ref not_found);
 			
-			if(externals.size > 0) {
-				TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(lw, d, externals);
+			if(not_found.size > 0) {
+				TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(lw, d, not_found);
 				tfdd.show();
 			}
 			else {
-				lw.doAlert("No External Songs", "There were no songs found on this device that are not in your library.");
+				lw.doAlert(_("No External Songs"), _("There were no songs found on this device that are not in your library."));
 			}
 		}
 	}
@@ -97,3 +95,4 @@ public class BeatBox.DeviceView : VBox {
 		lw.progressNotification(message, progress);
 	}
 }
+

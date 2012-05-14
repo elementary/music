@@ -24,6 +24,14 @@
 using Gtk;
 
 public class BeatBox.Media : GLib.Object {
+	public enum MediaType {
+		SONG,
+		PODCAST,
+		AUDIOBOOK,
+		STATION,
+		UNSPECIFIED
+	}
+	
 	// TODO: Define more constants or even enum values
 	public const int PREVIEW_ROWID = -2;
 
@@ -31,7 +39,7 @@ public class BeatBox.Media : GLib.Object {
 	public string uri { get; set; default = ""; }
 	public uint file_size { get; set; default = 0; }
 	public int rowid { get; construct set; default = 0; }
-	public int mediatype { get; set; default = 0; } // 0 = song, 1 = podcast, 2 = audiobook, 3 = radio
+	public MediaType mediatype { get; set; default = 0; } // 0 = song, 1 = podcast, 2 = audiobook, 3 = radio
 	
 	//tags
 	public string title { get; set; default = _("Unknown Title"); }
@@ -77,6 +85,7 @@ public class BeatBox.Media : GLib.Object {
 	
 	private string _album_path;
 	public bool has_embedded { get; set; default = false; }
+	public bool is_video { get; set; default = false; }
 	
 	public bool isPreview { get; set; default = false; }
 	public bool isTemporary { get; set; default = false; }
@@ -89,6 +98,11 @@ public class BeatBox.Media : GLib.Object {
 	//core stuff
 	public Media(string uri) {
 		this.uri = uri;
+	}
+	
+	//audioproperties
+	public string pretty_length() {
+		return TimeUtils.pretty_time_mins (length);
 	}
 	
 	public string pretty_last_played() {
@@ -154,21 +168,16 @@ public class BeatBox.Media : GLib.Object {
 		if(path != null)
 			_album_path = path;
 	}
-
+	
 	public string getAlbumArtPath() {
-		/*
 		if(_album_path == "" || _album_path == null)
 			return Icons.DEFAULT_ALBUM_ART.backup_filename;
 		else
 			return _album_path;
-		*/
-		if (_album_path == null)
-			_album_path = "";
-		return _album_path;
 	}
 	
 	public string getArtistImagePath() {
-		if(isTemporary || mediatype != 0)
+		if(isTemporary || mediatype != Media.MediaType.SONG)
 			return "";
 		
 		var path_file = File.new_for_uri(uri);
@@ -183,19 +192,10 @@ public class BeatBox.Media : GLib.Object {
 		Media rv = new Media("file://" + Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
 		
 		rv.isTemporary = true;
-
-		if (track.title != null)
-			rv.title = track.title;
-
-		if (track.artist != null)
-			rv.artist = track.artist;
-
-		if (track.albumartist != null)
-			rv.album_artist = track.albumartist;
-
-		if (track.album != null)
-			rv.album = track.album;
-
+		if(track.title != null) {			rv.title = track.title; }
+		if(track.artist != null) {			rv.artist = track.artist; }
+		if(track.albumartist != null) {		rv.album_artist = track.albumartist; }
+		if(track.album != null) {			rv.album = track.album; }
 		if(track.genre != null) {			rv.genre = track.genre; }
 		if(track.comment != null) {			rv.comment = track.comment; }
 		if(track.composer != null) {		rv.composer = track.composer; }
@@ -217,11 +217,17 @@ public class BeatBox.Media : GLib.Object {
 		rv.file_size = track.size / 1000000;
 		
 		if(track.mediatype == GPod.MediaType.AUDIO)
-			rv.mediatype = 0;
-		else if(track.mediatype == GPod.MediaType.PODCAST || track.mediatype == 0x00000006)
-			rv.mediatype = 1;
+			rv.mediatype = MediaType.SONG;
+		else if(track.mediatype == GPod.MediaType.PODCAST) {
+			rv.mediatype = MediaType.PODCAST;
+			rv.is_video = false;
+		}
+		else if(track.mediatype == 0x00000006) {
+			rv.mediatype = MediaType.PODCAST;
+			rv.is_video = true;
+		}
 		else if(track.mediatype == GPod.MediaType.AUDIOBOOK)
-			rv.mediatype = 2;
+			rv.mediatype = MediaType.AUDIOBOOK;
 		
 		rv.podcast_url = track.podcasturl;
 		rv.is_new_podcast = track.mark_unplayed == 1;
@@ -263,16 +269,20 @@ public class BeatBox.Media : GLib.Object {
 		t.skipcount = skip_count;
 		t.tracklen = (int)length * 1000;
 		t.size = file_size * 1000000;
-		t.mediatype = 0x00000001;
+		t.mediatype = GPod.MediaType.AUDIO;
 		t.lyrics_flag = 1;
 		t.description = lyrics;
 		
-		if(mediatype == 0)
-			t.mediatype = 0x00000001;
-		else if(mediatype == 1)
-			t.mediatype = 0x00000006;
-		else if(mediatype == 2)
-			t.mediatype = 0x00000008;
+		if(mediatype == MediaType.SONG)
+			t.mediatype = GPod.MediaType.AUDIO;
+		else if(mediatype == MediaType.PODCAST) {
+			if(is_video)
+				t.mediatype = 0x00000006;
+			else
+				t.mediatype = GPod.MediaType.PODCAST;
+		}
+		else if(mediatype == MediaType.AUDIOBOOK)
+			t.mediatype = GPod.MediaType.AUDIOBOOK;
 		
 		t.podcasturl = podcast_url;
 		t.mark_unplayed = (play_count == 0) ? 1 : 0;
@@ -312,16 +322,20 @@ public class BeatBox.Media : GLib.Object {
 		t.skipcount = skip_count;
 		t.tracklen = (int)length * 1000;
 		t.size = file_size * 1000000;
-		t.mediatype = 0x00000001;
+		t.mediatype = GPod.MediaType.AUDIO;
 		t.lyrics_flag = 1;
 		t.description = lyrics;
 		
-		if(mediatype == 0)
-			t.mediatype = 0x00000001;
-		else if(mediatype == 1)
-			t.mediatype = 0x00000006;
-		else if(mediatype == 2)
-			t.mediatype = 0x00000008;
+		if(mediatype == MediaType.SONG)
+			t.mediatype = GPod.MediaType.AUDIO;
+		else if(mediatype == MediaType.PODCAST) {
+			if(is_video)
+				t.mediatype = 0x00000006;
+			else
+				t.mediatype = GPod.MediaType.PODCAST;
+		}
+		else if(mediatype == MediaType.AUDIOBOOK)
+			t.mediatype = GPod.MediaType.AUDIOBOOK;
 		
 		t.podcasturl = podcast_url;
 		t.mark_unplayed = (play_count == 0) ? 1 : 0;

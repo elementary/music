@@ -134,7 +134,7 @@ public class BeatBox.CDRipper : GLib.Object {
 				break;
 			case Gst.MessageType.EOS:
 				pipeline.set_state(Gst.State.NULL);
-				current_media.uri = sink.location;
+				current_media.uri = File.new_for_path(sink.location).get_uri();
 				media_ripped(current_media, true);
 				
 				break;

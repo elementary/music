@@ -24,24 +24,17 @@ using Gst;
 using Gee;
 
 public class BeatBox.CDDA : GLib.Object {
-	//Gst.Element playbin;
-	
-	public CDDA() {
-		//this.playbin = playbin;
-		//GLib.Signal.connect(playbin, "notify::source", (GLib.Callback)notifySourceCallback, this);
-	}
-	
-	public static LinkedList<Media> getMediaList(File device_file) {
+	public static LinkedList<Media> getMediaList(string device_path) {
 		var rv = new LinkedList<Media>();
-		//File device_file;
+		File device_file;
 		FileInfo device_info;
 		string album_name;
 		string album_artist;
 		string album_genre;
 		
-		//device_file = File.new_for_path(device_uri);
+		device_file = File.new_for_path(device_path);
 		if(!device_file.query_exists()) {
-			stdout.printf("could not locate device file at %s\n", device_file.get_uri());
+			warning("Could not locate device file at %s. Audio disc will be invalid\n", device_file.get_path());
 			return rv;
 		}
 		
@@ -49,7 +42,7 @@ public class BeatBox.CDDA : GLib.Object {
 			device_info = device_file.query_info("xattr::*", FileQueryInfoFlags.NONE);
 			
 			if(device_info == null) {
-				stdout.printf("could not get device attr\n");
+				warning("could not get device attr\n");
 				return rv;
 			}
 			
@@ -59,7 +52,7 @@ public class BeatBox.CDDA : GLib.Object {
 		
 			var enumerator = device_file.enumerate_children("xattr::*", FileQueryInfoFlags.NONE);
 			if(enumerator == null) {
-				stdout.printf("Could not enumerate tracks\n");
+				warning("Could not enumerate tracks\n");
 				return rv;
 			}
 		
@@ -114,8 +107,8 @@ public class BeatBox.CDDA : GLib.Object {
 					s.genre = album_genre;
 				
 				// do some checks
-				bool artistValid = (s.artist != null && s.artist != "");
-				bool albumArtistValid = (album_artist != null && album_artist != "");
+				bool artistValid = (s.artist != null && s.artist != "Unknown Artist");
+				bool albumArtistValid = (album_artist != null && album_artist != "Unknown Artist");
 				
 				if(artistValid && !albumArtistValid)
 					s.album_artist = s.artist;
@@ -132,13 +125,13 @@ public class BeatBox.CDDA : GLib.Object {
 				s.album = to_caps(s.album);
 				s.genre = to_caps(s.genre);
 				
-				stdout.printf("Added %s %s %s %s\n", s.title, s.artist, s.album_artist, s.genre);
+				message("Added %s %s %s %s\n", s.title, s.artist, s.album_artist, s.genre);
 				rv.add(s);
 				
 				++index;
 			}
 		} catch(GLib.Error err) {
-			stdout.printf("Could not enumerate tracks or access album info\n");
+			warning("Could not enumerate tracks or access album info\n");
 		}
 		
 		return rv;

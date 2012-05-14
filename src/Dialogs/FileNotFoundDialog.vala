@@ -21,12 +21,11 @@
  */
 
 using Gtk;
-using Gee;
 
 public class BeatBox.FileNotFoundDialog : Window {
 	LibraryManager lm;
 	LibraryWindow lw;
-	int media_id;
+	Gee.LinkedList<Media> media_list;
 	
 	private VBox content;
 	private HBox padding;
@@ -36,13 +35,11 @@ public class BeatBox.FileNotFoundDialog : Window {
 	Button rescanLibrary;
 	Button doNothing;
 	
-	public FileNotFoundDialog(LibraryManager lm, LibraryWindow lw, int id) {
+	public FileNotFoundDialog(LibraryManager lm, LibraryWindow lw, Gee.LinkedList<Media> media_list) {
 		this.lm = lm;
 		this.lw = lw;
-		media_id = id;
-		
-		Media s = lm.media_from_id(media_id);
-		
+		this.media_list = media_list;
+
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
@@ -69,14 +66,21 @@ public class BeatBox.FileNotFoundDialog : Window {
 
 		// be a bit explicit to make translations better
 		var MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";		
-		var title_string = MARKUP_TEMPLATE.printf (String.escape (_("Could not find music file")));
+		var title_string = MARKUP_TEMPLATE.printf (String.escape (_("Could not find media file")));
 		title.set_markup (title_string);
 		title.xalign = 0.0f; //FIXME: deprecated
 		
 		info.set_line_wrap (true);
 		info.xalign = 0.0f; //FIXME: deprecated
-		var info_text = _("The music file for \"%s\" by \" could not be found. What would you like to do?").printf (s.title, s.artist);
-		info.set_text (info_text);
+
+		if (media_list.size == 1) {
+			var s = media_list.get (0);
+			info.set_text (_("The music file for %s by %s could not be found. What would you like to do?").printf ("<b>" + s.title + "</b>", "<b>" + s.artist + "</b>"));
+		}
+		else {
+			info.set_text (_("%i media files could not be found. What would you like to do?").printf (media_list.size));
+		}
+
 
 		
 		rescanLibrary.set_sensitive(!lm.doing_file_operations());
@@ -116,15 +120,16 @@ public class BeatBox.FileNotFoundDialog : Window {
 		show_all();
 	}
 	
-	public void removeMediaClicked() {
-		var temp = new LinkedList<Media>();
-		temp.add(lm.media_from_id(media_id));
-		lm.remove_medias(temp, false);
+	void removeMediaClicked() {
+		lm.remove_medias(media_list, false);
 		
 		this.destroy();
 	}
 	
-	public void locateMediaClicked() {
+	void locateMediaClicked() {
+		Media m = media_list.get(0);
+		int media_id = m.rowid;
+		
 		string file = "";
 		var file_chooser = new FileChooserDialog (_("Choose Music Folder"), this,
 								  FileChooserAction.OPEN,
@@ -150,24 +155,28 @@ public class BeatBox.FileNotFoundDialog : Window {
 		
 		file_chooser.destroy ();
 		
-		if(file != "") {
-			lm.media_from_id(media_id).uri = File.new_for_path(file).get_uri();
-			lm.update_media(lm.media_from_id(media_id), false, false);
+		if(file != "" && File.new_for_path(file).query_exists()) {
+			m.uri = File.new_for_path(file).get_uri();
+			m.location_unknown = false;
+			m.unique_status_image = null;
+			// TODO: lm.lw.media_found(m.rowid);
+			lm.update_media(m, false, false);
 			
 			this.destroy();
 		}
 	}
 	
-	public void rescanLibraryClicked() {
+	void rescanLibraryClicked() {
 		lw.rescan_music_folder ();
+		
 		this.destroy();
 	}
 	
-	public void file_operations_done() {
+	void file_operations_done() {
 		rescanLibrary.set_sensitive(true);
 	}
 	
-	public void file_operations_started() {
+	void file_operations_started() {
 		rescanLibrary.set_sensitive(false);
 	}
 	

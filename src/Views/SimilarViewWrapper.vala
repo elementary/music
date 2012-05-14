@@ -36,12 +36,12 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 		lm.lfm.similar_retrieved.connect(similar_retrieved);
 	}
 	
-	void media_played(int id, int old) {
+	void media_played(Media new_media, Media? old) {
 		fetched = false;
 		
-		if(!list_view.get_is_current_list()) {
-			base_media = lm.media_from_id(id);
-			set_media(new LinkedList<int>());
+		if (!list_view.get_is_current_list()) {
+			base_media = new_media;
+			set_media (new LinkedList<Media>());
 		}
 	}
 	
@@ -60,9 +60,9 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 
 		p.name = _("Similar to %s").printf (base_media.title);
 		
-		var to_add = new LinkedList<int>();
-		foreach(Media m in list_view.get_media()) {
-			to_add.add(m.rowid);
+		var to_add = new LinkedList<Media>();
+		foreach (Media m in list_view.get_media ()) {
+			to_add.add (m);
 		}
 		p.add_media (to_add);
 		

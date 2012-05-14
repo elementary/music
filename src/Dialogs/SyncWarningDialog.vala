@@ -27,8 +27,8 @@ public class BeatBox.SyncWarningDialog : Window {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device d;
-	LinkedList<int> to_sync;
-	LinkedList<int> to_remove;
+	Gee.LinkedList<Media> to_sync;
+	Gee.LinkedList<Media> to_remove;
 	
 	private VBox content;
 	private HBox padding;
@@ -37,7 +37,7 @@ public class BeatBox.SyncWarningDialog : Window {
 	Button sync;
 	Button cancel;
 	
-	public SyncWarningDialog(LibraryManager lm, LibraryWindow lw, Device d, LinkedList<int> to_sync, LinkedList<int> removed) {
+	public SyncWarningDialog(LibraryManager lm, LibraryWindow lw, Device d, Gee.LinkedList<Media> to_sync, Gee.LinkedList<Media> removed) {
 		this.lm = lm;
 		this.lw = lw;
 		this.d = d;

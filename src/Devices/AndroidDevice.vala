@@ -139,7 +139,15 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 		return new LinkedList<int>();
 	}
 	
-	public bool sync_medias(LinkedList<int> list) {
+	public bool sync_medias(LinkedList<Media> list) {
+		return false;
+	}
+	
+	public bool add_medias(LinkedList<Media> list) {
+		return false;
+	}
+	
+	public bool remove_medias(LinkedList<Media> list) {
 		return false;
 	}
 	
@@ -147,7 +155,7 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 		return false;
 	}
 	
-	public bool will_fit(LinkedList<int> list) {
+	public bool will_fit(LinkedList<Media> list) {
 		return false;
 	}
 	

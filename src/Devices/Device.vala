@@ -28,25 +28,6 @@ public interface BeatBox.Device : GLib.Object {
 	public signal void progress_notification(string? message, double progress);
 	public signal void sync_finished(bool success);
 	
-	/*public Device(Mount m) {
-		this.mount = m;
-		
-		/*int audio = 0;
-		int other = 0;
-		FileOperator.guess_content_type(mount.get_default_location(), ref audio, ref other);
-		
-		audioPercentage = (double)(audio/(other + audio));*
-		stdout.printf("created mount at %s and is type %s\n", get_path(), getContentType());
-		
-		if(getContentType() == "ipod-new" || getContentType() == "ipod-old") {
-			var db = GPod.iTunesDB.parse(get_path());
-			
-			for(int i = 0; i < db.tracks.length(); ++i) {
-				stdout.printf("%s %s %s\n", db.tracks.nth_data(i).title, db.tracks.nth_data(i).artist, db.tracks.nth_data(i).album);
-			}
-		}
-	}*/
-	
 	public abstract DevicePreferences get_preferences();
 	public abstract bool start_initialization();
 	public abstract void finish_initialization();
@@ -68,41 +49,35 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract void get_device_type();
 	public abstract bool supports_podcasts();
 	public abstract bool supports_audiobooks();
-	public abstract Collection<int> get_medias();
-	public abstract Collection<int> get_songs();
-	public abstract Collection<int> get_podcasts();
-	public abstract Collection<int> get_audiobooks();
-	public abstract Collection<int> get_playlists();
-	public abstract Collection<int> get_smart_playlists();
-	public abstract bool sync_medias(LinkedList<int> list);
+	public abstract Collection<Media> get_medias();
+	public abstract Collection<Media> get_songs();
+	public abstract Collection<Media> get_podcasts();
+	public abstract Collection<Media> get_audiobooks();
+	public abstract Collection<Playlist> get_playlists();
+	public abstract Collection<SmartPlaylist> get_smart_playlists();
+	public abstract bool sync_medias(LinkedList<Media> list);
+	public abstract bool add_medias(LinkedList<Media> list);
+	public abstract bool remove_medias(LinkedList<Media> list);
 	public abstract bool is_syncing();
 	public abstract void cancel_sync();
-	public abstract bool will_fit(LinkedList<int> list);
+	public abstract bool will_fit(LinkedList<Media> list);
 	public abstract bool is_transferring();
 	public abstract void cancel_transfer();
-	public abstract bool transfer_to_library(LinkedList<int> list);
+	public abstract bool transfer_to_library(LinkedList<Media> list);
 	
 	public string get_unique_identifier() {
+		Mount m = get_mount();
+		string uuid = m.get_uuid();
+		File root = m.get_root();
 		string rv = "";
-
-		var m = get_mount ();
-
-		if (m != null) {
-			var root = m.get_root ();
-			if (root != null) {
-				var root_uri = root.get_uri ();
-				if (root_uri != null)
-					rv += root_uri;
-			}
-
-			var uuid = m.get_uuid();
-			if (uuid != null && uuid != "") {
-				message ("uuid: %s\n", uuid);
-				rv += ("/" + uuid);
-			}
+		stdout.printf("uuid: %s\n", uuid);
+		if(root != null && root.get_uri() != null) {
+			rv += root.get_uri();
+		}
+		if(uuid != null && uuid != "") {
+			rv += ("/" + uuid);
 		}
 		
 		return rv;
 	}
 }
-

@@ -155,16 +155,10 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		ssv.set_visible (similars_fetched);
 	}
 
-	void media_played(int id, int old) {
-		if(lm.media_info.media.isPreview)
-			return;
-		
-		this.id = id;
-		
+	void media_played (Media new_media, Media? old) {
 		update_metadata ();
 		update_cover_art ();
 		update_visibilities ();
-		
 		similars_fetched = false;
 	}
 	

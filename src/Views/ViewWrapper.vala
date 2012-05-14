@@ -197,12 +197,8 @@ public class BeatBox.ViewWrapper : Box {
 		// Connect data signals
 
 		if (hint == Hint.QUEUE) {
-			lm.media_queued.connect ( (ids) => {
-				add_media (lm.media_from_ids (ids));
-			});
-			lm.media_unqueued.connect ( (ids) => {
-				remove_media (lm.media_from_ids (ids));
-			});
+			lm.media_queued.connect (add_media);
+			lm.media_unqueued.connect (remove_media);
 		}
 		else if (hint == Hint.HISTORY) {
 			lm.history_changed.connect ( () => {
@@ -220,10 +216,13 @@ public class BeatBox.ViewWrapper : Box {
 		if (hint != Hint.CDROM && hint != Hint.DEVICE_PODCAST && hint != Hint.DEVICE_AUDIO && hint != Hint.DEVICE_AUDIOBOOK) {
 			// if it's a smart playlist, re-analyze
 			lm.media_updated.connect ( (ids) => {
-				var to_update = ids;
-				if (hint == Hint.SMART_PLAYLIST)
-					to_update = lm.smart_playlist_from_id (relative_id).analyze (lm, ids);
-				update_media (lm.media_from_ids (to_update));
+				if (hint == Hint.SMART_PLAYLIST) {
+					var to_update = lm.smart_playlist_from_id (relative_id).analyze (lm, ids);
+					update_media (to_update);
+				}
+				else {
+					update_media (lm.media_from_ids (ids));
+				}
 			});
 			lm.media_removed.connect ( (ids) => {
 				remove_media (lm.media_from_ids (ids));
@@ -239,12 +238,8 @@ public class BeatBox.ViewWrapper : Box {
 				set_media (new LinkedList<Media> ());
 			});
 
-			playlist.media_added.connect ( (ids) => {
-				add_media (lm.media_from_ids (ids));
-			});
-			playlist.media_removed.connect ( (ids) => {
-				remove_media (lm.media_from_ids (ids));
-			});
+			playlist.media_added.connect (add_media);
+			playlist.media_removed.connect (remove_media);
 		}
 
 		lw.viewSelector.mode_changed.connect (view_selector_changed);
@@ -559,7 +554,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	private void set_default_alert () {
+	protected virtual void set_default_alert () {
 		if (!has_embedded_alert)
 			return;
 
@@ -607,7 +602,6 @@ public class BeatBox.ViewWrapper : Box {
 	============================================================================
 	*/
 
-
 	protected Mutex in_update;
 
 	/* Whether to populate this view wrapper's views immediately or delay the process */
@@ -625,7 +619,6 @@ public class BeatBox.ViewWrapper : Box {
 		return media_table.keys;
 	}
 
-
 	/**
 	 * @return a collection containing all the media that should be shown
 	 */
@@ -639,7 +632,7 @@ public class BeatBox.ViewWrapper : Box {
 	 * Updates the data in visible_media and re-populates all the views.
 	 * Primarily used for searches
 	 */
-	public async void update_visible_media () {
+	private void update_visible_media () {
 		in_update.lock ();
 
 		debug ("%s : UPDATING SHOWING MEDIA", hint.to_string ());
@@ -707,14 +700,50 @@ public class BeatBox.ViewWrapper : Box {
 		check_have_media ();
 	}
 
-	public async void set_media_from_ids (Gee.Collection<int> new_media) {
+	/**
+	 * /!\ Async variants. Don't use them if you depend on the results to proceed in your method
+	 */
+	public async void set_media_async (Gee.Collection<Media> new_media) {
+		set_media (new_media);
+	}
+
+	public async void set_media_from_ids_async (Gee.Collection<int> new_media) {
+		set_media_from_ids (new_media);
+	}
+
+	public async void add_media_async (Gee.Collection<Media> to_add) {
+		add_media (to_add);
+	}
+
+	public async void remove_media_async (Gee.Collection<Media> to_remove) {
+		remove_media (to_remove);
+	}
+
+	public async void update_media_async (Gee.Collection<Media> to_update) {
+		update_media (to_update);
+	}
+
+
+	/**
+	 * Normal variants
+	 */
+
+	public void clear_filters () {
+		/**
+		 * /!\ Currently setting the search to "" is enough. Remember to update it
+		 *     if the internal views try to restore their previous state after changes.
+		 */
+		lw.searchField.set_text ("");
+	}
+
+	public void set_media_from_ids (Gee.Collection<int> new_media) {
 		var to_set = new Gee.LinkedList<Media> ();
 		foreach (var id in new_media)
 			to_set.add (lm.media_from_id (id));
 		set_media (to_set);
 	}
 
-	public async void set_media (Collection<Media> new_media) {
+	public void set_media (Collection<Media> new_media) {
 		if (new_media == null) {
 			warning ("set_media: attempt to set NULL media failed");
 			return;
@@ -755,7 +784,7 @@ public class BeatBox.ViewWrapper : Box {
 	/**
 	 * Do search to find which ones should be added, removed from this particular view
 	 */
-	public async void update_media (Gee.Collection<Media> media) {
+	public void update_media (Gee.Collection<Media> media) {
 		in_update.lock ();
 
 		debug ("%s : UPDATING media", hint.to_string());
@@ -835,7 +864,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	public async void remove_media (Collection<Media> media) {
+	public void remove_media (Collection<Media> media) {
 		in_update.lock ();
 
 		debug ("%s : REMOVING media", hint.to_string ());
@@ -874,7 +903,7 @@ public class BeatBox.ViewWrapper : Box {
 	}
 
 
-	public async void add_media (Collection<Media> new_media) {
+	public void add_media (Collection<Media> new_media) {
 		in_update.lock ();
 
 		debug ("%s : ADDING media", hint.to_string());

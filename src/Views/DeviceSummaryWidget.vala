@@ -262,8 +262,9 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		//double audiobook_size = 0.0;
 
 
-		foreach(int i in dev.get_songs()) {
-			music_size += (double)(lm.media_from_id(i).file_size);
+		foreach (var m in dev.get_songs()) {
+			if (m != null)
+				music_size += (double)(m.file_size);
 		}
 #if HAVE_PODCASTS
 		foreach(int i in dev.get_podcasts()) {
@@ -517,15 +518,15 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		spaceWidget.set_sync_button_sensitive(true);
 	}
 	
-	public void syncClicked() {
-		Gee.LinkedList<int> list = new Gee.LinkedList<int>();
+	public void syncClicked () {
+		var list = new Gee.LinkedList<Media>();
 		var pref = dev.get_preferences();
-		
+
 		if(pref.sync_music) {
 			if(pref.sync_all_music) {
 				foreach(var s in lm.media()) {
 					if(s.mediatype == 0 && !s.isTemporary)
-						list.add(s.rowid);
+						list.add(s);
 				}
 			}
 			else {
@@ -535,15 +536,15 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				
 				if(p != null) {
 					if(p is Playlist) {
-						foreach(int i in ((Playlist)p).media()) {
-							if(lm.media_from_id(i).mediatype == 0)
-								list.add(i);
+						foreach (var m in ((Playlist)p).media()) {
+							if (m != null && m.mediatype == 0)
+								list.add (m);
 						}
 					}
 					else {
-						foreach(int i in ((SmartPlaylist)p).analyze(lm, lm.media_ids())) {
-							if(lm.media_from_id(i).mediatype == 0)
-								list.add(i);
+						foreach(var m in ((SmartPlaylist)p).analyze(lm, lm.media ())) {
+							if(m != null && m.mediatype == 0)
+								list.add (m);
 						}
 					}
 				}
@@ -561,9 +562,9 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 #if HAVE_PODCASTS
 		if(pref.sync_podcasts) {
 			if(pref.sync_all_podcasts) {
-				foreach(var s in lm.media()) {
-					if(s.mediatype == 1 && !s.isTemporary)
-						list.add(s.rowid);
+				foreach (var s in lm.media()) {
+					if (s != null && s.mediatype == 1 && !s.isTemporary)
+						list.add (s);
 				}
 			}
 			else {
@@ -640,15 +641,12 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 			lw.doAlert(_("Cannot Sync"), _("Device is already being synced."));
 		}
 		else {
-			var to_remove = new Gee.LinkedList<int>();
-			foreach(int i in dev.get_medias()) {
-				int match = lm.match_media_to_list(i, lm.media_ids());
-				if(match == 0)
-					to_remove.add(i);
-			}
+			var found = new Gee.LinkedList<int>();
+			var not_found = new Gee.LinkedList<Media>();
+			lm.media_from_name (dev.get_medias(), ref found, ref not_found);
 			
-			if(to_remove.size > 0) { // hand control over to SWD
-				SyncWarningDialog swd = new SyncWarningDialog(lm, lw, dev, list, to_remove);
+			if(not_found.size > 0) { // hand control over to SWD
+				SyncWarningDialog swd = new SyncWarningDialog(lm, lw, dev, list, not_found);
 				swd.show();
 			}
 			else {

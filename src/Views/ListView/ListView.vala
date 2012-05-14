@@ -95,7 +95,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
 			case ViewWrapper.Hint.CDROM:
 			//case ViewWrapper.Hint.ALBUM_LIST:
-				list_view = new MusicListView (view_wrapper, tvs);
+				list_view = new MusicListView (lm, tvs);
 				break;
 			default:
 				critical ("NO LIST VIEW AVAILABLE FOR HINT -> %s", tvs.get_hint().to_string());

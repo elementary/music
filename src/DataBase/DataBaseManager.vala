@@ -136,7 +136,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				s.date_added = (uint)results.fetch_int(25);
 				s.last_played = (uint)results.fetch_int(26);
 				s.last_modified = (uint)results.fetch_int(27);
-				s.mediatype = (int)results.fetch_int(28);
+				s.mediatype = (Media.MediaType)results.fetch_int(28);
 				s.podcast_rss = results.fetch_string(29);
 				s.podcast_url = results.fetch_string(30);
 				s.podcast_date = results.fetch_int(31);

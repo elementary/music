@@ -37,16 +37,16 @@ public class BeatBox.ViewContainer : Gtk.Notebook {
 	 *
 	 * @return the index of the view in the view container
 	 */
-	public int add_view (Gtk.Container view) {
+	public int add_view (Gtk.Widget view) {
 		return append_page (view);
 	}
 
-    public int get_view_index (Gtk.Container view) {
+    public int get_view_index (Gtk.Widget view) {
         return page_num (view);
     }
 
-	public Gtk.Container? get_current_view () {
-		return get_current_page () as Gtk.Container;
+	public Gtk.Widget? get_current_view () {
+		return get_current_page () as Gtk.Widget;
 	}
 
 	public int get_current_index () {
@@ -57,7 +57,7 @@ public class BeatBox.ViewContainer : Gtk.Notebook {
      * Tries to set the given view as current.
      * @return false if fails. true if succeeds
      */
-	public bool set_current_view (Gtk.Container view) {
+	public bool set_current_view (Gtk.Widget view) {
         int index = get_view_index (view);
 
 		if (index < 0)
