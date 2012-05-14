@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-09 22:43-0600\n"
-"PO-Revision-Date: 2012-05-08 18:36+0000\n"
+"PO-Revision-Date: 2012-05-13 20:55+0000\n"
 "Last-Translator: Florent (LSc) <Unknown>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-11 06:09+0000\n"
-"X-Generator: Launchpad (build 15225)\n"
+"X-Launchpad-Export-Date: 2012-05-14 05:25+0000\n"
+"X-Generator: Launchpad (build 15238)\n"
 "Language: \n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
@@ -983,7 +983,7 @@ msgstr "%s n'arrive pas à trouver votre musique."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Aucune musiques dans la file"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
 msgid ""
@@ -991,10 +991,14 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Pour ajouter des musiques à la file, utiliser le <b>clic droit</b> sur un "
+"élément et choisissez <b>File</b>, Lorsqu'une musique se termine, les "
+"musiques de la file seront lues en premier avant la prochaine musique de la "
+"liste de lecture en cours."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
 msgid "No songs in History"
-msgstr ""
+msgstr "Aucunes musiques dans l'historique"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
 msgid ""
@@ -1002,6 +1006,10 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Après qu'une partie d'une musique ai été lue, elle est ajoutée à "
+"l'historique.\n"
+"Vous pouvez utiliser cette liste pour voir toutes les musiques que vous avez "
+"lues durant la session courante."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 msgid "Audio CD Invalid"
@@ -1010,18 +1018,20 @@ msgstr "CD audio invalide"
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s ne peut pas lire le contenu de ce CD Audio"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
 msgid "No Songs"
-msgstr ""
+msgstr "Pas de Musiques"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Pour ajouter des musiques à cette liste de lecture, utilisez le <b>clic "
+"droit</b> sur un élément et choisissez <b>Ajouter à la liste de lecture</b>."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
 msgid ""
@@ -1029,6 +1039,9 @@ msgid ""
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
 "sidebar and click on <b>Edit</b>."
 msgstr ""
+"Cette liste de lecture sera automatiquement rempli des musiques qui "
+"correspondent à ces règles. Pour modifier ces règles, utilisez le <b>clic "
+"droit</b> sur la liste dans le panneau latéral et cliquez sur <b>Editer</b>."
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:135
 msgid "Remove from Library"
@@ -1191,7 +1204,7 @@ msgstr "Rechercher des chansons similaires"
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:96
 #, c-format
 msgid "Finding songs similar to <b>%s</b> by <b>%s</b>"
-msgstr ""
+msgstr "Chercher les musiques similaires à <b>%s</b> par <b>%s</b>"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:105
 msgid "No similar songs found"
@@ -1204,6 +1217,10 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s ne trouve pas de musiques similaires à <b>%s</b> par <b>%s</b>. Vérifiez "
+"que toutes les informations du morceau sont correctes et que vous êtes "
+"connecté à Internet. Certaines musiques peuvent ne pas avoir de "
+"correspondances."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:68
 msgid "Device Name"

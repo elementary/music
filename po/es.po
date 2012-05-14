@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-09 22:43-0600\n"
-"PO-Revision-Date: 2012-05-11 20:19+0000\n"
-"Last-Translator: Rubén Vera <Unknown>\n"
+"PO-Revision-Date: 2012-05-13 17:22+0000\n"
+"Last-Translator: Sergio Tortosa <sertorbe@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-12 06:23+0000\n"
-"X-Generator: Launchpad (build 15225)\n"
+"X-Launchpad-Export-Date: 2012-05-14 05:25+0000\n"
+"X-Generator: Launchpad (build 15238)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
@@ -445,7 +445,7 @@ msgstr "Configuración Personalizada"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:423
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Preajuste personalizado %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -888,7 +888,7 @@ msgstr "Editando %s por %s"
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:339
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "Editando %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:171
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:342

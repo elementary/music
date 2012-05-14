@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-09 22:43-0600\n"
-"PO-Revision-Date: 2012-04-16 21:57+0000\n"
-"Last-Translator: Victor Eduardo <victoreduardm@gmail.com>\n"
+"PO-Revision-Date: 2012-05-13 17:27+0000\n"
+"Last-Translator: Sergio Tortosa <sertorbe@gmail.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-11 06:09+0000\n"
-"X-Generator: Launchpad (build 15225)\n"
+"X-Launchpad-Export-Date: 2012-05-14 05:25+0000\n"
+"X-Generator: Launchpad (build 15238)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
@@ -36,11 +36,12 @@ msgstr ""
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"%s no ha pogut trobar ninguna cançó al CD. Ninguna cançó pot ser importada"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
 #, c-format
 msgid "%s is already doing an import"
-msgstr ""
+msgstr "%s ja es troba fon una importació"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
 #, c-format
@@ -48,6 +49,8 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
+"Per favor espere fins a que %s haja acabat amb la importació actual abans "
+"d'importar el CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:258
 msgid "Ripping track 1"
@@ -56,12 +59,12 @@ msgstr ""
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:320
 #, c-format
 msgid "Importing track %i"
-msgstr ""
+msgstr "Important pista %i"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:333
 msgid "CD Import Complete"
-msgstr ""
+msgstr "Importació del CD completada"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
 #, c-format
