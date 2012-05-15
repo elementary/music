@@ -29,50 +29,23 @@ using Gee;
 
 public class BeatBox.PlaylistViewWrapper : ViewWrapper {
 
-    GLib.Object playlist;
+    public PlaylistViewWrapper (LibraryWindow lw, TreeViewSetup tvs, int id) {
+        base (lw, tvs, id);
 
-    public PlaylistViewWrapper (LibraryWindow lw, GLib.Object playlist) {
-        debug ("Assigning playlist");
-        this.playlist = playlist;
-
-        int id = -1;
-        TreeViewSetup? tvs = null;
-
-        debug ("before entering conditionals");
-
-        if (playlist != null) {
-            debug ("NOT null");
-
-            if (playlist is Playlist) {
-                debug ("Object is playlist");
-                var p = playlist as Playlist;
-                id = p.rowid;
-                tvs = p.tvs;
-
-                // Connect to playlist signals
+        if (tvs.get_hint () == Hint.PLAYLIST) {
+            var p = lm.playlist_from_id (id);
+            
+            // Connect to playlist signals
+            if (p != null) {
                 p.media_added.connect (on_playlist_media_added);
                 p.media_removed.connect (on_playlist_media_removed);
                 p.cleared.connect (on_playlist_cleared);
             }
-            else if (playlist is SmartPlaylist) {
-                debug ("Object is smart playlist");
-                var p = playlist as SmartPlaylist;
-                id = p.rowid;
-                tvs = p.tvs;
-
-                // Smart playlist data stuff
-                lm.media_added.connect (on_library_media_added);
-                lm.media_removed.connect (on_library_media_removed);
-            }
-            else {
-                debug ("Object is not playlist or smart playlist. No playlist passed as parameter");
-            }
         }
-        else debug ("null");
-
-        base (lw, tvs, id);
-
-        debug ("Adding views");
+        else if (tvs.get_hint () == Hint.SMART_PLAYLIST) {
+            lm.media_added.connect (on_library_media_added);
+            lm.media_removed.connect (on_library_media_removed);
+        }
 
         // Add album view
         album_view = new AlbumView (this);
@@ -132,22 +105,26 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
      */
 
     private void on_library_media_added (Gee.Collection<int> ids) {
+        var playlist = lm.smart_playlist_from_id (relative_id);
+
         if (hint != Hint.SMART_PLAYLIST || playlist == null)
             return;
 
         // Analyze new media to see if it satisfies the conditions
-        var to_add = (playlist as SmartPlaylist).analyze_ids (lm, ids);
+        var to_add = playlist.analyze_ids (lm, ids);
 
         add_media (to_add);
     }
 
 
     private void on_library_media_removed (Gee.Collection<int> ids) {
+        var playlist = lm.smart_playlist_from_id (relative_id);
+
         if (hint != Hint.SMART_PLAYLIST || playlist == null)
             return;
 
         // Analyze new media to see if it satisfies the conditions
-        var to_remove = (playlist as SmartPlaylist).analyze_ids (lm, ids);
+        var to_remove = playlist.analyze_ids (lm, ids);
 
         remove_media (to_remove);
     }
@@ -157,21 +134,21 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
      */
 
     private void on_playlist_media_added (Gee.Collection<Media> to_add) {
-        if (hint != Hint.PLAYLIST || playlist == null)
+        if (hint != Hint.PLAYLIST)
             return;
 
         add_media (to_add);
     }
 
     private void on_playlist_media_removed (Gee.Collection<Media> to_remove) {
-        if (hint != Hint.PLAYLIST || playlist == null)
+        if (hint != Hint.PLAYLIST)
             return;
 
         remove_media (to_remove);
     }
 
     private void on_playlist_cleared () {
-         if (hint != Hint.PLAYLIST || playlist == null)
+         if (hint != Hint.PLAYLIST)
             return;
 
         set_media (new Gee.LinkedList<Media> ());

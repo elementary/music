@@ -597,7 +597,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		if(o is Playlist) {
 			Playlist p = (Playlist)o;
 
-			var view = new PlaylistViewWrapper (this, p);
+			var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
 			add_view (p.name, view);
 			// TODO: does p.media () work? it's faster
 			view.set_media (lm.media_from_playlist (p.rowid));
@@ -605,7 +605,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 			
-			var view = new PlaylistViewWrapper (this, p);
+			var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
 			add_view (p.name, view);
 			view.set_media (lm.media_from_smart_playlist (p.rowid));
 		}

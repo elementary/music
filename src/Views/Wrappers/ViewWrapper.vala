@@ -162,7 +162,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     /**
      * Convenient visibility method
      */
-    protected void set_active_view (ViewType type, out bool successful = null) {
+    protected void set_active_view (ViewType type, out bool successful = false) {
         // Find position in notebook
         switch (type) {
             case ViewType.LIST:
