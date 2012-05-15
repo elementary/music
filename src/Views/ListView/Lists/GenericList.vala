@@ -29,9 +29,9 @@ public abstract class BeatBox.GenericList : FastView {
 	
 	public signal void import_requested(LinkedList<Media> to_import);
 	
-	public GenericList(ViewWrapper view_wrapper,  GLib.List<Type> types, TreeViewSetup tvs) {
+	public GenericList(ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
 		base(types);
-
+		this.tvs = tvs;
 		set_parent_wrapper (view_wrapper);
 		
 		set_headers_clickable(true);

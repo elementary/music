@@ -211,6 +211,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			case ViewWrapper.Hint.DEVICE_AUDIO:
 			case ViewWrapper.Hint.DEVICE_PODCAST:
 			case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
+			case ViewWrapper.Hint.CDROM:
 				sidebar_category_iter = devices_iter;
 				break;
 			default:
@@ -266,7 +267,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 
 			rv = addItem(parent, o, w, device_icon, name, null);
 
-			var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), -1, d);
+			var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
 			dvw.set_media (d.get_medias ());
 			addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
 			lw.view_container.add_view (dvw);
@@ -444,7 +445,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			(w as ViewWrapper).play_first_media ();
 		}
 	}
-	
+
 	public void resetView() {
 		/* We can't just put setSelectedIter directly, we have to check that this iter is not null */
 		TreeIter? selected_iter = null;
@@ -473,7 +474,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	}
 
 	// Sets the current sidebar item as the active view
-	private async void sideListSelectionChange () {
+	public async void sideListSelectionChange () {
 		var w = getSelectedWidget ();
 		
 		// Switch to that view in the library window
@@ -704,7 +705,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		filter.get(iter, 1, out w);
 		
 		if(w is SimilarViewWrapper) {
-			((SimilarViewWrapper)w).savePlaylist();
+			((SimilarViewWrapper)w).save_playlist();
 		}
 	}
 	

@@ -64,8 +64,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 
 	public LastFM.Core lfm;
 
-	private Mutex mutex;
-
 	private Mutex _media_lock; // lock for _media. use this around _media, _songs, ... _permanents
 #if HAVE_PODCASTS
 	private Mutex _podcasts_lock;
@@ -746,6 +744,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		//remove_media(unset, false);
 		debug ("cleared\n");
 	}
+
+	public int song_count() {
+		return _songs.size;
+	}
 	
 	public int media_count() {
 		return _media.size;
@@ -1115,9 +1117,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			fo.remove_media(removeURIs);
 		}
 		
-		// call now so that lm.media_from_id() still works
-		media_removed(removedIds);
-		
 		_media_lock.lock();
 		foreach(Media s in toRemove) {
 			_media.unset(s.rowid);
@@ -1144,6 +1143,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(_media.size == 0)
 			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 
+		media_removed(removedIds);
+		
 		// TODO: move away. It's called twice due to LW's internal handlers		
 		lw.update_sensitivities();
 	}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-13 21:20-0600\n"
+"POT-Creation-Date: 2012-05-14 20:09-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,26 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:340
+#: /home/victor/noise/po/../src//LibraryManager.vala:338
 #, c-format
 msgid "Importing music from %s..."
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:381
+#: /home/victor/noise/po/../src//LibraryManager.vala:379
 msgid "Adding files to library..."
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:406
+#: /home/victor/noise/po/../src//LibraryManager.vala:404
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:432
+#: /home/victor/noise/po/../src//LibraryManager.vala:430
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1039
 #: /home/victor/noise/po/../src//Devices_old/CDRomDevice.vala:224
 msgid "Could not find Music Folder"
 msgstr ""
@@ -149,7 +149,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:339
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:350
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victor/noise/po/../src//LibraryWindow.vala:256
+#: /home/victor/noise/po/../src//LibraryWindow.vala:252
 msgid "Album"
 msgstr ""
 
@@ -159,7 +159,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:339
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:350
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victor/noise/po/../src//LibraryWindow.vala:257
+#: /home/victor/noise/po/../src//LibraryWindow.vala:253
 msgid "Artist"
 msgstr ""
 
@@ -257,7 +257,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Objects/Playlist.vala:37
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:139
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:315
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
 msgid "New Playlist"
 msgstr ""
 
@@ -272,12 +272,12 @@ msgid "Unknown Title"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:719
 msgid "Unknown Artist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:720
 msgid "Unknown Album"
 msgstr ""
 
@@ -308,8 +308,8 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:121
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:318
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victor/noise/po/../src//LibraryWindow.vala:185
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:156
+#: /home/victor/noise/po/../src//LibraryWindow.vala:181
 msgid "Import to Library"
 msgstr ""
 
@@ -362,22 +362,22 @@ msgstr ""
 msgid "Playlists"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:271
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:272
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:98
-#: /home/victor/noise/po/../src//LibraryWindow.vala:561
+#: /home/victor/noise/po/../src//LibraryWindow.vala:562
 msgid "Music"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:276
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:277
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:99
 msgid "Podcasts"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:844
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:845
 msgid "Playlist"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:857
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:858
 #, c-format
 msgid "Import %s"
 msgstr ""
@@ -482,6 +482,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:141
 msgid "Choose Music Folder"
 msgstr ""
 
@@ -580,7 +581,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:306
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:373
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
-#: /home/victor/noise/po/../src//LibraryWindow.vala:255
+#: /home/victor/noise/po/../src//LibraryWindow.vala:251
 msgid "Song"
 msgstr ""
 
@@ -626,7 +627,7 @@ msgid "Unsuccessful. Click to try again."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:67
-#: /home/victor/noise/po/../src//LibraryWindow.vala:250
+#: /home/victor/noise/po/../src//LibraryWindow.vala:246
 msgid "Preferences"
 msgstr ""
 
@@ -922,98 +923,139 @@ msgstr ""
 msgid "%s by %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:137
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 msgid "Get Some Tunes"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:137
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:39
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:467
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+msgid "Locate"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+msgid "Change your music folder."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
+msgid "Import songs from audio CD"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:101
+msgid "Import media from device"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:187
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:85
+msgid "No External Songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:187
+msgid "All the songs in this device are already in your library."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:353
 #, c-format
 msgid "%i songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:467
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:353
 msgid "1 song"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:469
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:355
 #, c-format
 msgid "%i items"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:469
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:355
 msgid "1 item"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:472
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:358
 #, c-format
 msgid "%i albums"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:472
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:358
 msgid "1 album"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:567
-msgid "No songs in Queue"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:567
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:570
-msgid "No songs in History"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:570
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:573
-msgid "Audio CD Invalid"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:573
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:576
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:591
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:100
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid "No Songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:576
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:100
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:580
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:104
 msgid "Edit Smart Playlist"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:581
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:105
 msgid "Click on the button to edit playlist rules"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:591
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:116
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:67
+msgid "Audio CD Invalid"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:67
+#, c-format
+msgid "%s could not read the contents of this Audio CD"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:59
+msgid "Fetching similar songs..."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:59
+#, c-format
+msgid "Finding songs similar to %s by %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:64
+msgid "Similar Song View"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:64
+#, c-format
+msgid ""
+"In this view, %s will automatically find songs similar to the one you're "
+"playing. You can then start playing those songs, or save them as a playlist "
+"for later."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:84
+#, c-format
+msgid "Similar to %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:122
+msgid "No similar songs found"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:122
+#, c-format
+msgid ""
+"%s could not find songs similar to %s by %s. Make sure all song info is "
+"correct and you are connected to the Internet. Some songs may not have "
+"matches."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:42
@@ -1034,46 +1076,42 @@ msgid ""
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:85
-msgid "No External Songs"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:85
 msgid "There were no songs found on this device that are not in your library."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:132
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:95
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:96
 msgid "Remove from Library"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:144
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:104
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:105
 msgid "Remove from Queue"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:312
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "Edit Song Info"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:313
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
 msgid "Show in File Browser"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:314
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:574
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
+#: /home/victor/noise/po/../src//LibraryWindow.vala:577
 msgid "Queue"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:316
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Add to Playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView_old.vala:317
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
 msgid "Remove Song"
 msgstr ""
 
@@ -1087,24 +1125,24 @@ msgstr ""
 msgid "Import %d songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:123
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:124
 msgid "Remove from Device"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:156
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:157
 msgid "Scroll to Current Song"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:248
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:252
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:250
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:254
 msgid "Import this song"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:252
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:256
 #, c-format
 msgid "Import %i songs"
 msgstr ""
@@ -1219,32 +1257,6 @@ msgstr ""
 msgid "Ratings"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:61
-#, c-format
-msgid "Similar to %s"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:95
-msgid "Fetching similar songs"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:95
-#, c-format
-msgid "Finding songs similar to %s by %s"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:104
-msgid "No similar songs found"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:104
-#, c-format
-msgid ""
-"%s could not find songs similar to %s by %s. Make sure all song info is "
-"correct and you are connected to the Internet. Some songs may not have "
-"matches."
-msgstr ""
-
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:68
 msgid "Device Name"
 msgstr ""
@@ -1331,108 +1343,108 @@ msgstr ""
 msgid "Not Recently Played"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:186
+#: /home/victor/noise/po/../src//LibraryWindow.vala:182
 msgid "Rescan Music Folder"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:197
+#: /home/victor/noise/po/../src//LibraryWindow.vala:193
 msgid "Search Music"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:218
+#: /home/victor/noise/po/../src//LibraryWindow.vala:214
 msgid "Disable Repeat"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:218
+#: /home/victor/noise/po/../src//LibraryWindow.vala:214
 msgid "Enable Repeat"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:219
+#: /home/victor/noise/po/../src//LibraryWindow.vala:215
 msgid "Disable Shuffle"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:219
+#: /home/victor/noise/po/../src//LibraryWindow.vala:215
 msgid "Enable Shuffle"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:220
+#: /home/victor/noise/po/../src//LibraryWindow.vala:216
 msgid "Hide Info Panel"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:220
+#: /home/victor/noise/po/../src//LibraryWindow.vala:216
 msgid "Show Info Panel"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:221
+#: /home/victor/noise/po/../src//LibraryWindow.vala:217
 msgid "Add Playlist"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:222
+#: /home/victor/noise/po/../src//LibraryWindow.vala:218
 msgid "Hide Equalizer"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:222
+#: /home/victor/noise/po/../src//LibraryWindow.vala:218
 msgid "Show Equalizer"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:254
-#: /home/victor/noise/po/../src//LibraryWindow.vala:260
+#: /home/victor/noise/po/../src//LibraryWindow.vala:250
+#: /home/victor/noise/po/../src//LibraryWindow.vala:256
 msgid "Off"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:258
-#: /home/victor/noise/po/../src//LibraryWindow.vala:261
+#: /home/victor/noise/po/../src//LibraryWindow.vala:254
+#: /home/victor/noise/po/../src//LibraryWindow.vala:257
 msgid "All"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:263
-#: /home/victor/noise/po/../src//LibraryWindow.vala:266
+#: /home/victor/noise/po/../src//LibraryWindow.vala:259
+#: /home/victor/noise/po/../src//LibraryWindow.vala:262
 msgid "Hide"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:264
-#: /home/victor/noise/po/../src//LibraryWindow.vala:267
+#: /home/victor/noise/po/../src//LibraryWindow.vala:260
+#: /home/victor/noise/po/../src//LibraryWindow.vala:263
 msgid "Show"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:571
+#: /home/victor/noise/po/../src//LibraryWindow.vala:573
 msgid "Similar"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:578
+#: /home/victor/noise/po/../src//LibraryWindow.vala:582
 msgid "History"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:719
 msgid " by "
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:720
 msgid " on "
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:981
+#: /home/victor/noise/po/../src//LibraryWindow.vala:993
 msgid "Import Music"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1005
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1017
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1020
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1032
 msgid "Rescanning music folder for changes"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1039
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1081
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1093
 msgid "Import Complete"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1081
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1093
 #, c-format
 msgid "%s has imported your library."
 msgstr ""

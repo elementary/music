@@ -29,7 +29,7 @@ public class BeatBox.MediaInfo : GLib.Object {
 	public LastFM.TrackInfo? track;
 	public LastFM.AlbumInfo? album;
 	
-    public MediaInfo() {
+	public MediaInfo() {
 		//don't initialize media because we check for null throughout the program
 		artist = new LastFM.ArtistInfo.basic();
 		track = new LastFM.TrackInfo();

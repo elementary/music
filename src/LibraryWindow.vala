@@ -36,10 +36,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 	private BeatBox.MediaKeyListener mkl;
 
-	/* Core views. Some will be probably split into plugins in future versions */
-	private ViewWrapper music_library_view;
-
-
 	private bool queriedlastfm; // whether or not we have queried last fm for the current media info
 	private bool media_considered_played; // whether or not we have updated last played and added to already played list
 	private bool added_to_play_count; // whether or not we have added one to play count on playing media
@@ -53,10 +49,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	private VBox verticalBox;
 
 	public ViewContainer view_container { get; private set; }
-
-#if HAVE_PODCASTS
-	public DrawingArea videoArea  { get; private set; }
-#endif
 
 	public HPaned sourcesToMedias { get; private set; } //allows for draggable
 
@@ -168,7 +160,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		// set the size based on saved gconf settings
 		set_default_size(settings.getWindowWidth(), settings.getWindowHeight());
-		
+
 		// set the title
 		set_title(app.get_name ());
 
@@ -425,7 +417,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		});
 	}
 
-
+	/**
+	 * Show notification asyncronously
+	 */
 	public async void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, bool force = false) {
 		if (!Notify.is_initted ()) {
 			if (!Notify.init (app.get_id ())) {
@@ -496,27 +490,27 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	/**
 	 * Description:
 	 * Builds the views (view wrapper) and adds the respective element to the sidebar TreeView.
+	 *
+	 * @return true if succeeds, false if fails.
 	 */
-	public ViewWrapper add_view (string view_name, TreeViewSetup tvs, int id = -1, out TreeIter? iter = null)
+	public bool add_view (string view_name, ViewWrapper view_wrapper, out TreeIter? iter = null)
 	{
-		ViewWrapper view_wrapper;
-		
-		if (tvs.get_hint() == ViewWrapper.Hint.SIMILAR)
-			view_wrapper = new SimilarViewWrapper (this, tvs, id);
-		else
-			view_wrapper = new ViewWrapper(this, tvs, id);
+		/* Pack view wrapper into the main views */
+		if (view_name ==null || view_container.add_view(view_wrapper) == -1) {
+			critical ("Failed to append view '%s' to BeatBox's main views", view_name);
+			return false;
+		}
 
 		iter = sideTree.add_item (view_wrapper, view_name);
 
-		/* Pack view wrapper into the main views */
-		if (view_container.add_view(view_wrapper) == -1)
-			critical ("Failed to append view '%s' to BeatBox's main views", view_name);
-
-		return view_wrapper;
+		return true;
 	}
 
 	/**
 	 * Sets the given view as the active item
+	 *
+	 * TODO: change Gtk.Widget to ViewWrapper when the transition of
+	 *       devices to the new API is finished
 	 */
 	public void set_active_view (Gtk.Widget view) {
 		if (!initialization_finished)
@@ -539,6 +533,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	 *
 	 * IMPORTANT: Currently every item added through this method will be put under the Network category
 	 */
+#if 0
 	public ViewWrapper add_custom_view (string name, Gtk.Widget widget) {
 		var view_wrapper = new ViewWrapper.with_view (widget);
 		sideTree.add_item (view_wrapper, name);
@@ -549,6 +544,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		return view_wrapper;
 	}
+#endif
 
 	/**
 	 * Builds and sets up the default views. That includes main sidebar elements
@@ -558,8 +554,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		debug ("Building main views ...");
 
 		// Add Music Library View
-		music_library_view = add_view (_("Music"), lm.music_setup);
-		music_library_view.set_media_from_ids (lm.song_ids ());
+		var music_view_wrapper = new MusicViewWrapper (this, lm.music_setup);
+		add_view (_("Music"), music_view_wrapper);
+		music_view_wrapper.set_media_from_ids (lm.song_ids ());
 
 		debug ("Done with main views.");
 	}
@@ -568,14 +565,17 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		debug ("Loading playlists");
 
 		// Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future
-		add_view (_("Similar"), lm.similar_setup);
+		var similar_view = new SimilarViewWrapper (this, lm.similar_setup);
+		add_view (_("Similar"), similar_view);
 
 		// Add Queue view
-		var queue_view = add_view (_("Queue"), lm.queue_setup);
+		var queue_view = new QueueViewWrapper (this, lm.queue_setup);
+		add_view (_("Queue"), queue_view);
 		queue_view.set_media (lm.queue ());
 
 		// Add History view
-		var history_view = add_view (_("History"), lm.history_setup);
+		var history_view = new HistoryViewWrapper (this, lm.history_setup);
+		add_view (_("History"), history_view);
 		history_view.set_media (lm.already_played ());
 
 		// load smart playlists
@@ -597,13 +597,16 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		if(o is Playlist) {
 			Playlist p = (Playlist)o;
 
-			var view = add_view (p.name, p.tvs, p.rowid, out iter);
+			var view = new PlaylistViewWrapper (this, p);
+			add_view (p.name, view);
+			// TODO: does p.media () work? it's faster
 			view.set_media (lm.media_from_playlist (p.rowid));
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 			
-			var view = add_view (p.name, p.tvs, p.rowid, out iter);
+			var view = new PlaylistViewWrapper (this, p);
+			add_view (p.name, view);
 			view.set_media (lm.media_from_smart_playlist (p.rowid));
 		}
 		/* XXX: Migrate this code to the new API */
@@ -611,9 +614,14 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			Device d = (Device)o;
 
 			if(d.getContentType() == "cdrom") {
+
 				message("CD added with %d songs.\n", d.get_medias().size);
+
+				/* FIXME: this can be easily migrated. Not doing it now to avoid
+				 *        breaking stuff.
+				 */
 				var cd_setup = new TreeViewSetup(MusicListView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
-				var vw = new DeviceViewWrapper(this, cd_setup, -1, d);
+				var vw = new DeviceViewWrapper (this, cd_setup, d);
 				vw.set_media (d.get_medias ());
 				iter = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
 				view_container.add_view (vw);

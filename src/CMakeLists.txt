@@ -86,11 +86,17 @@ vala_precompile(VALA_C
 
     Views/ViewContainer.vala
 
-    Views/ViewWrapper.vala
-    Views/SimilarViewWrapper.vala
-    Views/DeviceViewWrapper.vala
+    Views/Wrappers/ViewWrapper.vala
+    Views/Wrappers/MusicViewWrapper.vala
+    Views/Wrappers/HistoryViewWrapper.vala
+    Views/Wrappers/QueueViewWrapper.vala
+    Views/Wrappers/DeviceViewWrapper.vala
+    Views/Wrappers/SimilarViewWrapper.vala
+    Views/Wrappers/PlaylistViewWrapper.vala
+
     Views/DeviceView.vala
     Views/DeviceSummaryWidget.vala
+
     Views/ContentView.vala
 
     # ALBUM VIEW

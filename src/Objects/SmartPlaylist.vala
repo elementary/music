@@ -22,7 +22,6 @@
 
 using Gee;
 
-// TODO: Rewrite conditionals as enums
 
 public class BeatBox.SmartPlaylist : Object {
 	private int _rowid;
@@ -36,7 +35,6 @@ public class BeatBox.SmartPlaylist : Object {
 	private int _limit_amount;
 	
 	private bool _is_up_to_date;
-	public bool viewWrapper_is_up_to_date;
 	LinkedList<Media> media;
 	
 	public SmartPlaylist() {
@@ -47,7 +45,6 @@ public class BeatBox.SmartPlaylist : Object {
 		_queries = new Gee.ArrayList<SmartQuery>();
 		_limit = false;
 		_limit_amount = 50;
-		viewWrapper_is_up_to_date = false;
 		is_up_to_date = false;
 	}
 	
@@ -55,9 +52,6 @@ public class BeatBox.SmartPlaylist : Object {
 		get { return _is_up_to_date; }
 		set { 
 			_is_up_to_date = value;
-			
-			if(!value)
-				viewWrapper_is_up_to_date = value; 
 		}
 	}
 	

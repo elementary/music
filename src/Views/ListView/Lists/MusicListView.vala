@@ -26,7 +26,7 @@ using Gtk;
 public class BeatBox.MusicListView : GenericList {
 
 	//for media list right click
-	Gtk.Menu mediaMenuActionMenu;
+	Gtk.Menu mediaActionMenu;
 	Gtk.MenuItem mediaEditMedia;
 	Gtk.MenuItem mediaFileBrowse;
 	Gtk.MenuItem mediaMenuQueue;
@@ -62,6 +62,7 @@ public class BeatBox.MusicListView : GenericList {
 	 * for sort_id use 0+ for normal, -1 for auto, -2 for none
 	 */
 	public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
+		// FIXME: re-do. Associate a type to each column directly in TreeViewSetup
 		var types = new GLib.List<Type>();
 		types.append(typeof(int)); // id
 		types.append(typeof(GLib.Icon)); // icon
@@ -88,7 +89,7 @@ public class BeatBox.MusicListView : GenericList {
 	}
 
 	public override void update_sensitivities() {
-		mediaMenuActionMenu.show_all();
+		mediaActionMenu.show_all();
 
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {
 			mediaRemove.set_visible(true);
@@ -140,9 +141,9 @@ public class BeatBox.MusicListView : GenericList {
 
 	public void buildUI() {
 		add_columns ();
-		
+
 		set_compare_func(view_compare_func);
-        
+
 		button_press_event.connect(viewClick);
 		button_release_event.connect(viewClickRelease);
 
@@ -155,21 +156,24 @@ public class BeatBox.MusicListView : GenericList {
 		importToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
 		mediaScrollToCurrent = new Gtk.MenuItem.with_label(_("Scroll to Current Song"));
 		mediaRateMedia = new Granite.Widgets.RatingMenuItem ();
-		mediaMenuActionMenu.append(mediaEditMedia);
-		mediaMenuActionMenu.append(mediaFileBrowse);
-		mediaMenuActionMenu.append(mediaRateMedia);
-		mediaMenuActionMenu.append(new SeparatorMenuItem());
-		mediaMenuActionMenu.append(mediaMenuQueue);
-		mediaMenuActionMenu.append(mediaMenuNewPlaylist);
-		mediaMenuActionMenu.append(mediaMenuAddToPlaylist);
+
+		mediaActionMenu = new Gtk.Menu ();
+
+		mediaActionMenu.append(mediaEditMedia);
+		mediaActionMenu.append(mediaFileBrowse);
+		mediaActionMenu.append(mediaRateMedia);
+		mediaActionMenu.append(new SeparatorMenuItem());
+		mediaActionMenu.append(mediaMenuQueue);
+		mediaActionMenu.append(mediaMenuNewPlaylist);
+		mediaActionMenu.append(mediaMenuAddToPlaylist);
 		if(tvs.get_hint() != ViewWrapper.Hint.DEVICE_AUDIO)
-			mediaMenuActionMenu.append(new SeparatorMenuItem());
-		mediaMenuActionMenu.append(mediaRemove);
-		mediaMenuActionMenu.append(importToLibrary);
+			mediaActionMenu.append(new SeparatorMenuItem());
+		mediaActionMenu.append(mediaRemove);
+		mediaActionMenu.append(importToLibrary);
 		if(tvs.get_hint() != ViewWrapper.Hint.CDROM) {
-			mediaMenuActionMenu.append(new SeparatorMenuItem());
-			//mediaMenuActionMenu.append(browseSame);
-			mediaMenuActionMenu.append(mediaScrollToCurrent);
+			mediaActionMenu.append(new SeparatorMenuItem());
+			//mediaActionMenu.append(browseSame);
+			mediaActionMenu.append(mediaScrollToCurrent);
 		}
 		mediaEditMedia.activate.connect(mediaMenuEditClicked);
 		mediaFileBrowse.activate.connect(mediaFileBrowseClicked);
@@ -263,7 +267,7 @@ public class BeatBox.MusicListView : GenericList {
 			}
 
 			mediaRateMedia.rating_value = set_rating;
-			mediaMenuActionMenu.popup (null, null, null, 3, get_current_event_time());
+			mediaActionMenu.popup (null, null, null, 3, get_current_event_time());
 
 			TreeSelection selected = get_selection();
 			selected.set_mode(SelectionMode.MULTIPLE);

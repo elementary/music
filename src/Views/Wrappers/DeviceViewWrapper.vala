@@ -25,8 +25,8 @@ using Gee;
 public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	public Device d;
 	
-	public DeviceViewWrapper(LibraryWindow lww, TreeViewSetup tvs, int id, Device d) {
-		base (lww, tvs, id);
+	public DeviceViewWrapper(LibraryWindow lww, TreeViewSetup tvs, Device d) {
+		base (lww, tvs, -1);
 
 		// TODO: Add import_requested
 		if (has_list_view)
@@ -50,5 +50,28 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 			set_media (d.get_podcasts());
 #endif
 	}
+
+    protected override bool check_have_media () {
+        debug ("check_have_media");
+
+        bool have_media = media_count > 0;
+
+        if (have_media) {
+            select_proper_content_view ();
+            return true;
+        }
+
+        // show alert if there's no media
+        if (has_embedded_alert) {
+            if (hint == Hint.CDROM) {
+                embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (lw.app.get_name ()), null, true, Granite.AlertLevel.WARNING);
+
+                // Switch to alert box
+            	set_active_view (ViewType.ALERT);
+            }
+        }
+
+        return false;
+    }
 }
 
