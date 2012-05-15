@@ -150,11 +150,11 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             view_container.add_view (list_view);
         }
 
-        if (has_album_view && view_container.get_view_index (welcome_screen) < 0) {
+        if (has_welcome_screen && view_container.get_view_index (welcome_screen) < 0) {
             view_container.add_view (welcome_screen);
         }
 
-        if (has_album_view && view_container.get_view_index (embedded_alert) < 0) {
+        if (has_embedded_alert && view_container.get_view_index (embedded_alert) < 0) {
             view_container.add_view (embedded_alert);
         }
     }
@@ -465,8 +465,13 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME) {
                 var new_view = (ViewType) lw.viewSelector.selected;
                 debug ("%s : showing %s", hint.to_string(), new_view.to_string ());
-                if (current_view != new_view && ((new_view == ViewType.LIST && has_list_view) || (new_view == ViewType.ALBUM && has_album_view)))
-                    set_active_view (new_view);
+                
+                if (current_view != new_view) {
+                    if (new_view == ViewType.LIST && has_list_view)
+                        set_active_view (ViewType.LIST);
+                    else if (new_view == ViewType.ALBUM && has_album_view)
+                        set_active_view (ViewType.ALBUM);
+                }
             }        
     }
 
