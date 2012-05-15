@@ -125,20 +125,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         // Now setup the view wrapper based on available widgets
 
-        if (has_embedded_alert) {
-            view_container.add_view (embedded_alert);
-        }
-
-        if (has_welcome_screen) {
-            view_container.add_view (welcome_screen);
-        }
-
-        if (has_album_view)
-            view_container.add_view (album_view);
-
-        if (has_list_view)
-            view_container.add_view (list_view);
-
         lw.viewSelector.mode_changed.connect (view_selector_changed);
         lw.searchField.changed.connect (search_field_changed);
 
@@ -154,6 +140,24 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 #endif
 
+    /* Re-checks which views are available and packs them in */
+    protected void pack_views () {
+        if (has_album_view && view_container.get_view_index (album_view) < 0) {
+            view_container.add_view (album_view);
+        }
+
+        if (has_list_view && view_container.get_view_index (list_view) < 0) {
+            view_container.add_view (list_view);
+        }
+
+        if (has_album_view && view_container.get_view_index (welcome_screen) < 0) {
+            view_container.add_view (welcome_screen);
+        }
+
+        if (has_album_view && view_container.get_view_index (embedded_alert) < 0) {
+            view_container.add_view (embedded_alert);
+        }
+    }
 
     /**
      * Convenient visibility method

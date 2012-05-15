@@ -31,13 +31,17 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
     private Media base_media;
 
     public SimilarViewWrapper (LibraryWindow lw, TreeViewSetup tvs) {
+
+        base (lw, tvs, -1);
+
         // Add list view
         list_view = new ListView (this, tvs);
 
         // Add alert
         embedded_alert = new Granite.Widgets.EmbeddedAlert();
 
-        base (lw, tvs, -1);
+		// Refresh view layout
+		pack_views ();
 
         fetched = false;
 

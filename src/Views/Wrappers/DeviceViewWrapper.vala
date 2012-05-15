@@ -28,6 +28,15 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 	public DeviceViewWrapper(LibraryWindow lww, TreeViewSetup tvs, Device d) {
 		base (lww, tvs, -1);
 
+	        // Add list view
+	        list_view = new ListView (this, tvs);
+
+	        // Add alert
+	        embedded_alert = new Granite.Widgets.EmbeddedAlert();
+
+		// Refresh view layout
+		pack_views ();
+
 		// TODO: Add import_requested
 		if (has_list_view)
 			list_view.import_requested.connect (import_request);
