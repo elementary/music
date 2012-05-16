@@ -82,8 +82,11 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		this.list_scrolled = new ScrolledWindow (null, null);
 		//this.list_scrolled.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
 
+		/* We'll re-take the hint based approach after 1.0. Right now MusicListView is our
+		 * unique widget
+		 */
+#if HAVE_PLUGIN_SYSTEM
 		switch (tvs.get_hint()) {
-
 			case ViewWrapper.Hint.MUSIC:
 			case ViewWrapper.Hint.HISTORY:
 			case ViewWrapper.Hint.QUEUE:
@@ -102,6 +105,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 				// don't add anything
 				break;
 		}
+#else
+			list_view = new MusicListView (view_wrapper, tvs);		
+#endif
 
 		// Put the list inside a scrolled window
 		list_scrolled.add (list_view);

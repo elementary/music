@@ -648,16 +648,14 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         // optimize searches based on the amount of media. Time in ms
         if (media_count < 100) 
-            search_timeout = 40;
-        if (media_count < 250)
-            search_timeout = 100;
-        if (media_count < 100)
-            search_timeout = 140;
+            search_timeout = 20;
+        if (media_count < 1000)
+            search_timeout = 35;
         else if (media_count < 5000)
-            search_timeout = 200;
+            search_timeout = 150;
         else if (media_count < 10000)
-            search_timeout = 240;
-        else if (media_count < 25000)
+            search_timeout = 200;
+        else if (media_count < 100000)
             search_timeout = 300;
         else
             search_timeout = 500;

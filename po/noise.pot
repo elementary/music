@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-15 22:13-0600\n"
+"POT-Creation-Date: 2012-05-15 23:33-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1036,12 +1036,10 @@ msgid "Similar to %s"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:122
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:150
 msgid "No similar songs found"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:122
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:150
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s. Make sure all song info is "
@@ -1049,11 +1047,11 @@ msgid ""
 "matches."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:167
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:132
 msgid "Similar Song View"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:167
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:132
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1136,16 +1134,16 @@ msgstr ""
 msgid "Scroll to Current Song"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:254
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:256
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
 msgid "Import this song"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:258
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:259
 #, c-format
 msgid "Import %i songs"
 msgstr ""

@@ -26,7 +26,6 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
     public bool have_media { get { return media_count >= REQUIRED_MEDIA; } }
 
     private const int REQUIRED_MEDIA = 10;
-    private bool fetched;
 
     private Media base_media;
 
@@ -45,16 +44,12 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 		// Refresh view layout
 		pack_views ();
 
-        fetched = false;
-
         // Connect data signals
         lm.media_played.connect (on_media_played);
         lm.lfm.similar_retrieved.connect (similar_retrieved);
     }
 
     void on_media_played (Media new_media) {
-        fetched = false;
-
         /**
          * Avoid fetching if the user is playing the queried results
          * '!is_current_wrapper' wouldn't work since at this point the user could be
@@ -67,7 +62,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 
             if (base_media != null) {
                 // Say we're fetching media
-                embedded_alert.set_alert (_("Fetching similar songs..."), _("Finding songs similar to %s by %s").printf ("<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, false);
+                embedded_alert.set_alert (_("Fetching similar songs"), _("Finding songs similar to %s by %s").printf ("<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, false);
             }
             else {
                 // Base media is null, so show the proper warning. As this happens often, tell
@@ -80,9 +75,8 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
         }
     }
 
-    void similar_retrieved (Gee.LinkedList<int> similar_internal, Gee.LinkedList<Media> similar_external) {
-        fetched = true;
-        set_media (similar_internal);
+    void similar_retrieved (Gee.Collection<int> similar_internal, Gee.Collection<Media> similar_external) {
+        set_media_from_ids (similar_internal);
     }
 
     public void save_playlist () {
@@ -116,7 +110,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 
         /* At this point, there's no media (we couldn't find enough) and there's obviously
          * an embedded alert widget available. If not, set_active_view() will sort it out.
-         */            
+         */
         if (base_media != null) {
             /* say we could not find similar media */
             embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Granite.AlertLevel.INFO);
@@ -126,42 +120,6 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
         set_active_view (ViewType.ALERT);
 
         return false;
-#if 0
-        if (!list_view.get_is_current_list()) {
-            /**
-             * We don't want to populate with songs if there are not enough for it to be valid.
-             * Only populate with at least REQUIRED_MEDIA songs.
-             */
-            if (media_count >= REQUIRED_MEDIA) {
-                select_proper_content_view ();
-                return true;
-            }
-
-            /* There is no media and no alert box to tell the world about it */
-            if (!has_embedded_alert) {
-                select_proper_content_view ();
-                return false;
-            }
-
-            /* At this point, there's no media (we couldn't find enough) and there's obviously
-             * an embedded alert widget available.
-             */            
-            if (base_media != null) {
-                // say we could not find similar media
-                embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Granite.AlertLevel.INFO);
-                            
-            }
-
-            // Show the alert box
-            set_active_view (ViewType.ALERT);
-        }
-        else {
-            
-            select_proper_content_view ();
-        }
-
-        return false;
-#endif
     }
 
     private inline void set_default_alert () {
