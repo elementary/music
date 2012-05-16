@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-15 23:33-0600\n"
+"POT-Creation-Date: 2012-05-16 00:40-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -924,6 +924,28 @@ msgstr ""
 msgid "%s by %s"
 msgstr ""
 
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:78
+msgid "No songs in Queue"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:78
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:73
+msgid "No songs in History"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:73
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:40
 msgid "Get Some Tunes"
 msgstr ""
@@ -1012,34 +1034,34 @@ msgid ""
 "below."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:76
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:81
 msgid "Audio CD Invalid"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:76
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:81
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:70
-msgid "Fetching similar songs..."
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:65
+msgid "Fetching similar songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:70
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:65
 #, c-format
 msgid "Finding songs similar to %s by %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:95
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:89
 #, c-format
 msgid "Similar to %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:122
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:116
 msgid "No similar songs found"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:122
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:116
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s. Make sure all song info is "
@@ -1047,11 +1069,11 @@ msgid ""
 "matches."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:132
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:126
 msgid "Similar Song View"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:132
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:126
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "

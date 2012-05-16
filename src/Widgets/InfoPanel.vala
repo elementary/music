@@ -87,7 +87,7 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		var content = new Box (Orientation.VERTICAL, 0);
 
 		// margins
-		content.margin_left = content.margin_right = 6;
+		content.margin = 12;
 
 		var buttons = new ButtonBox (Orientation.HORIZONTAL);
 		buttons.pack_start (love_button, false, false, 0);
@@ -105,15 +105,11 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		// The widget centers itself.
 		rating.halign = Gtk.Align.FILL;
 
-		coverArt.margin_top = 6;
-		buttons.margin_top = 0;
 		title.margin_top = 6;
 		rating.margin_top = 6;
 		artist.margin_top = 6;
 		album.margin_top = 0;
 		year.margin_top = 3;
-
-		scroll.margin_top = 12;
 
 		content.pack_start (buttons, false, true, 0);
 		content.pack_start (coverArt, false, true, 0);

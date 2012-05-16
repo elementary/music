@@ -40,8 +40,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public Welcome       welcome_screen { get; protected set; }
 
     /* UI PROPERTIES */
-    public bool has_album_view      { get { return album_view != null;     } }
-    public bool has_list_view       { get { return list_view != null;      } }
+    public bool has_album_view      { get { return album_view != null; } }
+    public bool has_list_view       { get { return list_view != null;  } }
 
     public bool has_embedded_alert  { get { return embedded_alert != null; } }
     public bool has_welcome_screen  { get { return welcome_screen != null; } }

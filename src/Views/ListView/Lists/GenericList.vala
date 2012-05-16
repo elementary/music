@@ -3,8 +3,7 @@ using Gtk;
 
 public abstract class BeatBox.GenericList : FastView {
 	//for header column chooser
-	Gee.HashMap<string, Gtk.CheckMenuItem> column_chooser_menu_items;
-	Gtk.Menu column_chooser_menu;
+	protected Gtk.Menu column_chooser_menu;
 
 	protected LibraryManager lm;
 	protected LibraryWindow lw;
@@ -22,22 +21,19 @@ public abstract class BeatBox.GenericList : FastView {
 	protected GLib.Icon playing_icon;
 	protected GLib.Icon completed_icon;
 	
-	// To select which columns are showing
-	protected Gtk.Menu columnChooserMenu;
-	
 	public signal void import_requested(LinkedList<Media> to_import);
 	
 	public GenericList(ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
 		base(types);
 		this.tvs = tvs;
 		set_parent_wrapper (view_wrapper);
-		
+
 		set_headers_clickable(true);
-		set_headers_visible(true);
+		set_headers_visible (tvs.column_headers_visible);
 		set_fixed_height_mode(true);
 		set_rules_hint(true);
 		set_reorderable(false);
-		
+
 		cellHelper = new CellDataFunctionHelper(lm, this);
 		playing_icon = Icons.NOW_PLAYING_SYMBOLIC.get_gicon ();
 		completed_icon = Icons.PROCESS_COMPLETED.get_gicon ();
@@ -49,11 +45,7 @@ public abstract class BeatBox.GenericList : FastView {
 		
 		// allow selecting multiple rows
 		get_selection().set_mode(SelectionMode.MULTIPLE);
-		
-		columnChooserMenu = new Gtk.Menu();
-		
-		set_headers_visible (tvs.column_headers_visible);
-		
+
 		//vadjustment.value_changed.connect(view_scroll);
 		drag_begin.connect(on_drag_begin);
 		drag_data_get.connect(on_drag_data_get);
@@ -73,19 +65,16 @@ public abstract class BeatBox.GenericList : FastView {
 	}
 
 	private void add_column_chooser_menu_item (TreeViewColumn tvc) {
-		var column_id = tvc.title;
+		if (get_hint () == ViewWrapper.Hint.MUSIC && tvc.title == TreeViewSetup.COLUMN_NUM)
+			return;
 
 		if (column_chooser_menu == null)
 			column_chooser_menu = new Gtk.Menu ();
-		if (column_chooser_menu_items == null)
-			column_chooser_menu_items = new Gee.HashMap<string, Gtk.CheckMenuItem> ();
 
-		var menu_item = new Gtk.CheckMenuItem.with_label (column_id);
+		var menu_item = new Gtk.CheckMenuItem.with_label (tvc.title);
 		menu_item.active = tvc.visible;
 
 		column_chooser_menu.append (menu_item);
-		column_chooser_menu_items.set (column_id, menu_item);
-
 		column_chooser_menu.show_all ();
 
 		// Show/hide the current column
@@ -93,7 +82,6 @@ public abstract class BeatBox.GenericList : FastView {
 			tvc.visible = menu_item.active;
 		});
 	}
-
 
 	public void set_media (Gee.Collection<Media> to_add) {
 		var new_table = new HashTable<int, Media> (null, null);
@@ -190,19 +178,19 @@ public abstract class BeatBox.GenericList : FastView {
 				else
 					insert_column(tvc, index);
 
-				// FIXME! this can be tvc!
+				var inserted_column = get_column(index);
 
-				get_column(index).resizable = true;
-				get_column(index).reorderable = false;
-				get_column(index).clickable = true;
-				get_column(index).sort_column_id = index;
-				get_column(index).set_sort_indicator(false);
-				get_column(index).visible = tvc.visible;
-				get_column(index).sizing = Gtk.TreeViewColumnSizing.FIXED;
-				get_column(index).fixed_width = tvc.fixed_width;
+				inserted_column.resizable = true;
+				inserted_column.reorderable = false;
+				inserted_column.clickable = true;
+				inserted_column.sort_column_id = index;
+				inserted_column.set_sort_indicator(false);
+				inserted_column.visible = tvc.visible;
+				inserted_column.sizing = Gtk.TreeViewColumnSizing.FIXED;
+				inserted_column.fixed_width = tvc.fixed_width;
 
 				// Add menuitem
-				add_column_chooser_menu_item (tvc);
+				add_column_chooser_menu_item (inserted_column);
 			}
 			else if(tvc.title == TreeViewSetup.COLUMN_BLANK) {
 				// Icon column
@@ -229,9 +217,10 @@ public abstract class BeatBox.GenericList : FastView {
 				insert_column(tvc, index);
 			}
 
-			// FIXME! this can be tvc!
-			get_column(index).get_button().button_press_event.connect(view_header_click);
-			get_column(index).notify["width"].connect(viewHeadersResized);
+			var inserted_column = get_column(index);
+
+			inserted_column.get_button().button_press_event.connect(view_header_click);
+			inserted_column.notify["width"].connect(viewHeadersResized);
 
 			++index;
 		}
@@ -244,7 +233,7 @@ public abstract class BeatBox.GenericList : FastView {
 
 	protected bool view_header_click(Gtk.Widget w, Gdk.EventButton e) {
 		if(e.button == 3) {
-			columnChooserMenu.popup (null, null, null, 3, get_current_event_time());
+			column_chooser_menu.popup (null, null, null, 3, get_current_event_time());
 			return true;
 		}
 		else if(e.button == 1) {
