@@ -381,30 +381,31 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	}
 
 	private int compare_func (GLib.Object o_a, GLib.Object o_b) {
-		Media a = o_a as Media;
-		Media b = o_b as Media;
-		
-		if (a.album_artist == b.album_artist) {
-#if 0
-			if (a.album == b.album) {
-				return a.count() - b.count();
-			}
-			else {
-				return advanced_string_compare (a.album, b.album);
-			}
-#else
-			return advanced_string_compare (a.album, b.album);
-#endif
+		Media a_media = o_a as Media;
+		Media b_media = o_b as Media;
+
+		int rv = 0;
+
+		if(a_media.album.down() == b_media.album.down()) {
+			if(a_media.album_number == b_media.album_number)
+				rv = (int)(a_media.track - b_media.track);
+			else
+				rv = (int)((int)a_media.album_number - (int)b_media.album_number);
 		}
 		else {
-			return advanced_string_compare (a.album_artist, b.album_artist);
+			if(a_media.album == "")
+				rv = 1;
+			else
+				rv = advanced_string_compare(a_media.album.down(), b_media.album.down());
 		}
+
+		return rv;
 	}
 
-	private inline int advanced_string_compare (string a, string b) {
-		if (a == "" && b != "")
+	protected int advanced_string_compare(string a, string b) {
+		if(a == "" && b != "")
 			return 1;
-		else if (a != "" && b == "")
+		else if(a != "" && b == "")
 			return -1;
 		
 		return (a > b) ? 1 : -1;

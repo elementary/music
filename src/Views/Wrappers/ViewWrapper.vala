@@ -157,6 +157,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (has_embedded_alert && view_container.get_view_index (embedded_alert) < 0) {
             view_container.add_view (embedded_alert);
         }
+
+        show_all ();
     }
 
     /**
