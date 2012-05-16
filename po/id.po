@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-09 22:43-0600\n"
-"PO-Revision-Date: 2012-05-06 21:55+0000\n"
-"Last-Translator: iman <Unknown>\n"
+"PO-Revision-Date: 2012-05-15 05:30+0000\n"
+"Last-Translator: Viko Adi Rahmawan <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-11 06:09+0000\n"
-"X-Generator: Launchpad (build 15225)\n"
+"X-Launchpad-Export-Date: 2012-05-16 05:35+0000\n"
+"X-Generator: Launchpad (build 15247)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
@@ -973,7 +973,7 @@ msgstr "Nampaknya %s tidak dapat menemukan musik Anda."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Tidak ada lagu di antrian"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
 msgid ""
@@ -981,10 +981,13 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Untuk menambahkan lagu ke antrian, gunakan <b>klik kanan</b> di lagu yang "
+"diinginkan lalu pilih <b>Antrian</b>. Ketika lagu selesai diputar, lagu "
+"dalam antrian akan diputar dahulu sebelum memutar lagu-lagu di daftar putar."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
 msgid "No songs in History"
-msgstr ""
+msgstr "Tidak ada lagu di Riwayat"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
 msgid ""
@@ -992,6 +995,8 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Lagu yang sudah diputar akan ditambahkan ke Riwayat.\n"
+"Anda dapat melihat semua lagu yang telah Anda putar di sesi ini."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 msgid "Audio CD Invalid"
@@ -1000,18 +1005,20 @@ msgstr "CD Audio Tidak Valid"
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s tidak dapat membaca isi CD Suara"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
 msgid "No Songs"
-msgstr ""
+msgstr "Tidak ada lagu"
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Untuk menambahkan lagu ini ke daftar putar, gunakan <b>klik kanan</b> di "
+"lagu yang diinginkan lalu pilih <Tambah ke Daftar Putar</b>."
 
 #: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
 msgid ""
@@ -1019,6 +1026,9 @@ msgid ""
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
 "sidebar and click on <b>Edit</b>."
 msgstr ""
+"Daftar putar ini akan secara otomatis berisi lagu yang sesuai dengan "
+"aturannya. Untuk mengubah aturan, gunakan <b>klik kanan</b> di bilah samping "
+"dan klik <b>Ubah</b>"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:135
 msgid "Remove from Library"
@@ -1181,7 +1191,7 @@ msgstr "Mencari lagu yang mirip"
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:96
 #, c-format
 msgid "Finding songs similar to <b>%s</b> by <b>%s</b>"
-msgstr ""
+msgstr "Temukan lagu yang sama dengan <b>%s</b> oleh <b>%s</b>"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:105
 msgid "No similar songs found"
@@ -1194,6 +1204,9 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s tidak dapat menemukan lagu yang sama dengan <b>%s</b> oleh <b>%s</b>. "
+"Pastikan semua informasi lagu sudah benar dan anda sudah tersambung ke "
+"Internet. Beberapa lagu mungkin tidak memiliki jenis lagu yang sama."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:68
 msgid "Device Name"
@@ -1255,35 +1268,35 @@ msgstr "Perangkat sudah tersinkronisasi"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:423
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Lagu kesukaan"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:444
 msgid "Recently Added"
-msgstr ""
+msgstr "Terakhir Ditambahkan"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:454
 msgid "Recently Played"
-msgstr ""
+msgstr "Terakhir Diputar"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:464
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Terakhir disukai"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:474
 msgid "Never Played"
-msgstr ""
+msgstr "Belum pernah dimainkan"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:484
 msgid "Unheard Podcasts"
-msgstr ""
+msgstr "Podcast yang belum pernah didengar"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:494
 msgid "Over Played"
-msgstr ""
+msgstr "Dimainkan berulang-ulang"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:504
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Bukan yang baru saja dimainkan"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:202
 msgid "Rescan Music Folder"
@@ -1413,11 +1426,11 @@ msgstr "Impor media dari Perangkat"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:58
 msgid "%D %H %M"
-msgstr ""
+msgstr "%D %H %M"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
-msgstr ""
+msgstr "1 hari"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
 #, c-format
@@ -1426,18 +1439,18 @@ msgstr "%i hari"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:76
 msgid "1 hour"
-msgstr ""
+msgstr "1 jam"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
 #, c-format
 msgid "%i hours"
-msgstr ""
+msgstr "%i jam"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:89
 msgid "1 minute"
-msgstr ""
+msgstr "1 menit"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
 #, c-format
 msgid "%i minutes"
-msgstr ""
+msgstr "%i menit"
