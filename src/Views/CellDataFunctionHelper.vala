@@ -26,17 +26,21 @@ using Gdk;
 public class BeatBox.CellDataFunctionHelper : GLib.Object {
 	LibraryManager lm;
 	GenericList view;
+#if !HAVE_GRANITE_RATING
 	private Pixbuf _canvas;
 	private Pixbuf not_starred;
 	private Pixbuf starred;
+#endif
 	
 	public CellDataFunctionHelper(LibraryManager lm, GenericList view) {
 		this.lm = lm;
 		this.view = view;
+
+#if !HAVE_GRANITE_RATING
 		this.starred = Icons.STARRED.render (IconSize.MENU, null);
 		this.not_starred = Icons.NOT_STARRED.render (IconSize.MENU, null);
-		
 		_canvas = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, starred.width * 5, starred.height);
+#endif
 	}
 
 #if HAVE_SMART_ALBUM_COLUMN
@@ -148,9 +152,9 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		if(val.get_int() <= 0)
 			((CellRendererText)cell).markup = "";
 		else
-			((CellRendererText)cell).markup = val.get_int().to_string() + " kbps";
+			((CellRendererText)cell).markup = val.get_int().to_string() + " " + _("kbps");
 	}
-	
+
 	// turns int of seconds into pretty length mm:ss format
 	public static void lengthTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
@@ -180,7 +184,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 
-#if 0
+#if !HAVE_GRANITE_RATING
 		if(val.get_int() == 0)
 			((CellRendererPixbuf)cell).pixbuf = null;
 		else {
@@ -197,8 +201,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		}
 #else
 		// now let's set the rating!
-
-		(cell as Granite.Widgets.CellRendererRating).set_rating (val.get_int());
+		(cell as Granite.Widgets.CellRendererRating).set_rating (val.get_int ());
 #endif
 	}
 }

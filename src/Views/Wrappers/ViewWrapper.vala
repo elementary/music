@@ -162,8 +162,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     /**
      * Convenient visibility method
      */
-    protected void set_active_view (ViewType type, out bool successful = false) {
-        // Find position in notebook
+    protected void set_active_view (ViewType type, out bool successful = null) {
+        successful = false;
+
         switch (type) {
             case ViewType.LIST:
                 successful = view_container.set_current_view (list_view);
@@ -192,8 +193,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         // Update LibraryWindow toolbar widgets
         update_library_window_widgets ();
-
-        update_statusbar_info ();
     }
 
 
@@ -255,6 +254,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             lw.column_browser_toggle.set_active (column_browser_visible);
         }
         
+        // The statusbar is also a library window widget
+        update_statusbar_info ();
+
         /* XXX
            /!\ WARNING: NOT ENTERELY NECESSARY.
            It's here to avoid potential issues. Should be removed
@@ -304,9 +306,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (!lw.initialization_finished)
             return;
         debug ("%s : SETTING AS CURRENT VIEW -> set_as_current_view", hint.to_string());
+
         check_have_media ();
         update_library_window_widgets ();
-        update_statusbar_info ();
     }
 
 
@@ -321,12 +323,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             return;
         }
 
-        bool is_list = false;
+        bool is_album = false;
 
         Gee.Collection<Media>? media_set = null;
         // Get data based on the current view
-        if (current_view == ViewType.LIST) {
-            is_list = true;
+        if (current_view == ViewType.ALBUM) {
+            is_album = true;
             media_set = list_view.get_visible_media ();
         }
         else {
@@ -354,7 +356,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         string media_description = "";
 
-        if (is_list) {
+        if (!is_album) {
             if (hint == Hint.MUSIC)
                 media_description = total_items > 1 ? _("%i songs") : _("1 song");
             else
@@ -460,19 +462,19 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     protected abstract bool check_have_media ();
 
     protected virtual void select_proper_content_view () {
-            debug ("Selecting proper content view automatically");
-            // FIXME: I can't believe I wrote this. WE CAN DO BETTER HERE (Victor).
-            if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME) {
-                var new_view = (ViewType) lw.viewSelector.selected;
-                debug ("%s : showing %s", hint.to_string(), new_view.to_string ());
-                
-                if (current_view != new_view) {
-                    if (new_view == ViewType.LIST && has_list_view)
-                        set_active_view (ViewType.LIST);
-                    else if (new_view == ViewType.ALBUM && has_album_view)
-                        set_active_view (ViewType.ALBUM);
-                }
-            }        
+        debug ("Selecting proper content view automatically");
+
+        var new_view = (ViewType) lw.viewSelector.selected;
+        debug ("%s : showing %s", hint.to_string(), new_view.to_string ());
+
+        const int N_VIEWS = 2; // list view and album view
+        if (new_view < 0 || new_view > N_VIEWS)
+            new_view = ViewType.LIST;
+
+        if (new_view == ViewType.LIST && has_list_view)
+            set_active_view (ViewType.LIST);
+        else if (new_view == ViewType.ALBUM && has_album_view)
+            set_active_view (ViewType.ALBUM);
     }
 
 
@@ -556,7 +558,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 album_view.set_media (search_results);
             }
 
-            update_statusbar_info ();
             update_library_window_widgets ();
         }
         else {
@@ -722,7 +723,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 album_view.remove_media (to_remove_show);
             }
 
-            update_statusbar_info ();
             update_library_window_widgets ();
         }
         else {
@@ -746,7 +746,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             });
         }
     }
-
 
     public void remove_media (Collection<Media> media) {
         in_update.lock ();
@@ -781,7 +780,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         if (is_current_wrapper) {
             update_library_window_widgets ();
-            update_statusbar_info ();
         }
 
     }
@@ -826,9 +824,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             if (has_list_view)
                 list_view.add_media (media_to_show);
 
-            update_statusbar_info ();
             update_library_window_widgets ();
-
         }
         else {
             Idle.add ( () => {

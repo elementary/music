@@ -6,11 +6,9 @@ public abstract class BeatBox.GenericList : FastView {
 	Gee.HashMap<string, Gtk.CheckMenuItem> column_chooser_menu_items;
 	Gtk.Menu column_chooser_menu;
 
-
 	protected LibraryManager lm;
 	protected LibraryWindow lw;
 	protected ViewWrapper parent_wrapper;
-	
 	
 	protected TreeViewSetup tvs;
 	protected int relative_id;
@@ -90,7 +88,10 @@ public abstract class BeatBox.GenericList : FastView {
 
 		column_chooser_menu.show_all ();
 
-		menu_item.toggled.connect (column_menu_item_toggled);
+		// Show/hide the current column
+		menu_item.toggled.connect ( () => {
+			tvc.visible = menu_item.active;
+		});
 	}
 
 
@@ -239,108 +240,6 @@ public abstract class BeatBox.GenericList : FastView {
 
 	void viewHeadersResized() {
 		updateTreeViewSetup();
-	}
-
-
-	private void update_column_header_items () {
-		int index = 0;
-		foreach(TreeViewColumn tvc in get_columns()) {
-#if 0
-			if(tvc.title == TreeViewSetup.COLUMN_NUM)
-				columnNumber.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_TRACK)
-				columnTrack.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_TITLE)
-				columnTitle.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_LENGTH)
-				columnLength.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_ARTIST)
-				columnArtist.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_ALBUM)
-				columnAlbum.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_GENRE)
-				columnGenre.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_YEAR)
-				columnYear.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_BITRATE)
-				columnBitRate.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_RATING)
-				columnRating.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_PLAYS)
-				columnPlayCount.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_SKIPS)
-				columnSkipCount.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_DATE_ADDED)
-				columnDateAdded.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_LAST_PLAYED)
-				columnLastPlayed.active = get_column(index).visible;
-			else if(tvc.title == TreeViewSetup.COLUMN_BPM)
-				columnBPM.active = get_column(index).visible;
-#endif
-
-			// this is equivalent
-			var column_item = column_chooser_menu_items.get (tvc.title);
-			if (column_item != null)
-				// FIXME! this can be tvc!
-				column_item.active = get_column (index).visible;
-			else
-				debug ("column item '%s' is null", tvc.title);
-
-			++index;
-		}
-	}
-
-	/** When the column chooser popup menu has a change/toggle
-	 * FIXME: This relies extremely in the order of the 'else if' control lines.
-	 *         Fetch columns by col_id<string>
-	 **/
-	public virtual void column_menu_item_toggled () {
-		int index = 0;
-		
-		foreach(TreeViewColumn tvc in get_columns()) {
-#if 0
-			if(tvc.title == TreeViewSetup.COLUMN_TRACK)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_TRACK).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_NUM)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_NUM).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_TITLE)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_TITLE).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_LENGTH)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_LENGTH).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_ARTIST)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_ARTIST).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_ALBUM)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_ALBUM).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_GENRE)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_GENRE).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_YEAR)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_YEAR).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_BITRATE)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_BITRATE).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_RATING)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_RATING).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_PLAYS)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_PLAYS).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_SKIPS)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_SKIPS).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_DATE_ADDED)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_DATE_ADDED).active;
-			else if(tvc.title == TreeViewSetup.COLUMN_LAST_PLAYED)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_LAST_PLAYED).active;//add bpm, file size, file path
-			else if(tvc.title == TreeViewSetup.COLUMN_BPM)
-				get_column(index).visible = column_chooser_menu_items.get (TreeViewSetup.COLUMN_BPM).active;
-#endif
-
-			// this is equivalent
-			var column_item = column_chooser_menu_items.get (tvc.title);
-			if (column_item != null)
-				// FIXME! this can be tvc!
-				get_column (index).visible = column_item.active;
-
-			++index;
-		}
-
-		tvs.set_columns(get_columns());
 	}
 
 	protected bool view_header_click(Gtk.Widget w, Gdk.EventButton e) {

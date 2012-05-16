@@ -84,8 +84,12 @@ public class BeatBox.MusicListView : GenericList {
 		types.append(typeof(int)); // pulser};
 		
 		base(view_wrapper, types, tvs);
+
+		// This is vital
+		set_value_func (view_value_func);
+		set_compare_func (view_compare_func);
 		
-		buildUI();
+		build_ui();
 	}
 
 	public override void update_sensitivities() {
@@ -139,10 +143,8 @@ public class BeatBox.MusicListView : GenericList {
 		}
 	}
 
-	public void buildUI() {
+	public void build_ui () {
 		add_columns ();
-
-		set_compare_func(view_compare_func);
 
 		button_press_event.connect(viewClick);
 		button_release_event.connect(viewClickRelease);
@@ -190,7 +192,8 @@ public class BeatBox.MusicListView : GenericList {
 		
 	}
 
-	public void rearrangeColumns(LinkedList<string> correctOrder) {
+#if 0
+	private void rearrangeColumns(LinkedList<string> correctOrder) {
 		move_column_after(get_column(6), get_column(7));
 		//debug("correctOrder.length = %d, get_columns.length() = %d\n", correctOrder.size, (int)get_columns().length());
 		/* iterate through get_columns and if a column is not in the
@@ -203,7 +206,7 @@ public class BeatBox.MusicListView : GenericList {
 			}
 		}
 	}
-
+#endif
 
 
 	/* button_press_event */
@@ -382,7 +385,7 @@ public class BeatBox.MusicListView : GenericList {
 		}
 	}
 
-	public virtual void mediaEditorSaved(LinkedList<int> medias) {
+	protected virtual void mediaEditorSaved(LinkedList<int> medias) {
 		LinkedList<Media> toUpdate = new LinkedList<Media>();
 		foreach(int i in medias)
 			toUpdate.add(lm.media_from_id(i));
@@ -395,7 +398,7 @@ public class BeatBox.MusicListView : GenericList {
 		}
 	}
 
-	void mediaFileBrowseClicked() {
+	protected void mediaFileBrowseClicked() {
 		foreach(Media m in get_selected_medias()) {
 			try {
 				var file = File.new_for_uri(m.uri);
@@ -409,7 +412,7 @@ public class BeatBox.MusicListView : GenericList {
 		}
 	}
 
-	public virtual void mediaMenuQueueClicked() {
+	protected virtual void mediaMenuQueueClicked() {
 		var to_queue = new Gee.LinkedList<Media> ();
 
 		foreach (Media m in get_selected_medias ()) {
@@ -419,7 +422,7 @@ public class BeatBox.MusicListView : GenericList {
 		lm.queue_media_by_id (to_queue);
 	}
 
-	public virtual void mediaMenuNewPlaylistClicked() {
+	protected virtual void mediaMenuNewPlaylistClicked() {
 		Playlist p = new Playlist();
 		
 		var to_add = new Gee.LinkedList<Media> ();
@@ -435,7 +438,7 @@ public class BeatBox.MusicListView : GenericList {
 		});
 	}
 	
-	void mediaRateMediaClicked() {
+	protected void mediaRateMediaClicked() {
 		var los = new LinkedList<Media>();
 		int new_rating = mediaRateMedia.rating_value;
 		
@@ -446,7 +449,7 @@ public class BeatBox.MusicListView : GenericList {
 		lm.update_media (los, false, true);
 	}
 
-	public virtual void mediaRemoveClicked() {
+	protected virtual void mediaRemoveClicked() {
 		var to_remove = new Gee.LinkedList<Media>();
 		
 		foreach (Media m in get_selected_medias()) {
@@ -483,7 +486,7 @@ public class BeatBox.MusicListView : GenericList {
 		import_requested (to_import);
 	}
 
-	public virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+	protected virtual void onDragDataGet(Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
 		string[] uris = null;
 
 		foreach(Media m in get_selected_medias()) {
@@ -495,11 +498,11 @@ public class BeatBox.MusicListView : GenericList {
 			selection_data.set_uris(uris);
 	}
 
-	public void apply_style_to_view(CssProvider style) {
+	protected void apply_style_to_view(CssProvider style) {
 		get_style_context().add_provider(style, STYLE_PROVIDER_PRIORITY_APPLICATION);
 	}
 	
-	int view_compare_func (int col, Gtk.SortType dir, Media a_media, Media b_media) {
+	protected int view_compare_func (int col, Gtk.SortType dir, Media a_media, Media b_media) {
 		int rv = 0;
 		
 		if(col == MusicColumn.NUMBER) {
@@ -587,7 +590,7 @@ public class BeatBox.MusicListView : GenericList {
 		return rv;
 	}
 	
-	Value view_value_func (int row, int column, Media s) {
+	protected Value view_value_func (int row, int column, Media s) {
 		Value val;
 		
 		if(column == MusicColumn.ROWID)

@@ -94,9 +94,8 @@ public class BeatBox.ViewContainer : Gtk.Notebook {
             critical ("Cannot set " + get_view (index).name + " as the active view");
             return false;
         }
-        else {
-            set_current_page (index);
-        }
+
+        set_current_page (index);
 
         return true;
     }

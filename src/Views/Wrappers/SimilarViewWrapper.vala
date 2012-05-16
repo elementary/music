@@ -40,6 +40,8 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
         // Add alert
         embedded_alert = new Granite.Widgets.EmbeddedAlert();
 
+        set_default_alert ();
+
 		// Refresh view layout
 		pack_views ();
 
@@ -53,8 +55,13 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
     void on_media_played (Media new_media) {
         fetched = false;
 
-        // Avoid fetching if the user is playing the queried results
-        // '!is_current_wrapper' would work too ;)
+        /**
+         * Avoid fetching if the user is playing the queried results
+         * '!is_current_wrapper' wouldn't work since at this point the user could be
+         * clicking the NEXT and PREVIOUS buttons without having selected/played a song
+         * in the result list. We want to keep searching for similar songs until that
+         * happens.
+         */
         if (!list_view.get_is_current_list()) {
             base_media = new_media;
 
@@ -65,7 +72,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
             else {
                 // Base media is null, so show the proper warning. As this happens often, tell
                 // the users more about this view instead of scaring them away
-                embedded_alert.set_alert (_("Similar Song View"), _("In this view, %s will automatically find songs similar to the one you're playing. You can then start playing those songs, or save them as a playlist for later.").printf (String.escape (lw.app.get_name ())), null, true, Granite.AlertLevel.INFO);
+                set_default_alert ();
             }
 
             // Show the alert box
@@ -101,8 +108,26 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 
 
     protected override bool check_have_media () {
-        if (!list_view.get_is_current_list()) {
+        /* Check if the view is the current list and there's enough media */
+        if (media_count >= REQUIRED_MEDIA) {
+            select_proper_content_view ();
+            return true;
+        }
 
+        /* At this point, there's no media (we couldn't find enough) and there's obviously
+         * an embedded alert widget available. If not, set_active_view() will sort it out.
+         */            
+        if (base_media != null) {
+            /* say we could not find similar media */
+            embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Granite.AlertLevel.INFO);
+        }
+
+        /* Show the alert box */
+        set_active_view (ViewType.ALERT);
+
+        return false;
+#if 0
+        if (!list_view.get_is_current_list()) {
             /**
              * We don't want to populate with songs if there are not enough for it to be valid.
              * Only populate with at least REQUIRED_MEDIA songs.
@@ -130,8 +155,18 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
             // Show the alert box
             set_active_view (ViewType.ALERT);
         }
+        else {
+            
+            select_proper_content_view ();
+        }
 
         return false;
+#endif
+    }
+
+    private inline void set_default_alert () {
+        embedded_alert.set_alert (_("Similar Song View"), _("In this view, %s will automatically find songs similar to the one you're playing. You can then start playing those songs, or save them as a playlist for later.").printf (String.escape (lw.app.get_name ())), null, true, Granite.AlertLevel.INFO);
+
     }
 }
 
