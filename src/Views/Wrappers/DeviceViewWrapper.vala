@@ -87,5 +87,30 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
 
         return false;
     }
+
+    // FIXME: Only valid for CDROMs
+    protected override string get_statusbar_text () {
+        if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME || !has_list_view)
+            return "";
+
+        uint total_items = 0, total_time = 0;
+
+        foreach (var media in list_view.get_media ()) {
+            if (media != null) {
+                total_items ++;
+                total_time += media.length;
+            }
+        }
+
+        if (total_items == 0)
+            return "";
+
+        string media_description = total_items > 1 ? _("%i tracks") : _("1 track");
+
+        string media_text = media_description.printf ((int)total_items);
+        string time_text = TimeUtils.time_string_from_seconds (total_time);
+
+        return "%s, %s".printf (media_text, time_text);
+    }
 }
 

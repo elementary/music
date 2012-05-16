@@ -50,8 +50,8 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
         // Add album view
         album_view = new AlbumView (this);
 
-        // Add list view and column browser
-        list_view = new ListView (this, tvs, true);
+        // Add list view
+        list_view = new ListView (this, tvs);
 
         // Alert box
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();            

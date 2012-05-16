@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-16 01:18-0600\n"
+"POT-Creation-Date: 2012-05-16 01:41-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -980,30 +980,30 @@ msgstr ""
 msgid "All the songs in this device are already in your library."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:363
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:358
 #, c-format
 msgid "%i songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:363
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:358
 msgid "1 song"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:360
 #, c-format
 msgid "%i items"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:360
 msgid "1 item"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:363
 #, c-format
 msgid "%i albums"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:363
 msgid "1 album"
 msgstr ""
 
@@ -1041,6 +1041,15 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:81
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:108
+#, c-format
+msgid "%i tracks"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:108
+msgid "1 track"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:65

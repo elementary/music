@@ -495,8 +495,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	 */
 	public bool add_view (string view_name, ViewWrapper view_wrapper, out TreeIter? iter = null)
 	{
+		iter = null;
+
 		/* Pack view wrapper into the main views */
-		if (view_name ==null || view_container.add_view(view_wrapper) == -1) {
+		if (view_name == null || view_container.add_view (view_wrapper) < 0) {
 			critical ("Failed to append view '%s' to BeatBox's main views", view_name);
 			return false;
 		}
@@ -598,7 +600,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			Playlist p = (Playlist)o;
 
 			var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
-			add_view (p.name, view);
+			add_view (p.name, view, out iter);
 			// TODO: does p.media () work? it's faster
 			view.set_media (lm.media_from_playlist (p.rowid));
 		}
@@ -606,7 +608,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			SmartPlaylist p = (SmartPlaylist)o;
 			
 			var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
-			add_view (p.name, view);
+			add_view (p.name, view, out iter);
 			view.set_media (lm.media_from_smart_playlist (p.rowid));
 		}
 		/* XXX: Migrate this code to the new API */

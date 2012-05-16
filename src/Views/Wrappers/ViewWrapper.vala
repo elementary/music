@@ -313,17 +313,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         update_library_window_widgets ();
     }
 
-
-    public async void update_statusbar_info () {
-        if (!is_current_wrapper)
-            return;
-
-        debug ("%s : updating statusbar info", hint.to_string ());
-
-        if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME) {
-            lw.set_statusbar_info ("");
-            return;
-        }
+    /**
+     * This is overridable
+     */
+    protected virtual string get_statusbar_text () {
+        if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
+            return "";
 
         bool is_album = false;
 
@@ -377,13 +372,23 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         string time_text = TimeUtils.time_string_from_seconds (total_time);
         string size_text = format_size ((uint64)(total_size * 1000000));
 
-        lw.set_statusbar_info ("%s, %s, %s".printf (media_text, time_text, size_text));
+        return "%s, %s, %s".printf (media_text, time_text, size_text);
+    }
+
+
+    public async void update_statusbar_info () {
+        if (!is_current_wrapper)
+            return;
+
+        debug ("%s : updating statusbar info", hint.to_string ());
+
+        lw.set_statusbar_info (get_statusbar_text ());
     }
 
 
     // Holds the last search results (timeout). Helps to prevent useless search.
     protected LinkedList<string> timeout_search = new LinkedList<string>();
-    private int search_timeout = 100; // ms
+    private int search_timeout = 10; // ms
 
     // Stops from searching same thing multiple times
     protected string last_search = "";
@@ -417,7 +422,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
     /**
      * ---------------------------------------------------------------------------------
-     *      ALL THE VIEW WRAPPERS MUST IMPLEMENT THIS.
+     *      EVERY VIEW WRAPPER MUST IMPLEMENT THIS.
      * ---------------------------------------------------------------------------------
      *
      * It tells the parent class whether the search field, media control buttons, and
