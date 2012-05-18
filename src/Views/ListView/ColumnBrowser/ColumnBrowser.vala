@@ -41,8 +41,8 @@ public class BeatBox.ColumnBrowser : Box {
 	public LibraryWindow  lw { get; private set; }
 	public ViewWrapper view_wrapper { get; private set; }
 
-	public const int MIN_COLUMN_WIDTH  = 40; // Ideally should be 138; used for LEFT mode
-	public const int MIN_COLUMN_HEIGHT = 70; // used for TOP mode
+	public const int MIN_COLUMN_WIDTH  = 60; // Ideally should be 138; used for LEFT mode
+	public const int MIN_COLUMN_HEIGHT = 60; // used for TOP mode
 
 	public bool is_music_miller {
 		get {
@@ -52,9 +52,9 @@ public class BeatBox.ColumnBrowser : Box {
 		}
 	}
 
-	// Whether the columns are filtered or not based on the current selection
+	// Whether the columns are filtered or not based on the current selection.
 	// Although 'media.size == _media_results.size' would produce a similar result, here
-	// we want to know if the "All ..." filter is selected in every the columns.
+	// we want to know if the "All ..." filter is selected in every column.
 	public bool filtered {
 		get {
 			foreach (var col in columns)
@@ -192,7 +192,7 @@ public class BeatBox.ColumnBrowser : Box {
 		foreach (var col in columns) {
 			if (col.visible)
 				visible_columns_list.add (((int)col.category).to_string ());
-		}		
+		}
 
 		if (is_music_miller)
 			lw.settings.set_music_miller_visible_columns (visible_columns_list);
@@ -261,7 +261,7 @@ public class BeatBox.ColumnBrowser : Box {
 		view_wrapper.play_first_media ();
 	}
 
-	private async void column_selection_changed (MillerColumn.Category category, string val) {
+	private void column_selection_changed (MillerColumn.Category category, string val) {
 		/**
 		 * Since the columns follow a tree model, we need to re-populate all the columns
 		 * that have a lower hierarchical level.
@@ -273,14 +273,6 @@ public class BeatBox.ColumnBrowser : Box {
 			var search_genre  = ""; // ~ All
 			var search_artist = ""; // ~ All
 			var search_album  = ""; // ~ All
-
-			// Whether or not we'll take child columns into account before searching.
-			// If the user selects "All ..." in a any column, it results obvious that
-			// whatever the child columns had previously selected still applies, since we're
-			// going from a small to a global set.
-			//bool include_child_columns = (val == "");
-			// "All" is represented differently depending on the column type. For integers
-			// it's -1 and for text "".
 
 			if (category == MillerColumn.Category.GENRE) {
 				search_genre = val;
@@ -327,71 +319,51 @@ public class BeatBox.ColumnBrowser : Box {
 			_media_results = media;
 		}
 
+		// Notify others about the change
+		debug ("Column browser changed");
+		changed ();
+
+        populate_columns_async (category);
+	}
+
+    private async void populate_columns_async (MillerColumn.Category category) {
 		// Now re-populate the child columns
 		foreach (var column in columns) {
 			// Child columns
 			if (column.category > category) {
 				var column_set = new HashMap<string, int> ();
 
-				foreach (var _media in _media_results) {
-					string _val = "";
-
-					if (column.category == MillerColumn.Category.GENRE)
-						_val = _media.genre;
-					else if (column.category == MillerColumn.Category.ARTIST)
-						_val = _media.album_artist;
-					else if (column.category == MillerColumn.Category.ALBUM)
-						_val = _media.album;
-					else if (column.category == MillerColumn.Category.YEAR)
-						_val = _media.year.to_string ();
-					else if (column.category == MillerColumn.Category.RATING)
-						_val = _media.rating.to_string ();
-
-					column_set.set (_val, 1);
+				if (column.category == MillerColumn.Category.GENRE) {
+					foreach (var m in _media_results) {
+					    column_set.set (m.genre, 1);
+					}
+				}
+				if (column.category == MillerColumn.Category.ARTIST) {
+					foreach (var m in _media_results) {
+					    column_set.set (m.artist, 1);
+					}
+				}
+				if (column.category == MillerColumn.Category.ALBUM) {
+					foreach (var m in _media_results) {
+					    column_set.set (m.album, 1);
+					}
+				}
+				if (column.category == MillerColumn.Category.YEAR) {
+					foreach (var m in _media_results) {
+					    column_set.set (m.year.to_string (), 1);
+					}
+				}
+				if (column.category == MillerColumn.Category.RATING) {
+					foreach (var m in _media_results) {
+					    column_set.set (m.rating.to_string (), 1);
+					}
 				}
 
 				// The 'populate' method selects 'All # $category' automatically
 				column.populate (column_set);
 			}
 		}
-
-		// if include_child_columns is true, the search results are different. Do search again
-		// for the proper results.
-		// /!\ Not used at the moment for performance/behavioral issues. We don't want unstable
-		//     code right now. Also, this feature doesn't seem to be really useful. When a user selects
-		//     "All ..." in a column, they probably want to get rid of the child column filters as well.
-		/*
-		if (include_child_columns) {
-			foreach (var col in columns) {
-				if (col.category > category) { // Child columns
-					if (col.category == MillerColumn.Category.GENRE) {
-						search_genre = col.get_selected ();
-					}
-					else if (col.category == MillerColumn.Category.ARTIST) {
-						search_artist = col.get_selected ();
-					}
-					else if (col.category == MillerColumn.Category.ALBUM) {
-						search_album = col.get_selected ();
-					}
-					else if (col.category == MillerColumn.Category.YEAR) {
-						search_year = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
-					}
-					else if (col.category == MillerColumn.Category.RATING) {
-						search_rating = (col.get_selected () == "") ? -1 : int.parse (col.get_selected ());
-					}
-				}
-			}
-
-			// Perform search [again]
-			lm.do_search (media, out _media_results, null, null, null, null, view_wrapper.hint,
-			              "", search_artist, search_album, search_genre, search_year, search_rating);
-		}
-		*/
-	
-		// Notify others about the change
-		debug ("Column browser changed");
-		changed ();
-	}
+    }
 
 	public void update_column_separators (int visible_columns) {
 		if (visible_columns <= 0)

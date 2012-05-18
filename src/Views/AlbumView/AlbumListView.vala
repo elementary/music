@@ -53,13 +53,14 @@ public class BeatBox.AlbumListView : Window {
 		set_transient_for (lm.lw);
 		this.destroy_with_parent = true;
 		set_skip_taskbar_hint (true);
+		set_resizable(false);
+
 #if !USE_GRANITE_DECORATED_WINDOW
 		window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
 		// window stuff
 
 		set_decorated(false);
 		set_has_resize_grip(false);
-		set_resizable(false);
 
 		// close button
 		var close = new Gtk.Button ();
@@ -99,7 +100,7 @@ public class BeatBox.AlbumListView : Window {
 		// Music List
 		var tvs = new TreeViewSetup (MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
 		mtv = new MusicListView (view_wrapper, tvs);
-
+		
 		var mtv_scrolled = new ScrolledWindow (null, null);
 		mtv_scrolled.add (mtv);
 
@@ -157,6 +158,9 @@ public class BeatBox.AlbumListView : Window {
 		mtv.set_media (media_list);
 
 		setting_media.unlock ();
+
+        if (mtv.get_realized ())
+            mtv.columns_autosize ();
 
 		// Set rating
 		update_album_rating ();

@@ -39,7 +39,7 @@ public class BeatBox.Media : GLib.Object {
 	public string uri { get; set; default = ""; }
 	public uint file_size { get; set; default = 0; }
 	public int rowid { get; construct set; default = 0; }
-	public MediaType mediatype { get; set; default = MediaType.UNSPECIFIED; }
+	public MediaType mediatype { get; set; default = MediaType.SONG; }
 	
 	//tags
 	public string title { get; set; default = _("Unknown Title"); }
@@ -170,10 +170,15 @@ public class BeatBox.Media : GLib.Object {
 	}
 	
 	public string getAlbumArtPath() {
+#if 0
 		if(_album_path == "" || _album_path == null)
 			return Icons.DEFAULT_ALBUM_ART.backup_filename;
 		else
 			return _album_path;
+#endif
+        if (_album_path == null)
+            _album_path = "";
+        return _album_path;
 	}
 	
 	public string getArtistImagePath() {

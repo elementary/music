@@ -52,7 +52,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 
-		var db_file = GLib.File.new_for_path (GLib.Path.build_filename (data_dir.get_path (), "database_1_0.db"));
+		var db_file = GLib.File.new_for_path (GLib.Path.build_filename (data_dir.get_path (), "database_1_1.db"));
 
 		/* we need to set this variable now since 'new SQLHeavy.Database' will create the file later */
 		bool need_create = !db_file.query_exists ();
@@ -88,7 +88,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 				add_default_smart_playlists ();
 			}
 			catch (SQLHeavy.Error err) {
-				warning ("Bad news: could not create tables. Please report this. Message: %s\n", err.message);
+				critical ("Bad news: could not create tables. Please report this. Message: %s\n", err.message);
 			}
 		}
 	}
@@ -358,15 +358,13 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			Query query = transaction.prepare ("""INSERT INTO `playlists` (`name`, `media`, 'sort_column_id', 'sort_direction', 'columns')
 												VALUES (:name, :media, :sort_column_id, :sort_direction, :columns);""");
 
-			//foreach(Playlist p in playlists) {
-				query.set_string(":name", p.name);
-				query.set_string(":media", p.media_to_string(lm));
-				query.set_int(":sort_column_id", p.tvs.sort_column_id);
-				query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
-				query.set_string(":columns", p.tvs.columns_to_string());
+    		query.set_string(":name", p.name);
+			query.set_string(":media", p.media_to_string(lm));
+			query.set_int(":sort_column_id", p.tvs.sort_column_id);
+			query.set_string(":sort_direction", p.tvs.sort_direction_to_string());
+			query.set_string(":columns", p.tvs.columns_to_string());
 
-				query.execute();
-			//}
+			query.execute();
 
 			transaction.commit();
 		}

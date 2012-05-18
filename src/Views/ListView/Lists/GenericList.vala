@@ -2,6 +2,8 @@ using Gee;
 using Gtk;
 
 public abstract class BeatBox.GenericList : FastView {
+	public signal void import_requested (Gee.LinkedList<Media> to_import);
+
 	//for header column chooser
 	protected Gtk.Menu column_chooser_menu;
 
@@ -21,10 +23,8 @@ public abstract class BeatBox.GenericList : FastView {
 	protected GLib.Icon playing_icon;
 	protected GLib.Icon completed_icon;
 	
-	public signal void import_requested(LinkedList<Media> to_import);
-	
-	public GenericList(ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
-		base(types);
+	public GenericList (ViewWrapper view_wrapper, GLib.List<Type> types, TreeViewSetup tvs) {
+		base (types);
 		this.tvs = tvs;
 		set_parent_wrapper (view_wrapper);
 
@@ -65,13 +65,14 @@ public abstract class BeatBox.GenericList : FastView {
 	}
 
 	private void add_column_chooser_menu_item (TreeViewColumn tvc) {
-		if (get_hint () == ViewWrapper.Hint.MUSIC && tvc.title == TreeViewSetup.COLUMN_NUM)
+		var col_name = tvc.title;
+		if (get_hint () == ViewWrapper.Hint.MUSIC && col_name == TreeViewSetup.COLUMN_NUM)
 			return;
 
 		if (column_chooser_menu == null)
 			column_chooser_menu = new Gtk.Menu ();
 
-		var menu_item = new Gtk.CheckMenuItem.with_label (tvc.title);
+		var menu_item = new Gtk.CheckMenuItem.with_label (col_name);
 		menu_item.active = tvc.visible;
 
 		column_chooser_menu.append (menu_item);
@@ -149,8 +150,11 @@ public abstract class BeatBox.GenericList : FastView {
 					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_LAST_PLAYED)
 					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
-				else if(tvc.title == TreeViewSetup.COLUMN_RATING)
-					insert_column_with_data_func(-1, tvc.title, new Granite.Widgets.CellRendererRating (), cellHelper.ratingTreeViewFiller);
+				else if(tvc.title == TreeViewSetup.COLUMN_RATING) {
+					var rating_renderer = new Granite.Widgets.CellRendererRating ();
+					rating_renderer.rating_changed.connect (on_rating_cell_changed);
+					insert_column_with_data_func(-1, tvc.title, rating_renderer, cellHelper.ratingTreeViewFiller);
+				}
 				else if(tvc.title == TreeViewSetup.COLUMN_YEAR)
 					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_NUM)
@@ -180,17 +184,43 @@ public abstract class BeatBox.GenericList : FastView {
 
 				var inserted_column = get_column(index);
 
-				inserted_column.resizable = true;
-				inserted_column.reorderable = false;
-				inserted_column.clickable = true;
+				inserted_column.resizable = tvc.resizable;
+
+				// Don't allow reordering QUEUE
+				bool reorderable = (get_hint () != ViewWrapper.Hint.QUEUE);
+				inserted_column.reorderable = reorderable;
+				inserted_column.clickable = reorderable;
+
 				inserted_column.sort_column_id = index;
-				inserted_column.set_sort_indicator(false);
+				inserted_column.set_sort_indicator (false);
 				inserted_column.visible = tvc.visible;
 				inserted_column.sizing = Gtk.TreeViewColumnSizing.FIXED;
 				inserted_column.fixed_width = tvc.fixed_width;
 
-				// Add menuitem
-				add_column_chooser_menu_item (inserted_column);
+				// This is probably the best place to disable the columns we don't want
+				// for especific views, like the CD view.
+				if (get_hint () == ViewWrapper.Hint.CDROM) {
+					if (tvc.title != TreeViewSetup.COLUMN_BLANK &&
+					    tvc.title != TreeViewSetup.COLUMN_NUM &&
+					    tvc.title != TreeViewSetup.COLUMN_TRACK &&
+					    tvc.title != TreeViewSetup.COLUMN_TITLE &&
+					    tvc.title != TreeViewSetup.COLUMN_LENGTH &&
+					    tvc.title != TreeViewSetup.COLUMN_ALBUM &&
+					    tvc.title != TreeViewSetup.COLUMN_ARTIST)
+					{
+						// hide the column and don't add a menuitem
+						inserted_column.visible = false;
+					}
+					else {
+						inserted_column.visible = tvc.title != TreeViewSetup.COLUMN_NUM;
+						// Add menuitem
+						add_column_chooser_menu_item (inserted_column);
+					}
+				}
+				else {
+					// Add menuitem
+					add_column_chooser_menu_item (inserted_column);
+				}
 			}
 			else if(tvc.title == TreeViewSetup.COLUMN_BLANK) {
 				// Icon column
@@ -226,6 +256,21 @@ public abstract class BeatBox.GenericList : FastView {
 		}
 	}
 
+
+	// When the user clicks over a cell in the rating column, that cell renderer
+	// emits the rating_changed signal. We need to update that rating...
+	private void on_rating_cell_changed (int new_rating, Gtk.Widget widget, string path, Gtk.CellRendererState flags) {
+		var m = get_media_from_index (int.parse (path));
+
+		if (m == null)
+			return;
+
+		m.rating = new_rating;
+
+		var to_update = new LinkedList<Media> ();
+		to_update.add (m);
+		lm.update_media (to_update, true, true);
+	}
 
 	void viewHeadersResized() {
 		updateTreeViewSetup();

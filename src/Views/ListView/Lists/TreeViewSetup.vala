@@ -20,13 +20,11 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* Merely a place holder for multiple pieces of information regarding
- * the current media playing. Mostly here because of dependence. */
-
 using Gee;
 using Gtk;
 
 public class BeatBox.TreeViewSetup : GLib.Object {
+	// FIXME: Should be dynamic
 	public static const int MUSIC_COLUMN_COUNT = 18;
 	public static const int PODCAST_COLUMN_COUNT = 12;
 	public static const int RADIO_COLUMN_COUNT = 6;
@@ -57,7 +55,6 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 	public static string COLUMN_TRACK = _("Track");
 	public static string COLUMN_NUM = _("#");
 
-
 	private ViewWrapper.Hint hint;
 	public int sort_column_id; // Index of sort column
 	public Gtk.SortType sort_direction; // ASCENDING, DESCENDING
@@ -87,7 +84,7 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 		_columns = new GLib.List<TreeViewColumn>();
 		
 		/* initial column state */
-		if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
+		/*if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
 			_columns.append((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), // 0
 											"title", COLUMN_ID, 
 											"fixed_width", 10,
@@ -166,7 +163,7 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 											"fixed_width", 40,
 											"visible", false));
 		}
-		else if(hint == ViewWrapper.Hint.ALBUM_LIST) { // same as normal music list, but most are hidden
+		else*/ if(hint == ViewWrapper.Hint.ALBUM_LIST) { // same as normal music list, but most are hidden
 			_columns.append((TreeViewColumn)GLib.Object.new(typeof(TreeViewColumn), 
 											"title", COLUMN_ID, 
 											"fixed_width", 10,
@@ -390,12 +387,12 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 	}
 	
 	public void import_columns(string cols) {
-		string[] col_strings = cols.split("<column_seperator>", 0);
+		string[] col_strings = cols.split("<c_sep>", 0);
 		_columns = new GLib.List<TreeViewColumn>();
 		
 		int index;
 		for(index = 0; index < col_strings.length - 1; ++index) { /* the '-1' because col_strings has blank column at end */
-			string[] pieces_of_column = col_strings[index].split("<value_seperator>", 0);
+			string[] pieces_of_column = col_strings[index].split("<v_sep>", 0);
 			
 			TreeViewColumn tvc;
 			if(pieces_of_column[0] != COLUMN_BLANK && pieces_of_column[0] != COLUMN_RATING)
@@ -477,7 +474,7 @@ public class BeatBox.TreeViewSetup : GLib.Object {
 		string rv = "";
 		
 		foreach(TreeViewColumn tvc in _columns) {
-			rv += tvc.title + "<value_seperator>" + ((tvc.width >= 10) ? tvc.width.to_string() : tvc.fixed_width.to_string()) + "<value_seperator>" + ( (tvc.visible) ? "1" : "0" ) + "<column_seperator>";
+			rv += tvc.title + "<v_sep>" + ((tvc.width >= 10) ? tvc.width.to_string() : tvc.fixed_width.to_string()) + "<v_sep>" + ( (tvc.visible) ? "1" : "0" ) + "<c_sep>";
 		}
 		
 		return rv;

@@ -66,7 +66,6 @@ public class BeatBox.Settings : Object {
 	private const string CUSTOM_PRESETS = "custom-presets";
 	private const string DEFAULT_PRESETS = "default-presets";
 	private const string AUTO_SWITCH_PRESET = "auto-switch-preset";
-	private const string VOLUME = "volume";
 
 	public const string ENABLED_PLUGINS = "enabled-plugins";
 
@@ -136,7 +135,6 @@ public class BeatBox.Settings : Object {
 		equalizer_settings.add(CUSTOM_PRESETS);
 		equalizer_settings.add(DEFAULT_PRESETS);
 		equalizer_settings.add(AUTO_SWITCH_PRESET);
-		equalizer_settings.add(VOLUME);
 	}
 
 #if HAVE_FAST_EXPERIMENTAL_MODE
@@ -600,11 +598,6 @@ public class BeatBox.Settings : Object {
 		return get_bool(AUTO_SWITCH_PRESET);
 	}
 	
-	public double getVolume() {
-		return (double) (get_int (VOLUME)) / 100.0;
-	}
-	
-	
 	/** Set Values **/
 	public void setMusicFolder(string path) {
 		set_string(MUSIC_FOLDER, path);
@@ -731,9 +724,5 @@ public class BeatBox.Settings : Object {
 		set_bool(AUTO_SWITCH_PRESET, val);
 	}
 	
-	public void setVolume(double val) {
-		set_int(VOLUME, (int)(val*100));
-	}
-
 }
 

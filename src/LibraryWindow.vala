@@ -417,6 +417,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		});
 	}
 
+
 	/**
 	 * Show notification asyncronously
 	 */
@@ -499,7 +500,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		/* Pack view wrapper into the main views */
 		if (view_name == null || view_container.add_view (view_wrapper) < 0) {
-			critical ("Failed to append view '%s' to BeatBox's main views", view_name);
+			critical ("Failed to append view: %s", view_name);
 			return false;
 		}
 
@@ -556,7 +557,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		debug ("Building main views ...");
 
 		// Add Music Library View
-		var music_view_wrapper = new MusicViewWrapper (this, lm.music_setup);
+		var music_view_wrapper = new MusicViewWrapper (this);
 		add_view (_("Music"), music_view_wrapper);
 		music_view_wrapper.set_media_from_ids (lm.song_ids ());
 
@@ -567,16 +568,16 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		debug ("Loading playlists");
 
 		// Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future
-		var similar_view = new SimilarViewWrapper (this, lm.similar_setup);
+		var similar_view = new SimilarViewWrapper (this);
 		add_view (_("Similar"), similar_view);
 
 		// Add Queue view
-		var queue_view = new QueueViewWrapper (this, lm.queue_setup);
+		var queue_view = new QueueViewWrapper (this);
 		add_view (_("Queue"), queue_view);
 		queue_view.set_media (lm.queue ());
 
 		// Add History view
-		var history_view = new HistoryViewWrapper (this, lm.history_setup);
+		var history_view = new HistoryViewWrapper (this);
 		add_view (_("History"), history_view);
 		history_view.set_media (lm.already_played ());
 
@@ -622,7 +623,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 				/* FIXME: this can be easily migrated. Not doing it now to avoid
 				 *        breaking stuff.
 				 */
-				var cd_setup = new TreeViewSetup(MusicListView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
+				 var cd_setup = new TreeViewSetup(MusicListView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
 				var vw = new DeviceViewWrapper (this, cd_setup, d);
 				vw.set_media (d.get_medias ());
 				iter = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
@@ -857,11 +858,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			Gtk.Widget w = view_container.get_current_view ();
 			
 			if(w is ViewWrapper) {
-				((ViewWrapper)w).list_view.set_as_current_list(1, true);
-			}
-			else {
-				w = sideTree.getWidget(sideTree.library_music_iter);
-				((ViewWrapper)w).list_view.set_as_current_list(1, true);
+				(w as ViewWrapper).play_first_media ();
 			}
 
 			lm.getNext(true);

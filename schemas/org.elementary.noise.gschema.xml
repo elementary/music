@@ -171,12 +171,6 @@
       <summary>Whether or not to use the auto preset</summary>
       <description>Whether or not to use the auto preset</description>
     </key>
-    <key type="i" name="volume">
-      <default>100</default>
-      <range min="0" max="100"/>
-      <summary>noise's volume from 0-100</summary>
-      <description>noise's volume from 0-100</description>
-    </key>
   </schema>
 
   <schema path="/org/elementary/noise/plugins/" id="org.elementary.noise.plugins">

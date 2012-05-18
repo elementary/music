@@ -159,7 +159,7 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 		return false;
 	}
 	
-	public bool transfer_to_library(LinkedList<int> list) {
+	public bool transfer_to_library(LinkedList<Media> list) {
 		return false;
 	}
 	

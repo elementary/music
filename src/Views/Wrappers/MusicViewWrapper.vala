@@ -27,12 +27,13 @@ using Gee;
 public class BeatBox.MusicViewWrapper : ViewWrapper {
     Gee.HashMap<int, Device> welcome_screen_keys = new Gee.HashMap<int, Device> ();
 
-    public MusicViewWrapper (LibraryWindow lw, TreeViewSetup tvs) {
-        base (lw, tvs, -1);
+    public MusicViewWrapper (LibraryWindow lw) {
+        base (lw, Hint.MUSIC);
 
         // Add album view
         album_view = new AlbumView (this);
                 
+        var tvs = lw.lm.music_setup;
         // Add list view and column browser
         list_view = new ListView (this, tvs, true);
 
@@ -54,21 +55,6 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         lm.device_manager.device_added.connect (device_added);
         lm.device_manager.device_removed.connect (device_removed);
 
-    }
-
-    // Implementation of vital abstract method
-    protected override bool check_have_media () {
-        debug ("check_have_media");
-
-        bool have_media = media_count > 0;
-
-        // show welcome screen if there's no media
-        if (have_media)
-            select_proper_content_view ();
-        else if (has_welcome_screen)
-            set_active_view (ViewType.WELCOME);
-
-        return have_media;
     }
 
     private void connect_data_signals () {

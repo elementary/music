@@ -28,13 +28,18 @@ using Gee;
  */
 
 public class BeatBox.PlaylistViewWrapper : ViewWrapper {
+    public int playlist_id { get; private set; default = -1; }
 
-    public PlaylistViewWrapper (LibraryWindow lw, TreeViewSetup tvs, int id) {
-        base (lw, tvs, id);
+    public PlaylistViewWrapper (LibraryWindow lw, TreeViewSetup tvs, int playlist_id) {
+        var vw_hint = tvs.get_hint ();
+        base (lw, vw_hint);
 
-        if (tvs.get_hint () == Hint.PLAYLIST) {
-            var p = lm.playlist_from_id (id);
-            
+        this.playlist_id = playlist_id;
+        relative_id = playlist_id;
+
+        if (vw_hint == Hint.PLAYLIST) {
+            var p = lm.playlist_from_id (playlist_id);
+
             // Connect to playlist signals
             if (p != null) {
                 p.media_added.connect (on_playlist_media_added);
@@ -42,7 +47,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
                 p.cleared.connect (on_playlist_cleared);
             }
         }
-        else if (tvs.get_hint () == Hint.SMART_PLAYLIST) {
+        else if (vw_hint == Hint.SMART_PLAYLIST) {
             lm.media_added.connect (on_library_media_added);
             lm.media_removed.connect (on_library_media_removed);
         }
@@ -58,18 +63,11 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
 
 		// Refresh view layout
 		pack_views ();
+
+        set_alert ();
     }
 
-    protected override bool check_have_media () {
-        debug ("check_have_media");
-
-        bool have_media = media_count > 0;
-
-        if (have_media) {
-            select_proper_content_view ();
-            return true;
-        }
-
+    private void set_alert () {
         // show alert if there's no media
         if (has_embedded_alert) {
             if (hint == Hint.PLAYLIST) {
@@ -77,10 +75,9 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
             }
             else if (hint == Hint.SMART_PLAYLIST) {
                 var action = new Gtk.Action ("smart-playlist-rules-edit",
-                                              _("Edit Smart Playlist"),
-                                              _("Click on the button to edit playlist rules"),
-                                              Gtk.Stock.EDIT
-                                              );
+                                             _("Edit Smart Playlist"),
+                                             _("Click on the button to edit playlist rules"),
+                                             Gtk.Stock.EDIT);
                 // Connect to the 'activate' signal
                 action.activate.connect ( () => {
                     lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
@@ -91,12 +88,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
 
                 embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."), actions, true, Granite.AlertLevel.INFO);
             }
-
-            // Switch to alert box
-            set_active_view (ViewType.ALERT);
         }
-
-        return false;
     }
 
 
@@ -105,7 +97,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
      */
 
     private void on_library_media_added (Gee.Collection<int> ids) {
-        var playlist = lm.smart_playlist_from_id (relative_id);
+        var playlist = lm.smart_playlist_from_id (playlist_id);
 
         if (hint != Hint.SMART_PLAYLIST || playlist == null)
             return;
@@ -118,7 +110,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
 
 
     private void on_library_media_removed (Gee.Collection<int> ids) {
-        var playlist = lm.smart_playlist_from_id (relative_id);
+        var playlist = lm.smart_playlist_from_id (playlist_id);
 
         if (hint != Hint.SMART_PLAYLIST || playlist == null)
             return;
@@ -154,3 +146,4 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
         set_media (new Gee.LinkedList<Media> ());
     }
 }
+

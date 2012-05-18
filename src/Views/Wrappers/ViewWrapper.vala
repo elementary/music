@@ -30,19 +30,20 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public LibraryManager lm { get; protected set; }
     public LibraryWindow  lw { get; protected set; }
 
-    protected ViewContainer view_container; // Wraps all the internal views for super fast switching
+    protected ViewContainer view_container;
 
     /* MAIN WIDGETS (VIEWS) */
-    public ListView      list_view      { get; protected set; }
-    public AlbumView     album_view     { get; protected set; }
+    // FIXME: should be protected instead of public. Not doing so right now because
+    // there's no time to fix the broken code.
+    public ContentView list_view  { get; protected set; }
+    public ContentView album_view { get; protected set; }
 
-    public EmbeddedAlert embedded_alert { get; protected set; }
-    public Welcome       welcome_screen { get; protected set; }
+    protected EmbeddedAlert embedded_alert { get; protected set; }
+    protected Welcome       welcome_screen { get; protected set; }
 
     /* UI PROPERTIES */
     public bool has_album_view      { get { return album_view != null; } }
     public bool has_list_view       { get { return list_view != null;  } }
-
     public bool has_embedded_alert  { get { return embedded_alert != null; } }
     public bool has_welcome_screen  { get { return welcome_screen != null; } }
 
@@ -83,9 +84,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         ALBUM_LIST;
     }
 
-    public Hint hint { get; protected set; }
+    /**
+     * TODO: deprecate, since it's only useful for PlaylistViewWrapper
+     */
+    public int relative_id { get; protected set; default = -1; }
 
-    public int relative_id { get; protected set; }
+    public Hint hint { get; protected set; }
 
     public int index { get { return lw.view_container.get_view_index (this); } }
 
@@ -102,46 +106,31 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      * These data structures hold information about the media shown in the views.
      **/
 
-    // ALL the media. Data source.
     protected Gee.HashMap<Media, int> media_table = new Gee.HashMap<Media, int> ();
     protected Gee.HashMap<Media, int> visible_media_table = new Gee.HashMap<Media, int> ();
 
     public int media_count { get { return (media_table != null) ? media_table.size : 0; } }
 
-
-    public ViewWrapper (LibraryWindow lw, TreeViewSetup tvs, int id)
+    public ViewWrapper (LibraryWindow lw, Hint hint)
     {
         this.lm = lw.lm;
         this.lw = lw;
-
-        this.relative_id = id;
-        this.hint = tvs.get_hint ();
-
-        debug ("BUILDING %s", hint.to_string());
+        this.hint = hint;
 
         // Setup view container
         view_container = new ViewContainer ();
         this.pack_start (view_container, true, true, 0);
 
-        // Now setup the view wrapper based on available widgets
-
         lw.viewSelector.mode_changed.connect (view_selector_changed);
         lw.searchField.changed.connect (search_field_changed);
-
-        debug ("FINISHED BUILDING %s\n\n\n", hint.to_string());
     }
-
-#if 0
-    public ViewWrapper.with_view (Gtk.Widget view) {
-        view_container.add_view (view);
-        this.hint = Hint.NONE;
-        set_active_view (ViewType.NONE);
-        update_library_window_widgets ();
-    }
-#endif
 
     /* Re-checks which views are available and packs them in */
     protected void pack_views () {
+        if (view_container == null) {
+            critical ("pack_views() failed. Container is NULL");
+        }
+
         if (has_album_view && view_container.get_view_index (album_view) < 0) {
             view_container.add_view (album_view);
         }
@@ -182,7 +171,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 break;
         }
 
-        // i.e. we're not switching (officially) to that view if it's not available
+        // We're not switching (officially) to that view if it's not available
         if (!successful) {
             debug ("%s : VIEW %s was not available", hint.to_string(), type.to_string ());
             return;
@@ -193,14 +182,15 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         debug ("%s : switching to %s", hint.to_string(), type.to_string ());
 
-        // Update LibraryWindow toolbar widgets
+        // Update LibraryWindow widgets
         update_library_window_widgets ();
     }
 
 
     /**
-     * This method ensures that the view switcher and search box are sensitive/insensitive when they have to.
-     * It also selects the proper view switcher item based on the current view.
+     * This method ensures that the view switcher and search box are sensitive/insensitive
+     * when they have to. It also selects the proper view switcher item based on the
+     * current view.
      */
     protected void update_library_window_widgets () {
         if (!is_current_wrapper)
@@ -421,52 +411,46 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     /**
-     * ---------------------------------------------------------------------------------
-     *      EVERY VIEW WRAPPER MUST IMPLEMENT THIS.
-     * ---------------------------------------------------------------------------------
-     *
      * It tells the parent class whether the search field, media control buttons, and
      * other external widgets should be sensitive or not (among other things), so that
-     * the parent abstract class can take care of all these automated/repetitive tasks for you.
+     * the abstract parent class can take care of all these automated/repetitive tasks.
      *
-     * In case your view wrapper doesn't have an alert box or welcome screen, and it
-     * doesn't need any kind of complex size-based behavior, you should check the value of
-     * media_count and return <true> or <false> based on that.
+     * /!\ THE DEFAULT IMPLEMENTATION IS VERY LIMITED, SO IT'S RECOMMENDED TO OVERRIDE
+     *     THIS METHOD FROM THE SUBCLASS.
      *
-     * For most cases, "return media_count > 0;" is enough.
+     * OVERRIDING THE METHOD:
      *
      * In case the view contains an alert box and/or welcome screen, it is recommended
      * to set either view as current from your implementation before returning anything.
      * (Using set_active_view.)
      *
      * The child ViewWrappers are also responsible for setting the proper view back after
-     * the alert/welcome screens are no longer needed (i.e. when the method would return 'true'.)
-     * select_proper_content_view() selects the best suited view for you in case you don't want
-     * to handle that. You still need to call it from the implementation though.
+     * the alert/welcome screens are no longer needed (i.e. when the method would return
+     * 'true'.)
+     * select_proper_content_view() selects the best suited view for you in case you
+     * don't want to handle that. You still need to call it from the implementation though.
      *
-     * EXAMPLE:
-     *
-     *    // Taken from MusicViewWrapper.vala
-     *    protected bool check_have_media () {
-     *        bool have_media = media_count > 0;
-     *
-     *        // show welcome screen if there's no media
-     *        if (have_media)
-     *            select_proper_content_view ();
-     *        else if (has_welcome_screen)
-     *            set_active_view (ViewType.WELCOME);
-     *
-     *        return have_media;
-     *    }
-     *
-     *
-     * WARNING: Don't ever attempt calling the set_media(), update_media(), add_media() or remove_media()
-     *          methods (including async variations) from your implementation, unless you want the method
-     *          to fall into an infinite loop, potentially freezing the entire application.
+     * WARNING: Don't ever attempt calling the set_media(), update_media(), add_media() or
+     *          remove_media() methods (including async variations) from your implementation,
+     *          unless you want the method to fall into an infinite loop, potentially
+     *          freezing the entire application.
      *
      * @return true if the ViewWrapper has media. false otherwise.
      */
-    protected abstract bool check_have_media ();
+
+    protected virtual bool check_have_media () {
+        bool have_media = media_count > 0;
+
+        // show welcome screen if there's no media
+        if (have_media)
+            select_proper_content_view ();
+        else if (has_embedded_alert)
+            set_active_view (ViewType.ALERT);
+        else if (has_welcome_screen)
+            set_active_view (ViewType.WELCOME);
+
+        return have_media;   
+    }
 
     protected virtual void select_proper_content_view () {
         debug ("Selecting proper content view automatically");
@@ -486,14 +470,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
 
     /**
-    ============================================================================
-                                      DATA STUFF
-    ============================================================================
-    */
+     *  DATA METHODS
+     */
 
     /*
      * The clients shouldn't be able to lock this mutex (hence it's private).
-     * It could have terrible results it a child view wrapper locks it before
+     * It could have terrible results if a child view wrapper locked it before
      * calling set_media().
      */
     private Mutex in_update;
@@ -529,7 +511,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     private void update_visible_media () {
         in_update.lock ();
 
-        debug ("%s : UPDATING SHOWING MEDIA", hint.to_string ());
+        debug ("%s : UPDATING VISIBLE MEDIA", hint.to_string ());
 
         visible_media_table = new HashMap<Media, int> ();
         var to_search = get_search_string ();
@@ -683,7 +665,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         Gee.LinkedList<Media> should_be, should_show;
 
         Search.full_search_in_media_list (media, out should_be, null, null, null, null, hint);
-        Search.full_search_in_media_list (media, out should_show, null, null, null, null, hint, get_search_string ());
+        Search.full_search_in_media_list (media, out should_show, null, null, null, null, hint,
+                                          get_search_string ());
 
         var to_remove = new LinkedList<Media>();
         var to_add_show = new LinkedList<Media>();

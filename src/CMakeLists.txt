@@ -44,7 +44,6 @@ vala_precompile(VALA_C
     Devices/CDRomDevice.vala
     Devices/DevicePreferences.vala
 
-    Objects/TreeViewSetup.vala
     Objects/SmartQuery.vala
     Objects/MediaInfo.vala
     Objects/SmartPlaylist.vala
@@ -104,11 +103,12 @@ vala_precompile(VALA_C
     Views/AlbumView/AlbumListView.vala
 
     # LIST VIEW
-    Views/CellDataFunctionHelper.vala
     Views/ListView/ListView.vala
     Views/ListView/ColumnBrowser/ColumnBrowser.vala
     Views/ListView/ColumnBrowser/ColumnBrowserModel.vala
 
+    Views/ListView/Lists/TreeViewSetup.vala
+    Views/ListView/Lists/CellDataFunctionHelper.vala
     Views/ListView/Lists/GenericList.vala
     Views/ListView/Lists/MusicListView.vala
 
@@ -151,6 +151,7 @@ OPTIONS
     --vapidir=${CMAKE_BINARY_DIR}/core/
     --target-glib=2.32
     --define=USE_GRANITE_DECORATED_WINDOW
+    --define=HAVE_GRANITE_RATING
     --define=HAVE_SMART_ALBUM_COLUMN
     ${ADD_OPTIONS}
 GENERATE_VAPI

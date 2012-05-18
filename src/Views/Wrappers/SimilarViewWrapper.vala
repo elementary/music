@@ -23,15 +23,14 @@
 
 public class BeatBox.SimilarViewWrapper : ViewWrapper {
 
-    public bool have_media { get { return media_count >= REQUIRED_MEDIA; } }
-
     private const int REQUIRED_MEDIA = 10;
 
     private Media base_media;
 
-    public SimilarViewWrapper (LibraryWindow lw, TreeViewSetup tvs) {
+    public SimilarViewWrapper (LibraryWindow lw) {
+        base (lw, Hint.SIMILAR);
 
-        base (lw, tvs, -1);
+        var tvs = lw.lm.similar_setup;
 
         // Add list view
         list_view = new ListView (this, tvs);
@@ -57,7 +56,10 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
          * in the result list. We want to keep searching for similar songs until that
          * happens.
          */
-        if (!list_view.get_is_current_list()) {
+        if (!has_list_view)
+            return;
+
+        if (!(list_view as ListView).get_is_current_list()) {
             base_media = new_media;
 
             if (base_media != null) {
@@ -100,10 +102,9 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
         lw.addSideListItem (p);
     }
 
-
     protected override bool check_have_media () {
         /* Check if the view is the current list and there's enough media */
-        if (media_count >= REQUIRED_MEDIA) {
+        if (media_count >= REQUIRED_MEDIA || !has_embedded_alert) {
             select_proper_content_view ();
             return true;
         }
@@ -123,6 +124,9 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
     }
 
     private inline void set_default_alert () {
+        if (!has_embedded_alert)
+            return;
+
         embedded_alert.set_alert (_("Similar Song View"), _("In this view, %s will automatically find songs similar to the one you're playing. You can then start playing those songs, or save them as a playlist for later.").printf (String.escape (lw.app.get_name ())), null, true, Granite.AlertLevel.INFO);
 
     }

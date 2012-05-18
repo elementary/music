@@ -29,15 +29,19 @@ using Gee;
 
 public class BeatBox.HistoryViewWrapper : ViewWrapper {
 
-    public HistoryViewWrapper (LibraryWindow lw, TreeViewSetup tvs) {
-        base (lw, tvs, -1);
+    public HistoryViewWrapper (LibraryWindow lw) {
+        base (lw, Hint.HISTORY);
+
+        var tvs = lw.lm.history_setup;
 
         if (tvs != null) {
-            // Add list view and column browser
-            list_view = new ListView (this, tvs, false);
+            // Add list view
+            list_view = new ListView (this, tvs);
 
             // Alert box
-            embedded_alert = new Granite.Widgets.EmbeddedAlert ();            
+            embedded_alert = new Granite.Widgets.EmbeddedAlert ();
+
+            embedded_alert.set_alert (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), null, true, Granite.AlertLevel.INFO);
 
     		// Refresh view layout
     		pack_views ();
@@ -57,26 +61,5 @@ public class BeatBox.HistoryViewWrapper : ViewWrapper {
     private void on_history_changed () {
         set_media (lm.already_played ());
     }
-
-    protected override bool check_have_media () {
-        debug ("check_have_media");
-
-        bool have_media = media_count > 0;
-
-        if (have_media) {
-            select_proper_content_view ();
-            return true;
-        }
-
-        // show alert if there's no media
-        if (has_embedded_alert) {
-            embedded_alert.set_alert (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), null, true, Granite.AlertLevel.INFO);
-
-            // Switch to alert box
-            set_active_view (ViewType.ALERT);
-        }
-
-        return false;
-    }
-
 }
+

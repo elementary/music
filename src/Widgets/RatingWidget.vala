@@ -332,12 +332,11 @@ public class RatingMenuItem : Gtk.MenuItem {
         rating = new Rating (false, Gtk.IconSize.MENU, false, get_style_context ());
         add (rating);
 
-        // These states' theming is obtrusive. This seems to be the right way to get rid of them
+        // Force the NORMAL state flag
         this.state_flags_changed.connect ( () => {
-            unset_state_flags (Gtk.StateFlags.ACTIVE);
-            unset_state_flags (Gtk.StateFlags.PRELIGHT);
-            unset_state_flags (Gtk.StateFlags.FOCUSED);
-            unset_state_flags (Gtk.StateFlags.SELECTED);
+            var current_flags = this.get_state_flags ();
+            if (current_flags != Gtk.StateFlags.NORMAL)
+                unset_state_flags (current_flags);
         });
     }
 
@@ -404,10 +403,11 @@ public class CellRendererRating : Gtk.CellRendererPixbuf {
     /**
      * This class is here to make setting the rating from a cell possible.
      * Unlike the other widgets, it only allows doing so by clicking over a
-     * star, and it's not possible to get an in-hover preview.
+     * star, and it's not possible to get an in-hover preview (it actually is
+     * but that would require this widget to be aware of the GtkTreeView).
      *
      * We use a normal rating widget. It does the drawing and all we need
-     * internally and after that we set the rendered image as this cell renderer's
+     * internally, and after that we set the rendered image as this cell renderer's
      * pixbuf.
      */
     protected Rating? rating = null;
@@ -458,10 +458,21 @@ public class CellRendererRating : Gtk.CellRendererPixbuf {
                                       Gdk.Rectangle background_area, Gdk.Rectangle cell_area,
                                       Gtk.CellRendererState flags)
     {
+        int old_rating = get_rating ();
         int new_rating = rating.get_new_rating (event.button.x - (double) cell_area.x);
 
-        // Don't re-draw automatically since doing so modifies the entire treeview column.
-        // Let's pass off the responsability to the rating_changed signal handler
+        /* If the user clicks again over the same star, decrease the rating
+         * (i.e. "unset" the star)
+         */
+        if (new_rating == old_rating) {
+            new_rating--;
+        }
+
+        /* We don't re-draw automatically since doing so modifies the entire
+         * treeview column in most cases. Let's pass off the responsability to the
+         * rating_changed signal handler. It must take care of setting the new rating
+         * on the proper cell.
+         */
         // rating.set_rating (new_rating);
         //this.pixbuf = rating.get_canvas ();
 

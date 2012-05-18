@@ -106,8 +106,12 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 				break;
 		}
 #else
-			list_view = new MusicListView (view_wrapper, tvs);		
+		list_view = new MusicListView (view_wrapper, tvs);
 #endif
+
+		list_view.import_requested.connect ( (to_import) => {
+			import_requested (to_import);
+		});
 
 		// Put the list inside a scrolled window
 		list_scrolled.add (list_view);

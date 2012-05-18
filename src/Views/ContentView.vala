@@ -20,15 +20,10 @@
  */
 
 public interface BeatBox.ContentView : Gtk.Container {
-	public signal void import_requested (Gee.LinkedList<int> to_import);
+
+	public signal void import_requested (Gee.LinkedList<Media> to_import);
 
 	public abstract ViewWrapper.Hint get_hint ();
-
-	/**
-	 * Only useful for playlists. It lets the view associate a unique ID. Usually
-	 * the same as the playlist's ID.
-	 */
-	public abstract int get_relative_id ();
 
 	/**
 	 * For some views, get_media() and get_visible_media() return the same contents, since
@@ -41,5 +36,10 @@ public interface BeatBox.ContentView : Gtk.Container {
 	public abstract async void set_media    (Gee.Collection<Media> new_media);
 	public abstract async void add_media    (Gee.Collection<Media> to_add);
 	public abstract async void remove_media (Gee.Collection<Media> to_remove);
+
+	/**
+	 * What to show in the statusbar if this were the current active view
+	 */
+	//public abstract string get_statusbar_text ();
 }
 
