@@ -360,7 +360,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			val = TEXT_MARKUP.printf (String.escape (album), String.escape (album_artist));
 		}
 		else if(column == icons.TOOLTIP_COLUMN) {
-			string TOOLTIP_MARKUP = @"<span size=\"large\">%s</span>\n%s";
+			string TOOLTIP_MARKUP = @"<span size=\"large\"><b>%s</b></span>\n%s";
 			val = TOOLTIP_MARKUP.printf (String.escape (s.album), String.escape (s.album_artist));
 		}
 		else {

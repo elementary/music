@@ -25,8 +25,6 @@ namespace BeatBox.TimeUtils {
     /**
      * Receives the number of seconds and returns a string with format:
      * "DD days, HH hours and MM minutes".
-     * FIXME: NEEDS LOCALIZATION IMPROVEMENTS. Something like "%D, %H and %M"
-     * as formatting parameter would work.
      */
     public inline string time_string_from_seconds (uint seconds) {
         double secs = (double)seconds;
@@ -49,16 +47,9 @@ namespace BeatBox.TimeUtils {
         // approximation is desired
         minutes = Numeric.uint_from_double (secs / SECONDS_PER_MINUTE);
 
-        /**
-         * @Translators:
-         * The format to display the date. This will be turned into something like
-         * "2 days, 20 hours, 12 minutes". %D represents the place of days, %H hours
-         * and %M minutes.
-         */
-        string FORMAT = _("%D %H %M");
-        //string DATE_SEPARATOR = _(",");
-
         string days_string = "", hours_string = "", minutes_string = "";
+
+        var rv = new StringBuilder ();
 
         if (days > 0) {
             if (days == 1)
@@ -67,10 +58,12 @@ namespace BeatBox.TimeUtils {
                 days_string = _("%i days").printf ((int)days);
         }
 
+        rv.append (days_string);
+
         if (hours > 0) {
             // add separator
-            //if (days_string != "")
-            //    days_string += DATE_SEPARATOR;
+            if (days_string != "")
+                rv.append (", ");
 
             if (hours == 1)
                 hours_string = _("1 hour");
@@ -78,12 +71,12 @@ namespace BeatBox.TimeUtils {
                 hours_string = _("%i hours").printf ((int)hours);
         }
 
+        rv.append (hours_string);
+
         if (minutes > 0) {
             // add separator
-            //if (hours_string != "")
-            //    hours_string += DATE_SEPARATOR;
-            //else if (days_string != "")
-            //    days_string += DATE_SEPARATOR;
+            if (hours_string != "" || days_string != "")
+                rv.append (" and ");
 
             if (minutes == 1)
                 minutes_string = _("1 minute");
@@ -91,12 +84,9 @@ namespace BeatBox.TimeUtils {
                 minutes_string = _("%i minutes").printf ((int)minutes);
         }
 
-        var rv = "";
-        rv = FORMAT.replace ("%D", days_string);
-        rv = rv.replace ("%H", hours_string);
-        rv = rv.replace ("%M", minutes_string);
+        rv.append (minutes_string);
 
-        return String.remove_trailing_white_space (rv);
+        return String.remove_trailing_white_space (rv.str);
     }
 
     /**
