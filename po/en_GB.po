@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-09 22:43-0600\n"
-"PO-Revision-Date: 2012-05-14 18:18+0000\n"
-"Last-Translator: Bennici Piercarlo <vesnarteach@gmail.com>\n"
+"PO-Revision-Date: 2012-05-17 11:16+0000\n"
+"Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-15 05:27+0000\n"
-"X-Generator: Launchpad (build 15238)\n"
+"X-Launchpad-Export-Date: 2012-05-18 05:08+0000\n"
+"X-Generator: Launchpad (build 15259)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
@@ -415,7 +415,7 @@ msgstr "Cancel"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
-msgstr "Equalizer"
+msgstr "Equaliser"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
@@ -462,12 +462,12 @@ msgstr "%s was unable to import %d items. The files may be damaged."
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr "Move all corrupted files to trash"
+msgstr "Move all corrupted files to rubbish"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr "Move to Trash"
+msgstr "Move to Rubbish Bin"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
@@ -483,7 +483,7 @@ msgstr "File Location"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr "Select individual files to move to trash:"
+msgstr "Select individual files to move to rubbish:"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -505,7 +505,7 @@ msgstr "Choose Music Folder"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr "Install Plugin"
+msgstr "Install Plug-in"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
@@ -514,7 +514,7 @@ msgstr "Do Nothing"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
-msgstr "Required GStreamer plugin not installed"
+msgstr "Required GStreamer plug-in not installed"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
@@ -522,7 +522,7 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
-"The plugin for media type %s is not installed.\n"
+"The plug-in for media type %s is not installed.\n"
 "What would you like to do?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
@@ -579,7 +579,7 @@ msgstr "Music Folder"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Keep music folder organized"
-msgstr "Keep music folder organized"
+msgstr "Keep music folder organised"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:85
 msgid "Write metadata to file"
@@ -1269,7 +1269,7 @@ msgstr "Device is already being synced."
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:423
 msgid "Favorite Songs"
-msgstr "Favorite Songs"
+msgstr "Favourite Songs"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:444
 msgid "Recently Added"
@@ -1337,7 +1337,7 @@ msgstr "Add Playlist"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:238
 msgid "Hide Equalizer"
-msgstr "Hide Equalizer"
+msgstr "Hide Equaliser"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:238
 msgid "Show Equalizer"
@@ -1427,7 +1427,7 @@ msgstr "Import media from device"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:58
 msgid "%D %H %M"
-msgstr "%D %H %M"
+msgstr "%d/%m/%y %R"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
