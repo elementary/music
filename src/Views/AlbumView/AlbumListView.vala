@@ -138,7 +138,7 @@ public class BeatBox.AlbumListView : Window {
 
 	Mutex setting_media;
 
-	public async void set_songs_from_media (Media media) {
+	public void set_songs_from_media (Media media) {
 		setting_media.lock ();
 
 		set_title (_("%s by %s").printf (media.album, media.album_artist));

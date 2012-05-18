@@ -24,7 +24,7 @@ namespace BeatBox.TimeUtils {
 
     /**
      * Receives the number of seconds and returns a string with format:
-     * "DD days, HH hours, MM minutes".
+     * "DD days, HH hours and MM minutes".
      * FIXME: NEEDS LOCALIZATION IMPROVEMENTS. Something like "%D, %H and %M"
      * as formatting parameter would work.
      */

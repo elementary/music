@@ -31,9 +31,34 @@ namespace BeatBox.Numeric {
      *  7.99 => 7
      */
     public uint lowest_uint_from_double (double number) {
+        // sign check
+        if (number <= 0.0)
+            return 0;
+        
         uint rv = (uint)number;
 
         if ((double)rv > number)
+            rv --;
+
+        return rv;
+    }
+
+    /**
+     * Returns the lowest int given a float.
+     * For instance:
+     * INPUT => OUTPUT
+     *  7.02 => 7
+     *  7.51 => 7
+     *  7.99 => 7
+     */
+    public int lowest_int_from_float (float number) {
+        // sign check
+        if (number <= 0.0)
+            return 0;
+
+        int rv = (int)number;
+
+        if ((float)rv > number)
             rv --;
 
         return rv;

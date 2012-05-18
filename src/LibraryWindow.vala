@@ -46,14 +46,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 	public bool initialization_finished { get; private set; default = false; }
 
-	private VBox verticalBox;
+	private Gtk.Box verticalBox;
 
 	public ViewContainer view_container { get; private set; }
 
-	public HPaned sourcesToMedias { get; private set; } //allows for draggable
+	public Gtk.Paned main_hpaned { get; private set; } //allows for draggable
 
-	public HPaned mediasToInfo { get; private set; } // media info pane
-	private ScrolledWindow sideTreeScroll;
+	public Gtk.Paned view_container_hpaned { get; private set; } // media info pane
 
 	public SideTreeView sideTree { get; private set; }
 
@@ -167,13 +166,17 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		// set the icon
 		set_icon(Icons.BEATBOX.render (IconSize.MENU, null));
 
-		verticalBox = new VBox(false, 0);
-		sourcesToMedias = new HPaned();
-		mediasToInfo = new HPaned();
+		verticalBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+
+		// wraps the sidebar and view_container_hpaned
+		main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+		
+		// wraps the view container and the info panel
+		view_container_hpaned = new Paned (Gtk.Orientation.HORIZONTAL);
+
 		view_container = new ViewContainer ();
 
 		sideTree = new SideTreeView(lm, this);
-		sideTreeScroll = new ScrolledWindow(null, null);
 		fileImportMusic = new Gtk.MenuItem.with_label(_("Import to Library"));
 		fileRescanMusicFolder = new Gtk.MenuItem.with_label(_("Rescan Music Folder"));
 		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
@@ -221,13 +224,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		statusbar.insert_widget (info_panel_chooser);
 
 		// Set properties of various controls
-		sourcesToMedias.set_position(settings.getSidebarWidth());
-		mediasToInfo.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
-
-		sideTreeScroll = new ScrolledWindow(null, null);
-		//FIXME: don't scroll horizontally
-		sideTreeScroll.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-		sideTreeScroll.add(sideTree);
+		main_hpaned.set_position(settings.getSidebarWidth());
+		view_container_hpaned.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 
 		/* create appmenu menu */
 
@@ -269,7 +267,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 #if HAVE_PODCASTS
 		verticalBox.pack_start(videoArea, true, true, 0);
 #endif
-		verticalBox.pack_start(sourcesToMedias, true, true, 0);
+		verticalBox.pack_start(main_hpaned, true, true, 0);
 		verticalBox.pack_end(statusbar, false, true, 0);
 
 		var column_toggle_bin = new ToolItem();
@@ -303,7 +301,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		// Set theming
 		topControls.get_style_context().add_class(STYLE_CLASS_PRIMARY_TOOLBAR);
-		sourcesToMedias.get_style_context().add_class ("sidebar-pane-separator");
+		main_hpaned.get_style_context().add_class ("sidebar-pane-separator");
 
 		topControls.set_vexpand (false);
 		topControls.set_hexpand (true);
@@ -318,11 +316,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		topControls.insert(app.create_appmenu(settingsMenu), -1);
 
 
-		mediasToInfo.pack1(view_container, true, false);
-		mediasToInfo.pack2(info_panel, false, false);
+		view_container_hpaned.pack1(view_container, true, false);
+		view_container_hpaned.pack2(info_panel, false, false);
 
-		sourcesToMedias.pack1(sideTreeScroll, false, true);
-		sourcesToMedias.pack2(mediasToInfo, true, true);
+		main_hpaned.pack1(sideTree, false, false);
+		main_hpaned.pack2(view_container_hpaned, true, false);
 
 		// add mounts to side tree view
 		lm.device_manager.loadPreExistingMounts();
@@ -366,6 +364,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		update_sensitivities();
 		show_all ();
+		
+		// Maximize window if necessary
+		if (settings.getWindowMaximized ())
+			this.maximize ();
 
 		sideTree.resetView();
 
@@ -966,7 +968,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		settings.setMoreWidth(info_panel.get_allocated_width());
 
 		// Save sidebar width
-		settings.setSidebarWidth(sourcesToMedias.position);
+		settings.setSidebarWidth(main_hpaned.position);
+		
+		// Save window state
+		settings.setWindowMaximized (this.get_window ().get_state () == Gdk.WindowState.MAXIMIZED);
 	}
 
 

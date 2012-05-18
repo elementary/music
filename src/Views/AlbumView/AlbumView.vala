@@ -1,9 +1,5 @@
 /*-
- * Copyright (c) 2011-2012 Scott Ringwelski <sgringwe@mtu.edu>
  * Copyright (c) 2012 Noise Developers
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -38,7 +34,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	public AlbumListView album_list_view {
 		get {
 			if (_shared_album_list_view == null) {
-				debug ("----> CREATING ALBUM VIEW POPOVER <----");
+				debug ("Creating ALBUM VIEW POPOVER");
 				_shared_album_list_view = new AlbumListView (this);
 				_shared_album_list_view.focus_out_event.connect ( () => {
 					if (album_list_view.visible && lw.has_focus) {
@@ -59,8 +55,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 /* Spacing Workarounds */
 #if !GTK_ICON_VIEW_BUG_IS_FIXED
-	private EventBox vpadding_box;
-	private EventBox hpadding_box;
+	private Gtk.EventBox vpadding_box;
+	private Gtk.EventBox hpadding_box;
 #endif
 
 	private LibraryManager lm;
@@ -69,9 +65,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	private Gdk.Pixbuf defaultPix;
 
 	private const int ITEM_PADDING = 0;
-	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
-
 	private const int MIN_SPACING = 12;
+	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
 
 	/* media should be mutable, as we will be sorting it */
 	public AlbumView(ViewWrapper view_wrapper) {
@@ -320,7 +315,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		get_allocation (out alloc);
 
 		// move down to icon view's allocation
-		x += lm.lw.sourcesToMedias.get_position();
+		x += lm.lw.main_hpaned.get_position();
 		y += alloc.y;
 
 		// center it on this icon view
@@ -334,15 +329,6 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		album_list_view.present ();
 	}
 
-
-
-
-
-	const int FONT_SIZE = 10300;
-	const int MAX_ALBUM_NAME_LENGTH = (int) (20.0 * ((double)FONT_SIZE/10500.0) * ((double) Icons.ALBUM_VIEW_IMAGE_SIZE) / 138.0);
-
-	string TEXT_MARKUP = @"<span weight='medium' size='$FONT_SIZE'>%s\n</span><span foreground=\"#999\">%s</span>";
-	string TOOLTIP_MARKUP = @"<span weight='bold' size='$FONT_SIZE'>%s</span>\n%s";
 
 	public Value val_func (int row, int column, Object o) {
 		Media s = o as Media;
@@ -358,19 +344,23 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			}
 		}
 		else if(column == icons.MARKUP_COLUMN) {
+			string TEXT_MARKUP = @"%s\n<span foreground=\"#999\">%s</span>";
+			
 			string album, album_artist;
-			if(s.album.length > MAX_ALBUM_NAME_LENGTH)
-				album = s.album.substring(0, MAX_ALBUM_NAME_LENGTH - 3) + "...";
+			if(s.album.length > 25)
+				album = s.album.substring (0, 21) + "...";
 			else
 				album = s.album;
 
 			if(s.album_artist.length > 25)
-				album_artist = s.album_artist.substring(0, 22) + "...";
+				album_artist = s.album_artist.substring(0, 21) + "...";
 			else
 				album_artist = s.album_artist;
-				val = TEXT_MARKUP.printf (String.escape (album), String.escape (album_artist));
+
+			val = TEXT_MARKUP.printf (String.escape (album), String.escape (album_artist));
 		}
 		else if(column == icons.TOOLTIP_COLUMN) {
+			string TOOLTIP_MARKUP = @"<span size=\"large\">%s</span>\n%s";
 			val = TOOLTIP_MARKUP.printf (String.escape (s.album), String.escape (s.album_artist));
 		}
 		else {
@@ -411,47 +401,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return (a > b) ? 1 : -1;
 	}
 
+	/**
+	 * Smart spacing
+	 */
 
-/*
- * This is the ideal implementation of the smart spacing mechanism. Currently
- * it's being stopped by a bug in GTK+ 3 that inserts the row-spacing and column-spacing
- * properties after the last row and column respectively, instead of just in-between
- * them. This causes the album view to have 'margin + column-spacing' on the right
- * and 'margin + row-spacing' on the bottom, when they should be 'margin' and 'margin'.
- *
- * /!\ Still present in GTK+ 3.4.1 -- Apr. 21, 2012
- */
-#if GTK_ICON_VIEW_BUG_IS_FIXED
-	private void on_resize (Allocation alloc) {
-
-		if (!visible) {
-			return;
-		}
-
-		int n_columns = 1;
-		int new_spacing = 0;
-
-		int TOTAL_WIDTH = alloc.width;
-		int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;
-
-		// Calculate the number of columns
-		n_columns = (TOTAL_WIDTH - MIN_SPACING) / (TOTAL_ITEM_WIDTH + MIN_SPACING);
-
-		if (n_columns < 1)
-			return;
-
-		set_columns (n_columns);
-
-		// We don't want to adjust the spacing if the row is not full
-		if (icons.get_table ().size () < n_columns)
-			new_spacing = MIN_SPACING;
-		else
-			new_spacing = (TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (n_columns + 1);
-
-		set_spacing (new_spacing);
-	}
-#else
-	/* Use workarounds */
 	Mutex setting_size;
 
 	private void on_resize (Allocation alloc) {
@@ -462,14 +415,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			return;
 		}
 
-		int n_columns = 1;
-		int new_spacing = 0;
-
-		int TOTAL_WIDTH = alloc.width;
+		int TOTAL_WIDTH = alloc.width; // width of view wrapper, not scrolled window!
 		int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;
 
 		// Calculate the number of columns
-		n_columns = (TOTAL_WIDTH - MIN_SPACING) / (TOTAL_ITEM_WIDTH + MIN_SPACING);
+		float n = (float)(TOTAL_WIDTH - MIN_SPACING) / (float)(TOTAL_ITEM_WIDTH + MIN_SPACING);
+		int n_columns = Numeric.lowest_int_from_float (n);
 
 		if (n_columns < 1) {
 			setting_size.unlock ();
@@ -484,22 +435,38 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			return;
 		}
 
-		new_spacing = (TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (n_columns + 1);
+		// You're not supposed to understand this. It is the result of simplifying the original
+		// (understandable) equation. Contact Victor Eduardo if you need an explanation.
+		float spacing = (float)(TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (float)(n_columns + 1);
+		int new_spacing = Numeric.int_from_float (spacing);
 
 		if (new_spacing < 0) {
 			setting_size.unlock ();
 			return;
 		}
 
-		vpadding_box.set_size_request (-1, new_spacing);
-		hpadding_box.set_size_request (new_spacing - n_columns / 2, -1);
+		// WORKAROUND
+		if (TOTAL_WIDTH <= 700)
+			new_spacing--;
 
-		icons.set_column_spacing (new_spacing);
-		icons.set_row_spacing (new_spacing);
-		
+		set_spacing (new_spacing);
+
 		setting_size.unlock ();
 	}
-#endif
-}
 
+	private void set_spacing (int spacing) {
+		if (spacing < 0)
+			return;
+
+		icons.set_column_spacing (spacing);
+		icons.set_row_spacing (spacing);
+
+#if GTK_ICON_VIEW_BUG_IS_FIXED
+		icons.set_margin (spacing);
+#else
+		vpadding_box.set_size_request (-1, spacing);
+		hpadding_box.set_size_request (spacing, -1);
+#endif
+	}
+}
 
