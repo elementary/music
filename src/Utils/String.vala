@@ -23,7 +23,22 @@
 namespace BeatBox.String {
 
     /**
-     * Escapes the text for use with Pango Markup
+     * Compares two strings. Used extensively in the views for sorting.
+     * @return 1 if a > b. -1 if b > a
+     */
+    public int compare (string a, string b) {
+        if (a == "" && b != "")
+            return 1;
+
+        if (a != "" && b == "")
+            return -1;
+
+        return (a > b) ? 1 : -1;
+    }
+
+    /**
+     * Escapes the text for use with Pango Markup.
+     * @return escaped text
      */
     public inline string escape (string text) {
         if (text == null || text.length < 1)
@@ -33,7 +48,7 @@ namespace BeatBox.String {
     }
 
     /**
-     * Returns 'true' if text consists enterely of white space
+     * @return 'true' if text consists enterely of white space.
      */
     public bool is_white_space (string text) {
         if (text == null)
@@ -43,8 +58,8 @@ namespace BeatBox.String {
         unichar c;
 
         for (int i = 0; text.get_next_char (ref i, out c);)
-            if (c.isspace() || c == '\n')
-                ++white_space;
+            if (c.isspace () || c == '\n')
+                ++ white_space;
 
         if (white_space == text.length)
             return true;
@@ -62,6 +77,8 @@ namespace BeatBox.String {
      * "     Foo Bar "  "Foo Bar"     --> Removes trailing spaces from beginning and end
      * "             "  ""            --> Converts white space into a void string
      * "Foo   Bar"      "Foo    Bar"  --> Doesn't change middle spaces.
+     *
+     * @return a new string without trailing spaces.
      */
     public inline string remove_trailing_white_space (string s) {
         if (s.length < 1)

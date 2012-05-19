@@ -322,10 +322,11 @@ public abstract class BeatBox.GenericList : FastView {
 				id_index = i;
 			}
 		}
-		
+
+		queue_draw ();		
+#if 0
 		if(id_index != -1)
 			redraw_row(id_index);
-#if 0
 		if(!scrolled_recently) {
 			//scroll_to_current_media();
 		}
@@ -509,18 +510,6 @@ public abstract class BeatBox.GenericList : FastView {
 						  Gdk.DragAction.COPY|
 						  Gdk.DragAction.MOVE
 						  );
-	}
-	
-	/************************************************
-	 * Used by all views to sort list
-	 * ******************************************/
-	protected int advanced_string_compare(string a, string b) {
-		if(a == "" && b != "")
-			return 1;
-		else if(a != "" && b == "")
-			return -1;
-		
-		return (a > b) ? 1 : -1;
 	}
 }
 

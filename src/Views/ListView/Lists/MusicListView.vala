@@ -512,7 +512,7 @@ public class BeatBox.MusicListView : GenericList {
 			rv = (int)(a_media.track - b_media.track);
 		}
 		else if(col == MusicColumn.TITLE) {
-			rv = advanced_string_compare(a_media.title.down(), b_media.title.down());
+			rv = String.compare (a_media.title.down(), b_media.title.down());
 		}
 		else if(col == MusicColumn.LENGTH) {
 			rv = (int)(a_media.length - b_media.length);
@@ -530,10 +530,10 @@ public class BeatBox.MusicListView : GenericList {
 						rv = (int)((int)a_media.album_number - (int)b_media.album_number);
 				}
 				else
-					rv = advanced_string_compare(a_media.album.down(), b_media.album.down());
+					rv = String.compare (a_media.album.down(), b_media.album.down());
 			}
 			else
-				rv = advanced_string_compare(a_media.album_artist.down(), b_media.album_artist.down());
+				rv = String.compare (a_media.album_artist.down(), b_media.album_artist.down());
 		}
 		else if(col == MusicColumn.ALBUM) {
 			if(a_media.album.down() == b_media.album.down()) {
@@ -547,11 +547,11 @@ public class BeatBox.MusicListView : GenericList {
 				if(a_media.album == "")
 					rv = 1;
 				else
-					rv = advanced_string_compare(a_media.album.down(), b_media.album.down());
+					rv = String.compare (a_media.album.down(), b_media.album.down());
 			}
 		}
 		else if(col == MusicColumn.GENRE) {
-			rv = advanced_string_compare(a_media.genre.down(), b_media.genre.down());
+			rv = String.compare (a_media.genre.down(), b_media.genre.down());
 		}
 		else if(col == MusicColumn.YEAR) {
 			rv = (int)(a_media.year - b_media.year);
@@ -582,7 +582,7 @@ public class BeatBox.MusicListView : GenericList {
 		}
 		
 		if(rv == 0 && col != MusicColumn.ARTIST && col != MusicColumn.ALBUM)
-			rv = advanced_string_compare(a_media.uri, b_media.uri);
+			rv = String.compare (a_media.uri, b_media.uri);
 
 		if(sort_direction == SortType.DESCENDING)
 			rv = (rv > 0) ? -1 : 1;

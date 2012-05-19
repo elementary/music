@@ -319,8 +319,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		view_container_hpaned.pack1(view_container, true, false);
 		view_container_hpaned.pack2(info_panel, false, false);
 
-		main_hpaned.pack1(sideTree, false, false);
-		main_hpaned.pack2(view_container_hpaned, true, false);
+		// put the sidebar in a scrolled window so that it can scroll vertically
+		var sidebar_scrolled = new Gtk.ScrolledWindow (null, null);
+		sidebar_scrolled.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
+		sidebar_scrolled.add (sideTree);
+
+		main_hpaned.pack1 (sidebar_scrolled, false, false);
+		main_hpaned.pack2 (view_container_hpaned, true, false);
 
 		// add mounts to side tree view
 		lm.device_manager.loadPreExistingMounts();
@@ -625,7 +630,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 				/* FIXME: this can be easily migrated. Not doing it now to avoid
 				 *        breaking stuff.
 				 */
-				 var cd_setup = new TreeViewSetup(MusicListView.MusicColumn.TRACK, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
+				 var cd_setup = new TreeViewSetup(MusicListView.MusicColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
 				var vw = new DeviceViewWrapper (this, cd_setup, d);
 				vw.set_media (d.get_medias ());
 				iter = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);

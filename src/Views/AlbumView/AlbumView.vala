@@ -386,19 +386,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			if(a_media.album == "")
 				rv = 1;
 			else
-				rv = advanced_string_compare(a_media.album.down(), b_media.album.down());
+				rv = String.compare (a_media.album.down(), b_media.album.down());
 		}
 
 		return rv;
-	}
-
-	protected int advanced_string_compare(string a, string b) {
-		if(a == "" && b != "")
-			return 1;
-		else if(a != "" && b == "")
-			return -1;
-		
-		return (a > b) ? 1 : -1;
 	}
 
 	/**
@@ -445,9 +436,11 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			return;
 		}
 
-		// WORKAROUND
-		if (TOTAL_WIDTH <= 700)
-			new_spacing--;
+		// verify new size
+		while ((n_columns + 1) * new_spacing + n_columns * TOTAL_ITEM_WIDTH > TOTAL_WIDTH) {
+			message ("FIXING NEW_SPACING");
+			new_spacing --;
+		}
 
 		set_spacing (new_spacing);
 

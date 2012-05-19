@@ -30,7 +30,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public LibraryManager lm { get; protected set; }
     public LibraryWindow  lw { get; protected set; }
 
-    protected ViewContainer view_container;
+    private Gtk.Box layout_box;
+    private ViewContainer view_container;
 
     /* MAIN WIDGETS (VIEWS) */
     // FIXME: should be protected instead of public. Not doing so right now because
@@ -57,10 +58,10 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         LIST    = 1, // Matches index 1 of the view in lw.viewSelector
         ALERT   = 2, // For embedded alertes
         WELCOME = 3, // For welcome screens
-        NONE    = 4  // Custom views
+        NONE    = 4  // Nothing showing
     }
 
-    public ViewType current_view { get; protected set; }
+    public ViewType current_view { get; private set; default = ViewType.NONE; }
 
     /**
      * This is by far the most important property of this object.
@@ -84,10 +85,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         ALBUM_LIST;
     }
 
-    /**
-     * TODO: deprecate, since it's only useful for PlaylistViewWrapper
-     */
-    public int relative_id { get; protected set; default = -1; }
 
     public Hint hint { get; protected set; }
 
@@ -98,6 +95,11 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             return (lw.initialization_finished ? (index == lw.view_container.get_current_index ()) : false);
         }
     }
+
+    /**
+     * TODO: deprecate, since it's only useful for PlaylistViewWrapper
+     */
+    public int relative_id { get; protected set; default = -1; }
 
 
     /**
@@ -117,18 +119,34 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         this.lw = lw;
         this.hint = hint;
 
-        // Setup view container
+        // Allows inserting widgets on top of the view
+        layout_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         view_container = new ViewContainer ();
-        this.pack_start (view_container, true, true, 0);
+
+        layout_box.pack_end (view_container, true, true, 0);
+        this.pack_start (layout_box, true, true, 0);
 
         lw.viewSelector.mode_changed.connect (view_selector_changed);
         lw.searchField.changed.connect (search_field_changed);
     }
 
-    /* Re-checks which views are available and packs them in */
+    protected void insert_widget (Gtk.Widget widget, bool on_top = true) {
+        if (view_container == null) {
+            critical ("insert_widget() failed. Param 'widget' is NULL");
+            return;
+        }
+
+        if (on_top)
+            layout_box.pack_start (widget, false, false, 0);
+        else
+            layout_box.pack_end (widget, false, false, 0);
+    }
+
+    /* Checks which views are available and packs them in (if they are not yet packed) */
     protected void pack_views () {
         if (view_container == null) {
             critical ("pack_views() failed. Container is NULL");
+            return;
         }
 
         if (has_album_view && view_container.get_view_index (album_view) < 0) {
@@ -313,18 +331,20 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         bool is_album = false;
 
         Gee.Collection<Media>? media_set = null;
+
         // Get data based on the current view
         if (current_view == ViewType.ALBUM) {
             is_album = true;
-            media_set = list_view.get_visible_media ();
-        }
-        else {
+
             // Let's use the local data since it has no internal filter
             media_set = new Gee.LinkedList<Media> ();
             foreach (var m in get_visible_media_list ()) {
                 if (m != null)
                     media_set.add (m);
             }
+        }
+        else if (current_view == ViewType.LIST) {
+            media_set = list_view.get_visible_media ();
         }
 
         uint total_items = 0, total_size = 0, total_time = 0;
@@ -343,14 +363,14 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         string media_description = "";
 
-        if (!is_album) {
+        if (is_album) {
+            media_description = total_items > 1 ? _("%i albums") : _("1 album");
+        }
+        else {
             if (hint == Hint.MUSIC)
                 media_description = total_items > 1 ? _("%i songs") : _("1 song");
             else
                 media_description = total_items > 1 ? _("%i items") : _("1 item");    
-        }
-        else {
-            media_description = total_items > 1 ? _("%i albums") : _("1 album");
         }
 
         // FIXME: bad workaround
@@ -360,11 +380,10 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         string media_text = media_description.printf ((int)total_items);
         string time_text = TimeUtils.time_string_from_seconds (total_time);
-        string size_text = format_size ((uint64)(total_size * 1000000));
+        string size_text = format_size (1000000 * (uint64)total_size);
 
         return "%s, %s, %s".printf (media_text, time_text, size_text);
     }
-
 
     public async void update_statusbar_info () {
         if (!is_current_wrapper)
@@ -377,8 +396,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
 
     // Holds the last search results (timeout). Helps to prevent useless search.
-    protected LinkedList<string> timeout_search = new LinkedList<string>();
-    private int search_timeout = 10; // ms
+    private LinkedList<string> timeout_search = new LinkedList<string> ();
 
     // Stops from searching same thing multiple times
     protected string last_search = "";
@@ -395,7 +413,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (new_search.length != 1) {
             timeout_search.offer_head (new_search.down ());
 
-            Timeout.add (search_timeout, () => {
+            Timeout.add (150, () => {
                 // Don't search the same stuff every {search_timeout}ms
                 string to_search = timeout_search.poll_tail();
                 if (to_search != new_search || to_search == last_search)
@@ -441,7 +459,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     protected virtual bool check_have_media () {
         bool have_media = media_count > 0;
 
-        // show welcome screen if there's no media
+        // show alert or welcome screen if there's no media
         if (have_media)
             select_proper_content_view ();
         else if (has_embedded_alert)
@@ -473,13 +491,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      *  DATA METHODS
      */
 
-    /*
-     * The clients shouldn't be able to lock this mutex (hence it's private).
-     * It could have terrible results if a child view wrapper locked it before
-     * calling set_media().
-     */
-    private Mutex in_update;
-
     /* Whether to populate this view wrapper's views immediately or delay the process */
     protected bool populate_views { get { return is_current_wrapper && lw.get_realized (); } }
 
@@ -502,6 +513,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         return visible_media_table.keys;
     }
 
+
+
+    private Mutex in_update;
 
     /**
      * Description:
@@ -611,13 +625,10 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     public void set_media_from_ids (Gee.Collection<int> new_media) {
-        var to_set = new Gee.LinkedList<Media> ();
-        foreach (var id in new_media)
-            to_set.add (lm.media_from_id (id));
-        set_media (to_set);
+        set_media (lm.media_from_ids (new_media));
     }
 
-    public void set_media (Collection<Media> new_media) {
+    public void set_media (Gee.Collection<Media> new_media) {
         if (new_media == null) {
             warning ("set_media: attempt to set NULL media failed");
             return;
@@ -634,20 +645,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 media_count ++;
             }
         }
-
-        // optimize searches based on the amount of media. Time in ms
-        if (media_count < 100) 
-            search_timeout = 20;
-        if (media_count < 1000)
-            search_timeout = 35;
-        else if (media_count < 5000)
-            search_timeout = 150;
-        else if (media_count < 10000)
-            search_timeout = 200;
-        else if (media_count < 100000)
-            search_timeout = 300;
-        else
-            search_timeout = 500;
 
         update_visible_media ();
     }
