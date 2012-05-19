@@ -71,7 +71,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
         // show alert if there's no media
         if (has_embedded_alert) {
             if (hint == Hint.PLAYLIST) {
-                embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Granite.AlertLevel.INFO);
+                embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Gtk.MessageType.INFO);
             }
             else if (hint == Hint.SMART_PLAYLIST) {
                 var action = new Gtk.Action ("smart-playlist-rules-edit",
@@ -86,7 +86,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
                 var actions = new Gtk.Action[1];
                 actions[0] = action;
 
-                embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."), actions, true, Granite.AlertLevel.INFO);
+                embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."), actions, true, Gtk.MessageType.INFO);
             }
         }
     }

@@ -114,7 +114,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
          */
         if (base_media != null) {
             /* say we could not find similar media */
-            embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Granite.AlertLevel.INFO);
+            embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Gtk.MessageType.INFO);
         }
 
         /* Show the alert box */
@@ -127,7 +127,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
         if (!has_embedded_alert)
             return;
 
-        embedded_alert.set_alert (_("Similar Song View"), _("In this view, %s will automatically find songs similar to the one you're playing. You can then start playing those songs, or save them as a playlist for later.").printf (String.escape (lw.app.get_name ())), null, true, Granite.AlertLevel.INFO);
+        embedded_alert.set_alert (_("Similar Song View"), _("In this view, %s will automatically find songs similar to the one you're playing. You can then start playing those songs, or save them as a playlist for later.").printf (String.escape (lw.app.get_name ())), null, true, Gtk.MessageType.INFO);
 
     }
 }

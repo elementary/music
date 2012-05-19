@@ -52,10 +52,24 @@ public class BeatBox.QueueViewWrapper : ViewWrapper {
          // Listen for queues and unqueues
          lm.queue_changed.connect (on_queue_changed);
          
+         // Listen for media order
+         (list_view as ListView).reordered.connect (on_list_reordered);
+         
          // TODO: listen for media updates?
     }
 
+    bool modifying_queue = false;
+
+    private void on_list_reordered () {
+        // Update LM queue to use the new order
+        modifying_queue = true;
+        lm.queue_media (list_view.get_media ());
+        modifying_queue = false;
+    }
+
     private void on_queue_changed () {
+        if (modifying_queue)
+            return;
         set_media (lm.queue ());
     }
 
@@ -63,7 +77,7 @@ public class BeatBox.QueueViewWrapper : ViewWrapper {
         if (!has_embedded_alert)
             return;
 
-        embedded_alert.set_alert (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), null, true, Granite.AlertLevel.INFO);
+        embedded_alert.set_alert (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), null, true, Gtk.MessageType.INFO);
     }
 }
 

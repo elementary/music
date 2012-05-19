@@ -27,10 +27,12 @@ using Gee;
 using Gtk;
 
 public class BeatBox.ListView : ContentView, Gtk.Box {
+	public signal void reordered ();
 
 	// Wrapper for the list view and miller columns
 	private Gtk.Paned list_view_hpaned; // for left mode
 	private Gtk.Paned list_view_vpaned; // for top mode
+
 
 	public ColumnBrowser column_browser { get; private set; }
 	public GenericList   list_view { get; private set; }
@@ -108,6 +110,9 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 #else
 		list_view = new MusicListView (view_wrapper, tvs);
 #endif
+		list_view.rows_reordered.connect ( () => {
+			reordered ();
+		});
 
 		list_view.import_requested.connect ( (to_import) => {
 			import_requested (to_import);

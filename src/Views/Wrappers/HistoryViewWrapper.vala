@@ -41,7 +41,7 @@ public class BeatBox.HistoryViewWrapper : ViewWrapper {
             // Alert box
             embedded_alert = new Granite.Widgets.EmbeddedAlert ();
 
-            embedded_alert.set_alert (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), null, true, Granite.AlertLevel.INFO);
+            embedded_alert.set_alert (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."), null, true, Gtk.MessageType.INFO);
 
     		// Refresh view layout
     		pack_views ();

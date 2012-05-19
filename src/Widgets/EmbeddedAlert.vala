@@ -25,14 +25,6 @@
  *
  * TODO: Add description and examples
  */
-namespace Granite {
-    public enum AlertLevel {
-        ERROR,
-        WARNING,
-        QUESTION,
-        INFO
-    }
-}
 
 public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
@@ -99,7 +91,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
     }
 
     public void set_alert (string primary_text, string secondary_text, Gtk.Action[] ? actions = null,
-                            bool show_icon = true, AlertLevel alert_level = AlertLevel.WARNING)
+                            bool show_icon = true, Gtk.MessageType type = Gtk.MessageType.WARNING)
     {
         // Reset size request
         set_size_request (1, 1);
@@ -117,14 +109,14 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
             secondary_text_label.justify = Gtk.Justification.FILL;
 
             // TODO: Unless the same icon system is added to granite, don't depend on it.
-            switch (alert_level) {
-                case AlertLevel.ERROR:
+            switch (type) {
+                case Gtk.MessageType.ERROR:
                     image.set_from_pixbuf (Icons.render_icon (ERROR_ICON, Gtk.IconSize.DIALOG));
                     break;
-                case AlertLevel.WARNING:
+                case Gtk.MessageType.WARNING:
                     image.set_from_pixbuf (Icons.render_icon (WARNING_ICON, Gtk.IconSize.DIALOG));
                     break;
-                case AlertLevel.QUESTION:
+                case Gtk.MessageType.QUESTION:
                     image.set_from_pixbuf (Icons.render_icon (QUESTION_ICON, Gtk.IconSize.DIALOG));
                     break;
                 default:
@@ -138,7 +130,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         }
 
         // Make sure the text is selectable is the level is WARNING, ERROR or QUESTION
-        primary_text_label.selectable = secondary_text_label.selectable = (alert_level != AlertLevel.INFO);
+        primary_text_label.selectable = secondary_text_label.selectable = (type != Gtk.MessageType.INFO);
 
         image.set_no_show_all (!show_icon);
         image.set_visible (show_icon);

@@ -419,7 +419,7 @@ public class BeatBox.MusicListView : GenericList {
 			to_queue.add (m);
 		}
 
-		lm.queue_media_by_id (to_queue);
+		lm.queue_media (to_queue);
 	}
 
 	protected virtual void mediaMenuNewPlaylistClicked() {
