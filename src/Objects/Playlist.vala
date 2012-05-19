@@ -34,7 +34,7 @@ public class BeatBox.Playlist : Object {
 	public signal void cleared ();
 	
 	public Playlist() {
-		name = _("New Playlist");
+		name = "";
 		tvs = new TreeViewSetup(MusicListView.MusicColumn.NUMBER, Gtk.SortType.ASCENDING, ViewWrapper.Hint.PLAYLIST);
 		_media = new Gee.HashMap<Media, int>();
 	}

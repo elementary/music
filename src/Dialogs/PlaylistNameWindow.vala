@@ -26,9 +26,10 @@ public class BeatBox.PlaylistNameWindow : Window {
 	public Playlist _original;
 	LibraryWindow lw;
 	
-	VBox content;
-	HBox padding;
-	
+	Gtk.Box content;
+	Gtk.InfoBar infobar;
+	Gtk.Label infobar_label;
+
 	public Entry _name {get; private set;}
 	public Button _save {get; private set;}
 	public Button _cancel {get; private set;}
@@ -52,8 +53,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 		
 		_original = original;
 		
-		content = new VBox(false, 12);
-		padding = new HBox(false, 12);
+		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
 		
 		/* start out by creating all category labels */
 		Label nameLabel = new Label(_("Name of Playlist"));
@@ -61,26 +61,42 @@ public class BeatBox.PlaylistNameWindow : Window {
 		_save = new Button.with_label(_("Done"));
 		_cancel = new Button.with_label (_("Cancel"));
 
+
 		/* set up controls */
 		nameLabel.xalign = 0.0f;
-		nameLabel.set_markup("<b>%s</b>".printf(_("Name of Playlist")));
+		nameLabel.set_markup("<b>%s</b>".printf (String.escape (_("Name of Playlist"))));
 		
 		_name.text = original.name;
 		
+		/* Infobar stuff*/
+		infobar_label = new Label("");
+		
+		infobar_label.set_justify(Justification.LEFT);
+		infobar_label.set_single_line_mode(true);
+		infobar_label.ellipsize = Pango.EllipsizeMode.END;
+		
+		infobar = new InfoBar();
+		infobar.set_message_type (Gtk.MessageType.WARNING);
+		
+		(infobar.get_content_area() as Gtk.Container).add (infobar_label);
+
 		/* add controls to form */
-		HButtonBox bottomButtons = new HButtonBox();
+		var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
 		bottomButtons.set_spacing (6);
-		bottomButtons.set_layout(ButtonBoxStyle.END);
+		bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
 		bottomButtons.pack_end(_cancel, false, false, 0);
 		bottomButtons.pack_end(_save, false, false, 0);
 		
+		infobar.set_no_show_all (true);
+		
 		content.pack_start(UI.wrap_alignment (nameLabel, 12, 0, 0, 0), false, true, 0);
 		content.pack_start(UI.wrap_alignment (_name, 0, 12, 0, 12), false, true, 0);
+		content.pack_start(UI.wrap_alignment (infobar, 0, 12, 0, 12), false, true, 0);
 		content.pack_start(bottomButtons, false, false, 12);
 		
-		padding.pack_start(content, true, true, 12);
+		content.margin = 12;
 		
-		add(padding);
+		add(content);
 		
 		show_all();
 
@@ -95,9 +111,8 @@ public class BeatBox.PlaylistNameWindow : Window {
 	}
 
 	void saveClicked() {
-		_original.name = _name.text;
-		playlist_saved(_original);
-		
+		_original.name = String.remove_trailing_white_space (_name.text);
+		playlist_saved (_original);
 		this.destroy();
 	}
 	
@@ -106,19 +121,25 @@ public class BeatBox.PlaylistNameWindow : Window {
 	}
 	
 	void nameChanged() {
-		if(_name.get_text() == "") {
+		if (String.is_white_space (_name.get_text())) {
 			_save.set_sensitive(false);
+			infobar.hide ();
 			return;
 		}
 		else {
-			foreach(var p in lw.lm.playlists()) {
-				if((_original == null || _original.rowid != p.rowid) && _name.get_text() == p.name) {
+			foreach (var p in lw.lm.playlists ()) {
+				var fixed_name = String.remove_trailing_white_space (_name.get_text());
+				if((_original == null || _original.rowid != p.rowid) && fixed_name == p.name) {
 					_save.set_sensitive(false);
+					infobar.set_no_show_all (false);
+					infobar_label.set_markup (_("The name %s is already in use").printf ("<b>" + String.escape (fixed_name) + "</b>"));
+					infobar.show_all ();
 					return;
 				}
 			}
 		}
-		
+
+		infobar.hide ();		
 		_save.set_sensitive(true);
 	}
 }

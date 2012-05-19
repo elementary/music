@@ -160,22 +160,23 @@ public class BeatBox.SmartPlaylistEditor : Window {
 	}
 	
 	void nameChanged() {
-		if(_name.get_text() == "") {
+		if (String.is_white_space (_name.get_text())) {
 			save.set_sensitive(false);
 			return;
 		}
 		else {
-			foreach(var p in lw.lm.smart_playlists()) {
-				if((_sp == null || _sp.rowid != p.rowid) && _name.get_text() == p.name) {
+			foreach (var p in lw.lm.smart_playlists ()) {
+				var fixed_name = String.remove_trailing_white_space (_name.get_text());
+				if((_sp == null || _sp.rowid != p.rowid) && fixed_name == p.name) {
 					save.set_sensitive(false);
 					return;
 				}
 			}
 		}
-		
+
 		save.set_sensitive(true);
 	}
-	
+
 	public void addRow() {
 		SmartPlaylistEditorQuery speq = new SmartPlaylistEditorQuery(new SmartQuery());
 		
