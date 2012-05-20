@@ -64,7 +64,6 @@ public class BeatBox.Settings : Object {
 	private const string EQUALIZER_ENABLED = "equalizer-enabled";
 	private const string SELECTED_PRESET = "selected-preset";
 	private const string CUSTOM_PRESETS = "custom-presets";
-	private const string DEFAULT_PRESETS = "default-presets";
 	private const string AUTO_SWITCH_PRESET = "auto-switch-preset";
 
 	public const string ENABLED_PLUGINS = "enabled-plugins";
@@ -133,7 +132,6 @@ public class BeatBox.Settings : Object {
 		equalizer_settings.add(EQUALIZER_ENABLED);
 		equalizer_settings.add(SELECTED_PRESET);
 		equalizer_settings.add(CUSTOM_PRESETS);
-		equalizer_settings.add(DEFAULT_PRESETS);
 		equalizer_settings.add(AUTO_SWITCH_PRESET);
 	}
 
@@ -566,10 +564,6 @@ public class BeatBox.Settings : Object {
 			return null;
 
 		return rv;
-	}
-	
-	public Gee.Collection<EqualizerPreset> getDefaultPresets() {
-		return getPresets(get_strings(DEFAULT_PRESETS));
 	}
 	
 	public Gee.Collection<EqualizerPreset> getCustomPresets() {

@@ -240,12 +240,12 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 
 	void load_presets () {
-		foreach (EqualizerPreset preset in lm.settings.getDefaultPresets()) {
+		foreach (var preset in Equalizer.get_default_presets ()) {
 			preset.is_default = true;
 			preset_combo.addPreset(preset);
 		}
 
-		foreach (EqualizerPreset preset in lm.settings.getCustomPresets()) {
+		foreach (var preset in lm.settings.getCustomPresets()) {
 			preset_combo.addPreset(preset);
 		}
 	}

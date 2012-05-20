@@ -629,14 +629,17 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     public void set_media (Gee.Collection<Media> new_media) {
+        in_update.lock ();
+        
         if (new_media == null) {
             warning ("set_media: attempt to set NULL media failed");
+            in_update.unlock ();
             return;
         }
 
         debug ("%s : SETTING MEDIA -> set_media", hint.to_string());
 
-        media_table = new HashMap <Media, int>();
+        media_table = new HashMap<Media, int> ();
 
         int media_count = 0;
         foreach (var m in new_media) {
@@ -645,6 +648,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 media_count ++;
             }
         }
+        in_update.unlock ();
 
         update_visible_media ();
     }
@@ -770,7 +774,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
 
-    public void add_media (Collection<Media> new_media) {
+    public void add_media (Gee.Collection<Media> new_media) {
         in_update.lock ();
 
         debug ("%s : ADDING media", hint.to_string());

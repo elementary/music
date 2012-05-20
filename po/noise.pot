@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-19 18:51-0600\n"
+"POT-Creation-Date: 2012-05-20 00:28-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1500,4 +1500,76 @@ msgstr ""
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
 #, c-format
 msgid "%s, %s and %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
+msgid "Techno"
 msgstr ""

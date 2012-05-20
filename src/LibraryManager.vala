@@ -1639,7 +1639,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				}
 			}
 
-			foreach(var p in settings.getDefaultPresets ()) {
+			foreach(var p in Equalizer.get_default_presets ()) {
 				if(p != null && media_active)  {
 					var preset_name = p.name.down ();
 					var media_genre = media_info.media.genre.down();

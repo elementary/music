@@ -22,9 +22,13 @@
 
 using Gst;
 
+namespace BeatBox {
+	private Gee.Collection<EqualizerPreset> ? default_presets = null;
+}
+
 public class BeatBox.Equalizer : GLib.Object {
 	public dynamic Gst.Element element;
-	
+
 	public Equalizer() {
 		element = ElementFactory.make("equalizer-10bands", "equalizer");
 		
@@ -54,5 +58,36 @@ public class BeatBox.Equalizer : GLib.Object {
 			gain *= 0.12f;
 		
 		band.set("gain", gain);
+	}
+
+
+	public static Gee.Collection<EqualizerPreset> get_default_presets () {
+		if (default_presets != null)
+			return default_presets;
+
+		var list = new Gee.LinkedList<EqualizerPreset> ();
+
+		list.add (new EqualizerPreset.with_gains (_("Flat"), {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}));
+		list.add (new EqualizerPreset.with_gains (_("Classical"), {0, 0, 0, 0, 0, 0, -40, -40, -40, -50}));
+		list.add (new EqualizerPreset.with_gains (_("Club"), {0, 0, 20, 30, 30, 30, 20, 0, 0, 0}));
+		list.add (new EqualizerPreset.with_gains (_("Dance"), {50, 35, 10, 0, 0, -30, -40, -40, 0, 0}));
+		list.add (new EqualizerPreset.with_gains (_("Full Bass"), {70, 70, 70, 40, 20, -45, -50, -55, -55, -55}));
+		list.add (new EqualizerPreset.with_gains (_("Full Treble"), {-50, -50, -50, -25, 15, 55, 80, 80, 80, 80}));
+		list.add (new EqualizerPreset.with_gains (_("Full Bass + Treble"), {35, 30, 0, -40, -25, 10, 45, 55, 60, 60}));
+		list.add (new EqualizerPreset.with_gains (_("Headphones"), {25, 50, 25, -20, 0, -30, -40, -40, 0, 0}));
+		list.add (new EqualizerPreset.with_gains (_("Large Hall"), {50, 50, 30, 30, 0, -25, -25, -25, 0, 0}));
+		list.add (new EqualizerPreset.with_gains (_("Live"), {-25, 0, 20, 25, 30, 30, 20, 15, 15, 10}));
+		list.add (new EqualizerPreset.with_gains (_("Party"), {35, 35, 0, 0, 0, 0, 0, 0, 35, 35}));
+		list.add (new EqualizerPreset.with_gains (_("Pop"), {-10, 25, 35, 40, 25, -5, -15, -15, -10, -10}));
+		list.add (new EqualizerPreset.with_gains (_("Reggae"), {0, 0, -5, -30, 0, -35, -35, 0, 0, 0}));
+		list.add (new EqualizerPreset.with_gains (_("Rock"), {40, 25, -30, -40, -20, 20, 45, 55, 55, 55}));
+		list.add (new EqualizerPreset.with_gains (_("Soft"), {25, 10, -5, -15, -5, 20, 45, 50, 55, 60}));
+		list.add (new EqualizerPreset.with_gains (_("Ska"), {-15, -25, -25, -5, 20, 30, 45, 50, 55, 50}));
+		list.add (new EqualizerPreset.with_gains (_("Soft Rock"), {20, 20, 10, -5, -25, -30, -20, -5, 15, 45}));
+		list.add (new EqualizerPreset.with_gains (_("Techno"), {40, 30, 0, -30, -25, 0, 40, 50, 50, 45}));
+
+		default_presets = list;
+
+		return default_presets;
 	}
 }
