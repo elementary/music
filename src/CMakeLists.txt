@@ -150,9 +150,9 @@ OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/core/
     --target-glib=2.32
-    --define=USE_GRANITE_DECORATED_WINDOW
+    #--define=USE_GRANITE_DECORATED_WINDOW
     --define=HAVE_GRANITE_RATING
-    --define=HAVE_SMART_ALBUM_COLUMN
+    #--define=HAVE_SMART_ALBUM_COLUMN
     ${ADD_OPTIONS}
 GENERATE_VAPI
     noise

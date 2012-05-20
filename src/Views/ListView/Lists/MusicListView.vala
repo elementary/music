@@ -149,6 +149,7 @@ public class BeatBox.MusicListView : GenericList {
 		button_press_event.connect(viewClick);
 		button_release_event.connect(viewClickRelease);
 
+		mediaScrollToCurrent = new Gtk.MenuItem.with_label(_("Scroll to Current Song"));
 		mediaEditMedia = new Gtk.MenuItem.with_label(_("Edit Song Info"));
 		mediaFileBrowse = new Gtk.MenuItem.with_label(_("Show in File Browser"));
 		mediaMenuQueue = new Gtk.MenuItem.with_label(_("Queue"));
@@ -156,10 +157,14 @@ public class BeatBox.MusicListView : GenericList {
 		mediaMenuAddToPlaylist = new Gtk.MenuItem.with_label(_("Add to Playlist"));
 		mediaRemove = new Gtk.MenuItem.with_label(_("Remove Song"));
 		importToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
-		mediaScrollToCurrent = new Gtk.MenuItem.with_label(_("Scroll to Current Song"));
 		mediaRateMedia = new Granite.Widgets.RatingMenuItem ();
 
 		mediaActionMenu = new Gtk.Menu ();
+
+		if(tvs.get_hint() != ViewWrapper.Hint.CDROM && tvs.get_hint () != ViewWrapper.Hint.ALBUM_LIST) {
+			//mediaActionMenu.append(browseSame);
+			mediaActionMenu.append(mediaScrollToCurrent);
+		}
 
 		mediaActionMenu.append(mediaEditMedia);
 		mediaActionMenu.append(mediaFileBrowse);
@@ -172,11 +177,6 @@ public class BeatBox.MusicListView : GenericList {
 			mediaActionMenu.append(new SeparatorMenuItem());
 		mediaActionMenu.append(mediaRemove);
 		mediaActionMenu.append(importToLibrary);
-		if(tvs.get_hint() != ViewWrapper.Hint.CDROM) {
-			mediaActionMenu.append(new SeparatorMenuItem());
-			//mediaActionMenu.append(browseSame);
-			mediaActionMenu.append(mediaScrollToCurrent);
-		}
 		mediaEditMedia.activate.connect(mediaMenuEditClicked);
 		mediaFileBrowse.activate.connect(mediaFileBrowseClicked);
 		mediaMenuQueue.activate.connect(mediaMenuQueueClicked);

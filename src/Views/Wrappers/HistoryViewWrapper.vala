@@ -54,12 +54,22 @@ public class BeatBox.HistoryViewWrapper : ViewWrapper {
     private void connect_data_signals () {
          // Listen for queues and unqueues
          lm.history_changed.connect (on_history_changed);
-         
-         // FIXME: connect to lm.media_updated ?
+
+         // Connect to lm.media_updated and lm.media_removed
+         lm.media_updated.connect (on_library_media_updated);
+         lm.media_removed.connect (on_library_media_removed);
     }
 
     private void on_history_changed () {
         set_media (lm.already_played ());
+    }
+
+    private void on_library_media_updated (Gee.Collection<int> ids) {
+        update_media (lm.media_from_ids (ids));
+    }
+
+    private void on_library_media_removed (Gee.Collection<int> ids) {
+        remove_media (lm.media_from_ids (ids));
     }
 }
 

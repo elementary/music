@@ -86,6 +86,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 	private Notify.Notification notification;
 
+	private Gdk.WindowState window_state;
+
 	public LibraryWindow (BeatBox.Beatbox app) {
 		set_application (app);
 
@@ -370,9 +372,15 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		update_sensitivities();
 		show_all ();
 		
+		this.window_state_event.connect ( (event) => {
+			window_state = event.new_window_state;
+			return false;
+		});
+
 		// Maximize window if necessary
 		if (settings.getWindowMaximized ())
 			this.maximize ();
+
 
 		sideTree.resetView();
 
@@ -408,6 +416,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 			if (typed_unichar.isalnum () || typed_unichar in special_chars) {
 				searchField.grab_focus ();
+				
+				// Check if it actually got focused
+				if (!searchField.has_focus)
+					searchField.insert_at_cursor (event.str);
 			}
 
 			return false;
@@ -415,6 +427,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		lm.media_added.connect (update_sensitivities);
 		lm.media_removed.connect (update_sensitivities);
+
 
 		// wait a second before loading cover art
 		// TODO: this shouldn't be here!
@@ -976,7 +989,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		settings.setSidebarWidth(main_hpaned.position);
 		
 		// Save window state
-		settings.setWindowMaximized (this.get_window ().get_state () == Gdk.WindowState.MAXIMIZED);
+		settings.setWindowMaximized (window_state == Gdk.WindowState.MAXIMIZED);
 	}
 
 

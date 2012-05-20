@@ -50,7 +50,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public signal void media_removed(LinkedList<int> ids);
 
 	public signal void history_changed ();
-	public signal void queue_changed ();
+
+	public signal void queue_cleared  ();
+	public signal void media_queued   (Gee.Collection<Media> queued);
+	public signal void media_unqueued (Gee.Collection<Media> unqueued);
 
 	public signal void media_played (Media played_media);
 	public signal void playback_stopped(int was_playing);
@@ -239,7 +242,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 						to_queue.add (m);
 					}
 					
-					queue_media_by_id (to_queue);
+					queue_media (to_queue);
 					
 					queue_setup = p.tvs;
 					queue_setup.set_hint(ViewWrapper.Hint.QUEUE);
@@ -315,8 +318,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 
 			lw.resetSideTree(true);
 			lw.sideTree.removeAllStaticPlaylists();
-			clear_media();
-			_queue.clear();
+
+			clear_media ();
+			
+			// FIXME: DOESN'T MAKE SENSE ANYMORE SINCE WE'RE NOT LIMITED TO
+			// PLAYING LIBRARY MUSIC. Use unqueue_media ();
+			clear_queue ();
+
 			_already_played.clear();
 			lw.resetSideTree(false);
 			lw.update_sensitivities();
@@ -566,7 +574,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		Playlist? rv = null;
 
 		_playlists_lock.lock ();
-		foreach(var p in _playlists.values) {
+		foreach(var p in playlists ()) {
 			if(p.name == name)
 				rv = p;
 				break;
@@ -618,7 +626,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		SmartPlaylist? rv = null;
 
 		_smart_playlists_lock.lock ();
-		foreach(var p in _smart_playlists.values) {
+		foreach(var p in smart_playlists ()) {
 			if(p.name == name)
 				rv = p;
 				break; 
@@ -632,7 +640,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		try {
 			new Thread<void*>.try (null, () => {
 				_smart_playlists_lock.lock ();
-				dbm.save_smart_playlists(_smart_playlists.values);
+				dbm.save_smart_playlists(smart_playlists ());
 				_smart_playlists_lock.unlock ();
 
 				return null;
@@ -705,11 +713,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_media_lock.unlock ();
 		
 		_playlists_lock.lock ();
-		foreach (var p in _playlists.values) {
+		foreach (var p in playlists ()) {
 			p.remove_media (unset_ids);
-		}
+		}		
 		_playlists_lock.unlock ();
-		
+
+		// Analyze sets the matching media as the playlist's media,
+		// so we have to pass all the ids.
+		_smart_playlists_lock.lock ();
+		foreach (var p in smart_playlists ()) {
+			p.analyze (this, media ());
+		}
+		_smart_playlists_lock.unlock ();
+
 		dbm.clear_media ();
 		dbm.add_media (_media.values);
 
@@ -769,10 +785,19 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(record_time)
 				s.last_modified = (int)time_t();
 		}
-		
+
+		// Analyze sets the matching media as the playlist's media,
+		// so we have to pass the entire media list.
+		_smart_playlists_lock.lock ();
+		foreach (var p in smart_playlists ()) {
+			p.analyze (this, media ());
+		}
+		_smart_playlists_lock.unlock ();
+
+
 		debug ("%d media updated from lm.update_media 677\n", rv.size);
 		media_updated(rv);
-		
+
 		/* now do background work. even if updateMeta is true, so must user preferences */
 		if(updateMeta)
 			fo.save_media(updates);
@@ -996,7 +1021,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 	
 	public void add_media(Collection<Media> new_media) {
-		if(new_media.size == 0) // happens more often than you would think
+		if(new_media.size < 1) // happens more often than you would think
 			return;
 		
 		int top_index = 0;
@@ -1076,11 +1101,20 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_media_lock.unlock();
 		
 		_playlists_lock.lock();
-		foreach(var p in _playlists.values) {
+		foreach(var p in playlists ()) {
 			p.remove_media (toRemove);
 		}
 		_playlists_lock.unlock();
-		
+
+		// Analyze sets the matching media as the playlist's media,
+		// so we have to pass the entire media list.
+		_smart_playlists_lock.lock ();
+		foreach (var p in smart_playlists ()) {
+			p.analyze (this, media ());
+		}
+		_smart_playlists_lock.unlock ();
+
+
 		if(_media.size == 0)
 			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 
@@ -1097,7 +1131,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	
 	public void clear_queue() {
 		_queue.clear();
-		queue_changed ();
+		queue_cleared ();
 	}
 
 	public void queue_media (Gee.Collection<Media> to_queue) {
@@ -1107,38 +1141,34 @@ public class BeatBox.LibraryManager : GLib.Object {
 		foreach (var m in to_queue)
 			_queue.offer_tail (m);
 
-		queue_changed ();
+		media_queued (to_queue);
 	}
 
 	public void queue_media_by_id (Collection<int> ids) {
-		var to_queue = new Gee.LinkedList<Media> ();		
-		foreach (int id in ids)
-			to_queue.add (media_from_id (id));
-		queue_media (to_queue);		
+		queue_media (media_from_ids (ids));		
 	}
 
 
 	public void unqueue_media (Gee.Collection<Media> to_unqueue) {
 		foreach (var m in to_unqueue)
 			_queue.remove (m);
-		queue_changed ();
+		media_unqueued (to_unqueue);
 	}
-
 
 	public void unqueue_media_by_id (Collection<int> ids) {
-		var to_unqueue = new Gee.LinkedList<Media> ();		
-		foreach (int id in ids)
-			to_unqueue.add (media_from_id (id));
-		unqueue_media (to_unqueue);		
+		unqueue_media (media_from_ids (ids));		
 	}
-
 
 	public Media peek_queue() {
 		return _queue.peek_head();
 	}
 	
 	public Media poll_queue() {
-		return _queue.poll_head();
+		var m = _queue.poll_head ();
+		var unqueued = new Gee.LinkedList<Media> ();
+		unqueued.add (m);
+		media_unqueued (unqueued);
+		return m;
 	}
 
 	public Collection<Media> queue() {

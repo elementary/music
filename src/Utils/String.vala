@@ -54,75 +54,7 @@ namespace BeatBox.String {
         if (text == null)
             return true;
 
-        int white_space = 0;
-        unichar c;
-
-        for (int i = 0; text.get_next_char (ref i, out c);)
-            if (c.isspace () || c == '\n')
-                ++ white_space;
-
-        if (white_space == text.length)
-            return true;
-
-        return false;
-    }
-
-    /**
-     * Description:
-     * Removes trailing white space from strings.
-     *
-     * Examples:
-     *
-     * INPUT:           OUTPUT:
-     * "     Foo Bar "  "Foo Bar"     --> Removes trailing spaces from beginning and end
-     * "             "  ""            --> Converts white space into a void string
-     * "Foo   Bar"      "Foo    Bar"  --> Doesn't change middle spaces.
-     *
-     * @return a new string without trailing spaces.
-     */
-    public inline string remove_trailing_white_space (string s) {
-        if (s.length < 1)
-            return "";
-
-        bool found_valid_char = false;
-        int white_space = 0, first_char_position = 0;
-        unichar c;
-
-        // WHITESPACE CHECK
-        for (int i = 0; s.get_next_char (ref i, out c);) {
-            if (c.isspace()) {
-                ++ white_space;
-            }
-            else {
-                found_valid_char = true;
-                first_char_position = i; // position of the first valid (i.e. non-space) character
-                break; // no need to keep looping
-            }
-        }
-
-        if (white_space == s.length)
-            return ""; // s was completely white space
-
-        if (found_valid_char) {
-            var rv = new StringBuilder();
-
-            int last_char_position = 0;
-            for (int i = first_char_position - 1; s.get_next_char (ref i, out c);) {
-                if (!c.isspace()) {
-                    last_char_position = i;
-                }
-            }
-
-            // Remove trailing spaces. In fact we just don't copy chars outside the
-            // [first_valid_char, last_valid_char] interval.
-            for (int i = first_char_position - 1; s.get_next_char (ref i, out c) && i <= last_char_position;) {
-                    rv.append_unichar (c);
-            }
-
-            return rv.str;
-        }
-
-        return s;
+        return text.strip ().length == 0;
     }
 }
 

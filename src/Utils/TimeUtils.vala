@@ -24,14 +24,25 @@ namespace BeatBox.TimeUtils {
 
     /**
      * Receives the number of seconds and returns a string with format:
-     * "DD days, HH hours and MM minutes".
+     * "%i days, %i hours and %i minutes", "%i seconds", "%i minutes and %i seconds",
+     * or similar.
      */
     public inline string time_string_from_seconds (uint seconds) {
-        double secs = (double)seconds;
-
-        const double SECONDS_PER_DAY    = 86400; // 24 x SECONDS_PER_HOUR
-        const double SECONDS_PER_HOUR   = 3600;  // 60 X SECONDS_PER_MINUTE
         const double SECONDS_PER_MINUTE = 60;
+        const double SECONDS_PER_HOUR   = 3600;  // 60 X SECONDS_PER_MINUTE
+        const double SECONDS_PER_DAY    = 86400; // 24 x SECONDS_PER_HOUR
+
+        if (seconds < SECONDS_PER_MINUTE) {
+            if (seconds < 1)
+                return "";
+
+            if (seconds < 2)
+                return _("1 second");
+
+            return _("%s seconds").printf (seconds.to_string ());
+        }
+
+        double secs = (double)seconds;
 
         uint days = 0, hours = 0, minutes = 0;
 
@@ -49,8 +60,6 @@ namespace BeatBox.TimeUtils {
 
         string days_string = "", hours_string = "", minutes_string = "";
 
-        var rv = new StringBuilder ();
-
         if (days > 0) {
             if (days == 1)
                 days_string = _("1 day");
@@ -58,35 +67,59 @@ namespace BeatBox.TimeUtils {
                 days_string = _("%i days").printf ((int)days);
         }
 
-        rv.append (days_string);
-
         if (hours > 0) {
-            // add separator
-            if (days_string != "")
-                rv.append (", ");
-
             if (hours == 1)
                 hours_string = _("1 hour");
             else
                 hours_string = _("%i hours").printf ((int)hours);
         }
 
-        rv.append (hours_string);
-
         if (minutes > 0) {
-            // add separator
-            if (hours_string != "" || days_string != "")
-                rv.append (" and ");
-
             if (minutes == 1)
                 minutes_string = _("1 minute");
             else
                 minutes_string = _("%i minutes").printf ((int)minutes);
         }
 
-        rv.append (minutes_string);
+#if 0
+                // if less than one hour, show minutes + seconds
+                int mins = Numeric.lowest_uint_from_double (secs / SECONDS_PER_MINUTE);
+                // There is obviously more than one minute. Otherwise we would have returned
+                // waay earlier
+                minutes_string = _("").printf ()
+                secs -= mins * SECONDS_PER_MINUTE;
+                return _("%s and %s").printf (minutes_string, seconds_string);
+#endif
 
-        return String.remove_trailing_white_space (rv.str);
+        string rv = "";
+
+        if (days > 0) {
+            if (hours > 0) {
+                if (minutes > 0)
+                    rv = _("%s, %s and %s").printf (days_string, hours_string, minutes_string);
+                else
+                    rv = _("%s and %s").printf (days_string, hours_string);
+            }
+            else {
+                if (minutes > 0)
+                    rv = _("%s and %s").printf (days_string, minutes_string);
+                else
+                    rv = days_string;
+            }
+        }
+        else {
+            if (hours > 0) {
+                if (minutes > 0)
+                    rv = _("%s and %s").printf (hours_string, minutes_string);
+                else
+                    rv = hours_string;
+            }
+            else {
+                rv = minutes_string;
+            }
+        }
+
+        return rv;
     }
 
     /**
@@ -96,7 +129,7 @@ namespace BeatBox.TimeUtils {
         uint minutes = Numeric.lowest_uint_from_double ((double)seconds / 60);
         seconds -= minutes * 60;
 
-        // Add '0' if seconds is between '0' and '9'
+        // Add '0' if seconds are between '0' and '9'
         return "%s:%s".printf (@"$minutes", ((seconds < 10 ) ? @"0$seconds" : @"$seconds"));
     }
 

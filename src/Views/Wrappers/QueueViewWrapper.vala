@@ -50,27 +50,47 @@ public class BeatBox.QueueViewWrapper : ViewWrapper {
 
     private void connect_data_signals () {
          // Listen for queues and unqueues
-         lm.queue_changed.connect (on_queue_changed);
-         
+         lm.queue_cleared.connect (on_queue_cleared);
+         lm.media_queued.connect (on_media_queued);
+         lm.media_unqueued.connect (on_media_unqueued);
+
          // Listen for media order
          (list_view as ListView).reordered.connect (on_list_reordered);
          
-         // TODO: listen for media updates?
+         // Connect to lm.media_updated and lm.media_removed
+         lm.media_removed.connect (on_library_media_removed);
     }
 
-    bool modifying_queue = false;
+    bool modifying_list_order = false;
 
     private void on_list_reordered () {
         // Update LM queue to use the new order
-        modifying_queue = true;
+        modifying_list_order = true;
+        lm.clear_queue ();
         lm.queue_media (list_view.get_media ());
-        modifying_queue = false;
+        modifying_list_order = false;
     }
 
-    private void on_queue_changed () {
-        if (modifying_queue)
+    private void on_queue_cleared () {
+        if (modifying_list_order)
             return;
-        set_media (lm.queue ());
+        set_media (new Gee.LinkedList<Media> ());
+    }
+
+    private void on_media_queued (Gee.Collection<Media> queued) {
+        if (modifying_list_order)
+            return;
+        add_media (queued);
+    }
+
+    private void on_media_unqueued (Gee.Collection<Media> unqueued) {
+        if (modifying_list_order)
+            return;
+        remove_media (unqueued);
+    }
+
+    private void on_library_media_removed (Gee.Collection<int> ids) {
+        remove_media (lm.media_from_ids (ids));
     }
 
     private inline void set_default_alert () {

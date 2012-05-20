@@ -344,8 +344,6 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			
 			GLib.Object o;
 			filter.get(iter, 0, out o);
-			string name;
-			filter.get(iter, 4, out name);
 			
 			TreeIter parent;
 			if(filter.iter_parent(out parent, iter)) {
@@ -354,10 +352,15 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				filter.get(parent, 4, out parent_name);
 
 				if(parent == convertToFilter(playlists_iter)) {
+
+					playlistNew.visible = smartPlaylistNew.visible = false;
+					playlistExport.visible = true;
 					playlistExport.set_sensitive(!lm.doing_file_operations());
-					playlistImport.set_sensitive(!lm.doing_file_operations());
-					
 					playlistRemove.sensitive = true;
+					playlistRemove.visible = true;					
+
+					playlistEdit.visible = true;
+					playlistImport.visible = false;
 					
 					if(iter == convertToFilter(playlists_similar_iter)) {
 						playlistSave.visible = true;
@@ -365,15 +368,21 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 					}
 					else {
 						playlistSave.visible = false;
-						playlistMenu.popup (null, null, null, 3, get_current_event_time());
+						
 					}
 
+					// Don't show "edit" for hardcoded playlists
 					if (iter == convertToFilter(playlists_similar_iter) || iter == convertToFilter(playlists_queue_iter) || iter == convertToFilter(playlists_history_iter)) {
-						playlistRemove.sensitive = false;
+						playlistEdit.visible = false;
+						playlistRemove.visible = false;
 					}
-					
-					playlistExport.visible = true;
-					playlistImport.visible = false;
+					else {
+						playlistEdit.visible = true;
+						playlistRemove.visible = true;
+					}
+
+					playlistMenu.popup (null, null, null, 3, get_current_event_time());
+
 				}
 				else if(o is Device && ((Device)o).getContentType() == "cdrom") {
 					CDMenu.popup(null, null, null, 3, get_current_event_time());
@@ -397,9 +406,14 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			}
 			else {
 				if(iter == convertToFilter(playlists_iter)) {
-					playlistRemove.sensitive = false;
+					playlistRemove.visible = false;
 					playlistExport.visible = false;
+					playlistEdit.visible = false;
+
+					playlistNew.visible = smartPlaylistNew.visible = true;
 					playlistImport.visible = true;
+					playlistImport.set_sensitive(!lm.doing_file_operations());
+
 					playlistMenu.popup (null, null, null, 3, get_current_event_time());
 					return true;
 				}

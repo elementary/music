@@ -48,23 +48,27 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
         lm.lfm.similar_retrieved.connect (similar_retrieved);
     }
 
-    void on_media_played (Media new_media) {
-        /**
-         * Avoid fetching if the user is playing the queried results
-         * '!is_current_wrapper' wouldn't work since at this point the user could be
-         * clicking the NEXT and PREVIOUS buttons without having selected/played a song
-         * in the result list. We want to keep searching for similar songs until that
-         * happens.
-         */
+    /**
+     * Avoid fetching if the user is playing the queried results
+     * '!is_current_wrapper' wouldn't work since at this point the user could be
+     * clicking the NEXT and PREVIOUS buttons without having selected/played a song
+     * in the result list. We want to keep searching for similar songs until that
+     * happens.
+     */
+    private bool should_update_media () {
+        return !(list_view as ListView).get_is_current_list ();
+    }
+
+    private void on_media_played (Media new_media) {
         if (!has_list_view)
             return;
 
-        if (!(list_view as ListView).get_is_current_list()) {
+        if (should_update_media ()) {
             base_media = new_media;
 
             if (base_media != null) {
                 // Say we're fetching media
-                embedded_alert.set_alert (_("Fetching similar songs"), _("Finding songs similar to %s by %s").printf ("<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, false);
+                embedded_alert.set_alert (_("Fetching similar songs"), _("Finding songs similar to %s by %s").printf ("<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, false, Gtk.MessageType.INFO);
             }
             else {
                 // Base media is null, so show the proper warning. As this happens often, tell
@@ -77,8 +81,10 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
         }
     }
 
-    void similar_retrieved (Gee.Collection<int> similar_internal, Gee.Collection<Media> similar_external) {
-        set_media_from_ids (similar_internal);
+    private void similar_retrieved (Gee.Collection<int> similar_internal, Gee.Collection<Media> similar_external) {
+        if (should_update_media ()) {
+            set_media_from_ids (similar_internal);
+        }
     }
 
     public void save_playlist () {

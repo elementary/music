@@ -83,21 +83,24 @@ public class BeatBox.PlaylistNameWindow : Window {
 		/* add controls to form */
 		var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
 		bottomButtons.set_spacing (6);
-		bottomButtons.set_layout(Gtk.ButtonBoxStyle.END);
-		bottomButtons.pack_end(_cancel, false, false, 0);
-		bottomButtons.pack_end(_save, false, false, 0);
+		bottomButtons.set_layout (Gtk.ButtonBoxStyle.END);
+		bottomButtons.pack_end (_cancel, false, false, 0);
+		bottomButtons.pack_end (_save, false, false, 0);
 		
 		infobar.set_no_show_all (true);
 		
-		content.pack_start(UI.wrap_alignment (nameLabel, 12, 0, 0, 0), false, true, 0);
-		content.pack_start(UI.wrap_alignment (_name, 0, 12, 0, 12), false, true, 0);
-		content.pack_start(UI.wrap_alignment (infobar, 0, 12, 0, 12), false, true, 0);
-		content.pack_start(bottomButtons, false, false, 12);
-		
+		content.pack_start (nameLabel, false, false, 0);
+		content.pack_start (_name, false, false, 6);
+		content.pack_start (infobar, false, false, 6);
+		content.pack_start (bottomButtons, false, false, 12);
+
 		content.margin = 12;
-		
+
 		add(content);
-		
+
+		// Validate initial state
+		nameChanged ();
+
 		show_all();
 
 		_save.clicked.connect(saveClicked);
@@ -111,7 +114,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 	}
 
 	void saveClicked() {
-		_original.name = String.remove_trailing_white_space (_name.text);
+		_original.name = _name.text.strip ();
 		playlist_saved (_original);
 		this.destroy();
 	}
@@ -128,7 +131,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 		}
 		else {
 			foreach (var p in lw.lm.playlists ()) {
-				var fixed_name = String.remove_trailing_white_space (_name.get_text());
+				var fixed_name = _name.get_text ().strip ();
 				if((_original == null || _original.rowid != p.rowid) && fixed_name == p.name) {
 					_save.set_sensitive(false);
 					infobar.set_no_show_all (false);

@@ -357,8 +357,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             }
         }
 
-        if (total_items == 0) {
-            lw.set_statusbar_info ("");
+        if (total_items < 1) {
+            return "";
         }
 
         string media_description = "";

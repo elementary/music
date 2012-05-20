@@ -64,6 +64,7 @@ public class BeatBox.AlbumListView : Window {
 
 		// close button
 		var close = new Gtk.Button ();
+        get_style_context ().add_class ("album-list-view");
 		close.get_style_context().add_class("close-button");
 		close.set_image (Icons.render_image ("window-close-symbolic", Gtk.IconSize.MENU));
 		close.hexpand = close.vexpand = false;
@@ -89,10 +90,6 @@ public class BeatBox.AlbumListView : Window {
 		
 		album_label.set_max_width_chars (30);
 		artist_label.set_max_width_chars (30);
-
-#if USE_GRANITE_DECORATED_WINDOW
-		album_label.margin_top = 12;
-#endif
 
 		album_label.margin_left = album_label.margin_right = 12;
 		artist_label.margin_bottom = 12;

@@ -24,6 +24,8 @@ using Gee;
 
 
 public class BeatBox.SmartPlaylist : Object {
+	public signal void changed (Gee.Collection<Media> media);
+
 	private int _rowid;
 	public TreeViewSetup tvs;
 	private string _name;
@@ -84,7 +86,7 @@ public class BeatBox.SmartPlaylist : Object {
 		get { return _limit_amount; }
 		set { _limit_amount = value; }
 	}
-	
+
 	public void clearQueries() {
 		query_count = 0;
 		_queries.clear();
@@ -146,7 +148,7 @@ public class BeatBox.SmartPlaylist : Object {
 			if (m == null)
 				continue;
 
-			int match_count = 0; //if OR must be greather than 0. if AND must = queries.size.
+			int match_count = 0; //if OR must be greater than 0. if AND must = queries.size.
 			
 			foreach(SmartQuery q in _queries) {
 				if(media_matches_query(q, m))
@@ -162,6 +164,9 @@ public class BeatBox.SmartPlaylist : Object {
 		
 		is_up_to_date = true;
 		media = rv;
+		
+		// Emit signal to let views know about the change
+		changed (media);
 		
 		return rv;
 	}

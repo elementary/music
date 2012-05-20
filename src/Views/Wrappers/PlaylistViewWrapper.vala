@@ -48,8 +48,12 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
             }
         }
         else if (vw_hint == Hint.SMART_PLAYLIST) {
-            lm.media_added.connect (on_library_media_added);
-            lm.media_removed.connect (on_library_media_removed);
+            var p = lm.smart_playlist_from_id (playlist_id);
+
+            // Connect to playlist signals
+            if (p != null) {
+                p.changed.connect (on_smart_playlist_changed);
+            }
         }
 
         // Add album view
@@ -93,37 +97,19 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
 
 
     /**
-     * SMART PLAYLIST STUFF
+     * DATA STUFF
      */
 
-    private void on_library_media_added (Gee.Collection<int> ids) {
-        var playlist = lm.smart_playlist_from_id (playlist_id);
+    /* SMART PLAYLISTS */
 
-        if (hint != Hint.SMART_PLAYLIST || playlist == null)
+    private void on_smart_playlist_changed (Gee.Collection<Media> new_media) {
+        if (hint != Hint.SMART_PLAYLIST)
             return;
 
-        // Analyze new media to see if it satisfies the conditions
-        var to_add = playlist.analyze_ids (lm, ids);
-
-        add_media (to_add);
+        set_media (new_media);
     }
 
-
-    private void on_library_media_removed (Gee.Collection<int> ids) {
-        var playlist = lm.smart_playlist_from_id (playlist_id);
-
-        if (hint != Hint.SMART_PLAYLIST || playlist == null)
-            return;
-
-        // Analyze new media to see if it satisfies the conditions
-        var to_remove = playlist.analyze_ids (lm, ids);
-
-        remove_media (to_remove);
-    }
-
-    /**
-     * PLAYLIST STUFF
-     */
+    /* NORMAL PLAYLISTS */
 
     private void on_playlist_media_added (Gee.Collection<Media> to_add) {
         if (hint != Hint.PLAYLIST)

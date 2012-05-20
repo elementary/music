@@ -148,6 +148,9 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		
 		padding.pack_start(content, true, true, 10);
 		
+		// Validate initial state
+		nameChanged ();
+		
 		add(padding);
 		show_all();
 		
@@ -166,7 +169,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 		}
 		else {
 			foreach (var p in lw.lm.smart_playlists ()) {
-				var fixed_name = String.remove_trailing_white_space (_name.get_text());
+				var fixed_name = _name.get_text ().strip ();
 				if((_sp == null || _sp.rowid != p.rowid) && fixed_name == p.name) {
 					save.set_sensitive(false);
 					return;
@@ -196,7 +199,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 				_sp.addQuery(speq.getQuery());
 		}
 		
-		_sp.name = _name.text;
+		_sp.name = _name.text.strip ();
 		_sp.conditional = comboMatch.get_active_text();
 		_sp.limit = limitMedias.get_active();
 		_sp.limit_amount = (int)mediaLimit.get_value();
