@@ -85,11 +85,11 @@ public class BeatBox.Settings : Object {
 	HashMap<string, bool> bool_cache;
 
 	public Settings() {
-		lastfm = new GLib.Settings("org.elementary.noise.lastfm");
-		ui = new GLib.Settings("org.elementary.noise.ui");
-		library = new GLib.Settings("org.elementary.noise.library");
-		equalizer = new GLib.Settings("org.elementary.noise.equalizer");
-		plugins = new GLib.Settings("org.elementary.noise.plugins");
+		lastfm = new GLib.Settings("org.pantheon.noise.lastfm");
+		ui = new GLib.Settings("org.pantheon.noise.ui");
+		library = new GLib.Settings("org.pantheon.noise.library");
+		equalizer = new GLib.Settings("org.pantheon.noise.equalizer");
+		plugins = new GLib.Settings("org.pantheon.noise.plugins");
 
 		int_cache = new HashMap<string, int> ();
 		enum_cache = new HashMap<string, int> ();
