@@ -101,7 +101,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      */
     public int relative_id { get; protected set; default = -1; }
 
-
     /**
      * MEDIA DATA
      *
@@ -223,10 +222,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         lw.playButton.set_sensitive (media_active || media_visible);
         lw.nextButton.set_sensitive (media_active || media_visible);
 
-        // select the right view in the view selector if it's one of the three views
-        if (lw.viewSelector.selected != (int)current_view && (int)current_view <= 2)
-            lw.viewSelector.set_active ((int)current_view);
-
         // Restore this view wrapper's search string
         lw.searchField.set_text (actual_search_string);
 
@@ -263,6 +258,13 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             lw.column_browser_toggle.set_sensitive (column_browser_available);
             lw.column_browser_toggle.set_active (column_browser_visible);
         }
+
+        // select the right view in the view selector if it's one of the three views.
+        // The order is important here. The sensitivity set above must be set before this,
+        // as view_selector_changed() depends on that.
+        if (lw.viewSelector.selected != (int)current_view && (int)current_view <= 2)
+            lw.viewSelector.set_active ((int)current_view);
+
         
         // The statusbar is also a library window widget
         update_statusbar_info ();
@@ -277,13 +279,19 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
     public virtual void view_selector_changed () {
         // FIXME also check for lw.viewSelector.sensitive before proceeding
-        if (!lw.initialization_finished || (lw.initialization_finished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
+        if (!lw.initialization_finished || (lw.initialization_finished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ALERT || current_view == ViewType.WELCOME || !lw.viewSelector.sensitive)
             return;
 
-        var selected_view = (ViewType) lw.viewSelector.selected;
         debug ("%s : view_selector_changed : applying actions", hint.to_string());
 
-        set_active_view (selected_view);
+        var selected_view = (ViewType) lw.viewSelector.selected;
+
+        if (is_current_wrapper) { // apply changes right away
+            set_active_view (selected_view);
+        }
+        else { // only set current_view and let set_as_current_view() do the actual job
+            current_view = selected_view;
+        }
     }
 
     // FIXME: this shouldn't depend on the list view
@@ -669,7 +677,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         Search.full_search_in_media_list (media, out should_show, null, null, null, null, hint,
                                           get_search_string ());
 
-        var to_remove = new LinkedList<Media>();
         var to_add_show = new LinkedList<Media>();
         var to_remove_show = new LinkedList<Media>();
 
@@ -687,9 +694,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         }
 
         // remove elements
+        
         foreach (var m in media) {
             if (!should_be.contains (m)) {
-                to_remove.add (m);
                 media_table.unset (m);
             }
 
