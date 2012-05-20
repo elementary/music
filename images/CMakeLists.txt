@@ -46,6 +46,8 @@ install(FILES icons/16x16/actions/lastfm-love.svg DESTINATION ${ICON_DIR}/16x16/
 install(FILES icons/16x16/actions/lastfm-ban.svg DESTINATION ${ICON_DIR}/16x16/actions)
 
 # Update icon cache
-install (CODE "message(\"Updating GTK+ icon cache (hicolor) ...\")")
-install (CODE "execute_process(COMMAND gtk-update-icon-cache -f -t ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor)")
-
+option (ICON_UPDATE "Run gtk-update-icon-cache after the install." ON)
+if (ICON_UPDATE)
+  install (CODE "message(\"-- Updating icon cache...\")")
+  install (CODE "execute_process(COMMAND gtk-update-icon-cache -f -t ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor)")
+endif ()
