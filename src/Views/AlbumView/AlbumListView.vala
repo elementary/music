@@ -74,6 +74,9 @@ public class BeatBox.AlbumListView : Window {
 #else
 		box.get_style_context ().add_class ("album-list-view");
 		draw_ref.get_style_context ().add_class ("album-list-view");
+
+        // Don't destroy the window
+		hide_on_close = true;
 #endif
 		// album artist/album labels
 		album_label = new Label ("");
