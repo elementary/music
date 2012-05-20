@@ -25,6 +25,10 @@ using GLib;
 using Gee;
 
 public class BeatBox.FileOperator : Object {
+	public signal void fo_progress(string? message, double progress);
+	public signal void import_cancelled();
+	public signal void rescan_cancelled();
+
 	private BeatBox.LibraryManager lm;
 	private BeatBox.Settings settings;
 	public GStreamerTagger tagger;
@@ -34,9 +38,6 @@ public class BeatBox.FileOperator : Object {
 	
 	public int index;
 	public int item_count;
-	public signal void fo_progress(string? message, double progress);
-	public signal void import_cancelled();
-	public signal void rescan_cancelled();
 	
 	public bool cancelled; // set to true if user cancels
 	bool cancelSent; // needed to not send cancel signal twice (in recursive function)

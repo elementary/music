@@ -706,6 +706,13 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             }
         }
 
+        foreach (var m in to_add_show)
+            message ("adding %s to showing media", m.title);
+
+        foreach (var m in to_remove_show)
+            message ("removing %s from showing media", m.title);
+
+
         in_update.unlock ();
 
         if (populate_views) { // update right away
@@ -759,10 +766,13 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             }
         }
 
-        if (check_have_media ()) {
+        if (!check_have_media ()) {
             in_update.unlock ();
             return;
         }    
+
+        foreach (var m in to_remove)
+            message ("Removing %s from showing media", m.title);
 
         in_update.unlock ();
 
@@ -806,10 +816,14 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 visible_media_table.set (m, 1);
         }
 
-        if (check_have_media ()) {
+        if (!check_have_media ()) {
             in_update.unlock ();
             return;
         }
+
+        foreach (var m in media_to_show)
+            message ("Adding %s to showing media", m.title);
+
 
         in_update.unlock ();
 

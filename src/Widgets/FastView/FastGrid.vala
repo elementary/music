@@ -85,11 +85,11 @@ public class BeatBox.FastGrid : IconView {
 		int index = 0;
 		var new_table = new HashTable<int, GLib.Object>(null, null);
 		for(int i = 0; i < table.size(); ++i) {
-			GLib.Object o;
+			GLib.Object o = table.get(i);
 
 			// create a new table. if not in objects, and is in table, add it.
-			if((o = table.get(i)) != null/* && objects.get(o.get_album_artist() + o.get_album()) != 1*/) {
-				new_table.set(index++, o);
+			if (o != null/* && objects.get(o.get_album_artist() + o.get_album()) != 1*/) {
+				new_table.set (index++, o);
 			}
 		}
 

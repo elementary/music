@@ -103,10 +103,10 @@ public abstract class BeatBox.GenericList : FastView {
 		var new_table = new HashTable<int, Media> (null, null);
 		int index = 0;
 		for(int i = 0; i < table.size(); ++i) {
-			Media? m = null;
-			// create a new table. if not in objects, and is in table, add it.
-			if ((m = table.get (i)) != null && to_remove_table.contains (m)) {
-				new_table.set(index++, m);
+			Media? m = table.get (i);
+			// create a new table. if not in to_remove, and is in table, add it.
+			if (m != null && !to_remove_table.contains (m)) {
+				new_table.set (index++, m);
 			}
 		}
 		

@@ -39,7 +39,7 @@ public class BeatBox.AlbumListView : Window {
 	Label album_label;
 	Label artist_label;
 	Granite.Widgets.Rating rating;
-	MusicListView mtv;
+	GenericList mtv;
 
 	Gee.LinkedList<Media> media_list;
 

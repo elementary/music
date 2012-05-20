@@ -1065,10 +1065,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		});
 	}
 	
-	public void remove_media(LinkedList<Media> toRemove, bool trash) {
+	public void remove_media (Gee.LinkedList<Media> toRemove, bool trash) {
 		var removedIds = new LinkedList<int>();
 		var removeURIs = new LinkedList<string>();
-		
+
 		foreach(Media s in toRemove) {
 			removedIds.add(s.rowid);
 			removeURIs.add(s.uri);
@@ -1076,13 +1076,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 			if(s == media_info.media)
 				stopPlayback();
 		}
-		
+
 		dbu.removeItem(removeURIs);
-		
+
 		if(trash) {
 			fo.remove_media(removeURIs);
 		}
-		
+
 		_media_lock.lock();
 		foreach(Media s in toRemove) {
 			_media.unset(s.rowid);
