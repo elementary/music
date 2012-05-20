@@ -408,6 +408,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 				if(iter == convertToFilter(playlists_iter)) {
 					playlistRemove.visible = false;
 					playlistExport.visible = false;
+					playlistSave.visible = false;
 					playlistEdit.visible = false;
 
 					playlistNew.visible = smartPlaylistNew.visible = true;

@@ -135,7 +135,7 @@ namespace Granite.Widgets {
 			col.set_attributes(text_cell, "markup", SideBarColumn.COLUMN_TEXT);
 			text_cell.ellipsize = Pango.EllipsizeMode.END;
 			text_cell.xalign = 0.0f;
-			text_cell.xpad = 0;
+			text_cell.xpad = 3;
 			
 			// add clickable icon
 			clickable_cell = new CellRendererPixbuf();
