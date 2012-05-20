@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-19 16:52-0600\n"
+"POT-Creation-Date: 2012-05-19 18:51-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,21 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:314
+#: /home/victor/noise/po/../src//LibraryManager.vala:317
 #, c-format
 msgid "Importing music from %s..."
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:355
+#: /home/victor/noise/po/../src//LibraryManager.vala:363
 msgid "Adding files to library..."
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:380
+#: /home/victor/noise/po/../src//LibraryManager.vala:388
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:406
+#: /home/victor/noise/po/../src//LibraryManager.vala:414
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 
@@ -142,7 +142,7 @@ msgid "Download new Episodes"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:121
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:158
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:159
 #: /home/victor/noise/po/../src//LibraryWindow.vala:182
 msgid "Import to Library"
 msgstr ""
@@ -156,7 +156,7 @@ msgid "Import Stations"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:139
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:156
 msgid "New Playlist"
 msgstr ""
 
@@ -877,11 +877,11 @@ msgstr ""
 msgid "%s by %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:80
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid "No songs in Queue"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:80
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -960,26 +960,26 @@ msgstr ""
 msgid "1 item"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:74
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:89
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid "No Songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:74
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:79
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:83
 msgid "Click on the button to edit playlist rules"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:89
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1113,28 +1113,28 @@ msgid "Remove from Device"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
-msgid "Edit Song Info"
+msgid "Scroll to Current Song"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
-msgid "Show in File Browser"
+msgid "Edit Song Info"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
+msgid "Show in File Browser"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
 #: /home/victor/noise/po/../src//LibraryWindow.vala:596
 msgid "Queue"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:156
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:157
 msgid "Add to Playlist"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:157
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:158
 msgid "Remove Song"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:159
-msgid "Scroll to Current Song"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255

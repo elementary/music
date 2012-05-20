@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-05-07 20:34-0600\n"
+"POT-Creation-Date: 2012-05-09 22:43-0600\n"
 "PO-Revision-Date: 2012-04-25 18:39+0000\n"
 "Last-Translator: Dániel Ács <acsi@silentvertigo.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-09 05:28+0000\n"
-"X-Generator: Launchpad (build 15213)\n"
+"X-Launchpad-Export-Date: 2012-05-11 06:09+0000\n"
+"X-Generator: Launchpad (build 15225)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
@@ -944,96 +944,62 @@ msgstr ""
 msgid "%s by %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:174
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:168
 msgid "Get Some Tunes"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:174
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:168
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
-msgid "No Music Found"
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
+msgid "No songs in Queue"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
-msgid "There is no music on this device."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
-msgid "You can start syncing music by clicking on the sync button."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:195
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:207
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:209
-msgid "Empty Playlist"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:195
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:207
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:209
-msgid "..."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:219
-msgid "Similar Media View"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:219
-#, c-format
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
 msgid ""
-"In this view, %s will automatically find songs similar to the one you are "
-"playing."
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:219
-msgid "You can then start playing those songs, or save them for later."
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
+msgid "No songs in History"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:229
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:239
-msgid "No Podcasts Found"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:229
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:239
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
 msgid ""
-"To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:229
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:239
-msgid ""
-"You can then copy and paste the feed into the \"Add Podcast\" window by "
-"right clicking on \"Podcasts\"."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:250
-msgid "No Internet Radio Stations Found"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:250
-msgid ""
-"To add a station, visit a website such as SomaFM to find PLS or M3U files."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:250
-msgid "You can then import the file to add the station."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:272
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 msgid "Audio CD Invalid"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:272
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 #, c-format
-msgid "%s could not read the contents of this Audio CD."
+msgid "%s could not read the contents of this Audio CD"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:279
-msgid "WARNING: Default View Wrapper!"
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
+msgid "No Songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:135
@@ -1190,26 +1156,25 @@ msgstr ""
 msgid "Similar to %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:97
+#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:96
 msgid "Fetching similar songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:97
-msgid "Finding songs similar to"
+#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:96
+#, c-format
+msgid "Finding songs similar to <b>%s</b> by <b>%s</b>"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
+#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:105
 msgid "No similar songs found"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
-msgid "Could not find songs similar to"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
+#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:105
+#, c-format
 msgid ""
-"Make sure all song info is correct and you are connected to the Internet.\n"
-"Some songs may not have matches."
+"%s could not find songs similar to <b>%s</b> by <b>%s</b>. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:68

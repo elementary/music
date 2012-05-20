@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-05-07 20:34-0600\n"
-"PO-Revision-Date: 2012-04-25 08:53+0000\n"
-"Last-Translator: Sid Roberts <Unknown>\n"
+"POT-Creation-Date: 2012-05-09 22:43-0600\n"
+"PO-Revision-Date: 2012-05-17 11:16+0000\n"
+"Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-09 05:29+0000\n"
-"X-Generator: Launchpad (build 15213)\n"
+"X-Launchpad-Export-Date: 2012-05-18 05:08+0000\n"
+"X-Generator: Launchpad (build 15259)\n"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:224
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1112
@@ -27,20 +27,22 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:230
 msgid "No songs on CD"
-msgstr ""
+msgstr "No songs on CD"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:230
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr ""
+msgstr "%s could not find any songs on the CD. No songs can be imported"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
 #, c-format
 msgid "%s is already doing an import"
-msgstr ""
+msgstr "%s is already doing an import"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:236
 #, c-format
@@ -48,34 +50,36 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:258
 msgid "Ripping track 1"
-msgstr ""
+msgstr "Ripping track 1"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:320
 #, c-format
 msgid "Importing track %i"
-msgstr ""
+msgstr "Importing track %i"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:333
 msgid "CD Import Complete"
-msgstr ""
+msgstr "CD Import Complete"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:330
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr ""
+msgstr "%s has finished importing %i songs from Audio CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:333
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr ""
+msgstr "%s has finished importing a song from Audio CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:370
 msgid "Cancelling remaining imports..."
-msgstr ""
+msgstr "Cancelling remaining imports..."
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:35
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:276
@@ -87,15 +91,15 @@ msgstr "Bitrate"
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:36
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:122
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:37
 msgid "Episode"
-msgstr ""
+msgstr "Episode"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:38
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:39
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:284
@@ -159,11 +163,11 @@ msgstr "Podcast"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:46
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:47
 msgid "Category"
-msgstr ""
+msgstr "Category"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:48
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:277
@@ -171,7 +175,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:350
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:184
 msgid "Comment"
-msgstr ""
+msgstr "Comment"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:49
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:289
@@ -182,12 +186,12 @@ msgstr "Rating"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:50
 msgid "Pulser"
-msgstr ""
+msgstr "Pulser"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:51
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
 msgid "Station"
-msgstr ""
+msgstr "Station"
 
 #: /home/victor/noise/po/../src//Objects/TreeViewSetup.vala:52
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
@@ -232,7 +236,7 @@ msgstr "New Playlist"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:37
 msgid "Unknown Title"
-msgstr ""
+msgstr "Unknown Title"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:39
 #: /home/victor/noise/po/../src//LibraryWindow.vala:784
@@ -316,7 +320,7 @@ msgstr "media"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr ""
+msgstr "Similar Media"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:101
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
@@ -411,75 +415,75 @@ msgstr "Cancel"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
-msgstr ""
+msgstr "Equaliser"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
-msgstr ""
+msgstr "Save preset"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:160
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:103
 msgid "Close"
-msgstr ""
+msgstr "Close"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (Custom)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:417
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (Custom %i)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:421
 msgid "Custom Preset"
-msgstr ""
+msgstr "Custom Preset"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:423
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Custom Preset %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
-msgstr ""
+msgstr "Not Imported Files"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "Unable to import %d items from %s"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
+msgstr "%s was unable to import %d items. The files may be damaged."
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Move all corrupted files to rubbish"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "Move to Rubbish Bin"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr ""
+msgstr "Ignore"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
-msgstr ""
+msgstr "del"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "File Location"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "Select individual files to move to rubbish:"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -501,16 +505,16 @@ msgstr "Choose Music Folder"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr ""
+msgstr "Install Plug-in"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:66
 msgid "Do Nothing"
-msgstr ""
+msgstr "Do Nothing"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
-msgstr ""
+msgstr "Required GStreamer plug-in not installed"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
@@ -518,6 +522,8 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"The plug-in for media type %s is not installed.\n"
+"What would you like to do?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
@@ -537,28 +543,30 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:80
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "Sync will remove %i items from %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:83
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "Sync will remove 1 item from %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:48
 msgid "Success!"
-msgstr ""
+msgstr "Success!"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:49
 msgid "Enable Scrobbling"
-msgstr ""
+msgstr "Enable Scrobbling"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:50
 msgid "Unsuccessful. Click to try again."
-msgstr ""
+msgstr "Unsuccessful. Click to try again."
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:67
 #: /home/victor/noise/po/../src//LibraryWindow.vala:266
@@ -567,23 +575,23 @@ msgstr "Preferences"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:81
 msgid "Music Folder"
-msgstr ""
+msgstr "Music Folder"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Keep music folder organized"
-msgstr ""
+msgstr "Keep music folder organised"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:85
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Write metadata to file"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:86
 msgid "Copy files to music folder when added to library"
-msgstr ""
+msgstr "Copy files to music folder when added to library"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:88
 msgid "Automatically download new podcast episodes"
-msgstr ""
+msgstr "Automatically download new podcast episodes"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:93
 #, c-format
@@ -591,43 +599,47 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"To allow for Last.fm integration, you must give permission to %s. You only "
+"need to do this once."
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:98
 msgid "Scrobbling already Enabled"
-msgstr ""
+msgstr "Scrobbling already Enabled"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:99
 msgid "Click to redo the Last.fm Login Process"
-msgstr ""
+msgstr "Click to redo the Last.fm Login Process"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:108
 #, c-format
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Music Folder Location"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:109
 #, c-format
 msgid "Library Management"
-msgstr ""
+msgstr "Library Management"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:113
 #, c-format
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Last.fm Integration"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:121
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"You must wait until previous file operations finish before setting your "
+"music folder"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:189
 msgid "Complete login"
-msgstr ""
+msgstr "Complete login"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Smart Playlist Editor"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
@@ -657,11 +669,11 @@ msgstr "Match"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
 msgid "any"
-msgstr ""
+msgstr "any"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:90
 msgid "all"
-msgstr ""
+msgstr "all"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
@@ -686,13 +698,13 @@ msgstr "Done"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:350
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:182
 msgid "Composer"
-msgstr ""
+msgstr "Composer"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:408
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
 msgid "Date Released"
-msgstr ""
+msgstr "Date Released"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:282
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:339
@@ -700,24 +712,24 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:183
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:470
 msgid "Grouping"
-msgstr ""
+msgstr "Grouping"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:286
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:341
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:190
 msgid "Media Type"
-msgstr ""
+msgstr "Media Type"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:288
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:397
 msgid "Playcount"
-msgstr ""
+msgstr "Playcount"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:290
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:397
 msgid "Skipcount"
-msgstr ""
+msgstr "Skipcount"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:306
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:373
@@ -731,12 +743,12 @@ msgstr "Song"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:375
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
-msgstr ""
+msgstr "Audiobook"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:309
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:376
 msgid "Radio Station"
-msgstr ""
+msgstr "Radio Station"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:357
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:385
@@ -758,23 +770,23 @@ msgstr "is not"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:413
 msgid "is exactly"
-msgstr ""
+msgstr "is exactly"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
 msgid "is at most"
-msgstr ""
+msgstr "is at most"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "is at least"
-msgstr ""
+msgstr "is at least"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:414
 msgid "is within"
-msgstr ""
+msgstr "is within"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:415
 msgid "is before"
-msgstr ""
+msgstr "is before"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:428
 msgid "seconds"
@@ -782,7 +794,7 @@ msgstr "seconds"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:432
 msgid "days ago"
-msgstr ""
+msgstr "days ago"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:436
 msgid "kbps"
@@ -791,7 +803,7 @@ msgstr "kbps"
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr ""
+msgstr "Import media from %s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
@@ -799,6 +811,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -816,16 +830,16 @@ msgstr "Don't Import"
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:92
 #, c-format
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "Import %i items from %s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:96
 #, c-format
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Import %s from %s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:174
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Select individual media to import:"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:192
 msgid "Check Item"
@@ -841,7 +855,7 @@ msgstr "Check Artist"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:281
 msgid "Cannot Import"
-msgstr ""
+msgstr "Cannot Import"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:281
 #, c-format
@@ -849,65 +863,67 @@ msgid ""
 "%s is already doing file operations. Please wait until those finish to "
 "import from %s"
 msgstr ""
+"%s is already doing file operations. Please wait until those finish to "
+"import from %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:70
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:72
 msgid "Lyrics"
-msgstr ""
+msgstr "Lyrics"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:166
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:337
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "Editing %s by %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:168
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:339
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "Editing %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:171
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:342
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "Editing %i songs"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:179
 msgid "Album Artist"
-msgstr ""
+msgstr "Album Artist"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:186
 msgid "Disc"
-msgstr ""
+msgstr "Disc"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:234
 msgid "Try again"
-msgstr ""
+msgstr "Try again"
 
 #: /home/victor/noise/po/../src//Dialogs/SongEditor.vala:287
 #, c-format
 msgid "Lyrics not found for \"%s\" by \"%s\""
-msgstr ""
+msgstr "Lyrics not found for \"%s\" by \"%s\""
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Remove Media"
-msgstr ""
+msgstr "Remove Media"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:64
 msgid "Locate Media"
-msgstr ""
+msgstr "Locate Media"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:65
 msgid "Rescan Library"
-msgstr ""
+msgstr "Rescan Library"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:72
 msgid "Could not find music file"
-msgstr ""
+msgstr "Could not find music file"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:76
 #, c-format
@@ -915,22 +931,24 @@ msgid ""
 "The music file for \"%s\" by \" could not be found. What would you like to "
 "do?"
 msgstr ""
+"The music file for \"%s\" by \" could not be found. What would you like to "
+"do?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "Remove from %s"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
-msgstr ""
+msgstr "Remove %d %s from %s?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "Remove \"%s\" From %s?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
@@ -938,123 +956,98 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"This will remove the %s from your library and from any device that "
+"automatically syncs with %s."
 
 #: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:137
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s by %s"
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:174
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:168
 msgid "Get Some Tunes"
 msgstr "Get Some Tunes"
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:174
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:168
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "%s can't seem to find your music."
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
-msgid "No Music Found"
-msgstr ""
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
+msgid "No songs in Queue"
+msgstr "No songs in Queue"
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
-msgid "There is no music on this device."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:184
-msgid "You can start syncing music by clicking on the sync button."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:195
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:207
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:209
-msgid "Empty Playlist"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:195
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:207
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:209
-msgid "..."
-msgstr "..."
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:219
-msgid "Similar Media View"
-msgstr "Similar Media View"
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:219
-#, c-format
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:702
 msgid ""
-"In this view, %s will automatically find songs similar to the one you are "
-"playing."
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
 msgstr ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:219
-msgid "You can then start playing those songs, or save them for later."
-msgstr ""
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
+msgid "No songs in History"
+msgstr "No songs in History"
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:229
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:239
-msgid "No Podcasts Found"
-msgstr "No Podcasts Found"
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:229
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:239
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:706
 msgid ""
-"To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
 msgstr ""
-"To add a podcast, visit a website such as Miro Guide to find RSS Feeds."
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:229
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:239
-msgid ""
-"You can then copy and paste the feed into the \"Add Podcast\" window by "
-"right clicking on \"Podcasts\"."
-msgstr ""
-"You can then copy and paste the feed into the \"Add Podcast\" window by "
-"right clicking on \"Podcasts\"."
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:250
-msgid "No Internet Radio Stations Found"
-msgstr "No Internet Radio Stations Found"
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:250
-msgid ""
-"To add a station, visit a website such as SomaFM to find PLS or M3U files."
-msgstr ""
-"To add a station, visit a website such as SomaFM to find PLS or M3U files."
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:250
-msgid "You can then import the file to add the station."
-msgstr "You can then import the file to add the station."
-
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:272
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 msgid "Audio CD Invalid"
 msgstr "Audio CD Invalid"
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:272
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:725
 #, c-format
-msgid "%s could not read the contents of this Audio CD."
-msgstr ""
+msgid "%s could not read the contents of this Audio CD"
+msgstr "%s could not read the contents of this Audio CD"
 
-#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:279
-msgid "WARNING: Default View Wrapper!"
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
+msgid "No Songs"
+msgstr "No Songs"
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:728
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
 msgstr ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+
+#: /home/victor/noise/po/../src//Views/ViewWrapper.vala:731
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>."
+msgstr ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>."
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:135
 msgid "Remove from Library"
-msgstr ""
+msgstr "Remove from Library"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:147
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Remove from Queue"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:315
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Edit Song Info"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:316
 msgid "Show in File Browser"
-msgstr ""
+msgstr "Show in File Browser"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:317
 #: /home/victor/noise/po/../src//LibraryWindow.vala:653
@@ -1063,21 +1056,21 @@ msgstr "Queue"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:319
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Add to Playlist"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:320
 msgid "Remove Song"
-msgstr ""
+msgstr "Remove Song"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:516
 #, c-format
 msgid "Import %d of %d selected songs"
-msgstr ""
+msgstr "Import %d of %d selected songs"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:518
 #, c-format
 msgid "Import %d songs"
-msgstr ""
+msgstr "Import %d songs"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:158
 msgid "Automatic"
@@ -1085,11 +1078,11 @@ msgstr "Automatic"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:159
 msgid "On Left"
-msgstr ""
+msgstr "On Left"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:160
 msgid "On Top"
-msgstr ""
+msgstr "On Top"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerColumn.vala:593
 msgid "Genres"
@@ -1117,7 +1110,7 @@ msgstr "Unrated"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:192
 msgid "1 Star"
-msgstr ""
+msgstr "1 Star"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:194
 #, c-format
@@ -1131,125 +1124,125 @@ msgstr "All Genres"
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:244
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "All %i Genres"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:246
 msgid "No Genres"
-msgstr ""
+msgstr "No Genres"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:250
 msgid "All Artists"
-msgstr ""
+msgstr "All Artists"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:252
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "All %i Artists"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:254
 msgid "No Artists"
-msgstr ""
+msgstr "No Artists"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:258
 msgid "All Albums"
-msgstr ""
+msgstr "All Albums"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:260
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "All %i Albums"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:262
 msgid "No Albums"
-msgstr ""
+msgstr "No Albums"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:266
 msgid "All Years"
-msgstr ""
+msgstr "All Years"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:268
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "All %i Years"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:270
 msgid "No Years"
-msgstr ""
+msgstr "No Years"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:274
 msgid "All Ratings"
-msgstr ""
+msgstr "All Ratings"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:276
 #, c-format
 msgid "All %i Ratings"
-msgstr ""
+msgstr "All %i Ratings"
 
 #: /home/victor/noise/po/../src//Views/ListView/MillerColumns/MillerModel.vala:278
 msgid "No Ratings"
-msgstr ""
+msgstr "No Ratings"
 
 #: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:61
 #, c-format
 msgid "Similar to %s"
-msgstr ""
+msgstr "Similar to %s"
 
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:97
+#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:96
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Fetching similar songs"
 
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:97
-msgid "Finding songs similar to"
-msgstr ""
+#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:96
+#, c-format
+msgid "Finding songs similar to <b>%s</b> by <b>%s</b>"
+msgstr "Finding songs similar to <b>%s</b> by <b>%s</b>"
 
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
+#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:105
 msgid "No similar songs found"
 msgstr "No similar songs found"
 
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
-msgid "Could not find songs similar to"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:106
+#: /home/victor/noise/po/../src//Views/SimilarViewWrapper.vala:105
+#, c-format
 msgid ""
-"Make sure all song info is correct and you are connected to the Internet.\n"
-"Some songs may not have matches."
+"%s could not find songs similar to <b>%s</b> by <b>%s</b>. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
 msgstr ""
-"Make sure all song info is correct and you are connected to the Internet.\n"
-"Some songs may not have matches."
+"%s could not find songs similar to <b>%s</b> by <b>%s</b>. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:68
 msgid "Device Name"
-msgstr ""
+msgstr "Device Name"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Device Name:"
-msgstr ""
+msgstr "Device Name:"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:90
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "Automatically sync when plugged in:"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:91
 msgid "Sync:"
-msgstr ""
+msgstr "Sync:"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:97
 msgid "Other Files"
-msgstr ""
+msgstr "Other Files"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:418
 msgid "All Music"
-msgstr ""
+msgstr "All Music"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:421
 msgid "All Podcasts"
-msgstr ""
+msgstr "All Podcasts"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:551
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:589
 msgid "Sync Failed"
-msgstr ""
+msgstr "Sync Failed"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:551
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:589
@@ -1257,52 +1250,54 @@ msgstr ""
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"The playlist named %s is used to sync device %s, but could not be found."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:637
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:640
 msgid "Cannot Sync"
-msgstr ""
+msgstr "Cannot Sync"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:637
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
+"Cannot sync device with selected sync settings. Not enough space on disk."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:640
 msgid "Device is already being synced."
-msgstr ""
+msgstr "Device is already being synced."
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:423
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Favourite Songs"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:444
 msgid "Recently Added"
-msgstr ""
+msgstr "Recently Added"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:454
 msgid "Recently Played"
-msgstr ""
+msgstr "Recently Played"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:464
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Recent Favourites"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:474
 msgid "Never Played"
-msgstr ""
+msgstr "Never Played"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:484
 msgid "Unheard Podcasts"
-msgstr ""
+msgstr "Unheard Podcasts"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:494
 msgid "Over Played"
-msgstr ""
+msgstr "Over Played"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:504
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Not Recently Played"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:202
 msgid "Rescan Music Folder"
@@ -1310,43 +1305,43 @@ msgstr "Rescan Music Folder"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:213
 msgid "Search Music"
-msgstr ""
+msgstr "Search Music"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:234
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Disable Repeat"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:234
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Enable Repeat"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:235
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Disable Shuffle"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:235
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Enable Shuffle"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:236
 msgid "Hide Info Panel"
-msgstr ""
+msgstr "Hide Info Panel"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:236
 msgid "Show Info Panel"
-msgstr ""
+msgstr "Show Info Panel"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:237
 msgid "Add Playlist"
-msgstr ""
+msgstr "Add Playlist"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:238
 msgid "Hide Equalizer"
-msgstr ""
+msgstr "Hide Equaliser"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:238
 msgid "Show Equalizer"
-msgstr ""
+msgstr "Show Equaliser"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:270
 #: /home/victor/noise/po/../src//LibraryWindow.vala:276
@@ -1420,7 +1415,7 @@ msgstr "Import Complete"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1182
 #, c-format
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s has imported your library."
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1467
 msgid "Import songs from audio CD"
@@ -1432,31 +1427,31 @@ msgstr "Import media from device"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:58
 msgid "%D %H %M"
-msgstr ""
+msgstr "%d/%m/%y %R"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
-msgstr ""
+msgstr "1 day"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%i days"
-msgstr ""
+msgstr "%i days"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:76
 msgid "1 hour"
-msgstr ""
+msgstr "1 hour"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
 #, c-format
 msgid "%i hours"
-msgstr ""
+msgstr "%i hours"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:89
 msgid "1 minute"
-msgstr ""
+msgstr "1 minute"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
 #, c-format
 msgid "%i minutes"
-msgstr ""
+msgstr "%i minutes"
