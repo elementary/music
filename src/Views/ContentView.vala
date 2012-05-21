@@ -32,8 +32,8 @@ public interface BeatBox.ContentView : Gtk.Container {
 	public abstract Gee.Collection<Media> get_media ();
 	public abstract Gee.Collection<Media> get_visible_media ();
 
-	public abstract async void set_media    (Gee.Collection<Media> new_media);
-	public abstract async void add_media    (Gee.Collection<Media> to_add);
-	public abstract async void remove_media (Gee.Collection<Media> to_remove);
+	public abstract async void set_media (Gee.Collection<Media> new_media, Cancellable? cancellable = null);
+	public abstract async void add_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null);
+	public abstract async void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null);
 }
 
