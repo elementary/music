@@ -27,7 +27,7 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 	private LibraryManager lm;
 	private LibraryWindow lw;
 
-	private ScrolledWindow scroll;
+	private Gtk.ScrolledWindow scroll;
 	
 	private Label title;
 	private Label artist;
@@ -147,17 +147,23 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 
 		love_button.set_no_show_all (!lastfm_elements_visible);
 		ban_button.set_no_show_all (!lastfm_elements_visible);
-		ssv.set_no_show_all (!lastfm_elements_visible);
+
 		love_button.set_visible (lastfm_elements_visible);
 		ban_button.set_visible (lastfm_elements_visible);
-		ssv.set_visible (similars_fetched);
+
+		scroll.set_no_show_all (!similars_fetched);
+
+		if (similars_fetched)
+			scroll.show_all ();
+		else
+			scroll.hide ();
 	}
 
 	private void on_media_played () {
 		update_metadata ();
 		update_cover_art ();
-		update_visibilities ();
 		similars_fetched = false;
+		update_visibilities ();
 	}
 	
 	private void on_media_updated () {
