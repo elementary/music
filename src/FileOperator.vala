@@ -244,7 +244,8 @@ public class BeatBox.FileOperator : Object {
 	}
 
 	public string get_cached_album_art_path (string key) {
-		return GLib.Path.build_filename (get_album_art_cache_dir (), key + ".jpg");
+		string filename = Uri.escape_string (key, "", true) + ".jpg";
+		return GLib.Path.build_filename (get_album_art_cache_dir (), filename);
 	}
 
 	public Gdk.Pixbuf? save_artist_image(Media s, string uri) {
