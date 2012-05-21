@@ -520,7 +520,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
 
 
-    private Mutex in_update;
+    private Mutex updating_media_data;
 
     /**
      * Description:
@@ -528,7 +528,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      * Primarily used for searches
      */
     private void update_visible_media () {
-        in_update.lock ();
+        updating_media_data.lock ();
 
         debug ("%s : UPDATING VISIBLE MEDIA", hint.to_string ());
 
@@ -553,19 +553,10 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             }
         }
 
-        in_update.unlock ();
+        updating_media_data.unlock ();
 
         if (populate_views) { // update right away
-            if (has_list_view) {
-                list_view.set_media (search_results);
-                list_view.set_media (search_results);
-            }
-
-            if (has_album_view) {
-                album_view.set_media (search_results);
-                album_view.set_media (search_results);
-            }
-
+            set_content_views_media (search_results);
             update_library_window_widgets ();
         }
         else {
@@ -575,15 +566,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
                 debug ("%s : populating views on idle", hint.to_string());
 
-                if (has_list_view) {
-                    list_view.set_media (search_results);
-                    list_view.set_media (search_results);
-                }
-
-                if (has_album_view) {
-                    album_view.set_media (search_results);
-                    album_view.set_media (search_results);
-                }
+                set_content_views_media (search_results);
 
                 return false;
             });
@@ -634,11 +617,11 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     public void set_media (Gee.Collection<Media> new_media) {
-        in_update.lock ();
+        updating_media_data.lock ();
         
         if (new_media == null) {
             warning ("set_media: attempt to set NULL media failed");
-            in_update.unlock ();
+            updating_media_data.unlock ();
             return;
         }
 
@@ -652,7 +635,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             }
         }
 
-        in_update.unlock ();
+        updating_media_data.unlock ();
 
         update_visible_media ();
     }
@@ -662,7 +645,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      * Do search to find which ones should be added, removed from this particular view
      */
     public void update_media (Gee.Collection<Media> media) {
-        in_update.lock ();
+        updating_media_data.lock ();
 
         debug ("%s : UPDATING media", hint.to_string());
 
@@ -702,19 +685,11 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             }
         }
 
-        in_update.unlock ();
+        updating_media_data.unlock ();
 
         if (populate_views) { // update right away
-            if (has_list_view) {
-                list_view.add_media (to_add_show);
-                list_view.remove_media (to_remove_show);
-            }
-
-            if (has_album_view) {
-                album_view.add_media (to_add_show);
-                album_view.remove_media (to_remove_show);
-            }
-
+            add_media_to_content_views (to_add_show);
+            remove_media_from_content_views (to_remove_show);
 
             // Update view wrapper state
             check_have_media ();
@@ -728,15 +703,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
                 debug ("%s : populating views on idle", hint.to_string());
 
-                if (has_list_view) {
-                    list_view.add_media (to_add_show);
-                    list_view.remove_media (to_remove_show);
-                }
-
-                if (has_album_view) {
-                    album_view.add_media (to_add_show);
-                    album_view.remove_media (to_remove_show);
-                }
+                add_media_to_content_views (to_add_show);
+                remove_media_from_content_views (to_remove_show);
 
                 return false;
             });
@@ -744,7 +712,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     public void remove_media (Collection<Media> media) {
-        in_update.lock ();
+        updating_media_data.lock ();
 
         debug ("%s : REMOVING media", hint.to_string ());
 
@@ -760,14 +728,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         }
 
         // Now update the views to reflect the changes
+        remove_media_from_content_views (to_remove);
 
-        if (has_album_view)
-            album_view.remove_media (to_remove);
-
-        if (has_list_view)
-            list_view.remove_media (to_remove);
-
-        in_update.unlock ();
+        updating_media_data.unlock ();
 
         // Update view wrapper state
         check_have_media ();
@@ -777,7 +740,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
 
     public void add_media (Gee.Collection<Media> new_media) {
-        in_update.lock ();
+        updating_media_data.lock ();
 
         debug ("%s : ADDING media", hint.to_string());
 
@@ -801,14 +764,10 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 visible_media_table.set (m, 1);
         }
 
-        in_update.unlock ();
+        updating_media_data.unlock ();
 
         if (populate_views) {
-            if (has_album_view)
-                album_view.add_media (media_to_show);
-
-            if (has_list_view)
-                list_view.add_media (media_to_show);
+            add_media_to_content_views (media_to_show);
 
             // Update view wrapper state
             check_have_media ();
@@ -817,19 +776,63 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         }
         else {
             Idle.add ( () => {
+                // Keep trying until the player is initialized
                 if (!lw.initialization_finished)
                     return true;
 
                 debug ("%s : populating views on idle", hint.to_string());
-                
-                if (has_album_view)
-                    album_view.add_media (media_to_show);
-
-                if (has_list_view)
-                    list_view.add_media (media_to_show);
+                add_media_to_content_views (media_to_show);
     
                 return false;
             });
+        }
+    }
+
+
+    // TODO: Finish up cancellable stuff
+    private async void add_media_to_content_views (Gee.Collection<Media> to_add,
+        Cancellable? cancellable = null) {
+        if (cancellable != null) {
+            if (cancellable.is_cancelled ())
+                return;
+        }
+
+        if (has_album_view)
+            album_view.add_media (to_add, cancellable);
+
+        if (has_list_view)
+            list_view.add_media (to_add, cancellable);
+    }
+
+    // TODO: Finish up cancellable stuff
+    private async void remove_media_from_content_views (Gee.Collection<Media> to_remove,
+        Cancellable? cancellable = null) {
+        if (cancellable != null) {
+            if (cancellable.is_cancelled ())
+                return;
+        }
+
+        if (has_album_view)
+            album_view.remove_media (to_remove, cancellable);
+
+        if (has_list_view)
+            list_view.remove_media (to_remove, cancellable);
+    }
+
+    // TODO: Finish up cancellable stuff
+    private async void set_content_views_media (Gee.Collection<Media> new_media,
+        Cancellable? cancellable = null) {
+        if (cancellable != null) {
+            if (cancellable.is_cancelled ())
+                return;
+        }
+
+        if (has_list_view) {
+            list_view.set_media (new_media);
+        }
+
+        if (has_album_view) {
+            album_view.set_media (new_media);
         }
     }
 }
