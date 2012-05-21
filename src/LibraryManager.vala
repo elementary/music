@@ -1083,6 +1083,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 			fo.remove_media(removeURIs);
 		}
 
+		/* Emit signal before actually removing the media because otherwise
+		 * media_from_id() and media_from_ids() wouldn't work.
+		 */
+		media_removed(removedIds);
+
 		_media_lock.lock();
 		foreach(Media s in toRemove) {
 			_media.unset(s.rowid);
@@ -1118,8 +1123,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(_media.size == 0)
 			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
 
-		media_removed(removedIds);
-		
 		// TODO: move away. It's called twice due to LW's internal handlers		
 		lw.update_sensitivities();
 	}

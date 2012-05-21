@@ -39,8 +39,9 @@ public class BeatBox.AlbumListView : Window {
 	Label album_label;
 	Label artist_label;
 	Granite.Widgets.Rating rating;
-	GenericList mtv;
+	GenericList list_view;
 
+    private Media? base_media = null;
 	Gee.LinkedList<Media> media_list;
 
 	public AlbumListView (AlbumView album_view) {
@@ -99,10 +100,10 @@ public class BeatBox.AlbumListView : Window {
 
 		// Music List
 		var tvs = new TreeViewSetup (MusicListView.MusicColumn.ARTIST, Gtk.SortType.ASCENDING, ViewWrapper.Hint.ALBUM_LIST);
-		mtv = new MusicListView (view_wrapper, tvs);
+		list_view = new MusicListView (view_wrapper, tvs);
 		
-		var mtv_scrolled = new ScrolledWindow (null, null);
-		mtv_scrolled.add (mtv);
+		var list_view_scrolled = new ScrolledWindow (null, null);
+		list_view_scrolled.add (list_view);
 
 		// Rating widget
 		rating = new Granite.Widgets.Rating (true, IconSize.MENU, true);
@@ -117,7 +118,7 @@ public class BeatBox.AlbumListView : Window {
 #endif
 		vbox.pack_start (album_label, false, true, 0);
 		vbox.pack_start (artist_label, false, true, 0);
-		vbox.pack_start (mtv_scrolled, true, true, 0);
+		vbox.pack_start (list_view_scrolled, true, true, 0);
 		vbox.pack_start(rating, false, true, 0);
 
 		add(vbox);
@@ -133,13 +134,19 @@ public class BeatBox.AlbumListView : Window {
 
 	public void set_parent_wrapper (ViewWrapper parent_wrapper) {
 		this.view_wrapper = parent_wrapper;
-		this.mtv.set_parent_wrapper (parent_wrapper);
+		this.list_view.set_parent_wrapper (parent_wrapper);
 	}
 
 	Mutex setting_media;
 
 	public void set_songs_from_media (Media media) {
 		setting_media.lock ();
+
+        // Unselect rows if new album...
+        if (media != base_media)
+            list_view.get_selection ().unselect_all ();
+
+        base_media = media;
 
 		set_title (_("%s by %s").printf (media.album, media.album_artist));
 
@@ -155,12 +162,12 @@ public class BeatBox.AlbumListView : Window {
 
 		Search.fast_album_search_in_media_list (to_search, out media_list, "", media.album_artist, media.album);
 
-		mtv.set_media (media_list);
+		list_view.set_media (media_list);
 
 		setting_media.unlock ();
 
-        if (mtv.get_realized ())
-            mtv.columns_autosize ();
+        if (list_view.get_realized ())
+            list_view.columns_autosize ();
 
 		// Set rating
 		update_album_rating ();
