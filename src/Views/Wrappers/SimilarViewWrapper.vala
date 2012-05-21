@@ -120,7 +120,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
          */
         if (base_media != null) {
             /* say we could not find similar media */
-            embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s in your music library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Gtk.MessageType.INFO);
+            embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Gtk.MessageType.INFO);
         }
 
         /* Show the alert box */

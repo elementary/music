@@ -375,10 +375,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             media_description = total_items > 1 ? _("%i albums") : _("1 album");
         }
         else {
-            if (hint == Hint.MUSIC)
-                media_description = total_items > 1 ? _("%i songs") : _("1 song");
-            else
-                media_description = total_items > 1 ? _("%i items") : _("1 item");    
+            media_description = total_items > 1 ? _("%i songs") : _("1 song");
         }
 
         // FIXME: bad workaround
@@ -649,13 +646,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         media_table = new HashMap<Media, int> ();
 
-        int media_count = 0;
         foreach (var m in new_media) {
             if (m != null) {
                 media_table.set (m, 1);
-                media_count ++;
             }
         }
+
         in_update.unlock ();
 
         update_visible_media ();
@@ -706,13 +702,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             }
         }
 
-        foreach (var m in to_add_show)
-            message ("adding %s to showing media", m.title);
-
-        foreach (var m in to_remove_show)
-            message ("removing %s from showing media", m.title);
-
-
         in_update.unlock ();
 
         if (populate_views) { // update right away
@@ -725,6 +714,10 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 album_view.add_media (to_add_show);
                 album_view.remove_media (to_remove_show);
             }
+
+
+            // Update view wrapper state
+            check_have_media ();
 
             update_library_window_widgets ();
         }
@@ -766,16 +759,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             }
         }
 
-        if (!check_have_media ()) {
-            in_update.unlock ();
-            return;
-        }    
-
-        foreach (var m in to_remove)
-            message ("Removing %s from showing media", m.title);
-
-        in_update.unlock ();
-
         // Now update the views to reflect the changes
 
         if (has_album_view)
@@ -784,10 +767,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (has_list_view)
             list_view.remove_media (to_remove);
 
-        if (is_current_wrapper) {
-            update_library_window_widgets ();
-        }
+        in_update.unlock ();
 
+        // Update view wrapper state
+        check_have_media ();
+
+        update_library_window_widgets ();
     }
 
 
@@ -816,15 +801,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 visible_media_table.set (m, 1);
         }
 
-        if (!check_have_media ()) {
-            in_update.unlock ();
-            return;
-        }
-
-        foreach (var m in media_to_show)
-            message ("Adding %s to showing media", m.title);
-
-
         in_update.unlock ();
 
         if (populate_views) {
@@ -833,6 +809,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
             if (has_list_view)
                 list_view.add_media (media_to_show);
+
+            // Update view wrapper state
+            check_have_media ();
 
             update_library_window_widgets ();
         }

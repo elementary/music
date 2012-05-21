@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-20 22:13-0600\n"
+"POT-Creation-Date: 2012-05-21 01:14-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,22 +201,22 @@ msgstr ""
 msgid "Playlists"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:280
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:282
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:98
 #: /home/victor/noise/po/../src//LibraryWindow.vala:580
 msgid "Music"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:285
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:287
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:99
 msgid "Podcasts"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:874
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:878
 msgid "Playlist"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:887
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:891
 #, c-format
 msgid "Import %s"
 msgstr ""
@@ -1026,9 +1026,9 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:123
 #, c-format
 msgid ""
-"%s could not find songs similar to %s by %s in your music library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
+"%s could not find songs similar to %s by %s in your library. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:136
