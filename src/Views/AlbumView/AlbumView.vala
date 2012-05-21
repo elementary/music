@@ -51,7 +51,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	public ViewWrapper parent_view_wrapper { get; private set; }
 
-	public FastGrid icons { get; private set; }
+	public FastGrid icon_view { get; private set; }
 
 /* Spacing Workarounds */
 #if !GTK_ICON_VIEW_BUG_IS_FIXED
@@ -81,12 +81,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 	public void build_ui () {
 		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
 
-		icons = new FastGrid ();
+		icon_view = new FastGrid ();
 
-		icons.set_compare_func(compare_func);
-		icons.set_value_func(val_func);
+		icon_view.set_compare_func(compare_func);
+		icon_view.set_value_func(val_func);
 
-		icons.set_columns(-1);
+		icon_view.set_columns(-1);
 
 #if !GTK_ICON_VIEW_BUG_IS_FIXED
 		var wrapper_vbox = new Box (Orientation.VERTICAL, 0);
@@ -120,21 +120,21 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		wrapper_vbox.pack_start (vpadding_box, false, false, 0);
 		wrapper_vbox.pack_start (wrapper_hbox, true, true, 0);
 		wrapper_hbox.pack_start (hpadding_box, false, false, 0);
-		wrapper_hbox.pack_start (icons, true, true, 0);
+		wrapper_hbox.pack_start (icon_view, true, true, 0);
 
 		add_with_viewport (wrapper_vbox);
 
-		icons.margin = 0;
+		icon_view.margin = 0;
 #else
-		add (icons);
-		icons.margin = MIN_SPACING;
+		add (icon_view);
+		icon_view.margin = MIN_SPACING;
 #endif
 
-		icons.item_width = ITEM_WIDTH;
-		icons.item_padding = ITEM_PADDING;
-		icons.spacing = 0;
-		icons.row_spacing = MIN_SPACING;
-		icons.column_spacing = MIN_SPACING;
+		icon_view.item_width = ITEM_WIDTH;
+		icon_view.item_padding = ITEM_PADDING;
+		icon_view.spacing = 0;
+		icon_view.row_spacing = MIN_SPACING;
+		icon_view.column_spacing = MIN_SPACING;
 
 		show_all();
 
@@ -156,12 +156,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			});
 		}
 
-		icons.add_events (Gdk.EventMask.POINTER_MOTION_MASK);
-		icons.motion_notify_event.connect (on_motion_notify);
+		icon_view.add_events (Gdk.EventMask.POINTER_MOTION_MASK);
+		icon_view.motion_notify_event.connect (on_motion_notify);
 
-		//icons.button_press_event.connect (on_button_press);
-		icons.button_release_event.connect (on_button_release);
-		icons.item_activated.connect (item_activated);
+		//icon_view.button_press_event.connect (on_button_press);
+		icon_view.button_release_event.connect (on_button_release);
+		icon_view.item_activated.connect (item_activated);
 
 		// for smart spacing stuff
 		int MIN_N_ITEMS = 2; // we will allocate horizontal space for at least two items
@@ -179,7 +179,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	public Gee.Collection<Media> get_media () {
 		var media_list = new Gee.LinkedList<Media> ();
-		foreach (var m in icons.get_visible_table ().get_values ())
+		foreach (var m in icon_view.get_visible_table ().get_values ())
 			media_list.add ((Media)m);
 
 		return media_list;
@@ -187,7 +187,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	public Gee.Collection<Media> get_visible_media () {
 		var media_list = new Gee.LinkedList<Media> ();
-		foreach (var m in icons.get_table ().get_values ())
+		foreach (var m in icon_view.get_table ().get_values ())
 			media_list.add ((Media)m);
 
 		return media_list;
@@ -200,7 +200,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return m.album_artist + m.album;
 	}
 
-	public async void set_media (Gee.Collection<Media> to_add) {
+	public async void set_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
 		var new_table = new HashTable<int, Media> (null, null);
 		// just here to check for duplicates
 		var to_add_ind = new Gee.HashMap<string, int> ();
@@ -218,10 +218,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		}
 
 		// set table and resort
-		icons.set_table (new_table, true);
+		icon_view.set_table (new_table, true);
 	}
 
-	public async void add_media (Gee.Collection<Media> media) {
+	public async void add_media (Gee.Collection<Media> media, Cancellable? cancellable = null) {
 		var to_append = new Gee.HashMap<string, Media> ();
 		foreach (var m in media) {
 			if (m == null)
@@ -234,10 +234,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			}		
 		}
 
-		icons.add_objects (to_append.values);
+		icon_view.add_objects (to_append.values);
 	}
 
-	public async void remove_media (Gee.Collection<Media> to_remove) {
+	public async void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
 		var to_remove_ind = new Gee.HashMap<string, int> ();
 		var to_remove_table = new HashMap<Object, int> ();
 
@@ -253,7 +253,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			}
 		}
 
-		icons.remove_objects (to_remove_table);	
+		icon_view.remove_objects (to_remove_table);	
 	}
 
 	public int get_relative_id () {
@@ -266,7 +266,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			TreePath path;
 			CellRenderer cell;
 
-			icons.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
+			icon_view.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
 
 			if (path == null) { // blank area
 				album_list_view.hide ();
@@ -283,12 +283,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		TreePath path;
 		CellRenderer cell;
 
-		icons.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
+		icon_view.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
 
 		if (path == null) // blank area
-			icons.get_window ().set_cursor (null);
+			icon_view.get_window ().set_cursor (null);
 		else
-			icons.get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.HAND1));
+			icon_view.get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.HAND1));
 
 		return false;
 	}
@@ -298,7 +298,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		if (!lw.initialization_finished)
 			return;
 
-		Media? s = (Media)icons.get_object_from_index(int.parse(path.to_string()));
+		Media? s = (Media)icon_view.get_object_from_index(int.parse(path.to_string()));
 
 		if (s == null) {
 			album_list_view.hide ();
@@ -334,7 +334,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		Media s = o as Media;
 		Value? val = null;
 
-		if (column == icons.PIXBUF_COLUMN) {
+		if (column == icon_view.PIXBUF_COLUMN) {
 			var cover_art = lm.get_cover_album_art_from_key(s.album_artist, s.album);
 			if(cover_art != null) {
 				val = cover_art;
@@ -343,7 +343,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				val = defaultPix;
 			}
 		}
-		else if(column == icons.MARKUP_COLUMN) {
+		else if(column == icon_view.MARKUP_COLUMN) {
 			string TEXT_MARKUP = @"%s\n<span foreground=\"#999\">%s</span>";
 			
 			string album, album_artist;
@@ -359,7 +359,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 			val = TEXT_MARKUP.printf (String.escape (album), String.escape (album_artist));
 		}
-		else if(column == icons.TOOLTIP_COLUMN) {
+		else if(column == icon_view.TOOLTIP_COLUMN) {
 			string TOOLTIP_MARKUP = @"<span size=\"large\"><b>%s</b></span>\n%s";
 			val = TOOLTIP_MARKUP.printf (String.escape (s.album), String.escape (s.album_artist));
 		}
@@ -418,10 +418,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			return;
 		}
 
-		icons.set_columns (n_columns);
+		icon_view.set_columns (n_columns);
 
 		// We don't want to adjust the spacing if the row is not full
-		if (icons.get_table ().size () < n_columns) {
+		if (icon_view.get_table ().size () < n_columns) {
 			setting_size.unlock ();
 			return;
 		}
@@ -437,11 +437,14 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		}
 
 		// verify new size
-		while ((n_columns + 1) * new_spacing + n_columns * TOTAL_ITEM_WIDTH > TOTAL_WIDTH) {
+		int error = icon_view.get_allocated_width () - TOTAL_WIDTH;
+		if (error > 0) {
 			message ("FIXING NEW_SPACING");
-			new_spacing --;
+			int to_remove = Numeric.int_from_float ((float)error / (float)n_columns);
+			new_spacing -= (to_remove > 0) ? 2 * to_remove : 2;
 		}
 
+		// apply new spacing
 		set_spacing (new_spacing);
 
 		setting_size.unlock ();
@@ -451,11 +454,11 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		if (spacing < 0)
 			return;
 
-		icons.set_column_spacing (spacing);
-		icons.set_row_spacing (spacing);
+		icon_view.set_column_spacing (spacing);
+		icon_view.set_row_spacing (spacing);
 
 #if GTK_ICON_VIEW_BUG_IS_FIXED
-		icons.set_margin (spacing);
+		icon_view.set_margin (spacing);
 #else
 		vpadding_box.set_size_request (-1, spacing);
 		hpadding_box.set_size_request (spacing, -1);

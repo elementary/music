@@ -28,6 +28,9 @@ public abstract class BeatBox.GenericList : FastView {
 		this.tvs = tvs;
 		set_parent_wrapper (view_wrapper);
 
+		// Set sort data from saved session
+		set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
+
 		set_headers_clickable(true);
 		set_headers_visible (tvs.column_headers_visible);
 		set_fixed_height_mode(true);
@@ -84,7 +87,7 @@ public abstract class BeatBox.GenericList : FastView {
 		});
 	}
 
-	public void set_media (Gee.Collection<Media> to_add) {
+	public void set_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
 		var new_table = new HashTable<int, Media> (null, null);
 		foreach (var m in to_add) {
 			new_table.set ((int)new_table.size(), m);
@@ -94,7 +97,7 @@ public abstract class BeatBox.GenericList : FastView {
 	}
 
 	/* If a Media is in to_remove but not in table, will just ignore */
-	public void remove_media (Gee.Collection<Media> to_remove) {
+	public void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
 		var to_remove_table = new HashTable<Media, int> (null, null);
 		foreach (var m in to_remove) {
 			to_remove_table.set (m, 1);
@@ -116,7 +119,7 @@ public abstract class BeatBox.GenericList : FastView {
 	}
 	
 	/** Does NOT check for duplicates */
-	public void add_media (Gee.Collection<Media> to_add) {
+	public void add_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
 		// skip calling set_table and just do it ourselves (faster)
 		foreach(var m in to_add) {
 			table.set((int)table.size(), m);
@@ -186,10 +189,8 @@ public abstract class BeatBox.GenericList : FastView {
 
 				inserted_column.resizable = tvc.resizable;
 
-				// Don't allow reordering QUEUE
-				bool reorderable = (get_hint () != ViewWrapper.Hint.QUEUE);
-				inserted_column.reorderable = reorderable;
-				inserted_column.clickable = reorderable;
+				inserted_column.reorderable = true;
+				inserted_column.clickable = true;
 
 				inserted_column.sort_column_id = index;
 				inserted_column.set_sort_indicator (false);

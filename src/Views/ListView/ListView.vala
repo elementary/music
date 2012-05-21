@@ -155,9 +155,6 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		else {
 			this.pack_start (list_scrolled, true, true, 0);
 		}
-
-		// Set sort data from saved session
-		list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
 	}
 
 	private void set_column_browser_position (ColumnBrowser.Position position) {
@@ -316,24 +313,24 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return list_view.get_is_current_list ();
 	}
 
-	public async void add_media (Gee.Collection<Media> to_add) {
+	public async void add_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
 		if (column_browser_enabled)
 			column_browser.add_media (to_add);
 		else
-			list_view.add_media (to_add);
+			list_view.add_media (to_add, cancellable);
 	}
 
-	public async void remove_media (Gee.Collection<Media> to_remove) {
+	public async void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
 		if (column_browser_enabled)
 			column_browser.remove_media (to_remove);
 		else
-			list_view.remove_media (to_remove);
+			list_view.remove_media (to_remove, cancellable);
 	}
 
-	public async void set_media (Gee.Collection<Media> media) {
+	public async void set_media (Gee.Collection<Media> media, Cancellable? cancellable = null) {
 		if (has_column_browser)
 			column_browser.set_media (media);
-		list_view.set_media (media);
+		list_view.set_media (media, cancellable);
 	}
 }
 
