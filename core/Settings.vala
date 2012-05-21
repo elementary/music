@@ -60,9 +60,10 @@ public class BeatBox.Settings : Object {
 	private const string MUSIC_MILLER_VISIBLE_COLUMNS = "music-miller-visible-columns";
 	private const string GENERIC_MILLER_VISIBLE_COLUMNS = "generic-miller-visible-columns";
 	private const string MILLER_COLUMNS_POSITION = "miller-columns-position";
+#if 0
 	private const string SIDEBAR_LIBRARY_ITEM_EXPANDED = "sidebar-library-item-expanded";
 	private const string SIDEBAR_PLAYLISTS_ITEM_EXPANDED = "sidebar-playlists-item-expanded";
-	
+#endif	
 	
 	private const string EQUALIZER_ENABLED = "equalizer-enabled";
 	private const string SELECTED_PRESET = "selected-preset";
@@ -131,9 +132,10 @@ public class BeatBox.Settings : Object {
 		ui_settings.add(GENERIC_MILLER_VISIBLE_COLUMNS);
 		ui_settings.add(MILLER_COLUMNS_POSITION);
 		ui_settings.add(MILLER_COLUMNS_ENABLED);
-		
+#if 0
 		ui_settings.add(SIDEBAR_LIBRARY_ITEM_EXPANDED);
 		ui_settings.add(SIDEBAR_PLAYLISTS_ITEM_EXPANDED);
+#endif
 		
 		equalizer_settings.add(EQUALIZER_ENABLED);
 		equalizer_settings.add(SELECTED_PRESET);
@@ -495,6 +497,7 @@ public class BeatBox.Settings : Object {
 		return get_int(VIEW_MODE);
 	}
 
+#if 0
 	public bool get_sidebar_library_item_expanded () {
 		return get_bool (SIDEBAR_LIBRARY_ITEM_EXPANDED);
 	}
@@ -510,6 +513,7 @@ public class BeatBox.Settings : Object {
 	public void set_sidebar_playlists_item_expanded (bool val) {
 		set_bool (SIDEBAR_PLAYLISTS_ITEM_EXPANDED, val);
 	}
+#endif
 
 	public bool get_miller_columns_enabled () {
 		return get_bool(MILLER_COLUMNS_ENABLED);

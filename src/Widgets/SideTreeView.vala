@@ -172,8 +172,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		this.drag_data_received.connect(dragReceived);
 		#endif
 		addBasicItems ();
-		
-		destroy.connect (on_destroy);
+
+		//destroy.connect (on_destroy);
 	}
 
 	/**
@@ -186,11 +186,13 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		playlists_iter = addItem(null, null, null, null, _("Playlists"), null);
 	}
 
+#if 0
 	private void on_destroy () {
 		// Save state
 		lw.settings.set_sidebar_library_item_expanded (item_expanded (library_iter));
 		lw.settings.set_sidebar_playlists_item_expanded (item_expanded (playlists_iter));
 	}
+#endif
 
 	/**
 	 * Adds an item to the sidebar for the ViewWrapper object.
@@ -494,9 +496,11 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
         else
             critical ("Couldn't select the good iter for the sidebar. Is it still under construction?");
 
+#if 0
 		// Restore state from last session
 		expandItem (library_iter, lw.settings.get_sidebar_library_item_expanded ());
 		expandItem (playlists_iter, lw.settings.get_sidebar_playlists_item_expanded ());
+#endif
 
 		// Emit change signal
 		sideListSelectionChange ();

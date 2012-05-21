@@ -331,9 +331,12 @@ namespace Granite.Widgets {
 		}
 		
 		public bool expandItem(TreeIter iter, bool expanded) {
+			if (filter.iter_n_children (convertToFilter (iter)) < 1)
+				return false;
+
 			TreePath? path = filter.get_path (convertToFilter (iter));
 
-			if (path == null || path.get_depth() > 1)
+			if (path == null || path.get_depth () > 1)
 				return false;
 
 			if (expanded)
