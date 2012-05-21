@@ -331,14 +331,24 @@ namespace Granite.Widgets {
 		}
 		
 		public bool expandItem(TreeIter iter, bool expanded) {
-			TreePath path = filter.get_path(iter);
-			
-			if(path.get_depth() != 1)
+			TreePath? path = filter.get_path (convertToFilter (iter));
+
+			if (path == null || path.get_depth() > 1)
 				return false;
-			
-			return this.expand_row(path, false);
+
+			if (expanded)
+				return expand_row (path, false);
+
+			return collapse_row (path);
 		}
-		
+
+		public bool item_expanded (Gtk.TreeIter? iter) {
+			if (iter != null)
+				return is_row_expanded (filter.get_path (convertToFilter (iter)));
+
+			return false;
+		}
+
 		public GLib.Object? getObject(TreeIter iter) {
 			GLib.Object o;
 			filter.get(iter, SideBarColumn.COLUMN_OBJECT, out o);

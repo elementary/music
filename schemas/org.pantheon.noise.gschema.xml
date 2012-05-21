@@ -78,6 +78,16 @@
   </enum>
   
   <schema path="/org/pantheon/noise/ui/" id="org.pantheon.noise.ui">
+    <key type="b" name="sidebar-library-item-expanded">
+      <default>true</default>
+      <summary>Whether the library sidebar category is expanded</summary>
+      <description>Whether the library sidebar category is expanded</description>
+    </key>
+    <key type="b" name="sidebar-playlists-item-expanded">
+      <default>true</default>
+      <summary>Whether the playlists sidebar category is expanded</summary>
+      <description>Whether the playlists sidebar category is expanded</description>
+    </key>
     <key type="i" name="window-width">
       <default>1100</default>
       <summary>Window width</summary>

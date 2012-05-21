@@ -381,8 +381,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		if (settings.getWindowMaximized ())
 			this.maximize ();
 
-
-		sideTree.resetView();
+		sideTree.resetView ();
 
 		if(lm.media_active) {
 			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
