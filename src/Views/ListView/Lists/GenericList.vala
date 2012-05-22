@@ -88,9 +88,9 @@ public abstract class BeatBox.GenericList : FastView {
 	}
 
 	public void set_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
-		var new_table = new HashTable<int, Media> (null, null);
+		var new_table = new HashTable<int, Object> (null, null);
 		foreach (var m in to_add) {
-			new_table.set ((int)new_table.size(), m);
+			new_table.set ((int)new_table.size(), m as Object);
 		}
 		// set table and resort
 		set_table (new_table, true);
@@ -103,13 +103,13 @@ public abstract class BeatBox.GenericList : FastView {
 			to_remove_table.set (m, 1);
 		}
 
-		var new_table = new HashTable<int, Media> (null, null);
+		var new_table = new HashTable<int, Object> (null, null);
 		int index = 0;
 		for(int i = 0; i < table.size(); ++i) {
-			Media? m = table.get (i);
+			var m = table.get (i) as Media;
 			// create a new table. if not in to_remove, and is in table, add it.
 			if (m != null && !to_remove_table.contains (m)) {
-				new_table.set (index++, m);
+				new_table.set (index++, m as Object);
 			}
 		}
 		
@@ -122,7 +122,7 @@ public abstract class BeatBox.GenericList : FastView {
 	public void add_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
 		// skip calling set_table and just do it ourselves (faster)
 		foreach(var m in to_add) {
-			table.set((int)table.size(), m);
+			table.set((int)table.size(), m as Object);
 		}
 
 		// resort the new songs in. this will also call do_search
@@ -189,7 +189,7 @@ public abstract class BeatBox.GenericList : FastView {
 
 				inserted_column.resizable = tvc.resizable;
 
-				inserted_column.reorderable = true;
+				inserted_column.reorderable = false;
 				inserted_column.clickable = true;
 
 				inserted_column.sort_column_id = index;
@@ -261,7 +261,7 @@ public abstract class BeatBox.GenericList : FastView {
 	// When the user clicks over a cell in the rating column, that cell renderer
 	// emits the rating_changed signal. We need to update that rating...
 	private void on_rating_cell_changed (int new_rating, Gtk.Widget widget, string path, Gtk.CellRendererState flags) {
-		var m = get_media_from_index (int.parse (path));
+		var m = get_object_from_index (int.parse (path)) as Media;
 
 		if (m == null)
 			return;
@@ -297,7 +297,7 @@ public abstract class BeatBox.GenericList : FastView {
 			return;
 		}
 		
-		Media m = get_media_from_index(int.parse(path.to_string()));
+		var m = get_object_from_index(int.parse(path.to_string())) as Media;
 		
 		// We need to first set this as the current list
 		lm.clearCurrent();
@@ -340,7 +340,9 @@ public abstract class BeatBox.GenericList : FastView {
 			map.set(i, 1);
 		
 		for(int i = 0; i < get_visible_table().size(); ++i) {
-			if(map.get(get_visible_table().get(i).rowid) == 1) {
+			var m = get_visible_table ().get (i) as Media;
+			int rowid = m.rowid;
+			if (map.get (rowid) == 1) {
 				redraw_row (i);
 			}
 		}
@@ -363,7 +365,7 @@ public abstract class BeatBox.GenericList : FastView {
 		lm.current_index = 0;
 		var vis_table = get_visible_table();
 		for(int i = 0; i < vis_table.size(); ++i) {
-			Media test = vis_table.get(i);
+			var test = vis_table.get(i) as Media;
 			lm.addToCurrent(test);
 
 			
@@ -380,7 +382,7 @@ public abstract class BeatBox.GenericList : FastView {
 		TreeModel temp;
 		
 		foreach(TreePath path in get_selection().get_selected_rows(out temp)) {
-			Media m = get_media_from_index(int.parse(path.to_string()));
+			var m = get_object_from_index(int.parse(path.to_string())) as Media;
 			rv.append(m);
 		}
 		
@@ -408,7 +410,7 @@ public abstract class BeatBox.GenericList : FastView {
 			return;
 		
 		for(int i = 0; i < get_visible_table().size(); ++i) {
-			Media m = get_media_from_index(i);
+			var m = get_object_from_index(i) as Media;
 
 			if(m.rowid == lm.media_info.media.rowid) {
 				scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
@@ -423,7 +425,7 @@ public abstract class BeatBox.GenericList : FastView {
 			// and if so, undo the search and filters and scroll to it.
 			var whole_table = get_table();
 			for(int i = 0; i < whole_table.size(); ++i) {
-				Media m = whole_table.get(i);
+				var m = whole_table.get(i) as Media;
 
 				if(m.rowid == lm.media_info.media.rowid) {
 					// Undo search and filter

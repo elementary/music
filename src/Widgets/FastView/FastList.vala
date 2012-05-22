@@ -28,11 +28,11 @@ public class BeatBox.FastView : TreeView {
 	public static const int OPTIMAL_COLUMN = -2;
 	FastModel fm;
 	List<Type> columns;
-	protected HashTable<int, Media> table; // is not the same object as showing.
-	protected HashTable<int, Media> showing; // should never point to table.
+	protected HashTable<int, Object> table; // is not the same object as showing.
+	protected HashTable<int, Object> showing; // should never point to table.
 	
 	/* sortable stuff */
-	public delegate int SortCompareFunc (int sort_column_id, Gtk.SortType sort_direction, Media a, Media b);
+	public delegate int SortCompareFunc (int sort_column_id, Gtk.SortType sort_direction, Object a, Object b);
 	protected int sort_column_id;
 	protected SortType sort_direction;
 	private unowned SortCompareFunc compare_func;
@@ -40,7 +40,7 @@ public class BeatBox.FastView : TreeView {
 #if HAVE_BUILTIN_SEARCH
 	// search stuff
 	string last_search;
-	public delegate void ViewSearchFunc (string search, HashTable<int, Media> table, ref HashTable<int, Media> showing);
+	public delegate void ViewSearchFunc (string search, HashTable<int, Object> table, ref HashTable<int, Object> showing);
 	private unowned ViewSearchFunc search_func;
 #endif
 	
@@ -48,8 +48,8 @@ public class BeatBox.FastView : TreeView {
 	
 	public FastView (List<Type> types) {
 		columns = types.copy();
-		table = new HashTable<int, Media>(null, null);
-		showing = new HashTable<int, Media>(null, null);
+		table = new HashTable<int, Object>(null, null);
+		showing = new HashTable<int, Object>(null, null);
 		fm = new FastModel(types);
 		
 		sort_column_id = OPTIMAL_COLUMN;
@@ -65,12 +65,12 @@ public class BeatBox.FastView : TreeView {
 	}
 	
 	/** Should not be manipulated by client */
-	public HashTable<int, Media> get_table() {
+	public HashTable<int, Object> get_table() {
 		return table;
 	}
 	
 	/** Should not be manipulated by client */
-	public HashTable<int, Media> get_visible_table() {
+	public HashTable<int, Object> get_visible_table() {
 		return showing;
 	}
 	
@@ -78,7 +78,7 @@ public class BeatBox.FastView : TreeView {
 		return (int)iter.user_data;
 	}
 	
-	public Media get_media_from_index(int index) {
+	public Object get_object_from_index(int index) {
 		return showing.get(index);
 	}
 	
@@ -86,7 +86,7 @@ public class BeatBox.FastView : TreeView {
 		fm.set_value_func(func);
 	}
 
-	public void set_table (HashTable<int, Media> table, bool do_resort = true) {
+	public void set_table (HashTable<int, GLib.Object> table, bool do_resort = true) {
 		this.table = table;
 		
 		if (do_resort)
@@ -207,13 +207,13 @@ public class BeatBox.FastView : TreeView {
 	}
 	
 	void swap (int a, int b) {
-		Media temp = table.get(a);
-		table.set(a, table.get(b));
-		table.set(b, temp);
+		var temp = table.get (a);
+		table.set (a, table.get(b));
+		table.set (b, temp);
 	}
 	
 	public void quicksort (int start, int end) {
-		Media pivot = table.get((start+end)/2);
+		var pivot = table.get((start+end)/2);
 		int i = start;
 		int j = end;
 		

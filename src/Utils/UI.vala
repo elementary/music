@@ -59,21 +59,10 @@ namespace BeatBox.UI {
         H3
     }
 
-    const string TITLE_STYLESHEET = """
-        .title { font: raleway 36; }
-    """;
-
-    const string H1_STYLESHEET = """
-        .h1 { font: open sans bold 24; }
-    """;
-
-    const string H2_STYLESHEET = """
-        .h2 { font: open sans light 18; }
-    """;
-
-    const string H3_STYLESHEET = """
-        .h3 { font: open sans bold 12; }
-    """;
+    const string H1_STYLESHEET    = ".h1 { font: open sans bold 24;  }";
+    const string H2_STYLESHEET    = ".h2 { font: open sans light 18; }";
+    const string H3_STYLESHEET    = ".h3 { font: open sans bold 12;  }";
+    const string TITLE_STYLESHEET = ".title { font: raleway 36; }";
 
     public void apply_style_to_label (Gtk.Label label, TextStyle text_style) {
         var style_provider = new Gtk.CssProvider ();

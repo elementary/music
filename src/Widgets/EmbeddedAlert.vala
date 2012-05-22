@@ -65,7 +65,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
         primary_text_label.valign = secondary_text_label.valign = Gtk.Align.START;
 
-        image = new Gtk.Image.from_icon_name ("", Gtk.IconSize.DIALOG);
+        image = new Gtk.Image ();
 
         image.halign = Gtk.Align.END;
         image.valign = Gtk.Align.START;
@@ -129,7 +129,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
             primary_text_label.justify = secondary_text_label.justify = Gtk.Justification.CENTER;
         }
 
-        // Make sure the text is selectable is the level is WARNING, ERROR or QUESTION
+        // Make sure the text is selectable if the level is WARNING, ERROR or QUESTION
         primary_text_label.selectable = secondary_text_label.selectable = (type != Gtk.MessageType.INFO);
 
         image.set_no_show_all (!show_icon);
@@ -185,7 +185,7 @@ namespace Granite.Widgets.Utils {
 
     public Gtk.Button? new_button_from_action (Gtk.Action action) {
         if (action == null)
-            return new Gtk.Button ();
+            return null;
 
         bool has_label = action.label != null;
         bool has_stock = action.stock_id != null;

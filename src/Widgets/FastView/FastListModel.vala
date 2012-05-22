@@ -28,14 +28,14 @@ public class BeatBox.FastModel : GLib.Object, TreeModel, TreeSortable {
 	int stamp; // all iters must match this
 	
 	/* data storage variables */
-	HashTable<int, Media> rows; // internal id -> user specified object
+	HashTable<int, Object> rows; // internal id -> user specified object
 	List<Type> columns;
 	
 	private int sort_column_id;
 	private SortType sort_direction;
 	
 	/* user specific function for get_value() */
-	public delegate Value ValueReturnFunc (int row, int column, Media o);
+	public delegate Value ValueReturnFunc (int row, int column, Object o);
 	private unowned ValueReturnFunc value_func;
 	
 	public signal void reorder_requested (int column, Gtk.SortType direction);
@@ -43,7 +43,7 @@ public class BeatBox.FastModel : GLib.Object, TreeModel, TreeSortable {
 	/** Initialize data storage, columns, etc. **/
 	public FastModel (List<Type> column_types) {
 		columns = column_types.copy();
-		rows = new HashTable<int, Media>(null, null);
+		rows = new HashTable<int, Object>(null, null);
 		
 		sort_column_id = -2;
 		sort_direction = SortType.ASCENDING;
@@ -144,7 +144,7 @@ public class BeatBox.FastModel : GLib.Object, TreeModel, TreeSortable {
 		iter = TreeIter();
 		
 		TreePath path = new TreePath.from_string(((int)rows.size()).to_string());
-		rows.set((int)rows.size(), new Media(""));
+		rows.set((int)rows.size(), new Object());
 		iter.stamp = this.stamp;
 		iter.user_data = (void*)rows.size;
 		
@@ -181,7 +181,7 @@ public class BeatBox.FastModel : GLib.Object, TreeModel, TreeSortable {
 	 * @objects Must be a consecutive ordered hash table with indexes 
 	 * 0-n where n is size of the hashtable (no gaps).
 	**/
-	public void set_table (HashTable<int, Media> table) {
+	public void set_table (HashTable<int, Object> table) {
 		rows.remove_all();
 		for(int i = 0; i < table.size(); ++i)
 			rows.set(i, table.get(i));

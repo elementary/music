@@ -378,7 +378,7 @@ public class BeatBox.MusicListView : GenericList {
 		else {
 			var list = new LinkedList<int>();
 			for(int i = 0; i < get_visible_table().size(); ++i) {
-				list.add(get_media_from_index(i).rowid);
+				list.add ((get_object_from_index(i) as Media).rowid);
 			}
 			MediaEditor se = new MediaEditor(lm, list, to_edit);
 			se.medias_saved.connect(mediaEditorSaved);
@@ -502,8 +502,11 @@ public class BeatBox.MusicListView : GenericList {
 		get_style_context().add_provider(style, STYLE_PROVIDER_PRIORITY_APPLICATION);
 	}
 	
-	protected int view_compare_func (int col, Gtk.SortType dir, Media a_media, Media b_media) {
+	protected int view_compare_func (int col, Gtk.SortType dir, Object a, Object b) {
 		int rv = 0;
+		
+		var a_media = a as Media;
+		var b_media = b as Media;
 		
 		if(col == MusicColumn.NUMBER) {
 			rv = 1;//a.get_position() - b.get_position();
@@ -590,8 +593,9 @@ public class BeatBox.MusicListView : GenericList {
 		return rv;
 	}
 	
-	protected Value view_value_func (int row, int column, Media s) {
+	protected Value view_value_func (int row, int column, Object o) {
 		Value val;
+		var s = o as Media;
 		
 		if(column == MusicColumn.ROWID)
 			val = s.rowid;

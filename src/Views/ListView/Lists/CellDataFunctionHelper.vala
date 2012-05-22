@@ -25,28 +25,17 @@ using Gdk;
 
 public class BeatBox.CellDataFunctionHelper : GLib.Object {
 	LibraryManager lm;
-	GenericList view;
-#if !HAVE_GRANITE_RATING
-	private Pixbuf _canvas;
-	private Pixbuf not_starred;
-	private Pixbuf starred;
-#endif
+	FastView view;
 	
-	public CellDataFunctionHelper(LibraryManager lm, GenericList view) {
+	public CellDataFunctionHelper(LibraryManager lm, FastView view) {
 		this.lm = lm;
 		this.view = view;
-
-#if !HAVE_GRANITE_RATING
-		this.starred = Icons.STARRED.render (IconSize.MENU, null);
-		this.not_starred = Icons.NOT_STARRED.render (IconSize.MENU, null);
-		_canvas = new Gdk.Pixbuf(Gdk.Colorspace.RGB, true, 8, starred.width * 5, starred.height);
-#endif
 	}
 
 #if HAVE_SMART_ALBUM_COLUMN
 	// for Smart album column
 	public void smartAlbumFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
-		Media m = view.get_media_from_index((int)iter.user_data);
+		var m = view.get_object_from_index((int)iter.user_data) as Media;
 		
 		((SmartAlbumRenderer)cell).m = m;
 		
@@ -55,7 +44,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 			
 			current = (int)iter.user_data;
 			for(top = current; top >= 0; --top) {
-				if(view.get_media_from_index(top).album != m.album) {
+				if(view.get_object_from_index(top).album != m.album) {
 					++top;
 					break;
 				}
@@ -64,7 +53,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 				}
 			}
 			for(bottom = current; bottom < view.get_visible_table().size(); ++bottom) {
-				if(view.get_media_from_index(bottom).album != m.album) {
+				if((view.get_object_from_index(bottom) as Media).album != m.album) {
 					--bottom;
 					break;
 				}
@@ -95,7 +84,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 	/** For spinner/unique icon on each row **/
 	public void iconDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
 		bool showIndicator = false;
-		Media s = view.get_media_from_index((int)iter.user_data);
+		var s = view.get_object_from_index((int)iter.user_data) as Media;
 		
 		if(s == null)
 			return;
@@ -138,10 +127,12 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
-		if(val.get_string() == null)
+		var str = val.get_string ();
+		
+		if (str == null)
 			return;
 		
-		((CellRendererText)cell).markup = String.escape (val.get_string());
+		((CellRendererText)cell).markup = String.escape (str);
 	}
 	
 	// for Bitrate. Append 'kbps'
@@ -149,10 +140,13 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
-		if(val.get_int() <= 0)
-			((CellRendererText)cell).markup = "";
+		var n = val.get_int ();
+		var text_cell = cell as CellRendererText;
+
+		if (n <= 0)
+			text_cell.markup = "";
 		else
-			((CellRendererText)cell).markup = val.get_int().to_string() + " " + _("kbps");
+			text_cell.markup = _("%i kbps").printf (n);
 	}
 
 	// turns int of seconds into pretty length mm:ss format
@@ -160,23 +154,30 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
-		if(val.get_int() <= 0)
-			((CellRendererText)cell).markup = "";
+		var text_cell = cell as CellRendererText;
+		
+		int secs = val.get_int ();
+		
+		if(secs <= 0)
+			text_cell.markup = "";
 		else
-			((CellRendererText)cell).markup = (val.get_int() / 60).to_string() + ":" + (((val.get_int() % 60) >= 10) ? (val.get_int() % 60).to_string() : ("0" + (val.get_int() % 60).to_string()));
+			text_cell.markup = String.escape (TimeUtils.pretty_time_mins (secs));
 	}
-	
+
 	// turns seconds since Jan 1, 1970 into date format
 	public void dateTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
-		
-		if(val.get_int() <= 0)
-			((CellRendererText)cell).markup = "";
+
+		int n = val.get_int ();
+		var text_cell = cell as CellRendererText;
+
+		if (n <= 0)
+			text_cell.markup = "";
 		else {
-			var t = Time.local(val.get_int());
-			string rv = t.format("%m/%e/%Y %l:%M %p");
-			((CellRendererText)cell).markup = rv;
+			var t = Time.local (n);
+			var str = TimeUtils.pretty_timestamp_from_time (t);
+			text_cell.markup = String.escape (str);
 		}
 	}
 	
@@ -184,25 +185,8 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 
-#if !HAVE_GRANITE_RATING
-		if(val.get_int() == 0)
-			((CellRendererPixbuf)cell).pixbuf = null;
-		else {
-			_canvas.fill((uint) 0xffffff00);
-			
-			/* generate the canvas image */
-			for (int i = 0; i < 5; i++) {
-				if (i < val.get_int()) {
-					starred.copy_area(0, 0, starred.width, starred.height, _canvas, i * starred.width, 0);
-				}
-			}
-			
-			((CellRendererPixbuf)cell).pixbuf = _canvas;
-		}
-#else
 		// now let's set the rating!
 		(cell as Granite.Widgets.CellRendererRating).set_rating (val.get_int ());
-#endif
 	}
 }
 

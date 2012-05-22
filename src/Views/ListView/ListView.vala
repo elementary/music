@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 BeatBox Developers
+ * Copyright (c) 2012 Noise Developers
  *
  * This is a free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License as
@@ -33,9 +33,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	private Gtk.Paned list_view_hpaned; // for left mode
 	private Gtk.Paned list_view_vpaned; // for top mode
 
-
 	public ColumnBrowser column_browser { get; private set; }
-	public GenericList   list_view { get; private set; }
+	public GenericList   list_view      { get; private set; }
 
 	private ScrolledWindow list_scrolled;
 
@@ -280,7 +279,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	public Gee.Collection<Media> get_media () {
 		var media_list = new Gee.LinkedList<Media> ();
 		foreach (var m in list_view.get_table ().get_values ())
-			media_list.add (m);
+			media_list.add (m as Media);
 
 		return media_list;
 	}
@@ -288,7 +287,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 	public Gee.Collection<Media> get_visible_media () {
 		var media_list = new Gee.LinkedList<Media> ();
 		foreach (var m in list_view.get_visible_table ().get_values ())
-			media_list.add (m);
+			media_list.add (m as Media);
 
 		return media_list;
 	}
