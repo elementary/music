@@ -77,6 +77,8 @@ namespace Icons {
 	public BeatBox.Icon PLAYLIST;
 	public BeatBox.Icon SMART_PLAYLIST;
 
+	public BeatBox.Icon EJECT;
+
 	public BeatBox.Icon LASTFM_LOVE;
 	public BeatBox.Icon LASTFM_BAN;
 
@@ -146,6 +148,7 @@ namespace Icons {
 		AUDIO_CD = new BeatBox.Icon ("media-cdrom-audio", 16, Type.MIMETYPE, null, true);
 		PLAYLIST = new BeatBox.Icon ("playlist", 16, Type.MIMETYPE, null, true);
 		SMART_PLAYLIST = new BeatBox.Icon ("playlist-automatic", 16, Type.MIMETYPE, null, true);
+		EJECT = new BeatBox.Icon ("media-eject", 16, Type.ACTION, null, true);
 		LASTFM_LOVE = new BeatBox.Icon ("lastfm-love", 16, Type.ACTION, null, true);
 		LASTFM_BAN = new BeatBox.Icon ("lastfm-ban", 16, Type.ACTION, null, true);
 		STARRED = new BeatBox.Icon ("starred", 16, Type.STATUS, null, true);

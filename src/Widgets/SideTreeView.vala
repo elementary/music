@@ -263,7 +263,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			TreeIter? rv;
 			Gdk.Pixbuf? device_icon;
 			if(d.getContentType() == "cdrom") {
-				devices_cdrom_iter = addItem(parent, o, w, Icons.AUDIO_CD.render(IconSize.MENU, null), name, null);
+				devices_cdrom_iter = addItem(parent, o, w, Icons.AUDIO_CD.render(IconSize.MENU, null), name, Icons.EJECT.render(IconSize.MENU, null));
 				return devices_cdrom_iter;
 			}
 			else if(d.getContentType() == "ipod-new")
@@ -275,7 +275,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 			else
 			    device_icon = Icons.render_icon("multimedia-player", IconSize.MENU);
 
-			rv = addItem(parent, o, w, device_icon, name, null);
+			rv = addItem(parent, o, w, device_icon, name, Icons.EJECT.render(IconSize.MENU, null));
 
 			var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
 			dvw.set_media (d.get_medias ());
@@ -1005,8 +1005,14 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		GLib.Object o;
 		filter.get(iter, 0, out o);
 		
-		if(o is Device && ((Device)o).getContentType() == "cdrom") {
-			((Device)o).unmount();
+		if(o is Device) {
+			if (((Device)o).is_syncing ()) {
+				lw.doAlert(_("This device is syncing"), _("Please wait until the current sync is finished to do this action."));
+			} else if (((Device)o).is_transferring()) {
+				lw.doAlert(_("This device is in transfer"), _("Please wait until the current transfer is finished to do this action."));
+			} else {
+				((Device)o).eject();
+			}
 		}
 	}
 #if 0

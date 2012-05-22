@@ -234,7 +234,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         left_box.pack_end (status_label, false, false, 5);
 
         /** SYNC BUTTON **/
-        sync_button = new Button.with_label ("Sync");
+        sync_button = new Button.with_label (_("Sync"));
         sync_button.set_size_request (80, -1);
 
         sync_button.clicked.connect ( ()=> {
@@ -264,7 +264,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         set_size (size);
 
         /** Adding free-space element **/
-        add_item_at_pos ("Free", size, ItemColor.GREY, ItemPosition.END);
+        add_item_at_pos (_("Free"), size, ItemColor.GREY, ItemPosition.END);
     }
 
     public void set_sync_button_sensitive (bool val) {
@@ -377,7 +377,7 @@ public class SpaceWidget : Gtk.ScrolledWindow {
         // Setting bottom label text
         double used = total_size - free_space_size;
         double p = used / total_size * 100.0;
-        status_label.set_text("Using %.2f of %.2f GB (%.2f%)".printf(used/1000.0, total_size/1000.0, p));
+        status_label.set_text(_("Using %s of %s (%.2f%)").printf(GLib.format_size ((uint64)used), GLib.format_size ((uint64)total_size), p));
     }
 
     private void show_full_bar_item (bool show_item, ItemColor? color) {
@@ -527,12 +527,6 @@ private class SpaceWidgetItem : GLib.Object {
     private Gtk.Label title_label;
     private Gtk.Label size_label;
 
-    /** Base Unit: Megabytes (MB) **/
-    const double MULT = 1000;
-    const double MB = 1;
-    const double GB = MULT * MB;
-    const double TB = MULT * GB;
-
     public SpaceWidgetItem (int id, string name, double size, SpaceWidget.ItemColor color) {
         this.name = name;
         this.size = size;
@@ -570,23 +564,11 @@ private class SpaceWidgetItem : GLib.Object {
 
     public void set_size (double s) {
         size = s;
-        var size_text = new StringBuilder();
-
-        if (size <= GB) {
-            size_text.append ("%.2f".printf(size/MB));
-            size_text.append (" MB");
-        } else if (size <= TB) {
-            size_text.append ("%.2f".printf(size/GB));
-            size_text.append (" GB");
-        } else {
-            size_text.append ("%.2f".printf(size/TB));
-            size_text.append (" TB");
-        }
-
+        
         if (size_label == null)
-            size_label = new Label (size_text.str);
+            size_label = new Label (GLib.format_size ((uint64)size));
         else
-            size_label.set_text (size_text.str);
+            size_label.set_text (GLib.format_size ((uint64)size));
     }
 
     public void show () {

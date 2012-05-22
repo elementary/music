@@ -208,14 +208,13 @@ namespace Granite.Widgets {
 		}
 		
 		public void clickableCellDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
-			Gdk.Pixbuf clickable;
-			model.get(iter, SideBarColumn.COLUMN_CLICKABLE, out clickable);
+			TreePath path = model.get_path(iter);
 			
-			if(clickable != null) {
-				renderer.visible = true;
+			if(path.get_depth() == 1) {
+				renderer.visible = false;
 			}
 			else {
-				renderer.visible = false;
+				renderer.visible = true;
 			}
 		}
 		

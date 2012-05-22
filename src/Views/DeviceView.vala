@@ -66,7 +66,7 @@ public class BeatBox.DeviceView : VBox {
 	
 	
 	public void set_as_current_view() {
-		summary.refreshLists();
+		summary.refresh_lists();
 	}
 	
 	public void showImportDialog() {
@@ -88,7 +88,7 @@ public class BeatBox.DeviceView : VBox {
 	}
 	
 	public void syncClicked() {
-		summary.syncClicked();
+		summary.sync_clicked();
 	}
 	
 	void deviceProgress(string? message, double progress) {
