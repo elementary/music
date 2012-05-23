@@ -28,7 +28,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	DevicePreferences pref;
 	iTunesDB db;
 	Mount mount;
-	GLib.Icon icon;
+	Gdk.Pixbuf icon;
 	bool currently_syncing;
 	bool currently_transferring;
 	bool sync_cancelled;
@@ -57,7 +57,11 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			lm.device_manager.add_device_preferences(pref);
 		}
 		
-		icon = mount.get_icon();
+		
+		if(isNew())
+		    icon = Icons.render_icon ("phone", Gtk.IconSize.MENU);
+		else
+		    icon = Icons.render_icon("multimedia-player", Gtk.IconSize.MENU);
 		currently_syncing = false;
 		currently_transferring = false;
 		sync_cancelled = false;
@@ -208,11 +212,11 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		return mount.get_default_location().get_path();
 	}
 	
-	public void set_icon(GLib.Icon icon) {
+	public void set_icon(Gdk.Pixbuf icon) {
 		this.icon = icon;
 	}
 	
-	public GLib.Icon get_icon() {
+	public Gdk.Pixbuf get_icon() {
 		return icon;
 	}
 	
@@ -231,7 +235,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public string get_fancy_capacity() {
-		return "Unknown Capacity";//db.device.get_ipod_info().capacity.to_string() + "GB";
+		return GLib.format_size (get_capacity());
 	}
 	
 	public uint64 get_used_space() {
@@ -257,7 +261,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public void eject() {
-		mount.eject_with_operation (GLib.MountUnmountFlags.NONE, null);
+		mount.get_volume ().eject_with_operation (GLib.MountUnmountFlags.NONE, null);
 	}
 	
 	public void get_device_type() {
@@ -312,8 +316,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			return false;
 		}
 		
-		lm.start_file_operations("Syncing <b>" + getDisplayName() + "</b>...");
-		current_operation = "Syncing <b>" + getDisplayName() + "</b>...";
+		lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()));
+		current_operation = ("Syncing <b>%s</b>...").printf (getDisplayName ());
 		lm.lw.update_sensitivities();
 		to_add = new HashMap<Media, unowned GPod.Track>();
 		this.list = list;
@@ -348,7 +352,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 	public bool will_fit(LinkedList<Media> list) {
 		uint64 list_size = 0;
 		foreach(var m in list) {
-			list_size += m.file_size * 1000000; // convert from MB to bytes
+			list_size += m.file_size; // convert from MB to bytes
 		}
 		
 		return get_capacity() > list_size;
@@ -529,8 +533,8 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			return false;
 		}
 		
-		lm.start_file_operations("Syncing <b>" + getDisplayName() + "</b>...");
-		current_operation = "Syncing <b>" + getDisplayName() + "</b>...";
+		lm.start_file_operations(_("Syncing <b>%s</b>...").printf (getDisplayName ()));
+		current_operation = ("Syncing <b>%s</b>...").printf (getDisplayName ());
 		lm.lw.update_sensitivities();
 		to_add = new HashMap<Media, unowned GPod.Track>();
 		this.list = list;
@@ -684,7 +688,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 			return false;
 		}
 		
-		lm.start_file_operations("Removing from <b>" + getDisplayName() + "</b>...");
+		lm.start_file_operations (_("Removing from <b>%s</b>...").printf (getDisplayName ()));
 		current_operation = "Removing from <b>" + getDisplayName() + "</b>...";
 		lm.lw.update_sensitivities();
 		this.list = list;
@@ -917,7 +921,7 @@ public class BeatBox.iPodDevice : GLib.Object, BeatBox.Device {
 		}
 		
 		this.list = tr_list;
-		lm.start_file_operations("Importing <b>" + ((list.size > 1) ? list.size.to_string() : (list.get(0)).title) + "</b> to library...");
+		lm.start_file_operations(_("Importing <b>%s</b> to library...").printf((list.size > 1) ? list.size.to_string() : (list.get(0)).title));
 		current_operation = "Importing <b>" + ((list.size > 1) ? list.size.to_string() : (list.get(0)).title) + "</b> items to library...";
 		
 		try {

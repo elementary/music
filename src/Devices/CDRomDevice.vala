@@ -27,7 +27,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Mount mount;
-	GLib.Icon icon;
+	Gdk.Pixbuf icon;
 	string display_name;
 	
 	CDRipper ripper;
@@ -49,7 +49,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		this.lm = lm;
 		this.lw = lm.lw;
 		this.mount = mount;
-		this.icon = mount.get_icon();
+		this.icon = Icons.AUDIO_CD.render(Gtk.IconSize.MENU, null);
 		this.display_name = mount.get_name();
 		
 		list = new LinkedList<Media>();
@@ -123,11 +123,11 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		return mount.get_default_location().get_uri();
 	}
 	
-	public void set_icon(GLib.Icon icon) {
+	public void set_icon(Gdk.Pixbuf icon) {
 		this.icon = icon;
 	}
 	
-	public GLib.Icon get_icon() {
+	public Gdk.Pixbuf get_icon() {
 		return icon;
 	}
 	
@@ -295,7 +295,7 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 		
 		if(GLib.File.new_for_uri(lib_copy.uri).query_exists()) {
 			try {
-				lib_copy.file_size = (int)(GLib.File.new_for_uri(lib_copy.uri).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+				lib_copy.file_size = (int)(GLib.File.new_for_uri(lib_copy.uri).query_info("*", FileQueryInfoFlags.NONE).get_size());
 			}
 			catch(Error err) {
 				lib_copy.file_size = 5; // best guess

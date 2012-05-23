@@ -69,6 +69,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	Gtk.Menu deviceMenu;
 	Gtk.MenuItem deviceImportToLibrary;
 	Gtk.MenuItem deviceSync;
+	Gtk.MenuItem deviceEject;
 	
 	//for playlist right click
 	Gtk.Menu playlistMenu;
@@ -100,10 +101,13 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		deviceMenu = new Gtk.Menu();
 		deviceImportToLibrary = new Gtk.MenuItem.with_label(_("Import from Device"));
 		deviceSync = new Gtk.MenuItem.with_label(_("Sync"));
+		deviceEject = new Gtk.MenuItem.with_label(_("Eject"));
 		deviceMenu.append(deviceImportToLibrary);
 		deviceMenu.append(deviceSync);
+		deviceMenu.append(deviceEject);
 		deviceImportToLibrary.activate.connect(deviceImportToLibraryClicked);
 		deviceSync.activate.connect(deviceSyncClicked);
+		deviceEject.activate.connect(deviceEjectClicked);
 		deviceMenu.show_all();
 
 #if HAVE_PODCASTS
@@ -261,19 +265,11 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		else if(o is Device && parent == devices_iter) {
 			Device d = (Device)o;
 			TreeIter? rv;
-			Gdk.Pixbuf? device_icon;
-			if(d.getContentType() == "cdrom") {
-				devices_cdrom_iter = addItem(parent, o, w, Icons.AUDIO_CD.render(IconSize.MENU, null), name, Icons.EJECT.render(IconSize.MENU, null));
-				return devices_cdrom_iter;
+			Gdk.Pixbuf device_icon = d.get_icon();
+			
+			if (device_icon == null) {
+				device_icon = Icons.render_icon ("multimedia-player", Gtk.IconSize.MENU);
 			}
-			else if(d.getContentType() == "ipod-new")
-			    device_icon = Icons.render_icon ("phone", IconSize.MENU);
-			else if(d.getContentType() == "ipod-old")
-			    device_icon = Icons.render_icon("multimedia-player", IconSize.MENU);
-			else if(d.getContentType() == "android")
-				device_icon = Icons.render_icon("phone", IconSize.MENU);
-			else
-			    device_icon = Icons.render_icon("multimedia-player", IconSize.MENU);
 
 			rv = addItem(parent, o, w, device_icon, name, Icons.EJECT.render(IconSize.MENU, null));
 
@@ -577,6 +573,12 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		if(o is Device) {
 			((DeviceView)w).syncClicked();
 		}
+	}
+	
+	void deviceEjectClicked() {
+		TreeIter iter = getSelectedIter();
+		
+		clickableClicked (iter);
 	}
 	
 	//smart playlist context menu

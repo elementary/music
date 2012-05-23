@@ -38,8 +38,8 @@ public interface BeatBox.Device : GLib.Object {
 	public abstract void set_mount(Mount mount);
 	public abstract Mount get_mount();
 	public abstract string get_path();
-	public abstract void set_icon(GLib.Icon icon);
-	public abstract GLib.Icon get_icon();
+	public abstract void set_icon(Gdk.Pixbuf icon);
+	public abstract Gdk.Pixbuf get_icon();
 	public abstract uint64 get_capacity();
 	public abstract string get_fancy_capacity();
 	public abstract uint64 get_used_space();
