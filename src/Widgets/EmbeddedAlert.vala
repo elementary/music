@@ -102,6 +102,9 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         if (secondary_text == null)
             secondary_text = "";
 
+        set_primary_text_visible (primary_text != "");
+        set_secondary_text_visible (secondary_text != "");
+
         // We force the HIG here. Whenever show_icon is true, the title has to be left-aligned.
         if (show_icon) {
             primary_text_label.halign = secondary_text_label.halign = Gtk.Align.START;
@@ -132,8 +135,7 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         // Make sure the text is selectable if the level is WARNING, ERROR or QUESTION
         primary_text_label.selectable = secondary_text_label.selectable = (type != Gtk.MessageType.INFO);
 
-        image.set_no_show_all (!show_icon);
-        image.set_visible (show_icon);
+        set_icon_visible (show_icon);
 
         // clear button box
         foreach (var button in action_button_box.get_children ()) {
@@ -167,17 +169,37 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
                 action_button_box.halign = Gtk.Align.CENTER;
             }
 
-            action_button_box.set_no_show_all (false);
-            action_button_box.show_all ();
+            set_buttons_visible (true);
         }
         else {
             action_button_box.set_no_show_all (true);
-            action_button_box.hide ();
+            set_buttons_visible (false);
         }
 
         primary_text_label.set_markup (PRIMARY_TEXT_MARKUP.printf (Markup.escape_text (primary_text, -1)));
         secondary_text_label.set_markup (secondary_text);
     }
+
+    public void set_primary_text_visible (bool show_primary_text) {
+        primary_text_label.set_no_show_all (!show_primary_text);
+        primary_text_label.set_visible (show_primary_text);
+    }
+
+    public void set_secondary_text_visible (bool show_secondary_text) {
+        secondary_text_label.set_no_show_all (!show_secondary_text);
+        secondary_text_label.set_visible (show_secondary_text);
+    }
+
+    public void set_icon_visible (bool show_icon) {
+        image.set_no_show_all (!show_icon);
+        image.set_visible (show_icon);
+    }
+
+    public void set_buttons_visible (bool show_buttons) {
+        action_button_box.set_no_show_all (!show_buttons);
+        action_button_box.set_visible (show_buttons);
+    }
+
 }
 
 // TODO: Move to a separate file

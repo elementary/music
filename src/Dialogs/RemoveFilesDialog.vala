@@ -139,6 +139,9 @@ public class BeatBox.RemoveFilesDialog : Window {
 		cancel_button.clicked.connect ( () => {
 			destroy ();
 		});
+
+		set_default (cancel_button);
+		cancel_button.grab_focus ();
 		
 		add(padding);
 		show_all();

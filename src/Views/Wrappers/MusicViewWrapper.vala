@@ -41,6 +41,10 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"),
                              _("%s can't seem to find your music.").printf (lw.app.get_name ()));
 
+        // Alert box
+        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
+        set_default_alert ();
+
         var music_folder_icon = Icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
         welcome_screen.append_with_pixbuf (music_folder_icon, _("Locate"), _("Change your music folder."));
 
@@ -49,12 +53,16 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
 		// Refresh view layout
 		pack_views ();
 
+        // set alert box as initial active view
+        set_active_view (ViewType.ALERT);
 
         connect_data_signals ();
 
         lm.device_manager.device_added.connect (device_added);
         lm.device_manager.device_removed.connect (device_removed);
 
+        // Give more priority
+        no_thread_delay = true;
     }
 
     private void connect_data_signals () {
@@ -182,5 +190,12 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
                 }
             }
         }
+    }
+
+    private inline void set_default_alert () {
+        if (!has_embedded_alert)
+            return;
+
+        embedded_alert.set_alert (_("Loading Songs ..."), "", null, false);
     }
 }

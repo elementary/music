@@ -483,9 +483,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      *  DATA METHODS
      */
 
-    /* Whether to populate this view wrapper's views immediately or delay the process */
-    protected bool populate_views { get { return is_current_wrapper && lw.get_realized (); } }
-
     public string get_search_string () {
         return last_search;
     }
@@ -565,6 +562,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     /**
      * /!\ Async variants. Don't use them if you depend on the results to proceed in your method
      */
+    protected bool no_thread_delay = false;
+
     public async void set_media_async (Gee.Collection<Media> new_media) {
         int priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
         
@@ -572,6 +571,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             priority -= 10;
 
         Idle.add_full (priority, () => {
+            if (!lw.initialization_finished && !no_thread_delay)
+                return true;
+
             set_media (new_media);
             return false;
         });
@@ -580,7 +582,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public async void set_media_from_ids_async (Gee.Collection<int> new_media) {
         var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
         Idle.add_full (priority, () => {
-            if (!lw.initialization_finished)
+            if (!lw.initialization_finished && !no_thread_delay)
                 return true;
 
             set_media_from_ids (new_media);
@@ -591,7 +593,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public async void add_media_async (Gee.Collection<Media> to_add) {
         var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
         Idle.add_full (priority, () => {
-            if (!lw.initialization_finished)
+            if (!lw.initialization_finished && !no_thread_delay)
                 return true;
 
             add_media (to_add);
@@ -602,7 +604,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public async void remove_media_async (Gee.Collection<Media> to_remove) {
         var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
         Idle.add_full (priority, () => {
-            if (!lw.initialization_finished)
+            if (!lw.initialization_finished && !no_thread_delay)
                 return true;
 
             remove_media (to_remove);
@@ -613,7 +615,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public async void update_media_async (Gee.Collection<Media> to_update) {
         var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
         Idle.add_full (priority, () => {
-            if (!lw.initialization_finished)
+            if (!lw.initialization_finished && !no_thread_delay)
                 return true;
             
             update_media (to_update);
