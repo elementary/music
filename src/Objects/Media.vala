@@ -219,7 +219,7 @@ public class BeatBox.Media : GLib.Object {
 		rv.bpm = track.BPM;
 		rv.skip_count = track.skipcount;
 		rv.length = track.tracklen  / 1000;
-		rv.file_size = track.size / 1000000;
+		rv.file_size = track.size;
 		
 		if(track.mediatype == GPod.MediaType.AUDIO)
 			rv.mediatype = MediaType.SONG;
@@ -273,7 +273,7 @@ public class BeatBox.Media : GLib.Object {
 		t.BPM = (uint16)bpm;
 		t.skipcount = skip_count;
 		t.tracklen = (int)length * 1000;
-		t.size = file_size * 1000000;
+		t.size = file_size;
 		t.mediatype = GPod.MediaType.AUDIO;
 		t.lyrics_flag = 1;
 		t.description = lyrics;
@@ -326,7 +326,7 @@ public class BeatBox.Media : GLib.Object {
 		t.BPM = (uint16)bpm;
 		t.skipcount = skip_count;
 		t.tracklen = (int)length * 1000;
-		t.size = file_size * 1000000;
+		t.size = file_size;
 		t.mediatype = GPod.MediaType.AUDIO;
 		t.lyrics_flag = 1;
 		t.description = lyrics;

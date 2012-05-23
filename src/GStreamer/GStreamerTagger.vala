@@ -230,8 +230,8 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				
 				s.date_added = (int)time_t();
 				
-				// get the size and convert to MB
-				s.file_size = (int)(File.new_for_uri(info.get_uri()).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
+				// get the size
+				s.file_size = (uint)(File.new_for_uri(info.get_uri()).query_info("*", FileQueryInfoFlags.NONE).get_size());
 				
 			}
 			catch (Error e) {

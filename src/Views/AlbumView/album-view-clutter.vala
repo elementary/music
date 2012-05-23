@@ -547,22 +547,18 @@ public class BeatBox.AlbumView : ContentView, Grid {
         
         string fancy = "";
         if(total_time < 3600) { // less than 1 hour show in minute units
-            fancy = (total_time/60).to_string() + " minutes";
+            fancy = _("%d minutes").printf (total_time/60);
         }
         else if(total_time < (24 * 3600)) { // less than 1 day show in hour units
-            fancy = (total_time/3600).to_string() + " hours";
+            fancy = _("%d hours").printf (total_time/3600);
         }
         else { // units in days
-            fancy = (total_time/(24 * 3600)).to_string() + " days";
+            fancy = _("%d days").printf (total_time/(24 * 3600));
         }
         
-        string fancy_size = "";
-        if(total_mbs < 1000)
-            fancy_size = ((float)(total_mbs)).to_string() + " MB";
-        else 
-            fancy_size = ((float)(total_mbs/1000.0f)).to_string() + " GB";
+        string fancy_size = GLib.format_size (total_mbs);
         
-        lw.set_statusbar_text(count.to_string() + " items, " + fancy + ", " + fancy_size);
+        lw.set_statusbar_text ( _("%u items, %s, %s").printf (count, fancy, fancy_size));
     }
     
     /*public void set_medias(Collection<int> new_medias) {

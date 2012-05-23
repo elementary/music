@@ -25,10 +25,11 @@ using Gee;
 
 public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 	Mount mount;
-	GLib.Icon icon;
+	Gdk.Pixbuf icon;
 	
 	public AndroidDevice(Mount mount) {
 		this.mount = mount;
+		icon = Icons.render_icon("phone", Gtk.IconSize.MENU);
 	}
 	
 	public DevicePreferences get_preferences() {
@@ -71,11 +72,11 @@ public class BeatBox.AndroidDevice : GLib.Object, BeatBox.Device {
 		return mount.get_default_location().get_path();
 	}
 	
-	public void set_icon(GLib.Icon icon) {
+	public void set_icon(Gdk.Pixbuf icon) {
 		this.icon = icon;
 	}
 	
-	public GLib.Icon get_icon() {
+	public Gdk.Pixbuf get_icon() {
 		return icon;
 	}
 	

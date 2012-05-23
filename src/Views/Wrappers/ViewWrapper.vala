@@ -382,7 +382,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         string media_text = media_description.printf ((int)total_items);
         string time_text = TimeUtils.time_string_from_seconds (total_time);
-        string size_text = format_size (1000000 * (uint64)total_size);
+        string size_text = format_size ((uint64)total_size);
 
         return "%s, %s, %s".printf (media_text, time_text, size_text);
     }
