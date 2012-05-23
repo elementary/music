@@ -154,6 +154,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	public void build_ui() {
 		debug ("Building user interface");
 
+		height_request = 750;
+		width_request = 440;
+		window_position = Gtk.WindowPosition.CENTER;
+
 		// set the size based on saved gconf settings
 		set_default_size (settings.getWindowWidth(), settings.getWindowHeight());
 
@@ -161,12 +165,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		if (settings.getWindowMaximized ())
 			this.maximize ();
 
-
 		// set the title
 		set_title(app.get_name ());
 
 		// set the icon
 		set_icon(Icons.BEATBOX.render (IconSize.MENU, null));
+
 
 		verticalBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
@@ -420,14 +424,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		lm.media_added.connect (update_sensitivities);
 		lm.media_removed.connect (update_sensitivities);
-
-
-		// wait a second before loading cover art
-		// TODO: this shouldn't be here!
-		Idle.add ( () => {
-			lm.fetch_cover_art_from_cache_async ();
-			return false;
-		});
 	}
 
 
@@ -1290,6 +1286,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	}
 
 	public override void destroy() {
+		this.hide ();
+		
 		// Save media position and info
 		lm.settings.setLastMediaPosition((int)((double)lm.player.getPosition
 		()/1000000000));

@@ -291,6 +291,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 				}
 			}
 		});
+
+		fetch_cover_art_from_cache_async ();
 	}
 
 	/************ Library/Collection management stuff ************/
@@ -1750,26 +1752,24 @@ public class BeatBox.LibraryManager : GLib.Object {
 	}
 
 	public async void fetch_cover_art_from_cache_async () {
-		try {
-			new Thread<void*>.try (null, () => { fetch_cover_art (true); return null; });
-		} catch (Error err) {
-			warning (err.message);
-		}
+		Idle.add_full (Priority.DEFAULT_IDLE,  () => {
+			fetch_cover_art (true);
+			return false;
+		});
 	}
 
 	public async void fetch_all_cover_art_async () {
-		try {
-			new Thread<void*>.try (null, () => { fetch_cover_art (false); return null; });
-		} catch (Error err) {
-			warning (err.message);
-		}
+		Idle.add_full (Priority.DEFAULT_IDLE,  () => {
+			fetch_cover_art (false);
+			return false;
+		});
 	}
 
 	private void fetch_cover_art (bool cache_only) {
 		if(in_fetch_thread)
 			return;
 
-		debug ("----------- READING CACHED COVERART -------------");
+		debug ("--- READING CACHED COVERART %s-------------", (cache_only) ? "FROM CACHE":"");
 
 		in_fetch_thread = true;
 		//GStreamerTagger tagger = new GStreamerTagger(this);
@@ -1919,9 +1919,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 #else
 		fetch_all_cover_art_async ();
-		
+
+		// FIXME: THESE ARE Library Window's internals!
 		lw.update_sensitivities();
 		lw.updateInfoLabel();
+
+
 		file_operations_done();
 #endif
 	}
