@@ -13,6 +13,10 @@ public class BeatBox.SmartAlbumRenderer : CellRendererText {
         //this.icon = new Gdk.Pixbuf();
     }
 
+    public void set_color (Gdk.Color color) {
+    	background_gdk = color;
+    }
+
     /* get_size method, always request a 50x50 area */
     public override void get_size (Widget widget, Gdk.Rectangle? cell_area,
                                    out int x_offset, out int y_offset,
@@ -75,3 +79,4 @@ public class BeatBox.SmartAlbumRenderer : CellRendererText {
 		ctx.fill();
     }
 }
+

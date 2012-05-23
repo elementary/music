@@ -35,8 +35,8 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 #if HAVE_SMART_ALBUM_COLUMN
 	// for Smart album column
 	public void smartAlbumFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
-		var m = view.get_object_from_index((int)iter.user_data) as Media;
-		
+		var m = view.get_object_from_index ((int)iter.user_data) as Media;
+
 		((SmartAlbumRenderer)cell).m = m;
 		
 		if(lm.get_cover_album_art(m.rowid) != null) {
@@ -44,7 +44,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 			
 			current = (int)iter.user_data;
 			for(top = current; top >= 0; --top) {
-				if(view.get_object_from_index(top).album != m.album) {
+				if((view.get_object_from_index(top) as Media).album != m.album) {
 					++top;
 					break;
 				}

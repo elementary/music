@@ -20,10 +20,12 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class BeatBox.DeviceSummaryWidget : Gtk.Grid {
+public class BeatBox.DeviceSummaryWidget : Gtk.EventBox {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device dev;
+
+	Gtk.Grid main_grid;
 	
 	Granite.Widgets.HintedEntry device_name_entry;
 	Gtk.Switch auto_sync_switch;
@@ -57,6 +59,11 @@ public class BeatBox.DeviceSummaryWidget : Gtk.Grid {
 	}
 	
 	public void build_ui () {
+
+		main_grid = main_grid = new Gtk.Grid ();
+		
+		/* Content view styling */
+		this.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 		
 		/* Create options */
 		
@@ -138,13 +145,16 @@ public class BeatBox.DeviceSummaryWidget : Gtk.Grid {
 		var fake_label_b = new Gtk.Label ("");
 		fake_label_b.set_hexpand (true);
 		content_grid.attach (fake_label_b, 4, 0, 1, 1);
-		
+
 		/* Put it all together */
 		
-		this.attach (content_grid, 0, 0, 1, 1);
-		this.attach (space_widget, 0, 1, 1, 1);
-		this.set_hexpand (true);
-		this.set_vexpand (true);
+		main_grid.attach (content_grid, 0, 0, 1, 1);
+		main_grid.attach (space_widget, 0, 1, 1, 1);
+		main_grid.set_hexpand (true);
+		main_grid.set_vexpand (true);
+
+		/* Pack everything into the eventbox */
+		this.add (main_grid);
 		
 		if (dev.getDisplayName () != "")
 			device_name_entry.set_text (dev.getDisplayName ());
