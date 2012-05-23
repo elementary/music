@@ -102,11 +102,30 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
 
     /* SMART PLAYLISTS */
 
-    private void on_smart_playlist_changed (Gee.Collection<Media> new_media) {
+    private async void on_smart_playlist_changed (Gee.Collection<Media> new_media) {
         if (hint != Hint.SMART_PLAYLIST)
             return;
 
-        set_media_async (new_media);
+  	    var to_add = new Gee.LinkedList<Media> ();
+        var to_remove = new Gee.LinkedList<Media> ();
+        var new_media_table = new Gee.HashMap<Media, int> ();
+
+       	foreach (var m in new_media) {
+   	    	// if not already in the table, add
+   	    	if (!media_table.has_key (m))
+                to_add.add (m);
+                // Make a copy of the list
+                new_media_table.set (m, 1);
+         }
+
+         // if something is in the table but not in new_media, remove
+         foreach (var m in get_media_list ()) {
+             if (!new_media_table.has_key (m))
+                 to_remove.add (m);
+         }
+
+       	 remove_media (to_remove);
+       	 add_media (to_add);
     }
 
     /* NORMAL PLAYLISTS */

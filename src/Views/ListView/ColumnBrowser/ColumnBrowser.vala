@@ -323,10 +323,10 @@ public class BeatBox.ColumnBrowser : Box {
 		debug ("Column browser changed");
 		changed ();
 
-		populate_columns (category);
+        populate_columns_async (category);
 	}
 
-    private void populate_columns (MillerColumn.Category category) {
+    private async void populate_columns_async (MillerColumn.Category category) {
 		// Now re-populate the child columns
 		foreach (var column in columns) {
 			// Child columns
@@ -340,7 +340,7 @@ public class BeatBox.ColumnBrowser : Box {
 				}
 				if (column.category == MillerColumn.Category.ARTIST) {
 					foreach (var m in _media_results) {
-					    column_set.set (m.artist, 1);
+					    column_set.set (m.album_artist, 1);
 					}
 				}
 				if (column.category == MillerColumn.Category.ALBUM) {
@@ -603,7 +603,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 
-	public void populate (HashMap<string, int> items) {
+	public async void populate (HashMap<string, int> items) {
 		// After initialization, ignore any attempt to populate the column if it's hidden.
 		// This will boost performance when some columns are hidden.
 		if (!this.visible && !lw.initialization_finished)

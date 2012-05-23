@@ -267,7 +267,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (lw.viewSelector.selected != (int)current_view && (int)current_view <= 2)
             lw.viewSelector.set_active ((int)current_view);
 
-        
         // The statusbar is also a library window widget
         update_statusbar_info ();
 
@@ -280,7 +279,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     public virtual void view_selector_changed () {
-        // FIXME also check for lw.viewSelector.sensitive before proceeding
         if (!lw.initialization_finished || (lw.initialization_finished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ALERT || current_view == ViewType.WELCOME || !lw.viewSelector.sensitive)
             return;
 
@@ -331,9 +329,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         update_library_window_widgets ();
     }
 
-    /**
-     * This is overridable
-     */
     protected virtual string get_statusbar_text () {
         if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
             return "";
@@ -638,7 +633,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public void set_media (Gee.Collection<Media> new_media) {
         // LOCK
         updating_media_data.lock ();
-        
+
         if (new_media == null) {
             warning ("set_media: attempt to set NULL media failed");
             updating_media_data.unlock ();
@@ -666,6 +661,14 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      * Do search to find which ones should be added, removed from this particular view
      */
     public void update_media (Gee.Collection<Media> media) {
+        if (media.size < 1)
+            return;
+
+		if (media.size > 500) {
+			remove_media (media);
+			add_media (media);
+		}
+
         // LOCK
         updating_media_data.lock ();
 
@@ -722,6 +725,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     public void remove_media (Gee.Collection<Media> media) {
+        if (media.size < 1)
+            return;
+
         // LOCK
         updating_media_data.lock ();
 
@@ -752,6 +758,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     public void add_media (Gee.Collection<Media> new_media) {
+        if (new_media.size < 1)
+            return;
+
         // LOCK
         updating_media_data.lock ();
 

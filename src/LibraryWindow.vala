@@ -194,7 +194,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		searchField = new Granite.Widgets.SearchBar(_("Search Music"));
 
 		// Set search timeout
-		searchField.pause_delay = 200;
+		searchField.pause_delay = 150;
 
 		info_panel = new InfoPanel(lm, this);
 		statusbar = new Granite.Widgets.StatusBar();

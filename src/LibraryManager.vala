@@ -71,7 +71,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public BeatBox.Streamer player;
 	public BeatBox.DeviceManager device_manager;
 
-
 	private HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
 
@@ -718,16 +717,20 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}		
 		_playlists_lock.unlock ();
 
-		// Analyze sets the matching media as the playlist's media,
-		// so we have to pass all the ids.
-		_smart_playlists_lock.lock ();
-		foreach (var p in smart_playlists ()) {
-			p.analyze (this, media ());
-		}
-		_smart_playlists_lock.unlock ();
-
 		dbm.clear_media ();
 		dbm.add_media (_media.values);
+
+		Idle.add ( () => {
+			// Analyze sets the matching media as the playlist's media,
+			// so we have to pass the entire media list.
+			_smart_playlists_lock.lock ();
+			foreach (var p in smart_playlists ()) {
+				p.analyze (this, media ());
+			}
+			_smart_playlists_lock.unlock ();
+
+			return false;
+		});
 
 		debug ("--- MEDIA CLEARED ---");
 	}
@@ -786,15 +789,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 				s.last_modified = (int)time_t();
 		}
 
-		// Analyze sets the matching media as the playlist's media,
-		// so we have to pass the entire media list.
-		_smart_playlists_lock.lock ();
-		foreach (var p in smart_playlists ()) {
-			p.analyze (this, media ());
-		}
-		_smart_playlists_lock.unlock ();
-
-
 		debug ("%d media updated from lm.update_media 677\n", rv.size);
 		media_updated(rv);
 
@@ -804,6 +798,18 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		foreach(Media s in updates)
 			dbu.update_media(s);
+
+		Idle.add ( () => {
+			// Analyze sets the matching media as the playlist's media,
+			// so we have to pass the entire media list.
+			_smart_playlists_lock.lock ();
+			foreach (var p in smart_playlists ()) {
+				p.analyze (this, media ());
+			}
+			_smart_playlists_lock.unlock ();
+
+			return false;
+		});
 	}
 
 	public async void save_media() {
@@ -1058,9 +1064,20 @@ public class BeatBox.LibraryManager : GLib.Object {
 			dbm.add_media(new_media);
 		}
 		
-		Idle.add( () => {
+		Idle.add_full (Priority.HIGH_IDLE, () => {
 			media_added(added);
-			
+			return false;
+		});
+
+		Idle.add ( () => {
+			// Analyze sets the matching media as the playlist's media,
+			// so we have to pass the entire media list.
+			_smart_playlists_lock.lock ();
+			foreach (var p in smart_playlists ()) {
+				p.analyze (this, media ());
+			}
+			_smart_playlists_lock.unlock ();
+
 			return false;
 		});
 	}
@@ -1111,6 +1128,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		_playlists_lock.unlock();
 
+		if(_media.size == 0)
+			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
+
+		// TODO: move away. It's called twice due to LW's internal handlers		
+		lw.update_sensitivities();
+
 		// Analyze sets the matching media as the playlist's media,
 		// so we have to pass the entire media list.
 		_smart_playlists_lock.lock ();
@@ -1118,13 +1141,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			p.analyze (this, media ());
 		}
 		_smart_playlists_lock.unlock ();
-
-
-		if(_media.size == 0)
-			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
-
-		// TODO: move away. It's called twice due to LW's internal handlers		
-		lw.update_sensitivities();
 	}
 	
 	/**************** Queue Stuff **************************/
