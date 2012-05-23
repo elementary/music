@@ -1,6 +1,13 @@
 using Gee;
 using Gtk;
 
+internal class TextFieldRenderer : Gtk.CellRendererText {
+	public TextFieldRenderer () {
+		ellipsize = Pango.EllipsizeMode.END;
+		ellipsize_set = true;
+	}
+}
+
 public abstract class BeatBox.GenericList : FastView {
 	public signal void import_requested (Gee.LinkedList<Media> to_import);
 
@@ -145,43 +152,43 @@ public abstract class BeatBox.GenericList : FastView {
 		foreach(TreeViewColumn tvc in tvs.get_columns()) {
 			if(!(tvc.title == TreeViewSetup.COLUMN_BLANK || tvc.title == TreeViewSetup.COLUMN_ID)) {
 				if (tvc.title == TreeViewSetup.COLUMN_BITRATE) {
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.bitrateTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.bitrateTreeViewFiller);
 				}
 				else if (tvc.title == TreeViewSetup.COLUMN_LENGTH)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.lengthTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.lengthTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_DATE_ADDED)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.dateTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_LAST_PLAYED)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.dateTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.dateTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_RATING) {
 					var rating_renderer = new Granite.Widgets.CellRendererRating ();
 					rating_renderer.rating_changed.connect (on_rating_cell_changed);
 					insert_column_with_data_func(-1, tvc.title, rating_renderer, cellHelper.ratingTreeViewFiller);
 				}
 				else if(tvc.title == TreeViewSetup.COLUMN_YEAR)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.intelligentTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_NUM)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.intelligentTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_TRACK)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.intelligentTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_PLAYS)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.intelligentTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_SKIPS)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.intelligentTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_TITLE)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.stringTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_ARTIST)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.stringTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_ALBUM)
 #if HAVE_SMART_ALBUM_COLUMN
 					insert_column_with_data_func(-1, tvc.title, new SmartAlbumRenderer (), cellHelper.smartAlbumFiller);
 #else
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.stringTreeViewFiller);
 #endif
 				else if(tvc.title == TreeViewSetup.COLUMN_GENRE)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.stringTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.stringTreeViewFiller);
 				else if(tvc.title == TreeViewSetup.COLUMN_BPM)
-					insert_column_with_data_func(-1, tvc.title, new CellRendererText(), cellHelper.intelligentTreeViewFiller);
+					insert_column_with_data_func(-1, tvc.title, new TextFieldRenderer(), cellHelper.intelligentTreeViewFiller);
 				else
 					insert_column(tvc, index);
 

@@ -1312,6 +1312,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			Notify.uninit ();
 		}
 
+		// Now set the selected view
+		settings.setViewMode (viewSelector.selected);
+
 		// Search FIXME: Temporary disabled
 		//settings.setSearchString (searchField.get_text());
 		
