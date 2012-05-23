@@ -154,8 +154,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	public void build_ui() {
 		debug ("Building user interface");
 
-		height_request = 750;
-		width_request = 440;
+		height_request = 440;
+		width_request = 750;
 		window_position = Gtk.WindowPosition.CENTER;
 
 		// set the size based on saved gconf settings
