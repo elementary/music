@@ -148,11 +148,11 @@ public class BeatBox.CDRomDevice : GLib.Object, BeatBox.Device {
 	}
 	
 	public void unmount() {
-		
+		mount.unmount_with_operation (GLib.MountUnmountFlags.NONE, null);
 	}
 	
 	public void eject() {
-		
+		mount.eject_with_operation (GLib.MountUnmountFlags.NONE, null);
 	}
 	
 	public void get_device_type() {

@@ -20,203 +20,168 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-
-public class BeatBox.DeviceSummaryWidget : VBox {
+public class BeatBox.DeviceSummaryWidget : Gtk.Grid {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device dev;
 	
-	Granite.Widgets.HintedEntry deviceName;
-	Switch syncAtStart;
+	Granite.Widgets.HintedEntry device_name_entry;
+	Gtk.Switch auto_sync_switch;
 	
-	CheckButton syncMusic;
+	Gtk.CheckButton sync_music_check;
+	Gtk.ComboBox sync_music_combobox;
+	Gtk.ListStore music_list;
 #if HAVE_PODCASTS
-	CheckButton syncPodcasts;
+	Gtk.CheckButton sync_podcasts_check;
+	Gtk.ComboBox sync_podcasts_combobox;
+	Gtk.ListStore podcast_list;
 #endif
-	//CheckButton syncAudiobooks;
-	ComboBox musicDropdown;
-#if HAVE_PODCASTS
-	ComboBox podcastDropdown;
-#endif
-	//ComboBox audiobookDropdown;
-	ListStore musicList;
-#if HAVE_PODCASTS
-	ListStore podcastList;
-#endif
-	//ListStore audiobookList;
+	/*Gtk.CheckButton sync_audiobooks_check;
+	Gtk.ComboBox sync_audiobooks_combobox;
+	Gtk.ListStore audiobook_list;*/
 	
-	Gtk.Image deviceImage;
-	SpaceWidget spaceWidget;
+	Gtk.Image device_image;
+	SpaceWidget space_widget;
 	
 	int files_index;
 	int music_index;
 	int podcast_index;
-
 	//int audiobook_index;
 	
-	public DeviceSummaryWidget(LibraryManager lm, LibraryWindow lw, Device d) {
+	public DeviceSummaryWidget (LibraryManager lm, LibraryWindow lw, Device d) {
 		this.lm = lm;
 		this.lw = lw;
 		this.dev = d;
 		
-		buildUI();
+		build_ui ();
 	}
 	
-	public void buildUI() {
-		// options at top
-		deviceName = new Granite.Widgets.HintedEntry(_("Device Name"));
-		syncAtStart = new Gtk.Switch();
-		syncMusic = new CheckButton();
-#if HAVE_PODCASTS
-		syncPodcasts = new CheckButton();
-#endif
-		//syncAudiobooks = new CheckButton();
-		musicDropdown = new ComboBox();
-#if HAVE_PODCASTS
-		podcastDropdown = new ComboBox();
-#endif
-		//audiobookDropdown = new ComboBox();
-		musicList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
-#if HAVE_PODCASTS
-		podcastList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
-#endif
-		//audiobookList = new ListStore(3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
+	public void build_ui () {
 		
-		deviceImage = new Gtk.Image.from_gicon(dev.get_icon(), IconSize.DIALOG);
-		spaceWidget = new SpaceWidget((double)dev.get_capacity()/1000000);
+		/* Create options */
+		
+		var content_grid = new Gtk.Grid ();
+		content_grid.set_hexpand (true);
+		content_grid.set_vexpand (true);
+		content_grid.set_row_spacing (6);
+		content_grid.set_column_spacing (12);
+		content_grid.set_margin_top (12);
+		
+		var device_name_label = new Gtk.Label (_("Device Name:"));
+		device_name_label.set_alignment (1, 0.5f);
+		
+		device_name_entry = new Granite.Widgets.HintedEntry (_("Device Name"));
+		
+		var auto_sync_label = new Gtk.Label (_("Automatically sync when plugged in:"));
+		auto_sync_label.set_alignment (1, 0.5f);
+		
+		auto_sync_switch = new Gtk.Switch ();
+		var auto_sync_container = new Gtk.Grid ();
+		auto_sync_container.attach (auto_sync_switch, 0, 0, 1, 1);
+		
+		var sync_options_label = new Gtk.Label (_("Sync:"));
+		sync_options_label.set_alignment (1, 0.5f);
+		
+		sync_music_check = new Gtk.CheckButton ();
+		sync_music_combobox = new Gtk.ComboBox ();
+		music_list = new Gtk.ListStore (3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
+		
+		/*sync_audiobooks_check = new Gtk.CheckButton ();
+		sync_audiobooks_combobox = new Gtk.ComboBox ();
+		audiobook_list = new Gtk.ListStore (3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));*/
+		
+#if HAVE_PODCASTS
+		sync_podcasts_check = new Gtk.CheckButton ();
+		sync_podcasts_combobox = new Gtk.ComboBox ();
+		podcast_list = new Gtk.ListStore (3, typeof(GLib.Object), typeof(string), typeof(Gdk.Pixbuf));
+#endif
+		
+		device_image = new Gtk.Image.from_gicon (dev.get_icon (), Gtk.IconSize.DIALOG);
+		space_widget = new SpaceWidget (dev.get_capacity());
 
-		Label deviceNameLabel = new Label(_("Device Name:"));
-		Label autoSyncLabel = new Label(_("Automatically sync when plugged in:"));
-		Label syncOptionsLabel = new Label(_("Sync:"));
-		
-		var content = new VBox(false, 10);
-		
-		setupLists();
+		setup_lists ();
 
-		files_index = spaceWidget.add_item(_("Other Files"), 0.0, SpaceWidget.ItemColor.GREEN);
-		music_index = spaceWidget.add_item(_("Music"), 0.0, SpaceWidget.ItemColor.BLUE);
-		podcast_index = spaceWidget.add_item(_("Podcasts"), 0.0, SpaceWidget.ItemColor.PURPLE);
-		//audiobook_index = spaceWidget.add_item("Audiobooks", 0.0, SpaceWidget.ItemColor.GREEN);
+		files_index = space_widget.add_item (_("Other Files"), 0, SpaceWidget.ItemColor.GREEN);
+		music_index = space_widget.add_item (_("Music"), 0, SpaceWidget.ItemColor.BLUE);
+		podcast_index = space_widget.add_item (_("Podcasts"), 0, SpaceWidget.ItemColor.PURPLE);
+		//audiobook_index = space_widget.add_item (_("Audiobooks"), 0, SpaceWidget.ItemColor.GREEN);
 		
-		refreshSpaceWidget();
+		refresh_space_widget ();
 		
 		// device name box
-		var deviceNameBox = new HBox(true, 6);
-		deviceNameBox.pack_start(deviceNameLabel, false, true, 0);
-		deviceNameBox.pack_start(deviceName, false, true, 0);
+		content_grid.attach (device_name_label,   1, 0, 1, 1);
+		content_grid.attach (device_name_entry,   2, 0, 2, 1);
+		content_grid.attach (auto_sync_label,     1, 1, 1, 1);
+		content_grid.attach (auto_sync_container, 2, 1, 2, 1);
+		content_grid.attach (sync_options_label,  1, 2, 1, 1);
+		content_grid.attach (sync_music_check,    2, 2, 1, 1);
+		content_grid.attach (sync_music_combobox, 3, 2, 1, 1);
 		
-		// auto sync box
-		var autoSyncBox = new HBox(true, 6);
-		autoSyncBox.pack_start(autoSyncLabel, false, true, 0);
-		autoSyncBox.pack_start(wrap_alignment(syncAtStart, 0, 0, 0, 0), false, true, 0);
-		
-		// sync options box
-		var musicBox = new HBox(false, 6);
-		musicBox.pack_start(syncMusic, false, false, 0);
-		musicBox.pack_start(musicDropdown, false, false, 0);
-
 #if HAVE_PODCASTS
-		var podcastBox = new HBox(false, 6);
-		podcastBox.pack_start(syncPodcasts, false, false, 0);
-		podcastBox.pack_start(podcastDropdown, false, false, 0);
+		if(dev.supports_podcasts()) {
+			content_grid.attach (sync_podcasts_check,    2, 3, 1, 1);
+			content_grid.attach (sync_podcasts_combobox, 3, 3, 1, 1);
+		}
 #endif
 		
-		//var audiobookBox = new HBox(false, 6);
-		//audiobookBox.pack_start(syncAudiobooks, false, false, 0);
-		//audiobookBox.pack_start(audiobookDropdown, false, false, 0);
+		/*if(dev.supports_audiobooks()) {
+			audiobookBox.attach(sync_audiobooks, false, false, 0);
+			audiobookBox.attach(sync_audiobooks_combobox, false, false, 0);
+		}*/
 		
-		var syncOptionsBox = new VBox(false, 0);
-		syncOptionsBox.pack_start(musicBox, false, false, 0);
+		/* Add fake label to be centered */
+		
+		var fake_label_a = new Gtk.Label ("");
+		fake_label_a.set_hexpand (true);
+		content_grid.attach (fake_label_a, 0, 0, 1, 1);
+		
+		var fake_label_b = new Gtk.Label ("");
+		fake_label_b.set_hexpand (true);
+		content_grid.attach (fake_label_b, 4, 0, 1, 1);
+		
+		/* Put it all together */
+		
+		this.attach (content_grid, 0, 0, 1, 1);
+		this.attach (space_widget, 0, 1, 1, 1);
+		this.set_hexpand (true);
+		this.set_vexpand (true);
+		
+		if (dev.getDisplayName () != "")
+			device_name_entry.set_text (dev.getDisplayName ());
+		
+		refresh_lists();
+		
+		/* set initial values*/
+		auto_sync_switch.active = dev.get_preferences ().sync_when_mounted;
+		sync_music_check.active = dev.get_preferences ().sync_music;
 #if HAVE_PODCASTS
-		if(dev.supports_podcasts()) 	syncOptionsBox.pack_start(podcastBox, false, false, 0);
+		sync_podcasts_check.active = dev.get_preferences ().sync_podcasts;
 #endif
-		//if(dev.supports_audiobooks()) 	syncOptionsBox.pack_start(audiobookBox, false, false, 0);
+		//syncAudiobooks.active = dev.get_preferences ().sync_audiobooks;
 		
-		var syncHBox = new HBox(true, 6);
-		syncHBox.pack_start(syncOptionsLabel, false, true, 0);
-		syncHBox.pack_start(syncOptionsBox, false, true, 0);
-		
-		// create bottom section
-		//var syncBox = new VBox(false, 0);
-		//var syncButtonBox = new VButtonBox();
-		//syncButtonBox.set_layout(ButtonBoxStyle.END);
-		//syncButtonBox.pack_end(syncButton, false, false, 0);
-		//syncBox.pack_end(syncButton, false, false, 0);
-		
-		//var bottomBox = new HBox(false, 0);
-		//bottomBox.pack_start(deviceImage, false, true, 0);
-		//bottomBox.pack_start(spaceWidgetScroll, true, true, 0);
-		//bottomBox.pack_start(syncButtonBox, false, false, 0);
-		
-		// put it all together
-		content.pack_start(deviceNameBox, false, true, 0);
-		content.pack_start(autoSyncBox, false, true, 0);
-		content.pack_start(syncHBox, false, true, 0);
-		
-		/* put it in event box so we can color background white */
-		EventBox eb = new EventBox();
-		
-		eb.add(new Label("test"));
-
-		// add content-view styling
-		eb.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-		
-		//var content_plus_spacewidget = new Box(Orientation.VERTICAL, 0);
-		this.set_border_width(0);
-		this.pack_start(wrap_alignment(content, 15, 10, 10, 10), true, true, 0);
-		this.pack_end(spaceWidget, false, true, 0);
-		//this.pack_end(eb, false, true, 0);
-		
-		//add_with_viewport(content_plus_spacewidget);//wrap_alignment(content, 15, 10, 10, 10));
-		
-		deviceNameLabel.xalign = 1.0f;
-		deviceName.halign = Align.START;
-		if(dev.getDisplayName() != "")
-			deviceName.set_text(dev.getDisplayName());
-			
-		autoSyncLabel.xalign = 1.0f;
-		syncAtStart.halign = Align.START;
-		
-		syncOptionsLabel.yalign = 0.0f;
-		syncOptionsLabel.xalign = 1.0f;
-		syncOptionsBox.halign = Align.START;
-		
-		//set_policy(PolicyType.AUTOMATIC, PolicyType.NEVER);
-		
-		refreshLists();
-		
-		// set initial values
-		syncAtStart.active = dev.get_preferences().sync_when_mounted;
-		syncMusic.active = dev.get_preferences().sync_music;
-#if HAVE_PODCASTS
-		syncPodcasts.active = dev.get_preferences().sync_podcasts;
-#endif
-		//syncAudiobooks.active = dev.get_preferences().sync_audiobooks;
-		
-		if(dev.get_preferences().sync_all_music)
-			musicDropdown.set_active(0);
+		if(dev.get_preferences ().sync_all_music)
+			sync_music_combobox.set_active (0);
 		else {
-			bool success = musicDropdown.set_active_id(dev.get_preferences().music_playlist);
-			if(!success) {
+			bool success = sync_music_combobox.set_active_id (dev.get_preferences().music_playlist);
+			if (!success) {
 				//lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().music_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
-				dev.get_preferences().music_playlist = "";
-				dev.get_preferences().sync_all_music = true;
-				musicDropdown.set_active(0);
+				dev.get_preferences ().music_playlist = "";
+				dev.get_preferences ().sync_all_music = true;
+				sync_music_combobox.set_active (0);
 			}
 		}
 
 #if HAVE_PODCASTS
-		if(dev.get_preferences().sync_all_podcasts)
-			podcastDropdown.set_active(0);
+		if (dev.get_preferences ().sync_all_podcasts)
+			sync_podcasts_combobox.set_active(0);
 
 		else {
-			bool success = podcastDropdown.set_active_id(dev.get_preferences().podcast_playlist);
-			if(!success) {
+			bool success = sync_podcasts_combobox.set_active_id(dev.get_preferences().podcast_playlist);
+			if (!success) {
 				//lw.doAlert("Missing Sync Playlist", "The playlist named <b>" + dev.get_preferences().podcast_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
-				dev.get_preferences().podcast_playlist = "";
-				dev.get_preferences().sync_all_podcasts = true;
-				podcastDropdown.set_active(0);
+				dev.get_preferences ().podcast_playlist = "";
+				dev.get_preferences ().sync_all_podcasts = true;
+				sync_podcasts_combobox.set_active (0);
 			}
 		}
 #endif
@@ -233,262 +198,252 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 			}
 		}*/
 		
-		// hop onto signals to save preferences
-		syncAtStart.notify["active"].connect(savePreferences);
-		syncMusic.toggled.connect(savePreferences);
+		/* hop onto signals to save preferences */
+		auto_sync_switch.notify["active"].connect (save_preferences);
+		sync_music_check.toggled.connect (save_preferences);
 #if HAVE_PODCASTS
-		syncPodcasts.toggled.connect(savePreferences);
+		sync_podcasts_check.toggled.connect (save_preferences);
 #endif
-		//syncAudiobooks.toggled.connect(savePreferences);
-		musicDropdown.changed.connect(savePreferences);
+		//syncAudiobooks.toggled.connect (save_preferences);
+		sync_music_combobox.changed.connect (save_preferences);
 #if HAVE_PODCASTS
-		podcastDropdown.changed.connect(savePreferences);
+		sync_podcasts_combobox.changed.connect (save_preferences);
 #endif
-		//audiobookDropdown.changed.connect(savePreferences);
+		//audiobookDropdown.changed.connect (save_preferences);
 		
-		deviceName.changed.connect(deviceNameChanged);
-		spaceWidget.sync_clicked.connect(syncClicked);
-		dev.sync_finished.connect(sync_finished);
+		device_name_entry.changed.connect (device_name_changed);
+		space_widget.sync_clicked.connect (sync_clicked);
+		dev.sync_finished.connect (sync_finished);
 		
-		show_all();
+		show_all ();
 	}
 	
-	void refreshSpaceWidget() {
-		double other_files_size = 0.0;
-		double music_size = 0.0;
+	void refresh_space_widget () {
+		uint64 other_files_size = 0;
+		uint64 music_size = 0;
 #if HAVE_PODCASTS
-		double podcast_size = 0.0;
+		uint64 podcast_size = 0;
 #endif
 		//double audiobook_size = 0.0;
 
 
-		foreach (var m in dev.get_songs()) {
+		foreach (var m in dev.get_songs ()) {
 			if (m != null)
-				music_size += (double)(m.file_size);
+				music_size += m.file_size;
 		}
 #if HAVE_PODCASTS
-		foreach(int i in dev.get_podcasts()) {
-			podcast_size += (double)(lm.media_from_id(i).file_size);
+		foreach(int i in dev.get_podcasts ()) {
+			podcast_size += lm.media_from_id(i).file_size;
 		}
 #endif
 
 #if HAVE_PODCASTS
 		// Get other used space
-		other_files_size = (double)dev.get_used_space()/1000000 - music_size - podcast_size;
+		other_files_size = dev.get_used_space () - music_size - podcast_size;
 #else
-		other_files_size = (double)dev.get_used_space()/1000000 - music_size;
+		other_files_size = dev.get_used_space () - music_size;
 #endif
 		//foreach(int i in dev.get_audiobooks()) {
 		//	audiobook_size += (double)(lm.media_from_id(i).file_size);
 		//}
 		
-		spaceWidget.update_item_size(music_index, music_size);
+		space_widget.update_item_size (music_index, music_size);
 #if HAVE_PODCASTS
-		spaceWidget.update_item_size(podcast_index, podcast_size);
+		space_widget.update_item_size (podcast_index, podcast_size);
 #endif
-		spaceWidget.update_item_size(files_index, other_files_size);
-		//spaceWidget.update_item_size(audiobook_index, audiobook_size);
+		space_widget.update_item_size (files_index, other_files_size);
+		//spaceWidget.update_item_size (audiobook_index, audiobook_size);
 	}
 	
-	void setupLists() {
-		musicDropdown.set_model(musicList);
+	void setup_lists() {
+		sync_music_combobox.set_model (music_list);
 #if HAVE_PODCASTS
-		podcastDropdown.set_model(podcastList);
+		sync_podcasts_combobox.set_model (podcast_list);
 #endif
-		//audiobookDropdown.set_model(audiobookList);
+		//audiobookDropdown.set_model (audiobookList);
 		
-		musicDropdown.set_id_column(1);
+		sync_music_combobox.set_id_column (1);
 #if HAVE_PODCASTS
-		podcastDropdown.set_id_column(1);
+		sync_podcasts_combobox.set_id_column (1);
 #endif
 		//audiobookDropdown.set_id_column(1);
 		
-		musicDropdown.set_row_separator_func(rowSeparatorFunc);
+		sync_music_combobox.set_row_separator_func (rowSeparatorFunc);
 #if HAVE_PODCASTS
-		podcastDropdown.set_row_separator_func(rowSeparatorFunc);
+		sync_podcasts_combobox.set_row_separator_func (rowSeparatorFunc);
 #endif
 		//audiobookDropdown.set_row_separator_func(rowSeparatorFunc);
 		
-		var music_cell = new CellRendererPixbuf();
-		musicDropdown.pack_start(music_cell, false);
-		musicDropdown.add_attribute(music_cell, "pixbuf", 2);
+		var music_cell = new Gtk.CellRendererPixbuf ();
+		sync_music_combobox.pack_start (music_cell, false);
+		sync_music_combobox.add_attribute (music_cell, "pixbuf", 2);
 #if HAVE_PODCASTS
-		podcastDropdown.pack_start(music_cell, false);
-		podcastDropdown.add_attribute(music_cell, "pixbuf", 2);
+		sync_podcasts_combobox.pack_start (music_cell, false);
+		sync_podcasts_combobox.add_attribute (music_cell, "pixbuf", 2);
 #endif
-		//audiobookDropdown.pack_start(music_cell, false);
-		//audiobookDropdown.add_attribute(music_cell, "pixbuf", 2);
+		//audiobookDropdown.pack_start (music_cell, false);
+		//audiobookDropdown.add_attribute (music_cell, "pixbuf", 2);
 		
-		var cell = new CellRendererText();
+		var cell = new Gtk.CellRendererText ();
 		cell.ellipsize = Pango.EllipsizeMode.END;
-		musicDropdown.pack_start(cell, true);
-		musicDropdown.add_attribute(cell, "text", 1);
+		sync_music_combobox.pack_start (cell, true);
+		sync_music_combobox.add_attribute (cell, "text", 1);
 #if HAVE_PODCASTS
-		podcastDropdown.pack_start(cell, true);
-		podcastDropdown.add_attribute(cell, "text", 1);
+		sync_podcasts_combobox.pack_start (cell, true);
+		sync_podcasts_combobox.add_attribute (cell, "text", 1);
 #endif
-		//audiobookDropdown.pack_start(cell, true);
-		//audiobookDropdown.add_attribute(cell, "text", 1);
+		//audiobookDropdown.pack_start (cell, true);
+		//audiobookDropdown.add_attribute (cell, "text", 1);
 		
-		musicDropdown.popup.connect(refreshLists);
+		sync_music_combobox.popup.connect (refresh_lists);
 #if HAVE_PODCASTS
-		podcastDropdown.popup.connect(refreshLists);
+		sync_podcasts_combobox.popup.connect (refresh_lists);
 #endif
-		//audiobookDropdown.popup.connect(refreshLists);
+		//audiobookDropdown.popup.connect (refreshLists);
 		
-		musicDropdown.set_button_sensitivity(SensitivityType.ON);
+		sync_music_combobox.set_button_sensitivity (Gtk.SensitivityType.ON);
 #if HAVE_PODCASTS
-		Dropdown.set_button_sensitivity(SensitivityType.ON);
+		sync_podcasts_combobox.set_button_sensitivity (Gtk.SensitivityType.ON);
 #endif
-		//audiobookDropdown.set_button_sensitivity(SensitivityType.ON);
+		//audiobookDropdown.set_button_sensitivity (SensitivityType.ON);
 	}
 	
-	bool rowSeparatorFunc(TreeModel model, TreeIter iter) {
+	bool rowSeparatorFunc (Gtk.TreeModel model, Gtk.TreeIter iter) {
 		string sep = "";
-		model.get(iter, 1, out sep);
+		model.get (iter, 1, out sep);
 		
 		return sep == "<separator_item_unique_name>";
 	}
 	
-	public static Gtk.Alignment wrap_alignment (Gtk.Widget widget, int top, int right, int bottom, int left) {
-		var alignment = new Gtk.Alignment(0.0f, 0.0f, 1.0f, 1.0f);
-		alignment.top_padding = top;
-		alignment.right_padding = right;
-		alignment.bottom_padding = bottom;
-		alignment.left_padding = left;
-		
-		alignment.add(widget);
-		return alignment;
+	void device_name_changed () {
+		dev.setDisplayName (device_name_entry.get_text());
 	}
 	
-	void deviceNameChanged() {
-		dev.setDisplayName(deviceName.get_text());
-	}
-	
-	void savePreferences() {
-		var pref = dev.get_preferences();
+	void save_preferences () {
+		var pref = dev.get_preferences ();
 		
-		pref.sync_when_mounted = syncAtStart.active;
-		pref.sync_music = syncMusic.active;
+		pref.sync_when_mounted = auto_sync_switch.active;
+		pref.sync_music = sync_music_check.active;
 #if HAVE_PODCASTS
-		pref.sync_podcasts = syncPodcasts.active;
+		pref.sync_podcasts = sync_podcasts_check.active;
 #endif
 		//pref.sync_audiobooks = syncAudiobooks.active;
 		
-		pref.sync_all_music = musicDropdown.get_active() == 0;
+		pref.sync_all_music = sync_music_combobox.get_active () == 0;
 
 #if HAVE_PODCASTS
-		pref.sync_all_podcasts = podcastDropdown.get_active() == 0;
+		pref.sync_all_podcasts = sync_podcasts_combobox.get_active () == 0;
 #endif
-		//pref.sync_all_audiobooks = audiobookDropdown.get_active() == 0;
+		//pref.sync_all_audiobooks = audiobookDropdown.get_active () == 0;
 		
-		pref.music_playlist = musicDropdown.get_active_id();
+		pref.music_playlist = sync_music_combobox.get_active_id ();
 #if HAVE_PODCASTS
-		pref.podcast_playlist = podcastDropdown.get_active_id();
+		pref.podcast_playlist = sync_podcasts_combobox.get_active_id ();
 #endif
-		//pref.audiobook_playlist = audiobookDropdown.get_active_id();
+		//pref.audiobook_playlist = audiobookDropdown.get_active_id ();
 		
-		musicDropdown.sensitive = syncMusic.active;
+		sync_music_combobox.sensitive = sync_music_check.active;
 #if HAVE_PODCASTS
-		podcastDropdown.sensitive = syncPodcasts.active;
+		sync_podcasts_combobox.sensitive = sync_podcasts_check.active;
 #endif
 		//audiobookDropdown.sensitive = syncAudiobooks.active;
 	}
 	
-	public bool allMediasSelected() {
+	public bool all_medias_selected () {
 		return false;
 	}
 	
-	public void refreshLists() {
-		message("refreshing lists\n");
-		string musicString = musicDropdown.get_active_id();
-#if HAVE_PODCASTS
-		string podcastString = podcastDropdown.get_active_id();
-#endif
-		//string audiobookString = audiobookDropdown.get_active_id();
+	public void refresh_lists () {
+		message ("refreshing lists\n");
 		
-		TreeIter iter;
-		musicList.clear();
+		string musicString = sync_music_combobox.get_active_id ();
+		music_list.clear ();
+		
 #if HAVE_PODCASTS
-		podcastList.clear();
+		string podcastString = sync_podcasts_combobox.get_active_id ();
+		podcast_list.clear ();
 #endif
-		//audiobookList.clear();
+		
+		//string audiobookString = audiobookDropdown.get_active_id ();
+		//audiobook_list.clear ();
+		
+		Gtk.TreeIter iter;
 		
 		/* add entire library options */
-		musicList.append(out iter);
-		musicList.set(iter, 0, null, 1, _("All Music"), 2, Icons.MUSIC.render(IconSize.MENU));
+		music_list.append (out iter);
+		music_list.set (iter, 0, null, 1, _("All Music"), 2, Icons.MUSIC.render(Gtk.IconSize.MENU));
 #if HAVE_PODCASTS
-		podcastList.append(out iter);
-		podcastList.set(iter, 0, null, 1, _("All Podcasts"), 2, Icons.PODCAST.render(IconSize.MENU));
+		podcast_list.append (out iter);
+		podcast_list.set (iter, 0, null, 1, _("All Podcasts"), 2, Icons.PODCAST.render(Gtk.IconSize.MENU));
 #endif
-		//audiobookList.append(out iter);
-		//audiobookList.set(iter, 0, null, 1, "All Audiobooks");//, 2, Icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
+		//audiobook_list.append(out iter);
+		//audiobook_list.set(iter, 0, null, 1, "All Audiobooks");//, 2, Icons.audiobook_icon.render(IconSize.MENU, audiobookDropdown.get_style_context()));
 		
 		/* add separator */
-		musicList.append(out iter);
-		musicList.set(iter, 0, null, 1, "<separator_item_unique_name>");
+		music_list.append (out iter);
+		music_list.set (iter, 0, null, 1, "<separator_item_unique_name>");
 #if HAVE_PODCASTS
-		podcastList.append(out iter);
-		podcastList.set(iter, 0, null, 1, "<separator_item_unique_name>");
+		podcast_list.append (out iter);
+		podcast_list.set (iter, 0, null, 1, "<separator_item_unique_name>");
 #endif
 		//audiobookList.append(out iter);
 		//audiobookList.set(iter, 0, null, 1, "<separator_item_unique_name>");
 		
 		/* add all playlists */
-		var smart_playlist_pix = Icons.SMART_PLAYLIST.render(IconSize.MENU, null);
-		var playlist_pix = Icons.PLAYLIST.render(IconSize.MENU, null);
-		foreach(var p in lm.smart_playlists()) {
+		var smart_playlist_pix = Icons.SMART_PLAYLIST.render (Gtk.IconSize.MENU, null);
+		var playlist_pix = Icons.PLAYLIST.render (Gtk.IconSize.MENU, null);
+		foreach (var p in lm.smart_playlists ()) {
 			//bool music, podcasts, audiobooks;
 			//test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
 			
 			//if(music) {
-				musicList.append(out iter);
-				musicList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+				music_list.append (out iter);
+				music_list.set (iter, 0, p, 1, p.name, 2, smart_playlist_pix);
 			//}
 #if HAVE_PODCASTS
 			//if(podcasts) {
-				podcastList.append(out iter);
-				podcastList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+				podcast_list.append (out iter);
+				podcast_list.set (iter, 0, p, 1, p.name, 2, smart_playlist_pix);
 			//}
 #endif
 			//if(audiobooks) {
-				//audiobookList.append(out iter);
-				//audiobookList.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
+				//audiobook_list.append(out iter);
+				//audiobook_list.set(iter, 0, p, 1, p.name, 2, smart_playlist_pix);
 			//}
 		}
-		foreach(var p in lm.playlists()) {
+		foreach (var p in lm.playlists ()) {
 			//bool music, podcasts, audiobooks;
 			//test_media_types(lm.medias_from_smart_playlist(p.rowid), out music, out podcasts, out audiobooks);
 			
 			//if(music) {
-				musicList.append(out iter);
-				musicList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+				music_list.append(out iter);
+				music_list.set(iter, 0, p, 1, p.name, 2, playlist_pix);
 			//}
 #if HAVE_PODCASTS
 			//if(podcasts) {
-				podcastList.append(out iter);
-				podcastList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+				podcast_list.append(out iter);
+				podcast_list.set(iter, 0, p, 1, p.name, 2, playlist_pix);
 			//}
 #endif
 			//if(audiobooks) {
-				//audiobookList.append(out iter);
-				//audiobookList.set(iter, 0, p, 1, p.name, 2, playlist_pix);
+				//audiobook_list.append(out iter);
+				//audiobook_list.set(iter, 0, p, 1, p.name, 2, playlist_pix);
 			//}
 		}
 		
-		if(!musicDropdown.set_active_id(musicString))
-			musicDropdown.set_active(0);
+		if (!sync_music_combobox.set_active_id (musicString))
+			sync_music_combobox.set_active(0);
 #if HAVE_PODCASTS
-		if(!podcastDropdown.set_active_id(podcastString))
-			podcastDropdown.set_active(0);
+		if (!sync_podcasts_combobox.set_active_id (podcastString))
+			sync_podcasts_combobox.set_active(0);
 #endif
 		//if(!audiobookDropdown.set_active_id(audiobookString))
 		//	audiobookDropdown.set_active(0);
 		
-		message("setting sensitivity\n");
-		musicDropdown.sensitive = dev.get_preferences().sync_music;
+		message ("setting sensitivity\n");
+		sync_music_combobox.sensitive = dev.get_preferences().sync_music;
 #if HAVE_PODCASTS
-		podcastDropdown.sensitive = dev.get_preferences().sync_podcasts;
+		sync_podcasts_combobox.sensitive = dev.get_preferences().sync_podcasts;
 #endif
 		//audiobookDropdown.sensitive = dev.get_preferences().sync_audiobooks;
 	}
@@ -513,36 +468,36 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 		}
 	}*/
 	
-	void sync_finished(bool success) {
-		refreshSpaceWidget();
-		spaceWidget.set_sync_button_sensitive(true);
+	void sync_finished (bool success) {
+		refresh_space_widget ();
+		space_widget.set_sync_button_sensitive (true);
 	}
 	
-	public void syncClicked () {
+	public void sync_clicked () {
 		var list = new Gee.LinkedList<Media>();
-		var pref = dev.get_preferences();
+		var pref = dev.get_preferences ();
 
-		if(pref.sync_music) {
-			if(pref.sync_all_music) {
-				foreach(var s in lm.media()) {
-					if(s.mediatype == 0 && !s.isTemporary)
-						list.add(s);
+		if (pref.sync_music) {
+			if (pref.sync_all_music) {
+				foreach (var s in lm.media ()) {
+					if (s.mediatype == 0 && !s.isTemporary)
+						list.add (s);
 				}
 			}
 			else {
-				GLib.Object p = lm.playlist_from_name(pref.music_playlist);
-				if(p == null)
-					p = lm.smart_playlist_from_name(pref.music_playlist);
+				GLib.Object p = lm.playlist_from_name (pref.music_playlist);
+				if (p == null)
+					p = lm.smart_playlist_from_name (pref.music_playlist);
 				
-				if(p != null) {
-					if(p is Playlist) {
-						foreach (var m in ((Playlist)p).media()) {
+				if (p != null) {
+					if (p is Playlist) {
+						foreach (var m in ( (Playlist) p).media ()) {
 							if (m != null && m.mediatype == 0)
 								list.add (m);
 						}
 					}
 					else {
-						foreach(var m in ((SmartPlaylist)p).analyze(lm, lm.media ())) {
+						foreach (var m in ( (SmartPlaylist) p).analyze (lm, lm.media ())) {
 							if(m != null && m.mediatype == 0)
 								list.add (m);
 						}
@@ -553,7 +508,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 					
 					pref.music_playlist = "";
 					pref.sync_all_music = true;
-					musicDropdown.set_active(0);
+					sync_music_combobox.set_active(0);
 					return;
 				}
 			}
@@ -590,7 +545,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 					lw.doAlert(_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + pref.podcast_playlist + "</b>", "<b>" + dev.getDisplayName() + "</b>"));
 					pref.podcast_playlist = "";
 					pref.sync_all_podcasts = true;
-					musicDropdown.set_active(0);
+					sync_music_combobox.set_active(0);
 					return;
 				}
 			}
@@ -627,7 +582,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 					lw.doAlert("Sync Failed", "The playlist named <b>" + pref.audiobook_playlist + "</b> is used to sync device <b>" + dev.getDisplayName() + "</b>, but could not be found.");
 					pref.audiobook_playlist = "";
 					pref.sync_all_audiobooks = true;
-					musicDropdown.set_active(0);
+					sync_music_combobox.set_active(0);
 					return;
 				}
 			}
@@ -650,7 +605,7 @@ public class BeatBox.DeviceSummaryWidget : VBox {
 				swd.show();
 			}
 			else {
-				spaceWidget.set_sync_button_sensitive(false);
+				space_widget.set_sync_button_sensitive(false);
 				dev.sync_medias(list);
 			}
 		}
