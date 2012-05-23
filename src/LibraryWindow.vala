@@ -86,7 +86,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 	private Notify.Notification notification;
 
-	private Gdk.WindowState window_state;
+	// Window properties
+	private bool window_maximized = false;
+	private int window_width = 0;
+	private int window_height = 0;
 
 	public LibraryWindow (BeatBox.Beatbox app) {
 		set_application (app);
@@ -124,8 +127,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		this.lm.media_played.connect(media_played);
 		this.lm.playback_stopped.connect(playback_stopped);
 
-		this.destroy.connect (on_quit);
-
 		// TODO: Move this to LibraryManager
 		if(lm.media_count() == 0 && settings.getMusicFolder() == "") {
 			message("First run.\n");
@@ -153,14 +154,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	public void build_ui() {
 		debug ("Building user interface");
 
-		// set window min/max
-		Gdk.Geometry geo = Gdk.Geometry();
-		geo.min_width = 700;
-		geo.min_height = 400;
-		set_geometry_hints(this, geo, Gdk.WindowHints.MIN_SIZE);
-
 		// set the size based on saved gconf settings
-		set_default_size(settings.getWindowWidth(), settings.getWindowHeight());
+		set_default_size (settings.getWindowWidth(), settings.getWindowHeight());
+
+		// Maximize window if necessary
+		if (settings.getWindowMaximized ())
+			this.maximize ();
+
 
 		// set the title
 		set_title(app.get_name ());
@@ -375,15 +375,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		update_sensitivities();
 		show_all ();
 		
-		this.window_state_event.connect ( (event) => {
-			window_state = event.new_window_state;
-			return false;
-		});
-
-		// Maximize window if necessary
-		if (settings.getWindowMaximized ())
-			this.maximize ();
-
 		sideTree.resetView ();
 
 		if(lm.media_active) {
@@ -959,42 +950,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			topDisplay.change_value(ScrollType.NONE, 0);
 	}
 
-
-	public virtual void on_quit() {
-		lm.settings.setLastMediaPosition((int)((double)lm.player.getPosition()/1000000000));
-		if(lm.media_active) {
-			lm.media_info.media.resume_pos = (int)((double)lm.player.getPosition()/1000000000);
-			lm.update_media_item (lm.media_info.media, false, false);
-		}
-		lm.player.pause();
-
-		// Terminate Libnotify
-		if (Notify.is_initted ()) {
-			if (notification != null) {
-				try {
-					notification.close ();
-				}
-				catch (Error err) {
-					warning (err.message);
-				}
-			}
-			Notify.uninit ();
-		}
-
-		// Search
-		settings.setSearchString (searchField.get_text());
-		
-		// Save info pane (context pane) width
-		settings.setMoreWidth(info_panel.get_allocated_width());
-
-		// Save sidebar width
-		settings.setSidebarWidth(main_hpaned.position);
-		
-		// Save window state
-		settings.setWindowMaximized (window_state == Gdk.WindowState.MAXIMIZED);
-	}
-
-
 	public virtual void fileImportMusicClick() {
 		if(!lm.doing_file_operations()) {
 			/*if(!(GLib.File.new_for_path(lm.settings.getMusicFolder()).query_exists() && lm.settings.getCopyImportedMusic())) {
@@ -1333,5 +1288,55 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		dialog.run();
 		dialog.destroy();
 	}
+
+	public override void destroy() {
+		// Save media position and info
+		lm.settings.setLastMediaPosition((int)((double)lm.player.getPosition
+		()/1000000000));
+		if(lm.media_active) {
+			lm.media_info.media.resume_pos = (int)((double)lm.player.getPosition()/1000000000);
+			lm.update_media_item (lm.media_info.media, false, false);
+		}
+		lm.player.pause();
+
+		// Terminate Libnotify
+		if (Notify.is_initted ()) {
+			if (notification != null) {
+				try {
+					notification.close ();
+				}
+				catch (Error err) {
+					warning (err.message);
+				}
+			}
+			Notify.uninit ();
+		}
+
+		// Search FIXME: Temporary disabled
+		//settings.setSearchString (searchField.get_text());
+		
+		// Save info pane (context pane) width
+		settings.setMoreWidth(info_panel.get_allocated_width());
+
+		// Save sidebar width
+		settings.setSidebarWidth (main_hpaned.position);
+		
+		// Save window state
+		settings.setWindowMaximized (window_maximized);
+		settings.setWindowWidth (window_width);
+		settings.setWindowHeight (window_height);
+
+		base.destroy ();
+	}
+
+	public override bool configure_event(Gdk.EventConfigure event) {
+		// Get window dimensions.
+		window_maximized = (get_window().get_state() == Gdk.WindowState.MAXIMIZED);
+		if (!window_maximized)
+			get_size(out window_width, out window_height);
+        
+		return base.configure_event(event);
+    }
+    
 }
 
