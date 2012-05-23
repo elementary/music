@@ -193,6 +193,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		viewSelector = new Granite.Widgets.ModeButton();
 		searchField = new Granite.Widgets.SearchBar(_("Search Music"));
 
+		// Set search timeout
+		searchField.pause_delay = 200;
+
 		info_panel = new InfoPanel(lm, this);
 		statusbar = new Granite.Widgets.StatusBar();
 
@@ -578,7 +581,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		// Add Music Library View
 		var music_view_wrapper = new MusicViewWrapper (this);
 		add_view (_("Music"), music_view_wrapper);
-		music_view_wrapper.set_media_from_ids (lm.song_ids ());
+		music_view_wrapper.set_media_from_ids_async (lm.song_ids ());
 
 		debug ("Done with main views.");
 	}
@@ -593,12 +596,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		// Add Queue view
 		var queue_view = new QueueViewWrapper (this);
 		add_view (_("Queue"), queue_view);
-		queue_view.set_media (lm.queue ());
+		queue_view.set_media_async (lm.queue ());
 
 		// Add History view
 		var history_view = new HistoryViewWrapper (this);
 		add_view (_("History"), history_view);
-		history_view.set_media (lm.already_played ());
+		history_view.set_media_async (lm.already_played ());
 
 		// load smart playlists
 		foreach(SmartPlaylist p in lm.smart_playlists()) {
@@ -622,14 +625,14 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
 			add_view (p.name, view, out iter);
 			// TODO: does p.media () work? it's faster
-			view.set_media (lm.media_from_playlist (p.rowid));
+			view.set_media_async (lm.media_from_playlist (p.rowid));
 		}
 		else if(o is SmartPlaylist) {
 			SmartPlaylist p = (SmartPlaylist)o;
 			
 			var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
 			add_view (p.name, view, out iter);
-			view.set_media (lm.media_from_smart_playlist (p.rowid));
+			view.set_media_async (lm.media_from_smart_playlist (p.rowid));
 		}
 		/* XXX: Migrate this code to the new API */
 		else if(o is Device) {
@@ -644,7 +647,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 				 */
 				 var cd_setup = new TreeViewSetup(MusicListView.MusicColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
 				var vw = new DeviceViewWrapper (this, cd_setup, d);
-				vw.set_media (d.get_medias ());
+				vw.set_media_async (d.get_medias ());
 				iter = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
 				view_container.add_view (vw);
 			}
@@ -1072,7 +1075,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 					ViewWrapper vw = (ViewWrapper)w;
 					debug("doing clear\n");
 					//vw.do_update(vw.current_view, new LinkedList<int>(), true, true, false);
-					vw.set_media (new LinkedList<Media>());
+					vw.set_media_async (new LinkedList<Media>());
 					debug("cleared\n");
 				}
 			});
@@ -1082,7 +1085,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
 			//vw.do_update(vw.current_view, lm.song_ids(), true, true, false);
 			//vw.column_browser.populate (lm.song_ids());
-			vw.set_media_from_ids (lm.song_ids());
+			vw.set_media_from_ids_async (lm.song_ids());
 		}
 	}
 
@@ -1119,7 +1122,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			topDisplay.set_label_text("");
 
 		resetSideTree(false);
-		//searchField.changed();
 
 		update_sensitivities();
 	}

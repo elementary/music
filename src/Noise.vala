@@ -40,15 +40,13 @@ namespace BeatBox {
             warning ("Error parsing arguments: %s\n", err.message);
         }
 
-        Gdk.threads_enter ();
         Gtk.init (ref args);
-        Gdk.threads_leave ();
 
         try {
             Gst.init_check (ref args);
         }
         catch (Error err) {
-            warning ("Could not init GStreamer: %s", err.message);
+            error ("Could not init GStreamer: %s", err.message);
         }
 
         var app = new Beatbox ();
@@ -71,6 +69,8 @@ namespace BeatBox {
             { "no-plugins", 'n', 0, OptionArg.NONE, ref Options.disable_plugins, N_("Disable plugins"), null},
             { null }
         };
+
+        private bool is_loading = false;
 
         construct {
             // This allows opening files. See the open() method below.
@@ -156,6 +156,10 @@ namespace BeatBox {
             return app_launcher;
         }
 
+        public bool get_is_loading () {
+            return is_loading;
+        }
+
         protected override void activate () {
             // present window if app is already open
             if (library_window != null) {
@@ -169,8 +173,10 @@ namespace BeatBox {
             else
                 Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
+            is_loading = true;
             library_window = new BeatBox.LibraryWindow (this);
             library_window.build_ui ();
+            is_loading = false;
 
             if (!Options.disable_plugins)
                 plugins_manager.hook_new_window (library_window);

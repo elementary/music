@@ -28,7 +28,7 @@ namespace BeatBox.Search {
      * This method can be used as a parser as well [TODO].
      */
     public inline string get_valid_search_string (string s) {
-        return s.strip ();
+        return s.strip ().down ();
     }
 
 

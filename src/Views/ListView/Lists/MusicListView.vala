@@ -96,7 +96,6 @@ public class BeatBox.MusicListView : GenericList {
 		mediaActionMenu.show_all();
 
 		if(get_hint() == ViewWrapper.Hint.MUSIC) {
-			mediaRemove.set_visible(true);
 			mediaRemove.set_label(_("Remove from Library"));
 			importToLibrary.set_visible(false);
 		}
@@ -105,7 +104,6 @@ public class BeatBox.MusicListView : GenericList {
 			importToLibrary.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.QUEUE) {
-			mediaRemove.set_visible(true);
 			mediaRemove.set_label(_("Remove from Queue"));
 			mediaMenuQueue.set_visible(false);
 			importToLibrary.set_visible(false);
@@ -115,7 +113,6 @@ public class BeatBox.MusicListView : GenericList {
 			importToLibrary.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.PLAYLIST) {
-			mediaRemove.set_visible(true);
 			importToLibrary.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.SMART_PLAYLIST) {
@@ -124,22 +121,21 @@ public class BeatBox.MusicListView : GenericList {
 		}
 		else if(get_hint() == ViewWrapper.Hint.DEVICE_AUDIO) {
 			mediaEditMedia.set_visible(false);
-			mediaRemove.set_visible(true);
 			mediaRemove.set_label(_("Remove from Device"));
 			mediaMenuQueue.set_visible(false);
-			importToLibrary.set_visible(true);
 			mediaMenuAddToPlaylist.set_visible(false);
 			mediaMenuNewPlaylist.set_visible(false);
 		}
 		else if(get_hint() == ViewWrapper.Hint.CDROM) {
 			mediaEditMedia.set_visible(false);
+			mediaRateMedia.set_visible(false);
 			mediaRemove.set_visible(false);
-			importToLibrary.set_visible(true);
 			mediaMenuAddToPlaylist.set_visible(false);
 			mediaMenuNewPlaylist.set_visible(false);
 		}
 		else {
 			mediaRemove.set_visible(false);
+			importToLibrary.set_visible(false);
 		}
 	}
 
@@ -173,10 +169,13 @@ public class BeatBox.MusicListView : GenericList {
 		mediaActionMenu.append(mediaMenuQueue);
 		mediaActionMenu.append(mediaMenuNewPlaylist);
 		mediaActionMenu.append(mediaMenuAddToPlaylist);
-		if(tvs.get_hint() != ViewWrapper.Hint.DEVICE_AUDIO)
+
+		if(tvs.get_hint() != ViewWrapper.Hint.SMART_PLAYLIST && tvs.get_hint() != ViewWrapper.Hint.ALBUM_LIST)
 			mediaActionMenu.append(new SeparatorMenuItem());
+
 		mediaActionMenu.append(mediaRemove);
 		mediaActionMenu.append(importToLibrary);
+
 		mediaEditMedia.activate.connect(mediaMenuEditClicked);
 		mediaFileBrowse.activate.connect(mediaFileBrowseClicked);
 		mediaMenuQueue.activate.connect(mediaMenuQueueClicked);
@@ -186,10 +185,9 @@ public class BeatBox.MusicListView : GenericList {
 		mediaRateMedia.activate.connect(mediaRateMediaClicked);
 		mediaScrollToCurrent.activate.connect(mediaScrollToCurrentRequested);
 		
-		set_headers_visible(tvs.get_hint() != ViewWrapper.Hint.ALBUM_LIST);
+		set_headers_visible (tvs.get_hint() != ViewWrapper.Hint.ALBUM_LIST);
 		
-		update_sensitivities();
-		
+		update_sensitivities();		
 	}
 
 #if 0

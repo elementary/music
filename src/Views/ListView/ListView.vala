@@ -292,7 +292,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return media_list;
 	}
 
-	private async void column_browser_changed () {
+	private void column_browser_changed () {
 		/* This method is only called if the column browser is available.
 		 * For performance reasons we won't update visible_media to match
 		 * the results of the miller columns.
@@ -312,24 +312,24 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		return list_view.get_is_current_list ();
 	}
 
-	public async void add_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
+	public void add_media (Gee.Collection<Media> to_add) {
 		if (column_browser_enabled)
 			column_browser.add_media (to_add);
 		else
-			list_view.add_media (to_add, cancellable);
+			list_view.add_media (to_add);
 	}
 
-	public async void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
+	public void remove_media (Gee.Collection<Media> to_remove) {
 		if (column_browser_enabled)
 			column_browser.remove_media (to_remove);
 		else
-			list_view.remove_media (to_remove, cancellable);
+			list_view.remove_media (to_remove);
 	}
 
-	public async void set_media (Gee.Collection<Media> media, Cancellable? cancellable = null) {
+	public void set_media (Gee.Collection<Media> media) {
 		if (has_column_browser)
 			column_browser.set_media (media);
-		list_view.set_media (media, cancellable);
+		list_view.set_media (media);
 	}
 }
 

@@ -80,7 +80,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
             else if (hint == Hint.SMART_PLAYLIST) {
                 var action = new Gtk.Action ("smart-playlist-rules-edit",
                                              _("Edit Smart Playlist"),
-                                             _("Click on the button to edit playlist rules"),
+                                             null,
                                              Gtk.Stock.EDIT);
                 // Connect to the 'activate' signal
                 action.activate.connect ( () => {
@@ -106,7 +106,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
         if (hint != Hint.SMART_PLAYLIST)
             return;
 
-        set_media (new_media);
+        set_media_async (new_media);
     }
 
     /* NORMAL PLAYLISTS */
@@ -115,21 +115,21 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
         if (hint != Hint.PLAYLIST)
             return;
 
-        add_media (to_add);
+        add_media_async (to_add);
     }
 
     private void on_playlist_media_removed (Gee.Collection<Media> to_remove) {
         if (hint != Hint.PLAYLIST)
             return;
 
-        remove_media (to_remove);
+        remove_media_async (to_remove);
     }
 
     private void on_playlist_cleared () {
          if (hint != Hint.PLAYLIST)
             return;
 
-        set_media (new Gee.LinkedList<Media> ());
+        set_media_async (new Gee.LinkedList<Media> ());
     }
 }
 

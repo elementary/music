@@ -59,7 +59,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
         return !(list_view as ListView).get_is_current_list ();
     }
 
-    private void on_media_played (Media new_media) {
+    private async void on_media_played (Media? new_media) {
         if (!has_list_view)
             return;
 
@@ -83,13 +83,13 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 
     private void similar_retrieved (Gee.Collection<int> similar_internal, Gee.Collection<Media> similar_external) {
         if (should_update_media ()) {
-            set_media_from_ids (similar_internal);
+            set_media_from_ids_async (similar_internal);
         }
     }
 
     public void save_playlist () {
         if (base_media == null) {
-            warning ("User tried to save similar playlist, but there is no base media\n");
+            warning ("User tried to save similar playlist, but there is no base media");
             return;
         }
 

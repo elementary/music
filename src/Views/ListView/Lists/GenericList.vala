@@ -257,11 +257,14 @@ public abstract class BeatBox.GenericList : FastView {
 		}
 	}
 
+	private Media? get_media_from_index (int index) {
+		return get_object_from_index (index) as Media;
+	}
 
 	// When the user clicks over a cell in the rating column, that cell renderer
 	// emits the rating_changed signal. We need to update that rating...
 	private void on_rating_cell_changed (int new_rating, Gtk.Widget widget, string path, Gtk.CellRendererState flags) {
-		var m = get_object_from_index (int.parse (path)) as Media;
+		var m = get_media_from_index (int.parse (path));
 
 		if (m == null)
 			return;
@@ -297,7 +300,7 @@ public abstract class BeatBox.GenericList : FastView {
 			return;
 		}
 		
-		var m = get_object_from_index(int.parse(path.to_string())) as Media;
+		var m = get_media_from_index(int.parse(path.to_string()));
 		
 		// We need to first set this as the current list
 		lm.clearCurrent();
@@ -382,7 +385,7 @@ public abstract class BeatBox.GenericList : FastView {
 		TreeModel temp;
 		
 		foreach(TreePath path in get_selection().get_selected_rows(out temp)) {
-			var m = get_object_from_index(int.parse(path.to_string())) as Media;
+			var m = get_media_from_index(int.parse(path.to_string()));
 			rv.append(m);
 		}
 		
@@ -410,7 +413,7 @@ public abstract class BeatBox.GenericList : FastView {
 			return;
 		
 		for(int i = 0; i < get_visible_table().size(); ++i) {
-			var m = get_object_from_index(i) as Media;
+			var m = get_media_from_index(i);
 
 			if(m.rowid == lm.media_info.media.rowid) {
 				scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);

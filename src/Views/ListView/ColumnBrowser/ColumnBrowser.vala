@@ -323,10 +323,10 @@ public class BeatBox.ColumnBrowser : Box {
 		debug ("Column browser changed");
 		changed ();
 
-        populate_columns_async (category);
+		populate_columns (category);
 	}
 
-    private async void populate_columns_async (MillerColumn.Category category) {
+    private void populate_columns (MillerColumn.Category category) {
 		// Now re-populate the child columns
 		foreach (var column in columns) {
 			// Child columns
@@ -603,7 +603,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 	}
 
 
-	public async void populate (HashMap<string, int> items) {
+	public void populate (HashMap<string, int> items) {
 		// After initialization, ignore any attempt to populate the column if it's hidden.
 		// This will boost performance when some columns are hidden.
 		if (!this.visible && !lw.initialization_finished)

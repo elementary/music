@@ -200,7 +200,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return m.album_artist + m.album;
 	}
 
-	public async void set_media (Gee.Collection<Media> to_add, Cancellable? cancellable = null) {
+	public void set_media (Gee.Collection<Media> to_add) {
 		var new_table = new HashTable<int, Media> (null, null);
 		// just here to check for duplicates
 		var to_add_ind = new Gee.HashMap<string, int> ();
@@ -221,7 +221,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icon_view.set_table (new_table, true);
 	}
 
-	public async void add_media (Gee.Collection<Media> media, Cancellable? cancellable = null) {
+	public void add_media (Gee.Collection<Media> media) {
 		var to_append = new Gee.HashMap<string, Media> ();
 		foreach (var m in media) {
 			if (m == null)
@@ -237,7 +237,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		icon_view.add_objects (to_append.values);
 	}
 
-	public async void remove_media (Gee.Collection<Media> to_remove, Cancellable? cancellable = null) {
+	public void remove_media (Gee.Collection<Media> to_remove) {
 		var to_remove_ind = new Gee.HashMap<string, int> ();
 		var to_remove_table = new HashMap<Object, int> ();
 
@@ -426,8 +426,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			return;
 		}
 
-		// You're not supposed to understand this. It is the result of simplifying the original
-		// (understandable) equation. Contact Victor Eduardo if you need an explanation.
+		// You're not supposed to understand this.
 		float spacing = (float)(TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (float)(n_columns + 1);
 		int new_spacing = Numeric.int_from_float (spacing);
 
@@ -435,6 +434,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			setting_size.unlock ();
 			return;
 		}
+
+		// apply new spacing
+		set_spacing (new_spacing);
 
 		// verify new size
 		int error = icon_view.get_allocated_width () - TOTAL_WIDTH;

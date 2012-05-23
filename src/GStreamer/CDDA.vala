@@ -71,12 +71,12 @@ public class BeatBox.CDDA : GLib.Object {
 				if(title != null)
 					s.title = title;
 				else
-					s.title = "Unknown Title";
+					s.title = _("Unknown Title");
 					
 				if(artist != null)
 					s.artist = artist;
 				else
-					s.artist = "Unknown Artist";
+					s.artist = _("Unknown Artist");
 					
 				if((album_name == null || album_name != "" || album_genre == null || album_genre == "") && index == 1) {
 					var info = getInfoFromTitleArtist(s.artist, s.title);
@@ -93,7 +93,7 @@ public class BeatBox.CDDA : GLib.Object {
 				if(album_name != null && album_name != "")
 					s.album = album_name;
 				else {
-					s.album = "Unkown Album";
+					s.album = _("Unknown Album");
 				}
 				
 				if(album_genre != null && album_genre != "")
@@ -107,8 +107,8 @@ public class BeatBox.CDDA : GLib.Object {
 					s.genre = album_genre;
 				
 				// do some checks
-				bool artistValid = (s.artist != null && s.artist != "Unknown Artist");
-				bool albumArtistValid = (album_artist != null && album_artist != "Unknown Artist");
+				bool artistValid = (s.artist != null && s.artist != _("Unknown Artist"));
+				bool albumArtistValid = (album_artist != null && album_artist != _("Unknown Artist"));
 				
 				if(artistValid && !albumArtistValid)
 					s.album_artist = s.artist;
