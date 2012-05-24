@@ -1,16 +1,16 @@
-# Czech translation for beat-box
+# Bulgarian translation for noise
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
-# This file is distributed under the same license as the beat-box package.
+# This file is distributed under the same license as the noise package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: beat-box\n"
+"Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-23 21:01-0600\n"
-"PO-Revision-Date: 2012-05-23 21:54+0000\n"
-"Last-Translator: Jakub Cabal <jakubcabal@gmail.com>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"PO-Revision-Date: 2012-05-21 12:55+0000\n"
+"Last-Translator: Veselin Trakiyski <Unknown>\n"
+"Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,45 +20,49 @@ msgstr ""
 #: /home/victor/noise/po/../src//LibraryManager.vala:318
 #, c-format
 msgid "Importing music from %s..."
-msgstr ""
+msgstr "Импортиране на музика от %s..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:364
 msgid "Adding files to library..."
-msgstr ""
+msgstr "Добавяне на файлове в библиотеката..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:389
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr ""
+msgstr "Добавяне на музика от %s в библиотеката..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:415
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
+"Пресканиране на музиката за промени. Това може да отнеме известно време..."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1010
 msgid "Could not find Music Folder"
-msgstr "Složka s hudbou nenalezena"
+msgstr "Папката на музика не можа да бъде открита"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"Моля, уверете се, че папката на музика е достъпна и монтирана преди да "
+"импортирате CD-то."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
-msgstr "Žádné skladby na CD"
+msgstr "Няма песни на CD-то"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"%s не можа да намери песни на CD-то. Песни не могат да бъдат импортирани."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
 msgid "%s is already doing an import"
-msgstr ""
+msgstr "%s вече импортира в момента"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
@@ -66,34 +70,37 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
+"Моля, изчакайте докато %s свърши с настоящото импортиране преди импортиране "
+"на CD-то."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
 msgid "Ripping track 1"
-msgstr ""
+msgstr "Извличане на песен 1"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:329
 #, c-format
 msgid "Importing track %i"
-msgstr ""
+msgstr "Импортиране на песен %i"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 msgid "CD Import Complete"
-msgstr "Import CD dokončen"
+msgstr "Импортирането на CD завърши"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr ""
+msgstr "%s завърши импортирането на %i песни от Audio CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr ""
+msgstr "%s завърши импортирането на песен от Audio CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
+"CD импортирането ще бъде <b>прекъснато</b> след настоящото импортиране."
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
@@ -115,12 +122,12 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:313
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 msgid "Radio Station"
-msgstr ""
+msgstr "Радио станция"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:45
 #: /home/victor/noise/po/../src//GStreamer/CDDA.vala:74
 msgid "Unknown Title"
-msgstr "Neznámý název"
+msgstr "Неизвестно заглавие"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
 #: /home/victor/noise/po/../src//LibraryWindow.vala:727
@@ -128,26 +135,26 @@ msgstr "Neznámý název"
 #: /home/victor/noise/po/../src//GStreamer/CDDA.vala:110
 #: /home/victor/noise/po/../src//GStreamer/CDDA.vala:111
 msgid "Unknown Artist"
-msgstr "Neznámý interpret"
+msgstr "Неизвестен изпълнител"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
 #: /home/victor/noise/po/../src//LibraryWindow.vala:728
 #: /home/victor/noise/po/../src//GStreamer/CDDA.vala:96
 msgid "Unknown Album"
-msgstr "Neznámé album"
+msgstr "Неизвестен албум"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
-msgstr "média"
+msgstr "медия"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr "Podobná média"
+msgstr "Подобна медия"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:103
 msgid "Sync"
-msgstr "Synchronizace"
+msgstr "Синхронизиране"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
@@ -160,96 +167,96 @@ msgstr ""
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:102
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr "Importovat ze zařízení"
+msgstr "Импортиране от устройство"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:104
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:126
 msgid "Eject"
-msgstr "Vyjmout"
+msgstr "Изваждане"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:115
 msgid "Add Podcast"
-msgstr "Přidat podcast"
+msgstr "Добавяне на подкаст"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:116
 msgid "Download new Episodes"
-msgstr "Stáhnout nové epizody"
+msgstr "Сваляне на нови епизоди"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:125
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
 #: /home/victor/noise/po/../src//LibraryWindow.vala:186
 msgid "Import to Library"
-msgstr "Importovat do knihovny"
+msgstr "Импортиране в библиотеката"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
 msgid "Import Stations"
-msgstr "Importovat stanice"
+msgstr "Импортиране на станции"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:143
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
 msgid "New Playlist"
-msgstr "Nový playlist"
+msgstr "Нов плейлист"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:144
 msgid "New Smart Playlist"
-msgstr "Nový chytrý seznam skladeb"
+msgstr "Нов умен плейлист"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:145
 msgid "Edit"
-msgstr "Upravit"
+msgstr "Редактиране"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:146
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
 msgid "Remove"
-msgstr "Odebrat"
+msgstr "Премахване"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:147
 msgid "Save as Playlist"
-msgstr "Uložit jako seznam Skladeb"
+msgstr "Запазване като плейлист"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:148
 msgid "Export..."
-msgstr "Exportovat..."
+msgstr "Експортиране..."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:149
 msgid "Import Playlists"
-msgstr ""
+msgstr "Импортиране на плейлисти"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:187
 msgid "Library"
-msgstr "Knihovna"
+msgstr "Библиотека"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:188
 msgid "Devices"
-msgstr "Zařízení"
+msgstr "Устройства"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:189
 msgid "Network"
-msgstr "Síť"
+msgstr "Мрежа"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:190
 msgid "Playlists"
-msgstr "Seznamy skladeb"
+msgstr "Плейлисти"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:278
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
 #: /home/victor/noise/po/../src//LibraryWindow.vala:570
 msgid "Music"
-msgstr "Hudba:"
+msgstr "Музика"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:283
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Podcasts"
-msgstr "Podcasty"
+msgstr "Подкасти"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:880
 msgid "Playlist"
-msgstr ""
+msgstr "Плейлист"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:893
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "Импортиране на %s"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1012
 msgid "This device is syncing"
@@ -272,91 +279,91 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
 msgid "Cancel"
-msgstr "Storno"
+msgstr "Отказ"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
-msgstr "Ekvalizér"
+msgstr "Еквалайзер"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
-msgstr "Uložit předvolbu"
+msgstr "Запазване на фиксирана настройка"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:160
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:103
 msgid "Close"
-msgstr "Zavřít"
+msgstr "Затваряне"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (По избор)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:417
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (%i по избор)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:421
 msgid "Custom Preset"
-msgstr "Vlastní nastavení"
+msgstr "Фиксирана настройка по избор"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:423
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Фиксирана настройка по избор %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
-msgstr ""
+msgstr "Неимпортирани файлове"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "Не могат да бъдат импортирани %d предмета от %s"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
+msgstr "%s не можа да импортира %d предмета. Файловетe може да са повредени."
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Преместване на всички повредени файлове в кошчето"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr "Přesunout do koše"
+msgstr "Преместване в кошчето"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr "Ignorovat"
+msgstr "Игнориране"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
-msgstr "smazat"
+msgstr "del"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr "Umístění souboru"
+msgstr "Местоположение на файла"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "Изберете индивидуални файлове за преместване в кошчето:"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
-msgstr "Exportovat seznam skladeb"
+msgstr "Експортиране на плейлисти"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr "Vybrat složku s hudbou"
+msgstr "Задаване на папка за музика"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr "Nastavit složku s hudbou?"
+msgstr "Задаване за папка за музика?"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
@@ -364,25 +371,27 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Сигурни ли сте, че искате да зададете %s като папката за музика? Това ще "
+"нулира библиотеката ви и ще премахне плейлистите ви."
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:140
 msgid "Choose Music Folder"
-msgstr "Vybrat složku s hudbou"
+msgstr "Избиране на папка за музика"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr ""
+msgstr "Инсталиране на плъгин"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Do Nothing"
-msgstr "Nedělat nic"
+msgstr "Да не се прави нищо"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
-msgstr ""
+msgstr "Нужният плъгин GStreamer не е инсталиран"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
@@ -390,38 +399,40 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"Плъгинът за медия тип %s не е инсталиран.\n"
+"Какво желаете да направите?"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:70
 msgid "Metadata"
-msgstr ""
+msgstr "Метаданни"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:72
 msgid "Lyrics"
-msgstr ""
+msgstr "Текст"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:82
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
 msgid "Done"
-msgstr "Hotovo"
+msgstr "Готово"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:166
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:337
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "Променя се %s на %s"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:168
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:339
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "Променя се %s"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:171
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:342
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "Променят се %i песни"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:177
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:295
@@ -430,7 +441,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
 msgid "Title"
-msgstr "Název"
+msgstr "Заглавие"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:178
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
@@ -440,11 +451,11 @@ msgstr "Název"
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
 #: /home/victor/noise/po/../src//LibraryWindow.vala:256
 msgid "Artist"
-msgstr "Interpret"
+msgstr "Изпълнител"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:179
 msgid "Album Artist"
-msgstr ""
+msgstr "Изпълнител на албума"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:180
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
@@ -454,7 +465,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
 #: /home/victor/noise/po/../src//LibraryWindow.vala:255
 msgid "Album"
-msgstr "Album"
+msgstr "Албум"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:181
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:470
@@ -463,14 +474,14 @@ msgstr "Album"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Genre"
-msgstr "Žánr"
+msgstr "Жанр"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:182
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:282
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "Composer"
-msgstr "Skladatel"
+msgstr "Композитор"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:183
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:470
@@ -478,7 +489,7 @@ msgstr "Skladatel"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "Grouping"
-msgstr "Seskupení"
+msgstr "Групиране"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:184
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
@@ -486,46 +497,46 @@ msgstr "Seskupení"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 msgid "Comment"
-msgstr "Kometář"
+msgstr "Коментар"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
 msgid "Track"
-msgstr "Stopa"
+msgstr "Песен"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
 msgid "Disc"
-msgstr ""
+msgstr "Диск"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:187
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:296
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
 msgid "Year"
-msgstr "Rok"
+msgstr "Година"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:293
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 msgid "Rating"
-msgstr "Hodnocení"
+msgstr "Рейтинг"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:290
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:345
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:370
 msgid "Media Type"
-msgstr "Typ média"
+msgstr "Тип медия"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:234
 msgid "Try again"
-msgstr ""
+msgstr "Опитайте отново"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:287
 #, c-format
 msgid "Lyrics not found for \"%s\" by \"%s\""
-msgstr ""
+msgstr "Текстът на \"%s\" на \"%s\" не беше намерен"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:529
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:310
@@ -533,7 +544,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
 #: /home/victor/noise/po/../src//LibraryWindow.vala:254
 msgid "Song"
-msgstr "Skladba"
+msgstr "Песен"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:531
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:311
@@ -541,19 +552,19 @@ msgstr "Skladba"
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
 msgid "Podcast"
-msgstr "Podcast"
+msgstr "Подкаст"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
-msgstr ""
+msgstr "Импортиране на медия в библиотеката"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
-msgstr "Pokračovat v synchronizaci"
+msgstr "Продължаване на синхронизацията"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
-msgstr "Zastavit synchronizaci"
+msgstr "Спиране на синхронизацита"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
@@ -561,53 +572,57 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Ако продължите синхронизацията, медия ще бъде премахната от %s, тъй като не "
+"са на списъка за синхронизация. Желаете ли първо да ги импортирате в "
+"библиотеката си?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "Синхронизацията ще премахне %i предмета от %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "Синхронизацията ще премахне 1 предмет от %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:48
 msgid "Success!"
-msgstr "Úspěch!"
+msgstr "Успешно!"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:49
 msgid "Enable Scrobbling"
-msgstr ""
+msgstr "Включване на Scrobbling"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:50
 msgid "Unsuccessful. Click to try again."
-msgstr ""
+msgstr "Неуспешно. Щракнете, за да опитате отново."
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:67
 #: /home/victor/noise/po/../src//LibraryWindow.vala:249
 msgid "Preferences"
-msgstr "Nastavení"
+msgstr "Предпочитания"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:81
 msgid "Music Folder"
-msgstr "Složka s hudbou"
+msgstr "Папка за музика"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:84
 msgid "Keep music folder organized"
-msgstr ""
+msgstr "Папката за музика да се организира"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:85
 msgid "Write metadata to file"
-msgstr ""
+msgstr "Записване на метаданни върху файл"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:86
 msgid "Copy files to music folder when added to library"
 msgstr ""
+"Копиране на файлове в папката за музика, когато са добавени в библиотеката"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:88
 msgid "Automatically download new podcast episodes"
-msgstr ""
+msgstr "Автоматично сваляне на нови подкаст епизоди"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:93
 #, c-format
@@ -615,197 +630,201 @@ msgid ""
 "To allow for Last.fm integration, you must give permission to %s. You only "
 "need to do this once."
 msgstr ""
+"За интеграция с Last.fm, трябва да дадете разрешение на %s. Това е "
+"необходимо само веднъж."
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:98
 msgid "Scrobbling already Enabled"
-msgstr ""
+msgstr "Scrobbling вече е включено"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:99
 msgid "Click to redo the Last.fm Login Process"
-msgstr ""
+msgstr "Щракнете за да направите логин в Last.fm отново"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:108
 #, c-format
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Местоположение на папката за музика"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:109
 #, c-format
 msgid "Library Management"
-msgstr ""
+msgstr "Управление на библиотеката"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:113
 #, c-format
 msgid "Last.fm Integration"
-msgstr ""
+msgstr "Интеграция с Last.fm"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:121
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Необходимо е да изчакате предишни операции с файлове да приключат, преди да "
+"зададете вашата папката за музика"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:189
 msgid "Complete login"
-msgstr ""
+msgstr "Завършване на влизане"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Редактор на умен плейлист"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:67
 msgid "Name of Playlist"
-msgstr "Název playlistu"
+msgstr "Име на плейлиста"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
 msgid "Rules"
-msgstr "Pravidla"
+msgstr "Правила"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
 msgid "Options"
-msgstr "Nastavení"
+msgstr "Опции"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:81
 msgid "Playlist Title"
-msgstr "Název seznamu skladeb"
+msgstr "Име на плейлиста"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
-msgstr "Shoda"
+msgstr "Съвпадение при"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
 msgid "any"
-msgstr "cokoliv"
+msgstr "всяко"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:90
 msgid "all"
-msgstr "vše"
+msgstr "всички"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
-msgstr "z následujících:"
+msgstr "от следните:"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
 msgid "Add"
-msgstr "Přidat"
+msgstr "Добавяне"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
 msgid "Limit to"
-msgstr "Omezit na"
+msgstr "Ограничаване до"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 msgid "items"
-msgstr "položek"
+msgstr "предмета"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:439
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Bitrate"
-msgstr "Datový tok"
+msgstr "Битрейт"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:283
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Date Added"
-msgstr "Datum přidání"
+msgstr "Дата на добавяне"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:284
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 msgid "Date Released"
-msgstr "Datum vydání"
+msgstr "Дата на издаване"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Last Played"
-msgstr "Naposledy přehráno"
+msgstr "Последно слушане"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:288
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 msgid "Length"
-msgstr "Délka"
+msgstr "Дължина"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:292
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "Playcount"
-msgstr "Počet přehrání"
+msgstr "Брой на слушания"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:294
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "Skipcount"
-msgstr ""
+msgstr "Брой на пропускания"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:312
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:379
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
-msgstr "Audiokniha"
+msgstr "Аудио книга"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:361
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:389
 msgid "is"
-msgstr "je"
+msgstr "е"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
 msgid "contains"
-msgstr "obsahuje"
+msgstr "съдържа"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
 msgid "does not contain"
-msgstr "neobsahuje"
+msgstr "не съдържа"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:390
 msgid "is not"
-msgstr "není"
+msgstr "не е"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:417
 msgid "is exactly"
-msgstr ""
+msgstr "е точно"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
 msgid "is at most"
-msgstr ""
+msgstr "е най-много"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
 msgid "is at least"
-msgstr ""
+msgstr "е най-малко"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:418
 msgid "is within"
-msgstr ""
+msgstr "е в обсега на"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:419
 msgid "is before"
-msgstr "je před"
+msgstr "е преди"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:432
 msgid "seconds"
-msgstr "sekund"
+msgstr "секунди"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:436
 msgid "days ago"
-msgstr ""
+msgstr "дни назад"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:440
 msgid "kbps"
-msgstr "kb/s"
+msgstr "кб/сек."
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr ""
+msgstr "Импортиране на медия от %s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
@@ -813,28 +832,30 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Следните файлове бяха намерени на %s, но не са в библиотекета ви. Изберете "
+"всички файлове, които желаете да импортирате."
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr ""
+msgstr "Импортиране на всичката медия"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
-msgstr ""
+msgstr "Импортиране"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr ""
+msgstr "Да не се импортира"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "Импортиране на %i предмета от %s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Импортиране на %s от %s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
@@ -843,72 +864,75 @@ msgstr "ID"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Избиране на индивидуална медия за импортиране:"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr ""
+msgstr "Проверка на предмет"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr ""
+msgstr "Проверка на албум"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr ""
+msgstr "Проверка на изпълнител"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Remove Media"
-msgstr ""
+msgstr "Премахване на медия"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Locate Media"
-msgstr ""
+msgstr "Намиране на медия"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Rescan Library"
-msgstr ""
+msgstr "Пресканиране на библиотеката"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:69
 msgid "Could not find media file"
-msgstr ""
+msgstr "Не може да се намери медиен файл"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
 msgstr ""
+"Музикалният файл за %s на %s не можа да бъде намерен. Какво желаете да "
+"направите?"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
 msgstr ""
+"%i медийни файлове не можаха да бъдат намерени. Какво желаете да направите?"
 
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:138
 #, c-format
 msgid "The name %s is already in use"
-msgstr ""
+msgstr "Името %s вече се използва"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "Премахване от %s"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 msgid "Station"
-msgstr "Stanice"
+msgstr "Станция"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
-msgstr ""
+msgstr "Премахване на %d %s от %s?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "Премахване на \"%s\" от %s?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
@@ -916,11 +940,13 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"Това ще премахне %s от библиотеката ви и от всяко устройство, което "
+"автоматично се синхронизира с %s."
 
 #: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:151
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s на %s"
 
 #: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:550
 #, c-format
@@ -944,7 +970,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Няма песни в опашката"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid ""
@@ -952,10 +978,14 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"За добавяне на песни към опашката, използвайте <b>вторично щракване</b> "
+"върху предмет и изберете <b>Опашка</b>. Когато песен свърши, песните в "
+"опашката ще бъдат възпроизведени първо, преди следващата песен в настоящо "
+"възпроизвеждащият се списък от песни."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
-msgstr ""
+msgstr "Няма песни в История"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
@@ -963,40 +993,44 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"След като част от песен е възпроизведена, песента е добавена към списъка с "
+"история.\n"
+"Може да използвате този списък, за да видите всички песни, които сте слушали "
+"по време на настоящата сесия."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "Сдобийте се с няколко песни"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "Изглежда, че %s не може да намери вашата музика."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:49
 msgid "Locate"
-msgstr ""
+msgstr "Намиране"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:49
 msgid "Change your music folder."
-msgstr "Změnit svou složku s hudbou"
+msgstr "Промяна на папката с музика."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:100
 msgid "Import songs from audio CD"
-msgstr ""
+msgstr "Импортиране на песни от аудио CD"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:100
 msgid "Import media from device"
-msgstr ""
+msgstr "Импортиране на медия от устройство"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:187
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:85
 msgid "No External Songs"
-msgstr ""
+msgstr "Няма външни песни"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:187
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "Всички песни от това устройство са вече в библиотеката ви."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:198
 msgid "Loading Songs..."
@@ -1005,35 +1039,37 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:376
 #, c-format
 msgid "%i albums"
-msgstr ""
+msgstr "%i албуми"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:376
 msgid "1 album"
-msgstr ""
+msgstr "1 албум"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:379
 #, c-format
 msgid "%i songs"
-msgstr ""
+msgstr "%i песни"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:379
 msgid "1 song"
-msgstr ""
+msgstr "1 песен"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid "No Songs"
-msgstr ""
+msgstr "Няма песни"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"За да добавите песни към този плейлист, използвайте <b>вторично щракване</b> "
+"върху предмет и изберете <b>Добавяне към плейлист</b>."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "Редактиране на умен плейлист"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
@@ -1042,42 +1078,46 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Този плейлист ще бъде автоматичино попълнен с песни, които удовлетворяват "
+"правилата му. За да редактирате тези правила, използвайте <b>вторично "
+"щракване</b> върху него в страничното поле и щракнете  <b>Редактиране</b>. "
+"По избор, можете да щракнете бутона долу."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "Аудио CD невалидно"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s не успя да прочете съдържанието на това Аудио CD"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 #, c-format
 msgid "%i tracks"
-msgstr ""
+msgstr "%i песни"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 msgid "1 track"
-msgstr ""
+msgstr "1 песен"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Търсене на подобни песни"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
 msgid "Finding songs similar to %s by %s"
-msgstr ""
+msgstr "Намиране на песни, подобни на %s на %s"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
 #, c-format
 msgid "Similar to %s"
-msgstr ""
+msgstr "Подобни на %s"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:123
 msgid "No similar songs found"
-msgstr ""
+msgstr "Не бяха открити подобни песни"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:123
 #, c-format
@@ -1089,7 +1129,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:136
 msgid "Similar Song View"
-msgstr ""
+msgstr "Изглед на подобни песни"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:136
 #, c-format
@@ -1098,28 +1138,37 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"В този изглед, %s автоматично ще търси песни, подобни на тази, която "
+"слушате. Тогава вие можете да слушате тези песни, или да ги запазите в "
+"плейлист за по-късно."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:42
 msgid "Cancelling Sync"
-msgstr ""
+msgstr "Прекъсване на синхронизацията"
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:42
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
+"Синхронизацията с устройството е прекъсната. Операцията ще спре след тази "
+"медия."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:46
 msgid "Cancelling Import"
-msgstr ""
+msgstr "Прекъсване на импортирането"
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:46
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
+"Импортирането от устройството е прекъснато. Операцията ще спре след тази "
+"медия."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:85
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
+"Не бяха намерени песни на това устройство, които вече не са в библиотеката "
+"ви."
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1128,35 +1177,35 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Episode"
-msgstr "Epizoda"
+msgstr "Епизод"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
 msgid "Name"
-msgstr "Jméno"
+msgstr "Име"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Date"
-msgstr "Datum"
+msgstr "Дата"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
 msgid "Category"
-msgstr "Kategorie"
+msgstr "Категория"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
-msgstr "Vysílač"
+msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "BPM"
-msgstr "BPM"
+msgstr "Уд/мин (BPM)"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "Plays"
-msgstr "Hraje"
+msgstr "Брой слушания"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:54
 msgid "Skips"
-msgstr "Přeskočení"
+msgstr "Брой пропускания"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
 msgid "#"
@@ -1164,197 +1213,197 @@ msgstr "#"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Remove from Library"
-msgstr ""
+msgstr "Премахване от библиотеката"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Премахване от опашката"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:124
 msgid "Remove from Device"
-msgstr ""
+msgstr "Премахване от устройство"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Преминаване на сегашна песен"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Редактиране на информация за песента"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "Show in File Browser"
-msgstr ""
+msgstr "Показване във файлов браузър"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
 #: /home/victor/noise/po/../src//LibraryWindow.vala:585
 msgid "Queue"
-msgstr "Fronta"
+msgstr "Опашка"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Добавяне към плейлист"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Remove Song"
-msgstr ""
+msgstr "Премахване на песен"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:253
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "Импортиране на %i от %i избрани песни"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
 msgid "Import this song"
-msgstr ""
+msgstr "Импортиране на тази песен"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
 #, c-format
 msgid "Import %i songs"
-msgstr ""
+msgstr "Импортиране на %i песни"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
 msgid "Unrated"
-msgstr ""
+msgstr "Без рейтинг"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:201
 msgid "1 Star"
-msgstr ""
+msgstr "1 звезда"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:203
 #, c-format
 msgid "%s Stars"
-msgstr ""
+msgstr "%s звезди"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
 msgid "All Genres"
-msgstr ""
+msgstr "Всички жанрове"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "Всички %i жанра"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
 msgid "No Genres"
-msgstr ""
+msgstr "Няма жанрове"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
 msgid "All Artists"
-msgstr ""
+msgstr "Всички изпълнители"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "Всички %i изпълнителя"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
 msgid "No Artists"
-msgstr ""
+msgstr "Няма изпълнители"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
 msgid "All Albums"
-msgstr ""
+msgstr "Всички албуми"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:269
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "Всички %i албума"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:271
 msgid "No Albums"
-msgstr ""
+msgstr "Няма албуми"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:275
 msgid "All Years"
-msgstr ""
+msgstr "Всички години"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:277
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "Всички %i години"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:279
 msgid "No Years"
-msgstr ""
+msgstr "Няма години"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:283
 msgid "All Ratings"
-msgstr ""
+msgstr "Всички рейтинги"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:285
 #, c-format
 msgid "All %i Ratings"
-msgstr ""
+msgstr "Всички %i рейтинга"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:287
 msgid "No Ratings"
-msgstr ""
+msgstr "Няма рейтинги"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 msgid "Automatic"
-msgstr ""
+msgstr "Автоматично"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:148
 msgid "On Left"
-msgstr ""
+msgstr "Вляво"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
 msgid "On Top"
-msgstr ""
+msgstr "Отгоре"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:553
 msgid "Genres"
-msgstr ""
+msgstr "Жанрове"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:556
 msgid "Artists"
-msgstr ""
+msgstr "Изпълнители"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:559
 msgid "Albums"
-msgstr ""
+msgstr "Албуми"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:562
 msgid "Years"
-msgstr ""
+msgstr "Години"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:565
 msgid "Ratings"
-msgstr ""
+msgstr "Рейтинги"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
-msgstr ""
+msgstr "Име на устройство:"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:80
 msgid "Device Name"
-msgstr ""
+msgstr "Име на устройство"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:82
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "Автоматично синхронизиране при свързване"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Sync:"
-msgstr ""
+msgstr "Синхронизиране:"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:111
 msgid "Other Files"
-msgstr ""
+msgstr "Други файлове"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:384
 msgid "All Music"
-msgstr ""
+msgstr "Всичка музика"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:387
 msgid "All Podcasts"
-msgstr ""
+msgstr "Всички подкасти"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
 msgid "Sync Failed"
-msgstr ""
+msgstr "Синхронизация неуспешна"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
@@ -1362,194 +1411,198 @@ msgstr ""
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"Плейлиста на име %s се използва за синхронизация на устройство %s, но не "
+"можа да бъде намерен."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Cannot Sync"
-msgstr ""
+msgstr "Синхронизация невъзможна"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
+"Устройството не може да се синхронизира с избраните настройки на "
+"синхронизация. Няма достатъчно място на диска."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
-msgstr ""
+msgstr "Устройството вече се синхронизира."
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:421
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Любими песни"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:442
 msgid "Recently Added"
-msgstr ""
+msgstr "Наскоро добавени"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:452
 msgid "Recently Played"
-msgstr ""
+msgstr "Наскоро изпълнявани"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:462
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Скорошни любими"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:472
 msgid "Never Played"
-msgstr ""
+msgstr "Неизпълнявани"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:482
 msgid "Unheard Podcasts"
-msgstr ""
+msgstr "Неслушани подкасти"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:492
 msgid "Over Played"
-msgstr ""
+msgstr "Прекомерно слушани"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:502
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Неслушани скоро"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:187
 msgid "Rescan Music Folder"
-msgstr ""
+msgstr "Пресканиране на папката за музика"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:198
 msgid "Search Music"
-msgstr ""
+msgstr "Търсене в музика"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:222
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Изключване на повтаряне"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:222
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Включване на повтаряне"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:223
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Изключване на разбъркване"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:223
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Включване на разбъркване"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:224
 msgid "Hide Info Panel"
-msgstr ""
+msgstr "Скриване на панела с информация"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:224
 msgid "Show Info Panel"
-msgstr ""
+msgstr "Показване на панела с информация"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:225
 msgid "Add Playlist"
-msgstr ""
+msgstr "Добавяне на плейлист"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:226
 msgid "Hide Equalizer"
-msgstr ""
+msgstr "Скриване на еквалайзер"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:226
 msgid "Show Equalizer"
-msgstr ""
+msgstr "Показване на еквалайзер"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:253
 #: /home/victor/noise/po/../src//LibraryWindow.vala:259
 msgid "Off"
-msgstr ""
+msgstr "Изключено"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:257
 #: /home/victor/noise/po/../src//LibraryWindow.vala:260
 msgid "All"
-msgstr "Vše"
+msgstr "Всички"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:262
 #: /home/victor/noise/po/../src//LibraryWindow.vala:265
 msgid "Hide"
-msgstr "Skrýt"
+msgstr "Скриване"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:263
 #: /home/victor/noise/po/../src//LibraryWindow.vala:266
 msgid "Show"
-msgstr "Zobrazit"
+msgstr "Показване"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:581
 msgid "Similar"
-msgstr "Podobné"
+msgstr "Подобни"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:590
 msgid "History"
-msgstr "Historie"
+msgstr "История"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:727
 msgid " by "
-msgstr ""
+msgstr " на "
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:728
 msgid " on "
-msgstr ""
+msgstr " на "
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:964
 msgid "Import Music"
-msgstr ""
+msgstr "Импортиране на музика"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:988
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr ""
+msgstr "<b>Импортиране</b> на музика от <b>%s</b> в библиотеката."
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1003
 msgid "Rescanning music folder for changes"
-msgstr ""
+msgstr "Пресканиране на папката за музика за промени"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1010
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
+msgstr "Моля, уверете се, че папката за музика е достъпна и монтирана."
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1064
 msgid "Import Complete"
-msgstr ""
+msgstr "Импортирането завърши"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1064
 #, c-format
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s импортира библиотеката ви."
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:40
 msgid "1 second"
-msgstr ""
+msgstr "1 секунда"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
 msgid "%s seconds"
-msgstr ""
+msgstr "%s секунди"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
-msgstr ""
+msgstr "1 ден"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%i days"
-msgstr ""
+msgstr "%i дни"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:72
 msgid "1 hour"
-msgstr ""
+msgstr "1 час"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:74
 #, c-format
 msgid "%i hours"
-msgstr ""
+msgstr "%i часа"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:79
 msgid "1 minute"
-msgstr ""
+msgstr "1 минута"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:81
 #, c-format
 msgid "%i minutes"
-msgstr ""
+msgstr "%i минути"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:101
@@ -1557,81 +1610,91 @@ msgstr ""
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:113
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s и %s"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s и %s"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "Плосък"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr ""
+msgstr "Класика"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr ""
+msgstr "Клуб"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
-msgstr ""
+msgstr "Денс"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "Пълен бас"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "Пълни високи"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Пълен бас + високи"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
-msgstr ""
+msgstr "Слушалки"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "Голяма зала"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
-msgstr ""
+msgstr "На живо"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
-msgstr ""
+msgstr "Парти"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
-msgstr ""
+msgstr "Поп"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
-msgstr ""
+msgstr "Реге"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
-msgstr ""
+msgstr "Рок"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
-msgstr ""
+msgstr "Меко"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
-msgstr ""
+msgstr "Ска"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
-msgstr ""
+msgstr "Лек рок"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
-msgstr ""
+msgstr "Техно"
+
+#, c-format
+#~ msgid "%i items"
+#~ msgstr "%i предмета"
+
+#~ msgid "1 item"
+#~ msgstr "1 предмет"
+
+#~ msgid "Click on the button to edit playlist rules"
+#~ msgstr "Щракнете на бутона, за да редактирате правилата за плейлиста"
