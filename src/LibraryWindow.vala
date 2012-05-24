@@ -380,7 +380,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		update_sensitivities();
 		show_all ();
-		
 
 		if(lm.media_active) {
 			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {

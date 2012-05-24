@@ -195,7 +195,7 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         if (!has_embedded_alert)
             return;
 
-        embedded_alert.set_alert (_("Loading Songs ..."), "", null, false);
+        embedded_alert.set_alert (_("Loading Songs..."), "", null, false);
     }
 }
 
