@@ -356,7 +356,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             media_set = list_view.get_visible_media ();
         }
 
-        uint total_items = 0, total_size = 0, total_time = 0;
+        uint total_items = 0, total_time = 0;
+        uint64 total_size = 0;
 
         foreach (var media in media_set) {
             if (media != null) {
@@ -386,7 +387,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         string media_text = media_description.printf ((int)total_items);
         string time_text = TimeUtils.time_string_from_seconds (total_time);
-        string size_text = format_size ((uint64)total_size);
+        string size_text = format_size (total_size);
 
         return "%s, %s, %s".printf (media_text, time_text, size_text);
     }
