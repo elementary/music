@@ -51,9 +51,8 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         welcome_screen.activated.connect (welcome_screen_activated);
 
 		// Refresh view layout
-		pack_views ();
+        pack_views ();
 
-        // set alert box as initial active view
         set_active_view (ViewType.ALERT);
 
         connect_data_signals ();
@@ -199,3 +198,4 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         embedded_alert.set_alert (_("Loading Songs ..."), "", null, false);
     }
 }
+

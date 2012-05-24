@@ -182,24 +182,35 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
     public void set_primary_text_visible (bool show_primary_text) {
         primary_text_label.set_no_show_all (!show_primary_text);
-        primary_text_label.set_visible (show_primary_text);
+        if (show_primary_text)
+            primary_text_label.show_all ();
+        else
+            primary_text_label.hide ();
     }
 
     public void set_secondary_text_visible (bool show_secondary_text) {
         secondary_text_label.set_no_show_all (!show_secondary_text);
-        secondary_text_label.set_visible (show_secondary_text);
+        if (show_secondary_text)
+            secondary_text_label.show_all ();
+        else
+            secondary_text_label.hide ();
     }
 
     public void set_icon_visible (bool show_icon) {
         image.set_no_show_all (!show_icon);
-        image.set_visible (show_icon);
+        if (show_icon)
+            image.show_all ();
+        else
+            image.hide ();
     }
 
     public void set_buttons_visible (bool show_buttons) {
         action_button_box.set_no_show_all (!show_buttons);
-        action_button_box.set_visible (show_buttons);
+        if (show_buttons)
+            action_button_box.show_all ();
+        else
+            action_button_box.hide ();
     }
-
 }
 
 // TODO: Move to a separate file

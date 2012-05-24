@@ -374,12 +374,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		// ADD PLAYLIST VIEWS
 		load_playlists();
 
+		sideTree.resetView ();
+
 		initialization_finished = true;
 
 		update_sensitivities();
 		show_all ();
 		
-		sideTree.resetView ();
 
 		if(lm.media_active) {
 			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {

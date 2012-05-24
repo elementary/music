@@ -302,8 +302,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         debug ("%s : play_first_media", hint.to_string());
 
         (list_view as ListView).set_as_current_list(1, true);
+        var m = lm.mediaFromCurrentIndex (0);
 
-        lm.playMedia (lm.mediaFromCurrentIndex(0), false);
+        if (m == null)
+           return;
+
+        lm.playMedia (m, false);
         lm.player.play ();
 
         if(!lm.playing)
@@ -454,10 +458,10 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         // show alert or welcome screen if there's no media
         if (have_media)
             select_proper_content_view ();
-        else if (has_embedded_alert)
-            set_active_view (ViewType.ALERT);
         else if (has_welcome_screen)
             set_active_view (ViewType.WELCOME);
+        else if (has_embedded_alert)
+            set_active_view (ViewType.ALERT);
 
         return have_media;   
     }
@@ -519,7 +523,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      * Updates the data in visible_media and re-populates all the views.
      * Primarily used for searches
      */
-    private void update_visible_media () {
+    protected virtual void update_visible_media () {
 
         debug ("%s : UPDATING VISIBLE MEDIA", hint.to_string ());
 
