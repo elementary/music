@@ -183,9 +183,11 @@ public class BeatBox.ColumnBrowser : Box {
 	}
 
 	private void on_destroy () {
-		// Save settings. If you add the column browser to more view wrappers later,
-		// make sure that you remove this code from this class. Otherwise the same
-		// settings (in case you're syncinc the browsers) will be written a billion times.
+		/* FIXME:
+		 * Save settings. If you add the column browser to more view wrappers later,
+		 * make sure that you remove this code from this class. Otherwise the same
+		 * settings (in case you're syncinc the browsers) will be written a billion times.
+		 */
 
 		var visible_columns_list = new LinkedList<string> ();
 
@@ -235,7 +237,7 @@ public class BeatBox.ColumnBrowser : Box {
 		// Setup column and connect signals
 		var column = new MillerColumn (this, type);
 
-		column.selection_changed.connect (column_selection_changed);
+		column.selection_changed.connect_after (column_selection_changed);
 
 		// Set minimun size
 		column.set_size_request (MIN_COLUMN_WIDTH, MIN_COLUMN_HEIGHT);
@@ -323,7 +325,7 @@ public class BeatBox.ColumnBrowser : Box {
 		debug ("Column browser changed");
 		changed ();
 
-        populate_columns_async (category);
+		populate_columns_async (category);
 	}
 
     private async void populate_columns_async (MillerColumn.Category category) {
@@ -390,7 +392,6 @@ public class BeatBox.ColumnBrowser : Box {
 	}
 
 	public void add_media (Collection<Media> to_add) {
-		message ("Implement ColumnBrowser.add_media () !!");
 		foreach (var m in to_add) {
 		//TODO
 		}
@@ -635,7 +636,7 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 		select_first_item ();
 		model.foreach (select_proper_string);
 
-		view.get_selection ().changed.connect (selected_item_changed);
+		view.get_selection ().changed.connect_after (selected_item_changed);
 	}
 
 	public void set_selected (string? val, bool notify = false) {
@@ -646,8 +647,12 @@ public class BeatBox.MillerColumn : ScrolledWindow {
 
 		model.foreach (select_proper_string);
 
-		if (notify)
-			selection_changed (category, get_selected ());
+		if (notify) {
+			Idle.add_full (Priority.DEFAULT_IDLE - 10, () => {
+				selection_changed (category, get_selected ());
+				return false;
+			});
+		}
 	}
 
 	private bool on_header_clicked (Widget w, EventButton e) {

@@ -93,8 +93,8 @@ public class BeatBox.AlbumListView : Window {
 		album_label.set_line_wrap (false);
 		artist_label.set_line_wrap (false);
 		
-		//album_label.set_max_width_chars (30);
-		//artist_label.set_max_width_chars (30);
+		album_label.set_max_width_chars (30);
+		artist_label.set_max_width_chars (30);
 
 		album_label.margin_left = album_label.margin_right = 12;
 		artist_label.margin_bottom = 12;
@@ -146,7 +146,14 @@ public class BeatBox.AlbumListView : Window {
         // Unselect rows
         list_view.get_selection ().unselect_all ();
 
-        media_list = media;
+        media_list = new Gee.LinkedList<Media> ();
+
+        // Make a copy. Otherwise the list won't work if some elements are
+        // removed from the parent wrapper while the window is showing
+        foreach (var m in media) {
+            if (m != null)
+                media_list.add (m);
+        }
 
         foreach (var m in media) {
             if (m != null) {

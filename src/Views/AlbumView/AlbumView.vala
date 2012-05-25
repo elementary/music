@@ -464,7 +464,21 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	Mutex setting_size;
 
-	private void on_resize (Allocation alloc) {
+	int priority_offset = 0;
+
+	private void on_resize (Gtk.Allocation alloc) {
+		priority_offset ++;
+
+		Idle.add_full (Priority.HIGH_IDLE - priority_offset, () => {
+			compute_spacing (alloc);
+			return false;
+		});
+	}
+
+	private void compute_spacing (Gtk.Allocation alloc) {
+		if (alloc.width != parent_view_wrapper.get_allocated_width ())
+			return;
+
 		setting_size.lock ();
 
 		if (!visible) {
@@ -501,19 +515,13 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			return;
 		}
 
-		// apply new spacing
-		set_spacing (new_spacing);
-
-		// verify new size
-		int error = icon_view.get_allocated_width () - TOTAL_WIDTH;
-		if (error > 0) {
-			message ("FIXING NEW_SPACING");
-			int to_remove = Numeric.int_from_float ((float)error / (float)n_columns);
-			new_spacing -= (to_remove > 0) ? 2 * to_remove : 2;
-		}
+		if (TOTAL_WIDTH < 300)
+			-- new_spacing;
 
 		// apply new spacing
 		set_spacing (new_spacing);
+
+		priority_offset = 0;
 
 		setting_size.unlock ();
 	}
@@ -522,14 +530,19 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		if (spacing < 0)
 			return;
 
-		icon_view.set_column_spacing (spacing);
-		icon_view.set_row_spacing (spacing);
+		int item_offset = ITEM_PADDING / icon_view.columns;
+		int item_spacing = spacing - ((item_offset > 0) ? item_offset : 1);
+
+		icon_view.set_column_spacing (item_spacing);
+		icon_view.set_row_spacing (item_spacing);
+
+		int margin_width = spacing + ITEM_PADDING;
 
 #if GTK_ICON_VIEW_BUG_IS_FIXED
-		icon_view.set_margin (spacing);
+		icon_view.set_margin (margin_width);
 #else
-		vpadding_box.set_size_request (-1, spacing);
-		hpadding_box.set_size_request (spacing, -1);
+		vpadding_box.set_size_request (-1, margin_width);
+		hpadding_box.set_size_request (margin_width, -1);
 #endif
 	}
 }
