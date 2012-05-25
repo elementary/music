@@ -108,14 +108,6 @@ namespace Granite.Widgets {
             add (next_button);
             previous_button.show_all ();
             next_button.show_all ();
-
-            previous_button.set_margin_left (4);
-            previous_button.set_margin_top (4);
-            previous_button.set_margin_bottom (4);
-            
-            next_button.set_margin_right (4);
-            next_button.set_margin_top (4);
-            next_button.set_margin_bottom (4);
         }
 
         public void set_item_visible (int index, bool val) {

@@ -54,9 +54,9 @@ public class BeatBox.MediaEditor : Window {
 		this.set_modal(false);
 		this.set_transient_for(lm.lw);
 		this.destroy_with_parent = true;
+		this.resizable = false;
 		
-		set_size_request (520, -1);
-		resizable = false;
+		this.set_size_request (520, -1);
 		
 		lf = new LyricFetcher();
 		lf.lyrics_fetched.connect(lyricsFetched);
@@ -66,38 +66,46 @@ public class BeatBox.MediaEditor : Window {
 		_allMedias = allMedias;
 		_medias = medias;
 		
-		notebook = new Granite.Widgets.StaticNotebook();
+		// don't show notebook separator when using a decorated window
+		#if USE_GRANITE_DECORATED_WINDOW
+		notebook = new Granite.Widgets.StaticNotebook (false);
+		#else
+		notebook = new Granite.Widgets.StaticNotebook ();
+		#endif
+
 		notebook.append_page(createBasicContent (), new Label(_("Metadata")));
 		if(_medias.size == 1)
 			notebook.append_page(createLyricsContent (), new Label(_("Lyrics")));
 		else
 			lyricsText = null;
 		
-		var buttonSep = new Box(Orientation.HORIZONTAL, 0);
+		var buttons = new Gtk.ButtonBox (Orientation.HORIZONTAL);
+		buttons.set_layout (Gtk.ButtonBoxStyle.END);
 
 		var arrows = new Granite.Widgets.NavigationArrows ();
-		var spacer = new Label ("");
-		spacer.hexpand = true;
 
 		_save = new Button.with_label(_("Done"));
-		_save.valign = _save.halign = Gtk.Align.END;
 		_save.set_size_request (85, -1);
 
-		buttonSep.pack_start(arrows, false, false, 0);
-		buttonSep.pack_start(spacer, true, true, 0);
-		buttonSep.pack_end(_save, false, false, 0);
+		_save.valign = arrows.valign = Gtk.Align.END;
+
+		buttons.pack_start (arrows, false, false, 0);
+		buttons.pack_end (_save, false, false, 0);
+
+		buttons.set_child_secondary (arrows, true);
 
 		var content = new Gtk.Box (Orientation.VERTICAL, 0);
-		var padding = new Gtk.Box (Orientation.HORIZONTAL, 0);
-		content.pack_start (UI.wrap_alignment (notebook, 10, 0, 0, 0), true, true, 0);
-		content.pack_start (UI.wrap_alignment (buttonSep, 0, 0, 10, 0), false, true, 0);
 
-		notebook.margin_bottom = 12;
+		buttons.margin_top = 12;
 
-		padding.pack_start(content, true, true, 10);
-		add(padding);
+		content.pack_start (notebook, true, true, 0);
+		content.pack_start (buttons, false, true, 0);
+
+		content.margin = 12;
+
+		this.add (content);
 		
-		show_all();
+		this.show_all();
 		
 		arrows.sensitive = allMedias.size > 1;
 		
