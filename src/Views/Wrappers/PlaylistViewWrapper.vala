@@ -114,8 +114,8 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
    	    	// if not already in the table, add
    	    	if (!media_table.has_key (m))
                 to_add.add (m);
-                // Make a copy of the list
-                new_media_table.set (m, 1);
+            // Make a copy of the list
+            new_media_table.set (m, 1);
          }
 
          // if something is in the table but not in new_media, remove
@@ -124,8 +124,8 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
                  to_remove.add (m);
          }
 
-       	 remove_media (to_remove);
-       	 add_media (to_add);
+       	 remove_media_async (to_remove);
+       	 add_media_async (to_add);
     }
 
     /* NORMAL PLAYLISTS */

@@ -53,6 +53,9 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	public FastGrid icon_view { get; private set; }
 
+	// album-key / album-media
+	Gee.HashMap<string, Gee.HashMap<Media, int>> album_info;
+
 /* Spacing Workarounds */
 #if !GTK_ICON_VIEW_BUG_IS_FIXED
 	private Gtk.EventBox vpadding_box;
@@ -76,6 +79,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		defaultPix = lm.get_pixbuf_shadow (Icons.DEFAULT_ALBUM_ART_PIXBUF);
 		build_ui();
+		
+		init ();
 	}
 
 	public void build_ui () {
@@ -158,6 +163,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		icon_view.add_events (Gdk.EventMask.POINTER_MOTION_MASK);
 		icon_view.motion_notify_event.connect (on_motion_notify);
+		icon_view.scroll_event.connect (on_scroll_event);
 
 		//icon_view.button_press_event.connect (on_button_press);
 		icon_view.button_release_event.connect (on_button_release);
@@ -177,7 +183,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return parent_view_wrapper.hint;
 	}
 
-	public Gee.Collection<Media> get_media () {
+	public Gee.Collection<Media> get_visible_media () {
 		var media_list = new Gee.LinkedList<Media> ();
 		foreach (var m in icon_view.get_visible_table ().get_values ())
 			media_list.add ((Media)m);
@@ -185,7 +191,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return media_list;
 	}
 
-	public Gee.Collection<Media> get_visible_media () {
+	public Gee.Collection<Media> get_media () {
 		var media_list = new Gee.LinkedList<Media> ();
 		foreach (var m in icon_view.get_table ().get_values ())
 			media_list.add ((Media)m);
@@ -200,27 +206,21 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return m.album_artist + m.album;
 	}
 
-	public void set_media (Gee.Collection<Media> to_add) {
-		var new_table = new HashTable<int, Media> (null, null);
-		// just here to check for duplicates
-		var to_add_ind = new Gee.HashMap<string, int> ();
-
-		foreach (var m in to_add) {
-			if (m == null)
-				continue;
-			
-			string key = get_key (m);
-
-			if (!to_add_ind.has_key (key)) {
-				to_add_ind.set (key, 1);
-				new_table.set ((int)new_table.size(), m);
-			}
-		}
-
-		// set table and resort
-		icon_view.set_table (new_table, true);
+	/** Inits data containers **/
+	private void init () {
+		// reset table
+		icon_view.set_table (new HashTable<int, GLib.Object> (null, null));
+		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
 	}
 
+	public void set_media (Gee.Collection<Media> to_add) {
+		init ();
+
+		// Add new media
+		add_media (to_add);
+	}
+
+	// checks for duplicates
 	public void add_media (Gee.Collection<Media> media) {
 		var to_append = new Gee.HashMap<string, Media> ();
 		foreach (var m in media) {
@@ -230,36 +230,93 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			string key = get_key (m);
 
 			if (!to_append.has_key (key)) {
-				to_append.set (key, m);
-			}		
+				if (!album_info.has_key (key)) {
+					// Create a new media. We don't want to depend on a song
+					// that could be removed for this.
+					var album = new Media ("");
+					album.album = m.album;
+					album.album_artist = m.album_artist;
+					to_append.set (key, album);
+					
+					// set info
+					album_info.set (key, new Gee.HashMap<Media, int> ());
+				}
+			}
+
+			var album_media = album_info.get (key);
+			if (!album_media.has_key (m))
+				album_media.set (m, 1);
 		}
 
 		icon_view.add_objects (to_append.values);
 	}
 
 	public void remove_media (Gee.Collection<Media> to_remove) {
-		var to_remove_ind = new Gee.HashMap<string, int> ();
-		var to_remove_table = new HashMap<Object, int> ();
+		/* There is a special case. Let's say that we're removing
+		 * song1, song2 and song5 from Album X, and the album currently
+		 * contains song1, song2, song5, and song3. Then we shouldn't remove
+		 * the album because it still contains a song (song3).
+		 */
 
+		// classify media by album
+		var to_remove_album_info = new Gee.HashMap <string, Gee.LinkedList<Media>> ();
 		foreach (var m in to_remove) {
 			if (m == null)
 				continue;
-
+			
 			string key = get_key (m);
 
-			if (!to_remove_ind.has_key (key)) {
-				to_remove_ind.set (key, 1);
-				to_remove_table.set (m, 1);
+			if (!to_remove_album_info.has_key (key)) {
+				// set info
+				to_remove_album_info.set (key, new Gee.LinkedList<Media> ());
+			}
+
+			to_remove_album_info.get (key).add (m);
+		}
+
+		// table of albums that will be removed
+		var albums_to_remove = new Gee.HashMap<string, int> ();
+
+		// Then use the list to verify which albums are in the album view
+		foreach (var album_key in to_remove_album_info.keys) {
+			if (album_info.has_key (album_key)) {
+				// get current media list
+				var current_media = album_info.get (album_key);
+
+				// get list of media that should be removed
+				var to_remove_media = to_remove_album_info.get (album_key);
+
+				foreach (var m in to_remove_media) {
+					current_media.unset (m);
+				}
+				
+				// if the album is left with no songs, it should be removed
+				if (current_media.size <= 0) {
+					albums_to_remove.set (album_key, 1);
+					// unset from album info
+					album_info.unset (album_key);
+				}
 			}
 		}
 
-		icon_view.remove_objects (to_remove_table);	
+		if (albums_to_remove.size < 1)
+			return;		
+
+		// Find media representations in table
+		var objects_to_remove = new Gee.HashMap<GLib.Object, int> ();
+
+		foreach (var album_representation in get_visible_media ()) {
+			var key = get_key (album_representation);
+			if (albums_to_remove.has_key (key))
+				objects_to_remove.set (album_representation, 1);
+		}
+
+		icon_view.remove_objects (objects_to_remove);
 	}
 
 	public int get_relative_id () {
-		return 0;
+		return -1;
 	}
-
 
 	private bool on_button_release (Gdk.EventButton ev) {
 		if (ev.type == Gdk.EventType.BUTTON_RELEASE && ev.button == 1) {
@@ -279,17 +336,26 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return false;
 	}
 
-	private bool on_motion_notify (Gdk.EventMotion ev) {
+	private inline void set_cursor (int x, int y) {
 		TreePath path;
 		CellRenderer cell;
 
-		icon_view.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
+		icon_view.get_item_at_pos (x, y, out path, out cell);
 
 		if (path == null) // blank area
 			icon_view.get_window ().set_cursor (null);
 		else
 			icon_view.get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.HAND1));
 
+	}
+
+	private bool on_motion_notify (Gdk.EventMotion ev) {
+		set_cursor ((int)ev.x, (int)ev.y);
+		return false;
+	}
+
+	private bool on_scroll_event (Gdk.EventScroll ev) {
+		set_cursor ((int)ev.x, (int)ev.y);
 		return false;
 	}
 
@@ -306,7 +372,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		}
 
 		album_list_view.set_parent_wrapper (this.parent_view_wrapper);
-		album_list_view.set_songs_from_media (s);
+		album_list_view.set_media (album_info.get (get_key (s)).keys);
 
 		// find window's location
 		int x, y;

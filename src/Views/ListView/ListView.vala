@@ -174,6 +174,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 					++ visible_columns;
 			}
 
+			// TODO: also check the number of visible columns!
 			int required_width = MIN_RECOMMENDED_COLUMN_WIDTH * visible_columns;
 			if (view_width - required_width < list_view.get_allocated_width ())
 				actual_position = ColumnBrowser.Position.TOP;

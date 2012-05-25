@@ -80,7 +80,6 @@ public class BeatBox.FastGrid : IconView {
 	}
 
 	// If a GLib.Object is in objects but not in table, will just ignore
-	// TODO: FIXME FOR GENERIC OBJECT. MAYBE ADD INTERFACE WITH GET_KEY()?
 	public void remove_objects (Gee.HashMap<GLib.Object, int> objects) {
 		int index = 0;
 		var new_table = new HashTable<int, GLib.Object>(null, null);
@@ -88,7 +87,7 @@ public class BeatBox.FastGrid : IconView {
 			GLib.Object o = table.get(i);
 
 			// create a new table. if not in objects, and is in table, add it.
-			if (o != null/* && objects.get(o.get_album_artist() + o.get_album()) != 1*/) {
+			if (o != null && !objects.has_key (o)/* && objects.get(o.get_album_artist() + o.get_album()) != 1*/) {
 				new_table.set (index++, o);
 			}
 		}

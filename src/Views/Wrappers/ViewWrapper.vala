@@ -671,11 +671,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (media.size < 1)
             return;
 
-		if (media.size > 500) {
-			remove_media (media);
-			add_media (media);
-		}
-
         // LOCK
         updating_media_data.lock ();
 

@@ -31,20 +31,24 @@ public class BeatBox.AlbumListView : Window {
 #endif
 
 	public const int WIDTH = 400;
-	public const int HEIGHT = 400; 
+	public const int HEIGHT = 400;
 
 	LibraryManager lm;
 	ViewWrapper view_wrapper;
 
-	Label album_label;
-	Label artist_label;
+	Gtk.Label album_label;
+	Gtk.Label artist_label;
 	Granite.Widgets.Rating rating;
+
 	GenericList list_view;
 
-    private Media? base_media = null;
-	Gee.LinkedList<Media> media_list;
+	Gee.Collection<Media> media_list;
 
 	public AlbumListView (AlbumView album_view) {
+#if USE_GRANITE_DECORATED_WINDOW
+        base ("", "album-list-view", "album-list-view");
+#endif
+
 		this.view_wrapper = album_view.parent_view_wrapper;
 		this.lm = view_wrapper.lm;
 
@@ -52,14 +56,14 @@ public class BeatBox.AlbumListView : Window {
 		set_default_size (WIDTH, HEIGHT);
 
 		set_transient_for (lm.lw);
-		this.destroy_with_parent = true;
+		destroy_with_parent = true;
 		set_skip_taskbar_hint (true);
 		set_resizable(false);
 
 #if !USE_GRANITE_DECORATED_WINDOW
 		window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
-		// window stuff
 
+		// window stuff
 		set_decorated(false);
 		set_has_resize_grip(false);
 
@@ -73,9 +77,6 @@ public class BeatBox.AlbumListView : Window {
 		close.set_relief(Gtk.ReliefStyle.NONE);
 		close.clicked.connect( () =>  { this.hide(); });
 #else
-		box.get_style_context ().add_class ("album-list-view");
-		draw_ref.get_style_context ().add_class ("album-list-view");
-
         // Don't destroy the window
 		hide_on_close = true;
 #endif
@@ -92,8 +93,8 @@ public class BeatBox.AlbumListView : Window {
 		album_label.set_line_wrap (false);
 		artist_label.set_line_wrap (false);
 		
-		album_label.set_max_width_chars (30);
-		artist_label.set_max_width_chars (30);
+		//album_label.set_max_width_chars (30);
+		//artist_label.set_max_width_chars (30);
 
 		album_label.margin_left = album_label.margin_right = 12;
 		artist_label.margin_bottom = 12;
@@ -139,28 +140,24 @@ public class BeatBox.AlbumListView : Window {
 
 	Mutex setting_media;
 
-	public void set_songs_from_media (Media media) {
+	public void set_media (Gee.Collection<Media> media) {
 		setting_media.lock ();
 
-        // Unselect rows if new album...
-        if (media != base_media)
-            list_view.get_selection ().unselect_all ();
+        // Unselect rows
+        list_view.get_selection ().unselect_all ();
 
-        base_media = media;
+        media_list = media;
 
-		set_title (_("%s by %s").printf (media.album, media.album_artist));
-
-		album_label.set_label (media.album);
-		artist_label.set_label (media.album_artist);
-
-		var to_search = new LinkedList<Media> ();
-
-		// only search media that match the search filter
-		foreach (var m in view_wrapper.get_visible_media_list ()) {
-			to_search.add (m);
-		}
-
-		Search.fast_album_search_in_media_list (to_search, out media_list, "", media.album_artist, media.album);
+        foreach (var m in media) {
+            if (m != null) {
+                var album = m.album;
+                var artist = m.album_artist;
+        		set_title (_("%s by %s").printf (album, artist));
+        		album_label.set_label (album);
+        		artist_label.set_label (artist);
+        		break;
+            }
+        }
 
 		list_view.set_media (media_list);
 
