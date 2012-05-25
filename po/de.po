@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-23 21:01-0600\n"
-"PO-Revision-Date: 2012-05-24 16:07+0000\n"
-"Last-Translator: Eduard Gotwig <eduardgotwig@gmail.com>\n"
+"PO-Revision-Date: 2012-05-25 01:31+0000\n"
+"Last-Translator: Tom Gießmann <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-24 21:37+0000\n"
+"X-Launchpad-Export-Date: 2012-05-25 05:17+0000\n"
 "X-Generator: Launchpad (build 15288)\n"
 "Language: de\n"
 
@@ -34,8 +34,7 @@ msgstr "HInzufügen von Musik von %s zur Bibliothek..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:415
 msgid "Rescanning music for changes. This may take a while..."
-msgstr ""
-"Wiedereinlesen von Titeln auf Änderungen. Dass kann eine Weile dauern..."
+msgstr "Prüfen von Titeln auf Änderungen. Das kann eine Weile dauern..."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1010
@@ -64,7 +63,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
 msgid "%s is already doing an import"
-msgstr "%s ist bereits mit einem Importvorgang beschäftigt"
+msgstr "%s importiert bereits etwas"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
@@ -101,7 +100,7 @@ msgstr "%s hat einen Titel von der Audio CD importiert"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Der CD Import wird nach dem momentanen Import<b>abgebrochen</b>."
+msgstr "Der Import der CD wird nach dem aktuellen Import<b>abgebrochen</b>."
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
@@ -123,7 +122,7 @@ msgstr "Importiere <b>%s</b> in die Bibliothek..."
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:313
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 msgid "Radio Station"
-msgstr "Radio Sender"
+msgstr "Radiosender"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:45
 #: /home/victor/noise/po/../src//GStreamer/CDDA.vala:74
@@ -136,7 +135,7 @@ msgstr "Unbekannter Titel"
 #: /home/victor/noise/po/../src//GStreamer/CDDA.vala:110
 #: /home/victor/noise/po/../src//GStreamer/CDDA.vala:111
 msgid "Unknown Artist"
-msgstr "Unbekannter Interpret"
+msgstr "Unbekannter Künstler"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
 #: /home/victor/noise/po/../src//LibraryWindow.vala:728
@@ -261,7 +260,7 @@ msgstr "%s importieren"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1012
 msgid "This device is syncing"
-msgstr "Dieses Gerät synchronisiert"
+msgstr "Dieses Gerät wird gerade synchronisiert"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1012
 msgid "Please wait until the current sync is finished to do this action."
@@ -271,7 +270,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1014
 msgid "This device is in transfer"
-msgstr "Dieses Gerät übertragt"
+msgstr "Es werden Daten vom Gerät übertragen"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1014
 msgid "Please wait until the current transfer is finished to do this action."
@@ -342,7 +341,7 @@ msgstr "Verschiebe alle beschädigten Datein in den Müll"
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr "In Müll verschieben"
+msgstr "In den Müll verschieben"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
@@ -354,7 +353,7 @@ msgstr "löschen"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr "Dateiort"
+msgstr "Speicherort"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
@@ -367,7 +366,7 @@ msgstr "Wiedergabelisten exportieren"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr "Musikordner wählen"
+msgstr "Musikordner auswählen"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
@@ -379,8 +378,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Sind Sie sicher dass Sie ihren Musikordner auf %s setzen möchten? Dies wird "
-"ihre Bibliothek zurücksetzen und ihre Wiedergabelisten entfernen."
+"Sind Sie sicher, dass Sie den Musikordner auf %s setzen möchten? Dies wird "
+"die gesamte Bibliothek zurücksetzen und alle Wiedergabelisten entfernen."
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
@@ -459,11 +458,11 @@ msgstr "Titel"
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
 #: /home/victor/noise/po/../src//LibraryWindow.vala:256
 msgid "Artist"
-msgstr "Interpret"
+msgstr "Künstler"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:179
 msgid "Album Artist"
-msgstr "Album Interpret"
+msgstr "Künstler des Albums"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:180
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
@@ -510,7 +509,7 @@ msgstr "Kommentar"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
 msgid "Track"
-msgstr "Nr."
+msgstr "Titel"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
 msgid "Disc"
@@ -580,9 +579,9 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Wenn Sie die Synchronisieren fortfahren lassen, werden Medien von %s "
-"gelöscht da sie nicht auf der Liste der zu synchronisierenden Mediendateien "
-"stehen.  Möchten Sie diese zuerst in ihre Bibliothek importieren?"
+"Wenn Sie mit der Synchronisierung fortfahren, werden Medien von %s gelöscht, "
+"das sie nicht auf der Synchronisierungsliste stehen. Möchten Sie diese in "
+"die Bibliothek importieren?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
