@@ -30,8 +30,7 @@ public class BeatBox.AlbumListView : Granite.Widgets.DecoratedWindow {
 public class BeatBox.AlbumListView : Window {
 #endif
 
-	public const int WIDTH = 400;
-	public const int HEIGHT = 400;
+	public const int MIN_SIZE = 400;
 
 	LibraryManager lm;
 	ViewWrapper view_wrapper;
@@ -52,8 +51,18 @@ public class BeatBox.AlbumListView : Window {
 		this.view_wrapper = album_view.parent_view_wrapper;
 		this.lm = view_wrapper.lm;
 
-		set_size_request (WIDTH, HEIGHT);
-		set_default_size (WIDTH, HEIGHT);
+		set_size_request (MIN_SIZE, MIN_SIZE);
+		set_default_size (MIN_SIZE, MIN_SIZE);
+
+        // Make the window squared
+        this.size_allocate.connect ( (alloc) => {
+    		int width = alloc.width;
+    		int height = alloc.height;
+
+            int size = (width > height) ? width : height;
+
+    		set_size_request (size, size);
+        });
 
 		set_transient_for (lm.lw);
 		destroy_with_parent = true;
@@ -133,6 +142,10 @@ public class BeatBox.AlbumListView : Window {
 	}
 
 
+    public void set_size (int size) {
+        this.set_size_request (size, size);
+    }
+
 	public void set_parent_wrapper (ViewWrapper parent_wrapper) {
 		this.view_wrapper = parent_wrapper;
 		this.list_view.set_parent_wrapper (parent_wrapper);
@@ -141,6 +154,8 @@ public class BeatBox.AlbumListView : Window {
 	Mutex setting_media;
 
 	public void set_media (Gee.Collection<Media> media) {
+        set_size (MIN_SIZE);
+
 		setting_media.lock ();
 
         // Unselect rows

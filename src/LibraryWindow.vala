@@ -372,7 +372,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		build_main_views ();
 
 		// ADD PLAYLIST VIEWS
-		load_playlists();
+		Idle.add_full (Priority.HIGH_IDLE, () => {
+			if (!initialization_finished)
+				return true;
+			
+			load_playlists();
+			return false;
+		});
 
 		sideTree.resetView ();
 

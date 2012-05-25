@@ -384,9 +384,14 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		x += lm.lw.main_hpaned.get_position();
 		y += alloc.y;
 
+		int window_width = 0;
+		int window_height = 0;
+		
+		album_list_view.get_size (out window_width, out window_height);
+
 		// center it on this icon view
-		x += (alloc.width - album_list_view.WIDTH) / 2;
-		y += (alloc.height - album_list_view.HEIGHT) / 2 + 60;
+		x += (alloc.width - window_width) / 2;
+		y += (alloc.height - window_height) / 2 + 60;
 
 		bool was_visible = album_list_view.visible;
 		album_list_view.show_all ();
@@ -464,13 +469,15 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	Mutex setting_size;
 
-	int priority_offset = 0;
+	int resize_priority_offset = 0;
+	const int DEFAULT_RESIZE_PRIORITY = (Priority.DEFAULT_IDLE + Priority.HIGH_IDLE) / 2;
 
 	private void on_resize (Gtk.Allocation alloc) {
-		priority_offset ++;
+		resize_priority_offset ++;
 
-		Idle.add_full (Priority.HIGH_IDLE - priority_offset, () => {
+		Idle.add_full (DEFAULT_RESIZE_PRIORITY - resize_priority_offset, () => {
 			compute_spacing (alloc);
+			resize_priority_offset = 0;
 			return false;
 		});
 	}
@@ -515,13 +522,11 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			return;
 		}
 
-		if (TOTAL_WIDTH < 300)
+		if (TOTAL_WIDTH < 750)
 			-- new_spacing;
 
 		// apply new spacing
 		set_spacing (new_spacing);
-
-		priority_offset = 0;
 
 		setting_size.unlock ();
 	}

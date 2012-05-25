@@ -570,10 +570,16 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     protected bool no_thread_delay = false;
 
     public async void set_media_async (Gee.Collection<Media> new_media) {
-        int priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
-        
-        if (hint == Hint.SMART_PLAYLIST)
-            priority -= 10;
+        int priority = 0;
+
+        if (no_thread_delay)
+            priority = 20;
+        else
+            priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
+
+        // lower priority
+        if (hint == Hint.SMART_PLAYLIST || hint == Hint.PLAYLIST)
+            priority += 10;
 
         Idle.add_full (priority, () => {
             if (!lw.initialization_finished && !no_thread_delay)
@@ -585,14 +591,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     public async void set_media_from_ids_async (Gee.Collection<int> new_media) {
-        var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
-        Idle.add_full (priority, () => {
-            if (!lw.initialization_finished && !no_thread_delay)
-                return true;
-
-            set_media_from_ids (new_media);
-            return false;
-        });
+        set_media_async (lm.media_from_ids (new_media));
     }
 
     public async void add_media_async (Gee.Collection<Media> to_add) {
