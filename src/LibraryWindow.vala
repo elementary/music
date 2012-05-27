@@ -1,28 +1,28 @@
+// -*- Mode: vala; indent-tabs-mode: tab; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
- *
- * Originally Written by Scott Ringwelski for BeatBox Music Player
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>,
+ *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
 using Gtk;
 using Gee;
-using Notify;
 
 public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow {
 
@@ -84,7 +84,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	private Gtk.MenuItem fileRescanMusicFolder;
 	private ImageMenuItem editPreferences;
 
-	private Notify.Notification notification;
 
 	// Window properties
 	private bool window_maximized = false;
@@ -151,51 +150,47 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		}*/
 	}
 
-	public void build_ui() {
-		debug ("Building user interface");
+	private inline void setup_window () {
+		this.height_request = 440;
+		this.width_request = 750;
+		this.window_position = Gtk.WindowPosition.CENTER;
 
-		height_request = 440;
-		width_request = 750;
-		window_position = Gtk.WindowPosition.CENTER;
-
-		// set the size based on saved gconf settings
-		set_default_size (settings.getWindowWidth(), settings.getWindowHeight());
+		// set the size based on saved settings
+		this.set_default_size (settings.getWindowWidth (), settings.getWindowHeight ());
 
 		// Maximize window if necessary
 		if (settings.getWindowMaximized ())
 			this.maximize ();
 
-		// set the title
-		set_title(app.get_name ());
+		this.set_title (this.app.get_name ());
+		this.set_icon (Icons.BEATBOX.render (IconSize.MENU, null));
+	}
 
-		// set the icon
-		set_icon(Icons.BEATBOX.render (IconSize.MENU, null));
-
-
+	private inline void build_main_widgets () {
 		verticalBox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
 		// wraps the sidebar and view_container_hpaned
 		main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
 		
 		// wraps the view container and the info panel
-		view_container_hpaned = new Paned (Gtk.Orientation.HORIZONTAL);
+		view_container_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
 
 		view_container = new ViewContainer ();
 
-		sideTree = new SideTreeView(lm, this);
-		fileImportMusic = new Gtk.MenuItem.with_label(_("Import to Library"));
-		fileRescanMusicFolder = new Gtk.MenuItem.with_label(_("Rescan Music Folder"));
-		editPreferences = new ImageMenuItem.from_stock(Gtk.Stock.PREFERENCES, null);
-		settingsMenu = new Gtk.Menu();
-		topControls = new Toolbar();
-		previousButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PREVIOUS);
-		playButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_PLAY);
-		nextButton = new ToolButton.from_stock(Gtk.Stock.MEDIA_NEXT);
-		topDisplay = new TopDisplay(lm);
-		
+		sideTree = new SideTreeView (lm, this);
+		fileImportMusic = new Gtk.MenuItem.with_label (_("Import to Library"));
+		fileRescanMusicFolder = new Gtk.MenuItem.with_label (_("Rescan Music Folder"));
+		editPreferences = new ImageMenuItem.from_stock (Gtk.Stock.PREFERENCES, null);
+		settingsMenu = new Gtk.Menu ();
+		topControls = new Toolbar ();
+		previousButton = new ToolButton.from_stock (Gtk.Stock.MEDIA_PREVIOUS);
+		playButton = new ToolButton.from_stock (Gtk.Stock.MEDIA_PLAY);
+		nextButton = new ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
+		topDisplay = new TopDisplay (lm);
+
 		column_browser_toggle = new ToggleButton ();
-		viewSelector = new Granite.Widgets.ModeButton();
-		searchField = new Granite.Widgets.SearchBar(_("Search Music"));
+		viewSelector = new Granite.Widgets.ModeButton ();
+		searchField = new Granite.Widgets.SearchBar (_("Search Music"));
 
 		// Set search timeout
 		searchField.pause_delay = 150;
@@ -237,7 +232,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		view_container_hpaned.set_position((lm.settings.getWindowWidth() - lm.settings.getSidebarWidth()) - lm.settings.getMoreWidth());
 
 		/* create appmenu menu */
-
 		settingsMenu.append(fileImportMusic);
 		settingsMenu.append(fileRescanMusicFolder);
 		settingsMenu.append(new SeparatorMenuItem());
@@ -335,6 +329,14 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
 		main_hpaned.pack1 (sidebar_scrolled, false, false);
 		main_hpaned.pack2 (view_container_hpaned, true, false);
+	}
+
+	public void build_ui () {
+		debug ("Building user interface");
+		setup_window ();
+		build_main_widgets ();
+		debug ("Done with user interface");
+
 
 		// add mounts to side tree view
 		lm.device_manager.loadPreExistingMounts();
@@ -343,62 +345,23 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		if(i != 0 && lm.media_from_id(i) != null && File.new_for_uri(lm.media_from_id(i).uri).query_exists()) {
 			lm.playMedia(lm.media_from_id(i), true);
 		}
-		else {
-			// don't show info panel if nothing playing
-			info_panel.set_visible(false);
-		}
-
-		/* Connect events to functions */
-		previousButton.clicked.connect(previousClicked);
-		playButton.clicked.connect(playClicked);
-		nextButton.clicked.connect(nextClicked);
-
-		addPlaylistChooser.button_press_event.connect(addPlaylistChooserOptionClicked);
-		eq_option_chooser.option_changed.connect(eq_option_chooser_clicked);
-
-		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
-		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
-		info_panel_chooser.option_changed.connect(info_panel_chooserOptionChanged);
-
-		searchField.activate.connect(searchFieldActivate);
-
-		/* set up drag dest stuff */
-		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
-		Gtk.drag_dest_add_uri_targets(this);
-		drag_data_received.connect(dragReceived);
-
 
 		// ADD MAIN VIEWS
 		build_main_views ();
 
-		// ADD PLAYLIST VIEWS
-		Idle.add_full (Priority.HIGH_IDLE, () => {
-			if (!initialization_finished)
-				return true;
-			
-			load_playlists();
-			return false;
-		});
-
-		sideTree.resetView ();
-
-		initialization_finished = true;
-
-		update_sensitivities();
+		// show window
 		show_all ();
-
-		if(lm.media_active) {
-			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
-				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
-			}
-		}
-
-		info_panel.set_visible (lm.settings.getMoreVisible());
+		update_sensitivities();
 
 		// Now set the selected view
 		viewSelector.selected = settings.getViewMode();
 
-		searchField.set_text(lm.settings.getSearchString());
+		// ADD PLAYLIST VIEWS
+		load_playlists_async ();
+
+		sideTree.resetView ();
+
+		initialization_finished = true;
 
 		if(lm.song_ids().size == 0)
 			setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
@@ -428,6 +391,34 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 			return false;
 		});
 
+
+		/* Connect events to functions */
+		previousButton.clicked.connect(previousClicked);
+		playButton.clicked.connect(playClicked);
+		nextButton.clicked.connect(nextClicked);
+
+		addPlaylistChooser.button_press_event.connect(addPlaylistChooserOptionClicked);
+		eq_option_chooser.option_changed.connect(eq_option_chooser_clicked);
+
+		repeatChooser.option_changed.connect(repeatChooserOptionChanged);
+		shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
+		info_panel_chooser.option_changed.connect(info_panel_chooserOptionChanged);
+
+		if(lm.media_active) {
+			if(settings.getShuffleMode() == LibraryManager.Shuffle.ALL) {
+				lm.setShuffleMode(LibraryManager.Shuffle.ALL, true);
+			}
+		}
+
+		searchField.activate.connect(searchFieldActivate);
+		searchField.set_text (lm.settings.getSearchString());
+
+		/* set up drag dest stuff */
+		drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
+		Gtk.drag_dest_add_uri_targets(this);
+		drag_data_received.connect(dragReceived);
+
+
 		lm.media_added.connect (update_sensitivities);
 		lm.media_removed.connect (update_sensitivities);
 	}
@@ -436,6 +427,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 	/**
 	 * Show notification asyncronously
 	 */
+
+	private Notify.Notification? notification = null;
+
 	public async void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, bool force = false) {
 		if (!Notify.is_initted ()) {
 			if (!Notify.init (app.get_id ())) {
@@ -579,7 +573,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		debug ("Done with main views.");
 	}
 	
-	private void load_playlists () {
+	private async void load_playlists_async () {
+		Idle.add_full (Priority.DEFAULT_IDLE, load_playlists_async.callback);
+		yield;
+
 		debug ("Loading playlists");
 
 		// Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future

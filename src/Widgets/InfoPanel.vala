@@ -152,11 +152,15 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 		ban_button.set_visible (lastfm_elements_visible);
 
 		scroll.set_no_show_all (!similars_fetched);
-
 		if (similars_fetched)
 			scroll.show_all ();
 		else
 			scroll.hide ();
+
+		// Don't show rating for external media
+		bool hide_rating = lm.media_info.media.isTemporary;
+		rating.set_no_show_all (hide_rating);
+		rating.set_visible (!hide_rating);
 	}
 
 	private void on_media_played () {

@@ -157,7 +157,9 @@ public class BeatBox.MusicListView : GenericList {
 
 		mediaActionMenu = new Gtk.Menu ();
 
-		if(tvs.get_hint() != ViewWrapper.Hint.CDROM && tvs.get_hint () != ViewWrapper.Hint.ALBUM_LIST) {
+		var hint = tvs.get_hint ();
+
+		if(hint != ViewWrapper.Hint.CDROM && hint != ViewWrapper.Hint.ALBUM_LIST) {
 			//mediaActionMenu.append(browseSame);
 			mediaActionMenu.append(mediaScrollToCurrent);
 		}
@@ -170,8 +172,8 @@ public class BeatBox.MusicListView : GenericList {
 		mediaActionMenu.append(mediaMenuNewPlaylist);
 		mediaActionMenu.append(mediaMenuAddToPlaylist);
 
-		if(tvs.get_hint() != ViewWrapper.Hint.SMART_PLAYLIST && tvs.get_hint() != ViewWrapper.Hint.ALBUM_LIST)
-			mediaActionMenu.append(new SeparatorMenuItem());
+		if (hint != ViewWrapper.Hint.SMART_PLAYLIST && hint != ViewWrapper.Hint.ALBUM_LIST && hint != hint.HISTORY)
+			mediaActionMenu.append (new SeparatorMenuItem());
 
 		mediaActionMenu.append(mediaRemove);
 		mediaActionMenu.append(importToLibrary);
@@ -185,9 +187,9 @@ public class BeatBox.MusicListView : GenericList {
 		mediaRateMedia.activate.connect(mediaRateMediaClicked);
 		mediaScrollToCurrent.activate.connect(mediaScrollToCurrentRequested);
 		
-		set_headers_visible (tvs.get_hint() != ViewWrapper.Hint.ALBUM_LIST);
+		set_headers_visible (hint != ViewWrapper.Hint.ALBUM_LIST);
 		
-		update_sensitivities();		
+		update_sensitivities ();		
 	}
 
 #if 0

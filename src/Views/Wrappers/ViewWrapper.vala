@@ -560,7 +560,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (is_current_wrapper) {
             update_library_window_widgets ();
             // Check whether we should show the embedded alert in case there's no media
-            check_have_media ();
+            // check_have_media ();
         }
     }
 
@@ -576,6 +576,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             priority = 20;
         else
             priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
+
+        // Populate playlists in order
+        priority += relative_id;
 
         // lower priority
         if (hint == Hint.SMART_PLAYLIST || hint == Hint.PLAYLIST)
@@ -659,6 +662,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         // UNLOCK
         updating_media_data.unlock ();
 
+        check_have_media ();
         update_visible_media ();
     }
 
@@ -808,27 +812,63 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     /* Content view stuff */
 
     private void add_media_to_content_views (Gee.Collection<Media> to_add) {
-        if (has_album_view)
-            album_view.add_media (to_add);
+        // The order matters here. Make sure we apply the action to the current view first
+        if (current_view == ViewType.LIST) {
+            if (has_list_view)
+                list_view.add_media (to_add);
 
-        if (has_list_view)
-            list_view.add_media (to_add);
+            if (has_album_view) {
+                Idle.add_full (Priority.HIGH_IDLE, () => {
+                    album_view.add_media (to_add);
+                    return false;
+                });
+            }
+        }
+        else {
+            if (has_album_view)
+                album_view.add_media (to_add);
+
+            if (has_list_view) {
+                Idle.add_full (Priority.HIGH_IDLE, () => {
+                    list_view.add_media (to_add);
+                    return false;
+                });
+            }
+        }
     }
 
     private void remove_media_from_content_views (Gee.Collection<Media> to_remove) {
-        if (has_album_view)
-            album_view.remove_media (to_remove);
-
         if (has_list_view)
             list_view.remove_media (to_remove);
+
+        if (has_album_view)
+            album_view.remove_media (to_remove);
     }
 
     private void set_content_views_media (Gee.Collection<Media> new_media) {
-        if (has_list_view)
-            list_view.set_media (new_media);
+        // The order matters here. Make sure we apply the action to the current view first
+        if (current_view == ViewType.LIST) {
+            if (has_list_view)
+                list_view.set_media (new_media);
 
-        if (has_album_view)
-            album_view.set_media (new_media);
+            if (has_album_view) {
+                Idle.add_full (Priority.HIGH_IDLE, () => {
+                    album_view.set_media (new_media);
+                    return false;
+                });
+            }
+        }
+        else {
+            if (has_album_view)
+                album_view.set_media (new_media);
+
+            if (has_list_view) {
+                Idle.add_full (Priority.HIGH_IDLE, () => {
+                    list_view.set_media (new_media);
+                    return false;
+                });
+            }
+        }
     }
 }
 
