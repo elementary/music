@@ -8,6 +8,7 @@ PACKAGES
     libpeas-1.0
     peas-gtk
     gee-1.0
+    granite
 OPTIONS
     --thread
     --vapidir=${CMAKE_SOURCE_DIR}/vapi

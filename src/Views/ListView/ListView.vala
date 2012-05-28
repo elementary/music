@@ -146,7 +146,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			// on startup
 			this.realize.connect (connect_column_browser_ui_signals);
 
-			column_browser_enabled = lw.settings.get_miller_columns_enabled();
+			column_browser_enabled = lw.savedstate_settings.miller_columns_enabled;
 
 			// Connect data signals
 			column_browser.changed.connect (column_browser_changed);
@@ -156,13 +156,13 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		}
 	}
 
-	private void set_column_browser_position (ColumnBrowser.Position position) {
+	private void set_column_browser_position (Noise.Position position) {
 		if (!has_column_browser)
 			return;
 
-		ColumnBrowser.Position actual_position = position; //position that will be actually applied
+		Noise.Position actual_position = position; //position that will be actually applied
 
-		if (actual_position == ColumnBrowser.Position.AUTOMATIC) {
+		if (actual_position == Noise.Position.AUTOMATIC) {
 			// Decide what orientation to use based on the view area size
 
 			int view_width = this.get_allocated_width ();
@@ -176,14 +176,14 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 
 			int required_width = MIN_RECOMMENDED_COLUMN_WIDTH * visible_columns;
 			if (view_width - required_width < list_view.get_allocated_width ())
-				actual_position = ColumnBrowser.Position.TOP;
+				actual_position = Noise.Position.TOP;
 			else
-				actual_position = ColumnBrowser.Position.LEFT;
+				actual_position = Noise.Position.LEFT;
 		}
 
 		column_browser.actual_position = actual_position;
 
-		if (actual_position == ColumnBrowser.Position.LEFT) {
+		if (actual_position == Noise.Position.LEFT) {
 			if (list_view_hpaned.get_child1() == null && list_view_vpaned.get_child1() == column_browser) {
 				list_view_vpaned.remove (column_browser);
 				list_view_hpaned.pack1 (column_browser, true, false);
@@ -191,7 +191,7 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 				list_view_hpaned.set_position (list_view_hpaned_position);
 			}
 		}
-		else if (actual_position == ColumnBrowser.Position.TOP) {
+		else if (actual_position == Noise.Position.TOP) {
 			if (list_view_vpaned.get_child1() == null && list_view_hpaned.get_child1() == column_browser) {
 				list_view_hpaned.remove (column_browser);
 				list_view_vpaned.pack1 (column_browser, true, false);
@@ -210,19 +210,19 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 			if (!lw.initialization_finished)
 				return;
 
-			if (column_browser.position == ColumnBrowser.Position.AUTOMATIC)
-				set_column_browser_position (ColumnBrowser.Position.AUTOMATIC);
+			if (column_browser.position == Noise.Position.AUTOMATIC)
+				set_column_browser_position (Noise.Position.AUTOMATIC);
 		});
 
 		column_browser.size_allocate.connect ( () => {
 			if (!lw.initialization_finished || !column_browser_enabled)
 				return;
 
-			if (column_browser.actual_position == ColumnBrowser.Position.LEFT) {
+			if (column_browser.actual_position == Noise.Position.LEFT) {
 				if (list_view_hpaned.position > 0)
 					list_view_hpaned_position = list_view_hpaned.position;
 			}
-			else if (column_browser.actual_position == ColumnBrowser.Position.TOP) {
+			else if (column_browser.actual_position == Noise.Position.TOP) {
 				if (list_view_vpaned.position > 0)
 					list_view_vpaned_position = list_view_vpaned.position;
 			}
@@ -239,8 +239,8 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		column_browser.position_changed.connect (set_column_browser_position);
 
 		// Read Paned position from settings
-		list_view_hpaned_position = lw.settings.get_miller_columns_width ();
-		list_view_vpaned_position = lw.settings.get_miller_columns_height ();
+		list_view_hpaned_position = lw.savedstate_settings.miller_width;
+		list_view_vpaned_position = lw.savedstate_settings.miller_height;
 
 		list_view_hpaned.position = list_view_hpaned_position;
 		list_view_vpaned.position = list_view_vpaned_position;
@@ -254,13 +254,13 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 		// Need to add a proper fix later ...
 		if (has_column_browser) {
 			if (column_browser.visible) {
-				if (column_browser.actual_position == ColumnBrowser.Position.LEFT)
-					lw.settings.set_miller_columns_width(list_view_hpaned_position);
-				else if (column_browser.actual_position == ColumnBrowser.Position.TOP)
-					lw.settings.set_miller_columns_height(list_view_vpaned_position);
+				if (column_browser.actual_position == Noise.Position.LEFT)
+					lw.savedstate_settings.miller_width = list_view_hpaned_position;
+				else if (column_browser.actual_position == Noise.Position.TOP)
+					lw.savedstate_settings.miller_height = list_view_vpaned_position;
 			}
 
-			lw.settings.set_miller_columns_enabled (column_browser_enabled);
+			lw.savedstate_settings.miller_columns_enabled = column_browser_enabled;
 		}
 	}
 

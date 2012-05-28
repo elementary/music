@@ -53,7 +53,8 @@ public class LastFM.Core : Object {
 	
 	public Core(BeatBox.LibraryManager lmm) {
 		lm = lmm;
-		session_key = lm.settings.getLastFMSessionKey();
+		var lastfm_settings = new LastFM.Settings ();
+		session_key = lastfm_settings.session_key;
 		
 		similarMedias = new LastFM.SimilarMedias(lm);
 		

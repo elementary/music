@@ -64,7 +64,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	 */
 
 	public BeatBox.LibraryWindow lw;
-	public BeatBox.Settings settings;
 	public BeatBox.DataBaseManager dbm;
 	public BeatBox.DataBaseUpdater dbu;
 	public BeatBox.FileOperator fo;
@@ -145,11 +144,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public LibraryManager(BeatBox.LibraryWindow lww) {
 		this.lw = lww;
 		this.player = new Streamer(this, lw);
-		this.settings = lw.settings;
 		
 		this.dbm = new DataBaseManager(this);
 		this.dbu = new DataBaseUpdater(this, dbm);
-		this.fo = new BeatBox.FileOperator(this, settings);
+		this.fo = new BeatBox.FileOperator(this);
 #if HAVE_PODCASTS
 		this.pm = new PodcastManager(this, lw);
 #endif
@@ -172,7 +170,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		media_info.artist = new LastFM.ArtistInfo.basic();
 		media_info.album = new LastFM.AlbumInfo.basic();
 		
-		int repeatValue = settings.getRepeatMode();
+		int repeatValue = lw.main_settings.repeat_mode;
 		if(repeatValue == 0)
 			repeat = LibraryManager.Repeat.OFF;
 		else if(repeatValue == 1)
@@ -331,9 +329,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 			lw.update_sensitivities();
 			stopPlayback();
 
-			settings.setMusicFolder (folder);
+			lw.main_settings.music_folder = folder;
 
-			settings.setMusicMountName("");
+			lw.main_settings.music_mount_name = "";
 
 			set_music_folder_async ();
 		}
@@ -342,7 +340,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	private async void set_music_folder_async () {
 		try {
 			new Thread<void*>.try (null, () => {
-				var music_folder_file = GLib.File.new_for_path(settings.getMusicFolder ());
+				var music_folder_file = GLib.File.new_for_path(lw.main_settings.music_folder);
 				LinkedList<string> files = new LinkedList<string>();
 		
 				var items = fo.count_music_files(music_folder_file, ref files);
@@ -427,7 +425,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 				fo.resetProgress(100);
 				Timeout.add(100, doProgressNotificationWithTimeout);
 	
-				var music_folder_dir = settings.getMusicFolder ();
+				var music_folder_dir = lw.main_settings.music_folder;
 				foreach(Media s in _media.values) {
 					if(!s.isTemporary && !s.isPreview && s.uri.contains(music_folder_dir))
 						paths.set(s.uri, s);
@@ -1131,7 +1129,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_playlists_lock.unlock();
 
 		if(_media.size == 0)
-			settings.setMusicFolder(Environment.get_user_special_dir(UserDirectory.MUSIC));
+			lw.main_settings.music_folder = Environment.get_user_special_dir(UserDirectory.MUSIC);
 
 		// TODO: move away. It's called twice due to LW's internal handlers		
 		lw.update_sensitivities();
@@ -1268,7 +1266,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		/*if(mode == shuffle)
 			return;
 		*/
-		settings.setShuffleMode(mode);
+		lw.main_settings.shuffle_mode = mode;
 		shuffle = mode;
 		
 		if(!reshuffle)
@@ -1568,8 +1566,8 @@ public class BeatBox.LibraryManager : GLib.Object {
 		}
 		
 		// check that the file exists FIXME: Avoid reading settings everytime a song is played
-		var music_folder_uri = File.new_for_path(settings.getMusicFolder()).get_uri();
-		if((settings.getMusicFolder() != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
+		var music_folder_uri = File.new_for_path(lw.main_settings.music_folder).get_uri();
+		if((lw.main_settings.music_folder != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
 			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
 			//lw.media_not_found(id);
@@ -1600,7 +1598,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		//update settings
 		if(id != PREVIEW_MEDIA_ID)
-			settings.setLastMediaPlaying(id);
+			lw.main_settings.last_media_playing = id;
 		
 		if (m != null)
 			media_played (m);
@@ -1638,11 +1636,11 @@ public class BeatBox.LibraryManager : GLib.Object {
 
 	
 	public void* change_gains_thread () {
-		if(settings.getEqualizerEnabled()) {
-			bool automatic_enabled = settings.getAutoSwitchPreset();
-			string selected_preset = settings.getSelectedPreset();
+		if(lw.equalizer_settings.equalizer_enabled) {
+			bool automatic_enabled = lw.equalizer_settings.auto_switch_preset;
+			string selected_preset = lw.equalizer_settings.selected_preset;
 
-			foreach(var p in settings.getCustomPresets ()) {
+			foreach(var p in lw.equalizer_settings.getPresets ()) {
 				if(p != null && media_active)  {
 					var preset_name = p.name.down ();
 					var media_genre = media_info.media.genre.down();
@@ -1714,7 +1712,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		if(media_active)
 			was_playing = media_info.media.rowid;
 		
-		settings.setLastMediaPlaying(0);
+		lw.main_settings.last_media_playing = 0;
 		media_info.update(null, null, null, null);
 		
 		playback_stopped(was_playing);

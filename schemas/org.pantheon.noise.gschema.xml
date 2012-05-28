@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/org/pantheon/noise/lastfm/" id="org.pantheon.noise.lastfm">
+  <schema path="/org/pantheon/noise/lastfm/" id="org.pantheon.noise.LastFM">
     <key type="s" name="session-key">
       <default>''</default>
       <summary>Unique session key</summary>
@@ -8,7 +8,7 @@
     </key>
   </schema>
 
-  <schema path="/org/pantheon/noise/library/" id="org.pantheon.noise.library">
+  <schema path="/org/pantheon/noise/settings/" id="org.pantheon.noise.Settings">
     <key type="s" name="music-folder">
       <default>''</default>
       <summary>Path to music folder</summary>
@@ -69,6 +69,11 @@
       <summary>String of last search</summary>
       <description>String of last search</description>
     </key>
+    <key type="as" name="plugins-enabled">
+      <default>[]</default>
+      <summary>List of enabled plugins</summary>
+      <description>noise will load these modules during startup</description>
+    </key>
   </schema>
   
   <enum id="org.pantheon.noise.MillerColumnsPositionType">
@@ -77,7 +82,13 @@
     <value nick="Left" value="2" />
   </enum>
   
-  <schema path="/org/pantheon/noise/ui/" id="org.pantheon.noise.ui">
+  <enum id="org.pantheon.noise.NoiseWindowStates">
+    <value nick="Normal" value="0" />
+    <value nick="Maximized" value="1" />
+    <value nick="Fullscreen" value="2" />
+  </enum>
+  
+  <schema path="/org/pantheon/noise/savedstate/" id="org.pantheon.noise.SavedState">
     <key type="b" name="sidebar-library-item-expanded">
       <default>true</default>
       <summary>Whether the library sidebar category is expanded</summary>
@@ -97,6 +108,11 @@
       <default>600</default>
       <summary>Window height</summary>
       <description>Window height</description>
+    </key>
+    <key name="window-state" enum="org.pantheon.noise.NoiseWindowStates">
+      <default>"Normal"</default>
+      <summary>The saved state of the window.</summary>
+      <description>The saved state of the window.</description>
     </key>
     <key type="i" name="sidebar-width">
       <default>200</default>
@@ -143,11 +159,6 @@
       <summary>Miller columns position</summary>
       <description>Miller columns position</description>
     </key>
-    <key type="b" name="window-maximized">
-      <default>false</default>
-      <summary>Whether or not the window is maximized</summary>
-      <description>Whether or not the window is maximized</description>
-    </key>
     <key type="i" name="view-mode">
       <default>1</default>
       <summary>Index of which view type to use</summary>
@@ -155,7 +166,7 @@
     </key>
   </schema>
   
-  <schema path="/org/pantheon/noise/equalizer/" id="org.pantheon.noise.equalizer">
+  <schema path="/org/pantheon/noise/equalizer/" id="org.pantheon.noise.Equalizer">
     <key type="b" name="equalizer-enabled">
       <default>false</default>
       <summary>Whether or not the equalizer is enabled</summary>
@@ -175,14 +186,6 @@
       <default>true</default>
       <summary>Whether or not to use the auto preset</summary>
       <description>Whether or not to use the auto preset</description>
-    </key>
-  </schema>
-
-  <schema path="/org/pantheon/noise/plugins/" id="org.pantheon.noise.plugins">
-    <key type="as" name="enabled-plugins">
-      <default>[]</default>
-      <summary>List of enabled plugins</summary>
-      <description>noise will load these modules during startup</description>
     </key>
   </schema>
 </schemalist>

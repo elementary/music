@@ -69,10 +69,10 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 
 		initialized = true;
 
-		if (lm.settings.getAutoSwitchPreset ()) {
+		if (lw.equalizer_settings.auto_switch_preset) {
 			preset_combo.selectAutomaticPreset();
 		} else {
-			var preset = lm.settings.getSelectedPreset();
+			var preset = lw.equalizer_settings.selected_preset;
 			if (preset != null)
 				preset_combo.selectPreset(preset);
 		}
@@ -101,7 +101,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		eq_switch = new Switch();
 		preset_combo = new PresetList();
 
-		eq_switch.set_active(lm.settings.getEqualizerEnabled());
+		eq_switch.set_active(lw.equalizer_settings.equalizer_enabled);
 
 		string[] decibels = {"60", "170", "310", "600", "1k", "3k", "6k", "12k", "14k", "16k"};
 		//string[] decibels = {"32", "64", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"};
@@ -218,7 +218,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		bool eq_active = eq_switch.get_active();
 		preset_combo.sensitive = eq_active;
 		set_sliders_sensitivity (eq_active);
-		lm.settings.setEqualizerEnabled (eq_active);
+		lw.equalizer_settings.equalizer_enabled = eq_active;
 
 		if (eq_active) {
 			if(!preset_combo.automatic_chosen) {
@@ -245,20 +245,22 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			preset_combo.addPreset(preset);
 		}
 
-		foreach (var preset in lm.settings.getCustomPresets()) {
+		foreach (var preset in lw.equalizer_settings.getPresets ()) {
 			preset_combo.addPreset(preset);
 		}
 	}
 
 	void save_presets () {
-		var customPresets = new Gee.LinkedList<EqualizerPreset>();
+		string[] val = new string[0];
 
 		foreach (EqualizerPreset preset in preset_combo.getPresets()) {
-			if (!preset.is_default)
-				customPresets.add (preset);
+			string strpreset = preset.name;
+			for(int i = 0; i < 10; ++i)
+				strpreset += "/" + preset.getGain(i).to_string();
+			val += strpreset;
 		}
 
-		lm.settings.setPresets (customPresets);
+		lw.equalizer_settings.custom_presets = val;
 	}
 
 	void preset_selected (EqualizerPreset p) {
@@ -321,7 +323,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	}
 
 	void on_automatic_chosen () {
-		lm.settings.setAutoSwitchPreset (preset_combo.automatic_chosen);
+		lw.equalizer_settings.auto_switch_preset = preset_combo.automatic_chosen;
 
 		target_levels.clear();
 
@@ -460,8 +462,8 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 			add_new_preset ();
 
 		save_presets ();
-		lm.settings.setSelectedPreset (preset_combo.getSelectedPreset());
-		lm.settings.setAutoSwitchPreset (preset_combo.automatic_chosen);
+		lw.equalizer_settings.selected_preset = (preset_combo.getSelectedPreset() != null)? preset_combo.getSelectedPreset().name : "";
+		lw.equalizer_settings.auto_switch_preset = preset_combo.automatic_chosen;
 
 		destroy();
 	}

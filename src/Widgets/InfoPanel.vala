@@ -143,7 +143,8 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
 	}
 
 	private void update_visibilities() {
-		var lastfm_elements_visible = lm.settings.getLastFMSessionKey() != "";
+	    var lastfm_settings = new LastFM.Settings ();
+		var lastfm_elements_visible = lastfm_settings.session_key != "";
 
 		love_button.set_no_show_all (!lastfm_elements_visible);
 		ban_button.set_no_show_all (!lastfm_elements_visible);

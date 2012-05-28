@@ -29,13 +29,7 @@ using Gee;
 public class BeatBox.ColumnBrowser : Box {
 
 	public signal void changed ();
-	public signal void position_changed (Position p);
-
-	public enum Position {
-		AUTOMATIC = 0,
-		LEFT      = 2,
-		TOP       = 1
-	}
+	public signal void position_changed (Noise.Position p);
 
 	public LibraryManager lm { get; private set; }
 	public LibraryWindow  lw { get; private set; }
@@ -73,8 +67,8 @@ public class BeatBox.ColumnBrowser : Box {
 	private Collection<Media> _media_results;
 	public Collection<Media> media_results { get { return _media_results; } }
 
-	public Position position { get; private set; default = Position.AUTOMATIC; }
-	public Position actual_position { get; set; default = Position.LEFT; }
+	public Noise.Position position { get; private set; default = Noise.Position.AUTOMATIC; }
+	public Noise.Position actual_position { get; set; default = Noise.Position.LEFT; }
 
 	public LinkedList<unowned MillerColumn> columns {get; private set;}
 
@@ -108,7 +102,7 @@ public class BeatBox.ColumnBrowser : Box {
 			add_column (MillerColumn.Category.ALBUM);
 
 			// Read visible columns from settings
-			foreach (var col_n in lw.settings.get_music_miller_visible_columns ()) {
+			foreach (var col_n in lw.savedstate_settings.music_miller_visible_columns) {
 				foreach (var column in columns) {
 					if (column.category == int.parse (col_n)) {
 						column.visible = true;
@@ -120,7 +114,7 @@ public class BeatBox.ColumnBrowser : Box {
 		}
 		else {
 			// Read visible columns from settings
-			foreach (var col_n in lw.settings.get_generic_miller_visible_columns ()) {
+			foreach (var col_n in lw.savedstate_settings.generic_miller_visible_columns) {
 				foreach (var column in columns) {
 					if (column.category == int.parse (col_n)) {
 						column.visible = true;
@@ -137,8 +131,8 @@ public class BeatBox.ColumnBrowser : Box {
 				column.visible = true;
 		}
 
-		// Position stuff
-		position = (Position) lw.settings.get_miller_columns_position ();
+		// Noise.Position stuff
+		position = lw.savedstate_settings.miller_columns_position;
 
 		RadioMenuItem automatic_menu_item;
 		RadioMenuItem left_menu_item;
@@ -149,25 +143,25 @@ public class BeatBox.ColumnBrowser : Box {
 		top_menu_item = new RadioMenuItem.with_label (left_menu_item.get_group (), _("On Top"));
 
 		(automatic_menu_item as CheckMenuItem).toggled.connect ( () => {
-			set_columns_position (Position.AUTOMATIC);
+			set_columns_position (Noise.Position.AUTOMATIC);
 		});
 
 		(left_menu_item as CheckMenuItem).toggled.connect ( () => {
-			set_columns_position (Position.LEFT);
+			set_columns_position (Noise.Position.LEFT);
 		});
 
 		(top_menu_item as CheckMenuItem).toggled.connect ( () => {
-			set_columns_position (Position.TOP);
+			set_columns_position (Noise.Position.TOP);
 		});
 
 		switch (position) {
-			case Position.AUTOMATIC:
+			case Noise.Position.AUTOMATIC:
 				automatic_menu_item.set_active (true);
 				break;
-			case Position.LEFT:
+			case Noise.Position.LEFT:
 				left_menu_item.set_active (true);
 				break;
-			case Position.TOP:
+			case Noise.Position.TOP:
 				top_menu_item.set_active (true);
 				break;
 		}
@@ -187,19 +181,19 @@ public class BeatBox.ColumnBrowser : Box {
 		// make sure that you remove this code from this class. Otherwise the same
 		// settings (in case you're syncinc the browsers) will be written a billion times.
 
-		var visible_columns_list = new LinkedList<string> ();
+		string [] visible_columns_list = new string[0];
 
 		foreach (var col in columns) {
 			if (col.visible)
-				visible_columns_list.add (((int)col.category).to_string ());
+				visible_columns_list += (((int)col.category).to_string ());
 		}
 
 		if (is_music_miller)
-			lw.settings.set_music_miller_visible_columns (visible_columns_list);
+			lw.savedstate_settings.music_miller_visible_columns = visible_columns_list;
 		else
-			lw.settings.set_generic_miller_visible_columns (visible_columns_list);
+			lw.savedstate_settings.generic_miller_visible_columns = visible_columns_list;
 		
-		lw.settings.set_miller_columns_position ((int) position);
+		lw.savedstate_settings.miller_columns_position = position;
 	} 
 
 	/**
@@ -213,7 +207,7 @@ public class BeatBox.ColumnBrowser : Box {
 			col.select_first_item();	
 	}
 
-	public void set_columns_position (Position pos) {
+	public void set_columns_position (Noise.Position pos) {
 		position = pos;
 
 		// Emit signal
