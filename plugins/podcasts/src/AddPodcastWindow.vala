@@ -107,8 +107,8 @@ public class BeatBox.AddPodcastWindow : Window {
 		add(padding);
 		
 		existing_rss = new Gee.HashSet<string>();
-		foreach(int i in lw.lm.podcast_ids()) {
-			var pod = lw.lm.media_from_id(i);
+		foreach(int i in lw.library_manager.podcast_ids()) {
+			var pod = lw.library_manager.media_from_id(i);
 			existing_rss.add(pod.podcast_rss);
 		}
 		
@@ -137,7 +137,7 @@ public class BeatBox.AddPodcastWindow : Window {
 	}
 
 	void saveClicked() {
-		var success = lw.lm.pm.parse_new_rss(_source.get_text());
+		var success = lw.library_manager.pm.parse_new_rss(_source.get_text());
 		
 		if(success)
 			this.destroy();
@@ -187,7 +187,7 @@ public class BeatBox.AddPodcastWindow : Window {
 		while(next != "") {
 			var previous_url = next;
 			next = "";
-			is_valid = lw.lm.pm.is_valid_rss(previous_url) && !existing_rss.contains(previous_url);
+			is_valid = lw.library_manager.pm.is_valid_rss(previous_url) && !existing_rss.contains(previous_url);
 		}
 		
 		Idle.add( () => {

@@ -49,7 +49,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 	LinkedList<Media> to_transfer;
 	
 	public TransferFromDeviceDialog(LibraryWindow lw, Device d, LinkedList<Media> medias) {
-		this.lm = lw.lm;
+		this.lm = lw.library_manager;
 		this.medias = medias;
 		this.d = d;
 		

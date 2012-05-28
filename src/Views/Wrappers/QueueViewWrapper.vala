@@ -32,7 +32,7 @@ public class BeatBox.QueueViewWrapper : ViewWrapper {
     public QueueViewWrapper (LibraryWindow lw) {
         base (lw, Hint.QUEUE);
 
-        var tvs = lw.lm.queue_setup;
+        var tvs = lw.library_manager.queue_setup;
 
         // Add list view and column browser
         list_view = new ListView (this, tvs);

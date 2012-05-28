@@ -292,6 +292,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 			}
 		});
 
+
 		fetch_cover_art_from_cache_async ();
 	}
 

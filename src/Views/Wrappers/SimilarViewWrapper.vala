@@ -30,7 +30,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
     public SimilarViewWrapper (LibraryWindow lw) {
         base (lw, Hint.SIMILAR);
 
-        var tvs = lw.lm.similar_setup;
+        var tvs = lw.library_manager.similar_setup;
 
         // Add list view
         list_view = new ListView (this, tvs);

@@ -36,7 +36,7 @@ public class BeatBox.MediaKeyListener : GLib.Object {
     private GnomeMediaKeys media_object;
 
     public MediaKeyListener(LibraryWindow lww) {
-        lm = lww.lm;
+        lm = lww.library_manager;
         lw = lww;
         
         try {

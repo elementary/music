@@ -113,7 +113,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
     public ViewWrapper (LibraryWindow lw, Hint hint)
     {
-        this.lm = lw.lm;
+        this.lm = lw.library_manager;
         this.lw = lw;
         this.hint = hint;
 
@@ -216,13 +216,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             return;
 
         debug ("%s : update_library_window_widgets", hint.to_string());
-
-        // Play, pause, ...
-        bool media_active = lm.media_active;
-        bool media_visible = (visible_media_table.size > 0);
-        lw.previousButton.set_sensitive (media_active || media_visible);
-        lw.playButton.set_sensitive (media_active || media_visible);
-        lw.nextButton.set_sensitive (media_active || media_visible);
 
         // Restore this view wrapper's search string
         lw.searchField.set_text (actual_search_string);

@@ -33,7 +33,7 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         // Add album view
         album_view = new AlbumView (this);
                 
-        var tvs = lw.lm.music_setup;
+        var tvs = lw.library_manager.music_setup;
         // Add list view and column browser
         list_view = new ListView (this, tvs, true);
 

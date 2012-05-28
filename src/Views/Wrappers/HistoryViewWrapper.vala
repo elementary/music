@@ -32,7 +32,7 @@ public class BeatBox.HistoryViewWrapper : ViewWrapper {
     public HistoryViewWrapper (LibraryWindow lw) {
         base (lw, Hint.HISTORY);
 
-        var tvs = lw.lm.history_setup;
+        var tvs = lw.library_manager.history_setup;
 
         if (tvs != null) {
             // Add list view

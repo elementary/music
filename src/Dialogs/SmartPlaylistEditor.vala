@@ -168,7 +168,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
 			return;
 		}
 		else {
-			foreach (var p in lw.lm.smart_playlists ()) {
+			foreach (var p in lw.library_manager.smart_playlists ()) {
 				var fixed_name = _name.get_text ().strip ();
 				if((_sp == null || _sp.rowid != p.rowid) && fixed_name == p.name) {
 					save.set_sensitive(false);

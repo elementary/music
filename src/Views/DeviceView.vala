@@ -23,18 +23,19 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.DeviceView : VBox {
+public class BeatBox.DeviceView : Box {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device d;
 	DeviceSummaryWidget summary;
 	
 	public DeviceView(LibraryManager lm, Device d) {
+		this.orientation = Gtk.Orientation.VERTICAL;
+
 		this.lm = lm;
 		this.lw = lm.lw;
 		this.d = d;
-		
-		
+
 		buildUI();
 		
 		ulong connector = lm.progress_cancel_clicked.connect( () => {

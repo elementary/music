@@ -141,6 +141,23 @@ public class BeatBox.AlbumListView : Window {
 #endif
 	}
 
+	/**
+	 * Resets the window
+	 */
+	public void reset () {
+		// clear labels
+		set_title ("");
+		album_label.set_label ("");
+		artist_label.set_label ("");
+
+		// clear treeview and media list
+        list_view.get_selection ().unselect_all (); // Unselect rows
+        media_list = new Gee.LinkedList<Media> ();
+        list_view.set_media (media_list);
+
+		// Reset size request
+		set_size (MIN_SIZE);
+	}
 
     public void set_size (int size) {
         this.set_size_request (size, size);
@@ -154,21 +171,9 @@ public class BeatBox.AlbumListView : Window {
 	Mutex setting_media;
 
 	public void set_media (Gee.Collection<Media> media) {
-        set_size (MIN_SIZE);
+		reset ();
 
 		setting_media.lock ();
-
-        // Unselect rows
-        list_view.get_selection ().unselect_all ();
-
-        media_list = new Gee.LinkedList<Media> ();
-
-        // Make a copy. Otherwise the list won't work if some elements are
-        // removed from the parent wrapper while the window is showing
-        foreach (var m in media) {
-            if (m != null)
-                media_list.add (m);
-        }
 
         foreach (var m in media) {
             if (m != null) {
@@ -179,6 +184,13 @@ public class BeatBox.AlbumListView : Window {
         		artist_label.set_label (artist);
         		break;
             }
+        }
+
+        // Make a copy. Otherwise the list won't work if some elements are
+        // removed from the parent wrapper while the window is showing
+        foreach (var m in media) {
+            if (m != null)
+                media_list.add (m);
         }
 
 		list_view.set_media (media_list);

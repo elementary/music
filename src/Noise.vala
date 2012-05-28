@@ -126,6 +126,28 @@ namespace BeatBox {
             }
         }
 
+        protected override void activate () {
+            // present window if app is already open
+            if (library_window != null) {
+                library_window.present ();
+                return;
+            }
+
+            // Setup debugger
+            if (Options.debug)
+                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
+            else
+                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
+
+            is_loading = true;
+            library_window = new BeatBox.LibraryWindow (this);
+            library_window.build_ui ();
+            is_loading = false;
+
+            if (!Options.disable_plugins)
+                plugins_manager.hook_new_window (library_window);
+        }
+
         /**
          * These methods are here to make transitioning to other Application APIs
          * easier in the future.
@@ -158,28 +180,6 @@ namespace BeatBox {
 
         public bool get_is_loading () {
             return is_loading;
-        }
-
-        protected override void activate () {
-            // present window if app is already open
-            if (library_window != null) {
-                library_window.present ();
-                return;
-            }
-
-            // Setup debugger
-            if (Options.debug)
-                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
-            else
-                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
-
-            is_loading = true;
-            library_window = new BeatBox.LibraryWindow (this);
-            library_window.build_ui ();
-            is_loading = false;
-
-            if (!Options.disable_plugins)
-                plugins_manager.hook_new_window (library_window);
         }
     }
 }

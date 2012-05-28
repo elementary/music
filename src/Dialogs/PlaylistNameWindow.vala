@@ -130,7 +130,7 @@ public class BeatBox.PlaylistNameWindow : Window {
 			return;
 		}
 		else {
-			foreach (var p in lw.lm.playlists ()) {
+			foreach (var p in lw.library_manager.playlists ()) {
 				var fixed_name = _name.get_text ().strip ();
 				if((_original == null || _original.rowid != p.rowid) && fixed_name == p.name) {
 					_save.set_sensitive(false);
