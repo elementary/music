@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-23 21:01-0600\n"
-"PO-Revision-Date: 2012-05-25 01:03+0000\n"
+"PO-Revision-Date: 2012-05-27 12:06+0000\n"
 "Last-Translator: Daniel Kur <Daniel.M.Kur@gmail.com>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-26 05:55+0000\n"
+"X-Launchpad-Export-Date: 2012-05-28 05:56+0000\n"
 "X-Generator: Launchpad (build 15288)\n"
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:318
@@ -738,7 +738,7 @@ msgstr "Data dodania"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 msgid "Date Released"
-msgstr ""
+msgstr "Data wydania"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
@@ -1688,6 +1688,3 @@ msgstr "Techno"
 
 #~ msgid "Click on the button to edit playlist rules"
 #~ msgstr "Kliknij, aby zmodyfikować reguły listy odtwarzania"
-
-#~ msgid "Loading Songs ..."
-#~ msgstr "Wczytywanie utworów..."

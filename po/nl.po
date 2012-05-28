@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-23 21:01-0600\n"
-"PO-Revision-Date: 2012-05-23 21:51+0000\n"
-"Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
+"PO-Revision-Date: 2012-05-27 16:32+0000\n"
+"Last-Translator: Jonathan Moerman <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-24 21:37+0000\n"
+"X-Launchpad-Export-Date: 2012-05-28 05:56+0000\n"
 "X-Generator: Launchpad (build 15288)\n"
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:318
@@ -120,7 +120,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Objects/Media.vala:45
 #: /home/victor/noise/po/../src//GStreamer/CDDA.vala:74
 msgid "Unknown Title"
-msgstr ""
+msgstr "Onbekende titel"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
 #: /home/victor/noise/po/../src//LibraryWindow.vala:727
@@ -213,7 +213,7 @@ msgstr "Exporteren..."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:149
 msgid "Import Playlists"
-msgstr ""
+msgstr "Afspeellijsten importeren"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:187
 msgid "Library"
@@ -244,20 +244,21 @@ msgstr "Podcasts"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:880
 msgid "Playlist"
-msgstr ""
+msgstr "Afspeellijst"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:893
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "%s importeren"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1012
 msgid "This device is syncing"
-msgstr ""
+msgstr "Het apparaat wordt gesynchroniseerd"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1012
 msgid "Please wait until the current sync is finished to do this action."
 msgstr ""
+"Wacht alstublieft tot het synchroniseren compleet is voordat u dit doet."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1014
 msgid "This device is in transfer"
@@ -276,7 +277,7 @@ msgstr "Annuleren"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
-msgstr ""
+msgstr "Toonregeling"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
@@ -285,7 +286,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:160
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:103
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:415
 #, c-format
@@ -308,7 +309,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
-msgstr ""
+msgstr "Niet geïmporteerde bestanden"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
@@ -323,12 +324,12 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Verplaats alle corrupte bestanden naar de prullenbak"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "Naar prullenbak verplaatsen"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
@@ -336,15 +337,16 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
-msgstr ""
+msgstr "verwijderen"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "Bestandslocatie"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
 msgstr ""
+"Selecteer afzonderlijke bestanden om naar de prullenbak te verplaatsen:"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -373,7 +375,7 @@ msgstr "Kies muziek-map"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr ""
+msgstr "Installeer plug-in"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
@@ -382,7 +384,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
-msgstr ""
+msgstr "De benodigde GStreamer plug-in is niet geïnstalleerd"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
@@ -397,7 +399,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:72
 msgid "Lyrics"
-msgstr ""
+msgstr "Liedteksten"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:82
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
