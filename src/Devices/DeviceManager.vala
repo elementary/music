@@ -94,7 +94,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 	}
 	
 	void volume_added(Volume volume) {
-		if(lm.settings.getMusicMountName() == volume.get_name() && volume.get_mount() == null) {
+		if(lm.lw.main_settings.music_mount_name == volume.get_name() && volume.get_mount() == null) {
 			stdout.printf("mounting %s because it is believed to be the music folder\n", volume.get_name());
 			volume.mount(MountMountFlags.NONE, null, null);
 		}
@@ -122,9 +122,9 @@ public class BeatBox.DeviceManager : GLib.Object {
 		else if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists()) {
 			added = new AndroidDevice(mount);
 		}
-		else if(lm.settings.getMusicFolder().contains(mount.get_default_location().get_path())) {
+		else if(lm.lw.main_settings.music_folder.contains(mount.get_default_location().get_path())) {
 			// user mounted music folder, rescan for images
-			lm.settings.setMusicMountName(mount.get_volume().get_name());
+			lm.lw.main_settings.music_mount_name = mount.get_volume().get_name();
 			lm.recheck_files_not_found();
 			
 			lm.fetch_all_cover_art_async ();

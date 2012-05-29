@@ -22,6 +22,8 @@
 
 namespace BeatBox {
 
+    public Noise.Plugins.Manager plugins;
+
     namespace Options {
         public bool debug = false;
         public bool disable_plugins = false;
@@ -60,10 +62,10 @@ namespace BeatBox {
 
     public class Beatbox : Granite.Application {
 
-        public BeatBox.Settings        settings        { get; private set; }
+        public Noise.Settings          settings        { get; private set; }
         public BeatBox.LibraryWindow   library_window  { get; private set; }
         public BeatBox.LibraryManager  library_manager { get; private set; }
-        public BeatBox.Plugins.Manager plugins_manager { get; private set; }
+        public Noise.Plugins.Manager   plugins_manager { get; private set; }
 
         private static const OptionEntry[] app_options = {
             { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, N_("Enable debug logging"), null },
@@ -104,10 +106,13 @@ namespace BeatBox {
 
         public Beatbox () {
             // Create settings
-            settings = new BeatBox.Settings ();
+            settings = new Noise.Settings ();
 
             if (!Options.disable_plugins)
-                plugins_manager = new Plugins.Manager (settings.plugins, settings.ENABLED_PLUGINS, Build.PLUGIN_DIR);
+                plugins = new Noise.Plugins.Manager (settings.schema, "plugins-enabled", Build.PLUGIN_DIR, exec_name, null);
+                
+            plugins.scratch_app = this;
+            plugins.hook_app(this);
         }
 
         public static OptionEntry[] get_option_group () {

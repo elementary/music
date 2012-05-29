@@ -41,27 +41,20 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"),
                              _("%s can't seem to find your music.").printf (lw.app.get_name ()));
 
-        // Alert box
-        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
-        set_default_alert ();
-
         var music_folder_icon = Icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
         welcome_screen.append_with_pixbuf (music_folder_icon, _("Locate"), _("Change your music folder."));
 
         welcome_screen.activated.connect (welcome_screen_activated);
 
-		// Refresh view layout
+        // Refresh view layout
         pack_views ();
 
-        set_active_view (ViewType.ALERT);
 
         connect_data_signals ();
 
         lm.device_manager.device_added.connect (device_added);
         lm.device_manager.device_removed.connect (device_removed);
 
-        // Give more priority
-        no_thread_delay = true;
     }
 
     private void connect_data_signals () {
@@ -148,8 +141,8 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
                 file_chooser.destroy ();
                 
                 // If different folder chosen or we have no songs anyways, do set.
-                if(folder != "" && (folder != lm.settings.getMusicFolder() || lm.song_count() == 0)) {
-                    lw.setMusicFolder(folder);
+                if(folder != "" && (folder != lw.main_settings.music_folder) || lm.song_count() == 0) {
+                    lw.main_settings.music_folder = folder;
                 }
             }
         }
@@ -174,7 +167,7 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
             else {
                 // ask the user if they want to import media from device that they don't have in their library (if any)
                 // this should be same as DeviceView
-                if(!lm.doing_file_operations() && lm.settings.getMusicFolder() != "") {
+                if(!lm.doing_file_operations() && lw.main_settings.music_folder != "") {
                     var found = new LinkedList<int>();
                     var not_found = new LinkedList<Media>();
                     lm.media_from_name(d.get_medias(), ref found, ref not_found);
@@ -190,12 +183,4 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
             }
         }
     }
-
-    private inline void set_default_alert () {
-        if (!has_embedded_alert)
-            return;
-
-        embedded_alert.set_alert (_("Loading Songs..."), "", null, false);
-    }
 }
-

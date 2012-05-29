@@ -813,8 +813,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 		file_chooser.set_current_name(p.name + ".m3u");
 		
 		// set original folder. if we don't, then file_chooser.get_filename() starts as null, which is bad for signal below.
-		if(File.new_for_path(lm.settings.getMusicFolder()).query_exists())
-			file_chooser.set_current_folder(lm.settings.getMusicFolder());
+		if(File.new_for_path(lw.main_settings.music_folder).query_exists())
+			file_chooser.set_current_folder(lw.main_settings.music_folder);
 		else
 			file_chooser.set_current_folder(Environment.get_home_dir());
 			

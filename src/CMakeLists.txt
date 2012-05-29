@@ -28,6 +28,7 @@ vala_precompile(VALA_C
     Utils/Icon.vala
 
     LastFM/Core.vala
+    LastFM/Settings.vala
     LastFM/AlbumInfo.vala
     LastFM/Image.vala
     LastFM/Tag.vala

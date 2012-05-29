@@ -30,7 +30,6 @@ public class BeatBox.FileOperator : Object {
 	public signal void rescan_cancelled();
 
 	private BeatBox.LibraryManager lm;
-	private BeatBox.Settings settings;
 	public GStreamerTagger tagger;
 	
 	bool inThread;
@@ -61,9 +60,8 @@ public class BeatBox.FileOperator : Object {
 		IMPORT
 	}
 	
-	public FileOperator(BeatBox.LibraryManager lmm, BeatBox.Settings sett) {
-		lm = lmm;
-		settings = sett;
+	public FileOperator(BeatBox.LibraryManager lm) {
+		this.lm = lm;
 		inThread = false;
 		toSave = new LinkedList<Media>();
 		cancelled = false;
@@ -272,7 +270,7 @@ public class BeatBox.FileOperator : Object {
 	
 	public void save_media (Collection<Media> to_save) {
 		foreach(Media s in to_save) {
-			if(!s.isTemporary && !s.isPreview && GLib.File.new_for_uri(s.uri).get_path().has_prefix(settings.getMusicFolder()))
+			if(!s.isTemporary && !s.isPreview && GLib.File.new_for_uri(s.uri).get_path().has_prefix(lm.lw.main_settings.music_folder))
 				toSave.offer(s);
 		}
 		
@@ -296,7 +294,7 @@ public class BeatBox.FileOperator : Object {
 				return null;
 			}
 			
-			if(settings.getWriteMetadataToFile()) {
+			if(lm.lw.main_settings.write_metadata_to_file) {
 				TagLib.File tag_file;
 				tag_file = new TagLib.File(GLib.File.new_for_uri(s.uri).get_path());
 				
@@ -321,7 +319,7 @@ public class BeatBox.FileOperator : Object {
 				}
 			}
 			
-			if(settings.getUpdateFolderHierarchy())
+			if(lm.lw.main_settings.update_folder_hierarchy)
 				update_file_hierarchy(s, true, false);
 		}
 	}
@@ -339,7 +337,7 @@ public class BeatBox.FileOperator : Object {
 			else
 				ext = get_extension(s.uri);
 			
-			dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + ext));
+			dest = GLib.File.new_for_path(Path.build_path("/", lm.lw.main_settings.music_folder, s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + ext));
 			
 			if(original.get_path() == dest.get_path()) {
 				debug("File is already in correct location\n");
@@ -347,7 +345,7 @@ public class BeatBox.FileOperator : Object {
 			}
 			
 			string extra = "";
-			while((dest = GLib.File.new_for_path(Path.build_path("/", settings.getMusicFolder(), s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + extra + ext))).query_exists()) {
+			while((dest = GLib.File.new_for_path(Path.build_path("/", lm.lw.main_settings.music_folder, s.artist.replace("/", "_"), s.album.replace("/", "_"), s.track.to_string() + " " + s.title.replace("/", "_") + extra + ext))).query_exists()) {
 				extra += "_";
 			}
 			
@@ -578,7 +576,7 @@ public class BeatBox.FileOperator : Object {
 		}
 		
 		// if doing import and copy to music folder is enabled, do copy here
-		if((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && settings.getCopyImportedMusic()) {
+		if((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && lm.lw.main_settings.copy_imported_music) {
 			fo_progress("<b>Copying</b> files to <b>Music Folder</b>...", 0.0);
 			
 			try {

@@ -23,215 +23,151 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-using Gtk;
-
 public class BeatBox.PreferencesWindow : Gtk.Window {
-	BeatBox.LibraryManager _lm;
-	BeatBox.LibraryWindow _lw;
+    BeatBox.LibraryManager _lm;
+    BeatBox.LibraryWindow _lw;
 
-	FileChooserButton fileChooser;
-	
-	CheckButton organizeFolders;
-	CheckButton writeMetadataToFile;
-	CheckButton copyImportedMusic;
+    Gtk.FileChooserButton library_fileChooser;
+    
+    Gtk.Switch organize_folders_switch;
+    Gtk.Switch write_file_metadata_switch;
+    Gtk.Switch copy_imported_music_switch;
 
-	Button saveChanges;
+    Gtk.Button saveChanges;
+    
+    public signal void changed(string folder);
+    
+    public PreferencesWindow (LibraryManager lm, LibraryWindow lw) {
+    
+        this._lm = lm;
+        this._lw = lw;
+        
+        build_ui();
+        
+        _lm.file_operations_done.connect(fileOperationsDone);
+    }
+    
+    void build_ui () {
+    
+        set_title(_("Preferences"));
 
-#if HAVE_PODCASTS
-	CheckButton downloadNewPodcasts;
-#endif
+        // Window properties
+        window_position = Gtk.WindowPosition.CENTER;
+        type_hint = Gdk.WindowTypeHint.DIALOG;
+        set_transient_for(_lw);
+        
+        var main_grid = new Gtk.Grid ();
+        var main_static_notebook = new Granite.Widgets.StaticNotebook ();
+        saveChanges = new Gtk.Button.from_stock (Gtk.Stock.APPLY);
+        saveChanges.margin_right = 12;
+        saveChanges.margin_bottom = 12;
+        
+        main_static_notebook.append_page (get_general_box (), new Gtk.Label (_("Behavior")));
+        
+        if (Peas.Engine.get_default ().get_plugin_list ().length() > 0) {
+            //create static notebook
+            var plugins_label = new Gtk.Label (_("Extensions"));
+            
+            main_static_notebook.append_page (plugins.get_view (), plugins_label);
+        }
+        
+        main_static_notebook.set_hexpand (true);
+        
+        main_grid.attach (main_static_notebook, 0, 0, 3, 1);
+        main_grid.attach (saveChanges, 2, 1, 1, 1);
+        add (main_grid);
+        
+        saveChanges.clicked.connect(saveClicked);
+        
+        show_all();
+    }
+    
+    Gtk.Widget get_general_box () {
+        
+        //BeatBox.Settings.schema.bind("show-at-start", start, "active-id", SettingsBindFlags.DEFAULT);
+        
+        var general_grid = new Gtk.Grid ();
+        general_grid.row_spacing = 6;
+        general_grid.column_spacing = 12;
+        general_grid.margin_left = 12;
+        general_grid.margin_right = 12;
+        general_grid.margin_top = 12;
+        general_grid.margin_bottom = 6;
+        general_grid.set_hexpand (true);
+        general_grid.set_vexpand (true);
+        
+        set_size_request(400, -1);
+        
+        var music_label = new Gtk.Label("");
+        music_label.set_markup ("<b>%s</b>".printf (_("Music Folder Location")));
+        music_label.set_alignment (0, 0.5f);
+        
+        library_fileChooser = new Gtk.FileChooserButton(_("Music Folder"), Gtk.FileChooserAction.SELECT_FOLDER);
+        
+        var management_label = new Gtk.Label("");
+        management_label.set_markup("<b>%s</b>".printf (_("Library Management")));
+        management_label.set_alignment (0, 0.5f);
+        
+        var organize_folders_label = new Gtk.Label (_("Keep music folder organized:"));
+        organize_folders_label.set_alignment (1, 0.5f);
+        organize_folders_switch = new Gtk.Switch ();
+        var write_file_metadata_label = new Gtk.Label (_("Write metadata to file:"));
+        write_file_metadata_label.set_alignment (1, 0.5f);
+        write_file_metadata_switch = new Gtk.Switch ();
+        var copy_imported_music_label = new Gtk.Label (_("Copy new files to music folder:"));
+        copy_imported_music_label.set_hexpand (true);
+        copy_imported_music_label.set_alignment (1, 0.5f);
+        copy_imported_music_switch = new Gtk.Switch ();
+        var fake_label = new Gtk.Label ("");
+        fake_label.set_hexpand (true);
+        
+        // fancy up the category labels
 
-#if HAVE_LAST_FM
-	Button lastfmLogin;
-	string lastfm_token;
+        // file chooser stuff
+        library_fileChooser.set_current_folder(_lw.main_settings.music_folder);
+        //library_fileChooser.set_local_only(true);
+        
+        if (_lm.doing_file_operations()) {
+            library_fileChooser.set_sensitive(false);
+            library_fileChooser.set_tooltip_text(_("You must wait until previous file operations finish before setting your music folder"));
+        }
+        
+        // initialize library management settings
+        organize_folders_switch.set_active(_lw.main_settings.update_folder_hierarchy);
+        write_file_metadata_switch.set_active(_lw.main_settings.write_metadata_to_file);
+        copy_imported_music_switch.set_active(_lw.main_settings.copy_imported_music);
+        
+        // Pack all widgets
+        general_grid.attach (management_label, 0, 0, 3, 1);
+        general_grid.attach (library_fileChooser, 0, 1, 3, 1);
+        general_grid.attach (music_label, 0, 2, 3, 1);
+        general_grid.attach (organize_folders_label, 0, 3, 1, 1);
+        general_grid.attach (organize_folders_switch, 1, 3, 1, 1);
+        general_grid.attach (write_file_metadata_label, 0, 4, 1, 1);
+        general_grid.attach (write_file_metadata_switch, 1, 4, 1, 1);
+        general_grid.attach (copy_imported_music_label, 0, 5, 1, 1);
+        general_grid.attach (copy_imported_music_switch, 1, 5, 1, 1);
+        general_grid.attach (fake_label, 2, 5, 1, 1);
+        
+        return general_grid;
+    }
+        
+    void saveClicked() {
+    
+        if(library_fileChooser.get_current_folder() != _lw.main_settings.music_folder || _lm.media_count() == 0) {
+            changed(library_fileChooser.get_current_folder());
+        }
+        
+        _lw.main_settings.update_folder_hierarchy = organize_folders_switch.get_active();
+        _lw.main_settings.write_metadata_to_file = write_file_metadata_switch.get_active();
+        _lw.main_settings.copy_imported_music = copy_imported_music_switch.get_active();
+        
+        destroy();
+    }
 
-	private string SUCCESS_MSG = _("Success!");
-	private string ENABLE_SCROBBLING_MSG = _("Enable Scrobbling");
-	private string UNSUCCESSFUL_MSG = _("Unsuccessful. Click to try again.");
-#endif
-	
-	public signal void changed(string folder);
-	
-	public PreferencesWindow (LibraryManager lm, LibraryWindow lw) {
-	
-		this._lm = lm;
-		this._lw = lw;
-		
-		build_ui();
-		
-		_lm.file_operations_done.connect(fileOperationsDone);
-	}
-	
-	void build_ui () {
-	
-		set_title(_("Preferences"));
-
-		// Window properties
-		window_position = WindowPosition.CENTER;
-		type_hint = Gdk.WindowTypeHint.DIALOG;
-		modal = true;
-		resizable = false;
-		set_transient_for(_lw);
-		set_size_request(400, -1);
-
-		var content = new VBox(false, 10);
-		var padding = new HBox(false, 10);
-		
-		var musicLabel = new Label("");
-		fileChooser = new FileChooserButton(_("Music Folder"), FileChooserAction.SELECT_FOLDER);
-		
-		var managementLabel = new Label("");
-		organizeFolders = new CheckButton.with_label(_("Keep music folder organized"));
-		writeMetadataToFile = new CheckButton.with_label(_("Write metadata to file"));
-		copyImportedMusic = new CheckButton.with_label(_("Copy files to music folder when added to library"));
-#if HAVE_PODCASTS
-		downloadNewPodcasts = new CheckButton.with_label(_("Automatically download new podcast episodes"));
-#endif
-
-#if HAVE_LAST_FM
-		var lastfmLabel = new Label("");
-		var lastfmInfo = new Granite.Widgets.WrapLabel(_("To allow for Last.fm integration, you must give permission to %s. You only need to do this once.").printf (lw.app.get_name ()));
-		
-		if(_lm.settings.getLastFMSessionKey() == null || _lm.settings.getLastFMSessionKey() == "")
-			lastfmLogin = new Button.with_label (ENABLE_SCROBBLING_MSG);
-		else {
-			lastfmLogin = new Button.with_label (_("Scrobbling already Enabled"));
-			lastfmLogin.set_tooltip_text (_("Click to redo the Last.fm Login Process"));
-		}
-#endif
-		
-		saveChanges = new Button.with_label(_("Close"));
-		
-		// fancy up the category labels
-		musicLabel.xalign = 0.0f;
-		managementLabel.xalign = 0.0f;
-		musicLabel.set_markup ("<b>%s</b>".printf (_("Music Folder Location")));
-		managementLabel.set_markup("<b>%s</b>".printf (_("Library Management")));
-
-#if HAVE_LAST_FM
-		lastfmLabel.xalign = 0.0f;
-		lastfmLabel.set_markup("<b>%s</b>".printf (_("Last.fm Integration")));
-#endif		
-		// file chooser stuff
-		fileChooser.set_current_folder(_lm.settings.getMusicFolder());
-		//fileChooser.set_local_only(true);
-		
-		if (_lm.doing_file_operations()) {
-			fileChooser.set_sensitive(false);
-			fileChooser.set_tooltip_text(_("You must wait until previous file operations finish before setting your music folder"));
-		}
-		
-		// initialize library management settings
-		organizeFolders.set_active(_lm.settings.getUpdateFolderHierarchy());
-		writeMetadataToFile.set_active(_lm.settings.getWriteMetadataToFile());
-		copyImportedMusic.set_active(_lm.settings.getCopyImportedMusic());
-#if HAVE_PODCASTS
-		downloadNewPodcasts.set_active(_lm.settings.getDownloadNewPodcasts());
-#endif
-
-#if HAVE_LAST_FM	
-		lastfmInfo.set_line_wrap(true);
-#endif
-		
-		// Add save button
-		var bottomButtons = new HButtonBox();
-		bottomButtons.set_layout(ButtonBoxStyle.END);
-		bottomButtons.pack_end(saveChanges, false, false, 0);
-		
-		// Pack all widgets
-		content.pack_start(UI.wrap_alignment (musicLabel, 10, 0, 0, 0), false, true, 0);
-		content.pack_start(UI.wrap_alignment (fileChooser, 0, 0, 0, 10), false, true, 0);
-		content.pack_start(managementLabel, false, true, 0);
-		content.pack_start(UI.wrap_alignment (organizeFolders, 0, 0, 0, 10), false, true, 0);
-		content.pack_start(UI.wrap_alignment (writeMetadataToFile, 0, 0, 0, 10), false, true, 0);
-		content.pack_start(UI.wrap_alignment (copyImportedMusic, 0, 0, 0, 10), false, true, 0);
-#if HAVE_PODCASTS
-		content.pack_start(UI.wrap_alignment (downloadNewPodcasts, 0, 0, 0, 10), false, true, 0);
-#endif
-#if HAVE_LAST_FM
-		content.pack_start(lastfmLabel, false, true, 0);
-		content.pack_start(UI.wrap_alignment (lastfmInfo, 0, 0, 0, 10), false, true, 0);
-		content.pack_start(UI.wrap_alignment (lastfmLogin, 0, 0, 0, 10), false, true, 0);
-#endif
-		content.pack_end(bottomButtons, false, true, 10);
-		
-		padding.pack_start(content, true, true, 10);
-		add(padding);
-
-#if HAVE_LAST_FM		
-		lastfmLogin.clicked.connect(lastfmLoginClick);
-#endif
-		saveChanges.clicked.connect(saveClicked);
-		
-		show_all();
-	}
-	
-
-#if HAVE_LAST_FM
-	void lastfmLoginClick() {
-	
-		if(lastfmLogin.get_label() == ENABLE_SCROBBLING_MSG || lastfmLogin.get_label() == UNSUCCESSFUL_MSG) {
-			lastfm_token = _lm.lfm.getToken();
-			if(lastfm_token == null) {
-				lastfmLogin.set_label(UNSUCCESSFUL_MSG);
-				stdout.printf("Could not get a token. check internet connection\n");
-			}
-			else {
-				string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.Core.api + "&token=" + lastfm_token;
-				try {
-					GLib.AppInfo.launch_default_for_uri (auth_uri, null);
-				}
-				catch(GLib.Error err) {
-					stdout.printf("Could not open Last.fm website to authorize: %s\n", err.message);
-				}
-				
-				//set button text. we are done this time around. next time we get session key
-				lastfmLogin.set_label(_("Complete login"));
-			}
-		}
-		else {
-			if(lastfm_token == null) {
-				lastfmLogin.set_label(UNSUCCESSFUL_MSG);
-				stdout.printf("Invalid token. Cannot continue\n");
-			}
-			else {
-				var sk = _lm.lfm.getSessionKey(lastfm_token);
-				if(sk == null) {
-					lastfmLogin.set_label(UNSUCCESSFUL_MSG);
-					stdout.printf("Could not get Last.fm session key\n");
-				}
-				else {
-					_lm.settings.setLastFMSessionKey(sk);
-					_lm.lfm.session_key = sk;
-					_lm.lfm.logged_in();
-					stdout.printf("Successfully obtained a sessionkey\n");
-					lastfmLogin.set_sensitive(false);
-					lastfmLogin.set_label(SUCCESS_MSG);
-				}
-			}
-		}
-	}
-#endif
-		
-	void saveClicked() {
-	
-		if(fileChooser.get_current_folder() != _lm.settings.getMusicFolder() || _lm.media_count() == 0) {
-			changed(fileChooser.get_current_folder());
-		}
-		
-		_lm.settings.setUpdateFolderHierarchy(organizeFolders.get_active());
-		_lm.settings.setWriteMetadataToFile(writeMetadataToFile.get_active());
-		_lm.settings.setCopyImportedMusic(copyImportedMusic.get_active());
-#if HAVE_PODCASTS
-		_lm.settings.setDownloadNewPodcasts(downloadNewPodcasts.get_active());
-#endif
-		
-		destroy();
-	}
-
-	void fileOperationsDone () {
-	
-		fileChooser.set_tooltip_text("");
-		fileChooser.set_sensitive(true);
-	}
+    void fileOperationsDone () {
+    
+        library_fileChooser.set_tooltip_text("");
+        library_fileChooser.set_sensitive(true);
+    }
 }
