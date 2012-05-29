@@ -1283,7 +1283,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 		var files_dragged = new LinkedList<string>();
 		debug("dragged\n");
 		foreach (string uri in data.get_uris ()) {
-			files_dragged.add(File.new_for_uri(uri).get_path());
+			files_dragged.add (File.new_for_uri(uri).get_path());
 		}
 
 		library_manager.add_files_to_library(files_dragged);

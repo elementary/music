@@ -62,6 +62,7 @@ namespace BeatBox {
 
         public BeatBox.Settings        settings        { get; private set; }
         public BeatBox.LibraryWindow   library_window  { get; private set; }
+        public BeatBox.LibraryManager  library_manager { get; private set; }
         public BeatBox.Plugins.Manager plugins_manager { get; private set; }
 
         private static const OptionEntry[] app_options = {
@@ -69,8 +70,6 @@ namespace BeatBox {
             { "no-plugins", 'n', 0, OptionArg.NONE, ref Options.disable_plugins, N_("Disable plugins"), null},
             { null }
         };
-
-        private bool is_loading = false;
 
         construct {
             // This allows opening files. See the open() method below.
@@ -116,14 +115,20 @@ namespace BeatBox {
         }
 
         public override void open (File[] files, string hint) {
-            var to_add = new Gee.LinkedList<string> ();
+            // Activate, then play files
+            this.activate ();
+
+            var to_play = new Gee.LinkedList<string> ();
             for (int i = 0; i < files.length; i++) {
                 var file = files[i];
                 if (file != null) {
-                    to_add.add (file.get_uri ());
-                    message ("Adding file %s", file.get_uri ());
+                	string uri = file.get_uri ();
+                    to_play.add (uri);
+                    message ("Adding file %s", uri);
                 }
-            }
+            }         
+
+			library_manager.play_files (to_play);
         }
 
         protected override void activate () {
@@ -139,10 +144,10 @@ namespace BeatBox {
             else
                 Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
-            is_loading = true;
             library_window = new BeatBox.LibraryWindow (this);
             library_window.build_ui ();
-            is_loading = false;
+
+			library_manager = library_window.library_manager;
 
             if (!Options.disable_plugins)
                 plugins_manager.hook_new_window (library_window);
@@ -176,10 +181,6 @@ namespace BeatBox {
          */
         public string get_desktop_file_name () {
             return app_launcher;
-        }
-
-        public bool get_is_loading () {
-            return is_loading;
         }
     }
 }
