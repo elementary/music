@@ -8,11 +8,11 @@ set(GETTEXT_PACKAGE "noise")
 set(RELEASE_NAME "Luna")
 set(VERSION "1.0")
 set(VERSION_INFO "Pre-Release")
-configure_file(${CMAKE_SOURCE_DIR}/src/config.h.cmake ${CMAKE_BINARY_DIR}/src/config.h)
-add_definitions(-include config.h)
+configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_SOURCE_DIR}/src/config.vala)
+add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 
 vala_precompile(VALA_C
-    ${CMAKE_SOURCE_DIR}/src/config.vapi
+    ${CMAKE_SOURCE_DIR}/src/config.vala
 
     Icons.vala
     LibraryWindow.vala
