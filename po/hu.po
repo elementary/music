@@ -7,1053 +7,681 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-05-28 19:02-0600\n"
+"POT-Creation-Date: 2012-05-29 00:16-0700\n"
 "PO-Revision-Date: 2012-05-23 12:24+0000\n"
 "Last-Translator: Mark Lutring <marcus@elitemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-29 05:06+0000\n"
+"X-Launchpad-Export-Date: 2012-05-30 05:48+0000\n"
 "X-Generator: Launchpad (build 15316)\n"
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:317
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
+msgid "Listen to music"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:15
+msgid "Music Player"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:317
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Zenék importálása innen: %s"
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:363
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:363
 msgid "Adding files to library..."
 msgstr "Fájlok hozzáadása a gyűjteményhez"
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:388
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:388
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Zenék hozzáadása a gyűjteményhez innen: %s"
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:415
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:415
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Zenék átvizsgálása változásokért. Ez eltarthat egy darabig..."
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1991
-#: /home/victor/noise/po/../src//LibraryWindow.vala:2159
-msgid "Could not find Music Folder"
-msgstr "Nem található Zene mappa"
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van, mielőtt "
-"a CD-t importálja."
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
-msgid "No songs on CD"
-msgstr "Nem található dal a CD-n"
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
-#, c-format
-msgid "%s could not find any songs on the CD. No songs can be imported"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:71
+msgid "Enable debug logging"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
-#, c-format
-msgid "%s is already doing an import"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:72
+msgid "Disable plugins"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
-#, c-format
-msgid ""
-"Please wait until %s is finished with the current import before importing "
-"the CD."
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:421
+msgid "Favorite Songs"
+msgstr "Kedvenc dalok"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:442
+msgid "Recently Added"
+msgstr "Legutóbb hozzáadott"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:452
+msgid "Recently Played"
+msgstr "Legutóbb lejátszva"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:462
+msgid "Recent Favorites"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
-msgid "Ripping track 1"
-msgstr "1. szám másolása"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:472
+msgid "Never Played"
+msgstr "Még le nem játszott"
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:329
-#, c-format
-msgid "Importing track %i"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:482
+msgid "Unheard Podcasts"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
-msgid "CD Import Complete"
-msgstr "CD importálása kész"
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
-#, c-format
-msgid "%s has finished importing %i songs from Audio CD."
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:492
+msgid "Over Played"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
-#, c-format
-msgid "%s has finished importing a song from Audio CD."
-msgstr ""
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:502
+msgid "Not Recently Played"
+msgstr "Mostanában nem lejátszott"
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
-#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
-#, c-format
-msgid "Syncing <b>%s</b>..."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:691
-#, c-format
-msgid "Removing from <b>%s</b>..."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:924
-#, c-format
-msgid "Importing <b>%s</b> to library..."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Objects/Playlist.vala:210
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:313
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
-msgid "Radio Station"
-msgstr "Rádió állomás"
-
-#: /home/victor/noise/po/../src//Objects/Media.vala:45
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "Ismeretlen cím"
-
-#: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1289
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1706
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:79
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:110
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:111
-msgid "Unknown Artist"
-msgstr "Ismeretlen előadó"
-
-#: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1290
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1707
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:96
-msgid "Unknown Album"
-msgstr "Ismeretlen album"
-
-#: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
-msgid "media"
-msgstr "média"
-
-#: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:52
-msgid "Similar Media"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:103
-msgid "Sync"
-msgstr "Szinkronizálás"
-
-#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
-msgid "Using %s of %s (%.2f%)"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:102
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-msgid "Import from Device"
-msgstr "Importálása az eszközről"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:104
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:126
-msgid "Eject"
-msgstr "Kiadás"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:115
-msgid "Add Podcast"
-msgstr "Podcast hozzáadása"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:116
-msgid "Download new Episodes"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:125
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victor/noise/po/../src//LibraryWindow.vala:296
-#: /home/victor/noise/po/../src//LibraryWindow.vala:727
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:222
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:155
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:125
 msgid "Import to Library"
 msgstr "Importálás a gyűjteménybe"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
-msgid "Import Stations"
-msgstr "Állomások importálása"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:143
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
-msgid "New Playlist"
-msgstr "Új lejátszólista"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:144
-msgid "New Smart Playlist"
-msgstr "Új okos lejátszólista"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:145
-msgid "Edit"
-msgstr "Szerkesztés"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:146
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-msgid "Remove"
-msgstr "Eltávolítás"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:147
-msgid "Save as Playlist"
-msgstr "Mentés lejátszólistaként"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:148
-msgid "Export..."
-msgstr "Exportálás…"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:149
-msgid "Import Playlists"
-msgstr "Lejátszólisták importálása"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:187
-msgid "Library"
-msgstr "Gyűjtemény"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:188
-msgid "Devices"
-msgstr "Eszközök"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:189
-msgid "Network"
-msgstr "Hálózat"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:190
-msgid "Playlists"
-msgstr "Lejátszólisták"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:278
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1121
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1549
-msgid "Music"
-msgstr "Zene"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:283
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:113
-msgid "Podcasts"
-msgstr "Podcastek"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:880
-msgid "Playlist"
-msgstr "Lejátszólista"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:893
-#, c-format
-msgid "Import %s"
-msgstr "%s importálása"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1012
-msgid "This device is syncing"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1012
-msgid "Please wait until the current sync is finished to do this action."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1014
-msgid "This device is in transfer"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1014
-msgid "Please wait until the current transfer is finished to do this action."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:67
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
-msgid "Cancel"
-msgstr "Mégsem"
-
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
-msgid "Equalizer"
-msgstr "Hangszínszabályzó"
-
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
-msgid "Save preset"
-msgstr "Beállítás mentése"
-
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:160
-msgid "Close"
-msgstr "Bezárás"
-
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:417
-#, c-format
-msgid "%s (Custom)"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:419
-#, c-format
-msgid "%s (Custom %i)"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:423
-msgid "Custom Preset"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:425
-#, c-format
-msgid "Custom Preset %i"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
-msgid "Not Imported Files"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
-#, c-format
-msgid "Unable to import %d items from %s"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
-#, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
-msgid "Move all corrupted files to trash"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Move to Trash"
-msgstr "Áthelyezés a kukába"
-
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
-msgid "Ignore"
-msgstr "Mellőz"
-
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
-msgid "del"
-msgstr "törlés"
-
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
-msgid "File Location"
-msgstr "Fájl helye"
-
-#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
-msgid "Select individual files to move to trash:"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "Lejátszólisták exportálása"
-
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "Zene mappa megadása"
-
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
-msgid "Set Music Folder?"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:133
-msgid "Choose Music Folder"
-msgstr "Zene mappa kiválasztása"
-
-#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
-msgid "Install Plugin"
-msgstr "Beépülő telepítése"
-
-#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
-msgid "Do Nothing"
-msgstr "Ne tegyen semmit"
-
-#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
-msgid "Required GStreamer plugin not installed"
-msgstr "Szükséges GStreamer plugin nincs telepítve"
-
-#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
-#, c-format
-msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:76
-msgid "Metadata"
-msgstr "Metaadat"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:78
-msgid "Lyrics"
-msgstr "Dalszövegek"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:87
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
-msgid "Done"
-msgstr "Kész"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:174
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:345
-#, c-format
-msgid "Editing %s by %s"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:176
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:347
-#, c-format
-msgid "Editing %s"
-msgstr "%s szerkesztése"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:179
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:350
-#, c-format
-msgid "Editing %i songs"
-msgstr "%i szám szerkesztése"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:295
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
-msgid "Title"
-msgstr "Cím"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
-#: /home/victor/noise/po/../src//LibraryWindow.vala:395
-#: /home/victor/noise/po/../src//LibraryWindow.vala:797
-msgid "Artist"
-msgstr "Előadó"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:187
-msgid "Album Artist"
-msgstr "Album előadója"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
-#: /home/victor/noise/po/../src//LibraryWindow.vala:394
-#: /home/victor/noise/po/../src//LibraryWindow.vala:796
-msgid "Album"
-msgstr "Album"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:189
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:285
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
-msgid "Genre"
-msgstr "Műfaj"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:282
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-msgid "Composer"
-msgstr "Zeneszerző"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:286
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-msgid "Grouping"
-msgstr "Csoportosítás"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
-msgid "Comment"
-msgstr "Megjegyzés"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:193
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
-msgid "Track"
-msgstr "Szám"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:194
-msgid "Disc"
-msgstr "Lemez"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:296
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
-msgid "Year"
-msgstr "Év"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:293
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
-msgid "Rating"
-msgstr "Értékelés"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:198
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:290
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:345
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:370
-msgid "Media Type"
-msgstr "Médiatípus"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:242
-msgid "Try again"
-msgstr "Próbálja újra"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:295
-#, c-format
-msgid "Lyrics not found for \"%s\" by \"%s\""
-msgstr "Nem található dalszöveg a \"%s\" dalhoz, \"%s\" előadótól"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:310
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
-#: /home/victor/noise/po/../src//LibraryWindow.vala:393
-#: /home/victor/noise/po/../src//LibraryWindow.vala:795
-msgid "Song"
-msgstr "Dal"
-
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:539
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:311
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:378
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
-msgid "Podcast"
-msgstr "Podcast"
-
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
-msgid "Import media to Library"
-msgstr "Média importálása a gyűjteménybe"
-
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
-msgid "Continue Syncing"
-msgstr "Szinkronizálása folytatása"
-
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
-msgid "Stop Syncing"
-msgstr "Szinkronizálása leállítása"
-
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:52
-#: /home/victor/noise/po/../src//LibraryWindow.vala:300
-#: /home/victor/noise/po/../src//LibraryWindow.vala:790
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:223
+msgid "Rescan Music Folder"
+msgstr "Zenemappa újravizsgálása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:226
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:52
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:65
-msgid "Behavior"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:246
+msgid "Search Music"
+msgstr "Zene keresése"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:316
+msgid "Add Playlist"
+msgstr "Lejátszólista hozzáadása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:318
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:326
+msgid "Off"
+msgstr "Ki"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:319
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:537
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:64
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:310
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:377
+msgid "Song"
+msgstr "Dal"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:320
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:278
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+msgid "Album"
+msgstr "Album"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:321
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:279
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+msgid "Artist"
+msgstr "Előadó"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:322
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:327
+msgid "All"
+msgstr "Mind"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:324
+msgid "Disable Repeat"
+msgstr "Ismétlés kikapcsolása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:324
+msgid "Enable Repeat"
+msgstr "ismétlés bekapcsolása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
+msgid "Disable Shuffle"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:69
-msgid "Extensions"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
+msgid "Enable Shuffle"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:102
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:331
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:336
+msgid "Hide"
+msgstr "Elrejtés"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:332
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:337
+msgid "Show"
+msgstr "Megjelenítés"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:334
+msgid "Hide Info Panel"
+msgstr "Infópanel elrejtése"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:334
+msgid "Show Info Panel"
+msgstr "Infópanel megjelenítése"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:339
+msgid "Hide Equalizer"
+msgstr "Hangszínszabályzó elrejtése"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:339
+msgid "Show Equalizer"
+msgstr "Hangszínszabályzó megjelenítése"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:588
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:112
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:278
+msgid "Music"
+msgstr "Zene"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:602
+msgid "Similar"
+msgstr "Hasonló"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:606
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:151
+msgid "Queue"
+msgstr "Sor"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:611
+msgid "History"
+msgstr "Előzmény"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:756
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:79
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:110
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:111
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:47
+msgid "Unknown Artist"
+msgstr "Ismeretlen előadó"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:756
+msgid " by "
+msgstr " , előadó: "
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:757
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:96
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:49
+msgid "Unknown Album"
+msgstr "Ismeretlen album"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:757
+msgid " on "
+msgstr " , album: "
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:993
+msgid "Import Music"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1017
 #, c-format
-msgid "Music Folder Location"
-msgstr "Zenemappa helye"
+msgid "<b>Importing</b> music from <b>%s</b> to library."
+msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:105
-msgid "Music Folder"
-msgstr "Zenemappa"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1032
+msgid "Rescanning music folder for changes"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:108
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
+msgid "Could not find Music Folder"
+msgstr "Nem található Zene mappa"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1093
+msgid "Import Complete"
+msgstr "Importálás kész"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1093
 #, c-format
-msgid "Library Management"
-msgstr "Gyűjtemény kezelés"
-
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:111
-msgid "Keep music folder organized:"
+msgid "%s has imported your library."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:114
-msgid "Write metadata to file:"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
+msgid "Cancelling Sync"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:117
-msgid "Copy new files to music folder:"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
+msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:132
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
+msgid "Cancelling Import"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
 msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
+"Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
-msgid "Smart Playlist Editor"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
+msgid "No External Songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:67
-msgid "Name of Playlist"
-msgstr "Lejátszólista neve"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
-msgid "Rules"
-msgstr "Szabályok"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
+msgid "Unrated"
+msgstr "Értékeletlen"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
-msgid "Options"
-msgstr "Beállítások"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:201
+msgid "1 Star"
+msgstr "1 csillag"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:81
-msgid "Playlist Title"
-msgstr "Lejátszólista címe"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:203
+#, c-format
+msgid "%s Stars"
+msgstr "%s csillag"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Match"
-msgstr "Egyezés"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
+msgid "All Genres"
+msgstr "Minden műfaj"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
-msgid "any"
-msgstr "bármely"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
+#, c-format
+msgid "All %i Genres"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:90
-msgid "all"
-msgstr "mind"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
+msgid "No Genres"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
-msgid "of the following:"
-msgstr "a következőkkel:"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
+msgid "All Artists"
+msgstr "Minden előadó"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
-msgid "Add"
-msgstr "Hozzáadás"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
+#, c-format
+msgid "All %i Artists"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
-msgid "Limit to"
-msgstr "Korlátozás:"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
+msgid "No Artists"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
-msgid "items"
-msgstr "elem"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
+msgid "All Albums"
+msgstr "Az összes album"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:439
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:269
+#, c-format
+msgid "All %i Albums"
+msgstr "Mind a(z) %i album"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:271
+msgid "No Albums"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:275
+msgid "All Years"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:277
+#, c-format
+msgid "All %i Years"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:279
+msgid "No Years"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:283
+msgid "All Ratings"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:285
+#, c-format
+msgid "All %i Ratings"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:287
+msgid "No Ratings"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:141
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:47
+msgid "Automatic"
+msgstr "Automatikus"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
+msgid "On Left"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
+msgid "On Top"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:548
+msgid "Genres"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:551
+msgid "Artists"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:554
+msgid "Albums"
+msgstr "Album"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:557
+msgid "Years"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:560
+msgid "Ratings"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:280
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:439
 msgid "Bitrate"
 msgstr "Bitráta"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:283
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
-msgid "Date Added"
-msgstr "Hozzáadás dátuma"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:284
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
-msgid "Date Released"
-msgstr "Kiadás dátuma"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
-msgid "Last Played"
-msgstr "Utolsó lejátszás"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:288
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
-msgid "Length"
-msgstr "Hossz"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:292
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-msgid "Playcount"
-msgstr "Lejátszások száma"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:294
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-msgid "Skipcount"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:312
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:379
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
-msgid "Audiobook"
-msgstr "Hangoskönyv"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:361
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:389
-msgid "is"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
-msgid "contains"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
-msgid "does not contain"
-msgstr "nem tartalmazza"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:390
-msgid "is not"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:417
-msgid "is exactly"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
-msgid "is at most"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-msgid "is at least"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:418
-msgid "is within"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:419
-msgid "is before"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:432
-msgid "seconds"
-msgstr "másodperc"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:436
-msgid "days ago"
-msgstr "napja"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:440
-msgid "kbps"
-msgstr "kb/s"
-
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-#, c-format
-msgid "Import media from %s"
-msgstr "Média importálása innen: %s"
-
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
-#, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
-msgid "Import all media"
-msgstr "Minden média importálása"
-
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-msgid "Import"
-msgstr "Importálás"
-
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
-msgid "Don't Import"
-msgstr "Ne importálja"
-
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
-#, c-format
-msgid "Import %i items from %s"
-msgstr "%i elem importálása innen: %s"
-
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
-#, c-format
-msgid "Import %s from %s"
-msgstr "%s importálása innen: %s"
-
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 msgid "ID"
 msgstr "Azonosító"
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
-msgid "Select individual media to import:"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
+msgid "Episode"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Item"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
+msgid "Name"
+msgstr "Név"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:288
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:431
+msgid "Length"
+msgstr "Hossz"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:185
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:295
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+msgid "Title"
+msgstr "Cím"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:189
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:478
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:285
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+msgid "Genre"
+msgstr "Műfaj"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:195
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:296
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+msgid "Year"
+msgstr "Év"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:539
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:67
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:311
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:378
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
+msgid "Date"
+msgstr "Dátum"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
+msgid "Category"
+msgstr "Kategória"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:192
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:281
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+msgid "Comment"
+msgstr "Megjegyzés"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:196
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:293
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+msgid "Rating"
+msgstr "Értékelés"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
+msgid "Pulser"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
-msgid "Check Album"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
-msgid "Check Artist"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:60
-msgid "Remove Media"
-msgstr "Média eltávolítása"
-
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
-msgid "Locate Media"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
-msgid "Rescan Library"
-msgstr "Gyűjtemény átvizsgálása"
-
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:69
-msgid "Could not find media file"
-msgstr "Nem található médiafájl"
-
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:78
-#, c-format
-msgid ""
-"The music file for %s by %s could not be found. What would you like to do?"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
-#, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:138
-#, c-format
-msgid "The name %s is already in use"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
-#, c-format
-msgid "Remove from %s"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:73
 msgid "Station"
 msgstr "Állomás"
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
-#, c-format
-msgid "Remove %d %s from %s?"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:283
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:412
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:435
+msgid "Date Added"
+msgstr "Hozzáadás dátuma"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:287
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:412
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:435
+msgid "Last Played"
+msgstr "Utolsó lejátszás"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
+msgid "BPM"
+msgstr "BPM (ütem/perc)"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
+msgid "Plays"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
-#, c-format
-msgid "Remove \"%s\" From %s?"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:54
+msgid "Skips"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:193
+msgid "Track"
+msgstr "Szám"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
+msgid "#"
+msgstr "#"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#, c-format
+msgid "%i kbps"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:99
+msgid "Remove from Library"
+msgstr "Eltávolítás a gyűjteményből"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:107
+msgid "Remove from Queue"
+msgstr "Eltávolítás a sorból"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:124
+msgid "Remove from Device"
+msgstr "Eltávolítás az eszközről"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:148
+msgid "Scroll to Current Song"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:149
+msgid "Edit Song Info"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:150
+msgid "Show in File Browser"
+msgstr "Megjelenítés a fájlböngészőben"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:152
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:143
+msgid "New Playlist"
+msgstr "Új lejátszólista"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:153
+msgid "Add to Playlist"
+msgstr "Hozzáadás a lejátszólistához"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:154
+msgid "Remove Song"
+msgstr "Dal eltávolítása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:255
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:257
+msgid "Import this song"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:259
+#, c-format
+msgid "Import %i songs"
+msgstr "%i dal importálása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:77
+msgid "Device Name:"
+msgstr "Eszköznév:"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:80
+msgid "Device Name"
+msgstr "Eszköznév"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:82
+msgid "Automatically sync when plugged in:"
+msgstr "Automatikus szinkronizálás, ha be van dugva"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Sync:"
+msgstr "Szinkronizálás:"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:111
+msgid "Other Files"
+msgstr "Más fájlok"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:113
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:283
+msgid "Podcasts"
+msgstr "Podcastek"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:384
+msgid "All Music"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:387
+msgid "All Podcasts"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:555
+msgid "Sync Failed"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:555
 #, c-format
 msgid ""
-"This will remove the %s from your library and from any device that "
-"automatically syncs with %s."
+"The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:182
-#, c-format
-msgid "%s by %s"
-msgstr "%s, előadó: %s"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Cannot Sync"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:550
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Device is already being synced."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:553
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:556
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:561
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
-msgid "No songs in Queue"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
-msgid "No songs in History"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
-msgid "Get Some Tunes"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
-msgid "%s can't seem to find your music."
-msgstr ""
+msgid "%s by %s"
+msgstr "%s, előadó: %s"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
-msgid "Locate"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
-msgid "Change your music folder."
-msgstr "Zenemappa megváltoztatása"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
-msgid "Import songs from audio CD"
-msgstr "Dalok importálása Hang CD-ről"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
-msgid "Import media from device"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "No External Songs"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
-msgid "All the songs in this device are already in your library."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
-#, c-format
-msgid "%i albums"
-msgstr "%i album"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
-msgid "1 album"
-msgstr "1 album"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
-#, c-format
-msgid "%i songs"
-msgstr "%i dal"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
-msgid "1 song"
-msgstr "1 dal"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
-msgid "No Songs"
-msgstr "Nincs dal"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
-msgid "Edit Smart Playlist"
-msgstr "Okos lejátszólista szerkesztése"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
-msgid "Audio CD Invalid"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
-#, c-format
-msgid "%i tracks"
-msgstr "%i szám"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
-msgid "1 track"
-msgstr "1 szám"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 msgid "Fetching similar songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
 msgid "Finding songs similar to %s by %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
 #, c-format
 msgid "Similar to %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
 msgid "No similar songs found"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
 #, c-format
 msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
@@ -1061,11 +689,11 @@ msgid ""
 "not have matches."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 msgid "Similar Song View"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 #, c-format
 msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
@@ -1073,572 +701,926 @@ msgid ""
 "for later."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
-msgid "Cancelling Sync"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
+msgid "No songs in Queue"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
-msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
-msgid "Cancelling Import"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid ""
-"Import from device has been cancelled. Operation will stop after this media."
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+msgid "Get Some Tunes"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+#, c-format
+msgid "%s can't seem to find your music."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
+msgid "Locate"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
+msgid "Change your music folder."
+msgstr "Zenemappa megváltoztatása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
+msgid "Import songs from audio CD"
+msgstr "Dalok importálása Hang CD-ről"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
+msgid "Import media from device"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:133
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:134
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+msgid "Choose Music Folder"
+msgstr "Zene mappa kiválasztása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
+msgid "All the songs in this device are already in your library."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
+#, c-format
+msgid "%i albums"
+msgstr "%i album"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
+msgid "1 album"
+msgstr "1 album"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
+#, c-format
+msgid "%i songs"
+msgstr "%i dal"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
+msgid "1 song"
+msgstr "1 dal"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
+msgid "No songs in History"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
-"There were no songs found on this device that are not in your library."
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
+msgid "Audio CD Invalid"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 #, c-format
-msgid "%i kbps"
+msgid "%s could not read the contents of this Audio CD"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
-msgid "Episode"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
-msgid "Name"
-msgstr "Név"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
-msgid "Date"
-msgstr "Dátum"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
-msgid "Category"
-msgstr "Kategória"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
-msgid "Pulser"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
-msgid "BPM"
-msgstr "BPM (ütem/perc)"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
-msgid "Plays"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:54
-msgid "Skips"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
-msgid "#"
-msgstr "#"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
-msgid "Remove from Library"
-msgstr "Eltávolítás a gyűjteményből"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:107
-msgid "Remove from Queue"
-msgstr "Eltávolítás a sorból"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:124
-msgid "Remove from Device"
-msgstr "Eltávolítás az eszközről"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
-msgid "Scroll to Current Song"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
-msgid "Edit Song Info"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
-msgid "Show in File Browser"
-msgstr "Megjelenítés a fájlböngészőben"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1139
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1564
-msgid "Queue"
-msgstr "Sor"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
-msgid "Add to Playlist"
-msgstr "Hozzáadás a lejátszólistához"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
-msgid "Remove Song"
-msgstr "Dal eltávolítása"
-
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 #, c-format
-msgid "Import %i of %i selected songs"
-msgstr ""
+msgid "%i tracks"
+msgstr "%i szám"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
-msgid "Import this song"
-msgstr ""
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
+msgid "1 track"
+msgstr "1 szám"
 
-#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:259
-#, c-format
-msgid "Import %i songs"
-msgstr "%i dal importálása"
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
+msgid "No Songs"
+msgstr "Nincs dal"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
-msgid "Unrated"
-msgstr "Értékeletlen"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:201
-msgid "1 Star"
-msgstr "1 csillag"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:203
-#, c-format
-msgid "%s Stars"
-msgstr "%s csillag"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
-msgid "All Genres"
-msgstr "Minden műfaj"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
-#, c-format
-msgid "All %i Genres"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
-msgid "No Genres"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
-msgid "All Artists"
-msgstr "Minden előadó"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
-#, c-format
-msgid "All %i Artists"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
-msgid "No Artists"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
-msgid "All Albums"
-msgstr "Az összes album"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:269
-#, c-format
-msgid "All %i Albums"
-msgstr "Mind a(z) %i album"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:271
-msgid "No Albums"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:275
-msgid "All Years"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:277
-#, c-format
-msgid "All %i Years"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:279
-msgid "No Years"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:283
-msgid "All Ratings"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:285
-#, c-format
-msgid "All %i Ratings"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:287
-msgid "No Ratings"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:141
-msgid "Automatic"
-msgstr "Automatikus"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
-msgid "On Left"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
-msgid "On Top"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:548
-msgid "Genres"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:551
-msgid "Artists"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:554
-msgid "Albums"
-msgstr "Album"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:557
-msgid "Years"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:560
-msgid "Ratings"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:77
-msgid "Device Name:"
-msgstr "Eszköznév:"
-
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:80
-msgid "Device Name"
-msgstr "Eszköznév"
-
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:82
-msgid "Automatically sync when plugged in:"
-msgstr "Automatikus szinkronizálás, ha be van dugva"
-
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:89
-msgid "Sync:"
-msgstr "Szinkronizálás:"
-
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:111
-msgid "Other Files"
-msgstr "Más fájlok"
-
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:384
-msgid "All Music"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:387
-msgid "All Podcasts"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
-msgid "Sync Failed"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
-#, c-format
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Cannot Sync"
-msgstr ""
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
+msgid "Edit Smart Playlist"
+msgstr "Okos lejátszólista szerkesztése"
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Device is already being synced."
-msgstr ""
-
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:421
-msgid "Favorite Songs"
-msgstr "Kedvenc dalok"
-
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:442
-msgid "Recently Added"
-msgstr "Legutóbb hozzáadott"
-
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:452
-msgid "Recently Played"
-msgstr "Legutóbb lejátszva"
-
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:462
-msgid "Recent Favorites"
-msgstr ""
-
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:472
-msgid "Never Played"
-msgstr "Még le nem játszott"
-
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:482
-msgid "Unheard Podcasts"
-msgstr ""
-
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:492
-msgid "Over Played"
-msgstr ""
-
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:502
-msgid "Not Recently Played"
-msgstr "Mostanában nem lejátszott"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:297
-#: /home/victor/noise/po/../src//LibraryWindow.vala:728
-msgid "Rescan Music Folder"
-msgstr "Zenemappa újravizsgálása"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:320
-#: /home/victor/noise/po/../src//LibraryWindow.vala:739
-msgid "Search Music"
-msgstr "Zene keresése"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:390
-#: /home/victor/noise/po/../src//LibraryWindow.vala:766
-msgid "Add Playlist"
-msgstr "Lejátszólista hozzáadása"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:392
-#: /home/victor/noise/po/../src//LibraryWindow.vala:400
-#: /home/victor/noise/po/../src//LibraryWindow.vala:794
-#: /home/victor/noise/po/../src//LibraryWindow.vala:800
-msgid "Off"
-msgstr "Ki"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:396
-#: /home/victor/noise/po/../src//LibraryWindow.vala:401
-#: /home/victor/noise/po/../src//LibraryWindow.vala:798
-#: /home/victor/noise/po/../src//LibraryWindow.vala:801
-msgid "All"
-msgstr "Mind"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:398
-#: /home/victor/noise/po/../src//LibraryWindow.vala:763
-msgid "Disable Repeat"
-msgstr "Ismétlés kikapcsolása"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:398
-#: /home/victor/noise/po/../src//LibraryWindow.vala:763
-msgid "Enable Repeat"
-msgstr "ismétlés bekapcsolása"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:403
-#: /home/victor/noise/po/../src//LibraryWindow.vala:764
-msgid "Disable Shuffle"
-msgstr ""
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:403
-#: /home/victor/noise/po/../src//LibraryWindow.vala:764
-msgid "Enable Shuffle"
-msgstr ""
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:405
-#: /home/victor/noise/po/../src//LibraryWindow.vala:410
-#: /home/victor/noise/po/../src//LibraryWindow.vala:803
-#: /home/victor/noise/po/../src//LibraryWindow.vala:806
-msgid "Hide"
-msgstr "Elrejtés"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:406
-#: /home/victor/noise/po/../src//LibraryWindow.vala:411
-#: /home/victor/noise/po/../src//LibraryWindow.vala:804
-#: /home/victor/noise/po/../src//LibraryWindow.vala:807
-msgid "Show"
-msgstr "Megjelenítés"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:408
-#: /home/victor/noise/po/../src//LibraryWindow.vala:765
-msgid "Hide Info Panel"
-msgstr "Infópanel elrejtése"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:408
-#: /home/victor/noise/po/../src//LibraryWindow.vala:765
-msgid "Show Info Panel"
-msgstr "Infópanel megjelenítése"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:413
-#: /home/victor/noise/po/../src//LibraryWindow.vala:767
-msgid "Hide Equalizer"
-msgstr "Hangszínszabályzó elrejtése"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:413
-#: /home/victor/noise/po/../src//LibraryWindow.vala:767
-msgid "Show Equalizer"
-msgstr "Hangszínszabályzó megjelenítése"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1135
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1560
-msgid "Similar"
-msgstr "Hasonló"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1144
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1569
-msgid "History"
-msgstr "Előzmény"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1289
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1706
-msgid " by "
-msgstr " , előadó: "
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1290
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1707
-msgid " on "
-msgstr " , album: "
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1526
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1943
-msgid "Import Music"
-msgstr ""
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1969
-#: /home/victor/noise/po/../src//LibraryWindow.vala:2137
-#, c-format
-msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr ""
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1984
-#: /home/victor/noise/po/../src//LibraryWindow.vala:2152
-msgid "Rescanning music folder for changes"
-msgstr ""
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1991
-#: /home/victor/noise/po/../src//LibraryWindow.vala:2159
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:2045
-#: /home/victor/noise/po/../src//LibraryWindow.vala:2213
-msgid "Import Complete"
-msgstr "Importálás kész"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:2045
-#: /home/victor/noise/po/../src//LibraryWindow.vala:2213
-#, c-format
-msgid "%s has imported your library."
-msgstr ""
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:40
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:40
 msgid "1 second"
 msgstr "1 másodperc"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:42
 #, c-format
 msgid "%s seconds"
 msgstr "%s másodperc"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
 msgstr "1 nap"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%i days"
 msgstr "%i nap"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:72
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:72
 msgid "1 hour"
 msgstr "1 óra"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:74
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:74
 #, c-format
 msgid "%i hours"
 msgstr "%i óra"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:79
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:79
 msgid "1 minute"
 msgstr "1 perc"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:81
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:81
 #, c-format
 msgid "%i minutes"
 msgstr "%i perc"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:101
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:105
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:113
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:91
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:101
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:105
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:113
 #, c-format
 msgid "%s and %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:99
 #, c-format
 msgid "%s, %s and %s"
 msgstr ""
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:74
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:45
+msgid "Unknown Title"
+msgstr "Ismeretlen cím"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
 msgstr "Sima"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
 msgstr "Klasszikus"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
 msgstr "Club"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
 msgstr "Dance"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
 msgstr "Teljes mély"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
 msgstr "Teljes magas"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
 msgstr "Teljes mély és magas"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
 msgstr "Fülhallgató"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
 msgstr "Nagy terem"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
 msgstr "Élő"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
 msgstr "Party"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
 msgstr "Pop"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:82
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
 msgstr "Reggae"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:83
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
 msgstr "Rock"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:84
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
 msgstr "Soft"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:85
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
 msgstr "Ska"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:86
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
 msgstr "Soft Rock"
 
-#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
 msgstr "Techno"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:76
+#, c-format
+msgid "Unable to import %d items from %s"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:65
+#, c-format
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Move to Trash"
+msgstr "Áthelyezés a kukába"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "Mellőz"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "törlés"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "Fájl helye"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:60
+msgid "Remove Media"
+msgstr "Média eltávolítása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:61
+msgid "Locate Media"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:62
+msgid "Rescan Library"
+msgstr "Gyűjtemény átvizsgálása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:63
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+msgid "Do Nothing"
+msgstr "Ne tegyen semmit"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:69
+msgid "Could not find media file"
+msgstr "Nem található médiafájl"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:78
+#, c-format
+msgid ""
+"The music file for %s by %s could not be found. What would you like to do?"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:81
+#, c-format
+msgid "%i media files could not be found. What would you like to do?"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+msgid "Install Plugin"
+msgstr "Beépülő telepítése"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+msgid "Required GStreamer plugin not installed"
+msgstr "Szükséges GStreamer plugin nincs telepítve"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#, c-format
+msgid ""
+"The plugin for media type %s is not installed.\n"
+"What would you like to do?"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:76
+msgid "Metadata"
+msgstr "Metaadat"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:78
+msgid "Lyrics"
+msgstr "Dalszövegek"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:87
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:61
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:135
+msgid "Done"
+msgstr "Kész"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:174
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:345
+#, c-format
+msgid "Editing %s by %s"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:176
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:347
+#, c-format
+msgid "Editing %s"
+msgstr "%s szerkesztése"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:179
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:350
+#, c-format
+msgid "Editing %i songs"
+msgstr "%i szám szerkesztése"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:187
+msgid "Album Artist"
+msgstr "Album előadója"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:282
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+msgid "Composer"
+msgstr "Zeneszerző"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:478
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:286
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+msgid "Grouping"
+msgstr "Csoportosítás"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:194
+msgid "Disc"
+msgstr "Lemez"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:198
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:290
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:345
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:370
+msgid "Media Type"
+msgstr "Médiatípus"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:242
+msgid "Try again"
+msgstr "Próbálja újra"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:295
+#, c-format
+msgid "Lyrics not found for \"%s\" by \"%s\""
+msgstr "Nem található dalszöveg a \"%s\" dalhoz, \"%s\" előadótól"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Export Playlists"
+msgstr "Lejátszólisták exportálása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+msgid "Set Music Folder"
+msgstr "Zene mappa megadása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:58
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/TopDisplay.vala:67
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+msgid "Set Music Folder?"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#, c-format
+msgid "Remove from %s"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:70
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:312
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:379
+msgid "Audiobook"
+msgstr "Hangoskönyv"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:82
+#, c-format
+msgid "Remove %d %s from %s?"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:89
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:91
+#, c-format
+msgid "Remove \"%s\" From %s?"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:98
+#, c-format
+msgid ""
+"This will remove the %s from your library and from any device that "
+"automatically syncs with %s."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:65
+msgid "Behavior"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:69
+msgid "Extensions"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:102
+#, c-format
+msgid "Music Folder Location"
+msgstr "Zenemappa helye"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:105
+msgid "Music Folder"
+msgstr "Zenemappa"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:108
+#, c-format
+msgid "Library Management"
+msgstr "Gyűjtemény kezelés"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:111
+msgid "Keep music folder organized:"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:114
+msgid "Write metadata to file:"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:117
+msgid "Copy new files to music folder:"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:132
+msgid ""
+"You must wait until previous file operations finish before setting your "
+"music folder"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:102
+msgid "Import from Device"
+msgstr "Importálása az eszközről"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#, c-format
+msgid "Import media from %s"
+msgstr "Média importálása innen: %s"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all media"
+msgstr "Minden média importálása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+msgid "Import"
+msgstr "Importálás"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "Ne importálja"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#, c-format
+msgid "Import %i items from %s"
+msgstr "%i elem importálása innen: %s"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#, c-format
+msgid "Import %s from %s"
+msgstr "%s importálása innen: %s"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+msgid "Select individual media to import:"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Item"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+msgid "Check Album"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+msgid "Check Artist"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:59
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:67
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:68
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+msgid "Name of Playlist"
+msgstr "Lejátszólista neve"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:138
+#, c-format
+msgid "The name %s is already in use"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:64
+msgid "Import media to Library"
+msgstr "Média importálása a gyűjteménybe"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:65
+msgid "Continue Syncing"
+msgstr "Szinkronizálása folytatása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:66
+msgid "Stop Syncing"
+msgstr "Szinkronizálása leállítása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:73
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:79
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:82
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:54
+msgid "Smart Playlist Editor"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:69
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:77
+msgid "Rules"
+msgstr "Szabályok"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:70
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:78
+msgid "Options"
+msgstr "Beállítások"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:81
+msgid "Playlist Title"
+msgstr "Lejátszólista címe"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Match"
+msgstr "Egyezés"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:89
+msgid "any"
+msgstr "bármely"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:90
+msgid "all"
+msgstr "mind"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:91
+msgid "of the following:"
+msgstr "a következőkkel:"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:116
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:121
+msgid "Limit to"
+msgstr "Korlátozás:"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:123
+msgid "items"
+msgstr "elem"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:146
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:284
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:412
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:435
+msgid "Date Released"
+msgstr "Kiadás dátuma"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:292
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+msgid "Playcount"
+msgstr "Lejátszások száma"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:294
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+msgid "Skipcount"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:313
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:380
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Playlist.vala:210
+msgid "Radio Station"
+msgstr "Rádió állomás"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:361
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:389
+msgid "is"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:362
+msgid "contains"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+msgid "does not contain"
+msgstr "nem tartalmazza"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:390
+msgid "is not"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:403
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:417
+msgid "is exactly"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:404
+msgid "is at most"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:405
+msgid "is at least"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:418
+msgid "is within"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:419
+msgid "is before"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:432
+msgid "seconds"
+msgstr "másodperc"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:436
+msgid "days ago"
+msgstr "napja"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:440
+msgid "kbps"
+msgstr "kb/s"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:85
+msgid "Equalizer"
+msgstr "Hangszínszabályzó"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:152
+msgid "Save preset"
+msgstr "Beállítás mentése"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:160
+msgid "Close"
+msgstr "Bezárás"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:417
+#, c-format
+msgid "%s (Custom)"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:419
+#, c-format
+msgid "%s (Custom %i)"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:423
+msgid "Custom Preset"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:425
+#, c-format
+msgid "Custom Preset %i"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:319
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:536
+#, c-format
+msgid "Syncing <b>%s</b>..."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:691
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:924
+#, c-format
+msgid "Importing <b>%s</b> to library..."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van, mielőtt "
+"a CD-t importálja."
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:229
+msgid "No songs on CD"
+msgstr "Nem található dal a CD-n"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:229
+#, c-format
+msgid "%s could not find any songs on the CD. No songs can be imported"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:234
+#, c-format
+msgid "%s is already doing an import"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:234
+#, c-format
+msgid ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:252
+msgid "Ripping track 1"
+msgstr "1. szám másolása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:329
+#, c-format
+msgid "Importing track %i"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:339
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:342
+msgid "CD Import Complete"
+msgstr "CD importálása kész"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:339
+#, c-format
+msgid "%s has finished importing %i songs from Audio CD."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:342
+#, c-format
+msgid "%s has finished importing a song from Audio CD."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:375
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:237
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:103
+msgid "Sync"
+msgstr "Szinkronizálás"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:380
+msgid "Using %s of %s (%.2f%)"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:48
+msgid "Delete Current"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:104
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:126
+msgid "Eject"
+msgstr "Kiadás"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:115
+msgid "Add Podcast"
+msgstr "Podcast hozzáadása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:116
+msgid "Download new Episodes"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:135
+msgid "Import Stations"
+msgstr "Állomások importálása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:144
+msgid "New Smart Playlist"
+msgstr "Új okos lejátszólista"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:145
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:147
+msgid "Save as Playlist"
+msgstr "Mentés lejátszólistaként"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:148
+msgid "Export..."
+msgstr "Exportálás…"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:149
+msgid "Import Playlists"
+msgstr "Lejátszólisták importálása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:187
+msgid "Library"
+msgstr "Gyűjtemény"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:188
+msgid "Devices"
+msgstr "Eszközök"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:189
+msgid "Network"
+msgstr "Hálózat"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:190
+msgid "Playlists"
+msgstr "Lejátszólisták"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:880
+msgid "Playlist"
+msgstr "Lejátszólista"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:893
+#, c-format
+msgid "Import %s"
+msgstr "%s importálása"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
+msgid "This device is syncing"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
+msgid "Please wait until the current sync is finished to do this action."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
+msgid "This device is in transfer"
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
+msgid "Please wait until the current transfer is finished to do this action."
+msgstr ""
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SimilarMediaView.vala:48
+msgid "media"
+msgstr "média"
+
+#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr ""
 
 #~ msgid "Success!"
 #~ msgstr "Siker!"
