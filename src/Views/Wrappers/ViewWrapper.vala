@@ -553,22 +553,18 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (is_current_wrapper) {
             update_library_window_widgets ();
             // Check whether we should show the embedded alert in case there's no media
-            // check_have_media ();
+            check_have_media ();
         }
     }
 
     /**
      * /!\ Async variants. Don't use them if you depend on the results to proceed in your method
      */
-    protected bool no_thread_delay = false;
 
     public async void set_media_async (Gee.Collection<Media> new_media) {
         int priority = 0;
 
-        if (no_thread_delay)
-            priority = 20;
-        else
-            priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
+        priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
 
         // Populate playlists in order
         priority += relative_id;
@@ -578,9 +574,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             priority += 10;
 
         Idle.add_full (priority, () => {
-            if (!lw.initialization_finished && !no_thread_delay)
-                return true;
-
             set_media (new_media);
             return false;
         });
@@ -593,9 +586,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public async void add_media_async (Gee.Collection<Media> to_add) {
         var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
         Idle.add_full (priority, () => {
-            if (!lw.initialization_finished && !no_thread_delay)
-                return true;
-
             add_media (to_add);
             return false;
         });
@@ -604,9 +594,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public async void remove_media_async (Gee.Collection<Media> to_remove) {
         var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
         Idle.add_full (priority, () => {
-            if (!lw.initialization_finished && !no_thread_delay)
-                return true;
-
             remove_media (to_remove);
             return false;
         });
@@ -615,9 +602,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     public async void update_media_async (Gee.Collection<Media> to_update) {
         var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
         Idle.add_full (priority, () => {
-            if (!lw.initialization_finished && !no_thread_delay)
-                return true;
-            
             update_media (to_update);
             return false;
         });
@@ -652,10 +636,14 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             }
         }
 
+        if (!check_have_media ()) {
+            media_table = new Gee.HashMap<Media, int> ();
+            visible_media_table = new Gee.HashMap<Media, int> ();
+        }
+
         // UNLOCK
         updating_media_data.unlock ();
 
-        check_have_media ();
         update_visible_media ();
     }
 
@@ -670,7 +658,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         // LOCK
         updating_media_data.lock ();
 
-        debug ("%s : UPDATING media", hint.to_string());
+        debug ("%s : UPDATING media", hint.to_string ());
 
         // find which media belong here
         Gee.LinkedList<Media> should_be, should_show;
@@ -711,49 +699,21 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         add_media_to_content_views (to_add_show);
         remove_media_from_content_views (to_remove_show);
 
-        // UNLOCK
-        updating_media_data.unlock ();
-
-        if (is_current_wrapper) {
-            // Update view wrapper state
-            check_have_media ();
-            update_library_window_widgets ();
-        
+        if (!check_have_media ()) {
+            media_table = new Gee.HashMap<Media, int> ();
+            visible_media_table = new Gee.HashMap<Media, int> ();
+            update_visible_media ();
         }
-    }
-
-    public void remove_media (Gee.Collection<Media> media) {
-        if (media.size < 1)
-            return;
-
-        // LOCK
-        updating_media_data.lock ();
-
-        debug ("%s : REMOVING media", hint.to_string ());
-
-        // find which media to remove and remove it from Media and Showing Media
-        var to_remove = new Gee.LinkedList<Media>();
-        foreach (var m in media) {
-            media_table.unset (m);
-
-            if (visible_media_table.has_key (m)) {
-                to_remove.add (m);
-                visible_media_table.unset (m);
-            }
-        }
-
-        // Now update the views to reflect the changes
-        remove_media_from_content_views (to_remove);
 
         // UNLOCK
         updating_media_data.unlock ();
 
         if (is_current_wrapper) {
             // Update view wrapper state
-            check_have_media ();
             update_library_window_widgets ();
         }
     }
+
 
     public void add_media (Gee.Collection<Media> new_media) {
         if (new_media.size < 1)
@@ -761,11 +721,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         // LOCK
         updating_media_data.lock ();
-
-        var priority = Priority.DEFAULT_IDLE;
-
-        if (is_current_wrapper)
-            priority = Priority.HIGH_IDLE;
 
         debug ("%s : ADDING media", hint.to_string());
 
@@ -791,16 +746,61 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         add_media_to_content_views (media_to_show);
 
+        if (!check_have_media ()) {
+            media_table = new Gee.HashMap<Media, int> ();
+            visible_media_table = new Gee.HashMap<Media, int> ();
+            update_visible_media ();
+        }
+
         // UNLOCK
         updating_media_data.unlock ();
 
         if (is_current_wrapper) {
             // Update view wrapper state
-            check_have_media ();
             update_library_window_widgets ();
         }
 
     }
+
+
+    public void remove_media (Gee.Collection<Media> media) {
+        if (media.size < 1)
+            return;
+
+        // LOCK
+        updating_media_data.lock ();
+
+        debug ("%s : REMOVING media", hint.to_string ());
+
+        // find which media to remove and remove it from Media and Showing Media
+        var to_remove = new Gee.LinkedList<Media>();
+        foreach (var m in media) {
+            media_table.unset (m);
+
+            if (visible_media_table.has_key (m)) {
+                to_remove.add (m);
+                visible_media_table.unset (m);
+            }
+        }
+
+        // Now update the views to reflect the changes
+        remove_media_from_content_views (to_remove);
+
+        if (!check_have_media ()) {
+            media_table = new Gee.HashMap<Media, int> ();
+            visible_media_table = new Gee.HashMap<Media, int> ();
+            update_visible_media ();
+        }
+
+        // UNLOCK
+        updating_media_data.unlock ();
+
+        if (is_current_wrapper) {
+            // Update view wrapper state
+            update_library_window_widgets ();
+        }
+    }
+
 
     /* Content view stuff */
 

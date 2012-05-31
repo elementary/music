@@ -119,9 +119,6 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
          * an embedded alert widget available. If not, set_active_view() will sort it out.
          */
 
-        // Clear media list. The ViewWrapper class will handle updating the media after this method returns.
-        media_table = new Gee.HashMap<Media, int> ();
-
         if (base_media != null) {
             /* say we could not find similar media */
             embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (lw.app.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Gtk.MessageType.INFO);
