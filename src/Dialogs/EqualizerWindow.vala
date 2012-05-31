@@ -253,11 +253,10 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 	void save_presets () {
 		string[] val = new string[0];
 
-		foreach (EqualizerPreset preset in preset_combo.getPresets()) {
-			string strpreset = preset.name;
-			for(int i = 0; i < 10; ++i)
-				strpreset += "/" + preset.getGain(i).to_string();
-			val += strpreset;
+		foreach (var preset in preset_combo.getPresets ()) {
+			if (preset.is_default)
+			    continue;
+			val += preset.to_string ();
 		}
 
 		lw.equalizer_settings.custom_presets = val;
@@ -440,7 +439,7 @@ public class BeatBox.EqualizerWindow : Gtk.Window {
 		if (String.is_white_space (preset_name))
 			return false;
 
-		foreach (EqualizerPreset preset in preset_combo.getPresets()) {
+		foreach (var preset in preset_combo.getPresets ()) {
 			if (preset_name == preset.name)
 				return false;
 		}

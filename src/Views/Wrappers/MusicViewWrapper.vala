@@ -32,7 +32,7 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
 
         // Add album view
         album_view = new AlbumView (this);
-                
+
         var tvs = lw.library_manager.music_setup;
         // Add list view and column browser
         list_view = new ListView (this, tvs, true);
@@ -49,12 +49,10 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         // Refresh view layout
         pack_views ();
 
-
         connect_data_signals ();
 
         lm.device_manager.device_added.connect (device_added);
         lm.device_manager.device_removed.connect (device_removed);
-
     }
 
     private void connect_data_signals () {
@@ -88,15 +86,15 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
 
     
     /* device stuff for welcome screen */
-    private void device_added(Device d) {
+    private void device_added (Device d) {
         // add option to import in welcome screen
         string secondary = (d.getContentType() == "cdrom") ? _("Import songs from audio CD") : _("Import media from device");
-        int key = welcome_screen.append_with_image( new Image.from_gicon(d.get_icon(), Gtk.IconSize.DIALOG), d.getDisplayName(), secondary);
-        welcome_screen_keys.set(key, d);
+        int key = welcome_screen.append_with_image (new Image.from_gicon(d.get_icon(), Gtk.IconSize.DIALOG), d.getDisplayName (), secondary);
+        welcome_screen_keys.set (key, d);
         
         // Show the newly added item
-        if(welcome_screen.visible) {
-            welcome_screen.show_all();
+        if (welcome_screen.visible) {
+            welcome_screen.show_all ();
         }
     }
 
@@ -140,10 +138,7 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
                 }
                 file_chooser.destroy ();
                 
-                // If different folder chosen or we have no songs anyways, do set.
-                if(folder != "" && (folder != lw.main_settings.music_folder) || lm.song_count() == 0) {
-                    lw.main_settings.music_folder = folder;
-                }
+                lw.setMusicFolder (folder);
             }
         }
         else {
@@ -170,14 +165,14 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
                 if(!lm.doing_file_operations() && lw.main_settings.music_folder != "") {
                     var found = new LinkedList<int>();
                     var not_found = new LinkedList<Media>();
-                    lm.media_from_name(d.get_medias(), ref found, ref not_found);
+                    lm.media_from_name (d.get_medias(), ref found, ref not_found);
                     
                     if(not_found.size > 0) {
-                        TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog(lw, d, not_found);
-                        tfdd.show();
+                        TransferFromDeviceDialog tfdd = new TransferFromDeviceDialog (lw, d, not_found);
+                        tfdd.show ();
                     }
                     else {
-                        lw.doAlert(_("No External Songs"), _("All the songs in this device are already in your library."));
+                        lw.doAlert (_("No External Songs"), _("All the songs in this device are already in your library."));
                     }
                 }
             }

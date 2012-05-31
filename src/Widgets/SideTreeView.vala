@@ -703,11 +703,18 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 	
 	// removes all normal playlists from the side list, as well as LM
 	public void removeAllStaticPlaylists() {
-		TreeIter pivot = playlists_history_iter;
+		TreeIter? pivot = playlists_history_iter;
 		var toRemove = new Gee.LinkedList<int>();
 		
 		// keep taking from bottom until all playlists are gone
-		tree.iter_nth_child(out pivot, playlists_iter, tree.iter_n_children(playlists_iter) - 1);
+		var n = tree.iter_n_children (playlists_iter) - 1;
+        if (n < 1)
+            return;
+
+		tree.iter_nth_child(out pivot, playlists_iter, n);
+		
+		if (pivot == null)
+		    return;
 		
 		do {
 			Widget o;

@@ -24,38 +24,51 @@ using Gee;
 
 public class BeatBox.EqualizerPreset : Object {
 
-	public string name;
-	public ArrayList<int> gains;
+	public string name = "";
+	public ArrayList<int> gains = new ArrayList<int> ();
 
-	public bool is_default { get; set;}
+	public bool is_default { get; set; default = false; }
 
-	public EqualizerPreset.basic(string name) {
+	public EqualizerPreset.basic (string name) {
 		this.name = name;
-		
-		gains = new ArrayList<int>();
+		for (int i = 0; i < 10; ++i)
+			this.gains.add (0);
+	}
 
-		for(int i = 0; i < 10; ++i)
-			this.gains.add(0);
-	}
-	
-	public EqualizerPreset.with_gains(string name, int[] items) {
+	public EqualizerPreset.with_gains (string name, int[] items) {
 		this.name = name;
-		this.gains = new ArrayList<int>();
-		
 		for(int i = 0; i < 10; ++i)
-			this.gains.add(items[i]);
+			this.gains.add (items[i]);
 	}
-	
-	public void setGain(int index, int val) {
+
+    public EqualizerPreset.from_string (string data) {
+        var vals = data.split ("/", 0);
+        this.name = vals[0];
+        for(int i = 1; i < vals.length; ++i)
+            this.gains.add (int.parse (vals[i]));
+    }
+
+    public string to_string () {
+        string str_preset = "";
+
+        if (name != null && name != "") {
+            str_preset = name;
+            for (int i = 0; i < 10; ++i)
+    				str_preset += "/" + getGain (i).to_string ();
+        }
+
+        return str_preset;
+    }
+
+	public void setGain (int index, int val) {
 		if(index > 9)
 			return;
 		
-		gains.set(index, val);
+		gains.set (index, val);
 	}
 	
-	public int getGain(int index) {
-		return gains.get(index);
+	public int getGain (int index) {
+		return gains.get (index);
 	}
-
 }
 

@@ -48,7 +48,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
     private bool tested_for_video; // whether or not we have tested if media is video and shown video
     private bool scrobbled_track;
 
-    public bool dragging_from_music     { get; set; default = false; }
+    public bool dragging_from_music     { get; set; default = false; } // TODO: make private
     public bool initialization_finished { get; private set; default = false; }
 
 
@@ -108,14 +108,14 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
         #if HAVE_INDICATE
         #if HAVE_DBUSMENU
-        message("Initializing MPRIS and sound menu\n");
+        message ("Initializing MPRIS and sound menu");
         var mpris = new BeatBox.MPRIS (this);
         mpris.initialize ();
         #endif
         #endif
 
         //various objects
-        mkl = new MediaKeyListener(this);
+        mkl = new MediaKeyListener (this);
 
         this.library_manager.player.end_of_stream.connect (end_of_stream);
         this.library_manager.player.current_position_update.connect (current_position_update);
@@ -165,10 +165,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         unichar[] special_chars = {'&', '.', '-', '\'', '%', '(', ')', '=', '@', '!',
                                     '#', '+', '<', '>', ';', ':', '¿', '?', '¡'}; 
 
+        // Redirect valid key presses to the search field
         if (typed_unichar.isalnum () || typed_unichar in special_chars) {
             searchField.grab_focus ();
-                
-            // Check if it actually got focused
+
+            // Check if the search field actually got focus
             if (!searchField.has_focus)
                 searchField.insert_at_cursor (event.str);
         }
@@ -208,7 +209,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         Gtk.drag_dest_set (this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
         Gtk.drag_dest_add_uri_targets (this);
         this.drag_data_received.connect (dragReceived);
-            
+
         this.show ();
         debug ("done with main window");
     }
@@ -341,7 +342,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
         /** Info Panel **/
 
-        info_panel = new InfoPanel(library_manager, this);
+        info_panel = new InfoPanel (library_manager, this);
 
 
         /** Main layout **/
@@ -588,15 +589,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         add_view (_("Music"), music_view_wrapper);
         music_view_wrapper.set_media_from_ids_async (library_manager.song_ids ());
 
-        debug ("Done with main views.");
-    }
-    
-    private async void load_playlists_async () {
-        Idle.add_full (Priority.DEFAULT_IDLE, load_playlists_async.callback);
-        yield;
-
-        debug ("Loading playlists");
-
         // Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future
         var similar_view = new SimilarViewWrapper (this);
         add_view (_("Similar"), similar_view);
@@ -611,22 +603,38 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         add_view (_("History"), history_view);
         history_view.set_media_async (library_manager.already_played ());
 
-        // load smart playlists
-        foreach(SmartPlaylist p in library_manager.smart_playlists()) {
-            addSideListItem (p);
+        debug ("Done with main views.");
+    }
+    
+    private async void load_playlists_async () {
+        Idle.add_full (Priority.DEFAULT_IDLE, load_playlists_async.callback);
+        yield;
+
+        debug ("Loading playlists");
+
+        // load smart playlists. Don't populate.
+        foreach (SmartPlaylist p in library_manager.smart_playlists()) {
+            addSideListItem (p, false);
+            // queue the populate operation on this playlists. The PlaylistViewWrapper
+            // view has signal handlers that listen for changes after analyze() has been triggered
+            Idle.add_full (Priority.DEFAULT_IDLE + 20, () => {
+                library_manager.media_from_smart_playlist (p.rowid);
+                return false;
+            });
         }
 
-        // load playlists
-        foreach(Playlist p in library_manager.playlists()) {
+        // load playlists.
+        foreach (Playlist p in library_manager.playlists()) {
             addSideListItem (p);
         }
 
         sideTree.resetView ();
+        update_sensitivities ();
 
         debug ("Finished loading playlists");
     }
 
-    public TreeIter addSideListItem (GLib.Object o) {
+    public TreeIter addSideListItem (GLib.Object o, bool populate = true) {
         TreeIter iter = sideTree.library_music_iter; //just a default
 
         if(o is Playlist) {
@@ -634,17 +642,20 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
             var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
             add_view (p.name, view, out iter);
-            // TODO: does p.media () work? it's faster
-            view.set_media_async (library_manager.media_from_playlist (p.rowid));
+
+            if (populate)
+                view.set_media_async (library_manager.media_from_playlist (p.rowid));
         }
         else if(o is SmartPlaylist) {
             SmartPlaylist p = (SmartPlaylist)o;
             
             var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
             add_view (p.name, view, out iter);
-            view.set_media_async (library_manager.media_from_smart_playlist (p.rowid));
+            
+            if (populate)
+                view.set_media_async (library_manager.media_from_smart_playlist (p.rowid));
         }
-        /* XXX: Migrate this code to the new API */
+        /* XXX: Migrate this code to the new ViewWrapper API */
         else if(o is Device) {
             Device d = (Device)o;
 
@@ -655,15 +666,18 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
                 /* FIXME: this can be easily migrated. Not doing it now to avoid
                  *        breaking stuff.
                  */
-                 var cd_setup = new TreeViewSetup(MusicListView.MusicColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
-                var vw = new DeviceViewWrapper (this, cd_setup, d);
-                vw.set_media_async (d.get_medias ());
-                iter = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
-                view_container.add_view (vw);
+                 // TODO: Convert the current DeviceViewWrapper into CDViewWrapper
+                 var cd_setup = new TreeViewSetup (MusicListView.MusicColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
+                 var vw = new DeviceViewWrapper (this, cd_setup, d);
+
+                 if (populate)
+                     vw.set_media_async (d.get_medias ());
+                 iter = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
+                 view_container.add_view (vw);
             }
             else {
                 debug ("adding ipod device view with %d\n", d.get_medias().size);
-                DeviceView dv = new DeviceView(library_manager, d);
+                DeviceView dv = new DeviceView (library_manager, d);
                 //vw = new DeviceViewWrapper(this, d.get_medias(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE, -1, d);
                 iter = sideTree.addSideItem(sideTree.devices_iter, d, dv, d.getDisplayName(), ViewWrapper.Hint.NONE);
                 view_container.add_view (dv);
@@ -685,8 +699,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         debug ("UPDATE SENSITIVITIES");
 
         bool folder_set = (main_settings.music_folder != "");
-        bool have_media = library_manager.media_count() > 0;
-        bool doing_ops = library_manager.doing_file_operations();
+        bool have_media = library_manager.media_count () > 0;
+        bool doing_ops = library_manager.doing_file_operations ();
         bool media_active = library_manager.media_active;
 
         fileImportMusic.set_sensitive (!doing_ops && folder_set);
@@ -713,13 +727,14 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
         topDisplay.set_scale_sensitivity(media_active);
 
+        // TODO: also update statusbar option chooser
         bool show_info_panel = savedstate_settings.more_visible && media_active && folder_set;
         info_panel.set_visible (show_info_panel);
-        
-        statusbar.set_sensitive (media_active && folder_set);
+
+        statusbar.set_sensitive (folder_set);
 
         // hide playlists when media list is empty
-        sideTree.setVisibility(sideTree.playlists_iter, have_media);
+        sideTree.setVisibility (sideTree.playlists_iter, have_media);
 
         if(!library_manager.media_active || have_media && !library_manager.playing) {
             playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
@@ -733,15 +748,15 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         topDisplay.set_progress_value(progress);
     }
 
-    public void updateInfoLabel() {
+    public void updateInfoLabel () {
         if(library_manager.doing_file_operations()) {
-            debug ("doing file operations, returning null in updateInfoLabel\n");
+            debug ("doing file operations, returning null in updateInfoLabel");
             return;
         }
 
         if(!library_manager.media_active) {
             topDisplay.set_label_markup("");
-            debug ("setting info label as ''\n");
+            debug ("setting info label as ''");
             return;
         }
 
@@ -759,13 +774,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         var media_label = beg + title + artist + album;
         topDisplay.set_label_markup(media_label);
     }
-
-
-
-
-
-
-
 
 
     /** This should be used whenever a call to play a new media is made
@@ -856,15 +864,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         }
     }
 
-
-
-    public virtual void loveButtonClicked() {
-        library_manager.lfm.loveTrack(library_manager.media_info.media.title, library_manager.media_info.media.artist);
-    }
-
-    public virtual void banButtonClicked() {
-        library_manager.lfm.banTrack(library_manager.media_info.media.title, library_manager.media_info.media.artist);
-    }
 
     /**
      * @deprecated. Use play_media()
@@ -1127,10 +1126,14 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
     }
 
     public void setMusicFolder(string folder) {
-        if(library_manager.doing_file_operations())
+        if (library_manager.doing_file_operations ())
             return;
 
-        if(library_manager.song_ids().size > 0 || library_manager.playlist_count() > 0) {
+        // If different folder chosen or we have no songs anyways, do set.
+        if (folder == "" || (folder == main_settings.music_folder && library_manager.song_count () > 0))
+            return;
+
+        if (library_manager.song_ids().size > 0 || library_manager.playlist_count() > 0) {
             var smfc = new SetMusicFolderConfirmation(library_manager, this, folder);
             smfc.finished.connect( (cont) => {
                 if(cont) {
@@ -1139,7 +1142,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
             });
         }
         else {
-            library_manager.set_music_folder(folder);
+            library_manager.set_music_folder (folder);
         }
     }
 
@@ -1214,7 +1217,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
     }
 
     public void media_not_found(int id) {
-// XXX FIXME TODO
+// XXX FIXME TODO Don't depend on ids
 #if 0
         var not_found = new FileNotFoundDialog(library_manager, this, id);
         not_found.show();
@@ -1276,8 +1279,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
     }
 
 
-    public virtual void info_panel_chooserOptionChanged(int val) {
-        info_panel.set_visible(val == 1);
+    public virtual void info_panel_chooserOptionChanged (int val) {
+        info_panel.set_visible (val == 1);
         savedstate_settings.more_visible = (val == 1);
     }
 
@@ -1289,22 +1292,23 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         }
     }
 
-    public virtual void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
-        if(dragging_from_music)
+    public virtual void dragReceived (Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
+        if (dragging_from_music)
             return;
 
-        var files_dragged = new LinkedList<string>();
+        var files_dragged = new LinkedList<string> ();
+
         debug("dragged\n");
+
         foreach (string uri in data.get_uris ()) {
-            files_dragged.add (File.new_for_uri(uri).get_path());
+            files_dragged.add (File.new_for_uri (uri).get_path ());
         }
 
-        library_manager.add_files_to_library(files_dragged);
+        library_manager.add_files_to_library (files_dragged);
     }
 
     public void doAlert(string title, string message) {
-        var dialog = new MessageDialog(this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK,
-                title);
+        var dialog = new MessageDialog (this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, title);
 
         dialog.title = app.get_name ();
         dialog.secondary_text = message;
@@ -1365,13 +1369,14 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         base.destroy ();
     }
 
-    public override bool configure_event(Gdk.EventConfigure event) {
+    public override bool configure_event (Gdk.EventConfigure event) {
         // Get window dimensions.
-        window_maximized = (get_window().get_state() == Gdk.WindowState.MAXIMIZED);
-        if (!window_maximized)
+        window_maximized = (get_window ().get_state () == Gdk.WindowState.MAXIMIZED);
+
+        if (!(window_maximized || window_fullscreen))
             get_size (out window_width, out window_height);
-        
-        return base.configure_event(event);
+
+        return base.configure_event (event);
     }
 }
 

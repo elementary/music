@@ -313,9 +313,10 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return false;
 	}
 	
-	public void set_music_folder(string folder) {
+	public void set_music_folder (string folder) {
 		if (start_file_operations (_("Importing music from %s...").printf ("<b>" + String.escape (folder) + "</b>"))) {
 
+            // FIXME: these are library window's internals. Shouldn't be here
 			lw.resetSideTree(true);
 			lw.sideTree.removeAllStaticPlaylists();
 

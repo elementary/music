@@ -69,26 +69,18 @@ namespace Noise {
         
         public Gee.Collection<BeatBox.EqualizerPreset> getPresets () {
 
-            var presets = new Gee.LinkedList<string> ();
+            var presets_data = new Gee.LinkedList<string> ();
             
             if (custom_presets != null) {
                 for (int i = 0; i < custom_presets.length; i++) {
-                    presets.add (custom_presets[i]);
+                    presets_data.add (custom_presets[i]);
                 }
             }
             
             var rv = new Gee.LinkedList<BeatBox.EqualizerPreset>();
             
-            foreach (var preset in presets) {
-                string[] vals = preset.split("/", 0);
-
-                var p = new BeatBox.EqualizerPreset.basic(vals[0]);
-
-                for(int i = 1; i < vals.length; ++i) {
-                    p.setGain(i - 1, int.parse(vals[i]));
-                }
-
-                rv.add(p);
+            foreach (var preset_str in presets_data) {
+                rv.add (new BeatBox.EqualizerPreset.from_string (preset_str));
             }
             
             return rv;
