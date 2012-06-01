@@ -809,31 +809,20 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (current_view == ViewType.LIST) {
             if (has_list_view)
                 list_view.add_media (to_add);
-
-            if (has_album_view) {
-                Idle.add_full (Priority.HIGH_IDLE, () => {
+            if (has_album_view)
                     album_view.add_media (to_add);
-                    return false;
-                });
-            }
         }
         else {
             if (has_album_view)
                 album_view.add_media (to_add);
-
-            if (has_list_view) {
-                Idle.add_full (Priority.HIGH_IDLE, () => {
-                    list_view.add_media (to_add);
-                    return false;
-                });
-            }
+            if (has_list_view)
+                list_view.add_media (to_add);
         }
     }
 
     private void remove_media_from_content_views (Gee.Collection<Media> to_remove) {
         if (has_list_view)
             list_view.remove_media (to_remove);
-
         if (has_album_view)
             album_view.remove_media (to_remove);
     }
@@ -843,25 +832,14 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (current_view == ViewType.LIST) {
             if (has_list_view)
                 list_view.set_media (new_media);
-
-            if (has_album_view) {
-                Idle.add_full (Priority.HIGH_IDLE, () => {
+            if (has_album_view)
                     album_view.set_media (new_media);
-                    return false;
-                });
-            }
         }
         else {
             if (has_album_view)
                 album_view.set_media (new_media);
-
-            if (has_list_view) {
-                Idle.add_full (Priority.HIGH_IDLE, () => {
-                    list_view.set_media (new_media);
-                    return false;
-                });
-            }
+            if (has_list_view)
+                list_view.set_media (new_media);
         }
     }
 }
-
