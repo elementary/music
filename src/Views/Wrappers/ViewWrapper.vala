@@ -702,6 +702,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (!check_have_media ()) {
             media_table = new Gee.HashMap<Media, int> ();
             visible_media_table = new Gee.HashMap<Media, int> ();
+            // UNLOCK
+            updating_media_data.unlock ();
             update_visible_media ();
         }
 
@@ -749,6 +751,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (!check_have_media ()) {
             media_table = new Gee.HashMap<Media, int> ();
             visible_media_table = new Gee.HashMap<Media, int> ();
+            // UNLOCK
+            updating_media_data.unlock ();
             update_visible_media ();
         }
 
@@ -789,6 +793,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (!check_have_media ()) {
             media_table = new Gee.HashMap<Media, int> ();
             visible_media_table = new Gee.HashMap<Media, int> ();
+            // UNLOCK
+            updating_media_data.unlock ();
             update_visible_media ();
         }
 
