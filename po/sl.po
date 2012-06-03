@@ -8,36 +8,36 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-29 00:16-0700\n"
-"PO-Revision-Date: 2012-05-23 21:47+0000\n"
-"Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
+"PO-Revision-Date: 2012-06-02 21:47+0000\n"
+"Last-Translator: MarkoD <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-01 05:51+0000\n"
+"X-Launchpad-Export-Date: 2012-06-03 05:18+0000\n"
 "X-Generator: Launchpad (build 15342)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
 msgid "Listen to music"
-msgstr ""
+msgstr "Poslušaj glasbo"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:15
 msgid "Music Player"
-msgstr ""
+msgstr "Predvajalnik glasbe"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:317
 #, c-format
 msgid "Importing music from %s..."
-msgstr ""
+msgstr "Uvozi glasbo iz %s ..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:363
 msgid "Adding files to library..."
-msgstr ""
+msgstr "Dodajanje datotek v knjižnico ..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:388
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr ""
+msgstr "Dodajanje glasbe iz %s v knjižnico ..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:415
 msgid "Rescanning music for changes. This may take a while..."
@@ -45,39 +45,39 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:71
 msgid "Enable debug logging"
-msgstr ""
+msgstr "Omogoči beleženje razhroščevanja"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:72
 msgid "Disable plugins"
-msgstr ""
+msgstr "Onemogoči vtičnike"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:421
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Priljubljene pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:442
 msgid "Recently Added"
-msgstr ""
+msgstr "Dodano pred kratkim"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:452
 msgid "Recently Played"
-msgstr ""
+msgstr "Predvajano pred kratkim"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:462
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Priljubljeno pred kratkim"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:472
 msgid "Never Played"
-msgstr ""
+msgstr "Nikoli predvajano"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:482
 msgid "Unheard Podcasts"
-msgstr ""
+msgstr "Neslišane poddaje"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:492
 msgid "Over Played"
-msgstr ""
+msgstr "Preveč predvajano"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:502
 msgid "Not Recently Played"
@@ -100,11 +100,11 @@ msgstr "Možnosti"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:246
 msgid "Search Music"
-msgstr ""
+msgstr "Išči glasbo"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:316
 msgid "Add Playlist"
-msgstr "Dodaj predvajalni seznam"
+msgstr "Dodaj seznam predvajanja"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:318
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:326
@@ -137,7 +137,7 @@ msgstr "Album"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "Artist"
-msgstr "Umetnik"
+msgstr "Izvajalec"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:322
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:327
@@ -168,7 +168,7 @@ msgstr "Skrij"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:332
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:337
 msgid "Show"
-msgstr "Prikaži"
+msgstr "Pokaži"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:334
 msgid "Hide Info Panel"
@@ -180,11 +180,11 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:339
 msgid "Hide Equalizer"
-msgstr ""
+msgstr "Skrij izenačevalnik"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:339
 msgid "Show Equalizer"
-msgstr ""
+msgstr "Pokaži izenačevalnik"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:588
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:112
@@ -211,7 +211,7 @@ msgstr "Zgodovina"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:111
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:47
 msgid "Unknown Artist"
-msgstr "Neznan umetnik"
+msgstr "Neznan izvajalec"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:756
 msgid " by "
@@ -234,20 +234,20 @@ msgstr "Uvozi glasbo"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1017
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "<b>Uvažam</b> glasbo iz <b>%s</b> v knjižnico."
+msgstr "<b>Uvažanje</b> glasbe iz <b>%s</b> v knjižnico."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1032
 msgid "Rescanning music folder for changes"
-msgstr "Ponovno preiskujem glasbeno mapo za spremembami"
+msgstr "Ponovno preiskovanje glasbene mape za spremembami"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
 msgid "Could not find Music Folder"
-msgstr "Ni možno najti glasbene mape"
+msgstr "Ni mogoče najti mape z glasbo"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
+msgstr "Prosim poskrbi, da je mapa z glasbo dostopna in priklopljena."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1093
 msgid "Import Complete"
@@ -278,12 +278,12 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
 msgid "No External Songs"
-msgstr ""
+msgstr "Ni zunanjih pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr ""
+msgstr "Na napravi ni bilo najdenih pesmi, ki niso v tvoji knjižnici."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
 msgid "Unrated"
@@ -291,7 +291,7 @@ msgstr "Neocenjeno"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:201
 msgid "1 Star"
-msgstr ""
+msgstr "1 zvezdica"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:203
 #, c-format
@@ -313,16 +313,16 @@ msgstr "Ni zvrsti"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
 msgid "All Artists"
-msgstr "Vsi umetniki"
+msgstr "Vsi izvajalci"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
 #, c-format
 msgid "All %i Artists"
-msgstr "Vseh %i umetnikov"
+msgstr "Vseh %i izvajalcev"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
 msgid "No Artists"
-msgstr "Ni umetnikov"
+msgstr "Ni izvajalcev"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
 msgid "All Albums"
@@ -361,7 +361,7 @@ msgstr "Vseh %i ocenitev"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:287
 msgid "No Ratings"
-msgstr "Ni ocenitev"
+msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:141
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:47
@@ -382,7 +382,7 @@ msgstr "Zvrsti"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:551
 msgid "Artists"
-msgstr "Umetniki"
+msgstr "Izvajalci"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:554
 msgid "Albums"
@@ -410,11 +410,11 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Episode"
-msgstr ""
+msgstr "Epizoda"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
 msgid "Name"
-msgstr ""
+msgstr "Ime"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:288
@@ -454,15 +454,15 @@ msgstr "Leto"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:311
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:378
 msgid "Podcast"
-msgstr ""
+msgstr "Poddaja"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:192
@@ -470,7 +470,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:196
@@ -486,7 +486,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:73
 msgid "Station"
-msgstr ""
+msgstr "Postaja"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:283
@@ -517,7 +517,7 @@ msgstr "Preskokov"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:193
 msgid "Track"
-msgstr ""
+msgstr "Sled"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
 msgid "#"
@@ -526,31 +526,31 @@ msgstr "#"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
 msgid "%i kbps"
-msgstr ""
+msgstr "%i kb/s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Remove from Library"
-msgstr ""
+msgstr "Odstrani iz knjižnice"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Odstrani z vrste"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:124
 msgid "Remove from Device"
-msgstr ""
+msgstr "Odstrani z naprave"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Premik do trenutne pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Uredi podatke pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "Show in File Browser"
-msgstr ""
+msgstr "Pokaži v pregledovalniku datotek"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:152
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:143
@@ -559,25 +559,25 @@ msgstr "Nov seznam predvajanja"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:153
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Dodaj na seznam predvajanja"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Remove Song"
-msgstr ""
+msgstr "Odstrani pesem"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:255
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "Uvoz %i od %i izbranih pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:257
 msgid "Import this song"
-msgstr ""
+msgstr "Uvozi to pesem"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:259
 #, c-format
 msgid "Import %i songs"
-msgstr ""
+msgstr "Uvoz %i pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
@@ -597,12 +597,12 @@ msgstr "Uskladi:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:111
 msgid "Other Files"
-msgstr ""
+msgstr "Druge datoteke"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:113
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:283
 msgid "Podcasts"
-msgstr ""
+msgstr "Poddaje"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:384
 msgid "All Music"
@@ -627,7 +627,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Cannot Sync"
-msgstr "Ni možno uskladiti"
+msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
@@ -641,22 +641,22 @@ msgstr "Naprava se že usklajuje."
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d minut"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d ur"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "%d dni"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
-msgstr ""
+msgstr "%u predmetov, %s, %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
@@ -665,7 +665,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Pridobivanje podobnih pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
@@ -691,7 +691,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 msgid "Similar Song View"
-msgstr ""
+msgstr "Pogled podobnih pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 #, c-format
@@ -703,7 +703,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Ni pesmi v vrsti"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid ""
@@ -719,7 +719,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "Zgleda da %s ne najde tvoje glasbe."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Locate"
@@ -735,7 +735,7 @@ msgstr "Uvozi pesmi iz zvočnega CD-ja"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
 msgid "Import media from device"
-msgstr "Uvozi predstavnost iz naprave"
+msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:133
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:134
@@ -745,29 +745,29 @@ msgstr "Izberi mapo z glasbo"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "Vse pesmi na tej napravi so že v tvoji knjižnici."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 #, c-format
 msgid "%i albums"
-msgstr ""
+msgstr "%i albumov"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 msgid "1 album"
-msgstr ""
+msgstr "1 album"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 #, c-format
 msgid "%i songs"
-msgstr ""
+msgstr "%i pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 msgid "1 song"
-msgstr ""
+msgstr "1 pesem"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
-msgstr ""
+msgstr "Ni pesmi v zgodovini"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
@@ -783,21 +783,21 @@ msgstr "Neveljaven zvočni CD"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s ne more prebrati vsebine tega zvočnega CD-ja."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 #, c-format
 msgid "%i tracks"
-msgstr ""
+msgstr "%i sledi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 msgid "1 track"
-msgstr ""
+msgstr "1 sled"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid "No Songs"
-msgstr ""
+msgstr "Ni pesmi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 msgid ""
@@ -807,7 +807,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "Uredi pameten seznam predvajanja"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
@@ -819,39 +819,39 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:40
 msgid "1 second"
-msgstr ""
+msgstr "1 sekunda"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:42
 #, c-format
 msgid "%s seconds"
-msgstr ""
+msgstr "%s sekund"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
-msgstr ""
+msgstr "1 dan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%i days"
-msgstr ""
+msgstr "%i dni"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:72
 msgid "1 hour"
-msgstr ""
+msgstr "1 ura"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:74
 #, c-format
 msgid "%i hours"
-msgstr ""
+msgstr "%i ur"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:79
 msgid "1 minute"
-msgstr ""
+msgstr "1 minuta"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:81
 #, c-format
 msgid "%i minutes"
-msgstr ""
+msgstr "%i minut"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:91
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:101
@@ -859,17 +859,17 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:113
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s in %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:99
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s in %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:74
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:45
 msgid "Unknown Title"
-msgstr ""
+msgstr "Neznan naslov"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
@@ -877,99 +877,99 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr ""
+msgstr "Klasična"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr ""
+msgstr "Klubska"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
-msgstr ""
+msgstr "Plesna"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "Polni basi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "Polni visoki toni"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Polni basi in visoki toni"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
-msgstr ""
+msgstr "Slušalke"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "Velika dvorana"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
-msgstr ""
+msgstr "V živo"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
-msgstr ""
+msgstr "Zabava"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
-msgstr ""
+msgstr "Pop"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
-msgstr ""
+msgstr "corruptcorruptcorruptcorruptcorruptcorrupt"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
-msgstr ""
+msgstr "Rok"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
-msgstr ""
+msgstr "Mehak"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
-msgstr ""
+msgstr "Ska"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
-msgstr ""
+msgstr "Mehki rok"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
-msgstr ""
+msgstr "Tehno"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
-msgstr ""
+msgstr "Neuvožene datoteke"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:64
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "Nemogoče uvoziti %d predmetov iz %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
+msgstr "%s ni uspelo uvoziti %d predmetov. Datoteke so lahko poškodovane."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Premakni vse pokvarjene datoteke v smeti."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "Premakni v smeti"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr ""
+msgstr "Prezri"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
@@ -977,32 +977,32 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "Lokacija datoteke"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "Izberi pozamezne datoteke za premik v smeti."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Remove Media"
-msgstr ""
+msgstr "Odstrani predstavnost"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Locate Media"
-msgstr ""
+msgstr "Lociraj predstavnost"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Rescan Library"
-msgstr ""
+msgstr "Ponovno preišči knjižnico"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:63
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 msgid "Do Nothing"
-msgstr ""
+msgstr "Ne naredi ničesar"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:69
 msgid "Could not find media file"
-msgstr ""
+msgstr "Ni mogoče najti predstavnostne datoteke"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format

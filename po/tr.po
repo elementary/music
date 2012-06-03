@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-29 00:16-0700\n"
-"PO-Revision-Date: 2012-05-30 14:01+0000\n"
+"PO-Revision-Date: 2012-06-03 05:14+0000\n"
 "Last-Translator: Ebubekir KARUL <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-01 05:51+0000\n"
+"X-Launchpad-Export-Date: 2012-06-03 05:18+0000\n"
 "X-Generator: Launchpad (build 15342)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
@@ -77,17 +77,17 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:492
 msgid "Over Played"
-msgstr ""
+msgstr "Üzerinde oynandı"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:502
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Yakınlarda Çalınmayanlar"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:222
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:155
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:125
 msgid "Import to Library"
-msgstr "Kütüphaneye aktar"
+msgstr "Kütüphaneye medya ekle"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:223
 msgid "Rescan Music Folder"
@@ -154,11 +154,11 @@ msgstr "Tekrarlamayı Aç"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Karışık Çalmayı Kapat"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Karışık Çalmayı Aç"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:331
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:336
@@ -300,7 +300,7 @@ msgstr "%s Yıldız"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
 msgid "All Genres"
-msgstr ""
+msgstr "Tüm Türler"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
 #, c-format
@@ -309,7 +309,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
 msgid "No Genres"
-msgstr ""
+msgstr "Tür Yok"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
 msgid "All Artists"
@@ -406,7 +406,7 @@ msgstr "Bit oranı"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Episode"
@@ -421,7 +421,7 @@ msgstr "İsim"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:431
 msgid "Length"
-msgstr "Uzaklık"
+msgstr "Uzunluk"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:185
@@ -486,7 +486,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:73
 msgid "Station"
-msgstr ""
+msgstr "İstasyon"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:283
@@ -534,15 +534,15 @@ msgstr "Kütüphaneden kaldır"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Kuruktan Sil"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:124
 msgid "Remove from Device"
-msgstr ""
+msgstr "Aygıtdan Sil"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Şuanki şarkıya atla"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
@@ -661,11 +661,11 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
 msgid "%s by %s"
-msgstr "%s tarafından %s"
+msgstr "%s, %s tarafından"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Benzer şarkılar bulunuyor"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
@@ -691,7 +691,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 msgid "Similar Song View"
-msgstr ""
+msgstr "Benzer şarkı görünümü"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 #, c-format
@@ -703,7 +703,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Kurukta Şarkı Yok"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid ""
@@ -750,7 +750,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 #, c-format
 msgid "%i albums"
-msgstr ""
+msgstr "%i albüm"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 msgid "1 album"
@@ -759,7 +759,7 @@ msgstr "%1 albüm"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 #, c-format
 msgid "%i songs"
-msgstr ""
+msgstr "%i şarkı"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 msgid "1 song"
@@ -767,7 +767,7 @@ msgstr "1 şarkı"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
-msgstr ""
+msgstr "Geçmişte şarkı yok"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
@@ -788,7 +788,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 #, c-format
 msgid "%i tracks"
-msgstr ""
+msgstr "%i parça"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 msgid "1 track"
@@ -807,7 +807,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "Akıllı Çalma Listesini Düzenle"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
@@ -833,7 +833,7 @@ msgstr "1 gün"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%i days"
-msgstr ""
+msgstr "%i gün"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:72
 msgid "1 hour"
@@ -989,7 +989,7 @@ msgstr "Medyayı sil"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Locate Media"
-msgstr ""
+msgstr "Medya Bulun"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Rescan Library"
@@ -1034,7 +1034,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:76
 msgid "Metadata"
-msgstr "Üstveri"
+msgstr "Meta Bilgisi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:78
 msgid "Lyrics"
@@ -1044,13 +1044,13 @@ msgstr "Şarkı Sözleri"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:61
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 msgid "Done"
-msgstr "Tamamlandı"
+msgstr "Tamam"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:174
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:345
 #, c-format
 msgid "Editing %s by %s"
-msgstr "%s %s tarafından düzenleniyor"
+msgstr "%s %s tarafından, düzenleniyor"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:176
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:347
@@ -1134,7 +1134,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "Burdan sil %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:312
@@ -1151,7 +1151,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "\"%s\", %s'den silinsin mi ?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
@@ -1166,12 +1166,12 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:69
 msgid "Extensions"
-msgstr ""
+msgstr "Eklentiler"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:102
 #, c-format
 msgid "Music Folder Location"
-msgstr "Müzik Dizini Konumu"
+msgstr "Müzik Dizini Yönetimi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:105
 msgid "Music Folder"
@@ -1180,19 +1180,19 @@ msgstr "Müzik Dizini"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:108
 #, c-format
 msgid "Library Management"
-msgstr ""
+msgstr "Kütüphane Yönetimi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:111
 msgid "Keep music folder organized:"
-msgstr ""
+msgstr "Müzik klasörünü düzenli tut:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:114
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Meta Bilgisini dosyaya yaz:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "Copy new files to music folder:"
-msgstr ""
+msgstr "Yeni dosyaları müzik dizinine kopyala:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:132
 msgid ""
@@ -1298,7 +1298,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Akıllı Çalma Listesi Düzenleyici"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:77
@@ -1340,7 +1340,7 @@ msgstr "Sınırla"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 msgid "items"
-msgstr "ögeler"
+msgstr "öğe"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:259
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:146
@@ -1583,7 +1583,7 @@ msgstr "Parça listesini içe aktar"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:187
 msgid "Library"
-msgstr "Kitaplık"
+msgstr "Kütüphane"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:188
 msgid "Devices"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-29 00:16-0700\n"
-"PO-Revision-Date: 2012-06-02 03:56+0000\n"
+"PO-Revision-Date: 2012-06-02 09:51+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-02 06:17+0000\n"
+"X-Launchpad-Export-Date: 2012-06-03 05:18+0000\n"
 "X-Generator: Launchpad (build 15342)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
@@ -234,20 +234,20 @@ msgstr "Import Muzik"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1017
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr ""
+msgstr "<b>Mengimport</b> muzik dari pustaka <b>%s</b>."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1032
 msgid "Rescanning music folder for changes"
-msgstr ""
+msgstr "Mengimbas semula folder muzik untuk perubahan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "Tidak dapat cari Folder Muzik"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
+msgstr "Sila pastikan folder muzik anda boleh dicapai dan dilekap."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1093
 msgid "Import Complete"
@@ -256,34 +256,37 @@ msgstr "Proses Mengimport Selesai"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1093
 #, c-format
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s telah mengimport pustaka anda."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
-msgstr ""
+msgstr "Membatalkan Segerak"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
+"Segerak peranti telah dibatalkan. Operasi akan henti selepas media ini."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
-msgstr ""
+msgstr "Membatalkan Import"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
+"Import dari peranti telah dibatalkan. Operasi akan henti selepas media ini."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
 msgid "No External Songs"
-msgstr ""
+msgstr "Tiada Lagu Luaran"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
+"Tiada lagu ditemui dalam peranti ini yang mana bukan dalam pustaka anda."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
 msgid "Unrated"
@@ -296,33 +299,33 @@ msgstr "1 Bintang"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:203
 #, c-format
 msgid "%s Stars"
-msgstr ""
+msgstr "%s Bintang"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
 msgid "All Genres"
-msgstr ""
+msgstr "Semu Genre"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "Semua %i Genre"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
 msgid "No Genres"
-msgstr ""
+msgstr "Tanpa Genre"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
 msgid "All Artists"
-msgstr ""
+msgstr "Semua Artis"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "Semua %i Artis"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
 msgid "No Artists"
-msgstr ""
+msgstr "Tanpa Artis"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
 msgid "All Albums"
@@ -331,37 +334,37 @@ msgstr "Semua Album"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:269
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "Semua %i Album"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:271
 msgid "No Albums"
-msgstr ""
+msgstr "Tanpa Album"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:275
 msgid "All Years"
-msgstr ""
+msgstr "Semua Tahun"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:277
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "Semua %i Tahun"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:279
 msgid "No Years"
-msgstr ""
+msgstr "Tanpa Tahun"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:283
 msgid "All Ratings"
-msgstr ""
+msgstr "Semua Penarafan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:285
 #, c-format
 msgid "All %i Ratings"
-msgstr ""
+msgstr "Semua %i Penarafan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:287
 msgid "No Ratings"
-msgstr ""
+msgstr "Tanpa Penarapan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:141
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:47
@@ -370,11 +373,11 @@ msgstr "Automatik"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
 msgid "On Left"
-msgstr ""
+msgstr "Disebelah Kiri"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
 msgid "On Top"
-msgstr ""
+msgstr "Di Atas"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:548
 msgid "Genres"
@@ -394,7 +397,7 @@ msgstr "Tahun"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:560
 msgid "Ratings"
-msgstr ""
+msgstr "Penarafan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:280
@@ -410,7 +413,7 @@ msgstr "ID"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Episode"
-msgstr ""
+msgstr "Episod"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
 msgid "Name"
@@ -481,7 +484,7 @@ msgstr "Penarafan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
-msgstr ""
+msgstr "Pendenyut"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:73
@@ -521,36 +524,36 @@ msgstr "Trek"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
 msgid "%i kbps"
-msgstr ""
+msgstr "%i kbps"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Remove from Library"
-msgstr ""
+msgstr "Buang dari Pustaka"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Buang dari Baris Gilir"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:124
 msgid "Remove from Device"
-msgstr ""
+msgstr "Buang dari Peranti"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Tatal ke Lagu Semasa"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Sunting Maklumat Lagu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "Show in File Browser"
-msgstr ""
+msgstr "Papar dalam Pelayar Fail"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:152
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:143
@@ -563,41 +566,41 @@ msgstr "Tambah ke Senarai main"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Remove Song"
-msgstr ""
+msgstr "Buang Lagu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:255
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "Import %i dari %i lagu terpilih"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:257
 msgid "Import this song"
-msgstr ""
+msgstr "Import lagu ini"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:259
 #, c-format
 msgid "Import %i songs"
-msgstr ""
+msgstr "Import %i lagu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
-msgstr ""
+msgstr "Nama Peranti:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:80
 msgid "Device Name"
-msgstr ""
+msgstr "Nama Peranti"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:82
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "Segerak secara automatik bila dipalamkan:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Sync:"
-msgstr ""
+msgstr "Segerak"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:111
 msgid "Other Files"
-msgstr ""
+msgstr "Fail Lain"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:113
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:283
@@ -610,12 +613,12 @@ msgstr "Semua Muzik"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:387
 msgid "All Podcasts"
-msgstr ""
+msgstr "Semu Podcast"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:555
 msgid "Sync Failed"
-msgstr ""
+msgstr "Segerak Gagal"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:555
@@ -623,30 +626,34 @@ msgstr ""
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"Senarai main bernama %s digunakan untuk segerakan peranti %s, tetapi tidak "
+"ditemui."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Cannot Sync"
-msgstr ""
+msgstr "Tidak Dapat Segerak"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
+"Tidak dapat segerak peranti dengan tetapan segerak terpilih. Ruang cakera "
+"tidak mencukupi"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
-msgstr ""
+msgstr "Peranti sudah disegerakan."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d minit"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d jam"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:556
 #, c-format
@@ -656,30 +663,30 @@ msgstr "%d hari"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
-msgstr ""
+msgstr "%u item, %s, %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s oleh %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Mendapatkan lagu yang sama"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
 msgid "Finding songs similar to %s by %s"
-msgstr ""
+msgstr "Mencari lagu yang sama dengan %s oleh %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
 #, c-format
 msgid "Similar to %s"
-msgstr ""
+msgstr "Seakan %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
 msgid "No similar songs found"
-msgstr ""
+msgstr "Tiada lagu yang serupa ditemui"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
 #, c-format
@@ -688,10 +695,13 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s tidak dapat cari lagu yang serupa dengan %s oleh %s dalam pustaka anda. "
+"Pastikan semua maklumat lagu adalah betul dan anda bersambung dengan "
+"Internet. Beberapa lagu mungkin tidak mempunyai padanan."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 msgid "Similar Song View"
-msgstr ""
+msgstr "Paparan Lagu yang Serupa"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 #, c-format
@@ -700,10 +710,13 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"Dalam paparan ini, %s akan cari lagu yang serupa secara automatik dengan "
+"lagu yang anda sedang mainkan. Anda boleh mula memainkan lagu tersebut, atau "
+"simpan ia sebagai senarai main kemudian."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Tiada lagu dalam Baris Gilir"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid ""
@@ -711,46 +724,49 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Untuk menambah lagu ke baris  gilir, guna <b>klik kedua</b> pada item dan "
+"pilih <b>Baris Gilir</b>. Bila lagu selesai dimainkan, lagu dibaris gilir "
+"akan dimainkan dahulu sebelum lagi berikutnya dalam senarai main."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "Dapatkan Beberapa Tona"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "%s tidak dapat cari muzik anda."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Locate"
-msgstr ""
+msgstr "Cari"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Change your music folder."
-msgstr ""
+msgstr "Ubah folder muzik anda."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
 msgid "Import songs from audio CD"
-msgstr ""
+msgstr "Import lagu dari CD audio"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
 msgid "Import media from device"
-msgstr ""
+msgstr "Import media dari peranti"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:133
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:134
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "Pilih Folder Muzik"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "Semua lagu dalam peranti ini sudah ada dalam pustaka anda."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 #, c-format
 msgid "%i albums"
-msgstr ""
+msgstr "%i album"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 msgid "1 album"
@@ -759,15 +775,15 @@ msgstr "1 album"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 #, c-format
 msgid "%i songs"
-msgstr ""
+msgstr "%i lagu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 msgid "1 song"
-msgstr ""
+msgstr "1 lagu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
-msgstr ""
+msgstr "Tiada lagu dalam Sejarah"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
@@ -775,20 +791,24 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Selepas sebahagian lagu telah dimainkan, ia akan ditambah ke senarai.\n"
+"Sejarah. Anda  boleh guna senarai ini untuk melihat semua lagu yang anda "
+"telah\n"
+"main ketika sesi semasa."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "CD Audio Tidak Sah"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s tidak dapat baca kandungan CD Audio ini"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 #, c-format
 msgid "%i tracks"
-msgstr ""
+msgstr "%i trek"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 msgid "1 track"
@@ -797,13 +817,15 @@ msgstr "1 trek"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid "No Songs"
-msgstr ""
+msgstr "Tiada Lagu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Untuk menambah lagu ke senarai main, guna <b>klik sekunder</b> pada item dan "
+"pilih <b>Tambah ke Senarai Main</b>."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
@@ -816,6 +838,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Senarai main ini akan dipopulasikan secara automatik dengan lagu yang anda "
+"padankan peraturannya. Untuk ubahsuai peraturan ini, guna  <b>klik "
+"sekunder</b> padanya dalam palang sisi dan klik <b>Sunting</b>. Selain itu, "
+"anda boleh klik pada butang dibawah."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:40
 msgid "1 second"
@@ -833,7 +859,7 @@ msgstr "1 hari"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%i days"
-msgstr ""
+msgstr "%i hari"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:72
 msgid "1 hour"
@@ -945,22 +971,22 @@ msgstr "Techno"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
-msgstr ""
+msgstr "Bukan Fail Terimport"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:64
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "Tidak boleh import %d item dari %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
+msgstr "%s tidak boleh improt %d item. Fail mungkin rosak."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Buang semua fail rosak ke tong sampah"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:56
@@ -973,7 +999,7 @@ msgstr "Abai"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
-msgstr ""
+msgstr "del"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
@@ -981,19 +1007,19 @@ msgstr "Lokasi Fail"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "Pilih fail individu untuk dialih ke tong sampah:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Remove Media"
-msgstr ""
+msgstr "Buang Media"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Locate Media"
-msgstr ""
+msgstr "Cari Media"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Rescan Library"
-msgstr ""
+msgstr "Imbas Semula Pustaka"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:63
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
@@ -1002,26 +1028,26 @@ msgstr "Jangan Buat Apa-apa"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:69
 msgid "Could not find media file"
-msgstr ""
+msgstr "Tidak dapat cari fail media"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
-msgstr ""
+msgstr "Fail muzik %s oleh %s tidak ditemui. Apa anda hendak lakukan?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "%i fail media tidak dapat ditemui. Apa anda hendak lakukan?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr ""
+msgstr "Pasang Pemalam"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
-msgstr ""
+msgstr "Pemalam GStreamer yang diperlukan tidak dipasang"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
@@ -1029,6 +1055,8 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"Pemalam untuk jenis media %s tidak dipasang.\n"
+"Apa anda hendak lakukan?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:76
 msgid "Metadata"
@@ -1048,7 +1076,7 @@ msgstr "Selesai"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:345
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "Menyunting %s dengan %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:176
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:347
@@ -1060,7 +1088,7 @@ msgstr "Menyunting %s"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:350
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "Menyunting %i lagu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:187
 msgid "Album Artist"
@@ -1099,15 +1127,15 @@ msgstr "Cuba lagi"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:295
 #, c-format
 msgid "Lyrics not found for \"%s\" by \"%s\""
-msgstr ""
+msgstr "Lirik tidak ditemui bagi \"%s\" oleh \"%s\""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
-msgstr ""
+msgstr "Eksport Senarai Main"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr ""
+msgstr "Tetapkan Folder Muzik"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:58
@@ -1118,7 +1146,7 @@ msgstr "Batal"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "Tetapkan Folder Muzik?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
@@ -1126,28 +1154,30 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Anda pasti hendak tetapkan folder muzik ke %s? Ia akan tetapkan semula "
+"pustaka dan buang senarai main anda."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "Buang dari %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:70
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:312
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:379
 msgid "Audiobook"
-msgstr ""
+msgstr "Buku Audio"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
-msgstr ""
+msgstr "Buang %d %s dari %s?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:89
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "buang \"%s\" Dari %s?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
@@ -1155,6 +1185,8 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"Ia akan buang %s dari pustaka anda dan mana-mana peranti yang segerak secara "
+"automatik dengan %s."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:65
 msgid "Behavior"
@@ -1167,7 +1199,7 @@ msgstr "Sambungan"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:102
 #, c-format
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Lokasi Folder Muzik"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:105
 msgid "Music Folder"
@@ -1176,35 +1208,37 @@ msgstr "Folder Muzik"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:108
 #, c-format
 msgid "Library Management"
-msgstr ""
+msgstr "Pengurusan Pustaka"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:111
 msgid "Keep music folder organized:"
-msgstr ""
+msgstr "Kekalkan folder muzik terurus:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:114
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Tulis data meta untuk fail:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "Copy new files to music folder:"
-msgstr ""
+msgstr "Salin fail baru ke folder muzik:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:132
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Anda mesti tunggu sehingga operasi fail terdahulu selesai sebelum menetapkan "
+"folder muzik anda"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:102
 msgid "Import from Device"
-msgstr ""
+msgstr "Import dari Peranti"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr ""
+msgstr "Import media dari %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
@@ -1212,10 +1246,12 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Fail berikut ditemui pada %s, tetapi bukan dalam pustaka anda. Tanda semua "
+"fail yang anda hendak import."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr ""
+msgstr "Import semua media"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
@@ -1223,57 +1259,57 @@ msgstr "Import"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr ""
+msgstr "Jangan Import"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "Import %i item dari %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Import %s dari %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Pilih media individu untuk diimport:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr ""
+msgstr "Semak Item"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr ""
+msgstr "Semak Album"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr ""
+msgstr "Semak Artis"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:59
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:67
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 msgid "Name of Playlist"
-msgstr ""
+msgstr "Nama Senarai Main"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:138
 #, c-format
 msgid "The name %s is already in use"
-msgstr ""
+msgstr "Nama %s sudah digunakan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
-msgstr ""
+msgstr "Import media ke Pustaka"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Terus Menyegerak"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
-msgstr ""
+msgstr "Henti Menyegerak"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
@@ -1281,20 +1317,22 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Jika anda teruskan segerak, media akan dibuang dari %s kerana ia tiada dalam "
+"senarai segerak. Anda hendak import ia ke dalam pustaka anda dahulu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "Segerak akan buang %i item dari %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "Segerak akan buang 1 item dari %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Penyunting Senarai Main Pintar"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:77
@@ -1308,7 +1346,7 @@ msgstr "Pilihan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:81
 msgid "Playlist Title"
-msgstr ""
+msgstr "Tajuk Senarai Main"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
@@ -1347,7 +1385,7 @@ msgstr "Buang"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 msgid "Date Released"
-msgstr ""
+msgstr "Tarikh Dilepaskan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:292
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
@@ -1357,13 +1395,13 @@ msgstr "Kiraan Main"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:294
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "Skipcount"
-msgstr ""
+msgstr "Kiraan Langkau"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:313
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Playlist.vala:210
 msgid "Radio Station"
-msgstr ""
+msgstr "Stesen Radio"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:361
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:389
@@ -1389,15 +1427,15 @@ msgstr "dengan tepat"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:404
 msgid "is at most"
-msgstr ""
+msgstr "adalah keseluruhannya"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:405
 msgid "is at least"
-msgstr ""
+msgstr "adalah sekurang-kurangnya"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:418
 msgid "is within"
-msgstr ""
+msgstr "adalah didalam"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:419
 msgid "is before"
@@ -1409,7 +1447,7 @@ msgstr "saat"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:436
 msgid "days ago"
-msgstr ""
+msgstr "hari yang lalu"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:440
 msgid "kbps"
@@ -1430,57 +1468,60 @@ msgstr "Tutup"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:417
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (Suai)"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:419
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (Suai %i)"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:423
 msgid "Custom Preset"
-msgstr ""
+msgstr "Praset Suai"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:425
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Praset Suai %i"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:319
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:536
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Menyegerak <b>%s</b>..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:691
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Membuang dari <b>%s</b>..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:924
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Mengimport <b>%s</b> ke pustaka..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"Sila pastikan folder muzik anda boleh dicapai dan dilekap sebelum mengimport "
+"CD."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
-msgstr ""
+msgstr "Tiada lagu dalam CD"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
+"%s tidak dapat cari sebarang lagu dalam CD. Tiada lagu boleh diimport"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
 msgid "%s is already doing an import"
-msgstr ""
+msgstr "%s sudah membuat pengimportan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
@@ -1488,34 +1529,35 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
+"Sila tunggu sehingga %s selesai dengan import semasa sebelum mengimport CD."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:252
 msgid "Ripping track 1"
-msgstr ""
+msgstr "Meretas trek 1"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:329
 #, c-format
 msgid "Importing track %i"
-msgstr ""
+msgstr "Mengimport trek %i"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:339
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:342
 msgid "CD Import Complete"
-msgstr ""
+msgstr "Import CD Selesai"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr ""
+msgstr "%s telah selesai mengimport %i lagu dari CD Audio."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr ""
+msgstr "%s telag selesai mengimport satu lagu dari CD Audio."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
+msgstr "Import CD akan <b>dibatalkan</b> selepas import semasa."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:237
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:103
@@ -1528,11 +1570,11 @@ msgstr "Bebas"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "Menggunakan %s dari %s (%.2f%)"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr ""
+msgstr "Padam Semasa"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:104
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:126
@@ -1545,11 +1587,11 @@ msgstr "Tambah Podcast"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:116
 msgid "Download new Episodes"
-msgstr ""
+msgstr "Muat turun Episod baru"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:135
 msgid "Import Stations"
-msgstr ""
+msgstr "Import Stesen"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:144
 msgid "New Smart Playlist"
@@ -1569,7 +1611,7 @@ msgstr "Eksport..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:149
 msgid "Import Playlists"
-msgstr ""
+msgstr "Import Senarai Main"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:187
 msgid "Library"
@@ -1598,19 +1640,19 @@ msgstr "Import %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
 msgid "This device is syncing"
-msgstr ""
+msgstr "Peranti ini sedang menyegerak"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
 msgid "Please wait until the current sync is finished to do this action."
-msgstr ""
+msgstr "Sila tunggu sehingga segerak semasa selesai buat tindakan ini."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
 msgid "This device is in transfer"
-msgstr ""
+msgstr "Peranti ini sedang memindah"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
 msgid "Please wait until the current transfer is finished to do this action."
-msgstr ""
+msgstr "Sila tunggu sehingga pemindahan semasa selesai buat tindakan ini."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
@@ -1618,4 +1660,4 @@ msgstr "media"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr ""
+msgstr "Media Serupa"

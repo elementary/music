@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-29 00:16-0700\n"
-"PO-Revision-Date: 2012-05-24 20:14+0000\n"
+"PO-Revision-Date: 2012-06-02 18:31+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-01 05:51+0000\n"
+"X-Launchpad-Export-Date: 2012-06-03 05:18+0000\n"
 "X-Generator: Launchpad (build 15342)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
 msgid "Listen to music"
-msgstr ""
+msgstr "Kuuntele musiikkia"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:15
 msgid "Music Player"
-msgstr ""
+msgstr "Musiikkisoitin"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:317
 #, c-format
@@ -563,7 +563,7 @@ msgstr "Lisää soittolistaan"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Remove Song"
-msgstr ""
+msgstr "Poista kappale"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:255
 #, c-format
@@ -645,22 +645,22 @@ msgstr "Laitetta synkronoidaan jo."
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d minuuttia"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d tuntia"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "%d päivää"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
-msgstr ""
+msgstr "%u kohdetta, %s, %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
@@ -669,7 +669,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Noudetaan vastaavanlaisia kappaleita"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
@@ -723,7 +723,7 @@ msgstr "Hanki kappaleita"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "%s ei löytänyt musiikkiasi."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Locate"
@@ -749,7 +749,7 @@ msgstr "Valitse musiikkikansio"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "Kaikki tällä laitteella olevat kappaleet ovat jo kirjastossa."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 #, c-format
@@ -1165,11 +1165,11 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:65
 msgid "Behavior"
-msgstr ""
+msgstr "Toiminta"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:69
 msgid "Extensions"
-msgstr ""
+msgstr "Laajennukset"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:102
 #, c-format
@@ -1183,19 +1183,19 @@ msgstr "Musiikkikansio"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:108
 #, c-format
 msgid "Library Management"
-msgstr ""
+msgstr "Kirjaston hallinta"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:111
 msgid "Keep music folder organized:"
-msgstr ""
+msgstr "Pidä musiikkikansio organisoituna:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:114
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Kirjoita metatiedot tiedostoon:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "Copy new files to music folder:"
-msgstr ""
+msgstr "Kopioi uudet tiedostot musiikkikansioon:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:132
 msgid ""
@@ -1467,7 +1467,7 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:924
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Tuodaan <b>%s</b> kirjastoon..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
 msgid ""

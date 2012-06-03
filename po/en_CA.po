@@ -8,48 +8,48 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-29 00:16-0700\n"
-"PO-Revision-Date: 2012-05-23 21:54+0000\n"
-"Last-Translator: Bennici Piercarlo <Unknown>\n"
+"PO-Revision-Date: 2012-06-03 05:07+0000\n"
+"Last-Translator: Cameron White <cameronwhite91@gmail.com>\n"
 "Language-Team: English (Canada) <en_CA@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-01 05:51+0000\n"
+"X-Launchpad-Export-Date: 2012-06-03 05:18+0000\n"
 "X-Generator: Launchpad (build 15342)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
 msgid "Listen to music"
-msgstr ""
+msgstr "Listen to music"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:15
 msgid "Music Player"
-msgstr ""
+msgstr "Music Player"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:317
 #, c-format
 msgid "Importing music from %s..."
-msgstr ""
+msgstr "Importing music from %s..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:363
 msgid "Adding files to library..."
-msgstr ""
+msgstr "Adding files to library..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:388
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr ""
+msgstr "Adding music from %s to library..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:415
 msgid "Rescanning music for changes. This may take a while..."
-msgstr ""
+msgstr "Rescanning music for changes. This may take a while..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:71
 msgid "Enable debug logging"
-msgstr ""
+msgstr "Enable debug logging"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:72
 msgid "Disable plugins"
-msgstr ""
+msgstr "Disable plugins"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:421
 msgid "Favorite Songs"
@@ -260,30 +260,33 @@ msgstr "%s has imported your library."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
-msgstr ""
+msgstr "Cancelling Sync"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
+"Device Sync has been cancelled. Operation will stop after this media."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
-msgstr ""
+msgstr "Cancelling Import"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
+"Import from device has been cancelled. Operation will stop after this media."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
 msgid "No External Songs"
-msgstr ""
+msgstr "No External Songs"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
+"There were no songs found on this device that are not in your library."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
 msgid "Unrated"
@@ -526,7 +529,7 @@ msgstr "#"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
 msgid "%i kbps"
-msgstr ""
+msgstr "%i kbps"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Remove from Library"
@@ -538,11 +541,11 @@ msgstr "Remove from Queue"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:124
 msgid "Remove from Device"
-msgstr ""
+msgstr "Remove from Device"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Scroll to Current Song"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
@@ -568,16 +571,16 @@ msgstr "Remove Song"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:255
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "Import %i of %i selected songs"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:257
 msgid "Import this song"
-msgstr ""
+msgstr "Import this song"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:259
 #, c-format
 msgid "Import %i songs"
-msgstr ""
+msgstr "Import %i songs"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
@@ -643,22 +646,22 @@ msgstr "Device is already being synced."
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d minutes"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d hours"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "%d days"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
-msgstr ""
+msgstr "%u items, %s, %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
@@ -672,7 +675,7 @@ msgstr "Fetching similar songs"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
 msgid "Finding songs similar to %s by %s"
-msgstr ""
+msgstr "Finding songs similar to %s by %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
 #, c-format
@@ -690,10 +693,13 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s could not find songs similar to %s by %s in your library. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 msgid "Similar Song View"
-msgstr ""
+msgstr "Similar Song View"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 #, c-format
@@ -702,6 +708,9 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"In this view, %s will automatically find songs similar to the one you're "
+"playing. You can then start playing those songs, or save them as a playlist "
+"for later."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid "No songs in Queue"
@@ -750,25 +759,25 @@ msgstr "Choose Music Folder"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "All the songs in this device are already in your library."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 #, c-format
 msgid "%i albums"
-msgstr ""
+msgstr "%i albums"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 msgid "1 album"
-msgstr ""
+msgstr "1 album"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 #, c-format
 msgid "%i songs"
-msgstr ""
+msgstr "%i songs"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 msgid "1 song"
-msgstr ""
+msgstr "1 song"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
@@ -796,11 +805,11 @@ msgstr "%s could not read the contents of this Audio CD"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 #, c-format
 msgid "%i tracks"
-msgstr ""
+msgstr "%i tracks"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 msgid "1 track"
-msgstr ""
+msgstr "1 track"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
@@ -817,7 +826,7 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "Edit Smart Playlist"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
@@ -826,15 +835,19 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:40
 msgid "1 second"
-msgstr ""
+msgstr "1 second"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:42
 #, c-format
 msgid "%s seconds"
-msgstr ""
+msgstr "%s seconds"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
@@ -869,12 +882,12 @@ msgstr "%i minutes"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:113
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s and %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:99
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s and %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:74
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:45
@@ -883,75 +896,75 @@ msgstr "Unknown Title"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "Flat"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr ""
+msgstr "Classical"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr ""
+msgstr "Club"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
-msgstr ""
+msgstr "Dance"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "Full Bass"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "Full Treble"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Full Bass + Treble"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
-msgstr ""
+msgstr "Headphones"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "Large Hall"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
-msgstr ""
+msgstr "Live"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
-msgstr ""
+msgstr "Party"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
-msgstr ""
+msgstr "Pop"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
-msgstr ""
+msgstr "Reggae"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
-msgstr ""
+msgstr "Rock"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
-msgstr ""
+msgstr "Soft"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
-msgstr ""
+msgstr "Ska"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
-msgstr ""
+msgstr "Soft Rock"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
-msgstr ""
+msgstr "Techno"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -1012,18 +1025,19 @@ msgstr "Do Nothing"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:69
 msgid "Could not find media file"
-msgstr ""
+msgstr "Could not find media file"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
 msgstr ""
+"The music file for %s by %s could not be found. What would you like to do?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "%i media files could not be found. What would you like to do?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
@@ -1138,6 +1152,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
@@ -1172,11 +1188,11 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:65
 msgid "Behavior"
-msgstr ""
+msgstr "Behaviour"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:69
 msgid "Extensions"
-msgstr ""
+msgstr "Extensions"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:102
 #, c-format
@@ -1194,15 +1210,15 @@ msgstr "Library Management"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:111
 msgid "Keep music folder organized:"
-msgstr ""
+msgstr "Keep music folder organized:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:114
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Write metadata to file:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "Copy new files to music folder:"
-msgstr ""
+msgstr "Copy new files to music folder:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:132
 msgid ""
@@ -1279,7 +1295,7 @@ msgstr "Name of Playlist"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:138
 #, c-format
 msgid "The name %s is already in use"
-msgstr ""
+msgstr "The name %s is already in use"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
@@ -1470,17 +1486,17 @@ msgstr "Custom Preset %i"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:536
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Syncing <b>%s</b>..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:691
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Removing from <b>%s</b>..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:924
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Importing <b>%s</b> to library..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
 msgid ""
@@ -1539,7 +1555,7 @@ msgstr "%s has finished importing a song from Audio CD."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
+msgstr "CD import will be <b>cancelled</b> after current import."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:237
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:103
@@ -1548,15 +1564,15 @@ msgstr "Sync"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr ""
+msgstr "Free"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "Using %s of %s (%.2f%)"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr ""
+msgstr "Delete Current"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:104
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:126
@@ -1613,28 +1629,29 @@ msgstr "Playlists"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:880
 msgid "Playlist"
-msgstr ""
+msgstr "Playlist"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:893
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "Import %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
 msgid "This device is syncing"
-msgstr ""
+msgstr "This device is syncing"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
 msgid "Please wait until the current sync is finished to do this action."
-msgstr ""
+msgstr "Please wait until the current sync is finished to do this action."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
 msgid "This device is in transfer"
-msgstr ""
+msgstr "This device is in transfer"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
+"Please wait until the current transfer is finished to do this action."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
