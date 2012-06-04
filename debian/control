@@ -2,34 +2,34 @@ Source: noise
 Section: sound
 Priority: optional
 Maintainer: Devid Antonio Filoni <d.filoni@ubuntu.com>
-Build-Depends: debhelper (>= 7.0.50~),
-               valac-0.16,
-               cmake (>= 2.6),
-               libgtk-3-dev (>= 3.0),
-               libgee-dev (>= 0.5.3),
-               libgstreamer0.10-dev (>= 0.10),
-               libtagc0-dev (>= 1.6.3),
-               libsqlheavy0.1-dev (>= 0.0),
-               libglib2.0-dev,
-               libxml2-dev (>= 2.7.7),
-               libnotify-dev (>= 0.5.0),
-               libsoup2.4-dev (>= 2.25.2),
-               libjson-glib-dev (>= 0.10),
+Build-Depends: cmake (>= 2.6),
+               debhelper (>= 7.0.50~),
                libdbus-glib-1-dev,
-               libzeitgeist-dev,
-               libindicate-dev (>= 0.6), 
                libdbusmenu-glib-dev (>= 0.4),
-               libgstreamer-plugins-base0.10-dev (>= 0.10),
                libdbusmenu-gtk3-dev,
+               libgee-dev (>= 0.5.3),
+               libglib2.0-dev,
                libgpod-dev,
                libgranite-dev,
-               libpeas-dev (>= 1.2.0)
+               libgstreamer-plugins-base0.10-dev (>= 0.10),
+               libgstreamer0.10-dev (>= 0.10),
+               libgtk-3-dev (>= 3.0),
+               libindicate-dev (>= 0.6),
+               libjson-glib-dev (>= 0.10),
+               libnotify-dev (>= 0.5.0),
+               libpeas-dev (>= 1.2.0),
+               libsoup2.4-dev (>= 2.25.2),
+               libsqlheavy0.1-dev (>= 0.0),
+               libtagc0-dev (>= 1.6.3),
+               libxml2-dev (>= 2.7.7),
+               libzeitgeist-dev,
+               valac-0.16
 Standards-Version: 3.9.2
 Homepage: https://launchpad.net/noise
 
 Package: noise
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: dpkg (>= 1.15.6)
 Description: Simple, fast, and good looking music player
  Noise is an easy to use, stable, fast and good looking music library
