@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-29 00:16-0700\n"
-"PO-Revision-Date: 2012-05-23 21:48+0000\n"
-"Last-Translator: Kirill Ivaha <kirill.ivaha@gmail.com>\n"
+"PO-Revision-Date: 2012-06-06 01:12+0000\n"
+"Last-Translator: Nikita Putko <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-31 05:32+0000\n"
-"X-Generator: Launchpad (build 15322)\n"
+"X-Launchpad-Export-Date: 2012-06-07 05:13+0000\n"
+"X-Generator: Launchpad (build 15353)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
 msgid "Listen to music"
-msgstr ""
+msgstr "Слушать музыку"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:15
 msgid "Music Player"
-msgstr ""
+msgstr "Музыкальный проигрыватель"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:317
 #, c-format
@@ -37,51 +37,53 @@ msgstr "Добавление файлов в библиотеку..."
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:388
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr ""
+msgstr "Добавление музыки из «%s» в библиотеку..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:415
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
+"Повторное сканирование для поиска изменений. Это может занять некоторое "
+"время..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:71
 msgid "Enable debug logging"
-msgstr ""
+msgstr "Включить журналирование в целях отладки"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:72
 msgid "Disable plugins"
-msgstr ""
+msgstr "Отключить плагины"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:421
 msgid "Favorite Songs"
-msgstr ""
+msgstr "Любимые композиции"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:442
 msgid "Recently Added"
-msgstr ""
+msgstr "Недавно добавленные"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:452
 msgid "Recently Played"
-msgstr ""
+msgstr "Недавно воспроизведённые"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:462
 msgid "Recent Favorites"
-msgstr ""
+msgstr "Последние понравившиеся"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:472
 msgid "Never Played"
-msgstr ""
+msgstr "Не воспроизводившиеся ранее"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:482
 msgid "Unheard Podcasts"
-msgstr ""
+msgstr "Непрослушанные подкасты"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:492
 msgid "Over Played"
-msgstr ""
+msgstr "Часто воспроизводившиеся"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:502
 msgid "Not Recently Played"
-msgstr ""
+msgstr "Воспроизведённые давно"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:222
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:155
@@ -91,25 +93,25 @@ msgstr "Импортировать в медиатеку"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:223
 msgid "Rescan Music Folder"
-msgstr ""
+msgstr "Сканировать папку с музыкой заново"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:226
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:52
 msgid "Preferences"
-msgstr "Настройки"
+msgstr "Параметры"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:246
 msgid "Search Music"
-msgstr ""
+msgstr "Поиск музыки"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:316
 msgid "Add Playlist"
-msgstr ""
+msgstr "Добавить список воспроизведения"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:318
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:326
 msgid "Off"
-msgstr ""
+msgstr "Выкл."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:319
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:537
@@ -142,49 +144,49 @@ msgstr "Исполнитель"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:322
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:327
 msgid "All"
-msgstr ""
+msgstr "Всё"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:324
 msgid "Disable Repeat"
-msgstr ""
+msgstr "Отключить повтор"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:324
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Включить повтор"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Отключить воспроизведение в случайном порядке"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Включить воспроизведение в случайном порядке"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:331
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:336
 msgid "Hide"
-msgstr ""
+msgstr "Скрыть"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:332
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:337
 msgid "Show"
-msgstr ""
+msgstr "Показать"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:334
 msgid "Hide Info Panel"
-msgstr ""
+msgstr "Скрыть панель с информацией"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:334
 msgid "Show Info Panel"
-msgstr ""
+msgstr "Показать панель с информацией"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:339
 msgid "Hide Equalizer"
-msgstr ""
+msgstr "Скрыть эквалайзер"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:339
 msgid "Show Equalizer"
-msgstr ""
+msgstr "Показать эквалайзер"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:588
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:112
@@ -194,16 +196,16 @@ msgstr "Музыка"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:602
 msgid "Similar"
-msgstr ""
+msgstr "Похожие"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:606
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:151
 msgid "Queue"
-msgstr ""
+msgstr "Добавить в очередь"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:611
 msgid "History"
-msgstr ""
+msgstr "Журнал"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:756
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:79
@@ -215,7 +217,7 @@ msgstr "Неизвестный исполнитель"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:756
 msgid " by "
-msgstr ""
+msgstr " в исполнении "
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:757
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:96
@@ -225,20 +227,20 @@ msgstr "Неизвестный альбом"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:757
 msgid " on "
-msgstr ""
+msgstr " из альбома "
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:993
 msgid "Import Music"
-msgstr ""
+msgstr "Импортировать музыку"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1017
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr ""
+msgstr "<b>Импорт</b> музыки из «<b>%s</b>» в библиотеку."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1032
 msgid "Rescanning music folder for changes"
-msgstr ""
+msgstr "Повторное сканирование папки с музыкой для поиска изменений"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
@@ -248,153 +250,159 @@ msgstr "Не удалось найти папку с музыкой"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
+"Убедитесь, что папка с музыкой доступна, а устройство, на котором она "
+"находится, монтировано."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1093
 msgid "Import Complete"
-msgstr ""
+msgstr "Импортирование завершено"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1093
 #, c-format
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s импортировал библиотеку."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
-msgstr ""
+msgstr "Отмена синхронизации"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
+"Синхронизация с устройством была отменена. Операция с этим устройством будет "
+"прекращена."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
-msgstr ""
+msgstr "Отмена импорта"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
+"Импорт файлов с устройства был отменён. Операция с этим устройством будет "
+"прекращена."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
 msgid "No External Songs"
-msgstr ""
+msgstr "Нет внешних композиций"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr ""
+msgstr "На устройстве нет композиций, отсутствующих в библиотеке."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
 msgid "Unrated"
-msgstr ""
+msgstr "Без оценки"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:201
 msgid "1 Star"
-msgstr ""
+msgstr "1 звезда"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:203
 #, c-format
 msgid "%s Stars"
-msgstr ""
+msgstr "%s звезд(ы)"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
 msgid "All Genres"
-msgstr ""
+msgstr "Все жанры"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "Все %i жанров"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
 msgid "No Genres"
-msgstr ""
+msgstr "Нет жанров"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
 msgid "All Artists"
-msgstr ""
+msgstr "Все исполнители"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "Все %i исполнителей"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
 msgid "No Artists"
-msgstr ""
+msgstr "Нет исполнителей"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
 msgid "All Albums"
-msgstr ""
+msgstr "Все альбомы"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:269
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "Все %i альбомов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:271
 msgid "No Albums"
-msgstr ""
+msgstr "Нет альбомов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:275
 msgid "All Years"
-msgstr ""
+msgstr "Все года"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:277
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "Все %i годов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:279
 msgid "No Years"
-msgstr ""
+msgstr "Нет годов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:283
 msgid "All Ratings"
-msgstr ""
+msgstr "Все оценки"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:285
 #, c-format
 msgid "All %i Ratings"
-msgstr ""
+msgstr "Все %i оценок"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:287
 msgid "No Ratings"
-msgstr ""
+msgstr "Нет оценок"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:141
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:47
 msgid "Automatic"
-msgstr ""
+msgstr "Автоматически"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
 msgid "On Left"
-msgstr ""
+msgstr "Слева"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
 msgid "On Top"
-msgstr ""
+msgstr "Сверху"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:548
 msgid "Genres"
-msgstr ""
+msgstr "Жанры"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:551
 msgid "Artists"
-msgstr ""
+msgstr "Исполнители"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:554
 msgid "Albums"
-msgstr ""
+msgstr "Альбомы"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:557
 msgid "Years"
-msgstr ""
+msgstr "Годы"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:560
 msgid "Ratings"
-msgstr ""
+msgstr "Оценки"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:280
@@ -481,7 +489,7 @@ msgstr "Рейтинг"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
-msgstr ""
+msgstr "Генератор импульсов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:73
@@ -526,31 +534,31 @@ msgstr "№"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
 msgid "%i kbps"
-msgstr ""
+msgstr "%i кбит/с"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Remove from Library"
-msgstr ""
+msgstr "Удалить из библиотеки"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "Remove from Queue"
-msgstr ""
+msgstr "Удалить из очереди"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:124
 msgid "Remove from Device"
-msgstr ""
+msgstr "Удалить с устройства"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "Прокрутить до текущей композиции"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
-msgstr ""
+msgstr "Редактировать информацию о композиции"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "Show in File Browser"
-msgstr ""
+msgstr "Показать в обозревателе файлов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:152
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:143
@@ -559,45 +567,45 @@ msgstr "Новый список воспроизведения"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:153
 msgid "Add to Playlist"
-msgstr ""
+msgstr "Добавить в список воспроизведения"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Remove Song"
-msgstr ""
+msgstr "Удалить композицию"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:255
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "Импортировать %i из %i выбранных композиций"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:257
 msgid "Import this song"
-msgstr ""
+msgstr "Импортировать эту композицию"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:259
 #, c-format
 msgid "Import %i songs"
-msgstr ""
+msgstr "Импортировать %i композиций"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
-msgstr ""
+msgstr "Название устройства:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:80
 msgid "Device Name"
-msgstr ""
+msgstr "Название устройства"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:82
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "Автоматически синхронизировать при подключении:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Sync:"
-msgstr ""
+msgstr "Синхронизировать:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:111
 msgid "Other Files"
-msgstr ""
+msgstr "Другие файлы"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:113
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:283
@@ -606,16 +614,16 @@ msgstr "Подкасты"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:384
 msgid "All Music"
-msgstr ""
+msgstr "Вся музыка"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:387
 msgid "All Podcasts"
-msgstr ""
+msgstr "Все подкасты"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:555
 msgid "Sync Failed"
-msgstr ""
+msgstr "Синхронизация не удалась"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:555
@@ -623,63 +631,67 @@ msgstr ""
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"Список воспроизведения «%s» используется для синхронизации устройства «%s», "
+"но не может быть найден."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Cannot Sync"
-msgstr ""
+msgstr "Невозможно синхронизировать"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
+"Невозможно синхронизировать устройство при выбранных параметрах. "
+"Недостаточно места на диске."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
-msgstr ""
+msgstr "Устройство уже синхронизируется."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d минут"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d часов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "%d дней"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
-msgstr ""
+msgstr "%u элементов, %s, %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s в исполнении %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Получение сведений о похожих композициях"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
 msgid "Finding songs similar to %s by %s"
-msgstr ""
+msgstr "Получение сведений композициях, похожих на «%s» в исполнении %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
 #, c-format
 msgid "Similar to %s"
-msgstr ""
+msgstr "Похожие на %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
 msgid "No similar songs found"
-msgstr ""
+msgstr "Похожие композиции не найдены"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
 #, c-format
@@ -688,10 +700,13 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"%s не удалось найти композиции, похожие на «%s» в исполнении %s, в "
+"библиотеке. Убедитесь, что вся информация верна и есть подключение к "
+"Интернету. Для некоторых песен может не быть соответствий."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 msgid "Similar Song View"
-msgstr ""
+msgstr "Похожие композиции"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
 #, c-format
@@ -700,10 +715,12 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"В этом режиме просмотра, %s автоматически найдёт композиции, похожие на "
+"текущую. Затем можно начать их воспроизведение или сохранить в виде списка."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid "No songs in Queue"
-msgstr ""
+msgstr "Нет композиций в очереди"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid ""
@@ -711,31 +728,35 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Чтобы добавить композиции в очередь, <b>щёлкните правой кнопкой мыши</b> по "
+"элементу и выберите в контекстном меню пункт «<b>Добавить в очередь</b>». "
+"Когда композиция закончится, композиции в очереди будут воспроизведены перед "
+"следующей песней в текущем списке воспроизведения."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "Настройтесь на мелодию"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "Возможно, %s не нашло музыку."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Locate"
-msgstr ""
+msgstr "Местоположение"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Change your music folder."
-msgstr ""
+msgstr "Изменить расположение папки с музыкой."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
 msgid "Import songs from audio CD"
-msgstr ""
+msgstr "Импортировать композиции с звукового компакт-диска"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
 msgid "Import media from device"
-msgstr ""
+msgstr "Импортировать данные с устройства"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:133
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:134
@@ -745,29 +766,29 @@ msgstr "Выберите папку с музыкой"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "Все композиции на устройстве уже находятся в библиотеке"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 #, c-format
 msgid "%i albums"
-msgstr ""
+msgstr "%i альбомов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
 msgid "1 album"
-msgstr ""
+msgstr "1 альбом"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 #, c-format
 msgid "%i songs"
-msgstr ""
+msgstr "%i композиций"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
 msgid "1 song"
-msgstr ""
+msgstr "1 композиция"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
-msgstr ""
+msgstr "Нет композиций в журнале"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
@@ -775,6 +796,9 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"После того, как часть композиции проиграна, она добавлена в журнал.\n"
+"Можно использовать журнал, чтобы увидеть все композиции, воспроизведённые за "
+"этот сеанс."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 msgid "Audio CD Invalid"
@@ -783,31 +807,34 @@ msgstr "Неверный аудио диск"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s не удалось воспроизвести содержимое звукового компакт-диска"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 #, c-format
 msgid "%i tracks"
-msgstr ""
+msgstr "%i дорожек"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 msgid "1 track"
-msgstr ""
+msgstr "1 дорожка"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid "No Songs"
-msgstr ""
+msgstr "Нет композиций"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Чтобы добавить композиции в список воспроизведения, <b>щёлкните правой "
+"кнопкой мыши</b> по элементу и выберите в контекстном меню пункт "
+"«<b>Добавить в список воспроизведения</b>»."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "Изменить динамический список воспроизведения"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
@@ -816,42 +843,47 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"В этот список воспроизведения автоматически помещаются песни, "
+"соответствуюшие его правилам. Чтобы изменить правила, <b>щёлкните правой "
+"кнопкой мыши</b> по соответствующему элементу на боковой панели и выберите в "
+"контекстном меню пункт «<b>Изменить</b>». Кроме того, можно щёлкнуть по "
+"кнопке внизу."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:40
 msgid "1 second"
-msgstr ""
+msgstr "1 секунда"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:42
 #, c-format
 msgid "%s seconds"
-msgstr ""
+msgstr "%s секунд"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
-msgstr ""
+msgstr "1 день"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%i days"
-msgstr ""
+msgstr "%i дней"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:72
 msgid "1 hour"
-msgstr ""
+msgstr "1 час"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:74
 #, c-format
 msgid "%i hours"
-msgstr ""
+msgstr "%i часов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:79
 msgid "1 minute"
-msgstr ""
+msgstr "1 минута"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:81
 #, c-format
 msgid "%i minutes"
-msgstr ""
+msgstr "%i минут"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:91
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:101
@@ -859,12 +891,12 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:113
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s и %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:99
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s и %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:74
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:45
@@ -873,75 +905,75 @@ msgstr "Неизвестное название"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "Простой"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr ""
+msgstr "Классическая музыка"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr ""
+msgstr "Клубная музыка"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
-msgstr ""
+msgstr "Танцевальная музыка"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "Усиление басов"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "Усиление высоких частот"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Усиление басов и высоких частот"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
-msgstr ""
+msgstr "Наушники"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "Большой зал"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
-msgstr ""
+msgstr "Живое исполнение"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
-msgstr ""
+msgstr "Вечеринка"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
-msgstr ""
+msgstr "Поп-музыка"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
-msgstr ""
+msgstr "Регги"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
-msgstr ""
+msgstr "Рок"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
-msgstr ""
+msgstr "Мягкая музыка"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
-msgstr ""
+msgstr "Ска"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
-msgstr ""
+msgstr "Софт-рок"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
-msgstr ""
+msgstr "Техно"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -986,15 +1018,15 @@ msgstr "Выбор отдельных файлов для перемещения
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Remove Media"
-msgstr ""
+msgstr "Отключить устройство"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Locate Media"
-msgstr ""
+msgstr "Расположение данных"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Rescan Library"
-msgstr ""
+msgstr "Сканировать библиотеку заново"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:63
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
@@ -1003,18 +1035,20 @@ msgstr "Не использовать"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:69
 msgid "Could not find media file"
-msgstr ""
+msgstr "Не удалось найти файл"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
 msgstr ""
+"Файл с композицией «%s» в исполнении %s не был найден. Каковы дальнейшие "
+"действия?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "%i файлов не были найдены. Каковы дальнейшие действия?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
@@ -1030,14 +1064,16 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"Плагин для воспроизведения формата «%s» не установлен.\n"
+"Каковы дальнейшие действия?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:76
 msgid "Metadata"
-msgstr ""
+msgstr "Метаданные"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:78
 msgid "Lyrics"
-msgstr ""
+msgstr "Текст композиции"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:87
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:61
@@ -1049,30 +1085,30 @@ msgstr "Готово"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:345
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "Изменение сведений о «%s» исполнителя %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:176
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:347
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "Изменение %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:179
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:350
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "Изменение %i композиций"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:187
 msgid "Album Artist"
-msgstr ""
+msgstr "Исполнитель альбома"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:190
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:282
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "Composer"
-msgstr ""
+msgstr "Композитор"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:478
@@ -1080,27 +1116,27 @@ msgstr ""
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "Grouping"
-msgstr ""
+msgstr "Группа"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:194
 msgid "Disc"
-msgstr ""
+msgstr "Диск"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:198
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:290
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:345
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:370
 msgid "Media Type"
-msgstr ""
+msgstr "Вид данных"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:242
 msgid "Try again"
-msgstr ""
+msgstr "Повторить снова"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:295
 #, c-format
 msgid "Lyrics not found for \"%s\" by \"%s\""
-msgstr ""
+msgstr "Текст композиции «%s» в исполнении %s не найден"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -1127,6 +1163,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Сделать «%s» папкой для музыкальных файлов? Это удалит сведения о библиотеке "
+"и списки воспроизведения."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
@@ -1137,7 +1175,7 @@ msgstr "Удалить из %s"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:312
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:379
 msgid "Audiobook"
-msgstr ""
+msgstr "Аудиокнига"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
@@ -1156,19 +1194,21 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"Это действие удалит «%s» из библиотеки и со всех устройств, для которых "
+"задана автоматическая синхронизация с «%s»."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:65
 msgid "Behavior"
-msgstr ""
+msgstr "Поведение"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:69
 msgid "Extensions"
-msgstr ""
+msgstr "Дополнения"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:102
 #, c-format
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Расположение папки с музыкой"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:105
 msgid "Music Folder"
@@ -1177,25 +1217,27 @@ msgstr "Папка с музыкой"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:108
 #, c-format
 msgid "Library Management"
-msgstr ""
+msgstr "Управление библиотекой"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:111
 msgid "Keep music folder organized:"
-msgstr ""
+msgstr "Упорядочить файлы в папке с музыкой:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:114
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Записывать метаданные в файл:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "Copy new files to music folder:"
-msgstr ""
+msgstr "Копировать новые файлы в папку с музыкой:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:132
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Перед установки папки с музыкой необходимо подождать, пока предыдущие "
+"операции с файлами завершатся."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:102
@@ -1205,7 +1247,7 @@ msgstr "Импортировать с устройства"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr ""
+msgstr "Импорт данных из %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
@@ -1213,10 +1255,12 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"Следующие данные на устройстве «%s» отсутствуют в библиотеке. Отметьте все "
+"файлы, которые нужно импортировать."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr ""
+msgstr "Импортировать все данные"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
@@ -1224,7 +1268,7 @@ msgstr "Импортировать"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr ""
+msgstr "Не импортировать"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
@@ -1234,39 +1278,39 @@ msgstr "Импортировать %i объектов из %s"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr ""
+msgstr "Импортировать «%s» из «%s»"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Выберите отдельные файлы для импорта:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr ""
+msgstr "Отметить элемент"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr ""
+msgstr "Отметить альбом"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr ""
+msgstr "Отметить исполнителя"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:59
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:67
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 msgid "Name of Playlist"
-msgstr "Имя списка воспроизведения"
+msgstr "Название списка воспроизведения"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:138
 #, c-format
 msgid "The name %s is already in use"
-msgstr ""
+msgstr "Название «%s» уже используется"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
-msgstr ""
+msgstr "Импорт данных в библиотеку"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
@@ -1282,20 +1326,22 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Если продолжить синхронизацию, данные будут удалены с «%s», поскольку они не "
+"находятся в списке синхронизации. Импортировать сначала их в библиотеку?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "Синхронизация удалит %i элементов из «%s»"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "Синхронизация удалит 1 элемент из «%s»"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Редактор динамических списков воспроизведения"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:77
@@ -1313,19 +1359,19 @@ msgstr "Заголовок плейлиста"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
-msgstr ""
+msgstr "Композиции соответствуют"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:89
 msgid "any"
-msgstr ""
+msgstr "любым"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:90
 msgid "all"
-msgstr ""
+msgstr "всем"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
-msgstr "из следующих:"
+msgstr "из следующих правил:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:116
 msgid "Add"
@@ -1348,73 +1394,73 @@ msgstr "Удалить"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 msgid "Date Released"
-msgstr ""
+msgstr "Дата выхода"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:292
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "Playcount"
-msgstr ""
+msgstr "Количество воспроизведений"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:294
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "Skipcount"
-msgstr ""
+msgstr "Количество пропусков"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:313
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Playlist.vala:210
 msgid "Radio Station"
-msgstr ""
+msgstr "Радиостанция"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:361
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:389
 msgid "is"
-msgstr ""
+msgstr "является"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:362
 msgid "contains"
-msgstr ""
+msgstr "содержит"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:363
 msgid "does not contain"
-msgstr ""
+msgstr "не содержит"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:390
 msgid "is not"
-msgstr ""
+msgstr "не является"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:403
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:417
 msgid "is exactly"
-msgstr ""
+msgstr "равно"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:404
 msgid "is at most"
-msgstr ""
+msgstr "не более"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:405
 msgid "is at least"
-msgstr ""
+msgstr "не менее"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:418
 msgid "is within"
-msgstr ""
+msgstr "после"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:419
 msgid "is before"
-msgstr ""
+msgstr "до"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:432
 msgid "seconds"
-msgstr ""
+msgstr "секунд"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:436
 msgid "days ago"
-msgstr ""
+msgstr "дней назад"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:440
 msgid "kbps"
-msgstr ""
+msgstr "кбит/с"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:85
 msgid "Equalizer"
@@ -1422,7 +1468,7 @@ msgstr "Эквалайзер"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:152
 msgid "Save preset"
-msgstr ""
+msgstr "Сохранить профиль"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:160
 msgid "Close"
@@ -1431,12 +1477,12 @@ msgstr "Закрыть"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:417
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (Пользовательский)"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:419
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (Пользовательский %i)"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:423
 msgid "Custom Preset"
@@ -1445,23 +1491,23 @@ msgstr "Прочие параметры"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:425
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Пользовательский профиль %i"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:319
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:536
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Синхронизация «<b>%s</b>»..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:691
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Удаление из «<b>%s</b>»..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:924
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Импортирование «<b>%s</b>» в библиотеку..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
 msgid ""
@@ -1473,14 +1519,14 @@ msgstr ""
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
-msgstr "Нет песен на CD"
+msgstr "Нет композиций на компакт-диске"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"%s не может найти никаких песен на компакт-диске. Никакие песни не могут "
-"быть импортированы"
+"%s не может найти музыкальные композиции на компакт-диске. Нет файлов для "
+"импортирования"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
@@ -1513,16 +1559,17 @@ msgstr "CD Импорт Завершен"
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s завершил импорт %i  песty с аудио CD"
+msgstr "%s завершил импорт %i композиций с компакт-диска."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr "%s завершил импорт песни с аудио CD"
+msgstr "%s завершил импорт композиции с компакт-диска."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
+"Импорт с компакт-диска будет <b>отменён</b> после текущего импортирования."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:237
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:103
@@ -1531,15 +1578,15 @@ msgstr "Синхронизация"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr ""
+msgstr "Свободно"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "Использовано %s из %s (%.2f%)"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr ""
+msgstr "Удалить текущий"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:104
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:126
@@ -1596,28 +1643,32 @@ msgstr "Списки воспроизведения"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:880
 msgid "Playlist"
-msgstr ""
+msgstr "Список воспроизведения"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:893
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "Импортировать %s"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
 msgid "This device is syncing"
-msgstr ""
+msgstr "Идёт процесс синхронизации с этим устройством"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
 msgid "Please wait until the current sync is finished to do this action."
 msgstr ""
+"Чтобы произвести это действие, подождите, пока текущий процесс синхронизации "
+"закончится."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
 msgid "This device is in transfer"
-msgstr ""
+msgstr "Идёт процесс передачи данных на это устройство"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
+"Чтобы произвести это действие, подождите, пока текущий процесс передачи "
+"данных закончится."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"

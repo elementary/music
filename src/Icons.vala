@@ -148,7 +148,6 @@ namespace Icons {
 		AUDIO_CD = new BeatBox.Icon ("media-cdrom-audio", 16, Type.MIMETYPE, null, true);
 		PLAYLIST = new BeatBox.Icon ("playlist", 16, Type.MIMETYPE, null, true);
 		SMART_PLAYLIST = new BeatBox.Icon ("playlist-automatic", 16, Type.MIMETYPE, null, true);
-		EJECT = new BeatBox.Icon ("media-eject", 16, Type.ACTION, null, true);
 		LASTFM_LOVE = new BeatBox.Icon ("lastfm-love", 16, Type.ACTION, null, true);
 		LASTFM_BAN = new BeatBox.Icon ("lastfm-ban", 16, Type.ACTION, null, true);
 		STARRED = new BeatBox.Icon ("starred", 16, Type.STATUS, null, true);
@@ -163,6 +162,8 @@ namespace Icons {
 		SHUFFLE_OFF = new BeatBox.Icon ("media-playlist-no-shuffle-symbolic", 16, Type.STATUS, null, true);
 
 		NOW_PLAYING_SYMBOLIC = new BeatBox.Icon ("audio-volume-high-symbolic");
+
+		EJECT = new BeatBox.Icon ("media-eject");
 		STARRED_SYMBOLIC = new BeatBox.Icon ("starred-symbolic");
 		NOT_STARRED_SYMBOLIC = new BeatBox.Icon ("non-starred-symbolic");
 		PROCESS_COMPLETED = new BeatBox.Icon ("process-completed-symbolic");

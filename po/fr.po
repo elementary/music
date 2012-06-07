@@ -8,23 +8,23 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-29 00:16-0700\n"
-"PO-Revision-Date: 2012-05-29 17:31+0000\n"
+"PO-Revision-Date: 2012-06-04 20:56+0000\n"
 "Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-31 05:31+0000\n"
-"X-Generator: Launchpad (build 15322)\n"
+"X-Launchpad-Export-Date: 2012-06-05 05:20+0000\n"
+"X-Generator: Launchpad (build 15353)\n"
 "Language: \n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
 msgid "Listen to music"
-msgstr ""
+msgstr "Écouter de la musique"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:15
 msgid "Music Player"
-msgstr ""
+msgstr "Lecteur audio"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:317
 #, c-format
@@ -46,11 +46,11 @@ msgstr "Ré-analyse de la musique. Ceci peut prendre du temps ..."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:71
 msgid "Enable debug logging"
-msgstr ""
+msgstr "Activer le débogage"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:72
 msgid "Disable plugins"
-msgstr ""
+msgstr "Désactiver les modules"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:421
 msgid "Favorite Songs"
@@ -1259,8 +1259,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
-"Les fichiers suivants n'ont pas été trouvés dans %s, et ne sont pas dans la "
-"bibliothèque. Vérifiez les fichiers que vous vouliez importer."
+"Les morceaux suivant ont été trouvés sur %s et ne sont pas présents dans la "
+"bibliothèque. Veuillez spécifier les morceaux que vous voulez importer."
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -1590,7 +1590,7 @@ msgstr "%s sur %s utilisés (%.2f %)"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr ""
+msgstr "Supprimer celle en cours"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:104
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:126

@@ -123,6 +123,7 @@ namespace BeatBox {
             // Activate, then play files
             this.activate ();
 
+            // TODO: pass files, not URIs
             var to_play = new Gee.LinkedList<string> ();
             for (int i = 0; i < files.length; i++) {
                 var file = files[i];
@@ -150,9 +151,9 @@ namespace BeatBox {
                 Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
             library_window = new BeatBox.LibraryWindow (this);
-            library_window.build_ui ();
+            library_manager = library_window.library_manager;
 
-			library_manager = library_window.library_manager;
+            library_window.build_ui ();
 
             if (!Options.disable_plugins)
                 plugins_manager.hook_new_window (library_window);

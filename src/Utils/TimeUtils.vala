@@ -42,7 +42,7 @@ namespace BeatBox.TimeUtils {
             return _("%s seconds").printf (seconds.to_string ());
         }
 
-        double secs = (double)seconds;
+        double secs = (double)seconds; // WARNING: this cast is dangerous
 
         uint days = 0, hours = 0, minutes = 0;
 
