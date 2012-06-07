@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-29 00:16-0700\n"
-"PO-Revision-Date: 2012-06-05 18:13+0000\n"
-"Last-Translator: Andrey Alfaro Alvarado <andreyalfaro@gmail.com>\n"
+"PO-Revision-Date: 2012-06-06 20:51+0000\n"
+"Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-06 05:33+0000\n"
+"X-Launchpad-Export-Date: 2012-06-07 05:13+0000\n"
 "X-Generator: Launchpad (build 15353)\n"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
@@ -49,7 +49,7 @@ msgstr "Habilitar el registro de depuración"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:72
 msgid "Disable plugins"
-msgstr "Desactivar extensiones"
+msgstr "Deshabilitar conectores"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:421
 msgid "Favorite Songs"
@@ -146,19 +146,19 @@ msgstr "Todo"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:324
 msgid "Disable Repeat"
-msgstr "Desactivar repetición"
+msgstr "Deshabilitar repetición"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:324
 msgid "Enable Repeat"
-msgstr "Activar repetición"
+msgstr "Habilitar repetición"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
 msgid "Disable Shuffle"
-msgstr "Desactivar aleatorio"
+msgstr "Deshabilitar aleatorio"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
 msgid "Enable Shuffle"
-msgstr "Activar aleatorio"
+msgstr "Habilitar aleatorio"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:331
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:336
@@ -595,7 +595,7 @@ msgstr "Nombre del dispositivo"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:82
 msgid "Automatically sync when plugged in:"
-msgstr "Sincronizar automáticamente al conectar:"
+msgstr "Sincronizar automáticamente cuando se conecte:"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Sync:"
@@ -1046,11 +1046,11 @@ msgstr "No se encontraron %i archivos. ¿Qué le gustaría hacer?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr "Instalar plugin"
+msgstr "Instalar conector"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
-msgstr "El plugin Gstreamer es requerido pero no se encuentra instalado"
+msgstr "El conector de GStreamer requerido no está instalado"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
@@ -1058,7 +1058,7 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
-"El plugin para le tipo de medio %s no está instalado.<br>\n"
+"El conector para le tipo de medio %s no está instalado.<br>\n"
 "¿Qué le gustaría hacer?"
 
 #: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:76
