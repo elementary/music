@@ -7,1489 +7,77 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-05-29 00:16-0700\n"
-"PO-Revision-Date: 2012-06-06 20:41+0000\n"
+"POT-Creation-Date: 2012-06-07 12:26-0600\n"
+"PO-Revision-Date: 2012-06-07 20:26+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-07 05:13+0000\n"
-"X-Generator: Launchpad (build 15353)\n"
+"X-Launchpad-Export-Date: 2012-06-08 05:16+0000\n"
+"X-Generator: Launchpad (build 15376)\n"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:14
+#: /home/victor/noise/po/../src//Noise.vala:71
+msgid "Enable debug logging"
+msgstr "Activa el registre de depuració"
+
+#: /home/victor/noise/po/../src//Noise.vala:72
+msgid "Disable plugins"
+msgstr "Desactiva els connectors"
+
+#: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
 msgstr "Escolteu música"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//config.vala:15
+#: /home/victor/noise/po/../src//config.vala:15
 msgid "Music Player"
 msgstr "Reproductor de música"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:317
+#: /home/victor/noise/po/../src//LibraryManager.vala:317
 #, c-format
 msgid "Importing music from %s..."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:363
+#: /home/victor/noise/po/../src//LibraryManager.vala:364
 msgid "Adding files to library..."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:388
+#: /home/victor/noise/po/../src//LibraryManager.vala:389
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryManager.vala:415
+#: /home/victor/noise/po/../src//LibraryManager.vala:416
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:71
-msgid "Enable debug logging"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Noise.vala:72
-msgid "Disable plugins"
-msgstr "Deshabilita els connectors"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:421
-msgid "Favorite Songs"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:442
-msgid "Recently Added"
-msgstr "Afegits recents"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:452
-msgid "Recently Played"
-msgstr "Reproduccions recents"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:462
-msgid "Recent Favorites"
-msgstr "Preferits recents"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:472
-msgid "Never Played"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:482
-msgid "Unheard Podcasts"
-msgstr "Podcasts no sentits"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:492
-msgid "Over Played"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//DataBase/DataBaseManager.vala:502
-msgid "Not Recently Played"
-msgstr "Reproduccions no recents"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:222
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:125
-msgid "Import to Library"
-msgstr "Importa a la biblioteca"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:223
-msgid "Rescan Music Folder"
-msgstr "Torna a examinar la carpeta de música"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:226
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:52
-msgid "Preferences"
-msgstr "Preferències"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:246
-msgid "Search Music"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:316
-msgid "Add Playlist"
-msgstr "Afegeix una llista de reproducció"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:318
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:326
-msgid "Off"
-msgstr "Inactiu"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:319
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:537
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:64
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:310
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:377
-msgid "Song"
-msgstr "Cançó"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:320
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:278
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-msgid "Album"
-msgstr "Àlbum"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:321
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:279
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-msgid "Artist"
-msgstr "Artista"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:322
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:327
-msgid "All"
-msgstr "Tot"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:324
-msgid "Disable Repeat"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:324
-msgid "Enable Repeat"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
-msgid "Disable Shuffle"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:329
-msgid "Enable Shuffle"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:331
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:336
-msgid "Hide"
-msgstr "Amaga"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:332
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:337
-msgid "Show"
-msgstr "Mostra"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:334
-msgid "Hide Info Panel"
-msgstr "Amaga el tauler d'informació"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:334
-msgid "Show Info Panel"
-msgstr "Mostra el tauler d'informació"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:339
-msgid "Hide Equalizer"
-msgstr "Amaga l'equalitzador"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:339
-msgid "Show Equalizer"
-msgstr "Mostra l'equalitzador"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:588
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:278
-msgid "Music"
-msgstr "Música"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:602
-msgid "Similar"
-msgstr "Similars"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:606
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:151
-msgid "Queue"
-msgstr "Cua"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:611
-msgid "History"
-msgstr "Historial"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:756
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:79
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:110
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:111
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:47
-msgid "Unknown Artist"
-msgstr "Artista desconegut"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:756
-msgid " by "
-msgstr " per "
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:757
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:96
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:49
-msgid "Unknown Album"
-msgstr "Àlbum desconegut"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:757
-msgid " on "
-msgstr " a "
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:993
-msgid "Import Music"
-msgstr "Importa música"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1017
-#, c-format
-msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr "<b>S'està important</b> música des de <b>%s</b> a la biblioteca."
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1032
-msgid "Rescanning music folder for changes"
-msgstr "S'estan cercant canvis a la carpeta de música"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1038
 msgid "Could not find Music Folder"
 msgstr "No s'ha pogut trobar la carpeta de música"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1039
-msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Assegureu-vos que la carpeta de música sigui accessible i muntada."
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1093
-msgid "Import Complete"
-msgstr "S'ha completat la importació"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//LibraryWindow.vala:1093
-#, c-format
-msgid "%s has imported your library."
-msgstr "El %s ha importat la vostra biblioteca."
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
-msgid "Cancelling Sync"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:43
-msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
-msgid "Cancelling Import"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:47
-msgid ""
-"Import from device has been cancelled. Operation will stop after this media."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
-msgid "No External Songs"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
-msgid "Unrated"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:201
-msgid "1 Star"
-msgstr "1 estrella"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:203
-#, c-format
-msgid "%s Stars"
-msgstr "%s estrelles"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
-msgid "All Genres"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
-#, c-format
-msgid "All %i Genres"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
-msgid "No Genres"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
-msgid "All Artists"
-msgstr "Tots els artistes"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
-#, c-format
-msgid "All %i Artists"
-msgstr "Tots els %i artistes"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
-msgid "No Artists"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
-msgid "All Albums"
-msgstr "Tots els àlbums"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:269
-#, c-format
-msgid "All %i Albums"
-msgstr "Tots els %i àlbums"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:271
-msgid "No Albums"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:275
-msgid "All Years"
-msgstr "Tots els anys"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:277
-#, c-format
-msgid "All %i Years"
-msgstr "Tots els %i anys"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:279
-msgid "No Years"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:283
-msgid "All Ratings"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:285
-#, c-format
-msgid "All %i Ratings"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:287
-msgid "No Ratings"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:141
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:47
-msgid "Automatic"
-msgstr "Automàtic"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
-msgid "On Left"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
-msgid "On Top"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:548
-msgid "Genres"
-msgstr "Gèneres"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:551
-msgid "Artists"
-msgstr "Artistes"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:554
-msgid "Albums"
-msgstr "Àlbums"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:557
-msgid "Years"
-msgstr "Anys"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:560
-msgid "Ratings"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:280
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:439
-msgid "Bitrate"
-msgstr "Taxa de bits"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
-msgid "ID"
-msgstr "Identificador"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
-msgid "Episode"
-msgstr "Episodi"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
-msgid "Name"
-msgstr "Nom"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:288
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:431
-msgid "Length"
-msgstr "Durada"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:185
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:295
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-msgid "Title"
-msgstr "Títol"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:189
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:285
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-msgid "Genre"
-msgstr "Gènere"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:296
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-msgid "Year"
-msgstr "Any"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:539
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:67
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:311
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:378
-msgid "Podcast"
-msgstr "Podcast"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
-msgid "Date"
-msgstr "Data"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
-msgid "Category"
-msgstr "Categoria"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:281
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-msgid "Comment"
-msgstr "Comentari"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:293
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-msgid "Rating"
-msgstr "Valoració"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
-msgid "Pulser"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:73
-msgid "Station"
-msgstr "Estació"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:283
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:412
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:435
-msgid "Date Added"
-msgstr "Data d'addició"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:287
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:412
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:435
-msgid "Last Played"
-msgstr "Reproduït per última vegada"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
-msgid "BPM"
-msgstr "PPM"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
-msgid "Plays"
-msgstr "Reproduccions"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:54
-msgid "Skips"
-msgstr "Omissions"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:193
-msgid "Track"
-msgstr "Pista"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
-msgid "#"
-msgstr "Núm."
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#, c-format
-msgid "%i kbps"
-msgstr "%i kbps"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:99
-msgid "Remove from Library"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:107
-msgid "Remove from Queue"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:124
-msgid "Remove from Device"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:148
-msgid "Scroll to Current Song"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:149
-msgid "Edit Song Info"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:150
-msgid "Show in File Browser"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:152
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:143
-msgid "New Playlist"
-msgstr "Llista de reproducció nova"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:153
-msgid "Add to Playlist"
-msgstr "Afegeix a la llista de reproducció"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:154
-msgid "Remove Song"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:255
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:257
-msgid "Import this song"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/ListView/Lists/MusicListView.vala:259
-#, c-format
-msgid "Import %i songs"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:77
-msgid "Device Name:"
-msgstr "Nom del dispositiu:"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:80
-msgid "Device Name"
-msgstr "Nom del dispositiu"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:82
-msgid "Automatically sync when plugged in:"
-msgstr "Sincronitza automàticament en connectar-lo:"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:89
-msgid "Sync:"
-msgstr "Sincronitza:"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:111
-msgid "Other Files"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:113
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:283
-msgid "Podcasts"
-msgstr "Podcasts"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:384
-msgid "All Music"
-msgstr "Tota la música"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:387
-msgid "All Podcasts"
-msgstr "Tots els podcasts"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:555
-msgid "Sync Failed"
-msgstr "La sincronització ha fallat"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:517
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:555
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"La llista de reproducció %s acostuma a sincronitzar-se amb el dispositiu %s, "
-"però no s'ha pogut trobar."
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Cannot Sync"
-msgstr "No es pot sincronitzar"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:603
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"No es pot sincronitzar el dispositiu amb la configuració seleccionada. No hi "
-"ha prou espai al disc"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/DeviceSummaryWidget.vala:606
-msgid "Device is already being synced."
-msgstr "El dispositiu s'està sincronitzant."
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:550
-#, c-format
-msgid "%d minutes"
-msgstr "%d minuts"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:553
-#, c-format
-msgid "%d hours"
-msgstr "%d hores"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:556
-#, c-format
-msgid "%d days"
-msgstr "%d dies"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/album-view-clutter.vala:561
-#, c-format
-msgid "%u items, %s, %s"
-msgstr "%u elements, %s, %s"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/AlbumView/AlbumListView.vala:185
-#, c-format
-msgid "%s by %s"
-msgstr "%s per %s"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
-msgid "Fetching similar songs"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
-#, c-format
-msgid "Finding songs similar to %s by %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
-#, c-format
-msgid "Similar to %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
-msgid "No similar songs found"
-msgstr "No s'ha trobat cap cançó similar"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:127
-#, c-format
-msgid ""
-"%s could not find songs similar to %s by %s in your library. Make sure all "
-"song info is correct and you are connected to the Internet. Some songs may "
-"not have matches."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
-msgid "Similar Song View"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/SimilarViewWrapper.vala:140
-#, c-format
-msgid ""
-"In this view, %s will automatically find songs similar to the one you're "
-"playing. You can then start playing those songs, or save them as a playlist "
-"for later."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
-msgid "No songs in Queue"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
-msgid "Get Some Tunes"
-msgstr "Aconseguïu algunes cançons"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
-#, c-format
-msgid "%s can't seem to find your music."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
-msgid "Locate"
-msgstr "Troba"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
-msgid "Change your music folder."
-msgstr "Canvia la carpeta de música."
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
-msgid "Import songs from audio CD"
-msgstr "Importa cançons des d'un CD d'àudio"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:93
-msgid "Import media from device"
-msgstr "Importa elements multimèdia des d'un dispositiu"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:133
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:134
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
-msgid "Choose Music Folder"
-msgstr "Escolliu la carpeta de música"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/MusicViewWrapper.vala:180
-msgid "All the songs in this device are already in your library."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
-#, c-format
-msgid "%i albums"
-msgstr "%i àlbums"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:370
-msgid "1 album"
-msgstr "1 àlbum"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
-#, c-format
-msgid "%i songs"
-msgstr "%i cançons"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/ViewWrapper.vala:373
-msgid "1 song"
-msgstr "1 cançó"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
-msgid "No songs in History"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
-msgid "Audio CD Invalid"
-msgstr "El CD d'àudio no és vàlid"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
-#, c-format
-msgid "%s could not read the contents of this Audio CD"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
-#, c-format
-msgid "%i tracks"
-msgstr "%i pistes"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
-msgid "1 track"
-msgstr "1 pista"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
-msgid "No Songs"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
-msgid "Edit Smart Playlist"
-msgstr "Edita la llista de reproducció intel·ligent"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:40
-msgid "1 second"
-msgstr "1 segon"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:42
-#, c-format
-msgid "%s seconds"
-msgstr "%s segons"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:65
-msgid "1 day"
-msgstr "1 dia"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:67
-#, c-format
-msgid "%i days"
-msgstr "%i dies"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:72
-msgid "1 hour"
-msgstr "1 hora"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:74
-#, c-format
-msgid "%i hours"
-msgstr "%i hores"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:79
-msgid "1 minute"
-msgstr "1 minut"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:81
-#, c-format
-msgid "%i minutes"
-msgstr "%i minuts"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:91
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:101
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:105
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:113
-#, c-format
-msgid "%s and %s"
-msgstr "%s i %s"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Utils/TimeUtils.vala:99
-#, c-format
-msgid "%s, %s and %s"
-msgstr "%s, %s i %s"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/CDDA.vala:74
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Media.vala:45
-msgid "Unknown Title"
-msgstr "Títol desconegut"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Auriculars"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:47
-msgid "Not Imported Files"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:64
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:76
-#, c-format
-msgid "Unable to import %d items from %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:65
-#, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:66
-msgid "Move all corrupted files to trash"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:71
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:56
-msgid "Move to Trash"
-msgstr "Mou a la paperera"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:72
-msgid "Ignore"
-msgstr "Ignora"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:93
-msgid "del"
-msgstr "supr"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:98
-msgid "File Location"
-msgstr "Ubicació del fitxer"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/NotImportedWindow.vala:125
-msgid "Select individual files to move to trash:"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:60
-msgid "Remove Media"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:61
-msgid "Locate Media"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:62
-msgid "Rescan Library"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:63
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
-msgid "Do Nothing"
-msgstr "No facis res"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:69
-msgid "Could not find media file"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:78
-#, c-format
-msgid ""
-"The music file for %s by %s could not be found. What would you like to do?"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/FileNotFoundDialog.vala:81
-#, c-format
-msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
-msgid "Install Plugin"
-msgstr "Instal·la el connector"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
-msgid "Required GStreamer plugin not installed"
-msgstr "El connector del GStreamer no està instal·lat"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
-#, c-format
-msgid ""
-"The plugin for media type %s is not installed.\n"
-"What would you like to do?"
-msgstr ""
-"El connector pel tipus de fitxer %s no està instal·lat.\n"
-"Què voleu fer?"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:76
-msgid "Metadata"
-msgstr "Metadades"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:78
-msgid "Lyrics"
-msgstr "Lletres"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:87
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:61
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:135
-msgid "Done"
-msgstr "Fet"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:174
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:345
-#, c-format
-msgid "Editing %s by %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:176
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:347
-#, c-format
-msgid "Editing %s"
-msgstr "S'està editant %s"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:179
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:350
-#, c-format
-msgid "Editing %i songs"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:187
-msgid "Album Artist"
-msgstr "Artista de l'àlbum"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:282
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-msgid "Composer"
-msgstr "Compositor"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:191
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:286
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-msgid "Grouping"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:194
-msgid "Disc"
-msgstr "Disc"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:198
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:290
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:345
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:370
-msgid "Media Type"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:242
-msgid "Try again"
-msgstr "Torna-ho a provar"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/MediaEditor.vala:295
-#, c-format
-msgid "Lyrics not found for \"%s\" by \"%s\""
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "Exporta les llistes de reproducció"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "Estableix la carpeta de música"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:58
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:62
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/TopDisplay.vala:67
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
-msgid "Set Music Folder?"
-msgstr "Voleu establir la carpeta de música?"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:57
-#, c-format
-msgid "Remove from %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:70
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:312
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:379
-msgid "Audiobook"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:82
-#, c-format
-msgid "Remove %d %s from %s?"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:89
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:91
-#, c-format
-msgid "Remove \"%s\" From %s?"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/RemoveFilesDialog.vala:98
-#, c-format
-msgid ""
-"This will remove the %s from your library and from any device that "
-"automatically syncs with %s."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:65
-msgid "Behavior"
-msgstr "Comportament"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:69
-msgid "Extensions"
-msgstr "Extensions"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:102
-#, c-format
-msgid "Music Folder Location"
-msgstr "Ubicació de la carpeta de música"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:105
-msgid "Music Folder"
-msgstr "Carpeta de música"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:108
-#, c-format
-msgid "Library Management"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:111
-msgid "Keep music folder organized:"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:114
-msgid "Write metadata to file:"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:117
-msgid "Copy new files to music folder:"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PreferencesWindow.vala:132
-msgid ""
-"You must wait until previous file operations finish before setting your "
-"music folder"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:102
-msgid "Import from Device"
-msgstr "Importa des d'un dispositiu"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
-#, c-format
-msgid "Import media from %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
-#, c-format
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
-msgid "Import all media"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
-msgid "Import"
-msgstr "Importa"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
-msgid "Don't Import"
-msgstr "No ho importis"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
-#, c-format
-msgid "Import %i items from %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
-#, c-format
-msgid "Import %s from %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
-msgid "Select individual media to import:"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
-msgid "Check Item"
-msgstr "Comprova l'element"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
-msgid "Check Album"
-msgstr "Comprova l'àlbum"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
-msgid "Check Artist"
-msgstr "Comprova l'artista"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:59
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:67
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:68
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:76
-msgid "Name of Playlist"
-msgstr "Nom de la llista de reproducció"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/PlaylistNameWindow.vala:138
-#, c-format
-msgid "The name %s is already in use"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:64
-msgid "Import media to Library"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:65
-msgid "Continue Syncing"
-msgstr "Continua la sincronització"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:66
-msgid "Stop Syncing"
-msgstr "Atura la sincronització"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:73
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:79
-#, c-format
-msgid "Sync will remove %i items from %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SyncWarningDialog.vala:82
-#, c-format
-msgid "Sync will remove 1 item from %s"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:54
-msgid "Smart Playlist Editor"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:69
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:77
-msgid "Rules"
-msgstr "Regles"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:70
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:78
-msgid "Options"
-msgstr "Opcions"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:81
-msgid "Playlist Title"
-msgstr "Títol de la llista de reproducció"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:87
-msgid "Match"
-msgstr "Coincideix amb"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:89
-msgid "any"
-msgstr "qualsevol"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:90
-msgid "all"
-msgstr "tots"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:91
-msgid "of the following:"
-msgstr "dels següents:"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:116
-msgid "Add"
-msgstr "Afegeix"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:121
-msgid "Limit to"
-msgstr "Limita a"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:123
-msgid "items"
-msgstr "elements"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:146
-msgid "Remove"
-msgstr "Elimina"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:284
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:412
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:435
-msgid "Date Released"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:292
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-msgid "Playcount"
-msgstr "Nombre de reproduccions"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:294
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-msgid "Skipcount"
-msgstr "Nombre d'omissions"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:313
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:380
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Objects/Playlist.vala:210
-msgid "Radio Station"
-msgstr "Estació de ràdio"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:361
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:389
-msgid "is"
-msgstr "és"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:362
-msgid "contains"
-msgstr "conté"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:363
-msgid "does not contain"
-msgstr "no conté"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:390
-msgid "is not"
-msgstr "no és"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:403
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:417
-msgid "is exactly"
-msgstr "és exactament"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:404
-msgid "is at most"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:405
-msgid "is at least"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:418
-msgid "is within"
-msgstr "es troba entre"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:419
-msgid "is before"
-msgstr "és abans de"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:432
-msgid "seconds"
-msgstr "segons"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:436
-msgid "days ago"
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/SmartPlaylistEditor.vala:440
-msgid "kbps"
-msgstr "kbps"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:85
-msgid "Equalizer"
-msgstr "Equalitzador"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:152
-msgid "Save preset"
-msgstr "Desa els valors predefinits"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:160
-msgid "Close"
-msgstr "Tanca"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:417
-#, c-format
-msgid "%s (Custom)"
-msgstr "%s (Personalitzat)"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:419
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (%i personalitzat)"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:423
-msgid "Custom Preset"
-msgstr "Valors predefinits personalitzats"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Dialogs/EqualizerWindow.vala:425
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Valors predefinits personalitzats de %i"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:319
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:536
-#, c-format
-msgid "Syncing <b>%s</b>..."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:691
-#, c-format
-msgid "Removing from <b>%s</b>..."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/iPodDevice.vala:924
-#, c-format
-msgid "Importing <b>%s</b> to library..."
-msgstr ""
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:222
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:229
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:229
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "El %s no ha pogut trobar cap cançó al CD. No es pot importar cap cançó"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:234
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
 msgid "%s is already doing an import"
 msgstr "El %s ja està fent una importació"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:234
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
@@ -1498,133 +86,1545 @@ msgstr ""
 "Si us plau, espereu fins que el %s hagi acabat la importació actual abans "
 "d'importar el CD."
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:252
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
 msgid "Ripping track 1"
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:329
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:329
 #, c-format
 msgid "Importing track %i"
 msgstr "S'està imporant la pista %i"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:339
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:342
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 msgid "CD Import Complete"
 msgstr "L'importació del CD s'ha completat"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:339
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
 msgstr "El %s ha acabat d'importar %i cançons des del CD d'àudio."
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:342
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
 msgstr "El %s ha acabat d'importar una cançó des del CD d'àudio."
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Devices/CDRomDevice.vala:375
+#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:103
-msgid "Sync"
-msgstr "Sincronitza"
-
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:267
-msgid "Free"
+#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
+#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
+#, c-format
+msgid "Syncing <b>%s</b>..."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SpaceWidget.vala:380
-msgid "Using %s of %s (%.2f%)"
+#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:691
+#, c-format
+msgid "Removing from <b>%s</b>..."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/PresetList.vala:48
+#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:924
+#, c-format
+msgid "Importing <b>%s</b> to library..."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Objects/Playlist.vala:210
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:313
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
+msgid "Radio Station"
+msgstr "Estació de ràdio"
+
+#: /home/victor/noise/po/../src//Objects/Media.vala:45
+#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "Títol desconegut"
+
+#: /home/victor/noise/po/../src//Objects/Media.vala:47
+#: /home/victor/noise/po/../src//LibraryWindow.vala:771
+#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:79
+#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:110
+#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:111
+msgid "Unknown Artist"
+msgstr "Artista desconegut"
+
+#: /home/victor/noise/po/../src//Objects/Media.vala:49
+#: /home/victor/noise/po/../src//LibraryWindow.vala:772
+#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:96
+msgid "Unknown Album"
+msgstr "Àlbum desconegut"
+
+#: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:141
+msgid "Automatic"
+msgstr "Automàtic"
+
+#: /home/victor/noise/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
 msgstr "Suprimeix l'actual"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:104
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:126
+#: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
+msgid "media"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:103
+msgid "Sync"
+msgstr "Sincronitza"
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
+msgid "Free"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
+msgid "Using %s of %s (%.2f%)"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:102
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr "Importa des d'un dispositiu"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:104
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:126
 msgid "Eject"
 msgstr "Expulsa"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:115
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:115
 msgid "Add Podcast"
 msgstr "Afegeix un podcast"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:116
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:116
 msgid "Download new Episodes"
 msgstr "Baixa episodis nous"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:135
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:125
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
+#: /home/victor/noise/po/../src//LibraryWindow.vala:223
+msgid "Import to Library"
+msgstr "Importa a la biblioteca"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
 msgid "Import Stations"
 msgstr "Importa estacions"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:144
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:143
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
+msgid "New Playlist"
+msgstr "Llista de reproducció nova"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:144
 msgid "New Smart Playlist"
 msgstr "Llista de reproducció intel·ligent nova"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:145
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:145
 msgid "Edit"
 msgstr "Edita"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:147
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:146
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+msgid "Remove"
+msgstr "Elimina"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:147
 msgid "Save as Playlist"
 msgstr "Desa com a una llista de reproducció"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:148
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:148
 msgid "Export..."
 msgstr "Exporta..."
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:149
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:149
 msgid "Import Playlists"
 msgstr "Importa les llistes de reproducció"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:187
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:187
 msgid "Library"
 msgstr "Biblioteca"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:188
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:188
 msgid "Devices"
 msgstr "Dispositius"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:189
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:189
 msgid "Network"
 msgstr "Xarxa"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:190
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:190
 msgid "Playlists"
 msgstr "Llistes de reproducció"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:880
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:278
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
+#: /home/victor/noise/po/../src//LibraryWindow.vala:589
+msgid "Music"
+msgstr "Música"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:283
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:113
+msgid "Podcasts"
+msgstr "Podcasts"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:887
 msgid "Playlist"
 msgstr "Llista de reproducció"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:893
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:900
 #, c-format
 msgid "Import %s"
 msgstr "Importa %s"
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1019
 msgid "This device is syncing"
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1012
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1019
 msgid "Please wait until the current sync is finished to do this action."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "This device is in transfer"
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SideTreeView.vala:1014
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SimilarMediaView.vala:48
-msgid "media"
+#: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:67
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:85
+msgid "Equalizer"
+msgstr "Equalitzador"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:152
+msgid "Save preset"
+msgstr "Desa els valors predefinits"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:160
+msgid "Close"
+msgstr "Tanca"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (Personalitzat)"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:418
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (%i personalitzat)"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:422
+msgid "Custom Preset"
+msgstr "Valors predefinits personalitzats"
+
+#: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:424
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Valors predefinits personalitzats de %i"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
+msgid "Not Imported Files"
 msgstr ""
 
-#: /home/ttosttos/Projects/elementary/Bugs/noise-fix-1004294/po/../src//Widgets/SimilarMediaView.vala:52
-msgid "Similar Media"
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
+#, c-format
+msgid "Unable to import %d items from %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
+#, c-format
+msgid "%s was unable to import %d items. The files may be damaged."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
+msgid "Move all corrupted files to trash"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
+msgid "Move to Trash"
+msgstr "Mou a la paperera"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
+msgid "Ignore"
+msgstr "Ignora"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
+msgid "del"
+msgstr "supr"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
+msgid "File Location"
+msgstr "Ubicació del fitxer"
+
+#: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
+msgid "Select individual files to move to trash:"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Export Playlists"
+msgstr "Exporta les llistes de reproducció"
+
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
+msgid "Set Music Folder"
+msgstr "Estableix la carpeta de música"
+
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
+msgid "Set Music Folder?"
+msgstr "Voleu establir la carpeta de música?"
+
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:131
+msgid "Choose Music Folder"
+msgstr "Escolliu la carpeta de música"
+
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
+msgid "Install Plugin"
+msgstr "Instal·la el connector"
+
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
+msgid "Do Nothing"
+msgstr "No facis res"
+
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
+msgid "Required GStreamer plugin not installed"
+msgstr "El connector del GStreamer no està instal·lat"
+
+#: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
+#, c-format
+msgid ""
+"The plugin for media type %s is not installed.\n"
+"What would you like to do?"
+msgstr ""
+"El connector pel tipus de fitxer %s no està instal·lat.\n"
+"Què voleu fer?"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:76
+msgid "Metadata"
+msgstr "Metadades"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:78
+msgid "Lyrics"
+msgstr "Lletres"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:87
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
+msgid "Done"
+msgstr "Fet"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:174
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:345
+#, c-format
+msgid "Editing %s by %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:176
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:347
+#, c-format
+msgid "Editing %s"
+msgstr "S'està editant %s"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:179
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:350
+#, c-format
+msgid "Editing %i songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:295
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
+msgid "Title"
+msgstr "Títol"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
+#: /home/victor/noise/po/../src//LibraryWindow.vala:322
+msgid "Artist"
+msgstr "Artista"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:187
+msgid "Album Artist"
+msgstr "Artista de l'àlbum"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
+#: /home/victor/noise/po/../src//LibraryWindow.vala:321
+msgid "Album"
+msgstr "Àlbum"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:189
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:285
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
+msgid "Genre"
+msgstr "Gènere"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:282
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+msgid "Composer"
+msgstr "Compositor"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:191
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:286
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+msgid "Grouping"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:192
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
+msgid "Comment"
+msgstr "Comentari"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:193
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
+msgid "Track"
+msgstr "Pista"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:194
+msgid "Disc"
+msgstr "Disc"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:195
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:296
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
+msgid "Year"
+msgstr "Any"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:196
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:293
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
+msgid "Rating"
+msgstr "Valoració"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:198
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:290
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:345
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:370
+msgid "Media Type"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:242
+msgid "Try again"
+msgstr "Torna-ho a provar"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:295
+#, c-format
+msgid "Lyrics not found for \"%s\" by \"%s\""
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:310
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
+#: /home/victor/noise/po/../src//LibraryWindow.vala:320
+msgid "Song"
+msgstr "Cançó"
+
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:539
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:311
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:378
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
+msgid "Podcast"
+msgstr "Podcast"
+
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
+msgid "Import media to Library"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
+msgid "Continue Syncing"
+msgstr "Continua la sincronització"
+
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
+msgid "Stop Syncing"
+msgstr "Atura la sincronització"
+
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
+#, c-format
+msgid "Sync will remove %i items from %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
+#, c-format
+msgid "Sync will remove 1 item from %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:52
+#: /home/victor/noise/po/../src//LibraryWindow.vala:227
+msgid "Preferences"
+msgstr "Preferències"
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:65
+msgid "Behavior"
+msgstr "Comportament"
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:69
+msgid "Extensions"
+msgstr "Extensions"
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:102
+#, c-format
+msgid "Music Folder Location"
+msgstr "Ubicació de la carpeta de música"
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:105
+msgid "Music Folder"
+msgstr "Carpeta de música"
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:108
+#, c-format
+msgid "Library Management"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:111
+msgid "Keep music folder organized:"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:114
+msgid "Write metadata to file:"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+msgid "Copy new files to music folder:"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:132
+msgid ""
+"You must wait until previous file operations finish before setting your "
+"music folder"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
+msgid "Smart Playlist Editor"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:67
+msgid "Name of Playlist"
+msgstr "Nom de la llista de reproducció"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
+msgid "Rules"
+msgstr "Regles"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
+msgid "Options"
+msgstr "Opcions"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:81
+msgid "Playlist Title"
+msgstr "Títol de la llista de reproducció"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+msgid "Match"
+msgstr "Coincideix amb"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
+msgid "any"
+msgstr "qualsevol"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:90
+msgid "all"
+msgstr "tots"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
+msgid "of the following:"
+msgstr "dels següents:"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
+msgid "Add"
+msgstr "Afegeix"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
+msgid "Limit to"
+msgstr "Limita a"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
+msgid "items"
+msgstr "elements"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:439
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
+msgid "Bitrate"
+msgstr "Taxa de bits"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:283
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
+msgid "Date Added"
+msgstr "Data d'addició"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:284
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
+msgid "Date Released"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
+msgid "Last Played"
+msgstr "Reproduït per última vegada"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:288
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
+msgid "Length"
+msgstr "Durada"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:292
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+msgid "Playcount"
+msgstr "Nombre de reproduccions"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:294
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+msgid "Skipcount"
+msgstr "Nombre d'omissions"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:312
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:379
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
+msgid "Audiobook"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:361
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:389
+msgid "is"
+msgstr "és"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
+msgid "contains"
+msgstr "conté"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+msgid "does not contain"
+msgstr "no conté"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:390
+msgid "is not"
+msgstr "no és"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:417
+msgid "is exactly"
+msgstr "és exactament"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
+msgid "is at most"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
+msgid "is at least"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:418
+msgid "is within"
+msgstr "es troba entre"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:419
+msgid "is before"
+msgstr "és abans de"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:432
+msgid "seconds"
+msgstr "segons"
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:436
+msgid "days ago"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:440
+msgid "kbps"
+msgstr "kbps"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
+#, c-format
+msgid "Import media from %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
+#, c-format
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
+msgid "Import all media"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
+msgid "Import"
+msgstr "Importa"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
+msgid "Don't Import"
+msgstr "No ho importis"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
+#, c-format
+msgid "Import %i items from %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
+#, c-format
+msgid "Import %s from %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
+msgid "ID"
+msgstr "Identificador"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
+msgid "Select individual media to import:"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
+msgid "Check Item"
+msgstr "Comprova l'element"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
+msgid "Check Album"
+msgstr "Comprova l'àlbum"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
+msgid "Check Artist"
+msgstr "Comprova l'artista"
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:60
+msgid "Remove Media"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
+msgid "Locate Media"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
+msgid "Rescan Library"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:69
+msgid "Could not find media file"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:78
+#, c-format
+msgid ""
+"The music file for %s by %s could not be found. What would you like to do?"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
+#, c-format
+msgid "%i media files could not be found. What would you like to do?"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:138
+#, c-format
+msgid "The name %s is already in use"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
+#, c-format
+msgid "Remove from %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
+msgid "Station"
+msgstr "Estació"
+
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
+#, c-format
+msgid "Remove %d %s from %s?"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
+#, c-format
+msgid "Remove \"%s\" From %s?"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
+#, c-format
+msgid ""
+"This will remove the %s from your library and from any device that "
+"automatically syncs with %s."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:185
+#, c-format
+msgid "%s by %s"
+msgstr "%s per %s"
+
+#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:550
+#, c-format
+msgid "%d minutes"
+msgstr "%d minuts"
+
+#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:553
+#, c-format
+msgid "%d hours"
+msgstr "%d hores"
+
+#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:556
+#, c-format
+msgid "%d days"
+msgstr "%d dies"
+
+#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:561
+#, c-format
+msgid "%u items, %s, %s"
+msgstr "%u elements, %s, %s"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
+msgid "No songs in Queue"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
+msgid "No songs in History"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+msgid "Get Some Tunes"
+msgstr "Aconseguïu algunes cançons"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+#, c-format
+msgid "%s can't seem to find your music."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
+msgid "Locate"
+msgstr "Troba"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
+msgid "Change your music folder."
+msgstr "Canvia la carpeta de música."
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+msgid "Import songs from audio CD"
+msgstr "Importa cançons des d'un CD d'àudio"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
+msgid "Import media from device"
+msgstr "Importa elements multimèdia des d'un dispositiu"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:175
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
+msgid "No External Songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:175
+msgid "All the songs in this device are already in your library."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
+#, c-format
+msgid "%i albums"
+msgstr "%i àlbums"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
+msgid "1 album"
+msgstr "1 àlbum"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
+#, c-format
+msgid "%i songs"
+msgstr "%i cançons"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
+msgid "1 song"
+msgstr "1 cançó"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
+msgid "No Songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
+msgid "Edit Smart Playlist"
+msgstr "Edita la llista de reproducció intel·ligent"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
+msgid "Audio CD Invalid"
+msgstr "El CD d'àudio no és vàlid"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
+#, c-format
+msgid "%s could not read the contents of this Audio CD"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
+#, c-format
+msgid "%i tracks"
+msgstr "%i pistes"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
+msgid "1 track"
+msgstr "1 pista"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
+msgid "Fetching similar songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
+#, c-format
+msgid "Finding songs similar to %s by %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
+#, c-format
+msgid "Similar to %s"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:124
+msgid "No similar songs found"
+msgstr "No s'ha trobat cap cançó similar"
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:124
+#, c-format
+msgid ""
+"%s could not find songs similar to %s by %s in your library. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
+msgid "Similar Song View"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
+#, c-format
+msgid ""
+"In this view, %s will automatically find songs similar to the one you're "
+"playing. You can then start playing those songs, or save them as a playlist "
+"for later."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
+msgid "Cancelling Sync"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
+msgid "Device Sync has been cancelled. Operation will stop after this media."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
+msgid "Cancelling Import"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
+msgid ""
+"Import from device has been cancelled. Operation will stop after this media."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#, c-format
+msgid "%i kbps"
+msgstr "%i kbps"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
+msgid "Episode"
+msgstr "Episodi"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
+msgid "Name"
+msgstr "Nom"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
+msgid "Date"
+msgstr "Data"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
+msgid "Category"
+msgstr "Categoria"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
+msgid "Pulser"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
+msgid "BPM"
+msgstr "PPM"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
+msgid "Plays"
+msgstr "Reproduccions"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:54
+msgid "Skips"
+msgstr "Omissions"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
+msgid "#"
+msgstr "Núm."
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
+msgid "Remove from Library"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:107
+msgid "Remove from Queue"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:124
+msgid "Remove from Device"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
+msgid "Scroll to Current Song"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
+msgid "Edit Song Info"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
+msgid "Show in File Browser"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
+#: /home/victor/noise/po/../src//LibraryWindow.vala:598
+msgid "Queue"
+msgstr "Cua"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
+msgid "Add to Playlist"
+msgstr "Afegeix a la llista de reproducció"
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
+msgid "Remove Song"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
+msgid "Import this song"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:259
+#, c-format
+msgid "Import %i songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
+msgid "Unrated"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:201
+msgid "1 Star"
+msgstr "1 estrella"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:203
+#, c-format
+msgid "%s Stars"
+msgstr "%s estrelles"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
+msgid "All Genres"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
+#, c-format
+msgid "All %i Genres"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
+msgid "No Genres"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
+msgid "All Artists"
+msgstr "Tots els artistes"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
+#, c-format
+msgid "All %i Artists"
+msgstr "Tots els %i artistes"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
+msgid "No Artists"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
+msgid "All Albums"
+msgstr "Tots els àlbums"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:269
+#, c-format
+msgid "All %i Albums"
+msgstr "Tots els %i àlbums"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:271
+msgid "No Albums"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:275
+msgid "All Years"
+msgstr "Tots els anys"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:277
+#, c-format
+msgid "All %i Years"
+msgstr "Tots els %i anys"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:279
+msgid "No Years"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:283
+msgid "All Ratings"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:285
+#, c-format
+msgid "All %i Ratings"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:287
+msgid "No Ratings"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
+msgid "On Left"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
+msgid "On Top"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:548
+msgid "Genres"
+msgstr "Gèneres"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:551
+msgid "Artists"
+msgstr "Artistes"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:554
+msgid "Albums"
+msgstr "Àlbums"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:557
+msgid "Years"
+msgstr "Anys"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:560
+msgid "Ratings"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:77
+msgid "Device Name:"
+msgstr "Nom del dispositiu:"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:80
+msgid "Device Name"
+msgstr "Nom del dispositiu"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:82
+msgid "Automatically sync when plugged in:"
+msgstr "Sincronitza automàticament en connectar-lo:"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:89
+msgid "Sync:"
+msgstr "Sincronitza:"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:111
+msgid "Other Files"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:384
+msgid "All Music"
+msgstr "Tota la música"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:387
+msgid "All Podcasts"
+msgstr "Tots els podcasts"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+msgid "Sync Failed"
+msgstr "La sincronització ha fallat"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"La llista de reproducció %s acostuma a sincronitzar-se amb el dispositiu %s, "
+"però no s'ha pogut trobar."
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Cannot Sync"
+msgstr "No es pot sincronitzar"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"No es pot sincronitzar el dispositiu amb la configuració seleccionada. No hi "
+"ha prou espai al disc"
+
+#: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
+msgid "Device is already being synced."
+msgstr "El dispositiu s'està sincronitzant."
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:421
+msgid "Favorite Songs"
+msgstr ""
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:442
+msgid "Recently Added"
+msgstr "Afegits recents"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:452
+msgid "Recently Played"
+msgstr "Reproduccions recents"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:462
+msgid "Recent Favorites"
+msgstr "Preferits recents"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:472
+msgid "Never Played"
+msgstr ""
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:482
+msgid "Unheard Podcasts"
+msgstr "Podcasts no sentits"
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:492
+msgid "Over Played"
+msgstr ""
+
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:502
+msgid "Not Recently Played"
+msgstr "Reproduccions no recents"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:224
+msgid "Rescan Music Folder"
+msgstr "Torna a examinar la carpeta de música"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:247
+msgid "Search Music"
+msgstr ""
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:317
+msgid "Add Playlist"
+msgstr "Afegeix una llista de reproducció"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:319
+#: /home/victor/noise/po/../src//LibraryWindow.vala:327
+msgid "Off"
+msgstr "Inactiu"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:323
+#: /home/victor/noise/po/../src//LibraryWindow.vala:328
+msgid "All"
+msgstr "Tot"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:325
+msgid "Disable Repeat"
+msgstr "Desactiva la repetició"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:325
+msgid "Enable Repeat"
+msgstr "Activa la repetició"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:330
+msgid "Disable Shuffle"
+msgstr "Desactiva la reproducció aleatòria"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:330
+msgid "Enable Shuffle"
+msgstr "Activa la reproducció aleatòria"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:332
+#: /home/victor/noise/po/../src//LibraryWindow.vala:337
+msgid "Hide"
+msgstr "Amaga"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:333
+#: /home/victor/noise/po/../src//LibraryWindow.vala:338
+msgid "Show"
+msgstr "Mostra"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:335
+msgid "Hide Info Panel"
+msgstr "Amaga el tauler d'informació"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:335
+msgid "Show Info Panel"
+msgstr "Mostra el tauler d'informació"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:340
+msgid "Hide Equalizer"
+msgstr "Amaga l'equalitzador"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:340
+msgid "Show Equalizer"
+msgstr "Mostra l'equalitzador"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:594
+msgid "Similar"
+msgstr "Similars"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:603
+msgid "History"
+msgstr "Historial"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:771
+msgid " by "
+msgstr " per "
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:772
+msgid " on "
+msgstr " a "
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:992
+msgid "Import Music"
+msgstr "Importa música"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1016
+#, c-format
+msgid "<b>Importing</b> music from <b>%s</b> to library."
+msgstr "<b>S'està important</b> música des de <b>%s</b> a la biblioteca."
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1031
+msgid "Rescanning music folder for changes"
+msgstr "S'estan cercant canvis a la carpeta de música"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1038
+msgid "Please make sure that your music folder is accessible and mounted."
+msgstr "Assegureu-vos que la carpeta de música sigui accessible i muntada."
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1092
+msgid "Import Complete"
+msgstr "S'ha completat la importació"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1092
+#, c-format
+msgid "%s has imported your library."
+msgstr "El %s ha importat la vostra biblioteca."
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:40
+msgid "1 second"
+msgstr "1 segon"
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
+#, c-format
+msgid "%s seconds"
+msgstr "%s segons"
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
+msgid "1 day"
+msgstr "1 dia"
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
+#, c-format
+msgid "%i days"
+msgstr "%i dies"
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:72
+msgid "1 hour"
+msgstr "1 hora"
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:74
+#, c-format
+msgid "%i hours"
+msgstr "%i hores"
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:79
+msgid "1 minute"
+msgstr "1 minut"
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:81
+#, c-format
+msgid "%i minutes"
+msgstr "%i minuts"
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:101
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:105
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:113
+#, c-format
+msgid "%s and %s"
+msgstr "%s i %s"
+
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
+#, c-format
+msgid "%s, %s and %s"
+msgstr "%s, %s i %s"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Auriculars"
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr ""
+
+#: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
+msgid "Techno"
 msgstr ""
