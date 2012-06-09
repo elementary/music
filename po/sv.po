@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-03 19:20+0000\n"
-"Last-Translator: David Eurenius <Unknown>\n"
+"PO-Revision-Date: 2012-06-08 23:07+0000\n"
+"Last-Translator: Marcus Lundgren <Unknown>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-08 05:17+0000\n"
+"X-Launchpad-Export-Date: 2012-06-09 06:21+0000\n"
 "X-Generator: Launchpad (build 15376)\n"
 "X-Poedit-Language: Swedish\n"
 
@@ -41,12 +41,12 @@ msgstr "Importerar musik från %s..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:364
 msgid "Adding files to library..."
-msgstr "Lägger till filer från bibliotek"
+msgstr "Lägger till filer till biblioteket..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:389
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr "importerar musik från %s till bibliotek..."
+msgstr "Lägger till musik från %s till biblioteket..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:416
 msgid "Rescanning music for changes. This may take a while..."
@@ -63,7 +63,7 @@ msgid ""
 "importing the CD."
 msgstr ""
 "Vänligen se till att din musikmapp är tillgänglig och monterad innan du "
-"importerar CD:n"
+"importerar CD:n."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
@@ -72,7 +72,7 @@ msgstr "Inga låtar på CD:n"
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr "%s hittade inga sånger på CD:n. Inga sånger kan importeras."
+msgstr "%s hittade inga låtar på CD:n. Inga låtar kan importeras."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
@@ -86,7 +86,7 @@ msgid ""
 "the CD."
 msgstr ""
 "Var snäll och vänta tills %s har slutfört den aktuella importen före "
-"importering av CD:n"
+"importering av CD:n."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
 msgid "Ripping track 1"
@@ -100,22 +100,22 @@ msgstr "Importerar spår %i"
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 msgid "CD Import Complete"
-msgstr "CD importen är färdig"
+msgstr "CD-importen är färdig"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s har slutfört importen av %i sånger från Audio CD."
+msgstr "%s har slutfört importen av %i låtar från Audio CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr "%s har slutfört importen av en sång från Audio CD."
+msgstr "%s har slutfört importen av en låt från Audio CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
-"CD importen kommer att bli <b>avbruten</b> efter den aktuella importen"
+"CD-importen kommer att bli <b>avbruten</b> efter den aktuella importen."
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
@@ -214,7 +214,7 @@ msgstr "Importera till biblioteket"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
 msgid "Import Stations"
-msgstr "Importera station"
+msgstr "Importera stationer"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:143
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
@@ -275,7 +275,7 @@ msgstr "Poddsändningar"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:887
 msgid "Playlist"
-msgstr "Spelningslista"
+msgstr "Spellista"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:900
 #, c-format
@@ -344,7 +344,7 @@ msgstr "Ej Importerade Filer"
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr "Kunde inte att importera %d objekt från %s"
+msgstr "Kunde inte importera %d objekt från %s"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format

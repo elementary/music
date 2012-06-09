@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-06 09:27+0000\n"
+"PO-Revision-Date: 2012-06-08 09:14+0000\n"
 "Last-Translator: Simon <Unknown>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-08 05:16+0000\n"
+"X-Launchpad-Export-Date: 2012-06-09 06:21+0000\n"
 "X-Generator: Launchpad (build 15376)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -61,6 +61,8 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"Venligst sørg for at din musik mappe er tilgængelig og monteret før "
+"importering af CD'en."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
@@ -88,7 +90,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
 msgid "Ripping track 1"
-msgstr ""
+msgstr "Ripper track 1"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:329
 #, c-format
@@ -103,7 +105,7 @@ msgstr "CD importering fuldført"
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr ""
+msgstr "%s har færdiggjort at importere %i sange fra lyd CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
@@ -113,6 +115,7 @@ msgstr "%s har færdiggjort importering af en sang fra lyd CD."
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
+"CD importering vil blive <b>annulleret</b> efter nuværende importering."
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
@@ -183,7 +186,7 @@ msgstr "Gratis"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "Bruger %s af %s (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:102
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
@@ -291,11 +294,13 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "This device is in transfer"
-msgstr ""
+msgstr "Denne enhed er i overførsel"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
+"Vent venligst indtil den nuværende overførsel er færdig for at udføre denne "
+"handling."
 
 #: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:67
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -319,12 +324,12 @@ msgstr "Luk"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (brugerdefineret)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:418
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (brugerdefineret %i)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 msgid "Custom Preset"
@@ -333,7 +338,7 @@ msgstr "Brugervalgt preset"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:424
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Brugerdefineret forudstillet %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -373,7 +378,7 @@ msgstr "Filplacering"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "Vælg individuelle filer at flytte til papirkurven:"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -393,6 +398,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Er du sikker på at du vil sætte musik mappen til %s? Dette vil nulstille dit "
+"bibliotek og fjerne dine afspilningslister."
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
@@ -419,6 +426,8 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"Udvidelsen for medie typen %s er ikke installeret.\n"
+"Hvad vil du gerne gøre?"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:76
 msgid "Metadata"
@@ -590,6 +599,9 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Hvis du fortsætter med synkronisering, vil medier blive fjernet fra %s da de "
+"ikke er på synkroniseringslisten. Vil du importere dem til dit bibliotek "
+"først?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
@@ -645,10 +657,12 @@ msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Du skal vente indtil foregående fil operationer er færdig før du angiver din "
+"musik mappe"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Intelligent afspilningsliste redigering"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
@@ -741,7 +755,7 @@ msgstr "Antal gange afspillet"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:294
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "Skipcount"
-msgstr ""
+msgstr "\"Spring over\" tæller"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:312
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:379
@@ -773,7 +787,7 @@ msgstr "er nøjaktig"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
 msgid "is at most"
-msgstr ""
+msgstr "er højst"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
 msgid "is at least"
@@ -810,6 +824,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"De følgende filer blev fundet på %s, men er ikke i dit bibliotek. Tjek alle "
+"de filer du gerne vil importere."
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -874,12 +890,12 @@ msgstr "Kunne ikke finde mediefil"
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
-msgstr ""
+msgstr "Musik filen for %s af %s kunne ikke findes. Hvad vil du gerne gøre?"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "%i medie filer kunne ikke findes. Hvad vil du gerne gøre?"
 
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:138
 #, c-format
@@ -913,6 +929,8 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"Dette vil fjerne %s fra dit bibliotek og fra enhver enhed der automatisk "
+"synkroniserer med %s."
 
 #: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
@@ -949,6 +967,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"For at tilføje sange til køen, brug <b>højreklik</b> på et element og vælg "
+"<b>kø</b>. Når en sang er færdig, vil sangene i køen blive afspillet først "
+"før den næste sang i den nuværende afspilninsliste."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
@@ -960,6 +981,10 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Efter en del af en sang er blevet afspillet, bliver den tilføjet til "
+"historisk listen.\n"
+"Du kan bruge denne liste til at se alle sange du har afspillet under den "
+"nuværende session."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Get Some Tunes"
@@ -1023,6 +1048,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"For at tilføje sange til denne afspilningsliste, brug <b>højreklik</b> på et "
+"element og vælg <b>tilføj til afspilningsliste</b>."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
@@ -1035,6 +1062,9 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Denne afspilningsliste vil automatisk blive befolket med sange der matcher "
+"dens regler. For at redigere disse regler, brug <b>højreklik</b> på den i "
+"sidebaren og klik på <b>redigér</b>. Du kan også klikke på knappen nedenfor."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 msgid "Audio CD Invalid"
@@ -1094,6 +1124,9 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"I denne visning, %s vil automatisk finde sange lignende dem du afspiller. Du "
+"kan så starte med at afspille disse sange eller gemme dem som en "
+"afspilningsliste til senere."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
@@ -1144,7 +1177,7 @@ msgstr "Kategori"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
-msgstr ""
+msgstr "Pulser"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "BPM"
@@ -1403,7 +1436,7 @@ msgstr "Uhørte podcasts"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:492
 msgid "Over Played"
-msgstr ""
+msgstr "Overspillet"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:502
 msgid "Not Recently Played"

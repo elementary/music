@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-07 20:26+0000\n"
+"PO-Revision-Date: 2012-06-08 18:59+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-08 05:16+0000\n"
+"X-Launchpad-Export-Date: 2012-06-09 06:21+0000\n"
 "X-Generator: Launchpad (build 15376)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -36,16 +36,16 @@ msgstr "Reproductor de música"
 #: /home/victor/noise/po/../src//LibraryManager.vala:317
 #, c-format
 msgid "Importing music from %s..."
-msgstr ""
+msgstr "S'està important música de %s..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:364
 msgid "Adding files to library..."
-msgstr ""
+msgstr "S'estan afegint fitxers a la biblioteca..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:389
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr ""
+msgstr "S'està afegint música de %s a la biblioteca..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:416
 msgid "Rescanning music for changes. This may take a while..."
@@ -61,10 +61,12 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"Assegureu-vos que la carpeta de música sigui accessible i muntada abans de "
+"la importació del CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
-msgstr ""
+msgstr "No hi ha cap cançó al CD"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 #, c-format
@@ -88,7 +90,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
 msgid "Ripping track 1"
-msgstr ""
+msgstr "S'està capturant la pista 1"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:329
 #, c-format
@@ -113,17 +115,18 @@ msgstr "El %s ha acabat d'importar una cançó des del CD d'àudio."
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
+"La importació del CD <b>es cancel·larà</b> després de la importació actual."
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "S'està sincronitzant <b>%s</b>..."
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:691
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "S'estàn suprimint elements de <b>%s</b>..."
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:924
 #, c-format
@@ -166,11 +169,11 @@ msgstr "Suprimeix l'actual"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
-msgstr ""
+msgstr "elements multimèdia"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:52
 msgid "Similar Media"
-msgstr ""
+msgstr "Elements multimèdia similars"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:103
@@ -417,7 +420,7 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
-"El connector pel tipus de fitxer %s no està instal·lat.\n"
+"El connector pel tipus d'elements multimèdia %s no està instal·lat.\n"
 "Què voleu fer?"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:76
@@ -545,7 +548,7 @@ msgstr "Valoració"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:345
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:370
 msgid "Media Type"
-msgstr ""
+msgstr "Tipus d'elements multimèdia"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:242
 msgid "Try again"
@@ -574,7 +577,7 @@ msgstr "Podcast"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
-msgstr ""
+msgstr "Importa elements multimèdia a la biblioteca"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
@@ -802,7 +805,7 @@ msgstr "kbps"
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr ""
+msgstr "Importa elements multimèdia de %s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
@@ -813,7 +816,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr ""
+msgstr "Importa tots els elements multimèdia"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
@@ -840,7 +843,7 @@ msgstr "Identificador"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Seleccioneu els elements multimèdia individuals a importar:"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
@@ -860,7 +863,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Locate Media"
-msgstr ""
+msgstr "Troba elments multimèdia"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Rescan Library"
@@ -868,7 +871,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:69
 msgid "Could not find media file"
-msgstr ""
+msgstr "No s'ha pogut trobar el fitxer multimèdia"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
@@ -879,7 +882,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "No s'han pogut trobar %i fitxers multimèdia. Què voleu fer?"
 
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:138
 #, c-format
@@ -984,7 +987,7 @@ msgstr "Importa cançons des d'un CD d'àudio"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import media from device"
-msgstr "Importa elements multimèdia des d'un dispositiu"
+msgstr "Importa elements multimèdia d'un dispositiu"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:175
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
@@ -1099,6 +1102,8 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
 msgstr ""
+"La sincronització amb el dispositiu ha estat cancel·lada. L'operació "
+"s'aturarà després de sincronitzar aquest element."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
@@ -1108,6 +1113,8 @@ msgstr ""
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
+"La importació del dispositiu ha estat cancel·lada. L'operació s'aturarà "
+"després d'importar aquest element."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
 msgid ""
