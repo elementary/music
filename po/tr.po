@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-03 05:14+0000\n"
-"Last-Translator: Ebubekir KARUL <Unknown>\n"
+"PO-Revision-Date: 2012-06-10 03:26+0000\n"
+"Last-Translator: kulkke <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-08 05:17+0000\n"
+"X-Launchpad-Export-Date: 2012-06-10 04:57+0000\n"
 "X-Generator: Launchpad (build 15376)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -23,7 +23,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Noise.vala:72
 msgid "Disable plugins"
-msgstr ""
+msgstr "Eklentileri etkisizleştir"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -446,7 +446,7 @@ msgstr "Tamam"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:345
 #, c-format
 msgid "Editing %s by %s"
-msgstr "%s %s tarafından, düzenleniyor"
+msgstr "%s, %s tarafından düzenleniyor"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:176
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:347
@@ -458,7 +458,7 @@ msgstr "%s düzenleniyor"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:350
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "%i şarkı düzenleniyor"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:295
