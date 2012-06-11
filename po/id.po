@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-10 04:55+0000\n"
+"PO-Revision-Date: 2012-06-10 04:59+0000\n"
 "Last-Translator: Dani Pratomo <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-10 04:57+0000\n"
+"X-Launchpad-Export-Date: 2012-06-11 05:14+0000\n"
 "X-Generator: Launchpad (build 15376)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -256,7 +256,7 @@ msgstr "Jaringan"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:190
 msgid "Playlists"
-msgstr "Daftar Putar"
+msgstr "Daftarputar"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:278
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
@@ -271,7 +271,7 @@ msgstr "Podcast"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:887
 msgid "Playlist"
-msgstr "Daftar Putar"
+msgstr "Daftarputar"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:900
 #, c-format
@@ -280,21 +280,19 @@ msgstr "Impor %s"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1019
 msgid "This device is syncing"
-msgstr "Perangkat sedang disingkronkan"
+msgstr "Perangkat sedang disinkronkan"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1019
 msgid "Please wait until the current sync is finished to do this action."
-msgstr ""
-"Mohon tunggu hingga sinkronisasi selesai sebelum menjalankan perintah ini."
+msgstr "Harap tunggu sinkronisasi selesai baru jalankan perintah ini."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "This device is in transfer"
-msgstr "Perangkat sedang dikirim"
+msgstr "Perangkat sedang transfer"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "Please wait until the current transfer is finished to do this action."
-msgstr ""
-"Mohon tunggu hingga pengiriman selesai sebelum menjalankan perintah ini."
+msgstr "Harap tunggu transfer selesai baru jalankan perintah ini."
 
 #: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:67
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67

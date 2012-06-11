@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-08 18:34+0000\n"
-"Last-Translator: Kazuki Nakao <kazuki99@live.com>\n"
+"PO-Revision-Date: 2012-06-11 03:48+0000\n"
+"Last-Translator: Victor Eduardo <victoreduardm@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-09 06:21+0000\n"
+"X-Launchpad-Export-Date: 2012-06-11 05:14+0000\n"
 "X-Generator: Launchpad (build 15376)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -49,7 +49,7 @@ msgstr "Agregando música desde %s a la biblioteca..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:416
 msgid "Rescanning music for changes. This may take a while..."
-msgstr "Revisando cambios en la música. Esto puede tardar un rato..."
+msgstr "Revisando cambios en la música. Esto puede demorar..."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
@@ -61,7 +61,7 @@ msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
-"Por favor, verifique que su carpeta de música es accesible y se encuentra "
+"Por favor, verifique que su carpeta de música sea accesible y se encuentre "
 "montada antes de importar el CD."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
@@ -72,13 +72,13 @@ msgstr "No hay canciones en el CD."
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"%s No se han encontrado canciones en el CD. Las canciones no pueden ser "
-"importadas"
+"%s no encontró canciones en el CD, y por tanto éstas no pueden ser "
+"importadas."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
 msgid "%s is already doing an import"
-msgstr "%s ya se está realizando una importación"
+msgstr "%s ya está realizando una importación"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
@@ -106,12 +106,12 @@ msgstr "Extracción completa del CD."
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s ha terminado de importar %i canciones del CD de audio."
+msgstr "%s ha terminado de importar %i canciones desde el CD de audio."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr "%s ha terminado de importar una canción del CD de audio."
+msgstr "%s ha terminado de importar una canción desde el CD de audio."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -428,7 +428,7 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
-"El conector para le tipo de medio %s no está instalado.<br>\n"
+"El conector para el tipo de medio %s no está instalado.<br>\n"
 "¿Qué le gustaría hacer?"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:76
@@ -664,7 +664,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
-msgstr "Editor de lista de reproducción Inteligente"
+msgstr "Editor de lista de reproducción inteligente"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
@@ -733,7 +733,7 @@ msgstr "Fecha en que se añadió"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 msgid "Date Released"
-msgstr "Fecha en la que fue liberado"
+msgstr "Fecha en la que fue lanzado"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
@@ -826,7 +826,7 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
-"Los siguientes archivos fueron encontrados en %s, pero no están en su "
+"Se han encontrado los siguientes archivos en %s, pero no están en su "
 "biblioteca. Seleccione los archivos que le gustaría importar."
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
@@ -862,15 +862,15 @@ msgstr "Seleccionar archivos multimedia individuales a importar"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr "Comprobar elemento"
+msgstr "Seleccionar elemento"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr "Comprobar álbum"
+msgstr "Seleccionar álbum"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr "Comprobar artista"
+msgstr "Seleccionar artista"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Remove Media"
@@ -892,7 +892,7 @@ msgstr "No se pudo encontrar archivo"
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
-msgstr "No se encontró el archivo de %s por %s. ¿Qué le gustaría hacer?"
+msgstr "No se encontró el archivo para %s por %s. ¿Qué le gustaría hacer?"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
@@ -1118,7 +1118,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
 msgid "Similar Song View"
-msgstr "Vista de Música Similar"
+msgstr "Vista de música similar"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
 #, c-format
@@ -1128,7 +1128,7 @@ msgid ""
 "for later."
 msgstr ""
 "En esta vista, %s mostrará canciones similares a la que esté reproduciendo. "
-"Usted puede reproducir dichas canciones o guardarlas como una lista de "
+"Puede reproducir dichas canciones o guardarlas como una lista de "
 "reproducción."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
@@ -1182,11 +1182,11 @@ msgstr "Categoría"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
-msgstr "Pulser"
+msgstr "Generador de impulsos"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "BPM"
-msgstr "BPM"
+msgstr "PPM"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "Plays"

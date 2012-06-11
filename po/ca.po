@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-09 14:53+0000\n"
+"PO-Revision-Date: 2012-06-11 00:13+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-10 04:57+0000\n"
+"X-Launchpad-Export-Date: 2012-06-11 05:14+0000\n"
 "X-Generator: Launchpad (build 15376)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -50,6 +50,7 @@ msgstr "S'està afegint música de %s a la biblioteca..."
 #: /home/victor/noise/po/../src//LibraryManager.vala:416
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
+"S'estan cercant canvis a la biblioteca. Això pot trigar una bona estona..."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
@@ -397,6 +398,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Esteu segur que voleu que %s sigui la vostra carpeta de música? Això "
+"reiniciarà la biblioteca i suprimirà les llistes de reproducció."
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
@@ -596,6 +599,9 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Si countinueu amb la sincronització, els elements multimèdia seran suprimits "
+"de %s ja que no són a la llista de sincronització. Voleu importar-los a la "
+"biblioteca abans de procedir?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
@@ -651,10 +657,12 @@ msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Heu d'esperar fins que les operacions amb el fitxer anterior acabin abans de "
+"establir la carpeta de música"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "Editor de llistes de reproducció intel·ligents"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
@@ -723,14 +731,14 @@ msgstr "Data d'addició"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 msgid "Date Released"
-msgstr ""
+msgstr "Data de llançament"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Last Played"
-msgstr "Reproduït per última vegada"
+msgstr "Reproduïdes darrerament"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:288
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
@@ -816,6 +824,8 @@ msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
 msgstr ""
+"S'han trobat els següents fitxers a %s, però no hi són a la biblioteca. "
+"Seleccioneu tots els fitxers que voleu importar."
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
@@ -850,15 +860,15 @@ msgstr "Seleccioneu els elements multimèdia individuals a importar:"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr "Comprova l'element"
+msgstr "Selecciona l'element"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr "Comprova l'àlbum"
+msgstr "Selecciona l'àlbum"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr "Comprova l'artista"
+msgstr "Selecciona l'artista"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Remove Media"
@@ -870,7 +880,7 @@ msgstr "Troba elments multimèdia"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Rescan Library"
-msgstr ""
+msgstr "Torna a examinar la biblioteca"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:69
 msgid "Could not find media file"
@@ -881,6 +891,7 @@ msgstr "No s'ha pogut trobar el fitxer multimèdia"
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
 msgstr ""
+"No s'ha pogut trobar el fitxer de música per a %s per %s. Què voleu fer?"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
@@ -919,6 +930,8 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"Aquesta acció suprimirà el %s de la biblioteca i de qualsevol dispositiu que "
+"se sincronitzi automàticament amb el %s."
 
 #: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
@@ -955,6 +968,10 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Per afegir cançons a la cua, feu clic amb el <b>botó secundari</b> sobre un "
+"element i seleccioneu <b>«Cua»</b>. Quan s'acabi una cançó, les cançons a la "
+"cua seran reproduïdes abans que la cançó següent a la llista de reproducció "
+"actual."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
@@ -966,6 +983,8 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Les cançons s'inclouen a l'historial un cop són reproduïdes.\n"
+"Aquesta llista enumeria totes les cançons reproduïdes a la sessió actual."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Get Some Tunes"
@@ -999,7 +1018,7 @@ msgstr "No hi ha cap cançó externa"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:175
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "Totes les cançons d'aquest dispositiu ja són a la vostra biblioteca"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
 #, c-format
@@ -1029,6 +1048,9 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Per afegir cançons a aquesta llista de reproducció, feu clic amb el <b>botó "
+"secundari</b> sobre un element i seleccioneu <b>«Afegeix a una llista de "
+"reproducció»<b>."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
@@ -1041,6 +1063,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"Aquesta llista de reproducció s'omplirà amb totes les cançons que "
+"coincideixin amb les regles. Per modificar les regles, feu clic amb el "
+"<b>botó secundari</b> sobre la llista de reproducció a la barra lateral i "
+"feu clic a <b>«Edita»</b>. Opcionalment podeu fer clic al botó de baix."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 msgid "Audio CD Invalid"
@@ -1049,7 +1075,7 @@ msgstr "El CD d'àudio no és vàlid"
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "El %s no ha pogut llegir el contingut d'aquest CD d'àudio"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 #, c-format
@@ -1062,7 +1088,7 @@ msgstr "1 pista"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Determinant cançons similars"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
@@ -1085,6 +1111,10 @@ msgid ""
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
 msgstr ""
+"El %s no ha pogut trobar cap cançó similar a %s per %s a la biblioteca. "
+"Assegureu-vos que la informació de la cançó sigui correcta i que sigueu "
+"connectat a Internet. Pot ser que algunes cançons no tinguin cap "
+"coincidència."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
 msgid "Similar Song View"
@@ -1097,6 +1127,9 @@ msgid ""
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
 msgstr ""
+"En aquesta vista, el %s trobarà automàticament cançons similars a la que "
+"s'estigui reproduint. Podeu reproduir-les o desar-les com a una llista de "
+"reproducció."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
@@ -1123,6 +1156,8 @@ msgstr ""
 msgid ""
 "There were no songs found on this device that are not in your library."
 msgstr ""
+"No s'ha pogut trobar cap cançó al dispositiu que no sigui a la vostra "
+"biblioteca."
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1147,7 +1182,7 @@ msgstr "Categoria"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
-msgstr ""
+msgstr "Generador d'impulsos"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "BPM"
@@ -1196,7 +1231,7 @@ msgstr "Cua"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
 msgid "Add to Playlist"
-msgstr "Afegeix a la llista de reproducció"
+msgstr "Afegeix a una llista de reproducció"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Remove Song"

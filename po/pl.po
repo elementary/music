@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-01 05:14+0000\n"
+"PO-Revision-Date: 2012-06-10 12:53+0000\n"
 "Last-Translator: Daniel Kur <Daniel.M.Kur@gmail.com>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-08 05:17+0000\n"
+"X-Launchpad-Export-Date: 2012-06-11 05:14+0000\n"
 "X-Generator: Launchpad (build 15376)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
 msgid "Enable debug logging"
-msgstr ""
+msgstr "Włącz rejestrowanie debugowania"
 
 #: /home/victor/noise/po/../src//Noise.vala:72
 msgid "Disable plugins"
@@ -1169,7 +1169,7 @@ msgstr "Kategoria"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
-msgstr ""
+msgstr "Pulser"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "BPM"
