@@ -85,7 +85,7 @@ public class BeatBox.SimilarMediasWidget : Gtk.Grid {
         this.attach (buttons, 0, 0, 1, 1);
         this.attach (scroll, 0, 1, 1, 1);
         
-        lw.info_panel.attach (this, 0, 1, 1, 1);
+        lw.info_panel.add_view (this);
         show ();
         
         lw.info_panel.to_update.connect (update_visibilities);

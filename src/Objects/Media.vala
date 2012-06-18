@@ -92,8 +92,8 @@ public class BeatBox.Media : GLib.Object {
 	public bool location_unknown { get; set; default = false; }
 	
 	public Gdk.Pixbuf? unique_status_image;
-	public bool showIndicator;
-	public int pulseProgress;
+	public bool showIndicator { get; set; default = false; }
+	public int pulseProgress { get; set; default = 0; }
 	
 	//core stuff
 	public Media(string uri) {

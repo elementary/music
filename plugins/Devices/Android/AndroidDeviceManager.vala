@@ -68,6 +68,7 @@ public class Noise.Plugins.AndroidDeviceManager : GLib.Object {
                 lm.lw.sideTree.deviceAdded ((BeatBox.Device)added);
             }
             else {
+                warning ("stop!");
                 mount_removed(added.get_mount());
             }
         }

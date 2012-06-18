@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.InfoPanel : Gtk.Grid {
+public class BeatBox.InfoPanel : Gtk.EventBox {
     private LibraryManager lm;
     private LibraryWindow lw;
     
@@ -33,6 +33,8 @@ public class BeatBox.InfoPanel : Gtk.Grid {
     private Granite.Widgets.Rating rating;
     private Label album;
     private Label year;
+    private int place = 1;
+    private Gtk.Grid container;
     
     public signal void to_update();
 
@@ -46,11 +48,19 @@ public class BeatBox.InfoPanel : Gtk.Grid {
         lm.media_played.connect (on_media_played);
     }
     
+    public int add_view (Gtk.Widget view) {
+    
+        container.attach (view, 0, place, 1, 1);
+        place++;
+        return place-1;
+    }
+    
     private void buildUI() {
 
         // add View class
         this.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-        this.set_row_spacing (6);
+        
+        container = new Gtk.Grid ();
 
         title = new Label("");
         artist = new Label("");
@@ -86,7 +96,9 @@ public class BeatBox.InfoPanel : Gtk.Grid {
         content.attach (album, 0, 4, 1, 1);
         content.attach (year, 0, 5, 1, 1);
 
-        this.attach (content, 0, 0, 1, 1);
+        container.attach (content, 0, 0, 1, 1);
+
+        this.add (container);
 
         // signals here
         rating.rating_changed.connect (ratingChanged);

@@ -362,10 +362,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         view_container_hpaned.set_position (view_container_pos);
 
         view_container_hpaned.pack1 (view_container, true, false);
-        var info_panel_beautifier = new Gtk.EventBox();
-        info_panel_beautifier.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-        info_panel_beautifier.add (info_panel);
-        view_container_hpaned.pack2 (info_panel_beautifier, false, false);
+        view_container_hpaned.pack2 (info_panel, false, false);
 
         // put the sidebar in a scrolled window so that it can scroll vertically
         var sidebar_scrolled = new Gtk.ScrolledWindow (null, null);

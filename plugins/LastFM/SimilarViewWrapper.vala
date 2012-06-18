@@ -56,7 +56,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
      * happens.
      */
     private bool should_update_media () {
-        return !(list_view as ListView).get_is_current_list ();
+        return !((ListView) list_view).get_is_current_list ();
     }
 
     private async void on_media_played (Media? new_media) {
@@ -99,6 +99,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
         var to_add = new Gee.LinkedList<Media>();
 
         foreach (Media m in list_view.get_media ()) {
+            assert (m!=null);
             to_add.add (m);
         }
 

@@ -81,6 +81,7 @@ public class BeatBox.ColumnBrowser : Box {
 
 		orientation = Orientation.HORIZONTAL;
 
+		media = new LinkedList<Media> ();
 		_media_results = new LinkedList<Media> ();
 
 		columns = new LinkedList<unowned MillerColumn> ();

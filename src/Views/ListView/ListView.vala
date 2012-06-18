@@ -286,16 +286,20 @@ public class BeatBox.ListView : ContentView, Gtk.Box {
 
 	public Gee.Collection<Media> get_media () {
 		var media_list = new Gee.LinkedList<Media> ();
-		foreach (var m in list_view.get_table ().get_values ())
-			media_list.add (m as Media);
+		foreach (var m in list_view.get_table ().get_values ()) {
+		    if (m != null)
+			    media_list.add ((Media) m);
+		}
 
 		return media_list;
 	}
 
 	public Gee.Collection<Media> get_visible_media () {
 		var media_list = new Gee.LinkedList<Media> ();
-		foreach (var m in list_view.get_visible_table ().get_values ())
-			media_list.add (m as Media);
+		foreach (var m in list_view.get_visible_table ().get_values ()) {
+		    if (m != null)
+			    media_list.add ((Media) m);
+		}
 
 		return media_list;
 	}

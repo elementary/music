@@ -71,7 +71,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 		if (need_create) {
 			try {
 				database.execute("CREATE TABLE playlists (`name` TEXT, `media` TEXT, 'sort_column_id' INT, 'sort_direction' TEXT, 'columns' TEXT)");
-				database.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` TEXT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column_id' INT, 'sort_direction' TEXT, 'columns' TEXT)");
+				database.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` INT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column_id' INT, 'sort_direction' TEXT, 'columns' TEXT)");
 
 				database.execute("""CREATE TABLE media (`uri` TEXT, 'file_size' INT, `title` TEXT,`artist` TEXT, 'composer' TEXT, 'album_artist' TEXT,
 				`album` TEXT, 'grouping' TEXT, `genre` TEXT,`comment` TEXT, 'lyrics' TEXT, 'album_path' TEXT, 'has_embedded' INT,
@@ -527,7 +527,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 				p.rowid = results.fetch_int(0);
 				p.name = results.fetch_string(1);
-				p.conditional = results.fetch_string(2);
+				p.conditional = (SmartPlaylist.ConditionalType)results.fetch_int(2);
 				p.queries_from_string(results.fetch_string(3));
 				p.limit = ( results.fetch_string(4) == "1") ? true : false;
 				p.limit_amount = results.fetch_int(5);
@@ -553,7 +553,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			foreach(SmartPlaylist s in smarts) {
 				query.set_string(":name", s.name);
-				query.set_string(":and_or", s.conditional);
+				query.set_int(":and_or", s.conditional);
 				query.set_string(":queries", s.queries_to_string());
 				query.set_int(":limit", ( s.limit ) ? 1 : 0);
 				query.set_int(":limit_amount", s.limit_amount);
@@ -577,7 +577,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			Query query = transaction.prepare("UPDATE `smart_playlists` SET name=:name, and_or=:and_or, queries=:queries, limit=:limit, limit_amount=:limit_amount, sort_column_id=:sort_column_id, sort_direction=:sort_direction, columns=:columns WHERE name=:name");
 
 			query.set_string(":name", p.name);
-			query.set_string(":and_or", p.conditional);
+			query.set_int(":and_or", (int)p.conditional);
 			query.set_string(":queries", p.queries_to_string());
 			query.set_int(":limit", ( p.limit ) ? 1 : 0);
 			query.set_int(":limit_amount", p.limit_amount);
