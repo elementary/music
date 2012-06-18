@@ -1,0 +1,8 @@
+[Plugin]
+Module=ipod-device
+IAge=2
+Name=Apple Devices Support
+Description=Add support for Apple iPod and iPhone
+Authors=Noise Developers
+Copyright=Copyright © 2012 Noise Developers
+Website=http://launchpad.net/noise

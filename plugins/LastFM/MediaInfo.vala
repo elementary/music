@@ -1,5 +1,8 @@
 /*-
- * Copyright (c) 2012       Corentin Noël <tintou@mailoo.org>
+ * Copyright (c) 2011-2012       Scott Ringwelski <sgringwe@mtu.edu>
+ *
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -20,20 +23,20 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-public class BeatBox.MediaInfo : GLib.Object {
+public class LastFM.MediaInfo : BeatBox.MediaInfo {
 	public BeatBox.Media? media;
-	public BeatBox.ArtistInfo? artist;
-	public BeatBox.TrackInfo? track;
-	public BeatBox.AlbumInfo? album;
+	public override LastFM.ArtistInfo? artist;
+	public override LastFM.TrackInfo? track;
+	public override LastFM.AlbumInfo? album;
 	
-	public MediaInfo () {
+	public MediaInfo() {
 		//don't initialize media because we check for null throughout the program
-		artist = new BeatBox.ArtistInfo ();
-		track = new BeatBox.TrackInfo ();
-		album = new BeatBox.AlbumInfo ();
+		artist = new LastFM.ArtistInfo.basic();
+		track = new LastFM.TrackInfo();
+		album = new LastFM.AlbumInfo.basic();
 	}
 	
-	public void update (BeatBox.ArtistInfo? art, BeatBox.TrackInfo? tra, BeatBox.AlbumInfo? alb, BeatBox.Media? s) {
+	public void update(LastFM.ArtistInfo? art, LastFM.TrackInfo? tra, LastFM.AlbumInfo? alb, BeatBox.Media? s) {
 		media = s;
 		artist = art;
 		track = tra;

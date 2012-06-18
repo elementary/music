@@ -25,7 +25,6 @@ using Gst;
 public class BeatBox.Pipeline : GLib.Object {
 	public Gst.Pipeline pipe;
 	public Equalizer eq;
-	public CDDA cdda;
 	public ReplayGain gapless;
 	public Video video;
 	
@@ -86,8 +85,7 @@ public class BeatBox.Pipeline : GLib.Object {
 		audiotee.set("alloc-pad", pad);
 		pad.link(sinkpad);
 		
-		// now add CDDA and Video
-		cdda = new CDDA();
+		// now add Video
 		video = new Video();
 		if(video.element != null) {
 			audiosinkqueue.link_many(video.element);

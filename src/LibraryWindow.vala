@@ -24,7 +24,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow {
+public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     /* signals */
     public signal void playPauseChanged ();
@@ -42,11 +42,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
     private BeatBox.MediaKeyListener mkl;
 
     /* Info related to the media being played */
-    private bool queriedlastfm; // whether or not we have queried last fm for the current media info
     private bool media_considered_played; // whether or not we have updated last played and added to already played list
     private bool added_to_play_count; // whether or not we have added one to play count on playing media
     private bool tested_for_video; // whether or not we have tested if media is video and shown video
-    private bool scrobbled_track;
+    private bool media_considered_previewed;
 
     public bool dragging_from_music     { get; set; default = false; } // TODO: make private
     public bool initialization_finished { get; private set; default = false; }
@@ -55,7 +54,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
     /* Main layout widgets */
     private Gtk.Box       verticalBox;
     private Gtk.Paned     view_container_hpaned; // view_container / info_panel
-    private InfoPanel     info_panel;
+    public InfoPanel     info_panel;
 
     private Gtk.Toolbar    main_toolbar; // Toolbar
     private Gtk.ToolButton previousButton;
@@ -90,7 +89,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
     private int window_width = 0;
     private int window_height = 0;
 
-
+    public signal void media_half_played (); // send after the half of the song
+    public signal void update_media_informations (); // send after 3 seconds
 
     public LibraryWindow (BeatBox.Beatbox app) {
         set_application (app);
@@ -141,7 +141,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
             // make sure we don't re-count stats
             if (main_settings.last_media_position > 5)
-                queriedlastfm = true;
+                media_considered_previewed = true;
             if(main_settings.last_media_position > 30)
                 media_considered_played = true;
             if(library_manager.media_active && (double)(main_settings.last_media_position/(double)library_manager.media_info.media.length) > 0.90)
@@ -362,7 +362,10 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         view_container_hpaned.set_position (view_container_pos);
 
         view_container_hpaned.pack1 (view_container, true, false);
-        view_container_hpaned.pack2 (info_panel, false, false);
+        var info_panel_beautifier = new Gtk.EventBox();
+        info_panel_beautifier.get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
+        info_panel_beautifier.add (info_panel);
+        view_container_hpaned.pack2 (info_panel_beautifier, false, false);
 
         // put the sidebar in a scrolled window so that it can scroll vertically
         var sidebar_scrolled = new Gtk.ScrolledWindow (null, null);
@@ -392,7 +395,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
         build_main_widgets ();
 
-        // add mounts to side tree view
+        // add mounts to side tree view
         library_manager.device_manager.loadPreExistingMounts();
 
         int i = main_settings.last_media_playing;
@@ -588,10 +591,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         var music_view_wrapper = new MusicViewWrapper (this);
         add_view (_("Music"), music_view_wrapper);
         music_view_wrapper.set_media_from_ids_async (library_manager.song_ids ());
-
-        // Add Similar playlist. FIXME: This is part of LastFM and shouldn't belong to the core in the future
-        var similar_view = new SimilarViewWrapper (this);
-        add_view (_("Similar"), similar_view);
 
         // Add Queue view
         var queue_view = new QueueViewWrapper (this);
@@ -815,21 +814,16 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 
         //reset some booleans
         tested_for_video = false;
-        queriedlastfm = false;
+        media_considered_previewed = false;
         media_considered_played = false;
         added_to_play_count = false;
-        scrobbled_track = false;
         
         update_sensitivities();
 
         // if radio, we can't depend on current_position_update. do that stuff now.
         if(library_manager.media_info.media.mediatype == Media.MediaType.STATION) {
-            queriedlastfm = true;
-            
-            library_manager.lfm.fetchCurrentAlbumInfo();
-            library_manager.lfm.fetchCurrentArtistInfo();
-            library_manager.lfm.fetchCurrentTrackInfo();
-            library_manager.lfm.postNowPlaying();
+            media_considered_previewed = true;
+            update_media_informations ();
             
             // always show notifications for the radio, since user likely does not know media
             notify_current_media ();
@@ -837,7 +831,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         else {
             Timeout.add(3000, () => {
                 if(library_manager.media_info.media != null && library_manager.media_info.media == m && m.rowid != LibraryManager.PREVIEW_MEDIA_ID) {
-                    library_manager.lfm.fetchCurrentSimilarSongs();
+                    update_media_informations();
                 }
                 
                 return false;
@@ -849,7 +843,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
     public virtual void playback_stopped(int was_playing) {
         //reset some booleans
         tested_for_video = false;
-        queriedlastfm = false;
+        media_considered_previewed = false;
         media_considered_played = false;
         added_to_play_count = false;
 
@@ -1150,11 +1144,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
         nextClicked();
     }
 
-    public virtual void current_position_update(int64 position) {
+    public virtual void current_position_update (int64 position) {
         if (!library_manager.media_active)
-            return;
-
-        if (library_manager.media_info.media.rowid == Media.PREVIEW_ROWID) // is preview
             return;
 
         double sec = ((double)position/1000000000);
@@ -1163,14 +1154,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
             library_manager.media_info.media.resume_pos = (int)sec;
 
         // at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
-        if(position > 3000000000 && !queriedlastfm) {
-            queriedlastfm = true;
-
-            library_manager.lfm.fetchCurrentSimilarSongs();
-            library_manager.lfm.fetchCurrentAlbumInfo();
-            library_manager.lfm.fetchCurrentArtistInfo();
-            library_manager.lfm.fetchCurrentTrackInfo();
-            library_manager.lfm.postNowPlaying();
+        if(position > 3000000000 && !media_considered_previewed) {
+            media_considered_previewed = true;
+            update_media_informations ();
         }
 
         //at 30 seconds in, we consider the media as played
@@ -1202,10 +1188,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWind
 #endif
         }
 
-        // at halfway, scrobble
-        if((double)(sec/(double)library_manager.media_info.media.length) > 0.50 && !scrobbled_track) {
-            scrobbled_track = true;
-            library_manager.lfm.postScrobbleTrack ();
+        if((double)(sec/(double)library_manager.media_info.media.length) > 0.50) {
+            media_half_played ();
         }
 
         // at 80% done with media, add 1 to play count

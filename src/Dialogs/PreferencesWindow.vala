@@ -35,6 +35,8 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
 
     Gtk.Button saveChanges;
     
+    public Granite.Widgets.StaticNotebook main_static_notebook;
+    
     public signal void changed(string folder);
     
     public PreferencesWindow (LibraryManager lm, LibraryWindow lw) {
@@ -45,6 +47,8 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
         build_ui();
         
         _lm.file_operations_done.connect(fileOperationsDone);
+        
+        BeatBox.plugins.hook_preferences_window (this);
     }
     
     void build_ui () {
@@ -57,7 +61,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
         set_transient_for(_lw);
         
         var main_grid = new Gtk.Grid ();
-        var main_static_notebook = new Granite.Widgets.StaticNotebook ();
+        main_static_notebook = new Granite.Widgets.StaticNotebook ();
         saveChanges = new Gtk.Button.from_stock (Gtk.Stock.CLOSE);
         saveChanges.margin_right = 12;
         saveChanges.margin_bottom = 12;

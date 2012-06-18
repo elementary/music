@@ -22,24 +22,24 @@
 
 using Gst;
 
-public class BeatBox.CDRipper : GLib.Object {
-	LibraryManager lm;
+public class Noise.CDRipper : GLib.Object {
+	BeatBox.LibraryManager lm;
 	public dynamic Gst.Pipeline pipeline;
 	public dynamic Gst.Element src;
 	public dynamic Gst.Element queue;
 	public dynamic Gst.Element filter;
 	public dynamic Gst.Element sink;
 	
-	Media current_media; // media currently being processed/ripped
+	BeatBox.Media current_media; // media currently being processed/ripped
 	private string _device;
 	public int track_count;
 	private Format _format;
 	
-	public signal void media_ripped(Media s, bool success);
+	public signal void media_ripped(BeatBox.Media s, bool success);
 	public signal void progress_notification(double progress);
 	public signal void error(string err, Message message);
 	
-	public CDRipper(LibraryManager lm, string device, int count) {
+	public CDRipper(BeatBox.LibraryManager lm, string device, int count) {
 		this.lm = lm;
 		_device = device;
 		track_count = count;
@@ -145,7 +145,7 @@ public class BeatBox.CDRipper : GLib.Object {
         return true;
     }
     
-    public void ripMedia(uint track, Media s) {
+    public void ripMedia(uint track, BeatBox.Media s) {
 		var f = lm.fo.get_new_destination(s);
 		
 		sink.set_state(Gst.State.NULL);

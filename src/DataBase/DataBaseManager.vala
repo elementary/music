@@ -42,7 +42,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 
 	/** Creates/Reads the database file and folder **/
 	private void init_database () {
-		var data_dir = GLib.File.new_for_path (GLib.Path.build_filename (Environment.get_user_data_dir (), lm.lw.app.get_name ()));
+		var data_dir = GLib.File.new_for_path (GLib.Path.build_filename (Environment.get_user_data_dir (), lm.lw.app.get_name_down ()));
 		if (!data_dir.query_exists ()) {
 			try {
 				data_dir.make_directory_with_parents (null);
@@ -81,9 +81,9 @@ public class BeatBox.DataBaseManager : GLib.Object {
 
 				database.execute("CREATE TABLE devices ('unique_id' TEXT, 'sync_when_mounted' INT,'sync_music' INT, 'sync_podcasts' INT, 'sync_audiobooks' INT, 'sync_all_music' INT, 'sync_all_podcasts' INT, 'sync_all_audiobooks' INT, 'music_playlist' STRING, 'podcast_playlist' STRING, 'audiobook_playlist' STRING, 'last_sync_time' INT)");
 
-				database.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'url' TEXT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT, 'similar' TEXT, 'url_image' TEXT)");
-				database.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'url' TEXT, 'release_date' TEXT, 'listeners' INT, 'playcount' INT, 'tags' TEXT,  'url_image' TEXT)");
-				database.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'url' TEXT, 'duration' INT, 'streamable' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT, 'tags' TEXT)");
+				database.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'image_uri' TEXT)");
+				database.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'release_date' TEXT, 'summary' TEXT, 'listeners' INT, 'playcount' INT, 'image_uri' TEXT)");
+				database.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'album' TEXT, 'duration' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT)");
 
 				add_default_smart_playlists ();
 			}
@@ -609,28 +609,21 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 	}
 
 	/** Last FM objects **/
-	public void save_albums(GLib.List<LastFM.AlbumInfo> albums) {
+	public void save_albums(GLib.List<BeatBox.AlbumInfo> albums) {
 		try {
 			database.execute("DELETE FROM `albums`");
 			transaction = database.begin_transaction();
-			Query query = transaction.prepare("INSERT INTO `albums` (`name`, 'artist', `mbid`, `url`, 'release_date', 'listeners', 'playcount', 'tags', 'url_image') VALUES (:name, :artist, :mbid, :url, :release_date, :listeners, :playcount, :tags, :url_image);");
+			Query query = transaction.prepare("INSERT INTO `albums` (`name`, 'artist', `mbid`, 'release_date', 'summary', 'listeners', 'playcount', 'image_uri') VALUES (:name, :artist, :mbid, :release_date, :summary, :listeners, :playcount, :image_uri);");
 
-			foreach(LastFM.AlbumInfo a in albums) {
+			foreach(BeatBox.AlbumInfo a in albums) {
 				query.set_string(":name", a.name);
 				query.set_string(":artist", a.artist);
 				query.set_string(":mbid", a.mbid);
-				query.set_string(":url", a.url);
-				query.set_string(":release_date", a.releasedate);
+				query.set_string(":release_date", a.get_releasedate_as_string ());
+				query.set_string(":summary", a.summary);
 				query.set_int(":listeners", a.listeners);
 				query.set_int(":playcount", a.playcount);
-
-				string tags = "";
-				foreach(LastFM.Tag tag in a.tags()) {
-					tags += tag.tag + "<value_separator>" + tag.url + "<tag_seperator>";
-				}
-
-				query.set_string(":tags", tags);
-				query.set_string(":url_image", a.url_image.to_string());
+				query.set_string(":image_uri", a.image_uri);
 				query.execute();
 			}
 
@@ -641,43 +634,25 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		}
 	}
 
-	public GLib.List<LastFM.AlbumInfo> load_albums() {
-		var rv = new GLib.List<LastFM.AlbumInfo>();
+	public GLib.List<BeatBox.AlbumInfo> load_albums() {
+		var rv = new GLib.List<BeatBox.AlbumInfo>();
 
 		try {
 			string script = "SELECT rowid,* FROM `albums`";
 			Query query = new Query(database, script);
 
 			for (var results = query.execute(); !results.finished; results.next() ) {
-				LastFM.AlbumInfo a = new LastFM.AlbumInfo.basic();
+				BeatBox.AlbumInfo a = new BeatBox.AlbumInfo();
 
 				//int rowid = results.fetch_int(0);
-				a.name = results.fetch_string(1);
-				a.artist = results.fetch_string(2);
-				a.mbid = results.fetch_string(3);
-				a.url = results.fetch_string(4);
-				a.releasedate = results.fetch_string(5);
-				a.listeners = results.fetch_int(6);
-				a.playcount = results.fetch_int(7);
-
-				string tag_string = results.fetch_string(8);
-				string[] tag_strings = tag_string.split("<tag_seperator>", 0);
-
-				int index;
-				for(index = 0; index < tag_strings.length - 1; ++index) {
-					string[] tag_values = tag_strings[index].split("<value_separator>", 0);
-
-					LastFM.Tag t = new LastFM.Tag.with_string_and_url(tag_values[0], tag_values[1]);
-					a.addTag(t);
-				}
-
-				string url_image = results.fetch_string(9);
-				//string local_image = results.fetch_string(10);
-
-				if(url_image != null && url_image != "")
-					a.url_image = new LastFM.Image.with_import_string(url_image);
-				else
-					a.url_image = new LastFM.Image.basic();
+				a.name = results.fetch_string (1);
+				a.artist = results.fetch_string (2);
+				a.mbid = results.fetch_string (3);
+				a.set_releasedate_from_string (results.fetch_string (4));
+				a.summary = results.fetch_string (5);
+				a.listeners = results.fetch_int (6);
+				a.playcount = results.fetch_int (7);
+				a.image_uri = results.fetch_string (8);
 
 				rv.append(a);
 			}
@@ -689,54 +664,25 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 
-	public GLib.List<LastFM.ArtistInfo> load_artists() {
-		var rv = new GLib.List<LastFM.ArtistInfo>();
+	public GLib.List<BeatBox.ArtistInfo> load_artists() {
+		var rv = new GLib.List<BeatBox.ArtistInfo>();
 
 		try {
 			string script = "SELECT rowid,* FROM `artists`";
 			Query query = new Query(database, script);
 
 			for (var results = query.execute(); !results.finished; results.next() ) {
-				LastFM.ArtistInfo a = new LastFM.ArtistInfo.basic();
+				BeatBox.ArtistInfo a = new BeatBox.ArtistInfo();
 
 				//int rowid = results.fetch_int(0);
 				a.name = results.fetch_string(1);
 				a.mbid = results.fetch_string(2);
-				a.url = results.fetch_string(3);
-				a.streamable = results.fetch_int(4);
-				a.listeners = results.fetch_int(5);
-				a.playcount = results.fetch_int(6);
-				a.published = results.fetch_string(7);
-				a.summary = results.fetch_string(8);
-				a.content = results.fetch_string(9);
-
-				string tag_string = results.fetch_string(10);
-				string[] tag_strings = tag_string.split("<tag_seperator>", 0);
-
-				int index;
-				for(index = 0; index < tag_strings.length - 1; ++index) {
-					string[] tag_values = tag_strings[index].split("<value_separator>", 0);
-
-					LastFM.Tag t = new LastFM.Tag.with_string_and_url(tag_values[0], tag_values[1]);
-					a.addTag(t);
-				}
-
-				string sim_string = results.fetch_string(11);
-				string[] sim_strings = sim_string.split("<similar_seperator>", 0);
-
-				for(index = 0; index < sim_strings.length - 1; ++index) {
-					string[] sim_values = sim_strings[index].split("<value_separator>", 0);
-
-					LastFM.ArtistInfo sim = new LastFM.ArtistInfo.with_artist_and_url(sim_values[0], sim_values[1]);
-					a.addSimilarArtist(sim);
-				}
-
-				string url_image = results.fetch_string(12);
-
-				if(url_image != null && url_image != "")
-					a.url_image = new LastFM.Image.with_import_string(url_image);
-				else
-					a.url_image = new LastFM.Image.basic();
+				a.listeners = results.fetch_int(3);
+				a.playcount = results.fetch_int(4);
+				a.published = results.fetch_string(5);
+				a.summary = results.fetch_string(6);
+				a.content = results.fetch_string(7);
+				a.image_uri = results.fetch_string(8);
 
 				rv.append(a);
 			}
@@ -748,36 +694,21 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 
-	public void save_artists(GLib.List<LastFM.ArtistInfo> artists) {
+	public void save_artists(GLib.List<BeatBox.ArtistInfo> artists) {
 		try {
 			database.execute("DELETE FROM `artists`");
 			transaction = database.begin_transaction();
-			Query query = transaction.prepare("INSERT INTO `artists` (`name`, `mbid`, `url`, 'streamable', 'listeners', 'playcount', 'published', 'summary', 'content', 'tags', 'similar', 'url_image') VALUES (:name, :mbid, :url, :streamable, :listeners, :playcount, :published, :summary, :content, :tags, :similar, :url_image);");
+			Query query = transaction.prepare("INSERT INTO `artists` (`name`, `mbid`, 'listeners', 'playcount', 'published', 'summary', 'content', 'image_uri') VALUES (:name, :mbid, :listeners, :playcount, :published, :summary, :content, :image_uri);");
 
-			foreach(LastFM.ArtistInfo a in artists) {
+			foreach(BeatBox.ArtistInfo a in artists) {
 				query.set_string(":name", a.name);
 				query.set_string(":mbid", a.mbid);
-				query.set_string(":url", a.url);
-				query.set_int(":streamable", a.streamable);
 				query.set_int(":listeners", a.listeners);
 				query.set_int(":playcount", a.playcount);
 				query.set_string(":published", a.published);
 				query.set_string(":summary", a.summary);
 				query.set_string(":content", a.content);
-
-				string tags = "";
-				foreach(LastFM.Tag tag in a.tags()) {
-					tags += tag.tag + "<value_separator>" + tag.url + "<tag_seperator>";
-				}
-
-				string similar = "";
-				foreach(LastFM.ArtistInfo sim in a.similarArtists()) {
-					similar += sim.name + "<value_separator>" + sim.url + "<similar_seperator>";
-				}
-
-				query.set_string(":tags", tags);
-				query.set_string(":similar", similar);
-				query.set_string(":url_image", a.url_image.to_string());
+				query.set_string(":image_uri", a.image_uri);
 				query.execute();
 			}
 
@@ -788,38 +719,26 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		}
 	}
 
-	public GLib.List<LastFM.TrackInfo> load_tracks() {
-		var rv = new GLib.List<LastFM.TrackInfo>();
+	public GLib.List<BeatBox.TrackInfo> load_tracks() {
+		var rv = new GLib.List<BeatBox.TrackInfo>();
 
 		try {
 			string script = "SELECT rowid,* FROM `tracks`";
 			Query query = new Query(database, script);
 
 			for (var results = query.execute(); !results.finished; results.next() ) {
-				LastFM.TrackInfo t = new LastFM.TrackInfo.basic();
+				BeatBox.TrackInfo t = new BeatBox.TrackInfo();
 
 				//int rowid = results.fetch_int(0);
 				t.id = results.fetch_int(1);
 				t.name = results.fetch_string(2);
 				t.artist = results.fetch_string(3);
-				t.url = results.fetch_string(4);
+				t.album = results.fetch_string(4);
 				t.duration = results.fetch_int(5);
-				t.streamable = results.fetch_int(6);
-				t.listeners = results.fetch_int(7);
-				t.playcount = results.fetch_int(8);
-				t.summary = results.fetch_string(9);
-				t.content = results.fetch_string(10);
-
-				string tag_string = results.fetch_string(11);
-				string[] tag_strings = tag_string.split("<tag_seperator>", 0);
-
-				int index;
-				for(index = 0; index < tag_strings.length - 1; ++index) {
-					string[] tag_values = tag_strings[index].split("<value_separator>", 0);
-
-					LastFM.Tag tag = new LastFM.Tag.with_string_and_url(tag_values[0], tag_values[1]);
-					t.addTag(tag);
-				}
+				t.listeners = results.fetch_int(6);
+				t.playcount = results.fetch_int(7);
+				t.summary = results.fetch_string(8);
+				t.content = results.fetch_string(9);
 
 				rv.append(t);
 			}
@@ -831,30 +750,23 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 
-	public void save_tracks(GLib.List<LastFM.TrackInfo> tracks) {
+	public void save_tracks(GLib.List<BeatBox.TrackInfo> tracks) {
 		try {
 			database.execute("DELETE FROM `tracks`");
 			transaction = database.begin_transaction();
-			Query query = transaction.prepare("INSERT INTO `tracks` ('id', `name`, `artist`, `url`, 'duration', 'streamable', 'listeners', 'playcount', 'summary', 'content', 'tags') VALUES (:id, :name, :artist, :url, :duration, :streamable, :listeners, :playcount, :summary, :content, :tags);");
+			Query query = transaction.prepare("INSERT INTO `tracks` ('id', `name`, `artist`, `album`, 'duration', 'listeners', 'playcount', 'summary', 'content') VALUES (:id, :name, :artist, :album, :duration, :listeners, :playcount, :summary, :content);");
 
-			foreach(LastFM.TrackInfo t in tracks) {
+			foreach(BeatBox.TrackInfo t in tracks) {
 				query.set_int(":id", t.id);
 				query.set_string(":name", t.name);
 				query.set_string(":artist", t.artist);
-				query.set_string(":url", t.url);
+				query.set_string(":album", t.album);
 				query.set_int(":duration", t.duration);
-				query.set_int(":streamable", t.streamable);
 				query.set_int(":listeners", t.listeners);
 				query.set_int(":playcount", t.playcount);
 				query.set_string(":summary", t.summary);
 				query.set_string(":content", t.content);
 
-				string tags = "";
-				foreach(LastFM.Tag tag in t.tags()) {
-					tags += tag.tag + "<value_separator>" + tag.url + "<tag_seperator>";
-				}
-
-				query.set_string(":tags", tags);
 				query.execute();
 			}
 

@@ -35,6 +35,8 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	LinkedList<GLib.Object> toRemove;
 	bool inThread;
 	
+	public signal void periodical_save ();
+	
 	public DataBaseUpdater(LibraryManager lm, BeatBox.DataBaseManager databm) {
 		this.lm = lm;
 		dbm = databm;
@@ -190,9 +192,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 		
 		dbm.save_playlists(playlists_and_queue);
 		dbm.save_smart_playlists(lm.smart_playlists());
-		dbm.save_artists(lm.lfm.artists());
-		dbm.save_albums(lm.lfm.albums());
-		dbm.save_tracks(lm.lfm.tracks());
 		dbm.save_devices(lm.device_manager.device_preferences());
+		periodical_save ();
 	}
 }

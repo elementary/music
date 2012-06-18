@@ -1,0 +1,8 @@
+[Plugin]
+Module=android-device
+IAge=2
+Name=Android Devices Support
+Description=Add support for Android Phones
+Authors=Noise Developers
+Copyright=Copyright © 2012 Noise Developers
+Website=http://launchpad.net/noise

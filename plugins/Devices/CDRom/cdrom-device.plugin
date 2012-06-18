@@ -1,0 +1,8 @@
+[Plugin]
+Module=cdrom-device
+IAge=2
+Name=CDRom Devices Support
+Description=Add support for Audio CDs
+Authors=Noise Developers
+Copyright=Copyright © 2012 Noise Developers
+Website=http://launchpad.net/noise

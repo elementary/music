@@ -27,26 +27,13 @@ vala_precompile(VALA_C
     Utils/Numeric.vala
     Utils/Icon.vala
 
-    LastFM/Core.vala
-    LastFM/Settings.vala
-    LastFM/AlbumInfo.vala
-    LastFM/Image.vala
-    LastFM/Tag.vala
-    LastFM/TrackInfo.vala
-    LastFM/ArtistInfo.vala
-    LastFM/SimilarMedia.vala
-
     Noise.vala
 
-    Devices/DeviceManager.vala
     Devices/Device.vala
-    Devices/iPodDevice.vala
-    Devices/AndroidDevice.vala
-    Devices/CDRomDevice.vala
+    Devices/DeviceManager.vala
     Devices/DevicePreferences.vala
 
     Objects/SmartQuery.vala
-    Objects/MediaInfo.vala
     Objects/SmartPlaylist.vala
     Objects/LyricFetcher.vala
     Objects/SoundMenuIntegration.vala
@@ -54,11 +41,14 @@ vala_precompile(VALA_C
     Objects/MediaKeyListener.vala
     Objects/MPRIS.vala
     Objects/Playlist.vala
+    Objects/MediaInfo.vala
+    Objects/AlbumInfo.vala
+    Objects/ArtistInfo.vala
+    Objects/TrackInfo.vala
 
     Widgets/NavigationArrows.vala
     Widgets/SmartAlbumRenderer.vala
     Widgets/TopDisplay.vala
-    Widgets/SimilarMediaView.vala
     Widgets/InfoPanel.vala
     Widgets/EmbeddedAlert.vala
     Widgets/SimpleOptionChooser.vala
@@ -75,11 +65,9 @@ vala_precompile(VALA_C
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
 
-    GStreamer/CDDA.vala
     GStreamer/Video.vala
     GStreamer/Equalizer.vala
     GStreamer/Pipeline.vala
-    GStreamer/CDRipper.vala
     GStreamer/GStreamerTagger.vala
     GStreamer/ReplayGain.vala
     GStreamer/Streamer.vala
@@ -91,7 +79,6 @@ vala_precompile(VALA_C
     Views/Wrappers/HistoryViewWrapper.vala
     Views/Wrappers/QueueViewWrapper.vala
     Views/Wrappers/DeviceViewWrapper.vala
-    Views/Wrappers/SimilarViewWrapper.vala
     Views/Wrappers/PlaylistViewWrapper.vala
 
     Views/DeviceView.vala

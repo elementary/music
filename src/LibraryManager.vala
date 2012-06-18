@@ -91,8 +91,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 	// All album art
 	private HashMap<string, Gdk.Pixbuf> cover_album_art = new HashMap<string, Gdk.Pixbuf> ();
 
-	public LastFM.Core lfm;
-
 	private Mutex _media_lock; // lock for _media. use this around _media, _songs, ...
 
 	private Mutex _playlists_lock; // lock for _playlists
@@ -161,14 +159,9 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_media = new HashMap<int, Media>();
 		_songs = new HashMap<int, Media>(); // subset of _songs
 		
-		lfm = new LastFM.Core(this);
-		
 		_played_index = 0;
 		
 		media_info = new BeatBox.MediaInfo();
-		media_info.track = new LastFM.TrackInfo.basic();
-		media_info.artist = new LastFM.ArtistInfo.basic();
-		media_info.album = new LastFM.AlbumInfo.basic();
 		
 		int repeatValue = lw.main_settings.repeat_mode;
 		if(repeatValue == 0)

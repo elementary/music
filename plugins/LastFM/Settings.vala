@@ -4,7 +4,7 @@ namespace LastFM {
 
         public string session_key { get; set; }
         
-        public Settings ()  {
+        public Settings () {
             base ("org.pantheon.noise.LastFM");
         }
     }

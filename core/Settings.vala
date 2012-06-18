@@ -63,7 +63,7 @@ namespace Noise {
         public string selected_preset { get; set; }
         public string[] custom_presets { get; set;}
         
-        public Equalizer ()  {
+        public Equalizer () {
             base ("org.pantheon.noise.Equalizer");
         }
         

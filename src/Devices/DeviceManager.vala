@@ -25,7 +25,6 @@ using Gee;
 public class BeatBox.DeviceManager : GLib.Object {
 	LibraryManager lm;
 	VolumeMonitor vm;
-	LinkedList<Device> devices;
 	
 	Mutex _pref_lock;
 	HashTable<string, DevicePreferences> _device_preferences;
@@ -33,24 +32,26 @@ public class BeatBox.DeviceManager : GLib.Object {
 	public signal void device_added(Device d);
 	public signal void device_removed(Device d);
 	
+	public signal void mount_added (Mount mount);
+	public signal void mount_removed (Mount mount);
+	
 	public DeviceManager(LibraryManager lm) {
 		this.lm = lm;
 		vm = VolumeMonitor.get();
-		devices = new LinkedList<Device>();
 		
-		_device_preferences = new HashTable<string, DevicePreferences>(null, null);
+		_device_preferences = new HashTable<string, BeatBox.DevicePreferences>(null, null);
 		
 		// pre-load devices and their preferences
 		_pref_lock.lock();
-		foreach(DevicePreferences dp in lm.dbm.load_devices()) {
+		foreach(BeatBox.DevicePreferences dp in lm.dbm.load_devices()) {
 			_device_preferences.set(dp.id, dp);
 		}
 		_pref_lock.unlock();
 		
-		vm.mount_added.connect(mount_added);
+		vm.mount_added.connect((mount) => {mount_added (mount);});
 		vm.mount_changed.connect(mount_changed);
 		vm.mount_pre_unmount.connect(mount_pre_unmount);
-		vm.mount_removed.connect(mount_removed);
+		vm.mount_removed.connect((mount) => {mount_removed (mount);});
 		vm.volume_added.connect(volume_added);
 	}
 	
@@ -100,59 +101,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 		}
 	}
 	
-	public virtual void mount_added (Mount mount) {
-		foreach(var dev in devices) {
-			if(dev.get_path() == mount.get_default_location().get_path()) {
-				return;
-			}
-		}
-		
-		Device added;
-		if(mount.get_default_location().get_uri().has_prefix("cdda://") && mount.get_volume() != null) {
-			added = new CDRomDevice(lm, mount);
-		}
-		else if(File.new_for_path(mount.get_default_location().get_path() + "/iTunes_Control").query_exists() ||
-				File.new_for_path(mount.get_default_location().get_path() + "/iPod_Control").query_exists() ||
-				File.new_for_path(mount.get_default_location().get_path() + "/iTunes/iTunes_Control").query_exists()) {
-			added = new iPodDevice(lm, mount);	
-		}
-		else if(mount.get_default_location().get_parse_name().has_prefix("afc://")) {
-			added = new iPodDevice(lm, mount);
-		}
-		else if(File.new_for_path(mount.get_default_location().get_path() + "/Android").query_exists()) {
-			added = new AndroidDevice(mount);
-		}
-		else if(lm.lw.main_settings.music_folder.contains(mount.get_default_location().get_path())) {
-			// user mounted music folder, rescan for images
-			lm.lw.main_settings.music_mount_name = mount.get_volume().get_name();
-			lm.recheck_files_not_found();
-			
-			lm.fetch_all_cover_art_async ();
-			
-			return;
-		}
-		else { // not a music player, ignore it
-			return;
-		}
-		
-		if(added == null) {
-			warning ("Found device at %s is invalid. Not using it", mount.get_default_location().get_parse_name());
-			return;
-		}
-		
-		added.set_mount(mount);
-		devices.add(added);
-		
-		if(added.start_initialization()) {
-			added.finish_initialization();
-			added.initialized.connect(deviceInitialized);
-		}
-		else {
-			mount_removed(added.get_mount());
-		}
-	}
-	
-	void deviceInitialized(Device d) {
+	public void deviceInitialized(Device d) {
 		stdout.printf("adding device\n");
 		device_added(d);
 		lm.lw.update_sensitivities();
@@ -166,23 +115,10 @@ public class BeatBox.DeviceManager : GLib.Object {
 		//stdout.printf("mount_preunmount:%s\n", mount.get_uuid());
 	}
 	
-	public virtual void mount_removed (Mount mount) {
-		foreach(var dev in devices) {
-			if(dev.get_path() == mount.get_default_location().get_path()) {
-				// Let other objects remove device reference
-				device_removed(dev);
-				
-				// Actually remove it
-				devices.remove(dev);
-				
-				return;
-			}
-		}
-	}
-	
+		
 	/** Device Preferences **/
 	public GLib.List<DevicePreferences> device_preferences() {
-		var rv = new GLib.List<DevicePreferences>();
+		var rv = new GLib.List<BeatBox.DevicePreferences>();
 		
 		_pref_lock.lock();
 		foreach(var pref in _device_preferences.get_values()) {

@@ -26,21 +26,13 @@
 using Xml;
 using Json;
 
-public class LastFM.TrackInfo : GLib.Object {
+public class LastFM.TrackInfo : BeatBox.TrackInfo {
 	static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
 	
-	private int _id;
-	private string _name;
-	private string _artist;
-	private string _album;
 	private string _url;
-	private int _duration;
 	private int _streamable;
 	private int _listeners;
 	private int _playcount;
-	
-	private string _summary;
-	private string _content;
 	
 	private Gee.ArrayList<LastFM.Tag> _tags;
 	private LastFM.Tag tagToAdd;
@@ -48,7 +40,6 @@ public class LastFM.TrackInfo : GLib.Object {
 	//public signal void track_info_retrieved(LastFM.TrackInfo info);
 	
 	public TrackInfo.basic() {
-		_name = "Unknown Track";
 		_tags = new Gee.ArrayList<LastFM.Tag>();
 	}
 	
@@ -112,33 +103,33 @@ public class LastFM.TrackInfo : GLib.Object {
                        
             if(parent == "track") {
 				if(node_name == "name")
-					_name = node_content;
+					this.name = node_content;
 				else if(node_name == "id")
-					_id = int.parse(node_content);
+					this.id = int.parse(node_content);
 				else if(node_name == "url")
 					_url = node_content;
 				else if(node_name == "duration")
-					_duration = int.parse(node_content);
+					this.duration = int.parse(node_content);
 				else if(node_name == "streamable")
 					_streamable = int.parse(node_content);
 				else if(node_name == "playcount")
-					_playcount = int.parse(node_content);
+					this.playcount = int.parse(node_content);
 				else if(node_name == "listeners")
-					_listeners = int.parse(node_content);
+					this.listeners = int.parse(node_content);
 			}
 			else if(parent == "trackalbum") {
 				if(node_name == "title")
-					_album = node_content;
+					this.album = node_content;
 			}
 			else if(parent == "trackartist") {
 				if(node_name == "name")
-					_artist = node_content;
+					this.artist = node_content;
 			}
 			else if(parent == "trackwiki") {
 				if(node_name == "summary")
-					_summary = node_content;
+					this.summary = node_content;
 				else if(node_name == "content")
-					_content = node_content;
+					this.content = node_content;
 			}
 			else if(parent == "tracktoptagstag") {
 				if(node_name == "name") {
@@ -157,59 +148,16 @@ public class LastFM.TrackInfo : GLib.Object {
         }
     }
     
-    public int id {
-		get { return _id; }
-		set { _id = value; }
-	}
-	
-	public string name {
-		get { return _name; }
-		set { _name = value; }
-	}
-	
-	public string artist {
-		get { return _artist; }
-		set { _artist = value; }
-	}
-	
-	public string album {
-		get { return _album; }
-		set { _album = value; }
-	}
 	
 	public string url {
 		get { return _url; }
 		set { _url = value; }
 	}
 	
-	public int duration {
-		get { return _duration; }
-		set { _duration = value; }
-	}
-	
+
 	public int streamable {
 		get { return _streamable; }
 		set { _streamable = value; }
-	}
-	
-	public int playcount {
-		get { return _playcount; }
-		set { _playcount = value; }
-	}
-	
-	public int listeners {
-		get { return _listeners; }
-		set { _listeners = value; }
-	}
-	
-	public string summary {
-		get { return _summary; }
-		set { _summary = value; }
-	}
-	
-	public string content {
-		get { return _content; }
-		set { _content = value; }
 	}
 	
 	public void addTag(Tag t) {

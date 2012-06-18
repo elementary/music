@@ -27,7 +27,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 
     private Media base_media;
 
-    public SimilarViewWrapper (LibraryWindow lw) {
+    public SimilarViewWrapper (LibraryWindow lw, LastFM.Core core) {
         base (lw, Hint.SIMILAR);
 
         var tvs = lw.library_manager.similar_setup;
@@ -40,12 +40,12 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 
         set_default_alert ();
 
-		// Refresh view layout
-		pack_views ();
+        // Refresh view layout
+        pack_views ();
 
         // Connect data signals
         lm.media_played.connect (on_media_played);
-        lm.lfm.similar_retrieved.connect (similar_retrieved);
+        core.similar_retrieved.connect (similar_retrieved);
     }
 
     /**

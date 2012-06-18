@@ -2,7 +2,7 @@
 
 cmake_minimum_required (VERSION 2.6)
 cmake_policy(VERSION 2.6)
-project(Noise)
+project(noise)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
 
 find_package(PkgConfig)
@@ -66,7 +66,7 @@ set (NORMAL_CFLAGS ${DEPS_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHE
 set (NORMAL_LIBRARIES ${DEPS_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
 set (NORMAL_LINK_DIRS ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
 
-set(PLUGIN_DIR "${CMAKE_INSTALL_PREFIX}/lib/noise/plugins}")
+set(PLUGIN_DIR "${CMAKE_INSTALL_PREFIX}/lib/noise/plugins")
 set(ICON_DIR "${CMAKE_INSTALL_PREFIX}/share/noise/icons/hicolor")
 
 add_subdirectory(vapi)
@@ -77,7 +77,7 @@ add_subdirectory(schemas)
 add_subdirectory(po)
 add_subdirectory(core)
 
-if (${ENABLE_PLUGINS})
+#if (${ENABLE_PLUGINS})
 	add_subdirectory(plugins)
-endif ()
+#endif ()
 

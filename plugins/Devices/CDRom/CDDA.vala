@@ -23,9 +23,9 @@
 using Gst;
 using Gee;
 
-public class BeatBox.CDDA : GLib.Object {
-	public static LinkedList<Media> getMediaList(string device_path) {
-		var rv = new LinkedList<Media>();
+public class Noise.CDDA : GLib.Object {
+	public static LinkedList<BeatBox.Media> getMediaList(string device_path) {
+		var rv = new LinkedList<BeatBox.Media>();
 		File device_file;
 		FileInfo device_info;
 		string album_name;
@@ -58,7 +58,7 @@ public class BeatBox.CDDA : GLib.Object {
 		
 			int index = 1;
 			for (device_info = enumerator.next_file(); device_info != null; device_info = enumerator.next_file()) {
-				Media s = new Media("cdda://" + index.to_string());
+				BeatBox.Media s = new BeatBox.Media("cdda://" + index.to_string());
 				s.isTemporary = true;
 				
 				var title = device_info.get_attribute_string("xattr::org.gnome.audio.title");
@@ -84,8 +84,6 @@ public class BeatBox.CDDA : GLib.Object {
 					if(info != null) {
 						if(album_name == null || album_name == "")
 							album_name = info.album;
-						if((album_genre == null || album_genre == "") && info.tagStrings().size > 0)
-							album_genre = info.tagStrings().get(0);
 						
 					}
 				}
@@ -179,10 +177,8 @@ public class BeatBox.CDDA : GLib.Object {
 		return builder.str;
 	}
 	
-	public static LastFM.TrackInfo getInfoFromTitleArtist(string artist, string title) {
-		LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
-		
-		track = new LastFM.TrackInfo.with_info(artist, title);
+	public static BeatBox.TrackInfo getInfoFromTitleArtist(string artist, string title) {
+		BeatBox.TrackInfo track = new BeatBox.TrackInfo.with_info(artist, title);
 		
 		return track;
 	}

@@ -31,7 +31,7 @@ public class Noise.Plugins.Interface : Object {
         BOTTOMBAR,
         TOOLBAR,
         SOURCE_VIEW,
-        SETTINGS_DIALOG,
+        SETTINGS_WINDOW,
         WINDOW
     }
 
@@ -41,7 +41,7 @@ public class Noise.Plugins.Interface : Object {
     public Gtk.Notebook context {internal set; get; }
     public Gtk.Notebook sidebar {internal set; get; }
     public Gtk.Notebook bottombar {internal set; get; }
-    public Gtk.Application scratch_app {internal set; get; }
+    public Gtk.Application noise_app {internal set; get; }
     public Gtk.Menu main_menu {private set; get; }
     public Gtk.Menu addons_menu {private set; get; }
     public Gtk.Toolbar toolbar {internal set; get; }
@@ -82,8 +82,8 @@ public class Noise.Plugins.Interface : Object {
                 hook_function (source_view);
             }
             break;
-        case Hook.SETTINGS_DIALOG:
-            manager.hook_preferences_dialog.connect_after ( (d) => {
+        case Hook.SETTINGS_WINDOW:
+            manager.hook_preferences_window.connect_after ( (d) => {
                 hook_function (d);
             });
             break;
@@ -167,22 +167,21 @@ public class Noise.Plugins.Interface : Object {
 }
 
 
-public class Noise.Plugins.Manager : Object
-{
+public class Noise.Plugins.Manager : Object {
     public signal void hook_main_menu (Gtk.Menu menu);
     public signal void hook_toolbar ();
     public signal void hook_set_arg (string set_name, string? set_arg);
     public signal void hook_notebook_bottom (Gtk.Notebook notebook);
     public signal void hook_source_view(Gtk.TextView view);
     public signal void hook_new_window(Gtk.Window window);
-    public signal void hook_preferences_dialog(Gtk.Dialog dialog);
+    public signal void hook_preferences_window(Gtk.Window window);
     public signal void hook_toolbar_context_menu(Gtk.Menu menu);
 
     Peas.Engine engine;
     Peas.ExtensionSet exts;
         
     public Gtk.Toolbar toolbar { set { plugin_iface.toolbar = value; } }
-    public Gtk.Application scratch_app { set { plugin_iface.scratch_app = value;  }}
+    public Gtk.Application noise_app { set { plugin_iface.noise_app = value;  }}
 
     //[CCode (cheader_filename = "libpeas/libpeas.h", cname = "peas_extension_set_foreach")]
     //extern static void peas_extension_set_foreach (Peas.ExtensionSet extset, Peas.ExtensionSetForeachFunc option, void* data);
@@ -192,8 +191,7 @@ public class Noise.Plugins.Manager : Object
     
     public Noise.Plugins.Interface plugin_iface { private set; public get; }
 
-    public Manager(GLib.Settings s, string f, string d, string? e, string? argument_set)
-    {
+    public Manager(GLib.Settings s, string f, string d, string? e, string? argument_set) {
         settings = s;
         settings_field = f;
 
@@ -247,12 +245,13 @@ public class Noise.Plugins.Manager : Object
                 ((Peas.Activatable)extension).deactivate();
         }
     }
+
     void on_extension_removed(Peas.PluginInfo info, Object extension) {
         ((Peas.Activatable)extension).deactivate();
     }
 
-    public void hook_app(Gtk.Application menu)
-    {
+    public void hook_app(Gtk.Application app) {
+        plugin_iface.noise_app = app;
     }
     
     public Gtk.Notebook context { set { plugin_iface.context = value; } }
@@ -263,8 +262,7 @@ public class Noise.Plugins.Manager : Object
     
     public signal void hook_addons_menu(Gtk.Menu menu);
     
-    public void hook_example(string arg)
-    {
+    public void hook_example(string arg) {
     }
 }
 

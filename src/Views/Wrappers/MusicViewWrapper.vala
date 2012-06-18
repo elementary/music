@@ -50,9 +50,6 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         pack_views ();
 
         connect_data_signals ();
-
-        lm.device_manager.device_added.connect (device_added);
-        lm.device_manager.device_removed.connect (device_removed);
     }
 
     private void connect_data_signals () {
@@ -82,46 +79,6 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
         // Convert ids to real media
         var to_update = lm.media_from_ids (updated_ids);
         update_media (to_update);    
-    }
-
-    
-    /* device stuff for welcome screen */
-    private void device_added (Device d) {
-        // add option to import in welcome screen
-        string secondary = (d.getContentType() == "cdrom") ? _("Import songs from audio CD") : _("Import media from device");
-        int key = welcome_screen.append_with_image (new Image.from_gicon(d.get_icon(), Gtk.IconSize.DIALOG), d.getDisplayName (), secondary);
-        welcome_screen_keys.set (key, d);
-        
-        // Show the newly added item
-        if (welcome_screen.visible) {
-            welcome_screen.show_all ();
-        }
-    }
-
-    private void device_removed(Device d) {
-        // remove option to import from welcome screen
-        int key = 0;
-        foreach(int i in welcome_screen_keys.keys) {
-            if(welcome_screen_keys.get(i) == d) {
-                key = i;
-                break;
-            }
-        }
-        
-        /// Remember that 0 is taken by set location, so keys start at 1, 2, 3.
-        int offset = 1; // How many items are before device items
-        if(key >= offset) {
-            // Move down all higher indexes so that they are not offset
-            for(int i = key; i < welcome_screen_keys.size - 1 + offset; ++i) {
-                welcome_screen_keys.set(i, welcome_screen_keys.get(i + 1));
-            }
-            
-            welcome_screen_keys.unset(welcome_screen_keys.size - 1 + offset); // size == last index
-            welcome_screen.remove_item(key);
-        }
-        else {
-            warning("Device removed but not found in welcome_screen_keys. UI may be messed up");
-        }
     }
     
     private void welcome_screen_activated(int index) {

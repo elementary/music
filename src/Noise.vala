@@ -65,7 +65,6 @@ namespace BeatBox {
         public Noise.Settings          settings        { get; private set; }
         public BeatBox.LibraryWindow   library_window  { get; private set; }
         public BeatBox.LibraryManager  library_manager { get; private set; }
-        public Noise.Plugins.Manager   plugins_manager { get; private set; }
 
         private static const OptionEntry[] app_options = {
             { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, N_("Enable debug logging"), null },
@@ -99,7 +98,8 @@ namespace BeatBox {
             translate_url = "https://translations.launchpad.net/noise";
 
             about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>",
-                             "Victor Eduardo M. <victoreduardm@gmail.com>", null};
+                             "Victor Eduardo M. <victoreduardm@gmail.com>",
+                             "Corentin Noël <tintou@mailoo.org>", null};
 
             about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
         }
@@ -111,7 +111,7 @@ namespace BeatBox {
             if (!Options.disable_plugins)
                 plugins = new Noise.Plugins.Manager (settings.schema, "plugins-enabled", Build.PLUGIN_DIR, exec_name, null);
                 
-            plugins.scratch_app = this;
+            plugins.noise_app = this;
             plugins.hook_app(this);
         }
 
@@ -155,8 +155,9 @@ namespace BeatBox {
 
             library_window.build_ui ();
 
-            if (!Options.disable_plugins)
-                plugins_manager.hook_new_window (library_window);
+            if (!Options.disable_plugins) {
+                plugins.hook_new_window (library_window);
+            }
         }
 
         /**
@@ -179,6 +180,10 @@ namespace BeatBox {
          */
         public string get_name () {
             return program_name;
+        }
+        
+        public string get_name_down () {
+            return program_name.down ();
         }
 
         /**
