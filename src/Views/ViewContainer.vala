@@ -20,12 +20,20 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class BeatBox.ViewContainer : Gtk.Notebook {
+public class BeatBox.ViewContainer : Gtk.EventBox {
+
+    private Gtk.Notebook notebook = new Gtk.Notebook ();
 
     public ViewContainer () {
         // Hide notebook tabs and border
-        show_tabs = false;
-        show_border = false;
+        this.notebook.show_tabs = false;
+        this.notebook.show_border = false;
+        base.add (this.notebook);
+    }
+
+    /* Override the remove method */
+    public override void remove (Gtk.Widget widget) {
+        // do nothing
     }
 
     /**
@@ -36,7 +44,7 @@ public class BeatBox.ViewContainer : Gtk.Notebook {
     public int add_view (Gtk.Widget? view) {
         if (view == null)
             return -1;
-        return append_page (view);
+        return this.notebook.append_page (view);
     }
 
     /**
@@ -47,17 +55,17 @@ public class BeatBox.ViewContainer : Gtk.Notebook {
     public void remove_view (Gtk.Widget? view) {
         if (view == null)
             return;
-        remove_page (get_view_index (view));
+        this.notebook.remove_page (get_view_index (view));
     }
 
     public Gtk.Widget? get_view (int index) {
-        return get_nth_page (index);
+        return this.notebook.get_nth_page (index);
     }
 
     public int get_view_index (Gtk.Widget? view) {
         if (view == null)
             return -1;
-        return page_num (view);
+        return this.notebook.page_num (view);
     }
 
     public Gtk.Widget? get_current_view () {
@@ -65,7 +73,7 @@ public class BeatBox.ViewContainer : Gtk.Notebook {
     }
 
     public int get_current_index () {
-        return get_current_page ();
+        return this.notebook.get_current_page ();
     }
 
     /**
@@ -95,11 +103,8 @@ public class BeatBox.ViewContainer : Gtk.Notebook {
             return false;
         }
 
-        set_current_page (index);
+        this.notebook.set_current_page (index);
 
         return true;
     }
- 
 }
-
-
