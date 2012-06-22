@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-11 15:02+0000\n"
-"Last-Translator: Thomas Pitlik <Unknown>\n"
+"PO-Revision-Date: 2012-06-21 20:34+0000\n"
+"Last-Translator: Ghenrik <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-12 05:39+0000\n"
-"X-Generator: Launchpad (build 15389)\n"
+"X-Launchpad-Export-Date: 2012-06-22 05:14+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 "Language: de\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -24,38 +24,38 @@ msgstr "Nachrichten zur Fehlerdiagnose anzeigen"
 
 #: /home/victor/noise/po/../src//Noise.vala:72
 msgid "Disable plugins"
-msgstr "Plugin deaktivieren"
+msgstr "Erweiterung deaktivieren"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
-msgstr "Musik anhören"
+msgstr "Musik hören"
 
 #: /home/victor/noise/po/../src//config.vala:15
 msgid "Music Player"
-msgstr "Musik Player"
+msgstr "Musikwiedergabe"
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:317
 #, c-format
 msgid "Importing music from %s..."
-msgstr "Importiere Musik von %s ..."
+msgstr "Musik aus %s wird importiert …"
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:364
 msgid "Adding files to library..."
-msgstr "Hinzufügen von Dateien zur Bibliothek ..."
+msgstr "Dateien werden zur Bibliothek hinzugefügt …"
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:389
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr "Hinzufügen von Musik von %s zur Bibliothek ..."
+msgstr "Dateien aus %s werden zur Bibliothek hinzugefügt …"
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:416
 msgid "Rescanning music for changes. This may take a while..."
-msgstr "Titel werden auf Änderungen geprüft. Dies kann eine Weile dauern ..."
+msgstr "Titel werden auf Änderungen überprüft. Dies kann eine Weile dauern …"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
 msgid "Could not find Music Folder"
-msgstr "Der Musikordner konnte nicht gefunden werden"
+msgstr "Musikordner konnte nicht gefunden werden"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 msgid ""
@@ -63,7 +63,7 @@ msgid ""
 "importing the CD."
 msgstr ""
 "Bitte stellen Sie sicher, dass Noise auf Ihren Musikordner zugreifen kann "
-"und dieser einhängt ist bevor die CD importiert wird."
+"und dieser einhängt ist, bevor die CD importiert wird."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
@@ -74,7 +74,7 @@ msgstr "Keine Titel auf CD"
 msgid "%s could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "%s konnte keine Titel auf der CD finden. Es können keine Titel importiert "
-"werden."
+"werden"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
@@ -87,7 +87,7 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
-"Bitte warten Sie auf die Fertigstellung von %s bevor Sie die CD importieren."
+"Bitte warten Sie auf die Fertigstellung von %s, bevor Sie die CD importieren."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
 msgid "Ripping track 1"
@@ -101,17 +101,17 @@ msgstr "Titel %i wird importiert"
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 msgid "CD Import Complete"
-msgstr "CD Import abgeschlossen"
+msgstr "CD-Import abgeschlossen"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s hat %i Titel von der Audio-CD importiert"
+msgstr "%s hat %i Titel von der Audio-CD importiert."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr "%s hat einen Titel von der Audio-CD importiert"
+msgstr "%s hat einen Titel von der Audio-CD importiert."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -121,17 +121,17 @@ msgstr "Der Import der CD wird nach dem aktuellen Import<b>abgebrochen</b>."
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr "Synchronisiere <b>%s</b> ..."
+msgstr "<b>%s</b> wird synchronisiert …"
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:691
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr "Entferne aus <b>%s</b> ..."
+msgstr "Aus <b>%s</b> wird entfernt …"
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:924
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr "Importiere <b>%s</b> in die Bibliothek ..."
+msgstr "<b>%s<&b> wird in die Bibliothek importiert …"
 
 #: /home/victor/noise/po/../src//Objects/Playlist.vala:210
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:313
@@ -210,7 +210,7 @@ msgstr "Neue Episoden herunterladen"
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
 #: /home/victor/noise/po/../src//LibraryWindow.vala:223
 msgid "Import to Library"
-msgstr "In die Bibliothek importieren"
+msgstr "In Bibliothek importieren"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
 msgid "Import Stations"
@@ -240,7 +240,7 @@ msgstr "Als Wiedergabeliste speichern"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:148
 msgid "Export..."
-msgstr "Exportieren ..."
+msgstr "Exportieren …"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:149
 msgid "Import Playlists"
