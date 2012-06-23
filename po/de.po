@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-21 20:34+0000\n"
-"Last-Translator: Ghenrik <Unknown>\n"
+"PO-Revision-Date: 2012-06-22 07:55+0000\n"
+"Last-Translator: Eduard Gotwig <eduardgotwig@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-22 05:14+0000\n"
+"X-Launchpad-Export-Date: 2012-06-23 05:25+0000\n"
 "X-Generator: Launchpad (build 15461)\n"
 "Language: de\n"
 
@@ -348,7 +348,7 @@ msgstr "Nicht importierte Dateien"
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr "Importieren von %d aus %s Einträgen nicht möglich"
+msgstr "Importieren von %d Einträgen aus %s nicht möglich"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
@@ -1453,7 +1453,7 @@ msgstr "Häufig wiedergegeben"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:502
 msgid "Not Recently Played"
-msgstr "Lange nicht wiedergegeben"
+msgstr "Lange ungehört"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:224
 msgid "Rescan Music Folder"
