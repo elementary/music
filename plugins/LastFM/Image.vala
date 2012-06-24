@@ -26,9 +26,9 @@
 using Cairo;
 
 public class LastFM.Image : Object {
-	private string _url;
-	private Gdk.Pixbuf _image;
-	private int[] _size;
+	private string _url { get; set; default=""; }
+	private Gdk.Pixbuf _image { get; set; default=null; }
+	private int[] _size { get; set; default={default_size, default_size}; }
 	private static int default_size = 500;
 	
 	public string url {
@@ -47,24 +47,17 @@ public class LastFM.Image : Object {
 		set { _image = value; }
 	}
 	
-	public Image.basic() {
-		_url = null;
-		_image = null;
-		_size = {default_size, default_size};
+	public Image() {
+	    
 	}
 	
 	public Image.with_url(string url, bool generate) {
-		_url = url;
-		_image = null;
-		_size = {default_size, default_size};
-		
 		if(generate)
 			generate_pixbuf();
 	}
 	
 	public Image.with_image(Gdk.Pixbuf image) {
 		_image = image;
-		_size = {default_size, default_size};
 	}
 	
 	public Image.with_import_string(string s) {

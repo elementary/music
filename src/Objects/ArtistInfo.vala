@@ -23,16 +23,16 @@
 public class BeatBox.ArtistInfo : Object {
     
     public string name { get; set; default=_("Unknown Artist"); }
-    public string mbid; //music brainz id
+    public string mbid { get; set; default=""; } //music brainz id
     
-    public int listeners;
-    public int playcount;
+    public int listeners { get; set; default=0; }
+    public int playcount { get; set; default=0; }
     
-    public string published;
-    public string summary;
-    public string content;
+    public string published { get; set; default=""; }
+    public string summary { get; set; default=""; }
+    public string content { get; set; default=""; }
     
-    public string image_uri;
+    public string image_uri { get; set; default=""; }
     
     //public signal void artist_info_retrieved(LastFM.ArtistInfo info);
     
@@ -58,7 +58,7 @@ public class BeatBox.ArtistInfo : Object {
         catch (GLib.Error err) {
             warning ("Could not generate image: %s", err.message);
         }
-        return null;
+        return "";
     }
     
 }

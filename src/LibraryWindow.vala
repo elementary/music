@@ -42,10 +42,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private BeatBox.MediaKeyListener mkl;
 
     /* Info related to the media being played */
-    private bool media_considered_played; // whether or not we have updated last played and added to already played list
-    private bool added_to_play_count; // whether or not we have added one to play count on playing media
-    private bool tested_for_video; // whether or not we have tested if media is video and shown video
-    private bool media_considered_previewed;
+    private bool media_considered_played { get; set; default = false; } // whether or not we have updated last played and added to already played list
+    private bool added_to_play_count { get; set; default = false; } // whether or not we have added one to play count on playing media
+    private bool tested_for_video { get; set; default = false; } // whether or not we have tested if media is video and shown video
+    private bool media_considered_previewed { get; set; default = false; }
+    private bool media_half_played_sended { get; set; default = false; }
 
     public bool dragging_from_music     { get; set; default = false; } // TODO: make private
     public bool initialization_finished { get; private set; default = false; }
@@ -483,7 +484,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         notification.set_image_from_pixbuf (image);
 
         try {
-            notification.show();                
+            notification.show();
         }
         catch (GLib.Error err) {
             warning ("Could not show notification: %s", err.message);
@@ -498,17 +499,21 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         string secondary_text = media.artist + "\n" + media.album;
 
-        Gdk.Pixbuf? pixbuf = null;
-        try {
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (media.getAlbumArtPath(), 48, 48);
-        }
-        catch (Error err) {
-            // Media often doesn't have an associated album art,
-            // so we shouldn't threat this as an unexpected error.
-            message (err.message);
-        }
+        if (media.getAlbumArtPath() == "") {
+            Gdk.Pixbuf? pixbuf = null;
+            try {
+                pixbuf = new Gdk.Pixbuf.from_file_at_size (media.getAlbumArtPath(), 48, 48);
+            }
+            catch (Error err) {
+                // Media often doesn't have an associated album art,
+                // so we shouldn't threat this as an unexpected error.
+                message (err.message);
+            }
 
-        show_notification (primary_text, secondary_text, pixbuf, force);
+            show_notification (primary_text, secondary_text, pixbuf, force);
+        }
+        else
+            show_notification (primary_text, secondary_text, null, force);
     }
 
     private void notify_current_media () {
@@ -814,6 +819,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         media_considered_previewed = false;
         media_considered_played = false;
         added_to_play_count = false;
+        media_half_played_sended = false;
         
         update_sensitivities();
 
@@ -1185,8 +1191,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 #endif
         }
 
-        if((double)(sec/(double)library_manager.media_info.media.length) > 0.50) {
+        if(((double)(sec/(double)library_manager.media_info.media.length) > 0.50) && (media_half_played_sended == false)) {
             media_half_played ();
+            media_half_played_sended = true;
         }
 
         // at 80% done with media, add 1 to play count

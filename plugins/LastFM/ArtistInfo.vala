@@ -45,7 +45,7 @@ public class LastFM.ArtistInfo : BeatBox.ArtistInfo {
     public ArtistInfo() {
         tags = new Gee.ArrayList<LastFM.Tag>();
         similarArtists = new Gee.ArrayList<LastFM.ArtistInfo>();
-        url_image = new LastFM.Image.basic();
+        url_image = new LastFM.Image();
     }
     
     public ArtistInfo.with_artist(string artist) {

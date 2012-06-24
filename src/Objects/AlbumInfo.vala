@@ -24,14 +24,14 @@ public class BeatBox.AlbumInfo : Object {
     
     public string name { get; set; default=_("Unknown Album"); }
     public string artist { get; set; default=_("Unknown Artist"); }
-    public string mbid;
+    public string mbid { get; set; default=""; }
     public GLib.Date releasedate;
-    public string summary;
+    public string summary { get; set; default=""; }
     
-    public int listeners;
-    public int playcount;
+    public int listeners { get; set; default=0; }
+    public int playcount { get; set; default=0; }
     
-    public string image_uri;
+    public string image_uri { get; set; default=""; }
     
     //public signal void album_info_retrieved(LastFM.AlbumInfo info);
     
@@ -40,17 +40,15 @@ public class BeatBox.AlbumInfo : Object {
     }
     
     public string get_image_uri_from_pixbuf (Gdk.Pixbuf image) {
-        if (image!=null) {
-            string path = (GLib.Path.build_path ("/", Environment.get_user_cache_dir (), "noise", "album-art") +"/"+ artist+"-"+ name+".png");
-            try {
-                image.save (path, "png");
-                return path;
-            }
-            catch (GLib.Error err) {
-                warning ("Could not generate image: %s", err.message);
-            }
+        string path = (GLib.Path.build_path ("/", Environment.get_user_cache_dir (), "noise", "album-art") +"/"+ artist+"-"+ name+".png");
+        try {
+            image.save (path, "png");
+            return path;
         }
-        return null;
+        catch (GLib.Error err) {
+            warning ("Could not generate image: %s", err.message);
+        }
+        return "";
     }
     
     public string get_releasedate_as_string () {

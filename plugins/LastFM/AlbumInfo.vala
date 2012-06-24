@@ -40,7 +40,7 @@ public class LastFM.AlbumInfo : BeatBox.AlbumInfo {
     
     public AlbumInfo() {
         _tags = new Gee.ArrayList<LastFM.Tag>();
-        url_image = new LastFM.Image.basic();
+        url_image = new LastFM.Image();
     }
     
     public AlbumInfo.with_info(string artist, string album) {
