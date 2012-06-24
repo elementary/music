@@ -61,7 +61,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
         set_transient_for(_lw);
         
         var main_grid = new Gtk.Grid ();
-        main_static_notebook = new Granite.Widgets.StaticNotebook ();
+        main_static_notebook = new Granite.Widgets.StaticNotebook (false);
         saveChanges = new Gtk.Button.from_stock (Gtk.Stock.CLOSE);
         saveChanges.margin_right = 12;
         saveChanges.margin_bottom = 12;
