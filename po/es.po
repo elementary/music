@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-21 08:08+0000\n"
-"Last-Translator: saiseihogo <Unknown>\n"
+"PO-Revision-Date: 2012-06-23 16:53+0000\n"
+"Last-Translator: Jose Luis Navarro <jlnavarro111@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-22 05:14+0000\n"
+"X-Launchpad-Export-Date: 2012-06-24 05:55+0000\n"
 "X-Generator: Launchpad (build 15461)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -585,7 +585,7 @@ msgstr "Podcast"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
-msgstr "Importar multimedia a la librería"
+msgstr "Importar multimedia a la biblioteca"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
