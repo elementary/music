@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-22 07:55+0000\n"
-"Last-Translator: Eduard Gotwig <eduardgotwig@gmail.com>\n"
+"PO-Revision-Date: 2012-06-24 17:35+0000\n"
+"Last-Translator: Thomas Pitlik <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-23 05:25+0000\n"
-"X-Generator: Launchpad (build 15461)\n"
+"X-Launchpad-Export-Date: 2012-06-25 05:34+0000\n"
+"X-Generator: Launchpad (build 15482)\n"
 "Language: de\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -741,7 +741,7 @@ msgstr "Veröffentlichungsdatum"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Last Played"
-msgstr "Zuletzt Wiedergegeben"
+msgstr "Zuletzt wiedergegeben"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:288
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
