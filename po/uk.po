@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-24 23:07+0000\n"
+"PO-Revision-Date: 2012-06-25 20:43+0000\n"
 "Last-Translator: PsyClip-R <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-25 05:34+0000\n"
+"X-Launchpad-Export-Date: 2012-06-26 05:48+0000\n"
 "X-Generator: Launchpad (build 15482)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
@@ -1451,15 +1451,15 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:335
 msgid "Show Info Panel"
-msgstr ""
+msgstr "Показати панель інформації"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:340
 msgid "Hide Equalizer"
-msgstr ""
+msgstr "Приховати еквалайзер"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:340
 msgid "Show Equalizer"
-msgstr ""
+msgstr "Показати еквалайзер"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:594
 msgid "Similar"
@@ -1479,7 +1479,7 @@ msgstr " з "
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:992
 msgid "Import Music"
-msgstr "Імпорт музики"
+msgstr "Імпортувати музику"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1016
 #, c-format

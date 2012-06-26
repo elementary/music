@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-24 17:35+0000\n"
-"Last-Translator: Thomas Pitlik <Unknown>\n"
+"PO-Revision-Date: 2012-06-25 15:41+0000\n"
+"Last-Translator: Victor Eduardo <victoreduardm@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-25 05:34+0000\n"
+"X-Launchpad-Export-Date: 2012-06-26 05:48+0000\n"
 "X-Generator: Launchpad (build 15482)\n"
 "Language: de\n"
 
@@ -728,7 +728,7 @@ msgstr "Bitrate"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Date Added"
-msgstr "Hinzugefügt am"
+msgstr "Hinzugefügt"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:284
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
@@ -798,11 +798,11 @@ msgstr "ist zumindest"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:418
 msgid "is within"
-msgstr "beinhaltet"
+msgstr "in den letzten"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:419
 msgid "is before"
-msgstr "liegt vor"
+msgstr "vor"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:432
 msgid "seconds"
@@ -810,7 +810,7 @@ msgstr "Sekunden"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:436
 msgid "days ago"
-msgstr "vor Tagen"
+msgstr "Tag(en)"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:440
 msgid "kbps"
