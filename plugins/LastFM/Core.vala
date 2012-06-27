@@ -28,15 +28,15 @@ using Soup;
 using Gee;
 namespace LastFM {
 
+    /** NOTICE: These API keys and secrets are unique to Noise and Noise
+     * only. To get your own, FREE key go to http://www.last.fm/api/account */
+    public static const string api = "8659cfc191c2cde0b33bb4970fcbbd49";
+    public static const string secret = "f61323da870d6ed9322dc51c875357c6";
+
     public class Core : Object {
         BeatBox.LibraryManager lm;
         
-        /** NOTICE: These API keys and secrets are unique to Noise and Noise
-         * only. To get your own, FREE key go to http://www.last.fm/api/account */
         
-        public static const string api = "8659cfc191c2cde0b33bb4970fcbbd49";
-        public static const string secret = "f61323da870d6ed9322dc51c875357c6";
-
         public Settings lastfm_settings { get; private set; }
 
         public string token;
@@ -237,7 +237,7 @@ namespace LastFM {
             var sig = generate_getsession_signature(token);
             var url = "http://ws.audioscrobbler.com/2.0/?method=auth.getSession&api_key=" + api + "&api_sig=" + sig + "&token=" + token;
             
-            stdout.printf("url: %s\n", url);
+            message ("url: %s\n", url);
             
             Xml.Doc* doc = Parser.parse_file (url);
             if(doc == null) return null;
@@ -261,7 +261,7 @@ namespace LastFM {
         
         public bool loveTrack(string title, string artist) {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
-                stdout.printf ("User tried to ban a track, but is not logged into Last FM\n");
+                warning ("User tried to ban a track, but is not logged into Last FM\n");
                 return false;
             }
             
@@ -291,7 +291,7 @@ namespace LastFM {
         
         public bool banTrack(string title, string artist) {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
-                stdout.printf ("User tried to ban a track, but is not logged into Last FM\n");
+                warning ("User tried to ban a track, but is not logged into Last FM\n");
                 return false;
             }
             
@@ -325,7 +325,7 @@ namespace LastFM {
             try {
                 new Thread<void*>.try (null, track_thread_function);
             } catch(GLib.Error err) {
-                stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
+                warning ("ERROR: Could not create last fm thread: %s \n", err.message);
             }
         }
         
@@ -354,7 +354,7 @@ namespace LastFM {
             try {
                 new Thread<void*>.try (null, album_thread_function);
             } catch(GLib.Error err) {
-                stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
+                warning ("ERROR: Could not create last fm thread: %s \n", err.message);
             }
         }
         
@@ -381,12 +381,12 @@ namespace LastFM {
                 
                 /* If we found an album art, and we don't have one yet, save it to file **/
                 if(album.url_image.url != null && lm.get_cover_album_art_from_key(album_artist_s, album_s) == null) {
-                    stdout.printf("Saving album locally\n");
+                    message ("Saving album locally\n");
                     lm.save_album_locally(lm.media_info.media.rowid, album.url_image.url);
                 }
             }
             else {
-                stdout.printf("Not fetching album info or art\n");
+                message ("Not fetching album info or art\n");
             }
 
             return null;
@@ -398,7 +398,7 @@ namespace LastFM {
             try {
                 new Thread<void*>.try (null, artist_thread_function);
             } catch(GLib.Error err) {
-                stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
+                message ("ERROR: Could not create last fm thread: %s \n", err.message);
             }
         }
         
@@ -431,13 +431,13 @@ namespace LastFM {
             try {
                 new Thread<void*>.try (null, update_nowplaying_thread_function);
             } catch(GLib.Error err) {
-                stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
+                warning ("ERROR: Could not create last fm thread: %s \n", err.message);
             }
         }
         
         void* update_nowplaying_thread_function() {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
-                stdout.printf ("Last.FM user not logged in\n");
+                message ("Last.FM user not logged in\n");
                 return null;
             }
             if(!lm.media_active)
@@ -476,13 +476,13 @@ namespace LastFM {
             try {
                 new Thread<void*>.try (null, scrobble_thread_function);
             } catch(GLib.Error err) {
-                stdout.printf ("ERROR: Could not create last fm thread: %s \n", err.message);
+                warning ("ERROR: Could not create last fm thread: %s \n", err.message);
             }
         }
         
         void* scrobble_thread_function () {
             if(lastfm_settings.session_key == null || lastfm_settings.session_key == "") {
-                stdout.printf ("Last.FM user not logged in\n");
+                message ("Last.FM user not logged in\n");
                 return null;
             }
             if(!lm.media_active)

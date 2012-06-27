@@ -499,7 +499,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         string secondary_text = media.artist + "\n" + media.album;
 
-        if (media.getAlbumArtPath() == "") {
+        if (media.getAlbumArtPath() != "" && media.getAlbumArtPath() != null) {
             Gdk.Pixbuf? pixbuf = null;
             try {
                 pixbuf = new Gdk.Pixbuf.from_file_at_size (media.getAlbumArtPath(), 48, 48);

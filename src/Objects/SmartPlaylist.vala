@@ -305,7 +305,7 @@ public class BeatBox.SmartPlaylist : Object {
     }
     
     public void set_playlist_properties(GPod.Playlist rv) {
-        stdout.printf("playlist is %s\n", name);
+        message ("playlist is %s\n", name);
         
         foreach(var sq in _queries) {
             //if(sq.field == "Media Type")
@@ -315,7 +315,7 @@ public class BeatBox.SmartPlaylist : Object {
             
             unowned GPod.SPLRule? rule = rv.splrules.rules.nth_data(rv.splrules.rules.length() - 1);
             
-            stdout.printf("adding rule\n");
+            message ("adding rule\n");
             var field = sq.field;
             var value = sq.value;
             var comparator = sq.comparator;
@@ -383,7 +383,7 @@ public class BeatBox.SmartPlaylist : Object {
                 rule.fromunits = 1;
                 break;
             case SmartQuery.FieldType.RATING:
-                stdout.printf("rating rule is %s\n", value);
+                message("rating rule is %s\n", value);
                 rule.field = GPod.SPLField.RATING;
                 rule.fromvalue = uint64.parse(value) * 20;
                 rule.tovalue = uint64.parse(value) * 20;
@@ -410,14 +410,14 @@ public class BeatBox.SmartPlaylist : Object {
             case SmartQuery.FieldType.MEDIA_TYPE:
                 rule.field = GPod.SPLField.VIDEO_KIND;
                 if(value == "0") {
-                    stdout.printf("must be song\n");
+                    message ("must be song\n");
                     rule.fromvalue = 0x00000001;
                     rule.tovalue = 0x00000001;;
                 }
                 else if(value == "1") {
                     rule.fromvalue = 0x00000006;
                     rule.tovalue = 0x00000006;
-                    stdout.printf("must be podcast\n");
+                    message ("must be podcast\n");
                 }
                 else if(value == "2") {
                     rule.fromvalue = 0x00000008;
@@ -441,7 +441,7 @@ public class BeatBox.SmartPlaylist : Object {
             }
             else if(comparator == SmartQuery.ComparatorType.CONTAINS) {
                 rule.action = GPod.SPLAction.CONTAINS;
-                stdout.printf("hi at contains\n");
+                message ("hi at contains\n");
             }
             else if(comparator == SmartQuery.ComparatorType.NOT_CONTAINS) {
                 rule.action = GPod.SPLAction.DOES_NOT_CONTAIN;
@@ -466,10 +466,10 @@ public class BeatBox.SmartPlaylist : Object {
                 rule.action = GPod.SPLAction.IS_LESS_THAN;
             }
             
-            stdout.printf("in smartplaylist  has rule and string %s\n", rule.@string);
+            message ("in smartplaylist  has rule and string %s\n", rule.@string);
         }
         
-        stdout.printf("check %d rules\n", (int)rv.splrules.rules.length());
+        message ("check %d rules\n", (int)rv.splrules.rules.length());
         rv.splpref.checkrules = (uint8)rv.splrules.rules.length();
         rv.splpref.checklimits = (uint8)0;
         rv.splrules.match_operator = (conditional == ConditionalType.ANY) ? GPod.SPLMatch.OR : GPod.SPLMatch.AND;

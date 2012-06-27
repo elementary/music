@@ -33,8 +33,6 @@ public class BeatBox.AlbumInfo : Object {
     
     public string image_uri { get; set; default=""; }
     
-    //public signal void album_info_retrieved(LastFM.AlbumInfo info);
-    
     public AlbumInfo () {
         
     }

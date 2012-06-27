@@ -661,7 +661,7 @@ public class BeatBox.AlbumView : ContentView, Grid {
     }
     
     public bool buttonPressEvent(Gdk.EventButton ev) {
-        stdout.printf("button was pressed\n");
+        message ("button was pressed\n");
         if(ev.type == Gdk.EventType.BUTTON_PRESS && ev.button == 1) {
             // select one based on mouse position
             TreeIter iter;

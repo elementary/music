@@ -71,7 +71,7 @@ public class BeatBox.SmartQuery : Object {
 	}
 	
 	public void set_rule_properties(GPod.SPLRule rule) {
-		stdout.printf("adding rule\n");
+		message("adding rule\n");
 		if(field == FieldType.ALBUM) { // strings
 			rule.field = GPod.SPLField.ALBUM;
 			rule.@string = value;

@@ -1757,7 +1757,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public void save_album_locally(int id, string image_uri) {
 		GLib.File file = GLib.File.new_for_uri(image_uri);
 		if(file == null) {
-			stdout.printf("Could not read image_uri as file\n");
+			warning ("Could not read image_uri as file\n");
 			return;
 		}
 		

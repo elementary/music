@@ -27,12 +27,9 @@ using Xml;
 using Json;
 
 public class LastFM.TrackInfo : BeatBox.TrackInfo {
-	static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
 	
-	private string _url;
-	private int _streamable;
-	private int _listeners;
-	private int _playcount;
+	public string url { get; set; default = ""; }
+	public int streamable { get; set; default = 0; }
 	
 	private Gee.ArrayList<LastFM.Tag> _tags;
 	private LastFM.Tag tagToAdd;
@@ -107,11 +104,11 @@ public class LastFM.TrackInfo : BeatBox.TrackInfo {
 				else if(node_name == "id")
 					this.id = int.parse(node_content);
 				else if(node_name == "url")
-					_url = node_content;
+					url = node_content;
 				else if(node_name == "duration")
 					this.duration = int.parse(node_content);
 				else if(node_name == "streamable")
-					_streamable = int.parse(node_content);
+					streamable = int.parse(node_content);
 				else if(node_name == "playcount")
 					this.playcount = int.parse(node_content);
 				else if(node_name == "listeners")
@@ -147,18 +144,6 @@ public class LastFM.TrackInfo : BeatBox.TrackInfo {
             parse_node (iter, parent + node_name);
         }
     }
-    
-	
-	public string url {
-		get { return _url; }
-		set { _url = value; }
-	}
-	
-
-	public int streamable {
-		get { return _streamable; }
-		set { _streamable = value; }
-	}
 	
 	public void addTag(Tag t) {
 		_tags.add(t);

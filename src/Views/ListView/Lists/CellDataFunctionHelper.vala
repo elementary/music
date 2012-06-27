@@ -59,7 +59,7 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 				}
 			}
 			range = (bottom - top) + 1;
-			//stdout.printf("range is %d, top is %d, bottom is %d, current is %d\n", range, top, bottom, current);
+			//warning ("range is %d, top is %d, bottom is %d, current is %d\n", range, top, bottom, current);
 			
 			// We have enough space to draw art
 			if(range >= 6) {

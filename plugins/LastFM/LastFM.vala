@@ -33,16 +33,16 @@ namespace Noise.Plugins {
         BeatBox.LibraryManager lm;
         LastFM.Core core;
 
-        bool added = false;
+        bool added { get; set; default=false; }
         static string ENABLE_SCROBBLING = _("Enable Scrobbling");
         static string LOGIN_UNSUCCESSFUL = _("Unsuccessful. Click to try again.");
         static string SCROBBLING_ENABLED = _("Scrobbling already Enabled");
         static string LOGIN_SUCCESSFUL = _("Success!");
         static string COMPLETE_LOGIN = _("Complete login");
         public Gtk.Button lastfmLogin_button;
-        string lastfm_token;
+        string lastfm_token { get; set; default=""; }
         Gtk.Grid container;
-        int page_number = 0;
+        int page_number { get; set; default=0; }
         BeatBox.PreferencesWindow preferences_window;
 
         public void activate () {
@@ -112,15 +112,15 @@ namespace Noise.Plugins {
                 lastfm_token = core.getToken();
                 if(lastfm_token == null) {
                     lastfmLogin_button.set_label(LOGIN_UNSUCCESSFUL);
-                    stdout.printf("Could not get a token. check internet connection\n");
+                    warning ("Could not get a token. check internet connection\n");
                 }
                 else {
-                    string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.Core.api + "&token=" + lastfm_token;
+                    string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.api + "&token=" + lastfm_token;
                     try {
                         GLib.AppInfo.launch_default_for_uri (auth_uri, null);
                     }
                     catch(GLib.Error err) {
-                        stdout.printf("Could not open Last FM website to authorize: %s\n", err.message);
+                        warning ("Could not open Last FM website to authorize: %s\n", err.message);
                     }
                 
                     //set button text. we are done this time around. next time we get session key

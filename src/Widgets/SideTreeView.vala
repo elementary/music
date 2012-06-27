@@ -465,7 +465,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
 #endif
         else if(lm.media_info.media.mediatype == 2) {
             selected_iter = convertToFilter(library_music_iter);
-            stdout.printf("TODO: Set current list to audiobooks when resetting if current media is audiobook\n");
+            message ("TODO: Set current list to audiobooks when resetting if current media is audiobook\n");
         }
 #if HAVE_INTERNET_RADIO
         else if(lm.media_info.media.mediatype == 3)
@@ -837,7 +837,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
                 return;
             
             if(file_chooser.filter == m3u_filter) {
-                stdout.printf("changed to m3u\n");
+                message ("changed to m3u\n");
                 var new_file = file_chooser.get_filename().replace(".pls", ".m3u");
                 
                 if(new_file.slice(new_file.last_index_of(".", 0), new_file.length).length == 0) {
@@ -847,7 +847,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
                 file_chooser.set_current_name(new_file.slice(new_file.last_index_of("/", 0) + 1, new_file.length));
             }
             else {
-                stdout.printf("changed to pls\n");
+                message ("changed to pls\n");
                 var new_file = file_chooser.get_filename().replace(".m3u", ".pls");
                 
                 if(new_file.slice(new_file.last_index_of(".", 0), new_file.length).length == 0) {
@@ -868,7 +868,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
             }
             
             name = file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
-            stdout.printf("name is %s extension is %s\n", name, extension);
+            message ("name is %s extension is %s\n", name, extension);
         }
         
         file_chooser.destroy ();
@@ -960,7 +960,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
                 }
 #if HAVE_INTERNET_RADIO
             if(stations.size > 0) {
-                stdout.printf("stations size is %d\n", stations.size);
+                message ("stations size is %d\n", stations.size);
                 lm.add_medias(stations, true);
             }
 #endif

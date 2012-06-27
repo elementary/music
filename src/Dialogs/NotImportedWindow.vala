@@ -206,7 +206,7 @@ public class BeatBox.NotImportedWindow : Window{
 				file.trash();
 			}
 			catch(GLib.Error err) {
-				stdout.printf("Could not move file %s to recycle: %s\n", location, err.message);
+				warning ("Could not move file %s to recycle: %s\n", location, err.message);
 			}
 			/*else {
 				try {
@@ -214,7 +214,7 @@ public class BeatBox.NotImportedWindow : Window{
 					file.delete();
 				}
 				catch(GLib.Error err) {
-					stdout.printf("Could not delete file %s: %s\n", location, err.message);
+					warning ("Could not delete file %s: %s\n", location, err.message);
 				}
 			}*/
 		}

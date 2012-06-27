@@ -265,7 +265,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
 		_field.append_text(_("Year"));
 		
 		_field.set_active((int)q.field);
-		stdout.printf("setting filed to %d\n", q.field);
+		message ("setting filed to %d\n", q.field);
 		_comparator.set_active((int)q.comparator);
 		
 		if(needs_value (q.field)) {

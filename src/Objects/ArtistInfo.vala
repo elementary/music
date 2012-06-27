@@ -34,8 +34,6 @@ public class BeatBox.ArtistInfo : Object {
     
     public string image_uri { get; set; default=""; }
     
-    //public signal void artist_info_retrieved(LastFM.ArtistInfo info);
-    
     public ArtistInfo() {
         
     }

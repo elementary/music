@@ -133,7 +133,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		
 		/*int size = 0;
 		//cancelled = false;
-		stdout.printf("gstreamer tagger fetching art for %d\n", files.size);
+		message ("gstreamer tagger fetching art for %d\n", files.size);
 		
 		uri_to_id.clear();
 		foreach(int i in files) {
@@ -314,7 +314,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		return;
 		
 		/*path_queue.remove(info.get_uri());
-		stdout.printf("discovered %s\n", info.get_uri());
+		message ("discovered %s\n", info.get_uri());
 		if(info != null && info.get_tags() != null) {
 			try {
 				Gst.Buffer buf = null;
@@ -335,42 +335,42 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 					
 					buffer = value.get_buffer();
 					if (buffer == null) {
-						//stdout.printf("apparently couldn't get image buffer\n");
+						//warning ("apparently couldn't get image buffer\n");
 						continue;
 					}
 					
 					caps_struct = buffer.caps.get_structure(0);
 					media_type = caps_struct.get_name();
 					if (media_type == "text/uri-list") {
-						//stdout.printf("ignoring text/uri-list image tag\n");
+						//message ("ignoring text/uri-list image tag\n");
 						continue;
 					}
 					
 					caps_struct.get_enum ("image-type", typeof(Gst.TagImageType), out imgtype);
 					if (imgtype == Gst.TagImageType.UNDEFINED) {
 						if (buf == null) {
-							//stdout.debug ("got undefined image type\n");
+							//debug ("got undefined image type\n");
 							buf = buffer;
 						}
 					} else if (imgtype == Gst.TagImageType.FRONT_COVER) {
-						//stdout.debug ("got front cover image\n");
+						//debug ("got front cover image\n");
 						buf = buffer;
 					}
 				}
 				
-				stdout.printf("done with for loop\n");
+				message ("done with for loop\n");
 				if(buf == null) {
-					//stdout.debug("could not find emedded art for %s\n", s.file);
+					//debug("could not find emedded art for %s\n", s.file);
 					return;
 				}
 				
 				// now that we have the buffer we want, load it into the pixbuf
 				Gdk.PixbufLoader loader = new Gdk.PixbufLoader();
-				stdout.printf("created loader\n");
+				message("created loader\n");
 				try {
 					if (!loader.write(buf.data)) {
-						//stdout.debug("pixbuf loader doesn't like the data");
-						stdout.printf("loader failed\n");
+						//debug ("pixbuf loader doesn't like the data");
+						message("loader failed\n");
 						loader.close();
 						return;
 					}
@@ -379,7 +379,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 					loader.close();
 					return;
 				}
-				stdout.printf("loaded\n");
+				message ("loaded\n");
 				
 				try {
 					loader.close();
@@ -391,7 +391,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 				lm.set_album_art(id, rv);
 			}
 			catch(Error err) {
-				stdout.printf("Failed to import album art from %s\n", info.get_uri());
+				message ("Failed to import album art from %s\n", info.get_uri());
 			}
 		}*/
 	}
@@ -406,12 +406,12 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		GLib.Signal.connect(decoder, "new-decoded-pad", (GLib.Callback)newDecodedPad, this);
 		
 		if(!((Gst.Bin)pipe).add_many(src, decoder)) {
-			stdout.printf("Could not add src and decoder to pipeline to save metadata\n");
+			message ("Could not add src and decoder to pipeline to save metadata\n");
 			return false;
 		}
 		
 		if(!src.link_many(decoder)) {
-			stdout.printf("Could not link src to decoder to save metadata\n");
+			message ("Could not link src to decoder to save metadata\n");
 			return false;
 		}
 		
@@ -420,12 +420,12 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 		Gst.Element queue2 = ElementFactory.make("queue", "queue2");
 		
 		if(queue == null || queue2 == null) {
-			stdout.printf("could not add create queues to save metadata\n");
+			message ("could not add create queues to save metadata\n");
 			return false;
 		}
 		
 		if(!((Gst.Bin)pipe).add_many(queue, queue2)) {
-			stdout.printf("Could not add queue's to save metadata\n");
+			warning ("Could not add queue's to save metadata\n");
 			return false;
 		}
 		
@@ -479,7 +479,7 @@ public class BeatBox.GStreamerTagger : GLib.Object {
 					iter.resync();
 					break;
 			  case GST_ITERATOR_ERROR:
-					stdout.printf("Could not update metadata on media\n");
+					warning("Could not update metadata on media\n");
 					rv = false;
 					done = true;
 					break;

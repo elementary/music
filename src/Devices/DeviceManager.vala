@@ -96,23 +96,23 @@ public class BeatBox.DeviceManager : GLib.Object {
 	
 	void volume_added(Volume volume) {
 		if(lm.lw.main_settings.music_mount_name == volume.get_name() && volume.get_mount() == null) {
-			stdout.printf("mounting %s because it is believed to be the music folder\n", volume.get_name());
+			message ("mounting %s because it is believed to be the music folder\n", volume.get_name());
 			volume.mount(MountMountFlags.NONE, null, null);
 		}
 	}
 	
 	public void deviceInitialized(Device d) {
-		stdout.printf("adding device\n");
+		message ("adding device\n");
 		device_added(d);
 		lm.lw.update_sensitivities();
 	}
 	
 	public virtual void mount_changed (Mount mount) {
-		//stdout.printf("mount_changed:%s\n", mount.get_uuid());
+		//message ("mount_changed:%s\n", mount.get_uuid());
 	}
 	
 	public virtual void mount_pre_unmount (Mount mount) {
-		//stdout.printf("mount_preunmount:%s\n", mount.get_uuid());
+		//message ("mount_preunmount:%s\n", mount.get_uuid());
 	}
 	
 		

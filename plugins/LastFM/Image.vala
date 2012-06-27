@@ -33,7 +33,13 @@ public class LastFM.Image : Object {
 	
 	public string url {
 		get { return _url; }
-		set { _url = value; if(_image == null) generate_pixbuf(); }
+		set { 
+		    if (value != null) {
+		        _url = value; 
+		        if(_image == null) 
+		            generate_pixbuf(); 
+	        }
+        }
 	}
 	
 	public Gdk.Pixbuf image {
@@ -52,6 +58,8 @@ public class LastFM.Image : Object {
 	}
 	
 	public Image.with_url(string url, bool generate) {
+		if (url != null)
+		    _url = url;
 		if(generate)
 			generate_pixbuf();
 	}
@@ -62,9 +70,8 @@ public class LastFM.Image : Object {
 	
 	public Image.with_import_string(string s) {
 		string[] values = s.split("<value_seperator>", 0);
-		
-		_url = values[0];
-		_image = null;
+		if (values[0] != null)
+		    url = values[0];
 		_size = new int[2];
 		_size[0] = int.parse(values[1]);
 		_size[1] = int.parse(values[2]);

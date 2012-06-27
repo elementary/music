@@ -26,9 +26,8 @@
 using Xml;
 
 public class LastFM.AlbumInfo : BeatBox.AlbumInfo {
-    static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
     
-    private string url;
+    private string url { get; set; default=""; }
     
     private Gee.ArrayList<LastFM.Tag> _tags;
     

@@ -33,7 +33,6 @@ public class BeatBox.TrackInfo : GLib.Object {
     public string summary;
     public string content;
     
-    //public signal void track_info_retrieved(LastFM.TrackInfo info);
     
     public TrackInfo () {
         

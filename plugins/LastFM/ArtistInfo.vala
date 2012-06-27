@@ -26,7 +26,6 @@
 using Xml;
 
 public class LastFM.ArtistInfo : BeatBox.ArtistInfo {
-    static const string api = "a40ea1720028bd40c66b17d7146b3f3b";
 
     public string url;// last fm url
     public int streamable; // 1 = true

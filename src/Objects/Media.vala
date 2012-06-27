@@ -75,7 +75,6 @@ public class BeatBox.Media : GLib.Object {
 	public uint date_added { get; set; default = 0; }
 	public uint last_played { get; set; default = 0; }
 	public uint last_modified { get; set; default = 0; }
-	public string lastfm_url { get; set; default = ""; }
 	
 	public string podcast_rss { get; set; default = ""; }
 	public string podcast_url { get; set; default = ""; }
@@ -171,7 +170,7 @@ public class BeatBox.Media : GLib.Object {
 	
 	public string getAlbumArtPath() {
 #if 0
-		if(_album_path == "" || _album_path == null)
+		if(_album_path == "" || _album_path == "")
 			return Icons.DEFAULT_ALBUM_ART.backup_filename;
 		else
 			return _album_path;
@@ -182,7 +181,7 @@ public class BeatBox.Media : GLib.Object {
 	}
 	
 	public string getArtistImagePath() {
-		if(isTemporary || mediatype != Media.MediaType.SONG)
+		if(isTemporary == true || mediatype != Media.MediaType.SONG)
 			return "";
 		
 		var path_file = File.new_for_uri(uri);
@@ -197,14 +196,14 @@ public class BeatBox.Media : GLib.Object {
 		Media rv = new Media("file://" + Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
 		
 		rv.isTemporary = true;
-		if(track.title != null) {			rv.title = track.title; }
-		if(track.artist != null) {			rv.artist = track.artist; }
-		if(track.albumartist != null) {		rv.album_artist = track.albumartist; }
-		if(track.album != null) {			rv.album = track.album; }
-		if(track.genre != null) {			rv.genre = track.genre; }
-		if(track.comment != null) {			rv.comment = track.comment; }
-		if(track.composer != null) {		rv.composer = track.composer; }
-		if(track.grouping != null) {		rv.grouping = track.grouping; }
+		if(track.title != "") {			rv.title = track.title; }
+		if(track.artist != "") {			rv.artist = track.artist; }
+		if(track.albumartist != "") {		rv.album_artist = track.albumartist; }
+		if(track.album != "") {			rv.album = track.album; }
+		if(track.genre != "") {			rv.genre = track.genre; }
+		if(track.comment != "") {			rv.comment = track.comment; }
+		if(track.composer != "") {		rv.composer = track.composer; }
+		if(track.grouping != "") {		rv.grouping = track.grouping; }
 		rv.album_number = track.cd_nr;
 		rv.album_count = track.cds;
 		rv.track = track.track_nr;
@@ -239,9 +238,9 @@ public class BeatBox.Media : GLib.Object {
 		rv.resume_pos = (int)track.bookmark_time;
 		rv.podcast_date = (int)track.time_released;
 		
-		if(rv.artist == "" && rv.album_artist != null)
+		if(rv.artist == "" && rv.album_artist != "")
 			rv.artist = rv.album_artist;
-		else if(rv.album_artist == "" && rv.artist != null)
+		else if(rv.album_artist == "" && rv.artist != "")
 			rv.album_artist = rv.artist;
 		
 		return rv;
@@ -251,14 +250,14 @@ public class BeatBox.Media : GLib.Object {
 		if(t == null)
 			return;
 			
-		if(title != null) 			t.title = title;
-		if(artist != null) 			t.artist = artist;
-		if(album_artist != null) 	t.albumartist = album_artist;
-		if(album != null) 			t.album = album;
-		if(genre != null) 			t.genre = genre;
-		if(comment != null) 		t.comment = comment;
-		if(composer != null) 		t.composer = composer;
-		if(grouping != null)		t.grouping = grouping;
+		if(title != "" && title != null) 			t.title = title;
+		if(artist != "" && artist != null) 			t.artist = artist;
+		if(album_artist != "" && album_artist != null) 	t.albumartist = album_artist;
+		if(album != "" && album != null) 			t.album = album;
+		if(genre != "" && genre != null) 			t.genre = genre;
+		if(comment != "" && comment != null) 		t.comment = comment;
+		if(composer != "" && composer != null) 		t.composer = composer;
+		if(grouping != "" && grouping != null)		t.grouping = grouping;
 		t.cd_nr = (int)album_number;
 		t.cds = (int)album_count;
 		t.track_nr = (int)track;
@@ -294,9 +293,9 @@ public class BeatBox.Media : GLib.Object {
 		t.bookmark_time = resume_pos;
 		t.time_released = podcast_date;
 		
-		if(t.artist == "" && t.albumartist != null)
+		if(t.artist == "" && (t.albumartist != "" || t.albumartist != null))
 			t.artist = t.albumartist;
-		else if(t.albumartist == "" && t.artist != null)
+		else if(t.albumartist == "" && (t.artist != "" || t.artist != null))
 			t.albumartist = t.artist;
 	}
 	
@@ -304,14 +303,14 @@ public class BeatBox.Media : GLib.Object {
 	public GPod.Track track_from_media() {
 		GPod.Track t = new GPod.Track();
 		
-		if(title != null) 			t.title = title;
-		if(artist != null) 			t.artist = artist;
-		if(album_artist != null) 	t.albumartist = album_artist;
-		if(album != null) 			t.album = album;
-		if(genre != null) 			t.genre = genre;
-		if(comment != null) 		t.comment = comment;
-		if(composer != null) 		t.composer = composer;
-		if(grouping != null)		t.grouping = grouping;
+		if(title != "" && title != null) 			t.title = title;
+		if(artist != "" && artist != null) 			t.artist = artist;
+		if(album_artist != "" && album_artist != null) 	t.albumartist = album_artist;
+		if(album != "" && album != null) 			t.album = album;
+		if(genre != "" && genre != null) 			t.genre = genre;
+		if(comment != "" && comment != null) 		t.comment = comment;
+		if(composer != "" && composer != null) 		t.composer = composer;
+		if(grouping != "" && grouping != null)		t.grouping = grouping;
 		t.cd_nr = (int)album_number;
 		t.cds = (int)album_count;
 		t.track_nr = (int)track;
@@ -347,9 +346,9 @@ public class BeatBox.Media : GLib.Object {
 		t.bookmark_time = resume_pos;
 		t.time_released = podcast_date;
 		
-		if(t.artist == "" && t.albumartist != null)
+		if(t.artist == "" && (t.albumartist != "" || t.albumartist != null))
 			t.artist = t.albumartist;
-		else if(t.albumartist == "" && t.artist != null)
+		else if(t.albumartist == "" && (t.artist != "" || t.artist != null))
 			t.albumartist = t.artist;
 		
 		return t;

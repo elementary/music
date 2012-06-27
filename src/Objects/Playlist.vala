@@ -146,7 +146,7 @@ public class BeatBox.Playlist : Object {
 			rv = true;
 		}
 		catch(Error err) {
-			stdout.printf("Could not save playlist %s to m3u file %s: %s\n", name, dest.get_path(), err.message);
+			warning ("Could not save playlist %s to m3u file %s: %s\n", name, dest.get_path(), err.message);
 		}
 		
 		return rv;
@@ -181,7 +181,7 @@ public class BeatBox.Playlist : Object {
 			rv = true;
 		}
 		catch(Error err) {
-			stdout.printf("Could not save playlist %s to pls file %s: %s\n", name, dest.get_path(), err.message);
+			warning ("Could not save playlist %s to pls file %s: %s\n", name, dest.get_path(), err.message);
 		}
 		
 		return rv;
@@ -222,7 +222,7 @@ public class BeatBox.Playlist : Object {
 			}
 		}
 		catch(Error err) {
-			stdout.printf("Could not load m3u file at %s: %s\n", path, err.message);
+			warning ("Could not load m3u file at %s: %s\n", path, err.message);
 			return false;
 		}
 		
@@ -255,7 +255,7 @@ public class BeatBox.Playlist : Object {
 			}
 		}
 		catch(Error err) {
-			stdout.printf("Could not load m3u file at %s: %s\n", path, err.message);
+			warning ("Could not load m3u file at %s: %s\n", path, err.message);
 			return false;
 		}
 		

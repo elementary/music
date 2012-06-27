@@ -1,8 +1,8 @@
 [Plugin]
 Module=lastfm
 IAge=2
-Name=LastFM
-Description=Enable scrobbling and suggestions with LastFM
+Name=LastFM - Don't use it yet, it's unstable !
+Description=Enable scrobbling and suggestions with LastFM.
 Authors=Noise Developers
 Copyright=Copyright © 2012 Noise Developers
 Website=http://launchpad.net/noise

@@ -174,7 +174,7 @@ public class BeatBox.Streamer : GLib.Object {
 				Idle.add( () => {
 					checked_video = true;
 					if(pipe.videoStreamCount() > 0) {
-						stdout.printf("Video stream found in media\n");
+						GLib.message ("Video stream found in media\n");
 					}
 					else if(getPosition() > 0) {
 						// TODO: Hide video graphics if necessary
@@ -190,21 +190,21 @@ public class BeatBox.Streamer : GLib.Object {
             Gst.TagList tag_list;
             
             message.parse_tag (out tag_list);
-            if(tag_list != null) {
-				if(tag_list.get_tag_size(TAG_TITLE) > 0) {
+            if (tag_list != null) {
+				if (tag_list.get_tag_size(TAG_TITLE) > 0) {
 					string title = "";
 					tag_list.get_string(TAG_TITLE, out title);
 					
-					if(lm.media_info.media.mediatype == 3 && title != "") { // is radio
+					if (lm.media_info.media.mediatype == 3 && title != "") { // is radio
 						string[] pieces = title.split("-", 0);
 						
-						if(pieces.length >= 2) {
+						if (pieces.length >= 2) {
 							string old_title = lm.media_info.media.title;
 							string old_artist = lm.media_info.media.artist;
 							lm.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
 							lm.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
 							
-							if(old_title != lm.media_info.media.title || old_artist != lm.media_info.media.artist)
+							if ((old_title != lm.media_info.media.title || old_artist != lm.media_info.media.artist) && (lm.media_info.media != null))
 								lw.media_played(lm.media_info.media); // pretend as if media changed
 						}
 						else {
@@ -232,7 +232,7 @@ public class BeatBox.Streamer : GLib.Object {
 			pipe.playbin.uri = s.uri; // probably cdda
 		}
 		else {
-			stdout.printf("not doing gapless in streamer because no next song\n");
+			message ("not doing gapless in streamer because no next song\n");
 		}
 		
 		lm.next_gapless_id = i;

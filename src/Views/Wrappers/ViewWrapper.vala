@@ -178,6 +178,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         switch (type) {
             case ViewType.LIST:
                 successful = view_container.set_current_view (list_view);
+                ((ListView)list_view).list_view.scroll_to_current_media(true);
                 break;
             case ViewType.ALBUM:
                 successful = view_container.set_current_view (album_view);

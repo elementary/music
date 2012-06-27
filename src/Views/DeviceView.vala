@@ -49,7 +49,7 @@ public class BeatBox.DeviceView : Box {
 			}
 		});
 		d.device_unmounted.connect( () => {
-			stdout.printf("device unmounted\n");
+			message ("device unmounted\n");
 			d.disconnect(connector);
 		});
 		

@@ -105,7 +105,7 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 	}
 
 	public void install_plugins_finished(Gst.InstallPluginsReturn result) {
-		stdout.printf ("Install of plugins finished.. updating registry");
+		GLib.message ("Install of plugins finished.. updating registry");
 		Gst.update_registry();
 	}
 }

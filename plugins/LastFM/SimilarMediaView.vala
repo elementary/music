@@ -103,7 +103,7 @@ public class BeatBox.SimilarMediasView : TreeView {
 			Store.store store = new Store.store();
 			
 			for(int i = 0; i < 3; ++i) {
-				stdout.printf("testing page %d\n",i);
+				message ("testing page %d\n",i);
 				foreach(var track in store.searchTracks(s.title, i)) {
 					if(track.title.down() == s.title.down() && track.artist.name.down() == s.artist.down()) {
 						_lm.playTrackPreview(track, track.getPreviewLink());
@@ -116,14 +116,14 @@ public class BeatBox.SimilarMediasView : TreeView {
 #endif
 		
 		// fall back to just opening the last fm page
-		if(s != null && s.lastfm_url != null && s.lastfm_url != "") {
+		/*if(s != null && s.lastfm_url != null && s.lastfm_url != "") {
 			try {
 				GLib.AppInfo.launch_default_for_uri (s.lastfm_url, null);
 			}
 			catch(Error err) {
-				stdout.printf("Couldn't open the similar media's last fm page: %s\n", err.message);
+				message ("Couldn't open the similar media's last fm page: %s\n", err.message);
 			}
-		}
+		}*/
 		
 		return null;
 	}

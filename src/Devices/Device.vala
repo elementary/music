@@ -70,7 +70,7 @@ public interface BeatBox.Device : GLib.Object {
 		string uuid = m.get_uuid();
 		File root = m.get_root();
 		string rv = "";
-		stdout.printf("uuid: %s\n", uuid);
+		message ("uuid: %s\n", uuid);
 		if(root != null && root.get_uri() != null) {
 			rv += root.get_uri();
 		}
