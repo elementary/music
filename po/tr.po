@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-10 03:26+0000\n"
-"Last-Translator: kulkke <Unknown>\n"
+"PO-Revision-Date: 2012-06-28 20:27+0000\n"
+"Last-Translator: seaflames <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-11 05:14+0000\n"
-"X-Generator: Launchpad (build 15376)\n"
+"X-Launchpad-Export-Date: 2012-06-29 05:10+0000\n"
+"X-Generator: Launchpad (build 15505)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
 msgid "Enable debug logging"
-msgstr ""
+msgstr "Hata ayıklama günlüğünü aktifleştir"
 
 #: /home/victor/noise/po/../src//Noise.vala:72
 msgid "Disable plugins"
@@ -165,7 +165,7 @@ msgstr "Otomatik"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr ""
+msgstr "şimdikini Sil"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
@@ -616,7 +616,7 @@ msgstr "Tercihler"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:65
 msgid "Behavior"
-msgstr ""
+msgstr "Davranış"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:69
 msgid "Extensions"
@@ -653,6 +653,8 @@ msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Müzik dosyanızı ayarlamadan önce diğer dosya işlemlerinin bitmesini "
+"beklemelisiniz"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
@@ -892,7 +894,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:138
 #, c-format
 msgid "The name %s is already in use"
-msgstr ""
+msgstr "%s ismi zaten kullanımda"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
@@ -968,6 +970,9 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"Şarkının bir bölümü oynatıldığında geçmiş listesine eklenir.\n"
+"Bu listeyi geçerli oturumunuzda oynattığınız bütün şarkıları görmek için "
+"kullanabilirsiniz."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Get Some Tunes"
@@ -976,7 +981,7 @@ msgstr "Müziklerinizi Bulun"
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "Göünüşe göre %s müziğinizi bulamadı"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Locate"
@@ -1001,7 +1006,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:175
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "Bu cihazdaki bütün müzikler zaten kitaplığınızda mevcut"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
 #, c-format
@@ -1074,7 +1079,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
 #, c-format
 msgid "Similar to %s"
-msgstr ""
+msgstr "%s ya benzer"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:124
 msgid "No similar songs found"
@@ -1106,7 +1111,7 @@ msgstr "Senkronizeyi durdur"
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
+msgstr "Cihaz eşleşmesi iptal edildi.Bu ortamdan sonra işlem durdurulacak."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
@@ -1116,11 +1121,12 @@ msgstr "İçe aktarmayı durdur"
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
+"Bu cihazdan içe akarma iptal edildi.Bu ortamdan sonra işlem durdurulacak."
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr ""
+msgstr "Bu cihazda kütüphanenizde bulunmayan bir şarkı bulunamadı"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1294,7 +1300,7 @@ msgstr "Derecelendirme Yok"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
 msgid "On Left"
-msgstr ""
+msgstr "Solda"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
 msgid "On Top"
@@ -1359,6 +1365,8 @@ msgstr "Senkronizasyon Başarısız"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"%s adlı oynatma listesi %s cihazıyla eşleşmek için kullanılıyordu ama "
+"bulunamadı."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
@@ -1396,7 +1404,7 @@ msgstr "Hiç Çalınmamış"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:482
 msgid "Unheard Podcasts"
-msgstr ""
+msgstr "Duyulmamış Podcastlar"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:492
 msgid "Over Played"
@@ -1510,7 +1518,7 @@ msgstr "İçe Aktarma Tamamlandı"
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1092
 #, c-format
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s kütüphanenize eklendi."
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:40
 msgid "1 second"
@@ -1595,7 +1603,7 @@ msgstr "Kulaklıklar"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "Geniş Salon"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
