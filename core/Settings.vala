@@ -4,7 +4,7 @@ namespace Noise {
         AUTOMATIC = 0,
         LEFT      = 2,
         TOP       = 1
-	}
+    }
 
     public enum WindowState {
         NORMAL = 0,

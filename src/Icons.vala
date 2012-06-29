@@ -103,6 +103,7 @@ namespace Icons {
     public BeatBox.Icon SHUFFLE_ON;
     public BeatBox.Icon SHUFFLE_OFF;
     public BeatBox.Icon REPEAT_ON;
+    public BeatBox.Icon REPEAT_ONE;
     public BeatBox.Icon REPEAT_OFF;
 
     public BeatBox.Icon VIEW_COLUMN;
@@ -171,6 +172,7 @@ namespace Icons {
         PROCESS_STOP = new BeatBox.Icon ("process-stop-symbolic");
         SHUFFLE_ON = new BeatBox.Icon ("media-playlist-shuffle-symbolic");
         REPEAT_ON = new BeatBox.Icon ("media-playlist-repeat-symbolic");
+        REPEAT_ONE = new BeatBox.Icon ("media-playlist-repeat-one-symbolic");
         VIEW_COLUMN = new BeatBox.Icon ("view-column-symbolic");
         VIEW_DETAILS =new BeatBox.Icon ("view-list-symbolic");
         VIEW_ICONS = new BeatBox.Icon ("view-grid-symbolic");

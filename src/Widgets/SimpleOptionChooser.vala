@@ -26,9 +26,8 @@ using Gee;
 
 public class BeatBox.SimpleOptionChooser : EventBox {
 	Gtk.Menu? menu = null;
-	LinkedList<CheckMenuItem> items;
-	Gtk.Image enabled;
-	Gtk.Image disabled;
+	public LinkedList<RadioMenuItem> items;
+	public LinkedList<Gtk.Image> images;
 
 	int clicked_index;
 	int previous_index; // for left click
@@ -36,22 +35,9 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 
 	public signal void option_changed(int index);
 
-	public SimpleOptionChooser.from_pixbuf (Pixbuf enabled, Pixbuf? disabled = null) {
-		this.enabled = new Image.from_pixbuf (enabled);
-		this.disabled = new Image.from_pixbuf (disabled ?? enabled);
-
-		initialize ();
-	}
-
-	public SimpleOptionChooser.from_image (Gtk.Image enabled, Gtk.Image? disabled = null) {
-		this.enabled = enabled;
-		this.disabled = disabled ?? enabled;
-
-		initialize ();
-	}
-
-	private void initialize () {
-		items = new LinkedList<CheckMenuItem>();
+	public SimpleOptionChooser () {
+		items = new LinkedList<RadioMenuItem>();
+		images = new LinkedList<Gtk.Image>();
 		toggling = false;
 
 		clicked_index = 0;
@@ -63,37 +49,39 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 
 		button_press_event.connect(buttonPress);
 
-		set_image ();
-	}
-
-	public void setTooltip (string enabled_tooltip, string? disabled_tooltip = null) {
-		enabled.set_tooltip_text (enabled_tooltip);
-		disabled.set_tooltip_text (disabled_tooltip ?? enabled_tooltip);
+		//set_image ();
 	}
 
 	public void setOption(int index) {
 		if(index >= items.size)
 			return;
 
-		for(int i = 0;i < items.size; ++i) {
-			if(i == index)
-				items.get(i).set_active(true);
-			else
-				items.get(i).set_active(false);
-		}
+		items.get(index).set_active(true);
 
 		clicked_index = index;
 		option_changed(index);
 
-		set_image ();
+		if (get_child () != null)
+			remove (get_child ());
+
+		add (images.get(index));
+
+		show_all ();
 	}
 
-	public int appendItem(string text) {
+	public int appendItem(string text, Gtk.Image image, string tooltip) {
 		if (menu == null)
 			menu = new Gtk.Menu();
 
-		var item = new CheckMenuItem.with_label(text);
+		Gtk.RadioMenuItem item;
+		if (items.size == 0)
+		    item = new RadioMenuItem.with_label(null, text);
+	    else
+	        item = new RadioMenuItem.with_label_from_widget (items.get(0), text);
+		Gtk.Image item_image = image;
+		image.set_tooltip_text (tooltip);
 		items.add(item);
+		images.add(item_image);
 		menu.append(item);
 
 		item.toggled.connect( () => {
@@ -126,7 +114,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 					setOption(0);
 				}
 			}
-			else if(event.button == 3 && menu != null) {
+			else if(event.button == 3 && menu != null && items.size > 1) {
 				menu.popup (null, null, null, 3, get_current_event_time());
 			}
 		}
@@ -134,16 +122,5 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 		return false;
 	}
 
-	private void set_image () {
-		if (get_child () != null)
-			remove (get_child ());
-
-		if (clicked_index != 0)
-			add (enabled);
-		else
-			add (disabled);
-
-		show_all ();
-	}
 }
 

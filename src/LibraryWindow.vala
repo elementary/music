@@ -35,27 +35,27 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     /* Library Manager */
     public BeatBox.LibraryManager library_manager { get; private set; }
 
-    public Noise.Settings   main_settings        { get; private set; }
-    public Noise.SavedState savedstate_settings  { get; private set; }
-    public Noise.Equalizer  equalizer_settings   { get; private set; }
+    public Noise.Settings   main_settings         { get; private set; }
+    public Noise.SavedState savedstate_settings   { get; private set; }
+    public Noise.Equalizer  equalizer_settings    { get; private set; }
 
     private BeatBox.MediaKeyListener mkl;
 
     /* Info related to the media being played */
-    private bool media_considered_played { get; set; default = false; } // whether or not we have updated last played and added to already played list
-    private bool added_to_play_count { get; set; default = false; } // whether or not we have added one to play count on playing media
-    private bool tested_for_video { get; set; default = false; } // whether or not we have tested if media is video and shown video
+    private bool media_considered_played    { get; set; default = false; } // whether or not we have updated last played and added to already played list
+    private bool added_to_play_count        { get; set; default = false; } // whether or not we have added one to play count on playing media
+    private bool tested_for_video           { get; set; default = false; } // whether or not we have tested if media is video and shown video
     private bool media_considered_previewed { get; set; default = false; }
-    private bool media_half_played_sended { get; set; default = false; }
+    private bool media_half_played_sended   { get; set; default = false; }
 
-    public bool dragging_from_music     { get; set; default = false; } // TODO: make private
-    public bool initialization_finished { get; private set; default = false; }
+    public bool dragging_from_music         { get; set; default = false; } // TODO: make private
+    public bool initialization_finished     { get; private set; default = false; }
 
 
     /* Main layout widgets */
     private Gtk.Box       verticalBox;
     private Gtk.Paned     view_container_hpaned; // view_container / info_panel
-    public InfoPanel     info_panel;
+    public InfoPanel      info_panel;
 
     private Gtk.Toolbar    main_toolbar; // Toolbar
     private Gtk.ToolButton previousButton;
@@ -69,14 +69,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public TopDisplay                 topDisplay            { get; private set; } // TODO: make private
     public Granite.Widgets.ModeButton viewSelector          { get; private set; } // TODO: make private
     public Granite.Widgets.SearchBar  searchField           { get; private set; } // TODO: make private
-    public Granite.Widgets.StatusBar  statusbar             { get; private set; } // TODO: make private
-
-    /* Statusbar items */
-    private SimpleOptionChooser addPlaylistChooser;
-    private SimpleOptionChooser shuffleChooser;
-    private SimpleOptionChooser repeatChooser;
-    private SimpleOptionChooser info_panel_chooser;
-    private SimpleOptionChooser eq_option_chooser;
+    public BottomStatusBar            statusbar             { get; private set; } // TODO: make private
+    private Granite.Widgets.Welcome   welcome_screen        { get; private set; } // TODO: make private
 
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
@@ -108,11 +102,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager = new BeatBox.LibraryManager (this);
 
         #if HAVE_INDICATE
-        #if HAVE_DBUSMENU
-        message ("Initializing MPRIS and sound menu");
-        var mpris = new BeatBox.MPRIS (this);
-        mpris.initialize ();
-        #endif
+            #if HAVE_DBUSMENU
+                message ("Initializing MPRIS and sound menu");
+                var mpris = new BeatBox.MPRIS (this);
+                mpris.initialize ();
+            #endif
         #endif
 
         //various objects
@@ -134,7 +128,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         this.library_manager.media_removed.connect (update_sensitivities);
 
         // init some booleans
-        if (library_manager.media_count() == 0 && main_settings.music_folder == "") {
+        if (main_settings.music_folder == "") {
+            main_settings.music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
             message("First run.\n");
         }
         else {
@@ -290,56 +285,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         /** Statusbar widgets **/
 
-        statusbar = new Granite.Widgets.StatusBar ();
-
-        var add_playlist_image = Icons.render_image ("list-add-symbolic", Gtk.IconSize.MENU);
-        var shuffle_on_image   = Icons.SHUFFLE_ON.render_image (Gtk.IconSize.MENU);
-        var shuffle_off_image  = Icons.SHUFFLE_OFF.render_image (Gtk.IconSize.MENU);
-        var repeat_on_image    = Icons.REPEAT_ON.render_image (Gtk.IconSize.MENU);
-        var repeat_off_image   = Icons.REPEAT_OFF.render_image (Gtk.IconSize.MENU);
-        var info_panel_show    = Icons.PANE_SHOW_SYMBOLIC.render_image (Gtk.IconSize.MENU);
-        var info_panel_hide    = Icons.PANE_HIDE_SYMBOLIC.render_image (Gtk.IconSize.MENU);
-        var eq_show_image      = Icons.EQ_SYMBOLIC.render_image (Gtk.IconSize.MENU);
-        var eq_hide_image      = Icons.EQ_SYMBOLIC.render_image (Gtk.IconSize.MENU);
-
-        addPlaylistChooser = new SimpleOptionChooser.from_image (add_playlist_image);
-        shuffleChooser     = new SimpleOptionChooser.from_image (shuffle_on_image, shuffle_off_image);
-        repeatChooser      = new SimpleOptionChooser.from_image (repeat_on_image, repeat_off_image);
-        info_panel_chooser = new SimpleOptionChooser.from_image (info_panel_hide, info_panel_show);
-        eq_option_chooser  = new SimpleOptionChooser.from_image (eq_hide_image, eq_show_image);
-
-        statusbar.insert_widget (addPlaylistChooser, true);
-        statusbar.insert_widget (shuffleChooser, true);
-        statusbar.insert_widget (repeatChooser, true);
-        statusbar.insert_widget (eq_option_chooser);
-        statusbar.insert_widget (info_panel_chooser);
-
-        addPlaylistChooser.margin_right = 12;
-        addPlaylistChooser.setTooltip (_("Add Playlist"));
-
-        repeatChooser.appendItem (_("Off"));
-        repeatChooser.appendItem (_("Song"));
-        repeatChooser.appendItem (_("Album"));
-        repeatChooser.appendItem (_("Artist"));
-        repeatChooser.appendItem (_("All"));
-        repeatChooser.setOption (main_settings.repeat_mode);
-        repeatChooser.setTooltip (_("Disable Repeat"), _("Enable Repeat"));
-
-        shuffleChooser.appendItem (_("Off"));
-        shuffleChooser.appendItem (_("All"));
-        shuffleChooser.setOption (main_settings.shuffle_mode);
-        shuffleChooser.setTooltip (_("Disable Shuffle"), _("Enable Shuffle"));
-
-        info_panel_chooser.appendItem (_("Hide"));
-        info_panel_chooser.appendItem (_("Show"));
-        info_panel_chooser.setOption (savedstate_settings.more_visible ? 1 : 0);
-        info_panel_chooser.setTooltip (_("Hide Info Panel"), _("Show Info Panel"));
-
-        eq_option_chooser.appendItem (_("Hide"));
-        eq_option_chooser.appendItem (_("Show"));
-        eq_option_chooser.setOption (0);
-        eq_option_chooser.setTooltip (_("Hide Equalizer"), _("Show Equalizer"));
-
+        statusbar = new BottomStatusBar (this);
 
         /** Info Panel **/
 
@@ -423,19 +369,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         previousButton.clicked.connect(previousClicked);
         playButton.clicked.connect(playClicked);
         nextButton.clicked.connect(nextClicked);
-
-        addPlaylistChooser.button_press_event.connect(addPlaylistChooserOptionClicked);
-        eq_option_chooser.option_changed.connect(eq_option_chooser_clicked);
-
-        repeatChooser.option_changed.connect(repeatChooserOptionChanged);
-        shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
-        info_panel_chooser.option_changed.connect(info_panel_chooserOptionChanged);
-
-        if(library_manager.media_active) {
-            if(main_settings.shuffle_mode == LibraryManager.Shuffle.ALL) {
-                library_manager.setShuffleMode(LibraryManager.Shuffle.ALL, true);
-            }
-        }
 
         searchField.activate.connect (searchFieldActivate);
         searchField.set_text (main_settings.search_string);
@@ -527,8 +460,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      *
      * @return true if succeeds, false if fails.
      */
-    public bool add_view (string view_name, ViewWrapper view_wrapper, out TreeIter? iter = null)
-    {
+    public bool add_view (string view_name, ViewWrapper view_wrapper, out TreeIter? iter = null) {
         iter = null;
 
         /* Pack view wrapper into the main views */
@@ -1219,66 +1151,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var not_found = new FileNotFoundDialog(library_manager, this, id);
         not_found.show();
 #endif
-    }
-
-    public void set_statusbar_info (string message)
-    {
-        statusbar.set_text (message);
-    }
-
-    public virtual void repeatChooserOptionChanged(int val) {
-        main_settings.repeat_mode = val;
-
-        if(val == 0)
-            library_manager.repeat = LibraryManager.Repeat.OFF;
-        else if(val == 1)
-            library_manager.repeat = LibraryManager.Repeat.MEDIA;
-        else if(val == 2)
-            library_manager.repeat = LibraryManager.Repeat.ALBUM;
-        else if(val == 3)
-            library_manager.repeat = LibraryManager.Repeat.ARTIST;
-        else if(val == 4)
-            library_manager.repeat = LibraryManager.Repeat.ALL;
-    }
-
-    public virtual void shuffleChooserOptionChanged(int val) {
-        if(val == 0)
-            library_manager.setShuffleMode(LibraryManager.Shuffle.OFF, true);
-        else if(val == 1)
-            library_manager.setShuffleMode(LibraryManager.Shuffle.ALL, true);
-    }
-
-    public virtual bool addPlaylistChooserOptionClicked(Gdk.EventButton event) {
-        if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == 1) {
-            sideTree.playlistMenuNewClicked();
-            return true;
-        }
-
-        return false;
-    }
-
-
-    private Gtk.Window? equalizer_window = null;
-
-    public virtual void eq_option_chooser_clicked (int val) {
-        if (equalizer_window == null && val == 1) {
-            equalizer_window = new EqualizerWindow (library_manager, this);
-            equalizer_window.show_all ();
-            equalizer_window.destroy.connect ( () => {
-                // revert the option to "Hide equalizer" after the window is destroyed
-                eq_option_chooser.setOption (0);
-            });
-        }
-        else if (val == 0 && equalizer_window != null) {
-            equalizer_window.destroy ();
-            equalizer_window = null;
-        }
-    }
-
-
-    public virtual void info_panel_chooserOptionChanged (int val) {
-        info_panel.set_visible (val == 1);
-        savedstate_settings.more_visible = (val == 1);
     }
 
     public void searchFieldActivate() {

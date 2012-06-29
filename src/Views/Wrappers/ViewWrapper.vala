@@ -393,7 +393,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         debug ("%s : updating statusbar info", hint.to_string ());
 
-        lw.set_statusbar_info (get_statusbar_text ());
+        lw.statusbar.set_info (get_statusbar_text ());
     }
 
 
