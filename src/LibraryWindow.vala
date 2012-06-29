@@ -684,6 +684,15 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 view_container.add_view (dv);
             }
         }
+        else if(o is NetworkDevice) {
+
+            var nd_setup = new TreeViewSetup (MusicListView.MusicColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.NETWORK_DEVICE);
+            var view = new NetworkDeviceViewWrapper (this, nd_setup, (BeatBox.NetworkDevice)o);
+            add_view (((BeatBox.NetworkDevice)o).getDisplayName(), view, out iter);
+
+            if (populate)
+                view.set_media_async (((BeatBox.NetworkDevice)o).get_medias ());
+        }
         
         return iter;
     }

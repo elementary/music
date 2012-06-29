@@ -39,6 +39,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
     public TreeIter devices_cdrom_iter {get; private set;}
     
     public TreeIter network_iter {get; private set;}
+    public TreeIter network_devices_iter {get; private set;}
 
 #if HAVE_INTERNET_RADIO
     public TreeIter network_radio_iter {get; private set;}
@@ -212,6 +213,9 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
             case ViewWrapper.Hint.DEVICE_AUDIO:
             case ViewWrapper.Hint.DEVICE_PODCAST:
             case ViewWrapper.Hint.DEVICE_AUDIOBOOK:
+            case ViewWrapper.Hint.NETWORK_DEVICE:
+                sidebar_category_iter = network_iter;
+                break;
             case ViewWrapper.Hint.CDROM:
                 sidebar_category_iter = devices_iter;
                 break;
@@ -255,10 +259,10 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
             Gdk.Pixbuf device_icon = d.get_icon();
             
             if (device_icon == null) {
-                device_icon = Icons.render_icon ("multimedia-player", Gtk.IconSize.MENU);
+                device_icon = Icons.AUDIO_DEVICE.render (Gtk.IconSize.MENU, null);
             }
 
-            rv = addItem(parent, o, w, device_icon, name, Icons.EJECT.render(IconSize.MENU, null));
+            rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, null));
 
             var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
             dvw.set_media (d.get_medias ());
@@ -269,6 +273,36 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
                 dvw = new DeviceViewWrapper(lw, d.get_podcasts(), new TreeViewSetup(PodcastListView.PodcastColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST), -1, d);
                 addItem(rv, o, dvw, Icons.PODCAST.render (IconSize.MENU, null), _("Podcasts"), null);
                 lw.view_container.add_view (dvw);
+            }
+#endif
+            if(d.supports_audiobooks() && false) {
+                //dvw = new DeviceViewWrapper(lm, lm.lw, d.get_podcasts(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIOBOOK, -1, d);
+                //addItem(rv, o, dvw, audiobook_icon, "Audiobooks", null);
+                //lw.mainViews.pack_start(dvw, true, true, 0);
+            }
+            
+            return rv;
+        }
+        else if(o is NetworkDevice && parent == network_devices_iter) {
+            NetworkDevice d = (NetworkDevice)o;
+            TreeIter? rv;
+            Gdk.Pixbuf device_icon = d.get_icon();
+            
+            if (device_icon == null) {
+                device_icon = Icons.NETWORK_DEVICE.render (Gtk.IconSize.MENU, null);
+            }
+
+            rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, null));
+
+            var ndvw = new NetworkDeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
+            ndvw.set_media (d.get_medias ());
+            addItem(rv, o, ndvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
+            lw.view_container.add_view (ndvw);
+#if HAVE_PODCASTS
+            if(d.supports_podcasts()) {
+                ndvw = new NetworkDeviceViewWrapper(lw, d.get_podcasts(), new TreeViewSetup(PodcastListView.PodcastColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST), -1, d);
+                addItem(rv, o, ndvw, Icons.PODCAST.render (IconSize.MENU, null), _("Podcasts"), null);
+                lw.view_container.add_view (ndvw);
             }
 #endif
             if(d.supports_audiobooks() && false) {
@@ -680,7 +714,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
     }
     
     /* device stuff */
-    public void deviceAdded(Device d) {
+    public void deviceAdded(GLib.Object d) {
         lw.addSideListItem(d);
         sideListSelectionChange ();
     }

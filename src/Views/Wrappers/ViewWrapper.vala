@@ -81,6 +81,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         DEVICE_AUDIO,
         DEVICE_PODCAST,
         DEVICE_AUDIOBOOK,
+        NETWORK_DEVICE,
         ALBUM_LIST;
     }
 

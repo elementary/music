@@ -51,6 +51,26 @@ else()
 message("-- DBus Menu disabled")
 endif()
 
+pkg_check_modules(GUPNP gupnp-1.0)
+if(${GUPNP_FOUND})
+set(ADD_PKG ${ADD_PKG}
+        gupnp-1.0)
+set(ADD_OPTIONS ${ADD_OPTIONS})
+message("-- UPnP Plugin enabled")
+else()
+message("-- UPnP Plugin disabled")
+endif()
+
+pkg_check_modules(GUPNP_AV gupnp-av-1.0)
+if(${GUPNP_AV_FOUND})
+set(ADD_PKG ${ADD_PKG}
+        gupnp-av-1.0)
+set(ADD_OPTIONS ${ADD_OPTIONS})
+message("-- UPnP Plugin enabled")
+else()
+message("-- UPnP Plugin disabled")
+endif()
+
 pkg_check_modules(INDICATE indicate-0.7)
 if(${INDICATE_FOUND})
 set(ADD_PKG ${ADD_PKG}
@@ -62,9 +82,9 @@ else()
 message("-- Indicate disabled")
 endif()
 
-set (NORMAL_CFLAGS ${DEPS_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS})
-set (NORMAL_LIBRARIES ${DEPS_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
-set (NORMAL_LINK_DIRS ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
+set (NORMAL_CFLAGS ${DEPS_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS} ${GUPNP_CFLAGS} ${GUPNP_AV_CFLAGS})
+set (NORMAL_LIBRARIES ${DEPS_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES} ${GUPNP_LIBRARIES} ${GUPNP_AV_LIBRARIES})
+set (NORMAL_LINK_DIRS ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${GUPNP_LIBRARY_DIRS} ${GUPNP_AV_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
 
 set(PLUGIN_DIR "${CMAKE_INSTALL_PREFIX}/lib/noise/plugins")
 set(ICON_DIR "${CMAKE_INSTALL_PREFIX}/share/noise/icons/hicolor")

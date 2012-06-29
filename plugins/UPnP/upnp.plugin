@@ -1,0 +1,8 @@
+[Plugin]
+Module=upnp
+IAge=2
+Name=UPnP - DLNA
+Description=Listen to music from others devices.
+Authors=Noise Developers
+Copyright=Copyright © 2012 Noise Developers
+Website=http://launchpad.net/noise

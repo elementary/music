@@ -30,6 +30,7 @@ vala_precompile(VALA_C
     Noise.vala
 
     Devices/Device.vala
+    Devices/NetworkDevice.vala
     Devices/DeviceManager.vala
     Devices/DevicePreferences.vala
 
@@ -79,6 +80,7 @@ vala_precompile(VALA_C
     Views/Wrappers/HistoryViewWrapper.vala
     Views/Wrappers/QueueViewWrapper.vala
     Views/Wrappers/DeviceViewWrapper.vala
+    Views/Wrappers/NetworkDeviceViewWrapper.vala
     Views/Wrappers/PlaylistViewWrapper.vala
 
     Views/DeviceView.vala

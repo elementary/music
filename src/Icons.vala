@@ -31,153 +31,158 @@
 
 namespace Icons {
 
-	public enum Type {
-		MIMETYPE,
-		ACTION,
-		STATUS,
-		APP,
-		OTHER
-	}
+    public enum Type {
+        MIMETYPE,
+        ACTION,
+        STATUS,
+        APP,
+        OTHER
+    }
 
-	public enum FileType {
-		SVG,
-		PNG
-	}
+    public enum FileType {
+        SVG,
+        PNG
+    }
 
-	private const string MIMETYPES_FOLDER = "mimetypes";
-	private const string ACTIONS_FOLDER = "actions";
-	private const string STATUS_FOLDER = "status";
-	private const string APPS_FOLDER = "apps";
-	private const string OTHER_FOLDER = "other";
+    private const string MIMETYPES_FOLDER = "mimetypes";
+    private const string ACTIONS_FOLDER = "actions";
+    private const string STATUS_FOLDER = "status";
+    private const string APPS_FOLDER = "apps";
+    private const string OTHER_FOLDER = "other";
 
-	private const string PNG_EXT = ".png";
-	private const string SVG_EXT = ".svg";
+    private const string PNG_EXT = ".png";
+    private const string SVG_EXT = ".svg";
 
-	/**
-	 * Size of the cover art used in the album view
-	 **/
-	public const int ALBUM_VIEW_IMAGE_SIZE = 168;
+    /**
+     * Size of the cover art used in the album view
+     **/
+    public const int ALBUM_VIEW_IMAGE_SIZE = 168;
 
-	/**
-	 * ICON INFORMATION
-	 * Use render() or render_image() to load these icons
-	**/
+    /**
+     * ICON INFORMATION
+     * Use render() or render_image() to load these icons
+    **/
 
-	// 128 x 128
-	public BeatBox.Icon DEFAULT_ALBUM_ART;
-	public BeatBox.Icon MUSIC_FOLDER;
+    // 128 x 128
+    public BeatBox.Icon DEFAULT_ALBUM_ART;
+    public BeatBox.Icon MUSIC_FOLDER;
 
-	// 22 x 22
-	public BeatBox.Icon HISTORY;
+    // 22 x 22
+    public BeatBox.Icon HISTORY;
 
-	// 16 x 16
-	public BeatBox.Icon BEATBOX;
-	public BeatBox.Icon MUSIC;
-	public BeatBox.Icon AUDIO_CD;
-	public BeatBox.Icon PLAYLIST;
-	public BeatBox.Icon SMART_PLAYLIST;
-
-	public BeatBox.Icon EJECT;
-
-	public BeatBox.Icon STARRED;
-	public BeatBox.Icon NOT_STARRED;
-
-	// SYMBOLIC ICONS
-	public BeatBox.Icon PANE_HIDE_SYMBOLIC;
-	public BeatBox.Icon PANE_SHOW_SYMBOLIC;
-
-	public BeatBox.Icon EQ_SYMBOLIC;
-
-	public BeatBox.Icon NOW_PLAYING_SYMBOLIC;
-
-	public BeatBox.Icon STARRED_SYMBOLIC;
-	public BeatBox.Icon NOT_STARRED_SYMBOLIC;
-
-	public BeatBox.Icon PROCESS_COMPLETED;
-	public BeatBox.Icon PROCESS_ERROR;
-	public BeatBox.Icon PROCESS_STOP;
-
-	public BeatBox.Icon SHUFFLE_ON;
-	public BeatBox.Icon SHUFFLE_OFF;
-	public BeatBox.Icon REPEAT_ON;
-	public BeatBox.Icon REPEAT_OFF;
-
-	public BeatBox.Icon VIEW_COLUMN;
-	public BeatBox.Icon VIEW_DETAILS;
-	public BeatBox.Icon VIEW_ICONS;
-	public BeatBox.Icon VIEW_VIDEO;
-
-	/**
-	 * RENDERED ICONS.
-	 * These are pre-rendered pixbufs. Any static image which otherwise would need
-	 * to be rendered many times should be a preloaded pixbuf. They are loaded
-	 * in the init() function.
-	 */
-	public Gdk.Pixbuf DEFAULT_ALBUM_ART_PIXBUF;
-	public Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF;
+    // 16 x 16
+    public BeatBox.Icon BEATBOX;
+    public BeatBox.Icon MUSIC;
+    public BeatBox.Icon AUDIO_CD;
+    public BeatBox.Icon AUDIO_DEVICE;
+    public BeatBox.Icon NETWORK_DEVICE;
+    public BeatBox.Icon PLAYLIST;
+    public BeatBox.Icon SMART_PLAYLIST;
 
 
-	public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
-		var icon = new BeatBox.Icon (icon_name);
-		return icon.render (size, context);
-	}
+    public BeatBox.Icon STARRED;
+    public BeatBox.Icon NOT_STARRED;
 
-	public Gtk.Image? render_image (string icon_name, Gtk.IconSize size) {
-		var icon = new BeatBox.Icon (icon_name);
-		return icon.render_image (size);
-	}
+    // SYMBOLIC ICONS
+    public BeatBox.Icon PANE_HIDE_SYMBOLIC;
+    public BeatBox.Icon PANE_SHOW_SYMBOLIC;
 
-	/**
-	 * Loads icon information and renders [preloaded] pixbufs
-	 **/
-	public void init () {
+    public BeatBox.Icon EQ_SYMBOLIC;
 
-		// 128 x 128
-		DEFAULT_ALBUM_ART = new BeatBox.Icon ("albumart", 138, Type.MIMETYPE, null, true);
-		MUSIC_FOLDER = new BeatBox.Icon ("folder-music", 128, Type.MIMETYPE, null, true);
+    public BeatBox.Icon EJECT_SYMBOLIC;
 
-		// 22 x 22
-		HISTORY = new BeatBox.Icon ("document-open-recent");
+    public BeatBox.Icon NOW_PLAYING_SYMBOLIC;
 
-		// 16 x 16
-		BEATBOX = new BeatBox.Icon ("noise", 16, Type.APP, null, true);
-		MUSIC = new BeatBox.Icon ("library-music", 16, Type.MIMETYPE, null, true);
-		AUDIO_CD = new BeatBox.Icon ("media-cdrom-audio", 16, Type.MIMETYPE, null, true);
-		PLAYLIST = new BeatBox.Icon ("playlist", 16, Type.MIMETYPE, null, true);
-		SMART_PLAYLIST = new BeatBox.Icon ("playlist-automatic", 16, Type.MIMETYPE, null, true);
-		STARRED = new BeatBox.Icon ("starred", 16, Type.STATUS, null, true);
-		NOT_STARRED = new BeatBox.Icon ("non-starred", 16, Type.STATUS, null, true);
+    public BeatBox.Icon STARRED_SYMBOLIC;
+    public BeatBox.Icon NOT_STARRED_SYMBOLIC;
 
-		// SYMBOLIC ICONS (16 x 16)
-		PANE_SHOW_SYMBOLIC = new BeatBox.Icon ("pane-show-symbolic", 16, Type.ACTION, null, true);
-		PANE_HIDE_SYMBOLIC = new BeatBox.Icon ("pane-hide-symbolic", 16, Type.ACTION, null, true);
-		EQ_SYMBOLIC = new BeatBox.Icon ("media-eq-symbolic", 16, Type.ACTION, null, true);
+    public BeatBox.Icon PROCESS_COMPLETED;
+    public BeatBox.Icon PROCESS_ERROR;
+    public BeatBox.Icon PROCESS_STOP;
 
-		REPEAT_OFF = new BeatBox.Icon ("media-playlist-no-repeat-symbolic", 16, Type.STATUS, null, true);
-		SHUFFLE_OFF = new BeatBox.Icon ("media-playlist-no-shuffle-symbolic", 16, Type.STATUS, null, true);
+    public BeatBox.Icon SHUFFLE_ON;
+    public BeatBox.Icon SHUFFLE_OFF;
+    public BeatBox.Icon REPEAT_ON;
+    public BeatBox.Icon REPEAT_OFF;
 
-		NOW_PLAYING_SYMBOLIC = new BeatBox.Icon ("audio-volume-high-symbolic");
+    public BeatBox.Icon VIEW_COLUMN;
+    public BeatBox.Icon VIEW_DETAILS;
+    public BeatBox.Icon VIEW_ICONS;
+    public BeatBox.Icon VIEW_VIDEO;
 
-		EJECT = new BeatBox.Icon ("media-eject");
-		STARRED_SYMBOLIC = new BeatBox.Icon ("starred-symbolic");
-		NOT_STARRED_SYMBOLIC = new BeatBox.Icon ("non-starred-symbolic");
-		PROCESS_COMPLETED = new BeatBox.Icon ("process-completed-symbolic");
-		PROCESS_ERROR = new BeatBox.Icon ("process-error-symbolic");
-		PROCESS_STOP = new BeatBox.Icon ("process-stop-symbolic");
-		SHUFFLE_ON = new BeatBox.Icon ("media-playlist-shuffle-symbolic");
-		REPEAT_ON = new BeatBox.Icon ("media-playlist-repeat-symbolic");
-		VIEW_COLUMN = new BeatBox.Icon ("view-column-symbolic");
-		VIEW_DETAILS =new BeatBox.Icon ("view-list-symbolic");
-		VIEW_ICONS = new BeatBox.Icon ("view-grid-symbolic");
-		VIEW_VIDEO = new BeatBox.Icon ("view-video-symbolic");
+    /**
+     * RENDERED ICONS.
+     * These are pre-rendered pixbufs. Any static image which otherwise would need
+     * to be rendered many times should be a preloaded pixbuf. They are loaded
+     * in the init() function.
+     */
+    public Gdk.Pixbuf DEFAULT_ALBUM_ART_PIXBUF;
+    public Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF;
 
-		// Render Pixbufs ...
 
-		DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null);
+    public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
+        var icon = new BeatBox.Icon (icon_name);
+        return icon.render (size, context);
+    }
 
-		// 168x168
-		var shadow_icon = new BeatBox.Icon ("albumart-shadow", 168, Type.OTHER, FileType.PNG, true);
-		DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render (null);
-	}
+    public Gtk.Image? render_image (string icon_name, Gtk.IconSize size) {
+        var icon = new BeatBox.Icon (icon_name);
+        return icon.render_image (size);
+    }
+
+    /**
+     * Loads icon information and renders [preloaded] pixbufs
+     **/
+    public void init () {
+
+        // 128 x 128
+        DEFAULT_ALBUM_ART = new BeatBox.Icon ("albumart", 138, Type.MIMETYPE, null, true);
+        MUSIC_FOLDER = new BeatBox.Icon ("folder-music", 128, Type.MIMETYPE, null, true);
+
+        // 22 x 22
+        HISTORY = new BeatBox.Icon ("document-open-recent");
+
+        // 16 x 16
+        BEATBOX = new BeatBox.Icon ("noise", 16, Type.APP, null, true);
+        MUSIC = new BeatBox.Icon ("library-music", 16, Type.MIMETYPE, null, true);
+        AUDIO_CD = new BeatBox.Icon ("media-cdrom-audio", 16, Type.MIMETYPE, null, true);
+        AUDIO_DEVICE = new BeatBox.Icon ("multimedia-player", 16, Type.MIMETYPE, null, true);
+        NETWORK_DEVICE = new BeatBox.Icon ("monitor", 16, Type.MIMETYPE, null, true);
+        PLAYLIST = new BeatBox.Icon ("playlist", 16, Type.MIMETYPE, null, true);
+        SMART_PLAYLIST = new BeatBox.Icon ("playlist-automatic", 16, Type.MIMETYPE, null, true);
+        STARRED = new BeatBox.Icon ("starred", 16, Type.STATUS, null, true);
+        NOT_STARRED = new BeatBox.Icon ("non-starred", 16, Type.STATUS, null, true);
+
+        // SYMBOLIC ICONS (16 x 16)
+        PANE_SHOW_SYMBOLIC = new BeatBox.Icon ("pane-show-symbolic", 16, Type.ACTION, null, true);
+        PANE_HIDE_SYMBOLIC = new BeatBox.Icon ("pane-hide-symbolic", 16, Type.ACTION, null, true);
+        EQ_SYMBOLIC = new BeatBox.Icon ("media-eq-symbolic", 16, Type.ACTION, null, true);
+
+        REPEAT_OFF = new BeatBox.Icon ("media-playlist-no-repeat-symbolic", 16, Type.STATUS, null, true);
+        SHUFFLE_OFF = new BeatBox.Icon ("media-playlist-no-shuffle-symbolic", 16, Type.STATUS, null, true);
+
+        NOW_PLAYING_SYMBOLIC = new BeatBox.Icon ("audio-volume-high-symbolic");
+
+        EJECT_SYMBOLIC = new BeatBox.Icon ("media-eject-symbolic");
+        STARRED_SYMBOLIC = new BeatBox.Icon ("starred-symbolic");
+        NOT_STARRED_SYMBOLIC = new BeatBox.Icon ("non-starred-symbolic");
+        PROCESS_COMPLETED = new BeatBox.Icon ("process-completed-symbolic");
+        PROCESS_ERROR = new BeatBox.Icon ("process-error-symbolic");
+        PROCESS_STOP = new BeatBox.Icon ("process-stop-symbolic");
+        SHUFFLE_ON = new BeatBox.Icon ("media-playlist-shuffle-symbolic");
+        REPEAT_ON = new BeatBox.Icon ("media-playlist-repeat-symbolic");
+        VIEW_COLUMN = new BeatBox.Icon ("view-column-symbolic");
+        VIEW_DETAILS =new BeatBox.Icon ("view-list-symbolic");
+        VIEW_ICONS = new BeatBox.Icon ("view-grid-symbolic");
+        VIEW_VIDEO = new BeatBox.Icon ("view-video-symbolic");
+
+        // Render Pixbufs ...
+
+        DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null);
+
+        // 168x168
+        var shadow_icon = new BeatBox.Icon ("albumart-shadow", 168, Type.OTHER, FileType.PNG, true);
+        DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render (null);
+    }
 }
 
