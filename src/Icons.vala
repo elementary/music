@@ -166,10 +166,10 @@ namespace Icons {
 		PROCESS_STOP = new BeatBox.Icon ("process-stop-symbolic");
 		SHUFFLE_ON = new BeatBox.Icon ("media-playlist-shuffle-symbolic");
 		REPEAT_ON = new BeatBox.Icon ("media-playlist-repeat-symbolic");
-		VIEW_COLUMN = new BeatBox.Icon ("view-list-column-symbolic");
-		VIEW_DETAILS =new BeatBox.Icon ("view-list-details-symbolic");
-		VIEW_ICONS = new BeatBox.Icon ("view-list-icons-symbolic");
-		VIEW_VIDEO = new BeatBox.Icon ("view-list-video-symbolic");
+		VIEW_COLUMN = new BeatBox.Icon ("view-column-symbolic");
+		VIEW_DETAILS =new BeatBox.Icon ("view-list-symbolic");
+		VIEW_ICONS = new BeatBox.Icon ("view-grid-symbolic");
+		VIEW_VIDEO = new BeatBox.Icon ("view-video-symbolic");
 
 		// Render Pixbufs ...
 
