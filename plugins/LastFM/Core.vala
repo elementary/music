@@ -249,7 +249,6 @@ namespace LastFM {
                 if(iter->name == "session") {
                     for(Xml.Node* n = iter->children; n != null; n = n->next) {
                         if(n->name == "key") {
-                            lastfm_settings.session_key = n->get_content();
                             return n->get_content();
                             }
                     }

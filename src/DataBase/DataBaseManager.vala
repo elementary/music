@@ -419,8 +419,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			Query query = transaction.prepare ("INSERT INTO `smart_playlists` (`name`, `and_or`, `queries`, 'limit', 'limit_amount', 'sort_column_id', 'sort_direction', 'columns') VALUES (:name, :and_or, :queries, :limit, :limit_amount, :sort_column_id, :sort_direction, :columns);");
 
 			query.set_string(":name", _("Favorite Songs"));
-			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Rating<value_separator>is at least<value_separator>4<query_seperator>");
+			query.set_int(":and_or", 0);
+			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>13<value_separator>6<value_separator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
@@ -430,8 +430,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 #if HAVE_INTERNET_RADIO
 			query.set_string(":name", "Favorite Stations");
-			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_separator>is<value_separator>3<query_seperator>Rating<value_separator>is at least<value_separator>4<query_seperator>");
+			query.set_int(":and_or", 0);
+			query.set_string(":queries", "11<value_separator>0<value_separator>3<query_seperator>13<value_separator>6<value_separator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
@@ -440,8 +440,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 #endif
 			query.set_string(":name", _("Recently Added"));
-			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Date Added<value_separator>is within<value_separator>7<query_seperator>");
+			query.set_int(":and_or", 1);
+			query.set_string(":queries", "5<value_separator>7<value_separator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
@@ -450,8 +450,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 
 			query.set_string(":name", _("Recently Played"));
-			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Last Played<value_separator>is within<value_separator>7<query_seperator>");
+			query.set_int(":and_or", 1);
+			query.set_string(":queries", "9<value_separator>7<value_separator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.LAST_PLAYED);
@@ -460,8 +460,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 
 			query.set_string(":name", _("Recent Favorites"));
-			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Last Played<value_separator>is within<value_separator>7<query_seperator>Rating<value_separator>is at least<value_separator>4<query_seperator>");
+			query.set_int(":and_or", 0);
+			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>9<value_separator>7<value_separator>7<query_seperator>13<value_separator>6<value_separator>4<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
@@ -470,8 +470,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 
 			query.set_string(":name", _("Never Played"));
-			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Playcount<value_separator>is exactly<value_separator>0<query_seperator>");
+			query.set_int(":and_or", 0);
+			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>12<value_separator>4<value_separator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
@@ -480,8 +480,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 #if HAVE_PODCASTS
 			query.set_string(":name", _("Unheard Podcasts"));
-			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_separator>is<value_separator>1<query_seperator>Playcount<value_separator>is exactly<value_separator>0<query_seperator>");
+			query.set_int(":and_or", 0);
+			query.set_string(":queries", "11<value_separator>0<value_separator>1<query_seperator>12<value_separator>4<value_separator>0<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
@@ -490,8 +490,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 #endif
 			query.set_string(":name", _("Over Played"));
-			query.set_string(":and_or", "all");
-			query.set_string(":queries", "Media Type<value_separator>is<value_separator>0<query_seperator>Playcount<value_separator>is at least<value_separator>10<query_seperator>");
+			query.set_int(":and_or", 0);
+			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>12<value_separator>6<value_separator>10<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.PLAY_COUNT);
@@ -500,8 +500,8 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.execute();
 
 			query.set_string(":name", _("Not Recently Played"));
-			query.set_string(":and_or", "any");
-			query.set_string(":queries", "Last Played<value_separator>is before<value_separator>7<query_seperator>");
+			query.set_int(":and_or", 1);
+			query.set_string(":queries", "9<value_separator>8<value_separator>7<query_seperator>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.NUMBER);
@@ -553,7 +553,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			foreach(SmartPlaylist s in smarts) {
 				query.set_string(":name", s.name);
-				query.set_int(":and_or", s.conditional);
+				query.set_int(":and_or", (int)s.conditional);
 				query.set_string(":queries", s.queries_to_string());
 				query.set_int(":limit", ( s.limit ) ? 1 : 0);
 				query.set_int(":limit_amount", s.limit_amount);

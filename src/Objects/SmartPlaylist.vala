@@ -70,12 +70,12 @@ public class BeatBox.SmartPlaylist : Object {
         
         int index;
         for(index = 0; index < queries_in_string.length - 1; index++) {
-            string[] pieces_of_query = queries_in_string[index].split("<value_separator>", 0);
+            string[] pieces_of_query = queries_in_string[index].split("<value_separator>", 3);
             pieces_of_query.resize (3);
             
             SmartQuery sq = new SmartQuery();
             sq.field = (SmartQuery.FieldType)int.parse(pieces_of_query[0]);
-            sq.comparator = get_comparator_from_string(pieces_of_query[1]);
+            sq.comparator = (SmartQuery.ComparatorType)int.parse(pieces_of_query[1]);
             sq.value = pieces_of_query[2];
             
             addQuery(sq);
@@ -86,7 +86,7 @@ public class BeatBox.SmartPlaylist : Object {
         string rv = "";
         
         foreach(SmartQuery q in queries()) {
-            rv += q.field.to_string() + "<value_separator>" + get_comparator_name(q.comparator) + "<value_separator>" + q.value + "<query_seperator>";
+            rv += ((int)q.field).to_string() + "<value_separator>" + ((int)q.comparator).to_string() + "<value_separator>" + q.value + "<query_seperator>";
         }
         
         return rv;
@@ -475,55 +475,5 @@ public class BeatBox.SmartPlaylist : Object {
         rv.splrules.match_operator = (conditional == ConditionalType.ANY) ? GPod.SPLMatch.OR : GPod.SPLMatch.AND;
         rv.splpref.liveupdate = 1;
         rv.is_spl = true;
-    }
-    
-    public string get_comparator_name (SmartQuery.ComparatorType comparator) {
-    
-        switch (comparator) {
-        case SmartQuery.ComparatorType.IS:
-            return "is";
-        case SmartQuery.ComparatorType.IS_NOT:
-            return "isnot";
-        case SmartQuery.ComparatorType.CONTAINS:
-            return "contains";
-        case SmartQuery.ComparatorType.NOT_CONTAINS:
-            return "notcontains";
-        case SmartQuery.ComparatorType.IS_EXACTLY:
-            return "isexactly";
-        case SmartQuery.ComparatorType.IS_AT_MOST:
-            return "isatmost";
-        case SmartQuery.ComparatorType.IS_AT_LEAST:
-            return "isatleast";
-        case SmartQuery.ComparatorType.IS_WITHIN:
-            return "iswithin";
-        case SmartQuery.ComparatorType.IS_BEFORE:
-            return "isbefore";
-        }
-        return "is";
-    }
-    
-    public SmartQuery.ComparatorType get_comparator_from_string (string comparator) {
-    
-        switch (comparator) {
-        case "is":
-            return SmartQuery.ComparatorType.IS;
-        case "isnot":
-            return SmartQuery.ComparatorType.IS_NOT;
-        case "contains":
-            return SmartQuery.ComparatorType.CONTAINS;
-        case "notcontains":
-            return SmartQuery.ComparatorType.NOT_CONTAINS;
-        case "isexactly":
-            return SmartQuery.ComparatorType.IS_EXACTLY;
-        case "isatmost":
-            return SmartQuery.ComparatorType.IS_AT_MOST;
-        case "isatleast":
-            return SmartQuery.ComparatorType.IS_AT_LEAST;
-        case "iswithin":
-            return SmartQuery.ComparatorType.IS_WITHIN;
-        case "isbefore":
-            return SmartQuery.ComparatorType.IS_BEFORE;
-        }
-        return SmartQuery.ComparatorType.IS;
     }
 }

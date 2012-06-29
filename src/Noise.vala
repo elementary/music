@@ -128,13 +128,13 @@ namespace BeatBox {
             for (int i = 0; i < files.length; i++) {
                 var file = files[i];
                 if (file != null) {
-                	string uri = file.get_uri ();
+                    string uri = file.get_uri ();
                     to_play.add (uri);
                     message ("Adding file %s", uri);
                 }
-            }         
+            }
 
-			library_manager.play_files (to_play);
+            library_manager.play_files (to_play);
         }
 
         protected override void activate () {

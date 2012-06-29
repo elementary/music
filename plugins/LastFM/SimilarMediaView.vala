@@ -42,7 +42,7 @@ public class BeatBox.SimilarMediasView : TreeView {
 		 * #, track, title, artist, album, genre, comment, year, rating, (9)
 		 * bitrate, play count, last played, date added, file name, (5)
 		 * bpm, length, file size, (3) */
-		model = new ListStore(2, typeof(BeatBox.Media), typeof(string), -1);
+		model = new ListStore(3, typeof(BeatBox.Media), typeof(string), typeof(Gtk.Widget), -1);
 		
 		TreeViewColumn col = new TreeViewColumn();
 		col.title = _("media");
@@ -97,23 +97,6 @@ public class BeatBox.SimilarMediasView : TreeView {
 		
 		get_selection().get_selected(out mo, out iter);
 		mo.get(iter, 0, out s);
-
-#if HAVE_STORE
-		if(Option.enable_store) {
-			Store.store store = new Store.store();
-			
-			for(int i = 0; i < 3; ++i) {
-				message ("testing page %d\n",i);
-				foreach(var track in store.searchTracks(s.title, i)) {
-					if(track.title.down() == s.title.down() && track.artist.name.down() == s.artist.down()) {
-						_lm.playTrackPreview(track, track.getPreviewLink());
-						
-						return null;
-					}
-				}
-			}
-		}
-#endif
 		
 		// fall back to just opening the last fm page
 		/*if(s != null && s.lastfm_url != null && s.lastfm_url != "") {

@@ -58,3 +58,5 @@ target_link_libraries (lastfm ${NORMAL_LIBRARIES})
 install(TARGETS lastfm DESTINATION ${PLUGIN_DIR}/LastFM/)
 install(FILES lastfm.plugin DESTINATION ${PLUGIN_DIR}/LastFM/)
 add_dependencies(lastfm noise)
+
+add_subdirectory(schemas)

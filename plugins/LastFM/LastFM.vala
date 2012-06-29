@@ -79,24 +79,24 @@ namespace Noise.Plugins {
                     lastfmLogin_button.set_tooltip_text(_("Click to redo the Last.fm Login Process"));
                 }
                 var label = new Gtk.Label (_("LastFM allow you to access to more informations about the music that are on your library"));
-                label.set_line_wrap(true);
+                label.set_line_wrap (true);
                 container.attach (label, 0, 0, 1, 1);
                 container.attach (lastfmLogin_button, 0, 1, 1, 1);
                 container.show_all ();
                 preferences_window.main_static_notebook.append_page (container, new Gtk.Label (_("Last.fm")));
-                lastfmLogin_button.clicked.connect(lastfmLoginClick);
+                lastfmLogin_button.clicked.connect (lastfmLoginClick);
                 page_number = preferences_window.main_static_notebook.page;
             });
         }
 
         public void deactivate () {
-            similar_media_widget.destroy ();
-            container.destroy ();
             if (added) {
                 lm.lw.sideTree.removeItem(similar_iter);
                 lm.lw.sideTree.resetView();
+                similar_media_widget.destroy ();
             }
             if (page_number!=0) {
+                container.destroy ();
                 preferences_window.main_static_notebook.remove_page (page_number);
                 page_number = 0;
             }
@@ -141,6 +141,8 @@ namespace Noise.Plugins {
                     else {
                         core.logged_in();
                         message ("Successfully obtained a sessionkey");
+                        debug (sk);
+                        core.lastfm_settings.session_key = sk;
                         lastfmLogin_button.set_sensitive(false);
                         lastfmLogin_button.set_label(LOGIN_SUCCESSFUL);
                     }

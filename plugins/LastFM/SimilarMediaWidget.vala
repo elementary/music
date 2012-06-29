@@ -24,6 +24,7 @@ public class BeatBox.SimilarMediasWidget : Gtk.Grid {
     public LastFM.Core lfm;
     
     private Gtk.ScrolledWindow scroll;
+    private Gtk.Spinner spinner;
     
     private Gtk.Button love_button;
     private Gtk.Button ban_button;
@@ -46,6 +47,7 @@ public class BeatBox.SimilarMediasWidget : Gtk.Grid {
         // Last.fm
         lfm.logged_in.connect (logged_in_to_lastfm);
         lfm.similar_retrieved.connect (similar_retrieved);
+        lw.library_manager.media_played.connect (show_spinner);
         lw.media_half_played.connect (() => {
             scrobbled_track = true;
             lfm.postScrobbleTrack ();
@@ -57,6 +59,11 @@ public class BeatBox.SimilarMediasWidget : Gtk.Grid {
             lfm.fetchCurrentTrackInfo();
             lfm.postNowPlaying();
         });
+        
+        spinner = new Gtk.Spinner ();
+        spinner.halign = Gtk.Align.CENTER;
+        spinner.valign = Gtk.Align.CENTER;
+        spinner.set_vexpand (true);
         
         love_button = new Gtk.Button ();
         love_button.set_image (Icons.LASTFM_LOVE.render_image (Gtk.IconSize.MENU));
@@ -84,14 +91,23 @@ public class BeatBox.SimilarMediasWidget : Gtk.Grid {
         
         this.attach (buttons, 0, 0, 1, 1);
         this.attach (scroll, 0, 1, 1, 1);
+        this.attach (spinner, 0, 1, 1, 1);
         
         lw.info_panel.add_view (this);
-        show ();
+        show_all ();
+        show_spinner ();
         
         lw.info_panel.to_update.connect (update_visibilities);
         love_button.clicked.connect (love_button_clicked);
         ban_button.clicked.connect (ban_button_clicked);
         lm.dbu.periodical_save.connect (do_periodical_save);
+    }
+    
+    private void show_spinner () {
+        
+        scroll.hide ();
+        spinner.show ();
+        spinner.start ();
     }
     
     private void update_visibilities() {
@@ -128,6 +144,9 @@ public class BeatBox.SimilarMediasWidget : Gtk.Grid {
         }
         
         update_visibilities ();
+        scroll.show ();
+        spinner.hide ();
+        spinner.stop ();
     }
     
     private void logged_in_to_lastfm() {
@@ -147,6 +166,10 @@ public class BeatBox.SimilarMediasWidget : Gtk.Grid {
             return;
 
         lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
+    }
+    
+    public virtual void media_played(Media m) {
+        
     }
 
 }

@@ -48,9 +48,9 @@ public class BeatBox.BottomStatusBar : Granite.Widgets.StatusBar {
         shuffleChooser.appendItem (_("All"), shuffle_on_image, _("Enable Shuffle"));
         shuffleChooser.setOption (lw.main_settings.shuffle_mode);
 
-        info_panel_chooser.appendItem (_("Hide"), info_panel_hide, _("Hide Info Panel"));
-        info_panel_chooser.appendItem (_("Show"), info_panel_show, _("Show Info Panel"));
-        info_panel_chooser.setOption (lw.savedstate_settings.more_visible ? 0 : 1);
+        info_panel_chooser.appendItem (_("Hide"), info_panel_show, _("Hide Info Panel"));
+        info_panel_chooser.appendItem (_("Show"), info_panel_hide, _("Show Info Panel"));
+        info_panel_chooser.setOption (lw.savedstate_settings.more_visible ? 1 : 0);
 
         eq_option_chooser.appendItem (_("Hide"), eq_hide_image, _("Hide Equalizer"));
         eq_option_chooser.appendItem (_("Show"), eq_show_image, _("Show Equalizer"));
