@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-28 20:27+0000\n"
-"Last-Translator: seaflames <Unknown>\n"
+"PO-Revision-Date: 2012-06-30 22:01+0000\n"
+"Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-29 05:10+0000\n"
-"X-Generator: Launchpad (build 15505)\n"
+"X-Launchpad-Export-Date: 2012-07-01 04:58+0000\n"
+"X-Generator: Launchpad (build 15520)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
 msgid "Enable debug logging"
@@ -54,14 +54,14 @@ msgstr "Müzik klasörü taranıyor.Bu işlem biraz zaman alabilir..."
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
 msgid "Could not find Music Folder"
-msgstr "Müzik klasörü bulunamadı."
+msgstr "Müzik dizini bulunamadı."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
-"Lütfen CD den içe aktarım yapmadan önce ,müzik klasörünüzün erişilebilir "
+"Lütfen CD den içe aktarım yapmadan önce ,müzik dizininizin erişilebilir "
 "olduğundan emin olun."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
@@ -385,11 +385,11 @@ msgstr "Çalma listesini dışarı aktar"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr "Müzik klasörünü belirle"
+msgstr "Müzik dizinini belirle"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr "Müzik klasörünü belirle?"
+msgstr "Müzik dizinini belirle?"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
@@ -397,14 +397,14 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Müzik klasörünü %s olarak belirlemek istediğine emin misin? Bu işlemden "
-"sonra müzik kütüphaneniz sıfırlanacak ve çalma listeleriniz kaldırılacak."
+"Müzik dizinini %s olarak belirlemek istediğine emin misin? Bu işlemden sonra "
+"müzik kütüphaneniz sıfırlanacak ve çalma listeleriniz kaldırılacak."
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:131
 msgid "Choose Music Folder"
-msgstr "Müzik klasörünü belirle"
+msgstr "Müzik Dizini Seç"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
@@ -557,7 +557,7 @@ msgstr "Medya Türü"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:242
 msgid "Try again"
-msgstr "Tekrar dene"
+msgstr "Yeniden dene"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:295
 #, c-format
@@ -625,7 +625,7 @@ msgstr "Eklentiler"
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:102
 #, c-format
 msgid "Music Folder Location"
-msgstr "Müzik Dizini Yönetimi"
+msgstr "Müzik Dizini Konumu"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:105
 msgid "Music Folder"
@@ -638,7 +638,7 @@ msgstr "Kütüphane Yönetimi"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:111
 msgid "Keep music folder organized:"
-msgstr "Müzik klasörünü düzenli tut:"
+msgstr "Müzik dizinini düzenli tut:"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:114
 msgid "Write metadata to file:"
@@ -653,7 +653,7 @@ msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
-"Müzik dosyanızı ayarlamadan önce diğer dosya işlemlerinin bitmesini "
+"Müzik dizininizi ayarlamadan önce diğer dosya işlemlerinin bitmesini "
 "beklemelisiniz"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
@@ -989,7 +989,7 @@ msgstr "Yer Belirle"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Change your music folder."
-msgstr "Müzik klasörünü değiştir"
+msgstr "Müzik dizinini değiştir."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import songs from audio CD"
@@ -1416,7 +1416,7 @@ msgstr "Yakınlarda Çalınmayanlar"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:224
 msgid "Rescan Music Folder"
-msgstr "Müzik klasörünü tekrar tara"
+msgstr "Müzik dizinini yeniden tara"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:247
 msgid "Search Music"
@@ -1505,11 +1505,12 @@ msgstr "<b>Müzik  </b> şuradan<b>%s</b> kitaplığa aktarılıyor."
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1031
 msgid "Rescanning music folder for changes"
-msgstr "Değişimler için müzik klasörü tekrar taranıyor."
+msgstr "Değişimler için müzik dizini yeniden taranıyor."
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr "Lütfen müzik klasörünün bağlı ve ulaşılabilir olduğundan emin oldun."
+msgstr ""
+"Lütfen müzik dizininizin bağlı ve ulaşılabilir olduğundan emin oldun."
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1092
 msgid "Import Complete"
