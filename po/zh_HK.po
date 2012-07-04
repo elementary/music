@@ -8,13 +8,15 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-07-04 00:03+0100\n"
+"PO-Revision-Date: 2012-07-03 22:07+0000\n"
 "Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-07-04 05:25+0000\n"
+"X-Generator: Launchpad (build 15544)\n"
+"Language: \n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
 msgid "Enable debug logging"
@@ -56,7 +58,9 @@ msgid "Could not find Music Folder"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
-msgid "Please make sure that your music folder is accessible and mounted before importing the CD."
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
@@ -75,7 +79,9 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
-msgid "Please wait until %s is finished with the current import before importing the CD."
+msgid ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
@@ -379,7 +385,9 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
-msgid "Are you sure you want to set the music folder to %s? This will reset your library and remove your playlists."
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
@@ -574,7 +582,9 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
-msgid "If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?"
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
@@ -627,7 +637,9 @@ msgid "Copy new files to music folder:"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:132
-msgid "You must wait until previous file operations finish before setting your music folder"
+msgid ""
+"You must wait until previous file operations finish before setting your "
+"music folder"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
@@ -790,7 +802,9 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
-msgid "The following files were found on %s, but are not in your library. Check all the files you would like to import."
+msgid ""
+"The following files were found on %s, but are not in your library. Check all "
+"the files you would like to import."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
@@ -854,7 +868,8 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
-msgid "The music file for %s by %s could not be found. What would you like to do?"
+msgid ""
+"The music file for %s by %s could not be found. What would you like to do?"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
@@ -890,7 +905,9 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
-msgid "This will remove the %s from your library and from any device that automatically syncs with %s."
+msgid ""
+"This will remove the %s from your library and from any device that "
+"automatically syncs with %s."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:185
@@ -923,7 +940,10 @@ msgid "No songs in Queue"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
-msgid "To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
@@ -933,7 +953,8 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the current session."
+"You can use this list to see all the songs you have played during the "
+"current session."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
@@ -994,7 +1015,9 @@ msgid "No Songs"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
-msgid "To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
@@ -1002,7 +1025,11 @@ msgid "Edit Smart Playlist"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
-msgid "This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
@@ -1043,7 +1070,10 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:124
 #, c-format
-msgid "%s could not find songs similar to %s by %s in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches."
+msgid ""
+"%s could not find songs similar to %s by %s in your library. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
@@ -1052,7 +1082,10 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
 #, c-format
-msgid "In this view, %s will automatically find songs similar to the one you're playing. You can then start playing those songs, or save them as a playlist for later."
+msgid ""
+"In this view, %s will automatically find songs similar to the one you're "
+"playing. You can then start playing those songs, or save them as a playlist "
+"for later."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
@@ -1068,11 +1101,13 @@ msgid "Cancelling Import"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
-msgid "Import from device has been cancelled. Operation will stop after this media."
+msgid ""
+"Import from device has been cancelled. Operation will stop after this media."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "There were no songs found on this device that are not in your library."
+msgid ""
+"There were no songs found on this device that are not in your library."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
@@ -1309,7 +1344,8 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
 #, c-format
-msgid "The playlist named %s is used to sync device %s, but could not be found."
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
@@ -1318,7 +1354,8 @@ msgid "Cannot Sync"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
-msgid "Cannot sync device with selected sync settings. Not enough space on disk"
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
@@ -1583,4 +1620,3 @@ msgstr ""
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
 msgstr ""
-
