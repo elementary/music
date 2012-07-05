@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-06-10 22:02+0000\n"
+"PO-Revision-Date: 2012-07-05 05:12+0000\n"
 "Last-Translator: Mark Lutring <marcus@elitemail.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-11 05:14+0000\n"
-"X-Generator: Launchpad (build 15376)\n"
+"X-Launchpad-Export-Date: 2012-07-05 05:23+0000\n"
+"X-Generator: Launchpad (build 15544)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
 msgid "Enable debug logging"
-msgstr ""
+msgstr "Hibakereső naplózás engedélyezése"
 
 #: /home/victor/noise/po/../src//Noise.vala:72
 msgid "Disable plugins"
@@ -54,7 +54,7 @@ msgstr "Zenék átvizsgálása változásokért. Ez eltarthat egy darabig..."
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
 msgid "Could not find Music Folder"
-msgstr "Nem található Zene mappa"
+msgstr "Nem található zenemappa"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 msgid ""
@@ -282,19 +282,19 @@ msgstr "%s importálása"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1019
 msgid "This device is syncing"
-msgstr ""
+msgstr "Az eszköz szinkronizálás alatt áll"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1019
 msgid "Please wait until the current sync is finished to do this action."
-msgstr ""
+msgstr "Kérem várjon a művelettel amíg a szinkronizáció befejeződik."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "This device is in transfer"
-msgstr ""
+msgstr "Az eszköz átvitel alatt áll"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "Please wait until the current transfer is finished to do this action."
-msgstr ""
+msgstr "Kérem várjon a művelettel amíg az átvitel befejeződik."
 
 #: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:67
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -318,21 +318,21 @@ msgstr "Bezárás"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (egyéni)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:418
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (egyéni %i)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 msgid "Custom Preset"
-msgstr ""
+msgstr "Egyéni beállítás"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:424
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Egyéni beállítás %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -373,7 +373,7 @@ msgstr "Fájl helye"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "Egyedifájlok kiválasztása a kukába helyezéshez:"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -381,7 +381,7 @@ msgstr "Lejátszólisták exportálása"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr "Zene mappa megadása"
+msgstr "Zenemappa"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
@@ -393,12 +393,14 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Biztos, hogy szeretné a(z) %s mappára állítani a zenemappát? Ez "
+"visszaállítja a gyűjteményét és eltávolítja a lejátszólistáit."
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:131
 msgid "Choose Music Folder"
-msgstr "Zene mappa kiválasztása"
+msgstr "Zenemappa kiválasztása"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
@@ -594,12 +596,12 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "A szinkronizálás el fog távolítani %i elemet innen: %s"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "A szinkronizálás el fog távolítani 1 elemet innen: %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:52
 #: /home/victor/noise/po/../src//LibraryWindow.vala:227
@@ -645,6 +647,8 @@ msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
 msgstr ""
+"Meg kell várnia amíg az előző fájl műveletek befejeződnek mielőtt beállítja "
+"a zenemappáját."
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
@@ -840,19 +844,19 @@ msgstr "Azonosító"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "Egyéni média kiválasztása importálásra"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr ""
+msgstr "Elem ellenőrzése"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr ""
+msgstr "Album ellenőrzése"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr ""
+msgstr "Előadó ellenőrzése"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Remove Media"
@@ -899,7 +903,7 @@ msgstr "Állomás"
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
-msgstr ""
+msgstr "Eltávolítja a %d %s innen: %s?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
@@ -1196,7 +1200,7 @@ msgstr "Dal eltávolítása"
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "%i dal importálása ennyiből: %i"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
 msgid "Import this song"
@@ -1362,10 +1366,12 @@ msgstr "Nem lehet szinkronizálni"
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
+"Nem lehet szinkronizálni az eszközzel a kiválasztott szinkronizálási "
+"beállításokkal. Nincs elég hely a lemezen."
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
-msgstr ""
+msgstr "Az eszköz már szinkronizálva van."
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:421
 msgid "Favorite Songs"
@@ -1393,7 +1399,7 @@ msgstr "Nemhallott podcastek"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:492
 msgid "Over Played"
-msgstr ""
+msgstr "Túljátszott"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:502
 msgid "Not Recently Played"
@@ -1494,7 +1500,7 @@ msgstr "Zenemappa átvizsgálása a változásokért"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
+msgstr "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van."
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1092
 msgid "Import Complete"

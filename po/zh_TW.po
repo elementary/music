@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-07-04 05:08+0000\n"
+"PO-Revision-Date: 2012-07-04 10:39+0000\n"
 "Last-Translator: leo  <shing80333@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-04 05:25+0000\n"
+"X-Launchpad-Export-Date: 2012-07-05 05:23+0000\n"
 "X-Generator: Launchpad (build 15544)\n"
 "Language: \n"
 
@@ -24,7 +24,7 @@ msgstr "啟用除錯日誌"
 
 #: /home/victor/noise/po/../src//Noise.vala:72
 msgid "Disable plugins"
-msgstr "停止使用附加元件"
+msgstr "停止使用擴充套件"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -37,7 +37,7 @@ msgstr "音樂播放器"
 #: /home/victor/noise/po/../src//LibraryManager.vala:317
 #, c-format
 msgid "Importing music from %s..."
-msgstr "匯入音樂從 %s..."
+msgstr "從 %s...匯入音樂"
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:364
 msgid "Adding files to library..."
@@ -50,7 +50,7 @@ msgstr "從 %s 加入音樂到音樂庫..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:416
 msgid "Rescanning music for changes. This may take a while..."
-msgstr "重新掃描音樂檔案的更動。這可能需要一段時間..."
+msgstr "重新掃描音樂檔案的變動。這可能需要一段時間..."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
@@ -106,11 +106,11 @@ msgstr "%s 以完成從CD上匯入%i 首歌曲"
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr "%s 以完成從音樂CD上匯入歌曲"
+msgstr "%s 以完成從音訊CD上匯入歌曲"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "在當前的匯入完成後，CD導入將被<b>取消</b>"
+msgstr "在當前的匯入完成後，CD的導入將被<b>取消</b>"
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
@@ -126,7 +126,7 @@ msgstr "正在從<b>%s</b>中移除"
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:924
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr "輸入<b>%s</b>到珍藏館"
+msgstr "輸入<b>%s</b>到音樂庫"
 
 #: /home/victor/noise/po/../src//Objects/Playlist.vala:210
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:313
@@ -160,7 +160,7 @@ msgstr "自動"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr ""
+msgstr "刪除當前的列表"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
@@ -177,7 +177,7 @@ msgstr "同步"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr "未使用"
+msgstr "未用空間"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
@@ -186,7 +186,7 @@ msgstr "使用了%s/%s (%.2f%)"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:102
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr "從裝置匯入"
+msgstr "從裝置中匯入"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:104
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:126
@@ -315,7 +315,7 @@ msgstr "關閉"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s 自訂"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:418
 #, c-format
@@ -333,81 +333,81 @@ msgstr "自訂預先設定%i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
-msgstr "未匯入的文件"
+msgstr "未匯入的檔案"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:64
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "無法從%2$s 匯入%1$d 個項目"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
+msgstr "%s無法匯入%d個項目。檔案可能會損壞"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "移動損壞的檔案至回收桶"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:71
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "移至垃圾桶"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:72
 msgid "Ignore"
-msgstr ""
+msgstr "忽略"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:93
 msgid "del"
-msgstr ""
+msgstr "刪除"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:98
 msgid "File Location"
-msgstr ""
+msgstr "檔案位置"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:125
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "選擇單個檔案至回收桶"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
-msgstr ""
+msgstr "匯出播放清單"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr ""
+msgstr "設定音樂資料夾"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr ""
+msgstr "設定音樂資料夾？"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
-msgstr ""
+msgstr "您確定要將音樂資料夾設置為%s?  這將會重新設置你的音樂庫並移除播放清單"
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:131
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "選擇音樂資料夾"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:61
 msgid "Install Plugin"
-msgstr ""
+msgstr "安裝擴充套件"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:62
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:63
 msgid "Do Nothing"
-msgstr ""
+msgstr "什麼也不做"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:66
 msgid "Required GStreamer plugin not installed"
-msgstr ""
+msgstr "所需的GStreamer擴充套件尚未安裝"
 
 #: /home/victor/noise/po/../src//Dialogs/InstallGstreamerPluginsDialog.vala:69
 #, c-format
@@ -415,38 +415,40 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"媒體類型%s 的擴充套件尚未安裝\n"
+"您要怎麼做?"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:76
 msgid "Metadata"
-msgstr ""
+msgstr "元數據"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:78
 msgid "Lyrics"
-msgstr ""
+msgstr "歌詞"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:87
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
 msgid "Done"
-msgstr ""
+msgstr "完成"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:174
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:345
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "正在編輯%s(演出者%s)"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:176
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:347
 #, c-format
 msgid "Editing %s"
-msgstr ""
+msgstr "正在編輯 %s"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:179
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:350
 #, c-format
 msgid "Editing %i songs"
-msgstr ""
+msgstr "正在編輯%i 首歌曲"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:295
@@ -455,7 +457,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
 msgid "Title"
-msgstr ""
+msgstr "曲名"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
@@ -465,11 +467,11 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
 #: /home/victor/noise/po/../src//LibraryWindow.vala:322
 msgid "Artist"
-msgstr ""
+msgstr "演出者"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:187
 msgid "Album Artist"
-msgstr ""
+msgstr "專輯演出者"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
@@ -479,7 +481,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
 #: /home/victor/noise/po/../src//LibraryWindow.vala:321
 msgid "Album"
-msgstr ""
+msgstr "專輯"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:189
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
@@ -488,14 +490,14 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Genre"
-msgstr ""
+msgstr "曲風"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:282
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "Composer"
-msgstr ""
+msgstr "作曲家"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
@@ -503,7 +505,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "Grouping"
-msgstr ""
+msgstr "分組"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:192
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
@@ -511,46 +513,46 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 msgid "Comment"
-msgstr ""
+msgstr "評註"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:193
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:55
 msgid "Track"
-msgstr ""
+msgstr "音軌"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:194
 msgid "Disc"
-msgstr ""
+msgstr "光碟"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:195
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:296
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
 msgid "Year"
-msgstr ""
+msgstr "年份"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:196
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:293
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 msgid "Rating"
-msgstr ""
+msgstr "評等"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:198
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:290
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:345
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:370
 msgid "Media Type"
-msgstr ""
+msgstr "媒體類型"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:242
 msgid "Try again"
-msgstr ""
+msgstr "再試一次"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:295
 #, c-format
 msgid "Lyrics not found for \"%s\" by \"%s\""
-msgstr ""
+msgstr "\"%s\"(演出者\"%s\")的歌詞沒有找到"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:310
@@ -558,7 +560,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
 #: /home/victor/noise/po/../src//LibraryWindow.vala:320
 msgid "Song"
-msgstr ""
+msgstr "歌曲"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:539
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:311
@@ -566,378 +568,378 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
 msgid "Podcast"
-msgstr ""
+msgstr "Podcast"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
-msgstr ""
+msgstr "匯入媒體至音樂庫"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
-msgstr ""
+msgstr "繼續同步"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:66
 msgid "Stop Syncing"
-msgstr ""
+msgstr "停止同步"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:73
 #, c-format
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
-msgstr ""
+msgstr "如果您繼續同步，媒體將會從%s移除因為它們並不在同步清單。您要先把它們匯入音樂庫嗎?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "同步將從%2$s移除%1$i個項目"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "同步將從%s移除1個項目"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:52
 #: /home/victor/noise/po/../src//LibraryWindow.vala:227
 msgid "Preferences"
-msgstr ""
+msgstr "偏好設定"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:65
 msgid "Behavior"
-msgstr ""
+msgstr "行為"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:69
 msgid "Extensions"
-msgstr ""
+msgstr "擴充套件"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:102
 #, c-format
 msgid "Music Folder Location"
-msgstr ""
+msgstr "音樂資料夾位置"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:105
 msgid "Music Folder"
-msgstr ""
+msgstr "音樂資料夾"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:108
 #, c-format
 msgid "Library Management"
-msgstr ""
+msgstr "音樂庫管理"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:111
 msgid "Keep music folder organized:"
-msgstr ""
+msgstr "組織音樂資料夾"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:114
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "把元數據寫入檔案"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:117
 msgid "Copy new files to music folder:"
-msgstr ""
+msgstr "複製新檔案至音樂資料夾"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:132
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
-msgstr ""
+msgstr "尼必須完成先前的檔案操作才能設定音樂資料夾"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
 msgid "Smart Playlist Editor"
-msgstr ""
+msgstr "智慧型播放清單編輯器"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:67
 msgid "Name of Playlist"
-msgstr ""
+msgstr "播放清單的名稱"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
 msgid "Rules"
-msgstr ""
+msgstr "規則"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
 msgid "Options"
-msgstr ""
+msgstr "選項"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:81
 msgid "Playlist Title"
-msgstr ""
+msgstr "播放清單標題"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
 msgid "Match"
-msgstr ""
+msgstr "符合"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
 msgid "any"
-msgstr ""
+msgstr "任何"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:90
 msgid "all"
-msgstr ""
+msgstr "全部"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "of the following:"
-msgstr ""
+msgstr "於下列之中："
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
 msgid "Add"
-msgstr ""
+msgstr "新增"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
 msgid "Limit to"
-msgstr ""
+msgstr "限制為"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
 msgid "items"
-msgstr ""
+msgstr "項目"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:439
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Bitrate"
-msgstr ""
+msgstr "位元率"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:283
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Date Added"
-msgstr ""
+msgstr "加入日期"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:284
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 msgid "Date Released"
-msgstr ""
+msgstr "發佈日期"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Last Played"
-msgstr ""
+msgstr "上次播放"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:288
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 msgid "Length"
-msgstr ""
+msgstr "長度"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:292
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "Playcount"
-msgstr ""
+msgstr "播放次數"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:294
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
 msgid "Skipcount"
-msgstr ""
+msgstr "略過次數"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:312
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:379
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
-msgstr ""
+msgstr "有聲書"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:361
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:389
 msgid "is"
-msgstr ""
+msgstr "是"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
 msgid "contains"
-msgstr ""
+msgstr "包含"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
 msgid "does not contain"
-msgstr ""
+msgstr "不包含"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:390
 msgid "is not"
-msgstr ""
+msgstr "不是"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:417
 msgid "is exactly"
-msgstr ""
+msgstr "準確為"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
 msgid "is at most"
-msgstr ""
+msgstr "在大多數"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
 msgid "is at least"
-msgstr ""
+msgstr "至少是"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:418
 msgid "is within"
-msgstr ""
+msgstr "在其中"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:419
 msgid "is before"
-msgstr ""
+msgstr "先於"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:432
 msgid "seconds"
-msgstr ""
+msgstr "秒"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:436
 msgid "days ago"
-msgstr ""
+msgstr "天前"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:440
 msgid "kbps"
-msgstr ""
+msgstr "kbps"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
 msgid "Import media from %s"
-msgstr ""
+msgstr "從%s匯入媒體"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:76
 #, c-format
 msgid ""
 "The following files were found on %s, but are not in your library. Check all "
 "the files you would like to import."
-msgstr ""
+msgstr "以下檔案被發現存在於%s，但不在您的音樂庫.選擇您想要的並匯入音樂庫"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:77
 msgid "Import all media"
-msgstr ""
+msgstr "匯入所有媒體"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
-msgstr ""
+msgstr "匯入"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr ""
+msgstr "不要匯入"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr ""
+msgstr "從%2$s 匯入%1$i 個項目"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
 msgid "Import %s from %s"
-msgstr ""
+msgstr "從%2$s 匯入%1$s"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
-msgstr ""
+msgstr "選擇單個媒體並匯入"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr ""
+msgstr "檢查項目"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr ""
+msgstr "檢查專輯"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr ""
+msgstr "檢查演出者"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Remove Media"
-msgstr ""
+msgstr "移除媒體"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:61
 msgid "Locate Media"
-msgstr ""
+msgstr "定位媒體"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:62
 msgid "Rescan Library"
-msgstr ""
+msgstr "重新掃描音樂庫"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:69
 msgid "Could not find media file"
-msgstr ""
+msgstr "無法找到媒體文件"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:78
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
-msgstr ""
+msgstr "音樂文件for %1$s (演出者%2$s)無法找到.您要怎麼做?"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
 msgid "%i media files could not be found. What would you like to do?"
-msgstr ""
+msgstr "%i 個媒體檔案找不到，您要怎麼做?"
 
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:138
 #, c-format
 msgid "The name %s is already in use"
-msgstr ""
+msgstr "%s 該名稱已被使用"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr ""
+msgstr "從%s移除"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
 msgid "Station"
-msgstr ""
+msgstr "電臺"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
-msgstr ""
+msgstr "從 %3$s 移除 %1$d %2$s 嗎？"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr ""
+msgstr "從1$%s移除2$%s"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:98
 #, c-format
 msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
-msgstr ""
+msgstr "這將會從音樂庫和任何裝置移除1$%s，並與2$%s同步"
 
 #: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s 由 %s 製作"
 
 #: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d 分鐘"
 
 #: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "%d 小時"
 
 #: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "%d 天"
 
 #: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
-msgstr ""
+msgstr "%u 項, %s, %s"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid "No songs in Queue"
-msgstr ""
+msgstr "沒有歌曲在佇列中"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
 msgid ""
@@ -945,10 +947,12 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"要添加歌曲至佇列，必須在歌曲上<b>用滑鼠點擊2下</b> 並選擇<b>佇列</b>\r\n"
+"，當一首歌結束時，將先播放佇列中的歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid "No songs in History"
-msgstr ""
+msgstr "沒有歌曲在歷史紀錄中"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
 msgid ""
@@ -956,73 +960,75 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"當一首歌的一部份已經播放後，它將會加入歷史清單，\n"
+"您可以用歷史清單來檢視您本次已經播放過的歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "取得一些樂曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
 #, c-format
 msgid "%s can't seem to find your music."
-msgstr ""
+msgstr "%s 似乎找不到您的音樂"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Locate"
-msgstr ""
+msgstr "定位"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
 msgid "Change your music folder."
-msgstr ""
+msgstr "變更您的音樂資料夾。"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import songs from audio CD"
-msgstr ""
+msgstr "從音訊 CD 匯入歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
 msgid "Import media from device"
-msgstr ""
+msgstr "從裝置匯入媒體"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:175
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
 msgid "No External Songs"
-msgstr ""
+msgstr "沒有外部的歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:175
 msgid "All the songs in this device are already in your library."
-msgstr ""
+msgstr "所有在這部裝置的音樂都已經存在於您的音樂庫"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
 #, c-format
 msgid "%i albums"
-msgstr ""
+msgstr "%i 張專輯"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
 msgid "1 album"
-msgstr ""
+msgstr "1張專輯"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
 #, c-format
 msgid "%i songs"
-msgstr ""
+msgstr "%i首歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
 msgid "1 song"
-msgstr ""
+msgstr "1首歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid "No Songs"
-msgstr ""
+msgstr "沒有歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr ""
+msgstr "要添加歌曲至播放清單，要<b>用滑鼠點擊兩下</b>在該上並選擇<b>加入至播放清單t</b>."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "編輯智慧型播放清單"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
 msgid ""
@@ -1031,28 +1037,30 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"這些播放清單將自動加入符合規則的音樂，如果要調整規則必須在側邊欄<b>用滑鼠點擊2下</b>並點選</b>編輯</b>，當然，您也可以\r\n"
+"點選側邊欄下的按鈕並編輯"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "音訊 CD 無效"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
-msgstr ""
+msgstr "%s無法讀取音訊CD的內容"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 #, c-format
 msgid "%i tracks"
-msgstr ""
+msgstr "%i個音道"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
 msgid "1 track"
-msgstr ""
+msgstr "1個音軌"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "選取類似的歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
 #, c-format
@@ -1062,11 +1070,11 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
 #, c-format
 msgid "Similar to %s"
-msgstr ""
+msgstr "類似於 %s"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:124
 msgid "No similar songs found"
-msgstr ""
+msgstr "找不到類似歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:124
 #, c-format
@@ -1078,7 +1086,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
 msgid "Similar Song View"
-msgstr ""
+msgstr "類似歌曲檢視器"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
 #, c-format
@@ -1086,50 +1094,50 @@ msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
-msgstr ""
+msgstr "在這個檢視器中，%s將自動尋找類似於(您正在播放的歌曲)的歌曲，您可以播放它們或把它們加入播放清單，等等在播放"
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Cancelling Sync"
-msgstr ""
+msgstr "取消同步"
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
 msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
+msgstr "裝置同步已經取消，操作將在這個媒體同步完時取消"
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
 msgid "Cancelling Import"
-msgstr ""
+msgstr "取消匯入"
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:47
 msgid ""
 "Import from device has been cancelled. Operation will stop after this media."
-msgstr ""
+msgstr "從裝置匯入已經取消，操作將在這個媒體同步完時取消"
 
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
 msgid ""
 "There were no songs found on this device that are not in your library."
-msgstr ""
+msgstr "這個設備中沒有您尚未匯入的歌曲"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
 msgid "%i kbps"
-msgstr ""
+msgstr "%i kb/秒"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Episode"
-msgstr ""
+msgstr "插曲"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:36
 msgid "Name"
-msgstr ""
+msgstr "名稱"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:44
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:45
 msgid "Category"
-msgstr ""
+msgstr "分類"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:48
 msgid "Pulser"
@@ -1137,404 +1145,404 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:52
 msgid "BPM"
-msgstr ""
+msgstr "BPM"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "Plays"
-msgstr ""
+msgstr "播放"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:54
 msgid "Skips"
-msgstr ""
+msgstr "略過"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:99
 msgid "Remove from Library"
-msgstr ""
+msgstr "移除從音樂庫"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:107
 msgid "Remove from Queue"
-msgstr ""
+msgstr "從佇列移除"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:124
 msgid "Remove from Device"
-msgstr ""
+msgstr "從裝置移除"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:148
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "卷動至目前歌曲"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
-msgstr ""
+msgstr "編輯歌曲資訊"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "Show in File Browser"
-msgstr ""
+msgstr "顯示在檔案瀏覽器"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
 #: /home/victor/noise/po/../src//LibraryWindow.vala:598
 msgid "Queue"
-msgstr ""
+msgstr "佇列"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:153
 msgid "Add to Playlist"
-msgstr ""
+msgstr "加入至播放清單"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:154
 msgid "Remove Song"
-msgstr ""
+msgstr "移除歌曲"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:255
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "匯入%i/%i首 選取的歌曲"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:257
 msgid "Import this song"
-msgstr ""
+msgstr "匯入這首歌曲"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:259
 #, c-format
 msgid "Import %i songs"
-msgstr ""
+msgstr "匯入%i首歌"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:199
 msgid "Unrated"
-msgstr ""
+msgstr "未評等"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:201
 msgid "1 Star"
-msgstr ""
+msgstr "1星"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:203
 #, c-format
 msgid "%s Stars"
-msgstr ""
+msgstr "%s 星"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
 msgid "All Genres"
-msgstr ""
+msgstr "所有曲風"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "所有%i 曲風"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
 msgid "No Genres"
-msgstr ""
+msgstr "無曲風"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
 msgid "All Artists"
-msgstr ""
+msgstr "所有演出者"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "所有%i 演出者"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
 msgid "No Artists"
-msgstr ""
+msgstr "無演出者"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
 msgid "All Albums"
-msgstr ""
+msgstr "所有專輯"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:269
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "所有%i專輯"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:271
 msgid "No Albums"
-msgstr ""
+msgstr "無專輯"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:275
 msgid "All Years"
-msgstr ""
+msgstr "所有年份"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:277
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "所有%i年份"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:279
 msgid "No Years"
-msgstr ""
+msgstr "無年份"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:283
 msgid "All Ratings"
-msgstr ""
+msgstr "所有評等"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:285
 #, c-format
 msgid "All %i Ratings"
-msgstr ""
+msgstr "所有%i評等"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:287
 msgid "No Ratings"
-msgstr ""
+msgstr "無評等"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
 msgid "On Left"
-msgstr ""
+msgstr "左側"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
 msgid "On Top"
-msgstr ""
+msgstr "置頂"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:548
 msgid "Genres"
-msgstr ""
+msgstr "曲風"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:551
 msgid "Artists"
-msgstr ""
+msgstr "演出者"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:554
 msgid "Albums"
-msgstr ""
+msgstr "專輯"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:557
 msgid "Years"
-msgstr ""
+msgstr "年份"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:560
 msgid "Ratings"
-msgstr ""
+msgstr "評等"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
-msgstr ""
+msgstr "裝置名稱："
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:80
 msgid "Device Name"
-msgstr ""
+msgstr "裝置名稱"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:82
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "當插入裝置時自動同步："
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:89
 msgid "Sync:"
-msgstr ""
+msgstr "同步："
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:111
 msgid "Other Files"
-msgstr ""
+msgstr "其他檔案"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:384
 msgid "All Music"
-msgstr ""
+msgstr "所有音樂"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:387
 msgid "All Podcasts"
-msgstr ""
+msgstr "所有 Podcast"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
 msgid "Sync Failed"
-msgstr ""
+msgstr "同步失敗"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:517
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:555
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
+msgstr "名稱為 %s 的播放清單用是來同步 %s 裝置，但卻無法找到。"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Cannot Sync"
-msgstr ""
+msgstr "無法同步"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:603
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
+msgstr "無法以選取的同步設定值同步裝置。磁碟空間不足"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:606
 msgid "Device is already being synced."
-msgstr ""
+msgstr "裝置正在同步。"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:421
 msgid "Favorite Songs"
-msgstr ""
+msgstr "喜愛的歌曲"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:442
 msgid "Recently Added"
-msgstr ""
+msgstr "最近加入"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:452
 msgid "Recently Played"
-msgstr ""
+msgstr "最近播放"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:462
 msgid "Recent Favorites"
-msgstr ""
+msgstr "最近的最愛"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:472
 msgid "Never Played"
-msgstr ""
+msgstr "未播放過的"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:482
 msgid "Unheard Podcasts"
-msgstr ""
+msgstr "未收聽的Podcasts"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:492
 msgid "Over Played"
-msgstr ""
+msgstr "持續播放的"
 
 #: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:502
 msgid "Not Recently Played"
-msgstr ""
+msgstr "不是最近播放的"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:224
 msgid "Rescan Music Folder"
-msgstr ""
+msgstr "重新掃描音樂資料夾"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:247
 msgid "Search Music"
-msgstr ""
+msgstr "重新掃描音樂"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:317
 msgid "Add Playlist"
-msgstr ""
+msgstr "新增播放清單"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:319
 #: /home/victor/noise/po/../src//LibraryWindow.vala:327
 msgid "Off"
-msgstr ""
+msgstr "關閉"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:323
 #: /home/victor/noise/po/../src//LibraryWindow.vala:328
 msgid "All"
-msgstr ""
+msgstr "全部"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:325
 msgid "Disable Repeat"
-msgstr ""
+msgstr "取消重複播放"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:325
 msgid "Enable Repeat"
-msgstr ""
+msgstr "啟動重複播放"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:330
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "停用隨機播放"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:330
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "啟用隨機播放"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:332
 #: /home/victor/noise/po/../src//LibraryWindow.vala:337
 msgid "Hide"
-msgstr ""
+msgstr "隱藏"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:333
 #: /home/victor/noise/po/../src//LibraryWindow.vala:338
 msgid "Show"
-msgstr ""
+msgstr "顯示"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:335
 msgid "Hide Info Panel"
-msgstr ""
+msgstr "隱藏資訊面板"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:335
 msgid "Show Info Panel"
-msgstr ""
+msgstr "顯示資訊面板"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:340
 msgid "Hide Equalizer"
-msgstr ""
+msgstr "隱藏等化器"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:340
 msgid "Show Equalizer"
-msgstr ""
+msgstr "顯示等化器"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:594
 msgid "Similar"
-msgstr ""
+msgstr "類似"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:603
 msgid "History"
-msgstr ""
+msgstr "歷史紀錄"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:771
 msgid " by "
-msgstr ""
+msgstr " 演出者 "
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:772
 msgid " on "
-msgstr ""
+msgstr " 開 "
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:992
 msgid "Import Music"
-msgstr ""
+msgstr "匯入音樂"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1016
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
-msgstr ""
+msgstr "正在從<b>%s</b> <b>匯入</b>音樂至音樂庫。"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1031
 msgid "Rescanning music folder for changes"
-msgstr ""
+msgstr "重新掃描音樂資料夾以取得變動資料"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
 msgid "Please make sure that your music folder is accessible and mounted."
-msgstr ""
+msgstr "請確認您的音樂資料夾可以存取且已經掛載。"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1092
 msgid "Import Complete"
-msgstr ""
+msgstr "完成匯入"
 
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1092
 #, c-format
 msgid "%s has imported your library."
-msgstr ""
+msgstr "%s已經匯入音樂庫"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:40
 msgid "1 second"
-msgstr ""
+msgstr "1 秒"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
 msgid "%s seconds"
-msgstr ""
+msgstr "%s 秒"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
 msgid "1 day"
-msgstr ""
+msgstr "1 天"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%i days"
-msgstr ""
+msgstr "%i 天"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:72
 msgid "1 hour"
-msgstr ""
+msgstr "1 小時"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:74
 #, c-format
 msgid "%i hours"
-msgstr ""
+msgstr "%i 小時"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:79
 msgid "1 minute"
-msgstr ""
+msgstr "1 分鐘"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:81
 #, c-format
 msgid "%i minutes"
-msgstr ""
+msgstr "%i 分"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:101
@@ -1542,81 +1550,81 @@ msgstr ""
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:113
 #, c-format
 msgid "%s and %s"
-msgstr ""
+msgstr "%s  和 %s"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
 #, c-format
 msgid "%s, %s and %s"
-msgstr ""
+msgstr "%s, %s 和 %s"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "平鋪"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr ""
+msgstr "古典"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr ""
+msgstr "俱樂部"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
-msgstr ""
+msgstr "舞曲"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "完全低音"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "完全高音"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "完全低音加高音"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
-msgstr ""
+msgstr "耳機"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "大廳"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
-msgstr ""
+msgstr "現場演出"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
-msgstr ""
+msgstr "派對"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
-msgstr ""
+msgstr "Pop"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:82
 msgid "Reggae"
-msgstr ""
+msgstr "雷鬼"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:83
 msgid "Rock"
-msgstr ""
+msgstr "搖滾"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:84
 msgid "Soft"
-msgstr ""
+msgstr "柔和"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:85
 msgid "Ska"
-msgstr ""
+msgstr "強節奏流行音樂 ( Ska )"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
-msgstr ""
+msgstr "柔和搖滾"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:87
 msgid "Techno"
-msgstr ""
+msgstr "電子"
