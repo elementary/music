@@ -25,6 +25,8 @@ public class BeatBox.ViewContainer : Gtk.EventBox {
     private Gtk.Notebook notebook = new Gtk.Notebook ();
 
     public ViewContainer () {
+        this.visible_window = false;
+
         // Hide notebook tabs and border
         this.notebook.show_tabs = false;
         this.notebook.show_border = false;

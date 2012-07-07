@@ -45,10 +45,7 @@ public class BeatBox.AlbumListView : Window {
 
 	public AlbumListView (AlbumView album_view) {
 #if USE_GRANITE_DECORATED_WINDOW
-        //base ("", "album-list-view", "album-list-view");
-        const string STYLE_CLASS = "album-list-view";
-        box.get_style_context ().add_class (STYLE_CLASS);
-        draw_ref.get_style_context ().add_class (STYLE_CLASS);
+        base ("", "album-list-view", "album-list-view");
 #endif
 
 		this.view_wrapper = album_view.parent_view_wrapper;
