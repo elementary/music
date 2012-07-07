@@ -91,6 +91,9 @@ public class BeatBox.AlbumListView : Window {
 #else
         // Don't destroy the window
 		this.delete_event.connect (hide_on_delete);
+
+        // Hide titlebar (we want to set a title, but not showing it!)
+        this.show_title = false;
 #endif
 		// album artist/album labels
 		album_label = new Label ("");
