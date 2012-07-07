@@ -90,7 +90,7 @@ public class BeatBox.AlbumListView : Window {
 		close.clicked.connect( () =>  { this.hide(); });
 #else
         // Don't destroy the window
-		hide_on_close = true;
+		this.delete_event.connect (hide_on_delete);
 #endif
 		// album artist/album labels
 		album_label = new Label ("");
