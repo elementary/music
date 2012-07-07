@@ -8,23 +8,23 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-07 12:26-0600\n"
-"PO-Revision-Date: 2012-07-04 10:39+0000\n"
-"Last-Translator: leo  <shing80333@gmail.com>\n"
+"PO-Revision-Date: 2012-07-06 09:55+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-05 05:23+0000\n"
-"X-Generator: Launchpad (build 15544)\n"
+"X-Launchpad-Export-Date: 2012-07-07 05:58+0000\n"
+"X-Generator: Launchpad (build 15558)\n"
 "Language: \n"
 
 #: /home/victor/noise/po/../src//Noise.vala:71
 msgid "Enable debug logging"
-msgstr "啟用除錯日誌"
+msgstr "啟用除錯紀錄功能"
 
 #: /home/victor/noise/po/../src//Noise.vala:72
 msgid "Disable plugins"
-msgstr "停止使用擴充套件"
+msgstr "停用插件"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -37,107 +37,107 @@ msgstr "音樂播放器"
 #: /home/victor/noise/po/../src//LibraryManager.vala:317
 #, c-format
 msgid "Importing music from %s..."
-msgstr "從 %s...匯入音樂"
+msgstr "正從 %s 匯入音樂..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:364
 msgid "Adding files to library..."
-msgstr "加入檔案到音樂庫..."
+msgstr "正將檔案加入珍藏館..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:389
 #, c-format
 msgid "Adding music from %s to library..."
-msgstr "從 %s 加入音樂到音樂庫..."
+msgstr "正從 %s 將音樂加入珍藏館..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:416
 msgid "Rescanning music for changes. This may take a while..."
-msgstr "重新掃描音樂檔案的變動。這可能需要一段時間..."
+msgstr "正重新掃描音樂的變動。這可能需要一段時間..."
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 #: /home/victor/noise/po/../src//LibraryWindow.vala:1038
 msgid "Could not find Music Folder"
-msgstr "找不到音樂資料夾"
+msgstr "找不到「音樂」資料夾"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
-msgstr "請確認您的音樂資料夾是可以存取的，並在匯入CD前掛載起來"
+msgstr "請確認您的音樂資料夾是否可以存取，並在匯入 CD 前先掛載起來。"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 msgid "No songs on CD"
-msgstr "CD上並沒有音樂"
+msgstr "CD 上並沒有歌曲"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
 #, c-format
 msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr "%s 找不到CD上有任何音樂，沒有音樂可以匯入"
+msgstr "%s 在 CD 上找不到任何歌曲。沒有歌曲被匯入"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
 msgid "%s is already doing an import"
-msgstr "%s 已經正在匯入"
+msgstr "%s 已正在匯入"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
 #, c-format
 msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
-msgstr "在匯入CD前請等待當前的匯入%s 完成"
+msgstr "在匯入 CD 前請先耐心等候，直到 %s 完成目前的匯入動作"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
 msgid "Ripping track 1"
-msgstr "正在擷取音軌 1"
+msgstr "正在擷錄軌道 1"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:329
 #, c-format
 msgid "Importing track %i"
-msgstr "匯入音軌 %i"
+msgstr "正在匯入軌道 %i"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 msgid "CD Import Complete"
-msgstr "CD匯入完成"
+msgstr "CD 匯入完成"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
 #, c-format
 msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s 以完成從CD上匯入%i 首歌曲"
+msgstr "%s 已完成音訊 CD %i 首歌曲的匯入工作。"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
 #, c-format
 msgid "%s has finished importing a song from Audio CD."
-msgstr "%s 以完成從音訊CD上匯入歌曲"
+msgstr "%s 已完成音訊 CD 歌曲的匯入工作。"
 
 #: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "在當前的匯入完成後，CD的導入將被<b>取消</b>"
+msgstr "CD 的匯入將在目前的匯入工作完成後 <b>取消</b>。"
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr "同步<b>%s</b>中"
+msgstr "同步 <b>%s</b> 中..."
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:691
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr "正在從<b>%s</b>中移除"
+msgstr "正從 <b>%s</b> 移除..."
 
 #: /home/victor/noise/po/../src//Devices/iPodDevice.vala:924
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr "輸入<b>%s</b>到音樂庫"
+msgstr "正將 <b>%s</b> 匯入珍藏館..."
 
 #: /home/victor/noise/po/../src//Objects/Playlist.vala:210
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:313
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
 msgid "Radio Station"
-msgstr "電臺"
+msgstr "無線電臺"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:45
 #: /home/victor/noise/po/../src//GStreamer/CDDA.vala:74
 msgid "Unknown Title"
-msgstr "未知的曲名"
+msgstr "未知的標題"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
 #: /home/victor/noise/po/../src//LibraryWindow.vala:771
@@ -160,7 +160,7 @@ msgstr "自動"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr "刪除當前的列表"
+msgstr "刪除目前的清單"
 
 #: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
 msgid "media"
@@ -181,12 +181,12 @@ msgstr "未用空間"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr "使用了%s/%s (%.2f%)"
+msgstr "正使用 %s/%s (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:102
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr "從裝置中匯入"
+msgstr "從裝置匯入"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:104
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:126
@@ -195,7 +195,7 @@ msgstr "退出"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:115
 msgid "Add Podcast"
-msgstr "新增 Podcast"
+msgstr "加入 Podcast"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:116
 msgid "Download new Episodes"
@@ -205,7 +205,7 @@ msgstr "下載新節目"
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
 #: /home/victor/noise/po/../src//LibraryWindow.vala:223
 msgid "Import to Library"
-msgstr "匯入至音樂庫"
+msgstr "匯入至珍藏館"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
 msgid "Import Stations"
@@ -243,7 +243,7 @@ msgstr "匯入播放清單"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:187
 msgid "Library"
-msgstr "音樂庫"
+msgstr "珍藏館"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:188
 msgid "Devices"
@@ -283,7 +283,7 @@ msgstr "這個裝置正在同步"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1019
 msgid "Please wait until the current sync is finished to do this action."
-msgstr "請等待當前裝置完成同步後便執行該動作"
+msgstr "請等候目前的同步動作完成後再執行此動作。"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "This device is in transfer"
@@ -291,7 +291,7 @@ msgstr "這個裝置正在傳輸"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
 msgid "Please wait until the current transfer is finished to do this action."
-msgstr "請等待當前裝置完成傳輸後便執行該動作"
+msgstr "請等候目前的傳輸動作完成後再執行此動作。"
 
 #: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:67
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -315,12 +315,12 @@ msgstr "關閉"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:416
 #, c-format
 msgid "%s (Custom)"
-msgstr "%s 自訂"
+msgstr "%s (自訂)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:418
 #, c-format
 msgid "%s (Custom %i)"
-msgstr "%s ( 自訂%i)"
+msgstr "%s ( 自訂 %i)"
 
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:422
 msgid "Custom Preset"
@@ -329,7 +329,7 @@ msgstr "自訂預先設定"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:424
 #, c-format
 msgid "Custom Preset %i"
-msgstr "自訂預先設定%i"
+msgstr "自訂預先設定 %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -339,12 +339,12 @@ msgstr "未匯入的檔案"
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr "無法從%2$s 匯入%1$d 個項目"
+msgstr "無法從 %2$s 匯入%1$d 個項目"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s無法匯入%d個項目。檔案可能會損壞"
+msgstr "%s 無法匯入 %d 個項目。檔案可能損壞。"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
