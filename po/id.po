@@ -7,21 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-06-07 12:26-0600\n"
+"POT-Creation-Date: 2012-07-07 00:26-0600\n"
 "PO-Revision-Date: 2012-06-10 04:59+0000\n"
 "Last-Translator: Dani Pratomo <Unknown>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-11 05:14+0000\n"
-"X-Generator: Launchpad (build 15376)\n"
+"X-Launchpad-Export-Date: 2012-07-08 05:01+0000\n"
+"X-Generator: Launchpad (build 15558)\n"
 
-#: /home/victor/noise/po/../src//Noise.vala:71
+#: /home/victor/noise/po/../src//Noise.vala:70
 msgid "Enable debug logging"
 msgstr "Aktifkan pencatatan error"
 
-#: /home/victor/noise/po/../src//Noise.vala:72
+#: /home/victor/noise/po/../src//Noise.vala:71
 msgid "Disable plugins"
 msgstr "Matikan Pengaya"
 
@@ -33,129 +33,53 @@ msgstr "Dengarkan Musik"
 msgid "Music Player"
 msgstr "Pemutar Musik"
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:317
+#: /home/victor/noise/po/../src//LibraryManager.vala:310
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Mengimpor musik dari %s..."
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:364
+#: /home/victor/noise/po/../src//LibraryManager.vala:357
 msgid "Adding files to library..."
 msgstr "Menambah berkas ke pustaka..."
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:389
+#: /home/victor/noise/po/../src//LibraryManager.vala:382
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Menambah musik dari %s ke pustaka..."
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:416
+#: /home/victor/noise/po/../src//LibraryManager.vala:409
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Memindai ulang perubahan. Mungkin makan waktu..."
 
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1038
-msgid "Could not find Music Folder"
-msgstr "Tak menemukan Folder Musik"
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:222
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Pastikan folder musik dapat diakses dan sudah dikaitkan sebelum mengimpor CD."
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
-msgid "No songs on CD"
-msgstr "Tak ada lagu dalam CD"
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:229
-#, c-format
-msgid "%s could not find any songs on the CD. No songs can be imported"
-msgstr "%s tak menemukan lagu dalam CD. Tak ada lagu yang diimpor."
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
-#, c-format
-msgid "%s is already doing an import"
-msgstr "%s sudah mulai mengimpor"
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:234
-#, c-format
-msgid ""
-"Please wait until %s is finished with the current import before importing "
-"the CD."
-msgstr ""
-"Harap tunggu sampai %s selesai dengan impor ini sebelum mengimpor CD."
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:252
-msgid "Ripping track 1"
-msgstr "Merenggut trek 1"
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:329
-#, c-format
-msgid "Importing track %i"
-msgstr "Mengimpor trek %i"
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
-msgid "CD Import Complete"
-msgstr "Selesai Impor CD"
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:339
-#, c-format
-msgid "%s has finished importing %i songs from Audio CD."
-msgstr "%s selesai mengimpor %i lagu dari Audio CD."
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:342
-#, c-format
-msgid "%s has finished importing a song from Audio CD."
-msgstr "%s selesai mengimpor sebuah lagu dari Audio CD."
-
-#: /home/victor/noise/po/../src//Devices/CDRomDevice.vala:375
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Impor CD akan <b>dibatalkan</b> setelah impor berikut."
-
-#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:319
-#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:536
-#, c-format
-msgid "Syncing <b>%s</b>..."
-msgstr "Sinkronisasi <b>%s</b>..."
-
-#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:691
-#, c-format
-msgid "Removing from <b>%s</b>..."
-msgstr "Menghapus dari <b>%s</b>..."
-
-#: /home/victor/noise/po/../src//Devices/iPodDevice.vala:924
-#, c-format
-msgid "Importing <b>%s</b> to library..."
-msgstr "Mengimpor <b>%s</b> ke pustaka..."
-
-#: /home/victor/noise/po/../src//Objects/Playlist.vala:210
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:313
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:380
-msgid "Radio Station"
-msgstr "Stasiun Radio"
-
-#: /home/victor/noise/po/../src//Objects/Media.vala:45
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:74
-msgid "Unknown Title"
-msgstr "Judul Tak Diketahui"
-
+#: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
+#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:771
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:79
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:110
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:111
+#: /home/victor/noise/po/../src//LibraryWindow.vala:713
 msgid "Unknown Artist"
 msgstr "Artis Tak Dikenal"
 
+#: /home/victor/noise/po/../src//Objects/Playlist.vala:210
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:348
+msgid "Radio Station"
+msgstr "Stasiun Radio"
+
+#: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
+msgid "Unknown Track"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:772
-#: /home/victor/noise/po/../src//GStreamer/CDDA.vala:96
+#: /home/victor/noise/po/../src//LibraryWindow.vala:714
 msgid "Unknown Album"
 msgstr "Album Tak Diketahui"
 
+#: /home/victor/noise/po/../src//Objects/Media.vala:45
+msgid "Unknown Title"
+msgstr "Judul Tak Diketahui"
+
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:141
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
 msgid "Automatic"
 msgstr "Otomatis"
 
@@ -163,16 +87,8 @@ msgstr "Otomatis"
 msgid "Delete Current"
 msgstr "Hapus Ini"
 
-#: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:48
-msgid "media"
-msgstr "media"
-
-#: /home/victor/noise/po/../src//Widgets/SimilarMediaView.vala:52
-msgid "Similar Media"
-msgstr "Media Serupa"
-
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:103
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:97
 msgid "Sync"
 msgstr "Sinkronisasi"
 
@@ -184,115 +100,202 @@ msgstr "Bebas"
 msgid "Using %s of %s (%.2f%)"
 msgstr "Menggunakan %s dari %s (%.2f%)"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:102
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
-msgid "Import from Device"
-msgstr "Impor dari Perangkat"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:104
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:126
-msgid "Eject"
-msgstr "Keluarkan Media"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:115
-msgid "Add Podcast"
-msgstr "Tambah Podcast"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:116
-msgid "Download new Episodes"
-msgstr "Unduh Episode baru"
-
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:125
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:96
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victor/noise/po/../src//LibraryWindow.vala:223
+#: /home/victor/noise/po/../src//LibraryWindow.vala:219
 msgid "Import to Library"
 msgstr "Impor ke Pustaka"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:98
+msgid "Eject"
+msgstr "Keluarkan Media"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:112
+msgid "Add Podcast"
+msgstr "Tambah Podcast"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:113
+msgid "Download new Episodes"
+msgstr "Unduh Episode baru"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:123
 msgid "Import Stations"
 msgstr "Impor Stasiun"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:143
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:131
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
 msgid "New Playlist"
 msgstr "Daftarputar Baru"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:144
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:132
 msgid "New Smart Playlist"
 msgstr "Daftarputar Pintar Baru"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:145
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:133
 msgid "Edit"
 msgstr "Sunting"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:146
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:134
 msgid "Remove"
 msgstr "Singkirkan"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:147
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
 msgid "Save as Playlist"
 msgstr "Simpan sebagai Daftarputar"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:148
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:136
 msgid "Export..."
 msgstr "Ekspor..."
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:149
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:137
 msgid "Import Playlists"
 msgstr "Mengimpor Daftarputar"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:187
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:175
 msgid "Library"
 msgstr "Pustaka"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:188
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:176
 msgid "Devices"
 msgstr "Perangkat"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:189
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:177
 msgid "Network"
 msgstr "Jaringan"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:190
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:178
 msgid "Playlists"
 msgstr "Daftarputar"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:278
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:589
+#: /home/victor/noise/po/../src//LibraryWindow.vala:526
 msgid "Music"
 msgstr "Musik"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:283
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:274
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:304
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:113
 msgid "Podcasts"
 msgstr "Podcast"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:887
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:707
+msgid "This device is syncing"
+msgstr "Perangkat sedang disinkronkan"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:707
+msgid "Please wait until the current sync is finished to do this action."
+msgstr "Harap tunggu sinkronisasi selesai baru jalankan perintah ini."
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:709
+msgid "This device is in transfer"
+msgstr "Perangkat sedang transfer"
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:709
+msgid "Please wait until the current transfer is finished to do this action."
+msgstr "Harap tunggu transfer selesai baru jalankan perintah ini."
+
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:926
 msgid "Playlist"
 msgstr "Daftarputar"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:900
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:939
 #, c-format
 msgid "Import %s"
 msgstr "Impor %s"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1019
-msgid "This device is syncing"
-msgstr "Perangkat sedang disinkronkan"
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:37
+msgid "Add Playlist"
+msgstr "Tambahkan Daftar Putar"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1019
-msgid "Please wait until the current sync is finished to do this action."
-msgstr "Harap tunggu sinkronisasi selesai baru jalankan perintah ini."
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:40
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
+msgid "Off"
+msgstr "Padam"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
-msgid "This device is in transfer"
-msgstr "Perangkat sedang transfer"
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:40
+msgid "Disable Repeat"
+msgstr "Matikan pengulangan"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:1021
-msgid "Please wait until the current transfer is finished to do this action."
-msgstr "Harap tunggu transfer selesai baru jalankan perintah ini."
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:275
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:345
+#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
+msgid "Song"
+msgstr "Lagu"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
+msgid "Repeat Song"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:249
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
+msgid "Album"
+msgstr "Album"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
+msgid "Repeat Album"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
+#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:250
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
+#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
+msgid "Artist"
+msgstr "Artis"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
+msgid "Repeat Artist"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
+msgid "All"
+msgstr "Semua"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
+msgid "Repeat All"
+msgstr ""
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
+msgid "Disable Shuffle"
+msgstr "Matikan Putar Acak"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
+msgid "Enable Shuffle"
+msgstr "Hidupkan Putar Acak"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:51
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:55
+msgid "Hide"
+msgstr "Sembunyikan"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:51
+msgid "Hide Info Panel"
+msgstr "Sembunyikan Panel Info"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:52
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:56
+msgid "Show"
+msgstr "Tampilkan"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:52
+msgid "Show Info Panel"
+msgstr "Tampilkan Panel Info"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:55
+msgid "Hide Equalizer"
+msgstr "Sembunyikan Ekualiser"
+
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:56
+msgid "Show Equalizer"
+msgstr "Tampilkan Ekualiser"
 
 #: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:67
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
@@ -395,7 +398,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:131
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
 msgid "Choose Music Folder"
 msgstr "Pilih Folder Musik"
 
@@ -430,7 +433,6 @@ msgid "Lyrics"
 msgstr "Lirik"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:87
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:135
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
 msgid "Done"
 msgstr "Selesai"
@@ -454,66 +456,36 @@ msgid "Editing %i songs"
 msgstr "Mengubah %i lagu"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:295
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
 msgid "Title"
 msgstr "Judul"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
-#: /home/victor/noise/po/../src//LibraryWindow.vala:322
-msgid "Artist"
-msgstr "Artis"
-
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:187
 msgid "Album Artist"
 msgstr "Artis Album"
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
-#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
-#: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
-#: /home/victor/noise/po/../src//LibraryWindow.vala:321
-msgid "Album"
-msgstr "Album"
-
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:189
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:285
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:256
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Genre"
 msgstr "Aliran"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:282
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:253
 msgid "Composer"
 msgstr "Komposer"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:286
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
 msgid "Grouping"
 msgstr "Pengelompokan"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:343
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:252
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 msgid "Comment"
 msgstr "Komentar"
@@ -528,23 +500,19 @@ msgid "Disc"
 msgstr "Cakram"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:296
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
 msgid "Year"
 msgstr "Tahun"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:293
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 msgid "Rating"
 msgstr "Peringkat"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:198
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:290
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:345
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:370
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
 msgid "Media Type"
 msgstr "Jenis Media"
 
@@ -557,17 +525,9 @@ msgstr "Coba lagi"
 msgid "Lyrics not found for \"%s\" by \"%s\""
 msgstr "Lirik tidak ditemukan untuk \"%s\" oleh \"%s\""
 
-#: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:310
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:377
-#: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
-#: /home/victor/noise/po/../src//LibraryWindow.vala:320
-msgid "Song"
-msgstr "Lagu"
-
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:539
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:311
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:378
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:276
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:346
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
 msgid "Podcast"
@@ -605,46 +565,46 @@ msgstr "Sinkronisasi akan menghapus %i item dari %s"
 msgid "Sync will remove 1 item from %s"
 msgstr "Singkronisasi akan menghapus 1 item dari %s"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:52
-#: /home/victor/noise/po/../src//LibraryWindow.vala:227
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:56
+#: /home/victor/noise/po/../src//LibraryWindow.vala:223
 msgid "Preferences"
 msgstr "Pengaturan"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:65
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:69
 msgid "Behavior"
 msgstr "Perilaku"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:69
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:73
 msgid "Extensions"
 msgstr "Pengaya"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:102
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:106
 #, c-format
 msgid "Music Folder Location"
 msgstr "Lokasi folder musik"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:105
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:109
 msgid "Music Folder"
 msgstr "Folder Musik"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:108
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:112
 #, c-format
 msgid "Library Management"
 msgstr "Pengaturan Pustaka"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:111
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:115
 msgid "Keep music folder organized:"
 msgstr "Atur hirarki folder musik:"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:114
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:118
 msgid "Write metadata to file:"
 msgstr "Tulis metadata ke dalam berkas:"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:117
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:121
 msgid "Copy new files to music folder:"
 msgstr "Salin berkas baru ke folder music:"
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:132
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:136
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
@@ -652,158 +612,147 @@ msgstr ""
 "Anda harus menunggu hingga operasi file sebelumnya selesai sebelum mengatur "
 "folder musik anda"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:54
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
 msgid "Smart Playlist Editor"
 msgstr "Pengubah Daftar Putar Pintar"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:68
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:76
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:67
 msgid "Name of Playlist"
 msgstr "Nama Daftarputar"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
 msgid "Rules"
 msgstr "Peraturan"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
 msgid "Options"
 msgstr "Pilihan"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:81
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
 msgid "Playlist Title"
 msgstr "Nama Daftar Putar"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:87
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:88
 msgid "Match"
 msgstr "Cocok"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:90
 msgid "any"
 msgstr "sembarang"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:90
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "all"
 msgstr "semua"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:92
 msgid "of the following:"
 msgstr "dari hal berikut:"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:116
-msgid "Add"
-msgstr "Tambahkan"
-
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:119
 msgid "Limit to"
 msgstr "Batasi sampai"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:123
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
 msgid "items"
 msgstr "item-item"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:439
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:251
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:283
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:254
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Date Added"
 msgstr "Tanggal Ditambahkan"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:284
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:255
 msgid "Date Released"
 msgstr "Tanggal Rilis"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:287
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:412
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:435
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Last Played"
 msgstr "Terakhir Diputar"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:288
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:431
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 msgid "Length"
 msgstr "Panjang"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:292
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 msgid "Playcount"
 msgstr "Jumlah putar"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:294
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:401
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Skipcount"
 msgstr "jumlah diskip"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:312
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:379
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:277
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:347
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
 msgstr "Buku audio"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:361
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:389
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:326
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:353
 msgid "is"
 msgstr "adalah"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:362
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:327
 msgid "contains"
 msgstr "mengandung"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:363
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:328
 msgid "does not contain"
 msgstr "tidak mengandung"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:390
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
 msgid "is not"
 msgstr "bukan"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:417
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:369
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
 msgid "is exactly"
 msgstr "Tepatnya"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:370
 msgid "is at most"
 msgstr "paling banyak"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:405
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:371
 msgid "is at least"
 msgstr "paling sedikit"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:418
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
 msgid "is within"
 msgstr "di antara"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:419
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:384
 msgid "is before"
 msgstr "sebelum"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:432
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
 msgid "seconds"
 msgstr "detik"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:436
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
 msgid "days ago"
 msgstr "hari yang lalu"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:440
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:408
 msgid "kbps"
 msgstr "kbps"
+
+#: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
+msgid "Import from Device"
+msgstr "Impor dari Perangkat"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
@@ -926,6 +875,45 @@ msgstr ""
 "Proses ini akan menghapus %s dari pustakan dan dari semua perangkat yang "
 "sudah disingkronisasi otomatis dengan %s."
 
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
+msgid "Cancelling Sync"
+msgstr "Membatalkan Sinkronisasi"
+
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
+msgid "Device Sync has been cancelled. Operation will stop after this media."
+msgstr ""
+"Sinkronisasi Perangkat telah dibatalkan. Operasi akan berhenti setelah media "
+"berikut."
+
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
+msgid "Cancelling Import"
+msgstr "Membatalkan Impor"
+
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:46
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
+msgid ""
+"Import from device has been cancelled. Operation will stop after this media."
+msgstr ""
+"Impor dari perangkat telah dibatalkan. Operasi akan berhenti setelah media "
+"berikut."
+
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:132
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
+msgid "No External Songs"
+msgstr "Tidak Ada Lagu Eksternal"
+
+#: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
+#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
+msgid ""
+"There were no songs found on this device that are not in your library."
+msgstr ""
+"Ada lagu-lagu yang ditemukan pada perangkat yang tidak ada dalam pustaka "
+"Anda."
+
 #: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:185
 #, c-format
 msgid "%s by %s"
@@ -995,38 +983,25 @@ msgstr "Lokasi"
 msgid "Change your music folder."
 msgstr "Ubah Folder Musik Anda"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
-msgid "Import songs from audio CD"
-msgstr "Impor beberapa lagu dari CD audio"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:91
-msgid "Import media from device"
-msgstr "Impor media dari Perangkat"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:175
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid "No External Songs"
-msgstr "Tidak Ada Lagu Eksternal"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:175
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:132
 msgid "All the songs in this device are already in your library."
 msgstr "Semua lagu di perangkat ini sudah ada di pustaka Anda."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:372
 #, c-format
 msgid "%i albums"
 msgstr "%i album"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:370
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:372
 msgid "1 album"
 msgstr "1 album"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
 #, c-format
 msgid "%i songs"
 msgstr "%i lagu"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
 msgid "1 song"
 msgstr "1 lagu"
 
@@ -1077,77 +1052,14 @@ msgstr "%i lagu"
 msgid "1 track"
 msgstr "1 lagu"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
-msgid "Fetching similar songs"
-msgstr "Mencari lagu yang mirip"
+#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
+msgid "Device unreachable"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:71
+#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
 #, c-format
-msgid "Finding songs similar to %s by %s"
-msgstr "Mencari lagu-lagu yang serupa dengan %s melalui %s"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:97
-#, c-format
-msgid "Similar to %s"
-msgstr "Sama seperti %s"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:124
-msgid "No similar songs found"
-msgstr "Tidak ditemukan lagu yang mirip"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:124
-#, c-format
-msgid ""
-"%s could not find songs similar to %s by %s in your library. Make sure all "
-"song info is correct and you are connected to the Internet. Some songs may "
-"not have matches."
+msgid "%s could not acces to this network device"
 msgstr ""
-"%s tidak dapat menemukan lagu yang sama dengan %s oleh %s di pustaka. "
-"Pastikan semua informasi lagu sudah benar dan anda tersambung dengan "
-"internet. Beberapa lagu mungkin jadi tidak memiliki padanan."
-
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
-msgid "Similar Song View"
-msgstr "Tinjau Lagu Serupa"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/SimilarViewWrapper.vala:137
-#, c-format
-msgid ""
-"In this view, %s will automatically find songs similar to the one you're "
-"playing. You can then start playing those songs, or save them as a playlist "
-"for later."
-msgstr ""
-"Dalam tinjauan ini, %s akan menemukan secara otomatis lagu-lagu yang serupa "
-"dengan yang sedang diputar. Kemudian Anda bisa mulai memutar lagu-lagu itu, "
-"atau menyimpannya sebagai sebuah daftar putar."
-
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
-msgid "Cancelling Sync"
-msgstr "Membatalkan Sinkronisasi"
-
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:43
-msgid "Device Sync has been cancelled. Operation will stop after this media."
-msgstr ""
-"Sinkronisasi Perangkat telah dibatalkan. Operasi akan berhenti setelah media "
-"berikut."
-
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
-msgid "Cancelling Import"
-msgstr "Membatalkan Impor"
-
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:47
-msgid ""
-"Import from device has been cancelled. Operation will stop after this media."
-msgstr ""
-"Impor dari perangkat telah dibatalkan. Operasi akan berhenti setelah media "
-"berikut."
-
-#: /home/victor/noise/po/../src//Views/DeviceView.vala:86
-msgid ""
-"There were no songs found on this device that are not in your library."
-msgstr ""
-"Ada lagu-lagu yang ditemukan pada perangkat yang tidak ada dalam pustaka "
-"Anda."
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1215,7 +1127,7 @@ msgid "Show in File Browser"
 msgstr "Buka di Peramban Berkas"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:598
+#: /home/victor/noise/po/../src//LibraryWindow.vala:531
 msgid "Queue"
 msgstr "Antrian"
 
@@ -1319,31 +1231,31 @@ msgstr "Semua Peringkat %i"
 msgid "No Ratings"
 msgstr "Tanpa Peringkat"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
 msgid "On Left"
 msgstr "Di Kiri"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:144
 msgid "On Top"
 msgstr "Di Atas"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:548
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:549
 msgid "Genres"
 msgstr "Aliran"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:551
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:552
 msgid "Artists"
 msgstr "Artis"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:554
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:555
 msgid "Albums"
 msgstr "Album"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:557
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:558
 msgid "Years"
 msgstr "Tahun"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:560
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:561
 msgid "Ratings"
 msgstr "Nilai"
 
@@ -1437,108 +1349,52 @@ msgstr "Dimainkan berulang-ulang"
 msgid "Not Recently Played"
 msgstr "Bukan yang baru saja dimainkan"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:224
+#: /home/victor/noise/po/../src//LibraryWindow.vala:220
 msgid "Rescan Music Folder"
 msgstr "Pindai Ulang Folder Musik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:247
+#: /home/victor/noise/po/../src//LibraryWindow.vala:243
 msgid "Search Music"
 msgstr "Cari Musik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:317
-msgid "Add Playlist"
-msgstr "Tambahkan Daftar Putar"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:319
-#: /home/victor/noise/po/../src//LibraryWindow.vala:327
-msgid "Off"
-msgstr "Padam"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:323
-#: /home/victor/noise/po/../src//LibraryWindow.vala:328
-msgid "All"
-msgstr "Semua"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:325
-msgid "Disable Repeat"
-msgstr "Matikan pengulangan"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:325
-msgid "Enable Repeat"
-msgstr "Nyalakan Pengulangan"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:330
-msgid "Disable Shuffle"
-msgstr "Matikan Putar Acak"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:330
-msgid "Enable Shuffle"
-msgstr "Hidupkan Putar Acak"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:332
-#: /home/victor/noise/po/../src//LibraryWindow.vala:337
-msgid "Hide"
-msgstr "Sembunyikan"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:333
-#: /home/victor/noise/po/../src//LibraryWindow.vala:338
-msgid "Show"
-msgstr "Tampilkan"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:335
-msgid "Hide Info Panel"
-msgstr "Sembunyikan Panel Info"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:335
-msgid "Show Info Panel"
-msgstr "Tampilkan Panel Info"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:340
-msgid "Hide Equalizer"
-msgstr "Sembunyikan Ekualiser"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:340
-msgid "Show Equalizer"
-msgstr "Tampilkan Ekualiser"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:594
-msgid "Similar"
-msgstr "Serupa"
-
-#: /home/victor/noise/po/../src//LibraryWindow.vala:603
+#: /home/victor/noise/po/../src//LibraryWindow.vala:536
 msgid "History"
 msgstr "Riwayat"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:771
+#: /home/victor/noise/po/../src//LibraryWindow.vala:713
 msgid " by "
 msgstr " oleh "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:772
+#: /home/victor/noise/po/../src//LibraryWindow.vala:714
 msgid " on "
 msgstr " Menyala "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:992
+#: /home/victor/noise/po/../src//LibraryWindow.vala:930
 msgid "Import Music"
 msgstr "Impor Musik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1016
+#: /home/victor/noise/po/../src//LibraryWindow.vala:954
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>sedang mengimpor</b> musik dari <b>%s</b> ke pustaka."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1031
+#: /home/victor/noise/po/../src//LibraryWindow.vala:969
 msgid "Rescanning music folder for changes"
 msgstr "Sedang memindai folder musik untuk perubahan"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1038
+#: /home/victor/noise/po/../src//LibraryWindow.vala:976
+msgid "Could not find Music Folder"
+msgstr "Tak menemukan Folder Musik"
+
+#: /home/victor/noise/po/../src//LibraryWindow.vala:976
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Pastikan folder musik Anda dapat diakses dan di-mount"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1092
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1030
 msgid "Import Complete"
 msgstr "Impor Selesai"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1092
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1030
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s telah diimpor ke Pustaka."
@@ -1664,6 +1520,34 @@ msgstr "Rock Lembut"
 msgid "Techno"
 msgstr "Tekno"
 
+#~ msgid "Similar"
+#~ msgstr "Serupa"
+
+#~ msgid "Import songs from audio CD"
+#~ msgstr "Impor beberapa lagu dari CD audio"
+
+#~ msgid "Add"
+#~ msgstr "Tambahkan"
+
+#, c-format
+#~ msgid "Similar to %s"
+#~ msgstr "Sama seperti %s"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Tidak ditemukan lagu yang mirip"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "Nyalakan Pengulangan"
+
+#~ msgid "Import media from device"
+#~ msgstr "Impor media dari Perangkat"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Pastikan folder musik dapat diakses dan sudah dikaitkan sebelum mengimpor CD."
+
 #~ msgid "Success!"
 #~ msgstr "Berhasil!"
 
@@ -1698,6 +1582,20 @@ msgstr "Tekno"
 #~ msgid "Complete login"
 #~ msgstr "Login selesai"
 
+#~ msgid "Fetching similar songs"
+#~ msgstr "Mencari lagu yang mirip"
+
+#, c-format
+#~ msgid "%s is already doing an import"
+#~ msgstr "%s sudah mulai mengimpor"
+
+#, c-format
+#~ msgid ""
+#~ "Please wait until %s is finished with the current import before importing "
+#~ "the CD."
+#~ msgstr ""
+#~ "Harap tunggu sampai %s selesai dengan impor ini sebelum mengimpor CD."
+
 #, c-format
 #~ msgid ""
 #~ "To allow for Last.fm integration, you must give permission to %s. You only "
@@ -1715,3 +1613,64 @@ msgstr "Tekno"
 
 #~ msgid "Click on the button to edit playlist rules"
 #~ msgstr "Klik tombol untuk menyunting aturan daftar putar"
+
+#, c-format
+#~ msgid ""
+#~ "In this view, %s will automatically find songs similar to the one you're "
+#~ "playing. You can then start playing those songs, or save them as a playlist "
+#~ "for later."
+#~ msgstr ""
+#~ "Dalam tinjauan ini, %s akan menemukan secara otomatis lagu-lagu yang serupa "
+#~ "dengan yang sedang diputar. Kemudian Anda bisa mulai memutar lagu-lagu itu, "
+#~ "atau menyimpannya sebagai sebuah daftar putar."
+
+#~ msgid "Similar Song View"
+#~ msgstr "Tinjau Lagu Serupa"
+
+#, c-format
+#~ msgid "Finding songs similar to %s by %s"
+#~ msgstr "Mencari lagu-lagu yang serupa dengan %s melalui %s"
+
+#, c-format
+#~ msgid "%s could not find any songs on the CD. No songs can be imported"
+#~ msgstr "%s tak menemukan lagu dalam CD. Tak ada lagu yang diimpor."
+
+#~ msgid "No songs on CD"
+#~ msgstr "Tak ada lagu dalam CD"
+
+#, c-format
+#~ msgid "%s has finished importing %i songs from Audio CD."
+#~ msgstr "%s selesai mengimpor %i lagu dari Audio CD."
+
+#~ msgid "CD Import Complete"
+#~ msgstr "Selesai Impor CD"
+
+#~ msgid "Ripping track 1"
+#~ msgstr "Merenggut trek 1"
+
+#, c-format
+#~ msgid "Importing track %i"
+#~ msgstr "Mengimpor trek %i"
+
+#~ msgid "media"
+#~ msgstr "media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Media Serupa"
+
+#, c-format
+#~ msgid ""
+#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
+#~ "song info is correct and you are connected to the Internet. Some songs may "
+#~ "not have matches."
+#~ msgstr ""
+#~ "%s tidak dapat menemukan lagu yang sama dengan %s oleh %s di pustaka. "
+#~ "Pastikan semua informasi lagu sudah benar dan anda tersambung dengan "
+#~ "internet. Beberapa lagu mungkin jadi tidak memiliki padanan."
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "Impor CD akan <b>dibatalkan</b> setelah impor berikut."
+
+#, c-format
+#~ msgid "%s has finished importing a song from Audio CD."
+#~ msgstr "%s selesai mengimpor sebuah lagu dari Audio CD."
