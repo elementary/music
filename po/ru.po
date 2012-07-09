@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-07 00:26-0600\n"
-"PO-Revision-Date: 2012-06-06 01:12+0000\n"
-"Last-Translator: Nikita Putko <Unknown>\n"
+"PO-Revision-Date: 2012-07-08 14:21+0000\n"
+"Last-Translator: Ivlev Denis <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-08 05:01+0000\n"
+"X-Launchpad-Export-Date: 2012-07-09 05:09+0000\n"
 "X-Generator: Launchpad (build 15558)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:70
@@ -68,7 +68,7 @@ msgstr "Радиостанция"
 
 #: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
-msgstr ""
+msgstr "Неизвестный трек"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
@@ -234,7 +234,7 @@ msgstr "Композиция"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
 msgid "Repeat Song"
-msgstr ""
+msgstr "Повторять песню"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
@@ -246,7 +246,7 @@ msgstr "Альбом"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 msgid "Repeat Album"
-msgstr ""
+msgstr "Повторять альбом"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
@@ -258,7 +258,7 @@ msgstr "Исполнитель"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Повторять исполнителя"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
@@ -267,7 +267,7 @@ msgstr "Всё"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 msgid "Repeat All"
-msgstr ""
+msgstr "Повторять все"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
 msgid "Disable Shuffle"
@@ -1062,12 +1062,12 @@ msgstr "1 дорожка"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
 msgid "Device unreachable"
-msgstr ""
+msgstr "Устройство недоступно"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
 #, c-format
 msgid "%s could not acces to this network device"
-msgstr ""
+msgstr "Не возможно получить доступ к сетевому устройству %s"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
