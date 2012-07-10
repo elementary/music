@@ -127,8 +127,8 @@ public class BeatBox.SmartQuery : Object {
 		}
 		else if(field == FieldType.RATING) {
 			rule.field = GPod.SPLField.RATING;
-			rule.fromvalue = uint64.parse(value) * 20;
-			rule.tovalue = uint64.parse(value) * 20;
+			rule.fromvalue = uint64.parse(value);// * 20;
+			rule.tovalue = uint64.parse(value);// * 20;
 		}
 		else if(field == FieldType.DATE_ADDED) {
 			rule.field = GPod.SPLField.DATE_ADDED;
