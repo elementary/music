@@ -142,9 +142,9 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
         copy_imported_music_switch.set_active(_lw.main_settings.copy_imported_music);
         
         // Pack all widgets
-        general_grid.attach (management_label, 0, 0, 3, 1);
+        general_grid.attach (music_label, 0, 0, 3, 1);
         general_grid.attach (library_fileChooser, 0, 1, 3, 1);
-        general_grid.attach (music_label, 0, 2, 3, 1);
+        general_grid.attach (management_label, 0, 2, 3, 1);
         general_grid.attach (organize_folders_label, 0, 3, 1, 1);
         general_grid.attach (organize_folders_switch, 1, 3, 1, 1);
         general_grid.attach (write_file_metadata_label, 0, 4, 1, 1);
