@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-07 00:26-0600\n"
-"PO-Revision-Date: 2012-06-10 12:53+0000\n"
-"Last-Translator: Daniel Kur <Daniel.M.Kur@gmail.com>\n"
+"PO-Revision-Date: 2012-07-09 11:11+0000\n"
+"Last-Translator: Adrian Widerski <Unknown>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-08 05:01+0000\n"
+"X-Launchpad-Export-Date: 2012-07-10 05:54+0000\n"
 "X-Generator: Launchpad (build 15558)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:70
@@ -66,7 +66,7 @@ msgstr "Stacje radiowe"
 
 #: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
-msgstr ""
+msgstr "Nieznana ścieżka"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
@@ -231,7 +231,7 @@ msgstr "Utwór"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
 msgid "Repeat Song"
-msgstr ""
+msgstr "Powtórz utwór"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
@@ -243,7 +243,7 @@ msgstr "Album"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 msgid "Repeat Album"
-msgstr ""
+msgstr "Powtórz album"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
@@ -255,7 +255,7 @@ msgstr "Wykonawca"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Powtórz utwory artysty"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
@@ -264,7 +264,7 @@ msgstr "Wszystko"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 msgid "Repeat All"
-msgstr ""
+msgstr "Powtórz wszystkie"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
 msgid "Disable Shuffle"
@@ -1049,12 +1049,12 @@ msgstr "1 ścieżka"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
 msgid "Device unreachable"
-msgstr ""
+msgstr "Urządzenie nieosiągalne"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
 #, c-format
 msgid "%s could not acces to this network device"
-msgstr ""
+msgstr "%s nie może uzyskać dostępu do tego urządzenia sieciowego"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format

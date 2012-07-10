@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-07 00:26-0600\n"
-"PO-Revision-Date: 2012-07-03 22:07+0000\n"
-"Last-Translator: Corentin Noël <tintou@mailoo.org>\n"
+"PO-Revision-Date: 2012-07-09 13:04+0000\n"
+"Last-Translator: zypeh <ciboy2011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-08 05:01+0000\n"
+"X-Launchpad-Export-Date: 2012-07-10 05:54+0000\n"
 "X-Generator: Launchpad (build 15558)\n"
 "Language: \n"
 
@@ -28,7 +28,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
-msgstr ""
+msgstr "聽音樂"
 
 #: /home/victor/noise/po/../src//config.vala:15
 msgid "Music Player"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:357
 msgid "Adding files to library..."
-msgstr ""
+msgstr "增加档案到图书馆..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:382
 #, c-format
@@ -50,20 +50,20 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:409
 msgid "Rescanning music for changes. This may take a while..."
-msgstr ""
+msgstr "重新搜寻已改变的音乐。这会花费许多时间..."
 
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
 #: /home/victor/noise/po/../src//LibraryWindow.vala:713
 msgid "Unknown Artist"
-msgstr ""
+msgstr "未知演出者"
 
 #: /home/victor/noise/po/../src//Objects/Playlist.vala:210
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:348
 msgid "Radio Station"
-msgstr ""
+msgstr "收音机发送台"
 
 #: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
@@ -73,29 +73,29 @@ msgstr ""
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
 #: /home/victor/noise/po/../src//LibraryWindow.vala:714
 msgid "Unknown Album"
-msgstr ""
+msgstr "不明專輯"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:45
 msgid "Unknown Title"
-msgstr ""
+msgstr "不明歌曲名稱"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
 msgid "Automatic"
-msgstr ""
+msgstr "自動"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr ""
+msgstr "删除当前"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:97
 msgid "Sync"
-msgstr ""
+msgstr "同步"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr ""
+msgstr "免費"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
@@ -105,11 +105,11 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
 #: /home/victor/noise/po/../src//LibraryWindow.vala:219
 msgid "Import to Library"
-msgstr ""
+msgstr "匯入至音樂庫"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:98
 msgid "Eject"
-msgstr ""
+msgstr "退出"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:112
 msgid "Add Podcast"
@@ -126,27 +126,27 @@ msgstr ""
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:131
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:152
 msgid "New Playlist"
-msgstr ""
+msgstr "新增播放清單"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:132
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "新增智慧播放清單"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:133
 msgid "Edit"
-msgstr ""
+msgstr "編輯"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:134
 msgid "Remove"
-msgstr ""
+msgstr "刪除"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:135
 msgid "Save as Playlist"
-msgstr ""
+msgstr "储存为播放清单"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:136
 msgid "Export..."
-msgstr ""
+msgstr "匯出..."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:137
 msgid "Import Playlists"

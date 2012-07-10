@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-07 00:26-0600\n"
-"PO-Revision-Date: 2012-06-30 16:01+0000\n"
+"PO-Revision-Date: 2012-07-09 19:18+0000\n"
 "Last-Translator: Thomas Pitlik <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-08 05:01+0000\n"
+"X-Launchpad-Export-Date: 2012-07-10 05:54+0000\n"
 "X-Generator: Launchpad (build 15558)\n"
 "Language: de\n"
 
@@ -68,7 +68,7 @@ msgstr "Radiosender"
 
 #: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
-msgstr ""
+msgstr "Unbekannter Titel"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
@@ -234,7 +234,7 @@ msgstr "Song"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
 msgid "Repeat Song"
-msgstr ""
+msgstr "Titel wiederholen"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
@@ -246,7 +246,7 @@ msgstr "Album"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 msgid "Repeat Album"
-msgstr ""
+msgstr "Album wiederholen"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
@@ -258,7 +258,7 @@ msgstr "Interpret"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Interpret wiederholen"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
@@ -267,7 +267,7 @@ msgstr "Alle"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 msgid "Repeat All"
-msgstr ""
+msgstr "Alle wiederholen"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
 msgid "Disable Shuffle"
@@ -1069,12 +1069,12 @@ msgstr "1 Titel"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
 msgid "Device unreachable"
-msgstr ""
+msgstr "Gerät nicht erreichbar"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
 #, c-format
 msgid "%s could not acces to this network device"
-msgstr ""
+msgstr "%s konnte auf dieses Netzwerkgerät nicht zugreifen"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
