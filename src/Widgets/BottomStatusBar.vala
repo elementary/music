@@ -37,7 +37,7 @@ public class BeatBox.BottomStatusBar : Granite.Widgets.StatusBar {
         addPlaylistChooser.appendItem ("", add_playlist_image, _("Add Playlist"));
         addPlaylistChooser.setOption (0);
 
-        repeatChooser.appendItem (_("Off"), repeat_off_image, _("Repeat Disabled"));
+        repeatChooser.appendItem (_("Off"), repeat_off_image, _("Enable Repeat"));
         repeatChooser.appendItem (_("Song"), repeat_one_image, _("Repeat Song"));
         repeatChooser.appendItem (_("Album"), repeat_on_image, _("Repeat Album"));
         repeatChooser.appendItem (_("Artist"), repeat_on_image, _("Repeat Artist"));
