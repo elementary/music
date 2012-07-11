@@ -372,11 +372,11 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
                 _comparator.set_active(0);
         }
         else {
-            if(is_rating ((SmartQuery.FieldType)_field.get_active ()))
-            {
+            if(is_rating ((SmartQuery.FieldType)_field.get_active ())) {
                 _valueNumerical.hide();
                 _valueRating.show();
-            }else{
+            }
+            else {
                 _valueNumerical.show();
                 _valueRating.hide();
             }
