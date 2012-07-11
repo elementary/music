@@ -37,23 +37,23 @@ public class BeatBox.BottomStatusBar : Granite.Widgets.StatusBar {
         addPlaylistChooser.appendItem ("", add_playlist_image, _("Add Playlist"));
         addPlaylistChooser.setOption (0);
 
-        repeatChooser.appendItem (_("Off"), repeat_off_image, _("Disable Repeat"));
+        repeatChooser.appendItem (_("Off"), repeat_off_image, _("Enable Repeat"));
         repeatChooser.appendItem (_("Song"), repeat_one_image, _("Repeat Song"));
         repeatChooser.appendItem (_("Album"), repeat_on_image, _("Repeat Album"));
         repeatChooser.appendItem (_("Artist"), repeat_on_image, _("Repeat Artist"));
         repeatChooser.appendItem (_("All"), repeat_on_image, _("Repeat All"));
         repeatChooser.setOption (lw.main_settings.repeat_mode);
 
-        shuffleChooser.appendItem (_("Off"), shuffle_off_image, _("Disable Shuffle"));
-        shuffleChooser.appendItem (_("All"), shuffle_on_image, _("Enable Shuffle"));
+        shuffleChooser.appendItem (_("Off"), shuffle_off_image, _("Enable Shuffle"));
+        shuffleChooser.appendItem (_("All"), shuffle_on_image, _("Disable Shuffle"));
         shuffleChooser.setOption (lw.main_settings.shuffle_mode);
 
-        info_panel_chooser.appendItem (_("Hide"), info_panel_show, _("Hide Info Panel"));
-        info_panel_chooser.appendItem (_("Show"), info_panel_hide, _("Show Info Panel"));
+        info_panel_chooser.appendItem (_("Hide"), info_panel_show, _("Show Info Panel"));
+        info_panel_chooser.appendItem (_("Show"), info_panel_hide, _("Hide Info Panel"));
         info_panel_chooser.setOption (lw.savedstate_settings.more_visible ? 1 : 0);
 
-        eq_option_chooser.appendItem (_("Hide"), eq_hide_image, _("Hide Equalizer"));
-        eq_option_chooser.appendItem (_("Show"), eq_show_image, _("Show Equalizer"));
+        eq_option_chooser.appendItem (_("Hide"), eq_hide_image, _("Show Equalizer"));
+        eq_option_chooser.appendItem (_("Show"), eq_show_image, _("Hide Equalizer"));
         eq_option_chooser.setOption (0);
         
         insert_widget (addPlaylistChooser, true);
