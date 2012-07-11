@@ -31,6 +31,8 @@ public class BeatBox.TopDisplay : Box {
 	HScale scale;
 	ProgressBar progressbar;
 	Button cancelButton;
+
+    private bool is_seeking = false;
 	
 	public signal void scale_value_changed(ScrollType scroll, double val);
 	
@@ -143,8 +145,6 @@ public class BeatBox.TopDisplay : Box {
 	public double get_scale_value() {
 		return scale.get_value();
 	}
-
-    private bool is_seeking = false;
     
 	public virtual bool scale_button_press(Gdk.EventButton event) {
 		//calculate percentage to go to based on location
