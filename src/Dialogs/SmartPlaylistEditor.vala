@@ -281,6 +281,9 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
             _valueOption.append_text(_("Radio Station"));
             _valueOption.set_active(int.parse(q.value));
         }
+        else if(q.field == SmartQuery.FieldType.RATING) {
+            _valueRating.set_rating(int.parse(q.value));
+        }
         else {
             _valueNumerical.set_value(int.parse(q.value));
         }
