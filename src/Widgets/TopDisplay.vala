@@ -143,7 +143,9 @@ public class BeatBox.TopDisplay : Box {
 	public double get_scale_value() {
 		return scale.get_value();
 	}
-	
+
+    private bool is_seeking = false;
+    
 	public virtual bool scale_button_press(Gdk.EventButton event) {
 		//calculate percentage to go to based on location
 		Gtk.Allocation extents;
@@ -155,7 +157,9 @@ public class BeatBox.TopDisplay : Box {
 		
 		// get seconds of media
 		double mediatime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
-		
+
+        this.lm.player.current_position_update.disconnect(player_position_update);
+        is_seeking = true;
 		change_value(ScrollType.NONE, mediatime);
 		
 		return false;
@@ -171,7 +175,9 @@ public class BeatBox.TopDisplay : Box {
 		
 		// get seconds of media
 		double mediatime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
-	
+        
+
+        is_seeking = false;
 		change_value(ScrollType.NONE, mediatime);
 		
 		return false;
@@ -191,11 +197,15 @@ public class BeatBox.TopDisplay : Box {
 	}
 		
 	public virtual bool change_value(ScrollType scroll, double val) {
-		this.lm.player.current_position_update.disconnect(player_position_update);
+        this.lm.player.current_position_update.disconnect(player_position_update);
 		scale.set_value(val);
 		scale_value_changed(scroll, val);
-		this.lm.player.current_position_update.connect(player_position_update);
-		lm.player.setPosition((int64)(val * 1000000000));
+
+        if( !is_seeking )
+        {
+            lm.player.setPosition((int64)(val * 1000000000));
+            this.lm.player.current_position_update.connect(player_position_update);
+        }
 		
 		return false;
 	}
