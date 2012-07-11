@@ -391,9 +391,10 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
                 comparators.insert (0, SmartQuery.ComparatorType.IS_EXACTLY);
                 comparators.insert (1, SmartQuery.ComparatorType.IS_AT_MOST);
                 comparators.insert (2, SmartQuery.ComparatorType.IS_AT_LEAST);
-                
-                _comparator.set_active((int)_q.comparator-4);
-                if ((int)_q.comparator-4 > 2)
+
+                if ((int)_q.comparator >= 4)
+                    _comparator.set_active((int)_q.comparator-4);
+                else
                     _comparator.set_active(0);
             }
             else if(is_date((SmartQuery.FieldType)_field.get_active ())) {
