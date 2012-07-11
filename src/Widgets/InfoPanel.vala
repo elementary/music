@@ -66,7 +66,7 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
         artist = new Label("");
         coverArt = new Gtk.Image();
         coverArt.set_size_request (Icons.ALBUM_VIEW_IMAGE_SIZE, Icons.ALBUM_VIEW_IMAGE_SIZE);
-        rating = new Granite.Widgets.Rating (true, IconSize.MENU); // centered = true
+        rating = new Granite.Widgets.Rating (true, IconSize.MENU, true); // centered = true
         album = new Label("");
         year = new Label("");
 
