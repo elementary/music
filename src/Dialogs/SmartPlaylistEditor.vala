@@ -246,7 +246,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
         _value = new Entry();
         _valueNumerical = new SpinButton.with_range(0, 9999, 1);
         _valueOption = new ComboBoxText();
-        _valueRating = new Rating (true, IconSize.MENU);
+        _valueRating = new Rating (true, IconSize.MENU, true);
         _remove = new Gtk.Button.from_stock(Gtk.Stock.REMOVE);
         
         _field.append_text(_("Album"));
