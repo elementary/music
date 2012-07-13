@@ -25,6 +25,7 @@
 
 using Gtk;
 using Gee;
+using Granite.Widgets;
 
 public class BeatBox.SmartPlaylistEditor : Window {
 
@@ -224,6 +225,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
     private ComboBoxText _field;
     private ComboBoxText _comparator;
     private Entry _value;
+    private Rating _valueRating;
     private SpinButton _valueNumerical;
     private ComboBoxText _valueOption;
     private Label _units;
@@ -244,6 +246,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
         _value = new Entry();
         _valueNumerical = new SpinButton.with_range(0, 9999, 1);
         _valueOption = new ComboBoxText();
+        _valueRating = new Rating (true, IconSize.MENU, true);
         _remove = new Gtk.Button.from_stock(Gtk.Stock.REMOVE);
         
         _field.append_text(_("Album"));
@@ -278,6 +281,9 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
             _valueOption.append_text(_("Radio Station"));
             _valueOption.set_active(int.parse(q.value));
         }
+        else if(q.field == SmartQuery.FieldType.RATING) {
+            _valueRating.set_rating(int.parse(q.value));
+        }
         else {
             _valueNumerical.set_value(int.parse(q.value));
         }
@@ -288,6 +294,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
         _box.pack_start(_comparator, false ,true, 1);
         _box.pack_start(_value, true, true, 1);
         _box.pack_start(_valueOption, true, true, 1);
+        _box.pack_start(_valueRating, true, true, 1);
         _box.pack_start(_valueNumerical, true, true, 1);
         _box.pack_start(_units, false, true, 1);
         _box.pack_start(_remove, false, true, 0);
@@ -309,6 +316,8 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
             rv.value = _value.text;
         else if(_field.get_active() == SmartQuery.FieldType.MEDIA_TYPE)
             rv.value = _valueOption.get_active().to_string();
+        else if(_field.get_active() == SmartQuery.FieldType.RATING)
+            rv.value = _valueRating.get_rating().to_string();
         else
             rv.value = _valueNumerical.value.to_string();
         
@@ -320,6 +329,8 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
             _value.show();
             _valueNumerical.hide();
             _valueOption.hide();
+            _valueRating.hide();
+            
             comparators.remove_all ();
             for(int i = 0;i < 3; ++i) _comparator.remove(0);
             
@@ -339,6 +350,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
             _value.hide();
             _valueNumerical.hide();
             _valueOption.show();
+            _valueRating.hide();
             
             // upate valueOption 
             _valueOption.remove_all();
@@ -360,7 +372,14 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
                 _comparator.set_active(0);
         }
         else {
-            _valueNumerical.show();
+            if(is_rating ((SmartQuery.FieldType)_field.get_active ())) {
+                _valueNumerical.hide();
+                _valueRating.show();
+            }
+            else {
+                _valueNumerical.show();
+                _valueRating.hide();
+            }
             _value.hide();
             _valueOption.hide();
             
@@ -372,9 +391,10 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
                 comparators.insert (0, SmartQuery.ComparatorType.IS_EXACTLY);
                 comparators.insert (1, SmartQuery.ComparatorType.IS_AT_MOST);
                 comparators.insert (2, SmartQuery.ComparatorType.IS_AT_LEAST);
-                
-                _comparator.set_active((int)_q.comparator-4);
-                if ((int)_q.comparator-4 > 2)
+
+                if ((int)_q.comparator >= 4)
+                    _comparator.set_active((int)_q.comparator-4);
+                else
                     _comparator.set_active(0);
             }
             else if(is_date((SmartQuery.FieldType)_field.get_active ())) {
@@ -427,6 +447,10 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
         return (compared == SmartQuery.FieldType.BITRATE || compared == SmartQuery.FieldType.YEAR || compared == SmartQuery.FieldType.RATING || 
                 compared == SmartQuery.FieldType.PLAYCOUNT || compared == SmartQuery.FieldType.SKIPCOUNT || compared == SmartQuery.FieldType.LENGTH || 
                 compared == SmartQuery.FieldType.TITLE);
+    }
+
+    public bool is_rating (SmartQuery.FieldType compared) {
+        return compared == SmartQuery.FieldType.RATING;
     }
     
     public bool is_date (SmartQuery.FieldType compared) {
