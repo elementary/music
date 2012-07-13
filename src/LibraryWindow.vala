@@ -256,6 +256,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var top_display_item   = new Gtk.ToolItem ();
         var view_selector_item = new Gtk.ToolItem ();
         var search_field_item  = new Gtk.ToolItem ();
+        var separator_item     = new Gtk.ToolItem ();
 
         view_selector_item.add (viewSelector);
         column_toggle_item.add (column_browser_toggle);
@@ -269,17 +270,22 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         viewSelector.valign = column_browser_toggle.valign = Gtk.Align.CENTER;
 
         top_display_item.set_expand (true);
+        top_display_item.set_size_request(300, -1);
         topDisplay.margin_left = 30;
         topDisplay.margin_right = 30;
 
         search_field_item.margin_right = 12;
 
+        separator_item.set_expand (true);
+        
         main_toolbar.insert (previousButton, -1);
         main_toolbar.insert (playButton, -1);
         main_toolbar.insert (nextButton, -1);
         main_toolbar.insert (view_selector_item, -1);
         main_toolbar.insert (column_toggle_item, -1);
+        main_toolbar.insert (separator_item, -1);
         main_toolbar.insert (top_display_item, -1);
+        main_toolbar.insert (separator_item, -1);
         main_toolbar.insert (search_field_item, -1);
         main_toolbar.insert (app.create_appmenu (settingsMenu), -1);
 
