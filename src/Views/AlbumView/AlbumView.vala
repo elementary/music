@@ -23,20 +23,16 @@
 using Gtk;
 using Gee;
 
-namespace BeatBox {
-	// Share popover across multiple album views. For speed and memory saving
-	public AlbumListView? _shared_album_list_view = null;
-}
-
 public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	// The window used to present album contents
+    private static AlbumListView? _album_list_view = null;
 	public AlbumListView album_list_view {
 		get {
-			if (_shared_album_list_view == null) {
+			if (_album_list_view == null) {
 				debug ("Creating ALBUM VIEW POPOVER");
-				_shared_album_list_view = new AlbumListView (this);
-				_shared_album_list_view.focus_out_event.connect ( () => {
+				_album_list_view = new AlbumListView (this);
+				_album_list_view.focus_out_event.connect ( () => {
 					if (album_list_view.visible && lw.has_focus) {
 						album_list_view.show_all ();
 						album_list_view.present ();
@@ -45,7 +41,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 				});
 			}
 
-			return _shared_album_list_view;
+			return _album_list_view;
 		}
 	}
 
@@ -67,9 +63,10 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 	private Gdk.Pixbuf defaultPix;
 
-	private const int ITEM_PADDING = 0;
-	private const int MIN_SPACING = 12;
-	private const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
+	private static const int ITEM_PADDING = 0;
+	private static const int MIN_SPACING = 12;
+	private static const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
+
 
 	/* media should be mutable, as we will be sorting it */
 	public AlbumView(ViewWrapper view_wrapper) {
@@ -104,8 +101,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		hpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
 		this.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
 
-		vpadding_box.get_style_context().add_class(Granite.STYLE_CLASS_CONTENT_VIEW);
-		hpadding_box.get_style_context().add_class(Granite.STYLE_CLASS_CONTENT_VIEW);
+        vpadding_box.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
+		hpadding_box.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 		this.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
 
 		vpadding_box.set_size_request (-1, MIN_SPACING + ITEM_PADDING);
@@ -177,6 +174,8 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 		parent_view_wrapper.set_size_request (MIN_N_ITEMS * TOTAL_ITEM_WIDTH + TOTAL_MARGIN + MIDDLE_SPACE, -1);
 		parent_view_wrapper.size_allocate.connect (on_resize);
+
+        set_theming ();
 	}
 
 	public ViewWrapper.Hint get_hint() {
@@ -199,6 +198,20 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		return media_list;
 	}
 
+    private void set_theming () {
+		// Change background color
+        const string STYLESHEET = "*:selected{background-color:@transparent;}";
+
+		var style_provider = new CssProvider();
+
+        try  {
+            style_provider.load_from_data (STYLESHEET, -1);
+        } catch (Error e) {
+            warning ("Couldn't load style provider: %s", e.message);
+        }
+
+        icon_view.get_style_context ().add_provider (style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
+    }
 
 	private string get_key (Media m) {
 		if (m == null)
