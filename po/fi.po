@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-07 00:26-0600\n"
+"POT-Creation-Date: 2012-07-12 22:52-0600\n"
 "PO-Revision-Date: 2012-06-20 09:25+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-08 05:01+0000\n"
-"X-Generator: Launchpad (build 15558)\n"
+"X-Launchpad-Export-Date: 2012-07-14 06:45+0000\n"
+"X-Generator: Launchpad (build 15614)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:70
 msgid "Enable debug logging"
@@ -60,8 +60,8 @@ msgid "Unknown Artist"
 msgstr "Tuntematon artisti"
 
 #: /home/victor/noise/po/../src//Objects/Playlist.vala:210
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:348
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:360
 msgid "Radio Station"
 msgstr "Radioasema"
 
@@ -216,13 +216,13 @@ msgid "Off"
 msgstr "Pois"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:40
-msgid "Disable Repeat"
+msgid "Enable Repeat"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:275
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:345
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:278
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:357
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:64
 msgid "Song"
 msgstr "Kappale"
@@ -233,7 +233,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:249
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:252
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:126
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:39
 msgid "Album"
@@ -245,7 +245,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:250
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:253
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:125
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:40
 msgid "Artist"
@@ -265,11 +265,11 @@ msgid "Repeat All"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
-msgid "Disable Shuffle"
+msgid "Enable Shuffle"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
-msgid "Enable Shuffle"
+msgid "Disable Shuffle"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:51
@@ -278,8 +278,8 @@ msgid "Hide"
 msgstr "Piilota"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:51
-msgid "Hide Info Panel"
-msgstr "Piilota tietopaneeli"
+msgid "Show Info Panel"
+msgstr "Näytä tietopaneeli"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:52
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:56
@@ -287,18 +287,18 @@ msgid "Show"
 msgstr "Näytä"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:52
-msgid "Show Info Panel"
-msgstr "Näytä tietopaneeli"
+msgid "Hide Info Panel"
+msgstr "Piilota tietopaneeli"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:55
-msgid "Hide Equalizer"
-msgstr "Piilota taajuuskorjain"
-
-#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:56
 msgid "Show Equalizer"
 msgstr "Näytä taajuuskorjain"
 
-#: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:67
+#: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:56
+msgid "Hide Equalizer"
+msgstr "Piilota taajuuskorjain"
+
+#: /home/victor/noise/po/../src//Widgets/TopDisplay.vala:69
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
@@ -456,7 +456,7 @@ msgid "Editing %i songs"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:185
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:267
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:124
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:38
 msgid "Title"
@@ -468,24 +468,24 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:189
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:256
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:41
 msgid "Genre"
 msgstr "Tyylilaji"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:190
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:253
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:256
 msgid "Composer"
 msgstr "Säveltäjä"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:191
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:478
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
 msgid "Grouping"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:192
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:252
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:255
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:46
 msgid "Comment"
 msgstr "Kommentti"
@@ -500,19 +500,19 @@ msgid "Disc"
 msgstr "Levy"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:195
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:268
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:42
 msgid "Year"
 msgstr "Vuosi"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:196
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:265
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:47
 msgid "Rating"
 msgstr "Arvostelu"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:198
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:260
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
 msgid "Media Type"
 msgstr ""
 
@@ -526,8 +526,8 @@ msgid "Lyrics not found for \"%s\" by \"%s\""
 msgstr "Kappaleen \"%s\", jonka esittäjä on \"%s\", sanoituksia ei löytynyt"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:539
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:276
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:346
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:358
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:67
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:43
 msgid "Podcast"
@@ -607,141 +607,141 @@ msgid ""
 "music folder"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:55
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:56
 msgid "Smart Playlist Editor"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:69
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:77
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:67
 msgid "Name of Playlist"
 msgstr "Soittolistan nimi"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:70
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:78
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
 msgid "Rules"
 msgstr "Säännöt"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:72
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:80
 msgid "Options"
 msgstr "Asetukset"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:82
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
 msgid "Playlist Title"
 msgstr "Soittolistan nimi"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:88
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
 msgid "Match"
 msgstr "Osuma"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:90
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "any"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:92
 msgid "all"
 msgstr "kaikki"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:92
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "of the following:"
 msgstr "seuraavista:"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:119
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:120
 msgid "Limit to"
 msgstr "Rajoita"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:121
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:122
 msgid "items"
 msgstr "kohdetta"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:251
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:254
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Bitrate"
 msgstr "Laatu"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:254
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Date Added"
 msgstr "Lisäyspäivä"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:255
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
 msgid "Date Released"
 msgstr "Julkaisupäivä"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Last Played"
 msgstr "Viimeksi soitettu"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:259
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:399
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:419
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 msgid "Length"
 msgstr "Kesto"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
 msgid "Playcount"
 msgstr "Soittokerrat"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:263
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Skipcount"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:277
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:347
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:280
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:359
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:70
 msgid "Audiobook"
 msgstr "Äänikirja"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:326
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:353
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:365
 msgid "is"
 msgstr "on"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:327
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:338
 msgid "contains"
 msgstr "sisältää"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:328
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:339
 msgid "does not contain"
 msgstr "ei sisällä"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:354
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 msgid "is not"
 msgstr "ei ole"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:369
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:382
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:388
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:402
 msgid "is exactly"
 msgstr "on tarkalleen"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:370
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:389
 msgid "is at most"
 msgstr "on enintään"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:371
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:390
 msgid "is at least"
 msgstr "on vähintään"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:383
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
 msgid "is within"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:384
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
 msgid "is before"
 msgstr "on ennen"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:400
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:420
 msgid "seconds"
 msgstr "sekuntia"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:424
 msgid "days ago"
 msgstr "päivää sitten"
 
-#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:408
+#: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:428
 msgid "kbps"
 msgstr "kb/s"
 
@@ -1203,6 +1203,31 @@ msgstr ""
 msgid "No Ratings"
 msgstr ""
 
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:147
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:549
+msgid "Genres"
+msgstr "Tyylilajit"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:150
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:552
+msgid "Artists"
+msgstr "Artistit"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:153
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:555
+msgid "Albums"
+msgstr "Albumit"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:156
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:558
+msgid "Years"
+msgstr "Vuodet"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:159
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:561
+msgid "Ratings"
+msgstr "Arvostelut"
+
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
 msgid "On Left"
 msgstr "Vasemmalla"
@@ -1210,26 +1235,6 @@ msgstr "Vasemmalla"
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:144
 msgid "On Top"
 msgstr "Ylhäällä"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:549
-msgid "Genres"
-msgstr "Tyylilajit"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:552
-msgid "Artists"
-msgstr "Artistit"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:555
-msgid "Albums"
-msgstr "Albumit"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:558
-msgid "Years"
-msgstr "Vuodet"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:561
-msgid "Ratings"
-msgstr "Arvostelut"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
