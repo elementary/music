@@ -78,6 +78,10 @@ public class FixedBin : Gtk.EventBox {
     
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
         //get_child ().get_preferred_width (out minimum_width, out natural_width);
+        // TODO
+        // - Check what has been allocated to this
+        // - Check min/nat for widget
+        // - Make size adjustment accordingly to the widget
         base.get_preferred_width (out minimum_width, out natural_width);
 
         int allocated_width = get_allocated_width ();
@@ -100,15 +104,16 @@ public class FixedBin : Gtk.EventBox {
             if (this.max_width < allocated_width)
             {
                 int new_width = this.max_width;
-                adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
+                get_child ().adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
                 minimum_width = this.max_width;
             }
         }
         int new_width = this.max_width;
-        adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
+        get_child ().adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
         
         stdout.printf("AFTER - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d> NEW_WIDTH: <%d>\n", minimum_width, natural_width, new_width);
-        queue_resize ();
+        //queue_resize ();
+        //queue_compute_expand ();
         // TODO
     }
     

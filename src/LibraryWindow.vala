@@ -252,7 +252,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         column_browser_toggle.set_image (Icons.VIEW_COLUMN.render_image (Gtk.IconSize.MENU));
 
-        topDisplayBin.set_widget (topDisplay, true, false);
+        topDisplayBin.set_widget (topDisplay, false, false);
 
         // Set search timeout in ms
         searchField.pause_delay = 150;
@@ -274,7 +274,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         viewSelector.valign = column_browser_toggle.valign = Gtk.Align.CENTER;
 
-        //top_display_item.set_expand (true);
+        top_display_item.set_expand (true);
         topDisplay.margin_left = 30;
         topDisplay.margin_right = 30;
 
@@ -290,7 +290,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         main_toolbar.insert (column_toggle_item, -1);
         //main_toolbar.insert (separator_item, -1);
         main_toolbar.insert (top_display_item, -1);
-        //main_toolbar.insert (separator_item, -1);
+        main_toolbar.insert (separator_item, -1);
         main_toolbar.insert (search_field_item, -1);
         main_toolbar.insert (app.create_appmenu (settingsMenu), -1);
 
