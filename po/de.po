@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-12 22:52-0600\n"
-"PO-Revision-Date: 2012-07-09 19:18+0000\n"
-"Last-Translator: Thomas Pitlik <Unknown>\n"
+"PO-Revision-Date: 2012-07-14 21:37+0000\n"
+"Last-Translator: Tuete <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-14 06:45+0000\n"
+"X-Launchpad-Export-Date: 2012-07-15 05:34+0000\n"
 "X-Generator: Launchpad (build 15614)\n"
 "Language: de\n"
 
@@ -96,7 +96,7 @@ msgstr "Synchronisation"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr "Kostenlos"
+msgstr "leer"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
