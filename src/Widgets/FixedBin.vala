@@ -28,11 +28,10 @@ public class FixedBin : Gtk.EventBox {
     public int max_height { get; private set; default = -1; }
     public int min_width  { get; private set; default = -1; }
     public int min_height { get; private set; default = -1; }
-
+    
     public FixedBin (int min_width = -1, int min_height = -1,
                      int max_width = -1, int max_height = -1)
     {
-
         set_min_dimensions (min_width, min_height);
         set_max_dimensions (max_width, max_height);
     }
@@ -54,42 +53,45 @@ public class FixedBin : Gtk.EventBox {
 
     public void set_min_dimensions (int min_width, int min_height)
     {
-        return_if_fail (min_width
+        //return_if_fail (min_width
 
-                        this.min_width = min_width;
-                        this.min_height = min_height;
-                        queue_resize ();
-                        }
+        this.min_width = min_width;
+        this.min_height = min_height;
+        queue_resize ();
+                        //)
+    }
 
-            public void set_max_dimensions (int max_width, int max_height) {
-            this.max_width = max_width;
-            this.max_height = max_height;
-            queue_resize ();
-        }
-
-        /**
-         * INTERNAL GEOMETRY MANAGEMENT
-         */
-
-        public override Gtk.SizeRequestMode get_request_mode () {
-            return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
-        }
-
-        public override void get_preferred_width (out int? minimum_width, out int? natural_width) {
-            base.get_preferred_width (out minimum_width, out natural_width);
-            if (this.min_width > 0) {
-                minimum_width = this.min_width;
-                if (natural_width < minimum_width)
-                    natural_width = minimum_width;
-            }
-
-            // TODO
-        }
-
-        public override void get_preferred_height_for_width (int width, out int? minimum_height,
-                                                             out int? natural_height)
-        {
-            // TODO
-        }
+    public void set_max_dimensions (int max_width, int max_height) {
+        this.max_width = max_width;
+        this.max_height = max_height;
+        queue_resize ();
     }
     
+    /**
+     * INTERNAL GEOMETRY MANAGEMENT
+     */
+    
+    public override Gtk.SizeRequestMode get_request_mode () {
+        return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
+    }
+    
+    public override void get_preferred_width (out int minimum_width, out int natural_width) {
+        base.get_preferred_width (out minimum_width, out natural_width);
+        // We have minimum width set
+        if (this.min_width > 0) {
+            minimum_width = this.min_width;
+            // If the widget wants a smaller width than the minimum,
+            // then force it to be the minimum one
+            if (natural_width < minimum_width)
+                natural_width = minimum_width;
+        }
+        // TODO
+    }
+    
+    public override void get_preferred_height_for_width (int width, out int minimum_height,
+                                                         out int natural_height)
+    {
+        // TODO ?
+        base.get_preferred_height_for_width (width, out minimum_height, out natural_height);
+    }
+}
