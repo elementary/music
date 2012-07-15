@@ -30,19 +30,24 @@ public class FixedBin : Gtk.EventBox {
     public int min_height { get; private set; default = -1; }
     
     public FixedBin (int min_width = -1, int min_height = -1,
-                     int max_width = -1, int max_height = -1)
+                     int max_width = -1, int max_height = -1,
+                     bool visible_window = false)
     {
+        //hexpand = true;
         set_min_dimensions (min_width, min_height);
         set_max_dimensions (max_width, max_height);
+
+        this.visible_window = visible_window;
     }
 
     /**
      * PUBLIC API
      */
 
-    public void set_widget (Gtk.Widget widget, bool expand = true) {
-        if (expand)
-            widget.hexpand = widget.vexpand = true;
+    public void set_widget (Gtk.Widget widget, bool hexpand = true,
+                            bool vexpand = true) {
+        widget.hexpand = hexpand;
+        widget.vexpand = vexpand;
 
         var child = get_child ();
         if (child != null)
@@ -51,14 +56,10 @@ public class FixedBin : Gtk.EventBox {
         add (widget);
     }
 
-    public void set_min_dimensions (int min_width, int min_height)
-    {
-        //return_if_fail (min_width
-
+    public void set_min_dimensions (int min_width, int min_height) {
         this.min_width = min_width;
         this.min_height = min_height;
         queue_resize ();
-                        //)
     }
 
     public void set_max_dimensions (int max_width, int max_height) {
@@ -76,8 +77,9 @@ public class FixedBin : Gtk.EventBox {
     }
     
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        base.get_preferred_width (out minimum_width, out natural_width);
-        // We have minimum width set
+        get_child ().get_preferred_width (out minimum_width, out natural_width);
+        stdout.printf("BEFOR - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d>\n", minimum_width, natural_width);
+        // We have minimum width set, see if it should be used
         if (this.min_width > 0) {
             minimum_width = this.min_width;
             // If the widget wants a smaller width than the minimum,
@@ -85,13 +87,22 @@ public class FixedBin : Gtk.EventBox {
             if (natural_width < minimum_width)
                 natural_width = minimum_width;
         }
+        
+        // We have a maximum width set and the natural width exceeds it
+        if (this.max_width > 0 && this.max_width < natural_width) {
+            natural_width = this.max_width;
+        }
+        //minimum_width = this.min_width;//natural_width;
+        //natural_width = this.max_width;
+        
+        stdout.printf("AFTER - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d>\n", minimum_width, natural_width);
         // TODO
     }
     
-    public override void get_preferred_height_for_width (int width, out int minimum_height,
+    /*public override void get_preferred_height_for_width (int width, out int minimum_height,
                                                          out int natural_height)
     {
         // TODO ?
         base.get_preferred_height_for_width (width, out minimum_height, out natural_height);
-    }
+        }*/
 }
