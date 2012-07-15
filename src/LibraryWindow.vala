@@ -240,11 +240,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
         column_browser_toggle   = new Gtk.ToggleButton ();
         topDisplay              = new TopDisplay (library_manager);
-        topDisplayBin           = new FixedBin(300, -1, 300, -1, false);
+        topDisplayBin           = new FixedBin(300, -1, 350, -1, false);
         viewSelector            = new Granite.Widgets.ModeButton ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
         main_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
+        main_toolbar.set_hexpand (true);
 
         viewSelector.append (Icons.VIEW_ICONS.render_image (IconSize.MENU));
         viewSelector.append (Icons.VIEW_DETAILS.render_image (IconSize.MENU));
@@ -273,7 +274,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         viewSelector.valign = column_browser_toggle.valign = Gtk.Align.CENTER;
 
-        top_display_item.set_expand (true);
+        //top_display_item.set_expand (true);
         topDisplay.margin_left = 30;
         topDisplay.margin_right = 30;
 
@@ -287,9 +288,9 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         main_toolbar.insert (nextButton, -1);
         main_toolbar.insert (view_selector_item, -1);
         main_toolbar.insert (column_toggle_item, -1);
-        main_toolbar.insert (separator_item, -1);
+        //main_toolbar.insert (separator_item, -1);
         main_toolbar.insert (top_display_item, -1);
-        main_toolbar.insert (separator_item, -1);
+        //main_toolbar.insert (separator_item, -1);
         main_toolbar.insert (search_field_item, -1);
         main_toolbar.insert (app.create_appmenu (settingsMenu), -1);
 

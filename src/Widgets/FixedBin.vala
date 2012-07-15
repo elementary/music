@@ -77,8 +77,13 @@ public class FixedBin : Gtk.EventBox {
     }
     
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        get_child ().get_preferred_width (out minimum_width, out natural_width);
+        //get_child ().get_preferred_width (out minimum_width, out natural_width);
+        base.get_preferred_width (out minimum_width, out natural_width);
+
+        int allocated_width = get_allocated_width ();
+        
         stdout.printf("BEFOR - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d>\n", minimum_width, natural_width);
+        stdout.printf("ALLOC - WIDTH: <%d>\n", allocated_width);
         // We have minimum width set, see if it should be used
         if (this.min_width > 0) {
             minimum_width = this.min_width;
@@ -89,13 +94,21 @@ public class FixedBin : Gtk.EventBox {
         }
         
         // We have a maximum width set and the natural width exceeds it
-        if (this.max_width > 0 && this.max_width < natural_width) {
-            natural_width = this.max_width;
+        if (this.max_width > 0) {
+            if (this.max_width < natural_width)
+                natural_width = this.max_width;
+            if (this.max_width < allocated_width)
+            {
+                int new_width = this.max_width;
+                adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
+                minimum_width = this.max_width;
+            }
         }
-        //minimum_width = this.min_width;//natural_width;
-        //natural_width = this.max_width;
+        int new_width = this.max_width;
+        adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
         
-        stdout.printf("AFTER - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d>\n", minimum_width, natural_width);
+        stdout.printf("AFTER - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d> NEW_WIDTH: <%d>\n", minimum_width, natural_width, new_width);
+        queue_resize ();
         // TODO
     }
     
