@@ -20,123 +20,176 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-/**
- * An alert compliant with elementary's HIG
- *
- * TODO: Add description and examples
- */
-
 public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
-
-    const string ERROR_ICON = "dialog-error";
-    const string WARNING_ICON = "dialog-warning";
-    const string QUESTION_ICON = "dialog-question";
-    const string INFO_ICON = "dialog-information";
 
     const string PRIMARY_TEXT_MARKUP = "<span weight=\"bold\" size=\"larger\">%s</span>";
 
-    private Gtk.Box content_hbox;
-
-    protected Gtk.Label primary_text_label;
-    protected Gtk.Label secondary_text_label;
-    protected Gtk.Image image;
-    protected Gtk.ButtonBox action_button_box;
-
-    const int MIN_HORIZONTAL_MARGIN = 84;
-    const int MIN_VERTICAL_MARGIN = 48;
-
-    public EmbeddedAlert () {
-        get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
-        get_style_context ().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-
-        action_button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        action_button_box.valign = Gtk.Align.START;
-
-        primary_text_label = new Gtk.Label (null);
-        primary_text_label.margin_bottom = 12;
-
-        secondary_text_label = new Gtk.Label (null);
-        secondary_text_label.margin_bottom = 18;
-
-        primary_text_label.use_markup = secondary_text_label.use_markup = true;
-
-        primary_text_label.wrap = secondary_text_label.wrap = true;
-        primary_text_label.wrap_mode = secondary_text_label.wrap_mode = Pango.WrapMode.WORD_CHAR;
-
-        primary_text_label.valign = secondary_text_label.valign = Gtk.Align.START;
-
-        image = new Gtk.Image ();
-
-        image.halign = Gtk.Align.END;
-        image.valign = Gtk.Align.START;
-        image.margin_right = 12;
-
-        // Init stuff
-        set_alert ("", "", null, false);
-
-        var message_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        message_vbox.pack_start (primary_text_label, false, false, 0);
-        message_vbox.pack_start (secondary_text_label, false, false, 0);
-        message_vbox.pack_end (action_button_box, false, false, 0);
-
-        content_hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        content_hbox.halign = content_hbox.valign = Gtk.Align.CENTER; // center-align the content
-        content_hbox.margin_top = content_hbox.margin_bottom = MIN_VERTICAL_MARGIN;
-        content_hbox.margin_left = content_hbox.margin_right = MIN_HORIZONTAL_MARGIN;
-
-        content_hbox.pack_start (image, false, false, 0);
-        content_hbox.pack_end (message_vbox, true, true, 0);
-
-        add (content_hbox);
+    protected int image_size {
+        get {
+            return image.pixel_size;
+        }
+        set {
+            return_if_fail (value > 0 && image != null && spinner != null);
+            image.pixel_size = value;
+            image_box.set_size_request (value + 2, value);
+            int spinner_size = value - 10;
+            spinner_size = (spinner_size > 0) ? spinner_size : value;
+            spinner.set_size_request (spinner_size, spinner_size);
+            image_box.queue_resize ();
+        }
     }
 
+    bool queued_icon_visibility = false;
+    public bool show_icon {
+        get {
+            return queued_icon_visibility;
+        }
+        set {
+            queued_icon_visibility = value;
+
+            if (!working)
+                set_image_box_visible (queued_icon_visibility);
+        }
+    }
+
+    public bool working {
+        get {
+            return spinner.active;
+        }
+        set {
+            return_if_fail (image_box != null && image != null && spinner != null);
+
+            var child = image_box.get_child ();
+            if (child != null)
+                image_box.remove (child);
+
+            image_box.add ((value) ? spinner as Gtk.Widget : image as Gtk.Widget);
+            set_image_box_visible (show_icon || value);
+            spinner.active = value;
+        }
+    }
+
+    protected Gtk.Grid content_grid;
+    protected Gtk.Image image;
+    protected Gtk.Spinner spinner;
+    private Gtk.EventBox image_box;
+    protected Gtk.Label primary_text_label;
+    protected Gtk.Label secondary_text_label;
+    protected Gtk.ButtonBox action_button_box;
+
+    public EmbeddedAlert () {
+        var style = this.get_style_context ();
+        style.add_class (Gtk.STYLE_CLASS_VIEW);
+        style.add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
+
+        this.primary_text_label = new Gtk.Label (null);
+        this.secondary_text_label = new Gtk.Label (null);
+
+        this.primary_text_label.wrap = secondary_text_label.wrap = true;
+        this.primary_text_label.use_markup = secondary_text_label.use_markup = true;
+
+        this.action_button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
+
+        this.image_box = new Gtk.EventBox ();
+        this.image_box.visible_window = false;
+        this.image_box.above_child = true;
+        this.image_box.halign = Gtk.Align.END;
+        this.image_box.valign = Gtk.Align.START;
+        this.image_box.margin_right = 12;
+
+        this.image = new Gtk.Image ();
+        this.spinner = new Gtk.Spinner ();
+
+        this.spinner.halign = Gtk.Align.CENTER;
+        this.spinner.valign = Gtk.Align.CENTER;
+
+        this.primary_text_label.margin_bottom = 12;
+        this.secondary_text_label.margin_bottom = 18;
+        this.primary_text_label.valign = secondary_text_label.valign = Gtk.Align.START;
+        this.primary_text_label.vexpand = secondary_text_label.vexpand = false;
+
+        this.action_button_box.valign = Gtk.Align.START;
+        this.action_button_box.vexpand = false;
+        this.action_button_box.spacing = 6;
+
+        this.content_grid = new Gtk.Grid ();
+
+        this.content_grid.attach (this.image_box, 1, 1, 1, 3);
+        this.content_grid.attach (this.primary_text_label, 2, 1, 1, 1);
+        this.content_grid.attach_next_to (this.secondary_text_label, this.primary_text_label,
+                                          Gtk.PositionType.BOTTOM, 1, 1);
+        this.content_grid.attach_next_to (this.action_button_box, this.secondary_text_label,
+                                          Gtk.PositionType.BOTTOM, 1, 1);
+
+        //this.content_grid.resize_mode = Gtk.ResizeMode.QUEUE;
+        content_grid.halign = content_grid.valign = Gtk.Align.CENTER;
+        content_grid.margin = 100;
+        this.add (content_grid);
+
+        // INIT WIDGETS. We use these setters to avoid code duplication
+        this.image_size = 64;
+        this.working = false;
+        this.set_alert ("", "", null, false);
+    }
+
+    /** PUBLIC API **/
+
+    /**
+     * Convenient method that allows setting all the widget properties at once, instead of making
+     * single calls to set_primary_text(), set_secondary_text(), show_icon, etc. These are called
+     * for you internally. Using this method is recommended when you plan to destroy the widget
+     * after the user makes a choice, or if you want to re-use the alert to display completely
+     * different information, which is often the case.
+     */
     public void set_alert (string primary_text, string secondary_text, Gtk.Action[] ? actions = null,
                             bool show_icon = true, Gtk.MessageType type = Gtk.MessageType.WARNING)
     {
         // Reset size request
-        set_size_request (1, 1);
+        set_size_request (0, 0);
 
-        if (primary_text == null)
-            primary_text = "";
+        set_primary_text (primary_text);
+        set_secondary_text (secondary_text);
+        set_actions (actions);
+        set_message_type (type);
 
-        if (secondary_text == null)
-            secondary_text = "";
+        this.show_icon = show_icon;
+    }
 
-        set_primary_text_visible (primary_text != "");
-        set_secondary_text_visible (secondary_text != "");
+    /**
+     * Sets the message header.
+     * The string *should not* contain any markup information, since the text will be escaped.
+     */
+    public void set_primary_text (string text) {
+        set_widget_visible (primary_text_label, text.strip() != "");
+        primary_text_label.set_markup (Markup.printf_escaped (PRIMARY_TEXT_MARKUP, text));
+    }
 
-        // We force the HIG here. Whenever show_icon is true, the title has to be left-aligned.
-        if (show_icon) {
-            primary_text_label.halign = secondary_text_label.halign = Gtk.Align.START;
-            primary_text_label.justify = Gtk.Justification.LEFT;
-            secondary_text_label.justify = Gtk.Justification.FILL;
+    /**
+     * Sets the message body.
+     * You can include markup information along with the message.
+     */
+    public void set_secondary_text (string text) {
+        set_widget_visible (secondary_text_label, text.strip() != "");
+        secondary_text_label.set_markup (text);
+    }
 
-            // TODO: Unless the same icon system is added to granite, don't depend on it.
-            switch (type) {
-                case Gtk.MessageType.ERROR:
-                    image.set_from_pixbuf (Icons.render_icon (ERROR_ICON, Gtk.IconSize.DIALOG));
-                    break;
-                case Gtk.MessageType.WARNING:
-                    image.set_from_pixbuf (Icons.render_icon (WARNING_ICON, Gtk.IconSize.DIALOG));
-                    break;
-                case Gtk.MessageType.QUESTION:
-                    image.set_from_pixbuf (Icons.render_icon (QUESTION_ICON, Gtk.IconSize.DIALOG));
-                    break;
-                default:
-                    image.set_from_pixbuf (Icons.render_icon (INFO_ICON, Gtk.IconSize.DIALOG));
-                    break;
-             }
-        }
-        else {
-            primary_text_label.halign = secondary_text_label.halign = Gtk.Align.CENTER;
-            primary_text_label.justify = secondary_text_label.justify = Gtk.Justification.CENTER;
-        }
+    /**
+     * Sets the warning level of the message.
+     * Besides defining what icon to use, it also defines whether the primary and secondary
+     * text are selectable or not.
+     * The text is selectable for the WARNING, ERROR and QUESTION types.
+     */
+    public void set_message_type (Gtk.MessageType type) {
+        image.set_from_icon_name (get_icon_name_for_message_type (type), Gtk.IconSize.DIALOG);
 
         // Make sure the text is selectable if the level is WARNING, ERROR or QUESTION
-        primary_text_label.selectable = secondary_text_label.selectable = (type != Gtk.MessageType.INFO);
+        bool text_selectable = type == Gtk.MessageType.WARNING ||
+                               type == Gtk.MessageType.ERROR ||
+                               type == Gtk.MessageType.QUESTION;
+        primary_text_label.selectable = secondary_text_label.selectable = text_selectable;
+    }
 
-        set_icon_visible (show_icon);
-
+    public void set_actions (Gtk.Action[] ? actions) {
         // clear button box
         foreach (var button in action_button_box.get_children ()) {
             action_button_box.remove (button);
@@ -147,93 +200,93 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
             for (int i = 0; i < actions.length; i++) {
                 var action_item = actions[i];
                 if (action_item != null) {
-                    var action_button = Granite.Widgets.Utils.new_button_from_action (action_item);
-                    if (action_button != null) {
-                        // Pack into the button box
-                        action_button_box.pack_start (action_button, false, false, 0);
-
-                        action_button.button_release_event.connect ( () => {
-                            action_item.activate ();
-                            return false;
-                        });
-                    }
+                    var action_button = new_button_from_action (action_item);
+                    action_button_box.pack_start (action_button, false, false, 0);
                 }
-            }
-
-            if (show_icon) {
-                action_button_box.set_layout (Gtk.ButtonBoxStyle.END);
-                action_button_box.halign = Gtk.Align.END;
-            }
-            else {
-                action_button_box.set_layout (Gtk.ButtonBoxStyle.CENTER);
-                action_button_box.halign = Gtk.Align.CENTER;
             }
 
             set_buttons_visible (true);
         }
         else {
-            action_button_box.set_no_show_all (true);
             set_buttons_visible (false);
         }
-
-        primary_text_label.set_markup (PRIMARY_TEXT_MARKUP.printf (Markup.escape_text (primary_text, -1)));
-        secondary_text_label.set_markup (secondary_text);
     }
 
-    public void set_primary_text_visible (bool show_primary_text) {
-        primary_text_label.set_no_show_all (!show_primary_text);
-        if (show_primary_text)
-            primary_text_label.show_all ();
+    public void set_buttons_visible (bool visible) {
+        set_widget_visible (action_button_box, visible);
+    }
+
+    /* INTERNALS */
+
+    private void set_image_box_visible (bool visible) {
+        set_widget_visible (image_box, visible);
+        update_text_layout (visible);
+    }
+
+    private void update_text_layout (bool show_icon) {
+        // Whenever show_icon is true, the title has to be left-aligned. This also
+        // applies to the spinner
+        if (show_icon) {
+            primary_text_label.halign = secondary_text_label.halign = Gtk.Align.START;
+            primary_text_label.justify = Gtk.Justification.LEFT;
+            secondary_text_label.justify = Gtk.Justification.FILL;
+
+            action_button_box.set_layout (Gtk.ButtonBoxStyle.END);
+            action_button_box.halign = Gtk.Align.END;
+        }
+        else {
+            primary_text_label.halign = secondary_text_label.halign = Gtk.Align.CENTER;
+            primary_text_label.justify = secondary_text_label.justify = Gtk.Justification.CENTER;
+
+            action_button_box.set_layout (Gtk.ButtonBoxStyle.CENTER);
+            action_button_box.halign = Gtk.Align.CENTER;
+        }
+    }
+
+
+    /** Utility functions **/
+
+    private static string get_icon_name_for_message_type (Gtk.MessageType message_type) {
+        switch (message_type) {
+            case Gtk.MessageType.ERROR:
+                return "dialog-error";
+            case Gtk.MessageType.WARNING:
+                return "dialog-warning";
+            case Gtk.MessageType.QUESTION:
+                return "dialog-question";
+            default:
+                return "dialog-information";
+        }
+    }
+
+    private static void set_widget_visible (Gtk.Widget widget, bool visible) {
+        widget.set_no_show_all (!visible);
+        if (visible)
+            widget.show_all ();
         else
-            primary_text_label.hide ();
+            widget.hide ();
     }
 
-    public void set_secondary_text_visible (bool show_secondary_text) {
-        secondary_text_label.set_no_show_all (!show_secondary_text);
-        if (show_secondary_text)
-            secondary_text_label.show_all ();
-        else
-            secondary_text_label.hide ();
-    }
-
-    public void set_icon_visible (bool show_icon) {
-        image.set_no_show_all (!show_icon);
-        if (show_icon)
-            image.show_all ();
-        else
-            image.hide ();
-    }
-
-    public void set_buttons_visible (bool show_buttons) {
-        action_button_box.set_no_show_all (!show_buttons);
-        if (show_buttons)
-            action_button_box.show_all ();
-        else
-            action_button_box.hide ();
-    }
-}
-
-// TODO: Move to a separate file
-namespace Granite.Widgets.Utils {
-
-    public Gtk.Button? new_button_from_action (Gtk.Action action) {
-        if (action == null)
-            return null;
-
+    private static Gtk.Button new_button_from_action (Gtk.Action action) {
         bool has_label = action.label != null;
         bool has_stock = action.stock_id != null;
         bool has_gicon = action.gicon != null;
         bool has_tooltip = action.tooltip != null;
 
-        Gtk.Button? action_button = null;
+        Gtk.Button action_button;
 
         // Prefer label over stock_id
-        if (has_label)
+        if (has_label) {
             action_button = new Gtk.Button.with_label (action.label);
-        else if (has_stock)
+            // Most time it results convenient to listen for label changes on the action item
+            action.notify["label"].connect ( () => {
+                action_button.label = action.label;
+            });
+        } else if (has_stock) {
             action_button = new Gtk.Button.from_stock (action.stock_id);
-        else
+        } else {
             action_button = new Gtk.Button ();
+        }
 
         // Prefer stock_id over gicon
         if (has_stock)
@@ -244,7 +297,11 @@ namespace Granite.Widgets.Utils {
         if (has_tooltip)
             action_button.set_tooltip_text (action.tooltip);
 
+        // Trigger action on click
+        action_button.clicked.connect ( () => {
+            action.activate ();
+        });
+
         return action_button;
     }
 }
-
