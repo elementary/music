@@ -31,7 +31,7 @@ namespace BeatBox {
 
     public static int main (string[] args) {
         var context = new OptionContext ("- Noise help page.");
-        context.add_main_entries (Beatbox.get_option_group (), "noise");
+        context.add_main_entries (Beatbox.app_options, "noise");
         context.add_group (Gtk.get_option_group (true));
         context.add_group (Gst.init_get_option_group ());
 
@@ -61,12 +61,10 @@ namespace BeatBox {
      */
 
     public class Beatbox : Granite.Application {
-
-        public Noise.Settings          settings        { get; private set; }
         public BeatBox.LibraryWindow   library_window  { get; private set; }
         public BeatBox.LibraryManager  library_manager { get; private set; }
 
-        private static const OptionEntry[] app_options = {
+        public static const OptionEntry[] app_options = {
             { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, N_("Enable debug logging"), null },
             { "no-plugins", 'n', 0, OptionArg.NONE, ref Options.disable_plugins, N_("Disable plugins"), null},
             { null }
@@ -87,7 +85,7 @@ namespace BeatBox {
             exec_name = "noise";
 
             app_copyright = "2012";
-            application_id = "net.launchpad.noise";
+            application_id = "org.pantheon.noise";
             app_icon = "noise";
             app_launcher = "noise.desktop";
             app_years = "2012";
@@ -105,18 +103,10 @@ namespace BeatBox {
         }
 
         public Beatbox () {
-            // Create settings
-            settings = new Noise.Settings ();
-
-            if (!Options.disable_plugins)
-                plugins = new Noise.Plugins.Manager (settings.schema, "plugins-enabled", Build.PLUGIN_DIR, exec_name, null);
-                
-            plugins.noise_app = this;
-            plugins.hook_app(this);
-        }
-
-        public static OptionEntry[] get_option_group () {
-            return app_options;
+            if (!Options.disable_plugins) {
+                plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
+                plugins.hook_app (this);
+            }
         }
 
         public override void open (File[] files, string hint) {

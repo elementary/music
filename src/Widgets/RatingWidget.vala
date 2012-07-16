@@ -472,7 +472,7 @@ public class CellRendererRating : Gtk.CellRendererPixbuf {
          * on the proper cell.
          */
         // rating.set_rating (new_rating);
-        //this.pixbuf = rating.getcanvas ();
+        // update_pixbuf ();
 
         // emit signal
         rating_changed (new_rating, widget, path, flags);

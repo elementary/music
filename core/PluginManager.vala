@@ -189,11 +189,11 @@ public class Noise.Plugins.Manager : Object {
     GLib.Settings settings;
     string settings_field;
     
-    public Noise.Plugins.Interface plugin_iface { private set; public get; }
+    public Noise.Plugins.Interface plugin_iface { private set; get; }
 
-    public Manager(GLib.Settings s, string f, string d, string? e, string? argument_set) {
-        settings = s;
-        settings_field = f;
+    public Manager(string d, string? e, string? argument_set) {
+        settings = new Noise.Settings ().schema;
+        settings_field = "plugins-enabled";
 
         plugin_iface = new Noise.Plugins.Interface (this);
         plugin_iface.argument = argument_set;
@@ -204,8 +204,8 @@ public class Noise.Plugins.Manager : Object {
         engine.enable_loader ("python");
         engine.enable_loader ("gjs");
         engine.add_search_path (d, null);
-        settings.bind("plugins-enabled", engine, "loaded-plugins", SettingsBindFlags.DEFAULT);
-        
+        settings.bind(settings_field, engine, "loaded-plugins", SettingsBindFlags.DEFAULT);
+
         /* Our extension set */
         Parameter param = Parameter();
         param.value = plugin_iface;

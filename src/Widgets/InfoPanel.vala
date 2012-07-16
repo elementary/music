@@ -114,7 +114,9 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
     private void update_visibilities() {
 
         // Don't show rating for external media
-        bool hide_rating = lm.media_info.media.isTemporary;
+        bool hide_rating = true;
+        if (lm.media_info != null && lm.media_info.media != null)
+            hide_rating = lm.media_info.media.isTemporary;
         rating.set_no_show_all (hide_rating);
         rating.set_visible (!hide_rating);
         
