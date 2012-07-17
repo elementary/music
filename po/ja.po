@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-15 20:25-0600\n"
-"PO-Revision-Date: 2012-06-25 07:10+0000\n"
-"Last-Translator: Kadopoly <Unknown>\n"
+"PO-Revision-Date: 2012-07-16 08:45+0000\n"
+"Last-Translator: Joji Bronner <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-16 05:33+0000\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Launchpad-Export-Date: 2012-07-17 05:16+0000\n"
+"X-Generator: Launchpad (build 15627)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -27,11 +27,11 @@ msgstr "プラグインを無効化"
 
 #: /home/victor/noise/po/../src//config.vala:14
 msgid "Listen to music"
-msgstr ""
+msgstr "音楽を聴く"
 
 #: /home/victor/noise/po/../src//config.vala:15
 msgid "Music Player"
-msgstr ""
+msgstr "ミュージップレイヤー"
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:310
 #, c-format
@@ -66,7 +66,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
-msgstr ""
+msgstr "うんこ"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
@@ -76,7 +76,7 @@ msgstr "不明なアルバム"
 
 #: /home/victor/noise/po/../src//Objects/Media.vala:45
 msgid "Unknown Title"
-msgstr ""
+msgstr "タイトル不明"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:142
@@ -94,11 +94,11 @@ msgstr "同期"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:267
 msgid "Free"
-msgstr ""
+msgstr "無料"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:380
 msgid "Using %s of %s (%.2f%)"
-msgstr ""
+msgstr "%s 中 %s 使っています (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:96
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
@@ -198,12 +198,12 @@ msgstr "現在の転送が完了するまで、この操作の実行をお待ち
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:926
 msgid "Playlist"
-msgstr ""
+msgstr "プレイリスト"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:939
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "%s の取り込み"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:37
 msgid "Add Playlist"
