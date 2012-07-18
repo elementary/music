@@ -75,7 +75,7 @@ public class BeatBox.SimpleOptionChooser : EventBox {
 
 		Gtk.RadioMenuItem item;
 		if (items.size == 0)
-		    item = new RadioMenuItem.with_label(null, text);
+		    item = new RadioMenuItem.with_label(new SList<Gtk.RadioMenuItem>(), text);
 	    else
 	        item = new RadioMenuItem.with_label_from_widget (items.get(0), text);
 		Gtk.Image item_image = image;
