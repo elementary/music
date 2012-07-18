@@ -171,10 +171,6 @@ namespace BeatBox {
         public string get_name () {
             return program_name;
         }
-        
-        public string get_name_down () {
-            return program_name.down ();
-        }
 
         /**
          * Returns:

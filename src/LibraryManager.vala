@@ -146,9 +146,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		this.dbm = new DataBaseManager(this);
 		this.dbu = new DataBaseUpdater(this, dbm);
 		this.fo = new BeatBox.FileOperator(this);
-#if HAVE_PODCASTS
-		this.pm = new PodcastManager(this, lw);
-#endif
 
 		
 		fo.fo_progress.connect(dbProgress);
@@ -206,20 +203,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 					music_setup.set_hint (ViewWrapper.Hint.MUSIC);
 					_playlists.unset (p.rowid);
 				}
-#if HAVE_PODCASTS
-				else if(p.name == "autosaved_podcast") {
-					podcast_setup = p.tvs;
-					podcast_setup.set_hint(ViewWrapper.Hint.PODCAST);
-					_playlists.unset(p.rowid);
-				}
-#endif
-#if HAVE_INTERNET_RADIO
-				else if(p.name == "autosaved_station") {
-					station_setup = p.tvs;
-					station_setup.set_hint(ViewWrapper.Hint.STATION);
-					_playlists.unset(p.rowid);
-				}
-#endif
 				else if(p.name == "autosaved_similar") {
 					similar_setup = p.tvs;
 					similar_setup.set_hint(ViewWrapper.Hint.SIMILAR);
@@ -728,14 +711,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			if(s.mediatype == Media.MediaType.SONG)
 				_songs.unset(s.rowid);
-#if 0
-			else if(s.mediatype == Media.MediaType.PODCAST)
-				_podcasts.unset(s.rowid);
-			else if(s.mediatype == Media.MediaType.AUDIOBOOK)
-				_audiobooks.unset(s.rowid);
-			else if(s.mediatype == Media.MediaType.STATION)
-				_stations.unset(s.rowid);
-#endif
 		}
 		_media_lock.unlock ();
 		
@@ -783,18 +758,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public Collection<int> song_ids() {
 		return _songs.keys;
 	}
-#if HAVE_PODCASTS
-	public Collection<int> podcast_ids() {
-		return _podcasts.keys;
-	}
-#endif	
-	
-#if HAVE_INTERNET_RADIO
-	public Collection<int> station_ids() {
-		return _stations.keys;
-	}
-#endif
-	
+
 	public HashMap<int, Media> media_hash() {
 		return _media;
 	}
@@ -1077,14 +1041,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			if(s.mediatype == Media.MediaType.SONG)
 				_songs.set(s.rowid, s);
-#if 0
-			else if(s.mediatype == Media.MediaType.PODCAST)
-				_podcasts.set(s.rowid, s);
-			else if(s.mediatype == Media.MediaType.AUDIOBOOK)
-				_audiobooks.set(s.rowid, s);
-			else if(s.mediatype == Media.MediaType.STATION)
-				_stations.set(s.rowid, s);
-#endif
 		}
 		_media_lock.unlock();
 		
@@ -1139,14 +1095,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 			
 			if(s.mediatype == Media.MediaType.SONG)
 				_songs.unset(s.rowid);
-#if 0
-			else if(s.mediatype == Media.MediaType.PODCAST)
-				_podcasts.unset(s.rowid);
-			else if(s.mediatype == Media.MediaType.AUDIOBOOK)
-				_audiobooks.unset(s.rowid);
-			else if(s.mediatype == Media.MediaType.STATION)
-				_stations.unset(s.rowid);
-#endif
 		}
 		_media_lock.unlock();
 		
@@ -1712,28 +1660,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		return null;
 	}
 
-#if HAVE_STORE
-	public void playTrackPreview(Store.Track track, string uri) {
-		Media s = new Media(uri);
-		s.isPreview = true;
-		s.rowid = -2;
-		s.title = track.title;
-		s.artist = track.artist.name;
-		s.album = track.release.title;
-		s.length = 30;
-		
-		LinkedList<Media> temps = new LinkedList<Media>();
-		temps.add(s);
-		add_media(temps, false);
-		
-		playMedia(-2, false);
-		
-		if(!playing) {
-			lw.playClicked();
-		}
-	}
-#endif
-	
 	public void stopPlayback() {
 		player.pause();
 		
@@ -1933,18 +1859,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 		_doing_file_operations = false;
 		debug("file operations finished or cancelled\n");
 		
-#if HAVE_PODCASTS
-		if(!have_fetched_new_podcasts) {
-			pm.find_new_podcasts();
-		}
-		else {
-			fetch_all_cover_art_async ();
-			
-			lw.update_sensitivities();
-			lw.updateInfoLabel();
-			file_operations_done();
-		}
-#else
 		fetch_all_cover_art_async ();
 
 		// FIXME: THESE ARE Library Window's internals!
@@ -1953,7 +1867,6 @@ public class BeatBox.LibraryManager : GLib.Object {
 
 
 		file_operations_done();
-#endif
 	}
 }
 

@@ -42,7 +42,7 @@ public class BeatBox.DataBaseManager : GLib.Object {
 
 	/** Creates/Reads the database file and folder **/
 	private void init_database () {
-		var data_dir = GLib.File.new_for_path (GLib.Path.build_filename (Environment.get_user_data_dir (), lm.lw.app.get_name_down ()));
+		var data_dir = GLib.File.new_for_path (GLib.Path.build_filename (Environment.get_user_data_dir (), lm.lw.app.get_name().down ()));
 		if (!data_dir.query_exists ()) {
 			try {
 				data_dir.make_directory_with_parents (null);
