@@ -276,7 +276,7 @@ namespace Granite.Widgets {
 			tree.set(it, SideBarColumn.COLUMN_VISIBLE, val);
 			
 			if(val && !was) {
-				warning ("error happening sidebar.vala 246...");
+				warning ("error happening sidebar.vala...");
 				expand_row(filter.get_path(convertToFilter(it)), true);
 				warning ("error finished");
 			}

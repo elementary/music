@@ -30,8 +30,7 @@ namespace BeatBox.PixbufUtils {
      **/
     public Gdk.Pixbuf? get_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size, bool stretch = true)
     {
-        if (pixbuf == null)
-            return null;
+        return_val_if_fail (pixbuf != null, null);
 
         const int SHADOW_SIZE = 15;
 
@@ -72,8 +71,7 @@ namespace BeatBox.PixbufUtils {
     public Gdk.Pixbuf? render_pixbuf_shadow (Gdk.Pixbuf pixbuf, int surface_size = Icons.ALBUM_VIEW_IMAGE_SIZE,
                                              int shadow_size = 5, double alpha = 0.75)
     {
-        if (pixbuf == null)
-            return null;
+        return_val_if_fail (pixbuf != null, null);
 
         int S_WIDTH = (surface_size > 0)? surface_size : pixbuf.width;
         int S_HEIGHT = (surface_size > 0)? surface_size : pixbuf.height;
