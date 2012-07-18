@@ -282,7 +282,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
             _valueOption.set_active(int.parse(q.value));
         }
         else if(q.field == SmartQuery.FieldType.RATING) {
-            _valueRating.set_rating(int.parse(q.value));
+            _valueRating.rating = int.parse (q.value);
         }
         else {
             _valueNumerical.set_value(int.parse(q.value));
@@ -317,7 +317,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
         else if(_field.get_active() == SmartQuery.FieldType.MEDIA_TYPE)
             rv.value = _valueOption.get_active().to_string();
         else if(_field.get_active() == SmartQuery.FieldType.RATING)
-            rv.value = _valueRating.get_rating().to_string();
+            rv.value = _valueRating.rating.to_string();
         else
             rv.value = _valueNumerical.value.to_string();
         

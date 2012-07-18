@@ -144,7 +144,7 @@ public class BeatBox.InfoPanel : Gtk.EventBox {
         album.set_text(lm.media_info.media.album);
 
         // do rating stuff
-        rating.set_rating((int)lm.media_info.media.rating);
+        rating.rating = (int)lm.media_info.media.rating;
 
         if(lm.media_info.media.year > 1900)
             year.set_markup("<span size=\"x-small\">" + String.escape ("(%d)".printf ((int)lm.media_info.media.year)) + "</span>");

@@ -270,15 +270,14 @@ public abstract class BeatBox.GenericList : FastView {
 
 	// When the user clicks over a cell in the rating column, that cell renderer
 	// emits the rating_changed signal. We need to update that rating...
-	private void on_rating_cell_changed (int new_rating, Gtk.Widget widget, string path, Gtk.CellRendererState flags) {
+	private void on_rating_cell_changed (int new_rating, Gtk.Widget widget, string path) {
 		var m = get_media_from_index (int.parse (path));
 
-		if (m == null)
-			return;
+		return_if_fail (m != null);
 
 		m.rating = new_rating;
 
-		var to_update = new LinkedList<Media> ();
+		var to_update = new Gee.LinkedList<Media> ();
 		to_update.add (m);
 		lm.update_media (to_update, true, true);
 	}

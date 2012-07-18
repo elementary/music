@@ -186,7 +186,9 @@ public class BeatBox.CellDataFunctionHelper : GLib.Object {
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 
 		// now let's set the rating!
-		(cell as Granite.Widgets.CellRendererRating).set_rating (val.get_int ());
+        var rating_cell = cell as Granite.Widgets.CellRendererRating;
+        return_if_fail (rating_cell != null);
+		rating_cell.rating = val.get_int ();
 	}
 }
 

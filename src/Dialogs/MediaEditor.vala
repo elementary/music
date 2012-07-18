@@ -524,7 +524,7 @@ public class BeatBox.FieldEditor : VBox {
 			check.set_active(original != "0");
 			
 			ratingWidget = (Granite.Widgets.Rating)w;
-			ratingWidget.set_rating(int.parse(original));
+			ratingWidget.rating = int.parse (original);
 			ratingWidget.rating_changed.connect(ratingChanged);
 			
 			this.pack_start(ratingWidget, true, true, 0);
@@ -572,7 +572,7 @@ public class BeatBox.FieldEditor : VBox {
 	}
 	
 	public virtual void ratingChanged(int new_rating) {
-		if(ratingWidget.get_rating() != int.parse(_original))
+		if(ratingWidget.rating != int.parse(_original))
 			check.set_active(true);
 		else
 			check.set_active(false);
@@ -604,7 +604,7 @@ public class BeatBox.FieldEditor : VBox {
 			image.set_from_file(_original);
 		}
 		else if(ratingWidget != null) {
-			ratingWidget.set_rating(int.parse(_original));
+			ratingWidget.rating = int.parse (_original);
 		}
 #if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 		else if(comboBox != null) {
@@ -627,7 +627,7 @@ public class BeatBox.FieldEditor : VBox {
 			return image.file;
 		}
 		else if(ratingWidget != null) {
-			return ratingWidget.get_rating().to_string();
+			return ratingWidget.rating.to_string();
 		}
 #if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 		else if(comboBox != null) {
@@ -652,7 +652,7 @@ public class BeatBox.FieldEditor : VBox {
 			image.file = val;
 		}
 		else if(ratingWidget != null) {
-			ratingWidget.set_rating(int.parse(val));
+			ratingWidget.rating = int.parse (val);
 		}
 #if HAVE_PODCASTS && HAVE_INTERNET_RADIO
 		else if(comboBox != null) {
