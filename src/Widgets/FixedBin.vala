@@ -1,5 +1,6 @@
 /*-
  * Copyright (c) 2012       Victor Eduardo <victoreduardm@gmail.com>
+ *                          Marcus Lundgren <marcus.lundgren@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -77,12 +78,14 @@ public class FixedBin : Gtk.EventBox {
     }
     
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        //get_child ().get_preferred_width (out minimum_width, out natural_width);
         // TODO
         // - Check what has been allocated to this
-        // - Check min/nat for widget
-        // - Make size adjustment accordingly to the widget
+        // - If the widget is set to expand, then simply set the padding
+        //   of the child to compensate it getting larger than it should
         base.get_preferred_width (out minimum_width, out natural_width);
+
+        int ch_min_width, ch_nat_width;
+        get_child ().get_preferred_width (out ch_min_width, out ch_nat_width);
 
         int allocated_width = get_allocated_width ();
         
@@ -93,28 +96,26 @@ public class FixedBin : Gtk.EventBox {
             minimum_width = this.min_width;
             // If the widget wants a smaller width than the minimum,
             // then force it to be the minimum one
-            if (natural_width < minimum_width)
-                natural_width = minimum_width;
+            //if (natural_width < minimum_width)
+            //    natural_width = minimum_width;
         }
         
         // We have a maximum width set and the natural width exceeds it
         if (this.max_width > 0) {
-            if (this.max_width < natural_width)
-                natural_width = this.max_width;
+            //if (this.max_width < natural_width)
+            //    natural_width = this.max_width;
             if (this.max_width < allocated_width)
             {
-                int new_width = this.max_width;
-                get_child ().adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
-                minimum_width = this.max_width;
+                int padding_width = (allocated_width - this.max_width) / 2;
+                //get_child ().adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
+                get_child ().margin_left = padding_width;
+                get_child ().margin_right = padding_width;
+                //minimum_width = this.max_width;
             }
         }
         int new_width = this.max_width;
-        get_child ().adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
         
         stdout.printf("AFTER - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d> NEW_WIDTH: <%d>\n", minimum_width, natural_width, new_width);
-        //queue_resize ();
-        //queue_compute_expand ();
-        // TODO
     }
     
     /*public override void get_preferred_height_for_width (int width, out int minimum_height,

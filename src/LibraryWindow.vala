@@ -240,7 +240,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
         column_browser_toggle   = new Gtk.ToggleButton ();
         topDisplay              = new TopDisplay (library_manager);
-        topDisplayBin           = new FixedBin(300, -1, 350, -1, false);
+        topDisplayBin           = new FixedBin(300, -1, 650, -1, false);
         viewSelector            = new Granite.Widgets.ModeButton ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
@@ -252,7 +252,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         column_browser_toggle.set_image (Icons.VIEW_COLUMN.render_image (Gtk.IconSize.MENU));
 
-        topDisplayBin.set_widget (topDisplay, false, false);
+        topDisplayBin.set_widget (topDisplay, true, false);
 
         // Set search timeout in ms
         searchField.pause_delay = 150;
@@ -261,7 +261,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var top_display_item   = new Gtk.ToolItem ();
         var view_selector_item = new Gtk.ToolItem ();
         var search_field_item  = new Gtk.ToolItem ();
-        var separator_item     = new Gtk.SeparatorToolItem ();
 
         view_selector_item.add (viewSelector);
         column_toggle_item.add (column_browser_toggle);
@@ -279,18 +278,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplay.margin_right = 30;
 
         search_field_item.margin_right = 12;
-
-        separator_item.set_expand (true);
-        separator_item.set_draw (false);
         
         main_toolbar.insert (previousButton, -1);
         main_toolbar.insert (playButton, -1);
         main_toolbar.insert (nextButton, -1);
         main_toolbar.insert (view_selector_item, -1);
         main_toolbar.insert (column_toggle_item, -1);
-        //main_toolbar.insert (separator_item, -1);
         main_toolbar.insert (top_display_item, -1);
-        main_toolbar.insert (separator_item, -1);
         main_toolbar.insert (search_field_item, -1);
         main_toolbar.insert (app.create_appmenu (settingsMenu), -1);
 
