@@ -17,8 +17,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
- *              Victor Eduardo <victoreduardm@gmail.com>
+ * Authored by: Corentin Noël <tintou@mailoo.org>
  */
 
 using Gee;

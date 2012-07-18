@@ -61,10 +61,10 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
     
     void sync_finished(bool success) {
         if(hint == ViewWrapper.Hint.DEVICE_AUDIO)
-            set_media (d.get_songs());
+            set_media_async (d.get_songs());
 #if HAVE_PODCASTS
         else if(hint == ViewWrapper.Hint.DEVICE_PODCAST)
-            set_media (d.get_podcasts());
+            set_media_async (d.get_podcasts());
 #endif
     }
 

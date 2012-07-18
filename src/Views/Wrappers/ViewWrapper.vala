@@ -32,20 +32,23 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     private Gtk.Box layout_box;
     private ViewContainer view_container;
 
-    /* MAIN WIDGETS (VIEWS) */
     // FIXME: should be protected instead of public. Not doing so right now because
     // there's no time to fix the broken code.
     public ContentView list_view  { get; protected set; }
-    public ContentView album_view { get; protected set; }
+    public ContentView grid_view { get; protected set; }
 
     protected EmbeddedAlert embedded_alert { get; protected set; }
     protected Welcome       welcome_screen { get; protected set; }
 
     /* UI PROPERTIES */
-    public bool has_album_view      { get { return album_view != null; } }
+    public bool has_grid_view      { get { return grid_view != null; } }
     public bool has_list_view       { get { return list_view != null;  } }
     public bool has_embedded_alert  { get { return embedded_alert != null; } }
     public bool has_welcome_screen  { get { return welcome_screen != null; } }
+
+    protected bool widgets_ready = false;
+    // Contruction *must* always happen before population
+    protected const int VIEW_CONSTRUCT_PRIORITY = Priority.DEFAULT_IDLE - 10;
 
     /**
      * Type of visual representation of the media.
@@ -53,7 +56,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      * IMPORTANT: Values _must_ match the index of the respective view in the view selector.
      */
     public enum ViewType {
-        ALBUM   = 0, // Matches index 0 of the view in lw.viewSelector
+        GRID    = 0, // Matches index 0 of the view in lw.viewSelector
         LIST    = 1, // Matches index 1 of the view in lw.viewSelector
         ALERT   = 2, // For embedded alertes
         WELCOME = 3, // For welcome screens
@@ -62,10 +65,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
     public ViewType current_view { get; private set; default = ViewType.NONE; }
 
-    /**
-     * This is by far the most important property of this object.
-     * It defines how child widgets behave and some other properties.
-     */
+
     public enum Hint {
         NONE,
         MUSIC,
@@ -85,7 +85,10 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         ALBUM_LIST;
     }
 
-
+    /**
+     * This is by far the most important property of this object.
+     * It defines how child widgets behave and some other properties.
+     */
     public Hint hint { get; protected set; }
 
     public int index { get { return lw.view_container.get_view_index (this); } }
@@ -97,18 +100,10 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     /**
-     * TODO: deprecate, since it's only useful for PlaylistViewWrapper
+     * TODO: deprecate. it's only useful for PlaylistViewWrapper
      */
     public int relative_id { get; protected set; default = -1; }
 
-    /**
-     * MEDIA DATA
-     *
-     * These data structures hold information about the media shown in the views.
-     **/
-
-    protected Gee.HashMap<Media, int> media_table = new Gee.HashMap<Media, int> ();
-    protected Gee.HashMap<Media, int> visible_media_table = new Gee.HashMap<Media, int> ();
 
     public int media_count { get { return (media_table != null) ? media_table.size : 0; } }
 
@@ -126,10 +121,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         this.pack_start (layout_box, true, true, 0);
 
         lw.viewSelector.mode_changed.connect (view_selector_changed);
-
-        lw.searchField.text_changed_pause.connect ( (text) => {
-            search_field_changed (text);
-        });
+        lw.searchField.text_changed_pause.connect (search_field_changed);
     }
 
     protected void insert_widget (Gtk.Widget widget, bool on_top = true) {
@@ -151,8 +143,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             return;
         }
 
-        if (has_album_view && view_container.get_view_index (album_view) < 0) {
-            view_container.add_view (album_view);
+        if (has_grid_view && view_container.get_view_index (grid_view) < 0) {
+            view_container.add_view (grid_view);
         }
 
         if (has_list_view && view_container.get_view_index (list_view) < 0) {
@@ -167,6 +159,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             view_container.add_view (embedded_alert);
         }
 
+        widgets_ready = true;
         show_all ();
     }
 
@@ -181,8 +174,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
                 successful = view_container.set_current_view (list_view);
                 ((ListView)list_view).list_view.scroll_to_current_media(true);
                 break;
-            case ViewType.ALBUM:
-                successful = view_container.set_current_view (album_view);
+            case ViewType.GRID:
+                successful = view_container.set_current_view (grid_view);
                 break;
             case ViewType.ALERT:
                 successful = view_container.set_current_view (embedded_alert);
@@ -233,7 +226,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         }
         else {
             // the view selector will only be sensitive if both views are available
-            lw.viewSelector.set_sensitive (has_album_view && has_list_view);
+            lw.viewSelector.set_sensitive (has_grid_view && has_list_view);
 
             bool has_media = media_table.size > 0;
             // Insensitive if there's no media to search
@@ -337,7 +330,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         Gee.Collection<Media>? media_set = null;
 
         // Get data based on the current view
-        if (current_view == ViewType.ALBUM) {
+        if (current_view == ViewType.GRID) {
             is_album = true;
 
             // Let's use the local data since it has no internal filter
@@ -376,8 +369,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         }
 
         // FIXME: bad workaround
-        if (current_view == ViewType.ALBUM && has_album_view) {
-            total_items = album_view.get_visible_media ().size;
+        if (current_view == ViewType.GRID && has_grid_view) {
+            total_items = grid_view.get_visible_media ().size;
         }
 
         string media_text = media_description.printf ((int)total_items);
@@ -474,8 +467,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
         if (new_view == ViewType.LIST && has_list_view)
             set_active_view (ViewType.LIST);
-        else if (new_view == ViewType.ALBUM && has_album_view)
-            set_active_view (ViewType.ALBUM);
+        else if (new_view == ViewType.GRID && has_grid_view)
+            set_active_view (ViewType.GRID);
     }
 
 
@@ -483,10 +476,13 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      *  DATA METHODS
      */
 
+    // MEDIA DATA: These hashmaps hold information about the media shown in the views.
+    protected Gee.HashMap<Media, int> media_table = new Gee.HashMap<Media, int> ();
+    protected Gee.HashMap<Media, int> visible_media_table = new Gee.HashMap<Media, int> ();
+
     public string get_search_string () {
         return last_search;
     }
-
 
     /**
      * @return a collection containing ALL the media
@@ -505,7 +501,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
     private Mutex updating_media_data;
 
-
     public void clear_filters () {
         /**
          * /!\ Currently setting the search to "" is enough. Remember to update it
@@ -520,7 +515,6 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
      * Primarily used for searches
      */
     protected virtual void update_visible_media () {
-
         debug ("%s : UPDATING VISIBLE MEDIA", hint.to_string ());
 
         // LOCK
@@ -559,11 +553,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         }
     }
 
-    /**
-     * /!\ Async variants. Don't use them if you depend on the results to proceed in your method
-     */
 
-    public async void set_media_async (Gee.Collection<Media> new_media) {
+    private int compute_populate_priority () {
         int priority = 0;
 
         priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
@@ -575,50 +566,51 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (hint == Hint.SMART_PLAYLIST || hint == Hint.PLAYLIST)
             priority += 10;
 
-        Idle.add_full (priority, () => {
+        if (priority > VIEW_CONSTRUCT_PRIORITY)
+            priority = VIEW_CONSTRUCT_PRIORITY + 1;    
+
+        return priority;
+    }
+
+
+    public async void set_media_async (Gee.Collection<Media> new_media) {
+        Idle.add_full (compute_populate_priority (), () => {
+            if (!widgets_ready)
+                return true;
             set_media (new_media);
             return false;
         });
     }
 
-    public async void set_media_from_ids_async (Gee.Collection<int> new_media) {
-        set_media_async (lm.media_from_ids (new_media));
-    }
-
     public async void add_media_async (Gee.Collection<Media> to_add) {
-        var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
-        Idle.add_full (priority, () => {
+        Idle.add_full (compute_populate_priority (), () => {
+            if (!widgets_ready)
+                return true;
             add_media (to_add);
             return false;
         });
     }
 
     public async void remove_media_async (Gee.Collection<Media> to_remove) {
-        var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
-        Idle.add_full (priority, () => {
+        Idle.add_full (compute_populate_priority (), () => {
+            if (!widgets_ready)
+                return true;
             remove_media (to_remove);
             return false;
         });
     }
 
     public async void update_media_async (Gee.Collection<Media> to_update) {
-        var priority = (is_current_wrapper) ? Priority.HIGH_IDLE : Priority.DEFAULT_IDLE;
-        Idle.add_full (priority, () => {
+        Idle.add_full (compute_populate_priority (), () => {
+            if (!widgets_ready)
+                return true;
             update_media (to_update);
             return false;
         });
     }
 
-    /**
-     * Normal variants
-     */
 
-
-    public void set_media_from_ids (Gee.Collection<int> new_media) {
-        set_media (lm.media_from_ids (new_media));
-    }
-
-    public void set_media (Gee.Collection<Media> new_media) {
+    private void set_media (Gee.Collection<Media> new_media) {
         // LOCK
         updating_media_data.lock ();
 
@@ -653,7 +645,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     /**
      * Do search to find which ones should be added, removed from this particular view
      */
-    public void update_media (Gee.Collection<Media> media) {
+    private void update_media (Gee.Collection<Media> media) {
         if (media.size < 1)
             return;
 
@@ -719,7 +711,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
 
-    public void add_media (Gee.Collection<Media> new_media) {
+    private void add_media (Gee.Collection<Media> new_media) {
         if (new_media.size < 1)
             return;
 
@@ -769,7 +761,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
 
-    public void remove_media (Gee.Collection<Media> media) {
+    private void remove_media (Gee.Collection<Media> media) {
         if (media.size < 1)
             return;
 
@@ -817,12 +809,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (current_view == ViewType.LIST) {
             if (has_list_view)
                 list_view.add_media (to_add);
-            if (has_album_view)
-                    album_view.add_media (to_add);
+            if (has_grid_view)
+                    grid_view.add_media (to_add);
         }
         else {
-            if (has_album_view)
-                album_view.add_media (to_add);
+            if (has_grid_view)
+                grid_view.add_media (to_add);
             if (has_list_view)
                 list_view.add_media (to_add);
         }
@@ -831,8 +823,8 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     private void remove_media_from_content_views (Gee.Collection<Media> to_remove) {
         if (has_list_view)
             list_view.remove_media (to_remove);
-        if (has_album_view)
-            album_view.remove_media (to_remove);
+        if (has_grid_view)
+            grid_view.remove_media (to_remove);
     }
 
     private void set_content_views_media (Gee.Collection<Media> new_media) {
@@ -840,12 +832,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         if (current_view == ViewType.LIST) {
             if (has_list_view)
                 list_view.set_media (new_media);
-            if (has_album_view)
-                    album_view.set_media (new_media);
+            if (has_grid_view)
+                    grid_view.set_media (new_media);
         }
         else {
-            if (has_album_view)
-                album_view.set_media (new_media);
+            if (has_grid_view)
+                grid_view.set_media (new_media);
             if (has_list_view)
                 list_view.set_media (new_media);
         }

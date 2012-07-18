@@ -30,26 +30,27 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
     public SimilarViewWrapper (LibraryWindow lw, LastFM.Core core) {
         base (lw, Hint.SIMILAR);
 
-        var tvs = lw.library_manager.similar_setup;
+        // Connect data signals
+        lm.media_played.connect (on_media_played);
+        core.similar_retrieved.connect (similar_retrieved);
 
-        // Add list view
-        list_view = new ListView (this, tvs);
+        build_async ();
+    }
 
-        // Add alert
+    public async void build_async () {
+        Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
+        yield;
+
+        list_view = new ListView (this, lw.library_manager.similar_setup);
         embedded_alert = new Granite.Widgets.EmbeddedAlert();
-
         set_default_alert ();
 
         // Refresh view layout
         pack_views ();
-
-        // Connect data signals
-        lm.media_played.connect (on_media_played);
-        core.similar_retrieved.connect (similar_retrieved);
     }
 
     /**
-     * Avoid fetching if the user is playing the queried results
+     * Avoid fetching if the user is playing the queried results.
      * '!is_current_wrapper' wouldn't work since at this point the user could be
      * clicking the NEXT and PREVIOUS buttons without having selected/played a song
      * in the result list. We want to keep searching for similar songs until that
@@ -84,7 +85,7 @@ public class BeatBox.SimilarViewWrapper : ViewWrapper {
 
     private void similar_retrieved (Gee.Collection<int> similar_internal, Gee.Collection<Media> similar_external) {
         if (should_update_media ()) {
-            set_media_from_ids_async (similar_internal);
+            set_media_async (lm.media_from_ids (similar_internal));
         }
     }
 

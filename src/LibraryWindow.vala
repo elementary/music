@@ -524,7 +524,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Add Music Library View
         var music_view_wrapper = new MusicViewWrapper (this);
         add_view (_("Music"), music_view_wrapper);
-        music_view_wrapper.set_media_from_ids_async (library_manager.song_ids ());
+        music_view_wrapper.set_media_async (library_manager.media_from_ids (library_manager.song_ids ()));
+
+        debug ("Done with main views.");
+    }
+    
+    private async void load_playlists_async () {
+        debug ("Loading playlists");
 
         // Add Queue view
         var queue_view = new QueueViewWrapper (this);
@@ -536,21 +542,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         add_view (_("History"), history_view);
         history_view.set_media_async (library_manager.already_played ());
 
-        debug ("Done with main views.");
-    }
-    
-    private async void load_playlists_async () {
-        Idle.add_full (Priority.DEFAULT_IDLE, load_playlists_async.callback);
-        yield;
-
-        debug ("Loading playlists");
-
         // load smart playlists. Don't populate.
         foreach (SmartPlaylist p in library_manager.smart_playlists()) {
             addSideListItem (p, false);
             // queue the populate operation on this playlists. The PlaylistViewWrapper
             // view has signal handlers that listen for changes after analyze() has been triggered
-            Idle.add_full (Priority.DEFAULT_IDLE + 20, () => {
+            Idle.add_full (Priority.DEFAULT_IDLE + 1, () => {
                 library_manager.media_from_smart_playlist (p.rowid);
                 return false;
             });
@@ -1002,7 +999,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
             //vw.do_update(vw.current_view, library_manager.song_ids(), true, true, false);
             //vw.column_browser.populate (library_manager.song_ids());
-            vw.set_media_from_ids_async (library_manager.song_ids());
+            vw.set_media_async (library_manager.media_from_ids (library_manager.song_ids()));
         }
     }
 
@@ -1187,9 +1184,17 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         dialog.destroy();
     }
 
-    public override void destroy() {
+    public override void destroy () {
         this.hide ();
-        
+
+        Idle.add_full (Priority.HIGH_IDLE - 50, () => {
+            on_quit ();
+            base.destroy ();
+            return false;
+        });
+    }
+
+    private void on_quit () {
         // Save media position and info
         main_settings.last_media_position = (int)((double)library_manager.player.getPosition
         ()/1000000000);
@@ -1234,8 +1239,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         savedstate_settings.window_width = window_width;
         savedstate_settings.window_height = window_height;
-
-        base.destroy ();
     }
 
     public override bool configure_event (Gdk.EventConfigure event) {

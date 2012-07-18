@@ -21,27 +21,23 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gtk;
-using Gee;
-
 public class BeatBox.MusicViewWrapper : ViewWrapper {
     Gee.HashMap<int, Device> welcome_screen_keys = new Gee.HashMap<int, Device> ();
 
     public MusicViewWrapper (LibraryWindow lw) {
         base (lw, Hint.MUSIC);
 
-        // Add album view
-        album_view = new AlbumView (this);
+        // Add grid view
+        grid_view = new GridView (this);
 
-        var tvs = lw.library_manager.music_setup;
         // Add list view and column browser
-        list_view = new ListView (this, tvs, true);
+        list_view = new ListView (this, lw.library_manager.music_setup, true);
 
         // Welcome screen
         welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"),
                              _("%s can't seem to find your music.").printf (lw.app.get_name ()));
 
-        var music_folder_icon = Icons.MUSIC_FOLDER.render (IconSize.DIALOG, null);
+        var music_folder_icon = Icons.MUSIC_FOLDER.render (Gtk.IconSize.DIALOG, null);
         welcome_screen.append_with_pixbuf (music_folder_icon, _("Locate"), _("Change your music folder."));
 
         welcome_screen.activated.connect (welcome_screen_activated);
@@ -66,31 +62,31 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
     private void on_library_media_added (Gee.Collection<int> added_ids) {
         // Convert ids to real media
         var to_add = lm.media_from_ids (added_ids);
-        add_media (to_add);
+        add_media_async (to_add);
     }
 
     private void on_library_media_removed (Gee.Collection<int> removed_ids) {
         // Convert ids to real media
         var to_remove = lm.media_from_ids (removed_ids);
-        remove_media (to_remove);    
+        remove_media_async (to_remove);    
     }
 
     private void on_library_media_updated (Gee.Collection<int> updated_ids) {
         // Convert ids to real media
         var to_update = lm.media_from_ids (updated_ids);
-        update_media (to_update);    
+        update_media_async (to_update);    
     }
     
     private void welcome_screen_activated(int index) {
         if(index == 0) {
             if(!lm.doing_file_operations()) {
                 string folder = "";
-                var file_chooser = new FileChooserDialog (_("Choose Music Folder"), lw,
-                                          FileChooserAction.SELECT_FOLDER,
-                                          Gtk.Stock.CANCEL, ResponseType.CANCEL,
-                                          Gtk.Stock.OPEN, ResponseType.ACCEPT);
+                var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), lw,
+                                       Gtk.FileChooserAction.SELECT_FOLDER,
+                                       Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                                       Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
                 file_chooser.set_local_only(true);
-                if (file_chooser.run () == ResponseType.ACCEPT) {
+                if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
                     folder = file_chooser.get_filename();
                 }
                 file_chooser.destroy ();
@@ -110,7 +106,7 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
                 lw.sideTree.setSelectedIter(lw.sideTree.convertToFilter(lw.sideTree.devices_cdrom_iter));
                 lw.sideTree.sideListSelectionChange();
 
-                var to_transfer = new LinkedList<Media>();
+                var to_transfer = new Gee.LinkedList<Media>();
                 foreach(var m in d.get_medias())
                     to_transfer.add(m);
 
@@ -120,8 +116,8 @@ public class BeatBox.MusicViewWrapper : ViewWrapper {
                 // ask the user if they want to import media from device that they don't have in their library (if any)
                 // this should be same as DeviceView
                 if(!lm.doing_file_operations() && lw.main_settings.music_folder != "") {
-                    var found = new LinkedList<int>();
-                    var not_found = new LinkedList<Media>();
+                    var found = new Gee.LinkedList<int>();
+                    var not_found = new Gee.LinkedList<Media>();
                     lm.media_from_name (d.get_medias(), ref found, ref not_found);
                     
                     if(not_found.size > 0) {

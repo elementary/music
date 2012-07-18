@@ -20,13 +20,6 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gtk;
-using Gee;
-
-/**
- * Used for play queue
- */
-
 public class BeatBox.HistoryViewWrapper : ViewWrapper {
 
     public HistoryViewWrapper (LibraryWindow lw) {
@@ -61,15 +54,15 @@ public class BeatBox.HistoryViewWrapper : ViewWrapper {
     }
 
     private void on_history_changed () {
-        set_media (lm.already_played ());
+        set_media_async (lm.already_played ());
     }
 
     private void on_library_media_updated (Gee.Collection<int> ids) {
-        update_media (lm.media_from_ids (ids));
+        update_media_async (lm.media_from_ids (ids));
     }
 
     private void on_library_media_removed (Gee.Collection<int> ids) {
-        remove_media (lm.media_from_ids (ids));
+        remove_media_async (lm.media_from_ids (ids));
     }
 }
 

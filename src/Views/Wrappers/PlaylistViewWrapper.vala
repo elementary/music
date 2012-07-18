@@ -20,24 +20,15 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gtk;
-using Gee;
-
-/**
- * Used for Playlists and Smart Playlists
- */
-
 public class BeatBox.PlaylistViewWrapper : ViewWrapper {
-    public int playlist_id { get; private set; default = -1; }
+    public int playlist_id { get; construct set; default = -1; }
 
     public PlaylistViewWrapper (LibraryWindow lw, TreeViewSetup tvs, int playlist_id) {
-        var vw_hint = tvs.get_hint ();
-        base (lw, vw_hint);
-
+        base (lw, tvs.get_hint ());
         this.playlist_id = playlist_id;
         relative_id = playlist_id;
 
-        if (vw_hint == Hint.PLAYLIST) {
+        if (hint == Hint.PLAYLIST) {
             var p = lm.playlist_from_id (playlist_id);
 
             // Connect to playlist signals
@@ -47,7 +38,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
                 p.cleared.connect (on_playlist_cleared);
             }
         }
-        else if (vw_hint == Hint.SMART_PLAYLIST) {
+        else if (hint == Hint.SMART_PLAYLIST) {
             var p = lm.smart_playlist_from_id (playlist_id);
 
             // Connect to playlist signals
@@ -55,19 +46,23 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
                 p.changed.connect (on_smart_playlist_changed);
             }
         }
+        else {
+            return_if_reached ();
+        }
 
-        // Add album view
-        album_view = new AlbumView (this);
+        build_async (tvs);
+    }
 
-        // Add list view
+    private async void build_async (TreeViewSetup tvs) {
+        Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
+        yield;
+
+        grid_view = new GridView (this);
         list_view = new ListView (this, tvs);
-
-        // Alert box
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();            
 
 		// Refresh view layout
 		pack_views ();
-
         set_alert ();
     }
 
@@ -103,8 +98,7 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
     /* SMART PLAYLISTS */
 
     private async void on_smart_playlist_changed (Gee.Collection<Media> new_media) {
-        if (hint != Hint.SMART_PLAYLIST)
-            return;
+        return_if_fail (hint == Hint.SMART_PLAYLIST);
 
   	    var to_add = new Gee.LinkedList<Media> ();
         var to_remove = new Gee.LinkedList<Media> ();
@@ -131,23 +125,17 @@ public class BeatBox.PlaylistViewWrapper : ViewWrapper {
     /* NORMAL PLAYLISTS */
 
     private void on_playlist_media_added (Gee.Collection<Media> to_add) {
-        if (hint != Hint.PLAYLIST)
-            return;
-
+        return_if_fail (hint == Hint.PLAYLIST);
         add_media_async (to_add);
     }
 
     private void on_playlist_media_removed (Gee.Collection<Media> to_remove) {
-        if (hint != Hint.PLAYLIST)
-            return;
-
+        return_if_fail (hint == Hint.PLAYLIST);
         remove_media_async (to_remove);
     }
 
     private void on_playlist_cleared () {
-         if (hint != Hint.PLAYLIST)
-            return;
-
+        return_if_fail (hint != Hint.PLAYLIST);
         set_media_async (new Gee.LinkedList<Media> ());
     }
 }
