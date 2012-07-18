@@ -69,6 +69,97 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         }
     }
 
+
+    /**
+     * Message header.
+     * The string *should not* contain any markup information, since the text will be escaped.
+     */
+    public string primary_text {
+        get {
+            return primary_text_label.label;
+        }
+        set {
+            set_widget_visible (primary_text_label, value.strip() != "");
+            primary_text_label.set_markup (Markup.printf_escaped (PRIMARY_TEXT_MARKUP, value));
+        }
+    }
+
+    /**
+     * Message body.
+     * You can include markup information along with the message.
+     */
+    public string secondary_text {
+        get {
+            return secondary_text_label.label;
+        }
+        set {
+            set_widget_visible (secondary_text_label, value.strip() != "");
+            secondary_text_label.set_markup (value);
+        }
+    }
+
+    /**
+     * Warning level of the message.
+     * Besides defining what icon to use, it also defines whether the primary and secondary
+     * text are selectable or not.
+     * The text is selectable for the WARNING, ERROR and QUESTION types.
+     */
+    private Gtk.MessageType _message_type = Gtk.MessageType.QUESTION;
+    public Gtk.MessageType message_type {
+        get {
+            return _message_type;
+        }
+        set {
+            _message_type = value;
+            image.set_from_icon_name (get_icon_name_for_message_type (value), Gtk.IconSize.DIALOG);
+
+            // Make sure the text is selectable if the level is WARNING, ERROR or QUESTION
+            bool text_selectable = value == Gtk.MessageType.WARNING ||
+                                   value == Gtk.MessageType.ERROR ||
+                                   value == Gtk.MessageType.QUESTION;
+            primary_text_label.selectable = secondary_text_label.selectable = text_selectable;
+        }
+    }
+
+    private Gtk.Action[] ? _actions = null;
+    /**
+     * All these actions are mapped to buttons
+     */
+    public Gtk.Action[] ? actions {
+        get {
+            return _actions;
+        }
+        set {
+            _actions = value;
+
+            // clear button box
+            foreach (var button in action_button_box.get_children ()) {
+                action_button_box.remove (button);
+            }
+
+            // Add a button for each action
+            if (actions != null) {
+                for (int i = 0; i < actions.length; i++) {
+                    var action_item = actions[i];
+                    if (action_item != null) {
+                        var action_button = new_button_from_action (action_item);
+                        action_button_box.pack_start (action_button, false, false, 0);
+                    }
+                }
+
+                buttons_visible = true;
+            }
+            else {
+                buttons_visible = false;
+            }
+        }
+    }
+
+    public bool buttons_visible {
+        get { return action_button_box.visible; }
+        set { set_widget_visible (action_button_box, value); }
+    }
+
     protected Gtk.Grid content_grid;
     protected Gtk.Image image;
     protected Gtk.Spinner spinner;
@@ -121,9 +212,9 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         this.content_grid.attach_next_to (this.action_button_box, this.secondary_text_label,
                                           Gtk.PositionType.BOTTOM, 1, 1);
 
-        //this.content_grid.resize_mode = Gtk.ResizeMode.QUEUE;
         content_grid.halign = content_grid.valign = Gtk.Align.CENTER;
         content_grid.margin = 100;
+
         this.add (content_grid);
 
         // INIT WIDGETS. We use these setters to avoid code duplication
@@ -147,73 +238,12 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
         // Reset size request
         set_size_request (0, 0);
 
-        set_primary_text (primary_text);
-        set_secondary_text (secondary_text);
-        set_actions (actions);
-        set_message_type (type);
+        this.primary_text = primary_text;
+        this.secondary_text = secondary_text;
+        this.actions = actions;
+        this.message_type = type;
 
         this.show_icon = show_icon;
-    }
-
-    /**
-     * Sets the message header.
-     * The string *should not* contain any markup information, since the text will be escaped.
-     */
-    public void set_primary_text (string text) {
-        set_widget_visible (primary_text_label, text.strip() != "");
-        primary_text_label.set_markup (Markup.printf_escaped (PRIMARY_TEXT_MARKUP, text));
-    }
-
-    /**
-     * Sets the message body.
-     * You can include markup information along with the message.
-     */
-    public void set_secondary_text (string text) {
-        set_widget_visible (secondary_text_label, text.strip() != "");
-        secondary_text_label.set_markup (text);
-    }
-
-    /**
-     * Sets the warning level of the message.
-     * Besides defining what icon to use, it also defines whether the primary and secondary
-     * text are selectable or not.
-     * The text is selectable for the WARNING, ERROR and QUESTION types.
-     */
-    public void set_message_type (Gtk.MessageType type) {
-        image.set_from_icon_name (get_icon_name_for_message_type (type), Gtk.IconSize.DIALOG);
-
-        // Make sure the text is selectable if the level is WARNING, ERROR or QUESTION
-        bool text_selectable = type == Gtk.MessageType.WARNING ||
-                               type == Gtk.MessageType.ERROR ||
-                               type == Gtk.MessageType.QUESTION;
-        primary_text_label.selectable = secondary_text_label.selectable = text_selectable;
-    }
-
-    public void set_actions (Gtk.Action[] ? actions) {
-        // clear button box
-        foreach (var button in action_button_box.get_children ()) {
-            action_button_box.remove (button);
-        }
-
-        // Add a button for each action
-        if (actions != null && actions.length > 0) {
-            for (int i = 0; i < actions.length; i++) {
-                var action_item = actions[i];
-                if (action_item != null) {
-                    var action_button = new_button_from_action (action_item);
-                    action_button_box.pack_start (action_button, false, false, 0);
-                }
-            }
-
-            set_buttons_visible (true);
-        }
-        else {
-            set_buttons_visible (false);
-        }
-    }
-
-    public void set_buttons_visible (bool visible) {
-        set_widget_visible (action_button_box, visible);
     }
 
     /* INTERNALS */
