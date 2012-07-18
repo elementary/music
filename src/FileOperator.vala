@@ -91,7 +91,7 @@ public class BeatBox.FileOperator : Object {
 	}
 
 	public string get_album_art_cache_dir () {
-		return GLib.Path.build_path ("/", Environment.get_user_cache_dir (), lm.lw.app.get_name_down (), "album-art");
+		return GLib.Path.build_path ("/", Environment.get_user_cache_dir (), lm.lw.app.get_name().down (), "album-art");
 	}
 
 	public void resetProgress(int items) {
@@ -242,7 +242,7 @@ public class BeatBox.FileOperator : Object {
 	}
 
 	public string get_cached_album_art_path (string key) {
-		string filename = Uri.escape_string (key, "", true) + ".jpg";
+		string filename = Checksum.compute_for_string(ChecksumType.MD5, key) + ".jpg";
 		return GLib.Path.build_filename (get_album_art_cache_dir (), filename);
 	}
 
@@ -255,7 +255,7 @@ public class BeatBox.FileOperator : Object {
 		
 		GLib.File file = GLib.File.new_for_uri(uri);
 		FileInputStream filestream;
-		
+
 		try {
 			filestream = file.read(null);
 			rv = new Gdk.Pixbuf.from_stream(filestream, null);
