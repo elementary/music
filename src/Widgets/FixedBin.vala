@@ -77,11 +77,11 @@ public class FixedBin : Gtk.EventBox {
 
     private void on_size_allocate (Gtk.Allocation allocation)
     {
+        int allocated_width = allocation.width;
         //int allocated_heigth = allocation.height;
 
         if (0 < max_width && max_width < allocated_width)
         {
-            int allocated_width = allocation.width;
             
             int padding_width = (allocated_width - this.max_width) / 2;
             
