@@ -63,7 +63,6 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
     
     //for device right click
     Gtk.Menu deviceMenu;
-    Gtk.Menu readOnlyDeviceMenu;
     Gtk.MenuItem deviceImportToLibrary;
     Gtk.MenuItem deviceSync;
     Gtk.MenuItem deviceEject;
@@ -92,20 +91,21 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
     }
 
     private void buildUI() {
-        deviceMenu = new Gtk.Menu();
+
         deviceImportToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
+        deviceImportToLibrary.activate.connect (deviceImportToLibraryClicked);
+
         deviceSync = new Gtk.MenuItem.with_label(_("Sync"));
+        deviceSync.activate.connect (deviceSyncClicked);
+
         deviceEject = new Gtk.MenuItem.with_label(_("Eject"));
-        deviceMenu.append(deviceImportToLibrary);
-        deviceMenu.append(deviceSync);
-        deviceMenu.append(deviceEject);
-        readOnlyDeviceMenu.append(deviceImportToLibrary);
-        readOnlyDeviceMenu.append(deviceEject);
-        deviceImportToLibrary.activate.connect(deviceImportToLibraryClicked);
-        deviceSync.activate.connect(deviceSyncClicked);
-        deviceEject.activate.connect(deviceEjectClicked);
-        deviceMenu.show_all();
-        readOnlyDeviceMenu.show_all();
+        deviceEject.activate.connect (deviceEjectClicked);
+
+        deviceMenu = new Gtk.Menu();
+        deviceMenu.append (deviceImportToLibrary);
+        deviceMenu.append (deviceSync);
+        deviceMenu.append (deviceEject);
+        deviceMenu.show_all ();
 
 #if HAVE_PODCASTS
         podcastMenu = new Gtk.Menu();
@@ -265,7 +265,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
             rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, null));
 
             var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
-            dvw.set_media (d.get_medias ());
+            dvw.set_media_async (d.get_medias ());
             addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
             lw.view_container.add_view (dvw);
 #if HAVE_PODCASTS
@@ -295,7 +295,7 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
             rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, null));
 
             var ndvw = new NetworkDeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
-            ndvw.set_media (d.get_medias ());
+            ndvw.set_media_async (d.get_medias ());
             addItem(rv, o, ndvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
             lw.view_container.add_view (ndvw);
 #if HAVE_PODCASTS
@@ -411,10 +411,8 @@ public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
                     playlistMenu.popup (null, null, null, 3, get_current_event_time());
                 }
                 else if(o is Device) {
-                    if (((Device)o).getContentType() == "cdrom")
-                        readOnlyDeviceMenu.popup(null, null, null, 3, get_current_event_time());
-                    else
-                        deviceMenu.popup(null, null, null, 3, get_current_event_time());
+                    deviceSync.visible = (o as Device).getContentType() == "cdrom";
+                    deviceMenu.popup (null, null, null, Gdk.BUTTON_SECONDARY, Gtk.get_current_event_time ());
                 }
 #if HAVE_PODCASTS            
                 else if(iter == convertToFilter(library_podcasts_iter)) {
