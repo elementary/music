@@ -25,9 +25,9 @@ using Gee;
 using Gtk;
 
 #if USE_GRANITE_DECORATED_WINDOW
-public class BeatBox.AlbumListView : Granite.Widgets.DecoratedWindow {
+public class BeatBox.PopupListView : Granite.Widgets.DecoratedWindow {
 #else
-public class BeatBox.AlbumListView : Window {
+public class BeatBox.PopupListView : Window {
 #endif
 
 	public const int MIN_SIZE = 400;
@@ -43,26 +43,13 @@ public class BeatBox.AlbumListView : Window {
 
 	Gee.Collection<Media> media_list;
 
-	public AlbumListView (AlbumView album_view) {
+	public PopupListView (GridView grid_view) {
 #if USE_GRANITE_DECORATED_WINDOW
         base ("", "album-list-view", "album-list-view");
 #endif
 
-		this.view_wrapper = album_view.parent_view_wrapper;
+		this.view_wrapper = grid_view.parent_view_wrapper;
 		this.lm = view_wrapper.lm;
-
-		set_size_request (MIN_SIZE, MIN_SIZE);
-		set_default_size (MIN_SIZE, MIN_SIZE);
-
-        // Make the window squared
-        this.size_allocate.connect ( (alloc) => {
-    		int width = alloc.width;
-    		int height = alloc.height;
-
-            int size = (width > height) ? width : height;
-
-    		set_size_request (size, size);
-        });
 
 		set_transient_for (lm.lw);
 		destroy_with_parent = true;
@@ -121,7 +108,7 @@ public class BeatBox.AlbumListView : Window {
 		// Rating widget
 		rating = new Granite.Widgets.Rating (true, IconSize.MENU, true);
 		// customize rating
-		rating.set_star_spacing (16);
+		rating.star_spacing = 16;
 		rating.margin_top = rating.margin_bottom = 16;
 
 		// Add everything
@@ -161,10 +148,6 @@ public class BeatBox.AlbumListView : Window {
 		// Reset size request
 		set_size (MIN_SIZE);
 	}
-
-    public void set_size (int size) {
-        this.set_size_request (size, size);
-    }
 
 	public void set_parent_wrapper (ViewWrapper parent_wrapper) {
 		this.view_wrapper = parent_wrapper;
@@ -225,7 +208,7 @@ public class BeatBox.AlbumListView : Window {
 		float average_rating = (float)total_rating / (float)n_media;
 
 		// fix approximation and set new rating
-		rating.set_rating (Numeric.int_from_float (average_rating));
+		rating.rating = Numeric.int_from_float (average_rating);
 
 		// connect again ...
 		rating.rating_changed.connect (rating_changed);
@@ -247,5 +230,25 @@ public class BeatBox.AlbumListView : Window {
 
 		lm.update_media (updated, false, true);
 	}
+
+
+    /**
+     * Force squared layout
+     */
+    public void set_size (int size) {
+        this.set_size_request (size, -1);
+        queue_resize ();
+    }
+
+    public override Gtk.SizeRequestMode get_request_mode () {
+        return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
+    }
+
+    public override void get_preferred_height_for_width (int width,
+                                                         out int minimum_height,
+                                                         out int natural_height)
+    {
+        minimum_height = natural_height = width;
+    }
 }
 

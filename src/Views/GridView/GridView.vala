@@ -23,25 +23,25 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.AlbumView : ContentView, ScrolledWindow {
+public class BeatBox.GridView : ContentView, ScrolledWindow {
 
 	// The window used to present album contents
-    private static AlbumListView? _album_list_view = null;
-	public AlbumListView album_list_view {
+    private static PopupListView? _popup_list_view = null;
+	public PopupListView popup_list_view {
 		get {
-			if (_album_list_view == null) {
+			if (_popup_list_view == null) {
 				debug ("Creating ALBUM VIEW POPOVER");
-				_album_list_view = new AlbumListView (this);
-				_album_list_view.focus_out_event.connect ( () => {
-					if (album_list_view.visible && lw.has_focus) {
-						album_list_view.show_all ();
-						album_list_view.present ();
+				_popup_list_view = new PopupListView (this);
+				_popup_list_view.focus_out_event.connect ( () => {
+					if (popup_list_view.visible && lw.has_focus) {
+						popup_list_view.show_all ();
+						popup_list_view.present ();
 					}
 					return false;
 				});
 			}
 
-			return _album_list_view;
+			return _popup_list_view;
 		}
 	}
 
@@ -69,7 +69,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 
 
 	/* media should be mutable, as we will be sorting it */
-	public AlbumView(ViewWrapper view_wrapper) {
+	public GridView(ViewWrapper view_wrapper) {
 		lm = view_wrapper.lm;
 		lw = view_wrapper.lw;
 		parent_view_wrapper = view_wrapper;
@@ -109,12 +109,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		hpadding_box.set_size_request (MIN_SPACING + ITEM_PADDING, -1);
 
 		vpadding_box.button_press_event.connect ( () => {
-			album_list_view.hide ();
+			popup_list_view.hide ();
 			return false;
 		});
 
 		hpadding_box.button_press_event.connect ( () => {
-			album_list_view.hide ();
+			popup_list_view.hide ();
 			return false;
 		});
 
@@ -147,13 +147,13 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		focus_blacklist.add (lw.statusbar);
 
 		lw.viewSelector.mode_changed.connect ( () => {
-			album_list_view.hide ();
+			popup_list_view.hide ();
 		});
 
 		foreach (var w in focus_blacklist) {
 			w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
 			w.button_press_event.connect ( () => {
-				album_list_view.hide ();
+				popup_list_view.hide ();
 				return false;
 			});
 		}
@@ -339,7 +339,7 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 			icon_view.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
 
 			if (path == null) { // blank area
-				album_list_view.hide ();
+				popup_list_view.hide ();
 				return false;
 			}
 
@@ -380,12 +380,12 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		Media? s = (Media)icon_view.get_object_from_index(int.parse(path.to_string()));
 
 		if (s == null) {
-			album_list_view.hide ();
+			popup_list_view.hide ();
 			return;
 		}
 
-		album_list_view.set_parent_wrapper (this.parent_view_wrapper);
-		album_list_view.set_media (album_info.get (get_key (s)).keys);
+		popup_list_view.set_parent_wrapper (this.parent_view_wrapper);
+		popup_list_view.set_media (album_info.get (get_key (s)).keys);
 
 		// find window's location
 		int x, y;
@@ -400,17 +400,17 @@ public class BeatBox.AlbumView : ContentView, ScrolledWindow {
 		int window_width = 0;
 		int window_height = 0;
 		
-		album_list_view.get_size (out window_width, out window_height);
+		popup_list_view.get_size (out window_width, out window_height);
 
 		// center it on this icon view
 		x += (alloc.width - window_width) / 2;
 		y += (alloc.height - window_height) / 2 + 60;
 
-		bool was_visible = album_list_view.visible;
-		album_list_view.show_all ();
+		bool was_visible = popup_list_view.visible;
+		popup_list_view.show_all ();
 		if (!was_visible)
-			album_list_view.move (x, y);
-		album_list_view.present ();
+			popup_list_view.move (x, y);
+		popup_list_view.present ();
 	}
 
 
