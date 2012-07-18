@@ -35,12 +35,22 @@ public class FixedBin : Gtk.EventBox {
                      int max_width = -1, int max_height = -1,
                      bool visible_window = false)
     {
+
+        //add_events (Gdk.EventMask.STRUCTURE_MASK
+        //            | Gdk.EventMask.SUBSTRUCTURE_MASK);
+        add_events (Gdk.EventMask.ALL_EVENTS_MASK);
+        
         //hexpand = true;
         set_min_dimensions (min_width, min_height);
         set_max_dimensions (max_width, max_height);
 
         this.visible_window = visible_window;
         size_allocate.connect (on_size_allocate);
+        window_state_event.connect ( (event) =>
+            {
+                warning ("WINDOW_STATE_EVENT");
+                return false;
+            });
     }
 
     /**
@@ -77,17 +87,29 @@ public class FixedBin : Gtk.EventBox {
 
     private void on_size_allocate (Gtk.Allocation allocation)
     {
-        int allocated_width = allocation.width;
-        //int allocated_heigth = allocation.height;
+        warning("SIZE_ALLOCATE FIRED!");
+        update_child_margins (allocation.width, allocation.height);
+    }
 
+    private void update_child_margins (int allocated_width, int allocated_height) {
+        warning("UPDATE_CHILD_MARGINS - width <%d> | height <%d>!", allocated_width, allocated_height);
+
+        /*//if(get_root_window ().get_state () == Gdk.WindowState.MAXIMIZED )
+        if (window.get_state () == Gdk.WindowState.MAXIMIZED)
+            warning("----MAXIMIZED");
+        else
+        warning("----MINIMIZED");*/
+        
         if (0 < max_width && max_width < allocated_width)
         {
-            
             int padding_width = (allocated_width - this.max_width) / 2;
             
             get_child ().margin_left = padding_width;
             get_child ().margin_right = padding_width;
-        }
+        }else{
+            get_child ().margin_left = 0;
+            get_child ().margin_right = 0;
+        }   
     }
     
     public override Gtk.SizeRequestMode get_request_mode () {
@@ -101,6 +123,8 @@ public class FixedBin : Gtk.EventBox {
         //   of the child to compensate it getting larger than it should
         base.get_preferred_width (out minimum_width, out natural_width);
 
+        //warning("GET_PREFERRED_WIDTH");
+        
         /*int ch_min_width, ch_nat_width;
           get_child ().get_preferred_width (out ch_min_width, out ch_nat_width);*/
 
@@ -117,23 +141,8 @@ public class FixedBin : Gtk.EventBox {
             //if (natural_width < minimum_width)
             //    natural_width = minimum_width;
         }
-        
-        /*// We have a maximum width set and the natural width exceeds it
-        if (this.max_width > 0) {
-            //if (this.max_width < natural_width)
-            //    natural_width = this.max_width;
-            if (this.max_width < allocated_width)
-            {
-                int padding_width = (allocated_width - this.max_width) / 2;
-                //get_child ().adjust_size_request(Gtk.Orientation.HORIZONTAL, ref new_width, ref new_width);
-                get_child ().margin_left = padding_width;
-                get_child ().margin_right = padding_width;
-                //minimum_width = this.max_width;
-            }
-        }
-        int new_width = this.max_width;
-        
-        stdout.printf("AFTER - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d> NEW_WIDTH: <%d>\n", minimum_width, natural_width, new_width);*/
+
+        update_child_margins (get_allocated_width (), get_allocated_height ());
     }
     
     /*public override void get_preferred_height_for_width (int width, out int minimum_height,
