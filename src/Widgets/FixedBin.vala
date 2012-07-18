@@ -40,6 +40,7 @@ public class FixedBin : Gtk.EventBox {
         set_max_dimensions (max_width, max_height);
 
         this.visible_window = visible_window;
+        size_allocate.connect (on_size_allocate);
     }
 
     /**
@@ -73,6 +74,17 @@ public class FixedBin : Gtk.EventBox {
     /**
      * INTERNAL GEOMETRY MANAGEMENT
      */
+
+    private void on_size_allocate (Gtk.Allocation allocation)
+    {
+        int allocated_width = allocation.width;
+        //int allocated_heigth = allocation.height;
+
+        int padding_width = (allocated_width - this.max_width) / 2;
+
+        get_child ().margin_left = padding_width;
+        get_child ().margin_right = padding_width;
+    }
     
     public override Gtk.SizeRequestMode get_request_mode () {
         return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
@@ -85,13 +97,14 @@ public class FixedBin : Gtk.EventBox {
         //   of the child to compensate it getting larger than it should
         base.get_preferred_width (out minimum_width, out natural_width);
 
-        int ch_min_width, ch_nat_width;
-        get_child ().get_preferred_width (out ch_min_width, out ch_nat_width);
+        /*int ch_min_width, ch_nat_width;
+          get_child ().get_preferred_width (out ch_min_width, out ch_nat_width);*/
 
-        int allocated_width = get_allocated_width ();
+        //int allocated_width = get_allocated_width ();
         
-        stdout.printf("BEFOR - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d>\n", minimum_width, natural_width);
-        stdout.printf("ALLOC - WIDTH: <%d>\n", allocated_width);
+        //stdout.printf("BEFOR - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d>\n", minimum_width, natural_width);
+        //stdout.printf("ALLOC - WIDTH: <%d>\n", allocated_width);
+        
         // We have minimum width set, see if it should be used
         if (this.min_width > 0) {
             minimum_width = this.min_width;
@@ -101,7 +114,7 @@ public class FixedBin : Gtk.EventBox {
             //    natural_width = minimum_width;
         }
         
-        // We have a maximum width set and the natural width exceeds it
+        /*// We have a maximum width set and the natural width exceeds it
         if (this.max_width > 0) {
             //if (this.max_width < natural_width)
             //    natural_width = this.max_width;
@@ -116,7 +129,7 @@ public class FixedBin : Gtk.EventBox {
         }
         int new_width = this.max_width;
         
-        stdout.printf("AFTER - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d> NEW_WIDTH: <%d>\n", minimum_width, natural_width, new_width);
+        stdout.printf("AFTER - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d> NEW_WIDTH: <%d>\n", minimum_width, natural_width, new_width);*/
     }
     
     /*public override void get_preferred_height_for_width (int width, out int minimum_height,
