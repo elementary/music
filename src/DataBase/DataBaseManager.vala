@@ -52,7 +52,8 @@ public class BeatBox.DataBaseManager : GLib.Object {
 			}
 		}
 
-		var db_file = GLib.File.new_for_path (GLib.Path.build_filename (data_dir.get_path (), "database_1_2.db"));
+
+		var db_file = GLib.File.new_for_path (GLib.Path.build_filename (data_dir.get_path (), "database_1_3.db"));
 
 		/* we need to set this variable now since 'new SQLHeavy.Database' will create the file later */
 		bool need_create = !db_file.query_exists ();
