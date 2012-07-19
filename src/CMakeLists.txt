@@ -90,6 +90,7 @@ vala_precompile(VALA_C
     Views/ContentView.vala
 
     # ALBUM VIEW
+    Views/GridView/GridLayout.vala
     Views/GridView/GridView.vala
     Views/GridView/PopupListView.vala
 

@@ -22,10 +22,10 @@
 using Gtk;
 
 public class BeatBox.FastGrid : IconView {
-	public const int PIXBUF_COLUMN = 0;
-	public const int MARKUP_COLUMN = 1;
-	public const int TOOLTIP_COLUMN = 2;
-	public const int OBJECT_COLUMN = 3;
+	public static const int PIXBUF_COLUMN = 0;
+	public static const int MARKUP_COLUMN = 1;
+	public static const int TOOLTIP_COLUMN = 2;
+	public static const int OBJECT_COLUMN = 3;
 
 	FastGridModel fm;
 	HashTable<int, GLib.Object> table; // is not the same object as showing.

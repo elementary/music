@@ -20,125 +20,49 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-using Gtk;
-using Gee;
-
-public class BeatBox.GridView : ContentView, ScrolledWindow {
+public class BeatBox.GridView : ContentView, GridLayout {
 
 	// The window used to present album contents
-    private static PopupListView? _popup_list_view = null;
+    private static PopupListView? _popup = null;
 	public PopupListView popup_list_view {
 		get {
-			if (_popup_list_view == null) {
-				debug ("Creating ALBUM VIEW POPOVER");
-				_popup_list_view = new PopupListView (this);
-				_popup_list_view.focus_out_event.connect ( () => {
-					if (popup_list_view.visible && lw.has_focus) {
-						popup_list_view.show_all ();
-						popup_list_view.present ();
+			if (_popup == null) {
+				_popup = new PopupListView (this);
+				_popup.focus_out_event.connect ( () => {
+					if (_popup.visible && lw.has_focus) {
+						_popup.show_all ();
+						_popup.present ();
 					}
 					return false;
 				});
 			}
 
-			return _popup_list_view;
+			return _popup;
 		}
 	}
 
 	public ViewWrapper parent_view_wrapper { get; private set; }
 
-	public FastGrid icon_view { get; private set; }
-
 	// album-key / album-media
 	Gee.HashMap<string, Gee.HashMap<Media, int>> album_info;
-
-/* Spacing Workarounds */
-#if !GTK_ICON_VIEW_BUG_IS_FIXED
-	private Gtk.EventBox vpadding_box;
-	private Gtk.EventBox hpadding_box;
-#endif
 
 	private LibraryManager lm;
 	private LibraryWindow lw;
 
 	private Gdk.Pixbuf defaultPix;
 
-	private static const int ITEM_PADDING = 0;
-	private static const int MIN_SPACING = 12;
-	private static const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
-
-
-	/* media should be mutable, as we will be sorting it */
-	public GridView(ViewWrapper view_wrapper) {
+	public GridView (ViewWrapper view_wrapper) {
 		lm = view_wrapper.lm;
 		lw = view_wrapper.lw;
 		parent_view_wrapper = view_wrapper;
 
+		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
 		defaultPix = lm.get_pixbuf_shadow (Icons.DEFAULT_ALBUM_ART_PIXBUF);
-		build_ui();
-		
-		init ();
+
+		build_ui ();
 	}
 
 	public void build_ui () {
-		set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-
-		icon_view = new FastGrid ();
-
-		icon_view.set_compare_func(compare_func);
-		icon_view.set_value_func(val_func);
-
-		icon_view.set_columns(-1);
-
-#if !GTK_ICON_VIEW_BUG_IS_FIXED
-		var wrapper_vbox = new Box (Orientation.VERTICAL, 0);
-		var wrapper_hbox = new Box (Orientation.HORIZONTAL, 0);
-
-		vpadding_box = new EventBox();
-		hpadding_box = new EventBox();
-
-		vpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-		hpadding_box.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-		this.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-
-        vpadding_box.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-		hpadding_box.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-		this.get_style_context().add_class (Granite.STYLE_CLASS_CONTENT_VIEW);
-
-		vpadding_box.set_size_request (-1, MIN_SPACING + ITEM_PADDING);
-		hpadding_box.set_size_request (MIN_SPACING + ITEM_PADDING, -1);
-
-		vpadding_box.button_press_event.connect ( () => {
-			popup_list_view.hide ();
-			return false;
-		});
-
-		hpadding_box.button_press_event.connect ( () => {
-			popup_list_view.hide ();
-			return false;
-		});
-
-
-		wrapper_vbox.pack_start (vpadding_box, false, false, 0);
-		wrapper_vbox.pack_start (wrapper_hbox, true, true, 0);
-		wrapper_hbox.pack_start (hpadding_box, false, false, 0);
-		wrapper_hbox.pack_start (icon_view, true, true, 0);
-
-		add_with_viewport (wrapper_vbox);
-
-		icon_view.margin = 0;
-#else
-		add (icon_view);
-		icon_view.margin = MIN_SPACING;
-#endif
-
-		icon_view.item_width = ITEM_WIDTH;
-		icon_view.item_padding = ITEM_PADDING;
-		icon_view.spacing = 0;
-		icon_view.row_spacing = MIN_SPACING;
-		icon_view.column_spacing = MIN_SPACING;
-
-		show_all();
 
 		var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
 		focus_blacklist.add (lw.viewSelector);
@@ -158,24 +82,6 @@ public class BeatBox.GridView : ContentView, ScrolledWindow {
 			});
 		}
 
-		icon_view.add_events (Gdk.EventMask.POINTER_MOTION_MASK);
-		icon_view.motion_notify_event.connect (on_motion_notify);
-		icon_view.scroll_event.connect (on_scroll_event);
-
-		//icon_view.button_press_event.connect (on_button_press);
-		icon_view.button_release_event.connect (on_button_release);
-		icon_view.item_activated.connect (item_activated);
-
-		// for smart spacing stuff
-		int MIN_N_ITEMS = 2; // we will allocate horizontal space for at least two items
-		int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;
-		int TOTAL_MARGIN = MIN_N_ITEMS * (MIN_SPACING + ITEM_PADDING);
-		int MIDDLE_SPACE = MIN_N_ITEMS * MIN_SPACING;
-
-		parent_view_wrapper.set_size_request (MIN_N_ITEMS * TOTAL_ITEM_WIDTH + TOTAL_MARGIN + MIDDLE_SPACE, -1);
-		parent_view_wrapper.size_allocate.connect (on_resize);
-
-        set_theming ();
 	}
 
 	public ViewWrapper.Hint get_hint() {
@@ -184,52 +90,33 @@ public class BeatBox.GridView : ContentView, ScrolledWindow {
 
 	public Gee.Collection<Media> get_visible_media () {
 		var media_list = new Gee.LinkedList<Media> ();
-		foreach (var m in icon_view.get_visible_table ().get_values ())
-			media_list.add ((Media)m);
+		foreach (var o in get_visible_objects ()) {
+            var m = o as Media;
+            if (m != null)
+    			media_list.add (m);
+        }
 
 		return media_list;
 	}
 
 	public Gee.Collection<Media> get_media () {
 		var media_list = new Gee.LinkedList<Media> ();
-		foreach (var m in icon_view.get_table ().get_values ())
-			media_list.add ((Media)m);
+		foreach (var o in get_objects ()) {
+            var m = o as Media;
+            if (m != null)
+    			media_list.add (m);
+        }
 
 		return media_list;
 	}
 
-    private void set_theming () {
-		// Change background color
-        const string STYLESHEET = "*:selected{background-color:@transparent;}";
-
-		var style_provider = new CssProvider();
-
-        try  {
-            style_provider.load_from_data (STYLESHEET, -1);
-        } catch (Error e) {
-            warning ("Couldn't load style provider: %s", e.message);
-        }
-
-        icon_view.get_style_context ().add_provider (style_provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
-    }
-
-	private string get_key (Media m) {
-		if (m == null)
-			return "";
-		return m.album_artist + m.album;
-	}
-
-	/** Inits data containers **/
-	private void init () {
-		// reset table
-		icon_view.set_table (new HashTable<int, GLib.Object> (null, null));
-		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
+	private string get_key (Media? m) {
+		return (m != null) ? m.album_artist + m.album : "";
 	}
 
 	public void set_media (Gee.Collection<Media> to_add) {
-		init ();
-
-		// Add new media
+		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
+        clear_objects ();
 		add_media (to_add);
 	}
 
@@ -261,7 +148,7 @@ public class BeatBox.GridView : ContentView, ScrolledWindow {
 				album_media.set (m, 1);
 		}
 
-		icon_view.add_objects (to_append.values);
+		add_objects (to_append.values);
 	}
 
 	public void remove_media (Gee.Collection<Media> to_remove) {
@@ -324,65 +211,24 @@ public class BeatBox.GridView : ContentView, ScrolledWindow {
 				objects_to_remove.set (album_representation, 1);
 		}
 
-		icon_view.remove_objects (objects_to_remove);
+		remove_objects (objects_to_remove);
 	}
 
 	public int get_relative_id () {
 		return -1;
 	}
 
-	private bool on_button_release (Gdk.EventButton ev) {
-		if (ev.type == Gdk.EventType.BUTTON_RELEASE && ev.button == 1) {
-			TreePath path;
-			CellRenderer cell;
-
-			icon_view.get_item_at_pos ((int)ev.x, (int)ev.y, out path, out cell);
-
-			if (path == null) { // blank area
-				popup_list_view.hide ();
-				return false;
-			}
-
-			item_activated (path);
-		}
-
-		return false;
-	}
-
-	private inline void set_cursor (int x, int y) {
-		TreePath path;
-		CellRenderer cell;
-
-		icon_view.get_item_at_pos (x, y, out path, out cell);
-
-		if (path == null) // blank area
-			icon_view.get_window ().set_cursor (null);
-		else
-			icon_view.get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.HAND1));
-
-	}
-
-	private bool on_motion_notify (Gdk.EventMotion ev) {
-		set_cursor ((int)ev.x, (int)ev.y);
-		return false;
-	}
-
-	private bool on_scroll_event (Gdk.EventScroll ev) {
-		set_cursor ((int)ev.x, (int)ev.y);
-		return false;
-	}
-
-
-	private void item_activated (TreePath path) {
+	protected override void item_activated (Object? object) {
 		if (!lw.initialization_finished)
 			return;
 
-		Media? s = (Media)icon_view.get_object_from_index(int.parse(path.to_string()));
-
-		if (s == null) {
+		if (object == null) {
 			popup_list_view.hide ();
 			return;
 		}
+
+		var s = object as Media;
+        return_if_fail (s != null);
 
 		popup_list_view.set_parent_wrapper (this.parent_view_wrapper);
 		popup_list_view.set_media (album_info.get (get_key (s)).keys);
@@ -414,20 +260,21 @@ public class BeatBox.GridView : ContentView, ScrolledWindow {
 	}
 
 
-	public Value val_func (int row, int column, Object o) {
-		Media s = o as Media;
-		Value? val = null;
+	protected override Value val_func (int row, int column, Object o) {
+		var s = o as Media;
 
-		if (column == icon_view.PIXBUF_COLUMN) {
+		Value val;
+
+		if (column == Column.PIXBUF) {
 			var cover_art = lm.get_cover_album_art_from_key(s.album_artist, s.album);
-			if(cover_art != null) {
+			if (cover_art != null) {
 				val = cover_art;
 			}
 			else {
 				val = defaultPix;
 			}
 		}
-		else if(column == icon_view.MARKUP_COLUMN) {
+		else if (column == Column.MARKUP) {
 			string TEXT_MARKUP = @"%s\n<span foreground=\"#999\">%s</span>";
 			
 			string album, album_artist;
@@ -441,11 +288,11 @@ public class BeatBox.GridView : ContentView, ScrolledWindow {
 			else
 				album_artist = s.album_artist;
 
-			val = TEXT_MARKUP.printf (String.escape (album), String.escape (album_artist));
+			val = Markup.printf_escaped (TEXT_MARKUP, album, album_artist);
 		}
-		else if(column == icon_view.TOOLTIP_COLUMN) {
+		else if(column == Column.TOOLTIP) {
 			string TOOLTIP_MARKUP = @"<span size=\"large\"><b>%s</b></span>\n%s";
-			val = TOOLTIP_MARKUP.printf (String.escape (s.album), String.escape (s.album_artist));
+			val = Markup.printf_escaped (TOOLTIP_MARKUP, s.album, s.album_artist);
 		}
 		else {
 			val = s;
@@ -454,20 +301,22 @@ public class BeatBox.GridView : ContentView, ScrolledWindow {
 		return val;
 	}
 
-	private int compare_func (GLib.Object o_a, GLib.Object o_b) {
-		Media a_media = o_a as Media;
-		Media b_media = o_b as Media;
+	protected override int compare_func (Object o_a, Object o_b) {
+		var a_media = o_a as Media;
+		var b_media = o_b as Media;
+
+        return_val_if_fail (a_media != null && b_media != null, 0);
 
 		int rv = 0;
 
-		if(a_media.album.down() == b_media.album.down()) {
-			if(a_media.album_number == b_media.album_number)
+		if (a_media.album.down() == b_media.album.down()) {
+			if (a_media.album_number == b_media.album_number)
 				rv = (int)(a_media.track - b_media.track);
 			else
 				rv = (int)((int)a_media.album_number - (int)b_media.album_number);
 		}
 		else {
-			if(a_media.album == "")
+			if (a_media.album == "")
 				rv = 1;
 			else
 				rv = String.compare (a_media.album.down(), b_media.album.down());
@@ -475,93 +324,4 @@ public class BeatBox.GridView : ContentView, ScrolledWindow {
 
 		return rv;
 	}
-
-	/**
-	 * Smart spacing
-	 */
-
-	Mutex setting_size;
-
-	int resize_priority_offset = 0;
-	const int DEFAULT_RESIZE_PRIORITY = (Priority.DEFAULT_IDLE + Priority.HIGH_IDLE) / 2;
-
-	private void on_resize (Gtk.Allocation alloc) {
-		resize_priority_offset ++;
-
-		Idle.add_full (DEFAULT_RESIZE_PRIORITY - resize_priority_offset, () => {
-			compute_spacing (alloc);
-			resize_priority_offset = 0;
-			return false;
-		});
-	}
-
-	private void compute_spacing (Gtk.Allocation alloc) {
-		if (alloc.width != parent_view_wrapper.get_allocated_width ())
-			return;
-
-		setting_size.lock ();
-
-		if (!visible) {
-			setting_size.unlock ();
-			return;
-		}
-
-		int TOTAL_WIDTH = alloc.width; // width of view wrapper, not scrolled window!
-		int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;
-
-		// Calculate the number of columns
-		float n = (float)(TOTAL_WIDTH - MIN_SPACING) / (float)(TOTAL_ITEM_WIDTH + MIN_SPACING);
-		int n_columns = Numeric.lowest_int_from_float (n);
-
-		if (n_columns < 1) {
-			setting_size.unlock ();
-			return;
-		}
-
-		icon_view.set_columns (n_columns);
-
-		// We don't want to adjust the spacing if the row is not full
-		if (icon_view.get_table ().size () < n_columns) {
-			setting_size.unlock ();
-			return;
-		}
-
-		// You're not supposed to understand this.
-		float spacing = (float)(TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (float)(n_columns + 1);
-		int new_spacing = Numeric.int_from_float (spacing);
-
-		if (new_spacing < 0) {
-			setting_size.unlock ();
-			return;
-		}
-
-		if (TOTAL_WIDTH < 750)
-			-- new_spacing;
-
-		// apply new spacing
-		set_spacing (new_spacing);
-
-		setting_size.unlock ();
-	}
-
-	private void set_spacing (int spacing) {
-		if (spacing < 0)
-			return;
-
-		int item_offset = ITEM_PADDING / icon_view.columns;
-		int item_spacing = spacing - ((item_offset > 0) ? item_offset : 1);
-
-		icon_view.set_column_spacing (item_spacing);
-		icon_view.set_row_spacing (item_spacing);
-
-		int margin_width = spacing + ITEM_PADDING;
-
-#if GTK_ICON_VIEW_BUG_IS_FIXED
-		icon_view.set_margin (margin_width);
-#else
-		vpadding_box.set_size_request (-1, margin_width);
-		hpadding_box.set_size_request (margin_width, -1);
-#endif
-	}
 }
-
