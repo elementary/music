@@ -31,17 +31,12 @@ public class BeatBox.DeviceViewWrapper : ViewWrapper {
     public DeviceViewWrapper (LibraryWindow lww, TreeViewSetup tvs, Device d) {
         base (lww, tvs.get_hint ());
 
-        // Add list view
         list_view = new ListView (this, tvs);
-
-        // Add alert
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
-
-        // Refresh view layout
         pack_views ();
 
-        if (has_list_view)
-            list_view.import_requested.connect (import_request);
+
+        list_view.import_requested.connect (import_request);
 
         embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (lw.app.get_name ()), null, true, Gtk.MessageType.WARNING);
 

@@ -27,36 +27,28 @@ public class BeatBox.ViewContainer : Gtk.EventBox {
     public ViewContainer () {
         this.visible_window = false;
 
-        // Hide notebook tabs and border
         this.notebook.show_tabs = false;
         this.notebook.show_border = false;
+
         base.add (this.notebook);
     }
 
-    /* Override the remove method */
-    public override void remove (Gtk.Widget widget) {
-        // do nothing
-    }
+    public override void remove (Gtk.Widget widget) { }
 
     /**
      * Appends a widget to the main views.
-     *
      * @return the index of the view in the view container
      */
-    public int add_view (Gtk.Widget? view) {
-        if (view == null)
-            return -1;
+    public int add_view (Gtk.Widget view) {
+        return_val_if_fail (!has_view (view), -1);
         return this.notebook.append_page (view);
     }
 
     /**
      * Removes a widget from the main views.
-     *
      * @return the index of the view in the view container
      */
-    public void remove_view (Gtk.Widget? view) {
-        if (view == null)
-            return;
+    public void remove_view (Gtk.Widget view) {
         this.notebook.remove_page (get_view_index (view));
     }
 
@@ -64,44 +56,47 @@ public class BeatBox.ViewContainer : Gtk.EventBox {
         return this.notebook.get_nth_page (index);
     }
 
-    public int get_view_index (Gtk.Widget? view) {
-        if (view == null)
-            return -1;
+    public int get_view_index (Gtk.Widget view) {
         return this.notebook.page_num (view);
     }
 
-    public Gtk.Widget? get_current_view () {
-        return get_view (get_current_index ());
+    public bool has_view (Gtk.Widget view) {
+        return get_view_index (view) >= 0;
+    }
+
+    public bool has_view_index (int index) {
+        return get_view (index) != null;
     }
 
     public int get_current_index () {
         return this.notebook.get_current_page ();
     }
 
+    public Gtk.Widget? get_current_view () {
+        return get_view (get_current_index ());
+    }
+
     /**
      * Tries to set the given view as current.
-     * @return false if fails. true if succeeds
+     * @return false if fails.
      */
-    public bool set_current_view (Gtk.Widget? view) {
-        if (view == null)
-            return false;
-
+    public bool set_current_view (Gtk.Widget view) {
         int index = get_view_index (view);
 
-       // GtkNotebooks don't show hidden widgets.
-       // Let's show the view just in case ...
-        view.show ();
+        // GtkNotebooks don't show hidden widgets. Let's show the view
+        // just in case it's still not visible.
+        view.visible = true;
 
         return set_current_view_from_index (index);
     }
 
     /**
      * Tries to set the given view index as current.
-     * @return false if fails. true if succeeds
+     * @return false if fails.
      */
     public bool set_current_view_from_index (int index) {
-        if (index < 0) {
-            critical ("Cannot set " + get_view (index).name + " as the active view");
+        if (index < 0 || !has_view_index (index)) {
+            critical ("Cannot set view with index %i as current view", index);
             return false;
         }
 

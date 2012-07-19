@@ -21,9 +21,6 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-using Gtk;
-using Granite.Widgets;
-
 public abstract class BeatBox.ViewWrapper : Gtk.Box {
 
     public LibraryManager lm { get; protected set; }
@@ -32,33 +29,33 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     private Gtk.Box layout_box;
     private ViewContainer view_container;
 
-    // FIXME: should be protected instead of public. Not doing so right now because
-    // there's no time to fix the broken code.
-    public ContentView list_view  { get; protected set; }
+    // FIXME: should be protected instead of public
+    public ContentView list_view { get; protected set; }
     public ContentView grid_view { get; protected set; }
 
-    protected EmbeddedAlert embedded_alert { get; protected set; }
-    protected Welcome       welcome_screen { get; protected set; }
+    protected Granite.Widgets.EmbeddedAlert embedded_alert { get; protected set; }
+    protected Granite.Widgets.Welcome welcome_screen { get; protected set; }
 
     /* UI PROPERTIES */
-    public bool has_grid_view      { get { return grid_view != null; } }
-    public bool has_list_view       { get { return list_view != null;  } }
+    public bool has_grid_view { get { return grid_view != null; } }
+    public bool has_list_view { get { return list_view != null;  } }
     public bool has_embedded_alert  { get { return embedded_alert != null; } }
     public bool has_welcome_screen  { get { return welcome_screen != null; } }
 
     protected bool widgets_ready = false;
-    // Contruction *must* always happen before population
+
+    // Contruction must always happen before population
     protected const int VIEW_CONSTRUCT_PRIORITY = Priority.DEFAULT_IDLE - 10;
 
     /**
      * Type of visual representation of the media.
      *
-     * IMPORTANT: Values _must_ match the index of the respective view in the view selector.
+     * Values *must* match the index of the respective view in the view selector.
      */
     public enum ViewType {
         GRID    = 0, // Matches index 0 of the view in lw.viewSelector
         LIST    = 1, // Matches index 1 of the view in lw.viewSelector
-        ALERT   = 2, // For embedded alertes
+        ALERT   = 2, // For embedded alerts
         WELCOME = 3, // For welcome screens
         NONE    = 4  // Nothing showing
     }
@@ -143,19 +140,19 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             return;
         }
 
-        if (has_grid_view && view_container.get_view_index (grid_view) < 0) {
+        if (has_grid_view && !view_container.has_view (grid_view)) {
             view_container.add_view (grid_view);
         }
 
-        if (has_list_view && view_container.get_view_index (list_view) < 0) {
+        if (has_list_view && !view_container.has_view (list_view)) {
             view_container.add_view (list_view);
         }
 
-        if (has_welcome_screen && view_container.get_view_index (welcome_screen) < 0) {
+        if (has_welcome_screen && !view_container.has_view (welcome_screen)) {
             view_container.add_view (welcome_screen);
         }
 
-        if (has_embedded_alert && view_container.get_view_index (embedded_alert) < 0) {
+        if (has_embedded_alert && !view_container.has_view (embedded_alert)) {
             view_container.add_view (embedded_alert);
         }
 
@@ -833,7 +830,7 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             if (has_list_view)
                 list_view.set_media (new_media);
             if (has_grid_view)
-                    grid_view.set_media (new_media);
+                grid_view.set_media (new_media);
         }
         else {
             if (has_grid_view)
