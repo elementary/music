@@ -68,13 +68,6 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
         
         main_static_notebook.append_page (get_general_box (), new Gtk.Label (_("Behavior")));
         
-        if (Peas.Engine.get_default ().get_plugin_list ().length() > 0) {
-            //create static notebook
-            var plugins_label = new Gtk.Label (_("Extensions"));
-            
-            main_static_notebook.append_page (plugins.get_view (), plugins_label);
-        }
-        
         main_static_notebook.set_hexpand (true);
         
         main_grid.attach (main_static_notebook, 0, 0, 3, 1);
