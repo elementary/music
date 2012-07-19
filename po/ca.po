@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-15 20:25-0600\n"
+"POT-Creation-Date: 2012-07-18 11:59-0600\n"
 "PO-Revision-Date: 2012-07-08 12:00+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-17 05:16+0000\n"
-"X-Generator: Launchpad (build 15627)\n"
+"X-Launchpad-Export-Date: 2012-07-19 05:02+0000\n"
+"X-Generator: Launchpad (build 15637)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -33,21 +33,21 @@ msgstr "Escolteu música"
 msgid "Music Player"
 msgstr "Reproductor de música"
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:310
+#: /home/victor/noise/po/../src//LibraryManager.vala:293
 #, c-format
 msgid "Importing music from %s..."
 msgstr "S'està important música de %s..."
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:357
+#: /home/victor/noise/po/../src//LibraryManager.vala:340
 msgid "Adding files to library..."
 msgstr "S'estan afegint fitxers a la biblioteca..."
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:382
+#: /home/victor/noise/po/../src//LibraryManager.vala:365
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "S'està afegint música de %s a la biblioteca..."
 
-#: /home/victor/noise/po/../src//LibraryManager.vala:409
+#: /home/victor/noise/po/../src//LibraryManager.vala:392
 msgid "Rescanning music for changes. This may take a while..."
 msgstr ""
 "S'estan cercant canvis a la biblioteca. Això pot trigar una bona estona..."
@@ -55,7 +55,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:713
+#: /home/victor/noise/po/../src//LibraryWindow.vala:710
 msgid "Unknown Artist"
 msgstr "Artista desconegut"
 
@@ -71,7 +71,7 @@ msgstr "Pista desconeguda"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:714
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid "Unknown Album"
 msgstr "Àlbum desconegut"
 
@@ -89,7 +89,7 @@ msgid "Delete Current"
 msgstr "Suprimeix l'actual"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:97
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:98
 msgid "Sync"
 msgstr "Sincronitza"
 
@@ -101,13 +101,13 @@ msgstr "Lliure"
 msgid "Using %s of %s (%.2f%)"
 msgstr "S'estan utilitzant %s de %s (%.2f%)"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:96
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:95
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
 #: /home/victor/noise/po/../src//LibraryWindow.vala:219
 msgid "Import to Library"
 msgstr "Importa a la biblioteca"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:98
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:101
 msgid "Eject"
 msgstr "Expulsa"
 
@@ -181,29 +181,29 @@ msgstr "Música"
 msgid "Podcasts"
 msgstr "Podcasts"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:707
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:705
 msgid "This device is syncing"
 msgstr "El dispositiu s'està sincronitzant"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:707
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:705
 msgid "Please wait until the current sync is finished to do this action."
 msgstr ""
 "Espereu fins que la sincronització actual hagi acabat per fer aquesta acció."
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:709
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:707
 msgid "This device is in transfer"
 msgstr "El dispositiu està en una transferència"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:709
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:707
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
 "Espereu fins que la transferència actual hagi acabat per fer aquesta acció."
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:926
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:924
 msgid "Playlist"
 msgstr "Llista de reproducció"
 
-#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:939
+#: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:937
 #, c-format
 msgid "Import %s"
 msgstr "Importa %s"
@@ -402,7 +402,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:88
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:84
 msgid "Choose Music Folder"
 msgstr "Escolliu la carpeta de música"
 
@@ -904,7 +904,7 @@ msgstr ""
 "després d'importar aquest element."
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:83
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:132
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:128
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:86
 msgid "No External Songs"
 msgstr "No hi ha cap cançó externa"
@@ -917,36 +917,36 @@ msgstr ""
 "No s'ha pogut trobar cap cançó al dispositiu que no sigui a la vostra "
 "biblioteca."
 
-#: /home/victor/noise/po/../src//Views/AlbumView/AlbumListView.vala:185
+#: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
 #, c-format
 msgid "%s by %s"
 msgstr "%s per %s"
 
-#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:550
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
 msgstr "%d minuts"
 
-#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:553
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
 msgstr "%d hores"
 
-#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:556
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
 msgstr "%d dies"
 
-#: /home/victor/noise/po/../src//Views/AlbumView/album-view-clutter.vala:561
+#: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
 msgid "%u items, %s, %s"
 msgstr "%u elements, %s, %s"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:72
 msgid "No songs in Queue"
 msgstr "No hi ha cap cançó a la cua"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:100
+#: /home/victor/noise/po/../src//Views/Wrappers/QueueViewWrapper.vala:72
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -957,11 +957,11 @@ msgstr ""
 "cua seran reproduïdes abans que la cançó següent a la llista de reproducció "
 "actual."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
+#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:37
 msgid "No songs in History"
 msgstr "No hi ha cap cançó a l'historial"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:44
+#: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:37
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -970,51 +970,51 @@ msgstr ""
 "Les cançons s'inclouen a l'historial un cop són reproduïdes.\n"
 "Aquesta llista enumeria totes les cançons reproduïdes a la sessió actual."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
 msgstr "Aconseguïu algunes cançons"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:42
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 #, c-format
 msgid "%s can't seem to find your music."
 msgstr "El %s no ha pogut trobar la vostra música."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
 msgstr "Troba"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:45
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
 msgstr "Canvia la carpeta de música."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:132
+#: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:128
 msgid "All the songs in this device are already in your library."
 msgstr "Totes les cançons d'aquest dispositiu ja són a la vostra biblioteca"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:372
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
 #, c-format
 msgid "%i albums"
 msgstr "%i àlbums"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:372
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
 msgid "1 album"
 msgstr "1 àlbum"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 #, c-format
 msgid "%i songs"
 msgstr "%i cançons"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 msgid "1 song"
 msgstr "1 cançó"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid "No Songs"
 msgstr "No hi ha cap cançó"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:78
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1023,11 +1023,11 @@ msgstr ""
 "secundari</b> sobre un element i seleccioneu <b>«Afegeix a una llista de "
 "reproducció»<b>."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:82
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:77
 msgid "Edit Smart Playlist"
 msgstr "Edita la llista de reproducció intel·ligent"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:93
+#: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1057,11 +1057,11 @@ msgstr "%i pistes"
 msgid "1 track"
 msgstr "1 pista"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
+#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:45
 msgid "Device unreachable"
 msgstr "El dispositiu és inaccessible"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:46
+#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:45
 #, c-format
 msgid "%s could not acces to this network device"
 msgstr "El %s no ha pogut accedir a aquest dispositiu en la xarxa"
@@ -1132,7 +1132,7 @@ msgid "Show in File Browser"
 msgstr "Mostra al navegador de fitxers"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:531
+#: /home/victor/noise/po/../src//LibraryWindow.vala:537
 msgid "Queue"
 msgstr "Cua"
 
@@ -1236,31 +1236,6 @@ msgstr "Totes les %i valoracions"
 msgid "No Ratings"
 msgstr "Cap valoració"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:147
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:549
-msgid "Genres"
-msgstr "Gèneres"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:150
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:552
-msgid "Artists"
-msgstr "Artistes"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:153
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:555
-msgid "Albums"
-msgstr "Àlbums"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:156
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:558
-msgid "Years"
-msgstr "Anys"
-
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:159
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:561
-msgid "Ratings"
-msgstr "Valoracions"
-
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:143
 msgid "On Left"
 msgstr "A l'esquerra"
@@ -1268,6 +1243,26 @@ msgstr "A l'esquerra"
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:144
 msgid "On Top"
 msgstr "A dalt"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:549
+msgid "Genres"
+msgstr "Gèneres"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:552
+msgid "Artists"
+msgstr "Artistes"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:555
+msgid "Albums"
+msgstr "Àlbums"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:558
+msgid "Years"
+msgstr "Anys"
+
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:561
+msgid "Ratings"
+msgstr "Valoracions"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:77
 msgid "Device Name:"
@@ -1327,35 +1322,35 @@ msgstr ""
 msgid "Device is already being synced."
 msgstr "El dispositiu s'està sincronitzant."
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:421
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:422
 msgid "Favorite Songs"
 msgstr "Cançons preferides"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:442
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:443
 msgid "Recently Added"
 msgstr "Afegits recents"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:452
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:453
 msgid "Recently Played"
 msgstr "Reproduccions recents"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:462
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:463
 msgid "Recent Favorites"
 msgstr "Preferits recents"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:472
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:473
 msgid "Never Played"
 msgstr "Les mai reproduïdes"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:482
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:483
 msgid "Unheard Podcasts"
 msgstr "Podcasts no sentits"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:492
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:493
 msgid "Over Played"
 msgstr "Les més reproduïdes"
 
-#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:502
+#: /home/victor/noise/po/../src//DataBase/DataBaseManager.vala:503
 msgid "Not Recently Played"
 msgstr "Reproduccions no recents"
 
@@ -1367,44 +1362,44 @@ msgstr "Torna a examinar la carpeta de música"
 msgid "Search Music"
 msgstr "Cerca música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:536
+#: /home/victor/noise/po/../src//LibraryWindow.vala:542
 msgid "History"
 msgstr "Historial"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:713
+#: /home/victor/noise/po/../src//LibraryWindow.vala:710
 msgid " by "
 msgstr " per "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:714
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid " on "
 msgstr " a "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:930
+#: /home/victor/noise/po/../src//LibraryWindow.vala:927
 msgid "Import Music"
 msgstr "Importa música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:954
+#: /home/victor/noise/po/../src//LibraryWindow.vala:951
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>S'està important</b> música des de <b>%s</b> a la biblioteca."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:969
+#: /home/victor/noise/po/../src//LibraryWindow.vala:966
 msgid "Rescanning music folder for changes"
 msgstr "S'estan cercant canvis a la carpeta de música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:976
+#: /home/victor/noise/po/../src//LibraryWindow.vala:973
 msgid "Could not find Music Folder"
 msgstr "No s'ha pogut trobar la carpeta de música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:976
+#: /home/victor/noise/po/../src//LibraryWindow.vala:973
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Assegureu-vos que la carpeta de música sigui accessible i muntada."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1030
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
 msgid "Import Complete"
 msgstr "S'ha completat la importació"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1030
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
 #, c-format
 msgid "%s has imported your library."
 msgstr "El %s ha importat la vostra biblioteca."
