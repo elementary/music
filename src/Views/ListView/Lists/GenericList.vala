@@ -56,6 +56,19 @@ public abstract class BeatBox.GenericList : FastView {
 		// allow selecting multiple rows
 		get_selection().set_mode(SelectionMode.MULTIPLE);
 
+        key_press_event.connect ((event) => {
+                if (event.type == Gdk.EventType.KEY_PRESS && event.keyval == Gdk.Key.Delete) {
+                    var to_remove = new Gee.LinkedList<BeatBox.Media> ();
+                    foreach (var m in get_selected_medias ())
+                        to_remove.add (m);
+                    // TODO
+                    // - Is this the correct function?
+                    //   Doesn't seem to permanently remove the tune.
+                    remove_media (to_remove);
+                }
+                return false;
+            });
+
 		//vadjustment.value_changed.connect(view_scroll);
 		drag_begin.connect(on_drag_begin);
 		drag_data_get.connect(on_drag_data_get);
