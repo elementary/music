@@ -22,6 +22,20 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
+namespace Noise {
+    public enum BrowserPosition {
+        AUTOMATIC,
+        LEFT,
+        TOP
+    }
+
+    public enum WindowState {
+        NORMAL,
+        MAXIMIZED,
+        FULLSCREEN
+    }
+}
+
 public abstract class BeatBox.ColumnBrowser : Gtk.Grid {
 
 	public signal void changed ();
@@ -307,10 +321,6 @@ public abstract class BeatBox.ColumnBrowser : Gtk.Grid {
 	private void update_column_separators () {
         uint visible_columns = this.visible_columns.length ();
 
-		return_if_fail (visible_columns > 0);
-
-		const int SEPARATOR_WIDTH = 1; // px
-
 		foreach (var col in columns) {
 			// Every column has 0px on the left. The space is always added on the right side.
 			col.margin_left = 0;
@@ -319,7 +329,7 @@ public abstract class BeatBox.ColumnBrowser : Gtk.Grid {
 			if (col.category == BrowserColumn.Category.ALBUM || visible_columns == 1)
 				col.margin_right = 0;
 			else
-				col.margin_right = SEPARATOR_WIDTH;
+				col.margin_right = 1;
 		}
 	}
 

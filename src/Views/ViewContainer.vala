@@ -41,6 +41,7 @@ public class BeatBox.ViewContainer : Gtk.EventBox {
      */
     public int add_view (Gtk.Widget view) {
         return_val_if_fail (!has_view (view), -1);
+        view.expand = true;
         return this.notebook.append_page (view);
     }
 

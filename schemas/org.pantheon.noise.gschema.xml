@@ -67,19 +67,7 @@
       <description>noise will load these modules during startup</description>
     </key>
   </schema>
-  
-  <enum id="org.pantheon.noise.ColumnBrowser.PositionType">
-    <value nick="Automatic" value="0" />
-    <value nick="Top" value="1" />
-    <value nick="Left" value="2" />
-  </enum>
-  
-  <enum id="org.pantheon.noise.WindowState">
-    <value nick="Normal" value="0" />
-    <value nick="Maximized" value="1" />
-    <value nick="Fullscreen" value="2" />
-  </enum>
-  
+
   <schema path="/org/pantheon/noise/savedstate/" id="org.pantheon.noise.SavedState">
     <key type="i" name="window-width">
       <default>1100</default>
@@ -91,8 +79,8 @@
       <summary>Window height</summary>
       <description>Window height</description>
     </key>
-    <key name="window-state" enum="org.pantheon.noise.WindowState">
-      <default>"Normal"</default>
+    <key type="i" name="window-state">
+      <default>0</default>
       <summary>The saved state of the window.</summary>
       <description>The saved state of the window.</description>
     </key>
@@ -131,8 +119,8 @@
       <summary>column-browser column height</summary>
       <description>column-browser column height</description>
     </key>
-    <key name="column-browser-position" enum="org.pantheon.noise.ColumnBrowser.PositionType">
-      <default>"Automatic"</default>
+    <key type="i" name="column-browser-position">
+      <default>0</default>
       <summary>column-browser columns position</summary>
       <description>column-browser columns position</description>
     </key>
@@ -142,7 +130,7 @@
       <description>Enabled column-browser columns for the music library view</description>
     </key>
   </schema>
-  
+
   <schema path="/org/pantheon/noise/equalizer/" id="org.pantheon.noise.Equalizer">
     <key type="b" name="equalizer-enabled">
       <default>false</default>

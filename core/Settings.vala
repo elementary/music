@@ -1,21 +1,9 @@
 namespace Noise {
 
-    public enum BrowserPosition {
-        AUTOMATIC = 0,
-        LEFT      = 2,
-        TOP       = 1
-    }
-
-    public enum WindowState {
-        NORMAL     = 0,
-        MAXIMIZED  = 1,
-        FULLSCREEN = 2
-    }
-    
     public class SavedState : Granite.Services.Settings {
         public int window_width { get; set; }
         public int window_height { get; set; }
-        public WindowState window_state { get; set; }
+        public int window_state { get; set; }
         public int sidebar_width { get; set; }
         public int more_width { get; set; }
         public bool more_visible { get; set; }
@@ -24,7 +12,7 @@ namespace Noise {
         public int column_browser_height { get; set; }
         public bool column_browser_enabled { get; set; }
         public string[] column_browser_visible_columns { get; set; }
-        public BrowserPosition column_browser_position { get; set; }
+        public int column_browser_position { get; set; }
 
         public SavedState () {
             base ("org.pantheon.noise.SavedState");

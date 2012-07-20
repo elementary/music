@@ -48,7 +48,7 @@ public class BeatBox.MusicColumnBrowser : BeatBox.ColumnBrowser {
         }
 
         lw.savedstate_settings.column_browser_visible_columns = visible_categories;
-   	    lw.savedstate_settings.column_browser_position = position;
+   	    lw.savedstate_settings.column_browser_position = (int)position;
     }
 
     private void restore_saved_state () {
@@ -60,6 +60,6 @@ public class BeatBox.MusicColumnBrowser : BeatBox.ColumnBrowser {
 		}
 
         visible_columns = visible_categories;
-		position = lw.savedstate_settings.column_browser_position;
+		position = (Noise.BrowserPosition)lw.savedstate_settings.column_browser_position;
 	}
 }
