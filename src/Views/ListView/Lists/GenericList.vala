@@ -62,6 +62,7 @@ public abstract class BeatBox.GenericList : FastView {
                     foreach (var m in get_selected_medias ())
                         to_remove.add (m);
                     lm.remove_media (to_remove, false);
+                    remove_media (to_remove);
                 }
                 return false;
             });
