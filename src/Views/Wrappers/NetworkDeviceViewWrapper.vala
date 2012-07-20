@@ -20,29 +20,21 @@
  * Authored by: Corentin Noël <tintou@mailoo.org>
  */
 
-using Gee;
-
 public class BeatBox.NetworkDeviceViewWrapper : ViewWrapper {
     public NetworkDevice d { get; private set; }
     
-    public NetworkDeviceViewWrapper (LibraryWindow lww, TreeViewSetup tvs,NetworkDevice d) {
+    public NetworkDeviceViewWrapper (LibraryWindow lww, TreeViewSetup tvs, NetworkDevice d) {
         base (lww, tvs.get_hint ());
         
         this.d = d;
 
-        // Add list view
         list_view = new ListView (this, tvs);
-
-        // Add alert
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
-
-        // Refresh view layout
         pack_views ();
 
         /*if (has_list_view)
             list_view.import_requested.connect (import_request);*/
 
-        embedded_alert.set_alert (_("Device unreachable"), _("%s could not acces to this network device").printf (lw.app.get_name ()), null, true, Gtk.MessageType.WARNING);
+        embedded_alert.set_alert (_("Device unreachable"), _("%s could not access to this network device").printf (lw.app.get_name ()), null, true, Gtk.MessageType.WARNING);
     }
 }
-

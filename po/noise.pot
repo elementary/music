@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-18 11:59-0600\n"
+"POT-Creation-Date: 2012-07-19 22:57-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -568,37 +568,33 @@ msgstr ""
 msgid "Behavior"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:73
-msgid "Extensions"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:106
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:99
 #, c-format
 msgid "Music Folder Location"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:109
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:102
 msgid "Music Folder"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:112
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:105
 #, c-format
 msgid "Library Management"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:115
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:108
 msgid "Keep music folder organized:"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:118
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:111
 msgid "Write metadata to file:"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:121
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:114
 msgid "Copy new files to music folder:"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:136
+#: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:129
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
@@ -961,21 +957,21 @@ msgstr ""
 msgid "All the songs in this device are already in your library."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
 #, c-format
 msgid "%i albums"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
 msgid "1 album"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
 #, c-format
 msgid "%i songs"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
 msgid "1 song"
 msgstr ""
 
@@ -1002,31 +998,31 @@ msgid ""
 "below."
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:41
 msgid "Audio CD Invalid"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:46
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:41
 #, c-format
 msgid "%s could not read the contents of this Audio CD"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:84
 #, c-format
 msgid "%i tracks"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:89
+#: /home/victor/noise/po/../src//Views/Wrappers/DeviceViewWrapper.vala:84
 msgid "1 track"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:45
+#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 msgid "Device unreachable"
 msgstr ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:45
+#: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 #, c-format
-msgid "%s could not acces to this network device"
+msgid "%s could not access to this network device"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
