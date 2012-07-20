@@ -22,12 +22,10 @@
 
 using Gtk;
 using Gee;
-using GLib;
 
-
-public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
+public class BeatBox.BrowserColumnModel : Object, TreeModel, TreeSortable {
 	/* all iters must match this */
-	public int stamp { get; private set; default = (int)GLib.Random.next_int(); }
+	private int stamp = (int)Random.next_int ();
 
 	public int n_items { get { return rows.get_length () - 1; } } // Doesn't count the first ("All..") item
 
@@ -46,7 +44,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	private BrowserColumn.Category category;
 
 	/** Initialize data storage, columns, etc. **/
-	public MillerModel (BrowserColumn.Category category) {
+	public BrowserColumnModel (BrowserColumn.Category category) {
 		rows = new Sequence<string> ();
 
 		this.category = category;
@@ -347,7 +345,7 @@ public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	}
 
 
-	/** Custom function to use built in sort in GLib.Sequence to our advantage **/
+	/** Custom function to use built in sort in Sequence to our advantage **/
 	public int sequenceIterCompareFunc (SequenceIter<string> a, SequenceIter<string> b) {
 		int rv = 1;
 
