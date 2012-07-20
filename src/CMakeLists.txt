@@ -26,6 +26,7 @@ vala_precompile(VALA_C
     Utils/String.vala
     Utils/Numeric.vala
     Utils/Icon.vala
+    Utils/CompareFunctionHolder.vala
 
     Noise.vala
 
@@ -96,8 +97,10 @@ vala_precompile(VALA_C
 
     # LIST VIEW
     Views/ListView/ListView.vala
+    Views/ListView/ColumnBrowser/BrowserColumnModel.vala
+    Views/ListView/ColumnBrowser/BrowserColumn.vala
     Views/ListView/ColumnBrowser/ColumnBrowser.vala
-    Views/ListView/ColumnBrowser/ColumnBrowserModel.vala
+    Views/ListView/ColumnBrowser/MusicColumnBrowser.vala
 
     Views/ListView/Lists/TreeViewSetup.vala
     Views/ListView/Lists/CellDataFunctionHelper.vala
