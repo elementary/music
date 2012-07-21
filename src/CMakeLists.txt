@@ -48,6 +48,7 @@ vala_precompile(VALA_C
     Objects/ArtistInfo.vala
     Objects/TrackInfo.vala
 
+    Widgets/SidebarPaned.vala
     Widgets/NavigationArrows.vala
     Widgets/SmartAlbumRenderer.vala
     Widgets/TopDisplay.vala

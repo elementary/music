@@ -79,6 +79,7 @@ public abstract class BeatBox.GridLayout : Gtk.ScrolledWindow {
 
 		icon_view.set_columns (-1);
 
+    /* Should be defined for GTK+ 3.4.3 or later */
     #if !GTK_ICON_VIEW_BUG_IS_FIXED
 
 		var wrapper_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);

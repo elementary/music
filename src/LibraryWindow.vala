@@ -62,7 +62,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.ToolButton playButton;
     private Gtk.ToolButton nextButton;
 
-    public Gtk.Paned                  main_hpaned           { get; private set; } // TODO: make private
+    public Granite.Widgets.SidebarPaned main_hpaned         { get; private set; } // TODO: make private
     public SideTreeView               sideTree              { get; private set; }
     public ViewContainer              view_container        { get; private set; } // TODO: make private
     public ToggleButton               column_browser_toggle { get; private set; }
@@ -295,16 +295,13 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         /** Main layout **/
 
         verticalBox           = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        main_hpaned           = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        main_hpaned           = new Granite.Widgets.SidebarPaned ();
         view_container_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         view_container        = new ViewContainer ();
         sideTree              = new SideTreeView (library_manager, this);
 
-        // Set theming
-        main_hpaned.get_style_context().add_class ("sidebar-pane-separator");
-
         // Set properties of various controls
-        main_hpaned.set_position (savedstate_settings.sidebar_width);
+        main_hpaned.position = savedstate_settings.sidebar_width;
         int view_container_pos = savedstate_settings.window_width - savedstate_settings.sidebar_width - savedstate_settings.more_width;
         view_container_hpaned.set_position (view_container_pos);
 

@@ -240,7 +240,7 @@ public class BeatBox.GridView : ContentView, GridLayout {
 		get_allocation (out alloc);
 
 		// move down to icon view's allocation
-		x += lm.lw.main_hpaned.get_position();
+		x += lm.lw.main_hpaned.position;
 		y += alloc.y;
 
 		int window_width = 0;
