@@ -23,8 +23,7 @@
 public class Granite.Widgets.SidebarPaned : Gtk.Overlay {
 
     protected Gtk.Paned paned { get; private set; }
-    private Gtk.EventBox left_handle = new Gtk.EventBox ();
-    private Gtk.EventBox right_handle = new Gtk.EventBox ();
+    private Gtk.EventBox handle = new Gtk.EventBox ();
 
     private static const string HANDLE_SIZE_PROPERTY = "handle-size";
     private int handle_size = 1;
@@ -96,7 +95,6 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay {
 
     private void create_widget () {
         style_get (HANDLE_SIZE_PROPERTY, out handle_size);
-        this.handle_size = this.handle_size / 2;
 
         this.paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         this.paned.expand = true;
@@ -106,8 +104,7 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay {
         Gdk.RGBA transparent = { 0.0, 0.0, 0.0, 0.0 };
         this.override_background_color (0, transparent);
 
-        setup_handle (left_handle);
-        setup_handle (right_handle);
+        setup_handle ();
 
         this.paned.notify["position"].connect (on_paned_position_update);
 
@@ -116,28 +113,28 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay {
         show_all ();
     }
 
-    private void setup_handle (Gtk.EventBox handle) {
-        handle.visible_window = true;
-        handle.hexpand = false;
-        handle.vexpand = true;
-        handle.halign = Gtk.Align.START;
-        handle.valign = Gtk.Align.FILL;
+    private void setup_handle () {
+        this.handle.visible_window = true;
+        this.handle.hexpand = false;
+        this.handle.vexpand = true;
+        this.handle.halign = Gtk.Align.START;
+        this.handle.valign = Gtk.Align.FILL;
 
         Gdk.RGBA transparent = { 0.0, 0.0, 0.0, 0.0 };
-        handle.override_background_color (0, transparent);
+        this.handle.override_background_color (0, transparent);
         this.add_overlay (handle);
 
-        handle.set_size_request (this.handle_size, -1);
+        this.handle.set_size_request (this.handle_size, -1);
 
-        handle.add_events (Gdk.EventMask.POINTER_MOTION_MASK
-                           | Gdk.EventMask.BUTTON_PRESS_MASK
-                           | Gdk.EventMask.BUTTON_RELEASE_MASK
-                           | Gdk.EventMask.LEAVE_NOTIFY_MASK);
+        this.handle.add_events (Gdk.EventMask.POINTER_MOTION_MASK
+                               | Gdk.EventMask.BUTTON_PRESS_MASK
+                               | Gdk.EventMask.BUTTON_RELEASE_MASK
+                               | Gdk.EventMask.LEAVE_NOTIFY_MASK);
 
-        handle.motion_notify_event.connect (on_handle_motion_notify);
-        handle.leave_notify_event.connect (on_handle_leave_notify);
-        handle.button_press_event.connect (on_handle_button_press);
-        handle.button_release_event.connect (on_handle_button_release);
+        this.handle.motion_notify_event.connect (on_handle_motion_notify);
+        this.handle.leave_notify_event.connect (on_handle_leave_notify);
+        this.handle.button_press_event.connect (on_handle_button_press);
+        this.handle.button_release_event.connect (on_handle_button_release);
     }
 
     private static void set_theming (Gtk.Widget widget, string stylesheet, int priority) {
@@ -162,34 +159,32 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay {
     }
 
     private bool update_virtual_handle_position () {
-        int new_pos = this.position;
+        int new_pos = this.position - this.handle_size / 2;
+
         new_pos = new_pos > 0 ? new_pos : 0;
         debug ("Updating virtual handle position: new_x = %i", new_pos);
 
-        // TODO: Clamp coordinates to valid values
-
-        this.right_handle.margin_left = new_pos + this.paned.get_handle_window ().get_width ();
-        this.left_handle.margin_left = new_pos - this.handle_size;
+        this.handle.margin_left = new_pos;
 
         return true;
     }
 
-    private bool on_handle_button_press (Gtk.Widget handle, Gdk.EventButton e) {
+    private bool on_handle_button_press (Gdk.EventButton e) {
         if (!this.on_resize_mode && e.button == Gdk.BUTTON_PRIMARY) {
             this.on_resize_mode = true;
 
             // Tell GDK that we're grabbing the virtual handle
             // so that it locks events comming from different sources
             // for this window
-            Gtk.grab_add (handle);
+            Gtk.grab_add (this.handle);
         }
 
         return true;
     }
 
-    private bool on_handle_button_release (Gtk.Widget handle, Gdk.EventButton e) {
+    private bool on_handle_button_release (Gdk.EventButton e) {
         this.on_resize_mode = false;
-        Gtk.grab_remove (handle);
+        Gtk.grab_remove (this.handle);
 
         return true;
     }
