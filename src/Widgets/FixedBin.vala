@@ -34,23 +34,11 @@ public class FixedBin : Gtk.EventBox {
     public FixedBin (int min_width = -1, int min_height = -1,
                      int max_width = -1, int max_height = -1,
                      bool visible_window = false)
-    {
-
-        //add_events (Gdk.EventMask.STRUCTURE_MASK
-        //            | Gdk.EventMask.SUBSTRUCTURE_MASK);
-        add_events (Gdk.EventMask.ALL_EVENTS_MASK);
-        
-        //hexpand = true;
+    {   
         set_min_dimensions (min_width, min_height);
         set_max_dimensions (max_width, max_height);
 
         this.visible_window = visible_window;
-        size_allocate.connect (on_size_allocate);
-        window_state_event.connect ( (event) =>
-            {
-                warning ("WINDOW_STATE_EVENT");
-                return false;
-            });
     }
 
     /**
@@ -66,6 +54,7 @@ public class FixedBin : Gtk.EventBox {
         if (child != null)
             remove (child);
 
+        widget.halign = Gtk.Align.CENTER;
         add (widget);
     }
 
@@ -84,33 +73,6 @@ public class FixedBin : Gtk.EventBox {
     /**
      * INTERNAL GEOMETRY MANAGEMENT
      */
-
-    private void on_size_allocate (Gtk.Allocation allocation)
-    {
-        warning("SIZE_ALLOCATE FIRED!");
-        update_child_margins (allocation.width, allocation.height);
-    }
-
-    private void update_child_margins (int allocated_width, int allocated_height) {
-        warning("UPDATE_CHILD_MARGINS - width <%d> | height <%d>!", allocated_width, allocated_height);
-
-        /*//if(get_root_window ().get_state () == Gdk.WindowState.MAXIMIZED )
-        if (window.get_state () == Gdk.WindowState.MAXIMIZED)
-            warning("----MAXIMIZED");
-        else
-        warning("----MINIMIZED");*/
-        
-        if (0 < max_width && max_width < allocated_width)
-        {
-            int padding_width = (allocated_width - this.max_width) / 2;
-            
-            get_child ().margin_left = padding_width;
-            get_child ().margin_right = padding_width;
-        }else{
-            get_child ().margin_left = 0;
-            get_child ().margin_right = 0;
-        }   
-    }
     
     public override Gtk.SizeRequestMode get_request_mode () {
         return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
@@ -122,33 +84,10 @@ public class FixedBin : Gtk.EventBox {
         // - If the widget is set to expand, then simply set the padding
         //   of the child to compensate it getting larger than it should
         base.get_preferred_width (out minimum_width, out natural_width);
-
-        //warning("GET_PREFERRED_WIDTH");
-        
-        /*int ch_min_width, ch_nat_width;
-          get_child ().get_preferred_width (out ch_min_width, out ch_nat_width);*/
-
-        //int allocated_width = get_allocated_width ();
-        
-        //stdout.printf("BEFOR - MIN_WIDTH: <%d> NATURAL_WIDTH: <%d>\n", minimum_width, natural_width);
-        //stdout.printf("ALLOC - WIDTH: <%d>\n", allocated_width);
         
         // We have minimum width set, see if it should be used
         if (this.min_width > 0) {
             minimum_width = this.min_width;
-            // If the widget wants a smaller width than the minimum,
-            // then force it to be the minimum one
-            //if (natural_width < minimum_width)
-            //    natural_width = minimum_width;
         }
-
-        update_child_margins (get_allocated_width (), get_allocated_height ());
     }
-    
-    /*public override void get_preferred_height_for_width (int width, out int minimum_height,
-                                                         out int natural_height)
-    {
-        // TODO ?
-        base.get_preferred_height_for_width (width, out minimum_height, out natural_height);
-        }*/
 }
