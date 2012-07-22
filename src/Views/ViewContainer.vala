@@ -22,10 +22,15 @@
 
 public class BeatBox.ViewContainer : Gtk.EventBox {
 
-    private Gtk.Notebook notebook = new Gtk.Notebook ();
+    private Gtk.Notebook? notebook = null;
 
     public ViewContainer () {
         this.visible_window = false;
+
+        this.push_composite_child ();
+        this.notebook = new Gtk.Notebook ();
+        this.notebook.set_composite_name ("notebook");
+        this.pop_composite_child ();
 
         this.notebook.show_tabs = false;
         this.notebook.show_border = false;
@@ -34,6 +39,7 @@ public class BeatBox.ViewContainer : Gtk.EventBox {
     }
 
     public override void remove (Gtk.Widget widget) { }
+    public override void add (Gtk.Widget widget) { }
 
     /**
      * Appends a widget to the main views.

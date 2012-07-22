@@ -93,5 +93,4 @@ namespace BeatBox.PixbufUtils {
 
         return buffer_surface.load_to_pixbuf();
     }
-
 }

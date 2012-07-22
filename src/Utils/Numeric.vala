@@ -20,9 +20,15 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
+// XXX: Currently all the methods of this class are deprecated, since
+//      better native replacements are available under the GLib.Math namespace
+//      (which only happens to be a wrapper for math.h)
+
 namespace BeatBox.Numeric {
 
     /**
+     * @Deprecated. Use Math.truncate() instead.
+     *
      * Returns the lowest uint given a double.
      * For instance:
      * INPUT => OUTPUT
@@ -44,6 +50,7 @@ namespace BeatBox.Numeric {
     }
 
     /**
+     * @Deprecated. Use Math.truncate..() instead.
      * Returns the lowest int given a float.
      * For instance:
      * INPUT => OUTPUT
@@ -65,6 +72,7 @@ namespace BeatBox.Numeric {
     }
 
     /**
+     * @Deprecated. Use Math.round () instead.
      * Approximates a double to the best uint.
      */
     public uint uint_from_double (double number) {
@@ -96,6 +104,7 @@ namespace BeatBox.Numeric {
     }
 
     /**
+     * @Deprecated. Use Math.round () instead.
      * Approximates a float to the best int.
      */
     public int int_from_float (float number) {

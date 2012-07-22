@@ -134,12 +134,11 @@ public abstract class BeatBox.ColumnBrowser : Gtk.Grid {
 	protected Gee.Collection<Media> media = new Gee.LinkedList<Media> ();
 
 	// Filtered media results. We provide the data. No need to search again outside
-	public Gee.Collection<Media> _media_results;
+	protected Gee.Collection<Media> _media_results;
 	public Gee.Collection<Media> media_results { get { return _media_results; } }
 
 	public Gee.LinkedList<unowned BrowserColumn> columns { get; construct set; }
-
-	private Gtk.Menu column_chooser_menu;
+	protected Gtk.Menu column_chooser_menu;
 
 	public ColumnBrowser (ViewWrapper view_wrapper, BrowserColumn.Category[] categories) {
 		this.orientation = Gtk.Orientation.HORIZONTAL;

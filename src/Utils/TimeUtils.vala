@@ -39,11 +39,10 @@ namespace BeatBox.TimeUtils {
             if (seconds < 2)
                 return _("1 second");
 
-            return _("%s seconds").printf (seconds.to_string ());
+            return _("%u seconds").printf (seconds);
         }
 
-        double secs = (double)seconds; // WARNING: this cast is dangerous
-
+        double secs = (double)seconds; // XXX: this cast is dangerous
         uint days = 0, hours = 0, minutes = 0;
 
         // calculate days

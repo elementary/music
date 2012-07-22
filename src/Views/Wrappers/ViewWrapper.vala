@@ -318,6 +318,12 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
         update_library_window_widgets ();
     }
 
+    /**
+     * XXX, FIXME: Although this is working perfectly, is embarrassing. This should
+     *             be implemented by client code. Although it's overridable, we shouldn't
+     *             have any kind of implementation hanging around here, since it simply
+     *             breaks the entire abstraction.
+     */
     protected virtual string get_statusbar_text () {
         if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
             return "";

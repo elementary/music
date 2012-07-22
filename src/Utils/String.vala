@@ -37,6 +37,8 @@ namespace BeatBox.String {
     }
 
     /**
+     * @Deprecated: Vala's GLib integration already provides the string.escape() method.
+     *              no need for an extra method.
      * Escapes the text for use with Pango Markup.
      * @return escaped text
      */
