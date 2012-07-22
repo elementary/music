@@ -25,9 +25,10 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay, Gtk.Orientable {
     protected Gtk.Paned paned { get; private set; }
     private Gtk.EventBox? handle = null;
 
-    private static const string STYLE_PROP_HANDLE_SIZE = "handle-size";
     private bool on_resize_mode = false;
     private Gdk.Cursor? arrow_cursor = null;
+
+    static const string STYLE_PROP_HANDLE_SIZE = "handle-size";
 
     protected int handle_size {
         get {
@@ -134,14 +135,17 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay, Gtk.Orientable {
 
         setup_handle ();
 
-        this.paned.notify["position"].connect (on_paned_position_update);
         this.paned.size_allocate.connect_after (on_paned_size_allocate);
 
-        // Use POINTER_MOTION_HINT_MASK for performance reasons. It reduces
-        // the amount of motion events emmited.
+        // The virtual handle will always follow the paned's position
+        this.paned.notify["position"].connect (update_virtual_handle_position);
+
+        // We use POINTER_MOTION_HINT_MASK for performance reasons. It reduces the number
+        // of motion events received.
         this.add_events (Gdk.EventMask.POINTER_MOTION_MASK
                          | Gdk.EventMask.POINTER_MOTION_HINT_MASK);
 
+        // Set a proper initial status for internal widgets.
         this.position = -1;
         this.orientation = Gtk.Orientation.HORIZONTAL;
 
@@ -160,15 +164,12 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay, Gtk.Orientable {
         this.add_overlay (handle);
 
         this.handle.add_events (Gdk.EventMask.BUTTON_PRESS_MASK
-                               | Gdk.EventMask.BUTTON_RELEASE_MASK
-                               | Gdk.EventMask.ENTER_NOTIFY_MASK
-                               | Gdk.EventMask.LEAVE_NOTIFY_MASK);
+                               | Gdk.EventMask.BUTTON_RELEASE_MASK);
 
-        this.handle.enter_notify_event.connect (on_handle_enter_notify);
-        this.handle.leave_notify_event.connect (on_handle_leave_notify);
         this.handle.button_press_event.connect (on_handle_button_press);
         this.handle.button_release_event.connect (on_handle_button_release);
         this.handle.grab_broken_event.connect (on_handle_grab_broken);
+        this.handle.realize.connect (set_arrow_cursor);
     }
 
     protected static void set_theming (Gtk.Widget widget, string stylesheet, int priority) {
@@ -185,6 +186,33 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay, Gtk.Orientable {
         widget.get_style_context ().add_provider (css_provider, priority);
     }
 
+    public override bool motion_notify_event (Gdk.EventMotion e) {
+        var device = e.device ?? Gtk.get_current_event_device ();
+
+        if (device == null) {
+            var dev_manager = this.paned.get_display ().get_device_manager ();
+            device = dev_manager.list_devices (Gdk.DeviceType.MASTER).nth_data (0);
+        }
+
+        if (this.on_resize_mode && device != null) {
+            var window = this.paned.get_window ();
+
+            if (window != null) {
+                int x, y;
+                window.get_device_position (device, out x, out y, null);
+                int pos = (this.orientation == Gtk.Orientation.HORIZONTAL) ? x : y;
+
+                if (this.paned.get_realized () && this.paned.get_mapped () && this.position_set)
+                    pos = pos.clamp (this.paned.min_position, this.paned.max_position);
+
+                this.position = pos;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void set_orientation_internal (Gtk.Orientation orientation) {
         this.paned.orientation = orientation;
         bool horizontal = orientation == Gtk.Orientation.HORIZONTAL;
@@ -195,12 +223,12 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay, Gtk.Orientable {
 
         if (horizontal) {
             this.arrow_cursor = new Gdk.Cursor (Gdk.CursorType.SB_H_DOUBLE_ARROW);
-            this.handle.margin_top = 0;
+            this.handle.margin_top = this.handle.margin_bottom = 0;
             this.handle.halign = Gtk.Align.START;
             this.handle.valign = Gtk.Align.FILL;
         } else {
             this.arrow_cursor = new Gdk.Cursor (Gdk.CursorType.SB_V_DOUBLE_ARROW);
-            this.handle.margin_left = 0;
+            this.handle.margin_left = this.handle.margin_right = 0;
             this.handle.halign = Gtk.Align.FILL;
             this.handle.valign = Gtk.Align.START;
         }
@@ -208,13 +236,8 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay, Gtk.Orientable {
         on_paned_size_allocate ();
         update_virtual_handle_position ();
 
-        var window = this.get_window ();
-        if (window != null && window.get_cursor () != null)
-            set_arrow_cursor (true);
-    }
-
-    private void on_paned_position_update () {
-        update_virtual_handle_position ();
+        // Update cursor.
+        set_arrow_cursor ();
     }
 
     private void on_paned_size_allocate () {
@@ -233,81 +256,46 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay, Gtk.Orientable {
             this.handle.set_size_request (size, -1);
         else
             this.handle.set_size_request (-1, size);
-
-        if (!this.handle.visible)
-            set_arrow_cursor (false);
     }
 
     private void update_virtual_handle_position () {
         int new_pos = this.position - this.handle_size / 2;
         new_pos = new_pos > 0 ? new_pos : 0;
 
-        if (orientation == Gtk.Orientation.HORIZONTAL)
+        if (this.orientation == Gtk.Orientation.HORIZONTAL)
             this.handle.margin_left = new_pos;
         else
             this.handle.margin_top = new_pos;
     }
 
-    public override bool motion_notify_event (Gdk.EventMotion e) {
-        var window = this.paned.get_window ();
-        return_val_if_fail (window != null, false);
-
-        int x, y;
-        window.get_device_position (e.device, out x, out y, null);
-
-        if (this.on_resize_mode) {
-            int pos = (this.orientation == Gtk.Orientation.HORIZONTAL) ? x : y;
-
-            if (this.paned.get_realized () && this.paned.get_mapped () && this.paned.position_set)
-                pos = pos.clamp (this.paned.min_position, this.paned.max_position);
-
-            this.position = pos;
-        }
-
-        return false;
+    private void set_arrow_cursor () {
+        var window = this.handle.get_window ();
+        if (window != null && window.get_cursor () != this.arrow_cursor)
+            window.set_cursor (this.arrow_cursor);
     }
 
     /**
-     * Handle's event callbacks
+     * Handle's Event Callbacks
      */
 
     private bool on_handle_button_press (Gdk.EventButton e) {
         if (!this.on_resize_mode && e.button == Gdk.BUTTON_PRIMARY) {
             this.on_resize_mode = true;
             Gtk.grab_add (this.handle);
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     private bool on_handle_button_release (Gdk.EventButton e) {
         this.on_resize_mode = false;
         Gtk.grab_remove (this.handle);
-
         return true;
     }
 
-    private bool on_handle_grab_broken () {
+    private bool on_handle_grab_broken (Gdk.EventGrabBroken e) {
         this.on_resize_mode = false;
-        set_arrow_cursor (false);
-        return false;
-    }
-
-    private bool on_handle_enter_notify (Gdk.EventCrossing event) {
-        set_arrow_cursor (true);
-        return false;
-    }
-
-    private bool on_handle_leave_notify (Gdk.EventCrossing event) {
-        if (!this.on_resize_mode)
-            set_arrow_cursor (false);
-
-        return false;
-    }
-
-    private void set_arrow_cursor (bool use_arrow) {
-        var window = this.get_window ();
-        if (window != null)
-            window.set_cursor (use_arrow ? arrow_cursor : null);
+        return true;
     }
 }

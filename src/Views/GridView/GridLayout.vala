@@ -304,11 +304,11 @@ public abstract class BeatBox.GridLayout : Gtk.ScrolledWindow {
 
 		int margin_width = spacing + ITEM_PADDING;
 
-   #if GTK_ICON_VIEW_BUG_IS_FIXED
+    #if GTK_ICON_VIEW_BUG_IS_FIXED
 		icon_view.set_margin (margin_width);
-   #else
+    #else
 		vpadding_box.set_size_request (-1, margin_width);
 		hpadding_box.set_size_request (margin_width, -1);
-        #endif
+    #endif
 	}
 }
