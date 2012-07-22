@@ -67,6 +67,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public ViewContainer              view_container        { get; private set; } // TODO: make private
     public ToggleButton               column_browser_toggle { get; private set; }
     public TopDisplay                 topDisplay            { get; private set; } // TODO: make private
+    private FixedBin                  topDisplayBin         { get; private set; }
     public Granite.Widgets.ModeButton viewSelector          { get; private set; } // TODO: make private
     public Granite.Widgets.SearchBar  searchField           { get; private set; } // TODO: make private
     public BottomStatusBar            statusbar             { get; private set; } // TODO: make private
@@ -239,6 +240,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
         column_browser_toggle   = new Gtk.ToggleButton ();
         topDisplay              = new TopDisplay (library_manager);
+        topDisplayBin           = new FixedBin(300, -1, 700, -1);
         viewSelector            = new Granite.Widgets.ModeButton ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
@@ -248,6 +250,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         viewSelector.append (Icons.VIEW_DETAILS.render_image (IconSize.MENU));
 
         column_browser_toggle.set_image (Icons.VIEW_COLUMN.render_image (Gtk.IconSize.MENU));
+
+        topDisplayBin.set_widget (topDisplay, true, false);
 
         // Set search timeout in ms
         searchField.pause_delay = 150;
@@ -259,7 +263,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         view_selector_item.add (viewSelector);
         column_toggle_item.add (column_browser_toggle);
-        top_display_item.add (topDisplay);
+        top_display_item.add (topDisplayBin);
         search_field_item.add (searchField);
 
         // Tweak view selector's size
