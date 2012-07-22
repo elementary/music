@@ -245,7 +245,6 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
         main_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
-        main_toolbar.set_hexpand (true);
 
         viewSelector.append (Icons.VIEW_ICONS.render_image (IconSize.MENU));
         viewSelector.append (Icons.VIEW_DETAILS.render_image (IconSize.MENU));
@@ -278,7 +277,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplay.margin_right = 30;
 
         search_field_item.margin_right = 12;
-        
+
         main_toolbar.insert (previousButton, -1);
         main_toolbar.insert (playButton, -1);
         main_toolbar.insert (nextButton, -1);

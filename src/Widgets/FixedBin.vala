@@ -33,8 +33,7 @@ public class FixedBin : Gtk.EventBox {
     
     public FixedBin (int min_width = -1, int min_height = -1,
                      int max_width = -1, int max_height = -1,
-                     bool visible_window = false)
-    {   
+                     bool visible_window = false) {
         set_min_dimensions (min_width, min_height);
         set_max_dimensions (max_width, max_height);
 
@@ -91,8 +90,7 @@ public class FixedBin : Gtk.EventBox {
     }
 
     public override void get_preferred_height_for_width (int width, out int minimum_height,
-                                                         out int natural_height)
-    {
+                                                         out int natural_height) {
         base.get_preferred_height_for_width (width, out minimum_height, out natural_height);
 
         // We have minimum height set, use it
