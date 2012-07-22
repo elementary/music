@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-19 23:03-0600\n"
+"POT-Creation-Date: 2012-07-21 21:54-0600\n"
 "PO-Revision-Date: 2012-07-09 11:11+0000\n"
 "Last-Translator: Adrian Widerski <Unknown>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-21 05:36+0000\n"
+"X-Launchpad-Export-Date: 2012-07-22 05:00+0000\n"
 "X-Generator: Launchpad (build 15654)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
@@ -54,7 +54,7 @@ msgstr "Skanowanie muzyki poszukując zmian. To może trochę potrwać ..."
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid "Unknown Artist"
 msgstr "Nieznany wykonawca"
 
@@ -70,7 +70,7 @@ msgstr "Nieznana ścieżka"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid "Unknown Album"
 msgstr "Nieznany album"
 
@@ -79,7 +79,7 @@ msgid "Unknown Title"
 msgstr "Nieznany tytuł"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Automatycznie"
 
@@ -170,7 +170,7 @@ msgstr "Listy odtwarzania"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:526
+#: /home/victor/noise/po/../src//LibraryWindow.vala:523
 msgid "Music"
 msgstr "Muzyka"
 
@@ -978,21 +978,21 @@ msgstr "Ustala katalog z muzyką"
 msgid "All the songs in this device are already in your library."
 msgstr "Wszystkie utwory z tego urządzenia znajdują się już w bibliotece."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 #, c-format
 msgid "%i albums"
 msgstr "%i albumów"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 msgid "1 album"
 msgstr "1 album"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 #, c-format
 msgid "%i songs"
 msgstr "%i utworów"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 msgid "1 song"
 msgstr "1 utwór"
 
@@ -1118,7 +1118,7 @@ msgid "Show in File Browser"
 msgstr "Wyświetl w przeglądarce plików"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:537
+#: /home/victor/noise/po/../src//LibraryWindow.vala:534
 msgid "Queue"
 msgstr "Kolejka"
 
@@ -1254,11 +1254,11 @@ msgstr "Lata"
 msgid "Ratings"
 msgstr "Oceny"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:153
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
 msgid "On Left"
 msgstr "Po lewej"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:155
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
 msgid "On Top"
 msgstr "Na górze"
 
@@ -1360,44 +1360,44 @@ msgstr "Przeszukaj katalog z muzyką"
 msgid "Search Music"
 msgstr "Szukaj muzyki"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:542
+#: /home/victor/noise/po/../src//LibraryWindow.vala:539
 msgid "History"
 msgstr "Historia"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid " by "
 msgstr " w wykonaniu "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid " on "
 msgstr " z albumu "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:927
+#: /home/victor/noise/po/../src//LibraryWindow.vala:924
 msgid "Import Music"
 msgstr "Zaimportuj muzykę"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:951
+#: /home/victor/noise/po/../src//LibraryWindow.vala:948
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importowanie</b> muzyki z <b>%s</b> do kolekcji."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:966
+#: /home/victor/noise/po/../src//LibraryWindow.vala:963
 msgid "Rescanning music folder for changes"
 msgstr "Wyszukiwanie zmian w katalogu z muzyką"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Could not find Music Folder"
 msgstr "Nie można odnaleźć katalogu z muzyką"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Proszę upewnić się, że katalog z muzyką jest dostępny i zamontowany"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 msgid "Import Complete"
 msgstr "Zakończono importowanie"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s importowane do biblioteki."
@@ -1408,45 +1408,45 @@ msgstr "1 sekunda"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
-msgid "%s seconds"
-msgstr "%s sekund"
+msgid "%u seconds"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
 msgid "1 day"
 msgstr "1 dzień"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%i days"
 msgstr "%i dni"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:72
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:71
 msgid "1 hour"
 msgstr "1 godzina"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:74
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:73
 #, c-format
 msgid "%i hours"
 msgstr "%i godzin"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:79
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
 msgid "1 minute"
 msgstr "1 minuta"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:81
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%i minutes"
 msgstr "%i minut"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:101
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:105
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:113
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:90
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:100
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:104
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:112
 #, c-format
 msgid "%s and %s"
 msgstr "%s i %s"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:98
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s i %s"
@@ -1665,6 +1665,10 @@ msgstr "Techno"
 #~ msgid "Finding songs similar to %s by %s"
 #~ msgstr "Wyszukiwanie utworów podobnych do %s - %s"
 
+#, c-format
+#~ msgid "%s seconds"
+#~ msgstr "%s sekund"
+
 #~ msgid "Click on the button to edit playlist rules"
 #~ msgstr "Kliknij, aby zmodyfikować reguły listy odtwarzania"
 
@@ -1683,10 +1687,3 @@ msgstr "Techno"
 #~ msgstr ""
 #~ "Widok %s automatycznie znajdzie utwory podobne do aktualnie odtwarzanego. "
 #~ "Następnie możesz odtworzyć te piosenki lub zapisać je jako listy odtwarzania."
-
-#~ msgid "Extensions"
-#~ msgstr "Wtyczki"
-
-#, c-format
-#~ msgid "%s could not acces to this network device"
-#~ msgstr "%s nie może uzyskać dostępu do tego urządzenia sieciowego"

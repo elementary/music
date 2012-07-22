@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-19 23:03-0600\n"
+"POT-Creation-Date: 2012-07-21 21:54-0600\n"
 "PO-Revision-Date: 2012-06-20 09:25+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-21 05:35+0000\n"
+"X-Launchpad-Export-Date: 2012-07-22 05:00+0000\n"
 "X-Generator: Launchpad (build 15654)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
@@ -55,7 +55,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid "Unknown Artist"
 msgstr "Tuntematon artisti"
 
@@ -71,7 +71,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid "Unknown Album"
 msgstr "Tuntematon albumi"
 
@@ -80,7 +80,7 @@ msgid "Unknown Title"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Automaattinen"
 
@@ -171,7 +171,7 @@ msgstr "Soittolistat"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:526
+#: /home/victor/noise/po/../src//LibraryWindow.vala:523
 msgid "Music"
 msgstr "Musiikki"
 
@@ -961,21 +961,21 @@ msgstr "Vaihda musiikkikansiotasi"
 msgid "All the songs in this device are already in your library."
 msgstr "Kaikki tällä laitteella olevat kappaleet ovat jo kirjastossa."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 #, c-format
 msgid "%i albums"
 msgstr "%i albumia"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 msgid "1 album"
 msgstr "Yksi albumi"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 #, c-format
 msgid "%i songs"
 msgstr "%i kappaletta"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 msgid "1 song"
 msgstr "Yksi kappale"
 
@@ -1095,7 +1095,7 @@ msgid "Show in File Browser"
 msgstr "Näytä tiedostonhallinnassa"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:537
+#: /home/victor/noise/po/../src//LibraryWindow.vala:534
 msgid "Queue"
 msgstr "Laita jonoon"
 
@@ -1231,11 +1231,11 @@ msgstr "Vuodet"
 msgid "Ratings"
 msgstr "Arvostelut"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:153
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
 msgid "On Left"
 msgstr "Vasemmalla"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:155
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
 msgid "On Top"
 msgstr "Ylhäällä"
 
@@ -1337,44 +1337,44 @@ msgstr "Selaa musiikkikansio uudelleen"
 msgid "Search Music"
 msgstr "Etsi musiikkia"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:542
+#: /home/victor/noise/po/../src//LibraryWindow.vala:539
 msgid "History"
 msgstr "Historia"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid " by "
 msgstr " artistilta "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid " on "
 msgstr " levyltä "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:927
+#: /home/victor/noise/po/../src//LibraryWindow.vala:924
 msgid "Import Music"
 msgstr "Tuo musiikkia"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:951
+#: /home/victor/noise/po/../src//LibraryWindow.vala:948
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Tuodaan</b> musiikkia kirjastoon kohteesta <b>%s</b>."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:966
+#: /home/victor/noise/po/../src//LibraryWindow.vala:963
 msgid "Rescanning music folder for changes"
 msgstr "Selataan uudelleen musiikkikansiota muutosten varalta"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Could not find Music Folder"
 msgstr "Musiikkikansiota ei löydetty"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Varmastathan, että musiikkikansiosi on saatavilla ja liitettynä."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 msgid "Import Complete"
 msgstr "Tuonti on valmis"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s on tuonut kirjastosi."
@@ -1385,45 +1385,45 @@ msgstr "1 sekunti"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
-msgid "%s seconds"
-msgstr "%s sekuntia"
+msgid "%u seconds"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
 msgid "1 day"
 msgstr "1 päivä"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%i days"
 msgstr "%i päivää"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:72
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:71
 msgid "1 hour"
 msgstr "1 tunti"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:74
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:73
 #, c-format
 msgid "%i hours"
 msgstr "%i tuntia"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:79
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
 msgid "1 minute"
 msgstr "1 minuutti"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:81
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%i minutes"
 msgstr "%i minuuttia"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:101
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:105
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:113
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:90
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:100
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:104
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:112
 #, c-format
 msgid "%s and %s"
 msgstr "%s ja %s"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:98
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s ja %s"
@@ -1535,6 +1535,10 @@ msgstr "Techno"
 #~ msgstr "%i kohdetta"
 
 #, c-format
+#~ msgid "%s seconds"
+#~ msgstr "%s sekuntia"
+
+#, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
 #~ msgstr "%s on tuonut kappaleen ääni-CD:ltä."
 
@@ -1557,9 +1561,6 @@ msgstr "Techno"
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "Noudetaan vastaavanlaisia kappaleita"
-
-#~ msgid "Extensions"
-#~ msgstr "Laajennukset"
 
 #~ msgid "Similar Song View"
 #~ msgstr "Vastaavanlaiset kappaleet -näkymä"

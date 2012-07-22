@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-19 23:03-0600\n"
+"POT-Creation-Date: 2012-07-21 21:54-0600\n"
 "PO-Revision-Date: 2012-07-19 03:29+0000\n"
 "Last-Translator: Nikita Putko <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-21 05:36+0000\n"
+"X-Launchpad-Export-Date: 2012-07-22 05:00+0000\n"
 "X-Generator: Launchpad (build 15654)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
@@ -56,7 +56,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid "Unknown Artist"
 msgstr "Неизвестный исполнитель"
 
@@ -72,7 +72,7 @@ msgstr "Неизвестная дорожка"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid "Unknown Album"
 msgstr "Неизвестный альбом"
 
@@ -81,7 +81,7 @@ msgid "Unknown Title"
 msgstr "Неизвестная композиция"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Автоматически"
 
@@ -172,7 +172,7 @@ msgstr "Списки воспроизведения"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:526
+#: /home/victor/noise/po/../src//LibraryWindow.vala:523
 msgid "Music"
 msgstr "Музыка"
 
@@ -989,21 +989,21 @@ msgstr "Изменить расположение папки с музыкой."
 msgid "All the songs in this device are already in your library."
 msgstr "Все композиции на устройстве уже находятся в библиотеке"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 #, c-format
 msgid "%i albums"
 msgstr "%i альбомов"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 msgid "1 album"
 msgstr "1 альбом"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 #, c-format
 msgid "%i songs"
 msgstr "%i композиций"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 msgid "1 song"
 msgstr "1 композиция"
 
@@ -1131,7 +1131,7 @@ msgid "Show in File Browser"
 msgstr "Показать в обозревателе файлов"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:537
+#: /home/victor/noise/po/../src//LibraryWindow.vala:534
 msgid "Queue"
 msgstr "Добавить в очередь"
 
@@ -1267,11 +1267,11 @@ msgstr "Годы"
 msgid "Ratings"
 msgstr "Оценки"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:153
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
 msgid "On Left"
 msgstr "Слева"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:155
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
 msgid "On Top"
 msgstr "Сверху"
 
@@ -1373,46 +1373,46 @@ msgstr "Сканировать папку с музыкой заново"
 msgid "Search Music"
 msgstr "Поиск музыки"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:542
+#: /home/victor/noise/po/../src//LibraryWindow.vala:539
 msgid "History"
 msgstr "Журнал"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid " by "
 msgstr " в исполнении "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid " on "
 msgstr " из альбома "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:927
+#: /home/victor/noise/po/../src//LibraryWindow.vala:924
 msgid "Import Music"
 msgstr "Импортировать музыку"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:951
+#: /home/victor/noise/po/../src//LibraryWindow.vala:948
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Импорт</b> музыки из «<b>%s</b>» в библиотеку."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:966
+#: /home/victor/noise/po/../src//LibraryWindow.vala:963
 msgid "Rescanning music folder for changes"
 msgstr "Повторное сканирование папки с музыкой для поиска изменений"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Could not find Music Folder"
 msgstr "Не удалось найти папку с музыкой"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Убедитесь, что папка с музыкой доступна, а устройство, на котором она "
 "находится, монтировано."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 msgid "Import Complete"
 msgstr "Импортирование завершено"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s импортировал библиотеку."
@@ -1423,45 +1423,45 @@ msgstr "1 секунда"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
-msgid "%s seconds"
-msgstr "%s секунд"
+msgid "%u seconds"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
 msgid "1 day"
 msgstr "1 день"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%i days"
 msgstr "%i дней"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:72
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:71
 msgid "1 hour"
 msgstr "1 час"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:74
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:73
 #, c-format
 msgid "%i hours"
 msgstr "%i часов"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:79
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
 msgid "1 minute"
 msgstr "1 минута"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:81
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%i minutes"
 msgstr "%i минут"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:101
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:105
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:113
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:90
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:100
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:104
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:112
 #, c-format
 msgid "%s and %s"
 msgstr "%s и %s"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:98
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s и %s"
@@ -1635,8 +1635,9 @@ msgstr "Техно"
 #~ msgid "Import media from device"
 #~ msgstr "Импортировать данные с устройства"
 
-#~ msgid "Extensions"
-#~ msgstr "Дополнения"
+#, c-format
+#~ msgid "%s seconds"
+#~ msgstr "%s секунд"
 
 #~ msgid "CD import will be <b>cancelled</b> after current import."
 #~ msgstr ""
@@ -1703,7 +1704,3 @@ msgstr "Техно"
 #~ msgstr ""
 #~ "Если вы хотите разрешить интеграцию Last.fm, вам необходимо задать "
 #~ "полномочия %s. Это необходимо сделать единожды."
-
-#, c-format
-#~ msgid "%s could not acces to this network device"
-#~ msgstr "Не возможно получить доступ к сетевому устройству %s"

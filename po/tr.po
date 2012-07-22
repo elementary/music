@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-19 23:03-0600\n"
+"POT-Creation-Date: 2012-07-21 21:54-0600\n"
 "PO-Revision-Date: 2012-06-30 22:01+0000\n"
 "Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-21 05:36+0000\n"
+"X-Launchpad-Export-Date: 2012-07-22 05:00+0000\n"
 "X-Generator: Launchpad (build 15654)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
@@ -54,7 +54,7 @@ msgstr "Müzik klasörü taranıyor.Bu işlem biraz zaman alabilir..."
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid "Unknown Artist"
 msgstr "Bilinmeyen Sanatçı"
 
@@ -70,7 +70,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid "Unknown Album"
 msgstr "Bilinmeyen Albüm"
 
@@ -79,7 +79,7 @@ msgid "Unknown Title"
 msgstr "Bilinmeyen Başlık"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Otomatik"
 
@@ -170,7 +170,7 @@ msgstr "Çalma Listeleri"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:526
+#: /home/victor/noise/po/../src//LibraryWindow.vala:523
 msgid "Music"
 msgstr "Müzik"
 
@@ -970,21 +970,21 @@ msgstr "Müzik dizinini değiştir."
 msgid "All the songs in this device are already in your library."
 msgstr "Bu cihazdaki bütün müzikler zaten kitaplığınızda mevcut"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 #, c-format
 msgid "%i albums"
 msgstr "%i albüm"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 msgid "1 album"
 msgstr "%1 albüm"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 #, c-format
 msgid "%i songs"
 msgstr "%i şarkı"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 msgid "1 song"
 msgstr "1 şarkı"
 
@@ -1104,7 +1104,7 @@ msgid "Show in File Browser"
 msgstr "Dosya gezgininde göster"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:537
+#: /home/victor/noise/po/../src//LibraryWindow.vala:534
 msgid "Queue"
 msgstr "Kuyruk"
 
@@ -1240,11 +1240,11 @@ msgstr "Yıllar"
 msgid "Ratings"
 msgstr "Derecelendirmeler"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:153
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
 msgid "On Left"
 msgstr "Solda"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:155
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
 msgid "On Top"
 msgstr "Üstte"
 
@@ -1344,45 +1344,45 @@ msgstr "Müzik dizinini yeniden tara"
 msgid "Search Music"
 msgstr "Müzik Ara"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:542
+#: /home/victor/noise/po/../src//LibraryWindow.vala:539
 msgid "History"
 msgstr "Geçmiş"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid " by "
 msgstr " tarafından "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid " on "
 msgstr " açık "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:927
+#: /home/victor/noise/po/../src//LibraryWindow.vala:924
 msgid "Import Music"
 msgstr "Müzik aktar"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:951
+#: /home/victor/noise/po/../src//LibraryWindow.vala:948
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Müzik  </b> şuradan<b>%s</b> kitaplığa aktarılıyor."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:966
+#: /home/victor/noise/po/../src//LibraryWindow.vala:963
 msgid "Rescanning music folder for changes"
 msgstr "Değişimler için müzik dizini yeniden taranıyor."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Could not find Music Folder"
 msgstr "Müzik dizini bulunamadı."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Lütfen müzik dizininizin bağlı ve ulaşılabilir olduğundan emin oldun."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 msgid "Import Complete"
 msgstr "İçe Aktarma Tamamlandı"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s kütüphanenize eklendi."
@@ -1393,45 +1393,45 @@ msgstr "%1 saniye"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
-msgid "%s seconds"
-msgstr "%s saniye"
+msgid "%u seconds"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
 msgid "1 day"
 msgstr "1 gün"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%i days"
 msgstr "%i gün"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:72
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:71
 msgid "1 hour"
 msgstr "1 saat"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:74
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:73
 #, c-format
 msgid "%i hours"
 msgstr "%i saat"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:79
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
 msgid "1 minute"
 msgstr "%1 dakika"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:81
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%i minutes"
 msgstr "%i dakika"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:101
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:105
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:113
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:90
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:100
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:104
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:112
 #, c-format
 msgid "%s and %s"
 msgstr "%s ve %s"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:98
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s ve %s"
@@ -1583,14 +1583,15 @@ msgstr "Tekno"
 #~ msgid "Disable Repeat"
 #~ msgstr "Tekrarlamayı Kapat"
 
+#, c-format
+#~ msgid "%s seconds"
+#~ msgstr "%s saniye"
+
 #~ msgid "Similar Song View"
 #~ msgstr "Benzer şarkı görünümü"
 
 #~ msgid "Fetching similar songs"
 #~ msgstr "Benzer şarkılar bulunuyor"
-
-#~ msgid "Extensions"
-#~ msgstr "Eklentiler"
 
 #, c-format
 #~ msgid "Similar to %s"

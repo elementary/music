@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-19 23:03-0600\n"
+"POT-Creation-Date: 2012-07-21 21:54-0600\n"
 "PO-Revision-Date: 2012-07-08 12:00+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-21 05:35+0000\n"
+"X-Launchpad-Export-Date: 2012-07-22 04:59+0000\n"
 "X-Generator: Launchpad (build 15654)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
@@ -55,7 +55,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid "Unknown Artist"
 msgstr "Artista desconegut"
 
@@ -71,7 +71,7 @@ msgstr "Pista desconeguda"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid "Unknown Album"
 msgstr "Àlbum desconegut"
 
@@ -80,7 +80,7 @@ msgid "Unknown Title"
 msgstr "Títol desconegut"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
 msgid "Automatic"
 msgstr "Automàtic"
 
@@ -171,7 +171,7 @@ msgstr "Llistes de reproducció"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:526
+#: /home/victor/noise/po/../src//LibraryWindow.vala:523
 msgid "Music"
 msgstr "Música"
 
@@ -987,21 +987,21 @@ msgstr "Canvia la carpeta de música."
 msgid "All the songs in this device are already in your library."
 msgstr "Totes les cançons d'aquest dispositiu ja són a la vostra biblioteca"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 #, c-format
 msgid "%i albums"
 msgstr "%i àlbums"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:362
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
 msgid "1 album"
 msgstr "1 àlbum"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 #, c-format
 msgid "%i songs"
 msgstr "%i cançons"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:365
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
 msgid "1 song"
 msgstr "1 cançó"
 
@@ -1128,7 +1128,7 @@ msgid "Show in File Browser"
 msgstr "Mostra al navegador de fitxers"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:537
+#: /home/victor/noise/po/../src//LibraryWindow.vala:534
 msgid "Queue"
 msgstr "Cua"
 
@@ -1264,11 +1264,11 @@ msgstr "Anys"
 msgid "Ratings"
 msgstr "Valoracions"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:153
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
 msgid "On Left"
 msgstr "A l'esquerra"
 
-#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:155
+#: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:168
 msgid "On Top"
 msgstr "A dalt"
 
@@ -1370,44 +1370,44 @@ msgstr "Torna a examinar la carpeta de música"
 msgid "Search Music"
 msgstr "Cerca música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:542
+#: /home/victor/noise/po/../src//LibraryWindow.vala:539
 msgid "History"
 msgstr "Historial"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:710
+#: /home/victor/noise/po/../src//LibraryWindow.vala:707
 msgid " by "
 msgstr " per "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:708
 msgid " on "
 msgstr " a "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:927
+#: /home/victor/noise/po/../src//LibraryWindow.vala:924
 msgid "Import Music"
 msgstr "Importa música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:951
+#: /home/victor/noise/po/../src//LibraryWindow.vala:948
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>S'està important</b> música des de <b>%s</b> a la biblioteca."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:966
+#: /home/victor/noise/po/../src//LibraryWindow.vala:963
 msgid "Rescanning music folder for changes"
 msgstr "S'estan cercant canvis a la carpeta de música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Could not find Music Folder"
 msgstr "No s'ha pogut trobar la carpeta de música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:973
+#: /home/victor/noise/po/../src//LibraryWindow.vala:970
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Assegureu-vos que la carpeta de música sigui accessible i muntada."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 msgid "Import Complete"
 msgstr "S'ha completat la importació"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1027
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
 #, c-format
 msgid "%s has imported your library."
 msgstr "El %s ha importat la vostra biblioteca."
@@ -1418,45 +1418,45 @@ msgstr "1 segon"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
-msgid "%s seconds"
-msgstr "%s segons"
+msgid "%u seconds"
+msgstr ""
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:65
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
 msgid "1 day"
 msgstr "1 dia"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:67
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:66
 #, c-format
 msgid "%i days"
 msgstr "%i dies"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:72
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:71
 msgid "1 hour"
 msgstr "1 hora"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:74
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:73
 #, c-format
 msgid "%i hours"
 msgstr "%i hores"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:79
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
 msgid "1 minute"
 msgstr "1 minut"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:81
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:80
 #, c-format
 msgid "%i minutes"
 msgstr "%i minuts"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:91
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:101
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:105
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:113
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:90
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:100
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:104
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:112
 #, c-format
 msgid "%s and %s"
 msgstr "%s i %s"
 
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:99
+#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:98
 #, c-format
 msgid "%s, %s and %s"
 msgstr "%s, %s i %s"
@@ -1577,8 +1577,9 @@ msgstr "Techno"
 #~ msgid "No similar songs found"
 #~ msgstr "No s'ha trobat cap cançó similar"
 
-#~ msgid "Extensions"
-#~ msgstr "Extensions"
+#, c-format
+#~ msgid "%s seconds"
+#~ msgstr "%s segons"
 
 #~ msgid "Disable Repeat"
 #~ msgstr "Desactiva la repetició"
@@ -1660,7 +1661,3 @@ msgstr "Techno"
 
 #~ msgid "1 item"
 #~ msgstr "1 element"
-
-#, c-format
-#~ msgid "%s could not acces to this network device"
-#~ msgstr "El %s no ha pogut accedir a aquest dispositiu en la xarxa"
