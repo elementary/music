@@ -39,12 +39,14 @@ public class FixedBin : Gtk.EventBox {
         set_max_dimensions (max_width, max_height);
 
         this.visible_window = visible_window;
+
+        halign = Gtk.Align.CENTER;
+        valign = Gtk.Align.CENTER;
     }
 
     /**
      * PUBLIC API
      */
-
     public void set_widget (Gtk.Widget widget, bool hexpand = true,
                             bool vexpand = true) {
         widget.hexpand = hexpand;
@@ -54,7 +56,6 @@ public class FixedBin : Gtk.EventBox {
         if (child != null)
             remove (child);
 
-        widget.halign = Gtk.Align.CENTER;
         add (widget);
     }
 
@@ -79,15 +80,26 @@ public class FixedBin : Gtk.EventBox {
     }
     
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
-        // TODO
-        // - Check what has been allocated to this
-        // - If the widget is set to expand, then simply set the padding
-        //   of the child to compensate it getting larger than it should
         base.get_preferred_width (out minimum_width, out natural_width);
         
-        // We have minimum width set, see if it should be used
-        if (this.min_width > 0) {
+        // We have minimum width set, use it
+        if (this.min_width > 0)
             minimum_width = this.min_width;
-        }
+        // We have maximum width set, use it
+        if (this.max_width > 0)
+            natural_width = this.max_width;
+    }
+
+    public override void get_preferred_height_for_width (int width, out int minimum_height,
+                                                         out int natural_height)
+    {
+        base.get_preferred_height_for_width (width, out minimum_height, out natural_height);
+
+        // We have minimum height set, use it
+        if (this.min_height > 0)
+            minimum_height = this.min_height;
+        // We have maximum height set, use it
+        if (this.max_height > 0)
+            natural_height = this.max_height;
     }
 }

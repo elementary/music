@@ -240,7 +240,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
         column_browser_toggle   = new Gtk.ToggleButton ();
         topDisplay              = new TopDisplay (library_manager);
-        topDisplayBin           = new FixedBin(300, -1, 650, -1, false);
+        topDisplayBin           = new FixedBin(300, -1, 700, -1);
         viewSelector            = new Granite.Widgets.ModeButton ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
