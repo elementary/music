@@ -406,7 +406,7 @@ public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
                 comparators.insert (1, SmartQuery.ComparatorType.IS_WITHIN);
                 comparators.insert (2, SmartQuery.ComparatorType.IS_BEFORE);
                 
-                if ((_q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) || ((int)_q.comparator-6 > 2))
+                if ((_q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) || ((int)_q.comparator-6 < 0))
                     _comparator.set_active(0);
                 else
                     _comparator.set_active((int)_q.comparator-6);
