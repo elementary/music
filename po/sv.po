@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-21 21:54-0600\n"
-"PO-Revision-Date: 2012-06-16 14:52+0000\n"
-"Last-Translator: Rikard Nordin <Unknown>\n"
+"PO-Revision-Date: 2012-07-22 22:13+0000\n"
+"Last-Translator: Marcus Lundgren <marcus.lundgren@gmail.com>\n"
 "Language-Team: Swedish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-22 05:00+0000\n"
+"X-Launchpad-Export-Date: 2012-07-23 05:32+0000\n"
 "X-Generator: Launchpad (build 15654)\n"
 "X-Poedit-Language: Swedish\n"
 
@@ -67,7 +67,7 @@ msgstr "Radiostation"
 
 #: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
-msgstr ""
+msgstr "Okänd Låt"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
@@ -229,7 +229,7 @@ msgstr "Låt"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
 msgid "Repeat Song"
-msgstr ""
+msgstr "Upprepa Låt"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
@@ -241,7 +241,7 @@ msgstr "Album"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 msgid "Repeat Album"
-msgstr ""
+msgstr "Upprepa Album"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
@@ -253,7 +253,7 @@ msgstr "Artist"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Upprepa Artist"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
@@ -262,7 +262,7 @@ msgstr "Alla"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 msgid "Repeat All"
-msgstr ""
+msgstr "Upprepa alla"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
 msgid "Enable Shuffle"
@@ -1047,12 +1047,12 @@ msgstr "1 spår"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 msgid "Device unreachable"
-msgstr ""
+msgstr "Enheten är onåbar"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s kunde inte få tillgång till den här nätverksenheten"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1410,7 +1410,7 @@ msgstr "1 sekund"
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
 msgid "%u seconds"
-msgstr ""
+msgstr "%u sekunder"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
 msgid "1 day"

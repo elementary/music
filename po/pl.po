@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-21 21:54-0600\n"
-"PO-Revision-Date: 2012-07-09 11:11+0000\n"
+"PO-Revision-Date: 2012-07-22 21:47+0000\n"
 "Last-Translator: Adrian Widerski <Unknown>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-22 05:00+0000\n"
+"X-Launchpad-Export-Date: 2012-07-23 05:32+0000\n"
 "X-Generator: Launchpad (build 15654)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
@@ -1050,7 +1050,7 @@ msgstr "Urządzenie nieosiągalne"
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s nie może uzyskać dostępu do tego urządzenia sieciowego"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1409,7 +1409,7 @@ msgstr "1 sekunda"
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
 msgid "%u seconds"
-msgstr ""
+msgstr "%u sekund"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
 msgid "1 day"
