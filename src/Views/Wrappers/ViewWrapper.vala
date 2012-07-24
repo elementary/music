@@ -319,9 +319,9 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
     }
 
     /**
-     * XXX, FIXME: Although this is working perfectly, is embarrassing. This should
-     *             be implemented by client code. Although it's overridable, we shouldn't
-     *             have any kind of implementation hanging around here, since it simply
+     * XXX, FIXME: Although this is working perfectly, it's embarrassing. This should
+     *             be implemented by client code, and while it's overridable, we shouldn't
+     *             have any kind of specific implementation-code hanging around here, since it simply
      *             breaks the entire abstraction.
      */
     protected virtual string get_statusbar_text () {
@@ -362,21 +362,21 @@ public abstract class BeatBox.ViewWrapper : Gtk.Box {
             return "";
         }
 
-        string media_description = "";
-
-        if (is_album) {
-            media_description = total_items > 1 ? _("%i albums") : _("1 album");
-        }
-        else {
-            media_description = total_items > 1 ? _("%i songs") : _("1 song");
-        }
-
         // FIXME: bad workaround
         if (current_view == ViewType.GRID && has_grid_view) {
             total_items = grid_view.get_visible_media ().size;
         }
 
-        string media_text = media_description.printf ((int)total_items);
+        string media_description = "";
+
+        if (is_album) {
+            media_description = total_items > 1 ? _("%u albums") : _("1 album");
+        }
+        else {
+            media_description = total_items > 1 ? _("%u songs") : _("1 song");
+        }
+
+        string media_text = media_description.printf (total_items);
         string time_text = TimeUtils.time_string_from_seconds (total_time);
         string size_text = format_size (total_size);
 

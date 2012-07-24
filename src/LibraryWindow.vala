@@ -150,28 +150,24 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }*/
     }
 
-    private bool on_key_press_event (Gdk.EventKey event) {
+    public override bool key_press_event (Gdk.EventKey event) {
         if (searchField == null || !searchField.sensitive || searchField.has_focus)
-            return false;
+            return base.key_press_event (event);
 
         var typed_unichar = event.str.get_char ();
 
         if (!typed_unichar.validate ())
-            return false;
+            return base.key_press_event (event);
 
         unichar[] special_chars = {'&', '.', '-', '\'', '%', '(', ')', '=', '@', '!',
-                                    '#', '+', '<', '>', ';', ':', '¿', '?', '¡'}; 
+                                    '#', '+', '<', '>', ';', ':', '¿', '?', '¡', '~',
+                                    '_', '¨', '*', '$', '"', '[', ']'};
 
         // Redirect valid key presses to the search field
-        if (typed_unichar.isalnum () || typed_unichar in special_chars) {
+        if (typed_unichar.isalnum () || typed_unichar in special_chars)
             searchField.grab_focus ();
 
-            // Check if the search field actually got focus
-            if (!searchField.has_focus)
-                searchField.insert_at_cursor (event.str);
-        }
-
-        return false;
+        return base.key_press_event (event);
     }
 
     private inline void setup_window () {
@@ -192,15 +188,12 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             case Noise.WindowState.FULLSCREEN:
                 this.fullscreen ();
                 break;
-            default :
+            default:
                 break;
         }
 
         this.set_title (this.app.get_name ());
         this.set_icon (Icons.BEATBOX.render (IconSize.MENU, null));
-
-        // Redirect key presses to the search box.
-        this.key_press_event.connect (on_key_press_event);
 
         // set up drag dest stuff
         Gtk.drag_dest_set (this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
@@ -1186,13 +1179,8 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public override void destroy () {
-        this.hide ();
-
-        Idle.add_full (Priority.HIGH_IDLE - 50, () => {
-            on_quit ();
-            base.destroy ();
-            return false;
-        });
+        on_quit ();
+        base.destroy ();
     }
 
     private void on_quit () {
