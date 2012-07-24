@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-21 21:54-0600\n"
+"POT-Creation-Date: 2012-07-23 21:26-0600\n"
 "PO-Revision-Date: 2012-07-08 14:08+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-23 05:32+0000\n"
-"X-Generator: Launchpad (build 15654)\n"
+"X-Launchpad-Export-Date: 2012-07-24 06:07+0000\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -54,7 +54,7 @@ msgstr "Mengimbas semula muzik untuk perubahan. Ia mengambil masa..."
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid "Unknown Artist"
 msgstr "Penyanyi/Artis tidak diketahui"
 
@@ -70,7 +70,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:712
 msgid "Unknown Album"
 msgstr "Album Tidak Diketahui"
 
@@ -102,7 +102,7 @@ msgstr "Menggunakan %s dari %s (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:95
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victor/noise/po/../src//LibraryWindow.vala:219
+#: /home/victor/noise/po/../src//LibraryWindow.vala:220
 msgid "Import to Library"
 msgstr "Import ke Pustaka"
 
@@ -170,7 +170,7 @@ msgstr "Senarai Main"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:523
+#: /home/victor/noise/po/../src//LibraryWindow.vala:527
 msgid "Music"
 msgstr "Muzik"
 
@@ -565,7 +565,7 @@ msgid "Sync will remove 1 item from %s"
 msgstr "Segerak akan buang 1 item dari %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:56
-#: /home/victor/noise/po/../src//LibraryWindow.vala:223
+#: /home/victor/noise/po/../src//LibraryWindow.vala:224
 msgid "Preferences"
 msgstr "Keutamaan"
 
@@ -1119,7 +1119,7 @@ msgid "Show in File Browser"
 msgstr "Papar dalam Pelayar Fail"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:534
+#: /home/victor/noise/po/../src//LibraryWindow.vala:538
 msgid "Queue"
 msgstr "Baris Gilir"
 
@@ -1353,52 +1353,52 @@ msgstr "Terlebih Main"
 msgid "Not Recently Played"
 msgstr "Tiada Dimain Baru-baru Ini"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:220
+#: /home/victor/noise/po/../src//LibraryWindow.vala:221
 msgid "Rescan Music Folder"
 msgstr "Imbas Semula Folder Muzik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:243
+#: /home/victor/noise/po/../src//LibraryWindow.vala:245
 msgid "Search Music"
 msgstr "Gelintar Muzik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:539
+#: /home/victor/noise/po/../src//LibraryWindow.vala:543
 msgid "History"
 msgstr "Sejarah"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid " by "
 msgstr " oleh "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:712
 msgid " on "
 msgstr " pada "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:924
+#: /home/victor/noise/po/../src//LibraryWindow.vala:928
 msgid "Import Music"
 msgstr "Import Muzik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:948
+#: /home/victor/noise/po/../src//LibraryWindow.vala:952
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Mengimport</b> muzik dari pustaka <b>%s</b>."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:963
+#: /home/victor/noise/po/../src//LibraryWindow.vala:967
 msgid "Rescanning music folder for changes"
 msgstr "Mengimbas semula folder muzik untuk perubahan"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:974
 msgid "Could not find Music Folder"
 msgstr "Tidak dapat cari Folder Muzik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:974
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Sila pastikan folder muzik anda boleh dicapai dan dilekap."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
 msgid "Import Complete"
 msgstr "Proses Mengimport Selesai"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s telah mengimport pustaka anda."

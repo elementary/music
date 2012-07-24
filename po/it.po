@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-21 21:54-0600\n"
+"POT-Creation-Date: 2012-07-23 21:26-0600\n"
 "PO-Revision-Date: 2012-07-22 12:51+0000\n"
 "Last-Translator: Ivan <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-23 05:32+0000\n"
-"X-Generator: Launchpad (build 15654)\n"
+"X-Launchpad-Export-Date: 2012-07-24 06:07+0000\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -56,7 +56,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid "Unknown Artist"
 msgstr "Artista Sconosciuto"
 
@@ -72,7 +72,7 @@ msgstr "Traccia sconosciuta"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:712
 msgid "Unknown Album"
 msgstr "Album Sconosciuto"
 
@@ -104,7 +104,7 @@ msgstr "Utilizzo %s of %s (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:95
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victor/noise/po/../src//LibraryWindow.vala:219
+#: /home/victor/noise/po/../src//LibraryWindow.vala:220
 msgid "Import to Library"
 msgstr "Importa nella collezione"
 
@@ -172,7 +172,7 @@ msgstr "Playlist"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:523
+#: /home/victor/noise/po/../src//LibraryWindow.vala:527
 msgid "Music"
 msgstr "Musica"
 
@@ -574,7 +574,7 @@ msgid "Sync will remove 1 item from %s"
 msgstr "La sincronizzazione rimuoverà 1 elemento da %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:56
-#: /home/victor/noise/po/../src//LibraryWindow.vala:223
+#: /home/victor/noise/po/../src//LibraryWindow.vala:224
 msgid "Preferences"
 msgstr "Preferenze"
 
@@ -1136,7 +1136,7 @@ msgid "Show in File Browser"
 msgstr "Mostra in File Browser"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:534
+#: /home/victor/noise/po/../src//LibraryWindow.vala:538
 msgid "Queue"
 msgstr "In coda"
 
@@ -1370,53 +1370,53 @@ msgstr "Esagerato"
 msgid "Not Recently Played"
 msgstr "Non riprodotti recentemente"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:220
+#: /home/victor/noise/po/../src//LibraryWindow.vala:221
 msgid "Rescan Music Folder"
 msgstr "Riscansiona la Cartella Musica"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:243
+#: /home/victor/noise/po/../src//LibraryWindow.vala:245
 msgid "Search Music"
 msgstr "Cerca Musica"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:539
+#: /home/victor/noise/po/../src//LibraryWindow.vala:543
 msgid "History"
 msgstr "Cronologia"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid " by "
 msgstr " di "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:712
 msgid " on "
 msgstr " on "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:924
+#: /home/victor/noise/po/../src//LibraryWindow.vala:928
 msgid "Import Music"
 msgstr "Importa Musica"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:948
+#: /home/victor/noise/po/../src//LibraryWindow.vala:952
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importazione</b> musica da <b>%s</b> alla libreria."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:963
+#: /home/victor/noise/po/../src//LibraryWindow.vala:967
 msgid "Rescanning music folder for changes"
 msgstr "Riscansione della cartella musica per cambiamenti"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:974
 msgid "Could not find Music Folder"
 msgstr "Impossible trovare la Cartella Musica"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:974
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 "Per favore assicurati che la tua cartella musica sia accessibile e montata."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
 msgid "Import Complete"
 msgstr "Importazione completata"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s ha importato la tua libreria"

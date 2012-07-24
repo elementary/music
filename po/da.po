@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-21 21:54-0600\n"
+"POT-Creation-Date: 2012-07-23 21:26-0600\n"
 "PO-Revision-Date: 2012-06-15 22:11+0000\n"
 "Last-Translator: Simon <Unknown>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-23 05:31+0000\n"
-"X-Generator: Launchpad (build 15654)\n"
+"X-Launchpad-Export-Date: 2012-07-24 06:07+0000\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -54,7 +54,7 @@ msgstr "Genskanner musik for ændringer. Dette kan tage et stykke tid..."
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid "Unknown Artist"
 msgstr "Ukendt kunstner"
 
@@ -70,7 +70,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:712
 msgid "Unknown Album"
 msgstr "Ukendt album"
 
@@ -102,7 +102,7 @@ msgstr "Bruger %s af %s (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:95
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victor/noise/po/../src//LibraryWindow.vala:219
+#: /home/victor/noise/po/../src//LibraryWindow.vala:220
 msgid "Import to Library"
 msgstr "Importér til bibliotek"
 
@@ -170,7 +170,7 @@ msgstr "Afspilningslister"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:523
+#: /home/victor/noise/po/../src//LibraryWindow.vala:527
 msgid "Music"
 msgstr "Musik"
 
@@ -570,7 +570,7 @@ msgid "Sync will remove 1 item from %s"
 msgstr "Synkronisation vil fjerne 1 element fra %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:56
-#: /home/victor/noise/po/../src//LibraryWindow.vala:223
+#: /home/victor/noise/po/../src//LibraryWindow.vala:224
 msgid "Preferences"
 msgstr "Præferencer"
 
@@ -1124,7 +1124,7 @@ msgid "Show in File Browser"
 msgstr "Vis i filbrowser"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:534
+#: /home/victor/noise/po/../src//LibraryWindow.vala:538
 msgid "Queue"
 msgstr "Kø"
 
@@ -1358,52 +1358,52 @@ msgstr "Overspillet"
 msgid "Not Recently Played"
 msgstr "Ikke afspillet for nyligt"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:220
+#: /home/victor/noise/po/../src//LibraryWindow.vala:221
 msgid "Rescan Music Folder"
 msgstr "Genskan musik mappen"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:243
+#: /home/victor/noise/po/../src//LibraryWindow.vala:245
 msgid "Search Music"
 msgstr "Søg musik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:539
+#: /home/victor/noise/po/../src//LibraryWindow.vala:543
 msgid "History"
 msgstr "Historik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid " by "
 msgstr " af "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:712
 msgid " on "
 msgstr " på "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:924
+#: /home/victor/noise/po/../src//LibraryWindow.vala:928
 msgid "Import Music"
 msgstr "Importér musik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:948
+#: /home/victor/noise/po/../src//LibraryWindow.vala:952
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importerer</b> musik fra <b>%s</b> til bibliotek."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:963
+#: /home/victor/noise/po/../src//LibraryWindow.vala:967
 msgid "Rescanning music folder for changes"
 msgstr "Genskanner musik mappe for ændringer"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:974
 msgid "Could not find Music Folder"
 msgstr "Kunne ikke finde musik mappe"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:974
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Venligst sørg for at din musik mappe er tilgængelig og monteret."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
 msgid "Import Complete"
 msgstr "Importering færdig"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s har importeret dit bibliotek."

@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-21 21:54-0600\n"
-"PO-Revision-Date: 2012-06-23 12:29+0000\n"
+"POT-Creation-Date: 2012-07-23 21:26-0600\n"
+"PO-Revision-Date: 2012-07-23 19:00+0000\n"
 "Last-Translator: Niels Verploegen <Unknown>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-23 05:31+0000\n"
-"X-Generator: Launchpad (build 15654)\n"
+"X-Launchpad-Export-Date: 2012-07-24 06:07+0000\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
-msgstr ""
+msgstr "debug logging invoeren"
 
 #: /home/victor/noise/po/../src//Noise.vala:69
 msgid "Disable plugins"
@@ -36,11 +36,11 @@ msgstr "Muziekspeler"
 #: /home/victor/noise/po/../src//LibraryManager.vala:293
 #, c-format
 msgid "Importing music from %s..."
-msgstr ""
+msgstr "Muziek aan het importeren uit %s..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:340
 msgid "Adding files to library..."
-msgstr ""
+msgstr "bestanden aan bibliotheek toevoegen"
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:365
 #, c-format
@@ -54,7 +54,7 @@ msgstr "Scannen voor veranderingen, dit kan even duren..."
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
 #: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid "Unknown Artist"
 msgstr "Onbekende artiest"
 
@@ -70,7 +70,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:712
 msgid "Unknown Album"
 msgstr "Onbekend album"
 
@@ -85,7 +85,7 @@ msgstr "Automatisch"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:48
 msgid "Delete Current"
-msgstr ""
+msgstr "verwijder het huidige"
 
 #: /home/victor/noise/po/../src//Widgets/SpaceWidget.vala:237
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:98
@@ -102,7 +102,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:95
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victor/noise/po/../src//LibraryWindow.vala:219
+#: /home/victor/noise/po/../src//LibraryWindow.vala:220
 msgid "Import to Library"
 msgstr "Importeren naar bibliotheek"
 
@@ -170,7 +170,7 @@ msgstr "Afspeellijsten"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:523
+#: /home/victor/noise/po/../src//LibraryWindow.vala:527
 msgid "Music"
 msgstr "Muziek"
 
@@ -191,11 +191,12 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:707
 msgid "This device is in transfer"
-msgstr ""
+msgstr "dit apparaat is in transfer"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:707
 msgid "Please wait until the current transfer is finished to do this action."
 msgstr ""
+"wacht tot de huidige verplaatsing is voltooid om de actie uit te voeren."
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:924
 msgid "Playlist"
@@ -266,11 +267,11 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "shuffle inschakelen"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "shuffle uitschakelen"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:51
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:55
@@ -421,6 +422,8 @@ msgid ""
 "The plugin for media type %s is not installed.\n"
 "What would you like to do?"
 msgstr ""
+"De plug-in voor het bestandstype %s is niet geïnstalleerd.\n"
+"Wat wilt u doen?"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:76
 msgid "Metadata"
@@ -533,7 +536,7 @@ msgstr "Podcast"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:64
 msgid "Import media to Library"
-msgstr ""
+msgstr "Importeer media naar de bibliotheek"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:65
 msgid "Continue Syncing"
@@ -561,7 +564,7 @@ msgid "Sync will remove 1 item from %s"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:56
-#: /home/victor/noise/po/../src//LibraryWindow.vala:223
+#: /home/victor/noise/po/../src//LibraryWindow.vala:224
 msgid "Preferences"
 msgstr "Voorkeuren"
 
@@ -1093,7 +1096,7 @@ msgid "Show in File Browser"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:534
+#: /home/victor/noise/po/../src//LibraryWindow.vala:538
 msgid "Queue"
 msgstr "Wachtrij"
 
@@ -1243,7 +1246,7 @@ msgstr "Apparaatnaam:"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:80
 msgid "Device Name"
-msgstr ""
+msgstr "Apparaatnaam"
 
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:82
 msgid "Automatically sync when plugged in:"
@@ -1325,52 +1328,52 @@ msgstr ""
 msgid "Not Recently Played"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:220
+#: /home/victor/noise/po/../src//LibraryWindow.vala:221
 msgid "Rescan Music Folder"
 msgstr "Scan de muziek-map opnieuw"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:243
+#: /home/victor/noise/po/../src//LibraryWindow.vala:245
 msgid "Search Music"
 msgstr ""
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:539
+#: /home/victor/noise/po/../src//LibraryWindow.vala:543
 msgid "History"
 msgstr "Geschiedenis"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:707
+#: /home/victor/noise/po/../src//LibraryWindow.vala:711
 msgid " by "
 msgstr " door "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:708
+#: /home/victor/noise/po/../src//LibraryWindow.vala:712
 msgid " on "
 msgstr " op "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:924
+#: /home/victor/noise/po/../src//LibraryWindow.vala:928
 msgid "Import Music"
 msgstr "Importeer muziek"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:948
+#: /home/victor/noise/po/../src//LibraryWindow.vala:952
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Importeer</b> muziek van <b>%s</b> naar de bibliotheek."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:963
+#: /home/victor/noise/po/../src//LibraryWindow.vala:967
 msgid "Rescanning music folder for changes"
 msgstr "Muziek-map opnieuw scannen op veranderingen"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:974
 msgid "Could not find Music Folder"
 msgstr "Kon de muziek-map niet vinden"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:970
+#: /home/victor/noise/po/../src//LibraryWindow.vala:974
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Zorg ervoor dat de muziek-map beschikbaar is."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
 msgid "Import Complete"
 msgstr "Importeren voltooid"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1024
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
 #, c-format
 msgid "%s has imported your library."
 msgstr ""
@@ -1528,8 +1531,19 @@ msgstr ""
 #~ msgid "%s has finished importing %i songs from Audio CD."
 #~ msgstr "%s is klaar met %i nummers te importeren van de audio-CD"
 
+#, c-format
+#~ msgid ""
+#~ "Please wait until %s is finished with the current import before importing "
+#~ "the CD."
+#~ msgstr ""
+#~ "even wachten tot %s klaar is met de huidige actie alvorens de CD te "
+#~ "importeren"
+
 #~ msgid "CD Import Complete"
 #~ msgstr "CD volledig geimporteerd"
+
+#~ msgid "Ripping track 1"
+#~ msgstr "track 1 aan het rippen"
 
 #, c-format
 #~ msgid "%s has finished importing a song from Audio CD."
