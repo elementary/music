@@ -149,7 +149,7 @@ OPTIONS
     --target-glib=2.32
     --define=USE_GRANITE_DECORATED_WINDOW
     #--define=HAVE_SMART_ALBUM_COLUMN
-    --define=GTK_ICON_VIEW_BUG_IS_FIXED
+    #--define=GTK_ICON_VIEW_BUG_IS_FIXED
     ${ADD_OPTIONS}
 GENERATE_VAPI
     noise
