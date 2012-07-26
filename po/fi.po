@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-23 21:26-0600\n"
-"PO-Revision-Date: 2012-06-20 09:25+0000\n"
+"PO-Revision-Date: 2012-07-25 17:38+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-24 06:07+0000\n"
-"X-Generator: Launchpad (build 15668)\n"
+"X-Launchpad-Export-Date: 2012-07-26 05:23+0000\n"
+"X-Generator: Launchpad (build 15679)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -217,7 +217,7 @@ msgstr "Pois"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:40
 msgid "Enable Repeat"
-msgstr ""
+msgstr "Ota toisto käyttöön"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:537
@@ -262,15 +262,15 @@ msgstr "Kaikki"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 msgid "Repeat All"
-msgstr ""
+msgstr "Toista kaikki"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Ota sekoitus käyttöön"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Poista sekoitus käytöstä"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:51
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:55
@@ -1032,7 +1032,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
 msgid "%i kbps"
-msgstr ""
+msgstr "%i kbps"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:35
 msgid "Episode"
@@ -1386,7 +1386,7 @@ msgstr "1 sekunti"
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
 #, c-format
 msgid "%u seconds"
-msgstr ""
+msgstr "%u sekuntia"
 
 #: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
 msgid "1 day"
@@ -1430,15 +1430,15 @@ msgstr "%s, %s ja %s"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "Tasainen"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr "Klassinen"
+msgstr "Classical"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr "Klubi"
+msgstr "Club"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:73
 msgid "Dance"
@@ -1446,15 +1446,15 @@ msgstr "Dance"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "Basso täysillä"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "Diskantti täysillä"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "Basso ja diskantti täysillä"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:77
 msgid "Headphones"
@@ -1462,7 +1462,7 @@ msgstr "Kuulokkeet"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "Suuri sali"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:79
 msgid "Live"
@@ -1470,7 +1470,7 @@ msgstr "Live"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:80
 msgid "Party"
-msgstr "Bileet"
+msgstr "Party"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:81
 msgid "Pop"
