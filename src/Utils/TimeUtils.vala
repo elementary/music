@@ -42,7 +42,7 @@ namespace BeatBox.TimeUtils {
             return _("%u seconds").printf (seconds);
         }
 
-        double secs = (double)seconds; // XXX: this cast is dangerous
+        double secs = (double)seconds;
         uint days = 0, hours = 0, minutes = 0;
 
         // calculate days
@@ -127,9 +127,7 @@ namespace BeatBox.TimeUtils {
     public inline string pretty_time_mins (uint seconds) {
         uint minutes = Numeric.lowest_uint_from_double ((double)seconds / 60);
         seconds -= minutes * 60;
-
-        // Add '0' if seconds are between '0' and '9'
-        return "%s:%s".printf (@"$minutes", ((seconds < 10 ) ? @"0$seconds" : @"$seconds"));
+        return "%u:%02u".printf (minutes, seconds);
     }
 
     /**
