@@ -30,6 +30,8 @@ public abstract class BeatBox.GridLayout : Gtk.ScrolledWindow {
 
 	private FastGrid icon_view;
 
+    protected Gtk.Widget parent_widget;
+
     // Spacing Workarounds
 #if !GTK_ICON_VIEW_BUG_IS_FIXED
 	private Gtk.EventBox vpadding_box;
@@ -40,7 +42,8 @@ public abstract class BeatBox.GridLayout : Gtk.ScrolledWindow {
 	private static const int MIN_SPACING = 12;
 	private static const int ITEM_WIDTH = Icons.ALBUM_VIEW_IMAGE_SIZE;
 
-	public GridLayout () {
+	public GridLayout (Gtk.Widget parent_widget) {
+        this.parent_widget = parent_widget;
 		build_ui ();
         clear_objects ();
 	}
@@ -151,10 +154,8 @@ public abstract class BeatBox.GridLayout : Gtk.ScrolledWindow {
 
         set_theming ();
 
-        this.realize.connect ( () => {
-            if (parent != null)
-                parent.size_allocate.connect (on_resize);
-        });
+        if (parent_widget != null)
+            parent_widget.size_allocate.connect (on_resize);
 	}
 
     private void set_theming () {
@@ -228,8 +229,6 @@ public abstract class BeatBox.GridLayout : Gtk.ScrolledWindow {
 	 * Smart spacing
 	 */
 
-	Mutex setting_size;
-
 	int resize_priority_offset = 0;
 	const int DEFAULT_RESIZE_PRIORITY = (Priority.DEFAULT_IDLE + Priority.HIGH_IDLE) / 2;
 
@@ -244,15 +243,11 @@ public abstract class BeatBox.GridLayout : Gtk.ScrolledWindow {
 	}
 
 	private void compute_spacing (Gtk.Allocation alloc) {
-		if (parent == null || alloc.width != parent.get_allocated_width ())
+		if (parent_widget != null && alloc.width != parent_widget.get_allocated_width ())
 			return;
 
-		setting_size.lock ();
-
-		if (!visible) {
-			setting_size.unlock ();
+		if (!visible)
 			return;
-		}
 
 		int TOTAL_WIDTH = alloc.width; // width of view wrapper, not scrolled window!
 		int TOTAL_ITEM_WIDTH = ITEM_WIDTH + 2 * ITEM_PADDING;
@@ -261,35 +256,27 @@ public abstract class BeatBox.GridLayout : Gtk.ScrolledWindow {
 		float n = (float)(TOTAL_WIDTH - MIN_SPACING) / (float)(TOTAL_ITEM_WIDTH + MIN_SPACING);
 		int n_columns = Numeric.lowest_int_from_float (n);
 
-		if (n_columns < 1) {
-			setting_size.unlock ();
+		if (n_columns < 1)
 			return;
-		}
 
 		icon_view.set_columns (n_columns);
 
 		// We don't want to adjust the spacing if the row is not full
-		if (icon_view.get_table ().size () < n_columns) {
-			setting_size.unlock ();
+		if (icon_view.get_table ().size () < n_columns)
 			return;
-		}
 
 		// You're not supposed to understand this.
 		float spacing = (float)(TOTAL_WIDTH - n_columns * (ITEM_WIDTH + 1) - 2 * n_columns * ITEM_PADDING) / (float)(n_columns + 1);
 		int new_spacing = Numeric.int_from_float (spacing);
 
-		if (new_spacing < 0) {
-			setting_size.unlock ();
+		if (new_spacing < 0)
 			return;
-		}
 
 		if (TOTAL_WIDTH < 750)
 			-- new_spacing;
 
 		// apply new spacing
 		set_spacing (new_spacing);
-
-		setting_size.unlock ();
 	}
 
 	private void set_spacing (int spacing) {
