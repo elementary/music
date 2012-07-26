@@ -29,8 +29,8 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 	Gst.Message message;
 	string detail;
 	
-	private VBox content;
-	private HBox padding;
+	private Gtk.Box content;
+	private Gtk.Box padding;
 	
 	Button installPlugin;
 	Button doNothing;
@@ -51,9 +51,9 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 		set_default_size(475, -1);
 		resizable = false;
 		
-		content = new VBox(false, 10);
-		padding = new HBox(false, 20);
-		
+		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+		padding = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
+
 		// initialize controls
 		Image warning = new Image.from_stock(Gtk.Stock.DIALOG_ERROR, Gtk.IconSize.DIALOG);
 		Label title = new Label("");
@@ -89,8 +89,11 @@ public class BeatBox.InstallGstreamerPluginsDialog : Window {
 		padding.pack_start(content, true, true, 10);
 		
 		installPlugin.clicked.connect(installPluginClicked);
-		doNothing.clicked.connect( () => { this.destroy(); });
-		
+
+		doNothing.clicked.connect ( () => {
+		    this.destroy ();
+		});
+
 		add(padding);
 		show_all();
 	}
