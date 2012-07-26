@@ -17,6 +17,7 @@ vala_precompile(VALA_C
         iPod.vala
         iPodDevice.vala
         iPodDeviceManager.vala
+        iPodMediaHelper.vala
     PACKAGES
         glib-2.0
         gtk+-3.0

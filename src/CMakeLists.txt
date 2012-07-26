@@ -19,16 +19,12 @@ vala_precompile(VALA_C
     LibraryManager.vala
     FileOperator.vala
 
-    Utils/UI.vala
-    Utils/Search.vala
-    Utils/PixbufUtils.vala
-    Utils/TimeUtils.vala
-    Utils/String.vala
-    Utils/Numeric.vala
-    Utils/Icon.vala
-    Utils/CompareFunctionHolder.vala
-
     Noise.vala
+
+    Utils/UI.vala
+    Utils/PixbufUtils.vala
+    Utils/Search.vala
+    Utils/Icon.vala
 
     Devices/Device.vala
     Devices/NetworkDevice.vala
@@ -39,7 +35,6 @@ vala_precompile(VALA_C
     Objects/SmartPlaylist.vala
     Objects/LyricFetcher.vala
     Objects/SoundMenuIntegration.vala
-    Objects/Media.vala
     Objects/MediaKeyListener.vala
     Objects/MPRIS.vala
     Objects/Playlist.vala
@@ -139,7 +134,6 @@ PACKAGES
     json-glib-1.0
     gio-unix-2.0
     granite
-    libgpod-1.0
     libpeas-1.0
     noise-core
     ${ADD_PKG}

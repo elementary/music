@@ -1,0 +1,158 @@
+/*-
+ * Copyright (c) 2012 Noise Developers
+ *
+ * Originally Written by Scott Ringwelski for BeatBox Music Player
+ * BeatBox Music Player: http://www.launchpad.net/beat-box
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
+public class Noise.Plugins.iPodMediaHelper {
+
+	public static Media media_from_track (string root, GPod.Track track) {
+		Media rv = new Media("file://" + Path.build_path("/", root, GPod.iTunesDB.filename_ipod2fs(track.ipod_path)));
+		
+		rv.isTemporary = true;
+		if(track.title != "") {			rv.title = track.title; }
+		if(track.artist != "") {			rv.artist = track.artist; }
+		if(track.albumartist != "") {		rv.album_artist = track.albumartist; }
+		if(track.album != "") {			rv.album = track.album; }
+		if(track.genre != "") {			rv.genre = track.genre; }
+		if(track.comment != "") {			rv.comment = track.comment; }
+		if(track.composer != "") {		rv.composer = track.composer; }
+		if(track.grouping != "") {		rv.grouping = track.grouping; }
+		rv.album_number = track.cd_nr;
+		rv.album_count = track.cds;
+		rv.track = track.track_nr;
+		rv.track_count = track.tracks;
+		rv.bitrate = track.bitrate;
+		rv.year = track.year;
+		rv.date_added = (int)track.time_added;
+		rv.last_modified = (int)track.time_modified;
+		rv.last_played = (int)track.time_played;
+		rv.rating = track.rating * 20;
+		rv.play_count = track.playcount;
+		rv.bpm = track.BPM;
+		rv.skip_count = track.skipcount;
+		rv.length = track.tracklen  / 1000;
+		rv.file_size = track.size;
+		
+		if(track.mediatype == GPod.MediaType.AUDIO)
+			rv.mediatype = Media.MediaType.SONG;
+		else if(track.mediatype == GPod.MediaType.PODCAST) {
+			rv.mediatype = Media.MediaType.PODCAST;
+			rv.is_video = false;
+		}
+		else if(track.mediatype == 0x00000006) {
+			rv.mediatype = Media.MediaType.PODCAST;
+			rv.is_video = true;
+		}
+		else if(track.mediatype == GPod.MediaType.AUDIOBOOK)
+			rv.mediatype = Media.MediaType.AUDIOBOOK;
+		
+		rv.podcast_url = track.podcasturl;
+		rv.is_new_podcast = track.mark_unplayed == 1;
+		rv.resume_pos = (int)track.bookmark_time;
+		rv.podcast_date = (int)track.time_released;
+		
+		if(rv.artist == "" && rv.album_artist != "")
+			rv.artist = rv.album_artist;
+		else if(rv.album_artist == "" && rv.artist != "")
+			rv.album_artist = rv.artist;
+		
+		return rv;
+	}
+
+	public static void update_track (ref unowned GPod.Track t, Media m) {
+		if(t == null)
+			return;
+
+		if (m.title != null && m.title != "")
+		    t.title = m.title;
+
+		if (m.artist != null && m.artist != "")
+		    t.artist = m.artist;
+
+		if (m.album_artist != null && m.album_artist != "")
+		    t.albumartist = m.album_artist;
+
+		if (m.album != null && m.album != "")
+		    t.album = m.album;
+
+		if (m.genre != null && m.genre != "")
+		    t.genre = m.genre;
+
+		if (m.comment != null && m.comment != "")
+		    t.comment = m.comment;
+
+		if (m.composer != null && m.composer != "")
+		    t.composer = m.composer;
+
+		if (m.grouping != null && m.grouping != "")
+		    t.grouping = m.grouping;
+
+		t.cd_nr = (int)m.album_number;
+		t.cds = (int)m.album_count;
+		t.track_nr = (int)m.track;
+		t.tracks = (int)m.track_count;
+		t.bitrate = (int)m.bitrate;
+		t.year = (int)m.year;
+		t.time_modified = (time_t)m.last_modified;
+		t.time_played = (time_t)m.last_played;
+		t.rating = m.rating * 20;
+		t.playcount = m.play_count;
+		t.recent_playcount = m.play_count;
+		t.BPM = (uint16)m.bpm;
+		t.skipcount = m.skip_count;
+		t.tracklen = (int)m.length * 1000;
+		t.size = m.file_size;
+		t.mediatype = GPod.MediaType.AUDIO;
+		t.lyrics_flag = 1;
+		t.description = m.lyrics;
+
+		if (m.mediatype == Media.MediaType.SONG)
+			t.mediatype = GPod.MediaType.AUDIO;
+		else if (m.mediatype == Media.MediaType.PODCAST) {
+			if (m.is_video)
+				t.mediatype = 0x00000006;
+			else
+				t.mediatype = GPod.MediaType.PODCAST;
+		}
+		else if (m.mediatype == Media.MediaType.AUDIOBOOK)
+			t.mediatype = GPod.MediaType.AUDIOBOOK;
+		
+		t.podcasturl = m.podcast_url;
+		t.mark_unplayed = (m.play_count == 0) ? 1 : 0;
+		t.bookmark_time = m.resume_pos;
+		t.time_released = m.podcast_date;
+
+		if (t.artist == "" && (t.albumartist != "" || t.albumartist != null))
+			t.artist = t.albumartist;
+		else if (t.albumartist == "" && (t.artist != "" || t.artist != null))
+			t.albumartist = t.artist;
+	}
+
+	/**
+	 * caller *must* set ipod_path
+	 */
+	public static GPod.Track track_from_media (Media m) {
+		GPod.Track t = new GPod.Track();
+        unowned GPod.Track tu = t;
+        update_track (ref tu, m);
+		return t;
+	}
+
+}

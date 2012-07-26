@@ -1,8 +1,16 @@
+add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
+
 vala_precompile(VALA_C
     PluginManager.vala
     Settings.vala
     EqualizerPreset.vala
     LibraryWindowInterface.vala
+    Media.vala
+    Utils/TimeUtils.vala
+    Utils/String.vala
+    Utils/Numeric.vala
+    Utils/CompareFunctionHolder.vala
+
 PACKAGES
     gtk+-3.0
     libpeas-1.0

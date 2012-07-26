@@ -105,7 +105,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         for(int i = 0; i < db.tracks.length(); ++i) {
             unowned GPod.Track t = db.tracks.nth_data(i);
             //stdout.printf("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
-            var m = Noise.Media.from_track(get_path(), t);
+            var m = iPodMediaHelper.media_from_track (get_path(), t);
             
             this.medias.set(t, m);
             if(t.mediatype == GPod.MediaType.AUDIO)
@@ -394,7 +394,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                 Noise.Media m = lm.match_media_to_list(entry.value, this.list);
                 if(m != null) {
                     unowned GPod.Track t = entry.key;
-                    m.update_track(ref t);
+                    iPodMediaHelper.update_track (ref t, m);
                     stdout.printf("updated trac and its rating is %d\n", (int)t.rating);
                     
                     var pix_from_file = lm.get_album_art_from_file(m.rowid);
@@ -610,7 +610,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         if(s == null)
             return;
         
-        GPod.Track t = s.track_from_media();
+        GPod.Track t = iPodMediaHelper.track_from_media (s);
         
         var pix_from_file = lm.get_album_art_from_file(s.rowid);
         if(pix_from_file != null)
@@ -649,7 +649,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
         
         if(success) {
-            Noise.Media on_ipod = Noise.Media.from_track(get_path(), added);
+            Noise.Media on_ipod = iPodMediaHelper.media_from_track (get_path(), added);
             
             medias.set(added, on_ipod);
             if(added.mediatype == GPod.MediaType.AUDIO)
