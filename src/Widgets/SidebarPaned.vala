@@ -102,6 +102,15 @@ public class Granite.Widgets.SidebarPaned : Gtk.Overlay, Gtk.Orientable {
         return this.paned.get_direction ();
     }
 
+    public new void set_default_direction (Gtk.TextDirection dir) {
+        base.set_default_direction (dir);
+        this.paned.set_default_direction (dir);
+    }
+
+    public new Gtk.TextDirection get_default_direction () {
+        return this.paned.get_default_direction ();
+    }
+
     public SidebarPaned () {
         this.paned.get_style_context ().add_class ("sidebar-pane-separator");
 
