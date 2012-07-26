@@ -23,8 +23,8 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-public class LastFM.MediaInfo : BeatBox.MediaInfo {
-	public BeatBox.Media? media;
+public class LastFM.MediaInfo : Noise.MediaInfo {
+	public Noise.Media? media;
 	public override LastFM.ArtistInfo? artist;
 	public override LastFM.TrackInfo? track;
 	public override LastFM.AlbumInfo? album;
@@ -36,7 +36,7 @@ public class LastFM.MediaInfo : BeatBox.MediaInfo {
 		album = new LastFM.AlbumInfo.basic();
 	}
 	
-	public void update(LastFM.ArtistInfo? art, LastFM.TrackInfo? tra, LastFM.AlbumInfo? alb, BeatBox.Media? s) {
+	public void update(LastFM.ArtistInfo? art, LastFM.TrackInfo? tra, LastFM.AlbumInfo? alb, Noise.Media? s) {
 		media = s;
 		artist = art;
 		track = tra;

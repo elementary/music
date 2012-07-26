@@ -24,7 +24,7 @@
 //      better native replacements are available under the GLib.Math namespace
 //      (which only happens to be a wrapper for math.h)
 
-namespace BeatBox.Numeric {
+namespace Noise.Numeric {
 
     /**
      * @Deprecated. Use Math.truncate() instead.

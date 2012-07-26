@@ -23,7 +23,7 @@
 using Gee;
 
 
-public class BeatBox.SmartPlaylist : Object {
+public class Noise.SmartPlaylist : Object {
     
     public enum ConditionalType {
         ANY = true,
@@ -137,7 +137,7 @@ public class BeatBox.SmartPlaylist : Object {
     
     public bool media_matches_query(SmartQuery q, Media s) {
         switch (q.field) {
-            case BeatBox.SmartQuery.FieldType.ALBUM :
+            case Noise.SmartQuery.FieldType.ALBUM :
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.down() == s.album.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -145,7 +145,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.down() in s.album.down());
                 break;
-            case BeatBox.SmartQuery.FieldType.ARTIST:
+            case Noise.SmartQuery.FieldType.ARTIST:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.down() == s.artist.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -153,7 +153,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.down() in s.artist.down());
                 break;
-            case BeatBox.SmartQuery.FieldType.COMPOSER:
+            case Noise.SmartQuery.FieldType.COMPOSER:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.down() == s.composer.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -161,7 +161,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.down() in s.composer.down());
                 break;
-            case BeatBox.SmartQuery.FieldType.COMMENT:
+            case Noise.SmartQuery.FieldType.COMMENT:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.down() == s.comment.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -169,7 +169,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.down() in s.comment.down());
                 break;
-            case BeatBox.SmartQuery.FieldType.GENRE:
+            case Noise.SmartQuery.FieldType.GENRE:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.down() == s.genre.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -177,7 +177,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.down() in s.genre.down());
                 break;
-            case BeatBox.SmartQuery.FieldType.GROUPING:
+            case Noise.SmartQuery.FieldType.GROUPING:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.down() == s.grouping.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -185,7 +185,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.down() in s.grouping.down());
                 break;
-            case BeatBox.SmartQuery.FieldType.TITLE:
+            case Noise.SmartQuery.FieldType.TITLE:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.down() == s.title.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -193,7 +193,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.down() in s.title.down());
                 break;
-            case BeatBox.SmartQuery.FieldType.BITRATE:
+            case Noise.SmartQuery.FieldType.BITRATE:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return int.parse(q.value) == s.bitrate;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -201,7 +201,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.bitrate >= int.parse(q.value));
                 break;
-            case BeatBox.SmartQuery.FieldType.PLAYCOUNT:
+            case Noise.SmartQuery.FieldType.PLAYCOUNT:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return int.parse(q.value) == s.play_count;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -209,7 +209,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.play_count >= int.parse(q.value));
                 break;
-            case BeatBox.SmartQuery.FieldType.SKIPCOUNT:
+            case Noise.SmartQuery.FieldType.SKIPCOUNT:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return int.parse(q.value) == s.skip_count;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -217,7 +217,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.skip_count >= int.parse(q.value));
                 break;
-            case BeatBox.SmartQuery.FieldType.YEAR:
+            case Noise.SmartQuery.FieldType.YEAR:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return int.parse(q.value) == s.year;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -225,7 +225,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.year >= int.parse(q.value));
                 break;
-            case BeatBox.SmartQuery.FieldType.LENGTH:
+            case Noise.SmartQuery.FieldType.LENGTH:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return int.parse(q.value) == s.length;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -233,7 +233,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.length >= int.parse(q.value));
                 break;
-            case BeatBox.SmartQuery.FieldType.RATING:
+            case Noise.SmartQuery.FieldType.RATING:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return int.parse(q.value) == s.rating;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -241,7 +241,7 @@ public class BeatBox.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.rating >= int.parse(q.value));
                 break;
-            case BeatBox.SmartQuery.FieldType.DATE_ADDED:
+            case Noise.SmartQuery.FieldType.DATE_ADDED:
                 var now = new DateTime.now_local();
                 var played = new DateTime.from_unix_local(s.date_added);
                 played = played.add_days(int.parse(q.value));
@@ -255,7 +255,7 @@ public class BeatBox.SmartPlaylist : Object {
                     return now.compare(played) > 0;
                 }
                 break;
-            case BeatBox.SmartQuery.FieldType.DATE_RELEASED:
+            case Noise.SmartQuery.FieldType.DATE_RELEASED:
                 var now = new DateTime.now_local();
                 var released = new DateTime.from_unix_local(s.podcast_date);
                 released = released.add_days(int.parse(q.value));
@@ -269,7 +269,7 @@ public class BeatBox.SmartPlaylist : Object {
                     return now.compare(released) > 0;
                 }
                 break;
-            case BeatBox.SmartQuery.FieldType.LAST_PLAYED:
+            case Noise.SmartQuery.FieldType.LAST_PLAYED:
                 if(s.last_played == 0)
                     return false;
             
@@ -286,7 +286,7 @@ public class BeatBox.SmartPlaylist : Object {
                     return now.compare(played) > 0;
                 }
                 break;
-            case BeatBox.SmartQuery.FieldType.MEDIA_TYPE:
+            case Noise.SmartQuery.FieldType.MEDIA_TYPE:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return s.mediatype == int.parse(q.value);
                 else if(q.comparator == SmartQuery.ComparatorType.IS_NOT)

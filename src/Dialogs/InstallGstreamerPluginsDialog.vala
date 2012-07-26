@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.InstallGstreamerPluginsDialog : Window {
+public class Noise.InstallGstreamerPluginsDialog : Window {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Gst.Message message;

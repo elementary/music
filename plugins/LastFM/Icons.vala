@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012 BeatBox developers
+ * Copyright (c) 2011-2012 Noise developers
  *
  * Originally Written by Scott Ringwelski and Victor Eduardo for
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -31,16 +31,16 @@
 
 namespace Icons {
 
-	public BeatBox.Icon LASTFM_LOVE;
-	public BeatBox.Icon LASTFM_BAN;
+	public Noise.Icon LASTFM_LOVE;
+	public Noise.Icon LASTFM_BAN;
 
 	/**
 	 * Loads icon information and renders [preloaded] pixbufs
 	 **/
 	public void init_lastfm () {
 
-		LASTFM_LOVE = new BeatBox.Icon ("lastfm-love", 16, Type.ACTION, null, true);
-		LASTFM_BAN = new BeatBox.Icon ("lastfm-ban", 16, Type.ACTION, null, true);
+		LASTFM_LOVE = new Noise.Icon ("lastfm-love", 16, Type.ACTION, null, true);
+		LASTFM_BAN = new Noise.Icon ("lastfm-ban", 16, Type.ACTION, null, true);
 	}
 }
 

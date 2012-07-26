@@ -24,7 +24,7 @@ using Gtk;
 using Gdk;
 using Gee;
 
-public class BeatBox.SimpleOptionChooser : EventBox {
+public class Noise.SimpleOptionChooser : EventBox {
 	Gtk.Menu? menu = null;
 	public LinkedList<RadioMenuItem> items;
 	public LinkedList<Gtk.Image> images;

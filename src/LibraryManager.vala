@@ -27,7 +27,7 @@ using Gtk;
  * from the db, added to the queue, sorted, and more. LibraryWindow is
  * the visual representation of this class
  */
-public class BeatBox.LibraryManager : GLib.Object {
+public class Noise.LibraryManager : GLib.Object {
 	// FIXME: Define proper enum types in Media.vala
 	public static const int PREVIEW_MEDIA_ID = -2;
 
@@ -63,12 +63,12 @@ public class BeatBox.LibraryManager : GLib.Object {
 	 * DATA
 	 */
 
-	public BeatBox.LibraryWindow lw;
-	public BeatBox.DataBaseManager dbm;
-	public BeatBox.DataBaseUpdater dbu;
-	public BeatBox.FileOperator fo;
-	public BeatBox.Streamer player;
-	public BeatBox.DeviceManager device_manager;
+	public Noise.LibraryWindow lw;
+	public Noise.DataBaseManager dbm;
+	public Noise.DataBaseUpdater dbu;
+	public Noise.FileOperator fo;
+	public Noise.Streamer player;
+	public Noise.DeviceManager device_manager;
 
 	private HashMap<int, Playlist> _playlists; // rowid, playlist of all playlists
 	private HashMap<int, SmartPlaylist> _smart_playlists; // rowid, smart playlist
@@ -100,7 +100,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 	public int _played_index;//if user press back, this goes back 1 until it hits 0. as new media play, this goes with it
 	public int _current_index;
 	public int _current_shuffled_index;
-	public BeatBox.MediaInfo media_info { private set; get; }
+	public Noise.MediaInfo media_info { private set; get; }
 	
 	// Whether or not a media is being played. Returns true even if the media is paused
 	public bool media_active { get { return media_info.media != null; } }
@@ -139,13 +139,13 @@ public class BeatBox.LibraryManager : GLib.Object {
 	bool _doing_file_operations;
 	bool in_fetch_thread;
 
-	public LibraryManager(BeatBox.LibraryWindow lww) {
+	public LibraryManager(Noise.LibraryWindow lww) {
 		this.lw = lww;
 		this.player = new Streamer(this, lw);
 		
 		this.dbm = new DataBaseManager(this);
 		this.dbu = new DataBaseUpdater(this, dbm);
-		this.fo = new BeatBox.FileOperator(this);
+		this.fo = new Noise.FileOperator(this);
 
 		
 		fo.fo_progress.connect(dbProgress);
@@ -158,7 +158,7 @@ public class BeatBox.LibraryManager : GLib.Object {
 		
 		_played_index = 0;
 		
-		media_info = new BeatBox.MediaInfo();
+		media_info = new Noise.MediaInfo();
 		
 		int repeatValue = lw.main_settings.repeat_mode;
 		if(repeatValue == 0)

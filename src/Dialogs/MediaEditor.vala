@@ -25,9 +25,9 @@ using Gee;
 using Granite;
 
 #if USE_GRANITE_DECORATED_WINDOW
-public class BeatBox.MediaEditor : Granite.Widgets.LightWindow {
+public class Noise.MediaEditor : Granite.Widgets.LightWindow {
 #else
-public class BeatBox.MediaEditor : Window {
+public class Noise.MediaEditor : Window {
 #endif
 	LibraryManager _lm;
 	LyricFetcher lf;
@@ -434,7 +434,7 @@ public class BeatBox.MediaEditor : Window {
 	}
 }
 
-public class BeatBox.FieldEditor : VBox {
+public class Noise.FieldEditor : VBox {
 	private string _name;
 	private string _original;
 	
@@ -662,7 +662,7 @@ public class BeatBox.FieldEditor : VBox {
 	}
 }
 
-public class BeatBox.StatsDisplay : VBox {
+public class Noise.StatsDisplay : VBox {
 	public int plays;
 	public int skips;
 	public int last_played;
@@ -719,7 +719,7 @@ public class BeatBox.StatsDisplay : VBox {
 	}
 }
 
-/*public class BeatBox.DoubleSpinButton : HBox {
+/*public class Noise.DoubleSpinButton : HBox {
 	private SpinButton spin1;
 	private SpinButton spin2;
 	

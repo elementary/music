@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace BeatBox.String {
+namespace Noise.String {
 
     /**
      * Compares two strings. Used extensively in the views for sorting.

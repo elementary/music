@@ -23,9 +23,9 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-public class BeatBox.PreferencesWindow : Gtk.Window {
-    BeatBox.LibraryManager _lm;
-    BeatBox.LibraryWindow _lw;
+public class Noise.PreferencesWindow : Gtk.Window {
+    Noise.LibraryManager _lm;
+    Noise.LibraryWindow _lw;
 
     Gtk.FileChooserButton library_fileChooser;
     
@@ -48,7 +48,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
         
         _lm.file_operations_done.connect(fileOperationsDone);
         
-        BeatBox.plugins.hook_preferences_window (this);
+        Noise.plugins.hook_preferences_window (this);
     }
     
     void build_ui () {
@@ -81,7 +81,7 @@ public class BeatBox.PreferencesWindow : Gtk.Window {
     
     Gtk.Widget get_general_box () {
         
-        //BeatBox.Settings.schema.bind("show-at-start", start, "active-id", SettingsBindFlags.DEFAULT);
+        //Noise.Settings.schema.bind("show-at-start", start, "active-id", SettingsBindFlags.DEFAULT);
         
         var general_grid = new Gtk.Grid ();
         general_grid.row_spacing = 6;

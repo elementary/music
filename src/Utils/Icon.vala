@@ -22,7 +22,7 @@
 
 using Gtk;
 
-public class BeatBox.Icon : GLib.Object {
+public class Noise.Icon : GLib.Object {
 
 	public string name { get; private set; }
 

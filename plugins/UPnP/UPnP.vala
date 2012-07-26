@@ -27,7 +27,7 @@ namespace Noise.Plugins {
 
         Interface plugins;
         public GLib.Object object { owned get; construct; }
-        BeatBox.LibraryManager lm;
+        Noise.LibraryManager lm;
         UPnPDeviceManager upnp_manager;
 
         public void activate () {
@@ -35,7 +35,7 @@ namespace Noise.Plugins {
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();
             plugins.register_function(Interface.Hook.WINDOW, () => {
-                lm = ((BeatBox.Beatbox)plugins.noise_app).library_manager;
+                lm = ((Noise.App)plugins.noise_app).library_manager;
                 upnp_manager = new UPnPDeviceManager (lm);
                 lm.device_manager.loadPreExistingMounts();
             });

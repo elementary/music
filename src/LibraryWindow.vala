@@ -24,22 +24,22 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
+public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     /* signals */
     public signal void playPauseChanged ();
 
     /* Application */
-    public BeatBox.Beatbox app { get { return (application as BeatBox.Beatbox); } }
+    public Noise.App app { get { return (application as Noise.App); } }
 
     /* Library Manager */
-    public BeatBox.LibraryManager library_manager { get; private set; }
+    public Noise.LibraryManager library_manager { get; private set; }
 
-    public Noise.Settings   main_settings         { get; private set; }
-    public Noise.SavedState savedstate_settings   { get; private set; }
-    public Noise.Equalizer  equalizer_settings    { get; private set; }
+    public Noise.Settings.Main       main_settings         { get; private set; }
+    public Noise.Settings.SavedState savedstate_settings   { get; private set; }
+    public Noise.Settings.Equalizer  equalizer_settings    { get; private set; }
 
-    private BeatBox.MediaKeyListener mkl;
+    private Noise.MediaKeyListener mkl;
 
     /* Info related to the media being played */
     private bool media_considered_played    { get; set; default = false; } // whether or not we have updated last played and added to already played list
@@ -88,24 +88,24 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void media_half_played (); // send after the half of the song
     public signal void update_media_informations (); // send after 3 seconds
 
-    public LibraryWindow (BeatBox.Beatbox app) {
+    public LibraryWindow (Noise.App app) {
         set_application (app);
 
         //this.settings = app.settings;
-        main_settings       = new Noise.Settings ();
-        savedstate_settings = new Noise.SavedState ();
-        equalizer_settings  = new Noise.Equalizer ();
+        main_settings       = new Noise.Settings.Main ();
+        savedstate_settings = new Noise.Settings.SavedState ();
+        equalizer_settings  = new Noise.Settings.Equalizer ();
 
         // Load icon information
         Icons.init ();
 
         //this is used by many objects, is the media backend
-        library_manager = new BeatBox.LibraryManager (this);
+        library_manager = new Noise.LibraryManager (this);
 
         #if HAVE_INDICATE
             #if HAVE_DBUSMENU
                 message ("Initializing MPRIS and sound menu");
-                var mpris = new BeatBox.MPRIS (this);
+                var mpris = new Noise.MPRIS (this);
                 mpris.initialize ();
             #endif
         #endif
@@ -146,7 +146,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         /*if(!File.new_for_path(settings.getMusicFolder()).query_exists() && settings.getMusicFolder() != "") {
-            doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using BeatBox.");
+            doAlert("Music folder not mounted", "Your music folder is not mounted. Please mount your music folder before using Noise.");
         }*/
     }
 
@@ -193,7 +193,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         this.set_title (this.app.get_name ());
-        this.set_icon (Icons.BEATBOX.render (IconSize.MENU, null));
+        this.set_icon (Icons.NOISE.render (IconSize.MENU, null));
 
         // set up drag dest stuff
         Gtk.drag_dest_set (this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
@@ -406,7 +406,7 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // If the passed pixbuf is NULL, let's use the app's icon
         var image = pixbuf;
         if (image == null)
-            image = Icons.BEATBOX.render (IconSize.DIALOG);
+            image = Icons.NOISE.render (IconSize.DIALOG);
 
         notification.set_image_from_pixbuf (image);
 
@@ -610,11 +610,11 @@ public class BeatBox.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         else if(o is NetworkDevice) {
 
             var nd_setup = new TreeViewSetup (MusicListView.MusicColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.NETWORK_DEVICE);
-            var view = new NetworkDeviceViewWrapper (this, nd_setup, (BeatBox.NetworkDevice)o);
-            add_view (((BeatBox.NetworkDevice)o).getDisplayName(), view, out iter);
+            var view = new NetworkDeviceViewWrapper (this, nd_setup, (Noise.NetworkDevice)o);
+            add_view (((Noise.NetworkDevice)o).getDisplayName(), view, out iter);
 
             if (populate)
-                view.set_media_async (((BeatBox.NetworkDevice)o).get_medias ());
+                view.set_media_async (((Noise.NetworkDevice)o).get_medias ());
         }
         
         return iter;

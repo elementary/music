@@ -23,23 +23,23 @@
 using Gst;
 
 public class Noise.CDRipper : GLib.Object {
-	BeatBox.LibraryManager lm;
+	Noise.LibraryManager lm;
 	public dynamic Gst.Pipeline pipeline;
 	public dynamic Gst.Element src;
 	public dynamic Gst.Element queue;
 	public dynamic Gst.Element filter;
 	public dynamic Gst.Element sink;
 	
-	BeatBox.Media current_media; // media currently being processed/ripped
+	Noise.Media current_media; // media currently being processed/ripped
 	private string _device;
 	public int track_count;
 	private Format _format;
 	
-	public signal void media_ripped(BeatBox.Media s, bool success);
+	public signal void media_ripped(Noise.Media s, bool success);
 	public signal void progress_notification(double progress);
 	public signal void error(string err, Message message);
 	
-	public CDRipper(BeatBox.LibraryManager lm, string device, int count) {
+	public CDRipper(Noise.LibraryManager lm, string device, int count) {
 		this.lm = lm;
 		_device = device;
 		track_count = count;
@@ -145,7 +145,7 @@ public class Noise.CDRipper : GLib.Object {
         return true;
     }
     
-    public void ripMedia(uint track, BeatBox.Media s) {
+    public void ripMedia(uint track, Noise.Media s) {
 		var f = lm.fo.get_new_destination(s);
 		
 		sink.set_state(Gst.State.NULL);
@@ -157,7 +157,7 @@ public class Noise.CDRipper : GLib.Object {
 		tagger.foreach( (el) => {
 			
 			((Gst.TagSetter)el).add_tags(Gst.TagMergeMode.REPLACE_ALL,
-										Gst.TAG_ENCODER, "BeatBox");
+										Gst.TAG_ENCODER, "Noise");
 			
 		});*/
 		

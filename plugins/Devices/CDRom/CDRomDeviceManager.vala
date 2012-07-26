@@ -23,13 +23,13 @@
 using Gee;
 
 public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
-    BeatBox.LibraryManager lm;
+    Noise.LibraryManager lm;
     ArrayList<CDRomDevice> devices;
     
     //public signal void device_added(CDRomDevice d);
     //public signal void device_removed(CDRomDevice d);
     
-    public CDRomDeviceManager(BeatBox.LibraryManager lm) {
+    public CDRomDeviceManager(Noise.LibraryManager lm) {
         this.lm = lm;
         devices = new ArrayList<CDRomDevice>();
         
@@ -39,7 +39,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
     
     public void remove_all () {
         foreach(var dev in devices) {
-            lm.lw.sideTree.deviceRemoved ((BeatBox.Device)dev);
+            lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
         }
         devices = new ArrayList<CDRomDevice>();
     }
@@ -64,8 +64,8 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
         
             if(added.start_initialization()) {
                 added.finish_initialization();
-                added.initialized.connect((d) => {lm.device_manager.deviceInitialized ((BeatBox.Device)d);});
-                lm.lw.sideTree.deviceAdded ((BeatBox.Device)added);
+                added.initialized.connect((d) => {lm.device_manager.deviceInitialized ((Noise.Device)d);});
+                lm.lw.sideTree.deviceAdded ((Noise.Device)added);
             }
             else {
                 mount_removed(added.get_mount());
@@ -88,7 +88,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_path() == mount.get_default_location().get_path()) {
-                lm.lw.sideTree.deviceRemoved ((BeatBox.Device)dev);
+                lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
                 
                 // Actually remove it
                 devices.remove(dev);

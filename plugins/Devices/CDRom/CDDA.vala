@@ -24,8 +24,8 @@ using Gst;
 using Gee;
 
 public class Noise.CDDA : GLib.Object {
-	public static LinkedList<BeatBox.Media> getMediaList(string device_path) {
-		var rv = new LinkedList<BeatBox.Media>();
+	public static LinkedList<Noise.Media> getMediaList(string device_path) {
+		var rv = new LinkedList<Noise.Media>();
 		File device_file;
 		FileInfo device_info;
 		string album_name;
@@ -58,7 +58,7 @@ public class Noise.CDDA : GLib.Object {
 		
 			int index = 1;
 			for (device_info = enumerator.next_file(); device_info != null; device_info = enumerator.next_file()) {
-				BeatBox.Media s = new BeatBox.Media("cdda://" + index.to_string());
+				Noise.Media s = new Noise.Media("cdda://" + index.to_string());
 				s.isTemporary = true;
 				
 				var title = device_info.get_attribute_string("xattr::org.gnome.audio.title");
@@ -177,8 +177,8 @@ public class Noise.CDDA : GLib.Object {
 		return builder.str;
 	}
 	
-	public static BeatBox.TrackInfo getInfoFromTitleArtist(string artist, string title) {
-		BeatBox.TrackInfo track = new BeatBox.TrackInfo.with_info(artist, title);
+	public static Noise.TrackInfo getInfoFromTitleArtist(string artist, string title) {
+		Noise.TrackInfo track = new Noise.TrackInfo.with_info(artist, title);
 		
 		return track;
 	}

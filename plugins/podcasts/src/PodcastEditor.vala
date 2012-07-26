@@ -24,7 +24,7 @@ using Gtk;
 using Gee;
 using Granite;
 
-public class BeatBox.PodcastEditor : Window {
+public class Noise.PodcastEditor : Window {
 	LibraryManager _lm;
 	
 	LinkedList<int> _allPodcasts;

@@ -26,7 +26,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.NotImportedWindow : Window{
+public class Noise.NotImportedWindow : Window{
 	LinkedList<string> _files;
 	string music_folder;
 	

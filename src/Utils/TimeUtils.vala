@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace BeatBox.TimeUtils {
+namespace Noise.TimeUtils {
 
     /**
      * Receives the number of seconds and returns a string with format:

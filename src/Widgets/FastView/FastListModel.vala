@@ -24,7 +24,7 @@ using Gtk;
  * this model is low level and optimized. We are not worried about stupid
  * users here.
 **/
-public class BeatBox.FastModel : GLib.Object, TreeModel, TreeSortable {
+public class Noise.FastModel : GLib.Object, TreeModel, TreeSortable {
 	int stamp; // all iters must match this
 	
 	/* data storage variables */

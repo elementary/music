@@ -23,7 +23,7 @@
 using GPod;
 using Gee;
 
-public class Noise.Plugins.AndroidDevice : GLib.Object, BeatBox.Device {
+public class Noise.Plugins.AndroidDevice : GLib.Object, Noise.Device {
     Mount mount;
     Gdk.Pixbuf icon;
     
@@ -32,8 +32,8 @@ public class Noise.Plugins.AndroidDevice : GLib.Object, BeatBox.Device {
         icon = Icons.render_icon("phone", Gtk.IconSize.MENU);
     }
     
-    public BeatBox.DevicePreferences get_preferences() {
-        return new BeatBox.DevicePreferences(get_unique_identifier());
+    public Noise.DevicePreferences get_preferences() {
+        return new Noise.DevicePreferences(get_unique_identifier());
     }
     
     public bool start_initialization() {
@@ -140,15 +140,15 @@ public class Noise.Plugins.AndroidDevice : GLib.Object, BeatBox.Device {
         return new LinkedList<int>();
     }
     
-    public bool sync_medias(LinkedList<BeatBox.Media> list) {
+    public bool sync_medias(LinkedList<Noise.Media> list) {
         return false;
     }
     
-    public bool add_medias(LinkedList<BeatBox.Media> list) {
+    public bool add_medias(LinkedList<Noise.Media> list) {
         return false;
     }
     
-    public bool remove_medias(LinkedList<BeatBox.Media> list) {
+    public bool remove_medias(LinkedList<Noise.Media> list) {
         return false;
     }
     
@@ -156,11 +156,11 @@ public class Noise.Plugins.AndroidDevice : GLib.Object, BeatBox.Device {
         return false;
     }
     
-    public bool will_fit(LinkedList<BeatBox.Media> list) {
+    public bool will_fit(LinkedList<Noise.Media> list) {
         return false;
     }
     
-    public bool transfer_to_library(LinkedList<BeatBox.Media> list) {
+    public bool transfer_to_library(LinkedList<Noise.Media> list) {
         return false;
     }
     

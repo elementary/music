@@ -8,7 +8,7 @@ internal class TextFieldRenderer : Gtk.CellRendererText {
 	}
 }
 
-public abstract class BeatBox.GenericList : FastView {
+public abstract class Noise.GenericList : FastView {
 	public signal void import_requested (Gee.LinkedList<Media> to_import);
 
 	//for header column chooser
@@ -58,7 +58,7 @@ public abstract class BeatBox.GenericList : FastView {
 
         key_press_event.connect ((event) => {
                 if (event.type == Gdk.EventType.KEY_PRESS && event.keyval == Gdk.Key.Delete) {
-                    var to_remove = new Gee.LinkedList<BeatBox.Media> ();
+                    var to_remove = new Gee.LinkedList<Noise.Media> ();
                     foreach (var m in get_selected_medias ())
                         to_remove.add (m);
                     lm.remove_media (to_remove, false);

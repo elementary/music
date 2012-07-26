@@ -18,14 +18,16 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Victor Eduardo <victoreduardm@gmail.com>
+ *              Corentin Noël <tintou@mailoo.org>
  */
 
-using Gee;
-
-public class BeatBox.EqualizerPreset : Object {
+public class Noise.EqualizerPreset : Object {
 
 	public string name = "";
-	public ArrayList<int> gains = new ArrayList<int> ();
+	public Gee.ArrayList<int> gains = new Gee.ArrayList<int> ();
 
 	public bool is_default { get; set; default = false; }
 

@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.PodcastListView : GenericView {
+public class Noise.PodcastListView : GenericView {
     
     
 	public TreeViewSetup podcast_setup { set; get; }

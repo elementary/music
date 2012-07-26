@@ -4,7 +4,7 @@ using Gtk;
  * this model is low level and optimized. We are not worried about stupid
  * users here.
 **/
-public class BeatBox.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
+public class Noise.FastGridModel : GLib.Object, TreeModel, TreeDragSource {
 	int stamp; // all iters must match this
 	
 	/* data storage variables */

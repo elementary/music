@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.InfoPanel : Gtk.EventBox {
+public class Noise.InfoPanel : Gtk.EventBox {
     private LibraryManager lm;
     private LibraryWindow lw;
     

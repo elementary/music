@@ -191,8 +191,9 @@ public class Noise.Plugins.Manager : Object {
     
     public Noise.Plugins.Interface plugin_iface { private set; get; }
 
+    // TODO: Properly integrate with settings class
     public Manager(string d, string? e, string? argument_set) {
-        settings = new Noise.Settings ().schema;
+        settings = new Noise.Settings.Main ().schema;
         settings_field = "plugins-enabled";
 
         plugin_iface = new Noise.Plugins.Interface (this);

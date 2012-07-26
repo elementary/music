@@ -20,20 +20,20 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-public class BeatBox.MediaInfo : GLib.Object {
-	public BeatBox.Media? media;
-	public BeatBox.ArtistInfo? artist;
-	public BeatBox.TrackInfo? track;
-	public BeatBox.AlbumInfo? album;
+public class Noise.MediaInfo : GLib.Object {
+	public Noise.Media? media;
+	public Noise.ArtistInfo? artist;
+	public Noise.TrackInfo? track;
+	public Noise.AlbumInfo? album;
 	
 	public MediaInfo () {
 		//don't initialize media because we check for null throughout the program
-		artist = new BeatBox.ArtistInfo ();
-		track = new BeatBox.TrackInfo ();
-		album = new BeatBox.AlbumInfo ();
+		artist = new Noise.ArtistInfo ();
+		track = new Noise.TrackInfo ();
+		album = new Noise.AlbumInfo ();
 	}
 	
-	public void update (BeatBox.ArtistInfo? art, BeatBox.TrackInfo? tra, BeatBox.AlbumInfo? alb, BeatBox.Media? s) {
+	public void update (Noise.ArtistInfo? art, Noise.TrackInfo? tra, Noise.AlbumInfo? alb, Noise.Media? s) {
 		media = s;
 		artist = art;
 		track = tra;

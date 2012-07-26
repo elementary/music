@@ -23,7 +23,7 @@
 using GPod;
 using Gee;
 
-public class Noise.Plugins.UPnPDevice : GLib.Object, BeatBox.NetworkDevice {
+public class Noise.Plugins.UPnPDevice : GLib.Object, Noise.NetworkDevice {
     
     public GUPnP.DeviceProxy proxy;
     public GUPnP.ServiceProxy service;
@@ -36,7 +36,7 @@ public class Noise.Plugins.UPnPDevice : GLib.Object, BeatBox.NetworkDevice {
     internal const int ICON_PREFERRED_WIDTH = 48;
     internal const int ICON_PREFERRED_HEIGHT = 48;
     private Timer timer = new Timer ();
-    LinkedList<BeatBox.Media> medias;
+    LinkedList<Noise.Media> medias;
     
     private GLib.List<GUPnP.DIDLLiteItem> _cache = new GLib.List<GUPnP.DIDLLiteItem>();
     
@@ -48,7 +48,7 @@ public class Noise.Plugins.UPnPDevice : GLib.Object, BeatBox.NetworkDevice {
         this.proxy = proxy;
         this.service = service;
         this.id = proxy.udn;
-        medias = new LinkedList<BeatBox.Media> ();
+        medias = new LinkedList<Noise.Media> ();
         start_music_search ();
     }
     
@@ -105,12 +105,12 @@ public class Noise.Plugins.UPnPDevice : GLib.Object, BeatBox.NetworkDevice {
         return false;
     }
     
-    public Collection<BeatBox.Media> get_medias() {
+    public Collection<Noise.Media> get_medias() {
         
         return medias;
     }
     
-    public Collection<BeatBox.Media> get_songs() {
+    public Collection<Noise.Media> get_songs() {
         //start_music_search ();
         return medias;
     }
@@ -290,7 +290,7 @@ public class Noise.Plugins.UPnPDevice : GLib.Object, BeatBox.NetworkDevice {
         var res = get_best_resource (item);
         if (res != null) {
             warning (item.title ?? "");
-            BeatBox.Media media = new BeatBox.Media (res.uri);
+            Noise.Media media = new Noise.Media (res.uri);
             media.title =  item.title ?? "";
             media.album =  item.album ?? "";
             media.artist =  item.title ?? (item.creator ?? "");

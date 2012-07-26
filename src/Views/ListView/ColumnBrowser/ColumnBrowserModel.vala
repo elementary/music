@@ -25,7 +25,7 @@ using Gee;
 using GLib;
 
 
-public class BeatBox.MillerModel : GLib.Object, TreeModel, TreeSortable {
+public class Noise.MillerModel : GLib.Object, TreeModel, TreeSortable {
 	/* all iters must match this */
 	public int stamp { get; private set; default = (int)GLib.Random.next_int(); }
 

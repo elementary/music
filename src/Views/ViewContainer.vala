@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class BeatBox.ViewContainer : Gtk.EventBox {
+public class Noise.ViewContainer : Gtk.EventBox {
 
     private Gtk.Notebook? notebook = null;
 

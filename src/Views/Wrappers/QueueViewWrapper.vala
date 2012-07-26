@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class BeatBox.QueueViewWrapper : ViewWrapper {
+public class Noise.QueueViewWrapper : ViewWrapper {
 
     public QueueViewWrapper (LibraryWindow lw) {
         base (lw, Hint.QUEUE);

@@ -22,7 +22,7 @@
 
 using Gtk;
 
-public class BeatBox.AddPodcastWindow : Window {
+public class Noise.AddPodcastWindow : Window {
 	public LibraryWindow lw;
 	
 	VBox content;

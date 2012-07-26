@@ -25,7 +25,7 @@
 
 using Xml;
 
-public class LastFM.AlbumInfo : BeatBox.AlbumInfo {
+public class LastFM.AlbumInfo : Noise.AlbumInfo {
     
     private string url { get; set; default=""; }
     

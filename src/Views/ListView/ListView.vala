@@ -26,7 +26,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.ListView : ContentView, Gtk.Box {
+public class Noise.ListView : ContentView, Gtk.Box {
 	public signal void reordered ();
 
 	// Wrapper for the list view and miller columns

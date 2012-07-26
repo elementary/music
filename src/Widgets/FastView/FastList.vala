@@ -21,7 +21,7 @@
 
 using Gtk;
 
-public class BeatBox.FastView : TreeView {
+public class Noise.FastView : TreeView {
 #if HAVE_BUILTIN_SHUFFLE
 	public static const int SHUFFLE_COLUMN_ID = -3;
 #endif

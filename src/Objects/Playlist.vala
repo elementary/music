@@ -22,7 +22,7 @@
  
 using Gee;
 
-public class BeatBox.Playlist : Object {
+public class Noise.Playlist : Object {
 	public TreeViewSetup tvs;
 	private Gee.HashMap<Media, int> _media; // Media, 1
 	

@@ -23,7 +23,7 @@
 using Gtk;
 using Gdk;
 
-public class BeatBox.CellDataFunctionHelper : GLib.Object {
+public class Noise.CellDataFunctionHelper : GLib.Object {
 	LibraryManager lm;
 	FastView view;
 	

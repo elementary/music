@@ -22,7 +22,7 @@
 
 using Gst;
 
-public class BeatBox.Video : GLib.Object {
+public class Noise.Video : GLib.Object {
 	public dynamic Gst.Element element;
 	
 	public Video() {

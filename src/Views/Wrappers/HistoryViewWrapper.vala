@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class BeatBox.HistoryViewWrapper : ViewWrapper {
+public class Noise.HistoryViewWrapper : ViewWrapper {
 
     public HistoryViewWrapper (LibraryWindow lw) {
         base (lw, Hint.HISTORY);

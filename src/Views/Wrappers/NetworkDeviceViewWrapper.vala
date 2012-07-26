@@ -20,7 +20,7 @@
  * Authored by: Corentin Noël <tintou@mailoo.org>
  */
 
-public class BeatBox.NetworkDeviceViewWrapper : ViewWrapper {
+public class Noise.NetworkDeviceViewWrapper : ViewWrapper {
     public NetworkDevice d { get; private set; }
     
     public NetworkDeviceViewWrapper (LibraryWindow lww, TreeViewSetup tvs, NetworkDevice d) {

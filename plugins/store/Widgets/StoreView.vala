@@ -26,8 +26,8 @@ using Gee;
 public class Store.StoreView : VBox {
 	public Store.store store;
 	
-	public BeatBox.LibraryManager lm;
-	public BeatBox.LibraryWindow lw;
+	public Noise.LibraryManager lm;
+	public Noise.LibraryWindow lw;
 	public bool isInitialized;
 	bool isCurrentView;
 	
@@ -42,7 +42,7 @@ public class Store.StoreView : VBox {
 	ToolButton homeButton;
 	HBox container;
 	
-	public StoreView(BeatBox.LibraryManager lm, BeatBox.LibraryWindow lw) {
+	public StoreView(Noise.LibraryManager lm, Noise.LibraryWindow lw) {
 		this.lm = lm;
 		this.lw = lw;
 		

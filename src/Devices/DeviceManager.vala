@@ -22,7 +22,7 @@
 
 using Gee;
 
-public class BeatBox.DeviceManager : GLib.Object {
+public class Noise.DeviceManager : GLib.Object {
 	LibraryManager lm;
 	VolumeMonitor vm;
 	
@@ -39,11 +39,11 @@ public class BeatBox.DeviceManager : GLib.Object {
 		this.lm = lm;
 		vm = VolumeMonitor.get();
 		
-		_device_preferences = new HashTable<string, BeatBox.DevicePreferences>(null, null);
+		_device_preferences = new HashTable<string, Noise.DevicePreferences>(null, null);
 		
 		// pre-load devices and their preferences
 		_pref_lock.lock();
-		foreach(BeatBox.DevicePreferences dp in lm.dbm.load_devices()) {
+		foreach(Noise.DevicePreferences dp in lm.dbm.load_devices()) {
 			_device_preferences.set(dp.id, dp);
 		}
 		_pref_lock.unlock();
@@ -118,7 +118,7 @@ public class BeatBox.DeviceManager : GLib.Object {
 		
 	/** Device Preferences **/
 	public GLib.List<DevicePreferences> device_preferences() {
-		var rv = new GLib.List<BeatBox.DevicePreferences>();
+		var rv = new GLib.List<Noise.DevicePreferences>();
 		
 		_pref_lock.lock();
 		foreach(var pref in _device_preferences.get_values()) {

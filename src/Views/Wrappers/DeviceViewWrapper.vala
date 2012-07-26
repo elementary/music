@@ -25,7 +25,7 @@ using Gee;
 
 // TODO: REWRITE TO SUPPORT ANY DEVICE
 
-public class BeatBox.DeviceViewWrapper : ViewWrapper {
+public class Noise.DeviceViewWrapper : ViewWrapper {
     public Device d { get; private set; }
     
     public DeviceViewWrapper (LibraryWindow lww, TreeViewSetup tvs, Device d) {

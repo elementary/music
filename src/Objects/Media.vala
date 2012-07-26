@@ -23,7 +23,7 @@
 //using Gst;
 using Gtk;
 
-public class BeatBox.Media : GLib.Object {
+public class Noise.Media : GLib.Object {
 	public enum MediaType {
 		SONG,
 		PODCAST,

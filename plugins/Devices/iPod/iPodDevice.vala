@@ -23,9 +23,9 @@
 using GPod;
 using Gee;
 
-public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
-    BeatBox.LibraryManager lm;
-    BeatBox.DevicePreferences pref;
+public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
+    Noise.LibraryManager lm;
+    Noise.DevicePreferences pref;
     iTunesDB db;
     Mount mount;
     Gdk.Pixbuf icon;
@@ -33,27 +33,27 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
     bool currently_transferring = false;
     bool sync_cancelled = false;
     bool transfer_cancelled = false;
-    LinkedList<BeatBox.Media> list;
+    LinkedList<Noise.Media> list;
     int index = 0;
     int total = 0;
     string current_operation = "";
     
-    HashMap<unowned GPod.Track, BeatBox.Media> medias;
-    HashMap<unowned GPod.Track, BeatBox.Media> songs;
-    HashMap<unowned GPod.Track, BeatBox.Media> podcasts;
-    HashMap<unowned GPod.Track, BeatBox.Media> audiobooks;
-    HashMap<unowned GPod.Playlist, BeatBox.Playlist> playlists;
-    HashMap<unowned GPod.Playlist, BeatBox.SmartPlaylist> smart_playlists;
+    HashMap<unowned GPod.Track, Noise.Media> medias;
+    HashMap<unowned GPod.Track, Noise.Media> songs;
+    HashMap<unowned GPod.Track, Noise.Media> podcasts;
+    HashMap<unowned GPod.Track, Noise.Media> audiobooks;
+    HashMap<unowned GPod.Playlist, Noise.Playlist> playlists;
+    HashMap<unowned GPod.Playlist, Noise.SmartPlaylist> smart_playlists;
     
-    HashMap<BeatBox.Media, unowned GPod.Track> to_add; // used to add all new songs at the end when idle
+    HashMap<Noise.Media, unowned GPod.Track> to_add; // used to add all new songs at the end when idle
     
-    public iPodDevice(BeatBox.LibraryManager lm, Mount mount) {
+    public iPodDevice(Noise.LibraryManager lm, Mount mount) {
         this.lm = lm;
         this.mount = mount;
         
         pref = lm.device_manager.get_device_preferences(get_unique_identifier());
         if(pref == null) {
-            pref = new BeatBox.DevicePreferences(get_unique_identifier());
+            pref = new Noise.DevicePreferences(get_unique_identifier());
             lm.device_manager.add_device_preferences(pref);
         }
         
@@ -62,16 +62,16 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         else
             icon = Icons.render_icon ("multimedia-player", Gtk.IconSize.MENU);
         
-        medias = new HashMap<unowned GPod.Track, BeatBox.Media>();
-        songs = new HashMap<unowned GPod.Track, BeatBox.Media>();
-        podcasts = new HashMap<unowned GPod.Track, BeatBox.Media>();
-        audiobooks = new HashMap<unowned GPod.Track, BeatBox.Media>();
-        playlists = new HashMap<unowned GPod.Playlist, BeatBox.Playlist>();
-        smart_playlists = new HashMap<unowned GPod.Playlist, BeatBox.SmartPlaylist>();
-        to_add = new HashMap<BeatBox.Media, unowned GPod.Track>();
+        medias = new HashMap<unowned GPod.Track, Noise.Media>();
+        songs = new HashMap<unowned GPod.Track, Noise.Media>();
+        podcasts = new HashMap<unowned GPod.Track, Noise.Media>();
+        audiobooks = new HashMap<unowned GPod.Track, Noise.Media>();
+        playlists = new HashMap<unowned GPod.Playlist, Noise.Playlist>();
+        smart_playlists = new HashMap<unowned GPod.Playlist, Noise.SmartPlaylist>();
+        to_add = new HashMap<Noise.Media, unowned GPod.Track>();
     }
     
-    public BeatBox.DevicePreferences get_preferences() {
+    public Noise.DevicePreferences get_preferences() {
         return pref;
     }
     
@@ -105,7 +105,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         for(int i = 0; i < db.tracks.length(); ++i) {
             unowned GPod.Track t = db.tracks.nth_data(i);
             //stdout.printf("found track and rating is %d and app rating %d and id is %d\n", (int)db.tracks.nth_data(i).rating, (int)db.tracks.nth_data(i).app_rating, (int)db.tracks.nth_data(i).id);
-            var m = BeatBox.Media.from_track(get_path(), t);
+            var m = Noise.Media.from_track(get_path(), t);
             
             this.medias.set(t, m);
             if(t.mediatype == GPod.MediaType.AUDIO)
@@ -137,7 +137,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
                 playlists.set(p, bbPlaylist.rowid);
             }
             else {
-                BeatBox.SmartPlaylist sp = BeatBox.SmartPlaylist.from_ipod(p);
+                Noise.SmartPlaylist sp = Noise.SmartPlaylist.from_ipod(p);
                 
                 
             }
@@ -267,31 +267,31 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         return true; // no device.supports_audiobook(), but there is audiobook playlist
     }
     
-    public Collection<BeatBox.Media> get_medias() {
+    public Collection<Noise.Media> get_medias() {
         return medias.values;
     }
     
-    public Collection<BeatBox.Media> get_songs() {
+    public Collection<Noise.Media> get_songs() {
         return songs.values;
     }
     
-    public Collection<BeatBox.Media> get_podcasts() {
+    public Collection<Noise.Media> get_podcasts() {
         return podcasts.values;
     }
     
-    public Collection<BeatBox.Media> get_audiobooks() {
+    public Collection<Noise.Media> get_audiobooks() {
         return audiobooks.values;
     }
     
-    public Collection<BeatBox.Playlist> get_playlists() {
+    public Collection<Noise.Playlist> get_playlists() {
         return playlists.values;
     }
     
-    public Collection<BeatBox.SmartPlaylist> get_smart_playlists() {
+    public Collection<Noise.SmartPlaylist> get_smart_playlists() {
         return smart_playlists.values;
     }
     
-    public bool sync_medias(LinkedList<BeatBox.Media> list) {
+    public bool sync_medias(LinkedList<Noise.Media> list) {
         if(currently_syncing) {
             warning("Tried to sync when already syncing\n");
             return false;
@@ -310,7 +310,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         lm.start_file_operations (_("Syncing <b>%s</b>...").printf (getDisplayName ()));
         current_operation = ("Syncing <b>%s</b>...").printf (getDisplayName ());
         lm.lw.update_sensitivities();
-        to_add = new HashMap<BeatBox.Media, unowned GPod.Track>();
+        to_add = new HashMap<Noise.Media, unowned GPod.Track>();
         this.list = list;
         
         try {
@@ -340,7 +340,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         transfer_cancelled = true;
     }
     
-    public bool will_fit(LinkedList<BeatBox.Media> list) {
+    public bool will_fit(LinkedList<Noise.Media> list) {
         uint64 list_size = 0;
         foreach(var m in list) {
             list_size += m.file_size; // convert from MB to bytes
@@ -361,10 +361,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         
         // for each song that is on device, but not in this.list, remove
         current_operation = "Removing old medias from iPod and updating current ones";
-        var removed = new HashMap<unowned GPod.Track, BeatBox.Media>();
+        var removed = new HashMap<unowned GPod.Track, Noise.Media>();
         foreach(var e in medias.entries) {
             if(!sync_cancelled) {
-                BeatBox.Media match = lm.match_media_to_list(e.value, list);
+                Noise.Media match = lm.match_media_to_list(e.value, list);
                 
                 // If entry e is not on the list to be synced, it is to be removed
                 if(match == null) {
@@ -391,7 +391,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         // anything left will be synced. update medias that are already on list
         foreach(var entry in medias.entries) {
             if(!sync_cancelled) {
-                BeatBox.Media m = lm.match_media_to_list(entry.value, this.list);
+                Noise.Media m = lm.match_media_to_list(entry.value, this.list);
                 if(m != null) {
                     unowned GPod.Track t = entry.key;
                     m.update_track(ref t);
@@ -415,8 +415,8 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         current_operation = "Adding new media to iPod...";
         sub_index = 0;
         int new_media_size = 0;
-        var list_to_add = new LinkedList<BeatBox.Media>();
-        foreach(BeatBox.Media m in list) {
+        var list_to_add = new LinkedList<Noise.Media>();
+        foreach(Noise.Media m in list) {
             bool found_match = false;
             foreach(var test in medias.values) {
                 if(test != m && test.title.down() == m.title.down() && test.artist.down() == m.artist.down()) {
@@ -502,7 +502,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
      * Specifically only adding medias. This is different and not a part
      * of sync. This is usually called on drag and drop to iPod.
      *********************************/
-    bool add_medias(LinkedList<BeatBox.Media> list) {
+    bool add_medias(LinkedList<Noise.Media> list) {
         if(currently_syncing) {
             warning("Tried to add when already syncing\n");
             return false;
@@ -513,7 +513,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         }
         
         // Check if all current media + this list will fit.
-        var new_list = new LinkedList<BeatBox.Media>();
+        var new_list = new LinkedList<Noise.Media>();
         foreach(var m in list)
             new_list.add(m);
         foreach(var m in medias.values)
@@ -527,7 +527,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         lm.start_file_operations(_("Syncing <b>%s</b>...").printf (getDisplayName ()));
         current_operation = ("Syncing <b>%s</b>...").printf (getDisplayName ());
         lm.lw.update_sensitivities();
-        to_add = new HashMap<BeatBox.Media, unowned GPod.Track>();
+        to_add = new HashMap<Noise.Media, unowned GPod.Track>();
         this.list = list;
         
         try {
@@ -606,7 +606,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
     }
     
     /* Adds to track list, mpl, and copies the file over */
-    void add_media(BeatBox.Media s) {
+    void add_media(Noise.Media s) {
         if(s == null)
             return;
         
@@ -649,7 +649,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         }
         
         if(success) {
-            BeatBox.Media on_ipod = BeatBox.Media.from_track(get_path(), added);
+            Noise.Media on_ipod = Noise.Media.from_track(get_path(), added);
             
             medias.set(added, on_ipod);
             if(added.mediatype == GPod.MediaType.AUDIO)
@@ -669,7 +669,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
      * Specifically only removing medias. This is different and not a part
      * of sync. This is usually called on right click -> Remove.
      *********************************/
-    bool remove_medias(LinkedList<BeatBox.Media> list) {
+    bool remove_medias(LinkedList<Noise.Media> list) {
         if(currently_syncing) {
             warning("Tried to add when already syncing\n");
             return false;
@@ -706,7 +706,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         
         ++index; // add first of 2 extra
         
-        var removed = new HashMap<unowned GPod.Track, BeatBox.Media>();
+        var removed = new HashMap<unowned GPod.Track, Noise.Media>();
         foreach(var e in medias.entries) {
             foreach(var m in list) {
                 if(!sync_cancelled) {
@@ -872,7 +872,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
             
             unowned GPod.Playlist added = db.playlists.nth_data(db.playlists.length() - 1);
             foreach(var entry in medias.entries) {
-                BeatBox.Media match = lm.match_media_to_list (entry.value, lm.media_from_playlist(playlist.rowid));
+                Noise.Media match = lm.match_media_to_list (entry.value, lm.media_from_playlist(playlist.rowid));
                 if(match != null) {
                     added.add_track(entry.key, -1);
                     ++sub_index;
@@ -897,7 +897,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
         index = 95;
     }
     
-    public bool transfer_to_library(LinkedList<BeatBox.Media> tr_list) {
+    public bool transfer_to_library(LinkedList<Noise.Media> tr_list) {
         if(currently_transferring) {
             warning("Tried to sync when already syncing\n");
             return false;
@@ -940,7 +940,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, BeatBox.Device {
             if(transfer_cancelled)
                 break;
             
-            BeatBox.Media copy = m.copy();
+            Noise.Media copy = m.copy();
             if(File.new_for_uri(copy.uri).query_exists()) {
                 copy.rowid = 0;
                 copy.isTemporary = false;

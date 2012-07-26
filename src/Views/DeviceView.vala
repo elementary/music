@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.DeviceView : Box {
+public class Noise.DeviceView : Box {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device d;

@@ -24,7 +24,7 @@ using SQLHeavy;
 using TagLib;
 using Gee;
 
-public class BeatBox.DataBaseManager : GLib.Object {
+public class Noise.DataBaseManager : GLib.Object {
 	public signal void db_progress (string? message, double progress);
 
 	private LibraryManager lm;
@@ -610,13 +610,13 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 	}
 
 	/** Last FM objects **/
-	public void save_albums(GLib.List<BeatBox.AlbumInfo> albums) {
+	public void save_albums(GLib.List<Noise.AlbumInfo> albums) {
 		try {
 			database.execute("DELETE FROM `albums`");
 			transaction = database.begin_transaction();
 			Query query = transaction.prepare("INSERT INTO `albums` (`name`, 'artist', `mbid`, 'release_date', 'summary', 'listeners', 'playcount', 'image_uri') VALUES (:name, :artist, :mbid, :release_date, :summary, :listeners, :playcount, :image_uri);");
 
-			foreach(BeatBox.AlbumInfo a in albums) {
+			foreach(Noise.AlbumInfo a in albums) {
 				query.set_string(":name", a.name);
 				query.set_string(":artist", a.artist);
 				query.set_string(":mbid", a.mbid);
@@ -635,15 +635,15 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		}
 	}
 
-	public GLib.List<BeatBox.AlbumInfo> load_albums() {
-		var rv = new GLib.List<BeatBox.AlbumInfo>();
+	public GLib.List<Noise.AlbumInfo> load_albums() {
+		var rv = new GLib.List<Noise.AlbumInfo>();
 
 		try {
 			string script = "SELECT rowid,* FROM `albums`";
 			Query query = new Query(database, script);
 
 			for (var results = query.execute(); !results.finished; results.next() ) {
-				BeatBox.AlbumInfo a = new BeatBox.AlbumInfo();
+				Noise.AlbumInfo a = new Noise.AlbumInfo();
 
 				//int rowid = results.fetch_int(0);
 				a.name = results.fetch_string (1);
@@ -665,15 +665,15 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 
-	public GLib.List<BeatBox.ArtistInfo> load_artists() {
-		var rv = new GLib.List<BeatBox.ArtistInfo>();
+	public GLib.List<Noise.ArtistInfo> load_artists() {
+		var rv = new GLib.List<Noise.ArtistInfo>();
 
 		try {
 			string script = "SELECT rowid,* FROM `artists`";
 			Query query = new Query(database, script);
 
 			for (var results = query.execute(); !results.finished; results.next() ) {
-				BeatBox.ArtistInfo a = new BeatBox.ArtistInfo();
+				Noise.ArtistInfo a = new Noise.ArtistInfo();
 
 				//int rowid = results.fetch_int(0);
 				a.name = results.fetch_string(1);
@@ -695,13 +695,13 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 
-	public void save_artists(GLib.List<BeatBox.ArtistInfo> artists) {
+	public void save_artists(GLib.List<Noise.ArtistInfo> artists) {
 		try {
 			database.execute("DELETE FROM `artists`");
 			transaction = database.begin_transaction();
 			Query query = transaction.prepare("INSERT INTO `artists` (`name`, `mbid`, 'listeners', 'playcount', 'published', 'summary', 'content', 'image_uri') VALUES (:name, :mbid, :listeners, :playcount, :published, :summary, :content, :image_uri);");
 
-			foreach(BeatBox.ArtistInfo a in artists) {
+			foreach(Noise.ArtistInfo a in artists) {
 				query.set_string(":name", a.name);
 				query.set_string(":mbid", a.mbid);
 				query.set_int(":listeners", a.listeners);
@@ -720,15 +720,15 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		}
 	}
 
-	public GLib.List<BeatBox.TrackInfo> load_tracks() {
-		var rv = new GLib.List<BeatBox.TrackInfo>();
+	public GLib.List<Noise.TrackInfo> load_tracks() {
+		var rv = new GLib.List<Noise.TrackInfo>();
 
 		try {
 			string script = "SELECT rowid,* FROM `tracks`";
 			Query query = new Query(database, script);
 
 			for (var results = query.execute(); !results.finished; results.next() ) {
-				BeatBox.TrackInfo t = new BeatBox.TrackInfo();
+				Noise.TrackInfo t = new Noise.TrackInfo();
 
 				//int rowid = results.fetch_int(0);
 				t.id = results.fetch_int(1);
@@ -751,13 +751,13 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 		return rv;
 	}
 
-	public void save_tracks(GLib.List<BeatBox.TrackInfo> tracks) {
+	public void save_tracks(GLib.List<Noise.TrackInfo> tracks) {
 		try {
 			database.execute("DELETE FROM `tracks`");
 			transaction = database.begin_transaction();
 			Query query = transaction.prepare("INSERT INTO `tracks` ('id', `name`, `artist`, `album`, 'duration', 'listeners', 'playcount', 'summary', 'content') VALUES (:id, :name, :artist, :album, :duration, :listeners, :playcount, :summary, :content);");
 
-			foreach(BeatBox.TrackInfo t in tracks) {
+			foreach(Noise.TrackInfo t in tracks) {
 				query.set_int(":id", t.id);
 				query.set_string(":name", t.name);
 				query.set_string(":artist", t.artist);

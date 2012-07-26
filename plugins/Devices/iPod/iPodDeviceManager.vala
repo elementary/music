@@ -23,13 +23,13 @@
 using Gee;
 
 public class Noise.Plugins.iPodDeviceManager : GLib.Object {
-    BeatBox.LibraryManager lm;
+    Noise.LibraryManager lm;
     ArrayList<iPodDevice> devices;
     
     //public signal void device_added(iPodDevice d);
     //public signal void device_removed(iPodDevice d);
     
-    public iPodDeviceManager(BeatBox.LibraryManager lm) {
+    public iPodDeviceManager(Noise.LibraryManager lm) {
         this.lm = lm;
         devices = new ArrayList<iPodDevice>();
         
@@ -46,7 +46,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     
     public void remove_all () {
         foreach(var dev in devices) {
-            lm.lw.sideTree.deviceRemoved ((BeatBox.Device)dev);
+            lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
         }
         devices = new ArrayList<iPodDevice>();
     }
@@ -67,8 +67,8 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
         
             if(added.start_initialization()) {
                 added.finish_initialization();
-                added.initialized.connect((d) => {lm.device_manager.deviceInitialized ((BeatBox.Device)d);});
-                lm.lw.sideTree.deviceAdded ((BeatBox.Device)added);
+                added.initialized.connect((d) => {lm.device_manager.deviceInitialized ((Noise.Device)d);});
+                lm.lw.sideTree.deviceAdded ((Noise.Device)added);
             }
             else {
                 mount_removed(added.get_mount());
@@ -91,7 +91,7 @@ public class Noise.Plugins.iPodDeviceManager : GLib.Object {
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_path() == mount.get_default_location().get_path()) {
-                lm.lw.sideTree.deviceRemoved ((BeatBox.Device)dev);
+                lm.lw.sideTree.deviceRemoved ((Noise.Device)dev);
                 
                 // Actually remove it
                 devices.remove(dev);

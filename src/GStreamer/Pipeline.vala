@@ -22,7 +22,7 @@
 
 using Gst;
 
-public class BeatBox.Pipeline : GLib.Object {
+public class Noise.Pipeline : GLib.Object {
 	public Gst.Pipeline pipe;
 	public Equalizer eq;
 	public ReplayGain gapless;

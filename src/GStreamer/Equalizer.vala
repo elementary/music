@@ -22,11 +22,11 @@
 
 using Gst;
 
-namespace BeatBox {
+namespace Noise {
 	private Gee.Collection<EqualizerPreset> ? default_presets = null;
 }
 
-public class BeatBox.Equalizer : GLib.Object {
+public class Noise.Equalizer : GLib.Object {
 	public dynamic Gst.Element element;
 
 	public Equalizer() {

@@ -17,7 +17,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class BeatBox.CompareFuncHolder {
+public class Noise.CompareFuncHolder {
     public unowned Gtk.TreeIterCompareFunc sort_func;
 
     public CompareFuncHolder (Gtk.TreeIterCompareFunc func) {

@@ -22,9 +22,9 @@
 
 using Gee;
 
-public class BeatBox.DataBaseUpdater : GLib.Object {
+public class Noise.DataBaseUpdater : GLib.Object {
 	private LibraryManager lm;
-	private BeatBox.DataBaseManager dbm;
+	private Noise.DataBaseManager dbm;
 	
 	LinkedList<Media> media_updates;
 	
@@ -37,7 +37,7 @@ public class BeatBox.DataBaseUpdater : GLib.Object {
 	
 	public signal void periodical_save ();
 	
-	public DataBaseUpdater(LibraryManager lm, BeatBox.DataBaseManager databm) {
+	public DataBaseUpdater(LibraryManager lm, Noise.DataBaseManager databm) {
 		this.lm = lm;
 		dbm = databm;
 		

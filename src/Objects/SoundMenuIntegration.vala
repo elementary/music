@@ -22,7 +22,7 @@
 #if HAVE_INDICATE
 using Indicate;
 
-public class BeatBox.SoundMenuIntegration : GLib.Object {
+public class Noise.SoundMenuIntegration : GLib.Object {
 	private LibraryWindow library_window;
 
 	private uint watch;

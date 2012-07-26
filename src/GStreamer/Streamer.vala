@@ -23,10 +23,10 @@
 using Gst;
 using Gtk;
 
-public class BeatBox.Streamer : GLib.Object {
+public class Noise.Streamer : GLib.Object {
 	LibraryManager lm;
 	LibraryWindow lw;
-	BeatBox.Pipeline pipe;
+	Noise.Pipeline pipe;
 	
 	InstallGstreamerPluginsDialog dialog;
 	
@@ -43,7 +43,7 @@ public class BeatBox.Streamer : GLib.Object {
 		this.lm = lm;
 		this.lw = lw;
 		
-		pipe = new BeatBox.Pipeline();
+		pipe = new Noise.Pipeline();
 		
 		pipe.bus.add_watch(busCallback);
 		//pipe.playbin.about_to_finish.connect(about_to_finish);

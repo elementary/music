@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012 BeatBox Developers
+ * Copyright (c) 2011-2012 Noise Developers
  *
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
@@ -36,7 +36,7 @@ namespace Noise {
     }
 }
 
-public abstract class BeatBox.ColumnBrowser : Gtk.Grid {
+public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
 	public signal void changed ();
 	public signal void position_changed (Noise.BrowserPosition p);

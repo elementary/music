@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012 BeatBox Developers
+ * Copyright (c) 2012 Noise Developers
  *
  * This is a free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License as
@@ -37,7 +37,7 @@
 using Gtk;
 using Gee;
 
-namespace BeatBox {
+namespace Noise {
     bool clutter_usable = false;
 }
 
@@ -45,7 +45,7 @@ namespace BeatBox {
  * The Widget in the Clutter.Actor of a HoverView. It contains some content
  * and a X to close it.
  **/
-class BeatBox.HoverSidebar : Gtk.Grid {
+class Noise.HoverSidebar : Gtk.Grid {
     Gtk.Widget? content;
     public signal void close ();
 
@@ -73,7 +73,7 @@ class BeatBox.HoverSidebar : Gtk.Grid {
     }
 }
 
-class BeatBox.Albums.IconView : Gtk.IconView, HoverBackgroundWidget {
+class Noise.Albums.IconView : Gtk.IconView, HoverBackgroundWidget {
     internal LibraryManager lm;
     internal LibraryWindow lw;
 
@@ -144,18 +144,18 @@ class BeatBox.Albums.IconView : Gtk.IconView, HoverBackgroundWidget {
 
 }
 
-public interface BeatBox.HoverBackgroundWidget : Gtk.Widget
+public interface Noise.HoverBackgroundWidget : Gtk.Widget
 {
     public signal void expand_widget(Gtk.Widget widget, int size);
     public signal void collapse_widget();
 }
 
-interface BeatBox.HoverView : Gtk.Widget
+interface Noise.HoverView : Gtk.Widget
 {
     public abstract void set_background_widget (HoverBackgroundWidget icon_view_wi);
 }
 
-class BeatBox.HoverViewFallback : Gtk.Grid, HoverView
+class Noise.HoverViewFallback : Gtk.Grid, HoverView
 {
     Gtk.Grid sidebar;
     public HoverViewFallback () {
@@ -199,7 +199,7 @@ class BeatBox.HoverViewFallback : Gtk.Grid, HoverView
     }
 }
 
-class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
+class Noise.HoverViewClutter : GtkClutter.Embed, HoverView
 {
     Clutter.Container stage;
     GtkClutter.Actor background_view;
@@ -411,7 +411,7 @@ class BeatBox.HoverViewClutter : GtkClutter.Embed, HoverView
     }
 }
 
-public class BeatBox.AlbumView : ContentView, Grid {
+public class Noise.AlbumView : ContentView, Grid {
     LibraryManager lm;
     LibraryWindow lw;
     Collection<int> medias;
@@ -421,7 +421,7 @@ public class BeatBox.AlbumView : ContentView, Grid {
     private string last_search;
     LinkedList<string> timeout_search;
     
-    BeatBox.Albums.IconView icons;
+    Noise.Albums.IconView icons;
     AlbumViewModel model;
     
     Gdk.Pixbuf defaultPix;
@@ -429,7 +429,7 @@ public class BeatBox.AlbumView : ContentView, Grid {
     bool _is_current;
     bool _is_current_view;
     bool needsUpdate;
-    //BeatBox.HoverView view;
+    //Noise.HoverView view;
     
     public signal void itemClicked(string artist, string album);
     
@@ -454,14 +454,14 @@ public class BeatBox.AlbumView : ContentView, Grid {
         /*Viewport v = new Viewport(null, null);*/
         
         /*set_policy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);*/
-        if(clutter_usable && Environment.get_variable("BEATBOX_NO_CLUTTER") == null)
-            view = new BeatBox.HoverViewClutter();
+        if(clutter_usable && Environment.get_variable("NOISE_NO_CLUTTER") == null)
+            view = new Noise.HoverViewClutter();
         else
-            view = new BeatBox.HoverViewFallback();
+            view = new Noise.HoverViewFallback();
         
         /*v.set_shadow_type(ShadowType.NONE);*/
         model = new AlbumViewModel(lm, defaultPix);
-        //icons = new BeatBox.Albums.IconView(model);
+        //icons = new Noise.Albums.IconView(model);
         //view.set_background_widget(icons);
         
         icons.set_pixbuf_column(0);

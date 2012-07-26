@@ -1,5 +1,5 @@
 
-public class BeatBox.BottomStatusBar : Granite.Widgets.StatusBar {
+public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
 
     /* Statusbar items */
     private SimpleOptionChooser addPlaylistChooser;

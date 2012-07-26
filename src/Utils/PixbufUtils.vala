@@ -21,7 +21,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace BeatBox.PixbufUtils {
+namespace Noise.PixbufUtils {
 
     /**
      * @param pixbuf original image

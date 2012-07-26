@@ -1,4 +1,26 @@
-namespace Noise {
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
+/*-
+ * Copyright (c) 2012 Noise Developers
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * Authored by: Corentin Noël <tintou@mailoo.org>
+ */
+
+namespace Noise.Settings {
 
     public class SavedState : Granite.Services.Settings {
         public int window_width { get; set; }
@@ -17,11 +39,9 @@ namespace Noise {
         public SavedState () {
             base ("org.pantheon.noise.SavedState");
         }
-        
     }
 
-    public class Settings : Granite.Services.Settings {
-
+    public class Main : Granite.Services.Settings {
         public string music_mount_name { get; set; }
         public string music_folder { get; set; }
         public bool update_folder_hierarchy { get; set; }
@@ -35,13 +55,12 @@ namespace Noise {
         public string search_string { get; set; }
         public string[] plugins_enabled { get; set;}
         
-        public Settings ()  {
+        public Main ()  {
             base ("org.pantheon.noise.Settings");
         }
     }
 
     public class Equalizer : Granite.Services.Settings {
-
         public bool equalizer_enabled { get; set; }
         public bool auto_switch_preset { get; set; }
         public string selected_preset { get; set; }
@@ -51,7 +70,7 @@ namespace Noise {
             base ("org.pantheon.noise.Equalizer");
         }
         
-        public Gee.Collection<BeatBox.EqualizerPreset> getPresets () {
+        public Gee.Collection<Noise.EqualizerPreset> getPresets () {
 
             var presets_data = new Gee.LinkedList<string> ();
             
@@ -61,10 +80,10 @@ namespace Noise {
                 }
             }
             
-            var rv = new Gee.LinkedList<BeatBox.EqualizerPreset>();
+            var rv = new Gee.LinkedList<Noise.EqualizerPreset>();
             
             foreach (var preset_str in presets_data) {
-                rv.add (new BeatBox.EqualizerPreset.from_string (preset_str));
+                rv.add (new Noise.EqualizerPreset.from_string (preset_str));
             }
             
             return rv;

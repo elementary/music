@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012 BeatBox Developers
+ * Copyright (c) 2011-2012 Noise Developers
  *
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
@@ -25,7 +25,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.BrowserColumn : Gtk.ScrolledWindow {
+public class Noise.BrowserColumn : Gtk.ScrolledWindow {
 
 	public signal void selection_changed (BrowserColumn.Category type, string val);
 	public signal void row_activated (string text);

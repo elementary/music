@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.BrowserColumnModel : Object, TreeModel, TreeSortable {
+public class Noise.BrowserColumnModel : Object, TreeModel, TreeSortable {
 	/* all iters must match this */
 	private int stamp = (int)Random.next_int ();
 

@@ -22,7 +22,7 @@
 
 using Gtk;
 
-public class BeatBox.EqualizerWindow : Gtk.Window {
+public class Noise.EqualizerWindow : Gtk.Window {
 
 	LibraryManager lm;
 	LibraryWindow lw;

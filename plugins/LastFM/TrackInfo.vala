@@ -26,7 +26,7 @@
 using Xml;
 using Json;
 
-public class LastFM.TrackInfo : BeatBox.TrackInfo {
+public class LastFM.TrackInfo : Noise.TrackInfo {
 	
 	public string url { get; set; default = ""; }
 	public int streamable { get; set; default = 0; }

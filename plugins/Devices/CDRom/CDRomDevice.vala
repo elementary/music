@@ -23,15 +23,15 @@
 using GPod;
 using Gee;
 
-public class Noise.Plugins.CDRomDevice : GLib.Object, BeatBox.Device {
-	BeatBox.LibraryManager lm;
-	BeatBox.LibraryWindow lw;
+public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
+	Noise.LibraryManager lm;
+	Noise.LibraryWindow lw;
 	Mount mount;
 	Gdk.Pixbuf icon;
 	string display_name;
 	
 	CDRipper ripper;
-	BeatBox.Media media_being_ripped;
+	Noise.Media media_being_ripped;
 	int current_list_index;
 	
 	bool _is_transferring;
@@ -42,23 +42,23 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, BeatBox.Device {
 	int index;
 	int total;
 	
-	LinkedList<BeatBox.Media> medias;
-	LinkedList<BeatBox.Media> list;
+	LinkedList<Noise.Media> medias;
+	LinkedList<Noise.Media> list;
 	
-	public CDRomDevice(BeatBox.LibraryManager lm, Mount mount) {
+	public CDRomDevice(Noise.LibraryManager lm, Mount mount) {
 		this.lm = lm;
 		this.lw = lm.lw;
 		this.mount = mount;
 		this.icon = Icons.AUDIO_CD.render(Gtk.IconSize.MENU, null);
 		this.display_name = mount.get_name();
 		
-		list = new LinkedList<BeatBox.Media>();
-		medias = new LinkedList<BeatBox.Media>();
+		list = new LinkedList<Noise.Media>();
+		medias = new LinkedList<Noise.Media>();
 		media_being_ripped = null;
 	}
 	
-	public BeatBox.DevicePreferences get_preferences() {
-		return new BeatBox.DevicePreferences(get_unique_identifier());
+	public Noise.DevicePreferences get_preferences() {
+		return new Noise.DevicePreferences(get_unique_identifier());
 	}
 	
 	public bool start_initialization() {
@@ -191,16 +191,16 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, BeatBox.Device {
 		return new LinkedList<int>();
 	}
 	
-	public bool sync_medias(LinkedList<BeatBox.Media> list) {
+	public bool sync_medias(LinkedList<Noise.Media> list) {
 		stdout.printf("Ripping not supported on CDRom's.\n");
 		return false;
 	}
 	
-	public bool add_medias(LinkedList<BeatBox.Media> list) {
+	public bool add_medias(LinkedList<Noise.Media> list) {
 		return false;
 	}
 	
-	public bool remove_medias(LinkedList<BeatBox.Media> list) {
+	public bool remove_medias(LinkedList<Noise.Media> list) {
 		return false;
 	}
 	
@@ -208,11 +208,11 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, BeatBox.Device {
 		return false;
 	}
 	
-	public bool will_fit(LinkedList<BeatBox.Media> list) {
+	public bool will_fit(LinkedList<Noise.Media> list) {
 		return false;
 	}
 	
-	public bool transfer_to_library(LinkedList<BeatBox.Media> trans_list) {
+	public bool transfer_to_library(LinkedList<Noise.Media> trans_list) {
 		this.list = trans_list;
 		if(list.size == 0)
 			list = medias;
@@ -242,7 +242,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, BeatBox.Device {
 		}
 		
 		current_list_index = 0;
-		BeatBox.Media s = list.get(current_list_index);
+		Noise.Media s = list.get(current_list_index);
 		media_being_ripped = s;
 		s.showIndicator = true;
 		
@@ -281,16 +281,16 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, BeatBox.Device {
 		return false;
 	}
 	
-	public void mediaRipped(BeatBox.Media s) {
+	public void mediaRipped(Noise.Media s) {
 		s.showIndicator = false;
 		
 		// Create a copy and add it to the library
-		BeatBox.Media lib_copy = s.copy();
+		Noise.Media lib_copy = s.copy();
 		lib_copy.isTemporary = false;
 		lm.add_media_item (lib_copy);
 		
 		// update media in cdrom list to show as completed
-		BeatBox.ViewWrapper vw = ((BeatBox.ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
+		Noise.ViewWrapper vw = ((Noise.ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
 		s.unique_status_image = Icons.PROCESS_COMPLETED.render(Gtk.IconSize.MENU, vw.list_view.get_style_context());
 		
 		if(GLib.File.new_for_uri(lib_copy.uri).query_exists()) {
@@ -312,7 +312,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, BeatBox.Device {
 		// do it again on next track
 		if(current_list_index < (list.size - 1) && !user_cancelled) {
 			++current_list_index;
-			BeatBox.Media next = list.get(current_list_index);
+			Noise.Media next = list.get(current_list_index);
 			media_being_ripped = next;
 			ripper.ripMedia(next.track, next);
 
@@ -348,7 +348,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, BeatBox.Device {
 		if(media_being_ripped != null) {
 			media_being_ripped.pulseProgress++;
 			
-			BeatBox.ViewWrapper vw = ((BeatBox.ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
+			Noise.ViewWrapper vw = ((Noise.ViewWrapper)lm.lw.sideTree.getWidget(lm.lw.sideTree.devices_cdrom_iter));
 			vw.queue_draw();
 			
 			return true;
@@ -378,7 +378,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, BeatBox.Device {
 	public void ripperError(string err, Gst.Message message) {
 		if(err == "missing element") {
 			if(message.get_structure() != null && Gst.is_missing_plugin_message(message)) {
-					BeatBox.InstallGstreamerPluginsDialog dialog = new BeatBox.InstallGstreamerPluginsDialog(lm, lw, message);
+					Noise.InstallGstreamerPluginsDialog dialog = new Noise.InstallGstreamerPluginsDialog(lm, lw, message);
 					dialog.show();
 				}
 		}

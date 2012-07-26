@@ -21,7 +21,7 @@
 
 using Gtk;
 
-public class BeatBox.FastGrid : IconView {
+public class Noise.FastGrid : IconView {
 	public static const int PIXBUF_COLUMN = 0;
 	public static const int MARKUP_COLUMN = 1;
 	public static const int TOOLTIP_COLUMN = 2;

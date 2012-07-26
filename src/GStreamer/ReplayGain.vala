@@ -20,6 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class BeatBox.ReplayGain : GLib.Object {
+public class Noise.ReplayGain : GLib.Object {
 
 }

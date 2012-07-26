@@ -25,9 +25,9 @@ using Gee;
 using Gtk;
 
 #if USE_GRANITE_DECORATED_WINDOW
-public class BeatBox.PopupListView : Granite.Widgets.DecoratedWindow {
+public class Noise.PopupListView : Granite.Widgets.DecoratedWindow {
 #else
-public class BeatBox.PopupListView : Window {
+public class Noise.PopupListView : Window {
 #endif
 
 	public const int MIN_SIZE = 400;

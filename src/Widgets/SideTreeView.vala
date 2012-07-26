@@ -24,7 +24,7 @@ using Gtk;
 using Gee;
 
 
-public class BeatBox.SideTreeView : Granite.Widgets.SideBar {
+public class Noise.SideTreeView : Granite.Widgets.SideBar {
     LibraryManager lm;
     LibraryWindow lw;
     

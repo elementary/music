@@ -26,7 +26,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.TransferFromDeviceDialog : Window {
+public class Noise.TransferFromDeviceDialog : Window {
 	LibraryManager lm;
 	LinkedList<Media> medias;
 	Device d;
@@ -290,7 +290,7 @@ public class BeatBox.TransferFromDeviceDialog : Window {
 		mediasModel.foreach(createTransferList);
 		
 		if(lm.doing_file_operations()) {
-			lm.lw.doAlert("Cannot Import", "BeatBox is already doing file operations. Please wait until those finish to import from " + d.getDisplayName());
+			lm.lw.doAlert("Cannot Import", "Noise is already doing file operations. Please wait until those finish to import from " + d.getDisplayName());
 		}
 		else {
 			d.transfer_to_library(to_transfer);

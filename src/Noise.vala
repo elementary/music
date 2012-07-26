@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace BeatBox {
+namespace Noise {
 
     public Noise.Plugins.Manager plugins;
 
@@ -31,7 +31,7 @@ namespace BeatBox {
 
     public static int main (string[] args) {
         var context = new OptionContext ("- Noise help page.");
-        context.add_main_entries (Beatbox.app_options, "noise");
+        context.add_main_entries (App.app_options, "noise");
         context.add_group (Gtk.get_option_group (true));
         context.add_group (Gst.init_get_option_group ());
 
@@ -51,7 +51,7 @@ namespace BeatBox {
             error ("Could not init GStreamer: %s", err.message);
         }
 
-        var app = new Beatbox ();
+        var app = new Noise.App ();
         return app.run (args);
     }
 
@@ -60,9 +60,9 @@ namespace BeatBox {
      * Application class
      */
 
-    public class Beatbox : Granite.Application {
-        public BeatBox.LibraryWindow   library_window  { get; private set; }
-        public BeatBox.LibraryManager  library_manager { get; private set; }
+    public class App : Granite.Application {
+        public Noise.LibraryWindow   library_window  { get; private set; }
+        public Noise.LibraryManager  library_manager { get; private set; }
 
         public static const OptionEntry[] app_options = {
             { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, N_("Enable debug logging"), null },
@@ -102,7 +102,7 @@ namespace BeatBox {
             about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
         }
 
-        public Beatbox () {
+        public App () {
             if (!Options.disable_plugins) {
                 plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
                 plugins.hook_app (this);
@@ -140,7 +140,7 @@ namespace BeatBox {
             else
                 Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
-            library_window = new BeatBox.LibraryWindow (this);
+            library_window = new Noise.LibraryWindow (this);
             library_manager = library_window.library_manager;
 
             library_window.build_ui ();

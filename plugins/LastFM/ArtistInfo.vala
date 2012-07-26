@@ -25,7 +25,7 @@
 
 using Xml;
 
-public class LastFM.ArtistInfo : BeatBox.ArtistInfo {
+public class LastFM.ArtistInfo : Noise.ArtistInfo {
 
     public string url;// last fm url
     public int streamable; // 1 = true

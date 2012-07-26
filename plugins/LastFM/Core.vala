@@ -34,7 +34,7 @@ namespace LastFM {
     public static const string secret = "f61323da870d6ed9322dc51c875357c6";
 
     public class Core : Object {
-        BeatBox.LibraryManager lm;
+        Noise.LibraryManager lm;
         
         
         public Settings lastfm_settings { get; private set; }
@@ -42,7 +42,7 @@ namespace LastFM {
         public string token;
         
         public signal void logged_in();
-        public signal void similar_retrieved(LinkedList<int> similarIDs, LinkedList<BeatBox.Media> similarDont);
+        public signal void similar_retrieved(LinkedList<int> similarIDs, LinkedList<Noise.Media> similarDont);
         
         LastFM.SimilarMedias similarMedias;
         
@@ -53,7 +53,7 @@ namespace LastFM {
         HashMap<string, LastFM.AlbumInfo> _albums;//key:artist<sep>album
         HashMap<string, LastFM.TrackInfo> _tracks;//key:artist<sep>album<sep>track
         
-        public Core(BeatBox.LibraryManager lmm) {
+        public Core(Noise.LibraryManager lmm) {
             lm = lmm;
             
             lastfm_settings = new LastFM.Settings ();
@@ -65,19 +65,19 @@ namespace LastFM {
             _tracks = new HashMap<string, LastFM.TrackInfo>();
             
             _artists_lock.lock();
-            foreach(BeatBox.ArtistInfo a in lm.dbm.load_artists()) {
+            foreach(Noise.ArtistInfo a in lm.dbm.load_artists()) {
                 _artists.set(a.name, (LastFM.ArtistInfo)a);
             }
             _artists_lock.unlock();
             
             _albums_lock.lock();
-            foreach(BeatBox.AlbumInfo a in lm.dbm.load_albums()) {
+            foreach(Noise.AlbumInfo a in lm.dbm.load_albums()) {
                 _albums.set(a.name + " by " + a.artist, (LastFM.AlbumInfo)a);
             }
             _albums_lock.unlock();
             
             _tracks_lock.lock();
-            foreach(BeatBox.TrackInfo t in lm.dbm.load_tracks()) {
+            foreach(Noise.TrackInfo t in lm.dbm.load_tracks()) {
                 _tracks.set(t.name + " by " + t.artist, (LastFM.TrackInfo)t);
             }
             _tracks_lock.unlock();
@@ -416,7 +416,7 @@ namespace LastFM {
 
                 // If still playing the same song, update lm.media_info.artist
                 if(lm.media_active && artist != null && album_artist_s == lm.media_info.media.album_artist) {
-                    lm.media_info.artist = (BeatBox.ArtistInfo)artist;
+                    lm.media_info.artist = (Noise.ArtistInfo)artist;
                 }
             }
 
@@ -519,7 +519,7 @@ namespace LastFM {
             similarMedias.queryForSimilar(lm.media_info.media);
         }
         
-        void similar_retrieved_signal(LinkedList<int> similarIDs, LinkedList<BeatBox.Media> similarDont) {
+        void similar_retrieved_signal(LinkedList<int> similarIDs, LinkedList<Noise.Media> similarDont) {
             similar_retrieved(similarIDs, similarDont);
         }
     }

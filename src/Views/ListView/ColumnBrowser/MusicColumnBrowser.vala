@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2011-2012 BeatBox Developers
+ * Copyright (c) 2011-2012 Noise Developers
  *
  * BeatBox Music Player: http://www.launchpad.net/beat-box
  *
@@ -22,7 +22,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class BeatBox.MusicColumnBrowser : BeatBox.ColumnBrowser {
+public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
 
     public MusicColumnBrowser (ViewWrapper view_wrapper) {
         var columns = new BrowserColumn.Category [0];

@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.RadioListView : GenericView {
+public class Noise.RadioListView : GenericView {
 
 	//for header column chooser
 	Gtk.Menu columnChooserMenu;

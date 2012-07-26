@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace BeatBox.UI {
+namespace Noise.UI {
 
     /**
      * Sets the alignment of a widget by modifying the margin and align properties.

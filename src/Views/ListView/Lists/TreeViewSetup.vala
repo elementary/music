@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.TreeViewSetup : GLib.Object {
+public class Noise.TreeViewSetup : GLib.Object {
 	// FIXME: Should be dynamic
 	public static const int MUSIC_COLUMN_COUNT = 18;
 	public static const int PODCAST_COLUMN_COUNT = 12;

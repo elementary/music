@@ -20,7 +20,7 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-public class BeatBox.ArtistInfo : Object {
+public class Noise.ArtistInfo : Object {
     
     public string name { get; set; default=_("Unknown Artist"); }
     public string mbid { get; set; default=""; } //music brainz id

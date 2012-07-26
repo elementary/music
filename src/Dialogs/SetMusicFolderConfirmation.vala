@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.SetMusicFolderConfirmation : Window {
+public class Noise.SetMusicFolderConfirmation : Window {
 	LibraryManager lm;
 	LibraryWindow lw;
 	string folder_path;

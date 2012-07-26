@@ -22,7 +22,7 @@
 
 using Gtk;
 
-public class BeatBox.PresetList : ComboBox {
+public class Noise.PresetList : ComboBox {
 
 	public signal void preset_selected(EqualizerPreset p);
 	public signal void automatic_preset_chosen();

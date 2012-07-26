@@ -22,7 +22,7 @@
 
 using Gtk;
 
-public class BeatBox.FileNotFoundDialog : Window {
+public class Noise.FileNotFoundDialog : Window {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Gee.LinkedList<Media> media_list;

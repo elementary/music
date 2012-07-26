@@ -27,7 +27,7 @@ using Gtk;
 using Gee;
 using Granite.Widgets;
 
-public class BeatBox.SmartPlaylistEditor : Window {
+public class Noise.SmartPlaylistEditor : Window {
 
     LibraryWindow lw;
     SmartPlaylist sp;
@@ -218,7 +218,7 @@ public class BeatBox.SmartPlaylistEditor : Window {
     }
 }
 
-public class BeatBox.SmartPlaylistEditorQuery : GLib.Object {
+public class Noise.SmartPlaylistEditorQuery : GLib.Object {
     private SmartQuery _q;
     
     public HBox _box;

@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class BeatBox.PlaylistViewWrapper : ViewWrapper {
+public class Noise.PlaylistViewWrapper : ViewWrapper {
     public int playlist_id { get; construct set; default = -1; }
 
     public PlaylistViewWrapper (LibraryWindow lw, TreeViewSetup tvs, int playlist_id) {

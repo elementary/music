@@ -22,7 +22,7 @@
 
 using Gtk;
 
-public class BeatBox.PlaylistNameWindow : Window {
+public class Noise.PlaylistNameWindow : Window {
 	public Playlist _original;
 	LibraryWindow lw;
 	

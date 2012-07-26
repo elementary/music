@@ -1,6 +1,6 @@
 using Gtk;
 
-public class BeatBox.SmartAlbumRenderer : CellRendererText {
+public class Noise.SmartAlbumRenderer : CellRendererText {
 
     /* icon property set by the tree column */
     public Gdk.Pixbuf icon { get; set; }

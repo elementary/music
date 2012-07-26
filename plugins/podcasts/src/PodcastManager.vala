@@ -22,7 +22,7 @@
 
 using Gee;
 
-public class BeatBox.PodcastManager : GLib.Object {
+public class Noise.PodcastManager : GLib.Object {
 	LibraryManager lm;
 	LibraryWindowInterface lw;
 	bool fetching;

@@ -21,7 +21,7 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public abstract class BeatBox.ViewWrapper : Gtk.Box {
+public abstract class Noise.ViewWrapper : Gtk.Box {
 
     public LibraryManager lm { get; protected set; }
     public LibraryWindow  lw { get; protected set; }

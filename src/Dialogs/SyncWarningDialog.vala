@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.SyncWarningDialog : Window {
+public class Noise.SyncWarningDialog : Window {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device d;

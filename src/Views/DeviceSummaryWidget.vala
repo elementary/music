@@ -20,7 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class BeatBox.DeviceSummaryWidget : Gtk.EventBox {
+public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Device dev;

@@ -29,7 +29,7 @@ public interface GnomeMediaKeys : GLib.Object {
     public signal void MediaPlayerKeyPressed (string application, string key);
 }
 
-public class BeatBox.MediaKeyListener : GLib.Object {
+public class Noise.MediaKeyListener : GLib.Object {
 
     private LibraryManager lm;
     private LibraryWindow lw;

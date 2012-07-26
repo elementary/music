@@ -22,8 +22,8 @@
 
 using Gtk;
 
-public class BeatBox.TopDisplay : Box {
-	BeatBox.LibraryManager lm;
+public class Noise.TopDisplay : Box {
+	Noise.LibraryManager lm;
 	Label label;
 	HBox scaleBox;
 	Label leftTime;
@@ -36,7 +36,7 @@ public class BeatBox.TopDisplay : Box {
 	
 	public signal void scale_value_changed(ScrollType scroll, double val);
 	
-	public TopDisplay(BeatBox.LibraryManager lmm) {
+	public TopDisplay(Noise.LibraryManager lmm) {
 		this.lm = lmm;
 
         this.orientation = Orientation.HORIZONTAL;

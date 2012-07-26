@@ -23,14 +23,14 @@
 using Gee;
 
 public class Noise.Plugins.UPnPDeviceManager : GLib.Object {
-    BeatBox.LibraryManager lm;
+    Noise.LibraryManager lm;
     ArrayList<UPnPDevice> devices;
     
     //public signal void device_added(UPnPDevice d);
     //public signal void device_removed(UPnPDevice d);
     private GUPnP.ContextManager _context_manager;
     
-    public UPnPDeviceManager(BeatBox.LibraryManager lm) {
+    public UPnPDeviceManager(Noise.LibraryManager lm) {
         this.lm = lm;
         devices = new ArrayList<UPnPDevice>();
         
@@ -68,7 +68,7 @@ public class Noise.Plugins.UPnPDeviceManager : GLib.Object {
         var device = create_upnp_device (proxy);
         if (device != null && proxy.udn != null) {
             devices.add (device);
-            lm.lw.sideTree.deviceAdded ((BeatBox.NetworkDevice)device);
+            lm.lw.sideTree.deviceAdded ((Noise.NetworkDevice)device);
         } 
         else  {
             debug ("no ContentDirectory service exposed for %s", proxy.get_friendly_name ());

@@ -20,7 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class BeatBox.DevicePreferences : GLib.Object {
+public class Noise.DevicePreferences : GLib.Object {
 	public string id { get; construct set; }
 	
 	public bool sync_when_mounted { get; set; }

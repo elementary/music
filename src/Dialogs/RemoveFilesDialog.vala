@@ -23,7 +23,7 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.RemoveFilesDialog : Window {
+public class Noise.RemoveFilesDialog : Window {
 	LibraryWindow lw;
 	
 	private VBox content;

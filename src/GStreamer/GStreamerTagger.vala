@@ -23,7 +23,7 @@
 using Gst;
 using Gee;
 
-public class BeatBox.GStreamerTagger : GLib.Object {
+public class Noise.GStreamerTagger : GLib.Object {
 	LibraryManager lm;
 	static int DISCOVER_SET_SIZE = 50;
 	Gst.Discoverer d;

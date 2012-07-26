@@ -24,7 +24,7 @@ using Gtk;
 using Gee;
 using Granite;
 
-public class BeatBox.StationEditor : Window {
+public class Noise.StationEditor : Window {
 	LibraryManager _lm;
 	
 	LinkedList<int> _allstations;

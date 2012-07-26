@@ -28,22 +28,22 @@ using Xml;
 public class LastFM.SimilarMedias : Object {
 	public static const int MAX_FETCHED = 20;
 	
-	BeatBox.LibraryManager _lm;
-	BeatBox.Media _base;
+	Noise.LibraryManager _lm;
+	Noise.Media _base;
 	bool working;
 	
-	Gee.LinkedList<BeatBox.Media> similar;
+	Gee.LinkedList<Noise.Media> similar;
 	
-	BeatBox.Media similarToAdd;
+	Noise.Media similarToAdd;
 	
-	public signal void similar_retrieved(Gee.LinkedList<int> similarIDs, Gee.LinkedList<BeatBox.Media> similarDont);
+	public signal void similar_retrieved(Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
 	
-	public class SimilarMedias(BeatBox.LibraryManager lm) {
+	public class SimilarMedias(Noise.LibraryManager lm) {
 		_lm = lm;
 		working = false;
 	}
 	
-	public virtual void queryForSimilar(BeatBox.Media s) {
+	public virtual void queryForSimilar(Noise.Media s) {
 		_base = s;
 		
 		if(!working) {
@@ -59,9 +59,9 @@ public class LastFM.SimilarMedias : Object {
 	}
 	
 	public void* similar_thread_function () {	
-		similar = new Gee.LinkedList<BeatBox.Media>();
+		similar = new Gee.LinkedList<Noise.Media>();
 		var similarIDs = new Gee.LinkedList<int>();
-		var similarDont = new Gee.LinkedList<BeatBox.Media>();
+		var similarDont = new Gee.LinkedList<Noise.Media>();
 		
 		getSimilarTracks(_base.title, _base.artist);
 		_lm.media_from_name(similar, ref similarIDs, ref similarDont);
@@ -128,7 +128,7 @@ public class LastFM.SimilarMedias : Object {
 						similar.add(similarToAdd);
 					}
 					
-					similarToAdd = new BeatBox.Media("");
+					similarToAdd = new Noise.Media("");
 					similarToAdd.title = node_content;
 				}
 				/*else if(node_name == "url") {

@@ -24,12 +24,12 @@ using TagLib;
 using GLib;
 using Gee;
 
-public class BeatBox.FileOperator : Object {
+public class Noise.FileOperator : Object {
 	public signal void fo_progress(string? message, double progress);
 	public signal void import_cancelled();
 	public signal void rescan_cancelled();
 
-	private BeatBox.LibraryManager lm;
+	private Noise.LibraryManager lm;
 	public GStreamerTagger tagger;
 	
 	bool inThread;
@@ -60,7 +60,7 @@ public class BeatBox.FileOperator : Object {
 		IMPORT
 	}
 	
-	public FileOperator(BeatBox.LibraryManager lm) {
+	public FileOperator(Noise.LibraryManager lm) {
 		this.lm = lm;
 		inThread = false;
 		toSave = new LinkedList<Media>();

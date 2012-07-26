@@ -17,9 +17,9 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class BeatBox.SimilarMediasWidget : Gtk.Grid {
-    private BeatBox.LibraryManager lm;
-    private BeatBox.LibraryWindow lw;
+public class Noise.SimilarMediasWidget : Gtk.Grid {
+    private Noise.LibraryManager lm;
+    private Noise.LibraryWindow lw;
     
     public LastFM.Core lfm;
     
@@ -28,14 +28,14 @@ public class BeatBox.SimilarMediasWidget : Gtk.Grid {
     
     private Gtk.Button love_button;
     private Gtk.Button ban_button;
-    private BeatBox.MediaInfo media_info;
+    private Noise.MediaInfo media_info;
     
     private SimilarMediasView ssv;
     
     bool similars_fetched;
     bool scrobbled_track;
     
-    public SimilarMediasWidget(BeatBox.LibraryManager lm, LastFM.Core core) {
+    public SimilarMediasWidget(Noise.LibraryManager lm, LastFM.Core core) {
         this.lm = lm;
         this.lw = lm.lw;
         ssv = new SimilarMediasView(lm, lm.lw);
@@ -128,7 +128,7 @@ public class BeatBox.SimilarMediasWidget : Gtk.Grid {
     }
     
     private void do_periodical_save () {
-        /*lm.dbm.save_artists((BeatBox.ArtistInfo)lfm.artists());
+        /*lm.dbm.save_artists((Noise.ArtistInfo)lfm.artists());
         lm.dbm.save_albums(lfm.albums());
         lm.dbm.save_tracks(lfm.tracks());*/
     }

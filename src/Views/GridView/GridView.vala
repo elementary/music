@@ -20,7 +20,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class BeatBox.GridView : ContentView, GridLayout {
+public class Noise.GridView : ContentView, GridLayout {
 
 	// The window used to present album contents
     private static PopupListView? _popup = null;

@@ -21,7 +21,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class BeatBox.SimilarViewWrapper : ViewWrapper {
+public class Noise.SimilarViewWrapper : ViewWrapper {
 
     private const int REQUIRED_MEDIA = 10;
 

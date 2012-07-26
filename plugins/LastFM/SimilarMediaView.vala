@@ -23,15 +23,15 @@
 using Gtk;
 using Gee;
 
-public class BeatBox.SimilarMediasView : TreeView {
-	private BeatBox.LibraryManager _lm;
-	private BeatBox.LibraryWindow _lw;
+public class Noise.SimilarMediasView : TreeView {
+	private Noise.LibraryManager _lm;
+	private Noise.LibraryWindow _lw;
 	private new ListStore model;
 	private LinkedList<Media> medias;
 	
 	private LinkedList<string> urlsToOpen;//queue for opening urls
 	
-	public SimilarMediasView(BeatBox.LibraryManager lm, BeatBox.LibraryWindow lw) {
+	public SimilarMediasView(Noise.LibraryManager lm, Noise.LibraryWindow lw) {
 		_lm = lm;
 		_lw = lw;
 		medias = new LinkedList<Media>();
@@ -42,7 +42,7 @@ public class BeatBox.SimilarMediasView : TreeView {
 		 * #, track, title, artist, album, genre, comment, year, rating, (9)
 		 * bitrate, play count, last played, date added, file name, (5)
 		 * bpm, length, file size, (3) */
-		model = new ListStore(3, typeof(BeatBox.Media), typeof(string), typeof(Gtk.Widget), -1);
+		model = new ListStore(3, typeof(Noise.Media), typeof(string), typeof(Gtk.Widget), -1);
 		
 		TreeViewColumn col = new TreeViewColumn();
 		col.title = _("media");

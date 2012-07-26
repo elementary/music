@@ -28,9 +28,9 @@ namespace Noise.Plugins {
 
         Interface plugins;
         public GLib.Object object { owned get; construct; }
-        BeatBox.SimilarMediasWidget similar_media_widget;
+        Noise.SimilarMediasWidget similar_media_widget;
         Gtk.TreeIter similar_iter;
-        BeatBox.LibraryManager lm;
+        Noise.LibraryManager lm;
         LastFM.Core core;
 
         bool added { get; set; default=false; }
@@ -43,7 +43,7 @@ namespace Noise.Plugins {
         string lastfm_token { get; set; default=""; }
         Gtk.Grid container;
         int page_number { get; set; default=0; }
-        BeatBox.PreferencesWindow preferences_window;
+        Noise.PreferencesWindow preferences_window;
 
         public void activate () {
             added = false;
@@ -52,19 +52,19 @@ namespace Noise.Plugins {
             plugins = (Noise.Plugins.Interface)value.get_object();
             
             plugins.register_function(Interface.Hook.WINDOW, () => {
-                lm = ((BeatBox.Beatbox)plugins.noise_app).library_manager;
+                lm = ((Noise.App)plugins.noise_app).library_manager;
                 Icons.init_lastfm ();
                 
                 // Add Similar playlist.
                 core = new LastFM.Core (lm);
-                var similar_view = new BeatBox.SimilarViewWrapper (lm.lw, core);
-                similar_media_widget = new BeatBox.SimilarMediasWidget (lm, core);
+                var similar_view = new Noise.SimilarViewWrapper (lm.lw, core);
+                similar_media_widget = new Noise.SimilarMediasWidget (lm, core);
                 lm.lw.add_view (_("Similar"), similar_view, out similar_iter);
                 added = true;
             });
             
             plugins.register_function_arg(Interface.Hook.SETTINGS_WINDOW, (window) => {
-                preferences_window = (BeatBox.PreferencesWindow) window;
+                preferences_window = (Noise.PreferencesWindow) window;
                 container = new Gtk.Grid ();
                 container.row_spacing = 6;
                 container.column_spacing = 12;

@@ -25,7 +25,7 @@ public errordomain FetchingError {
 	NO_INTERNET_CONNECTION
 }
 
-public class BeatBox.LyricFetcher : GLib.Object {
+public class Noise.LyricFetcher : GLib.Object {
 
 	private string artist;
 	private string album_artist;

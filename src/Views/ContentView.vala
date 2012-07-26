@@ -19,7 +19,7 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public interface BeatBox.ContentView : Gtk.Container {
+public interface Noise.ContentView : Gtk.Container {
 	// For device syncing
 	public signal void import_requested (Gee.LinkedList<Media> to_import);
 

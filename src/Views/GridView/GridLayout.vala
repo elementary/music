@@ -19,7 +19,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public abstract class BeatBox.GridLayout : Gtk.ScrolledWindow {
+public abstract class Noise.GridLayout : Gtk.ScrolledWindow {
 
     protected enum Column {
         PIXBUF  = 0,

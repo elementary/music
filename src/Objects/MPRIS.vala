@@ -22,9 +22,9 @@
 #if HAVE_INDICATE
 
 using Gee;
-using BeatBox;
+using Noise;
 
-public class BeatBox.MPRIS : GLib.Object {
+public class Noise.MPRIS : GLib.Object {
 	internal static LibraryWindow library_window;
 
 	public MprisPlayer player = null;
@@ -244,7 +244,7 @@ public class MprisPlayer : GLib.Object {
 		});
 	}
 
-	private void on_media_played (BeatBox.Media s) {
+	private void on_media_played (Noise.Media s) {
 		if(s != library_window.library_manager.media_info.media)
 			return;
 		
@@ -326,13 +326,13 @@ public class MprisPlayer : GLib.Object {
 	public string LoopStatus {
 		owned get {
 			switch(library_window.library_manager.repeat) {
-				case(BeatBox.LibraryManager.Repeat.OFF):
+				case(Noise.LibraryManager.Repeat.OFF):
 					return "None";
-				case(BeatBox.LibraryManager.Repeat.MEDIA):
+				case(Noise.LibraryManager.Repeat.MEDIA):
 					return "Track";
-				case(BeatBox.LibraryManager.Repeat.ALBUM):
-				case(BeatBox.LibraryManager.Repeat.ARTIST):
-				case(BeatBox.LibraryManager.Repeat.ALL):
+				case(Noise.LibraryManager.Repeat.ALBUM):
+				case(Noise.LibraryManager.Repeat.ARTIST):
+				case(Noise.LibraryManager.Repeat.ALL):
 					return "Playlist";
 			}
 			
@@ -341,16 +341,16 @@ public class MprisPlayer : GLib.Object {
 		set {
 			switch(value) {
 				case("None"):
-					library_window.library_manager.repeat = BeatBox.LibraryManager.Repeat.OFF;
+					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.OFF;
 					break;
 				case("Track"):
-					library_window.library_manager.repeat = BeatBox.LibraryManager.Repeat.MEDIA;
+					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.MEDIA;
 					break;
 				case("Playlist"):
-					library_window.library_manager.repeat = BeatBox.LibraryManager.Repeat.ALL;
+					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.ALL;
 					break;
 				default:
-					library_window.library_manager.repeat = BeatBox.LibraryManager.Repeat.ALL;
+					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.ALL;
 					break;
 			}
 			
@@ -369,16 +369,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public bool Shuffle {
 		get {
-			if(library_window.library_manager.shuffle == BeatBox.LibraryManager.Shuffle.ALL)
+			if(library_window.library_manager.shuffle == Noise.LibraryManager.Shuffle.ALL)
 				return true;
 			return false;
 		}
 		set {
 			if(value) {
-				library_window.library_manager.shuffle = BeatBox.LibraryManager.Shuffle.ALL;
+				library_window.library_manager.shuffle = Noise.LibraryManager.Shuffle.ALL;
 			}
 			else {
-				library_window.library_manager.shuffle = BeatBox.LibraryManager.Shuffle.OFF;
+				library_window.library_manager.shuffle = Noise.LibraryManager.Shuffle.OFF;
 			}
 			
 			Variant variant = value;

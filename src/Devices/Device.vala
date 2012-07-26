@@ -22,7 +22,7 @@
  
 using Gee;
 
-public interface BeatBox.Device : GLib.Object {
+public interface Noise.Device : GLib.Object {
 	public signal void initialized(Device d);
 	public signal void device_unmounted();
 	public signal void progress_notification(string? message, double progress);

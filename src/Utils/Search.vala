@@ -20,7 +20,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace BeatBox.Search {
+namespace Noise.Search {
 
     /**
      * Description:
@@ -36,8 +36,8 @@ namespace BeatBox.Search {
      * Search functions
      */
 
-    public inline void search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
-                                       out Gee.LinkedList<BeatBox.Media> results,
+    public inline void search_in_media_list (Gee.Collection<Noise.Media> to_search,
+                                       out Gee.LinkedList<Noise.Media> results,
                                        string search = "", // Search string
                                        string album_artist = "",
                                        string album = "",
@@ -46,7 +46,7 @@ namespace BeatBox.Search {
                                        int rating = -1 // All ratings
                                        )
     {
-        results = new Gee.LinkedList<BeatBox.Media>();
+        results = new Gee.LinkedList<Noise.Media>();
 
         string l_search = search.down();
         
@@ -83,7 +83,7 @@ namespace BeatBox.Search {
         }
     }
 
-    public inline void search_in_media_ids (BeatBox.LibraryManager lm,
+    public inline void search_in_media_ids (Noise.LibraryManager lm,
                                        Gee.Collection<int> to_search_ids,
                                        out Gee.LinkedList<int> results_ids,
                                        string search = "", // Search string
@@ -144,14 +144,14 @@ namespace BeatBox.Search {
     * These are optimized for certain kinds of searches
     */
 
-   public inline void fast_album_search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
-                                                  out Gee.LinkedList<BeatBox.Media> results,
+   public inline void fast_album_search_in_media_list (Gee.Collection<Noise.Media> to_search,
+                                                  out Gee.LinkedList<Noise.Media> results,
                                                   string search = "", // Search string
                                                   string album_artist = "",
                                                   string album = ""
                                                   )
     {
-        results = new Gee.LinkedList<BeatBox.Media>();
+        results = new Gee.LinkedList<Noise.Media>();
 
         string l_search = search.down();
         
@@ -180,12 +180,12 @@ namespace BeatBox.Search {
     }
 
 
-    public inline void full_search_in_media_list (Gee.Collection<BeatBox.Media> to_search,
-                            out Gee.LinkedList<BeatBox.Media> ? results,
-                            out Gee.LinkedList<BeatBox.Media> ? album_results,
-                            out Gee.LinkedList<BeatBox.Media> ? genre_results,
-                            out Gee.LinkedList<BeatBox.Media> ? year_results,
-                            out Gee.LinkedList<BeatBox.Media> ? rating_results,
+    public inline void full_search_in_media_list (Gee.Collection<Noise.Media> to_search,
+                            out Gee.LinkedList<Noise.Media> ? results,
+                            out Gee.LinkedList<Noise.Media> ? album_results,
+                            out Gee.LinkedList<Noise.Media> ? genre_results,
+                            out Gee.LinkedList<Noise.Media> ? year_results,
+                            out Gee.LinkedList<Noise.Media> ? rating_results,
                             ViewWrapper.Hint hint,
                             string search = "", // Search string
                             string album_artist = "",
@@ -195,39 +195,39 @@ namespace BeatBox.Search {
                             int rating = -1 // All ratings
                             )
     {
-        results = new Gee.LinkedList<BeatBox.Media>();
-        album_results = new Gee.LinkedList<BeatBox.Media>();
-        genre_results = new Gee.LinkedList<BeatBox.Media>();
-        year_results = new Gee.LinkedList<BeatBox.Media>();
-        rating_results = new Gee.LinkedList<BeatBox.Media>();
+        results = new Gee.LinkedList<Noise.Media>();
+        album_results = new Gee.LinkedList<Noise.Media>();
+        genre_results = new Gee.LinkedList<Noise.Media>();
+        year_results = new Gee.LinkedList<Noise.Media>();
+        rating_results = new Gee.LinkedList<Noise.Media>();
 
         string l_search = search.down();
         int mediatype = 0;
 
-        bool include_temps = hint == BeatBox.ViewWrapper.Hint.CDROM ||
-                             hint == BeatBox.ViewWrapper.Hint.DEVICE_AUDIO || 
-                             hint == BeatBox.ViewWrapper.Hint.DEVICE_PODCAST ||
-                             hint == BeatBox.ViewWrapper.Hint.DEVICE_AUDIOBOOK ||
-                             hint == BeatBox.ViewWrapper.Hint.QUEUE ||
-                             hint == BeatBox.ViewWrapper.Hint.HISTORY ||
-                             hint == BeatBox.ViewWrapper.Hint.ALBUM_LIST;
+        bool include_temps = hint == Noise.ViewWrapper.Hint.CDROM ||
+                             hint == Noise.ViewWrapper.Hint.DEVICE_AUDIO || 
+                             hint == Noise.ViewWrapper.Hint.DEVICE_PODCAST ||
+                             hint == Noise.ViewWrapper.Hint.DEVICE_AUDIOBOOK ||
+                             hint == Noise.ViewWrapper.Hint.QUEUE ||
+                             hint == Noise.ViewWrapper.Hint.HISTORY ||
+                             hint == Noise.ViewWrapper.Hint.ALBUM_LIST;
 
         // FIXME: Use constants for media type and not simply numbers. This has the
         // potential of breaking the search at some point if someone to changes
         // the values of each media type.
 
-        if(hint == BeatBox.ViewWrapper.Hint.PODCAST || hint == BeatBox.ViewWrapper.Hint.DEVICE_PODCAST) {
+        if(hint == Noise.ViewWrapper.Hint.PODCAST || hint == Noise.ViewWrapper.Hint.DEVICE_PODCAST) {
             mediatype = 1;
         }
-        else if(hint == BeatBox.ViewWrapper.Hint.AUDIOBOOK || hint == BeatBox.ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
+        else if(hint == Noise.ViewWrapper.Hint.AUDIOBOOK || hint == Noise.ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
             mediatype = 2;
         }
-        else if(hint == BeatBox.ViewWrapper.Hint.STATION) {
+        else if(hint == Noise.ViewWrapper.Hint.STATION) {
             mediatype = 3;
         }
-        else if(hint == BeatBox.ViewWrapper.Hint.QUEUE || hint == BeatBox.ViewWrapper.Hint.HISTORY ||
-                 hint == BeatBox.ViewWrapper.Hint.PLAYLIST || hint == BeatBox.ViewWrapper.Hint.SMART_PLAYLIST ||
-                 hint == BeatBox.ViewWrapper.Hint.ALBUM_LIST)
+        else if(hint == Noise.ViewWrapper.Hint.QUEUE || hint == Noise.ViewWrapper.Hint.HISTORY ||
+                 hint == Noise.ViewWrapper.Hint.PLAYLIST || hint == Noise.ViewWrapper.Hint.SMART_PLAYLIST ||
+                 hint == Noise.ViewWrapper.Hint.ALBUM_LIST)
         {
             mediatype = -1; // some lists should be able to have ALL media types
         }

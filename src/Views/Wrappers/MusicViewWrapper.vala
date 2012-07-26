@@ -21,7 +21,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class BeatBox.MusicViewWrapper : ViewWrapper {
+public class Noise.MusicViewWrapper : ViewWrapper {
     Gee.HashMap<int, Device> welcome_screen_keys = new Gee.HashMap<int, Device> ();
 
     public MusicViewWrapper (LibraryWindow lw) {

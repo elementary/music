@@ -20,7 +20,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-public class BeatBox.SmartQuery : Object {
+public class Noise.SmartQuery : Object {
 	// form a sql query as so:
 	// WHERE `_field` _comparator _search
 	

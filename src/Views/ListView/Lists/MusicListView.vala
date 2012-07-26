@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-public class BeatBox.MusicListView : GenericList {
+public class Noise.MusicListView : GenericList {
 
 	//for media list right click
 	Gtk.Menu mediaActionMenu;
