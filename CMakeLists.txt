@@ -18,7 +18,6 @@ pkg_check_modules(DEPS
     gstreamer-cdda-0.10
     taglib_c #TODO: remove
     gio-2.0
-    sqlheavy-0.1
     libxml-2.0
     libnotify
     libsoup-2.4
@@ -27,17 +26,18 @@ pkg_check_modules(DEPS
     granite
     libpeas-gtk-1.0
     libpeas-1.0)
-# Check if we have sqlheavy-0.2
 
-if(${SQLHEAVY_USE_2})
-pkg_check_modules(SQLHEAVY sqlheavy-0.2)
-set(ADD_PKG ${ADD_PKG} sqlheavy-0.2)
-message("-- Will use sqlheavy-0.2")
+# Check if we have sqlheavy-0.2
+pkg_check_modules(SQLHEAVY2 sqlheavy-0.2)
+if(${SQLHEAVY2_FOUND})
+    set(ADD_PKG ${ADD_PKG} sqlheavy-0.2)
+    message("-- Will use sqlheavy-0.2")
 else()
-set(ADD_PKG ${ADD_PKG} sqlheavy-0.1)
-pkg_check_modules(SQLHEAVY sqlheavy-0.1)
-message("-- Will use sqlheavy-0.1")
+    pkg_check_modules(DEPS REQUIRED SQLHEAVY sqlheavy-0.1)
+    set(ADD_PKG ${ADD_PKG} sqlheavy-0.1)
+    message("-- Will use sqlheavy-0.1")
 endif()
+
 
 pkg_check_modules(DBUS_MENU dbusmenu-glib-0.4)
 if(${DBUS_MENU_FOUND})
