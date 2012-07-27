@@ -16,7 +16,7 @@ pkg_check_modules(DEPS
     gstreamer-interfaces-0.10
     gstreamer-pbutils-0.10
     gstreamer-cdda-0.10
-    taglib_c
+    taglib_c #TODO: remove
     gio-2.0
     sqlheavy-0.1
     libxml-2.0
@@ -25,7 +25,6 @@ pkg_check_modules(DEPS
     json-glib-1.0
     gio-unix-2.0
     granite
-    libgpod-1.0
     libpeas-gtk-1.0
     libpeas-1.0)
 # Check if we have sqlheavy-0.2

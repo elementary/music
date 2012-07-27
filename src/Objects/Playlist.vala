@@ -110,14 +110,7 @@ public class Noise.Playlist : Object {
 		return _media.has_key (m);
 	}
 
-	public GPod.Playlist get_gpod_playlist() {
-		GPod.Playlist rv = new GPod.Playlist(name, false);
-		
-		rv.sortorder = tvs.get_gpod_sortorder();
-		
-		return rv;
-	}
-	
+
 	// how to specify a file?
 	public bool save_playlist_m3u (LibraryManager lm, string folder) {
 		bool rv = false;

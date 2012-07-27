@@ -157,6 +157,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     }
     
     public string getContentType() {
+        //TODO: define global constants!
         if(isNew())
             return "ipod-new";
         else
@@ -867,7 +868,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         
         int sub_index = 0;
         foreach(var playlist in lm.playlists()) {
-            GPod.Playlist p = playlist.get_gpod_playlist();
+            GPod.Playlist p = iPodPlaylistHelper.get_gpod_playlist_from_playlist (playlist);
             db.playlist_add((owned)p, -1);
             
             unowned GPod.Playlist added = db.playlists.nth_data(db.playlists.length() - 1);
@@ -883,12 +884,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         index = 85;
         sub_index = 0;
         foreach(var smart_playlist in lm.smart_playlists()) {
-            GPod.Playlist p = smart_playlist.get_gpod_playlist();
-            
+            GPod.Playlist p = iPodPlaylistHelper.get_gpod_playlist_from_smart_playlist (smart_playlist);
+
             db.playlist_add((owned)p, -1);
-            unowned GPod.Playlist pl = db.playlists.nth_data(db.playlists.length() - 1);
-            smart_playlist.set_playlist_properties(pl);
-            
+
             ++sub_index;
             index = (int)(85.0 + (double)(5.0 * (double)((double)sub_index/(double)lm.smart_playlists().size)));
         }
