@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-23 21:26-0600\n"
+"POT-Creation-Date: 2012-07-26 20:57-0600\n"
 "PO-Revision-Date: 2012-07-08 14:08+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-25 05:05+0000\n"
-"X-Generator: Launchpad (build 15679)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2012-07-27 05:37+0000\n"
+"X-Generator: Launchpad (build 15694)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -53,12 +54,15 @@ msgstr "Mengimbas semula muzik untuk perubahan. Ia mengambil masa..."
 
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:704
+#: /home/victor/noise/po/../core//Media.vala:44
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
 msgid "Unknown Artist"
 msgstr "Penyanyi/Artis tidak diketahui"
 
-#: /home/victor/noise/po/../src//Objects/Playlist.vala:210
+#: /home/victor/noise/po/../src//Objects/Playlist.vala:203
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:360
 msgid "Radio Station"
@@ -69,14 +73,11 @@ msgid "Unknown Track"
 msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:712
+#: /home/victor/noise/po/../src//LibraryWindow.vala:705
+#: /home/victor/noise/po/../core//Media.vala:46
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
 msgid "Unknown Album"
 msgstr "Album Tidak Diketahui"
-
-#: /home/victor/noise/po/../src//Objects/Media.vala:45
-msgid "Unknown Title"
-msgstr "Tajuk Tidak Diketahui"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
@@ -102,7 +103,7 @@ msgstr "Menggunakan %s dari %s (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:95
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victor/noise/po/../src//LibraryWindow.vala:220
+#: /home/victor/noise/po/../src//LibraryWindow.vala:213
 msgid "Import to Library"
 msgstr "Import ke Pustaka"
 
@@ -111,6 +112,7 @@ msgid "Eject"
 msgstr "Lenting"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:112
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:51
 msgid "Add Podcast"
 msgstr "Tambah Podcast"
 
@@ -170,7 +172,7 @@ msgstr "Senarai Main"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:527
+#: /home/victor/noise/po/../src//LibraryWindow.vala:520
 msgid "Music"
 msgstr "Muzik"
 
@@ -301,6 +303,7 @@ msgstr "Sembunyi Penyama"
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:81
 msgid "Cancel"
 msgstr "Batal"
 
@@ -434,6 +437,7 @@ msgstr "Lirik"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:87
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
+#: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:70
 msgid "Done"
 msgstr "Selesai"
 
@@ -565,7 +569,7 @@ msgid "Sync will remove 1 item from %s"
 msgstr "Segerak akan buang 1 item dari %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:56
-#: /home/victor/noise/po/../src//LibraryWindow.vala:224
+#: /home/victor/noise/po/../src//LibraryWindow.vala:217
 msgid "Preferences"
 msgstr "Keutamaan"
 
@@ -979,23 +983,19 @@ msgstr "Ubah folder muzik anda."
 msgid "All the songs in this device are already in your library."
 msgstr "Semua lagu dalam peranti ini sudah ada dalam pustaka anda."
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
 #, c-format
-msgid "%i albums"
-msgstr "%i album"
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
-msgid "1 album"
-msgstr "1 album"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
 #, c-format
-msgid "%i songs"
-msgstr "%i lagu"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
-msgid "1 song"
-msgstr "1 lagu"
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
@@ -1119,7 +1119,7 @@ msgid "Show in File Browser"
 msgstr "Papar dalam Pelayar Fail"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:538
+#: /home/victor/noise/po/../src//LibraryWindow.vala:531
 msgid "Queue"
 msgstr "Baris Gilir"
 
@@ -1353,104 +1353,56 @@ msgstr "Terlebih Main"
 msgid "Not Recently Played"
 msgstr "Tiada Dimain Baru-baru Ini"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:221
+#: /home/victor/noise/po/../src//LibraryWindow.vala:214
 msgid "Rescan Music Folder"
 msgstr "Imbas Semula Folder Muzik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:245
+#: /home/victor/noise/po/../src//LibraryWindow.vala:238
 msgid "Search Music"
 msgstr "Gelintar Muzik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:543
+#: /home/victor/noise/po/../src//LibraryWindow.vala:536
 msgid "History"
 msgstr "Sejarah"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:704
 msgid " by "
 msgstr " oleh "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:712
+#: /home/victor/noise/po/../src//LibraryWindow.vala:705
 msgid " on "
 msgstr " pada "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:928
+#: /home/victor/noise/po/../src//LibraryWindow.vala:921
 msgid "Import Music"
 msgstr "Import Muzik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:952
+#: /home/victor/noise/po/../src//LibraryWindow.vala:945
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Mengimport</b> muzik dari pustaka <b>%s</b>."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:967
+#: /home/victor/noise/po/../src//LibraryWindow.vala:960
 msgid "Rescanning music folder for changes"
 msgstr "Mengimbas semula folder muzik untuk perubahan"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:974
+#: /home/victor/noise/po/../src//LibraryWindow.vala:967
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "Could not find Music Folder"
 msgstr "Tidak dapat cari Folder Muzik"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:974
+#: /home/victor/noise/po/../src//LibraryWindow.vala:967
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Sila pastikan folder muzik anda boleh dicapai dan dilekap."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1021
 msgid "Import Complete"
 msgstr "Proses Mengimport Selesai"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1021
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s telah mengimport pustaka anda."
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:40
-msgid "1 second"
-msgstr "1 saat"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
-#, c-format
-msgid "%u seconds"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
-msgid "1 day"
-msgstr "1 hari"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:66
-#, c-format
-msgid "%i days"
-msgstr "%i hari"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:71
-msgid "1 hour"
-msgstr "1 jam"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:73
-#, c-format
-msgid "%i hours"
-msgstr "%i jam"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
-msgid "1 minute"
-msgstr "1 minit"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:80
-#, c-format
-msgid "%i minutes"
-msgstr "%i minit"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:90
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:100
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:104
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:112
-#, c-format
-msgid "%s and %s"
-msgstr "%s dan %s"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:98
-#, c-format
-msgid "%s, %s and %s"
-msgstr "%s, %s dan %s"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
@@ -1524,18 +1476,287 @@ msgstr "Soft Rock"
 msgid "Techno"
 msgstr "Techno"
 
-#~ msgid "Similar"
-#~ msgstr "Seakan"
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:34
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:45
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:70
+#, c-format
+msgid "%u minute"
+msgid_plural "%u minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
+#, c-format
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:48
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:79
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:91
+#, c-format
+msgid "%s and %s"
+msgstr "%s dan %s"
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:64
+#, c-format
+msgid "%u day"
+msgid_plural "%u days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:67
+#, c-format
+msgid "%u hour"
+msgid_plural "%u hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:77
+#, c-format
+msgid "%s, %s and %s"
+msgstr "%s, %s dan %s"
+
+#: /home/victor/noise/po/../core//Media.vala:42
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "Tajuk Tidak Diketahui"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"Sila pastikan folder muzik anda boleh dicapai dan dilekap sebelum mengimport "
+"CD."
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+msgid "No songs on CD"
+msgstr "Tiada lagu dalam CD"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#, c-format
+msgid "%s could not find any songs on the CD. No songs can be imported"
+msgstr ""
+"%s tidak dapat cari sebarang lagu dalam CD. Tiada lagu boleh diimport"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#, c-format
+msgid "%s is already doing an import"
+msgstr "%s sudah membuat pengimportan"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#, c-format
+msgid ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
+msgstr ""
+"Sila tunggu sehingga %s selesai dengan import semasa sebelum mengimport CD."
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+msgid "Ripping track 1"
+msgstr "Meretas trek 1"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
+#, c-format
+msgid "Importing track %i"
+msgstr "Mengimport trek %i"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+msgid "CD Import Complete"
+msgstr "Import CD Selesai"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#, c-format
+msgid "%s has finished importing %i songs from Audio CD."
+msgstr "%s telah selesai mengimport %i lagu dari CD Audio."
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#, c-format
+msgid "%s has finished importing a song from Audio CD."
+msgstr "%s telag selesai mengimport satu lagu dari CD Audio."
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr "Import CD akan <b>dibatalkan</b> selepas import semasa."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:311
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:528
+#, c-format
+msgid "Syncing <b>%s</b>..."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:683
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:914
+#, c-format
+msgid "Importing <b>%s</b> to library..."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:37
+msgid "Enable Scrobbling"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:38
+msgid "Unsuccessful. Click to try again."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:39
+msgid "Scrobbling already Enabled"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:40
+msgid "Success!"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:41
+msgid "Complete login"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:62
+msgid "Similar"
+msgstr "Seakan"
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:79
+msgid "Click to redo the Last.fm Login Process"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:81
+msgid ""
+"LastFM allow you to access to more informations about the music that are on "
+"your library"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:86
+msgid "Last.fm"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "media"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr "Media Serupa"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
+msgid "Fetching similar songs"
+msgstr "Mendapatkan lagu yang sama"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
+#, c-format
+msgid "Finding songs similar to %s by %s"
+msgstr "Mencari lagu yang sama dengan %s oleh %s"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:99
+#, c-format
+msgid "Similar to %s"
+msgstr "Seakan %s"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:127
+msgid "No similar songs found"
+msgstr "Tiada lagu yang serupa ditemui"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:127
+#, c-format
+msgid ""
+"%s could not find songs similar to %s by %s in your library. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
+msgstr ""
+"%s tidak dapat cari lagu yang serupa dengan %s oleh %s dalam pustaka anda. "
+"Pastikan semua maklumat lagu adalah betul dan anda bersambung dengan "
+"Internet. Beberapa lagu mungkin tidak mempunyai padanan."
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:141
+msgid "Similar Song View"
+msgstr "Paparan Lagu yang Serupa"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:141
+#, c-format
+msgid ""
+"In this view, %s will automatically find songs similar to the one you're "
+"playing. You can then start playing those songs, or save them as a playlist "
+"for later."
+msgstr ""
+"Dalam paparan ini, %s akan cari lagu yang serupa secara automatik dengan "
+"lagu yang anda sedang mainkan. Anda boleh mula memainkan lagu tersebut, atau "
+"simpan ia sebagai senarai main kemudian."
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:76
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:84
+#, c-format
+msgid "Podcast RSS Source"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:77
+msgid "Podcast Source..."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:80
+msgid "Add"
+msgstr "Tambah"
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
+msgid "No Podcasts Found"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
+msgid ""
+"The provided source is invalid. Make sure you are entering an RSS feed in "
+"XML format."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//internet-radio/RadioListView.vala:76
+msgid "Remove Station"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:68
+msgid "Previous"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:69
+msgid "Next"
+msgstr ""
+
+#~ msgid "1 album"
+#~ msgstr "1 album"
+
+#~ msgid "1 day"
+#~ msgstr "1 hari"
+
+#~ msgid "1 second"
+#~ msgstr "1 saat"
 
 #, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s saat"
 
-#~ msgid "Add"
-#~ msgstr "Tambah"
+#, c-format
+#~ msgid "%i hours"
+#~ msgstr "%i jam"
 
-#~ msgid "media"
-#~ msgstr "media"
+#~ msgid "1 minute"
+#~ msgstr "1 minit"
+
+#~ msgid "1 hour"
+#~ msgstr "1 jam"
+
+#, c-format
+#~ msgid "%i minutes"
+#~ msgstr "%i minit"
 
 #~ msgid "Disable Repeat"
 #~ msgstr "Lumpuhkan Ulang"
@@ -1545,41 +1766,8 @@ msgstr "Techno"
 #~ msgstr "Semua %i Penarafan"
 
 #, c-format
-#~ msgid "Finding songs similar to %s by %s"
-#~ msgstr "Mencari lagu yang sama dengan %s oleh %s"
-
-#~ msgid "Fetching similar songs"
-#~ msgstr "Mendapatkan lagu yang sama"
-
-#, c-format
-#~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
-#~ msgstr ""
-#~ "%s tidak dapat cari lagu yang serupa dengan %s oleh %s dalam pustaka anda. "
-#~ "Pastikan semua maklumat lagu adalah betul dan anda bersambung dengan "
-#~ "Internet. Beberapa lagu mungkin tidak mempunyai padanan."
-
-#~ msgid "No similar songs found"
-#~ msgstr "Tiada lagu yang serupa ditemui"
-
-#, c-format
-#~ msgid "Similar to %s"
-#~ msgstr "Seakan %s"
-
-#, c-format
-#~ msgid ""
-#~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
-#~ msgstr ""
-#~ "Dalam paparan ini, %s akan cari lagu yang serupa secara automatik dengan "
-#~ "lagu yang anda sedang mainkan. Anda boleh mula memainkan lagu tersebut, atau "
-#~ "simpan ia sebagai senarai main kemudian."
-
-#~ msgid "Similar Song View"
-#~ msgstr "Paparan Lagu yang Serupa"
+#~ msgid "%i albums"
+#~ msgstr "%i album"
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Import lagu dari CD audio"
@@ -1587,52 +1775,13 @@ msgstr "Techno"
 #~ msgid "Import media from device"
 #~ msgstr "Import media dari peranti"
 
-#~ msgid ""
-#~ "Please make sure that your music folder is accessible and mounted before "
-#~ "importing the CD."
-#~ msgstr ""
-#~ "Sila pastikan folder muzik anda boleh dicapai dan dilekap sebelum mengimport "
-#~ "CD."
+#, c-format
+#~ msgid "%i songs"
+#~ msgstr "%i lagu"
+
+#~ msgid "1 song"
+#~ msgstr "1 lagu"
 
 #, c-format
-#~ msgid "%s is already doing an import"
-#~ msgstr "%s sudah membuat pengimportan"
-
-#, c-format
-#~ msgid "%s could not find any songs on the CD. No songs can be imported"
-#~ msgstr ""
-#~ "%s tidak dapat cari sebarang lagu dalam CD. Tiada lagu boleh diimport"
-
-#, c-format
-#~ msgid "%s has finished importing %i songs from Audio CD."
-#~ msgstr "%s telah selesai mengimport %i lagu dari CD Audio."
-
-#, c-format
-#~ msgid ""
-#~ "Please wait until %s is finished with the current import before importing "
-#~ "the CD."
-#~ msgstr ""
-#~ "Sila tunggu sehingga %s selesai dengan import semasa sebelum mengimport CD."
-
-#~ msgid "CD Import Complete"
-#~ msgstr "Import CD Selesai"
-
-#~ msgid "No songs on CD"
-#~ msgstr "Tiada lagu dalam CD"
-
-#~ msgid "CD import will be <b>cancelled</b> after current import."
-#~ msgstr "Import CD akan <b>dibatalkan</b> selepas import semasa."
-
-#, c-format
-#~ msgid "%s has finished importing a song from Audio CD."
-#~ msgstr "%s telag selesai mengimport satu lagu dari CD Audio."
-
-#~ msgid "Ripping track 1"
-#~ msgstr "Meretas trek 1"
-
-#, c-format
-#~ msgid "Importing track %i"
-#~ msgstr "Mengimport trek %i"
-
-#~ msgid "Similar Media"
-#~ msgstr "Media Serupa"
+#~ msgid "%i days"
+#~ msgstr "%i hari"

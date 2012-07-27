@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-07-23 21:26-0600\n"
-"PO-Revision-Date: 2012-07-08 12:00+0000\n"
+"POT-Creation-Date: 2012-07-26 20:57-0600\n"
+"PO-Revision-Date: 2012-07-26 11:50+0000\n"
 "Last-Translator: Alfredo Hernández <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-25 05:04+0000\n"
-"X-Generator: Launchpad (build 15679)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2012-07-27 05:36+0000\n"
+"X-Generator: Launchpad (build 15694)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -54,12 +55,15 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victor/noise/po/../src//Objects/Media.vala:47
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:704
+#: /home/victor/noise/po/../core//Media.vala:44
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:109
 msgid "Unknown Artist"
 msgstr "Artista desconegut"
 
-#: /home/victor/noise/po/../src//Objects/Playlist.vala:210
+#: /home/victor/noise/po/../src//Objects/Playlist.vala:203
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:281
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:360
 msgid "Radio Station"
@@ -70,14 +74,11 @@ msgid "Unknown Track"
 msgstr "Pista desconeguda"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victor/noise/po/../src//Objects/Media.vala:49
-#: /home/victor/noise/po/../src//LibraryWindow.vala:712
+#: /home/victor/noise/po/../src//LibraryWindow.vala:705
+#: /home/victor/noise/po/../core//Media.vala:46
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
 msgid "Unknown Album"
 msgstr "Àlbum desconegut"
-
-#: /home/victor/noise/po/../src//Objects/Media.vala:45
-msgid "Unknown Title"
-msgstr "Títol desconegut"
 
 #: /home/victor/noise/po/../src//Widgets/PresetList.vala:47
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:164
@@ -103,7 +104,7 @@ msgstr "S'estan utilitzant %s de %s (%.2f%)"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:95
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victor/noise/po/../src//LibraryWindow.vala:220
+#: /home/victor/noise/po/../src//LibraryWindow.vala:213
 msgid "Import to Library"
 msgstr "Importa a la biblioteca"
 
@@ -112,6 +113,7 @@ msgid "Eject"
 msgstr "Expulsa"
 
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:112
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:51
 msgid "Add Podcast"
 msgstr "Afegeix un podcast"
 
@@ -171,7 +173,7 @@ msgstr "Llistes de reproducció"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victor/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victor/noise/po/../src//LibraryWindow.vala:527
+#: /home/victor/noise/po/../src//LibraryWindow.vala:520
 msgid "Music"
 msgstr "Música"
 
@@ -304,6 +306,7 @@ msgstr "Amaga l'equalitzador"
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:67
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:62
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:58
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:81
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -438,6 +441,7 @@ msgstr "Lletres"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:87
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
+#: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:70
 msgid "Done"
 msgstr "Fet"
 
@@ -570,7 +574,7 @@ msgid "Sync will remove 1 item from %s"
 msgstr "La sincronització suprimirà 1 element de %s"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:56
-#: /home/victor/noise/po/../src//LibraryWindow.vala:224
+#: /home/victor/noise/po/../src//LibraryWindow.vala:217
 msgid "Preferences"
 msgstr "Preferències"
 
@@ -987,23 +991,19 @@ msgstr "Canvia la carpeta de música."
 msgid "All the songs in this device are already in your library."
 msgstr "Totes les cançons d'aquest dispositiu ja són a la vostra biblioteca"
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:373
 #, c-format
-msgid "%i albums"
-msgstr "%i àlbums"
+msgid "%u album"
+msgid_plural "%u albums"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:368
-msgid "1 album"
-msgstr "1 àlbum"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
+#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
 #, c-format
-msgid "%i songs"
-msgstr "%i cançons"
-
-#: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:371
-msgid "1 song"
-msgstr "1 cançó"
+msgid "%u song"
+msgid_plural "%u songs"
+msgstr[0] ""
+msgstr[1] ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
@@ -1060,7 +1060,7 @@ msgstr "El dispositiu és inaccessible"
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "El %s no ha pogut accedir a aquest dispositiu en xarxa"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1128,7 +1128,7 @@ msgid "Show in File Browser"
 msgstr "Mostra al navegador de fitxers"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victor/noise/po/../src//LibraryWindow.vala:538
+#: /home/victor/noise/po/../src//LibraryWindow.vala:531
 msgid "Queue"
 msgstr "Cua"
 
@@ -1362,104 +1362,56 @@ msgstr "Les més reproduïdes"
 msgid "Not Recently Played"
 msgstr "Reproduccions no recents"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:221
+#: /home/victor/noise/po/../src//LibraryWindow.vala:214
 msgid "Rescan Music Folder"
 msgstr "Torna a examinar la carpeta de música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:245
+#: /home/victor/noise/po/../src//LibraryWindow.vala:238
 msgid "Search Music"
 msgstr "Cerca música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:543
+#: /home/victor/noise/po/../src//LibraryWindow.vala:536
 msgid "History"
 msgstr "Historial"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:711
+#: /home/victor/noise/po/../src//LibraryWindow.vala:704
 msgid " by "
 msgstr " per "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:712
+#: /home/victor/noise/po/../src//LibraryWindow.vala:705
 msgid " on "
 msgstr " a "
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:928
+#: /home/victor/noise/po/../src//LibraryWindow.vala:921
 msgid "Import Music"
 msgstr "Importa música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:952
+#: /home/victor/noise/po/../src//LibraryWindow.vala:945
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>S'està important</b> música des de <b>%s</b> a la biblioteca."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:967
+#: /home/victor/noise/po/../src//LibraryWindow.vala:960
 msgid "Rescanning music folder for changes"
 msgstr "S'estan cercant canvis a la carpeta de música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:974
+#: /home/victor/noise/po/../src//LibraryWindow.vala:967
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "Could not find Music Folder"
 msgstr "No s'ha pogut trobar la carpeta de música"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:974
+#: /home/victor/noise/po/../src//LibraryWindow.vala:967
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Assegureu-vos que la carpeta de música sigui accessible i muntada."
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1021
 msgid "Import Complete"
 msgstr "S'ha completat la importació"
 
-#: /home/victor/noise/po/../src//LibraryWindow.vala:1028
+#: /home/victor/noise/po/../src//LibraryWindow.vala:1021
 #, c-format
 msgid "%s has imported your library."
 msgstr "El %s ha importat la vostra biblioteca."
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:40
-msgid "1 second"
-msgstr "1 segon"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:42
-#, c-format
-msgid "%u seconds"
-msgstr ""
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:64
-msgid "1 day"
-msgstr "1 dia"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:66
-#, c-format
-msgid "%i days"
-msgstr "%i dies"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:71
-msgid "1 hour"
-msgstr "1 hora"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:73
-#, c-format
-msgid "%i hours"
-msgstr "%i hores"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:78
-msgid "1 minute"
-msgstr "1 minut"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:80
-#, c-format
-msgid "%i minutes"
-msgstr "%i minuts"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:90
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:100
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:104
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:112
-#, c-format
-msgid "%s and %s"
-msgstr "%s i %s"
-
-#: /home/victor/noise/po/../src//Utils/TimeUtils.vala:98
-#, c-format
-msgid "%s, %s and %s"
-msgstr "%s, %s i %s"
 
 #: /home/victor/noise/po/../src//GStreamer/Equalizer.vala:70
 msgid "Flat"
@@ -1533,79 +1485,311 @@ msgstr "Rock suau"
 msgid "Techno"
 msgstr "Techno"
 
-#~ msgid "Add"
-#~ msgstr "Afegeix"
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:34
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] ""
+msgstr[1] ""
 
-#~ msgid "Similar"
-#~ msgstr "Similars"
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:45
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:70
+#, c-format
+msgid "%u minute"
+msgid_plural "%u minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
+#, c-format
+msgid "%u second"
+msgid_plural "%u seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:48
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:79
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:83
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:91
+#, c-format
+msgid "%s and %s"
+msgstr "%s i %s"
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:64
+#, c-format
+msgid "%u day"
+msgid_plural "%u days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:67
+#, c-format
+msgid "%u hour"
+msgid_plural "%u hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /home/victor/noise/po/../core//Utils/TimeUtils.vala:77
+#, c-format
+msgid "%s, %s and %s"
+msgstr "%s, %s i %s"
+
+#: /home/victor/noise/po/../core//Media.vala:42
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDDA.vala:74
+msgid "Unknown Title"
+msgstr "Títol desconegut"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"Assegureu-vos que la carpeta de música sigui accessible i muntada abans de "
+"la importació del CD."
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+msgid "No songs on CD"
+msgstr "No hi ha cap cançó al CD"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
+#, c-format
+msgid "%s could not find any songs on the CD. No songs can be imported"
+msgstr ""
+"El %s no ha pogut trobar cap cançó al CD. No es pot importar cap cançó"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#, c-format
+msgid "%s is already doing an import"
+msgstr "El %s ja està fent una importació"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:234
+#, c-format
+msgid ""
+"Please wait until %s is finished with the current import before importing "
+"the CD."
+msgstr ""
+"Si us plau, espereu fins que el %s hagi acabat la importació actual abans "
+"d'importar el CD."
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
+msgid "Ripping track 1"
+msgstr "S'està capturant la pista 1"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:329
+#, c-format
+msgid "Importing track %i"
+msgstr "S'està imporant la pista %i"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+msgid "CD Import Complete"
+msgstr "L'importació del CD s'ha completat"
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:339
+#, c-format
+msgid "%s has finished importing %i songs from Audio CD."
+msgstr "El %s ha acabat d'importar %i cançons des del CD d'àudio."
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:342
+#, c-format
+msgid "%s has finished importing a song from Audio CD."
+msgstr "El %s ha acabat d'importar una cançó des del CD d'àudio."
+
+#: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:375
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr ""
+"La importació del CD <b>es cancel·larà</b> després de la importació actual."
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:311
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:528
+#, c-format
+msgid "Syncing <b>%s</b>..."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:683
+#, c-format
+msgid "Removing from <b>%s</b>..."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:914
+#, c-format
+msgid "Importing <b>%s</b> to library..."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:37
+msgid "Enable Scrobbling"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:38
+msgid "Unsuccessful. Click to try again."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:39
+msgid "Scrobbling already Enabled"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:40
+msgid "Success!"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:41
+msgid "Complete login"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:62
+msgid "Similar"
+msgstr "Similars"
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:79
+msgid "Click to redo the Last.fm Login Process"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:81
+msgid ""
+"LastFM allow you to access to more informations about the music that are on "
+"your library"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:86
+msgid "Last.fm"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "elements multimèdia"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
+msgid "Similar Media"
+msgstr "Elements multimèdia similars"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
+msgid "Fetching similar songs"
+msgstr "Determinant cançons similars"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
+#, c-format
+msgid "Finding songs similar to %s by %s"
+msgstr "S'estan cercant cançons similars a %s per %s"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:99
+#, c-format
+msgid "Similar to %s"
+msgstr "Similars a %s"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:127
+msgid "No similar songs found"
+msgstr "No s'ha trobat cap cançó similar"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:127
+#, c-format
+msgid ""
+"%s could not find songs similar to %s by %s in your library. Make sure all "
+"song info is correct and you are connected to the Internet. Some songs may "
+"not have matches."
+msgstr ""
+"El %s no ha pogut trobar cap cançó similar a %s per %s a la biblioteca. "
+"Assegureu-vos que la informació de la cançó sigui correcta i que sigueu "
+"connectat a Internet. Pot ser que algunes cançons no tinguin cap "
+"coincidència."
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:141
+msgid "Similar Song View"
+msgstr "Vista de cançons similars"
+
+#: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:141
+#, c-format
+msgid ""
+"In this view, %s will automatically find songs similar to the one you're "
+"playing. You can then start playing those songs, or save them as a playlist "
+"for later."
+msgstr ""
+"En aquesta vista, el %s trobarà automàticament cançons similars a la que "
+"s'estigui reproduint. Podeu reproduir-les o desar-les com a una llista de "
+"reproducció."
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:76
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:84
+#, c-format
+msgid "Podcast RSS Source"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:77
+msgid "Podcast Source..."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:80
+msgid "Add"
+msgstr "Afegeix"
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
+msgid "No Podcasts Found"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
+msgid ""
+"The provided source is invalid. Make sure you are entering an RSS feed in "
+"XML format."
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//internet-radio/RadioListView.vala:76
+msgid "Remove Station"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:68
+msgid "Previous"
+msgstr ""
+
+#: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:69
+msgid "Next"
+msgstr ""
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Importa cançons des d'un CD d'àudio"
 
-#~ msgid "CD Import Complete"
-#~ msgstr "L'importació del CD s'ha completat"
+#, c-format
+#~ msgid "%i albums"
+#~ msgstr "%i àlbums"
+
+#~ msgid "1 album"
+#~ msgstr "1 àlbum"
 
 #, c-format
-#~ msgid "Importing track %i"
-#~ msgstr "S'està imporant la pista %i"
+#~ msgid "%i songs"
+#~ msgstr "%i cançons"
+
+#~ msgid "1 song"
+#~ msgstr "1 cançó"
 
 #, c-format
-#~ msgid "%s is already doing an import"
-#~ msgstr "El %s ja està fent una importació"
+#~ msgid "%i hours"
+#~ msgstr "%i hores"
 
-#, c-format
-#~ msgid "%s could not find any songs on the CD. No songs can be imported"
-#~ msgstr ""
-#~ "El %s no ha pogut trobar cap cançó al CD. No es pot importar cap cançó"
+#~ msgid "1 day"
+#~ msgstr "1 dia"
 
-#, c-format
-#~ msgid "%s has finished importing %i songs from Audio CD."
-#~ msgstr "El %s ha acabat d'importar %i cançons des del CD d'àudio."
+#~ msgid "1 hour"
+#~ msgstr "1 hora"
 
-#, c-format
-#~ msgid "%s has finished importing a song from Audio CD."
-#~ msgstr "El %s ha acabat d'importar una cançó des del CD d'àudio."
-
-#, c-format
-#~ msgid ""
-#~ "Please wait until %s is finished with the current import before importing "
-#~ "the CD."
-#~ msgstr ""
-#~ "Si us plau, espereu fins que el %s hagi acabat la importació actual abans "
-#~ "d'importar el CD."
-
-#~ msgid "No similar songs found"
-#~ msgstr "No s'ha trobat cap cançó similar"
+#~ msgid "1 second"
+#~ msgstr "1 segon"
 
 #, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s segons"
 
+#~ msgid "1 minute"
+#~ msgstr "1 minut"
+
+#, c-format
+#~ msgid "%i days"
+#~ msgstr "%i dies"
+
+#, c-format
+#~ msgid "%i minutes"
+#~ msgstr "%i minuts"
+
 #~ msgid "Disable Repeat"
 #~ msgstr "Desactiva la repetició"
-
-#~ msgid "No songs on CD"
-#~ msgstr "No hi ha cap cançó al CD"
-
-#~ msgid ""
-#~ "Please make sure that your music folder is accessible and mounted before "
-#~ "importing the CD."
-#~ msgstr ""
-#~ "Assegureu-vos que la carpeta de música sigui accessible i muntada abans de "
-#~ "la importació del CD."
-
-#~ msgid "CD import will be <b>cancelled</b> after current import."
-#~ msgstr ""
-#~ "La importació del CD <b>es cancel·larà</b> després de la importació actual."
-
-#~ msgid "Ripping track 1"
-#~ msgstr "S'està capturant la pista 1"
-
-#~ msgid "media"
-#~ msgstr "elements multimèdia"
-
-#~ msgid "Similar Media"
-#~ msgstr "Elements multimèdia similars"
 
 #~ msgid "Import media from device"
 #~ msgstr "Importa elements multimèdia d'un dispositiu"
@@ -1613,41 +1797,6 @@ msgstr "Techno"
 #, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Totes les %i valoracions"
-
-#, c-format
-#~ msgid "Similar to %s"
-#~ msgstr "Similars a %s"
-
-#~ msgid "Similar Song View"
-#~ msgstr "Vista de cançons similars"
-
-#, c-format
-#~ msgid "Finding songs similar to %s by %s"
-#~ msgstr "S'estan cercant cançons similars a %s per %s"
-
-#~ msgid "Fetching similar songs"
-#~ msgstr "Determinant cançons similars"
-
-#, c-format
-#~ msgid ""
-#~ "In this view, %s will automatically find songs similar to the one you're "
-#~ "playing. You can then start playing those songs, or save them as a playlist "
-#~ "for later."
-#~ msgstr ""
-#~ "En aquesta vista, el %s trobarà automàticament cançons similars a la que "
-#~ "s'estigui reproduint. Podeu reproduir-les o desar-les com a una llista de "
-#~ "reproducció."
-
-#, c-format
-#~ msgid ""
-#~ "%s could not find songs similar to %s by %s in your library. Make sure all "
-#~ "song info is correct and you are connected to the Internet. Some songs may "
-#~ "not have matches."
-#~ msgstr ""
-#~ "El %s no ha pogut trobar cap cançó similar a %s per %s a la biblioteca. "
-#~ "Assegureu-vos que la informació de la cançó sigui correcta i que sigueu "
-#~ "connectat a Internet. Pot ser que algunes cançons no tinguin cap "
-#~ "coincidència."
 
 #~ msgid "Write metadata to file"
 #~ msgstr "Escriu metadades al fitxer"
@@ -1661,3 +1810,7 @@ msgstr "Techno"
 
 #~ msgid "1 item"
 #~ msgstr "1 element"
+
+#, c-format
+#~ msgid "%u seconds"
+#~ msgstr "%u segons"
