@@ -28,67 +28,46 @@ namespace Noise.TimeUtils {
      * or similar.
      */
     public inline string time_string_from_seconds (uint seconds) {
-        const double SECONDS_PER_MINUTE = 60;
-        const double SECONDS_PER_HOUR   = 3600;  // 60 X SECONDS_PER_MINUTE
-        const double SECONDS_PER_DAY    = 86400; // 24 x SECONDS_PER_HOUR
+        const uint SECONDS_PER_MINUTE = 60;
 
-        if (seconds < SECONDS_PER_MINUTE) {
-            if (seconds < 1)
-                return "";
+        if (seconds < SECONDS_PER_MINUTE)
+            return ngettext ("%d second", "%d seconds", seconds).printf (seconds);
 
-            if (seconds < 2)
-                return _("1 second");
+        uint SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE;
+        uint SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR;
 
-            return _("%u seconds").printf (seconds);
-        }
-
-        double secs = (double)seconds;
+        string days_string = "", hours_string = "", minutes_string = "", seconds_string = "";
         uint days = 0, hours = 0, minutes = 0;
 
+        // If less than one hour, show minutes + seconds
+        if (seconds < SECONDS_PER_HOUR) {
+            minutes = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_MINUTE);
+            minutes_string = ngettext ("%u minute", "%u minutes", minutes).printf (minutes);
+            seconds -= minutes * SECONDS_PER_MINUTE;
+            seconds_string = ngettext ("%u second", "%u seconds", seconds).printf (seconds);
+            return _("%s and %s").printf (minutes_string, seconds_string);
+        }
+
         // calculate days
-        days = Numeric.lowest_uint_from_double (secs / SECONDS_PER_DAY);
-        secs -= days * SECONDS_PER_DAY;
+        days = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_DAY);
+        seconds -= days * SECONDS_PER_DAY;
 
         // calculate remaining hours
-        hours = Numeric.lowest_uint_from_double (secs / SECONDS_PER_HOUR);
-        secs -= hours * SECONDS_PER_HOUR;
+        hours = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_HOUR);
+        seconds -= hours * SECONDS_PER_HOUR;
 
         // calculate remaining minutes. Now the best (and not the lowest)
         // approximation is desired
-        minutes = Numeric.uint_from_double (secs / SECONDS_PER_MINUTE);
+        minutes = Numeric.uint_from_double (seconds / SECONDS_PER_MINUTE);
 
-        string days_string = "", hours_string = "", minutes_string = "";
+        if (days > 0)
+            days_string = ngettext ("%u day", "%u days", days).printf (days);
 
-        if (days > 0) {
-            if (days == 1)
-                days_string = _("1 day");
-            else
-                days_string = _("%i days").printf ((int)days);
-        }
+        if (hours > 0)
+            hours_string = ngettext ("%u hour", "%u hours", hours).printf (hours);
 
-        if (hours > 0) {
-            if (hours == 1)
-                hours_string = _("1 hour");
-            else
-                hours_string = _("%i hours").printf ((int)hours);
-        }
-
-        if (minutes > 0) {
-            if (minutes == 1)
-                minutes_string = _("1 minute");
-            else
-                minutes_string = _("%i minutes").printf ((int)minutes);
-        }
-
-#if 0
-                // if less than one hour, show minutes + seconds
-                int mins = Numeric.lowest_uint_from_double (secs / SECONDS_PER_MINUTE);
-                // There is obviously more than one minute. Otherwise we would have returned
-                // waay earlier
-                minutes_string = _("").printf ()
-                secs -= mins * SECONDS_PER_MINUTE;
-                return _("%s and %s").printf (minutes_string, seconds_string);
-#endif
+        if (minutes > 0)
+            minutes_string = ngettext ("%u minute", "%u minutes", minutes).printf (minutes);
 
         string rv = "";
 
@@ -114,6 +93,8 @@ namespace Noise.TimeUtils {
                     rv = hours_string;
             }
             else {
+                // In theory, this will never be reached,
+                // since we handle this case above.
                 rv = minutes_string;
             }
         }
@@ -134,11 +115,11 @@ namespace Noise.TimeUtils {
      * Returns a formatted date and time string.
      * TODO: Use locale settings to decide format
      */
-    public string pretty_timestamp_from_time (Time dt) {
+    public inline string pretty_timestamp_from_time (Time dt) {
         return dt.format ("%m/%e/%Y %l:%M %p");
     }
 
-    public string pretty_timestamp_from_uint (uint time) {
+    public inline string pretty_timestamp_from_uint (uint time) {
         var dt = Time.local (time);
         return pretty_timestamp_from_time (dt);
     }

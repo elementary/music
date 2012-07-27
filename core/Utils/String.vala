@@ -26,7 +26,7 @@ namespace Noise.String {
      * Compares two strings. Used extensively in the views for sorting.
      * @return 1 if a > b. -1 if b > a
      */
-    public int compare (string a, string b) {
+    public inline int compare (string a, string b) {
         if (a == "" && b != "")
             return 1;
 
@@ -52,7 +52,7 @@ namespace Noise.String {
     /**
      * @return 'true' if text consists enterely of white space.
      */
-    public bool is_white_space (string text) {
+    public inline bool is_white_space (string text) {
         if (text == null)
             return true;
 

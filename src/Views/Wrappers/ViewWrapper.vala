@@ -369,13 +369,11 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
         string media_description = "";
 
-        if (is_album) {
-            media_description = total_items > 1 ? _("%u albums") : _("1 album");
-        }
-        else {
-            media_description = total_items > 1 ? _("%u songs") : _("1 song");
-        }
-
+        if (is_album)
+            media_description = ngettext ("%u album", "%u albums", total_items).printf (total_items);
+        else
+            media_description = ngettext ("%u song", "%u songs", total_items).printf (total_items);
+ 
         string media_text = media_description.printf (total_items);
         string time_text = TimeUtils.time_string_from_seconds (total_time);
         string size_text = format_size (total_size);

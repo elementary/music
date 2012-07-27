@@ -27,7 +27,7 @@
 namespace Noise.Numeric {
 
     /**
-     * @Deprecated. Use Math.truncate() instead.
+     * @Deprecated. Use Math.trunc() instead.
      *
      * Returns the lowest uint given a double.
      * For instance:
@@ -36,7 +36,7 @@ namespace Noise.Numeric {
      *  7.51 => 7
      *  7.99 => 7
      */
-    public uint lowest_uint_from_double (double number) {
+    public inline uint lowest_uint_from_double (double number) {
         // sign check
         if (number <= 0.0)
             return 0;
@@ -50,7 +50,7 @@ namespace Noise.Numeric {
     }
 
     /**
-     * @Deprecated. Use Math.truncate..() instead.
+     * @Deprecated. Use Math.truncf() instead.
      * Returns the lowest int given a float.
      * For instance:
      * INPUT => OUTPUT
@@ -58,7 +58,7 @@ namespace Noise.Numeric {
      *  7.51 => 7
      *  7.99 => 7
      */
-    public int lowest_int_from_float (float number) {
+    public inline int lowest_int_from_float (float number) {
         // sign check
         if (number <= 0.0)
             return 0;
@@ -75,7 +75,7 @@ namespace Noise.Numeric {
      * @Deprecated. Use Math.round () instead.
      * Approximates a double to the best uint.
      */
-    public uint uint_from_double (double number) {
+    public inline uint uint_from_double (double number) {
         // Check limits
         if (number > (double)uint.MAX)
             return uint.MAX;
@@ -104,10 +104,10 @@ namespace Noise.Numeric {
     }
 
     /**
-     * @Deprecated. Use Math.round () instead.
+     * @Deprecated. Use Math.roundf () instead.
      * Approximates a float to the best int.
      */
-    public int int_from_float (float number) {
+    public inline int int_from_float (float number) {
         // Check limits
         if (number > (float)int.MAX)
             return int.MAX;
