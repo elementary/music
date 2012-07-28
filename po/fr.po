@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-07-27 05:37+0000\n"
+"X-Launchpad-Export-Date: 2012-07-28 05:23+0000\n"
 "X-Generator: Launchpad (build 15694)\n"
 "Language: \n"
 
@@ -1840,7 +1840,3 @@ msgstr ""
 #, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s secondes"
-
-#, c-format
-#~ msgid "%u seconds"
-#~ msgstr "%u secondes"
