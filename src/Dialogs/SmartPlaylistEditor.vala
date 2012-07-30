@@ -343,15 +343,15 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
 
             switch (_q.comparator)
             {
-            case SmartQuery.ComparatorType.CONTAINS:
-                _comparator.set_active(1);
-                break;
-            case SmartQuery.ComparatorType.NOT_CONTAINS:
-                _comparator.set_active(2);
-                break;
-            default: // SmartQuery.ComparatorType.IS or unset
-                _comparator.set_active(0);
-                break;
+                case SmartQuery.ComparatorType.CONTAINS:
+                    _comparator.set_active(1);
+                    break;
+                case SmartQuery.ComparatorType.NOT_CONTAINS:
+                    _comparator.set_active(2);
+                    break;
+                default: // SmartQuery.ComparatorType.IS or unset
+                    _comparator.set_active(0);
+                    break;
             }
         }
         else if(_field.get_active () == SmartQuery.FieldType.MEDIA_TYPE) {
