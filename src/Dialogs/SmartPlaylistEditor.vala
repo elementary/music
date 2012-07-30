@@ -460,15 +460,17 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
     }
     
     public bool needs_value (SmartQuery.FieldType compared) {
-        return (compared == SmartQuery.FieldType.ALBUM || compared == SmartQuery.FieldType.ARTIST || compared == SmartQuery.FieldType.COMMENT || 
-                compared == SmartQuery.FieldType.COMPOSER || compared == SmartQuery.FieldType.GENRE || compared == SmartQuery.FieldType.GROUPING || 
-                compared == SmartQuery.FieldType.TITLE);
+        return (compared == SmartQuery.FieldType.ALBUM || compared == SmartQuery.FieldType.ARTIST
+                || compared == SmartQuery.FieldType.COMMENT || compared == SmartQuery.FieldType.COMPOSER
+                || compared == SmartQuery.FieldType.GENRE || compared == SmartQuery.FieldType.GROUPING
+                || compared == SmartQuery.FieldType.TITLE);
     }
     
     public bool needs_value_2 (SmartQuery.FieldType compared) {
-        return (compared == SmartQuery.FieldType.BITRATE || compared == SmartQuery.FieldType.YEAR || compared == SmartQuery.FieldType.RATING || 
-                compared == SmartQuery.FieldType.PLAYCOUNT || compared == SmartQuery.FieldType.SKIPCOUNT || compared == SmartQuery.FieldType.LENGTH || 
-                compared == SmartQuery.FieldType.TITLE);
+        return (compared == SmartQuery.FieldType.BITRATE || compared == SmartQuery.FieldType.YEAR
+                || compared == SmartQuery.FieldType.RATING || compared == SmartQuery.FieldType.PLAYCOUNT
+                || compared == SmartQuery.FieldType.SKIPCOUNT || compared == SmartQuery.FieldType.LENGTH
+                || compared == SmartQuery.FieldType.TITLE);
     }
 
     public bool is_rating (SmartQuery.FieldType compared) {
@@ -476,7 +478,8 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
     }
     
     public bool is_date (SmartQuery.FieldType compared) {
-        return (compared == SmartQuery.FieldType.LAST_PLAYED || compared == SmartQuery.FieldType.DATE_ADDED || compared == SmartQuery.FieldType.DATE_RELEASED);
+        return (compared == SmartQuery.FieldType.LAST_PLAYED || compared == SmartQuery.FieldType.DATE_ADDED
+                || compared == SmartQuery.FieldType.DATE_RELEASED);
     }
 }
 
