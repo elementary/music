@@ -340,11 +340,19 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
             comparators.insert (0, SmartQuery.ComparatorType.IS);
             comparators.insert (1, SmartQuery.ComparatorType.CONTAINS);
             comparators.insert (2, SmartQuery.ComparatorType.NOT_CONTAINS);
-            
-            if ((_q.comparator == SmartQuery.ComparatorType.IS) || ((int)_q.comparator-1 > 2))
+
+            switch (_q.comparator)
+            {
+            case SmartQuery.ComparatorType.CONTAINS:
+                _comparator.set_active(1);
+                break;
+            case SmartQuery.ComparatorType.NOT_CONTAINS:
+                _comparator.set_active(2);
+                break;
+            default: // SmartQuery.ComparatorType.IS or unset
                 _comparator.set_active(0);
-            else
-                _comparator.set_active((int)_q.comparator-1);
+                break;
+            }
         }
         else if(_field.get_active () == SmartQuery.FieldType.MEDIA_TYPE) {
             _value.hide();
@@ -366,10 +374,16 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
             _comparator.append_text(_("is not"));
             comparators.insert (0, SmartQuery.ComparatorType.IS);
             comparators.insert (1, SmartQuery.ComparatorType.IS_NOT);
-            
-            _comparator.set_active((int)_q.comparator);
-            if ((int)_q.comparator > 1)
-                _comparator.set_active(0);
+
+            switch (_q.comparator)
+            {
+                case SmartQuery.ComparatorType.IS_NOT:
+                    _comparator.set_active(1);
+                    break;
+                default: // SmartQuery.ComparatorType.IS or unset
+                    _comparator.set_active(0);
+                    break;
+            }
         }
         else {
             if(is_rating ((SmartQuery.FieldType)_field.get_active ())) {
@@ -405,11 +419,19 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
                 comparators.insert (0, SmartQuery.ComparatorType.IS_EXACTLY);
                 comparators.insert (1, SmartQuery.ComparatorType.IS_WITHIN);
                 comparators.insert (2, SmartQuery.ComparatorType.IS_BEFORE);
-                
-                if ((_q.comparator == SmartQuery.ComparatorType.IS_EXACTLY) || ((int)_q.comparator-6 < 0))
-                    _comparator.set_active(0);
-                else
-                    _comparator.set_active((int)_q.comparator-6);
+
+                switch (_q.comparator)
+                {
+                    case SmartQuery.ComparatorType.IS_WITHIN:
+                        _comparator.set_active (1);
+                        break;
+                    case SmartQuery.ComparatorType.IS_BEFORE:
+                        _comparator.set_active (2);
+                        break;
+                    default: // SmartQuery.ComparatorType.IS_EXACTLY or unset
+                        _comparator.set_active (0);
+                        break;
+                }
             }
         }
         
