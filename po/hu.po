@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-26 20:57-0600\n"
-"PO-Revision-Date: 2012-07-29 18:03+0000\n"
-"Last-Translator: Mark Lutring <marcus@elitemail.hu>\n"
+"PO-Revision-Date: 2012-07-30 18:14+0000\n"
+"Last-Translator: Bence Lukács <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-07-30 05:11+0000\n"
+"X-Launchpad-Export-Date: 2012-07-31 05:24+0000\n"
 "X-Generator: Launchpad (build 15702)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
@@ -280,7 +280,7 @@ msgstr "Elrejtés"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:51
 msgid "Show Info Panel"
-msgstr "Infópanel megjelenítése"
+msgstr "Információs panel megjelenítése"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:52
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:56
@@ -289,7 +289,7 @@ msgstr "Megjelenítés"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:52
 msgid "Hide Info Panel"
-msgstr "Infópanel elrejtése"
+msgstr "Információs panel elrejtése"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:55
 msgid "Show Equalizer"
@@ -832,7 +832,7 @@ msgstr "Nem található médiafájl"
 #, c-format
 msgid ""
 "The music file for %s by %s could not be found. What would you like to do?"
-msgstr ""
+msgstr "%s - %s zeneszám nem található. Mit szeretne tenni?"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:81
 #, c-format
@@ -871,6 +871,8 @@ msgid ""
 "This will remove the %s from your library and from any device that "
 "automatically syncs with %s."
 msgstr ""
+"Ez el fogja távolítani %s-t a gyűjteményéből és minden eszközről ami "
+"automatikusan szinkronizál %s eszközzel."
 
 #: /home/victor/noise/po/../src//Views/NetworkDeviceView.vala:42
 #: /home/victor/noise/po/../src//Views/DeviceView.vala:43
@@ -945,6 +947,10 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"Zeneszámok sorba állításához válassza a <b>jobbgombos menüből</b> a "
+"<b>Lejátszási sor</b> lehetőséget. Ha a zeneszám befejeződik, a sorba "
+"állított zeneszám fog elindulni, nem az éppen lejátszott lista következő "
+"eleme."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:37
 msgid "No songs in History"
@@ -1006,6 +1012,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"Zeneszámok lejátszási listához való hozzáadásához válassza a <b>jobbgombos "
+"menüből</b> a <b>Hozzáadás a lejátszólistához</b> lehetőséget."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:77
 msgid "Edit Smart Playlist"
@@ -1048,7 +1056,7 @@ msgstr "Eszköz elérhetetlen"
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s nem fér hozzá ehhez a hálózati eszközhöz"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1109,7 +1117,7 @@ msgstr "Görgetés a jelenlegi dalhoz"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:149
 msgid "Edit Song Info"
-msgstr "Dal infó szerkesztése"
+msgstr "Dal információinak szerkesztése"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/MusicListView.vala:150
 msgid "Show in File Browser"
@@ -1234,7 +1242,7 @@ msgstr "Nincs értékelés"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
-msgstr "Múfajok"
+msgstr "Műfajok"
 
 #: /home/victor/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:48
 msgid "Artists"
@@ -1589,21 +1597,21 @@ msgstr "CD importálás <b>megszakítva</b> a jelenlegi importálás után."
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:528
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Szinkronizálás <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:683
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Eltávolítás innen: <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:914
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "<b>%s</b> importálása a gyűjteménybe..."
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:37
 msgid "Enable Scrobbling"
-msgstr ""
+msgstr "Továbbítás engedélyezése"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:38
 msgid "Unsuccessful. Click to try again."
@@ -1611,7 +1619,7 @@ msgstr "Sikertelen. Kattintson az újrapróbáláshoz."
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:39
 msgid "Scrobbling already Enabled"
-msgstr ""
+msgstr "A továbbítás már engedélyezve van"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:40
 msgid "Success!"
@@ -1619,7 +1627,7 @@ msgstr "Siker!"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:41
 msgid "Complete login"
-msgstr ""
+msgstr "Bejelentkezés befejezése"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:62
 msgid "Similar"
@@ -1627,13 +1635,15 @@ msgstr "Hasonló"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:79
 msgid "Click to redo the Last.fm Login Process"
-msgstr ""
+msgstr "Kattintson ide a Last.fm bejelentkező folyamat ismétléséhez"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:81
 msgid ""
 "LastFM allow you to access to more informations about the music that are on "
 "your library"
 msgstr ""
+"A Last.fm lehetővé teszi önnek, hogy még több információhoz jusson a "
+"zenéivel kapcsolatban, amik a gyűjteményében vannak"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:86
 msgid "Last.fm"
@@ -1649,7 +1659,7 @@ msgstr "Hasonló média"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
 msgid "Fetching similar songs"
-msgstr ""
+msgstr "Hasonló dalok lekérése"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
 #, c-format
@@ -1689,11 +1699,11 @@ msgstr ""
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:84
 #, c-format
 msgid "Podcast RSS Source"
-msgstr ""
+msgstr "Podcast RSS forrás"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:77
 msgid "Podcast Source..."
-msgstr ""
+msgstr "Podcast forrás..."
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:80
 msgid "Add"
@@ -1701,7 +1711,7 @@ msgstr "Hozzáadás"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid "No Podcasts Found"
-msgstr ""
+msgstr "Nem található Podcast"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid ""
@@ -1711,7 +1721,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../plugins//internet-radio/RadioListView.vala:76
 msgid "Remove Station"
-msgstr ""
+msgstr "Állomás eltávolítása"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:68
 msgid "Previous"
