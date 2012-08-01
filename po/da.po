@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-26 20:57-0600\n"
-"PO-Revision-Date: 2012-06-15 22:11+0000\n"
-"Last-Translator: Simon <Unknown>\n"
+"PO-Revision-Date: 2012-07-31 19:18+0000\n"
+"Last-Translator: Niclas Moeslund Overby <Unknown>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-07-28 05:23+0000\n"
-"X-Generator: Launchpad (build 15694)\n"
+"X-Launchpad-Export-Date: 2012-08-01 05:37+0000\n"
+"X-Generator: Launchpad (build 15719)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -234,7 +234,7 @@ msgstr "Sang"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
 msgid "Repeat Song"
-msgstr ""
+msgstr "Gentag Sang"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
@@ -246,7 +246,7 @@ msgstr "Album"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 msgid "Repeat Album"
-msgstr ""
+msgstr "Gentag Album"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
@@ -258,7 +258,7 @@ msgstr "Kunstner"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 msgid "Repeat Artist"
-msgstr ""
+msgstr "Gentag Kunstner"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
@@ -267,7 +267,7 @@ msgstr "Alle"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 msgid "Repeat All"
-msgstr ""
+msgstr "Gentag Alt"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
 msgid "Enable Shuffle"
@@ -1000,8 +1000,8 @@ msgstr[1] ""
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u sang"
+msgstr[1] "%u sange"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
@@ -1051,12 +1051,12 @@ msgstr "1 nummer"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 msgid "Device unreachable"
-msgstr ""
+msgstr "Enhed utilgængelig"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s kunne ikke få adgang til denne netværksenhed"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1485,23 +1485,23 @@ msgstr "Techno"
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekund"
+msgstr[1] "%d sekunder"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:45
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:70
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u minut"
+msgstr[1] "%u minutter"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u sekund"
+msgstr[1] "%u sekunder"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:48
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:79
@@ -1515,15 +1515,15 @@ msgstr "%s og %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u dag"
+msgstr[1] "%u dage"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u time"
+msgstr[1] "%u timer"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
@@ -1600,33 +1600,33 @@ msgstr ""
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:528
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Synkroniserer <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:683
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Fjerner fra <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:914
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Importerer <b>%s</b> til bibliotek..."
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:37
 msgid "Enable Scrobbling"
-msgstr ""
+msgstr "Aktiver Scrobbling"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:38
 msgid "Unsuccessful. Click to try again."
-msgstr ""
+msgstr "Mislykkedes. Klik for at prøve igen."
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:39
 msgid "Scrobbling already Enabled"
-msgstr ""
+msgstr "Scrobbling er alleredet Aktiveret"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:40
 msgid "Success!"
-msgstr ""
+msgstr "Succes!"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:41
 msgid "Complete login"
@@ -1645,10 +1645,12 @@ msgid ""
 "LastFM allow you to access to more informations about the music that are on "
 "your library"
 msgstr ""
+"LastFM giver dig mulighed for at få adgang til flere informationer om den "
+"musik, der er på dit bibliotek"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:86
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
@@ -1706,11 +1708,11 @@ msgstr ""
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:84
 #, c-format
 msgid "Podcast RSS Source"
-msgstr ""
+msgstr "Podcast RSS Kilde"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:77
 msgid "Podcast Source..."
-msgstr ""
+msgstr "Podcast Kilde..."
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:80
 msgid "Add"
@@ -1718,17 +1720,19 @@ msgstr "Tilføj"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid "No Podcasts Found"
-msgstr ""
+msgstr "Ingen Podcasts Fundet"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid ""
 "The provided source is invalid. Make sure you are entering an RSS feed in "
 "XML format."
 msgstr ""
+"Den angivne kilde er ugyldigt. Sørg for at du indtaster et RSS-feed i XML-"
+"format."
 
 #: /home/victor/noise/po/../plugins//internet-radio/RadioListView.vala:76
 msgid "Remove Station"
-msgstr ""
+msgstr "Fjern Station"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:68
 msgid "Previous"

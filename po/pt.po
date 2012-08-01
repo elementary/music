@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-26 20:57-0600\n"
-"PO-Revision-Date: 2012-07-24 11:44+0000\n"
-"Last-Translator: Sérgio Marques <Unknown>\n"
+"PO-Revision-Date: 2012-07-31 16:36+0000\n"
+"Last-Translator: Rafael da Silva Lima <Unknown>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-07-28 05:24+0000\n"
-"X-Generator: Launchpad (build 15694)\n"
+"X-Launchpad-Export-Date: 2012-08-01 05:37+0000\n"
+"X-Generator: Launchpad (build 15719)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -992,15 +992,15 @@ msgstr "Todas as faixas do dispositivo já existem na sua coleção."
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u álbum"
+msgstr[1] "%u álbuns"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u música"
+msgstr[1] "%u músicas"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
@@ -1486,23 +1486,23 @@ msgstr "Techno"
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d segundo"
+msgstr[1] "%d segundos"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:45
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:70
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u minuto"
+msgstr[1] "%u minutos"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u segundo"
+msgstr[1] "%u segundos"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:48
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:79
@@ -1516,15 +1516,15 @@ msgstr "%s e %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u dia"
+msgstr[1] "%u dias"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u hora"
+msgstr[1] "%u horas"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
@@ -1600,29 +1600,29 @@ msgstr "A importação do CD será <b>cancelada</b> após a importação atual."
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:528
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Sincronizando <b>%s</b>"
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:683
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Removendo de <b>%s</b>"
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:914
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Importando <b>%s</b>"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:37
 msgid "Enable Scrobbling"
-msgstr ""
+msgstr "Ativar Scrobbling"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:38
 msgid "Unsuccessful. Click to try again."
-msgstr ""
+msgstr "Sem êxito. Clique novamente."
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:39
 msgid "Scrobbling already Enabled"
-msgstr ""
+msgstr "Scrobbling já ativado"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:40
 msgid "Success!"
@@ -1630,7 +1630,7 @@ msgstr "Sucesso!"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:41
 msgid "Complete login"
-msgstr ""
+msgstr "Autenticação completa"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:62
 msgid "Similar"
@@ -1638,17 +1638,17 @@ msgstr "Similar"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:79
 msgid "Click to redo the Last.fm Login Process"
-msgstr ""
+msgstr "Clique para refazer a autenticação no Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:81
 msgid ""
 "LastFM allow you to access to more informations about the music that are on "
 "your library"
-msgstr ""
+msgstr "Last.fm permite que você acesse mais informações sobre suas músicas"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:86
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
@@ -1706,11 +1706,11 @@ msgstr ""
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:84
 #, c-format
 msgid "Podcast RSS Source"
-msgstr ""
+msgstr "Fonte RSS do Podcast"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:77
 msgid "Podcast Source..."
-msgstr ""
+msgstr "Fonte do Podcast..."
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:80
 msgid "Add"
@@ -1718,25 +1718,25 @@ msgstr "Adicionar"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid "No Podcasts Found"
-msgstr ""
+msgstr "Não foram encontrados Podcasts"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid ""
 "The provided source is invalid. Make sure you are entering an RSS feed in "
 "XML format."
-msgstr ""
+msgstr "A fonte escolhida é inválida. Escolha um canal RSS no formato XML."
 
 #: /home/victor/noise/po/../plugins//internet-radio/RadioListView.vala:76
 msgid "Remove Station"
-msgstr ""
+msgstr "Remover Estação"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:68
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:69
 msgid "Next"
-msgstr ""
+msgstr "Seguinte"
 
 #, c-format
 #~ msgid "%i albums"
