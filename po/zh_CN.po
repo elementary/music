@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-26 20:57-0600\n"
-"PO-Revision-Date: 2012-07-24 02:39+0000\n"
+"PO-Revision-Date: 2012-08-01 08:30+0000\n"
 "Last-Translator: Wang Dianjin <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-07-28 05:24+0000\n"
-"X-Generator: Launchpad (build 15694)\n"
+"X-Launchpad-Export-Date: 2012-08-02 05:24+0000\n"
+"X-Generator: Launchpad (build 15719)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -929,7 +929,7 @@ msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
-msgstr ""
+msgstr "要添加歌曲到队列，使用 <b>右击</b> 条目并选择<b>队列</b>。当歌曲结束时，队列歌曲将先于当前播放列表中的下一首歌曲播放。"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/HistoryViewWrapper.vala:37
 msgid "No songs in History"
@@ -969,15 +969,13 @@ msgstr "该设备中的所有歌曲已在您的库中。"
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u 个专辑"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u 首歌曲"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
@@ -1453,23 +1451,20 @@ msgstr "电音"
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d 秒"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:45
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:70
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u 分"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u 秒"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:48
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:79
@@ -1483,15 +1478,13 @@ msgstr "%s 和 %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u 天"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u 小时"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
@@ -1562,17 +1555,17 @@ msgstr "在当前导入完成后，CD 导入将被<b>取消</b>。"
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:528
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "正在同步 <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:683
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "正在从<b>%s</b>移除..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:914
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "正在将 <b>%s</b> 导入到库中..."
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:37
 msgid "Enable Scrobbling"
@@ -1606,11 +1599,11 @@ msgstr "点击重新执行 Last.fm 登陆过程"
 msgid ""
 "LastFM allow you to access to more informations about the music that are on "
 "your library"
-msgstr ""
+msgstr "LastFM 允许您访问更多关于您库中音乐的信息"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:86
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"
@@ -1627,7 +1620,7 @@ msgstr "抓取相似歌曲"
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
 #, c-format
 msgid "Finding songs similar to %s by %s"
-msgstr ""
+msgstr "正在查找与 %s (艺人-%s)类似的歌曲"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:99
 #, c-format
@@ -1644,7 +1637,7 @@ msgid ""
 "%s could not find songs similar to %s by %s in your library. Make sure all "
 "song info is correct and you are connected to the Internet. Some songs may "
 "not have matches."
-msgstr ""
+msgstr "%s 无法找到与库中 %s(艺人-%s)类似的歌曲。请确认所有的歌曲信息正确且您已连接到网络。部分歌曲可能无法匹配。"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:141
 msgid "Similar Song View"
@@ -1656,17 +1649,17 @@ msgid ""
 "In this view, %s will automatically find songs similar to the one you're "
 "playing. You can then start playing those songs, or save them as a playlist "
 "for later."
-msgstr ""
+msgstr "在该视图中，%s 将自动查找与正在播放歌曲类似的歌曲。然后您可以播放这些歌曲，或稍后将它们保存为播放列表。"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:76
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:84
 #, c-format
 msgid "Podcast RSS Source"
-msgstr ""
+msgstr "播客 RSS 源"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:77
 msgid "Podcast Source..."
-msgstr ""
+msgstr "播客源..."
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:80
 msgid "Add"
@@ -1674,25 +1667,25 @@ msgstr "添加"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid "No Podcasts Found"
-msgstr ""
+msgstr "未发现播客"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid ""
 "The provided source is invalid. Make sure you are entering an RSS feed in "
 "XML format."
-msgstr ""
+msgstr "您提供的源无效。请确定您输入的 RSS 订阅是 XML 格式。"
 
 #: /home/victor/noise/po/../plugins//internet-radio/RadioListView.vala:76
 msgid "Remove Station"
-msgstr ""
+msgstr "删除电台"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:68
 msgid "Previous"
-msgstr ""
+msgstr "上一个"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:69
 msgid "Next"
-msgstr ""
+msgstr "下一个"
 
 #, c-format
 #~ msgid "All %i Ratings"

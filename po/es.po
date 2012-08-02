@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-26 20:57-0600\n"
-"PO-Revision-Date: 2012-07-30 17:08+0000\n"
+"PO-Revision-Date: 2012-08-02 00:59+0000\n"
 "Last-Translator: Franco Villar <franco_227@msn.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-07-31 05:24+0000\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Launchpad-Export-Date: 2012-08-02 05:24+0000\n"
+"X-Generator: Launchpad (build 15719)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -1001,8 +1001,8 @@ msgstr[1] "%u álbumes"
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u cancion"
+msgstr[1] "%u canciones"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
@@ -1496,8 +1496,8 @@ msgstr[1] "%d segundos"
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u minuto"
+msgstr[1] "%u minutos"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
 #, c-format
@@ -1518,15 +1518,15 @@ msgstr "%s y %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u día"
+msgstr[1] "%u días"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u hora"
+msgstr[1] "%u horas"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
@@ -1610,7 +1610,7 @@ msgstr "Sincronizando <b>%s</b>..."
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:683
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Eliminando de <b>%s</b>"
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:914
 #, c-format
@@ -1650,10 +1650,12 @@ msgid ""
 "LastFM allow you to access to more informations about the music that are on "
 "your library"
 msgstr ""
+"LastFM le permite acceder a más información acerca de la música que se "
+"encuentra en su biblioteca"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:86
 msgid "Last.fm"
-msgstr ""
+msgstr "Last.fm"
 
 #: /home/victor/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
 msgid "media"

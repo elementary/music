@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-26 20:57-0600\n"
-"PO-Revision-Date: 2012-07-29 16:24+0000\n"
-"Last-Translator: maximko <Soccket@gmail.com>\n"
+"PO-Revision-Date: 2012-08-01 14:16+0000\n"
+"Last-Translator: Nikita Putko <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-07-30 05:11+0000\n"
-"X-Generator: Launchpad (build 15702)\n"
+"X-Launchpad-Export-Date: 2012-08-02 05:24+0000\n"
+"X-Generator: Launchpad (build 15719)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -38,7 +38,7 @@ msgstr "Музыкальный проигрыватель"
 #: /home/victor/noise/po/../src//LibraryManager.vala:293
 #, c-format
 msgid "Importing music from %s..."
-msgstr "Импорт музыки из %s..."
+msgstr "Импорт музыки из «%s»..."
 
 #: /home/victor/noise/po/../src//LibraryManager.vala:340
 msgid "Adding files to library..."
@@ -212,7 +212,7 @@ msgstr "Список воспроизведения"
 #: /home/victor/noise/po/../src//Widgets/SideTreeView.vala:937
 #, c-format
 msgid "Import %s"
-msgstr "Импортировать %s"
+msgstr "Импортировать «%s»"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:37
 msgid "Add Playlist"
@@ -459,7 +459,7 @@ msgstr "Изменение сведений о «%s» исполнителя %s"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:347
 #, c-format
 msgid "Editing %s"
-msgstr "Изменение %s"
+msgstr "Изменение «%s»"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:179
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:350
@@ -790,7 +790,7 @@ msgstr "Не импортировать"
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
 msgid "Import %i items from %s"
-msgstr "Импортировать %i объектов из %s"
+msgstr "Импортировать %i объектов из «%s»"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:95
 #, c-format
@@ -855,7 +855,7 @@ msgstr "Название «%s» уже используется"
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:57
 #, c-format
 msgid "Remove from %s"
-msgstr "Удалить из %s"
+msgstr "Удалить из «%s»"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:73
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:49
@@ -865,7 +865,7 @@ msgstr "Станция"
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:82
 #, c-format
 msgid "Remove %d %s from %s?"
-msgstr "Удалить %d %s из %s?"
+msgstr "Удалить %d %s из «%s»?"
 
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:89
 #: /home/victor/noise/po/../src//Dialogs/RemoveFilesDialog.vala:91
@@ -998,15 +998,17 @@ msgstr "Все композиции на устройстве уже наход�
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u альбом"
+msgstr[1] "%u альбома"
+msgstr[2] "%u альбомов"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u композиция"
+msgstr[1] "%u композиции"
+msgstr[2] "%u композиций"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:73
 #: /home/victor/noise/po/../src//Views/Wrappers/PlaylistViewWrapper.vala:88
@@ -1064,7 +1066,7 @@ msgstr "Устройство недоступно"
 #: /home/victor/noise/po/../src//Views/Wrappers/NetworkDeviceViewWrapper.vala:38
 #, c-format
 msgid "%s could not access to this network device"
-msgstr ""
+msgstr "%s не может получить доступ к этому сетевому устройству"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #, c-format
@@ -1097,11 +1099,11 @@ msgstr "Уд./мин."
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:53
 msgid "Plays"
-msgstr "Прослушиваний"
+msgstr "Число прослушиваний"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:54
 msgid "Skips"
-msgstr "Пропусков"
+msgstr "Число пропусков"
 
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:56
 msgid "#"
@@ -1495,23 +1497,26 @@ msgstr "Техно"
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунды"
+msgstr[2] "%d секунд"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:45
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:70
 #, c-format
 msgid "%u minute"
 msgid_plural "%u minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u минута"
+msgstr[1] "%u минуты"
+msgstr[2] "&u минут"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:47
 #, c-format
 msgid "%u second"
 msgid_plural "%u seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u секунда"
+msgstr[1] "%u секунды"
+msgstr[2] "%u секунд"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:48
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:79
@@ -1525,15 +1530,17 @@ msgstr "%s и %s"
 #, c-format
 msgid "%u day"
 msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u день"
+msgstr[1] "%u дня"
+msgstr[2] "%u дней"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:67
 #, c-format
 msgid "%u hour"
 msgid_plural "%u hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u час"
+msgstr[1] "%u часа"
+msgstr[2] "%u часов"
 
 #: /home/victor/noise/po/../core//Utils/TimeUtils.vala:77
 #, c-format
@@ -1551,7 +1558,7 @@ msgid ""
 "importing the CD."
 msgstr ""
 "Пожалуйста, убедитесь, что ваша папка с музыкой доступна и установлена перед "
-"импортом CD"
+"импортом с компакт-диска."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:229
 msgid "No songs on CD"
@@ -1575,8 +1582,8 @@ msgid ""
 "Please wait until %s is finished with the current import before importing "
 "the CD."
 msgstr ""
-"Пожалуйста, подождите, пока %s  заканчивает текущий импорт, прежде чем "
-"импортировать CD."
+"Пожалуйста, подождите, пока %s закончит текущую операцию импорта, прежде чем "
+"импортировать композиции с компакт-диска."
 
 #: /home/victor/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:252
 msgid "Ripping track 1"
@@ -1611,17 +1618,17 @@ msgstr ""
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:528
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Синхронизация <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:683
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Удаление из <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:914
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Импорт <b>«%s»</b> в библиотеку..."
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:37
 msgid "Enable Scrobbling"
@@ -1656,6 +1663,8 @@ msgid ""
 "LastFM allow you to access to more informations about the music that are on "
 "your library"
 msgstr ""
+"Сервис LastFM позволяет узнать дополнительные сведения о композициях в "
+"библиотеке"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:86
 msgid "Last.fm"
@@ -1716,11 +1725,11 @@ msgstr ""
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:84
 #, c-format
 msgid "Podcast RSS Source"
-msgstr ""
+msgstr "RSS-источник подкаста"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:77
 msgid "Podcast Source..."
-msgstr ""
+msgstr "Источник подкаста..."
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:80
 msgid "Add"
@@ -1728,25 +1737,27 @@ msgstr "Добавить"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid "No Podcasts Found"
-msgstr ""
+msgstr "Подкасты не найдены"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid ""
 "The provided source is invalid. Make sure you are entering an RSS feed in "
 "XML format."
 msgstr ""
+"Предоставленный источник является недопустимым. Убедитесь, что вы входите на "
+"RSS-канал в формате XML."
 
 #: /home/victor/noise/po/../plugins//internet-radio/RadioListView.vala:76
 msgid "Remove Station"
-msgstr ""
+msgstr "Удалить станцию"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:68
 msgid "Previous"
-msgstr ""
+msgstr "Предыдущая"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:69
 msgid "Next"
-msgstr ""
+msgstr "Следующая"
 
 #, c-format
 #~ msgid "Last.fm Integration"
