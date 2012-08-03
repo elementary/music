@@ -823,11 +823,11 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                 /*if(iter == playlists_similar_iter)
                     p.name = (lm.media_info.media != null) ? ("Similar to " + lm.media_info.media.title) : "Similar list";
                 else */if(iter == playlists_queue_iter)
-                    p.name = Time.local(time_t()).format("%Y-%b-%e %l:%M %p") + " play queue";
+                    p.name = Time.local(time_t()).format(_("Play Queue%Y-%b-%e %l:%M %p)"));
                 else if(iter == playlists_history_iter)
-                    p.name = Time.local(time_t()).format("%Y-%b-%e %l:%M %p") + " play history";
+                    p.name = Time.local(time_t()).format(_("Play History (%Y-%b-%e %l:%M %p)"));
                 else
-                    p.name = "Unkown playlist";
+                    p.name = _("Unkown playlist");
             }
         }
         
@@ -837,7 +837,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
         string file = "";
         string name = "";
         string extension = "";
-        var file_chooser = new FileChooserDialog ("Export Playlist", lw,
+        var file_chooser = new FileChooserDialog (_("Export Playlist"), lw,
                                   FileChooserAction.SAVE,
                                   Gtk.Stock.CANCEL, ResponseType.CANCEL,
                                   Gtk.Stock.SAVE, ResponseType.ACCEPT);
