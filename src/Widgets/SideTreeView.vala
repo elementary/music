@@ -823,7 +823,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                 /*if(iter == playlists_similar_iter)
                     p.name = (lm.media_info.media != null) ? ("Similar to " + lm.media_info.media.title) : "Similar list";
                 else */if(iter == playlists_queue_iter)
-                    p.name = Time.local(time_t()).format(_("Play Queue%Y-%b-%e %l:%M %p)"));
+                    p.name = Time.local(time_t()).format(_("Play Queue (%Y-%b-%e %l:%M %p)"));
                 else if(iter == playlists_history_iter)
                     p.name = Time.local(time_t()).format(_("Play History (%Y-%b-%e %l:%M %p)"));
                 else
