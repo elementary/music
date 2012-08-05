@@ -26,6 +26,10 @@
 
 namespace Noise.Numeric {
 
+    // Inverted values of prefix multipliers
+    public const uint64 NANO_INV = 1000000000;
+    public const uint64 MILI_INV = 1000;
+
     /**
      * @Deprecated. Use Math.trunc() instead.
      *
