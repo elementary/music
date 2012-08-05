@@ -27,7 +27,6 @@ public class Noise.GStreamerTagger : GLib.Object {
 	LibraryManager lm;
 	static int DISCOVER_SET_SIZE = 50;
 	Gst.Discoverer d;
-	Gst.Discoverer art_d;
 	HashMap<string, int> uri_to_id;
 	LinkedList<string> path_queue;
 	
@@ -39,38 +38,33 @@ public class Noise.GStreamerTagger : GLib.Object {
 	
 	public GStreamerTagger(LibraryManager lm) {
 		this.lm = lm;
-		try {
-			d = new Discoverer((ClockTime)(10*Gst.SECOND));
-		}
-		catch(Error err) {
-			critical("Metadata reader could not create discoverer object: %s\n", err.message);
-		}
-		d.discovered.connect(import_media);
-		d.finished.connect(finished);
-		
-		try {
-			art_d = new Discoverer((ClockTime)(10*Gst.SECOND));
-		}
-		catch(Error err) {
-			critical("Metadata reader could not create discoverer object: %s\n", err.message);
-		}
-		art_d.discovered.connect(import_art);
-		art_d.finished.connect(art_finished);
+
+        d = create_discoverer ();
+
 		
 		uri_to_id = new HashMap<string, int>();
 		path_queue = new LinkedList<string>();
 	}
-	
+
+    private Gst.Discoverer? create_discoverer () {
+        Gst.Discoverer? discoverer = null;
+
+		try {
+			discoverer = new Gst.Discoverer ((ClockTime)(30*Gst.SECOND));
+		}
+		catch (Error err) {
+			critical ("Metadata reader could not create discoverer object: %s\n", err.message);
+		}
+
+		discoverer.discovered.connect (import_media);
+		discoverer.finished.connect (finished);
+
+        return discoverer;
+    }
+
 	void finished() {
 		if(!cancelled && path_queue.size > 0) {
-			try {
-				d = new Discoverer((ClockTime)(10*Gst.SECOND));
-			}
-			catch(Error err) {
-				critical("Metadata reader could not create discoverer object: %s\n", err.message);
-			}
-			d.discovered.connect(import_media);
-			d.finished.connect(finished);
+			d = create_discoverer ();
 			
 			d.start();
 			for(int i = 0; i < DISCOVER_SET_SIZE && i < path_queue.size; ++i) {
@@ -82,35 +76,11 @@ public class Noise.GStreamerTagger : GLib.Object {
 			queue_finished();
 		}
 	}
-	
-	void art_finished() {
-		debug("art finished %d %s\n", path_queue.size, cancelled? "true":"False");
-		if(!cancelled && path_queue.size > 0) {
-			try {
-				art_d = new Discoverer((ClockTime)(10*Gst.SECOND));
-			}
-			catch(Error err) {
-				critical("Metadata reader could not create discoverer object: %s\n", err.message);
-			}
-			art_d.discovered.connect(import_art);
-			art_d.finished.connect(art_finished);
-			
-			art_d.start();
-			for(int i = 0; i < DISCOVER_SET_SIZE && i < path_queue.size; ++i) {
-				art_d.discover_uri_async(path_queue.get(i));
-			}
-		}
-		else {
-			debug("art queue finished\n");
-		}
-	}
-	
+
 	public void cancel_operations() {
-		//d.stop();
-		//queue_finished();
 		cancelled = true;
 	}
-	
+
 	public void discoverer_import_media (LinkedList<string> files) {
 		int size = 0;
 		cancelled = false;
@@ -127,145 +97,111 @@ public class Noise.GStreamerTagger : GLib.Object {
 		}
 	}
 	
-	public void fetch_art(LinkedList<int> files) {
-		return;
-		
-		
-		/*int size = 0;
-		//cancelled = false;
-		message ("gstreamer tagger fetching art for %d\n", files.size);
-		
-		uri_to_id.clear();
-		foreach(int i in files) {
-			string uri = lm.media_from_id(i).uri;
-			path_queue.add(uri);
-			uri_to_id.set(uri, i);
-			
-			art_d.start();
-			if(size < DISCOVER_SET_SIZE) {
-				++size;
-				art_d.discover_uri_async(uri);
-			}
-		}*/
-	}
-	
-	/*public bool discoverer_get_art(Media s) {
-		return d.discover_uri_async("file://" + s.file);
-	}*/
-	
 	void import_media(DiscovererInfo info, Error err) {
 		path_queue.remove(info.get_uri().replace("file://",""));
 		
 		if(info != null && info.get_tags() != null) {
 			Media s = new Media(info.get_uri());
 			
-			try {
-				string title = "";
-				string artist, composer, album_artist, album, grouping, genre, comment, lyrics;
-				uint track, track_count, album_number, album_count, bitrate, rating;
-				double bpm;
-				GLib.Date? date = GLib.Date();
-				
-				// get title, artist, album artist, album, genre, comment, lyrics strings
-				if(info.get_tags().get_string(TAG_TITLE, out title))
-					s.title = title;
-				if(info.get_tags().get_string(TAG_ARTIST, out artist))
-					s.artist = artist;
-				if(info.get_tags().get_string(TAG_COMPOSER, out composer))
-					s.composer = composer;
-				
-				if(info.get_tags().get_string(TAG_ALBUM_ARTIST, out album_artist))
-					s.album_artist = album_artist;
-				else
-					s.album_artist = s.artist;
-				
-				if(info.get_tags().get_string(TAG_ALBUM, out album))
-					s.album = album;
-				if(info.get_tags().get_string(TAG_GROUPING, out grouping))
-					s.grouping = grouping;
-				if(info.get_tags().get_string(TAG_GENRE, out genre))
-					s.genre = genre;
-				if(info.get_tags().get_string(TAG_COMMENT, out comment))
-					s.comment = comment;
-				if(info.get_tags().get_string(TAG_LYRICS, out lyrics))
-					s.lyrics = lyrics;
-				
-				// get the year
-				if(info.get_tags().get_date(TAG_DATE, out date)) {
-					if(date != null)
-						s.year = (int)date.get_year();
-				}
-				// get track/album number/count, bitrating, rating, bpm
-				if(info.get_tags().get_uint(TAG_TRACK_NUMBER, out track))
-					s.track = (int)track;
-				if(info.get_tags().get_uint(TAG_TRACK_COUNT, out track_count))
-					s.track_count = track_count;
-					
-				if(info.get_tags().get_uint(TAG_ALBUM_VOLUME_NUMBER, out album_number))
-					s.album_number = album_number;
-				if(info.get_tags().get_uint(TAG_ALBUM_VOLUME_COUNT, out album_count))
-					s.album_count = album_count;
-				
-				if(info.get_tags().get_uint(TAG_BITRATE, out bitrate))
-					s.bitrate = (int)(bitrate/1000);
-				if(info.get_tags().get_uint(TAG_USER_RATING, out rating))
-					s.rating = (int)((rating > 0 && rating <= 5) ? rating : 0);
-				if(info.get_tags().get_double(TAG_BEATS_PER_MINUTE, out bpm))
-					s.bpm = (int)bpm;
-				if(info.get_audio_streams().length() > 0)
-					s.samplerate = info.get_audio_streams().nth_data(0).get_sample_rate();
-				
-				// get length
-				//if(info.get_tags().get_uint64(TAG_DURATION, out duration)) {
-				//	s.length = (uint)(duration/10000000);
-				//}
-				//else {
-					s.length = get_length(s.uri);
-				//}
-				
-				// see if it has an image data
-				//Gst.Buffer buf;
-				//if(info.get_tags().get_buffer(TAG_IMAGE, out buf))
-				//	s.has_embedded = true;
-				
-				s.date_added = (int)time_t();
-				
-				// get the size
-				s.file_size = (uint)(File.new_for_uri(info.get_uri()).query_info("*", FileQueryInfoFlags.NONE).get_size());
-				
-			}
-			catch (Error e) {
-				warning ("GStreamerTagger: %s", e.message);
-			}
-			finally {
-				if(s.title == null || s.title == "") {
-					string[] paths = info.get_uri().split("/", 0);
-					s.title = paths[paths.length - 1];
-				}
-				if(s.artist == null || s.artist == "") s.artist = "Unknown Artist";
-			}
+			string title = "";
+			string artist, composer, album_artist, album, grouping, genre, comment, lyrics;
+			uint track, track_count, album_number, album_count, bitrate, rating;
+			double bpm;
+			GLib.Date? date = GLib.Date();
 			
-			media_imported(s);
+			// get title, artist, album artist, album, genre, comment, lyrics strings
+			if(info.get_tags().get_string(TAG_TITLE, out title))
+				s.title = title;
+			if(info.get_tags().get_string(TAG_ARTIST, out artist))
+				s.artist = artist;
+			if(info.get_tags().get_string(TAG_COMPOSER, out composer))
+				s.composer = composer;
+			
+			if(info.get_tags().get_string(TAG_ALBUM_ARTIST, out album_artist))
+				s.album_artist = album_artist;
+			else
+				s.album_artist = s.artist;
+			
+			if(info.get_tags().get_string(TAG_ALBUM, out album))
+				s.album = album;
+			if(info.get_tags().get_string(TAG_GROUPING, out grouping))
+				s.grouping = grouping;
+			if(info.get_tags().get_string(TAG_GENRE, out genre))
+				s.genre = genre;
+			if(info.get_tags().get_string(TAG_COMMENT, out comment))
+				s.comment = comment;
+			if(info.get_tags().get_string(TAG_LYRICS, out lyrics))
+				s.lyrics = lyrics;
+			
+			// get the year
+			if(info.get_tags().get_date(TAG_DATE, out date)) {
+				if(date != null)
+					s.year = (int)date.get_year();
+			}
+			// get track/album number/count, bitrating, rating, bpm
+			if(info.get_tags().get_uint(TAG_TRACK_NUMBER, out track))
+				s.track = (int)track;
+			if(info.get_tags().get_uint(TAG_TRACK_COUNT, out track_count))
+				s.track_count = track_count;
+				
+			if(info.get_tags().get_uint(TAG_ALBUM_VOLUME_NUMBER, out album_number))
+				s.album_number = album_number;
+			if(info.get_tags().get_uint(TAG_ALBUM_VOLUME_COUNT, out album_count))
+				s.album_count = album_count;
+			
+			if(info.get_tags().get_uint(TAG_BITRATE, out bitrate))
+				s.bitrate = (int)(bitrate/1000);
+			if(info.get_tags().get_uint(TAG_USER_RATING, out rating))
+				s.rating = (int)((rating > 0 && rating <= 5) ? rating : 0);
+			if(info.get_tags().get_double(TAG_BEATS_PER_MINUTE, out bpm))
+				s.bpm = (int)bpm;
+
+
+			// get length
+            uint64 duration = info.get_duration ();
+
+            if (duration == 0)
+    			info.get_tags ().get_uint64 (TAG_DURATION, out duration);
+
+            // we convert from nanoseconds (10E-9) to miliseconds (10E-3);
+            s.length = (uint)((duration * Numeric.MILI_INV) / Numeric.NANO_INV);
+
+            foreach (var audio_stream in info.get_audio_streams ()) {
+                if (audio_stream == null)
+                    continue;
+
+                if (s.samplerate == 0) {
+                    debug ("Getting sample rate from stream info");
+                    s.samplerate = audio_stream.get_sample_rate ();
+                    debug ("Sample rate = %s", s.samplerate.to_string ());
+                }
+
+                if (s.bitrate == 0) {
+                    debug ("Getting bitrate from stream info");
+                    s.bitrate = audio_stream.get_bitrate ();
+                    debug ("Bitrate = %s", s.bitrate.to_string());
+                }
+
+                break;
+            }
+
+            // Get cover art
+			import_art (s, info);
 		}
 		else {
 			Media s = taglib_import_media(info.get_uri());
-			
-			if(s == null)
-				import_error(info.get_uri().replace("file://", ""));
-			else
-				media_imported(s);
+
+	        if (s == null) {
+		        import_error (info.get_uri().replace("file://", ""));
+		        return;
+            }
 		}
-	}
-	
-	public uint get_length(string uri) {
-		uint rv = 0;
-		TagLib.File tag_file = new TagLib.File(uri.replace("file://",""));
-		
-		if(tag_file != null && tag_file.audioproperties != null) {
-			rv = tag_file.audioproperties.length;
-		}
-		
-		return rv;
+
+		// get the size
+		s.file_size = FileUtils.get_size (s.file);
+		s.date_added = (int)time_t();
+
+		media_imported(s);
 	}
 	
 	public Media? taglib_import_media(string uri) {
@@ -284,21 +220,17 @@ public class Noise.GStreamerTagger : GLib.Object {
 				s.year = (int)tag_file.tag.year;
 				s.track = (int)tag_file.tag.track;
 				s.bitrate = tag_file.audioproperties.bitrate;
-				s.length = tag_file.audioproperties.length;
+
+				s.length = (uint)(tag_file.audioproperties.length * Numeric.MILI_INV);
 				s.samplerate = tag_file.audioproperties.samplerate;
-				s.date_added = (int)time_t();
-				
-				// get the size and convert to MB
-				//s.file_size = (int)(GLib.File.new_for_path(file_path).query_info("*", FileQueryInfoFlags.NONE).get_size()/1000000);
-				
 			}
 			finally {
 				if(s.title == null || s.title == "") {
 					string[] paths = uri.split("/", 0);
 					s.title = paths[paths.length - 1];
 				}
-				if(s.artist == null || s.artist == "") s.artist = "Unknown Artist";
-				
+				if(s.artist == null || s.artist == "") s.artist = Media.UNKNOWN_ARTIST;
+
 				s.album_artist = s.artist;
 				s.album_number = 1;
 			}
@@ -310,95 +242,76 @@ public class Noise.GStreamerTagger : GLib.Object {
 		return s;
 	}
 	
-	void import_art(DiscovererInfo info) {
-		return;
-		
-		/*path_queue.remove(info.get_uri());
-		message ("discovered %s\n", info.get_uri());
-		if(info != null && info.get_tags() != null) {
-			try {
-				Gst.Buffer buf = null;
-				Gdk.Pixbuf? rv = null;
-				int i;
-				
-				// choose the best image based on image type
-				for(i = 0; ; ++i) {
-					Gst.Buffer buffer;
-					Gst.Value? value = null;
-					string media_type;
-					Gst.Structure caps_struct;
-					int imgtype;
-					
-					value = info.get_tags().get_value_index(TAG_IMAGE, i);
-					if(value == null)
-						break;
-					
-					buffer = value.get_buffer();
-					if (buffer == null) {
-						//warning ("apparently couldn't get image buffer\n");
-						continue;
-					}
-					
-					caps_struct = buffer.caps.get_structure(0);
-					media_type = caps_struct.get_name();
-					if (media_type == "text/uri-list") {
-						//message ("ignoring text/uri-list image tag\n");
-						continue;
-					}
-					
-					caps_struct.get_enum ("image-type", typeof(Gst.TagImageType), out imgtype);
-					if (imgtype == Gst.TagImageType.UNDEFINED) {
-						if (buf == null) {
-							//debug ("got undefined image type\n");
-							buf = buffer;
-						}
-					} else if (imgtype == Gst.TagImageType.FRONT_COVER) {
-						//debug ("got front cover image\n");
-						buf = buffer;
-					}
-				}
-				
-				message ("done with for loop\n");
-				if(buf == null) {
-					//debug("could not find emedded art for %s\n", s.file);
-					return;
-				}
-				
-				// now that we have the buffer we want, load it into the pixbuf
-				Gdk.PixbufLoader loader = new Gdk.PixbufLoader();
-				message("created loader\n");
-				try {
-					if (!loader.write(buf.data)) {
-						//debug ("pixbuf loader doesn't like the data");
-						message("loader failed\n");
-						loader.close();
-						return;
-					}
-				}
-				catch(Error err) {
-					loader.close();
-					return;
-				}
-				message ("loaded\n");
-				
-				try {
-					loader.close();
-				}
-				catch(Error err) {}
-				
-				rv = loader.get_pixbuf();
-				int id = uri_to_id.get(info.get_uri());
-				lm.set_album_art(id, rv);
-			}
-			catch(Error err) {
-				message ("Failed to import album art from %s\n", info.get_uri());
-			}
-		}*/
+	void import_art (Media m, DiscovererInfo info) {
+        var key = lm.get_media_coverart_key (m);
+
+        if (lm.cover_album_art.has_key (key)) {
+            m.setAlbumArtPath (lm.fo.get_cached_album_art_path (key));
+            return;
+        }
+
+        var pix = get_image (info.get_tags ());
+        if (pix != null) {
+            lm.fo.save_album_art_in_cache (m, pix);
+            m.setAlbumArtPath (lm.fo.get_cached_album_art_path (key));
+            lm.cover_album_art.set (key, lm.get_pixbuf_shadow (pix));
+        } else {
+            warning ("import_art: null pixbuf");
+        }
 	}
+
+    private static Gdk.Pixbuf? get_image (Gst.TagList tag) {
+        Gst.Buffer? buffer = null;
+
+        for (int i = 0; ; i++) {
+            Gst.Buffer? loop_buffer = null;
+            if (!tag.get_buffer_index (Gst.TAG_IMAGE, i, out loop_buffer))
+                break;
+
+            if (loop_buffer == null)
+                continue;
+
+            var structure = loop_buffer.caps.get_structure (0);
+            if (structure == null)
+                continue;
+
+            int image_type;
+			structure.get_enum ("image-type", typeof (Gst.TagImageType), out image_type);
+
+			if (image_type == Gst.TagImageType.FRONT_COVER) {
+				buffer = loop_buffer;
+				break;
+			} else if (image_type == Gst.TagImageType.UNDEFINED || buffer == null) {
+                buffer = loop_buffer;
+			}
+        }
+
+        if (buffer == null) {
+            debug ("FINAL BUFFER IS NULL. RETURNING NULL");
+            return null;
+        }
+
+        return get_pixbuf_from_buffer (buffer);
+    }
+
+    private static Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
+        Gdk.Pixbuf? pix = null;
+        var loader = new Gdk.PixbufLoader ();
+
+        try {
+            if (loader.write (buffer.data))
+                pix = loader.get_pixbuf ();
+            loader.close ();
+        } catch (Error err) {
+            warning ("Error processing pixbuf data: %s", err.message);
+        }
+
+        return pix;
+    }
 	
 	public bool save_media(Media s) {
 		return false;
-		
+	
 		/*Gst.Pipeline pipe = new Pipeline("pipe");
 		Element src = Element.make_from_uri(URIType.SRC, "file://" + s.file, null);
 		Element decoder = ElementFactory.make("decodebin", "decoder");
@@ -430,10 +343,6 @@ public class Noise.GStreamerTagger : GLib.Object {
 		}
 		
 		queue.set("max-size-time", 120 * Gst.SECOND);
-		
-		
-		
-		
 		
 		
 		
@@ -491,9 +400,8 @@ public class Noise.GStreamerTagger : GLib.Object {
 		
 		return rv;	*/
 	}
-	
+
 	public bool save_embeddeart_d(Gdk.Pixbuf pix) {
-		
 		return false;
 	}
 }
