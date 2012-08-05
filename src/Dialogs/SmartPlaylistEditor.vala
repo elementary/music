@@ -274,6 +274,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
         if(needs_value (q.field)) {
             _value.text = q.value;
         }
+#if HAVE_OTHER_MEDIA_TYPES
         else if(q.field == SmartQuery.FieldType.MEDIA_TYPE) {
             _valueOption.append_text(_("Song"));
             _valueOption.append_text(_("Podcast"));
@@ -281,6 +282,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
             _valueOption.append_text(_("Radio Station"));
             _valueOption.set_active(int.parse(q.value));
         }
+#endif
         else if(q.field == SmartQuery.FieldType.RATING) {
             _valueRating.rating = int.parse (q.value);
         }
@@ -354,6 +356,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
                     break;
             }
         }
+#if HAVE_OTHER_MEDIA_TYPES
         else if(_field.get_active () == SmartQuery.FieldType.MEDIA_TYPE) {
             _value.hide();
             _valueNumerical.hide();
@@ -385,6 +388,7 @@ public class Noise.SmartPlaylistEditorQuery : GLib.Object {
                     break;
             }
         }
+#endif
         else {
             if(is_rating ((SmartQuery.FieldType)_field.get_active ())) {
                 _valueNumerical.hide();

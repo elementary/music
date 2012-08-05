@@ -199,6 +199,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         Gtk.drag_dest_set (this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
         Gtk.drag_dest_add_uri_targets (this);
         this.drag_data_received.connect (dragReceived);
+        this.destroy.connect (on_quit);
 
         this.show ();
         debug ("done with main window");
@@ -695,9 +696,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         string beg = "";
 
-        if(library_manager.media_info.media.mediatype == 3) // radio
-            beg = "<b>" + library_manager.media_info.media.album_artist.replace("\n", "") + "</b>\n";
-
         //set the title
         Media s = library_manager.media_info.media;
         var title = "<b>" + String.escape (s.title) + "</b>";
@@ -755,23 +753,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         update_sensitivities();
 
-        // if radio, we can't depend on current_position_update. do that stuff now.
-        if(library_manager.media_info.media.mediatype == Media.MediaType.STATION) {
-            media_considered_previewed = true;
-            update_media_informations ();
+        Timeout.add(3000, () => {
+            if(library_manager.media_info.media != null && library_manager.media_info.media == m && m.rowid != LibraryManager.PREVIEW_MEDIA_ID) {
+                update_media_informations();
+            }
             
-            // always show notifications for the radio, since user likely does not know media
-            notify_current_media ();
-        }
-        else {
-            Timeout.add(3000, () => {
-                if(library_manager.media_info.media != null && library_manager.media_info.media == m && m.rowid != LibraryManager.PREVIEW_MEDIA_ID) {
-                    update_media_informations();
-                }
-                
-                return false;
-            });
-        }
+            return false;
+        });
     }
 
 
@@ -1099,13 +1087,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             media_considered_played = true;
             library_manager.media_info.media.last_played = (int)time_t();
 
-#if HAVE_PODCASTS
-            if(library_manager.media_info.media.mediatype == 1) { //podcast
-                added_to_play_count = true;
-                ++library_manager.media_info.media.play_count;
-            }
-#endif
-
             library_manager.update_media_item (library_manager.media_info.media, false, false);
 
             // add to the already played list
@@ -1176,11 +1157,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         dialog.run();
         dialog.destroy();
-    }
-
-    public override void destroy () {
-        on_quit ();
-        base.destroy ();
     }
 
     private void on_quit () {

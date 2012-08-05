@@ -153,15 +153,15 @@ public class Noise.CellDataFunctionHelper : GLib.Object {
 	public static void lengthTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
-		
+
 		var text_cell = cell as CellRendererText;
-		
-		int secs = val.get_int ();
-		
-		if(secs <= 0)
+
+        uint ms = (uint)val.get_int ();
+
+		if(ms <= 0)
 			text_cell.markup = "";
 		else
-			text_cell.markup = String.escape (TimeUtils.pretty_time_mins (secs));
+			text_cell.markup = String.escape (TimeUtils.pretty_length_from_ms (ms));
 	}
 
 	// turns seconds since Jan 1, 1970 into date format

@@ -21,7 +21,6 @@ vala_precompile(VALA_C
 
     Noise.vala
 
-    Utils/UI.vala
     Utils/PixbufUtils.vala
     Utils/Search.vala
     Utils/Icon.vala
@@ -64,6 +63,7 @@ vala_precompile(VALA_C
 
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
+    DataBase/Tables.vala
 
     GStreamer/Video.vala
     GStreamer/Equalizer.vala

@@ -198,7 +198,7 @@ public class Noise.Playlist : Object {
 			while ((line = dis.read_line(null)) != null) {
 				if(line.has_prefix("http:/")) {
 					Media s = new Media(line);
-					s.mediatype = Media.MediaType.STATION;
+					s.mediatype = MediaType.STATION;
 					
 					s.album_artist = _("Radio Station");
 					
@@ -255,7 +255,7 @@ public class Noise.Playlist : Object {
 		foreach(var entry in files.entries) {
 			if(entry.value.has_prefix("http:/")/* && lengths.get(entry.key) != null && int.parse(lengths.get(entry.key)) <= 0*/)  {
 				Media s = new Media(entry.value);
-				s.mediatype = Media.MediaType.STATION;
+				s.mediatype = MediaType.STATION;
 				s.album_artist = titles.get(entry.key);
 				
 				if(s.album_artist == null)

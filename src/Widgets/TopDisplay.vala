@@ -102,10 +102,7 @@ public class Noise.TopDisplay : Box {
 	}
 	
 	public void set_label_showing(bool val) {
-		if(val)
-			label.show();
-		else
-			label.hide();
+        label.set_visible (val);
 	}
 	
 	/** progressbar functions **/
@@ -187,13 +184,18 @@ public class Noise.TopDisplay : Box {
 		if(!scale.visible)
 			return;
 
+		double val = (int)scale.get_value();
+        if (val < 0)
+            val = 0;            
+
 		//make pretty current time
-		int seconds = (int)scale.get_value();
-		leftTime.set_text (TimeUtils.pretty_time_mins (seconds));
-		
+		uint elapsed_secs = (uint)val;
+		leftTime.set_text (TimeUtils.pretty_length (elapsed_secs));
+
+        uint media_duration_secs = (uint)(lm.media_info.media.length / Numeric.MILI_INV);
+
 		//make pretty remaining time
-		seconds = (int)lm.media_info.media.length - (int)scale.get_value();
-		rightTime.set_text (TimeUtils.pretty_time_mins (seconds));
+		rightTime.set_text (TimeUtils.pretty_length (media_duration_secs - elapsed_secs));
 	}
 		
 	public virtual bool change_value(ScrollType scroll, double val) {
@@ -203,7 +205,7 @@ public class Noise.TopDisplay : Box {
 
         if( !is_seeking )
         {
-            lm.player.setPosition((int64)(val * 1000000000));
+            lm.player.setPosition((int64)(val * Numeric.NANO_INV));
             this.lm.player.current_position_update.connect(player_position_update);
         }
 		
@@ -244,13 +246,14 @@ public class Noise.TopDisplay : Box {
 		cancelButton.hide ();
 	}
 	
-	public virtual void player_position_update(int64 position) {double sec = 0.0;
+	public virtual void player_position_update(int64 position) {
 		if(lm.media_info.media != null) {
-			sec = ((double)position/1000000000);
+    	    double sec = 0.0;
+			sec = ((double)(position / Numeric.NANO_INV));
 			set_scale_value(sec);
 		}
 	}
-	
+
 	public void cancel_clicked() {
 		lm.cancel_operations();
 	}
@@ -267,8 +270,7 @@ public class Noise.TopDisplay : Box {
 		// update current media
 		foreach (var id in ids) {
 			if (id == current_media.rowid)
-				set_scale_range (0.0, (double)current_media.length);
+				set_scale_range (0.0, (double)(current_media.length / Numeric.MILI_INV));
 		}
 	}
 }
-

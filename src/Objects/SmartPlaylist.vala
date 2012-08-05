@@ -256,6 +256,7 @@ public class Noise.SmartPlaylist : Object {
                 }
                 break;
             case Noise.SmartQuery.FieldType.DATE_RELEASED:
+/*
                 var now = new DateTime.now_local();
                 var released = new DateTime.from_unix_local(s.podcast_date);
                 released = released.add_days(int.parse(q.value));
@@ -268,6 +269,7 @@ public class Noise.SmartPlaylist : Object {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_BEFORE) {
                     return now.compare(released) > 0;
                 }
+*/
                 break;
             case Noise.SmartQuery.FieldType.LAST_PLAYED:
                 if(s.last_played == 0)

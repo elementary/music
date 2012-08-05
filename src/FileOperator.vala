@@ -80,14 +80,13 @@ public class Noise.FileOperator : Object {
 
 		/* Create album-art cache dir */
 		var album_art_folder = GLib.File.new_for_path (get_album_art_cache_dir ());
-		if (!album_art_folder.query_exists()) {
-			try {
-				album_art_folder.make_directory_with_parents (null);
-			}
-			catch(GLib.Error err) {
-				warning ("Could not create folder in cache directory: %s\n", err.message);
-			}
-		}	
+        try {
+            album_art_folder.make_directory_with_parents (null);
+        }
+        catch (GLib.Error err) {
+            if (!(err is IOError.EXISTS))
+                error ("Could not create image cache directory: %s", err.message);
+        }
 	}
 
 	public string get_album_art_cache_dir () {

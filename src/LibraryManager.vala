@@ -89,7 +89,7 @@ public class Noise.LibraryManager : GLib.Object {
 	private LinkedList<Media> _already_played = new Gee.LinkedList<Media>();
 
 	// All album art
-	private HashMap<string, Gdk.Pixbuf> cover_album_art = new HashMap<string, Gdk.Pixbuf> ();
+	public HashMap<string, Gdk.Pixbuf> cover_album_art = new HashMap<string, Gdk.Pixbuf> ();
 
 	private Mutex _media_lock; // lock for _media. use this around _media, _songs, ...
 
@@ -137,7 +137,6 @@ public class Noise.LibraryManager : GLib.Object {
 
 	// FIXME use mutex
 	bool _doing_file_operations;
-	bool in_fetch_thread;
 
 	public LibraryManager(Noise.LibraryWindow lww) {
 		this.lw = lww;
@@ -179,7 +178,7 @@ public class Noise.LibraryManager : GLib.Object {
 		foreach(Media s in dbm.load_media ()) {
 			_media.set(s.rowid, s);
 			
-			if(s.mediatype == Media.MediaType.SONG)
+			if(s.mediatype == MediaType.SONG)
 				_songs.set(s.rowid, s);
 		}
 		_media_lock.unlock();
@@ -518,8 +517,8 @@ public class Noise.LibraryManager : GLib.Object {
 		
 		for(int i = 0; i < cache_media.length; ++i) {
 			var m = cache_media[i];
-			if(m.mediatype == Media.MediaType.STATION || 
-			(m.mediatype == Media.MediaType.PODCAST && m.uri.has_prefix("http:/"))) {
+			if(m.mediatype == MediaType.STATION || 
+			(m.mediatype == MediaType.PODCAST && m.uri.has_prefix("http:/"))) {
 				// don't try to find this
 			}
 			else {
@@ -695,21 +694,15 @@ public class Noise.LibraryManager : GLib.Object {
 			Media s = _media.get (i);
 
 			if(!(s.isTemporary || s.isPreview || s.uri.has_prefix("http://"))) {
-				if( (s.mediatype == Media.MediaType.PODCAST && s.podcast_url != null && s.podcast_url.has_prefix("http://")) || 
-					s.mediatype == Media.MediaType.STATION) {
-					s.uri = s.podcast_url;
-				}
-				else {
-					unset.add(s);
-					unset_ids.add(s.rowid);
-				}
+				unset.add(s);
+				unset_ids.add(s.rowid);
 			}
 		}
 		
 		foreach(Media s in unset) {
 			_media.unset(s.rowid);
 			
-			if(s.mediatype == Media.MediaType.SONG)
+			if(s.mediatype == MediaType.SONG)
 				_songs.unset(s.rowid);
 		}
 		_media_lock.unlock ();
@@ -1039,7 +1032,7 @@ public class Noise.LibraryManager : GLib.Object {
 			
 			_media.set(s.rowid, s);
 			
-			if(s.mediatype == Media.MediaType.SONG)
+			if(s.mediatype == MediaType.SONG)
 				_songs.set(s.rowid, s);
 		}
 		_media_lock.unlock();
@@ -1093,7 +1086,7 @@ public class Noise.LibraryManager : GLib.Object {
 		foreach(Media s in toRemove) {
 			_media.unset(s.rowid);
 			
-			if(s.mediatype == Media.MediaType.SONG)
+			if(s.mediatype == MediaType.SONG)
 				_songs.unset(s.rowid);
 		}
 		_media_lock.unlock();
@@ -1557,10 +1550,12 @@ public class Noise.LibraryManager : GLib.Object {
 				m.location_unknown = false;
 			}
 		}
+
+        change_gains_thread ();
 		
-		if(m.mediatype == Media.MediaType.PODCAST || m.mediatype == Media.MediaType.AUDIOBOOK || use_resume_pos)
+		if(m.mediatype == MediaType.PODCAST || m.mediatype == MediaType.AUDIOBOOK || use_resume_pos)
 			player.set_resume_pos = false;
-		
+
 		// actually play the media asap
 		if(next_gapless_id == 0) {
 			player.setURI(m.uri);
@@ -1580,29 +1575,17 @@ public class Noise.LibraryManager : GLib.Object {
 		if (m != null)
 			media_played (m);
 		
-		/* if same media 1 second later...
-		 * check for embedded art if need be (not loaded from on file) and use that
-		 * check that the s.getAlbumArtPath() exists, if not set to "" and call updateCurrentMedia
-		 * save old media's resume_pos
-		 */
+		/* if same media 1 second later... */
 		Timeout.add(1000, () => {
-			if(media_info.media == m) {
-				try {
-					new Thread<void*>.try (null, change_gains_thread);
-				}
-				catch(GLib.Error err) {
-					warning("Could not create thread to change gains: %s\n", err.message);
-				}
-		
-				if(!File.new_for_path(media_info.media.getAlbumArtPath()).query_exists()) {
-					media_info.media.setAlbumArtPath("");
-				}
-				
+			if (m != null && media_info.media == m) {
 				// potentially fix media length
-				int player_duration = (int)(player.getDuration()/1000000000);
-				if(player_duration > 1 && Math.fabs((double)(player_duration - media_info.media.length)) > 3) {
-					media_info.media.length = (int)(player.getDuration()/1000000000);
-					update_media_item (media_info.media, false, false);
+				uint player_duration_s = (uint)(player.getDuration() / Numeric.NANO_INV);
+				if (player_duration_s > 1) {
+				    int delta_s = (int)player_duration_s - (int)(m.length / Numeric.MILI_INV);
+				    if (Math.fabs ((double)delta_s) > 3) {
+					    m.length = (uint)(player_duration_s * Numeric.MILI_INV);
+					    update_media_item (m, false, false);
+                    }
 				}
 			}
 			
@@ -1611,9 +1594,8 @@ public class Noise.LibraryManager : GLib.Object {
 		});
 	}
 
-	
 	public void* change_gains_thread () {
-		if(lw.equalizer_settings.equalizer_enabled) {
+		if (lw.equalizer_settings.equalizer_enabled) {
 			bool automatic_enabled = lw.equalizer_settings.auto_switch_preset;
 			string selected_preset = lw.equalizer_settings.selected_preset;
 
@@ -1709,6 +1691,7 @@ public class Noise.LibraryManager : GLib.Object {
 			fetch_cover_art (true);
 			return false;
 		});
+		yield;
 	}
 
 	public async void fetch_all_cover_art_async () {
@@ -1716,17 +1699,15 @@ public class Noise.LibraryManager : GLib.Object {
 			fetch_cover_art (false);
 			return false;
 		});
+        yield;
 	}
 
+    Mutex fetch_cover_lock;
+
 	private void fetch_cover_art (bool cache_only) {
-		if(in_fetch_thread)
-			return;
+        fetch_cover_lock.lock ();
+		debug ("------------- READING CACHED COVERART %s", (cache_only) ? "FROM CACHE":"");
 
-		debug ("--- READING CACHED COVERART %s-------------", (cache_only) ? "FROM CACHE":"");
-
-		in_fetch_thread = true;
-		//GStreamerTagger tagger = new GStreamerTagger(this);
-		
 		foreach(var s in _media.values) {
 			string key = get_media_coverart_key (s), path = "";
 			Gdk.Pixbuf? pix = null;
@@ -1770,9 +1751,8 @@ public class Noise.LibraryManager : GLib.Object {
 				s.setAlbumArtPath (fo.get_cached_album_art_path (key));
 		}
 
-		in_fetch_thread = false;
-
-		debug ("----------- FINISHED LOADING CACHED COVERART -------------");
+        fetch_cover_lock.unlock ();
+		debug ("----------- FINISHED LOADING CACHED COVERART");
 	}
 	
 	public static int mediaCompareFunc(Media a, Media b) {
