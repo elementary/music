@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-26 20:57-0600\n"
-"PO-Revision-Date: 2012-06-21 14:17+0000\n"
-"Last-Translator: Asier Iturralde Sarasola <Unknown>\n"
+"PO-Revision-Date: 2012-08-04 08:58+0000\n"
+"Last-Translator: KombuchaMushroom <enekosar@gmail.com>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-07-28 05:23+0000\n"
-"X-Generator: Launchpad (build 15694)\n"
+"X-Launchpad-Export-Date: 2012-08-05 05:15+0000\n"
+"X-Generator: Launchpad (build 15742)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
 msgid "Enable debug logging"
@@ -72,7 +72,7 @@ msgstr "Irrati-katea"
 
 #: /home/victor/noise/po/../src//Objects/TrackInfo.vala:26
 msgid "Unknown Track"
-msgstr ""
+msgstr "Pista Ezezaguna"
 
 #: /home/victor/noise/po/../src//Objects/AlbumInfo.vala:25
 #: /home/victor/noise/po/../src//LibraryWindow.vala:705
@@ -234,7 +234,7 @@ msgstr "Kanta"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
 msgid "Repeat Song"
-msgstr ""
+msgstr "Errepikatu Abestia"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
@@ -246,7 +246,7 @@ msgstr "Albuma"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 msgid "Repeat Album"
-msgstr ""
+msgstr "Errepikatu Albuma"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:43
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:186
@@ -267,15 +267,15 @@ msgstr "Guztia"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:44
 msgid "Repeat All"
-msgstr ""
+msgstr "Errepikatu Denak"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:47
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "Gaitu Nahasketa"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:48
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "Desgaitu Nahasketa"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:51
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:55
@@ -350,12 +350,14 @@ msgstr "Inportatu gabeko fitxategiak"
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:76
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr ""
+msgstr "Ezin izan dira %d elementuak inportatu %s(e)tik"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:65
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr ""
+"%s ezin izan ditu %d elementu inportatu. Baliteke fitxategiak kaltetuta "
+"egotea."
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:66
 msgid "Move all corrupted files to trash"
@@ -400,6 +402,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"Ziur al zaude zure musika karpeta %s(e)n ezarri nahi duzula? Ekintza honek "
+"zure liburutegia eta erreprodukzio-zerrendak berretsiko ditu."
 
 #: /home/victor/noise/po/../src//Dialogs/SetMusicFolderConfirmation.vala:120
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:134
@@ -447,7 +451,7 @@ msgstr "Egina"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:345
 #, c-format
 msgid "Editing %s by %s"
-msgstr ""
+msgstr "%s aldatzen, %s(r)ena"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:176
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:347
@@ -529,7 +533,7 @@ msgstr "Saiatu berriro"
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:295
 #, c-format
 msgid "Lyrics not found for \"%s\" by \"%s\""
-msgstr ""
+msgstr "Ez da aurkitu \"%s\"(r)en letra, \"%s\"(r)ena"
 
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:539
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:279
@@ -557,16 +561,18 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Sinkronizatzen jarraitzen baduzu, media ezabatuko da %s(e)tik ez baitago "
+"sinkronizazio zerrendan. Inportatu nahi al dituzu liburutegira lehenago?"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:79
 #, c-format
 msgid "Sync will remove %i items from %s"
-msgstr ""
+msgstr "Sinkronizazioak %i elementu ezabatuko ditu %s(e)tik"
 
 #: /home/victor/noise/po/../src//Dialogs/SyncWarningDialog.vala:82
 #, c-format
 msgid "Sync will remove 1 item from %s"
-msgstr ""
+msgstr "Sinkronizazioak elementu 1 ezabatuko du %s(e)tik"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:56
 #: /home/victor/noise/po/../src//LibraryWindow.vala:217
@@ -702,7 +708,7 @@ msgstr "Audio-liburua"
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:365
 msgid "is"
-msgstr ""
+msgstr "da"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:338
 msgid "contains"
@@ -727,7 +733,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:390
 msgid "is at least"
-msgstr ""
+msgstr "gutxienez da"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
 msgid "is within"

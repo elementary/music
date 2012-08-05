@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-26 20:57-0600\n"
-"PO-Revision-Date: 2012-08-04 05:41+0000\n"
+"PO-Revision-Date: 2012-08-04 05:57+0000\n"
 "Last-Translator: Mohamed Touhami MAHDI <dragnucs@legtux.org>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2012-08-04 05:44+0000\n"
+"X-Launchpad-Export-Date: 2012-08-05 05:15+0000\n"
 "X-Generator: Launchpad (build 15742)\n"
 
 #: /home/victor/noise/po/../src//Noise.vala:68
@@ -231,7 +231,7 @@ msgstr "أغنية"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:41
 msgid "Repeat Song"
-msgstr ""
+msgstr "أعادة الأغنية"
 
 #: /home/victor/noise/po/../src//Widgets/BottomStatusBar.vala:42
 #: /home/victor/noise/po/../src//Dialogs/MediaEditor.vala:188
@@ -337,7 +337,7 @@ msgstr "التعيين التمهيدي المعتاد"
 #: /home/victor/noise/po/../src//Dialogs/EqualizerWindow.vala:424
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "التعيين التمهيدي المعتاد %i"
 
 #: /home/victor/noise/po/../src//Dialogs/NotImportedWindow.vala:47
 msgid "Not Imported Files"
@@ -566,20 +566,20 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:56
 #: /home/victor/noise/po/../src//LibraryWindow.vala:217
 msgid "Preferences"
-msgstr ""
+msgstr "التفضيلات"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:69
 msgid "Behavior"
-msgstr ""
+msgstr "السّلوك"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:99
 #, c-format
 msgid "Music Folder Location"
-msgstr ""
+msgstr "موقع ملف الموسيقى"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:102
 msgid "Music Folder"
-msgstr ""
+msgstr "ملف الموسيقى"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:105
 #, c-format
@@ -588,7 +588,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:108
 msgid "Keep music folder organized:"
-msgstr ""
+msgstr "الحفاظ علي مجلد الموسيقى منظم:"
 
 #: /home/victor/noise/po/../src//Dialogs/PreferencesWindow.vala:111
 msgid "Write metadata to file:"
@@ -613,55 +613,55 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:59
 #: /home/victor/noise/po/../src//Dialogs/PlaylistNameWindow.vala:67
 msgid "Name of Playlist"
-msgstr ""
+msgstr "اسم قائمة التشغيل"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:71
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:79
 msgid "Rules"
-msgstr ""
+msgstr "القواعد"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:72
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:80
 msgid "Options"
-msgstr ""
+msgstr "الخيارات"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:83
 msgid "Playlist Title"
-msgstr ""
+msgstr "عنوان قائمة التشغيل"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:89
 msgid "Match"
-msgstr ""
+msgstr "مطابقة"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:91
 msgid "any"
-msgstr ""
+msgstr "أيّ"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:92
 msgid "all"
-msgstr ""
+msgstr "الكلّ"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:93
 msgid "of the following:"
-msgstr ""
+msgstr "الآتي:"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:120
 msgid "Limit to"
-msgstr ""
+msgstr "حِدّ إلى"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:122
 msgid "items"
-msgstr ""
+msgstr "العناصر"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:254
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:33
 msgid "Bitrate"
-msgstr ""
+msgstr "معدّل البِت"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:257
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:50
 msgid "Date Added"
-msgstr ""
+msgstr "تاريخ الإضافة"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:258
 msgid "Date Released"
@@ -670,17 +670,17 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:261
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:51
 msgid "Last Played"
-msgstr ""
+msgstr "آخر تشغيل"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:262
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:419
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:37
 msgid "Length"
-msgstr ""
+msgstr "المدّة"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:264
 msgid "Playcount"
-msgstr ""
+msgstr "عدد التشغيلات"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:266
 msgid "Skipcount"
@@ -695,32 +695,32 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:337
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:365
 msgid "is"
-msgstr ""
+msgstr "يكون"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:338
 msgid "contains"
-msgstr ""
+msgstr "يحتوي على"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:339
 msgid "does not contain"
-msgstr ""
+msgstr "لا يحتوي علي"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:366
 msgid "is not"
-msgstr ""
+msgstr "ليس"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:388
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:402
 msgid "is exactly"
-msgstr ""
+msgstr "هو تمامًا"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:389
 msgid "is at most"
-msgstr ""
+msgstr "علي الأكثر"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:390
 msgid "is at least"
-msgstr ""
+msgstr "علي الأقل"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:403
 msgid "is within"
@@ -728,11 +728,11 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:404
 msgid "is before"
-msgstr ""
+msgstr "يقع قبل"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:420
 msgid "seconds"
-msgstr ""
+msgstr "ثانية"
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:424
 msgid "days ago"
@@ -740,11 +740,11 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:428
 msgid "kbps"
-msgstr ""
+msgstr "ك. بت/ث"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:58
 msgid "Import from Device"
-msgstr ""
+msgstr "إستيراد من الجهاز"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:75
 #, c-format
@@ -764,11 +764,11 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:82
 msgid "Import"
-msgstr ""
+msgstr "إستيراد"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:83
 msgid "Don't Import"
-msgstr ""
+msgstr "لا تستورد"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:91
 #, c-format
@@ -783,7 +783,7 @@ msgstr ""
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:123
 #: /home/victor/noise/po/../src//Views/ListView/Lists/TreeViewSetup.vala:34
 msgid "ID"
-msgstr ""
+msgstr "المعرّف"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:175
 msgid "Select individual media to import:"
@@ -791,15 +791,15 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:193
 msgid "Check Item"
-msgstr ""
+msgstr "افحصهم"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:194
 msgid "Check Album"
-msgstr ""
+msgstr "افحص الألبوم"
 
 #: /home/victor/noise/po/../src//Dialogs/TransferFromDeviceDialog.vala:195
 msgid "Check Artist"
-msgstr ""
+msgstr "افحص الفنان"
 
 #: /home/victor/noise/po/../src//Dialogs/FileNotFoundDialog.vala:60
 msgid "Remove Media"
@@ -897,22 +897,22 @@ msgstr ""
 #: /home/victor/noise/po/../src//Views/GridView/PopupListView.vala:168
 #, c-format
 msgid "%s by %s"
-msgstr ""
+msgstr "%s ل%s"
 
 #: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:550
 #, c-format
 msgid "%d minutes"
-msgstr ""
+msgstr "%d دقيقة"
 
 #: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:553
 #, c-format
 msgid "%d hours"
-msgstr ""
+msgstr "ساعات %d"
 
 #: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:556
 #, c-format
 msgid "%d days"
-msgstr ""
+msgstr "أيام %d"
 
 #: /home/victor/noise/po/../src//Views/GridView/album-view-clutter.vala:561
 #, c-format
@@ -943,7 +943,7 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:37
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "اجلب بعض الألحان"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:38
 #, c-format
@@ -952,11 +952,11 @@ msgstr ""
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Locate"
-msgstr ""
+msgstr "حدّد المكان"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:41
 msgid "Change your music folder."
-msgstr ""
+msgstr "غيّر مجلد الموسيقى."
 
 #: /home/victor/noise/po/../src//Views/Wrappers/MusicViewWrapper.vala:128
 msgid "All the songs in this device are already in your library."
