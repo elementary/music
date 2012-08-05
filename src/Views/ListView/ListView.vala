@@ -325,23 +325,20 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	}
 
 	public void add_media (Gee.Collection<Media> to_add) {
-		//if (column_browser_enabled)
-		//	column_browser.add_media (to_add);
-		//else
-			list_view.add_media (to_add);
+    	list_view.add_media (to_add);
+		if (has_column_browser)
+            column_browser.set_media (get_visible_media ());
 	}
 
 	public void remove_media (Gee.Collection<Media> to_remove) {
-		//if (column_browser_enabled)
-		//	column_browser.remove_media (to_remove);
-		//else
-			list_view.remove_media (to_remove);
+    	list_view.remove_media (to_remove);
+		if (has_column_browser)
+            column_browser.set_media (get_visible_media ());
 	}
 
 	public void set_media (Gee.Collection<Media> media) {
+		list_view.set_media (media);
 		if (has_column_browser)
 			column_browser.set_media (media);
-		list_view.set_media (media);
 	}
 }
-
