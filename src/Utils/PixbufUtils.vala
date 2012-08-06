@@ -85,12 +85,32 @@ namespace Noise.PixbufUtils {
         buffer_surface.context.set_source_rgba (0, 0, 0, alpha);
         buffer_surface.context.fill();
 
-        buffer_surface.fast_blur(2, 3);
+        buffer_surface.fast_blur (2, 3);
 
         Gdk.cairo_set_source_pixbuf (buffer_surface.context, pixbuf.scale_simple (S_WIDTH, S_HEIGHT,
                                      Gdk.InterpType.BILINEAR), shadow_size, shadow_size);
         buffer_surface.context.paint();
 
         return buffer_surface.load_to_pixbuf();
+    }
+
+    public Gdk.Pixbuf? get_pixbuf_from_uri (string uri, Cancellable? c) throws Error {
+        return get_pixbuf_from_uri_at_scale (uri, -1, -1, false, c);
+    }
+
+    public Gdk.Pixbuf? get_pixbuf_from_uri_at_scale (string uri, int width,
+        int height, bool preserve_aspect_ratio, Cancellable? c) throws Error {
+
+        var file = File.new_for_uri (uri);
+
+        Gdk.Pixbuf? image = null;
+
+        var filestream = file.read (c);
+
+        if (filestream != null);
+            image = new Gdk.Pixbuf.from_stream_at_scale (filestream, width, height,
+                                                         preserve_aspect_ratio, c);
+
+        return image;
     }
 }

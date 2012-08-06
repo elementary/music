@@ -22,6 +22,7 @@ vala_precompile(VALA_C
     Noise.vala
 
     Utils/PixbufUtils.vala
+    Utils/PixbufCache.vala
     Utils/Search.vala
     Utils/Icon.vala
 
@@ -41,6 +42,7 @@ vala_precompile(VALA_C
     Objects/AlbumInfo.vala
     Objects/ArtistInfo.vala
     Objects/TrackInfo.vala
+    Objects/MediaArtCache.vala
 
     Widgets/SidebarPaned.vala
     Widgets/NavigationArrows.vala
