@@ -99,9 +99,11 @@ public class Noise.GStreamerTagger : GLib.Object {
 	
 	void import_media(DiscovererInfo info, Error err) {
 		path_queue.remove(info.get_uri().replace("file://",""));
-		
+
+        Media? s = null;
+
 		if(info != null && info.get_tags() != null) {
-			Media s = new Media(info.get_uri());
+			s = new Media(info.get_uri());
 			
 			string title = "";
 			string artist, composer, album_artist, album, grouping, genre, comment, lyrics;
@@ -189,7 +191,7 @@ public class Noise.GStreamerTagger : GLib.Object {
 			import_art (s, info);
 		}
 		else {
-			Media s = taglib_import_media(info.get_uri());
+			s = taglib_import_media(info.get_uri());
 
 	        if (s == null) {
 		        import_error (info.get_uri().replace("file://", ""));
@@ -201,7 +203,7 @@ public class Noise.GStreamerTagger : GLib.Object {
 		s.file_size = FileUtils.get_size (s.file);
 		s.date_added = (int)time_t();
 
-		media_imported(s);
+   		media_imported(s);
 	}
 	
 	public Media? taglib_import_media(string uri) {
@@ -243,21 +245,17 @@ public class Noise.GStreamerTagger : GLib.Object {
 	}
 	
 	void import_art (Media m, DiscovererInfo info) {
-        var key = lm.get_media_coverart_key (m);
+        var cache = CoverartCache.instance;
 
-        if (lm.cover_album_art.has_key (key)) {
-            m.setAlbumArtPath (lm.fo.get_cached_album_art_path (key));
+        if (cache.has_image (m))
             return;
-        }
 
         var pix = get_image (info.get_tags ());
-        if (pix != null) {
-            lm.fo.save_album_art_in_cache (m, pix);
-            m.setAlbumArtPath (lm.fo.get_cached_album_art_path (key));
-            lm.cover_album_art.set (key, lm.get_pixbuf_shadow (pix));
-        } else {
+
+        if (pix != null)
+            cache.cache_image (m, pix);
+        else
             warning ("import_art: null pixbuf");
-        }
 	}
 
     private static Gdk.Pixbuf? get_image (Gst.TagList tag) {

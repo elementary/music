@@ -60,6 +60,11 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         NONE    = 4  // Nothing showing
     }
 
+    // TODO Do reference comparisons on widgets via view_container.get_current_view()
+    //      This is not reliable, since we'll always miss some cases. The container
+    //      doesn't lie. Currently, there's a bug where the history/similar lists
+    //      will display something like "14 albums" instead of "14 songs" whenever
+    //      the album view has been enabled on a view that supports it.
     public ViewType current_view { get; private set; default = ViewType.NONE; }
 
 

@@ -50,9 +50,7 @@ public class Noise.FileOperator : Object {
 	private string[] other_names_list = {};
 	private LinkedList<string>[] other_paths_list;
 	private int other_playlists_added = 0;
-	
-	HashMap<string, string> art_locations = new HashMap<string, string>();
-	
+
 	public enum ImportType  {
 		SET,
 		RESCAN,
@@ -78,19 +76,6 @@ public class Noise.FileOperator : Object {
 			tagger.cancel_operations();
 		} );
 
-		/* Create album-art cache dir */
-		var album_art_folder = GLib.File.new_for_path (get_album_art_cache_dir ());
-        try {
-            album_art_folder.make_directory_with_parents (null);
-        }
-        catch (GLib.Error err) {
-            if (!(err is IOError.EXISTS))
-                error ("Could not create image cache directory: %s", err.message);
-        }
-	}
-
-	public string get_album_art_cache_dir () {
-		return GLib.Path.build_path ("/", Environment.get_user_cache_dir (), lm.lw.app.get_name().down (), "album-art");
 	}
 
 	public void resetProgress(int items) {
@@ -99,22 +84,13 @@ public class Noise.FileOperator : Object {
 		cancelled = false;
 		cancelSent = false;
 	}
+
+    private const string[] AUDIO_TYPES = {
+        "mp3", "wma", "flac", "oga", "aac", "m4a", "ogg", "m4p", "alac"
+    };
 	
-	private static bool is_valid_file_type(string type) {
-		var typeDown = type.down();
-		
-		return (typeDown.has_suffix(".mp3") || typeDown.has_suffix(".m4a") || 
-				typeDown.has_suffix(".wma") || typeDown.has_suffix(".ogg") || 
-				typeDown.has_suffix(".flac") || typeDown.has_suffix(".mp4") || 
-				typeDown.has_suffix(".oga") || typeDown.has_suffix(".m4p") ||
-				typeDown.has_suffix(".aac") || typeDown.has_suffix(".alac"));
-	}
-	
-	private static bool is_valid_image_type(string type) {
-		var typeDown = type.down();
-		
-		return (typeDown.has_suffix(".jpg") || typeDown.has_suffix(".jpeg") ||
-				typeDown.has_suffix(".png"));
+	private static bool is_valid_file_type(string filename) {
+        return FileUtils.is_valid_file_type (filename, AUDIO_TYPES);
 	}
 	
 	public int count_music_files(GLib.File music_folder, ref LinkedList<string> files) {
@@ -141,131 +117,6 @@ public class Noise.FileOperator : Object {
 		return index;
 	}
 	
-	public string get_best_album_art_file(Media m) {
-		GLib.File media_file = GLib.File.new_for_uri(m.uri);
-		
-		if(!media_file.query_exists())
-			return "";
-		
-		string artPath = "";
-		GLib.FileInfo file_info = null;
-		var album_folder = media_file.get_parent();
-		
-		if(!album_folder.query_exists() || album_folder.get_path() == null)
-			return "";
-		
-		if( (artPath = art_locations.get(album_folder.get_path())) != null)
-			return artPath;
-			
-		artPath = "";
-		
-		/* get a list of all images in folder as potential album art choices */
-		var image_list = new LinkedList<string>();
-
-		try {
-			var enumerator = album_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
-			while ((file_info = enumerator.next_file ()) != null) {
-				if(file_info.get_file_type() == GLib.FileType.REGULAR && is_valid_image_type(file_info.get_name())) {
-					image_list.add(file_info.get_name());
-				}
-			}
-		}
-		catch (Error e) {
-			warning ("Error while looking for covers: %s", e.message);
-		}
-		
-		/* now choose one based on priorities */
-		foreach(string sU in image_list) {
-			var sD = sU.down();
-			if(sD.contains("folder.")) {
-				artPath = album_folder.get_path() + "/" + sU;
-				break;
-			}
-			else if(sD.contains("cover."))
-				artPath = album_folder.get_path() + "/" + sU;
-			else if(!artPath.contains("cover.") && sD.contains("album."))
-				artPath = album_folder.get_path() + "/" + sU;
-			else if(artPath == "")
-				artPath = album_folder.get_path() + "/" + sU;
-		}
-		
-		art_locations.set(album_folder.get_path(), artPath);
-		return artPath;
-	}
-	
-	public void save_album_art_in_cache (Media m, Gdk.Pixbuf? pixbuf) {
-		if (m == null || pixbuf == null)
-			return;
-		
-		string key = lm.get_media_coverart_key (m);
-		if(key == "")
-			return;
-		
-		string uri = get_cached_album_art_path (key);
-
-		debug ("Saving cached album-art for %s", key);
-		
-		bool success = false;
-		try {
-			success = pixbuf.save (uri, "jpeg");
-		} catch (Error err) {
-			warning (err.message);
-		}
-		
-		if(success) {
-			foreach(int i in lm.media_ids()) {
-				if(lm.media_from_id(i).album_artist == m.album_artist && lm.media_from_id(i).album == m.album) {
-					debug("setting album art for %s by %s\n", lm.media_from_id(i).title, lm.media_from_id(i).artist);
-					lm.media_from_id(i).setAlbumArtPath(uri);
-				}
-			}
-		}
-	}
-
-	public Gdk.Pixbuf? get_cached_album_art (string key, out string? uri, int width = -1, int height = -1) {
-		Gdk.Pixbuf? rv = null;
-		uri = get_cached_album_art_path (key);
-
-		try {
-			rv = new Gdk.Pixbuf.from_file_at_size (uri, width, height);
-		} catch (Error err) {
-			//debug (err.message);
-		}
-
-		if (rv == null)
-			uri = "";
-
-		debug ("Requested cached album-art for %s: %s", key, rv != null ? " FOUND." : " NOT FOUND.");
-
-		return rv;
-	}
-
-	public string get_cached_album_art_path (string key) {
-		string filename = Checksum.compute_for_string(ChecksumType.MD5, key) + ".jpg";
-		return GLib.Path.build_filename (get_album_art_cache_dir (), filename);
-	}
-
-	public Gdk.Pixbuf? save_artist_image(Media s, string uri) {
-		Gdk.Pixbuf rv;
-		
-		if(uri == null || uri == "") {
-			return null;
-		}
-		
-		GLib.File file = GLib.File.new_for_uri(uri);
-		FileInputStream filestream;
-
-		try {
-			filestream = file.read(null);
-			rv = new Gdk.Pixbuf.from_stream(filestream, null);
-			rv.save(Path.build_path("/", GLib.File.new_for_uri(s.uri).get_parent().get_parent().get_path(), "Artist.jpg"), "jpeg");
-		}
-		catch(GLib.Error err) {
-			rv = null;
-		}
-		
-		return rv;
-	}
 	
 	public void save_media (Collection<Media> to_save) {
 		foreach(Media s in to_save) {
@@ -387,18 +238,6 @@ public class Noise.FileOperator : Object {
 					Idle.add( () => {
 						lm.update_media_item (s, false, false); return false;
 					});
-				}
-				
-				if(original.get_uri().has_prefix("file://") && original.get_parent().get_path() != null &&
-				s.getAlbumArtPath().contains(original.get_parent().get_path())) {
-					var mediaFile = GLib.File.new_for_path(s.getAlbumArtPath());
-					var albumArtDest = Path.build_path("/", dest.get_parent().get_path(), "Album.jpg");
-					
-					if(!GLib.File.new_for_path(albumArtDest).query_exists() && mediaFile.query_exists() &&
-					mediaFile.copy(GLib.File.new_for_path(albumArtDest), FileCopyFlags.NONE, null, null)) {
-						debug("Copying album art to %s\n", albumArtDest);
-						s.setAlbumArtPath(albumArtDest);
-					}
 				}
 			}
 			else

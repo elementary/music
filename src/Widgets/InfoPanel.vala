@@ -102,11 +102,6 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
         // signals here
         rating.rating_changed.connect (ratingChanged);
-        title.button_press_event.connect (titleClicked);
-
-        drag_dest_set(this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
-        Gtk.drag_dest_add_uri_targets(this);
-        this.drag_data_received.connect(dragReceived);
 
         update_visibilities();
     }
@@ -152,23 +147,14 @@ public class Noise.InfoPanel : Gtk.EventBox {
             year.set_markup("");
     }
     
-    private void update_cover_art() {
-        if (lm.media_info == null || lm.media_info.media == null)
+    private void update_cover_art () {
+        if (lm.media_info == null)
             return;
 
-        var coverart_pixbuf = lm.get_cover_album_art (lm.media_info.media.rowid);
+        var m = lm.media_info.media;
 
-        if (coverart_pixbuf == null)
-            coverart_pixbuf = lm.get_pixbuf_shadow (Icons.DEFAULT_ALBUM_ART_PIXBUF);
-
-        // This is not dumb. We're just checking for nullity again
-        if(coverart_pixbuf != null) {
-            coverArt.show();
-            coverArt.set_from_pixbuf(coverart_pixbuf);
-        }
-        else {
-            coverArt.hide();
-        }
+        if (m != null)
+            coverArt.set_from_pixbuf (CoverartCache.instance.get_cover (m));
     }
     
     private void ratingChanged(int new_rating) {
@@ -177,58 +163,5 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
         lm.media_info.media.rating = new_rating;
         lm.update_media_item (lm.media_info.media, false, true);
-    }
-    
-    private bool titleClicked(Gdk.EventButton event) {
-        if (lm.media_info == null || lm.media_info.media == null)
-            return false;
-
-        /*try {
-            new Thread<void*>.try (null, () => {
-                try {
-                    GLib.AppInfo.launch_default_for_uri (lm.media_info.track.url, null);
-                }
-                catch(GLib.Error err) {
-                    warning ("Could not open url in Last FM: %s\n", err.message);
-                }
-                
-                return null;
-            });
-        }
-        catch(GLib.Error err) {
-            warning ("Could not create thread to open title:%s\n", err.message);
-            
-        }*/
-        
-        return false;
-    }
-    
-    // FIXME: MOVE TO UTILS!
-    private bool is_valid_image_type(string type) {
-        var typeDown = type.down();
-        
-        return (typeDown.has_suffix(".jpg") || typeDown.has_suffix(".jpeg") ||
-                typeDown.has_suffix(".png"));
-    }
-    
-    private void dragReceived(Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
-        if (lm.media_info == null || lm.media_info.media == null)
-            return;
-
-        bool success = true;
-        
-        foreach(string uri in data.get_uris()) {
-            
-            if(is_valid_image_type(uri)) {
-                message("Saving dragged album art as image\n");
-                lm.save_album_locally(lm.media_info.media.rowid, uri);
-            }
-            else {
-                warning ("Dragged album art is not valid image\n");
-            }
-            
-            Gtk.drag_finish (context, success, false, timestamp);
-            return;
-        }
     }
 }

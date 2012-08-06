@@ -427,21 +427,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         string secondary_text = media.artist + "\n" + media.album;
 
-        if (media.getAlbumArtPath() != "" && media.getAlbumArtPath() != null) {
-            Gdk.Pixbuf? pixbuf = null;
-            try {
-                pixbuf = new Gdk.Pixbuf.from_file_at_size (media.getAlbumArtPath(), 48, 48);
-            }
-            catch (Error err) {
-                // Media often doesn't have an associated album art,
-                // so we shouldn't threat this as an unexpected error.
-                message (err.message);
-            }
-
-            show_notification (primary_text, secondary_text, pixbuf, force);
+        Gdk.Pixbuf? pixbuf = null;
+        try {
+            string path = CoverartCache.instance.get_cached_image_path_for_media (media);
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (path, 48, 48);
         }
-        else
-            show_notification (primary_text, secondary_text, null, force);
+        catch (Error err) {
+            // Media often doesn't have an associated album art,
+            // so we shouldn't threat this as an unexpected error.
+            message (err.message);
+        }
+
+        show_notification (primary_text, secondary_text, null, force);
     }
 
     private void notify_current_media () {

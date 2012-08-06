@@ -51,18 +51,6 @@ public class Noise.Media : Object {
         set { this.uri = value.get_uri (); }
     }
 
-    private string album_art_path = "";
-
-    public void setAlbumArtPath (string path) {
-        this.album_art_path = path;
-    }
-
-    public string getAlbumArtPath () {
-        return this.album_art_path;
-    }
-
-    public Gdk.Pixbuf? image;
-
     public bool isPreview { get; set; default = false; }
     public bool isTemporary { get; set; default = false; }
     
@@ -159,8 +147,6 @@ public class Noise.Media : Object {
         rv.pulseProgress = pulseProgress;
         rv.showIndicator = showIndicator;
         rv.unique_status_image = unique_status_image;
-        rv.image = image;
-        rv.album_art_path = album_art_path;
         rv.location_unknown = location_unknown;
 
         return rv;

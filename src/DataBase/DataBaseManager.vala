@@ -56,6 +56,8 @@ public class Noise.DataBaseManager : GLib.Object {
         string database_path = Path.build_filename (database_dir.get_path (), "database_1_4.db");
         var database_file = File.new_for_path (database_path);
 
+        bool new_db = database_file.query_exists ();
+
         try {
             const SQLHeavy.FileMode flags = SQLHeavy.FileMode.READ
                                             | SQLHeavy.FileMode.WRITE
@@ -77,7 +79,8 @@ public class Noise.DataBaseManager : GLib.Object {
 		load_table (Database.Tables.ALBUMS);
 		load_table (Database.Tables.TRACKS);
 
-        add_default_smart_playlists ();
+        if (new_db)
+            add_default_smart_playlists ();
     }
 
     private void load_table (string table) {
@@ -116,24 +119,23 @@ public class Noise.DataBaseManager : GLib.Object {
 				s.genre = results.fetch_string(9);
 				s.comment = results.fetch_string(10);
 				s.lyrics = results.fetch_string(11);
-				s.setAlbumArtPath(results.fetch_string(12));
-				s.has_embedded = (results.fetch_int(13) == 1);
-				s.year = (uint)results.fetch_int(14);
-				s.track = (uint)results.fetch_int(15);
-				s.track_count = (uint)results.fetch_int(16);
-				s.album_number = (uint)results.fetch_int(17);
-				s.album_count = (uint)results.fetch_int(18);
-				s.bitrate = (uint)results.fetch_int(19);
-				s.length = (uint)results.fetch_int(20);
-				s.samplerate = (uint)results.fetch_int(21);
-				s.rating = (uint)results.fetch_int(22);
-				s.play_count = (uint)results.fetch_int(23);
-				s.skip_count = (uint)results.fetch_int(24);
-				s.date_added = (uint)results.fetch_int(25);
-				s.last_played = (uint)results.fetch_int(26);
-				s.last_modified = (uint)results.fetch_int(27);
-				s.mediatype = (MediaType)results.fetch_int(28);
-				s.resume_pos = results.fetch_int(29);
+				s.has_embedded = (results.fetch_int(12) == 1);
+				s.year = (uint)results.fetch_int(13);
+				s.track = (uint)results.fetch_int(14);
+				s.track_count = (uint)results.fetch_int(15);
+				s.album_number = (uint)results.fetch_int(16);
+				s.album_count = (uint)results.fetch_int(17);
+				s.bitrate = (uint)results.fetch_int(18);
+				s.length = (uint)results.fetch_int(19);
+				s.samplerate = (uint)results.fetch_int(20);
+				s.rating = (uint)results.fetch_int(21);
+				s.play_count = (uint)results.fetch_int(22);
+				s.skip_count = (uint)results.fetch_int(23);
+				s.date_added = (uint)results.fetch_int(24);
+				s.last_played = (uint)results.fetch_int(25);
+				s.last_modified = (uint)results.fetch_int(26);
+				s.mediatype = (MediaType)results.fetch_int(27);
+				s.resume_pos = results.fetch_int(28);
 
 				rv.add(s);
 			}
@@ -158,10 +160,10 @@ public class Noise.DataBaseManager : GLib.Object {
 		try {
 			transaction = database.begin_transaction();
 			Query query = transaction.prepare ("""INSERT INTO 'media' ('rowid', 'uri', 'file_size', 'title', 'artist', 'composer', 'album_artist',
-'album', 'grouping', 'genre', 'comment', 'lyrics', 'album_path', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
+'album', 'grouping', 'genre', 'comment', 'lyrics', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
 'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified', 'mediatype', 'resume_pos')
 VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping,
-:genre, :comment, :lyrics, :album_path, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate,
+:genre, :comment, :lyrics, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate,
 :rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :mediatype,
 :resume_pos);""");
 
@@ -179,7 +181,6 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 					query.set_string(":genre", s.genre);
 					query.set_string(":comment", s.comment);
 					query.set_string(":lyrics", s.lyrics);
-					query.set_string(":album_path", s.getAlbumArtPath());
 					query.set_int(":has_embedded", s.has_embedded ? 1 : 0);
 					query.set_int(":year", (int)s.year);
 					query.set_int(":track", (int)s.track);
@@ -231,7 +232,7 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 			transaction = database.begin_transaction();
 			Query query = transaction.prepare("""UPDATE `media` SET uri=:uri, file_size=:file_size, title=:title, artist=:artist,
 composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics,
-album_path=:album_path, has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number,
+ has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number,
 album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount,
 dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediatype=:mediatype, resume_pos=:resume_pos WHERE rowid=:rowid""");
 
@@ -249,7 +250,6 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 					query.set_string(":genre", s.genre);
 					query.set_string(":comment", s.comment);
 					query.set_string(":lyrics", s.lyrics);
-					query.set_string(":album_path", s.getAlbumArtPath());
 					query.set_int(":has_embedded", s.has_embedded ? 1 : 0);
 					query.set_int(":year", (int)s.year);
 					query.set_int(":track", (int)s.track);

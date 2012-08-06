@@ -257,7 +257,9 @@ public class MprisPlayer : GLib.Object {
 		_metadata.insert("xesam:album", s.album);
 		_metadata.insert("xesam:title", s.title);
 		_metadata.insert("sesam:genre", genreArray);
-		_metadata.insert("mpris:artUrl", "file://" + s.getAlbumArtPath());
+
+        var url = "file://" + CoverartCache.instance.get_cached_image_path_for_media (s);
+		_metadata.insert("mpris:artUrl", url);
 		_metadata.insert("mpris:length", library_window.library_manager.player.getDuration()/1000);
 		_metadata.insert("xesam:userRating", s.rating);
 		

@@ -88,9 +88,6 @@ public class Noise.LibraryManager : GLib.Object {
 	// Media of already played
 	private LinkedList<Media> _already_played = new Gee.LinkedList<Media>();
 
-	// All album art
-	public HashMap<string, Gdk.Pixbuf> cover_album_art = new HashMap<string, Gdk.Pixbuf> ();
-
 	private Mutex _media_lock; // lock for _media. use this around _media, _songs, ...
 
 	private Mutex _playlists_lock; // lock for _playlists
@@ -266,7 +263,7 @@ public class Noise.LibraryManager : GLib.Object {
 		});
 
 
-		fetch_cover_art_from_cache_async ();
+		CoverartCache.instance.load_for_media (media ());
 	}
 
 	/************ Library/Collection management stuff ************/
@@ -441,7 +438,7 @@ public class Noise.LibraryManager : GLib.Object {
 					}
 		
 					// after we're done with that, rescan album arts
-					fetch_all_cover_art_async ();
+                    CoverartCache.instance.fetch_all_cover_art (media ());
 
 					return false; 
 				});
@@ -452,7 +449,6 @@ public class Noise.LibraryManager : GLib.Object {
 			warning (err.message);
 		}
 	}
-
 
 
 
@@ -1656,168 +1652,9 @@ public class Noise.LibraryManager : GLib.Object {
 	}
 	
 
-	
-	/************ Image stuff ********************/
-	public string getAlbumArtPath(int id) {
-		return _media.get(id).getAlbumArtPath();
-	}
-	
-	public void save_album_locally(int id, string image_uri) {
-		GLib.File file = GLib.File.new_for_uri(image_uri);
-		if(file == null) {
-			warning ("Could not read image_uri as file\n");
-			return;
-		}
-		
-		FileInputStream filestream;
-		Gdk.Pixbuf? pix = null;
 
-		try {
-			filestream = file.read(null);
-			pix = new Gdk.Pixbuf.from_stream(filestream, null);
-		} catch(GLib.Error err) {
-			warning ("Failed to save album art locally from %s: %s\n", image_uri, err.message);
-		}
-
-		if (pix != null) {
-			debug ("got pix and saving it now\n");
-			fo.save_album_art_in_cache(_media.get(id), pix);
-			set_album_art(id, pix);
-		}
-	}
-
-	public async void fetch_cover_art_from_cache_async () {
-		Idle.add_full (Priority.DEFAULT_IDLE,  () => {
-			fetch_cover_art (true);
-			return false;
-		});
-		yield;
-	}
-
-	public async void fetch_all_cover_art_async () {
-		Idle.add_full (Priority.DEFAULT_IDLE,  () => {
-			fetch_cover_art (false);
-			return false;
-		});
-        yield;
-	}
-
-    Mutex fetch_cover_lock;
-
-	private void fetch_cover_art (bool cache_only) {
-        fetch_cover_lock.lock ();
-		debug ("------------- READING CACHED COVERART %s", (cache_only) ? "FROM CACHE":"");
-
-		foreach(var s in _media.values) {
-			string key = get_media_coverart_key (s), path = "";
-			Gdk.Pixbuf? pix = null;
-
-			if(!cover_album_art.has_key (key) && s.mediatype == 0) {
-				
-				if(key != null) {
-					// try to get image from cache (faster)					
-					Gdk.Pixbuf? coverart_pixbuf = fo.get_cached_album_art (key, out path);
-					if (coverart_pixbuf != null) {
-						// get_pixbuf_shadow automatically scales the pixbuf down
-						// to Icons.ALBUM_VIEW_IMAGE_SIZE
-						pix = get_pixbuf_shadow (coverart_pixbuf);
-					}
-					else if (!cache_only) {
-						/* TODO: Get image from the tagger object (i.e. song metadata) */
-						//coverart_pixbuf = tagger.get_embedded_art(s);
-
-						if ((path = fo.get_best_album_art_file(s)) != null && path != "") {
-							try {
-								coverart_pixbuf = new Gdk.Pixbuf.from_file (path);
-								//coverart_pixbuf = _pix.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
-								pix = get_pixbuf_shadow (coverart_pixbuf);
-								
-								// Add image to cache
-								fo.save_album_art_in_cache (s, coverart_pixbuf);
-							}
-							catch(GLib.Error err) {
-								warning (err.message);
-							}
-						}
-					}
-
-					// we set the pixbuf even if it's null to avoid entering
-					// the loop for the same album later.
-					cover_album_art.set(key, pix);
-				}
-			}
-			
-			if (cover_album_art.get (key) != null)
-				s.setAlbumArtPath (fo.get_cached_album_art_path (key));
-		}
-
-        fetch_cover_lock.unlock ();
-		debug ("----------- FINISHED LOADING CACHED COVERART");
-	}
-	
-	public static int mediaCompareFunc(Media a, Media b) {
-		if(a.album_artist != b.album_artist)
-			return (a.album > b.album) ? 1 : -1;
-		else
-			return (a.album_artist > b.album_artist) ? 1 : -1;
-	}
-	
 	public void cancel_operations() {
 		progress_cancel_clicked();
-	}
-	
-	public Gdk.Pixbuf? get_album_art_from_file(int id) {
-		Media s = _media.get(id);
-		
-		if(s == null)
-			return null;
-			
-		string path = "";
-		if(s.getAlbumArtPath().contains("/usr/share") &&
-		(path = fo.get_best_album_art_file(s)) != null && path != "") {
-			s.setAlbumArtPath(path);
-		}
-		
-		Gdk.Pixbuf? pix = null;
-		try {
-			pix = new Gdk.Pixbuf.from_file(path);
-		}
-		catch(GLib.Error err) {}
-		
-		return pix;
-	}
-	
-	public Gdk.Pixbuf? get_cover_album_art(int id) {
-		Media s = _media.get(id);
-		
-		if(s == null)
-			return null;
-		
-		return cover_album_art.get(get_media_coverart_key (s));
-	}
-
-	// Returns a key to get a coverart from the cover_album_art hashmap
-	public string get_media_coverart_key (Media s) {
-		return s.album_artist + " - " + s.album;
-	}
-	
-	public Gdk.Pixbuf? get_cover_album_art_from_key(string album_artist, string album) {
-		return cover_album_art.get(album_artist + " - " + album);
-	}
-	
-	public void set_album_art(int id, Gdk.Pixbuf pix) {
-		if(pix == null)
-			return;
-		
-		Media s = media_from_id(id);
-		string key = get_media_coverart_key (s);
-		
-		if(key != null)
-			cover_album_art.set(key, get_pixbuf_shadow (pix));
-	}
-
-	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pix) {
-		return PixbufUtils.get_pixbuf_shadow (pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
 	}
 
 	public bool start_file_operations(string? message) {
@@ -1838,8 +1675,8 @@ public class Noise.LibraryManager : GLib.Object {
 	public void finish_file_operations() {
 		_doing_file_operations = false;
 		debug("file operations finished or cancelled\n");
-		
-		fetch_all_cover_art_async ();
+
+		CoverartCache.instance.fetch_all_cover_art (media ());
 
 		// FIXME: THESE ARE Library Window's internals!
 		lw.update_sensitivities();
@@ -1847,6 +1684,13 @@ public class Noise.LibraryManager : GLib.Object {
 
 
 		file_operations_done();
+	}
+
+	public static int mediaCompareFunc(Media a, Media b) {
+		if(a.album_artist != b.album_artist)
+			return (a.album > b.album) ? 1 : -1;
+		else
+			return (a.album_artist > b.album_artist) ? 1 : -1;
 	}
 }
 
