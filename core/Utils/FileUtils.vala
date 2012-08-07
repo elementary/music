@@ -132,7 +132,8 @@ namespace Noise.FileUtils {
      */
     private class FileEnumerator {
         private uint file_count = 0;
-        private const string ATTRIBUTES = FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE;
+        private const string ATTRIBUTES = FileAttribute.STANDARD_NAME
+                                            + "," + FileAttribute.STANDARD_TYPE;
         private string[]? types = null;
         private Cancellable? cancellable = null;
 
@@ -160,12 +161,15 @@ namespace Noise.FileUtils {
             return (cancellable != null) ? cancellable.is_cancelled () : false;
         }
 
-        private void enumerate_files_internal (File folder, ref Gee.Collection<File>? files, bool recursive) {
+        private void enumerate_files_internal (File folder, ref Gee.Collection<File>? files,
+            bool recursive) {
+
             if (is_cancelled ())
                 return;
 
             try {
-                var enumerator = folder.enumerate_children (ATTRIBUTES, FileQueryInfoFlags.NOFOLLOW_SYMLINKS);
+                var enumerator = folder.enumerate_children (ATTRIBUTES,
+                    FileQueryInfoFlags.NOFOLLOW_SYMLINKS, cancellable);
 
                 FileInfo? file_info = null;
 
