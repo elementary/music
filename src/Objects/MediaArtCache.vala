@@ -250,15 +250,19 @@ public class Noise.CoverartCache : MediaArtCache {
         foreach (var file in image_files) {
             string file_path = file.get_path ().down ();
 
-            if (file_path.contains ("folder.")) {
+            if (file_path.contains ("folder")) {
                 rv = file;
                 break;
             }
 
-            if (file_path.contains ("cover.")) {
+            if (file_path.contains ("cover")) {
                 rv = file;
             } else if (rv != null) {
-                if (!rv.get_path ().contains ("cover.") && file_path.contains ("album."))
+                if (!rv.get_path ().contains ("cover") && file_path.contains ("album"))
+                    rv = file;
+                else if (!rv.get_path ().contains ("album") && file_path.contains ("front"))
+                    rv = file;
+                else if (!rv.get_path ().contains ("front") && file_path.contains (m.album))
                     rv = file;
             } else {
                 rv = file;
