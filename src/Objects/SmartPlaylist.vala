@@ -24,7 +24,10 @@ using Gee;
 
 
 public class Noise.SmartPlaylist : Object {
-    
+
+    //public static const string QUERY_S_SEP = "<query_sep>";
+    //public static const string VALUE_S_SEP = "<val_sep>";
+
     public enum ConditionalType {
         ANY = true,
         ALL = false
@@ -66,11 +69,11 @@ public class Noise.SmartPlaylist : Object {
     
     /** temp_playlist should be in format of #,#,#,#,#, **/
     public void queries_from_string(string q) {
-        string[] queries_in_string = q.split("<query_seperator>", 0);
+        string[] queries_in_string = q.split("<query_sep>", 0);
         
         int index;
         for(index = 0; index < queries_in_string.length - 1; index++) {
-            string[] pieces_of_query = queries_in_string[index].split("<value_separator>", 3);
+            string[] pieces_of_query = queries_in_string[index].split("<val_sep>", 3);
             pieces_of_query.resize (3);
             
             SmartQuery sq = new SmartQuery();
@@ -86,7 +89,7 @@ public class Noise.SmartPlaylist : Object {
         string rv = "";
         
         foreach(SmartQuery q in queries()) {
-            rv += ((int)q.field).to_string() + "<value_separator>" + ((int)q.comparator).to_string() + "<value_separator>" + q.value + "<query_seperator>";
+            rv += ((int)q.field).to_string() + "<val_sep>" + ((int)q.comparator).to_string() + "<val_sep>" + q.value + "<query_sep>";
         }
         
         return rv;

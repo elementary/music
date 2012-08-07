@@ -56,7 +56,7 @@ public class Noise.DataBaseManager : GLib.Object {
         string database_path = Path.build_filename (database_dir.get_path (), "database_1_4.db");
         var database_file = File.new_for_path (database_path);
 
-        bool new_db = database_file.query_exists ();
+        bool new_db = !database_file.query_exists ();
 
         try {
             const SQLHeavy.FileMode flags = SQLHeavy.FileMode.READ
@@ -402,7 +402,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
 			query.set_string(":name", _("Favorite Songs"));
 			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>13<value_separator>6<value_separator>4<query_seperator>");
+			query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>13<val_sep>6<val_sep>4<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
@@ -410,20 +410,9 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 
-#if HAVE_INTERNET_RADIO
-			query.set_string(":name", "Favorite Stations");
-			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>3<query_seperator>13<value_separator>6<value_separator>4<query_seperator>");
-			query.set_int(":limit", 0);
-			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
-			query.set_string(":sort_direction", tvs.sort_direction_to_string());
-			query.set_string(":columns", tvs.columns_to_string());
-			query.execute();
-#endif
 			query.set_string(":name", _("Recently Added"));
 			query.set_int(":and_or", 1);
-			query.set_string(":queries", "5<value_separator>7<value_separator>7<query_seperator>");
+			query.set_string(":queries", "5<val_sep>7<val_sep>7<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
@@ -431,19 +420,21 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 
+			/*
 			query.set_string(":name", _("Recently Played"));
 			query.set_int(":and_or", 1);
-			query.set_string(":queries", "9<value_separator>7<value_separator>7<query_seperator>");
+			query.set_string(":queries", "9<val_sep>7<val_sep>7<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.LAST_PLAYED);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
+			*/
 
 			query.set_string(":name", _("Recent Favorites"));
 			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>9<value_separator>7<value_separator>7<query_seperator>13<value_separator>6<value_separator>4<query_seperator>");
+			query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>9<val_sep>7<val_sep>7<query_sep>13<val_sep>6<val_sep>4<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
@@ -453,7 +444,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
 			query.set_string(":name", _("Never Played"));
 			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>12<value_separator>4<value_separator>0<query_seperator>");
+			query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>12<val_sep>4<val_sep>0<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
@@ -463,7 +454,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
 			query.set_string(":name", _("Over Played"));
 			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>12<value_separator>6<value_separator>10<query_seperator>");
+			query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>12<val_sep>6<val_sep>10<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.PLAY_COUNT);
@@ -473,7 +464,7 @@ dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediat
 
 			query.set_string(":name", _("Not Recently Played"));
 			query.set_int(":and_or", 1);
-			query.set_string(":queries", "9<value_separator>8<value_separator>7<query_seperator>");
+			query.set_string(":queries", "9<val_sep>8<val_sep>7<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.NUMBER);
