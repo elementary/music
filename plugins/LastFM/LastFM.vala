@@ -25,28 +25,25 @@ using PeasGtk;
 namespace Noise.Plugins {
     
     public class LastFMPlugin : Peas.ExtensionBase, Peas.Activatable {
-
-        Interface plugins;
-        public GLib.Object object { owned get; construct; }
-        Noise.SimilarMediasWidget similar_media_widget;
-        Gtk.TreeIter similar_iter;
-        Noise.LibraryManager lm;
-        LastFM.Core core;
-
-        bool added { get; set; default=false; }
         static string ENABLE_SCROBBLING = _("Enable Scrobbling");
         static string LOGIN_UNSUCCESSFUL = _("Unsuccessful. Click to try again.");
         static string SCROBBLING_ENABLED = _("Scrobbling already Enabled");
         static string LOGIN_SUCCESSFUL = _("Success!");
         static string COMPLETE_LOGIN = _("Complete login");
-        public Gtk.Button lastfmLogin_button;
-        string lastfm_token { get; set; default=""; }
-        Gtk.Grid container;
-        int page_number { get; set; default=0; }
-        Noise.PreferencesWindow preferences_window;
+
+        public GLib.Object object { owned get; construct; }
+
+        private Interface plugins;
+        private Noise.SimilarMediasWidget similar_media_widget;
+        private Gtk.TreeIter similar_iter;
+
+        private Noise.LibraryManager lm;
+        private Noise.PreferencesWindow? preferences_window;
+        private LastFM.Core core;
+        private int prefs_page_index = -1;
+        private bool added_view = false;
 
         public void activate () {
-            added = false;
             Value value = Value(typeof(GLib.Object));
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();
@@ -59,83 +56,92 @@ namespace Noise.Plugins {
                 core = new LastFM.Core (lm);
                 var similar_view = new Noise.SimilarViewWrapper (lm.lw, core);
                 similar_media_widget = new Noise.SimilarMediasWidget (lm, core);
+
                 lm.lw.add_view (_("Similar"), similar_view, out similar_iter);
-                added = true;
+                added_view = true;
             });
-            
+
             plugins.register_function_arg(Interface.Hook.SETTINGS_WINDOW, (window) => {
-                preferences_window = (Noise.PreferencesWindow) window;
-                container = new Gtk.Grid ();
+                preferences_window = window as Noise.PreferencesWindow;
+                var container = new Gtk.Grid ();
+
                 container.row_spacing = 6;
                 container.column_spacing = 12;
                 container.margin_left = 12;
                 container.margin_right = 12;
                 container.margin_top = 12;
                 container.margin_bottom = 6;
-                if(core.lastfm_settings.session_key == null || core.lastfm_settings.session_key == "")
-                    lastfmLogin_button = new Button.with_label(ENABLE_SCROBBLING);
-                else {
-                    lastfmLogin_button = new Button.with_label(SCROBBLING_ENABLED);
-                    lastfmLogin_button.set_tooltip_text(_("Click to redo the Last.fm Login Process"));
+
+                var login_button = new Gtk.Button ();
+
+                if (core.lastfm_settings.session_key == null || core.lastfm_settings.session_key == "") {
+                    login_button.label = ENABLE_SCROBBLING;
+                } else {
+                    login_button.label = SCROBBLING_ENABLED;
+                    login_button.set_tooltip_text(_("Click to redo the Last.fm Login Process"));
                 }
                 var label = new Gtk.Label (_("LastFM allow you to access to more informations about the music that are on your library"));
                 label.set_line_wrap (true);
                 container.attach (label, 0, 0, 1, 1);
-                container.attach (lastfmLogin_button, 0, 1, 1, 1);
+                container.attach (login_button, 0, 1, 1, 1);
                 container.show_all ();
                 preferences_window.main_static_notebook.append_page (container, new Gtk.Label (_("Last.fm")));
-                lastfmLogin_button.clicked.connect (lastfmLoginClick);
-                page_number = preferences_window.main_static_notebook.page;
+                login_button.clicked.connect (lastfmLoginClick);
+                prefs_page_index = preferences_window.main_static_notebook.page;
             });
         }
 
         public void deactivate () {
-            if (added) {
-                lm.lw.sideTree.removeItem(similar_iter);
-                lm.lw.sideTree.resetView();
+            if (added_view) {
+                added_view = false;
+                lm.lw.sideTree.removeItem (similar_iter);
+                lm.lw.sideTree.resetView ();
                 similar_media_widget.destroy ();
             }
-            if (page_number!=0) {
-                container.destroy ();
-                preferences_window.main_static_notebook.remove_page (page_number);
-                page_number = 0;
+
+            if (prefs_page_index >= 0) {
+                preferences_window.main_static_notebook.remove_page (prefs_page_index);
+                prefs_page_index = -1;
             }
         }
 
         public void update_state () {
             
         }
-        
-        public void lastfmLoginClick() {
-            warning ("clicked");
-            if(lastfmLogin_button.get_label() == ENABLE_SCROBBLING || lastfmLogin_button.get_label() == LOGIN_UNSUCCESSFUL) {
-                lastfm_token = core.getToken();
-                if(lastfm_token == null) {
-                    lastfmLogin_button.set_label(LOGIN_UNSUCCESSFUL);
-                    warning ("Could not get a token. check internet connection\n");
+
+        public void lastfmLoginClick (Gtk.Button login_button) {
+            return_if_fail (core != null);
+            var lastfm_token = core.getToken ();
+
+            if (login_button.label == ENABLE_SCROBBLING || login_button.label == LOGIN_UNSUCCESSFUL) {
+
+                if (lastfm_token == null) {
+                    login_button.set_label (LOGIN_UNSUCCESSFUL);
+                    warning ("Could not get a token. check internet connection");
                 }
                 else {
-                    string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.api + "&token=" + lastfm_token;
+                    string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.api
+                                      + "&token=" + lastfm_token;
                     try {
-                        GLib.AppInfo.launch_default_for_uri (auth_uri, null);
+                        AppInfo.launch_default_for_uri (auth_uri, null);
                     }
                     catch(GLib.Error err) {
                         warning ("Could not open Last FM website to authorize: %s\n", err.message);
                     }
-                
+
                     //set button text. we are done this time around. next time we get session key
-                    lastfmLogin_button.set_label(COMPLETE_LOGIN);
+                    login_button.set_label(COMPLETE_LOGIN);
                 }
             }
             else {
                 if(lastfm_token == null) {
-                    lastfmLogin_button.set_label(LOGIN_UNSUCCESSFUL);
+                    login_button.set_label(LOGIN_UNSUCCESSFUL);
                     message ("Invalid token. Cannot continue");
                 }
                 else {
                     var sk = core.getSessionKey(lastfm_token);
                     if(sk == null) {
-                        lastfmLogin_button.set_label(LOGIN_UNSUCCESSFUL);
+                        login_button.set_label(LOGIN_UNSUCCESSFUL);
                         message ("Could not get Last.fm session key");
                     }
                     else {
@@ -143,8 +149,8 @@ namespace Noise.Plugins {
                         message ("Successfully obtained a sessionkey");
                         debug (sk);
                         core.lastfm_settings.session_key = sk;
-                        lastfmLogin_button.set_sensitive(false);
-                        lastfmLogin_button.set_label(LOGIN_SUCCESSFUL);
+                        login_button.set_sensitive(false);
+                        login_button.set_label(LOGIN_SUCCESSFUL);
                     }
                 }
             }

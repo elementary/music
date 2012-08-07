@@ -26,6 +26,7 @@
 using Xml;
 using Soup;
 using Gee;
+
 namespace LastFM {
 
     /** NOTICE: These API keys and secrets are unique to Noise and Noise
@@ -35,8 +36,7 @@ namespace LastFM {
 
     public class Core : Object {
         Noise.LibraryManager lm;
-        
-        
+
         public Settings lastfm_settings { get; private set; }
 
         public string token;
@@ -320,6 +320,9 @@ namespace LastFM {
         
         /** Fetches the current track's info from last.fm
          */
+
+        Mutex fetch_info_guard;
+
         public void fetchCurrentTrackInfo() {
             try {
                 new Thread<void*>.try (null, track_thread_function);
@@ -329,21 +332,28 @@ namespace LastFM {
         }
         
         void* track_thread_function () {
-            LastFM.TrackInfo track = new LastFM.TrackInfo.basic();
+            var current_media = lm.media_info.media;
+            return_val_if_fail (current_media != null, null);
 
-            string album_artist_s = lm.media_info.media.album_artist;
-            string track_s = lm.media_info.media.title;
+            string album_artist_s = current_media.album_artist;
+            string track_s = current_media.title;
 
-            /* first fetch track info since that is most likely to change */
-            if(!track_info_exists(track_s + " by " + album_artist_s)) {
-                track = new LastFM.TrackInfo.with_info(album_artist_s, track_s);
+            if (album_artist_s == "")
+                album_artist_s = current_media.artist;
 
-                if(track != null)
-                    save_track(track);
+            // first fetch track info since that is most likely to change
+            if (!track_info_exists (track_s + " by " + album_artist_s)) {
+                var track = new LastFM.TrackInfo.with_info (album_artist_s, track_s);
 
-                if(track_s == lm.media_info.media.title && album_artist_s == lm.media_info.media.album_artist) {
+                if (track != null)
+                    save_track (track);
+
+                // helps to avoid a race condition, since lm.media_info.media is subject to change
+                // as the songs are skipped
+                fetch_info_guard.lock ();
+                if (lm.media_info.media == current_media)
                     lm.media_info.track = track;
-                }
+                fetch_info_guard.unlock ();
             }
 
             return null;
@@ -356,36 +366,54 @@ namespace LastFM {
                 warning ("ERROR: Could not create last fm thread: %s \n", err.message);
             }
         }
-        
+
         void* album_thread_function () {
-            LastFM.AlbumInfo album = new LastFM.AlbumInfo();
-            
-            string album_artist_s = lm.media_info.media.album_artist;
-            string artist_s = lm.media_info.media.artist;
-            string album_s = lm.media_info.media.album;
+
+            var current_media = lm.media_info.media;
+            return_val_if_fail (current_media != null, null);
+
+            string album_artist_s = current_media.album_artist;
+            string album_s = current_media.album;
+
+            if (album_artist_s == "")
+                album_artist_s = current_media.artist;
 
             /* fetch album info now. only save if still on current media */
-            if(!album_info_exists(album_s + " by " + album_artist_s) || lm.get_cover_album_art(lm.media_info.media.rowid) == null) {
+            if (!album_info_exists (album_s + " by " + album_artist_s)) {
                 // This does the fetching to internet. may take a few seconds
-                album = new LastFM.AlbumInfo.with_info(album_artist_s, album_s);
+                var album = new LastFM.AlbumInfo.with_info (album_artist_s, album_s);
 
-                if(album != null) {
-                    save_album(album);
-                }
+                if (album != null) 
+                    save_album (album);
+                else
+                    return null;
 
                 /* If on same song, update lm.media_info.album */
-                if(lm.media_active && album != null && album_s == lm.media_info.media.album && artist_s == lm.media_info.media.artist) {
+                fetch_info_guard.lock ();
+
+                if (lm.media_active && lm.media_info.media == current_media) {
                     lm.media_info.album = album;
                 }
-                
+
+                fetch_info_guard.unlock ();
+
                 /* If we found an album art, and we don't have one yet, save it to file **/
-                if(album.url_image.url != null && lm.get_cover_album_art_from_key(album_artist_s, album_s) == null) {
-                    message ("Saving album locally\n");
-                    lm.save_album_locally(lm.media_info.media.rowid, album.url_image.url);
+                var coverart_cache = Noise.CoverartCache.instance;
+
+                if (coverart_cache.has_image (current_media))
+                    return null;
+
+                if (album.url_image.url != null) {
+                    message ("Caching last.fm image from URL: %s", album.url_image.url);
+
+                    fetch_info_guard.lock ();
+                    coverart_cache.cache_image_from_uri (current_media, album.url_image.url);
+                    fetch_info_guard.unlock ();
                 }
+
             }
             else {
-                message ("Not fetching album info or art\n");
+                message ("Not fetching album info or art");
             }
 
             return null;
@@ -402,22 +430,31 @@ namespace LastFM {
         }
         
         void* artist_thread_function () {
-            LastFM.ArtistInfo artist = new LastFM.ArtistInfo();
+            var current_media = lm.media_info.media;
+            return_val_if_fail (current_media != null, null);
 
-            string album_artist_s = lm.media_info.media.album_artist;
+            string album_artist_s = current_media.album_artist;
+            if (album_artist_s == "")
+                album_artist_s = current_media.artist;
+
 
             /* fetch artist info now. save only if still on current media */
-            if(!artist_info_exists(album_artist_s)) {
-                // This does the fetching to internet. may take a few seconds
-                artist = new LastFM.ArtistInfo.with_artist(album_artist_s);
 
-                if(artist != null)
-                    save_artist(artist);
+            if (!artist_info_exists (album_artist_s)) {
+                // This does the fetching to internet. may take a few seconds
+                var artist = new LastFM.ArtistInfo.with_artist (album_artist_s);
+
+                if (artist != null)
+                    save_artist (artist);
 
                 // If still playing the same song, update lm.media_info.artist
-                if(lm.media_active && artist != null && album_artist_s == lm.media_info.media.album_artist) {
+                fetch_info_guard.lock ();
+
+                if (lm.media_info.media == current_media) {
                     lm.media_info.artist = (Noise.ArtistInfo)artist;
                 }
+
+                fetch_info_guard.unlock ();
             }
 
             return null;
@@ -486,10 +523,12 @@ namespace LastFM {
             }
             if(!lm.media_active)
                 return null;
+
+            var current_media = lm.media_info.media;
             
             var timestamp = (int)time_t();
-            var artist = lm.media_info.media.artist;
-            var title = lm.media_info.media.title;
+            var artist = current_media.artist;
+            var title = current_media.title;
             var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_trackscrobble_signature(artist, title, timestamp) + "&artist=" + fix_for_url(artist) + "&method=track.scrobble&sk=" + lastfm_settings.session_key + "&timestamp=" + timestamp.to_string() + "&track=" + fix_for_url(title);
             
             Soup.SessionSync session = new Soup.SessionSync();
