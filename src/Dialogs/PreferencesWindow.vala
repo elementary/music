@@ -105,7 +105,7 @@ public class Noise.PreferencesWindow : Gtk.Window {
         management_label.valign = Gtk.Align.CENTER;
         management_label.halign = Gtk.Align.START;
         management_label.margin_top = 12;
-        management_label.margin_botton = 6;
+        management_label.margin_bottom = 6;
 
         var organize_folders_label = new Gtk.Label (_("Keep music folder organized"));
         organize_folders_label.set_alignment (1, 0.5f);
