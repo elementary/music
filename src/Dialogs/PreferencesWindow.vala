@@ -20,9 +20,6 @@
  * Boston, MA 02111-1307, USA.
  */
 
-/* Merely a place holder for multiple pieces of information regarding
- * the current media playing. Mostly here because of dependence. */
-
 public class Noise.PreferencesWindow : Gtk.Window {
     Noise.LibraryManager _lm;
     Noise.LibraryWindow _lw;
@@ -60,25 +57,27 @@ public class Noise.PreferencesWindow : Gtk.Window {
         type_hint = Gdk.WindowTypeHint.DIALOG;
         set_transient_for(_lw);
         
-        var main_grid = new Gtk.Grid ();
-        main_static_notebook = new Granite.Widgets.StaticNotebook (false);
         saveChanges = new Gtk.Button.from_stock (Gtk.Stock.CLOSE);
         saveChanges.margin_right = 12;
         saveChanges.margin_bottom = 12;
-        
+        saveChanges.halign = Gtk.Align.END;
+        saveChanges.set_size_request (85, -1);
+        saveChanges.clicked.connect(saveClicked);
+
+        main_static_notebook = new Granite.Widgets.StaticNotebook (false);
         main_static_notebook.append_page (get_general_box (), new Gtk.Label (_("Behavior")));
-        
         main_static_notebook.set_hexpand (true);
-        
+        main_static_notebook.margin_bottom = 24;
+        main_static_notebook.margin_top = 10;
+
+        var main_grid = new Gtk.Grid ();
         main_grid.attach (main_static_notebook, 0, 0, 3, 1);
         main_grid.attach (saveChanges, 2, 1, 1, 1);
         add (main_grid);
         
-        saveChanges.clicked.connect(saveClicked);
-        
         show_all();
     }
-    
+
     Gtk.Widget get_general_box () {
         
         //Noise.Settings.schema.bind("show-at-start", start, "active-id", SettingsBindFlags.DEFAULT);
@@ -103,15 +102,18 @@ public class Noise.PreferencesWindow : Gtk.Window {
         
         var management_label = new Gtk.Label("");
         management_label.set_markup("<b>%s</b>".printf (_("Library Management")));
-        management_label.set_alignment (0, 0.5f);
-        
-        var organize_folders_label = new Gtk.Label (_("Keep music folder organized:"));
+        management_label.valign = Gtk.Align.CENTER;
+        management_label.halign = Gtk.Align.START;
+        management_label.margin_top = 12;
+        management_label.margin_botton = 6;
+
+        var organize_folders_label = new Gtk.Label (_("Keep music folder organized"));
         organize_folders_label.set_alignment (1, 0.5f);
         organize_folders_switch = new Gtk.Switch ();
-        var write_file_metadata_label = new Gtk.Label (_("Write metadata to file:"));
+        var write_file_metadata_label = new Gtk.Label (_("Write metadata to file"));
         write_file_metadata_label.set_alignment (1, 0.5f);
         write_file_metadata_switch = new Gtk.Switch ();
-        var copy_imported_music_label = new Gtk.Label (_("Copy new files to music folder:"));
+        var copy_imported_music_label = new Gtk.Label (_("Copy new files to music folder"));
         copy_imported_music_label.set_hexpand (true);
         copy_imported_music_label.set_alignment (1, 0.5f);
         copy_imported_music_switch = new Gtk.Switch ();
