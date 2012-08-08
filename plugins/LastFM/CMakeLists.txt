@@ -27,6 +27,7 @@ vala_precompile(VALA_C
         SimilarMediaView.vala
         SimilarMediaWidget.vala
         SimilarViewWrapper.vala
+        PreferencesSection.vala
     PACKAGES
         glib-2.0
         gtk+-3.0

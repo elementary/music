@@ -1,20 +1,29 @@
-/*
- * Copyright (c) 2010 Abderrahim Kitouni
- * Copyright (c) 2011 Steve Frécinaux
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
+/*-
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
  */
 
 using GLib;
@@ -25,12 +34,6 @@ using PeasGtk;
 namespace Noise.Plugins {
     
     public class LastFMPlugin : Peas.ExtensionBase, Peas.Activatable {
-        static string ENABLE_SCROBBLING = _("Enable Scrobbling");
-        static string LOGIN_UNSUCCESSFUL = _("Unsuccessful. Click to try again.");
-        static string SCROBBLING_ENABLED = _("Scrobbling already Enabled");
-        static string LOGIN_SUCCESSFUL = _("Success!");
-        static string COMPLETE_LOGIN = _("Complete login");
-
         public GLib.Object object { owned get; construct; }
 
         private Interface plugins;
@@ -47,7 +50,7 @@ namespace Noise.Plugins {
             Value value = Value(typeof(GLib.Object));
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();
-            
+
             plugins.register_function(Interface.Hook.WINDOW, () => {
                 lm = ((Noise.App)plugins.noise_app).library_manager;
                 Icons.init_lastfm ();
@@ -63,31 +66,8 @@ namespace Noise.Plugins {
 
             plugins.register_function_arg(Interface.Hook.SETTINGS_WINDOW, (window) => {
                 preferences_window = window as Noise.PreferencesWindow;
-                var container = new Gtk.Grid ();
-
-                container.row_spacing = 6;
-                container.column_spacing = 12;
-                container.margin_left = 12;
-                container.margin_right = 12;
-                container.margin_top = 12;
-                container.margin_bottom = 6;
-
-                var login_button = new Gtk.Button ();
-
-                if (core.lastfm_settings.session_key == null || core.lastfm_settings.session_key == "") {
-                    login_button.label = ENABLE_SCROBBLING;
-                } else {
-                    login_button.label = SCROBBLING_ENABLED;
-                    login_button.set_tooltip_text(_("Click to redo the Last.fm Login Process"));
-                }
-                var label = new Gtk.Label (_("LastFM allow you to access to more informations about the music that are on your library"));
-                label.set_line_wrap (true);
-                container.attach (label, 0, 0, 1, 1);
-                container.attach (login_button, 0, 1, 1, 1);
-                container.show_all ();
-                preferences_window.main_static_notebook.append_page (container, new Gtk.Label (_("Last.fm")));
-                login_button.clicked.connect (lastfmLoginClick);
-                prefs_page_index = preferences_window.main_static_notebook.page;
+                var prefs_section = new LastFM.PreferencesSection (core);
+                prefs_page_index = preferences_window.add_section (prefs_section);
             });
         }
 
@@ -100,63 +80,15 @@ namespace Noise.Plugins {
             }
 
             if (prefs_page_index >= 0) {
-                preferences_window.main_static_notebook.remove_page (prefs_page_index);
+                preferences_window.remove_section (prefs_page_index);
                 prefs_page_index = -1;
             }
         }
 
         public void update_state () {
-            
-        }
-
-        public void lastfmLoginClick (Gtk.Button login_button) {
-            return_if_fail (core != null);
-            var lastfm_token = core.getToken ();
-
-            if (login_button.label == ENABLE_SCROBBLING || login_button.label == LOGIN_UNSUCCESSFUL) {
-
-                if (lastfm_token == null) {
-                    login_button.set_label (LOGIN_UNSUCCESSFUL);
-                    warning ("Could not get a token. check internet connection");
-                }
-                else {
-                    string auth_uri = "http://www.last.fm/api/auth/?api_key=" + LastFM.api
-                                      + "&token=" + lastfm_token;
-                    try {
-                        AppInfo.launch_default_for_uri (auth_uri, null);
-                    }
-                    catch(GLib.Error err) {
-                        warning ("Could not open Last FM website to authorize: %s\n", err.message);
-                    }
-
-                    //set button text. we are done this time around. next time we get session key
-                    login_button.set_label(COMPLETE_LOGIN);
-                }
-            }
-            else {
-                if(lastfm_token == null) {
-                    login_button.set_label(LOGIN_UNSUCCESSFUL);
-                    message ("Invalid token. Cannot continue");
-                }
-                else {
-                    var sk = core.getSessionKey(lastfm_token);
-                    if(sk == null) {
-                        login_button.set_label(LOGIN_UNSUCCESSFUL);
-                        message ("Could not get Last.fm session key");
-                    }
-                    else {
-                        core.logged_in();
-                        message ("Successfully obtained a sessionkey");
-                        debug (sk);
-                        core.lastfm_settings.session_key = sk;
-                        login_button.set_sensitive(false);
-                        login_button.set_label(LOGIN_SUCCESSFUL);
-                    }
-                }
-            }
+            // do nothing
         }
     }
-
 }
 
 [ModuleInit]
