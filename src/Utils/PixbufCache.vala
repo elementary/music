@@ -103,7 +103,7 @@ public class Noise.PixbufCache {
      *
      * You can also override this method to prevent the storage of certain images in
      * the cache. To do so it just needs to return null. In such case, the call
-     * to set_image() will have no effect, since null pixbufs are not added to the
+     * to cache_image() will have no effect, since null pixbufs are not added to the
      * internal table, nor saved to disk.
      */
     public virtual Gdk.Pixbuf? filter_func (string key, Gdk.Pixbuf pix,
@@ -190,7 +190,7 @@ public class Noise.PixbufCache {
             if (image != null)
                 cache_image (key, image);
         } catch (Error err) {
-            warning ("Could not set image from [%s]: %s", image_uri, err.message);
+            warning ("Could not cache image from URI [%s]: %s", image_uri, err.message);
         }
     }
 

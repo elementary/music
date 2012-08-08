@@ -19,6 +19,7 @@ vala_precompile(VALA_C
     LibraryManager.vala
     FileOperator.vala
 
+    main.vala
     Noise.vala
 
     Utils/PixbufUtils.vala

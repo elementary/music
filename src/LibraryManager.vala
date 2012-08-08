@@ -450,29 +450,29 @@ public class Noise.LibraryManager : GLib.Object {
 		}
 	}
 
-
-
-	public void play_files (Gee.Collection<string> uri_list) {
+	public void play_files (File[] files) {
 		var to_discover = new Gee.LinkedList<string> ();
 		var to_play = new Gee.LinkedList<Media> ();
-		foreach (var base_uri in uri_list) {
-			if (base_uri != null) {
-				var uri = File.new_for_uri (base_uri).get_path ();
-				
-				// Check if the file is already in the library
-				var m = media_from_file (uri);
 
-				if (m != null) { // already in library
-					debug ("ALREADY IN LIBRARY: %s", uri);
-					to_play.add (m);
-				}
-				else { // not in library
-					// TODO: see if the file belongs to the music folder and ask the user
-					// if they would like to add it to theid collection.
-					debug ("NOT IN LIBRARY: %s", uri);
-					to_discover.add (uri);
-				}
-			}			
+		foreach (var file in files) {
+            if (file == null)
+                continue;
+
+			var path = file.get_path ();
+
+			// Check if the file is already in the library
+			var m = media_from_file (path);
+
+			if (m != null) { // already in library
+				debug ("ALREADY IN LIBRARY: %s", path);
+				to_play.add (m);
+			}
+			else { // not in library
+				// TODO: see if the file belongs to the music folder and ask the user
+				// if they would like to add it to their collection.
+				debug ("NOT IN LIBRARY: %s", path);
+				to_discover.add (path);
+			}
 		}
 
 		// Play library media immediately
@@ -480,13 +480,10 @@ public class Noise.LibraryManager : GLib.Object {
 		getNext (true);
 
 		Idle.add ( () => {
-			//var to_queue_external = get_media_from_files (to_discover);
-			//queue_media (to_queue_external);
+			fo.import_files (to_discover, FileOperator.ImportType.IMPORT);
 			return false;
 		});
 	}
-
-
 
 
 	public void recheck_files_not_found() {
