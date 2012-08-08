@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-06 14:50-0600\n"
+"POT-Creation-Date: 2012-08-08 13:28-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-
-#: /home/victored/noise/po/../src//Noise.vala:68
-msgid "Enable debug logging"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Noise.vala:69
-msgid "Disable plugins"
-msgstr ""
 
 #: /home/victored/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -432,6 +424,7 @@ msgid "Lyrics"
 msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:87
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:150
 #: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
 #: /home/victored/noise/po/../plugins//internet-radio/StationEditor.vala:70
 msgid "Done"
@@ -562,45 +555,51 @@ msgstr ""
 msgid "Sync will remove 1 item from %s"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:53
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:143
 #: /home/victored/noise/po/../src//LibraryWindow.vala:218
 msgid "Preferences"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:68
-msgid "Behavior"
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:204
+msgid "General"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:98
-#, c-format
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:216
+msgid "Select Music Folder"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:223
 msgid "Music Folder Location"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:101
-msgid "Music Folder"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:104
-#, c-format
-msgid "Library Management"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:107
-msgid "Keep music folder organized:"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:110
-msgid "Write metadata to file:"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:113
-msgid "Copy new files to music folder:"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:128
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:229
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:241
+msgid "Keep Music folder organized"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:242
+msgid "Copy files to Music folder when adding to Library"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:244
+msgid "Write metadata to file"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:259
+msgid "Library Management"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:266
+msgid "Use Noise as the default Music application"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:271
+msgid "System Integration"
 msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:56
@@ -1568,42 +1567,8 @@ msgstr ""
 msgid "Importing <b>%s</b> to library..."
 msgstr ""
 
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:28
-msgid "Enable Scrobbling"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:29
-msgid "Unsuccessful. Click to try again."
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:30
-msgid "Scrobbling already Enabled"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:31
-msgid "Success!"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:32
-msgid "Complete login"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:60
+#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:63
 msgid "Similar"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:81
-msgid "Click to redo the Last.fm Login Process"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:83
-msgid ""
-"LastFM allow you to access to more informations about the music that are on "
-"your library"
-msgstr ""
-
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:88
-msgid "Last.fm"
 msgstr ""
 
 #: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:48
@@ -1612,6 +1577,44 @@ msgstr ""
 
 #: /home/victored/noise/po/../plugins//LastFM/SimilarMediaView.vala:52
 msgid "Similar Media"
+msgstr ""
+
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:30
+msgid "Give Noise Permission"
+msgstr ""
+
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:31
+msgid "Unsuccessful. Click To Try Again."
+msgstr ""
+
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
+msgid "Scrobbling already Enabled"
+msgstr ""
+
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:33
+msgid "Success!"
+msgstr ""
+
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:34
+msgid "Complete login"
+msgstr ""
+
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:39
+msgid "Last.fm"
+msgstr ""
+
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:53
+msgid "Click to redo the Last.fm Login Process"
+msgstr ""
+
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:56
+msgid ""
+"To allow for Last.fm integration, you must give permission to Noise. You "
+"only need to do this once."
+msgstr ""
+
+#: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:67
+msgid "Last.fm Integration"
 msgstr ""
 
 #: /home/victored/noise/po/../plugins//LastFM/SimilarViewWrapper.vala:72
