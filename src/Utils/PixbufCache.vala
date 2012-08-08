@@ -45,20 +45,23 @@
  * unnecessary disk access when possible.
  *
  * Other notes:
- * ## This class is *not* thread safe.
+ * ## This class offers basic thread safety. It should be okay to call any of the
+ *    public API methods from different threads.
  * ## This class should be kept as generic as possible. It currently does not
  *    depend on Noise's internal API (except for PixbufUtils). It should be easy
  *    to port it to another application.
  */
 public class Noise.PixbufCache {
 
+    public Gee.Map<string, Gdk.Pixbuf> images {
+        owned get { return pixbuf_map.read_only_view; }
+    }
+
     private string image_format = "jpeg";
     protected Gee.HashMap<string, Gdk.Pixbuf> pixbuf_map;
     protected File image_dir { get; private set; }
 
-    public Gee.Map<string, Gdk.Pixbuf> images {
-        owned get { return pixbuf_map.read_only_view; }
-    }
+    private Mutex mutex;
 
 
     /**
@@ -100,8 +103,8 @@ public class Noise.PixbufCache {
      *
      * You can also override this method to prevent the storage of certain images in
      * the cache. To do so it just needs to return null. In such case, the call
-     * to set_image() will have no effect, since null pixbufs are not added to the table,
-     * nor saved to disk.
+     * to set_image() will have no effect, since null pixbufs are not added to the
+     * internal table, nor saved to disk.
      */
     public virtual Gdk.Pixbuf? filter_func (string key, Gdk.Pixbuf pix,
                                                      out bool apply_to_file) {
@@ -121,24 +124,30 @@ public class Noise.PixbufCache {
     /**
      * Returns the location of an image on disk. This call does no blocking I/O.
      * Use it to consistently read/write cached image files.
+     *
+     * This method computes a path based on the passed key, and thus it doesn't
+     * know whether the returned path exists or not.
      */
     public string get_cached_image_path (string key) {
-        string checksum = Checksum.compute_for_string (ChecksumType.MD5, key);
-        string filename = @"$checksum.$image_format";
+        string filename = Checksum.compute_for_string (ChecksumType.MD5, key + image_format);
         return image_dir.get_child (filename).get_path ();
     }
 
 
     /**
-     * Removes the image corresponding to key from the table. It also deletes
+     * Removes the image corresponding to the key from the table. It also deletes
      * the associated file from the cache directory.
      */
     public Gdk.Pixbuf? decache_image (string key) {
+        mutex.lock ();
+
         Gdk.Pixbuf? val;
         pixbuf_map.unset (key, out val);
 
         // Delete image...
         delete_file (get_cached_image_path (key));
+
+        mutex.unlock ();
 
         return val;
     }
@@ -160,12 +169,14 @@ public class Noise.PixbufCache {
         if (modified_pix == null)
             return;
 
+        mutex.lock ();
         pixbuf_map.set (key, modified_pix);
 
-        // Save image on disk
+        // Save image to disk
         var to_save = apply_to_disk ? modified_pix : image;
 
         save_pixbuf_to_file (key, to_save);
+        mutex.unlock ();
     }
 
 

@@ -99,12 +99,10 @@ namespace Noise.PixbufUtils {
     }
 
     public Gdk.Pixbuf? get_pixbuf_from_uri_at_scale (string uri, int width,
-        int height, bool preserve_aspect_ratio, Cancellable? c) throws Error {
-
+                                                     int height, bool preserve_aspect_ratio,
+                                                     Cancellable? c) throws Error {
         var file = File.new_for_uri (uri);
-
         Gdk.Pixbuf? image = null;
-
         var filestream = file.read (c);
 
         if (filestream != null);
