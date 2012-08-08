@@ -32,10 +32,10 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
     /**
      * A section in the preferences dialog. Each section has a page in the window's
-     * static notebook containing @container. SubSections can be added to the page through
+     * notebook containing @container. SubSections can be added to the page through
      * the add_subsection() method.
      *
-     * When the preferences' window "Save" button is clicked, save_changes() is called for
+     * When the preferences' window save button is clicked, save_changes() is called for
      * every section.
      */
     public class Section {
@@ -53,7 +53,6 @@ public class Noise.PreferencesWindow : Gtk.Window {
             container.row_homogeneous = false;
             container.hexpand = true;
         }
-
 
         /**
          * Appends a subsection. Its main purpose is to allow easier addition of
@@ -110,6 +109,9 @@ public class Noise.PreferencesWindow : Gtk.Window {
         general_section.changed.connect ( (folder) => changed (folder) );
 
         Noise.App.plugins.hook_preferences_window (this);
+
+        // TODO: this should be called by the window's creator
+        show_all ();
     }
 
 
@@ -166,8 +168,6 @@ public class Noise.PreferencesWindow : Gtk.Window {
         size_wrapper.set_widget (main_grid);
 
         add (size_wrapper);
-
-        show_all ();
     }
 
 
