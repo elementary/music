@@ -28,7 +28,7 @@
 
 public class Noise.PreferencesWindow : Gtk.Window {
 
-    public const int WINDOW_WIDTH = 500;
+    public const int WINDOW_WIDTH = 420;
 
     /**
      * A section in the preferences dialog. Each section has a page in the window's
@@ -56,9 +56,10 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
 
         /**
-         * Appends a subsection. Its main purpose is to allow easier addition of subsections
-         * to a normal Section. This allows to maintain a consistent look through all the
-         * different preferences sections (even those added by plugins, etc.)
+         * Appends a subsection. Its main purpose is to allow easier addition of
+         * subsections to a normal Section. This makes it easy to maintain a
+         * consistent look through all the different preferences sections
+         * (even those added by plugins, etc.)
          */
         public void add_subsection (string title, Gtk.Container contents) {
             var subsection_title_label = new Gtk.Label (null);
@@ -78,9 +79,9 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
         /**
          * Not abstract since some sections may save their preferences in real time.
-         * Return false to prevent the dialog from being closed.
+         * Return false to prevent the window from being closed.
          *
-         * @return whether the dialog can be closed or not.
+         * @return whether the preferences window can be closed
          */
         public virtual bool save_changes () {
             return true;
@@ -98,7 +99,7 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
 
     // TODO: don't receive the library manager parameter. Each library manager should register
-    //       its own section and pass the parameters directly to that section. 
+    //       its own section and pass the parameters directly to that section.
     public PreferencesWindow (LibraryManager lm, LibraryWindow lw) {
         build_ui (lw);
 
@@ -108,12 +109,12 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
         general_section.changed.connect ( (folder) => changed (folder) );
 
-        Noise.plugins.hook_preferences_window (this);
+        Noise.App.plugins.hook_preferences_window (this);
     }
 
 
     public int add_section (Section section) {
-        return_val_if_fail (section.container != null, 0);
+        return_val_if_fail (section.container != null, -1);
 
         // Pack the section
         // TODO: file a bug against granite's static notebook: append_page()
@@ -132,6 +133,7 @@ public class Noise.PreferencesWindow : Gtk.Window {
         main_static_notebook.remove_page (index);
         sections.unset (index);
     }
+
 
     private void build_ui (Gtk.Window parent_window) {
         set_size_request (WINDOW_WIDTH, -1);
@@ -156,8 +158,8 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
         var main_grid = new Gtk.Grid ();
         main_grid.margin = 12;
-        main_grid.attach (main_static_notebook, 0, 0, 3, 1);
-        main_grid.attach (save_button, 2, 1, 1, 1);
+        main_grid.attach (main_static_notebook, 0, 0, 1, 1);
+        main_grid.attach (save_button, 0, 1, 1, 1);
 
         // Use a fixedbin widget so that we're always in control of the window size
         var size_wrapper = new FixedBin (WINDOW_WIDTH, -1, WINDOW_WIDTH, -1);
@@ -167,6 +169,7 @@ public class Noise.PreferencesWindow : Gtk.Window {
 
         show_all ();
     }
+
 
     private void on_save_button_clicked () {
         foreach (var section in sections.values) {
@@ -178,29 +181,34 @@ public class Noise.PreferencesWindow : Gtk.Window {
     }
 }
 
+
 /**
  * General preferences section
  */
 private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section {
     public signal void changed (string folder);
- 
+
     private LibraryWindow lw;
     private LibraryManager lm;
 
     private Gtk.CheckButton organize_folders_toggle;
     private Gtk.CheckButton write_file_metadata_toggle;
     private Gtk.CheckButton copy_imported_music_toggle;
+
+    private Gtk.CheckButton is_default_application_toggle;
+
     private Gtk.FileChooserButton library_filechooser;
 
 
     public GeneralSection (LibraryManager lm, LibraryWindow lw) {
-        base (_("Library"));
+        base (_("General"));
 
         this.lm = lm;
         this.lw = lw;
 
         add_library_folder_section ();
         add_library_management_section ();
+        add_default_application_section ();
     }
 
 
@@ -230,19 +238,10 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
 
 
     private void add_library_management_section () {
-        // Library management section
-        var organize_folders_label = new Gtk.Label (_("Keep Music folder organized"));
-        organize_folders_label.set_alignment (0.0f, 0.5f);
-        organize_folders_toggle = new Gtk.CheckButton ();
-
+        organize_folders_toggle = new Gtk.CheckButton.with_label (_("Keep Music folder organized"));
+        copy_imported_music_toggle = new Gtk.CheckButton.with_label (_("Copy files to Music folder when adding to Library"));
         // TODO: DEPRECATE
-        var write_file_metadata_label = new Gtk.Label (_("Write metadata to file"));
-        write_file_metadata_label.set_alignment (0.0f, 0.5f);
-        write_file_metadata_toggle = new Gtk.CheckButton ();
-
-        var copy_imported_music_label = new Gtk.Label (_("Copy files to Music folder when adding to Library"));
-        copy_imported_music_label.set_alignment (0.0f, 0.5f);
-        copy_imported_music_toggle = new Gtk.CheckButton ();
+        write_file_metadata_toggle = new Gtk.CheckButton.with_label (_("Write metadata to file"));
 
         // initialize library management settings
         organize_folders_toggle.set_active(lw.main_settings.update_folder_hierarchy);
@@ -257,16 +256,19 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
         contents_grid.attach (copy_imported_music_toggle, 0, 1, 1, 1);
         contents_grid.attach (write_file_metadata_toggle, 0, 2, 1, 1);
 
-        contents_grid.attach_next_to (organize_folders_label, organize_folders_toggle,
-                                      Gtk.PositionType.RIGHT, 1, 1);
-
-        contents_grid.attach_next_to (copy_imported_music_label, copy_imported_music_toggle,
-                                      Gtk.PositionType.RIGHT, 1, 1);
-
-        contents_grid.attach_next_to (write_file_metadata_label, write_file_metadata_toggle,
-                                      Gtk.PositionType.RIGHT, 1, 1);
-
         add_subsection (_("Library Management"), contents_grid);
+    }
+
+
+    private void add_default_application_section () {
+        var contents_grid = new Gtk.Grid ();
+
+        is_default_application_toggle = new Gtk.CheckButton.with_label (_("Use Noise as the default Music application"));
+        is_default_application_toggle.set_active (Noise.App.instance.is_default_application);
+
+        contents_grid.add (is_default_application_toggle);
+
+        add_subsection (_("System Integration"), contents_grid);
     }
 
 
@@ -280,6 +282,8 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
         lw.main_settings.update_folder_hierarchy = organize_folders_toggle.get_active();
         lw.main_settings.write_metadata_to_file = write_file_metadata_toggle.get_active();
         lw.main_settings.copy_imported_music = copy_imported_music_toggle.get_active();
+
+        Noise.App.instance.is_default_application = is_default_application_toggle.get_active ();
 
         return true;
     }
