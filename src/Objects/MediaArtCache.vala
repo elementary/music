@@ -70,7 +70,7 @@ public abstract class Noise.MediaArtCache {
      * transforming a pixbuf before storing it. The changes are applied to the cache
      * file when apply_to_file is true.
      */
-    public abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file);
+    internal abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file);
 
 
     /**
@@ -153,6 +153,9 @@ public class Noise.CoverartCache : MediaArtCache {
         }
     }
 
+    private Mutex mutex;
+
+
     public CoverartCache () {
         base ("album-art");
 
@@ -162,7 +165,7 @@ public class Noise.CoverartCache : MediaArtCache {
 
 
     // add a shadow to every image
-    public override Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file) {
+    internal override Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file) {
         apply_to_file = false;
         return PixbufUtils.get_pixbuf_shadow (pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
     }
@@ -188,11 +191,11 @@ public class Noise.CoverartCache : MediaArtCache {
     public void fetch_all_cover_art (Gee.Collection<Media> media) {
         fetch_folder_images (media);
         load_for_media (media);
-
     }
 
 
     public void load_for_media (Gee.Collection<Media> media) {
+        mutex.lock ();
         debug ("READING CACHED COVERART");
 
         var used_keys_set = new Gee.HashSet<string> ();
@@ -211,6 +214,7 @@ public class Noise.CoverartCache : MediaArtCache {
         }
 
         debug ("FINISHED LOADING CACHED COVERART");
+        mutex.unlock ();
     }
 
 
@@ -219,6 +223,8 @@ public class Noise.CoverartCache : MediaArtCache {
      * that follow certain name patterns, like "album.png", "folder.jpg", etc.
      */
     public void fetch_folder_images (Gee.Collection<Media> media) {
+        mutex.lock ();
+
         foreach (var m in media) {
             if (!has_image (m)) {
                 var art_file = lookup_folder_image_file (m);
@@ -226,12 +232,14 @@ public class Noise.CoverartCache : MediaArtCache {
                     cache_image_from_uri (m, art_file.get_uri ());
             }
         }
+
+        mutex.unlock ();
     }
 
 
     // Awesome method taken from BeatBox's FileOperator.vala
     // (adapted to use Noise's internal API)
-    private File? lookup_folder_image_file (Media m) {
+    private static File? lookup_folder_image_file (Media m) {
         File? rv = null, media_file = m.file;
 
         if (!media_file.query_exists ())
