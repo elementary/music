@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-26 20:57-0600\n"
-"PO-Revision-Date: 2012-08-03 22:58+0000\n"
-"Last-Translator: bmoez <Unknown>\n"
+"PO-Revision-Date: 2012-08-08 15:56+0000\n"
+"Last-Translator: André Fernandes <mkody@mail.com>\n"
 "Language-Team: Fr <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-08-04 05:44+0000\n"
-"X-Generator: Launchpad (build 15742)\n"
+"X-Launchpad-Export-Date: 2012-08-09 05:27+0000\n"
+"X-Generator: Launchpad (build 15761)\n"
 "Language: \n"
 
 #: /home/victor/noise/po/../src//Views/Wrappers/ViewWrapper.vala:375
@@ -1611,17 +1611,17 @@ msgstr ""
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:528
 #, c-format
 msgid "Syncing <b>%s</b>..."
-msgstr ""
+msgstr "Synchronisation de <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:683
 #, c-format
 msgid "Removing from <b>%s</b>..."
-msgstr ""
+msgstr "Effacement de <b>%s</b>..."
 
 #: /home/victor/noise/po/../plugins//Devices/iPod/iPodDevice.vala:914
 #, c-format
 msgid "Importing <b>%s</b> to library..."
-msgstr ""
+msgstr "Importation de <b>%s</b> à la bibliothèque..."
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:37
 msgid "Enable Scrobbling"
@@ -1656,6 +1656,8 @@ msgid ""
 "LastFM allow you to access to more informations about the music that are on "
 "your library"
 msgstr ""
+"LastFM vous permet d'accéder à plus d'informations sur la musique qui est "
+"dans ​​votre bibliothèque"
 
 #: /home/victor/noise/po/../plugins//LastFM/LastFM.vala:86
 msgid "Last.fm"
@@ -1718,11 +1720,11 @@ msgstr ""
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:84
 #, c-format
 msgid "Podcast RSS Source"
-msgstr ""
+msgstr "Source RSS du Podcast"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:77
 msgid "Podcast Source..."
-msgstr ""
+msgstr "Source du Podcast..."
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:80
 msgid "Add"
@@ -1730,25 +1732,27 @@ msgstr "Ajouter"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid "No Podcasts Found"
-msgstr ""
+msgstr "Aucun podcast trouvé"
 
 #: /home/victor/noise/po/../plugins//podcasts/src/AddPodcastWindow.vala:145
 msgid ""
 "The provided source is invalid. Make sure you are entering an RSS feed in "
 "XML format."
 msgstr ""
+"La source indiquée est invalide. Assurez-vous d'entrer un flux RSS au format "
+"XML."
 
 #: /home/victor/noise/po/../plugins//internet-radio/RadioListView.vala:76
 msgid "Remove Station"
-msgstr ""
+msgstr "Supprimer la Station"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:68
 msgid "Previous"
-msgstr ""
+msgstr "Précédent"
 
 #: /home/victor/noise/po/../plugins//internet-radio/StationEditor.vala:69
 msgid "Next"
-msgstr ""
+msgstr "Suivant"
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Importer des chansons depuis un CD audio"
