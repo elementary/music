@@ -186,15 +186,15 @@ public class Noise.PixbufCache {
 
     /**
      * This method does the same as cache_image(), with the only difference that it
-     * first fetches the image from the given URI.
+     * first fetches the image from the given file.
      */
-    public void cache_image_from_uri (string key, string image_uri, Cancellable? c = null) {
+    public void cache_image_from_file (string key, File image_file, Cancellable? c = null) {
         try {
-            var image = PixbufUtils.get_pixbuf_from_uri (image_uri, c);
+            var image = PixbufUtils.get_pixbuf_from_file (image_file, c);
             if (image != null)
                 cache_image (key, image);
         } catch (Error err) {
-            warning ("Could not cache image from URI [%s]: %s", image_uri, err.message);
+            warning ("Could not cache image from URI [%s]: %s", image_file.get_uri (), err.message);
         }
     }
 
@@ -212,7 +212,7 @@ public class Noise.PixbufCache {
     public Gdk.Pixbuf? get_image (string key, bool lookup_file = true) {
         if (lookup_file && !pixbuf_map.has_key (key)) {
             var image_file = File.new_for_path (get_cached_image_path (key));
-            cache_image_from_uri (key, image_file.get_uri ());
+            cache_image_from_file (key, image_file);
         }
 
         return pixbuf_map.get (key);

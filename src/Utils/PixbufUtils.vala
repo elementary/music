@@ -94,14 +94,13 @@ namespace Noise.PixbufUtils {
         return buffer_surface.load_to_pixbuf();
     }
 
-    public Gdk.Pixbuf? get_pixbuf_from_uri (string uri, Cancellable? c) throws Error {
-        return get_pixbuf_from_uri_at_scale (uri, -1, -1, false, c);
+    public Gdk.Pixbuf? get_pixbuf_from_file (File file, Cancellable? c) throws Error {
+        return get_pixbuf_from_file_at_scale (file, -1, -1, false, c);
     }
 
-    public Gdk.Pixbuf? get_pixbuf_from_uri_at_scale (string uri, int width,
-                                                     int height, bool preserve_aspect_ratio,
-                                                     Cancellable? c) throws Error {
-        var file = File.new_for_uri (uri);
+    public Gdk.Pixbuf? get_pixbuf_from_file_at_scale (File file, int width, int height,
+                                                      bool preserve_aspect_ratio,
+                                                      Cancellable? c) throws Error {
         Gdk.Pixbuf? image = null;
         var filestream = file.read (c);
 

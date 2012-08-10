@@ -72,7 +72,6 @@ public abstract class Noise.MediaArtCache {
 
     /**
      * Returns the location of the image on disk. This call does no blocking I/O.
-     * Use it to consistently read/write cached image files.
      */
     protected string get_cached_image_path (string key) {
         return pixbuf_cache.get_cached_image_path (key);
@@ -103,10 +102,10 @@ public abstract class Noise.MediaArtCache {
 
     /**
      * This method does the same as cache_image(), with the only difference that it
-     * first fetches the image from the given URI.
+     * first fetches the image from the given file.
      */
-    public void cache_image_from_uri (Media m, string image_uri, Cancellable? c = null) {
-        pixbuf_cache.cache_image_from_uri (get_key (m), image_uri, c);
+    public void cache_image_from_file (Media m, File image_file, Cancellable? c = null) {
+        pixbuf_cache.cache_image_from_file (get_key (m), image_file, c);
     }
 
 
@@ -257,7 +256,7 @@ public class Noise.CoverartCache : MediaArtCache {
             if (!has_image (m)) {
                 var art_file = lookup_folder_image_file (m);
                 if (art_file != null)
-                    cache_image_from_uri (m, art_file.get_uri ());
+                    cache_image_from_file (m, art_file);
             }
         }
 
