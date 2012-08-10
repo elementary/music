@@ -76,13 +76,13 @@ public class Noise.App : Granite.Application {
 
             foreach (string content_type in CONTENT_TYPES) {
                 try {
-                if (value)
-                    info.set_as_default_for_type (content_type);
-                else
-                    info.reset_type_associations (content_type);
+                    if (value)
+                        info.set_as_default_for_type (content_type);
+                    else
+                        info.reset_type_associations (content_type);
                 } catch (Error err) {
                     warning ("Cannot set Noise as default audio player for %s: %s",
-                        content_type, err.message);
+                             content_type, err.message);
                 }
             }
         }

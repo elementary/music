@@ -26,13 +26,10 @@ using Gee;
 
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
-    /* signals */
     public signal void playPauseChanged ();
 
-    /* Application */
     public Noise.App app { get { return (application as Noise.App); } }
 
-    /* Library Manager */
     public Noise.LibraryManager library_manager { get; private set; }
 
     public Noise.Settings.Main       main_settings         { get; private set; }
@@ -71,7 +68,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Granite.Widgets.ModeButton viewSelector          { get; private set; } // TODO: make private
     public Granite.Widgets.SearchBar  searchField           { get; private set; } // TODO: make private
     public BottomStatusBar            statusbar             { get; private set; } // TODO: make private
-    private Granite.Widgets.Welcome   welcome_screen        { get; private set; } // TODO: make private
 
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
@@ -193,13 +189,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         this.set_title (this.app.get_name ());
-        this.set_icon (Icons.NOISE.render (IconSize.MENU, null));
+        this.set_icon (Icons.NOISE.render (null, null, 48));
 
         // set up drag dest stuff
+        /*
         Gtk.drag_dest_set (this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
         Gtk.drag_dest_add_uri_targets (this);
         this.drag_data_received.connect (dragReceived);
         this.destroy.connect (on_quit);
+        */
 
         this.show ();
         debug ("done with main window");
@@ -248,7 +246,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplayBin.set_widget (topDisplay, true, false);
 
         // Set search timeout in ms
-        searchField.pause_delay = 150;
+        searchField.pause_delay = 90;
 
         var column_toggle_item = new Gtk.ToolItem ();
         var top_display_item   = new Gtk.ToolItem ();
