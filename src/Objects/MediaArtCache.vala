@@ -29,7 +29,7 @@
  */
 
 /**
- * A place to store cached media-art pixbufs
+ * Base class for storing cached media-art pixbufs
  *
  * Media art images are permanently stored at ${XDG_CACHE_HOME}/noise/...
  */
@@ -129,6 +129,9 @@ public abstract class Noise.MediaArtCache {
 }
 
 
+/**
+ * Stores and fetches album-art images
+ */
 public class Noise.CoverartCache : MediaArtCache {
 
     public Gdk.Pixbuf DEFAULT_IMAGE;
@@ -177,9 +180,27 @@ public class Noise.CoverartCache : MediaArtCache {
     }
 
 
-    public void fetch_all_cover_art (Gee.Collection<Media> media) {
-        fetch_folder_images (media);
-        load_for_media (media);
+    public async void fetch_all_cover_art_async (Gee.Collection<Media> media) {
+        yield fetch_folder_images_async (media);
+        yield load_for_media_async (media);
+    }
+
+
+    public async void load_for_media_async (Gee.Collection<Media> media) {
+        SourceFunc callback = load_for_media_async.callback;
+
+        try {
+            new Thread<void*>.try (null, () => {
+                load_for_media (media);
+
+                Idle.add ((owned)callback);
+                return null;
+            });
+        } catch (Error err) {
+            warning ("Could not create thread to fetch all cover art: %s", err.message);
+        }
+
+        yield;
     }
 
 
@@ -204,6 +225,24 @@ public class Noise.CoverartCache : MediaArtCache {
 
         debug ("FINISHED LOADING CACHED COVERART");
         mutex.unlock ();
+    }
+
+
+    public async void fetch_folder_images_async (Gee.Collection<Media> media) {
+        SourceFunc callback = fetch_folder_images_async.callback;
+
+        try {
+            new Thread<void*>.try (null, () => {
+                fetch_folder_images (media);
+
+                Idle.add ((owned)callback);
+                return null;
+            });
+        } catch (Error err) {
+            warning ("Could not create thread to fetch all cover art: %s", err.message);
+        }
+
+        yield;
     }
 
 

@@ -263,7 +263,7 @@ public class Noise.LibraryManager : GLib.Object {
 		});
 
 
-		CoverartCache.instance.load_for_media (media ());
+		CoverartCache.instance.load_for_media_async (media ());
 	}
 
 	/************ Library/Collection management stuff ************/
@@ -438,7 +438,7 @@ public class Noise.LibraryManager : GLib.Object {
 					}
 		
 					// after we're done with that, rescan album arts
-                    CoverartCache.instance.fetch_all_cover_art (media ());
+                    CoverartCache.instance.fetch_all_cover_art_async (media ());
 
 					return false; 
 				});
@@ -1673,7 +1673,7 @@ public class Noise.LibraryManager : GLib.Object {
 		_doing_file_operations = false;
 		debug("file operations finished or cancelled\n");
 
-		CoverartCache.instance.fetch_all_cover_art (media ());
+		CoverartCache.instance.fetch_all_cover_art_async (media ());
 
 		// FIXME: THESE ARE Library Window's internals!
 		lw.update_sensitivities();
