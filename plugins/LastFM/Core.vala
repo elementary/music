@@ -407,7 +407,7 @@ namespace LastFM {
                     message ("Caching last.fm image from URL: %s", album.url_image.url);
 
                     fetch_info_guard.lock ();
-                    coverart_cache.cache_image_from_uri (current_media, album.url_image.url);
+                    coverart_cache.cache_image_from_file (current_media, File.new_for_uri (album.url_image.url));
                     fetch_info_guard.unlock ();
                 }
 

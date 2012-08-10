@@ -25,6 +25,8 @@
 
 using Cairo;
 
+// TODO: Use Noise's pixbuf API (PixbufUtils + MediaArtCache)
+
 public class LastFM.Image : Object {
 	private string _url { get; set; default=""; }
 	private Gdk.Pixbuf _image { get; set; default=null; }
