@@ -196,8 +196,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         Gtk.drag_dest_set (this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
         Gtk.drag_dest_add_uri_targets (this);
         this.drag_data_received.connect (dragReceived);
-        this.destroy.connect (on_quit);
         */
+        this.destroy.connect (on_quit);
 
         this.show ();
         debug ("done with main window");
@@ -232,7 +232,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
         column_browser_toggle   = new Gtk.ToggleButton ();
         topDisplay              = new TopDisplay (library_manager);
-        topDisplayBin           = new FixedBin(300, -1, 700, -1);
+        topDisplayBin           = new FixedBin (-1, -1, 800, -1);
         viewSelector            = new Granite.Widgets.ModeButton ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
@@ -723,7 +723,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         //reset the media position
         topDisplay.set_scale_sensitivity(true);
-        topDisplay.set_scale_range(0.0, library_manager.media_info.media.length);
+        topDisplay.set_media (library_manager.media_info.media);
 
         /*if(m.mediatype == 1 || m.mediatype == 2) {
             /*message("setting position to resume_pos which is %d\n", library_manager.media_from_id(i).resume_pos );
@@ -1157,9 +1157,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private void on_quit () {
         // Save media position and info
         main_settings.last_media_position = (int)((double)library_manager.player.getPosition
-        ()/1000000000);
+        ()/Numeric.NANO_INV);
         if(library_manager.media_active) {
-            library_manager.media_info.media.resume_pos = (int)((double)library_manager.player.getPosition()/1000000000);
+            library_manager.media_info.media.resume_pos = (int)((double)library_manager.player.getPosition()/Numeric.NANO_INV);
             library_manager.update_media_item (library_manager.media_info.media, false, false);
         }
         library_manager.player.pause();

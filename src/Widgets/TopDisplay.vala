@@ -24,13 +24,13 @@ using Gtk;
 
 public class Noise.TopDisplay : Box {
 	Noise.LibraryManager lm;
-	Label label;
-	HBox scaleBox;
-	Label leftTime;
-	Label rightTime;
-	HScale scale;
-	ProgressBar progressbar;
-	Button cancelButton;
+	Gtk.Label label;
+	Gtk.Box scaleBox;
+	Gtk.Label leftTime;
+	Gtk.Label rightTime;
+	Gtk.Scale scale;
+	Gtk.ProgressBar progressbar;
+	Gtk.Button cancelButton;
 
     private bool is_seeking = false;
 	
@@ -42,13 +42,13 @@ public class Noise.TopDisplay : Box {
         this.orientation = Orientation.HORIZONTAL;
 
 		label = new Label("");
-		scale = new HScale.with_range(0, 1, 1);
+		scale = new Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 1);
 		leftTime = new Label("0:00");
 		rightTime = new Label("0:00");
 		progressbar = new ProgressBar();
 		cancelButton = new Button();
 		
-		scaleBox = new HBox(false, 0);
+		scaleBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
 		leftTime.margin_right = rightTime.margin_left = 3;
 
@@ -56,7 +56,7 @@ public class Noise.TopDisplay : Box {
 		scaleBox.pack_start(scale, true, true, 0);
 		scaleBox.pack_start(rightTime, false, false, 0);
 		
-		scale.set_draw_value(false);
+		scale.set_draw_value (false);
 		
 		label.set_justify(Justification.CENTER);
 		label.set_single_line_mode(false);
@@ -69,7 +69,7 @@ public class Noise.TopDisplay : Box {
 		cancelButton.set_tooltip_text (_("Cancel"));
 
 		// all but cancel
-		VBox info = new VBox(false, 0);
+		var info = new Box(Gtk.Orientation.VERTICAL, 0);
 		info.pack_start(label, false, true, 0);
 		info.pack_start(progressbar, false, true, 0);
 		info.pack_start(scaleBox, false, true, 0);
@@ -144,60 +144,52 @@ public class Noise.TopDisplay : Box {
 	}
     
 	public virtual bool scale_button_press(Gdk.EventButton event) {
-		//calculate percentage to go to based on location
-		Gtk.Allocation extents;
-		int point_x = 0;
-		int point_y = 0;
-		
-		scale.get_pointer(out point_x, out point_y);
-		scale.get_allocation(out extents);
-		
-		// get seconds of media
-		double mediatime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
-
         this.lm.player.current_position_update.disconnect(player_position_update);
         is_seeking = true;
-		change_value(ScrollType.NONE, mediatime);
+		change_value (ScrollType.NONE, get_current_time ());
 		
 		return false;
 	}
 	
 	public virtual bool scale_button_release(Gdk.EventButton event) {
-		Gtk.Allocation extents;
-		int point_x = 0;
-		int point_y = 0;
-		
-		scale.get_pointer(out point_x, out point_y);
-		scale.get_allocation(out extents);
-		
-		// get seconds of media
-		double mediatime = (double)((double)point_x/(double)extents.width) * scale.get_adjustment().upper;
-        
-
         is_seeking = false;
-		change_value(ScrollType.NONE, mediatime);
+
+		change_value (ScrollType.NONE, get_current_time ());
 		
 		return false;
 	}
+
+    public double get_current_time () {
+		Gtk.Allocation extents;
+		int point_x = 0;
+		int point_y = 0;
+
+		scale.get_pointer (out point_x, out point_y);
+		scale.get_allocation (out extents);
+
+		// get miliseconds of media
+		// calculate percentage to go to based on location
+		return (double)point_x / (double)extents.width * scale.get_adjustment().upper;
+    }
 	
 	public virtual void value_changed() {
 		if(!scale.visible)
 			return;
 
-		double val = (int)scale.get_value();
-        if (val < 0)
-            val = 0;            
+		double val = scale.get_value ();
+        if (val < 0.0)
+            val = 0.0;
 
 		//make pretty current time
 		uint elapsed_secs = (uint)val;
-		leftTime.set_text (TimeUtils.pretty_length (elapsed_secs));
+		leftTime.set_text (TimeUtils.pretty_length_from_ms (elapsed_secs));
 
-        uint media_duration_secs = (uint)(lm.media_info.media.length / Numeric.MILI_INV);
+        uint media_duration_secs = (uint)lm.media_info.media.length;
 
 		//make pretty remaining time
-		rightTime.set_text (TimeUtils.pretty_length (media_duration_secs - elapsed_secs));
+		rightTime.set_text (TimeUtils.pretty_length_from_ms (media_duration_secs - elapsed_secs));
 	}
-		
+
 	public virtual bool change_value(ScrollType scroll, double val) {
         this.lm.player.current_position_update.disconnect(player_position_update);
 		scale.set_value(val);
@@ -205,7 +197,7 @@ public class Noise.TopDisplay : Box {
 
         if( !is_seeking )
         {
-            lm.player.setPosition((int64)(val * Numeric.NANO_INV));
+            lm.player.setPosition((int64)(val / Numeric.MILI_INV * Numeric.NANO_INV));
             this.lm.player.current_position_update.connect(player_position_update);
         }
 		
@@ -249,7 +241,9 @@ public class Noise.TopDisplay : Box {
 	public virtual void player_position_update(int64 position) {
 		if(lm.media_info.media != null) {
     	    double sec = 0.0;
-			sec = ((double)(position / Numeric.NANO_INV));
+
+            // convert nanoseconds ot miliseconds
+			sec = (double)position / (double)Numeric.NANO_INV * (double)Numeric.MILI_INV;
 			set_scale_value(sec);
 		}
 	}
@@ -257,7 +251,11 @@ public class Noise.TopDisplay : Box {
 	public void cancel_clicked() {
 		lm.cancel_operations();
 	}
-	
+
+    public void set_media (Media current_media) {
+        set_scale_range (0.0, (double)(current_media.length));
+    }
+
 	void media_updated (Gee.Collection<int> ids) {
 		if (lm.media_info == null)
 			return;
@@ -270,7 +268,7 @@ public class Noise.TopDisplay : Box {
 		// update current media
 		foreach (var id in ids) {
 			if (id == current_media.rowid)
-				set_scale_range (0.0, (double)(current_media.length / Numeric.MILI_INV));
+				set_media (current_media);
 		}
 	}
 }
