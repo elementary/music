@@ -32,9 +32,7 @@ public class Noise.LyricFetcher : GLib.Object {
 	private string title;
 	
 	public signal void lyrics_fetched (Lyrics _lyrics);
-	
-	public LyricFetcher() {
-	}
+
 	
 	public void fetch_lyrics(string artist, string album_artist, string title) {
 		this.artist = artist;
@@ -50,7 +48,7 @@ public class Noise.LyricFetcher : GLib.Object {
 	}
 	
 	public void* fetch_lyrics_thread () {
-		Lyrics lyrics = new Lyrics ();
+		Lyrics lyrics = Lyrics ();
 
 		try {
 			var source = new AZLyricsFetcher ();
@@ -72,17 +70,10 @@ public class Noise.LyricFetcher : GLib.Object {
 
 }
 
-public class Lyrics : Object {
-
+public struct Lyrics {
 	public string title;
 	public string artist;
 	public string content;
-
-	public Lyrics () {
-		title = "";
-		artist = "";
-		content = "";
-	}
 }
 
 /** LYRIC SOURCES **/
@@ -92,7 +83,7 @@ private class AZLyricsFetcher : Object {
 	private const string URL_FORMAT = "http://www.azlyrics.com/lyrics/%s/%s.html";
 
 	public Lyrics fetch_lyrics (string title, string album_artist, string artist) throws FetchingError {
-		Lyrics rv = new Lyrics ();
+		Lyrics rv = Lyrics ();
 		rv.title = title;
 
 		var url = parse_url (artist, title);
@@ -128,7 +119,7 @@ private class AZLyricsFetcher : Object {
 		}
 		
 		if (load_successful)
-			rv.content = "\n" + rv.title + "\n" + rv.artist + "\n\n\n" + parse_lyrics (uintcontent) + "\n";
+			rv.content = parse_lyrics (uintcontent);
 		else
 			throw new FetchingError.LYRICS_NOT_FOUND (@"Lyrics not found for $title");		
 
@@ -138,7 +129,7 @@ private class AZLyricsFetcher : Object {
 	private string parse_url (string artist, string title) {
 		return URL_FORMAT.printf (fix_string (artist), fix_string (title));
 	}
-	
+
 	private string fix_string (string? str) {
 		if (str == null)
 			return "";
