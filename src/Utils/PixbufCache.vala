@@ -38,7 +38,8 @@
  *
  * When saving changes to the cache directory, a MD5-based name is used, which
  * is in turn computed from the image's key. This often works better than escaping
- * (and later unescaping) paths.
+ * (and later unescaping) paths, and lets us have tighter control over the image
+ * format used, since it's encoded along with the image name.
  *
  * Keep in mind that both cache_image_*() and decache_image() do blocking I/O,
  * and therefore it's recommended to make extensive use of has_image() to avoid
@@ -66,7 +67,7 @@ public class Noise.PixbufCache {
 
     /**
      * Creates a new {@link Noise.PixbufCache} object.
-     * It also creates the cache directory if it doesn't exist.
+     * It also creates the cache directory if it doesn't exist (i.e. expect blocking I/O).
      *
      * @param image_dir a {@link GLib.File} representing the cache directory.
      * @param image_format a string specifying the image format, or null to use
@@ -94,23 +95,20 @@ public class Noise.PixbufCache {
     /**
      * This method is called right before storing a pixbuf in the in-memory
      * table and/or saving it to a file. Its purpose is to allow client code to
-     * override it, and make modifications to the passed image (e.g. adding a drop
-     * shadow, etc.)
+     * make modifications to the passed image (e.g. adding a drop shadow, etc.)
      * Changes are *not* reflected on disk, unless apply_to_file is true. Otherwise
      * the unmodified version (@param pix) is written to disk. This is useful when you
      * want to store a low-quality copy on primary memory while keeping the high-quality
      * version on disk.
      *
-     * You can also override this method to prevent the storage of certain images in
-     * the cache. To do so it just needs to return null. In such case, the call
-     * to cache_image() will have no effect, since null pixbufs are not added to the
-     * internal table, nor saved to disk.
+     * You can also use this method to prevent the storage of certain images in
+     * the cache. To do so it just needs to set the new pixbuf to null. In such case,
+     * the call to cache_image() will have no effect, since null pixbufs are not added
+     * to the internal table, nor saved to disk.
      */
-    public virtual Gdk.Pixbuf? filter_func (string key, Gdk.Pixbuf pix,
-                                                     out bool apply_to_file) {
-        apply_to_file = false;
-        return pix;
-    }
+    public delegate Gdk.Pixbuf? FilterFunction (string key, Gdk.Pixbuf orig_pixbuf,
+                                                out bool apply_to_file);
+    public unowned FilterFunction? filter_func;
 
 
     /**
@@ -163,11 +161,17 @@ public class Noise.PixbufCache {
      * since the old pixbuf and cached image are overwritten.
      */
     public void cache_image (string key, Gdk.Pixbuf image) {
-        bool apply_to_disk;
-        var modified_pix = filter_func (key, image, out apply_to_disk);
+        bool apply_to_disk = false;
+        Gdk.Pixbuf? modified_pix;
 
-        if (modified_pix == null)
-            return;
+        if (filter_func != null) {
+            modified_pix = filter_func (key, image, out apply_to_disk);
+
+            if (modified_pix == null)
+                return;
+        } else {
+            modified_pix = image;
+        }
 
         mutex.lock ();
         pixbuf_map.set (key, modified_pix);

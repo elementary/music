@@ -35,27 +35,16 @@
  */
 public abstract class Noise.MediaArtCache {
 
-    private class MediaPixbufCache : PixbufCache {
-        private MediaArtCache parent;
-
-        public MediaPixbufCache (MediaArtCache parent, File image_dir) {
-            base (image_dir);
-            this.parent = parent;
-        }
-
-        public override Gdk.Pixbuf? filter_func (string key, Gdk.Pixbuf pix,
-            out bool apply_to_file) {
-            return parent.filter_func (pix, out apply_to_file);
-        }
-    }
-
-
-    private MediaPixbufCache pixbuf_cache;
+    private PixbufCache pixbuf_cache;
 
 
     public MediaArtCache (string folder_name) {
         var image_dir = FileUtils.get_cache_directory ().get_child (folder_name);
-        pixbuf_cache = new MediaPixbufCache (this, image_dir);
+        pixbuf_cache = new PixbufCache (image_dir);
+
+        pixbuf_cache.filter_func = (key, orig_pix, apply_to_file) => {
+            return filter_func (orig_pix, out apply_to_file);
+        };
     }
 
 
@@ -70,7 +59,7 @@ public abstract class Noise.MediaArtCache {
      * transforming a pixbuf before storing it. The changes are applied to the cache
      * file when apply_to_file is true.
      */
-    internal abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file);
+    protected abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file);
 
 
     /**
@@ -165,7 +154,7 @@ public class Noise.CoverartCache : MediaArtCache {
 
 
     // add a shadow to every image
-    internal override Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file) {
+    protected override Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file) {
         apply_to_file = false;
         return PixbufUtils.get_pixbuf_shadow (pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
     }
