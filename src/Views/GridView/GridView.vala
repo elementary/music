@@ -57,6 +57,8 @@ public class Noise.GridView : ContentView, GridLayout {
 		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
 
 		build_ui ();
+
+        CoverartCache.instance.changed.connect (queue_draw);
 	}
 
 	public void build_ui () {

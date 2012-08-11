@@ -46,6 +46,7 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
         lm.media_updated.connect (on_media_updated);
         lm.media_played.connect (on_media_played);
+        CoverartCache.instance.changed.connect (on_media_updated);
     }
     
     public int add_view (Gtk.Widget view) {

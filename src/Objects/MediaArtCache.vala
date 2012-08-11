@@ -35,6 +35,8 @@
  */
 public abstract class Noise.MediaArtCache {
 
+    public signal void changed ();
+
     private PixbufCache pixbuf_cache;
 
 
@@ -97,6 +99,7 @@ public abstract class Noise.MediaArtCache {
      */
     public void cache_image (Media m, Gdk.Pixbuf image) {
         pixbuf_cache.cache_image (get_key (m), image);
+        queue_notify ();
     }
 
 
@@ -106,6 +109,7 @@ public abstract class Noise.MediaArtCache {
      */
     public void cache_image_from_file (Media m, File image_file, Cancellable? c = null) {
         pixbuf_cache.cache_image_from_file (get_key (m), image_file, c);
+        queue_notify ();
     }
 
 
@@ -114,7 +118,9 @@ public abstract class Noise.MediaArtCache {
      * the associated file from the cache directory.
      */
     public Gdk.Pixbuf? decache_image (Media m) {
-        return pixbuf_cache.decache_image (get_key (m));
+        var pix = pixbuf_cache.decache_image (get_key (m));
+        queue_notify ();
+        return pix;
     }
 
 
@@ -124,6 +130,14 @@ public abstract class Noise.MediaArtCache {
      */
     protected Gdk.Pixbuf? get_image (Media m, bool lookup_file) {
         return pixbuf_cache.get_image (get_key (m), lookup_file);
+    }
+
+
+    protected void queue_notify () {
+        Idle.add ( () => {
+            changed ();
+            return false;
+        });
     }
 }
 
@@ -224,6 +238,8 @@ public class Noise.CoverartCache : MediaArtCache {
 
         debug ("FINISHED LOADING CACHED COVERART");
         mutex.unlock ();
+
+        queue_notify ();
     }
 
 
@@ -261,6 +277,8 @@ public class Noise.CoverartCache : MediaArtCache {
         }
 
         mutex.unlock ();
+
+        queue_notify ();
     }
 
 
