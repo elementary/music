@@ -88,7 +88,7 @@ public class Noise.PlaybackManager {
 	// Whether or not a media is being played. Returns true even if the media is paused
 	public bool media_active { get { return media_info.media != null; } }
 
-	public bool playing;
+	public bool playing; // TODO { get; private set; }
 	bool _playing_queued_song;
 	public Repeat repeat;
 	public Shuffle shuffle;

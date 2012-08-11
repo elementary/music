@@ -314,11 +314,11 @@ public class MprisPlayer : GLib.Object {
 	
 	public string PlaybackStatus {
 		owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
-			if(library_window.library_manager.playing)
+			if(PlaybackManager.instance.playing)
 				return "Playing";
-			else if(!library_window.library_manager.playing && library_window.PlaybackManager.instance.media_info.media == null)
+			else if(!PlaybackManager.instance.playing && library_window.PlaybackManager.instance.media_info.media == null)
 				return "Stopped";
-			else if(!library_window.library_manager.playing)
+			else if(!PlaybackManager.instance.playing)
 				return "Paused";
 			else
 				return "Stopped";
@@ -327,7 +327,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public string LoopStatus {
 		owned get {
-			switch(library_window.library_manager.repeat) {
+			switch(PlaybackManager.instance.repeat) {
 				case(Noise.PlaybackManager.Repeat.OFF):
 					return "None";
 				case(Noise.PlaybackManager.Repeat.MEDIA):
@@ -343,16 +343,16 @@ public class MprisPlayer : GLib.Object {
 		set {
 			switch(value) {
 				case("None"):
-					library_window.library_manager.repeat = Noise.PlaybackManager.Repeat.OFF;
+					PlaybackManager.instance.repeat = Noise.PlaybackManager.Repeat.OFF;
 					break;
 				case("Track"):
-					library_window.library_manager.repeat = Noise.PlaybackManager.Repeat.MEDIA;
+					PlaybackManager.instance.repeat = Noise.PlaybackManager.Repeat.MEDIA;
 					break;
 				case("Playlist"):
-					library_window.library_manager.repeat = Noise.PlaybackManager.Repeat.ALL;
+					PlaybackManager.instance.repeat = Noise.PlaybackManager.Repeat.ALL;
 					break;
 				default:
-					library_window.library_manager.repeat = Noise.PlaybackManager.Repeat.ALL;
+					PlaybackManager.instance.repeat = Noise.PlaybackManager.Repeat.ALL;
 					break;
 			}
 			
@@ -473,7 +473,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public void Pause() {
 		// inhibit notifications
-		if(library_window.library_manager.playing)
+		if(PlaybackManager.instance.playing)
 			library_window.play_media(true);
 	}
 
@@ -488,7 +488,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public void Play() {
 		// inhibit notifications
-		if(!library_window.library_manager.playing)
+		if(!PlaybackManager.instance.playing)
 			library_window.play_media(true);
 	}
 	

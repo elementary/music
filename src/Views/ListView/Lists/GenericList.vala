@@ -329,7 +329,7 @@ public abstract class Noise.GenericList : FastView {
 		// Now play the song
 		lm.playMedia(m, false);
 		
-		if(!lm.playing) {
+		if(!PlaybackManager.instance.playing) {
 			lw.playClicked();
 		}
 	}

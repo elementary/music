@@ -316,7 +316,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         lm.playMedia (m, false);
         PlaybackManager.instance.player.play ();
 
-        if(!lm.playing)
+        if(!PlaybackManager.instance.playing)
             lw.playClicked();
     }
 

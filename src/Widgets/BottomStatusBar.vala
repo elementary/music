@@ -88,15 +88,15 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
         Settings.Main.instance.repeat_mode = val;
 
         if(val == 0)
-            lw.library_manager.repeat = PlaybackManager.Repeat.OFF;
+            PlaybackManager.instance.repeat = PlaybackManager.Repeat.OFF;
         else if(val == 1)
-            lw.library_manager.repeat = PlaybackManager.Repeat.MEDIA;
+            PlaybackManager.instance.repeat = PlaybackManager.Repeat.MEDIA;
         else if(val == 2)
-            lw.library_manager.repeat = PlaybackManager.Repeat.ALBUM;
+            PlaybackManager.instance.repeat = PlaybackManager.Repeat.ALBUM;
         else if(val == 3)
-            lw.library_manager.repeat = PlaybackManager.Repeat.ARTIST;
+            PlaybackManager.instance.repeat = PlaybackManager.Repeat.ARTIST;
         else if(val == 4)
-            lw.library_manager.repeat = PlaybackManager.Repeat.ALL;
+            PlaybackManager.instance.repeat = PlaybackManager.Repeat.ALL;
     }
 
     public virtual void shuffleChooserOptionChanged(int val) {

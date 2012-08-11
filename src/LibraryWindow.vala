@@ -641,7 +641,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         // Play, pause, ...
-        bool media_available = library_manager.current_media ().size > 0;
+        bool media_available = PlaybackManager.instance.current_media ().size > 0;
         previousButton.set_sensitive (media_active || media_available);
         playButton.set_sensitive (media_active || media_available);
         nextButton.set_sensitive (media_active || media_available);
@@ -660,7 +660,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // hide playlists when media list is empty
         sideTree.setVisibility (sideTree.playlists_iter, have_media);
 
-        if(!PlaybackManager.instance.media_active || have_media && !library_manager.playing) {
+        if(!PlaybackManager.instance.media_active || have_media && !PlaybackManager.instance.playing) {
             playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
         }
     }
@@ -807,7 +807,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
             library_manager.getNext(true);
 
-            library_manager.playing = true;
+            PlaybackManager.instance.playing = true;
             playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
             library_manager.player.play();
 
@@ -815,14 +815,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 notify_current_media ();
         }
         else {
-            if(library_manager.playing) {
-                library_manager.playing = false;
+            if(PlaybackManager.instance.playing) {
+                PlaybackManager.instance.playing = false;
                 library_manager.player.pause();
 
                 playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
             }
             else {
-                library_manager.playing = true;
+                PlaybackManager.instance.playing = true;
                 library_manager.player.play();
                 playButton.set_stock_id(Gtk.Stock.MEDIA_PAUSE);
             }
@@ -852,7 +852,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         /* test to stop playback/reached end */
         if(m == null) {
             library_manager.player.pause();
-            library_manager.playing = false;
+            PlaybackManager.instance.playing = false;
             update_sensitivities();
             return;
         }
@@ -862,14 +862,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void play_previous_media (bool inhibit_notifications = false) {
-        if(library_manager.player.getPosition() < 5000000000 || (PlaybackManager.instance.media_active && PlaybackManager.instance.media_info.media.mediatype == 3)) {
+        if(PlaybackManager.instance.player.getPosition() < 5000000000 || (PlaybackManager.instance.media_active && PlaybackManager.instance.media_info.media.mediatype == 3)) {
             bool play = true;
             var prev = library_manager.getPrevious(true);
 
             /* test to stop playback/reached end */
             if(prev == null) {
                 library_manager.player.pause();
-                library_manager.playing = false;
+                PlaybackManager.instance.playing = false;
                 update_sensitivities();
                 return;
             }
@@ -1151,10 +1151,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void on_quit () {
         // Save media position and info
-        Settings.Main.instance.last_media_position = (int)((double)library_manager.player.getPosition
+        Settings.Main.instance.last_media_position = (int)((double)PlaybackManager.instance.player.getPosition
         ()/Numeric.NANO_INV);
         if(PlaybackManager.instance.media_active) {
-            PlaybackManager.instance.media_info.media.resume_pos = (int)((double)library_manager.player.getPosition()/Numeric.NANO_INV);
+            PlaybackManager.instance.media_info.media.resume_pos = (int)((double)PlaybackManager.instance.player.getPosition()/Numeric.NANO_INV);
             library_manager.update_media_item (PlaybackManager.instance.media_info.media, false, false);
         }
         library_manager.player.pause();

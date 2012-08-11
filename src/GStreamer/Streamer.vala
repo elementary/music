@@ -40,7 +40,7 @@ public class Noise.Streamer : GLib.Object {
 	
 	public Streamer () {
 		this.lw = LibraryWindow.instance;
-		this.lm = lw.lm;
+		this.lm = lw.library_manager;
 
 		pipe = new Noise.Pipeline();
 
