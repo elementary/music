@@ -137,17 +137,17 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
     
     
     private void love_button_clicked() {
-        if (lm.media_info == null || lm.media_info.media == null)
+        if (PlaybackManager.instance.media_info == null || PlaybackManager.instance.media_info.media == null)
             return;
 
-        lfm.loveTrack(lm.media_info.media.title, lm.media_info.media.artist);
+        lfm.loveTrack(PlaybackManager.instance.media_info.media.title, PlaybackManager.instance.media_info.media.artist);
     }
 
     private void ban_button_clicked() {
-        if (lm.media_info == null || lm.media_info.media == null)
+        if (PlaybackManager.instance.media_info == null || PlaybackManager.instance.media_info.media == null)
             return;
 
-        lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
+        lfm.banTrack(PlaybackManager.instance.media_info.media.title, PlaybackManager.instance.media_info.media.artist);
     }
     
     public virtual void media_played(Media m) {

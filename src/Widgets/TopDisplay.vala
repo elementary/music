@@ -184,7 +184,7 @@ public class Noise.TopDisplay : Box {
 		uint elapsed_secs = (uint)val;
 		leftTime.set_text (TimeUtils.pretty_length_from_ms (elapsed_secs));
 
-        uint media_duration_secs = (uint)lm.media_info.media.length;
+        uint media_duration_secs = (uint)PlaybackManager.instance.media_info.media.length;
 
 		//make pretty remaining time
 		rightTime.set_text (TimeUtils.pretty_length_from_ms (media_duration_secs - elapsed_secs));
@@ -239,7 +239,7 @@ public class Noise.TopDisplay : Box {
 	}
 	
 	public virtual void player_position_update(int64 position) {
-		if(lm.media_info.media != null) {
+		if(PlaybackManager.instance.media_info.media != null) {
     	    double sec = 0.0;
 
             // convert nanoseconds ot miliseconds
@@ -257,10 +257,10 @@ public class Noise.TopDisplay : Box {
     }
 
 	void media_updated (Gee.Collection<int> ids) {
-		if (lm.media_info == null)
+		if (PlaybackManager.instance.media_info == null)
 			return;
 
-		var current_media = lm.media_info.media;
+		var current_media = PlaybackManager.instance.media_info.media;
 
 		if (current_media == null)
 			return;

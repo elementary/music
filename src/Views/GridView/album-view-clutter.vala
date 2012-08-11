@@ -641,7 +641,7 @@ public class Noise.AlbumView : ContentView, Grid {
             //icons.unselect_all();
         }
         
-        /*if(get_is_current() && lm.media_info.media != null)
+        /*if(get_is_current() && PlaybackManager.instance.media_info.media != null)
             scrollToCurrent();
         else
             this.vadjustment.set_value((int)hPos);*/
@@ -705,7 +705,7 @@ public class Noise.AlbumView : ContentView, Grid {
     }
     
     public void scrollToCurrent() {
-        if(!get_is_current() || lm.media_info.media == null)
+        if(!get_is_current() || PlaybackManager.instance.media_info.media == null)
             return;
         
         TreeIter iter;
@@ -713,7 +713,7 @@ public class Noise.AlbumView : ContentView, Grid {
             Value vs;
             model.get_value(iter, 2, out vs);
 
-            if(icons is IconView && ((Media)vs).album == lm.media_info.media.album) {
+            if(icons is IconView && ((Media)vs).album == PlaybackManager.instance.media_info.media.album) {
                 icons.scroll_to_path(new TreePath.from_string(i.to_string()), false, 0.0f, 0.0f);
                 
                 return;

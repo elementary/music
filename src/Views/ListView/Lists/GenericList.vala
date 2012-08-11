@@ -377,7 +377,7 @@ public abstract class Noise.GenericList : FastView {
 		if(m != null)
 			to_set = m;
 		else
-			to_set = lm.media_info.media;
+			to_set = PlaybackManager.instance.media_info.media;
 		
 		lm.clearCurrent();
 		is_current_list = true;
@@ -394,7 +394,7 @@ public abstract class Noise.GenericList : FastView {
 			}
 		}
 		
-		media_played(lm.media_info.media);
+		media_played(PlaybackManager.instance.media_info.media);
 	}
 	
 	protected GLib.List<Media> get_selected_medias() {
@@ -426,13 +426,13 @@ public abstract class Noise.GenericList : FastView {
 	}
 	
 	public void scroll_to_current_media(bool unfilter_if_not_found) {
-		if(!visible || lm.media_info.media == null)
+		if(!visible || PlaybackManager.instance.media_info.media == null)
 			return;
 		
 		for(int i = 0; i < get_visible_table().size(); ++i) {
 			var m = get_media_from_index(i);
 
-			if(m.rowid == lm.media_info.media.rowid) {
+			if(m.rowid == PlaybackManager.instance.media_info.media.rowid) {
 				scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
 				scrolled_recently = false;
 
@@ -447,7 +447,7 @@ public abstract class Noise.GenericList : FastView {
 			for(int i = 0; i < whole_table.size(); ++i) {
 				var m = whole_table.get(i) as Media;
 
-				if(m.rowid == lm.media_info.media.rowid) {
+				if(m.rowid == PlaybackManager.instance.media_info.media.rowid) {
 					// Undo search and filter
 					parent_wrapper.clear_filters();
 					

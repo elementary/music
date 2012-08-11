@@ -489,18 +489,18 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
         /* We can't just put setSelectedIter directly, we have to check that this iter is not null */
         TreeIter? selected_iter = null;
 
-        if(lm.media_info.media == null || lm.media_info.media.mediatype == 0)
+        if(PlaybackManager.instance.media_info.media == null || PlaybackManager.instance.media_info.media.mediatype == 0)
             selected_iter = convertToFilter(library_music_iter);
 #if HAVE_PODCASTS
-        else if(lm.media_info.media.mediatype == 1)
+        else if(PlaybackManager.instance.media_info.media.mediatype == 1)
             selected_iter = convertToFilter(library_podcasts_iter);
 #endif
-        else if(lm.media_info.media.mediatype == 2) {
+        else if(PlaybackManager.instance.media_info.media.mediatype == 2) {
             selected_iter = convertToFilter(library_music_iter);
             message ("TODO: Set current list to audiobooks when resetting if current media is audiobook\n");
         }
 #if HAVE_INTERNET_RADIO
-        else if(lm.media_info.media.mediatype == 3)
+        else if(PlaybackManager.instance.media_info.media.mediatype == 3)
             selected_iter = convertToFilter(network_radio_iter);
 #endif
 
@@ -821,7 +821,7 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                 p.add_media (to_add);
                 
                 /*if(iter == playlists_similar_iter)
-                    p.name = (lm.media_info.media != null) ? ("Similar to " + lm.media_info.media.title) : "Similar list";
+                    p.name = (PlaybackManager.instance.media_info.media != null) ? ("Similar to " + PlaybackManager.instance.media_info.media.title) : "Similar list";
                 else */if(iter == playlists_queue_iter)
                     p.name = Time.local(time_t()).format(_("Play Queue (%Y-%b-%e %l:%M %p)"));
                 else if(iter == playlists_history_iter)

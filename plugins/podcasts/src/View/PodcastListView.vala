@@ -803,7 +803,7 @@ public class Noise.PodcastListView : GenericView {
 		if(column == PodcastColumn.ROWID)
 			val = (int)s.rowid;
 		else if(column == PodcastColumn.ICON) {
-			if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid)
+			if(PlaybackManager.instance.media_info.media != null && PlaybackManager.instance.media_info.media.rowid == s.rowid)
 				val = playing_icon;
 			else if(s.unique_status_image != null)
 				val = s.unique_status_image;
