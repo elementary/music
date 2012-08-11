@@ -295,6 +295,10 @@ public class Noise.CoverartCache : MediaArtCache {
         if (album_folder == null)
             return rv;
 
+        // TODO: don't scan album folder if it doesn't contain the name of the album.
+        // This is probably the simpler way to prevent considering images from folders
+        // containing multiple unrelated tracks.
+
         string[] image_types = { "jpg", "jpeg", "png" };
         Gee.Collection<File> image_files;
         FileUtils.enumerate_files (album_folder, image_types, false, out image_files);

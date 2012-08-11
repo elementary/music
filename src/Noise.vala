@@ -38,8 +38,6 @@ public class Noise.App : Granite.Application {
         }
     }
 
-    public static Noise.LibraryWindow library_window { get; private set; }
-    public static Noise.LibraryManager library_manager { get; private set; }
     public static Noise.Plugins.Manager plugins { get; private set; }
 
     // Should always match those used in the .desktop file 
@@ -132,24 +130,22 @@ public class Noise.App : Granite.Application {
     }
 
     protected override void activate () {
-        // present window if app is already open
-        if (library_window != null) {
-            library_window.present ();
-            return;
-        }
-
         // Setup debugger
         if (DEBUG)
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
         else
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
-        library_window = new Noise.LibraryWindow (this);
-        library_manager = library_window.library_manager;
+        // present window if app is already open
+        if (LibraryWindow.instance != null) {
+            LibraryWindow.instance.present ();
+            return;
+        }
 
-        library_window.build_ui ();
+        LibraryWindow.instance.build_ui ();
+        LibraryWindow.instance.set_application (this);
 
-        plugins.hook_new_window (library_window);
+        plugins.hook_new_window (LibraryWindow.instance);
     }
 
 

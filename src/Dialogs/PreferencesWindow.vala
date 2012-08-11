@@ -222,7 +222,7 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
 
         add_subsection (_("Music Folder Location"), folder_contents);
 
-        library_filechooser.set_current_folder (lw.main_settings.music_folder);
+        library_filechooser.set_current_folder (Settings.Main.instance.music_folder);
 
         if (lm.doing_file_operations ()) {
             library_filechooser.set_sensitive (false);
@@ -244,9 +244,9 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
         write_file_metadata_toggle = new Gtk.CheckButton.with_label (_("Write metadata to file"));
 
         // initialize library management settings
-        organize_folders_toggle.set_active(lw.main_settings.update_folder_hierarchy);
-        write_file_metadata_toggle.set_active(lw.main_settings.write_metadata_to_file);
-        copy_imported_music_toggle.set_active(lw.main_settings.copy_imported_music);
+        organize_folders_toggle.set_active(Settings.Main.instance.update_folder_hierarchy);
+        write_file_metadata_toggle.set_active(Settings.Main.instance.write_metadata_to_file);
+        copy_imported_music_toggle.set_active(Settings.Main.instance.copy_imported_music);
 
         var contents_grid = new Gtk.Grid ();
         contents_grid.row_spacing = 6;
@@ -273,15 +273,15 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
 
 
     public override bool save_changes () {
-        if (library_filechooser.get_current_folder() != lw.main_settings.music_folder
+        if (library_filechooser.get_current_folder() != Settings.Main.instance.music_folder
             || lm.media_count() == 0)
         {
             changed (library_filechooser.get_current_folder ());
         }
 
-        lw.main_settings.update_folder_hierarchy = organize_folders_toggle.get_active();
-        lw.main_settings.write_metadata_to_file = write_file_metadata_toggle.get_active();
-        lw.main_settings.copy_imported_music = copy_imported_music_toggle.get_active();
+        Settings.Main.instance.update_folder_hierarchy = organize_folders_toggle.get_active();
+        Settings.Main.instance.write_metadata_to_file = write_file_metadata_toggle.get_active();
+        Settings.Main.instance.copy_imported_music = copy_imported_music_toggle.get_active();
 
         Noise.App.instance.is_default_application = is_default_application_toggle.get_active ();
 

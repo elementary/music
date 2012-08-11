@@ -69,10 +69,10 @@ public class Noise.EqualizerWindow : Gtk.Window {
 
 		initialized = true;
 
-		if (lw.equalizer_settings.auto_switch_preset) {
+		if (Settings.Equalizer.instance.auto_switch_preset) {
 			preset_combo.selectAutomaticPreset();
 		} else {
-			var preset = lw.equalizer_settings.selected_preset;
+			var preset = Settings.Equalizer.instance.selected_preset;
 			if (preset != null)
 				preset_combo.selectPreset(preset);
 		}
@@ -101,7 +101,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		eq_switch = new Switch();
 		preset_combo = new PresetList();
 
-		eq_switch.set_active(lw.equalizer_settings.equalizer_enabled);
+		eq_switch.set_active(Settings.Equalizer.instance.equalizer_enabled);
 
 		string[] decibels = {"60", "170", "310", "600", "1k", "3k", "6k", "12k", "14k", "16k"};
 		//string[] decibels = {"32", "64", "125", "250", "500", "1k", "2k", "4k", "8k", "16k"};
@@ -218,7 +218,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 		bool eq_active = eq_switch.get_active();
 		preset_combo.sensitive = eq_active;
 		set_sliders_sensitivity (eq_active);
-		lw.equalizer_settings.equalizer_enabled = eq_active;
+		Settings.Equalizer.instance.equalizer_enabled = eq_active;
 
 		if (eq_active) {
 			if(!preset_combo.automatic_chosen) {
@@ -245,7 +245,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 			preset_combo.addPreset(preset);
 		}
 
-		foreach (var preset in lw.equalizer_settings.getPresets ()) {
+		foreach (var preset in Settings.Equalizer.instance.getPresets ()) {
 			preset_combo.addPreset(preset);
 		}
 	}
@@ -259,7 +259,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 			val += preset.to_string ();
 		}
 
-		lw.equalizer_settings.custom_presets = val;
+		Settings.Equalizer.instance.custom_presets = val;
 	}
 
 	void preset_selected (EqualizerPreset p) {
@@ -322,7 +322,7 @@ public class Noise.EqualizerWindow : Gtk.Window {
 	}
 
 	void on_automatic_chosen () {
-		lw.equalizer_settings.auto_switch_preset = preset_combo.automatic_chosen;
+		Settings.Equalizer.instance.auto_switch_preset = preset_combo.automatic_chosen;
 
 		target_levels.clear();
 
@@ -461,8 +461,8 @@ public class Noise.EqualizerWindow : Gtk.Window {
 			add_new_preset ();
 
 		save_presets ();
-		lw.equalizer_settings.selected_preset = (preset_combo.getSelectedPreset() != null)? preset_combo.getSelectedPreset().name : "";
-		lw.equalizer_settings.auto_switch_preset = preset_combo.automatic_chosen;
+		Settings.Equalizer.instance.selected_preset = (preset_combo.getSelectedPreset() != null)? preset_combo.getSelectedPreset().name : "";
+		Settings.Equalizer.instance.auto_switch_preset = preset_combo.automatic_chosen;
 
 		destroy();
 	}

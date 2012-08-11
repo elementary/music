@@ -58,10 +58,10 @@ public class Noise.PixbufCache {
         owned get { return pixbuf_map.read_only_view; }
     }
 
-    private string image_format = "jpeg";
     protected Gee.HashMap<string, Gdk.Pixbuf> pixbuf_map;
     protected File image_dir { get; private set; }
 
+    private string image_format = "jpeg";
     private Mutex mutex;
 
 
