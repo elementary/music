@@ -27,7 +27,7 @@ public class Noise.Streamer : GLib.Object {
 	LibraryManager lm;
 	LibraryWindow lw;
 	Noise.Pipeline pipe;
-	
+
 	InstallGstreamerPluginsDialog dialog;
 	
 	public bool checked_video;
@@ -38,13 +38,12 @@ public class Noise.Streamer : GLib.Object {
 	public signal void current_position_update(int64 position);
 	public signal void media_not_found();
 	
-	public Streamer(LibraryManager lm, LibraryWindow lw) {
-		
-		this.lm = lm;
-		this.lw = lw;
-		
+	public Streamer () {
+		this.lw = LibraryWindow.instance;
+		this.lm = lw.lm;
+
 		pipe = new Noise.Pipeline();
-		
+
 		pipe.bus.add_watch(busCallback);
 		//pipe.playbin.about_to_finish.connect(about_to_finish);
 

@@ -28,13 +28,15 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
+using Gee;
+
 public class Noise.PlaybackManager {
 
 	public enum Shuffle {
 		OFF,
 		ALL
 	}
-	
+
 	public enum Repeat {
 		OFF,
 		MEDIA,
@@ -65,9 +67,6 @@ public class Noise.PlaybackManager {
 	public signal void playback_stopped (int was_playing);
 
 
-    public Noise.Settings.Equalizer equalizer_settings { get; private set; }
-
-
 	// id, media of current media.
 	private HashMap<int, Media> _current = new Gee.HashMap<int, Media>();
 
@@ -85,8 +84,7 @@ public class Noise.PlaybackManager {
 	public int _current_index;
 	public int _current_shuffled_index;
 	public Noise.MediaInfo media_info { private set; get; }
-	public Noise.Streamer player; // TODO: private
-	
+
 	// Whether or not a media is being played. Returns true even if the media is paused
 	public bool media_active { get { return media_info.media != null; } }
 
@@ -96,24 +94,25 @@ public class Noise.PlaybackManager {
 	public Shuffle shuffle;
 	public int next_gapless_id;
 
+	private Noise.Streamer player;
+
 
     public PlaybackManager () {
-        this.player = new Streamer(this, lw);
+        this.player = new Streamer ();
 		media_info = new Noise.MediaInfo();
 
 
-		int repeatValue = lw.main_settings.repeat_mode;
+		int repeatValue = Settings.Main.instance.repeat_mode;
 		if(repeatValue == 0)
-			repeat = LibraryManager.Repeat.OFF;
+			repeat = Repeat.OFF;
 		else if(repeatValue == 1)
-			repeat = LibraryManager.Repeat.MEDIA;
+			repeat = Repeat.MEDIA;
 		else if(repeatValue == 2)
-			repeat = LibraryManager.Repeat.ALBUM;
+			repeat = Repeat.ALBUM;
 		else if(repeatValue == 3)
-			repeat = LibraryManager.Repeat.ARTIST;
+			repeat = Repeat.ARTIST;
 		else if(repeatValue == 4)
-			repeat = LibraryManager.Repeat.ALL;
-
+			repeat = Repeat.ALL;
     }
 
 
@@ -241,7 +240,7 @@ public class Noise.PlaybackManager {
 		/*if(mode == shuffle)
 			return;
 		*/
-		lw.main_settings.shuffle_mode = mode;
+		Settings.Main.instance.shuffle_mode = mode;
 		shuffle = mode;
 		
 		if(!reshuffle)
@@ -532,7 +531,7 @@ public class Noise.PlaybackManager {
 			if(File.new_for_uri(m.uri).query_exists()) { // we did not know location, but it has re-appearred
 				m.location_unknown = false;
 				m.unique_status_image = null;
-				//lw.media_found(m.rowid);
+				//LibraryWindow.instance.media_found(m.rowid);
 			}
 			else { // to avoid infinite loop with repeat on, don't try to play next again
 				stopPlayback();
@@ -541,11 +540,11 @@ public class Noise.PlaybackManager {
 		}
 		
 		// check that the file exists FIXME: Avoid reading settings everytime a song is played
-		var music_folder_uri = File.new_for_path(lw.main_settings.music_folder).get_uri();
-		if((lw.main_settings.music_folder != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
-			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
+		var music_folder_uri = File.new_for_path(Settings.Main.instance.music_folder).get_uri();
+		if((Settings.Main.instance.music_folder != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
+			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)LibraryWindow.instance.sideTree.getWidget(LibraryWindow.instance.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
-			//lw.media_not_found(id);
+			//LibraryWindow.instance.media_not_found(id);
 			getNext(true);
 			return;
 		}
@@ -575,7 +574,7 @@ public class Noise.PlaybackManager {
 		
 		//update settings
 		if(id != PREVIEW_MEDIA_ID)
-			lw.main_settings.last_media_playing = id;
+			Settings.Main.instance.last_media_playing = id;
 		
 		if (m != null)
 			media_played (m);
@@ -654,7 +653,7 @@ public class Noise.PlaybackManager {
 		if(media_active)
 			was_playing = media_info.media.rowid;
 		
-		lw.main_settings.last_media_playing = 0;
+		Settings.Main.instance.last_media_playing = 0;
 		media_info.update(null, null, null, null);
 		
 		playback_stopped(was_playing);

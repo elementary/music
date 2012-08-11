@@ -17,6 +17,7 @@ vala_precompile(VALA_C
     Icons.vala
     LibraryWindow.vala
     LibraryManager.vala
+    PlaybackManager.vala
     FileOperator.vala
 
     main.vala
