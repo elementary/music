@@ -47,8 +47,8 @@ public class Noise.Streamer : GLib.Object {
 		
 		pipe.bus.add_watch(busCallback);
 		//pipe.playbin.about_to_finish.connect(about_to_finish);
-		
-		Timeout.add(200, doPositionUpdate); // do this 5 times per second
+
+		Timeout.add (70, doPositionUpdate);
 	}
 	
 	public bool doPositionUpdate() {

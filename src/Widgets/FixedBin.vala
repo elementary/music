@@ -19,11 +19,11 @@
  *             Victor Eduardo <victoreduardm@gmail.com>
  */
 
-// This container allows setting maximum and minimum dimensions
-// for expandable child widgets (i.e. widget.hexpand = widget.vexpand = true).
-// For it to work properly, the child widget *must not* allocate a bigger
-// size than the maximum allowed by this container, or it will fail.
-
+/** This container allows setting maximum and minimum dimensions
+ * for expandable child widgets (i.e. widget.hexpand = widget.vexpand = true).
+ * For it to work properly, the child widget *must not* allocate a size
+ * bigger than the maximum allowed by this container, or it will fail.
+ */
 public class FixedBin : Gtk.EventBox {
     // Size constraints. Use a negative value to mean "unset".
     public int max_width  { get; private set; default = -1; }

@@ -57,10 +57,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             lm.device_manager.add_device_preferences(pref);
         }
         
-        if(isNew())
-            icon = Icons.render_icon ("phone", Gtk.IconSize.MENU);
-        else
-            icon = Icons.render_icon ("multimedia-player", Gtk.IconSize.MENU);
+        icon = Icons.render_icon (isNew () ? "phone" : "multimedia-player", Gtk.IconSize.MENU);
         
         medias = new HashMap<unowned GPod.Track, Noise.Media>();
         songs = new HashMap<unowned GPod.Track, Noise.Media>();
@@ -397,10 +394,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
                     unowned GPod.Track t = entry.key;
                     iPodMediaHelper.update_track (ref t, m);
                     stdout.printf("updated trac and its rating is %d\n", (int)t.rating);
-                    
-                    var pix_from_file = lm.get_album_art_from_file(m.rowid);
-                    if(pix_from_file != null)
-                        t.set_thumbnails_from_pixbuf(pix_from_file);
+
+                    var pix = Noise.CoverartCache.instance.get_cover (m);
+                    if (pix != null)
+                        t.set_thumbnails_from_pixbuf (pix);
                 }
                 else {
                     warning("Could not update %s, no match in sync list. Should have been removed\n", entry.key.title);
@@ -612,11 +609,11 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             return;
         
         GPod.Track t = iPodMediaHelper.track_from_media (s);
-        
-        var pix_from_file = lm.get_album_art_from_file(s.rowid);
-        if(pix_from_file != null)
-            t.set_thumbnails_from_pixbuf(pix_from_file);
-        
+
+        var pix = Noise.CoverartCache.instance.get_cover (s);
+        if (pix != null)
+            t.set_thumbnails_from_pixbuf (pix);
+
         current_operation = "Adding <b>" + t.title + "</b> by <b>" + t.artist + "</b> to " + getDisplayName();
         message("Adding media %s by %s\n", t.title, t.artist);
         db.track_add((owned)t, -1);

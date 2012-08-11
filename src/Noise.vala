@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012 Noise Developers
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,168 +17,162 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
+ *
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace Noise {
-
-    public Noise.Plugins.Manager plugins;
-
-    namespace Options {
-        public bool debug = false;
-        public bool disable_plugins = false;
+public class Noise.App : Granite.Application {
+    private static App _instance;
+    public static App instance {
+        get {
+            if (_instance == null)
+                _instance = new App ();
+            return _instance;
+        }
     }
 
-    public static int main (string[] args) {
-        var context = new OptionContext ("- Noise help page.");
-        context.add_main_entries (App.app_options, "noise");
-        context.add_group (Gtk.get_option_group (true));
-        context.add_group (Gst.init_get_option_group ());
+    public static Noise.LibraryWindow library_window { get; private set; }
+    public static Noise.LibraryManager library_manager { get; private set; }
+    public static Noise.Plugins.Manager plugins { get; private set; }
 
-        try {
-            context.parse (ref args);
+    // Should always match those used in the .desktop file 
+    public static const string[] CONTENT_TYPES = {
+        "x-content/audio-player",
+        "x-content/audio-cdda",
+        "application/x-ogg",
+        "application/ogg",
+        "audio/x-vorbis+ogg",
+        "audio/x-scpls",
+        "audio/x-mp3",
+        "audio/x-mpeg",
+        "audio/mpeg",
+        "audio/x-mpegurl",
+        "audio/x-flac"
+    };
+
+
+    /**
+     * @return whether the application is the default for handling audio files
+     */
+    public bool is_default_application {
+        get {
+            foreach (string content_type in CONTENT_TYPES) {
+                var default_app = AppInfo.get_default_for_type (content_type, true).get_id ();
+                if (default_app != get_desktop_file_name ())
+                    return false;
+            }
+
+            return true;
         }
-        catch (Error err) {
-            warning ("Error parsing arguments: %s\n", err.message);
+        set {
+            var info = new DesktopAppInfo (get_desktop_file_name ());
+
+            foreach (string content_type in CONTENT_TYPES) {
+                try {
+                    if (value)
+                        info.set_as_default_for_type (content_type);
+                    else
+                        info.reset_type_associations (content_type);
+                } catch (Error err) {
+                    warning ("Cannot set Noise as default audio player for %s: %s",
+                             content_type, err.message);
+                }
+            }
+        }
+    }
+
+    construct {
+        // This allows opening files. See the open() method below.
+        flags |= ApplicationFlags.HANDLES_OPEN;
+
+        // App info
+        build_data_dir = Build.DATADIR;
+        build_pkg_data_dir = Build.PKG_DATADIR;
+        build_release_name = Build.RELEASE_NAME;
+        build_version = Build.VERSION;
+        build_version_info = Build.VERSION_INFO;
+
+        program_name = "Noise";
+        exec_name = "noise";
+
+        app_copyright = "2012";
+        application_id = "org.pantheon.noise";
+        app_icon = "noise";
+        app_launcher = "noise.desktop";
+        app_years = "2012";
+
+        main_url = "https://launchpad.net/noise";
+        bug_url = "https://bugs.launchpad.net/noise/+filebug";
+        help_url = "http://elementaryos.org/support/answers";
+        translate_url = "https://translations.launchpad.net/noise";
+
+        about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>",
+                         "Victor Eduardo M. <victoreduardm@gmail.com>",
+                         "Corentin Noël <tintou@mailoo.org>", null};
+
+        about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
+    }
+
+    public App () {
+        plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
+        plugins.hook_app (this);
+    }
+
+    public override void open (File[] files, string hint) {
+        // Activate, then play files
+        this.activate ();
+        library_manager.play_files (files);
+    }
+
+    protected override void activate () {
+        // present window if app is already open
+        if (library_window != null) {
+            library_window.present ();
+            return;
         }
 
-        Gtk.init (ref args);
+        // Setup debugger
+        if (DEBUG)
+            Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
+        else
+            Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
-        try {
-            Gst.init_check (ref args);
-        }
-        catch (Error err) {
-            error ("Could not init GStreamer: %s", err.message);
-        }
+        library_window = new Noise.LibraryWindow (this);
+        library_manager = library_window.library_manager;
 
-        var app = new Noise.App ();
-        return app.run (args);
+        library_window.build_ui ();
+
+        plugins.hook_new_window (library_window);
     }
 
 
     /**
-     * Application class
+     * We use this identifier to init everything inside the application.
+     * For instance: libnotify, etc.
      */
+    public string get_id () {
+        return application_id;
+    }
 
-    public class App : Granite.Application {
-        public Noise.LibraryWindow   library_window  { get; private set; }
-        public Noise.LibraryManager  library_manager { get; private set; }
+    /**
+     * @return the application's brand name. Should be used for anything that requires
+     * branding. For instance: Ubuntu's sound menu, dialog titles, etc.
+     */
+    public string get_name () {
+        return program_name;
+    }
 
-        public static const OptionEntry[] app_options = {
-            { "debug", 'd', 0, OptionArg.NONE, ref Options.debug, N_("Enable debug logging"), null },
-            { "no-plugins", 'n', 0, OptionArg.NONE, ref Options.disable_plugins, N_("Disable plugins"), null},
-            { null }
-        };
-
-        construct {
-            // This allows opening files. See the open() method below.
-            flags |= ApplicationFlags.HANDLES_OPEN;
-
-            // App info
-            build_data_dir = Build.DATADIR;
-            build_pkg_data_dir = Build.PKG_DATADIR;
-            build_release_name = Build.RELEASE_NAME;
-            build_version = Build.VERSION;
-            build_version_info = Build.VERSION_INFO;
-
-            program_name = "Noise";
-            exec_name = "noise";
-
-            app_copyright = "2012";
-            application_id = "org.pantheon.noise";
-            app_icon = "noise";
-            app_launcher = "noise.desktop";
-            app_years = "2012";
-
-            main_url = "https://launchpad.net/noise";
-            bug_url = "https://bugs.launchpad.net/noise/+filebug";
-            help_url = "http://elementaryos.org/support/answers";
-            translate_url = "https://translations.launchpad.net/noise";
-
-            about_authors = {"Scott Ringwelski <sgringwe@mtu.edu>",
-                             "Victor Eduardo M. <victoreduardm@gmail.com>",
-                             "Corentin Noël <tintou@mailoo.org>", null};
-
-            about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
-        }
-
-        public App () {
-            if (!Options.disable_plugins) {
-                plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
-                plugins.hook_app (this);
-            }
-        }
-
-        public override void open (File[] files, string hint) {
-            // Activate, then play files
-            this.activate ();
-
-            // TODO: pass files, not URIs
-            var to_play = new Gee.LinkedList<string> ();
-            for (int i = 0; i < files.length; i++) {
-                var file = files[i];
-                if (file != null) {
-                    string uri = file.get_uri ();
-                    to_play.add (uri);
-                    message ("Adding file %s", uri);
-                }
-            }
-
-            library_manager.play_files (to_play);
-        }
-
-        protected override void activate () {
-            // present window if app is already open
-            if (library_window != null) {
-                library_window.present ();
-                return;
-            }
-
-            // Setup debugger
-            if (Options.debug)
-                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
-            else
-                Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
-
-            library_window = new Noise.LibraryWindow (this);
-            library_manager = library_window.library_manager;
-
-            library_window.build_ui ();
-
-            if (!Options.disable_plugins) {
-                plugins.hook_new_window (library_window);
-            }
-        }
-
-        /**
-         * These methods are here to make transitioning to other Application APIs
-         * easier in the future.
-         */
-
-        /**
-         * We use this identifier to init everything inside the application.
-         * For instance: libnotify, etc.
-         */
-        public string get_id () {
-            return application_id;
-        }
-
-        /**
-         * Returns:
-         * the application's brand name. Should be used for anything that requires
-         * branding. For instance: Ubuntu's sound menu, dialog titles, etc.
-         */
-        public string get_name () {
-            return program_name;
-        }
-
-        /**
-         * Returns:
-         * the application's desktop file name.
-         */
-        public string get_desktop_file_name () {
-            return app_launcher;
-        }
+    /**
+     * @return the application's desktop file name.
+     */
+    public string get_desktop_file_name () {
+        return app_launcher;
     }
 }
-

@@ -88,9 +88,6 @@ public class Noise.LibraryManager : GLib.Object {
 	// Media of already played
 	private LinkedList<Media> _already_played = new Gee.LinkedList<Media>();
 
-	// All album art
-	private HashMap<string, Gdk.Pixbuf> cover_album_art = new HashMap<string, Gdk.Pixbuf> ();
-
 	private Mutex _media_lock; // lock for _media. use this around _media, _songs, ...
 
 	private Mutex _playlists_lock; // lock for _playlists
@@ -137,7 +134,6 @@ public class Noise.LibraryManager : GLib.Object {
 
 	// FIXME use mutex
 	bool _doing_file_operations;
-	bool in_fetch_thread;
 
 	public LibraryManager(Noise.LibraryWindow lww) {
 		this.lw = lww;
@@ -179,7 +175,7 @@ public class Noise.LibraryManager : GLib.Object {
 		foreach(Media s in dbm.load_media ()) {
 			_media.set(s.rowid, s);
 			
-			if(s.mediatype == Media.MediaType.SONG)
+			if(s.mediatype == MediaType.SONG)
 				_songs.set(s.rowid, s);
 		}
 		_media_lock.unlock();
@@ -267,7 +263,7 @@ public class Noise.LibraryManager : GLib.Object {
 		});
 
 
-		fetch_cover_art_from_cache_async ();
+		CoverartCache.instance.load_for_media_async (media ());
 	}
 
 	/************ Library/Collection management stuff ************/
@@ -442,7 +438,7 @@ public class Noise.LibraryManager : GLib.Object {
 					}
 		
 					// after we're done with that, rescan album arts
-					fetch_all_cover_art_async ();
+                    CoverartCache.instance.fetch_all_cover_art_async (media ());
 
 					return false; 
 				});
@@ -454,30 +450,29 @@ public class Noise.LibraryManager : GLib.Object {
 		}
 	}
 
-
-
-
-	public void play_files (Gee.Collection<string> uri_list) {
+	public void play_files (File[] files) {
 		var to_discover = new Gee.LinkedList<string> ();
 		var to_play = new Gee.LinkedList<Media> ();
-		foreach (var base_uri in uri_list) {
-			if (base_uri != null) {
-				var uri = File.new_for_uri (base_uri).get_path ();
-				
-				// Check if the file is already in the library
-				var m = media_from_file (uri);
 
-				if (m != null) { // already in library
-					debug ("ALREADY IN LIBRARY: %s", uri);
-					to_play.add (m);
-				}
-				else { // not in library
-					// TODO: see if the file belongs to the music folder and ask the user
-					// if they would like to add it to theid collection.
-					debug ("NOT IN LIBRARY: %s", uri);
-					to_discover.add (uri);
-				}
-			}			
+		foreach (var file in files) {
+            if (file == null)
+                continue;
+
+			var path = file.get_path ();
+
+			// Check if the file is already in the library
+			var m = media_from_file (path);
+
+			if (m != null) { // already in library
+				debug ("ALREADY IN LIBRARY: %s", path);
+				to_play.add (m);
+			}
+			else { // not in library
+				// TODO: see if the file belongs to the music folder and ask the user
+				// if they would like to add it to their collection.
+				debug ("NOT IN LIBRARY: %s", path);
+				to_discover.add (path);
+			}
 		}
 
 		// Play library media immediately
@@ -485,13 +480,10 @@ public class Noise.LibraryManager : GLib.Object {
 		getNext (true);
 
 		Idle.add ( () => {
-			//var to_queue_external = get_media_from_files (to_discover);
-			//queue_media (to_queue_external);
+			fo.import_files (to_discover, FileOperator.ImportType.IMPORT);
 			return false;
 		});
 	}
-
-
 
 
 	public void recheck_files_not_found() {
@@ -518,8 +510,8 @@ public class Noise.LibraryManager : GLib.Object {
 		
 		for(int i = 0; i < cache_media.length; ++i) {
 			var m = cache_media[i];
-			if(m.mediatype == Media.MediaType.STATION || 
-			(m.mediatype == Media.MediaType.PODCAST && m.uri.has_prefix("http:/"))) {
+			if(m.mediatype == MediaType.STATION || 
+			(m.mediatype == MediaType.PODCAST && m.uri.has_prefix("http:/"))) {
 				// don't try to find this
 			}
 			else {
@@ -695,21 +687,15 @@ public class Noise.LibraryManager : GLib.Object {
 			Media s = _media.get (i);
 
 			if(!(s.isTemporary || s.isPreview || s.uri.has_prefix("http://"))) {
-				if( (s.mediatype == Media.MediaType.PODCAST && s.podcast_url != null && s.podcast_url.has_prefix("http://")) || 
-					s.mediatype == Media.MediaType.STATION) {
-					s.uri = s.podcast_url;
-				}
-				else {
-					unset.add(s);
-					unset_ids.add(s.rowid);
-				}
+				unset.add(s);
+				unset_ids.add(s.rowid);
 			}
 		}
 		
 		foreach(Media s in unset) {
 			_media.unset(s.rowid);
 			
-			if(s.mediatype == Media.MediaType.SONG)
+			if(s.mediatype == MediaType.SONG)
 				_songs.unset(s.rowid);
 		}
 		_media_lock.unlock ();
@@ -909,101 +895,6 @@ public class Noise.LibraryManager : GLib.Object {
 		return rv;
 	}
 
-	/**
-	 * Search function
-	 */
-	public void do_search (Collection<int> to_search,
-	                        out LinkedList<int> ? results,
-	                        out LinkedList<int> ? album_results,
-	                        out LinkedList<int> ? genre_results,
-	                        out LinkedList<int> ? year_results,
-	                        out LinkedList<int> ? rating_results,
-	                        ViewWrapper.Hint hint,
-	                        string search = "", // Search string
-	                        string album_artist = "",
-	                        string album = "",
-	                        string genre = "",
-	                        int year = -1, // All years
-	                        int rating = -1 // All ratings
-	                        )
-	{
-		results = new LinkedList<int>();
-		album_results = new LinkedList<int>();
-		genre_results = new LinkedList<int>();
-		year_results = new LinkedList<int>();
-		rating_results = new LinkedList<int>();
-
-		string l_search = search.down();
-		int mediatype = 0;
-
-		bool include_temps = hint == ViewWrapper.Hint.CDROM ||
-		                     hint == ViewWrapper.Hint.DEVICE_AUDIO || 
-		                     hint == ViewWrapper.Hint.DEVICE_PODCAST ||
-		                     hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK ||
-		                     hint == ViewWrapper.Hint.QUEUE ||
-		                     hint == ViewWrapper.Hint.HISTORY ||
-		                     hint == ViewWrapper.Hint.ALBUM_LIST;
-
-		if(hint == ViewWrapper.Hint.PODCAST || hint == ViewWrapper.Hint.DEVICE_PODCAST) {
-			mediatype = 1;
-		}
-		else if(hint == ViewWrapper.Hint.AUDIOBOOK || hint == ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
-			mediatype = 2;
-		}
-		else if(hint == ViewWrapper.Hint.STATION) {
-			mediatype = 3;
-		}
-		else if(hint == ViewWrapper.Hint.QUEUE || hint == ViewWrapper.Hint.HISTORY ||
-		         hint == ViewWrapper.Hint.PLAYLIST || hint == ViewWrapper.Hint.SMART_PLAYLIST ||
-		         hint == ViewWrapper.Hint.ALBUM_LIST)
-		{
-			mediatype = -1; // some lists should be able to have ALL media types
-		}
-		
-		foreach(int i in to_search) {
-			Media s = media_from_id(i);
-
-			bool valid_song =   s != null &&
-			                  ( s.mediatype == mediatype || mediatype == -1 ) &&
-			                  ( !s.isTemporary || include_temps ) &&
-			                  ( l_search in s.title.down() ||
-			                    l_search in s.album_artist.down() ||
-			                    l_search in s.artist.down() ||
-			                    l_search in s.album.down() ||
-			                    l_search in s.genre.down() ||
-			                    l_search == s.year.to_string()); // We want full match here
-
-			if (valid_song)
-			{
-				if (rating == -1 || (int)s.rating == rating)
-				{
-					if (year == -1 || (int)s.year == year)
-					{
-						if (album_artist == "" || s.album_artist == album_artist)
-						{
-							if (genre == "" || s.genre == genre)
-							{
-								if (album == "" || s.album == album)
-								{
-									results.add (i);
-								}
-
-								genre_results.add (i);
-							}
-					
-							album_results.add (i);
-						}
-
-						year_results.add (i);
-					}
-
-					rating_results.add (i);
-				}
-			}
-		}
-	}
-
-
 	public Gee.Collection<Media> media_from_playlist (int id) {
 		return _playlists.get (id).media ();
 	}
@@ -1039,7 +930,7 @@ public class Noise.LibraryManager : GLib.Object {
 			
 			_media.set(s.rowid, s);
 			
-			if(s.mediatype == Media.MediaType.SONG)
+			if(s.mediatype == MediaType.SONG)
 				_songs.set(s.rowid, s);
 		}
 		_media_lock.unlock();
@@ -1093,7 +984,7 @@ public class Noise.LibraryManager : GLib.Object {
 		foreach(Media s in toRemove) {
 			_media.unset(s.rowid);
 			
-			if(s.mediatype == Media.MediaType.SONG)
+			if(s.mediatype == MediaType.SONG)
 				_songs.unset(s.rowid);
 		}
 		_media_lock.unlock();
@@ -1557,10 +1448,12 @@ public class Noise.LibraryManager : GLib.Object {
 				m.location_unknown = false;
 			}
 		}
+
+        change_gains_thread ();
 		
-		if(m.mediatype == Media.MediaType.PODCAST || m.mediatype == Media.MediaType.AUDIOBOOK || use_resume_pos)
+		if(m.mediatype == MediaType.PODCAST || m.mediatype == MediaType.AUDIOBOOK || use_resume_pos)
 			player.set_resume_pos = false;
-		
+
 		// actually play the media asap
 		if(next_gapless_id == 0) {
 			player.setURI(m.uri);
@@ -1580,29 +1473,17 @@ public class Noise.LibraryManager : GLib.Object {
 		if (m != null)
 			media_played (m);
 		
-		/* if same media 1 second later...
-		 * check for embedded art if need be (not loaded from on file) and use that
-		 * check that the s.getAlbumArtPath() exists, if not set to "" and call updateCurrentMedia
-		 * save old media's resume_pos
-		 */
+		/* if same media 1 second later... */
 		Timeout.add(1000, () => {
-			if(media_info.media == m) {
-				try {
-					new Thread<void*>.try (null, change_gains_thread);
-				}
-				catch(GLib.Error err) {
-					warning("Could not create thread to change gains: %s\n", err.message);
-				}
-		
-				if(!File.new_for_path(media_info.media.getAlbumArtPath()).query_exists()) {
-					media_info.media.setAlbumArtPath("");
-				}
-				
+			if (m != null && media_info.media == m) {
 				// potentially fix media length
-				int player_duration = (int)(player.getDuration()/1000000000);
-				if(player_duration > 1 && Math.fabs((double)(player_duration - media_info.media.length)) > 3) {
-					media_info.media.length = (int)(player.getDuration()/1000000000);
-					update_media_item (media_info.media, false, false);
+				uint player_duration_s = (uint)(player.getDuration() / Numeric.NANO_INV);
+				if (player_duration_s > 1) {
+				    int delta_s = (int)player_duration_s - (int)(m.length / Numeric.MILI_INV);
+				    if (Math.fabs ((double)delta_s) > 3) {
+					    m.length = (uint)(player_duration_s * Numeric.MILI_INV);
+					    update_media_item (m, false, false);
+                    }
 				}
 			}
 			
@@ -1611,9 +1492,8 @@ public class Noise.LibraryManager : GLib.Object {
 		});
 	}
 
-	
 	public void* change_gains_thread () {
-		if(lw.equalizer_settings.equalizer_enabled) {
+		if (lw.equalizer_settings.equalizer_enabled) {
 			bool automatic_enabled = lw.equalizer_settings.auto_switch_preset;
 			string selected_preset = lw.equalizer_settings.selected_preset;
 
@@ -1674,170 +1554,9 @@ public class Noise.LibraryManager : GLib.Object {
 	}
 	
 
-	
-	/************ Image stuff ********************/
-	public string getAlbumArtPath(int id) {
-		return _media.get(id).getAlbumArtPath();
-	}
-	
-	public void save_album_locally(int id, string image_uri) {
-		GLib.File file = GLib.File.new_for_uri(image_uri);
-		if(file == null) {
-			warning ("Could not read image_uri as file\n");
-			return;
-		}
-		
-		FileInputStream filestream;
-		Gdk.Pixbuf? pix = null;
 
-		try {
-			filestream = file.read(null);
-			pix = new Gdk.Pixbuf.from_stream(filestream, null);
-		} catch(GLib.Error err) {
-			warning ("Failed to save album art locally from %s: %s\n", image_uri, err.message);
-		}
-
-		if (pix != null) {
-			debug ("got pix and saving it now\n");
-			fo.save_album_art_in_cache(_media.get(id), pix);
-			set_album_art(id, pix);
-		}
-	}
-
-	public async void fetch_cover_art_from_cache_async () {
-		Idle.add_full (Priority.DEFAULT_IDLE,  () => {
-			fetch_cover_art (true);
-			return false;
-		});
-	}
-
-	public async void fetch_all_cover_art_async () {
-		Idle.add_full (Priority.DEFAULT_IDLE,  () => {
-			fetch_cover_art (false);
-			return false;
-		});
-	}
-
-	private void fetch_cover_art (bool cache_only) {
-		if(in_fetch_thread)
-			return;
-
-		debug ("--- READING CACHED COVERART %s-------------", (cache_only) ? "FROM CACHE":"");
-
-		in_fetch_thread = true;
-		//GStreamerTagger tagger = new GStreamerTagger(this);
-		
-		foreach(var s in _media.values) {
-			string key = get_media_coverart_key (s), path = "";
-			Gdk.Pixbuf? pix = null;
-
-			if(!cover_album_art.has_key (key) && s.mediatype == 0) {
-				
-				if(key != null) {
-					// try to get image from cache (faster)					
-					Gdk.Pixbuf? coverart_pixbuf = fo.get_cached_album_art (key, out path);
-					if (coverart_pixbuf != null) {
-						// get_pixbuf_shadow automatically scales the pixbuf down
-						// to Icons.ALBUM_VIEW_IMAGE_SIZE
-						pix = get_pixbuf_shadow (coverart_pixbuf);
-					}
-					else if (!cache_only) {
-						/* TODO: Get image from the tagger object (i.e. song metadata) */
-						//coverart_pixbuf = tagger.get_embedded_art(s);
-
-						if ((path = fo.get_best_album_art_file(s)) != null && path != "") {
-							try {
-								coverart_pixbuf = new Gdk.Pixbuf.from_file (path);
-								//coverart_pixbuf = _pix.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
-								pix = get_pixbuf_shadow (coverart_pixbuf);
-								
-								// Add image to cache
-								fo.save_album_art_in_cache (s, coverart_pixbuf);
-							}
-							catch(GLib.Error err) {
-								warning (err.message);
-							}
-						}
-					}
-
-					// we set the pixbuf even if it's null to avoid entering
-					// the loop for the same album later.
-					cover_album_art.set(key, pix);
-				}
-			}
-			
-			if (cover_album_art.get (key) != null)
-				s.setAlbumArtPath (fo.get_cached_album_art_path (key));
-		}
-
-		in_fetch_thread = false;
-
-		debug ("----------- FINISHED LOADING CACHED COVERART -------------");
-	}
-	
-	public static int mediaCompareFunc(Media a, Media b) {
-		if(a.album_artist != b.album_artist)
-			return (a.album > b.album) ? 1 : -1;
-		else
-			return (a.album_artist > b.album_artist) ? 1 : -1;
-	}
-	
 	public void cancel_operations() {
 		progress_cancel_clicked();
-	}
-	
-	public Gdk.Pixbuf? get_album_art_from_file(int id) {
-		Media s = _media.get(id);
-		
-		if(s == null)
-			return null;
-			
-		string path = "";
-		if(s.getAlbumArtPath().contains("/usr/share") &&
-		(path = fo.get_best_album_art_file(s)) != null && path != "") {
-			s.setAlbumArtPath(path);
-		}
-		
-		Gdk.Pixbuf? pix = null;
-		try {
-			pix = new Gdk.Pixbuf.from_file(path);
-		}
-		catch(GLib.Error err) {}
-		
-		return pix;
-	}
-	
-	public Gdk.Pixbuf? get_cover_album_art(int id) {
-		Media s = _media.get(id);
-		
-		if(s == null)
-			return null;
-		
-		return cover_album_art.get(get_media_coverart_key (s));
-	}
-
-	// Returns a key to get a coverart from the cover_album_art hashmap
-	public string get_media_coverart_key (Media s) {
-		return s.album_artist + " - " + s.album;
-	}
-	
-	public Gdk.Pixbuf? get_cover_album_art_from_key(string album_artist, string album) {
-		return cover_album_art.get(album_artist + " - " + album);
-	}
-	
-	public void set_album_art(int id, Gdk.Pixbuf pix) {
-		if(pix == null)
-			return;
-		
-		Media s = media_from_id(id);
-		string key = get_media_coverart_key (s);
-		
-		if(key != null)
-			cover_album_art.set(key, get_pixbuf_shadow (pix));
-	}
-
-	public Gdk.Pixbuf get_pixbuf_shadow (Gdk.Pixbuf pix) {
-		return PixbufUtils.get_pixbuf_shadow (pix, Icons.ALBUM_VIEW_IMAGE_SIZE);
 	}
 
 	public bool start_file_operations(string? message) {
@@ -1858,8 +1577,8 @@ public class Noise.LibraryManager : GLib.Object {
 	public void finish_file_operations() {
 		_doing_file_operations = false;
 		debug("file operations finished or cancelled\n");
-		
-		fetch_all_cover_art_async ();
+
+		CoverartCache.instance.fetch_all_cover_art_async (media ());
 
 		// FIXME: THESE ARE Library Window's internals!
 		lw.update_sensitivities();
@@ -1867,6 +1586,13 @@ public class Noise.LibraryManager : GLib.Object {
 
 
 		file_operations_done();
+	}
+
+	public static int mediaCompareFunc(Media a, Media b) {
+		if(a.album_artist != b.album_artist)
+			return (a.album > b.album) ? 1 : -1;
+		else
+			return (a.album_artist > b.album_artist) ? 1 : -1;
 	}
 }
 

@@ -117,7 +117,6 @@ namespace Icons {
      * to be rendered many times should be a preloaded pixbuf. They are loaded
      * in the init() function.
      */
-    public Gdk.Pixbuf DEFAULT_ALBUM_ART_PIXBUF;
     public Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF;
 
 
@@ -179,8 +178,6 @@ namespace Icons {
         VIEW_VIDEO = new Noise.Icon ("view-video-symbolic");
 
         // Render Pixbufs ...
-
-        DEFAULT_ALBUM_ART_PIXBUF = DEFAULT_ALBUM_ART.render (null);
 
         // 168x168
         var shadow_icon = new Noise.Icon ("albumart-shadow", 168, Type.OTHER, FileType.PNG, true);

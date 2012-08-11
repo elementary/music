@@ -19,10 +19,11 @@ vala_precompile(VALA_C
     LibraryManager.vala
     FileOperator.vala
 
+    main.vala
     Noise.vala
 
-    Utils/UI.vala
     Utils/PixbufUtils.vala
+    Utils/PixbufCache.vala
     Utils/Search.vala
     Utils/Icon.vala
 
@@ -42,6 +43,7 @@ vala_precompile(VALA_C
     Objects/AlbumInfo.vala
     Objects/ArtistInfo.vala
     Objects/TrackInfo.vala
+    Objects/MediaArtCache.vala
 
     Widgets/SidebarPaned.vala
     Widgets/NavigationArrows.vala
@@ -64,6 +66,7 @@ vala_precompile(VALA_C
 
     DataBase/DataBaseManager.vala
     DataBase/DataBaseUpdater.vala
+    DataBase/Tables.vala
 
     GStreamer/Video.vala
     GStreamer/Equalizer.vala

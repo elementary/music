@@ -136,7 +136,7 @@ public class Rating : Gtk.EventBox {
         }
     }
 
-    public double rating_offset { get; set; default = 1.0; }
+    public double rating_offset { get; set; default = 0.0; }
 
     internal Gdk.Pixbuf canvas { get; private set; }
 
@@ -284,9 +284,7 @@ public class Rating : Gtk.EventBox {
             x_offset = (al.width - width_request) / 2;
         }
 
-        double denom = 1.0 - this.rating_offset;
-        if (denom != 0)
-            x_offset -= (int) ((double)star_spacing / denom);
+        x_offset -= (int)rating_offset;
 
         int cursor_x_pos = (int)x;
         int new_rating = 0;
@@ -315,7 +313,7 @@ public class RatingMenuItem : Gtk.MenuItem {
         add (rating);
 
         // Workaround. Move the offset one star to the left for menuitems.
-        rating.rating_offset = (double)(-rating.item_width - rating.star_spacing);
+        rating.rating_offset = -(double)rating.item_width - (double)rating.star_spacing;
 
         this.state_flags_changed.connect ( () => {
             // Suppress SELECTED and PRELIGHT states, since these are usually obtrusive

@@ -318,17 +318,21 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
     }
 
 	private void update_column_separators () {
-        uint visible_columns = this.visible_columns.length ();
+        uint n_visible_columns = this.visible_columns.length ();
+
+        // Get the last (i.e. right-most) visible column
+        BrowserColumn.Category last_col = BrowserColumn.Category.RATING;
+        foreach (var col in visible_columns) {
+            if (col > last_col)
+                last_col = col;
+        }
 
 		foreach (var col in columns) {
 			// Every column has 0px on the left. The space is always added on the right side.
 			col.margin_left = 0;
 
 			// adding right space (separator line)
-			if (col.category == BrowserColumn.Category.ALBUM || visible_columns == 1)
-				col.margin_right = 0;
-			else
-				col.margin_right = 1;
+			col.margin_right = (col.category == last_col || n_visible_columns == 1) ? 0 : 1;
 		}
 	}
 

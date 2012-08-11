@@ -21,7 +21,6 @@
  */
 
 using SQLHeavy;
-using TagLib;
 using Gee;
 
 public class Noise.DataBaseManager : GLib.Object {
@@ -42,57 +41,56 @@ public class Noise.DataBaseManager : GLib.Object {
 
 	/** Creates/Reads the database file and folder **/
 	private void init_database () {
-		var data_dir = GLib.File.new_for_path (GLib.Path.build_filename (Environment.get_user_data_dir (), lm.lw.app.get_name().down ()));
-		if (!data_dir.query_exists ()) {
-			try {
-				data_dir.make_directory_with_parents (null);
-			}
-			catch (GLib.Error err) {
-				warning ("CRITICAL: Could not create folder in data directory: %s\n", err.message);
-			}
-		}
+        assert (database == null);
 
+        var database_dir = FileUtils.get_data_directory ();
 
-		var db_file = GLib.File.new_for_path (GLib.Path.build_filename (data_dir.get_path (), "database_1_3.db"));
+        try {
+            database_dir.make_directory_with_parents (null);
+        }
+        catch (GLib.Error err) {
+            if (!(err is IOError.EXISTS))
+                error ("Could not create data directory: %s", err.message);
+        }
 
-		/* we need to set this variable now since 'new SQLHeavy.Database' will create the file later */
-		bool need_create = !db_file.query_exists ();
+        string database_path = Path.build_filename (database_dir.get_path (), "database_1_4.db");
+        var database_file = File.new_for_path (database_path);
 
-		try {
-			database = new SQLHeavy.Database (db_file.get_path (), SQLHeavy.FileMode.READ | SQLHeavy.FileMode.WRITE | SQLHeavy.FileMode.CREATE);
-		}
-		catch (SQLHeavy.Error err) {
-			warning ("This is terrible. Could not even load database. Please report this. Message: %s", err.message);
-		}
+        bool new_db = !database_file.query_exists ();
 
-		/* disable synchronized commits for performance reasons ... this is not vital */
-		database.synchronous = SQLHeavy.SynchronousMode.from_string ("OFF");
+        try {
+            const SQLHeavy.FileMode flags = SQLHeavy.FileMode.READ
+                                            | SQLHeavy.FileMode.WRITE
+                                            | SQLHeavy.FileMode.CREATE;
+            database = new SQLHeavy.Database (database_file.get_path (), flags);
+        }
+        catch (SQLHeavy.Error err) {
+            error ("Could not read/create database file: %s", err.message);
+        }
 
-		/* Create new database if it doesn't exist */
-		if (need_create) {
-			try {
-				database.execute("CREATE TABLE playlists (`name` TEXT, `media` TEXT, 'sort_column_id' INT, 'sort_direction' TEXT, 'columns' TEXT)");
-				database.execute("CREATE TABLE smart_playlists (`name` TEXT, `and_or` INT, `queries` TEXT, 'limit' INT, 'limit_amount' INT, 'sort_column_id' INT, 'sort_direction' TEXT, 'columns' TEXT)");
+        // Disable synchronized commits for performance reasons
+        database.synchronous = SQLHeavy.SynchronousMode.OFF;
 
-				database.execute("""CREATE TABLE media (`uri` TEXT, 'file_size' INT, `title` TEXT,`artist` TEXT, 'composer' TEXT, 'album_artist' TEXT,
-				`album` TEXT, 'grouping' TEXT, `genre` TEXT,`comment` TEXT, 'lyrics' TEXT, 'album_path' TEXT, 'has_embedded' INT,
-				`year` INT, `track` INT, 'track_count' INT, 'album_number' INT, 'album_count' INT, `bitrate` INT, `length` INT, `samplerate` INT,
-				`rating` INT, `playcount` INT, 'skipcount' INT, `dateadded` INT, `lastplayed` INT, 'lastmodified' INT, 'mediatype' INT,
-				'podcast_rss' TEXT, 'podcast_url' TEXT, 'podcast_date' INT, 'is_new_podcast' INT, 'resume_pos' INT)""");
+		load_table (Database.Tables.PLAYLISTS);
+		load_table (Database.Tables.SMART_PLAYLISTS);
+		load_table (Database.Tables.MEDIA);
+		load_table (Database.Tables.DEVICES);
+		load_table (Database.Tables.ARTISTS);
+		load_table (Database.Tables.ALBUMS);
+		load_table (Database.Tables.TRACKS);
 
-				database.execute("CREATE TABLE devices ('unique_id' TEXT, 'sync_when_mounted' INT,'sync_music' INT, 'sync_podcasts' INT, 'sync_audiobooks' INT, 'sync_all_music' INT, 'sync_all_podcasts' INT, 'sync_all_audiobooks' INT, 'music_playlist' STRING, 'podcast_playlist' STRING, 'audiobook_playlist' STRING, 'last_sync_time' INT)");
+        if (new_db)
+            add_default_smart_playlists ();
+    }
 
-				database.execute("CREATE TABLE artists ('name' TEXT, 'mbid' TEXT, 'listeners' INT, 'playcount' INT, 'published' TEXT, 'summary' TEXT, 'content' TEXT, 'image_uri' TEXT)");
-				database.execute("CREATE TABLE albums ('name' TEXT, 'artist' TEXT, 'mbid' TEXT, 'release_date' TEXT, 'summary' TEXT, 'listeners' INT, 'playcount' INT, 'image_uri' TEXT)");
-				database.execute("CREATE TABLE tracks ('id' INT, 'name' TEXT, 'artist' TEXT, 'album' TEXT, 'duration' INT, 'listeners' INT, 'playcount' INT, 'summary' TEXT, 'content' TEXT)");
-
-				add_default_smart_playlists ();
-			}
-			catch (SQLHeavy.Error err) {
-				critical ("Bad news: could not create tables. Please report this. Message: %s\n", err.message);
-			}
-		}
-	}
+    private void load_table (string table) {
+        try {
+            database.execute (table);
+        }
+        catch (SQLHeavy.Error err) {
+            warning ("Error while executing %s: %s", table, err.message);
+        }
+    }
 
 	public void resetProgress (int items) {
 		index = 0;
@@ -121,28 +119,23 @@ public class Noise.DataBaseManager : GLib.Object {
 				s.genre = results.fetch_string(9);
 				s.comment = results.fetch_string(10);
 				s.lyrics = results.fetch_string(11);
-				s.setAlbumArtPath(results.fetch_string(12));
-				s.has_embedded = (results.fetch_int(13) == 1);
-				s.year = (uint)results.fetch_int(14);
-				s.track = (uint)results.fetch_int(15);
-				s.track_count = (uint)results.fetch_int(16);
-				s.album_number = (uint)results.fetch_int(17);
-				s.album_count = (uint)results.fetch_int(18);
-				s.bitrate = (uint)results.fetch_int(19);
-				s.length = (uint)results.fetch_int(20);
-				s.samplerate = (uint)results.fetch_int(21);
-				s.rating = (uint)results.fetch_int(22);
-				s.play_count = (uint)results.fetch_int(23);
-				s.skip_count = (uint)results.fetch_int(24);
-				s.date_added = (uint)results.fetch_int(25);
-				s.last_played = (uint)results.fetch_int(26);
-				s.last_modified = (uint)results.fetch_int(27);
-				s.mediatype = (Media.MediaType)results.fetch_int(28);
-				s.podcast_rss = results.fetch_string(29);
-				s.podcast_url = results.fetch_string(30);
-				s.podcast_date = results.fetch_int(31);
-				s.is_new_podcast = (results.fetch_int(32) == 1) ? true : false;
-				s.resume_pos = results.fetch_int(33);
+				s.has_embedded = (results.fetch_int(12) == 1);
+				s.year = (uint)results.fetch_int(13);
+				s.track = (uint)results.fetch_int(14);
+				s.track_count = (uint)results.fetch_int(15);
+				s.album_number = (uint)results.fetch_int(16);
+				s.album_count = (uint)results.fetch_int(17);
+				s.bitrate = (uint)results.fetch_int(18);
+				s.length = (uint)results.fetch_int(19);
+				s.samplerate = (uint)results.fetch_int(20);
+				s.rating = (uint)results.fetch_int(21);
+				s.play_count = (uint)results.fetch_int(22);
+				s.skip_count = (uint)results.fetch_int(23);
+				s.date_added = (uint)results.fetch_int(24);
+				s.last_played = (uint)results.fetch_int(25);
+				s.last_modified = (uint)results.fetch_int(26);
+				s.mediatype = (MediaType)results.fetch_int(27);
+				s.resume_pos = results.fetch_int(28);
 
 				rv.add(s);
 			}
@@ -167,12 +160,11 @@ public class Noise.DataBaseManager : GLib.Object {
 		try {
 			transaction = database.begin_transaction();
 			Query query = transaction.prepare ("""INSERT INTO 'media' ('rowid', 'uri', 'file_size', 'title', 'artist', 'composer', 'album_artist',
-'album', 'grouping', 'genre', 'comment', 'lyrics', 'album_path', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
-'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified', 'mediatype', 'podcast_rss',
-'podcast_url', 'podcast_date', 'is_new_podcast', 'resume_pos')
+'album', 'grouping', 'genre', 'comment', 'lyrics', 'has_embedded', 'year', 'track', 'track_count', 'album_number', 'album_count',
+'bitrate', 'length', 'samplerate', 'rating', 'playcount', 'skipcount', 'dateadded', 'lastplayed', 'lastmodified', 'mediatype', 'resume_pos')
 VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :album, :grouping,
-:genre, :comment, :lyrics, :album_path, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate,
-:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :mediatype, :podcast_rss, :podcast_url, :podcast_date, :is_new_podcast,
+:genre, :comment, :lyrics, :has_embedded, :year, :track, :track_count, :album_number, :album_count, :bitrate, :length, :samplerate,
+:rating, :playcount, :skipcount, :dateadded, :lastplayed, :lastmodified, :mediatype,
 :resume_pos);""");
 
 			foreach (var s in media) {
@@ -189,7 +181,6 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 					query.set_string(":genre", s.genre);
 					query.set_string(":comment", s.comment);
 					query.set_string(":lyrics", s.lyrics);
-					query.set_string(":album_path", s.getAlbumArtPath());
 					query.set_int(":has_embedded", s.has_embedded ? 1 : 0);
 					query.set_int(":year", (int)s.year);
 					query.set_int(":track", (int)s.track);
@@ -206,10 +197,6 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 					query.set_int(":lastplayed", (int)s.last_played);
 					query.set_int(":lastmodified", (int)s.last_modified);
 					query.set_int(":mediatype", s.mediatype);
-					query.set_string(":podcast_rss", s.podcast_rss);
-					query.set_string(":podcast_url", s.podcast_url);
-					query.set_int(":podcast_date", s.podcast_date);
-					query.set_int(":is_new_podcast", s.is_new_podcast ? 1 : 0);
 					query.set_int(":resume_pos", s.resume_pos);
 
 					query.execute();
@@ -245,10 +232,9 @@ VALUES (:rowid, :uri, :file_size, :title, :artist, :composer, :album_artist, :al
 			transaction = database.begin_transaction();
 			Query query = transaction.prepare("""UPDATE `media` SET uri=:uri, file_size=:file_size, title=:title, artist=:artist,
 composer=:composer, album_artist=:album_artist, album=:album, grouping=:grouping, genre=:genre, comment=:comment, lyrics=:lyrics,
-album_path=:album_path, has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number,
+ has_embedded=:has_embedded, year=:year, track=:track, track_count=:track_count, album_number=:album_number,
 album_count=:album_count,bitrate=:bitrate, length=:length, samplerate=:samplerate, rating=:rating, playcount=:playcount, skipcount=:skipcount,
-dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediatype=:mediatype, podcast_rss=:podcast_rss, podcast_url=:podcast_url,
-podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_pos WHERE rowid=:rowid""");
+dateadded=:dateadded, lastplayed=:lastplayed, lastmodified=:lastmodified, mediatype=:mediatype, resume_pos=:resume_pos WHERE rowid=:rowid""");
 
 			foreach(Media s in media) {
 				if(s.rowid != -2 && s.rowid > 0) {
@@ -264,7 +250,6 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 					query.set_string(":genre", s.genre);
 					query.set_string(":comment", s.comment);
 					query.set_string(":lyrics", s.lyrics);
-					query.set_string(":album_path", s.getAlbumArtPath());
 					query.set_int(":has_embedded", s.has_embedded ? 1 : 0);
 					query.set_int(":year", (int)s.year);
 					query.set_int(":track", (int)s.track);
@@ -281,10 +266,6 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 					query.set_int(":lastplayed", (int)s.last_played);
 					query.set_int(":lastmodified", (int)s.last_modified);
 					query.set_int(":mediatype", s.mediatype);
-					query.set_string(":podcast_rss", s.podcast_rss);
-					query.set_string(":podcast_url", s.podcast_url);
-					query.set_int(":podcast_date", s.podcast_date);
-					query.set_int(":is_new_podcast", s.is_new_podcast ? 1 : 0);
 					query.set_int(":resume_pos", s.resume_pos);
 
 					query.execute();
@@ -421,7 +402,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			query.set_string(":name", _("Favorite Songs"));
 			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>13<value_separator>6<value_separator>4<query_seperator>");
+			query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>13<val_sep>6<val_sep>4<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
@@ -429,20 +410,9 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 
-#if HAVE_INTERNET_RADIO
-			query.set_string(":name", "Favorite Stations");
-			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>3<query_seperator>13<value_separator>6<value_separator>4<query_seperator>");
-			query.set_int(":limit", 0);
-			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
-			query.set_string(":sort_direction", tvs.sort_direction_to_string());
-			query.set_string(":columns", tvs.columns_to_string());
-			query.execute();
-#endif
 			query.set_string(":name", _("Recently Added"));
 			query.set_int(":and_or", 1);
-			query.set_string(":queries", "5<value_separator>7<value_separator>7<query_seperator>");
+			query.set_string(":queries", "5<val_sep>7<val_sep>7<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
@@ -450,19 +420,21 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
 
+			/*
 			query.set_string(":name", _("Recently Played"));
 			query.set_int(":and_or", 1);
-			query.set_string(":queries", "9<value_separator>7<value_separator>7<query_seperator>");
+			query.set_string(":queries", "9<val_sep>7<val_sep>7<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.LAST_PLAYED);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
+			*/
 
 			query.set_string(":name", _("Recent Favorites"));
 			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>9<value_separator>7<value_separator>7<query_seperator>13<value_separator>6<value_separator>4<query_seperator>");
+			query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>9<val_sep>7<val_sep>7<query_sep>13<val_sep>6<val_sep>4<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.RATING);
@@ -472,27 +444,17 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			query.set_string(":name", _("Never Played"));
 			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>12<value_separator>4<value_separator>0<query_seperator>");
+			query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>12<val_sep>4<val_sep>0<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
 			query.set_string(":sort_direction", tvs.sort_direction_to_string());
 			query.set_string(":columns", tvs.columns_to_string());
 			query.execute();
-#if HAVE_PODCASTS
-			query.set_string(":name", _("Unheard Podcasts"));
-			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>1<query_seperator>12<value_separator>4<value_separator>0<query_seperator>");
-			query.set_int(":limit", 0);
-			query.set_int(":limit_amount", 50);
-			query.set_int(":sort_column_id", MusicListView.MusicColumn.ARTIST);
-			query.set_string(":sort_direction", tvs.sort_direction_to_string());
-			query.set_string(":columns", tvs.columns_to_string());
-			query.execute();
-#endif
+
 			query.set_string(":name", _("Over Played"));
 			query.set_int(":and_or", 0);
-			query.set_string(":queries", "11<value_separator>0<value_separator>0<query_seperator>12<value_separator>6<value_separator>10<query_seperator>");
+			query.set_string(":queries", "11<val_sep>0<val_sep>0<query_sep>12<val_sep>6<val_sep>10<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.PLAY_COUNT);
@@ -502,7 +464,7 @@ podcast_date=:podcast_date, is_new_podcast=:is_new_podcast, resume_pos=:resume_p
 
 			query.set_string(":name", _("Not Recently Played"));
 			query.set_int(":and_or", 1);
-			query.set_string(":queries", "9<value_separator>8<value_separator>7<query_seperator>");
+			query.set_string(":queries", "9<val_sep>8<val_sep>7<query_sep>");
 			query.set_int(":limit", 0);
 			query.set_int(":limit_amount", 50);
 			query.set_int(":sort_column_id", MusicListView.MusicColumn.NUMBER);

@@ -26,13 +26,10 @@ using Gee;
 
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
-    /* signals */
     public signal void playPauseChanged ();
 
-    /* Application */
     public Noise.App app { get { return (application as Noise.App); } }
 
-    /* Library Manager */
     public Noise.LibraryManager library_manager { get; private set; }
 
     public Noise.Settings.Main       main_settings         { get; private set; }
@@ -71,7 +68,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Granite.Widgets.ModeButton viewSelector          { get; private set; } // TODO: make private
     public Granite.Widgets.SearchBar  searchField           { get; private set; } // TODO: make private
     public BottomStatusBar            statusbar             { get; private set; } // TODO: make private
-    private Granite.Widgets.Welcome   welcome_screen        { get; private set; } // TODO: make private
 
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
@@ -193,12 +189,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         this.set_title (this.app.get_name ());
-        this.set_icon (Icons.NOISE.render (IconSize.MENU, null));
+        this.set_icon (Icons.NOISE.render (null, null, 48));
 
         // set up drag dest stuff
+        /*
         Gtk.drag_dest_set (this, DestDefaults.ALL, {}, Gdk.DragAction.MOVE);
         Gtk.drag_dest_add_uri_targets (this);
         this.drag_data_received.connect (dragReceived);
+        */
+        this.destroy.connect (on_quit);
 
         this.show ();
         debug ("done with main window");
@@ -233,7 +232,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
         column_browser_toggle   = new Gtk.ToggleButton ();
         topDisplay              = new TopDisplay (library_manager);
-        topDisplayBin           = new FixedBin(300, -1, 700, -1);
+        topDisplayBin           = new FixedBin (-1, -1, 800, -1);
         viewSelector            = new Granite.Widgets.ModeButton ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
@@ -247,7 +246,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplayBin.set_widget (topDisplay, true, false);
 
         // Set search timeout in ms
-        searchField.pause_delay = 150;
+        searchField.pause_delay = 90;
 
         var column_toggle_item = new Gtk.ToolItem ();
         var top_display_item   = new Gtk.ToolItem ();
@@ -377,21 +376,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private Notify.Notification? notification = null;
 
-    public async void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, bool force = false) {
+    public async void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null) {
         if (!Notify.is_initted ()) {
             if (!Notify.init (app.get_id ())) {
                 warning ("Could not init libnotify");
                 return;
             }
-        }
-
-        if (!force) {
-            // don't show a notification if the user is already viewing
-            // this application. Please note that this is not perfect.
-            // 'is_active' is FALSE when a child window (i.e. a dialog, etc.)
-            // has the toplevel focus.
-            if (is_active)
-                return;
         }
 
         if (notification == null) {
@@ -406,41 +396,38 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // If the passed pixbuf is NULL, let's use the app's icon
         var image = pixbuf;
         if (image == null)
-            image = Icons.NOISE.render (IconSize.DIALOG);
+            image = Icons.NOISE.render (null, null, 48);
 
         notification.set_image_from_pixbuf (image);
 
         try {
-            notification.show();
+            notification.show ();
         }
         catch (GLib.Error err) {
             warning ("Could not show notification: %s", err.message);
         }
     }
 
-    public void show_notification_from_media (Media media, bool force = false) {
+    public void show_notification_from_media (Media media) {
         if (media == null)
             return;
 
         string primary_text = media.title;
-
         string secondary_text = media.artist + "\n" + media.album;
 
-        if (media.getAlbumArtPath() != "" && media.getAlbumArtPath() != null) {
-            Gdk.Pixbuf? pixbuf = null;
-            try {
-                pixbuf = new Gdk.Pixbuf.from_file_at_size (media.getAlbumArtPath(), 48, 48);
-            }
-            catch (Error err) {
-                // Media often doesn't have an associated album art,
-                // so we shouldn't threat this as an unexpected error.
-                message (err.message);
-            }
+        Gdk.Pixbuf? pixbuf = null;
 
-            show_notification (primary_text, secondary_text, pixbuf, force);
+        try {
+            string path = CoverartCache.instance.get_cached_image_path_for_media (media);
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (path, 48, 48);
         }
-        else
-            show_notification (primary_text, secondary_text, null, force);
+        catch (Error err) {
+            // Media often doesn't have an associated album art,
+            // so we shouldn't treat this as an unexpected error.
+            message (err.message);
+        }
+
+        show_notification (primary_text, secondary_text, pixbuf);
     }
 
     private void notify_current_media () {
@@ -695,9 +682,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         string beg = "";
 
-        if(library_manager.media_info.media.mediatype == 3) // radio
-            beg = "<b>" + library_manager.media_info.media.album_artist.replace("\n", "") + "</b>\n";
-
         //set the title
         Media s = library_manager.media_info.media;
         var title = "<b>" + String.escape (s.title) + "</b>";
@@ -730,7 +714,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         //reset the media position
         topDisplay.set_scale_sensitivity(true);
-        topDisplay.set_scale_range(0.0, library_manager.media_info.media.length);
+        topDisplay.set_media (library_manager.media_info.media);
 
         /*if(m.mediatype == 1 || m.mediatype == 2) {
             /*message("setting position to resume_pos which is %d\n", library_manager.media_from_id(i).resume_pos );
@@ -755,23 +739,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         
         update_sensitivities();
 
-        // if radio, we can't depend on current_position_update. do that stuff now.
-        if(library_manager.media_info.media.mediatype == Media.MediaType.STATION) {
-            media_considered_previewed = true;
-            update_media_informations ();
+        Timeout.add(3000, () => {
+            if(library_manager.media_info.media != null && library_manager.media_info.media == m && m.rowid != LibraryManager.PREVIEW_MEDIA_ID) {
+                update_media_informations();
+            }
             
-            // always show notifications for the radio, since user likely does not know media
-            notify_current_media ();
-        }
-        else {
-            Timeout.add(3000, () => {
-                if(library_manager.media_info.media != null && library_manager.media_info.media == m && m.rowid != LibraryManager.PREVIEW_MEDIA_ID) {
-                    update_media_informations();
-                }
-                
-                return false;
-            });
-        }
+            return false;
+        });
     }
 
 
@@ -1099,13 +1073,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             media_considered_played = true;
             library_manager.media_info.media.last_played = (int)time_t();
 
-#if HAVE_PODCASTS
-            if(library_manager.media_info.media.mediatype == 1) { //podcast
-                added_to_play_count = true;
-                ++library_manager.media_info.media.play_count;
-            }
-#endif
-
             library_manager.update_media_item (library_manager.media_info.media, false, false);
 
             // add to the already played list
@@ -1178,17 +1145,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         dialog.destroy();
     }
 
-    public override void destroy () {
-        on_quit ();
-        base.destroy ();
-    }
-
     private void on_quit () {
         // Save media position and info
         main_settings.last_media_position = (int)((double)library_manager.player.getPosition
-        ()/1000000000);
+        ()/Numeric.NANO_INV);
         if(library_manager.media_active) {
-            library_manager.media_info.media.resume_pos = (int)((double)library_manager.player.getPosition()/1000000000);
+            library_manager.media_info.media.resume_pos = (int)((double)library_manager.player.getPosition()/Numeric.NANO_INV);
             library_manager.update_media_item (library_manager.media_info.media, false, false);
         }
         library_manager.player.pause();

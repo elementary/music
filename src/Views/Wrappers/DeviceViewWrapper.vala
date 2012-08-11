@@ -69,7 +69,8 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
         if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME || !has_list_view)
             return "";
 
-        uint total_items = 0, total_time = 0;
+        uint total_items = 0;
+        uint64 total_time = 0;
 
         foreach (var media in list_view.get_media ()) {
             if (media != null) {
@@ -84,7 +85,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
         string media_description = total_items > 1 ? _("%i tracks") : _("1 track");
 
         string media_text = media_description.printf ((int)total_items);
-        string time_text = TimeUtils.time_string_from_seconds (total_time);
+        string time_text = TimeUtils.time_string_from_miliseconds (total_time);
 
         return "%s, %s".printf (media_text, time_text);
     }

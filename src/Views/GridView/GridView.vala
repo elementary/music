@@ -49,17 +49,16 @@ public class Noise.GridView : ContentView, GridLayout {
 	private LibraryManager lm;
 	private LibraryWindow lw;
 
-	private Gdk.Pixbuf defaultPix;
-
 	public GridView (ViewWrapper view_wrapper) {
         base (view_wrapper);
 		lm = view_wrapper.lm;
 		lw = view_wrapper.lw;
 
 		album_info = new Gee.HashMap<string, Gee.HashMap<Media, int>> ();
-		defaultPix = lm.get_pixbuf_shadow (Icons.DEFAULT_ALBUM_ART_PIXBUF);
 
 		build_ui ();
+
+        CoverartCache.instance.changed.connect (queue_draw);
 	}
 
 	public void build_ui () {
@@ -266,13 +265,7 @@ public class Noise.GridView : ContentView, GridLayout {
 		Value val;
 
 		if (column == Column.PIXBUF) {
-			var cover_art = lm.get_cover_album_art_from_key(s.album_artist, s.album);
-			if (cover_art != null) {
-				val = cover_art;
-			}
-			else {
-				val = defaultPix;
-			}
+    		val = CoverartCache.instance.get_cover (s);
 		}
 		else if (column == Column.MARKUP) {
 			string TEXT_MARKUP = @"%s\n<span foreground=\"#999\">%s</span>";

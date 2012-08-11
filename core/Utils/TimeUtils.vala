@@ -22,19 +22,18 @@
 
 namespace Noise.TimeUtils {
 
+    public const uint SECONDS_PER_MINUTE = 60;
+    public const uint SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE;
+    public const uint SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR;
+
     /**
      * Receives the number of seconds and returns a string with format:
      * "%i days, %i hours and %i minutes", "%i seconds", "%i minutes and %i seconds",
      * or similar.
      */
     public inline string time_string_from_seconds (uint seconds) {
-        const uint SECONDS_PER_MINUTE = 60;
-
         if (seconds < SECONDS_PER_MINUTE)
             return ngettext ("%d second", "%d seconds", seconds).printf (seconds);
-
-        uint SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE;
-        uint SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR;
 
         string days_string = "", hours_string = "", minutes_string = "", seconds_string = "";
         uint days = 0, hours = 0, minutes = 0;
@@ -93,8 +92,7 @@ namespace Noise.TimeUtils {
                     rv = hours_string;
             }
             else {
-                // In theory, this will never be reached,
-                // since we handle this case above.
+                // In theory, this will never be reached, since we handle this case above.
                 rv = minutes_string;
             }
         }
@@ -102,13 +100,45 @@ namespace Noise.TimeUtils {
         return rv;
     }
 
+    public inline string time_string_from_miliseconds (uint64 miliseconds) {
+        return time_string_from_seconds ((uint)(miliseconds / Numeric.MILI_INV));
+    }
+
+    public inline string time_string_from_nanoseconds (uint64 nanoseconds) {
+        return time_string_from_seconds ((uint)(nanoseconds / Numeric.NANO_INV));
+    }
+
     /**
      * Receives the number of seconds and returns a string with format MM:SS
      */
-    public inline string pretty_time_mins (uint seconds) {
-        uint minutes = Numeric.lowest_uint_from_double ((double)seconds / 60);
-        seconds -= minutes * 60;
-        return "%u:%02u".printf (minutes, seconds);
+    public inline string pretty_length (uint seconds) {
+        if (seconds < SECONDS_PER_HOUR) {
+            uint minutes = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_MINUTE);
+            seconds -= minutes * SECONDS_PER_MINUTE;
+            return "%u:%02u".printf (minutes, seconds);
+        }
+        else {
+            uint hours = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_HOUR);
+            seconds -= hours * SECONDS_PER_HOUR;
+            uint minutes = Numeric.lowest_uint_from_double (seconds / SECONDS_PER_MINUTE);
+            seconds -= minutes * SECONDS_PER_MINUTE;
+
+            return "%u:%02u:%02u".printf (hours, minutes, seconds);
+        }
+    }
+
+    /**
+     * Receives the number of miliseconds and returns a string with format MM:SS
+     */
+    public inline string pretty_length_from_ms (uint64 mseconds) {
+        return pretty_length ((uint)(mseconds / Numeric.MILI_INV));
+    }
+
+    /**
+     * Receives the number of nanoseconds and returns a string with format MM:SS
+     */
+    public inline string pretty_length_from_ns (uint64 nseconds) {
+        return pretty_length ((uint)(nseconds / Numeric.NANO_INV));
     }
 
     /**
@@ -123,6 +153,4 @@ namespace Noise.TimeUtils {
         var dt = Time.local (time);
         return pretty_timestamp_from_time (dt);
     }
-
 }
-

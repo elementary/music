@@ -23,6 +23,38 @@
 
 public abstract class Noise.ViewWrapper : Gtk.Box {
 
+    public enum Hint {
+        NONE,
+        MUSIC,
+        PODCAST,
+        AUDIOBOOK,
+        STATION,
+        SIMILAR,
+        QUEUE,
+        HISTORY,
+        PLAYLIST,
+        SMART_PLAYLIST,
+        CDROM,
+        DEVICE_AUDIO,
+        DEVICE_PODCAST,
+        DEVICE_AUDIOBOOK,
+        NETWORK_DEVICE,
+        ALBUM_LIST;
+    }
+
+    /**
+     * Type of visual representation of the media.
+     *
+     * Values *must* match the index of the respective view in the view selector.
+     */
+    public enum ViewType {
+        GRID    = 0, // Matches index 0 of the view in lw.viewSelector
+        LIST    = 1, // Matches index 1 of the view in lw.viewSelector
+        ALERT   = 2, // For embedded alerts
+        WELCOME = 3, // For welcome screens
+        NONE    = 4  // Nothing showing
+    }
+
     public LibraryManager lm { get; protected set; }
     public LibraryWindow  lw { get; protected set; }
 
@@ -47,40 +79,28 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
     // Contruction must always happen before population
     protected const int VIEW_CONSTRUCT_PRIORITY = Priority.DEFAULT_IDLE - 10;
 
-    /**
-     * Type of visual representation of the media.
-     *
-     * Values *must* match the index of the respective view in the view selector.
-     */
-    public enum ViewType {
-        GRID    = 0, // Matches index 0 of the view in lw.viewSelector
-        LIST    = 1, // Matches index 1 of the view in lw.viewSelector
-        ALERT   = 2, // For embedded alerts
-        WELCOME = 3, // For welcome screens
-        NONE    = 4  // Nothing showing
+
+    public ViewType current_view {
+        get {
+            var view = view_container.get_current_view ();
+
+            if (view == grid_view)
+                return ViewType.GRID;
+
+            if (view == list_view)
+                return ViewType.LIST;
+            
+            if (view == embedded_alert)
+                return ViewType.ALERT;
+
+            if (view == welcome_screen)
+                return ViewType.WELCOME;
+
+            return ViewType.NONE;
+        }
     }
 
-    public ViewType current_view { get; private set; default = ViewType.NONE; }
-
-
-    public enum Hint {
-        NONE,
-        MUSIC,
-        PODCAST,
-        AUDIOBOOK,
-        STATION,
-        SIMILAR,
-        QUEUE,
-        HISTORY,
-        PLAYLIST,
-        SMART_PLAYLIST,
-        CDROM,
-        DEVICE_AUDIO,
-        DEVICE_PODCAST,
-        DEVICE_AUDIOBOOK,
-        NETWORK_DEVICE,
-        ALBUM_LIST;
-    }
+    protected ViewType last_used_view = ViewType.NONE;
 
     /**
      * This is by far the most important property of this object.
@@ -188,10 +208,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             return;
         }
 
-        // Set view as current
-        current_view = type;
-
-        debug ("%s : switching to %s", hint.to_string(), type.to_string ());
+        last_used_view = type;
 
         // Update LibraryWindow widgets
         update_library_window_widgets ();
@@ -249,8 +266,8 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         // select the right view in the view selector if it's one of the three views.
         // The order is important here. The sensitivity set above must be set before this,
         // as view_selector_changed() depends on that.
-        if (lw.viewSelector.selected != (int)current_view && (int)current_view <= 2)
-            lw.viewSelector.set_active ((int)current_view);
+        if (lw.viewSelector.selected != (int)last_used_view && (int)last_used_view <= 2)
+            lw.viewSelector.set_active ((int)last_used_view);
 
         // The statusbar is also a library window widget
         update_statusbar_info ();
@@ -264,19 +281,23 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
     }
 
     public virtual void view_selector_changed () {
-        if (!lw.initialization_finished || (lw.initialization_finished && (int)current_view == lw.viewSelector.selected) || current_view == ViewType.ALERT || current_view == ViewType.WELCOME || !lw.viewSelector.sensitive)
+        if (!lw.initialization_finished || !lw.viewSelector.sensitive)
+            return;
+
+        if ((int)current_view == lw.viewSelector.selected)
+            return;
+
+        if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
             return;
 
         debug ("%s : view_selector_changed : applying actions", hint.to_string());
 
         var selected_view = (ViewType) lw.viewSelector.selected;
 
-        if (is_current_wrapper) { // apply changes right away
+        if (is_current_wrapper)
             set_active_view (selected_view);
-        }
-        else { // only set current_view and let set_as_current_view() do the actual job
-            current_view = selected_view;
-        }
+        else
+            last_used_view = selected_view;
     }
 
     // FIXME: this shouldn't depend on the list view
@@ -347,8 +368,8 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             media_set = list_view.get_visible_media ();
         }
 
-        uint total_items = 0, total_time = 0;
-        uint64 total_size = 0;
+        uint total_items = 0;
+        uint64 total_size = 0, total_time = 0;
 
         foreach (var media in media_set) {
             if (media != null) {
@@ -375,7 +396,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             media_description = ngettext ("%u song", "%u songs", total_items).printf (total_items);
  
         string media_text = media_description.printf (total_items);
-        string time_text = TimeUtils.time_string_from_seconds (total_time);
+        string time_text = TimeUtils.time_string_from_miliseconds (total_time);
         string size_text = format_size (total_size);
 
         return "%s, %s, %s".printf (media_text, time_text, size_text);

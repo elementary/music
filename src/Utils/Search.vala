@@ -202,7 +202,7 @@ namespace Noise.Search {
         rating_results = new Gee.LinkedList<Noise.Media>();
 
         string l_search = search.down();
-        int mediatype = 0;
+        var mediatype = MediaType.SONG;
 
         bool include_temps = hint == Noise.ViewWrapper.Hint.CDROM ||
                              hint == Noise.ViewWrapper.Hint.DEVICE_AUDIO || 
@@ -217,24 +217,24 @@ namespace Noise.Search {
         // the values of each media type.
 
         if(hint == Noise.ViewWrapper.Hint.PODCAST || hint == Noise.ViewWrapper.Hint.DEVICE_PODCAST) {
-            mediatype = 1;
+            mediatype = MediaType.PODCAST;
         }
         else if(hint == Noise.ViewWrapper.Hint.AUDIOBOOK || hint == Noise.ViewWrapper.Hint.DEVICE_AUDIOBOOK) {
-            mediatype = 2;
+            mediatype = MediaType.AUDIOBOOK;
         }
         else if(hint == Noise.ViewWrapper.Hint.STATION) {
-            mediatype = 3;
+            mediatype = MediaType.STATION;
         }
         else if(hint == Noise.ViewWrapper.Hint.QUEUE || hint == Noise.ViewWrapper.Hint.HISTORY ||
                  hint == Noise.ViewWrapper.Hint.PLAYLIST || hint == Noise.ViewWrapper.Hint.SMART_PLAYLIST ||
                  hint == Noise.ViewWrapper.Hint.ALBUM_LIST)
         {
-            mediatype = -1; // some lists should be able to have ALL media types
+            mediatype = MediaType.UNSPECIFIED; // some lists should be able to have ALL media types
         }
         
         foreach (var m in to_search) {
             bool valid_song =   m != null &&
-                              ( m.mediatype == mediatype || mediatype == -1 ) &&
+                              ( m.mediatype == mediatype || mediatype == MediaType.UNSPECIFIED ) &&
                               ( !m.isTemporary || include_temps ) &&
                               ( l_search in m.title.down() ||
                                 l_search in m.album_artist.down() ||

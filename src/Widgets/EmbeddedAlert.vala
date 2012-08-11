@@ -22,6 +22,9 @@
 
 public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
 
+    private static const int MARGIN = 78;
+    private static const int MAX_WIDTH = 850;
+
     const string PRIMARY_TEXT_MARKUP = "<span weight=\"bold\" size=\"larger\">%s</span>";
 
     protected int image_size {
@@ -213,9 +216,13 @@ public class Granite.Widgets.EmbeddedAlert : Gtk.EventBox {
                                           Gtk.PositionType.BOTTOM, 1, 1);
 
         content_grid.halign = content_grid.valign = Gtk.Align.CENTER;
-        content_grid.margin = 100;
+        content_grid.margin = MARGIN;
 
-        this.add (content_grid);
+        // Use a fixedbin widget so that we're always in control of the size
+        var size_wrapper = new FixedBin (-1, -1, MAX_WIDTH, -1);
+        size_wrapper.set_widget (content_grid);
+
+        this.add (size_wrapper);
 
         // INIT WIDGETS. We use these setters to avoid code duplication
         this.image_size = 64;

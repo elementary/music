@@ -6,9 +6,11 @@ vala_precompile(VALA_C
     EqualizerPreset.vala
     LibraryWindowInterface.vala
     Media.vala
+    Utils/FileUtils.vala
     Utils/TimeUtils.vala
     Utils/String.vala
     Utils/Numeric.vala
+    Utils/UI.vala
     Utils/CompareFunctionHolder.vala
 
 PACKAGES

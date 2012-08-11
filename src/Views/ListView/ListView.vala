@@ -30,7 +30,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	public signal void reordered ();
 
 	// Wrapper for the list view and miller columns
-	private Gtk.Paned list_view_hpaned; // for left mode
+	private Granite.Widgets.SidebarPaned list_view_hpaned; // for left mode
 	private Gtk.Paned list_view_vpaned; // for top mode
 
 	public ColumnBrowser column_browser { get; private set; }
@@ -124,11 +124,10 @@ public class Noise.ListView : ContentView, Gtk.Box {
 			column_browser = new MusicColumnBrowser (view_wrapper);
 
 		if (has_column_browser) {
-			list_view_hpaned = new Paned (Orientation.HORIZONTAL);
+			list_view_hpaned = new Granite.Widgets.SidebarPaned ();
 			list_view_vpaned = new Paned (Orientation.VERTICAL);
 
 			// Fix theming
-			list_view_hpaned.get_style_context().add_class (Gtk.STYLE_CLASS_HORIZONTAL);
 			list_view_vpaned.get_style_context().add_class (Gtk.STYLE_CLASS_VERTICAL);
 
 			list_view_hpaned.pack2(list_view_vpaned, true, false);
@@ -183,7 +182,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
 					n_cols ++;
 			}
 
-			if (view_width - required_width < list_view.get_allocated_width () && n_cols > 2)
+			if (view_width - required_width < list_view.get_allocated_width () && n_cols > 2
+			    && visible_columns > 2)
 				actual_position = Noise.BrowserPosition.TOP;
 			else
 				actual_position = Noise.BrowserPosition.LEFT;
@@ -196,7 +196,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 				list_view_vpaned.remove (column_browser);
 				list_view_hpaned.pack1 (column_browser, true, false);
 
-				list_view_hpaned.set_position (list_view_hpaned_position);
+				list_view_hpaned.position = list_view_hpaned_position;
 			}
 		}
 		else if (actual_position == Noise.BrowserPosition.TOP) {
@@ -325,23 +325,20 @@ public class Noise.ListView : ContentView, Gtk.Box {
 	}
 
 	public void add_media (Gee.Collection<Media> to_add) {
-		//if (column_browser_enabled)
-		//	column_browser.add_media (to_add);
-		//else
-			list_view.add_media (to_add);
+    	list_view.add_media (to_add);
+		if (has_column_browser)
+            column_browser.set_media (get_visible_media ());
 	}
 
 	public void remove_media (Gee.Collection<Media> to_remove) {
-		//if (column_browser_enabled)
-		//	column_browser.remove_media (to_remove);
-		//else
-			list_view.remove_media (to_remove);
+    	list_view.remove_media (to_remove);
+		if (has_column_browser)
+            column_browser.set_media (get_visible_media ());
 	}
 
 	public void set_media (Gee.Collection<Media> media) {
+		list_view.set_media (media);
 		if (has_column_browser)
 			column_browser.set_media (media);
-		list_view.set_media (media);
 	}
 }
-
