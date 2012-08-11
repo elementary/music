@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-08 13:28-0600\n"
+"POT-Creation-Date: 2012-08-10 21:28-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victored/noise/po/../src//LibraryWindow.vala:699
+#: /home/victored/noise/po/../src//LibraryWindow.vala:688
 #: /home/victored/noise/po/../core//Media.vala:35
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
@@ -65,7 +65,7 @@ msgid "Unknown Track"
 msgstr ""
 
 #: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victored/noise/po/../src//LibraryWindow.vala:700
+#: /home/victored/noise/po/../src//LibraryWindow.vala:689
 #: /home/victored/noise/po/../core//Media.vala:34
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
 msgid "Unknown Album"
@@ -95,7 +95,7 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:95
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victored/noise/po/../src//LibraryWindow.vala:214
+#: /home/victored/noise/po/../src//LibraryWindow.vala:212
 msgid "Import to Library"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr ""
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victored/noise/po/../src//LibraryWindow.vala:518
+#: /home/victored/noise/po/../src//LibraryWindow.vala:507
 msgid "Music"
 msgstr ""
 
@@ -424,7 +424,7 @@ msgid "Lyrics"
 msgstr ""
 
 #: /home/victored/noise/po/../src//Dialogs/MediaEditor.vala:87
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:150
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:152
 #: /home/victored/noise/po/../src//Dialogs/PlaylistNameWindow.vala:61
 #: /home/victored/noise/po/../plugins//internet-radio/StationEditor.vala:70
 msgid "Done"
@@ -555,8 +555,8 @@ msgstr ""
 msgid "Sync will remove 1 item from %s"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:143
-#: /home/victored/noise/po/../src//LibraryWindow.vala:218
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:145
+#: /home/victored/noise/po/../src//LibraryWindow.vala:216
 msgid "Preferences"
 msgstr ""
 
@@ -959,14 +959,14 @@ msgstr ""
 msgid "All the songs in this device are already in your library."
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:378
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:394
 #, c-format
 msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:380
+#: /home/victored/noise/po/../src//Views/Wrappers/ViewWrapper.vala:396
 #, c-format
 msgid "%u song"
 msgid_plural "%u songs"
@@ -1089,7 +1089,7 @@ msgid "Show in File Browser"
 msgstr ""
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victored/noise/po/../src//LibraryWindow.vala:529
+#: /home/victored/noise/po/../src//LibraryWindow.vala:518
 msgid "Queue"
 msgstr ""
 
@@ -1115,96 +1115,6 @@ msgstr ""
 msgid "Import %i songs"
 msgstr ""
 
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:191
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
-msgid "Unrated"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:193
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
-msgid "1 Star"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:195
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:193
-#, c-format
-msgid "%s Stars"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:243
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "All Genres"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:245
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:243
-#, c-format
-msgid "All %i Genres"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:247
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
-msgid "No Genres"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:251
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
-msgid "All Artists"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:253
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
-#, c-format
-msgid "All %i Artists"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:255
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "No Artists"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:259
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "All Albums"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:261
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:259
-#, c-format
-msgid "All %i Albums"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:263
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
-msgid "No Albums"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:267
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
-msgid "All Years"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:269
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
-#, c-format
-msgid "All %i Years"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:271
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
-msgid "No Years"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:275
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
-msgid "All Ratings"
-msgstr ""
-
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowserModel.vala:277
-#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
-msgid "No Ratings"
-msgstr ""
-
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:46
 msgid "Genres"
 msgstr ""
@@ -1223,6 +1133,79 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumn.vala:54
 msgid "Ratings"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:189
+msgid "Unrated"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:191
+msgid "1 Star"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:193
+#, c-format
+msgid "%s Stars"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "All Genres"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:243
+#, c-format
+msgid "All %i Genres"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+msgid "No Genres"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+msgid "All Artists"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:251
+#, c-format
+msgid "All %i Artists"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
+msgid "No Artists"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "All Albums"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:259
+#, c-format
+msgid "All %i Albums"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+msgid "No Albums"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+msgid "All Years"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:267
+#, c-format
+msgid "All %i Years"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:269
+msgid "No Years"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
+msgid "All Ratings"
+msgstr ""
+
+#: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
+msgid "No Ratings"
 msgstr ""
 
 #: /home/victored/noise/po/../src//Views/ListView/ColumnBrowser/ColumnBrowser.vala:166
@@ -1311,53 +1294,53 @@ msgstr ""
 msgid "Not Recently Played"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:215
+#: /home/victored/noise/po/../src//LibraryWindow.vala:213
 msgid "Rescan Music Folder"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:239
+#: /home/victored/noise/po/../src//LibraryWindow.vala:237
 msgid "Search Music"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:534
+#: /home/victored/noise/po/../src//LibraryWindow.vala:523
 msgid "History"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:699
+#: /home/victored/noise/po/../src//LibraryWindow.vala:688
 msgid " by "
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:700
+#: /home/victored/noise/po/../src//LibraryWindow.vala:689
 msgid " on "
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:906
+#: /home/victored/noise/po/../src//LibraryWindow.vala:895
 msgid "Import Music"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:930
+#: /home/victored/noise/po/../src//LibraryWindow.vala:919
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:945
+#: /home/victored/noise/po/../src//LibraryWindow.vala:934
 msgid "Rescanning music folder for changes"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:952
+#: /home/victored/noise/po/../src//LibraryWindow.vala:941
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "Could not find Music Folder"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:952
+#: /home/victored/noise/po/../src//LibraryWindow.vala:941
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:1006
+#: /home/victored/noise/po/../src//LibraryWindow.vala:995
 msgid "Import Complete"
 msgstr ""
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:1006
+#: /home/victored/noise/po/../src//LibraryWindow.vala:995
 #, c-format
 msgid "%s has imported your library."
 msgstr ""
@@ -1604,7 +1587,7 @@ msgid "Last.fm"
 msgstr ""
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:53
-msgid "Click to redo the Last.fm Login Process"
+msgid "Click to redo the Last.fm login process"
 msgstr ""
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:56
