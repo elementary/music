@@ -376,7 +376,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private Notify.Notification? notification = null;
 
-    public async void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null) {
+    public void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null) {
+        // Don't show notifications if the window is active
+        if (this.is_active)
+            return;
+
         if (!Notify.is_initted ()) {
             if (!Notify.init (app.get_id ())) {
                 warning ("Could not init libnotify");
