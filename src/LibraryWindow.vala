@@ -376,21 +376,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private Notify.Notification? notification = null;
 
-    public async void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null, bool force = false) {
+    public async void show_notification (string primary_text, string secondary_text, Gdk.Pixbuf? pixbuf = null) {
         if (!Notify.is_initted ()) {
             if (!Notify.init (app.get_id ())) {
                 warning ("Could not init libnotify");
                 return;
             }
-        }
-
-        if (!force) {
-            // don't show a notification if the user is already viewing
-            // this application. Please note that this is not perfect.
-            // 'is_active' is FALSE when a child window (i.e. a dialog, etc.)
-            // has the toplevel focus.
-            if (is_active)
-                return;
         }
 
         if (notification == null) {
@@ -405,38 +396,38 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // If the passed pixbuf is NULL, let's use the app's icon
         var image = pixbuf;
         if (image == null)
-            image = Icons.NOISE.render (IconSize.DIALOG);
+            image = Icons.NOISE.render (null, null, 48);
 
         notification.set_image_from_pixbuf (image);
 
         try {
-            notification.show();
+            notification.show ();
         }
         catch (GLib.Error err) {
             warning ("Could not show notification: %s", err.message);
         }
     }
 
-    public void show_notification_from_media (Media media, bool force = false) {
+    public void show_notification_from_media (Media media) {
         if (media == null)
             return;
 
         string primary_text = media.title;
-
         string secondary_text = media.artist + "\n" + media.album;
 
         Gdk.Pixbuf? pixbuf = null;
+
         try {
             string path = CoverartCache.instance.get_cached_image_path_for_media (media);
             pixbuf = new Gdk.Pixbuf.from_file_at_size (path, 48, 48);
         }
         catch (Error err) {
             // Media often doesn't have an associated album art,
-            // so we shouldn't threat this as an unexpected error.
+            // so we shouldn't treat this as an unexpected error.
             message (err.message);
         }
 
-        show_notification (primary_text, secondary_text, null, force);
+        show_notification (primary_text, secondary_text, pixbuf);
     }
 
     private void notify_current_media () {
