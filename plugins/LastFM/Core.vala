@@ -391,7 +391,7 @@ namespace LastFM {
                 /* If on same song, update PlaybackManager.instance.media_info.album */
                 fetch_info_guard.lock ();
 
-                if (lm.media_active && PlaybackManager.instance.media_info.media == current_media) {
+                if (PlaybackManager.instance.media_active && PlaybackManager.instance.media_info.media == current_media) {
                     PlaybackManager.instance.media_info.album = album;
                 }
 
@@ -476,7 +476,7 @@ namespace LastFM {
                 message ("Last.FM user not logged in\n");
                 return null;
             }
-            if(!lm.media_active)
+            if(!PlaybackManager.instance.media_active)
                 return null;
             
             var artist = PlaybackManager.instance.media_info.media.artist;
@@ -521,7 +521,7 @@ namespace LastFM {
                 message ("Last.FM user not logged in\n");
                 return null;
             }
-            if(!lm.media_active)
+            if(!PlaybackManager.instance.media_active)
                 return null;
 
             var current_media = PlaybackManager.instance.media_info.media;

@@ -94,7 +94,7 @@ public class Noise.PlaybackManager {
 	public Shuffle shuffle;
 	public int next_gapless_id;
 
-	private Noise.Streamer player;
+	public Noise.Streamer player;
 
 
     public PlaybackManager () {

@@ -42,15 +42,15 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
         repeatChooser.appendItem (_("Album"), repeat_on_image, _("Repeat Album"));
         repeatChooser.appendItem (_("Artist"), repeat_on_image, _("Repeat Artist"));
         repeatChooser.appendItem (_("All"), repeat_on_image, _("Repeat All"));
-        repeatChooser.setOption (lw.main_settings.repeat_mode);
+        repeatChooser.setOption (Settings.Main.instance.repeat_mode);
 
         shuffleChooser.appendItem (_("Off"), shuffle_off_image, _("Enable Shuffle"));
         shuffleChooser.appendItem (_("All"), shuffle_on_image, _("Disable Shuffle"));
-        shuffleChooser.setOption (lw.main_settings.shuffle_mode);
+        shuffleChooser.setOption (Settings.Main.instance.shuffle_mode);
 
         info_panel_chooser.appendItem (_("Hide"), info_panel_show, _("Show Info Panel"));
         info_panel_chooser.appendItem (_("Show"), info_panel_hide, _("Hide Info Panel"));
-        info_panel_chooser.setOption (lw.savedstate_settings.more_visible ? 1 : 0);
+        info_panel_chooser.setOption (Settings.SavedState.instance.more_visible ? 1 : 0);
 
         eq_option_chooser.appendItem (_("Hide"), eq_hide_image, _("Show Equalizer"));
         eq_option_chooser.appendItem (_("Show"), eq_show_image, _("Hide Equalizer"));
@@ -71,9 +71,9 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
         shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
         info_panel_chooser.option_changed.connect(info_panel_chooserOptionChanged);
 
-        if(lw.library_manager.media_active) {
-            if(lw.main_settings.shuffle_mode == LibraryManager.Shuffle.ALL) {
-                lw.library_manager.setShuffleMode(LibraryManager.Shuffle.ALL, true);
+        if(lw.PlaybackManager.instance.media_active) {
+            if(Settings.Main.instance.shuffle_mode == PlaybackManager.Shuffle.ALL) {
+                lw.library_manager.setShuffleMode(PlaybackManager.Shuffle.ALL, true);
             }
         }
         
@@ -85,25 +85,25 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
     }
 
     public virtual void repeatChooserOptionChanged(int val) {
-        lw.main_settings.repeat_mode = val;
+        Settings.Main.instance.repeat_mode = val;
 
         if(val == 0)
-            lw.library_manager.repeat = LibraryManager.Repeat.OFF;
+            lw.library_manager.repeat = PlaybackManager.Repeat.OFF;
         else if(val == 1)
-            lw.library_manager.repeat = LibraryManager.Repeat.MEDIA;
+            lw.library_manager.repeat = PlaybackManager.Repeat.MEDIA;
         else if(val == 2)
-            lw.library_manager.repeat = LibraryManager.Repeat.ALBUM;
+            lw.library_manager.repeat = PlaybackManager.Repeat.ALBUM;
         else if(val == 3)
-            lw.library_manager.repeat = LibraryManager.Repeat.ARTIST;
+            lw.library_manager.repeat = PlaybackManager.Repeat.ARTIST;
         else if(val == 4)
-            lw.library_manager.repeat = LibraryManager.Repeat.ALL;
+            lw.library_manager.repeat = PlaybackManager.Repeat.ALL;
     }
 
     public virtual void shuffleChooserOptionChanged(int val) {
         if(val == 0)
-            lw.library_manager.setShuffleMode(LibraryManager.Shuffle.OFF, true);
+            lw.library_manager.setShuffleMode(PlaybackManager.Shuffle.OFF, true);
         else if(val == 1)
-            lw.library_manager.setShuffleMode(LibraryManager.Shuffle.ALL, true);
+            lw.library_manager.setShuffleMode(PlaybackManager.Shuffle.ALL, true);
     }
 
     public virtual bool addPlaylistChooserOptionClicked(Gdk.EventButton event) {
@@ -136,7 +136,7 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
 
     public virtual void info_panel_chooserOptionChanged (int val) {
         lw.info_panel.set_visible (val == 1);
-        lw.savedstate_settings.more_visible = (val == 1);
+        Settings.SavedState.instance.more_visible = (val == 1);
     }
 
 }

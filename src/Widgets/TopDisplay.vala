@@ -84,7 +84,7 @@ public class Noise.TopDisplay : Box {
 		this.scale.value_changed.connect(value_changed);
 		this.scale.change_value.connect(change_value);
 
-		this.lm.player.current_position_update.connect(player_position_update);
+		PlaybackManager.instance.player.current_position_update.connect(player_position_update);
 		this.lm.media_updated.connect(media_updated);
 	}
 	
@@ -144,7 +144,7 @@ public class Noise.TopDisplay : Box {
 	}
     
 	public virtual bool scale_button_press(Gdk.EventButton event) {
-        this.lm.player.current_position_update.disconnect(player_position_update);
+        PlaybackManager.instance.player.current_position_update.disconnect(player_position_update);
         is_seeking = true;
 		change_value (ScrollType.NONE, get_current_time ());
 		
@@ -191,14 +191,14 @@ public class Noise.TopDisplay : Box {
 	}
 
 	public virtual bool change_value(ScrollType scroll, double val) {
-        this.lm.player.current_position_update.disconnect(player_position_update);
+        PlaybackManager.instance.player.current_position_update.disconnect(player_position_update);
 		scale.set_value(val);
 		scale_value_changed(scroll, val);
 
         if( !is_seeking )
         {
-            lm.player.setPosition((int64)(val / Numeric.MILI_INV * Numeric.NANO_INV));
-            this.lm.player.current_position_update.connect(player_position_update);
+            PlaybackManager.instance.player.setPosition((int64)(val / Numeric.MILI_INV * Numeric.NANO_INV));
+            PlaybackManager.instance.player.current_position_update.connect(player_position_update);
         }
 		
 		return false;

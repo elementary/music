@@ -109,9 +109,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         //various objects
         mkl = new MediaKeyListener (this);
 
-        this.library_manager.player.end_of_stream.connect (end_of_stream);
-        this.library_manager.player.current_position_update.connect (current_position_update);
-        //FIXME? this.library_manager.player.media_not_found.connect (media_not_found);
+        PlaybackManager.instance.player.end_of_stream.connect (end_of_stream);
+        PlaybackManager.instance.player.current_position_update.connect (current_position_update);
+        //FIXME? PlaybackManager.instance.player.media_not_found.connect (media_not_found);
         this.library_manager.music_counted.connect (musicCounted);
         this.library_manager.music_added.connect (musicAdded);
         this.library_manager.music_imported.connect (musicImported);
@@ -137,7 +137,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 media_considered_previewed = true;
             if(Settings.Main.instance.last_media_position > 30)
                 media_considered_played = true;
-            if(library_manager.media_active && (double)(Settings.Main.instance.last_media_position/(double)PlaybackManager.instance.media_info.media.length) > 0.90)
+            if(PlaybackManager.instance.media_active && (double)(Settings.Main.instance.last_media_position/(double)PlaybackManager.instance.media_info.media.length) > 0.90)
                 added_to_play_count = true;
         }
 
@@ -625,7 +625,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool folder_set = (Settings.Main.instance.music_folder != "");
         bool have_media = library_manager.media_count () > 0;
         bool doing_ops = library_manager.doing_file_operations ();
-        bool media_active = library_manager.media_active;
+        bool media_active = PlaybackManager.instance.media_active;
 
         fileImportMusic.set_sensitive (!doing_ops && folder_set);
         fileRescanMusicFolder.set_sensitive (!doing_ops && folder_set);
@@ -660,7 +660,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // hide playlists when media list is empty
         sideTree.setVisibility (sideTree.playlists_iter, have_media);
 
-        if(!library_manager.media_active || have_media && !library_manager.playing) {
+        if(!PlaybackManager.instance.media_active || have_media && !library_manager.playing) {
             playButton.set_stock_id(Gtk.Stock.MEDIA_PLAY);
         }
     }
@@ -678,7 +678,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
         }
 
-        if(!library_manager.media_active) {
+        if(!PlaybackManager.instance.media_active) {
             topDisplay.set_label_markup("");
             debug ("setting info label as ''");
             return;
@@ -766,7 +766,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void medias_updated(Collection<int> ids) {
-        if(library_manager.media_active && ids.contains(PlaybackManager.instance.media_info.media.rowid)) {
+        if(PlaybackManager.instance.media_active && ids.contains(PlaybackManager.instance.media_info.media.rowid)) {
             updateInfoLabel();
         }
     }
@@ -796,7 +796,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void play_media (bool inhibit_notifications = false) {
-        if(!library_manager.media_active) {
+        if(!PlaybackManager.instance.media_active) {
             debug("No media is currently playing. Starting from the top\n");
             //set current medias by current view
             Gtk.Widget w = view_container.get_current_view ();
@@ -862,7 +862,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void play_previous_media (bool inhibit_notifications = false) {
-        if(library_manager.player.getPosition() < 5000000000 || (library_manager.media_active && PlaybackManager.instance.media_info.media.mediatype == 3)) {
+        if(library_manager.player.getPosition() < 5000000000 || (PlaybackManager.instance.media_active && PlaybackManager.instance.media_info.media.mediatype == 3)) {
             bool play = true;
             var prev = library_manager.getPrevious(true);
 
@@ -982,7 +982,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     /* this is after setting the music library */
     public virtual void musicAdded(LinkedList<string> not_imported) {
 
-        if(library_manager.media_active) {
+        if(PlaybackManager.instance.media_active) {
             updateInfoLabel();
         }
         else
@@ -1001,7 +1001,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     /* this is when you import music from a foreign location into the library */
     public virtual void musicImported(LinkedList<Media> new_medias, LinkedList<string> not_imported) {
-        if(library_manager.media_active) {
+        if(PlaybackManager.instance.media_active) {
             updateInfoLabel();
         }
         else
@@ -1013,7 +1013,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void musicRescanned(LinkedList<Media> new_medias, LinkedList<string> not_imported) {
-        if(library_manager.media_active) {
+        if(PlaybackManager.instance.media_active) {
             updateInfoLabel();
         }
         else
@@ -1058,7 +1058,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void current_position_update (int64 position) {
-        if (!library_manager.media_active)
+        if (!PlaybackManager.instance.media_active)
             return;
 
         double sec = ((double)position/1000000000);
@@ -1153,7 +1153,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Save media position and info
         Settings.Main.instance.last_media_position = (int)((double)library_manager.player.getPosition
         ()/Numeric.NANO_INV);
-        if(library_manager.media_active) {
+        if(PlaybackManager.instance.media_active) {
             PlaybackManager.instance.media_info.media.resume_pos = (int)((double)library_manager.player.getPosition()/Numeric.NANO_INV);
             library_manager.update_media_item (PlaybackManager.instance.media_info.media, false, false);
         }

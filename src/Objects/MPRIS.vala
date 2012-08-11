@@ -260,7 +260,7 @@ public class MprisPlayer : GLib.Object {
 
         var url = "file://" + CoverartCache.instance.get_cached_image_path_for_media (s);
 		_metadata.insert("mpris:artUrl", url);
-		_metadata.insert("mpris:length", library_window.library_manager.player.getDuration()/1000);
+		_metadata.insert("mpris:length", PlaybackManager.instance.player.getDuration()/1000);
 		_metadata.insert("xesam:userRating", s.rating);
 		
 		trigger_metadata_update();
@@ -328,13 +328,13 @@ public class MprisPlayer : GLib.Object {
 	public string LoopStatus {
 		owned get {
 			switch(library_window.library_manager.repeat) {
-				case(Noise.LibraryManager.Repeat.OFF):
+				case(Noise.PlaybackManager.Repeat.OFF):
 					return "None";
-				case(Noise.LibraryManager.Repeat.MEDIA):
+				case(Noise.PlaybackManager.Repeat.MEDIA):
 					return "Track";
-				case(Noise.LibraryManager.Repeat.ALBUM):
-				case(Noise.LibraryManager.Repeat.ARTIST):
-				case(Noise.LibraryManager.Repeat.ALL):
+				case(Noise.PlaybackManager.Repeat.ALBUM):
+				case(Noise.PlaybackManager.Repeat.ARTIST):
+				case(Noise.PlaybackManager.Repeat.ALL):
 					return "Playlist";
 			}
 			
@@ -343,16 +343,16 @@ public class MprisPlayer : GLib.Object {
 		set {
 			switch(value) {
 				case("None"):
-					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.OFF;
+					library_window.library_manager.repeat = Noise.PlaybackManager.Repeat.OFF;
 					break;
 				case("Track"):
-					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.MEDIA;
+					library_window.library_manager.repeat = Noise.PlaybackManager.Repeat.MEDIA;
 					break;
 				case("Playlist"):
-					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.ALL;
+					library_window.library_manager.repeat = Noise.PlaybackManager.Repeat.ALL;
 					break;
 				default:
-					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.ALL;
+					library_window.library_manager.repeat = Noise.PlaybackManager.Repeat.ALL;
 					break;
 			}
 			
@@ -371,16 +371,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public bool Shuffle {
 		get {
-			if(library_window.library_manager.shuffle == Noise.LibraryManager.Shuffle.ALL)
+			if(library_window.library_manager.shuffle == Noise.PlaybackManager.Shuffle.ALL)
 				return true;
 			return false;
 		}
 		set {
 			if(value) {
-				library_window.library_manager.shuffle = Noise.LibraryManager.Shuffle.ALL;
+				library_window.library_manager.shuffle = Noise.PlaybackManager.Shuffle.ALL;
 			}
 			else {
-				library_window.library_manager.shuffle = Noise.LibraryManager.Shuffle.OFF;
+				library_window.library_manager.shuffle = Noise.PlaybackManager.Shuffle.OFF;
 			}
 			
 			Variant variant = value;
@@ -398,16 +398,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public double Volume {
 		get{
-			return library_window.library_manager.player.getVolume();
+			return PlaybackManager.instance.player.getVolume();
 		}
 		set {
-			library_window.library_manager.player.setVolume(value);
+			PlaybackManager.instance.player.setVolume(value);
 		}
 	}
 	
 	public int64 Position {
 		get {
-			return (library_window.library_manager.player.getPosition()/1000);
+			return (PlaybackManager.instance.player.getPosition()/1000);
 		}
 	}
 	
@@ -493,12 +493,12 @@ public class MprisPlayer : GLib.Object {
 	}
 	
 	public void Seek(int64 Offset) {
-		//library_window.library_manager.player.setPosition(Position/ 1000);
+		//PlaybackManager.instance.player.setPosition(Position/ 1000);
 		debug("Must seek!\n");
 	}
 	
 	public void SetPosition(string dobj, int64 Position) {
-		library_window.library_manager.player.setPosition(Position * 1000);
+		PlaybackManager.instance.player.setPosition(Position * 1000);
 	}
 	
 	public void OpenUri(string Uri) {

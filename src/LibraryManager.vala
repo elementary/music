@@ -236,9 +236,9 @@ public class Noise.LibraryManager : GLib.Object {
 			lw.update_sensitivities();
 			stopPlayback();
 
-			lw.main_settings.music_folder = folder;
+			Settings.Main.instance.music_folder = folder;
 
-			lw.main_settings.music_mount_name = "";
+			Settings.Main.instance.music_mount_name = "";
 
 			set_music_folder_async ();
 		}
@@ -247,7 +247,7 @@ public class Noise.LibraryManager : GLib.Object {
 	private async void set_music_folder_async () {
 		try {
 			new Thread<void*>.try (null, () => {
-				var music_folder_file = GLib.File.new_for_path(lw.main_settings.music_folder);
+				var music_folder_file = GLib.File.new_for_path(Settings.Main.instance.music_folder);
 				LinkedList<string> files = new LinkedList<string>();
 		
 				var items = fo.count_music_files(music_folder_file, ref files);
@@ -333,7 +333,7 @@ public class Noise.LibraryManager : GLib.Object {
 				fo.resetProgress(100);
 				Timeout.add(100, doProgressNotificationWithTimeout);
 	
-				var music_folder_dir = lw.main_settings.music_folder;
+				var music_folder_dir = Settings.Main.instance.music_folder;
 				foreach(Media s in _media.values) {
 					if(!s.isTemporary && !s.isPreview && s.uri.contains(music_folder_dir))
 						paths.set(s.uri, s);
@@ -929,7 +929,7 @@ public class Noise.LibraryManager : GLib.Object {
 		_playlists_lock.unlock();
 
 		if(_media.size == 0)
-			lw.main_settings.music_folder = Environment.get_user_special_dir(UserDirectory.MUSIC);
+			Settings.Main.instance.music_folder = Environment.get_user_special_dir(UserDirectory.MUSIC);
 
 		// TODO: move away. It's called twice due to LW's internal handlers		
 		lw.update_sensitivities();

@@ -857,8 +857,8 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
         file_chooser.set_current_name(p.name + ".m3u");
         
         // set original folder. if we don't, then file_chooser.get_filename() starts as null, which is bad for signal below.
-        if(File.new_for_path(lw.main_settings.music_folder).query_exists())
-            file_chooser.set_current_folder(lw.main_settings.music_folder);
+        if(File.new_for_path(Settings.Main.instance.music_folder).query_exists())
+            file_chooser.set_current_folder(Settings.Main.instance.music_folder);
         else
             file_chooser.set_current_folder(Environment.get_home_dir());
             

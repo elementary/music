@@ -369,7 +369,7 @@ public class Noise.MusicListView : GenericList {
 			return;
 		
 		int id = to_edit.get(0);
-		string music_folder_uri = File.new_for_path(lm.lw.main_settings.music_folder).get_uri();
+		string music_folder_uri = File.new_for_path(Settings.Main.instance.music_folder).get_uri();
 		if(to_edit.size == 1 && !GLib.File.new_for_uri(lm.media_from_id(id).uri).query_exists() && lm.media_from_id(id).uri.has_prefix(music_folder_uri)) {
 			lm.media_from_id(id).unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			FileNotFoundDialog fnfd = new FileNotFoundDialog(lm, lm.lw, to_edit_med);

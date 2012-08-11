@@ -45,7 +45,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
     }
     
     void volume_added(Volume volume) {
-        if(lm.lw.main_settings.music_mount_name == volume.get_name() && volume.get_mount() == null) {
+        if(Settings.Main.instance.music_mount_name == volume.get_name() && volume.get_mount() == null) {
             stdout.printf("mounting %s because it is believed to be the music folder\n", volume.get_name());
             volume.mount(MountMountFlags.NONE, null, null);
         }
