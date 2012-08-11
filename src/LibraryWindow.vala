@@ -137,7 +137,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 media_considered_previewed = true;
             if(Settings.Main.instance.last_media_position > 30)
                 media_considered_played = true;
-            if(library_manager.media_active && (double)(Settings.Main.instance.last_media_position/(double)library_manager.media_info.media.length) > 0.90)
+            if(library_manager.media_active && (double)(Settings.Main.instance.last_media_position/(double)PlaybackManager.instance.media_info.media.length) > 0.90)
                 added_to_play_count = true;
         }
 
@@ -435,8 +435,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void notify_current_media () {
-        if (library_manager.media_info != null && library_manager.media_info.media != null)
-            show_notification_from_media (library_manager.media_info.media);
+        if (PlaybackManager.instance.media_info != null && PlaybackManager.instance.media_info.media != null)
+            show_notification_from_media (PlaybackManager.instance.media_info.media);
     }
 
     /**
@@ -633,7 +633,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if(doing_ops) {
             topDisplay.show_progressbar ();
         }
-        else if(media_active && library_manager.media_info.media.mediatype == 3) {
+        else if(media_active && PlaybackManager.instance.media_info.media.mediatype == 3) {
             topDisplay.hide_scale_and_progressbar ();
         }
         else {
@@ -687,7 +687,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         string beg = "";
 
         //set the title
-        Media s = library_manager.media_info.media;
+        Media s = PlaybackManager.instance.media_info.media;
         var title = "<b>" + String.escape (s.title) + "</b>";
         var artist = ((s.artist != "" && s.artist != _("Unknown Artist")) ? (_(" by ") + "<b>" + String.escape (s.artist) + "</b>") : "");
         var album = ((s.album != "" && s.album != _("Unknown Album")) ? (_(" on ") + "<b>" + String.escape (s.album) + "</b>") : "");
@@ -718,7 +718,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         //reset the media position
         topDisplay.set_scale_sensitivity(true);
-        topDisplay.set_media (library_manager.media_info.media);
+        topDisplay.set_media (PlaybackManager.instance.media_info.media);
 
         /*if(m.mediatype == 1 || m.mediatype == 2) {
             /*message("setting position to resume_pos which is %d\n", library_manager.media_from_id(i).resume_pos );
@@ -744,7 +744,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities();
 
         Timeout.add(3000, () => {
-            if(library_manager.media_info.media != null && library_manager.media_info.media == m && m.rowid != LibraryManager.PREVIEW_MEDIA_ID) {
+            if(PlaybackManager.instance.media_info.media != null && PlaybackManager.instance.media_info.media == m && m.rowid != LibraryManager.PREVIEW_MEDIA_ID) {
                 update_media_informations();
             }
             
@@ -766,7 +766,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void medias_updated(Collection<int> ids) {
-        if(library_manager.media_active && ids.contains(library_manager.media_info.media.rowid)) {
+        if(library_manager.media_active && ids.contains(PlaybackManager.instance.media_info.media.rowid)) {
             updateInfoLabel();
         }
     }
@@ -834,10 +834,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public virtual void play_next_media (bool inhibit_notifications = false) {
         // if not 90% done, skip it
         if(!added_to_play_count) {
-            library_manager.media_info.media.skip_count++;
+            PlaybackManager.instance.media_info.media.skip_count++;
 
             // don't update, it will be updated eventually
-            //library_manager.update_media_item (library_manager.media_info.media, false, false);
+            //library_manager.update_media_item (PlaybackManager.instance.media_info.media, false, false);
         }
 
         Media? m = null;
@@ -862,7 +862,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void play_previous_media (bool inhibit_notifications = false) {
-        if(library_manager.player.getPosition() < 5000000000 || (library_manager.media_active && library_manager.media_info.media.mediatype == 3)) {
+        if(library_manager.player.getPosition() < 5000000000 || (library_manager.media_active && PlaybackManager.instance.media_info.media.mediatype == 3)) {
             bool play = true;
             var prev = library_manager.getPrevious(true);
 
@@ -1064,7 +1064,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         double sec = ((double)position/1000000000);
 
         if(library_manager.player.set_resume_pos)
-            library_manager.media_info.media.resume_pos = (int)sec;
+            PlaybackManager.instance.media_info.media.resume_pos = (int)sec;
 
         // at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
         if(position > 3000000000 && !media_considered_previewed) {
@@ -1075,35 +1075,35 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         //at 30 seconds in, we consider the media as played
         if(position > 30000000000 && !media_considered_played) {
             media_considered_played = true;
-            library_manager.media_info.media.last_played = (int)time_t();
+            PlaybackManager.instance.media_info.media.last_played = (int)time_t();
 
-            library_manager.update_media_item (library_manager.media_info.media, false, false);
+            library_manager.update_media_item (PlaybackManager.instance.media_info.media, false, false);
 
             // add to the already played list
-            library_manager.add_already_played (library_manager.media_info.media);
+            library_manager.add_already_played (PlaybackManager.instance.media_info.media);
 
 #if HAVE_ZEITGEIST
             var event = new Zeitgeist.Event.full (Zeitgeist.ZG_ACCESS_EVENT,
                                                    Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://%s".printf (app.get_desktop_file_name ()),
-                                                   new Zeitgeist.Subject.full(library_manager.media_info.media.uri,
+                                                   new Zeitgeist.Subject.full(PlaybackManager.instance.media_info.media.uri,
                                                                                Zeitgeist.NFO_AUDIO,
                                                                                Zeitgeist.NFO_FILE_DATA_OBJECT,
                                                                                "text/plain", "",
-                                                                               library_manager.media_info.media.title, ""));
+                                                                               PlaybackManager.instance.media_info.media.title, ""));
             new Zeitgeist.Log ().insert_events_no_reply(event);
 #endif
         }
 
-        if(((double)(sec/(double)library_manager.media_info.media.length) > 0.50) && (media_half_played_sended == false)) {
+        if(((double)(sec/(double)PlaybackManager.instance.media_info.media.length) > 0.50) && (media_half_played_sended == false)) {
             media_half_played ();
             media_half_played_sended = true;
         }
 
         // at 80% done with media, add 1 to play count
-        if((double)(sec/(double)library_manager.media_info.media.length) > 0.80 && !added_to_play_count) {
+        if((double)(sec/(double)PlaybackManager.instance.media_info.media.length) > 0.80 && !added_to_play_count) {
             added_to_play_count = true;
-            library_manager.media_info.media.play_count++;
-            library_manager.update_media_item (library_manager.media_info.media, false, false);
+            PlaybackManager.instance.media_info.media.play_count++;
+            library_manager.update_media_item (PlaybackManager.instance.media_info.media, false, false);
         }
     }
 
@@ -1154,8 +1154,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         Settings.Main.instance.last_media_position = (int)((double)library_manager.player.getPosition
         ()/Numeric.NANO_INV);
         if(library_manager.media_active) {
-            library_manager.media_info.media.resume_pos = (int)((double)library_manager.player.getPosition()/Numeric.NANO_INV);
-            library_manager.update_media_item (library_manager.media_info.media, false, false);
+            PlaybackManager.instance.media_info.media.resume_pos = (int)((double)library_manager.player.getPosition()/Numeric.NANO_INV);
+            library_manager.update_media_item (PlaybackManager.instance.media_info.media, false, false);
         }
         library_manager.player.pause();
 
