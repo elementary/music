@@ -72,8 +72,8 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
         info_panel_chooser.option_changed.connect(info_panel_chooserOptionChanged);
 
         if(lw.App.player.media_active) {
-            if(Settings.Main.instance.shuffle_mode == PlaybackManager.Shuffle.ALL) {
-                lw.library_manager.setShuffleMode(PlaybackManager.Shuffle.ALL, true);
+            if(Settings.Main.instance.shuffle_mode == Player.Shuffle.ALL) {
+                App.player.setShuffleMode(Player.Shuffle.ALL, true);
             }
         }
         
@@ -88,22 +88,22 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
         Settings.Main.instance.repeat_mode = val;
 
         if(val == 0)
-            App.player.repeat = PlaybackManager.Repeat.OFF;
+            App.player.repeat = Player.Repeat.OFF;
         else if(val == 1)
-            App.player.repeat = PlaybackManager.Repeat.MEDIA;
+            App.player.repeat = Player.Repeat.MEDIA;
         else if(val == 2)
-            App.player.repeat = PlaybackManager.Repeat.ALBUM;
+            App.player.repeat = Player.Repeat.ALBUM;
         else if(val == 3)
-            App.player.repeat = PlaybackManager.Repeat.ARTIST;
+            App.player.repeat = Player.Repeat.ARTIST;
         else if(val == 4)
-            App.player.repeat = PlaybackManager.Repeat.ALL;
+            App.player.repeat = Player.Repeat.ALL;
     }
 
     public virtual void shuffleChooserOptionChanged(int val) {
         if(val == 0)
-            lw.library_manager.setShuffleMode(PlaybackManager.Shuffle.OFF, true);
+            App.player.setShuffleMode(Player.Shuffle.OFF, true);
         else if(val == 1)
-            lw.library_manager.setShuffleMode(PlaybackManager.Shuffle.ALL, true);
+            App.player.setShuffleMode(Player.Shuffle.ALL, true);
     }
 
     public virtual bool addPlaylistChooserOptionClicked(Gdk.EventButton event) {

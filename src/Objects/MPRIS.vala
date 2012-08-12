@@ -208,7 +208,7 @@ public class MprisPlayer : GLib.Object {
 		this.conn = conn;
 		_metadata = new HashTable<string,Variant>(str_hash, str_equal);
 		
-		library_window.library_manager.media_played.connect(on_media_played);
+		App.player.media_played.connect(on_media_played);
 		library_window.library_manager.media_updated.connect(media_data_updated);
 		library_window.playPauseChanged.connect(playing_changed);
 	}
@@ -328,13 +328,13 @@ public class MprisPlayer : GLib.Object {
 	public string LoopStatus {
 		owned get {
 			switch(App.player.repeat) {
-				case(Noise.PlaybackManager.Repeat.OFF):
+				case(Noise.Player.Repeat.OFF):
 					return "None";
-				case(Noise.PlaybackManager.Repeat.MEDIA):
+				case(Noise.Player.Repeat.MEDIA):
 					return "Track";
-				case(Noise.PlaybackManager.Repeat.ALBUM):
-				case(Noise.PlaybackManager.Repeat.ARTIST):
-				case(Noise.PlaybackManager.Repeat.ALL):
+				case(Noise.Player.Repeat.ALBUM):
+				case(Noise.Player.Repeat.ARTIST):
+				case(Noise.Player.Repeat.ALL):
 					return "Playlist";
 			}
 			
@@ -343,16 +343,16 @@ public class MprisPlayer : GLib.Object {
 		set {
 			switch(value) {
 				case("None"):
-					App.player.repeat = Noise.PlaybackManager.Repeat.OFF;
+					App.player.repeat = Noise.Player.Repeat.OFF;
 					break;
 				case("Track"):
-					App.player.repeat = Noise.PlaybackManager.Repeat.MEDIA;
+					App.player.repeat = Noise.Player.Repeat.MEDIA;
 					break;
 				case("Playlist"):
-					App.player.repeat = Noise.PlaybackManager.Repeat.ALL;
+					App.player.repeat = Noise.Player.Repeat.ALL;
 					break;
 				default:
-					App.player.repeat = Noise.PlaybackManager.Repeat.ALL;
+					App.player.repeat = Noise.Player.Repeat.ALL;
 					break;
 			}
 			
@@ -371,16 +371,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public bool Shuffle {
 		get {
-			if(App.player.shuffle == Noise.PlaybackManager.Shuffle.ALL)
+			if(App.player.shuffle == Noise.Player.Shuffle.ALL)
 				return true;
 			return false;
 		}
 		set {
 			if(value) {
-				App.player.shuffle = Noise.PlaybackManager.Shuffle.ALL;
+				App.player.shuffle = Noise.Player.Shuffle.ALL;
 			}
 			else {
-				App.player.shuffle = Noise.PlaybackManager.Shuffle.OFF;
+				App.player.shuffle = Noise.Player.Shuffle.OFF;
 			}
 			
 			Variant variant = value;
@@ -483,7 +483,7 @@ public class MprisPlayer : GLib.Object {
 	}
 
 	public void Stop() {
-		library_window.App.player.stopPlayback();
+		App.player.stopPlayback();
 	}
 	
 	public void Play() {

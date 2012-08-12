@@ -320,7 +320,7 @@ public abstract class Noise.GenericList : FastView {
 		var m = get_media_from_index(int.parse(path.to_string()));
 		
 		// We need to first set this as the current list
-		lm.clearCurrent();
+		App.player.clearCurrent();
 		is_current_list = true;
 		
 		// Now update current_list and current_index in LM
@@ -379,7 +379,7 @@ public abstract class Noise.GenericList : FastView {
 		else
 			to_set = App.player.media_info.media;
 		
-		lm.clearCurrent();
+		App.player.clearCurrent();
 		is_current_list = true;
 		
 		lm.current_index = 0;

@@ -130,7 +130,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             message("First run.\n");
         }
         else {
-            library_manager.clearCurrent();
+            App.player.clearCurrent();
 
             // make sure we don't re-count stats
             if (Settings.Main.instance.last_media_position > 5)
