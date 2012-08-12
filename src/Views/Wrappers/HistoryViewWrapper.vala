@@ -54,7 +54,7 @@ public class Noise.HistoryViewWrapper : ViewWrapper {
     }
 
     private void on_history_changed () {
-        set_media_async (lm.already_played ());
+        set_media_async (App.player.already_played ());
     }
 
     private void on_library_media_updated (Gee.Collection<int> ids) {

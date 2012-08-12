@@ -47,7 +47,7 @@ public class Noise.PlaybackManager {
 
 
     public static PlaybackManager? _instance;
-    public static PlaybackManager instance {
+    public static App.player {
         get {
             if (_instance == null)
                 _instance = new PlaybackManager ();

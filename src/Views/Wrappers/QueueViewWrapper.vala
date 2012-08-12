@@ -42,7 +42,7 @@ public class Noise.QueueViewWrapper : ViewWrapper {
 
     private void connect_data_signals () {
          // Listen for queues and unqueues
-         lm.queue_cleared.connect (on_queue_cleared);
+         App.player.queue_cleared.connect (on_queue_cleared);
          lm.media_queued.connect (on_media_queued);
          lm.media_unqueued.connect (on_media_unqueued);
          

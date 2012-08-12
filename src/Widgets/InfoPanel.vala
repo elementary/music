@@ -111,8 +111,8 @@ public class Noise.InfoPanel : Gtk.EventBox {
 
         // Don't show rating for external media
         bool hide_rating = true;
-        if (PlaybackManager.instance.media_info != null && PlaybackManager.instance.media_info.media != null)
-            hide_rating = PlaybackManager.instance.media_info.media.isTemporary;
+        if (App.player.media_info != null && App.player.media_info.media != null)
+            hide_rating = App.player.media_info.media.isTemporary;
         rating.set_no_show_all (hide_rating);
         rating.set_visible (!hide_rating);
         
@@ -132,37 +132,37 @@ public class Noise.InfoPanel : Gtk.EventBox {
     }
     
     private void update_metadata() {
-        if (PlaybackManager.instance.media_info == null || PlaybackManager.instance.media_info.media == null)
+        if (App.player.media_info == null || App.player.media_info.media == null)
             return;
 
-        title.set_markup("<span size=\"large\"><b>" + String.escape (PlaybackManager.instance.media_info.media.title) + "</b></span>");
-        artist.set_text(PlaybackManager.instance.media_info.media.artist);
-        album.set_text(PlaybackManager.instance.media_info.media.album);
+        title.set_markup("<span size=\"large\"><b>" + String.escape (App.player.media_info.media.title) + "</b></span>");
+        artist.set_text(App.player.media_info.media.artist);
+        album.set_text(App.player.media_info.media.album);
 
         // do rating stuff
-        rating.rating = (int)PlaybackManager.instance.media_info.media.rating;
+        rating.rating = (int)App.player.media_info.media.rating;
 
-        if(PlaybackManager.instance.media_info.media.year > 1900)
-            year.set_markup("<span size=\"x-small\">" + String.escape ("(%d)".printf ((int)PlaybackManager.instance.media_info.media.year)) + "</span>");
+        if(App.player.media_info.media.year > 1900)
+            year.set_markup("<span size=\"x-small\">" + String.escape ("(%d)".printf ((int)App.player.media_info.media.year)) + "</span>");
         else
             year.set_markup("");
     }
     
     private void update_cover_art () {
-        if (PlaybackManager.instance.media_info == null)
+        if (App.player.media_info == null)
             return;
 
-        var m = PlaybackManager.instance.media_info.media;
+        var m = App.player.media_info.media;
 
         if (m != null)
             coverArt.set_from_pixbuf (CoverartCache.instance.get_cover (m));
     }
     
     private void ratingChanged(int new_rating) {
-        if (PlaybackManager.instance.media_info == null || PlaybackManager.instance.media_info.media == null)
+        if (App.player.media_info == null || App.player.media_info.media == null)
             return;
 
-        PlaybackManager.instance.media_info.media.rating = new_rating;
-        lm.update_media_item (PlaybackManager.instance.media_info.media, false, true);
+        App.player.media_info.media.rating = new_rating;
+        lm.update_media_item (App.player.media_info.media, false, true);
     }
 }

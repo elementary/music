@@ -332,7 +332,7 @@ namespace LastFM {
         }
         
         void* track_thread_function () {
-            var current_media = PlaybackManager.instance.media_info.media;
+            var current_media = App.player.media_info.media;
             return_val_if_fail (current_media != null, null);
 
             string album_artist_s = current_media.album_artist;
@@ -348,11 +348,11 @@ namespace LastFM {
                 if (track != null)
                     save_track (track);
 
-                // helps to avoid a race condition, since PlaybackManager.instance.media_info.media is subject to change
+                // helps to avoid a race condition, since App.player.media_info.media is subject to change
                 // as the songs are skipped
                 fetch_info_guard.lock ();
-                if (PlaybackManager.instance.media_info.media == current_media)
-                    PlaybackManager.instance.media_info.track = track;
+                if (App.player.media_info.media == current_media)
+                    App.player.media_info.track = track;
                 fetch_info_guard.unlock ();
             }
 
@@ -369,7 +369,7 @@ namespace LastFM {
 
         void* album_thread_function () {
 
-            var current_media = PlaybackManager.instance.media_info.media;
+            var current_media = App.player.media_info.media;
             return_val_if_fail (current_media != null, null);
 
             string album_artist_s = current_media.album_artist;
@@ -388,11 +388,11 @@ namespace LastFM {
                 else
                     return null;
 
-                /* If on same song, update PlaybackManager.instance.media_info.album */
+                /* If on same song, update App.player.media_info.album */
                 fetch_info_guard.lock ();
 
-                if (PlaybackManager.instance.media_active && PlaybackManager.instance.media_info.media == current_media) {
-                    PlaybackManager.instance.media_info.album = album;
+                if (App.player.media_active && App.player.media_info.media == current_media) {
+                    App.player.media_info.album = album;
                 }
 
                 fetch_info_guard.unlock ();
@@ -430,7 +430,7 @@ namespace LastFM {
         }
         
         void* artist_thread_function () {
-            var current_media = PlaybackManager.instance.media_info.media;
+            var current_media = App.player.media_info.media;
             return_val_if_fail (current_media != null, null);
 
             string album_artist_s = current_media.album_artist;
@@ -447,11 +447,11 @@ namespace LastFM {
                 if (artist != null)
                     save_artist (artist);
 
-                // If still playing the same song, update PlaybackManager.instance.media_info.artist
+                // If still playing the same song, update App.player.media_info.artist
                 fetch_info_guard.lock ();
 
-                if (PlaybackManager.instance.media_info.media == current_media) {
-                    PlaybackManager.instance.media_info.artist = (Noise.ArtistInfo)artist;
+                if (App.player.media_info.media == current_media) {
+                    App.player.media_info.artist = (Noise.ArtistInfo)artist;
                 }
 
                 fetch_info_guard.unlock ();
@@ -476,11 +476,11 @@ namespace LastFM {
                 message ("Last.FM user not logged in\n");
                 return null;
             }
-            if(!PlaybackManager.instance.media_active)
+            if(!App.player.media_active)
                 return null;
             
-            var artist = PlaybackManager.instance.media_info.media.artist;
-            var title = PlaybackManager.instance.media_info.media.title;
+            var artist = App.player.media_info.media.artist;
+            var title = App.player.media_info.media.title;
             var uri = "http://ws.audioscrobbler.com/2.0/?api_key=" + api + "&api_sig=" + generate_trackupdatenowplaying_signature(artist, title) + "&artist=" + fix_for_url(artist) + "&method=track.updateNowPlaying&sk=" + lastfm_settings.session_key + "&track=" + fix_for_url(title);
             
             Soup.SessionSync session = new Soup.SessionSync();
@@ -521,10 +521,10 @@ namespace LastFM {
                 message ("Last.FM user not logged in\n");
                 return null;
             }
-            if(!PlaybackManager.instance.media_active)
+            if(!App.player.media_active)
                 return null;
 
-            var current_media = PlaybackManager.instance.media_info.media;
+            var current_media = App.player.media_info.media;
             
             var timestamp = (int)time_t();
             var artist = current_media.artist;
@@ -555,7 +555,7 @@ namespace LastFM {
         }
         
         public void fetchCurrentSimilarSongs() {
-            similarMedias.queryForSimilar(PlaybackManager.instance.media_info.media);
+            similarMedias.queryForSimilar(App.player.media_info.media);
         }
         
         void similar_retrieved_signal(LinkedList<int> similarIDs, LinkedList<Noise.Media> similarDont) {

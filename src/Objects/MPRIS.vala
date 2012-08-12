@@ -214,11 +214,11 @@ public class MprisPlayer : GLib.Object {
 	}
 	
 	void media_data_updated(Gee.LinkedList<int> ids) {
-		if(library_window.PlaybackManager.instance.media_info.media == null)
+		if(library_window.App.player.media_info.media == null)
 			return;
 		
 		foreach(int i in ids) {
-			if(i == library_window.PlaybackManager.instance.media_info.media.rowid) {
+			if(i == library_window.App.player.media_info.media.rowid) {
 				trigger_metadata_update();
 				return;
 			}
@@ -245,7 +245,7 @@ public class MprisPlayer : GLib.Object {
 	}
 
 	private void on_media_played (Noise.Media s) {
-		if(s != library_window.PlaybackManager.instance.media_info.media)
+		if(s != library_window.App.player.media_info.media)
 			return;
 		
 		string[] artistArray = {};
@@ -260,7 +260,7 @@ public class MprisPlayer : GLib.Object {
 
         var url = "file://" + CoverartCache.instance.get_cached_image_path_for_media (s);
 		_metadata.insert("mpris:artUrl", url);
-		_metadata.insert("mpris:length", PlaybackManager.instance.player.getDuration()/1000);
+		_metadata.insert("mpris:length", App.player.player.getDuration()/1000);
 		_metadata.insert("xesam:userRating", s.rating);
 		
 		trigger_metadata_update();
@@ -314,11 +314,11 @@ public class MprisPlayer : GLib.Object {
 	
 	public string PlaybackStatus {
 		owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
-			if(PlaybackManager.instance.playing)
+			if(App.player.playing)
 				return "Playing";
-			else if(!PlaybackManager.instance.playing && library_window.PlaybackManager.instance.media_info.media == null)
+			else if(!App.player.playing && library_window.App.player.media_info.media == null)
 				return "Stopped";
-			else if(!PlaybackManager.instance.playing)
+			else if(!App.player.playing)
 				return "Paused";
 			else
 				return "Stopped";
@@ -327,7 +327,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public string LoopStatus {
 		owned get {
-			switch(PlaybackManager.instance.repeat) {
+			switch(App.player.repeat) {
 				case(Noise.PlaybackManager.Repeat.OFF):
 					return "None";
 				case(Noise.PlaybackManager.Repeat.MEDIA):
@@ -343,16 +343,16 @@ public class MprisPlayer : GLib.Object {
 		set {
 			switch(value) {
 				case("None"):
-					PlaybackManager.instance.repeat = Noise.PlaybackManager.Repeat.OFF;
+					App.player.repeat = Noise.PlaybackManager.Repeat.OFF;
 					break;
 				case("Track"):
-					PlaybackManager.instance.repeat = Noise.PlaybackManager.Repeat.MEDIA;
+					App.player.repeat = Noise.PlaybackManager.Repeat.MEDIA;
 					break;
 				case("Playlist"):
-					PlaybackManager.instance.repeat = Noise.PlaybackManager.Repeat.ALL;
+					App.player.repeat = Noise.PlaybackManager.Repeat.ALL;
 					break;
 				default:
-					PlaybackManager.instance.repeat = Noise.PlaybackManager.Repeat.ALL;
+					App.player.repeat = Noise.PlaybackManager.Repeat.ALL;
 					break;
 			}
 			
@@ -371,16 +371,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public bool Shuffle {
 		get {
-			if(library_window.library_manager.shuffle == Noise.PlaybackManager.Shuffle.ALL)
+			if(App.player.shuffle == Noise.PlaybackManager.Shuffle.ALL)
 				return true;
 			return false;
 		}
 		set {
 			if(value) {
-				library_window.library_manager.shuffle = Noise.PlaybackManager.Shuffle.ALL;
+				App.player.shuffle = Noise.PlaybackManager.Shuffle.ALL;
 			}
 			else {
-				library_window.library_manager.shuffle = Noise.PlaybackManager.Shuffle.OFF;
+				App.player.shuffle = Noise.PlaybackManager.Shuffle.OFF;
 			}
 			
 			Variant variant = value;
@@ -398,16 +398,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public double Volume {
 		get{
-			return PlaybackManager.instance.player.getVolume();
+			return App.player.player.getVolume();
 		}
 		set {
-			PlaybackManager.instance.player.setVolume(value);
+			App.player.player.setVolume(value);
 		}
 	}
 	
 	public int64 Position {
 		get {
-			return (PlaybackManager.instance.player.getPosition()/1000);
+			return (App.player.player.getPosition()/1000);
 		}
 	}
 	
@@ -473,7 +473,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public void Pause() {
 		// inhibit notifications
-		if(PlaybackManager.instance.playing)
+		if(App.player.playing)
 			library_window.play_media(true);
 	}
 
@@ -483,22 +483,22 @@ public class MprisPlayer : GLib.Object {
 	}
 
 	public void Stop() {
-		library_window.library_manager.stopPlayback();
+		library_window.App.player.stopPlayback();
 	}
 	
 	public void Play() {
 		// inhibit notifications
-		if(!PlaybackManager.instance.playing)
+		if(!App.player.playing)
 			library_window.play_media(true);
 	}
 	
 	public void Seek(int64 Offset) {
-		//PlaybackManager.instance.player.setPosition(Position/ 1000);
+		//App.player.player.setPosition(Position/ 1000);
 		debug("Must seek!\n");
 	}
 	
 	public void SetPosition(string dobj, int64 Position) {
-		PlaybackManager.instance.player.setPosition(Position * 1000);
+		App.player.player.setPosition(Position * 1000);
 	}
 	
 	public void OpenUri(string Uri) {

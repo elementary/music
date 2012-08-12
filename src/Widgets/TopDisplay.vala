@@ -84,7 +84,7 @@ public class Noise.TopDisplay : Box {
 		this.scale.value_changed.connect(value_changed);
 		this.scale.change_value.connect(change_value);
 
-		PlaybackManager.instance.player.current_position_update.connect(player_position_update);
+		App.player.player.current_position_update.connect(player_position_update);
 		this.lm.media_updated.connect(media_updated);
 	}
 	
@@ -144,7 +144,7 @@ public class Noise.TopDisplay : Box {
 	}
     
 	public virtual bool scale_button_press(Gdk.EventButton event) {
-        PlaybackManager.instance.player.current_position_update.disconnect(player_position_update);
+        App.player.player.current_position_update.disconnect(player_position_update);
         is_seeking = true;
 		change_value (ScrollType.NONE, get_current_time ());
 		
@@ -184,21 +184,21 @@ public class Noise.TopDisplay : Box {
 		uint elapsed_secs = (uint)val;
 		leftTime.set_text (TimeUtils.pretty_length_from_ms (elapsed_secs));
 
-        uint media_duration_secs = (uint)PlaybackManager.instance.media_info.media.length;
+        uint media_duration_secs = (uint)App.player.media_info.media.length;
 
 		//make pretty remaining time
 		rightTime.set_text (TimeUtils.pretty_length_from_ms (media_duration_secs - elapsed_secs));
 	}
 
 	public virtual bool change_value(ScrollType scroll, double val) {
-        PlaybackManager.instance.player.current_position_update.disconnect(player_position_update);
+        App.player.player.current_position_update.disconnect(player_position_update);
 		scale.set_value(val);
 		scale_value_changed(scroll, val);
 
         if( !is_seeking )
         {
-            PlaybackManager.instance.player.setPosition((int64)(val / Numeric.MILI_INV * Numeric.NANO_INV));
-            PlaybackManager.instance.player.current_position_update.connect(player_position_update);
+            App.player.player.setPosition((int64)(val / Numeric.MILI_INV * Numeric.NANO_INV));
+            App.player.player.current_position_update.connect(player_position_update);
         }
 		
 		return false;
@@ -239,7 +239,7 @@ public class Noise.TopDisplay : Box {
 	}
 	
 	public virtual void player_position_update(int64 position) {
-		if(PlaybackManager.instance.media_info.media != null) {
+		if(App.player.media_info.media != null) {
     	    double sec = 0.0;
 
             // convert nanoseconds ot miliseconds
@@ -257,10 +257,10 @@ public class Noise.TopDisplay : Box {
     }
 
 	void media_updated (Gee.Collection<int> ids) {
-		if (PlaybackManager.instance.media_info == null)
+		if (App.player.media_info == null)
 			return;
 
-		var current_media = PlaybackManager.instance.media_info.media;
+		var current_media = App.player.media_info.media;
 
 		if (current_media == null)
 			return;

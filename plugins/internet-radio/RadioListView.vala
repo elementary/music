@@ -234,7 +234,7 @@ public class Noise.RadioListView : GenericView {
 				int id;
 				list_model.get(item, 0, out id);
 
-				lm.queue_media_by_id(id);
+				App.player.queue_media_by_id(id);
 			}
 		}*/
 		
@@ -516,7 +516,7 @@ public class Noise.RadioListView : GenericView {
 		if(column == 0)
 			val = (int)s.rowid;
 		else if(column == 1) {
-			if(PlaybackManager.instance.media_info.media != null && PlaybackManager.instance.media_info.media.rowid == s.rowid)
+			if(App.player.media_info.media != null && App.player.media_info.media.rowid == s.rowid)
 				val = playing_icon;
 			else if(s.unique_status_image != null)
 				val = s.unique_status_image;

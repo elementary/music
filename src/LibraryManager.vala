@@ -234,7 +234,7 @@ public class Noise.LibraryManager : GLib.Object {
 			_already_played.clear();
 			lw.resetSideTree(false);
 			lw.update_sensitivities();
-			stopPlayback();
+			App.player.stopPlayback();
 
 			Settings.Main.instance.music_folder = folder;
 
@@ -898,8 +898,8 @@ public class Noise.LibraryManager : GLib.Object {
 			removedIds.add(s.rowid);
 			removeURIs.add(s.uri);
 			
-			if(s == media_info.media)
-				stopPlayback();
+			if(s == App.player.media_info.media)
+				App.player.stopPlayback();
 		}
 
 		dbu.removeItem(removeURIs);

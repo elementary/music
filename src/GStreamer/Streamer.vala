@@ -51,12 +51,12 @@ public class Noise.Streamer : GLib.Object {
 	}
 	
 	public bool doPositionUpdate() {
-		if(set_resume_pos || (PlaybackManager.instance.media_info != null && PlaybackManager.instance.media_info.media != null && getPosition() >= (int64)(PlaybackManager.instance.media_info.media.resume_pos - 1) * 1000000000)) {
+		if(set_resume_pos || (App.player.media_info != null && App.player.media_info.media != null && getPosition() >= (int64)(App.player.media_info.media.resume_pos - 1) * 1000000000)) {
 			set_resume_pos = true;
 			current_position_update(getPosition());
 		}
-		else if (PlaybackManager.instance.media_info != null && PlaybackManager.instance.media_info.media != null) {
-			pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)PlaybackManager.instance.media_info.media.resume_pos * 1000000000);
+		else if (App.player.media_info != null && App.player.media_info.media != null) {
+			pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.media_info.media.resume_pos * 1000000000);
 		}
 		
 		return true;
@@ -89,8 +89,8 @@ public class Noise.Streamer : GLib.Object {
 		
 		setState(State.PLAYING);
 		
-		debug("setURI seeking to %d\n", PlaybackManager.instance.media_info.media.resume_pos);
-		pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)PlaybackManager.instance.media_info.media.resume_pos * 1000000000);
+		debug("setURI seeking to %d\n", App.player.media_info.media.resume_pos);
+		pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.media_info.media.resume_pos * 1000000000);
 		
 		play();
 	}
@@ -194,21 +194,21 @@ public class Noise.Streamer : GLib.Object {
 					string title = "";
 					tag_list.get_string(TAG_TITLE, out title);
 					
-					if (PlaybackManager.instance.media_info.media.mediatype == 3 && title != "") { // is radio
+					if (App.player.media_info.media.mediatype == 3 && title != "") { // is radio
 						string[] pieces = title.split("-", 0);
 						
 						if (pieces.length >= 2) {
-							string old_title = PlaybackManager.instance.media_info.media.title;
-							string old_artist = PlaybackManager.instance.media_info.media.artist;
-							PlaybackManager.instance.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
-							PlaybackManager.instance.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
+							string old_title = App.player.media_info.media.title;
+							string old_artist = App.player.media_info.media.artist;
+							App.player.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
+							App.player.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
 							
-							if ((old_title != PlaybackManager.instance.media_info.media.title || old_artist != PlaybackManager.instance.media_info.media.artist) && (PlaybackManager.instance.media_info.media != null))
-								lw.media_played(PlaybackManager.instance.media_info.media); // pretend as if media changed
+							if ((old_title != App.player.media_info.media.title || old_artist != App.player.media_info.media.artist) && (App.player.media_info.media != null))
+								lw.media_played(App.player.media_info.media); // pretend as if media changed
 						}
 						else {
 							// if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
-							lw.topDisplay.set_label_markup(PlaybackManager.instance.media_info.media.album_artist + "\n" + title);
+							lw.topDisplay.set_label_markup(App.player.media_info.media.album_artist + "\n" + title);
 						}
 						
 					}
@@ -225,7 +225,7 @@ public class Noise.Streamer : GLib.Object {
 	
 	// no longer used since it would cause bugs
 	/*void about_to_finish() {
-		int i = lm.getNext(false);
+		int i = App.player.getNext(false);
 		Media s = lm.media_from_id(i);
 		if(s != null && s.mediatype != 3) { // don't do this with radio stations
 			pipe.playbin.uri = s.uri; // probably cdda

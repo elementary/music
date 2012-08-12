@@ -419,7 +419,7 @@ public class Noise.MusicListView : GenericList {
 			to_queue.add (m);
 		}
 
-		lm.queue_media (to_queue);
+		App.player.queue_media (to_queue);
 	}
 
 	protected virtual void mediaMenuNewPlaylistClicked() {
@@ -600,7 +600,7 @@ public class Noise.MusicListView : GenericList {
 		if(column == MusicColumn.ROWID)
 			val = s.rowid;
 		else if(column == MusicColumn.ICON) {
-			if(PlaybackManager.instance.media_info.media != null && PlaybackManager.instance.media_info.media == s)
+			if(App.player.media_info.media != null && App.player.media_info.media == s)
 				val = playing_icon;
 			else if(tvs.get_hint() == ViewWrapper.Hint.CDROM && !s.isTemporary)
 				val = completed_icon;

@@ -71,7 +71,7 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
         shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
         info_panel_chooser.option_changed.connect(info_panel_chooserOptionChanged);
 
-        if(lw.PlaybackManager.instance.media_active) {
+        if(lw.App.player.media_active) {
             if(Settings.Main.instance.shuffle_mode == PlaybackManager.Shuffle.ALL) {
                 lw.library_manager.setShuffleMode(PlaybackManager.Shuffle.ALL, true);
             }
@@ -88,15 +88,15 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
         Settings.Main.instance.repeat_mode = val;
 
         if(val == 0)
-            PlaybackManager.instance.repeat = PlaybackManager.Repeat.OFF;
+            App.player.repeat = PlaybackManager.Repeat.OFF;
         else if(val == 1)
-            PlaybackManager.instance.repeat = PlaybackManager.Repeat.MEDIA;
+            App.player.repeat = PlaybackManager.Repeat.MEDIA;
         else if(val == 2)
-            PlaybackManager.instance.repeat = PlaybackManager.Repeat.ALBUM;
+            App.player.repeat = PlaybackManager.Repeat.ALBUM;
         else if(val == 3)
-            PlaybackManager.instance.repeat = PlaybackManager.Repeat.ARTIST;
+            App.player.repeat = PlaybackManager.Repeat.ARTIST;
         else if(val == 4)
-            PlaybackManager.instance.repeat = PlaybackManager.Repeat.ALL;
+            App.player.repeat = PlaybackManager.Repeat.ALL;
     }
 
     public virtual void shuffleChooserOptionChanged(int val) {

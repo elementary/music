@@ -38,6 +38,10 @@ public class Noise.App : Granite.Application {
         }
     }
 
+    public static PlaybackManager player {
+        get { return App.player; }
+    }
+
     public static Noise.Plugins.Manager plugins { get; private set; }
 
     // Should always match those used in the .desktop file 
