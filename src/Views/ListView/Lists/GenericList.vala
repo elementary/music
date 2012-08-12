@@ -246,18 +246,22 @@ public abstract class Noise.GenericList : FastView {
 				// Icon column
 				
 				insert_column(tvc, index);
+				var blank_column = get_column(index);
 
 				tvc.fixed_width = 24;
-				tvc.clickable = false;
-				tvc.sort_column_id = -1;
+				tvc.clickable = true;
+				tvc.sort_column_id = index; 
 				tvc.resizable = false;
 				tvc.reorderable = false;
+				tvc.set_sort_indicator (false);
 
 				tvc.clear_attributes (tvc.get_cells().nth_data(0));
 				tvc.clear_attributes (tvc.get_cells().nth_data(1));
 
 				tvc.set_cell_data_func(tvc.get_cells().nth_data(0), cellHelper.iconDataFunc);
 				tvc.set_cell_data_func(tvc.get_cells().nth_data(1), cellHelper.iconDataFunc);
+
+				blank_column.get_button().button_press_event.connect(view_header_click_blank);
 			}
 			else if(tvc.title == TreeViewSetup.COLUMN_ID) {
 				insert_column(tvc, index);
@@ -307,6 +311,18 @@ public abstract class Noise.GenericList : FastView {
 			updateTreeViewSetup();
 			
 			return false;
+		}
+
+		return false;
+	}
+
+   protected bool view_header_click_blank(Gtk.Widget w, Gdk.EventButton e) {
+		if(e.button == 3) {
+			column_chooser_menu.popup (null, null, null, 3, get_current_event_time());
+			return true;
+		}
+		else if(e.button == 1) {
+			return true; // Ignore left click on blank column
 		}
 
 		return false;
