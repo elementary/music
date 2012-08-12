@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:00+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -1740,26 +1740,8 @@ msgstr "Anterior"
 msgid "Next"
 msgstr "Seguinte"
 
-#~ msgid "Disable plugins"
-#~ msgstr "Desativar suplementos"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Ativar registos de depuração"
-
 #~ msgid "Music Folder"
 #~ msgstr "Pasta de músicas"
-
-#~ msgid "Behavior"
-#~ msgstr "Comportamento"
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Copiar os novos ficheiros para a pasta de músicas:"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Escrever detalhes nos ficheiros:"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "manter a pasta de músicas organizada:"
 
 #, c-format
 #~ msgid "%i albums"
@@ -1827,11 +1809,6 @@ msgstr "Seguinte"
 
 #~ msgid "Unsuccessful. Click to try again."
 #~ msgstr "Sem êxito. Clique novamente."
-
-#~ msgid ""
-#~ "LastFM allow you to access to more informations about the music that are on "
-#~ "your library"
-#~ msgstr "Last.fm permite que você acesse mais informações sobre suas músicas"
 
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "Clique para refazer a autenticação no Last.fm"

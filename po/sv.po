@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:01+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 "X-Poedit-Language: Swedish\n"
 
@@ -1764,26 +1764,8 @@ msgstr "Framåt"
 #~ msgid "Disable Repeat"
 #~ msgstr "Inaktivera Upprepning"
 
-#~ msgid "Disable plugins"
-#~ msgstr "Inaktivera tillägg"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Aktivera debug loggning"
-
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Olyssnade Podsändningar"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Håll musikmappen sorterad:"
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Kopiera nya filer till musikmappen:"
-
-#~ msgid "Behavior"
-#~ msgstr "Beteende"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Skriv metadata till fil:"
 
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Importera låtar från ljudskiva"
@@ -1835,10 +1817,3 @@ msgstr "Framåt"
 #, c-format
 #~ msgid "%i days"
 #~ msgstr "%i dagar"
-
-#~ msgid ""
-#~ "LastFM allow you to access to more informations about the music that are on "
-#~ "your library"
-#~ msgstr ""
-#~ "LastFM låter dig få mer information om din musik än den som finns i ditt "
-#~ "bibliotek"

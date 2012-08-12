@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:00+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 "Language: \n"
 
@@ -1855,28 +1855,3 @@ msgstr "Suivant"
 #, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s secondes"
-
-#~ msgid "Behavior"
-#~ msgstr "Comportement"
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Copier les nouveaux fichiers dans le dossier musique :"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Écrire les métadonnées dans les fichiers :"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Organiser le dossier musique automatiquement:"
-
-#~ msgid "Disable plugins"
-#~ msgstr "Désactiver les modules"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Activer le débogage"
-
-#~ msgid ""
-#~ "LastFM allow you to access to more informations about the music that are on "
-#~ "your library"
-#~ msgstr ""
-#~ "LastFM vous permet d'accéder à plus d'informations sur la musique qui est "
-#~ "dans ​​votre bibliothèque"

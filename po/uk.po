@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:01+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:58+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -1734,12 +1734,6 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Імпорт музики з аудіо-CD"
 
-#~ msgid "Disable plugins"
-#~ msgstr "Вимкнути додатки"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Включити журнал налагодження"
-
 #, c-format
 #~ msgid "%i hours"
 #~ msgstr "%i годин(и)"
@@ -1768,20 +1762,8 @@ msgstr ""
 #~ msgid "%i minutes"
 #~ msgstr "%i хвилин(и)"
 
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Скопіювати нові файли в теку з музикою:"
-
 #~ msgid "Music Folder"
 #~ msgstr "Тека з музикою"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Організація теки з музикою:"
-
-#~ msgid "Behavior"
-#~ msgstr "Поведінка"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Записати метадані в файл:"
 
 #, c-format
 #~ msgid "%i albums"

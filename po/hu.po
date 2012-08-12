@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:00+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -1801,9 +1801,6 @@ msgstr "Következő"
 #~ msgid "1 second"
 #~ msgstr "1 másodperc"
 
-#~ msgid "Disable plugins"
-#~ msgstr "Beépülők letiltása"
-
 #~ msgid "Unheard Podcasts"
 #~ msgstr "Nemhallott podcastek"
 
@@ -1814,30 +1811,8 @@ msgstr "Következő"
 #~ msgid "Import media from device"
 #~ msgstr "Média importálása eszközről"
 
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Zenemappa rendezetten hagyása:"
-
-#~ msgid "Behavior"
-#~ msgstr "Viselkedés"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Metaadatok fájlba írása:"
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Új fájlok másolása a zenemappába:"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Hibakereső naplózás engedélyezése"
-
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "Kattintson ide a Last.fm bejelentkező folyamat ismétléséhez"
 
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Továbbítás engedélyezése"
-
-#~ msgid ""
-#~ "LastFM allow you to access to more informations about the music that are on "
-#~ "your library"
-#~ msgstr ""
-#~ "A Last.fm lehetővé teszi önnek, hogy még több információhoz jusson a "
-#~ "zenéivel kapcsolatban, amik a gyűjteményében vannak"

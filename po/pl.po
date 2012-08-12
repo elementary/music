@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-10 21:51-0600\n"
-"PO-Revision-Date: 2012-08-02 09:53+0000\n"
-"Last-Translator: Adrian Widerski <Unknown>\n"
+"PO-Revision-Date: 2012-08-11 17:25+0000\n"
+"Last-Translator: Marcin Wierzbicki <marcin.wierzb@gmail.com>\n"
 "Language-Team: polski <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:00+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -197,19 +197,19 @@ msgstr ""
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:826
 msgid "Play Queue (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Kolejka odtwarzania"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:828
 msgid "Play History (%Y-%b-%e %l:%M %p)"
-msgstr ""
+msgstr "Historia odtwarzanych"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:830
 msgid "Unkown playlist"
-msgstr ""
+msgstr "Nieznana lista odtwarzania"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:840
 msgid "Export Playlist"
-msgstr ""
+msgstr "Eksportuj listę odtwarzania"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:924
 msgid "Playlist"
@@ -590,7 +590,7 @@ msgstr "Preferencje"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:204
 msgid "General"
-msgstr ""
+msgstr "Ogólne"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:216
 msgid "Select Music Folder"
@@ -626,11 +626,11 @@ msgstr "Zarządzanie kolekcją"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:266
 msgid "Use Noise as the default Music application"
-msgstr ""
+msgstr "Użyj Noise jako domyślny odtwarzacz muzyki"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:271
 msgid "System Integration"
-msgstr ""
+msgstr "Integracja z systemem"
 
 #: /home/victored/noise/po/../src//Dialogs/SmartPlaylistEditor.vala:56
 msgid "Smart Playlist Editor"
@@ -1532,11 +1532,11 @@ msgstr "Nieznany tytuł"
 
 #: /home/victored/noise/po/../core//Media.vala:36
 msgid "Unknown Genre"
-msgstr ""
+msgstr "Nieznany gatunek"
 
 #: /home/victored/noise/po/../core//Media.vala:38
 msgid "Various Artists"
-msgstr ""
+msgstr "Różni wykonawcy"
 
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid ""
@@ -1628,11 +1628,11 @@ msgstr "Podobne"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:30
 msgid "Give Noise Permission"
-msgstr ""
+msgstr "Daj Noise pozwolenie"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:31
 msgid "Unsuccessful. Click To Try Again."
-msgstr ""
+msgstr "Nie udało się. Kliknij żeby spróbować ponownie."
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:32
 msgid "Scrobbling already Enabled"
@@ -1652,7 +1652,7 @@ msgstr "Last.fm"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:53
 msgid "Click to redo the Last.fm login process"
-msgstr ""
+msgstr "Kliknij żeby ponowić proces logowania Last.fm"
 
 #: /home/victored/noise/po/../plugins//LastFM/PreferencesSection.vala:56
 msgid ""
@@ -1844,28 +1844,3 @@ msgstr "Następne"
 #, c-format
 #~ msgid "All %i Ratings"
 #~ msgstr "Wszystkie %i ocen"
-
-#~ msgid "Behavior"
-#~ msgstr "Zachowanie"
-
-#~ msgid "Disable plugins"
-#~ msgstr "Wyłącz wtyczki"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Wyświetla szczegółowe komunikaty diagnostyczne"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Utrzymywanie uporządkowanego katalogu z muzyką:"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Zapisywanie etykiet do plików:"
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Kopiowanie nowych plików do katalogu z muzyką:"
-
-#~ msgid ""
-#~ "LastFM allow you to access to more informations about the music that are on "
-#~ "your library"
-#~ msgstr ""
-#~ "LastFM umożliwia ci dostęp do większej ilości informacji o muzyce z twojej "
-#~ "biblioteki."

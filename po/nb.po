@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:00+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -1727,26 +1727,8 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#~ msgid "Disable plugins"
-#~ msgstr "Slå av tillegg"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Slå på feilsøking"
-
-#~ msgid "Behavior"
-#~ msgstr "Adferd"
-
 #~ msgid "Music Folder"
 #~ msgstr "Musikkmappe"
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Kopier nye filer til musikkmappen:"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Skriv metadata til fil:"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Hold musikkmappen organisert:"
 
 #~ msgid "Disable Repeat"
 #~ msgstr "Slå av gjentagelse"

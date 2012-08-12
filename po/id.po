@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:00+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -1834,21 +1834,3 @@ msgstr ""
 #, c-format
 #~ msgid "%s seconds"
 #~ msgstr "%s detik"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Tulis metadata ke dalam berkas:"
-
-#~ msgid "Behavior"
-#~ msgstr "Perilaku"
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Salin berkas baru ke folder music:"
-
-#~ msgid "Disable plugins"
-#~ msgstr "Matikan Pengaya"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Atur hirarki folder musik:"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Aktifkan pencatatan error"

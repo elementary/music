@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:01+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -1702,12 +1702,6 @@ msgstr ""
 #~ msgid "Import songs from audio CD"
 #~ msgstr "Uvozi pesmi iz zvočnega CD-ja"
 
-#~ msgid "Disable plugins"
-#~ msgstr "Onemogoči vtičnike"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Omogoči beleženje razhroščevanja"
-
 #~ msgid "Recently Played"
 #~ msgstr "Predvajano pred kratkim"
 
@@ -1758,15 +1752,3 @@ msgstr ""
 
 #~ msgid "Music Folder"
 #~ msgstr "Mapa z glasbo"
-
-#~ msgid "Behavior"
-#~ msgstr "Vedenje"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Ohrani mapo z glasbo urejeno:"
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Kopiraj nove datoteke v mapo z glasbo:"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Zapisuj meta podatke v datoteko:"

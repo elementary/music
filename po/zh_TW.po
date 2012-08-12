@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:01+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:58+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 "Language: \n"
 
@@ -1697,9 +1697,6 @@ msgstr "下一個"
 #~ msgid "Music Folder"
 #~ msgstr "音樂資料夾"
 
-#~ msgid "Behavior"
-#~ msgstr "行為"
-
 #~ msgid "Import songs from audio CD"
 #~ msgstr "從音訊 CD 匯入歌曲"
 
@@ -1737,18 +1734,6 @@ msgstr "下一個"
 #~ msgid "Import media from device"
 #~ msgstr "從裝置匯入媒體"
 
-#~ msgid "Disable plugins"
-#~ msgstr "停用插件"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "啟用除錯紀錄功能"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "讓音樂資料夾保持條理："
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "複製新檔案至音樂資料夾："
-
 #~ msgid "1 album"
 #~ msgstr "1 張專輯"
 
@@ -1773,19 +1758,11 @@ msgstr "下一個"
 #~ msgid "%i minutes"
 #~ msgstr "%i 分鐘"
 
-#~ msgid "Write metadata to file:"
-#~ msgstr "把中介資料寫入檔案："
-
 #~ msgid "Enable Scrobbling"
 #~ msgstr "啟用歌曲記錄"
 
 #~ msgid "Unsuccessful. Click to try again."
 #~ msgstr "未成功。請點擊以重試。"
-
-#~ msgid ""
-#~ "LastFM allow you to access to more informations about the music that are on "
-#~ "your library"
-#~ msgstr "LastFM 讓您存取更多有關您珍藏館中該音樂的資訊"
 
 #~ msgid "Click to redo the Last.fm Login Process"
 #~ msgstr "請點擊以再次執行 Last.fm 登入程序"

@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:01+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -1845,30 +1845,5 @@ msgstr "Siguiente"
 #~ msgid "%s seconds"
 #~ msgstr "%s segundos"
 
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Mantener carpeta de música organizada:"
-
-#~ msgid "Behavior"
-#~ msgstr "Comportamiento"
-
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Copiar archivos nuevos a la carpeta de música"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Grabar metadata al archivo"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Activar el registro de depuración"
-
-#~ msgid "Disable plugins"
-#~ msgstr "Desactivar complementos"
-
 #~ msgid "Unsuccessful. Click to try again."
 #~ msgstr "Sin éxito. Pulse para intentar nuevamente."
-
-#~ msgid ""
-#~ "LastFM allow you to access to more informations about the music that are on "
-#~ "your library"
-#~ msgstr ""
-#~ "LastFM le permite acceder a más información acerca de la música que se "
-#~ "encuentra en su biblioteca"

@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n % 100 >= "
 "3 && n % 100 <= 10 ? 3 : n % 100 >= 11 && n % 100 <= 99 ? 4 : 5;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:00+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -1692,11 +1692,5 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#~ msgid "Keep music folder organized:"
-#~ msgstr "الحفاظ علي مجلد الموسيقى منظم:"
-
 #~ msgid "Music Folder"
 #~ msgstr "ملف الموسيقى"
-
-#~ msgid "Behavior"
-#~ msgstr "السّلوك"

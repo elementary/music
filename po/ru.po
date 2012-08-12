@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Launchpad-Export-Date: 2012-08-11 06:01+0000\n"
+"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
 "X-Generator: Launchpad (build 15780)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
@@ -1762,12 +1762,6 @@ msgstr "Следующая"
 #~ msgid "Music Folder"
 #~ msgstr "Папка с музыкой"
 
-#~ msgid "Disable plugins"
-#~ msgstr "Отключить плагины"
-
-#~ msgid "Enable debug logging"
-#~ msgstr "Включить журналирование в целях отладки"
-
 #~ msgid "Recently Played"
 #~ msgstr "Недавно воспроизведённые"
 
@@ -1829,18 +1823,6 @@ msgstr "Следующая"
 #~ msgid "%i days"
 #~ msgstr "%i дней"
 
-#~ msgid "Copy new files to music folder:"
-#~ msgstr "Копировать новые файлы в папку с музыкой:"
-
-#~ msgid "Behavior"
-#~ msgstr "Поведение"
-
-#~ msgid "Write metadata to file:"
-#~ msgstr "Записывать метаданные в файл:"
-
-#~ msgid "Keep music folder organized:"
-#~ msgstr "Упорядочить файлы в папке с музыкой:"
-
 #~ msgid "Enable Scrobbling"
 #~ msgstr "Задействовать скробблинг"
 
@@ -1876,10 +1858,3 @@ msgstr "Следующая"
 #~ msgstr ""
 #~ "Если вы хотите разрешить интеграцию Last.fm, вам необходимо задать "
 #~ "полномочия %s. Это необходимо сделать единожды."
-
-#~ msgid ""
-#~ "LastFM allow you to access to more informations about the music that are on "
-#~ "your library"
-#~ msgstr ""
-#~ "Сервис LastFM позволяет узнать дополнительные сведения о композициях в "
-#~ "библиотеке"
