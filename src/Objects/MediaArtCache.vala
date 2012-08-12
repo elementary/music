@@ -295,9 +295,10 @@ public class Noise.CoverartCache : MediaArtCache {
         if (album_folder == null)
             return rv;
 
-        // TODO: don't scan album folder if it doesn't contain the name of the album.
-        // This is probably the simpler way to prevent considering images from folders
-        // containing multiple unrelated tracks.
+        // Don't consider generic image names if the album folder doesn't contain the name of
+        // media's album. This is probably the simpler way to prevent considering images from
+        // folders that contain multiple unrelated tracks.
+        bool generic_folder = !album_folder.get_path ().contains (m.album);
 
         string[] image_types = { "jpg", "jpeg", "png" };
         Gee.Collection<File> image_files;
@@ -306,6 +307,16 @@ public class Noise.CoverartCache : MediaArtCache {
         // Choose an image based on priorities.
         foreach (var file in image_files) {
             string file_path = file.get_path ().down ();
+
+            if (generic_folder) {
+                if (file_path.contains (m.album)) {
+                    rv = file;
+                    break;
+                }
+
+                continue;
+            }
+
 
             if (file_path.contains ("folder")) {
                 rv = file;
