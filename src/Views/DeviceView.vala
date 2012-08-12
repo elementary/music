@@ -73,7 +73,7 @@ public class Noise.DeviceView : Box {
 	public void showImportDialog() {
 		// ask the user if they want to import medias from device that they don't have in their library (if any)
 		// this should be same as MusicViewWrapper
-		if(!lm.doing_file_operations() && lm.lw.main_settings.music_folder != "") {
+		if(!lm.doing_file_operations() && Settings.Main.instance.music_folder != "") {
 			var found = new LinkedList<int>();
 			var not_found = new LinkedList<Media>();
 			lm.media_from_name(d.get_medias(), ref found, ref not_found);

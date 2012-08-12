@@ -150,7 +150,7 @@ public class Noise.DataBaseUpdater : GLib.Object {
 		
 		Playlist p_queue = new Playlist();
 		p_queue.name = "autosaved_queue";
-		p_queue.add_media(lm.queue());
+		p_queue.add_media(App.player.queue());
 		p_queue.tvs = lm.queue_setup;
 		
 		Playlist p_history = new Playlist();

@@ -31,6 +31,8 @@
 
 namespace Icons {
 
+    private bool is_initted = false;
+
     public enum Type {
         MIMETYPE,
         ACTION,
@@ -134,6 +136,8 @@ namespace Icons {
      * Loads icon information and renders [preloaded] pixbufs
      **/
     public void init () {
+        assert (!is_initted);
+        is_initted = true;
 
         // 128 x 128
         DEFAULT_ALBUM_ART = new Noise.Icon ("albumart", 138, Type.MIMETYPE, null, true);
@@ -173,7 +177,7 @@ namespace Icons {
         REPEAT_ON = new Noise.Icon ("media-playlist-repeat-symbolic");
         REPEAT_ONE = new Noise.Icon ("media-playlist-repeat-one-symbolic");
         VIEW_COLUMN = new Noise.Icon ("view-column-symbolic");
-        VIEW_DETAILS =new Noise.Icon ("view-list-symbolic");
+        VIEW_DETAILS = new Noise.Icon ("view-list-symbolic");
         VIEW_ICONS = new Noise.Icon ("view-grid-symbolic");
         VIEW_VIDEO = new Noise.Icon ("view-video-symbolic");
 
@@ -182,6 +186,10 @@ namespace Icons {
         // 168x168
         var shadow_icon = new Noise.Icon ("albumart-shadow", 168, Type.OTHER, FileType.PNG, true);
         DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render (null);
+    }
+
+    public bool get_is_initted () {
+        return is_initted;
     }
 }
 

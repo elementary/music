@@ -345,7 +345,7 @@ public class Noise.PodcastListView : GenericView {
 				int id;
 				list_model.get(item, 0, out id);
 
-				lm.queue_media_by_id(id);
+				App.player.queue_media_by_id(id);
 			}
 		}*/
 
@@ -656,7 +656,7 @@ public class Noise.PodcastListView : GenericView {
 
 	public virtual void mediaMenuQueueClicked() {
 		foreach(Media m in get_selected_medias()) {
-			lm.queue_media_by_id(m.rowid);
+			App.player.queue_media_by_id(m.rowid);
 		}
 	}
 	
@@ -803,7 +803,7 @@ public class Noise.PodcastListView : GenericView {
 		if(column == PodcastColumn.ROWID)
 			val = (int)s.rowid;
 		else if(column == PodcastColumn.ICON) {
-			if(lm.media_info.media != null && lm.media_info.media.rowid == s.rowid)
+			if(App.player.media_info.media != null && App.player.media_info.media.rowid == s.rowid)
 				val = playing_icon;
 			else if(s.unique_status_image != null)
 				val = s.unique_status_image;

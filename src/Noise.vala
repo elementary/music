@@ -38,12 +38,15 @@ public class Noise.App : Granite.Application {
         }
     }
 
-    public static Noise.LibraryWindow library_window { get; private set; }
-    public static Noise.LibraryManager library_manager { get; private set; }
+    // TODO: Expose Noise.Player instead of PlaybackManager
+    public static PlaybackManager player { get; private set; }
+    public static LibraryManager library_manager { get; private set; }
+    public static LibraryWindow main_window { get; private set; }
     public static Noise.Plugins.Manager plugins { get; private set; }
 
+
     // Should always match those used in the .desktop file 
-    public static const string[] CONTENT_TYPES = {
+    public const string[] CONTENT_TYPES = {
         "x-content/audio-player",
         "x-content/audio-cdda",
         "application/x-ogg",
@@ -131,25 +134,30 @@ public class Noise.App : Granite.Application {
         library_manager.play_files (files);
     }
 
-    protected override void activate () {
-        // present window if app is already open
-        if (library_window != null) {
-            library_window.present ();
-            return;
-        }
 
+    protected override void activate () {
         // Setup debugger
         if (DEBUG)
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.DEBUG;
         else
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
-        library_window = new Noise.LibraryWindow (this);
-        library_manager = library_window.library_manager;
 
-        library_window.build_ui ();
+        // present window if app is already open
+        if (main_window != null) {
+            main_window.present ();
+            return;
+        }
+        // Load icon information
+        Icons.init ();
 
-        plugins.hook_new_window (library_window);
+        player = new PlaybackManager ();
+        library_manager = new LibraryManager ();
+        main_window = new LibraryWindow ();
+        main_window.build_ui ();
+        main_window.set_application (this);
+
+        plugins.hook_new_window (main_window);
     }
 
 
@@ -161,6 +169,7 @@ public class Noise.App : Granite.Application {
         return application_id;
     }
 
+
     /**
      * @return the application's brand name. Should be used for anything that requires
      * branding. For instance: Ubuntu's sound menu, dialog titles, etc.
@@ -168,6 +177,7 @@ public class Noise.App : Granite.Application {
     public string get_name () {
         return program_name;
     }
+
 
     /**
      * @return the application's desktop file name.

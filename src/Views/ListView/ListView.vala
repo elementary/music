@@ -145,7 +145,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 			// on startup
 			this.realize.connect (connect_column_browser_ui_signals);
 
-			column_browser_enabled = lw.savedstate_settings.column_browser_enabled;
+			column_browser_enabled = Settings.SavedState.instance.column_browser_enabled;
 
 			// Connect data signals
 			column_browser.changed.connect (column_browser_changed);
@@ -247,8 +247,8 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		column_browser.position_changed.connect (set_column_browser_position);
 
 		// Read Paned position from settings
-		list_view_hpaned_position = lw.savedstate_settings.column_browser_width;
-		list_view_vpaned_position = lw.savedstate_settings.column_browser_height;
+		list_view_hpaned_position = Settings.SavedState.instance.column_browser_width;
+		list_view_vpaned_position = Settings.SavedState.instance.column_browser_height;
 
 		list_view_hpaned.position = list_view_hpaned_position;
 		list_view_vpaned.position = list_view_vpaned_position;
@@ -263,12 +263,12 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		if (has_column_browser) {
 			if (column_browser.visible) {
 				if (column_browser.actual_position == Noise.BrowserPosition.LEFT)
-					lw.savedstate_settings.column_browser_width = list_view_hpaned_position;
+					Settings.SavedState.instance.column_browser_width = list_view_hpaned_position;
 				else if (column_browser.actual_position == Noise.BrowserPosition.TOP)
-					lw.savedstate_settings.column_browser_height = list_view_vpaned_position;
+					Settings.SavedState.instance.column_browser_height = list_view_vpaned_position;
 			}
 
-			lw.savedstate_settings.column_browser_enabled = column_browser_enabled;
+			Settings.SavedState.instance.column_browser_enabled = column_browser_enabled;
 		}
 	}
 

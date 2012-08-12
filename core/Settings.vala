@@ -23,6 +23,15 @@
 namespace Noise.Settings {
 
     public class SavedState : Granite.Services.Settings {
+        private static SavedState? _instance;
+        public static SavedState instance {
+            get {
+                if (_instance == null)
+                    _instance = new SavedState ();
+                 return _instance;
+            }
+        }
+
         public int window_width { get; set; }
         public int window_height { get; set; }
         public int window_state { get; set; }
@@ -42,6 +51,15 @@ namespace Noise.Settings {
     }
 
     public class Main : Granite.Services.Settings {
+        private static Main? _instance;
+        public static Main instance {
+            get {
+                if (_instance == null)
+                    _instance = new Main ();
+                 return _instance;
+            }
+        }
+
         public string music_mount_name { get; set; }
         public string music_folder { get; set; }
         public bool update_folder_hierarchy { get; set; }
@@ -61,6 +79,15 @@ namespace Noise.Settings {
     }
 
     public class Equalizer : Granite.Services.Settings {
+        private static Equalizer? _instance;
+        public static Equalizer instance {
+            get {
+                if (_instance == null)
+                    _instance = new Equalizer ();
+                 return _instance;
+            }
+        }
+
         public bool equalizer_enabled { get; set; }
         public bool auto_switch_preset { get; set; }
         public string selected_preset { get; set; }

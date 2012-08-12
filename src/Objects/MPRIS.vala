@@ -39,7 +39,7 @@ public class Noise.MPRIS : GLib.Object {
 
 	public void initialize () {
 		owner_id = Bus.own_name(BusType.SESSION,
-		                        "org.mpris.MediaPlayer2." + library_window.app.exec_name,
+		                        "org.mpris.MediaPlayer2." + App.instance.exec_name,
 		                        GLib.BusNameOwnerFlags.NONE,
                         		on_bus_acquired,
                         		on_name_acquired,
@@ -104,13 +104,13 @@ public class MprisRoot : GLib.Object {
 	}
 	public string DesktopEntry { 
 		owned get {
-			return library_window.app.get_desktop_file_name ().replace (".desktop", "");
+			return App.instance.get_desktop_file_name ().replace (".desktop", "");
 		} 
 	}
 	
 	public string Identity {
 		owned get {
-			return library_window.app.get_name ();
+			return App.instance.get_name ();
 		}
 	}
 	
@@ -208,17 +208,17 @@ public class MprisPlayer : GLib.Object {
 		this.conn = conn;
 		_metadata = new HashTable<string,Variant>(str_hash, str_equal);
 		
-		library_window.library_manager.media_played.connect(on_media_played);
+		App.player.media_played.connect(on_media_played);
 		library_window.library_manager.media_updated.connect(media_data_updated);
 		library_window.playPauseChanged.connect(playing_changed);
 	}
 	
 	void media_data_updated(Gee.LinkedList<int> ids) {
-		if(library_window.library_manager.media_info.media == null)
+		if(App.player.media_info.media == null)
 			return;
 		
 		foreach(int i in ids) {
-			if(i == library_window.library_manager.media_info.media.rowid) {
+			if(i == App.player.media_info.media.rowid) {
 				trigger_metadata_update();
 				return;
 			}
@@ -245,7 +245,7 @@ public class MprisPlayer : GLib.Object {
 	}
 
 	private void on_media_played (Noise.Media s) {
-		if(s != library_window.library_manager.media_info.media)
+		if(s != App.player.media_info.media)
 			return;
 		
 		string[] artistArray = {};
@@ -260,7 +260,7 @@ public class MprisPlayer : GLib.Object {
 
         var url = "file://" + CoverartCache.instance.get_cached_image_path_for_media (s);
 		_metadata.insert("mpris:artUrl", url);
-		_metadata.insert("mpris:length", library_window.library_manager.player.getDuration()/1000);
+		_metadata.insert("mpris:length", App.player.player.getDuration()/1000);
 		_metadata.insert("xesam:userRating", s.rating);
 		
 		trigger_metadata_update();
@@ -282,7 +282,7 @@ public class MprisPlayer : GLib.Object {
 		changed_properties = null;
 		
 		try {
-			conn.emit_signal("org.mpris.MediaPlayer2." + library_window.app.exec_name,
+			conn.emit_signal("org.mpris.MediaPlayer2." + App.instance.exec_name,
 			                 "/org/mpris/MediaPlayer2", 
 			                 "org.freedesktop.DBus.Properties", 
 			                 "PropertiesChanged", 
@@ -314,11 +314,11 @@ public class MprisPlayer : GLib.Object {
 	
 	public string PlaybackStatus {
 		owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
-			if(library_window.library_manager.playing)
+			if(App.player.playing)
 				return "Playing";
-			else if(!library_window.library_manager.playing && library_window.library_manager.media_info.media == null)
+			else if(!App.player.playing && App.player.media_info.media == null)
 				return "Stopped";
-			else if(!library_window.library_manager.playing)
+			else if(!App.player.playing)
 				return "Paused";
 			else
 				return "Stopped";
@@ -327,14 +327,14 @@ public class MprisPlayer : GLib.Object {
 	
 	public string LoopStatus {
 		owned get {
-			switch(library_window.library_manager.repeat) {
-				case(Noise.LibraryManager.Repeat.OFF):
+			switch(App.player.repeat) {
+				case(Noise.Player.Repeat.OFF):
 					return "None";
-				case(Noise.LibraryManager.Repeat.MEDIA):
+				case(Noise.Player.Repeat.MEDIA):
 					return "Track";
-				case(Noise.LibraryManager.Repeat.ALBUM):
-				case(Noise.LibraryManager.Repeat.ARTIST):
-				case(Noise.LibraryManager.Repeat.ALL):
+				case(Noise.Player.Repeat.ALBUM):
+				case(Noise.Player.Repeat.ARTIST):
+				case(Noise.Player.Repeat.ALL):
 					return "Playlist";
 			}
 			
@@ -343,16 +343,16 @@ public class MprisPlayer : GLib.Object {
 		set {
 			switch(value) {
 				case("None"):
-					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.OFF;
+					App.player.repeat = Noise.Player.Repeat.OFF;
 					break;
 				case("Track"):
-					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.MEDIA;
+					App.player.repeat = Noise.Player.Repeat.MEDIA;
 					break;
 				case("Playlist"):
-					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.ALL;
+					App.player.repeat = Noise.Player.Repeat.ALL;
 					break;
 				default:
-					library_window.library_manager.repeat = Noise.LibraryManager.Repeat.ALL;
+					App.player.repeat = Noise.Player.Repeat.ALL;
 					break;
 			}
 			
@@ -371,16 +371,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public bool Shuffle {
 		get {
-			if(library_window.library_manager.shuffle == Noise.LibraryManager.Shuffle.ALL)
+			if(App.player.shuffle == Noise.Player.Shuffle.ALL)
 				return true;
 			return false;
 		}
 		set {
 			if(value) {
-				library_window.library_manager.shuffle = Noise.LibraryManager.Shuffle.ALL;
+				App.player.shuffle = Noise.Player.Shuffle.ALL;
 			}
 			else {
-				library_window.library_manager.shuffle = Noise.LibraryManager.Shuffle.OFF;
+				App.player.shuffle = Noise.Player.Shuffle.OFF;
 			}
 			
 			Variant variant = value;
@@ -398,16 +398,16 @@ public class MprisPlayer : GLib.Object {
 	
 	public double Volume {
 		get{
-			return library_window.library_manager.player.getVolume();
+			return App.player.player.getVolume();
 		}
 		set {
-			library_window.library_manager.player.setVolume(value);
+			App.player.player.setVolume(value);
 		}
 	}
 	
 	public int64 Position {
 		get {
-			return (library_window.library_manager.player.getPosition()/1000);
+			return (App.player.player.getPosition()/1000);
 		}
 	}
 	
@@ -473,7 +473,7 @@ public class MprisPlayer : GLib.Object {
 	
 	public void Pause() {
 		// inhibit notifications
-		if(library_window.library_manager.playing)
+		if(App.player.playing)
 			library_window.play_media(true);
 	}
 
@@ -483,22 +483,22 @@ public class MprisPlayer : GLib.Object {
 	}
 
 	public void Stop() {
-		library_window.library_manager.stopPlayback();
+		App.player.stopPlayback();
 	}
 	
 	public void Play() {
 		// inhibit notifications
-		if(!library_window.library_manager.playing)
+		if(!App.player.playing)
 			library_window.play_media(true);
 	}
 	
 	public void Seek(int64 Offset) {
-		//library_window.library_manager.player.setPosition(Position/ 1000);
+		//App.player.player.setPosition(Position/ 1000);
 		debug("Must seek!\n");
 	}
 	
 	public void SetPosition(string dobj, int64 Position) {
-		library_window.library_manager.player.setPosition(Position * 1000);
+		App.player.player.setPosition(Position * 1000);
 	}
 	
 	public void OpenUri(string Uri) {

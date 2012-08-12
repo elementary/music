@@ -142,10 +142,10 @@ public class Noise.FileNotFoundDialog : Window {
 		if(invalid_file.get_parent().query_exists())
 			file_chooser.set_current_folder(invalid_file.get_parent().get_path());
 		else if(invalid_file.get_parent().get_parent().query_exists() && 
-		invalid_file.get_parent().get_parent().get_path().contains(lm.lw.main_settings.music_folder))
+		invalid_file.get_parent().get_parent().get_path().contains(Settings.Main.instance.music_folder))
 			file_chooser.set_current_folder(invalid_file.get_parent().get_parent().get_path());
-		else if(File.new_for_path(lm.lw.main_settings.music_folder).query_exists())
-			file_chooser.set_current_folder(lm.lw.main_settings.music_folder);
+		else if(File.new_for_path(Settings.Main.instance.music_folder).query_exists())
+			file_chooser.set_current_folder(Settings.Main.instance.music_folder);
 		else
 			file_chooser.set_current_folder(Environment.get_home_dir());
 		

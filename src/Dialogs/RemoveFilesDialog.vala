@@ -54,7 +54,7 @@ public class Noise.RemoveFilesDialog : Window {
 		Label title = new Label("");
 		Label info = new Label("");
 		trash_button = new Button.with_label (_("Move to Trash"));
-		remove_button = new Button.with_label (_("Remove from %s").printf (lw.app.get_name ()));
+		remove_button = new Button.with_label (_("Remove from %s").printf (App.instance.get_name ()));
 		cancel_button = new Button.with_label (_("Cancel"));
 		
 		bool multiple_media = to_remove.size > 1;
@@ -79,12 +79,12 @@ public class Noise.RemoveFilesDialog : Window {
 		string title_text = "";
 		if (multiple_media) {
 			media_text.append_unichar('s'); // Plural form
-			title_text = _("Remove %d %s from %s?").printf(to_remove.size, media_text.str, lw.app.get_name ());
+			title_text = _("Remove %d %s from %s?").printf(to_remove.size, media_text.str, App.instance.get_name ());
 		}
 		else {
   			Media m = to_remove.get(0);
   			
-  			var app_name = lw.app.get_name ();
+  			var app_name = App.instance.get_name ();
   			if(m.mediatype != 3)
 				title_text = _("Remove \"%s\" From %s?").printf (String.escape (m.title), app_name);
 			else
@@ -95,7 +95,7 @@ public class Noise.RemoveFilesDialog : Window {
 		// set info text
 		info.xalign = 0.0f;
 		info.set_line_wrap(true);
-		string info_text = _("This will remove the %s from your library and from any device that automatically syncs with %s.").printf(String.escape (media_text.str.down()), String.escape (lw.app.get_name ()));
+		string info_text = _("This will remove the %s from your library and from any device that automatically syncs with %s.").printf(String.escape (media_text.str.down()), String.escape (App.instance.get_name ()));
 		info.set_markup(info_text);
 		
 		// decide if we need the trash button

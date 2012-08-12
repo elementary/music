@@ -51,7 +51,7 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
             scrobbled_track = true;
             lfm.postScrobbleTrack ();
         });
-        lw.update_media_informations.connect (() => {
+        lw.update_media_info.connect (() => {
             lfm.fetchCurrentSimilarSongs();
             lfm.fetchCurrentAlbumInfo();
             lfm.fetchCurrentArtistInfo();
@@ -137,17 +137,17 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
     
     
     private void love_button_clicked() {
-        if (lm.media_info == null || lm.media_info.media == null)
+        if (App.player.media_info == null || App.player.media_info.media == null)
             return;
 
-        lfm.loveTrack(lm.media_info.media.title, lm.media_info.media.artist);
+        lfm.loveTrack(App.player.media_info.media.title, App.player.media_info.media.artist);
     }
 
     private void ban_button_clicked() {
-        if (lm.media_info == null || lm.media_info.media == null)
+        if (App.player.media_info == null || App.player.media_info.media == null)
             return;
 
-        lfm.banTrack(lm.media_info.media.title, lm.media_info.media.artist);
+        lfm.banTrack(App.player.media_info.media.title, App.player.media_info.media.artist);
     }
     
     public virtual void media_played(Media m) {

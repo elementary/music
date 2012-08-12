@@ -24,10 +24,8 @@ using Gst;
 using Gtk;
 
 public class Noise.Streamer : GLib.Object {
-	LibraryManager lm;
-	LibraryWindow lw;
 	Noise.Pipeline pipe;
-	
+
 	InstallGstreamerPluginsDialog dialog;
 	
 	public bool checked_video;
@@ -38,13 +36,9 @@ public class Noise.Streamer : GLib.Object {
 	public signal void current_position_update(int64 position);
 	public signal void media_not_found();
 	
-	public Streamer(LibraryManager lm, LibraryWindow lw) {
-		
-		this.lm = lm;
-		this.lw = lw;
-		
+	public Streamer () {
 		pipe = new Noise.Pipeline();
-		
+
 		pipe.bus.add_watch(busCallback);
 		//pipe.playbin.about_to_finish.connect(about_to_finish);
 
@@ -52,12 +46,12 @@ public class Noise.Streamer : GLib.Object {
 	}
 	
 	public bool doPositionUpdate() {
-		if(set_resume_pos || (lm.media_info != null && lm.media_info.media != null && getPosition() >= (int64)(lm.media_info.media.resume_pos - 1) * 1000000000)) {
+		if(set_resume_pos || (App.player.media_info != null && App.player.media_info.media != null && getPosition() >= (int64)(App.player.media_info.media.resume_pos - 1) * 1000000000)) {
 			set_resume_pos = true;
 			current_position_update(getPosition());
 		}
-		else if (lm.media_info != null && lm.media_info.media != null) {
-			pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
+		else if (App.player.media_info != null && App.player.media_info.media != null) {
+			pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.media_info.media.resume_pos * 1000000000);
 		}
 		
 		return true;
@@ -82,16 +76,16 @@ public class Noise.Streamer : GLib.Object {
 		pipe.playbin.uri = uri.replace("#", "%23");
 
 #if HAVE_PODCASTS
-		if(lw.initialization_finished && pipe.video.element != null) {
+		if(App.main_window.initialization_finished && pipe.video.element != null) {
 			var xoverlay = pipe.video.element as XOverlay;
-			xoverlay.set_xwindow_id(Gdk.X11Window.get_xid(lw.videoArea.get_window ()));
+			xoverlay.set_xwindow_id(Gdk.X11Window.get_xid(App.main_window.videoArea.get_window ()));
 		}
 #endif
 		
 		setState(State.PLAYING);
 		
-		debug("setURI seeking to %d\n", lm.media_info.media.resume_pos);
-		pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)lm.media_info.media.resume_pos * 1000000000);
+		debug("setURI seeking to %d\n", App.player.media_info.media.resume_pos);
+		pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.media_info.media.resume_pos * 1000000000);
 		
 		play();
 	}
@@ -154,7 +148,7 @@ public class Noise.Streamer : GLib.Object {
 			break;
 		case Gst.MessageType.ELEMENT:
 			if(message.get_structure() != null && is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
-				dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
+				dialog = new InstallGstreamerPluginsDialog(App.library_manager, App.main_window, message);
 			}
 			break;
 		case Gst.MessageType.EOS:
@@ -195,21 +189,21 @@ public class Noise.Streamer : GLib.Object {
 					string title = "";
 					tag_list.get_string(TAG_TITLE, out title);
 					
-					if (lm.media_info.media.mediatype == 3 && title != "") { // is radio
+					if (App.player.media_info.media.mediatype == 3 && title != "") { // is radio
 						string[] pieces = title.split("-", 0);
 						
 						if (pieces.length >= 2) {
-							string old_title = lm.media_info.media.title;
-							string old_artist = lm.media_info.media.artist;
-							lm.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
-							lm.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
+							string old_title = App.player.media_info.media.title;
+							string old_artist = App.player.media_info.media.artist;
+							App.player.media_info.media.artist = (pieces[0] != null) ? pieces[0].chug().strip() : "Unknown Artist";
+							App.player.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
 							
-							if ((old_title != lm.media_info.media.title || old_artist != lm.media_info.media.artist) && (lm.media_info.media != null))
-								lw.media_played(lm.media_info.media); // pretend as if media changed
+							if ((old_title != App.player.media_info.media.title || old_artist != App.player.media_info.media.artist) && (App.player.media_info.media != null))
+								App.main_window.media_played(App.player.media_info.media); // pretend as if media changed
 						}
 						else {
 							// if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
-							lw.topDisplay.set_label_markup(lm.media_info.media.album_artist + "\n" + title);
+							App.main_window.topDisplay.set_label_markup(App.player.media_info.media.album_artist + "\n" + title);
 						}
 						
 					}
@@ -226,8 +220,8 @@ public class Noise.Streamer : GLib.Object {
 	
 	// no longer used since it would cause bugs
 	/*void about_to_finish() {
-		int i = lm.getNext(false);
-		Media s = lm.media_from_id(i);
+		int i = App.player.getNext(false);
+		Media s = App.library_manager.media_from_id(i);
 		if(s != null && s.mediatype != 3) { // don't do this with radio stations
 			pipe.playbin.uri = s.uri; // probably cdda
 		}
@@ -235,7 +229,7 @@ public class Noise.Streamer : GLib.Object {
 			message ("not doing gapless in streamer because no next song\n");
 		}
 		
-		lm.next_gapless_id = i;
+		App.library_manager.next_gapless_id = i;
 		Idle.add( () => {
 			end_of_stream();
 			

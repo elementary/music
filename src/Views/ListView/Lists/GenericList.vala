@@ -73,9 +73,10 @@ public abstract class Noise.GenericList : FastView {
 		drag_end.connect(on_drag_end);
 		row_activated.connect(row_activated_signal);
 		rows_reordered.connect(updateTreeViewSetup);
-		lm.current_cleared.connect(current_cleared);
-		lm.media_played.connect (media_played);
 		lm.media_updated.connect (media_updated);
+
+		App.player.current_cleared.connect (current_cleared);
+		App.player.media_played.connect (media_played);
 	}
 
 	public void set_parent_wrapper(ViewWrapper parent) {
@@ -320,16 +321,16 @@ public abstract class Noise.GenericList : FastView {
 		var m = get_media_from_index(int.parse(path.to_string()));
 		
 		// We need to first set this as the current list
-		lm.clearCurrent();
+		App.player.clearCurrent();
 		is_current_list = true;
 		
 		// Now update current_list and current_index in LM
 		set_as_current_list(m);
 		
 		// Now play the song
-		lm.playMedia(m, false);
+		App.player.playMedia(m, false);
 		
-		if(!lm.playing) {
+		if(!App.player.playing) {
 			lw.playClicked();
 		}
 	}
@@ -377,24 +378,24 @@ public abstract class Noise.GenericList : FastView {
 		if(m != null)
 			to_set = m;
 		else
-			to_set = lm.media_info.media;
+			to_set = App.player.media_info.media;
 		
-		lm.clearCurrent();
+		App.player.clearCurrent();
 		is_current_list = true;
 		
-		lm.current_index = 0;
+		App.player.current_index = 0;
 		var vis_table = get_visible_table();
 		for(int i = 0; i < vis_table.size(); ++i) {
 			var test = vis_table.get(i) as Media;
-			lm.addToCurrent(test);
+			App.player.addToCurrent(test);
 
 			
 			if(to_set == test) {
-				lm.current_index = i;
+				App.player.current_index = i;
 			}
 		}
 		
-		media_played(lm.media_info.media);
+		media_played(App.player.media_info.media);
 	}
 	
 	protected GLib.List<Media> get_selected_medias() {
@@ -426,13 +427,13 @@ public abstract class Noise.GenericList : FastView {
 	}
 	
 	public void scroll_to_current_media(bool unfilter_if_not_found) {
-		if(!visible || lm.media_info.media == null)
+		if(!visible || App.player.media_info.media == null)
 			return;
 		
 		for(int i = 0; i < get_visible_table().size(); ++i) {
 			var m = get_media_from_index(i);
 
-			if(m.rowid == lm.media_info.media.rowid) {
+			if(m.rowid == App.player.media_info.media.rowid) {
 				scroll_to_cell(new TreePath.from_string(i.to_string()), null, false, 0.0f, 0.0f);
 				scrolled_recently = false;
 
@@ -447,7 +448,7 @@ public abstract class Noise.GenericList : FastView {
 			for(int i = 0; i < whole_table.size(); ++i) {
 				var m = whole_table.get(i) as Media;
 
-				if(m.rowid == lm.media_info.media.rowid) {
+				if(m.rowid == App.player.media_info.media.rowid) {
 					// Undo search and filter
 					parent_wrapper.clear_filters();
 					

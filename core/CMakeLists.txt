@@ -4,6 +4,7 @@ vala_precompile(VALA_C
     PluginManager.vala
     Settings.vala
     EqualizerPreset.vala
+    Player.vala
     LibraryWindowInterface.vala
     Media.vala
     Utils/FileUtils.vala

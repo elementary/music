@@ -218,12 +218,12 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 			list = medias;
 		
 		// do checks to make sure we can go on
-		if(!GLib.File.new_for_path(lw.main_settings.music_folder).query_exists()) {
+		if(!GLib.File.new_for_path(Settings.Main.instance.music_folder).query_exists()) {
 			lw.doAlert(_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted before importing the CD."));
 			return false;
 		}
 		
-		var app_name = lw.app.get_name ();
+		var app_name = App.instance.get_name ();
 		
 		if(list.size == 0) {
 			lw.doAlert(_("No songs on CD"), _("%s could not find any songs on the CD. No songs can be imported").printf (app_name));
@@ -333,7 +333,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 			media_being_ripped = null;
 			_is_transferring = false;
 			
-			var app_name = lw.app.get_name ();
+			var app_name = App.instance.get_name ();
 			int n_songs = current_list_index + 1;
 			if (n_songs > 1) {
 				lw.show_notification (_("CD Import Complete"), _("%s has finished importing %i songs from Audio CD.").printf (app_name));

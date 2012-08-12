@@ -35,7 +35,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
         // Welcome screen
         welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"),
-                             _("%s can't seem to find your music.").printf (lw.app.get_name ()));
+                             _("%s can't seem to find your music.").printf (App.instance.get_name ()));
 
         var music_folder_icon = Icons.MUSIC_FOLDER.render (Gtk.IconSize.DIALOG, null);
         welcome_screen.append_with_pixbuf (music_folder_icon, _("Locate"), _("Change your music folder."));
@@ -115,7 +115,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
             else {
                 // ask the user if they want to import media from device that they don't have in their library (if any)
                 // this should be same as DeviceView
-                if(!lm.doing_file_operations() && lw.main_settings.music_folder != "") {
+                if(!lm.doing_file_operations() && Settings.Main.instance.music_folder != "") {
                     var found = new Gee.LinkedList<int>();
                     var not_found = new Gee.LinkedList<Media>();
                     lm.media_from_name (d.get_medias(), ref found, ref not_found);

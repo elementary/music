@@ -39,15 +39,17 @@ public class Noise.SoundMenuIntegration : GLib.Object {
 		                      on_name_appeared,
 		                      on_name_vanished);
 	}
-	
+
 	private void on_name_appeared(DBusConnection conn, string name) {
 		/* set up the server to connect to music.noise dbus */
 		server = Indicate.Server.ref_default();
-		server.set("type", "music" + "." + library_window.app.get_id ());
-		server.set_desktop_file(GLib.Path.build_filename (Build.DATADIR, "applications", library_window.app.get_desktop_file_name (), null));
-		server.show();
+		server.set ("type", "music" + "." + App.instance.get_id ());
+		var desktop_file_path = GLib.Path.build_filename (Build.DATADIR, "applications",
+		                                                  App.instance.get_desktop_file_name ());
+		server.set_desktop_file (desktop_file_path);
+		server.show ();
 	}
-	
+
 	private void on_name_vanished(DBusConnection conn, string name) {
 		if(server != null)
 			server.hide();

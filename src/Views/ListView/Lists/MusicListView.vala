@@ -369,7 +369,7 @@ public class Noise.MusicListView : GenericList {
 			return;
 		
 		int id = to_edit.get(0);
-		string music_folder_uri = File.new_for_path(lm.lw.main_settings.music_folder).get_uri();
+		string music_folder_uri = File.new_for_path(Settings.Main.instance.music_folder).get_uri();
 		if(to_edit.size == 1 && !GLib.File.new_for_uri(lm.media_from_id(id).uri).query_exists() && lm.media_from_id(id).uri.has_prefix(music_folder_uri)) {
 			lm.media_from_id(id).unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)lw.sideTree.getWidget(lw.sideTree.library_music_iter)).list_view.get_style_context());
 			FileNotFoundDialog fnfd = new FileNotFoundDialog(lm, lm.lw, to_edit_med);
@@ -419,7 +419,7 @@ public class Noise.MusicListView : GenericList {
 			to_queue.add (m);
 		}
 
-		lm.queue_media (to_queue);
+		App.player.queue_media (to_queue);
 	}
 
 	protected virtual void mediaMenuNewPlaylistClicked() {
@@ -457,7 +457,7 @@ public class Noise.MusicListView : GenericList {
 		}
 
 		if (get_hint() == ViewWrapper.Hint.QUEUE) {
-			lm.unqueue_media (to_remove);
+			App.player.unqueue_media (to_remove);
 		}
 
 		if (get_hint() == ViewWrapper.Hint.MUSIC) {
@@ -600,7 +600,7 @@ public class Noise.MusicListView : GenericList {
 		if(column == MusicColumn.ROWID)
 			val = s.rowid;
 		else if(column == MusicColumn.ICON) {
-			if(lm.media_info.media != null && lm.media_info.media == s)
+			if(App.player.media_info.media != null && App.player.media_info.media == s)
 				val = playing_icon;
 			else if(tvs.get_hint() == ViewWrapper.Hint.CDROM && !s.isTemporary)
 				val = completed_icon;
