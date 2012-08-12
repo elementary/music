@@ -126,10 +126,6 @@ public class Noise.App : Granite.Application {
         about_artists = {"Daniel Foré <daniel@elementaryos.org>", null};
     }
 
-    public App () {
-        plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
-        plugins.hook_app (this);
-    }
 
     public override void open (File[] files, string hint) {
         // Activate, then play files
@@ -151,6 +147,10 @@ public class Noise.App : Granite.Application {
             main_window.present ();
             return;
         }
+
+        plugins = new Noise.Plugins.Manager (Build.PLUGIN_DIR, exec_name, null);
+        plugins.hook_app (this);
+
         // Load icon information
         Icons.init ();
 

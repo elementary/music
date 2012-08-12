@@ -1,0 +1,8 @@
+[Plugin]
+Module=mpris
+IAge=2
+Name=MPRIS2
+Description=MPRIS2 DBus interface
+Authors=Scott Ringwelski <sgringwe@mtu.edu>
+Copyright=Copyright © 2012 Noise Developers
+Website=http://launchpad.net/noise

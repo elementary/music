@@ -1,16 +1,3 @@
-find_package(Vala REQUIRED)
-include(ValaVersion)
-ensure_vala_version("0.16.0" MINIMUM)
-include(ValaPrecompile)
-set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
-set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/noise")
-set(GETTEXT_PACKAGE "noise")
-set(RELEASE_NAME "Luna")
-set(VERSION "1.0")
-set(VERSION_INFO "Pre-Release")
-configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_SOURCE_DIR}/src/config.vala)
-add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
-
 vala_precompile(VALA_C
     ${CMAKE_SOURCE_DIR}/src/config.vala
 
@@ -36,9 +23,7 @@ vala_precompile(VALA_C
     Objects/SmartQuery.vala
     Objects/SmartPlaylist.vala
     Objects/LyricFetcher.vala
-    Objects/SoundMenuIntegration.vala
     Objects/MediaKeyListener.vala
-    Objects/MPRIS.vala
     Objects/Playlist.vala
     Objects/MediaInfo.vala
     Objects/AlbumInfo.vala
@@ -156,9 +141,9 @@ GENERATE_HEADER
 )
 include_directories(${CMAKE_BINARY_DIR}/core)
 add_executable(noise ${VALA_C})
-link_directories(${ZEITGEIST_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
-add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS})
-target_link_libraries(noise ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES})
+link_directories(${ZEITGEIST_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
+add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${SQLHEAVY_CFLAGS})
+target_link_libraries(noise ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${SQLHEAVY_LIBRARIES})
 target_link_libraries(noise noise-core)
 install(TARGETS noise RUNTIME DESTINATION bin)
 

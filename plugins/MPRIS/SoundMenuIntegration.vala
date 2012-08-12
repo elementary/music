@@ -19,19 +19,10 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#if HAVE_INDICATE
-using Indicate;
-
-public class Noise.SoundMenuIntegration : GLib.Object {
-	private LibraryWindow library_window;
-
+public class Noise.SoundMenuIntegration : Object {
 	private uint watch;
 	private Indicate.Server server;
-	
-	public SoundMenuIntegration(LibraryWindow library_window) {
-		this.library_window = library_window;
-	}
-	
+
 	public void initialize() {
 		watch = Bus.watch_name(BusType.SESSION,
 		                      "org.ayatana.indicator.sound",
@@ -55,4 +46,3 @@ public class Noise.SoundMenuIntegration : GLib.Object {
 			server.hide();
 	}
 }
-#endif
