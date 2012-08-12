@@ -91,6 +91,9 @@ public abstract class Noise.GenericList : FastView {
 		if (get_hint () == ViewWrapper.Hint.MUSIC && col_name == TreeViewSetup.COLUMN_NUM)
 			return;
 
+        if (col_name == TreeViewSetup.COLUMN_TITLE)
+            return;
+
 		if (column_chooser_menu == null)
 			column_chooser_menu = new Gtk.Menu ();
 
