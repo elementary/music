@@ -50,7 +50,8 @@ public class Noise.LibraryManager : GLib.Object {
 	 * DATA
 	 */
 
-	public Noise.LibraryWindow lw;
+	public Noise.LibraryWindow lw { get { return App.main_window; } }
+
 	public Noise.DataBaseManager dbm;
 	public Noise.DataBaseUpdater dbu;
 	public Noise.FileOperator fo;
@@ -83,8 +84,6 @@ public class Noise.LibraryManager : GLib.Object {
 	bool _doing_file_operations;
 
 	public LibraryManager () {
-		this.lw = App.main_window; // TODO: drop this reference
-
 		this.dbm = new DataBaseManager(this);
 		this.dbu = new DataBaseUpdater(this, dbm);
 		this.fo = new Noise.FileOperator(this);

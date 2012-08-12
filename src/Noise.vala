@@ -38,11 +38,8 @@ public class Noise.App : Granite.Application {
         }
     }
 
-    // TODO: Expose Noise.Player instead of PlaybackManager when the interface
-    // specification is finished (see core/Player.vala)
+    // TODO: Expose Noise.Player instead of PlaybackManager
     public static PlaybackManager player { get; private set; }
-
-    //this is used by many objects, is the media backend
     public static LibraryManager library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
     public static Noise.Plugins.Manager plugins { get; private set; }

@@ -51,7 +51,7 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
             scrobbled_track = true;
             lfm.postScrobbleTrack ();
         });
-        lw.update_media_informations.connect (() => {
+        lw.update_media_info.connect (() => {
             lfm.fetchCurrentSimilarSongs();
             lfm.fetchCurrentAlbumInfo();
             lfm.fetchCurrentArtistInfo();

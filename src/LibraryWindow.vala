@@ -27,7 +27,7 @@ using Gee;
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void playPauseChanged ();
 
-    public Noise.LibraryManager library_manager { get; private set; }
+    public Noise.LibraryManager library_manager { get { return App.library_manager; } }
 
     private Noise.MediaKeyListener mkl;
 
@@ -78,8 +78,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void update_media_info (); // send after 3 seconds
 
     public LibraryWindow () {
-        library_manager = App.library_manager;
-
 #if HAVE_INDICATE
 #if HAVE_DBUSMENU
         message ("Initializing MPRIS and sound menu");

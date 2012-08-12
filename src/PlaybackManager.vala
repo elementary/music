@@ -31,16 +31,6 @@
 using Gee;
 
 public class Noise.PlaybackManager : Noise.Player {
-
-    public static PlaybackManager? _instance;
-    public static PlaybackManager instance {
-        get {
-            if (_instance == null)
-                _instance = new PlaybackManager ();
-            return _instance;
-        }
-    }
-
     /*
     public Player.Shuffle shuffle_mode {
         set { setShuffleMode (value); }
