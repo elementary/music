@@ -71,7 +71,7 @@ public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
         shuffleChooser.option_changed.connect(shuffleChooserOptionChanged);
         info_panel_chooser.option_changed.connect(info_panel_chooserOptionChanged);
 
-        if(lw.App.player.media_active) {
+        if(App.player.media_active) {
             if(Settings.Main.instance.shuffle_mode == Player.Shuffle.ALL) {
                 App.player.setShuffleMode(Player.Shuffle.ALL, true);
             }

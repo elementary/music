@@ -38,13 +38,15 @@ public class Noise.App : Granite.Application {
         }
     }
 
-    // TODO: expose Noise.Player instead of PlaybackManager with the interface
-    //       specification is finished (see core/Player.vala)
-    public static PlaybackManager player {
-        get { return PlaybackManager.instance; }
-    }
+    // TODO: Expose Noise.Player instead of PlaybackManager when the interface
+    // specification is finished (see core/Player.vala)
+    public static PlaybackManager player { get { return PlaybackManager.instance; } }
 
+    //this is used by many objects, is the media backend
+    public static LibraryManager library_manager { get { return LibraryManager.instance; } }
+    public static LibraryWindow main_window { get; private set; }
     public static Noise.Plugins.Manager plugins { get; private set; }
+
 
     // Should always match those used in the .desktop file 
     public static const string[] CONTENT_TYPES = {
@@ -135,6 +137,7 @@ public class Noise.App : Granite.Application {
         library_manager.play_files (files);
     }
 
+
     protected override void activate () {
         // Setup debugger
         if (DEBUG)
@@ -143,15 +146,16 @@ public class Noise.App : Granite.Application {
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
         // present window if app is already open
-        if (LibraryWindow.instance != null) {
-            LibraryWindow.instance.present ();
+        if (main_window != null) {
+            main_window.present ();
             return;
         }
 
-        LibraryWindow.instance.build_ui ();
-        LibraryWindow.instance.set_application (this);
+        main_window = LibraryWindow.instance;
+        main_window.build_ui ();
+        main_window.set_application (this);
 
-        plugins.hook_new_window (LibraryWindow.instance);
+        plugins.hook_new_window (main_window);
     }
 
 
@@ -163,6 +167,7 @@ public class Noise.App : Granite.Application {
         return application_id;
     }
 
+
     /**
      * @return the application's brand name. Should be used for anything that requires
      * branding. For instance: Ubuntu's sound menu, dialog titles, etc.
@@ -170,6 +175,7 @@ public class Noise.App : Granite.Application {
     public string get_name () {
         return program_name;
     }
+
 
     /**
      * @return the application's desktop file name.

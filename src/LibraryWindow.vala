@@ -91,20 +91,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void update_media_informations (); // send after 3 seconds
 
     public LibraryWindow () {
+        library_manager = App.library_manager;
 
         // Load icon information
         Icons.init ();
 
-        //this is used by many objects, is the media backend
-        library_manager = new Noise.LibraryManager (this);
-
-        #if HAVE_INDICATE
-            #if HAVE_DBUSMENU
-                message ("Initializing MPRIS and sound menu");
-                var mpris = new Noise.MPRIS (this);
-                mpris.initialize ();
-            #endif
-        #endif
+#if HAVE_INDICATE
+#if HAVE_DBUSMENU
+        message ("Initializing MPRIS and sound menu");
+        var mpris = new Noise.MPRIS (this);
+        mpris.initialize ();
+#endif
+#endif
 
         //various objects
         mkl = new MediaKeyListener (this);

@@ -31,6 +31,16 @@ public class Noise.LibraryManager : GLib.Object {
 	// FIXME: Define proper enum types in Media.vala
 	public static const int PREVIEW_MEDIA_ID = -2;
 
+    private static LibraryManager? _instance;
+    public static LibraryManager instance {
+        get {
+            if (_instance == null)
+                _instance = new LibraryManager ();
+            return _instance;
+        }
+    }
+
+
 	/**
 	 * SIGNALS
 	 */
@@ -85,7 +95,7 @@ public class Noise.LibraryManager : GLib.Object {
 	// FIXME use mutex
 	bool _doing_file_operations;
 
-	public LibraryManager(Noise.LibraryWindow lww) {
+	public LibraryManager () {
 		this.lw = lww;
 		
 		this.dbm = new DataBaseManager(this);

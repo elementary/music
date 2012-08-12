@@ -214,11 +214,11 @@ public class MprisPlayer : GLib.Object {
 	}
 	
 	void media_data_updated(Gee.LinkedList<int> ids) {
-		if(library_window.App.player.media_info.media == null)
+		if(App.player.media_info.media == null)
 			return;
 		
 		foreach(int i in ids) {
-			if(i == library_window.App.player.media_info.media.rowid) {
+			if(i == App.player.media_info.media.rowid) {
 				trigger_metadata_update();
 				return;
 			}
@@ -245,7 +245,7 @@ public class MprisPlayer : GLib.Object {
 	}
 
 	private void on_media_played (Noise.Media s) {
-		if(s != library_window.App.player.media_info.media)
+		if(s != App.player.media_info.media)
 			return;
 		
 		string[] artistArray = {};
@@ -316,7 +316,7 @@ public class MprisPlayer : GLib.Object {
 		owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
 			if(App.player.playing)
 				return "Playing";
-			else if(!App.player.playing && library_window.App.player.media_info.media == null)
+			else if(!App.player.playing && App.player.media_info.media == null)
 				return "Stopped";
 			else if(!App.player.playing)
 				return "Paused";

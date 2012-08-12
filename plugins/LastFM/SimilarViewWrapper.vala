@@ -31,7 +31,7 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
         base (lw, Hint.SIMILAR);
 
         // Connect data signals
-        lm.media_played.connect (on_media_played);
+        App.player.media_played.connect (on_media_played);
         core.similar_retrieved.connect (similar_retrieved);
 
         build_async ();

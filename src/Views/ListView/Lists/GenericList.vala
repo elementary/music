@@ -74,7 +74,7 @@ public abstract class Noise.GenericList : FastView {
 		row_activated.connect(row_activated_signal);
 		rows_reordered.connect(updateTreeViewSetup);
 		lm.current_cleared.connect(current_cleared);
-		lm.media_played.connect (media_played);
+		App.player.media_played.connect (media_played);
 		lm.media_updated.connect (media_updated);
 	}
 
