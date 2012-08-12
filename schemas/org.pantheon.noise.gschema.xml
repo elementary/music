@@ -64,7 +64,7 @@
     <key type="as" name="plugins-enabled">
       <default>['lastfm','mpris','cdrom-device','ipod-device']</default>
       <summary>List of enabled plugins</summary>
-      <description>noise will load these modules during startup</description>
+      <description>Plugin modules to load during startup</description>
     </key>
   </schema>
 

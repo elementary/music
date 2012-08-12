@@ -40,6 +40,8 @@ public class Noise.Plugins.MPRISPlugin : Peas.ExtensionBase, Peas.Activatable {
     private Noise.MPRIS mpris;
 
     public void activate () {
+        message ("Activating MPRIS plugin");
+
         var value = Value (typeof (Object));
         get_property ("object", ref value);
         plugins = (Noise.Plugins.Interface)value.get_object();

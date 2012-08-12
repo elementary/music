@@ -23,13 +23,13 @@ vala_precompile(VALA_C
     Objects/SmartQuery.vala
     Objects/SmartPlaylist.vala
     Objects/LyricFetcher.vala
-    Objects/MediaKeyListener.vala
     Objects/Playlist.vala
     Objects/MediaInfo.vala
     Objects/AlbumInfo.vala
     Objects/ArtistInfo.vala
     Objects/TrackInfo.vala
     Objects/MediaArtCache.vala
+    Objects/MediaKeyListener.vala
 
     Widgets/SidebarPaned.vala
     Widgets/NavigationArrows.vala

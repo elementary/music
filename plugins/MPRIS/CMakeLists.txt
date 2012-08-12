@@ -13,6 +13,7 @@ vala_precompile(VALA_C
         Indicate-0.7
         Dbusmenu-0.4
         gtk+-3.0
+        gio-2.0
         gio-unix-2.0
         granite
         gee-1.0

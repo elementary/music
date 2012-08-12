@@ -29,8 +29,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public Noise.LibraryManager library_manager { get { return App.library_manager; } }
 
-    private Noise.MediaKeyListener mkl;
-
     /* Info related to the media being played */
     private bool media_considered_played    { get; set; default = false; } // whether or not we have updated last played and added to already played list
     private bool added_to_play_count        { get; set; default = false; } // whether or not we have added one to play count on playing media
@@ -78,17 +76,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void update_media_info (); // send after 3 seconds
 
     public LibraryWindow () {
-#if HAVE_INDICATE
-#if HAVE_DBUSMENU
-        message ("Initializing MPRIS and sound menu");
-        var mpris = new Noise.MPRIS (this);
-        mpris.initialize ();
-#endif
-#endif
-
-        //various objects
-        mkl = new MediaKeyListener (this);
-
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
         this.library_manager.music_counted.connect (musicCounted);
         this.library_manager.music_added.connect (musicAdded);

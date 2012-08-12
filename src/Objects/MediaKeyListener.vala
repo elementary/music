@@ -20,29 +20,33 @@
  * Boston, MA 02111-1307, USA.
  */
 
-using GLib;
-
 [DBus (name = "org.gnome.SettingsDaemon.MediaKeys")]
-public interface GnomeMediaKeys : GLib.Object {
-    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws GLib.IOError;
-    public abstract void ReleaseMediaPlayerKeys (string application) throws GLib.IOError;
+public interface GnomeMediaKeys : Object {
+    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws IOError;
+    public abstract void ReleaseMediaPlayerKeys (string application) throws IOError;
     public signal void MediaPlayerKeyPressed (string application, string key);
 }
 
-public class Noise.MediaKeyListener : GLib.Object {
+public class Noise.MediaKeyListener : Object {
 
-    private LibraryManager lm;
-    private LibraryWindow lw;
-    private GnomeMediaKeys media_object;
+    private static MediaKeyListener? _instance;
+    public static MediaKeyListener instance {
+        get {
+            if (_instance == null)
+                _instance = new MediaKeyListener ();
+            return _instance;
+        }
+    }
 
-    public MediaKeyListener(LibraryWindow lww) {
-        lm = lww.library_manager;
-        lw = lww;
-        
+    private GnomeMediaKeys? media_object;
+
+    public void init () {
+        assert (media_object == null);
+
         try {
             media_object = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
         } catch (IOError e) {
-            warning ("Mediakeys error: %s\n", e.message);
+            warning ("Mediakeys error: %s", e.message);
         }
         
         if(media_object != null) {
@@ -51,7 +55,7 @@ public class Noise.MediaKeyListener : GLib.Object {
                 media_object.GrabMediaPlayerKeys (App.instance.exec_name, (uint32)0);
             }
             catch(IOError err) {
-                warning ("Could not grab media player keys: %s\n", err.message);
+                warning ("Could not grab media player keys: %s", err.message);
             }
         }
     }
@@ -61,7 +65,7 @@ public class Noise.MediaKeyListener : GLib.Object {
             media_object.ReleaseMediaPlayerKeys (App.instance.exec_name);
         }
         catch(IOError err) {
-            warning("Could not release media player keys: %s\n", err.message);
+            warning("Could not release media player keys: %s", err.message);
         }
     }
     
@@ -70,19 +74,19 @@ public class Noise.MediaKeyListener : GLib.Object {
             return;
 
         if(key == "Previous") {
-            lw.previousClicked();
+            App.main_window.previousClicked();
         }
         else if(key == "Play") {
-            lw.playClicked();
+            App.main_window.playClicked();
         }
         else if(key == "Next") {
-            lw.nextClicked();
+            App.main_window.nextClicked();
         }
         else if(key == "Pause") {
             // TODO
         }
         else {
-            message ("Unused key pressed: %s\n", key);
+            message ("Unused key pressed: %s", key);
         }
     }
 }

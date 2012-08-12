@@ -153,12 +153,13 @@ public class Noise.App : Granite.Application {
 
         // Load icon information
         Icons.init ();
-
         player = new PlaybackManager ();
         library_manager = new LibraryManager ();
         main_window = new LibraryWindow ();
         main_window.build_ui ();
         main_window.set_application (this);
+
+        MediaKeyListener.instance.init ();
 
         plugins.hook_new_window (main_window);
     }

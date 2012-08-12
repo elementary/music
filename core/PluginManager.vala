@@ -187,14 +187,12 @@ public class Noise.Plugins.Manager : Object {
     //extern static void peas_extension_set_foreach (Peas.ExtensionSet extset, Peas.ExtensionSetForeachFunc option, void* data);
 
     GLib.Settings settings;
-    string settings_field;
     
     public Noise.Plugins.Interface plugin_iface { private set; get; }
 
     // TODO: Properly integrate with settings class
     public Manager(string d, string? e, string? argument_set) {
-        settings = new Noise.Settings.Main ().schema;
-        settings_field = "plugins-enabled";
+        settings = Noise.Settings.Main.instance.schema;
 
         plugin_iface = new Noise.Plugins.Interface (this);
         plugin_iface.argument = argument_set;
@@ -205,7 +203,8 @@ public class Noise.Plugins.Manager : Object {
         engine.enable_loader ("python");
         engine.enable_loader ("gjs");
         engine.add_search_path (d, null);
-        settings.bind(settings_field, engine, "loaded-plugins", SettingsBindFlags.DEFAULT);
+
+        settings.bind("plugins-enabled", engine, "loaded-plugins", SettingsBindFlags.DEFAULT);
 
         /* Our extension set */
         Parameter param = Parameter();

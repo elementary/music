@@ -31,6 +31,8 @@ namespace Noise.Plugins {
         CDRomDeviceManager cdrom_manager;
 
         public void activate () {
+            message ("Activating CD-Rom Device plugin");
+
             Value value = Value(typeof(GLib.Object));
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();

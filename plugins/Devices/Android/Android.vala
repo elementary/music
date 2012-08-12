@@ -31,6 +31,8 @@ namespace Noise.Plugins {
         AndroidDeviceManager android_manager;
 
         public void activate () {
+            message ("Activating Android Device plugin");
+
             Value value = Value(typeof(GLib.Object));
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();

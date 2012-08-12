@@ -50,6 +50,8 @@ namespace Noise.Plugins {
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();
 
+            message ("Activating Last.fm plugin");
+
             plugins.register_function(Interface.Hook.WINDOW, () => {
                 lm = ((Noise.App)plugins.noise_app).library_manager;
                 Icons.init_lastfm ();

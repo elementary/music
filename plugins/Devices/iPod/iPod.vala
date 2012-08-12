@@ -31,6 +31,8 @@ namespace Noise.Plugins {
         iPodDeviceManager ipod_manager;
 
         public void activate () {
+            message ("Activating iPod Device plugin");
+
             Value value = Value(typeof(GLib.Object));
             get_property("object", ref value);
             plugins = (Noise.Plugins.Interface)value.get_object();
