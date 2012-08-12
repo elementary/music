@@ -524,7 +524,7 @@ public class Noise.PlaybackManager : Noise.Player {
 			if(File.new_for_uri(m.uri).query_exists()) { // we did not know location, but it has re-appearred
 				m.location_unknown = false;
 				m.unique_status_image = null;
-				//LibraryWindow.instance.media_found(m.rowid);
+				//App.main_window.media_found(m.rowid);
 			}
 			else { // to avoid infinite loop with repeat on, don't try to play next again
 				stopPlayback();
@@ -535,9 +535,9 @@ public class Noise.PlaybackManager : Noise.Player {
 		// check that the file exists FIXME: Avoid reading settings everytime a song is played
 		var music_folder_uri = File.new_for_path(Settings.Main.instance.music_folder).get_uri();
 		if((Settings.Main.instance.music_folder != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
-			m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU, ((ViewWrapper)LibraryWindow.instance.sideTree.getWidget(LibraryWindow.instance.sideTree.library_music_iter)).list_view.get_style_context());
+			m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU, ((ViewWrapper)App.main_window.sideTree.getWidget(App.main_window.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
-			//LibraryWindow.instance.media_not_found(id);
+			//App.main_window.media_not_found(id);
 			getNext(true);
 			return;
 		}

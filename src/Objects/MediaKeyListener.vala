@@ -48,7 +48,7 @@ public class Noise.MediaKeyListener : GLib.Object {
         if(media_object != null) {
             media_object.MediaPlayerKeyPressed.connect(mediaKeyPressed);
             try {
-                media_object.GrabMediaPlayerKeys (lw.app.exec_name, (uint32)0);
+                media_object.GrabMediaPlayerKeys (App.instance.exec_name, (uint32)0);
             }
             catch(IOError err) {
                 warning ("Could not grab media player keys: %s\n", err.message);
@@ -58,7 +58,7 @@ public class Noise.MediaKeyListener : GLib.Object {
     
     public void releaseMediaKeys() {
         try {
-            media_object.ReleaseMediaPlayerKeys (lw.app.exec_name);
+            media_object.ReleaseMediaPlayerKeys (App.instance.exec_name);
         }
         catch(IOError err) {
             warning("Could not release media player keys: %s\n", err.message);
@@ -66,7 +66,7 @@ public class Noise.MediaKeyListener : GLib.Object {
     }
     
     private void mediaKeyPressed(dynamic Object bus, string application, string key) {
-        if (application != lw.app.exec_name)
+        if (application != App.instance.exec_name)
             return;
 
         if(key == "Previous") {

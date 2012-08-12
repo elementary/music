@@ -35,7 +35,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
         // Welcome screen
         welcome_screen = new Granite.Widgets.Welcome(_("Get Some Tunes"),
-                             _("%s can't seem to find your music.").printf (lw.app.get_name ()));
+                             _("%s can't seem to find your music.").printf (App.instance.get_name ()));
 
         var music_folder_icon = Icons.MUSIC_FOLDER.render (Gtk.IconSize.DIALOG, null);
         welcome_screen.append_with_pixbuf (music_folder_icon, _("Locate"), _("Change your music folder."));

@@ -25,20 +25,7 @@ using Gtk;
 using Gee;
 
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
-
-    private static LibraryWindow? _instance;
-    public static LibraryWindow instance {
-        get {
-            if (_instance == null)
-                _instance = new LibraryWindow ();
-             return _instance;
-        }
-    }
-
-
     public signal void playPauseChanged ();
-
-    public Noise.App app { get { return (application as Noise.App); } }
 
     public Noise.LibraryManager library_manager { get; private set; }
 
@@ -92,9 +79,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public LibraryWindow () {
         library_manager = App.library_manager;
-
-        // Load icon information
-        Icons.init ();
 
 #if HAVE_INDICATE
 #if HAVE_DBUSMENU
@@ -275,7 +259,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         main_toolbar.insert (column_toggle_item, -1);
         main_toolbar.insert (top_display_item, -1);
         main_toolbar.insert (search_field_item, -1);
-        main_toolbar.insert (app.create_appmenu (settingsMenu), -1);
+        main_toolbar.insert (App.instance.create_appmenu (settingsMenu), -1);
 
         /** Statusbar widgets **/
 
@@ -380,7 +364,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
 
         if (!Notify.is_initted ()) {
-            if (!Notify.init (app.get_id ())) {
+            if (!Notify.init (App.instance.get_id ())) {
                 warning ("Could not init libnotify");
                 return;
             }
@@ -491,7 +475,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         /* Pack view wrapper into the main views */
         if (view_container.add_view (view_wrapper) < 0)
-            critical ("Failed to append view '%s' to %s's main views", name, app.get_name ());
+            critical ("Failed to append view '%s' to %s's main views", name, App.instance.get_name ());
 
         return view_wrapper;
     }
@@ -998,7 +982,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities();
 
         //now notify user
-        show_notification (_("Import Complete"), _("%s has imported your library.").printf (app.get_name ()));
+        show_notification (_("Import Complete"), _("%s has imported your library.").printf (App.instance.get_name ()));
     }
 
     /* this is when you import music from a foreign location into the library */
@@ -1086,7 +1070,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 #if HAVE_ZEITGEIST
             var event = new Zeitgeist.Event.full (Zeitgeist.ZG_ACCESS_EVENT,
-                                                   Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://%s".printf (app.get_desktop_file_name ()),
+                                                   Zeitgeist.ZG_SCHEDULED_ACTIVITY, "app://%s".printf (App.instance.get_desktop_file_name ()),
                                                    new Zeitgeist.Subject.full(App.player.media_info.media.uri,
                                                                                Zeitgeist.NFO_AUDIO,
                                                                                Zeitgeist.NFO_FILE_DATA_OBJECT,
@@ -1143,7 +1127,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void doAlert(string title, string message) {
         var dialog = new MessageDialog (this, DialogFlags.MODAL, MessageType.ERROR, ButtonsType.OK, title);
 
-        dialog.title = app.get_name ();
+        dialog.title = App.instance.get_name ();
         dialog.secondary_text = message;
         dialog.secondary_use_markup = true;
 

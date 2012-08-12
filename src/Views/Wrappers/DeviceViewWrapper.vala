@@ -38,7 +38,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
 
         list_view.import_requested.connect (import_request);
 
-        embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (lw.app.get_name ()), null, true, Gtk.MessageType.WARNING);
+        embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (App.instance.get_name ()), null, true, Gtk.MessageType.WARNING);
 
         set_device (d);
     }

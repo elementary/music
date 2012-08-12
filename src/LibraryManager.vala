@@ -28,17 +28,6 @@ using Gtk;
  * the visual representation of this class
  */
 public class Noise.LibraryManager : GLib.Object {
-
-    private static LibraryManager? _instance;
-    public static LibraryManager instance {
-        get {
-            if (_instance == null)
-                _instance = new LibraryManager ();
-            return _instance;
-        }
-    }
-
-
 	/**
 	 * SIGNALS
 	 */

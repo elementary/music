@@ -40,10 +40,10 @@ public class Noise.App : Granite.Application {
 
     // TODO: Expose Noise.Player instead of PlaybackManager when the interface
     // specification is finished (see core/Player.vala)
-    public static PlaybackManager player { get { return PlaybackManager.instance; } }
+    public static PlaybackManager player { get; private set; }
 
     //this is used by many objects, is the media backend
-    public static LibraryManager library_manager { get { return LibraryManager.instance; } }
+    public static LibraryManager library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
     public static Noise.Plugins.Manager plugins { get; private set; }
 
@@ -145,13 +145,18 @@ public class Noise.App : Granite.Application {
         else
             Granite.Services.Logger.DisplayLevel = Granite.Services.LogLevel.INFO;
 
+
         // present window if app is already open
         if (main_window != null) {
             main_window.present ();
             return;
         }
+        // Load icon information
+        Icons.init ();
 
-        main_window = LibraryWindow.instance;
+        player = new PlaybackManager ();
+        library_manager = new LibraryManager ();
+        main_window = new LibraryWindow ();
         main_window.build_ui ();
         main_window.set_application (this);
 

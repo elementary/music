@@ -24,8 +24,6 @@ using Gst;
 using Gtk;
 
 public class Noise.Streamer : GLib.Object {
-	LibraryManager lm;
-	LibraryWindow lw;
 	Noise.Pipeline pipe;
 
 	InstallGstreamerPluginsDialog dialog;
@@ -39,9 +37,6 @@ public class Noise.Streamer : GLib.Object {
 	public signal void media_not_found();
 	
 	public Streamer () {
-		this.lw = App.main_window;;
-		this.lm = App.library_manager;
-
 		pipe = new Noise.Pipeline();
 
 		pipe.bus.add_watch(busCallback);
@@ -81,9 +76,9 @@ public class Noise.Streamer : GLib.Object {
 		pipe.playbin.uri = uri.replace("#", "%23");
 
 #if HAVE_PODCASTS
-		if(lw.initialization_finished && pipe.video.element != null) {
+		if(App.main_window.initialization_finished && pipe.video.element != null) {
 			var xoverlay = pipe.video.element as XOverlay;
-			xoverlay.set_xwindow_id(Gdk.X11Window.get_xid(lw.videoArea.get_window ()));
+			xoverlay.set_xwindow_id(Gdk.X11Window.get_xid(App.main_window.videoArea.get_window ()));
 		}
 #endif
 		
@@ -153,7 +148,7 @@ public class Noise.Streamer : GLib.Object {
 			break;
 		case Gst.MessageType.ELEMENT:
 			if(message.get_structure() != null && is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
-				dialog = new InstallGstreamerPluginsDialog(lm, lw, message);
+				dialog = new InstallGstreamerPluginsDialog(App.library_manager, App.main_window, message);
 			}
 			break;
 		case Gst.MessageType.EOS:
@@ -204,11 +199,11 @@ public class Noise.Streamer : GLib.Object {
 							App.player.media_info.media.title = (pieces[1] != null) ? pieces[1].chug().strip() : title;
 							
 							if ((old_title != App.player.media_info.media.title || old_artist != App.player.media_info.media.artist) && (App.player.media_info.media != null))
-								lw.media_played(App.player.media_info.media); // pretend as if media changed
+								App.main_window.media_played(App.player.media_info.media); // pretend as if media changed
 						}
 						else {
 							// if the title doesn't follow the general title - artist format, probably not a media change and instead an advert
-							lw.topDisplay.set_label_markup(App.player.media_info.media.album_artist + "\n" + title);
+							App.main_window.topDisplay.set_label_markup(App.player.media_info.media.album_artist + "\n" + title);
 						}
 						
 					}
@@ -226,7 +221,7 @@ public class Noise.Streamer : GLib.Object {
 	// no longer used since it would cause bugs
 	/*void about_to_finish() {
 		int i = App.player.getNext(false);
-		Media s = lm.media_from_id(i);
+		Media s = App.library_manager.media_from_id(i);
 		if(s != null && s.mediatype != 3) { // don't do this with radio stations
 			pipe.playbin.uri = s.uri; // probably cdda
 		}
@@ -234,7 +229,7 @@ public class Noise.Streamer : GLib.Object {
 			message ("not doing gapless in streamer because no next song\n");
 		}
 		
-		lm.next_gapless_id = i;
+		App.library_manager.next_gapless_id = i;
 		Idle.add( () => {
 			end_of_stream();
 			

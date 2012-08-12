@@ -223,7 +223,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 			return false;
 		}
 		
-		var app_name = lw.app.get_name ();
+		var app_name = App.instance.get_name ();
 		
 		if(list.size == 0) {
 			lw.doAlert(_("No songs on CD"), _("%s could not find any songs on the CD. No songs can be imported").printf (app_name));
@@ -333,7 +333,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 			media_being_ripped = null;
 			_is_transferring = false;
 			
-			var app_name = lw.app.get_name ();
+			var app_name = App.instance.get_name ();
 			int n_songs = current_list_index + 1;
 			if (n_songs > 1) {
 				lw.show_notification (_("CD Import Complete"), _("%s has finished importing %i songs from Audio CD.").printf (app_name));
