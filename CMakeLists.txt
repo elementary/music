@@ -42,60 +42,30 @@ else()
 endif()
 
 
-pkg_check_modules(DBUS_MENU dbusmenu-glib-0.4)
-if(${DBUS_MENU_FOUND})
-set(ADD_PKG ${ADD_PKG}
-        Dbusmenu-0.4)
-set(ADD_OPTIONS ${ADD_OPTIONS}
-        --define=HAVE_DBUSMENU)
-message("-- DBus Menu enabled")
-else()
-message("-- DBus Menu disabled")
-endif()
+set (NORMAL_CFLAGS ${DEPS_CFLAGS} ${SQLHEAVY_CFLAGS})
+set (NORMAL_LIBRARIES ${DEPS_LIBRARIES} ${SQLHEAVY_LIBRARIES})
+set (NORMAL_LINK_DIRS ${DEPS_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS})
 
-pkg_check_modules(GUPNP gupnp-1.0)
-if(${GUPNP_FOUND})
-set(ADD_PKG ${ADD_PKG}
-        gupnp-1.0)
-set(ADD_OPTIONS ${ADD_OPTIONS})
-message("-- UPnP Plugin enabled")
-else()
-message("-- UPnP Plugin disabled")
-set(GUPNP_FOUND 0)
-endif()
 
-pkg_check_modules(GUPNP_AV gupnp-av-1.0)
-if(${GUPNP_AV_FOUND})
-set(ADD_PKG ${ADD_PKG}
-        gupnp-av-1.0)
-set(ADD_OPTIONS ${ADD_OPTIONS})
-message("-- UPnP Plugin enabled")
-else()
-message("-- UPnP Plugin disabled")
-set(GUPNP_AV_FOUND 0)
-endif()
+find_package(Vala REQUIRED)
+include(ValaVersion)
+ensure_vala_version("0.16.0" MINIMUM)
+include(ValaPrecompile)
 
-pkg_check_modules(INDICATE indicate-0.7)
-if(${INDICATE_FOUND})
-set(ADD_PKG ${ADD_PKG}
-        Indicate-0.7)
-set(ADD_OPTIONS ${ADD_OPTIONS}
-        --define=HAVE_INDICATE)
-message("-- Indicate enabled")
-else()
-message("-- Indicate disabled")
-endif()
-
-set (NORMAL_CFLAGS ${DEPS_CFLAGS} ${INDICATE_CFLAGS} ${DBUS_MENU_CFLAGS} ${SQLHEAVY_CFLAGS} ${GUPNP_CFLAGS} ${GUPNP_AV_CFLAGS})
-set (NORMAL_LIBRARIES ${DEPS_LIBRARIES} ${DBUS_MENU_LIBRARIES} ${SQLHEAVY_LIBRARIES} ${INDICATE_LIBRARIES} ${GUPNP_LIBRARIES} ${GUPNP_AV_LIBRARIES})
-set (NORMAL_LINK_DIRS ${SQLHEAVY_LIBRARY_DIRS} ${INDICATE_LIBRARY_DIRS} ${DBUS_MENU_LIBRARY_DIRS} ${GUPNP_LIBRARY_DIRS} ${GUPNP_AV_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
-
+set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
+set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/noise")
+set(GETTEXT_PACKAGE "noise")
+set(RELEASE_NAME "Luna")
+set(VERSION "1.0")
+set(VERSION_INFO "Pre-Release")
 set(PLUGIN_DIR "${CMAKE_INSTALL_PREFIX}/lib/noise/plugins")
 set(ICON_DIR "${CMAKE_INSTALL_PREFIX}/share/noise/icons/hicolor")
+configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_SOURCE_DIR}/src/config.vala)
+add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 
-add_subdirectory(src)
 add_subdirectory(vapi)
 add_subdirectory(core)
+add_subdirectory(src)
 add_subdirectory(data)
 add_subdirectory(schemas)
 

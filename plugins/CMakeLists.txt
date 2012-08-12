@@ -1,6 +1,6 @@
-#add_subdirectory (podcasts)
 add_subdirectory (Devices)
 add_subdirectory (LastFM)
-if (${GUPNP_FOUND} AND ${GUPNP_AV_FOUND})
-add_subdirectory (UPnP)
-endif()
+add_subdirectory (MPRIS)
+#add_subdirectory (UPnP)
+#add_subdirectory (podcasts)
+

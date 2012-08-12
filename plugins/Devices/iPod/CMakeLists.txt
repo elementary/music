@@ -1,15 +1,8 @@
-find_package(Vala REQUIRED)
-include(ValaVersion)
-ensure_vala_version("0.16.0" MINIMUM)
-include(ValaPrecompile)
-
 pkg_check_modules (GPOD REQUIRED libgpod-1.0)
 set(NORMAL_CFLAGS ${NORMAL_CFLAGS} ${GPOD_CFLAGS})
 set(NORMAL_LIBRARIES ${NORMAL_LIBRARIES} ${GPOD_LIBRARIES})
 set(NORMAL_LINK_DIRS ${NORMAL_LINK_DIRS} ${GPOD_LIBRARY_DIRS})
 
-configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_SOURCE_DIR}/src/config.vala)
-add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 add_definitions(${NORMAL_CFLAGS})
 include_directories(${CMAKE_BINARY_DIR}/core ${CMAKE_BINARY_DIR}/src)
 link_directories(${NORMAL_LINK_DIRS})

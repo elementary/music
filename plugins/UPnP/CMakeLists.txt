@@ -1,15 +1,29 @@
-find_package(Vala REQUIRED)
-include(ValaVersion)
-ensure_vala_version("0.16.0" MINIMUM)
-include(ValaPrecompile)
-set(DATADIR "${CMAKE_INSTALL_PREFIX}/share")
-set(PKG_DATADIR "${CMAKE_INSTALL_PREFIX}/share/noise")
-set(GETTEXT_PACKAGE "noise")
-set(RELEASE_NAME "Luna")
-set(VERSION "1.0")
-set(VERSION_INFO "Pre-Release")
-configure_file(${CMAKE_SOURCE_DIR}/src/config.vala.cmake ${CMAKE_SOURCE_DIR}/src/config.vala)
-add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
+
+# XXX TODO: set C and library flags, or it won't compile
+
+pkg_check_modules(GUPNP gupnp-1.0)
+if(${GUPNP_FOUND})
+set(ADD_PKG ${ADD_PKG}
+        gupnp-1.0)
+set(ADD_OPTIONS ${ADD_OPTIONS})
+message("-- UPnP Plugin enabled")
+else()
+message("-- UPnP Plugin disabled")
+set(GUPNP_FOUND 0)
+endif()
+
+# TODO: move to the corresponding plugin
+pkg_check_modules(GUPNP_AV gupnp-av-1.0)
+if(${GUPNP_AV_FOUND})
+set(ADD_PKG ${ADD_PKG}
+        gupnp-av-1.0)
+set(ADD_OPTIONS ${ADD_OPTIONS})
+message("-- UPnP Plugin enabled")
+else()
+message("-- UPnP Plugin disabled")
+set(GUPNP_AV_FOUND 0)
+endif()
+
 add_definitions(${NORMAL_CFLAGS})
 include_directories(${CMAKE_BINARY_DIR}/core ${CMAKE_BINARY_DIR}/src)
 link_directories(${NORMAL_LINK_DIRS})

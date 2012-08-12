@@ -26,7 +26,6 @@
  * statement from your version.
  */
 
-using GLib;
 using Gtk;
 using Peas;
 using PeasGtk;
