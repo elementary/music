@@ -195,8 +195,9 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
     private Gtk.CheckButton write_file_metadata_toggle;
     private Gtk.CheckButton copy_imported_music_toggle;
 
+#if ENABLE_EXPERIMENTAL
     private Gtk.CheckButton is_default_application_toggle;
-
+#endif
     private Gtk.FileChooserButton library_filechooser;
 
 
@@ -208,7 +209,9 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
 
         add_library_folder_section ();
         add_library_management_section ();
+#if ENABLE_EXPERIMENTAL
         add_default_application_section ();
+#endif
     }
 
 
@@ -259,7 +262,7 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
         add_subsection (_("Library Management"), contents_grid);
     }
 
-
+#if ENABLE_EXPERIMENTAL
     private void add_default_application_section () {
         var contents_grid = new Gtk.Grid ();
 
@@ -270,7 +273,7 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
 
         add_subsection (_("System Integration"), contents_grid);
     }
-
+#endif
 
     public override bool save_changes () {
         if (library_filechooser.get_current_folder() != Settings.Main.instance.music_folder
@@ -283,7 +286,9 @@ private class Noise.Preferences.GeneralSection : Noise.PreferencesWindow.Section
         Settings.Main.instance.write_metadata_to_file = write_file_metadata_toggle.get_active();
         Settings.Main.instance.copy_imported_music = copy_imported_music_toggle.get_active();
 
+#if ENABLE_EXPERIMENTAL
         Noise.App.instance.is_default_application = is_default_application_toggle.get_active ();
+#endif
 
         return true;
     }

@@ -61,6 +61,7 @@ public class Noise.App : Granite.Application {
     };
 
 
+#if ENABLE_EXPERIMENTAL
     /**
      * @return whether the application is the default for handling audio files
      */
@@ -90,6 +91,8 @@ public class Noise.App : Granite.Application {
             }
         }
     }
+#endif
+
 
     construct {
         // This allows opening files. See the open() method below.
