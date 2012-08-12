@@ -62,7 +62,7 @@
       <description>String of last search</description>
     </key>
     <key type="as" name="plugins-enabled">
-      <default>[]</default>
+      <default>['lastfm','mpris','cdrom-device','ipod-device']</default>
       <summary>List of enabled plugins</summary>
       <description>noise will load these modules during startup</description>
     </key>
