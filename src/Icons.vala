@@ -1,8 +1,6 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2011-2012 Noise developers
- *
- * Originally Written by Scott Ringwelski and Victor Eduardo for
- * BeatBox Music Player: http://www.launchpad.net/beat-box
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -19,11 +17,17 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
+ *
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Victor Eduardo <victoreduardm@gmail.com>
- *              Lucas Baudin <xapantu@gmail.com>
  */
-
 
 /**
  * A place to store icon information and pixbufs.
@@ -33,32 +37,19 @@ namespace Icons {
 
     private bool is_initted = false;
 
-    public enum Type {
-        MIMETYPE,
-        ACTION,
-        STATUS,
-        APP,
-        OTHER
-    }
-
-    public enum FileType {
-        SVG,
-        PNG
-    }
-
-    private const string MIMETYPES_FOLDER = "mimetypes";
-    private const string ACTIONS_FOLDER = "actions";
-    private const string STATUS_FOLDER = "status";
-    private const string APPS_FOLDER = "apps";
-    private const string OTHER_FOLDER = "other";
-
-    private const string PNG_EXT = ".png";
-    private const string SVG_EXT = ".svg";
-
     /**
      * Size of the cover art used in the album view
      **/
     public const int ALBUM_VIEW_IMAGE_SIZE = 168;
+
+    /**
+     * RENDERED ICONS.
+     * These are pre-rendered pixbufs. Any static image which otherwise would need
+     * to be rendered many times should be a preloaded pixbuf. They are loaded
+     * in the init() function.
+     */
+    public Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF;
+
 
     /**
      * ICON INFORMATION
@@ -113,14 +104,6 @@ namespace Icons {
     public Noise.Icon VIEW_ICONS;
     public Noise.Icon VIEW_VIDEO;
 
-    /**
-     * RENDERED ICONS.
-     * These are pre-rendered pixbufs. Any static image which otherwise would need
-     * to be rendered many times should be a preloaded pixbuf. They are loaded
-     * in the init() function.
-     */
-    public Gdk.Pixbuf DEFAULT_ALBUM_SHADOW_PIXBUF;
-
 
     public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
         var icon = new Noise.Icon (icon_name);
@@ -140,30 +123,30 @@ namespace Icons {
         is_initted = true;
 
         // 128 x 128
-        DEFAULT_ALBUM_ART = new Noise.Icon ("albumart", 138, Type.MIMETYPE, null, true);
-        MUSIC_FOLDER = new Noise.Icon ("folder-music", 128, Type.MIMETYPE, null, true);
+        DEFAULT_ALBUM_ART = new Noise.Icon ("albumart", 138, Noise.Icon.Category.MIMETYPE, null, true);
+        MUSIC_FOLDER = new Noise.Icon ("folder-music", 128, Noise.Icon.Category.MIMETYPE, null, true);
 
         // 22 x 22
         HISTORY = new Noise.Icon ("document-open-recent");
 
         // 16 x 16
-        NOISE = new Noise.Icon ("noise", 16, Type.APP, null, true);
-        MUSIC = new Noise.Icon ("library-music", 16, Type.MIMETYPE, null, true);
-        AUDIO_CD = new Noise.Icon ("media-cdrom-audio", 16, Type.MIMETYPE, null, true);
-        AUDIO_DEVICE = new Noise.Icon ("multimedia-player", 16, Type.MIMETYPE, null, true);
-        NETWORK_DEVICE = new Noise.Icon ("monitor", 16, Type.MIMETYPE, null, true);
-        PLAYLIST = new Noise.Icon ("playlist", 16, Type.MIMETYPE, null, true);
-        SMART_PLAYLIST = new Noise.Icon ("playlist-automatic", 16, Type.MIMETYPE, null, true);
-        STARRED = new Noise.Icon ("starred", 16, Type.STATUS, null, true);
-        NOT_STARRED = new Noise.Icon ("non-starred", 16, Type.STATUS, null, true);
+        NOISE = new Noise.Icon ("noise", 16, Noise.Icon.Category.APP, null, true);
+        MUSIC = new Noise.Icon ("library-music", 16, Noise.Icon.Category.MIMETYPE, null, true);
+        AUDIO_CD = new Noise.Icon ("media-cdrom-audio", 16, Noise.Icon.Category.MIMETYPE, null, true);
+        AUDIO_DEVICE = new Noise.Icon ("multimedia-player", 16, Noise.Icon.Category.MIMETYPE, null, true);
+        NETWORK_DEVICE = new Noise.Icon ("monitor", 16, Noise.Icon.Category.MIMETYPE, null, true);
+        PLAYLIST = new Noise.Icon ("playlist", 16, Noise.Icon.Category.MIMETYPE, null, true);
+        SMART_PLAYLIST = new Noise.Icon ("playlist-automatic", 16, Noise.Icon.Category.MIMETYPE, null, true);
+        STARRED = new Noise.Icon ("starred", 16, Noise.Icon.Category.STATUS, null, true);
+        NOT_STARRED = new Noise.Icon ("non-starred", 16, Noise.Icon.Category.STATUS, null, true);
 
         // SYMBOLIC ICONS (16 x 16)
-        PANE_SHOW_SYMBOLIC = new Noise.Icon ("pane-show-symbolic", 16, Type.ACTION, null, true);
-        PANE_HIDE_SYMBOLIC = new Noise.Icon ("pane-hide-symbolic", 16, Type.ACTION, null, true);
-        EQ_SYMBOLIC = new Noise.Icon ("media-eq-symbolic", 16, Type.ACTION, null, true);
+        PANE_SHOW_SYMBOLIC = new Noise.Icon ("pane-show-symbolic", 16, Noise.Icon.Category.ACTION, null, true);
+        PANE_HIDE_SYMBOLIC = new Noise.Icon ("pane-hide-symbolic", 16, Noise.Icon.Category.ACTION, null, true);
+        EQ_SYMBOLIC = new Noise.Icon ("media-eq-symbolic", 16, Noise.Icon.Category.ACTION, null, true);
 
-        REPEAT_OFF = new Noise.Icon ("media-playlist-no-repeat-symbolic", 16, Type.STATUS, null, true);
-        SHUFFLE_OFF = new Noise.Icon ("media-playlist-no-shuffle-symbolic", 16, Type.STATUS, null, true);
+        REPEAT_OFF = new Noise.Icon ("media-playlist-no-repeat-symbolic", 16, Noise.Icon.Category.STATUS, null, true);
+        SHUFFLE_OFF = new Noise.Icon ("media-playlist-no-shuffle-symbolic", 16, Noise.Icon.Category.STATUS, null, true);
 
         NOW_PLAYING_SYMBOLIC = new Noise.Icon ("audio-volume-high-symbolic");
 
@@ -184,7 +167,7 @@ namespace Icons {
         // Render Pixbufs ...
 
         // 168x168
-        var shadow_icon = new Noise.Icon ("albumart-shadow", 168, Type.OTHER, FileType.PNG, true);
+        var shadow_icon = new Noise.Icon ("albumart-shadow", 168, Noise.Icon.Category.OTHER, Noise.Icon.FileType.PNG, true);
         DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render (null);
     }
 
@@ -192,4 +175,3 @@ namespace Icons {
         return is_initted;
     }
 }
-
