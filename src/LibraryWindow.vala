@@ -88,7 +88,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private int window_height = 0;
 
     public signal void media_half_played (); // send after the half of the song
-    public signal void update_media_informations (); // send after 3 seconds
+    public signal void update_media_info (); // send after 3 seconds
 
     public LibraryWindow () {
         library_manager = App.library_manager;
@@ -107,8 +107,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         //various objects
         mkl = new MediaKeyListener (this);
 
-        App.player.player.end_of_stream.connect (end_of_stream);
-        App.player.player.current_position_update.connect (current_position_update);
         //FIXME? App.player.player.media_not_found.connect (media_not_found);
         this.library_manager.music_counted.connect (musicCounted);
         this.library_manager.music_added.connect (musicAdded);
@@ -116,11 +114,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         this.library_manager.music_rescanned.connect (musicRescanned);
         this.library_manager.progress_notification.connect (progressNotification);
         this.library_manager.media_updated.connect (medias_updated);
-        this.library_manager.media_played.connect (media_played);
-        this.library_manager.playback_stopped.connect (playback_stopped);
-
         this.library_manager.media_added.connect (update_sensitivities);
         this.library_manager.media_removed.connect (update_sensitivities);
+
+        App.player.player.end_of_stream.connect (end_of_stream);
+        App.player.player.current_position_update.connect (current_position_update);
+        App.player.media_played.connect (media_played);
+        App.player.playback_stopped.connect (playback_stopped);
 
         // init some booleans
         if (Settings.Main.instance.music_folder == "") {
@@ -335,7 +335,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         int i = Settings.Main.instance.last_media_playing;
         if(i != 0 && library_manager.media_from_id (i) != null && File.new_for_uri (library_manager.media_from_id(i).uri).query_exists()) {
-            library_manager.playMedia (library_manager.media_from_id (i), true);
+            App.player.playMedia (library_manager.media_from_id (i), true);
         }
 
         // ADD MAIN VIEWS
@@ -507,6 +507,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Add Music Library View
         var music_view_wrapper = new MusicViewWrapper (this);
         add_view (_("Music"), music_view_wrapper);
+        
+        // TODO: set media from the view wrapper itself, and not from here
         music_view_wrapper.set_media_async (library_manager.media_from_ids (library_manager.song_ids ()));
 
         debug ("Done with main views.");
@@ -518,7 +520,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Add Queue view
         var queue_view = new QueueViewWrapper (this);
         add_view (_("Queue"), queue_view);
-        queue_view.set_media_async (library_manager.queue ());
+        queue_view.set_media_async (App.player.queue ());
 
         // Add History view
         var history_view = new HistoryViewWrapper (this);
@@ -696,6 +698,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     /** This should be used whenever a call to play a new media is made
+     *
+     * XXX: this doesn't belong here, but to the playback manager or Last.fm plugin
      * @param s The media that is now playing
      */
     public virtual void media_played(Media m) {
@@ -742,8 +746,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities();
 
         Timeout.add(3000, () => {
-            if(App.player.media_info.media != null && App.player.media_info.media == m && m.rowid != LibraryManager.PREVIEW_MEDIA_ID) {
-                update_media_informations();
+            if (App.player.media_info.media != null && App.player.media_info.media == m) {
+                update_media_info();
             }
             
             return false;
@@ -839,10 +843,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         Media? m = null;
-        if(library_manager.next_gapless_id != 0) {
-            int next_id = library_manager.next_gapless_id;
+        if(App.player.next_gapless_id != 0) {
+            int next_id = App.player.next_gapless_id;
             m = library_manager.media_from_id (next_id);
-            library_manager.playMedia (m, false);
+            App.player.playMedia (m, false);
         }
         else
             m = App.player.getNext(true);
@@ -1067,7 +1071,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // at about 3 seconds, update last fm. we wait to avoid excessive querying last.fm for info
         if(position > 3000000000 && !media_considered_previewed) {
             media_considered_previewed = true;
-            update_media_informations ();
+            update_media_info ();
         }
 
         //at 30 seconds in, we consider the media as played
@@ -1078,7 +1082,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             library_manager.update_media_item (App.player.media_info.media, false, false);
 
             // add to the already played list
-            library_manager.add_already_played (App.player.media_info.media);
+            App.player.add_already_played (App.player.media_info.media);
 
 #if HAVE_ZEITGEIST
             var event = new Zeitgeist.Event.full (Zeitgeist.ZG_ACCESS_EVENT,

@@ -28,8 +28,6 @@ using Gtk;
  * the visual representation of this class
  */
 public class Noise.LibraryManager : GLib.Object {
-	// FIXME: Define proper enum types in Media.vala
-	public static const int PREVIEW_MEDIA_ID = -2;
 
     private static LibraryManager? _instance;
     public static LibraryManager instance {
@@ -96,8 +94,8 @@ public class Noise.LibraryManager : GLib.Object {
 	bool _doing_file_operations;
 
 	public LibraryManager () {
-		this.lw = lww;
-		
+		this.lw = App.main_window; // TODO: drop this reference
+
 		this.dbm = new DataBaseManager(this);
 		this.dbu = new DataBaseUpdater(this, dbm);
 		this.fo = new Noise.FileOperator(this);
@@ -154,7 +152,7 @@ public class Noise.LibraryManager : GLib.Object {
 						to_queue.add (m);
 					}
 					
-					queue_media (to_queue);
+					App.player.queue_media (to_queue);
 					
 					queue_setup = p.tvs;
 					queue_setup.set_hint(ViewWrapper.Hint.QUEUE);
@@ -239,9 +237,9 @@ public class Noise.LibraryManager : GLib.Object {
 			
 			// FIXME: DOESN'T MAKE SENSE ANYMORE SINCE WE'RE NOT LIMITED TO
 			// PLAYING LIBRARY MUSIC. Use unqueue_media ();
-			clear_queue ();
+			App.player.clear_queue ();
 
-			_already_played.clear();
+			App.player.reset_already_played ();
 			lw.resetSideTree(false);
 			lw.update_sensitivities();
 			App.player.stopPlayback();
@@ -394,6 +392,7 @@ public class Noise.LibraryManager : GLib.Object {
 	}
 
 	public void play_files (File[] files) {
+        /*
 		var to_discover = new Gee.LinkedList<string> ();
 		var to_play = new Gee.LinkedList<Media> ();
 
@@ -419,13 +418,14 @@ public class Noise.LibraryManager : GLib.Object {
 		}
 
 		// Play library media immediately
-		queue_media (to_play);
-		getNext (true);
+		App.player.queue_media (to_play);
+		App.player.getNext (true);
 
 		Idle.add ( () => {
 			fo.import_files (to_discover, FileOperator.ImportType.IMPORT);
 			return false;
 		});
+        */
 	}
 
 

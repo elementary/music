@@ -93,7 +93,6 @@ public class Noise.PlaybackManager : Noise.Player {
         this.player = new Streamer ();
 		media_info = new Noise.MediaInfo();
 
-
 		int repeatValue = Settings.Main.instance.repeat_mode;
 		if(repeatValue == 0)
 			repeat = Player.Repeat.OFF;
@@ -129,7 +128,7 @@ public class Noise.PlaybackManager : Noise.Player {
 	}
 
 	public void queue_media_by_id (Collection<int> ids) {
-		queue_media (media_from_ids (ids));		
+		queue_media (App.library_manager.media_from_ids (ids));		
 	}
 
 
@@ -140,7 +139,7 @@ public class Noise.PlaybackManager : Noise.Player {
 	}
 
 	public void unqueue_media_by_id (Collection<int> ids) {
-		unqueue_media (media_from_ids (ids));		
+		unqueue_media (App.library_manager.media_from_ids (ids));		
 	}
 
 	public Media peek_queue() {
@@ -335,7 +334,7 @@ public class Noise.PlaybackManager : Noise.Player {
 				rv = _current_shuffled.get(_current_shuffled_index);
 			}
 			else {
-				foreach(Media s in _media.values)
+				foreach(Media s in App.library_manager.media ())
 					addToCurrent(s);
 				
 				_current_shuffled_index = 0;
@@ -380,7 +379,7 @@ public class Noise.PlaybackManager : Noise.Player {
 				rv = _current.get(_current_index);
 			}
 			else {
-				foreach(Media s in _media.values)
+				foreach(Media s in App.library_manager.media ())
 					addToCurrent(s);
 				
 				_current_index = 0;
@@ -434,7 +433,7 @@ public class Noise.PlaybackManager : Noise.Player {
 				rv = _current_shuffled.get(_current_shuffled_index);
 			}
 			else {
-				foreach(Media s in _media.values)
+				foreach(Media s in App.library_manager.media ())
 					addToCurrent(s);
 				
 				_current_shuffled_index = _current_shuffled.size - 1;
@@ -478,7 +477,7 @@ public class Noise.PlaybackManager : Noise.Player {
 				rv = _current.get(_current_index);
 			}
 			else {
-				foreach(Media s in _media.values)
+				foreach(Media s in App.library_manager.media ())
 					addToCurrent(s);
 				
 				_current_index = _current.size - 1;
@@ -494,19 +493,21 @@ public class Noise.PlaybackManager : Noise.Player {
 	
 	
 	public void playMedia(Media m, bool use_resume_pos) {
-		if(m.isTemporary) {
+		
+		/*if(m.isTemporary) {
 			_media.set(PREVIEW_MEDIA_ID, m);
 			playMediaInternal(PREVIEW_MEDIA_ID, use_resume_pos);
 		}
 		else {
+		*/
 			playMediaInternal(m.rowid, use_resume_pos);
-		}
+		//}
 	}
 	
 	void playMediaInternal(int id, bool use_resume_pos) {
 		int old_id = -1;
 		
-		if(id == 0 || media_from_id(id) == null)
+		if(id == 0 || App.library_manager.media_from_id(id) == null)
 			return;
 		
 		// save previous media's id
@@ -514,8 +515,8 @@ public class Noise.PlaybackManager : Noise.Player {
 			old_id = media_info.media.rowid;
 		
 		// set the current media
-		media_info.media = media_from_id(id);
-		Media m = media_from_id(id);
+		media_info.media = App.library_manager.media_from_id(id);
+		Media m = App.library_manager.media_from_id(id);
 		
 		// To avoid infinite loop, if we come across a song we already know does not exist
 		// stop playback
@@ -534,7 +535,7 @@ public class Noise.PlaybackManager : Noise.Player {
 		// check that the file exists FIXME: Avoid reading settings everytime a song is played
 		var music_folder_uri = File.new_for_path(Settings.Main.instance.music_folder).get_uri();
 		if((Settings.Main.instance.music_folder != "" && m.uri.has_prefix(music_folder_uri) && !GLib.File.new_for_uri(m.uri).query_exists())) {
-			m.unique_status_image = Icons.PROCESS_ERROR.render(IconSize.MENU, ((ViewWrapper)LibraryWindow.instance.sideTree.getWidget(LibraryWindow.instance.sideTree.library_music_iter)).list_view.get_style_context());
+			m.unique_status_image = Icons.PROCESS_ERROR.render(Gtk.IconSize.MENU, ((ViewWrapper)LibraryWindow.instance.sideTree.getWidget(LibraryWindow.instance.sideTree.library_music_iter)).list_view.get_style_context());
 			m.location_unknown = true;
 			//LibraryWindow.instance.media_not_found(id);
 			getNext(true);
@@ -565,7 +566,7 @@ public class Noise.PlaybackManager : Noise.Player {
 			player.pause();
 		
 		//update settings
-		if(id != PREVIEW_MEDIA_ID)
+		//if(id != PREVIEW_MEDIA_ID)
 			Settings.Main.instance.last_media_playing = id;
 		
 		if (m != null)
@@ -580,7 +581,7 @@ public class Noise.PlaybackManager : Noise.Player {
 				    int delta_s = (int)player_duration_s - (int)(m.length / Numeric.MILI_INV);
 				    if (Math.fabs ((double)delta_s) > 3) {
 					    m.length = (uint)(player_duration_s * Numeric.MILI_INV);
-					    update_media_item (m, false, false);
+					    App.library_manager.update_media_item (m, false, false);
                     }
 				}
 			}

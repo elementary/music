@@ -73,9 +73,10 @@ public abstract class Noise.GenericList : FastView {
 		drag_end.connect(on_drag_end);
 		row_activated.connect(row_activated_signal);
 		rows_reordered.connect(updateTreeViewSetup);
-		lm.current_cleared.connect(current_cleared);
-		App.player.media_played.connect (media_played);
 		lm.media_updated.connect (media_updated);
+
+		App.player.current_cleared.connect (current_cleared);
+		App.player.media_played.connect (media_played);
 	}
 
 	public void set_parent_wrapper(ViewWrapper parent) {
@@ -327,7 +328,7 @@ public abstract class Noise.GenericList : FastView {
 		set_as_current_list(m);
 		
 		// Now play the song
-		lm.playMedia(m, false);
+		App.player.playMedia(m, false);
 		
 		if(!App.player.playing) {
 			lw.playClicked();
@@ -382,15 +383,15 @@ public abstract class Noise.GenericList : FastView {
 		App.player.clearCurrent();
 		is_current_list = true;
 		
-		lm.current_index = 0;
+		App.player.current_index = 0;
 		var vis_table = get_visible_table();
 		for(int i = 0; i < vis_table.size(); ++i) {
 			var test = vis_table.get(i) as Media;
-			lm.addToCurrent(test);
+			App.player.addToCurrent(test);
 
 			
 			if(to_set == test) {
-				lm.current_index = i;
+				App.player.current_index = i;
 			}
 		}
 		

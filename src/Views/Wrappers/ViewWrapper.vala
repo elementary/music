@@ -308,12 +308,12 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         debug ("%s : play_first_media", hint.to_string());
 
         (list_view as ListView).set_as_current_list(1, true);
-        var m = lm.mediaFromCurrentIndex (0);
+        var m = App.player.mediaFromCurrentIndex (0);
 
         if (m == null)
            return;
 
-        lm.playMedia (m, false);
+        App.player.playMedia (m, false);
         App.player.player.play ();
 
         if(!App.player.playing)

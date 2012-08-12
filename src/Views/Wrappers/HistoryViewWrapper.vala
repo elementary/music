@@ -46,7 +46,7 @@ public class Noise.HistoryViewWrapper : ViewWrapper {
 
     private void connect_data_signals () {
          // Listen for queues and unqueues
-         lm.history_changed.connect (on_history_changed);
+         App.player.history_changed.connect (on_history_changed);
 
          // Connect to lm.media_updated and lm.media_removed
          lm.media_updated.connect (on_library_media_updated);

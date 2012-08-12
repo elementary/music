@@ -49,7 +49,7 @@ public class Noise.App : Granite.Application {
 
 
     // Should always match those used in the .desktop file 
-    public static const string[] CONTENT_TYPES = {
+    public const string[] CONTENT_TYPES = {
         "x-content/audio-player",
         "x-content/audio-cdda",
         "application/x-ogg",

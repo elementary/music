@@ -457,7 +457,7 @@ public class Noise.MusicListView : GenericList {
 		}
 
 		if (get_hint() == ViewWrapper.Hint.QUEUE) {
-			lm.unqueue_media (to_remove);
+			App.player.unqueue_media (to_remove);
 		}
 
 		if (get_hint() == ViewWrapper.Hint.MUSIC) {

@@ -39,8 +39,8 @@ public class Noise.Streamer : GLib.Object {
 	public signal void media_not_found();
 	
 	public Streamer () {
-		this.lw = LibraryWindow.instance;
-		this.lm = lw.library_manager;
+		this.lw = App.main_window;;
+		this.lm = App.library_manager;
 
 		pipe = new Noise.Pipeline();
 
