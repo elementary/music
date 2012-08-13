@@ -42,6 +42,7 @@ public class Noise.HistoryViewWrapper : ViewWrapper {
             connect_data_signals ();
         }
 
+        set_media_async (App.player.already_played ());
     }
 
     private void connect_data_signals () {

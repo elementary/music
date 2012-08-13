@@ -38,6 +38,8 @@ public class Noise.QueueViewWrapper : ViewWrapper {
 
         // Refresh view layout
         pack_views ();
+
+        set_media_async (App.player.queue ());
     }
 
     private void connect_data_signals () {

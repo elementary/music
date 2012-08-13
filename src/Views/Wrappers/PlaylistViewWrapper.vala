@@ -51,6 +51,17 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         }
 
         build_async (tvs);
+
+        if (hint == Hint.SMART_PLAYLIST) {
+            // this sets the media indirectly through the signal handlers connected above
+            lm.media_from_smart_playlist (playlist_id);
+        }
+        else if (hint == Hint.PLAYLIST) {
+            set_media_async (lm.media_from_playlist (playlist_id));
+        }
+        else {
+            assert_not_reached ();
+        }
     }
 
     private async void build_async (TreeViewSetup tvs) {

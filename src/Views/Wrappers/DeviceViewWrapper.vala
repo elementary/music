@@ -42,10 +42,12 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
 
         set_device (d);
     }
-    
+
     public virtual void set_device (Device device) {
         this.d = device;
         d.sync_finished.connect (sync_finished);
+
+        set_media_async (d.get_medias ());
     }
 
     void import_request (Gee.LinkedList<Media> to_import) {

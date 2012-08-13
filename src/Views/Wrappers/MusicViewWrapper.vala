@@ -46,6 +46,8 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         pack_views ();
 
         connect_data_signals ();
+
+        set_media_async (lm.media ());
     }
 
     private void connect_data_signals () {

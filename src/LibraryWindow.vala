@@ -479,9 +479,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Add Music Library View
         var music_view_wrapper = new MusicViewWrapper (this);
         add_view (_("Music"), music_view_wrapper);
-        
-        // TODO: set media from the view wrapper itself, and not from here
-        music_view_wrapper.set_media_async (library_manager.media_from_ids (library_manager.media_ids ()));
 
         debug ("Done with main views.");
     }
@@ -492,22 +489,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Add Queue view
         var queue_view = new QueueViewWrapper (this);
         add_view (_("Queue"), queue_view);
-        queue_view.set_media_async (App.player.queue ());
 
         // Add History view
         var history_view = new HistoryViewWrapper (this);
         add_view (_("History"), history_view);
-        history_view.set_media_async (App.player.already_played ());
 
-        // load smart playlists. Don't populate.
         foreach (SmartPlaylist p in library_manager.smart_playlists()) {
-            addSideListItem (p, false);
-            // queue the populate operation on this playlists. The PlaylistViewWrapper
-            // view has signal handlers that listen for changes after analyze() has been triggered
-            Idle.add_full (Priority.DEFAULT_IDLE + 1, () => {
-                library_manager.media_from_smart_playlist (p.rowid);
-                return false;
-            });
+            addSideListItem (p);
         }
 
         // load playlists.
@@ -521,26 +509,20 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         debug ("Finished loading playlists");
     }
 
-    public TreeIter addSideListItem (GLib.Object o, bool populate = true) {
+    public TreeIter addSideListItem (GLib.Object o) {
         TreeIter iter = sideTree.library_music_iter; //just a default
 
         if(o is Playlist) {
-            Playlist p = (Playlist)o;
+            Playlist p = o as Playlist;
 
             var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
             add_view (p.name, view, out iter);
-
-            if (populate)
-                view.set_media_async (library_manager.media_from_playlist (p.rowid));
         }
         else if(o is SmartPlaylist) {
-            SmartPlaylist p = (SmartPlaylist)o;
+            var p = o as SmartPlaylist;
             
             var view = new PlaylistViewWrapper (this, p.tvs, p.rowid);
             add_view (p.name, view, out iter);
-            
-            if (populate)
-                view.set_media_async (library_manager.media_from_smart_playlist (p.rowid));
         }
         /* XXX: Migrate this code to the new ViewWrapper API */
         else if(o is Device) {
@@ -557,8 +539,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                  var cd_setup = new TreeViewSetup (MusicListView.MusicColumn.ALBUM, Gtk.SortType.ASCENDING, ViewWrapper.Hint.CDROM);
                  var vw = new DeviceViewWrapper (this, cd_setup, d);
 
-                 if (populate)
-                     vw.set_media_async (d.get_medias ());
                  iter = sideTree.addSideItem(sideTree.devices_iter, d, vw, d.getDisplayName(), ViewWrapper.Hint.CDROM);
                  view_container.add_view (vw);
             }
@@ -576,10 +556,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             var view = new NetworkDeviceViewWrapper (this, nd_setup, (Noise.NetworkDevice)o);
             add_view (((Noise.NetworkDevice)o).getDisplayName(), view, out iter);
 
-            if (populate)
-                view.set_media_async (((Noise.NetworkDevice)o).get_medias ());
+            view.set_media_async (((Noise.NetworkDevice)o).get_medias ());
         }
-        
+
         return iter;
     }
 
