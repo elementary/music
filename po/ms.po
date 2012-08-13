@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-08-10 21:51-0600\n"
+"POT-Creation-Date: 2012-08-12 15:19-0600\n"
 "PO-Revision-Date: 2012-08-12 00:15+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2012-08-12 04:57+0000\n"
-"X-Generator: Launchpad (build 15780)\n"
+"X-Launchpad-Export-Date: 2012-08-13 05:54+0000\n"
+"X-Generator: Launchpad (build 15791)\n"
 
 #: /home/victored/noise/po/../src//config.vala:14
 msgid "Listen to music"
@@ -26,27 +26,27 @@ msgstr "Dengari muzik"
 msgid "Music Player"
 msgstr "Pemain Muzik"
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:289
+#: /home/victored/noise/po/../src//LibraryManager.vala:218
 #, c-format
 msgid "Importing music from %s..."
 msgstr "Mengimport muzik dari %s..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:336
+#: /home/victored/noise/po/../src//LibraryManager.vala:265
 msgid "Adding files to library..."
 msgstr "Menambah fail ke pustaka..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:361
+#: /home/victored/noise/po/../src//LibraryManager.vala:290
 #, c-format
 msgid "Adding music from %s to library..."
 msgstr "Menambah muzik dari %s ke pustaka..."
 
-#: /home/victored/noise/po/../src//LibraryManager.vala:388
+#: /home/victored/noise/po/../src//LibraryManager.vala:317
 msgid "Rescanning music for changes. This may take a while..."
 msgstr "Mengimbas semula muzik untuk perubahan. Ia mengambil masa..."
 
 #: /home/victored/noise/po/../src//Objects/ArtistInfo.vala:25
 #: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:26
-#: /home/victored/noise/po/../src//LibraryWindow.vala:688
+#: /home/victored/noise/po/../src//LibraryWindow.vala:661
 #: /home/victored/noise/po/../core//Media.vala:35
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:79
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:108
@@ -65,7 +65,7 @@ msgid "Unknown Track"
 msgstr "Trek Tidak Diketahui"
 
 #: /home/victored/noise/po/../src//Objects/AlbumInfo.vala:25
-#: /home/victored/noise/po/../src//LibraryWindow.vala:689
+#: /home/victored/noise/po/../src//LibraryWindow.vala:662
 #: /home/victored/noise/po/../core//Media.vala:34
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDDA.vala:94
 msgid "Unknown Album"
@@ -95,7 +95,7 @@ msgstr "Menggunakan %s dari %s (%.2f%)"
 
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:95
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:155
-#: /home/victored/noise/po/../src//LibraryWindow.vala:212
+#: /home/victored/noise/po/../src//LibraryWindow.vala:179
 msgid "Import to Library"
 msgstr "Import ke Pustaka"
 
@@ -164,7 +164,7 @@ msgstr "Senarai Main"
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:269
 #: /home/victored/noise/po/../src//Widgets/SideTreeView.vala:299
 #: /home/victored/noise/po/../src//Views/DeviceSummaryWidget.vala:112
-#: /home/victored/noise/po/../src//LibraryWindow.vala:507
+#: /home/victored/noise/po/../src//LibraryWindow.vala:478
 msgid "Music"
 msgstr "Muzik"
 
@@ -578,23 +578,23 @@ msgid "Sync will remove 1 item from %s"
 msgstr "Segerak akan buang 1 item dari %s"
 
 #: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:145
-#: /home/victored/noise/po/../src//LibraryWindow.vala:216
+#: /home/victored/noise/po/../src//LibraryWindow.vala:183
 msgid "Preferences"
 msgstr "Keutamaan"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:204
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:205
 msgid "General"
 msgstr "Am"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:216
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:219
 msgid "Select Music Folder"
 msgstr "Pilih Folder Muzik"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:223
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:226
 msgid "Music Folder Location"
 msgstr "Lokasi Folder Muzik"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:229
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:232
 msgid ""
 "You must wait until previous file operations finish before setting your "
 "music folder"
@@ -602,27 +602,27 @@ msgstr ""
 "Anda mesti tunggu sehingga operasi fail terdahulu selesai sebelum menetapkan "
 "folder muzik anda"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:241
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:244
 msgid "Keep Music folder organized"
 msgstr "Pastikan folder Muzik terurus"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:242
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:245
 msgid "Copy files to Music folder when adding to Library"
 msgstr "Salin fail ke folder Muzik bila menambah ke Pustaka"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:244
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:247
 msgid "Write metadata to file"
 msgstr "Tulis data meta ke fail"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:259
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:262
 msgid "Library Management"
 msgstr "Pengurusan Pustaka"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:266
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:269
 msgid "Use Noise as the default Music application"
 msgstr "Guna Noise sebagai apliaksi Muzik lalai"
 
-#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:271
+#: /home/victored/noise/po/../src//Dialogs/PreferencesWindow.vala:274
 msgid "System Integration"
 msgstr "Penyepaduan Sistem"
 
@@ -1134,7 +1134,7 @@ msgid "Show in File Browser"
 msgstr "Papar dalam Pelayar Fail"
 
 #: /home/victored/noise/po/../src//Views/ListView/Lists/MusicListView.vala:151
-#: /home/victored/noise/po/../src//LibraryWindow.vala:518
+#: /home/victored/noise/po/../src//LibraryWindow.vala:491
 msgid "Queue"
 msgstr "Baris Gilir"
 
@@ -1343,53 +1343,53 @@ msgstr "Terlebih Main"
 msgid "Not Recently Played"
 msgstr "Tiada Dimain Baru-baru Ini"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:213
+#: /home/victored/noise/po/../src//LibraryWindow.vala:180
 msgid "Rescan Music Folder"
 msgstr "Imbas Semula Folder Muzik"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:237
+#: /home/victored/noise/po/../src//LibraryWindow.vala:204
 msgid "Search Music"
 msgstr "Gelintar Muzik"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:523
+#: /home/victored/noise/po/../src//LibraryWindow.vala:496
 msgid "History"
 msgstr "Sejarah"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:688
+#: /home/victored/noise/po/../src//LibraryWindow.vala:661
 msgid " by "
 msgstr " oleh "
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:689
+#: /home/victored/noise/po/../src//LibraryWindow.vala:662
 msgid " on "
 msgstr " pada "
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:895
+#: /home/victored/noise/po/../src//LibraryWindow.vala:870
 msgid "Import Music"
 msgstr "Import Muzik"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:919
+#: /home/victored/noise/po/../src//LibraryWindow.vala:894
 #, c-format
 msgid "<b>Importing</b> music from <b>%s</b> to library."
 msgstr "<b>Mengimport</b> muzik dari pustaka <b>%s</b>."
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:934
+#: /home/victored/noise/po/../src//LibraryWindow.vala:909
 msgid "Rescanning music folder for changes"
 msgstr "Mengimbas semula folder muzik untuk perubahan"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:941
+#: /home/victored/noise/po/../src//LibraryWindow.vala:916
 #: /home/victored/noise/po/../plugins//Devices/CDRom/CDRomDevice.vala:222
 msgid "Could not find Music Folder"
 msgstr "Tidak dapat cari Folder Muzik"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:941
+#: /home/victored/noise/po/../src//LibraryWindow.vala:916
 msgid "Please make sure that your music folder is accessible and mounted."
 msgstr "Sila pastikan folder muzik anda boleh dicapai dan dilekap."
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:995
+#: /home/victored/noise/po/../src//LibraryWindow.vala:970
 msgid "Import Complete"
 msgstr "Proses Mengimport Selesai"
 
-#: /home/victored/noise/po/../src//LibraryWindow.vala:995
+#: /home/victored/noise/po/../src//LibraryWindow.vala:970
 #, c-format
 msgid "%s has imported your library."
 msgstr "%s telah mengimport pustaka anda."
@@ -1603,7 +1603,7 @@ msgstr "Membuang dari <b>%s</b>..."
 msgid "Importing <b>%s</b> to library..."
 msgstr "Mengimport <b>%s</b> ke pustaka..."
 
-#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:63
+#: /home/victored/noise/po/../plugins//LastFM/LastFM.vala:64
 msgid "Similar"
 msgstr "Seakan"
 
