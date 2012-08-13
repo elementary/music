@@ -14,8 +14,8 @@
    height="48px"
    id="svg3658"
    version="1.1"
-   inkscape:version="0.48.0 r9654"
-   sodipodi:docname="beabox.svg">
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="noise.svg">
   <defs
      id="defs3660">
     <linearGradient
@@ -169,27 +169,6 @@
          id="stop3899-8-7-06" />
     </linearGradient>
     <linearGradient
-       y2="1044.3767"
-       x2="28.53125"
-       y1="994.81909"
-       x1="28.53125"
-       gradientTransform="translate(12,-100)"
-       gradientUnits="userSpaceOnUse"
-       id="linearGradient4195"
-       xlink:href="#linearGradient3895-9-0-0"
-       inkscape:collect="always" />
-    <linearGradient
-       id="linearGradient3895-9-0-0">
-      <stop
-         offset="0"
-         style="stop-color:#dc6838;stop-opacity:1"
-         id="stop3897-0-5-3" />
-      <stop
-         offset="1"
-         style="stop-color:#ba3d12;stop-opacity:1"
-         id="stop3899-8-7-2" />
-    </linearGradient>
-    <linearGradient
        id="linearGradient4067-0-2">
       <stop
          id="stop4069-2-9"
@@ -200,27 +179,6 @@
          offset="1"
          style="stop-color:#ffeb41;stop-opacity:0;" />
     </linearGradient>
-    <linearGradient
-       id="linearGradient3895-9-0">
-      <stop
-         offset="0"
-         style="stop-color:#dc6838;stop-opacity:1"
-         id="stop3897-0-5" />
-      <stop
-         offset="1"
-         style="stop-color:#ba3d12;stop-opacity:1"
-         id="stop3899-8-7" />
-    </linearGradient>
-    <linearGradient
-       y2="1044.3767"
-       x2="28.53125"
-       y1="994.81909"
-       x1="28.53125"
-       gradientTransform="translate(12,-100)"
-       gradientUnits="userSpaceOnUse"
-       id="linearGradient4188-1"
-       xlink:href="#linearGradient3895-9-0"
-       inkscape:collect="always" />
     <linearGradient
        id="linearGradient4644-104-3-3-6-2">
       <stop
@@ -338,7 +296,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
