@@ -489,24 +489,11 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
         /* We can't just put setSelectedIter directly, we have to check that this iter is not null */
         TreeIter? selected_iter = null;
 
-        if(App.player.media_info.media == null || App.player.media_info.media.mediatype == 0)
+        if(App.player.media_info.media == null || App.player.media_info.media.mediatype == MediaType.SONG)
             selected_iter = convertToFilter(library_music_iter);
-#if HAVE_PODCASTS
-        else if(App.player.media_info.media.mediatype == 1)
-            selected_iter = convertToFilter(library_podcasts_iter);
-#endif
-        else if(App.player.media_info.media.mediatype == 2) {
-            selected_iter = convertToFilter(library_music_iter);
-            message ("TODO: Set current list to audiobooks when resetting if current media is audiobook\n");
-        }
-#if HAVE_INTERNET_RADIO
-        else if(App.player.media_info.media.mediatype == 3)
-            selected_iter = convertToFilter(network_radio_iter);
-#endif
 
-        if (selected_iter != null) {
+        if (selected_iter != null)
             setSelectedIter (selected_iter);
-        }
         else
             critical ("Couldn't select the good iter for the sidebar. Is it still under construction?");
 

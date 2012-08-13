@@ -216,7 +216,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         topDisplayBin.set_widget (topDisplay, true, false);
 
         // Set search timeout in ms
-        searchField.pause_delay = 90;
+        searchField.pause_delay = 80;
 
         var column_toggle_item = new Gtk.ToolItem ();
         var top_display_item   = new Gtk.ToolItem ();
@@ -310,17 +310,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.playMedia (library_manager.media_from_id (i), true);
         }
 
-        // ADD MAIN VIEWS
         build_main_views ();
-
-        // show window
-        update_sensitivities();
+        load_playlists ();
+        sideTree.resetView ();
+        update_sensitivities ();
 
         // Now set the selected view
         viewSelector.selected = Settings.SavedState.instance.view_mode;
-
-        // ADD PLAYLIST VIEWS
-        load_playlists_async ();
 
         initialization_finished = true;
 
@@ -483,7 +479,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         debug ("Done with main views.");
     }
     
-    private async void load_playlists_async () {
+    private void load_playlists () {
         debug ("Loading playlists");
 
         // Add Queue view
@@ -502,9 +498,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         foreach (Playlist p in library_manager.playlists()) {
             addSideListItem (p);
         }
-
-        sideTree.resetView ();
-        update_sensitivities ();
 
         debug ("Finished loading playlists");
     }
