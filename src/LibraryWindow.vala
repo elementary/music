@@ -81,15 +81,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         this.library_manager.music_added.connect (musicAdded);
         this.library_manager.music_imported.connect (musicImported);
         this.library_manager.music_rescanned.connect (musicRescanned);
-        this.library_manager.progress_notification.connect (progressNotification);
+
         this.library_manager.media_updated.connect (medias_updated);
         this.library_manager.media_added.connect (update_sensitivities);
         this.library_manager.media_removed.connect (update_sensitivities);
+
+        this.library_manager.progress_notification.connect (progressNotification);
 
         App.player.player.end_of_stream.connect (end_of_stream);
         App.player.player.current_position_update.connect (current_position_update);
         App.player.media_played.connect (media_played);
         App.player.playback_stopped.connect (playback_stopped);
+
 
         // init some booleans
         if (Settings.Main.instance.music_folder == "") {
@@ -321,7 +324,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         initialization_finished = true;
 
-        if (library_manager.song_ids().size == 0)
+        if (library_manager.media_ids ().size == 0)
             setMusicFolder (Environment.get_user_special_dir(UserDirectory.MUSIC));
 
 
@@ -478,7 +481,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         add_view (_("Music"), music_view_wrapper);
         
         // TODO: set media from the view wrapper itself, and not from here
-        music_view_wrapper.set_media_async (library_manager.media_from_ids (library_manager.song_ids ()));
+        music_view_wrapper.set_media_async (library_manager.media_from_ids (library_manager.media_ids ()));
 
         debug ("Done with main views.");
     }
@@ -940,9 +943,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
         else {
             ViewWrapper vw = (ViewWrapper)sideTree.getWidget(sideTree.library_music_iter);
-            //vw.do_update(vw.current_view, library_manager.song_ids(), true, true, false);
-            //vw.column_browser.populate (library_manager.song_ids());
-            vw.set_media_async (library_manager.media_from_ids (library_manager.song_ids()));
+            //vw.do_update(vw.current_view, library_manager.media_ids(), true, true, false);
+            //vw.column_browser.populate (library_manager.media_ids());
+            vw.set_media_async (library_manager.media_from_ids (library_manager.media_ids()));
         }
     }
 
@@ -983,12 +986,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities();
     }
 
-    public virtual void musicRescanned(LinkedList<Media> new_medias, LinkedList<string> not_imported) {
-        if(App.player.media_active) {
-            updateInfoLabel();
-        }
+    public virtual void musicRescanned (Gee.Collection<Media> new_medias, Gee.Collection<string> not_imported) {
+        if (App.player.media_active)
+            updateInfoLabel ();
         else
-            topDisplay.set_label_text("");
+            topDisplay.set_label_text ("");
 
         resetSideTree(false);
         debug("music Rescanned\n");
@@ -1008,10 +1010,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             return;
 
         // If different folder chosen or we have no songs anyways, do set.
-        if (folder == "" || (folder == Settings.Main.instance.music_folder && library_manager.song_count () > 0))
+        if (folder == "" || (folder == Settings.Main.instance.music_folder && library_manager.media_count () > 0))
             return;
 
-        if (library_manager.song_ids().size > 0 || library_manager.playlist_count() > 0) {
+        if (library_manager.media_ids().size > 0 || library_manager.playlist_count() > 0) {
             var smfc = new SetMusicFolderConfirmation(library_manager, this, folder);
             smfc.finished.connect( (cont) => {
                 if(cont) {
