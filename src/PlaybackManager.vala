@@ -480,25 +480,18 @@ public class Noise.PlaybackManager : Noise.Player {
         
         return rv;
     }
-    
-    public void playMedia(Media m, bool use_resume_pos) {
-        playMediaInternal (PREVIEW_MEDIA_ID, use_resume_pos);
-    }
-    
-    void playMediaInternal(int id, bool use_resume_pos) {
+
+
+    public void playMedia (Media m, bool use_resume_pos) {
         int old_id = -1;
-        
-        if(id == 0 || App.library_manager.media_from_id(id) == null)
-            return;
-        
+
         // save previous media's id
-        if(media_active)
+        if (media_active)
             old_id = media_info.media.rowid;
-        
+
         // set the current media
-        media_info.media = App.library_manager.media_from_id(id);
-        Media m = App.library_manager.media_from_id(id);
-        
+        media_info.media = m;
+
         // To avoid infinite loop, if we come across a song we already know does not exist
         // stop playback
         if(m.location_unknown) {
@@ -535,8 +528,10 @@ public class Noise.PlaybackManager : Noise.Player {
             player.set_resume_pos = false;
 
         // actually play the media asap
-        if(next_gapless_id == 0) {
-            player.setURI(m.uri);
+        
+
+        if (next_gapless_id == 0) {
+            player.setURI (m.uri);
         }
         else {
             next_gapless_id = 0;
@@ -547,8 +542,8 @@ public class Noise.PlaybackManager : Noise.Player {
             player.pause();
         
         //update settings
-        //if(id != PREVIEW_MEDIA_ID)
-            Settings.Main.instance.last_media_playing = id;
+        if (m.rowid >= 0)
+            Settings.Main.instance.last_media_playing = m.rowid;
         
         if (m != null)
             media_played (m);
