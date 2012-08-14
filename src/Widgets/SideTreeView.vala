@@ -30,9 +30,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
     
     public TreeIter library_iter {get; private set;}
     public TreeIter library_music_iter {get; private set;}
-#if HAVE_PODCASTS
-    public TreeIter library_podcasts_iter {get; private set;}
-#endif
     public TreeIter library_audiobooks_iter {get; private set;}
 
     public TreeIter devices_iter {get; private set;}
@@ -41,26 +38,11 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
     public TreeIter network_iter {get; private set;}
     public TreeIter network_devices_iter {get; private set;}
 
-#if HAVE_INTERNET_RADIO
-    public TreeIter network_radio_iter {get; private set;}
-#endif
-
-#if HAVE_STORE
-    public TreeIter network_store_iter {get; private set;}
-#endif
-
     public TreeIter playlists_iter {get; private set;}
     public TreeIter playlists_queue_iter {get; private set;}
     public TreeIter playlists_history_iter {get; private set;}
     public TreeIter playlists_similar_iter {get; private set;}
 
-#if HAVE_PODCASTS
-    //for podcast right click
-    Gtk.Menu podcastMenu;
-    Gtk.MenuItem podcastAdd;
-    Gtk.MenuItem podcastRefresh;
-#endif
-    
     //for device right click
     Gtk.Menu deviceMenu;
     Gtk.MenuItem deviceImportToLibrary;
@@ -77,12 +59,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
     Gtk.MenuItem playlistExport;
     Gtk.MenuItem playlistImport;
 
-#if HAVE_INTERNET_RADIO
-    //for radio station right click
-    Gtk.Menu radioMenu;
-    Gtk.MenuItem radioImportStations;
-#endif
-    
     public SideTreeView(LibraryManager lmm, LibraryWindow lww) {
         this.lm = lmm;
         this.lw = lww;
@@ -106,25 +82,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
         deviceMenu.append (deviceSync);
         deviceMenu.append (deviceEject);
         deviceMenu.show_all ();
-
-#if HAVE_PODCASTS
-        podcastMenu = new Gtk.Menu();
-        podcastAdd = new Gtk.MenuItem.with_label(_("Add Podcast"));
-        podcastRefresh = new Gtk.MenuItem.with_label(_("Download new Episodes"));
-        podcastMenu.append(podcastAdd);
-        podcastMenu.append(podcastRefresh);
-        podcastAdd.activate.connect(podcastAddClicked);
-        podcastRefresh.activate.connect(podcastRefreshClicked);
-        podcastMenu.show_all();
-#endif
-
-#if HAVE_INTERNET_RADIO
-        radioMenu = new Gtk.Menu();
-        radioImportStations = new Gtk.MenuItem.with_label(_("Import Stations"));
-        radioMenu.append(radioImportStations);
-        radioImportStations.activate.connect(()=> {playlistImportClicked ("Station");});
-        radioMenu.show_all();
-#endif
         
         //playlist right click menu
         playlistMenu = new Gtk.Menu();
@@ -238,13 +195,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
             library_music_iter = addItem(parent, o, w, music_icon, name, null);
             return library_music_iter;
         }
-#if HAVE_PODCASTS
-        else if(hint == ViewWrapper.Hint.PODCAST && parent == library_iter) {
-            var podcast_icon = Icons.PODCAST.render (IconSize.MENU, null);
-            library_podcasts_iter = addItem(parent, o, w, podcast_icon, name, null);
-            return library_podcasts_iter;
-        }
-#endif
 /*
         else if(hint == ViewWrapper.Hint.AUDIOBOOK && parent == library_iter) {
             // FIXME: add icon
@@ -262,19 +212,13 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                 device_icon = Icons.AUDIO_DEVICE.render (Gtk.IconSize.MENU, null);
             }
 
-            rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, null));
+            rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, this.get_style_context ()));
 
-            var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
-            dvw.set_media_async (d.get_medias ());
-            addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
-            lw.view_container.add_view (dvw);
-#if HAVE_PODCASTS
-            if(d.supports_podcasts()) {
-                dvw = new DeviceViewWrapper(lw, d.get_podcasts(), new TreeViewSetup(PodcastListView.PodcastColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST), -1, d);
-                addItem(rv, o, dvw, Icons.PODCAST.render (IconSize.MENU, null), _("Podcasts"), null);
-                lw.view_container.add_view (dvw);
-            }
-#endif
+            //var dvw = new DeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
+            //dvw.set_media_async (d.get_medias ());
+            //lw.view_container.add_view (dvw);
+            //addItem(rv, o, dvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
+
             if(d.supports_audiobooks() && false) {
                 //dvw = new DeviceViewWrapper(lm, lm.lw, d.get_podcasts(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIOBOOK, -1, d);
                 //addItem(rv, o, dvw, audiobook_icon, "Audiobooks", null);
@@ -294,17 +238,11 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
 
             rv = addItem(parent, o, w, device_icon, name, Icons.EJECT_SYMBOLIC.render(IconSize.MENU, null));
 
-            var ndvw = new NetworkDeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
-            ndvw.set_media_async (d.get_medias ());
-            addItem(rv, o, ndvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
-            lw.view_container.add_view (ndvw);
-#if HAVE_PODCASTS
-            if(d.supports_podcasts()) {
-                ndvw = new NetworkDeviceViewWrapper(lw, d.get_podcasts(), new TreeViewSetup(PodcastListView.PodcastColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_PODCAST), -1, d);
-                addItem(rv, o, ndvw, Icons.PODCAST.render (IconSize.MENU, null), _("Podcasts"), null);
-                lw.view_container.add_view (ndvw);
-            }
-#endif
+            //var ndvw = new NetworkDeviceViewWrapper(lw, new TreeViewSetup(MusicListView.MusicColumn.ARTIST, SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIO), d);
+            //ndvw.set_media_async (d.get_medias ());
+            //addItem(rv, o, ndvw, Icons.MUSIC.render (IconSize.MENU, null), _("Music"), null);
+            //lw.view_container.add_view (ndvw);
+
             if(d.supports_audiobooks() && false) {
                 //dvw = new DeviceViewWrapper(lm, lm.lw, d.get_podcasts(), "Artist", Gtk.SortType.ASCENDING, ViewWrapper.Hint.DEVICE_AUDIOBOOK, -1, d);
                 //addItem(rv, o, dvw, audiobook_icon, "Audiobooks", null);
@@ -317,13 +255,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
             network_store_iter = addItem(parent, o, w, music_icon, name, null);
             return network_store_iter;
         }*/
-#if HAVE_INTERNET_RADIO
-        else if(hint == ViewWrapper.Hint.STATION && parent == network_iter) {
-            var radio_icon = Icons.RADIO.render (IconSize.MENU, null);
-            network_radio_iter = addItem(parent, o, w, radio_icon, name, null);
-            return network_radio_iter;
-        }
-#endif
         else if(hint == ViewWrapper.Hint.SIMILAR && parent == playlists_iter) {
             var smart_playlist_icon = Icons.SMART_PLAYLIST.render (IconSize.MENU, null);
             playlists_similar_iter = addItem(parent, o, w, smart_playlist_icon, name, null);
@@ -414,19 +345,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                     deviceSync.visible = (o as Device).getContentType() == "cdrom";
                     deviceMenu.popup (null, null, null, Gdk.BUTTON_SECONDARY, Gtk.get_current_event_time ());
                 }
-#if HAVE_PODCASTS            
-                else if(iter == convertToFilter(library_podcasts_iter)) {
-                    podcastRefresh.set_sensitive(!lm.doing_file_operations());
-                    podcastAdd.set_sensitive(!lm.doing_file_operations());
-                    podcastMenu.popup (null, null, null, 3, get_current_event_time());
-                }
-#endif
-#if HAVE_INTERNET_RADIO
-                else if(iter == convertToFilter(network_radio_iter)) {
-                    radioImportStations.set_sensitive(!lm.doing_file_operations());
-                    radioMenu.popup(null, null, null, 3, get_current_event_time());
-                }
-#endif
             }
             else {
                 if(iter == convertToFilter(playlists_iter)) {
@@ -977,12 +895,6 @@ public class Noise.SideTreeView : Granite.Widgets.SideBar {
                 lm.fo.import_from_playlist_file_info(names, filtered_paths);
                     lw.update_sensitivities();
                 }
-#if HAVE_INTERNET_RADIO
-            if(stations.size > 0) {
-                message ("stations size is %d\n", stations.size);
-                lm.add_medias(stations, true);
-            }
-#endif
         }
     }
 
