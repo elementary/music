@@ -43,6 +43,7 @@ public class Noise.FileNotFoundDialog : Window {
 		// set the size based on saved gconf settings
 		//this.window_position = WindowPosition.CENTER;
 		this.type_hint = Gdk.WindowTypeHint.DIALOG;
+		this.title = App.instance.get_name ();
 		this.set_modal(true);
 		this.set_transient_for(lw);
 		this.destroy_with_parent = true;
@@ -75,7 +76,7 @@ public class Noise.FileNotFoundDialog : Window {
 
 		if (media_list.size == 1) {
 			var s = media_list.get (0);
-			info.set_text (_("The music file for %s by %s could not be found. What would you like to do?").printf ("<b>" + s.title + "</b>", "<b>" + s.artist + "</b>"));
+			info.set_markup (_("The music file for %s by %s could not be found. What would you like to do?").printf ("<b>" + s.title.escape ("") + "</b>", "<b>" + s.artist.escape ("") + "</b>"));
 		}
 		else {
 			info.set_text (_("%i media files could not be found. What would you like to do?").printf (media_list.size));

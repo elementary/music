@@ -139,11 +139,10 @@ GENERATE_VAPI
 GENERATE_HEADER
     noise
 )
-include_directories(${CMAKE_BINARY_DIR}/core)
-add_executable(noise ${VALA_C})
-link_directories(${ZEITGEIST_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
-add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${SQLHEAVY_CFLAGS})
-target_link_libraries(noise ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${SQLHEAVY_LIBRARIES})
-target_link_libraries(noise noise-core)
-install(TARGETS noise RUNTIME DESTINATION bin)
 
+add_definitions(${DEPS_CFLAGS} ${ZEITGEIST_CFLAGS} ${SQLHEAVY_CFLAGS})
+include_directories(${CMAKE_BINARY_DIR}/core)
+link_directories(${ZEITGEIST_LIBRARY_DIRS} ${SQLHEAVY_LIBRARY_DIRS} ${DEPS_LIBRARY_DIRS})
+add_executable(noise ${VALA_C})
+target_link_libraries (noise ${DEPS_LIBRARIES} ${ZEITGEIST_LIBRARIES} ${SQLHEAVY_LIBRARIES} noise-core)
+install (TARGETS noise RUNTIME DESTINATION bin)

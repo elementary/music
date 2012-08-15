@@ -926,11 +926,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     /* this is after setting the music library */
-    public virtual void musicAdded(LinkedList<string> not_imported) {
-
-        if(App.player.media_active) {
+    public virtual void musicAdded (Gee.LinkedList<string> not_imported) {
+        if(App.player.media_active)
             updateInfoLabel();
-        }
         else
             topDisplay.set_label_text("");
 
@@ -940,22 +938,23 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         update_sensitivities();
-
-        //now notify user
-        show_notification (_("Import Complete"), _("%s has imported your library.").printf (App.instance.get_name ()));
     }
 
     /* this is when you import music from a foreign location into the library */
-    public virtual void musicImported(LinkedList<Media> new_medias, LinkedList<string> not_imported) {
-        if(App.player.media_active) {
+    public virtual void musicImported(LinkedList<Media> imported, LinkedList<string> not_imported) {
+        if (App.player.media_active)
             updateInfoLabel();
-        }
         else
             topDisplay.set_label_text("");
 
         resetSideTree(false);
 
         update_sensitivities();
+
+
+        //now notify user
+        if (imported.size > 0)
+            show_notification (_("Import Complete"), _("%s has imported your library.").printf (App.instance.get_name ()));
     }
 
     public virtual void musicRescanned (Gee.Collection<Media> new_medias, Gee.Collection<string> not_imported) {

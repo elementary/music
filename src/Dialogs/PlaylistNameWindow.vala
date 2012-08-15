@@ -22,7 +22,12 @@
 
 using Gtk;
 
+#if USE_GRANITE_DECORATED_WINDOW
+public class Noise.PlaylistNameWindow : Granite.Widgets.LightWindow {
+#else
 public class Noise.PlaylistNameWindow : Window {
+#endif
+
 	public Playlist _original;
 	LibraryWindow lw;
 	
@@ -48,12 +53,12 @@ public class Noise.PlaylistNameWindow : Window {
 		this.destroy_with_parent = true;
 //		this.type = WindowType.POPUP;
 		
-		set_size_request (250, -1);
+		set_size_request (350, -1);
 		resizable = false;
 		
 		_original = original;
 		
-		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
+		content = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 		
 		/* start out by creating all category labels */
 		Label nameLabel = new Label(_("Name of Playlist"));
@@ -86,13 +91,16 @@ public class Noise.PlaylistNameWindow : Window {
 		bottomButtons.set_layout (Gtk.ButtonBoxStyle.END);
 		bottomButtons.pack_end (_cancel, false, false, 0);
 		bottomButtons.pack_end (_save, false, false, 0);
-		
+
 		infobar.set_no_show_all (true);
 		
 		content.pack_start (nameLabel, false, false, 0);
-		content.pack_start (_name, false, false, 6);
-		content.pack_start (infobar, false, false, 6);
-		content.pack_start (bottomButtons, false, false, 12);
+        _name.margin_top = 6;
+		content.pack_start (_name, false, false, 0);
+        infobar.margin_top = 6;
+		content.pack_start (infobar, false, false, 0);
+        bottomButtons.margin_top = 12;
+		content.pack_start (bottomButtons, false, false, 0);
 
 		content.margin = 12;
 
