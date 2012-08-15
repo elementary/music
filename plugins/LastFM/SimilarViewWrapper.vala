@@ -43,10 +43,11 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
 
         list_view = new ListView (this, lw.library_manager.similar_setup);
         embedded_alert = new Granite.Widgets.EmbeddedAlert();
-        set_default_alert ();
 
         // Refresh view layout
         pack_views ();
+
+        set_default_alert ();
     }
 
     /**
@@ -124,8 +125,7 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
 
         if (base_media != null) {
             /* say we could not find similar media */
-            embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (App.instance.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Gtk.MessageType.INFO);
-            embedded_alert.working = false;
+            set_no_media_alert ();
         }
 
         /* Show the alert box */
@@ -134,12 +134,13 @@ public class Noise.SimilarViewWrapper : ViewWrapper {
         return false;
     }
 
-    private inline void set_default_alert () {
-        if (!has_embedded_alert)
-            return;
+    protected override void set_no_media_alert () {
+            embedded_alert.set_alert (_("No similar songs found"), _("%s could not find songs similar to %s by %s in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches.").printf (String.escape (App.instance.get_name ()), "<b>" + String.escape (base_media.title) + "</b>", "<b>" + String.escape (base_media.artist) + "</b>"), null, true, Gtk.MessageType.INFO);
+            embedded_alert.working = false;
+    }
 
-        embedded_alert.set_alert (_("Similar Song View"), _("In this view, %s will automatically find songs similar to the one you're playing. You can then start playing those songs, or save them as a playlist for later.").printf (String.escape (App.instance.get_name ())), null, true, Gtk.MessageType.INFO);
+    private void set_default_alert () {
+embedded_alert.set_alert (_("Similar Song View"), _("In this view, %s will automatically find songs similar to the one you're playing. You can then start playing those songs, or save them as a playlist for later.").printf (String.escape (App.instance.get_name ())), null, true, Gtk.MessageType.INFO);
         embedded_alert.working = false;
     }
 }
-

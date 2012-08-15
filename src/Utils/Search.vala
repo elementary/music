@@ -28,16 +28,93 @@ namespace Noise.Search {
      * This method can be used as a parser as well [TODO].
      */
     public inline string get_valid_search_string (string s) {
-        return s.strip ().down ();
+        return canonicalize_for_search (s);
     }
 
+
+    // Taken from gnome-contacts' contacts-utils.vala
+    private unichar strip_char (unichar ch) {
+        switch (ch.type ()) {
+            case UnicodeType.CONTROL:
+            case UnicodeType.FORMAT:
+            case UnicodeType.UNASSIGNED:
+            case UnicodeType.NON_SPACING_MARK:
+            case UnicodeType.COMBINING_MARK:
+            //case UnicodeType.SPACING_MARK:
+            case UnicodeType.ENCLOSING_MARK:
+            case UnicodeType.LINE_SEPARATOR:
+            case UnicodeType.SPACE_SEPARATOR:
+            case UnicodeType.PARAGRAPH_SEPARATOR:
+            case UnicodeType.OPEN_PUNCTUATION:
+            case UnicodeType.OTHER_PUNCTUATION:
+                /* Ignore those */
+                return 0;
+            default:
+                return ch.tolower ();
+        }
+    }
+
+    // Taken from gnome-contacts' contacts-utils.vala
+    private string canonicalize_for_search (string str) {
+        unowned string s;
+        var buf = new unichar[unichar.MAX_DECOMPOSITION_LENGTH];
+        var res = new StringBuilder ();
+
+        for (s = str; s[0] != 0; s = s.next_char ()) {
+            var c = strip_char (s.get_char ());
+
+            if (c != 0) {
+                var size = c.fully_decompose (false, buf);
+
+                if (size > 0)
+                    res.append_unichar (buf[0]);
+            }
+        }
+
+        return res.str;
+    }
+
+
+    /**
+     * Non-strict search
+     */
+    public void smart_search (Gee.Collection<Media> to_search,
+                              out Gee.LinkedList<Media> results,
+                              string search_str) {
+        results = new Gee.LinkedList<Media> ();
+        string search = get_valid_search_string (search_str);
+
+        foreach (var m in to_search) {
+            if (search == m.year.to_string ()) {
+                results.add (m);
+            } else if (search in get_valid_search_string (m.title)) {
+                results.add (m);
+            } else if (search in get_valid_search_string (m.album)) {
+                results.add (m);
+            } else if (search in get_valid_search_string (m.artist)) {
+                results.add (m);
+            } else if (search in get_valid_search_string (m.album_artist)) {
+                results.add (m);
+            } else if (search in get_valid_search_string (m.genre)) {
+                results.add (m);
+            } else if (search in get_valid_search_string (m.composer)) {
+                results.add (m);
+            } else if (search in get_valid_search_string (m.grouping)) {
+                results.add (m);
+            } else if (search in get_valid_search_string (m.comment)) {
+                results.add (m);
+            } else if (search in get_valid_search_string (m.lyrics)) {
+                results.add (m);
+            }
+        }
+    }
 
     /**
      * Search functions
      */
 
-    public inline void search_in_media_list (Gee.Collection<Noise.Media> to_search,
-                                       out Gee.LinkedList<Noise.Media> results,
+    public inline void search_in_media_list (Gee.Collection<Media> to_search,
+                                       out Gee.LinkedList<Media> results,
                                        string search = "", // Search string
                                        string album_artist = "",
                                        string album = "",
@@ -46,10 +123,10 @@ namespace Noise.Search {
                                        int rating = -1 // All ratings
                                        )
     {
-        results = new Gee.LinkedList<Noise.Media>();
+        results = new Gee.LinkedList<Media> ();
 
-        string l_search = search.down();
-        
+        var l_search = search.down ();
+
         bool valid_media = false;
         foreach(var media in to_search) {
             valid_media =   media != null &&
@@ -83,75 +160,19 @@ namespace Noise.Search {
         }
     }
 
-    public inline void search_in_media_ids (Noise.LibraryManager lm,
-                                       Gee.Collection<int> to_search_ids,
-                                       out Gee.LinkedList<int> results_ids,
-                                       string search = "", // Search string
-                                       string album_artist = "",
-                                       string album = "",
-                                       string genre = "",
-                                       int year = -1, // All years
-                                       int rating = -1 // All ratings
-                                       )
-    {
-        results_ids = new Gee.LinkedList<int>();
-
-        var library_manager = lm;
-        if (library_manager == null) {
-            critical ("Utils :: search_in_media_ids: Cannot search because LibraryManager is NULL");
-            return;
-        }
-
-        string l_search = search.down();
-
-        debug ("Searching '%s' in media ids", l_search);
-        
-        bool valid_media = false;
-        foreach(int id in to_search_ids) {
-            var media = library_manager.media_from_id (id);
-            valid_media =   media != null &&
-                          ( l_search == "" ||
-                            l_search in media.title.down() ||
-                            l_search in media.album_artist.down() ||
-                            l_search in media.artist.down() ||
-                            l_search in media.album.down() ||
-                            l_search in media.genre.down() ||
-                            l_search == media.year.to_string()); // We want full match here
-
-            if (valid_media)
-            {
-                if (rating == -1 || media.rating == rating)
-                {
-                    if (year == -1 || media.year == year)
-                    {
-                        if (genre == "" || media.genre == genre)
-                        {
-                            if (album_artist == "" || media.album_artist == album_artist)
-                            {
-                                if (album == "" || media.album == album)
-                                {
-                                     results_ids.add (media.rowid);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 
    /**
     * These are optimized for certain kinds of searches
     */
 
-   public inline void fast_album_search_in_media_list (Gee.Collection<Noise.Media> to_search,
-                                                  out Gee.LinkedList<Noise.Media> results,
+   public inline void fast_album_search_in_media_list (Gee.Collection<Media> to_search,
+                                                  out Gee.LinkedList<Media> results,
                                                   string search = "", // Search string
                                                   string album_artist = "",
                                                   string album = ""
                                                   )
     {
-        results = new Gee.LinkedList<Noise.Media>();
+        results = new Gee.LinkedList<Media>();
 
         string l_search = search.down();
         
@@ -180,12 +201,12 @@ namespace Noise.Search {
     }
 
 
-    public inline void full_search_in_media_list (Gee.Collection<Noise.Media> to_search,
-                            out Gee.LinkedList<Noise.Media> ? results,
-                            out Gee.LinkedList<Noise.Media> ? album_results,
-                            out Gee.LinkedList<Noise.Media> ? genre_results,
-                            out Gee.LinkedList<Noise.Media> ? year_results,
-                            out Gee.LinkedList<Noise.Media> ? rating_results,
+    public inline void full_search_in_media_list (Gee.Collection<Media> to_search,
+                            out Gee.LinkedList<Media> ? results,
+                            out Gee.LinkedList<Media> ? album_results,
+                            out Gee.LinkedList<Media> ? genre_results,
+                            out Gee.LinkedList<Media> ? year_results,
+                            out Gee.LinkedList<Media> ? rating_results,
                             ViewWrapper.Hint hint,
                             string search = "", // Search string
                             string album_artist = "",
@@ -195,11 +216,11 @@ namespace Noise.Search {
                             int rating = -1 // All ratings
                             )
     {
-        results = new Gee.LinkedList<Noise.Media>();
-        album_results = new Gee.LinkedList<Noise.Media>();
-        genre_results = new Gee.LinkedList<Noise.Media>();
-        year_results = new Gee.LinkedList<Noise.Media>();
-        rating_results = new Gee.LinkedList<Noise.Media>();
+        results = new Gee.LinkedList<Media>();
+        album_results = new Gee.LinkedList<Media>();
+        genre_results = new Gee.LinkedList<Media>();
+        year_results = new Gee.LinkedList<Media>();
+        rating_results = new Gee.LinkedList<Media>();
 
         string l_search = search.down();
         var mediatype = MediaType.SONG;

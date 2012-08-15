@@ -74,30 +74,29 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
 		// Refresh view layout
 		pack_views ();
-        set_alert ();
     }
 
-    private void set_alert () {
+    protected override void set_no_media_alert () {
         // show alert if there's no media
-        if (has_embedded_alert) {
-            if (hint == Hint.PLAYLIST) {
-                embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Gtk.MessageType.INFO);
-            }
-            else if (hint == Hint.SMART_PLAYLIST) {
-                var action = new Gtk.Action ("smart-playlist-rules-edit",
-                                             _("Edit Smart Playlist"),
-                                             null,
-                                             Gtk.Stock.EDIT);
-                // Connect to the 'activate' signal
-                action.activate.connect ( () => {
-                    lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
-                });
+        assert (has_embedded_alert);
 
-                var actions = new Gtk.Action[1];
-                actions[0] = action;
+        if (hint == Hint.PLAYLIST) {
+            embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Gtk.MessageType.INFO);
+        }
+        else if (hint == Hint.SMART_PLAYLIST) {
+            var action = new Gtk.Action ("smart-playlist-rules-edit",
+                                         _("Edit Smart Playlist"),
+                                         null,
+                                         Gtk.Stock.EDIT);
+            // Connect to the 'activate' signal
+            action.activate.connect ( () => {
+                lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
+            });
 
-                embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."), actions, true, Gtk.MessageType.INFO);
-            }
+            var actions = new Gtk.Action[1];
+            actions[0] = action;
+
+            embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."), actions, true, Gtk.MessageType.INFO);
         }
     }
 

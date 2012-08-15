@@ -42,6 +42,8 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
         welcome_screen.activated.connect (welcome_screen_activated);
 
+        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
+
         // Refresh view layout
         pack_views ();
 

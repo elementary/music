@@ -227,24 +227,22 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         debug ("%s : update_library_window_widgets", hint.to_string());
 
         // Restore this view wrapper's search string
-        lw.searchField.set_text (actual_search_string);
+        lw.searchField.set_text (get_search_string ());
+
+        // Insensitive if there's no media to search
+        bool has_media = media_table.size > 0;
+        lw.searchField.set_sensitive (has_media);
 
         // Make the view switcher and search box insensitive if the current item
-        // is either the embedded alert or welcome screen
-        if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME) {
-            lw.viewSelector.set_sensitive (false);
-            lw.searchField.set_sensitive (false);
-
+        // is the welcome screen
+        if (current_view == ViewType.WELCOME) {
             lw.column_browser_toggle.set_sensitive (false);
             lw.column_browser_toggle.set_active (false);
+            lw.viewSelector.set_sensitive (false);
         }
         else {
             // the view selector will only be sensitive if both views are available
             lw.viewSelector.set_sensitive (has_grid_view && has_list_view);
-
-            bool has_media = media_table.size > 0;
-            // Insensitive if there's no media to search
-            lw.searchField.set_sensitive (has_media);
 
             bool column_browser_available = false;
             bool column_browser_visible = false;
@@ -415,19 +413,14 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
     // Current search filter
     protected string last_search = "";
     
-    // what the user actually typed in the search box.
-    private string actual_search_string = "";
-
-    private void search_field_changed (string search_field_text) {
+    private void search_field_changed (string search) {
         if (!is_current_wrapper)
             return;
 
-        actual_search_string = search_field_text;
-        var new_search = Search.get_valid_search_string (actual_search_string);
-        debug ("Search changed : searchbox has '%s'", new_search);
+        debug ("Search changed : searchbox has '%s'", search);
 
-        if (new_search.length != 1) {
-            last_search = new_search;
+        if (search.length != 1) {
+            last_search = search;
 
             // Do the actual search and show up results....
             update_visible_media ();
@@ -471,8 +464,10 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             select_proper_content_view ();
         else if (has_welcome_screen)
             set_active_view (ViewType.WELCOME);
-        else if (has_embedded_alert)
+        else if (has_embedded_alert) {
+            set_no_media_alert ();
             set_active_view (ViewType.ALERT);
+        }
 
         return have_media;   
     }
@@ -549,7 +544,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
         if (to_search != "") {
             // Perform search
-            Search.search_in_media_list (get_media_list (), out search_results, to_search);
+            Search.smart_search (get_media_list (), out search_results, to_search);
 
             foreach (var m in search_results) {
                 visible_media_table.set (m, 1);
@@ -571,8 +566,24 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         if (is_current_wrapper) {
             update_library_window_widgets ();
             // Check whether we should show the embedded alert in case there's no media
-            check_have_media ();
+            if (check_have_media ()) {
+                if (has_embedded_alert && visible_media_table.size == 0) {
+                    set_no_results_alert ();
+                    set_active_view (ViewType.ALERT);
+                } else {
+                    select_proper_content_view ();
+                }
+            }
         }
+    }
+
+    protected virtual void set_no_media_alert () {
+        embedded_alert.set_alert (_("No media"), "", null, true, Gtk.MessageType.INFO);
+    }
+
+    protected virtual void set_no_results_alert () {
+        embedded_alert.set_alert (_("Sorry, there is no music that matches your search"),
+                                  "", null, false, Gtk.MessageType.INFO);
     }
 
 
