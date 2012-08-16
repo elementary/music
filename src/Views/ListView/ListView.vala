@@ -236,9 +236,9 @@ public class Noise.ListView : ContentView, Gtk.Box {
 			}
 		});
 
-		lw.column_browser_toggle.toggled.connect ( () => {
-			if (view_wrapper.current_view == ViewWrapper.ViewType.LIST && lw.column_browser_toggle.sensitive) {
-				bool enabled = lw.column_browser_toggle.get_active();
+        lw.viewSelector.column_browser_toggled.connect (  () => {
+			if (view_wrapper.current_view == ViewWrapper.ViewType.LIST && lw.viewSelector.get_column_browser_toggle_visible ()) {
+				bool enabled = lw.viewSelector.get_column_browser_toggle_active ();
 				if (enabled != column_browser_enabled)
 					column_browser_enabled = enabled;
 			}

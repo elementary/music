@@ -53,10 +53,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Granite.Widgets.SidebarPaned main_hpaned         { get; private set; } // TODO: make private
     public SideTreeView               sideTree              { get; private set; }
     public ViewContainer              view_container        { get; private set; } // TODO: make private
-    public ToggleButton               column_browser_toggle { get; private set; }
     public TopDisplay                 topDisplay            { get; private set; } // TODO: make private
     private FixedBin                  topDisplayBin         { get; private set; }
-    public Granite.Widgets.ModeButton viewSelector          { get; private set; } // TODO: make private
+    public Widgets.ViewSelector       viewSelector          { get; private set; } // TODO: make private
     public Granite.Widgets.SearchBar  searchField           { get; private set; } // TODO: make private
     public BottomStatusBar            statusbar             { get; private set; } // TODO: make private
 
@@ -200,39 +199,29 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         previousButton          = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_PREVIOUS);
         playButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_PLAY);
         nextButton              = new Gtk.ToolButton.from_stock (Gtk.Stock.MEDIA_NEXT);
-        column_browser_toggle   = new Gtk.ToggleButton ();
         topDisplay              = new TopDisplay (library_manager);
         topDisplayBin           = new FixedBin (-1, -1, 800, -1);
-        viewSelector            = new Granite.Widgets.ModeButton ();
+        viewSelector            = new Widgets.ViewSelector ();
         searchField             = new Granite.Widgets.SearchBar (_("Search Music"));
 
         main_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
-
-        viewSelector.append (Icons.VIEW_ICONS.render_image (IconSize.MENU));
-        viewSelector.append (Icons.VIEW_DETAILS.render_image (IconSize.MENU));
-
-        column_browser_toggle.set_image (Icons.VIEW_COLUMN.render_image (Gtk.IconSize.MENU));
 
         topDisplayBin.set_widget (topDisplay, true, false);
 
         // Set search timeout in ms
         searchField.pause_delay = 80;
 
-        var column_toggle_item = new Gtk.ToolItem ();
         var top_display_item   = new Gtk.ToolItem ();
-        var view_selector_item = new Gtk.ToolItem ();
         var search_field_item  = new Gtk.ToolItem ();
 
-        view_selector_item.add (viewSelector);
-        column_toggle_item.add (column_browser_toggle);
         top_display_item.add (topDisplayBin);
         search_field_item.add (searchField);
 
         // Tweak view selector's size
         viewSelector.margin_left = 12;
-        viewSelector.margin_right = 8;
+        viewSelector.margin_right = 6;
 
-        viewSelector.valign = column_browser_toggle.valign = Gtk.Align.CENTER;
+        viewSelector.valign = Gtk.Align.CENTER;
 
         top_display_item.set_expand (true);
         topDisplay.margin_left = 30;
@@ -243,19 +232,20 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         main_toolbar.insert (previousButton, -1);
         main_toolbar.insert (playButton, -1);
         main_toolbar.insert (nextButton, -1);
-        main_toolbar.insert (view_selector_item, -1);
-        main_toolbar.insert (column_toggle_item, -1);
+        main_toolbar.insert (viewSelector, -1);
         main_toolbar.insert (top_display_item, -1);
         main_toolbar.insert (search_field_item, -1);
         main_toolbar.insert (App.instance.create_appmenu (settingsMenu), -1);
 
-        /** Statusbar widgets **/
-
-        statusbar = new BottomStatusBar (this);
 
         /** Info Panel **/
 
         info_panel = new InfoPanel (library_manager, this);
+
+
+        /** Statusbar widgets **/
+
+        statusbar = new BottomStatusBar (this);
 
 
         /** Main layout **/
@@ -316,7 +306,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities ();
 
         // Now set the selected view
-        viewSelector.selected = Settings.SavedState.instance.view_mode;
+        viewSelector.selected = (Widgets.ViewSelector.Mode) Settings.SavedState.instance.view_mode;
 
         initialization_finished = true;
 

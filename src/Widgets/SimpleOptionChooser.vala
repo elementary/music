@@ -33,9 +33,15 @@ public class Noise.SimpleOptionChooser : EventBox {
 	int previous_index; // for left click
 	bool toggling;
 
-	public signal void option_changed(int index);
+    public int current_option { get { return clicked_index; } }
 
-	public SimpleOptionChooser () {
+	public signal void option_changed ();
+
+    private bool menu_only_mode;
+
+	public SimpleOptionChooser (bool menu_only_mode = false) {
+        this.menu_only_mode = menu_only_mode;
+
 		items = new LinkedList<RadioMenuItem>();
 		images = new LinkedList<Gtk.Image>();
 		toggling = false;
@@ -59,7 +65,8 @@ public class Noise.SimpleOptionChooser : EventBox {
 		items.get(index).set_active(true);
 
 		clicked_index = index;
-		option_changed(index);
+
+		option_changed ();
 
 		if (get_child () != null)
 			remove (get_child ());
@@ -85,16 +92,10 @@ public class Noise.SimpleOptionChooser : EventBox {
 		menu.append(item);
 
 		item.toggled.connect( () => {
-			if(!toggling) {
-				toggling = true;
+            if (!item.active)
+                return;
 
-				if(clicked_index != items.index_of(item))
-					setOption(items.index_of(item));
-				else
-					setOption(0);
-
-				toggling = false;
-			}
+    		setOption (items.index_of (item));
 		});
 
 		item.show();
@@ -105,7 +106,7 @@ public class Noise.SimpleOptionChooser : EventBox {
 
 	public virtual bool buttonPress(Gdk.EventButton event) {
 		if (event.type == Gdk.EventType.BUTTON_PRESS) {
-			if(event.button == 1) {
+			if(event.button == 1 && !menu_only_mode) {
 				if(clicked_index == 0) {
 					setOption(previous_index);
 				}
@@ -114,7 +115,7 @@ public class Noise.SimpleOptionChooser : EventBox {
 					setOption(0);
 				}
 			}
-			else if(event.button == 3 && menu != null && items.size > 1) {
+			else if (menu != null && items.size > 1) {
 				menu.popup (null, null, null, 3, get_current_event_time());
 			}
 		}

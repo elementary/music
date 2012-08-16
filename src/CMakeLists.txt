@@ -45,6 +45,7 @@ vala_precompile(VALA_C
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
     Widgets/FixedBin.vala
+    Widgets/ViewSelector.vala
     Widgets/FastView/FastGrid.vala
     Widgets/FastView/FastGridModel.vala
     Widgets/FastView/FastList.vala

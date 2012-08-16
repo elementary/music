@@ -236,13 +236,11 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         // Make the view switcher and search box insensitive if the current item
         // is the welcome screen
         if (current_view == ViewType.WELCOME) {
-            lw.column_browser_toggle.set_sensitive (false);
-            lw.column_browser_toggle.set_active (false);
             lw.viewSelector.set_sensitive (false);
         }
         else {
             // the view selector will only be sensitive if both views are available
-            lw.viewSelector.set_sensitive (has_grid_view && has_list_view);
+            lw.viewSelector.set_sensitive (has_grid_view && has_list_view && current_view != ViewType.ALERT);
 
             bool column_browser_available = false;
             bool column_browser_visible = false;
@@ -251,21 +249,21 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             if (has_list_view) {
                 var lv = list_view as ListView;
             
-                column_browser_available = (lv.has_column_browser && current_view == ViewType.LIST);
+                column_browser_available = lv.has_column_browser;
 
                 if (column_browser_available)
                     column_browser_visible = lv.column_browser.visible;
             }
 
-            lw.column_browser_toggle.set_sensitive (column_browser_available);
-            lw.column_browser_toggle.set_active (column_browser_visible);
+            lw.viewSelector.set_column_browser_toggle_visible (column_browser_available);
+            lw.viewSelector.set_column_browser_toggle_active (column_browser_visible);
         }
 
         // select the right view in the view selector if it's one of the three views.
         // The order is important here. The sensitivity set above must be set before this,
         // as view_selector_changed() depends on that.
         if (lw.viewSelector.selected != (int)last_used_view && (int)last_used_view <= 2)
-            lw.viewSelector.set_active ((int)last_used_view);
+            lw.viewSelector.selected = (Widgets.ViewSelector.Mode)last_used_view;
 
         // The statusbar is also a library window widget
         update_statusbar_info ();

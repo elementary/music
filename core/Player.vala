@@ -28,7 +28,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public interface Noise.Player {
+public interface Noise.Player : Object {
 
 	public enum Shuffle {
 		OFF,

@@ -30,7 +30,7 @@
 
 using Gee;
 
-public class Noise.PlaybackManager : Noise.Player {
+public class Noise.PlaybackManager : Object, Noise.Player {
     /*
     public Player.Shuffle shuffle_mode {
         set { setShuffleMode (value); }
@@ -72,28 +72,31 @@ public class Noise.PlaybackManager : Noise.Player {
 
     public bool playing; // TODO { get; private set; }
     bool _playing_queued_song;
-    public Player.Repeat repeat;
-    public Player.Shuffle shuffle;
+
+    private Player.Repeat? _repeat = null;
+    public Player.Repeat repeat {
+        get {
+            if (_repeat == null)
+                _repeat = (Player.Repeat)Settings.Main.instance.repeat_mode;
+            return _repeat;
+        }
+        set {
+            _repeat = value;
+            Settings.Main.instance.repeat_mode = value;
+        }
+    }
+
+    public Player.Shuffle shuffle { get; private set; }
     public int next_gapless_id;
 
     public Noise.Streamer player;
 
 
     public PlaybackManager () {
-        this.player = new Streamer ();
-        media_info = new Noise.MediaInfo();
+        player = new Streamer ();
+        media_info = new Noise.MediaInfo ();
 
-        int repeatValue = Settings.Main.instance.repeat_mode;
-        if(repeatValue == 0)
-            repeat = Player.Repeat.OFF;
-        else if(repeatValue == 1)
-            repeat = Player.Repeat.MEDIA;
-        else if(repeatValue == 2)
-            repeat = Player.Repeat.ALBUM;
-        else if(repeatValue == 3)
-            repeat = Player.Repeat.ARTIST;
-        else if(repeatValue == 4)
-            repeat = Player.Repeat.ALL;
+        setShuffleMode ((Player.Shuffle)Settings.Main.instance.shuffle_mode, true);
     }
 
 

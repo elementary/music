@@ -36,7 +36,7 @@ public class Noise.MediaEditor : Window {
 	LinkedList<int> _medias;
 	
 	//for padding around notebook mostly
-	Widgets.StaticNotebook notebook;
+	Granite.Widgets.StaticNotebook notebook;
 
 	private HashMap<string, FieldEditor> fields;// a hashmap with each property and corresponding editor
 	private TextView lyricsText;
