@@ -1,6 +1,3 @@
-add_definitions(${NORMAL_CFLAGS})
-include_directories(${CMAKE_BINARY_DIR}/core ${CMAKE_BINARY_DIR}/src)
-link_directories(${NORMAL_LINK_DIRS})
 vala_precompile(VALA_C
         LastFM.vala
         Core.vala
@@ -41,7 +38,12 @@ vala_precompile(VALA_C
         --vapidir=${CMAKE_BINARY_DIR}/core/
         --vapidir=${CMAKE_BINARY_DIR}/src/
     )
+
 add_library(lastfm MODULE ${VALA_C})
+
+add_definitions(${NORMAL_CFLAGS})
+include_directories(${CMAKE_BINARY_DIR}/core ${CMAKE_BINARY_DIR}/src)
+link_directories(${NORMAL_LINK_DIRS})
 
 target_link_libraries (lastfm ${NORMAL_LIBRARIES})
 install(TARGETS lastfm DESTINATION ${PLUGIN_DIR}/LastFM/)

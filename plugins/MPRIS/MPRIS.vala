@@ -309,20 +309,20 @@ public class MprisPlayer : GLib.Object {
     
     public bool Shuffle {
         get {
-            if(App.player.shuffle == Noise.Player.Shuffle.ALL)
+            if (App.player.shuffle == Noise.Player.Shuffle.ALL)
                 return true;
             return false;
         }
         set {
-            if(value) {
-                App.player.shuffle = Noise.Player.Shuffle.ALL;
+            if (value) {
+                App.player.setShuffleMode (Noise.Player.Shuffle.ALL, true);
             }
             else {
-                App.player.shuffle = Noise.Player.Shuffle.OFF;
+                App.player.setShuffleMode (Noise.Player.Shuffle.OFF, true);
             }
             
             Variant variant = value;
-            queue_property_for_notification("Shuffle", variant);
+            queue_property_for_notification ("Shuffle", variant);
         }
     }
     
