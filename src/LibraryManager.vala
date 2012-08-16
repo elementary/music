@@ -234,16 +234,17 @@ public class Noise.LibraryManager : Object {
                 var items = fo.count_music_files(music_folder_file, ref files);
                 debug ("found %d items to import\n", items);
 
-                fo.resetProgress(items);
+                var to_import = remove_duplicate_files (files);
+
+                fo.resetProgress(to_import.size - 1);
                 Timeout.add(100, doProgressNotificationWithTimeout);
-                fo.import_files(files, FileOperator.ImportType.SET);
+                fo.import_files(to_import, FileOperator.ImportType.SET);
 
                 return null;
             });
         } catch (Error err) {
             warning (err.message);
         }
-
     }
 
     public void add_files_to_library (LinkedList<string> files) {
@@ -257,15 +258,40 @@ public class Noise.LibraryManager : Object {
 
         try {
             new Thread<void*>.try (null, () => {
-                fo.resetProgress(temp_add_files.size - 1);
+
+                var to_import = remove_duplicate_files (temp_add_files);
+
+                fo.resetProgress(to_import.size - 1);
                 Timeout.add(100, doProgressNotificationWithTimeout);
-                fo.import_files(temp_add_files, FileOperator.ImportType.IMPORT);
+                fo.import_files(to_import, FileOperator.ImportType.IMPORT);
 
                 return null;
             });
         } catch (Error err) {
             warning (err.message);
         }
+    }
+
+    private Gee.LinkedList<string> remove_duplicate_files (Gee.LinkedList<string> files) {
+        // Don't import already-imported files
+        var path_set = new Gee.HashSet<string> ();
+
+        foreach (var m in media ()) {
+            path_set.add (m.file.get_path ());
+        }
+
+        // Remove already-imported files
+        var to_import = new Gee.LinkedList<string> ();
+
+        foreach (string file_path in files) {
+            if (!path_set.contains (file_path)) {
+                to_import.add (file_path);
+            } else {
+                debug ("DUPLICATE FOUND: %s", file_path);
+            }
+        }
+
+        return to_import;
     }
 
     public void add_folder_to_library (string folder, string[]? other_folders = null) {
@@ -284,11 +310,13 @@ public class Noise.LibraryManager : Object {
                 var file = File.new_for_path(temp_add_folder);
                 var files = new LinkedList<string>();
 
-                var items = fo.count_music_files(file, ref files);
+                fo.count_music_files(file, ref files);
 
-                fo.resetProgress(items);
+                var to_import = remove_duplicate_files (files);
+
+                fo.resetProgress (to_import.size - 1);
                 Timeout.add(100, doProgressNotificationWithTimeout);
-                fo.import_files(files, FileOperator.ImportType.IMPORT);
+                fo.import_files (to_import, FileOperator.ImportType.IMPORT);
 
                 return null;
             });
@@ -330,6 +358,8 @@ public class Noise.LibraryManager : Object {
                 fo.index = 10;
 
                 foreach(string s in files) {
+                    // XXX: libraries are not necessarily local. This will fail
+                    // for remote libraries FIXME
                     if(paths.get("file://" + s) == null)
                         to_import.add(s);
                 }
