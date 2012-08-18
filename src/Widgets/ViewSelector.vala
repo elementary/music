@@ -46,8 +46,8 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
             mode_button.set_active ((int)value);
 
             bool is_column_mode = value == Mode.COLUMN;
-            mode_changed (is_column_mode ? Mode.LIST : value);
             column_browser_toggled (is_column_mode);
+            mode_changed (is_column_mode ? Mode.LIST : value);
         }
     }
 
@@ -87,16 +87,11 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
         return mode_button.get_children ().nth_data ((int)mode).visible;
     }
 
-    // De-select items when the widget is made insensitive, for appearance reasons ;)
+    // De-select items when the widget is made insensitive, for appearance reasons
     public new void set_sensitive (bool sensitive) {
-        if (sensitive) {
-            mode_button.set_active ((int)mode);
-            mode_button.set_sensitive (true);
-        } else {
-            // select fourth invisible mode to appear as de-selected
-            mode_button.set_active (3);
-            mode_button.set_sensitive (false);
-        }
+        // select fourth invisible mode to appear as de-selected
+        mode_button.set_active (sensitive ? (int)mode : 3);
+        mode_button.set_sensitive (sensitive);
     }
 
     // CRAPPY API

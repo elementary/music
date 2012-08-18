@@ -184,12 +184,15 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
      * Convenient visibility method
      */
     protected void set_active_view (ViewType type, out bool successful = null) {
-        successful = false;
+        successful = true;
+
+        if (type == current_view)
+            return;
 
         switch (type) {
             case ViewType.LIST:
                 successful = view_container.set_current_view (list_view);
-                ((ListView)list_view).list_view.scroll_to_current_media(true);
+                (list_view as ListView).list_view.scroll_to_current_media (true);
                 break;
             case ViewType.GRID:
                 successful = view_container.set_current_view (grid_view);
@@ -237,50 +240,40 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         // is the welcome screen
         if (current_view == ViewType.WELCOME) {
             lw.viewSelector.set_sensitive (false);
-        }
-        else {
+        } else if (has_grid_view && has_list_view && current_view != ViewType.ALERT) {
             // the view selector will only be sensitive if both views are available
-            lw.viewSelector.set_sensitive (has_grid_view && has_list_view && current_view != ViewType.ALERT);
-
-            bool column_browser_available = false;
-            bool column_browser_visible = false;
-
-            // Sensitive only if the column browser is available and the current view type is LIST
-            if (has_list_view) {
-                var lv = list_view as ListView;
-            
-                column_browser_available = lv.has_column_browser;
-
-                if (column_browser_available)
-                    column_browser_visible = lv.column_browser.visible;
-            }
-
-            lw.viewSelector.set_column_browser_toggle_visible (column_browser_available);
-            lw.viewSelector.set_column_browser_toggle_active (column_browser_visible);
+            lw.viewSelector.set_sensitive (true);
         }
+
+        bool column_browser_available = false;
+        bool column_browser_visible = false;
+
+        // Sensitive only if the column browser is available
+        if (has_list_view) {
+            var lv = list_view as ListView;
+
+            column_browser_available = lv.has_column_browser;
+
+            if (column_browser_available)
+                column_browser_visible = lv.column_browser.visible;
+        }
+
+        lw.viewSelector.set_column_browser_toggle_visible (column_browser_available);
+        lw.viewSelector.set_column_browser_toggle_active (column_browser_visible);
 
         // select the right view in the view selector if it's one of the three views.
         // The order is important here. The sensitivity set above must be set before this,
         // as view_selector_changed() depends on that.
-        if (lw.viewSelector.selected != (int)last_used_view && (int)last_used_view <= 2)
-            lw.viewSelector.selected = (Widgets.ViewSelector.Mode)last_used_view;
+        if (!lw.viewSelector.get_column_browser_toggle_active ()) {
+            if (lw.viewSelector.selected != (int)last_used_view && (int)last_used_view <= 1)
+                lw.viewSelector.selected = (Widgets.ViewSelector.Mode)last_used_view;
+        }
 
-        // The statusbar is also a library window widget
         update_statusbar_info ();
-
-        /* XXX
-           /!\ WARNING: NOT ENTERELY NECESSARY.
-           It's here to avoid potential issues. Should be removed
-           if it impacts performance.
-        */
-        //lw.update_sensitivities();
     }
 
     public virtual void view_selector_changed () {
         if (!lw.initialization_finished || !lw.viewSelector.sensitive)
-            return;
-
-        if ((int)current_view == lw.viewSelector.selected)
             return;
 
         if (current_view == ViewType.ALERT || current_view == ViewType.WELCOME)
@@ -476,8 +469,8 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         var new_view = (ViewType) lw.viewSelector.selected;
         debug ("%s : showing %s", hint.to_string(), new_view.to_string ());
 
-        const int N_VIEWS = 2; // list view and album view
-        if (new_view < 0 || new_view > N_VIEWS)
+        const int N_VIEWS = 2; // list and grid views
+        if (new_view < 0 || new_view > N_VIEWS - 1)
             new_view = ViewType.LIST;
 
         if (new_view == ViewType.LIST && has_list_view)
@@ -568,6 +561,8 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
                 if (has_embedded_alert && visible_media_table.size == 0) {
                     set_no_results_alert ();
                     set_active_view (ViewType.ALERT);
+                } else if (last_used_view != ViewType.NONE) {
+                    set_active_view (last_used_view);
                 } else {
                     select_proper_content_view ();
                 }
