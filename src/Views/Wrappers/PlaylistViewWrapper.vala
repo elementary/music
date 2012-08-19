@@ -112,19 +112,19 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
   	    var to_add = new Gee.LinkedList<Media> ();
         var to_remove = new Gee.LinkedList<Media> ();
-        var new_media_table = new Gee.HashMap<Media, int> ();
+        var new_media_table = new Gee.HashSet<Media> ();
 
        	foreach (var m in new_media) {
    	    	// if not already in the table, add
-   	    	if (!media_table.has_key (m))
+   	    	if (!media_table.contains (m))
                 to_add.add (m);
             // Make a copy of the list
-            new_media_table.set (m, 1);
+            new_media_table.add (m);
          }
 
          // if something is in the table but not in new_media, remove
          foreach (var m in get_media_list ()) {
-             if (!new_media_table.has_key (m))
+             if (!new_media_table.contains (m))
                  to_remove.add (m);
          }
 

@@ -237,13 +237,11 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         lw.searchField.set_sensitive (has_media);
 
         // Make the view switcher and search box insensitive if the current item
-        // is the welcome screen
-        if (current_view == ViewType.WELCOME) {
-            lw.viewSelector.set_sensitive (false);
-        } else if (has_grid_view && has_list_view && current_view != ViewType.ALERT) {
-            // the view selector will only be sensitive if both views are available
-            lw.viewSelector.set_sensitive (true);
-        }
+        // is the welcome screen the view selector will only be sensitive if both
+        // views are available
+        lw.viewSelector.set_sensitive (has_grid_view && has_list_view
+                                       && current_view != ViewType.ALERT
+                                       && current_view != ViewType.WELCOME);
 
         bool column_browser_available = false;
         bool column_browser_visible = false;
@@ -481,8 +479,8 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
      */
 
     // MEDIA DATA: These hashmaps hold information about the media shown in the views.
-    protected Gee.HashMap<Media, int> media_table = new Gee.HashMap<Media, int> ();
-    protected Gee.HashMap<Media, int> visible_media_table = new Gee.HashMap<Media, int> ();
+    protected Gee.HashSet<Media> media_table = new Gee.HashSet<Media> ();
+    protected Gee.HashSet<Media> visible_media_table = new Gee.HashSet<Media> ();
 
     public string get_search_string () {
         return last_search;
@@ -492,14 +490,14 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
      * @return a collection containing ALL the media
      */
     public Gee.Collection<Media> get_media_list () {
-        return media_table.keys;
+        return media_table.read_only_view;
     }
 
     /**
      * @return a collection containing all the media that should be shown
      */
     public Gee.Collection<Media> get_visible_media_list () {
-        return visible_media_table.keys;
+        return visible_media_table.read_only_view;
     }
 
 
@@ -524,7 +522,7 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         // LOCK
         updating_media_data.lock ();
 
-        visible_media_table = new Gee.HashMap<Media, int> ();
+        visible_media_table = new Gee.HashSet<Media> ();
         var to_search = get_search_string ();
 
         var search_results = new Gee.LinkedList<Media> ();
@@ -534,14 +532,14 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
             Search.smart_search (get_media_list (), out search_results, to_search);
 
             foreach (var m in search_results) {
-                visible_media_table.set (m, 1);
+                visible_media_table.add (m);
             }
         }
         else {
             // No need to search. Same data as media
             foreach (var m in get_media_list ()) {
                 search_results.add (m);
-                visible_media_table.set (m, 1);
+                visible_media_table.add (m);
             }
         }
 
@@ -644,17 +642,17 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
         debug ("%s : SETTING MEDIA -> set_media", hint.to_string());
 
-        media_table = new Gee.HashMap<Media, int> ();
+        media_table = new Gee.HashSet<Media> ();
 
         foreach (var m in new_media) {
             if (m != null) {
-                media_table.set (m, 1);
+                media_table.add (m);
             }
         }
 
         if (!check_have_media ()) {
-            media_table = new Gee.HashMap<Media, int> ();
-            visible_media_table = new Gee.HashMap<Media, int> ();
+            media_table = new Gee.HashSet<Media> ();
+            visible_media_table = new Gee.HashSet<Media> ();
         }
 
         // UNLOCK
@@ -688,14 +686,14 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
         // add elements that should be here
         foreach (var m in should_be)
-            if (!media_table.has_key (m))
-                media_table.set (m, 1);
+            if (!media_table.contains (m))
+                media_table.add (m);
 
         // add elements that should show
         foreach (var m in should_show) {
-            if (!visible_media_table.has_key (m)) {
+            if (!visible_media_table.contains (m)) {
                 to_add_show.add (m);
-                visible_media_table.set (m, 1);
+                visible_media_table.add (m);
             }
         }
 
@@ -703,12 +701,12 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         
         foreach (var m in media) {
             if (!should_be.contains (m)) {
-                media_table.unset (m);
+                media_table.remove (m);
             }
 
             if (!should_show.contains (m)) {
                 to_remove_show.add (m);
-                visible_media_table.unset (m);
+                visible_media_table.remove (m);
             }
         }
 
@@ -716,8 +714,8 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         remove_media_from_content_views (to_remove_show);
 
         if (!check_have_media ()) {
-            media_table = new Gee.HashMap<Media, int> ();
-            visible_media_table = new Gee.HashMap<Media, int> ();
+            media_table = new Gee.HashSet<Media> ();
+            visible_media_table = new Gee.HashSet<Media> ();
             // UNLOCK
             updating_media_data.unlock ();
             update_visible_media ();
@@ -746,8 +744,8 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         var to_add = new Gee.LinkedList<Media> ();
 
         foreach (var m in new_media) {
-            if (!media_table.has_key (m)) {
-                media_table.set (m, 1);
+            if (!media_table.contains (m)) {
+                media_table.add (m);
                 to_add.add (m);
             }
         }
@@ -758,15 +756,15 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
         // Update showing media
         foreach (var m in media_to_show) {
-            if (!visible_media_table.has_key (m))
-                visible_media_table.set (m, 1);
+            if (!visible_media_table.contains (m))
+                visible_media_table.add (m);
         }
 
         add_media_to_content_views (media_to_show);
 
         if (!check_have_media ()) {
-            media_table = new Gee.HashMap<Media, int> ();
-            visible_media_table = new Gee.HashMap<Media, int> ();
+            media_table = new Gee.HashSet<Media> ();
+            visible_media_table = new Gee.HashSet<Media> ();
             // UNLOCK
             updating_media_data.unlock ();
             update_visible_media ();
@@ -795,11 +793,11 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         // find which media to remove and remove it from Media and Showing Media
         var to_remove = new Gee.LinkedList<Media>();
         foreach (var m in media) {
-            media_table.unset (m);
+            media_table.remove (m);
 
-            if (visible_media_table.has_key (m)) {
+            if (visible_media_table.contains (m)) {
                 to_remove.add (m);
-                visible_media_table.unset (m);
+                visible_media_table.remove (m);
             }
         }
 
@@ -807,8 +805,8 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
         remove_media_from_content_views (to_remove);
 
         if (!check_have_media ()) {
-            media_table = new Gee.HashMap<Media, int> ();
-            visible_media_table = new Gee.HashMap<Media, int> ();
+            media_table = new Gee.HashSet<Media> ();
+            visible_media_table = new Gee.HashSet<Media> ();
             // UNLOCK
             updating_media_data.unlock ();
             update_visible_media ();
