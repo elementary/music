@@ -120,6 +120,12 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		// Put the list inside a scrolled window
 		list_scrolled.add (list_view);
 
+        // Monitor size changes on parent wrapper
+        this.view_wrapper.size_allocate.connect ( (alloc) => {
+            list_view.resize_columns (alloc.width);
+        });
+
+
 		if (add_browser)
 			column_browser = new MusicColumnBrowser (view_wrapper);
 

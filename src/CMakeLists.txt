@@ -90,6 +90,7 @@ vala_precompile(VALA_C
     Views/ListView/ColumnBrowser/MusicColumnBrowser.vala
 
     Views/ListView/Lists/TreeViewSetup.vala
+    Views/ListView/Lists/TreeViewColumnSizer.vala
     Views/ListView/Lists/CellDataFunctionHelper.vala
     Views/ListView/Lists/GenericList.vala
     Views/ListView/Lists/MusicListView.vala

@@ -179,12 +179,12 @@ public class Rating : Gtk.EventBox {
     private void render_stars () {
         // TODO: This needs to be icon-system-independent in order to be included in Granite.
         if (symbolic) {
-            starred = Icons.STARRED_SYMBOLIC.render (icon_size, style_context);
-            not_starred = Icons.NOT_STARRED_SYMBOLIC.render (icon_size, style_context);
+            starred = Noise.Icons.STARRED_SYMBOLIC.render (icon_size, style_context);
+            not_starred = Noise.Icons.NOT_STARRED_SYMBOLIC.render (icon_size, style_context);
         }
         else {
-            starred = Icons.STARRED.render (icon_size, null);
-            not_starred = Icons.NOT_STARRED.render (icon_size, null);
+            starred = Noise.Icons.STARRED.render (icon_size, null);
+            not_starred = Noise.Icons.NOT_STARRED.render (icon_size, null);
         }
 
         redraw ();

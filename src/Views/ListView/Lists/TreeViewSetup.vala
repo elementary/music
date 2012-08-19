@@ -23,7 +23,7 @@
 using Gee;
 using Gtk;
 
-public class Noise.TreeViewSetup : GLib.Object {
+public class Noise.TreeViewSetup : Object {
 	// FIXME: Should be dynamic
 	public static const int MUSIC_COLUMN_COUNT = 18;
 	public static const int PODCAST_COLUMN_COUNT = 12;
@@ -376,7 +376,7 @@ public class Noise.TreeViewSetup : GLib.Object {
 		var rv = new GLib.List<TreeViewColumn>();
 		foreach(var tvc in _columns)
 			rv.append(tvc);
-			
+
 		return rv;
 	}
 	

@@ -23,18 +23,18 @@
 using Gtk;
 using Gdk;
 
-public class Noise.CellDataFunctionHelper : GLib.Object {
-	LibraryManager lm;
-	FastView view;
-	
-	public CellDataFunctionHelper(LibraryManager lm, FastView view) {
-		this.lm = lm;
-		this.view = view;
-	}
+namespace Noise.CellDataFunctionHelper {
+
+    private const string NOT_AVAILABLE = N_("N/A");
 
 #if HAVE_SMART_ALBUM_COLUMN
 	// for Smart album column
-	public void smartAlbumFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+	public static void album_art_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+        var view = tvc.get_tree_view () as Noise.FastView;
+
+        if (view == null)
+            return;
+
 		var m = view.get_object_from_index ((int)iter.user_data) as Media;
 
 		((SmartAlbumRenderer)cell).m = m;
@@ -82,10 +82,19 @@ public class Noise.CellDataFunctionHelper : GLib.Object {
 #endif
 
 	/** For spinner/unique icon on each row **/
-	public void iconDataFunc(CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
+	public static void icon_func (CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter) {
+        var tvc = layout as Gtk.TreeViewColumn;
+
+        return_if_fail (tvc != null);
+
+        var view = tvc.get_tree_view () as Noise.FastView;
+
+        if (view == null)
+            return;
+
 		bool showIndicator = false;
 		var s = view.get_object_from_index((int)iter.user_data) as Media;
-		
+
 		if(s == null)
 			return;
 		else
@@ -106,24 +115,24 @@ public class Noise.CellDataFunctionHelper : GLib.Object {
 			if(showIndicator) {
 				((CellRendererSpinner)renderer).active = true;
 			}
-				
+
 			renderer.visible = showIndicator;
 			renderer.width = showIndicator ? 16 : 0;
 		}
 	}
 	
 	// for Track, Year, #, Plays, Skips. Simply shows nothing if less than 1.
-	public void intelligentTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+	public static void intelligent_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
 		if(val.get_int() <= 0)
-			((CellRendererText)cell).markup = "";
+			((CellRendererText)cell).markup = " - ";
 		else
 			((CellRendererText)cell).markup = String.escape (val.get_int().to_string());
 	}
 	
-	public void stringTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+	public static void string_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
@@ -136,7 +145,7 @@ public class Noise.CellDataFunctionHelper : GLib.Object {
 	}
 	
 	// for Bitrate. Append 'kbps'
-	public void bitrateTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+	public static void bitrate_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
@@ -144,13 +153,13 @@ public class Noise.CellDataFunctionHelper : GLib.Object {
 		var text_cell = cell as CellRendererText;
 
 		if (n <= 0)
-			text_cell.markup = "";
+			text_cell.markup = NOT_AVAILABLE;
 		else
 			text_cell.markup = _("%i kbps").printf (n);
 	}
 
 	// turns int of seconds into pretty length mm:ss format
-	public static void lengthTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+	public static void length_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 
@@ -159,13 +168,13 @@ public class Noise.CellDataFunctionHelper : GLib.Object {
         uint ms = (uint)val.get_int ();
 
 		if(ms <= 0)
-			text_cell.markup = "";
+			text_cell.markup = NOT_AVAILABLE;
 		else
 			text_cell.markup = String.escape (TimeUtils.pretty_length_from_ms (ms));
 	}
 
 	// turns seconds since Jan 1, 1970 into date format
-	public void dateTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+	public static void date_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 
@@ -173,7 +182,7 @@ public class Noise.CellDataFunctionHelper : GLib.Object {
 		var text_cell = cell as CellRendererText;
 
 		if (n <= 0)
-			text_cell.markup = "";
+			text_cell.markup = NOT_AVAILABLE;
 		else {
 			var t = Time.local (n);
 			var str = TimeUtils.pretty_timestamp_from_time (t);
@@ -181,7 +190,7 @@ public class Noise.CellDataFunctionHelper : GLib.Object {
 		}
 	}
 	
-	public void ratingTreeViewFiller(TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
+	public static void rating_func (TreeViewColumn tvc, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
 		Value val;
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 

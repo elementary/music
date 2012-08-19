@@ -449,7 +449,7 @@ public class Noise.MusicListView : GenericList {
 		lm.update_media (los, false, true);
 	}
 
-	protected virtual void mediaRemoveClicked() {
+	protected override void mediaRemoveClicked() {
 		var to_remove = new Gee.LinkedList<Media>();
 		
 		foreach (Media m in get_selected_medias()) {
