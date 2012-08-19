@@ -333,7 +333,8 @@ namespace LastFM {
         
         void* track_thread_function () {
             var current_media = Noise.App.player.media_info.media;
-            return_val_if_fail (current_media != null, null);
+            if (current_media == null)
+                return null;
 
             string album_artist_s = current_media.album_artist;
             string track_s = current_media.title;
@@ -370,7 +371,8 @@ namespace LastFM {
         void* album_thread_function () {
 
             var current_media = Noise.App.player.media_info.media;
-            return_val_if_fail (current_media != null, null);
+            if (current_media == null)
+                return null;
 
             string album_artist_s = current_media.album_artist;
             string album_s = current_media.album;
@@ -403,7 +405,7 @@ namespace LastFM {
                 if (coverart_cache.has_image (current_media))
                     return null;
 
-                if (album.url_image.url != null) {
+                if (album.url_image != null && album.url_image.url != null) {
                     message ("Caching last.fm image from URL: %s", album.url_image.url);
 
                     fetch_info_guard.lock ();
@@ -431,7 +433,8 @@ namespace LastFM {
         
         void* artist_thread_function () {
             var current_media = Noise.App.player.media_info.media;
-            return_val_if_fail (current_media != null, null);
+            if (current_media == null)
+                return null;
 
             string album_artist_s = current_media.album_artist;
             if (album_artist_s == "")
