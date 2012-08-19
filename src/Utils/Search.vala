@@ -76,13 +76,46 @@ namespace Noise.Search {
 
 
     /**
+     * Parses a rating from stars. e.g. "***" => 3
+     * Returns -1 if @rating_string doesn't represent a valid rating
+     */
+    private int get_rating_from_string (string rating_string) {
+        int i;
+        unichar c;
+
+        for (i = 0; rating_string.get_next_char (ref i, out c);) {
+            if (c != '*')
+                return -1;
+        }
+
+        return i;
+    }
+
+
+    /**
      * Non-strict search
      */
     public void smart_search (Gee.Collection<Media> to_search,
                               out Gee.LinkedList<Media> results,
                               string search_str) {
         results = new Gee.LinkedList<Media> ();
-        string search = get_valid_search_string (search_str);
+        string search = "";
+        int parsed_rating = get_rating_from_string (search_str.strip ());
+
+        if (parsed_rating >= 0) {
+            parsed_rating = parsed_rating.clamp (0, 5);
+
+            foreach (var m in to_search) {
+                if (m.rating == parsed_rating)
+                    results.add (m);
+            }
+
+            return;
+        }
+
+        // If we failed at parsing a rating above, use normal search
+
+        search = get_valid_search_string (search_str);
 
         foreach (var m in to_search) {
             if (search == m.year.to_string ()) {
