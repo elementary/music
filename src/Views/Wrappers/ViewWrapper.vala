@@ -410,14 +410,10 @@ public abstract class Noise.ViewWrapper : Gtk.Box {
 
         debug ("Search changed : searchbox has '%s'", search);
 
-        if (search.length != 1) {
-            last_search = search;
+        last_search = search;
 
-            // Do the actual search and show up results....
-            update_visible_media ();
-
-            return;
-        }
+        // Do the actual search and show up results....
+        update_visible_media ();
     }
 
     /**
