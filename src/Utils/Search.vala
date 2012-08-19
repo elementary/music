@@ -56,15 +56,16 @@ namespace Noise.Search {
 
     // Taken from gnome-contacts' contacts-utils.vala
     private string canonicalize_for_search (string str) {
-        unowned string s;
         var buf = new unichar[unichar.MAX_DECOMPOSITION_LENGTH];
         var res = new StringBuilder ();
 
-        for (s = str; s[0] != 0; s = s.next_char ()) {
-            var c = strip_char (s.get_char ());
+        unichar c;
 
-            if (c != 0) {
-                var size = c.fully_decompose (false, buf);
+        for (int i = 0; str.get_next_char (ref i, out c);) {
+            var sc = strip_char (c);
+
+            if (sc != 0) {
+                var size = sc.fully_decompose (false, buf);
 
                 if (size > 0)
                     res.append_unichar (buf[0]);
