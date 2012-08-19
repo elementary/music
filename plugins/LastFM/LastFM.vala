@@ -54,7 +54,7 @@ namespace Noise.Plugins {
 
             plugins.register_function(Interface.Hook.WINDOW, () => {
                 lm = ((Noise.App)plugins.noise_app).library_manager;
-                Icons.init_lastfm ();
+                LastFM.Icons.init ();
                 
                 // Add Similar playlist.
                 core = new LastFM.Core (lm);

@@ -29,7 +29,7 @@
  * A place to store icon information and pixbufs.
  */
 
-namespace Icons {
+namespace LastFM.Icons {
 
 	public Noise.Icon LASTFM_LOVE;
 	public Noise.Icon LASTFM_BAN;
@@ -37,7 +37,7 @@ namespace Icons {
 	/**
 	 * Loads icon information and renders [preloaded] pixbufs
 	 **/
-	public void init_lastfm () {
+	public void init () {
 		LASTFM_LOVE = new Noise.Icon ("lastfm-love", 16, Noise.Icon.Category.ACTION, null, true);
 		LASTFM_BAN = new Noise.Icon ("lastfm-ban", 16, Noise.Icon.Category.ACTION, null, true);
 	}

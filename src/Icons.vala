@@ -19,7 +19,7 @@
  *
  * The Noise authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
+ * and  This permission is above and beyond the permissions granted
  * by the GPL license by which Noise is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
@@ -33,7 +33,7 @@
  * A place to store icon information and pixbufs.
  */
 
-namespace Icons {
+namespace Noise.Icons {
 
     private bool is_initted = false;
 
@@ -57,61 +57,61 @@ namespace Icons {
     **/
 
     // 128 x 128
-    public Noise.Icon DEFAULT_ALBUM_ART;
-    public Noise.Icon MUSIC_FOLDER;
+    public Icon DEFAULT_ALBUM_ART;
+    public Icon MUSIC_FOLDER;
 
     // 22 x 22
-    public Noise.Icon HISTORY;
+    public Icon HISTORY;
 
     // 16 x 16
-    public Noise.Icon NOISE;
-    public Noise.Icon MUSIC;
-    public Noise.Icon AUDIO_CD;
-    public Noise.Icon AUDIO_DEVICE;
-    public Noise.Icon NETWORK_DEVICE;
-    public Noise.Icon PLAYLIST;
-    public Noise.Icon SMART_PLAYLIST;
+    public Icon NOISE;
+    public Icon MUSIC;
+    public Icon AUDIO_CD;
+    public Icon AUDIO_DEVICE;
+    public Icon NETWORK_DEVICE;
+    public Icon PLAYLIST;
+    public Icon SMART_PLAYLIST;
 
 
-    public Noise.Icon STARRED;
-    public Noise.Icon NOT_STARRED;
+    public Icon STARRED;
+    public Icon NOT_STARRED;
 
     // SYMBOLIC ICONS
-    public Noise.Icon PANE_HIDE_SYMBOLIC;
-    public Noise.Icon PANE_SHOW_SYMBOLIC;
+    public Icon PANE_HIDE_SYMBOLIC;
+    public Icon PANE_SHOW_SYMBOLIC;
 
-    public Noise.Icon EQ_SYMBOLIC;
+    public Icon EQ_SYMBOLIC;
 
-    public Noise.Icon EJECT_SYMBOLIC;
+    public Icon EJECT_SYMBOLIC;
 
-    public Noise.Icon NOW_PLAYING_SYMBOLIC;
+    public Icon NOW_PLAYING_SYMBOLIC;
 
-    public Noise.Icon STARRED_SYMBOLIC;
-    public Noise.Icon NOT_STARRED_SYMBOLIC;
+    public Icon STARRED_SYMBOLIC;
+    public Icon NOT_STARRED_SYMBOLIC;
 
-    public Noise.Icon PROCESS_COMPLETED;
-    public Noise.Icon PROCESS_ERROR;
-    public Noise.Icon PROCESS_STOP;
+    public Icon PROCESS_COMPLETED;
+    public Icon PROCESS_ERROR;
+    public Icon PROCESS_STOP;
 
-    public Noise.Icon SHUFFLE_ON;
-    public Noise.Icon SHUFFLE_OFF;
-    public Noise.Icon REPEAT_ON;
-    public Noise.Icon REPEAT_ONE;
-    public Noise.Icon REPEAT_OFF;
+    public Icon SHUFFLE_ON;
+    public Icon SHUFFLE_OFF;
+    public Icon REPEAT_ON;
+    public Icon REPEAT_ONE;
+    public Icon REPEAT_OFF;
 
-    public Noise.Icon VIEW_COLUMN;
-    public Noise.Icon VIEW_DETAILS;
-    public Noise.Icon VIEW_ICONS;
-    public Noise.Icon VIEW_VIDEO;
+    public Icon VIEW_COLUMN;
+    public Icon VIEW_DETAILS;
+    public Icon VIEW_ICONS;
+    public Icon VIEW_VIDEO;
 
 
     public Gdk.Pixbuf? render_icon (string icon_name, Gtk.IconSize size, Gtk.StyleContext? context = null) {
-        var icon = new Noise.Icon (icon_name);
+        var icon = new Icon (icon_name);
         return icon.render (size, context);
     }
 
     public Gtk.Image? render_image (string icon_name, Gtk.IconSize size) {
-        var icon = new Noise.Icon (icon_name);
+        var icon = new Icon (icon_name);
         return icon.render_image (size);
     }
 
@@ -123,51 +123,51 @@ namespace Icons {
         is_initted = true;
 
         // 128 x 128
-        DEFAULT_ALBUM_ART = new Noise.Icon ("albumart", 138, Noise.Icon.Category.MIMETYPE, null, true);
-        MUSIC_FOLDER = new Noise.Icon ("folder-music", 128, Noise.Icon.Category.MIMETYPE, null, true);
+        DEFAULT_ALBUM_ART = new Icon ("albumart", 138, Icon.Category.MIMETYPE, null, true);
+        MUSIC_FOLDER = new Icon ("folder-music", 128, Icon.Category.MIMETYPE, null, true);
 
         // 22 x 22
-        HISTORY = new Noise.Icon ("document-open-recent");
+        HISTORY = new Icon ("document-open-recent");
 
         // 16 x 16
-        NOISE = new Noise.Icon ("noise", 16, Noise.Icon.Category.APP, null, true);
-        MUSIC = new Noise.Icon ("library-music", 16, Noise.Icon.Category.MIMETYPE, null, true);
-        AUDIO_CD = new Noise.Icon ("media-cdrom-audio", 16, Noise.Icon.Category.MIMETYPE, null, true);
-        AUDIO_DEVICE = new Noise.Icon ("multimedia-player", 16, Noise.Icon.Category.MIMETYPE, null, true);
-        NETWORK_DEVICE = new Noise.Icon ("monitor", 16, Noise.Icon.Category.MIMETYPE, null, true);
-        PLAYLIST = new Noise.Icon ("playlist", 16, Noise.Icon.Category.MIMETYPE, null, true);
-        SMART_PLAYLIST = new Noise.Icon ("playlist-automatic", 16, Noise.Icon.Category.MIMETYPE, null, true);
-        STARRED = new Noise.Icon ("starred", 16, Noise.Icon.Category.STATUS, null, true);
-        NOT_STARRED = new Noise.Icon ("non-starred", 16, Noise.Icon.Category.STATUS, null, true);
+        NOISE = new Icon ("noise", 16, Icon.Category.APP, null, true);
+        MUSIC = new Icon ("library-music", 16, Icon.Category.MIMETYPE, null, true);
+        AUDIO_CD = new Icon ("media-cdrom-audio", 16, Icon.Category.MIMETYPE, null, true);
+        AUDIO_DEVICE = new Icon ("multimedia-player", 16, Icon.Category.MIMETYPE, null, true);
+        NETWORK_DEVICE = new Icon ("monitor", 16, Icon.Category.MIMETYPE, null, true);
+        PLAYLIST = new Icon ("playlist", 16, Icon.Category.MIMETYPE, null, true);
+        SMART_PLAYLIST = new Icon ("playlist-automatic", 16, Icon.Category.MIMETYPE, null, true);
+        STARRED = new Icon ("starred", 16, Icon.Category.STATUS, null, true);
+        NOT_STARRED = new Icon ("non-starred", 16, Icon.Category.STATUS, null, true);
 
         // SYMBOLIC ICONS (16 x 16)
-        PANE_SHOW_SYMBOLIC = new Noise.Icon ("pane-show-symbolic", 16, Noise.Icon.Category.ACTION, null, true);
-        PANE_HIDE_SYMBOLIC = new Noise.Icon ("pane-hide-symbolic", 16, Noise.Icon.Category.ACTION, null, true);
-        EQ_SYMBOLIC = new Noise.Icon ("media-eq-symbolic", 16, Noise.Icon.Category.ACTION, null, true);
+        PANE_SHOW_SYMBOLIC = new Icon ("pane-show-symbolic", 16, Icon.Category.ACTION, null, true);
+        PANE_HIDE_SYMBOLIC = new Icon ("pane-hide-symbolic", 16, Icon.Category.ACTION, null, true);
+        EQ_SYMBOLIC = new Icon ("media-eq-symbolic", 16, Icon.Category.ACTION, null, true);
 
-        REPEAT_OFF = new Noise.Icon ("media-playlist-no-repeat-symbolic", 16, Noise.Icon.Category.STATUS, null, true);
-        SHUFFLE_OFF = new Noise.Icon ("media-playlist-no-shuffle-symbolic", 16, Noise.Icon.Category.STATUS, null, true);
+        REPEAT_OFF = new Icon ("media-playlist-no-repeat-symbolic", 16, Icon.Category.STATUS, null, true);
+        SHUFFLE_OFF = new Icon ("media-playlist-no-shuffle-symbolic", 16, Icon.Category.STATUS, null, true);
 
-        NOW_PLAYING_SYMBOLIC = new Noise.Icon ("audio-volume-high-symbolic");
+        NOW_PLAYING_SYMBOLIC = new Icon ("audio-volume-high-symbolic");
 
-        EJECT_SYMBOLIC = new Noise.Icon ("media-eject-symbolic");
-        STARRED_SYMBOLIC = new Noise.Icon ("starred-symbolic");
-        NOT_STARRED_SYMBOLIC = new Noise.Icon ("non-starred-symbolic");
-        PROCESS_COMPLETED = new Noise.Icon ("process-completed-symbolic");
-        PROCESS_ERROR = new Noise.Icon ("process-error-symbolic");
-        PROCESS_STOP = new Noise.Icon ("process-stop-symbolic");
-        SHUFFLE_ON = new Noise.Icon ("media-playlist-shuffle-symbolic");
-        REPEAT_ON = new Noise.Icon ("media-playlist-repeat-symbolic");
-        REPEAT_ONE = new Noise.Icon ("media-playlist-repeat-one-symbolic");
-        VIEW_COLUMN = new Noise.Icon ("view-column-symbolic");
-        VIEW_DETAILS = new Noise.Icon ("view-list-symbolic");
-        VIEW_ICONS = new Noise.Icon ("view-grid-symbolic");
-        VIEW_VIDEO = new Noise.Icon ("view-video-symbolic");
+        EJECT_SYMBOLIC = new Icon ("media-eject-symbolic");
+        STARRED_SYMBOLIC = new Icon ("starred-symbolic");
+        NOT_STARRED_SYMBOLIC = new Icon ("non-starred-symbolic");
+        PROCESS_COMPLETED = new Icon ("process-completed-symbolic");
+        PROCESS_ERROR = new Icon ("process-error-symbolic");
+        PROCESS_STOP = new Icon ("process-stop-symbolic");
+        SHUFFLE_ON = new Icon ("media-playlist-shuffle-symbolic");
+        REPEAT_ON = new Icon ("media-playlist-repeat-symbolic");
+        REPEAT_ONE = new Icon ("media-playlist-repeat-one-symbolic");
+        VIEW_COLUMN = new Icon ("view-column-symbolic");
+        VIEW_DETAILS = new Icon ("view-list-symbolic");
+        VIEW_ICONS = new Icon ("view-grid-symbolic");
+        VIEW_VIDEO = new Icon ("view-video-symbolic");
 
         // Render Pixbufs ...
 
         // 168x168
-        var shadow_icon = new Noise.Icon ("albumart-shadow", 168, Noise.Icon.Category.OTHER, Noise.Icon.FileType.PNG, true);
+        var shadow_icon = new Icon ("albumart-shadow", 168, Icon.Category.OTHER, Icon.FileType.PNG, true);
         DEFAULT_ALBUM_SHADOW_PIXBUF = shadow_icon.render (null);
     }
 

@@ -60,10 +60,10 @@ public class Noise.SimilarMediasWidget : Gtk.Grid {
         });
         
         love_button = new Gtk.Button ();
-        love_button.set_image (Icons.LASTFM_LOVE.render_image (Gtk.IconSize.MENU));
+        love_button.set_image (LastFM.Icons.LASTFM_LOVE.render_image (Gtk.IconSize.MENU));
         love_button.halign = Gtk.Align.CENTER;
         ban_button = new Gtk.Button ();
-        ban_button.set_image (Icons.LASTFM_BAN.render_image (Gtk.IconSize.MENU));
+        ban_button.set_image (LastFM.Icons.LASTFM_BAN.render_image (Gtk.IconSize.MENU));
         ban_button.halign = Gtk.Align.CENTER;
         
         var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);

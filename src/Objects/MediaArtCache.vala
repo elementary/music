@@ -60,12 +60,14 @@ public abstract class Noise.MediaArtCache {
      * This function is called before storing a pixbuf in the cache, allowing
      * to transform it. The changes are applied to the cache file when apply_to_file
      * is set to true.
+     * See {@link Noise.PixbufCache.filter_func} for more information.
      */
     protected abstract Gdk.Pixbuf? filter_func (Gdk.Pixbuf pix, out bool apply_to_file);
 
 
     /**
      * Verifies whether the media object m has a corresponding image in the cache.
+     * See {@link Noise.PixbufCache.has_image} for more information.
      */
     public bool has_image (Media m) {
         return pixbuf_cache.has_image (get_key (m));
@@ -74,11 +76,7 @@ public abstract class Noise.MediaArtCache {
 
     /**
      * Returns the location of the image on disk. This call does no blocking I/O.
-     * A path is returned even if there's no associated image in the cache (i.e. the path
-     * doesn't exist).
-     * Since there are no guarantees that the returned path is valid, don't write code that crashes
-     * if it isn't. You can call has_image() to verify the existance of the image, and it will
-     * reliably help to avoid errors most of the time (i.e. under normal conditions).
+     * See {@link Noise.PixbufCache.get_cached_image_path} for more information.
      */
     protected string get_cached_image_path (string key) {
         return pixbuf_cache.get_cached_image_path (key);
@@ -89,9 +87,10 @@ public abstract class Noise.MediaArtCache {
      * Returns the location of the media's image on disk. This call does no blocking I/O.
      * A path is returned even if there's no associated image in the cache (i.e. the path
      * doesn't exist).
-     * Since there are no guarantees that the returned path is valid, don't write code that crashes
-     * if it isn't. You can call has_image() to verify the existance of the image, and it will
-     * reliably help to avoid errors most of the time (i.e. under normal conditions).
+     * Since there is no guarantee that the returned path will be valid, don't write code
+     * that crashes if it isn't. You can call has_image() to verify the existance of the
+     * image, and it will reliably help to avoid errors most of the time (under normal
+     * conditions where every cached image has an associated file).
      */
     public string get_cached_image_path_for_media (Media m) {
         return pixbuf_cache.get_cached_image_path (get_key (m));
