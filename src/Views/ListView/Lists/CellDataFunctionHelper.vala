@@ -127,7 +127,7 @@ namespace Noise.CellDataFunctionHelper {
 		tree_model.get_value(iter, tvc.sort_column_id, out val);
 		
 		if(val.get_int() <= 0)
-			((CellRendererText)cell).markup = " - ";
+			((CellRendererText)cell).markup = "";
 		else
 			((CellRendererText)cell).markup = String.escape (val.get_int().to_string());
 	}
@@ -182,7 +182,7 @@ namespace Noise.CellDataFunctionHelper {
 		var text_cell = cell as CellRendererText;
 
 		if (n <= 0)
-			text_cell.markup = NOT_AVAILABLE;
+			text_cell.markup = "";
 		else {
 			var t = Time.local (n);
 			var str = TimeUtils.pretty_timestamp_from_time (t);
