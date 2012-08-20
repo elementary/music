@@ -90,12 +90,15 @@ public class Noise.MusicViewWrapper : ViewWrapper {
                                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
                 file_chooser.set_local_only(true);
+
                 if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
                     folder = file_chooser.get_filename();
                 }
+
                 file_chooser.destroy ();
-                
-                lw.setMusicFolder (folder);
+
+                if (folder != "")
+                    lw.setMusicFolder (folder);
             }
         }
         else {
