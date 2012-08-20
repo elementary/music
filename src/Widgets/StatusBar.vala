@@ -1,59 +1,58 @@
+// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
+/*-
+ * Copyright (c) 2012 Noise Developers (http://launchpad.net/noise)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * The Noise authors hereby grant permission for non-GPL compatible
+ * GStreamer plugins to be used and distributed together with GStreamer
+ * and Noise. This permission is above and beyond the permissions granted
+ * by the GPL license by which Noise is covered. If you modify this code
+ * you may extend this exception to your version of the code, but you are not
+ * obligated to do so. If you do not wish to do so, delete this exception
+ * statement from your version.
+ */
 
-public class Noise.BottomStatusBar : Granite.Widgets.StatusBar {
+public class Noise.Widgets.StatusBar : Granite.Widgets.StatusBar {
 
-    /* Statusbar items */
-    private SimpleOptionChooser addPlaylistChooser;
-    private SimpleOptionChooser shuffleChooser;
-    private SimpleOptionChooser repeatChooser;
-    private SimpleOptionChooser info_panel_chooser;
-    private SimpleOptionChooser eq_option_chooser;
-    
-    private LibraryWindow lw;
-
-    public BottomStatusBar (LibraryWindow lw) {
-        this.lw = lw;
-
-        repeatChooser      = new RepeatChooser ();
-        shuffleChooser     = new ShuffleChooser ();
-        addPlaylistChooser = new AddPlaylistChooser ();
-        eq_option_chooser  = new EqualizerChooser ();
-        info_panel_chooser = new InfoPanelChooser ();
-
-        insert_widget (addPlaylistChooser, true);
-        insert_widget (shuffleChooser, true);
-        insert_widget (repeatChooser, true);
-        insert_widget (eq_option_chooser);
-        insert_widget (info_panel_chooser);
-
-/* XXX
-        if(App.player.media_active) {
-            if(Settings.Main.instance.shuffle_mode == Player.Shuffle.ALL) {
-                App.player.setShuffleMode(Player.Shuffle.ALL, true);
-            }
-        }
-*/        
+    public StatusBar (LibraryWindow lw) {
+        insert_widget (new AddPlaylistChooser (), true);
+        insert_widget (new ShuffleChooser (), true);
+        insert_widget (new RepeatChooser (), true);
+        insert_widget (new EqualizerChooser ());
+        insert_widget (new InfoPanelChooser ());
     }
 
-
-    public void set_info (string message)
-    {
+    public void set_info (string message) {
         set_text (message);
     }
 }
 
 
-
-/********************
- * STATUSBAR ITEMS  *
- ********************/
+/**
+ * STATUSBAR ITEMS
+ */
 
 
 private class Noise.RepeatChooser : Noise.SimpleOptionChooser {
 
     public RepeatChooser () {
-        var repeat_on_image    = Icons.REPEAT_ON.render_image (Gtk.IconSize.MENU);
-        var repeat_one_image    = Icons.REPEAT_ONE.render_image (Gtk.IconSize.MENU);
-        var repeat_off_image   = Icons.REPEAT_OFF.render_image (Gtk.IconSize.MENU);
+        var repeat_on_image = Icons.REPEAT_ON.render_image (Gtk.IconSize.MENU);
+        var repeat_one_image = Icons.REPEAT_ONE.render_image (Gtk.IconSize.MENU);
+        var repeat_off_image = Icons.REPEAT_OFF.render_image (Gtk.IconSize.MENU);
 
         // MUST follow the exact same order of Noise.Player.Repeat
         appendItem (_("Off"), repeat_off_image, _("Enable Repeat"));
@@ -62,13 +61,14 @@ private class Noise.RepeatChooser : Noise.SimpleOptionChooser {
         appendItem (_("Artist"), repeat_on_image, _("Repeat Artist"));
         appendItem (_("All"), repeat_on_image, _("Repeat All"));
 
-        setOption ((int)App.player.repeat);
+        update_option ();
 
         option_changed.connect (on_option_changed);
+        App.player.notify["repeat"].connect (update_option);
+    }
 
-        App.player.notify["repeat"].connect ( () => {
-            setOption ((int)App.player.repeat);
-        });
+    private void update_option () {
+        setOption ((int)App.player.repeat);
     }
 
     private void on_option_changed () {
@@ -90,15 +90,15 @@ private class Noise.ShuffleChooser : Noise.SimpleOptionChooser {
 
         appendItem (_("Off"), shuffle_off_image, _("Enable Shuffle"));
         appendItem (_("All"), shuffle_on_image, _("Disable Shuffle"));
-        setOption (Settings.Main.instance.shuffle_mode);
 
-        setOption ((int)App.player.repeat);
+        update_mode ();
 
         option_changed.connect (on_option_changed);
+        App.player.notify["shuffle"].connect (update_mode);
+    }
 
-        App.player.notify["shuffle"].connect ( () => {
-            setOption ((int)App.player.shuffle);
-        });
+    private void update_mode () {
+        setOption ((int)App.player.shuffle);
     }
 
     private void on_option_changed () {
@@ -111,35 +111,59 @@ private class Noise.ShuffleChooser : Noise.SimpleOptionChooser {
     }
 }
 
+#if HAVE_ADD_PLAYLIST_AS_BUTTON
+private class Noise.AddPlaylistChooser : Gtk.Button {
+#else
+private class Noise.AddPlaylistChooser : Gtk.EventBox {
+#endif
 
-private class Noise.AddPlaylistChooser : Noise.SimpleOptionChooser {
+    private Gtk.Menu menu;
 
     public AddPlaylistChooser () {
-        base (true);
-
-        var add_playlist_image = Icons.render_image ("list-add-symbolic", Gtk.IconSize.MENU);
-
         margin_right = 12;
 
-        var tooltip = _("Add Playlist");
+        tooltip_text = _("Add Playlist");
 
-        appendItem (tooltip, add_playlist_image, tooltip);
-        appendItem (_("Add Smart Playlist"), add_playlist_image, tooltip);
+#if HAVE_ADD_PLAYLIST_AS_BUTTON
+        relief = Gtk.ReliefStyle.NONE;
+#else
+        visible_window = false;
+        above_child = true;
+#endif
 
-        setOption (0);
+        add (Icons.render_image ("list-add-symbolic", Gtk.IconSize.MENU));
 
-        option_changed.connect (on_option_changed);
-    }
+        var add_pl_menuitem = new Gtk.MenuItem.with_label (_("Add Playlist"));
+        var add_spl_menuitem = new Gtk.MenuItem.with_label (_("Add Smart Playlist"));
 
-    private void on_option_changed () {
-        int val = current_option;
+        menu = new Gtk.Menu ();
+        menu.append (add_pl_menuitem);
+        menu.append (add_spl_menuitem);
+        menu.show_all ();
 
-        if (val == 0) {
+        add_pl_menuitem.activate.connect ( () => {
             App.main_window.sideTree.playlistMenuNewClicked ();
-        } else if (val == 1) {
+        });
+
+        add_spl_menuitem.activate.connect ( () => {
             App.main_window.sideTree.smartPlaylistMenuNewClicked ();
-        }
+        });
     }
+
+#if HAVE_ADD_PLAYLIST_AS_BUTTON
+    public override void clicked () {
+        menu.popup (null, null, null, Gdk.BUTTON_PRIMARY, Gtk.get_current_event_time ());
+    }
+#else
+    public override bool button_press_event (Gdk.EventButton event) {
+        if (event.type == Gdk.EventType.BUTTON_PRESS) {
+            menu.popup (null, null, null, Gdk.BUTTON_SECONDARY, event.time);
+            return true;
+        }
+
+        return false;
+    }
+#endif
 }
 
 
@@ -201,7 +225,7 @@ private class Noise.InfoPanelChooser : Noise.SimpleOptionChooser {
     private void on_option_changed () {
         int val = current_option;
 
-        App.main_window.info_panel.set_visible (val == 1);
-        Settings.SavedState.instance.more_visible = (val == 1);
+        bool visible = val == 1;
+        App.main_window.info_panel.visible = visible;
     }
 }

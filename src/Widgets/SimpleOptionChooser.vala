@@ -52,10 +52,6 @@ public class Noise.SimpleOptionChooser : EventBox {
 		// make the event box transparent
 		set_above_child(true);
 		set_visible_window(false);
-
-		button_press_event.connect(buttonPress);
-
-		//set_image ();
 	}
 
 	public void setOption(int index) {
@@ -104,7 +100,7 @@ public class Noise.SimpleOptionChooser : EventBox {
 		return items.size - 1;
 	}
 
-	public virtual bool buttonPress(Gdk.EventButton event) {
+	public override bool button_press_event (Gdk.EventButton event) {
 		if (event.type == Gdk.EventType.BUTTON_PRESS) {
 			if(event.button == 1 && !menu_only_mode) {
 				if(clicked_index == 0) {
@@ -116,7 +112,7 @@ public class Noise.SimpleOptionChooser : EventBox {
 				}
 			}
 			else if (menu != null && items.size > 1) {
-				menu.popup (null, null, null, 3, get_current_event_time());
+				menu.popup (null, null, null, 3, event.time);
 			}
 		}
 

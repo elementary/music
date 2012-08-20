@@ -41,7 +41,7 @@ vala_precompile(VALA_C
     Widgets/PresetList.vala
     Widgets/SideBar.vala
     Widgets/SideTreeView.vala
-    Widgets/BottomStatusBar.vala
+    Widgets/StatusBar.vala
     Widgets/RatingWidget.vala
     Widgets/SpaceWidget.vala
     Widgets/FixedBin.vala
@@ -133,6 +133,7 @@ OPTIONS
     --vapidir=${CMAKE_BINARY_DIR}/core/
     --target-glib=2.32
     --define=USE_GRANITE_DECORATED_WINDOW
+    #--define=HAVE_ADD_PLAYLIST_AS_BUTTON
     #--define=HAVE_SMART_ALBUM_COLUMN
     #--define=GTK_ICON_VIEW_BUG_IS_FIXED
     ${ADD_OPTIONS}
