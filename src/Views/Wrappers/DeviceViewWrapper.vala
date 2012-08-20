@@ -35,17 +35,20 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();
         pack_views ();
 
-
         list_view.import_requested.connect (import_request);
-
-        embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (App.instance.get_name ()), null, true, Gtk.MessageType.WARNING);
 
         set_device (d);
     }
-    
+
+    protected override void set_no_media_alert () {
+        embedded_alert.set_alert (_("Audio CD Invalid"), _("%s could not read the contents of this Audio CD").printf (App.instance.get_name ()), null, true, Gtk.MessageType.ERROR);
+    }
+
     public virtual void set_device (Device device) {
         this.d = device;
         d.sync_finished.connect (sync_finished);
+
+        set_media_async (d.get_medias ());
     }
 
     void import_request (Gee.LinkedList<Media> to_import) {

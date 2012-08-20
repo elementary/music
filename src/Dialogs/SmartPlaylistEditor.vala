@@ -27,7 +27,11 @@ using Gtk;
 using Gee;
 using Granite.Widgets;
 
+#if USE_GRANITE_DECORATED_WINDOW
+public class Noise.SmartPlaylistEditor : Granite.Widgets.LightWindow {
+#else
 public class Noise.SmartPlaylistEditor : Window {
+#endif
 
     LibraryWindow lw;
     SmartPlaylist sp;
@@ -131,6 +135,7 @@ public class Noise.SmartPlaylistEditor : Window {
         
         /* add the Save button on bottom */
         HButtonBox bottomButtons = new HButtonBox();
+        bottomButtons.set_spacing (6);
         save = new Gtk.Button.from_stock(Gtk.Stock.SAVE);
         var close_button = new Gtk.Button.from_stock(Gtk.Stock.CLOSE);
         bottomButtons.set_layout(ButtonBoxStyle.END);

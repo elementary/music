@@ -34,10 +34,11 @@ public class Noise.QueueViewWrapper : ViewWrapper {
 
         list_view = new ListView (this, lw.library_manager.queue_setup);
         embedded_alert = new Granite.Widgets.EmbeddedAlert ();            
-        set_default_alert ();
 
         // Refresh view layout
         pack_views ();
+
+        set_media_async (App.player.queue ());
     }
 
     private void connect_data_signals () {
@@ -50,25 +51,23 @@ public class Noise.QueueViewWrapper : ViewWrapper {
          lm.media_removed.connect (on_library_media_removed);
     }
 
-    private void on_queue_cleared () {
-        set_media_async (new Gee.LinkedList<Media> ());
+    private async void on_queue_cleared () {
+        yield set_media_async (new Gee.LinkedList<Media> ());
     }
 
-    private void on_media_queued (Gee.Collection<Media> queued) {
-        add_media_async (queued);
+    private async void on_media_queued (Gee.Collection<Media> queued) {
+        yield add_media_async (queued);
     }
 
-    private void on_media_unqueued (Gee.Collection<Media> unqueued) {
-        remove_media_async (unqueued);
+    private async void on_media_unqueued (Gee.Collection<Media> unqueued) {
+        yield remove_media_async (unqueued);
     }
 
-    private void on_library_media_removed (Gee.Collection<int> ids) {
-        remove_media_async (lm.media_from_ids (ids));
+    private async void on_library_media_removed (Gee.Collection<int> ids) {
+        yield remove_media_async (lm.media_from_ids (ids));
     }
 
-    private inline void set_default_alert () {
-        return_if_fail (has_embedded_alert);
-
+    protected override void set_no_media_alert () {
         embedded_alert.set_alert (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."), null, true, Gtk.MessageType.INFO);
     }
 }

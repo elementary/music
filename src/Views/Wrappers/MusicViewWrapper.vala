@@ -42,10 +42,14 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
         welcome_screen.activated.connect (welcome_screen_activated);
 
+        embedded_alert = new Granite.Widgets.EmbeddedAlert ();
+
         // Refresh view layout
         pack_views ();
 
         connect_data_signals ();
+
+        set_media_async (lm.media ());
     }
 
     private void connect_data_signals () {
@@ -86,12 +90,15 @@ public class Noise.MusicViewWrapper : ViewWrapper {
                                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
                 file_chooser.set_local_only(true);
+
                 if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
                     folder = file_chooser.get_filename();
                 }
+
                 file_chooser.destroy ();
-                
-                lw.setMusicFolder (folder);
+
+                if (folder != "")
+                    lw.setMusicFolder (folder);
             }
         }
         else {

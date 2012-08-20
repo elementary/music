@@ -51,6 +51,17 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
         }
 
         build_async (tvs);
+
+        if (hint == Hint.SMART_PLAYLIST) {
+            // this sets the media indirectly through the signal handlers connected above
+            lm.media_from_smart_playlist (playlist_id);
+        }
+        else if (hint == Hint.PLAYLIST) {
+            set_media_async (lm.media_from_playlist (playlist_id));
+        }
+        else {
+            assert_not_reached ();
+        }
     }
 
     private async void build_async (TreeViewSetup tvs) {
@@ -63,30 +74,29 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
 		// Refresh view layout
 		pack_views ();
-        set_alert ();
     }
 
-    private void set_alert () {
+    protected override void set_no_media_alert () {
         // show alert if there's no media
-        if (has_embedded_alert) {
-            if (hint == Hint.PLAYLIST) {
-                embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Gtk.MessageType.INFO);
-            }
-            else if (hint == Hint.SMART_PLAYLIST) {
-                var action = new Gtk.Action ("smart-playlist-rules-edit",
-                                             _("Edit Smart Playlist"),
-                                             null,
-                                             Gtk.Stock.EDIT);
-                // Connect to the 'activate' signal
-                action.activate.connect ( () => {
-                    lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
-                });
+        assert (has_embedded_alert);
 
-                var actions = new Gtk.Action[1];
-                actions[0] = action;
+        if (hint == Hint.PLAYLIST) {
+            embedded_alert.set_alert (_("No Songs"), _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>."), null, true, Gtk.MessageType.INFO);
+        }
+        else if (hint == Hint.SMART_PLAYLIST) {
+            var action = new Gtk.Action ("smart-playlist-rules-edit",
+                                         _("Edit Smart Playlist"),
+                                         null,
+                                         Gtk.Stock.EDIT);
+            // Connect to the 'activate' signal
+            action.activate.connect ( () => {
+                lw.sideTree.playlistMenuEditClicked (); // Show this playlist's edit dialog
+            });
 
-                embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."), actions, true, Gtk.MessageType.INFO);
-            }
+            var actions = new Gtk.Action[1];
+            actions[0] = action;
+
+            embedded_alert.set_alert (_("No Songs"), _("This playlist will be automatically populated with songs that match its rules. To modify these rules, use the <b>secondary click</b> on it in the sidebar and click on <b>Edit</b>. Optionally, you can click on the button below."), actions, true, Gtk.MessageType.INFO);
         }
     }
 
@@ -102,19 +112,19 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
 
   	    var to_add = new Gee.LinkedList<Media> ();
         var to_remove = new Gee.LinkedList<Media> ();
-        var new_media_table = new Gee.HashMap<Media, int> ();
+        var new_media_table = new Gee.HashSet<Media> ();
 
        	foreach (var m in new_media) {
    	    	// if not already in the table, add
-   	    	if (!media_table.has_key (m))
+   	    	if (!media_table.contains (m))
                 to_add.add (m);
             // Make a copy of the list
-            new_media_table.set (m, 1);
+            new_media_table.add (m);
          }
 
          // if something is in the table but not in new_media, remove
          foreach (var m in get_media_list ()) {
-             if (!new_media_table.has_key (m))
+             if (!new_media_table.contains (m))
                  to_remove.add (m);
          }
 

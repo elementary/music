@@ -31,13 +31,12 @@ public class LastFM.TrackInfo : Noise.TrackInfo {
 	public string url { get; set; default = ""; }
 	public int streamable { get; set; default = 0; }
 	
-	private Gee.ArrayList<LastFM.Tag> _tags;
+	private Gee.ArrayList<LastFM.Tag> _tags = new Gee.ArrayList<LastFM.Tag>();
 	private LastFM.Tag tagToAdd;
 	
 	//public signal void track_info_retrieved(LastFM.TrackInfo info);
 	
 	public TrackInfo.basic() {
-		_tags = new Gee.ArrayList<LastFM.Tag>();
 	}
 	
 	public TrackInfo.with_info(string artist, string track) {

@@ -29,17 +29,15 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
     
     private string url { get; set; default=""; }
     
-    private Gee.ArrayList<LastFM.Tag> _tags;
+    private Gee.ArrayList<LastFM.Tag> _tags = new Gee.ArrayList<LastFM.Tag>();
     
     private LastFM.Tag tagToAdd;
     
-    public LastFM.Image url_image;
+    public LastFM.Image url_image = new LastFM.Image();
     
     //public signal void album_info_retrieved(LastFM.AlbumInfo info);
     
     public AlbumInfo() {
-        _tags = new Gee.ArrayList<LastFM.Tag>();
-        url_image = new LastFM.Image();
     }
     
     public AlbumInfo.with_info(string artist, string album) {
@@ -131,7 +129,9 @@ public class LastFM.AlbumInfo : Noise.AlbumInfo {
                     if(iter->get_prop("size") == "large") {
                         url_image = new LastFM.Image.with_url(node_content, true);
                         url_image.set_size(500, 500);
-                        image_uri = this.get_image_uri_from_pixbuf(url_image.image);
+
+                        if (url_image.image != null)
+                            image_uri = this.get_image_uri_from_pixbuf(url_image.image);
                     }
                 }
             }

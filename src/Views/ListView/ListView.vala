@@ -120,6 +120,12 @@ public class Noise.ListView : ContentView, Gtk.Box {
 		// Put the list inside a scrolled window
 		list_scrolled.add (list_view);
 
+        // Monitor size changes on parent wrapper
+        this.view_wrapper.size_allocate.connect ( (alloc) => {
+            list_view.resize_columns (alloc.width);
+        });
+
+
 		if (add_browser)
 			column_browser = new MusicColumnBrowser (view_wrapper);
 
@@ -236,12 +242,9 @@ public class Noise.ListView : ContentView, Gtk.Box {
 			}
 		});
 
-		lw.column_browser_toggle.toggled.connect ( () => {
-			if (view_wrapper.current_view == ViewWrapper.ViewType.LIST && lw.column_browser_toggle.sensitive) {
-				bool enabled = lw.column_browser_toggle.get_active();
-				if (enabled != column_browser_enabled)
-					column_browser_enabled = enabled;
-			}
+        lw.viewSelector.column_browser_toggled.connect (  (enabled) => {
+			if (enabled != column_browser_enabled)
+				column_browser_enabled = enabled;
 		});
 
 		column_browser.position_changed.connect (set_column_browser_position);

@@ -34,7 +34,9 @@ public class Noise.NetworkDeviceViewWrapper : ViewWrapper {
 
         /*if (has_list_view)
             list_view.import_requested.connect (import_request);*/
+    }
 
+    protected override void set_no_media_alert () {
         embedded_alert.set_alert (_("Device unreachable"), _("%s could not access to this network device").printf (App.instance.get_name ()), null, true, Gtk.MessageType.WARNING);
     }
 }
