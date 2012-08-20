@@ -114,8 +114,8 @@ public class Noise.TreeViewColumnSizer {
         uint stamp = ++last_resize;
 
         Idle.add_full (Priority.LOW, () => {
-            /* if not the last resize request, don't waste time processing it. We
-             * need this to make sure we only process the last request queued. */
+            // if not the last resize request, don't waste time processing it.
+            // Weneed this to make sure we only process the last request queued.
             if (stamp == last_resize)
                 resize_columns ();
 
@@ -127,10 +127,11 @@ public class Noise.TreeViewColumnSizer {
 
 
     private void resize_columns () {
+        // target total width has not been set
         if (ideal_total_width <= 0)
             return;
 
-        int total_width = 0, total_fixed_width = 0, total_min_width = 0;
+        int total_fixed_width = 0, total_min_width = 0;
         var resizable_columns = new Gee.LinkedList<Column> ();
 
         // Get total width
@@ -138,28 +139,41 @@ public class Noise.TreeViewColumnSizer {
             var treeviewcolumn = col.column;
 
             if (treeviewcolumn != null && treeviewcolumn.visible) {
-                total_width += treeviewcolumn.width;
-
                 if (treeviewcolumn.resizable) {
                     if (treeviewcolumn.min_width > 0)
                         total_min_width += treeviewcolumn.min_width;
 
                     resizable_columns.add (col);
                 } else {
-                    total_min_width += treeviewcolumn.width;
-                    total_fixed_width += treeviewcolumn.width;
+                    total_min_width += treeviewcolumn.fixed_width;
+                    total_fixed_width += treeviewcolumn.fixed_width;
                 }
             }
         }
 
-        // There's nothing we can do in this case
-        if (ideal_total_width <= total_min_width)
+        debug ("ideal_total_width\t= %i", ideal_total_width);
+        debug ("total_min_width\t= %.1f", total_min_width);
+        debug ("total_fixed_width\t= %.1f", total_fixed_width);
+
+
+        // Nothing to do
+        if (resizable_columns.size == 0)
             return;
 
-
-
         // Distribute remaining size based on priorities
-        double available_width = (double)(total_width - total_fixed_width);
+        double available_width = (double)(ideal_total_width - total_fixed_width);
+
+
+        debug ("available_width[1]\t= %.1f", available_width);
+
+        // if negative or small, try to do the best we can by using a small value.
+        // We want to allocate at least one pixel for each column (and hence we use
+        // resizable_columns.size)
+        if (available_width <= 0)
+            available_width = (double)resizable_columns.size;
+
+        debug ("available_width[2]\t= %.1f", available_width);
+
         double high_priority_cols = 0.0, medium_priority_cols = 0.0, low_priority_cols = 0.0;
 
         foreach (var col in resizable_columns) {
@@ -177,7 +191,6 @@ public class Noise.TreeViewColumnSizer {
                     assert_not_reached ();
             }
         }
-
 
         double high_priority_width =
             SizePriority.HIGH.get_percentage () * available_width / high_priority_cols;
