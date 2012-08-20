@@ -51,8 +51,7 @@ public class Noise.PlaylistNameWindow : Window {
 		this.set_modal(true);
 		this.set_transient_for(lw);
 		this.destroy_with_parent = true;
-//		this.type = WindowType.POPUP;
-		
+
 		set_size_request (350, -1);
 		resizable = false;
 		
