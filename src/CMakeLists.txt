@@ -133,6 +133,7 @@ OPTIONS
     --vapidir=${CMAKE_BINARY_DIR}/core/
     --target-glib=2.32
     --define=USE_GRANITE_DECORATED_WINDOW
+    --define=TRACE_COLUMN_SIZER
     #--define=HAVE_ADD_PLAYLIST_AS_BUTTON
     #--define=HAVE_SMART_ALBUM_COLUMN
     #--define=GTK_ICON_VIEW_BUG_IS_FIXED
