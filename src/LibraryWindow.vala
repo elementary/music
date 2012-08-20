@@ -57,7 +57,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private FixedBin                  topDisplayBin         { get; private set; }
     public Widgets.ViewSelector       viewSelector          { get; private set; } // TODO: make private
     public Granite.Widgets.SearchBar  searchField           { get; private set; } // TODO: make private
-    public BottomStatusBar            statusbar             { get; private set; } // TODO: make private
+    public Widgets.StatusBar          statusbar             { get; private set; } // TODO: make private
 
     /* AppMenu items */
     private Gtk.Menu          settingsMenu;
@@ -116,21 +116,17 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public override bool key_press_event (Gdk.EventKey event) {
-        if (searchField == null || !searchField.sensitive || searchField.has_focus)
-            return base.key_press_event (event);
-
         var typed_unichar = event.str.get_char ();
 
-        if (!typed_unichar.validate ())
-            return base.key_press_event (event);
+       // Redirect valid key presses to the search entry
+       if (typed_unichar.validate () && searchField.sensitive && !searchField.has_focus) {
+            unichar[] special_chars = {'&', '.', '-', '\'', '%', '(', ')', '=', '@', '!',
+                                        '#', '+', '<', '>', ';', ':', '¿', '?', '¡', '~',
+                                        '_', '¨', '*', '$', '"', '[', ']'};
 
-        unichar[] special_chars = {'&', '.', '-', '\'', '%', '(', ')', '=', '@', '!',
-                                    '#', '+', '<', '>', ';', ':', '¿', '?', '¡', '~',
-                                    '_', '¨', '*', '$', '"', '[', ']'};
-
-        // Redirect valid key presses to the search field
-        if (typed_unichar.isalnum () || typed_unichar in special_chars)
-            searchField.grab_focus ();
+            if (typed_unichar.isalnum () || typed_unichar in special_chars)
+                searchField.grab_focus ();
+        }
 
         return base.key_press_event (event);
     }
@@ -245,7 +241,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         /** Statusbar widgets **/
 
-        statusbar = new BottomStatusBar (this);
+        statusbar = new Widgets.StatusBar (this);
 
 
         /** Main layout **/
@@ -585,11 +581,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         topDisplay.set_scale_sensitivity(media_active);
 
-        // TODO: also update statusbar option chooser
         bool show_info_panel = Settings.SavedState.instance.more_visible && media_active && folder_set;
         info_panel.set_visible (show_info_panel);
 
-        statusbar.set_sensitive (folder_set);
+        statusbar.set_sensitive (folder_set && have_media);
 
         // hide playlists when media list is empty
         sideTree.setVisibility (sideTree.playlists_iter, have_media);
@@ -830,7 +825,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }*/
 
             string folders_list = "";
-            string[] folders = {};
+            string[] folders = new string[0];
             var _folders = new SList<string> ();
             var file_chooser = new FileChooserDialog (_("Import Music"), this,
                                       FileChooserAction.SELECT_FOLDER,
@@ -843,9 +838,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 _folders = file_chooser.get_filenames();
             }
             file_chooser.destroy ();
-            
-            for (int i=0;i< (int)(_folders.length ());i++) {
-                folders += _folders.nth_data (i);
+
+
+            // cancelled
+            if (_folders.length () <= 0)
+                return;
+
+
+            for (uint i = 0; i < _folders.length (); i++) {
+                var folder = _folders.nth_data (i);
+                folders += folder;
             }
 
             for (int i=0;i<folders.length;i++) {
@@ -855,6 +857,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                         folders_list += ", ";
                 }
             }
+
             if(GLib.File.new_for_path (Settings.Main.instance.music_folder).query_exists()) {
                 topDisplay.set_label_markup(_("<b>Importing</b> music from <b>%s</b> to library.").printf(folders_list));
                 topDisplay.show_progressbar();
@@ -1109,14 +1112,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         // Now set the selected view
         Settings.SavedState.instance.view_mode = viewSelector.selected;
 
-        // Search FIXME: Temporary disabled
+        // Search FIXME: Temporarily disabled
         //Settings.Main.instance.search_string = searchField.get_text ();
         
         // Save info pane (context pane) width
         Settings.SavedState.instance.more_width = info_panel.get_allocated_width ();
+        Settings.SavedState.instance.more_visible = info_panel.visible;
 
         // Save sidebar width
         Settings.SavedState.instance.sidebar_width = main_hpaned.position;
+
 
         // Save window state
         if (window_maximized)
